@@ -4,6 +4,8 @@
 .idea
 node_modules
 docs/.vuepress/dist
+docs/.vuepress/public/demo
+docs/.vuepress/public/sandbox
 
 # User-specific stuff
 .idea/**/workspace.xml
