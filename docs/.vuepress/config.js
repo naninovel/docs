@@ -18,8 +18,40 @@ module.exports = {
                 ]
             },
             {text: 'Guide', link: '/guide/'},
+            {text: 'API Reference', link: '/api/'},
             {text: 'Issue Tracker', link: 'https://github.com/Elringus/NaninovelWeb/issues'},
             {text: 'Support', link: '/support/'}
-        ]
+        ],
+        sidebar: {
+            '/guide/': getGuideSidebar('Guide', 'Advanced')
+        }
+    },
+    plugins: {
+        '@vuepress/google-analytics' : { ga: 'UA-62903242-4' }
     }
 };
+
+function getGuideSidebar (groupA, groupB) {
+    return [
+        {
+            title: groupA,
+            collapsable: false,
+            children: [
+                '',
+                'compatibility',
+                'getting-started',
+                'configuration',
+            ]
+        },
+        {
+            title: groupB,
+            collapsable: false,
+            children: [
+                'compatibility',
+                'compatibility',
+                'compatibility',
+                'compatibility'
+            ]
+        }
+    ]
+}
