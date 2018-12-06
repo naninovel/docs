@@ -41,6 +41,7 @@ function getGuideSidebar (groupA, groupB) {
                 'compatibility',
                 'getting-started',
                 'configuration',
+                'understanding-novel-scripts',
             ]
         },
         {

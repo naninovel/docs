@@ -11,4 +11,4 @@ The following platforms were tested and are guaranteed to work:
 * WebGL
 * iOS
 * Android
-* UWP (IL2CPP scripting backend only).
+* UWP (IL2CPP scripting backend only)
