@@ -47,10 +47,7 @@ function getGuideSidebar (groupA, groupB) {
             title: groupB,
             collapsable: false,
             children: [
-                'compatibility',
-                'compatibility',
-                'compatibility',
-                'compatibility'
+
             ]
         }
     ]

@@ -7,7 +7,7 @@ The following features are already implemented; new ones will be added as the en
   * Generic text lines
   * Labels
   * Script defines
-  * Action inlining
+  * Actions inlining
   * Conditional flow
 * Novel action extensions
 * Text printers
@@ -23,7 +23,8 @@ The following features are already implemented; new ones will be added as the en
 * Game settings
 * Resources management
 * Script rewinding and debug
-* Transition effects
+* Background transition effects
+* Special effects (FX system)
 * Voicing
 * Background implementations
   * Sprite backgrounds
