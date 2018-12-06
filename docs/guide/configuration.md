@@ -29,7 +29,7 @@ Voice Volume Handle Name | Voice Volume | Name of the mixer's handle to control 
 
 Property | Default Value | Description
 --- | --- | ---
-Z Offset | 100 | Z-axis offset distance to add between background actors.
+Z Offset | 100 | Z-axis offset distance (depth) from background actors to the camera.
 Default Metadata | Object Ref | Metadata to use by default when creating background actors.
 Metadata | Object Ref | Metadata to use when creating background actors with specific names. Populated automatically when using backround resources manager.
 Scene Origin | (0.5, 0.0) | Origin point used for reference when positioning actors on scene.
