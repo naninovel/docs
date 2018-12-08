@@ -16,15 +16,15 @@ public class Naninovel.UI.BacklogCloseButton
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | OnButtonClick() |  | 
+| void | Awake() |  | 
+| void | OnButtonClick() |  | 
 
 
 #### Static Fields
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `String` | LabelText |  | 
+| String | LabelText |  | 
 
 
 ## BacklogPanel
@@ -39,14 +39,14 @@ public class Naninovel.UI.BacklogPanel
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | AddMessage(`String` message, `String` actorName = null) |  | 
-| `void` | AppendMessage(`String` message) |  | 
-| `void` | Awake() |  | 
-| `Task` | InitializeAsync() |  | 
-| `void` | OnDisable() |  | 
-| `void` | OnEnable() |  | 
-| `void` | SetIsVisible(`Boolean` isVisible) |  | 
-| `Task` | SetIsVisibleAsync(`Boolean` isVisible, `Nullable<Single>` fadeTime = null) |  | 
+| void | AddMessage(`String` message, `String` actorName = null) |  | 
+| void | AppendMessage(`String` message) |  | 
+| void | Awake() |  | 
+| Task | InitializeAsync() |  | 
+| void | OnDisable() |  | 
+| void | OnEnable() |  | 
+| void | SetIsVisible(`Boolean` isVisible) |  | 
+| Task | SetIsVisibleAsync(`Boolean` isVisible, `Single` fadeTime = null) |  | 
 
 
 ## ChoiceHandler
@@ -63,17 +63,17 @@ public class Naninovel.UI.ChoiceHandler
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `Action<ChoiceState>` | OnChoice | Invoked when one of active choices are choosen. | 
+| Action&lt;ChoiceState&gt; | OnChoice | Invoked when one of active choices are choosen. | 
 
 
 #### Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | AddChoiceButton(`ChoiceState` choice) |  | 
-| `void` | Awake() |  | 
-| `void` | RemoveAllChoiceButtons() |  | 
-| `void` | RemoveChoiceButton(`String` id) |  | 
+| void | AddChoiceButton(`ChoiceState` choice) |  | 
+| void | Awake() |  | 
+| void | RemoveAllChoiceButtons() |  | 
+| void | RemoveChoiceButton(`String` id) |  | 
 
 
 ## ChoiceHandlerButton
@@ -88,15 +88,15 @@ public class Naninovel.UI.ChoiceHandlerButton
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `String` | Id |  | 
+| String | Id |  | 
 
 
 #### Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | Initialize(`ChoiceState` choiceState) |  | 
+| void | Awake() |  | 
+| void | Initialize(`ChoiceState` choiceState) |  | 
 
 
 ## ControlPanelAutoPlayButton
@@ -111,17 +111,17 @@ public class Naninovel.UI.ControlPanelAutoPlayButton
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | OnButtonClick() |  | 
-| `void` | OnDisable() |  | 
-| `void` | OnEnable() |  | 
+| void | Awake() |  | 
+| void | OnButtonClick() |  | 
+| void | OnDisable() |  | 
+| void | OnEnable() |  | 
 
 
 #### Static Fields
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `String` | LabelText |  | 
+| String | LabelText |  | 
 
 
 ## ControlPanelHideButton
@@ -136,15 +136,15 @@ public class Naninovel.UI.ControlPanelHideButton
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | OnButtonClick() |  | 
+| void | Awake() |  | 
+| void | OnButtonClick() |  | 
 
 
 #### Static Fields
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `String` | LabelText |  | 
+| String | LabelText |  | 
 
 
 ## ControlPanelLoadButton
@@ -159,15 +159,15 @@ public class Naninovel.UI.ControlPanelLoadButton
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | OnButtonClick() |  | 
+| void | Awake() |  | 
+| void | OnButtonClick() |  | 
 
 
 #### Static Fields
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `String` | LabelText |  | 
+| String | LabelText |  | 
 
 
 ## ControlPanelLogButton
@@ -182,15 +182,15 @@ public class Naninovel.UI.ControlPanelLogButton
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | OnButtonClick() |  | 
+| void | Awake() |  | 
+| void | OnButtonClick() |  | 
 
 
 #### Static Fields
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `String` | LabelText |  | 
+| String | LabelText |  | 
 
 
 ## ControlPanelQuickLoadButton
@@ -205,18 +205,18 @@ public class Naninovel.UI.ControlPanelQuickLoadButton
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | OnButtonClick() |  | 
-| `void` | OnDisable() |  | 
-| `void` | OnEnable() |  | 
-| `void` | Start() |  | 
+| void | Awake() |  | 
+| void | OnButtonClick() |  | 
+| void | OnDisable() |  | 
+| void | OnEnable() |  | 
+| void | Start() |  | 
 
 
 #### Static Fields
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `String` | LabelText |  | 
+| String | LabelText |  | 
 
 
 ## ControlPanelQuickSaveButton
@@ -231,15 +231,15 @@ public class Naninovel.UI.ControlPanelQuickSaveButton
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | OnButtonClick() |  | 
+| void | Awake() |  | 
+| void | OnButtonClick() |  | 
 
 
 #### Static Fields
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `String` | LabelText |  | 
+| String | LabelText |  | 
 
 
 ## ControlPanelSaveButton
@@ -254,15 +254,15 @@ public class Naninovel.UI.ControlPanelSaveButton
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | OnButtonClick() |  | 
+| void | Awake() |  | 
+| void | OnButtonClick() |  | 
 
 
 #### Static Fields
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `String` | LabelText |  | 
+| String | LabelText |  | 
 
 
 ## ControlPanelSettingsButton
@@ -277,15 +277,15 @@ public class Naninovel.UI.ControlPanelSettingsButton
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | OnButtonClick() |  | 
+| void | Awake() |  | 
+| void | OnButtonClick() |  | 
 
 
 #### Static Fields
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `String` | LabelText |  | 
+| String | LabelText |  | 
 
 
 ## ControlPanelSkipButton
@@ -300,17 +300,17 @@ public class Naninovel.UI.ControlPanelSkipButton
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | OnButtonClick() |  | 
-| `void` | OnDisable() |  | 
-| `void` | OnEnable() |  | 
+| void | Awake() |  | 
+| void | OnButtonClick() |  | 
+| void | OnDisable() |  | 
+| void | OnEnable() |  | 
 
 
 #### Static Fields
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `String` | LabelText |  | 
+| String | LabelText |  | 
 
 
 ## ControlPanelTitleButton
@@ -325,15 +325,15 @@ public class Naninovel.UI.ControlPanelTitleButton
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | OnButtonClick() |  | 
+| void | Awake() |  | 
+| void | OnButtonClick() |  | 
 
 
 #### Static Fields
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `String` | LabelText |  | 
+| String | LabelText |  | 
 
 
 ## DebugInfoGUI
@@ -348,17 +348,17 @@ public class Naninovel.UI.DebugInfoGUI
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `KeyCode` | NextKey |  | 
-| `KeyCode` | PlayKey |  | 
-| `KeyCode` | PreviousKey |  | 
-| `KeyCode` | StopKey |  | 
+| KeyCode | NextKey |  | 
+| KeyCode | PlayKey |  | 
+| KeyCode | PreviousKey |  | 
+| KeyCode | StopKey |  | 
 
 
 #### Static Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Toggle() |  | 
+| void | Toggle() |  | 
 
 
 ## EngineVersionText
@@ -381,9 +381,9 @@ public class Naninovel.UI.GameSettingsBgmVolumeSlider
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | OnValueChanged(`Single` value) |  | 
-| `void` | Start() |  | 
+| void | Awake() |  | 
+| void | OnValueChanged(`Single` value) |  | 
+| void | Start() |  | 
 
 
 ## GameSettingsLanguageDropdown
@@ -398,8 +398,8 @@ public class Naninovel.UI.GameSettingsLanguageDropdown
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | OnValueChanged(`Int32` value) |  | 
+| void | Awake() |  | 
+| void | OnValueChanged(`Int32` value) |  | 
 
 
 ## GameSettingsManagedText
@@ -414,22 +414,22 @@ public class Naninovel.UI.GameSettingsManagedText
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `String` | BasicTitleLabel |  | 
-| `String` | EffectsVolumeLabel |  | 
-| `String` | LanguageLabel |  | 
-| `String` | MasterVolumeLabel |  | 
-| `String` | MessageSpeedLabel |  | 
-| `String` | MusicVolumeLabel |  | 
-| `String` | NavigationBasicLabel |  | 
-| `String` | NavigationReturnLabel |  | 
-| `String` | NavigationSoundLabel |  | 
-| `String` | NavigationTextLabel |  | 
-| `String` | ResolutionLabel |  | 
-| `String` | ScreenModeLabel |  | 
-| `String` | SkipModeLabel |  | 
-| `String` | SoundTitleLabel |  | 
-| `String` | TextTitleLabel |  | 
-| `String` | VoiceVolumeLabel |  | 
+| String | BasicTitleLabel |  | 
+| String | EffectsVolumeLabel |  | 
+| String | LanguageLabel |  | 
+| String | MasterVolumeLabel |  | 
+| String | MessageSpeedLabel |  | 
+| String | MusicVolumeLabel |  | 
+| String | NavigationBasicLabel |  | 
+| String | NavigationReturnLabel |  | 
+| String | NavigationSoundLabel |  | 
+| String | NavigationTextLabel |  | 
+| String | ResolutionLabel |  | 
+| String | ScreenModeLabel |  | 
+| String | SkipModeLabel |  | 
+| String | SoundTitleLabel |  | 
+| String | TextTitleLabel |  | 
+| String | VoiceVolumeLabel |  | 
 
 
 ## GameSettingsMasterVolumeSlider
@@ -444,9 +444,9 @@ public class Naninovel.UI.GameSettingsMasterVolumeSlider
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | OnValueChanged(`Single` value) |  | 
-| `void` | Start() |  | 
+| void | Awake() |  | 
+| void | OnValueChanged(`Single` value) |  | 
+| void | Start() |  | 
 
 
 ## GameSettingsMenu
@@ -461,10 +461,10 @@ public class Naninovel.UI.GameSettingsMenu
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `Task` | InitializeAsync() |  | 
-| `void` | OnDisable() |  | 
-| `void` | OnEnable() |  | 
+| void | Awake() |  | 
+| Task | InitializeAsync() |  | 
+| void | OnDisable() |  | 
+| void | OnEnable() |  | 
 
 
 ## GameSettingsMessageSpeedSlider
@@ -479,9 +479,9 @@ public class Naninovel.UI.GameSettingsMessageSpeedSlider
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | OnValueChanged(`Single` value) |  | 
-| `void` | Start() |  | 
+| void | Awake() |  | 
+| void | OnValueChanged(`Single` value) |  | 
+| void | Start() |  | 
 
 
 ## GameSettingsResolutionDropdown
@@ -496,9 +496,9 @@ public class Naninovel.UI.GameSettingsResolutionDropdown
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | OnValueChanged(`Int32` value) |  | 
-| `void` | Start() |  | 
+| void | Awake() |  | 
+| void | OnValueChanged(`Int32` value) |  | 
+| void | Start() |  | 
 
 
 ## GameSettingsReturnButton
@@ -513,8 +513,8 @@ public class Naninovel.UI.GameSettingsReturnButton
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | OnButtonClick() |  | 
+| void | Awake() |  | 
+| void | OnButtonClick() |  | 
 
 
 ## GameSettingsScreenModeDropdown
@@ -529,19 +529,19 @@ public class Naninovel.UI.GameSettingsScreenModeDropdown
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | OnValueChanged(`Int32` value) |  | 
-| `void` | Start() |  | 
+| void | Awake() |  | 
+| void | OnValueChanged(`Int32` value) |  | 
+| void | Start() |  | 
 
 
 #### Static Fields
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `String` | ExclusiveFullScreen |  | 
-| `String` | FullScreenWindow |  | 
-| `String` | MaximizedWindow |  | 
-| `String` | Windowed |  | 
+| String | ExclusiveFullScreen |  | 
+| String | FullScreenWindow |  | 
+| String | MaximizedWindow |  | 
+| String | Windowed |  | 
 
 
 ## GameSettingsSfxVolumeSlider
@@ -556,9 +556,9 @@ public class Naninovel.UI.GameSettingsSfxVolumeSlider
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | OnValueChanged(`Single` value) |  | 
-| `void` | Start() |  | 
+| void | Awake() |  | 
+| void | OnValueChanged(`Single` value) |  | 
+| void | Start() |  | 
 
 
 ## GameSettingsSkipModeDropdown
@@ -573,17 +573,17 @@ public class Naninovel.UI.GameSettingsSkipModeDropdown
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | OnValueChanged(`Int32` value) |  | 
-| `void` | Start() |  | 
+| void | Awake() |  | 
+| void | OnValueChanged(`Int32` value) |  | 
+| void | Start() |  | 
 
 
 #### Static Fields
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `String` | Everything |  | 
-| `String` | ReadOnly |  | 
+| String | Everything |  | 
+| String | ReadOnly |  | 
 
 
 ## GameSettingsVoiceVolumeSlider
@@ -598,9 +598,9 @@ public class Naninovel.UI.GameSettingsVoiceVolumeSlider
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | OnValueChanged(`Single` value) |  | 
-| `void` | Start() |  | 
+| void | Awake() |  | 
+| void | OnValueChanged(`Single` value) |  | 
+| void | Start() |  | 
 
 
 ## GameStateSlot
@@ -615,30 +615,30 @@ public class Naninovel.UI.GameStateSlot
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `String` | Id |  | 
-| `Int32` | SlotIndex |  | 
-| `GameState` | State |  | 
+| String | Id |  | 
+| Int32 | SlotIndex |  | 
+| GameState | State |  | 
 
 
 #### Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | Initialize(`String` id, `GameState` state = null, `OnClicked` onClicked = null, `OnDeleteClicked` onDeleteClicked = null) |  | 
-| `void` | OnPointerClick(`PointerEventData` eventData) |  | 
-| `void` | OnPointerEnter(`PointerEventData` eventData) |  | 
-| `void` | OnPointerExit(`PointerEventData` eventData) |  | 
-| `void` | SetEmptyState() |  | 
-| `void` | SetState(`GameState` state) |  | 
-| `void` | Start() |  | 
+| void | Awake() |  | 
+| void | Initialize(`String` id, `GameState` state = null, `OnClicked` onClicked = null, `OnDeleteClicked` onDeleteClicked = null) |  | 
+| void | OnPointerClick(`PointerEventData` eventData) |  | 
+| void | OnPointerEnter(`PointerEventData` eventData) |  | 
+| void | OnPointerExit(`PointerEventData` eventData) |  | 
+| void | SetEmptyState() |  | 
+| void | SetState(`GameState` state) |  | 
+| void | Start() |  | 
 
 
 #### Static Fields
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `String` | EmptySlotLabel |  | 
+| String | EmptySlotLabel |  | 
 
 
 ## GameStateSlotsGrid
@@ -653,18 +653,18 @@ public class Naninovel.UI.GameStateSlotsGrid
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `Int32` | LastPage |  | 
-| `Nullable<DateTime>` | LastSaveDateTime |  | 
+| Int32 | LastPage |  | 
+| DateTime | LastSaveDateTime |  | 
 
 
 #### Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `GameStateSlot` | AddSlot(`String` slotId, `GameState` state = null, `OnClicked` onClicked = null, `OnDeleteClicked` onDeleteClicked = null) |  | 
-| `void` | Awake() |  | 
-| `GameStateSlot` | GetSlot(`String` slotId) |  | 
-| `Boolean` | SlotExists(`String` slotId) |  | 
+| GameStateSlot | AddSlot(`String` slotId, `GameState` state = null, `OnClicked` onClicked = null, `OnDeleteClicked` onDeleteClicked = null) |  | 
+| void | Awake() |  | 
+| GameStateSlot | GetSlot(`String` slotId) |  | 
+| Boolean | SlotExists(`String` slotId) |  | 
 
 
 ## IBacklogUI
@@ -681,8 +681,8 @@ public interface Naninovel.UI.IBacklogUI
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | AddMessage(`String` message, `String` actorName = null) | Adds message to the log. | 
-| `void` | AppendMessage(`String` message) | Appends message to the last message of the log (if exists). | 
+| void | AddMessage(`String` message, `String` actorName = null) | Adds message to the log. | 
+| void | AppendMessage(`String` message) | Appends message to the last message of the log (if exists). | 
 
 
 ## ILoadingUI
@@ -708,24 +708,24 @@ public interface Naninovel.UI.IManagedUI
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `Boolean` | IsVisible | Whether the UI element is currently visible to the user. | 
+| Boolean | IsVisible | Whether the UI element is currently visible to the user. | 
 
 
 #### Events
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `Action<Boolean>` | OnVisibilityChanged | Event invoked when `Naninovel.UI.IManagedUI.IsVisible` of the UI object is changed. | 
+| Action&lt;Boolean&gt; | OnVisibilityChanged | Event invoked when `Naninovel.UI.IManagedUI.IsVisible` of the UI object is changed. | 
 
 
 #### Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Hide() | Hides the UI element from the user. | 
-| `Task` | InitializeAsync() | Allows to execute any async initialization logic.  Invoked once by `Naninovel.UIManager` on service initialization. | 
-| `Task` | SetIsVisibleAsync(`Boolean` isVisible, `Nullable<Single>` fadeTime = null) | Changes the visibility over the specified ``. | 
-| `void` | Show() | Shows the UI element to the user. | 
+| void | Hide() | Hides the UI element from the user. | 
+| Task | InitializeAsync() | Allows to execute any async initialization logic.  Invoked once by `Naninovel.UIManager` on service initialization. | 
+| Task | SetIsVisibleAsync(`Boolean` isVisible, `Single` fadeTime = null) | Changes the visibility over the specified ``. | 
+| void | Show() | Shows the UI element to the user. | 
 
 
 ## IMovieUI
@@ -754,14 +754,14 @@ public interface Naninovel.UI.ISaveLoadUI
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `SaveLoadUIPresentationMode` | PresentationMode | Current presentation mode of the UI. | 
+| SaveLoadUIPresentationMode | PresentationMode | Current presentation mode of the UI. | 
 
 
 #### Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `SaveLoadUIPresentationMode` | GetLastLoadMode() | Returns either `Naninovel.UI.SaveLoadUIPresentationMode.Load` or `Naninovel.UI.SaveLoadUIPresentationMode.QuickLoad`,  depending on where is the latest (chronologically, based on `Naninovel.GameState.SaveDateTime`) save slot resides. | 
+| SaveLoadUIPresentationMode | GetLastLoadMode() | Returns either `Naninovel.UI.SaveLoadUIPresentationMode.Load` or `Naninovel.UI.SaveLoadUIPresentationMode.QuickLoad`,  depending on where is the latest (chronologically, based on `Naninovel.GameState.SaveDateTime`) save slot resides. | 
 
 
 ## ISettingsUI
@@ -796,9 +796,9 @@ public class Naninovel.UI.LoadingIcon
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | OnDisable() |  | 
-| `void` | OnEnable() |  | 
+| void | Awake() |  | 
+| void | OnDisable() |  | 
+| void | OnEnable() |  | 
 
 
 ## LoadingPanel
@@ -813,17 +813,17 @@ public class Naninovel.UI.LoadingPanel
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `Task` | InitializeAsync() |  | 
-| `void` | OnDisable() |  | 
-| `void` | OnEnable() |  | 
+| void | Awake() |  | 
+| Task | InitializeAsync() |  | 
+| void | OnDisable() |  | 
+| void | OnEnable() |  | 
 
 
 ## LoadLoggerScrollRect
 
 ```csharp
 public class Naninovel.UI.LoadLoggerScrollRect
-    : ScriptableUIComponent<ScrollRect>
+    : ScriptableUIComponent&lt;ScrollRect&gt;
 
 ```
 
@@ -831,11 +831,11 @@ public class Naninovel.UI.LoadLoggerScrollRect
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | Log(`String` message) |  | 
-| `void` | OnDestroy() |  | 
-| `void` | OnEnable() |  | 
-| `void` | Start() |  | 
+| void | Awake() |  | 
+| void | Log(`String` message) |  | 
+| void | OnDestroy() |  | 
+| void | OnEnable() |  | 
+| void | Start() |  | 
 
 
 ## MovieUI
@@ -850,10 +850,10 @@ public class Naninovel.UI.MovieUI
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `Task` | InitializeAsync() |  | 
-| `void` | OnDisable() |  | 
-| `void` | OnEnable() |  | 
+| void | Awake() |  | 
+| Task | InitializeAsync() |  | 
+| void | OnDisable() |  | 
+| void | OnEnable() |  | 
 
 
 ## NavigatorPlaytButton
@@ -868,13 +868,13 @@ public class Naninovel.UI.NavigatorPlaytButton
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | Initialize(`ScriptNavigator` navigator, `NovelScript` script, `NovelScriptPlayer` player) |  | 
-| `void` | OnButtonClick() |  | 
-| `void` | OnDisable() |  | 
-| `void` | OnEnable() |  | 
-| `void` | OnPointerEnter(`PointerEventData` eventData) |  | 
-| `void` | OnPointerExit(`PointerEventData` eventData) |  | 
+| void | Awake() |  | 
+| void | Initialize(`ScriptNavigator` navigator, `NovelScript` script, `NovelScriptPlayer` player) |  | 
+| void | OnButtonClick() |  | 
+| void | OnDisable() |  | 
+| void | OnEnable() |  | 
+| void | OnPointerEnter(`PointerEventData` eventData) |  | 
+| void | OnPointerExit(`PointerEventData` eventData) |  | 
 
 
 ## NavigatorSyncButton
@@ -889,8 +889,8 @@ public class Naninovel.UI.NavigatorSyncButton
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | OnButtonClick() |  | 
+| void | Awake() |  | 
+| void | OnButtonClick() |  | 
 
 
 ## NovelText
@@ -905,27 +905,27 @@ public class Naninovel.UI.NovelText
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `Int32` | LastCharIndex |  | 
-| `Int32` | LastRevealedCharIndex |  | 
-| `Single` | RevealFadeDuration |  | 
-| `Single` | RevealFadeWidth |  | 
-| `Single` | RevealProgress |  | 
+| Int32 | LastCharIndex |  | 
+| Int32 | LastRevealedCharIndex |  | 
+| Single | RevealFadeDuration |  | 
+| Single | RevealFadeWidth |  | 
+| Single | RevealProgress |  | 
 
 
 #### Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `Vector2` | GetLastRevealedCharPosition() | Returns position (in world space) of the last revealed character. | 
-| `Single` | GetRevealProgress() |  | 
-| `void` | HideAll() |  | 
-| `void` | RevealAll() |  | 
-| `Boolean` | RevealNextChar() | Attempts to reveal next visible (not-a-tag) character.  Could fail when cached text generator is not valid. | 
-| `void` | SetLastRevealedCharAsLimit() | Prevents reveal fade effect from affecting last revealed char. | 
-| `void` | SetLastRevealedCharIndex(`Int32` charIndex, `Boolean` triggerFade = True) |  | 
-| `void` | SetRevealProgress(`Single` revealProgress) |  | 
-| `void` | Start() |  | 
+| void | Awake() |  | 
+| Vector2 | GetLastRevealedCharPosition() | Returns position (in world space) of the last revealed character. | 
+| Single | GetRevealProgress() |  | 
+| void | HideAll() |  | 
+| void | RevealAll() |  | 
+| Boolean | RevealNextChar() | Attempts to reveal next visible (not-a-tag) character.  Could fail when cached text generator is not valid. | 
+| void | SetLastRevealedCharAsLimit() | Prevents reveal fade effect from affecting last revealed char. | 
+| void | SetLastRevealedCharIndex(`Int32` charIndex, `Boolean` triggerFade = True) |  | 
+| void | SetRevealProgress(`Single` revealProgress) |  | 
+| void | Start() |  | 
 
 
 ## SaveLoadMenu
@@ -940,18 +940,18 @@ public class Naninovel.UI.SaveLoadMenu
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `SaveLoadUIPresentationMode` | PresentationMode |  | 
+| SaveLoadUIPresentationMode | PresentationMode |  | 
 
 
 #### Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `SaveLoadUIPresentationMode` | GetLastLoadMode() |  | 
-| `Task` | InitializeAsync() |  | 
-| `void` | OnDisable() |  | 
-| `void` | OnEnable() |  | 
+| void | Awake() |  | 
+| SaveLoadUIPresentationMode | GetLastLoadMode() |  | 
+| Task | InitializeAsync() |  | 
+| void | OnDisable() |  | 
+| void | OnEnable() |  | 
 
 
 ## SaveLoadMenuManagedText
@@ -966,13 +966,13 @@ public class Naninovel.UI.SaveLoadMenuManagedText
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `String` | LoadTitleLabel |  | 
-| `String` | NavigationLoadLabel |  | 
-| `String` | NavigationQuickLoadLabel |  | 
-| `String` | NavigationReturnLabel |  | 
-| `String` | NavigationSaveLabel |  | 
-| `String` | QuickLoadTitleLabel |  | 
-| `String` | SaveTitleLabel |  | 
+| String | LoadTitleLabel |  | 
+| String | NavigationLoadLabel |  | 
+| String | NavigationQuickLoadLabel |  | 
+| String | NavigationReturnLabel |  | 
+| String | NavigationSaveLabel |  | 
+| String | QuickLoadTitleLabel |  | 
+| String | SaveTitleLabel |  | 
 
 
 ## SaveLoadMenuReturnButton
@@ -987,8 +987,8 @@ public class Naninovel.UI.SaveLoadMenuReturnButton
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | OnButtonClick() |  | 
+| void | Awake() |  | 
+| void | OnButtonClick() |  | 
 
 
 ## SaveLoadUIPresentationMode
@@ -1005,9 +1005,9 @@ public enum Naninovel.UI.SaveLoadUIPresentationMode
 
 | Value | Name | Summary | 
 | --- | --- | --- | 
-| `0` | QuickLoad |  | 
-| `1` | Load |  | 
-| `2` | Save |  | 
+| 0 | QuickLoad |  | 
+| 1 | Load |  | 
+| 2 | Save |  | 
 
 
 ## ScriptNavigator
@@ -1022,12 +1022,12 @@ public class Naninovel.UI.ScriptNavigator
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | DestroyScriptButtons() |  | 
-| `void` | GenerateScriptButtons(`IEnumerable<NovelScript>` novelScripts) |  | 
-| `void` | OnDisable() |  | 
-| `void` | OnEnable() |  | 
-| `Task` | SetIsVisibleAsync(`Boolean` isVisible, `Nullable<Single>` fadeTime = null) |  | 
+| void | Awake() |  | 
+| void | DestroyScriptButtons() |  | 
+| void | GenerateScriptButtons(`IEnumerable&lt;NovelScript&gt;` novelScripts) |  | 
+| void | OnDisable() |  | 
+| void | OnEnable() |  | 
+| Task | SetIsVisibleAsync(`Boolean` isVisible, `Single` fadeTime = null) |  | 
 
 
 ## TextPrinter
@@ -1044,19 +1044,19 @@ public class Naninovel.UI.TextPrinter
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `String` | ActorNameText |  | 
-| `RectTransform` | Content |  | 
-| `NovelText` | NovelText |  | 
+| String | ActorNameText |  | 
+| RectTransform | Content |  | 
+| NovelText | NovelText |  | 
 
 
 #### Methods
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `Task` | PrintTextAsync(`CancellationToken` cancellationToken, `Single` printDelay) |  | 
-| `void` | SetActorName(`String` actorName) |  | 
-| `void` | SetWaitForInputIndicatorVisible(`Boolean` isVisible) |  | 
+| void | Awake() |  | 
+| Task | PrintTextAsync(`CancellationToken` cancellationToken, `Single` printDelay) |  | 
+| void | SetActorName(`String` actorName) |  | 
+| void | SetWaitForInputIndicatorVisible(`Boolean` isVisible) |  | 
 
 
 ## TitleContinueButton
@@ -1071,18 +1071,18 @@ public class Naninovel.UI.TitleContinueButton
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | OnButtonClick() |  | 
-| `void` | OnDisable() |  | 
-| `void` | OnEnable() |  | 
-| `void` | Start() |  | 
+| void | Awake() |  | 
+| void | OnButtonClick() |  | 
+| void | OnDisable() |  | 
+| void | OnEnable() |  | 
+| void | Start() |  | 
 
 
 #### Static Fields
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `String` | LabelText |  | 
+| String | LabelText |  | 
 
 
 ## TitleExitButton
@@ -1097,15 +1097,15 @@ public class Naninovel.UI.TitleExitButton
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | OnButtonClick() |  | 
+| void | Awake() |  | 
+| void | OnButtonClick() |  | 
 
 
 #### Static Fields
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `String` | LabelText |  | 
+| String | LabelText |  | 
 
 
 ## TitleMenu
@@ -1120,10 +1120,10 @@ public class Naninovel.UI.TitleMenu
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `Task` | InitializeAsync() |  | 
-| `void` | OnDisable() |  | 
-| `void` | OnEnable() |  | 
+| void | Awake() |  | 
+| Task | InitializeAsync() |  | 
+| void | OnDisable() |  | 
+| void | OnEnable() |  | 
 
 
 ## TitleNewGameButton
@@ -1138,16 +1138,16 @@ public class Naninovel.UI.TitleNewGameButton
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | OnButtonClick() |  | 
-| `void` | Start() |  | 
+| void | Awake() |  | 
+| void | OnButtonClick() |  | 
+| void | Start() |  | 
 
 
 #### Static Fields
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `String` | LabelText |  | 
+| String | LabelText |  | 
 
 
 ## TitleSettingsButton
@@ -1162,22 +1162,22 @@ public class Naninovel.UI.TitleSettingsButton
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Awake() |  | 
-| `void` | OnButtonClick() |  | 
+| void | Awake() |  | 
+| void | OnButtonClick() |  | 
 
 
 #### Static Fields
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `String` | LabelText |  | 
+| String | LabelText |  | 
 
 
 ## WaitingForInputIndicator
 
 ```csharp
 public class Naninovel.UI.WaitingForInputIndicator
-    : ScriptableUIComponent<RawImage>
+    : ScriptableUIComponent&lt;RawImage&gt;
 
 ```
 
@@ -1185,7 +1185,7 @@ public class Naninovel.UI.WaitingForInputIndicator
 
 | Type | Name | Summary | 
 | --- | --- | --- | 
-| `void` | Hide() |  | 
-| `void` | Show(`Vector2` position) | Reveales and sets position in world space. | 
+| void | Hide() |  | 
+| void | Show(`Vector2` position) | Reveales and sets position in world space. | 
 
 
