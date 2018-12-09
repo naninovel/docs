@@ -21,7 +21,7 @@ Line is considered an action statement if it starts with a `@` literal. Action r
 
 Right after the action literal an action identifier is expected. This could either be the name of the C# class that implements the action or the action's tag (if it's applied via `NovelActionTag` attribute). 
 
-For example, a `@save` action (used to auto-save the game) is implemented via the `AutoSave` C# class. The implementing class also has a `[NovelActionTag("save")]` attribute applied, so you can use both `@save` and `@AutoSave` statements in the script to invoke this action. 
+For example, a [`@save`](/api/#save) action (used to auto-save the game) is implemented via the `AutoSave` C# class. The implementing class also has a `[NovelActionTag("save")]` attribute applied, so you can use both `@save` and `@AutoSave` statements in the script to invoke this action. 
 
 Action identifiers are case-insensitive; all the following statements are valid and will invoke the same `AutoSave` action:
 

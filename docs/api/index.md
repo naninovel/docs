@@ -12,6 +12,7 @@ Novel script actions API reference. Use the side bar to quickly navigate between
 Arranges specified characters by X-axis.  When no parameters provided, will execute an auto-arrange evenly distributing visible characters by X-axis.
 
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
@@ -19,7 +20,7 @@ Name | Type | Description
 <span class="action-param-nameless" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name">CharacterPositions</span> | LiteralMap&lt;Single&gt; | Character name to scene local X-axis position map.  Local scene position 0 relates to the left border and 1 to the right border of the screen; 0.5 is the center.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
 
@@ -42,6 +43,7 @@ Modifies a `Naninovel.IBackgroundActor`.
 Backgrounds are handled a bit differently from characters. Most of the time we'll only have  one background actor on scene, which will constantly transition to different appearances.  To free the user from always repeating one actor name in scripts, we allow to just  provide background name (appearance) and transition type as a nameless param and assume that  `main` actor should be affected. When this is not the case, the name of the actor can be explicitly  provided via the `Naninovel.Actions.ModifyActor`3.Name` parameter.
 
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
@@ -57,7 +59,7 @@ rotation | Single[] | Rotation to set for the modified actor.
 scale | Single[] | Scale to set for the modified actor.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
 
@@ -91,6 +93,7 @@ Plays a BGM (background music) track with the provided name.
 Only one background music track can be played simultaneously and a cross-fade effect  will automatically be applied when switching music tracks. The music will also loop by default.
 
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
@@ -100,7 +103,7 @@ fadeTime | Single | Fade duration, in seconds.
 loop | Boolean | Whether to play the track from beginning when it finishes.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
 
@@ -122,16 +125,26 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 Adds a line break to the text in active printer.
 
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
 --- | --- | ---
-<span class="action-param-nameless" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name">Count</span> | Int32 | 
+<span class="action-param-nameless" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name">Count</span> | Int32 | Number of line breaks to add.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
+
+#### Example
+```
+; Second sentence will be printed on a new line
+Lorem ipsum dolor sit amet.[br] Consectetur adipiscing elit.
+
+; Second sentence will be printer two lines under the first one
+Lorem ipsum dolor sit amet.[br 2] Consectetur adipiscing elit.
+```
 
 ## char
 
@@ -139,6 +152,7 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 Modifies a `Naninovel.ICharacterActor`.
 
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
@@ -154,7 +168,7 @@ rotation | Single[] | Rotation to set for the modified actor.
 scale | Single[] | Scale to set for the modified actor.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
 
@@ -177,18 +191,29 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 Adds a choice option to an active (or default) `Naninovel.IChoiceHandlerActor`.
 
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
 --- | --- | ---
-<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">ChoiceSummary</span> | String | 
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">ChoiceSummary</span> | String | Text to show for the choice.
 handler | String | Name of the choice handler to add choice for.
-goto | Pair&lt;String, String&gt; | 
+goto | Pair&lt;String, String&gt; | Path to go when the choice is selected by user.  See `@goto` action for the path format.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
+
+#### Example
+```
+; Print the text, then immediately show choices and stop script execution.
+Continue executing this script or load another?[skipInput]
+@choice "Continue" goto:.Continue
+@choice "Load another from start" goto:AnotherScript
+@choice "Load another from label" goto:AnotherScript.LabelName
+@stop
+```
 
 ## fx
 
@@ -196,15 +221,16 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 Spawns a special effect prefab stored in `./Resources/Naninovel/FX` resources folder.
 
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
 --- | --- | ---
-<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">Path</span> | String | 
-params | String[] | 
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">Path</span> | String | Path to the prefab to spawn.
+params | String[] | Parameters to set when initializing the prefab.  Requires the prefab to have a `Naninovel.Actions.Spawn.IInitializable` component attached the root object.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
 
@@ -223,6 +249,7 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 Jumps the novel script playback to the provided path.
 
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
@@ -230,7 +257,7 @@ Name | Type | Description
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">Path</span> | Pair&lt;String, String&gt; | Path to jump into in the following format: `ScriptName.LabelName`.  When label name is ommited, will play provided script from the start.  When script name is ommited, will attempt to find a label in the currently played script.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
 
@@ -252,6 +279,7 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 Hides (removes from scene) an actor with provided name.
 
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
@@ -259,7 +287,7 @@ Name | Type | Description
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">ActorName</span> | String | Name of the actor to hide.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
 
@@ -274,13 +302,14 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 Hides (removes) all the actors (eg characters, backgrounds, text printers, choice handlers, etc) on scene.
 
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
 --- | --- | ---
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
 
@@ -295,13 +324,14 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 Hides (removes) all the visible characters on scene.
 
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
 --- | --- | ---
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
 
@@ -312,16 +342,25 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 
 ## hideText
 
+#### Summary
+Hides an active printer.
+
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
 --- | --- | ---
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
+
+#### Example
+```
+@hideText
+```
 
 ## i
 
@@ -329,13 +368,14 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 Holds script execution until user activates a `continue` input.  Shortcut for `@wait input`.
 
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
 --- | --- | ---
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
 
@@ -351,32 +391,54 @@ Lorem ipsum dolor sit amet.[i] Consectetur adipiscing elit.
 #### Summary
 Will execute `Naninovel.Actions.Goto` and/or `Naninovel.Actions.SetCustomVariable` actions when the provided expression is true.
 
+#### Remarks
+You'll likely use `if` parameter on other actions to conditionally execute them, rather than this action.  It's provided mostly for the documentation purposes of the example section.
+
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
 --- | --- | ---
-<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">Expression</span> | String | 
-goto | Pair&lt;String, String&gt; | 
-set | String | 
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">Expression</span> | String | Conditional expression. Supported operators: =, !=, &gt;, &gt;=, &lt;, &lt;=.  "Less than" and "greater than" operators will only work with numbers.  For the syntax reference see examples.
+goto | Pair&lt;String, String&gt; | Path to go when expression is true; see `@goto` action for the path format.
+set | String | Set expression to execute when the conditional expression is true; see `@set` action for syntax reference.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
 
 #### Example
 ```
-@if varName=someString goto:Script001.Start
-@if varName=1 set:someVarName+1 goto:Script002
-@if varName>10 set:varName=0
-@if varName>=25 goto:Script003
-@if varName!=2 goto:Script004
+; Given a `foo` variable is set via a `@set` action:
+
+; If `foo` value is equal to `bar`, execute `@goto` action
+@goto Script001.Start if:foo=bar
+
+; If `foo` value is equal to `1`, execute the `@fx` action
+@fx GlitchCamera if:foo=1
+
+; If `foo` value is a number and is greater than 9000, add the choice
+@choice "It's Over 9000!" if:foo>9000
+
+; If `foo` value is a number and is greater than or equal to 10, apply the style
+Lorem sit amet. [style bold if:foo>=10]Consectetur elit.[style default]
+
+; If `foo` value is not equal to `2`, execute the print action
+@print text:"Lorem ipsum dolor sit amet." if:foo!=2
 ```
 
 ## movie
 
+#### Summary
+Playes a movie with the provided name (path).
+
+#### Remarks
+Will fade-out the screen before playing the movie and fade back in after the play.  Playback can be canceled by activating a `cancel` input (`Esc` key by default).
+
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
@@ -384,9 +446,15 @@ Name | Type | Description
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">MovieName</span> | String | 
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
+
+#### Example
+```
+; Given an "Opening" video clip is added to the movie resources, plays it
+@movie Opening
+```
 
 ## print
 
@@ -394,9 +462,10 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 Resets the active printer, prints text message and waits for user input.
 
 #### Remarks
-Will cancel the printing (reveal the text at once) on `Naninovel.InputManager.Continue` and `Naninovel.InputManager.Skip`.  Will attempt to play corresponding voice clip (when `Naninovel.AudioManager.AutoVoicingEnabled` is enabled).  Will add printed message to the `Naninovel.UI.IBacklogUI` (when available).
+This action is used under the hood when processing generic text lines.  Will cancel the printing (reveal the text at once) on `Naninovel.InputManager.Continue` and `Naninovel.InputManager.Skip`.  Will attempt to play corresponding voice clip (when `Naninovel.AudioManager.AutoVoicingEnabled` is enabled).  Will add printed message to the `Naninovel.UI.IBacklogUI` (when available).
 
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
@@ -408,26 +477,41 @@ reset | Boolean | Whether to reset text of the printer before executing the prin
 waitInput | Boolean | Whether to wait for user input after finishing the printing task.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
+
+#### Example
+```
+@print text:"Lorem ipsum dolor sit amet."
+```
 
 ## printer
 
 #### Summary
-Set printer with provided name active and de-activates all the others.
+Sets printer with the provided name active and de-activates all the others.
 
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
 --- | --- | ---
-<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">PrinterName</span> | String | 
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">PrinterName</span> | String | Name of the printer to activate.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
+
+#### Example
+```
+; Will activate `Dialogue` printer
+@printer Dialogue
+
+; Will active `Fullscreen` printer
+@printer Fullscreen
+```
 
 ## resetText
 
@@ -435,28 +519,43 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 Clears printed text of active printer.
 
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
 --- | --- | ---
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
+
+#### Example
+```
+@resetText
+```
 
 ## save
 
+#### Summary
+Automatically save the game to a quick save slot.
+
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
 --- | --- | ---
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
+
+#### Example
+```
+@save
+```
 
 ## set
 
@@ -464,24 +563,34 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 Assigns a value to a custom variable.
 
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
 --- | --- | ---
-<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">Expression</span> | String | 
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">Expression</span> | String | Set expression. Supported operators: =,+,-,*.  All operators except assignment requires both operands to be numbers.  For the syntax reference see examples.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
 
 #### Example
 ```
-@set varName=someString
-@set varName=1
-@set varName+10
+; Assign `foo` variable a `bar` string value
+@set foo=bar
+
+; Assign `foo` variable a 1 number value
+@set foo=1
+
+; If `foo` is a number, add 10 to its value
+@set foo+10
+
+; If `foo` is a number, subtract 25 from its value
 @set varName-25
-@set varName*2
+
+; If `foo` is a number, multiply its value by 2
+@set foo*2
 ```
 
 ## sfx
@@ -493,6 +602,7 @@ Plays an SFX (sound effect) track with the provided name.
 Multiple sound effects can be played at the same time and they won't loop by default.
 
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
@@ -502,7 +612,7 @@ volume | Single | Volume of the sound effect.
 loop | Boolean | Whether to play the sound effect in a loop.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
 
@@ -517,16 +627,25 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 
 ## showText
 
+#### Summary
+Shows an active or default text printer.
+
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
 --- | --- | ---
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
+
+#### Example
+```
+@showText
+```
 
 ## skipInput
 
@@ -534,13 +653,14 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 Next call to `Naninovel.NovelScriptPlayer.EnableWaitingForInput` will be ignored.
 
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
 --- | --- | ---
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
 
@@ -556,18 +676,28 @@ And the rain starts.[skipInput]
 #### Summary
 Spawns a prefab stored in project resources.
 
+#### Remarks
+If prefab has a `UnityEngine.MonoBehaviour` component attached the root object, and the component implements  a `Naninovel.Actions.Spawn.IInitializable` interface, will pass the specified `params` values after the spawn;  if the component implements `Naninovel.Actions.Spawn.IAwaitable` interface, action execution will wait for  the async completion task returned by the implementation.
+
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
 --- | --- | ---
-<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">Path</span> | String | 
-params | String[] | 
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">Path</span> | String | Path to the prefab to spawn.
+params | String[] | Parameters to set when initializing the prefab.  Requires the prefab to have a `Naninovel.Actions.Spawn.IInitializable` component attached the root object.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
+
+#### Example
+```
+; Given there is a prefab stored in `Assets/Resources/Rain.prefab`, spawn it
+@spawn Rain
+```
 
 ## stop
 
@@ -575,15 +705,21 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 Stops the novel script execution.
 
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
 --- | --- | ---
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
+
+#### Example
+```
+@stop
+```
 
 ## stopBgm
 
@@ -591,6 +727,7 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 Stops playing a background music.
 
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
@@ -598,7 +735,7 @@ Name | Type | Description
 fadeTime | Single | Fade-out duration, in seconds.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
 
@@ -617,6 +754,7 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 Stop the playback of a sound effect with the provided name.
 
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
@@ -625,7 +763,7 @@ Name | Type | Description
 fadeTime | Single | Fade-out duration, in seconds.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
 
@@ -641,13 +779,14 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 Stops playback of the currently played voice clip.
 
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
 --- | --- | ---
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
 
@@ -656,17 +795,35 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 #### Summary
 Applies text style to the active printer.
 
+#### Remarks
+You can still use rich text formatting tags directly, but they will be printed  alongside normal text, which is not desirable in most cases.
+
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
 --- | --- | ---
-<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">TextStyles</span> | String[] | 
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">TextStyles</span> | String[] | Text formatting styles to apply.  Possible options: color hex code (eg, #ffaa00), bold, italic, px text size (eg 45).
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
+
+#### Example
+```
+; Print first sentence in bold red text with 45px size,
+; then reset the style and print second sentence using default style.
+@style #ff0000,bold,45
+Lorem ipsum dolor sit amet.
+@style default
+Consectetur adipiscing elit.
+
+; Print first sentence normally, but second one in bold and italic;
+; then reset the style to the default.
+Lorem ipsum sit amet. [style bold,italic]Consectetur adipiscing elit.[style default]
+```
 
 ## title
 
@@ -674,22 +831,29 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 Loads default engine state and shows `Naninovel.UI.ITitleUI`.
 
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
 --- | --- | ---
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
+
+#### Example
+```
+@title
+```
 
 ## voice
 
 #### Summary
-Plays a voice clip with the provided path.
+Plays a voice clip at the provided path.
 
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
@@ -698,7 +862,7 @@ Name | Type | Description
 volume | Single | Volume of the playback.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
 
@@ -708,6 +872,7 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 Holds script execution until the specified wait condition.
 
 #### Parameters
+
 <div class="config-table">
 
 Name | Type | Description
@@ -715,7 +880,7 @@ Name | Type | Description
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">WaitMode</span> | String | Wait condition:  input (string) - user press continue or skip input key;  number (int or float)  - timer (seconds).
 wait | Boolean | Holds script execution until the specified wait condition.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
 
 </div>
 
