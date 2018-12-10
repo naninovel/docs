@@ -174,6 +174,6 @@ However, you'll likely use this feature to reference associated character names 
 
 ```
 @char $f.Happy
-f: I'm happy as a [style $red]clam[style default]!
+f: I'm as happy as a [style $red]clam[style default]!
 ```
 
