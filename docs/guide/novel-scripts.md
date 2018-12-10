@@ -163,7 +163,7 @@ The following will define `Felix` character name as an `f` short name and `#ff00
 >red #ff0000,bold
 ```
 
-You can then use the short names proceeded by `$` literal to reference the defined expressions:
+You can then use the short names preceded by `$` literal to reference the defined expressions:
 
 ```
 @char $f.Happy
