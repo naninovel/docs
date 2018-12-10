@@ -3,12 +3,12 @@ Naninovel is an extension for [Unity game engine](https://unity3d.com). It consi
 
 ## Features
 The following features are already implemented; new ones will be added as the engine undergoes an active development:
-* Document-based novel scripts
-  * Generic text lines
-  * Labels
-  * Script defines
-  * Actions inlining
-  * Conditional flow
+* [Document-based novel scripts](/guide/novel-scripts.md)
+  * [Generic text lines](/guide/novel-scripts.md#generic-text-lines)
+  * [Labels](/guide/novel-scripts.md#label-lines)
+  * [Script defines](/guide/novel-scripts.md#define-lines)
+  * [Actions inlining](/guide/novel-scripts.md#generic-text-lines)
+  * [Conditional flow](/api/#if)
 * Novel action extensions
 * Text printers
   * Dialogue printer
@@ -18,7 +18,7 @@ The following features are already implemented; new ones will be added as the en
 * Auto-advance text
 * UI toggling
 * Save-load system
-* Custom state variables
+* [Custom state variables](/api/#set)
 * Customizable UI
 * Game settings
 * Resources management
