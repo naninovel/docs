@@ -12,16 +12,23 @@ The following features are already implemented; new ones will be added as the en
 * [Text printers](/guide/text-printers.md)
   * [Dialogue printer](/guide/text-printers.md#dialogue-printer)
   * [Fullscreen printer](/guide/text-printers.md#fullscreen-printer)
-* Backgrounds
-  * Sprite backgrounds
-  * Video backgrounds
-  * Animated backgrounds
-  * Scene backgrounds
-* Characters
-  * Sprite characters
-  * Diced sprite characters
-  * Animated characters
-  * Live2D characters
+* [Characters](/guide/characters.md)
+  * [Sprite characters](/guide/characters.md#sprite-characters)
+  * [Diced sprite characters](/guide/characters.md#diced-sprite-characters)
+  * [Animated characters](/guide/characters.md#animated-characters)
+  * [Live2D characters](/guide/characters.md#live2d-characters)
+* [Backgrounds](/guide/backgrounds.md)
+  * [Sprite backgrounds](/guide/backgrounds.md#sprite-backgrounds)
+  * [Video backgrounds](/guide/backgrounds.md#video-backgrounds)
+  * [Animated backgrounds](/guide/backgrounds.md#animated-backgrounds)
+  * [Scene backgrounds](/guide/backgrounds.md#scene-backgrounds)
+* Background transition effects
+* Special effects (FX system)
+* Background music (BGM)
+* Sound effects (SFX)
+* Voicing
+* Movies
+* Choices and conditional script flow
 * Backlog
 * Text skipping
 * Auto-advance text
@@ -32,12 +39,7 @@ The following features are already implemented; new ones will be added as the en
 * [Custom state variables](/api/#set)
 * Customizable UI
 * Game settings
-* Resources management
 * Script rewinding and debug
-* Background transition effects
-* Special effects (FX system)
-* Voicing
-* Movies
 * Managed text
 * Localization
   * Script localization

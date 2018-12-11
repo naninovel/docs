@@ -43,6 +43,8 @@ function getGuideSidebar (groupA, groupB) {
                 'configuration',
                 'novel-scripts',
                 'text-printers',
+                'characters',
+                'backgrounds',
             ]
         },
         {

@@ -1,6 +1,10 @@
 # Text Printers
 
-Text printers are novel actors used to present self-revealing text messages to the user. Text printers are mostly controlled with [`@print`](/api/#print) and [`@printer`](/api/#printer) actions.
+Text printers are novel actors used to present self-revealing text messages to the user. 
+
+Printers' behavior can be configured using `Naninovel -> Configuration -> Printers` context menu; for available options see [configuration guide](/guide/configuration.md#printers). The printers' resources manager can be accessed using `Naninovel -> Resources -> Printers` context menu.
+
+In novel scripts, text printers are mostly controlled with [`@print`](/api/#print) and [`@printer`](/api/#printer) actions.
 
 ## Dialogue Printer
 
@@ -20,7 +24,7 @@ You can customize the built-in text printers in any way you wish or create new p
 
 All the built-in printer prefabs and related components are stored inside `Naninovel/Prefabs/TextPrinters` folder. While you can directly edit the `Dialogue` prefab and immediately get the result, consider duplicating it and adding as a separate printer to avoid issues when updating the Naninovel package in the feature. 
 
-Duplicate (Ctrl/Cmd+D) the `Naninovel/Prefabs/TextPrinters/Dialogue` prefab and move it outside of the Naninovel package, e.g. to a `Assets/Printers` folder. 
+Duplicate (Ctrl/Cmd+D) the `Naninovel/Prefabs/TextPrinters/Dialogue.prefab` prefab and move it outside of the Naninovel package, e.g. to a `Assets/Printers` folder. 
 
 Edit the prefab: change font, textures, add animations, etc. 
 
