@@ -9,15 +9,26 @@ The following features are already implemented; new ones will be added as the en
   * [Script defines](/guide/novel-scripts.md#define-lines)
   * [Actions inlining](/guide/novel-scripts.md#generic-text-lines)
   * [Conditional flow](/api/#if)
-* Novel action extensions
 * Text printers
   * Dialogue printer
   * Fullscreen printer
+* Backgrounds
+  * Sprite backgrounds
+  * Video backgrounds
+  * Animated backgrounds
+  * Scene backgrounds
+* Characters
+  * Sprite characters
+  * Diced sprite characters
+  * Animated characters
+  * Live2D characters
 * Backlog
 * Text skipping
 * Auto-advance text
 * UI toggling
 * Save-load system
+* Custom novel actions
+* Custom actor implementations
 * [Custom state variables](/api/#set)
 * Customizable UI
 * Game settings
@@ -26,16 +37,6 @@ The following features are already implemented; new ones will be added as the en
 * Background transition effects
 * Special effects (FX system)
 * Voicing
-* Background implementations
-  * Sprite backgrounds
-  * Video backgrounds
-  * Animated backgrounds
-  * Scene backgrounds
-* Character implementations
-  * Sprite characters
-  * Diced sprite characters
-  * Animated characters
-  * Live2D characters
 * Movies
 * Managed text
 * Localization

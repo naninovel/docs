@@ -42,13 +42,16 @@ function getGuideSidebar (groupA, groupB) {
                 'getting-started',
                 'configuration',
                 'novel-scripts',
+                'text-printers',
             ]
         },
         {
             title: groupB,
             collapsable: false,
             children: [
-
+                'engine-services',
+                'custom-novel-actions',
+                'custom-actor-implementations',
             ]
         }
     ]
