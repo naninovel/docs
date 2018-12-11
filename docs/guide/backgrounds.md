@@ -2,6 +2,8 @@
 
 Opposed to [characters](/guide/characters.md), backgrounds are novel actors used to represent a *back* layer of the scene: locations, sceneries, landscapes or anything that should always appear *behind* the characters. 
 
+A background actor is defined with a name, appearance, visibility and transform (position, rotation, scale). It can change appearance, visibility and transform over time.
+
 Backgrounds' behavior can be configured using `Naninovel -> Configuration -> Backgrounds` context menu; for available options see [configuration guide](/guide/configuration.md#backgrounds). The backgrounds' resources manager can be accessed using `Naninovel -> Resources -> Backgrounds` context menu.
 
 In novel scripts, backgrounds are mostly controlled with [`@back`](/api/#back) action.
