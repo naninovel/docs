@@ -1,4 +1,4 @@
-# Novel scripts
+# Novel Scripts
 
 Novel scripts are text documents (`.txt` extension) where you control what happens on scenes. You can open and edit them with a text editor of your choice, like Notepad, Word or Sublime.
 
@@ -13,11 +13,11 @@ Literal | Statement Type
 
 When none of the above literals are present at the start of the line, it's considered a [generic text](#generic-text-lines) statement.
 
-## Action lines
+## Action Lines
 
 Line is considered an action statement if it starts with a `@` literal. Action represents a single operation, that controls what happens on the scene; eg, it can be used to change a background, move a character or load another novel script.
 
-### Action identifier
+### Action Identifier
 
 Right after the action literal an action identifier is expected. This could either be the name of the C# class that implements the action or the action's tag (if it's applied via `NovelActionTag` attribute). 
 
@@ -32,7 +32,7 @@ Action identifiers are case-insensitive; all the following statements are valid 
 @autosave
 ``` 
 
-### Action parameters
+### Action Parameters
 
 Most of the actions have a number of parameters that define the effect of the action. Parameter is a key-value expression that is defined after the action literal separated by a column (`:`). Parameter identifier (key) could be either name of the corresponding parameter field of the action implementation class or the parameter's tag (if defined via `NovelActionParameter` attribute).
 ```
@@ -60,7 +60,7 @@ You can also use a `wait` *Boolean* parameter to specify, whether next action sh
 ```
 This will hide the text printer right after characters will begin to fade-out. If `wait` would be `true` or not specified, the printer would be hidden only when the `@hideChars` complete the execution.
 
-### Parameter value types
+### Parameter Value Types
 
 Depending on the action parameter, it could expect one of the following value types: 
 
@@ -73,7 +73,7 @@ Boolean | `true`, `false`
 [] | Depends on array type, eg for String[] `foo,bar,lorem,ipsum`, for Single[]: `12,-8,0.105,2`
 Pair<> | Depends on pair types, eg for Pair<String,Single> `foo.8`, `bar.-2.01`, `lorem.-15.75`, `ipsum.5`
 
-### Nameless parameters
+### Nameless Parameters
 
 Most of the actions have a nameless parameter. A parameter is considered nameless when it could be used without specifying its name. 
 
@@ -86,17 +86,17 @@ For example, a [`@bgm`](/api/#bgm) action expects a nameless parameter specifyin
 
 There could be only one nameless parameter per action and it should always be specified before any other parameters.
 
-### Optional and required parameters
+### Optional and Required Parameters
 
 Most of the action parameters are *optional*. It means they either have a predefined value or just doesn't require any value in order for the action to be executed. For example, when a [`@resetText`](/api/#resettext) action used without specifying any parameters it will reset text of an active printer, but you can also set a specific printer name like this: `@resetText pinter:Dialogue`.
 
 Some parameters however are *required* in order for the action to execute and should always be specified.
 
-### Actions API reference
+### Actions API Reference
 
 For the list of all the currently available actions with a summary, parameters and usage examples see [novel script actions API reference](/api/). 
 
-## Generic text lines
+## Generic Text Lines
 
 To make writing scripts with large amounts of text more comfortable generic text lines are used. Line is considered a generic text statement if doesn't start with any of the predefined statement literals:
 
@@ -118,7 +118,7 @@ Felix: Lorem ipsum[char Felix.Happy pos:0.75 wait:false] dolor sit amet, consect
 
 Under the hood, generic text statements are parsed into individual actions; text is printed with [`@print`](/api/#print) action.
 
-## Label lines
+## Label Lines
 
 Labels are used as "anchors" when navigating the novel scripts with [`@goto`](/api/#goto) actions. To define a label, use a `#` literal at the start of the line followed with label name:
 
@@ -139,7 +139,7 @@ In case you're using [`@goto`](/api/#goto) action from withing the same script w
 ```
 
 
-## Comment lines
+## Comment Lines
 
 When line starts with a semicolon literal (`;`) it's considered a comment statement. Comment lines are completely ignored by the engine when scripts are parsed. You can use comment lines to add notes or annotations for yourself or other team members who works with novel scripts.
 
@@ -148,7 +148,7 @@ When line starts with a semicolon literal (`;`) it's considered a comment statem
 @save
 ```
 
-## Define lines
+## Define Lines
 
 When working with novel scripts, you'll notice that some statements are frequently repeated. It could be a character name, which you have to type multiple times before generic text lines or some parameter value, which you frequently use throughout single novel script document. 
 

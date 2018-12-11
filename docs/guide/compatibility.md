@@ -1,6 +1,6 @@
-# Requirements and compatibility
+# Requirements and Compatibility
 
-## Unity version
+## Unity Version
 Due to complex nature of the engine, only the latest [LTS (long-term support)]( https://unity3d.com/unity/qa/lts-releases) Unity version is officially supported. Newer versions from the TECH stream could still work, but it’s not recommended to use them in production, as it could take us a while to fix possible compatibility issues.
 
 ## Platforms

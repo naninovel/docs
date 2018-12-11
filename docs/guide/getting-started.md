@@ -1,4 +1,4 @@
-﻿# Getting started
+﻿# Getting Started
 
 ## Installation
 Import Naninovel package from the Asset Store to your Unity project and wait for the initial scripts compilation and assets import process.
@@ -9,7 +9,7 @@ You are free to move the package folder anywhere inside your project assets dire
 
 In case you delete the package folder and then re-import it again in the same project, the configuration assets won’t be automatically re-generated; open `Naninovel -> Configuration` menu to generate them before running the editor or building the player.
 
-## Add novel script
+## Add Novel Script
 Use `Create -> Novel Script` asset context menu to create a novel script asset. 
 
 Novel scripts are text documents (`.txt` extension) where you control what happens on scenes. You can open and edit them with a text editor of your choice, like Notepad, Word or Sublime.
@@ -29,7 +29,7 @@ Enter play mode and start new game to see the result.
 
 If the "NEW GAME" button is not interactable, make sure you’ve set a correct novel script name for the `Start Game Script` option in the scripts configuration.
 
-## Add character
+## Add Character
 Characters in Naninovel can be based on regular and diced sprites, animated Live2D models and 3D meshes; you can add your own implementations as well. For the purpose of this tutorial, we’ll use a sprite implementation. 
 
 Each character is represented by a name and a set of appearances. To add a sprite character, you can either use the character manager GUI or place the character’s appearance assets in a `Resources/Characters/CharacterName` folder, where `CharacterName` is the name of the character. 
@@ -64,7 +64,7 @@ Kohaku: Hello World!
 @stop
 ```
 
-## Add background
+## Add Background
 Similar to characters, a background can be represented in multiple ways in Naninovel: sprite, animated object, video and scene; custom user implementations are also possible. 
 
 Sprite background is represented by a name and a single sprite asset.
@@ -81,7 +81,7 @@ When switching between backgrounds a cross-fade transition effect will be used b
 ```
 This will transition "Park" to "School" using "RadialBlur" transition effect.
 
-## Add music and sound effects
+## Add Music and Sound Effects
 To add a BGM (background music) or SFX (sound effect) asset, either use `Naninovel -> Resources -> Audio` editor menu or place the audio assets inside `Resources/Audio` folder. You can use any audio formats [supported by Unity](https://docs.unity3d.com/Manual/AudioFiles.html).
 
 Let’s assume the added BGM file name is "PianoTheme". To play this track as a background music use `@bgm` action followed by the name of the track:
