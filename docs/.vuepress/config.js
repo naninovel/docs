@@ -45,6 +45,7 @@ function getGuideSidebar (groupA, groupB) {
                 'text-printers',
                 'characters',
                 'backgrounds',
+                'background-transition-effects',
             ]
         },
         {

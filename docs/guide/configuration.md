@@ -3,6 +3,8 @@ The engine configuration is stored in scriptable object assets located in `Nanin
 
 Use `Naninovel -> Configuration` or `Edit -> Project Settings -> Naninovel` to access the configuration menu.
 
+<video class="video" loop autoplay><source src="https://i.gyazo.com/c278bc7d9d2c569993a30be7706fbb38.mp4" type="video/mp4"></video>
+
 ## Audio
 
 <div class="config-table">

@@ -12,11 +12,19 @@ In case you delete the package folder and then re-import it again in the same pr
 ## Add Novel Script
 Use `Create -> Novel Script` asset context menu to create a novel script asset. 
 
+![Create Novel Script](/guide/create-script.png)
+
 Novel scripts are text documents (`.txt` extension) where you control what happens on scenes. You can open and edit them with a text editor of your choice, like Notepad, Word or Sublime.
+
+![Open Novel Script](/guide/open-script.png)
 
 Add the created novel script to the project resources. For this, open scripts manager using `Naninovel -> Resources -> Scripts` context menu, press `+` (plus sign) button in the list to add a new record and drag-drop script asset to the list. Alternatively, you can just keep the scripts in a `Resources/Scripts` folder and they'll be automatically exposed to project resources.
 
+![Add Novel Script](/guide/add-script.png)
+
 In case you’ve chosen to not use the script manager, you’ll have to manually set `Start Game Script` value in the `Naninovel -> Configuration -> Scripts` menu; it will be set automatically when you add first novel script in the manager otherwise.
+
+![Start Script](/guide/set-start-script.png)
 
 Open the created script in a text editor and add the following text:
 ```
@@ -35,6 +43,8 @@ Characters in Naninovel can be based on regular and diced sprites, animated Live
 Each character is represented by a name and a set of appearances. To add a sprite character, you can either use the character manager GUI or place the character’s appearance assets in a `Resources/Characters/CharacterName` folder, where `CharacterName` is the name of the character. 
 
 If you choose to use the manager GUI, access it with `Naninovel -> Resources -> Characters` menu, add new character record specifying its name, then double click the name record (or press the `>` button) and add all the appearance assets (sprites) to the `Appearances` list.
+
+![Add Novel Character](/guide/add-character.png)
 
 Let’s assume the added character name is "Kohaku". Edit novel script to show the added character:
 ```

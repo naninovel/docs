@@ -22,7 +22,7 @@ The following features are already implemented; new ones will be added as the en
   * [Video backgrounds](/guide/backgrounds.md#video-backgrounds)
   * [Animated backgrounds](/guide/backgrounds.md#animated-backgrounds)
   * [Scene backgrounds](/guide/backgrounds.md#scene-backgrounds)
-* Background transition effects
+* [Background transition effects](/guide/background-transition-effects.md)
 * Special effects (FX system)
 * Background music (BGM)
 * Sound effects (SFX)
@@ -34,8 +34,8 @@ The following features are already implemented; new ones will be added as the en
 * Auto-advance text
 * UI toggling
 * Save-load system
-* Custom novel actions
-* Custom actor implementations
+* [Custom novel actions](/guide/custom-novel-actions.md)
+* [Custom actor implementations](/guide/custom-actor-implementations.md)
 * [Custom state variables](/api/#set)
 * Customizable UI
 * Game settings
