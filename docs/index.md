@@ -24,14 +24,20 @@ pageClass: landing
     <div class="feature"><h2>Pellentesque</h2> <p>Etiam venenatis mauris id sem dignissim, non hendrerit massa porttitor. Cras faucibus tincidunt mauris at feugiat. Nullam mollis urna sed posuere rutrum.</p></div>
 </div>
 
+
+<!---
+
 ---
 #
+
 
 <div class="video-container">
     <iframe src="https://www.youtube-nocookie.com/embed/t42HHIw4Apw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
 # 
+
+-->
 
 <div class="footer">Copyright © 2018 Elringus (Artyom Sovetnikov)</div>
 
