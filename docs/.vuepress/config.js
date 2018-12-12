@@ -46,6 +46,7 @@ function getGuideSidebar (groupA, groupB) {
                 'characters',
                 'backgrounds',
                 'background-transition-effects',
+                'special-effects',
             ]
         },
         {

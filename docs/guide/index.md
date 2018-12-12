@@ -23,7 +23,7 @@ The following features are already implemented; new ones will be added as the en
   * [Animated backgrounds](/guide/backgrounds.md#animated-backgrounds)
   * [Scene backgrounds](/guide/backgrounds.md#scene-backgrounds)
 * [Background transition effects](/guide/background-transition-effects.md)
-* Special effects (FX system)
+* [Special effects (FX system)](/guide/special-effects.md)
 * Background music (BGM)
 * Sound effects (SFX)
 * Voicing
