@@ -48,7 +48,7 @@ Backgrounds are handled a bit differently from characters. Most of the time we'l
 
 Name | Type | Description
 --- | --- | ---
-<span class="action-param-nameless" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name">AppearanceAndTransition</span> | Pair&lt;String, String&gt; | Appearance to set for the modified background and name of the transition effect to use.  When transition is not provided, a cross-fade effect will be used by default.
+<span class="action-param-nameless" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name">AppearanceAndTransition</span> | Pair&lt;String, String&gt; | Appearance to set for the modified background and name of the transition effect to use.  When transition is not provided, a cross-fade effect will be used by default.  See [/guide/background-transition-effects.html](https://naninovel.com/guide/background-transition-effects.html) for the list of available transition effects.
 params | Single[] | Parameters of the transition effect.
 pos | Single[] | Position (in scene local space) to set for the modified actor.  Scene space described as follows: x0y0 is at the bottom left and x1y1 is at the top right corner of the screen.
 name | String | Name of the actor to modify.
@@ -218,7 +218,7 @@ Continue executing this script or load another?[skipInput]
 ## fx
 
 #### Summary
-Spawns a special effect prefab stored in `./Resources/Naninovel/FX` resources folder.
+Spawns a special effect prefab stored in `./Resources/Naninovel/FX` resources folder.  See [/guide/special-effects.html](https://naninovel.com/guide/special-effects.html) for the list of available built-in special effects.
 
 #### Parameters
 
