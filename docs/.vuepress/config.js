@@ -51,6 +51,11 @@ function getGuideSidebar (groupA, groupB) {
                 'voicing',
                 'movies',
                 'choices',
+                'save-load-system',
+                'game-settings',
+                'input-processing',
+
+                'ui-customization',
             ]
         },
         {
