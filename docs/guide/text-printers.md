@@ -4,7 +4,24 @@ Text printers are novel actors used to present self-revealing text messages to t
 
 Printers' behavior can be configured using `Naninovel -> Configuration -> Printers` context menu; for available options see [configuration guide](/guide/configuration.md#printers). The printers' resources manager can be accessed using `Naninovel -> Resources -> Printers` context menu.
 
-In novel scripts, text printers are mostly controlled with [`@print`](/api/#print) and [`@printer`](/api/#printer) actions.
+In novel scripts, text printers are mostly controlled with [`@print`](/api/#print) and [`@printer`](/api/#printer) actions:
+
+```
+; Will activate `Dialogue` printer
+@printer Dialogue
+
+; Will active `Fullscreen` printer
+@printer Fullscreen
+
+; Will print the infamous phrase using active printer
+@print text:"Lorem ipsum dolor sit amet."
+
+; The same as above, but using generic text statement
+Lorem ipsum dolor sit amet.
+
+; The same as above, but associated with character "Felix"
+Felix: Lorem ipsum dolor sit amet.
+```
 
 ## Dialogue Printer
 

@@ -6,7 +6,29 @@ A background actor is defined with a name, appearance, visibility and transform 
 
 Backgrounds' behavior can be configured using `Naninovel -> Configuration -> Backgrounds` context menu; for available options see [configuration guide](/guide/configuration.md#backgrounds). The backgrounds' resources manager can be accessed using `Naninovel -> Resources -> Backgrounds` context menu.
 
-In novel scripts, backgrounds are mostly controlled with [`@back`](/api/#back) action.
+![Add Background](/guide/add-background.png)
+
+In novel scripts, backgrounds are mostly controlled with [`@back`](/api/#back) action:
+
+```
+; Set `River` as the appearance of the main background
+@back River
+
+; Same as above, but also use a `RadialBlur` transition effect
+@back River.RadialBlur
+
+; Given an `ExplosionSound` SFX and an `ExplosionSprite` background, the following
+; script sequence will simulate two explosions appearing far and close to the camera.
+@sfx ExplosionSound volume:0.1
+@back name:ExplosionSprite scale:0.3 pos:0.55,0.6 time:0 isVisible:false
+@back name:ExplosionSprite
+@fx ShakeBackground params:,1
+@hide ExplosionSprite
+@sfx ExplosionSound volume:1.5
+@back name:ExplosionSprite pos:0.65 scale:1
+@fx ShakeBackground params:,3
+@hide ExplosionSprite
+```
 
 
 ## Sprite Backgrounds

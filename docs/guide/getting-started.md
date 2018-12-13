@@ -80,28 +80,32 @@ Similar to characters, a background can be represented in multiple ways in Nanin
 Sprite background is represented by a name and a single sprite asset.
 Add sprite background in the same way you’ve added a character: using editor GUI `Naninovel -> Resources -> Backgrounds` or place it in a `Resources/Backgrounds` folder.
 
-Let’s assume the added background name is "Park". To show a background, use a `@back` action followed by the background name:
+![Add Background](/guide/add-background.png)
+
+Let’s assume the added background name is "City". To show a background, use a `@back` action followed by the background name:
 ```
-@back Park
+@back City 
 ```
 When switching between backgrounds a cross-fade transition effect will be used by default. To change the effect, specify transition after the background name:
 ```
-@back Park
+@back City 
 @back School.RadialBlur
 ```
-This will transition "Park" to "School" using "RadialBlur" transition effect.
+This will transition "City" to "School" using "RadialBlur" transition effect.
 
 ## Add Music and Sound Effects
 To add a BGM (background music) or SFX (sound effect) asset, either use `Naninovel -> Resources -> Audio` editor menu or place the audio assets inside `Resources/Audio` folder. You can use any audio formats [supported by Unity](https://docs.unity3d.com/Manual/AudioFiles.html).
 
-Let’s assume the added BGM file name is "PianoTheme". To play this track as a background music use `@bgm` action followed by the name of the track:
+![Managing Audio](/guide/managing-audio.png)
+
+Let’s assume the added BGM file name is "ThePromenade". To play this track as a background music use `@bgm` action followed by the name of the track:
 ```
-@bgm PianoTheme 
+@bgm ThePromenade
 ```
 Only one background music track can be played simultaneously and a cross-fade effect will be automatically applied when switching the music tracks. The music will also loop by default, though you can change this, as well as volume and fade duration.
 
-On the contrary, you can play multiple sound effects at the same time and they won't loop by default. Assuming you've added a "LaserBeam" SFX, use an `@sfx` action to play it back:
+On the contrary, you can play multiple sound effects at the same time and they won't loop by default. Assuming you've added a "Explosion" SFX, use an `@sfx` action to play it back:
 ```
-@sfx LaserBeam
+@sfx Explosion
 ```
 
