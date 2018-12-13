@@ -9,6 +9,6 @@ Always Process | Whether to process the input while in input blocking mode. E.g.
 Keys | List of keys which activates the input.
 Axes | List of axes which activates the input.
 
-You can configure the built-in input mappings and add new listeners using `Naninovel -> Configuration -> Input` context menu; for available options see [configuration guide](/guide/configuration.md#input).
+You can configure the built-in input bindings and add new listeners using `Naninovel -> Configuration -> Input` context menu; for available options see [configuration guide](/guide/configuration.md#input).
 
-![Manage Movies](/guide/input-config.png)
+![Manage Input](/guide/input-config.png)
