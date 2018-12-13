@@ -33,6 +33,7 @@ The following features are already implemented; new ones will be added as the en
 * [Conditional script flow](/api/#if)
 * Save-load system
 * Game settings
+* Cross-platform input
 * Backlog
 * Text skipping
 * Auto-advance text
