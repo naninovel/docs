@@ -622,7 +622,7 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 @sfx Explosion
 
 ; Plays an SFX with the name `Rain` in a loop
-@bgm Rain loop:true
+@sfx Rain loop:true
 ```
 
 ## showText

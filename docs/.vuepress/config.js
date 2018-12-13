@@ -14,12 +14,11 @@ module.exports = {
                 items: [
                     {text: 'Twitter', link: 'https://twitter.com/naniengine'},
                     {text: 'Facebook', link: 'https://www.facebook.com/naniengine'},
-                    {text: 'VK', link: 'https://vk.com/naninovel'}
+                    // {text: 'VK', link: 'https://vk.com/naninovel'}
                 ]
             },
             {text: 'Guide', link: '/guide/'},
             {text: 'API Reference', link: '/api/'},
-            {text: 'Issue Tracker', link: 'https://github.com/Elringus/NaninovelWeb/issues'},
             {text: 'Support', link: '/support/'}
         ],
         sidebar: {
@@ -47,12 +46,18 @@ function getGuideSidebar (groupA, groupB) {
                 'backgrounds',
                 'background-transition-effects',
                 'special-effects',
+                'background-music',
+                'sound-effects',
+                'voicing',
+                'movies',
+                'choices',
             ]
         },
         {
             title: groupB,
             collapsable: false,
             children: [
+                'development-console',
                 'engine-services',
                 'custom-novel-actions',
                 'custom-actor-implementations',

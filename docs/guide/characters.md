@@ -6,7 +6,21 @@ A character actor is defined with a name, appearance, visibility, transform (pos
 
 Characters' behavior can be configured using `Naninovel -> Configuration -> Characters` context menu; for available options see [configuration guide](/guide/configuration.md#characters). The characters' resources manager can be accessed using `Naninovel -> Resources -> Characters` context menu.
 
-In novel scripts, characters are mostly controlled with [`@char`](/api/#char) action.
+![Add Character](/guide/add-character.png)
+
+In novel scripts, characters are mostly controlled with [`@char`](/api/#char) action:
+
+```
+; Shows character with name `Sora` with a default appearance.
+@char Sora
+
+; Same as above, but sets appearance to `Happy`.
+@char Sora.Happy
+
+; Same as above, but also positions the character 45% away from the left border
+; of the screen and 10% away from the bottom border; also makes him look to the left.
+@char Sora.Happy look:left pos:0.45,0.1
+```
 
 
 ## Sprite Characters 
@@ -19,9 +33,13 @@ Sprite character appearance assets can be either managed by editor GUI or placed
 
 Implemented via an open source (MIT license) third-party package [SpriteDicing](https://github.com/Elringus/SpriteDicing) used to optimize build size and texture memory by reusing source sprite textures of the characters. 
 
+![Sprite Dicing](https://i.gyazo.com/af08d141e7a08b6a8e2ef60c07332bbf.png)
+
 In order to be able to choose this implementation you have to first install [SpriteDicing](https://github.com/Elringus/SpriteDicing) and Unity's [Conditional Compilation Utility](https://github.com/Unity-Technologies/ConditionalCompilationUtility). Consult projects' readme for installation and usage instructions.
 
-Diced sprite characters can only be managed by editor GUI.
+Diced sprite characters can only be managed by editor GUI. 
+
+`DicedSpriteAtlas` assets containing character appearances are used as the resources for the diced sprite characters. Each appearance is mapped by name to the diced sprites contained in the atlas.
 
 ## Animated Characters
 	

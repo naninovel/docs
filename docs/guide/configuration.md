@@ -13,7 +13,7 @@ Property | Default Value | Description
 --- | --- | ---
 Audio Loader | Audio- (Project, Local) | Configuration of the resource loader used to manage audio (BGM and SFX) resources.
 Voice Loader | Voice- (Project, Local) | Configuration of the resource loader used to manage voice resources.
-Enable Auto Voicing | False | When enabled, each `PrintText` action will attempt to play voice clip at `VoiceResourcesPrefix/ScriptName/LineIndex-ActionIndex`.
+Enable Auto Voicing | False | When enabled, each `PrintText` action will attempt to play voice clip at `VoiceResourcesPrefix/ScriptName/LineIndex.ActionIndex`.
 Audio Mixer | Default Mixer (Unity Engine.Audio Mixer Controller) | Audio Mixer to control audio groups. When not provided, will handle all groups as one.
 Master Volume Handle Name | Master Volume | Name of the mixer's handle to control master volume.
 Bgm Group Path | Master/BGM | Path of the mixer's group to control master volume.

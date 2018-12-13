@@ -1,2 +1,3 @@
 # Support
-TBD: Links to support forum and email.
+
+TBA: Links to [issue tracker](https://github.com/Elringus/NaninovelWeb/issues), support forum and email.

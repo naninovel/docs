@@ -24,26 +24,28 @@ The following features are already implemented; new ones will be added as the en
   * [Scene backgrounds](/guide/backgrounds.md#scene-backgrounds)
 * [Background transition effects](/guide/background-transition-effects.md)
 * [Special effects (FX system)](/guide/special-effects.md)
-* Background music (BGM)
-* Sound effects (SFX)
-* Voicing
-* Movies
-* Choices and conditional script flow
+* [Background music (BGM)](/guide/background-music.md)
+* [Sound effects (SFX)](/guide/sound-effects.md)
+* [Voicing and auto voicing](/guide/voicing.md)
+* [Movies](/guide/movies.md)
+* [Choices](/guide/choices.md)
+* [Custom state variables](/api/#set)
+* [Conditional script flow](/api/#if)
+* Save-load system
+* Game settings
 * Backlog
 * Text skipping
 * Auto-advance text
 * UI toggling
-* Save-load system
-* [Custom novel actions](/guide/custom-novel-actions.md)
-* [Custom actor implementations](/guide/custom-actor-implementations.md)
-* [Custom state variables](/api/#set)
+* Adaptive UI layout
 * Customizable UI
-* Game settings
-* Script rewinding and debug
 * Managed text
 * Localization
   * Script localization
   * Resources localization
-* Google Drive integration
 * Community modding support
-* Adaptive UI layout
+* [Development console](/guide/development-console.md)
+* Script rewinding and debug
+* [Custom novel actions](/guide/custom-novel-actions.md)
+* [Custom actor implementations](/guide/custom-actor-implementations.md)
+* Google Drive integration
