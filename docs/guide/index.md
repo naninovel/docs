@@ -31,15 +31,15 @@ The following features are already implemented; new ones will be added as the en
 * [Choices](/guide/choices.md)
 * [Custom state variables](/api/#set)
 * [Conditional script flow](/api/#if)
-* Save-load system
-* Game settings
-* Cross-platform input
+* [Save-load system](/guide/save-load-system.md)
+* [Game settings](/guide/game-settings.md)
+* [Cross-platform input](/guide/input-processing.md)
 * Backlog
 * Text skipping
 * Auto-advance text
 * UI toggling
 * Adaptive UI layout
-* Customizable UI
+* [UI customization](/guide/ui-customization.md)
 * Managed text
 * Localization
   * Script localization
