@@ -54,8 +54,15 @@ function getGuideSidebar (groupA, groupB) {
                 'save-load-system',
                 'game-settings',
                 'input-processing',
-
+                'printer-backlog',
+                'text-skipping',
+                'auto-advance-text',
+                'ui-toggling',
+                'adaptive-ui-layout',
                 'ui-customization',
+                'managed-text',
+                'localization',
+                'community-modding',
             ]
         },
         {

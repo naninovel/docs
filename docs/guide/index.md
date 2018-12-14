@@ -34,17 +34,17 @@ The following features are already implemented; new ones will be added as the en
 * [Save-load system](/guide/save-load-system.md)
 * [Game settings](/guide/game-settings.md)
 * [Cross-platform input](/guide/input-processing.md)
-* Backlog
-* Text skipping
-* Auto-advance text
-* UI toggling
-* Adaptive UI layout
+* [Printer backlog](/guide/printer-backlog.md)
+* [Text skipping](/guide/text-skipping.md)
+* [Auto-advance text](/guide/auto-advance-text.md)
+* [UI toggling](/guide/ui-toggling.md)
+* [Adaptive UI layout](/guide/adaptive-ui-layout.md)
 * [UI customization](/guide/ui-customization.md)
-* Managed text
-* Localization
-  * Script localization
-  * Resources localization
-* Community modding support
+* [Managed text](/guide/managed-text.md)
+* [Localization](/guide/localization.md)
+  * [Novel scripts localization](/guide/localization.md#novel-scripts-localization)
+  * [Resources localization](/guide/localization.md#resources-localization)
+* [Community modding](/guide/community-modding.md)
 * [Development console](/guide/development-console.md)
 * Script rewinding and debug
 * [Custom novel actions](/guide/custom-novel-actions.md)
