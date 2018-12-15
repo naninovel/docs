@@ -18,6 +18,7 @@ IMovieUI | UI used to host movies.
 ISaveLoadUI | Panel used for saving and loading game.
 ISettingsUI | Panel used for changing game settings.
 ITitleUI | Title (main) menu of the game.
+IExternalScriptsUI | External scripts browser UI (community modding feature).
 
 When the prefab is ready, just drop it to the `Custom UI` list in the UI configuration manager accessible with `Naninovel -> Configuration -> UI` context menu.
 
