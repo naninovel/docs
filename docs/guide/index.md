@@ -45,7 +45,7 @@ The following features are already implemented; new ones will be added as the en
   * [Resources localization](/guide/localization.md#resources-localization)
 * [Community modding](/guide/community-modding.md)
 * [Development console](/guide/development-console.md)
-* Script rewinding and debug
+* [Script rewinding and debug](/guide/novel-scripts.md#novel-scripts-debug)
 * [Custom novel actions](/guide/custom-novel-actions.md)
 * [Custom actor implementations](/guide/custom-actor-implementations.md)
 * Google Drive integration

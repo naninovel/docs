@@ -62,7 +62,7 @@ function getGuideSidebar (groupA, groupB) {
                 'ui-customization',
                 'managed-text',
                 'localization',
-                'community-modding',
+                'community-modding'
             ]
         },
         {
@@ -72,7 +72,7 @@ function getGuideSidebar (groupA, groupB) {
                 'development-console',
                 'engine-services',
                 'custom-novel-actions',
-                'custom-actor-implementations',
+                'custom-actor-implementations'
             ]
         }
     ]

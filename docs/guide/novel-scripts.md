@@ -1,4 +1,4 @@
-# Novel Scripts
+﻿# Novel Scripts
 
 Novel scripts are text documents (`.txt` extension) where you control what happens on scenes. You can open and edit them with a text editor of your choice, like Notepad, Word or Sublime.
 
@@ -177,3 +177,22 @@ However, you'll likely use this feature to reference associated character names 
 f: I'm as happy as a [style $red]clam[style default]!
 ```
 
+## Novel Scripts Debug
+
+When working with large novel scripts, it could become tedious to always play them from start in order to check how things work in particular parts of the script. 
+
+Using [development console](/guide/development-console.md) you can instantly "rewind" currently active script to an arbitrary line:
+
+```
+rewind 12
+```
+
+— will start playing current script from the 12th line. You rewind forward and backward in the same way.
+
+To open the console while game is running, make sure the console is enabled in the engine configuration and press `~` key.
+
+In case you need to constantly move forward-backward for a few lines (e.g. to test an animation or visual effect), consider using debug window. Type `debug` in the development console and press `Enter` to show the window.
+
+![Scripts Debug](/guide/scripts-debug.png)
+
+Currently played script name, line number and action index are displayed in the title of the window. You can re-position the window by dragging it by the title. "Previous" and "Next" buttons allows to "jump" the script execution one line back and forward. "Stop" button will halt script execution; when script player is stopped "Play" button will resume the execution. You can close the debug window by pressing the "Close" button.
