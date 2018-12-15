@@ -8,7 +8,6 @@ The following features are already implemented; new ones will be added as the en
   * [Labels](/guide/novel-scripts.md#label-lines)
   * [Script defines](/guide/novel-scripts.md#define-lines)
   * [Actions inlining](/guide/novel-scripts.md#generic-text-lines)
-  * [Conditional flow](/api/#if)
 * [Text printers](/guide/text-printers.md)
   * [Dialogue printer](/guide/text-printers.md#dialogue-printer)
   * [Fullscreen printer](/guide/text-printers.md#fullscreen-printer)
