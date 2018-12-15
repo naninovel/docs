@@ -3,8 +3,6 @@ The engine configuration is stored in scriptable object assets located in `Nanin
 
 Use `Naninovel -> Configuration` or `Edit -> Project Settings -> Naninovel` to access the configuration menu.
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/c278bc7d9d2c569993a30be7706fbb38.mp4" type="video/mp4"></video>
-
 ## Audio
 
 <div class="config-table">
@@ -172,6 +170,8 @@ Property | Default Value | Description
 --- | --- | ---
 Loader | Scripts- (Project, Local) | Configuration of the resource loader used to manage novel script resources.
 Start Game Script | Null | Name of the script to play when starting a new game.
+Enable Community Modding | False | Whether to allow adding external novel scripts to the build.
+External Loader | Scripts- (Local) | Configuration of the resource loader used to manage external novel script resources.
 Enable Navigator | True | Whether to initializte script navigator to browse available novel scripts.
 Show Navigator On Init | False | Whether to show novel script navigator when script manager is initialized.
 Navigator Prefab | Script Navigator (Naninovel.UI.Script Navigator) | Script navigator prefab to use.
