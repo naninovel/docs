@@ -187,9 +187,7 @@ Using [development console](/guide/development-console.md) you can instantly "re
 rewind 12
 ```
 
-— will start playing current script from the 12th line. You rewind forward and backward in the same way.
-
-To open the console while game is running, make sure the console is enabled in the engine configuration and press `~` key.
+— will start playing current script from the 12th line; you can rewind forward and backward in the same way. To open the console while game is running, make sure the console is enabled in the engine configuration and press `~` key.
 
 In case you need to constantly move forward-backward for a few lines (e.g. to test an animation or visual effect), consider using debug window. Type `debug` in the development console and press `Enter` to show the window.
 
