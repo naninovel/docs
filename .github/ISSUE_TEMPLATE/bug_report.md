@@ -23,8 +23,11 @@ A clear and concise description of what you expected to happen.
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
+**Naninovel version**
+Version of the engine as displayed in `Naninovel -> About` window, e.g.: 1.0.12-beta
+
 **Unity version**
-Specify Unity version you are using, e.g.: 2018.3.1f2.
+Specify Unity version you are using, e.g.: 2018.3.5f2.
 
 **OS (when editor-related)**
 Which operating system you're running the editor under, e.g.: Windows 10
