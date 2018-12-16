@@ -23,7 +23,7 @@ Command | Description
 --- | ---
 nav | Toggles script navigator UI.
 debug | Toggles debug window.
-purge | When Google Drive provider is used, purges the downloaded resources cache.
+purge | When [Google Drive provider](/guide/google-drive-integration.md) is used, purges the downloaded resources cache.
 play | Starts executing currently loaded novel script.
 stop | Halts execution of the currently loaded novel script.
 rewind (int) | Rewinds currently loaded novel script to the provided line index.
