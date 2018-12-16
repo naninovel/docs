@@ -2,7 +2,7 @@
 
 ## Issue Tracker
 
-If you have issues with the engine, please first check the [issue tracker](https://github.com/Elringus/NaninovelWeb/issues). Chances are the problem is already being worked on. You can also create new issues there to ask a question or report a bug. When reporting a bug, please use bug template and fill in the required information.
+If you have issues with the engine, please check the [issue tracker](https://github.com/Elringus/NaninovelWeb/issues) first. Chances are the problem is already being worked on. You can also create new issues there to ask a question or report a bug. When reporting a bug, please use bug template and fill in the required information.
 
 ## Unity Forum
 
