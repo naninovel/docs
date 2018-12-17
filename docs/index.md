@@ -7,7 +7,7 @@ pageClass: landing
 <div class="hero">
     <img src="/hero.png" alt="hero"> 
     <!-- <h1>Naninovel</h1> -->
-    <p class="description">Unity-powered visual novel engine</p>
+    <p class="description">Unity-Powered Visual Novel Engine</p>
     <p class="actions">
         <a href="https://u3d.as/1pg9" target="_blank" rel="noopener noreferrer" class="nav-link external action-button">PURCHASE</a>
         <a href="/demo/" target="_blank" rel="noopener noreferrer" class="nav-link external action-button white">TRY DEMO</a>
