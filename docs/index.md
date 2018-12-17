@@ -16,12 +16,12 @@ pageClass: landing
 </div>
 
 <div class="features">
-    <div class="feature"><h2>Lorem Ipsum</h2> <p>Cras quis turpis tincidunt, semper turpis eget, lobortis risus. Quisque cursus, purus et laoreet convallis.</p></div>
-    <div class="feature"><h2>Dignissim-Est</h2> <p>Integer cursus elementum lacus tempus rhoncus. Donec vitae porttitor sem, et rhoncus nisi, id tempor felis nibh at nulla.</p></div>
-    <div class="feature"><h2>Donec</h2> <p>Duis non ipsum efficitur, fermentum eros et, faucibus lacus. Sed placerat mauris id hendrerit commodo.</p></div>
-    <div class="feature"><h2>Nullam Diam</h2> <p>Donec vitae urna at ipsum malesuada bibendum eget eget neque.</p></div>
-    <div class="feature"><h2>Nunc</h2> <p>Nam urna nibh, tempor nec risus ut, viverra efficitur odio. Nunc placerat suscipit posuere. Duis blandit cursus arcu vitae pharetra.</p></div>
-    <div class="feature"><h2>Pellentesque</h2> <p>Etiam venenatis mauris id sem dignissim, non hendrerit massa porttitor. Cras faucibus tincidunt mauris at feugiat. Nullam mollis urna sed posuere rutrum.</p></div>
+    <div class="feature"><h2>Comprehensive Tools</h2> <p>Get <a href="/guide/#features">everything you need</a> to create a fully-featured visual novel: text printers, skipping and auto-advancing, save-load system, characters voicing, transitions and special effects, conditional story flow and much more.</p></div>
+    <div class="feature"><h2>Document-Based Scripts</h2> <p>Designed for creators, <a href="/guide/novel-scripts.html">novel scripts</a> allow developing complex text-based adventure games using familiar text editors. Write stories, not code!</p></div>
+    <div class="feature"><h2>Advanced Visuals</h2> <p>Powered by <a href="https://unity3d.com" target="_blank" rel="noopener noreferrer">Unity game engine <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>, you have all the power of the modern GPU at your disposal; create your own unique visuals or use any of the <a href="/guide/background-transition-effects.html">multiple built-in effects</a>.</p></div>
+    <div class="feature"><h2>Cross-Platform</h2> <p>Optimized to work great on <a href="/guide/compatibility.html#platforms">all the modern platforms</a>: desktop, mobiles, consoles and web browsers. Create once, publish everywhere!</p></div>
+    <div class="feature"><h2>Extensible</h2> <p>Provides open APIs to <a href="/guide/custom-actor-implementations.html">inject your own implementations</a> of the engine systems, add new custom features and integrate with existing projects.</p></div>
+    <div class="feature"><h2>Community Modding</h2> <p>Games built with Naninovel can be <a href="/guide/community-modding.html">easily modified</a> to add new scenarios, resources and localizations. Open your games for the players to create their own stories and grow the fanbase!</p></div>
 </div>
 
 
@@ -39,6 +39,6 @@ pageClass: landing
 
 -->
 
-<div class="footer">Copyright © 2018 Elringus (Artyom Sovetnikov)</div>
+<div class="footer">Copyright © 2018 <a href="https://elringus.me/about" target="_blank" rel="noopener noreferrer">Elringus (Artyom Sovetnikov) <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div>
 
 </div>
