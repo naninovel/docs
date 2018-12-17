@@ -1,6 +1,6 @@
 # UI Customization
 
-UI customization feature allows to modify or completely replace any of the built-in UI elements, like main menu, settings menu, printer backlog, etc.
+UI customization feature allows to modify or completely replace any of the built-in UI elements, like title menu, settings menu, printer backlog, etc.
 
 Be aware though, that text printers and choice handlers are implemented via actors interface and are customized in a different way; see the corresponding documentation ([text printers](/guide/text-printers.md), [choice handlers](/guide/choices.md)) for more info.
 
