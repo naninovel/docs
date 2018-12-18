@@ -6,7 +6,7 @@
   "homepage": "https://naninovel.com",
   "devDependencies": {
     "@vuepress/plugin-google-analytics": "^1.0.0-alpha.0",
-    "vuepress": "^1.0.0-alpha.29"
+    "vuepress": "^1.0.0-alpha.30"
   },
   "scripts": {
     "docs:dev": "vuepress dev docs",
