@@ -19,7 +19,7 @@ Line is considered an action statement if it starts with a `@` literal. Action r
 
 ### Action Identifier
 
-Right after the action literal an action identifier is expected. This could either be the name of the C# class that implements the action or the action's tag (if it's applied via `NovelActionTag` attribute). 
+Right after the action literal an action identifier is expected. This could either be name of the C# class that implements the action or the action's tag (if it's applied via `NovelActionTag` attribute). 
 
 For example, a [`@save`](/api/#save) action (used to auto-save the game) is implemented via the `AutoSave` C# class. The implementing class also has a `[NovelActionTag("save")]` attribute applied, so you can use both `@save` and `@AutoSave` statements in the script to invoke this action. 
 
@@ -34,7 +34,7 @@ Action identifiers are case-insensitive; all the following statements are valid 
 
 ### Action Parameters
 
-Most of the actions have a number of parameters that define the effect of the action. Parameter is a key-value expression that is defined after the action literal separated by a column (`:`). Parameter identifier (key) could be either name of the corresponding parameter field of the action implementation class or the parameter's tag (if defined via `NovelActionParameter` attribute).
+Most of the actions have a number of parameters that define the effect of the action. Parameter is a key-value expression defined after the action literal separated by a column (`:`). Parameter identifier (key) could be either name of the corresponding parameter field of the action implementation class or the parameter's tag (if defined via `NovelActionParameter` attribute).
 ```
 @actionId paramId:paramValue 
 ```
@@ -47,15 +47,15 @@ Consider a [`@hideChars`](/api/#hidechars) action, which is used to hide all vis
 You can use a `time` *Single* parameter here to control for how long the characters will fade-out before becoming completely hidden (removed from scene):
 
 ```
-@hideChars time:5
+@hideChars time:5.5
 ```
 
-This will make the characters to fade-out for 5 seconds, before completely removing them from scene.
+This will make the characters to fade-out for 5.5 seconds, before completely removing them from scene.
 
 You can also use a `wait` *Boolean* parameter to specify, whether next action should be executed immediately after or wait for the completion of the current action:
 
 ```
-@hideChars time:5 wait:false
+@hideChars time:5.5 wait:false
 @hideText
 ```
 This will hide the text printer right after characters will begin to fade-out. If `wait` would be `true` or not specified, the printer would be hidden only when the `@hideChars` complete the execution.
