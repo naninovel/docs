@@ -6,7 +6,7 @@ If you have issues with the engine, please check the [issue tracker](https://git
 
 ## Unity Forum
 
-In case you're not comfortable using GitHub, check out [Unity forum thread](https://forum.unity.com/forums/assets-and-asset-store.32). To discuss the issue in private, [send a private message](https://forum.unity.com/conversations/add?to=Elringus). 
+In case you're not comfortable using GitHub, check out [Unity forum thread](https://forum.unity.com/threads/naninovel-visual-novel-engine.601966/). To discuss the issue in private, [send a private message](https://forum.unity.com/conversations/add?to=Elringus). 
 
 
 ## Social Media
