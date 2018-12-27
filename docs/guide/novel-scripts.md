@@ -132,7 +132,7 @@ You can then use a [`@goto`](/api/#goto) action to "jump" to that line:
 @goto ScriptName.Epilogue
 ```
 
-In case you're using [`@goto`](/api/#goto) action from withing the same script where the label is defined, you can omit the script name:
+In case you're using [`@goto`](/api/#goto) action from within the same script where the label is defined, you can omit the script name:
 
 ```
 @goto .Epilogue
@@ -141,7 +141,7 @@ In case you're using [`@goto`](/api/#goto) action from withing the same script w
 
 ## Comment Lines
 
-When line starts with a semicolon literal (`;`) it's considered a comment statement. Comment lines are completely ignored by the engine when scripts are parsed. You can use comment lines to add notes or annotations for yourself or other team members who works with novel scripts.
+When line starts with a semicolon literal (`;`) it's considered a comment statement. Comment lines are completely ignored by the engine when scripts are parsed. You can use comment lines to add notes or annotations for yourself or other team members who work with novel scripts.
 
 ```
 ; The following action will auto-save the game.
@@ -170,7 +170,7 @@ You can then use the short names preceded by `$` literal to reference the define
 He was as happy as a [style $red]clam[style default].
 ```
 
-However, you'll likely use this feature to reference associated character names when typing general text lines most of the time. To further simplify the process, `$` literal is not required in cases like that:
+However, you'll probably mostly use this feature to reference associated character names when in general text lines. To further simplify the process, `$` literal can be omitted in such cases:
 
 ```
 @char $f.Happy
