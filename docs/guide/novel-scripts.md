@@ -170,7 +170,7 @@ You can then use the short names preceded by `$` literal to reference the define
 He was as happy as a [style $red]clam[style default].
 ```
 
-However, you'll probably mostly use this feature to reference associated character names when in general text lines. To further simplify the process, `$` literal can be omitted in such cases:
+However, you'll probably mostly use this feature to reference associated character names in general text lines. To further simplify the process, `$` literal can be omitted in such cases:
 
 ```
 @char $f.Happy
