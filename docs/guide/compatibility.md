@@ -5,6 +5,8 @@
 
 At the moment, Unity 2018.3 is the minimum supported version; when 2018.4 is released, we'll stick with the initial LTS plan.
 
+Be aware, that `.NET 3.5` [scripting runtime](https://docs.unity3d.com/Manual/ScriptingRuntimeUpgrade.html) is not supported and is being deprecated by Unity. Make sure `.NET 4.x Equivalent` scripting runtime version is set in the player settings before importing the package. 
+
 ## Platforms
 All the engine features are implemented using cross-platform APIs and are expected to be compatible with all the platforms Unity can target. 
 
