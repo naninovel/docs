@@ -399,7 +399,7 @@ Will execute `Naninovel.Actions.Goto` and/or `Naninovel.Actions.SetCustomVariabl
 
 Name | Type | Description
 --- | --- | ---
-<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">Expression</span> | String | Conditional expression. Supported operators: = (equal), != (not equal), &gt; (greater), &gt;= (greater or equal), &lt; (less), &lt;= (less or equal), &amp; (and), | (or).  You can use existing variable names as rhs (right hand side operand); to distinguish a plain text value from a variable name, wrap the value in quotes (").
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">Expression</span> | String | Conditional expression. Supported operators: = (equal), != (not equal), &gt; (greater), &gt;= (greater or equal), &lt; (less), &lt;= (less or equal), &amp; (and), | (or).  You can use existing variable names as rhs (right hand side operand); to distinguish a plain text value from a variable name, wrap the value in single quotes (').  You can group the expressions with round parentheses.
 goto | Pair&lt;String, String&gt; | Path to go when expression is true; see `@goto` action for the path format.
 set | String | Set expression to execute when the conditional expression is true; see `@set` action for syntax reference.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
@@ -420,9 +420,9 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 
 ; Set variable `mood` to `Great` if `score` is equal to or greater than 5,
 ; to `Fine` if 4 or greater, and to `Average` in the other cases.
-@if "score >= 5" set:mood="Great"
-@if "score >= 4 & score < 5" set:mood="Fine"
-@set mood="Average"
+@if "score >= 5" set:mood='Great'
+@if "score >= 4 & score < 5" set:mood='Fine'
+@set mood='Average'
 # MoodSet
 
 ; You can also use `if` parameter on other actions to conditionally execute them:
@@ -434,7 +434,7 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 @fx GlitchCamera if:foo=1
 
 ; If `foo` value is a number and is greater than 9000, add the choice
-@choice "It's Over 9000!" if:foo>9000
+@choice "It's Over 9000!" if:"foo > 9000"
 
 ; If `foo` value is a number and is greater than or equal to 10, apply the style
 Lorem sit amet. [style bold if:foo>=10]Consectetur elit.[style default]
@@ -582,7 +582,7 @@ Assigns a value to a custom variable.
 
 Name | Type | Description
 --- | --- | ---
-<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">Expression</span> | String | Set expression. Supported operators: =,+,-,*. All operators except assignment requires both operands to be numbers.  You can use existing variable names as rhs (right hand side operand); to distinguish a plain text value from a variable name, wrap the value in quotes (").
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">Expression</span> | String | Set expression. Supported operators: =,+,-,*. All operators except assignment requires both operands to be numbers.  You can use existing variable names as rhs (right hand side operand); to distinguish a plain text value from a variable name, wrap the value in single quotes (').
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
 if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
@@ -592,7 +592,7 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 #### Example
 ```
 ; Assign `foo` variable a `bar` string value
-@set foo="bar"
+@set foo='bar'
 
 ; Assign `foo` variable a 1 number value
 @set foo=1
@@ -608,7 +608,7 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 
 ; Assign `foo` variable value of the `bar` variable, which is `Hello World!`.
 ; Notice, that `bar` variable should actually exist, otherwise `bar` plain text value will be assigned instead.
-@set bar="Hello World!"
+@set bar='Hello World!'
 @set foo=bar
 ```
 
