@@ -6,6 +6,8 @@ sidebar: auto
 
 Novel script actions API reference. Use the side bar to quickly navigate between available actions. Check out the [novel scripts guide](/guide/novel-scripts.md) in case you have no idea what's this all about.
 
+This API reference is valid for [Naninovel v1.1.0-beta](https://github.com/Elringus/NaninovelWeb/releases).
+
 ## arrange
 
 #### Summary
@@ -391,16 +393,13 @@ Lorem ipsum dolor sit amet.[i] Consectetur adipiscing elit.
 #### Summary
 Will execute `Naninovel.Actions.Goto` and/or `Naninovel.Actions.SetCustomVariable` actions when the provided expression is true.
 
-#### Remarks
-You'll likely use `if` parameter on other actions to conditionally execute them, rather than this action.  It's provided mostly for the documentation purposes of the example section.
-
 #### Parameters
 
 <div class="config-table">
 
 Name | Type | Description
 --- | --- | ---
-<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">Expression</span> | String | Conditional expression. Supported operators: =, !=, &gt;, &gt;=, &lt;, &lt;=.  "Less than" and "greater than" operators will only work with numbers.  For the syntax reference see examples.
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">Expression</span> | String | Conditional expression. Supported operators: = (equal), != (not equal), &gt; (greater), &gt;= (greater or equal), &lt; (less), &lt;= (less or equal), &amp; (and), | (or).  You can use existing variable names as rhs (right hand side operand); to distinguish a plain text value from a variable name, wrap the value in quotes (").
 goto | Pair&lt;String, String&gt; | Path to go when expression is true; see `@goto` action for the path format.
 set | String | Set expression to execute when the conditional expression is true; see `@set` action for syntax reference.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
@@ -411,7 +410,22 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 
 #### Example
 ```
-; Given a `foo` variable is set via a `@set` action:
+; Given a `score` variable is set (eg, via `@set` action) to an integer value,
+
+; Play a `fanfare` SFX for `score` times.
+@set counter=1
+# FanfareLoop
+@sfx Fanfare
+@if counter<score set:counter+1 goto:.FanfareLoop
+
+; Set variable `mood` to `Great` if `score` is equal to or greater than 5,
+; to `Fine` if 4 or greater, and to `Average` in the other cases.
+@if "score >= 5" set:mood="Great"
+@if "score >= 4 & score < 5" set:mood="Fine"
+@set mood="Average"
+# MoodSet
+
+; You can also use `if` parameter on other actions to conditionally execute them:
 
 ; If `foo` value is equal to `bar`, execute `@goto` action
 @goto Script001.Start if:foo=bar
@@ -568,7 +582,7 @@ Assigns a value to a custom variable.
 
 Name | Type | Description
 --- | --- | ---
-<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">Expression</span> | String | Set expression. Supported operators: =,+,-,*.  All operators except assignment requires both operands to be numbers.  For the syntax reference see examples.
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">Expression</span> | String | Set expression. Supported operators: =,+,-,*. All operators except assignment requires both operands to be numbers.  You can use existing variable names as rhs (right hand side operand); to distinguish a plain text value from a variable name, wrap the value in quotes (").
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
 if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
@@ -578,7 +592,7 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 #### Example
 ```
 ; Assign `foo` variable a `bar` string value
-@set foo=bar
+@set foo="bar"
 
 ; Assign `foo` variable a 1 number value
 @set foo=1
@@ -591,6 +605,11 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 
 ; If `foo` is a number, multiply its value by 2
 @set foo*2
+
+; Assign `foo` variable value of the `bar` variable, which is `Hello World!`.
+; Notice, that `bar` variable should actually exist, otherwise `bar` plain text value will be assigned instead.
+@set bar="Hello World!"
+@set foo=bar
 ```
 
 ## sfx
