@@ -410,7 +410,7 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 
 #### Example
 ```
-; Given a `score` variable is set (eg, via `@set` action) to an integer value,
+; Given a `score` variable is set (eg, via `@set` action) to an integer value:
 
 ; Play a `fanfare` SFX for `score` times.
 @set counter=1
@@ -422,8 +422,7 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 ; to `Fine` if 4 or greater, and to `Average` in the other cases.
 @if "score >= 5" set:mood='Great'
 @if "score >= 4 & score < 5" set:mood='Fine'
-@set mood='Average'
-# MoodSet
+@if "score < 4" set:mood='Average'
 
 ; You can also use `if` parameter on other actions to conditionally execute them:
 
