@@ -11,7 +11,7 @@ pageClass: landing
     <p class="actions">
         <a href="https://u3d.as/1pg9" target="_blank" rel="noopener noreferrer" class="nav-link external action-button">PURCHASE</a>
         <a href="/demo/" target="_blank" rel="noopener noreferrer" class="nav-link external action-button white">TRY DEMO</a>
-        <a href="/sandbox/" target="_blank" rel="noopener noreferrer" class="nav-link external action-button white">TRY SANDBOX</a>
+        <a href="/sandbox/" class="nav-link external action-button white">TRY SANDBOX</a>
     </p>
 </div>
 
