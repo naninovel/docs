@@ -49,4 +49,8 @@ Expose the prefab to engine resources using the printer's manager GUI, which can
 
 Now you can use the new text printer by activating it via [`@printer`](/api/#printer) action and specifying the printer actor name you've set in the manager.
 
+## Text Reveal Effect
 
+By default, a gradient fade effect is applied when printing out the text messages. If, however, you prefer the more conventional "typewriter" style, you can disable the fade effect by disabling `Slide Clip Rect` and setting `Reveal Fade Width` and `Reveal Fade Duration` properties in `Novel Text` component to zero. `Novel Text` components are used in both default printers; eg, you can find it attached to `Fullscreen/Content/Printer/Text` gameobject of the `Naninovel/Prefabs/TextPrinters/Fullscreen` printer prefab.
+
+![](https://i.gyazo.com/3434d39dcaf6b501d3f3640fda84bf80.png)
