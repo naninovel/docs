@@ -399,7 +399,7 @@ Will execute `Naninovel.Actions.Goto` and/or `Naninovel.Actions.SetCustomVariabl
 
 Name | Type | Description
 --- | --- | ---
-<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">Expression</span> | String | Conditional expression. Supported operators: = (equal), != (not equal), &gt; (greater), &gt;= (greater or equal), &lt; (less), &lt;= (less or equal), &amp; (and), &#124; (or).  You can use existing variable names as rhs (right hand side operand); to distinguish a plain text value from a variable name, wrap the value in single quotes (').  You can group the expressions with round parentheses.
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">Expression</span> | String | Conditional expression.  Supported operators: == (equal), != (not equal), &gt; (greater), &gt;= (greater or equal), &lt; (less), &lt;= (less or equal), &amp;&amp; (and), &#124;&#124; (or).  Supported math functions: https://docs.microsoft.com/en-us/dotnet/api/system.math?view=netframework-4.7.2#methods  Additionally, `Random(int min, int max)` function is supported, returning a random integer between specified min and max values.  It's possible to use existing variable names as rhs (right hand side operand); to distinguish a plain text value from a variable name, wrap the value in single quotes (').  It's possible to group the expressions with round parentheses.
 goto | Pair&lt;String, String&gt; | Path to go when expression is true; see `@goto` action for the path format.
 set | String | Set expression to execute when the conditional expression is true; see `@set` action for syntax reference.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
@@ -421,25 +421,25 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 ; Set variable `mood` to `Great` if `score` is equal to or greater than 5,
 ; to `Fine` if 4 or greater, and to `Average` in the other cases.
 @if "score >= 5" set:mood='Great'
-@if "score >= 4 & score < 5" set:mood='Fine'
+@if "score >= 4 && score < 5" set:mood='Fine'
 @if "score < 4" set:mood='Average'
 
 ; You can also use `if` parameter on other actions to conditionally execute them:
 
-; If `foo` value is equal to `bar`, execute `@goto` action
-@goto Script001.Start if:foo=bar
+; If `level` value is a number and is greater than 9000, add the choice
+@choice "It's over 9000!" if:"level > 9000"
 
-; If `foo` value is equal to `1`, execute the `@fx` action
-@fx GlitchCamera if:foo=1
+; If `dead` variable is equal to `False`, execute the print action
+@print text:"I'm still alive." if:dead==`False`
 
-; If `foo` value is a number and is greater than 9000, add the choice
-@choice "It's Over 9000!" if:"foo > 9000"
+; If `glitch` equals `True` or random function in 1 to 10 range returns 5 or more, execute `@fx` action
+@fx GlitchCamera if:"glitch == 'True' || Random(1, 10) >= 5"
 
-; If `foo` value is a number and is greater than or equal to 10, apply the style
-Lorem sit amet. [style bold if:foo>=10]Consectetur elit.[style default]
+; If `score` value is in 7 to 13 range or `lucky` variable equals `True`, load `LuckyEnd` script
+@goto LuckyEnd if:"(score >= 7 && score <= 13) || lucky == `True`"
 
-; If `foo` value is not equal to `2`, execute the print action
-@print text:"Lorem ipsum dolor sit amet." if:foo!=2
+; You can also use conditionals in the inlined actions
+Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
 ```
 
 ## movie
