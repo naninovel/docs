@@ -109,3 +109,10 @@ On the contrary, you can play multiple sound effects at the same time and they w
 @sfx Explosion
 ```
 
+## Video Guide
+
+In case you prefer following video guides, here is one illustrating the above instructions.
+
+<div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/qarLvnK85Tg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
