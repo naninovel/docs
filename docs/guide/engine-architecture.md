@@ -4,7 +4,7 @@ The engine is designed with the following principles in mind: **scene independen
 
 ## Scene Independent
 
-While Unity design promotes using scenes and prefabs composition, it's not very practical when developing Visual Novels. 
+While Unity design promotes using scenes and prefabs composition, it's not very practical when developing visual novels. 
 
 All the Naninovel systems either not directly bound to a [MonoBehaviour]( https://docs.unity3d.com/ScriptReference/MonoBehaviour.html) or attached to a [persistent]( https://docs.unity3d.com/ScriptReference/Object.DontDestroyOnLoad.html) root [GameObject]( https://docs.unity3d.com/ScriptReference/GameObject.html).
 
@@ -37,6 +37,6 @@ You can find the list of all the currently available engine services in the ["En
 
 ## High-Level Concept
 
-The following UML-diagram illustrates a high-level concept of the engine architecture.
+The following UML diagram illustrates a high-level concept of the engine architecture. Note that all the class and interface names in the diagram are organized under `Naninovel` namespace. Eg, to reference an `Engine` class, use `Naninovel.Engine`.
 
-
+<object style="width:100%; max-width:699px" data="/engine-design.svg" type="image/svg+xml"></object>
