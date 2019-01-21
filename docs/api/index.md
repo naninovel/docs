@@ -4,9 +4,11 @@ sidebar: auto
 
 # API Reference
 
-Novel script actions API reference. Use the side bar to quickly navigate between available actions. Check out the [novel scripts guide](/guide/novel-scripts.md) in case you have no idea what's this all about.
+Novel script actions API reference. Use the side bar to quickly navigate between available actions. 
 
-This API reference is valid for [Naninovel v1.1.0-beta](https://github.com/Elringus/NaninovelWeb/releases).
+~~Strikethrough~~ indicates a nameless parameter, and **bold** stands for required parameter; other parameters should be considered optional. Check out the [novel scripts guide](/guide/novel-scripts.md) in case you have no idea what's this all about.
+
+This API reference is valid for [Naninovel v1.2.0-beta](https://github.com/Elringus/NaninovelWeb/releases).
 
 ## arrange
 
@@ -101,6 +103,7 @@ Only one background music track can be played simultaneously and a cross-fade ef
 Name | Type | Description
 --- | --- | ---
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">BgmPath</span> | String | Path to the music track to play.
+volume | Single | Volume of the music track.
 fadeTime | Single | Fade duration, in seconds.
 loop | Boolean | Whether to play the track from beginning when it finishes.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
