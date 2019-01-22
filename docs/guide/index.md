@@ -15,6 +15,7 @@ The following features are already implemented; more will be added as the engine
 * [Text printers](/guide/text-printers.md)
   * [Dialogue printer](/guide/text-printers.md#dialogue-printer)
   * [Fullscreen printer](/guide/text-printers.md#fullscreen-printer)
+  * [TextMesh Pro support](/guide/text-printers.html#textmesh-pro)
 * [Characters](/guide/characters.md)
   * [Sprite characters](/guide/characters.md#sprite-characters)
   * [Diced sprite characters](/guide/characters.md#diced-sprite-characters)

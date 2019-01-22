@@ -54,3 +54,19 @@ Now you can use the new text printer by activating it via [`@printer`](/api/#pri
 By default, a gradient fade effect is applied when printing out the text messages. If, however, you prefer the more conventional "typewriter" style, you can disable the fade effect by disabling `Slide Clip Rect` and setting `Reveal Fade Width` and `Reveal Fade Duration` properties in `Novel Text` component to zero. `Novel Text` components are used in both default printers; eg, you can find it attached to `Fullscreen/Content/Printer/Text` gameobject of the `Naninovel/Prefabs/TextPrinters/Fullscreen` printer prefab.
 
 ![](https://i.gyazo.com/3434d39dcaf6b501d3f3640fda84bf80.png)
+
+## TextMesh Pro
+
+Naninovel supports [TextMesh Pro](https://assetstore.unity.com/packages/essentials/beta-projects/textmesh-pro-84126) via a standalone extension package, that contains a fullscreen and dialogue printers implemented with the TMPro UI text components.
+
+First, download the latest version of the package using the link below: [github.com/Elringus/NaninovelTMPro/raw/master/NaninovelTMPro.unitypackage](https://github.com/Elringus/NaninovelTMPro/raw/master/NaninovelTMPro.unitypackage).
+
+Before importing the package, make sure you have TextMesh Pro installed in your Unity project. TextMesh Pro can be installed via package manager accessible via `Window -> Package Manager` menu.
+
+Import the package, open Naninovel printers configuration menu `Naninovel -> Configuration -> Printers`, click "Manage Printers" and then replace the built-in resources for the "Dialogue" and "Fullscreen" printers with the prefabs from the extension package; TMPro printer prefabs can be found inside `NaninovelTMPro/Prefabs` folder. 
+
+![](https://i.gyazo.com/f9979fa459b5884b88d00bc606da6121.gif)
+
+When creating custom TextMesh Pro font assets, don't forget to apply `Naninovel/NovelFontTMPro` shader, otherwise the text reveal effect won't work.
+
+![](https://i.gyazo.com/3f6647fd2dd58d3aef211bee4d31ba69.png)
