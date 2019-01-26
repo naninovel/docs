@@ -69,4 +69,4 @@ Import the package, open Naninovel printers configuration menu `Naninovel -> Con
 
 When creating custom TextMesh Pro font assets, don't forget to apply `Naninovel/NovelFontTMPro` shader, otherwise the text reveal effect won't work.
 
-![](https://i.gyazo.com/3f6647fd2dd58d3aef211bee4d31ba69.png)
+![](https://i.gyazo.com/c82a336dc01c6d95c8af034ad31eea8d.png)
