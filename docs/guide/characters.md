@@ -22,7 +22,6 @@ In novel scripts, characters are mostly controlled with [`@char`](/api/#char) ac
 @char Sora.Happy look:left pos:0.45,0.1
 ```
 
-
 ## Sprite Characters 
 
 Sprite implementation of the character actors is the most common and simple one; it uses a set of [sprite](https://docs.unity3d.com/Manual/Sprites) assets to represent appearances of the character. The source of the sprites could be `.png` or `.jpg` image files. 
@@ -45,15 +44,35 @@ Diced sprite characters can only be managed by editor GUI.
 	
 Animated characters is the most flexible characters actor implementation. It's based on a prefab with an [animator](https://docs.unity3d.com/ScriptReference/Animator) component attached to the root object. Appearance changes are routed to the animator component as [SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) commands appearance being the trigger name. You're free to implement the behavior of the underlying object. For example, you can use a 3D rigged character model and route the appearance changes to the corresponding rig animations. 
 
-
 Animated characters can only be managed by editor GUI.
+
 ## Live2D Characters
 
-This character implementation uses assets created with a popular [Live2D Cubism]( https://www.live2d.com) software. 
+Live2D character implementation uses assets created with [Live2D Cubism](https://www.live2d.com) 2D modeling and animation software. 
 
-In order to be able to choose this implementation you have to first install [Live2D Cubism SDK for Unity](https://www.live2d.com/en/news/unity_full_release) and Unity's [Conditional Compilation Utility](https://github.com/Unity-Technologies/ConditionalCompilationUtility). Consult projects' readme for installation and usage instructions.
+In order to be able to use this implementation you have to first install [Live2D Cubism SDK for Unity](https://live2d.github.io/#unity). Consult official Live2D docs for the installation and usage instructions.
 
-Live2D model prefab used as the resource for this implementation should have a `Naninovel.Live2DAppearanceController` component attached to the root object. Appearance changes are handled by routing appearance name to the set of `Live2D.Cubism.Core.CubismParameter` as specified in the `Live2DAppearanceController` component.
+Then install [NaninovelLive2D extension package](https://github.com/Elringus/NaninovelLive2D/raw/master/NaninovelLive2D.unitypackage).
 
-Live2D characters can only be managed by editor GUI.
+Live2D model prefab used as the resource for the implementation should have a `Naninovel.Live2DController` component attached to the root object. Appearance changes are routed to the animator component as [SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) commands appearance being the trigger name. Eg, if you have a "Kaori" Live2D character prefab and want to invoke a trigger with name "Surprise", use the following action:
+
+```
+@char Kaori.Surprise
+```
+
+Note, that the above action will only attempt to invoke a [SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) with "Surprise" argument on the animator controller attached to the prefab; you have to compose underlying animator state machine yourself.
+
+Look direction can optionally be controlled via Live2D's `CubismLookController` (can be disabled via `Control Look` field of the `Naninovel.Live2DController` component).
+
+When Live2D extension is installed a "Live2D" item will appear in the Naninovel configuration menu providing following options:
+
+![](https://i.gyazo.com/b2eee4937d2fa02216997cc7f387261b.png)
+
+Render layer specifies the layer to apply for the Live2D prefabs and culling mask to use for the cameras that will render the prefabs. Ortho size specifies the render camera orthographic size and camera offset allow to offset the camera from the rendered prefab; you can use these parameters to uniformly position and scale all the Live2D prefabs relative to the camera.
+
+The following video guide covers exporting a Live2D character from Cubism Editor, configuring the prefab, creating a simple animator state machine and controlling the character from a novel script.
+
+<div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/eSy2VhXpD_k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
