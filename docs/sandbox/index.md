@@ -6,9 +6,7 @@ Sandbox is a special Naninovel WebGL build that you can use to try out the engin
 
 A Google Drive account is required to use the sandbox. You can get one for free at [google.com/drive](https://www.google.com/drive). 
 
-Proceed to [naninovel.com/sandbox/web](https://naninovel.com/sandbox/web.html) to load the WebGL build. Upon first start it'll ask to authorize with a Google account; select account connected with the Google Drive you wish to use with the sandbox.
-
-Note that sandbox app is currently being verified by Google; in case you see a warning that the app is not verified, you can still click a link in the bottom left corner to continue using the app. If you're concerned about safety of your drive, create a new drive account to use with the sandbox.
+Proceed to [naninovel.com/sandbox/web](https://naninovel.com/sandbox/web.html) to load the WebGL build. Upon first start it'll ask to authorize with a Google account; select account connected with the Google Drive you wish to use with the sandbox. If you're concerned about safety of your drive, create a new drive account to use with the sandbox.
 
 After authorization you'll be redirected back to the app. Press `HOW TO USE` button and then `UPLOAD DATA` to create a `NaninovelSandbox` folder in the root of your Google Drive along with a set of sub-folders to store novel scripts, characters, backgrounds and audio assets; `readme.txt` files will also be uploaded inside each of the sub-folders explaining how to add the resources and use them in novel scripts.
 

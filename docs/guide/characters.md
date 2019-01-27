@@ -66,13 +66,13 @@ Look direction can optionally be controlled via Live2D's `CubismLookController` 
 
 When Live2D extension is installed a "Live2D" item will appear in the Naninovel configuration menu providing following options:
 
-![](https://i.gyazo.com/b2eee4937d2fa02216997cc7f387261b.png)
+![](https://i.gyazo.com/435a4824f0ce0dd8c9c3f29d457bab24.png)
 
-Render layer specifies the layer to apply for the Live2D prefabs and culling mask to use for the cameras that will render the prefabs. Ortho size specifies the render camera orthographic size and camera offset allow to offset the camera from the rendered prefab; you can use these parameters to uniformly position and scale all the Live2D prefabs relative to the camera.
+Render layer specifies the layer to apply for the Live2D prefabs and culling mask to use for the cameras that will render the prefabs. Render camera field allows to use a custom setup for the render camera (the default render camera is stored inside the packages "Prefabs" folder). Camera offset allows to offset the render camera from the rendered prefab; you can use this parameters to uniformly position all the Live2D prefabs relative to the camera.
 
 The following video guide covers exporting a Live2D character from Cubism Editor, configuring the prefab, creating a simple animator state machine and controlling the character from a novel script.
 
 <div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/eSy2VhXpD_k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe src="https://www.youtube-nocookie.com/embed/rw_Z69z0pAg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 

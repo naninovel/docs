@@ -176,7 +176,7 @@ Enable Community Modding | False | Whether to allow adding external novel script
 External Loader | Scripts- (Local) | Configuration of the resource loader used to manage external novel script resources.
 Enable Navigator | True | Whether to initializte script navigator to browse available novel scripts.
 Show Navigator On Init | False | Whether to show novel script navigator when script manager is initialized.
-Navigator Prefab | Script Navigator (Naninovel.UI.Script Navigator) | Script navigator prefab to use.
+Navigator Prefab | Script Navigator (Naninovel.UI.Script Navigator Panel) | Script navigator prefab to use.
 Navigator Sort Order | 900 | UI sort order of the script navigator.
 
 </div>
