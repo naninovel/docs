@@ -195,6 +195,9 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 #### Summary
 Adds a choice option to an active (or default) `Naninovel.IChoiceHandlerActor`.
 
+#### Remarks
+When no goto parameter is specified, will continue script execution from the next script line.
+
 #### Parameters
 
 <div class="config-table">
