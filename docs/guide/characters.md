@@ -34,11 +34,19 @@ Implemented via an open source (MIT license) third-party package [SpriteDicing](
 
 ![Sprite Dicing](https://i.gyazo.com/af08d141e7a08b6a8e2ef60c07332bbf.png)
 
-In order to be able to choose this implementation you have to first install [SpriteDicing](https://github.com/Elringus/SpriteDicing) and Unity's [Conditional Compilation Utility](https://github.com/Unity-Technologies/ConditionalCompilationUtility). Consult projects' readme for installation and usage instructions.
+In order to be able to choose this implementation you have to first install [SpriteDicing](https://github.com/Elringus/SpriteDicing). Consult project readme on GitHub for installation and usage instructions.
 
-Diced sprite characters can only be managed by editor GUI. 
+Then install [NaninovelSpriteDicing extension package](https://github.com/Elringus/NaninovelSpriteDicing/raw/master/NaninovelSpriteDicing.unitypackage).
 
 `DicedSpriteAtlas` assets containing character appearances are used as the resources for the diced sprite characters. Each appearance is mapped by name to the diced sprites contained in the atlas.
+
+Note, that diced characters implementation currently doesn't support animated appearance changes (they're changed instantly).
+
+The following video guide covers creating and configuring diced sprite atlas, adding new diced character based on the created atlas and controlling the character from a novel script.
+
+<div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/6PdOAOsnhio" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 ## Animated Characters
 	
