@@ -8,7 +8,7 @@ Novel script actions API reference. Use the side bar to quickly navigate between
 
 ~~Strikethrough~~ indicates a nameless parameter, and **bold** stands for required parameter; other parameters should be considered optional. Check out the [novel scripts guide](/guide/novel-scripts.md) in case you have no idea what's this all about.
 
-This API reference is valid for [Naninovel v1.2.0-beta](https://github.com/Elringus/NaninovelWeb/releases).
+This API reference is valid for [Naninovel v1.3.0-beta](https://github.com/Elringus/NaninovelWeb/releases).
 
 ## arrange
 
@@ -249,6 +249,40 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 
 ; Applies a glitch effect to the camera
 @fx GlitchCamera
+```
+
+## gosub
+
+#### Summary
+Jumps the novel script playback to the provided path and saves the path to the global state;  @return actions use this info to redirect to action after the last goto action.  Useful for invoking a repeating set of actions multiple times.
+
+#### Parameters
+
+<div class="config-table">
+
+Name | Type | Description
+--- | --- | ---
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">Path</span> | Pair&lt;String, String&gt; | Path to jump into in the following format: `ScriptName.LabelName`.  When label name is ommited, will play provided script from the start.  When script name is ommited, will attempt to find a label in the currently played script.
+wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
+time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
+
+</div>
+
+#### Example
+```
+; Jumps the playback to the label `VictoryScene` in the currently played script,
+; executes the actions and jumps back to the action after the `gosub`.
+@gosub .VictoryScene
+...
+@stop
+
+# VictoryScene
+@back Victory
+@sfx Fireworks
+@bgm Fanfares
+You are victorious!
+@return
 ```
 
 ## goto
@@ -553,6 +587,23 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 ```
 @resetText
 ```
+
+## return
+
+#### Summary
+Attempts to jump the novel script playback to the action after the last used @gosub.  See @gosub action summary for more info.
+
+#### Parameters
+
+<div class="config-table">
+
+Name | Type | Description
+--- | --- | ---
+wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
+time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
+
+</div>
 
 ## save
 
