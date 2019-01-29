@@ -254,7 +254,7 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 ## gosub
 
 #### Summary
-Jumps the novel script playback to the provided path and saves the path to the global state;  @return actions use this info to redirect to action after the last goto action.  Useful for invoking a repeating set of actions multiple times.
+Jumps the novel script playback to the provided path and saves the path to the global state;  @return actions use this info to redirect to action after the last invoked gosub action.  Useful for invoking a repeating set of actions multiple times.
 
 #### Parameters
 
