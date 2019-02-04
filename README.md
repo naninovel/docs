@@ -2,4 +2,4 @@
 
 # Naninovel Web Resources
 
-This project is used to host online resources for the [Naninovel](https://naninovel.com) visual novel engine extension for [Unity game engine](https://unity3d.com).
+This project is used to host online resources for [Naninovel](https://naninovel.com) visual novel engine.
