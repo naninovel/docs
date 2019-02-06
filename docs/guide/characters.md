@@ -72,6 +72,8 @@ Note, that the above action will only attempt to invoke a [SetTrigger](https://d
 
 Look direction can optionally be controlled via Live2D's `CubismLookController` (can be disabled via `Control Look` field of the `Naninovel.Live2DController` component).
 
+Be aware, that `Naninovel.Live2DController` expects a "Drawables" gameobject inside the Live2D model prefab (created automatically when importing Live2D models to Unity); the controller will scale this gameobject at runtime in correspondence with "scale" parameter of the `@char` actions. Hence, any local scale values set in the editor will be ignored. To set an initial scale for the Live2D prefabs, please use scale of the parent gameobject as [shown in the video guide](https://youtu.be/rw_Z69z0pAg?t=353).
+
 When Live2D extension is installed a "Live2D" item will appear in the Naninovel configuration menu providing following options:
 
 ![](https://i.gyazo.com/435a4824f0ce0dd8c9c3f29d457bab24.png)
