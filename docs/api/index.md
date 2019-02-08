@@ -851,7 +851,7 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 @stopBgm fadeTime:10
 ```
 
-## stopfx
+## stopFx
 
 #### Summary
 Stops the effect of an FX started with `@fx` action by destroying the spawned object of the corresponding FX prefab.  See [/guide/special-effects.html](https://naninovel.com/guide/special-effects.html) for the list of available built-in special effects.
