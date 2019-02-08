@@ -223,6 +223,34 @@ Continue executing this script or load another?[skipInput]
 @stop
 ```
 
+## despawn
+
+#### Summary
+Destroys object spawned with `@spawn` action.
+
+#### Remarks
+If prefab has a `UnityEngine.MonoBehaviour` component attached the root object, and the component implements  a `Naninovel.Actions.DestroySpawned.IParameterized` interface, will pass the specified `params` values before destroying the object;  if the component implements `Naninovel.Actions.DestroySpawned.IAwaitable` interface, action execution will wait for  the async completion task returned by the implementation before destroying the object.
+
+#### Parameters
+
+<div class="config-table">
+
+Name | Type | Description
+--- | --- | ---
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">Path</span> | String | Path to the prefab resource to destroy. Path is relative to a "./Resources" folder, eg  given a "Assets/Resources/FX/Explosion.prefab" asset, use the following path to spawn it: "FX/Explosion".  A "@spawn" action with the same path is expected to be executed before.
+params | String[] | Parameters to set before destoying the prefab.  Requires the prefab to have a `Naninovel.Actions.DestroySpawned.IParameterized` component attached the root object.
+wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
+time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
+
+</div>
+
+#### Example
+```
+; Given a "@spawn Rainbow" action was executed before
+@despawn Rainbow
+```
+
 ## fx
 
 #### Summary
@@ -234,8 +262,8 @@ Spawns a special effect prefab stored in `./Resources/Naninovel/FX` resources fo
 
 Name | Type | Description
 --- | --- | ---
-<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">Path</span> | String | Path to the prefab to spawn.
-params | String[] | Parameters to set when initializing the prefab.  Requires the prefab to have a `Naninovel.Actions.Spawn.IInitializable` component attached the root object.
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">Path</span> | String | Path to the prefab resource to spawn. Path is relative to a "./Resources" folder, eg  given a "Assets/Resources/FX/Explosion.prefab" asset, use the following path to spawn it: "FX/Explosion".
+params | String[] | Parameters to set when spawning the prefab.  Requires the prefab to have a `Naninovel.Actions.Spawn.IParameterized` component attached the root object.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
 if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
@@ -752,7 +780,7 @@ And the rain starts.[skipInput]
 Spawns a prefab stored in project resources.
 
 #### Remarks
-If prefab has a `UnityEngine.MonoBehaviour` component attached the root object, and the component implements  a `Naninovel.Actions.Spawn.IInitializable` interface, will pass the specified `params` values after the spawn;  if the component implements `Naninovel.Actions.Spawn.IAwaitable` interface, action execution will wait for  the async completion task returned by the implementation.
+If prefab has a `UnityEngine.MonoBehaviour` component attached the root object, and the component implements  a `Naninovel.Actions.Spawn.IParameterized` interface, will pass the specified `params` values after the spawn;  if the component implements `Naninovel.Actions.Spawn.IAwaitable` interface, action execution will wait for  the async completion task returned by the implementation.
 
 #### Parameters
 
@@ -760,8 +788,8 @@ If prefab has a `UnityEngine.MonoBehaviour` component attached the root object, 
 
 Name | Type | Description
 --- | --- | ---
-<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">Path</span> | String | Path to the prefab to spawn.
-params | String[] | Parameters to set when initializing the prefab.  Requires the prefab to have a `Naninovel.Actions.Spawn.IInitializable` component attached the root object.
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">Path</span> | String | Path to the prefab resource to spawn. Path is relative to a "./Resources" folder, eg  given a "Assets/Resources/FX/Explosion.prefab" asset, use the following path to spawn it: "FX/Explosion".
+params | String[] | Parameters to set when spawning the prefab.  Requires the prefab to have a `Naninovel.Actions.Spawn.IParameterized` component attached the root object.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
 if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
@@ -821,6 +849,31 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 
 ; Fades-out for 10 seconds and stops any currently played music
 @stopBgm fadeTime:10
+```
+
+## stopfx
+
+#### Summary
+Stops the effect of an FX started with `@fx` action by destroying the spawned object of the corresponding FX prefab.  See [/guide/special-effects.html](https://naninovel.com/guide/special-effects.html) for the list of available built-in special effects.
+
+#### Parameters
+
+<div class="config-table">
+
+Name | Type | Description
+--- | --- | ---
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">Path</span> | String | Path to the prefab resource to destroy. Path is relative to a "./Resources" folder, eg  given a "Assets/Resources/FX/Explosion.prefab" asset, use the following path to spawn it: "FX/Explosion".  A "@spawn" action with the same path is expected to be executed before.
+params | String[] | Parameters to set before destoying the prefab.  Requires the prefab to have a `Naninovel.Actions.DestroySpawned.IParameterized` component attached the root object.
+wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
+time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
+
+</div>
+
+#### Example
+```
+; Given a "Rain" FX was started with "@fx" action
+@stopfx Rain
 ```
 
 ## stopSfx
