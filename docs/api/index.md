@@ -54,13 +54,13 @@ Name | Type | Description
 --- | --- | ---
 <span class="action-param-nameless" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name">AppearanceAndTransition</span> | Pair&lt;String, String&gt; | Appearance to set for the modified background and name of the transition effect to use.  When transition is not provided, a cross-fade effect will be used by default.  See [/guide/background-transition-effects.html](https://naninovel.com/guide/background-transition-effects.html) for the list of available transition effects.
 params | Single[] | Parameters of the transition effect.
-pos | Single[] | Position (in scene local space) to set for the modified actor.  Scene space described as follows: x0y0 is at the bottom left and x1y1 is at the top right corner of the screen.
 name | String | Name of the actor to modify.
 appearance | String | Appearance to set for the modified actor.
-isVisible | Boolean | Visibility status to set for the modified actor.
-position | Single[] | Position (in world space) to set for the modified actor.
-rotation | Single[] | Rotation to set for the modified actor.
+pos | Single[] | Position (in scene local space) to set for the modified actor.  Scene space described as follows: x0y0 is at the bottom left and x1y1 is at the top right corner of the screen.
 scale | Single[] | Scale to set for the modified actor.
+position | Single[] | Position (in world space) to set for the modified actor.
+isVisible | Boolean | Visibility status to set for the modified actor.
+rotation | Single[] | Rotation to set for the modified actor.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
 if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
@@ -164,13 +164,13 @@ Name | Type | Description
 --- | --- | ---
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">NameAndAppearance</span> | Pair&lt;String, String&gt; | Name of the actor to modify and the appearance to set.  When appearance is not provided, will use either a `Default` (is exists) or a random one.
 look | String | Look direction of the actor; possible options: left, right, center.
-pos | Single[] | Position (in scene local space) to set for the modified actor.  Scene space described as follows: x0y0 is at the bottom left and x1y1 is at the top right corner of the screen.
 name | String | Name of the actor to modify.
 appearance | String | Appearance to set for the modified actor.
-isVisible | Boolean | Visibility status to set for the modified actor.
-position | Single[] | Position (in world space) to set for the modified actor.
-rotation | Single[] | Rotation to set for the modified actor.
+pos | Single[] | Position (in scene local space) to set for the modified actor.  Scene space described as follows: x0y0 is at the bottom left and x1y1 is at the top right corner of the screen.
 scale | Single[] | Scale to set for the modified actor.
+position | Single[] | Position (in world space) to set for the modified actor.
+isVisible | Boolean | Visibility status to set for the modified actor.
+rotation | Single[] | Rotation to set for the modified actor.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
 if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
@@ -681,8 +681,8 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 ; Assign `foo` variable a 1 number value
 @set foo=1
 
-; If `foo` is a number, add 10 to its value
-@set foo+10
+; If `foo` is a number, add 0.5 to its value
+@set foo+0.5
 
 ; If `foo` is a number, subtract 25 from its value
 @set varName-25
@@ -694,6 +694,18 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 ; Notice, that `bar` variable should actually exist, otherwise `bar` plain text value will be assigned instead.
 @set bar='Hello World!'
 @set foo=bar
+
+; It's possible to inject variables to novel script action parameters
+@set scale=0
+# EnlargeLoop
+@char Misaki.Default scale:{scale}
+@set scale+0.1
+@goto .EnlargeLoop if:scale<1
+
+; ..and generic text lines
+@set name='Dr. Stein'
+@set drink='Dr. Pepper'
+{name}: My favourite drink is {drink}!
 ```
 
 ## sfx
