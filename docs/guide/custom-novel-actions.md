@@ -9,7 +9,7 @@ To add your own custom novel action, create a new C# class, inherit `Naninovel.A
 
 `UndoAsync` method is invoked when rewinding novel scripts backwards. In case your novel action changes scene state, you should revert the changes here; otherwise just return a completed task.
 
-To expose an action parameter to novel scripts, add a `NovelActionParameter` attribute to the public field you want to expose. The attribute takes two optional arguments: `name` (string) is an alias name of the parameter and `isOptional` (bool) controls whether the parameter should be considered optional (can be omitted in novel scripts). If you wish to make the parameter nameless, set an empty string (`""` or `string.Empty`) as the alias.
+To expose an action parameter to novel scripts, add a `NovelActionParameter` attribute to the public property you want to expose. The attribute takes two optional arguments: `name` (string) is an alias name of the parameter and `isOptional` (bool) controls whether the parameter should be considered optional (can be omitted in novel scripts). If you wish to make the parameter nameless, set an empty string (`""` or `string.Empty`) as the alias.
 
 To assign a tag (alias) to the novel action, apply `NovelActionTag` attribute to the implementing class. In novel scripts you can reference the action by either its implementation class name or the assigned tag.
 
