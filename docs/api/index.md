@@ -703,8 +703,8 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 @goto .EnlargeLoop if:scale<1
 
 ; ..and generic text lines
-@set name='Dr. Stein'
-@set drink='Dr. Pepper'
+@set name="Dr. Stein"
+@set drink="Dr. Pepper"
 {name}: My favourite drink is {drink}!
 ```
 
