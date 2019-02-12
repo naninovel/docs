@@ -676,7 +676,7 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 #### Example
 ```
 ; Assign `foo` variable a `bar` string value
-@set foo='bar'
+@set foo="bar"
 
 ; Assign `foo` variable a 1 number value
 @set foo=1
@@ -692,7 +692,7 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 
 ; Assign `foo` variable value of the `bar` variable, which is `Hello World!`.
 ; Notice, that `bar` variable should actually exist, otherwise `bar` plain text value will be assigned instead.
-@set bar='Hello World!'
+@set bar="Hello World!"
 @set foo=bar
 
 ; It's possible to inject variables to novel script action parameters
