@@ -19,6 +19,7 @@ ISaveLoadUI | Panel used for saving and loading game.
 ISettingsUI | Panel used for changing game settings.
 ITitleUI | Title (main) menu of the game.
 IExternalScriptsUI | External scripts browser UI (community modding feature).
+IVariableInputUI | Input form for assigning an arbitrary text to a custom state variable (used by [`@input`](/api/#input) action).
 
 When the prefab is ready, just drop it to the `Custom UI` list in the UI configuration manager accessible with `Naninovel -> Configuration -> UI` context menu.
 

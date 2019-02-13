@@ -510,6 +510,44 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
 ```
 
+## input
+
+#### Summary
+Shows an input field UI where user can enter an arbitrary text.  Upon submit the entered text will be assigned to the specified custom variable.  Check out this [video guide](https://youtu.be/F9meuMzvGJw) on usage example.
+
+#### Remarks
+The state of the UI is not serialized when saving the game, so make sure to prevent  player from saving the game when the UI is visible (eg, with `@hideText` action).
+
+#### Parameters
+
+<div class="config-table">
+
+Name | Type | Description
+--- | --- | ---
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">VariableName</span> | String | Name of a custom variable to which the entered text will be assigned.
+summary | String | An optional summary text to show along with input field.
+play | Boolean | Whether to automatically resume script playback when user submits the input form.
+wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
+time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
+
+</div>
+
+#### Example
+```
+; Allow user to enter an arbitrary text and assign it to `name` custom state variable
+@input name summary:"Choose your name."
+; Stop action is required to halt script execution until user submits the input
+@stop
+
+; You can then inject the assigned `name` variable in novel scripts
+Archibald: Greetings, {name}!
+{name}: Yo!
+
+; ...or use it inside set and conditional expressions
+@set score+1 if:name=='Felix'
+```
+
 ## movie
 
 #### Summary
@@ -524,7 +562,7 @@ Will fade-out the screen before playing the movie and fade back in after the pla
 
 Name | Type | Description
 --- | --- | ---
-<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">MovieName</span> | String | 
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">MovieName</span> | String | Name of the movie resource to play.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
 if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
