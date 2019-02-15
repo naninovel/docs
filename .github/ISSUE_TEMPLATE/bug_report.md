@@ -2,7 +2,7 @@
 name: Bug report
 about: Create a report to help us improve
 title: ''
-labels: ''
+labels: bug
 assignees: ''
 
 ---
@@ -32,7 +32,7 @@ Specify Unity version you are using, e.g.: 2018.3.5f2.
 **OS (when editor-related)**
 Which operating system you're running the editor under, e.g.: Windows 10
 
-**Platform (when player-related)**
+**Platform**
 Which target platform you're using, e.g.: WebGL
 
 **Additional context**
