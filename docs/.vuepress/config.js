@@ -22,6 +22,7 @@ module.exports = {
                 items: [
                     {text: 'Twitter', link: 'https://twitter.com/naniengine'},
                     {text: 'Facebook', link: 'https://www.facebook.com/naniengine'},
+                    {text: 'Discord', link: 'https://discord.gg/avhRzP3'}
                     // {text: 'VK', link: 'https://vk.com/naninovel'}
                 ]
             },

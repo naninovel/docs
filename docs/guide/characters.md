@@ -22,6 +22,22 @@ In novel scripts, characters are mostly controlled with [`@char`](/api/#char) ac
 @char Sora.Happy look:left pos:0.45,0.1
 ```
 
+## Display Name
+
+In the character configuration you can set a `Display Name` for specific characters. When set, display name will be shown in the printer name label UI, instead of the character's ID. This allows using compound character names, that contains spaces and special characters (which is not allowed for IDs).
+
+For localization, use "CharacterNames" [managed text](/guide/managed-text) document, which is automatically created when running generate managed text resources task. Be aware, that "CharacterNames" document will override `Display Name` value when defined for the default locale.
+
+## Character Color
+
+When `Use Character Color` is enabled in the character configuration, printer text messages and name labels will be tinted in the specified colors when the corresponding character ID is specified in a [`@print`](/api/#print) action or generic text line.
+
+The following video demonstrates how to use display names and character colors.
+
+<div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/u5B5s-X2Bw0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
 ## Sprite Characters 
 
 Sprite implementation of the character actors is the most common and simple one; it uses a set of [sprite](https://docs.unity3d.com/Manual/Sprites) assets to represent appearances of the character. The source of the sprites could be `.png` or `.jpg` image files. 
@@ -34,9 +50,7 @@ Implemented via an open source (MIT license) third-party package [SpriteDicing](
 
 ![Sprite Dicing](https://i.gyazo.com/af08d141e7a08b6a8e2ef60c07332bbf.png)
 
-In order to be able to choose this implementation you have to first install [SpriteDicing](https://github.com/Elringus/SpriteDicing). Consult project readme on GitHub for installation and usage instructions.
-
-Then install [NaninovelSpriteDicing extension package](https://github.com/Elringus/NaninovelSpriteDicing/raw/master/NaninovelSpriteDicing.unitypackage).
+In order to be able to choose this implementation you have to install [NaninovelSpriteDicing extension package](https://github.com/Elringus/NaninovelSpriteDicing/raw/master/NaninovelSpriteDicing.unitypackage). The extension package contains character implementation scripts and has [SpriteDicing](https://github.com/Elringus/SpriteDicing) bundled inside "ThirdParty" folder.
 
 `DicedSpriteAtlas` assets containing character appearances are used as the resources for the diced sprite characters. Each appearance is mapped by name to the diced sprites contained in the atlas.
 

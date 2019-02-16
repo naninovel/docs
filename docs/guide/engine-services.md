@@ -28,5 +28,5 @@ OrthoCamera | Handles scene rendering in ortho mode.
 ResourceProviderManager | Manages `IResourceProvider` objects.
 StateManager | Handles `IEngineService`-related persistent data de-/serialization; provides API to [save and load](/guide/save-load-system.md) game state.
 UIManager | Manages `IManagedUI` objects and handles [UI customization](/guide/ui-customization.md) feature.
-
+CustomVariableManager | Allows getting and settings custom state variables. 
 

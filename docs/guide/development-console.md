@@ -27,3 +27,17 @@ purge | When [Google Drive provider](/guide/google-drive-integration.md) is used
 play | Starts executing currently loaded novel script.
 stop | Halts execution of the currently loaded novel script.
 rewind (int) | Rewinds currently loaded novel script to the provided line index.
+
+## Executing Novel Actions
+
+You can invoke the novel actions via development console. Input the action string just like you do in novel scripts and it will be immediately executed. Among other cases, this could be useful to debug custom state variables. Eg, you can print the current value of any custom variable with:
+
+```
+@print {VariableName}
+```
+
+— will print the value of the `VariableName` to the currently active printer.
+
+<div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/wcgTGro0_SE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
