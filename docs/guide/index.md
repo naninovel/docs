@@ -30,6 +30,7 @@ The following features are already implemented; more will be added as the engine
 * [Special effects (FX system)](/guide/special-effects.md)
 * [Background music (BGM)](/guide/background-music.md)
 * [Sound effects (SFX)](/guide/sound-effects.md)
+* [Camera animations](/api/#camera)
 * [Voicing and auto voicing](/guide/voicing.md)
 * [Movies](/guide/movies.md)
 * [Choices](/guide/choices.md)

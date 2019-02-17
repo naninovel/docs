@@ -54,7 +54,7 @@ Name | Type | Description
 --- | --- | ---
 <span class="action-param-nameless" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name">AppearanceAndTransition</span> | Pair&lt;String, String&gt; | Appearance to set for the modified background and name of the transition effect to use.  When transition is not provided, a cross-fade effect will be used by default.  See [/guide/background-transition-effects.html](https://naninovel.com/guide/background-transition-effects.html) for the list of available transition effects.
 params | Single[] | Parameters of the transition effect.
-name | String | Name of the actor to modify.
+name | String | Name (ID) of the actor to modify.
 appearance | String | Appearance to set for the modified actor.
 pos | Single[] | Position (in scene local space) to set for the modified actor.  Scene space described as follows: x0y0 is at the bottom left and x1y1 is at the top right corner of the screen.
 scale | Single[] | Scale to set for the modified actor.
@@ -151,6 +151,44 @@ Lorem ipsum dolor sit amet.[br] Consectetur adipiscing elit.
 Lorem ipsum dolor sit amet.[br 2] Consectetur adipiscing elit.
 ```
 
+## camera
+
+#### Summary
+Modifies the main camera, changing offset, zoom level and rotation over time.  Check [this video](https://youtu.be/zy28jaMss8w) for a quick demonstration of the action effect.
+
+#### Parameters
+
+<div class="config-table">
+
+Name | Type | Description
+--- | --- | ---
+offset | Vector2 | Local camera position offset in units by X and Y axis.
+rotation | Single | Local camera rotation by Z-axis in angle degrees (0.0 to 360.0 or -180.0 to 180.0).
+zoom | Single | Relatize camera zoom (orthographic size scale), in 0.0 to 1.0 range.
+wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
+time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
+if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
+
+</div>
+
+#### Example
+```
+; Offset over X-axis (pan) the camera by -3 units and offset over Y-axis by 1.5 units
+@camera offset:-3,1.5
+
+; Zoom-in the camera by 50%.
+@camera zoom:0.5
+
+; Rotate the camera by 10 degrees clock-wise
+@camera rotation:10
+
+; All the above simultaneously animated over 5 seconds
+@camera offset:-3,1.5 zoom:0.5 rotation:10 time:5
+
+; Instantly reset camera to the default state
+@camera offset:0,0 zoom:0 rotation:0 time:0
+```
+
 ## char
 
 #### Summary
@@ -164,7 +202,7 @@ Name | Type | Description
 --- | --- | ---
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">NameAndAppearance</span> | Pair&lt;String, String&gt; | Name of the actor to modify and the appearance to set.  When appearance is not provided, will use either a `Default` (is exists) or a random one.
 look | String | Look direction of the actor; possible options: left, right, center.
-name | String | Name of the actor to modify.
+name | String | Name (ID) of the actor to modify.
 appearance | String | Appearance to set for the modified actor.
 pos | Single[] | Position (in scene local space) to set for the modified actor.  Scene space described as follows: x0y0 is at the bottom left and x1y1 is at the top right corner of the screen.
 scale | Single[] | Scale to set for the modified actor.
@@ -589,9 +627,9 @@ This action is used under the hood when processing generic text lines.  Will can
 
 Name | Type | Description
 --- | --- | ---
-<span class="action-param-required" title="Required parameter: parameter should always be specified">text</span> | String | Text of the message to print.
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">Text</span> | String | Text of the message to print.
 printer | String | Name of the printer to use.
-actor | String | Name of the actor to whom the message belongs.
+actor | String | Name (ID) of the actor to whom the message belongs.
 reset | Boolean | Whether to reset text of the printer before executing the printing task.
 waitInput | Boolean | Whether to wait for user input after finishing the printing task.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
