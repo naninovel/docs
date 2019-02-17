@@ -22,3 +22,5 @@ Use [`@bgm`](/api/#bgm) action followed by the clip name to play the music in no
 ```
 
 Only one background music track can be played simultaneously and a cross-fade effect will be automatically applied when switching the music tracks. The music will also loop by default, though you can change this, as well as volume and fade duration using corresponding action parameters.
+
+In case you would like to play multiple audio tracks simultaneously, consider using [sound effects](/guide/sound-effects.md) instead.

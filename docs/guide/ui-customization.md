@@ -1,6 +1,6 @@
 # UI Customization
 
-UI customization feature allows to modify or completely replace any of the built-in UI elements, like title menu, settings menu, printer backlog, etc.
+UI customization feature allows to add a custom UI and modify or completely replace any of the built-in UI elements, like title menu, settings menu, printer backlog, etc.
 
 Be aware though, that text printers and choice handlers are implemented via actors interface and are customized in a different way; see the corresponding documentation ([text printers](/guide/text-printers.md), [choice handlers](/guide/choices.md)) for more info.
 
@@ -20,6 +20,8 @@ ISettingsUI | Panel used for changing game settings.
 ITitleUI | Title (main) menu of the game.
 IExternalScriptsUI | External scripts browser UI (community modding feature).
 IVariableInputUI | Input form for assigning an arbitrary text to a custom state variable (used by [`@input`](/api/#input) action).
+
+When adding a new type of UI, create a new interface inherited from `Naninovel.UI.IManagedUI` and implement it with a component attached to the root of the UI's prefab. Check `Naninovel/Runtime/UI` folder for reference implementations.
 
 When the prefab is ready, just drop it to the `Custom UI` list in the UI configuration manager accessible with `Naninovel -> Configuration -> UI` context menu.
 
