@@ -8,19 +8,17 @@ You can use any audio formats [supported by Unity](https://docs.unity3d.com/Manu
 
 Background music playback behavior can be configured using `Naninovel -> Configuration -> Audio` context menu; for available options see [configuration guide](/guide/configuration.md#audio). 
 
-Use [`@bgm`](/api/#bgm) action followed by the clip name to play the music in novel scripts:
+Use [`@bgm`](/api/#bgm) action followed by the clip name to control the music playback in novel scripts:
 
 ```
-; Fades-in a music track with the name `ThePromenade` and plays it in a loop
-@bgm ThePromenade
+; Fades-in a music track with the name `Sanctuary` over default fade duration and plays it in a loop
+@bgm Sanctuary
 
 ; Same as above, but fade-in duration is 10 seconds and plays only once
-@bgm ThePromenade fadeTime:10 loop:false
+@bgm Sanctuary time:10 loop:false
 
-; Fades-out and stops any currently played music
-@bgm none
+; Changes volume of all the played music tracks to 50% over 2.5 seconds and makes them play in a loop
+@bgm volume:0.5 loop:true time:2.5
 ```
 
-Only one background music track can be played simultaneously and a cross-fade effect will be automatically applied when switching the music tracks. The music will also loop by default, though you can change this, as well as volume and fade duration using corresponding action parameters.
-
-In case you would like to play multiple audio tracks simultaneously, consider using [sound effects](/guide/sound-effects.md) instead.
+Music tracks are looped by default. When music track name is not specified in `@bgm` action, all the currently played tracks will be affected. When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start), but the specified parameters (volume and whether the track is looped) will be applied.
