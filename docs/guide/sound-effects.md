@@ -17,8 +17,8 @@ Use [`@sfx`](/api/#sfx) and [`@stopSfx`](/api/#stopsfx) actions followed by the 
 ; Plays an SFX with the name `Rain` in a loop
 @sfx Rain loop:true
 
-; Stop playing an SFX with the name `Rain`, fading-out for 15 seconds
-@stopSfx Rain fadeTime:15
+; Changes volume of all the played SFX tracks to 75% over 2.5 seconds and disables looping for all of them
+@sfx volume:0.75 loop:false time:2.5
 ```
 
-Multiple SFX tracks can be played simultaneously and they won't loop by default, though you can change this, as well as volume and fade duration using corresponding action parameters.
+Sound effect tracks are not looped by default. When sfx track name is not specified in `@sfx` action, all the currently played tracks will be affected. When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start), but the specified parameters (volume and whether the track is looped) will be applied.

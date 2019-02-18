@@ -91,10 +91,10 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 ## bgm
 
 #### Summary
-Plays a BGM (background music) track with the provided name.
+Plays or modifies currently played BGM (background music) track with the provided name.
 
 #### Remarks
-Only one background music track can be played simultaneously and a cross-fade effect  will automatically be applied when switching music tracks. The music will also loop by default.
+Music tracks are looped by default.  When music track name (BgmPath) is not specified, will affect all the currently played tracks.  When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start),  but the specified parameters (volume and whether the track is looped) will be applied.
 
 #### Parameters
 
@@ -102,9 +102,8 @@ Only one background music track can be played simultaneously and a cross-fade ef
 
 Name | Type | Description
 --- | --- | ---
-<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">BgmPath</span> | String | Path to the music track to play.
+<span class="action-param-nameless" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name">BgmPath</span> | String | Path to the music track to play.
 volume | Single | Volume of the music track.
-fadeTime | Single | Fade duration, in seconds.
 loop | Boolean | Whether to play the track from beginning when it finishes.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
@@ -114,14 +113,14 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 
 #### Example
 ```
-; Fades-in a music track with the name `Sanctuary` and plays it in a loop
+; Fades-in a music track with the name `Sanctuary` over default fade duration and plays it in a loop
 @bgm Sanctuary
 
 ; Same as above, but fade-in duration is 10 seconds and plays only once
-@bgm Sanctuary fadeTime:10 loop:false
+@bgm Sanctuary time:10 loop:false
 
-; Fades-out and stops any currently played music
-@bgm none
+; Changes volume of all the played music tracks to 50% over 2.5 seconds and makes them play in a loop
+@bgm volume:0.5 loop:true time:2.5
 ```
 
 ## br
@@ -787,10 +786,10 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 ## sfx
 
 #### Summary
-Plays an SFX (sound effect) track with the provided name.
+Plays or modifies currently played SFX (sound effect) track with the provided name.
 
 #### Remarks
-Multiple sound effects can be played at the same time and they won't loop by default.
+Sound effect tracks are not looped by default.  When sfx track name (SfxPath) is not specified, will affect all the currently played tracks.  When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start),  but the specified parameters (volume and whether the track is looped) will be applied.
 
 #### Parameters
 
@@ -798,7 +797,7 @@ Multiple sound effects can be played at the same time and they won't loop by def
 
 Name | Type | Description
 --- | --- | ---
-<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">SfxPath</span> | String | Path to the sound effect asset to play.
+<span class="action-param-nameless" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name">SfxPath</span> | String | Path to the sound effect asset to play.
 volume | Single | Volume of the sound effect.
 loop | Boolean | Whether to play the sound effect in a loop.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
@@ -814,6 +813,9 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 
 ; Plays an SFX with the name `Rain` in a loop
 @sfx Rain loop:true
+
+; Changes volume of all the played SFX tracks to 75% over 2.5 seconds and disables looping for all of them
+@sfx volume:0.75 loop:false time:2.5
 ```
 
 ## showText
@@ -915,7 +917,10 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 ## stopBgm
 
 #### Summary
-Stops playing a background music.
+Stops playing a BGM (background music) track with the provided name.
+
+#### Remarks
+When music track name (BgmPath) is not specified, will stop all the currently played tracks.
 
 #### Parameters
 
@@ -923,7 +928,7 @@ Stops playing a background music.
 
 Name | Type | Description
 --- | --- | ---
-fadeTime | Single | Fade-out duration, in seconds.
+<span class="action-param-nameless" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name">BgmPath</span> | String | Path to the music track to stop.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
 if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
@@ -932,11 +937,11 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 
 #### Example
 ```
-; Fades-out and stops any currently played music
-@stopBgm
+; Fades-out the `Promenade` music track over 10 seconds and stops the playback
+@stopBgm Promenade time:10
 
-; Fades-out for 10 seconds and stops any currently played music
-@stopBgm fadeTime:10
+; Stops all the currently played music tracks
+@stopBgm
 ```
 
 ## stopFx
@@ -967,7 +972,10 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 ## stopSfx
 
 #### Summary
-Stop the playback of a sound effect with the provided name.
+Stops playing an SFX (sound effect) track with the provided name.
+
+#### Remarks
+When sound effect track name (SfxPath) is not specified, will stop all the currently played tracks.
 
 #### Parameters
 
@@ -975,8 +983,7 @@ Stop the playback of a sound effect with the provided name.
 
 Name | Type | Description
 --- | --- | ---
-<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name  Required parameter: parameter should always be specified">SfxPath</span> | String | Path to the sound effect to stop.
-fadeTime | Single | Fade-out duration, in seconds.
+<span class="action-param-nameless" title="Nameless parameter: value should be provided after the action identifer without specifying parameter name">SfxPath</span> | String | Path to the sound effect to stop.
 wait | Boolean | Whether the `Naninovel.NovelScriptPlayer` should wait for the async action execution before playing next action.
 time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
 if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whether this action should execute.  See `@if` action for the expression syntax reference.
@@ -987,6 +994,9 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 ```
 ; Stop playing an SFX with the name `Rain`, fading-out for 15 seconds.
 @stopSfx Rain fadeTime:15
+
+; Stops all the currently played sound effect tracks
+@stopSfx
 ```
 
 ## stopVoice
