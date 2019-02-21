@@ -4,11 +4,11 @@ All the game resources (scripts, audio, voice, backgrounds, etc) can be localize
 
 ## Resources Localization
 
-Create a folder at `Resources/Localization` with name equal to one of the [RFC5646](https://gist.github.com/Elringus/db90d9c74f13c00fa35131e61d1b73cb) language tags you wish to add localization for.
+Create a folder at `/Resources/Localization` with name equal to one of the [RFC5646](https://gist.github.com/Elringus/db90d9c74f13c00fa35131e61d1b73cb) language tags you wish to add localization for.
 
 Inside this folder store resources that will be used instead of the original ones when the corresponding localization is selected in the game settings. 
 
-For example, if you wish to replace a background stored at `Resources/Backgrounds/City` with another one when a `ja-JP` locale is selected, place the localized version at the following path: `Resources/Localization/ja-JP/Backgrounds/City`.
+For example, if you wish to replace a background stored at `/Resources/Backgrounds/City` with another one when a `ja-JP` locale is selected, place the localized version at the following path: `/Resources/Localization/ja-JP/Backgrounds/City`.
 
 ## Novel Scripts Localization
 
@@ -16,7 +16,7 @@ The resources localization scheme described above works with all the resource ty
 
 ![Localization Tool](/guide/localization-tool.png)
 
-Specify source of the original resources (current Unity project, local file system or Google Drive), path prefixes for the novel scripts and managed text resources ("Scripts" and "Text" by default) and select path to the locale folder where to store the generated localization resources. Make sure the you've selected the actual locale folder (e.g. `Resources/Localization/ja-JP`) and not just the localization resources root. 
+Specify source of the original resources (current Unity project, local file system or Google Drive), path prefixes for the novel scripts and managed text resources ("Scripts" and "Text" by default) and select path to the locale folder where to store the generated localization resources. Make sure the you've selected an actual locale folder (e.g. `/Resources/Localization/ja-JP`) and not just the localization resources root. 
 
 Enabling "Try update" property will attempt to preserve any currently existing localization resources; when disabled all the existing localization resources at the specified path will be lost.
 
