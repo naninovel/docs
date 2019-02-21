@@ -735,6 +735,9 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 #### Summary
 Assigns a value to a custom variable.
 
+#### Remarks
+Variable name should be alphanumeric (latin characters only), eg: `name`, `Char1Score`.  Variable names are case-insensitive, eg: `myscore` is equal to `MyScore`.
+
 #### Parameters
 
 <div class="config-table">
