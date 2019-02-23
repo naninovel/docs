@@ -8,7 +8,7 @@ Novel script actions API reference. Use the side bar to quickly navigate between
 
 ~~Strikethrough~~ indicates a nameless parameter, and **bold** stands for required parameter; other parameters should be considered optional. Check out the [novel scripts guide](/guide/novel-scripts.md) in case you have no idea what's this all about.
 
-This API reference is valid for [Naninovel v1.3.0-beta](https://github.com/Elringus/NaninovelWeb/releases).
+This API reference is valid for [Naninovel v1.3.1-beta](https://github.com/Elringus/NaninovelWeb/releases).
 
 ## arrange
 
@@ -736,7 +736,7 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 Assigns a value to a custom variable.
 
 #### Remarks
-Variable name should be alphanumeric (latin characters only), eg: `name`, `Char1Score`.  Variable names are case-insensitive, eg: `myscore` is equal to `MyScore`.
+Variable name should be alphanumeric (latin characters only) and can contais usnerscores, eg: `name`, `Char1Score`, `my_score`.  Variable names are case-insensitive, eg: `myscore` is equal to `MyScore`.
 
 #### Parameters
 
