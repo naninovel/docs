@@ -541,7 +541,7 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 @fx GlitchCamera if:"glitch == 'True' || Random(1, 10) >= 5"
 
 ; If `score` value is in 7 to 13 range or `lucky` variable equals `True`, load `LuckyEnd` script
-@goto LuckyEnd if:"(score >= 7 && score <= 13) || lucky == `True`"
+@goto LuckyEnd if:"(score >= 7 && score <= 13) || lucky == 'True'"
 
 ; You can also use conditionals in the inlined actions
 Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
