@@ -639,7 +639,7 @@ if | String | A `Naninovel.Actions.ConditionalFlow` expression, controlling whet
 
 #### Example
 ```
-@print text:"Lorem ipsum dolor sit amet."
+@print "Lorem ipsum dolor sit amet."
 ```
 
 ## printer
