@@ -83,6 +83,7 @@ function getGuideSidebar (groupA, groupB) {
                 'custom-novel-actions',
                 'custom-actor-implementations',
                 'development-console',
+                'integration-options',
                 'google-drive-integration'
             ]
         }
