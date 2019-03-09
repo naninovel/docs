@@ -38,6 +38,12 @@ The following video demonstrates how to use display names and character colors.
     <iframe src="https://www.youtube-nocookie.com/embed/u5B5s-X2Bw0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
+## Character Avatar
+
+When `Avatar Texture` is defined in the character configuration, supported printers will display that texture when printing character messages.
+
+![](https://i.gyazo.com/f921ab4ef864aea6980a5c6be6743494.png)
+
 ## Sprite Characters 
 
 Sprite implementation of the character actors is the most common and simple one; it uses a set of [sprite](https://docs.unity3d.com/Manual/Sprites) assets to represent appearances of the character. The source of the sprites could be `.png` or `.jpg` image files. 

@@ -35,6 +35,12 @@ Fullscreen printers present text inside windows with a static size. They take mo
 
 ![Fullscreen Printer](/guide/fullscreen-printer.png)
 
+## Wide Printer
+
+Wide printers are very like dialogue printers, except the control panel being at the right and aligned vertically. Wide printers also support characters avatar feature.
+
+![Wide Printer](https://i.gyazo.com/f921ab4ef864aea6980a5c6be6743494.png)
+
 ## Adding Custom Printers
 
 You can customize the built-in text printers in any way you wish or create new printers from scratch. For example, let's customize the built-in dialogue printer. 
