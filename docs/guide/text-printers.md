@@ -41,6 +41,12 @@ Wide printers are very like dialogue printers, except the control panel being at
 
 ![Wide Printer](https://i.gyazo.com/f921ab4ef864aea6980a5c6be6743494.png)
 
+## Chat Printer
+
+Chat printer presents text inside message bubbles framed in a window with vertically-scrollable content, resembling a mobile messager app. Instead of revealing the printed message character by character, it shows "author is typing" animation for the duration of the reveal effect and then instantly shows the printed message. Chat printer supports characters avatar feature.
+
+![Chat Printer](https://i.gyazo.com/3c04aecabe7f754ffc9ce5452eeba270.png)
+
 ## Adding Custom Printers
 
 You can customize the built-in text printers in any way you wish or create new printers from scratch. For example, let's customize the built-in dialogue printer. 
