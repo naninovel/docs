@@ -9,6 +9,8 @@ You are free to move the package folder anywhere inside your project assets dire
 
 In case you delete the package folder and then re-import it again in the same project, the configuration assets won’t be automatically re-generated; open `Naninovel -> Configuration` menu to generate them before running the editor or building the player.
 
+Before starting, you'd probably like to set Unity editor in [2D behaviour mode](https://docs.unity3d.com/Manual/2DAnd3DModeSettings.html), so that any imported images will be sprites by default and you won't have to manually change the import settings.
+
 ## Add Novel Script
 Use `Create -> Novel Script` asset context menu to create a novel script asset. 
 
