@@ -12,7 +12,7 @@ Always remember to backup your project (or use a [VCS](https://en.wikipedia.org/
 
 ## Issue Tracker
 
-In case the above steps didn't help to resolve the issue, check the [issue tracker](https://github.com/Elringus/NaninovelWeb/issues) — chances are the problem is already being worked on. You can also create new issues there to ask a question or report a bug. When reporting a bug, please use bug template and fill in the required information.
+In case the above steps didn't help to resolve the issue, check the [issue tracker](https://github.com/Elringus/NaninovelWeb/issues?q=is%3Aissue+label%3Abug) — chances are the problem is already being worked on; and if it's not, let us know by creating a [bug report](https://github.com/Elringus/NaninovelWeb/issues/new?labels=bug&template=bug_report.md).
 
 ## Unity Forum
 
