@@ -1,13 +1,9 @@
 ﻿# Getting Started
 
 ## Installation
-Import Naninovel package from the Asset Store to your Unity project and wait for the initial scripts compilation and assets import process.
+Import Naninovel package from the Asset Store to your Unity project and wait for the initial scripts compilation and assets import process. You are free to move `Naninovel` package folder anywhere inside your project assets directory, if you wish.
 
-During the first-time import a number of configuration assets will be automatically generated inside the package folder; when the process finishes, an information window will be shown with the currently installed engine version and links to the online resources.
-
-You are free to move the package folder anywhere inside your project assets directory.
-
-In case you delete the package folder and then re-import it again in the same project, the configuration assets won’t be automatically re-generated; open `Naninovel -> Configuration` menu to generate them before running the editor or building the player.
+During first-time import of the package a number of configuration assets will be automatically generated inside `Assets/NaninovelData` folder. In contrast to the package folder, you shouldn't manually move the data folder (it'll be automatically regenerated). If you wish to change location of the data folder, edit `Data Folder Path` property in the engine configuration menu. 
 
 Before starting, you'd probably like to set Unity editor in [2D behaviour mode](https://docs.unity3d.com/Manual/2DAnd3DModeSettings.html), so that any imported images will be sprites by default and you won't have to manually change the import settings.
 

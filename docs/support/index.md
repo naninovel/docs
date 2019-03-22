@@ -6,7 +6,7 @@ If you have issues with the engine, make sure you're using the latest available 
 - [NaninovelSpriteDicing](https://github.com/Elringus/NaninovelSpriteDicing/raw/master/NaninovelSpriteDicing.unitypackage)
 - [NaninovelTMPro](https://github.com/Elringus/NaninovelTMPro/raw/master/NaninovelTMPro.unitypackage)
 
-If updating didn't help, try to re-install the package by deleting `Naninovel` folder from the project and re-importing it from the Asset Store. Be aware that by deleting the package folder you'll lose all the engine configuration data; you can keep the configuration by migrating `Naninovel/Resources/Naninovel/Configuration` folder to the new package installation folder. 
+If updating didn't help, try to re-install the package by deleting `Naninovel` folder from the project and re-importing it from the Asset Store.
 
 Always remember to backup your project (or use a [VCS](https://en.wikipedia.org/wiki/Version_control)) before updating or deleting a package. ~~Haruhi~~ God knows what could happen in the process.
 
