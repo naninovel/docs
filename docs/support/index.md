@@ -1,6 +1,6 @@
 # Support
 
-If you have issues with the engine, make sure you're using the latest available version. You can update the main package using [Unity Asset Store interface](https://docs.unity3d.com/Manual/AssetStore.html). In case you're using any of the engine extensions, download the latest packages using following links:
+If you have issues with the engine, make sure you're using the latest available version. You can update the main package inside the Unity editor using [Asset Store window](https://docs.unity3d.com/Manual/AssetStore.html). In case you're using any of the engine extensions, download the latest packages using following links:
 
 - [NaninovelLive2D](https://github.com/Elringus/NaninovelLive2D/raw/master/NaninovelLive2D.unitypackage)
 - [NaninovelSpriteDicing](https://github.com/Elringus/NaninovelSpriteDicing/raw/master/NaninovelSpriteDicing.unitypackage)
