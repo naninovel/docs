@@ -2,9 +2,10 @@
 
 Development console is used to execute static C# methods via in-game UI.
 
-To show the console UI while the game is running, make sure development console is enabled in the engine configuration and press `~` (tilde) key.
+To show the console UI while the game is running, make sure development console is enabled in the engine configuration and press `~` (tilde) key. In case you have issues using the default key (eg, when under Unity editor on Mac OS), you can change it via `Toggle Console Key` property.
 
-![Engine Configuration](/guide/engine-config.png)
+![Engine Configuration](https://i.gyazo.com/bc56a837c03d198e2d8141bdebc2e696.png)
+
 
 To expose a C# method to the console, add a `ConsoleCommand` attribute to a static method. The attribute has an optional string argument, allowing to set a shortcut:
 
