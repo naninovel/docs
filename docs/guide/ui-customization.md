@@ -42,6 +42,14 @@ When the prefab is ready, add it to `Custom UI` list in the UI configuration man
 
 When the engine is initializing it'll spawn all the prefabs added to the `Custom UI` list. In case spawned prefab has a component attached to the root object that implements one of the built-in UI interfaces, built-in prefab with default implementation won't be spawned.
 
+## Video Guide
+
+Check out the following video tutorial, where we create a custom calendar UI and bind it to the date and month [custom state variables](/api/#set).
+
+<div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/jto4Ld-iP7M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
 ## Example Project
 
-Within the [following GitHub repository](https://github.com/Elringus/NaninovelCustomUIExample) you can find an example of adding a custom calendar UI and binding the date and month values to [custom state variables](/api/#set).
+Within the [following GitHub repository](https://github.com/Elringus/NaninovelCustomUIExample) you can find the project showed in the above video tutorial.
