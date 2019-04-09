@@ -1,16 +1,31 @@
 ﻿# Getting Started
 
-## Installation
-Import Naninovel package from the Asset Store to your Unity project and wait for the initial scripts compilation and assets import process. You are free to move `Naninovel` package folder anywhere inside your project assets directory, if you wish.
+## Prerequisites
+Naninovel is an extension for [Unity game engine](https://unity.com/), so it's strongly recommended to at least learn the basics of using the engine before starting with Naninovel.
 
-During first-time import of the package a number of configuration assets will be automatically generated inside `Assets/NaninovelData` folder. In contrast to the package folder, you shouldn't manually move the data folder (it'll be automatically regenerated). If you wish to change location of the data folder, edit `Generated Data Path` property in the engine configuration menu. 
+The following manual chapters should be considered essential:
+- [Installing Unity](https://docs.unity3d.com/Manual/GettingStartedInstallingHub)
+- [Creating Projects](https://docs.unity3d.com/Manual/GettingStarted)
+- [Editor Interface](https://docs.unity3d.com/Manual/LearningtheInterface)
+- [Using the Asset Store](https://docs.unity3d.com/Manual/AssetStore)
+- [Publishing Builds](https://docs.unity3d.com/Manual/PublishingBuilds)
 
-Before starting, you'd probably like to set Unity editor in [2D behaviour mode](https://docs.unity3d.com/Manual/2DAnd3DModeSettings.html), so that any imported images will be sprites by default and you won't have to manually change the import settings.
+In case you're not going to build any custom gameplay outside of Naninovel, feel free to ignore the scene-related information altogether, as Naninovel will take care of that.
+
+## Create New Unity Project
+Consult the [Unity manual](https://docs.unity3d.com/Manual/GettingStarted) on how to create a new project.
+
+When creating a project you'd probably like to use `2D Template` to set the editor in 2D behaviour mode, so that images will be imported as sprite assets by default and you won't have to manually change the import settings. You can change the editor behaviour mode later using the [project settings](https://docs.unity3d.com/Manual/2DAnd3DModeSettings.html).
+
+## Install Naninovel
+Import Naninovel package using the [Asset Store window](https://docs.unity3d.com/Manual/AssetStore.html) and wait for the initial scripts compilation and assets import process. You are free to move `Naninovel` package folder anywhere inside your project assets directory, if you wish.
+
+Over the course of using Naninovel a number of assets (configuration, settings, saves, etc) will be automatically generated inside `Assets/NaninovelData` folder. In contrast to the package folder, you shouldn't manually move the data folder (it'll be automatically regenerated). If you wish to change location of the data folder, edit `Generated Data Path` property in the engine configuration menu.
 
 ## Add Novel Script
-Use `Create -> Novel Script` asset context menu to create a novel script asset. 
+Use `Create -> Novel Script` assets context menu to create a novel script asset. 
 
-![Create Novel Script](/guide/create-script.png)
+![Create Novel Script](https://i.gyazo.com/d63a378e2c8602a6f9918c4106de6832.png)
 
 *Notice: you can create and store novel scripts (as well as all the other Naninovel resources) under any project folder and organize them in any way you like; the naming is also up to you. The above illustration is just an example.*
 
@@ -34,8 +49,6 @@ Hello World!
 The first line will print the text "Hello World!" when the game is run and the second is required to gracefully stop script execution.
 
 Enter play mode and start new game to see the result.
-
-If the "NEW GAME" button is not interactable, make sure you’ve set a correct novel script name for the `Start Game Script` option in the scripts configuration.
 
 ## Add Character
 Characters in Naninovel can be based on regular and diced sprites, animated Live2D models and 3D meshes; you can add your own implementations as well. For the purpose of this tutorial, we’ll use a sprite implementation. 
@@ -87,7 +100,7 @@ Let’s assume the added background appearance sprite is named "City". To show a
 ```
 @back City 
 ```
-When switching between backgrounds a cross-fade transition effect will be used by default. To change the effect, specify transition type after the appearance name:
+When switching between backgrounds a cross-fade [transition effect](/guide/background-transition-effects.md) will be used by default. To change the effect, specify transition type after the appearance name:
 ```
 @back City 
 @back School.RadialBlur
