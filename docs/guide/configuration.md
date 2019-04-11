@@ -45,10 +45,11 @@ Scene Origin | (0.5, 0.0) | Origin point used for reference when positioning act
 Property | Default Value | Description
 --- | --- | ---
 Reference Resolution | (1920, 1080) | The reference resolution used when creating sprite assets (characters, backgrounds, etc).
-Thumbnail Resolution | (240, 140) | The resolution in which thumbnails to preview game save slots will be captured.
 Initial Position | (0.0, 0.0, -10.0) | Initial world position of the camera.
 Background Color | RGBA(0.137, 0.122, 0.125, 1.000) | Color of the camera background layer.
 Render Texture | Null | When provided, the camera will render to the texture instead of screen.
+Thumbnail Resolution | (240, 140) | The resolution in which thumbnails to preview game save slots will be captured.
+Hide UI In Thumbnails | False | Whether to ignore UI layer when capturing thumbnails.
 
 </div>
 
