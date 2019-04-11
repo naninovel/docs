@@ -8,6 +8,18 @@ Novel script actions API reference. Use the side bar to quickly navigate between
 
 ~~Strikethrough~~ indicates a nameless parameter, and **bold** stands for required parameter; other parameters should be considered optional. Check out the [novel scripts guide](/guide/novel-scripts.md) in case you have no idea what's this all about.
 
+The following parameters are supported by all the novel actions:
+
+<div class=config-table>
+
+ID | Type | Description
+--- | --- | ---
+if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
+wait | Boolean | Whether the script player should wait for the async action execution before playing next action. Has no effect when the action is executed instantly.
+time | Single | Determines for how long (in seconds) action should execute. While formally supported by all the actions, not every action actually use this parameter (eg, execution time of instant actions won't be changed).
+
+</div>
+
 This API reference is valid for [Naninovel v1.4.0-beta](https://github.com/Elringus/NaninovelWeb/releases).
 
 ## arrange
@@ -22,9 +34,6 @@ Arranges specified characters by X-axis.  When no parameters provided, will exec
 ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID">CharacterPositions</span> | LiteralMap&lt;Single&gt; | Character ID to scene local X-axis position map.  Local scene position 0 relates to the left border and 1 to the right border of the screen; 0.5 is the center.
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
 
 </div>
 
@@ -61,9 +70,6 @@ scale | Single[] | Scale to set for the modified actor.
 position | Single[] | Position (in world space) to set for the modified actor.
 isVisible | Boolean | Visibility status to set for the modified actor.
 rotation | Single[] | Rotation to set for the modified actor.
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
 
 </div>
 
@@ -105,9 +111,6 @@ ID | Type | Description
 <span class="action-param-nameless" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID">BgmPath</span> | String | Path to the music track to play.
 volume | Single | Volume of the music track.
 loop | Boolean | Whether to play the track from beginning when it finishes.
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
 
 </div>
 
@@ -135,9 +138,6 @@ Adds a line break to the text in active printer.
 ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID">Count</span> | Int32 | Number of line breaks to add.
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
 
 </div>
 
@@ -164,9 +164,6 @@ ID | Type | Description
 offset | Vector2 | Local camera position offset in units by X and Y axis.
 rotation | Single | Local camera rotation by Z-axis in angle degrees (0.0 to 360.0 or -180.0 to 180.0).
 zoom | Single | Relatize camera zoom (orthographic size scale), in 0.0 to 1.0 range.
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
 
 </div>
 
@@ -208,9 +205,6 @@ scale | Single[] | Scale to set for the modified actor.
 position | Single[] | Position (in world space) to set for the modified actor.
 isVisible | Boolean | Visibility status to set for the modified actor.
 rotation | Single[] | Rotation to set for the modified actor.
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
 
 </div>
 
@@ -246,9 +240,6 @@ button | String | Path (relative to a `Resources` folder) to a button prefab rep
 pos | Vector2 | Local position of the choice button inside the choice handler (if supported by the handler implementation).
 handler | String | ID of the choice handler to add choice for.
 goto | Pair&lt;String, String&gt; | Path to go when the choice is selected by user.  See [`@goto`](/api/#goto) action for the path format.
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
 
 </div>
 
@@ -282,6 +273,16 @@ Don't forget about cucumbers!
 @goto.Map
 ```
 
+## clearBacklog
+
+#### Summary
+Removes all the messages from [printer backlog](/guide/printer-backlog.md).
+
+#### Example
+```
+@clearBacklog
+```
+
 ## despawn
 
 #### Summary
@@ -298,9 +299,6 @@ ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | String | Path to the prefab resource to destroy. Path is relative to a `./Resources` folder, eg  given a `Assets/Resources/FX/Explosion.prefab` asset, use the following path to spawn it: `FX/Explosion`.  A [`@spawn`](/api/#spawn) action with the same path is expected to be executed before.
 params | String[] | Parameters to set before destoying the prefab.  Requires the prefab to have a `Naninovel.Actions.DestroySpawned.IParameterized` component attached the root object.
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
 
 </div>
 
@@ -323,9 +321,6 @@ ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | String | Path to the prefab resource to spawn. Path is relative to a `./Resources` folder, eg  given a `Assets/Resources/FX/Explosion.prefab` asset, use the following path to spawn it: `FX/Explosion`.
 params | String[] | Parameters to set when spawning the prefab.  Requires the prefab to have a `Naninovel.Actions.Spawn.IParameterized` component attached the root object.
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
 
 </div>
 
@@ -350,9 +345,6 @@ Jumps the novel script playback to the provided path and saves the path to the g
 ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | Pair&lt;String, String&gt; | Path to jump into in the following format: `ScriptName.LabelName`.  When label name is ommited, will play provided script from the start.  When script name is ommited, will attempt to find a label in the currently played script.
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
 
 </div>
 
@@ -384,9 +376,6 @@ Jumps the novel script playback to the provided path.
 ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | Pair&lt;String, String&gt; | Path to jump into in the following format: `ScriptName.LabelName`.  When label name is ommited, will play provided script from the start.  When script name is ommited, will attempt to find a label in the currently played script.
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
 
 </div>
 
@@ -414,9 +403,6 @@ Hides (removes from scene) an actor with provided ID.
 ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">ActorName</span> | String | ID of the actor to hide.
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
 
 </div>
 
@@ -432,18 +418,6 @@ if | String | A conditional expression, controlling whether this action should e
 #### Summary
 Hides (removes) all the actors (eg characters, backgrounds, text printers, choice handlers, etc) on scene.
 
-#### Parameters
-
-<div class="config-table">
-
-ID | Type | Description
---- | --- | ---
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
-
-</div>
-
 #### Example
 ```
 @hideAll
@@ -454,18 +428,6 @@ if | String | A conditional expression, controlling whether this action should e
 #### Summary
 Hides (removes) all the visible characters on scene.
 
-#### Parameters
-
-<div class="config-table">
-
-ID | Type | Description
---- | --- | ---
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
-
-</div>
-
 #### Example
 ```
 @hideChars
@@ -475,18 +437,6 @@ if | String | A conditional expression, controlling whether this action should e
 
 #### Summary
 Hides an active printer.
-
-#### Parameters
-
-<div class="config-table">
-
-ID | Type | Description
---- | --- | ---
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
-
-</div>
 
 #### Example
 ```
@@ -505,9 +455,6 @@ Makes a [managed UI](/guide/ui-customization.md) with the provided prefab name i
 ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">UIPrefabName</span> | String | Name of the managed UI prefab to hide.
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
 
 </div>
 
@@ -522,18 +469,6 @@ if | String | A conditional expression, controlling whether this action should e
 
 #### Summary
 Holds script execution until user activates a `continue` input.  Shortcut for `@wait input`.
-
-#### Parameters
-
-<div class="config-table">
-
-ID | Type | Description
---- | --- | ---
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
-
-</div>
 
 #### Example
 ```
@@ -556,9 +491,6 @@ ID | Type | Description
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | Conditional expression.  <br /><br />  Supported operators: == (equal), != (not equal), &gt; (greater), &gt;= (greater or equal), &lt; (less), &lt;= (less or equal), &amp;&amp; (and), &#124;&#124; (or).  <br /><br />  Supported math functions: everything from [.NET System.Math](https://docs.microsoft.com/en-us/dotnet/api/system.math?view=netframework-4.7.2#methods) namespace.  Additionally, `Random(int min, int max)` function is supported, returning a random integer between specified min and max values.  <br /><br />  It's possible to use existing variable names as rhs (right hand side operand); to distinguish a plain text value from a variable name, wrap the value in single quotes (').  <br /><br />  It's possible to group the expressions with round parentheses.
 goto | Pair&lt;String, String&gt; | Path to go when expression is true; see [`@goto`](/api/#goto) action for the path format.
 set | String | Set expression to execute when the conditional expression is true; see [`@set`](/api/#set) action for syntax reference.
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
 
 </div>
 
@@ -613,9 +545,6 @@ ID | Type | Description
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">VariableName</span> | String | Name of a custom variable to which the entered text will be assigned.
 summary | String | An optional summary text to show along with input field.
 play | Boolean | Whether to automatically resume script playback when user submits the input form.
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
 
 </div>
 
@@ -649,9 +578,6 @@ Will fade-out the screen before playing the movie and fade back in after the pla
 ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">MovieName</span> | String | Name of the movie resource to play.
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
 
 </div>
 
@@ -680,9 +606,6 @@ printer | String | ID of the printer actor to use.
 actor | String | ID of the actor to whom the message belongs.
 reset | Boolean | Whether to reset text of the printer before executing the printing task.
 waitInput | Boolean | Whether to wait for user input after finishing the printing task.
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
 
 </div>
 
@@ -703,9 +626,6 @@ Sets printer with the provided ID active and de-activates all the others.
 ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">PrinterId</span> | String | ID of the printer to activate.
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
 
 </div>
 
@@ -723,18 +643,6 @@ if | String | A conditional expression, controlling whether this action should e
 #### Summary
 Clears printed text of active printer.
 
-#### Parameters
-
-<div class="config-table">
-
-ID | Type | Description
---- | --- | ---
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
-
-</div>
-
 #### Example
 ```
 @resetText
@@ -745,34 +653,10 @@ if | String | A conditional expression, controlling whether this action should e
 #### Summary
 Attempts to jump the novel script playback to the action after the last used @gosub.  See [`@gosub`](/api/#gosub) action summary for more info.
 
-#### Parameters
-
-<div class="config-table">
-
-ID | Type | Description
---- | --- | ---
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
-
-</div>
-
 ## save
 
 #### Summary
 Automatically save the game to a quick save slot.
-
-#### Parameters
-
-<div class="config-table">
-
-ID | Type | Description
---- | --- | ---
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
-
-</div>
 
 #### Example
 ```
@@ -794,9 +678,6 @@ Variable name should be alphanumeric (latin characters only) and can contain usn
 ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | Set expression.  <br /><br />  Supported operators: =,+,-,*. All operators except assignment requires both operands to be numbers.  <br /><br />  You can use existing variable names as rhs (right hand side operand); to distinguish a plain text value from a variable name, wrap the value in single quotes (').
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
 
 </div>
 
@@ -852,9 +733,6 @@ ID | Type | Description
 <span class="action-param-nameless" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID">SfxPath</span> | String | Path to the sound effect asset to play.
 volume | Single | Volume of the sound effect.
 loop | Boolean | Whether to play the sound effect in a loop.
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
 
 </div>
 
@@ -875,18 +753,6 @@ if | String | A conditional expression, controlling whether this action should e
 #### Summary
 Shows an active or default text printer.
 
-#### Parameters
-
-<div class="config-table">
-
-ID | Type | Description
---- | --- | ---
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
-
-</div>
-
 #### Example
 ```
 @showText
@@ -904,9 +770,6 @@ Makes a [managed UI](/guide/ui-customization.md) with the provided prefab name v
 ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">UIPrefabName</span> | String | Name of the managed UI prefab to make visible.
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
 
 </div>
 
@@ -921,18 +784,6 @@ if | String | A conditional expression, controlling whether this action should e
 
 #### Summary
 Next call to `Naninovel.NovelScriptPlayer.EnableWaitingForInput` will be ignored.
-
-#### Parameters
-
-<div class="config-table">
-
-ID | Type | Description
---- | --- | ---
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
-
-</div>
 
 #### Example
 ```
@@ -957,9 +808,6 @@ ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | String | Path to the prefab resource to spawn. Path is relative to a `./Resources` folder, eg  given a `Assets/Resources/FX/Explosion.prefab` asset, use the following path to spawn it: `FX/Explosion`.
 params | String[] | Parameters to set when spawning the prefab.  Requires the prefab to have a `Naninovel.Actions.Spawn.IParameterized` component attached the root object.
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
 
 </div>
 
@@ -973,18 +821,6 @@ if | String | A conditional expression, controlling whether this action should e
 
 #### Summary
 Stops the novel script execution.
-
-#### Parameters
-
-<div class="config-table">
-
-ID | Type | Description
---- | --- | ---
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
-
-</div>
 
 #### Example
 ```
@@ -1006,9 +842,6 @@ When music track name (BgmPath) is not specified, will stop all the currently pl
 ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID">BgmPath</span> | String | Path to the music track to stop.
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
 
 </div>
 
@@ -1034,9 +867,6 @@ ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | String | Path to the prefab resource to destroy. Path is relative to a `./Resources` folder, eg  given a `Assets/Resources/FX/Explosion.prefab` asset, use the following path to spawn it: `FX/Explosion`.  A [`@spawn`](/api/#spawn) action with the same path is expected to be executed before.
 params | String[] | Parameters to set before destoying the prefab.  Requires the prefab to have a `Naninovel.Actions.DestroySpawned.IParameterized` component attached the root object.
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
 
 </div>
 
@@ -1061,9 +891,6 @@ When sound effect track name (SfxPath) is not specified, will stop all the curre
 ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID">SfxPath</span> | String | Path to the sound effect to stop.
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
 
 </div>
 
@@ -1081,18 +908,6 @@ if | String | A conditional expression, controlling whether this action should e
 #### Summary
 Stops playback of the currently played voice clip.
 
-#### Parameters
-
-<div class="config-table">
-
-ID | Type | Description
---- | --- | ---
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
-
-</div>
-
 ## style
 
 #### Summary
@@ -1108,9 +923,6 @@ You can still use rich text formatting tags directly, but they will be printed  
 ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">TextStyles</span> | String[] | Text formatting styles to apply.  Possible options: color hex code (eg, #ffaa00), bold, italic, px text size (eg 45).
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
 
 </div>
 
@@ -1133,18 +945,6 @@ Lorem ipsum sit amet. [style bold,italic]Consectetur adipiscing elit.[style defa
 #### Summary
 Loads default engine state and shows `Naninovel.UI.ITitleUI`.
 
-#### Parameters
-
-<div class="config-table">
-
-ID | Type | Description
---- | --- | ---
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
-
-</div>
-
 #### Example
 ```
 @title
@@ -1163,9 +963,6 @@ ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">VoicePath</span> | String | Path to the voice clip to play.
 volume | Single | Volume of the playback.
-wait | Boolean | Whether the script player should wait for the async action execution before playing next action.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
 
 </div>
 
@@ -1181,9 +978,6 @@ Holds script execution until the specified wait condition.
 ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">WaitMode</span> | String | Wait condition:  input (string) - user press continue or skip input key;  number (int or float)  - timer (seconds).
-wait | Boolean | Holds script execution until the specified wait condition.
-time | Single | Determines for how long (in seconds) action should execute. Derived actions could (or could not) use this parameter.
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
 
 </div>
 
