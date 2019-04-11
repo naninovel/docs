@@ -584,7 +584,7 @@ if | String | A conditional expression, controlling whether this action should e
 @choice "It's over 9000!" if:"level > 9000"
 
 ; If `dead` variable is equal to `False`, execute the print action
-@print text:"I'm still alive." if:dead==`False`
+@print text:"I'm still alive." if:dead=='False'
 
 ; If `glitch` equals `True` or random function in 1 to 10 range returns 5 or more, execute `@fx` action
 @fx GlitchCamera if:"glitch == 'True' || Random(1, 10) >= 5"
