@@ -62,6 +62,7 @@ Property | Default Value | Description
 Auto Arrange On Add | True | Whether to evenly distribute characters by X-axis when adding a new character without a specified position.
 Default Metadata | Object Ref | Metadata to use by default when creating character actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating character actors with specific IDs.
+Avatar Loader | Avatar- (Project, Local) | Configuration of the resource loader used with character avatar texture resources.
 Scene Origin | (0.5, 0.0) | Origin point used for reference when positioning actors on scene.
 
 </div>
@@ -85,11 +86,12 @@ Metadata | Object Ref | Metadata to use when creating choice handler actors with
 Property | Default Value | Description
 --- | --- | ---
 Generated Data Path | Naninovel Data | Relative (to the application data directory) path to store the automatically generated assets.
+Override Objects Layer | False | Whether to assign a specific layer to all the engine objects. Engine's camera will use the layer for the culling mask. Use this to isolate Naninovel objects from being rendered by other cameras.
+Objects Layer | 0 | When `Override Objects Layer` is enabled, the specified layer will be assigned to all the engine objects.
 Initialize On Application Load | True | Whether to automatically initialize the engine when application starts.
 Show Initialization UI | True | Whether to show a loading UI while the engine is initializing.
 Custom Initialization UI | Null | UI to show while the engine is initializing (when enabled). Will use a default one when not provided.
-Override Objects Layer | False | Whether to assign a specific layer to all the engine objects. Engine's camera will use the layer for the culling mask. Use this to isolate Naninovel objects from being rendered by other cameras.
-Objects Layer | 0 | When `Override Objects Layer` is enabled, the specified layer will be assigned to all the engine objects.
+Show Title UI | True | Whether to automatically show title screen UI (main menu) after engine initializaton. You can modify the title UI using UI customization feature (see online guide for more info).
 Enable Development Console | True | Whether to enable development console.
 Toggle Console Key | Back Quote | Key used to toggle development console. You can also toggle it with a multi (3 or more) touch when using touchscreens.
 
@@ -177,6 +179,8 @@ Min Auto Play Delay | 3 | Minimum seconds to wait before executing next action w
 Property | Default Value | Description
 --- | --- | ---
 Loader | Scripts- (Project, Local) | Configuration of the resource loader used with novel script resources.
+Initialization Script | Null | Name of the script to play right after the engine initialization.
+Title Script | Null | Name of the script to play when showing the Title UI. Can be used to setup the title screen scene (backgound, music, etc).
 Start Game Script | Null | Name of the script to play when starting a new game. Will use first available when not provided.
 Enable Community Modding | False | Whether to allow adding external novel scripts to the build.
 External Loader | Scripts- (Local) | Configuration of the resource loader used with external novel script resources.

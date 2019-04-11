@@ -50,7 +50,7 @@ ID | Type | Description
 ## back
 
 #### Summary
-Modifies a background actor.
+Modifies a [background actor](/guide/backgrounds.md).
 
 #### Remarks
 Backgrounds are handled a bit differently from characters. Most of the time we'll only have  one background actor on scene, which will constantly transition to different appearances.  To free the user from always repeating same actor ID in scripts, we allow to  provide only the background appearance and transition type (optional) as a nameless parameter and assume that  `MainBackground` actor should be affected. When this is not the case, ID of the background actor can be explicitly  provided via the `id` parameter.
@@ -188,7 +188,7 @@ zoom | Single | Relatize camera zoom (orthographic size scale), in 0.0 to 1.0 ra
 ## char
 
 #### Summary
-Modifies a character actor.
+Modifies a [character actor](/guide/characters.md).
 
 #### Parameters
 
@@ -198,6 +198,7 @@ ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">IdAndAppearance</span> | Pair&lt;String, String&gt; | ID of the actor to modify and the appearance to set.  When appearance is not provided, will use either a `Default` (is exists) or a random one.
 look | String | Look direction of the actor; possible options: left, right, center.
+avatar | String | Name (path) of the [avatar texture](/guide/characters.md#avatar-textures) to assign for the character.  Use 'none' to remove (un-assign) avatar texture from the character.
 id | String | ID of the actor to modify.
 appearance | String | Appearance to set for the modified actor.
 pos | Single[] | Position (in scene local space) to set for the modified actor.  Scene space described as follows: x0y0 is at the bottom left and x1y1 is at the top right corner of the screen.
