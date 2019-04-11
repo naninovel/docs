@@ -240,7 +240,8 @@ ID | Type | Description
 button | String | Path (relative to a `Resources` folder) to a button prefab representing the choice.  The prefab should have a `Naninovel.ChoiceHandlerButton` component attached to the root object.  Will use a default button when not provided.
 pos | Vector2 | Local position of the choice button inside the choice handler (if supported by the handler implementation).
 handler | String | ID of the choice handler to add choice for.
-goto | Pair&lt;String, String&gt; | Path to go when the choice is selected by user.  See [`@goto`](/api/#goto) action for the path format.
+goto | Pair&lt;String, String&gt; | Path to go when the choice is selected by user;  See [`@goto`](/api/#goto) action for the path format.
+set | String | Set expression to execute when the choice is selected by user;  see [`@set`](/api/#set) action for syntax reference.
 
 </div>
 
