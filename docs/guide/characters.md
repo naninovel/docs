@@ -26,7 +26,7 @@ In novel scripts, characters are mostly controlled with [`@char`](/api/#char) ac
 
 In the character configuration you can set a `Display Name` for specific characters. When set, display name will be shown in the printer name label UI, instead of the character's ID. This allows using compound character names, that contains spaces and special characters (which is not allowed for IDs).
 
-For localization, use "CharacterNames" [managed text](/guide/managed-text) document, which is automatically created when running generate managed text resources task. Be aware, that "CharacterNames" document will override `Display Name` value when defined for the default locale.
+For localization, use "CharacterNames" [managed text](/guide/managed-text) document, which is automatically created when running generate managed text resources task. Values from the "CharacterNames" document won't override values set in the character metadata when under the default locale.
 
 ## Message Colors
 
