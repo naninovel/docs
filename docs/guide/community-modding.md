@@ -2,7 +2,7 @@
 
 Community modding feature allows users to modify the build, adding their own scenarios and resources, while also having access to the game built-in resources.
 
-To active the feature, enable `Enable Community Modding` property in the script's configuration UI accessible with `Naninovel -> Configuration -> Scripts` context menu. 
+To activate the feature, enable `Enable Community Modding` property in the script's configuration UI accessible with `Naninovel -> Configuration -> Scripts` context menu. 
 
 ![Scripts Configuration](/guide/scripts-config.png)
 

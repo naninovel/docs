@@ -78,11 +78,13 @@ function getGuideSidebar (groupA, groupB) {
             title: groupB,
             collapsable: false,
             children: [
+                'development-console',
                 'engine-architecture',
                 'engine-services',
                 'custom-novel-actions',
                 'custom-actor-implementations',
-                'development-console',
+                'state-management',
+                'integration-options',
                 'google-drive-integration'
             ]
         }

@@ -31,8 +31,35 @@ goto:.Epilogue
 
 When `goto` parameter is not specified, current script will continue executing from the next line.
 
-
 Choice handler actors are used to process the `@choice` actions. You can add, edit and remove choice handlers using the choice manager accessible via `Naninovel -> Resources -> Choice Handlers` context menu.
 
-
 Choice handlers behavior can be configured using `Naninovel -> Configuration -> Choice Handlers` context menu; for available options see [configuration guide](/guide/configuration.md#choice-handlers).
+
+## ButtonList Choice Handler
+Button list handler is used by default. It stores the choice buttons inside a horizontal layout panel and ignores the `pos` parameter of the `@choice` action.
+
+## ButtonArea Choice Handler
+In contrast to button list, button area doesn't enforce any specific layout and allows manually setting positions of the added choice buttons via `pos` parameter. For example, here is one way to make an interactive map with choice actions and button area handler:
+
+```
+# Map
+@back Map
+@hideText
+@choice handler:ButtonArea button:MapButtons/Home pos:-300,-300 goto:.HomeScene
+@choice handler:ButtonArea button:MapButtons/Shop pos:300,200 goto:.ShopScene
+@stop
+
+# HomeScene
+@back Home
+Home, sweet home!
+@goto .Map
+
+# ShopScene
+@back Shop
+Don't forget about cucumbers!
+@goto .Map
+```
+
+<div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/cNRNgk5HhKQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>

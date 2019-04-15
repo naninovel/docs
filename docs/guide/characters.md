@@ -22,13 +22,13 @@ In novel scripts, characters are mostly controlled with [`@char`](/api/#char) ac
 @char Sora.Happy look:left pos:0.45,0.1
 ```
 
-## Display Name
+## Display Names
 
 In the character configuration you can set a `Display Name` for specific characters. When set, display name will be shown in the printer name label UI, instead of the character's ID. This allows using compound character names, that contains spaces and special characters (which is not allowed for IDs).
 
-For localization, use "CharacterNames" [managed text](/guide/managed-text) document, which is automatically created when running generate managed text resources task. Be aware, that "CharacterNames" document will override `Display Name` value when defined for the default locale.
+For localization, use "CharacterNames" [managed text](/guide/managed-text) document, which is automatically created when running generate managed text resources task. Values from the "CharacterNames" document won't override values set in the character metadata when under the default locale.
 
-## Character Color
+## Message Colors
 
 When `Use Character Color` is enabled in the character configuration, printer text messages and name labels will be tinted in the specified colors when the corresponding character ID is specified in a [`@print`](/api/#print) action or generic text line.
 
@@ -37,6 +37,20 @@ The following video demonstrates how to use display names and character colors.
 <div class="video-container">
     <iframe src="https://www.youtube-nocookie.com/embed/u5B5s-X2Bw0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
+
+## Avatar Textures
+
+You can assign avatar textures to characters using `avatar` parameter of [`@char`](/api/#char) action. Avatars will be shown by the compatible text printers when they print a text message that is associated with the character. Currently, only `Wide` and `Chat` text printers support the avatars feature.
+
+![](https://i.gyazo.com/f921ab4ef864aea6980a5c6be6743494.png)
+
+To use any given avatar, you have to first add it to the avatar resources and give it a name. You can do this via `Avatar Resources` property in the characters configuration menu.
+
+![](https://i.gyazo.com/5a0f10d174aa75ed87da1b472567e40b.png)
+
+You can set a default avatar for a character by giving the avatar texture resource name that equals to `CharacterID/Default`; eg, to set a default avatar for character with ID `Kohaku` name the avatar resource `Kohaku/Default`. Default avatars will be used when `avatar` parameter is not set in the `@char` actions.
+
+It's also possible to associate avatars with specific character appearances, so that when character changes appearance, the avatar will also change automatically. For this, name the avatar resources using the following format: `CharacterID/CharacterAppearance`, where `CharacterAppearance` is the name of the appearance for which to map the avatar resource.
 
 ## Sprite Characters 
 
