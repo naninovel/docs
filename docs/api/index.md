@@ -504,7 +504,7 @@ set | String | Set expression to execute when the conditional expression is true
 @set counter=1
 # FanfareLoop
 @sfx Fanfare
-@if counter<score set:counter+1 goto:.FanfareLoop
+@if counter<score set:counter=counter+1 goto:.FanfareLoop
 
 ; Set variable `mood` to `Great` if `score` is equal to or greater than 5,
 ; to `Fine` if 4 or greater, and to `Average` in the other cases.
@@ -671,7 +671,7 @@ Automatically save the game to a quick save slot.
 Assigns a value to a custom variable.
 
 #### Remarks
-Variable name should be alphanumeric (latin characters only) and can contain usnerscores, eg: `name`, `Char1Score`, `my_score`;  the names are case-insensitive, eg: `myscore` is equal to `MyScore`.  <br /><br />  Custom variables are stored in **local scope** by default. This means, that if you assign some variable in the course of gameplay  and player starts a new game or loads another saved game slot, where that variable wasn't assigned — the value will be lost.  If you wish to store the variable in **global scope** instead, prepend `G_` or `g_` to its name, eg: `G_FinishedMainRoute` or `g_total_score`.  <br /><br />  You can get and set custom variables in C# scripts via `CustomVariableManager` [engine service](/guide/engine-services.md).
+Variable name should be alphanumeric (latin characters only) and can contain underscores, eg: `name`, `Char1Score`, `my_score`;  the names are case-insensitive, eg: `myscore` is equal to `MyScore`. If a variable with the provided name doesn't exist, it will be automatically created.  <br /><br />  Custom variables are stored in **local scope** by default. This means, that if you assign some variable in the course of gameplay  and player starts a new game or loads another saved game slot, where that variable wasn't assigned — the value will be lost.  If you wish to store the variable in **global scope** instead, prepend `G_` or `g_` to its name, eg: `G_FinishedMainRoute` or `g_total_score`.  <br /><br />  You can get and set custom variables in C# scripts via `CustomVariableManager` [engine service](/guide/engine-services.md).
 
 #### Parameters
 
@@ -679,42 +679,42 @@ Variable name should be alphanumeric (latin characters only) and can contain usn
 
 ID | Type | Description
 --- | --- | ---
-<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | Set expression.  <br /><br />  Supported operators: =,+,-,*. All operators except assignment requires both operands to be numbers.  <br /><br />  You can use existing variable names as rhs (right hand side operand); to distinguish a plain text value from a variable name, wrap the value in single quotes (').
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | Set expression.  <br /><br />  The expression should be in the following format: `VariableName=ExpressionBody`, where `VariableName` is the name of the custom  variable to assign and `ExpressionBody` is the expression, the result of which should be assigned to the variable.  <br /><br />  Supported operators inside the expression body: +,-,*,/,%. All operators requires both operands to be numbers; you can only use assignment with strings.  <br /><br />  Supported math functions inside the expression body: everything from [.NET System.Math](https://docs.microsoft.com/en-us/dotnet/api/system.math?view=netframework-4.7.2#methods) namespace.  Additionally, `Random(int min, int max)` function is supported, returning a random integer between specified min and max values.  <br /><br />  You can use existing variable names in the expression body; to distinguish a plain text value from a variable name, wrap the value in single quotes (').
 
 </div>
 
 #### Example
 ```
 ; Assign `foo` variable a `bar` string value
-@set foo="bar"
+@set foo='bar'
 
 ; Assign `foo` variable a 1 number value
 @set foo=1
 
 ; If `foo` is a number, add 0.5 to its value
-@set foo+0.5
+@set foo=foo+0.5
 
-; If `foo` is a number, subtract 25 from its value
-@set varName-25
+; If `angle` is a number, assign its cosine to `result` variable
+@set result=Cos(angle)
 
-; If `foo` is a number, multiply its value by 2
-@set foo*2
+; Get a random integer between -100 and 100, then raise to power of 4 and assign to `result` variable
+@set "result = Pow(Random(-100, 100), 4)"
 
 ; Assign `foo` variable value of the `bar` variable, which is `Hello World!`.
 ; Notice, that `bar` variable should actually exist, otherwise `bar` plain text value will be assigned instead.
-@set bar="Hello World!"
+@set bar='Hello World!'
 @set foo=bar
 
 ; It's possible to inject variables to novel script action parameters
 @set scale=0
 # EnlargeLoop
 @char Misaki.Default scale:{scale}
-@set scale+0.1
+@set scale=scale+0.1
 @goto .EnlargeLoop if:scale<1
 
 ; ..and generic text lines
-@set name="Dr. Stein"
-@set drink="Dr. Pepper"
+@set name='Dr. Stein'
+@set drink='Dr. Pepper'
 {name}: My favourite drink is {drink}!
 ```
 
