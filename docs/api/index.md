@@ -20,7 +20,7 @@ time | Single | Determines for how long (in seconds) action should execute. Whil
 
 </div>
 
-This API reference is valid for [Naninovel v1.4.0-beta](https://github.com/Elringus/NaninovelWeb/releases).
+This API reference is valid for [Naninovel v1.4.1-beta](https://github.com/Elringus/NaninovelWeb/releases).
 
 ## arrange
 
@@ -70,6 +70,7 @@ scale | Single[] | Scale to set for the modified actor.
 position | Single[] | Position (in world space) to set for the modified actor.
 isVisible | Boolean | Visibility status to set for the modified actor.
 rotation | Single[] | Rotation to set for the modified actor.
+tint | String | Tint color to set for the modified actor.  <br /><br />  Strings that begin with `#` will be parsed as hexadecimal in the following way:  `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF.  <br /><br />  Strings that do not begin with `#` will be parsed as literal colors, with the following supported:  red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta.
 
 </div>
 
@@ -206,6 +207,7 @@ scale | Single[] | Scale to set for the modified actor.
 position | Single[] | Position (in world space) to set for the modified actor.
 isVisible | Boolean | Visibility status to set for the modified actor.
 rotation | Single[] | Rotation to set for the modified actor.
+tint | String | Tint color to set for the modified actor.  <br /><br />  Strings that begin with `#` will be parsed as hexadecimal in the following way:  `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF.  <br /><br />  Strings that do not begin with `#` will be parsed as literal colors, with the following supported:  red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta.
 
 </div>
 
@@ -595,7 +597,7 @@ ID | Type | Description
 Resets the active printer, prints text message and waits for user input.
 
 #### Remarks
-This action is used under the hood when processing generic text lines.  Will cancel the printing (reveal the text at once) on `Naninovel.InputManager.Continue` and `Naninovel.InputManager.Skip`.  Will attempt to play corresponding voice clip (when `Naninovel.AudioManager.AutoVoicingEnabled` is enabled).  Will add printed message to the `Naninovel.UI.IBacklogUI` (when available).
+This action is used under the hood when processing generic text lines, eg generic line `Kohaku: Hello World!` will be  automatically tranformed into `@print "Hello World!" actor:Kohaku` when parsing the novel scripts.<br />  Will cancel the printing (reveal the text at once) on `Continue` and `Skip` inputs.<br />  Will attempt to play corresponding voice clip when [Auto Voicing](/guide/voicing.html#auto-voicing) feature is enabled.<br />  Will attempt to add the printed message to [printer backlog](/guide/printer-backlog.html).<br />  Will attempt to change tint color of the characters, based on [Speaker Highlight](/guide/characters.html#speaker-highlight) feature.
 
 #### Parameters
 
@@ -605,7 +607,7 @@ ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Text</span> | String | Text of the message to print.
 printer | String | ID of the printer actor to use.
-actor | String | ID of the actor to whom the message belongs.
+actor | String | ID of the actor, which should be associated with the printed message.
 reset | Boolean | Whether to reset text of the printer before executing the printing task.
 waitInput | Boolean | Whether to wait for user input after finishing the printing task.
 
