@@ -67,6 +67,16 @@ By default, a gradient fade effect is applied when printing out the text message
 
 ![](https://i.gyazo.com/3434d39dcaf6b501d3f3640fda84bf80.png)
 
+## Text Reveal Sounds
+
+For the built-in printers, that support revealing effect (currently, `Dialogue`, `Fullscreen` and `Wide`) you can optionally set SFX to be played when the characters are revealed. 
+
+Follow the "Adding Custom Printers" guide above to create a custom printer based on any of the built-in ones, then find `Revealable Text Printer Panel` component attached to the root object of the prefab and use `Reveal Sfx` property to set the SFX to be played when a character is revealed. The actual list of the available options is based on the audio resources you've added via the `Naninovel -> Resources -> Audio` menu.
+
+You can also use `Chars SFX` list property to map multiple SFXs to specific characters. The following illustration represents setup, where "Keystroke2" SFX will be played for spaces, "Explosion" for characters `D`, `d`, `F`, `1`, `4`, `9`, and `*`, no SFX will be played for `%` character and "Keystroke1" will be played for all the other characters.
+
+![](https://i.gyazo.com/c51247254e262dca35267b3689460ad2.png)
+
 ## TextMesh Pro
 
 Naninovel supports [TextMesh Pro](https://assetstore.unity.com/packages/essentials/beta-projects/textmesh-pro-84126) via a standalone extension package, that contains a fullscreen and dialogue printers implemented with the TMPro UI text components.
