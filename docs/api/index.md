@@ -238,7 +238,7 @@ When `goto` parameter is not specified, will continue script execution from the 
 
 ID | Type | Description
 --- | --- | ---
-<span class="action-param-nameless" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID">ChoiceSummary</span> | String | Text to show for the choice.
+<span class="action-param-nameless" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID">ChoiceSummary</span> | String | Text to show for the choice.  When the text contain spaces, wrap it in double quotes (`"`).  In case you wish to include the double quotes in the text itself, escape them.
 button | String | Path (relative to a `Resources` folder) to a button prefab representing the choice.  The prefab should have a `Naninovel.ChoiceHandlerButton` component attached to the root object.  Will use a default button when not provided.
 pos | Vector2 | Local position of the choice button inside the choice handler (if supported by the handler implementation).
 handler | String | ID of the choice handler to add choice for.
@@ -253,7 +253,7 @@ set | String | Set expression to execute when the choice is selected by user;  s
 Continue executing this script or load another?[skipInput]
 @choice "Continue" goto:.Continue
 @choice "Load another from start" goto:AnotherScript
-@choice "Load another from label" goto:AnotherScript.LabelName
+@choice "Load another from \"MyLabel\"" goto:AnotherScript.MyLabel
 @stop
 
 ; Following example shows how to make an interactive map via `@choice` actions.
@@ -492,7 +492,7 @@ Will execute [`@goto`](/api/#goto) and/or [`@set`](/api/#set) actions when the p
 
 ID | Type | Description
 --- | --- | ---
-<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | Conditional expression.  <br /><br />  Supported operators: == (equal), != (not equal), &gt; (greater), &gt;= (greater or equal), &lt; (less), &lt;= (less or equal), &amp;&amp; (and), &#124;&#124; (or).  <br /><br />  Supported math functions: everything from [.NET System.Math](https://docs.microsoft.com/en-us/dotnet/api/system.math?view=netframework-4.7.2#methods) namespace.  Additionally, `Random(int min, int max)` function is supported, returning a random integer between specified min and max values.  <br /><br />  It's possible to use existing variable names as rhs (right hand side operand); to distinguish a plain text value from a variable name, wrap the value in double quotes (`"`).  <br /><br />  It's possible to group the expressions with round parentheses.
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | Conditional expression.  <br /><br />  Supported operators: == (equal), != (not equal), &gt; (greater), &gt;= (greater or equal), &lt; (less), &lt;= (less or equal), &amp;&amp; (and), &#124;&#124; (or).  <br /><br />  Supported math functions: everything from [.NET System.Math](https://docs.microsoft.com/en-us/dotnet/api/system.math?view=netframework-4.7.2#methods) namespace.  Additionally, `Random(int min, int max)` function is supported, returning a random integer between specified min and max values.  <br /><br />  It's possible to use existing variable names as rhs (right hand side operand); to distinguish a plain text value from a variable name, wrap the value in double quotes (`"`).  In case you wish to include the double quotes in the plain text value itself, escape them **twice**, eg `\\"`.  <br /><br />  It's possible to group the expressions with round parentheses.
 goto | Pair&lt;String, String&gt; | Path to go when expression is true; see [`@goto`](/api/#goto) action for the path format.
 set | String | Set expression to execute when the conditional expression is true; see [`@set`](/api/#set) action for syntax reference.
 
@@ -530,6 +530,9 @@ set | String | Set expression to execute when the conditional expression is true
 
 ; You can also use conditionals in the inlined actions
 Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
+
+; When using double quotes inside the expression itself, don't forget to double-escape them
+@print {remark} if:remark=="Saying \\"Stop the car\\" was a mistake."
 ```
 
 ## input
@@ -547,7 +550,7 @@ The state of the UI is not serialized when saving the game, so make sure to prev
 ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">VariableName</span> | String | Name of a custom variable to which the entered text will be assigned.
-summary | String | An optional summary text to show along with input field.
+summary | String | An optional summary text to show along with input field.  When the text contain spaces, wrap it in double quotes (`"`).  In case you wish to include the double quotes in the text itself, escape them.
 play | Boolean | Whether to automatically resume script playback when user submits the input form.
 
 </div>
@@ -605,7 +608,7 @@ This action is used under the hood when processing generic text lines, eg generi
 
 ID | Type | Description
 --- | --- | ---
-<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Text</span> | String | Text of the message to print.
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Text</span> | String | Text of the message to print.  When the text contain spaces, wrap it in double quotes (`"`).  In case you wish to include the double quotes in the text itself, escape them.
 printer | String | ID of the printer actor to use.
 actor | String | ID of the actor, which should be associated with the printed message.
 reset | Boolean | Whether to reset text of the printer before executing the printing task.
@@ -615,7 +618,10 @@ waitInput | Boolean | Whether to wait for user input after finishing the printin
 
 #### Example
 ```
+; Will print the infamous phrase
 @print "Lorem ipsum dolor sit amet."
+; To include quotes in the text itself, escape them
+@print "Saying \"Stop the car\" was a mistake."
 ```
 
 ## printer
@@ -681,7 +687,7 @@ Variable name should be alphanumeric (latin characters only) and can contain und
 
 ID | Type | Description
 --- | --- | ---
-<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | Set expression.  <br /><br />  The expression should be in the following format: `VariableName=ExpressionBody`, where `VariableName` is the name of the custom  variable to assign and `ExpressionBody` is the expression, the result of which should be assigned to the variable.  <br /><br />  Supported operators inside the expression body: +,-,*,/,%. All operators requires both operands to be numbers; you can only use assignment with strings.  <br /><br />  Supported math functions inside the expression body: everything from [.NET System.Math](https://docs.microsoft.com/en-us/dotnet/api/system.math?view=netframework-4.7.2#methods) namespace.  Additionally, `Random(int min, int max)` function is supported, returning a random integer between specified min and max values.  <br /><br />  You can use existing variable names in the expression body; to distinguish a plain text value from a variable name, wrap the value in double quotes (`"`).
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | Set expression.  <br /><br />  The expression should be in the following format: `VariableName=ExpressionBody`, where `VariableName` is the name of the custom  variable to assign and `ExpressionBody` is the expression, the result of which should be assigned to the variable.  <br /><br />  Supported operators inside the expression body: +,-,*,/,%. All operators requires both operands to be numbers; you can only use assignment with strings.  <br /><br />  Supported math functions inside the expression body: everything from [.NET System.Math](https://docs.microsoft.com/en-us/dotnet/api/system.math?view=netframework-4.7.2#methods) namespace.  Additionally, `Random(int min, int max)` function is supported, returning a random integer between specified min and max values.  <br /><br />  You can use existing variable names in the expression body; to distinguish a plain text value from a variable name, wrap the value in double quotes (`"`).  In case you wish to include the double quotes in the plain text value itself, escape them **twice**, eg `\\"`.
 
 </div>
 
@@ -721,6 +727,9 @@ ID | Type | Description
 @set name="Dr. Stein"
 @set drink="Dr. Pepper"
 {name}: My favourite drink is {drink}!
+
+; When using double quotes inside the expression itself, don't forget to double-escape them
+@set remark="Saying \\"Stop the car\\" was a mistake."
 ```
 
 ## sfx
