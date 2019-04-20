@@ -199,7 +199,7 @@ ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">IdAndAppearance</span> | Pair&lt;String, String&gt; | ID of the actor to modify and the appearance to set.  When appearance is not provided, will use either a `Default` (is exists) or a random one.
 look | String | Look direction of the actor; possible options: left, right, center.
-avatar | String | Name (path) of the [avatar texture](/guide/characters.md#avatar-textures) to assign for the character.  Use 'none' to remove (un-assign) avatar texture from the character.
+avatar | String | Name (path) of the [avatar texture](/guide/characters.md#avatar-textures) to assign for the character.  Use `none` to remove (un-assign) avatar texture from the character.
 id | String | ID of the actor to modify.
 appearance | String | Appearance to set for the modified actor.
 pos | Single[] | Position (in scene local space) to set for the modified actor.  Scene space described as follows: x0y0 is at the bottom left and x1y1 is at the top right corner of the screen.
@@ -492,7 +492,7 @@ Will execute [`@goto`](/api/#goto) and/or [`@set`](/api/#set) actions when the p
 
 ID | Type | Description
 --- | --- | ---
-<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | Conditional expression.  <br /><br />  Supported operators: == (equal), != (not equal), &gt; (greater), &gt;= (greater or equal), &lt; (less), &lt;= (less or equal), &amp;&amp; (and), &#124;&#124; (or).  <br /><br />  Supported math functions: everything from [.NET System.Math](https://docs.microsoft.com/en-us/dotnet/api/system.math?view=netframework-4.7.2#methods) namespace.  Additionally, `Random(int min, int max)` function is supported, returning a random integer between specified min and max values.  <br /><br />  It's possible to use existing variable names as rhs (right hand side operand); to distinguish a plain text value from a variable name, wrap the value in single quotes (').  <br /><br />  It's possible to group the expressions with round parentheses.
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | Conditional expression.  <br /><br />  Supported operators: == (equal), != (not equal), &gt; (greater), &gt;= (greater or equal), &lt; (less), &lt;= (less or equal), &amp;&amp; (and), &#124;&#124; (or).  <br /><br />  Supported math functions: everything from [.NET System.Math](https://docs.microsoft.com/en-us/dotnet/api/system.math?view=netframework-4.7.2#methods) namespace.  Additionally, `Random(int min, int max)` function is supported, returning a random integer between specified min and max values.  <br /><br />  It's possible to use existing variable names as rhs (right hand side operand); to distinguish a plain text value from a variable name, wrap the value in double quotes (`"`).  <br /><br />  It's possible to group the expressions with round parentheses.
 goto | Pair&lt;String, String&gt; | Path to go when expression is true; see [`@goto`](/api/#goto) action for the path format.
 set | String | Set expression to execute when the conditional expression is true; see [`@set`](/api/#set) action for syntax reference.
 
@@ -510,23 +510,23 @@ set | String | Set expression to execute when the conditional expression is true
 
 ; Set variable `mood` to `Great` if `score` is equal to or greater than 5,
 ; to `Fine` if 4 or greater, and to `Average` in the other cases.
-@if "score >= 5" set:mood='Great'
-@if "score >= 4 && score < 5" set:mood='Fine'
-@if "score < 4" set:mood='Average'
+@if score>=5 set:mood="Great"
+@if "score >= 4 && score < 5" set:mood="Fine"
+@if score<4 set:mood="Average"
 
 ; You can also use `if` parameter on other actions to conditionally execute them:
 
 ; If `level` value is a number and is greater than 9000, add the choice
-@choice "It's over 9000!" if:"level > 9000"
+@choice "It's over 9000!" if:level>9000
 
-; If `dead` variable is equal to `False`, execute the print action
-@print text:"I'm still alive." if:dead=='False'
+; If `dead` variable is a bool and equal to `false`, execute the print action
+@print text:"I'm still alive." if:!dead
 
-; If `glitch` equals `True` or random function in 1 to 10 range returns 5 or more, execute `@fx` action
-@fx GlitchCamera if:"glitch == 'True' || Random(1, 10) >= 5"
+; If `glitch` is a bool and equals `true` or random function in 1 to 10 range returns 5 or more, execute `@fx` action
+@fx GlitchCamera if:"glitch || Random(1, 10) >= 5"
 
-; If `score` value is in 7 to 13 range or `lucky` variable equals `True`, load `LuckyEnd` script
-@goto LuckyEnd if:"(score >= 7 && score <= 13) || lucky == 'True'"
+; If `score` value is in 7 to 13 range or `lucky` variable is a bool and equals `true`, load `LuckyEnd` script
+@goto LuckyEnd if:"(score >= 7 && score <= 13) || lucky"
 
 ; You can also use conditionals in the inlined actions
 Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
@@ -564,7 +564,7 @@ Archibald: Greetings, {name}!
 {name}: Yo!
 
 ; ...or use it inside set and conditional expressions
-@set score+1 if:name=='Felix'
+@set score=score+1 if:name=="Felix"
 ```
 
 ## movie
@@ -681,17 +681,20 @@ Variable name should be alphanumeric (latin characters only) and can contain und
 
 ID | Type | Description
 --- | --- | ---
-<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | Set expression.  <br /><br />  The expression should be in the following format: `VariableName=ExpressionBody`, where `VariableName` is the name of the custom  variable to assign and `ExpressionBody` is the expression, the result of which should be assigned to the variable.  <br /><br />  Supported operators inside the expression body: +,-,*,/,%. All operators requires both operands to be numbers; you can only use assignment with strings.  <br /><br />  Supported math functions inside the expression body: everything from [.NET System.Math](https://docs.microsoft.com/en-us/dotnet/api/system.math?view=netframework-4.7.2#methods) namespace.  Additionally, `Random(int min, int max)` function is supported, returning a random integer between specified min and max values.  <br /><br />  You can use existing variable names in the expression body; to distinguish a plain text value from a variable name, wrap the value in single quotes (').
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | Set expression.  <br /><br />  The expression should be in the following format: `VariableName=ExpressionBody`, where `VariableName` is the name of the custom  variable to assign and `ExpressionBody` is the expression, the result of which should be assigned to the variable.  <br /><br />  Supported operators inside the expression body: +,-,*,/,%. All operators requires both operands to be numbers; you can only use assignment with strings.  <br /><br />  Supported math functions inside the expression body: everything from [.NET System.Math](https://docs.microsoft.com/en-us/dotnet/api/system.math?view=netframework-4.7.2#methods) namespace.  Additionally, `Random(int min, int max)` function is supported, returning a random integer between specified min and max values.  <br /><br />  You can use existing variable names in the expression body; to distinguish a plain text value from a variable name, wrap the value in double quotes (`"`).
 
 </div>
 
 #### Example
 ```
 ; Assign `foo` variable a `bar` string value
-@set foo='bar'
+@set foo="bar"
 
 ; Assign `foo` variable a 1 number value
 @set foo=1
+
+; Assign `foo` variable a `true` boolean value
+@set foo=true
 
 ; If `foo` is a number, add 0.5 to its value
 @set foo=foo+0.5
@@ -704,7 +707,7 @@ ID | Type | Description
 
 ; Assign `foo` variable value of the `bar` variable, which is `Hello World!`.
 ; Notice, that `bar` variable should actually exist, otherwise `bar` plain text value will be assigned instead.
-@set bar='Hello World!'
+@set bar="Hello World!"
 @set foo=bar
 
 ; It's possible to inject variables to novel script action parameters
@@ -715,8 +718,8 @@ ID | Type | Description
 @goto .EnlargeLoop if:scale<1
 
 ; ..and generic text lines
-@set name='Dr. Stein'
-@set drink='Dr. Pepper'
+@set name="Dr. Stein"
+@set drink="Dr. Pepper"
 {name}: My favourite drink is {drink}!
 ```
 
