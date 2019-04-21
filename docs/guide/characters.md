@@ -6,7 +6,7 @@ A character actor is defined with a name, appearance, visibility, transform (pos
 
 Characters' behavior can be configured using `Naninovel -> Configuration -> Characters` context menu; for available options see [configuration guide](/guide/configuration.md#characters). The characters' resources manager can be accessed using `Naninovel -> Resources -> Characters` context menu.
 
-![Add Character](/guide/add-character.png)
+![Add Character](https://i.gyazo.com/c8a4f7f987621831b4a2ecb3145a4a07.png)
 
 In novel scripts, characters are mostly controlled with [`@char`](/api/#char) action:
 

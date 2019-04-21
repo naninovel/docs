@@ -13,8 +13,8 @@ Each actor interface can have multiple implementations; e.g. character actors cu
 
 Actor implementation can be selected in the configuration managers accessible via `Naninovel -> Configuration` context menu. You can both change default implementation used for all the actors or set specific implementation per actor. To change default implementation, use `Default Metadata` property and to set specific ones, use an `Implementation` drop-down list in actor's configuration. 
 
-![Default Actor Implementation](/guide/actor-default-impl.png)
-![Actor Implementation](/guide/actor-impl.png)
+![Default Actor Implementation](https://i.gyazo.com/ac39a68df1e81dd4b33b7a2674113479.png)
+![Actor Implementation](https://i.gyazo.com/51e4f625448889d3d39254de3dce5ec6.png)
 
 Implementation drop-down list contains all the types that implements specific actor interface. You can add your own custom implementations and they'll also appear in the list. See `Naninovel/Runtime/Actors` scripts for a reference when creating your own actor implementations.
 

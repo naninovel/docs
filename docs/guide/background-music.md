@@ -2,7 +2,7 @@
 
 You can add, edit and remove background music (BGM) resources using the audio manager accessible via `Naninovel -> Resources -> Audio` or just store the audio clips at `Resources/Audio` folder.
 
-![Managing BGM](/guide/managing-audio.png)
+![Managing BGM](https://i.gyazo.com/cacdec36623dbbfcf9f49c594de53c0f.png)
 
 You can use any audio formats [supported by Unity](https://docs.unity3d.com/Manual/AudioFiles.html).
 

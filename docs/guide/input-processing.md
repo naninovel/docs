@@ -11,4 +11,4 @@ Axes | List of axes which activates the input.
 
 You can configure the built-in input bindings and add new listeners using `Naninovel -> Configuration -> Input` context menu; for available options see [configuration guide](/guide/configuration.md#input).
 
-![Manage Input](/guide/input-config.png)
+![Manage Input](https://i.gyazo.com/d7b2845151642bdb3e9a9d3bb021dd20.png)

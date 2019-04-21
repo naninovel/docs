@@ -34,7 +34,7 @@ Text from second sentence. | 3.2
 
 To simplify the process, when auto voicing feature is enabled, name of voice clip for the currently printed text is displayed in the debug window:
 
-![auto voicing](/guide/auto-voicing.png)
+![auto voicing](https://i.gyazo.com/88d56e11f7674f66c5b9d913b583dffa.png)
 
 To open the debug window, make sure `Enable Development Console` is turned on in the engine configuration, then press `~` key while in play mode, type `debug` and press `Enter`.
 

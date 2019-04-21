@@ -14,7 +14,7 @@ For example, if you wish to replace a background stored at `/Resources/Backgroun
 
 The resources localization scheme described above works with all the resource types, except novel scripts and managed text documents. For these type of resources, use localization tool accessible via `Naninovel -> Tools -> Localization`:
 
-![Localization Tool](/guide/localization-tool.png)
+![Localization Tool](https://i.gyazo.com/cb521d2645830988563a7907f05170c8.png)
 
 Specify source of the original resources (current Unity project, local file system or Google Drive), path prefixes for the novel scripts and managed text resources ("Scripts" and "Text" by default) and select path to the locale folder where to store the generated localization resources. Make sure the you've selected an actual locale folder (e.g. `/Resources/Localization/ja-JP`) and not just the localization resources root. 
 

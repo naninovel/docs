@@ -191,6 +191,6 @@ rewind 12
 
 In case you need to constantly move forward-backward for a few lines (e.g. to test an animation or visual effect), consider using debug window. Type `debug` in the development console and press `Enter` to show the window.
 
-![Scripts Debug](/guide/scripts-debug.png)
+![Scripts Debug](https://i.gyazo.com/36b46d2c84fd58d33942ed2fd5c5fe64.png)
 
 Currently played script name, line number and action index are displayed in the title of the window. You can re-position the window by dragging it by the title. "Previous" and "Next" buttons allows to "jump" the script execution one line back and forward. "Stop" button will halt script execution; when script player is stopped "Play" button will resume the execution. You can close the debug window by pressing the "Close" button.

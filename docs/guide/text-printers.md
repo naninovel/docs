@@ -27,13 +27,13 @@ Felix: Lorem ipsum dolor sit amet.
 
 Dialogue printers present text inside windows with a flexible height. They initially take about a third of the screen size and will increase the height when the content requires more space. Dialogue printers also expose associated character name in a label above the text window.
 
-![Dialogue Printer](/guide/dialogue-printer.png)
+![Dialogue Printer](https://i.gyazo.com/73abe9eabc7b285109b08e77dbf75430.png)
 
 ## Fullscreen Printer
 
 Fullscreen printers present text inside windows with a static size. They take most of the screen size and are indented for presenting large amounts of text. 
 
-![Fullscreen Printer](/guide/fullscreen-printer.png)
+![Fullscreen Printer](https://i.gyazo.com/c7861949717f9b600b664365af53abbc.png)
 
 ## Wide Printer
 
