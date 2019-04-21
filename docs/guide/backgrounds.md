@@ -6,7 +6,7 @@ A background actor is defined with a name, appearance, visibility and transform 
 
 Backgrounds' behavior can be configured using `Naninovel -> Configuration -> Backgrounds` context menu; for available options see [configuration guide](/guide/configuration.md#backgrounds). The backgrounds' resources manager can be accessed using `Naninovel -> Resources -> Backgrounds` context menu.
 
-![Add Background](/guide/add-background.png)
+![Add Background](https://i.gyazo.com/24f880963dba2183df5d63c49acfd9ca.png)
 
 In novel scripts, backgrounds are mostly controlled with [`@back`](/api/#back) action:
 

@@ -8,7 +8,7 @@ Changing locale requires game to be restarted in order for the changes to take e
 
 Settings are serialized to a `Settings.json` file stored over game directory. File name can be configured using `Naninovel -> Configuration -> State` context menu; for available options see [configuration guide](/guide/configuration.md#state).
 
-![State Configuration](/guide/state-config.png)
+![State Configuration](https://i.gyazo.com/48981c559b259e6004b9fe1a6b52993f.png)
 
 In WebGL settings are serialized using cross-browser [IndexedDB API](https://en.wikipedia.org/wiki/Indexed_Database_API).
 

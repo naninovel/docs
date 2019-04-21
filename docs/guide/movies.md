@@ -8,7 +8,7 @@ User can skip movie playback with a `Cancel` input (`Esc` by default for standal
 
 To add, edit and remove movie resources use the movie manager accessible via `Naninovel -> Resources -> Movies` context menu:
 
-![Manage Movies](/guide/manage-movies.png)
+![Manage Movies](https://i.gyazo.com/aace59f30f42245fc3ba714d10815d46.png)
 
 You can use any video formats [supported by Unity](https://docs.unity3d.com/Manual/VideoSources-FileCompatibility).
 

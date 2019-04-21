@@ -2,7 +2,7 @@
 
 The feature allows to present a number of choices to the user and re-route script execution depending on the choice the user makes.
 
-![Choices](/guide/choices.png)
+![Choices](https://i.gyazo.com/023502e43b35caa706c88fd9ab32003d.png)
 
 Use [`@choice`](/api/#choice) actions followed by the choice summary and (optional) `goto` path to add choices from the novel scripts:
 

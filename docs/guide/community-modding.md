@@ -4,7 +4,7 @@ Community modding feature allows users to modify the build, adding their own sce
 
 To activate the feature, enable `Enable Community Modding` property in the script's configuration UI accessible with `Naninovel -> Configuration -> Scripts` context menu. 
 
-![Scripts Configuration](/guide/scripts-config.png)
+![Scripts Configuration](https://i.gyazo.com/96630a3a1c592c43f73c47d1bc3bbea1.png)
 
 When the feature is enabled, an "EXTERNAL SCRIPTS" button will appear in the tile menu; it will open external scripts browser. While in editor the browser will also list novel scripts from the project assets.
 

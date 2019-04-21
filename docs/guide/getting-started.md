@@ -31,15 +31,15 @@ Use `Create -> Novel Script` assets context menu to create a novel script asset.
 
 Novel scripts are text documents (`.txt` extension) where you control what happens on scenes. You can open and edit them with a text editor of your choice, like Notepad, Word or Sublime.
 
-![Open Novel Script](/guide/open-script.png)
+![Open Novel Script](https://i.gyazo.com/b4b8e0848751fcfdd8d56045f5104e80.png)
 
 Add the created novel script to the project resources. For this, open scripts manager using `Naninovel -> Resources -> Scripts` context menu, press `+` (plus sign) button in the list to add a new record and drag-drop script asset to the list. It's also possible to drag-drop multiple assets or even whole folders to the list to add them in batch. While not recommended, it's also possible to just keep the scripts in a `Resources/Scripts` folder and they'll be automatically exposed to project resources.
 
-![Add Novel Script](/guide/add-script.png)
+![Add Novel Script](https://i.gyazo.com/b3281a145ba54e6cb6cbdaa478ea894d.png)
 
 In case you’ve chosen to not use the script manager, you’ll have to manually set `Start Game Script` value in the `Naninovel -> Configuration -> Scripts` menu; it will be set automatically when you add first novel script in the manager otherwise.
 
-![Start Script](/guide/set-start-script.png)
+![Start Script](https://i.gyazo.com/76e167cb24adfb4d0b454b372f05eb3d.png)
 
 Open the created script in a text editor and add the following text:
 ```
@@ -57,7 +57,7 @@ Each character is represented by ID and a set of appearances. To add a sprite ch
 
 If you choose to use the manager GUI, access it with `Naninovel -> Resources -> Characters` menu, add new character record specifying its ID, then double click the ID record (or press button at the and of the record) and add all the appearance sprites to the `Resources` list. Just like with novel scripts, you can drag-drop multiple assets and folders to the list.
 
-![Add Novel Character](/guide/add-character.png)
+![Add Novel Character](https://i.gyazo.com/c8a4f7f987621831b4a2ecb3145a4a07.png)
 
 Let’s assume the added character ID is "Kohaku". Edit novel script to show the added character:
 ```
@@ -110,7 +110,7 @@ This will transition "City" to "School" using "RadialBlur" transition effect.
 ## Add Music and Sound Effects
 To add a BGM (background music) or SFX (sound effect) asset, either use `Naninovel -> Resources -> Audio` editor menu (recommended) or place the audio assets inside `Resources/Audio` folder. You can use any audio formats [supported by Unity](https://docs.unity3d.com/Manual/AudioFiles.html).
 
-![Managing Audio](/guide/managing-audio.png)
+![Managing Audio](https://i.gyazo.com/cacdec36623dbbfcf9f49c594de53c0f.png)
 
 Let’s assume the added BGM file name is "ThePromenade". To play this track as a background music use [`@bgm`](/api/#bgm) action followed by the name of the track:
 ```

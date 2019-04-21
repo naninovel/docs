@@ -10,7 +10,7 @@ In order to be able to choose Google Drive as the resource provider you have to 
 
 When the required third-party packages are installed and configured, set `Google Drive Root Path` (folder in the root of your drive where you'll store the resource files) in the provider configuration and select the `Google Drive` provider for target resource type in the configuration manager accessible via `Naninovel -> Configuration` context menu.
 
-![Google Drive Configuration](/guide/google-drive-config.png)
-![Select Google Drive Provider](/guide/select-google-drive.png)
+![Google Drive Configuration](https://i.gyazo.com/beb9bc6a828a6df6d9b41c3378068020.png)
+![Select Google Drive Provider](https://i.gyazo.com/4f1984448352841142f4ad495a3a6697.png)
 
 You can share your Google Drive resources folder with other users to work in collaboration without the need to use version control systems or other complicated tools.
