@@ -38,3 +38,16 @@ To simplify the process, when auto voicing feature is enabled, name of voice cli
 
 To open the debug window, make sure `Enable Development Console` is turned on in the engine configuration, then press `~` key while in play mode, type `debug` and press `Enter`.
 
+## Voiceover Documents
+
+You can use voiceover documents generator utility accessible via `Naninovel -> Tools -> Voiceover Documents` to generate documents, containing printed text from the [`@print`](/api/#print) actions and generic text lines. Each printed text message will be associated with the auto voice clip name to be used with the auto voicing feature.
+
+![](https://i.gyazo.com/69466444d4b8b43d76e7f1566db5ca9a.png)
+
+`Locale` property allows to select a specific locale for which to generate the documents (the localized novel scripts for the selected locale should exist in your project).
+
+When `Use Markdown Format` property is enabled, the generated files will be of [markdown format](https://en.wikipedia.org/wiki/Markdown) (.md extension) with some additional formatting for better readability.
+
+![](https://i.gyazo.com/ed6776026a79140de9e9f6a155faffdc.png)
+
+The voiceover documents are intended to be used by the voice actors when recording the voiceover audio clips. 

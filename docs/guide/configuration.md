@@ -35,6 +35,7 @@ Z Offset | 100 | Z-axis offset distance (depth) from background actors to the ca
 Default Metadata | Object Ref | Metadata to use by default when creating background actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating background actors with specific IDs.
 Scene Origin | (0.5, 0.0) | Origin point used for reference when positioning actors on scene.
+Default Easing | Linear | Eeasing function to use by default for all the actor modifications (changing appearance, position, tint, etc).
 
 </div>
 
@@ -48,6 +49,7 @@ Reference Resolution | (1920, 1080) | The reference resolution used when creatin
 Initial Position | (0.0, 0.0, -10.0) | Initial world position of the camera.
 Background Color | RGBA(0.137, 0.122, 0.125, 1.000) | Color of the camera background layer.
 Render Texture | Null | When provided, the camera will render to the texture instead of screen.
+Default Easing | Linear | Eeasing function to use by default for all the camera modifications (changing zoom, position, rotation, etc).
 Thumbnail Resolution | (240, 140) | The resolution in which thumbnails to preview game save slots will be captured.
 Hide UI In Thumbnails | False | Whether to ignore UI layer when capturing thumbnails.
 
@@ -62,8 +64,9 @@ Property | Default Value | Description
 Auto Arrange On Add | True | Whether to evenly distribute characters by X-axis when adding a new character without a specified position.
 Default Metadata | Object Ref | Metadata to use by default when creating character actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating character actors with specific IDs.
-Avatar Loader | Avatar- (Project, Local) | Configuration of the resource loader used with character avatar texture resources.
+Avatar Loader | Character Avatars- (Project, Local) | Configuration of the resource loader used with character avatar texture resources.
 Scene Origin | (0.5, 0.0) | Origin point used for reference when positioning actors on scene.
+Default Easing | Smooth Step | Eeasing function to use by default for all the actor modifications (changing appearance, position, tint, etc).
 
 </div>
 
@@ -76,6 +79,7 @@ Property | Default Value | Description
 Default Handler Id | Button List | ID of the choice handler to use by default.
 Default Metadata | Object Ref | Metadata to use by default when creating choice handler actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating choice handler actors with specific IDs.
+Default Easing | Linear | Eeasing function to use by default for all the actor modifications (changing appearance, position, tint, etc).
 
 </div>
 
@@ -217,6 +221,7 @@ Defaul Printer Id | Dialogue | ID of the text printer to use by default.
 Max Print Delay | 0.06 | Max typing delay. Determines print speed interval.
 Default Metadata | Object Ref | Metadata to use by default when creating text printer actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating text printer actors with specific IDs.
+Default Easing | Linear | Eeasing function to use by default for all the actor modifications (changing appearance, position, tint, etc).
 
 </div>
 
