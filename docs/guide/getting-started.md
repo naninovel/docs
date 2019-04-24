@@ -79,7 +79,7 @@ You can now also associate the printed text with the character by adding its ID 
 Kohaku: Hello World!
 @stop
 ```
-To hide (remove form scene) a character (or any other actor, like background, text printer, etc), use [`@hide`](/api/#hide) action followed by actor ID:
+To hide (remove from scene) a character (or any other actor, like background, text printer, etc), use [`@hide`](/api/#hide) action followed by actor ID:
 ```
 @char Kohaku.Happy
 Kohaku: Hello World!
