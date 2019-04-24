@@ -42,6 +42,14 @@ When the prefab is ready, add it to `Custom UI` list in the UI configuration man
 
 When the engine is initializing it'll spawn all the prefabs added to the `Custom UI` list. In case spawned prefab has a component attached to the root object that implements one of the built-in UI interfaces, built-in prefab with default implementation won't be spawned.
 
+## Play Novel Script On Button Click
+
+When creating custom buttons, you may prefer to use novel scripts to handle the [onClick](https://docs.unity3d.com/ScriptReference/UI.Button-onClick.html) events instead of C#. Add `Play Script On Button Click` component to the button gameobject and either select an existing novel script or write the novel script right inside the text area field.
+
+![](https://i.gyazo.com/8c8a0f210a26afcf43465aa71f59e318.png)
+
+The script will be executed when user clicks the button in play mode. Notice, that when an existing novel script is selected via dropdown list, the script text area will be ignored and selected novel script will be played **instead** of the currently played one; in case you wish to additively execute some script logic without interrupting the currently played script, use the script text area.
+
 ## Video Guide
 
 Check out the following video tutorial, where we create a custom calendar UI and bind it to the date and month [custom state variables](/api/#set).
