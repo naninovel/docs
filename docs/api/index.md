@@ -20,7 +20,7 @@ time | Single | Determines for how long (in seconds) action should execute. Whil
 
 </div>
 
-This API reference is valid for [Naninovel v1.4.1-beta](https://github.com/Elringus/NaninovelWeb/releases).
+This API reference is valid for [Naninovel v1.4.2-beta](https://github.com/Elringus/NaninovelWeb/releases).
 
 ## arrange
 
@@ -487,7 +487,7 @@ Lorem ipsum dolor sit amet.[i] Consectetur adipiscing elit.
 ## if
 
 #### Summary
-Will execute [`@goto`](/api/#goto) and/or [`@set`](/api/#set) actions when the provided expression is true.
+Will execute [`@goto`](/api/#goto) and/or [`@set`](/api/#set) actions when the provided expression is true.  [Custom variables](/guide/custom-variables.md) can be used without the curely braces inside the body of the expression.
 
 #### Parameters
 
@@ -679,7 +679,7 @@ Automatically save the game to a quick save slot.
 ## set
 
 #### Summary
-Assigns a value to a custom variable.
+Assigns a value to a [custom variable](/guide/custom-variables.md).
 
 #### Remarks
 Variable name should be alphanumeric (latin characters only) and can contain underscores, eg: `name`, `Char1Score`, `my_score`;  the names are case-insensitive, eg: `myscore` is equal to `MyScore`. If a variable with the provided name doesn't exist, it will be automatically created.  <br /><br />  Custom variables are stored in **local scope** by default. This means, that if you assign some variable in the course of gameplay  and player starts a new game or loads another saved game slot, where that variable wasn't assigned — the value will be lost.  If you wish to store the variable in **global scope** instead, prepend `G_` or `g_` to its name, eg: `G_FinishedMainRoute` or `g_total_score`.  <br /><br />  You can get and set custom variables in C# scripts via `CustomVariableManager` [engine service](/guide/engine-services.md).
