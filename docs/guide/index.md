@@ -35,7 +35,7 @@ The following features are already implemented; more will be added as the engine
 * [Voicing and auto voicing](/guide/voicing.md)
 * [Movies](/guide/movies.md)
 * [Choices](/guide/choices.md)
-* [Custom state variables](/api/#set)
+* [Custom variables](/guide/custom-variables.md)
 * [In-game variable input](/api/#input)
 * [Conditional script flow](/api/#if)
 * [Save-load system](/guide/save-load-system.md)
