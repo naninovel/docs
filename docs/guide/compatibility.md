@@ -1,4 +1,4 @@
-# Requirements and Compatibility
+# Compatibility
 
 ## Unity Version
 With every new Naninovel release we're targeting the latest available Unity version. You can always find supported Unity versions per Naninovel release on the [GitHub releases page](https://github.com/Elringus/NaninovelWeb/releases). 
