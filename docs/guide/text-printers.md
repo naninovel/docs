@@ -85,9 +85,7 @@ First, download the latest version of the package using the link below: [github.
 
 Before importing the package, make sure you have TextMesh Pro installed in your Unity project. TextMesh Pro can be installed via package manager accessible via `Window -> Package Manager` menu.
 
-Import the package, open Naninovel printers configuration menu `Naninovel -> Configuration -> Printers`, click "Manage Printers" and then replace the built-in resources for the "Dialogue" and "Fullscreen" printers with the prefabs from the extension package; TMPro printer prefabs can be found inside `NaninovelTMPro/Prefabs` folder. 
-
-![](https://i.gyazo.com/f9979fa459b5884b88d00bc606da6121.gif)
+Import the package and follow the above guide to add a new custom printer using one of the bundled TMPro printer prefabs (stored at `NaninovelTMPro/Prefabs` folder). 
 
 When creating custom TextMesh Pro font assets, don't forget to apply `Naninovel/NovelFontTMPro` shader, otherwise the text reveal effect won't work.
 
