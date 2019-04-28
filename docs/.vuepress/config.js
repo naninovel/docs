@@ -69,6 +69,7 @@ function getGuideSidebar (groupA, groupB) {
                 'ui-toggling',
                 'adaptive-ui-layout',
                 'ui-customization',
+                'unlockable-items',
                 'custom-variables',
                 'managed-text',
                 'localization',
