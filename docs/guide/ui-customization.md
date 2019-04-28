@@ -20,6 +20,8 @@ ISettingsUI | Panel used for changing game settings.
 ITitleUI | Title (main) menu of the game.
 IExternalScriptsUI | External scripts browser UI (community modding feature).
 IVariableInputUI | Input form for assigning an arbitrary text to a custom state variable (used by [`@input`](/api/#input) action).
+IConfirmationUI | UI panel used to confirm important actions (eg, when exiting to the title menu or deleting saved game slot).
+ICGGalleryUI | Unlockable [CG gallery](/guide/unlockable-items.md#cg-gallery) items browser.
 
 To add a new custom UI (without overriding any of the built-in UIs), simply attach a `ManagedUI` component to the root object of your custom UI prefab.
 

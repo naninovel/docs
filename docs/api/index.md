@@ -573,6 +573,29 @@ Archibald: Greetings, {name}!
 @set score=score+1 if:name=="Felix"
 ```
 
+## lock
+
+#### Summary
+Sets an [unlockable item](/guide/unlockable-items.md) with the provided ID to `locked` state.
+
+#### Remarks
+The unlocked state of the items is stored in [global scope](/guide/state-management.md#global-state).<br />  In case item with the provided ID is not registered in the global state map,  the corresponding record will automatically be added.
+
+#### Parameters
+
+<div class="config-table">
+
+ID | Type | Description
+--- | --- | ---
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Id</span> | String | ID of the unlockable item. Use `all` to lock all the registered unlockable items.
+
+</div>
+
+#### Example
+```
+@lock CG/FightScene1
+```
+
 ## movie
 
 #### Summary
@@ -967,6 +990,29 @@ Loads default engine state and shows `Naninovel.UI.ITitleUI`.
 #### Example
 ```
 @title
+```
+
+## unlock
+
+#### Summary
+Sets an [unlockable item](/guide/unlockable-items.md) with the provided ID to `unlocked` state.
+
+#### Remarks
+The unlocked state of the items is stored in [global scope](/guide/state-management.md#global-state).<br />  In case item with the provided ID is not registered in the global state map,  the corresponding record will automatically be added.
+
+#### Parameters
+
+<div class="config-table">
+
+ID | Type | Description
+--- | --- | ---
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Id</span> | String | ID of the unlockable item. Use `all` to unlock all the registered unlockable items.
+
+</div>
+
+#### Example
+```
+@unlock CG/FightScene1
 ```
 
 ## voice

@@ -238,3 +238,13 @@ Custom UI | Object Ref | The list of custom UI prefabs to spawn on the engine in
 
 </div>
 
+## Unlockables
+
+<div class="config-table">
+
+Property | Default Value | Description
+--- | --- | ---
+Loader Configuration | Unlockables- (Project, Local) | Configuration of the resource loader used with unlockable resources.
+
+</div>
+
