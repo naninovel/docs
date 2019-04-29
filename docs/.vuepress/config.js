@@ -71,6 +71,7 @@ function getGuideSidebar (groupA, groupB) {
                 'ui-customization',
                 'unlockable-items',
                 'custom-variables',
+                'script-expressions',
                 'managed-text',
                 'localization',
                 'community-modding'

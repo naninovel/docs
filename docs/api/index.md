@@ -14,13 +14,13 @@ The following parameters are supported by all the novel actions:
 
 ID | Type | Description
 --- | --- | ---
-if | String | A conditional expression, controlling whether this action should execute.  See [`@if`](/api/#if) action for the expression syntax reference.
+if | String |  A boolean [script expression](/guide/script-expressions.md), controlling whether the action should execute.
 wait | Boolean | Whether the script player should wait for the async action execution before playing next action. Has no effect when the action is executed instantly.
 time | Single | Determines for how long (in seconds) action should execute. While formally supported by all the actions, not every action actually use this parameter (eg, execution time of instant actions won't be changed).
 
 </div>
 
-This API reference is valid for [Naninovel v1.4.2-beta](https://github.com/Elringus/NaninovelWeb/releases).
+This API reference is valid for [Naninovel v1.5.0-beta](https://github.com/Elringus/NaninovelWeb/releases).
 
 ## arrange
 
@@ -487,7 +487,7 @@ Lorem ipsum dolor sit amet.[i] Consectetur adipiscing elit.
 ## if
 
 #### Summary
-Will execute [`@goto`](/api/#goto) and/or [`@set`](/api/#set) actions when the provided expression is true.  [Custom variables](/guide/custom-variables.md) can be used without the curely braces inside the body of the expression.
+Will execute [`@goto`](/api/#goto) and/or [`@set`](/api/#set) actions when the provided  [script expression](/guide/script-expressions.md) is evaluated to `true` boolean value.
 
 #### Parameters
 
@@ -495,7 +495,7 @@ Will execute [`@goto`](/api/#goto) and/or [`@set`](/api/#set) actions when the p
 
 ID | Type | Description
 --- | --- | ---
-<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | Conditional expression.  <br /><br />  Supported operators: == (equal), != (not equal), &gt; (greater), &gt;= (greater or equal), &lt; (less), &lt;= (less or equal), &amp;&amp; (and), &#124;&#124; (or).  <br /><br />  Supported math functions: everything from [.NET System.Math](https://docs.microsoft.com/en-us/dotnet/api/system.math?view=netframework-4.7.2#methods) namespace.  Additionally, `Random(int min, int max)` function is supported, returning a random integer between specified min and max values.  <br /><br />  It's possible to use existing variable names as rhs (right hand side operand); to distinguish a plain text value from a variable name, wrap the value in double quotes (`"`).  In case you wish to include the double quotes in the plain text value itself, escape them **twice**, eg `\\"`.  <br /><br />  It's possible to group the expressions with round parentheses.
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | A [script expression](/guide/script-expressions.md), which should return a boolean value.
 goto | Pair&lt;String, String&gt; | Path to go when expression is true; see [`@goto`](/api/#goto) action for the path format.
 set | String | Set expression to execute when the conditional expression is true; see [`@set`](/api/#set) action for syntax reference.
 
@@ -702,7 +702,7 @@ Automatically save the game to a quick save slot.
 ## set
 
 #### Summary
-Assigns a value to a [custom variable](/guide/custom-variables.md).
+Assigns result of a [script expression](/guide/script-expressions.md) to a [custom variable](/guide/custom-variables.md).
 
 #### Remarks
 Variable name should be alphanumeric (latin characters only) and can contain underscores, eg: `name`, `Char1Score`, `my_score`;  the names are case-insensitive, eg: `myscore` is equal to `MyScore`. If a variable with the provided name doesn't exist, it will be automatically created.  <br /><br />  Custom variables are stored in **local scope** by default. This means, that if you assign some variable in the course of gameplay  and player starts a new game or loads another saved game slot, where that variable wasn't assigned — the value will be lost.  If you wish to store the variable in **global scope** instead, prepend `G_` or `g_` to its name, eg: `G_FinishedMainRoute` or `g_total_score`.  <br /><br />  You can get and set custom variables in C# scripts via `CustomVariableManager` [engine service](/guide/engine-services.md).
@@ -713,7 +713,7 @@ Variable name should be alphanumeric (latin characters only) and can contain und
 
 ID | Type | Description
 --- | --- | ---
-<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | Set expression.  <br /><br />  The expression should be in the following format: `VariableName=ExpressionBody`, where `VariableName` is the name of the custom  variable to assign and `ExpressionBody` is the expression, the result of which should be assigned to the variable.  <br /><br />  Supported operators inside the expression body: +,-,*,/,%. All operators requires both operands to be numbers; you can only use assignment with strings.  <br /><br />  Supported math functions inside the expression body: everything from [.NET System.Math](https://docs.microsoft.com/en-us/dotnet/api/system.math?view=netframework-4.7.2#methods) namespace.  Additionally, `Random(int min, int max)` function is supported, returning a random integer between specified min and max values.  <br /><br />  You can use existing variable names in the expression body; to distinguish a plain text value from a variable name, wrap the value in double quotes (`"`).  In case you wish to include the double quotes in the plain text value itself, escape them **twice**, eg `\\"`.
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | Set expression.  <br /><br />  The expression should be in the following format: `VariableName=ExpressionBody`, where `VariableName` is the name of the custom  variable to assign and `ExpressionBody` is a [script expression](/guide/script-expressions.md), the result of which should be assigned to the variable.
 
 </div>
 
