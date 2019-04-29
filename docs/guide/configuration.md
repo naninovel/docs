@@ -1,9 +1,9 @@
-# Configuration
+﻿# Configuration
 The engine configuration is stored in multiple scriptable object assets located at `Assets/NaninovelData/Resources/Naninovel/Configuration` folder. They are automatically generated when opening the corresponding configuration menus in the Unity editor for the first time. 
 
 Use `Naninovel -> Configuration` or `Edit -> Project Settings -> Naninovel` to access the configuration menu.
 
-This configuration reference is valid for [Naninovel v1.4.2-beta](https://github.com/Elringus/NaninovelWeb/releases).
+This configuration reference is valid for [Naninovel v1.5.0-beta](https://github.com/Elringus/NaninovelWeb/releases).
 
 ## Audio
 
@@ -173,6 +173,7 @@ Property | Default Value | Description
 --- | --- | ---
 Skip Time Scale | 10 | Time scale to use when in skip (fast-forward) mode.
 Min Auto Play Delay | 3 | Minimum seconds to wait before executing next action while in auto play mode.
+Update Action Count On Init | True | Whether to calculate number of actions existing in all the available novel scripts on service initalization. If you don't use `TotalActionCount` property of the script player and `CalculateProgress` function in novel script expressions, disable to reduce engine initalization time.
 
 </div>
 
