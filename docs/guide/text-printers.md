@@ -81,11 +81,22 @@ You can also use `Chars SFX` list property to map multiple SFXs to specific char
 
 Naninovel supports [TextMesh Pro](https://assetstore.unity.com/packages/essentials/beta-projects/textmesh-pro-84126) via a standalone extension package, that contains a fullscreen and dialogue printers implemented with the TMPro UI text components.
 
-First, download the latest version of the package using the link below: [github.com/Elringus/NaninovelTMPro/raw/master/NaninovelTMPro.unitypackage](https://github.com/Elringus/NaninovelTMPro/raw/master/NaninovelTMPro.unitypackage).
+First, download the latest version of the package using the link below: [NaninovelTMPro.unitypackage](https://github.com/Elringus/NaninovelTMPro/raw/master/NaninovelTMPro.unitypackage).
 
 Before importing the package, make sure you have TextMesh Pro installed in your Unity project. TextMesh Pro can be installed via package manager accessible via `Window -> Package Manager` menu.
 
 Import the package and follow the above guide to add a new custom printer using one of the bundled TMPro printer prefabs (stored at `NaninovelTMPro/Prefabs` folder). 
+
+![](https://i.gyazo.com/afc905f1b1bc7e8f09133a8d593fd999.png)
+
+You can now select the added TMPro printers to route all the print actions to them using [`@printer`](/api/#printer) action in novel scripts. In case you've named the printers the same as on the illustration above:
+
+```
+; Activate dialogue TMPro printer
+@printer TMProDialogue
+; Print text using the activated printer
+Hello World!
+```
 
 When creating custom TextMesh Pro font assets, don't forget to apply `Naninovel/NovelFontTMPro` shader, otherwise the text reveal effect won't work.
 
