@@ -39,7 +39,7 @@ Fullscreen printers present text inside windows with a static size. They take mo
 
 Wide printers are very like dialogue printers, except the control panel being at the right and aligned vertically. Wide printers also support characters avatar feature.
 
-![Wide Printer](https://i.gyazo.com/f921ab4ef864aea6980a5c6be6743494.png)
+![Wide Printer](https://i.gyazo.com/83c091c08846fa1cab8764a8d4dddeda.png)
 
 ## Chat Printer
 
@@ -79,7 +79,7 @@ You can also use `Chars SFX` list property to map multiple SFXs to specific char
 
 ## TextMesh Pro
 
-Naninovel supports [TextMesh Pro](https://assetstore.unity.com/packages/essentials/beta-projects/textmesh-pro-84126) via a standalone extension package, that contains a fullscreen and dialogue printers implemented with the TMPro UI text components.
+Naninovel supports [TextMesh Pro](https://assetstore.unity.com/packages/essentials/beta-projects/textmesh-pro-84126) via a standalone extension package, that contains `Fullscreen`, `Dialogue` and `Wide` printers implemented with the TMPro UI text components.
 
 First, download the latest version of the package using the link below: [NaninovelTMPro.unitypackage](https://github.com/Elringus/NaninovelTMPro/raw/master/NaninovelTMPro.unitypackage).
 
