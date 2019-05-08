@@ -42,7 +42,7 @@ The following features are already implemented; more will be added as the engine
 * [Save-load system](/guide/save-load-system.md)
 * [Game settings](/guide/game-settings.md)
 * [CG gallery](/guide/unlockable-items.md#cg-gallery)
-* [Tips](/guide/unlockable-items.md#tips)
+* [Unlockable Tips](/guide/unlockable-items.md#tips)
 * [Cross-platform input](/guide/input-processing.md)
 * [Printer backlog](/guide/printer-backlog.md)
 * [Character-specific message colors](/guide/characters.md#character-color)
