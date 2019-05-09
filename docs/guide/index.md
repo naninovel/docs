@@ -61,3 +61,4 @@ The following features are already implemented; more will be added as the engine
 * [Custom novel actions](/guide/custom-novel-actions.md)
 * [Custom actor implementations](/guide/custom-actor-implementations.md)
 * [Google Drive integration](/guide/google-drive-integration.md)
+* [Visual Scripting](/guide/visual-scripting.md)
