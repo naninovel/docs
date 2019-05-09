@@ -1,6 +1,6 @@
 ﻿# Visual Scripting
 
-Naninovel API can be used with third-party visual scripting tools, such as [Bolt](https://ludiq.io/bolt). See the following guide for required setup and usage examples.
+Naninovel C# API can be used with third-party visual scripting tools, such as [Bolt](https://ludiq.io/bolt). See the following guide for required setup and usage examples.
 
 ## Bolt
 
