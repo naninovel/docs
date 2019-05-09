@@ -74,7 +74,8 @@ function getGuideSidebar (groupA, groupB) {
                 'script-expressions',
                 'managed-text',
                 'localization',
-                'community-modding'
+                'community-modding',
+                'visual-scripting'
             ]
         },
         {
