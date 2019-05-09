@@ -187,3 +187,23 @@ params:magnitude(0.1),phase(14),frequency(20)
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/e189ca12868d7ae4c9d8f0ca3d9dd298.mp4" type="video/mp4"></video>
 
+## Custom Transition Effects
+
+You can make custom transitions based on a dissolve mask texture. Dissolve mask is a greyscale texture, where the color defines when the pixel will transition to the target texture. For example, consider following spiral dissolve mask:
+
+![](https://i.gyazo.com/3c32e920efdf6cfb35214b6c9b617a6a.png)
+
+— the black square in the top-right corner indicates that the transition target should be displayed there at the start of the transition and the pure-white square in the center will transition in the very end.
+
+To make a custom transition, use `Custom` transition mode and specify path (relative to project "Resources" folder) to the dissolve mask texture via the `dissolve` parameter, eg:
+
+```
+@back River.Custom dissolve:Textures/Spiral
+```
+
+Check out the following video for the usage examples:
+
+<div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/HZjey6M2-PE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
