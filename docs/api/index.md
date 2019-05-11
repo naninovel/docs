@@ -20,7 +20,7 @@ time | Single | Determines for how long (in seconds) action should execute. Whil
 
 </div>
 
-This API reference is valid for [Naninovel v1.5.0-beta](https://github.com/Elringus/NaninovelWeb/releases).
+This API reference is valid for [Naninovel v1.5.1-beta](https://github.com/Elringus/NaninovelWeb/releases).
 
 ## arrange
 
@@ -33,7 +33,7 @@ Arranges specified characters by X-axis.  When no parameters provided, will exec
 
 ID | Type | Description
 --- | --- | ---
-<span class="action-param-nameless" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID">CharacterPositions</span> | LiteralMap&lt;Single&gt; | Character ID to scene local X-axis position map.  Local scene position 0 relates to the left border and 1 to the right border of the screen; 0.5 is the center.
+<span class="action-param-nameless" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID">CharacterPositions</span> | List&lt;Named&lt;Decimal&gt;&gt; | A collection of character ID to scene X-axis position (relative to the left screen border, in percents) named values.  Position 0 relates to the left border and 100 to the right border of the screen; 50 is the center.
 
 </div>
 
@@ -44,7 +44,7 @@ ID | Type | Description
 
 ; Place character with ID `Jenna` 15%, `Felix` 50% and `Mia` 85% away
 ; from the left border of the screen.
-@arrange Jenna.0.15,Felix.0.5,Mia.0.85
+@arrange Jenna.15,Felix.50,Mia.85
 ```
 
 ## back
@@ -61,15 +61,16 @@ Backgrounds are handled a bit differently from characters. Most of the time we'l
 
 ID | Type | Description
 --- | --- | ---
-<span class="action-param-nameless" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID">AppearanceAndTransition</span> | Pair&lt;String, String&gt; | Appearance to set for the modified background and name of the [transition effect](/guide/background-transition-effects.md) to use.  When transition is not provided, a cross-fade effect will be used by default.
-params | Single[] | Parameters of the transition effect.
+<span class="action-param-nameless" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID">AppearanceAndTransition</span> | Named&lt;String&gt; | Appearance to set for the modified background and name of the [transition effect](/guide/background-transition-effects.md) to use.  When transition is not provided, a cross-fade effect will be used by default.
+params | List&lt;Decimal&gt; | Parameters of the transition effect.
+dissolve | String | Path to the [custom dissolve](/guide/background-transition-effects.md#custom-transition-effects) texture (path should be relative to a `Resources` folder).  Has effect only when the transition is set to `Custom` mode.
 id | String | ID of the actor to modify.
 appearance | String | Appearance to set for the modified actor.
-pos | Single[] | Position (in scene local space) to set for the modified actor.  Scene space described as follows: x0y0 is at the bottom left and x1y1 is at the top right corner of the screen.
-scale | Single[] | Scale to set for the modified actor.
-position | Single[] | Position (in world space) to set for the modified actor.
+pos | List&lt;Decimal&gt; | Position (relative to the screen borders, in percents) to set for the modified actor.  Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the screen.
+scale | List&lt;Decimal&gt; | Scale to set for the modified actor.
+position | List&lt;Decimal&gt; | Position (in world space) to set for the modified actor.
 isVisible | Boolean | Visibility status to set for the modified actor.
-rotation | Single[] | Rotation to set for the modified actor.
+rotation | List&lt;Decimal&gt; | Rotation to set for the modified actor.
 tint | String | Tint color to set for the modified actor.  <br /><br />  Strings that begin with `#` will be parsed as hexadecimal in the following way:  `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF.  <br /><br />  Strings that do not begin with `#` will be parsed as literal colors, with the following supported:  red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta.
 easing | String | Name of the easing function to use for the modification.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  When not specified, will use a default easing function set in the actor's manager configuration settings.
 
@@ -86,12 +87,12 @@ easing | String | Name of the easing function to use for the modification.  <br 
 ; Given an `ExplosionSound` SFX and an `ExplosionSprite` background, the following
 ; script sequence will simulate two explosions appearing far and close to the camera.
 @sfx ExplosionSound volume:0.1
-@back id:ExplosionSprite scale:0.3 pos:0.55,0.6 time:0 isVisible:false
+@back id:ExplosionSprite scale:0.3 pos:55,60 time:0 isVisible:false
 @back id:ExplosionSprite
 @fx ShakeBackground params:,1
 @hide ExplosionSprite
 @sfx ExplosionSound volume:1.5
-@back id:ExplosionSprite pos:0.65 scale:1
+@back id:ExplosionSprite pos:65 scale:1
 @fx ShakeBackground params:,3
 @hide ExplosionSprite
 ```
@@ -111,7 +112,7 @@ Music tracks are looped by default.  When music track name (BgmPath) is not spec
 ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID">BgmPath</span> | String | Path to the music track to play.
-volume | Single | Volume of the music track.
+volume | Decimal | Volume of the music track.
 loop | Boolean | Whether to play the track from beginning when it finishes.
 
 </div>
@@ -139,7 +140,7 @@ Adds a line break to the text in active printer.
 
 ID | Type | Description
 --- | --- | ---
-<span class="action-param-nameless" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID">Count</span> | Int32 | Number of line breaks to add.
+<span class="action-param-nameless" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID">Count</span> | Integer | Number of line breaks to add.
 
 </div>
 
@@ -163,9 +164,9 @@ Modifies the main camera, changing offset, zoom level and rotation over time.  C
 
 ID | Type | Description
 --- | --- | ---
-offset | Vector2 | Local camera position offset in units by X and Y axis.
-rotation | Single | Local camera rotation by Z-axis in angle degrees (0.0 to 360.0 or -180.0 to 180.0).
-zoom | Single | Relatize camera zoom (orthographic size scale), in 0.0 to 1.0 range.
+offset | List&lt;Decimal&gt; | Local camera position offset in units by X and Y axis.
+rotation | Decimal | Local camera rotation by Z-axis in angle degrees (0.0 to 360.0 or -180.0 to 180.0).
+zoom | Decimal | Relatize camera zoom (orthographic size scale), in 0.0 to 1.0 range.
 easing | String | Name of the easing function to use for the modification.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  When not specified, will use a default easing function set in the camera configuration settings.
 
 </div>
@@ -199,16 +200,16 @@ Modifies a [character actor](/guide/characters.md).
 
 ID | Type | Description
 --- | --- | ---
-<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">IdAndAppearance</span> | Pair&lt;String, String&gt; | ID of the actor to modify and the appearance to set.  When appearance is not provided, will use either a `Default` (is exists) or a random one.
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">IdAndAppearance</span> | Named&lt;String&gt; | ID of the actor to modify and the appearance to set.  When appearance is not provided, will use either a `Default` (is exists) or a random one.
 look | String | Look direction of the actor; possible options: left, right, center.
 avatar | String | Name (path) of the [avatar texture](/guide/characters.md#avatar-textures) to assign for the character.  Use `none` to remove (un-assign) avatar texture from the character.
 id | String | ID of the actor to modify.
 appearance | String | Appearance to set for the modified actor.
-pos | Single[] | Position (in scene local space) to set for the modified actor.  Scene space described as follows: x0y0 is at the bottom left and x1y1 is at the top right corner of the screen.
-scale | Single[] | Scale to set for the modified actor.
-position | Single[] | Position (in world space) to set for the modified actor.
+pos | List&lt;Decimal&gt; | Position (relative to the screen borders, in percents) to set for the modified actor.  Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the screen.
+scale | List&lt;Decimal&gt; | Scale to set for the modified actor.
+position | List&lt;Decimal&gt; | Position (in world space) to set for the modified actor.
 isVisible | Boolean | Visibility status to set for the modified actor.
-rotation | Single[] | Rotation to set for the modified actor.
+rotation | List&lt;Decimal&gt; | Rotation to set for the modified actor.
 tint | String | Tint color to set for the modified actor.  <br /><br />  Strings that begin with `#` will be parsed as hexadecimal in the following way:  `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF.  <br /><br />  Strings that do not begin with `#` will be parsed as literal colors, with the following supported:  red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta.
 easing | String | Name of the easing function to use for the modification.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  When not specified, will use a default easing function set in the actor's manager configuration settings.
 
@@ -224,7 +225,7 @@ easing | String | Name of the easing function to use for the modification.  <br 
 
 ; Same as above, but also positions the character 45% away from the left border
 ; of the screen and 10% away from the bottom border; also makes him look to the left.
-@char Sora.Happy look:left pos:0.45,0.1
+@char Sora.Happy look:left pos:45,10
 ```
 
 ## choice
@@ -243,9 +244,9 @@ ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID">ChoiceSummary</span> | String | Text to show for the choice.  When the text contain spaces, wrap it in double quotes (`"`).  In case you wish to include the double quotes in the text itself, escape them.
 button | String | Path (relative to a `Resources` folder) to a button prefab representing the choice.  The prefab should have a `Naninovel.ChoiceHandlerButton` component attached to the root object.  Will use a default button when not provided.
-pos | Vector2 | Local position of the choice button inside the choice handler (if supported by the handler implementation).
+pos | List&lt;Decimal&gt; | Local position of the choice button inside the choice handler (if supported by the handler implementation).
 handler | String | ID of the choice handler to add choice for.
-goto | Pair&lt;String, String&gt; | Path to go when the choice is selected by user;  See [`@goto`](/api/#goto) action for the path format.
+goto | Named&lt;String&gt; | Path to go when the choice is selected by user;  See [`@goto`](/api/#goto) action for the path format.
 set | String | Set expression to execute when the choice is selected by user;  see [`@set`](/api/#set) action for syntax reference.
 
 </div>
@@ -305,7 +306,7 @@ If prefab has a `UnityEngine.MonoBehaviour` component attached the root object, 
 ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | String | Path to the prefab resource to destroy. Path is relative to a `./Resources` folder, eg  given a `Assets/Resources/FX/Explosion.prefab` asset, use the following path to spawn it: `FX/Explosion`.  A [`@spawn`](/api/#spawn) action with the same path is expected to be executed before.
-params | String[] | Parameters to set before destoying the prefab.  Requires the prefab to have a `Naninovel.Actions.DestroySpawned.IParameterized` component attached the root object.
+params | List&lt;String&gt; | Parameters to set before destoying the prefab.  Requires the prefab to have a `Naninovel.Actions.DestroySpawned.IParameterized` component attached the root object.
 
 </div>
 
@@ -327,7 +328,7 @@ Spawns a [special effect](/guide/special-effects.md) prefab stored in `./Resourc
 ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | String | Path to the prefab resource to spawn. Path is relative to a `./Resources` folder, eg  given a `Assets/Resources/FX/Explosion.prefab` asset, use the following path to spawn it: `FX/Explosion`.
-params | String[] | Parameters to set when spawning the prefab.  Requires the prefab to have a `Naninovel.Actions.Spawn.IParameterized` component attached the root object.
+params | List&lt;String&gt; | Parameters to set when spawning the prefab.  Requires the prefab to have a `Naninovel.Actions.Spawn.IParameterized` component attached the root object.
 
 </div>
 
@@ -351,7 +352,7 @@ Jumps the novel script playback to the provided path and saves the path to the g
 
 ID | Type | Description
 --- | --- | ---
-<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | Pair&lt;String, String&gt; | Path to jump into in the following format: `ScriptName.LabelName`.  When label name is ommited, will play provided script from the start.  When script name is ommited, will attempt to find a label in the currently played script.
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | Named&lt;String&gt; | Path to jump into in the following format: `ScriptName.LabelName`.  When label name is ommited, will play provided script from the start.  When script name is ommited, will attempt to find a label in the currently played script.
 
 </div>
 
@@ -382,7 +383,7 @@ Jumps the novel script playback to the provided path.
 
 ID | Type | Description
 --- | --- | ---
-<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | Pair&lt;String, String&gt; | Path to jump into in the following format: `ScriptName.LabelName`.  When label name is ommited, will play provided script from the start.  When script name is ommited, will attempt to find a label in the currently played script.
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | Named&lt;String&gt; | Path to jump into in the following format: `ScriptName.LabelName`.  When label name is ommited, will play provided script from the start.  When script name is ommited, will attempt to find a label in the currently played script.
 
 </div>
 
@@ -496,7 +497,7 @@ Will execute [`@goto`](/api/#goto) and/or [`@set`](/api/#set) actions when the p
 ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | A [script expression](/guide/script-expressions.md), which should return a boolean value.
-goto | Pair&lt;String, String&gt; | Path to go when expression is true; see [`@goto`](/api/#goto) action for the path format.
+goto | Named&lt;String&gt; | Path to go when expression is true; see [`@goto`](/api/#goto) action for the path format.
 set | String | Set expression to execute when the conditional expression is true; see [`@set`](/api/#set) action for syntax reference.
 
 </div>
@@ -773,7 +774,7 @@ Sound effect tracks are not looped by default.  When sfx track name (SfxPath) is
 ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID">SfxPath</span> | String | Path to the sound effect asset to play.
-volume | Single | Volume of the sound effect.
+volume | Decimal | Volume of the sound effect.
 loop | Boolean | Whether to play the sound effect in a loop.
 
 </div>
@@ -849,7 +850,7 @@ If prefab has a `UnityEngine.MonoBehaviour` component attached the root object, 
 ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | String | Path to the prefab resource to spawn. Path is relative to a `./Resources` folder, eg  given a `Assets/Resources/FX/Explosion.prefab` asset, use the following path to spawn it: `FX/Explosion`.
-params | String[] | Parameters to set when spawning the prefab.  Requires the prefab to have a `Naninovel.Actions.Spawn.IParameterized` component attached the root object.
+params | List&lt;String&gt; | Parameters to set when spawning the prefab.  Requires the prefab to have a `Naninovel.Actions.Spawn.IParameterized` component attached the root object.
 
 </div>
 
@@ -908,7 +909,7 @@ Stops [special effect](/guide/special-effects.md) started with [`@fx`](/api/#fx)
 ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | String | Path to the prefab resource to destroy. Path is relative to a `./Resources` folder, eg  given a `Assets/Resources/FX/Explosion.prefab` asset, use the following path to spawn it: `FX/Explosion`.  A [`@spawn`](/api/#spawn) action with the same path is expected to be executed before.
-params | String[] | Parameters to set before destoying the prefab.  Requires the prefab to have a `Naninovel.Actions.DestroySpawned.IParameterized` component attached the root object.
+params | List&lt;String&gt; | Parameters to set before destoying the prefab.  Requires the prefab to have a `Naninovel.Actions.DestroySpawned.IParameterized` component attached the root object.
 
 </div>
 
@@ -964,7 +965,7 @@ You can still use rich text formatting tags directly, but they will be printed  
 
 ID | Type | Description
 --- | --- | ---
-<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">TextStyles</span> | String[] | Text formatting styles to apply.  Possible options: color hex code (eg, #ffaa00), bold, italic, px text size (eg 45).
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">TextStyles</span> | List&lt;String&gt; | Text formatting styles to apply.  Possible options: color hex code (eg, #ffaa00), bold, italic, px text size (eg 45).
 
 </div>
 
@@ -1027,7 +1028,7 @@ Plays a voice clip at the provided path.
 ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">VoicePath</span> | String | Path to the voice clip to play.
-volume | Single | Volume of the playback.
+volume | Decimal | Volume of the playback.
 
 </div>
 
