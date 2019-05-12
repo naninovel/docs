@@ -7,9 +7,9 @@ Custom variables can be created, modified and used both in novel scripts via [`@
 For example, the following novel action will assign a different value to `score` custom variable, based on the choice:
 
 ```
-@choice "I'm humble, one is enough..." score=1
-@choice "Two, please." score=2
-@choice "I'll take your entire stock!" score=999
+@choice "I'm humble, one is enough..." set:score=1
+@choice "Two, please." set:score=2
+@choice "I'll take your entire stock!" set:score=999
 ```
 
 And the following one will re-route the script execution based on the value of the `score` variable:
@@ -46,9 +46,7 @@ Archibald: Greetings, {name}!
 You can inject the custom variables to any parameter values as long as the type allows. Eg, you can't assign a string (text) to an integer (number) parameter.
 
 ```
-@set PlayerName="Felix"
-@set PlayerYPosition=0.1
-@set PlayerTint="lightblue"
+@set PlayerName="Felix";PlayerYPosition=0.1;PlayerTint="lightblue"
 
 ; The following will produce an error, as `PlayerTint` is not a number.
 @char {PlayerName} pos:0.5,{PlayerTint} 
