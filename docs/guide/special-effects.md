@@ -134,8 +134,8 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 ...
 ```
 
-## GlitchCamera
-Applies a "digital glitch" post-processing effect to the main camera.
+## DigitalGlitch
+Applies a post-processing effect to the main camera simulating digital video distortion and artifacts.
 
 ### Demo
 
@@ -150,9 +150,9 @@ Intensity | Decimal | 1 | The intensity of the effect, in 0.0 to 10.0 range.
 ### Examples
 ```
 ; Apply the glitch effect with default parameters
-@fx GlitchCamera
+@fx DigitalGlitch
 ; Apply the effect over 3.33 seconds with a low intensity
-@fx GlitchCamera params:3.33,0.1
+@fx DigitalGlitch params:3.33,0.1
 ```
 
 ## Rain
@@ -185,7 +185,9 @@ Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn
 
 ## Adding Custom Effects
 
-You can add a custom effect by storing the effect prefab in `Resources` folders and using [`@spawn`](/api/#spawn) and [`@despawn`](/api/#despawn) actions to control them via novel scripts. For example, given there is a `Resources/FX/Explosion.prefab` asset stored in the project, following actions will spawn and de-spawn (destroy) the prefab on scene:
+### Standalone Effects
+
+You can add a custom standalone effect (implemented via a prefab, like the "Rain" and "Snow" built-in effects) by storing the effect prefab in `Resources` folders and using [`@spawn`](/api/#spawn) and [`@despawn`](/api/#despawn) actions to control them via novel scripts. For example, given there is a `Resources/FX/Explosion.prefab` asset stored in the project, following actions will spawn and de-spawn (destroy) the prefab on scene:
 
 ```
 @spawn FX/Explosion
@@ -193,3 +195,33 @@ You can add a custom effect by storing the effect prefab in `Resources` folders 
 ```
 
 Check the built-in effect prefabs stored at `Naninovel/Resources/Naninovel/FX` for reference implementations.
+
+### Camera Effects
+
+If you wish to apply a custom [post-processing effect](https://assetstore.unity.com/?q=post%20processing&orderBy=1) (aka image effect or camera filter, like the "Digital Glitch" built-in effect) to the Naninovel camera, [create a camera prefab](https://docs.unity3d.com/Manual/CreatingPrefabs.html), [add the required effect components](https://docs.unity3d.com/Manual/UsingComponents.html) to the camera's object and assign the prefab to `Custom Camera Prefab` field in the camera configuration menu (Naninovel -> Configuration -> Camera).
+
+![](https://i.gyazo.com/6024aac1d2665dd96915758cd5c09fde.png)
+
+You can toggle (enable if disabled and vice-versa) the added components via novel scripts using `toggle` parameter of the [`@camera`](/api/#camera) action. For example, let's assume you've added a "Bloom Image Effect" component to the camera object. First, find out what is the type name of the component; it's usually specified in the `Script` field of the component.
+
+![](https://i.gyazo.com/73b7eabfe97ed84796cbe715b7dafc14.png)
+
+In our case the component's type name is `BloomImageEffect`. Use the type name to toggle this component at runtime like follows:
+
+```
+@camera toggle:BloomImageEffect
+```
+
+You can toggle multiple components at once by delimiting the type names with commas:
+
+```
+@camera toggle:BloomImageEffect,Sepia,CameraNoise
+```
+
+The state of the currently enabled (and disabled) custom camera components will be automatically saved and restored on game save-loading operations.
+
+Check out the following video for example on adding a custom camera filter effect.
+
+<div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/IbT6MTecO-k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
