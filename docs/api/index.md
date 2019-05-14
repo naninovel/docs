@@ -167,6 +167,7 @@ ID | Type | Description
 offset | List&lt;Decimal&gt; | Local camera position offset in units by X and Y axis.
 rotation | Decimal | Local camera rotation by Z-axis in angle degrees (0.0 to 360.0 or -180.0 to 180.0).
 zoom | Decimal | Relatize camera zoom (orthographic size scale), in 0.0 to 1.0 range.
+toggle | List&lt;String&gt; | Names of the components to toggle (enable if disabled and vice-versa). The components should be attached to the same gameobject as the camera.  This can be used to toggle [custom post-processing effects](/guide/special-effects.md#camera-effects).
 easing | String | Name of the easing function to use for the modification.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  When not specified, will use a default easing function set in the camera configuration settings.
 
 </div>
@@ -187,6 +188,9 @@ easing | String | Name of the easing function to use for the modification.  <br 
 
 ; Instantly reset camera to the default state
 @camera offset:0,0 zoom:0 rotation:0 time:0
+
+; Toggle `FancyCameraFilter` and `Bloom` components attached to the camera
+@camera toggle:FancyCameraFilter,Bloom
 ```
 
 ## char
@@ -706,7 +710,7 @@ Automatically save the game to a quick save slot.
 Assigns result of a [script expression](/guide/script-expressions.md) to a [custom variable](/guide/custom-variables.md).
 
 #### Remarks
-Variable name should be alphanumeric (latin characters only) and can contain underscores, eg: `name`, `Char1Score`, `my_score`;  the names are case-insensitive, eg: `myscore` is equal to `MyScore`. If a variable with the provided name doesn't exist, it will be automatically created.  <br /><br />  Custom variables are stored in **local scope** by default. This means, that if you assign some variable in the course of gameplay  and player starts a new game or loads another saved game slot, where that variable wasn't assigned — the value will be lost.  If you wish to store the variable in **global scope** instead, prepend `G_` or `g_` to its name, eg: `G_FinishedMainRoute` or `g_total_score`.  <br /><br />  You can get and set custom variables in C# scripts via `CustomVariableManager` [engine service](/guide/engine-services.md).
+Variable name should be alphanumeric (latin characters only) and can contain underscores, eg: `name`, `Char1Score`, `my_score`;  the names are case-insensitive, eg: `myscore` is equal to `MyScore`. If a variable with the provided name doesn't exist, it will be automatically created.  <br /><br />  It's possible to define multiple set expressions in one line by separating them with `;`. The expressions will be executed in sequence by the order of declaratation.  <br /><br />  Custom variables are stored in **local scope** by default. This means, that if you assign some variable in the course of gameplay  and player starts a new game or loads another saved game slot, where that variable wasn't assigned — the value will be lost.  If you wish to store the variable in **global scope** instead, prepend `G_` or `g_` to its name, eg: `G_FinishedMainRoute` or `g_total_score`.  <br /><br />  You can get and set custom variables in C# scripts via `CustomVariableManager` [engine service](/guide/engine-services.md).
 
 #### Parameters
 
@@ -743,6 +747,9 @@ ID | Type | Description
 @set bar="Hello World!"
 @set foo=bar
 
+; Defining multiple set expressions in one line (the result will be the same as above)
+@set bar="Hello World!";foo=bar
+
 ; It's possible to inject variables to novel script action parameters
 @set scale=0
 # EnlargeLoop
@@ -751,8 +758,7 @@ ID | Type | Description
 @goto .EnlargeLoop if:scale<1
 
 ; ..and generic text lines
-@set name="Dr. Stein"
-@set drink="Dr. Pepper"
+@set name="Dr. Stein";drink="Dr. Pepper"
 {name}: My favourite drink is {drink}!
 
 ; When using double quotes inside the expression itself, don't forget to double-escape them
@@ -856,7 +862,7 @@ params | List&lt;String&gt; | Parameters to set when spawning the prefab.  Requi
 
 #### Example
 ```
-; Given there is a prefab stored in `Assets/Resources/Rain.prefab`, spawn it
+; Given the project contains an `Assets/Resources/Rain.prefab` asset, spawn it
 @spawn Rain
 ```
 
