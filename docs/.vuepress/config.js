@@ -48,6 +48,7 @@ function getGuideSidebar (groupA, groupB) {
                 '',
                 'compatibility',
                 'getting-started',
+                'faq',
                 'configuration',
                 'novel-scripts',
                 'text-printers',
