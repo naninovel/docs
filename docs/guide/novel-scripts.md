@@ -64,14 +64,14 @@ This will hide the text printer right after characters will begin to fade-out. I
 
 Depending on the action parameter, it could expect one of the following value types: 
 
-Type | Examples
+Type | Description
 --- | ---
-String | `LoremIpsum`, `"Lorem ipsum"`
-Int32 | `1`, `150`, `-25`
-Single | `5`, `12.8`, `-0.005`
-Boolean | `true`, `false`
-[] | Depends on array type, eg for String[] `foo,bar,lorem,ipsum`, for Single[]: `12,-8,0.105,2`
-Pair<> | Depends on pair types, eg for Pair<String,Single> `foo.8`, `bar.-2.01`, `lorem.-15.75`, `ipsum.5`
+String | A simple string value, eg: `LoremIpsum`. Don't forget to wrap the string in double quotes in case it contain spaces, eg: `"Lorem ipsum dolor sit amet."`.
+Integer | A number which is not a fraction; a whole number, eg: `1`, `150`, `-25`.
+Decimal | A decimal number with fraction delimited by a dot, eg: `1.0`, `12.08`, `-0.005`.
+Boolean | Can have one of two possible values: `true` or `false` (case-insensitive).
+Named<> | A name string associated with a value of one of the above types. The name part is delimited by a dot. Eg for *Named&lt;Integer&gt;*: `foo.8`, `bar.-20`.
+List<>| A comma-separated list of values of one of the above types. Eg for *List&lt;String&gt;*: `foo,bar,"Lorem ipsum."`, for *List&lt;Decimal&gt;*: `12,-8,0.105,2`
 
 ### Nameless Parameters
 
