@@ -46,9 +46,7 @@ Archibald: Greetings, {name}!
 You can inject the custom variables to any parameter values as long as the type allows. Eg, you can't assign a string (text) to an integer (number) parameter.
 
 ```
-@set PlayerName="Felix"
-@set PlayerYPosition=0.1
-@set PlayerTint="lightblue"
+@set PlayerName="Felix";PlayerYPosition=0.1;PlayerTint="lightblue"
 
 ; The following will produce an error, as `PlayerTint` is not a number.
 @char {PlayerName} pos:0.5,{PlayerTint} 

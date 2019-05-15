@@ -24,9 +24,10 @@ TextManager | Handles [managed text](/guide/managed-text.md) feature.
 MoviePlayer | Handles [movie](/guide/movies.md) playing.
 NovelScriptManager | Manages [novel script](/guide/novel-scripts.md) resources.
 NovelScriptPlayer | Handles [novel scripts](/guide/novel-scripts.md) execution.
-OrthoCamera | Handles scene rendering in ortho mode.
+CameraManager | Manages cameras and other systems required for scene rendering.
 ResourceProviderManager | Manages `IResourceProvider` objects.
 StateManager | Handles `IEngineService`-related persistent data de-/serialization; provides API to [save and load](/guide/save-load-system.md) game state.
 UIManager | Manages `IManagedUI` objects and handles [UI customization](/guide/ui-customization.md) feature.
-CustomVariableManager | Allows getting and settings custom state variables. 
+CustomVariableManager | Provides access and allows modifying [custom variables](/guide/custom-variables.md). 
+UnlockableManager | Manages [unlockable items](/guide/unlockable-items.md) (CG and movie gallery items, tips, etc).
 
