@@ -160,7 +160,7 @@ Spawns a particle system simulating a rain.
 
 ### Demo
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/1dc818d5e00ac48164fc6411d963d968.mp4" type="video/mp4"></video>
+<video class="video" loop autoplay><source src="https://i.gyazo.com/74af9eec30f6517ea5b8453a9c86d33c.mp4" type="video/mp4"></video>
 
 ### Start Parameters
 Name | Type | Default | Description
@@ -181,6 +181,32 @@ Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn
 @fx Rain params:1500,10
 ; Stop the rain over 30 seconds
 @stopfx Rain params:30
+```
+
+## Snow
+Spawns a particle system simulating a snow.
+
+### Demo
+
+<video class="video" loop autoplay><source src="https://i.gyazo.com/25a052444c561e40c8318272f51edf47.mp4" type="video/mp4"></video>
+
+### Start Parameters
+Name | Type | Default | Description
+--- | --- | --- | ---
+Intensity | Decimal | 100 | The intensity of the snow (particles spawn rate per second).
+Fade-in time | Decimal | 5 | The particle system will gradually grow the spawn rate from 0 to the target level over the specified time, in seconds.
+
+### Stop Parameters
+Name | Type | Default | Description
+--- | --- | --- | ---
+Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn rate from the target level to 0 over the specified time, in seconds.
+
+### Examples
+```
+; Start intensive snow over 10 seconds
+@fx Snow params:300,10
+; Stop the snow over 30 seconds
+@stopfx Snow params:30
 ```
 
 ## Adding Custom Effects
