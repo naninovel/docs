@@ -20,7 +20,7 @@ time | Single | Determines for how long (in seconds) action should execute. Whil
 
 </div>
 
-This API reference is valid for [Naninovel v1.5.1-beta](https://github.com/Elringus/NaninovelWeb/releases).
+This API reference is valid for [Naninovel v1.6.0-beta](https://github.com/Elringus/NaninovelWeb/releases).
 
 ## arrange
 
