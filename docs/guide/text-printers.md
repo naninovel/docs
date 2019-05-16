@@ -37,13 +37,13 @@ Fullscreen printers present text inside windows with a static size. They take mo
 
 ## Wide Printer
 
-Wide printers are very like dialogue printers, except the control panel being at the right and aligned vertically. Wide printers also support characters avatar feature.
+Wide printers are very like dialogue printers, except for some changes in the panel layout tailored for wide displays. Wide printers also support [character avatars](/guide/characters.md#avatar-textures) feature.
 
 ![Wide Printer](https://i.gyazo.com/83c091c08846fa1cab8764a8d4dddeda.png)
 
 ## Chat Printer
 
-Chat printer presents text inside message bubbles framed in a window with vertically-scrollable content, resembling a mobile messager app. Instead of revealing the printed message character by character, it shows "author is typing" animation for the duration of the reveal effect and then instantly shows the printed message. Chat printer supports characters avatar feature.
+Chat printer presents text inside message bubbles framed in a window with vertically-scrollable content, resembling a mobile messager app. Instead of revealing the printed message character by character, it shows "author is typing" animation for the duration of the reveal effect and then instantly shows the printed message. Chat printer supports [character avatars](/guide/characters.md#avatar-textures) feature.
 
 ![Chat Printer](https://i.gyazo.com/3c04aecabe7f754ffc9ce5452eeba270.png)
 
