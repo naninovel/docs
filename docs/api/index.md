@@ -247,7 +247,7 @@ When `goto` parameter is not specified, will continue script execution from the 
 ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID">ChoiceSummary</span> | String | Text to show for the choice.  When the text contain spaces, wrap it in double quotes (`"`).  In case you wish to include the double quotes in the text itself, escape them.
-button | String | Path (relative to a `Resources` folder) to a button prefab representing the choice.  The prefab should have a `Naninovel.ChoiceHandlerButton` component attached to the root object.  Will use a default button when not provided.
+button | String | Path (relative to a `Resources` folder) to a [button prefab](/guide/choices.md#choice-button) representing the choice.  The prefab should have a `ChoiceHandlerButton` component attached to the root object.  Will use a default button when not provided.
 pos | List&lt;Decimal&gt; | Local position of the choice button inside the choice handler (if supported by the handler implementation).
 handler | String | ID of the choice handler to add choice for.
 goto | Named&lt;String&gt; | Path to go when the choice is selected by user;  See [`@goto`](/api/#goto) action for the path format.
@@ -265,7 +265,7 @@ Continue executing this script or load another?[skipInput]
 @stop
 
 ; Following example shows how to make an interactive map via `@choice` actions.
-; For this example, we assume, that inside a `Resources/MapButtons` folder you've stored prefabs with `Naninovel.ChoiceHandlerButton` component attached to their root objects.
+; For this example, we assume, that inside a `Resources/MapButtons` folder you've stored prefabs with `ChoiceHandlerButton` component attached to their root objects.
 ; Please note, that making a custom choice handler is a more appropriate solution for this, unless you can't (or don't want to) mess with C# scripting.
 # Map
 @back Map
