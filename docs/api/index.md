@@ -348,7 +348,7 @@ params | List&lt;String&gt; | Parameters to set when spawning the prefab.  Requi
 ## gosub
 
 #### Summary
-Jumps the novel script playback to the provided path and saves the path to the global state;  [`@return`](/api/#return) actions use this info to redirect to action after the last invoked gosub action.  Useful for invoking a repeating set of actions multiple times.
+Jumps the novel script playback to the provided path and saves the path to the global state;  [`@return`](/api/#return) actions use this info to redirect to action after the last invoked gosub action.  Resembles a function (subroutine) in a programming language, allowing to reuse a piece of novel script.  Useful for invoking a repeating set of actions multiple times.
 
 #### Parameters
 
@@ -373,6 +373,21 @@ ID | Type | Description
 @sfx Fireworks
 @bgm Fanfares
 You are victorious!
+@return
+
+; Another example with some branching inside the subroutine.
+@set time=10
+; Here we get one result
+@gosub .Room
+...
+@set time=3
+; And here we get another
+@gosub .Room
+...
+
+# Room
+@print "It's too early, I should visit this place when it's dark." if:time<21&&time>6
+@print "I can sense an ominous presence here!" if:time>21&&time<6
 @return
 ```
 
