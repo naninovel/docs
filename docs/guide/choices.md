@@ -42,9 +42,9 @@ The [`@choice`](/api/#choice) action accepts an optional `button` parameter spec
 ```
 @choice handler:ButtonArea button:MapButtons/Home pos:-300,-300 goto:.HomeScene
 ```
-— here we use a choice handler supporting positioning to represent a point of interest on an improvised map, where the `button` parameter is pointing to a prefab consisting of a [button](https://docs.unity3d.com/Manual/script-Button.html) wrapped over an image. The prefab is stored at `Assets/Resources/MapButtons/Home.prefab`.
+— here we use a choice handler supporting positioning to represent a point of interest on an improvised map, where the `button` parameter is pointing to a prefab consisting of a button wrapped over an image. The prefab is stored at `Assets/Resources/MapButtons/Home.prefab`.
 
-The choice button prefab should have a `ChoiceHandlerButton` component attached to the root object; check out `Naninovel/Prefabs/ChoiceHandlers/ChoiceHandlerButton.prefab` default choice handler button prefab for the reference implementation or just duplicate and build your own using it as a foundation.
+The choice button prefab should have a [Button](https://docs.unity3d.com/Manual/script-Button.html) and `ChoiceHandlerButton` components attached to the root object; check out `Naninovel/Prefabs/ChoiceHandlers/ChoiceHandlerButton.prefab` default choice handler button prefab for the reference implementation or just duplicate and build your own using it as a foundation.
 
 ![](https://i.gyazo.com/c2bd4abaa0275f7cdd37c56fd2ff0dec.png)
 
