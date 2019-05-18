@@ -31,12 +31,27 @@ goto:.Epilogue
 
 When `goto` parameter is not specified, current script will continue executing from the next line.
 
-Choice handler actors are used to process the `@choice` actions. You can add, edit and remove choice handlers using the choice manager accessible via `Naninovel -> Resources -> Choice Handlers` context menu.
+Choice handler actors are used to process the [`@choice`](/api/#choice) actions. You can add, edit and remove choice handlers using the choice manager accessible via `Naninovel -> Resources -> Choice Handlers` context menu.
 
 Choice handlers behavior can be configured using `Naninovel -> Configuration -> Choice Handlers` context menu; for available options see [configuration guide](/guide/configuration.md#choice-handlers).
 
+## Choice Button
+
+The [`@choice`](/api/#choice) action accepts an optional `button` parameter specifying a path (relative to a "Resources" folder) to custom prefab representing the choice option object. 
+
+```
+@choice handler:ButtonArea button:MapButtons/Home pos:-300,-300 goto:.HomeScene
+```
+— here we use a choice handler supporting positioning to represent a point of interest on an improvised map, where the `button` parameter is pointing to a prefab consisting of a [button](https://docs.unity3d.com/Manual/script-Button.html) wrapped over an image. The prefab is stored at `Assets/Resources/MapButtons/Home.prefab`.
+
+The choice button prefab should have a `ChoiceHandlerButton` component attached to the root object; check out `Naninovel/Prefabs/ChoiceHandlers/ChoiceHandlerButton.prefab` default choice handler button prefab for the reference implementation or just duplicate and build your own using it as a foundation.
+
+![](https://i.gyazo.com/c2bd4abaa0275f7cdd37c56fd2ff0dec.png)
+
+When the `button` parameter is not specified a default button prefab will be used.
+
 ## ButtonList Choice Handler
-Button list handler is used by default. It stores the choice buttons inside a horizontal layout panel and ignores the `pos` parameter of the `@choice` action.
+Button list handler is used by default. It stores the choice buttons inside a horizontal layout panel and ignores the `pos` parameter of the [`@choice`](/api/#choice) action.
 
 ## ButtonArea Choice Handler
 In contrast to button list, button area doesn't enforce any specific layout and allows manually setting positions of the added choice buttons via `pos` parameter. For example, here is one way to make an interactive map with choice actions and button area handler:
