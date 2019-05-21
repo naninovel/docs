@@ -177,6 +177,55 @@ However, you'll probably mostly use this feature to reference associated charact
 f: I'm as happy as a [style $red]clam[style default]!
 ```
 
+## Conditional Execution
+
+While the script are executed in a linear fashion by default, you can introduce branching using `if` parameters supported by all the actions.
+
+```
+; If `level` value is a number and is greater than 9000, add the choice.
+@choice "It's over 9000!" if:level>9000
+
+; If `dead` variable is a bool and equal to `false`, execute the print action.
+@print text:"I'm still alive." if:!dead
+
+; If `glitch` is a bool and equals `true` or random function in 1 to 10 range 
+; returns 5 or more, execute `@fx` action.
+@fx GlitchCamera if:"glitch || Random(1, 10) >= 5"
+
+; If `score` value is in 7 to 13 range or `lucky` variable is a bool and equals 
+; `true`, load `LuckyEnd` script.
+@goto LuckyEnd if:"(score >= 7 && score <= 13) || lucky"
+
+; You can also use conditionals in the inlined actions.
+Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
+
+; When using double quotes inside the expression itself, 
+; don't forget to double-escape them.
+@print {remark} if:remark=="Saying \\"Stop the car\\" was a mistake."
+```
+
+It's also possible to specify multi-line conditional blocks with [`@if`](/api/#if), [`@else`](/api/#else), [`@elseif`](/api/#elseif) and [`@endif`](/api/#endif) actions.
+
+```
+@if score>10
+	Good job, you've passed the test!
+	@bgm Victory
+	@fx Fireworks
+@elseif attempts>100
+	You're hopeless... Need help?
+	@choice "Yeah, please!" goto:.GetHelp
+	@choice "I'll keep trying." goto:.BeginTest
+	@stop
+@else
+	You've failed. Try again!
+	@goto .BeginTest
+@endif
+```
+
+Note that tabs here are completely optional and used just for better readability.
+
+For more information on the conditional expression format and available operators see the [script expressions](/guide/script-expressions.md) guide.
+
 ## Novel Scripts Debug
 
 When working with large novel scripts, it could become tedious to always play them from start in order to check how things work in particular parts of the script. 

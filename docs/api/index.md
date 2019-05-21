@@ -320,6 +320,31 @@ params | List&lt;String&gt; | Parameters to set before destoying the prefab.  Re
 @despawn Rainbow
 ```
 
+## else
+
+#### Summary
+Marks a branch of a conditional execution block,  which is always executed in case conditions of the opening [`@if`](/api/#if) and all the preceding [`@elseif`](/api/#elseif) (if any) actions are not met.  For usage examples see [conditional execution](/guide/novel-scripts.md#conditional-execution) guide.
+
+## elseIf
+
+#### Summary
+Marks a branch of a conditional execution block,  which is executed in case own condition is met (expression is evaluated to be true), while conditions of the opening [`@if`](/api/#if)  and all the preceding [`@elseif`](/api/#elseif) (if any) actions are not met.  For usage examples see [conditional execution](/guide/novel-scripts.md#conditional-execution) guide.
+
+#### Parameters
+
+<div class="config-table">
+
+ID | Type | Description
+--- | --- | ---
+<span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | A [script expression](/guide/script-expressions.md), which should return a boolean value.
+
+</div>
+
+## endIf
+
+#### Summary
+Closes an [`@if`](/api/#if) conditional execution block.  For usage examples see [conditional execution](/guide/novel-scripts.md#conditional-execution) guide.
+
 ## fx
 
 #### Summary
@@ -507,7 +532,7 @@ Lorem ipsum dolor sit amet.[i] Consectetur adipiscing elit.
 ## if
 
 #### Summary
-Will execute [`@goto`](/api/#goto) and/or [`@set`](/api/#set) actions when the provided  [script expression](/guide/script-expressions.md) is evaluated to `true` boolean value.
+Marks the beginning of a conditional execution block.  Should always be closed with an [`@endif`](/api/#endif) action.  For usage examples see [conditional execution](/guide/novel-scripts.md#conditional-execution) guide.
 
 #### Parameters
 
@@ -516,47 +541,8 @@ Will execute [`@goto`](/api/#goto) and/or [`@set`](/api/#set) actions when the p
 ID | Type | Description
 --- | --- | ---
 <span class="action-param-nameless action-param-required" title="Nameless parameter: value should be provided after the action identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | A [script expression](/guide/script-expressions.md), which should return a boolean value.
-goto | Named&lt;String&gt; | Path to go when expression is true; see [`@goto`](/api/#goto) action for the path format.
-set | String | Set expression to execute when the conditional expression is true; see [`@set`](/api/#set) action for syntax reference.
 
 </div>
-
-#### Example
-```
-; Given a `score` variable is set (eg, via `@set` action) to an integer value:
-
-; Play a `fanfare` SFX for `score` times.
-@set counter=1
-# FanfareLoop
-@sfx Fanfare
-@if counter<score set:counter=counter+1 goto:.FanfareLoop
-
-; Set variable `mood` to `Great` if `score` is equal to or greater than 5,
-; to `Fine` if 4 or greater, and to `Average` in the other cases.
-@if score>=5 set:mood="Great"
-@if "score >= 4 && score < 5" set:mood="Fine"
-@if score<4 set:mood="Average"
-
-; You can also use `if` parameter on other actions to conditionally execute them:
-
-; If `level` value is a number and is greater than 9000, add the choice
-@choice "It's over 9000!" if:level>9000
-
-; If `dead` variable is a bool and equal to `false`, execute the print action
-@print text:"I'm still alive." if:!dead
-
-; If `glitch` is a bool and equals `true` or random function in 1 to 10 range returns 5 or more, execute `@fx` action
-@fx GlitchCamera if:"glitch || Random(1, 10) >= 5"
-
-; If `score` value is in 7 to 13 range or `lucky` variable is a bool and equals `true`, load `LuckyEnd` script
-@goto LuckyEnd if:"(score >= 7 && score <= 13) || lucky"
-
-; You can also use conditionals in the inlined actions
-Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
-
-; When using double quotes inside the expression itself, don't forget to double-escape them
-@print {remark} if:remark=="Saying \\"Stop the car\\" was a mistake."
-```
 
 ## input
 
