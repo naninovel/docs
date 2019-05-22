@@ -13,7 +13,7 @@ Property | Default Value | Description
 --- | --- | ---
 Audio Loader | Audio- (Project, Local) | Configuration of the resource loader used with audio (BGM and SFX) resources.
 Voice Loader | Voice- (Project, Local) | Configuration of the resource loader used with voice resources.
-Enable Auto Voicing | False | When enabled, each `PrintText` action will attempt to play voice clip at `VoiceResourcesPrefix/ScriptName/LineIndex.ActionIndex`.
+Enable Auto Voicing | False | When enabled, each `PrintText` command will attempt to play voice clip at `VoiceResourcesPrefix/ScriptName/LineIndex.ActionIndex`.
 Custom Audio Mixer | Null | Audio mixer to control audio groups. When not provided, will use a default one.
 Master Volume Handle Name | Master Volume | Name of the mixer's handle to control master volume.
 Bgm Group Path | Master/BGM | Path of the mixer's group to control master volume.
@@ -173,8 +173,8 @@ Google Drive Caching Policy | Smart | Cache policy to use when downloading resou
 Property | Default Value | Description
 --- | --- | ---
 Skip Time Scale | 10 | Time scale to use when in skip (fast-forward) mode.
-Min Auto Play Delay | 3 | Minimum seconds to wait before executing next action while in auto play mode.
-Update Action Count On Init | True | Whether to calculate number of actions existing in all the available novel scripts on service initalization. If you don't use `TotalActionCount` property of the script player and `CalculateProgress` function in novel script expressions, disable to reduce engine initalization time.
+Min Auto Play Delay | 3 | Minimum seconds to wait before executing next command while in auto play mode.
+Update Action Count On Init | True | Whether to calculate number of commands existing in all the available naninovel scripts on service initalization. If you don't use `TotalActionCount` property of the script player and `CalculateProgress` function in naninovel script expressions, disable to reduce engine initalization time.
 
 </div>
 
@@ -184,14 +184,14 @@ Update Action Count On Init | True | Whether to calculate number of actions exis
 
 Property | Default Value | Description
 --- | --- | ---
-Loader | Scripts- (Project, Local) | Configuration of the resource loader used with novel script resources.
+Loader | Scripts- (Project, Local) | Configuration of the resource loader used with naninovel script resources.
 Initialization Script | Null | Name of the script to play right after the engine initialization.
 Title Script | Null | Name of the script to play when showing the Title UI. Can be used to setup the title screen scene (backgound, music, etc).
 Start Game Script | Null | Name of the script to play when starting a new game. Will use first available when not provided.
-Enable Community Modding | False | Whether to allow adding external novel scripts to the build.
-External Loader | Scripts- (Local) | Configuration of the resource loader used with external novel script resources.
-Enable Navigator | True | Whether to initializte script navigator to browse available novel scripts.
-Show Navigator On Init | False | Whether to show novel script navigator when script manager is initialized.
+Enable Community Modding | False | Whether to allow adding external naninovel scripts to the build.
+External Loader | Scripts- (Local) | Configuration of the resource loader used with external naninovel script resources.
+Enable Navigator | True | Whether to initializte script navigator to browse available naninovel scripts.
+Show Navigator On Init | False | Whether to show naninovel script navigator when script manager is initialized.
 Navigator Sort Order | 900 | UI sort order of the script navigator.
 
 </div>

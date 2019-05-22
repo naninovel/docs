@@ -1,6 +1,6 @@
 ﻿# Background Transition Effects
 
-When changing background appearance with [`@back`](/api/#back) action, you can additionally specify which transition effect to use. For example, following action will transition to "River" background using "DropFade" transition effect:
+When changing background appearance with [`@back`](/api/#back) command, you can additionally specify which transition effect to use. For example, following command will transition to "River" background using "DropFade" transition effect:
 
 ```
 @back River.DropFade
@@ -16,7 +16,7 @@ You can also specify duration of the transition (in seconds) with the `time` par
 
 The above statement will transition to "River" background using "DropFade" transition over 1.5 seconds. Default `time` for all transitions is 0.35 seconds.
 
-In case you wish to skip to the next action immediately after executing the transition (and not wait for the duration of the effect), you can set `wait` parameter to `false`. E.g.:
+In case you wish to skip to the next command immediately after executing the transition (and not wait for the duration of the effect), you can set `wait` parameter to `false`. E.g.:
 
 ```
 @back River.Ripple time:1.5 wait:false

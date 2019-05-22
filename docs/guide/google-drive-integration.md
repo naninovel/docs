@@ -2,7 +2,7 @@
 
 Implemented via an open source (MIT license) third-party package [UnityGoogleDrive](https://github.com/Elringus/UnityGoogleDrive) the feature allows using [Google Drive](https://www.google.com/drive) as the provider for the following resources: 
 
-* novel scripts and managed text (via Google Documents)
+* naninovel scripts and managed text (via Google Documents)
 * characters and backgrounds (sprite implementation only)
 * BGM, SFX and voice
 

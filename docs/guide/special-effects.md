@@ -1,6 +1,6 @@
 ﻿# Special Effects
 
-Special effects are activated via [`@fx`](/api/#fx) novel action followed by the effect name. E.g.:
+Special effects are activated via [`@fx`](/api/#fx) command followed by the effect name. E.g.:
 
 ```
 @fx ShakeBackground
@@ -21,7 +21,7 @@ It's possible to selectively specify a subset of the parameters, leaving the res
 ```
 — notice the first two parameters (printer ID and shake count) are skipped and will have their default values, but the third parameter (shake duration) is set to 0.5 seconds.
 
-Some effects are persistent and should be manually stopped with [`@stopfx`](/api/#stopfx) action. E.g.:
+Some effects are persistent and should be manually stopped with [`@stopfx`](/api/#stopfx) command. E.g.:
 
 ```
 ; Start the rain
@@ -30,13 +30,13 @@ Some effects are persistent and should be manually stopped with [`@stopfx`](/api
 @stopfx Rain
 ```
 
-The [`@stopfx`](/api/#stopfx) actions of some effects can also receive parameters (eg, to control the fade-out duration), eg:
+The [`@stopfx`](/api/#stopfx) commands of some effects can also receive parameters (eg, to control the fade-out duration), eg:
 
 ```
 ; Stops the rain gradually over 10 seconds
 @stopfx Rain params:10
 ```
-When no `params` is specified, default parameters will be used. You can find both "start" (accepted by the [`@fx`](/api/#fx) action) and "stop" (accepted by the [`@stopfx`](/api/#stopfx) action) parameters available for each effect and their default values in the docs below.
+When no `params` is specified, default parameters will be used. You can find both "start" (accepted by the [`@fx`](/api/#fx) command) and "stop" (accepted by the [`@stopfx`](/api/#stopfx) command) parameters available for each effect and their default values in the docs below.
 
 ## ShakePrinter
 Shakes printer with the specified ID or the currently active one.
@@ -213,7 +213,7 @@ Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn
 
 ### Standalone Effects
 
-You can add a custom standalone effect (implemented via a prefab, like the "Rain" and "Snow" built-in effects) by storing the effect prefab in `Resources` folders and using [`@spawn`](/api/#spawn) and [`@despawn`](/api/#despawn) actions to control them via novel scripts. For example, given there is a `Resources/FX/Explosion.prefab` asset stored in the project, following actions will spawn and de-spawn (destroy) the prefab on scene:
+You can add a custom standalone effect (implemented via a prefab, like the "Rain" and "Snow" built-in effects) by storing the effect prefab in `Resources` folders and using [`@spawn`](/api/#spawn) and [`@despawn`](/api/#despawn) commands to control them via naninovel scripts. For example, given there is a `Resources/FX/Explosion.prefab` asset stored in the project, following commands will spawn and de-spawn (destroy) the prefab on scene:
 
 ```
 @spawn FX/Explosion
@@ -228,7 +228,7 @@ If you wish to apply a custom [post-processing effect](https://assetstore.unity.
 
 ![](https://i.gyazo.com/6024aac1d2665dd96915758cd5c09fde.png)
 
-You can toggle (enable if disabled and vice-versa) the added components via novel scripts using `toggle` parameter of the [`@camera`](/api/#camera) action. For example, let's assume you've added a "Bloom Image Effect" component to the camera object. First, find out what is the type name of the component; it's usually specified in the `Script` field of the component.
+You can toggle (enable if disabled and vice-versa) the added components via naninovel scripts using `toggle` parameter of the [`@camera`](/api/#camera) command. For example, let's assume you've added a "Bloom Image Effect" component to the camera object. First, find out what is the type name of the component; it's usually specified in the `Script` field of the component.
 
 ![](https://i.gyazo.com/73b7eabfe97ed84796cbe715b7dafc14.png)
 

@@ -10,13 +10,13 @@ Inside this folder store resources that will be used instead of the original one
 
 For example, if you wish to replace a background stored at `/Resources/Backgrounds/City` with another one when a `ja-JP` locale is selected, place the localized version at the following path: `/Resources/Localization/ja-JP/Backgrounds/City`.
 
-## Novel Scripts Localization
+## Scripts Localization
 
-The resources localization scheme described above works with all the resource types, except novel scripts and managed text documents. For these type of resources, use localization tool accessible via `Naninovel -> Tools -> Localization`:
+The resources localization scheme described above works with all the resource types, except naninovel scripts and managed text documents. For these type of resources, use localization tool accessible via `Naninovel -> Tools -> Localization`:
 
 ![Localization Tool](https://i.gyazo.com/cb521d2645830988563a7907f05170c8.png)
 
-Specify source of the original resources (current Unity project, local file system or Google Drive), path prefixes for the novel scripts and managed text resources ("Scripts" and "Text" by default) and select path to the locale folder where to store the generated localization resources. Make sure the you've selected an actual locale folder (e.g. `/Resources/Localization/ja-JP`) and not just the localization resources root. 
+Specify source of the original resources (current Unity project, local file system or Google Drive), path prefixes for the naninovel scripts and managed text resources ("Scripts" and "Text" by default) and select path to the locale folder where to store the generated localization resources. Make sure the you've selected an actual locale folder (e.g. `/Resources/Localization/ja-JP`) and not just the localization resources root. 
 
 Enabling "Try update" property will attempt to preserve any currently existing localization resources; when disabled all the existing localization resources at the specified path will be lost.
 
@@ -32,7 +32,7 @@ Script localization documents consists of statements in the following format:
 Translation text
 ```
 
-`# ID` line is the unique identifier of the original statement in the novel script, you shouldn't modify those.
+`# ID` line is the unique identifier of the original statement in the naninovel script, you shouldn't modify those.
 
 `; Original text` line is the original text which you're expected to translate. It's just a comment, so changing this line won't have any effect; it's provided for convenience.
 
@@ -46,7 +46,7 @@ Here is an example translation of a generic text line:
 Юко: Все известные астероиды имеют прямое движение, при этом весеннее равноденствие отражает гейзер. Уравнение времени однократно. Большая Медведица, оценивая блеск освещенного металлического шарика, пространственно притягивает первоначальный метеорный дождь.
 ```
 
-In case the translation takes too much space, you can break it into separate actions:
+In case the translation takes too much space, you can break it into separate commands:
 
 ```
 # f63f03ea
@@ -55,7 +55,7 @@ In case the translation takes too much space, you can break it into separate act
 Юко: Большая Медведица, оценивая блеск освещенного металлического шарика, пространственно притягивает первоначальный метеорный дождь.
 ```
 
-You're expected to include any inlined actions present in the original statement to the translation:
+You're expected to include any inlined commands present in the original statement to the translation:
 
 ```
 # b53b395d

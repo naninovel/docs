@@ -1,6 +1,6 @@
 # Backgrounds 
 
-Opposed to [characters](/guide/characters.md), backgrounds are novel actors used to represent a *back* layer of the scene: locations, sceneries, landscapes or anything that should always appear *behind* the characters. 
+Opposed to [characters](/guide/characters.md), backgrounds are actors used to represent a *back* layer of the scene: locations, sceneries, landscapes or anything that should always appear *behind* the characters. 
 
 A background actor is defined with a name, appearance, visibility and transform (position, rotation, scale). It can change appearance, visibility and transform over time.
 
@@ -8,7 +8,7 @@ Backgrounds' behavior can be configured using `Naninovel -> Configuration -> Bac
 
 ![Add Background](https://i.gyazo.com/24f880963dba2183df5d63c49acfd9ca.png)
 
-In novel scripts, backgrounds are mostly controlled with [`@back`](/api/#back) action:
+In naninovel scripts, backgrounds are mostly controlled with [`@back`](/api/#back) command:
 
 ```
 ; Set `River` as the appearance of the main background
@@ -83,7 +83,7 @@ Be aware, that on WebGL video player can only work in the streaming mode, so all
 
 Animated background is the most flexible background actor implementation. It's based on a prefab with an [animator]( https://docs.unity3d.com/ScriptReference/Animator) component attached to the root object. Appearance changes are routed to the animator component as [SetTrigger]( https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) commands appearance being the trigger name. You're free to implement the behavior of the underlying object. 
 
-Animated backgrounds can't be used as a main background, therefore you always have to specify actor name when using [`@back`](/api/#back) action. Eg, in case your animated background prefab is named `Sky` and you want to send a `Thunder` trigger to the animator component, use the following action:
+Animated backgrounds can't be used as a main background, therefore you always have to specify actor name when using [`@back`](/api/#back) command. Eg, in case your animated background prefab is named `Sky` and you want to send a `Thunder` trigger to the animator component, use the following command:
 
 ```                                                                                                                                        
 @back Thunder name:Sky

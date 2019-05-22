@@ -16,11 +16,11 @@ You can check whether the engine is currently initialized with `Engine.IsInitial
 
 To destroy all the engine services and completely remove Naninovel from memory, use `Engine.Destroy()` static method.
 
-## Playing Novel Scripts
-To preload and play a novel script with a given name, use `PreloadAndPlayAsync(ScriptName)` method of the `NovelScriptPlayer` service. To get an engine service, use `Engine.GetService<TService>()` static method, where `TService` is the type of the service to retrieve. For example, the following will get the player service, then preload and play a novel script with name "Script001":
+## Playing Naninovel Scripts
+To preload and play a naninovel script with a given name, use `PreloadAndPlayAsync(ScriptName)` method of the `ScriptPlayer` service. To get an engine service, use `Engine.GetService<TService>()` static method, where `TService` is the type of the service to retrieve. For example, the following will get the player service, then preload and play a script with name "Script001":
 
 ```csharp
-var player = Engine.GetService<NovelScriptPlayer>();
+var player = Engine.GetService<ScriptPlayer>();
 await player.PreloadAndPlayAsync("Script001");
 ```
 
