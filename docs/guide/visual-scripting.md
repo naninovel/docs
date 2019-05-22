@@ -24,7 +24,7 @@ That's it, you can now use Naninovel C# API in your bolt graphs.
 
 ### Usage
 
-The following video demonstrates using Bolt flow graph to subscribe to `Engine.OnInitialized` event, get `NovelScriptPlayer` engine service and play a novel script.
+The following video demonstrates using Bolt flow graph to subscribe to `Engine.OnInitialized` event, get `ScriptPlayer` engine service and play a naninovel script.
 
 <div class="video-container">
     <iframe src="https://www.youtube-nocookie.com/embed/w7PAhE7HO9c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

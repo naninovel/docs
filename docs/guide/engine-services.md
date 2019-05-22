@@ -1,11 +1,11 @@
 # Engine Services
 
-Most of the engine features are implemented via engine services. Engine service is an implementation of an `IEngineService` interface, which handles a specific job, like executing novel scripts, managing actors or saving-loading the game state.
+Most of the engine features are implemented via engine services. Engine service is an implementation of an `IEngineService` interface, which handles a specific job, like executing naninovel scripts, managing actors or saving-loading the game state.
 
-In case you wish to interact with engine system, you'll most likely want to use an engine service. You can get a reference to an engine service using `Naninovel.Engine.GetService<TService>()` static method, where `TService` is the type of service you wish to reference; e.g., to get a `NovelScriptPlayer` service:
+In case you wish to interact with engine system, you'll most likely want to use an engine service. You can get a reference to an engine service using `Naninovel.Engine.GetService<TService>()` static method, where `TService` is the type of service you wish to reference; e.g., to get a `ScriptPlayer` service:
 
 ```csharp
-var player = Naninovel.Engine.GetService<NovelScriptPlayer>();
+var player = Naninovel.Engine.GetService<ScriptPlayer>();
 player.Stop();
 ```
 
@@ -22,8 +22,8 @@ InputManager | Manages the user [input processing](/guide/input-processing.md).
 LocalizationManager| Manages the [localization](/guide/localization.md) activities.
 TextManager | Handles [managed text](/guide/managed-text.md) feature.
 MoviePlayer | Handles [movie](/guide/movies.md) playing.
-NovelScriptManager | Manages [novel script](/guide/novel-scripts.md) resources.
-NovelScriptPlayer | Handles [novel scripts](/guide/novel-scripts.md) execution.
+ScriptManager | Manages [naninovel script](/guide/naninovel-scripts.md) resources.
+ScriptPlayer | Handles [naninovel scripts](/guide/naninovel-scripts.md) execution.
 CameraManager | Manages cameras and other systems required for scene rendering.
 ResourceProviderManager | Manages `IResourceProvider` objects.
 StateManager | Handles `IEngineService`-related persistent data de-/serialization; provides API to [save and load](/guide/save-load-system.md) game state.

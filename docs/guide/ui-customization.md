@@ -19,8 +19,8 @@ ISaveLoadUI | Panel used for saving and loading game.
 ISettingsUI | Panel used for changing game settings.
 ITitleUI | Title (main) menu of the game.
 IExternalScriptsUI | External scripts browser UI (community modding feature).
-IVariableInputUI | Input form for assigning an arbitrary text to a custom state variable (used by [`@input`](/api/#input) action).
-IConfirmationUI | UI panel used to confirm important actions (eg, when exiting to the title menu or deleting saved game slot).
+IVariableInputUI | Input form for assigning an arbitrary text to a custom state variable (used by [`@input`](/api/#input) command).
+IConfirmationUI | UI panel used to confirm important commands (eg, when exiting to the title menu or deleting saved game slot).
 ICGGalleryUI | Unlockable [CG gallery](/guide/unlockable-items.md#cg-gallery) items browser.
 ITipsUI | Unlockable [tips](/guide/unlockable-items.md#tips) browser.
 
@@ -45,13 +45,13 @@ When the prefab is ready, add it to `Custom UI` list in the UI configuration man
 
 When the engine is initializing it'll spawn all the prefabs added to the `Custom UI` list. In case spawned prefab has a component attached to the root object that implements one of the built-in UI interfaces, built-in prefab with default implementation won't be spawned.
 
-## Play Novel Script On Button Click
+## Play Naninovel Script On Button Click
 
-When creating custom buttons, you may prefer to use novel scripts to handle the [onClick](https://docs.unity3d.com/ScriptReference/UI.Button-onClick.html) events instead of C#. Add `Play Script On Button Click` component to the button gameobject and either select an existing novel script or write the novel script right inside the text area field.
+When creating custom buttons, you may prefer to use naninovel scripts to handle the [onClick](https://docs.unity3d.com/ScriptReference/UI.Button-onClick.html) events instead of C#. Add `Play Script On Button Click` component to the button gameobject and either select an existing naninovel script or write the naninovel script right inside the text area field.
 
 ![](https://i.gyazo.com/8c8a0f210a26afcf43465aa71f59e318.png)
 
-The script will be executed when user clicks the button in play mode. Notice, that when an existing novel script is selected via dropdown list, the script text area will be ignored and selected novel script will be played **instead** of the currently played one; in case you wish to additively execute some script logic without interrupting the currently played script, use the script text area.
+The script will be executed when user clicks the button in play mode. Notice, that when an existing naninovel script is selected via dropdown list, the script text area will be ignored and selected naninovel script will be played **instead** of the currently played one; in case you wish to additively execute some script logic without interrupting the currently played script, use the script text area.
 
 ## Video Guide
 

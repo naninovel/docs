@@ -1,8 +1,8 @@
 # Custom Actor Implementations
 
-Novel actor is a scene entity defined by a name, appearance, visibility and transform (position, rotation and scale). It can asynchronously change appearance, visibility and transform over time. Examples of novel actors are characters, backgrounds, text printers and choice handlers. 
+Actor is a scene entity defined by a name, appearance, visibility and transform (position, rotation and scale). It can asynchronously change appearance, visibility and transform over time. Examples of actors are characters, backgrounds, text printers and choice handlers. 
 
-Novel actors are represented by `INovelActor` interface and its derivatives:
+Actors are represented by `IActor` interface and its derivatives:
 
 * `ICharacterActor`
 * `IBackgroundActor`
@@ -16,5 +16,5 @@ Actor implementation can be selected in the configuration managers accessible vi
 ![Default Actor Implementation](https://i.gyazo.com/ac39a68df1e81dd4b33b7a2674113479.png)
 ![Actor Implementation](https://i.gyazo.com/51e4f625448889d3d39254de3dce5ec6.png)
 
-Implementation drop-down list contains all the types that implements specific actor interface. You can add your own custom implementations and they'll also appear in the list. See `Naninovel/Runtime/Actors` scripts for a reference when creating your own actor implementations.
+Implementation drop-down list contains all the types that implements specific actor interface. You can add your own custom implementations and they'll also appear in the list. See `Naninovel/Runtime/Actor` scripts for a reference when creating your own actor implementations.
 

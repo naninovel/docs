@@ -1,10 +1,10 @@
 # Text Printers
 
-Text printers are novel actors used to present self-revealing text messages to the user. 
+Text printers are actors used to present self-revealing text messages to the user. 
 
 Printers' behavior can be configured using `Naninovel -> Configuration -> Printers` context menu; for available options see [configuration guide](/guide/configuration.md#printers). The printers' resources manager can be accessed using `Naninovel -> Resources -> Printers` context menu.
 
-In novel scripts, text printers are mostly controlled with [`@print`](/api/#print) and [`@printer`](/api/#printer) actions:
+In naninovel scripts, text printers are mostly controlled with [`@print`](/api/#print) and [`@printer`](/api/#printer) commands:
 
 ```
 ; Will activate `Dialogue` printer
@@ -59,11 +59,11 @@ Edit the prefab: change font, textures, add animations, etc.
 
 Expose the prefab to engine resources using the printer's manager GUI, which can be accessed with `Naninovel -> Resources -> Printers` context menu. Add new record using the `+` (plus) button, enter the printer actor name (can differ from the prefab name) and double click the record to open actor settings. Drag-drop printer prefab to the `Resource` field.
 
-Now you can use the new text printer by activating it via [`@printer`](/api/#printer) action and specifying the printer actor name you've set in the manager.
+Now you can use the new text printer by activating it via [`@printer`](/api/#printer) command and specifying the printer actor name you've set in the manager.
 
 ## Text Reveal Effect
 
-By default, a gradient fade effect is applied when printing out the text messages. If, however, you prefer the more conventional "typewriter" style, you can disable the fade effect by disabling `Slide Clip Rect` and setting `Reveal Fade Width` and `Reveal Fade Duration` properties in `Novel Text` component to zero. `Novel Text` components are used in both default printers; eg, you can find it attached to `Fullscreen/Content/Printer/Text` gameobject of the `Naninovel/Prefabs/TextPrinters/Fullscreen` printer prefab.
+By default, a gradient fade effect is applied when printing out the text messages. If, however, you prefer the more conventional "typewriter" style, you can disable the fade effect by disabling `Slide Clip Rect` and setting `Reveal Fade Width` and `Reveal Fade Duration` properties in `Revealable Text` component to zero. `Revealable Text` components are used in both default printers; eg, you can find it attached to `Fullscreen/Content/Printer/Text` gameobject of the `Naninovel/Prefabs/TextPrinters/Fullscreen` printer prefab.
 
 ![](https://i.gyazo.com/3434d39dcaf6b501d3f3640fda84bf80.png)
 
@@ -89,7 +89,7 @@ Import the package and follow the above guide to add a new custom printer using 
 
 ![](https://i.gyazo.com/afc905f1b1bc7e8f09133a8d593fd999.png)
 
-You can now select the added TMPro printers to route all the print actions to them using [`@printer`](/api/#printer) action in novel scripts. In case you've named the printers the same as on the illustration above:
+You can now select the added TMPro printers to route all the print commands to them using [`@printer`](/api/#printer) command in naninovel scripts. In case you've named the printers the same as on the illustration above:
 
 ```
 ; Activate dialogue TMPro printer

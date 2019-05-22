@@ -2,7 +2,7 @@
 
 The unlockables feature allows to manage items, which have a persistent state of being either locked or unlocked. You can use it in a variety of ways, for example to represent slots in a CG or movie gallery, achievements, tips and other systems where some entity should be able to become unlocked or activated when player satisfies a condition.
 
-Each unlockable item is represented by a string identifier and boolean value, indicating whether the item is unlocked. In novel scripts, use [`@unlock`](/api/#unlock) and [`@lock`](/api/#lock) actions to respectively unlock and lock an item with a specific ID, eg:
+Each unlockable item is represented by a string identifier and boolean value, indicating whether the item is unlocked. In naninovel scripts, use [`@unlock`](/api/#unlock) and [`@lock`](/api/#lock) commands to respectively unlock and lock an item with a specific ID, eg:
 
 ```
 @unlock SecretAchievement
@@ -19,7 +19,7 @@ To bind an actual [GameObject](https://docs.unity3d.com/Manual/class-GameObject.
 
 ![](https://i.gyazo.com/9e92d5296e5f07d68ce6122ccb1da34a.png)
 
-Set the item's ID to the `Unlockable Item Id` field and bind an action that should be performed when the items is unlocked. The illustration above, for example, makes the GameObject active when `SecretAchievement` is unlocked and vice versa.
+Set the item's ID to the `Unlockable Item Id` field and bind an command that should be performed when the items is unlocked. The illustration above, for example, makes the GameObject active when `SecretAchievement` is unlocked and vice versa.
 
 In C# you can access the unlockable items using `UnlockableManager` [engine service](/guide/engine-services.md).
 
@@ -49,9 +49,9 @@ To add an unlockable CG item to the gallery, you can either use one of the exist
 
 ![](https://i.gyazo.com/236bddfd0a02c18b94153cfb7189a877.png)
 
-No matter which way you'll choose, you can then unlock and lock the items using [`@unlock`](/api/#unlock) and [`@lock`](/api/#lock) actions respectively.
+No matter which way you'll choose, you can then unlock and lock the items using [`@unlock`](/api/#unlock) and [`@lock`](/api/#lock) commands respectively.
 
-For example, to unlock the `CG/Map` item added in the illustrations above, use the following novel action:
+For example, to unlock the `CG/Map` item added in the illustrations above, use the following script command:
 
 ```
 @unlock CG/Map
@@ -89,7 +89,7 @@ You can use [rich text tags](https://docs.unity3d.com/Manual/StyledText.html) an
 
 When there is at least one tip record in the `Tips.txt` managed text document, "TIPS" button will appear in the main menu and control panels, leading to the tips browser.
 
-To unlock a tip record, use [`@unlock`](/api/#unlock) and [`@lock`](/api/#lock) to lock the record back followed by the tip ID (should always be preceded by `Tips/` prefix) in the novel scripts. Eg, to unlock a `Tip1ID` tip record use:
+To unlock a tip record, use [`@unlock`](/api/#unlock) and [`@lock`](/api/#lock) to lock the record back followed by the tip ID (should always be preceded by `Tips/` prefix) in the naninovel scripts. Eg, to unlock a `Tip1ID` tip record use:
 ```
 @unlock Tips/Tip1ID
 ```

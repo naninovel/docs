@@ -8,7 +8,7 @@ You can use any audio formats [supported by Unity](https://docs.unity3d.com/Manu
 
 Sound effects playback behavior can be configured using `Naninovel -> Configuration -> Audio` context menu; for available options see [configuration guide](/guide/configuration.md#audio). 
 
-Use [`@sfx`](/api/#sfx) and [`@stopSfx`](/api/#stopsfx) actions followed by the clip name to control playback of the sound effects in novel scripts:
+Use [`@sfx`](/api/#sfx) and [`@stopSfx`](/api/#stopsfx) commands followed by the clip name to control playback of the sound effects in naninovel scripts:
 
 ```
 ; Plays an SFX with the name `Explosion` once
@@ -21,4 +21,4 @@ Use [`@sfx`](/api/#sfx) and [`@stopSfx`](/api/#stopsfx) actions followed by the 
 @sfx volume:0.75 loop:false time:2.5
 ```
 
-Sound effect tracks are not looped by default. When sfx track name is not specified in `@sfx` action, all the currently played tracks will be affected. When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start), but the specified parameters (volume and whether the track is looped) will be applied.
+Sound effect tracks are not looped by default. When sfx track name is not specified in `@sfx` command, all the currently played tracks will be affected. When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start), but the specified parameters (volume and whether the track is looped) will be applied.

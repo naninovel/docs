@@ -6,8 +6,8 @@ To activate the feature, enable `Enable Community Modding` property in the scrip
 
 ![Scripts Configuration](https://i.gyazo.com/96630a3a1c592c43f73c47d1bc3bbea1.png)
 
-When the feature is enabled, an "EXTERNAL SCRIPTS" button will appear in the tile menu; it will open external scripts browser. While in editor the browser will also list novel scripts from the project assets.
+When the feature is enabled, an "EXTERNAL SCRIPTS" button will appear in the tile menu; it will open external scripts browser. While in editor the browser will also list naninovel scripts from the project assets.
 
-To add external resources to the build, just drop them to folders under game's `Resources` directory corresponding to the resource type, just like you would with the project assets. For example, to add an external novel script, drop it to `GameFolder/GameName_Data/Resources/Scripts` folder; backgrounds will go to `GameFolder/GameName_Data/Resources/Backgrounds` and so on. *GameFolder* and *GameName* will depend on the name of your Unity project.
+To add external resources to the build, just drop them to folders under game's `Resources` directory corresponding to the resource type, just like you would with the project assets. For example, to add an external naninovel script, drop it to `GameFolder/GameName_Data/Resources/Scripts` folder; backgrounds will go to `GameFolder/GameName_Data/Resources/Backgrounds` and so on. *GameFolder* and *GameName* will depend on the name of your Unity project.
 
 External scripts browser UI can be customized or completely replaced using [UI Customization](/guide/ui-customization.md) feature.

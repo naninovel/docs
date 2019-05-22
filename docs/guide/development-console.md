@@ -25,13 +25,13 @@ Command | Description
 nav | Toggles script navigator UI.
 debug | Toggles debug window.
 purge | When [Google Drive provider](/guide/google-drive-integration.md) is used, purges the downloaded resources cache.
-play | Starts executing currently loaded novel script.
-stop | Halts execution of the currently loaded novel script.
-rewind (int) | Rewinds currently loaded novel script to the provided line index.
+play | Starts executing currently loaded naninovel script.
+stop | Halts execution of the currently loaded naninovel script.
+rewind (int) | Rewinds currently loaded naninovel script to the provided line index.
 
-## Executing Novel Actions
+## Executing Commands
 
-You can invoke the novel actions via development console. Input the action string just like you do in novel scripts and it will be immediately executed. Among other cases, this could be useful to debug custom state variables. Eg, you can print the current value of any custom variable with:
+You can invoke the script commands via development console. Input the command string just like you do in naninovel scripts and it will be immediately executed. Among other cases, this could be useful to debug custom state variables. Eg, you can print the current value of any custom variable with:
 
 ```
 @print {VariableName}
