@@ -19,7 +19,7 @@ Line is considered a command statement if it starts with a `@` literal. Command 
 
 ### Command Identifier
 
-Right after the command literal a command identifier is expected. This could either be name of the C# class that implements the command or the command's tag (if it's applied via `CommandAlias` attribute). 
+Right after the command literal a command identifier is expected. This could either be name of the C# class that implements the command or the command's alias (if it's applied via `CommandAlias` attribute). 
 
 For example, a [`@save`](/api/#save) command (used to auto-save the game) is implemented via the `AutoSave` C# class. The implementing class also has a `[CommandAlias("save")]` attribute applied, so you can use both `@save` and `@AutoSave` statements in the script to invoke this command. 
 
@@ -34,7 +34,7 @@ Command identifiers are case-insensitive; all the following statements are valid
 
 ### Command Parameters
 
-Most of the commands have a number of parameters that define the effect of the command. Parameter is a key-value expression defined after the command literal separated by a column (`:`). Parameter identifier (key) could be either name of the corresponding parameter field of the command implementation class or the parameter's alias (if defined via `CommandParameter` attribute).
+Most of the commands have a number of parameters that define the effect of the command. Parameter is a key-value expression defined after the command literal separated by a column (`:`). Parameter identifier (key) could be either name of the corresponding parameter field of the command implementation class or the parameter's alias (if defined via `alias` property of `CommandParameter` attribute).
 ```
 @commandId paramId:paramValue 
 ```
@@ -44,7 +44,7 @@ Consider a [`@hideChars`](/api/#hidechars) command, which is used to hide all vi
 ```
 @hideChars
 ```
-You can use a `time` *Single* parameter here to control for how long the characters will fade-out before becoming completely hidden (removed from scene):
+You can use a `time` *Decimal* parameter here to control for how long the characters will fade-out before becoming completely hidden (removed from scene):
 
 ```
 @hideChars time:5.5
@@ -52,7 +52,7 @@ You can use a `time` *Single* parameter here to control for how long the charact
 
 This will make the characters to fade-out for 5.5 seconds, before completely removing them from scene.
 
-You can also use a `wait` *Boolean* parameter to specify, whether next command should be executed immediately after or wait for the completion of the current command:
+You can also use a `wait` *Boolean* parameter to specify whether next command should be executed immediately after or wait for the completion of the current command:
 
 ```
 @hideChars time:5.5 wait:false
