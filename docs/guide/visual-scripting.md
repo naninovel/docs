@@ -6,7 +6,7 @@ Naninovel C# API can be used with third-party visual scripting tools, such as [B
 
 [Bolt](https://assetstore.unity.com/packages/tools/visual-scripting/bolt-87491) brings complete visual scripting to Unity, empowering artists, designers and programmers to create gameplay mechanics and interactive systems without writing a single line of code. 
 
-![](https://assetstorev1-prd-cdn.unity3d.com/package-screenshot/e506cd1c-4af0-443a-ad65-07992573e82f_scaled.jpg)
+![](https://i.gyazo.com/ab7c9d92b32810b030aba24b4bd95405.jpg)
 
 ### Setup
 
