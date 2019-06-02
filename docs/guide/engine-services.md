@@ -2,10 +2,10 @@
 
 Most of the engine features are implemented via engine services. Engine service is an implementation of an `IEngineService` interface, which handles a specific job, like executing naninovel scripts, managing actors or saving-loading the game state.
 
-In case you wish to interact with engine system, you'll most likely want to use an engine service. You can get a reference to an engine service using `Naninovel.Engine.GetService<TService>()` static method, where `TService` is the type of service you wish to reference; e.g., to get a `ScriptPlayer` service:
+In case you wish to interact with engine system, you'll most likely want to use an engine service. You can get a reference to an engine service using `Engine.GetService<TService>()` static method, where `TService` is the type of service you wish to reference; e.g., to get a `ScriptPlayer` service:
 
 ```csharp
-var player = Naninovel.Engine.GetService<ScriptPlayer>();
+var player = Engine.GetService<ScriptPlayer>();
 player.Stop();
 ```
 
