@@ -24,11 +24,11 @@ IConfirmationUI | UI panel used to confirm important commands (eg, when exiting 
 ICGGalleryUI | Unlockable [CG gallery](/guide/unlockable-items.md#cg-gallery) items browser.
 ITipsUI | Unlockable [tips](/guide/unlockable-items.md#tips) browser.
 
-To add a new custom UI (without overriding any of the built-in UIs), simply attach a `ManagedUI` component to the root object of your custom UI prefab.
+To add a new custom UI (without overriding any of the built-in UIs), attach a `CustomUI` component to the root object of your custom UI prefab.
 
-![](https://i.gyazo.com/dba20c81652e0fd1b8549441baf14d79.png)
+![](https://i.gyazo.com/e8f6f38a4e920d65443b7d0403d42b48.png)
 
-If you're OK with C# scripting and want to override default logic of the UI, you can [create a new component](https://docs.unity3d.com/Manual/CreatingAndUsingScripts), implement `Naninovel.UI.IManagedUI` interface (feel free to inherit the component from `UnityCommon.ScriptableUIBehaviour` to handle all the interface requirements) and attach this component instead. Check `Naninovel/Runtime/UI` folder for reference implementations of the built-in UIs; and here is an example of minimal implementation of a custom managed UI component:
+If you're OK with C# scripting and want to override default logic of the UI, you can [create a new component](https://docs.unity3d.com/Manual/CreatingAndUsingScripts), implement `IManagedUI` interface (feel free to inherit the component from `ScriptableUIBehaviour` to fulfill all the interface requirements) and attach the created custom component instead. Check `Naninovel/Runtime/UI` folder for reference implementations of the built-in UIs. Here is an example of minimal implementation of a custom UI component:
 
 ```csharp
 using System.Threading.Tasks;
