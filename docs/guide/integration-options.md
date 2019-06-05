@@ -24,11 +24,11 @@ var player = Engine.GetService<ScriptPlayer>();
 await player.PreloadAndPlayAsync("Script001");
 ```
 
-When exiting the dialogue mode and returning to the main game mode, you probably would like to unload all the resources currently used by Naninovel and stop all the engine services. For this, use `LoadDefaultEngineStateAsync()` method of the `StateManager` service:
+When exiting the dialogue mode and returning to the main game mode, you probably would like to unload all the resources currently used by Naninovel and stop all the engine services. For this, use `ResetStateAsync()` method of the `StateManager` service:
 
 ```csharp
 var stateManager = Engine.GetService<StateManager>();
-await stateManager.LoadDefaultEngineStateAsync();
+await stateManager.ResetStateAsync();
 ```
 
 ## Disable Title Menu
