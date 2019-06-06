@@ -100,6 +100,8 @@ Scene backgrounds can only be managed by editor GUI; scene assets should be stor
 
 First, create a new (or move an existing) scene inside `Assets/Scenes` folder and make sure it has at least one [camera](https://docs.unity3d.com/ScriptReference/Camera.html). Upon loading scene background, Naninovel will assign a render texture to the first found camera in the scene. The render texture will then be assigned to a background sprite, representing the scene background inside Naninovel scene space. This way, the scene background will be able to co-exist with other background and character actors, support all the background transition effects and scale to handle various display aspect ratios. 
 
+Make sure non of the objects on the scene are [static](https://docs.unity3d.com/Manual/StaticObjects.html), otherwise they won't be positioned correctly and could potentially overlap with other background scenes.
+
 After scene setup is complete, create a new background actor via `Naninovel -> Configuration -> Backgrounds` menu, select `SceneBackground` implementation and add the scene asset to the actor resources.
 
 ![](https://i.gyazo.com/d69159ab4d93793022018fa8d244f1aa.png)
