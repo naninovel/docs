@@ -40,6 +40,7 @@ The following features are already implemented; more will be added as the engine
 * [In-game variable input](/api/#input)
 * [Conditional script flow](/api/#if)
 * [Save-load system](/guide/save-load-system.md)
+* [Dynamic resources (memory) management](https://youtu.be/cFikLjfeKyc)
 * [Game settings](/guide/game-settings.md)
 * [CG gallery](/guide/unlockable-items.md#cg-gallery)
 * [Unlockable Tips](/guide/unlockable-items.md#tips)
