@@ -66,3 +66,29 @@ CalculateProgress () | Return a float number in 0.0 to 1.0 range, representing h
 
 </div>
 
+You can also add your custom expression functions. For this, create a static C# class with a `ExpressionFunctions` attribute and declare methods inside this class. You'll then be able to invoke those methods as the expression functions in naninovel scripts. 
+
+Here is an example of declaring a custom expression function:
+
+```csharp
+[Naninovel.ExpressionFunctions]
+public static class CustomFunctions
+{
+    public static string ToLower (string value)
+    {
+        return value.ToLower();
+    }
+}
+```
+
+And here is an example of using this custom function in the scripts:
+
+```
+@set var=ToLower("LOWERED_CAPS")
+```
+
+Custom functions can take any number of simple type arguments (strings, integers, doubles, etc) and should also return a simple type. You can use [params](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/params) keyword to specify that function should expect a variable number of arguments; here is an example of built-in "Random" function, which takes an arbitrary number of strings and returns a random one:
+
+```csharp
+public static string Random (params string[] args) => args.Random();
+```
