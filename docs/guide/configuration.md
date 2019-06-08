@@ -3,7 +3,7 @@ The engine configuration is stored in multiple scriptable object assets located 
 
 Use `Naninovel -> Configuration` or `Edit -> Project Settings -> Naninovel` to access the configuration menu.
 
-This configuration reference is valid for [Naninovel v1.6.0-beta](https://github.com/Elringus/NaninovelWeb/releases).
+This configuration reference is valid for [Naninovel v1.7.0-beta](https://github.com/Elringus/NaninovelWeb/releases).
 
 ## Audio
 
@@ -158,7 +158,12 @@ Intro Movie Name | Null | Path to the intro movie resource.
 
 Property | Default Value | Description
 --- | --- | ---
-Log Resource Loading | True | Whether to log resource loading operations on the loading screen.
+Resource Policy | Static | Dictates when the resources are loaded and unloaded during script execution:
+ • Static — All the resources required for the script execution are pre-loaded when starting the playback and unloaded only when the script has finished playing.
+ • Dynamic — Only the resources required for the next `DynamicPolicySteps` commands are pre-loaded during the script execution and all the unused resources are unloaded immediately. Use this mode when targetting platforms with strict memory limitations and it's impossible to properly orginize naninovel scripts.
+Dynamic Policy Steps | 25 | When dynamic resource policy is enabled, defines the number of script commands to pre-load.
+Optimize Loading Priority | True | When dynamic resource policy is enabled, this will set Unity's background loading thread priority to low to prevent hiccups when loading resources during script playback.
+Log Resource Loading | False | Whether to log resource loading operations on the loading screen.
 Local Root Path | Resources | Path root to use for the local resource provider.
 Google Drive Root Path | Resources | Path root to use for the Google Drive resource provider.
 Google Drive Request Limit | 2 | Maximum allowed concurrent requests when contacting Google Drive API.
@@ -210,6 +215,7 @@ Quick Save Slot Mask | Game Quick Save{0:000} | Mask used to name quick save slo
 Save Slot Limit | 99 | Maximum number of save slots.
 Quick Save Slot Limit | 9 | Maximum number of quick save slots.
 Load Start Delay | 0.3 | Seconds to wait before starting the load operation.
+Reset State On Load | True | Whether to reset state of all the engine services and unload (dispose) resources upon loading a naninovel script. This is usually triggered when using `@goto` command to move playback to another script. It's recommended to leave this enabled to prevent memory leak issues. If you choose to disable this option, you can still reset the state and dispose resources manually at any time using `@resetState` command.
 
 </div>
 
