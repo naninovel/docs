@@ -20,7 +20,7 @@ time | Decimal | Determines for how long (in seconds) command should execute. Wh
 
 </div>
 
-This API reference is valid for [Naninovel v1.6.0-beta](https://github.com/Elringus/NaninovelWeb/releases).
+This API reference is valid for [Naninovel v1.7.0-beta](https://github.com/Elringus/NaninovelWeb/releases).
 
 ## arrange
 
@@ -147,10 +147,10 @@ ID | Type | Description
 #### Example
 ```
 ; Second sentence will be printed on a new line
-Lorem ipsum dolor sit amet.[br] Consectetur adipiscing elit.
+Lorem ipsum dolor sit amet.[br]Consectetur adipiscing elit.
 
 ; Second sentence will be printer two lines under the first one
-Lorem ipsum dolor sit amet.[br 2] Consectetur adipiscing elit.
+Lorem ipsum dolor sit amet.[br 2]Consectetur adipiscing elit.
 ```
 
 ## camera
@@ -419,7 +419,7 @@ You are victorious!
 ## goto
 
 #### Summary
-Jumps the naninovel script playback to the provided path.
+Jumps the naninovel script playback to the provided path.  When the path leads to another (not the currently played) naninovel script, will also [reset state](/api/#resetstate)  before loading the target script, unless [ResetStateOnLoad](https://naninovel.com/guide/configuration.html#state) is disabled in the configuration.
 
 #### Parameters
 
@@ -680,6 +680,42 @@ ID | Type | Description
 @printer Fullscreen
 ```
 
+## processInput
+
+#### Summary
+Allows halting and resuming user input processing (eg, reacting to pressing keyboard keys).  The effect of the action is persistent and saved with the game.
+
+#### Parameters
+
+<div class="config-table">
+
+ID | Type | Description
+--- | --- | ---
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">InputEnabled</span> | Boolean | Whether to enable input processing.
+
+</div>
+
+#### Example
+```
+; Halt input processing
+@processInput false
+; Resume input processing
+@processInput true
+```
+
+## resetState
+
+#### Summary
+Resets state of all the [engine services](https://naninovel.com/guide/engine-services.html) and unloads (disposes)  all the resources loaded by Naninovel (textures, audio, video, etc); will basically revert to an empty initial engine state.
+
+#### Remarks
+The process is asynchronous and is masked with a loading screen ([ILoadingUI](https://naninovel.com/guide/ui-customization.html)).  <br /><br />  When [ResetStateOnLoad](https://naninovel.com/guide/configuration.html#state) is disabled in the configuration, you can use this command  to manually dispose unused resources to prevent memory leak issues.  <br /><br />  Be aware, that this command can not be undone (rewinded back).
+
+#### Example
+```
+@resetState
+```
+
 ## resetText
 
 #### Summary
@@ -693,7 +729,7 @@ Clears printed text of active printer.
 ## return
 
 #### Summary
-Attempts to jump the naninovel script playback to the command after the last used @gosub.  See [`@gosub`](/api/#gosub) command summary for more info.
+Attempts to jump the naninovel script playback to the command after the last used @gosub.  When the target command is not in the currently played script, will also [reset state](/api/#resetstate)  before loading the target script, unless [ResetStateOnLoad](https://naninovel.com/guide/configuration.html#state) is disabled in the configuration.  See [`@gosub`](/api/#gosub) command summary for more info and usage examples.
 
 ## save
 
