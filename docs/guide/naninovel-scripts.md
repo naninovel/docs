@@ -152,7 +152,7 @@ When line starts with a semicolon literal (`;`) it's considered a comment statem
 
 When working with naninovel scripts, you'll notice that some statements are frequently repeated. It could be a character name, which you have to type multiple times before generic text lines or some parameter value, which you frequently use throughout single script document. 
 
-To simplify things a bit, script defines feature was implemented. You can define an arbitrary expression by associating it with a short name and then use this short name throughout the naninovel script. When the script is parsed, those short names will be replaced with the defined expression.
+To simplify things a bit, script defines feature was implemented. You can define an arbitrary expression by associating it with a short name and then use this short name throughout the naninovel script. When the script is parsed, those short names will be replaced with the defined expression (much like preprocessor macros from the programming world). 
 
 To define an expression, use `>` literal followed with the short name which will be used to reference the expression; then specify the defined expression. 
 
@@ -163,19 +163,23 @@ The following will define `Felix` character name as an `f` short name and `#ff00
 >red #ff0000,bold
 ```
 
-You can then use the short names preceded by `$` literal to reference the defined expressions:
+You can then use the short names wrapped in curly braces (`{ }`) to reference the defined expressions:
 
 ```
-@char $f.Happy
-He was as happy as a [style $red]clam[style default].
+@char {f}.Happy
+He was as happy as a [style {red}]clam[style default].
 ```
 
-However, you'll probably mostly use this feature to reference associated character names in general text lines. To further simplify the process, `$` literal can be omitted in such cases:
+However, you'll probably mostly use this feature to reference associated character names in general text lines. To further simplify the process, curly braces can be omitted in such cases:
 
 ```
-@char $f.Happy
-f: I'm as happy as a [style $red]clam[style default]!
+@char {f}.Happy
+f: I'm as happy as a [style {red}]clam[style default]!
 ```
+
+Make sure the define expressions don't contain spaces inside curly braces; eg `{ f }` won't be recognized as one. 
+
+In case you wish to make some defines accessible from all the scripts, set a `Global Defines Script` in the [scripts configuration](/guide/configuration.md#scripts) menu.
 
 ## Conditional Execution
 
