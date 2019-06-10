@@ -28,6 +28,28 @@ In the character configuration you can set a `Display Name` for specific charact
 
 For localization, use "CharacterNames" [managed text](/guide/managed-text) document, which is automatically created when running generate managed text resources task. Values from the "CharacterNames" document won't override values set in the character metadata when under the default locale.
 
+It's possible to bind a display name to a custom variable to dynamically change it throughout the game via naninovel scripts. To bind a display name, specify name of the custom variable wrapped in curly braces in the character configuration menu.
+
+![](https://i.gyazo.com/9743061df462bd809afc45bff20bbb6d.png)
+
+You can then change the variable value in the scripts and it will also change the display name:
+
+```
+@set PlayerName="Mistery Man"
+Player: ...
+
+@set PlayerName="Dr. Stein"
+Player: You can call me Dr. Stein.
+```
+
+It's also possible to use the name binding feature to allow player pick their display name using [`@input`](/api/#input) command:
+
+```
+@input PlayerName summary:"Choose your name."
+@stop
+Player: You can call me {PlayerName}.
+```
+
 ## Message Colors
 
 When `Use Character Color` is enabled in the character configuration, printer text messages and name labels will be tinted in the specified colors when the corresponding character ID is specified in a [`@print`](/api/#print) command or generic text line.

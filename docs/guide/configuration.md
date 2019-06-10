@@ -131,7 +131,7 @@ Default Locale | En | Default locale of the game. When user selects a default lo
 
 Property | Default Value | Description
 --- | --- | ---
-Loader Configuration | Text- (Project, Local) | Configuration of the resource loader used with the managed text resources.
+Loader Configuration | Text- (Project, Local) | Configuration of the resource loader used with the managed text documents.
 
 </div>
 
@@ -190,6 +190,7 @@ Update Action Count On Init | True | Whether to calculate number of commands exi
 Property | Default Value | Description
 --- | --- | ---
 Loader | Scripts- (Project, Local) | Configuration of the resource loader used with naninovel script resources.
+Global Defines Script | Null | Name of the script which contains global define expressions, that should be accessible from all the other scripts.
 Initialization Script | Null | Name of the script to play right after the engine initialization.
 Title Script | Null | Name of the script to play when showing the Title UI. Can be used to setup the title screen scene (backgound, music, etc).
 Start Game Script | Null | Name of the script to play when starting a new game. Will use first available when not provided.
