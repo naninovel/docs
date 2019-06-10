@@ -22,6 +22,32 @@ time | Decimal | Determines for how long (in seconds) command should execute. Wh
 
 This API reference is valid for [Naninovel v1.7.0-beta](https://github.com/Elringus/NaninovelWeb/releases).
 
+## append
+
+#### Summary
+Appends provided text to an active printer.
+
+#### Remarks
+The entire text will be appended immediately, without triggering reveal effect or any other side-effects.
+
+#### Parameters
+
+<div class="config-table">
+
+ID | Type | Description
+--- | --- | ---
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Text</span> | String | The text to append.
+
+</div>
+
+#### Example
+```
+; Print first part of the sentence as usual (gradually revealing the message),
+; then append the end of the sentence at once.
+Lorem ipsum
+@append " dolor sit amet."
+```
+
 ## arrange
 
 #### Summary
@@ -547,10 +573,10 @@ ID | Type | Description
 ## input
 
 #### Summary
-Shows an input field UI where user can enter an arbitrary text.  Upon submit the entered text will be assigned to the specified custom variable.  Check out this [video guide](https://youtu.be/F9meuMzvGJw) on usage example.
+Shows an input field UI where user can enter an arbitrary text.  Upon submit the entered text will be assigned to the specified custom variable.
 
 #### Remarks
-The state of the UI is not serialized when saving the game, so make sure to prevent  player from saving the game when the UI is visible (eg, with `@hideText` command).
+Check out this [video guide](https://youtu.be/F9meuMzvGJw) on usage example.  <br /><br />  To assign a display name for a character using this command consider using [binding the name to a custom variable](/guide/characters.html#display-names).  <br /><br />  The state of the UI is not serialized when saving the game, so make sure to prevent  player from saving the game when the UI is visible (eg, with `@hideText` command).
 
 #### Parameters
 
@@ -1086,15 +1112,25 @@ Holds script execution until the specified wait condition.
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">WaitMode</span> | String | Wait condition:  input (string) - user press continue or skip input key;  number (int or float)  - timer (seconds).
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">WaitMode</span> | String | Wait conditions:<br />  - `i` user press continue or skip input key;<br />  - `0.0` timer (seconds);<br />  - `i0.0` timer, that is skippable by continue or skip input keys.
 
 </div>
 
 #### Example
 ```
-; `ThunderSound` SFX will play 0.5 seconds after the shake background effect finishes.
+; "ThunderSound" SFX will play 0.5 seconds after the shake background effect finishes.
 @fx ShakeBackground
 @wait 0.5
 @sfx ThunderSound
+
+; Print first two words, then wait for user input before printing the remaining phrase.
+Lorem ipsum[wait i] dolor sit amet.
+; You can also use the following shortcut (@i command) for this wait mode.
+Lorem ipsum[i] dolor sit amet.
+
+; Start an SFX, print a message and wait for a skippable 5 seconds delay, then stop the SFX.
+@sfx Noise loop:true
+Jeez, what a disgusting noise. Shut it down![wait i5][skipInput]
+@stopSfx Noise
 ```
 
