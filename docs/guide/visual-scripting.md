@@ -1,10 +1,10 @@
 ﻿# Visual Scripting
 
-Naninovel C# API can be used with third-party visual scripting tools, such as [Bolt](https://ludiq.io/bolt). See the following guide for required setup and usage examples.
+Naninovel C# API can be used with third-party visual scripting tools, such as [Bolt](https://ludiq.io/bolt) or [PlayMaker](https://hutonggames.com/). See the following guide for required setup and usage examples.
 
 ## Bolt
 
-[Bolt](https://assetstore.unity.com/packages/tools/visual-scripting/bolt-87491) brings complete visual scripting to Unity, empowering artists, designers and programmers to create gameplay mechanics and interactive systems without writing a single line of code. 
+[Bolt](https://assetstore.unity.com/packages/tools/visual-scripting/bolt-87491) is an advanced visual scripting solution for Unity providing the most flexibility for both programmers and designers. 
 
 ![](https://i.gyazo.com/ab7c9d92b32810b030aba24b4bd95405.jpg)
 
@@ -30,7 +30,32 @@ The following video demonstrates using Bolt flow graph to subscribe to `Engine.O
     <iframe src="https://www.youtube-nocookie.com/embed/w7PAhE7HO9c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
+## PlayMaker
+
+[PlayMaker](https://assetstore.unity.com/packages/tools/visual-scripting/playmaker-368) is a popular visual scripting tool for Unity specifically designed to be friendly for non-programmers. 
+
+![](https://i.gyazo.com/0a5b219b059fd61c85d225e903d77857.png)
+
+Be aware, that in contrast to Bolt, where all the Naninovel's C# API is available by default, PlayMaker requires creating a special C# class for each action. This means that only a limited subset of the engine API is available out of the box when using PlayMaker. The available custom actions could also break in case Naninovel's API change (especially while we're in beta development stage).
+
+### Setup
+
+Install PlayMaker following instructions from the [official manual](https://hutonggames.fogbugz.com/default.asp?W11).
+
+Download and import [custom Naninovel actions for PlayMaker](https://github.com/Elringus/NaninovelPlayMaker/raw/master/NaninovelPlayMaker.unitypackage).
+
+The custom Naninovel actions should now appear in the PlayMaker actions browser under "Naninovel" category.
+
+![](https://i.gyazo.com/a40b0b7b21c73d3b5f64b005085198ea.png)
+
+### Usage
+
+The following video demonstrates using PlayMaker FSM (finite state machine) to initialize Naninovel engine, preload and play a scenario script.
+
+<div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/N856vi18XVU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
 ## Other Solutions
 
 If you wish us to make setup and usage guides for other third-party visual scripting solutions, contact developers of the solution and ask them to provide us access to their tool.
-
