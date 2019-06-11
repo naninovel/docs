@@ -1,4 +1,4 @@
-﻿# Naninovel Scripts
+# Naninovel Scripts
 
 Naninovel scripts are text documents (`.txt` extension) where you control what happens on scenes. You can open and edit them with a text editor of your choice, like Notepad, Word or Sublime.
 
