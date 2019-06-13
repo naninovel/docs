@@ -1,6 +1,6 @@
 # Naninovel Scripts
 
-Naninovel scripts are text documents (`.txt` extension) where you control what happens on scenes. You can open and edit them with a text editor of your choice, like Notepad, Word or Sublime.
+Naninovel scripts are text documents (`.nani` extension) where you control what happens on scenes. You can open and edit them with a text editor of your choice, like Notepad, Word or Sublime.
 
 Each line in a naninovel script represents a statement, which can be an command, generic text, label, comment or a define statement. Type of the statement is determined by the literal that is placed at the start of the line:
 
