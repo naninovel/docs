@@ -75,7 +75,7 @@ The system can be used to build an in-game vocabulary/encyclopedia or achievemen
     <iframe src="https://www.youtube-nocookie.com/embed/CRZuS1u_J4c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-To define the available tips, create a `Tips.txt` text document inside the [managed text](/guide/managed-text.md) resources directory (`Resources/Text` by default). Each line identifies a single tip record. The line should begin with tip ID followed by colon; then the tip's title, category (optional) and description should be specified, all separated by vertical lines (`|`), eg:
+To define the available tips, create a `Tips.nani` text document inside the [managed text](/guide/managed-text.md) resources directory (`Resources/Text` by default). Each line identifies a single tip record. The line should begin with tip ID followed by colon; then the tip's title, category (optional) and description should be specified, all separated by vertical lines (`|`), eg:
 
 ```
 Tip1ID: Tip 1 Title | Tip 1 Category | Tip 1 Description
@@ -87,7 +87,7 @@ Tip4ID: Tip 4 Title | Tip 4 Category |
 
 You can use [rich text tags](https://docs.unity3d.com/Manual/StyledText.html) and insert line breaks (`\n`) inside the description section of the tip records.
 
-When there is at least one tip record in the `Tips.txt` managed text document, "TIPS" button will appear in the main menu and control panels, leading to the tips browser.
+When there is at least one tip record in the `Tips.nani` managed text document, "TIPS" button will appear in the main menu and control panels, leading to the tips browser.
 
 To unlock a tip record, use [`@unlock`](/api/#unlock) and [`@lock`](/api/#lock) to lock the record back followed by the tip ID (should always be preceded by `Tips/` prefix) in the naninovel scripts. Eg, to unlock a `Tip1ID` tip record use:
 ```
