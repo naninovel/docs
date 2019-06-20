@@ -56,6 +56,14 @@ The following video demonstrates using PlayMaker FSM (finite state machine) to i
     <iframe src="https://www.youtube-nocookie.com/embed/N856vi18XVU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
+It's also possible to broadcast [PlayMaker events](https://hutonggames.fogbugz.com/default.asp?W128) from naninovel scripts using `@playmaker` command:
+
+```
+@playmaker EventName
+```
+
+— will invoke "EventName" in all the active FSMs on scene.
+
 ## Other Solutions
 
 If you wish us to make setup and usage guides for other third-party visual scripting solutions, contact developers of the solution and ask them to provide us access to their tool.
