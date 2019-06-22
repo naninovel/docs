@@ -101,3 +101,28 @@ Hello World!
 When creating custom TextMesh Pro font assets, don't forget to apply `Naninovel/NovelFontTMPro` shader, otherwise the text reveal effect won't work.
 
 ![](https://i.gyazo.com/c82a336dc01c6d95c8af034ad31eea8d.png)
+
+## Text Styles
+
+Various text styles can be applied via rich text tags placed right inside the text or using [`@style`](/api/#style) command.
+
+The default (built-in) text printers are based on [Unity's text rendering system](https://docs.unity3d.com/Manual/script-Text.html) and support basic text styling like color, size, bold, italic, etc. Refer to [Unity's guide on text tags](https://docs.unity3d.com/Manual/StyledText.html) for more info.
+
+TextMesh Pro printers (bundled with the [NaninovelTMPro.unitypackage](https://github.com/Elringus/NaninovelTMPro/raw/master/NaninovelTMPro.unitypackage)) support a wide range of additional text tags. See the [official documentation](http://digitalnativestudios.com/textmeshpro/docs/rich-text/) for more info. 
+
+Support for [ruby](https://en.wikipedia.org/wiki/Ruby_character) (furigana) characters is additionally provided by the Naninovel's TextMesh Pro printers via custom `<ruby>` tag. Wrap the text above which the ruby characters should be placed with the ruby tag and specify the ruby text inside the tag, eg:
+
+```
+Lorem <ruby="VERY">ipsum</ruby> dolor sit amet. 
+```
+— the "VERY" ruby text will appear right above the "ipsum" word when the message is printed at runtime.
+
+You can additionally control the size and vertical line offset of the ruby text by changing properties of `RevealableTMProText` component attached to the printer prefabs.
+
+![](https://i.gyazo.com/7e1e927c144f30353baaab2ac7b643c7.png)
+
+Below is a video demonstration of the ruby tags in action.
+
+<div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/aWdq7YxIxkE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
