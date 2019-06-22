@@ -19,6 +19,7 @@ The following features are already implemented; more will be added as the engine
   * [Fullscreen](/guide/text-printers.md#fullscreen-printer)
   * [Chat](/guide/text-printers.md#chat-printer)
   * [TextMesh Pro support](/guide/text-printers.html#textmesh-pro)
+  * [Ruby (furigana) text support](/guide/text-printers.html#text-styles)
 * [Characters](/guide/characters.md)
   * [Sprite characters](/guide/characters.md#sprite-characters)
   * [Diced sprite characters](/guide/characters.md#diced-sprite-characters)

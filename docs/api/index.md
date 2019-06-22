@@ -1023,10 +1023,10 @@ Stops playback of the currently played voice clip.
 ## style
 
 #### Summary
-Applies text style to the active printer.
+Applies [text styles](/guide/text-printers.md#text-styles) to an active printer.
 
 #### Remarks
-You can still use rich text formatting tags directly, but they will be printed  alongside normal text, which is not desirable in most cases.
+You can still use rich text formatting tags directly, but they could be printed  alongside the normal text (eg, when appending messages), which may not be desirable.
 
 #### Parameters
 
@@ -1034,7 +1034,7 @@ You can still use rich text formatting tags directly, but they will be printed  
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">TextStyles</span> | List&lt;String&gt; | Text formatting styles to apply.  Possible options: color hex code (eg, #ffaa00), bold, italic, px text size (eg 45).
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">TextStyles</span> | List&lt;String&gt; | Text formatting tags to apply. Angle brackets should be ommited, eg use `b` for &lt;b&gt; and `size=100` for &lt;size=100&gt;. Use `default` keyword to reset the style.
 
 </div>
 
@@ -1042,14 +1042,14 @@ ID | Type | Description
 ```
 ; Print first sentence in bold red text with 45px size,
 ; then reset the style and print second sentence using default style.
-@style #ff0000,bold,45
+@style color=#ff0000,b,size=45
 Lorem ipsum dolor sit amet.
 @style default
 Consectetur adipiscing elit.
 
 ; Print first sentence normally, but second one in bold and italic;
 ; then reset the style to the default.
-Lorem ipsum sit amet. [style bold,italic]Consectetur adipiscing elit.[style default]
+Lorem ipsum sit amet. [style b,i]Consectetur adipiscing elit.[style default]
 ```
 
 ## title
