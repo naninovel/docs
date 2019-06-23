@@ -138,6 +138,7 @@ Music tracks are looped by default.  When music track name (BgmPath) is not spec
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">BgmPath</span> | String | Path to the music track to play.
+intro | String | Path to the intro music track to play once before the main track (not affected by the loop parameter).
 volume | Decimal | Volume of the music track.
 loop | Boolean | Whether to play the track from beginning when it finishes.
 
@@ -153,6 +154,9 @@ loop | Boolean | Whether to play the track from beginning when it finishes.
 
 ; Changes volume of all the played music tracks to 50% over 2.5 seconds and makes them play in a loop
 @bgm volume:0.5 loop:true time:2.5
+
+; Playes `BattleThemeIntro` once and then immediately `BattleThemeMain` in a loop.
+@bgm BattleThemeMain intro:BattleThemeIntro
 ```
 
 ## br
