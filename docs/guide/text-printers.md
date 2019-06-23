@@ -106,7 +106,7 @@ When creating custom TextMesh Pro font assets, don't forget to apply `Naninovel/
 
 Various text styles can be applied via rich text tags placed right inside the text or using [`@style`](/api/#style) command.
 
-The default (built-in) text printers are based on [Unity's text rendering system](https://docs.unity3d.com/Manual/script-Text.html) and support basic text styling like color, size, bold, italic, etc. Refer to [Unity's guide on text tags](https://docs.unity3d.com/Manual/StyledText.html) for more info.
+The default (built-in) text printers are based on [Unity's text rendering system](https://docs.unity3d.com/Manual/script-Text.html) and support basic text styling like color, size, bold, italic, etc. Refer to [guide on text tags](https://docs.unity3d.com/Manual/StyledText.html) for more info.
 
 TextMesh Pro printers (bundled with the [NaninovelTMPro.unitypackage](https://github.com/Elringus/NaninovelTMPro/raw/master/NaninovelTMPro.unitypackage)) support a wide range of additional text tags. See the [official documentation](http://digitalnativestudios.com/textmeshpro/docs/rich-text/) for more info. 
 
@@ -115,7 +115,7 @@ Support for [ruby](https://en.wikipedia.org/wiki/Ruby_character) (furigana) char
 ```
 Lorem <ruby="VERY">ipsum</ruby> dolor sit amet. 
 ```
-— the "VERY" ruby text will appear right above the "ipsum" word when the message is printed at runtime.
+— "VERY" ruby text will appear right above "ipsum" word when the message is printed at runtime.
 
 You can additionally control the size and vertical line offset of the ruby text by changing properties of `RevealableTMProText` component attached to the printer prefabs.
 
