@@ -63,7 +63,7 @@ Now you can use the new text printer by activating it via [`@printer`](/api/#pri
 
 ## Text Reveal Effect
 
-By default, a gradient fade effect is applied when printing out the text messages. If, however, you prefer the more conventional "typewriter" style, you can disable the fade effect by disabling `Slide Clip Rect` and setting `Reveal Fade Width` and `Reveal Fade Duration` properties in `Revealable Text` component to zero. `Revealable Text` components are used in both default printers; eg, you can find it attached to `Fullscreen/Content/Printer/Text` gameobject of the `Naninovel/Prefabs/TextPrinters/Fullscreen` printer prefab.
+By default, a gradient fade effect is applied when printing out the text messages. If, however, you prefer the more conventional "typewriter" style, you can disable the fade effect by disabling `Slide Clip Rect` and setting `Reveal Fade Width` and `Reveal Fade Duration` properties in `Revealable Text` component to zero. `Revealable Text` components are applied to the text objects in some of the built-in printers; eg, you can find it attached to `Fullscreen/Content/Printer/Text` gameobject of `Naninovel/Resources/Naninovel/TextPrinters/Fullscreen` printer prefab.
 
 ![](https://i.gyazo.com/3434d39dcaf6b501d3f3640fda84bf80.png)
 
