@@ -88,7 +88,7 @@ Kohaku: Hello World!
 ```
 
 ## Add Background
-Similar to characters, a background can be represented in multiple ways in Naninovel: sprite, animated object, video and scene; custom user implementations are also possible. 
+Similar to characters, a background can be represented in multiple ways in Naninovel: sprite, generic object, video and scene; custom user implementations are also possible. 
 
 While you can create multiple independent background actors, in a typical VN game you'll usually use just one and transition it to different appearances. To simplify the routine, a `MainBackground` actor is added to the background actors list by default and you don't have to specify the ID every time to change its appearance in naninovel scripts.
 

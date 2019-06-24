@@ -79,18 +79,23 @@ And here is the Unity import settings for this video clip:
 
 Be aware, that on WebGL video player can only work in the streaming mode, so all the video resources will be copied to `Assets/StreamingAssets/Backgrounds` folder upon building the WebGL player. **StreamingAssets** folder will also appear in the build output directory; make sure to preserve it when publishing the build and check that your web server allows reading the data from this folder.
 
-## Animated Backgrounds
+## Generic Backgrounds
 
-Animated background is the most flexible background actor implementation. It's based on a prefab with an [animator]( https://docs.unity3d.com/ScriptReference/Animator) component attached to the root object. Appearance changes are routed to the animator component as [SetTrigger]( https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) commands appearance being the trigger name. You're free to implement the behavior of the underlying object. 
+Generic background is the most flexible background actor implementation. It's based on a prefab with a `BackgroundActorBehaviour` component attached to the root object. Appearance changes and all the other background parameters are routed as [Unity events](https://docs.unity3d.com/Manual/UnityEvents.html) allowing to implement the behavior of the underlying object in any way you wish. 
 
-Animated backgrounds can't be used as a main background, therefore you always have to specify actor name when using [`@back`](/api/#back) command. Eg, in case your animated background prefab is named `Sky` and you want to send a `Thunder` trigger to the animator component, use the following command:
+![](https://i.gyazo.com/d8f86c83decfb3c40c8d23602214a743.png)
 
-```                                                                                                                                        
+Generic background can't be used as a main background, therefore you always have to specify actor ID when using [`@back`](/api/#back) command. Eg, in case your generic background actor's ID is `Sky` and you want to invoke an appearance change event with `Thunder` value, use the following command:
+
+```
 @back Thunder name:Sky
 ```
 
-Animated backgrounds can only be managed by editor GUI.
+Generic backgrounds are very similar to generic characters; check out a tutorial video on setting an animated 3D model as a generic character for one of the possible usage examples.
 
+<div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/HPxhR0I1u2Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
 
 ## Scene Backgrounds
 
