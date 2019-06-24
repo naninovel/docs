@@ -77,6 +77,8 @@ You can also use `Chars SFX` list property to map multiple SFXs to specific char
 
 ![](https://i.gyazo.com/c51247254e262dca35267b3689460ad2.png)
 
+Alternatively, you can set `Message Sound` in the character configuration menus to play character-specific sounds when the text is revealed while that character is the author of the message (no matter which text printer is printing that message). In case both `Message Sound` of the message's author and `Reveal Sfx` of the active printer are assigned, `Message Sound` will be played instead of the printer's default `Reveal SFX`. `Chars SFX`, when configured, will always be played, no matter if `Message Sound` of the author is specified or not.
+
 ## TextMesh Pro
 
 Naninovel supports [TextMesh Pro](https://assetstore.unity.com/packages/essentials/beta-projects/textmesh-pro-84126) via a standalone extension package, that contains `Fullscreen`, `Dialogue` and `Wide` printers implemented with the TMPro UI text components.
