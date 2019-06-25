@@ -29,9 +29,9 @@ Use `Create -> Naninovel Script` assets context menu to create a naninovel scrip
 
 *Notice: you can create and store naninovel scripts (as well as all the other Naninovel resources) under any project folder and organize them in any way you like; the naming is also up to you. The above illustration is just an example.*
 
-Naninovel scripts are text documents (`.nani` extension) where you control what happens on scenes. You can open and edit them with a text editor of your choice, like Notepad, Word or Sublime.
+Naninovel scripts are text documents (`.nani` extension) where you control what happens on scenes. You can open and edit them with a text editor of your choice, like Notepad, TextEdit or [Atom](https://atom.io).
 
-![Open Naninovel Script](https://i.gyazo.com/b4b8e0848751fcfdd8d56045f5104e80.png)
+![Open Naninovel Script](https://i.gyazo.com/311c80fb669b44e0974ea95c22024ea4.png)
 
 Add the created naninovel script to the project resources. For this, open scripts manager using `Naninovel -> Resources -> Scripts` context menu, press `+` (plus sign) button in the list to add a new record and drag-drop script asset to the list. It's also possible to drag-drop multiple assets or even whole folders to the list to add them in batch. While not recommended, it's also possible to just keep the scripts in a `Resources/Scripts` folder and they'll be automatically exposed to project resources.
 

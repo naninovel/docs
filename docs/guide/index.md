@@ -14,6 +14,7 @@ The following features are already implemented; more will be added as the engine
   * [Labels](/guide/naninovel-scripts.md#label-lines)
   * [Script defines](/guide/naninovel-scripts.md#define-lines)
   * [Commands inlining](/guide/naninovel-scripts.md#generic-text-lines)
+  * [Syntax highlighting, error checking, auto-completion and interactive documentation](/guide/naninovel-scripts.md#ide-support)
 * [Text printers](/guide/text-printers.md)
   * [Dialogue](/guide/text-printers.md#dialogue-printer)
   * [Fullscreen](/guide/text-printers.md#fullscreen-printer)
