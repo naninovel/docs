@@ -1,6 +1,6 @@
 # Naninovel Scripts
 
-Naninovel scripts are text documents (`.nani` extension) where you control what happens on scenes. You can open and edit them with a text editor of your choice, like Notepad, Word or Sublime.
+Naninovel scripts are text documents (`.nani` extension) where you control what happens on scenes. You can open and edit them with a text editor of your choice, like Notepad, TextEdit or [Atom](https://atom.io).
 
 Each line in a naninovel script represents a statement, which can be an command, generic text, label, comment or a define statement. Type of the statement is determined by the literal that is placed at the start of the line:
 
@@ -229,6 +229,28 @@ It's also possible to specify multi-line conditional blocks with [`@if`](/api/#i
 Note that tabs here are completely optional and used just for better readability.
 
 For more information on the conditional expression format and available operators see the [script expressions](/guide/script-expressions.md) guide.
+
+## IDE Support
+
+IDE features, like syntax highlighting, error checking, auto-completion and interactive documentation may significantly increase productivity when writing naninovel scripts. We've made an extension for a free and open-source [Atom editor](https://atom.io) (available for Windows, MacOS and Linux), which provides the essential IDE support for NaniScript syntax.
+
+![](https://i.gyazo.com/12f40d4c5b41667ec456dd743c16de50.png)
+
+To use the extension:
+
+1. Install Atom editor
+2. Install [language-naniscript](https://atom.io/packages/language-naniscript) extension
+3. Install [atom-ide-ui](https://atom.io/packages/atom-ide-ui) extension (required for our extension to provide some of the features)
+4. Restart the Atom editor
+5. Open a folder with naninovel scripts (opening a single file won't activate the extension)
+
+Check the following video tutorial on activating and using the extension.
+
+<div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/njKxsjtewzA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+Support for other editors is possible in the future; check [the issue on GitHub](https://github.com/Elringus/NaninovelWeb/issues/56#issuecomment-492987029) for more information.
 
 ## Scripts Debug
 
