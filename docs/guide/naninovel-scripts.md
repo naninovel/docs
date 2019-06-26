@@ -2,7 +2,9 @@
 
 Naninovel scripts are text documents (`.nani` extension) where you control what happens on scenes. You can open and edit them with a text editor of your choice, like Notepad, TextEdit or [Atom](https://atom.io).
 
-Each line in a naninovel script represents a statement, which can be an command, generic text, label, comment or a define statement. Type of the statement is determined by the literal that is placed at the start of the line:
+![](https://i.gyazo.com/311c80fb669b44e0974ea95c22024ea4.png)
+
+Each line in a naninovel script represents a statement, which can be a command, generic text, label, comment or a define statement. Type of the statement is determined by the literal that is placed at the start of the line:
 
 Literal | Statement Type 
 :---: | --- 
