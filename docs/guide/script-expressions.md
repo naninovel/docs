@@ -66,3 +66,33 @@ CalculateProgress () | Return a float number in 0.0 to 1.0 range, representing h
 
 </div>
 
+### Adding Custom Functions
+
+It's possible to add custom expression functions by assigning `ExpressionFunctions` attribute to a static C# class. All the methods of this class with compatible signatures will then automatically become available in the script expressions. 
+
+Compatible signatures are the ones that take and return [simple](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/value-types#simple-types) and string types, as well as arrays of those types (with `params` keyword).
+
+```csharp
+[Naninovel.ExpressionFunctions]
+static class CustomFunctions
+{
+	// Returns the provided string with all characters converted to lower-case.
+    static string ToLower (string content) => content.ToLower();
+
+    // Returns the sum of the provided numbers.
+    static int Add (int a, int b) => a + b;
+
+    // Returns a string randomly chosen from one of the provided strings.
+    static string Random (params string[] args) 
+	{
+		if (args == null || args.Length == 0) 
+			return default;
+        
+        var randomIndex = UnityEngine.Random.Range(0, args.Length);
+		return args[randomIndex];
+	} 
+}
+```
+
+
+
