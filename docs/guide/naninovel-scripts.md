@@ -158,11 +158,11 @@ To simplify things a bit, script defines feature was implemented. You can define
 
 To define an expression, use `>` literal followed with the short name which will be used to reference the expression; then specify the defined expression. 
 
-The following will define `Felix` character name as an `f` short name and `#ff0000,bold` text style as a `red` short name:
+The following will define `Felix` character name as an `f` short name and `color=#ff0000,b` text style as a `red` short name:
 
 ```
 >f Felix
->red #ff0000,bold
+>red color=#ff0000,b
 ```
 
 You can then use the short names wrapped in curly braces (`{ }`) to reference the defined expressions:
