@@ -74,6 +74,24 @@ It's also possible to broadcast custom PlayMaker events from naninovel scripts u
 
 — will invoke a global user event named "EventName" in all the active FSMs on scene.
 
+The command also allows sending events to specific FSMs by using `fsm` and `object` parameters. The first parameter allows specifying FSM names, which should receive the event, eg: 
+
+```
+@playmaker EventName fsm:Fsm1,Fsm2
+```
+
+— will invoke an event named "EventName" for FSMs with name "Fsm1" and "Fsm2".  
+
+When `object` parameter is specified, the event will only be sent to FSMs, that are applied to game objects, which has corresponding names, eg:
+
+```
+@playmaker EventName object:Obj1,Obj2
+```
+
+— will invoke an event named "EventName" for all the FSMs, that are attached to game objects with names "Obj1" and "Obj2".  
+
+You can as well combine `fsm` and `object` parameters to farther filter the FSMs, that should receive the event.
+
 ## Other Solutions
 
 If you wish us to make setup and usage guides for other third-party visual scripting solutions, contact developers of the solution and ask them to provide us access to their tool.
