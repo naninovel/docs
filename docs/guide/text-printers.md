@@ -51,7 +51,7 @@ Chat printer presents text inside message bubbles framed in a window with vertic
 
 You can customize the built-in text printers in any way you wish or create new printers from scratch. For example, let's customize the built-in dialogue printer. 
 
-All the built-in printer prefabs are stored inside `Naninovel/Resources/Naninovel/TextPrinters` folder. While you can directly edit the prefab and immediately get the result, consider duplicating it and adding as a separate printer to avoid issues when updating Naninovel package in the feature. 
+All the built-in printer prefabs are stored inside `Naninovel/Resources/Naninovel/TextPrinters` folder. While you can directly edit the prefab and immediately get the result, consider duplicating it and adding as a separate printer to avoid issues when updating Naninovel package in the future. 
 
 Duplicate (Ctrl/Cmd+D) `Dialogue.prefab` and move it outside of the Naninovel package, e.g. to `Assets/Printers` folder. 
 
