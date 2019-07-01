@@ -78,3 +78,25 @@ Don't forget about cucumbers!
 <div class="video-container">
     <iframe src="https://www.youtube-nocookie.com/embed/cNRNgk5HhKQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
+
+## Adding Custom Choice Handlers
+
+You can customize the built-in choice handlers in any way you wish or create new handlers from scratch. For example, let's customize the built-in ButtonArea choice handler. 
+
+All the built-in handler prefabs are stored inside `Naninovel/Resources/Naninovel/ChoiceHandlers` folder. While you can directly edit the prefab and immediately get the result, consider duplicating it and adding as a separate handler to avoid issues when updating Naninovel package in the feature. 
+
+Duplicate (Ctrl/Cmd+D) `ButtonArea.prefab` and move it outside of the Naninovel package, e.g. to `Assets/ChoiceHandlers` folder. 
+
+Edit the handler: change font, textures, add animations, etc. 
+
+Expose the handler to engine resources using choice handler manager GUI, which can be accessed with `Naninovel -> Resources -> Choice Handlers` context menu. Add a new record using `+` (plus) button, enter actor ID (can differ from the prefab name) and double click the record to open actor settings. Drag-drop handler prefab to the `Resource` field.
+
+<video class="video" loop autoplay><source src="https://i.gyazo.com/cb3a0ff7f22b22cec6546acb388719fc.mp4" type="video/mp4"></video>
+
+You can now use the new choice handler by specifying its ID in `handler` parameter of the [`@choice`](/api/#choice) commands.
+
+```
+@choice "Choice summary text." handler:MyNewHandler
+```
+
+It's also possible to create a choice handler from scratch by manually implementing `IChoiceHandlerActor` interface. See the guide on [custom actor implementations](/guide/custom-actor-implementations.md) for more information.
