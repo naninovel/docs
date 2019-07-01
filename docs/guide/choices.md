@@ -83,7 +83,7 @@ Don't forget about cucumbers!
 
 You can customize the built-in choice handlers in any way you wish or create new handlers from scratch. For example, let's customize the built-in ButtonArea choice handler. 
 
-All the built-in handler prefabs are stored inside `Naninovel/Resources/Naninovel/ChoiceHandlers` folder. While you can directly edit the prefab and immediately get the result, consider duplicating it and adding as a separate handler to avoid issues when updating Naninovel package in the feature. 
+All the built-in handler prefabs are stored inside `Naninovel/Resources/Naninovel/ChoiceHandlers` folder. While you can directly edit the prefab and immediately get the result, consider duplicating it and adding as a separate handler to avoid issues when updating Naninovel package in the future. 
 
 Duplicate (Ctrl/Cmd+D) `ButtonArea.prefab` and move it outside of the Naninovel package, e.g. to `Assets/ChoiceHandlers` folder. 
 
