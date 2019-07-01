@@ -46,9 +46,9 @@ To change the layer of the UI objects managed by the engine, use `Objects Layer`
 ![](https://i.gyazo.com/d518a996d501aaa9c5b3f50f6c07fdbc.png)
 
 ## Render to Texture
-You can make the engine's camera render to a custom [render texture](https://docs.unity3d.com/ScriptReference/RenderTexture.html) instead of the screen using `Render Texture` setting in the camera configuration.
+You can make the engine's camera render to a custom [render texture](https://docs.unity3d.com/ScriptReference/RenderTexture.html) instead of the screen (and change other camera-related settings) by assigning a custom camera prefab in the camera configuration.
 
-![](https://i.gyazo.com/51c866f1d5c62e34a86b9c09f0c47a48.png)
+![](https://i.gyazo.com/f41858f82464a98150c9cb52a6b6222c.png)
 
 ## Integration Example
 The following video shows a basic way to integrate Naninovel with Unity's 3D Game Kit project and use it as a drop-in dialogue system.

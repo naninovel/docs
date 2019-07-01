@@ -51,15 +51,23 @@ Chat printer presents text inside message bubbles framed in a window with vertic
 
 You can customize the built-in text printers in any way you wish or create new printers from scratch. For example, let's customize the built-in dialogue printer. 
 
-All the built-in printer prefabs and related components are stored inside `Naninovel/Prefabs/TextPrinters` folder. While you can directly edit the `Dialogue` prefab and immediately get the result, consider duplicating it and adding as a separate printer to avoid issues when updating the Naninovel package in the feature. 
+All the built-in printer prefabs are stored inside `Naninovel/Resources/Naninovel/TextPrinters` folder. While you can directly edit the prefab and immediately get the result, consider duplicating it and adding as a separate printer to avoid issues when updating Naninovel package in the feature. 
 
-Duplicate (Ctrl/Cmd+D) the `Naninovel/Prefabs/TextPrinters/Dialogue.prefab` prefab and move it outside of the Naninovel package, e.g. to a `Assets/Printers` folder. 
+Duplicate (Ctrl/Cmd+D) `Dialogue.prefab` and move it outside of the Naninovel package, e.g. to `Assets/Printers` folder. 
 
 Edit the prefab: change font, textures, add animations, etc. 
 
-Expose the prefab to engine resources using the printer's manager GUI, which can be accessed with `Naninovel -> Resources -> Printers` context menu. Add new record using the `+` (plus) button, enter the printer actor name (can differ from the prefab name) and double click the record to open actor settings. Drag-drop printer prefab to the `Resource` field.
+Expose the prefab to engine resources using the printer's manager GUI, which can be accessed with `Naninovel -> Resources -> Printers` context menu. Add a new record using `+` (plus) button, enter actor ID (can differ from the prefab name) and double click the record to open actor settings. Drag-drop printer prefab to the `Resource` field.
 
-Now you can use the new text printer by activating it via [`@printer`](/api/#printer) command and specifying the printer actor name you've set in the manager.
+<video class="video" loop autoplay><source src="https://i.gyazo.com/3f51881fa554720b7a4092dca42fd15e.mp4" type="video/mp4"></video>
+
+You can now use the new text printer by activating it via [`@printer`](/api/#printer) command and specifying actor ID you've set in the manager.
+
+```
+@printer MyNewPrinter
+```
+
+It's also possible to create a printer from scratch by manually implementing `ITextPrinterActor` interface. See the guide on [custom actor implementations](/guide/custom-actor-implementations.md) for more information.
 
 ## Text Reveal Effect
 
