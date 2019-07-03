@@ -71,9 +71,9 @@ It's also possible to create a printer from scratch by manually implementing `IT
 
 ## Text Reveal Effect
 
-By default, a gradient fade effect is applied when printing out the text messages. If, however, you prefer the more conventional "typewriter" style, you can disable the fade effect by disabling `Slide Clip Rect` and setting `Reveal Fade Width` and `Reveal Fade Duration` properties in `Revealable Text` component to zero. `Revealable Text` components are applied to the text objects in some of the built-in printers; eg, you can find it attached to `Fullscreen/Content/Printer/Text` gameobject of `Naninovel/Resources/Naninovel/TextPrinters/Fullscreen` printer prefab.
+By default, a gradient fade effect is applied when printing out the text messages. If, however, you prefer the more conventional "typewriter" style, you can disable the fade effect by disabling `Slide Clip Rect` and setting `Reveal Fade Width` property in `Revealable Text` component to zero. `Revealable Text` components are applied to the text objects in some of the built-in printers; eg, you can find it attached to `Fullscreen/Content/Printer/Text` gameobject of `Naninovel/Resources/Naninovel/TextPrinters/Fullscreen` printer prefab.
 
-![](https://i.gyazo.com/3434d39dcaf6b501d3f3640fda84bf80.png)
+![](https://i.gyazo.com/ab848f3c1c56921634b9d2b872e7c0cb.png)
 
 ## Text Reveal Sounds
 
