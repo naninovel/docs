@@ -66,7 +66,7 @@ CalculateProgress () | Return a float number in 0.0 to 1.0 range, representing h
 
 </div>
 
-### Adding Custom Functions
+## Adding Custom Functions
 
 It's possible to add custom expression functions by assigning `ExpressionFunctions` attribute to a static C# class. All the methods of this class with compatible signatures will then automatically become available in the script expressions. 
 

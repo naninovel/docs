@@ -484,7 +484,7 @@ Hides (removes from scene) an actor with provided ID.
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">ActorName</span> | String | ID of the actor to hide.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">ActorId</span> | String | ID of the actor to hide.
 
 </div>
 
