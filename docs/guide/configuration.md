@@ -158,9 +158,7 @@ Intro Movie Name | Null | Path to the intro movie resource.
 
 Property | Default Value | Description
 --- | --- | ---
-Resource Policy | Static | Dictates when the resources are loaded and unloaded during script execution:
- • Static — All the resources required for the script execution are pre-loaded when starting the playback and unloaded only when the script has finished playing.
- • Dynamic — Only the resources required for the next `DynamicPolicySteps` commands are pre-loaded during the script execution and all the unused resources are unloaded immediately. Use this mode when targetting platforms with strict memory limitations and it's impossible to properly orginize naninovel scripts.
+Resource Policy | Static | Dictates when the resources are loaded and unloaded during script execution:<br> • Static — All the resources required for the script execution are pre-loaded when starting the playback and unloaded only when the script has finished playing.<br> • Dynamic — Only the resources required for the next `DynamicPolicySteps` commands are pre-loaded during the script execution and all the unused resources are unloaded immediately. Use this mode when targetting platforms with strict memory limitations and it's impossible to properly orginize naninovel scripts.
 Dynamic Policy Steps | 25 | When dynamic resource policy is enabled, defines the number of script commands to pre-load.
 Optimize Loading Priority | True | When dynamic resource policy is enabled, this will set Unity's background loading thread priority to low to prevent hiccups when loading resources during script playback.
 Log Resource Loading | False | Whether to log resource loading operations on the loading screen.
