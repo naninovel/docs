@@ -20,12 +20,12 @@ In naninovel scripts, backgrounds are mostly controlled with [`@back`](/api/#bac
 ; Given an `ExplosionSound` SFX and an `ExplosionSprite` background, the following
 ; script sequence will simulate two explosions appearing far and close to the camera.
 @sfx ExplosionSound volume:0.1
-@back name:ExplosionSprite scale:0.3 pos:0.55,0.6 time:0 isVisible:false
-@back name:ExplosionSprite
+@back id:ExplosionSprite scale:0.3 pos:0.55,0.6 time:0 isVisible:false
+@back id:ExplosionSprite
 @fx ShakeBackground params:,1
 @hide ExplosionSprite
 @sfx ExplosionSound volume:1.5
-@back name:ExplosionSprite pos:0.65 scale:1
+@back id:ExplosionSprite pos:0.65 scale:1
 @fx ShakeBackground params:,3
 @hide ExplosionSprite
 ```
@@ -85,10 +85,10 @@ Generic background is the most flexible background actor implementation. It's ba
 
 ![](https://i.gyazo.com/d8f86c83decfb3c40c8d23602214a743.png)
 
-Generic background can't be used as a main background, therefore you always have to specify actor ID when using [`@back`](/api/#back) command. Eg, in case your generic background actor's ID is `Sky` and you want to invoke an appearance change event with `Thunder` value, use the following command:
+Generic background can't be used as a main background, therefore you always have to specify actor ID when using [`@back`](/api/#back) command. Eg, in case your generic background actor's ID is "Sky" and you want to invoke an appearance change event with "Thunder" value, use the following command:
 
 ```
-@back Thunder name:Sky
+@back Thunder id:Sky
 ```
 
 Generic backgrounds are very similar to generic characters; check out a tutorial video on setting an animated 3D model as a generic character for one of the possible usage examples.
