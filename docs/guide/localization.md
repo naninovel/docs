@@ -16,7 +16,7 @@ The resources localization scheme described above works with all the resource ty
 
 ![Localization Tool](https://i.gyazo.com/cb521d2645830988563a7907f05170c8.png)
 
-Specify source of the original resources (current Unity project, local file system or Google Drive), path prefixes for the naninovel scripts and managed text resources ("Scripts" and "Text" by default) and select path to the locale folder where to store the generated localization resources. Make sure the you've selected an actual locale folder (e.g. `/Resources/Localization/ja-JP`) and not just the localization resources root. 
+Specify source of the original resources (current Unity project, local file system or Google Drive), path prefixes for the naninovel scripts and managed text resources ("Scripts" and "Text" by default) and select path to the locale folder where to store the generated localization resources. Make sure you've selected an actual locale folder (e.g. `Resources/Localization/ja-JP`) and not just the localization resources root. 
 
 Enabling "Try update" property will attempt to preserve any currently existing localization resources; when disabled all the existing localization resources at the specified path will be lost.
 
