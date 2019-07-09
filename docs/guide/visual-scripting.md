@@ -92,6 +92,65 @@ When `object` parameter is specified, the event will only be sent to FSMs, that 
 
 You can as well combine `fsm` and `object` parameters to farther filter the FSMs, that should receive the event.
 
+### IDE Extension
+
+To add support for `@playmaker` command to [Atom IDE extension](/guide/naninovel-scripts.md#ide-support), open metadata file located at `%HOMEPATH%/.atom/packages/language-naniscript/server/metadata.json` (`%HOMEPATH%` is the path to your OS user directory) and add following record to `commands` array: 
+
+```json
+{
+  "id": "BroadcastPlayMakerEvent",
+  "alias": "playmaker",
+  "localizable": false,
+  "summary": "Broadcasts a PlayMaker event with the provided name.",
+  "params": [
+    {
+      "id": "EventName",
+      "nameless": true,
+      "required": true,
+      "dataType": {
+        "kind": "literal",
+        "contentType": "string"
+      },
+      "summary": "Name of the event to broadcast."
+    },
+    {
+      "id": "FsmNames",
+      "alias": "fsm",
+      "nameless": false,
+      "required": false,
+      "dataType": {
+        "kind": "array",
+        "contentType": "string"
+      },
+      "summary": "Names of FSMs for which to broadcast the event."
+    },
+    {
+      "id": "GameObjectNames",
+      "alias": "object",
+      "nameless": false,
+      "required": false,
+      "dataType": {
+        "kind": "array",
+        "contentType": "string"
+      },
+      "summary": "Names of game objects for which to broadcast the event."
+    }
+  ]
+},
+```
+
+After the edit, the file should start as follows:
+
+```json
+{
+  "commands": [
+    {
+      "id": "BroadcastPlayMakerEvent",
+      "alias": "playmaker",
+```
+
+Restart the Atom editor (in case it was running), and the `@playmaker` command should no longer be highlighted as an error.
+
 ## Other Solutions
 
 If you wish us to make setup and usage guides for other third-party visual scripting solutions, contact developers of the solution and ask them to provide us access to their tool.
