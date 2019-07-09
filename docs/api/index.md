@@ -20,12 +20,12 @@ time | Decimal | Determines for how long (in seconds) command should execute. Wh
 
 </div>
 
-This API reference is valid for [Naninovel v1.7.0-beta](https://github.com/Elringus/NaninovelWeb/releases).
+This API reference is valid for [Naninovel v1.7.1-beta](https://github.com/Elringus/NaninovelWeb/releases).
 
 ## append
 
 #### Summary
-Appends provided text to an active printer.
+Appends provided text to a text printer.
 
 #### Remarks
 The entire text will be appended immediately, without triggering reveal effect or any other side-effects.
@@ -37,6 +37,7 @@ The entire text will be appended immediately, without triggering reveal effect o
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Text</span> | String | The text to append.
+printer | String | ID of the printer actor to use. Will use a currently active or default one when not provided.
 
 </div>
 
@@ -162,7 +163,7 @@ loop | Boolean | Whether to play the track from beginning when it finishes.
 ## br
 
 #### Summary
-Adds a line break to the text in active printer.
+Adds a line break to a text printer.
 
 #### Parameters
 
@@ -171,6 +172,7 @@ Adds a line break to the text in active printer.
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">Count</span> | Integer | Number of line breaks to add.
+printer | String | ID of the printer actor to use. Will use a currently active or default one when not provided.
 
 </div>
 
@@ -299,7 +301,7 @@ Continue executing this script or load another?[skipInput]
 ; Please note, that making a custom choice handler is a more appropriate solution for this, unless you can't (or don't want to) mess with C# scripting.
 # Map
 @back Map
-@hideText
+@hidePrinter
 @choice handler:ButtonArea button:MapButtons/Home pos:-300,-300 goto:.HomeScene
 @choice handler:ButtonArea button:MapButtons/Shop pos:300,200 goto:.ShopScene
 @stop
@@ -515,14 +517,27 @@ Hides (removes) all the visible characters on scene.
 @hideChars
 ```
 
-## hideText
+## hidePrinter
 
 #### Summary
-Hides an active printer.
+Hides a text printer.
+
+#### Parameters
+
+<div class="config-table">
+
+ID | Type | Description
+--- | --- | ---
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">PrinterId</span> | String | ID of the printer actor to use. Will use a currently active or default one when not provided.
+
+</div>
 
 #### Example
 ```
-@hideText
+; Hide active or (when none) a default printer.
+@hidePrinter
+; Hide printer with ID `Wide`.
+@hidePrinter Wide
 ```
 
 ## hideUI
@@ -580,7 +595,7 @@ ID | Type | Description
 Shows an input field UI where user can enter an arbitrary text.  Upon submit the entered text will be assigned to the specified custom variable.
 
 #### Remarks
-Check out this [video guide](https://youtu.be/F9meuMzvGJw) on usage example.  <br /><br />  To assign a display name for a character using this command consider using [binding the name to a custom variable](/guide/characters.html#display-names).  <br /><br />  The state of the UI is not serialized when saving the game, so make sure to prevent  player from saving the game when the UI is visible (eg, with `@hideText` command).
+Check out this [video guide](https://youtu.be/F9meuMzvGJw) on usage example.  <br /><br />  To assign a display name for a character using this command consider using [binding the name to a custom variable](/guide/characters.html#display-names).  <br /><br />  The state of the UI is not serialized when saving the game, so make sure to prevent  player from saving the game when the UI is visible (eg, with [`@hidePrinter`](/api/#hidePrinter) command).
 
 #### Parameters
 
@@ -659,10 +674,10 @@ ID | Type | Description
 ## print
 
 #### Summary
-Resets the active printer, prints text message and waits for user input.
+Resets a text printer, prints text message and waits for user input.
 
 #### Remarks
-This command is used under the hood when processing generic text lines, eg generic line `Kohaku: Hello World!` will be  automatically tranformed into `@print "Hello World!" actor:Kohaku` when parsing the naninovel scripts.<br />  Will cancel the printing (reveal the text at once) on `Continue` and `Skip` inputs.<br />  Will attempt to play corresponding voice clip when [Auto Voicing](/guide/voicing.html#auto-voicing) feature is enabled.<br />  Will attempt to add the printed message to [printer backlog](/guide/printer-backlog.html).<br />  Will attempt to change tint color of the characters, based on [Speaker Highlight](/guide/characters.html#speaker-highlight) feature.
+This command is used under the hood when processing generic text lines, eg generic line `Kohaku: Hello World!` will be  automatically tranformed into `@print "Hello World!" actor:Kohaku` when parsing the naninovel scripts.<br />  Will show the printer in case it's hidden.<br />  Will cancel the printing (reveal the text at once) on `Continue` and `Skip` inputs.<br />  Will attempt to play corresponding voice clip when [Auto Voicing](/guide/voicing.html#auto-voicing) feature is enabled.<br />  Will attempt to add the printed message to [printer backlog](/guide/printer-backlog.html).<br />  Will attempt to change tint color of the characters, based on [Speaker Highlight](/guide/characters.html#speaker-highlight) feature.
 
 #### Parameters
 
@@ -671,8 +686,8 @@ This command is used under the hood when processing generic text lines, eg gener
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Text</span> | String | Text of the message to print.  When the text contain spaces, wrap it in double quotes (`"`).  In case you wish to include the double quotes in the text itself, escape them.
-printer | String | ID of the printer actor to use.
-actor | String | ID of the actor, which should be associated with the printed message.
+printer | String | ID of the printer actor to use. Will use a currently active or default one when not provided.
+author | String | ID of the actor, which should be associated with the printed message.
 reset | Boolean | Whether to reset text of the printer before executing the printing task.
 waitInput | Boolean | Whether to wait for user input after finishing the printing task.
 
@@ -689,7 +704,7 @@ waitInput | Boolean | Whether to wait for user input after finishing the printin
 ## printer
 
 #### Summary
-Sets printer with the provided ID active and de-activates all the others.
+Makes printer with the provided ID active.  Active printer will be subject of all the printer-related commands when `printer` parameter is not specified.
 
 #### Parameters
 
@@ -697,7 +712,7 @@ Sets printer with the provided ID active and de-activates all the others.
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">PrinterId</span> | String | ID of the printer to activate.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">PrinterId</span> | String | ID of the printer to make active.
 
 </div>
 
@@ -749,11 +764,24 @@ The process is asynchronous and is masked with a loading screen ([ILoadingUI](ht
 ## resetText
 
 #### Summary
-Clears printed text of active printer.
+Clears the text content of a text printer.
+
+#### Parameters
+
+<div class="config-table">
+
+ID | Type | Description
+--- | --- | ---
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">PrinterId</span> | String | ID of the printer actor to use. Will use a currently active or default one when not provided.
+
+</div>
 
 #### Example
 ```
+; Clear the content of an active or (when none) a default printer.
 @resetText
+; Clear the content of a printer with ID `Fullscreen`.
+@resetText Fullscreen
 ```
 
 ## return
@@ -864,14 +892,27 @@ loop | Boolean | Whether to play the sound effect in a loop.
 @sfx volume:0.75 loop:false time:2.5
 ```
 
-## showText
+## showPrinter
 
 #### Summary
-Shows an active or default text printer.
+Shows a text printer.
+
+#### Parameters
+
+<div class="config-table">
+
+ID | Type | Description
+--- | --- | ---
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">PrinterId</span> | String | ID of the printer actor to use. Will use a currently active or default one when not provided.
+
+</div>
 
 #### Example
 ```
-@showText
+; Show active or (when none) a default printer.
+@showPrinter
+; Show printer with ID `Wide`.
+@showPrinter Wide
 ```
 
 ## showUI
@@ -940,7 +981,11 @@ Stops the naninovel script execution.
 
 #### Example
 ```
+Show the choices and halt script execution until the player picks one.
+@choice "Choice 1"
+@choice "Choice 2"
 @stop
+We'll get here after player will make a choice.
 ```
 
 ## stopBgm
@@ -1027,7 +1072,7 @@ Stops playback of the currently played voice clip.
 ## style
 
 #### Summary
-Applies [text styles](/guide/text-printers.md#text-styles) to an active printer.
+Applies [text styles](/guide/text-printers.md#text-styles) to a text printer.
 
 #### Remarks
 You can still use rich text formatting tags directly, but they could be printed  alongside the normal text (eg, when appending messages), which may not be desirable.
@@ -1039,6 +1084,7 @@ You can still use rich text formatting tags directly, but they could be printed 
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">TextStyles</span> | List&lt;String&gt; | Text formatting tags to apply. Angle brackets should be ommited, eg use `b` for &lt;b&gt; and `size=100` for &lt;size=100&gt;. Use `default` keyword to reset the style.
+printer | String | ID of the printer actor to use. Will use a currently active or default one when not provided.
 
 </div>
 

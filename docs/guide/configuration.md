@@ -3,7 +3,7 @@ The engine configuration is stored in multiple scriptable object assets located 
 
 Use `Naninovel -> Configuration` or `Edit -> Project Settings -> Naninovel` to access the configuration menu.
 
-This configuration reference is valid for [Naninovel v1.7.0-beta](https://github.com/Elringus/NaninovelWeb/releases).
+This configuration reference is valid for [Naninovel v1.7.1-beta](https://github.com/Elringus/NaninovelWeb/releases).
 
 ## Audio
 

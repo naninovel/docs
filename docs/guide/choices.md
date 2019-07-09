@@ -59,7 +59,7 @@ In contrast to button list, button area doesn't enforce any specific layout and 
 ```
 # Map
 @back Map
-@hideText
+@hidePrinter
 @choice handler:ButtonArea button:MapButtons/Home pos:-300,-300 goto:.HomeScene
 @choice handler:ButtonArea button:MapButtons/Shop pos:300,200 goto:.ShopScene
 @stop
