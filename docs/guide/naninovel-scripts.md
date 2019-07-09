@@ -58,7 +58,7 @@ You can also use a `wait` *Boolean* parameter to specify whether next command sh
 
 ```
 @hideChars time:5.5 wait:false
-@hideText
+@hidePrinter
 ```
 This will hide the text printer right after characters will begin to fade-out. If `wait` would be `true` or not specified, the printer would be hidden only when the `@hideChars` complete the execution.
 
