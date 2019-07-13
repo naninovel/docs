@@ -83,29 +83,29 @@ public class MyCustomBehaviour : MonoBehaviour
 
     private void OnEnable ()
     {
-        stateManager.AddOnSerializeTask(HandleGameSaveStarted);
-        stateManager.AddOnDeserializeTask(HandleGameLoadFinished);
+        stateManager.AddOnGameSerializeTask(HandleGameSerialized);
+        stateManager.AddOnGameDeserializeTask(HandleGameDeserialized);
     }
 
     private void OnDisable ()
     {
-        stateManager.RemoveOnSerializeTask(HandleGameSaveStarted);
-        stateManager.RemoveOnDeserializeTask(HandleGameLoadFinished);
+        stateManager.RemoveOnGameSerializeTask(HandleGameSerialized);
+        stateManager.RemoveOnGameDeserializeTask(HandleGameDeserialized);
     }
 
-    private Task HandleGameSaveStarted (GameSaveLoadArgs args)
+    private Task HandleGameSerialized (GameStateMap stateMap)
     {
         var state = new GameState() {
             MyCustomBoolVariable = myCustomBoolVariable,
             MyCustomStringVariable = myCustomStringVariable
         };
-        args.StateMap.SerializeObject(state);
+        stateMap.SerializeObject(state);
         return Task.CompletedTask;
     }
 
-    private Task HandleGameLoadFinished (GameSaveLoadArgs args)
+    private Task HandleGameDeserialized (GameStateMap stateMap)
     {
-        var state = args.StateMap.DeserializeObject<GameState>();
+        var state = stateMap.DeserializeObject<GameState>();
         if (state is null) return Task.CompletedTask;
 
         myCustomBoolVariable = state.MyCustomBoolVariable;
