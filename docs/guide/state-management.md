@@ -99,13 +99,13 @@ public class MyCustomBehaviour : MonoBehaviour
             MyCustomBoolVariable = myCustomBoolVariable,
             MyCustomStringVariable = myCustomStringVariable
         };
-        stateMap.SerializeObject(state);
+        stateMap.SetState(state);
         return Task.CompletedTask;
     }
 
     private Task HandleGameDeserialized (GameStateMap stateMap)
     {
-        var state = stateMap.DeserializeObject<GameState>();
+        var state = stateMap.GetState<GameState>();
         if (state is null) return Task.CompletedTask;
 
         myCustomBoolVariable = state.MyCustomBoolVariable;

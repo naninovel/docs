@@ -6,8 +6,6 @@ To add your own custom script command, create a new C# class, inherit `Command` 
 
 `ExecuteAsync` is an async method invoked when the command is executed by the scripts player; put the command logic here. Use [engine services](/guide/engine-services.md) to access the engine built-in systems. Naninovel script execution will halt until this method returns a completed task in case `Wait` parameter is `true`.
 
-`UndoAsync` method is invoked when rewinding naninovel scripts backwards. In case your script command changes scene state, you should revert the changes here; otherwise just return a completed task.
-
 To expose an command parameter to naninovel scripts, add a `CommandParameter` attribute to the public property you want to expose. The attribute takes two optional arguments: `alias` (string) is an alias name of the parameter and `optional` (bool) controls whether the parameter should be considered optional (can be omitted in naninovel scripts). If you wish to make the parameter nameless, set an empty string (`""` or `string.Empty`) as the alias; please note, that only one nameless parameter is allowed per command.
 
 To assign an alias name to the naninovel command, apply `CommandAlias` attribute to the implementing class. In naninovel scripts you can reference the command by either its implementation class name or the assigned alias name.
@@ -44,8 +42,6 @@ public class HelloWorld : Command
 
         return Task.CompletedTask;
     }
-
-    public override Task UndoAsync () => Task.CompletedTask;
 }
 ```
 
