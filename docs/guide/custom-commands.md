@@ -29,7 +29,7 @@ public class HelloWorld : Command
     [CommandParameter(optional: true)]
     public string Name { get; set; }
 
-    public override Task ExecuteAsync ()
+    public override Task ExecuteAsync (CancellationToken cancellationToken = default)
     {
         if (Name is null)
         {
@@ -45,3 +45,4 @@ public class HelloWorld : Command
 }
 ```
 
+Notice the optional `CancellationToken` argument. In case invoking any async methods, make sure to check the token for cancellation requests and return ASAP.
