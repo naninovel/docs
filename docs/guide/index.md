@@ -8,7 +8,7 @@ Naninovel is an extension for [Unity game engine](https://unity3d.com). It consi
 Be aware, that while the engine is in the [beta development stage](https://github.com/Elringus/NaninovelWeb/milestone/1), there is a high probability of changes that could lead to incompatibility with the previous versions, require to re-write the scenario scripts or re-setup the configuration assets. Please take those risks into consideration when planning to use the engine for a project in production stage. 
 
 ## Features
-The following features are already implemented; more will be added as the engine undergoes an active development:
+Following are some of the features that are already implemented; more will be added as the engine undergoes an active development:
 * [Document-based scripts](/guide/naninovel-scripts.md)
   * [Generic text lines](/guide/naninovel-scripts.md#generic-text-lines)
   * [Labels](/guide/naninovel-scripts.md#label-lines)
@@ -40,6 +40,7 @@ The following features are already implemented; more will be added as the engine
 * [Movies](/guide/movies.md)
 * [Choices](/guide/choices.md)
 * [Custom variables](/guide/custom-variables.md)
+* [State rollback](https://youtu.be/HJnOoUrqHis)
 * [Script expressions](/guide/script-expressions.md)
 * [In-game variable input](/api/#input)
 * [Conditional script flow](/api/#if)
