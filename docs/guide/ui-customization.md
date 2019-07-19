@@ -23,6 +23,7 @@ IVariableInputUI | Input form for assigning an arbitrary text to a custom state 
 IConfirmationUI | UI panel used to confirm important commands (eg, when exiting to the title menu or deleting saved game slot).
 ICGGalleryUI | Unlockable [CG gallery](/guide/unlockable-items.md#cg-gallery) items browser.
 ITipsUI | Unlockable [tips](/guide/unlockable-items.md#tips) browser.
+IRollbackUI | Indicator for state rollback feature.
 
 To add a new custom UI (without overriding any of the built-in UIs), attach a `CustomUI` component to the root object of your custom UI prefab.
 
