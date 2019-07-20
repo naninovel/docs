@@ -100,17 +100,13 @@ The text reveal sounds are played very often (depending on the message reveal sp
 
 ## TextMesh Pro
 
-Naninovel supports [TextMesh Pro](https://assetstore.unity.com/packages/essentials/beta-projects/textmesh-pro-84126) via a standalone extension package, that contains `Fullscreen`, `Dialogue` and `Wide` printers implemented with the TMPro UI text components.
+Naninovel supports [TextMesh Pro](https://assetstore.unity.com/packages/essentials/beta-projects/textmesh-pro-84126) via built-in `TMProFullscreen`, `TMProDialogue` and `TMProWide` printers implemented with the TMPro UI text components.
 
-First, download the latest version of the package using the link below: [NaninovelTMPro.unitypackage](https://github.com/Elringus/NaninovelTMPro/raw/master/NaninovelTMPro.unitypackage).
+![](https://i.gyazo.com/bb143607ce79e5a28d89052c7f9fb07c.png)
 
-Before importing the package, make sure you have TextMesh Pro installed in your Unity project. TextMesh Pro can be installed via package manager accessible via `Window -> Package Manager` menu.
+Before using the TMPro printers, make sure you have TextMesh Pro installed in your Unity project. TextMesh Pro can be installed via package manager accessible via `Window -> Package Manager` menu.
 
-Import the package and follow the above guide to add a new custom printer using one of the bundled TMPro printer prefabs (stored at `NaninovelTMPro/Prefabs` folder). 
-
-![](https://i.gyazo.com/afc905f1b1bc7e8f09133a8d593fd999.png)
-
-You can now select the added TMPro printers to route all the print commands to them using [`@printer`](/api/#printer) command in naninovel scripts. In case you've named the printers the same as on the illustration above:
+You can select the TMPro printers to route all the print commands to them using [`@printer`](/api/#printer) command in naninovel scripts:
 
 ```
 ; Activate dialogue TMPro printer
@@ -119,17 +115,17 @@ You can now select the added TMPro printers to route all the print commands to t
 Hello World!
 ```
 
-When creating custom TextMesh Pro font assets, don't forget to apply `Naninovel/NovelFontTMPro` shader, otherwise the text reveal effect won't work.
+When creating custom TextMesh Pro font assets or materials, don't forget to apply `Naninovel/RevealableTMProText` shader to the font material, otherwise text reveal effect won't work.
 
-![](https://i.gyazo.com/c82a336dc01c6d95c8af034ad31eea8d.png)
+![](https://i.gyazo.com/18e112ba90cad84f44f0b78db0db303a.png)
 
 ## Text Styles
 
 Various text styles can be applied via rich text tags placed right inside the text or using [`@style`](/api/#style) command.
 
-The default (built-in) text printers are based on [Unity's text rendering system](https://docs.unity3d.com/Manual/script-Text.html) and support basic text styling like color, size, bold, italic, etc. Refer to [guide on text tags](https://docs.unity3d.com/Manual/StyledText.html) for more info.
+The default (non-TMPro) text printers are based on [Unity's text rendering system](https://docs.unity3d.com/Manual/script-Text.html) and support basic text styling like color, size, bold, italic, etc. Refer to [guide on text tags](https://docs.unity3d.com/Manual/StyledText.html) for more info.
 
-TextMesh Pro printers (bundled with the [NaninovelTMPro.unitypackage](https://github.com/Elringus/NaninovelTMPro/raw/master/NaninovelTMPro.unitypackage)) support a wide range of additional text tags. See the [official documentation](http://digitalnativestudios.com/textmeshpro/docs/rich-text/) for more info. 
+TextMesh Pro printers support a wide range of additional text tags. See the [official documentation](http://digitalnativestudios.com/textmeshpro/docs/rich-text/) for more info. 
 
 Support for [ruby](https://en.wikipedia.org/wiki/Ruby_character) (furigana) characters is additionally provided by the Naninovel's TextMesh Pro printers via custom `<ruby>` tag. Wrap the text above which the ruby characters should be placed with the ruby tag and specify the ruby text inside the tag, eg:
 
