@@ -3,8 +3,6 @@
 If you have issues with the engine, make sure you're using the latest available version. You can update the main package inside the Unity editor using [Asset Store window](https://docs.unity3d.com/Manual/AssetStore.html). In case you're using any of the engine extensions, download the latest packages using following links:
 
 - [NaninovelLive2D](https://github.com/Elringus/NaninovelLive2D/raw/master/NaninovelLive2D.unitypackage)
-- [NaninovelSpriteDicing](https://github.com/Elringus/NaninovelSpriteDicing/raw/master/NaninovelSpriteDicing.unitypackage)
-- [NaninovelTMPro](https://github.com/Elringus/NaninovelTMPro/raw/master/NaninovelTMPro.unitypackage)
 - [NaninovelPlayMaker](https://github.com/Elringus/NaninovelPlayMaker/raw/master/NaninovelPlayMaker.unitypackage)
 
 If updating didn't help, try to re-install the package by deleting `Naninovel` folder from the project and re-importing it from the Asset Store.
