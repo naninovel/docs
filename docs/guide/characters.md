@@ -84,21 +84,19 @@ When enabled in the character configuration, will tint the character based on wh
 
 ## Sprite Characters 
 
-Sprite implementation of the character actors is the most common and simple one; it uses a set of [sprite](https://docs.unity3d.com/Manual/Sprites) assets to represent appearances of the character. The source of the sprites could be `.png` or `.jpg` image files. 
+Sprite implementation of the character actors is the most common and simple one; it uses a set of [sprite](https://docs.unity3d.com/Manual/Sprites) assets to represent appearances of the character. The source of the sprites could be `.png` or `.jpg` image files.
 
 Sprite character appearance assets can be either managed by editor GUI or placed in a `Resources/Characters/CharacterName` folder, `CharacterName` being the name of the character, for an automatic exposure.
 
 ## Diced Sprite Characters
 
-Implemented via an open source (MIT license) third-party package [SpriteDicing](https://github.com/Elringus/SpriteDicing) used to optimize build size and texture memory by reusing source sprite textures of the characters. 
+Built with an open source [SpriteDicing](https://github.com/Elringus/SpriteDicing) package (distributed with the main Naninovel package), `DicedSpriteCharacter` implementation allows to significantly reduce build size and texture memory by reusing texture areas of the character sprites. 
 
 ![Sprite Dicing](https://i.gyazo.com/af08d141e7a08b6a8e2ef60c07332bbf.png)
 
-In order to be able to choose this implementation you have to install [NaninovelSpriteDicing extension package](https://github.com/Elringus/NaninovelSpriteDicing/raw/master/NaninovelSpriteDicing.unitypackage). The extension package contains character implementation scripts and has [SpriteDicing](https://github.com/Elringus/SpriteDicing) bundled inside "ThirdParty" folder.
-
 `DicedSpriteAtlas` assets containing character appearances are used as the resources for the diced sprite characters. Each appearance is mapped by name to the diced sprites contained in the atlas.
 
-Note, that diced characters implementation currently doesn't support animated appearance changes (they're changed instantly).
+Note, that the implementation doesn't support cross-fading between appearances (they're changed instantly).
 
 The following video guide covers creating and configuring diced sprite atlas, adding new diced character based on the created atlas and controlling the character from a naninovel script.
 
