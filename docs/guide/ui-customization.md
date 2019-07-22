@@ -59,6 +59,8 @@ The script will be executed when user clicks the button in play mode. Notice, th
 
 Check out the following video tutorial, where we create a custom calendar UI and bind it to the date and month [custom state variables](/api/#set).
 
+*Be aware, that the video was created with a previous version of the engine and some of the steps may not reflect how things currently work. We'll update the video after the stable release, but you can still use the current one to get a grasp on how to use the feature on a conceptual level.*
+
 <div class="video-container">
     <iframe src="https://www.youtube-nocookie.com/embed/jto4Ld-iP7M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
