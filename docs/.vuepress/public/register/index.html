@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="icon" href="/logo.png">
+    <title>Register Naninovel</title>
+</head>
+<body>
+
+<div class="jumbotron">
+    <h1 class="display-4">Register Naninovel</h1>
+    <p class="lead">Thank you for purchasing Naninovel! Registering will allow you to access developer support on the Naninovel discord server.</p>
+    <hr class="my-4">
+    <p>Fill in the invoice and discord ID fields in the form at the bottom of the page and press 'Register' button to perform the registration.</p>
+    <p>You can find your invoice (order number) in the purchase confirmation email sent by Unity.</p>
+    <p>To find your discord ID enable developer mode in the Discord client (user settings -> appearance -> developer mode), then right-click your portrait in the server's member list and choose 'Copy ID'. Here is a video explaining the steps: <a href="https://youtu.be/1T0L4c9hWTo">youtu.be/1T0L4c9hWTo</a>. Don't forget to <a href="https://discord.gg/avhRzP3">join Naninovel discord server</a> before the registration!
+    <p>When the registration completes you should automatically get a 'Verified User' role on the server and access to the #support channel. If you'll have any issues during the registration feel free to <a href="https://naninovel.com/support/">contact the support</a>.</p>
+</div>
+
+<form class="d-flex justify-content-center form-inline" id="form-add" action="" method="post" enctype='application/json'>
+
+    <label class="sr-only" for="invoice">Invoice (order number)</label>
+    <div class="input-group mb-2 mr-sm-2">
+        <div class="input-group-prepend">
+            <div class="input-group-text">#</div>
+        </div>
+        <input type="text" class="form-control" id="invoice" placeholder="Invoice (order number)">
+    </div>
+
+    <label class="sr-only" for="discord">Discord ID</label>
+    <div class="input-group mb-2 mr-sm-2">
+        <div class="input-group-prepend">
+            <div class="input-group-text">@</div>
+        </div>
+        <input type="text" class="form-control" id="discord" placeholder="Discord ID">
+    </div>
+
+    <button id="submit-add" type="button" name="submit" class="mb-2 mr-sm-2 btn btn-primary">
+        <span id="default">Register</span>
+        <span id="working" hidden>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            Processing, please wait...
+        </span>
+    </button>
+
+</form>
+
+<div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+
+    $(document).ready(function(){
+
+        $("#submit-add").on('click', function() {
+
+            const invoice = $('#invoice').val();
+            const discord = $('#discord').val();
+            if (invoice == '' || discord == '') return;
+
+            work();
+
+            $.ajax({
+                url: 'https://nifty-northcutt-9e33d4.netlify.com/.netlify/functions/register-customer',
+                // url: 'http://localhost:8080/.netlify/functions/register-customer',
+                type: 'POST',
+                crossDomain: true,
+                data: `{ "invoice": "${invoice}", "discord": "${discord}" }`,
+                success: function(result) {
+                    deafult();
+                    modal('Success', 'User with the provided Discord ID should now have a "Verified User" role and access to the #support channel on the server.');
+                },
+                error: function(xhr, resp, text) {
+                    deafult();
+                    modal('Error', xhr.responseText);
+                }
+            });
+        });
+
+    });
+
+    function modal(title, body) {
+        var modal = $('#modal');
+        modal.find('#modalTitle').text(title);
+        modal.find('.modal-body').text(body);
+        modal.modal('show');
+    }
+
+    function work() {
+        $("#submit-add").attr('disabled', true);
+        $("#working").removeAttr('hidden');
+        $("#default").attr('hidden', true);
+    }
+
+    function deafult() {
+        $("#submit-add").removeAttr('disabled');
+        $("#working").attr('hidden', true);
+        $("#default").removeAttr('hidden');
+    }
+
+</script>
+
+</body>
+</html>
