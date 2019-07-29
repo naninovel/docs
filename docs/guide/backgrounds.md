@@ -77,9 +77,11 @@ And here is the Unity import settings for this video clip:
 
 ![](https://i.gyazo.com/9e6a9cc0bd79bca2c0e8e35666fbdc7f.png)
 
-Be aware, that sometimes (depending on the video format) it could be required to enable the transcoding in the video clip import settings to achieve a seamless loop.
+Depending on the target platform, it could be required to enable the transcoding in the video clip import settings.
 
-Notice, that on WebGL video player can only work in the streaming mode, so all the video resources will be copied to `Assets/StreamingAssets/Backgrounds` folder upon building the WebGL player. **StreamingAssets** folder will also appear in the build output directory; make sure to preserve it when publishing the build and check that your web server allows reading the data from this folder.
+In case having issues with achieving a seamless loop, make sure the video has exactly same starting and finishing frames and a compatible encoding setup; check our [video loop example project](https://github.com/Elringus/VideoLoop) for the reference.
+
+Be aware, that on WebGL video player can only work in the streaming mode, so all the video resources will be copied to `Assets/StreamingAssets/Backgrounds` folder upon building the WebGL player. **StreamingAssets** folder will also appear in the build output directory; make sure to preserve it when publishing the build and check that your web server allows reading the data from this folder.
 
 ## Generic Backgrounds
 
