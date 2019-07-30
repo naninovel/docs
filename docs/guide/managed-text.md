@@ -19,3 +19,23 @@ Enabling `Delete unused` property will remove records in the managed text docume
 Localization variant for each managed text document will be created automatically when running the generate localization resources task; see [Localization](/guide/localization.md) for more info.
 
 You can add your own managed text variables and they'll be included to the generated documents. For this just add `ManagedText` attribute to a static string field in any C# script. Its value will be overwritten with the value specified in the managed text document on engine initialization. 
+
+## Script Text
+
+It's also possible to reference managed text values from naninovel scripts. This could be handy, when you need to use some text in the script expressions and the text should be localizable. 
+
+Create a managed text document named "Script" and add records using keys with `T_` or `t_` prefix. You'll then be able to reference the values in script expressions; eg given the following records in the "Script" managed text document:
+
+```
+T_Greeting1: Hey!
+T_Greeting2: Hello!
+T_Greeting3: Hi!
+``` 
+
+— you can reference the values with:
+
+```
+@print {Random(T_Greeting1,T_Greeting2,T_Greeting3)}
+```
+
+Of course, the "Script" managed text document can be localized in the same way as the other documents; so when the user will select another locale, the text will automatically be referenced from the corresponding localized document.
