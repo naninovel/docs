@@ -43,11 +43,17 @@ public class MyCustomUI : UnityCommon.ScriptableUIBehaviour, Naninovel.UI.IManag
 }
 ```
 
-When the prefab is ready, add it to `Custom UI` list in the UI configuration manager accessible with `Naninovel -> Configuration -> UI` context menu.
+When the prefab is ready, add it to `Custom UI` list in the UI configuration accessible with `Naninovel -> Configuration -> UI` context menu.
 
-![UI Customization](https://i.gyazo.com/ac4f04b492d7559c7991a8c2720c08e1.png)
+![](https://i.gyazo.com/f26310e391b96bda3d402d704c31cb9e.png)
 
-When the engine is initializing it'll spawn all the prefabs added to the `Custom UI` list. In case spawned prefab has a component attached to the root object that implements one of the built-in UI interfaces, built-in prefab with default implementation won't be spawned.
+When the engine is initializing it'll spawn all the prefabs added to the `Custom UI` list.
+
+To disable or override the default (built-in) UIs, use the `Default UI` area.
+
+![](https://i.gyazo.com/57338b7150364f45f715bcd3e47d8c1a.png)
+
+To disable a default UI, uncheck the toggle behind the corresponding UI record and to override the UI, assign a custom prefab to the "Game Object" field of the record.
 
 ## Play Naninovel Script On Button Click
 
