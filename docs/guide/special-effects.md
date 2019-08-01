@@ -39,7 +39,7 @@ The [`@stopfx`](/api/#stopfx) commands of some effects can also receive paramete
 When no `params` is specified, default parameters will be used. You can find both "start" (accepted by the [`@fx`](/api/#fx) command) and "stop" (accepted by the [`@stopfx`](/api/#stopfx) command) parameters available for each effect and their default values in the docs below.
 
 ## ShakePrinter
-Shakes printer with the specified ID or the currently active one.
+Shakes printer with the specified ID or the default one.
 
 ### Demo
 
@@ -48,7 +48,7 @@ Shakes printer with the specified ID or the currently active one.
 ### Start Parameters
 Name | Type | Default | Description
 --- | --- | --- | ---
-Printer ID | String | null | ID of the printer to shake. Will shake currently active printer when not specified.
+Printer ID | String | null | ID of the printer to shake. Will shake a default printer when not specified.
 Shake count | Integer | 3 | The number of shake iterations. When set to 0 or less, will loop the effect until stopped with [`@stopfx`](/api/#stopfx).
 Shake duration | Decimal | 0.15 | The base duration of each shake iteration, in seconds.
 Duration variation | Decimal | 0.25 | The randomized delta modifier applied to the base duration of the effect.
@@ -59,13 +59,13 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 
 ### Examples
 ```
-; Shake currently active printer with default params
+; Shake a default printer with default params
 @fx ShakePrinter
 
-; Shake currently active printer horizontally 10 times 
+; Shake a default printer horizontally 10 times 
 @fx ShakePrinter params:,10,,,,,true,false
 
-; Start shaking currently active printer in loop, print some text, stop the shaking
+; Start shaking a default printer in loop, print some text, stop the shaking
 @fx ShakePrinter params:,0 wait:false
 What a shaky situation!
 @stopfx ShakePrinter
