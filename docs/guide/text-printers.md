@@ -7,13 +7,13 @@ Printers' behavior can be configured using `Naninovel -> Configuration -> Printe
 In naninovel scripts, text printers are mostly controlled with [`@print`](/api/#print) and [`@printer`](/api/#printer) commands:
 
 ```
-; Will activate `Dialogue` printer
+; Will make the `Dialogue` printer default
 @printer Dialogue
 
-; Will active `Fullscreen` printer
+; Will make the `Fullscreen` printer default
 @printer Fullscreen
 
-; Will print the infamous phrase using active printer
+; Will print the phrase using a default printer
 @print text:"Lorem ipsum dolor sit amet."
 
 ; The same as above, but using generic text statement
@@ -94,7 +94,7 @@ You can also use `Chars SFX` list property to map multiple SFXs to specific char
 
 ![](https://i.gyazo.com/c51247254e262dca35267b3689460ad2.png)
 
-Alternatively, you can set `Message Sound` in the character configuration menus to play character-specific sounds when the text is revealed while that character is the author of the message (no matter which text printer is printing that message). In case both `Message Sound` of the message's author and `Reveal Sfx` of the active printer are assigned, `Message Sound` will be played instead of the printer's default `Reveal SFX`. `Chars SFX`, when configured, will always be played, no matter if `Message Sound` of the author is specified or not.
+Alternatively, you can set `Message Sound` in the character configuration menus to play character-specific sounds when the text is revealed while that character is the author of the message (no matter which text printer is printing that message). In case both `Message Sound` of the message's author and `Reveal Sfx` of the default printer are assigned, `Message Sound` will be played instead of the printer's default `Reveal SFX`. `Chars SFX`, when configured, will always be played, no matter if `Message Sound` of the author is specified or not.
 
 The text reveal sounds are played very often (depending on the message reveal speed) and are clipped when same sound is played in consequence, so make sure the corresponding audio clips are very short and sharp (without any pause/silence at the beginning).
 

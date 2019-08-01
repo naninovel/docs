@@ -90,7 +90,7 @@ There could be only one nameless parameter per command and it should always be s
 
 ### Optional and Required Parameters
 
-Most of the command parameters are *optional*. It means they either have a predefined value or just doesn't require any value in order for the command to be executed. For example, when a [`@resetText`](/api/#resettext) command used without specifying any parameters it will reset text of an active printer, but you can also set a specific printer name like this: `@resetText pinter:Dialogue`.
+Most of the command parameters are *optional*. It means they either have a predefined value or just doesn't require any value in order for the command to be executed. For example, when a [`@resetText`](/api/#resettext) command is used without specifying any parameters it will reset text of a default printer, but you can also set a specific printer ID like this: `@resetText pinter:Dialogue`.
 
 Some parameters however are *required* in order for the command to execute and should always be specified.
 
@@ -258,7 +258,7 @@ Support for other editors is possible in the future; check [the issue on GitHub]
 
 When working with large naninovel scripts, it could become tedious to always play them from start in order to check how things work in particular parts of the script. 
 
-Using [development console](/guide/development-console.md) you can instantly "rewind" currently active script to an arbitrary line:
+Using [development console](/guide/development-console.md) you can instantly "rewind" currently played script to an arbitrary line:
 
 ```
 rewind 12
