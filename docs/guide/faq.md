@@ -4,6 +4,10 @@
 
 For the UI part (changing/adding buttons or panel layout and style) use the [UI customization](/guide/ui-customization.md) feature; for everything else set `Title Script` at the [scripts configuration menu](/guide/configuration.md#scripts) (Naninovel -> Configuration -> Scripts) and use script commands to setup the scene just like when writing a scenario. The title script will be automatically played when entering the title menu.
 
+## How to add a line break to the message?
+
+[Check out `[br]` command](/api/#br).
+
 ## I'd like to use backgrounds with a non-standard resolution (eg, 2048x1024), but they look cropped.
 
 Set `Reference Resolution` at the [camera configuration menu](/guide/configuration.md#camera) (Naninovel -> Configuration -> Camera) equal to the backgrounds resolution.
