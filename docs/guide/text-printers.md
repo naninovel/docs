@@ -115,8 +115,6 @@ You can select the TMPro printers to route all the print commands to them using 
 Hello World!
 ```
 
-When creating custom TextMesh Pro font assets or materials, don't forget to apply `Naninovel/RevealableTMProText` shader to the font material, otherwise text reveal effect won't work.
-
 ![](https://i.gyazo.com/18e112ba90cad84f44f0b78db0db303a.png)
 
 ## Text Styles
