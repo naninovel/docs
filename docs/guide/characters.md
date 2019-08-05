@@ -74,6 +74,8 @@ You can set a default avatar for a character by giving the avatar texture resour
 
 It's also possible to associate avatars with specific character appearances, so that when character changes appearance, the avatar will also change automatically. For this, name the avatar resources using the following format: `CharacterID/CharacterAppearance`, where `CharacterAppearance` is the name of the appearance for which to map the avatar resource.
 
+Please note, that the **avatars are not directly connected with character appearances** and shouldn't be considered as a way to show character on the scene. Appearances are the actual representation of a character on the scene. Avatars is a standalone feature, that "injects" an image to a compatible text printer.
+
 ## Speaker Highlight
 
 When enabled in the character configuration, will tint the character based on whether the last printed message is associated with it.
