@@ -49,11 +49,11 @@ Shakes printer with the specified ID or the default one.
 Name | Type | Default | Description
 --- | --- | --- | ---
 Printer ID | String | null | ID of the printer to shake. Will shake a default printer when not specified.
-Shake count | Integer | 3 | The number of shake iterations. When set to 0 or less, will loop the effect until stopped with [`@stopfx`](/api/#stopfx).
+Shake count | Integer | 2 | The number of shake iterations. When set to 0 or less, will loop the effect until stopped with [`@stopfx`](/api/#stopfx).
 Shake duration | Decimal | 0.15 | The base duration of each shake iteration, in seconds.
 Duration variation | Decimal | 0.25 | The randomized delta modifier applied to the base duration of the effect.
 Shake amplitude | Decimal | 0.5 | The base displacement amplitude of each shake iteration, in units.
-Amplitude variation | Decimal | 0.5 | The randomized delta modifier applied to the base displacement amplitude of the effect.
+Amplitude variation | Decimal | 0.1 | The randomized delta modifier applied to the base displacement amplitude of the effect.
 Shake horizontally | Boolean | false | Whether to displace the actor horizontally (by x-axis).
 Shake vertically | Boolean | true | Whether to displace the actor vertically (by y-axis).
 
@@ -132,6 +132,34 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 @stopfx ShakeCharacter
 # Continue
 ...
+```
+
+## ShakeCamera
+Shakes the main Naninovel render camera.
+
+### Demo
+
+<video class="video" loop autoplay><source src="https://i.gyazo.com/f9521fbcf959d0b72e449ae6e2191f9f.mp4" type="video/mp4"></video>
+
+### Start Parameters
+Name | Type | Default | Description
+--- | --- | --- | ---
+Camera Name | String | null | Name of the camera object to shake. Will shake the main Naninovel camera when not provided.
+Shake count | Integer | 3 | The number of shake iterations. When set to 0 or less, will loop the effect until stopped with [`@stopfx`](/api/#stopfx).
+Shake duration | Decimal | 0.15 | The base duration of each shake iteration, in seconds.
+Duration variation | Decimal | 0.25 | The randomized delta modifier applied to the base duration of the effect.
+Shake amplitude | Decimal | 0.5 | The base displacement amplitude of each shake iteration, in units.
+Amplitude variation | Decimal | 0.5 | The randomized delta modifier applied to the base displacement amplitude of the effect.
+Shake horizontally | Boolean | false | Whether to displace the actor horizontally (by x-axis).
+Shake vertically | Boolean | true | Whether to displace the actor vertically (by y-axis).
+
+### Examples
+```
+; Shake the main Naninovel camera with default params
+@fx ShakeCamera
+
+; Shake the main Naninovel camera horizontally 5 times 
+@fx ShakePrinter params:,5,,,,,true,false
 ```
 
 ## DigitalGlitch
