@@ -34,6 +34,7 @@ Following are some of the features that are already implemented; more will be ad
 * [Background transition effects](/guide/background-transition-effects.md)
 * [Perspective camera and look around mode](https://youtu.be/rC6C9mA7Szw)
 * [Special effects (FX system)](/guide/special-effects.md)
+* [Lip sync](https://youtu.be/fx_YS2ZQGHI)
 * [Background music (BGM)](/guide/background-music.md)
 * [Sound effects (SFX)](/guide/sound-effects.md)
 * [Camera animations](/api/#camera)
