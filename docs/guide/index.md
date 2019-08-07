@@ -19,6 +19,7 @@ Following are some of the features that are already implemented; more will be ad
   * [Dialogue](/guide/text-printers.md#dialogue-printer)
   * [Fullscreen](/guide/text-printers.md#fullscreen-printer)
   * [Chat](/guide/text-printers.md#chat-printer)
+  * [Bubble](/guide/text-printers.md#bubble-printer)
   * [TextMesh Pro support](/guide/text-printers.html#textmesh-pro)
   * [Ruby (furigana) text support](/guide/text-printers.html#text-styles)
 * [Characters](/guide/characters.md)

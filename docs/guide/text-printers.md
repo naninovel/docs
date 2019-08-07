@@ -56,6 +56,26 @@ When using generic text lines and [`@print`](/api/#print) commands, the text in 
 
 — will print two messages without resetting the printer.
 
+## Bubble Printer
+
+Bubble printers can be used for a manga/comic style of text presentation. 
+
+![](https://i.gyazo.com/900ee728505a0d7ce2eb597f3aa2249a.png)
+
+The built-in bubble printer supports two appearances: "Left" and "Right", which can be used to align the direction of the printer based on which side it's positioned relative to the character.
+
+```
+@printer Bubble.Left pos:42,80 visible:false time:0
+@show Bubble wait:false
+Misaki: Aliquam lobortis!
+@char Nanikun.Happy wait:false
+@printer Bubble.Right pos:53,55 visible:false time:0
+@show Bubble wait:false
+Nanikun: Integer nec maximus elit, eget posuere risus.
+```
+
+To display more than one bubble (or any other) printer at a time, add custom printers.
+
 ## Adding Custom Printers
 
 You can customize the built-in text printers in any way you wish or create new printers from scratch. For example, let's customize the built-in dialogue printer. 
