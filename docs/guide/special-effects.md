@@ -237,6 +237,32 @@ Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn
 @stopfx Snow params:30
 ```
 
+## SunShafts
+Spawns a particle system simulating sun shafts (rays).
+
+### Demo
+
+<video class="video" loop autoplay><source src="https://i.gyazo.com/7edc4777699229abc508f2bdb404522e.mp4" type="video/mp4"></video>
+
+### Start Parameters
+Name | Type | Default | Description
+--- | --- | --- | ---
+Intensity | Decimal | 0.85 | The intensity of the rays (opacity).
+Fade-in time | Decimal | 3 | The particle system will gradually grow the intensity from 0 to the target level over the specified time, in seconds.
+
+### Stop Parameters
+Name | Type | Default | Description
+--- | --- | --- | ---
+Fade-out time | Decimal | 3 | The particle system will gradually lower the opacity from the target level to 0 over the specified time, in seconds.
+
+### Examples
+```
+; Start intensive sunshine over 10 seconds
+@fx SunShafts params:1,10
+; Stop the sunshine over 30 seconds
+@stopfx SunShafts params:30
+```
+
 ## Adding Custom Effects
 
 ### Standalone Effects
