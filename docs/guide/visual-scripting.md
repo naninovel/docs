@@ -56,7 +56,7 @@ The following video demonstrates using PlayMaker FSM (finite state machine) to i
     <iframe src="https://www.youtube-nocookie.com/embed/N856vi18XVU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-Some of the essential Naninovel events can be automatically routed to PlayMaker FSMs. For this, create a global [user event](https://hutonggames.fogbugz.com/default.asp?W148) with an appropriate name and use it inside an FSM. Here are the available event names:
+Some of the essential Naninovel events can be automatically routed to PlayMaker FSMs. For this, create a global [user event](https://hutonggames.fogbugz.com/default.asp?W148) with an appropriate name and use it inside an FSM. Following are the available event names:
 
 - `Naninovel/Engine/OnInitialized`
 - `Naninovel/ScriptPlayer/OnPlay`
@@ -65,6 +65,8 @@ Some of the essential Naninovel events can be automatically routed to PlayMaker 
 - `Naninovel/StateManager/OnGameSaveFinished`
 - `Naninovel/StateManager/OnGameLoadStarted`
 - `Naninovel/StateManager/OnGameLoadFinished`
+- `Naninovel/TextPrinterManager/OnPrintTextStarted`
+- `Naninovel/TextPrinterManager/OnPrintTextFinished`
 
 It's also possible to broadcast custom PlayMaker events from naninovel scripts using `@playmaker` command:
 
