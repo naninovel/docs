@@ -2,11 +2,13 @@
 
 Managed text feature allows to manage (replace) various text elements used throughout Naninovel like the in-game UI and characters' display names using localizable documents. 
 
-To generate the managed text documents, use managed text tool accessible via `Naninovel -> Tools -> Managed Text` context menu.
+To generate the managed text documents, use managed text tool accessible via `Naninovel -> Tools -> Managed Text` editor context menu.
 
 ![Managed Text Tool](https://i.gyazo.com/2897fb4799b829bb9ae0781bd11c2508.png)
 
 Using "Select" button, select path to store the managed text documents (should be `./Resources/Text` by default) and press "Generate" button to create the documents.
+
+You can also create managed text document with `Create -> Naninovel -> Managed Text` asset context menu.
 
 Each line in managed text document is an expression in the following format: *Path*: *Value*, where *Path* is the path to the text variable and *Value* is the value of that variable. For example, here is the default contents of the "UITitleMenu" document, which corresponds to the title (main) menu UI:
 
