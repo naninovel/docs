@@ -44,11 +44,11 @@ The [`@choice`](/api/#choice) command accepts an optional `button` parameter spe
 ```
 — here we use a choice handler supporting positioning to represent a point of interest on an improvised map, where the `button` parameter is pointing to a prefab consisting of a button wrapped over an image. The prefab is stored at `Assets/Resources/MapButtons/Home.prefab`.
 
-The choice button prefab should have a [Button](https://docs.unity3d.com/Manual/script-Button.html) and `ChoiceHandlerButton` components attached to the root object; check out `Naninovel/Prefabs/ChoiceHandlers/ChoiceHandlerButton.prefab` default choice handler button prefab for the reference implementation or just duplicate and build your own using it as a foundation.
+To create a choice button prefab from template, use `Create -> Naninovel -> Choice Button` asset context menu.
 
 ![](https://i.gyazo.com/c2bd4abaa0275f7cdd37c56fd2ff0dec.png)
 
-When the `button` parameter is not specified a default button prefab will be used.
+When `button` parameter of the `@choice` command is not specified a default button prefab is used.
 
 ## ButtonList Choice Handler
 Button list handler is used by default. It stores the choice buttons inside a horizontal layout panel and ignores the `pos` parameter of the [`@choice`](/api/#choice) command.
@@ -81,15 +81,13 @@ Don't forget about cucumbers!
 
 ## Adding Custom Choice Handlers
 
-You can customize the built-in choice handlers in any way you wish or create new handlers from scratch. For example, let's customize the built-in ButtonArea choice handler. 
+You can add custom choice handlers based on the built-in templates or create new handlers from scratch. For example, let's customize the built-in `ButtonArea` template. 
 
-All the built-in handler prefabs are stored inside `Naninovel/Resources/Naninovel/ChoiceHandlers` folder. While you can directly edit the prefab and immediately get the result, consider duplicating it and adding as a separate handler to avoid issues when updating Naninovel package in the future. 
+Use `Create -> Naninovel -> Choice Handler -> ButtonArea` asset context menu to create a button area handler prefab somewhere outside of the Naninovel package, e.g. at the `Assets/ChoiceHandlers` folder. 
 
-Duplicate (Ctrl/Cmd+D) `ButtonArea.prefab` and move it outside of the Naninovel package, e.g. to `Assets/ChoiceHandlers` folder. 
+Edit the handler: change font, textures, add animations, etc. For more information on the available UI building tools, check the [Unity documentation](https://docs.unity3d.com/Manual/UISystem).
 
-Edit the handler: change font, textures, add animations, etc. 
-
-Expose the handler to engine resources using choice handler manager GUI, which can be accessed with `Naninovel -> Resources -> Choice Handlers` context menu. Add a new record using `+` (plus) button, enter actor ID (can differ from the prefab name) and double click the record to open actor settings. Drag-drop handler prefab to the `Resource` field.
+Expose the handler to engine resources using choice handler manager GUI, which can be accessed with `Naninovel -> Resources -> Choice Handlers` editor context menu. Add a new record using `+` (plus) button, enter actor ID (can differ from the prefab name) and double click the record to open actor settings. Drag-drop handler prefab to the `Resource` field.
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/cb3a0ff7f22b22cec6546acb388719fc.mp4" type="video/mp4"></video>
 

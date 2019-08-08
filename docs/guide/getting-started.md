@@ -20,12 +20,12 @@ When creating a project you'd probably like to use `2D Template` to set the edit
 ## Install Naninovel
 Import Naninovel package using the [Asset Store window](https://docs.unity3d.com/Manual/AssetStore.html) and wait for the initial scripts compilation and assets import process. You are free to move `Naninovel` package folder anywhere inside your project assets directory, if you wish.
 
-Over the course of using Naninovel a number of assets (configuration, settings, saves, etc) will be automatically generated inside `Assets/NaninovelData` folder. In contrast to the package folder, you shouldn't manually move the data folder (it'll be automatically regenerated). If you wish to change location of the data folder, edit `Generated Data Path` property in the engine configuration menu.
+Over the course of using Naninovel a number of assets (configuration, settings, saves, etc) will be automatically generated inside `Assets/NaninovelData` folder. In contrast to the package folder, you shouldn't manually move the data folder (it'll be automatically regenerated). If you wish to change the location of the data folder, edit `Generated Data Path` property in the engine configuration menu.
 
 ## Add Naninovel Script
-Use `Create -> Naninovel Script` assets context menu to create a naninovel script asset. 
+Use `Create -> Naninovel -> Naninovel Script` assets context menu to create a naninovel script asset. 
 
-![Create Naninovel Script](https://i.gyazo.com/d63a378e2c8602a6f9918c4106de6832.png)
+![Create Naninovel Script](https://i.gyazo.com/be7677077abeb4f805979bd647d6d90e.png)
 
 *Notice: you can create and store naninovel scripts (as well as all the other Naninovel resources) under any project folder and organize them in any way you like; the naming is also up to you. The above illustration is just an example.*
 
@@ -33,13 +33,9 @@ Naninovel scripts are text documents (`.nani` extension) where you control what 
 
 ![Open Naninovel Script](https://i.gyazo.com/311c80fb669b44e0974ea95c22024ea4.png)
 
-Add the created naninovel script to the project resources. For this, open scripts manager using `Naninovel -> Resources -> Scripts` context menu, press `+` (plus sign) button in the list to add a new record and drag-drop script asset to the list. It's also possible to drag-drop multiple assets or even whole folders to the list to add them in batch. While not recommended, it's also possible to just keep the scripts in a `Resources/Scripts` folder and they'll be automatically exposed to project resources.
+In order for a Naninovel-related asset (like our created script) to become "visible" for the engine, it should be assigned as a project resource. When creating the scripts via the create assets menu, they're assigned automatically. To assign (or edit/remove) a script resource manually use script resources window accessible with `Naninovel -> Resources -> Scripts` editor context menu. To add a script, press `+` (plus sign) button in the list to add a new record and drag-drop script asset to the list. It's also possible to drag-drop multiple assets or even whole folders to the list to add them in batch.
 
 ![Add Naninovel Script](https://i.gyazo.com/b3281a145ba54e6cb6cbdaa478ea894d.png)
-
-In case you’ve chosen to not use the script manager, you’ll have to manually set `Start Game Script` value in the `Naninovel -> Configuration -> Scripts` menu; it will be set automatically when you add first naninovel script in the manager otherwise.
-
-![Start Script](https://i.gyazo.com/76e167cb24adfb4d0b454b372f05eb3d.png)
 
 Open the created script in a text editor and add the following text:
 ```
@@ -48,7 +44,13 @@ Hello World!
 ```
 The first line will print the text "Hello World!" when the game is run and the second is required to gracefully stop script execution.
 
-Enter play mode and start new game to see the result.
+Enter play mode and start a new game to see the result.
+
+It's also possible to store the naninovel scripts at a `Resources/Scripts` folder, which will make them all "visible" to the engine by default. This is not recommended though, as some of the editor features (like script selection dropdowns) won't work.
+
+In case "NEW GAME" button of the title menu is not active, make sure "Start Game Script" property in the script configuration (`Naninovel -> Configuration -> Scripts`) is equal to the name of the created script. The property is populated automatically when creating the first script via create asset menu, but this may not work if you copy some existing script to the project.
+
+![Start Script](https://i.gyazo.com/76e167cb24adfb4d0b454b372f05eb3d.png)
 
 ## Add Character
 Characters in Naninovel can be based on regular and diced sprites, animated Live2D models and 3D meshes; you can add your own implementations as well. For the purpose of this tutorial, we’ll use a sprite implementation. 

@@ -78,13 +78,11 @@ To display more than one bubble (or any other) printer at a time, add custom pri
 
 ## Adding Custom Printers
 
-You can customize the built-in text printers in any way you wish or create new printers from scratch. For example, let's customize the built-in dialogue printer. 
+You can add custom text printers based on the built-in templates or create new printers from scratch. For example, let's customize the built-in `Dialogue` template. 
 
-All the built-in printer prefabs are stored inside `Naninovel/Resources/Naninovel/TextPrinters` folder. While you can directly edit the prefab and immediately get the result, consider duplicating it and adding as a separate printer to avoid issues when updating Naninovel package in the future. 
+Use `Create -> Naninovel -> Text Printers -> Dialogue` asset context menu to create a dialogue prefab somewhere outside of the Naninovel package, e.g. at the `Assets/TextPrinters` folder. 
 
-Duplicate (Ctrl/Cmd+D) `Dialogue.prefab` and move it outside of the Naninovel package, e.g. to `Assets/Printers` folder. 
-
-Edit the prefab: change font, textures, add animations, etc. 
+Edit the prefab: change font, textures, add animations, etc. For more information on the available UI building tools, check the [Unity documentation](https://docs.unity3d.com/Manual/UISystem).
 
 Expose the prefab to engine resources using the printer's manager GUI, which can be accessed with `Naninovel -> Resources -> Printers` context menu. Add a new record using `+` (plus) button, enter actor ID (can differ from the prefab name) and double click the record to open actor settings. Drag-drop printer prefab to the `Resource` field.
 
@@ -100,7 +98,7 @@ It's also possible to create a printer from scratch by manually implementing `IT
 
 ## Text Reveal Effect
 
-By default, a gradient fade effect is applied when printing out the text messages. If, however, you prefer the more conventional "typewriter" style, you can disable the fade effect by disabling `Slide Clip Rect` and setting `Reveal Fade Width` property in `Revealable Text` component to zero. `Revealable Text` components are applied to the text objects in some of the built-in printers; eg, you can find it attached to `Fullscreen/Content/Printer/Text` gameobject of `Naninovel/Resources/Naninovel/TextPrinters/Fullscreen` printer prefab.
+By default, a gradient fade effect is applied when printing out the text messages. If, however, you prefer the more conventional "typewriter" style, you can disable the fade effect by disabling `Slide Clip Rect` and setting `Reveal Fade Width` property in `Revealable Text` component to zero. `Revealable Text` components are applied to the text objects in some of the built-in printers; eg, you can find it attached to `Fullscreen/Content/Printer/Text` game object of a `Fullscreen` printer prefab.
 
 ![](https://i.gyazo.com/ab848f3c1c56921634b9d2b872e7c0cb.png)
 
