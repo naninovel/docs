@@ -69,3 +69,15 @@ When building a [custom UI](/guide/ui-customization.md) or other systems, you ma
 )
 
 Check out the [video tutorial](https://www.youtube.com/watch?v=jto4Ld-iP7M) on creating a custom calendar UI, which updates values when corresponding custom variables are changed in naninovel scripts. You can also find the project demonstrated in the video on GitHub: [github.com/Elringus/NaninovelCustomUIExample](https://github.com/Elringus/NaninovelCustomUIExample).
+
+## Variables Debug
+
+While the game is running it's possible to view all the existing variables and change their values for debugging purposes.
+
+Open [development console](/guide/development-console.md) and enter `var` command to open the variables editor window.
+
+![](https://i.gyazo.com/d1812668c0776b01f3a82c5ddcba0145.png)
+
+When changing value of a variable in the list, a "SET" button will appear, which you can press to apply the changes.
+
+The variables list is automatically updated when the custom variables are changed while running the game.

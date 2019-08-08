@@ -22,12 +22,13 @@ Following commands are currently available:
 
 Command | Description
 --- | ---
-nav | Toggles script navigator UI.
-debug | Toggles debug window.
+nav | Toggles naninovel script navigator UI.
+debug | Toggles [naninovel script debug](/guide/naninovel-scripts.md#scripts-debug) window.
+var | Toggles [custom variable editor](/guide/custom-variables.md#variables-debug) window.
 purge | When [Google Drive provider](/guide/google-drive-integration.md) is used, purges the downloaded resources cache.
 play | Starts executing currently loaded naninovel script.
 stop | Halts execution of the currently loaded naninovel script.
-rewind (int) | Rewinds currently loaded naninovel script to the provided line index.
+rewind (int) | Rewinds currently loaded naninovel script to the provided line index. The line should be either a command or a generic text. When rewinding back, the line should exist in the rollback stack.
 
 ## Executing Commands
 
