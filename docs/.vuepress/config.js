@@ -27,6 +27,7 @@ module.exports = {
                     // {text: 'VK', link: 'https://vk.com/naninovel'}
                 ]
             },
+            {text: 'FAQ', link: '/faq/'},
             {text: 'Guide', link: '/guide/'},
             {text: 'API Reference', link: '/api/'},
             {text: 'Support', link: '/support/'}
@@ -49,7 +50,6 @@ function getGuideSidebar (groupA, groupB) {
                 '',
                 'compatibility',
                 'getting-started',
-                'faq',
                 'configuration',
                 'naninovel-scripts',
                 'text-printers',
