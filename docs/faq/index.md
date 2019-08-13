@@ -30,3 +30,9 @@ Set `Reference Resolution` at the [camera configuration menu](/guide/configurati
 
 Use [custom commands](/guide/custom-commands.md).
 
+## Can I request a refund?
+
+As specified in the [Asset Store EULA](https://unity3d.com/legal/as_terms), which all Asset Store customers have agreed to, all sales are final. This is due to the physical impossibility of returning digital products.
+
+You may, however, request a refund if you think the asset is not as advertised. In this case, please [contact the support](https://naninovel.com/support/) and describe which features are missing or what is working not as expected. Make sure to include links to the official web materials (store page, website, videos) that in your opinion doesn't represent the actual product.
+
