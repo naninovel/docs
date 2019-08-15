@@ -25,15 +25,31 @@ After the registration you'll automatically get a "Verified User" role on the se
 
 ## Reproduction Project
 
-When reporting an issue, we may ask you to make a "repro" project. Reproduction project is a clean new Unity project containing only the bare minimum modifications and additional assets required to reproduce the issue. 
+When reporting an issue, we may ask you to share a "repro" project. Reproduction project is a clean new Unity project containing only the **bare minimum** modifications and additional assets required to reproduce the issue. 
 
 Follow the steps below to create and share a reproduction project:
 
-- Make sure you're using Unity version supported by the [current Naninovel release](https://github.com/Elringus/NaninovelWeb/releases).
-- Create a new Unity project.
-- Import the latest available Naninovel version from the Asset Store.
-- Add the required assets and modify the project to reproduce the issue.
-- Exit Unity editor, open the root project directory.
-- **Remove all the folders and files**, except `Assets`, `Packages` and `ProjectSettings`.
-- Archive (zip) the project folder and either upload it to Google Drive or attach to a private message in Discord.
-- Remember to share reproduction projects only via **private messages**; never post links to the project in public channels.
+1. Create a new Unity project. Make sure you're using Unity version supported by the [current Naninovel release](https://github.com/Elringus/NaninovelWeb/releases).
+2. Import the latest available Naninovel version from the Asset Store (in case a pre-release version is available, use it instead).
+3. Add the required assets and modify the project to reproduce the issue. Please keep naninovel scripts as short as possible and only add assets that are essential to replicate the issue.
+4. Close Unity editor, open the root project directory. Remove all the files and folders, except `Assets`, `Packages` and `ProjectSettings`. Most importantly, **make sure you've deleted the `Library` folder**, as it contains a lot of auto-generated files.
+5. Archive (zip) the project folder and either upload it to Google Drive or attach to a private message in Discord.
+
+With the project itself, please also share a step-by-step instruction on how to reproduce the issue, eg:
+
+```
+1. Open scene *SampleScene*.
+2. Enter play mode in the editor.
+3. Start a new game.
+4. Play through to the line number 15.
+5. Save and load the game.
+```
+
+Then add what you've expected to happen and what is actually happening, eg:
+
+```
+Expected: Music "Ambient" should start playing.
+Actual: No music is playing.
+```
+
+Remember to share the reproduction projects only via **private messages**; never share links to a project in the public channels.
