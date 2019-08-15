@@ -38,7 +38,7 @@ Follow the steps below to create and share a reproduction project:
 With the project itself, please also share a step-by-step instruction on how to reproduce the issue, eg:
 
 ```
-1. Open scene *SampleScene*.
+1. Open scene "SampleScene".
 2. Enter play mode in the editor.
 3. Start a new game.
 4. Play through to the line number 15.
