@@ -3,7 +3,7 @@ The engine configuration is stored in multiple scriptable object assets located 
 
 Use `Naninovel -> Configuration` or `Edit -> Project Settings -> Naninovel` to access the configuration menu.
 
-This configuration reference is valid for [Naninovel v1.7.1-beta](https://github.com/Elringus/NaninovelWeb/releases).
+This configuration reference is valid for [Naninovel v1.8.0-beta](https://github.com/Elringus/NaninovelWeb/releases).
 
 ## Audio
 
@@ -11,8 +11,8 @@ This configuration reference is valid for [Naninovel v1.7.1-beta](https://github
 
 Property | Default Value | Description
 --- | --- | ---
-Audio Loader | Audio- (Project, Local) | Configuration of the resource loader used with audio (BGM and SFX) resources.
-Voice Loader | Voice- (Project, Local) | Configuration of the resource loader used with voice resources.
+Audio Loader | Audio- (Addressable, Project) | Configuration of the resource loader used with audio (BGM and SFX) resources.
+Voice Loader | Voice- (Addressable, Project) | Configuration of the resource loader used with voice resources.
 Enable Auto Voicing | False | When enabled, each `PrintText` command will attempt to play voice clip at `VoiceResourcesPrefix/ScriptName/LineIndex.ActionIndex`.
 Custom Audio Mixer | Null | Audio mixer to control audio groups. When not provided, will use a default one.
 Master Volume Handle Name | Master Volume | Name of the mixer's handle to control master volume.
@@ -46,7 +46,10 @@ Default Easing | Linear | Eeasing function to use by default for all the actor m
 Property | Default Value | Description
 --- | --- | ---
 Reference Resolution | (1920, 1080) | The reference resolution is used to evaluate proper rendering dimensions, so that sprite assets (like backgrounds and characters) are correctly positioned on scene. As a rule of thumb, set this equal to the resolution of the background textures you make for the game.
+Auto Correct Ortho Size | True | Whether to automatically correct camera's orthographic size based on the current display aspect ratio to ensure the backgrounds and characters are position correctly.
+Default Ortho Size | 5.35 | The orthographic size to set by default when auto correction is disabled.
 Initial Position | (0.0, 0.0, -10.0) | Initial world position of the camera.
+Orthographic | True | Whether the camera should render in orthographic (enabled) or perspective (disabled) mode by default. Has no effect when a custom camera prefab is assigned.
 Custom Camera Prefab | Null | A prefab with a camera component to use for rendering. Will use a default one when not specified. In case you wish to set some camera properties (background color, FOV, HDR, etc) or add post-processing scripts, create a prefab with the desired camera setup and assign the prefab to this field.
 Use UI Camera | True | Whether to render the UI in a separate camera. This will allow to use individual configuration for the main and UI cameras and prevent post-processing (image) effects from affecting the UI at the cost of a slight rendering overhead.
 Custom UI Camera Prefab | Null | A prefab with a camera component to use for UI rendering. Will use a default one when not specified. Has no effect when `UseUICamera` is disabled
@@ -65,7 +68,7 @@ Property | Default Value | Description
 Auto Arrange On Add | True | Whether to evenly distribute characters by X-axis when adding a new character without a specified position.
 Default Metadata | Object Ref | Metadata to use by default when creating character actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating character actors with specific IDs.
-Avatar Loader | Character Avatars- (Project, Local) | Configuration of the resource loader used with character avatar texture resources.
+Avatar Loader | Character Avatars- (Addressable, Project) | Configuration of the resource loader used with character avatar texture resources.
 Scene Origin | (0.5, 0.0) | Origin point used for reference when positioning actors on scene.
 Default Easing | Smooth Step | Eeasing function to use by default for all the actor modifications (changing appearance, position, tint, etc).
 
@@ -81,6 +84,16 @@ Default Handler Id | Button List | ID of the choice handler to use by default.
 Default Metadata | Object Ref | Metadata to use by default when creating choice handler actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating choice handler actors with specific IDs.
 Default Easing | Linear | Eeasing function to use by default for all the actor modifications (changing appearance, position, tint, etc).
+
+</div>
+
+## Custom Variables
+
+<div class="config-table">
+
+Property | Default Value | Description
+--- | --- | ---
+Predefined Variables | Object Ref | The list of variables to initialize by default. Global variables (names starting with `G_` or `g_`) are intialized on first application start, and others on each state reset.
 
 </div>
 
@@ -108,9 +121,12 @@ Toggle Console Key | Back Quote | Key used to toggle development console. You ca
 
 Property | Default Value | Description
 --- | --- | ---
-Bindings | Object Ref | Bindings to process input for.
 Touch Continue Cooldown | 0.1 | Limits frequency on the continue input when using touch input.
-Spawn Event System | True | Whether to spawn an event system and input module when initializing. Uncheck in case scenes will already have one.
+Spawn Event System | True | Whether to spawn an event system when initializing.
+Custom Event System | Null | A prefab with an `EventSystem` component to spawn for input processing. Will spawn a default one when not specified.
+Spawn Input Module | True | Whether to spawn an input module when initializing.
+Custom Input Module | Null | A prefab with an `InputModule` component to spawn for input processing. Will spawn a default one when not specified.
+Bindings | Object Ref | Bindings to process input for.
 
 </div>
 
@@ -120,7 +136,7 @@ Spawn Event System | True | Whether to spawn an event system and input module wh
 
 Property | Default Value | Description
 --- | --- | ---
-Loader Configuration | Localization- (Project, Local) | Configuration of the resource loader used with the localization resources.
+Loader Configuration | Localization- (Addressable, Project) | Configuration of the resource loader used with the localization resources.
 Default Locale | En | Default locale of the game. When user selects a default locale, original resources will be used.
 
 </div>
@@ -131,7 +147,7 @@ Default Locale | En | Default locale of the game. When user selects a default lo
 
 Property | Default Value | Description
 --- | --- | ---
-Loader Configuration | Text- (Project, Local) | Configuration of the resource loader used with the managed text documents.
+Loader Configuration | Text- (Addressable, Project) | Configuration of the resource loader used with the managed text documents.
 
 </div>
 
@@ -141,7 +157,7 @@ Loader Configuration | Text- (Project, Local) | Configuration of the resource lo
 
 Property | Default Value | Description
 --- | --- | ---
-Loader Configuration | Movies- (Project, Local) | Configuration of the resource loader used with movie resources.
+Loader Configuration | Movies- (Addressable, Project) | Configuration of the resource loader used with movie resources.
 Skip On Input | True | Whether to skip movie playback when user activates `cancel` input keys.
 Skip Frames | True | Whether to skip frames to catch up with current time.
 Aspect Ratio | Fit Horizontally | Defines how the video content will be stretched to fill the target area.
@@ -162,6 +178,9 @@ Resource Policy | Static | Dictates when the resources are loaded and unloaded d
 Dynamic Policy Steps | 25 | When dynamic resource policy is enabled, defines the number of script commands to pre-load.
 Optimize Loading Priority | True | When dynamic resource policy is enabled, this will set Unity's background loading thread priority to low to prevent hiccups when loading resources during script playback.
 Log Resource Loading | False | Whether to log resource loading operations on the loading screen.
+Enable Build Processing | True | Whether to register a custom build player handle to process the assets assigned as Naninovel resources.<br><br>Warning: In order for this setting to take effect, it's required to restart the Unity editor.
+Use Addressables | True | When the Addressable Asset System is installed, enabling this property will optimize asset processing step improving the build time.
+Auto Build Bundles | True | Whether to automatically build the addressable asset bundles when building the player. Has no effect when `Use Addressables` is disabled.
 Local Root Path | Resources | Path root to use for the local resource provider.
 Google Drive Root Path | Resources | Path root to use for the Google Drive resource provider.
 Google Drive Request Limit | 2 | Maximum allowed concurrent requests when contacting Google Drive API.
@@ -187,11 +206,20 @@ Update Action Count On Init | True | Whether to calculate number of commands exi
 
 Property | Default Value | Description
 --- | --- | ---
-Loader | Scripts- (Project, Local) | Configuration of the resource loader used with naninovel script resources.
+Loader | Scripts- (Addressable, Project) | Configuration of the resource loader used with naninovel script resources.
 Global Defines Script | Null | Name of the script which contains global define expressions, that should be accessible from all the other scripts.
 Initialization Script | Null | Name of the script to play right after the engine initialization.
 Title Script | Null | Name of the script to play when showing the Title UI. Can be used to setup the title screen scene (backgound, music, etc).
 Start Game Script | Null | Name of the script to play when starting a new game. Will use first available when not provided.
+Auto Add Scripts | True | Whether to automatically add created naninovel scripts to the resources.
+Enable Visual Editor | True | Whether to show visual script editor when a script is selected.
+Hide Unused Parameters | True | Whether to hide un-assigned parameters of the command lines when the line is not hovered or focused.
+Insert Line Key | Space | Hot key used to show `Insert Line` window when the visual editor is in focus. Set to `None` to disable.
+Insert Line Modifier | Control | Modifier for the `Insert Line Key`. Set to `None` to disable.
+Save Script Key | S | Hot key used to save (serialize) the edited script when the visual editor is in focus. Set to `None` to disable.
+Save Script Modifier | Control | Modifier for the `Save Script Key`. Set to `None` to disable.
+Visual Editor Page Length | 1000 | How many script lines should be rendered per visual editor page.
+Custom Style Sheet | Null | Allows modifying the default style of the visual editor.
 Enable Community Modding | False | Whether to allow adding external naninovel scripts to the build.
 External Loader | Scripts- (Local) | Configuration of the resource loader used with external naninovel script resources.
 Enable Navigator | True | Whether to initializte script navigator to browse available naninovel scripts.
@@ -213,8 +241,12 @@ Save Slot Mask | Game Save{0:000} | Mask used to name save slots.
 Quick Save Slot Mask | Game Quick Save{0:000} | Mask used to name quick save slots.
 Save Slot Limit | 99 | Maximum number of save slots.
 Quick Save Slot Limit | 9 | Maximum number of quick save slots.
+Binary Save Files | True | Whether to compress and store the saves as binary files (.nson) instead of text files (.json). This will significantly reduce the files size and make them harder to edit (to prevent cheating), but will consume more memory and CPU time when saving and loading.
 Load Start Delay | 0.3 | Seconds to wait before starting the load operation.
 Reset State On Load | True | Whether to reset state of all the engine services and unload (dispose) resources upon loading a naninovel script. This is usually triggered when using `@goto` command to move playback to another script. It's recommended to leave this enabled to prevent memory leak issues. If you choose to disable this option, you can still reset the state and dispose resources manually at any time using `@resetState` command.
+State Rollback Mode | Full | Whether to enable state rollback feature allowing to play (rewind) the script backwards. Be aware that enabling this feature will have permament impact on performance (both memory and CPU-wise).<br><br>Available modes:<br> • Disabled — The feature will be completely disabled.<br> • Debug — The feature will only work in editor and debug builds. Performance of the release builds won't be affected.<br> • Full — The feature will always be enabled allowing players to rewind played scripts at will.
+State Rollback Steps | 1024 | The number of state snapshots to keep at runtime; determines how far back the rollback (rewind) can be performed. Increasing this value will consume more memory.
+Saved Rollback Steps | 128 | The number of state snapshots to serialize (save) under the save game slots; determines how far back the rollback can be performed after loading a saved game. Increasing this value will enlarge save game files.
 
 </div>
 
@@ -224,10 +256,11 @@ Reset State On Load | True | Whether to reset state of all the engine services a
 
 Property | Default Value | Description
 --- | --- | ---
-Defaul Printer Id | Dialogue | ID of the text printer to use by default.
-Max Print Delay | 0.06 | Max typing delay. Determines print speed interval.
+Default Printer Id | Dialogue | ID of the text printer to use by default.
+Max Reveal Delay | 0.06 | Delay limit (in seconds) when revealing (printing) the text messages. Increasing the value will lower the reveal speed.
 Default Metadata | Object Ref | Metadata to use by default when creating text printer actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating text printer actors with specific IDs.
+Scene Origin | (0.5, 0.0) | Origin point used for reference when positioning actors on scene.
 Default Easing | Linear | Eeasing function to use by default for all the actor modifications (changing appearance, position, tint, etc).
 
 </div>
@@ -241,6 +274,7 @@ Property | Default Value | Description
 Objects Layer | 5 | The layer to assign for the UI elements instatiated by the engine. Used to cull the UI when using `toogle UI` feature.
 Render Mode | Screen Space Camera | The canvas render mode to apply for all the managed UI elements.
 Sorting Offset | 1 | The sorting offset to apply for all the managed UI elements.
+Default UI | Object Ref | The list of default UI to spawn on the engine initialization. You can override or disable the built-in UI here.
 Custom UI | Object Ref | The list of custom UI prefabs to spawn on the engine initialization. Each prefab should have a `IManagedUI`-derived component attached to the root object.
 
 </div>
@@ -251,7 +285,7 @@ Custom UI | Object Ref | The list of custom UI prefabs to spawn on the engine in
 
 Property | Default Value | Description
 --- | --- | ---
-Loader Configuration | Unlockables- (Project, Local) | Configuration of the resource loader used with unlockable resources.
+Loader Configuration | Unlockables- (Addressable, Project) | Configuration of the resource loader used with unlockable resources.
 
 </div>
 

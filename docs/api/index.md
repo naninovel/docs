@@ -15,12 +15,12 @@ The following parameters are supported by all the script commands:
 ID | Type | Description
 --- | --- | ---
 if | String |  A boolean [script expression](/guide/script-expressions.md), controlling whether the command should execute.
-wait | Boolean | Whether the script player should wait for the async command execution before playing next action. Has no effect when the command is executed instantly.
+wait | Boolean | Whether the script player should wait for the async command to finish execution before executing the next one. Has no effect when the command is executed instantly.
 time | Decimal | Determines for how long (in seconds) command should execute. While formally supported by all the commands not every command actually use this parameter (eg, execution time of instant commands won't be changed).
 
 </div>
 
-This API reference is valid for [Naninovel v1.7.1-beta](https://github.com/Elringus/NaninovelWeb/releases).
+This API reference is valid for [Naninovel v1.8.0-beta](https://github.com/Elringus/NaninovelWeb/releases).
 
 ## append
 
@@ -37,7 +37,7 @@ The entire text will be appended immediately, without triggering reveal effect o
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Text</span> | String | The text to append.
-printer | String | ID of the printer actor to use. Will use a currently active or default one when not provided.
+printer | String | ID of the printer actor to use. Will use a a default one when not provided.
 
 </div>
 
@@ -96,7 +96,7 @@ appearance | String | Appearance to set for the modified actor.
 pos | List&lt;Decimal&gt; | Position (relative to the screen borders, in percents) to set for the modified actor.  Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the screen.
 scale | List&lt;Decimal&gt; | Scale to set for the modified actor.
 position | List&lt;Decimal&gt; | Position (in world space) to set for the modified actor.
-isVisible | Boolean | Visibility status to set for the modified actor.
+visible | Boolean | Visibility status to set for the modified actor.
 rotation | List&lt;Decimal&gt; | Rotation to set for the modified actor.
 tint | String | Tint color to set for the modified actor.  <br /><br />  Strings that begin with `#` will be parsed as hexadecimal in the following way:  `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF.  <br /><br />  Strings that do not begin with `#` will be parsed as literal colors, with the following supported:  red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta.
 easing | String | Name of the easing function to use for the modification.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  When not specified, will use a default easing function set in the actor's manager configuration settings.
@@ -172,7 +172,7 @@ Adds a line break to a text printer.
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">Count</span> | Integer | Number of line breaks to add.
-printer | String | ID of the printer actor to use. Will use a currently active or default one when not provided.
+printer | String | ID of the printer actor to use. Will use a default one when not provided.
 
 </div>
 
@@ -196,9 +196,10 @@ Modifies the main camera, changing offset, zoom level and rotation over time.  C
 
 ID | Type | Description
 --- | --- | ---
-offset | List&lt;Decimal&gt; | Local camera position offset in units by X and Y axis.
+offset | List&lt;Decimal&gt; | Local camera position offset in units by X,Y,Z axes.
 rotation | Decimal | Local camera rotation by Z-axis in angle degrees (0.0 to 360.0 or -180.0 to 180.0).
-zoom | Decimal | Relatize camera zoom (orthographic size scale), in 0.0 to 1.0 range.
+zoom | Decimal | Relatize camera zoom (orthographic size or field of view, depending on the render mode), in 0.0 to 1.0 range.
+ortho | Boolean | Whether the camera should render in orthographic (true) or perspective (false) mode.
 toggle | List&lt;String&gt; | Names of the components to toggle (enable if disabled and vice-versa). The components should be attached to the same gameobject as the camera.  This can be used to toggle [custom post-processing effects](/guide/special-effects.md#camera-effects).
 easing | String | Name of the easing function to use for the modification.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  When not specified, will use a default easing function set in the camera configuration settings.
 
@@ -209,13 +210,13 @@ easing | String | Name of the easing function to use for the modification.  <br 
 ; Offset over X-axis (pan) the camera by -3 units and offset over Y-axis by 1.5 units
 @camera offset:-3,1.5
 
-; Zoom-in the camera by 50%.
-@camera zoom:0.5
+; Set camera in perspective mode, zoom-in by 50% and move back by 5 units
+@camera ortho:false offset:,,-5 zoom:0.5
 
-; Rotate the camera by 10 degrees clock-wise
-@camera rotation:10
+; Set camera in orthographic mode and rotate by 10 degrees clock-wise
+@camera ortho:true rotation:10
 
-; All the above simultaneously animated over 5 seconds
+; Offset, zoom and rotate simultaneously animated over 5 seconds
 @camera offset:-3,1.5 zoom:0.5 rotation:10 time:5
 
 ; Instantly reset camera to the default state
@@ -236,7 +237,7 @@ Modifies a [character actor](/guide/characters.md).
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">IdAndAppearance</span> | Named&lt;String&gt; | ID of the actor to modify and the appearance to set.  When appearance is not provided, will use either a `Default` (is exists) or a random one.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">IdAndAppearance</span> | Named&lt;String&gt; | ID of the character to modify and the appearance to set.  When appearance is not provided, will use either a `Default` (is exists) or a random one.
 look | String | Look direction of the actor; possible options: left, right, center.
 avatar | String | Name (path) of the [avatar texture](/guide/characters.md#avatar-textures) to assign for the character.  Use `none` to remove (un-assign) avatar texture from the character.
 id | String | ID of the actor to modify.
@@ -244,7 +245,7 @@ appearance | String | Appearance to set for the modified actor.
 pos | List&lt;Decimal&gt; | Position (relative to the screen borders, in percents) to set for the modified actor.  Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the screen.
 scale | List&lt;Decimal&gt; | Scale to set for the modified actor.
 position | List&lt;Decimal&gt; | Position (in world space) to set for the modified actor.
-isVisible | Boolean | Visibility status to set for the modified actor.
+visible | Boolean | Visibility status to set for the modified actor.
 rotation | List&lt;Decimal&gt; | Rotation to set for the modified actor.
 tint | String | Tint color to set for the modified actor.  <br /><br />  Strings that begin with `#` will be parsed as hexadecimal in the following way:  `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF.  <br /><br />  Strings that do not begin with `#` will be parsed as literal colors, with the following supported:  red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta.
 easing | String | Name of the easing function to use for the modification.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  When not specified, will use a default easing function set in the actor's manager configuration settings.
@@ -267,7 +268,7 @@ easing | String | Name of the easing function to use for the modification.  <br 
 ## choice
 
 #### Summary
-Adds a choice option to an active (or default) choice handler actor.
+Adds a choice option to a choice handler with the specified ID (or default one).
 
 #### Remarks
 When `goto` parameter is not specified, will continue script execution from the next script line.
@@ -281,7 +282,7 @@ ID | Type | Description
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">ChoiceSummary</span> | String | Text to show for the choice.  When the text contain spaces, wrap it in double quotes (`"`).  In case you wish to include the double quotes in the text itself, escape them.
 button | String | Path (relative to a `Resources` folder) to a [button prefab](/guide/choices.md#choice-button) representing the choice.  The prefab should have a `ChoiceHandlerButton` component attached to the root object.  Will use a default button when not provided.
 pos | List&lt;Decimal&gt; | Local position of the choice button inside the choice handler (if supported by the handler implementation).
-handler | String | ID of the choice handler to add choice for.
+handler | String | ID of the choice handler to add choice for. Will use a default handler if not provided.
 goto | Named&lt;String&gt; | Path to go when the choice is selected by user;  See [`@goto`](/api/#goto) command for the path format.
 set | String | Set expression to execute when the choice is selected by user;  see [`@set`](/api/#set) command for syntax reference.
 
@@ -395,7 +396,7 @@ params | List&lt;String&gt; | Parameters to set when spawning the prefab.  Requi
 
 #### Example
 ```
-; Shakes an active text printer
+; Shakes a default text printer
 @fx ShakePrinter
 
 ; Applies a glitch effect to the camera
@@ -478,7 +479,7 @@ ID | Type | Description
 ## hide
 
 #### Summary
-Hides (removes from scene) an actor with provided ID.
+Hides (makes invisible) an actor (character, background, text printer, choice handler, etc) with the provided ID.  In case mutliple actors with the same ID found (eg, a character and a printer), will affect all of them.
 
 #### Parameters
 
@@ -492,9 +493,8 @@ ID | Type | Description
 
 #### Example
 ```
-; Given an actor (eg, character, background, text printer, etc) with ID `SomeActor`
-; is currently visible on scene, the following command will hide it.
-@hide SomeActor
+; Given an actor with ID `SomeActor` is visible, hide (fade-out) it over 3 seconds.
+@hide SomeActor time:3
 ```
 
 ## hideAll
@@ -528,13 +528,13 @@ Hides a text printer.
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">PrinterId</span> | String | ID of the printer actor to use. Will use a currently active or default one when not provided.
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">PrinterId</span> | String | ID of the printer actor to use. Will use a default one when not provided.
 
 </div>
 
 #### Example
 ```
-; Hide active or (when none) a default printer.
+; Hide a default printer.
 @hidePrinter
 ; Hide printer with ID `Wide`.
 @hidePrinter Wide
@@ -595,7 +595,7 @@ ID | Type | Description
 Shows an input field UI where user can enter an arbitrary text.  Upon submit the entered text will be assigned to the specified custom variable.
 
 #### Remarks
-Check out this [video guide](https://youtu.be/F9meuMzvGJw) on usage example.  <br /><br />  To assign a display name for a character using this command consider using [binding the name to a custom variable](/guide/characters.html#display-names).  <br /><br />  The state of the UI is not serialized when saving the game, so make sure to prevent  player from saving the game when the UI is visible (eg, with [`@hidePrinter`](/api/#hidePrinter) command).
+Check out this [video guide](https://youtu.be/F9meuMzvGJw) on usage example.  <br /><br />  To assign a display name for a character using this command consider [binding the name to a custom variable](/guide/characters.html#display-names).
 
 #### Parameters
 
@@ -605,6 +605,7 @@ ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">VariableName</span> | String | Name of a custom variable to which the entered text will be assigned.
 summary | String | An optional summary text to show along with input field.  When the text contain spaces, wrap it in double quotes (`"`).  In case you wish to include the double quotes in the text itself, escape them.
+value | String | A predefined value to set for the input field.
 play | Boolean | Whether to automatically resume script playback when user submits the input form.
 
 </div>
@@ -647,6 +648,37 @@ ID | Type | Description
 @lock CG/FightScene1
 ```
 
+## look
+
+#### Summary
+Activates/disables camera look mode, when player can offset the main camera with input devices  (eg, by moving a mouse or using gamepad analog stick).  Check [this video](https://youtu.be/rC6C9mA7Szw) for a quick demonstration of the command.
+
+#### Parameters
+
+<div class="config-table">
+
+ID | Type | Description
+--- | --- | ---
+enable | Boolean | Whether to enable or disable the camera look mode. Default: true.
+zone | List&lt;Decimal&gt; | A bound box with X,Y sizes in units from the initial camera position,  describing how far the camera can be moved. Default: 5,3.
+speed | List&lt;Decimal&gt; | Camera movement speed (sensitivity) by X,Y axes. Default: 1.5,1.
+gravity | Boolean | Whether to automatically move camera to the initial position when the look input is not active  (eg, mouse is not moving or analog stick is in default position). Default: false.
+
+</div>
+
+#### Example
+```
+; Activate camera look mode with default parameters
+@look
+
+; Activate camera look mode with custom parameters
+@look zone:6.5,4 speed:3,2.5 gravity:true
+
+; Disable camera look mode and reset camera offset
+@look enabled:false
+@camera offset:0,0
+```
+
 ## movie
 
 #### Summary
@@ -674,10 +706,10 @@ ID | Type | Description
 ## print
 
 #### Summary
-Resets a text printer, prints text message and waits for user input.
+Prints (reveals over time) specified text message using a text printer actor.
 
 #### Remarks
-This command is used under the hood when processing generic text lines, eg generic line `Kohaku: Hello World!` will be  automatically tranformed into `@print "Hello World!" actor:Kohaku` when parsing the naninovel scripts.<br />  Will show the printer in case it's hidden.<br />  Will cancel the printing (reveal the text at once) on `Continue` and `Skip` inputs.<br />  Will attempt to play corresponding voice clip when [Auto Voicing](/guide/voicing.html#auto-voicing) feature is enabled.<br />  Will attempt to add the printed message to [printer backlog](/guide/printer-backlog.html).<br />  Will attempt to change tint color of the characters, based on [Speaker Highlight](/guide/characters.html#speaker-highlight) feature.
+This command is used under the hood when processing generic text lines, eg generic line `Kohaku: Hello World!` will be  automatically tranformed into `@print "Hello World!" author:Kohaku` when parsing the naninovel scripts.<br />  Will reset (clear) the printer before printing the new message by default; set `reset` parameter to *false* to prevent that and append the text instead.<br />  Will wait for user input before finishing the task by default; set `waitInput` parameter to *false* to return as soon as the text is fully revealed.<br />  Will cancel the printing (reveal the text at once) on `Continue` and `Skip` inputs.<br />
 
 #### Parameters
 
@@ -686,8 +718,9 @@ This command is used under the hood when processing generic text lines, eg gener
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Text</span> | String | Text of the message to print.  When the text contain spaces, wrap it in double quotes (`"`).  In case you wish to include the double quotes in the text itself, escape them.
-printer | String | ID of the printer actor to use. Will use a currently active or default one when not provided.
+printer | String | ID of the printer actor to use. Will use a default one when not provided.
 author | String | ID of the actor, which should be associated with the printed message.
+speed | Decimal | Text reveal speed multiplier; should be positive or zero. Setting to one will yield the default speed.
 reset | Boolean | Whether to reset text of the printer before executing the printing task.
 waitInput | Boolean | Whether to wait for user input after finishing the printing task.
 
@@ -695,7 +728,7 @@ waitInput | Boolean | Whether to wait for user input after finishing the printin
 
 #### Example
 ```
-; Will print the infamous phrase
+; Will print the phrase with a default printer
 @print "Lorem ipsum dolor sit amet."
 ; To include quotes in the text itself, escape them
 @print "Saying \"Stop the car\" was a mistake."
@@ -704,7 +737,7 @@ waitInput | Boolean | Whether to wait for user input after finishing the printin
 ## printer
 
 #### Summary
-Makes printer with the provided ID active.  Active printer will be subject of all the printer-related commands when `printer` parameter is not specified.
+Modifies a [printer actor](/guide/text-printers.md).
 
 #### Parameters
 
@@ -712,17 +745,22 @@ Makes printer with the provided ID active.  Active printer will be subject of al
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">PrinterId</span> | String | ID of the printer to make active.
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">IdAndAppearance</span> | Named&lt;String&gt; | ID of the printer to modify and the appearance to set.  When ID or appearance are not provided, will use default ones.
+default | Boolean | Whether to make the printer the default one.  Default printer will be subject of all the printer-related commands when `printer` parameter is not specified.
+hideOther | Boolean | Whether to hide all the other printers.
+pos | List&lt;Decimal&gt; | Position (relative to the screen borders, in percents) to set for the modified printer.  Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the screen.
+visible | Boolean | Whether to show or hide the printer.
 
 </div>
 
 #### Example
 ```
-; Will activate `Dialogue` printer
-@printer Dialogue
+; Will make `Wide` printer default and hide any other visible printers.
+@printer Wide
 
-; Will active `Fullscreen` printer
-@printer Fullscreen
+; Will assign `Right` appearance to `Bubble` printer, make is default,
+; position at the center of the screen and won't hide other printers.
+@printer Bubble.Right pos:50,50 hideOther:false
 ```
 
 ## processInput
@@ -764,7 +802,7 @@ The process is asynchronous and is masked with a loading screen ([ILoadingUI](ht
 ## resetText
 
 #### Summary
-Clears the text content of a text printer.
+Resets (clears) the contents of a text printer.
 
 #### Parameters
 
@@ -772,13 +810,13 @@ Clears the text content of a text printer.
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">PrinterId</span> | String | ID of the printer actor to use. Will use a currently active or default one when not provided.
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">PrinterId</span> | String | ID of the printer actor to use. Will use a default one when not provided.
 
 </div>
 
 #### Example
 ```
-; Clear the content of an active or (when none) a default printer.
+; Clear the content of a default printer.
 @resetText
 ; Clear the content of a printer with ID `Fullscreen`.
 @resetText Fullscreen
@@ -805,7 +843,7 @@ Automatically save the game to a quick save slot.
 Assigns result of a [script expression](/guide/script-expressions.md) to a [custom variable](/guide/custom-variables.md).
 
 #### Remarks
-Variable name should be alphanumeric (latin characters only) and can contain underscores, eg: `name`, `Char1Score`, `my_score`;  the names are case-insensitive, eg: `myscore` is equal to `MyScore`. If a variable with the provided name doesn't exist, it will be automatically created.  <br /><br />  It's possible to define multiple set expressions in one line by separating them with `;`. The expressions will be executed in sequence by the order of declaratation.  <br /><br />  Custom variables are stored in **local scope** by default. This means, that if you assign some variable in the course of gameplay  and player starts a new game or loads another saved game slot, where that variable wasn't assigned — the value will be lost.  If you wish to store the variable in **global scope** instead, prepend `G_` or `g_` to its name, eg: `G_FinishedMainRoute` or `g_total_score`.  <br /><br />  You can get and set custom variables in C# scripts via `CustomVariableManager` [engine service](/guide/engine-services.md).
+Variable name should be alphanumeric (latin characters only) and can contain underscores, eg: `name`, `Char1Score`, `my_score`;  the names are case-insensitive, eg: `myscore` is equal to `MyScore`. If a variable with the provided name doesn't exist, it will be automatically created.  <br /><br />  It's possible to define multiple set expressions in one line by separating them with `;`. The expressions will be executed in sequence by the order of declaratation.  <br /><br />  Custom variables are stored in **local scope** by default. This means, that if you assign some variable in the course of gameplay  and player starts a new game or loads another saved game slot, where that variable wasn't assigned — the value will be lost.  If you wish to store the variable in **global scope** instead, prepend `G_` or `g_` to its name, eg: `G_FinishedMainRoute` or `g_total_score`.  <br /><br />  In case variable name starts with `T_` or `t_` it's considered a reference to a value stored in 'Script' [managed text](/guide/managed-text.md) document.  Such variables can't be assiged and mostly used for referencing localizable text values.  <br /><br />  You can get and set custom variables in C# scripts via `CustomVariableManager` [engine service](/guide/engine-services.md).
 
 #### Parameters
 
@@ -813,7 +851,7 @@ Variable name should be alphanumeric (latin characters only) and can contain und
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | Set expression.  <br /><br />  The expression should be in the following format: `VariableName=ExpressionBody`, where `VariableName` is the name of the custom  variable to assign and `ExpressionBody` is a [script expression](/guide/script-expressions.md), the result of which should be assigned to the variable.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | Set expression.  <br /><br />  The expression should be in the following format: `VariableName=ExpressionBody`, where `VariableName` is the name of the custom  variable to assign and `ExpressionBody` is a [script expression](/guide/script-expressions.md), the result of which should be assigned to the variable.  <br /><br />  It's also possible to use increment and decrement unary operators, eg: `@set foo++`, `@set foo--`.
 
 </div>
 
@@ -836,6 +874,12 @@ ID | Type | Description
 
 ; Get a random integer between -100 and 100, then raise to power of 4 and assign to `result` variable
 @set "result = Pow(Random(-100, 100), 4)"
+
+; If `foo` is a number, add 1 to its value
+@set foo++
+
+; If `foo` is a number, subtract 1 from its value
+@set foo--
 
 ; Assign `foo` variable value of the `bar` variable, which is `Hello World!`.
 ; Notice, that `bar` variable should actually exist, otherwise `bar` plain text value will be assigned instead.
@@ -892,6 +936,27 @@ loop | Boolean | Whether to play the sound effect in a loop.
 @sfx volume:0.75 loop:false time:2.5
 ```
 
+## show
+
+#### Summary
+Shows (makes visible) an actor (character, background, text printer, choice handler, etc) with the provided ID.  In case mutliple actors with the same ID found (eg, a character and a printer), will affect all of them.
+
+#### Parameters
+
+<div class="config-table">
+
+ID | Type | Description
+--- | --- | ---
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">ActorId</span> | String | ID of the actor to show.
+
+</div>
+
+#### Example
+```
+; Given an actor with ID `SomeActor` is hidden, reveal (fade-in) it over 3 seconds.
+@show SomeActor time:3
+```
+
 ## showPrinter
 
 #### Summary
@@ -903,13 +968,13 @@ Shows a text printer.
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">PrinterId</span> | String | ID of the printer actor to use. Will use a currently active or default one when not provided.
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">PrinterId</span> | String | ID of the printer actor to use. Will use a default one when not provided.
 
 </div>
 
 #### Example
 ```
-; Show active or (when none) a default printer.
+; Show a default printer.
 @showPrinter
 ; Show printer with ID `Wide`.
 @showPrinter Wide
@@ -940,11 +1005,11 @@ ID | Type | Description
 ## skipInput
 
 #### Summary
-Next call to `Naninovel.ScriptPlayer.EnableWaitingForInput` will be ignored.
+Can be used in generic text lines to prevent activating `wait for input` mode when the text is printed.
 
 #### Example
 ```
-; User won't have to activate a `continue` input in order to progress to the `@sfx` command.
+; Script player won't wait for `continue` input before executing the `@sfx` command.
 And the rain starts.[skipInput]
 @sfx Rain
 ```
@@ -1072,10 +1137,10 @@ Stops playback of the currently played voice clip.
 ## style
 
 #### Summary
-Applies [text styles](/guide/text-printers.md#text-styles) to a text printer.
+Permamently applies [text styles](/guide/text-printers.md#text-styles) to the contents of a text printer.
 
 #### Remarks
-You can still use rich text formatting tags directly, but they could be printed  alongside the normal text (eg, when appending messages), which may not be desirable.
+You can also use rich text tags inside text messages to apply the styles selectively.
 
 #### Parameters
 
@@ -1084,22 +1149,22 @@ You can still use rich text formatting tags directly, but they could be printed 
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">TextStyles</span> | List&lt;String&gt; | Text formatting tags to apply. Angle brackets should be ommited, eg use `b` for &lt;b&gt; and `size=100` for &lt;size=100&gt;. Use `default` keyword to reset the style.
-printer | String | ID of the printer actor to use. Will use a currently active or default one when not provided.
+printer | String | ID of the printer actor to use. Will use a default one when not provided.
 
 </div>
 
 #### Example
 ```
-; Print first sentence in bold red text with 45px size,
-; then reset the style and print second sentence using default style.
+; Print first two sentences in bold red text with 45px size,
+; then reset the style and print the last sentence using default style.
 @style color=#ff0000,b,size=45
 Lorem ipsum dolor sit amet.
+Cras ut nisi eget ex viverra egestas in nec magna.
 @style default
 Consectetur adipiscing elit.
 
-; Print first sentence normally, but second one in bold and italic;
-; then reset the style to the default.
-Lorem ipsum sit amet. [style b,i]Consectetur adipiscing elit.[style default]
+; Print starting part of the sentence normally, but the last one in bold.
+Lorem ipsum sit amet. Consectetur adipiscing elit.
 ```
 
 ## title
