@@ -141,8 +141,6 @@ On the contrary, sound effects won't loop by default. Assuming you've added an "
 
 In case you prefer following video guides, here is one illustrating the above instructions.
 
-*Be aware, that the video was created with a previous version of the engine and some of the steps may not reflect how things currently work. We'll update the video after the stable release, but you can still use the current one to get a grasp on how to start using the engine.*
-
 <div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/qarLvnK85Tg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe src="https://www.youtube-nocookie.com/embed/t3frIFlIABw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
