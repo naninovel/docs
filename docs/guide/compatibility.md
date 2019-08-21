@@ -1,5 +1,9 @@
 # Compatibility
 
+## Beta
+
+Be aware, that while the engine is in the [beta development stage](https://github.com/Elringus/NaninovelWeb/milestone/1), there is a high probability of changes that could lead to incompatibility with the previous versions, require to re-write the scenario scripts or re-setup the configuration assets. Please take those risks into consideration when planning to use the engine for a project in production stage. 
+
 ## Unity Version
 While in [beta development stage](https://github.com/Elringus/NaninovelWeb/milestone/1), with every new Naninovel release we're targeting the latest available **stable** (not an alpha or beta) Unity version. You can always find supported Unity versions per Naninovel release on the [GitHub releases page](https://github.com/Elringus/NaninovelWeb/releases). 
 
