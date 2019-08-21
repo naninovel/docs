@@ -232,6 +232,26 @@ Note that tabs here are completely optional and used just for better readability
 
 For more information on the conditional expression format and available operators see the [script expressions](/guide/script-expressions.md) guide.
 
+## Visual Editor
+
+You can use visual script editor to edit the naninovel scripts. Select a script asset and you'll see the visual editor automatically open in the inspector window.
+
+<video class="video" loop autoplay><source src="https://i.gyazo.com/e1f40ff0fb7898e11afa0f058bb6ed6d.mp4" type="video/mp4"></video>
+
+To add a new line to the script, either right-click the place, where you want to insert the line, or press `Ctrl+Space` (you can change the default key bindings in the input configuration menu) and select the desired line or command type. To re-order lines, drag them using their number labels. To remove a line, right-click it and choose "Remove".
+
+When you've changed the script using visual editor, you'll see an asterisk (`*`) over the script name in the inspector header. That means the asset is dirty and need to be saved; press `Ctrl+S` to save the asset. In case you'll attempt to select another asset while the script is dirty, a dialogue window will pop-up allowing to either save or revert the changes.
+
+The visual editor will automatically sync edited script if you update it externally, so you can seamlessly work with the scripts in both text and visual editors.
+
+During the playmode, you can use visual editor to track which script line is currently being played and right-click a line to rewind the playback. This feature requires the script to have equal resource ID (when assigned in the resources manager menu) and asset name.
+
+<video class="video" loop autoplay><source src="https://i.gyazo.com/b6e04d664ce4b513296b378b7c25be03.mp4" type="video/mp4"></video>
+
+You can tweak the editor behavior and looks in the scripts configuration menu.
+
+![](https://i.gyazo.com/ddd3ed7cb728d24980863e3830f4ed8d.png)
+
 ## IDE Support
 
 IDE features, like syntax highlighting, error checking, auto-completion and interactive documentation may significantly increase productivity when writing naninovel scripts. We've made an extension for a free and open-source [Atom editor](https://atom.io) (available for Windows, MacOS and Linux), which provides the essential IDE support for NaniScript syntax.
