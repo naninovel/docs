@@ -159,7 +159,7 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 @fx ShakeCamera
 
 ; Shake the main Naninovel camera horizontally 5 times 
-@fx ShakePrinter params:,5,,,,,true,false
+@fx ShakeCamera params:,5,,,,,true,false
 ```
 
 ## DigitalGlitch
