@@ -252,6 +252,10 @@ You can tweak the editor behavior and looks in the scripts configuration menu.
 
 ![](https://i.gyazo.com/ddd3ed7cb728d24980863e3830f4ed8d.png)
 
+<div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/9UmccF9R9xI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
 ## IDE Support
 
 IDE features, like syntax highlighting, error checking, auto-completion and interactive documentation may significantly increase productivity when writing naninovel scripts. We've made an extension for a free and open-source [Atom editor](https://atom.io) (available for Windows, MacOS and Linux), which provides the essential IDE support for NaniScript syntax.
