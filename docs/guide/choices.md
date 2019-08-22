@@ -50,6 +50,10 @@ To create a choice button prefab from template, use `Create -> Naninovel -> Choi
 
 When `button` parameter of the `@choice` command is not specified a default button prefab is used.
 
+To use a different (eg, TMPro) text component for the choice text, use `On Summary Text Changed` [Unity event](https://docs.unity3d.com/Manual/UnityEvents) of the choice button component.
+
+![](https://i.gyazo.com/8810c51b336bfd653efcde591fe1c41f.png)
+
 ## ButtonList Choice Handler
 Button list handler is used by default. It stores the choice buttons inside a horizontal layout panel and ignores the `pos` parameter of the [`@choice`](/api/#choice) command.
 
