@@ -298,8 +298,8 @@ Continue executing this script or load another?[skipInput]
 @stop
 
 ; Following example shows how to make an interactive map via `@choice` commands.
-; For this example, we assume, that inside a `Resources/MapButtons` folder you've stored prefabs with `ChoiceHandlerButton` component attached to their root objects.
-; Please note, that making a custom choice handler is a more appropriate solution for this, unless you can't (or don't want to) mess with C# scripting.
+; For this example, we assume, that inside a `Resources/MapButtons` folder you've
+; stored prefabs with `ChoiceHandlerButton` component attached to their root objects.
 # Map
 @back Map
 @hidePrinter
@@ -316,6 +316,11 @@ Home, sweet home!
 @back Shop
 Don't forget about cucumbers!
 @goto.Map
+
+; You can also set custom variables based on choices.
+@choice "I'm humble, one is enough..." set:score++
+@choice "Two, please." set:score=score+2
+@choice "I'll take the entire stock!" set:karma--,score=999
 ```
 
 ## clearBacklog
