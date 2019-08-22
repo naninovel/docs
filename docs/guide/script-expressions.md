@@ -13,7 +13,7 @@ You can use any math and logical operators, as well as all the math functions fr
 ```
 @char Kohaku scale:{Pow(Cosh(33.5), 3) % Log(0.5)}
 ```
-— will scale character with ID "Kohaku" to the reminder from dividing hyperbolic cosine of 33.5 angle increased to power of 3 by natural logarithm of 0.5. *(yes, I'm really bad at figuring out useful examples; please let me know if you have something better in mind)*
+— will scale character with ID "Kohaku" to the reminder from dividing hyperbolic cosine of 33.5 angle increased to power of 3 by natural logarithm of 0.5.
 
 The expression is evaluated at the moment the command is executed, which allows using [custom variables](/guide/custom-variables.md) inside the expressions:
 
