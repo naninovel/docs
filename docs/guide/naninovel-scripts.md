@@ -23,7 +23,7 @@ Line is considered a command statement if it starts with a `@` literal. Command 
 
 Right after the command literal a command identifier is expected. This could either be name of the C# class that implements the command or the command's alias (if it's applied via `CommandAlias` attribute). 
 
-For example, a [`@save`](/api/#save) command (used to auto-save the game) is implemented via the `AutoSave` C# class. The implementing class also has a `[CommandAlias("save")]` attribute applied, so you can use both `@save` and `@AutoSave` statements in the script to invoke this command. 
+For example, [`@save`](/api/#save) command (used to auto-save the game) is implemented via the `AutoSave` C# class. The implementing class also has a `[CommandAlias("save")]` attribute applied, so you can use both `@save` and `@AutoSave` statements in the script to invoke this command. 
 
 Command identifiers are case-insensitive; all the following statements are valid and will invoke the same `AutoSave` command:
 
