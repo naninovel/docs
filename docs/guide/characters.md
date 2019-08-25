@@ -84,6 +84,16 @@ When enabled in the character configuration, will tint the character based on wh
     <iframe src="https://www.youtube-nocookie.com/embed/gobowgagdyE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
+## Lip Sync
+
+[Generic](/guide/characters.md#generic-characters) and [Live2D](/guide/characters.md#live2d-characters) character implementations support so called "lip synchronization" feature, allowing to drive character's mouth animation while its the author of the printed message by sending the appropriate events. 
+
+<div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/fx_YS2ZQGHI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+Check the corresponding character implementation docs below for the details on how to setup the lip sync feature.
+
 ## Sprite Characters 
 
 Sprite implementation of the character actors is the most common and simple one; it uses a set of [sprite](https://docs.unity3d.com/Manual/Sprites) assets to represent appearances of the character. The source of the sprites could be `.png` or `.jpg` image files.
@@ -110,7 +120,9 @@ The following video guide covers creating and configuring diced sprite atlas, ad
 	
 Generic character is the most flexible character actor implementation. It's based on a prefab with a `CharacterActorBehaviour` component attached to the root object. Appearance changes and all the other character parameters are routed as [Unity events](https://docs.unity3d.com/Manual/UnityEvents.html) allowing to implement the behavior of the underlying object in any way you wish.
 
-![](https://i.gyazo.com/68377eacdeb5347582dc57a5f453c67a.png)
+![](https://i.gyazo.com/673cd6a65f92274ae8593163071cec52.png)
+
+To setup lip sync feature for generic characters, use `On Is Speaking Changed` boolean Unity event of the `CharacterActorBehaviour` component. When the character becomes or ceases to be the author of any printed message, this event will be invoked allowing you to trigger any custom logic, like starting or stopping mouth animation of the controlled character.
 
 Check the following video tutorial for example on setting up a 3D rigged model as a generic character and routing appearance changes to the rig animations via [Animator](https://docs.unity3d.com/Manual/class-AnimatorController.html) component.
 
@@ -124,19 +136,23 @@ Live2D character implementation uses assets created with [Live2D Cubism](https:/
 
 In order to be able to use this implementation you have to first install [Live2D Cubism SDK for Unity](https://live2d.github.io/#unity). Consult official Live2D docs for the installation and usage instructions.
 
-Then install [NaninovelLive2D extension package](https://github.com/Elringus/NaninovelLive2D/raw/master/NaninovelLive2D.unitypackage).
+Then install [NaninovelLive2D](https://github.com/Elringus/NaninovelLive2D/raw/master/NaninovelLive2D.unitypackage) extension package.
 
-Live2D model prefab used as the resource for the implementation should have a `Naninovel.Live2DController` component attached to the root object. Appearance changes are routed to the animator component as [SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) commands appearance being the trigger name. Eg, if you have a "Kaori" Live2D character prefab and want to invoke a trigger with name "Surprise", use the following command:
+Live2D model prefab used as the resource for the implementation should have a `Live2DController` component attached to the root object. Appearance changes are routed to the animator component as [SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) commands appearance being the trigger name. Eg, if you have a "Kaori" Live2D character prefab and want to invoke a trigger with name "Surprise", use the following command:
 
 ```
 @char Kaori.Surprise
 ```
 
-Note, that the above command will only attempt to invoke a [SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) with "Surprise" argument on the animator controller attached to the prefab; you have to compose underlying animator state machine yourself.
+Note, that the above command will only attempt to invoke a [SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) with "Surprise" argument on the animator controller attached to the prefab; you have to compose underlying [animator](https://docs.unity3d.com/Manual/Animator) state machine yourself.
 
-Look direction can optionally be controlled via Live2D's `CubismLookController` (can be disabled via `Control Look` field of the `Naninovel.Live2DController` component).
+When Live2D's `CubismLookController` and `CubismMouthController` components are present and setup on the Live2D model prefab, `Live2DController` can optionally use them to control look direction and mouth animation (aka lip sync feature) of the character.
 
-Be aware, that `Naninovel.Live2DController` expects a "Drawables" gameobject inside the Live2D model prefab (created automatically when importing Live2D models to Unity); the controller will scale this gameobject at runtime in correspondence with "scale" parameter of the `@char` commands. Hence, any local scale values set in the editor will be ignored. To set an initial scale for the Live2D prefabs, please use scale of the parent gameobject as [shown in the video guide](https://youtu.be/rw_Z69z0pAg?t=353).
+![](https://i.gyazo.com/498fe948bc5cbdb4dfc5ebc5437ae6b4.png)
+
+Consult Live2D documentation on [eye tracking](https://docs.live2d.com/cubism-sdk-tutorials/lookat) and [lip sync](https://docs.live2d.com/cubism-sdk-tutorials/lipsync) for the setup details.
+
+Be aware, that `Live2DController` expects a "Drawables" gameobject inside the Live2D model prefab (created automatically when importing Live2D models to Unity); the controller will scale this gameobject at runtime in correspondence with "scale" parameter of the `@char` commands. Hence, any local scale values set in the editor will be ignored. To set an initial scale for the Live2D prefabs, please use scale of the parent gameobject as [shown in the video guide](https://youtu.be/rw_Z69z0pAg?t=353).
 
 When Live2D extension is installed a "Live2D" item will appear in the Naninovel configuration menu providing following options:
 
@@ -149,4 +165,3 @@ The following video guide covers exporting a Live2D character from Cubism Editor
 <div class="video-container">
     <iframe src="https://www.youtube-nocookie.com/embed/rw_Z69z0pAg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
-
