@@ -67,6 +67,7 @@ Some of the essential Naninovel events can be automatically routed to PlayMaker 
 - `Naninovel/StateManager/OnGameLoadFinished`
 - `Naninovel/TextPrinterManager/OnPrintTextStarted`
 - `Naninovel/TextPrinterManager/OnPrintTextFinished`
+- `Naninovel/LocalizationManager/OnLocaleChanged`
 
 It's also possible to broadcast custom PlayMaker events from naninovel scripts using `@playmaker` command:
 
