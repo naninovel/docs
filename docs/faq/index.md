@@ -24,7 +24,7 @@ For the UI part (changing/adding buttons or panel layout and style) use the [UI 
 
 ## I'd like to use backgrounds with a non-standard resolution (eg, 2048x1024), but they look cropped.
 
-Set `Reference Resolution` at the [camera configuration menu](/guide/configuration.md#camera) (Naninovel -> Configuration -> Camera) equal to the backgrounds resolution.
+Set `Reference Resolution` at the [camera configuration menu](/guide/configuration.md#camera) (Naninovel -> Configuration -> Camera) equal to the backgrounds resolution. Also, make sure the background textures are imported with the [correct settings](https://docs.unity3d.com/Manual/class-TextureImporter) (eg, `Max Size` is high enough).
 
 ## How to run a custom C# code from naninovel scripts?
 
