@@ -116,6 +116,8 @@ Alternatively, you can set `Message Sound` in the character configuration menus 
 
 The text reveal sounds are played very often (depending on the message reveal speed) and are clipped when same sound is played in consequence, so make sure the corresponding audio clips are very short and sharp (without any pause/silence at the beginning).
 
+In case the reveal sounds are not working for you (eg, the sound is not short enough to play it on each char reveal), consider using `OnPrintTextStarted` and `OnPrintTextFinished` events of the `TextPrinterManager` [engine service](/guide/engine-services.md) to start/stop looping the sound accordingly. Those events are also exposed to PlayMaker, in case you prefer a [visual scripting](/guide/visual-scripting.md) solution.
+
 ## TextMesh Pro
 
 Naninovel supports [TextMesh Pro](https://assetstore.unity.com/packages/essentials/beta-projects/textmesh-pro-84126) via built-in `TMProFullscreen`, `TMProDialogue` and `TMProWide` printers implemented with the TMPro UI text components.
