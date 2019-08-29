@@ -2,13 +2,17 @@
 
 All the game resources (scripts, audio, voice, backgrounds, etc) can be localized to multiple languages/cultures.
 
+By default, all the resources stored in the project are used when the game is running under the *default locale*. The *default locale* can be changed in the `Naninovel -> Configuration -> Localization` menu with the `Default Locale` property.
+
+You can add a locale to the game by creating a sub-folder inside `Resources/Localization` folder (the so-called *localization resources root*) with a name equal to one of the [RFC5646](https://gist.github.com/Elringus/db90d9c74f13c00fa35131e61d1b73cb) language tags you wish to add localization for. For example, to add a German locale, create a `Resources/Localization/de` folder. The "Language" drop-down list in the game settings built-in UI will automatically incorporate all the added locales.
+
+Be aware, that you don't have to create a sub-folder in the *localization resources root* for the default locale. All the project resources outside of the *localization resources root* are used when running under the default locale.
+
 ## Resources Localization
 
-Create a folder at `/Resources/Localization` with name equal to one of the [RFC5646](https://gist.github.com/Elringus/db90d9c74f13c00fa35131e61d1b73cb) language tags you wish to add localization for.
+Inside the *localization resources root* store resources that will be used instead of the original ones when the corresponding localization is selected in the game settings. 
 
-Inside this folder store resources that will be used instead of the original ones when the corresponding localization is selected in the game settings. 
-
-For example, if you wish to replace a background stored at `/Resources/Backgrounds/City` with another one when a `ja-JP` locale is selected, place the localized version at the following path: `/Resources/Localization/ja-JP/Backgrounds/City`.
+For example, if you wish to replace a background stored at `Resources/Backgrounds/City` with another one when a `ja-JP` locale is selected, place the localized version at the following path: `Resources/Localization/ja-JP/Backgrounds/City`.
 
 ## Scripts Localization
 
@@ -16,7 +20,7 @@ The resources localization scheme described above works with all the resource ty
 
 ![Localization Tool](https://i.gyazo.com/cb521d2645830988563a7907f05170c8.png)
 
-Specify source of the original resources (current Unity project, local file system or Google Drive), path prefixes for the naninovel scripts and managed text resources ("Scripts" and "Text" by default) and select path to the locale folder where to store the generated localization resources. Make sure you've selected an actual locale folder (e.g. `Resources/Localization/ja-JP`) and not just the localization resources root. 
+Specify provider of the original resources (current Unity project, local file system or Google Drive), path prefixes for the naninovel scripts and managed text resources ("Scripts" and "Text" by default) and select path to the locale folder where to store the generated localization resources. Make sure you've selected an actual locale folder (e.g. `Resources/Localization/ja-JP`) and not just the *localization resources root*. 
 
 Enabling "Try update" property will attempt to preserve any currently existing localization resources; when disabled all the existing localization resources at the specified path will be lost.
 
