@@ -26,6 +26,14 @@ For the UI part (changing/adding buttons or panel layout and style) use the [UI 
 
 Set `Reference Resolution` at the [camera configuration menu](/guide/configuration.md#camera) (Naninovel -> Configuration -> Camera) equal to the backgrounds resolution. Also, make sure the background textures are imported with the [correct settings](https://docs.unity3d.com/Manual/class-TextureImporter) (eg, `Max Size` is high enough).
 
+## How to handle different aspect ratios of the target platforms?
+
+For standalone (PC, Mac, Linux) builds you can select the available aspect ratios in the [player settings](https://docs.unity3d.com/Manual/class-PlayerSettingsStandalone.html#Resolution); for web, consoles and mobiles you can't force a specific aspect ratio and have to adapt for the target devices instead. 
+
+Given the source textures (background sprites) of a specific resolution, the only options to "adapt" them for a different aspect ratio are: resize (will distort the image), add black bars or crop. The least noticeable option is to crop, obviously. Naninovel will automatically do the cropping, when `Auto Correct Ortho Size` is enabled in the camera configuration menu and display aspect ratio is different from the `Reference Resolution` aspect set in the same configuration menu. The auto correction will ensure, that the user won't see any black bars or distortions, no matter which display or device is used to run the game.
+
+To manually handle the aspect ratio differences (eg, if you prefer to add black bars or resize the images instead of cropping), disable the `Auto Correct Ortho Size` option in the camera configuration menu. You can then control the ortho size of the camera used by Naninovel with `CameraManager` [engine service](/guide/engine-services.md).
+
 ## How to run a custom C# code from naninovel scripts?
 
 Use [custom commands](/guide/custom-commands.md).
