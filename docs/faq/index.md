@@ -32,7 +32,7 @@ For standalone (PC, Mac, Linux) builds you can select the available aspect ratio
 
 Given the source textures (background sprites) of a specific resolution, the only options to "adapt" them for a different aspect ratio are: resize (will distort the image), add black bars or crop. The least noticeable option is to crop, obviously. Naninovel will automatically do the cropping, when `Auto Correct Ortho Size` is enabled in the camera configuration menu and display aspect ratio is different from the `Reference Resolution` aspect set in the same configuration menu. The auto correction will ensure, that the user won't see any black bars or distortions, no matter which display or device is used to run the game.
 
-To manually handle the aspect ratio differences (eg, if you prefer to add black bars or resize the images instead of cropping), disable the `Auto Correct Ortho Size` option in the camera configuration menu. You can then control the ortho size of the camera used by Naninovel with `CameraManager` [engine service](/guide/engine-services.md).
+To manually handle the aspect ratio differences (eg, if you prefer to add black bars or resize the images instead of cropping), disable `Auto Correct Ortho Size` option in the camera configuration menu. You can then control orthographic size of the camera used by Naninovel with `CameraManager` [engine service](/guide/engine-services.md).
 
 ## How to run a custom C# code from naninovel scripts?
 
