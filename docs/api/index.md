@@ -20,7 +20,7 @@ time | Decimal | Determines for how long (in seconds) command should execute. Wh
 
 </div>
 
-This API reference is valid for [Naninovel v1.8.0-beta](https://github.com/Elringus/NaninovelWeb/releases).
+This API reference is valid for [Naninovel v1.8.1-beta](https://github.com/Elringus/NaninovelWeb/releases).
 
 ## append
 
@@ -628,6 +628,30 @@ Archibald: Greetings, {name}!
 
 ; ...or use it inside set and conditional expressions
 @set score=score+1 if:name=="Felix"
+```
+
+## loadScene
+
+#### Summary
+Loads a [Unity scene](https://docs.unity3d.com/Manual/CreatingScenes.html) with the provided name.  Don't forget to add the required scenes to the [build settings](https://docs.unity3d.com/Manual/BuildSettings.html) to make them available for loading.
+
+#### Parameters
+
+<div class="config-table">
+
+ID | Type | Description
+--- | --- | ---
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">SceneName</span> | String | Name of the scene to load.
+additive | Boolean | Whether to load the scene additively, or unload any currently loaded scenes before loading the new one (default).  See the [load scene documentation](https://docs.unity3d.com/ScriptReference/SceneManagement.SceneManager.LoadScene.html) for more information.
+
+</div>
+
+#### Example
+```
+; Load scene "MyTestScene" in single mode
+@loadScene MyTestScene
+; Load scene "MyTestScene" in additive mode
+@loadScene MyTestScene additive:true
 ```
 
 ## lock
