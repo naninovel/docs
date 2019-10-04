@@ -14,9 +14,21 @@ Be aware, that in most cases such integration will require C# scripting (or [vis
 
 Sure, you can freely "inject" any custom logic to the default Naninovel flow. In most cases, however, this will require using the engine's C# API (via either writing custom C# scripts or using a [visual scripting](/guide/visual-scripting.md) solution). Check the [engine services guide](/guide/engine-services.md) for the list of available open APIs, which allows interaction with the engine; you may also make use of [state outsourcing](/guide/state-management.md#custom-state), [custom actor implementations](/guide/custom-actor-implementations.md) and [custom commands](/guide/custom-commands.md) in the process.
 
+## Does it support a specific language?
+
+Naninovel can work with any language, but to display text in some languages, you'll need a compatible font. [Google's Roboto](https://fonts.google.com/specimen/Roboto) is used by default, which supports all Latin, Cyrillic, and Greek characters in Unicode 7.0. You can change the font used in any of the built-in UIs with [UI customization](/guide/ui-customization.md) feature; for the printed text messages, [create custom printers](/guide/text-printers.md#adding-custom-printers) and set the desired font.
+
+In case you're aiming to support as much languages, as possible, check out [Noto fonts](https://www.google.com/get/noto/).
+
 ## How to customize the title (main) menu: add background, music, effects, change buttons, etc?
 
 For the UI part (changing/adding buttons or panel layout and style) use the [UI customization](/guide/ui-customization.md) feature; for everything else set `Title Script` at the [scripts configuration menu](/guide/configuration.md#scripts) (Naninovel -> Configuration -> Scripts) and use script commands to setup the scene just like when writing a scenario. The title script will be automatically played when entering the title menu.
+
+## How to remove a sky background appearing by default in all the Unity scenes?
+
+Remove `Skybox Material` in  `Window -> Rendering -> Lighting Settings` editor menu.
+
+When you remove the skybox, camera's background color will be used instead to fill the screen when no objects are visible. You can change that color (as well as other related settings) by creating a camera prefab and assigning it to `Custom Camera Prefab` property found inside `Naninovel -> Configuration -> Camera` menu. 
 
 ## How to add a line break to the message?
 
@@ -37,10 +49,3 @@ To manually handle the aspect ratio differences (eg, if you prefer to add black 
 ## How to run a custom C# code from naninovel scripts?
 
 Use [custom commands](/guide/custom-commands.md).
-
-## Can I request a refund?
-
-As specified in the [Asset Store EULA](https://unity3d.com/legal/as_terms), which all Asset Store customers have agreed to, all sales are final. This is due to the physical impossibility of returning digital products.
-
-You may, however, request a refund if you think the asset is not as advertised. In this case, please [contact the support](https://naninovel.com/support/) and describe which features are missing or what is working not as expected. Make sure to include links to the official web materials (store page, website, videos) that in your opinion doesn't represent the actual product.
-

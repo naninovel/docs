@@ -17,6 +17,8 @@ Consult the [Unity manual](https://docs.unity3d.com/Manual/GettingStarted) on ho
 
 When creating a project you'd probably like to use `2D Template` to set the editor in 2D behaviour mode, so that images will be imported as sprite assets by default and you won't have to manually change the import settings. You can change the editor behaviour mode later using the [project settings](https://docs.unity3d.com/Manual/2DAnd3DModeSettings.html).
 
+When you create a new project, Unity will automatically add a sample scene with two game objects inside it: a "Main Camera" and "Directional Light". Naninovel is completely scene-independent, so you can remove those two objects from the scene so they don't produce any unnecessary performance overhead. You can also remove the sample scene itself, though it's recommended to have at least one scene in a project for some editor features to work correctly.
+
 ## Install Naninovel
 Import Naninovel package using the [Asset Store window](https://docs.unity3d.com/Manual/AssetStore.html) and wait for the initial scripts compilation and assets import process. You are free to move `Naninovel` package folder anywhere inside your project assets directory, if you wish.
 
