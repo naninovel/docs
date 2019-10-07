@@ -91,7 +91,8 @@ function getGuideSidebar (groupA, groupB) {
                 'custom-actor-implementations',
                 'state-management',
                 'integration-options',
-                'google-drive-integration'
+                'google-drive-integration',
+                'custom-build-environment'
             ]
         }
     ]
