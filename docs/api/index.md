@@ -320,7 +320,7 @@ Don't forget about cucumbers!
 ; You can also set custom variables based on choices.
 @choice "I'm humble, one is enough..." set:score++
 @choice "Two, please." set:score=score+2
-@choice "I'll take the entire stock!" set:karma--,score=999
+@choice "I'll take the entire stock!" set:karma--;score=999
 ```
 
 ## clearBacklog
