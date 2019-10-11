@@ -138,7 +138,8 @@ Bindings | Object Ref | Bindings to process input for.
 Property | Default Value | Description
 --- | --- | ---
 Loader Configuration | Localization- (Addressable, Project) | Configuration of the resource loader used with the localization resources.
-Default Locale | En | Default locale of the game. When user selects a default locale, original resources will be used.
+Source Locale | En | Locale of the source project resources (the original language in which you create the assets).
+Default Locale | Null | Locale selected by default when running the game for the first time. Will select `Source Locale` when not specified.
 
 </div>
 
