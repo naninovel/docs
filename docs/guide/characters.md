@@ -120,7 +120,7 @@ The following video guide covers creating and configuring diced sprite atlas, ad
 	
 Generic character is the most flexible character actor implementation. It's based on a prefab with a `CharacterActorBehaviour` component attached to the root object. Appearance changes and all the other character parameters are routed as [Unity events](https://docs.unity3d.com/Manual/UnityEvents.html) allowing to implement the behavior of the underlying object in any way you wish.
 
-![](https://i.gyazo.com/673cd6a65f92274ae8593163071cec52.png)
+![](https://i.gyazo.com/9f799f4152782afb6ab86d3c494f4cc4.png)
 
 To setup lip sync feature for generic characters, use `On Is Speaking Changed` boolean Unity event of the `CharacterActorBehaviour` component. When the character becomes or ceases to be the author of any printed message, this event will be invoked allowing you to trigger any custom logic, like starting or stopping mouth animation of the controlled character.
 
@@ -129,6 +129,8 @@ Check the following video tutorial for example on setting up a 3D rigged model a
 <div class="video-container">
     <iframe src="https://www.youtube-nocookie.com/embed/HPxhR0I1u2Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
+
+Be aware, that Unity's `Animator` component could fail to register `SetTrigger` when the game object is enabled/disabled in the same frame; in case you use `GameObject.SetActive` to handle visibility changes (as it's shown in the above tutorial), consider enabling/disabling the child objects with renderers instead.
 
 ## Live2D Characters
 
