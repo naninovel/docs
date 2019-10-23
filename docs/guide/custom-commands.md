@@ -18,6 +18,7 @@ Here is an example of a custom command, that can be invoked from naninovel scrip
 
 ```csharp
 using Naninovel.Commands;
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
