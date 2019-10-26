@@ -33,7 +33,7 @@ module.exports = {
             {text: 'Support', link: '/support/'}
         ],
         sidebar: {
-            '/guide/': getGuideSidebar('Guide', 'Advanced')
+            '/guide/': getGuideSidebar('Guide', 'Advanced', 'Extensions')
         }
     },
     plugins: {
@@ -41,11 +41,11 @@ module.exports = {
     }
 };
 
-function getGuideSidebar (groupA, groupB) {
+function getGuideSidebar (groupA, groupB, groupC) {
     return [
         {
             title: groupA,
-            collapsable: false,
+            collapsable: true,
             children: [
                 '',
                 'compatibility',
@@ -76,13 +76,12 @@ function getGuideSidebar (groupA, groupB) {
                 'script-expressions',
                 'managed-text',
                 'localization',
-                'community-modding',
-                'visual-scripting'
+                'community-modding'
             ]
         },
         {
             title: groupB,
-            collapsable: false,
+            collapsable: true,
             children: [
                 'development-console',
                 'engine-architecture',
@@ -93,6 +92,15 @@ function getGuideSidebar (groupA, groupB) {
                 'integration-options',
                 'google-drive-integration',
                 'custom-build-environment'
+            ]
+        },
+        {
+            title: groupC,
+            collapsable: true,
+            children: [
+                'playmaker',
+                'bolt',
+                'adventure-creator',
             ]
         }
     ]

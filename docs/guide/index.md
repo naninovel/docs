@@ -66,4 +66,4 @@ Following are some of the features that are already implemented; more will be ad
 * [Custom commands](/guide/custom-commands.md)
 * [Custom actor implementations](/guide/custom-actor-implementations.md)
 * [Google Drive integration](/guide/google-drive-integration.md)
-* [Visual scripting](/guide/visual-scripting.md)
+* [Visual scripting](/guide/playmaker.md)

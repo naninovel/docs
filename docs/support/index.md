@@ -4,6 +4,7 @@ If you have issues with the engine, make sure you're using the latest available 
 
 - [NaninovelLive2D](https://github.com/Elringus/NaninovelLive2D/raw/master/NaninovelLive2D.unitypackage)
 - [NaninovelPlayMaker](https://github.com/Elringus/NaninovelPlayMaker/raw/master/NaninovelPlayMaker.unitypackage)
+- [NaninovelAdventureCreator](https://github.com/Elringus/NaninovelAdventureCreator/raw/master/NaninovelAdventureCreator.unitypackage)
 
 If updating didn't help, try to re-install the package by deleting `Naninovel` folder from the project and re-importing it from the Asset Store.
 
