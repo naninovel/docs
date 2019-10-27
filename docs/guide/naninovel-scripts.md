@@ -106,10 +106,23 @@ To make writing scripts with large amounts of text more comfortable generic text
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 ```
 
-A character name can be specified at the start of a generic text line separated by a column (`:`) to associate printed text with the character:
+An author ID can be specified at the start of a generic text line separated by a column (`:`) to associate printed text with the character:
 
 ```
 Felix: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+```
+
+To save some typing when constantly changing character appearances associated with printed text, you can also specify appearance after the author ID:
+
+```
+Felix.Happy: Lorem ipsum dolor sit amet.
+```
+
+The above line is equal to the following two:
+
+```
+@char Felix.Happy wait:false
+Felix: Lorem ipsum dolor sit amet.
 ```
 
 Any number of commands can be inlined to generic text statements using square brackets (`[`,`]`):

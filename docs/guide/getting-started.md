@@ -89,16 +89,21 @@ Hello World!
 ```
 Given there is an appearance with the name "Happy" added for the character "Kohaku", the corresponding sprite will now be shown instead of the default one.
 
-You can now also associate the printed text with the character by adding its ID followed by a colon before the text:
+You can now associate the printed text with the character by adding its ID followed by a colon before the text:
 ```
 @char Kohaku.Happy
 Kohaku: Hello World!
 @stop
 ```
+It's also possible to join character's appearance with the printed text to save some typing:
+```
+Kohaku.Happy: Hello World!
+@stop
+```
+
 To hide (remove from scene) a character (or any other actor, like background, text printer, etc), use [`@hide`](/api/#hide) command followed by actor ID:
 ```
-@char Kohaku.Happy
-Kohaku: Hello World!
+Kohaku.Happy: Hello World!
 @hide Kohaku
 @stop
 ```
