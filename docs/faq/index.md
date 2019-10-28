@@ -34,6 +34,16 @@ When you remove the skybox, camera's background color will be used instead to fi
 
 [Check out `[br]` command](/api/#br).
 
+## How to make actors appear in front of each other (z-sorting)?
+
+Use positioning over z-axis, eg:
+
+```
+; Make Sora appear at the bottom-center and in front of Felix
+@char Sora pos:50,0,-1
+@char Felix pos:,,0
+```
+
 ## I'd like to use backgrounds with a non-standard resolution (eg, 2048x1024), but they look cropped.
 
 Set `Reference Resolution` at the [camera configuration menu](/guide/configuration.md#camera) (Naninovel -> Configuration -> Camera) equal to the backgrounds resolution. Also, make sure the background textures are imported with the [correct settings](https://docs.unity3d.com/Manual/class-TextureImporter) (eg, `Max Size` is high enough).
