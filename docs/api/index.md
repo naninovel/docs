@@ -93,9 +93,9 @@ params | List&lt;Decimal&gt; | Parameters of the transition effect.
 dissolve | String | Path to the [custom dissolve](/guide/background-transition-effects.md#custom-transition-effects) texture (path should be relative to a `Resources` folder).  Has effect only when the transition is set to `Custom` mode.
 id | String | ID of the actor to modify.
 appearance | String | Appearance to set for the modified actor.
-pos | List&lt;Decimal&gt; | Position (relative to the screen borders, in percents) to set for the modified actor.  Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the screen.
+pos | List&lt;Decimal&gt; | Position (relative to the screen borders, in percents) to set for the modified actor.  Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the screen.  Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode.
 scale | List&lt;Decimal&gt; | Scale to set for the modified actor.
-position | List&lt;Decimal&gt; | Position (in world space) to set for the modified actor.
+position | List&lt;Decimal&gt; | Position (in world space) to set for the modified actor.  Use Z-component (third member) to move (sort) by depth while in ortho mode.
 visible | Boolean | Visibility status to set for the modified actor.
 rotation | List&lt;Decimal&gt; | Rotation to set for the modified actor.
 tint | String | Tint color to set for the modified actor.  <br /><br />  Strings that begin with `#` will be parsed as hexadecimal in the following way:  `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF.  <br /><br />  Strings that do not begin with `#` will be parsed as literal colors, with the following supported:  red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta.
@@ -242,9 +242,9 @@ look | String | Look direction of the actor; possible options: left, right, cent
 avatar | String | Name (path) of the [avatar texture](/guide/characters.md#avatar-textures) to assign for the character.  Use `none` to remove (un-assign) avatar texture from the character.
 id | String | ID of the actor to modify.
 appearance | String | Appearance to set for the modified actor.
-pos | List&lt;Decimal&gt; | Position (relative to the screen borders, in percents) to set for the modified actor.  Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the screen.
+pos | List&lt;Decimal&gt; | Position (relative to the screen borders, in percents) to set for the modified actor.  Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the screen.  Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode.
 scale | List&lt;Decimal&gt; | Scale to set for the modified actor.
-position | List&lt;Decimal&gt; | Position (in world space) to set for the modified actor.
+position | List&lt;Decimal&gt; | Position (in world space) to set for the modified actor.  Use Z-component (third member) to move (sort) by depth while in ortho mode.
 visible | Boolean | Visibility status to set for the modified actor.
 rotation | List&lt;Decimal&gt; | Rotation to set for the modified actor.
 tint | String | Tint color to set for the modified actor.  <br /><br />  Strings that begin with `#` will be parsed as hexadecimal in the following way:  `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF.  <br /><br />  Strings that do not begin with `#` will be parsed as literal colors, with the following supported:  red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta.
@@ -263,6 +263,10 @@ easing | String | Name of the easing function to use for the modification.  <br 
 ; Same as above, but also positions the character 45% away from the left border
 ; of the screen and 10% away from the bottom border; also makes him look to the left.
 @char Sora.Happy look:left pos:45,10
+
+; Make Sora appear at the bottom-center and in front of Felix
+@char Sora pos:50,0,-1
+@char Felix pos:,,0
 ```
 
 ## choice
