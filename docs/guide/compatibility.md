@@ -8,7 +8,7 @@ Be aware, that the engine is currently in [beta development stage](https://githu
 
 While in beta, with every new Naninovel release we're targeting the latest available **stable** (not an alpha or beta) Unity version. You can always find supported Unity versions per Naninovel release on the [GitHub releases page](https://github.com/Elringus/NaninovelWeb/releases). 
 
-In case you need an older Naninovel package, which supports some previous Unity version, you can request one by [contacting the support](/support/).
+In case you need an older Naninovel package, which supports some previous Unity version, you can request one by [contacting the support](/support/); be aware, that we won't be able to provide any support for the previous Naninovel versions.
 
 ## Platforms
 
