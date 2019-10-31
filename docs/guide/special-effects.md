@@ -21,7 +21,18 @@ It's possible to selectively specify a subset of the parameters, leaving the res
 ```
 — notice the first two parameters (printer ID and shake count) are skipped and will have their default values, but the third parameter (shake duration) is set to 0.5 seconds.
 
-Some effects are persistent and should be manually stopped with [`@stopfx`](/api/#stopfx) command. E.g.:
+You can update the effect parameters without re-starting it with the consequent [`@fx`](/api/#fx)  commands, eg:
+
+```
+; Start slowly shaking `Kohaku` character in a loop, 
+; don't wait for completion (it's an infinite loop, anyway)
+@fx ShakeCharacter params:Kohaku,0,,,0.1 wait:false
+Kohaku: It's rumbling!
+; Shake 3 more times with an increased amplitude
+@fx ShakeCharacter params:Kohaku,3,,,0.8
+```
+
+Some effects are persistent by default and should be manually stopped with [`@stopfx`](/api/#stopfx) command. E.g.:
 
 ```
 ; Start the rain
@@ -36,6 +47,7 @@ The [`@stopfx`](/api/#stopfx) commands of some effects can also receive paramete
 ; Stops the rain gradually over 10 seconds
 @stopfx Rain params:10
 ```
+
 When no `params` is specified, default parameters will be used. You can find both "start" (accepted by the [`@fx`](/api/#fx) command) and "stop" (accepted by the [`@stopfx`](/api/#stopfx) command) parameters available for each effect and their default values in the docs below.
 
 ## ShakePrinter
