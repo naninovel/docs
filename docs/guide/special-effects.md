@@ -50,7 +50,7 @@ The [`@stopfx`](/api/#stopfx) commands of some effects can also receive paramete
 
 When no `params` is specified, default parameters will be used. You can find both "start" (accepted by the [`@fx`](/api/#fx) command) and "stop" (accepted by the [`@stopfx`](/api/#stopfx) command) parameters available for each effect and their default values in the docs below.
 
-## ShakePrinter
+## Shake Printer
 Shakes printer with the specified ID or the default one.
 
 ### Demo
@@ -83,7 +83,7 @@ What a shaky situation!
 @stopfx ShakePrinter
 ```
 
-## ShakeBackground
+## Shake Background
 Shakes background with the specified ID or the main one.
 
 ### Demo
@@ -111,7 +111,7 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 @fx ShakeBackground params:Video,2
 ```
 
-## ShakeCharacter
+## Shake Character
 Shakes character with the specified ID or a random visible one.
 
 ### Demo
@@ -146,7 +146,7 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 ...
 ```
 
-## ShakeCamera
+## Shake Camera
 Shakes the main Naninovel render camera.
 
 ### Demo
@@ -174,7 +174,7 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 @fx ShakeCamera params:,5,,,,,true,false
 ```
 
-## DigitalGlitch
+## Digital Glitch
 Applies a post-processing effect to the main camera simulating digital video distortion and artifacts.
 
 ### Demo
@@ -249,7 +249,7 @@ Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn
 @stopfx Snow params:30
 ```
 
-## SunShafts
+## Sun Shafts
 Spawns a particle system simulating sun shafts (rays).
 
 ### Demo
@@ -273,6 +273,37 @@ Fade-out time | Decimal | 3 | The particle system will gradually lower the opaci
 @fx SunShafts params:1,10
 ; Stop the sunshine over 30 seconds
 @stopfx SunShafts params:30
+```
+
+## Depth of Field (Bokeh)
+Simulates depth of field (aka DOF, bokeh) effect, when only the object in focus stays sharp, while the other image is blurred.
+
+### Demo
+
+<video class="video" loop autoplay><source src="https://i.gyazo.com/616a023c46f207b4a3a33d3d3fd9fbc9.mp4" type="video/mp4"></video>
+
+### Start Parameters
+Name | Type | Default | Description
+--- | --- | --- | ---
+Focus Object Name | String | null | Name of the game object to set focus for (optional). When set, the focus will always stay on the game object and `Focus Distance` parameter will be ignored.
+Focus Distance | Decimal | 10 | Distance from the Naninovel camera to the focus point. Ignored when `Focus Object Name` is specified.
+Focal Length | Decimal | 0.15 | Amount of blur to apply for the de-focused areas; also determines focus sensitivity.
+Duration | Decimal | 1 | Interpolation time (how fast the parameters will reach the target values).
+
+### Stop Parameters
+Name | Type | Default | Description
+--- | --- | --- | ---
+Stop Duration | Decimal | 1 | Fade-off (disable) duration for the effect parameters to reach default values where the effect is not visible.
+
+### Examples
+```
+; Enable the effect with default parameters and lock focus to `Kohaku` game object
+@fx DepthOfField params:Kohaku
+; Fade-off (disable) the effect over 10 seconds
+@stopfx DepthOfField params:10
+; Set focus point 10 units away from the camera,
+; focal distance to 0.95 and apply it over 3 seconds
+@fx DepthOfField params:,10,0.95,3
 ```
 
 ## Adding Custom Effects
