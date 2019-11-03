@@ -24,7 +24,7 @@ For example, if you wish to replace a background stored at `Resources/Background
 
 The resources localization scheme described above works with all the resource types, except naninovel scripts and managed text documents. For these type of resources, use localization tool accessible via `Naninovel -> Tools -> Localization`:
 
-![Localization Tool](https://i.gyazo.com/cb521d2645830988563a7907f05170c8.png)
+![Localization Tool](https://i.gyazo.com/d76f3efc2207a15fb02b4490eba33a32.png)
 
 Specify provider of the source resources (current Unity project, local file system or Google Drive), path prefixes for the naninovel scripts and managed text resources ("Scripts" and "Text" by default) and select path to the locale folder where to store the generated localization resources. Make sure you've selected an actual locale folder (e.g. `Resources/Localization/ja-JP`) and not just the *localization resources root*. 
 
@@ -72,3 +72,5 @@ You're expected to include any inlined commands present in the source statement 
 ; Kohaku: Qui ante molestie sit tempor felis.[br 2][char Kohaku.Casual/Angry][style #ff0000,bold,45]Adipiscing elit?[style default][br][skipInput]
 Кохаку: Противостояние вызывает кислый метеорный дождь.[br 2][char Kohaku.Casual/Angry][style #ff0000,bold,45]Меандр разрушаем?[style default][br][skipInput]
 ```
+
+Total word count contained in the generated localization documents (excluding the hash lines) is shown in the localization tool window when the generation procedure is finished.
