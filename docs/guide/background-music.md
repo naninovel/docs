@@ -22,3 +22,10 @@ Use [`@bgm`](/api/#bgm) command followed by the clip name to control the music p
 ```
 
 Music tracks are looped by default. When music track name is not specified in `@bgm` command, all the currently played tracks will be affected. When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start), but the specified parameters (volume and whether the track is looped) will be applied.
+
+It's possible to play an intro followed by a loop with `intro` parameter, eg:
+
+```
+; Playes `BattleThemeIntro` once and then immediately `BattleThemeMain` in a loop.
+@bgm BattleThemeMain intro:BattleThemeIntro
+```
