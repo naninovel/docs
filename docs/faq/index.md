@@ -44,6 +44,14 @@ Use positioning over z-axis, eg:
 @char Felix pos:,,0
 ```
 
+## Is it possible to show only the avatar of a character inside a text printer, but hide the character itself?
+
+Set `visible:false` for the character you wish to hide; the avatar will remain visible, eg:
+
+```
+@char CharId visible:false
+```
+
 ## I'd like to use backgrounds with a non-standard resolution (eg, 2048x1024), but they look cropped.
 
 Set `Reference Resolution` at the [camera configuration menu](/guide/configuration.md#camera) (Naninovel -> Configuration -> Camera) equal to the backgrounds resolution. Also, make sure the background textures are imported with the [correct settings](https://docs.unity3d.com/Manual/class-TextureImporter) (eg, `Max Size` is high enough).
