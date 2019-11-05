@@ -29,3 +29,13 @@ It's possible to play an intro followed by a loop with `intro` parameter, eg:
 ; Playes `BattleThemeIntro` once and then immediately `BattleThemeMain` in a loop.
 @bgm BattleThemeMain intro:BattleThemeIntro
 ```
+
+To stop a playing music track, use [`@stopBgm`](/api/#stopbgm) command followed by clip name. When clip name is not specified, the command will stop all the currently played tracks.
+
+```
+; Fades-out the `Promenade` music track over 10 seconds and stops the playback
+@stopBgm Promenade time:10
+
+; Stops all the currently played music tracks
+@stopBgm
+```
