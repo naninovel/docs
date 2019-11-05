@@ -27,7 +27,7 @@ To stop a playing sound effect (no matter looped or not), use [`@stopSfx`](/api/
 
 ```
 ; Stop playing an SFX with the name `Rain`, fading-out for 15 seconds.
-@stopSfx Rain fadeTime:15
+@stopSfx Rain time:15
 
 ; Stops all the currently played sound effect tracks
 @stopSfx
