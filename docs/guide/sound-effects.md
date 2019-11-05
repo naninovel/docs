@@ -22,3 +22,13 @@ Use [`@sfx`](/api/#sfx) and [`@stopSfx`](/api/#stopsfx) commands followed by the
 ```
 
 Sound effect tracks are not looped by default. When sfx track name is not specified in `@sfx` command, all the currently played tracks will be affected. When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start), but the specified parameters (volume and whether the track is looped) will be applied.
+
+To stop a playing sound effect (no matter looped or not), use [`@stopSfx`](/api/#stopsfx) command followed by clip name. When clip name is not specified, the command will stop all the currently played SFX tracks.
+
+```
+; Stop playing an SFX with the name `Rain`, fading-out for 15 seconds.
+@stopSfx Rain fadeTime:15
+
+; Stops all the currently played sound effect tracks
+@stopSfx
+```
