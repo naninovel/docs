@@ -20,7 +20,7 @@ time | Decimal | Determines for how long (in seconds) command should execute. Wh
 
 </div>
 
-This API reference is valid for [Naninovel v1.8.2-beta](https://github.com/Elringus/NaninovelWeb/releases).
+This API reference is valid for [Naninovel v1.8.3-beta](https://github.com/Elringus/NaninovelWeb/releases).
 
 ## append
 
@@ -1156,7 +1156,7 @@ ID | Type | Description
 #### Example
 ```
 ; Stop playing an SFX with the name `Rain`, fading-out for 15 seconds.
-@stopSfx Rain fadeTime:15
+@stopSfx Rain time:15
 
 ; Stops all the currently played sound effect tracks
 @stopSfx
