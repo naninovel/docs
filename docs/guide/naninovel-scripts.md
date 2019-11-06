@@ -261,6 +261,8 @@ During the playmode, you can use visual editor to track which script line is cur
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/b6e04d664ce4b513296b378b7c25be03.mp4" type="video/mp4"></video>
 
+It's possible to edit the script during playmode (via both visual and external editors) and have the changes applied immediately (without game restart) when `Hot Reload Scripts` option is enabled in the scripts configuration. When modifying, adding or removing a line before the currently played one, state rollback will automatically happen to the modified line to prevent state inconsistency.
+
 You can tweak the editor behavior and looks in the scripts configuration menu.
 
 ![](https://i.gyazo.com/ddd3ed7cb728d24980863e3830f4ed8d.png)
