@@ -287,7 +287,7 @@ Name | Type | Default | Description
 --- | --- | --- | ---
 Focus Object Name | String | null | Name of the game object to set focus for (optional). When set, the focus will always stay on the game object and `Focus Distance` parameter will be ignored.
 Focus Distance | Decimal | 10 | Distance from the Naninovel camera to the focus point. Ignored when `Focus Object Name` is specified.
-Focal Length | Decimal | 0.15 | Amount of blur to apply for the de-focused areas; also determines focus sensitivity.
+Focal Length | Decimal | 3.75 | Amount of blur to apply for the de-focused areas; also determines focus sensitivity.
 Duration | Decimal | 1 | Interpolation time (how fast the parameters will reach the target values).
 
 ### Stop Parameters
