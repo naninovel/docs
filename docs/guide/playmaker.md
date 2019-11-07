@@ -24,6 +24,8 @@ The following video demonstrates using PlayMaker FSM (finite state machine) to i
     <iframe src="https://www.youtube-nocookie.com/embed/N856vi18XVU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
+### Events
+
 Some of the essential Naninovel events can be automatically routed to PlayMaker FSMs. For this, create a global [user event](https://hutonggames.fogbugz.com/default.asp?W148) with an appropriate name and use it inside an FSM. Following are the available event names:
 
 - `Naninovel/Engine/OnInitialized`
@@ -62,6 +64,23 @@ When `object` parameter is specified, the event will only be sent to FSMs, that 
 — will invoke an event named "EventName" for all the FSMs, that are attached to game objects with names "Obj1" and "Obj2".  
 
 You can as well combine `fsm` and `object` parameters to farther filter the FSMs, that should receive the event.
+
+### Global Variables
+
+It's possible to access a global PlayMaker variable in Naninovel scripts with the following custom [expression functions](/guide/script-expressions.html#expression-functions) available in the extension package:
+ - `GetPlayMakerGlobalVariable("variableName")` — retrieves a variable of a simple type (int, float, string, etc) with the "variableName" name
+ - `GetPlayMakerGlobalArray("variableName", arrayIndex)` — retrieves a value stored at "arrayIndex" index of an array variable with the "variableName" name
+
+Given you have a "Score" integer and "FinishedRoutes" bool array global PlayMaker variables, you can use them in Naninovel scripts as follow:
+```
+Felix: My score is {GetPlayMakerGlobalVariable("Score")}.
+
+@if GetPlayMakerGlobalArray("FinishedRoutes",2)
+    Third route (second array index) is completed.
+@else
+    Not yet.
+@endif
+```
 
 ## IDE Extension
 
