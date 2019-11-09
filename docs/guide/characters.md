@@ -113,8 +113,6 @@ Built with an open source [SpriteDicing](https://github.com/Elringus/SpriteDicin
 
 `DicedSpriteAtlas` assets containing character appearances are used as the resources for the diced sprite characters. Each appearance is mapped by name to the diced sprites contained in the atlas.
 
-Note, that the implementation doesn't support cross-fading between appearances (they're changed instantly).
-
 The following video guide covers creating and configuring diced sprite atlas, adding new diced character based on the created atlas and controlling the character from a naninovel script.
 
 <div class="video-container">
