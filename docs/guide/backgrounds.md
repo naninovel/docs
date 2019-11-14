@@ -6,7 +6,7 @@ A background actor is defined with a name, appearance, visibility and transform 
 
 Backgrounds' behavior can be configured using `Naninovel -> Configuration -> Backgrounds` context menu; for available options see [configuration guide](/guide/configuration.md#backgrounds). The backgrounds' resources manager can be accessed using `Naninovel -> Resources -> Backgrounds` context menu.
 
-![Add Background](https://i.gyazo.com/24f880963dba2183df5d63c49acfd9ca.png)
+![](https://i.gyazo.com/cccd08280dac72d199ea3465bc167a22.gif)
 
 In naninovel scripts, backgrounds are mostly controlled with [`@back`](/api/#back) command:
 
@@ -16,20 +16,23 @@ In naninovel scripts, backgrounds are mostly controlled with [`@back`](/api/#bac
 
 ; Same as above, but also use a `RadialBlur` transition effect
 @back River.RadialBlur
+```
+Backgrounds are handled a bit differently from characters to better accommodate traditional VN game flow. Most of the time you'll probably have a single background actor on scene, which will constantly transition to different appearances. To remove the hassle of repeating same actor ID in scripts, it's possible to provide only the background appearance and transition type (optional) as a nameless parameter assuming `MainBackground` actor should be affected. When this is not the case, ID of the background actor can be explicitly provided via the `id` parameter:
 
-; Given an `ExplosionSound` SFX and an `ExplosionSprite` background, the following
-; script sequence will simulate two explosions appearing far and close to the camera.
-@sfx ExplosionSound volume:0.1
-@back id:ExplosionSprite scale:0.3 pos:0.55,0.6 time:0 isVisible:false
-@back id:ExplosionSprite
-@fx ShakeBackground params:,1
-@hide ExplosionSprite
-@sfx ExplosionSound volume:1.5
-@back id:ExplosionSprite pos:0.65 scale:1
-@fx ShakeBackground params:,3
-@hide ExplosionSprite
+```
+; Given a `CityVideo` background actor with `Night` and `Day` appearances (video clips)
+
+; Show the video background playing day clip
+@back Day id:CityVideo
+
+; Transition to night clip with ripple effect
+@back Night.Ripple id:CityVideo
+
+; Hide the video background
+@hide CityVideo
 ```
 
+Main background actor record is created by default in the background resources manager and can't be renamed or deleted; however, parameters of the main background (implementation, pivot, PPU, etc) can be freely changed.
 
 ## Sprite Backgrounds
 
@@ -89,11 +92,7 @@ Generic background is the most flexible background actor implementation. It's ba
 
 ![](https://i.gyazo.com/d8f86c83decfb3c40c8d23602214a743.png)
 
-Generic background can't be used as a main background, therefore you always have to specify actor ID when using [`@back`](/api/#back) command. Eg, in case your generic background actor's ID is "Sky" and you want to invoke an appearance change event with "Thunder" value, use the following command:
-
-```
-@back Thunder id:Sky
-```
+To create generic background prefab from a template, use `Create -> Naninovel -> Background -> Generic` context asset menu.
 
 Generic backgrounds are very similar to generic characters; check out a tutorial video on setting an animated 3D model as a generic character for one of the possible usage examples.
 
