@@ -86,6 +86,21 @@ In case having issues with achieving a seamless loop, make sure the video has ex
 
 Be aware, that on WebGL video player can only work in the streaming mode, so all the video resources will be copied to `Assets/StreamingAssets/Backgrounds` folder upon building the WebGL player. **StreamingAssets** folder will also appear in the build output directory; make sure to preserve it when publishing the build and check that your web server allows reading the data from this folder.
 
+## Layered Backgrounds
+
+The layered implementation allows composing backgrounds from multiple sprites (layers) and then toggle them individually via naninovel scripts at runtime.
+
+To create a layered background prefab, use `Create -> Naninovel -> Background -> Layered` asset context menu. Enter [prefab editing mode](https://docs.unity3d.com/Manual/EditingInPrefabMode.html) to compose the layers. Several layers and groups will be created by default. You can use them or delete and add your own.
+
+The layered backgrounds are very similar to [layered characters](/guide/characters.md#layered-characters); consult the documentation for more info on how to setup and control them via naninovel scripts.
+
+Don't forget that nameless parameter in `@back` command is expecting appearance and transition type (not ID and appearance as with `@char` command), so specify layer composition expressions in the following way:
+
+```
+; Given "LayeredForest" background actor
+@back Group>Layer,Other/Group+Layer,-RootLayer.TransitionType id:LayeredForest
+```
+
 ## Generic Backgrounds
 
 Generic background is the most flexible background actor implementation. It's based on a prefab with a `BackgroundActorBehaviour` component attached to the root object. Appearance changes and all the other background parameters are routed as [Unity events](https://docs.unity3d.com/Manual/UnityEvents.html) allowing to implement the behavior of the underlying object in any way you wish. 
