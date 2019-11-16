@@ -119,8 +119,65 @@ The following video guide covers creating and configuring diced sprite atlas, ad
     <iframe src="https://www.youtube-nocookie.com/embed/6PdOAOsnhio" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
+## Layered Characters
+
+The layered implementation allows composing characters from multiple sprites (layers) and then toggle them individually via naninovel scripts at runtime.
+
+To create a layered character prefab, use `Create -> Naninovel -> Character -> Layered` asset context menu. Enter [prefab editing mode](https://docs.unity3d.com/Manual/EditingInPrefabMode.html) to compose the layers. Several layers and groups will be created by default. You can use them or delete and add your own.
+
+Each child game object of the root prefab object with a [sprite renderer](https://docs.unity3d.com/Manual/class-SpriteRenderer.html) component is considered a *layer*; other objects considered *groups*. Aside from organization and transformation purposes, placing layers inside groups will allow you to select a single layer inside the group, disabling all the others, with a single expression in naninovel script (more on that later). 
+
+To hide some of the layers from being visible by default, disable sprite renderer components (not the game objects).
+
+The white frame drawn over the prefab is used to describe the actor canvas, which will be rendered to a render texture at runtime. Make sure to minimize the empty areas inside the frame by moving the layers and groups to prevent wasting texture memory.
+
+You can scale the root game object to fine-tune the default size of the actor.
+
+Don't forget to add the created layered prefab to the character resources (`Naninovel -> Resources -> Characters`). Choose "Naninovel.LayeredCharacter" implementation and drop prefab to the "Resource" field when configuring the resource record.
+
+To control the layered characters in naninovel scripts, use `@char` command in the same way as with the other character implementations. The only difference is how you set the appearance: instead of a single ID, use the *layer composition expression*. There are three expression types:
+
+ - Enable a single layer in group: `group>layer`
+ - Enable a layer: `group+layer`
+ - Disable a layer: `group-layer`
+
+For example, consider a "Miho" character, which has a "Body" group with three layers: "Uniform", "SportSuit" and "Pajama". To enable "Uniform" layer and disable all the others, use the following command:
+
+```
+@char Miho.Body>Uniform
+```
+
+To enable or disable a layer without affecting any other layers in the group, use "+" and "-" respectively instead of ">". You can also specify multiple composition expressions splitting them with commas:
+
+```
+; Enable glasses, disable hat, select "Cool" emotion.
+@char CharId.Head/Accessories+BlackGlasses,Head-Hat,Head/Emotions>Cool
+```
+
+To select a layer outside of any groups (a child of the root prefab object), just skip the group part, eg:
+
+```
+; Given "Halo" layer object is placed under the prefab root, disable it
+@char CharId.-Halo
+```
+
+It's also possible to disable all the layers inside a group by skipping the layer name in selection expression:
+
+```
+; Disable all the layers in "Body/Decoration" group
+@char CharId.Body/Decoration>
+```
+
+The video below demonstrates hot to setup a layered character and control it via naninovel commands.
+
+<div class="video-container">
+    <iframe src="https://www.youtube-nocookie.com/embed/Bl3kXrg8tiI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</div>
+
+Be aware, that the layer objects are not directly rendered by Unity cameras at runtime; instead, they're rendered once upon each composition (appearance) change to a temporary render texture, which is then fed to a custom mesh visible to the Naninovel camera. This setup is required to prevent semi-transparency overdraw issues and to support transition animation effects.
+
 ## Generic Characters
-	
+
 Generic character is the most flexible character actor implementation. It's based on a prefab with a `CharacterActorBehaviour` component attached to the root object. Appearance changes and all the other character parameters are routed as [Unity events](https://docs.unity3d.com/Manual/UnityEvents.html) allowing to implement the behavior of the underlying object in any way you wish.
 
 ![](https://i.gyazo.com/9f799f4152782afb6ab86d3c494f4cc4.png)
