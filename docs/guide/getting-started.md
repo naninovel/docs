@@ -121,7 +121,7 @@ Let’s assume the added background appearance sprite is named "City". To show a
 ```
 @back City 
 ```
-When switching between backgrounds a cross-fade [transition effect](/guide/background-transition-effects.md) will be used by default. To change the effect, specify transition type after the appearance name:
+When switching between backgrounds a cross-fade [transition effect](/guide/transition-effects.md) will be used by default. To change the effect, specify transition type after the appearance name:
 ```
 @back City 
 @back School.RadialBlur
