@@ -55,7 +55,7 @@ function getGuideSidebar (groupA, groupB, groupC) {
                 'text-printers',
                 'characters',
                 'backgrounds',
-                'background-transition-effects',
+                'transition-effects',
                 'special-effects',
                 'background-music',
                 'sound-effects',

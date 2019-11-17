@@ -80,7 +80,7 @@ ID | Type | Description
 Modifies a [background actor](/guide/backgrounds.md).
 
 #### Remarks
-Backgrounds are handled a bit differently from characters. Most of the time we'll only have  one background actor on scene, which will constantly transition to different appearances.  To free the user from always repeating same actor ID in scripts, we allow to  provide only the background appearance and transition type (optional) as a nameless parameter and assume that  `MainBackground` actor should be affected. When this is not the case, ID of the background actor can be explicitly  provided via the `id` parameter.
+Backgrounds are handled a bit differently from characters to better accommodate traditional VN game flow.  Most of the time you'll probably have a single background actor on scene, which will constantly transition to different appearances.  To remove the hassle of repeating same actor ID in scripts, it's possible to provide only  the background appearance and transition type (optional) as a nameless parameter assuming `MainBackground`  actor should be affected. When this is not the case, ID of the background actor can be explicitly provided via the `id` parameter.
 
 #### Parameters
 
@@ -88,14 +88,15 @@ Backgrounds are handled a bit differently from characters. Most of the time we'l
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">AppearanceAndTransition</span> | Named&lt;String&gt; | Appearance to set for the modified background and name of the [transition effect](/guide/background-transition-effects.md) to use.  When transition is not provided, a cross-fade effect will be used by default.
-params | List&lt;Decimal&gt; | Parameters of the transition effect.
-dissolve | String | Path to the [custom dissolve](/guide/background-transition-effects.md#custom-transition-effects) texture (path should be relative to a `Resources` folder).  Has effect only when the transition is set to `Custom` mode.
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">AppearanceAndTransition</span> | Named&lt;String&gt; | Appearance to set for the modified background and type of the [transition effect](/guide/transition-effects.md) to use.  When transition is not provided, a cross-fade effect will be used by default.
 id | String | ID of the actor to modify.
 appearance | String | Appearance to set for the modified actor.
+transition | String | Type of the [transition effect](/guide/transition-effects.md) to use (crossfade is used by default).
 pos | List&lt;Decimal&gt; | Position (relative to the screen borders, in percents) to set for the modified actor.  Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the screen.  Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode.
 scale | List&lt;Decimal&gt; | Scale to set for the modified actor.
 position | List&lt;Decimal&gt; | Position (in world space) to set for the modified actor.  Use Z-component (third member) to move (sort) by depth while in ortho mode.
+params | List&lt;Decimal&gt; | Parameters of the transition effect.
+dissolve | String | Path to the [custom dissolve](/guide/transition-effects.md#custom-transition-effects) texture (path should be relative to a `Resources` folder).  Has effect only when the transition is set to `Custom` mode.
 visible | Boolean | Visibility status to set for the modified actor.
 rotation | List&lt;Decimal&gt; | Rotation to set for the modified actor.
 tint | String | Tint color to set for the modified actor.  <br /><br />  Strings that begin with `#` will be parsed as hexadecimal in the following way:  `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF.  <br /><br />  Strings that do not begin with `#` will be parsed as literal colors, with the following supported:  red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta.
@@ -245,6 +246,9 @@ appearance | String | Appearance to set for the modified actor.
 pos | List&lt;Decimal&gt; | Position (relative to the screen borders, in percents) to set for the modified actor.  Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the screen.  Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode.
 scale | List&lt;Decimal&gt; | Scale to set for the modified actor.
 position | List&lt;Decimal&gt; | Position (in world space) to set for the modified actor.  Use Z-component (third member) to move (sort) by depth while in ortho mode.
+transition | String | Type of the [transition effect](/guide/transition-effects.md) to use (crossfade is used by default).
+params | List&lt;Decimal&gt; | Parameters of the transition effect.
+dissolve | String | Path to the [custom dissolve](/guide/transition-effects.md#custom-transition-effects) texture (path should be relative to a `Resources` folder).  Has effect only when the transition is set to `Custom` mode.
 visible | Boolean | Visibility status to set for the modified actor.
 rotation | List&lt;Decimal&gt; | Rotation to set for the modified actor.
 tint | String | Tint color to set for the modified actor.  <br /><br />  Strings that begin with `#` will be parsed as hexadecimal in the following way:  `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF.  <br /><br />  Strings that do not begin with `#` will be parsed as literal colors, with the following supported:  red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta.
@@ -390,7 +394,7 @@ Closes an [`@if`](/api/#if) conditional execution block.  For usage examples see
 ## fx
 
 #### Summary
-Spawns a [special effect](/guide/special-effects.md) prefab stored in `./Resources/Naninovel/FX` resources folder.
+Spawns a [special effect](/guide/special-effects.md) prefab stored in `./Resources/Naninovel/FX` resources folder.  When performed over an already spawned FX object, will update the spawn parameters instead.
 
 #### Parameters
 
@@ -410,6 +414,10 @@ params | List&lt;String&gt; | Parameters to set when spawning the prefab.  Requi
 
 ; Applies a glitch effect to the camera
 @fx GlitchCamera
+
+; Applies a glitch effect to the camera with custom parameters
+; and skips waiting for the effect duration
+@fx GlitchCamera params:10,0.1 wait:false
 ```
 
 ## gosub
@@ -1050,7 +1058,7 @@ And the rain starts.[skipInput]
 ## spawn
 
 #### Summary
-Spawns a prefab stored in project resources.
+Spawns a prefab stored in project resources.  When performed over an already spawned object, will update the spawn parameters instead.
 
 #### Remarks
 If prefab has a `UnityEngine.MonoBehaviour` component attached the root object, and the component implements  a `Naninovel.Commands.Spawn.IParameterized` interface, will pass the specified `params` values after the spawn;  if the component implements `Naninovel.Commands.Spawn.IAwaitable` interface, command execution will wait for  the async completion task returned by the implementation.

@@ -30,7 +30,7 @@ Following are some of the features that are already implemented; more will be ad
   * [Video backgrounds](/guide/backgrounds.md#video-backgrounds)
   * [Generic backgrounds](/guide/backgrounds.md#generic-backgrounds)
   * [Scene backgrounds](/guide/backgrounds.md#scene-backgrounds)
-* [Background transition effects](/guide/background-transition-effects.md)
+* [Transition effects](/guide/transition-effects.md)
 * [Perspective camera and look around mode](https://youtu.be/rC6C9mA7Szw)
 * [Special effects (FX system)](/guide/special-effects.md)
 * [Background music (BGM)](/guide/background-music.md)

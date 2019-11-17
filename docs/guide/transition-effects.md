@@ -1,6 +1,6 @@
-﻿# Background Transition Effects
+﻿# Transition Effects
 
-When changing background appearance with [`@back`](/api/#back) command, you can additionally specify which transition effect to use. For example, following command will transition to "River" background using "DropFade" transition effect:
+When changing background or character appearance with [`@back`](/api/#back) and [`@char`](/api/#char) command respectively, you can additionally specify which transition effect to use. For example, following command will transition to "River" background using "DropFade" transition effect:
 
 ```
 @back River.DropFade
@@ -37,7 +37,15 @@ If you wish to modify selected parameters, you can skip others and they'll have 
 @back River.Ripple params:,,0.02
 ``` 
 
-All the transition parameters are of decimal type. You can find available transition effects with their parameters and default values in the docs below.
+All the transition parameters are of decimal type.
+
+The above examples work for characters as well, just provide the transition via a standalone `transition` parameter:
+
+```
+@char CharID.Appearance transition:TransitionType params:...
+```
+
+You can find available transition effects with their parameters and default values in the docs below.
 
 ## BandedSwirl
 

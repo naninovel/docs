@@ -14,7 +14,7 @@ Property | Default Value | Description
 Audio Loader | Audio- (Addressable, Project) | Configuration of the resource loader used with audio (BGM and SFX) resources.
 Voice Loader | Voice- (Addressable, Project) | Configuration of the resource loader used with voice resources.
 Enable Auto Voicing | False | When enabled, each `PrintText` command will attempt to play voice clip at `VoiceResourcesPrefix/ScriptName/LineIndex.ActionIndex`.
-Prevent Voice Overlap | True | When enabled, will prevent concurrent voices playback by stopping any played voice clip before playing a new one.
+Voice Overlap Policy | Prevent Overlap | Dictates how to handle concurrent voices playback:<br> • Allow Overlap — Concurrent voices will be played without limitation.<br> • Prevent Overlap — Prevent concurrent voices playback by stopping any played voice clip before playing a new one.<br> • Prevent Character Overlap — Prevent concurrent voices playback per character; voices of different characters (auto voicing) and any number of `@voice` command are allowed to be played concurrently.
 Custom Audio Mixer | Null | Audio mixer to control audio groups. When not provided, will use a default one.
 Master Volume Handle Name | Master Volume | Name of the mixer's handle to control master volume.
 Bgm Group Path | Master/BGM | Path of the mixer's group to control master volume.
@@ -32,10 +32,11 @@ Voice Volume Handle Name | Voice Volume | Name of the mixer's handle to control 
 
 Property | Default Value | Description
 --- | --- | ---
-Z Offset | 100 | Z-axis offset distance (depth) from background actors to the camera.
 Default Metadata | Object Ref | Metadata to use by default when creating background actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating background actors with specific IDs.
 Scene Origin | (0.5, 0.0) | Origin point used for reference when positioning actors on scene.
+Z Offset | 100 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
+Z Step | 0.1 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
 Default Easing | Linear | Eeasing function to use by default for all the actor modifications (changing appearance, position, tint, etc).
 
 </div>
@@ -71,6 +72,8 @@ Default Metadata | Object Ref | Metadata to use by default when creating charact
 Metadata | Object Ref | Metadata to use when creating character actors with specific IDs.
 Avatar Loader | Character Avatars- (Addressable, Project) | Configuration of the resource loader used with character avatar texture resources.
 Scene Origin | (0.5, 0.0) | Origin point used for reference when positioning actors on scene.
+Z Offset | 50 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
+Z Step | 0.1 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
 Default Easing | Smooth Step | Eeasing function to use by default for all the actor modifications (changing appearance, position, tint, etc).
 
 </div>
@@ -122,11 +125,11 @@ Toggle Console Key | Back Quote | Key used to toggle development console. You ca
 
 Property | Default Value | Description
 --- | --- | ---
-Touch Continue Cooldown | 0.1 | Limits frequency on the continue input when using touch input.
 Spawn Event System | True | Whether to spawn an event system when initializing.
 Custom Event System | Null | A prefab with an `EventSystem` component to spawn for input processing. Will spawn a default one when not specified.
 Spawn Input Module | True | Whether to spawn an input module when initializing.
 Custom Input Module | Null | A prefab with an `InputModule` component to spawn for input processing. Will spawn a default one when not specified.
+Touch Frequency Limit | 0.1 | Limits frequency of the registered touch inputs, in seconds.
 Bindings | Object Ref | Bindings to process input for.
 
 </div>
@@ -198,7 +201,7 @@ Property | Default Value | Description
 --- | --- | ---
 Skip Time Scale | 10 | Time scale to use when in skip (fast-forward) mode.
 Min Auto Play Delay | 3 | Minimum seconds to wait before executing next command while in auto play mode.
-Update Action Count On Init | True | Whether to calculate number of commands existing in all the available naninovel scripts on service initalization. If you don't use `TotalActionCount` property of the script player and `CalculateProgress` function in naninovel script expressions, disable to reduce engine initalization time.
+Update Command Count On Init | True | Whether to calculate number of commands existing in all the available naninovel scripts on service initalization. If you don't use `TotalCommandsCount` property of the script player and `CalculateProgress` function in naninovel script expressions, disable to reduce engine initalization time.
 
 </div>
 
@@ -214,6 +217,7 @@ Initialization Script | Null | Name of the script to play right after the engine
 Title Script | Null | Name of the script to play when showing the Title UI. Can be used to setup the title screen scene (backgound, music, etc).
 Start Game Script | Null | Name of the script to play when starting a new game. Will use first available when not provided.
 Auto Add Scripts | True | Whether to automatically add created naninovel scripts to the resources.
+Hot Reload Scripts | True | Whether to reload modified (both via visual and external editors) scripts and apply changes during playmode without restarting the playback.
 Enable Visual Editor | True | Whether to show visual script editor when a script is selected.
 Hide Unused Parameters | True | Whether to hide un-assigned parameters of the command lines when the line is not hovered or focused.
 Insert Line Key | Space | Hot key used to show `Insert Line` window when the visual editor is in focus. Set to `None` to disable.
@@ -263,6 +267,8 @@ Max Reveal Delay | 0.06 | Delay limit (in seconds) when revealing (printing) the
 Default Metadata | Object Ref | Metadata to use by default when creating text printer actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating text printer actors with specific IDs.
 Scene Origin | (0.5, 0.0) | Origin point used for reference when positioning actors on scene.
+Z Offset | 100 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
+Z Step | 0.1 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
 Default Easing | Linear | Eeasing function to use by default for all the actor modifications (changing appearance, position, tint, etc).
 
 </div>
