@@ -88,6 +88,7 @@ function getGuideSidebar (groupA, groupB, groupC) {
                 'engine-services',
                 'custom-commands',
                 'custom-actor-implementations',
+                'custom-actor-shader',
                 'state-management',
                 'integration-options',
                 'google-drive-integration',
