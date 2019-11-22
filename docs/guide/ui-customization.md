@@ -57,13 +57,15 @@ To disable or override the default (built-in) UIs, use the `Default UI` area.
 
 To disable a default UI, uncheck the toggle behind the corresponding UI record and to override the UI, assign a custom prefab to the "Game Object" field of the record.
 
-## Play Naninovel Script On Button Click
+## Play Script On Unity Event
 
-When creating custom buttons, you may prefer to use naninovel scripts to handle the [onClick](https://docs.unity3d.com/ScriptReference/UI.Button-onClick.html) events instead of C#. Add `Play Script On Button Click` component to the button gameobject and either select an existing naninovel script or write the naninovel script right inside the text area field.
+When creating custom UIs, you may want to execute some commands or start playing a specific naninovel script in reaction to some events (eg, a [button click](https://docs.unity3d.com/Manual/script-Button.html)).
 
-![](https://i.gyazo.com/8c8a0f210a26afcf43465aa71f59e318.png)
+Add `Play Script` component to a game object and either select an existing naninovel script or write the commands right inside the text area field; then route [Unity event](https://docs.unity3d.com/Manual/UnityEvents.html) of some other component to invoke `Play()` method on the `Play Script` component. The script will be executed when the event is triggered at play mode. 
 
-The script will be executed when user clicks the button in play mode. Notice, that when an existing naninovel script is selected via dropdown list, the script text area will be ignored and selected naninovel script will be played **instead** of the currently played one; in case you wish to additively execute some script logic without interrupting the currently played script, use the script text area.
+![](https://i.gyazo.com/5f56fbddc090919cc71f68e82bb1713f.png)
+
+Notice, that when an existing naninovel script is selected via dropdown list, the script text area will be ignored and selected naninovel script will be played **instead** of the currently played one; in case you wish to additively execute some commands without interrupting the currently played script, use the script text area.
 
 ## Video Guide
 
