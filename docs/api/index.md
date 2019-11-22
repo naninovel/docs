@@ -1043,6 +1043,29 @@ ID | Type | Description
 @showUI Calendar
 ```
 
+## skip
+
+#### Summary
+Allows to enable or disable script player "skip" mode.
+
+#### Parameters
+
+<div class="config-table">
+
+ID | Type | Description
+--- | --- | ---
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">Enable</span> | Boolean | Whether to enable (default) or disable the skip mode.
+
+</div>
+
+#### Example
+```
+; Enable skip mode
+@skip
+; Disable skip mode
+@skip false
+```
+
 ## skipInput
 
 #### Summary
