@@ -121,11 +121,11 @@ The following video guide covers creating and configuring diced sprite atlas, ad
 
 ## Layered Characters
 
-The layered implementation allows composing characters from multiple sprites (layers) and then toggle them individually via naninovel scripts at runtime.
+The layered implementation allows composing characters from multiple sprites (layers) and then toggle them individually or in groups via naninovel scripts at runtime.
 
 To create a layered character prefab, use `Create -> Naninovel -> Character -> Layered` asset context menu. Enter [prefab editing mode](https://docs.unity3d.com/Manual/EditingInPrefabMode.html) to compose the layers. Several layers and groups will be created by default. You can use them or delete and add your own.
 
-Each child game object of the root prefab object with a [sprite renderer](https://docs.unity3d.com/Manual/class-SpriteRenderer.html) component is considered a *layer*; other objects considered *groups*. Aside from organization and transformation purposes, placing layers inside groups will allow you to select a single layer inside the group, disabling all the others, with a single expression in naninovel script (more on that later). 
+Each child game object of the root prefab object with a [sprite renderer](https://docs.unity3d.com/Manual/class-SpriteRenderer.html) component is considered a *layer*; other objects considered *groups*. Aside from organization and transformation purposes, placing layers inside groups will allow you to select a single layer or disable/enable all the layers inside a group with a single expression in naninovel script (more on that later). 
 
 To hide some of the layers from being visible by default, disable sprite renderer components (not the game objects).
 
@@ -161,18 +161,29 @@ To select a layer outside of any groups (a child of the root prefab object), jus
 @char CharId.-Halo
 ```
 
-It's also possible to disable all the layers inside a group by skipping the layer name in selection expression:
+It's also possible to affect all the layers inside a group (and additionally its neighbors when using select expression) by omitting layer name in composition expression:
 
 ```
 ; Disable all the layers in "Body/Decoration" group
-@char CharId.Body/Decoration>
+@char CharId.Body/Decoration-
+
+; Enable all the existing layers.
+@char CharId.+
+
+; Given `Poses/Light` and `Poses/Dark` groups (each containing multiple layers), 
+; enable all the sprites inside `Light` group and disable layers inside `Dark` group
+@char CharId.Poses/Light>
 ```
+
+The above expressions will affect not only the direct descendants of the target groups, but all the layers contained in the underlaying groups, recursively.
 
 The video below demonstrates hot to setup a layered character and control it via naninovel commands.
 
 <div class="video-container">
     <iframe src="https://www.youtube-nocookie.com/embed/Bl3kXrg8tiI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
+
+*Note: "@char Miho.Shoes>" command displayed in the video will actually select the "Shoes" group (disabling all the neighbor groups), not hide it. Correct command to hide a group is "@char Miho.Shoes-"*
 
 Be aware, that the layer objects are not directly rendered by Unity cameras at runtime; instead, they're rendered once upon each composition (appearance) change to a temporary render texture, which is then fed to a custom mesh visible to the Naninovel camera. This setup is required to prevent semi-transparency overdraw issues and to support transition animation effects.
 
