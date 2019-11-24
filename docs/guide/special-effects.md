@@ -53,11 +53,9 @@ When no `params` is specified, default parameters will be used. You can find bot
 ## Shake Printer
 Shakes printer with the specified ID or the default one.
 
-### Demo
-
 <video class="video" loop autoplay><source src="https://i.gyazo.com/f61fc35e318cce1949b00e5fe2448a80.mp4" type="video/mp4"></video>
 
-### Start Parameters
+**Start Parameters**
 Name | Type | Default | Description
 --- | --- | --- | ---
 Printer ID | String | null | ID of the printer to shake. Will shake a default printer when not specified.
@@ -69,7 +67,7 @@ Amplitude variation | Decimal | 0.1 | The randomized delta modifier applied to t
 Shake horizontally | Boolean | false | Whether to displace the actor horizontally (by x-axis).
 Shake vertically | Boolean | true | Whether to displace the actor vertically (by y-axis).
 
-### Examples
+**Examples**
 ```
 ; Shake a default printer with default params
 @fx ShakePrinter
@@ -86,11 +84,9 @@ What a shaky situation!
 ## Shake Background
 Shakes background with the specified ID or the main one.
 
-### Demo
-
 <video class="video" loop autoplay><source src="https://i.gyazo.com/fcf1153a0ad3d9a153908206211f5f5f.mp4" type="video/mp4"></video>
 
-### Start Parameters
+**Start Parameters**
 Name | Type | Default | Description
 --- | --- | --- | ---
 Background ID | String | null | ID of the background to shake. Will shake main background when not specified.
@@ -102,7 +98,7 @@ Amplitude variation | Decimal | 0.5 | The randomized delta modifier applied to t
 Shake horizontally | Boolean | false | Whether to displace the actor horizontally (by x-axis).
 Shake vertically | Boolean | true | Whether to displace the actor vertically (by y-axis).
 
-### Examples
+**Examples**
 ```
 ; Shake main background with default params
 @fx ShakeBackground
@@ -114,11 +110,9 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 ## Shake Character
 Shakes character with the specified ID or a random visible one.
 
-### Demo
-
 <video class="video" loop autoplay><source src="https://i.gyazo.com/6001d3cfbee855c8a783d10e4a784042.mp4" type="video/mp4"></video>
 
-### Start Parameters
+**Start Parameters**
 Name | Type | Default | Description
 --- | --- | --- | ---
 Character ID | String | null | ID of the character to shake. Will shake a random visible one when not specified.
@@ -130,7 +124,7 @@ Amplitude variation | Decimal | 0.5 | The randomized delta modifier applied to t
 Shake horizontally | Boolean | false | Whether to displace the actor horizontally (by x-axis).
 Shake vertically | Boolean | true | Whether to displace the actor vertically (by y-axis).
 
-### Examples
+**Examples**
 ```
 ; Shake `Kohaku` character with default parameters
 @fx ShakeCharacter params:Kohaku
@@ -149,11 +143,9 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 ## Shake Camera
 Shakes the main Naninovel render camera.
 
-### Demo
-
 <video class="video" loop autoplay><source src="https://i.gyazo.com/f9521fbcf959d0b72e449ae6e2191f9f.mp4" type="video/mp4"></video>
 
-### Start Parameters
+**Start Parameters**
 Name | Type | Default | Description
 --- | --- | --- | ---
 Camera Name | String | null | Name of the camera object to shake. Will shake the main Naninovel camera when not provided.
@@ -165,7 +157,7 @@ Amplitude variation | Decimal | 0.5 | The randomized delta modifier applied to t
 Shake horizontally | Boolean | false | Whether to displace the actor horizontally (by x-axis).
 Shake vertically | Boolean | true | Whether to displace the actor vertically (by y-axis).
 
-### Examples
+**Examples**
 ```
 ; Shake the main Naninovel camera with default params
 @fx ShakeCamera
@@ -177,17 +169,15 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 ## Digital Glitch
 Applies a post-processing effect to the main camera simulating digital video distortion and artifacts.
 
-### Demo
-
 <video class="video" loop autoplay><source src="https://i.gyazo.com/94cb6db25c17956473db4de149281df5.mp4" type="video/mp4"></video>
 
-### Start Parameters
+**Start Parameters**
 Name | Type | Default | Description
 --- | --- | --- | ---
 Duration | Decimal | 1 | The duration of the effect, in seconds.
 Intensity | Decimal | 1 | The intensity of the effect, in 0.0 to 10.0 range.
 
-### Examples
+**Examples**
 ```
 ; Apply the glitch effect with default parameters
 @fx DigitalGlitch
@@ -198,11 +188,9 @@ Intensity | Decimal | 1 | The intensity of the effect, in 0.0 to 10.0 range.
 ## Rain
 Spawns a particle system simulating a rain.
 
-### Demo
-
 <video class="video" loop autoplay><source src="https://i.gyazo.com/74af9eec30f6517ea5b8453a9c86d33c.mp4" type="video/mp4"></video>
 
-### Start Parameters
+**Start Parameters**
 Name | Type | Default | Description
 --- | --- | --- | ---
 Intensity | Decimal | 500 | The intensity of the rain (particles spawn rate per second).
@@ -210,12 +198,12 @@ Fade-in time | Decimal | 5 | The particle system will gradually grow the spawn r
 X velocity | Decimal | 1 | Multiplier to the horizontal speed of the particles. Use to change angle of the rain drops.
 Y velocity | Decimal | 1 | Multiplier to the vertical speed of the particles.
 
-### Stop Parameters
+**Stop Parameters**
 Name | Type | Default | Description
 --- | --- | --- | ---
 Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn rate from the target level to 0 over the specified time, in seconds.
 
-### Examples
+**Examples**
 ```
 ; Start intensive rain over 10 seconds
 @fx Rain params:1500,10
@@ -226,22 +214,20 @@ Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn
 ## Snow
 Spawns a particle system simulating a snow.
 
-### Demo
-
 <video class="video" loop autoplay><source src="https://i.gyazo.com/25a052444c561e40c8318272f51edf47.mp4" type="video/mp4"></video>
 
-### Start Parameters
+**Start Parameters**
 Name | Type | Default | Description
 --- | --- | --- | ---
 Intensity | Decimal | 100 | The intensity of the snow (particles spawn rate per second).
 Fade-in time | Decimal | 5 | The particle system will gradually grow the spawn rate from 0 to the target level over the specified time, in seconds.
 
-### Stop Parameters
+**Stop Parameters**
 Name | Type | Default | Description
 --- | --- | --- | ---
 Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn rate from the target level to 0 over the specified time, in seconds.
 
-### Examples
+**Examples**
 ```
 ; Start intensive snow over 10 seconds
 @fx Snow params:300,10
@@ -252,22 +238,20 @@ Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn
 ## Sun Shafts
 Spawns a particle system simulating sun shafts (rays).
 
-### Demo
-
 <video class="video" loop autoplay><source src="https://i.gyazo.com/7edc4777699229abc508f2bdb404522e.mp4" type="video/mp4"></video>
 
-### Start Parameters
+**Start Parameters**
 Name | Type | Default | Description
 --- | --- | --- | ---
 Intensity | Decimal | 0.85 | The intensity of the rays (opacity).
 Fade-in time | Decimal | 3 | The particle system will gradually grow the intensity from 0 to the target level over the specified time, in seconds.
 
-### Stop Parameters
+**Stop Parameters**
 Name | Type | Default | Description
 --- | --- | --- | ---
 Fade-out time | Decimal | 3 | The particle system will gradually lower the opacity from the target level to 0 over the specified time, in seconds.
 
-### Examples
+**Examples**
 ```
 ; Start intensive sunshine over 10 seconds
 @fx SunShafts params:1,10
@@ -278,11 +262,9 @@ Fade-out time | Decimal | 3 | The particle system will gradually lower the opaci
 ## Depth of Field (Bokeh)
 Simulates depth of field (aka DOF, bokeh) effect, when only the object in focus stays sharp, while the other image is blurred.
 
-### Demo
-
 <video class="video" loop autoplay><source src="https://i.gyazo.com/616a023c46f207b4a3a33d3d3fd9fbc9.mp4" type="video/mp4"></video>
 
-### Start Parameters
+**Start Parameters**
 Name | Type | Default | Description
 --- | --- | --- | ---
 Focus Object Name | String | null | Name of the game object to set focus for (optional). When set, the focus will always stay on the game object and `Focus Distance` parameter will be ignored.
@@ -290,12 +272,12 @@ Focus Distance | Decimal | 10 | Distance from the Naninovel camera to the focus 
 Focal Length | Decimal | 3.75 | Amount of blur to apply for the de-focused areas; also determines focus sensitivity.
 Duration | Decimal | 1 | Interpolation time (how fast the parameters will reach the target values).
 
-### Stop Parameters
+**Stop Parameters**
 Name | Type | Default | Description
 --- | --- | --- | ---
 Stop Duration | Decimal | 1 | Fade-off (disable) duration for the effect parameters to reach default values where the effect is not visible.
 
-### Examples
+**Examples**
 ```
 ; Enable the effect with default parameters and lock focus to `Kohaku` game object
 @fx DepthOfField params:Kohaku

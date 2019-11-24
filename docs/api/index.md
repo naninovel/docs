@@ -391,6 +391,24 @@ ID | Type | Description
 #### Summary
 Closes an [`@if`](/api/#if) conditional execution block.  For usage examples see [conditional execution](/guide/naninovel-scripts.md#conditional-execution) guide.
 
+## finishTrans
+
+#### Summary
+Finishes scene transition started with [`@startTrans`](/api/#starttrans) command;  see the start command reference for more information and usage examples.
+
+#### Parameters
+
+<div class="config-table">
+
+ID | Type | Description
+--- | --- | ---
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">Transition</span> | String | Type of the [transition effect](/guide/transition-effects.md) to use (crossfade is used by default).
+params | List&lt;Decimal&gt; | Parameters of the transition effect.
+dissolve | String | Path to the [custom dissolve](/guide/transition-effects.md#custom-transition-effects) texture (path should be relative to a `Resources` folder).  Has effect only when the transition is set to `Custom` mode.
+easing | String | Name of the easing function to use for the modification.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  When not specified, will use a default easing function set in the actor's manager configuration settings.
+
+</div>
+
 ## fx
 
 #### Summary
@@ -1131,6 +1149,31 @@ params | List&lt;String&gt; | Parameters to set when spawning the prefab.  Requi
 ```
 ; Given the project contains an `Assets/Resources/Rain.prefab` asset, spawn it
 @spawn Rain
+```
+
+## startTrans
+
+#### Summary
+Begins scene transition masking the real scene content with anything that is visible at the moment (except the UI).  When the new scene is ready, finish with [`@finishTrans`](/api/#finishtrans) command.
+
+#### Remarks
+The UI will be hidden and user input blocked while the transition is in progress.  You can change that by overriding the `ISceneTransitionUI`, which handles the transition process.<br /><br />  For the list of available transition effect options see [transition effects](/guide/transition-effects.md) guide.
+
+#### Example
+```
+; Transition Felix on sunny day with Jenna on rainy day
+@char Felix
+@back SunnyDay
+@fx SunShafts
+@startTrans
+; The following modifications won't be visible until we finish the transition
+@hideChars time:0
+@char Jenna time:0
+@back RainyDay time:0
+@stopFx SunShafts params:0
+@fx Rain params:,0
+; Transition the initially captured scene to the new one with `DropFade` effect over 3 seconds
+@finishTrans DropFade time:3
 ```
 
 ## stop
