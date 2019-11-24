@@ -565,7 +565,10 @@ ID | Type | Description
 ## hideUI
 
 #### Summary
-Makes a [managed UI](/guide/ui-customization.md) with the provided prefab name invisible.
+Makes a [managed UI](/guide/ui-customization.md) with the provided name invisible.  When no name is specified, will stop rendering (hide) the entire UI (including all the built-in UIs).
+
+#### Remarks
+When hiding the entire UI with this command and `allowToggle` parameter is false (default), user won't be able to re-show the UI  back with hotkeys or by clicking anywhere on the screen; use [`@showUI`](/api/#showui) command to make the UI ~~great~~ visible again.
 
 #### Parameters
 
@@ -573,15 +576,24 @@ Makes a [managed UI](/guide/ui-customization.md) with the provided prefab name i
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">UIPrefabName</span> | String | Name of the managed UI prefab to hide.
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">UIName</span> | String | Name of the managed UI to hide.
+allowToggle | Boolean | When hiding the entire UI, controls whether to allow the user to re-show the UI with hotkeys or by clicking anywhere on the screen (false by default).  Has no effect when hiding a particular UI.
 
 </div>
 
 #### Example
 ```
-; Given you've added a custom managed UI with prefab name `Calendar`,
-; the following will make it invisible on the scene.
+; Given a custom `Calendar` UI, the following command will hide it.
 @hideUI Calendar
+
+; Hide the entire UI, won't allow user to re-show it
+@hideUI
+...
+; Make the UI visible again
+@showUI
+
+; Hide the entire UI, but allow the user to toggle it back
+@hideUI allowToggle:true
 ```
 
 ## i
@@ -1039,7 +1051,7 @@ ID | Type | Description
 ## showUI
 
 #### Summary
-Makes a [managed UI](/guide/ui-customization.md) with the provided prefab name visible.
+Makes a [managed UI](/guide/ui-customization.md) with the provided prefab name visible.  When no name is specified, will start rendering (show) the entire UI (in case it was hidden with [`@hideUI`](/api/#hideui)).
 
 #### Parameters
 
@@ -1047,15 +1059,18 @@ Makes a [managed UI](/guide/ui-customization.md) with the provided prefab name v
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">UIPrefabName</span> | String | Name of the managed UI prefab to make visible.
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">UIName</span> | String | Name of the managed UI prefab to make visible.
 
 </div>
 
 #### Example
 ```
 ; Given you've added a custom managed UI with prefab name `Calendar`,
-; the following will make it visible on the scene.
+; the following will make it visible on the scene
 @showUI Calendar
+
+; Given you've hide the entire UI with @hideUI, show it back
+@showUI
 ```
 
 ## skip
