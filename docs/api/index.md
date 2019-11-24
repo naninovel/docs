@@ -423,7 +423,10 @@ params | List&lt;String&gt; | Parameters to set when spawning the prefab.  Requi
 ## gosub
 
 #### Summary
-Jumps the naninovel script playback to the provided path and saves the path to the global state;  [`@return`](/api/#return) commands use this info to redirect to command after the last invoked gosub command.  Resembles a function (subroutine) in a programming language, allowing to reuse a piece of naninovel script.  Useful for invoking a repeating set of commands multiple times.
+Navigates naninovel script playback to the provided path and saves that path to global state;  [`@return`](/api/#return) commands use this info to redirect to command after the last invoked gosub command.  Designed to serve as a function (subroutine) in a programming language, allowing to reuse a piece of naninovel script.  Useful for invoking a repeating set of commands multiple times.
+
+#### Remarks
+It's possible to declare a gosub outside of the currently played script and use it from any other scripts;  by default state reset won't happen when you're loading another script to play a gosub or returning back to  prevent delays and loading screens. Be aware though, that all the resources referenced in gosub script will be  held until the next state reset.
 
 #### Parameters
 
@@ -431,14 +434,15 @@ Jumps the naninovel script playback to the provided path and saves the path to t
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | Named&lt;String&gt; | Path to jump into in the following format: `ScriptName.LabelName`.  When label name is ommited, will play provided script from the start.  When script name is ommited, will attempt to find a label in the currently played script.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | Named&lt;String&gt; | Path to navigate into in the following format: `ScriptName.LabelName`.  When label name is ommited, will play provided script from the start.  When script name is ommited, will attempt to find a label in the currently played script.
+reset | Boolean | Whether to reset the state before loading a script (in case the path is leading to another script).  By default, the state does not reset.
 
 </div>
 
 #### Example
 ```
-; Jumps the playback to the label `VictoryScene` in the currently played script,
-; executes the commands and jumps back to the command after the `gosub`.
+; Navigate the playback to the label `VictoryScene` in the currently played script,
+; executes the commands and navigates back to the command after the `gosub`.
 @gosub .VictoryScene
 ...
 @stop
@@ -469,7 +473,7 @@ You are victorious!
 ## goto
 
 #### Summary
-Jumps the naninovel script playback to the provided path.  When the path leads to another (not the currently played) naninovel script, will also [reset state](/api/#resetstate)  before loading the target script, unless [ResetStateOnLoad](https://naninovel.com/guide/configuration.html#state) is disabled in the configuration.
+Navigates naninovel script playback to the provided path.  When the path leads to another (not the currently played) naninovel script, will also [reset state](/api/#resetstate)  before loading the target script, unless [ResetStateOnLoad](https://naninovel.com/guide/configuration.html#state) is disabled in the configuration.
 
 #### Parameters
 
@@ -477,7 +481,8 @@ Jumps the naninovel script playback to the provided path.  When the path leads t
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | Named&lt;String&gt; | Path to jump into in the following format: `ScriptName.LabelName`.  When label name is ommited, will play provided script from the start.  When script name is ommited, will attempt to find a label in the currently played script.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | Named&lt;String&gt; | Path to navigate into in the following format: `ScriptName.LabelName`.  When label name is ommited, will play provided script from the start.  When script name is ommited, will attempt to find a label in the currently played script.
+reset | Boolean | Whether to reset the state before loading a script (in case the path is leading to another script).  Default value is controlled by `Reset State On Load` option in engine configuration menu.
 
 </div>
 
@@ -489,7 +494,7 @@ ID | Type | Description
 ; Save as above, but start playing from the label `AfterStorm`.
 @goto Script001.AfterStorm
 
-; Jumps the playback to the label `Epilogue` in the currently played script.
+; Navigates the playback to the label `Epilogue` in the currently played script.
 @goto .Epilogue
 ```
 
@@ -866,7 +871,17 @@ ID | Type | Description
 ## return
 
 #### Summary
-Attempts to jump the naninovel script playback to the command after the last used @gosub.  When the target command is not in the currently played script, will also [reset state](/api/#resetstate)  before loading the target script, unless [ResetStateOnLoad](https://naninovel.com/guide/configuration.html#state) is disabled in the configuration.  See [`@gosub`](/api/#gosub) command summary for more info and usage examples.
+Attempts to navigate naninovel script playback to a command after the last used [`@gosub`](/api/#gosub).  See [`@gosub`](/api/#gosub) command summary for more info and usage examples.
+
+#### Parameters
+
+<div class="config-table">
+
+ID | Type | Description
+--- | --- | ---
+reset | Boolean | Whether to reset the engine state before returning to the initial script  from which the gosub was entered (in case it's not the currently played script).  By default, the state does not reset.
+
+</div>
 
 ## save
 
