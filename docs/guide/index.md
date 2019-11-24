@@ -3,7 +3,9 @@
 Naninovel is an extension for [Unity game engine](https://unity3d.com). It consists of a C# framework and editor utilities to support development of [visual novel games](https://en.wikipedia.org/wiki/Visual_novel).
 
 ## Features
-Following are some of the features that are already implemented; more will be added as the engine undergoes an active development:
+
+Following are some of the features Naninovel provides out of the box:
+
 * [Document-based scripts](/guide/naninovel-scripts.md)
   * [Generic text lines](/guide/naninovel-scripts.md#generic-text-lines)
   * [Labels](/guide/naninovel-scripts.md#label-lines)
@@ -21,6 +23,7 @@ Following are some of the features that are already implemented; more will be ad
 * [Characters](/guide/characters.md)
   * [Sprite characters](/guide/characters.md#sprite-characters)
   * [Diced sprite characters](/guide/characters.md#diced-sprite-characters)
+  * [Layered characters](/guide/characters.md#layered-characters)
   * [Generic characters](/guide/characters.md#generic-characters)
   * [Live2D characters](/guide/characters.md#live2d-characters)
   * [Character-specific message colors](/guide/characters.md#message-colors)
@@ -28,6 +31,7 @@ Following are some of the features that are already implemented; more will be ad
 * [Backgrounds](/guide/backgrounds.md)
   * [Sprite backgrounds](/guide/backgrounds.md#sprite-backgrounds)
   * [Video backgrounds](/guide/backgrounds.md#video-backgrounds)
+  * [Layered backgrounds](/guide/backgrounds.md#layered-backgrounds)
   * [Generic backgrounds](/guide/backgrounds.md#generic-backgrounds)
   * [Scene backgrounds](/guide/backgrounds.md#scene-backgrounds)
 * [Transition effects](/guide/transition-effects.md)
