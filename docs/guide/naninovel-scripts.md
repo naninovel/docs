@@ -1,6 +1,6 @@
 # Naninovel Scripts
 
-Naninovel scripts are text documents (`.nani` extension) where you control what happens on scenes. Script assets are created with `Create -> Naninovel -> Naninovel Script` asset context menu. You can open and edit them with a text editor of your choice, like Notepad, TextEdit or [Atom](https://atom.io).
+Naninovel scripts are text documents (`.nani` extension) where you control what happens on scenes. Script assets are created with `Create -> Naninovel -> Naninovel Script` asset context menu. You can open and edit them with the built-in [visual editor](#visual-editor) or with an external text editor of your choice, like Notepad, TextEdit or [Atom](https://atom.io).
 
 ![](https://i.gyazo.com/311c80fb669b44e0974ea95c22024ea4.png)
 
