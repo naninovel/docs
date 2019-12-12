@@ -16,7 +16,7 @@ In case the above steps didn't help to resolve the issue, check the [issue track
 
 ## Developer Support
 
-To receive direct developer support join Naninovel Discord server ([discord.gg/avhRzP3](https://discord.gg/avhRzP3)) and register your copy of the asset using the following registration form: [naninovel.com/register](https://naninovel.com/register/).
+To receive direct developer support join Naninovel Discord server ([discord.gg/BfkNqem](https://discord.gg/BfkNqem)) and register your copy of the asset using the following registration form: [naninovel.com/register](https://naninovel.com/register/).
 
 After the registration you'll automatically get a "Verified User" role on the server and access to the `#support` channel. You can also message `@Elringus#6359` to discuss the issue in private.
 
