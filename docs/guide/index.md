@@ -9,7 +9,6 @@ Following are some of the features Naninovel provides out of the box:
 * [Document-based scripts](/guide/naninovel-scripts.md)
   * [Generic text lines](/guide/naninovel-scripts.md#generic-text-lines)
   * [Labels](/guide/naninovel-scripts.md#label-lines)
-  * [Script defines](/guide/naninovel-scripts.md#define-lines)
   * [Commands inlining](/guide/naninovel-scripts.md#generic-text-lines)
   * [Visual editor](/guide/naninovel-scripts.md#visual-editor)
   * [IDE support (syntax highlighting, auto-completion, etc)](/guide/naninovel-scripts.md#ide-support)
