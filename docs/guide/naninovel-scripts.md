@@ -2,16 +2,15 @@
 
 Naninovel scripts are text documents (`.nani` extension) where you control what happens on scenes. Script assets are created with `Create -> Naninovel -> Naninovel Script` asset context menu. You can open and edit them with the built-in [visual editor](#visual-editor) or with an external text editor of your choice, like Notepad, TextEdit or [Atom](https://atom.io).
 
-![](https://i.gyazo.com/311c80fb669b44e0974ea95c22024ea4.png)
+![](https://i.gyazo.com/f552c2ef323f9ec1171eba72e0c55432.png)
 
-Each line in a naninovel script represents a statement, which can be a command, generic text, label, comment or a define statement. Type of the statement is determined by the literal that is placed at the start of the line:
+Each line in a naninovel script represents a statement, which can be a command, generic text, label or a comment. Type of the statement is determined by the literal that is placed at the start of the line:
 
 Literal | Statement Type 
 :---: | --- 
 @ | [Command](#command-lines)
 # | [Label](#label-lines)
 ; | [Comment](#comment-lines)
-> | [Define](#define-lines)
 
 When none of the above literals are present at the start of the line, it's considered a [generic text](#generic-text-lines) statement.
 
@@ -106,7 +105,7 @@ To make writing scripts with large amounts of text more comfortable generic text
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 ```
 
-An author ID can be specified at the start of a generic text line separated by a column (`:`) to associate printed text with the character:
+An author ID can be specified at the start of a generic text line separated by a column (`:`) to associate printed text with a [character actor](/guide/characters.md):
 
 ```
 Felix: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -162,39 +161,6 @@ When line starts with a semicolon literal (`;`) it's considered a comment statem
 ; The following command will auto-save the game.
 @save
 ```
-
-## Define Lines
-
-When working with naninovel scripts, you'll notice that some statements are frequently repeated. It could be a character name, which you have to type multiple times before generic text lines or some parameter value, which you frequently use throughout single script document. 
-
-To simplify things a bit, script defines feature was implemented. You can define an arbitrary expression by associating it with a short name and then use this short name throughout the naninovel script. When the script is parsed, those short names will be replaced with the defined expression (much like preprocessor macros from the programming world). 
-
-To define an expression, use `>` literal followed with the short name which will be used to reference the expression; then specify the defined expression. 
-
-The following will define `Felix` character name as an `f` short name and `color=#ff0000,b` text style as a `red` short name:
-
-```
->f Felix
->red color=#ff0000,b
-```
-
-You can then use the short names wrapped in curly braces (`{ }`) to reference the defined expressions:
-
-```
-@char {f}.Happy
-He was as happy as a [style {red}]clam[style default].
-```
-
-However, you'll probably mostly use this feature to reference associated character names in general text lines. To further simplify the process, curly braces can be omitted in such cases:
-
-```
-@char {f}.Happy
-f: I'm as happy as a [style {red}]clam[style default]!
-```
-
-Make sure the define expressions don't contain spaces inside curly braces; eg `{ f }` won't be recognized as one. 
-
-In case you wish to make some defines accessible from all the scripts, set a `Global Defines Script` in the [scripts configuration](/guide/configuration.md#scripts) menu.
 
 ## Conditional Execution
 
