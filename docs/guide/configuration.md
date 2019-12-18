@@ -140,7 +140,7 @@ Bindings | Object Ref | Bindings to process input for.
 
 Property | Default Value | Description
 --- | --- | ---
-Loader Configuration | Localization- (Addressable, Project) | Configuration of the resource loader used with the localization resources.
+Loader | Localization- (Addressable, Project) | Configuration of the resource loader used with the localization resources.
 Source Locale | En | Locale of the source project resources (the original language in which you create the assets).
 Default Locale | Null | Locale selected by default when running the game for the first time. Will select `Source Locale` when not specified.
 
@@ -152,7 +152,7 @@ Default Locale | Null | Locale selected by default when running the game for the
 
 Property | Default Value | Description
 --- | --- | ---
-Loader Configuration | Text- (Addressable, Project) | Configuration of the resource loader used with the managed text documents.
+Loader | Text- (Addressable, Project) | Configuration of the resource loader used with the managed text documents.
 
 </div>
 
@@ -162,7 +162,7 @@ Loader Configuration | Text- (Addressable, Project) | Configuration of the resou
 
 Property | Default Value | Description
 --- | --- | ---
-Loader Configuration | Movies- (Addressable, Project) | Configuration of the resource loader used with movie resources.
+Loader | Movies- (Addressable, Project) | Configuration of the resource loader used with movie resources.
 Skip On Input | True | Whether to skip movie playback when user activates `cancel` input keys.
 Skip Frames | True | Whether to skip frames to catch up with current time.
 Aspect Ratio | Fit Horizontally | Defines how the video content will be stretched to fill the target area.
@@ -212,7 +212,6 @@ Update Command Count On Init | True | Whether to calculate number of commands ex
 Property | Default Value | Description
 --- | --- | ---
 Loader | Scripts- (Addressable, Project) | Configuration of the resource loader used with naninovel script resources.
-Global Defines Script | Null | Name of the script which contains global define expressions, that should be accessible from all the other scripts.
 Initialization Script | Null | Name of the script to play right after the engine initialization.
 Title Script | Null | Name of the script to play when showing the Title UI. Can be used to setup the title screen scene (backgound, music, etc).
 Start Game Script | Null | Name of the script to play when starting a new game. Will use first available when not provided.
@@ -283,7 +282,7 @@ Objects Layer | 5 | The layer to assign for the UI elements instatiated by the e
 Render Mode | Screen Space Camera | The canvas render mode to apply for all the managed UI elements.
 Sorting Offset | 1 | The sorting offset to apply for all the managed UI elements.
 Default UI | Object Ref | The list of default UI to spawn on the engine initialization. You can override or disable the built-in UI here.
-Custom UI | Object Ref | The list of custom UI prefabs to spawn on the engine initialization. Each prefab should have a `IManagedUI`-derived component attached to the root object.
+Custom UI | Object Ref | The list of custom UI prefabs to spawn on the engine initialization. Each prefab should have a `CustomUI`-derived component attached to the root object.
 
 </div>
 
@@ -293,7 +292,7 @@ Custom UI | Object Ref | The list of custom UI prefabs to spawn on the engine in
 
 Property | Default Value | Description
 --- | --- | ---
-Loader Configuration | Unlockables- (Addressable, Project) | Configuration of the resource loader used with unlockable resources.
+Loader | Unlockables- (Addressable, Project) | Configuration of the resource loader used with unlockable resources.
 
 </div>
 
