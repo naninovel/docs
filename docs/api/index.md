@@ -20,7 +20,7 @@ time | Decimal | Determines for how long (in seconds) command should execute. Wh
 
 </div>
 
-This API reference is valid for [Naninovel v1.8.3-beta](https://github.com/Elringus/NaninovelWeb/releases).
+This API reference is valid for [Naninovel v1.9.0-beta](https://github.com/Elringus/NaninovelWeb/releases).
 
 ## append
 
@@ -339,6 +339,37 @@ Removes all the messages from [printer backlog](/guide/printer-backlog.md).
 #### Example
 ```
 @clearBacklog
+```
+
+## clearChoice
+
+#### Summary
+Removes all the choice options in the choice handler with the provided ID (or in default one, when ID is not specified;  or in all the existing handlers, when `all` is specified as ID) and (optionally) hides it (them).
+
+#### Parameters
+
+<div class="config-table">
+
+ID | Type | Description
+--- | --- | ---
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">HandlerId</span> | String | ID of the choice handler to clear. Will use a default handler if not provided.  Specify `all` to clear all the existing handlers.
+hide | Boolean | Whether to also hide the affected printers.
+
+</div>
+
+#### Example
+```
+; Add choices and remove them after a set time (in case the player didn't pick one).
+# Start
+You have 2 seconds to respond![skipInput]
+@choice "Cats" goto:.PickedChoice
+@choice "Dogs" goto:.PickedChoice
+@wait 2
+@clearChoice
+Too late!
+@goto .Start
+# PickedChoice
+Good!
 ```
 
 ## despawn

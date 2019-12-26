@@ -3,7 +3,7 @@ The engine configuration is stored in multiple scriptable object assets located 
 
 Use `Naninovel -> Configuration` or `Edit -> Project Settings -> Naninovel` to access the configuration menu.
 
-This configuration reference is valid for [Naninovel v1.8.3-beta](https://github.com/Elringus/NaninovelWeb/releases).
+This configuration reference is valid for [Naninovel v1.9.0-beta](https://github.com/Elringus/NaninovelWeb/releases).
 
 ## Audio
 
@@ -201,7 +201,7 @@ Property | Default Value | Description
 --- | --- | ---
 Skip Time Scale | 10 | Time scale to use when in skip (fast-forward) mode.
 Min Auto Play Delay | 3 | Minimum seconds to wait before executing next command while in auto play mode.
-Update Command Count On Init | True | Whether to calculate number of commands existing in all the available naninovel scripts on service initalization. If you don't use `TotalCommandsCount` property of the script player and `CalculateProgress` function in naninovel script expressions, disable to reduce engine initalization time.
+Count Total Commands | False | Whether to calculate number of commands existing in all the available naninovel scripts on service initalization. If you don't use `TotalCommandsCount` property of the script player and `CalculateProgress` function in naninovel script expressions, disable to reduce engine initalization time.
 
 </div>
 
