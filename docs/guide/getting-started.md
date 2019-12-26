@@ -60,8 +60,6 @@ The first line will print the text "Hello World!" when the game is run and the s
 
 Enter play mode and start a new game to see the result.
 
-It's also possible to store the naninovel scripts at a `Resources/Scripts` folder, which will make them all "visible" to the engine by default. This is not recommended though, as some of the editor features (like script selection dropdowns) won't work.
-
 In case "NEW GAME" button of the title menu is not active, make sure "Start Game Script" property in the script configuration (`Naninovel -> Configuration -> Scripts`) is equal to the name of the created script. The property is populated automatically when creating the first script via create asset menu, but this may not work if you copy some existing script to the project.
 
 ![Start Script](https://i.gyazo.com/76e167cb24adfb4d0b454b372f05eb3d.png)
@@ -69,9 +67,7 @@ In case "NEW GAME" button of the title menu is not active, make sure "Start Game
 ## Add Character
 Characters in Naninovel can be based on regular and diced sprites, animated Live2D models and 3D meshes; you can add your own implementations as well. For the purpose of this tutorial, we’ll use a sprite implementation. 
 
-Each character is represented by ID and a set of appearances. To add a sprite character, you can either use the character manager GUI (recommended) or place the character’s appearance sprites in a `Resources/Characters/CharacterName` folder, where `CharacterName` is the name of the character. 
-
-If you choose to use the manager GUI, access it with `Naninovel -> Resources -> Characters` menu, add new character record specifying its ID, then double click the ID record (or press button at the and of the record) and add all the appearance sprites to the `Resources` list. Just like with naninovel scripts, you can drag-drop multiple assets and folders to the list.
+Each character is represented by ID and a set of appearances. To add a character, use character manager GUI accessible via `Naninovel -> Resources -> Characters` menu, add a new character actor record specifying its ID, then double click the record (or press button at the and of the record) and add all the appearance sprites to the `Resources` list. Just like with naninovel scripts, you can drag-drop multiple assets and folders to the list.
 
 ![Add Character](https://i.gyazo.com/c8a4f7f987621831b4a2ecb3145a4a07.png)
 
@@ -113,7 +109,7 @@ Similar to characters, a background can be represented in multiple ways in Nanin
 
 While you can create multiple independent background actors, in a typical VN game you'll usually use just one and transition it to different appearances. To simplify the routine, a `MainBackground` actor is added to the background actors list by default and you don't have to specify the ID every time to change its appearance in naninovel scripts.
 
-Add sprite background in the same way you’ve added a character: using editor GUI `Naninovel -> Resources -> Backgrounds` (`MainBackground` actor will be chosen automatically) or place the appearance sprites under a `Resources/Backgrounds/MainBackground` folder.
+Add background sprites via `Naninovel -> Resources -> Backgrounds` menu. `MainBackground` record will open automatically, but you can still return to the actors list and create others, if you wish.
 
 ![Add Background](https://i.gyazo.com/98e88780625c7f2e1ef88db7ef10d1f4.png)
 
@@ -129,7 +125,7 @@ When switching between backgrounds a cross-fade [transition effect](/guide/trans
 This will transition "City" to "School" using "RadialBlur" transition effect.
 
 ## Add Music and Sound Effects
-To add a BGM (background music) or SFX (sound effect) asset, either use `Naninovel -> Resources -> Audio` editor menu (recommended) or place the audio assets inside `Resources/Audio` folder. You can use any audio formats [supported by Unity](https://docs.unity3d.com/Manual/AudioFiles.html).
+To add a BGM (background music) or SFX (sound effect) asset, use `Naninovel -> Resources -> Audio` editor menu. You can use any audio formats [supported by Unity](https://docs.unity3d.com/Manual/AudioFiles.html).
 
 ![Managing Audio](https://i.gyazo.com/cacdec36623dbbfcf9f49c594de53c0f.png)
 
