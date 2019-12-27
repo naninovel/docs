@@ -199,7 +199,7 @@ ID | Type | Description
 --- | --- | ---
 offset | List&lt;Decimal&gt; | Local camera position offset in units by X,Y,Z axes.
 rotation | Decimal | Local camera rotation by Z-axis in angle degrees (0.0 to 360.0 or -180.0 to 180.0).
-zoom | Decimal | Relatize camera zoom (orthographic size or field of view, depending on the render mode), in 0.0 to 1.0 range.
+zoom | Decimal | Relatize camera zoom (orthographic size or field of view, depending on the render mode), in 0.0 (no zoom) to 1.0 (full zoom) range.
 ortho | Boolean | Whether the camera should render in orthographic (true) or perspective (false) mode.
 toggle | List&lt;String&gt; | Names of the components to toggle (enable if disabled and vice-versa). The components should be attached to the same gameobject as the camera.  This can be used to toggle [custom post-processing effects](/guide/special-effects.md#camera-effects).
 easing | String | Name of the easing function to use for the modification.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  When not specified, will use a default easing function set in the camera configuration settings.
@@ -484,7 +484,7 @@ It's possible to declare a gosub outside of the currently played script and use 
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | Named&lt;String&gt; | Path to navigate into in the following format: `ScriptName.LabelName`.  When label name is ommited, will play provided script from the start.  When script name is ommited, will attempt to find a label in the currently played script.
-reset | Boolean | Whether to reset the state before loading a script (in case the path is leading to another script).  By default, the state does not reset.
+reset | List&lt;String&gt; | When specified, will reset the engine services state before loading a script (in case the path is leading to another script).  Specify `*` to reset all the services (except variable manager), or specify service names to exclude from reset.  By default, the state does not reset.
 
 </div>
 
@@ -531,7 +531,7 @@ Navigates naninovel script playback to the provided path.  When the path leads t
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | Named&lt;String&gt; | Path to navigate into in the following format: `ScriptName.LabelName`.  When label name is ommited, will play provided script from the start.  When script name is ommited, will attempt to find a label in the currently played script.
-reset | Boolean | Whether to reset the state before loading a script (in case the path is leading to another script).  Default value is controlled by `Reset State On Load` option in engine configuration menu.
+reset | List&lt;String&gt; | When specified, will reset the engine services state before loading a script (in case the path is leading to another script).  Specify `*` to reset all the services (except variable manager), or specify service names to exclude from reset.  Specify `-` to force no reset (even if it's enabled by default in the configuration).  Default value is controlled by `Reset State On Load` option in engine configuration menu.
 
 </div>
 
@@ -896,14 +896,28 @@ ID | Type | Description
 ## resetState
 
 #### Summary
-Resets state of all the [engine services](https://naninovel.com/guide/engine-services.html) and unloads (disposes)  all the resources loaded by Naninovel (textures, audio, video, etc); will basically revert to an empty initial engine state.
+Resets state of the [engine services](https://naninovel.com/guide/engine-services.html) and unloads (disposes)  all the resources loaded by Naninovel (textures, audio, video, etc); will basically revert to an empty initial engine state.
 
 #### Remarks
 The process is asynchronous and is masked with a loading screen ([ILoadingUI](https://naninovel.com/guide/ui-customization.html)).  <br /><br />  When [ResetStateOnLoad](https://naninovel.com/guide/configuration.html#state) is disabled in the configuration, you can use this command  to manually dispose unused resources to prevent memory leak issues.  <br /><br />  Be aware, that this command can not be undone (rewinded back).
 
+#### Parameters
+
+<div class="config-table">
+
+ID | Type | Description
+--- | --- | ---
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">Exclude</span> | List&lt;String&gt; | Name of the [engine services](https://naninovel.com/guide/engine-services.html) to exclude from reset.  When specifying the parameter, consider always adding `CustomVariableManager` to preserve the local variables.
+
+</div>
+
 #### Example
 ```
+; Reset all the services.
 @resetState
+
+; Reset all the services except variable and audio managers (current audio will continue playing).
+@resetState CustomVariableManager,AudioManager
 ```
 
 ## resetText
@@ -940,7 +954,7 @@ Attempts to navigate naninovel script playback to a command after the last used 
 
 ID | Type | Description
 --- | --- | ---
-reset | Boolean | Whether to reset the engine state before returning to the initial script  from which the gosub was entered (in case it's not the currently played script).  By default, the state does not reset.
+reset | List&lt;String&gt; | When specified, will reset the engine services state before returning to the initial script  from which the gosub was entered (in case it's not the currently played script).  Specify `*` to reset all the services (except variable manager), or specify service names to exclude from reset.  By default, the state does not reset.
 
 </div>
 
