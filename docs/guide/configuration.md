@@ -201,7 +201,6 @@ Property | Default Value | Description
 --- | --- | ---
 Skip Time Scale | 10 | Time scale to use when in skip (fast-forward) mode.
 Min Auto Play Delay | 3 | Minimum seconds to wait before executing next command while in auto play mode.
-Count Total Commands | False | Whether to calculate number of commands existing in all the available naninovel scripts on service initalization. If you don't use `TotalCommandsCount` property of the script player and `CalculateProgress` function in naninovel script expressions, disable to reduce engine initalization time.
 
 </div>
 
@@ -217,6 +216,7 @@ Title Script | Null | Name of the script to play when showing the Title UI. Can 
 Start Game Script | Null | Name of the script to play when starting a new game. Will use first available when not provided.
 Auto Add Scripts | True | Whether to automatically add created naninovel scripts to the resources.
 Hot Reload Scripts | True | Whether to reload modified (both via visual and external editors) scripts and apply changes during playmode without restarting the playback.
+Count Total Commands | False | Whether to calculate number of commands existing in all the available naninovel scripts on service initalization. If you don't use `TotalCommandsCount` property of a script manager and `CalculateProgress` function in naninovel script expressions, disable to reduce engine initalization time.
 Enable Visual Editor | True | Whether to show visual script editor when a script is selected.
 Hide Unused Parameters | True | Whether to hide un-assigned parameters of the command lines when the line is not hovered or focused.
 Insert Line Key | Space | Hot key used to show `Insert Line` window when the visual editor is in focus. Set to `None` to disable.

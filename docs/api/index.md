@@ -907,7 +907,7 @@ The process is asynchronous and is masked with a loading screen ([ILoadingUI](ht
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">Exclude</span> | List&lt;String&gt; | Name of the [engine services](https://naninovel.com/guide/engine-services.html) to exclude from reset.  When specifying the parameter, consider always adding `CustomVariableManager` to preserve the local variables.
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">Exclude</span> | List&lt;String&gt; | Name of the [engine services](https://naninovel.com/guide/engine-services.html) (interfaces) to exclude from reset.  When specifying the parameter, consider always adding `ICustomVariableManager` to preserve the local variables.
 
 </div>
 
@@ -917,7 +917,7 @@ ID | Type | Description
 @resetState
 
 ; Reset all the services except variable and audio managers (current audio will continue playing).
-@resetState CustomVariableManager,AudioManager
+@resetState ICustomVariableManager,IAudioManager
 ```
 
 ## resetText
