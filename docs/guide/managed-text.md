@@ -43,7 +43,7 @@ public class CustomLabel : Text
         text = LabelText; // Assign current value of the managed text record to the label.
 
         // Update the label when user changes the locale at runtime.
-        Engine.GetService<LocalizationManager>().OnLocaleChanged += _ => text = LabelText;
+        Engine.GetService<ILocalizationManager>().OnLocaleChanged += _ => text = LabelText;
     }
 }
 ```
