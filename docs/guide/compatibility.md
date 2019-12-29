@@ -2,7 +2,7 @@
 
 ## Beta
 
-Be aware, that the engine is currently in [beta development stage](https://github.com/Elringus/NaninovelWeb/milestone/1). There is a high probability of changes that could lead to incompatibility with the previous versions, require to re-write the scenario scripts or re-setup the configuration assets. Please take those risks into consideration when planning to use the engine for a project in production stage. 
+Be aware, that the engine is currently in [beta development stage](https://github.com/Elringus/NaninovelWeb/milestone/1). There is a high probability of changes that could lead to incompatibility with the previous versions, require to re-write scenario scripts or re-setup configuration assets. Please take those risks into consideration when planning to use the engine for a project in production stage. 
 
 ## Unity Version
 
