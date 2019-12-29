@@ -13,8 +13,66 @@ Each actor interface can have multiple implementations; e.g. character actors cu
 
 Actor implementation can be selected in the configuration managers accessible via `Naninovel -> Configuration` context menu. You can both change default implementation used for all the actors or set specific implementation per actor. To change default implementation, use `Default Metadata` property and to set specific ones, use an `Implementation` drop-down list in actor's configuration. 
 
-![Default Actor Implementation](https://i.gyazo.com/ac39a68df1e81dd4b33b7a2674113479.png)
-![Actor Implementation](https://i.gyazo.com/51e4f625448889d3d39254de3dce5ec6.png)
+![Default Actor Implementation](https://i.gyazo.com/b372520a15501dc9bc1e5f30f4c7f12d.png)
+![Actor Implementation](https://i.gyazo.com/3256f3aea99ea453859f67135a7187ee.png)
 
-Implementation drop-down list contains all the types that implements specific actor interface. You can add your own custom implementations and they'll also appear in the list. See `Naninovel/Runtime/Actor` scripts for a reference when creating your own actor implementations.
+Implementation drop-down list contains all the types that implements specific actor interface. You can add your own custom implementations and they'll also appear in the list. See `Naninovel/Runtime/Actor` scripts for a reference when creating your own actor implementations. Consider using `Naninovel.MonoBehaviourActor` built-in abstract actor implementation to fulfill most of the base interface requirements.
 
+When creating custom actor implementations, make sure they have a compatible public constructor: `public CustomActorImplementation (string id, ActorMetadata metadata)`, where `id` is the ID of the actor and `metadata` — either actor's (when actor record exists in the resources) or a default metadata. When implementing a specific actor interface, it's possible to request corresponding specific metadata (eg, "CharacterMetadata" for "ICharacterActor" implementation).
+
+Below is an example of a dummy `ICharacterActor` implementation, that dose nothing, but logs when any of it's methods are invoked.
+
+```csharp
+using Naninovel;
+using System.Threading;
+using System.Threading.Tasks;
+using UnityCommon;
+using UnityEngine;
+
+public class CustomCharacterImplementation : MonoBehaviourActor, ICharacterActor
+{
+    public override string Appearance { get; set; }
+    public override bool Visible { get; set; }
+    public CharacterLookDirection LookDirection { get; set; }
+
+    public CustomCharacterImplementation (string id, CharacterMetadata metadata)
+        : base (id, metadata)
+    {
+        Debug.Log($"{nameof(CustomCharacterImplementation)}::Ctor({id})");
+    }
+
+    public override Task ChangeAppearanceAsync (string appearance, float duration, 
+        EasingType easingType = EasingType.Linear, TransitionType? transitionType = null, 
+        Vector4? transitionParams = null, Texture dissolveTexture = null, CancellationToken cancellationToken = default)
+    {
+        Debug.Log($"{nameof(CustomCharacterImplementation)}::ChangeAppearanceAsync({appearance})");
+        return Task.CompletedTask;
+    }
+
+    public override Task ChangeVisibilityAsync (bool isVisible, float duration, 
+        EasingType easingType = EasingType.Linear, CancellationToken cancellationToken = default)
+    {
+        Debug.Log($"{nameof(CustomCharacterImplementation)}::ChangeVisibilityAsync({isVisible})");
+        return Task.CompletedTask;
+    }
+
+    public Task ChangeLookDirectionAsync (CharacterLookDirection lookDirection, float duration,
+        EasingType easingType = EasingType.Linear, CancellationToken cancellationToken = default)
+    {
+        Debug.Log($"{nameof(CustomCharacterImplementation)}::ChangeLookDirectionAsync({lookDirection})");
+        return Task.CompletedTask;
+    }
+
+    protected override Color GetBehaviourTintColor ()
+    {
+        Debug.Log($"{nameof(CustomCharacterImplementation)}::GetBehaviourTintColor");
+        return default;
+    }
+
+    protected override void SetBehaviourTintColor (Color tintColor)
+    {
+        Debug.Log($"{nameof(CustomCharacterImplementation)}::SetBehaviourTintColor({tintColor})");
+    }
+}
+
+```
