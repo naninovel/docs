@@ -17,17 +17,17 @@ You can check whether the engine is currently initialized with `Engine.IsInitial
 To destroy all the engine services and completely remove Naninovel from memory, use `Engine.Destroy()` static method.
 
 ## Playing Naninovel Scripts
-To preload and play a naninovel script with a given name, use `PreloadAndPlayAsync(ScriptName)` method of the `ScriptPlayer` service. To get an engine service, use `Engine.GetService<TService>()` static method, where `TService` is the type of the service to retrieve. For example, the following will get the player service, then preload and play a script with name "Script001":
+To preload and play a naninovel script with a given name, use `PreloadAndPlayAsync(ScriptName)` method of a `IScriptPlayer` service. To get an engine service, use `Engine.GetService<TService>()` static method, where `TService` is the type (interface) of the service to retrieve. For example, the following will get a script player service, then preload and play a script with name "Script001":
 
 ```csharp
-var player = Engine.GetService<ScriptPlayer>();
+var player = Engine.GetService<IScriptPlayer>();
 await player.PreloadAndPlayAsync("Script001");
 ```
 
-When exiting the dialogue mode and returning to the main game mode, you probably would like to unload all the resources currently used by Naninovel and stop all the engine services. For this, use `ResetStateAsync()` method of the `StateManager` service:
+When exiting the dialogue mode and returning to the main game mode, you probably would like to unload all the resources currently used by Naninovel and stop all the engine services. For this, use `ResetStateAsync()` method of a `IStateManager` service:
 
 ```csharp
-var stateManager = Engine.GetService<StateManager>();
+var stateManager = Engine.GetService<IStateManager>();
 await stateManager.ResetStateAsync();
 ```
 
