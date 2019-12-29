@@ -6,9 +6,11 @@ By default, all the resources stored in the project are used when the game is ru
 
 The *source locale* can be changed in the `Naninovel -> Configuration -> Localization` menu with the `Source Locale` property. `Source Locale` property only determines the name (ID) of the locale associated with your source project assets and is used in the "Language" drop-down settings menu and related engine APIs to distinguish the locale.
 
-You can setup additional locales by creating a sub-folder inside `Resources/Localization` folder (the so-called *localization resources root*) with a name equal to one of the [RFC5646](https://gist.github.com/Elringus/db90d9c74f13c00fa35131e61d1b73cb) language tags you wish to add localization for. For example, to add a German locale, create a `Resources/Localization/de` folder. The "Language" drop-down list in the game settings built-in UI will automatically incorporate all the added locales. *Localization resources root* specific path can be changed in the localization configuration menu via `Loader > Path Prefix` property.
+You can setup additional locales by creating a sub-folder inside `Resources/Localization` folder (the so-called *localization resources root*) with a name equal to one of the [RFC5646](https://gist.github.com/Elringus/db90d9c74f13c00fa35131e61d1b73cb) language tags you wish to add localization for. For example, to add a German locale, create a `Resources/Localization/de` folder. The "Language" drop-down list in the game settings built-in UI will automatically incorporate all the added locales. 
 
-Be aware, that you don't have to create a sub-folder in the *localization resources root* for the *source locale*. All the project resources outside of the *localization resources root* are used when running under the *source locale*.
+Be aware, that you don't have to create a sub-folder in the *localization resources root* for the *source locale*. All the project resources stored outside of the *localization resources root* belong to the *source locale* by default.
+
+*Localization resources root* specific path can be changed in the localization configuration menu via `Loader > Path Prefix` property. Notice, that the configured path is relative to a "Resources" folder (not the "Assets"). The resources folders are [handled in a special way](https://docs.unity3d.com/Manual/LoadingResourcesatRuntime.html) by Unity; you can have multiple such folders stored anywhere inside the project assets for organization purposes.
 
 You can set which locale is selected by default when player first runs the game with `Default Locale` property in the localization configuration menu. When the property is not specified, the game will start in *source locale* by default.
 
@@ -26,11 +28,11 @@ The resources localization scheme described above works with all the resource ty
 
 ![Localization Tool](https://i.gyazo.com/5c6b023cbf4617f44102593f13131571.png)
 
-First, select path to the locale folder where to store the generated localization resources. Make sure you've selected an actual locale folder (e.g. `Resources/Localization/ja-JP`) and not just the *localization resources root*.
+First, select path to the locale folder where to store the generated localization resources. Make sure you've selected an actual locale folder (eg, `Resources/Localization/ja-JP`) and not just the *localization resources root*. Label under the property field will indicate when a valid output locale folder is selected displaying name of the selected localization target.
 
 Enabling "Try update" property will attempt to preserve any currently existing localization resources; when disabled all the existing localization resources at the specified path will be lost.
 
-Enabling "Localize text" will also generate [managed text](/guide/managed-text.md) localization documents.
+Enabling "Localize text" will also generate [managed text](/guide/managed-text.md) localization documents. When enabled, "Text Folder" property will appear allowing to specify path to the source managed text documents (`Assets/Resources/Text` by default). It's possible to set the path to a folder containing localized version of text documents to generate a localization variant that is using a non-source language.
 
 Press "Generate" button to create (update) the localization resources.
 
@@ -75,4 +77,4 @@ You're expected to include any inlined commands present in the source statement 
 
 Total word count contained in the generated localization documents (excluding the hash lines) is shown in the localization tool window when the generation procedure is finished.
 
-By default, the generated documents will contain the text to translate taken from the source naninovel scripts. In case you wish to instead take the text from already generated localization documents, select "Script Folder" path to point into the folder containing generated localization documents for another locale. For example, let's say your source locale is Spanish. By default, the localization documents will contain the source text in Spanish. But what if you already have a Spanish -> English translation and now need to generate English -> Russian documents? Just point "Script Folder" to the folder where English documents are stored; the generated documents will then contain source text taken from the English translation.
+By default, the generated documents will contain the text to translate taken from the source naninovel scripts. In case you wish to instead take the text from already generated localization documents, select "Script Folder" path to point into a folder containing generated localization documents for another locale. For example, let's say your source locale is Spanish. By default, the localization documents will contain the source text in Spanish. But what if you already have a Spanish -> English translation and now need to generate English -> Russian documents? Just point "Script Folder" to the folder where English documents are stored; the generated documents will then contain source text taken from the English translation.
