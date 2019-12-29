@@ -34,4 +34,4 @@ IUnlockableManager | Manages [unlockable items](/guide/unlockable-items.md) (CG 
 
 You can find built-in implementations of the services in the runtime source code stored at `Naninovel/Runtime`.
 
-The services are referenced via interfaces in the engine source code, so it's possible to swap any service with a custom implementation. For this, create your own implementation(s) and manually initialize the engine via `Engine.Initialize(List<IEngineService>)` (don't forget to disable auto initialization in the engine configuration menu) providing list of services you want to use. See `Naninovel/Runtime/Engine/RuntimeInitializer.cs` for a reference on how to initialize the engine.
+The services are referenced via interfaces in the engine source code, making it possible to swap any of them with a custom implementation. For this, create your own implementation(s) and manually initialize the engine via `Engine.Initialize(List<IEngineService>)` (don't forget to disable auto initialization in the engine configuration menu) providing list of services you want to use. See `Naninovel/Runtime/Engine/RuntimeInitializer.cs` for a reference on how to initialize the engine.
