@@ -34,4 +34,120 @@ IUnlockableManager | Manages [unlockable items](/guide/unlockable-items.md) (CG 
 
 You can find built-in implementations of the services in the runtime source code stored at `Naninovel/Runtime`.
 
-The services are referenced via interfaces in the engine source code, making it possible to swap any of them with a custom implementation. For this, create your own implementation(s) and manually initialize the engine via `Engine.Initialize(List<IEngineService>)` (don't forget to disable auto initialization in the engine configuration menu) providing list of services you want to use. See `Naninovel/Runtime/Engine/RuntimeInitializer.cs` for a reference on how to initialize the engine.
+## Adding Custom Services
+
+To add a new custom engine service, implement `IEngineService` interface and add `InitializeAtRuntime` attribute to the implementing class. Instance of the implementation will automatically be created during the engine initialization and become available via `Engine.GetService<TService>()` API.
+
+You can force your custom service to be initialized before or after other services using `InitializationPriority` argument of `InitializeAtRuntime` attribute; lower values will push it before other services in the initialization queue and vice-versa.
+
+In order to be automatically instantiated, service implementation should have a compatible constructor (or a default one). Following arguments (in any order) are allowed:
+ 
+- Any number of other services (`IEngineService`-derived)
+- Any number of configuration objects (`Configuration`-derived)
+- A Unity's "MonoBehavior" proxy object (`IEngineBehaviour`-derived)
+
+Be aware, that it's not safe to use other services in the constructor. Instead, perform any initialization activities that require using other services at `InitializeServiceAsync` method; to make sure required services are initialized when you're accessing them, list them in the service constructor (initialization queue is topologically sorted based on the constructor arguments).
+
+In case your custom service has a persistent state, which you wish to de-/serialize with other engine services, implement `IStatefulService<TState>` interface, where `TState` is either `GameStateMap`, `GlobalStateMap` or `SettingsStateMap` depending if you want to store the state with the game sessions-specific, global state or settings. It's allowed to implement all three interfaces for a single service if required. For more information on different types of engine state see [state management guide](/guide/state-management.md).
+
+Below is an example of a custom engine service implementation with some usage notices.
+
+```csharp
+using Naninovel;
+using System.Threading.Tasks;
+using UnityEngine;
+
+[InitializeAtRuntime]
+public class CustomService : IEngineService
+{
+    private readonly InputManager inputManager;
+    private readonly ScriptPlayer scriptPlayer;
+
+    public CustomService (InputManager inputManager, ScriptPlayer scriptPlayer)
+    {
+        // The services are potentially not yet initialized here, 
+        // refrain from using them.
+        this.inputManager = inputManager;
+        this.scriptPlayer = scriptPlayer;
+    }
+
+    public Task InitializeServiceAsync ()
+    {
+    	// Initialize the service here.
+        // It's now safe to use services requested in the constructor.
+        Debug.Log(inputManager.ProcessInput);
+        Debug.Log(scriptPlayer.PlayedScript);
+        return Task.CompletedTask;
+    }
+
+    public void ResetService ()
+    {
+        // Reset service state here.
+    }
+
+    public void DestroyService ()
+    {
+        // Stop the service and release any used resources here.
+    }
+}
+```
+
+Given the aforementioned service, you can get via the engine API in the following way:
+
+```csharp
+var customService = Engine.GetService<CustomService>();
+```
+
+## Overriding Built-in Services
+
+All the built-in services are referenced via interfaces in the engine source code, making it possible to swap any of them with a custom implementation.
+
+Add a custom service in the same way as described above, but instead of `IEngineService` implement a concrete engine interface and specify the overridden type (implementation type, not the interface) via `InitializeAtRuntime` attribute. Your custom implementation will then be initialized instead of the built-in one.
+
+Below is an example of a dummy `IInputManager` implementation, that does nothing, but logs when any of its methods are invoked.
+
+```csharp
+using Naninovel;
+using Naninovel.UI;
+using System.Threading.Tasks;
+using UnityEngine;
+
+[InitializeAtRuntime(@override: typeof(InputManager))]
+public class CustomInputManager : IInputManager
+{
+    public bool ProcessInput { get; set; }
+
+    public Task InitializeServiceAsync ()
+    {
+        Debug.Log("CustomInputManager::InitializeServiceAsync()");
+        return Task.CompletedTask;
+    }
+
+    public void ResetService ()
+    {
+        Debug.Log("CustomInputManager::ResetService()");
+    }
+
+    public void DestroyService ()
+    {
+        Debug.Log("CustomInputManager::DestroyService()");
+    }
+
+    public InputSampler GetSampler (string bindingName)
+    {
+        Debug.Log($"CustomInputManager::GetSampler({bindingName})");
+        return default;
+    }
+
+    public void AddBlockingUI (IManagedUI ui, params string[] allowedSamplers)
+    {
+        Debug.Log($"CustomInputManager::AddBlockingUI({ui.GetType().Name})");
+    }
+
+    public void RemoveBlockingUI (IManagedUI ui)
+    {
+        Debug.Log($"CustomInputManager::RemoveBlockingUI({ui.GetType().Name})");
+    }
+}
+```
+Now, when an input manager is requested via `Engine.GetService<IInputManager>()`, your custom implementation will be provided instead of the built-in `Naninovel.InputManager`.
