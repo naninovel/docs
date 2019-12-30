@@ -209,6 +209,12 @@ It's also possible to specify multi-line conditional blocks with [`@if`](/api/#i
 
 Note that tabs here are completely optional and used just for better readability.
 
+The same works for generic text lines:
+
+```
+Lorem ipsum dolor sit amet. [if score>10]Duis efficitur imperdiet nunc. [else]Vestibulum sit amet dolor non dolor placerat vehicula.[endif]
+```
+
 For more information on the conditional expression format and available operators see the [script expressions](/guide/script-expressions.md) guide.
 
 ## Visual Editor
