@@ -26,7 +26,7 @@ Below is an example of binding a managed text record stored in "MyCustomDocument
 
 ![](https://i.gyazo.com/f47a997052674341aa3133deeea1f1cf.png)
 
-When `ManagedTextProvider` component is applied to a custom UI, text printer or choice handler corresponding records will automatically be generated when using managed text tool; for other cases you'll have to add the records manually.
+When `ManagedTextProvider` component is used in a custom UI, text printer or choice handler, corresponding records will automatically be generated when using managed text tool (given the resources are assigned in the configuration menu); for other cases you'll have to add the records manually.
 
 ![](https://i.gyazo.com/cc2ad398d1ad716cca437913553eb09c.png)
 
@@ -82,7 +82,7 @@ Of course, "Script" managed text document can be localized in the same way as th
 
 ## Localization
 
-Managed text localization process closely resembles the one used for naninovel scripts: 
+Managed text localization process resemble the one for naninovel scripts: 
 
 1. Generate (create, edit) the required managed text documents in a `Resources/Text` folder.
 2. Run the localization utility in a locale folder (`Resources/Localization/{Locale}`, where `{Locale}` is the tag of the target locale).
