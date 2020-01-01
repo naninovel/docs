@@ -1,26 +1,38 @@
 # Managed Text
 
-Managed text feature allows to manage (replace) various text elements used throughout Naninovel like the in-game UI and characters' display names using localizable documents. 
+Managed text feature allows to manage (replace) various text elements used throughout Naninovel like the in-game UI and characters' display names using localizable documents.
 
 To generate the managed text documents, use managed text tool accessible via `Naninovel -> Tools -> Managed Text` editor context menu.
 
-![Managed Text Tool](https://i.gyazo.com/2897fb4799b829bb9ae0781bd11c2508.png)
+![Managed Text Tool](https://i.gyazo.com/200680de85848f04a2eb51b063295c51.png)
 
 Using "Select" button, select path to store the managed text documents (should be `Resources/Text` by default) and press "Generate" button to create the documents.
 
 You can also create a custom managed text document using `Create -> Naninovel -> Managed Text` asset context menu.
 
-Each line in managed text document is an expression in the following format: *Path*: *Value*, where *Path* is the path to the text variable and *Value* is the value of that variable. For example, here is the default contents of the "UITitleMenu" document, which corresponds to the title (main) menu UI:
+Each line in managed text document is an expression in the following format: *Path*: *Value*, where *Path* is the path to the text variable and *Value* is the value of that variable. For example, here is the default contents of the "DefaultUI" document, which contains records for the built-in UI:
 
-![Managed Text Document](https://i.gyazo.com/5d2f9fa1dff0ddc5740dc2d3efcb9e9e.png)
+![Managed Text Document](https://i.gyazo.com/ce57c700b77818f87aabb722f2f42b78.png)
 
 You can edit the values and the changes will be applied on the next run.
 
-Enabling `Delete unused` property will remove records in the managed text documents for variables that doesn't exist when running the generate managed text task. Be aware, that running the generate utility with this option enabled **will always delete** all the custom managed text documents, that are not referenced by managed text variables (see below).
+Enabling `Delete Unused` property will remove records in the managed text documents that are not directly referenced neither via `ManagedTextProvider` components, nor via `ManagedText` attributes in the source code (more on that below).
+
+## Managed Text Provider
+
+It's possible to bind an arbitrary Unity game object to managed text record without any scripting via `ManagedTextProvider` component; add the component to a game object, specify category (name of the document which will contain the record), key (name of the record inside the document) and use `OnValueChanged` event to bind the value to a game object property.
+
+Below is an example of binding a managed text record stored in "MyCustomDocument" document with key "MyCustomText" to a Untiy's "Text" component.
+
+![](https://i.gyazo.com/f47a997052674341aa3133deeea1f1cf.png)
+
+When `ManagedTextProvider` component is applied to a custom UI, text printer or choice handler corresponding records will automatically be generated when using managed text tool; for other cases you'll have to add the records manually.
+
+![](https://i.gyazo.com/cc2ad398d1ad716cca437913553eb09c.png)
 
 ## Managed Text Variables
 
-You can add your own managed text variables and they'll be included to the generated documents. For this add `ManagedText` attribute to a static string field in any C# script. Its value will be overwritten with the value specified in the managed text document on engine initialization. 
+It's also possible to bind managed text records with variables in the source code. For this, add `ManagedText` attribute to a static string field in any C# script. Its value will be overwritten with the value specified in the managed text document on engine initialization. 
 
 Below is an example on using a managed text variable to localize a text label in a C# script.
 
@@ -50,9 +62,9 @@ public class CustomLabel : Text
 
 ## Script Text
 
-It's also possible to reference managed text values from naninovel scripts. This could be handy, when you need to use some text in the script expressions and the text should be localizable. 
+It's possible to get managed text values directly from naninovel scripts. This could be handy, when it's required to use some text in the script expressions and the text should be localizable. 
 
-Create a managed text document named "Script" and add records using keys with `T_` or `t_` prefix. You'll then be able to reference the values in script expressions; eg given the following records in the "Script" managed text document:
+Create a managed text document named "Script" and add records using keys with `T_` or `t_` prefix. It's now possible to reference the values in script expressions; eg given the following records in the "Script" managed text document:
 
 ```
 T_Greeting1: Hey!
@@ -66,7 +78,7 @@ T_Greeting3: Hi!
 @print {Random(T_Greeting1,T_Greeting2,T_Greeting3)}
 ```
 
-Of course, the "Script" managed text document can be localized in the same way as the other documents; so when the user will select another locale, the text will automatically be referenced from the corresponding localized document.
+Of course, "Script" managed text document can be localized in the same way as the other documents; so when the user will select another locale, the text will automatically be referenced from the corresponding localized document.
 
 ## Localization
 
