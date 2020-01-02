@@ -708,6 +708,28 @@ Archibald: Greetings, {name}!
 @set score=score+1 if:name=="Felix"
 ```
 
+## lipSync
+
+#### Summary
+Allows to force-stop the lip sync mouth animation for a character with the provided ID; when stopped, the animation  won't start again, until this command is used again to allow it.  The character should be able to receive the lip sync events (currently generic and Live2D implementations only).  See [characters guide](/guide/characters.md#lip-sync) for more information on lip sync feature.
+
+#### Parameters
+
+<div class="config-table">
+
+ID | Type | Description
+--- | --- | ---
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">CharIdAndAllow</span> | Named&lt;Boolean&gt; | Character ID followed by a boolean (true or false) on whether to halt or allow the lip sync animation.
+
+</div>
+
+#### Example
+```
+; Given auto voicing is disabled and lip sync is driven by text messages,
+; exclude punctuation from the mouth animation.
+Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true]Consectetur adipiscing elit.
+```
+
 ## loadScene
 
 #### Summary

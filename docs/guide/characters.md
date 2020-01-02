@@ -97,7 +97,9 @@ When enabled in the character configuration, will tint the character based on wh
     <iframe src="https://www.youtube-nocookie.com/embed/fx_YS2ZQGHI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-Check the corresponding character implementation docs below for the details on how to setup the lip sync feature.
+When [auto voicing](/guide/voicing.md#auto-voicing) feature is enabled, lip sync events will be driven by the voice over; otherwise, printed text messages will activate the events. In the latter case, you'll probably sometimes want to manually start or stop the lip sync (eg, to prevent mouth animation when punctuation marks are printed); for such cases, use [`@lipSync`](/api/#lipsync) command.
+
+See [Generic](/guide/characters.md#generic-characters) and [Live2D](/guide/characters.md#live2d-characters) character implementation docs below for the details on how to setup the lip sync feature.
 
 ## Sprite Characters 
 
