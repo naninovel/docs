@@ -242,3 +242,5 @@ The following video guide covers exporting a Live2D character from Cubism Editor
 <div class="video-container">
     <iframe src="https://www.youtube-nocookie.com/embed/rw_Z69z0pAg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
+
+Be aware, that the latest version of Cubism SDK for Unity is working directly with `Animator` component; expressions and poses (exported as expression.json and pose.json), that were previously used in Cubism 2.x are now [deprecated](https://docs.live2d.com/cubism-sdk-tutorials/blendexpression) and not supported by Naninovel's extension for Live2D.
