@@ -83,16 +83,17 @@ function getGuideSidebar (groupA, groupB, groupC) {
             title: groupB,
             collapsable: true,
             children: [
-                'development-console',
                 'engine-architecture',
                 'engine-services',
+                'development-console',
                 'custom-commands',
                 'custom-actor-implementations',
                 'custom-actor-shader',
                 'state-management',
                 'integration-options',
-                'google-drive-integration',
-                'custom-build-environment'
+                'render-pipelines',
+                'custom-build-environment',
+                'google-drive-integration'
             ]
         },
         {

@@ -6,9 +6,9 @@ Be aware, that the engine is currently in [beta development stage](https://githu
 
 ## Unity Version
 
-While in beta, with every new Naninovel release we're targeting the latest available **stable** (not an alpha or beta) Unity version. You can always find supported Unity versions per Naninovel release on the [GitHub releases page](https://github.com/Elringus/NaninovelWeb/releases). 
+Minimum supported Unity version is **2019.3**; this won't change throughout Naninovel v1.x releases. Support for new releases from the [TECH stream](https://blogs.unity3d.com/2018/04/09/new-plans-for-unity-releases-introducing-the-tech-and-long-term-support-lts-streams/) is added once they're out of the beta.
 
-In case you need an older Naninovel package, which supports some previous Unity version, you can request one by [contacting the support](/support/); be aware, that we won't be able to provide any support for the previous Naninovel versions.
+It's recommended to stick with the LTS stream (Unity 2019.4 LTS release is expected in spring 2020) to minimize production risks.
 
 ## Platforms
 
@@ -20,6 +20,10 @@ The following platforms were tested for compatibility:
 * iOS
 * Android
 * UWP (IL2CPP scripting backend only)
+
+## Render Pipelines
+
+Unity's [scriptable render pipelines](https://docs.unity3d.com/Manual/ScriptableRenderPipeline.html) (both URP and HDRP) are supported with some limitations and require additional setup; see [render pipelines guide](/guide/render-pipelines.md) for more information.
 
 ## Managed Stripping
 
