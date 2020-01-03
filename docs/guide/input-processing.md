@@ -15,3 +15,5 @@ For specific values see Unity's input guide: [docs.unity3d.com/Manual/Convention
 You can configure the built-in input bindings and add new listeners using `Naninovel -> Configuration -> Input` context menu; for available options see [configuration guide](/guide/configuration.md#input).
 
 ![Manage Input](https://i.gyazo.com/2f97539323c9fc36124e286856a36f84.png)
+
+To allow players change the input bindings, remove all the key direct bindings and use axes instead. The axes can then be configured via [Unity's game launcher](https://docs.unity3d.com/Manual/ConventionalGameInput.html).
