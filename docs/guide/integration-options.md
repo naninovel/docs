@@ -12,7 +12,7 @@ When enabled, the engine services will automatically initialize on application s
 
 Use the static async `RuntimeInitializer.InitializeAsync()` method to initialize the engine at runtime before using any of the built-in service APIs.
 
-You can check whether the engine is currently initialized with `Engine.IsInitialized` property. Use `Engine.OnInitialized` event to listen for the initialization finished events.
+You can check whether the engine is currently initialized with `Engine.Initialized` property. Use `Engine.OnInitialized` event to listen for the initialization finished events.
 
 To destroy all the engine services and completely remove Naninovel from memory, use `Engine.Destroy()` static method.
 
