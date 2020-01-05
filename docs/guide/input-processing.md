@@ -16,4 +16,18 @@ You can configure the built-in input bindings and add new listeners using `Nanin
 
 ![Manage Input](https://i.gyazo.com/2f97539323c9fc36124e286856a36f84.png)
 
-To allow players change the input bindings, remove all the key direct bindings and use axes instead. The axes can then be configured via [Unity's game launcher](https://docs.unity3d.com/Manual/ConventionalGameInput.html).
+## Input System
+
+Naninovel supports Unity's new [Input System](https://blogs.unity3d.com/2019/10/14/introducing-the-new-input-system/); see the [official docs](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/Installation.html) on how to install and enable the input system. When the input system package is installed (don't forget to enable new input backend in the player settings), an `Input Actions` property will appear in the input configuration menu.
+
+![](https://i.gyazo.com/7c6d767c0f3443e1999fe14917080eb1.png)
+
+Assign [input actions asset](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/ActionAssets.html?q=input%20actions%20asset) to the property, then create "Naninovel" action map and add input actions with names equal to the Naninovel's binding names. The list of the built-in binding names can be found in the "Bindings" list under "Control Scheme" in the same configuration window. Below is an example input actions configuration.
+
+![](https://i.gyazo.com/36d1951519e4f671509c7136a83d9958.png)
+
+When properly configured, input actions will activate Naninovel's bindings. In case you wish to disable legacy input processing (which is set under the "Bindings" list), disable `Process Legacy Bindings` property under input configuration menu.
+
+Be aware, that touch and object-related input is still processed via legacy input, so don't completely disable legacy backend in the player settings, unless you're going to implement the features yourself.
+
+For more information on using new input system (eg, how to configure particular bindings or allow players to override the bindings at runtime), consult the [official manual](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual).

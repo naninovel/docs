@@ -130,6 +130,7 @@ Custom Event System | Null | A prefab with an `EventSystem` component to spawn f
 Spawn Input Module | True | Whether to spawn an input module when initializing.
 Custom Input Module | Null | A prefab with an `InputModule` component to spawn for input processing. Will spawn a default one when not specified.
 Touch Frequency Limit | 0.1 | Limits frequency of the registered touch inputs, in seconds.
+Process Legacy Bindings | True | Whether to process legacy input bindings. Disable in case you're using Unity's new input system and don't want the legacy bindings to work in addition to input actions.
 Bindings | Object Ref | Bindings to process input for.
 
 </div>
