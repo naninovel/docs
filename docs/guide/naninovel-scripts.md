@@ -279,8 +279,10 @@ rewind 12
 
 — will start playing current script from the 12th line; you can rewind forward and backward in the same way. To open the console while game is running, make sure the console is enabled in the engine configuration and press `~` key.
 
-In case you need to constantly move forward-backward for a few lines (e.g. to test an animation or visual effect), consider using debug window. Type `debug` in the development console and press `Enter` to show the window.
+To find out which script and line is currently playing, use debug window: type `debug` in the development console and press `Enter` to show the window.
 
-![Scripts Debug](https://i.gyazo.com/36b46d2c84fd58d33942ed2fd5c5fe64.png)
+![Scripts Debug](https://i.gyazo.com/12772ecc7c14011bcde4a74c81e997b8.png)
 
-Currently played script name, line number and command (inline) index are displayed in the title of the window. You can re-position the window by dragging it by the title. "Previous" and "Next" buttons allows to "jump" the script execution one line back and forward. "Stop" button will halt script execution; when script player is stopped "Play" button will resume the execution. You can close the debug window by pressing the "Close" button.
+Currently played script name, line number and command (inline) index are displayed in the title of the window. When [auto voicing](/guide/voicing.md#auto-voicing) feature is enabled, name of the corresponding voice clip will also be displayed. You can re-position the window by dragging it by the title. "Stop" button will halt script execution; when script player is stopped "Play" button will resume the execution. You can close the debug window by pressing the "Close" button.
+
+Debug window is available in both editor and player builds.
