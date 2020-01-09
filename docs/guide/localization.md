@@ -55,7 +55,7 @@ Here is an example translation of a generic text line:
 ```
 # f63f03ea
 ; Yuko: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut ultricies enim, id venenatis arcu. Nullam rhoncus eros eu ante vulputate tempus.
-Юко: Все известные астероиды имеют прямое движение, при этом весеннее равноденствие отражает гейзер. Уравнение времени однократно. Большая Медведица, оценивая блеск освещенного металлического шарика, пространственно притягивает первоначальный метеорный дождь.
+Yuko: Все известные астероиды имеют прямое движение, при этом весеннее равноденствие отражает гейзер. Уравнение времени однократно. Большая Медведица, оценивая блеск освещенного металлического шарика, пространственно притягивает первоначальный метеорный дождь.
 ```
 
 In case the translation takes too much space, you can break it into separate commands:
@@ -63,8 +63,8 @@ In case the translation takes too much space, you can break it into separate com
 ```
 # f63f03ea
 ; Yuko: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut ultricies enim, id venenatis arcu. Nullam rhoncus eros eu ante vulputate tempus.
-Юко: Все известные астероиды имеют прямое движение, при этом весеннее равноденствие отражает гейзер. Уравнение времени однократно.
-Юко: Большая Медведица, оценивая блеск освещенного металлического шарика, пространственно притягивает первоначальный метеорный дождь.
+Yuko: Все известные астероиды имеют прямое движение, при этом весеннее равноденствие отражает гейзер. Уравнение времени однократно.
+Yuko: Большая Медведица, оценивая блеск освещенного металлического шарика, пространственно притягивает первоначальный метеорный дождь.
 ```
 
 You're expected to include any inlined commands present in the source statement to the translation:
@@ -72,8 +72,10 @@ You're expected to include any inlined commands present in the source statement 
 ```
 # b53b395d
 ; Kohaku: Qui ante molestie sit tempor felis.[br 2][char Kohaku.Casual/Angry][style #ff0000,bold,45]Adipiscing elit?[style default][br][skipInput]
-Кохаку: Противостояние вызывает кислый метеорный дождь.[br 2][char Kohaku.Casual/Angry][style #ff0000,bold,45]Меандр разрушаем?[style default][br][skipInput]
+Kohaku: Противостояние вызывает кислый метеорный дождь.[br 2][char Kohaku.Casual/Angry][style #ff0000,bold,45]Меандр разрушаем?[style default][br][skipInput]
 ```
+
+Notice, that you **should not translate character IDs** (or any other actor IDs). If you do so, some features (eg, character highlight and lip sync) will break. In case you wish to translate author names displayed in text printers, use [display names](/guide/characters.md#display-names) feature instead.
 
 Total word count contained in the generated localization documents (excluding the hash lines) is shown in the localization tool window when the generation procedure is finished.
 
