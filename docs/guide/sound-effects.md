@@ -1,6 +1,6 @@
 ﻿# Sound Effects
 
-You can add, edit and remove sound effect (SFX) resources using the audio manager accessible via `Naninovel -> Resources -> Audio` or just store the audio clips at `Resources/Audio` folder.
+You can add, edit and remove sound effect (SFX) resources using the audio manager accessible via `Naninovel -> Resources -> Audio`.
 
 ![Managing SFX](https://i.gyazo.com/cacdec36623dbbfcf9f49c594de53c0f.png)
 
