@@ -1,6 +1,6 @@
 ﻿# Background Music
 
-You can add, edit and remove background music (BGM) resources using the audio manager accessible via `Naninovel -> Resources -> Audio` or just store the audio clips at `Resources/Audio` folder.
+You can add, edit and remove background music (BGM) resources using the audio manager accessible via `Naninovel -> Resources -> Audio`.
 
 ![Managing BGM](https://i.gyazo.com/cacdec36623dbbfcf9f49c594de53c0f.png)
 
@@ -11,11 +11,11 @@ Background music playback behavior can be configured using `Naninovel -> Configu
 Use [`@bgm`](/api/#bgm) command followed by the clip name to control the music playback in naninovel scripts:
 
 ```
-; Fades-in a music track with the name `Sanctuary` over default fade duration and plays it in a loop
+; Starts playing a music track with the name `Sanctuary` in a loop
 @bgm Sanctuary
 
-; Same as above, but fade-in duration is 10 seconds and plays only once
-@bgm Sanctuary time:10 loop:false
+; Same as above, but fades-in the volume over 10 seconds and plays only once
+@bgm Sanctuary fade:10 loop:false
 
 ; Changes volume of all the played music tracks to 50% over 2.5 seconds and makes them play in a loop
 @bgm volume:0.5 loop:true time:2.5
