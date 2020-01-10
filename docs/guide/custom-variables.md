@@ -23,11 +23,11 @@ See the API reference on [`@set`](/api/#set) and [`@if`](/api/#if) commands for 
 
 All the custom variables are automatically saved with the game. By default, the variables are stored in **local scope**. This means, that if you assign some variable in the course of gameplay and player starts a new game or loads another saved game slot, where that variable wasn't assigned — the value will be lost. This is useful for the most type of variables. If, however, you wish to store the variable in **global scope**, prepend `G_` or `g_` to its name, eg: `G_FinishedMainRoute` or `g_total_score`. Global variables can be used to indicate some meta or total information, for example, the number of times player has finished some route or a total score based on all the playthroughs.
 
-You can set the pre-defined custom variables (both global and local ones) with initial values in the "Custom Variables" configuration menu.
+You can set pre-defined custom variables (both global and local) with initial values in the "Custom Variables" configuration menu.
 
-![](https://i.gyazo.com/3423cea934afed8eea37e213db3b09d1.png)
+![](https://i.gyazo.com/21701f17403921e34ba4da33b0261ad0.png)
 
-Global pre-defined variables are initialized on first application start, while the locals do so on each state reset.
+Global pre-defined variables are initialized on first application start, while the locals do so on each state reset. Notice, that the value field in the menu expects a valid script expression and not a raw value string.
 
 ## Injecting Variables
 
