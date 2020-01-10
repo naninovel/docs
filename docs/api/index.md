@@ -1370,7 +1370,7 @@ Cras ut nisi eget ex viverra egestas in nec magna.
 Consectetur adipiscing elit.
 
 ; Print starting part of the sentence normally, but the last one in bold.
-Lorem ipsum sit amet. Consectetur adipiscing elit.
+Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 ```
 
 ## title
