@@ -26,6 +26,8 @@ Naninovel is designed to be [scene-independent](/guide/engine-architecture.md#sc
 
 Please read through the [getting started](/guide/getting-started.md) guide to get a grasp on how to use the engine. You can find additional examples on using various engine features and script commands in the rest of the [guide](/guide/index.md) and [API command reference](/api/index.md).
 
+There is also a demo project available on GitHub: [github.com/Elringus/NaninovelDemo](https://github.com/Elringus/NaninovelDemo). After cloning the project, don't forget to import Naninovel package to prevent compilation errors.
+
 ## How to customize the title (main) menu: add background, music, effects, change buttons, etc?
 
 For the UI part (changing/adding buttons or panel layout and style) use the [UI customization](/guide/ui-customization.md) feature; for everything else set `Title Script` at the [scripts configuration menu](/guide/configuration.md#scripts) (Naninovel -> Configuration -> Scripts) and use script commands to setup the scene just like when writing a scenario. The title script will be automatically played when entering the title menu.
