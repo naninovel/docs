@@ -143,16 +143,17 @@ ID | Type | Description
 intro | String | Path to the intro music track to play once before the main track (not affected by the loop parameter).
 volume | Decimal | Volume of the music track.
 loop | Boolean | Whether to play the track from beginning when it finishes.
+fade | Decimal | Duration of the volume fade-in, in seconds (disabled by default);  doesn't have effect when modifying a playing track.
 
 </div>
 
 #### Example
 ```
-; Fades-in a music track with the name `Sanctuary` over default fade duration and plays it in a loop
+; Starts playing a music track with the name `Sanctuary` in a loop
 @bgm Sanctuary
 
-; Same as above, but fade-in duration is 10 seconds and plays only once
-@bgm Sanctuary time:10 loop:false
+; Same as above, but fades-in the volume over 10 seconds and plays only once
+@bgm Sanctuary fade:10 loop:false
 
 ; Changes volume of all the played music tracks to 50% over 2.5 seconds and makes them play in a loop
 @bgm volume:0.5 loop:true time:2.5
@@ -1074,6 +1075,7 @@ ID | Type | Description
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">SfxPath</span> | String | Path to the sound effect asset to play.
 volume | Decimal | Volume of the sound effect.
 loop | Boolean | Whether to play the sound effect in a loop.
+fade | Decimal | Duration of the volume fade-in, in seconds (disabled by default);  doesn't have effect when modifying a playing track.
 
 </div>
 
@@ -1082,8 +1084,8 @@ loop | Boolean | Whether to play the sound effect in a loop.
 ; Plays an SFX with the name `Explosion` once
 @sfx Explosion
 
-; Plays an SFX with the name `Rain` in a loop
-@sfx Rain loop:true
+; Plays an SFX with the name `Rain` in a loop and fades-in over 30 seconds
+@sfx Rain loop:true fade:30
 
 ; Changes volume of all the played SFX tracks to 75% over 2.5 seconds and disables looping for all of them
 @sfx volume:0.75 loop:false time:2.5
