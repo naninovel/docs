@@ -294,6 +294,7 @@ pos | List&lt;Decimal&gt; | Local position of the choice button inside the choic
 handler | String | ID of the choice handler to add choice for. Will use a default handler if not provided.
 goto | Named&lt;String&gt; | Path to go when the choice is selected by user;  See [`@goto`](/api/#goto) command for the path format.
 set | String | Set expression to execute when the choice is selected by user;  see [`@set`](/api/#set) command for syntax reference.
+show | Boolean | Whether to also show choice handler the choice is added for;  enabled by default.
 
 </div>
 
