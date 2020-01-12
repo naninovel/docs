@@ -93,14 +93,13 @@ public class MyCustomBehaviour : MonoBehaviour
         stateManager.RemoveOnGameDeserializeTask(DeserializeState);
     }
 
-    private Task SerializeState (GameStateMap stateMap)
+    private void SerializeState (GameStateMap stateMap)
     {
         var state = new GameState() {
             MyCustomBoolVariable = myCustomBoolVariable,
             MyCustomStringVariable = myCustomStringVariable
         };
         stateMap.SetState(state);
-        return Task.CompletedTask;
     }
 
     private Task DeserializeState (GameStateMap stateMap)
