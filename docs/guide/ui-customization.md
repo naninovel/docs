@@ -62,9 +62,15 @@ To disable a default UI, uncheck the toggle behind the corresponding UI record a
 
 When creating custom UIs, you may want to execute some commands or start playing a specific naninovel script in reaction to some events (eg, a [button click](https://docs.unity3d.com/Manual/script-Button.html)).
 
-Add `Play Script` component to a game object and either select an existing naninovel script or write the commands right inside the text area field; then route [Unity event](https://docs.unity3d.com/Manual/UnityEvents.html) of some other component to invoke `Play()` method on the `Play Script` component. The script will be executed when the event is triggered at play mode. 
+Add `Play Script` component to a game object and either select an existing naninovel script or write the commands right inside the text area field; then route [Unity event](https://docs.unity3d.com/Manual/UnityEvents.html) of some other component to invoke `Play()` method on the `Play Script` component. The script will be executed when the event is triggered at play mode. The example below hides a custom UI when the button is clicked.
 
 ![](https://i.gyazo.com/5f56fbddc090919cc71f68e82bb1713f.png)
+
+It's also possible to reference Unity event arguments in the script text with `{arg}` expression; supported arguments types are: string, integer, float and boolean. Below example demonstrates executing camera shake and playing a sound effect when a custom UI is shown and playing a background musing when it's hidden.
+
+![](https://i.gyazo.com/d7c29403e3182fd03d840f519120e855.png)
+
+Be aware, that conditional block commands (if, else, elseif, endif) are not supported in the script text.
 
 Notice, that when an existing naninovel script is selected via dropdown list, the script text area will be ignored and selected naninovel script will be played **instead** of the currently played one; in case you wish to additively execute some commands without interrupting the currently played script, use the script text area.
 
