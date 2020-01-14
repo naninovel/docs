@@ -917,6 +917,28 @@ ID | Type | Description
 @processInput true
 ```
 
+## purgeRollback
+
+#### Summary
+Prevents player from rolling back to the previous state snapshots.
+
+#### Example
+```
+; Prevent player from rolling back to try picking another choice.
+
+@choice "One" goto:.One
+@choice "Two" goto:.Two
+@stop
+
+# One
+@purgeRollback
+You've picked one.
+
+# Two
+@purgeRollback
+You've picked two.
+```
+
 ## resetState
 
 #### Summary
