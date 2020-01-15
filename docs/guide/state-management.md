@@ -128,7 +128,6 @@ Below is an example of a dummy settings serialization handler, which is doing no
 using Naninovel;
 using System;
 using System.Threading.Tasks;
-using UnityCommon;
 using UnityEngine;
 
 public class CustomSettingsSlotManager : ISaveSlotManager<SettingsStateMap>

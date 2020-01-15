@@ -40,7 +40,7 @@ If you're OK with C# scripting and want to override default logic of the UI, [cr
 ```csharp
 using System.Threading.Tasks;
 
-public class MyCustomUI : UnityCommon.ScriptableUIBehaviour, Naninovel.UI.IManagedUI
+public class MyCustomUI : ScriptableUIBehaviour, Naninovel.UI.IManagedUI
 {
     public Task InitializeAsync () => Task.CompletedTask;
 }
