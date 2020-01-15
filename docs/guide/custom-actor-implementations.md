@@ -41,8 +41,8 @@ public class CustomCharacterImplementation : MonoBehaviourActor, ICharacterActor
     }
 
     public override Task ChangeAppearanceAsync (string appearance, float duration, 
-        EasingType easingType = EasingType.Linear, TransitionType? transitionType = null, 
-        Vector4? transitionParams = null, Texture dissolveTexture = null, CancellationToken cancellationToken = default)
+        EasingType easingType = EasingType.Linear, Transition? transition = default, 
+        CancellationToken cancellationToken = default)
     {
         Debug.Log($"{nameof(CustomCharacterImplementation)}::ChangeAppearanceAsync({appearance})");
         return Task.CompletedTask;
@@ -73,5 +73,4 @@ public class CustomCharacterImplementation : MonoBehaviourActor, ICharacterActor
         Debug.Log($"{nameof(CustomCharacterImplementation)}::SetBehaviourTintColor({tintColor})");
     }
 }
-
 ```
