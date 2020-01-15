@@ -26,7 +26,6 @@ Below is an example of a dummy `ICharacterActor` implementation, that does nothi
 using Naninovel;
 using System.Threading;
 using System.Threading.Tasks;
-using UnityCommon;
 using UnityEngine;
 
 public class CustomCharacterImplementation : MonoBehaviourActor, ICharacterActor
