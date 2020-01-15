@@ -133,7 +133,7 @@ public class CustomInputManager : IInputManager
         Debug.Log("CustomInputManager::DestroyService()");
     }
 
-    public InputSampler GetSampler (string bindingName)
+    public IInputSampler GetSampler (string bindingName)
     {
         Debug.Log($"CustomInputManager::GetSampler({bindingName})");
         return default;
