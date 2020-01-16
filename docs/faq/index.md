@@ -2,7 +2,7 @@
 
 ## Will I get access to the source code when I buy Naninovel?
 
-All the engine source code is available in the distributed package. A couple of third-party libraries are pre-compiled, but they're open-sourced (MIT license) with sources hosted on GitHub.
+All the engine source code is available in the distributed package. A couple of third-party libraries (namely, [NCalc](https://github.com/ncalc/ncalc) and [NLayer](https://github.com/naudio/NLayer)) are pre-compiled, but they're open-sourced (MIT license) with sources hosted on GitHub.
 
 ## Can I use Naninovel as a drop-in dialogue system for an existing game?
 
