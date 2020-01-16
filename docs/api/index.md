@@ -1218,6 +1218,43 @@ And the rain starts.[skipInput]
 @sfx Rain
 ```
 
+## slide
+
+#### Summary
+Slides (moves over X-axis) actor (character, background, text printer or choice handler) with the provided ID and optionally changes actor appearance.
+
+#### Remarks
+Be aware, that this command searches for an actor with the provided ID over all the actor managers,  and in case multiple actors with the same ID exist (eg, a character and a text printer), this will affect only the first found one.
+
+#### Parameters
+
+<div class="config-table">
+
+ID | Type | Description
+--- | --- | ---
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">IdAndAppearance</span> | Named&lt;String&gt; | ID of the actor to slide and (optionally) appearance to set.
+from | Decimal | Position over X-axis (in 0 to 100 range, in percents from the left border of the screen) to slide the actor from.  When not provided, will use current actor position in case it's visible and a random off-screen position otherwise.
+<span class="command-param-required" title="Required parameter: parameter should always be specified">to</span> | Decimal | Position over X-axis (in 0 to 100 range, in percents from the left border of the screen) to slide the actor to.
+visible | Boolean | Change visibility status of the actor (show or hide).  When not set and target actor is hidden, will still automatically show it.
+easing | String | Name of the easing function to use for the modifications.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  When not specified, will use a default easing function set in the actor's manager configuration settings.
+
+</div>
+
+#### Example
+```
+; Given `Jenna` actor is not currenly visible, reveal it with a
+; `Angry` appearance and slide to the center of the screen.
+@slide Jenna.Angry to:50
+
+; Given `Sheba` actor is currenly visible,
+; hide and slide it out of the screen over the left border.
+@slide Sheba to:-10 visible:false
+
+; Slide `Mia` actor from left side of the screen to the right
+; over 5 seconds using `EaseOutBounce` animation easing.
+@slide Sheba from:15 to:85 time:5 easing:EaseOutBounce
+```
+
 ## spawn
 
 #### Summary
