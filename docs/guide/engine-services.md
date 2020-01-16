@@ -115,7 +115,13 @@ using UnityEngine;
 [InitializeAtRuntime(@override: typeof(InputManager))]
 public class CustomInputManager : IInputManager
 {
+    public InputConfiguration Configuration { get; }
     public bool ProcessInput { get; set; }
+
+    public CustomInputManager (InputConfiguration config)
+    {
+        Configuration = config;
+    }
 
     public Task InitializeServiceAsync ()
     {
