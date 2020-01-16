@@ -109,9 +109,13 @@ Sprite character appearance assets can be either managed by editor GUI or placed
 
 ## Diced Sprite Characters
 
-Built with an open source [SpriteDicing](https://github.com/Elringus/SpriteDicing) package (distributed with the main Naninovel package), `DicedSpriteCharacter` implementation allows to significantly reduce build size and texture memory by reusing texture areas of the character sprites. 
+Built with an open source [SpriteDicing](https://github.com/Elringus/SpriteDicing) package, `DicedSpriteCharacter` implementation allows to significantly reduce build size and texture memory by reusing texture areas of the character sprites. 
 
 ![Sprite Dicing](https://i.gyazo.com/af08d141e7a08b6a8e2ef60c07332bbf.png)
+
+Install the package via [Unity package manager](https://docs.unity3d.com/Manual/upm-ui.html): open package manager window (Window -> Package Manager), click "+" button, choose "Add package from git URL", enter `https://github.com/Elringus/SpriteDicing.git#package` to the input field and click "Add".
+
+<video class="video" loop autoplay><source src="https://i.gyazo.com/b54e9daa9a483d9bf7f74f0e94b2d38a.mp4" type="video/mp4"></video>
 
 `DicedSpriteAtlas` assets containing character appearances are used as the resources for the diced sprite characters. Each appearance is mapped by name to the diced sprites contained in the atlas.
 
