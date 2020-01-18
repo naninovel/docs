@@ -50,6 +50,23 @@ The [`@stopfx`](/api/#stopfx) commands of some effects can also receive paramete
 
 When no `params` is specified, default parameters will be used. You can find both "start" (accepted by the [`@fx`](/api/#fx) command) and "stop" (accepted by the [`@stopfx`](/api/#stopfx) command) parameters available for each effect and their default values in the docs below.
 
+It's possible to start multiple effects of the same type by appending an ID delimited by `#` after the effect name, eg:
+
+```
+; Shake both `Kohaku` and `Yuko` in a loop
+@fx ShakeCharacter#1 params:Kohaku,0 wait:false
+@fx ShakeCharacter#2 params:Yuko,0 wait:false
+```
+
+When stopping or updating instanced effects, don't forget to specify the ID:
+```
+; Stop shaking `Yuko`, increase `Kohaku` amplitude
+@stopfx ShakeCharacter#2
+@fx ShakeCharacter#1 params:k,0,,,1
+```
+
+You can use any string for ID (it can be a number like above, or something more meaningful, eg `@fx ShakeCharacter#Kohaku`), just make sure it's unique among other IDs you're using with a given effect name.
+
 ## Shake Printer
 Shakes printer with the specified ID or the default one.
 
@@ -130,7 +147,7 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 @fx ShakeCharacter params:Kohaku
 
 ; Start shaking a random character, show a choice to stop and act accordingly
-@fx ShakeCharacter params,0
+@fx ShakeCharacter params:,0
 @choice "Continue shaking" goto:.Continue
 @choice "Stop shaking" goto:.Stop
 @stop
