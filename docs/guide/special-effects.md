@@ -183,6 +183,12 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 @fx ShakeCamera params:,5,,,,,true,false
 ```
 
+## Animate Actor
+
+In case you wish to change (animate) actor parameters directly, consider using [`@animate`](/api/#animate) command.
+
+<video class="video" loop autoplay><source src="https://i.gyazo.com/4c7c2df030fb628c37a221cfa920cbc1.mp4" type="video/mp4"></video>
+
 ## Digital Glitch
 Applies a post-processing effect to the main camera simulating digital video distortion and artifacts.
 
