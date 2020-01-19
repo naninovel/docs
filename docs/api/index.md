@@ -28,7 +28,7 @@ This API reference is valid for [Naninovel v1.9.0-beta](https://github.com/Elrin
 Animate properties of the actors with the specified IDs.
 
 #### Remarks
-Be aware, that this command searches for actors with the provided IDs over all the actor managers,  and in case multiple actors with the same ID exist (eg, a character and a text printer), this will affect only the first found one.  <br /><br />  When running the animate commands in parallel (`wait` is set to false) the affected actors state can mutate unpredictably.  This could cause unexpected results when rolling back or performing other commands that affect state of the actor. Make sure to reset  affected properties of the animated actors (position, tint, appearance, etc) after the command finishes.
+Be aware, that this command searches for actors with the provided IDs over all the actor managers,  and in case multiple actors with the same ID exist (eg, a character and a text printer), this will affect only the first found one.  <br /><br />  When running the animate commands in parallel (`wait` is set to false) the affected actors state can mutate unpredictably.  This could cause unexpected results when rolling back or performing other commands that affect state of the actor. Make sure to reset  affected properties of the animated actors (position, tint, appearance, etc) after the command finishes or use `@animate CharacterId`  (without any args) to stop the animation prematurely.
 
 #### Parameters
 
@@ -62,11 +62,18 @@ times | List&lt;Decimal&gt; | Duration of the animations per key, in seconds. Wh
 ; key values indicating that the parameter shouldn't change during the animation step.
 @animate Kohaku,Yuko loop:true appearance:Surprise,Sad,Default,Angry transition:DropFade,Ripple,Pixelate posX:15,85,50 posY:0,-25,-85 scale:1,1.25,1.85 tint:#25f1f8,lightblue,#ffffff,olive easing:EaseInBounce,EaseInQuad times:3,2,1,0.5 wait:false
 ...
-; Stop the animation for `Yuko`.
-@animate Yuko loop:false
+; Stop the animations.
+@animate Yuko,Kohaku loop:false
+
+; Start a long background animation for `Kohaku`.
+@animate Kohaku posX:90,0,90 scale:1,2,1 time:10
+; Do something else while the animation is running.
 ...
-; Stop the animation for `Kohaku`.
-@animate Kohaku loop:false
+; Here we're going to set a specific position for the character,
+; but the animation could still be running in background, so reset it first.
+@animate Kohaku
+; Now it's safe to modify previously animated properties.
+@char Kohaku pos:50 scale:1
 ```
 
 ## append
