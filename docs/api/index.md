@@ -25,7 +25,7 @@ This API reference is valid for [Naninovel v1.9.0-beta](https://github.com/Elrin
 ## animate
 
 #### Summary
-Animate properties of the actors with the specified IDs.
+Animate properties of the actors with the specified IDs via key frames.  Key frames for the animated parameters are delimited with `|` literals.
 
 #### Remarks
 Be aware, that this command searches for actors with the provided IDs over all the actor managers,  and in case multiple actors with the same ID exist (eg, a character and a text printer), this will affect only the first found one.  <br /><br />  When running the animate commands in parallel (`wait` is set to false) the affected actors state can mutate unpredictably.  This could cause unexpected results when rolling back or performing other commands that affect state of the actor. Make sure to reset  affected properties of the animated actors (position, tint, appearance, etc) after the command finishes or use `@animate CharacterId`  (without any args) to stop the animation prematurely.
@@ -38,17 +38,17 @@ ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">ActorIds</span> | List&lt;String&gt; | IDs of the actors to animate.
 loop | Boolean | Whether to loop the animation; make sure to set `wait` to false when loop is enabled,  otherwise script playback will loop indefinitely.
-appearance | List&lt;String&gt; | Appearances to set for the animated actors.
-transition | List&lt;String&gt; | Type of the [transition effect](/guide/transition-effects.md) to use when animating appearance change (crossfade is used by default).
-visibility | List&lt;Boolean&gt; | Visibility status to set for the animated actors.
-posX | List&lt;Decimal&gt; | Position over X-axis (in 0 to 100 range, in percents from the left border of the screen) to set for the animated actors.
-posY | List&lt;Decimal&gt; | Position over Y-axis (in 0 to 100 range, in percents from the bottom border of the screen) to set for the animated actors.
-posZ | List&lt;Decimal&gt; | Positions over Z-axis (in world space) to set for the animated actors; while in ortho mode, can only be used for sorting.
-rotation | List&lt;Decimal&gt; | Rotation values (over Z-axis) to set for the animated actors.
-scale | List&lt;Decimal&gt; | Scale values (uniform) to set for the animated actors.
-tint | List&lt;String&gt; | Tint colors to set for the animated actors.  <br /><br />  Strings that begin with `#` will be parsed as hexadecimal in the following way:  `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF.  <br /><br />  Strings that do not begin with `#` will be parsed as literal colors, with the following supported:  red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta.
-easing | List&lt;String&gt; | Names of the easing functions to use for the animations.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  When not specified, will use a default easing function set in the actor's manager configuration settings.
-times | List&lt;Decimal&gt; | Duration of the animations per key, in seconds. When not assigned, will use `time` parameter for all keys.  When assigned, but a value is missing, will use one from a previous key.
+appearance | String | Appearances to set for the animated actors.
+transition | String | Type of the [transition effect](/guide/transition-effects.md) to use when animating appearance change (crossfade is used by default).
+visibility | String | Visibility status to set for the animated actors.
+posX | String | Position values over X-axis (in 0 to 100 range, in percents from the left border of the screen) to set for the animated actors.
+posY | String | Position values over Y-axis (in 0 to 100 range, in percents from the bottom border of the screen) to set for the animated actors.
+posZ | String | Position values over Z-axis (in world space) to set for the animated actors; while in ortho mode, can only be used for sorting.
+rotation | String | Rotation values (over Z-axis) to set for the animated actors.
+scale | String | Scale values (uniform) to set for the animated actors.
+tint | String | Tint colors to set for the animated actors.  <br /><br />  Strings that begin with `#` will be parsed as hexadecimal in the following way:  `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF.  <br /><br />  Strings that do not begin with `#` will be parsed as literal colors, with the following supported:  red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta.
+easing | String | Names of the easing functions to use for the animations.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  When not specified, will use a default easing function set in the actor's manager configuration settings.
+times | String | Duration of the animations per key, in seconds. When not assigned, will use `time` parameter for all keys.  When assigned, but a value is missing, will use one from a previous key.
 
 </div>
 
@@ -56,17 +56,17 @@ times | List&lt;Decimal&gt; | Duration of the animations per key, in seconds. Wh
 ```
 ; Animate `Kohaku` actor over three animation steps (key frames),
 ; changing positions: first step will take 1, second — 0.5 and third — 3 seconds.
-@animate Kohaku posX:50,0,85 times:1,0.5,3
+@animate Kohaku posX:50|0|85 times:1|0.5|3
 
 ; Start loop animations of `Yuko` and `Kohaku` actors; notice, that you can skip
 ; key values indicating that the parameter shouldn't change during the animation step.
-@animate Kohaku,Yuko loop:true appearance:Surprise,Sad,Default,Angry transition:DropFade,Ripple,Pixelate posX:15,85,50 posY:0,-25,-85 scale:1,1.25,1.85 tint:#25f1f8,lightblue,#ffffff,olive easing:EaseInBounce,EaseInQuad times:3,2,1,0.5 wait:false
+@animate Kohaku,Yuko loop:true appearance:Surprise|Sad|Default|Angry transition:DropFade|Ripple|Pixelate posX:15|85|50 posY:0|-25|-85 scale:1|1.25|1.85 tint:#25f1f8|lightblue|#ffffff|olive easing:EaseInBounce|EaseInQuad times:3|2|1|0.5 wait:false
 ...
 ; Stop the animations.
 @animate Yuko,Kohaku loop:false
 
 ; Start a long background animation for `Kohaku`.
-@animate Kohaku posX:90,0,90 scale:1,2,1 time:10
+@animate Kohaku posX:90|0|90 scale:1|2|1 time:10
 ; Do something else while the animation is running.
 ...
 ; Here we're going to set a specific position for the character,
