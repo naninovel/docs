@@ -185,6 +185,8 @@ It's also possible to affect all the layers inside a group (and additionally its
 
 The above expressions will affect not only the direct descendants of the target groups, but all the layers contained in the underlaying groups, recursively.
 
+When an appearance is not specified (eg, `@char CharId` without previously setting any appearance), a default appearance will be used; default appearance of the layered characters equals to how the layered prefab looks in the editor.
+
 The video below demonstrates hot to setup a layered character and control it via naninovel commands.
 
 <div class="video-container">
