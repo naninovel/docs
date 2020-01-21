@@ -17,7 +17,7 @@ IBackgroundManager | Manages [background](/guide/backgrounds.md) actors.
 ICharacterManager | Manages [character](/guide/characters.md) actors.
 IChoiceHandlerManager | Manages [choice handler](/guide/choices.md) actors.
 ITextPrinterManager | Manages [text printer](/guide/text-printers.md) actors.
-IAudioManager | Manages the audio: [SFX](/guide/sound-effects.md), [BGM](/guide/background-music.md) and [voicing](/guide/voicing.md).
+IAudioManager | Manages the audio: [SFX](/guide/audio.md#sound-effects), [BGM](/guide/audio.md#background-music) and [voicing](/guide/voicing.md).
 IInputManager | Manages the user [input processing](/guide/input-processing.md).
 ILocalizationManager| Manages the [localization](/guide/localization.md) activities.
 ITextManager | Handles [managed text](/guide/managed-text.md) feature.

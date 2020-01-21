@@ -1,0 +1,72 @@
+﻿# Audio
+
+Background music (BGM) and sound effects (SFX) are covered in this article; for the voices see [voicing guide](/guide/voicing.md).
+
+To add, edit or remove BGM and SFX resources use audio resources manager accessible via `Naninovel -> Resources -> Audio`.
+
+![](https://i.gyazo.com/cacdec36623dbbfcf9f49c594de53c0f.png)
+
+You can use any audio formats [supported by Unity](https://docs.unity3d.com/Manual/AudioFiles.html).
+
+Audio playback behavior can be configured using `Naninovel -> Configuration -> Audio` context menu; for available options see [configuration guide](/guide/configuration.md#audio). 
+
+## Background Music
+
+Use [`@bgm`](/api/#bgm) command followed by the clip name to control the music playback in naninovel scripts:
+
+```
+; Starts playing a music track with the name `Sanctuary` in a loop
+@bgm Sanctuary
+
+; Same as above, but fades-in the volume over 10 seconds and plays only once
+@bgm Sanctuary fade:10 loop:false
+
+; Changes volume of all the played music tracks to 50% over 2.5 seconds and makes them play in a loop
+@bgm volume:0.5 loop:true time:2.5
+```
+
+Music tracks are looped by default. When music track name is not specified in `@bgm` command, all the currently played tracks will be affected. When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start), but the specified parameters (volume and whether the track is looped) will be applied.
+
+It's possible to play an intro followed by a loop with `intro` parameter, eg:
+
+```
+; Playes `BattleThemeIntro` once and then immediately `BattleThemeMain` in a loop.
+@bgm BattleThemeMain intro:BattleThemeIntro
+```
+
+To stop a playing music track, use [`@stopBgm`](/api/#stopbgm) command followed by clip name. When clip name is not specified, the command will stop all the currently played tracks.
+
+```
+; Fades-out the `Promenade` music track over 10 seconds and stops the playback
+@stopBgm Promenade time:10
+
+; Stops all the currently played music tracks
+@stopBgm
+```
+
+## Sound Effects
+
+Use [`@sfx`](/api/#sfx) and [`@stopSfx`](/api/#stopsfx) commands followed by the clip name to control playback of the sound effects in naninovel scripts:
+
+```
+; Plays an SFX with the name `Explosion` once
+@sfx Explosion
+
+; Plays an SFX with the name `Rain` in a loop
+@sfx Rain loop:true
+
+; Changes volume of all the played SFX tracks to 75% over 2.5 seconds and disables looping for all of them
+@sfx volume:0.75 loop:false time:2.5
+```
+
+Sound effect tracks are not looped by default. When sfx track name is not specified in `@sfx` command, all the currently played tracks will be affected. When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start), but the specified parameters (volume and whether the track is looped) will be applied.
+
+To stop a playing sound effect (no matter looped or not), use [`@stopSfx`](/api/#stopsfx) command followed by clip name. When clip name is not specified, the command will stop all the currently played SFX tracks.
+
+```
+; Stop playing an SFX with the name `Rain`, fading-out for 15 seconds.
+@stopSfx Rain time:15
+
+; Stops all the currently played sound effect tracks
+@stopSfx
+```

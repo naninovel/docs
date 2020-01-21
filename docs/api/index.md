@@ -115,6 +115,7 @@ Arranges specified characters by X-axis.  When no parameters provided, will exec
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">CharacterPositions</span> | List&lt;Named&lt;Decimal&gt;&gt; | A collection of character ID to scene X-axis position (relative to the left screen border, in percents) named values.  Position 0 relates to the left border and 100 to the right border of the screen; 50 is the center.
+look | Boolean | When performing auto-arrange, controls whether to also make the characters look at the scene origin (enabled by default).
 
 </div>
 
@@ -182,7 +183,7 @@ easing | String | Name of the easing function to use for the modification.  <br 
 ## bgm
 
 #### Summary
-Plays or modifies currently played BGM (background music) track with the provided name.
+Plays or modifies currently played [BGM (background music)](/guide/audio.md#background-music) track with the provided name.
 
 #### Remarks
 Music tracks are looped by default.  When music track name (BgmPath) is not specified, will affect all the currently played tracks.  When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start),  but the specified parameters (volume and whether the track is looped) will be applied.
@@ -331,7 +332,7 @@ easing | String | Name of the easing function to use for the modification.  <br 
 ## choice
 
 #### Summary
-Adds a choice option to a choice handler with the specified ID (or default one).
+Adds a [choice](/guide/choices.md) option to a choice handler with the specified ID (or default one).
 
 #### Remarks
 When `goto` parameter is not specified, will continue script execution from the next script line.
@@ -1138,7 +1139,7 @@ ID | Type | Description
 ## sfx
 
 #### Summary
-Plays or modifies currently played SFX (sound effect) track with the provided name.
+Plays or modifies currently played [SFX (sound effect)](/guide/audio.md#sound-effects) track with the provided name.
 
 #### Remarks
 Sound effect tracks are not looped by default.  When sfx track name (SfxPath) is not specified, will affect all the currently played tracks.  When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start),  but the specified parameters (volume and whether the track is looped) will be applied.
