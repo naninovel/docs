@@ -199,6 +199,7 @@ intro | String | Path to the intro music track to play once before the main trac
 volume | Decimal | Volume of the music track.
 loop | Boolean | Whether to play the track from beginning when it finishes.
 fade | Decimal | Duration of the volume fade-in, in seconds (disabled by default);  doesn't have effect when modifying a playing track.
+group | String | Audio mixer [group path](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) that should be used when playing the audio.
 
 </div>
 
@@ -1154,6 +1155,7 @@ ID | Type | Description
 volume | Decimal | Volume of the sound effect.
 loop | Boolean | Whether to play the sound effect in a loop.
 fade | Decimal | Duration of the volume fade-in, in seconds (disabled by default);  doesn't have effect when modifying a playing track.
+group | String | Audio mixer [group path](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) that should be used when playing the audio.
 
 </div>
 
@@ -1534,6 +1536,7 @@ ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">VoicePath</span> | String | Path to the voice clip to play.
 volume | Decimal | Volume of the playback.
+group | String | Audio mixer [group path](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) that should be used when playing the audio.
 
 </div>
 

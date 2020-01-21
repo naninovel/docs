@@ -70,3 +70,31 @@ To stop a playing sound effect (no matter looped or not), use [`@stopSfx`](/api/
 ; Stops all the currently played sound effect tracks
 @stopSfx
 ```
+
+## Audio Mixer
+
+Naninovel uses an [audio mixer](https://docs.unity3d.com/Manual/AudioMixer.html) asset when playing the audio to separate BGM, SFX and voice channels.
+
+It's possible to assign a custom mixer asset, change groups used for each audio channel and volume control handlers (exposed parameter names) in the audio configuration menu. When no custom mixer assets assigned, a default one will be used.
+
+![](https://i.gyazo.com/ef2db68edb871608d1718117a37e9486.png)
+
+To play an audio via a custom mixer group, specify group path with `group` parameter available in `@bgm`, `@sfx` and `@voice` commands.
+
+```
+; Play `Noise` audio resource in loop via `Master/Ambient` mixer group.
+@sfx Noise loop:true group:Master/Ambient
+
+; Play `ScaryVoice` voice resource via `Master/Reverb` mixer group.
+@voice ScaryVoice group:Master/Reverb
+```
+
+Groups are retrieved with `FindMatchingGroups(groupPath)` method of the currently assigned audio mixer asset; see [Unity documentation](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) for more information on the expected path format. In case multiple groups are associated with the provided path, the first one will be used to play the audio.
+
+In C# scripts, currently used audio mixer can be retrieved via `IAudioManager` [engine service](/guide/engine-services.md).
+
+```
+var audioManager = Engine.GetService<IAudioManager>();
+var audioMixer = audioManager.AudioMixer;
+```
+
