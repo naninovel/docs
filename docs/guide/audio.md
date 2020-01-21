@@ -75,6 +75,8 @@ To stop a playing sound effect (no matter looped or not), use [`@stopSfx`](/api/
 
 Naninovel uses an [audio mixer](https://docs.unity3d.com/Manual/AudioMixer.html) asset when playing the audio to separate BGM, SFX and voice channels.
 
+![](https://i.gyazo.com/6271d59ee9ac63a0a218316bd3bc78a8.png)
+
 It's possible to assign a custom mixer asset, change groups used for each audio channel and volume control handlers (exposed parameter names) in the audio configuration menu. When no custom mixer assets assigned, a default one will be used.
 
 ![](https://i.gyazo.com/ef2db68edb871608d1718117a37e9486.png)
