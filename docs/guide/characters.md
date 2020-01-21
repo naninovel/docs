@@ -195,6 +195,19 @@ The video below demonstrates hot to setup a layered character and control it via
 
 *Note: "@char Miho.Shoes>" command displayed in the video will actually select the "Shoes" group (disabling all the neighbor groups), not hide it. Correct command to hide a group is "@char Miho.Shoes-"*
 
+It's possible to map composition expressions to keys via `Composition Map` property of `Layered Actor Behaviour` component:
+
+![](https://i.gyazo.com/ede5cde3548a3187aa714d3e140750ba.png)
+
+— the keys can then be used to specify layered actor appearance:
+
+```
+; Corresponds to `Body>Uniform,Hair/Back>Straight,Hair/Front>Straight,Shoes>Grey`.
+@char Miho.Uniform
+; Corresponds to `Hair/Back>Straight,Hair/Front>Straight`.
+@char Miho.StraightHair
+```
+
 Be aware, that the layer objects are not directly rendered by Unity cameras at runtime; instead, they're rendered once upon each composition (appearance) change to a temporary render texture, which is then fed to a custom mesh visible to the Naninovel camera. This setup is required to prevent semi-transparency overdraw issues and to support transition animation effects.
 
 ## Generic Characters

@@ -16,13 +16,13 @@ Voice Loader | Voice- (Addressable, Project) | Configuration of the resource loa
 Enable Auto Voicing | False | When enabled, each `PrintText` command will attempt to play voice clip at `VoiceResourcesPrefix/ScriptName/LineIndex.ActionIndex`.
 Voice Overlap Policy | Prevent Overlap | Dictates how to handle concurrent voices playback:<br> • Allow Overlap — Concurrent voices will be played without limitation.<br> • Prevent Overlap — Prevent concurrent voices playback by stopping any played voice clip before playing a new one.<br> • Prevent Character Overlap — Prevent concurrent voices playback per character; voices of different characters (auto voicing) and any number of `@voice` command are allowed to be played concurrently.
 Custom Audio Mixer | Null | Audio mixer to control audio groups. When not provided, will use a default one.
-Master Volume Handle Name | Master Volume | Name of the mixer's handle to control master volume.
+Master Volume Handle Name | Master Volume | Name of the mixer's handle (exposed parameter) to control master volume.
 Bgm Group Path | Master/BGM | Path of the mixer's group to control master volume.
-Bgm Volume Handle Name | BGM Volume | Name of the mixer's handle to control background music volume.
+Bgm Volume Handle Name | BGM Volume | Name of the mixer's handle (exposed parameter) to control background music volume.
 Sfx Group Path | Master/SFX | Path of the mixer's group to control background music volume.
-Sfx Volume Handle Name | SFX Volume | Name of the mixer's handle to control sound effects volume.
+Sfx Volume Handle Name | SFX Volume | Name of the mixer's handle (exposed parameter) to control sound effects volume.
 Voice Group Path | Master/Voice | Path of the mixer's group to control sound effects volume.
-Voice Volume Handle Name | Voice Volume | Name of the mixer's handle to control voice volume.
+Voice Volume Handle Name | Voice Volume | Name of the mixer's handle (exposed parameter) to control voice volume.
 
 </div>
 
