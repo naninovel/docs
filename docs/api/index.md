@@ -92,6 +92,7 @@ ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Text</span> | String | The text to append.
 printer | String | ID of the printer actor to use. Will use a a default one when not provided.
+author | String | ID of the actor, which should be associated with the appended text.
 
 </div>
 
@@ -145,7 +146,7 @@ ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">AppearanceAndTransition</span> | Named&lt;String&gt; | Appearance (or [pose](/guide/backgrounds.md#poses)) to set for the modified background and type of a [transition effect](/guide/transition-effects.md) to use.  When transition is not provided, a cross-fade effect will be used by default.
 pos | List&lt;Decimal&gt; | Position (relative to the screen borders, in percents) to set for the modified actor.  Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the screen.  Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode.
-id | String | ID of the actor to modify.
+id | String | ID of the actor to modify; specify `*` to affect all visible actors.
 appearance | String | Appearance (or pose) to set for the modified actor.
 transition | String | Type of the [transition effect](/guide/transition-effects.md) to use (crossfade is used by default).
 params | List&lt;Decimal&gt; | Parameters of the transition effect.
@@ -166,6 +167,9 @@ easing | String | Name of the easing function to use for the modification.  <br 
 
 ; Same as above, but also use a `RadialBlur` transition effect
 @back River.RadialBlur
+
+; Tint all visible backgrounds on scene.
+@back id:* tint:#ffdc22
 
 ; Given an `ExplosionSound` SFX and an `ExplosionSprite` background, the following
 ; script sequence will simulate two explosions appearing far and close to the camera.
@@ -231,6 +235,7 @@ ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">Count</span> | Integer | Number of line breaks to add.
 printer | String | ID of the printer actor to use. Will use a default one when not provided.
+author | String | ID of the actor, which should be associated with the appended line break.
 
 </div>
 
@@ -295,11 +300,11 @@ Modifies a [character actor](/guide/characters.md).
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">IdAndAppearance</span> | Named&lt;String&gt; | ID of the character to modify and an appearance (or [pose](/guide/characters.md#poses)) to set.  When appearance is not provided, will use either a `Default` (is exists) or a random one.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">IdAndAppearance</span> | Named&lt;String&gt; | ID of the character to modify (specify `*` to affect all visible characters) and an appearance (or [pose](/guide/characters.md#poses)) to set.  When appearance is not provided, will use either a `Default` (is exists) or a random one.
 look | String | Look direction of the actor; supported values: left, right, center.
 avatar | String | Name (path) of the [avatar texture](/guide/characters.md#avatar-textures) to assign for the character.  Use `none` to remove (un-assign) avatar texture from the character.
 pos | List&lt;Decimal&gt; | Position (relative to the screen borders, in percents) to set for the modified actor.  Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the screen.  Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode.
-id | String | ID of the actor to modify.
+id | String | ID of the actor to modify; specify `*` to affect all visible actors.
 appearance | String | Appearance (or pose) to set for the modified actor.
 transition | String | Type of the [transition effect](/guide/transition-effects.md) to use (crossfade is used by default).
 params | List&lt;Decimal&gt; | Parameters of the transition effect.
@@ -328,6 +333,9 @@ easing | String | Name of the easing function to use for the modification.  <br 
 ; Make Sora appear at the bottom-center and in front of Felix
 @char Sora pos:50,0,-1
 @char Felix pos:,,0
+
+; Tint all visible characters on scene.
+@char * tint:#ffdc22
 ```
 
 ## choice
@@ -402,7 +410,7 @@ Removes all the messages from [printer backlog](/guide/printer-backlog.md).
 ## clearChoice
 
 #### Summary
-Removes all the choice options in the choice handler with the provided ID (or in default one, when ID is not specified;  or in all the existing handlers, when `all` is specified as ID) and (optionally) hides it (them).
+Removes all the choice options in the choice handler with the provided ID (or in default one, when ID is not specified;  or in all the existing handlers, when `*` is specified as ID) and (optionally) hides it (them).
 
 #### Parameters
 
@@ -410,7 +418,7 @@ Removes all the choice options in the choice handler with the provided ID (or in
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">HandlerId</span> | String | ID of the choice handler to clear. Will use a default handler if not provided.  Specify `all` to clear all the existing handlers.
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">HandlerId</span> | String | ID of the choice handler to clear. Will use a default handler if not provided.  Specify `*` to clear all the existing handlers.
 hide | Boolean | Whether to also hide the affected printers.
 
 </div>
@@ -826,7 +834,7 @@ The unlocked state of the items is stored in [global scope](/guide/state-managem
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Id</span> | String | ID of the unlockable item. Use `all` to lock all the registered unlockable items.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Id</span> | String | ID of the unlockable item. Use `*` to lock all the registered unlockable items.
 
 </div>
 
@@ -1514,7 +1522,7 @@ The unlocked state of the items is stored in [global scope](/guide/state-managem
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Id</span> | String | ID of the unlockable item. Use `all` to unlock all the registered unlockable items.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Id</span> | String | ID of the unlockable item. Use `*` to unlock all the registered unlockable items.
 
 </div>
 

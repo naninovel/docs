@@ -127,6 +127,16 @@ When [auto voicing](/guide/voicing.md#auto-voicing) feature is enabled, lip sync
 
 See [Generic](/guide/characters.md#generic-characters) and [Live2D](/guide/characters.md#live2d-characters) character implementation docs below for the details on how to setup the lip sync feature.
 
+## Linked Printer
+
+It's possible to associate a custom [text printer](/guide/text-printers.md) with a character using `Linked Printer` property.
+
+![](https://i.gyazo.com/50ca6b39cd7f708158678339244b1dc4.png)
+
+When linked, the printer will automatically be used to handle messages authored by the character.
+
+Be aware, that only custom printers can be linked with characters; see [text printers guide](/guide/text-printers.md#adding-custom-printers) for more information on adding custom printers.
+
 ## Sprite Characters 
 
 Sprite implementation of the character actors is the most common and simple one; it uses a set of [sprite](https://docs.unity3d.com/Manual/Sprites) assets to represent appearances of the character. The source of the sprites could be images (textures) of any [formats supported by Unity](https://docs.unity3d.com/Manual/ImportingTextures).
