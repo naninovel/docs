@@ -39,7 +39,14 @@ Pose name can be used as appearance in [`@char`](/api/#char) command to apply al
 @char Kohaku.SuperAngry transition:DropFade time:3
 ```
 
-Notice, that when a pose is used as appearance, all the character state parameters specified in the command (eg, pos, tint, scale, etc) will be ignored.
+Notice, that when a pose is used as appearance, you can still override individual parameters, eg:
+
+```
+; Given `SuperAngry` pose is defined for `Kohaku` character,
+; applies all the parameters specified in the pose state,
+; except tint, which is overridden in the command.
+@char Kohaku.SuperAngry tint:#ff45cb
+```
 
 ## Display Names
 

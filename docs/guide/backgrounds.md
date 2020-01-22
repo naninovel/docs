@@ -41,7 +41,7 @@ Each background has `Poses` property allowing to specify named states (poses).
 Pose name can be used as appearance in [`@back`](/api/#back) command to apply all the parameters specified in the pose state at once, instead of specifying them individually via the command parameters.
 
 ```
-; Given `Day` pose is defined for main background,
+; Given `Day` pose is defined for main background, 
 ; applies all the parameters specified in the pose state.
 @back Day
 
@@ -50,7 +50,14 @@ Pose name can be used as appearance in [`@back`](/api/#back) command to apply al
 @back Day id:City transition:DropFade time:3
 ```
 
-Notice, that when a pose is used as appearance, all the background state parameters specified in the command (eg, pos, tint, scale, etc) will be ignored.
+Notice, that when a pose is used as appearance, you can still override individual parameters, eg:
+
+```
+; Given `Day` pose is defined for main background,
+; applies all the parameters specified in the pose state,
+; except tint, which is overridden in the command.
+@back Day tint:#ff45cb
+```
 
 ## Sprite Backgrounds
 
