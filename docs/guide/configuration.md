@@ -269,6 +269,7 @@ Default Printer Id | Dialogue | ID of the text printer to use by default.
 Max Reveal Delay | 0.06 | Delay limit (in seconds) when revealing (printing) the text messages. Specific reveal speed is set via `message speed` in the game settings; this value defines the available range (higher the value, lower the reveal speed).
 Max Auto Wait Delay | 0.02 | Delay limit (in seconds) per each printed character while waiting to continue in auto play mode. Specific delay is set via `auto delay` in the game settings; this value defines the available range.
 Scale Auto Wait | True | Whether to scale the wait time in auto play mode by the reveal speed set in the print commands.
+Force Single Printer | True | Whether to automatically make printer, that is used to handle `@print` commands, default and hide other visible printers. Disable in case you're going to use multiple text printers visible at the same time.
 Default Metadata | Object Ref | Metadata to use by default when creating text printer actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating text printer actors with specific IDs.
 Scene Origin | (0.5, 0.0) | Origin point used for reference when positioning actors on scene.
