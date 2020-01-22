@@ -143,10 +143,10 @@ Backgrounds are handled a bit differently from characters to better accommodate 
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">AppearanceAndTransition</span> | Named&lt;String&gt; | Appearance to set for the modified background and type of the [transition effect](/guide/transition-effects.md) to use.  When transition is not provided, a cross-fade effect will be used by default.
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">AppearanceAndTransition</span> | Named&lt;String&gt; | Appearance (or [pose](/guide/backgrounds.md#poses)) to set for the modified background and type of a [transition effect](/guide/transition-effects.md) to use.  When transition is not provided, a cross-fade effect will be used by default.
 pos | List&lt;Decimal&gt; | Position (relative to the screen borders, in percents) to set for the modified actor.  Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the screen.  Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode.
 id | String | ID of the actor to modify.
-appearance | String | Appearance to set for the modified actor.
+appearance | String | Appearance (or pose) to set for the modified actor.
 transition | String | Type of the [transition effect](/guide/transition-effects.md) to use (crossfade is used by default).
 params | List&lt;Decimal&gt; | Parameters of the transition effect.
 dissolve | String | Path to the [custom dissolve](/guide/transition-effects.md#custom-transition-effects) texture (path should be relative to a `Resources` folder).  Has effect only when the transition is set to `Custom` mode.
@@ -295,12 +295,12 @@ Modifies a [character actor](/guide/characters.md).
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">IdAndAppearance</span> | Named&lt;String&gt; | ID of the character to modify and the appearance to set.  When appearance is not provided, will use either a `Default` (is exists) or a random one.
-look | String | Look direction of the actor; possible options: left, right, center.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">IdAndAppearance</span> | Named&lt;String&gt; | ID of the character to modify and an appearance (or [pose](/guide/characters.md#poses)) to set.  When appearance is not provided, will use either a `Default` (is exists) or a random one.
+look | String | Look direction of the actor; supported values: left, right, center.
 avatar | String | Name (path) of the [avatar texture](/guide/characters.md#avatar-textures) to assign for the character.  Use `none` to remove (un-assign) avatar texture from the character.
 pos | List&lt;Decimal&gt; | Position (relative to the screen borders, in percents) to set for the modified actor.  Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the screen.  Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode.
 id | String | ID of the actor to modify.
-appearance | String | Appearance to set for the modified actor.
+appearance | String | Appearance (or pose) to set for the modified actor.
 transition | String | Type of the [transition effect](/guide/transition-effects.md) to use (crossfade is used by default).
 params | List&lt;Decimal&gt; | Parameters of the transition effect.
 dissolve | String | Path to the [custom dissolve](/guide/transition-effects.md#custom-transition-effects) texture (path should be relative to a `Resources` folder).  Has effect only when the transition is set to `Custom` mode.

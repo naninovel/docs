@@ -22,6 +22,25 @@ In naninovel scripts, characters are mostly controlled with [`@char`](/api/#char
 @char Sora.Happy look:left pos:0.45,0.1
 ```
 
+## Poses
+
+Each character has `Poses` property allowing to specify named states (poses).
+
+![](https://i.gyazo.com/6dd1e4bca6473e25cc24acc56138dc55.png)
+
+Pose name can be used as appearance in [`@char`](/api/#char) command to apply all the parameters specified in the pose state at once, instead of specifying them individually via the command parameters.
+
+```
+; Given `SuperAngry` pose is defined for `Kohaku` character,
+; applies all the parameters specified in the pose state.
+@char Kohaku.SuperAngry
+
+; Same as above, but using `DropFade` transition over 3 seconds.
+@char Kohaku.SuperAngry transition:DropFade time:3
+```
+
+Notice, that when a pose is used as appearance, all the character state parameters specified in the command (eg, pos, tint, scale, etc) will be ignored.
+
 ## Display Names
 
 In the character configuration you can set a `Display Name` for specific characters. When set, display name will be shown in the printer name label UI, instead of the character's ID. This allows using compound character names, that contains spaces and special characters (which is not allowed for IDs).

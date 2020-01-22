@@ -34,6 +34,24 @@ Backgrounds are handled a bit differently from characters to better accommodate 
 
 Main background actor record is created by default in the background resources manager and can't be renamed or deleted; however, parameters of the main background (implementation, pivot, PPU, etc) can be freely changed.
 
+## Poses
+
+Each background has `Poses` property allowing to specify named states (poses).
+
+Pose name can be used as appearance in [`@back`](/api/#back) command to apply all the parameters specified in the pose state at once, instead of specifying them individually via the command parameters.
+
+```
+; Given `Day` pose is defined for main background,
+; applies all the parameters specified in the pose state.
+@back Day
+
+; Same as above, but for a background actor with `City` ID
+; and using `DropFade` transition over 3 seconds.
+@back Day id:City transition:DropFade time:3
+```
+
+Notice, that when a pose is used as appearance, all the background state parameters specified in the command (eg, pos, tint, scale, etc) will be ignored.
+
 ## Sprite Backgrounds
 
 Sprite implementation of the background actors is the most common and simple one; it uses a single [sprite](https://docs.unity3d.com/Manual/Sprites) asset to represent appearance of the background. The source of the sprite could be a `.jpg` or `.png` image file. 
