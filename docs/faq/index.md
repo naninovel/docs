@@ -60,6 +60,8 @@ Set `visible:false` for the character you wish to hide; the avatar will remain v
 @char CharId visible:false
 ```
 
+In case you're constantly changing avatars while the character itself should remain hidden, consider disabling `Auto Show On Modify` in the characters configuration menu; when disabled, you won't have to specify `visible:false` to change any parameters of the character while it's hidden.
+
 ## I'd like to use backgrounds with a non-standard resolution (eg, 2048x1024), but they look cropped.
 
 Set `Reference Resolution` at the [camera configuration menu](/guide/configuration.md#camera) (Naninovel -> Configuration -> Camera) equal to the backgrounds resolution. Also, make sure the background textures are imported with the [correct settings](https://docs.unity3d.com/Manual/class-TextureImporter) (eg, `Max Size` is high enough).

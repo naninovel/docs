@@ -932,7 +932,7 @@ waitInput | Boolean | Whether to wait for user input after finishing the printin
 ## printer
 
 #### Summary
-Modifies a [printer actor](/guide/text-printers.md).
+Modifies a [text printer actor](/guide/text-printers.md).
 
 #### Parameters
 

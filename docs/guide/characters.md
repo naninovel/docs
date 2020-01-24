@@ -107,6 +107,8 @@ It's possible to show only the avatar of a character inside a text printer, but 
 @char CharId visible:false
 ```
 
+In case you're constantly changing avatars while the character itself should remain hidden, consider disabling `Auto Show On Modify` in the characters configuration menu; when disabled, you won't have to specify `visible:false` to change any parameters of the character while it's hidden.
+
 ## Speaker Highlight
 
 When enabled in the character configuration, will tint the character based on whether the last printed message is associated with it.
