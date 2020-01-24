@@ -37,7 +37,8 @@ Metadata | Object Ref | Metadata to use when creating background actors with spe
 Scene Origin | (0.5, 0.0) | Origin point used for reference when positioning actors on scene.
 Z Offset | 100 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
 Z Step | 0.1 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
-Default Easing | Linear | Eeasing function to use by default for all the actor modifications (changing appearance, position, tint, etc).
+Default Easing | Linear | Eeasing function to use by default for all the actor modification animations (changing appearance, position, tint, etc).
+Auto Show On Modify | True | Whether to automatically reveal (show) an actor when executing modification commands.
 
 </div>
 
@@ -74,7 +75,8 @@ Avatar Loader | Character Avatars- (Addressable, Project) | Configuration of the
 Scene Origin | (0.5, 0.0) | Origin point used for reference when positioning actors on scene.
 Z Offset | 50 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
 Z Step | 0.1 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
-Default Easing | Smooth Step | Eeasing function to use by default for all the actor modifications (changing appearance, position, tint, etc).
+Default Easing | Smooth Step | Eeasing function to use by default for all the actor modification animations (changing appearance, position, tint, etc).
+Auto Show On Modify | True | Whether to automatically reveal (show) an actor when executing modification commands.
 
 </div>
 
@@ -87,7 +89,8 @@ Property | Default Value | Description
 Default Handler Id | Button List | ID of the choice handler to use by default.
 Default Metadata | Object Ref | Metadata to use by default when creating choice handler actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating choice handler actors with specific IDs.
-Default Easing | Linear | Eeasing function to use by default for all the actor modifications (changing appearance, position, tint, etc).
+Default Easing | Linear | Eeasing function to use by default for all the actor modification animations (changing appearance, position, tint, etc).
+Auto Show On Modify | True | Whether to automatically reveal (show) an actor when executing modification commands.
 
 </div>
 
@@ -275,7 +278,8 @@ Metadata | Object Ref | Metadata to use when creating text printer actors with s
 Scene Origin | (0.5, 0.0) | Origin point used for reference when positioning actors on scene.
 Z Offset | 100 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
 Z Step | 0.1 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
-Default Easing | Linear | Eeasing function to use by default for all the actor modifications (changing appearance, position, tint, etc).
+Default Easing | Linear | Eeasing function to use by default for all the actor modification animations (changing appearance, position, tint, etc).
+Auto Show On Modify | False | Whether to automatically reveal (show) an actor when executing modification commands.
 
 </div>
 
