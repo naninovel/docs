@@ -63,7 +63,7 @@ In case you'll use both unlockable and background resources to add the CG items,
 
 When there is at least one CG item added to any of the sources (no matter the unlocked state), `CG GALLERY` button will appear in the title menu allowing to access the CG Gallery browser.
 
-You can modify or completely replace the built-in `ICGGalleryUI` implementation using the [UI customization feature](/guide/ui-customization.md).
+You can modify or completely replace the built-in `ICGGalleryUI` implementation using the [UI customization feature](/guide/user-interface.md#ui-customization).
 
 ## Tips
 

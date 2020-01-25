@@ -1,4 +1,26 @@
-# UI Customization
+# User Interface
+
+Naninovel comes with multiple built-in UIs: title (main) menu, game settings, save-load menu, backlog panel, CG gallery, tips and many others.
+
+Each of the built-in UIs can be disabled or customized; see [UI customization](/guide/user-interface.md#ui-customization) guide for more information.
+
+## Adaptive UI Layout
+
+All the built-in UIs are implemented with adaptive layout. This allows the UI to remain usable on all the platforms, no matter the screen resolution.
+
+<video class="video" loop autoplay><source src="https://i.gyazo.com/b6bddf8a0c6f2ba68dcdc1bc65db0c09.mp4" type="video/mp4"></video>
+
+## UI Toggling
+
+UI toggling feature allows user to hide/show the in-game UI as a whole.
+
+<video class="video" loop autoplay><source src="https://i.gyazo.com/e267c4ab3654efbfaf611011502de79f.mp4" type="video/mp4"></video>
+
+Activate `ToggleUI` input (`Space` key by default for standalone input module) or use `HIDE` button on the control panel to hide/show the UI.
+
+When UI is hidden, `Continue` input or clicking (touching) the screen will also un-hide the UI.
+
+## UI Customization
 
 UI customization feature allows to add a custom UI and modify or completely replace any of the built-in UI elements, like title menu, settings menu, printer backlog, etc.
 
