@@ -32,7 +32,7 @@ await stateManager.ResetStateAsync();
 ```
 
 ## Disable Title Menu
-A built-in title menu implementation will be automatically shown when the engine is initialized, while you'll most likely have your own title menu. You can either modify or completely replace the built-in title menu using [UI customization feature](/guide/ui-customization.md) or just disable it by turning off `Show Title UI` toggle in the engine configuration menu.
+A built-in title menu implementation will be automatically shown when the engine is initialized, while you'll most likely have your own title menu. You can either modify or completely replace the built-in title menu using [UI customization feature](/guide/user-interface.md#ui-customization) or just disable it by turning off `Show Title UI` toggle in the engine configuration menu.
 
 ## Engine Objects Layer
 You can set a specific [layer](https://docs.unity3d.com/Manual/Layers.html) for all the objects created by the engine via configuration menu.

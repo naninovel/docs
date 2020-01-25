@@ -27,7 +27,7 @@ IScriptPlayer | Handles [naninovel scripts](/guide/naninovel-scripts.md) executi
 ICameraManager | Manages cameras and other systems required for scene rendering.
 IResourceProviderManager | Manages `IResourceProvider` objects.
 IStateManager | Handles `IEngineService`-related persistent data de-/serialization; provides API to [save and load](/guide/save-load-system.md) game state.
-IUIManager | Manages `IManagedUI` objects and handles [UI customization](/guide/ui-customization.md) feature.
+IUIManager | Manages `IManagedUI` objects and handles [UI customization](/guide/user-interface.md#ui-customization) feature.
 ICustomVariableManager | Provides access and allows modifying [custom variables](/guide/custom-variables.md). 
 ISpawnManager | Manages objects spawned with [`@spawn`](/api/#spawn) and [`@fx`](/api/#fx) commands.
 IUnlockableManager | Manages [unlockable items](/guide/unlockable-items.md) (CG and movie gallery items, tips, etc).

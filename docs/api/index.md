@@ -680,7 +680,7 @@ ID | Type | Description
 ## hideUI
 
 #### Summary
-Makes a [managed UI](/guide/ui-customization.md) with the provided name invisible.  When no name is specified, will stop rendering (hide) the entire UI (including all the built-in UIs).
+Makes a [UI element](/guide/user-interface.md#ui-customization) with the provided name invisible.  When no name is specified, will stop rendering (hide) the entire UI (including all the built-in UIs).
 
 #### Remarks
 When hiding the entire UI with this command and `allowToggle` parameter is false (default), user won't be able to re-show the UI  back with hotkeys or by clicking anywhere on the screen; use [`@showUI`](/api/#showui) command to make the UI ~~great~~ visible again.
@@ -691,7 +691,7 @@ When hiding the entire UI with this command and `allowToggle` parameter is false
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">UIName</span> | String | Name of the managed UI to hide.
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">UIName</span> | String | Name of the UI element to hide.
 allowToggle | Boolean | When hiding the entire UI, controls whether to allow the user to re-show the UI with hotkeys or by clicking anywhere on the screen (false by default).  Has no effect when hiding a particular UI.
 
 </div>
@@ -1009,7 +1009,7 @@ You've picked two.
 Resets state of the [engine services](https://naninovel.com/guide/engine-services.html) and unloads (disposes)  all the resources loaded by Naninovel (textures, audio, video, etc); will basically revert to an empty initial engine state.
 
 #### Remarks
-The process is asynchronous and is masked with a loading screen ([ILoadingUI](https://naninovel.com/guide/ui-customization.html)).  <br /><br />  When [ResetStateOnLoad](https://naninovel.com/guide/configuration.html#state) is disabled in the configuration, you can use this command  to manually dispose unused resources to prevent memory leak issues.  <br /><br />  Be aware, that this command can not be undone (rewinded back).
+The process is asynchronous and is masked with a loading screen ([ILoadingUI](https://naninovel.com/guide/user-interface.html#ui-customization)).  <br /><br />  When [ResetStateOnLoad](https://naninovel.com/guide/configuration.html#state) is disabled in the configuration, you can use this command  to manually dispose unused resources to prevent memory leak issues.  <br /><br />  Be aware, that this command can not be undone (rewinded back).
 
 #### Parameters
 
@@ -1226,7 +1226,7 @@ ID | Type | Description
 ## showUI
 
 #### Summary
-Makes a [managed UI](/guide/ui-customization.md) with the provided prefab name visible.  When no name is specified, will start rendering (show) the entire UI (in case it was hidden with [`@hideUI`](/api/#hideui)).
+Makes a [UI element](/guide/user-interface.md) with the provided prefab name visible.  When no name is specified, will start rendering (show) the entire UI (in case it was hidden with [`@hideUI`](/api/#hideui)).
 
 #### Parameters
 
@@ -1234,13 +1234,13 @@ Makes a [managed UI](/guide/ui-customization.md) with the provided prefab name v
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">UIName</span> | String | Name of the managed UI prefab to make visible.
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">UIName</span> | String | Name of the UI prefab to make visible.
 
 </div>
 
 #### Example
 ```
-; Given you've added a custom managed UI with prefab name `Calendar`,
+; Given you've added a custom UI with prefab name `Calendar`,
 ; the following will make it visible on the scene
 @showUI Calendar
 

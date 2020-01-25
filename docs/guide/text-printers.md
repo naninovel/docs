@@ -23,6 +23,34 @@ Lorem ipsum dolor sit amet.
 Felix: Lorem ipsum dolor sit amet.
 ```
 
+## Auto-Advance Text
+
+Auto-advance feature allows to automatically continue script execution when handling [`i`](/api/#i) commands. 
+
+<video class="video" loop autoplay><source src="https://i.gyazo.com/e6f58f861fa18bd62591db9794e7641b.mp4 " type="video/mp4"></video>
+
+Wait for user input or "i" commands halt script execution until user activates a `Continue` input and are typically used after printing-out a text message. When in auto-advance mode, "i" commands will instead halt script execution for a period of time and then finish, allowing execution of the following command. Halt period depends on the length of the last printed text message and further modified by "Print speed" game setting.
+
+Auto-advance mode can be toggled using `AutoPlay` input (`A` key by default for standalone input module) or "AUTO" button in the control panel.
+
+## Text Skipping
+
+Text skipping feature allows to fast-forward execution of the [`@print`](/api/#print) commands, effectively skipping text revealing (printing) process. 
+
+<video class="video" loop autoplay><source src="https://i.gyazo.com/9605a5c8cd1911217350d77712f47e7d.mp4" type="video/mp4"></video>
+
+Skip mode can be toggled using `Skip` input (`Ctrl` key by default for standalone input module) or "SKIP" button in the control panel.
+
+By default, skip mode is only available while executing commands that was already executed in the past; e.g. if the user hadn't already read the text that is going to be printed, skip mode won't be available. This can be changed in the game settings using "Skip mode" setting.
+
+## Printer Backlog
+
+Printer backlog is a feature allowing user to re-read previously printed text. 
+
+<video class="video" loop autoplay><source src="https://i.gyazo.com/4bde6752b676aa1acedb54d2af075ced.mp4" type="video/mp4"></video>
+
+Backlog can be shown at any time during main game loop by activating `ShowBacklog` input (`L` key by default for standalone input module) or pressing "LOG" button in the control panel.
+
 ## Dialogue Printer
 
 Dialogue printers present text inside windows with a flexible height. They initially take about a third of the screen size and will increase the height when the content requires more space. Dialogue printers also expose associated character name in a label above the text window.
