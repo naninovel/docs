@@ -248,6 +248,8 @@ It's possible to map composition expressions to keys via `Composition Map` prope
 @char Miho.StraightHair
 ```
 
+While editing layered character prefab, it's possible to preview mapped composition expressions by right-clicking a map record (eg, "StraightHair" on the above screenshot) and selecting "Preview Composition".
+
 Be aware, that the layer objects are not directly rendered by Unity cameras at runtime; instead, they're rendered once upon each composition (appearance) change to a temporary render texture, which is then fed to a custom mesh visible to the Naninovel camera. This setup is required to prevent semi-transparency overdraw issues and to support transition animation effects.
 
 ## Generic Characters
