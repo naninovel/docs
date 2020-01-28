@@ -714,7 +714,7 @@ allowToggle | Boolean | When hiding the entire UI, controls whether to allow the
 ## i
 
 #### Summary
-Holds script execution until user activates a `continue` input.  Shortcut for `@wait input`.
+Holds script execution until user activates a `continue` input.  Shortcut for `@wait i`.
 
 #### Example
 ```
