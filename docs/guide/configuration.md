@@ -205,6 +205,7 @@ Property | Default Value | Description
 --- | --- | ---
 Skip Time Scale | 10 | Time scale to use when in skip (fast-forward) mode.
 Min Auto Play Delay | 3 | Minimum seconds to wait before executing next command while in auto play mode.
+Show Debug On Init | False | Whether to show player debug window on engine initialization.
 
 </div>
 
@@ -249,7 +250,7 @@ Default Global Slot Id | Global Save | The name of the global save file.
 Save Slot Mask | Game Save{0:000} | Mask used to name save slots.
 Quick Save Slot Mask | Game Quick Save{0:000} | Mask used to name quick save slots.
 Save Slot Limit | 99 | Maximum number of save slots.
-Quick Save Slot Limit | 9 | Maximum number of quick save slots.
+Quick Save Slot Limit | 18 | Maximum number of quick save slots.
 Binary Save Files | True | Whether to compress and store the saves as binary files (.nson) instead of text files (.json). This will significantly reduce the files size and make them harder to edit (to prevent cheating), but will consume more memory and CPU time when saving and loading.
 Load Start Delay | 0.3 | Seconds to wait before starting load operations; used to allow pre-load animations to complete before any load-related stutters could happen.
 Reset On Goto | True | Whether to reset state of the engine services and unload (dispose) resources when loading another script via `@goto` command. It's recommended to leave this enabled to prevent memory leak issues. If you choose to disable this option, you can still reset the state and dispose resources manually at any time using `@resetState` command.
