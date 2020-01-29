@@ -20,7 +20,7 @@ time | Decimal | Determines for how long (in seconds) command should execute. Wh
 
 </div>
 
-This API reference is valid for [Naninovel v1.9.0-beta](https://github.com/Elringus/NaninovelWeb/releases).
+This API reference is valid for [Naninovel v1.9.1-beta](https://github.com/Elringus/NaninovelWeb/releases).
 
 ## animate
 
@@ -260,7 +260,8 @@ Modifies the main camera, changing offset, zoom level and rotation over time.  C
 ID | Type | Description
 --- | --- | ---
 offset | List&lt;Decimal&gt; | Local camera position offset in units by X,Y,Z axes.
-rotation | Decimal | Local camera rotation by Z-axis in angle degrees (0.0 to 360.0 or -180.0 to 180.0).
+roll | Decimal | Local camera rotation by Z-axis in angle degrees (0.0 to 360.0 or -180.0 to 180.0).  The same as third component of `rotation` parameter; ignored when `rotation` is specified.
+rotation | List&lt;Decimal&gt; | Local camera rotation over X,Y,Z-axes in angle degrees (0.0 to 360.0 or -180.0 to 180.0).
 zoom | Decimal | Relatize camera zoom (orthographic size or field of view, depending on the render mode), in 0.0 (no zoom) to 1.0 (full zoom) range.
 ortho | Boolean | Whether the camera should render in orthographic (true) or perspective (false) mode.
 toggle | List&lt;String&gt; | Names of the components to toggle (enable if disabled and vice-versa). The components should be attached to the same gameobject as the camera.  This can be used to toggle [custom post-processing effects](/guide/special-effects.md#camera-effects).
@@ -276,14 +277,14 @@ easing | String | Name of the easing function to use for the modification.  <br 
 ; Set camera in perspective mode, zoom-in by 50% and move back by 5 units
 @camera ortho:false offset:,,-5 zoom:0.5
 
-; Set camera in orthographic mode and rotate by 10 degrees clock-wise
-@camera ortho:true rotation:10
+; Set camera in orthographic mode and roll by 10 degrees clock-wise
+@camera ortho:true roll:10
 
-; Offset, zoom and rotate simultaneously animated over 5 seconds
-@camera offset:-3,1.5 zoom:0.5 rotation:10 time:5
+; Offset, zoom and roll simultaneously animated over 5 seconds
+@camera offset:-3,1.5 zoom:0.5 roll:10 time:5
 
 ; Instantly reset camera to the default state
-@camera offset:0,0 zoom:0 rotation:0 time:0
+@camera offset:0,0 zoom:0 rotation:0,0,0 time:0
 
 ; Toggle `FancyCameraFilter` and `Bloom` components attached to the camera
 @camera toggle:FancyCameraFilter,Bloom
