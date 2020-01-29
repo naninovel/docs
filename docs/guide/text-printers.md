@@ -59,9 +59,11 @@ Dialogue printers present text inside windows with a flexible height. They initi
 
 ## Fullscreen Printer
 
-Fullscreen printers present text inside windows with a static size. They take most of the screen size and are indented for presenting large amounts of text. 
+Fullscreen printers present text inside windows with a static size. They take most of the screen size and are indented for presenting large amounts of text, aka "NVL" mode.
 
 ![Fullscreen Printer](https://i.gyazo.com/c7861949717f9b600b664365af53abbc.png)
+
+Fullscreen printers won't reset text by default on each consequent print command; instead, use [`@resetText`](/api/#resettext) command to reset the contents of the printer when required.
 
 ## Wide Printer
 
