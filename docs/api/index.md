@@ -919,6 +919,7 @@ author | String | ID of the actor, which should be associated with the printed m
 speed | Decimal | Text reveal speed multiplier; should be positive or zero. Setting to one will yield the default speed.
 reset | Boolean | Whether to reset text of the printer before executing the printing task.
 waitInput | Boolean | Whether to wait for user input after finishing the printing task.
+br | Integer | Number of line breaks to prepend before the printed text.
 
 </div>
 
