@@ -57,19 +57,42 @@ Dialogue printers present text inside windows with a flexible height. They initi
 
 ![Dialogue Printer](https://i.gyazo.com/73abe9eabc7b285109b08e77dbf75430.png)
 
+## Wide Printer
+
+Wide printers are very like dialogue printers, except for some changes in the panel layout tailored for wide displays. Wide printers also support [character avatars](/guide/characters.md#avatar-textures) feature.
+
+![Wide Printer](https://i.gyazo.com/83c091c08846fa1cab8764a8d4dddeda.png)
+
 ## Fullscreen Printer
 
 Fullscreen printers present text inside windows with a static size. They take most of the screen size and are indented for presenting large amounts of text, aka "NVL" mode.
 
 ![Fullscreen Printer](https://i.gyazo.com/c7861949717f9b600b664365af53abbc.png)
 
-Fullscreen printers won't reset text by default on each consequent print command; instead, use [`@resetText`](/api/#resettext) command to reset the contents of the printer when required.
+Fullscreen printers won't reset text by default on each consequent print command; instead, use [`@resetText`](/api/#resettext) command to clear contents of the printer when required. This can be changed by enabling `Auto Reset` in the printer actor configuration menu.
 
-## Wide Printer
+Each print command handled by a fullscreen printer will prepend 2 line breaks before the printed text by default (except when current content of the printer is empty). This can be disabled in the printer actor configuration menu by setting `Auto Line Break` to zero.
 
-Wide printers are very like dialogue printers, except for some changes in the panel layout tailored for wide displays. Wide printers also support [character avatars](/guide/characters.md#avatar-textures) feature.
+![](https://i.gyazo.com/978c2eb05215aac2d62177cfb58bfbef.png)
 
-![Wide Printer](https://i.gyazo.com/83c091c08846fa1cab8764a8d4dddeda.png)
+Below is an example on using fullscreen printer.
+
+```
+; Activate fullscreen printer.
+@printer Fullscreen
+
+; Following lines will be printed in the same window, separated by two line breaks.
+Lorem ipsum dolor sit amet. Proin ultricies in leo id scelerisque. 
+Praesent vel orci luctus, tincidunt nisi et, fringilla arcu. In a metus orci. 
+Maecenas congue nunc quis lectus porttitor, eget commodo massa congue.
+
+; Clear contents of the printer.
+@resetText
+
+; Print more lines.
+Morbi ultrices dictum diam, in gravida neque vulputate in. 
+...
+```
 
 ## Chat Printer
 
