@@ -38,6 +38,8 @@ You can find built-in implementations of the services in the runtime source code
 
 To add a new custom engine service, implement `IEngineService` interface and add `InitializeAtRuntime` attribute to the implementing class. Instance of the implementation will automatically be created during the engine initialization and become available via `Engine.GetService<TService>()` API.
 
+*Notice: Adding custom services requires using engine's asynchronous APIs, which are built with **UniTask** third-party library. You'll need to install the library to your Unity project to be able to use the async APIs; consult [UniTask extension guide](/guide/unitask.md) for more information.*
+
 You can force your custom service to be initialized before or after other services using `InitializationPriority` argument of `InitializeAtRuntime` attribute; lower values will push it before other services in the initialization queue and vice-versa.
 
 In order to be automatically instantiated, service implementation should have a compatible constructor (or a default one). Following arguments (in any order) are allowed:
@@ -54,7 +56,7 @@ Below is an example of a custom engine service implementation with some usage no
 
 ```csharp
 using Naninovel;
-using System.Threading.Tasks;
+using UniRx.Async;
 using UnityEngine;
 
 [InitializeAtRuntime]
@@ -71,13 +73,13 @@ public class CustomService : IEngineService
         this.scriptPlayer = scriptPlayer;
     }
 
-    public Task InitializeServiceAsync ()
+    public UniTask InitializeServiceAsync ()
     {
     	// Initialize the service here.
         // It's now safe to use services requested in the constructor.
         Debug.Log(inputManager.ProcessInput);
         Debug.Log(scriptPlayer.PlayedScript);
-        return Task.CompletedTask;
+        return UniTask.CompletedTask;
     }
 
     public void ResetService ()
@@ -109,7 +111,7 @@ Below is an example of a dummy `IInputManager` implementation, that does nothing
 ```csharp
 using Naninovel;
 using Naninovel.UI;
-using System.Threading.Tasks;
+using UniRx.Async;
 using UnityEngine;
 
 [InitializeAtRuntime(@override: typeof(InputManager))]
@@ -123,10 +125,10 @@ public class CustomInputManager : IInputManager
         Configuration = config;
     }
 
-    public Task InitializeServiceAsync ()
+    public UniTask InitializeServiceAsync ()
     {
         Debug.Log("CustomInputManager::InitializeServiceAsync()");
-        return Task.CompletedTask;
+        return UniTask.CompletedTask;
     }
 
     public void ResetService ()

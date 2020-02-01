@@ -1,9 +1,5 @@
 ﻿# FAQ
 
-## Will I get access to the source code when I buy Naninovel?
-
-All the engine source code is available in the distributed package. A couple of third-party libraries (namely, [NCalc](https://github.com/ncalc/ncalc) and [NLayer](https://github.com/naudio/NLayer)) are pre-compiled, but they're open-sourced (MIT license) with sources hosted on GitHub.
-
 ## Can I use Naninovel as a drop-in dialogue system for an existing game?
 
 While Naninovel is focused around traditional visual novel games the engine is designed to allow integration with existing projects. If you're making a 3D adventure game, RPG or game of any other genre — you can still use Naninovel as a drop-in dialogue system. 
@@ -19,6 +15,10 @@ Sure, you can freely "inject" any custom logic to the default Naninovel flow. In
 Naninovel can work with any language, but to display text in some languages, you'll need a compatible font. [Google's Roboto](https://fonts.google.com/specimen/Roboto) is used by default, which supports all Latin, Cyrillic, and Greek characters in Unicode 7.0. You can change the font used in any of the built-in UIs with [UI customization](/guide/ui-customization.md) feature; for the printed text messages, [create custom printers](/guide/text-printers.md#adding-custom-printers) and set the desired font.
 
 In case you're aiming to support as much languages, as possible, check out [Noto fonts](https://www.google.com/get/noto/).
+
+## Will I get access to the source code when I buy Naninovel?
+
+All the engine source code is available in the distributed package. Several third-party libraries (namely, [NCalc](https://github.com/ncalc/ncalc), [NLayer](https://github.com/naudio/NLayer) and [UniTask](https://github.com/Elringus/UniTask)) are pre-compiled, but they're open-sourced (MIT license) with sources hosted on GitHub.
 
 ## Why the package doesn't contain any demo scenes?
 
@@ -77,3 +77,7 @@ To manually handle the aspect ratio differences (eg, if you prefer to add black 
 ## How to run a custom C# code from naninovel scripts?
 
 Use [custom commands](/guide/custom-commands.md).
+
+## Why I get an error when using Naninovel's C# API?
+
+All the engine asynchronous APIs are using [UniTask](https://github.com/Elringus/UniTask) library (instead of [.NET native Task](https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.task)) for more efficient memory usage and performance. Consult the [guide on how to install UniTask](/guide/unitask.md) to be able to use the engine's async APIs.
