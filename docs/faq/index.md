@@ -18,7 +18,7 @@ In case you're aiming to support as much languages, as possible, check out [Noto
 
 ## Will I get access to the source code when I buy Naninovel?
 
-All the engine source code is available in the distributed package. Several third-party libraries (namely, [NCalc](https://github.com/ncalc/ncalc), [NLayer](https://github.com/naudio/NLayer) and [UniTask](https://github.com/Elringus/UniTask)) are pre-compiled, but they're open-sourced (MIT license) with sources hosted on GitHub.
+All the engine source code is available in the distributed package. Several third-party libraries (namely, [NCalc](https://github.com/ncalc/ncalc), [NLayer](https://github.com/naudio/NLayer) and [UniTask](https://github.com/Cysharp/UniTask)) are pre-compiled, but they're open-sourced (MIT license) with sources hosted on GitHub.
 
 ## Why the package doesn't contain any demo scenes?
 
@@ -77,7 +77,3 @@ To manually handle the aspect ratio differences (eg, if you prefer to add black 
 ## How to run a custom C# code from naninovel scripts?
 
 Use [custom commands](/guide/custom-commands.md).
-
-## Why I get an error when using Naninovel's C# API?
-
-All the engine asynchronous APIs are using [UniTask](https://github.com/Elringus/UniTask) library (instead of [.NET native Task](https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.task)) for more efficient memory usage and performance. Consult the [guide on how to install UniTask](/guide/unitask.md) to be able to use the engine's async APIs.
