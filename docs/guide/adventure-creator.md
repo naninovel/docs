@@ -10,8 +10,6 @@ You can use Naninovel to handle dialogue scenes in AC or load AC from a Naninove
 
 Install both Adventure Creator and Naninovel (the order doesn't matter).
 
-Install [UniTask](/guide/unitask.md) library (required for the extension package to work correctly).
-
 Download and import [Adventure Creator extension package](https://github.com/Elringus/NaninovelAdventureCreator/raw/master/NaninovelAdventureCreator.unitypackage).
 
 Set `NaninovelAdventureCreator/Runtime/Actions` as the source for custom actions in AC settings. Consult [AC guide](https://www.adventurecreator.org/tutorials/writing-custom-action) for more info on custom actions.

@@ -57,8 +57,6 @@ await stateManager.SaveSettingsAsync();
 
 It's possible to "outsource" state handling of your custom objects to a `IStateManager`, so that they will serialize to the save slots with all the engine's data when player saves the game and deserialize back when the game is loaded. 
 
-*Notice: The feature requires using engine's asynchronous APIs, which are built with **UniTask** third-party library. You'll need to install the library to your Unity project to be able to use the async APIs; consult [UniTask extension guide](/guide/unitask.md) for more information.*
-
 The following example demonstrates how to subscribe a generic `MonoBehaviour` to the save and load operations.
 
 ```csharp
@@ -124,8 +122,6 @@ By default, the engine state (game saves, global state, settings) is serialized 
 To add a custom handler, implement `ISaveSlotManager<GameStateMap>`, `ISaveSlotManager<GlobalStateMap>`, `ISaveSlotManager<SettingsStateMap>` interfaces for the game save slots, global state and settings respectively (each should have its own implementing class).
 
 Implementation should have a compatible public constructor: `public CustomSlotManager (StateConfiguration config, string savesFolderPath)`, where `config` is an instance of state configuration object and `savesFolderPath` is the path to saves folder (you're free to ignore that path and use one you see fit).
-
-*Notice: The feature requires using engine's asynchronous APIs, which are built with **UniTask** third-party library. You'll need to install the library to your Unity project to be able to use the async APIs; consult [UniTask extension guide](/guide/unitask.md) for more information.*
 
 Below is an example of a dummy settings serialization handler, which is doing nothing but logs when any of its methods are invoked.
 
