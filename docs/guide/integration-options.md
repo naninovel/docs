@@ -1,7 +1,10 @@
 # Integration Options
+
 While Naninovel is focused around traditional visual novel games the engine is designed to allow integration with existing projects. If you're making a 3D adventure game, RPG or game of any other genre — you can still use Naninovel as a drop-in dialogue system. 
 
 There are multiple ways you can integrate Naninovel with a custom project and specific implementation will depend on the type of the project and what exactly you want to achieve with Naninovel. In the following documentation we'll list various configuration options and API that could be useful for "pairing" Naninovel with a standalone game. Before you continue, consider checking the [engine architecture](/guide/engine-architecture.md) to better understand how the engine behaves on a conceptual level.
+
+*Notice: The engine's asynchronous APIs are built with **UniTask** third-party library. You'll need to install the library to your Unity project to be able to use the async APIs; consult [UniTask extension guide](/guide/unitask.md) for more information.*
 
 ## Manual Initialization 
 The first thing you'll probably want to change is disable the `Initialize On Application Load` option in the engine configuration menu.

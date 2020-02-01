@@ -57,9 +57,12 @@ await stateManager.SaveSettingsAsync();
 
 It's possible to "outsource" state handling of your custom objects to a `IStateManager`, so that they will serialize to the save slots with all the engine's data when player saves the game and deserialize back when the game is loaded. 
 
+*Notice: The feature requires using engine's asynchronous APIs, which are built with **UniTask** third-party library. You'll need to install the library to your Unity project to be able to use the async APIs; consult [UniTask extension guide](/guide/unitask.md) for more information.*
+
 The following example demonstrates how to subscribe a generic `MonoBehaviour` to the save and load operations.
 
 ```csharp
+using UniRx.Async;
 using UnityEngine;
 using Naninovel;
 
@@ -102,14 +105,14 @@ public class MyCustomBehaviour : MonoBehaviour
         stateMap.SetState(state);
     }
 
-    private Task DeserializeState (GameStateMap stateMap)
+    private UniTask DeserializeState (GameStateMap stateMap)
     {
         var state = stateMap.GetState<GameState>();
-        if (state is null) return Task.CompletedTask;
+        if (state is null) return UniTask.CompletedTask;
 
         myCustomBoolVariable = state.MyCustomBoolVariable;
         myCustomStringVariable = state.MyCustomStringVariable;
-        return Task.CompletedTask;
+        return UniTask.CompletedTask;
     }
 }
 ```
@@ -122,12 +125,14 @@ To add a custom handler, implement `ISaveSlotManager<GameStateMap>`, `ISaveSlotM
 
 Implementation should have a compatible public constructor: `public CustomSlotManager (StateConfiguration config, string savesFolderPath)`, where `config` is an instance of state configuration object and `savesFolderPath` is the path to saves folder (you're free to ignore that path and use one you see fit).
 
+*Notice: The feature requires using engine's asynchronous APIs, which are built with **UniTask** third-party library. You'll need to install the library to your Unity project to be able to use the async APIs; consult [UniTask extension guide](/guide/unitask.md) for more information.*
+
 Below is an example of a dummy settings serialization handler, which is doing nothing but logs when any of its methods are invoked.
 
 ```csharp
 using Naninovel;
 using System;
-using System.Threading.Tasks;
+using UniRx.Async;
 using UnityEngine;
 
 public class CustomSettingsSlotManager : ISaveSlotManager<SettingsStateMap>
@@ -159,23 +164,23 @@ public class CustomSettingsSlotManager : ISaveSlotManager<SettingsStateMap>
         Debug.Log($"RenameSaveSlot({sourceSlotId},{destSlotId})");
     }
 
-    public Task SaveAsync (string slotId, SettingsStateMap data)
+    public UniTask SaveAsync (string slotId, SettingsStateMap data)
     {
         OnBeforeSave?.Invoke();
         Debug.Log($"SaveAsync({slotId})");
         OnSaved?.Invoke();
-        return Task.CompletedTask;
+        return UniTask.CompletedTask;
     }
 
-    public Task<SettingsStateMap> LoadAsync (string slotId)
+    public UniTask<SettingsStateMap> LoadAsync (string slotId)
     {
         OnBeforeLoad?.Invoke();
         Debug.Log($"LoadAsync({slotId})");
         OnLoaded?.Invoke();
-        return Task.FromResult(new SettingsStateMap());
+        return UniTask.FromResult(new SettingsStateMap());
     }
 
-    public Task<SettingsStateMap> LoadOrDefaultAsync (string slotId)
+    public UniTask<SettingsStateMap> LoadOrDefaultAsync (string slotId)
     {
         return LoadAsync(slotId);
     }

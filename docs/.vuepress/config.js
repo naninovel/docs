@@ -97,6 +97,7 @@ function getGuideSidebar (groupA, groupB, groupC) {
                 'playmaker',
                 'bolt',
                 'adventure-creator',
+                'unitask'
             ]
         }
     ]

@@ -2,6 +2,8 @@
 
 Command represents a single operation, that controls what happens on the scene; e.g., it can be used to change a background, move a character or load another naninovel script. Parametrized command sequences defined in [naninovel scripts](/guide/naninovel-scripts.md) effectively controls the game flow. You can find available built-in commands in the [API reference](/api/). In code, all the built-in script command implementations are defined under `Naninovel.Commands` namespace.
 
+*Notice: Adding custom commands requires using engine's asynchronous APIs, which are built with **UniTask** third-party library. You'll need to install the library to your Unity project to be able to use the async APIs; consult [UniTask extension guide](/guide/unitask.md) for more information.*
+
 To add your own custom script command, create a new C# class derived from `Command` and implement `ExecuteAsync` abstract method. The created class will automatically be picked up by the engine and you'll be able to invoke the command from the naninovel scripts by either the class name or an alias (if assigned). To assign an alias to the naninovel command, apply `CommandAlias` attribute to the class.
 
 `ExecuteAsync` is an async method invoked when the command is executed by the scripts player; put the command logic there. Use [engine services](/guide/engine-services.md) to access the engine built-in systems. Naninovel script execution will halt until this method returns a completed task in case `Wait` parameter is `true`.
@@ -44,7 +46,7 @@ Here is an example of a custom command, that can be invoked from naninovel scrip
 ```csharp
 using Naninovel.Commands;
 using System.Threading;
-using System.Threading.Tasks;
+using UniRx.Async;
 using UnityEngine;
 
 [CommandAlias("hello")]
@@ -52,7 +54,7 @@ public class HelloWorld : Command
 {
     public StringParameter Name;
 
-    public override Task ExecuteAsync (CancellationToken cancellationToken = default)
+    public override UniTask ExecuteAsync (CancellationToken cancellationToken = default)
     {
         if (Assigned(Name))
         {
@@ -63,7 +65,7 @@ public class HelloWorld : Command
             Debug.Log("Hello World!");
         }
 
-        return Task.CompletedTask;
+        return UniTask.CompletedTask;
     }
 }
 ```

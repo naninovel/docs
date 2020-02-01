@@ -60,11 +60,11 @@ To create a custom UI template prefab with all the required components attached 
 If you're OK with C# scripting and want to override default logic of the UI, [create a new component](https://docs.unity3d.com/Manual/CreatingAndUsingScripts), implement `IManagedUI` interface (feel free to inherit the component from `ScriptableUIBehaviour` to fulfill all the interface requirements) and attach the created custom component instead. Check `Naninovel/Runtime/UI` folder for reference implementations of the built-in UIs. Here is an example of minimal implementation of a custom UI component:
 
 ```csharp
-using System.Threading.Tasks;
+using UniRx.Async;
 
 public class MyCustomUI : ScriptableUIBehaviour, Naninovel.UI.IManagedUI
 {
-    public Task InitializeAsync () => Task.CompletedTask;
+    public UniTask InitializeAsync () => UniTask.CompletedTask;
 }
 ```
 
