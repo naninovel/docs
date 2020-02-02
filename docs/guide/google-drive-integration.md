@@ -6,7 +6,7 @@ Implemented via an open source (MIT license) third-party package [UnityGoogleDri
 * characters and backgrounds (sprite implementation only)
 * BGM, SFX and voice
 
-In order to be able to choose Google Drive as the resource provider you have to first install [UnityGoogleDrive](https://github.com/Elringus/UnityGoogleDrive) (by referencing the GitHub repository in `Packages/manifest.json`). Consult the GitHub project readme for installation and setup instructions. 
+In order to be able to choose Google Drive as the resource provider you have to first install [UnityGoogleDrive](https://github.com/Elringus/UnityGoogleDrive). Consult the GitHub project readme for installation and setup instructions. 
 
 When UnityGoogleDrive package is installed and configured, set `Google Drive Root Path` (folder in the root of your drive where you'll store the resource files) in the provider configuration and select the `Google Drive` provider for target resource type in the configuration manager accessible via `Naninovel -> Configuration` context menu.
 
@@ -14,3 +14,7 @@ When UnityGoogleDrive package is installed and configured, set `Google Drive Roo
 ![Select Google Drive Provider](https://i.gyazo.com/4f1984448352841142f4ad495a3a6697.png)
 
 You can share your Google Drive resources folder with other users to work in collaboration without the need to use version control systems or other complicated tools.
+
+## Example Project
+
+See [NaninovelSandbox](https://github.com/Elringus/NaninovelSandbox) project for an example on how to setup and use Google Drive provider.
