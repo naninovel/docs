@@ -300,11 +300,10 @@ Auto Show On Modify | False | Whether to automatically reveal (show) an actor wh
 
 Property | Default Value | Description
 --- | --- | ---
+Loader | UI- (Addressable, Project) | Configuration of the resource loader used with UI resources.
 Objects Layer | 5 | The layer to assign for the UI elements instatiated by the engine. Used to cull the UI when using `toogle UI` feature.
 Render Mode | Screen Space Camera | The canvas render mode to apply for all the managed UI elements.
 Sorting Offset | 1 | The sorting offset to apply for all the managed UI elements.
-Default UI | Object Ref | The list of default UI to spawn on the engine initialization. You can override or disable the built-in UI here.
-Custom UI | Object Ref | The list of custom UI prefabs to spawn on the engine initialization. Each prefab should have a `CustomUI`-derived component attached to the root object.
 
 </div>
 
