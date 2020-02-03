@@ -24,11 +24,17 @@ When UI is hidden, `Continue` input or clicking (touching) the screen will also 
 
 UI customization feature allows to add a custom UI and modify or completely replace any of the built-in UI elements, like title menu, settings menu, printer backlog, etc.
 
-Be aware though, that text printers and choice handlers are implemented via actors interface and are customized in a different way; see the corresponding documentation ([text printers](/guide/text-printers.md), [choice handlers](/guide/choices.md)) for more info.
+Be aware, that text printers and choice handlers are implemented via actors interface and are customized in a different way; see the corresponding documentation ([text printers](/guide/text-printers.md), [choice handlers](/guide/choices.md)) for more info.
 
-If you wish to modify an existing built-in UI prefab, you can find them at `Naninovel/Prefabs/DefaultUI` folder. While it's possible, please refrain from editing the built-in prefabs directly to prevent issues when updating the package. Rather duplicate the prefab you want to modify (Ctrl/Cmd+D), move it out of the package folder and modify the duplicate instead. 
+To add a custom UI or modify (disable) a built-in one, use UI resources manager accessible via `Naninovel -> Resources -> UI` editor menu.
 
-When creating a new prefab from scratch, don't forget to attach a component that implements interface of the UI you're going to override. This component should be attached to the root object of the prefab.
+![](https://i.gyazo.com/4fa6d15e17f8a9123b1dbdda585ad806.png)
+
+To add a custom UI, create a new prefab (`Create -> Naninovel -> Custom UI`) and add it to the list. To disable a built-in UI remove a record from the list.
+
+If you wish to modify an existing built-in UI prefab, you can find them at `Naninovel/Prefabs/DefaultUI` folder. While it's possible, please refrain from editing the built-in prefabs directly to prevent issues when updating the package. Rather duplicate the prefab you want to modify (Ctrl/Cmd+D), move it out of the package folder and modify the duplicate instead. Then assign modified prefab to an existing record in the UI resources manager.
+
+When creating a new prefab from scratch, make sure to attach a component that implements interface of the UI you're going to override. This component should be attached to the root object of the prefab.
 
 All the UI interfaces are stored under `Naninovel.UI` namespace:
 
@@ -49,13 +55,7 @@ ITipsUI | Unlockable [tips](/guide/unlockable-items.md#tips) browser.
 IRollbackUI | Indicator for state rollback feature.
 IContinueInputUI | A fullscreen invisible UI layer positioned at the bottom of the UI stack and used to activate a `continue input` trigger when clicked or touched.
 
-To add a new custom UI (without overriding any of the built-in UIs), attach a `CustomUI` component to the root object of your custom UI prefab.
-
-![](https://i.gyazo.com/e8f6f38a4e920d65443b7d0403d42b48.png)
-
 In order for the UI to support visibility (visible on awake, fade time) and interaction options (disable interaction), also attach a `Canvas Group` component to the same object.
-
-To create a custom UI template prefab with all the required components attached use `Create -> Naninovel -> Custom UI` asset context menu.
 
 If you're OK with C# scripting and want to override default logic of the UI, [create a new component](https://docs.unity3d.com/Manual/CreatingAndUsingScripts), implement `IManagedUI` interface (feel free to inherit the component from `ScriptableUIBehaviour` to fulfill all the interface requirements) and attach the created custom component instead. Check `Naninovel/Runtime/UI` folder for reference implementations of the built-in UIs. Here is an example of minimal implementation of a custom UI component:
 
@@ -68,17 +68,7 @@ public class MyCustomUI : ScriptableUIBehaviour, Naninovel.UI.IManagedUI
 }
 ```
 
-When the prefab is ready, add it to `Custom UI` list in the UI configuration accessible with `Naninovel -> Configuration -> UI` context menu.
-
-![](https://i.gyazo.com/f26310e391b96bda3d402d704c31cb9e.png)
-
-When the engine is initializing it'll spawn all the prefabs added to the `Custom UI` list.
-
-To disable or override the default (built-in) UIs, use the `Default UI` area.
-
-![](https://i.gyazo.com/57338b7150364f45f715bcd3e47d8c1a.png)
-
-To disable a default UI, uncheck the toggle behind the corresponding UI record and to override the UI, assign a custom prefab to the "Game Object" field of the record.
+When the engine is initializing it'll instantiate all the UI prefabs assigned in the resources manager.
 
 ## Play Script On Unity Event
 
