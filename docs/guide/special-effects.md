@@ -1,71 +1,71 @@
 ﻿# Special Effects
 
-Special effects are activated via [`@fx`](/api/#fx) command followed by the effect name. E.g.:
+Special effects are activated via [`@spawn`](/api/#spawn) command followed by the effect name. E.g.:
 
 ```
-@fx ShakeBackground
+@spawn ShakeBackground
 ```
 — will shake the main background.
 
 You can control parameters of the effect with `params` parameter. E.g.:
 
 ```
-@fx ShakeCharacter params:Kohaku,1
+@spawn ShakeCharacter params:Kohaku,1
 ```
 — will shake character with ID "Kohaku" once, instead of the default 3.
 
 It's possible to selectively specify a subset of the parameters, leaving the rest at the default values:
 
 ```
-@fx ShakePrinter params:,,0.5
+@spawn ShakePrinter params:,,0.5
 ```
 — notice the first two parameters (printer ID and shake count) are skipped and will have their default values, but the third parameter (shake duration) is set to 0.5 seconds.
 
-You can update the effect parameters without re-starting it with the consequent [`@fx`](/api/#fx)  commands, eg:
+You can update the effect parameters without re-starting it with the consequent [`@spawn`](/api/#spawn)  commands, eg:
 
 ```
 ; Start slowly shaking `Kohaku` character in a loop, 
 ; don't wait for completion (it's an infinite loop, anyway)
-@fx ShakeCharacter params:Kohaku,0,,,0.1 wait:false
+@spawn ShakeCharacter params:Kohaku,0,,,0.1 wait:false
 Kohaku: It's rumbling!
 ; Shake 3 more times with an increased amplitude
-@fx ShakeCharacter params:Kohaku,3,,,0.8
+@spawn ShakeCharacter params:Kohaku,3,,,0.8
 ```
 
-Some effects are persistent by default and should be manually stopped with [`@stopfx`](/api/#stopfx) command. E.g.:
+Some effects are persistent by default and should be manually stopped with [`@despawn`](/api/#despawn) command. E.g.:
 
 ```
 ; Start the rain
-@fx Rain
+@spawn Rain
 ; Stop the rain
-@stopfx Rain
+@despawn Rain
 ```
 
-The [`@stopfx`](/api/#stopfx) commands of some effects can also receive parameters (eg, to control the fade-out duration), eg:
+The [`@despawn`](/api/#despawn) commands of some effects can also receive parameters (eg, to control the fade-out duration), eg:
 
 ```
 ; Stops the rain gradually over 10 seconds
-@stopfx Rain params:10
+@despawn Rain params:10
 ```
 
-When no `params` is specified, default parameters will be used. You can find both "start" (accepted by the [`@fx`](/api/#fx) command) and "stop" (accepted by the [`@stopfx`](/api/#stopfx) command) parameters available for each effect and their default values in the docs below.
+When no `params` is specified, default parameters will be used. You can find both "start" (accepted by the [`@spawn`](/api/#spawn) command) and "stop" (accepted by the [`@despawn`](/api/#stopfx) command) parameters available for each effect and their default values in the docs below.
 
 It's possible to start multiple effects of the same type by appending an ID delimited by `#` after the effect name, eg:
 
 ```
 ; Shake both `Kohaku` and `Yuko` in a loop
-@fx ShakeCharacter#1 params:Kohaku,0 wait:false
-@fx ShakeCharacter#2 params:Yuko,0 wait:false
+@spawn ShakeCharacter#1 params:Kohaku,0 wait:false
+@spawn ShakeCharacter#2 params:Yuko,0 wait:false
 ```
 
 When stopping or updating instanced effects, don't forget to specify the ID:
 ```
 ; Stop shaking `Yuko`, increase `Kohaku` amplitude
-@stopfx ShakeCharacter#2
-@fx ShakeCharacter#1 params:k,0,,,1
+@despawn ShakeCharacter#2
+@spawn ShakeCharacter#1 params:k,0,,,1
 ```
 
-You can use any string for ID (it can be a number like above, or something more meaningful, eg `@fx ShakeCharacter#Kohaku`), just make sure it's unique among other IDs you're using with a given effect name.
+You can use any string for ID (it can be a number like above, or something more meaningful, eg `@spawn ShakeCharacter#Kohaku`), just make sure it's unique among other IDs you're using with a given effect name.
 
 ## Shake Printer
 Shakes printer with the specified ID or the default one.
@@ -76,7 +76,7 @@ Shakes printer with the specified ID or the default one.
 Name | Type | Default | Description
 --- | --- | --- | ---
 Printer ID | String | null | ID of the printer to shake. Will shake a default printer when not specified.
-Shake count | Integer | 2 | The number of shake iterations. When set to 0 or less, will loop the effect until stopped with [`@stopfx`](/api/#stopfx).
+Shake count | Integer | 2 | The number of shake iterations. When set to 0 or less, will loop the effect until stopped with [`@despawn`](/api/#despawn).
 Shake duration | Decimal | 0.15 | The base duration of each shake iteration, in seconds.
 Duration variation | Decimal | 0.25 | The randomized delta modifier applied to the base duration of the effect.
 Shake amplitude | Decimal | 0.5 | The base displacement amplitude of each shake iteration, in units.
@@ -87,15 +87,15 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 **Examples**
 ```
 ; Shake a default printer with default params
-@fx ShakePrinter
+@spawn ShakePrinter
 
 ; Shake a default printer horizontally 10 times 
-@fx ShakePrinter params:,10,,,,,true,false
+@spawn ShakePrinter params:,10,,,,,true,false
 
 ; Start shaking a default printer in loop, print some text, stop the shaking
-@fx ShakePrinter params:,0 wait:false
+@spawn ShakePrinter params:,0 wait:false
 What a shaky situation!
-@stopfx ShakePrinter
+@despawn ShakePrinter
 ```
 
 ## Shake Background
@@ -118,10 +118,10 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 **Examples**
 ```
 ; Shake main background with default params
-@fx ShakeBackground
+@spawn ShakeBackground
 
 ; Shake `Video` background twice 
-@fx ShakeBackground params:Video,2
+@spawn ShakeBackground params:Video,2
 ```
 
 ## Shake Character
@@ -144,15 +144,15 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 **Examples**
 ```
 ; Shake `Kohaku` character with default parameters
-@fx ShakeCharacter params:Kohaku
+@spawn ShakeCharacter params:Kohaku
 
 ; Start shaking a random character, show a choice to stop and act accordingly
-@fx ShakeCharacter params:,0
+@spawn ShakeCharacter params:,0
 @choice "Continue shaking" goto:.Continue
 @choice "Stop shaking" goto:.Stop
 @stop
 # Stop
-@stopfx ShakeCharacter
+@despawn ShakeCharacter
 # Continue
 ...
 ```
@@ -177,10 +177,10 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 **Examples**
 ```
 ; Shake the main Naninovel camera with default params
-@fx ShakeCamera
+@spawn ShakeCamera
 
 ; Shake the main Naninovel camera horizontally 5 times 
-@fx ShakeCamera params:,5,,,,,true,false
+@spawn ShakeCamera params:,5,,,,,true,false
 ```
 
 ## Animate Actor
@@ -203,9 +203,9 @@ Intensity | Decimal | 1 | The intensity of the effect, in 0.0 to 10.0 range.
 **Examples**
 ```
 ; Apply the glitch effect with default parameters
-@fx DigitalGlitch
+@spawn DigitalGlitch
 ; Apply the effect over 3.33 seconds with a low intensity
-@fx DigitalGlitch params:3.33,0.1
+@spawn DigitalGlitch params:3.33,0.1
 ```
 
 ## Rain
@@ -229,9 +229,9 @@ Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn
 **Examples**
 ```
 ; Start intensive rain over 10 seconds
-@fx Rain params:1500,10
+@spawn Rain params:1500,10
 ; Stop the rain over 30 seconds
-@stopfx Rain params:30
+@despawn Rain params:30
 ```
 
 ## Snow
@@ -253,9 +253,9 @@ Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn
 **Examples**
 ```
 ; Start intensive snow over 10 seconds
-@fx Snow params:300,10
+@spawn Snow params:300,10
 ; Stop the snow over 30 seconds
-@stopfx Snow params:30
+@despawn Snow params:30
 ```
 
 ## Sun Shafts
@@ -277,9 +277,9 @@ Fade-out time | Decimal | 3 | The particle system will gradually lower the opaci
 **Examples**
 ```
 ; Start intensive sunshine over 10 seconds
-@fx SunShafts params:1,10
+@spawn SunShafts params:1,10
 ; Stop the sunshine over 30 seconds
-@stopfx SunShafts params:30
+@despawn SunShafts params:30
 ```
 
 ## Depth of Field (Bokeh)
@@ -303,12 +303,12 @@ Stop Duration | Decimal | 1 | Fade-off (disable) duration for the effect paramet
 **Examples**
 ```
 ; Enable the effect with default parameters and lock focus to `Kohaku` game object
-@fx DepthOfField params:Kohaku
+@spawn DepthOfField params:Kohaku
 ; Fade-off (disable) the effect over 10 seconds
-@stopfx DepthOfField params:10
+@despawn DepthOfField params:10
 ; Set focus point 10 units away from the camera,
 ; focal distance to 0.95 and apply it over 3 seconds
-@fx DepthOfField params:,10,0.95,3
+@spawn DepthOfField params:,10,0.95,3
 ```
 
 ## Adding Custom Effects

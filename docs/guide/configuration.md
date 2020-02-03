@@ -238,6 +238,16 @@ Navigator Sort Order | 900 | UI sort order of the script navigator.
 
 </div>
 
+## Spawn
+
+<div class="config-table">
+
+Property | Default Value | Description
+--- | --- | ---
+Loader | Spawn- (Addressable, Project) | Configuration of the resource loader used with spawn resources.
+
+</div>
+
 ## State
 
 <div class="config-table">
