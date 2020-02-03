@@ -315,14 +315,14 @@ Stop Duration | Decimal | 1 | Fade-off (disable) duration for the effect paramet
 
 ### Standalone Effects
 
-You can add a custom standalone effect (implemented via a prefab, like the "Rain" and "Snow" built-in effects) by storing the effect prefab in `Resources` folders and using [`@spawn`](/api/#spawn) and [`@despawn`](/api/#despawn) commands to control them via naninovel scripts. For example, given there is a `Resources/FX/Explosion.prefab` asset stored in the project, following commands will spawn and de-spawn (destroy) the prefab on scene:
+You can add a custom standalone effect (implemented via a prefab, like the "Rain" and "Snow" built-in effects) by adding the effect prefab via spawn resources managers (`Naninovel -> Resources -> Spwan`) and using [`@spawn`](/api/#spawn) and [`@despawn`](/api/#despawn) commands in the same way as with the built-in effects. For example, given there is a `Explosion.prefab` prefab assigned via the spawn manager, following commands will spawn and de-spawn (destroy) the prefab on scene:
 
 ```
-@spawn FX/Explosion
-@despawn FX/Explosion
+@spawn Explosion
+@despawn Explosion
 ```
 
-Check the built-in effect prefabs stored at `Naninovel/Resources/Naninovel/FX` for reference implementations.
+Check the built-in effect prefabs stored at `Naninovel/Prefabs/FX` for reference implementations.
 
 ### Camera Effects
 

@@ -57,7 +57,7 @@ For example, to unlock the `CG/Map` item added in the illustrations above, use t
 @unlock CG/Map
 ```
 
-In case you'll use both unlockable and background resources to add the CG items, the resources specified in the unlockables manager will be displayed in the CG gallery first. You can change this behavior as well as the actual sources from where the available CG resources are retrieved using `Cg Sources` property of `CG Gallery Panel` script, attached to the root of UI prefab representing the CG Gallery (built-in implementation stored at `Naninovel/Resources/Naninovel/DefaultUI/ICGGalleryUI.CGGalleryPanel`).
+In case you'll use both unlockable and background resources to add the CG items, the resources specified in the unlockables manager will be displayed in the CG gallery first. You can change this behavior as well as the actual sources from where the available CG resources are retrieved using `Cg Sources` property of `CG Gallery Panel` script, attached to the root of UI prefab representing the CG Gallery (built-in implementation stored at `Naninovel/Prefabs/DefaultUI/ICGGalleryUI.CGGalleryPanel`).
 
 ![](https://i.gyazo.com/c62c69eea8d6b1147aacb178dcaa9347.png)
 
