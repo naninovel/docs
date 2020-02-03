@@ -174,8 +174,8 @@ While the script are executed in a linear fashion by default, you can introduce 
 @print text:"I'm still alive." if:!dead
 
 ; If `glitch` is a bool and equals `true` or random function in 1 to 10 range 
-; returns 5 or more, execute `@fx` command.
-@fx GlitchCamera if:"glitch || Random(1, 10) >= 5"
+; returns 5 or more, execute `@spawn` command.
+@spawn GlitchCamera if:"glitch || Random(1, 10) >= 5"
 
 ; If `score` value is in 7 to 13 range or `lucky` variable is a bool and equals 
 ; `true`, load `LuckyEnd` script.
@@ -195,7 +195,7 @@ It's also possible to specify multi-line conditional blocks with [`@if`](/api/#i
 @if score>10
 	Good job, you've passed the test!
 	@bgm Victory
-	@fx Fireworks
+	@spawn Fireworks
 @elseif attempts>100
 	You're hopeless... Need help?
 	@choice "Yeah, please!" goto:.GetHelp

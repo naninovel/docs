@@ -442,7 +442,7 @@ Good!
 ## despawn
 
 #### Summary
-Destroys object spawned with [`@spawn`](/api/#spawn) command.
+Destroys an object spawned with [`@spawn`](/api/#spawn) command.
 
 #### Remarks
 If prefab has a `UnityEngine.MonoBehaviour` component attached the root object, and the component implements  a `Naninovel.Commands.DestroySpawned.IParameterized` interface, will pass the specified `params` values before destroying the object;  if the component implements `Naninovel.Commands.DestroySpawned.IAwaitable` interface, command execution will wait for  the async completion task returned by the implementation before destroying the object.
@@ -453,7 +453,7 @@ If prefab has a `UnityEngine.MonoBehaviour` component attached the root object, 
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | String | Path to the prefab resource to destroy. Path is relative to a `./Resources` folder, eg  given a `Assets/Resources/FX/Explosion.prefab` asset, use the following path to spawn it: `FX/Explosion`.  A [`@spawn`](/api/#spawn) command with the same path is expected to be executed before.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | String | Name (path) of the prefab resource to destroy.  A [`@spawn`](/api/#spawn) command with the same parameter is expected to be executed before.
 params | List&lt;String&gt; | Parameters to set before destoying the prefab.  Requires the prefab to have a `Naninovel.Commands.DestroySpawned.IParameterized` component attached the root object.
 
 </div>
@@ -506,35 +506,6 @@ dissolve | String | Path to the [custom dissolve](/guide/transition-effects.md#c
 easing | String | Name of the easing function to use for the modification.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  When not specified, will use a default easing function set in the actor's manager configuration settings.
 
 </div>
-
-## fx
-
-#### Summary
-Spawns a [special effect](/guide/special-effects.md) prefab stored in `./Resources/Naninovel/FX` resources folder.  When performed over an already spawned FX object, will update the spawn parameters instead.
-
-#### Parameters
-
-<div class="config-table">
-
-ID | Type | Description
---- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | String | Path to the prefab resource to spawn. Path is relative to a `./Resources` folder, eg  given a `Assets/Resources/FX/Explosion.prefab` asset, use the following path to spawn it: `FX/Explosion`.
-params | List&lt;String&gt; | Parameters to set when spawning the prefab.  Requires the prefab to have a `Naninovel.Commands.Spawn.IParameterized` component attached the root object.
-
-</div>
-
-#### Example
-```
-; Shakes a default text printer
-@fx ShakePrinter
-
-; Applies a glitch effect to the camera
-@fx GlitchCamera
-
-; Applies a glitch effect to the camera with custom parameters
-; and skips waiting for the effect duration
-@fx GlitchCamera params:10,0.1 wait:false
-```
 
 ## gosub
 
@@ -1325,7 +1296,7 @@ easing | String | Name of the easing function to use for the modifications.  <br
 ## spawn
 
 #### Summary
-Spawns a prefab stored in project resources.  When performed over an already spawned object, will update the spawn parameters instead.
+Instantiates a prefab or a [special effect](/guide/special-effects.md);  when performed over an already spawned object, will update the spawn parameters instead.
 
 #### Remarks
 If prefab has a `UnityEngine.MonoBehaviour` component attached the root object, and the component implements  a `Naninovel.Commands.Spawn.IParameterized` interface, will pass the specified `params` values after the spawn;  if the component implements `Naninovel.Commands.Spawn.IAwaitable` interface, command execution will wait for  the async completion task returned by the implementation.
@@ -1336,15 +1307,15 @@ If prefab has a `UnityEngine.MonoBehaviour` component attached the root object, 
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | String | Path to the prefab resource to spawn. Path is relative to a `./Resources` folder, eg  given a `Assets/Resources/FX/Explosion.prefab` asset, use the following path to spawn it: `FX/Explosion`.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | String | Name (path) of the prefab resource to spawn.
 params | List&lt;String&gt; | Parameters to set when spawning the prefab.  Requires the prefab to have a `Naninovel.Commands.Spawn.IParameterized` component attached the root object.
 
 </div>
 
 #### Example
 ```
-; Given the project contains an `Assets/Resources/Rain.prefab` asset, spawn it
-@spawn Rain
+; Given an `Rainbow` prefab is assigned in spawn resources, instantiate it.
+@spawn Rainbow
 ```
 
 ## startTrans
@@ -1411,28 +1382,6 @@ ID | Type | Description
 
 ; Stops all the currently played music tracks
 @stopBgm
-```
-
-## stopFx
-
-#### Summary
-Stops [special effect](/guide/special-effects.md) started with [`@fx`](/api/#fx) command by destroying spawned object of the corresponding FX prefab.
-
-#### Parameters
-
-<div class="config-table">
-
-ID | Type | Description
---- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | String | Path to the prefab resource to destroy. Path is relative to a `./Resources` folder, eg  given a `Assets/Resources/FX/Explosion.prefab` asset, use the following path to spawn it: `FX/Explosion`.  A [`@spawn`](/api/#spawn) command with the same path is expected to be executed before.
-params | List&lt;String&gt; | Parameters to set before destoying the prefab.  Requires the prefab to have a `Naninovel.Commands.DestroySpawned.IParameterized` component attached the root object.
-
-</div>
-
-#### Example
-```
-; Given a "Rain" FX was started with "@fx" command
-@stopfx Rain
 ```
 
 ## stopSfx

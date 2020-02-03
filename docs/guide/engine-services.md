@@ -29,7 +29,7 @@ IResourceProviderManager | Manages `IResourceProvider` objects.
 IStateManager | Handles `IEngineService`-related persistent data de-/serialization; provides API to [save and load](/guide/save-load-system.md) game state.
 IUIManager | Manages `IManagedUI` objects and handles [UI customization](/guide/user-interface.md#ui-customization) feature.
 ICustomVariableManager | Provides access and allows modifying [custom variables](/guide/custom-variables.md). 
-ISpawnManager | Manages objects spawned with [`@spawn`](/api/#spawn) and [`@fx`](/api/#fx) commands.
+ISpawnManager | Manages objects spawned with [`@spawn`](/api/#spawn) commands.
 IUnlockableManager | Manages [unlockable items](/guide/unlockable-items.md) (CG and movie gallery items, tips, etc).
 
 You can find built-in implementations of the services in the runtime source code stored at `Naninovel/Runtime`.
