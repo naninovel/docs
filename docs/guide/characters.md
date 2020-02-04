@@ -131,13 +131,11 @@ See [Generic](/guide/characters.md#generic-characters) and [Live2D](/guide/chara
 
 ## Linked Printer
 
-It's possible to associate a custom [text printer](/guide/text-printers.md) with a character using `Linked Printer` property.
+It's possible to associate a [text printer](/guide/text-printers.md) with a character using `Linked Printer` property.
 
 ![](https://i.gyazo.com/50ca6b39cd7f708158678339244b1dc4.png)
 
 When linked, the printer will automatically be used to handle messages authored by the character.
-
-Only custom printers can be linked with characters; see [text printers guide](/guide/text-printers.md#adding-custom-printers) for more information on adding custom printers.
 
 Be aware, that [`@print`](/api/#print) commands (that are also used under the hood when printing generic text lines) make associated printers default and hide other visible printers. When printers are linked to characters, print commands will automatically change the currently visible and default text printer, while printing text associated with the corresponding characters. It's possible to prevent this behavior by disabling `Force Single Printer` property in the printer configuration menu; when disabled you'll have to manually show/hide and switch default printers with [`@printer`](/api/#printer) commands.
 
