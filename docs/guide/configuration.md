@@ -3,6 +3,10 @@ The engine configuration is stored in multiple scriptable object assets located 
 
 Use `Naninovel -> Configuration` or `Edit -> Project Settings -> Naninovel` to access the configuration menu.
 
+Notice, that all the configuration menus are supporting [Unity's presets feature](https://docs.unity3d.com/Manual/Presets). It could be useful to create several configuration presets when deploying to different target platforms (eg, mobile, standlone, consoles, etc).
+
+<video class="video" loop autoplay><source src="https://i.gyazo.com/55f5c74bfc16e1af2455034647525df3.mp4" type="video/mp4"></video>
+
 This configuration reference is valid for [Naninovel v1.9.1-beta](https://github.com/Elringus/NaninovelWeb/releases).
 
 ## Audio
