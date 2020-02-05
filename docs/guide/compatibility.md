@@ -6,9 +6,9 @@ Naninovel is currently in a final stage of open beta: all the core features are 
 
 ## Unity Version
 
-Minimum supported Unity version is **2019.3**; this won't change throughout Naninovel v1.x releases. Support for new releases from the [TECH stream](https://blogs.unity3d.com/2018/04/09/new-plans-for-unity-releases-introducing-the-tech-and-long-term-support-lts-streams/) is added once they're out of the beta.
+Minimum supported Unity version is **2019.3**; this won't change throughout Naninovel v1.x releases. Support for new releases from [TECH stream](https://blogs.unity3d.com/2018/04/09/new-plans-for-unity-releases-introducing-the-tech-and-long-term-support-lts-streams/) is added once they're out of beta.
 
-It's recommended to stick with the LTS stream (Unity 2019.4 LTS release is expected in spring 2020) to minimize production risks.
+It's recommended to stay on [2019 LTS stream](https://unity3d.com/unity/qa/lts-releases) (expected to release in spring 2020) to minimize production risks.
 
 ## Platforms
 
