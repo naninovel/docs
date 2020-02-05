@@ -315,7 +315,11 @@ Stop Duration | Decimal | 1 | Fade-off (disable) duration for the effect paramet
 
 ### Standalone Effects
 
-You can add a custom standalone effect (implemented via a prefab, like the "Rain" and "Snow" built-in effects) by adding the effect prefab via spawn resources managers (`Naninovel -> Resources -> Spwan`) and using [`@spawn`](/api/#spawn) and [`@despawn`](/api/#despawn) commands in the same way as with the built-in effects. For example, given there is a `Explosion.prefab` prefab assigned via the spawn manager, following commands will spawn and de-spawn (destroy) the prefab on scene:
+You can add a custom standalone effect (implemented via a prefab, like the "Rain" and "Snow" built-in effects) by adding the effect prefab via spawn resources managers (`Naninovel -> Resources -> Spwan`) and using [`@spawn`](/api/#spawn) and [`@despawn`](/api/#despawn) commands in the same way as with the built-in effects.
+
+![](https://i.gyazo.com/45b9d8fb51ffb368ff9f792221f10ca6.png)
+
+For example, given there is a `Explosion.prefab` prefab assigned via the spawn manager, following commands will spawn and de-spawn (destroy) the prefab on scene:
 
 ```
 @spawn Explosion
@@ -326,7 +330,7 @@ Check the built-in effect prefabs stored at `Naninovel/Prefabs/FX` for reference
 
 ### Camera Effects
 
-If you wish to apply a custom [post-processing effect](https://assetstore.unity.com/?q=post%20processing&orderBy=1) (aka image effect or camera filter, like the "Digital Glitch" built-in effect) to the Naninovel camera, [create a camera prefab](https://docs.unity3d.com/Manual/CreatingPrefabs.html), [add the required effect components](https://docs.unity3d.com/Manual/UsingComponents.html) to the camera's object and assign the prefab to `Custom Camera Prefab` field in the camera configuration menu (Naninovel -> Configuration -> Camera).
+If you wish to apply a custom [post-processing effect](https://assetstore.unity.com/?q=post%20processing&orderBy=1) (aka image effect or camera filter, like the "Digital Glitch" built-in effect) to the Naninovel camera, [create a camera prefab](https://docs.unity3d.com/Manual/CreatingPrefabs.html), [add the required effect components](https://docs.unity3d.com/Manual/UsingComponents.html) to the camera's object and assign the prefab to `Custom Camera Prefab` field in the camera configuration menu (`Naninovel -> Configuration -> Camera`).
 
 ![](https://i.gyazo.com/6024aac1d2665dd96915758cd5c09fde.png)
 
