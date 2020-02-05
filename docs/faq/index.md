@@ -18,7 +18,7 @@ In case you're aiming to support as much languages, as possible, check out [Noto
 
 ## Will I get access to the source code when I buy Naninovel?
 
-All the engine source code is available in the distributed package. Several third-party libraries (namely, [NCalc](https://github.com/ncalc/ncalc), [NLayer](https://github.com/naudio/NLayer) and [UniTask](https://github.com/Cysharp/UniTask)) are pre-compiled, but they're open-sourced (MIT license) with sources hosted on GitHub.
+All the engine source code is available in the distributed package. A couple of third-party libraries (namely, [NCalc](https://github.com/ncalc/ncalc) and [NLayer](https://github.com/naudio/NLayer)) are pre-compiled, but they're open-sourced (MIT license) with sources hosted on GitHub.
 
 ## Why the package doesn't contain any demo scenes?
 
