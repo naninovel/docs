@@ -70,7 +70,9 @@ function getGuideSidebar (groupA, groupB, groupC) {
                 'script-expressions',
                 'managed-text',
                 'localization',
-                'community-modding'
+                'resource-providers',
+                'community-modding',
+                'development-console'
             ]
         },
         {
@@ -79,15 +81,13 @@ function getGuideSidebar (groupA, groupB, groupC) {
             children: [
                 'engine-architecture',
                 'engine-services',
-                'development-console',
                 'custom-commands',
                 'custom-actor-implementations',
                 'custom-actor-shader',
                 'state-management',
                 'integration-options',
                 'render-pipelines',
-                'custom-build-environment',
-                'google-drive-integration'
+                'custom-build-environment'
             ]
         },
         {
