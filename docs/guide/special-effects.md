@@ -84,6 +84,8 @@ Amplitude variation | Decimal | 0.1 | The randomized delta modifier applied to t
 Shake horizontally | Boolean | false | Whether to displace the actor horizontally (by x-axis).
 Shake vertically | Boolean | true | Whether to displace the actor vertically (by y-axis).
 
+Be aware, that when UI is set to "Screen Space Overlay" mode, shake amplitude needs to be about x100 times the default one for a noticeable effect.
+
 **Examples**
 ```
 ; Shake a default printer with default params
