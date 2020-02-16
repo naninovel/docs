@@ -20,7 +20,7 @@ time | Decimal | Determines for how long (in seconds) command should execute. Wh
 
 </div>
 
-This API reference is valid for [Naninovel v1.9.1-beta](https://github.com/Elringus/NaninovelWeb/releases).
+This API reference is valid for [Naninovel v1.9.2-beta](https://github.com/Elringus/NaninovelWeb/releases).
 
 ## animate
 
@@ -588,7 +588,7 @@ reset | List&lt;String&gt; | When specified, will reset the engine services stat
 ## hide
 
 #### Summary
-Hides (makes invisible) an actor (character, background, text printer, choice handler, etc) with the provided ID.  In case mutliple actors with the same ID found (eg, a character and a printer), will affect all of them.
+Hides (makes invisible) actors (character, background, text printer, choice handler, etc) with the specified IDs.  In case mutliple actors with the same ID found (eg, a character and a printer), will affect only the first found one.
 
 #### Parameters
 
@@ -596,7 +596,7 @@ Hides (makes invisible) an actor (character, background, text printer, choice ha
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">ActorId</span> | String | ID of the actor to hide.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">ActorIds</span> | List&lt;String&gt; | IDs of the actors to hide.
 
 </div>
 
@@ -604,6 +604,9 @@ ID | Type | Description
 ```
 ; Given an actor with ID `SomeActor` is visible, hide (fade-out) it over 3 seconds.
 @hide SomeActor time:3
+
+; Hide `Kohaku` and `Yuko` actors.
+@hide Kohaku,Yuko
 ```
 
 ## hideAll
@@ -652,7 +655,7 @@ ID | Type | Description
 ## hideUI
 
 #### Summary
-Makes a [UI element](/guide/user-interface.md#ui-customization) with the provided name invisible.  When no name is specified, will stop rendering (hide) the entire UI (including all the built-in UIs).
+Makes [UI elements](/guide/user-interface.md#ui-customization) with the specified names invisible.  When no names are specified, will stop rendering (hide) the entire UI (including all the built-in UIs).
 
 #### Remarks
 When hiding the entire UI with this command and `allowToggle` parameter is false (default), user won't be able to re-show the UI  back with hotkeys or by clicking anywhere on the screen; use [`@showUI`](/api/#showui) command to make the UI ~~great~~ visible again.
@@ -663,7 +666,7 @@ When hiding the entire UI with this command and `allowToggle` parameter is false
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">UIName</span> | String | Name of the UI element to hide.
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">UINames</span> | List&lt;String&gt; | Name of the UI elements to hide.
 allowToggle | Boolean | When hiding the entire UI, controls whether to allow the user to re-show the UI with hotkeys or by clicking anywhere on the screen (false by default).  Has no effect when hiding a particular UI.
 
 </div>
@@ -681,6 +684,9 @@ allowToggle | Boolean | When hiding the entire UI, controls whether to allow the
 
 ; Hide the entire UI, but allow the user to toggle it back
 @hideUI allowToggle:true
+
+; Simultaneously hide built-in `ITitleUI` and custom `Calendar` UIs.
+@hideUI ISaveLoadUI,ITitleUI
 ```
 
 ## i
@@ -876,7 +882,7 @@ ID | Type | Description
 Prints (reveals over time) specified text message using a text printer actor.
 
 #### Remarks
-This command is used under the hood when processing generic text lines, eg generic line `Kohaku: Hello World!` will be  automatically tranformed into `@print "Hello World!" author:Kohaku` when parsing the naninovel scripts.<br />  Will reset (clear) the printer before printing the new message by default; set `reset` parameter to *false* to prevent that and append the text instead.<br />  Will wait for user input before finishing the task by default; set `waitInput` parameter to *false* to return as soon as the text is fully revealed.<br />  Will cancel the printing (reveal the text at once) on `Continue` and `Skip` inputs.<br />
+This command is used under the hood when processing generic text lines, eg generic line `Kohaku: Hello World!` will be  automatically tranformed into `@print "Hello World!" author:Kohaku` when parsing the naninovel scripts.<br />  Will reset (clear) the printer before printing the new message by default; set `reset` parameter to *false* or disable `Auto Reset` in the printer actor configuration to prevent that and append the text instead.<br />  Will make the printer default and hide other printers by default; set `default` parameter to *false* or disable `Auto Default` in the printer actor configuration to prevent that.<br />  Will wait for user input before finishing the task by default; set `waitInput` parameter to *false* or disable `Auto Wait` in the printer actor configuration to return as soon as the text is fully revealed.<br />
 
 #### Parameters
 
@@ -888,18 +894,24 @@ ID | Type | Description
 printer | String | ID of the printer actor to use. Will use a default one when not provided.
 author | String | ID of the actor, which should be associated with the printed message.
 speed | Decimal | Text reveal speed multiplier; should be positive or zero. Setting to one will yield the default speed.
-reset | Boolean | Whether to reset text of the printer before executing the printing task.
-waitInput | Boolean | Whether to wait for user input after finishing the printing task.
-br | Integer | Number of line breaks to prepend before the printed text.
+reset | Boolean | Whether to reset text of the printer before executing the printing task.  Default value is controlled via `Auto Reset` property in the printer actor configuration menu.
+default | Boolean | Whether to make the printer default and hide other printers before executing the printing task.  Default value is controlled via `Auto Default` property in the printer actor configuration menu.
+waitInput | Boolean | Whether to wait for user input after finishing the printing task.  Default value is controlled via `Auto Wait` property in the printer actor configuration menu.
+br | Integer | Number of line breaks to prepend before the printed text.  Default value is controlled via `Auto Line Break` property in the printer actor configuration menu.
 
 </div>
 
 #### Example
 ```
-; Will print the phrase with a default printer
+; Will print the phrase with a default printer.
 @print "Lorem ipsum dolor sit amet."
-; To include quotes in the text itself, escape them
+
+; To include quotes in the text itself, escape them.
 @print "Saying \"Stop the car\" was a mistake."
+
+; Reveal message with half of the normal speed and
+; don't wait for user input to continue.
+@print "Lorem ipsum dolor sit amet." speed:0.5 waitInput:false
 ```
 
 ## printer
@@ -1155,7 +1167,7 @@ group | String | Audio mixer [group path](https://docs.unity3d.com/ScriptReferen
 ## show
 
 #### Summary
-Shows (makes visible) an actor (character, background, text printer, choice handler, etc) with the provided ID.  In case mutliple actors with the same ID found (eg, a character and a printer), will affect all of them.
+Shows (makes visible) actors (character, background, text printer, choice handler, etc) with the specified IDs.  In case mutliple actors with the same ID found (eg, a character and a printer), will affect only the first found one.
 
 #### Parameters
 
@@ -1163,7 +1175,7 @@ Shows (makes visible) an actor (character, background, text printer, choice hand
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">ActorId</span> | String | ID of the actor to show.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">ActorIds</span> | List&lt;String&gt; | IDs of the actors to show.
 
 </div>
 
@@ -1171,6 +1183,9 @@ ID | Type | Description
 ```
 ; Given an actor with ID `SomeActor` is hidden, reveal (fade-in) it over 3 seconds.
 @show SomeActor time:3
+
+; Show `Kohaku` and `Yuko` actors.
+@show Kohaku,Yuko
 ```
 
 ## showPrinter
@@ -1199,7 +1214,7 @@ ID | Type | Description
 ## showUI
 
 #### Summary
-Makes a [UI element](/guide/user-interface.md) with the provided prefab name visible.  When no name is specified, will start rendering (show) the entire UI (in case it was hidden with [`@hideUI`](/api/#hideui)).
+Makes [UI elements](/guide/user-interface.md) with the specified prefab names visible.  When no names are specified, will reveal the entire UI (in case it was hidden with [`@hideUI`](/api/#hideui)).
 
 #### Parameters
 
@@ -1207,18 +1222,21 @@ Makes a [UI element](/guide/user-interface.md) with the provided prefab name vis
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">UIName</span> | String | Name of the UI prefab to make visible.
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">UINames</span> | List&lt;String&gt; | Name of the UI prefab to make visible.
 
 </div>
 
 #### Example
 ```
 ; Given you've added a custom UI with prefab name `Calendar`,
-; the following will make it visible on the scene
+; the following will make it visible on the scene.
 @showUI Calendar
 
 ; Given you've hide the entire UI with @hideUI, show it back
 @showUI
+
+; Simultaneously reveal built-in `ITipsUI` and custom `Calendar` UIs.
+@showUI ITipsUI,Calendar
 ```
 
 ## skip
