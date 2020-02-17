@@ -143,8 +143,6 @@ Be aware, that [`@print`](/api/#print) commands (that are also used under the ho
 
 Sprite implementation of the character actors is the most common and simple one; it uses a set of [sprite](https://docs.unity3d.com/Manual/Sprites) assets to represent appearances of the character. The source of the sprites could be images (textures) of any [formats supported by Unity](https://docs.unity3d.com/Manual/ImportingTextures).
 
-Sprite character appearance assets can be either managed by editor GUI or placed in a `Resources/Characters/CharacterName` folder, `CharacterName` being the name of the character, for an automatic exposure.
-
 ## Diced Sprite Characters
 
 Built with an open source [SpriteDicing](https://github.com/Elringus/SpriteDicing) package, `DicedSpriteCharacter` implementation allows to significantly reduce build size and texture memory by reusing texture areas of the character sprites. 

@@ -63,8 +63,6 @@ Notice, that when a pose is used as appearance, you can still override individua
 
 Sprite implementation of the background actors is the most common and simple one; it uses a single [sprite](https://docs.unity3d.com/Manual/Sprites) asset to represent appearance of the background. The source of the sprite could be a `.jpg` or `.png` image file. 
 
-Sprite backgrounds can be either managed by editor GUI or placed in a `Resources/Backgrounds` folder for an automatic exposure. 
-
 
 ## Video Backgrounds
 
