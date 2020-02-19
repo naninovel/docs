@@ -97,9 +97,9 @@ See [NaninovelSandbox](https://github.com/Elringus/NaninovelSandbox) project for
 
 ## Custom Providers
 
-It's possible to add a custom implementation of a resource provider and make Naninovel use it with (or instead) of the built-in providers.
+It's possible to add a custom implementation of a resource provider and make Naninovel use it with (or instead of) built-in providers.
 
-To add a custom provider, create a C# class and implement `IResourceProvider` interface. Once implemented, the custom provider type will appear in all the loader configuration menus along with the built-in types.
+To add a custom provider, create a C# class with a parameterless constructor and implement `IResourceProvider` interface. Once created, custom provider type will appear in all the loader configuration menus along with the built-in types.
 
 ![](https://i.gyazo.com/24958314959b0b8f7dd9ef14f1dfd14a.png)
 
