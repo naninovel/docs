@@ -115,13 +115,12 @@ using UniRx.Async;
 
 public class CustomResourceProvider : IResourceProvider
 {
-    public bool IsLoading => default;
-    public float LoadProgress => default;
-
-    public IEnumerable<Resource> LoadedResources => default;
-
     public event Action<float> OnLoadProgress;
     public event Action<string> OnMessage;
+
+    public bool IsLoading => default;
+    public float LoadProgress => default;
+    public IEnumerable<Resource> LoadedResources => default;
 
     public Resource<T> GetLoadedResourceOrNull<T> (string path) 
         where T : UnityEngine.Object
