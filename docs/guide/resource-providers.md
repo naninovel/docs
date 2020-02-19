@@ -4,7 +4,7 @@ Resource providers are used to retrieve Naninovel-related data: ".nani" text fil
 
 Providers' general behavior can be configured via `Naninovel -> Configuration -> Resource Provider` menu.
 
-![](https://i.gyazo.com/3c38f081341f384e71e0be288c0f455b.png)
+![](https://i.gyazo.com/3780103e39af4c9c658b5c1fe4d31095.png)
 
 `Resource Policy` property dictates when the resources are loaded and unloaded during script execution:
  - Static — All the resources required for the script execution are pre-loaded when starting the playback (masked with a loading screen) and unloaded only when the script has finished playing. This policy is default and recommended for most cases.
@@ -18,7 +18,7 @@ Other properties in the configuration menu are provider-specific and described b
 
 Resource-specific providers behavior is configured via `Loader` properties, available in the corresponding configuration menus. For example, here is the default loader configuration used to retrieve audio resources (BGM and SFX):
 
-![](https://i.gyazo.com/fb95d9c714972fa43fdc04225adbc8d1.png)
+![](https://i.gyazo.com/9eb196bb86b3a6679415456c95bbde55.png)
 
 `Path Prefix` property allows specifying an additional path over provider's root path for the specific type of resources. Eg, given we're going to retrieve an "Explosion" audio file from a project's "Resources" folder, setting path prefix to "Audio" will result in the following resource request: `Resources.Load("Audio/Explosion")`.
 
@@ -31,6 +31,8 @@ Be aware, that **while in editor a special "Editor" resource provider is always 
 The [Addressable Asset system](https://docs.unity3d.com/Packages/com.unity.addressables@latest) is a Unity package providing an easy way to load assets by "address". It uses asynchronous loading to support loading from any location (local storage, remote web hosting, etc) with any collection of dependencies. Consult Unity's documentation on how to setup, configure and use the system.
 
 Naninovel will automatically use addressables when the package is installed in the project. No additional setup is required. All the assets assigned in the Naninovel's configuration menus (eg, scenario scripts, character sprites, audio clips, etc) will be registered with the system (assigned an "address" under "Naninovel" group) when building the player.
+
+In order for an addressable asset to become "visible" for Naninovel, its address should start with "Naninovel/" and it should has a "Naninovel" label assigned. You can specify additional labels to filter the assets used by Naninovel via `Extra Labels` property in resource provider configuration menu. Be aware, that "Naninovel" addressable group is automatically re-generated on each build; either use another group to specify custom resources or disable `Enable Build Processing` property in resource provider configuration menu and manually process the assets upon build.
 
 In case you wish to configure how the Naninovel addressable assets should be served (eg, specify a remove web host), edit "Naninovel" group via `Window -> Asset Management -> Addressables -> Groups` menu. The group is automatically created when first building the game; in case it's missing, you can create it manually.
 
@@ -92,3 +94,106 @@ Don't forget to add google drive to the list of providers for the resources you 
 ![](https://i.gyazo.com/0ad07f73fe12be7ae6d421c5f4f33384.png)
 
 See [NaninovelSandbox](https://github.com/Elringus/NaninovelSandbox) project for an example on how to setup and use Google Drive provider.
+
+## Custom Providers
+
+It's possible to add a custom implementation of a resource provider and make Naninovel use it with (or instead) of the built-in providers.
+
+To add a custom provider, create a C# class and implement `IResourceProvider` interface. Once implemented, the custom provider type will appear in all the loader configuration menus along with the built-in types.
+
+![](https://i.gyazo.com/24958314959b0b8f7dd9ef14f1dfd14a.png)
+
+You can find built-in resource provider implementations at `Naninovel/Runtime/Common/ResourceProvider` package directory; feel free to use them as a reference when implementing your own versions.
+
+Below is an example of a custom provider, that does nothing, but logs messages when used.
+
+```csharp
+using Naninovel;
+using System;
+using System.Collections.Generic;
+using UniRx.Async;
+
+public class CustomResourceProvider : IResourceProvider
+{
+    public bool IsLoading => default;
+    public float LoadProgress => default;
+
+    public IEnumerable<Resource> LoadedResources => default;
+
+    public event Action<float> OnLoadProgress;
+    public event Action<string> OnMessage;
+
+    public Resource<T> GetLoadedResourceOrNull<T> (string path) 
+        where T : UnityEngine.Object
+    {
+        OnMessage?.Invoke($"GetLoadedResourceOrNull: {path}");
+        return default;
+    }
+
+    public UniTask<Resource<T>> LoadResourceAsync<T> (string path) 
+        where T : UnityEngine.Object
+    {
+        OnMessage?.Invoke($"LoadResourceAsync: {path}");
+        OnLoadProgress?.Invoke(1f);
+        return default;
+    }
+
+    public UniTask<IEnumerable<Resource<T>>> LoadResourcesAsync<T> (string path) 
+        where T : UnityEngine.Object
+    {
+        OnMessage?.Invoke($"LoadResourcesAsync: {path}");
+        OnLoadProgress?.Invoke(1f);
+        return default;
+    }
+
+    public UniTask<IEnumerable<Folder>> LocateFoldersAsync (string path)
+    {
+        OnMessage?.Invoke($"LocateFoldersAsync: {path}");
+        return default;
+    }
+
+    public UniTask<IEnumerable<string>> LocateResourcesAsync<T> (string path) 
+        where T : UnityEngine.Object
+    {
+        OnMessage?.Invoke($"LocateResourcesAsync: {path}");
+        return default;
+    }
+
+    public UniTask<bool> ResourceExistsAsync<T> (string path) 
+        where T : UnityEngine.Object
+    {
+        OnMessage?.Invoke($"ResourceExistsAsync: {path}");
+        return default;
+    }
+
+    public bool ResourceLoaded (string path)
+    {
+        OnMessage?.Invoke($"ResourceLoaded: {path}");
+        return default;
+    }
+
+    public bool ResourceLoading (string path)
+    {
+        OnMessage?.Invoke($"ResourceLoading: {path}");
+        return default;
+    }
+
+    public bool SupportsType<T> () 
+        where T : UnityEngine.Object
+    {
+        OnMessage?.Invoke($"SupportsType: {typeof(T).Name}");
+        return default;
+    }
+
+    public void UnloadResource (string path)
+    {
+        OnMessage?.Invoke($"UnloadResource: {path}");
+    }
+
+    public void UnloadResources ()
+    {
+        OnMessage?.Invoke("UnloadResources");
+    }
+}
+```
+
