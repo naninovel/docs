@@ -277,7 +277,7 @@ Using [development console](/guide/development-console.md) you can instantly "re
 rewind 12
 ```
 
-— will start playing current script from the 12th line; you can rewind forward and backward in the same way. To open the console while game is running, make sure the console is enabled in the engine configuration and press `~` key.
+— will start playing current script from the 12th line; you can rewind forward and backward in the same way. To open the console while game is running, make sure the console is enabled in the engine configuration and press `~` key (can be changed in the configuration) or perform multi-touch (3 or more simultaneous touches) in case the build is running on a touchscreen device.
 
 To find out which script and line is currently playing, use debug window: type `debug` in the development console and press `Enter` to show the window.
 
