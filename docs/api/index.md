@@ -66,7 +66,7 @@ times | String | Duration of the animations per key, in seconds. When not assign
 @animate Yuko,Kohaku loop:false
 
 ; Start a long background animation for `Kohaku`.
-@animate Kohaku posX:90|0|90 scale:1|2|1 time:10
+@animate Kohaku posX:90|0|90 scale:1|2|1 time:10 wait:false
 ; Do something else while the animation is running.
 ...
 ; Here we're going to set a specific position for the character,
