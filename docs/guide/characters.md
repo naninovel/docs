@@ -171,7 +171,9 @@ Each child game object of the root prefab object with a [sprite renderer](https:
 
 To hide some of the layers from being visible by default, disable sprite renderer components (not the game objects).
 
-The white frame drawn over the prefab is used to describe the actor canvas, which will be rendered to a render texture at runtime. Make sure to minimize the empty areas inside the frame by moving the layers and groups to prevent wasting texture memory.
+The white frame drawn over the prefab is used to describe the actor canvas, which will be rendered to a render texture at runtime. Make sure to minimize the empty areas inside the frame by moving the layers and groups to prevent wasting texture memory and for anchoring to work correctly.
+
+![](https://i.gyazo.com/4ff103c27858ac9671ba3b94ab1ade20.png)
 
 You can scale the root game object to fine-tune the default size of the actor.
 
