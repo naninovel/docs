@@ -16,11 +16,10 @@ ID | Type | Description
 --- | --- | ---
 if | String |  A boolean [script expression](/guide/script-expressions.md), controlling whether the command should execute.
 wait | Boolean | Whether the script player should wait for the async command to finish execution before executing the next one. Has no effect when the command is executed instantly.
-time | Decimal | Determines for how long (in seconds) command should execute. While formally supported by all the commands not every command actually use this parameter (eg, execution time of instant commands won't be changed).
 
 </div>
 
-This API reference is valid for [Naninovel v1.9.3-beta](https://github.com/Elringus/NaninovelWeb/releases).
+This API reference is valid for [Naninovel v1.9.4-beta](https://github.com/Elringus/NaninovelWeb/releases).
 
 ## animate
 
@@ -48,7 +47,7 @@ rotation | String | Rotation values (over Z-axis) to set for the animated actors
 scale | String | Scale values (uniform) to set for the animated actors.
 tint | String | Tint colors to set for the animated actors.  <br /><br />  Strings that begin with `#` will be parsed as hexadecimal in the following way:  `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF.  <br /><br />  Strings that do not begin with `#` will be parsed as literal colors, with the following supported:  red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta.
 easing | String | Names of the easing functions to use for the animations.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  When not specified, will use a default easing function set in the actor's manager configuration settings.
-times | String | Duration of the animations per key, in seconds. When not assigned, will use `time` parameter for all keys.  When assigned, but a value is missing, will use one from a previous key.
+time | String | Duration of the animations per key, in seconds.  When a key value is missing, will use one from a previous key.  When not assigned, will use 0.35 seconds duration for all keys.
 
 </div>
 
@@ -56,11 +55,11 @@ times | String | Duration of the animations per key, in seconds. When not assign
 ```
 ; Animate `Kohaku` actor over three animation steps (key frames),
 ; changing positions: first step will take 1, second — 0.5 and third — 3 seconds.
-@animate Kohaku posX:50|0|85 times:1|0.5|3
+@animate Kohaku posX:50|0|85 time:1|0.5|3
 
 ; Start loop animations of `Yuko` and `Kohaku` actors; notice, that you can skip
 ; key values indicating that the parameter shouldn't change during the animation step.
-@animate Kohaku,Yuko loop:true appearance:Surprise|Sad|Default|Angry transition:DropFade|Ripple|Pixelate posX:15|85|50 posY:0|-25|-85 scale:1|1.25|1.85 tint:#25f1f8|lightblue|#ffffff|olive easing:EaseInBounce|EaseInQuad times:3|2|1|0.5 wait:false
+@animate Kohaku,Yuko loop:true appearance:Surprise|Sad|Default|Angry transition:DropFade|Ripple|Pixelate posX:15|85|50 posY:0|-25|-85 scale:1|1.25|1.85 tint:#25f1f8|lightblue|#ffffff|olive easing:EaseInBounce|EaseInQuad time:3|2|1|0.5 wait:false
 ...
 ; Stop the animations.
 @animate Yuko,Kohaku loop:false
@@ -117,6 +116,7 @@ ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">CharacterPositions</span> | List&lt;Named&lt;Decimal&gt;&gt; | A collection of character ID to scene X-axis position (relative to the left screen border, in percents) named values.  Position 0 relates to the left border and 100 to the right border of the screen; 50 is the center.
 look | Boolean | When performing auto-arrange, controls whether to also make the characters look at the scene origin (enabled by default).
+time | Decimal | Duration (in seconds) of the arrangement animation. Default value: 0.35 seconds.
 
 </div>
 
@@ -157,6 +157,7 @@ rotation | List&lt;Decimal&gt; | Rotation to set for the modified actor.
 scale | List&lt;Decimal&gt; | Scale to set for the modified actor.
 tint | String | Tint color to set for the modified actor.  <br /><br />  Strings that begin with `#` will be parsed as hexadecimal in the following way:  `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF.  <br /><br />  Strings that do not begin with `#` will be parsed as literal colors, with the following supported:  red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta.
 easing | String | Name of the easing function to use for the modification.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  When not specified, will use a default easing function set in the actor's manager configuration settings.
+time | Decimal | Duration (in seconds) of the modification. Default value: 0.35 seconds.
 
 </div>
 
@@ -202,8 +203,9 @@ ID | Type | Description
 intro | String | Path to the intro music track to play once before the main track (not affected by the loop parameter).
 volume | Decimal | Volume of the music track.
 loop | Boolean | Whether to play the track from beginning when it finishes.
-fade | Decimal | Duration of the volume fade-in, in seconds (disabled by default);  doesn't have effect when modifying a playing track.
+fade | Decimal | Duration of the volume fade-in when starting playback, in seconds (0.0 by default);  doesn't have effect when modifying a playing track.
 group | String | Audio mixer [group path](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) that should be used when playing the audio.
+time | Decimal | Duration (in seconds) of the modification. Default value: 0.35 seconds.
 
 </div>
 
@@ -266,6 +268,7 @@ zoom | Decimal | Relatize camera zoom (orthographic size or field of view, depen
 ortho | Boolean | Whether the camera should render in orthographic (true) or perspective (false) mode.
 toggle | List&lt;String&gt; | Names of the components to toggle (enable if disabled and vice-versa). The components should be attached to the same gameobject as the camera.  This can be used to toggle [custom post-processing effects](/guide/special-effects.md#camera-effects).
 easing | String | Name of the easing function to use for the modification.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  When not specified, will use a default easing function set in the camera configuration settings.
+time | Decimal | Duration (in seconds) of the modification. Default value: 0.35 seconds.
 
 </div>
 
@@ -316,6 +319,7 @@ rotation | List&lt;Decimal&gt; | Rotation to set for the modified actor.
 scale | List&lt;Decimal&gt; | Scale to set for the modified actor.
 tint | String | Tint color to set for the modified actor.  <br /><br />  Strings that begin with `#` will be parsed as hexadecimal in the following way:  `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF.  <br /><br />  Strings that do not begin with `#` will be parsed as literal colors, with the following supported:  red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta.
 easing | String | Name of the easing function to use for the modification.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  When not specified, will use a default easing function set in the actor's manager configuration settings.
+time | Decimal | Duration (in seconds) of the modification. Default value: 0.35 seconds.
 
 </div>
 
@@ -360,6 +364,7 @@ handler | String | ID of the choice handler to add choice for. Will use a defaul
 goto | Named&lt;String&gt; | Path to go when the choice is selected by user;  See [`@goto`](/api/#goto) command for the path format.
 set | String | Set expression to execute when the choice is selected by user;  see [`@set`](/api/#set) command for syntax reference.
 show | Boolean | Whether to also show choice handler the choice is added for;  enabled by default.
+time | Decimal | Duration (in seconds) of the fade-in (reveal) animation. Default value: 0.35 seconds.
 
 </div>
 
@@ -504,6 +509,7 @@ ID | Type | Description
 params | List&lt;Decimal&gt; | Parameters of the transition effect.
 dissolve | String | Path to the [custom dissolve](/guide/transition-effects.md#custom-transition-effects) texture (path should be relative to a `Resources` folder).  Has effect only when the transition is set to `Custom` mode.
 easing | String | Name of the easing function to use for the modification.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  When not specified, will use a default easing function set in the actor's manager configuration settings.
+time | Decimal | Duration (in seconds) of the transition. Default value: 0.35 seconds.
 
 </div>
 
@@ -597,6 +603,7 @@ Hides (makes invisible) actors (character, background, text printer, choice hand
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">ActorIds</span> | List&lt;String&gt; | IDs of the actors to hide.
+time | Decimal | Duration (in seconds) of the fade animation. Default value: 0.35 seconds.
 
 </div>
 
@@ -614,6 +621,16 @@ ID | Type | Description
 #### Summary
 Hides (removes) all the actors (eg characters, backgrounds, text printers, choice handlers, etc) on scene.
 
+#### Parameters
+
+<div class="config-table">
+
+ID | Type | Description
+--- | --- | ---
+time | Decimal | Duration (in seconds) of the fade animation. Default value: 0.35 seconds.
+
+</div>
+
 #### Example
 ```
 @hideAll
@@ -623,6 +640,16 @@ Hides (removes) all the actors (eg characters, backgrounds, text printers, choic
 
 #### Summary
 Hides (removes) all the visible characters on scene.
+
+#### Parameters
+
+<div class="config-table">
+
+ID | Type | Description
+--- | --- | ---
+time | Decimal | Duration (in seconds) of the fade animation. Default value: 0.35 seconds.
+
+</div>
 
 #### Example
 ```
@@ -641,6 +668,7 @@ Hides a text printer.
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">PrinterId</span> | String | ID of the printer actor to use. Will use a default one when not provided.
+time | Decimal | Duration (in seconds) of the fade animation. Default value: 0.35 seconds.
 
 </div>
 
@@ -898,6 +926,7 @@ reset | Boolean | Whether to reset text of the printer before executing the prin
 default | Boolean | Whether to make the printer default and hide other printers before executing the printing task.  Default value is controlled via `Auto Default` property in the printer actor configuration menu.
 waitInput | Boolean | Whether to wait for user input after finishing the printing task.  Default value is controlled via `Auto Wait` property in the printer actor configuration menu.
 br | Integer | Number of line breaks to prepend before the printed text.  Default value is controlled via `Auto Line Break` property in the printer actor configuration menu.
+hideTime | Decimal | When `default` is enabled, controls duration (in seconds) of the fade-out (hide) animation. Default value: 0.35 seconds.
 
 </div>
 
@@ -930,6 +959,7 @@ default | Boolean | Whether to make the printer the default one.  Default printe
 hideOther | Boolean | Whether to hide all the other printers.
 pos | List&lt;Decimal&gt; | Position (relative to the screen borders, in percents) to set for the modified printer.  Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the screen.
 visible | Boolean | Whether to show or hide the printer.
+time | Decimal | Duration (in seconds) of the modification. Default value: 0.35 seconds.
 
 </div>
 
@@ -1147,8 +1177,9 @@ ID | Type | Description
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">SfxPath</span> | String | Path to the sound effect asset to play.
 volume | Decimal | Volume of the sound effect.
 loop | Boolean | Whether to play the sound effect in a loop.
-fade | Decimal | Duration of the volume fade-in, in seconds (disabled by default);  doesn't have effect when modifying a playing track.
+fade | Decimal | Duration of the volume fade-in when starting playback, in seconds (0.0 by default);  doesn't have effect when modifying a playing track.
 group | String | Audio mixer [group path](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) that should be used when playing the audio.
+time | Decimal | Duration (in seconds) of the modification. Default value: 0.35 seconds.
 
 </div>
 
@@ -1176,6 +1207,7 @@ Shows (makes visible) actors (character, background, text printer, choice handle
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">ActorIds</span> | List&lt;String&gt; | IDs of the actors to show.
+time | Decimal | Duration (in seconds) of the fade animation. Default value: 0.35 seconds.
 
 </div>
 
@@ -1200,6 +1232,7 @@ Shows a text printer.
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">PrinterId</span> | String | ID of the printer actor to use. Will use a default one when not provided.
+time | Decimal | Duration (in seconds) of the fade animation. Default value: 0.35 seconds.
 
 </div>
 
@@ -1293,6 +1326,7 @@ from | Decimal | Position over X-axis (in 0 to 100 range, in percents from the l
 <span class="command-param-required" title="Required parameter: parameter should always be specified">to</span> | Decimal | Position over X-axis (in 0 to 100 range, in percents from the left border of the screen) to slide the actor to.
 visible | Boolean | Change visibility status of the actor (show or hide).  When not set and target actor is hidden, will still automatically show it.
 easing | String | Name of the easing function to use for the modifications.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  When not specified, will use a default easing function set in the actor's manager configuration settings.
+time | Decimal | Duration (in seconds) of the slide animation. Default value: 0.35 seconds.
 
 </div>
 
@@ -1390,13 +1424,14 @@ When music track name (BgmPath) is not specified, will stop all the currently pl
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">BgmPath</span> | String | Path to the music track to stop.
+fade | Decimal | Duration of the volume fade-out before stopping playback, in seconds (0.35 by default).
 
 </div>
 
 #### Example
 ```
 ; Fades-out the `Promenade` music track over 10 seconds and stops the playback
-@stopBgm Promenade time:10
+@stopBgm Promenade fade:10
 
 ; Stops all the currently played music tracks
 @stopBgm
@@ -1417,13 +1452,14 @@ When sound effect track name (SfxPath) is not specified, will stop all the curre
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">SfxPath</span> | String | Path to the sound effect to stop.
+fade | Decimal | Duration of the volume fade-out before stopping playback, in seconds (0.35 by default).
 
 </div>
 
 #### Example
 ```
 ; Stop playing an SFX with the name `Rain`, fading-out for 15 seconds.
-@stopSfx Rain time:15
+@stopSfx Rain fade:15
 
 ; Stops all the currently played sound effect tracks
 @stopSfx
