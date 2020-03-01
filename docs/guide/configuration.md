@@ -7,7 +7,7 @@ Notice, that all the configuration menus are supporting [Unity's presets feature
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/55f5c74bfc16e1af2455034647525df3.mp4" type="video/mp4"></video>
 
-This configuration reference is valid for [Naninovel v1.9.3-beta](https://github.com/Elringus/NaninovelWeb/releases).
+This configuration reference is valid for [Naninovel v1.9.4-beta](https://github.com/Elringus/NaninovelWeb/releases).
 
 ## Audio
 
@@ -17,6 +17,10 @@ Property | Default Value | Description
 --- | --- | ---
 Audio Loader | Audio- (Addressable, Project) | Configuration of the resource loader used with audio (BGM and SFX) resources.
 Voice Loader | Voice- (Addressable, Project) | Configuration of the resource loader used with voice resources.
+Default Master Volume | 1 | Master volume to set when the game is first started.
+Default Bgm Volume | 1 | BGM volume to set when the game is first started.
+Default Sfx Volume | 1 | SFX volume to set when the game is first started.
+Default Voice Volume | 1 | Voice volume to set when the game is first started.
 Enable Auto Voicing | False | When enabled, each `PrintText` command will attempt to play voice clip at `VoiceResourcesPrefix/ScriptName/LineIndex.ActionIndex`.
 Voice Overlap Policy | Prevent Overlap | Dictates how to handle concurrent voices playback:<br> • Allow Overlap — Concurrent voices will be played without limitation.<br> • Prevent Overlap — Prevent concurrent voices playback by stopping any played voice clip before playing a new one.<br> • Prevent Character Overlap — Prevent concurrent voices playback per character; voices of different characters (auto voicing) and any number of `@voice` command are allowed to be played concurrently.
 Custom Audio Mixer | Null | Audio mixer to control audio groups. When not provided, will use a default one.
