@@ -38,7 +38,7 @@ To stop a playing music track, use [`@stopBgm`](/api/#stopbgm) command followed 
 
 ```
 ; Fades-out the `Promenade` music track over 10 seconds and stops the playback
-@stopBgm Promenade time:10
+@stopBgm Promenade fade:10
 
 ; Stops all the currently played music tracks
 @stopBgm
@@ -65,7 +65,7 @@ To stop a playing sound effect (no matter looped or not), use [`@stopSfx`](/api/
 
 ```
 ; Stop playing an SFX with the name `Rain`, fading-out for 15 seconds.
-@stopSfx Rain time:15
+@stopSfx Rain fade:15
 
 ; Stops all the currently played sound effect tracks
 @stopSfx
