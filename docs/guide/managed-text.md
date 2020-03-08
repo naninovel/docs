@@ -6,7 +6,7 @@ To generate the managed text documents, use managed text tool accessible via `Na
 
 ![Managed Text Tool](https://i.gyazo.com/200680de85848f04a2eb51b063295c51.png)
 
-Using "Select" button, select path to store the managed text documents (should be `Resources/Text` by default) and press "Generate" button to create the documents.
+Using "Select" button, select path to store the managed text documents (should be `Resources/Naninovel/Text` by default) and press "Generate" button to create the documents.
 
 You can also create a custom managed text document using `Create -> Naninovel -> Managed Text` asset context menu.
 
@@ -84,11 +84,11 @@ Of course, "Script" managed text document can be localized in the same way as th
 
 Managed text localization process resemble the one for naninovel scripts: 
 
-1. Generate (create, edit) the required managed text documents in a `Resources/Text` folder.
-2. Run the localization utility in a locale folder (`Resources/Localization/{Locale}`, where `{Locale}` is the tag of the target locale).
+1. Generate (create, edit) the required managed text documents in a `Resources/Naninovel/Text` folder.
+2. Run the localization utility in a locale folder (`Resources/Naninovel/Localization/{Locale}`, where `{Locale}` is the tag of the target locale).
 3. The localization documents for the source managed text documents will appear in the corresponding locale folder. Use them to add or edit the translation.
 
-To update the managed text documents and their corresponding localization counterparts, first run the generate managed text utility in a `Resources/Text` folder, and then the localization utility in a `Resources/Localization/{Locale}` folder. Both utilities will attempt to preserve any existing modifications (managed text records and their translations) by default, so you won't have to re-write everything from scratch on each update.
+To update the managed text documents and their corresponding localization counterparts, first run the generate managed text utility in a `Resources/Naninovel/Text` folder, and then the localization utility in a `Resources/Naninovel/Localization/{Locale}` folder. Both utilities will attempt to preserve any existing modifications (managed text records and their translations) by default, so you won't have to re-write everything from scratch on each update.
 
  See [Localization](/guide/localization.md) for more info on how to use the localization utility.
 

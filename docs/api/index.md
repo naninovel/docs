@@ -1506,7 +1506,7 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 ## title
 
 #### Summary
-Loads default engine state and shows `Naninovel.UI.ITitleUI`.
+Resets engine state and shows `ITitleUI` UI (main menu).
 
 #### Example
 ```

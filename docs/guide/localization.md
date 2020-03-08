@@ -6,7 +6,7 @@ By default, all the resources stored in the project are used when the game is ru
 
 The *source locale* can be changed in the `Naninovel -> Configuration -> Localization` menu with the `Source Locale` property. `Source Locale` property only determines the name (ID) of the locale associated with your source project assets and is used in the "Language" drop-down settings menu and related engine APIs to distinguish the locale.
 
-You can setup additional locales by creating a sub-folder inside `Resources/Localization` folder (the so-called *localization resources root*) with a name equal to one of the [RFC5646](https://gist.github.com/Elringus/db90d9c74f13c00fa35131e61d1b73cb) language tags you wish to add localization for. For example, to add a German locale, create a `Resources/Localization/de` folder. The "Language" drop-down list in the game settings built-in UI will automatically incorporate all the added locales. 
+You can setup additional locales by creating a sub-folder inside `Resources/Naninovel/Localization` folder (the so-called *localization resources root*) with a name equal to one of the [RFC5646](https://gist.github.com/Elringus/db90d9c74f13c00fa35131e61d1b73cb) language tags you wish to add localization for. For example, to add a German locale, create a `Resources/Naninovel/Localization/de` folder. The "Language" drop-down list in the game settings built-in UI will automatically incorporate all the added locales. 
 
 Be aware, that you don't have to create a sub-folder in the *localization resources root* for the *source locale*. All the project resources stored outside of the *localization resources root* belong to the *source locale* by default.
 
@@ -20,7 +20,7 @@ You can set which locale is selected by default when player first runs the game 
 
 Inside the *localization resources root* store resources that will be used instead of the source ones when the corresponding localization is selected in the game settings. 
 
-For example, if you wish to replace a "City" appearance sprite of a main background (background actor with "MainBackground" ID) with another one when a `ja-JP` locale is selected, place the localized version at the following path: `Resources/Localization/ja-JP/Backgrounds/MainBackground/City`.
+For example, if you wish to replace a "City" appearance sprite of a main background (background actor with "MainBackground" ID) with another one when a `ja-JP` locale is selected, place the localized version at the following path: `Resources/Naninovel/Localization/ja-JP/Naninovel/Backgrounds/MainBackground/City`.
 
 ## Scripts Localization
 
@@ -28,11 +28,11 @@ The resources localization scheme described above works with all the resource ty
 
 ![Localization Tool](https://i.gyazo.com/5c6b023cbf4617f44102593f13131571.png)
 
-First, select path to the locale folder where to store the generated localization resources. Make sure you've selected an actual locale folder (eg, `Resources/Localization/ja-JP`) and not just the *localization resources root*. Label under the property field will indicate when a valid output locale folder is selected displaying name of the selected localization target.
+First, select path to the locale folder where to store the generated localization resources. Make sure you've selected an actual locale folder (eg, `Resources/Naninovel/Localization/ja-JP`) and not just the *localization resources root*. Label under the property field will indicate when a valid output locale folder is selected displaying name of the selected localization target.
 
 Enabling "Try update" property will attempt to preserve any currently existing localization resources; when disabled all the existing localization resources at the specified path will be lost.
 
-Enabling "Localize text" will also generate [managed text](/guide/managed-text.md) localization documents. When enabled, "Text Folder" property will appear allowing to specify path to the source managed text documents (`Assets/Resources/Text` by default). It's possible to set the path to a folder containing localized version of text documents to generate a localization variant that is using a non-source language.
+Enabling "Localize text" will also generate [managed text](/guide/managed-text.md) localization documents. When enabled, "Text Folder" property will appear allowing to specify path to the source managed text documents (`Assets/Resources/Naninovel/Text` by default). It's possible to set the path to a folder containing localized version of text documents to generate a localization variant that is using a non-source language.
 
 Press "Generate" button to create (update) the localization resources.
 

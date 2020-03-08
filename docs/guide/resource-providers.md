@@ -18,9 +18,9 @@ Other properties in the configuration menu are provider-specific and described b
 
 Resource-specific providers behavior is configured via `Loader` properties, available in the corresponding configuration menus. For example, here is the default loader configuration used to retrieve audio resources (BGM and SFX):
 
-![](https://i.gyazo.com/9eb196bb86b3a6679415456c95bbde55.png)
+![](https://i.gyazo.com/14667bc9125abfa4ed66b2010fec8767.png)
 
-`Path Prefix` property allows specifying an additional path over provider's root path for the specific type of resources. Eg, given we're going to retrieve an "Explosion" audio file from a project's "Resources" folder, setting path prefix to "Audio" will result in the following resource request: `Resources.Load("Audio/Explosion")`.
+`Path Prefix` property allows specifying an additional path over provider's root path for the specific type of resources. Eg, given we're going to retrieve an "Explosion" audio file from a project's "Resources" folder, setting path prefix to "Naninovel/Audio" will result in the following resource request: `Resources.Load("Naninovel/Audio/Explosion")`.
 
 `Providers List` allows specifying which provider types to use and in which order. Eg, in the above example, when requesting an audio resource, first an "Addressable" provider will be used and in case the provider won't be able to find the requested resource, "Project" provider will be used.
 
@@ -101,7 +101,7 @@ It's possible to add a custom implementation of a resource provider and make Nan
 
 To add a custom provider, create a C# class with a parameterless constructor and implement `IResourceProvider` interface. Once created, custom provider type will appear in all the loader configuration menus along with the built-in types.
 
-![](https://i.gyazo.com/24958314959b0b8f7dd9ef14f1dfd14a.png)
+![](https://i.gyazo.com/c944c5776be76b80d94b36bfe7ee9a08.png)
 
 You can find built-in resource provider implementations at `Naninovel/Runtime/Common/ResourceProvider` package directory; feel free to use them as a reference when implementing your own versions.
 
