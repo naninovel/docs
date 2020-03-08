@@ -1,6 +1,6 @@
 ﻿# Voicing
 
-To expose voice clips to the engine, store them under `Resources/Voice` folder. You can use any audio formats [supported by Unity](https://docs.unity3d.com/Manual/AudioFiles.html).
+To expose voice clips to the engine, store them under `Resources/Naninovel/Voice` folder (can be changed in audio configuration under `Loader` foldout). You can use any audio formats [supported by Unity](https://docs.unity3d.com/Manual/AudioFiles.html).
 
 Voice playback behavior can be configured using `Naninovel -> Configuration -> Audio` context menu; for available options see [configuration guide](/guide/configuration.md#audio). 
 
@@ -23,7 +23,7 @@ Text from a simple generic text line.
 Text from first sentence.[i] Text from second sentence.
 ```
 
-In order for the auto voicing system to play corresponding audio clips when printing those lines, the clips should be placed under `Resources/Voice/Script001` folder and have the following names: 
+In order for the auto voicing system to play corresponding audio clips when printing those lines, the clips should be placed under `Resources/Naninovel/Voice/Script001` folder and have the following names: 
 
 Text | Voice Clip Name
 --- | ---

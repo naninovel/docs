@@ -75,7 +75,7 @@ The system can be used to build an in-game vocabulary/encyclopedia or achievemen
     <iframe src="https://www.youtube-nocookie.com/embed/CRZuS1u_J4c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-To define the available tips, create a `Tips.nani` text document inside the [managed text](/guide/managed-text.md) resources directory (`Resources/Text` by default). Each line identifies a single tip record. The line should begin with tip ID followed by colon; then the tip's title, category (optional) and description should be specified, all separated by vertical lines (`|`), eg:
+To define the available tips, create a `Tips.nani` text document inside the [managed text](/guide/managed-text.md) resources directory (`Resources/Naninovel/Text` by default). Each line identifies a single tip record. The line should begin with tip ID followed by colon; then the tip's title, category (optional) and description should be specified, all separated by vertical lines (`|`), eg:
 
 ```
 Tip1ID: Tip 1 Title | Tip 1 Category | Tip 1 Description

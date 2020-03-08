@@ -8,6 +8,8 @@ Backgrounds' behavior can be configured using `Naninovel -> Configuration -> Bac
 
 ![](https://i.gyazo.com/cccd08280dac72d199ea3465bc167a22.gif)
 
+In case you have a lot of backgrounds and it's inconvenient to assign them via editor menu, it's possible to just drop them at `Resources/Naninovel/Backgrounds` folder, grouped under folders corresponding to actor ID. Eg, to add appearances for a background actor with "MainBackground" ID, store the textures (sprites) at `Resources/Naninovel/Backgrounds/MainBackground` folder and they'll automatically be available in the scripts. Be aware, that when using this method, it's not possible to set per-actor configuration properties (such as pivot or PPU); instead those values are shared for all actors from `Default Metadata` property found at background configuration menu.
+
 In naninovel scripts, backgrounds are mostly controlled with [`@back`](/api/#back) command:
 
 ```
