@@ -16,6 +16,18 @@ You can configure the built-in input bindings and add new listeners using `Nanin
 
 ![Manage Input](https://i.gyazo.com/2f97539323c9fc36124e286856a36f84.png)
 
+## Gamepad and Keyboard
+
+All the built-in features are usable with gamepad or keyboard input. You can remove, change or add gamepad/keyboard-specific hotkey bindings via the aforementioned bindings editor menu.
+
+The built-in UIs can also be navigated with a gamepad or keyboard, without using mouse or touch input. When in any of modal menus (outside of main gameplay mode, eg title menu, backlog, etc), press a navigation key (directional pad or left stick on gamepad, arrow keys on keyboard) to select a button in the menu. The first focused button (game object) can be changed in each UI using `Focus Object` field.
+
+![](https://i.gyazo.com/809d4c423d1696a075d5fb73370d48fa.png)
+
+With `Focus Mode` property you can change whether the assigned game object should be focused immediately after the UI becomes visible or after a navigation key is pressed. Be aware, that gamepad navigation over UIs will only work when Unity's new input system is installed in the project; find more information about the input system below.
+
+When in the main gameplay mode (outside of modal UIs), press a button binded to `Pause` input (`Esc` and `Backspace` keys for keyboard and `Start` button for gamepad by default) to open pause menu, where you can save/load game, open settings, exit to title, etc.
+
 ## Input System
 
 Naninovel supports Unity's new [Input System](https://blogs.unity3d.com/2019/10/14/introducing-the-new-input-system/); see the [official docs](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/Installation.html) on how to install and enable the input system. When the input system package is installed (don't forget to enable new input backend in the player settings), an `Input Actions` property will appear in the input configuration menu.
