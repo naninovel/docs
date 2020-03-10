@@ -96,15 +96,23 @@ To use any given avatar, you have to first add it to the avatar resources and gi
 
 ![](https://i.gyazo.com/5a0f10d174aa75ed87da1b472567e40b.png)
 
-You can set a default avatar for a character by giving the avatar texture resource name that equals to `CharacterID/Default`; eg, to set a default avatar for character with ID `Kohaku` name the avatar resource `Kohaku/Default`. Default avatars will be used when `avatar` parameter is not set in the `@char` commands.
+*Notice: Avatar names can be arbitrary and don't have to contain an existing character ID or appearance. This is only required when you want to associate an avatar with a character so that it's shown automatically.*
+
+You can then show a specific avatar texture like this:
+
+```
+@char CharacaterId avatar:AvatarName
+```
+
+To set a default avatar for a character, give the avatar texture resource name that equals to `CharacterID/Default`; eg, to set a default avatar for character with ID `Kohaku` name the avatar resource `Kohaku/Default`. Default avatars will be shown automatically, even when `avatar` parameter is not specified in the `@char` commands.
 
 It's also possible to associate avatars with specific character appearances, so that when character changes appearance, the avatar will also change automatically. For this, name the avatar resources using the following format: `CharacterID/CharacterAppearance`, where `CharacterAppearance` is the name of the appearance for which to map the avatar resource.
 
-Please note, that the **avatars are not directly connected with character appearances** and shouldn't be considered as a way to show character on the scene. Appearances are the actual representation of a character on the scene. Avatars is a standalone feature, that "injects" an image to a compatible text printer.
+Please note, that the **avatars are not directly connected with character appearances** and shouldn't be considered as a way to show character on the scene. Appearances specified in character's resource manager are the actual representation of a character on the scene. Avatars is a standalone feature, that "injects" an arbitrary image to a compatible text printer.
 
 It's possible to show only the avatar of a character inside a text printer, but hide the character itself by setting `visible` parameter of the `@char` command to `false`, eg:
 ```
-@char CharId visible:false
+@char CharacaterId visible:false
 ```
 
 In case you're constantly changing avatars while the character itself should remain hidden, consider disabling `Auto Show On Modify` in the characters configuration menu; when disabled, you won't have to specify `visible:false` to change any parameters of the character while it's hidden.
