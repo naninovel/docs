@@ -90,7 +90,7 @@ The following video demonstrates how to use display names and character colors.
 
 You can assign avatar textures to characters using `avatar` parameter of [`@char`](/api/#char) command. Avatars will be shown by the compatible text printers when they print a text message that is associated with the character. Currently, only `Wide` and `Chat` text printers support the avatars feature.
 
-![](https://i.gyazo.com/f921ab4ef864aea6980a5c6be6743494.png)
+![](https://i.gyazo.com/83c091c08846fa1cab8764a8d4dddeda.png)
 
 To use any given avatar, you have to first add it to the avatar resources and give it a name. You can do this via `Avatar Resources` property in the characters configuration menu.
 
