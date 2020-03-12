@@ -163,6 +163,10 @@ Install the package via [Unity package manager](https://docs.unity3d.com/Manual/
 
 `DicedSpriteAtlas` assets containing character appearances are used as the resources for the diced sprite characters. Each appearance is mapped by name to the diced sprites contained in the atlas.
 
+Be aware, that some of diced character metadata properties (eg, pixels per unit, pivot) are controlled by the atlas asset; while the values in the character configuration are applied to a render texture used to represent the actual sprite. When changing the atlas properties, don't forget to rebuild it for changes to take effect.
+
+![](https://i.gyazo.com/3765726bd326bb7a8a03a653f458cd3d.png)
+
 The following video guide covers creating and configuring diced sprite atlas, adding new diced character based on the created atlas and controlling the character from a naninovel script.
 
 <div class="video-container">
