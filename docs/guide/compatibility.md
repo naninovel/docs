@@ -2,7 +2,7 @@
 
 ## Beta
 
-Naninovel is currently in a final stage of open beta: all the core features are implemented and the engine is already being used in multiple commercial projects, but there is still a probability of breaking changes prior to stable release, which is scheduled for April 2020.
+Naninovel is currently in a final stage of open beta: all the core features are implemented and the engine is already being used in multiple commercial projects, but there is still a probability of breaking changes prior to stable release.
 
 ## Unity Version
 
