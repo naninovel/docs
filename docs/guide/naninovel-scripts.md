@@ -124,7 +124,7 @@ The above line is equal to the following two:
 Felix: Lorem ipsum dolor sit amet.
 ```
 
-Any number of commands can be inlined to generic text statements using square brackets (`[`,`]`):
+All the commands can be inlined to generic text statements using square brackets (`[`,`]`):
 
 ```
 Felix: Lorem ipsum[char Felix.Happy pos:0.75 wait:false] dolor sit amet, consectetur adipiscing elit.[i] Aenean tempus eleifend ante, ac molestie metus condimentum quis.[i][br 2] Morbi nunc magna, consequat posuere consectetur in, dapibus consectetur lorem. Duis consectetur semper augue nec pharetra.[skipInput]
