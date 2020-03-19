@@ -32,7 +32,7 @@ To add a custom UI or modify (disable) a built-in one, use UI resources manager 
 
 ![](https://i.gyazo.com/4fa6d15e17f8a9123b1dbdda585ad806.png)
 
-To add a custom UI, create a new prefab (`Create -> Naninovel -> Custom UI`) and add it to the list. To disable a built-in UI remove a record from the list.
+To add a custom UI, create a new prefab (`Create -> Naninovel -> Custom UI`) and add it to the list. To disable a built-in UI remove a record from the list. When the engine is initializing it'll instantiate all the UI prefabs assigned in the resources manager.
 
 To show or hide any of the UIs listed in the resources manager use [`@showUI`](/api/#showui) and [`@hideUI`](/api/#hideui) commands respectively.
 
@@ -102,8 +102,6 @@ public class MyCustomUI : ScriptableUIBehaviour, Naninovel.UI.IManagedUI
     public UniTask InitializeAsync () => UniTask.CompletedTask;
 }
 ```
-
-When the engine is initializing it'll instantiate all the UI prefabs assigned in the resources manager.
 
 ## Play Script On Unity Event
 
