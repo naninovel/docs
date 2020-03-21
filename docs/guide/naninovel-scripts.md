@@ -124,13 +124,31 @@ The above line is equal to the following two:
 Felix: Lorem ipsum dolor sit amet.
 ```
 
-All the commands can be inlined to generic text statements using square brackets (`[`,`]`):
+### Command Inlining
+
+Sometimes, you may want to execute a command while revealing (printing) a text message, right after or before a specific character. For example, an actor would change his appearance (expression) when a specific word is printed or a particular sound effect would be played in reaction to some event described in the midst of a printed message. Command inlining feature allows to handle cases like that.
+
+All the commands (both [built-in](/api/) and [custom ones](/guide/custom-commands.md)) can be inlined (injected) to generic text lines using square brackets (`[`,`]`):
 
 ```
-Felix: Lorem ipsum[char Felix.Happy pos:0.75 wait:false] dolor sit amet, consectetur adipiscing elit.[i] Aenean tempus eleifend ante, ac molestie metus condimentum quis.[i][br 2] Morbi nunc magna, consequat posuere consectetur in, dapibus consectetur lorem. Duis consectetur semper augue nec pharetra.[skipInput]
+Felix: Lorem ipsum[char Felix.Happy pos:0.75 wait:false] dolor sit amet, consectetur adipiscing elit.[i] Aenean tempus eleifend ante, ac molestie metus condimentum quis.[i][br 2] Morbi nunc magna, consequat posuere consectetur in, dapibus consectetur lorem. Duis consectetur semper augue nec pharetra.
 ```
 
-Under the hood, generic text statements are parsed into individual commands; text is printed with [`@print`](/api/#print) command.
+Notice, that the inlined command syntax is exactly the same, except `@` literal is omitted and command body is wrapped in square brackets. Basically, you can take any command line, inline it to a generic text line and it will have the exact same effect, but at a different moment, depending on the position inside text message.
+
+Under the hood, generic text lines are parsed into individual commands identified by inline index; text is printed with [`@print`](/api/#print) command. For example, following generic text line in a naninovel script:
+
+```
+Lorem ipsum[char Felix.Happy pos:0.75 wait:false] dolor sit amet.
+```
+
+— is actually handled by the engine as a sequence of individual commands:
+
+```
+@print "Lorem ipsum" waitInput:false
+@char Felix.Happy pos:0.75 wait:false
+@print "dolor sit amet."
+```
 
 ## Label Lines
 

@@ -6,7 +6,7 @@ All the persistent data generated and used by Naninovel at runtime is divided in
 - Global state
 - User settings
 
-The data is serialized to JSON format and stored as save slot `.json` text files on the file system under the game build directory. Under WebGL platform, due to LFS security policy in modern web-browsers, the serialized data is stored over the [Indexed DB](https://en.wikipedia.org/wiki/Indexed_Database_API) instead.
+The data is serialized to JSON format and stored as either binary `.nson` (default) or text `.json` (can be switched in state configuration menu) save slot files under a platform-specific [persistent data directory](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html). Under WebGL platform, due to LFS security policy in modern web-browsers, the serialized data is stored over the [Indexed DB](https://en.wikipedia.org/wiki/Indexed_Database_API) instead.
 
 Path to the save folder, maximum allowed amount of the save slots and file names can be modified via the state configuration menu.
 

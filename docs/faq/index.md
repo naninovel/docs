@@ -40,7 +40,11 @@ When you remove the skybox, camera's background color will be used instead to fi
 
 ## How to add a line break to the message?
 
-[Check out `[br]` command](/api/#br).
+Check out [`[br]` command](/api/#br).
+
+## How to inject a command in the midst of a printed text message?
+
+Use [command inlining](/guide/naninovel-scripts.md#command-inlining).
 
 ## How to make actors appear in front of each other (z-sorting)?
 

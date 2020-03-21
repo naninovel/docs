@@ -2,6 +2,8 @@
 
 Naninovel is an extension for [Unity game engine](https://unity3d.com). It consists of a C# framework and editor utilities to support development of [visual novel games](https://en.wikipedia.org/wiki/Visual_novel).
 
+If you're looking for a specific topic, try using search bar located in the top-right corner of the page; also, check out the [FAQ](/faq/), where we have answers for some of the frequently asked questions. Feel free to [contact the support](/support/#developer-support) in case you can't find the required information.
+
 ## Features
 
 Following are some of the features Naninovel provides out of the box:
@@ -9,7 +11,7 @@ Following are some of the features Naninovel provides out of the box:
 * [Document-based scripts](/guide/naninovel-scripts.md)
   * [Generic text lines](/guide/naninovel-scripts.md#generic-text-lines)
   * [Labels](/guide/naninovel-scripts.md#label-lines)
-  * [Commands inlining](/guide/naninovel-scripts.md#generic-text-lines)
+  * [Commands inlining](/guide/naninovel-scripts.md#command-inlining)
   * [Visual editor](/guide/naninovel-scripts.md#visual-editor)
   * [IDE support (syntax highlighting, auto-completion, etc)](/guide/naninovel-scripts.md#ide-support)
 * [Text printers](/guide/text-printers.md)
