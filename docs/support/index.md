@@ -24,9 +24,9 @@ After the registration you'll automatically get a "Verified User" role on the se
 
 <iframe src="https://discordapp.com/widget?id=545676116871086080&theme=dark" width="100%" height="500" allowtransparency="true" frameborder="0"></iframe>
 
-Be aware, that the **developer response may be delayed by up to 24 hours** (in some cases longer), so make sure to:
- - Provide a clear and concise description of the issue and a step-by-step instructions on how to reproduce it.
- - Specify target platform (Android, iOS, WebGL, etc), Naninovel and Unity versions, operating system you're running the editor under (Windows, Mac or Linux).
+Be aware, that the **developer response may be delayed by up to 24 hours** (in some cases more), so make sure to:
+ - Provide a clear and concise description of the issue and step-by-step instructions on how to reproduce it.
+ - Specify Naninovel and Unity versions you're using, target platform (Android, iOS, WebGL, etc) and operating system you're running the editor under (Windows, Mac or Linux).
  - Attach a [log file](https://docs.unity3d.com/Manual/LogFiles.html) containing error or warning messages related to the issue.
  
 Attaching a [reproduction project](/support/#reproduction-project) greatly increases the chances to identify and fix the issue as soon as possible.
