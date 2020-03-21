@@ -126,7 +126,7 @@ Felix: Lorem ipsum dolor sit amet.
 
 ### Command Inlining
 
-Sometimes, you may want to execute a command while revealing (printing) a text message, right after or before a specific character. For example, an actor would change his appearance (expression) when a specific word is printed or a particular sound effect would be played in reaction to some event described in the midst of a printed message. Command inlining feature allows to handle cases like that.
+Sometimes, you may want to execute a command while revealing (printing) a text message, right after or before a specific character. For example, an actor would change their appearance (expression) when a specific word is printed or a particular sound effect would be played in reaction to some event described in the midst of a printed message. Command inlining feature allows to handle cases like that.
 
 All the commands (both [built-in](/api/) and [custom ones](/guide/custom-commands.md)) can be inlined (injected) to generic text lines using square brackets (`[`,`]`):
 
