@@ -19,7 +19,7 @@ wait | Boolean | Whether the script player should wait for the async command to 
 
 </div>
 
-This API reference is valid for [Naninovel v1.9.4-beta](https://github.com/Elringus/NaninovelWeb/releases).
+This API reference is valid for [Naninovel v1.9.5-beta](https://github.com/Elringus/NaninovelWeb/releases).
 
 ## animate
 
@@ -668,7 +668,7 @@ Hides a text printer.
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">PrinterId</span> | String | ID of the printer actor to use. Will use a default one when not provided.
-time | Decimal | Duration (in seconds) of the fade animation. Default value: 0.35 seconds.
+time | Decimal | Duration (in seconds) of the hide animation.  Default value for each printer is set in the actor configuration.
 
 </div>
 
@@ -926,7 +926,7 @@ reset | Boolean | Whether to reset text of the printer before executing the prin
 default | Boolean | Whether to make the printer default and hide other printers before executing the printing task.  Default value is controlled via `Auto Default` property in the printer actor configuration menu.
 waitInput | Boolean | Whether to wait for user input after finishing the printing task.  Default value is controlled via `Auto Wait` property in the printer actor configuration menu.
 br | Integer | Number of line breaks to prepend before the printed text.  Default value is controlled via `Auto Line Break` property in the printer actor configuration menu.
-hideTime | Decimal | When `default` is enabled, controls duration (in seconds) of the fade-out (hide) animation. Default value: 0.35 seconds.
+fadeTime | Decimal | Controls duration (in seconds) of the printers show and hide animations associated with this command.  Default value for each printer is set in the actor configuration.
 
 </div>
 
@@ -1232,7 +1232,7 @@ Shows a text printer.
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">PrinterId</span> | String | ID of the printer actor to use. Will use a default one when not provided.
-time | Decimal | Duration (in seconds) of the fade animation. Default value: 0.35 seconds.
+time | Decimal | Duration (in seconds) of the show animation.  Default value for each printer is set in the actor configuration.
 
 </div>
 

@@ -7,7 +7,7 @@ Notice, that all the configuration menus are supporting [Unity's presets feature
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/55f5c74bfc16e1af2455034647525df3.mp4" type="video/mp4"></video>
 
-This configuration reference is valid for [Naninovel v1.9.4-beta](https://github.com/Elringus/NaninovelWeb/releases).
+This configuration reference is valid for [Naninovel v1.9.5-beta](https://github.com/Elringus/NaninovelWeb/releases).
 
 ## Audio
 
@@ -177,7 +177,6 @@ Property | Default Value | Description
 Loader | Naninovel/Movies- (Addressable, Project) | Configuration of the resource loader used with movie resources.
 Skip On Input | True | Whether to skip movie playback when user activates `cancel` input keys.
 Skip Frames | True | Whether to skip frames to catch up with current time.
-Aspect Ratio | Fit Horizontally | Defines how the video content will be stretched to fill the target area.
 Fade Duration | 1 | Time in seconds to fade in/out before starting/finishing playing the movie.
 Custom Fade Texture | Null | Texture to show while fading. Will use a simple black texture when not provided.
 Play Intro Movie | False | Whether to automatically play a movie after engine initialization and before showing the main menu.
