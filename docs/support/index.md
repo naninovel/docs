@@ -57,7 +57,7 @@ Expected: Music "Ambient" should start playing.
 Actual: No music is playing.
 ```
 
-5. Close Unity editor and remove all the files and folders in the project directory, except the previously created instructions text file and `Assets`, `Packages` and `ProjectSettings` folders. Most importantly, **make sure you've deleted the `Library` folder**, as it contains a lot of auto-generated files.
+5. Close Unity editor and remove all the files and folders in the project directory, except the previously created instructions text file and `Assets`, `Packages` and `ProjectSettings` folders. Most importantly, **make sure you've deleted `Library` folder**, as it contains a lot of auto-generated files, which significantly increase project size.
 6. Archive (zip) the project folder and either upload it to Google Drive or attach to a private message in Discord.
 
 Remember to share reproduction projects only via private messages; **never share the projects via public channels** to prevent leaking personal data and copyrighted assets.
