@@ -23,6 +23,8 @@ Lorem ipsum dolor sit amet.
 Felix: Lorem ipsum dolor sit amet.
 ```
 
+Be aware, that even though the built-in printers are implemented as UIs, they're still actors and all the actor-related visibility changes (show/hide animations) use durations set either in the corresponding commands or actor configuration: eg, `time` parameter of [`@showPrinter`](/api/#showprinter) command controls show animation duration and when it's not specified, `Change Visibility Duration` printer actor configuration property is used as a default duration; `Fade Time` property found on the root of the printer UI prefab is ignored in this case.
+
 ## Auto-Advance Text
 
 Auto-advance feature allows to automatically continue script execution when handling [`i`](/api/#i) commands. 
