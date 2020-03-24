@@ -2,7 +2,7 @@
 
 If you have issues with the engine, first make sure to read the [guide](/guide/) and [command reference](/api/) topics related to the feature you're having issues with; also check the [FAQ](/faq/) for some frequently asked questions.
 
-In case you're sure the engine is not working as intended, check if you're running the latest available version. You can update the main package inside the Unity editor using [Asset Store window](https://docs.unity3d.com/Manual/AssetStore.html). In case you're using any of the engine extensions, download and import the latest packages:
+In case you're sure the engine is not working as intended, check if you're running the latest available version. You can update the main package inside the Unity editor using [Asset Store window](https://docs.unity3d.com/Manual/AssetStore.html). When using any of the engine extensions, download and import the latest packages:
 
 - [NaninovelLive2D](https://github.com/Elringus/NaninovelLive2D/raw/master/NaninovelLive2D.unitypackage)
 - [NaninovelPlayMaker](https://github.com/Elringus/NaninovelPlayMaker/raw/master/NaninovelPlayMaker.unitypackage)
