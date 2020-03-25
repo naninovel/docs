@@ -6,13 +6,13 @@ By default, configuration objects are serialized as [scriptable object](https://
 
 To access configuration objects via C# use `Engine.GetConfiguration<T>()` static method, where `T` is type of the configuration object you wish to access. For example, the following example demonstrates how to access [audio configuration](/guide/configuration.md#audio) object:
 
-```charp
+```csharp
 var audioConfig = Engine.GetConfiguration<AudioConfiguration>();
 ```  
 
 Be aware, that `Engine.GetConfiguration` method can only be used when the engine is initialized, as it requires a [configuration provider](/guide/custom-configuration.md#configuration-provider) object, which is specified when initializing the engine to allow custom serving scenarios at runtime. In case you wish to access a configuration asset via default provider, it's possible even when the engine is not initialized with `ProjectConfigurationProvider` class, eg:
 
-```charp
+```csharp
 var audioConfig = ProjectConfigurationProvider.LoadOrDefault<AudioConfiguration>();
 ``` 
 
@@ -41,6 +41,38 @@ public static class ModifyConfigAtRuntime
         }
     }
 }
+```
+
+## Adding Configuration
+
+To add a new custom configuration, create a C# class with a `Serializable` attribute and inherit it from `Configuration`.
+
+```csharp
+using Naninovel;
+using UnityEngine;
+
+[System.Serializable]
+public class MyCustomConfiguration : Configuration
+{
+    [Header("My Custom Header 1")]
+    [Tooltip("Tooltip for my custom string.")]
+    public string MyCustomString = "Default value";
+    [Range(0, 100), Tooltip("Tooltip for my custom float.")]
+    public float MyCustomFloat = 10;
+
+    [Header("My Custom Header 2")]
+    public int[] MyCustomArray;
+}
+```
+
+Corresponding menu will then automatically be added in the project settings, where you can configure properties of you custom configuration asset just like in all the built-in menus.
+
+![](https://i.gyazo.com/c1163bba83f5d2b6286b100e837bca40.png)
+
+To access your custom configuration via C# use the same API as for the built-in assets:
+
+```csharp
+var myConfig = Engine.GetConfiguration<MyCustomConfiguration>();
 ```
 
 ## Configuration Provider
