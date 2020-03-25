@@ -82,6 +82,7 @@ function getGuideSidebar (groupA, groupB, groupC) {
                 'engine-architecture',
                 'engine-services',
                 'custom-commands',
+                'custom-configuration',
                 'custom-actor-implementations',
                 'custom-actor-shader',
                 'state-management',
