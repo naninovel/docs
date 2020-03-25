@@ -11,7 +11,7 @@ The first thing you'll probably want to change is disable the `Initialize On App
 
 When enabled, the engine services will automatically initialize on application start. Unless you want to begin your game in dialogue mode, you would rather manually initialize the engine when it's actually needed. 
 
-Use the static async `RuntimeInitializer.InitializeAsync()` method to initialize the engine at runtime before using any of the built-in service APIs.
+Use the static async `RuntimeInitializer.InitializeAsync()`  method (or a custom script) to initialize the engine at runtime before using any of the built-in service APIs.
 
 You can check whether the engine is currently initialized with `Engine.Initialized` property. Use `Engine.OnInitialized` event to listen for the initialization finished events.
 

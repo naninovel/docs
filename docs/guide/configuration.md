@@ -7,6 +7,8 @@ Notice, that all the configuration menus are supporting [Unity's presets feature
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/55f5c74bfc16e1af2455034647525df3.mp4" type="video/mp4"></video>
 
+It's possible to modify configuration objects at runtime, add new custom configurations and change the way the objects are accessed at runtime (eg, read configuration from JSON files stored on a remote host); see [custom configuration](/guide/custom-configuration.md) guide for more information.
+
 This configuration reference is valid for [Naninovel v1.9.5-beta](https://github.com/Elringus/NaninovelWeb/releases).
 
 ## Audio
