@@ -2,7 +2,7 @@
 
 Custom variables feature allows to create user-specified variables, modify and use them to drive conditional execution of naninovel scripts or other systems. For example, custom variables can be used to select one of the multiple naninovel scripts to play (scenario routes), based on the decisions player has made in the past. Another frequently used scenario is player stats screen (eg, scores, money, resources etc), based on the choices the player makes throughout the game.
 
-Custom variables can be created, modified and used both in naninovel scripts via [`@set`](/api/#set) and [`@if`](/api/#if) commands and in the C# scripts using `CustomVariableManager` [engine service](/guide/engine-services.md).
+Custom variables can be created, modified and used both in naninovel scripts via [`@set`](/api/#set) and [`@if`](/api/#if) commands and in the C# scripts using `ICustomVariableManager` [engine service](/guide/engine-services.md).
 
 For example, the following script command will assign a different value to `score` custom variable, based on the choice:
 
