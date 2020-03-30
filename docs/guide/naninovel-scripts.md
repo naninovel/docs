@@ -139,14 +139,14 @@ Notice, that the inlined command syntax is exactly the same, except `@` literal 
 Under the hood, generic text lines are parsed into individual commands identified by inline index; text is printed with [`@print`](/api/#print) command. For example, following generic text line in a naninovel script:
 
 ```
-Lorem ipsum[char Felix.Happy pos:0.75 wait:false] dolor sit amet.
+Lorem ipsum[char Felix.Happy pos:75 wait:false] dolor sit amet.
 ```
 
 — is actually handled by the engine as a sequence of individual commands:
 
 ```
 @print "Lorem ipsum" waitInput:false
-@char Felix.Happy pos:0.75 wait:false
+@char Felix.Happy pos:75 wait:false
 @print "dolor sit amet."
 ```
 
