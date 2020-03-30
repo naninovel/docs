@@ -55,10 +55,10 @@ You can inject the custom variables to any parameter values as long as the type 
 @set PlayerName="Felix";PlayerYPosition=0.1;PlayerTint="lightblue"
 
 ; The following will produce an error, as `PlayerTint` is not a number.
-@char {PlayerName} pos:0.5,{PlayerTint} 
+@char {PlayerName} pos:50,{PlayerTint} 
 
 ; ...and this will execute just fine.
-@char {PlayerName} pos:0.5,{PlayerYPosition} tint:{PlayerTint}
+@char {PlayerName} pos:50,{PlayerYPosition} tint:{PlayerTint}
 ```
 
 ## Variable Triggers
