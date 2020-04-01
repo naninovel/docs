@@ -23,7 +23,7 @@
 
         $("#submit-verify").on('click', function() {
             $.ajax({
-                url: 'https://nifty-northcutt-9e33d4.netlify.com/.netlify/functions/verify-customer',
+                url: 'https://nifty-northcutt-9e33d4.netlify.app/.netlify/functions/verify-customer',
                 type: 'POST',
                 crossDomain: true,
                 data: $("#form-verify input[name='discord']").val(),
