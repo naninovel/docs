@@ -382,6 +382,8 @@ Frequency | 20
 
 ## Custom Transition Effects
 
+### Dissolve Mask
+
 You can make custom transitions based on a dissolve mask texture. Dissolve mask is a greyscale texture, where the color defines when the pixel will transition to the target texture. For example, consider following spiral dissolve mask:
 
 ![](https://i.gyazo.com/3c32e920efdf6cfb35214b6c9b617a6a.png)
@@ -400,3 +402,49 @@ Check out the following video for the usage examples:
     <iframe src="https://www.youtube-nocookie.com/embed/HZjey6M2-PE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
+### Custom Shader
+
+It's possible to add a completely custom transition effect via a custom actor [shader](https://docs.unity3d.com/Manual/ShadersOverview.html).
+
+*Notice, that the topic requires graphic programming skills in Unity. We're not providing any support or tutorials on writing custom shaders.*
+
+Create a new shader and assign it to the actors, which are supposed to use your new custom transition effect; see [custom actor shader](/guide/custom-actor-shader.md) guide for more information on how to create and assign custom actor shaders.
+
+When a transition name is specified in a script command, [shader keyword](https://docs.unity3d.com/ScriptReference/Shader.EnableKeyword.html) with the same name (prefixed with `NANINOVEL_TRANSITION_`) is enabled in the material used by the actor.
+
+To add your own transitions to a custom actor shader, use `multi_compile` directive, eg:
+
+```c
+#pragma multi_compile _ NANINOVEL_TRANSITION_MYCUSTOM1 NANINOVEL_TRANSITION_MYCUSTOM2
+```
+
+— will add `MyCustom1` and `MyCustom2` transitions.
+
+You can then use conditional directives to select a specific render method based on the enabled transition keyword. When re-using built-in actor shader, it's possible to implement custom transitions via `ApplyTransitionEffect` method, which is used in the fragment handler:
+
+```c
+fixed4 ApplyTransitionEffect(in sampler2D mainTex, in float2 mainUV, in sampler2D transitionTex, in float2 transitionUV, in float progress, in float4 params, in float2 randomSeed, in sampler2D cloudsTex, in sampler2D customTex)
+{
+    const fixed4 CLIP_COLOR = fixed4(0, 0, 0, 0);
+    fixed4 mainColor = Tex2DClip01(mainTex, mainUV, CLIP_COLOR);
+    fixed4 transitionColor = Tex2DClip01(transitionTex, transitionUV, CLIP_COLOR);
+
+    #ifdef NANINOVEL_TRANSITION_MYCUSTOM1 // MyCustom1 transition.
+    return transitionUV.x > progress ? mainColor : lerp(mainColor / progress * .1, transitionColor, progress);
+    #endif
+
+    #ifdef NANINOVEL_TRANSITION_MYCUSTOM2 // MyCustom2 transition.
+    return lerp(mainColor * (1.0 - progress), transitionColor * progress, progress);
+    #endif
+
+    // When no transition keywords enabled default to crossfade.
+    return lerp(mainColor, transitionColor, progress);
+}
+```
+
+You'll then be able to invoke the added transitions in the same way as the built-in ones, eg:
+
+```
+@back Snow.MyCustom1
+@back River.MyCustom2
+```
