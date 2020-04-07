@@ -30,7 +30,7 @@ Be aware, that text printers and choice handlers are implemented via actors inte
 
 To add a custom UI or modify (disable) a built-in one, use UI resources manager accessible via `Naninovel -> Resources -> UI` editor menu.
 
-![](https://i.gyazo.com/4fa6d15e17f8a9123b1dbdda585ad806.png)
+![](https://i.gyazo.com/b0f00e8431e34e59249b3f59919e3b2c.png)
 
 To add a custom UI, create a new prefab (`Create -> Naninovel -> Custom UI`) and add it to the list. To disable a built-in UI remove a record from the list. When the engine is initializing it'll instantiate all the UI prefabs assigned in the resources manager.
 

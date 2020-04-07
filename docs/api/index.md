@@ -713,8 +713,8 @@ allowToggle | Boolean | When hiding the entire UI, controls whether to allow the
 ; Hide the entire UI, but allow the user to toggle it back
 @hideUI allowToggle:true
 
-; Simultaneously hide built-in `ITitleUI` and custom `Calendar` UIs.
-@hideUI ISaveLoadUI,ITitleUI
+; Simultaneously hide built-in `TipsUI` and custom `Calendar` UIs.
+@hideUI TipsUI,Calendar
 ```
 
 ## i
@@ -1268,8 +1268,8 @@ ID | Type | Description
 ; Given you've hide the entire UI with @hideUI, show it back
 @showUI
 
-; Simultaneously reveal built-in `ITipsUI` and custom `Calendar` UIs.
-@showUI ITipsUI,Calendar
+; Simultaneously reveal built-in `TipsUI` and custom `Calendar` UIs.
+@showUI TipsUI,Calendar
 ```
 
 ## skip
