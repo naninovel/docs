@@ -20,7 +20,7 @@ You can set which locale is selected by default when player first runs the game 
 
 Inside the *localization resources root* store resources that will be used instead of the source ones when the corresponding localization is selected in the game settings. 
 
-For example, if you wish to replace a "City" appearance sprite of a main background (background actor with "MainBackground" ID) with another one when a `ja-JP` locale is selected, place the localized version at the following path: `Resources/Naninovel/Localization/ja-JP/Naninovel/Backgrounds/MainBackground/City`.
+For example, if you wish to replace a "City" appearance sprite of a main background (background actor with "MainBackground" ID) with another one when a `ja-JP` locale is selected, place the localized version at the following path: `Resources/Naninovel/Localization/ja-JP/Backgrounds/MainBackground/City`.
 
 ## Scripts Localization
 
