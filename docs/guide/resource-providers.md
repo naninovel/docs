@@ -4,7 +4,7 @@ Resource providers are used to retrieve Naninovel-related data: ".nani" text fil
 
 Providers' general behavior can be configured via `Naninovel -> Configuration -> Resource Provider` menu.
 
-![](https://i.gyazo.com/3780103e39af4c9c658b5c1fe4d31095.png)
+![](https://i.gyazo.com/466488bf852f0dd54aa680012b072af1.png)
 
 `Resource Policy` property dictates when the resources are loaded and unloaded during script execution:
  - Static — All the resources required for the script execution are pre-loaded when starting the playback (masked with a loading screen) and unloaded only when the script has finished playing. This policy is default and recommended for most cases.
@@ -18,9 +18,9 @@ Other properties in the configuration menu are provider-specific and described b
 
 Resource-specific providers behavior is configured via `Loader` properties, available in the corresponding configuration menus. For example, here is the default loader configuration used to retrieve audio resources (BGM and SFX):
 
-![](https://i.gyazo.com/14667bc9125abfa4ed66b2010fec8767.png)
+![](https://i.gyazo.com/e9b59f738c93d0cdee6f0999b797a461.png)
 
-`Path Prefix` property allows specifying an additional path over provider's root path for the specific type of resources. Eg, given we're going to retrieve an "Explosion" audio file from a project's "Resources" folder, setting path prefix to "Naninovel/Audio" will result in the following resource request: `Resources.Load("Naninovel/Audio/Explosion")`.
+`Path Prefix` property allows specifying an additional path over provider's root path for the specific type of resources. Eg, given we're going to retrieve an "Explosion" audio file from a project's "Resources" folder, setting path prefix to "Audio" will result in the following resource request: `Resources.Load("Audio/Explosion")`.
 
 `Providers List` allows specifying which provider types to use and in which order. Eg, in the above example, when requesting an audio resource, first an "Addressable" provider will be used and in case the provider won't be able to find the requested resource, "Project" provider will be used.
 
@@ -101,7 +101,7 @@ It's possible to add a custom implementation of a resource provider and make Nan
 
 To add a custom provider, create a C# class with a parameterless constructor and implement `IResourceProvider` interface. Once created, custom provider type will appear in all the loader configuration menus along with the built-in types.
 
-![](https://i.gyazo.com/c944c5776be76b80d94b36bfe7ee9a08.png)
+![](https://i.gyazo.com/7176a9d4a4ea2d9414c5495e2e465baf.png)
 
 You can find built-in resource provider implementations at `Naninovel/Runtime/Common/ResourceProvider` package directory; feel free to use them as a reference when implementing your own versions.
 

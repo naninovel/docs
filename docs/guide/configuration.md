@@ -9,7 +9,7 @@ Notice, that all the configuration menus are supporting [Unity's presets feature
 
 It's possible to modify configuration objects at runtime, add new custom configurations and change the way the objects are accessed at runtime (eg, read configuration from JSON files stored on a remote host); see [custom configuration](/guide/custom-configuration.md) guide for more information.
 
-This configuration reference is valid for [Naninovel v1.9.5-beta](https://github.com/Elringus/NaninovelWeb/releases).
+This configuration reference is valid for [Naninovel v1.9.6-beta](https://github.com/Elringus/NaninovelWeb/releases).
 
 ## Audio
 
@@ -17,8 +17,8 @@ This configuration reference is valid for [Naninovel v1.9.5-beta](https://github
 
 Property | Default Value | Description
 --- | --- | ---
-Audio Loader | Naninovel/Audio- (Addressable, Project) | Configuration of the resource loader used with audio (BGM and SFX) resources.
-Voice Loader | Naninovel/Voice- (Addressable, Project) | Configuration of the resource loader used with voice resources.
+Audio Loader | Audio- (Addressable, Project) | Configuration of the resource loader used with audio (BGM and SFX) resources.
+Voice Loader | Voice- (Addressable, Project) | Configuration of the resource loader used with voice resources.
 Default Master Volume | 1 | Master volume to set when the game is first started.
 Default Bgm Volume | 1 | BGM volume to set when the game is first started.
 Default Sfx Volume | 1 | SFX volume to set when the game is first started.
@@ -81,7 +81,7 @@ Property | Default Value | Description
 Auto Arrange On Add | True | Whether to evenly distribute characters by X-axis when adding a new character without a specified position.
 Default Metadata | Object Ref | Metadata to use by default when creating character actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating character actors with specific IDs.
-Avatar Loader | Naninovel/Character Avatars- (Addressable, Project) | Configuration of the resource loader used with character avatar texture resources.
+Avatar Loader | Character Avatars- (Addressable, Project) | Configuration of the resource loader used with character avatar texture resources.
 Scene Origin | (0.5, 0.0) | Origin point used for reference when positioning actors on scene.
 Z Offset | 50 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
 Z Step | 0.1 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
@@ -154,7 +154,7 @@ Bindings | Object Ref | Bindings to process input for.
 
 Property | Default Value | Description
 --- | --- | ---
-Loader | Naninovel/Localization- (Addressable, Project) | Configuration of the resource loader used with the localization resources.
+Loader | Localization- (Addressable, Project) | Configuration of the resource loader used with the localization resources.
 Source Locale | En | Locale of the source project resources (language in which the project assets are being authored).
 Default Locale | Null | Locale selected by default when running the game for the first time. Will select `Source Locale` when not specified.
 
@@ -166,7 +166,7 @@ Default Locale | Null | Locale selected by default when running the game for the
 
 Property | Default Value | Description
 --- | --- | ---
-Loader | Naninovel/Text- (Addressable, Project) | Configuration of the resource loader used with the managed text documents.
+Loader | Text- (Addressable, Project) | Configuration of the resource loader used with the managed text documents.
 
 </div>
 
@@ -176,7 +176,7 @@ Loader | Naninovel/Text- (Addressable, Project) | Configuration of the resource 
 
 Property | Default Value | Description
 --- | --- | ---
-Loader | Naninovel/Movies- (Addressable, Project) | Configuration of the resource loader used with movie resources.
+Loader | Movies- (Addressable, Project) | Configuration of the resource loader used with movie resources.
 Skip On Input | True | Whether to skip movie playback when user activates `cancel` input keys.
 Skip Frames | True | Whether to skip frames to catch up with current time.
 Fade Duration | 1 | Time in seconds to fade in/out before starting/finishing playing the movie.
@@ -201,6 +201,7 @@ Use Addressables | True | When the Addressable Asset System is installed, enabli
 Auto Build Bundles | True | Whether to automatically build the addressable asset bundles when building the player. Has no effect when `Use Addressables` is disabled.
 Extra Labels | Null | Addressable provider will only work with assets, that have the assigned labels in addition to `Naninovel` label. Can be used to filter assets used by the engine based on custom criterias (eg, HD vs SD textures).
 Local Root Path | %DATA%/Resources | Path root to use for the local resource provider. Can be an absolute path to the folder where the resources are located, or a relative path with one of the available origins:<br> • %DATA% — Game data folder on the target device (UnityEngine.Application.dataPath).<br> • %PDATA% — Persistent data directory on the target device (UnityEngine.Application.persistentDataPath).<br> • %STREAM% — `StreamingAssets` folder (UnityEngine.Application.streamingAssetsPath).<br> • %SPECIAL{F}% — An OS special folder (where F is value from System.Environment.SpecialFolder).
+Project Root Path | Naninovel | Path relative to `Resources` folders, under which the naninovel-specific assets are located.
 Google Drive Root Path | Resources | Path root to use for the Google Drive resource provider.
 Google Drive Request Limit | 2 | Maximum allowed concurrent requests when contacting Google Drive API.
 Google Drive Caching Policy | Smart | Cache policy to use when downloading resources. `Smart` will attempt to use Changes API to check for the modifications on the drive. `PurgeAllOnInit` will to re-download all the resources when the provider is initialized.
@@ -225,7 +226,7 @@ Show Debug On Init | False | Whether to show player debug window on engine initi
 
 Property | Default Value | Description
 --- | --- | ---
-Loader | Naninovel/Scripts- (Addressable, Project) | Configuration of the resource loader used with naninovel script resources.
+Loader | Scripts- (Addressable, Project) | Configuration of the resource loader used with naninovel script resources.
 Initialization Script | Null | Name of the script to play right after the engine initialization.
 Title Script | Null | Name of the script to play when showing the Title UI. Can be used to setup the title screen scene (backgound, music, etc).
 Start Game Script | Null | Name of the script to play when starting a new game. Will use first available when not provided.
@@ -241,7 +242,7 @@ Save Script Modifier | Control | Modifier for the `Save Script Key`. Set to `Non
 Visual Editor Page Length | 1000 | How many script lines should be rendered per visual editor page.
 Custom Style Sheet | Null | Allows modifying the default style of the visual editor.
 Enable Community Modding | False | Whether to allow adding external naninovel scripts to the build.
-External Loader | Naninovel/Scripts- (Local) | Configuration of the resource loader used with external naninovel script resources.
+External Loader | Scripts- (Local) | Configuration of the resource loader used with external naninovel script resources.
 Enable Navigator | True | Whether to initializte script navigator to browse available naninovel scripts.
 Show Navigator On Init | False | Whether to show naninovel script navigator when script manager is initialized.
 Navigator Sort Order | 900 | UI sort order of the script navigator.
@@ -254,7 +255,7 @@ Navigator Sort Order | 900 | UI sort order of the script navigator.
 
 Property | Default Value | Description
 --- | --- | ---
-Loader | Naninovel/Spawn- (Addressable, Project) | Configuration of the resource loader used with spawn resources.
+Loader | Spawn- (Addressable, Project) | Configuration of the resource loader used with spawn resources.
 
 </div>
 
@@ -309,7 +310,7 @@ Auto Show On Modify | False | Whether to automatically reveal (show) an actor wh
 
 Property | Default Value | Description
 --- | --- | ---
-Loader | Naninovel/UI- (Addressable, Project) | Configuration of the resource loader used with UI resources.
+Loader | UI- (Addressable, Project) | Configuration of the resource loader used with UI resources.
 Objects Layer | 5 | The layer to assign for the UI elements instatiated by the engine. Used to cull the UI when using `toogle UI` feature.
 Render Mode | Screen Space Camera | The canvas render mode to apply for all the managed UI elements.
 Sorting Offset | 1 | The sorting offset to apply for all the managed UI elements.
@@ -322,7 +323,7 @@ Sorting Offset | 1 | The sorting offset to apply for all the managed UI elements
 
 Property | Default Value | Description
 --- | --- | ---
-Loader | Naninovel/Unlockables- (Addressable, Project) | Configuration of the resource loader used with unlockable resources.
+Loader | Unlockables- (Addressable, Project) | Configuration of the resource loader used with unlockable resources.
 
 </div>
 
