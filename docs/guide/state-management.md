@@ -183,7 +183,9 @@ public class CustomSettingsSlotManager : ISaveSlotManager<SettingsStateMap>
 }
 ```
 
-*Notice: you can pick any name for your custom serialization handler, `CustomSettingsSlotManager` is just an example.*
+::: note
+You can pick any name for your custom serialization handler, `CustomSettingsSlotManager` is just an example.
+:::
 
 When a custom handler is implemented, it'll appear in the state configuration menu, where you can set it instead of the built-in one.
 

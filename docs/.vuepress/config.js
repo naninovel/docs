@@ -36,9 +36,12 @@ module.exports = {
             '/guide/': getGuideSidebar('Guide', 'Advanced', 'Extensions')
         }
     },
-    plugins: {
-        '@vuepress/google-analytics' : { ga: 'UA-62903242-4' }
-    }
+    plugins: [
+        ['@vuepress/google-analytics', { ga: 'UA-62903242-4' } ],
+        ['vuepress-plugin-container',  { type: 'note', defaultTitle: { '/': 'NOTICE', '/ru/': 'ПРИМЕЧАНИЕ' } }],
+        ['vuepress-plugin-container',  { type: 'example', defaultTitle: { '/': 'EXAMPLE', '/ru/': 'ПРИМЕР' } }],
+        ['vuepress-plugin-container',  { type: 'warn', defaultTitle: { '/': 'WARNING', '/ru/': 'ВНИМАНИЕ' } }]
+    ]
 };
 
 function getGuideSidebar (groupA, groupB, groupC) {

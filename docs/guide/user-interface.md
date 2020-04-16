@@ -26,7 +26,9 @@ UI customization feature allows to add a custom UI and modify or completely repl
 
 Be aware, that text printers and choice handlers are implemented via actors interface and are customized in a different way; see the corresponding documentation ([text printers](/guide/text-printers.md), [choice handlers](/guide/choices.md)) for more info.
 
-*Notice: Before attempting to create custom UIs or modify existing ones first make sure you're familiar with [Unity's UI system](https://docs.unity3d.com/Packages/com.unity.ugui@latest) (uGUI); we're not providing any tutorials or support for Unity's built-in tools.*
+::: warn
+Before attempting to create custom UIs or modify existing ones first make sure you're familiar with [Unity's UI system](https://docs.unity3d.com/Packages/com.unity.ugui@latest) (uGUI); we're not providing any tutorials or support for Unity's built-in tools.
+:::
 
 To add a custom UI or modify (disable) a built-in one, use UI resources manager accessible via `Naninovel -> Resources -> UI` editor menu.
 
@@ -123,7 +125,9 @@ Notice, that when an existing naninovel script is selected via dropdown list, th
 
 Check out the following video tutorial, where we create a custom calendar UI and bind it to the date and month [custom state variables](/api/#set).
 
-*Be aware, that the video was created with a previous version of the engine and some of the steps may not reflect how things currently work. We'll update the video after the stable release, but you can still use the current one to get a grasp on how to use the feature on a conceptual level.*
+::: warn
+The video was created with a previous version of the engine and some of the steps may not reflect how things currently work. We'll update the video after the stable release, but you can still use the current one to get a grasp on how to use the feature on a conceptual level.
+:::
 
 <div class="video-container">
     <iframe src="https://www.youtube-nocookie.com/embed/jto4Ld-iP7M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

@@ -96,7 +96,9 @@ To use any given avatar, you have to first add it to the avatar resources and gi
 
 ![](https://i.gyazo.com/5a0f10d174aa75ed87da1b472567e40b.png)
 
-*Notice: Avatar names can be arbitrary and don't have to contain an existing character ID or appearance. This is only required when you want to associate an avatar with a character so that it's shown automatically.*
+::: note
+Avatar names can be arbitrary and don't have to contain an existing character ID or appearance. This is only required when you want to associate an avatar with a character so that it's shown automatically.
+:::
 
 You can then show a specific avatar texture like this:
 
@@ -243,7 +245,9 @@ The video below demonstrates hot to setup a layered character and control it via
     <iframe src="https://www.youtube-nocookie.com/embed/Bl3kXrg8tiI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-*Note: "@char Miho.Shoes>" command displayed in the video will actually select the "Shoes" group (disabling all the neighbor groups), not hide it. Correct command to hide a group is "@char Miho.Shoes-"*
+::: note
+`@char Miho.Shoes>` command displayed in the video will actually select the "Shoes" group (disabling all the neighbor groups), not hide it. Correct command to hide a group is `@char Miho.Shoes-`.
+:::
 
 It's possible to map composition expressions to keys via `Composition Map` property of `Layered Actor Behaviour` component:
 

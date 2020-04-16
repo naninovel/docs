@@ -406,7 +406,9 @@ Check out the following video for the usage examples:
 
 It's possible to add a completely custom transition effect via a custom actor [shader](https://docs.unity3d.com/Manual/ShadersOverview.html).
 
-*Notice, that the topic requires graphic programming skills in Unity. We're not providing any support or tutorials on writing custom shaders.*
+::: warn
+The topic requires graphic programming skills in Unity. We're not providing any support or tutorials on writing custom shaders.
+:::
 
 Create a new shader and assign it to the actors, which are supposed to use your new custom transition effect; see [custom actor shader](/guide/custom-actor-shader.md) guide for more information on how to create and assign custom actor shaders.
 
