@@ -16,6 +16,7 @@ module.exports = {
     ],
     themeConfig: {
         editLinks: false,
+        lastUpdated: 'Last Updated',
         nav: [
             {
                 text: 'News',
@@ -38,6 +39,7 @@ module.exports = {
     },
     plugins: [
         ['@vuepress/google-analytics', { ga: 'UA-62903242-4' } ],
+        ['@vuepress/last-updated', { dateOptions: { year: 'numeric', month: 'long', day: 'numeric' } } ],
         ['vuepress-plugin-container',  { type: 'note', defaultTitle: { '/': 'NOTICE', '/ru/': 'ПРИМЕЧАНИЕ' } }],
         ['vuepress-plugin-container',  { type: 'example', defaultTitle: { '/': 'EXAMPLE', '/ru/': 'ПРИМЕР' } }],
         ['vuepress-plugin-container',  { type: 'warn', defaultTitle: { '/': 'WARNING', '/ru/': 'ВНИМАНИЕ' } }]

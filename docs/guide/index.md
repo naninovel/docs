@@ -4,6 +4,10 @@ Naninovel is an extension for [Unity game engine](https://unity3d.com). It consi
 
 If you're looking for a specific topic, try using search bar located in the top-right corner of the page; also, check out the [FAQ](/faq/), where we have answers for some of the frequently asked questions. Feel free to [contact the support](/support/#developer-support) in case you can't find the required information.
 
+::: warn
+Naninovel is currently in a final stage of open beta: all the core features are implemented and the engine is already being used in multiple commercial projects, but there is still a probability of breaking changes prior to stable release.
+:::
+
 ## Features
 
 Following are some of the features Naninovel provides out of the box:
