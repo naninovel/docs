@@ -5,8 +5,8 @@
   "author": "Elringus",
   "homepage": "https://naninovel.com",
   "devDependencies": {
-    "@vuepress/plugin-google-analytics": "1.0.0-alpha.0",
-    "vuepress": "1.0.0-alpha.30"
+    "@vuepress/plugin-google-analytics": "1.4.1",
+    "vuepress": "1.4.1"
   },
   "scripts": {
     "docs:dev": "vuepress dev docs",

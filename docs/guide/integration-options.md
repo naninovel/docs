@@ -54,7 +54,9 @@ You can make the engine's camera render to a custom [render texture](https://doc
 ## Integration Example
 The following video shows a basic way to integrate Naninovel with Unity's 3D Game Kit project and use it as a drop-in dialogue system.
 
-*Be aware, that the video was created with a previous version of the engine and some of the steps may not reflect how things currently work. We'll update the video after the stable release, but you can still use the current one to get a grasp on how the integration could be implemented on a conceptual level.*
+::: warn
+The video was created with a previous version of the engine and some of the steps may not reflect how things currently work. We'll update the video after the stable release, but you can still use the current one to get a grasp on how the integration could be implemented on a conceptual level.
+:::
 
 <div class="video-container">
     <iframe src="https://www.youtube-nocookie.com/embed/5h3-xnbyphk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

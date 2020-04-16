@@ -29,7 +29,9 @@ Use `Create -> Naninovel -> Naninovel Script` assets context menu to create a na
 
 ![Create Naninovel Script](https://i.gyazo.com/be7677077abeb4f805979bd647d6d90e.png)
 
-*Notice: you can create and store naninovel scripts (as well as all the other Naninovel resources) under any project folder and organize them in any way you like; the naming is also up to you. The above illustration is just an example.*
+::: note
+You can create and store naninovel scripts (as well as all the other Naninovel resources) under any project folder and organize them in any way you like; the naming is also up to you. The above illustration is just an example.
+:::
 
 Naninovel scripts are text documents (`.nani` extension) where you control what happens on scenes. You can open and edit them with a text editor of your choice, like Notepad, TextEdit or [Atom](https://atom.io).
 
@@ -45,7 +47,9 @@ When you've changed the script using visual editor, you'll see an asterisk (`*`)
 
 The visual editor will automatically sync edited script if you update it externally, so you can seamlessly work with the scripts in both text and visual editors.
 
-*In the rest of this guide we will use a text editor, but you can repeat all the same steps with the visual editor, if you wish.*
+::: note
+In the rest of this guide we will use a text editor, but you can repeat all the same steps with the visual editor, if you wish.
+:::
 
 In order for a Naninovel-related asset (like our created script) to become "visible" for the engine, it should be assigned as a project resource. When creating the scripts via the create assets menu, they're assigned automatically. To assign (or edit/remove) a script resource manually use script resources window accessible with `Naninovel -> Resources -> Scripts` editor context menu. To add a script, press `+` (plus sign) button in the list to add a new record and drag-drop script asset to the list. It's also possible to drag-drop multiple assets or even whole folders to the list to add them in batch.
 
