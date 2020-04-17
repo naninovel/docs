@@ -2,7 +2,9 @@
 
 Unity's [scriptable render pipelines](https://docs.unity3d.com/Manual/ScriptableRenderPipeline.html) (SRP) — both URP and HDRP — are supported with some limitations and require additional setup.
 
-Be aware, that the SRPs are still hardly production-ready (despite the official claims from Unity) and lack many features compared to default rendering system. It's not recommended to use the render pipelines, unless you're an advanced user and ready to solve any potential technical issues and limitations.
+::: warn
+The SRPs are still hardly production-ready (despite the official claims from Unity) and lack many features compared to default rendering system. It's not recommended to use the render pipelines, unless you're an advanced user and ready to solve any potential technical issues and limitations.
+:::
 
 ## Setup
 

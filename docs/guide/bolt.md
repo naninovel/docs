@@ -20,4 +20,6 @@ That's it, you can now use Naninovel C# API in your bolt graphs.
 
 ![](https://i.gyazo.com/080106d574ea894f62ea79b7dd904ab2.png)
 
+::: example
 An example project is available on GitHub: [github.com/Elringus/NaninovelBolt](https://github.com/Elringus/NaninovelBolt).
+:::

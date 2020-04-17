@@ -38,6 +38,6 @@ The following video demonstrates AC's demo scene integrated with Naninovel to ha
     <iframe src="https://www.youtube-nocookie.com/embed/7tOIFZRSAec" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-## Example Project
-
+::: example
 See the [GitHub project](https://github.com/Elringus/NaninovelAdventureCreator) for an integration example. When opening the project for the first time you'll get errors due to missing Adventure Creator and Naninovel packages. Just import them from Asset Store and the errors will go away.
+:::
