@@ -24,9 +24,7 @@ All the engine source code is available in the distributed package. A couple of 
 
 Naninovel is designed to be [scene-independent](/guide/engine-architecture.md#scene-independent) and doesn't use [Unity scenes](https://docs.unity3d.com/Manual/CreatingScenes.html) in any way, hence it's not possible to make any kind of example or demo scenes. The engine is automatically initialized when the game is started (can be switched to manual initialization in the engine configuration window) and scenarios are scripted via text documents called [naninovel scripts](/guide/naninovel-scripts.md).
 
-Please read through the [getting started](/guide/getting-started.md) guide to get a grasp on how to use the engine. You can find additional examples on using various engine features and script commands in the rest of the [guide](/guide/index.md) and [API command reference](/api/index.md).
-
-There is also a demo project available on GitHub: [github.com/Elringus/NaninovelDemo](https://github.com/Elringus/NaninovelDemo). After cloning the project, don't forget to import Naninovel package to prevent compilation errors.
+Please read through the [getting started](/guide/getting-started.md) guide to get a grasp on how to use the engine. You can find additional examples on using various engine features and script commands in the rest of the [guide](/guide/index.md) and [API command reference](/api/index.md). In case you'd like a complete working project, which can be used as a reference, take a look at the [demo project](/guide/getting-started.html#demo-project).
 
 ## How to customize the title (main) menu: add background, music, effects, change buttons, etc?
 
