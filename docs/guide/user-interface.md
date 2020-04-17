@@ -133,6 +133,6 @@ The video was created with a previous version of the engine and some of the step
     <iframe src="https://www.youtube-nocookie.com/embed/jto4Ld-iP7M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-## Example Project
-
+::: example
 Within the [following GitHub repository](https://github.com/Elringus/NaninovelCustomUIExample) you can find the project showed in the above video tutorial.
+:::

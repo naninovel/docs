@@ -62,6 +62,6 @@ The video was created with a previous version of the engine and some of the step
     <iframe src="https://www.youtube-nocookie.com/embed/5h3-xnbyphk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-## Example Project
-
+::: example
 The sources of the project shown in the video are available on [GitHub](https://github.com/Elringus/NaninovelIntegrationExample).
+:::

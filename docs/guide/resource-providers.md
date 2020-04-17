@@ -95,7 +95,9 @@ Don't forget to add google drive to the list of providers for the resources you 
 
 ![](https://i.gyazo.com/0ad07f73fe12be7ae6d421c5f4f33384.png)
 
+::: example
 See [NaninovelSandbox](https://github.com/Elringus/NaninovelSandbox) project for an example on how to setup and use Google Drive provider.
+:::
 
 ## Custom Providers
 
