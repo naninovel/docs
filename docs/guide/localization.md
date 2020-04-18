@@ -75,7 +75,9 @@ You're expected to include any inlined commands present in the source statement 
 Kohaku: Противостояние вызывает кислый метеорный дождь.[br 2][char Kohaku.Casual/Angry][style #ff0000,bold,45]Меандр разрушаем?[style default][br][skipInput]
 ```
 
-Notice, that you **should not translate character IDs** (or any other actor IDs). If you do so, some features (eg, character highlight and lip sync) will break. In case you wish to translate author names displayed in text printers, use [display names](/guide/characters.md#display-names) feature instead.
+::: warn
+You **should not translate character IDs** (or any other actor IDs). If you do so, some features (eg, character highlight and lip sync) will break. In case you wish to translate author names displayed in text printers, use [display names](/guide/characters.md#display-names) feature instead.
+:::
 
 Total word count contained in the generated localization documents (excluding the hash lines) is shown in the localization tool window when the generation procedure is finished.
 
