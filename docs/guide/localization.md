@@ -82,3 +82,7 @@ You **should not translate character IDs** (or any other actor IDs). If you do s
 Total word count contained in the generated localization documents (excluding the hash lines) is shown in the localization tool window when the generation procedure is finished.
 
 By default, the generated documents will contain the text to translate taken from the source naninovel scripts. In case you wish to instead take the text from already generated localization documents, select "Script Folder" path to point into a folder containing generated localization documents for another locale. For example, let's say your source locale is Spanish. By default, the localization documents will contain the source text in Spanish. But what if you already have a Spanish -> English translation and now need to generate English -> Russian documents? Just point "Script Folder" to the folder where English documents are stored; the generated documents will then contain source text taken from the English translation.
+
+::: example
+You can find an example localization setup in the [demo project](/guide/getting-started.md#demo-project). Feel free to use it as a reference in case having issues setting up localization in your own project.
+:::
