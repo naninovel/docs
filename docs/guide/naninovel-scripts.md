@@ -253,15 +253,23 @@ During the playmode, you can use visual editor to track which script line is cur
 
 Currently played line will be highlighted with green color; when script playback is halted due waiting for user input, played line will be highlighted with yellow instead.
 
-It's possible to edit the script during playmode (via both visual and external editors) and have the changes applied immediately (without game restart) when `Hot Reload Scripts` option is enabled in the scripts configuration. When modifying, adding or removing a line before the currently played one, state rollback will automatically happen to the modified line to prevent state inconsistency.
-
 You can tweak the editor behavior and looks in the scripts configuration menu.
 
-![](https://i.gyazo.com/ddd3ed7cb728d24980863e3830f4ed8d.png)
+![](https://i.gyazo.com/4b4b2608e7662b02a61b00734910308c.png)
 
 <div class="video-container">
     <iframe src="https://www.youtube-nocookie.com/embed/9UmccF9R9xI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
+
+## Hot Reload
+
+It's possible to edit scripts at play mode (via both visual and external editors) and have the changes applied immediately, without game restart. The feature is controlled via `Hot Reload Scripts` property in the scripts configuration and is enabled by default.
+
+When modifying, adding or removing a line before the currently played one, state rollback will automatically happen to the modified line to prevent state inconsistency.
+
+In case hot reload is not working, make sure `Auto Refresh` is enabled and `Script Changes While Playing` is set to `Recompile And Continue Playing`. Both properties can be found at `Edit -> Preferences -> General` Unity editor menu.
+
+![](https://i.gyazo.com/5d433783e1a12531c79fe6be80c92da7.png)
 
 ## IDE Support
 
