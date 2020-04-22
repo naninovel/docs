@@ -65,10 +65,7 @@ You can inject the custom variables to any parameter values as long as the type 
 
 When building a [custom UI](/guide/user-interface.md#ui-customization) or other systems, you may want to listen (react) for events when a variable value is changed. For example, when building a character stats screen, you want make the text to change with the variables. While the conventional way to implement such behavior would be using a C# script, you can also make use of `Custom Variable Trigger` component. The component will invoke Unity events when a variable with specified name is changed. You can bind compatible commands with those events, such as updating the text values.
 
-![](https://i.gyazo.com/22eddd109e76d4e63c461e9d75b20ceb.png
-)
-
-Check out the [video tutorial](https://www.youtube.com/watch?v=jto4Ld-iP7M) on creating a custom calendar UI, which updates values when corresponding custom variables are changed in naninovel scripts. You can also find the project demonstrated in the video on GitHub: [github.com/Elringus/NaninovelCustomUIExample](https://github.com/Elringus/NaninovelCustomUIExample).
+![](https://i.gyazo.com/22eddd109e76d4e63c461e9d75b20ceb.png)
 
 ## Variables Debug
 
