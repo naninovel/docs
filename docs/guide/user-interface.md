@@ -117,22 +117,8 @@ It's also possible to reference Unity event arguments in the script text with `{
 
 ![](https://i.gyazo.com/78e9fa27d6561f8f8aced76bbeb4b542.png)
 
-Be aware, that conditional block commands (if, else, elseif, endif) are not supported in the script text.
-
-Notice, that when an existing naninovel script is selected via dropdown list, the script text area will be ignored and selected naninovel script will be played **instead** of the currently played one; in case you wish to additively execute some commands without interrupting the currently played script, use the script text area.
-
-## Video Guide
-
-Check out the following video tutorial, where we create a custom calendar UI and bind it to the date and month [custom state variables](/api/#set).
-
 ::: warn
-The video was created with a previous version of the engine and some of the steps may not reflect how things currently work. We'll update the video after the stable release, but you can still use the current one to get a grasp on how to use the feature on a conceptual level.
+Be aware, that conditional block commands (if, else, elseif, endif) are not supported in the script text.
 :::
 
-<div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/jto4Ld-iP7M" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
-
-::: example
-Within the [following GitHub repository](https://github.com/Elringus/NaninovelCustomUIExample) you can find the project showed in the above video tutorial.
-:::
+When an existing naninovel script is selected via dropdown list, the script text area will be ignored and selected naninovel script will be played **instead** of the currently played one; in case you wish to additively execute some commands without interrupting the currently played script, use the script text area.
