@@ -24,7 +24,11 @@ The built-in UIs can also be navigated with a gamepad or keyboard, without using
 
 ![](https://i.gyazo.com/809d4c423d1696a075d5fb73370d48fa.png)
 
-With `Focus Mode` property you can change whether the assigned game object should be focused immediately after the UI becomes visible or after a navigation key is pressed. Be aware, that gamepad navigation over UIs will only work when Unity's new input system is installed in the project; find more information about the input system below.
+With `Focus Mode` property you can change whether the assigned game object should be focused immediately after the UI becomes visible or after a navigation key is pressed.
+
+::: warn
+Gamepad navigation over UIs will only work when Unity's new input system is installed in the project; find more information about the input system below.
+:::
 
 When in the main gameplay mode (outside of modal UIs), press a button binded to `Pause` input (`Backspace` key for keyboard and `Start` button for gamepad by default) to open pause menu, where you can save/load game, open settings, exit to title, etc.
 
@@ -40,6 +44,8 @@ Assign [input actions asset](https://docs.unity3d.com/Packages/com.unity.inputsy
 
 When properly configured, input actions will activate Naninovel's bindings. In case you wish to disable legacy input processing (which is set under the "Bindings" list), disable `Process Legacy Bindings` property under input configuration menu.
 
-Be aware, that touch and object-related input is still processed via legacy input, so don't completely disable legacy backend in the player settings, unless you're going to implement the features yourself.
+::: warn
+Touch and object-related input is still processed via legacy input, so don't completely disable legacy backend in the player settings, unless you're going to implement the features yourself.
+:::
 
 For more information on using new input system (eg, how to configure particular bindings or allow players to override the bindings at runtime), consult the [official manual](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual).
