@@ -118,7 +118,7 @@ It's also possible to reference Unity event arguments in the script text with `{
 ![](https://i.gyazo.com/78e9fa27d6561f8f8aced76bbeb4b542.png)
 
 ::: warn
-Be aware, that conditional block commands (if, else, elseif, endif) are not supported in the script text.
+Conditional block commands (if, else, elseif, endif) are not supported in the script text.
 :::
 
 When an existing naninovel script is selected via dropdown list, the script text area will be ignored and selected naninovel script will be played **instead** of the currently played one; in case you wish to additively execute some commands without interrupting the currently played script, use the script text area.
