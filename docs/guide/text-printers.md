@@ -1,6 +1,6 @@
 # Text Printers
 
-Text printers are actors used to present self-revealing text messages to the user. 
+Text printers are actors used to present text messages, that can be revealed (printed) over time.
 
 Printers' behavior can be configured using `Naninovel -> Configuration -> Printers` context menu; for available options see [configuration guide](/guide/configuration.md#printers). The printers' resources manager can be accessed using `Naninovel -> Resources -> Printers` context menu.
 
