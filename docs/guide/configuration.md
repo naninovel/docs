@@ -26,7 +26,7 @@ Default Bgm Volume | 1 | BGM volume to set when the game is first started.
 Default Sfx Volume | 1 | SFX volume to set when the game is first started.
 Default Voice Volume | 1 | Voice volume to set when the game is first started.
 Enable Auto Voicing | False | When enabled, each `PrintText` command will attempt to play voice clip at `VoiceResourcesPrefix/ScriptName/LineIndex.ActionIndex`.
-Voice Overlap Policy | Prevent Overlap | Dictates how to handle concurrent voices playback:<br> • Allow Overlap — Concurrent voices will be played without limitation.<br> • Prevent Overlap — Prevent concurrent voices playback by stopping any played voice clip before playing a new one.<br> • Prevent Character Overlap — Prevent concurrent voices playback per character; voices of different characters (auto voicing) and any number of `@voice` command are allowed to be played concurrently.
+Voice Overlap Policy | Prevent Overlap | Dictates how to handle concurrent voices playback:<br> • Allow Overlap — Concurrent voices will be played without limitation.<br> • Prevent Overlap — Prevent concurrent voices playback by stopping any played voice clip before playing a new one.<br> • Prevent Character Overlap — Prevent concurrent voices playback per character; voices of different characters (auto voicing) and any number of [@voice] command are allowed to be played concurrently.
 Custom Audio Mixer | Null | Audio mixer to control audio groups. When not provided, will use a default one.
 Master Volume Handle Name | Master Volume | Name of the mixer's handle (exposed parameter) to control master volume.
 Bgm Group Path | Master/BGM | Path of the mixer's group to control master volume.
@@ -276,7 +276,7 @@ Save Slot Limit | 99 | Maximum number of save slots.
 Quick Save Slot Limit | 18 | Maximum number of quick save slots.
 Binary Save Files | True | Whether to compress and store the saves as binary files (.nson) instead of text files (.json). This will significantly reduce the files size and make them harder to edit (to prevent cheating), but will consume more memory and CPU time when saving and loading.
 Load Start Delay | 0.3 | Seconds to wait before starting load operations; used to allow pre-load animations to complete before any load-related stutters could happen.
-Reset On Goto | True | Whether to reset state of the engine services and unload (dispose) resources when loading another script via `@goto` command. It's recommended to leave this enabled to prevent memory leak issues. If you choose to disable this option, you can still reset the state and dispose resources manually at any time using `@resetState` command.
+Reset On Goto | True | Whether to reset state of the engine services and unload (dispose) resources when loading another script via [@goto] command. It's recommended to leave this enabled to prevent memory leak issues. If you choose to disable this option, you can still reset the state and dispose resources manually at any time using [@resetState] command.
 Enable State Rollback | True | Whether to enable state rollback feature allowing player to rewind the script backwards.
 State Rollback Steps | 1024 | The number of state snapshots to keep at runtime; determines how far back the rollback (rewind) can be performed. Increasing this value will consume more memory.
 Saved Rollback Steps | 128 | The number of state snapshots to serialize (save) under the save game slots; determines how far back the rollback can be performed after loading a saved game. Increasing this value will enlarge save game files.

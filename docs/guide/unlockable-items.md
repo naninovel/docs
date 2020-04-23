@@ -2,7 +2,7 @@
 
 The unlockables feature allows to manage items, which have a persistent state of being either locked or unlocked. You can use it in a variety of ways, for example to represent slots in a CG or movie gallery, achievements, tips and other systems where some entity should be able to become unlocked or activated when player satisfies a condition.
 
-Each unlockable item is represented by a string identifier and boolean value, indicating whether the item is unlocked. In naninovel scripts, use [`@unlock`](/api/#unlock) and [`@lock`](/api/#lock) commands to respectively unlock and lock an item with a specific ID, eg:
+Each unlockable item is represented by a string identifier and boolean value, indicating whether the item is unlocked. In naninovel scripts, use [@unlock] and [@lock] commands to respectively unlock and lock an item with a specific ID, eg:
 
 ```
 @unlock SecretAchievement
@@ -49,7 +49,7 @@ To add an unlockable CG item to the gallery, you can either use one of the exist
 
 ![](https://i.gyazo.com/236bddfd0a02c18b94153cfb7189a877.png)
 
-No matter which way you'll choose, you can then unlock and lock the items using [`@unlock`](/api/#unlock) and [`@lock`](/api/#lock) commands respectively.
+No matter which way you'll choose, you can then unlock and lock the items using [@unlock] and [@lock] commands respectively.
 
 For example, to unlock the `CG/Map` item added in the illustrations above, use the following script command:
 
@@ -89,7 +89,7 @@ You can use [rich text tags](https://docs.unity3d.com/Manual/StyledText.html) an
 
 When there is at least one tip record in the `Tips.txt` managed text document, "TIPS" button will appear in the main menu and control panels, leading to the tips browser.
 
-To unlock a tip record, use [`@unlock`](/api/#unlock) and [`@lock`](/api/#lock) to lock the record back followed by the tip ID (should always be preceded by `Tips/` prefix) in the naninovel scripts. Eg, to unlock a `Tip1ID` tip record use:
+To unlock a tip record, use [@unlock] and [@lock] to lock the record back followed by the tip ID (should always be preceded by `Tips/` prefix) in the naninovel scripts. Eg, to unlock a `Tip1ID` tip record use:
 ```
 @unlock Tips/Tip1ID
 ```

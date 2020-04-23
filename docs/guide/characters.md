@@ -8,7 +8,7 @@ Characters' behavior can be configured using `Naninovel -> Configuration -> Char
 
 ![Add Character](https://i.gyazo.com/c8a4f7f987621831b4a2ecb3145a4a07.png)
 
-In naninovel scripts, characters are mostly controlled with [`@char`](/api/#char) command:
+In naninovel scripts, characters are mostly controlled with [@char] command:
 
 ```
 ; Shows character with name `Sora` with a default appearance.
@@ -28,7 +28,7 @@ Each character has `Poses` property allowing to specify named states (poses).
 
 ![](https://i.gyazo.com/6dd1e4bca6473e25cc24acc56138dc55.png)
 
-Pose name can be used as appearance in [`@char`](/api/#char) command to apply all the parameters specified in the pose state at once, instead of specifying them individually via the command parameters.
+Pose name can be used as appearance in [@char] command to apply all the parameters specified in the pose state at once, instead of specifying them individually via the command parameters.
 
 ```
 ; Given `SuperAngry` pose is defined for `Kohaku` character,
@@ -68,7 +68,7 @@ Player: ...
 Player: You can call me Dr. Stein.
 ```
 
-It's also possible to use the name binding feature to allow player pick their display name using [`@input`](/api/#input) command:
+It's also possible to use the name binding feature to allow player pick their display name using [@input] command:
 
 ```
 @input PlayerName summary:"Choose your name."
@@ -78,7 +78,7 @@ Player: You can call me {PlayerName}.
 
 ## Message Colors
 
-When `Use Character Color` is enabled in the character configuration, printer text messages and name labels will be tinted in the specified colors when the corresponding character ID is specified in a [`@print`](/api/#print) command or generic text line.
+When `Use Character Color` is enabled in the character configuration, printer text messages and name labels will be tinted in the specified colors when the corresponding character ID is specified in a [@print] command or generic text line.
 
 The following video demonstrates how to use display names and character colors.
 
@@ -88,7 +88,7 @@ The following video demonstrates how to use display names and character colors.
 
 ## Avatar Textures
 
-You can assign avatar textures to characters using `avatar` parameter of [`@char`](/api/#char) command. Avatars will be shown by the compatible text printers when they print a text message that is associated with the character. Currently, only `Wide` and `Chat` text printers support the avatars feature.
+You can assign avatar textures to characters using `avatar` parameter of [@char] command. Avatars will be shown by the compatible text printers when they print a text message that is associated with the character. Currently, only `Wide` and `Chat` text printers support the avatars feature.
 
 ![](https://i.gyazo.com/83c091c08846fa1cab8764a8d4dddeda.png)
 
@@ -106,13 +106,13 @@ You can then show a specific avatar texture like this:
 @char CharacaterId avatar:AvatarName
 ```
 
-To set a default avatar for a character, give the avatar texture resource name that equals to `CharacterID/Default`; eg, to set a default avatar for character with ID `Kohaku` name the avatar resource `Kohaku/Default`. Default avatars will be shown automatically, even when `avatar` parameter is not specified in the `@char` commands.
+To set a default avatar for a character, give the avatar texture resource name that equals to `CharacterID/Default`; eg, to set a default avatar for character with ID `Kohaku` name the avatar resource `Kohaku/Default`. Default avatars will be shown automatically, even when `avatar` parameter is not specified in the [@char] commands.
 
 It's also possible to associate avatars with specific character appearances, so that when character changes appearance, the avatar will also change automatically. For this, name the avatar resources using the following format: `CharacterID/CharacterAppearance`, where `CharacterAppearance` is the name of the appearance for which to map the avatar resource.
 
 Please note, that the **avatars are not directly connected with character appearances** and shouldn't be considered as a way to show character on the scene. Appearances specified in character's resource manager are the actual representation of a character on the scene. Avatars is a standalone feature, that "injects" an arbitrary image to a compatible text printer.
 
-It's possible to show only the avatar of a character inside a text printer, but hide the character itself by setting `visible` parameter of the `@char` command to `false`, eg:
+It's possible to show only the avatar of a character inside a text printer, but hide the character itself by setting `visible` parameter of the [@char] command to `false`, eg:
 ```
 @char CharacaterId visible:false
 ```
@@ -135,7 +135,7 @@ When enabled in the character configuration, will tint the character based on wh
     <iframe src="https://www.youtube-nocookie.com/embed/fx_YS2ZQGHI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
-When [auto voicing](/guide/voicing.md#auto-voicing) feature is enabled, lip sync events will be driven by the voice over; otherwise, printed text messages will activate the events. In the latter case, you'll probably sometimes want to manually start or stop the lip sync (eg, to prevent mouth animation when punctuation marks are printed); for such cases, use [`@lipSync`](/api/#lipsync) command.
+When [auto voicing](/guide/voicing.md#auto-voicing) feature is enabled, lip sync events will be driven by the voice over; otherwise, printed text messages will activate the events. In the latter case, you'll probably sometimes want to manually start or stop the lip sync (eg, to prevent mouth animation when punctuation marks are printed); for such cases, use [@lipSync] command.
 
 See [Generic](/guide/characters.md#generic-characters) and [Live2D](/guide/characters.md#live2d-characters) character implementation docs below for the details on how to setup the lip sync feature.
 
@@ -147,7 +147,7 @@ It's possible to associate a [text printer](/guide/text-printers.md) with a char
 
 When linked, the printer will automatically be used to handle messages authored by the character.
 
-Be aware, that [`@print`](/api/#print) commands (that are also used under the hood when printing generic text lines) make associated printers default and hide other visible printers by default. When printers are linked to characters, print commands will automatically change the currently visible and default text printer, while printing text associated with the corresponding characters. It's possible to prevent this behavior by disabling `Auto Default` property in printer actor configuration menu; when disabled you'll have to manually show/hide and switch default printers with [`@printer`](/api/#printer) commands.
+Be aware, that [@print] commands (that are also used under the hood when printing generic text lines) make associated printers default and hide other visible printers by default. When printers are linked to characters, print commands will automatically change the currently visible and default text printer, while printing text associated with the corresponding characters. It's possible to prevent this behavior by disabling `Auto Default` property in printer actor configuration menu; when disabled you'll have to manually show/hide and switch default printers with [@printer] commands.
 
 ## Sprite Characters 
 
@@ -195,7 +195,7 @@ When authoring layered character art in Photoshop, consider using Unity's [PSD I
 
 Don't forget to add the created layered prefab to the character resources (`Naninovel -> Resources -> Characters`). Choose "Naninovel.LayeredCharacter" implementation and drop prefab to the "Resource" field when configuring the resource record.
 
-To control the layered characters in naninovel scripts, use `@char` command in the same way as with the other character implementations. The only difference is how you set the appearance: instead of a single ID, use the *layer composition expression*. There are three expression types:
+To control the layered characters in naninovel scripts, use [@char] command in the same way as with the other character implementations. The only difference is how you set the appearance: instead of a single ID, use the *layer composition expression*. There are three expression types:
 
  - Enable a single layer in group: `group>layer`
  - Enable a layer: `group+layer`
@@ -308,7 +308,7 @@ When Live2D's `CubismLookController` and `CubismMouthController` components are 
 
 Consult Live2D documentation on [eye tracking](https://docs.live2d.com/cubism-sdk-tutorials/lookat) and [lip sync](https://docs.live2d.com/cubism-sdk-tutorials/lipsync) for the setup details.
 
-Be aware, that `Live2DController` expects a "Drawables" gameobject inside the Live2D model prefab (created automatically when importing Live2D models to Unity); the controller will scale this gameobject at runtime in correspondence with "scale" parameter of the `@char` commands. Hence, any local scale values set in the editor will be ignored. To set an initial scale for the Live2D prefabs, please use scale of the parent gameobject as [shown in the video guide](https://youtu.be/rw_Z69z0pAg?t=353).
+Be aware, that `Live2DController` expects a "Drawables" gameobject inside the Live2D model prefab (created automatically when importing Live2D models to Unity); the controller will scale this gameobject at runtime in correspondence with "scale" parameter of the [@char] commands. Hence, any local scale values set in the editor will be ignored. To set an initial scale for the Live2D prefabs, please use scale of the parent gameobject as [shown in the video guide](https://youtu.be/rw_Z69z0pAg?t=353).
 
 When Live2D extension is installed a "Live2D" item will appear in the Naninovel configuration menu providing following options:
 

@@ -147,7 +147,7 @@ Kohaku.Happy: Hello World!
 @stop
 ```
 
-To hide (remove from scene) a character (or any other actor, like background, text printer, etc), use [`@hide`](/api/#hide) command followed by actor ID:
+To hide (remove from scene) a character (or any other actor, like background, text printer, etc), use [@hide] command followed by actor ID:
 ```
 Kohaku.Happy: Hello World!
 @hide Kohaku
@@ -164,7 +164,7 @@ Add background sprites via `Naninovel -> Resources -> Backgrounds` menu. `MainBa
 
 ![Add Background](https://i.gyazo.com/98e88780625c7f2e1ef88db7ef10d1f4.png)
 
-Let’s assume the added background appearance sprite is named "City". To show a background, use a [`@back`](/api/#back) command followed by the background appearance name:
+Let’s assume the added background appearance sprite is named "City". To show a background, use a [@back] command followed by the background appearance name:
 
 ```
 @back City 
@@ -191,13 +191,13 @@ To add a BGM (background music) or SFX (sound effect) asset, use `Naninovel -> R
 
 ![Managing Audio](https://i.gyazo.com/cacdec36623dbbfcf9f49c594de53c0f.png)
 
-Let’s assume the added BGM file name is "ThePromenade". To play this track as a background music use [`@bgm`](/api/#bgm) command followed by the name of the track:
+Let’s assume the added BGM file name is "ThePromenade". To play this track as a background music use [@bgm] command followed by the name of the track:
 ```
 @bgm ThePromenade
 ```
 A cross-fade effect will be automatically applied when switching the music tracks. The music will loop by default, though you can change this, as well as volume and fade duration using command parameters.
 
-On the contrary, sound effects won't loop by default. Assuming you've added an "Explosion" SFX, use an [`@sfx`](/api/#sfx) command to play it back:
+On the contrary, sound effects won't loop by default. Assuming you've added an "Explosion" SFX, use an [@sfx] command to play it back:
 ```
 @sfx Explosion
 ```

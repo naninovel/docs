@@ -10,7 +10,7 @@ Backgrounds' behavior can be configured using `Naninovel -> Configuration -> Bac
 
 In case you have a lot of backgrounds and it's inconvenient to assign them via editor menu, it's possible to just drop them at `Resources/Naninovel/Backgrounds` folder, grouped under folders corresponding to actor ID. Eg, to add appearances for a background actor with "MainBackground" ID, store the textures (sprites) at `Resources/Naninovel/Backgrounds/MainBackground` folder and they'll automatically be available in the scripts. Be aware, that when using this method, it's not possible to set per-actor configuration properties (such as pivot or PPU); instead those values are shared for all actors from `Default Metadata` property found at background configuration menu.
 
-In naninovel scripts, backgrounds are mostly controlled with [`@back`](/api/#back) command:
+In naninovel scripts, backgrounds are mostly controlled with [@back] command:
 
 ```
 ; Set `River` as the appearance of the main background
@@ -40,7 +40,7 @@ Main background actor record is created by default in the background resources m
 
 Each background has `Poses` property allowing to specify named states (poses).
 
-Pose name can be used as appearance in [`@back`](/api/#back) command to apply all the parameters specified in the pose state at once, instead of specifying them individually via the command parameters.
+Pose name can be used as appearance in [@back] command to apply all the parameters specified in the pose state at once, instead of specifying them individually via the command parameters.
 
 ```
 ; Given `Day` pose is defined for main background, 
@@ -121,7 +121,7 @@ To create a layered background prefab, use `Create -> Naninovel -> Background ->
 
 The layered backgrounds are very similar to [layered characters](/guide/characters.md#layered-characters); consult the documentation for more info on how to setup and control them via naninovel scripts.
 
-Don't forget that nameless parameter in `@back` command is expecting appearance and transition type (not ID and appearance as with `@char` command), so specify layer composition expressions in the following way:
+Don't forget that nameless parameter in [@back] command is expecting appearance and transition type (not ID and appearance as with [@char] command), so specify layer composition expressions in the following way:
 
 ```
 ; Given "LayeredForest" background actor
@@ -158,7 +158,7 @@ After scene setup is complete, create a new background actor via `Naninovel -> C
 
 When assigning resources for a scene background actor, corresponding scene assets should automatically be added to the [build settings](https://docs.unity3d.com/Manual/BuildSettings.html); in case you're getting an error that a scene asset wasn't added to the build, try adding it manually.
 
-You can now use [`@back`](/api/#back) command to control the created scene background actor, eg:
+You can now use [@back] command to control the created scene background actor, eg:
 
 ```
 @back SceneName id:ActorId

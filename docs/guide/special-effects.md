@@ -1,6 +1,6 @@
 ﻿# Special Effects
 
-Special effects are activated via [`@spawn`](/api/#spawn) command followed by the effect name. E.g.:
+Special effects are activated via [@spawn] command followed by the effect name. E.g.:
 
 ```
 @spawn ShakeBackground
@@ -21,7 +21,7 @@ It's possible to selectively specify a subset of the parameters, leaving the res
 ```
 — notice the first two parameters (printer ID and shake count) are skipped and will have their default values, but the third parameter (shake duration) is set to 0.5 seconds.
 
-You can update the effect parameters without re-starting it with the consequent [`@spawn`](/api/#spawn)  commands, eg:
+You can update the effect parameters without re-starting it with the consequent [@spawn]  commands, eg:
 
 ```
 ; Start slowly shaking `Kohaku` character in a loop, 
@@ -32,7 +32,7 @@ Kohaku: It's rumbling!
 @spawn ShakeCharacter params:Kohaku,3,,,0.8
 ```
 
-Some effects are persistent by default and should be manually stopped with [`@despawn`](/api/#despawn) command. E.g.:
+Some effects are persistent by default and should be manually stopped with [@despawn] command. E.g.:
 
 ```
 ; Start the rain
@@ -41,14 +41,14 @@ Some effects are persistent by default and should be manually stopped with [`@de
 @despawn Rain
 ```
 
-The [`@despawn`](/api/#despawn) commands of some effects can also receive parameters (eg, to control the fade-out duration), eg:
+The [@despawn] commands of some effects can also receive parameters (eg, to control the fade-out duration), eg:
 
 ```
 ; Stops the rain gradually over 10 seconds
 @despawn Rain params:10
 ```
 
-When no `params` is specified, default parameters will be used. You can find both "start" (accepted by the [`@spawn`](/api/#spawn) command) and "stop" (accepted by the [`@despawn`](/api/#stopfx) command) parameters available for each effect and their default values in the docs below.
+When no `params` is specified, default parameters will be used. You can find both "start" (accepted by the [@spawn] command) and "stop" (accepted by the [@despawn] command) parameters available for each effect and their default values in the docs below.
 
 It's possible to start multiple effects of the same type by appending an ID delimited by `#` after the effect name, eg:
 
@@ -76,7 +76,7 @@ Shakes printer with the specified ID or the default one.
 Name | Type | Default | Description
 --- | --- | --- | ---
 Printer ID | String | null | ID of the printer to shake. Will shake a default printer when not specified.
-Shake count | Integer | 2 | The number of shake iterations. When set to 0 or less, will loop the effect until stopped with [`@despawn`](/api/#despawn).
+Shake count | Integer | 2 | The number of shake iterations. When set to 0 or less, will loop the effect until stopped with [@despawn].
 Shake duration | Decimal | 0.15 | The base duration of each shake iteration, in seconds.
 Duration variation | Decimal | 0.25 | The randomized delta modifier applied to the base duration of the effect.
 Shake amplitude | Decimal | 0.5 | The base displacement amplitude of each shake iteration, in units.
@@ -109,7 +109,7 @@ Shakes background with the specified ID or the main one.
 Name | Type | Default | Description
 --- | --- | --- | ---
 Background ID | String | null | ID of the background to shake. Will shake main background when not specified.
-Shake count | Integer | 3 | The number of shake iterations. When set to 0 or less, will loop the effect until stopped with [`@stopfx`](/api/#stopfx).
+Shake count | Integer | 3 | The number of shake iterations. When set to 0 or less, will loop the effect until stopped with [@stopfx].
 Shake duration | Decimal | 0.15 | The base duration of each shake iteration, in seconds.
 Duration variation | Decimal | 0.25 | The randomized delta modifier applied to the base duration of the effect.
 Shake amplitude | Decimal | 0.5 | The base displacement amplitude of each shake iteration, in units.
@@ -135,7 +135,7 @@ Shakes character with the specified ID or a random visible one.
 Name | Type | Default | Description
 --- | --- | --- | ---
 Character ID | String | null | ID of the character to shake. Will shake a random visible one when not specified.
-Shake count | Integer | 3 | The number of shake iterations. When set to 0 or less, will loop the effect until stopped with [`@stopfx`](/api/#stopfx).
+Shake count | Integer | 3 | The number of shake iterations. When set to 0 or less, will loop the effect until stopped with [@stopfx].
 Shake duration | Decimal | 0.15 | The base duration of each shake iteration, in seconds.
 Duration variation | Decimal | 0.25 | The randomized delta modifier applied to the base duration of the effect.
 Shake amplitude | Decimal | 0.5 | The base displacement amplitude of each shake iteration, in units.
@@ -168,7 +168,7 @@ Shakes the main Naninovel render camera.
 Name | Type | Default | Description
 --- | --- | --- | ---
 Camera Name | String | null | Name of the camera object to shake. Will shake the main Naninovel camera when not provided.
-Shake count | Integer | 3 | The number of shake iterations. When set to 0 or less, will loop the effect until stopped with [`@stopfx`](/api/#stopfx).
+Shake count | Integer | 3 | The number of shake iterations. When set to 0 or less, will loop the effect until stopped with [@stopfx].
 Shake duration | Decimal | 0.15 | The base duration of each shake iteration, in seconds.
 Duration variation | Decimal | 0.25 | The randomized delta modifier applied to the base duration of the effect.
 Shake amplitude | Decimal | 0.5 | The base displacement amplitude of each shake iteration, in units.
@@ -187,7 +187,7 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 
 ## Animate Actor
 
-In case you wish to change (animate) actor parameters directly, consider using [`@animate`](/api/#animate) command.
+In case you wish to change (animate) actor parameters directly, consider using [@animate] command.
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/a0494329c713c4309a52d57d0b297bee.mp4" type="video/mp4"></video>
 
@@ -317,7 +317,7 @@ Stop Duration | Decimal | 1 | Fade-off (disable) duration for the effect paramet
 
 ### Standalone Effects
 
-You can add a custom standalone effect (implemented via a prefab, like the "Rain" and "Snow" built-in effects) by adding the effect prefab via spawn resources managers (`Naninovel -> Resources -> Spwan`) and using [`@spawn`](/api/#spawn) and [`@despawn`](/api/#despawn) commands in the same way as with the built-in effects.
+You can add a custom standalone effect (implemented via a prefab, like the "Rain" and "Snow" built-in effects) by adding the effect prefab via spawn resources managers (`Naninovel -> Resources -> Spwan`) and using [@spawn] and [@despawn] commands in the same way as with the built-in effects.
 
 ![](https://i.gyazo.com/45b9d8fb51ffb368ff9f792221f10ca6.png)
 
@@ -336,7 +336,7 @@ If you wish to apply a custom [post-processing effect](https://assetstore.unity.
 
 ![](https://i.gyazo.com/6024aac1d2665dd96915758cd5c09fde.png)
 
-You can toggle (enable if disabled and vice-versa) the added components via naninovel scripts using `toggle` parameter of the [`@camera`](/api/#camera) command. For example, let's assume you've added a "Bloom Image Effect" component to the camera object. First, find out what is the type name of the component; it's usually specified in the `Script` field of the component.
+You can toggle (enable if disabled and vice-versa) the added components via naninovel scripts using `toggle` parameter of the [@camera] command. For example, let's assume you've added a "Bloom Image Effect" component to the camera object. First, find out what is the type name of the component; it's usually specified in the `Script` field of the component.
 
 ![](https://i.gyazo.com/73b7eabfe97ed84796cbe715b7dafc14.png)
 
