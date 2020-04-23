@@ -16,29 +16,60 @@ module.exports = {
     ],
     themeConfig: {
         editLinks: false,
-        lastUpdated: 'Last Updated',
-        nav: [
-            {
-                text: 'News',
-                items: [
-                    {text: 'Twitter', link: 'https://twitter.com/naniengine'},
-                    {text: 'Facebook', link: 'https://www.facebook.com/naniengine'},
-                    {text: 'Unity Forum', link: 'https://forum.unity.com/threads/601966'},
-                    {text: 'Discord', link: 'https://discord.gg/BfkNqem'}
-                    // {text: 'VK', link: 'https://vk.com/naninovel'}
-                ]
-            },
-            {text: 'FAQ', link: '/faq/'},
-            {text: 'Guide', link: '/guide/'},
-            {text: 'API Reference', link: '/api/'},
-            {text: 'Support', link: '/support/'}
-        ],
-        sidebar: {
-            '/guide/': getGuideSidebar('Guide', 'Advanced', 'Extensions')
-        },
         algolia: {
             apiKey: '20269a916e878ffcef4392d31af4f4d2',
             indexName: 'naninovel'
+        },
+        locales: {
+            '/': {
+                selectText: 'Language',
+                ariaLabel: 'Language',
+                label: 'English',
+                nav: [
+                    {
+                        text: 'News',
+                        items: [
+                            {text: 'Twitter', link: 'https://twitter.com/naniengine'},
+                            {text: 'Facebook', link: 'https://www.facebook.com/naniengine'},
+                            {text: 'Unity Forum', link: 'https://forum.unity.com/threads/601966'},
+                            {text: 'Discord', link: 'https://discord.gg/BfkNqem'}
+                        ]
+                    },
+                    {text: 'FAQ', link: '/faq/'},
+                    {text: 'Guide', link: '/guide/'},
+                    {text: 'API Reference', link: '/api/'},
+                    {text: 'Support', link: '/support/'}
+                ],
+                sidebar: {
+                    '/guide/': getGuideSidebar('Guide', 'Advanced', 'Extensions')
+                },
+                lastUpdated: 'Last Updated'
+            },
+            '/ru/': {
+                selectText: 'Язык',
+                ariaLabel: 'Язык',
+                label: 'Русский',
+                nav: [
+                    {
+                        text: 'Новости',
+                        items: [
+                            {text: 'Twitter', link: 'https://twitter.com/naniengine'},
+                            {text: 'Facebook', link: 'https://www.facebook.com/naniengine'},
+                            {text: 'Unity Forum', link: 'https://forum.unity.com/threads/601966'},
+                            {text: 'Discord', link: 'https://discord.gg/BfkNqem'}
+                            // {text: 'VK', link: 'https://vk.com/naninovel'}
+                        ]
+                    },
+                    {text: 'FAQ', link: '/ru/faq/'},
+                    {text: 'Руководство', link: '/ru/guide/'},
+                    {text: 'Команды', link: '/ru/api/'},
+                    {text: 'Поддержка', link: '/ru/support/'}
+                ],
+                sidebar: {
+                    '/ru/guide/': getGuideSidebar('Руководство', 'Программирование', 'Расширения')
+                },
+                lastUpdated: 'Обновлено'
+            }
         }
     },
     plugins: [
@@ -53,6 +84,18 @@ module.exports = {
             md.use(require('markdown-it-regexp')(/\[@(\w+)]/, function(match, utils) {
                 return `<a href="/api/#${match[1].toLowerCase()}" class="" target="_blank"><code>@${match[1]}</code></a>`;
             }));
+        }
+    },
+    locales: {
+        '/': {
+            lang: 'en-US',
+            title: 'Naninovel',
+            description: 'Unity-powered visual novel engine'
+        },
+        '/ru/': {
+            lang: 'ru-RU',
+            title: 'Naninovel',
+            description: 'Движок для визуальных новелл на основе Unity'
         }
     }
 };
