@@ -35,6 +35,10 @@ module.exports = {
         ],
         sidebar: {
             '/guide/': getGuideSidebar('Guide', 'Advanced', 'Extensions')
+        },
+        algolia: {
+            apiKey: '20269a916e878ffcef4392d31af4f4d2',
+            indexName: 'naninovel'
         }
     },
     plugins: [
