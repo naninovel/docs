@@ -14,7 +14,7 @@ You can use any video formats [supported by Unity](https://docs.unity3d.com/Manu
 
 Movies playback behavior can be configured using `Naninovel -> Configuration -> Movies` context menu; for available options see [configuration guide](/guide/configuration.md#movies).
 
-Use [`@movie`](/api/#movie) command followed by video clip name to play a movie from the naninovel scripts:
+Use [@movie] command followed by video clip name to play a movie from the naninovel scripts:
 
 ```
 ; Given an "Opening" video clip is added to the movie resources, play it

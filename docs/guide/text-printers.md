@@ -4,7 +4,7 @@ Text printers are actors used to present text messages, that can be revealed (pr
 
 Printers' behavior can be configured using `Naninovel -> Configuration -> Printers` context menu; for available options see [configuration guide](/guide/configuration.md#printers). The printers' resources manager can be accessed using `Naninovel -> Resources -> Printers` context menu.
 
-In naninovel scripts, text printers are mostly controlled with [`@print`](/api/#print) and [`@printer`](/api/#printer) commands:
+In naninovel scripts, text printers are mostly controlled with [@print] and [@printer] commands:
 
 ```
 ; Will make the `Dialogue` printer default
@@ -23,7 +23,7 @@ Lorem ipsum dolor sit amet.
 Felix: Lorem ipsum dolor sit amet.
 ```
 
-Be aware, that even though the built-in printers are implemented as UIs, they're still actors and all the actor-related visibility changes (show/hide animations) use durations set either in the corresponding commands or actor configuration: eg, `time` parameter of [`@showPrinter`](/api/#showprinter) command controls show animation duration and when it's not specified, `Change Visibility Duration` printer actor configuration property is used as a default duration; `Fade Time` property found on the root of the printer UI prefab is ignored in this case.
+Be aware, that even though the built-in printers are implemented as UIs, they're still actors and all the actor-related visibility changes (show/hide animations) use durations set either in the corresponding commands or actor configuration: eg, `time` parameter of [@showPrinter] command controls show animation duration and when it's not specified, `Change Visibility Duration` printer actor configuration property is used as a default duration; `Fade Time` property found on the root of the printer UI prefab is ignored in this case.
 
 ## Auto-Advance Text
 
@@ -37,7 +37,7 @@ Auto-advance mode can be toggled using `AutoPlay` input (`A` key by default for 
 
 ## Text Skipping
 
-Text skipping feature allows to fast-forward execution of the [`@print`](/api/#print) commands, effectively skipping text revealing (printing) process. 
+Text skipping feature allows to fast-forward execution of the [@print] commands, effectively skipping text revealing (printing) process. 
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/9605a5c8cd1911217350d77712f47e7d.mp4" type="video/mp4"></video>
 
@@ -71,7 +71,7 @@ Fullscreen printers present text inside windows with a static size. They take mo
 
 ![Fullscreen Printer](https://i.gyazo.com/c7861949717f9b600b664365af53abbc.png)
 
-Fullscreen printers won't reset text by default on each consequent print command; instead, use [`@resetText`](/api/#resettext) command to clear contents of the printer when required. This can be changed by enabling `Auto Reset` in the printer actor configuration menu.
+Fullscreen printers won't reset text by default on each consequent print command; instead, use [@resetText] command to clear contents of the printer when required. This can be changed by enabling `Auto Reset` in the printer actor configuration menu.
 
 Each print command handled by a fullscreen printer will prepend 2 line breaks before the printed text by default (except when current content of the printer is empty). This can be disabled in the printer actor configuration menu by setting `Auto Line Break` to zero.
 
@@ -102,7 +102,7 @@ Chat printer presents text inside message bubbles framed in a window with vertic
 
 ![Chat Printer](https://i.gyazo.com/3c04aecabe7f754ffc9ce5452eeba270.png)
 
-When using generic text lines and [`@print`](/api/#print) commands, the text in the target printer will reset (clear) by default. In case with chat printers, this will remove all the messages when a new one is added, which may not be desirable in most cases. Setting `reset` parameter to *false* will prevent clearing the printer, eg:
+When using generic text lines and [@print] commands, the text in the target printer will reset (clear) by default. In case with chat printers, this will remove all the messages when a new one is added, which may not be desirable in most cases. Setting `reset` parameter to *false* will prevent clearing the printer, eg:
 
 ```
 @print "Orci varius natoque penatibus." author:Kohaku reset:false
@@ -143,7 +143,7 @@ Expose the prefab to engine resources using the printer's manager GUI, which can
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/3f51881fa554720b7a4092dca42fd15e.mp4" type="video/mp4"></video>
 
-You can now use the new text printer by activating it via [`@printer`](/api/#printer) command and specifying actor ID you've set in the manager.
+You can now use the new text printer by activating it via [@printer] command and specifying actor ID you've set in the manager.
 
 ```
 @printer MyNewPrinter
@@ -183,7 +183,7 @@ Naninovel supports [TextMesh Pro](https://assetstore.unity.com/packages/essentia
 
 Before using the TMPro printers, make sure you have TextMesh Pro installed in your Unity project. TextMesh Pro can be installed via package manager accessible via `Window -> Package Manager` menu.
 
-You can select the TMPro printers to route all the print commands to them using [`@printer`](/api/#printer) command in naninovel scripts:
+You can select the TMPro printers to route all the print commands to them using [@printer] command in naninovel scripts:
 
 ```
 ; Activate dialogue TMPro printer
@@ -198,7 +198,7 @@ When creating custom TextMesh Pro font assets or materials, don't forget to appl
 
 ## Text Styles
 
-Various text styles can be applied via rich text tags placed right inside the text or using [`@style`](/api/#style) command.
+Various text styles can be applied via rich text tags placed right inside the text or using [@style] command.
 
 The default (non-TMPro) text printers are based on [Unity's text rendering system](https://docs.unity3d.com/Manual/script-Text.html) and support basic text styling like color, size, bold, italic, etc. Refer to [guide on text tags](https://docs.unity3d.com/Manual/StyledText.html) for more info.
 

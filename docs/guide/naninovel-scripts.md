@@ -22,7 +22,7 @@ Line is considered a command statement if it starts with a `@` literal. Command 
 
 Right after the command literal a command identifier is expected. This could either be name of the C# class that implements the command or the command's alias (if it's applied via `CommandAlias` attribute). 
 
-For example, [`@save`](/api/#save) command (used to auto-save the game) is implemented via the `AutoSave` C# class. The implementing class also has a `[CommandAlias("save")]` attribute applied, so you can use both `@save` and `@AutoSave` statements in the script to invoke this command. 
+For example, [@save] command (used to auto-save the game) is implemented via the `AutoSave` C# class. The implementing class also has a `[CommandAlias("save")]` attribute applied, so you can use both `@save` and `@AutoSave` statements in the script to invoke this command. 
 
 Command identifiers are case-insensitive; all the following statements are valid and will invoke the same `AutoSave` command:
 
@@ -41,7 +41,7 @@ Most of the commands have a number of parameters that define the effect of the c
 @commandId paramId:paramValue 
 ```
 
-Consider a [`@hideChars`](/api/#hidechars) command, which is used to hide all visible characters on the scene. It could be used as follows:
+Consider a [@hideChars] command, which is used to hide all visible characters on the scene. It could be used as follows:
 
 ```
 @hideChars
@@ -62,7 +62,7 @@ You can also use a `wait` *Boolean* parameter to specify whether next command sh
 @hidePrinter
 ```
 
-This will hide the text printer right after characters will begin to fade-out. If `wait` would be `true` or not specified, the printer would be hidden only when the `@hideChars` complete the execution.
+This will hide the text printer right after characters will begin to fade-out. If `wait` would be `true` or not specified, the printer would be hidden only when the [@hideChars] complete the execution.
 
 ### Parameter Value Types
 
@@ -81,7 +81,7 @@ List<>| A comma-separated list of values of one of the above types. Eg for *List
 
 Most of the commands have a nameless parameter. A parameter is considered nameless when it could be used without specifying its name. 
 
-For example, a [`@bgm`](/api/#bgm) command expects a nameless parameter specifying the name of the music track to play:
+For example, a [@bgm] command expects a nameless parameter specifying the name of the music track to play:
 
 ```
 @bgm PianoTheme
@@ -92,7 +92,7 @@ There could be only one nameless parameter per command and it should always be s
 
 ### Optional and Required Parameters
 
-Most of the command parameters are *optional*. It means they either have a predefined value or just doesn't require any value in order for the command to be executed. For example, when a [`@resetText`](/api/#resettext) command is used without specifying any parameters it will reset text of a default printer, but you can also set a specific printer ID like this: `@resetText pinter:Dialogue`.
+Most of the command parameters are *optional*. It means they either have a predefined value or just doesn't require any value in order for the command to be executed. For example, when a [@resetText] command is used without specifying any parameters it will reset text of a default printer, but you can also set a specific printer ID like this: `@resetText pinter:Dialogue`.
 
 Some parameters however are *required* in order for the command to execute and should always be specified.
 
@@ -139,7 +139,7 @@ Felix: Lorem ipsum[char Felix.Happy pos:0.75 wait:false] dolor sit amet, consect
 
 Notice, that the inlined command syntax is exactly the same, except `@` literal is omitted and command body is wrapped in square brackets. Basically, you can take any command line, inline it to a generic text line and it will have the exact same effect, but at a different moment, depending on the position inside text message.
 
-Under the hood, generic text lines are parsed into individual commands identified by inline index; text is printed with [`@print`](/api/#print) command. For example, following generic text line in a naninovel script:
+Under the hood, generic text lines are parsed into individual commands identified by inline index; text is printed with [@print] command. For example, following generic text line in a naninovel script:
 
 ```
 Lorem ipsum[char Felix.Happy pos:75 wait:false] dolor sit amet.
@@ -155,19 +155,19 @@ Lorem ipsum[char Felix.Happy pos:75 wait:false] dolor sit amet.
 
 ## Label Lines
 
-Labels are used as "anchors" when navigating the naninovel scripts with [`@goto`](/api/#goto) commands. To define a label, use a `#` literal at the start of the line followed with label name:
+Labels are used as "anchors" when navigating the naninovel scripts with [@goto] commands. To define a label, use a `#` literal at the start of the line followed with label name:
 
 ```
 # Epilogue
 ```
 
-You can then use a [`@goto`](/api/#goto) command to "jump" to that line:
+You can then use a [@goto] command to "jump" to that line:
 
 ```
 @goto ScriptName.Epilogue
 ```
 
-In case you're using [`@goto`](/api/#goto) command from within the same script where the label is defined, you can omit the script name:
+In case you're using [@goto] command from within the same script where the label is defined, you can omit the script name:
 
 ```
 @goto .Epilogue
@@ -210,7 +210,7 @@ Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
 @print {remark} if:remark=="Saying \\"Stop the car\\" was a mistake."
 ```
 
-It's also possible to specify multi-line conditional blocks with [`@if`](/api/#if), [`@else`](/api/#else), [`@elseif`](/api/#elseif) and [`@endif`](/api/#endif) commands.
+It's also possible to specify multi-line conditional blocks with [@if], [@else], [@elseif] and [@endif] commands.
 
 ```
 @if score>10

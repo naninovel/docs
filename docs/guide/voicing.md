@@ -4,12 +4,12 @@ To expose voice clips to the engine, store them under `Resources/Naninovel/Voice
 
 Voice playback behavior can be configured using `Naninovel -> Configuration -> Audio` context menu; for available options see [configuration guide](/guide/configuration.md#audio). 
 
-Use [`@voice`](/api/#voice) command followed by the clip name to play the voice in naninovel scripts.
+Use [@voice] command followed by the clip name to play the voice in naninovel scripts.
 
 
 ## Auto Voicing
 
-In fully-voiced games, it could become tedious to specify a `@voice` command for each voiced line. Auto voicing feature allows to automatically play a voice clip that has a name equal to the line number of the currently played `@print` command; this way, you won't have to use `@voice` commands in naninovel scripts at all — voices will be automatically played when the corresponding text lines are printed in the game.
+In fully-voiced games, it could become tedious to specify a [@voice] command for each voiced line. Auto voicing feature allows to automatically play a voice clip that has a name equal to the line number of the currently played [@print] command; this way, you won't have to use [@voice] commands in naninovel scripts at all — voices will be automatically played when the corresponding text lines are printed in the game.
 
 To enable auto voicing feature, use `Enable Auto Voicing` toggle in the Audio configuration menu.
 
@@ -40,7 +40,7 @@ To open the debug window, make sure `Enable Development Console` is turned on in
 
 ## Voiceover Documents
 
-You can use voiceover documents generator utility accessible via `Naninovel -> Tools -> Voiceover Documents` to generate documents, containing printed text from the [`@print`](/api/#print) commands and generic text lines. Each printed text message will be associated with the auto voice clip name to be used with the auto voicing feature.
+You can use voiceover documents generator utility accessible via `Naninovel -> Tools -> Voiceover Documents` to generate documents, containing printed text from the [@print] commands and generic text lines. Each printed text message will be associated with the auto voice clip name to be used with the auto voicing feature.
 
 ![](https://i.gyazo.com/69466444d4b8b43d76e7f1566db5ca9a.png)
 

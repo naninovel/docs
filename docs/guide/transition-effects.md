@@ -1,6 +1,6 @@
 ﻿# Transition Effects
 
-When changing background and character appearances with [`@back`](/api/#back) and [`@char`](/api/#char) or performing scene transition with [`@startTrans`](/api/#startTrans) and [`@finishTrans`](/api/#finishTrans) commands, you can additionally specify which transition effect to use. For example, following command will transition to "River" background using "DropFade" transition effect:
+When changing background and character appearances with [@back] and [@char] or performing scene transition with [@startTrans] and [@finishTrans] commands, you can additionally specify which transition effect to use. For example, following command will transition to "River" background using "DropFade" transition effect:
 
 ```
 @back River.DropFade

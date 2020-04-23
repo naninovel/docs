@@ -363,8 +363,8 @@ ID | Type | Description
 button | String | Path (relative to a `Resources` folder) to a [button prefab](/guide/choices.md#choice-button) representing the choice.  The prefab should have a `ChoiceHandlerButton` component attached to the root object.  Will use a default button when not provided.
 pos | List&lt;Decimal&gt; | Local position of the choice button inside the choice handler (if supported by the handler implementation).
 handler | String | ID of the choice handler to add choice for. Will use a default handler if not provided.
-goto | Named&lt;String&gt; | Path to go when the choice is selected by user;  See [`@goto`](/api/#goto) command for the path format.
-set | String | Set expression to execute when the choice is selected by user;  see [`@set`](/api/#set) command for syntax reference.
+goto | Named&lt;String&gt; | Path to go when the choice is selected by user;  See [@goto] command for the path format.
+set | String | Set expression to execute when the choice is selected by user;  see [@set] command for syntax reference.
 show | Boolean | Whether to also show choice handler the choice is added for;  enabled by default.
 time | Decimal | Duration (in seconds) of the fade-in (reveal) animation. Default value: 0.35 seconds.
 
@@ -449,7 +449,7 @@ Good!
 ## despawn
 
 #### Summary
-Destroys an object spawned with [`@spawn`](/api/#spawn) command.
+Destroys an object spawned with [@spawn] command.
 
 #### Remarks
 If prefab has a `UnityEngine.MonoBehaviour` component attached the root object, and the component implements  a `Naninovel.Commands.DestroySpawned.IParameterized` interface, will pass the specified `params` values before destroying the object;  if the component implements `Naninovel.Commands.DestroySpawned.IAwaitable` interface, command execution will wait for  the async completion task returned by the implementation before destroying the object.
@@ -460,7 +460,7 @@ If prefab has a `UnityEngine.MonoBehaviour` component attached the root object, 
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | String | Name (path) of the prefab resource to destroy.  A [`@spawn`](/api/#spawn) command with the same parameter is expected to be executed before.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | String | Name (path) of the prefab resource to destroy.  A [@spawn] command with the same parameter is expected to be executed before.
 params | List&lt;String&gt; | Parameters to set before destoying the prefab.  Requires the prefab to have a `Naninovel.Commands.DestroySpawned.IParameterized` component attached the root object.
 
 </div>
@@ -474,12 +474,12 @@ params | List&lt;String&gt; | Parameters to set before destoying the prefab.  Re
 ## else
 
 #### Summary
-Marks a branch of a conditional execution block,  which is always executed in case conditions of the opening [`@if`](/api/#if) and all the preceding [`@elseif`](/api/#elseif) (if any) commands are not met.  For usage examples see [conditional execution](/guide/naninovel-scripts.md#conditional-execution) guide.
+Marks a branch of a conditional execution block,  which is always executed in case conditions of the opening [@if] and all the preceding [@elseif] (if any) commands are not met.  For usage examples see [conditional execution](/guide/naninovel-scripts.md#conditional-execution) guide.
 
 ## elseIf
 
 #### Summary
-Marks a branch of a conditional execution block,  which is executed in case own condition is met (expression is evaluated to be true), while conditions of the opening [`@if`](/api/#if)  and all the preceding [`@elseif`](/api/#elseif) (if any) commands are not met.  For usage examples see [conditional execution](/guide/naninovel-scripts.md#conditional-execution) guide.
+Marks a branch of a conditional execution block,  which is executed in case own condition is met (expression is evaluated to be true), while conditions of the opening [@if]  and all the preceding [@elseif] (if any) commands are not met.  For usage examples see [conditional execution](/guide/naninovel-scripts.md#conditional-execution) guide.
 
 #### Parameters
 
@@ -494,12 +494,12 @@ ID | Type | Description
 ## endIf
 
 #### Summary
-Closes an [`@if`](/api/#if) conditional execution block.  For usage examples see [conditional execution](/guide/naninovel-scripts.md#conditional-execution) guide.
+Closes an [@if] conditional execution block.  For usage examples see [conditional execution](/guide/naninovel-scripts.md#conditional-execution) guide.
 
 ## finishTrans
 
 #### Summary
-Finishes scene transition started with [`@startTrans`](/api/#starttrans) command;  see the start command reference for more information and usage examples.
+Finishes scene transition started with [@startTrans] command;  see the start command reference for more information and usage examples.
 
 #### Parameters
 
@@ -518,7 +518,7 @@ time | Decimal | Duration (in seconds) of the transition. Default value: 0.35 se
 ## gosub
 
 #### Summary
-Navigates naninovel script playback to the provided path and saves that path to global state;  [`@return`](/api/#return) commands use this info to redirect to command after the last invoked gosub command.  Designed to serve as a function (subroutine) in a programming language, allowing to reuse a piece of naninovel script.  Useful for invoking a repeating set of commands multiple times.
+Navigates naninovel script playback to the provided path and saves that path to global state;  [@return] commands use this info to redirect to command after the last invoked gosub command.  Designed to serve as a function (subroutine) in a programming language, allowing to reuse a piece of naninovel script.  Useful for invoking a repeating set of commands multiple times.
 
 #### Remarks
 It's possible to declare a gosub outside of the currently played script and use it from any other scripts;  by default state reset won't happen when you're loading another script to play a gosub or returning back to  prevent delays and loading screens. Be aware though, that all the resources referenced in gosub script will be  held until the next state reset.
@@ -688,7 +688,7 @@ time | Decimal | Duration (in seconds) of the hide animation.  Default value for
 Makes [UI elements](/guide/user-interface.md#ui-customization) with the specified names invisible.  When no names are specified, will stop rendering (hide) the entire UI (including all the built-in UIs).
 
 #### Remarks
-When hiding the entire UI with this command and `allowToggle` parameter is false (default), user won't be able to re-show the UI  back with hotkeys or by clicking anywhere on the screen; use [`@showUI`](/api/#showui) command to make the UI ~~great~~ visible again.
+When hiding the entire UI with this command and `allowToggle` parameter is false (default), user won't be able to re-show the UI  back with hotkeys or by clicking anywhere on the screen; use [@showUI] command to make the UI ~~great~~ visible again.
 
 #### Parameters
 
@@ -734,7 +734,7 @@ Lorem ipsum dolor sit amet.[i] Consectetur adipiscing elit.
 ## if
 
 #### Summary
-Marks the beginning of a conditional execution block.  Should always be closed with an [`@endif`](/api/#endif) command.  For usage examples see [conditional execution](/guide/naninovel-scripts.md#conditional-execution) guide.
+Marks the beginning of a conditional execution block.  Should always be closed with an [@endif] command.  For usage examples see [conditional execution](/guide/naninovel-scripts.md#conditional-execution) guide.
 
 #### Parameters
 
@@ -1073,7 +1073,7 @@ ID | Type | Description
 ## return
 
 #### Summary
-Attempts to navigate naninovel script playback to a command after the last used [`@gosub`](/api/#gosub).  See [`@gosub`](/api/#gosub) command summary for more info and usage examples.
+Attempts to navigate naninovel script playback to a command after the last used [@gosub].  See [@gosub] command summary for more info and usage examples.
 
 #### Parameters
 
@@ -1249,7 +1249,7 @@ time | Decimal | Duration (in seconds) of the show animation.  Default value for
 ## showUI
 
 #### Summary
-Makes [UI elements](/guide/user-interface.md) with the specified prefab names visible.  When no names are specified, will reveal the entire UI (in case it was hidden with [`@hideUI`](/api/#hideui)).
+Makes [UI elements](/guide/user-interface.md) with the specified prefab names visible.  When no names are specified, will reveal the entire UI (in case it was hidden with [@hideUI]).
 
 #### Parameters
 
@@ -1375,7 +1375,7 @@ params | List&lt;String&gt; | Parameters to set when spawning the prefab.  Requi
 ## startTrans
 
 #### Summary
-Begins scene transition masking the real scene content with anything that is visible at the moment (except the UI).  When the new scene is ready, finish with [`@finishTrans`](/api/#finishtrans) command.
+Begins scene transition masking the real scene content with anything that is visible at the moment (except the UI).  When the new scene is ready, finish with [@finishTrans] command.
 
 #### Remarks
 The UI will be hidden and user input blocked while the transition is in progress.  You can change that by overriding the `ISceneTransitionUI`, which handles the transition process.<br /><br />  For the list of available transition effect options see [transition effects](/guide/transition-effects.md) guide.

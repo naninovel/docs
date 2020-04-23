@@ -37,7 +37,7 @@ In case you wish to include the double quotes in the expression, escape them **t
 Saying { \\"Stop the car\\" } was a mistake.
 ```
 
-Script expressions used in [`@set`](/api/#set) and [`@if`](/api/#if) commands (as well as `set` and `if` parameters in other commands), doesn't require curly braces:
+Script expressions used in [@set] and [@if] commands (as well as `set` and `if` parameters in other commands), doesn't require curly braces:
 
 ```
 @set randomScore=Random(-100,100)

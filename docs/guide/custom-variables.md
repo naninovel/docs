@@ -2,7 +2,7 @@
 
 Custom variables feature allows to create user-specified variables, modify and use them to drive conditional execution of naninovel scripts or other systems. For example, custom variables can be used to select one of the multiple naninovel scripts to play (scenario routes), based on the decisions player has made in the past. Another frequently used scenario is player stats screen (eg, scores, money, resources etc), based on the choices the player makes throughout the game.
 
-Custom variables can be created, modified and used both in naninovel scripts via [`@set`](/api/#set) and [`@if`](/api/#if) commands and in the C# scripts using `ICustomVariableManager` [engine service](/guide/engine-services.md).
+Custom variables can be created, modified and used both in naninovel scripts via [@set] and [@if] commands and in the C# scripts using `ICustomVariableManager` [engine service](/guide/engine-services.md).
 
 For example, the following script command will assign a different value to `score` custom variable, based on the choice:
 
@@ -19,7 +19,7 @@ And the following one will re-route the script execution based on the value of t
 @goto BadEnd if:score>900
 ```
 
-See the API reference on [`@set`](/api/#set) and [`@if`](/api/#if) commands for more examples.
+See the API reference on [@set] and [@if] commands for more examples.
 
 All the custom variables are automatically saved with the game. By default, the variables are stored in **local scope**. This means, that if you assign some variable in the course of gameplay and player starts a new game or loads another saved game slot, where that variable wasn't assigned — the value will be lost. This is useful for the most type of variables. If, however, you wish to store the variable in **global scope**, prepend `G_` or `g_` to its name, eg: `G_FinishedMainRoute` or `g_total_score`. Global variables can be used to indicate some meta or total information, for example, the number of times player has finished some route or a total score based on all the playthroughs.
 

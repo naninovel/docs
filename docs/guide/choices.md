@@ -4,7 +4,7 @@ The feature allows to present a number of choices to the user and re-route scrip
 
 ![Choices](https://i.gyazo.com/023502e43b35caa706c88fd9ab32003d.png)
 
-Use [`@choice`](/api/#choice) commands followed by the choice summary and (optional) `goto` path to add choices from the naninovel scripts:
+Use [@choice] commands followed by the choice summary and (optional) `goto` path to add choices from the naninovel scripts:
 
 ```
 ; Print the text, then immediately show choices and stop script execution.
@@ -31,13 +31,13 @@ goto:.Epilogue
 
 When `goto` parameter is not specified, current script will continue executing from the next line.
 
-Choice handler actors are used to process the [`@choice`](/api/#choice) commands. You can add, edit and remove choice handlers using the choice manager accessible via `Naninovel -> Resources -> Choice Handlers` context menu.
+Choice handler actors are used to process the [@choice] commands. You can add, edit and remove choice handlers using the choice manager accessible via `Naninovel -> Resources -> Choice Handlers` context menu.
 
 Choice handlers behavior can be configured using `Naninovel -> Configuration -> Choice Handlers` context menu; for available options see [configuration guide](/guide/configuration.md#choice-handlers).
 
 ## Choice Button
 
-The [`@choice`](/api/#choice) command accepts an optional `button` parameter specifying a path (relative to a "Resources" folder) to custom prefab representing the choice option object. 
+The [@choice] command accepts an optional `button` parameter specifying a path (relative to a "Resources" folder) to custom prefab representing the choice option object. 
 
 ```
 @choice handler:ButtonArea button:MapButtons/Home pos:-300,-300 goto:.HomeScene
@@ -50,14 +50,14 @@ To create a choice button prefab from template, use `Create -> Naninovel -> Choi
 
 Remember to **store the custom choice buttons is a "Resources" folder**, otherwise they won't be able to load when requested.
 
-When `button` parameter of the `@choice` command is not specified a default button prefab is used.
+When `button` parameter of the [@choice] command is not specified a default button prefab is used.
 
 To use a different (eg, TMPro) text component for the choice text, use `On Summary Text Changed` [Unity event](https://docs.unity3d.com/Manual/UnityEvents) of the choice button component.
 
 ![](https://i.gyazo.com/8810c51b336bfd653efcde591fe1c41f.png)
 
 ## ButtonList Choice Handler
-Button list handler is used by default. It stores the choice buttons inside a horizontal layout panel and ignores the `pos` parameter of the [`@choice`](/api/#choice) command.
+Button list handler is used by default. It stores the choice buttons inside a horizontal layout panel and ignores the `pos` parameter of the [@choice] command.
 
 ## ButtonArea Choice Handler
 In contrast to button list, button area doesn't enforce any specific layout and allows manually setting positions of the added choice buttons via `pos` parameter. For example, here is one way to make an interactive map with choice commands and button area handler:
@@ -97,7 +97,7 @@ Expose the handler to engine resources using choice handler manager GUI, which c
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/cb3a0ff7f22b22cec6546acb388719fc.mp4" type="video/mp4"></video>
 
-You can now use the new choice handler by specifying its ID in `handler` parameter of the [`@choice`](/api/#choice) commands.
+You can now use the new choice handler by specifying its ID in `handler` parameter of the [@choice] commands.
 
 ```
 @choice "Choice summary text." handler:MyNewHandler

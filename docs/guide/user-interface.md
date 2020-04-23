@@ -36,7 +36,7 @@ To add a custom UI or modify (disable) a built-in one, use UI resources manager 
 
 To add a custom UI, create a new prefab (`Create -> Naninovel -> Custom UI`) and add it to the list. To disable a built-in UI remove a record from the list. When the engine is initializing it'll instantiate all the UI prefabs assigned in the resources manager.
 
-To show or hide any of the UIs listed in the resources manager use [`@showUI`](/api/#showui) and [`@hideUI`](/api/#hideui) commands respectively.
+To show or hide any of the UIs listed in the resources manager use [@showUI] and [@hideUI] commands respectively.
 
 When you create a new custom UI prefab via the context menu, the prefab will have a `Custom UI` component attached to the root object. This component (or rather the fact that the component is implementing `IManagedUI` interface) is essential to make the prefab accepted as a UI by the engine.
 
@@ -81,11 +81,11 @@ IBacklogUI | Printer backlog.
 ILoadingUI | Panel shown when the game is loading.
 IMovieUI | UI used to host movies.
 ISaveLoadUI | Panel used for saving and loading game.
-ISceneTransitionUI | Handles scene transition ( [`@startTrans`](/api/#startTrans) and  [`@finishTrans`](/api/#finishTrans) commands).
+ISceneTransitionUI | Handles scene transition ( [@startTrans] and  [@finishTrans] commands).
 ISettingsUI | Panel used for changing game settings.
 ITitleUI | Title (main) menu of the game.
 IExternalScriptsUI | External scripts browser UI (community modding feature).
-IVariableInputUI | Input form for assigning an arbitrary text to a custom state variable (used by [`@input`](/api/#input) command).
+IVariableInputUI | Input form for assigning an arbitrary text to a custom state variable (used by [@input] command).
 IConfirmationUI | UI panel used to confirm important commands (eg, when exiting to the title menu or deleting saved game slot).
 ICGGalleryUI | Unlockable [CG gallery](/guide/unlockable-items.md#cg-gallery) items browser.
 ITipsUI | Unlockable [tips](/guide/unlockable-items.md#tips) browser.
