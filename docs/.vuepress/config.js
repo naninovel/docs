@@ -3,16 +3,16 @@ module.exports = {
     description: 'Unity-powered visual novel engine',
     contentLoading: true,
     head: [
-        ['link', { rel: 'icon', href: '/logo.png' }],
-        ['link', { rel: 'manifest', href: '/manifest.json' }],
-        ['meta', { name: 'theme-color', content: '#4985c2' }],
-        ['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
-        ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
-        ['link', { rel: 'apple-touch-icon', href: '/icons/apple-touch-icon-152x152.png' }],
-        ['link', { rel: 'mask-icon', href: '/icons/safari-pinned-tab.svg', color: '#3eaf7c' }],
-        ['meta', { name: 'msapplication-TileImage', content: '/icons/msapplication-icon-144x144.png' }],
-        ['meta', { name: 'msapplication-TileColor', content: '#000000' }],
-        ['meta', { name: 'google-site-verification', content: 'cdvgJ2XFFbaGErDKJtTbFj9u9frfReZ9rzUnsf9F6nI' }]
+        ['link', {rel: 'icon', href: '/logo.png'}],
+        ['link', {rel: 'manifest', href: '/manifest.json'}],
+        ['meta', {name: 'theme-color', content: '#4985c2'}],
+        ['meta', {name: 'apple-mobile-web-app-capable', content: 'yes'}],
+        ['meta', {name: 'apple-mobile-web-app-status-bar-style', content: 'black'}],
+        ['link', {rel: 'apple-touch-icon', href: '/icons/apple-touch-icon-152x152.png'}],
+        ['link', {rel: 'mask-icon', href: '/icons/safari-pinned-tab.svg', color: '#3eaf7c'}],
+        ['meta', {name: 'msapplication-TileImage', content: '/icons/msapplication-icon-144x144.png'}],
+        ['meta', {name: 'msapplication-TileColor', content: '#000000'}],
+        ['meta', {name: 'google-site-verification', content: 'cdvgJ2XFFbaGErDKJtTbFj9u9frfReZ9rzUnsf9F6nI'}]
     ],
     themeConfig: {
         editLinks: false,
@@ -38,12 +38,19 @@ module.exports = {
         }
     },
     plugins: [
-        ['@vuepress/google-analytics', { ga: 'UA-62903242-4' } ],
-        ['@vuepress/last-updated', { dateOptions: { year: 'numeric', month: 'long', day: 'numeric' } } ],
-        ['vuepress-plugin-container',  { type: 'note', defaultTitle: { '/': 'NOTICE', '/ru/': 'ПРИМЕЧАНИЕ' } }],
-        ['vuepress-plugin-container',  { type: 'example', defaultTitle: { '/': 'EXAMPLE', '/ru/': 'ПРИМЕР' } }],
-        ['vuepress-plugin-container',  { type: 'warn', defaultTitle: { '/': 'WARNING', '/ru/': 'ВНИМАНИЕ' } }]
-    ]
+        ['@vuepress/google-analytics', {ga: 'UA-62903242-4'}],
+        ['@vuepress/last-updated', {dateOptions: {year: 'numeric', month: 'long', day: 'numeric'}}],
+        ['vuepress-plugin-container', {type: 'note', defaultTitle: {'/': 'NOTICE', '/ru/': 'ПРИМЕЧАНИЕ'}}],
+        ['vuepress-plugin-container', {type: 'example', defaultTitle: {'/': 'EXAMPLE', '/ru/': 'ПРИМЕР'}}],
+        ['vuepress-plugin-container', {type: 'warn', defaultTitle: {'/': 'WARNING', '/ru/': 'ВНИМАНИЕ'}}]
+    ],
+    markdown: {
+        extendMarkdown: md => {
+            md.use(require('markdown-it-regexp')(/\[@(\w+)]/, function(match, utils) {
+                return `<a href="/api/#${match[1].toLowerCase()}" class="" target="_blank"><code>@${match[1]}</code></a>`;
+            }));
+        }
+    }
 };
 
 function getGuideSidebar (groupA, groupB, groupC) {
