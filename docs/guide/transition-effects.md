@@ -142,7 +142,7 @@ Fuzzy amount | 0.25
 @back Appearance.Crumble
 ```
 
-## Disolve
+## Dissolve
 
 <video class="video" loop autoplay><source src="https://i.gyazo.com/b2993be8de032a65c7d813c6d749e758.mp4" type="video/mp4"></video>
 
@@ -154,10 +154,10 @@ Step | 99999
 **Examples**
 ```
 ; Apply the transition with default parameters
-@back Appearance.Disolve
+@back Appearance.Dissolve
 
 ; Apply the transition with a low step
-@back Appearance.Disolve params:100
+@back Appearance.Dissolve params:100
 ```
 
 ## DropFade
