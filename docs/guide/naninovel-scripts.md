@@ -36,6 +36,7 @@ Command identifiers are case-insensitive; all the following statements are valid
 ### Command Parameters
 
 Most of the commands have a number of parameters that define the effect of the command. Parameter is a key-value expression defined after the command literal separated by a column (`:`). Parameter identifier (key) could be either name of the corresponding parameter field of the command implementation class or the parameter's alias (if defined via `alias` property of `CommandParameter` attribute).
+
 ```
 @commandId paramId:paramValue 
 ```
@@ -45,6 +46,7 @@ Consider a [`@hideChars`](/api/#hidechars) command, which is used to hide all vi
 ```
 @hideChars
 ```
+
 You can use a `time` *Decimal* parameter here to control for how long the characters will fade-out before becoming completely hidden (removed from scene):
 
 ```
@@ -59,6 +61,7 @@ You can also use a `wait` *Boolean* parameter to specify whether next command sh
 @hideChars time:5.5 wait:false
 @hidePrinter
 ```
+
 This will hide the text printer right after characters will begin to fade-out. If `wait` would be `true` or not specified, the printer would be hidden only when the `@hideChars` complete the execution.
 
 ### Parameter Value Types
