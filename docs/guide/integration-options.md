@@ -7,7 +7,7 @@ While Naninovel is focused around traditional visual novel games the engine is d
 There are multiple ways you can integrate Naninovel with a custom project and specific implementation will depend on the type of the project and what exactly you want to achieve with Naninovel. In the following documentation we'll list various configuration options and API that could be useful for "pairing" Naninovel with a standalone game. Before you continue, take a look at the [engine architecture](/guide/engine-architecture.md) to better understand how it behaves on a conceptual level.
 
 ::: example
-Check out [example project on GitHub](https://github.com/Elringus/NaninovelIntegrationExample), where Naninovel is used as both drop-in dialogue for a 3D adventure game and a switchable standalone novel mode. Be aware, that Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
+Check out an [example project on GitHub](https://github.com/Elringus/NaninovelIntegrationExample), where Naninovel is used as both drop-in dialogue for a 3D adventure game and a switchable standalone novel mode. Be aware, that Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
 :::
 
 ## Manual Initialization 
@@ -80,7 +80,7 @@ public class SwitchToNovelMode : Command
         var naniCamera = Engine.GetService<ICameraManager>().Camera;
         naniCamera.enabled = true;
 
-        // 3. Load and play specified script (is assigned).
+        // 3. Load and play specified script (if assigned).
         if (Assigned(ScriptName))
         {
             var scriptPlayer = Engine.GetService<IScriptPlayer>();
