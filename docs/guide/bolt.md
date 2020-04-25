@@ -21,5 +21,5 @@ That's it, you can now use Naninovel C# API in your bolt graphs.
 ![](https://i.gyazo.com/080106d574ea894f62ea79b7dd904ab2.png)
 
 ::: example
-An example project is available on GitHub: [github.com/Elringus/NaninovelBolt](https://github.com/Elringus/NaninovelBolt).
+An example project is available on GitHub: [github.com/Elringus/NaninovelBolt](https://github.com/Elringus/NaninovelBolt). Be aware, that neither Naninovel, nor Bolt packages are not distributed with the project, hence compilation errors will be produced after opening it for the first time; import the packages from the Asset Store to resolve the issues.
 :::
