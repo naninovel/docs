@@ -264,6 +264,24 @@ You can tweak the editor behavior and looks in the scripts configuration menu.
     <iframe src="https://www.youtube-nocookie.com/embed/9UmccF9R9xI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 </div>
 
+## Script Graph
+
+When working with large amount of scripts and non-linear stories, it could become handy to have some kind of visual representation of the story flow. This is where script graph tool comes in handy.
+
+<video class="video" loop autoplay><source src="https://i.gyazo.com/0dd3ec2393807fb03d501028e1526895.mp4" type="video/mp4"></video>
+
+To open the graph window use `Naninovel -> Script Graph` editor menu. You can dock the window as any other editor panel if you like to.
+
+The tool will automatically build graph representation of all the naninovel scripts (represented as nodes) assigned via editor resources (`Naninovel -> Resources -> Scripts`) and connections between them.
+
+The connections are generated based on [@goto] and [@gosub] commands. If the command has a conditional expression assigned (`if` parameter), corresponding port in the node will be highlighted with yellow and you'll be able to see the expression when hovering the port.
+
+You can select script asset and open visual editor by double-clicking nodes or clicking ports. Clicking the ports will also scroll the visual editor to a line containing label (in case there were a label specified).
+
+You can re-position the nodes as you like and their positions will be automatically saved when closing the graph window or exiting Unity; the positions will then be restored when re-open the window. You can also save manually by clicking "Save" button. Clicking "Auto Align" button will reset all the positions.
+
+When changing scripts or adding new ones, click "Rebuild Graph" button to sync it.
+
 ## Hot Reload
 
 It's possible to edit scripts at play mode (via both visual and external editors) and have the changes applied immediately, without game restart. The feature is controlled via `Hot Reload Scripts` property in the scripts configuration and is enabled by default.
