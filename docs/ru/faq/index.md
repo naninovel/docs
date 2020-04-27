@@ -1,30 +1,30 @@
 ﻿# FAQ
 
-## Can I use Naninovel as a drop-in dialogue system for an existing game?
+## Возможно ли использовать Naninovel в качестве диалоговой системы для уже существующих проектов?
 
-While Naninovel is focused around traditional visual novel games the engine is designed to allow integration with existing projects. If you're making a 3D adventure game, RPG or game of any other genre — you can still use Naninovel as a drop-in dialogue system. 
+Хотя Naninovel в первую очередь предназначена для игр в жанре визуальный роман, возможна её интеграция с проектами других жанров. Если вы работаете над 3D-адвенчурой, ролевой игрой или любым другим жанром — вы можете использовать Naninovel в качестве диалоговой системы.
 
-Be aware, that in most cases such integration will require C# scripting (or [visual scripting](/guide/bolt.md)) in varying extent. See the [engine architecture overview](/guide/engine-architecture.md) to get a grasp of how Naninovel works and [integration guide](/guide/integration-options.md) for more information on the integration options
+Имейте ввиду, что в большинстве случаев подобная интеграция потребует написания кода на C# (или [визуального программирования](/guide/bolt.md)). Для дополнительной информации смотрите [обзор архитектуры движка](/guide/engine-architecture.md) и обзор [опций по интеграции](/guide/integration-options.md).
 
-## Is it possible to embed a mini-game to Naninovel?
+## Возможно ли встроить мини-игру в Naninovel?
 
-Sure, you can freely "inject" any custom logic to the default Naninovel flow. In most cases, however, this will require using the engine's C# API (via either writing custom C# scripts or using a [visual scripting](/guide/bolt.md) solution). Check the [engine services guide](/guide/engine-services.md) for the list of available open APIs, which allows interaction with the engine; you may also make use of [state outsourcing](/guide/state-management.md#custom-state), [custom actor implementations](/guide/custom-actor-implementations.md) and [custom commands](/guide/custom-commands.md) in the process.
+Безусловно, вы можете свободно встраивать любую дополнительную логику в стандартные системы движка. В большинстве случаев, однако, это потребует написания кода на C# (или [визуального программирования](/guide/bolt.md)). Смотрите руководство по [сервисам движка](/guide/engine-services.md), где можно найти API, позволяющие взаимодействовать с движком; также обратите внимание на руководства по [использованию состояний](/guide/state-management.md#custom-state), [пользовательских имплентаций акторов](/guide/custom-actor-implementations.md) и [пользовательских команд](/guide/custom-commands.md).
 
-## Does it support a specific language?
+## Могу ли я использовать определенный язык при написании сценариев?
 
-Naninovel can work with any language, but to display text in some languages, you'll need a compatible font. [Google's Roboto](https://fonts.google.com/specimen/Roboto) is used by default, which supports all Latin, Cyrillic, and Greek characters in Unicode 7.0. You can change the font used in any of the built-in UIs with [UI customization](/guide/user-interface.md#ui-customization) feature; for the printed text messages, [create custom printers](/guide/text-printers.md#adding-custom-printers) and set the desired font.
+Naninovel может работать с любым языком, однако для того, чтобы показать текст на некоторых языках, может потребоваться совместимый шрифт. Шрифт от Google [Roboto](https://fonts.google.com/specimen/Roboto) используется по умолчанию во всех встроенных UI и поддерживает все латинские, кириллические и греческие символы в системе Unicode 7.0. Вы можете изменить шрифт в любом UI с помощью [кастомизации интерфейса](/guide/user-interface.md#ui-customization); для кастомизации шрифта в выводимых сообщениях создайте [пользовательский принтер](/guide/text-printers.md#adding-custom-printers). 
 
-In case you're aiming to support as much languages, as possible, check out [Noto fonts](https://www.google.com/get/noto/).
+Если вы стремитесь реализовать поддержку как можно большего количества языков на базе единого шрифта, обратите внимание на шрифты [Noto](https://www.google.com/get/noto/).
 
-## Will I get access to the source code when I buy Naninovel?
+## Получу ли я доступ к исходному коду после покупки Naninovel?
 
-All the engine source code is available in the distributed package. A couple of third-party libraries (namely, [NCalc](https://github.com/ncalc/ncalc) and [NLayer](https://github.com/naudio/NLayer)) are pre-compiled, but they're open-sourced (MIT license) with sources hosted on GitHub.
+Весь код движка распространяется в исходном виде вместе с пакетом. Пара библиотек ([NCalc](https://github.com/ncalc/ncalc) и [NLayer](https://github.com/naudio/NLayer)) пре-компилированы, однако их исходный код доступен под свободной лицензией MIT на GitHub.
 
-## Why the package doesn't contain any demo scenes?
+## Почему в пакете отсутствуют демо-сцены?
 
-Naninovel is designed to be [scene-independent](/guide/engine-architecture.md#scene-independent) and doesn't use [Unity scenes](https://docs.unity3d.com/Manual/CreatingScenes.html) in any way, hence it's not possible to make any kind of example or demo scenes. The engine is automatically initialized when the game is started (can be switched to manual initialization in the engine configuration window) and scenarios are scripted via text documents called [naninovel scripts](/guide/naninovel-scripts.md).
+Дизайн Naninovel подразумевает [независимость от сцен](/guide/engine-architecture.md#scene-independent). Движок не использует [Unity-сцены](https://docs.unity3d.com/Manual/CreatingScenes.html) ни в каком виде, поэтому какие-либо демо-сцены создать невозможно. Движок автоматически инициализируется при запуске приложения (можно переключить на ручную инициализацию в окне конфигурации), а сценарии создаются в специальных текстовых [документах-скриптах](/guide/naninovel-scripts.md).
 
-Please read through the [getting started](/guide/getting-started.md) guide to get a grasp on how to use the engine. You can find additional examples on using various engine features and script commands in the rest of the [guide](/guide/index.md) and [API command reference](/api/index.md). In case you'd like a complete working project, which can be used as a reference, take a look at the [demo project](/guide/getting-started.html#demo-project).
+Пожалуйста, ознакомьтесь с [руководством по началу работы](/ru/guide/getting-started.md) перед использованием движка. Примеры использования различных функций движка и команд можно найти в [статья](/guide/index.md) и [руководстве по командам](/api/index.md). Если вам необходим готовый проект, который можно было бы использовать как пример, обратите внимание на [демо-проект](/ru/guide/getting-started.html#demo-project).
 
 ## How to customize the title (main) menu: add background, music, effects, change buttons, etc?
 

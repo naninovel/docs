@@ -62,12 +62,9 @@ module.exports = {
                     },
                     {text: 'FAQ', link: '/ru/faq/'},
                     {text: 'Руководство', link: '/ru/guide/'},
-                    {text: 'Команды', link: '/ru/api/'},
+                    {text: 'Команды', link: '/api/'},
                     {text: 'Поддержка', link: '/ru/support/'}
                 ],
-                sidebar: {
-                    '/ru/guide/': getGuideSidebar('Руководство', 'Программирование', 'Расширения')
-                },
                 lastUpdated: 'Обновлено'
             }
         }
