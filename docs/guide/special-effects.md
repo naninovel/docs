@@ -70,7 +70,7 @@ You can use any string for ID (it can be a number like above, or something more 
 ## Shake Printer
 Shakes printer with the specified ID or the default one.
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/f61fc35e318cce1949b00e5fe2448a80.mp4" type="video/mp4"></video>
+[!f61fc35e318cce1949b00e5fe2448a80]
 
 **Start Parameters**
 Name | Type | Default | Description
@@ -103,7 +103,7 @@ What a shaky situation!
 ## Shake Background
 Shakes background with the specified ID or the main one.
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/fcf1153a0ad3d9a153908206211f5f5f.mp4" type="video/mp4"></video>
+[!fcf1153a0ad3d9a153908206211f5f5f]
 
 **Start Parameters**
 Name | Type | Default | Description
@@ -129,7 +129,7 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 ## Shake Character
 Shakes character with the specified ID or a random visible one.
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/6001d3cfbee855c8a783d10e4a784042.mp4" type="video/mp4"></video>
+[!6001d3cfbee855c8a783d10e4a784042]
 
 **Start Parameters**
 Name | Type | Default | Description
@@ -162,7 +162,7 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 ## Shake Camera
 Shakes the main Naninovel render camera.
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/f9521fbcf959d0b72e449ae6e2191f9f.mp4" type="video/mp4"></video>
+[!f9521fbcf959d0b72e449ae6e2191f9f]
 
 **Start Parameters**
 Name | Type | Default | Description
@@ -189,12 +189,12 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 
 In case you wish to change (animate) actor parameters directly, consider using [@animate] command.
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/a0494329c713c4309a52d57d0b297bee.mp4" type="video/mp4"></video>
+[!a0494329c713c4309a52d57d0b297bee]
 
 ## Digital Glitch
 Applies a post-processing effect to the main camera simulating digital video distortion and artifacts.
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/94cb6db25c17956473db4de149281df5.mp4" type="video/mp4"></video>
+[!94cb6db25c17956473db4de149281df5]
 
 **Start Parameters**
 Name | Type | Default | Description
@@ -213,7 +213,7 @@ Intensity | Decimal | 1 | The intensity of the effect, in 0.0 to 10.0 range.
 ## Rain
 Spawns a particle system simulating a rain.
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/74af9eec30f6517ea5b8453a9c86d33c.mp4" type="video/mp4"></video>
+[!74af9eec30f6517ea5b8453a9c86d33c]
 
 **Start Parameters**
 Name | Type | Default | Description
@@ -239,7 +239,7 @@ Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn
 ## Snow
 Spawns a particle system simulating a snow.
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/25a052444c561e40c8318272f51edf47.mp4" type="video/mp4"></video>
+[!25a052444c561e40c8318272f51edf47]
 
 **Start Parameters**
 Name | Type | Default | Description
@@ -263,7 +263,7 @@ Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn
 ## Sun Shafts
 Spawns a particle system simulating sun shafts (rays).
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/7edc4777699229abc508f2bdb404522e.mp4" type="video/mp4"></video>
+[!7edc4777699229abc508f2bdb404522e]
 
 **Start Parameters**
 Name | Type | Default | Description
@@ -287,7 +287,7 @@ Fade-out time | Decimal | 3 | The particle system will gradually lower the opaci
 ## Depth of Field (Bokeh)
 Simulates depth of field (aka DOF, bokeh) effect, when only the object in focus stays sharp, while the other image is blurred.
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/616a023c46f207b4a3a33d3d3fd9fbc9.mp4" type="video/mp4"></video>
+[!616a023c46f207b4a3a33d3d3fd9fbc9]
 
 **Start Parameters**
 Name | Type | Default | Description

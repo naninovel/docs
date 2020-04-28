@@ -2,7 +2,7 @@
  
 Game settings can be changed at any time using settings menu.
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/8ef1044cb0b8429298af05e6275ff14d.mp4"></video>
+[!8ef1044cb0b8429298af05e6275ff14d]
 
 Changing locale requires game to be restarted in order for the changes to take effect. Other changes will take effect immediately. 
 

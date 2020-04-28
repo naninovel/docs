@@ -79,8 +79,9 @@ module.exports = {
     markdown: {
         extendMarkdown: md => {
             md.use(require('markdown-it-regexp')(/\[@(\w+)]/, function(match, utils) {
-                return `<a href="/api/#${match[1].toLowerCase()}" class="" target="_blank"><code>@${match[1]}</code></a>`;
-            }));
+                return `<a href="/api/#${match[1].toLowerCase()}" class="" target="_blank"><code>@${match[1]}</code></a>`; }));
+            md.use(require('markdown-it-regexp')(/\[!(\w+)]/, function(match, utils) {
+                return `<video class="video" loop autoplay muted><source src="https://i.gyazo.com/${match[1]}.mp4" type="video/mp4"></video>`; }));
         }
     },
     locales: {

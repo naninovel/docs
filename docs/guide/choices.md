@@ -95,7 +95,7 @@ Edit the handler: change font, textures, add animations, etc. For more informati
 
 Expose the handler to engine resources using choice handler manager GUI, which can be accessed with `Naninovel -> Resources -> Choice Handlers` editor context menu. Add a new record using `+` (plus) button, enter actor ID (can differ from the prefab name) and double click the record to open actor settings. Drag-drop handler prefab to the `Resource` field.
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/cb3a0ff7f22b22cec6546acb388719fc.mp4" type="video/mp4"></video>
+[!cb3a0ff7f22b22cec6546acb388719fc]
 
 You can now use the new choice handler by specifying its ID in `handler` parameter of the [@choice] commands.
 
