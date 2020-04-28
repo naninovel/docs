@@ -161,7 +161,7 @@ Built with an open source [SpriteDicing](https://github.com/Elringus/SpriteDicin
 
 Install the package via [Unity package manager](https://docs.unity3d.com/Manual/upm-ui.html): open package manager window (Window -> Package Manager), click "+" button, choose "Add package from git URL", enter `https://github.com/Elringus/SpriteDicing.git#package` to the input field and click "Add".
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/b54e9daa9a483d9bf7f74f0e94b2d38a.mp4" type="video/mp4"></video>
+[!b54e9daa9a483d9bf7f74f0e94b2d38a]
 
 `DicedSpriteAtlas` assets containing character appearances are used as the resources for the diced sprite characters. Each appearance is mapped by name to the diced sprites contained in the atlas.
 
@@ -239,7 +239,7 @@ The above expressions will affect not only the direct descendants of the target 
 
 When an appearance is not specified (eg, `@char CharId` without previously setting any appearance), a default appearance will be used; default appearance of the layered characters equals to how the layered prefab looks in the editor.
 
-The video below demonstrates hot to setup a layered character and control it via naninovel commands.
+The video below demonstrates how to setup a layered character and control it via naninovel commands.
 
 <div class="video-container">
     <iframe src="https://www.youtube-nocookie.com/embed/Bl3kXrg8tiI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

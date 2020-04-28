@@ -5,7 +5,7 @@ Use `Naninovel -> Configuration` or `Edit -> Project Settings -> Naninovel` to a
 
 Notice, that all the configuration menus are supporting [Unity's presets feature](https://docs.unity3d.com/Manual/Presets). It could be useful to create several configuration presets when deploying to different target platforms (eg, mobile, standlone, consoles, etc).
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/55f5c74bfc16e1af2455034647525df3.mp4" type="video/mp4"></video>
+[!55f5c74bfc16e1af2455034647525df3]
 
 It's possible to modify configuration objects at runtime, add new custom configurations and change the way the objects are accessed at runtime (eg, read configuration from JSON files stored on a remote host); see [custom configuration](/guide/custom-configuration.md) guide for more information.
 

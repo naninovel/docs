@@ -242,7 +242,7 @@ For more information on the conditional expression format and available operator
 
 You can use visual script editor to edit the naninovel scripts. Select a script asset and you'll see the visual editor automatically open in the inspector window.
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/e1f40ff0fb7898e11afa0f058bb6ed6d.mp4" type="video/mp4"></video>
+[!e1f40ff0fb7898e11afa0f058bb6ed6d]
 
 To add a new line to the script, either right-click the place, where you want to insert the line, or press `Ctrl+Space` (you can change the default key bindings in the input configuration menu) and select the desired line or command type. To re-order lines, drag them using their number labels. To remove a line, right-click it and choose "Remove".
 
@@ -252,7 +252,7 @@ The visual editor will automatically sync edited script if you update it externa
 
 During the playmode, you can use visual editor to track which script line is currently being played and right-click a line to rewind the playback. This feature requires the script to have equal resource ID (when assigned in the resources manager menu) and asset name.
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/b6e04d664ce4b513296b378b7c25be03.mp4" type="video/mp4"></video>
+[!b6e04d664ce4b513296b378b7c25be03]
 
 Currently played line will be highlighted with green color; when script playback is halted due waiting for user input, played line will be highlighted with yellow instead.
 
@@ -268,7 +268,7 @@ You can tweak the editor behavior and looks in the scripts configuration menu.
 
 When working with large amount of scripts and non-linear stories, it could become handy to have some kind of visual representation of the story flow. This is where script graph tool comes in handy.
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/0dd3ec2393807fb03d501028e1526895.mp4" type="video/mp4"></video>
+[!0dd3ec2393807fb03d501028e1526895]
 
 To open the graph window use `Naninovel -> Script Graph` editor menu. You can dock the window as any other editor panel if you like to.
 

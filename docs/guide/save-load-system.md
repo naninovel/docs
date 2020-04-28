@@ -2,7 +2,7 @@
 
 Game can be saved and loaded at any time by using save and load menus. User can select a save slot to use and delete any previously used slot.
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/a7109097f6abbeea16d6fe773bfffb3f.mp4"></video>
+[!a7109097f6abbeea16d6fe773bfffb3f]
 
 Save slots are serialized to either `.json` or binary files (depending on the configuration) and stored over game directory. File names, slot limit and directory name can be configured using `Naninovel -> Configuration -> State` context menu; for available options see [configuration guide](/guide/configuration.md#state).
 
