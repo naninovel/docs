@@ -81,9 +81,7 @@ Don't forget about cucumbers!
 @goto .Map
 ```
 
-<div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/cNRNgk5HhKQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+[!!cNRNgk5HhKQ]
 
 ## Adding Custom Choice Handlers
 

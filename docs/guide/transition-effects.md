@@ -398,9 +398,7 @@ To make a custom transition, use `Custom` transition mode and specify path (rela
 
 Check out the following video for the usage examples:
 
-<div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/HZjey6M2-PE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+[!!HZjey6M2]
 
 ### Custom Shader
 

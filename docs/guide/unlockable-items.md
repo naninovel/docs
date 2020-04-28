@@ -35,9 +35,7 @@ The unlockable resources are used by the built-in unlockable systems, such as [C
 
 Using the CG gallery feature, you can specify texture resources (images), that can be unlocked throughout the game and then browsed via the `ICGGalleryUI` UI accessible from the title menu.
 
-<div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/wkZeszk6gm0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+[!!wkZeszk6gm0]
 
 By default, all the unlockable texture resources with `CG` prefix added via [unlockable resources manager](/guide/unlockable-items.md#unlockable-resources) and [background](/guide/backgrounds.md) sprite resources of the `MainBackground` actor with the same prefix will be considered unlockable CG items.
 
@@ -71,9 +69,7 @@ Unlockable tips system allows to specify a set of text records using localizable
 
 The system can be used to build an in-game vocabulary/encyclopedia or achievements tracker.
 
-<div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/CRZuS1u_J4c" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+[!!CRZuS1u_J4c]
 
 To define the available tips, create a `Tips.txt` text document inside the [managed text](/guide/managed-text.md) resources directory (`Resources/Naninovel/Text` by default). Each line identifies a single tip record. The line should begin with tip ID followed by colon; then the tip's title, category (optional) and description should be specified, all separated by vertical lines (`|`), eg:
 

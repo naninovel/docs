@@ -206,9 +206,7 @@ On the contrary, sound effects won't loop by default. Assuming you've added an "
 
 In case you prefer following video guides, here is one illustrating the above instructions.
 
-<div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/t3frIFlIABw" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+[!!t3frIFlIABw]
 
 ## Demo Project
 

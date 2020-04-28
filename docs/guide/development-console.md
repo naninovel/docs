@@ -40,6 +40,4 @@ You can invoke the script commands via development console. Input the command st
 
 — will print the value of the `VariableName` with the default printer.
 
-<div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/wcgTGro0_SE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+[!!wcgTGro0_SE]

@@ -217,6 +217,4 @@ You can additionally control the size and vertical line offset of the ruby text 
 
 Below is a video demonstration of the ruby tags in action.
 
-<div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/aWdq7YxIxkE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+[!!aWdq7YxIxkE]

@@ -356,6 +356,4 @@ The state of the currently enabled (and disabled) custom camera components will 
 
 Check out the following video for example on adding a custom camera filter effect.
 
-<div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/IbT6MTecO-k" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+[!!IbT6MTecO]

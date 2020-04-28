@@ -260,9 +260,7 @@ You can tweak the editor behavior and looks in the scripts configuration menu.
 
 ![](https://i.gyazo.com/4b4b2608e7662b02a61b00734910308c.png)
 
-<div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/9UmccF9R9xI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+[!!9UmccF9R9xI]
 
 ## Script Graph
 
@@ -308,9 +306,7 @@ To use the extension:
 
 Check the following video tutorial on activating and using the extension.
 
-<div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/njKxsjtewzA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+[!!njKxsjtewzA]
 
 Support for other editors is possible in the future; check [the issue on GitHub](https://github.com/Elringus/NaninovelWeb/issues/56#issuecomment-492987029) for more information.
 
