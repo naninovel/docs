@@ -82,9 +82,7 @@ When `Use Character Color` is enabled in the character configuration, printer te
 
 The following video demonstrates how to use display names and character colors.
 
-<div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/u5B5s-X2Bw0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+[!!u5B5s]
 
 ## Avatar Textures
 
@@ -123,17 +121,13 @@ In case you're constantly changing avatars while the character itself should rem
 
 When enabled in the character configuration, will tint the character based on whether the last printed message is associated with it.
 
-<div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/gobowgagdyE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+[!!gobowgagdyE]
 
 ## Lip Sync
 
 [Generic](/guide/characters.md#generic-characters) and [Live2D](/guide/characters.md#live2d-characters) character implementations support so called "lip synchronization" feature, allowing to drive character's mouth animation while its the author of the printed message by sending the appropriate events. 
 
-<div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/fx_YS2ZQGHI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+[!!fx_YS2ZQGHI]
 
 When [auto voicing](/guide/voicing.md#auto-voicing) feature is enabled, lip sync events will be driven by the voice over; otherwise, printed text messages will activate the events. In the latter case, you'll probably sometimes want to manually start or stop the lip sync (eg, to prevent mouth animation when punctuation marks are printed); for such cases, use [@lipSync] command.
 
@@ -171,9 +165,7 @@ Be aware, that some of diced character metadata properties (eg, pixels per unit,
 
 The following video guide covers creating and configuring diced sprite atlas, adding new diced character based on the created atlas and controlling the character from a naninovel script.
 
-<div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/6PdOAOsnhio" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+[!!6PdOAOsnhio]
 
 ## Layered Characters
 
@@ -241,9 +233,7 @@ When an appearance is not specified (eg, `@char CharId` without previously setti
 
 The video below demonstrates how to setup a layered character and control it via naninovel commands.
 
-<div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/Bl3kXrg8tiI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+[!!Bl3kXrg8tiI]
 
 ::: note
 `@char Miho.Shoes>` command displayed in the video will actually select the "Shoes" group (disabling all the neighbor groups), not hide it. Correct command to hide a group is `@char Miho.Shoes-`.
@@ -280,9 +270,7 @@ To setup lip sync feature for generic characters, use `On Is Speaking Changed` b
 
 Check the following video tutorial for example on setting up a 3D rigged model as a generic character and routing appearance changes to the rig animations via [Animator](https://docs.unity3d.com/Manual/class-AnimatorController.html) component.
 
-<div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/HPxhR0I1u2Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+[!!HPxhR0I1u2Q]
 
 Be aware, that Unity's `Animator` component could fail to register `SetTrigger` when the game object is enabled/disabled in the same frame; in case you use `GameObject.SetActive` to handle visibility changes (as it's shown in the above tutorial), consider enabling/disabling the child objects with renderers instead.
 
@@ -322,9 +310,7 @@ Render layer specifies the layer to apply for the Live2D prefabs and culling mas
 
 Following video guide covers exporting a Live2D character from Cubism Editor, configuring the prefab, creating a simple animator state machine and controlling the character from a naninovel script.
 
-<div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/rw_Z69z0pAg" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+[!!rw_Z69z0pAg]
 
 ::: example
 Check out an [example project on GitHub](https://github.com/Elringus/NaninovelLive2D), where a Live2D character is used with Naninovel. Be aware, that neither Naninovel, nor Live2D SDK packages are distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store and Live2D Cubism SDK from their website to resolve the issues.

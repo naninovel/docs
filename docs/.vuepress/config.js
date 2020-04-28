@@ -82,6 +82,8 @@ module.exports = {
                 return `<a href="/api/#${match[1].toLowerCase()}" class="" target="_blank"><code>@${match[1]}</code></a>`; }));
             md.use(require('markdown-it-regexp')(/\[!(\w+)]/, function(match, utils) {
                 return `<video class="video" loop autoplay muted><source src="https://i.gyazo.com/${match[1]}.mp4" type="video/mp4"></video>`; }));
+            md.use(require('markdown-it-regexp')(/\[!!(\w+)]/, function(match, utils) {
+                return `<div class="video-container"><iframe src="https://www.youtube-nocookie.com/embed/${match[1]}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`; }));
         }
     },
     locales: {

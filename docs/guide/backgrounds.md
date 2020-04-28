@@ -138,9 +138,7 @@ To create generic background prefab from a template, use `Create -> Naninovel ->
 
 Generic backgrounds are very similar to generic characters; check out a tutorial video on setting an animated 3D model as a generic character for one of the possible usage examples.
 
-<div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/HPxhR0I1u2Q" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+[!!HPxhR0I1u2Q]
 
 ## Scene Backgrounds
 

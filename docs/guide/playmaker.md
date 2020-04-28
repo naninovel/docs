@@ -20,9 +20,7 @@ The custom Naninovel actions should appear in the PlayMaker actions browser unde
 
 The following video demonstrates using PlayMaker FSM (finite state machine) to initialize Naninovel engine, preload and play a scenario script.
 
-<div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/N856vi18XVU" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+[!!N856vi18XVU]
 
 ### Events
 
