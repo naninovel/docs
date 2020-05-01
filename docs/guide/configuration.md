@@ -10,7 +10,7 @@ Notice, that all the configuration menus are supporting [Unity's presets feature
 It's possible to modify configuration objects at runtime, add new custom configurations and change the way the objects are accessed at runtime (eg, read configuration from JSON files stored on a remote host); see [custom configuration](/guide/custom-configuration.md) guide for more information.
 
 ::: note
-This configuration reference is valid for [Naninovel v1.9.7-beta](https://github.com/Elringus/NaninovelWeb/releases).
+This configuration reference is valid for [Naninovel v1.9.8-beta](https://github.com/Elringus/NaninovelWeb/releases).
 :::
 
 ## Audio
@@ -125,6 +125,7 @@ Property | Default Value | Description
 Generated Data Path | Naninovel Data | Relative (to the application data directory) path to store the automatically generated assets.
 Override Objects Layer | False | Whether to assign a specific layer to all the engine objects. Engine's camera will use the layer for the culling mask. Use this to isolate Naninovel objects from being rendered by other cameras.
 Objects Layer | 0 | When `Override Objects Layer` is enabled, the specified layer will be assigned to all the engine objects.
+Async Exception Log Type | Error | Log type to use for UniTask-related exceptions.
 Initialize On Application Load | True | Whether to automatically initialize the engine when application starts.
 Show Initialization UI | True | Whether to show a loading UI while the engine is initializing.
 Custom Initialization UI | Null | UI to show while the engine is initializing (when enabled). Will use a default one when not provided.
@@ -241,8 +242,11 @@ Insert Line Key | Space | Hot key used to show `Insert Line` window when the vis
 Insert Line Modifier | Control | Modifier for the `Insert Line Key`. Set to `None` to disable.
 Save Script Key | S | Hot key used to save (serialize) the edited script when the visual editor is in focus. Set to `None` to disable.
 Save Script Modifier | Control | Modifier for the `Save Script Key`. Set to `None` to disable.
-Visual Editor Page Length | 1000 | How many script lines should be rendered per visual editor page.
-Custom Style Sheet | Null | Allows modifying the default style of the visual editor.
+Editor Page Length | 1000 | How many script lines should be rendered per visual editor page.
+Editor Custom Style Sheet | Null | Allows modifying default style of the visual editor.
+Graph Orientation | Horizontal | Whether to build the graph vertically or horizontally.
+Graph Auto Align Padding | (10.0, 0.0) | Padding to add for each node when performing auto align.
+Graph Custom Style Sheet | Null | Allows modifying default style of the script graph.
 Enable Community Modding | False | Whether to allow adding external naninovel scripts to the build.
 External Loader | Scripts- (Local) | Configuration of the resource loader used with external naninovel script resources.
 Enable Navigator | True | Whether to initializte script navigator to browse available naninovel scripts.
