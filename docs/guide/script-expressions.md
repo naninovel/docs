@@ -51,6 +51,14 @@ Though, just like with all the other parameter values, in case you wish to use s
 @goto EpicLabel if:"Abs(randomScore) >= 50"
 ```
 
+To print curly braces inside a generic text line and prevent them from being recognized as an expression start and end literals, escape the braces with backslashes, eg:
+
+```
+Some text \{ text inside braces \}
+```
+
+— will print "Some text { text inside braces }" in-game.
+
 ## Expression Functions
 
 The following functions can also be used inside the script expressions.
