@@ -153,6 +153,13 @@ Lorem ipsum[char Felix.Happy pos:75 wait:false] dolor sit amet.
 @print "dolor sit amet."
 ```
 
+To actually print square brackets via a generic text line, escape them with backslashes, eg:
+```
+Some text \[ text inside brackets \]
+```
+
+— will print "Some text [ text inside brackets ]" in-game.
+
 ## Label Lines
 
 Labels are used as "anchors" when navigating the naninovel scripts with [@goto] commands. To define a label, use a `#` literal at the start of the line followed with label name:
