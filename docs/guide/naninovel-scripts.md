@@ -299,9 +299,9 @@ In case hot reload is not working, make sure `Auto Refresh` is enabled and `Scri
 
 ## IDE Support
 
-IDE features, like syntax highlighting, error checking, auto-completion and interactive documentation may significantly increase productivity when writing naninovel scripts. We've made an extension for a free and open-source [Atom editor](https://atom.io) (available for Windows, MacOS and Linux), which provides the essential IDE support for NaniScript syntax.
+IDE features, like syntax highlighting, error checking, auto-completion and interactive documentation could significantly increase productivity when writing scripts. We've made an extension for a free and open-source [Atom editor](https://atom.io) (available for Windows, MacOS and Linux), which provides the essential IDE support for NaniScript syntax.
 
-![](https://i.gyazo.com/12f40d4c5b41667ec456dd743c16de50.png)
+![](https://i.gyazo.com/e3de33e372887b0466ea513576beadd0.png)
 
 To use the extension:
 
