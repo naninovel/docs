@@ -206,7 +206,7 @@ On the contrary, sound effects won't loop by default. Assuming you've added an "
 
 In case you prefer following video guides, here is one illustrating the above instructions.
 
-[!!t3frIFlIABw]
+[!!wFil5vje3NE]
 
 ## Demo Project
 
