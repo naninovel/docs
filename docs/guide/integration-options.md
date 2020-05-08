@@ -7,7 +7,7 @@ While Naninovel is focused around traditional visual novel games the engine is d
 There are multiple ways you can integrate Naninovel with a custom project and specific implementation will depend on the type of the project and what exactly you want to achieve with Naninovel. In the following documentation we'll list various configuration options and API that could be useful for "pairing" Naninovel with a standalone game. Before you continue, take a look at the [engine architecture](/guide/engine-architecture.md) to better understand how it behaves on a conceptual level.
 
 ::: example
-Check out an [example project on GitHub](https://github.com/Elringus/NaninovelIntegrationExample), where Naninovel is used as both drop-in dialogue for a 3D adventure game and a switchable standalone novel mode. Be aware, that Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
+Check out an [example project](/guide/integration-options.md#example-project), where Naninovel is used as both drop-in dialogue for a 3D adventure game and a switchable standalone novel mode. 
 :::
 
 ## Manual Initialization 
@@ -147,3 +147,21 @@ private void OnTriggerEnter (Collider other)
 There are multiple other features (state outsourcing, services overriding, custom serialization, resource and configuration providers, etc), which could be situationally helpful when integrating the engine with another systems; check out rest of the guide for more information. Consider investigating the available [configuration options](/guide/configuration.md) as well; some feature may not be described in the guide, but still be handy for integration purposes.
 
 If you feel some engine API or system is lacking in extendability and requiring source code modification in order to integrate, please [contact the developer](/support/#developer-support) — we'll consider improving it.
+
+## Example Project
+
+An example project with Naninovel used as both drop-in dialogue for a 3D adventure game and a switchable standalone novel mode is [available on GitHub](https://github.com/Elringus/NaninovelIntegrationExample). You can [clone the repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) with a Git client or [download it as a zip archive](https://github.com/Elringus/NaninovelIntegrationExample/archive/master.zip).
+
+::: warn
+Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
+:::
+
+All the project-specific (example) scripts are stored at `Assets/Runtime` folder.
+
+Naninovel is initialized manually (auto initialization is disabled in the engine configuration menu) via `Runtime/SetupGame.cs` script attached to `SetupGame` game object located on `MainScene` scene.
+
+`Runtime/DialogueTrigger.cs` script used as component on triggers perform switch to dialogue mode when player is hitting the trigger colliders.
+
+`Runtime/SwitchToNovelMode.cs` custom command is used to switch to novel mode from both C# and naninovel scripts.
+
+`Runtime/SwitchToAdventureMode.cs` custom command is used to switch to adventure from novel mode.
