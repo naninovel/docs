@@ -1,9 +1,5 @@
 # Compatibility
 
-::: warn
-Naninovel is currently in a final stage of open beta: all the core features are implemented and the engine is already being used in multiple commercial projects, but there is still a probability of breaking changes prior to stable release.
-:::
-
 ## Unity Version
 
 Minimum supported Unity version is **2019.3**; this won't change throughout Naninovel v1.x releases. Support for new releases from [TECH stream](https://blogs.unity3d.com/2018/04/09/new-plans-for-unity-releases-introducing-the-tech-and-long-term-support-lts-streams/) is added once they're out of beta.
