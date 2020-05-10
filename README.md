@@ -1,4 +1,4 @@
-![Naninovel](https://naninovel.com/hero.png) 
+![Naninovel](https://github.com/Elringus/NaninovelWeb/blob/master/docs/.vuepress/public/assets/img/og.jpg) 
 
 # Naninovel Web Resources
 
