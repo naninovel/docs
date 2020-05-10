@@ -396,16 +396,16 @@ To make a custom transition, use `Custom` transition mode and specify path (rela
 @back Appearance.Custom dissolve:Textures/Spiral
 ```
 
-Check out the following video for the usage examples:
+Check out the following video for the usage examples.
 
-[!!HZjey6M2]
+[!!HZjey6M2-PE]
 
 ### Custom Shader
 
 It's possible to add a completely custom transition effect via a custom actor [shader](https://docs.unity3d.com/Manual/ShadersOverview.html).
 
 ::: warn
-The topic requires graphic programming skills in Unity. We're not providing any support or tutorials on writing custom shaders.
+The topic requires graphic programming skills in Unity. We're not providing any support or tutorials on writing custom shaders; consult the [support page](/support/#unity-support) for more information.
 :::
 
 Create a new shader and assign it to the actors, which are supposed to use your new custom transition effect; see [custom actor shader](/guide/custom-actor-shader.md) guide for more information on how to create and assign custom actor shaders.

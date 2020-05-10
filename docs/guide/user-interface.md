@@ -27,16 +27,28 @@ UI customization feature allows to add a custom UI and modify or completely repl
 Be aware, that text printers and choice handlers are implemented via actors interface and are customized in a different way; see the corresponding documentation ([text printers](/guide/text-printers.md), [choice handlers](/guide/choices.md)) for more info.
 
 ::: warn
-Before attempting to create custom UIs or modify existing ones first make sure you're familiar with [Unity's UI system](https://docs.unity3d.com/Packages/com.unity.ugui@latest) (uGUI); we're not providing any tutorials or support for Unity's built-in tools.
+Before attempting to create custom UIs or modify existing ones first make sure you're familiar with [Unity's UI system](https://docs.unity3d.com/Packages/com.unity.ugui@latest) (uGUI). While there are video tutorials and example projects for UI customization available below, please be aware that we won't be able to provide any additional guidance or support for Unity's built-in tools; consult the [support page](/support/#unity-support) for more information.
 :::
 
 To add a custom UI or modify (disable) a built-in one, use UI resources manager accessible via `Naninovel -> Resources -> UI` editor menu.
 
 ![](https://i.gyazo.com/b0f00e8431e34e59249b3f59919e3b2c.png)
 
-To add a custom UI, create a new prefab (`Create -> Naninovel -> Custom UI`) and add it to the list. To disable a built-in UI remove a record from the list. When the engine is initializing it'll instantiate all the UI prefabs assigned in the resources manager.
+When the engine is initializing it'll instantiate all the UI prefabs assigned in the resources manager.
 
 To show or hide any of the UIs listed in the resources manager use [@showUI] and [@hideUI] commands respectively.
+
+### Adding Custom UI
+
+To add a new custom UI, create a prefab via `Create -> Naninovel -> Custom UI` asset context menu and add it to the UI resources list. It'll then be instantiated along with the other UI prefabs on the engine initialization.
+
+Following video tutorial shows how to add a custom calendar UI with special reveal and hide animations. The calendar will display a date based on a [custom variable](/guide/custom-variables.md), which can be changed via naninovel scripts and is saved with the game. The calendar will automatically update when the variable is changed. All this is achieved without any C# scripting.
+
+[!!dfdf]
+
+::: example
+Unity project showed in the above video tutorial is available on GitHub. You can clone the repository with a Git client or download it as a zip archive. Be aware, that Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
+:::
 
 When you create a new custom UI prefab via the context menu, the prefab will have a `Custom UI` component attached to the root object. This component (or rather the fact that the component is implementing `IManagedUI` interface) is essential to make the prefab accepted as a UI by the engine.
 
@@ -69,7 +81,23 @@ Several other components will also be added by default when creating a custom UI
 
 You are free to modify or remove any of the above components as you see fit.
 
-If you wish to modify an existing built-in UI prefab, you can find them at `Naninovel/Prefabs/DefaultUI` folder. While it's possible, please refrain from editing the built-in prefabs directly to prevent issues when updating the package. Rather duplicate the prefab you want to modify (Ctrl/Cmd+D), move it out of the package folder and modify the duplicate instead. Then assign modified prefab to an existing record in the UI resources manager.
+### Disabling Built-In UI
+
+To disable a built-in UI remove corresponding record from the UI resources list and the prefab won't be instantiated on engine initialization.
+
+### Modifying Built-In UI
+
+If you wish to modify an existing built-in (default) UI prefab, you can find them at `Naninovel/Prefabs/DefaultUI` package folder. 
+
+While it's possible, **please refrain from editing the built-in prefabs directly** to prevent issues when updating the package. Rather, create a new prefab from template via `Create -> Naninovel -> Default UI -> ...` asset context menu or manually duplicate the prefab you want to modify (Ctrl/Cmd+D) and move it out of the package folder. Then assign the created/modified prefab to an existing record (`Object` field) in the UI resources manager.
+
+In the following video tutorial you can learn how to override built-in title (main) menu. It'll also show how to use title script to show a background, special effect and play a music when entering the title menu; no C# scripting is used to achieve that.
+
+[!!dfdf]
+
+::: example
+Unity project showed in the above video tutorial is available on GitHub. You can clone the repository with a Git client or download it as a zip archive. Be aware, that Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
+:::
 
 When creating a new prefab from scratch, make sure to attach a component that implements interface of the UI you're going to override. This component should be attached to the root object of the prefab.
 

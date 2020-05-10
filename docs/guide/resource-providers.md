@@ -39,7 +39,7 @@ In case you wish to configure how the Naninovel addressable assets should be ser
 ![](https://i.gyazo.com/c93fbd9e232ec94468c685c4d6003916.png)
 
 ::: warn
-We're not providing any tutorials or support for Unity's addressable asset system itself, be it setting up a remote web hosting for you assets or some other deploy/serving scenario. Consult the official docs or contact Unity support for more information on the topic.
+We're not providing any tutorials or support for Unity's addressable asset system itself, be it setting up a remote web hosting for you assets or some other deploy/serving scenario; consult the [support page](/support/#unity-support) for more information.
 :::
 
 ## Project
