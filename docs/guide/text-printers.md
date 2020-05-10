@@ -137,7 +137,7 @@ You can add custom text printers based on the built-in templates or create new p
 
 Use `Create -> Naninovel -> Text Printers -> Dialogue` asset context menu to create a dialogue prefab somewhere outside of the Naninovel package, e.g. at the `Assets/TextPrinters` folder. 
 
-Edit the prefab: change font, textures, add animations, etc. For more information on the available UI building tools, check the [Unity documentation](https://docs.unity3d.com/Packages/com.unity.ugui@latest).
+Edit the prefab: change font, textures, add animations, etc. For more information on the available UI building tools consult [Unity documentation for uGUI](https://docs.unity3d.com/Packages/com.unity.ugui@latest). There are also a couple of tutorial videos and an example project on working with uGUI in the [UI customization guide](/guide/user-interface.md#ui-customization).
 
 Expose the prefab to engine resources using the printer's manager GUI, which can be accessed with `Naninovel -> Resources -> Printers` context menu. Add a new record using `+` (plus) button, enter actor ID (can differ from the prefab name) and double click the record to open actor settings. Drag-drop printer prefab to the `Resource` field.
 
@@ -148,6 +148,10 @@ You can now use the new text printer by activating it via [@printer] command and
 ```
 @printer MyNewPrinter
 ```
+
+::: example
+Check out [demo project](/guide/getting-started.md#demo-project) for an example on adding a custom printer. The prefab is stored as `Assets/Prefabs/PimpedPrinter.prefab`; the printer appears in the demo when Kohaku-chan attempts to create her own one :3
+:::
 
 It's also possible to create a printer from scratch by manually implementing `ITextPrinterActor` interface. See the guide on [custom actor implementations](/guide/custom-actor-implementations.md) for more information.
 
