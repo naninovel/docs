@@ -44,10 +44,10 @@ To add a new custom UI, create a prefab via `Create -> Naninovel -> Custom UI` a
 
 Following video tutorial shows how to add a custom calendar UI with special reveal and hide animations. The calendar will display a date based on a [custom variable](/guide/custom-variables.md), which can be changed via naninovel scripts and is saved with the game. The calendar will automatically update when the variable is changed. All this is achieved without any C# scripting.
 
-[!!dfdf]
+[!!wrAm-cwPXy4]
 
 ::: example
-Unity project showed in the above video tutorial is available on GitHub. You can clone the repository with a Git client or download it as a zip archive. Be aware, that Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
+Unity project showed in the above video tutorial is [available on GitHub](https://github.com/Elringus/NaninovelCustomUIExample). You can [clone the repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) with a Git client or [download it as a zip archive](https://github.com/Elringus/NaninovelCustomUIExample/archive/master.zip). Be aware, that Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
 :::
 
 When you create a new custom UI prefab via the context menu, the prefab will have a `Custom UI` component attached to the root object. This component (or rather the fact that the component is implementing `IManagedUI` interface) is essential to make the prefab accepted as a UI by the engine.
@@ -91,12 +91,12 @@ If you wish to modify an existing built-in (default) UI prefab, you can find the
 
 While it's possible, **please refrain from editing the built-in prefabs directly** to prevent issues when updating the package. Rather, create a new prefab from template via `Create -> Naninovel -> Default UI -> ...` asset context menu or manually duplicate the prefab you want to modify (Ctrl/Cmd+D) and move it out of the package folder. Then assign the created/modified prefab to an existing record (`Object` field) in the UI resources manager.
 
-In the following video tutorial you can learn how to override built-in title (main) menu. It'll also show how to use title script to show a background, special effect and play a music when entering the title menu; no C# scripting is used to achieve that.
+In the following video tutorial you can learn how to override built-in title (main) menu. It'll also show how to use title script to add a background and special effect when entering the title menu; no C# scripting is used to achieve that.
 
-[!!dfdf]
+[!!hqhfhXzQkdk]
 
 ::: example
-Unity project showed in the above video tutorial is available on GitHub. You can clone the repository with a Git client or download it as a zip archive. Be aware, that Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
+Unity project showed in the above video tutorial is [available on GitHub](https://github.com/Elringus/NaninovelCustomUIExample). You can [clone the repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) with a Git client or [download it as a zip archive](https://github.com/Elringus/NaninovelCustomUIExample/archive/master.zip). Be aware, that Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
 :::
 
 When creating a new prefab from scratch, make sure to attach a component that implements interface of the UI you're going to override. This component should be attached to the root object of the prefab.
