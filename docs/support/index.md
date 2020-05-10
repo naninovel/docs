@@ -16,7 +16,17 @@ Always **remember to backup your project** (or use a [VCS](https://en.wikipedia.
 
 In case the above steps didn't help to resolve the issue, check the [issue tracker](https://github.com/Elringus/NaninovelWeb/issues?q=is%3Aissue+label%3Abug) — chances are the problem is already being worked on.
 
+## Unity Support
+
+While we have several video tutorials and example projects showing how to use Unity to achieve some Naninovel-specific goals, please be aware that we are not able to provide any additional guidance or direct support for Unity's built-in tools.
+
+Unity is a standalone product with an enormous set of features; it has its own documentation, support services and vast community, which produced numerous learning materials over the engine's more than a decade lifespan. Usually, you'll be able to easily find a video tutorial, guide or forum thread for any question or issue you may have; and in the rare cases it's not available, you can always ask on the [official forum](https://forum.unity.com), [Q&A service](https://answers.unity.com/questions/ask.html) or use one of the official [support options](https://unity.com/support-services).
+
 ## Developer Support
+
+::: warn
+Developer support is limited to Naninovel-specific topics only. For anything Unity-related (build UIs with uGUI, setup addressable system, write C# scripts, etc) see the [information above](/support/#unity-support).
+:::
 
 To receive direct developer support join Naninovel Discord server ([discord.gg/BfkNqem](https://discord.gg/BfkNqem)) and register your copy of the asset using the following registration form: [naninovel.com/register](https://naninovel.com/register/).
 

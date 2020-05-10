@@ -12,6 +12,6 @@
   "scripts": {
     "docs:dev": "vuepress dev docs",
     "docs:build": "vuepress build docs",
-    "eject": "vuepress eject ./docs"
+    "docs:eject": "vuepress eject ./docs"
   }
 }
