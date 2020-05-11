@@ -26,7 +26,7 @@ In naninovel scripts, characters are mostly controlled with [@char] command:
 
 Each character has `Poses` property allowing to specify named states (poses).
 
-![](https://i.gyazo.com/6dd1e4bca6473e25cc24acc56138dc55.png)
+![](https://i.gyazo.com/5b022d32eddb3e721ed036c96f662f5d.png)
 
 Pose name can be used as appearance in [@char] command to apply all the parameters specified in the pose state at once, instead of specifying them individually via the command parameters.
 
