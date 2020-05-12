@@ -20,6 +20,18 @@ Implementation drop-down list contains all the types that implements specific ac
 
 When creating custom actor implementations, make sure they have a compatible public constructor: `public CustomActorImplementation (string id, ActorMetadata metadata)`, where `id` is the ID of the actor and `metadata` — either actor's (when actor record exists in the resources) or a default metadata. When implementing a specific actor interface, it's possible to request corresponding specific metadata (eg, "CharacterMetadata" for "ICharacterActor" implementation).
 
+To load a resource assigned in editor menu, don't forget to specify full path; eg, given you've assigned a resource with "CubeBackground" name:
+
+![](https://i.gyazo.com/64ff6d6dede1cc8c2c3be83cfe6a6d74.png)
+
+— to load the resource, use:
+
+```csharp
+var prefabResource = await prefabLoader.LoadAsync(id + "/CubeBackground");
+```
+
+— where `id` is the ID of the actor passed via the constructor.
+
 Below is an example of a dummy `ICharacterActor` implementation, that does nothing, but logs when any of its methods are invoked.
 
 ```csharp
@@ -74,3 +86,5 @@ public class CustomCharacterImplementation : MonoBehaviourActor, ICharacterActor
     }
 }
 ```
+
+
