@@ -92,7 +92,7 @@ There could be only one nameless parameter per command and it should always be s
 
 ### Optional and Required Parameters
 
-Most of the command parameters are *optional*. It means they either have a predefined value or just doesn't require any value in order for the command to be executed. For example, when a [@resetText] command is used without specifying any parameters it will reset text of a default printer, but you can also set a specific printer ID like this: `@resetText pinter:Dialogue`.
+Most of the command parameters are *optional*. It means they either have a predefined value or just doesn't require any value in order for the command to be executed. For example, when a [@resetText] command is used without specifying any parameters it will reset text of a default printer, but you can also set a specific printer ID like this: `@resetText printer:Dialogue`.
 
 Some parameters however are *required* in order for the command to execute and should always be specified.
 

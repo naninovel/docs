@@ -10,7 +10,7 @@ While Naninovel doesn't limit what you can achieve with Unity, there are some re
 
 Make sure to read [getting started guide](/guide/getting-started.md) when using the engine for the first time. 
 
-If you're looking for a specific topic, try using search bar located at the top-right corner of the website; also, check out the [FAQ](/faq/), where we have answers for some of the frequently asked questions. All the available script commands, supported parameters and usage examples are listed in the [API reference](/api/). Feel free to [contact the support](/support/#developer-support) in case you can't find the required information.
+If you're looking for a specific topic, try using search bar located at the website header; also, check out the [FAQ](/faq/), where we have answers for some of the frequently asked questions. All the available script commands, supported parameters and usage examples are listed in the [API reference](/api/). Feel free to [contact the support](/support/#developer-support) in case you can't find the required information.
 
 ## Features
 

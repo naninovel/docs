@@ -37,9 +37,10 @@ module.exports = {
                             {text: 'Discord', link: 'https://discord.gg/BfkNqem'}
                         ]
                     },
+                    {text: 'Forum', link: 'https://forum.naninovel.com'},
                     {text: 'FAQ', link: '/faq/'},
                     {text: 'Guide', link: '/guide/'},
-                    {text: 'API Reference', link: '/api/'},
+                    {text: 'Commands', link: '/api/'},
                     {text: 'Support', link: '/support/'}
                 ],
                 sidebar: {
@@ -62,6 +63,7 @@ module.exports = {
                             // {text: 'VK', link: 'https://vk.com/naninovel'}
                         ]
                     },
+                    {text: 'Форум', link: 'https://forum.naninovel.com'},
                     {text: 'FAQ', link: '/ru/faq/'},
                     {text: 'Руководство', link: '/ru/guide/'},
                     {text: 'Команды', link: '/api/'},
