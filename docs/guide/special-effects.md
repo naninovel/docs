@@ -336,7 +336,7 @@ If you wish to apply a custom [post-processing effect](https://assetstore.unity.
 
 ![](https://i.gyazo.com/6024aac1d2665dd96915758cd5c09fde.png)
 
-You can toggle (enable if disabled and vice-versa) the added components via naninovel scripts using `toggle` parameter of the [@camera] command. For example, let's assume you've added a "Bloom Image Effect" component to the camera object. First, find out what is the type name of the component; it's usually specified in the `Script` field of the component.
+You can toggle (enable if disabled and vice-versa) the added components via naninovel scripts using `toggle` parameter and explicitly set the enabled state with `set` parameter of the [@camera] command. For example, let's assume you've added a "Bloom Image Effect" component to the camera object. First, find out what is the type name of the component; it's usually specified in the `Script` field of the component.
 
 ![](https://i.gyazo.com/73b7eabfe97ed84796cbe715b7dafc14.png)
 
@@ -351,6 +351,14 @@ You can toggle multiple components at once by delimiting the type names with com
 ```
 @camera toggle:BloomImageEffect,Sepia,CameraNoise
 ```
+
+And in case you want to explicitly enable or disable a component:
+
+```
+@camera set:BloomImageEffect.true,Sepia.false,CameraNoise.true
+```
+
+— will enabled `BloomImageEffect` and `CameraNoise` components, while disabling `Sepia`.
 
 The state of the currently enabled (and disabled) custom camera components will be automatically saved and restored on game save-loading operations.
 
