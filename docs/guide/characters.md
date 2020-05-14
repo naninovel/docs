@@ -266,7 +266,7 @@ Generic character is the most flexible character actor implementation. It's base
 
 To create generic character prefab from a template, use `Create -> Naninovel -> Character -> Generic` context asset menu.
 
-To setup lip sync feature for generic characters, use `On Is Speaking Changed` boolean Unity event of the `CharacterActorBehaviour` component. When the character becomes or ceases to be the author of any printed message, this event will be invoked allowing you to trigger any custom logic, like starting or stopping mouth animation of the controlled character.
+To setup lip sync feature for generic characters, use `On Started Speaking` and `On Finished Speaking` Unity events of `CharacterActorBehaviour` component. When the character becomes or ceases to be the author of any printed message (or rather when the message is fully revealed), the events will be invoked allowing you to trigger any custom logic, like starting or stopping mouth animation of the controlled character. This is similar to how UI's `On Show` and `On Hide` events work; find how they can be used to drive a custom animation in the [UI customization guide](/guide/user-interface.md#adding-custom-ui).
 
 Check the following video tutorial for example on setting up a 3D rigged model as a generic character and routing appearance changes to the rig animations via [Animator](https://docs.unity3d.com/Manual/class-AnimatorController.html) component.
 
