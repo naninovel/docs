@@ -8,7 +8,11 @@ Backgrounds' behavior can be configured using `Naninovel -> Configuration -> Bac
 
 ![](https://i.gyazo.com/cccd08280dac72d199ea3465bc167a22.gif)
 
-In case you have a lot of backgrounds and it's inconvenient to assign them via editor menu, it's possible to just drop them at `Resources/Naninovel/Backgrounds` folder, grouped under folders corresponding to actor ID. Eg, to add appearances for a background actor with "MainBackground" ID, store the textures (sprites) at `Resources/Naninovel/Backgrounds/MainBackground` folder and they'll automatically be available in the scripts. Be aware, that when using this method, it's not possible to set per-actor configuration properties (such as pivot or PPU); instead those values are shared for all actors from `Default Metadata` property found at background configuration menu.
+In case you have a lot of backgrounds and it's inconvenient to assign them via editor menu, it's possible to just drop them at `Resources/Naninovel/Backgrounds` folder, grouped under folders corresponding to actor ID. Eg, to add appearances for a background actor with "MainBackground" ID, store the textures (sprites) at `Resources/Naninovel/Backgrounds/MainBackground` folder and they'll automatically be available in the scripts.
+
+You can additionally organize appearance resources with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in naninovel scripts. Eg, appearance texture stored as `Resources/Naninovel/Backgrounds/MainBackground/Events/CG251` can be referenced in scripts as `Events/CG251`.
+
+It's also possible to use [addressable asset system](/guide/resource-providers.md#addressable) to manually expose the resources. To expose an asset, assign address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "Beach" appearance for "MainBackground" background, assign the texture asset following address: `Naninovel/Backgrounds/MainBackground/Beach`. Be aware, that addressable provider is not used in editor by default; you can allow it by enabling `Enable Addressable In Editor` property in resource provider configuration menu.
 
 In naninovel scripts, backgrounds are mostly controlled with [@back] command:
 
