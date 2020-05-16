@@ -20,7 +20,7 @@ wait | Boolean | Whether the script player should wait for the async command to 
 </div>
 
 ::: note
-This API reference is valid for [Naninovel v1.9.8-beta](https://github.com/Elringus/NaninovelWeb/releases).
+This API reference is valid for [Naninovel v1.10](https://github.com/Elringus/NaninovelWeb/releases).
 :::
 
 ## animate
@@ -269,6 +269,7 @@ rotation | List&lt;Decimal&gt; | Local camera rotation over X,Y,Z-axes in angle 
 zoom | Decimal | Relatize camera zoom (orthographic size or field of view, depending on the render mode), in 0.0 (no zoom) to 1.0 (full zoom) range.
 ortho | Boolean | Whether the camera should render in orthographic (true) or perspective (false) mode.
 toggle | List&lt;String&gt; | Names of the components to toggle (enable if disabled and vice-versa). The components should be attached to the same gameobject as the camera.  This can be used to toggle [custom post-processing effects](/guide/special-effects.md#camera-effects).
+set | List&lt;Named&lt;Boolean&gt;&gt; | Names of the components to enable or disable. The components should be attached to the same gameobject as the camera.  This can be used to explicitly enable or disable [custom post-processing effects](/guide/special-effects.md#camera-effects).  Specified components enabled state will override effect of `toggle` parameter.
 easing | String | Name of the easing function to use for the modification.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  When not specified, will use a default easing function set in the camera configuration settings.
 time | Decimal | Duration (in seconds) of the modification. Default value: 0.35 seconds.
 
@@ -293,6 +294,9 @@ time | Decimal | Duration (in seconds) of the modification. Default value: 0.35 
 
 ; Toggle `FancyCameraFilter` and `Bloom` components attached to the camera
 @camera toggle:FancyCameraFilter,Bloom
+
+; Set `FancyCameraFilter` component enabled and `Bloom` disabled
+@camera set:FancyCameraFilter.true,Bloom.false
 ```
 
 ## char
@@ -351,7 +355,7 @@ time | Decimal | Duration (in seconds) of the modification. Default value: 0.35 
 Adds a [choice](/guide/choices.md) option to a choice handler with the specified ID (or default one).
 
 #### Remarks
-When `goto` parameter is not specified, will continue script execution from the next script line.
+When `goto`, `gosub` and `do` parameters are not specified, will continue script execution from the next script line.
 
 #### Parameters
 
@@ -363,8 +367,10 @@ ID | Type | Description
 button | String | Path (relative to a `Resources` folder) to a [button prefab](/guide/choices.md#choice-button) representing the choice.  The prefab should have a `ChoiceHandlerButton` component attached to the root object.  Will use a default button when not provided.
 pos | List&lt;Decimal&gt; | Local position of the choice button inside the choice handler (if supported by the handler implementation).
 handler | String | ID of the choice handler to add choice for. Will use a default handler if not provided.
-goto | Named&lt;String&gt; | Path to go when the choice is selected by user;  See [@goto] command for the path format.
+goto | Named&lt;String&gt; | Path to go when the choice is selected by user;  see [@goto] command for the path format.
+gosub | Named&lt;String&gt; | Path to a subroutine to go when the choice is selected by user;  see [@gosub] command for the path format. When `goto` is assigned this parameter will be ignored.
 set | String | Set expression to execute when the choice is selected by user;  see [@set] command for syntax reference.
+do | List&lt;String&gt; | Script commands to execute when the choice is selected by user;  don't forget to escape commas inside list values to prevent them being treated as delimiters.  The commands will be invoked in order after `set`, `goto` and `gosub` are handled (if assigned).
 show | Boolean | Whether to also show choice handler the choice is added for;  enabled by default.
 time | Decimal | Duration (in seconds) of the fade-in (reveal) animation. Default value: 0.35 seconds.
 
@@ -373,11 +379,20 @@ time | Decimal | Duration (in seconds) of the fade-in (reveal) animation. Defaul
 #### Example
 ```
 ; Print the text, then immediately show choices and stop script execution.
-Continue executing this script or load another?[skipInput]
-@choice "Continue" goto:.Continue
-@choice "Load another from start" goto:AnotherScript
-@choice "Load another from \"MyLabel\"" goto:AnotherScript.MyLabel
+Continue executing this script or ...?[skipInput]
+@choice "Continue"
+@choice "Load another script from start" goto:AnotherScript
+@choice "Load another script from \"MyLabel\" label" goto:AnotherScript.MyLabel
+@choice "Goto to \"MySub\" subroutine in another script" gosub:AnotherScript.MySub
 @stop
+
+; You can also set custom variables based on choices.
+@choice "I'm humble, one is enough..." set:score++
+@choice "Two, please." set:score=score+2
+@choice "I'll take the entire stock!" set:karma--;score=999
+
+; Play a sound effect and arrange characters when choice is picked
+@choice "Arrange" goto:.Continue do:"@sfx Click, @arrange k.10\,y.55"
 
 ; Following example shows how to make an interactive map via `@choice` commands.
 ; For this example, we assume, that inside a `Resources/MapButtons` folder you've
@@ -392,17 +407,12 @@ Continue executing this script or load another?[skipInput]
 # HomeScene
 @back Home
 Home, sweet home!
-@goto.Map
+@goto .Map
 
 # ShopScene
 @back Shop
 Don't forget about cucumbers!
-@goto.Map
-
-; You can also set custom variables based on choices.
-@choice "I'm humble, one is enough..." set:score++
-@choice "Two, please." set:score=score+2
-@choice "I'll take the entire stock!" set:karma--;score=999
+@goto .Map
 ```
 
 ## clearBacklog
@@ -698,6 +708,7 @@ ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">UINames</span> | List&lt;String&gt; | Name of the UI elements to hide.
 allowToggle | Boolean | When hiding the entire UI, controls whether to allow the user to re-show the UI with hotkeys or by clicking anywhere on the screen (false by default).  Has no effect when hiding a particular UI.
+time | Decimal | Duration (in seconds) of the hide animation.  When not specified, will use UI-specific duration.
 
 </div>
 
@@ -1258,6 +1269,7 @@ Makes [UI elements](/guide/user-interface.md) with the specified prefab names vi
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">UINames</span> | List&lt;String&gt; | Name of the UI prefab to make visible.
+time | Decimal | Duration (in seconds) of the show animation.  When not specified, will use UI-specific duration.
 
 </div>
 
