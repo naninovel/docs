@@ -8,6 +8,12 @@ Characters' behavior can be configured using `Naninovel -> Configuration -> Char
 
 ![Add Character](https://i.gyazo.com/c8a4f7f987621831b4a2ecb3145a4a07.png)
 
+In case you have a lot of characters and/or appearances per character and it's inconvenient to assign them all via editor menu, it's possible to just drop them at `Resources/Naninovel/Characters` folder, grouped under folders corresponding to actor ID. Eg, to add appearances for a character actor with "Kohaku" ID, store the textures (sprites) at `Resources/Naninovel/Characters/Kohaku` folder and they'll automatically be available in the scripts.
+
+You can additionally organize appearance resources with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in naninovel scripts. Eg, appearance texture stored as `Resources/Naninovel/Characters/Kohaku/Casual/Angry` can be referenced in scripts as `Casual/Angry`.
+
+It's also possible to use [addressable asset system](/guide/resource-providers.md#addressable) to manually expose the resources. To expose an asset, assign address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "Happy" appearance for "Kohaku" character, assign the texture asset following address: `Naninovel/Characters/Kohaku/Happy`. Be aware, that addressable provider is not used in editor by default; you can allow it by enabling `Enable Addressable In Editor` property in resource provider configuration menu.
+
 In naninovel scripts, characters are mostly controlled with [@char] command:
 
 ```

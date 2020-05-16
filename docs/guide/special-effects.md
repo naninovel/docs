@@ -328,6 +328,10 @@ For example, given there is a `Explosion.prefab` prefab assigned via the spawn m
 @despawn Explosion
 ```
 
+In case you have a lot of prefabs to spawn and it's inconvenient to assign them via editor menu, it's possible to just drop them at `Resources/Naninovel/Spawn` folder and they'll automatically be available in the scripts. You can additionally organize them with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in naninovel scripts. Eg, prefab asset stored as `Resources/Naninovel/Spawn/Explosions/Boom01` can be referenced in scripts as `Explosions/Boom01`.
+
+It's also possible to use [addressable asset system](/guide/resource-providers.md#addressable) to manually expose the resources. To expose an asset, assign address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "Boom01" prefab asset, assign the asset following address: `Naninovel/Spawn/Boom01`. Be aware, that addressable provider is not used in editor by default; you can allow it by enabling `Enable Addressable In Editor` property in resource provider configuration menu.
+
 Check the built-in effect prefabs stored at `Naninovel/Prefabs/FX` for reference implementations.
 
 ### Camera Effects

@@ -1,10 +1,14 @@
 ﻿# Voicing
 
-To expose voice clips to the engine, store them under `Resources/Naninovel/Voice` folder (can be changed in audio configuration under `Loader` foldout). You can use any audio formats [supported by Unity](https://docs.unity3d.com/Manual/AudioFiles.html).
+To expose voice clips to the engine, store them under `Resources/Naninovel/Voice` folder (can be changed in audio configuration under `Loader` foldout). You can additionally organize them with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in naninovel scripts. Eg, voice audio clip stored as `Resources/Naninovel/Voice/Intro/Day/25.wav` can be referenced in scripts as `Voice/Intro/Day/25`.
+
+It's also possible to use [addressable asset system](/guide/resource-providers.md#addressable) to manually expose the resources. To expose an asset, assign address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "Hello.wav" voice clip, assign the clip asset following address: `Naninovel/Voice/Hello`. Be aware, that addressable provider is not used in editor by default; you can allow it by enabling `Enable Addressable In Editor` property in resource provider configuration menu.
+
+You can use any audio formats [supported by Unity](https://docs.unity3d.com/Manual/AudioFiles.html) for your voice clips.
 
 Voice playback behavior can be configured using `Naninovel -> Configuration -> Audio` context menu; for available options see [configuration guide](/guide/configuration.md#audio). 
 
-Use [@voice] command followed by the clip name to play the voice in naninovel scripts.
+Use [@voice] command followed by the clip name (path) to play the voice in naninovel scripts.
 
 
 ## Auto Voicing
@@ -23,7 +27,7 @@ Text from a simple generic text line.
 Text from first sentence.[i] Text from second sentence.
 ```
 
-In order for the auto voicing system to play corresponding audio clips when printing those lines, the clips should be placed under `Resources/Naninovel/Voice/Script001` folder and have the following names: 
+In order for the auto voicing system to play corresponding audio clips when printing those lines, the clips should be placed under `Resources/Naninovel/Voice/Script001` folder (or registered with [addressable system](/guide/resource-providers.md#addressable)) and have the following names: 
 
 Text | Voice Clip Name
 --- | ---
