@@ -71,13 +71,13 @@
     -webkit-animation: wobble 4s infinite;
     animation: wobble 4s infinite;
     right: 15px;
-    bottom: -20px; }
+    bottom: 0px; }
 
 .sample-blocks a:nth-child(2) {
     -webkit-animation: wobble 8s infinite;
     animation: wobble 8s infinite;
     right: 320px;
-    bottom: 5px; }
+    bottom: 10px; }
 
 .sample-blocks a:nth-child(3) {
     -webkit-animation: wobble 5s infinite;
