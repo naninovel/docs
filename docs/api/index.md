@@ -601,6 +601,10 @@ reset | List&lt;String&gt; | When specified, will reset the engine services stat
 
 ; Navigates the playback to the label `Epilogue` in the currently played script.
 @goto .Epilogue
+
+; Load Script001, but don't reset audio manager (any playing audio won't be interrupted).
+; Be aware, that excluding a service form state reset will leave related resources in memory.
+@goto Script001 reset:IAudioManager
 ```
 
 ## hide
