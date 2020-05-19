@@ -48,4 +48,6 @@ When properly configured, input actions will activate Naninovel's bindings. In c
 Touch and object-related input is still processed via legacy input, so don't completely disable legacy backend in the player settings, unless you're going to implement the features yourself.
 :::
 
+Default input actions asset is stored at `Naninovel/Prefabs/DefaultControls.inputactions`.
+
 For more information on using new input system (eg, how to configure particular bindings or allow players to override the bindings at runtime), consult the [official manual](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual).
