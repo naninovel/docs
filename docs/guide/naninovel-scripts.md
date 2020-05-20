@@ -311,6 +311,10 @@ To use the extension:
 4. Restart the Atom editor
 5. Open a folder with naninovel scripts (opening a single file won't activate the extension)
 
+::: warn
+Atom v1.46 is the only supported version at the moment. The extension won't work with newer versions. You can download v1.46 installer on the GitHub [release page](https://github.com/atom/atom/releases/tag/v1.46.0).
+:::
+
 Check the following video tutorial on activating and using the extension.
 
 [!!njKxsjtewzA]
