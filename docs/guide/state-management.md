@@ -8,9 +8,11 @@ All the persistent data generated and used by Naninovel at runtime is divided in
 
 The data is serialized to JSON format and stored as either binary `.nson` (default) or text `.json` (can be switched in state configuration menu) save slot files under a platform-specific [persistent data directory](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html). Under WebGL platform, due to LFS security policy in modern web-browsers, the serialized data is stored over the [Indexed DB](https://en.wikipedia.org/wiki/Indexed_Database_API) instead.
 
+Instead of local files, it's possible to store state slots in key-value [PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html) database by selecting corresponding serialization handlers in the configuration menu.
+
 Path to the save folder, maximum allowed amount of the save slots and file names can be modified via the state configuration menu.
 
-![](https://i.gyazo.com/ed5f97de87615d438f1b28ec7c1140c9.png)
+![](https://i.gyazo.com/f9a2462d19eb228224f1dcd5302d6b1c.png)
 
 ## Game State
 
@@ -117,7 +119,7 @@ public class MyCustomBehaviour : MonoBehaviour
 
 ## Custom Serialization Handlers
 
-By default, the engine state (game saves, global state, settings) is serialized to local file system via cross-platform IO API. However, in some rare cases platform-specific implementations are not available out of the box. Eg, Nintendo decided to restrict access to the Switch native libraries, making it impossible to support the platform in third-party solutions. For such cases, Naninovel allows to provide custom serialization handlers.
+By default, the engine state (game saves, global state, settings) is serialized to local file system via cross-platform IO API. However, in some cases platform-specific implementations are not available out of the box. Eg, Nintendo decided to restrict access to the Switch native libraries, making it impossible to support the platform in third-party solutions. For such cases, Naninovel allows to provide custom serialization handlers.
 
 To add a custom handler, implement `ISaveSlotManager<GameStateMap>`, `ISaveSlotManager<GlobalStateMap>`, `ISaveSlotManager<SettingsStateMap>` interfaces for the game save slots, global state and settings respectively (each should have its own implementing class).
 
@@ -189,5 +191,5 @@ You can pick any name for your custom serialization handler, `CustomSettingsSlot
 
 When a custom handler is implemented, it'll appear in the state configuration menu, where you can set it instead of the built-in one.
 
-![](https://i.gyazo.com/10ef2735e9ba85ba0ed71cf9b2c33c0b.png)
+![](https://i.gyazo.com/213bc2bb8c7cc0e62ae98a579579f313.png)
 
