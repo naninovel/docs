@@ -305,15 +305,11 @@ IDE features, like syntax highlighting, error checking, auto-completion and inte
 
 To use the extension:
 
-1. Install Atom editor
+1. Install [Atom editor](https://atom.io)
 2. Install [language-naniscript](https://atom.io/packages/language-naniscript) extension
 3. Install [atom-ide-ui](https://atom.io/packages/atom-ide-ui) extension (required for our extension to provide some of the features)
 4. Restart the Atom editor
 5. Open a folder with naninovel scripts (opening a single file won't activate the extension)
-
-::: warn
-Atom v1.46 is the only supported version at the moment. The extension won't work with newer versions. You can download v1.46 installer on the GitHub [release page](https://github.com/atom/atom/releases/tag/v1.46.0). Make sure to [disable auto-update](https://discuss.atom.io/t/disable-auto-update/65096) to prevent installing new versions.
-:::
 
 Check the following video tutorial on activating and using the extension.
 
