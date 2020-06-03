@@ -98,6 +98,12 @@ Given the aforementioned service, you can get via the engine API in the followin
 var customService = Engine.GetService<CustomService>();
 ```
 
+::: example
+Another example of adding a custom engine service to manage item resources and configuration of an inventory UI can be found in the [inventory example project on GitHub](https://github.com/Elringus/NaninovelInventory).
+
+Specifically, the custom engine service is implemented via [InventoryManager.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryManager.cs) runtime script.
+:::
+
 ## Overriding Built-in Services
 
 All the built-in services are referenced via interfaces in the engine source code, making it possible to swap any of them with a custom implementation.

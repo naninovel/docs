@@ -75,6 +75,12 @@ To access your custom configuration via C# use the same API as for the built-in 
 var myConfig = Engine.GetConfiguration<MyCustomConfiguration>();
 ```
 
+::: example
+Another example of adding a custom configuration menu to setup an inventory system can be found in the [inventory example project on GitHub](https://github.com/Elringus/NaninovelInventory).
+
+Specifically, the custom configuration is implemented via [InventoryConfiguration.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryConfiguration.cs) runtime script.
+:::
+
 ## Configuration Provider
 
 It's possible to change the way configuration objects are served at runtime. For example, instead of static project assets, you can read the configuration from JSON files stored on a remote host. 

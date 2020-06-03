@@ -249,7 +249,7 @@ For more information on the conditional expression format and available operator
 
 You can use visual script editor to edit the naninovel scripts. Select a script asset and you'll see the visual editor automatically open in the inspector window.
 
-[!e1f40ff0fb7898e11afa0f058bb6ed6d]
+[!ba57b9f78116e57408125325bdf66be9]
 
 To add a new line to the script, either right-click the place, where you want to insert the line, or press `Ctrl+Space` (you can change the default key bindings in the input configuration menu) and select the desired line or command type. To re-order lines, drag them using their number labels. To remove a line, right-click it and choose "Remove".
 

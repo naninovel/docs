@@ -72,7 +72,7 @@ Naninovel scripts are text documents (`.nani` extension) where you control what 
 
 You can also use visual script editor to edit the naninovel scripts. Select the created script asset and you'll see the visual editor automatically open in the inspector window.
 
-[!e1f40ff0fb7898e11afa0f058bb6ed6d]
+[!ba57b9f78116e57408125325bdf66be9]
 
 To add a new line to the script, either right-click the place, where you want to insert the line, or press `Ctrl+Space` (you can change the default key bindings in the input configuration menu) and select the desired line or command type. To re-order lines, drag them using their number labels. To remove a line, right-click it and choose "Remove".
 
@@ -212,8 +212,8 @@ In case you prefer following video guides, here is one illustrating the above in
 
 Complete sources of the demo project (the same one showcased on the store) are available on GitHub via [github.com/Elringus/NaninovelDemo](https://github.com/Elringus/NaninovelDemo). 
 
-::: warn
-Assets distributed with the demo project may be subject to custom licenses and are provided solely for learning purposes.
-:::
+You can [clone the repository with a Git client](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) or [download it as a zip archive](https://github.com/Elringus/NaninovelDemo/archive/master.zip). Be aware, that assets distributed with the demo project may be subject to custom licenses and are provided solely for learning purposes.
 
-You can [clone the repository with a Git client](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) or [download it as a zip archive](https://github.com/Elringus/NaninovelDemo/archive/master.zip). Be aware, that Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
+::: warn
+Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
+:::

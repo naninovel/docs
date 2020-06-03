@@ -50,6 +50,12 @@ Following video tutorial shows how to add a custom calendar UI with special reve
 Unity project showed in the above video tutorial is [available on GitHub](https://github.com/Elringus/NaninovelCustomUIExample). You can [clone the repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) with a Git client or [download it as a zip archive](https://github.com/Elringus/NaninovelCustomUIExample/archive/master.zip). Be aware, that Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
 :::
 
+::: example
+Another, more advanced example of adding a custom inventory UI with a grid layout, pagination and drag-drop window can be found in the [inventory example project on GitHub](https://github.com/Elringus/NaninovelInventory).
+
+Specifically, the UI-related scripts are stored at [Runtime/UI](https://github.com/Elringus/NaninovelInventory/tree/master/Assets/NaninovelInventory/Runtime/UI) and prefabs at [Prefabs](https://github.com/Elringus/NaninovelInventory/tree/master/Assets/NaninovelInventory/Prefabs) directories.
+:::
+
 When you create a new custom UI prefab via the context menu, the prefab will have a `Custom UI` component attached to the root object. This component (or rather the fact that the component is implementing `IManagedUI` interface) is essential to make the prefab accepted as a UI by the engine.
 
 ![](https://i.gyazo.com/9a4a38754ccf35e48b8bef2c3062ff02.png)
