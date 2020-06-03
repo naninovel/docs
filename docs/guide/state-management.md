@@ -117,6 +117,12 @@ public class MyCustomBehaviour : MonoBehaviour
 }
 ```
 
+::: example
+A more advanced example of using custom state with a list of custom structs to save-load state of an inventory UI can be found in the [inventory example project on GitHub](https://github.com/Elringus/NaninovelInventory).
+
+Specifically, de-/serialization of the custom state is implemented in [InventoryUI.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L238) runtime script; custom state for UI slots is implemented via [InventorySlotState.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/InventorySlotState.cs).
+:::
+
 ## Custom Serialization Handlers
 
 By default, the engine state (game saves, global state, settings) is serialized to local file system via cross-platform IO API. However, in some cases platform-specific implementations are not available out of the box. Eg, Nintendo decided to restrict access to the Switch native libraries, making it impossible to support the platform in third-party solutions. For such cases, Naninovel allows to provide custom serialization handlers.

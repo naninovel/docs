@@ -69,3 +69,9 @@ public class HelloWorld : Command
 ```
 
 Notice the optional `CancellationToken` argument. In case invoking any async methods, make sure to check the token for cancellation requests and return ASAP.
+
+::: example
+Another example of adding custom commands to add/remove items of an inventory system can be found in the [inventory example project on GitHub](https://github.com/Elringus/NaninovelInventory).
+
+Specifically, the command implementations are stored at [Runtime/Commands](https://github.com/Elringus/NaninovelInventory/tree/master/Assets/NaninovelInventory/Runtime/Commands) directory.
+:::
