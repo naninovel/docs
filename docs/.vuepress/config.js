@@ -22,56 +22,47 @@ module.exports = {
             apiKey: '20269a916e878ffcef4392d31af4f4d2',
             indexName: 'naninovel'
         },
-        locales: {
-            '/': {
-                selectText: 'Language',
-                ariaLabel: 'Language',
-                label: 'English',
-                nav: [
-                    {
-                        text: 'News',
-                        items: [
-                            {text: 'Twitter', link: 'https://twitter.com/naniengine'},
-                            {text: 'Facebook', link: 'https://www.facebook.com/naniengine'},
-                            {text: 'Unity Forum', link: 'https://forum.unity.com/threads/601966'},
-                            {text: 'Discord', link: 'https://discord.gg/BfkNqem'}
-                        ]
-                    },
-                    {text: 'Forum', link: 'https://forum.naninovel.com'},
-                    {text: 'FAQ', link: '/faq/'},
-                    {text: 'Guide', link: '/guide/'},
-                    {text: 'Commands', link: '/api/'},
-                    {text: 'Support', link: '/support/'}
-                ],
-                sidebar: {
-                    '/guide/': getGuideSidebar('Guide', 'Advanced', 'Extensions')
-                },
-                lastUpdated: 'Last Updated'
-            },
-            '/ru/': {
-                selectText: 'Язык',
-                ariaLabel: 'Язык',
-                label: 'Русский',
-                nav: [
-                    {
-                        text: 'Новости',
-                        items: [
-                            {text: 'Twitter', link: 'https://twitter.com/naniengine'},
-                            {text: 'Facebook', link: 'https://www.facebook.com/naniengine'},
-                            {text: 'Unity Forum', link: 'https://forum.unity.com/threads/601966'},
-                            {text: 'Discord', link: 'https://discord.gg/BfkNqem'}
-                            // {text: 'VK', link: 'https://vk.com/naninovel'}
-                        ]
-                    },
-                    {text: 'Форум', link: 'https://forum.naninovel.com'},
-                    {text: 'FAQ', link: '/ru/faq/'},
-                    {text: 'Руководство', link: '/ru/guide/'},
-                    {text: 'Команды', link: '/api/'},
-                    {text: 'Поддержка', link: '/ru/support/'}
-                ],
-                lastUpdated: 'Обновлено'
-            }
-        }
+        // locales: {
+        //     '/': {
+        //         selectText: 'Language',
+        //         ariaLabel: 'Language',
+        //         label: 'English',
+        //         nav: [
+        //             {text: 'Forum', link: 'https://forum.naninovel.com'},
+        //             {text: 'FAQ', link: '/faq/'},
+        //             {text: 'Guide', link: '/guide/'},
+        //             {text: 'Commands', link: '/api/'},
+        //             {text: 'Support', link: '/support/'}
+        //         ],
+        //         sidebar: {
+        //             '/guide/': getGuideSidebar('Guide', 'Advanced', 'Extensions')
+        //         },
+        //         lastUpdated: 'Last Updated'
+        //     },
+        //     '/ru/': {
+        //         selectText: 'Язык',
+        //         ariaLabel: 'Язык',
+        //         label: 'Русский',
+        //         nav: [
+        //             {text: 'Форум', link: 'https://forum.naninovel.com'},
+        //             {text: 'FAQ', link: '/ru/faq/'},
+        //             {text: 'Руководство', link: '/ru/guide/'},
+        //             {text: 'Команды', link: '/api/'},
+        //             {text: 'Поддержка', link: '/ru/support/'}
+        //         ],
+        //         lastUpdated: 'Обновлено'
+        //     }
+        // }
+        nav: [
+            {text: 'FAQ', link: '/faq/'},
+            {text: 'Guide', link: '/guide/'},
+            {text: 'Commands', link: '/api/'},
+            {text: 'Support', link: '/support/'}
+        ],
+        sidebar: {
+            '/guide/': getGuideSidebar('Guide', 'Advanced', 'Extensions')
+        },
+        lastUpdated: 'Last Updated'
     },
     plugins: [
         ['@vuepress/google-analytics', {ga: 'UA-62903242-4'}],
@@ -90,18 +81,18 @@ module.exports = {
                 return `<div class="video-container"><iframe src="https://www.youtube-nocookie.com/embed/${match[1]}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`; }));
         }
     },
-    locales: {
-        '/': {
-            lang: 'en-US',
-            title: 'Naninovel',
-            description: 'Unity-powered visual novel engine'
-        },
-        '/ru/': {
-            lang: 'ru-RU',
-            title: 'Naninovel',
-            description: 'Движок для визуальных новелл на основе Unity'
-        }
-    }
+    // locales: {
+    //     '/': {
+    //         lang: 'en-US',
+    //         title: 'Naninovel',
+    //         description: 'Unity-powered visual novel engine'
+    //     },
+    //     '/ru/': {
+    //         lang: 'ru-RU',
+    //         title: 'Naninovel',
+    //         description: 'Движок для визуальных новелл на основе Unity'
+    //     }
+    // }
 };
 
 function getGuideSidebar (groupA, groupB, groupC) {
