@@ -23,4 +23,4 @@ Unity's [scriptable render pipelines](https://docs.unity3d.com/Manual/render-pip
 
 ## Managed Stripping
 
-"Medium" and "High" [managed bytecode stripping](https://docs.unity3d.com/Manual/IL2CPP-BytecodeStripping) profiles are not supported. Either disable the stripping or use the "Low" profile (set by default).
+"Medium" and "High" [managed bytecode stripping](https://docs.unity3d.com/Manual/ManagedCodeStripping.html) profiles are not supported. Either disable the stripping or use the "Low" profile (set by default).
