@@ -1,6 +1,6 @@
 # Render Pipelines
 
-Unity's [scriptable render pipelines](https://docs.unity3d.com/Manual/ScriptableRenderPipeline.html) (SRP) — both URP and HDRP — are supported with some limitations and require additional setup.
+Unity's [scriptable render pipelines](https://docs.unity3d.com/Manual/render-pipelines.html) (SRP) — both URP and HDRP — are supported with some limitations and require additional setup.
 
 ::: warn
 The SRPs are still hardly production-ready (despite the official claims from Unity) and lack many features compared to default rendering system. It's not recommended to use the render pipelines, unless you're an advanced user and ready to solve any potential technical issues and limitations.
@@ -8,7 +8,7 @@ The SRPs are still hardly production-ready (despite the official claims from Uni
 
 ## Setup
 
-See the [official documentation](https://docs.unity3d.com/Manual/ScriptableRenderPipeline.html) on how to install and configure your SRP of choice.
+See the [official documentation](https://docs.unity3d.com/Manual/render-pipelines.html) on how to install and configure your SRP of choice.
 
 Both URP and HDRP doesn't support multiple cameras, so it's required to disable `Use UI Camera` in the camera configuration menu (enabled by default).
 
