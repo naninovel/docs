@@ -29,6 +29,7 @@ purge | When [Google Drive provider](/guide/resource-providers.md#google-drive) 
 play | Starts executing currently loaded naninovel script.
 stop | Halts execution of the currently loaded naninovel script.
 rewind (int) | Rewinds currently loaded naninovel script to the provided line index. The line should be either a command or a generic text. When rewinding back, the line should exist in the rollback stack.
+reload | Performs [hot reload](/guide/naninovel-scripts.md#hot-reload) of the currently played naninovel script. Works only in Unity editor.
 
 ## Executing Commands
 
