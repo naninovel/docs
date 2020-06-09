@@ -4,7 +4,7 @@
 
 ![](https://i.gyazo.com/0a5b219b059fd61c85d225e903d77857.png)
 
-Be aware, that in contrast to Bolt, where all the Naninovel's C# API is available by default, PlayMaker requires creating a special C# class for each action. This means that only a limited subset of the engine API is available out of the box when using PlayMaker. The available custom actions could also break in case Naninovel's API change (especially while we're in beta development stage).
+Be aware, that in contrast to Bolt, where all the Naninovel's C# API is available by default, PlayMaker requires creating a special C# class for each action. This means that only a limited subset of the engine API is available out of the box when using PlayMaker. The available custom actions could also break in case Naninovel's API change.
 
 ## Setup
 
