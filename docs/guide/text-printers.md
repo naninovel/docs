@@ -200,6 +200,20 @@ When creating custom TextMesh Pro font assets or materials, don't forget to appl
 
 ![](https://i.gyazo.com/18e112ba90cad84f44f0b78db0db303a.png)
 
+### Right to Left (Arabic) Text
+
+Naninovel supports RTL text reveal effect in TMPro printers.
+
+[!685b93d64c6f39e4f376604dbd2596a0]
+
+To use RTL text in a TMPro printer, do the following:
+
+1. Create a custom text printer.
+2. Set `Enable RTL Editor` property in "Revealable TM Pro Text" component inside the printer.
+3. Apply `Naninovel/RevealableTMProText RTL` shader to the font material used by the printer.
+
+Be aware, that TMPro currently doesn't support automatic characters substitution, so you may have to use some third-praty tools; see the [forum thread](http://digitalnativestudios.com/forum/index.php?topic=462.0) for more info.
+
 ## Text Styles
 
 Various text styles can be applied via rich text tags placed right inside the text or using [@style] command.
