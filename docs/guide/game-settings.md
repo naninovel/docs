@@ -4,7 +4,9 @@ Game settings can be changed at any time using settings menu.
 
 [!8ef1044cb0b8429298af05e6275ff14d]
 
-Changing locale requires game to be restarted in order for the changes to take effect. Other changes will take effect immediately. 
+::: note
+To prevent specific UIs from being affected by font and text size changes, disable `Allow Font Change` and `Allow Font Size Change` properties on the UI prefab. Find more info about modifying and creating custom UIs in the [customization guide](/guide/user-interface.md#ui-customization).
+:::
 
 Settings are serialized to a `Settings.json` file stored over game directory. File name can be configured using `Naninovel -> Configuration -> State` context menu; for available options see [configuration guide](/guide/configuration.md#state).
 
