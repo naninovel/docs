@@ -3,7 +3,7 @@
 Unity's [scriptable render pipelines](https://docs.unity3d.com/Manual/render-pipelines.html) (SRP) — both URP and HDRP — are supported with some limitations and require additional setup.
 
 ::: warn
-The SRPs are still hardly production-ready (despite the official claims from Unity) and lack many features compared to default rendering system. It's not recommended to use the render pipelines, unless you're an advanced user and ready to solve any potential technical issues and limitations.
+The SRPs are still [hardly production-ready](https://forum.unity.com/threads/915275) (despite the official claims from Unity) and lack many features compared to default rendering system. It's not recommended to use the render pipelines, unless you're an advanced user and ready to solve any potential technical issues and limitations.
 :::
 
 ## Setup
@@ -20,4 +20,4 @@ When running under HDRP, change color space to linear (HDRP doesn't support gamm
 
 ## Limitations
 
-Some of the built-in effects and features (eg, Depth Of Field, Digital Glitch, [@startTrans] and [@finishTrans] commands) won't work with SRPs due to lack of the required rendering features. It's possible to replace most of the missing effects and features via various hacks and use them without modifying Naninovel's source code or package content; see [special effects guide](/guide/special-effects.md#adding-custom-effects) and [custom commands](/guide/custom-commands.md) guides for more information on extending the engine in that regard.
+Some of the built-in effects and features (eg, Depth Of Field, Digital Glitch, [@startTrans] and [@finishTrans] commands) won't work with SRPs due to lack of the required rendering features. It's possible to replace most of the missing effects and features via various hacks and use them without modifying Naninovel's source code or package content; see [special effects](/guide/special-effects.md#adding-custom-effects) and [custom commands](/guide/custom-commands.md) guides for more information on extending the engine in that regard.
