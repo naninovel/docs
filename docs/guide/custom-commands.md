@@ -101,4 +101,4 @@ public class CustomCommand : Command
 
 Below you can find a video tutorial on how to generate metadata of custom commands (via [inventory example project](https://github.com/Elringus/NaninovelInventory)) for Atom IDE extension.
 
-[!!abc]
+[!!Fg-esrR-0mU]
