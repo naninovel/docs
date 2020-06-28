@@ -20,7 +20,7 @@ wait | Boolean | Whether the script player should wait for the async command to 
 </div>
 
 ::: note
-This API reference is valid for [Naninovel v1.10](https://github.com/Elringus/NaninovelWeb/releases).
+This API reference is valid for [Naninovel v1.11](https://github.com/Elringus/NaninovelWeb/releases).
 :::
 
 ## animate
@@ -418,7 +418,7 @@ Don't forget about cucumbers!
 ## clearBacklog
 
 #### Summary
-Removes all the messages from [printer backlog](/guide/printer-backlog.md).
+Removes all the messages from [printer backlog](/guide/text-printers.md#printer-backlog).
 
 #### Example
 ```
@@ -437,7 +437,7 @@ Removes all the choice options in the choice handler with the provided ID (or in
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">HandlerId</span> | String | ID of the choice handler to clear. Will use a default handler if not provided.  Specify `*` to clear all the existing handlers.
-hide | Boolean | Whether to also hide the affected printers.
+hide | Boolean | Whether to also hide the affected choice handlers.
 
 </div>
 
@@ -540,7 +540,7 @@ It's possible to declare a gosub outside of the currently played script and use 
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | Named&lt;String&gt; | Path to navigate into in the following format: `ScriptName.LabelName`.  When label name is ommited, will play provided script from the start.  When script name is ommited, will attempt to find a label in the currently played script.
-reset | List&lt;String&gt; | When specified, will reset the engine services state before loading a script (in case the path is leading to another script).  Specify `*` to reset all the services (except variable manager), or specify service names to exclude from reset.  By default, the state does not reset.
+reset | List&lt;String&gt; | When specified, will reset the engine services state before loading a script (in case the path is leading to another script).  Specify `*` to reset all the services, or specify service names to exclude from reset.  By default, the state does not reset.
 
 </div>
 
@@ -587,7 +587,7 @@ Navigates naninovel script playback to the provided path.  When the path leads t
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | Named&lt;String&gt; | Path to navigate into in the following format: `ScriptName.LabelName`.  When label name is ommited, will play provided script from the start.  When script name is ommited, will attempt to find a label in the currently played script.
-reset | List&lt;String&gt; | When specified, will reset the engine services state before loading a script (in case the path is leading to another script).  Specify `*` to reset all the services (except variable manager), or specify service names to exclude from reset.  Specify `-` to force no reset (even if it's enabled by default in the configuration).  Default value is controlled by `Reset State On Load` option in engine configuration menu.
+reset | List&lt;String&gt; | When specified, will control whether to reset the engine services state before loading a script (in case the path is leading to another script):<br />  - Specify `*` to reset all the services, except the ones with `DontResetAttribute`.<br />  - Specify service type names (separated by comma) to exclude from reset; all the other services will be reset, including the ones with `DontResetAttribute`.<br />  - Specify `-` to force no reset (even if it's enabled by default in the configuration).
 
 </div>
 
@@ -1049,7 +1049,7 @@ The process is asynchronous and is masked with a loading screen ([ILoadingUI](ht
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">Exclude</span> | List&lt;String&gt; | Name of the [engine services](https://naninovel.com/guide/engine-services.html) (interfaces) to exclude from reset.  When specifying the parameter, consider always adding `ICustomVariableManager` to preserve the local variables.
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">Exclude</span> | List&lt;String&gt; | Name of the [engine services](https://naninovel.com/guide/engine-services.html) (interfaces) to exclude from reset.  Consider adding `ICustomVariableManager` to preserve the local variables.
 
 </div>
 
@@ -1096,7 +1096,7 @@ Attempts to navigate naninovel script playback to a command after the last used 
 
 ID | Type | Description
 --- | --- | ---
-reset | List&lt;String&gt; | When specified, will reset the engine services state before returning to the initial script  from which the gosub was entered (in case it's not the currently played script).  Specify `*` to reset all the services (except variable manager), or specify service names to exclude from reset.  By default, the state does not reset.
+reset | List&lt;String&gt; | When specified, will reset the engine services state before returning to the initial script  from which the gosub was entered (in case it's not the currently played script).  Specify `*` to reset all the services, or specify service names to exclude from reset.  By default, the state does not reset.
 
 </div>
 

@@ -2,6 +2,8 @@
 
 Command represents a single operation, that controls what happens on the scene; e.g., it can be used to change a background, move a character or load another naninovel script. Parametrized command sequences defined in [naninovel scripts](/guide/naninovel-scripts.md) effectively controls the game flow. You can find available built-in commands in the [API reference](/api/). In code, all the built-in script command implementations are defined under `Naninovel.Commands` namespace.
 
+## Adding Custom Command
+
 To add your own custom script command, create a new C# class derived from `Command` and implement `ExecuteAsync` abstract method. The created class will automatically be picked up by the engine and you'll be able to invoke the command from the naninovel scripts by either the class name or an alias (if assigned). To assign an alias to the naninovel command, apply `CommandAlias` attribute to the class.
 
 `ExecuteAsync` is an async method invoked when the command is executed by the scripts player; put the command logic there. Use [engine services](/guide/engine-services.md) to access the engine built-in systems. Naninovel script execution will halt until this method returns a completed task in case `Wait` parameter is `true`.
@@ -75,3 +77,28 @@ Another example of adding custom commands to add/remove items of an inventory sy
 
 Specifically, the command implementations are stored at [Runtime/Commands](https://github.com/Elringus/NaninovelInventory/tree/master/Assets/NaninovelInventory/Runtime/Commands) directory.
 :::
+
+## IDE Metadata
+
+When adding custom commands, you may notice that they're highlighted as errors in [IDE extensions](/guide/naninovel-scripts.md#ide-support). That is due to metadata of the custom commands is not available to the extensions. You can use custom commands tool to automatically generate the required metadata file over all the custom commands present in the project.
+
+Open the tool with `Naninovel -> Tools -> Custom Commands` editor menu, then click "Select" button and select path to `server` folder found inside the target IDE extension; eg, for Atom it'll be `%HOMEPATH%/.atom/packages/language-naniscript/server`, where `%HOMEPATH%` is the path to your OS user directory. Click "Generate Custom Commands Metadata" button to generate the file at the specified path and restart IDE for changes to take effect. The custom commands should now be recognized by the IDE. When you add or modify the commands, repeat the process to update metadata file of the target extension.
+
+::: warn
+Implementing types of the custom commands should not be under `Naninovel.Commands` [namespace](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/namespaces/); otherwise, they will be recognized as built-in commands and won't be included in the generated metadata file.
+:::
+
+If you'd like to add documentation to the custom commands and/or parameters, apply `Documentation` attribute to command type and parameter fields respectively:
+
+```csharp
+[Documentation("Summary of the custom command.")]
+public class CustomCommand : Command
+{
+    [Documentation("Summary of the custom parameter.")]
+    public StringParameter CustomParameter;
+}
+```
+
+Below you can find a video tutorial on how to generate metadata of custom commands (via [inventory example project](https://github.com/Elringus/NaninovelInventory)) for Atom IDE extension.
+
+[!!abc]
