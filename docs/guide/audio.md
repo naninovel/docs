@@ -101,7 +101,7 @@ Groups are retrieved with `FindMatchingGroups(groupPath)` method of the currentl
 
 In C# scripts, currently used audio mixer can be retrieved via `IAudioManager` [engine service](/guide/engine-services.md).
 
-```
+```csharp
 var audioManager = Engine.GetService<IAudioManager>();
 var audioMixer = audioManager.AudioMixer;
 ```
