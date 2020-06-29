@@ -149,7 +149,7 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 @spawn ShakeCharacter params:Kohaku
 
 ; Start shaking a random character, show a choice to stop and act accordingly
-@spawn ShakeCharacter params:,0
+@spawn ShakeCharacter params:,0 wait:false
 @choice "Continue shaking" goto:.Continue
 @choice "Stop shaking" goto:.Stop
 @stop
