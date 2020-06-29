@@ -4,15 +4,15 @@
 
 While Naninovel is focused around traditional visual novel games the engine is designed to allow integration with existing projects. If you're making a 3D adventure game, RPG or game of any other genre — you can still use Naninovel as a drop-in dialogue system. 
 
-Be aware, that in most cases such integration will require C# scripting (or [visual scripting](/ru/guide/bolt.md)) in varying extent. See the [engine architecture overview](/ru/guide/engine-architecture.md) to get a grasp of how Naninovel works and [integration guide](/ru/guide/integration-options.md) for more information on the integration options
+Be aware, that in most cases such integration will require C# scripting (or [visual scripting](/zh/uide/bolt.md)) in varying extent. See the [engine architecture overview](/zh/uide/engine-architecture.md) to get a grasp of how Naninovel works and [integration guide](/zh/uide/integration-options.md) for more information on the integration options
 
 ## Is it possible to embed a mini-game to Naninovel?
 
-Sure, you can freely "inject" any custom logic to the default Naninovel flow. In most cases, however, this will require using the engine's C# API (via either writing custom C# scripts or using a [visual scripting](/ru/guide/bolt.md) solution). Check the [engine services guide](/ru/guide/engine-services.md) for the list of available open APIs, which allows interaction with the engine; you may also make use of [state outsourcing](/ru/guide/state-management.md#custom-state), [custom actor implementations](/ru/guide/custom-actor-implementations.md) and [custom commands](/ru/guide/custom-commands.md) in the process.
+Sure, you can freely "inject" any custom logic to the default Naninovel flow. In most cases, however, this will require using the engine's C# API (via either writing custom C# scripts or using a [visual scripting](/zh/uide/bolt.md) solution). Check the [engine services guide](/zh/uide/engine-services.md) for the list of available open APIs, which allows interaction with the engine; you may also make use of [state outsourcing](/zh/uide/state-management.md#custom-state), [custom actor implementations](/zh/uide/custom-actor-implementations.md) and [custom commands](/zh/uide/custom-commands.md) in the process.
 
 ## Does it support a specific language?
 
-Naninovel can work with any language, but to display text in some languages, you'll need a compatible font. [Google's Roboto](https://fonts.google.com/specimen/Roboto) is used by default, which supports all Latin, Cyrillic, and Greek characters in Unicode 7.0. You can change the font used in any of the built-in UIs with [UI customization](/ru/guide/user-interface.md#ui-customization) feature; for the printed text messages, [create custom printers](/ru/guide/text-printers.md#adding-custom-printers) and set the desired font.
+Naninovel can work with any language, but to display text in some languages, you'll need a compatible font. [Google's Roboto](https://fonts.google.com/specimen/Roboto) is used by default, which supports all Latin, Cyrillic, and Greek characters in Unicode 7.0. You can change the font used in any of the built-in UIs with [UI customization](/zh/uide/user-interface.md#ui-customization) feature; for the printed text messages, [create custom printers](/zh/uide/text-printers.md#adding-custom-printers) and set the desired font.
 
 In case you're aiming to support as much languages, as possible, check out [Noto fonts](https://www.google.com/get/noto/).
 
@@ -22,13 +22,13 @@ All the engine source code is available in the distributed package. A couple of 
 
 ## Why the package doesn't contain any demo scenes?
 
-Naninovel is designed to be [scene-independent](/ru/guide/engine-architecture.md#scene-independent) and doesn't use [Unity scenes](https://docs.unity3d.com/Manual/CreatingScenes.html) in any way, hence it's not possible to make any kind of example or demo scenes. The engine is automatically initialized when the game is started (can be switched to manual initialization in the engine configuration window) and scenarios are scripted via text documents called [naninovel scripts](/ru/guide/naninovel-scripts.md).
+Naninovel is designed to be [scene-independent](/zh/uide/engine-architecture.md#scene-independent) and doesn't use [Unity scenes](https://docs.unity3d.com/Manual/CreatingScenes.html) in any way, hence it's not possible to make any kind of example or demo scenes. The engine is automatically initialized when the game is started (can be switched to manual initialization in the engine configuration window) and scenarios are scripted via text documents called [naninovel scripts](/zh/uide/naninovel-scripts.md).
 
-Please read through the [getting started](/ru/guide/getting-started.md) guide to get a grasp on how to use the engine. You can find additional examples on using various engine features and script commands in the rest of the [guide](/ru/guide/index.md) and [API command reference](/ru/api/index.md). In case you'd like a complete working project, which can be used as a reference, take a look at the [demo project](/ru/guide/getting-started.html#demo-project).
+Please read through the [getting started](/zh/uide/getting-started.md) guide to get a grasp on how to use the engine. You can find additional examples on using various engine features and script commands in the rest of the [guide](/zh/uide/index.md) and [API command reference](/zh/pi/index.md). In case you'd like a complete working project, which can be used as a reference, take a look at the [demo project](/zh/uide/getting-started.html#demo-project).
 
 ## How to customize the title (main) menu: add background, music, effects, change buttons, etc?
 
-For the UI part (changing/adding buttons or panel layout and style) use the [UI customization](/ru/guide/user-interface.md#ui-customization) feature; for everything else set `Title Script` at the scripts configuration menu (`Naninovel -> Configuration -> Scripts`) and use script commands to setup the scene just like when writing a scenario. The title script will be automatically played when entering the title menu.
+For the UI part (changing/adding buttons or panel layout and style) use the [UI customization](/zh/uide/user-interface.md#ui-customization) feature; for everything else set `Title Script` at the scripts configuration menu (`Naninovel -> Configuration -> Scripts`) and use script commands to setup the scene just like when writing a scenario. The title script will be automatically played when entering the title menu.
 
 ## How to remove a sky background appearing by default in all the Unity scenes?
 
@@ -38,11 +38,11 @@ When you remove the skybox, camera's background color will be used instead to fi
 
 ## How to add a line break to the message?
 
-Check out [`[br]` command](/ru/api/#br).
+Check out [`[br]` command](/zh/pi/#br).
 
 ## How to inject a command in the midst of a printed text message?
 
-Use [command inlining](/ru/guide/naninovel-scripts.md#command-inlining).
+Use [command inlining](/zh/uide/naninovel-scripts.md#command-inlining).
 
 ## How to make actors appear in front of each other (z-sorting)?
 
@@ -74,8 +74,8 @@ For standalone (PC, Mac, Linux) builds you can select the available aspect ratio
 
 Given the source textures (background sprites) of a specific resolution, the only options to "adapt" them for a different aspect ratio are: resize (will distort the image), add black bars or crop. The least noticeable option is to crop, obviously. Naninovel will automatically do the cropping, when `Auto Correct Ortho Size` is enabled in the camera configuration menu and display aspect ratio is different from the `Reference Resolution` aspect set in the same menu. The auto correction will ensure, that the user won't see any black bars or distortions, no matter which display or device is used to run the game.
 
-To manually handle the aspect ratio differences (eg, if you prefer to add black bars or resize the images instead of cropping), disable `Auto Correct Ortho Size` option in the camera configuration menu. You can then control orthographic size of the camera used by Naninovel with `CameraManager` [engine service](/ru/guide/engine-services.md).
+To manually handle the aspect ratio differences (eg, if you prefer to add black bars or resize the images instead of cropping), disable `Auto Correct Ortho Size` option in the camera configuration menu. You can then control orthographic size of the camera used by Naninovel with `CameraManager` [engine service](/zh/uide/engine-services.md).
 
 ## How to run a custom C# code from naninovel scripts?
 
-Use [custom commands](/ru/guide/custom-commands.md).
+Use [custom commands](/zh/uide/custom-commands.md).

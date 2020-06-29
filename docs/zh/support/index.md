@@ -1,6 +1,6 @@
 # Support
 
-If you have issues with the engine, first make sure to read the [guide](/ru/guide/) and [command reference](/ru/api/) topics related to the feature you're having issues with; also check the [FAQ](/ru/faq/) for some frequently asked questions.
+If you have issues with the engine, first make sure to read the [guide](/zh/uide/) and [command reference](/zh/pi/) topics related to the feature you're having issues with; also check the [FAQ](/zh/aq/) for some frequently asked questions.
 
 In case you're sure the engine is not working as intended, check if you're running the latest available version. You can update the main package inside the Unity editor using [Asset Store window](https://docs.unity3d.com/Manual/AssetStore.html). When using any of the engine extensions, download and import the latest packages:
 
@@ -29,7 +29,7 @@ Unity is a standalone product with an enormous set of features; it has its own d
 ## Developer Support
 
 ::: warn
-Developer support is limited to Naninovel-specific topics only and can be provided in either English or Russian languages. For anything Unity-related (build UIs with uGUI, setup addressable system, write C# scripts, etc) see the [information above](/ru/support/#unity-support).
+Developer support is limited to Naninovel-specific topics only. For anything Unity-related (build UIs with uGUI, setup addressable system, write C# scripts, etc) see the [information above](/zh/upport/#unity-support).
 :::
 
 To receive direct developer support join Naninovel Discord server ([discord.gg/BfkNqem](https://discord.gg/BfkNqem)) and register your copy of the asset using the following registration form: [naninovel.com/register](https://naninovel.com/register/).
@@ -43,7 +43,7 @@ Be aware, that the **developer response may be delayed by up to 24 hours** (in s
  - Specify Naninovel and Unity versions you're using, target platform (Android, iOS, WebGL, etc) and operating system you're running the editor under (Windows, Mac or Linux).
  - Attach a [log file](https://docs.unity3d.com/Manual/LogFiles.html) containing error or warning messages related to the issue.
  
-Attaching a [reproduction project](/ru/support/#reproduction-project) greatly increases the chances to identify and fix the issue as soon as possible.
+Attaching a [reproduction project](/zh/upport/#reproduction-project) greatly increases the chances to identify and fix the issue as soon as possible.
 
 ## Reproduction Project
 
@@ -54,7 +54,7 @@ Follow the steps below to create and share a reproduction project:
 1. Create a new Unity project. Make sure you're using Unity version supported by the [current Naninovel release](https://github.com/Elringus/NaninovelWeb/releases).
 2. Import the latest available Naninovel version from the Asset Store (in case a pre-release version is available, use it instead).
 3. Add the required assets and modify the project to reproduce the issue. Please **keep naninovel scripts as short as possible** and only add assets that are **essential to replicate the issue**.
-4. Create a text file (.txt) inside the project directory and specify step-by-step instructions (in English) on how to reproduce the issue, eg:
+4. Create a text file (.txt) inside the project directory and specify step-by-step instructions on how to reproduce the issue, eg:
 
 ```
 1. Open scene "SampleScene".

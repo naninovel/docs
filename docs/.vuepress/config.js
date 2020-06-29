@@ -20,49 +20,58 @@ module.exports = {
         editLinks: false,
         algolia: {
             apiKey: '20269a916e878ffcef4392d31af4f4d2',
-            indexName: 'naninovel'
+            indexName: 'naninovel',
+            algoliaOptions: {
+                hitsPerPage: 6,
+            }
         },
-        // locales: {
-        //     '/': {
-        //         selectText: 'Language',
-        //         ariaLabel: 'Language',
-        //         label: 'English',
-        //         nav: [
-        //             {text: 'Forum', link: 'https://forum.naninovel.com'},
-        //             {text: 'FAQ', link: '/faq/'},
-        //             {text: 'Guide', link: '/guide/'},
-        //             {text: 'Commands', link: '/api/'},
-        //             {text: 'Support', link: '/support/'}
-        //         ],
-        //         sidebar: {
-        //             '/guide/': getGuideSidebar('Guide', 'Advanced', 'Extensions')
-        //         },
-        //         lastUpdated: 'Last Updated'
-        //     },
-        //     '/ru/': {
-        //         selectText: 'Язык',
-        //         ariaLabel: 'Язык',
-        //         label: 'Русский',
-        //         nav: [
-        //             {text: 'Форум', link: 'https://forum.naninovel.com'},
-        //             {text: 'FAQ', link: '/ru/faq/'},
-        //             {text: 'Руководство', link: '/ru/guide/'},
-        //             {text: 'Команды', link: '/api/'},
-        //             {text: 'Поддержка', link: '/ru/support/'}
-        //         ],
-        //         lastUpdated: 'Обновлено'
-        //     }
-        // }
-        nav: [
-            {text: 'FAQ', link: '/faq/'},
-            {text: 'Guide', link: '/guide/'},
-            {text: 'Commands', link: '/api/'},
-            {text: 'Support', link: '/support/'}
-        ],
-        sidebar: {
-            '/guide/': getGuideSidebar('Guide', 'Advanced', 'Extensions')
-        },
-        lastUpdated: 'Last Updated'
+        locales: {
+            '/': {
+                selectText: 'Language',
+                ariaLabel: 'Language',
+                label: 'English',
+                nav: [
+                    {text: 'FAQ', link: '/faq/'},
+                    {text: 'Guide', link: '/guide/'},
+                    {text: 'Commands', link: '/api/'},
+                    {text: 'Support', link: '/support/'}
+                ],
+                sidebar: {
+                    '/guide/': getGuideSidebar('Guide', 'Advanced', 'Extensions')
+                },
+                lastUpdated: 'Last Updated'
+            },
+            '/zh/': {
+                selectText: '語言',
+                ariaLabel: '語言',
+                label: '中文',
+                nav: [
+                    {text: '常問問題', link: '/zh/faq/'},
+                    {text: '指南', link: '/zh/guide/'},
+                    {text: '指令', link: '/zh/api/'},
+                    {text: '支持', link: '/zh/support/'}
+                ],
+                sidebar: {
+                    '/zh/guide/': getGuideSidebar('指南', '高級', '擴展名')
+                },
+                lastUpdated: '最近更新時間'
+            },
+            '/ru/': {
+                selectText: 'Язык',
+                ariaLabel: 'Язык',
+                label: 'Русский',
+                nav: [
+                    {text: 'FAQ', link: '/ru/faq/'},
+                    {text: 'Руководство', link: '/ru/guide/'},
+                    {text: 'Команды', link: '/ru/api/'},
+                    {text: 'Поддержка', link: '/ru/support/'}
+                ],
+                sidebar: {
+                    '/ru/guide/': getGuideSidebar('Руководство', 'Программирование', 'Расширения')
+                },
+                lastUpdated: 'Обновлено'
+            }
+        }
     },
     plugins: [
         ['@vuepress/google-analytics', {ga: 'UA-62903242-4'}],
@@ -81,18 +90,23 @@ module.exports = {
                 return `<div class="video-container"><iframe src="https://www.youtube-nocookie.com/embed/${match[1]}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>`; }));
         }
     },
-    // locales: {
-    //     '/': {
-    //         lang: 'en-US',
-    //         title: 'Naninovel',
-    //         description: 'Unity-powered visual novel engine'
-    //     },
-    //     '/ru/': {
-    //         lang: 'ru-RU',
-    //         title: 'Naninovel',
-    //         description: 'Движок для визуальных новелл на основе Unity'
-    //     }
-    // }
+    locales: {
+        '/': {
+            lang: 'en-US',
+            title: 'Naninovel',
+            description: 'A full-featured, writer-friendly and completely customizable visual novel extension for Unity game engine.'
+        },
+        '/zh/': {
+            lang: 'zh-CN',
+            title: 'Naninovel',
+            description: '功能齊全，易於編寫且易於自定義的Unity遊戲引擎视觉小说擴展。'
+        },
+        '/ru/': {
+            lang: 'ru-RU',
+            title: 'Naninovel',
+            description: 'Расширение игрового движка Unity для создания визуальных новелл.'
+        }
+    }
 };
 
 function getGuideSidebar (groupA, groupB, groupC) {
