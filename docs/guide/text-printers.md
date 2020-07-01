@@ -47,11 +47,17 @@ By default, skip mode is only available while executing commands that was alread
 
 ## Printer Backlog
 
-Printer backlog is a feature allowing user to re-read previously printed text. 
+Printer backlog is a feature allowing user to re-read previously printed text, revise selected choices, replay voiced lines and (optionally) rollback to the logged messages.
 
-[!4bde6752b676aa1acedb54d2af075ced]
+[!cf9c11c242907e0eae7f5f1b4e2b9f38]
 
 Backlog can be shown at any time during main game loop by activating `ShowBacklog` input (`L` key by default for standalone input module) or pressing "LOG" button in the control panel.
+
+Various backlog UI properties are customizable via component attached to the root of the prefab; see tooltips of the properties for details on what each of them controls.
+
+![](https://i.gyazo.com/40e44a4ed69f75fa5fb9c36cdae6226a.png)
+
+Consult [built-in UI customization guide](/guide/user-interface.md#modifying-built-in-ui) for more info now how to customize and configure the UI. 
 
 ## Dialogue Printer
 
