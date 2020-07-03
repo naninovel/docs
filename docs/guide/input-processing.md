@@ -22,6 +22,8 @@ Example of adding a custom input binding to toggle inventory UI can be found in 
 Specifically, the custom "ToggleInventory" binding is used in [UI/InventoryUI.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L215) runtime script. A binding with the same name is added via input configuration menu, under Control Scheme.
 :::
 
+It's possible to halt and resume input processing with [@processInput] command.
+
 ## Gamepad and Keyboard
 
 All the built-in features are usable with gamepad or keyboard input. You can remove, change or add gamepad/keyboard-specific hotkey bindings via the aforementioned bindings editor menu.

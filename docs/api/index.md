@@ -371,6 +371,7 @@ goto | Named&lt;String&gt; | Path to go when the choice is selected by user;  se
 gosub | Named&lt;String&gt; | Path to a subroutine to go when the choice is selected by user;  see [@gosub] command for the path format. When `goto` is assigned this parameter will be ignored.
 set | String | Set expression to execute when the choice is selected by user;  see [@set] command for syntax reference.
 do | List&lt;String&gt; | Script commands to execute when the choice is selected by user;  don't forget to escape commas inside list values to prevent them being treated as delimiters.  The commands will be invoked in order after `set`, `goto` and `gosub` are handled (if assigned).
+play | Boolean | Whether to automatically continue playing script from the next line,  when neither `goto` nor `gosub` parameters are specified.  Has no effect in case the script is already playing when the choice is processed.
 show | Boolean | Whether to also show choice handler the choice is added for;  enabled by default.
 time | Decimal | Duration (in seconds) of the fade-in (reveal) animation. Default value: 0.35 seconds.
 
@@ -392,7 +393,13 @@ Continue executing this script or ...?[skipInput]
 @choice "I'll take the entire stock!" set:karma--;score=999
 
 ; Play a sound effect and arrange characters when choice is picked
-@choice "Arrange" goto:.Continue do:"@sfx Click, @arrange k.10\,y.55"
+@choice "Arrange" do:"@sfx Click, @arrange k.10\,y.55"
+
+; Print a text line corresponding to the picked choice
+@choice "Ask about color" do:"What's your favorite color?"
+@choice "Ask about age" do:"How old are you?"
+@choice "Keep silent" do:"..."
+@stop
 
 ; Following example shows how to make an interactive map via `@choice` commands.
 ; For this example, we assume, that inside a `Resources/MapButtons` folder you've
@@ -1001,16 +1008,21 @@ Allows halting and resuming user input processing (eg, reacting to pressing keyb
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">InputEnabled</span> | Boolean | Whether to enable input processing.
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">InputEnabled</span> | Boolean | Whether to enable input processing of all the samplers.
+set | List&lt;Named&lt;Boolean&gt;&gt; | Allows muting and un-muting individual input samplers.
 
 </div>
 
 #### Example
 ```
-; Halt input processing
+; Halt input processing of all the samplers
 @processInput false
-; Resume input processing
+
+; Resume input processing of all the samplers
 @processInput true
+
+; Mute `Rollback` and `Pause` inputs and un-mute `Continue` input
+@processInput set:Rollback.false,Pause.false,Continue.true
 ```
 
 ## purgeRollback
