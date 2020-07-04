@@ -58,7 +58,7 @@ Specifically, the UI-related scripts are stored at [Runtime/UI](https://github.c
 
 When you create a new custom UI prefab via the context menu, the prefab will have a `Custom UI` component attached to the root object. This component (or rather the fact that the component is implementing `IManagedUI` interface) is essential to make the prefab accepted as a UI by the engine.
 
-![](https://i.gyazo.com/138a772b398898468145a857b623a938.png)
+![](https://i.gyazo.com/b3149c82bf3a42436903f54f826ad349.png)
 
 `Disable Interaction` property allows to permanently disable interaction with the UI, no matter the visibility. Requires `Canvas Group` component on the same game object.
 
@@ -66,11 +66,22 @@ When `Visible On Awake` is enabled, the UI will be visible when the UI is instan
 
 When `Control Opacity` is enabled and `Canvas Group` component is attached to the same game object,  `Alpha` property of the `Canvas Group` component will be changed in sync with the current visibility state of the UI element. `Fade Time` will then control time (duration in seconds) of the opacity fade animation. In case you wish to implement your own effect to accommodate the visibility status of the UI element (eg, slide animation instead of fading the opacity), disable `Control Opacity` property and use `On Show` and `On Hide` Unity events to react on visibility changes.
 
-To prevents the UI from being affected by font and text size set in [game settings](/guide/game-settings.md), disable `Allow Font Change` and `Allow Font Size Change` respectively.
-
 In case you wish to support gamepad or keyboard navigation over the UI, assign a game object with an interactable component (eg, a `Button`) to `Focus Object` property. This object will then be automatically focused when the UI becomes visible allowing to navigate over other interactable objects with a gamepad and/or keyboard. See Unity's [guide on UI navigation](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-SelectableNavigation.html) for more info on how to setup the navigation behavior.
 
 When `Focus Object` is assigned, `Focus Mode` property allows to choose when to focus the object: `Visibility` mode will focus it right after the UI becomes visible and `Navigation` will postpone the focus until player activates a navigation key on gamepad (left stick or D-pad) or keyboard (arrow keys). 
+
+To specify, which text elements should be affected by font and text size changes set in [game settings](/guide/game-settings.md), use `Font Change Configuration` property.
+
+![](https://i.gyazo.com/f8e8b03580940cce72de9e9970512902.png)
+
+Each element in the configuration list has following properties:
+
+Property | Description
+--- | ---
+Object | The game object with a text component, which should be affected by font changes. It works with both uGUI and TMPro text components.
+AllowFontChange | Whether to allow changing font of the text component.
+AllowFontSizeChange | Whether to allow changing font size of the text component.
+FontSizes | Actual font sizes to apply for text component. Each element in the list corresponds to font size dropdown list index: Small -> 0, Default -> 1, Large -> 2, Extra Large -> 3 (can be changed via SettingsUI). Default value will be ignored and font size initially set in the prefab will be used instead.
 
 `On Show` and `On Hide` Unity events allow to hook custom handlers to react to the UI visibility changes. For example, you can hook an `Animator` triggers to fire some custom animations when the UI becomes visible and vice-versa.
 
@@ -130,14 +141,14 @@ IContinueInputUI | A fullscreen invisible UI layer positioned at the bottom of t
 
 In order for the UI to support visibility (visible on awake, fade time) and interaction options (disable interaction), also attach a `Canvas Group` component to the same object.
 
-If you're OK with C# scripting and want to override default logic of the UI, [create a new component](https://docs.unity3d.com/Manual/CreatingAndUsingScripts), implement `IManagedUI` interface (feel free to inherit the component from `CustomUI` or `ScriptableUIBehaviour` to fulfill all the interface requirements) and attach the created custom component instead. Check `Naninovel/Runtime/UI` folder for reference implementations of the built-in UIs. Here is an example of minimal implementation of a custom UI component:
+If you're OK with C# scripting and want to override default logic of the UI, [create a new component](https://docs.unity3d.com/Manual/CreatingAndUsingScripts), implement `IManagedUI` interface (feel free to inherit the component from `CustomUI` to fulfill all the interface requirements) and attach the created custom component instead. Check `Naninovel/Runtime/UI` folder for reference implementations of the built-in UIs. Here is an example of minimal implementation of a custom UI component:
 
 ```csharp
-using UniRx.Async;
+using Naninovel.UI;
 
-public class MyCustomUI : ScriptableUIBehaviour, Naninovel.UI.IManagedUI
+public class MyCustomUI : CustomUI
 {
-    public UniTask InitializeAsync () => UniTask.CompletedTask;
+    
 }
 ```
 
