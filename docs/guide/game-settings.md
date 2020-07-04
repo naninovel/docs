@@ -5,7 +5,7 @@ Game settings can be changed at any time using settings menu.
 [!8ef1044cb0b8429298af05e6275ff14d]
 
 ::: note
-To prevent specific UIs from being affected by font and text size changes, disable `Allow Font Change` and `Allow Font Size Change` properties on the UI prefab. Find more info about modifying and creating custom UIs in the [customization guide](/guide/user-interface.md#ui-customization).
+To specify, which text elements should be affected by font and text size changes, use `Font Change Configuration` property of the UI prefab (`CustomUI` component). By default, only text printers are effected. Find more info about modifying and creating custom UIs in the [customization guide](/guide/user-interface.md#ui-customization).
 :::
 
 Settings are serialized to a `Settings.json` file stored over game directory. File name can be configured using `Naninovel -> Configuration -> State` context menu; for available options see [configuration guide](/guide/configuration.md#state).
