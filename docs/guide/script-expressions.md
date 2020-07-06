@@ -20,10 +20,10 @@ The expression is evaluated at the moment the command is executed, which allows 
 ```
 @input color summary:"What's your favorite color?"
 @stop
-{color}, huh? { color == "orange" ? "Mine too!" : "I see..."}
+{color}, huh? { color == "orange" ? "Mine too!" : (color == "black" ? "That's depressing." : "I see...") }
 ```
 
-— will show an input UI allowing player to input their favorite color, assigning it to `color` custom variable, then print the inputted color, followed by either "Mine too!" in case it's "orange", or "I see...".
+— will show an input UI allowing player to input their favorite color, assigning it to `color` custom variable, then print the inputted color, followed by either "Mine too!" in case it's "orange", "That's depressing." in case it's "black" or "I see..." in the other cases.
 
 To distinguish a plain text value from a variable name, wrap the value in double quotes `"`:
 
