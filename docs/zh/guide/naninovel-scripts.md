@@ -1,30 +1,36 @@
-# Naninovel Scripts
+# Naninovel 脚本
 
-Naninovel scripts are text documents (`.nani` extension) where you control what happens on scenes. Script assets are created with `Create -> Naninovel -> Naninovel Script` asset context menu. You can open and edit them with the built-in [visual editor](#visual-editor) or with an external text editor of your choice, like Notepad, TextEdit or [Atom](https://atom.io).
+Naninovel脚本时文本文件 (`.nani` 后缀扩展名) 用于控制场景种的事件发生。脚本创建使用 `Create -> Naninovel -> Naninovel Script` 菜单。你可以使用[内置可视化编辑器](#内置可视化编辑器) 或外置文本编辑器, 比如 Notepad, TextEdit 或者 [Atom](https://atom.io).
 
 ![](https://i.gyazo.com/f552c2ef323f9ec1171eba72e0c55432.png)
 
-Each line in a naninovel script represents a statement, which can be a command, generic text, label or a comment. Type of the statement is determined by the literal that is placed at the start of the line:
+每行在Naninovel中都代表一句状态表现，包含，命令，普通文本，标签，注释。
+表达的类型由每行前面的前缀符号定义，如下所示：
 
-Literal | Statement Type 
+
+前缀符号 | 表达类型 
 :---: | --- 
-@ | [Command](#command-lines)
-# | [Label](#label-lines)
-; | [Comment](#comment-lines)
+@ | [命令行](#命令行)
+# | [标签行](#标签行)
+; | [注释行](#注释行)
 
-When none of the above literals are present at the start of the line, it's considered a [generic text](#generic-text-lines) statement.
+当前缀没有任何符号的时候，就被视为[普通内容文本行](#普通内容文本行)。
 
-## Command Lines
 
-Line is considered a command statement if it starts with a `@` literal. Command represents a single operation, that controls what happens on the scene; eg, it can be used to change a background, move a character or load another naninovel script.
+## 命令行
 
-### Command Identifier
+`@`开头的一行，被视为命令行，代表单个操作，可以用于控制场景中的发生动作，
+比如：改变背景，移动人物，或者加载另一个naninovel脚本。
 
-Right after the command literal a command identifier is expected. This could either be name of the C# class that implements the command or the command's alias (if it's applied via `CommandAlias` attribute). 
 
-For example, [@save] command (used to auto-save the game) is implemented via the `AutoSave` C# class. The implementing class also has a `[CommandAlias("save")]` attribute applied, so you can use both `@save` and `@AutoSave` statements in the script to invoke this command. 
+### 命令别名
 
-Command identifiers are case-insensitive; all the following statements are valid and will invoke the same `AutoSave` command:
+在命令符号`@`之后应该跟一个命令名，命令名可以是生效的C#类名或者使用`CommandAlias`来注释的别名。
+
+比如，[@save]（用于自动保存游戏的命令）是由C#类`AutoSave`来实际运行生效的，在该类前有用`[CommandAlias("save")]`方式注明，所以你就可以使用`@save`或者`@AutoSave`任一来调用该命令。
+
+命令名不区分大小写，下列所示的表达式，都会调用相同的`AutoSave`自动保存命令：
+
 
 ```
 @save
@@ -33,119 +39,128 @@ Command identifiers are case-insensitive; all the following statements are valid
 @autosave
 ``` 
 
-### Command Parameters
+### 命令参数及参数别名
 
-Most of the commands have a number of parameters that define the effect of the command. Parameter is a key-value expression defined after the command literal separated by a column (`:`). Parameter identifier (key) could be either name of the corresponding parameter field of the command implementation class or the parameter's alias (if defined via `alias` property of `CommandParameter` attribute).
+许多命令都有很多参数，定义了命令产生的各种效果。参数是由参数名加(`:`)组成。同样可以由生效命令类对应参数名字或`CommandParameter`注释的别名调用。
 
+基本格式如下：
 ```
 @commandId paramId:paramValue 
+@命令名 参数名:参数值
 ```
-
-Consider a [@hideChars] command, which is used to hide all visible characters on the scene. It could be used as follows:
+如[@hideChars]命令，用于隐藏所有场景中可见角色，有如下使用方式：
 
 ```
 @hideChars
 ```
 
-You can use a `time` *Decimal* parameter here to control for how long the characters will fade-out before becoming completely hidden (removed from scene):
+你可以使用`time`参数，小数控制在人物完全消失的渐隐时长如下：
 
 ```
 @hideChars time:5.5
 ```
 
-This will make the characters to fade-out for 5.5 seconds, before completely removing them from scene.
+上面所示效果，人物完全消失前有5.5秒的渐隐效果。
 
-You can also use a `wait` *Boolean* parameter to specify whether next command should be executed immediately after or wait for the completion of the current command:
+你可以使用`wait`布尔参数控制，下一句话是否立即执行，或是在当前命令执行完成后开始执行，如下：
 
 ```
 @hideChars time:5.5 wait:false
 @hidePrinter
 ```
 
-This will hide the text printer right after characters will begin to fade-out. If `wait` would be `true` or not specified, the printer would be hidden only when the [@hideChars] complete the execution.
+文本将在人物开始隐藏的时候立即消失，如果参数为`true`或者不设置，文本就会在[@hideChars]执行完成后隐藏。
 
-### Parameter Value Types
+
+### 参数值类型
 
 Depending on the command parameter, it could expect one of the following value types: 
 
-Type | Description
+类型 | 描述
 --- | ---
-String | A simple string value, eg: `LoremIpsum`. Don't forget to wrap the string in double quotes in case it contain spaces, eg: `"Lorem ipsum dolor sit amet."`.
-Integer | A number which is not a fraction; a whole number, eg: `1`, `150`, `-25`.
-Decimal | A decimal number with fraction delimited by a dot, eg: `1.0`, `12.08`, `-0.005`.
-Boolean | Can have one of two possible values: `true` or `false` (case-insensitive).
-Named<> | A name string associated with a value of one of the above types. The name part is delimited by a dot. Eg for *Named&lt;Integer&gt;*: `foo.8`, `bar.-20`.
-List<>| A comma-separated list of values of one of the above types. Eg for *List&lt;String&gt;*: `foo,bar,"Lorem ipsum."`, for *List&lt;Decimal&gt;*: `12,-8,0.105,2`
+String | 简单string字符串类型， 如`LoremIpsum`，如果中间有空格，记得加双引号如：`"Lorem ipsum dolor sit amet."`。
+Integer | 整数类型,如：`1`, `150`, `-25`。
+Decimal | 浮点数类型，如：`1.0`, `12.08`, `-0.005`。
+Boolean | 布尔值，`true` or `false`不分大小写。
+Named<> | 一个名字和上述参数值类型组成的参数类型，，名字部分用点分开，比如： *Named&lt;Integer&gt;*: `foo.8`, `bar.-20`。
+List<>|  上述参数值类型组成的参数列表型，由逗号分隔，比如： 字符串类型*List&lt;String&gt;*: `foo,bar,"Lorem ipsum."`, 小数类型，*List&lt;Decimal&gt;*: `12,-8,0.105,2`。
 
-### Nameless Parameters
+### 无名参数
 
-Most of the commands have a nameless parameter. A parameter is considered nameless when it could be used without specifying its name. 
+许多命令，都有无名参数，被视为无名参数的指不用指定参数名字的参数。
 
-For example, a [@bgm] command expects a nameless parameter specifying the name of the music track to play:
+比如， [@bgm] 命令，就有一个定义播放音轨的无名参数：
 
 ```
 @bgm PianoTheme
 ```
-"PianoTheme" here is the value of the "BgmPath" *String* parameter.
+"PianoTheme" 在这里就是 "Bgm路径" 的*String* 参数。
 
-There could be only one nameless parameter per command and it should always be specified before any other parameters.
+每个命令都只有一个无名参数，并且一定要定义在所有其他参数之前。
 
-### Optional and Required Parameters
+### 可选和必需参数
 
-Most of the command parameters are *optional*. It means they either have a predefined value or just doesn't require any value in order for the command to be executed. For example, when a [@resetText] command is used without specifying any parameters it will reset text of a default printer, but you can also set a specific printer ID like this: `@resetText printer:Dialogue`.
+大多数命令的参数都是*可选*的，这表示命令执行时，这个参数都有个预设值或者不需要任何值。比如，[@resetText] 不定义任何参数时，它就会重置为默认的printer，但是你也可以定义printer的ID比如：`@resetText printer:Dialogue`。
 
-Some parameters however are *required* in order for the command to execute and should always be specified.
+部分参数是命令执行所必需的，所以确保总是定义正确的。
 
-### Commands API Reference
 
-For the list of all the currently available commands with a summary, parameters and usage examples see [commands API reference](/zh/api/). 
+### 命令API参照
 
-## Generic Text Lines
 
-To make writing scripts with large amounts of text more comfortable generic text lines are used. Line is considered a generic text statement if doesn't start with any of the predefined statement literals:
+当前可用命令，参数以及示例参考 [命令API参照]((/zh/api/). 
+
+## 普通内容文本行
+
+为了让写大量文本的时候更舒适，普通文本行会被自动应用。当一行文本前没有任何预设前缀符号的时候，这行话会被默认为普通文本行，如下：
+
 
 ```
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 ```
 
-An author ID can be specified at the start of a generic text line separated by a column (`:`) to associate printed text with a [character actor](/zh/guide/characters.md):
+说话人的ID可以写在内容前面，用(`:`)隔开，这样会自动关联[人物元素](/zh/guide/characters.md)中定义的人物，如下：
+
 
 ```
 Felix: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 ```
 
-To save some typing when constantly changing character appearances associated with printed text, you can also specify appearance after the author ID:
+参照如下所示，在人物ID后面定义外观，可以同时改变人物的外观：
 
 ```
 Felix.Happy: Lorem ipsum dolor sit amet.
 ```
 
-The above line is equal to the following two:
+上面两行所示和下面所示行的效果等效：
 
 ```
 @char Felix.Happy wait:false
 Felix: Lorem ipsum dolor sit amet.
 ```
 
-### Command Inlining
+### 内联命令执行
 
-Sometimes, you may want to execute a command while revealing (printing) a text message, right after or before a specific character. For example, an actor would change their appearance (expression) when a specific word is printed or a particular sound effect would be played in reaction to some event described in the midst of a printed message. Command inlining feature allows to handle cases like that.
+有时，你可能会想在文本显示的时候达到某些效果执行相应命令，比如在人物说某些话时，改变表情，或者播放音效，对应剧情中的某些事件发生，内联命令执行的这个特性就是用来解决此类问题。
 
-All the commands (both [built-in](/zh/api/) and [custom ones](/zh/guide/custom-commands.md)) can be inlined (injected) to generic text lines using square brackets (`[`,`]`):
+所有命令，([内置命令](/zh/api/) 和 [用户自定义命令](/zh/guide/custom-commands.md)) 都可以内联到普通文本执行，使用中括号隔开(`[`,`]`)，如下：
+
+
 
 ```
 Felix: Lorem ipsum[char Felix.Happy pos:0.75 wait:false] dolor sit amet, consectetur adipiscing elit.[i] Aenean tempus eleifend ante, ac molestie metus condimentum quis.[i][br 2] Morbi nunc magna, consequat posuere consectetur in, dapibus consectetur lorem. Duis consectetur semper augue nec pharetra.
 ```
 
-Notice, that the inlined command syntax is exactly the same, except `@` literal is omitted and command body is wrapped in square brackets. Basically, you can take any command line, inline it to a generic text line and it will have the exact same effect, but at a different moment, depending on the position inside text message.
+需要提醒都是，内联语句的语法都和普通语法相同，除了`@` 被省略了，以及用中括号分割这两点。你可以内联使用任何命令，来得到想要的效果，唯一区别是，执行时机取决于普通文本中的哪个位置。
 
-Under the hood, generic text lines are parsed into individual commands identified by inline index; text is printed with [@print] command. For example, following generic text line in a naninovel script:
+在内联使用时，普通文本行会被内联执行目录转化为独立的命令行执行，文本由[@print]开始执行，比如如下naninovel脚本：
+
 
 ```
 Lorem ipsum[char Felix.Happy pos:75 wait:false] dolor sit amet.
 ```
 
-— is actually handled by the engine as a sequence of individual commands:
+实际上，被引擎识别为一系列的独立命令：
 
 ```
 @print "Lorem ipsum" waitInput:false
@@ -153,71 +168,74 @@ Lorem ipsum[char Felix.Happy pos:75 wait:false] dolor sit amet.
 @print "dolor sit amet."
 ```
 
-To actually print square brackets via a generic text line, escape them with backslashes, eg:
+如果要在游戏中显示中括号，如下格式书写:
 ```
 Some text \[ text inside brackets \]
 ```
 
-— will print "Some text [ text inside brackets ]" in-game.
+— 这样会在游戏中这样显示："Some text [ text inside brackets ]" 。
 
-## Label Lines
+## 标签行
 
-Labels are used as "anchors" when navigating the naninovel scripts with [@goto] commands. To define a label, use a `#` literal at the start of the line followed with label name:
+标签是作为使用[@goto]命令跳转到相应位置时候的定位锚点，
+要使用标签，在文本行开头使用`#`紧接标签名字：
+
 
 ```
 # Epilogue
 ```
+你可以使用[@goto]命令跳转到上面这行，如下：
 
-You can then use a [@goto] command to "jump" to that line:
 
 ```
 @goto ScriptName.Epilogue
 ```
 
-In case you're using [@goto] command from within the same script where the label is defined, you can omit the script name:
+在相同脚本中跳转的时候，可以省略脚本名字，如下：
+
 
 ```
 @goto .Epilogue
 ```
 
 
-## Comment Lines
+## 注释行
 
-When line starts with a semicolon literal (`;`) it's considered a comment statement. Comment lines are completely ignored by the engine when scripts are parsed. You can use comment lines to add notes or annotations for yourself or other team members who work with naninovel scripts.
+由符号(`;`) 开头的行为注释行，会被引擎完全忽略，不执行命令，
+你可以用来备注，或是为其他开发成员写注释（呵，为其他人写注释，不存在的）：
+
 
 ```
-; The following command will auto-save the game.
+; 如下命令会用于自动保存游戏
 @save
 ```
 
-## Conditional Execution
+## 条件执行
 
-While the script are executed in a linear fashion by default, you can introduce branching using `if` parameters supported by all the commands.
+虽然脚本是线性流程，你可以使用`if`参数改变执行结构，`if`能被所有命令使用：
+
 
 ```
-; If `level` value is a number and is greater than 9000, add the choice.
+; 如果 `level` 值是数字，并且大于9000，添加该选项 。
 @choice "It's over 9000!" if:level>9000
 
-; If `dead` variable is a bool and equal to `false`, execute the print command.
+; 如果`dead` 变量值是布尔值，并且为`false`执行print命令。
 @print text:"I'm still alive." if:!dead
 
-; If `glitch` is a bool and equals `true` or random function in 1 to 10 range 
-; returns 5 or more, execute `@spawn` command.
+; 如果 `glitch` 变量值是布尔值，并且为 `true` ，或随机得到值大于5则执行`@spawn。
 @spawn GlitchCamera if:"glitch || Random(1, 10) >= 5"
 
-; If `score` value is in 7 to 13 range or `lucky` variable is a bool and equals 
-; `true`, load `LuckyEnd` script.
+; 如果 `score` 值在 7和13 之间或者`lucky` 布尔值为`true`则加载 `LuckyEnd` 脚本.
 @goto LuckyEnd if:"(score >= 7 && score <= 13) || lucky"
 
-; You can also use conditionals in the inlined commands.
+; 你也可以在内联命令中使用条件判断
 Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
 
-; When using double quotes inside the expression itself, 
-; don't forget to double-escape them.
+; 当文本中使用了双引号，使用双斜杠注释掉，如下所示：
 @print {remark} if:remark=="Saying \\"Stop the car\\" was a mistake."
 ```
 
-It's also possible to specify multi-line conditional blocks with [@if], [@else], [@elseif] and [@endif] commands.
+也可在多行，区块间使使用 [@if], [@else], [@elseif] 和 [@endif] 命令：
 
 ```
 @if score>10
@@ -235,106 +253,120 @@ It's also possible to specify multi-line conditional blocks with [@if], [@else],
 @endif
 ```
 
-Note that tabs here are completely optional and used just for better readability.
-
-The same works for generic text lines:
+提行分行只是为了方便阅读，普通文本也可使用：
 
 ```
 Lorem ipsum dolor sit amet. [if score>10]Duis efficitur imperdiet nunc. [else]Vestibulum sit amet dolor non dolor placerat vehicula.[endif]
 ```
 
-For more information on the conditional expression format and available operators see the [script expressions](/zh/guide/script-expressions.md) guide.
+更多参考信息和格式操作等参考 [脚本表达式](/zh/guide/script-expressions.md) 。
 
-## Visual Editor
+## 可视化编辑器
 
-You can use visual script editor to edit the naninovel scripts. Select a script asset and you'll see the visual editor automatically open in the inspector window.
+你可以使用内置可视化编辑器来编辑naninovel脚本，在资源文件中选中脚本是，属性面板会自动打开相应脚本。
 
 [!ba57b9f78116e57408125325bdf66be9]
 
-To add a new line to the script, either right-click the place, where you want to insert the line, or press `Ctrl+Space` (you can change the default key bindings in the input configuration menu) and select the desired line or command type. To re-order lines, drag them using their number labels. To remove a line, right-click it and choose "Remove".
+在右侧编辑器内按右键insert或者Ctrl+Space以插入新行 (可以之后再输入配置菜单自定义快捷键) 然后选择想要的命令行，过直接输入左边的编号，或是直接拖拽来重新排序已有的行，在右侧编辑器内按右键remove移除已有行。
 
-When you've changed the script using visual editor, you'll see an asterisk (`*`) over the script name in the inspector header. That means the asset is dirty and need to be saved; press `Ctrl+S` to save the asset. In case you'll attempt to select another asset while the script is dirty, a dialogue window will pop-up allowing to either save or revert the changes.
+修改文件会有(*) 符号显示，按Ctrl+S 保存修改，未保存当前文件修改去改动其他脚本时会有提示询问是否保存。
 
-The visual editor will automatically sync edited script if you update it externally, so you can seamlessly work with the scripts in both text and visual editors. In case auto-sync is not working, make sure `Auto Refresh` is enabled in the `Edit -> Preferences -> General` Unity editor menu.
+使用其他编译器编译时候注意保存修改，内置编辑器会自动同步修改，所以你可以同时使用文本编辑器和内置可视化编辑器。如果自动同步没有工作，确保菜单中的`Edit -> Preferences -> General`中的`Auto Refresh`打开。
 
-During the playmode, you can use visual editor to track which script line is currently being played and right-click a line to rewind the playback. This feature requires the script to have equal resource ID (when assigned in the resources manager menu) and asset name.
+运行时，你可以通过可视化编辑器看到当前执行行，或者右击跳转到相应行。这个功能需要在资源管理菜单内配置的资源ID名字相同。
+
 
 [!b6e04d664ce4b513296b378b7c25be03]
 
-Currently played line will be highlighted with green color; when script playback is halted due waiting for user input, played line will be highlighted with yellow instead.
+当前执行的行，会有绿色高亮提示，当脚本执行到会需要等待玩家进行输入操作时，则为黄色提示。
 
-You can tweak the editor behavior and looks in the scripts configuration menu.
+你可以在编辑器菜单中调整其他设置，和视觉表现。
+
 
 ![](https://i.gyazo.com/4b4b2608e7662b02a61b00734910308c.png)
 
 [!!9UmccF9R9xI]
 
-## Script Graph
+## 脚本可视化
 
-When working with large amount of scripts and non-linear stories, it could become handy to have some kind of visual representation of the story flow. This is where script graph tool comes in handy.
+当在进行大量文本的非线性剧本开发时，有可视化表现故事流程会让开发流程变得简单，此时就需要用到可视化编程工具。
+
 
 [!0dd3ec2393807fb03d501028e1526895]
 
-To open the graph window use `Naninovel -> Script Graph` editor menu. You can dock the window as any other editor panel if you like to.
+要使用该工具窗口，打开`Naninovel -> Script Graph` ，你可以将该窗口嵌入任何面板。
 
-The tool will automatically build graph representation of all the naninovel scripts (represented as nodes) assigned via editor resources (`Naninovel -> Resources -> Scripts`) and connections between them.
+该工具会为所有在 (`Naninovel -> Resources -> Scripts`) 绑定过的脚本（用节点表示），自动创建可视化流程表现，并在之间连接。
 
-The connections are generated based on [@goto] and [@gosub] commands. If the command has a conditional expression assigned (`if` parameter), corresponding port in the node will be highlighted with yellow and you'll be able to see the expression when hovering the port.
+该工具的连线是根据[@goto]和[@gosub]命令。如果命令中有条件判断 (`if` 参数)，在相应位置鼠标悬停时会有黄色高亮提示。
 
-You can select script asset and open visual editor by double-clicking nodes or clicking ports. Clicking the ports will also scroll the visual editor to a line containing label (in case there were a label specified).
+你可以通过单击小窗口或单个节点打开脚本内置可视化编辑器。
+单击小窗口内置可视化编辑器会自动跳转到相应有label标签的地方（如果定义了label的）。
 
-You can re-position the nodes as you like and their positions will be automatically saved when closing the graph window or exiting Unity; the positions will then be restored when re-open the window. You can also save manually by clicking "Save" button. Clicking "Auto Align" button will reset all the positions.
+你可以根据需要重新排布节点，当退出该工具活着退出Unity时，都会自动保存相应修改。你也可以通过"Save"按钮手动保存，点击 "Auto Align"按钮重置小窗口位置。
 
-When changing scripts or adding new ones, click "Rebuild Graph" button to sync it.
+当脚本修改后，或者添加了新脚本，点击"Rebuild Graph"来同步显示。
 
-## Hot Reload
 
-It's possible to edit scripts at play mode (via both visual and external editors) and have the changes applied immediately, without game restart. The feature is controlled via `Hot Reload Scripts` property in the scripts configuration and is enabled by default.
+## 热加载
 
-When modifying, adding or removing a line before the currently played one, state rollback will automatically happen to the modified line to prevent state inconsistency.
+在运行时，可以实时应用修改（通过内置可视化编辑器或者外置编辑器），
+不需要重启运行，这个功能是在脚本配置菜单中`Hot Reload Scripts` 属性控制，默认开启的。
 
-In case hot reload is not working, make sure `Auto Refresh` is enabled and `Script Changes While Playing` is set to `Recompile And Continue Playing`. Both properties can be found at `Edit -> Preferences -> General` Unity editor menu.
+当在当前执行行前面，修改，添加，删除某行时，会自动跳转到修改行开始执行， 避免前后的表现不一致。
+
+如果热加载没工作，请确保，`Edit -> Preferences -> General` 中的
+`Auto Refresh`启用，`Script Changes While Playing` 是使用的`Recompile And Continue Playing`选项。
+
 
 ![](https://i.gyazo.com/5d433783e1a12531c79fe6be80c92da7.png)
 
-To manually initiate hot reload of the currently played naninovel script (eg, when editing script file outside of Unity project), use `reload` [console command](/zh/guide/development-console.md). The command is editor-only (won't work in builds).
+要手动加载要执行的脚本（比如，编辑脚本在Unity工程外），使用
+`reload` [控制台命令](/zh/guide/development-console.md)
+该命令只能在编辑器使用，不会在发布后生效。
 
-## IDE Support
 
-IDE features, like syntax highlighting, error checking, auto-completion and interactive documentation could significantly increase productivity when writing scripts. We've made an extension for a free and open-source [Atom editor](https://atom.io) (available for Windows, MacOS and Linux), which provides the essential IDE support for NaniScript syntax.
+## IDE支持
+
+IDE特性，比如方法高亮，错误检查，自动补充，文本关联等，能够显著提升编码效率，我们已经提供了免费的开源[Atom editor](https://atom.io) (支持Windows, MacOS 和 Linux)
+扩展，该插件为naninovel提供了关键的IDE特性支持。
+
 
 ![](https://i.gyazo.com/e3de33e372887b0466ea513576beadd0.png)
 
-To use the extension:
+要使用该扩展:
 
-1. Install [Atom editor](https://atom.io)
-2. Install [language-naniscript](https://atom.io/packages/language-naniscript) extension
-3. Install [atom-ide-ui](https://atom.io/packages/atom-ide-ui) extension (required for our extension to provide some of the features)
-4. Restart the Atom editor
-5. Open a folder with naninovel scripts (opening a single file won't activate the extension)
+1. 安装 [Atom editor](https://atom.io)
+2. 安装 [language-naniscript](https://atom.io/packages/language-naniscript) 扩展
+3. 安装 [atom-ide-ui](https://atom.io/packages/atom-ide-ui) 扩展 (我们的扩展要求，以提供某些特性支持)
+4. 重启Atom
+5. 打开naninovel脚本目录，打开单个文件不会激活该扩展
 
-Check the following video tutorial on activating and using the extension.
+参考以下视频教程，激活和使用该扩展。
 
 [!!njKxsjtewzA]
 
-Support for other editors is possible in the future; check [the issue on GitHub](https://github.com/Elringus/NaninovelWeb/issues/56#issuecomment-492987029) for more information.
+其他浏览器支持会在后续添加， 更多信息参考 [the issue on GitHub](https://github.com/Elringus/NaninovelWeb/issues/56#issuecomment-492987029)。
 
-## Scripts Debug
+## 脚本Debug
 
-When working with large naninovel scripts, it could become tedious to always play them from start in order to check how things work in particular parts of the script. 
+当有大量脚本开发时，要查看脚本某部分的演出效果，从头开始演示肯定会很繁琐。
 
-Using [development console](/zh/guide/development-console.md) you can instantly "rewind" currently played script to an arbitrary line:
+
+使用 [开发控制台](/zh/guide/development-console.md) 你可以连续回调到当前的脚本的任意位置：
 
 ```
 rewind 12
 ```
 
-— will start playing current script from the 12th line; you can rewind forward and backward in the same way. To open the console while game is running, make sure the console is enabled in the engine configuration and press `~` key (can be changed in the configuration) or perform multi-touch (3 or more simultaneous touches) in case the build is running on a touchscreen device.
+—这会跳转到12行，你可以任意向前或者向后跳转，要在游戏时打开控制台，确保引擎配置中控制台为打开，然后按`~` 键（可自行改键），或在触控设备使用多点触控（3点或更多同时点击）呼出。
 
-To find out which script and line is currently playing, use debug window: type `debug` in the development console and press `Enter` to show the window.
+要查看哪个是执行脚本，在debug窗口输入`debug`然后按`Enter`显示窗口。
+
 
 ![Scripts Debug](https://i.gyazo.com/12772ecc7c14011bcde4a74c81e997b8.png)
 
-Currently played script name, line number and command (inline) index are displayed in the title of the window. When [auto voicing](/zh/guide/voicing.md#auto-voicing) feature is enabled, name of the corresponding voice clip will also be displayed. You can re-position the window by dragging it by the title. "Stop" button will halt script execution; when script player is stopped "Play" button will resume the execution. You can close the debug window by pressing the "Close" button.
+当前使用的脚本名，行号，内联脚本目录，都会显示在窗口标题上，当[自动语音](/zh/guide/voicing.md#auto-voicing)打开时，播放的语音名字也会显示出来。可以点击标题拖拽窗口。 "Stop" 按钮会停止脚本执行，"Play"会重新开始执行，"Close"按钮关闭debug窗口。
 
-Debug window is available in both editor and player builds.
+debug窗口在编辑器下和发布工程都可以使用。
+
