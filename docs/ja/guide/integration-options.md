@@ -7,7 +7,7 @@ Naninovel は典型的なビジュアルノベルゲームのための用途を�
 Naninovelをカスタムプロジェクトと連携する方法はいくつかあります。具体的な実装は、プロジェクトの種類と、Naninovelで実現したいことによって異なります。以下のドキュメントは、Naninovelをスタンドアロンゲームと"ペアリング"するのに役立つさまざまな構成オプションとAPIをリストしています。続行する前に、[エンジンアーキテクチャ](/ja/guide/engine-architecture.md) を見て、概念レベルでの動作をよく理解してください。
 
 ::: example
-[サンプルプロジェクト](/ja/guide/integration-options.md#example-project) をご覧ください。ここでは、Naninovelが3Dアドベンチャーゲームの一時的なダイアログと、スタンドアロンのノベルモードとして使われてます。切り替え可能です。
+[サンプルプロジェクト](/ja/guide/integration-options.md#サンプルプロジェクト) をご覧ください。ここでは、Naninovelが3Dアドベンチャーゲームの一時的なダイアログと、スタンドアロンのノベルモードとして使われてます。切り替え可能です。
 :::
 
 ## 手動初期化
@@ -154,7 +154,7 @@ private void OnTriggerEnter (Collider other)
 
 ## サンプルプロジェクト
 
-3Dアドベンチャーゲームの一時的なダイアログと、スタンドアロンのノベルモードとして Naninovelを利用したサンプルプロジェクトは [GitHub にあります](https://github.com/Elringus/NaninovelIntegrationExample)。[Git clientでリポジトリをクローン](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) するか [zipファイルをダウンロード](https://github.com/Elringus/NaninovelDemo/archive/master.zip) することができます。
+3Dアドベンチャーゲームの一時的なダイアログと、スタンドアロンのノベルモードとして Naninovelを利用したサンプルプロジェクトは [GitHub にあります](https://github.com/Elringus/NaninovelIntegrationExample)。[Git clientでリポジトリをクローン](https://help.github.com/ja/github/creating-cloning-and-archiving-repositories/cloning-a-repository) するか [zipファイルをダウンロード](https://github.com/Elringus/NaninovelDemo/archive/master.zip) することができます。
 
 ::: warn
 プロジェクトに Naninovel パッケージは含まれないため、初めて開く際はコンパイルエラーが発生します。問題を解決するには、アセットストアから Naninovel をインポートします。
