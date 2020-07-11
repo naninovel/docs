@@ -214,7 +214,7 @@ BGM（バックグラウンドミュージック）またはSFX（効果音）�
 
 デモプロジェクトの全てのソース（ストアで紹介されているものと同じもの)は、 GitHub の [github.com/Elringus/NaninovelDemo](https://github.com/Elringus/NaninovelDemo) にあります。
 
-[Git clientでリポジトリをクローン](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) するか [zipファイルをダウンロード](https://github.com/Elringus/NaninovelDemo/archive/master.zip) することができます。デモプロジェクトで配布されるアセットはカスタムライセンスの対象となる場合があり、学習目的でのみ提供しています。
+[Git clientでリポジトリをクローン](https://help.github.com/ja/github/creating-cloning-and-archiving-repositories/cloning-a-repository) するか [zipファイルをダウンロード](https://github.com/Elringus/NaninovelDemo/archive/master.zip) することができます。デモプロジェクトで配布されるアセットはカスタムライセンスの対象となる場合があり、学習目的でのみ提供しています。
 
 ::: warn
 プロジェクトに Naninovel パッケージは含まれないため、初めて開く際はコンパイルエラーが発生します。問題を解決するには、アセットストアから Naninovel をインポートします。

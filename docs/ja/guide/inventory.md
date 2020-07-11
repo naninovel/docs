@@ -6,7 +6,7 @@
 
 [!86c577f007daf4ec5d79c0e91db7bc10]
 
-[Git clientでリポジトリをクローン](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) するか [zipファイルをダウンロード](https://github.com/Elringus/NaninovelDemo/archive/master.zip) することができます。
+[Git clientでリポジトリをクローン](https://help.github.com/ja/github/creating-cloning-and-archiving-repositories/cloning-a-repository) するか [zipファイルをダウンロード](https://github.com/Elringus/NaninovelDemo/archive/master.zip) することができます。
 
 ::: warn
 プロジェクトに Naninovel パッケージは含まれないため、初めて開く際はコンパイルエラーが発生します。問題を解決するには、アセットストアから Naninovel をインポートします。
