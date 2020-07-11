@@ -41,12 +41,27 @@ module.exports = {
                 },
                 lastUpdated: 'Last Updated'
             },
+            '/ja/': {
+                selectText: '言語',
+                ariaLabel: '言語',
+                label: '日本語',
+                nav: [
+                    {text: 'FAQ', link: '/ja/faq/'},
+                    {text: 'ガイド', link: '/ja/guide/'},
+                    {text: 'コマンド', link: '/ja/api/'},
+                    {text: 'サポート', link: '/ja/support/'}
+                ],
+                sidebar: {
+                    '/ja/guide/': getGuideSidebar('ガイド', 'アドバンスド', 'エクステンション')
+                },
+                lastUpdated: '最終更新 日'
+            },
             '/zh/': {
                 selectText: '語言',
                 ariaLabel: '語言',
                 label: '中文',
                 nav: [
-                    {text: '常問問題', link: '/zh/faq/'},
+                    {text: 'FAQ', link: '/zh/faq/'},
                     {text: '指南', link: '/zh/guide/'},
                     {text: '指令', link: '/zh/api/'},
                     {text: '支持', link: '/zh/support/'}
@@ -76,9 +91,9 @@ module.exports = {
     plugins: [
         ['@vuepress/google-analytics', {ga: 'UA-62903242-4'}],
         ['@vuepress/last-updated', {dateOptions: {year: 'numeric', month: 'long', day: 'numeric'}}],
-        ['vuepress-plugin-container', {type: 'note', defaultTitle: {'/': 'NOTICE', '/ru/': 'ПРИМЕЧАНИЕ'}}],
-        ['vuepress-plugin-container', {type: 'example', defaultTitle: {'/': 'EXAMPLE', '/ru/': 'ПРИМЕР'}}],
-        ['vuepress-plugin-container', {type: 'warn', defaultTitle: {'/': 'WARNING', '/ru/': 'ВНИМАНИЕ'}}]
+        ['vuepress-plugin-container', {type: 'note', defaultTitle: {'/':'NOTICE', '/ja/':'通知', '/zh/':'注意', '/ru/':'ПРИМЕЧАНИЕ'}}],
+        ['vuepress-plugin-container', {type: 'example', defaultTitle: {'/':'EXAMPLE', '/ja/':'例', '/zh/':'例', '/ru/':'ПРИМЕР'}}],
+        ['vuepress-plugin-container', {type: 'warn', defaultTitle: {'/':'WARNING', '/ja/':'警告', '/zh/':'警告', '/ru/':'ВНИМАНИЕ'}}]
     ],
     markdown: {
         extendMarkdown: md => {
@@ -95,6 +110,11 @@ module.exports = {
             lang: 'en-US',
             title: 'Naninovel',
             description: 'A full-featured, writer-friendly and completely customizable visual novel extension for Unity game engine.'
+        },
+        '/ja/': {
+            lang: 'ja-JP',
+            title: 'Naninovel',
+            description: 'Unityゲームエンジン用のフル機能を備えた、ライター向けで完全にカスタマイズ可能なビジュアルノベル拡張。'
         },
         '/zh/': {
             lang: 'zh-CN',
