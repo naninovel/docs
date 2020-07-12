@@ -13,6 +13,7 @@ cd docs/.vuepress/dist
 echo 'naninovel.com' > CNAME
 
 git init
+git config --local core.autocrlf false
 git add -A
 git commit -m 'deploy'
 git push -f git@github.com:Elringus/NaninovelWeb.git master:gh-pages
