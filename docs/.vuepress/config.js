@@ -98,7 +98,15 @@ module.exports = {
     markdown: {
         extendMarkdown: md => {
             md.use(require('markdown-it-regexp')(/\[@(\w+?)]/, function(match, utils) {
-                return `<a href="/api/#${match[1].toLowerCase()}" class="" target="_blank"><code>@${match[1]}</code></a>`; }));
+                let url = `/api/#${match[1].toLowerCase()}`;
+                if (md.$data["links"] !== undefined) { // Prepend lang tag to the URL when under non-default locale.
+                    let route = md.$data["links"][0];
+                    if (route.startsWith("/ja/")) url = "/ja" + url;
+                    else if (route.startsWith("/zh/")) url = "/zh" + url;
+                    else if (route.startsWith("/ru/")) url = "/ru" + url;
+                }
+                return `<a href="${url}" class="" target="_blank"><code>@${match[1]}</code></a>`;
+            }));
             md.use(require('markdown-it-regexp')(/\[!(\w+?)]/, function(match, utils) {
                 return `<video class="video" loop autoplay muted><source src="https://i.gyazo.com/${match[1]}.mp4" type="video/mp4"></video>`; }));
             md.use(require('markdown-it-regexp')(/\[!!(.+?)]/, function(match, utils) {
