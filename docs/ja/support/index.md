@@ -14,7 +14,7 @@
 
 ## Issue Tracker
 
-上記の手順で問題を解決できなかった場合は、issue tracker](https://github.com/Elringus/NaninovelWeb/issues?q=is%3Aissue+label%3Abug) を確認してください。すでにその問題に取り組んでいるかもしれません。
+上記の手順で問題を解決できなかった場合は、[issue tracker](https://github.com/Elringus/NaninovelWeb/issues?q=is%3Aissue+label%3Abug) を確認してください。すでにその問題に取り組んでいるかもしれません。
 
 ## コミュニティフォーラム
 
