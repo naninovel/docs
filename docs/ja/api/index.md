@@ -581,7 +581,7 @@ You are victorious!
 ## goto
 
 #### 概要
-naninovelスクリプトの再生を指定したパスへ移動します。パスの先が別の（現在再生されていない）naninovelスクリプトの場合、コンフィグで [ResetStateOnLoad](https://naninovel.com/guide/configuration.html#state) が無効になっていない限り、目標のスクリプトをロードする前に [reset state](/ja/api/#resetState) を実行します。
+naninovelスクリプトの再生を指定したパスへ移動します。パスの先が別の（現在再生されていない）naninovelスクリプトの場合、コンフィグで [ResetStateOnLoad](https://naninovel.com/guide/configuration.html#state) が無効になっていない限り、目標のスクリプトをロードする前に [reset state](/ja/api/#resetstate) を実行します。
 
 #### パラメーター
 
