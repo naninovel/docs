@@ -108,15 +108,6 @@ Chat printer presents text inside message bubbles framed in a window with vertic
 
 ![Chat Printer](https://i.gyazo.com/3c04aecabe7f754ffc9ce5452eeba270.png)
 
-When using generic text lines and [@print] commands, the text in the target printer will reset (clear) by default. In case with chat printers, this will remove all the messages when a new one is added, which may not be desirable in most cases. Setting `reset` parameter to *false* will prevent clearing the printer, eg:
-
-```
-@print "Orci varius natoque penatibus." author:Kohaku reset:false
-@print "Integer ullamcorper fringilla ipsum a scelerisque." author:Yuko reset:false
-```
-
-— will print two messages without resetting the printer.
-
 ## Bubble Printer
 
 Bubble printers can be used for a manga/comic style of text presentation. 

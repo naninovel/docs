@@ -102,15 +102,6 @@ Morbi ultrices dictum diam, in gravida neque vulputate in.
 
 ![Chat Printer](https://i.gyazo.com/3c04aecabe7f754ffc9ce5452eeba270.png)
 
-一般テキストと [@print] コマンドを使っていると、ターゲットプリンターのテキストはデフォルトでリセット(クリア)されます。チャットプリンターの場合、新しいメッセージが追加されたときにすべてのメッセージが削除されます。これは、ほとんどの場合望ましくないでしょう。`reset` パラメータを *false* に設定すると、プリンタがクリアされなくなります。例:
-
-```
-@print "Orci varius natoque penatibus." author:Kohaku reset:false
-@print "Integer ullamcorper fringilla ipsum a scelerisque." author:Yuko reset:false
-```
-
-— これは2つのメッセージを、プリンターをリセットせずに表示します。
-
 ## 吹き出しプリンター
 
 吹き出しプリンターは、漫画/コミック風のテキスト表示に利用できます。
