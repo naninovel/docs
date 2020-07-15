@@ -1580,6 +1580,7 @@ ID | Type | Description
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">VoicePath</span> | String | Path to the voice clip to play.
 volume | Decimal | Volume of the playback.
 group | String | Audio mixer [group path](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) that should be used when playing the audio.
+authorId | String | ID of the character actor this voice belongs to.  When provided and [per-author volume](/guide/voicing.md#author-volume) is used, volume will be adjusted accordingly.
 
 </div>
 
