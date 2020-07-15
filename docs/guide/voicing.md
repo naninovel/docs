@@ -42,6 +42,16 @@ To simplify the process, when auto voicing feature is enabled, name of voice cli
 
 To open the debug window, make sure `Enable Development Console` is turned on in the engine configuration, then press `~` key while in play mode, type `debug` and press `Enter`.
 
+## Author Volume
+
+When using auto voicing, you may want to let players control voice volume for specific [characters](/guide/characters.md) or, more correctly, authors of the printed text messages. For example, a player may decide to mute voice of the main protagonist or make a specific character voice lower.
+
+To setup per-author voice control, [create a custom settings UI](/guide/user-interface.md#modifying-built-in-ui), add a new slider (you can duplicate "VoiceVolumeSlider" already present in the prefab) and specify author (character) ID in the `Author ID` field.
+
+![](https://i.gyazo.com/5a8db32ca5d971f2876f71d35f1a020c.png)
+
+The added slider will now control voice volume of the specified character. When nothing is assigned to the author ID field, the slider will control volume of the audio mixer's voice group, affecting all the voices.
+
 ## Voiceover Documents
 
 You can use voiceover documents generator utility accessible via `Naninovel -> Tools -> Voiceover Documents` to generate documents, containing printed text from the [@print] commands and generic text lines. Each printed text message will be associated with the auto voice clip name to be used with the auto voicing feature.
