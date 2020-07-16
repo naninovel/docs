@@ -42,6 +42,33 @@ To simplify the process, when auto voicing feature is enabled, name of voice cli
 
 To open the debug window, make sure `Enable Development Console` is turned on in the engine configuration, then press `~` key while in play mode, type `debug` and press `Enter`.
 
+## Auto Voice Mode
+
+The auto voicing workflow described above works best, when the voiceover is added after scenario scripts are finished. In case you wish to add voicing and modify scripts at the same time, you may find yourself constantly changing voice clip names to accommodate edits in the associated scripts.
+
+You may also wish to name and organize the voice clips in a custom manner, or refrain from using the `Resources` folder.
+
+`Content Hash` auto voice mode was added to address the above cases. You can set voice mode in the audio configuration menu via `Auto Voice Mode` dropdown; make sure `Enable Auto Voicing` property is enabled, otherwise the dropdown won't show.
+
+![](https://i.gyazo.com/5588b50df2f0c6af5522a950d550fe2d.png)
+
+In contrast to the default, content hash mode associates voice clips with the printed text and author ID, instead of script names, line and inline indexes (aka playback spots). The association is also performed manually via voice map utility.
+
+When the content hash mode is selected, an "Open Voice Map Utility" button will appear in the audio configuration menu; you can also access the utility via `Naninovel -> Tools -> Voice Map` editor menu.
+
+![](https://i.gyazo.com/23d1d5991df0f4c1c7bb6e7c245543ad.png)
+
+First, select script file for which to map the voice clips. If the selected script contains any print commands (or generic text lines), they will be listed in pairs with audio clip fields. Drop (or select) a voice clip via the field to associate voice with the text.
+
+::: warn
+When using content hash auto voice mode, make sure to store the voice clips outside of any "Resources" folders to prevent conflicts.
+:::
+
+If you then add, delete or reorder lines in the scripts, associations won't break. However, be aware, that changing printed text content will break association with the modified line.
+
+In cases same author have equal text messages (in the same or a different script), both messages will be associated with the same voice clip. If that is not desired, change one of the messages to be printed via [@print] command with an arbitrary `voiceId` parameter to differentiate the messages.
+
+
 ## Author Volume
 
 When using auto voicing, you may want to let players control voice volume for specific [characters](/guide/characters.md) or, more correctly, authors of the printed text messages. For example, a player may decide to mute voice of the main protagonist or make a specific character voice lower.
