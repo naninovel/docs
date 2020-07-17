@@ -56,7 +56,7 @@ In contrast to the default, content hash mode associates voice clips with the pr
 
 When the content hash mode is selected, an "Open Voice Map Utility" button will appear in the audio configuration menu; you can also access the utility via `Naninovel -> Tools -> Voice Map` editor menu.
 
-![](https://i.gyazo.com/23d1d5991df0f4c1c7bb6e7c245543ad.png)
+![](https://i.gyazo.com/3456bfd4b8874771d5b5ce76c4f06a64.png)
 
 First, select script file for which to map the voice clips. If the selected script contains any print commands (or generic text lines), they will be listed in pairs with audio clip fields. Drop (or select) a voice clip via the field to associate voice with the text.
 
