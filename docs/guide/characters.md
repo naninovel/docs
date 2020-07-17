@@ -264,6 +264,8 @@ While editing layered character prefab, it's possible to preview mapped composit
 
 Be aware, that the layer objects are not directly rendered by Unity cameras at runtime; instead, they're rendered once upon each composition (appearance) change to a temporary render texture, which is then fed to a custom mesh visible to the Naninovel camera. This setup is required to prevent semi-transparency overdraw issues and to support transition animation effects.
 
+In case you wish to apply an animation or other dynamic behaviour to the layered character, enable `Animated` property found on `Layered Actor Behaviour` component. When the property is enabled, the layers will be rendered each frame (instead once per appearance change).
+
 ## Generic Characters
 
 Generic character is the most flexible character actor implementation. It's based on a prefab with a `CharacterActorBehaviour` component attached to the root object. Appearance changes and all the other character parameters are routed as [Unity events](https://docs.unity3d.com/Manual/UnityEvents.html) allowing to implement the behavior of the underlying object in any way you wish.
