@@ -46,7 +46,7 @@ To open the debug window, make sure `Enable Development Console` is turned on in
 
 The auto voicing workflow described above works best, when the voiceover is added after scenario scripts are finished. In case you wish to add voicing and modify scripts at the same time, you may find yourself constantly changing voice clip names to accommodate edits in the associated scripts.
 
-You may also wish to name and organize the voice clips in a custom manner, or refrain from using the `Resources` folder.
+You may also wish to name and organize the voice clips in a custom manner, or refrain from using the ["Resources" folders](https://docs.unity3d.com/Manual/BestPracticeUnderstandingPerformanceInUnity6.html).
 
 `Content Hash` auto voice mode was added to address the above cases. You can set voice mode in the audio configuration menu via `Auto Voice Mode` dropdown; make sure `Enable Auto Voicing` property is enabled, otherwise the dropdown won't show.
 
