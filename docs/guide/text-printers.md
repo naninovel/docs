@@ -201,16 +201,15 @@ When creating custom TextMesh Pro font assets or materials, don't forget to appl
 
 Naninovel supports RTL text reveal effect in TMPro printers.
 
-[!685b93d64c6f39e4f376604dbd2596a0]
+[!38b9ec2bbf18dc6ee469c3fb452eae29]
 
 To use RTL text in a TMPro printer, do the following:
-
-1. Create a custom text printer.
-3. Apply `Naninovel/RevealableTMProText RTL` shader to the font material used by the printer.
+1. Create a custom TMPro text printer.
+3. Apply `Naninovel/RevealableTMProText RTL` shader to the [font material](http://digitalnativestudios.com/textmeshpro/docs/font/) used by the printer.
 3. Set `Enable RTL Editor` property in "Revealable TM Pro Text" component inside the printer.
-4. (Optionally) Enable `Fix Arabic Text` property on the same component.
+4. Optionally, enable `Fix Arabic Text` property on the same component.
 
-Be aware, that TMPro currently doesn't support automatic characters substitution, so you may have to use some third-praty tools; see the [forum thread](http://digitalnativestudios.com/forum/index.php?topic=462.0) for more info.
+![](https://i.gyazo.com/9dfc9fa47ad15b70691b992c4b1451bf.png)
 
 Don't forget to use a [compatible font](https://fonts.google.com/?subset=arabic&sort=popularity) and atlas configuration; here is an example:
 
@@ -223,6 +222,10 @@ Character Set: Unicode Range (Hex) with this Sequence:
 20-7E,600-603,60B-615,61B,61E-61F,621-63A,640-65E,660-6DC,6DF-6E8,6EA-6FF,750-76D,FB50-FBB1,FBD3-FBE9,FBFC-FBFF,FC5E-FC62,FD3E-FD3F,FDF2,FDFC,FE80-FEFC
 Font Render Mode: Distance Field 16
 ```
+
+::: note
+Be aware, that neither uGUI, nor TMPro [natively support Arabic text](http://digitalnativestudios.com/forum/index.php?topic=462.msg12139#msg12139). When `Fix Arabic Text` is enabled, Naninovel uses a modified version of [third party library](https://github.com/mnarimani/RTLTMPro) to correctly display Arabic text. You may need to use such third party tools to properly display the text on other UI components.
+:::
 
 ## Text Styles
 
