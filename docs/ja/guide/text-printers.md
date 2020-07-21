@@ -200,7 +200,7 @@ Hello World!
 
 TextMesh Proプリンターは、幅広い追加テキストタグをサポートしています。詳細については、[公式ドキュメント](http://digitalnativestudios.com/textmeshpro/docs/rich-text/) を参照してください。
 
-[ルビ](https://ja.wikipedia.org/wiki/%E3%83%AB%E3%83%93) (フリガナ)のサポートも、Naninovel's TextMesh Pro プリンターのカスタム `<ruby>` タグで提供しています。ルビを付けたい文字をルビタグで囲み、タグの中にルビを指定してください。例:
+[ルビ](https://ja.wikipedia.org/wiki/%E3%83%AB%E3%83%93) (フリガナ、振り仮名) のサポートも、Naninovel's TextMesh Pro プリンターのカスタム `<ruby>` タグで提供しています。ルビを付けたい文字をルビタグで囲み、タグの中にルビを指定してください。例:
 
 ```
 Lorem <ruby="VERY">ipsum</ruby> dolor sit amet.
