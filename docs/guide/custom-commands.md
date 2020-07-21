@@ -78,6 +78,33 @@ Another example of adding custom commands to add/remove items of an inventory sy
 Specifically, the command implementations are stored at [Runtime/Commands](https://github.com/Elringus/NaninovelInventory/tree/master/Assets/NaninovelInventory/Runtime/Commands) directory.
 :::
 
+## Overriding Built-In Command
+
+In some cases it could be useful to override built-in Naninovel commands. For example, you may want to change how [@print] commands work without adding a custom one, so that the change will also affect [generic text lines](/guide/naninovel-scripts.md#generic-text-lines) (text from the generic lines is parsed into the print commands under the hood).
+
+To override a built-in command, add a custom one and apply the same alias built-in command has. Reimport the naninovel scripts (right-click over a folder they're stored at, then click "Reimport") after overriding a command in order for the changes to take effect. The custom command will then automatically be used instead of the built-in one when playing a naninovel script.
+
+Below is an example of overriding built-in [@print] command, so that the printed text will be logged into the console before being revealed to the player.
+
+```csharp
+[CommandAlias("print")]
+public class MyCustomPrintCommand : PrintText
+{
+    public override UniTask ExecuteAsync (CancellationToken cancellationToken = default)
+    {
+        Debug.Log(Text);
+        return base.ExecuteAsync(cancellationToken);
+    }
+}
+```
+
+::: example
+Find a more useful example of overriding built-in commands [on the forum](https://forum.naninovel.com/viewtopic.php?f=8&t=53). An overridden and custom commands will allow changing reveal speed right inside generic text lines, eg: 
+```
+Yuko: [s 0.1] Print text 10 times slower than usual. [s 2] Print 2 times faster.
+```
+:::
+
 ## IDE Metadata
 
 When adding custom commands, you may notice that they're highlighted as errors in [IDE extensions](/guide/naninovel-scripts.md#ide-support). That is due to metadata of the custom commands is not available to the extensions. You can use custom commands tool to automatically generate the required metadata file over all the custom commands present in the project.
