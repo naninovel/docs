@@ -42,8 +42,8 @@ NamedBooleanListParameter | List&lt;NamedBoolean> | `Misaki.false,Kohaku.true`
 以下はカスタムコマンドの例です。naninovelスクリプトから `@HelloWorld` または `@hello` で呼び出し、`Hello World!` をコンソールに出力できます。また、worldの代わりにオプションの `name` パラメータ（例: `@hello name:Felix`）を受け取って挨拶することもできます。
 
 ```csharp
+using Naninovel;
 using Naninovel.Commands;
-using System.Threading;
 using UniRx.Async;
 using UnityEngine;
 
