@@ -78,7 +78,7 @@ T_Greeting3: Hi!
 @print {Random(T_Greeting1,T_Greeting2,T_Greeting3)}
 ```
 
-Of course, "Script" managed text document can be localized in the same way as the other documents; so when the user will select another locale, the text will automatically be referenced from the corresponding localized document.
+"Script" managed text document can be localized in the same way as the other documents; when user selects another locale, the text will automatically be referenced from the corresponding localized document.
 
 ## Localization
 
