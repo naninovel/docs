@@ -36,7 +36,6 @@ var prefabResource = await prefabLoader.LoadAsync(id + "/CubeBackground");
 
 ```csharp
 using Naninovel;
-using System.Threading;
 using UniRx.Async;
 using UnityEngine;
 

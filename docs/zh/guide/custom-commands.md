@@ -44,8 +44,8 @@ You can find scripts with all the built-in command implementations at `Naninovel
 Here is an example of a custom command, that can be invoked from naninovel scripts as `@HelloWorld` or `@hello` to print `Hello World!` to the console and can also take an optional `name` parameter (eg, `@hello name:Felix`) to greet the provided name instead of the world:
 
 ```csharp
+using Naninovel;
 using Naninovel.Commands;
-using System.Threading;
 using UniRx.Async;
 using UnityEngine;
 

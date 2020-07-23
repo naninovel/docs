@@ -36,7 +36,6 @@ Below is an example of a dummy `ICharacterActor` implementation, that does nothi
 
 ```csharp
 using Naninovel;
-using System.Threading;
 using UniRx.Async;
 using UnityEngine;
 
