@@ -108,7 +108,7 @@ To make writing scripts with large amounts of text more comfortable generic text
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 ```
 
-An author ID can be specified at the start of a generic text line separated by a column (`:`) to associate printed text with a [character actor](/guide/characters.md):
+An author ID can be specified at the start of a generic text line separated by a column (`:`) and a space to associate printed text with a [character actor](/guide/characters.md):
 
 ```
 Felix: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
