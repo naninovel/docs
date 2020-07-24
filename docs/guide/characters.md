@@ -163,6 +163,14 @@ Install the package via [Unity package manager](https://docs.unity3d.com/Manual/
 
 [!b54e9daa9a483d9bf7f74f0e94b2d38a]
 
+::: note
+Before installing a Git package, make sure the [Git client](https://git-scm.com) is installed on your machine and that you have added the Git executable path to the PATH system environment variable.
+:::
+
+When "SpriteDicing" extension is installed via UPM, a `Naninovel.DicedSpriteCharacter` option will appear in the character implementations list.
+
+![](https://i.gyazo.com/25360c9287a7b5a6a7feaba987a2bbb4.png)
+
 `DicedSpriteAtlas` assets containing character appearances are used as the resources for the diced sprite characters. Each appearance is mapped by name to the diced sprites contained in the atlas.
 
 Be aware, that some of diced character metadata properties (eg, pixels per unit, pivot) are controlled by the atlas asset; while the values in the character configuration are applied to a render texture used to represent the actual sprite. When changing the atlas properties, don't forget to rebuild it for changes to take effect.
