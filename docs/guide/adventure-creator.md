@@ -32,6 +32,20 @@ Use `Play Naninovel Script` custom AC action to (optionally) turn-off AC, initia
 
 Use `@turnOnAC` custom Naninovel command in a Naninovel script to enable AC, reset Naninovel engine state (optionally) and swap the cameras back (also optionally). State reset is controlled with `reset` and camera swap with `swapCameras` parameters.
 
+It's also possible to play a specific AC's action list after turning on AC (exiting Naninovel mode) via `@turnOnAC` command with `action` parameter. Eg, given we have the following dialogue options (or any other type of action list) game objects on the scene:
+
+![](https://i.gyazo.com/f743d9f61c995755271b602d09d8c6eb.png)
+
+We can play them after exiting Naninovel mode like the following:
+
+```
+; Will play "OnNaninovelExit1" action list after exiting Naninovel mode
+@turnOnAC action:OnNaninovelExit1
+
+; Will play "OnNaninovelExit2" action list after exiting Naninovel mode
+@turnOnAC action:OnNaninovelExit2
+```
+
 The following video demonstrates AC's demo scene integrated with Naninovel to handle a dialogue.
 
 [!!7tOIFZRSAec]
