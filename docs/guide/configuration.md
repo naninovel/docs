@@ -25,7 +25,8 @@ Default Master Volume | 1 | Master volume to set when the game is first started.
 Default Bgm Volume | 1 | BGM volume to set when the game is first started.
 Default Sfx Volume | 1 | SFX volume to set when the game is first started.
 Default Voice Volume | 1 | Voice volume to set when the game is first started.
-Enable Auto Voicing | False | When enabled, each `PrintText` command will attempt to play voice clip at `VoiceResourcesPrefix/ScriptName/LineIndex.ActionIndex`.
+Enable Auto Voicing | False | When enabled, each `@print` command will attempt to play an associated voice clip.
+Auto Voice Mode | Playback Spot | When auto voicing is enabled, controls method to associate voice clips with @print commands:<br> • Playback Spot — Voice clips are associated by script name, line and inline indexes (playback spot) of the @print commands. Works best when voicing is added after the scenario scripts are finished. Removing, adding or re-ordering scenario script lines will break the associations.<br> • Content Hash — Voice clips are associated manually via voice map utility by the printed text and author name. Works best when adding voicing before the scenario scripts are finished. Removing, adding or re-ordering scenario script lines won't break the associations. Modifying printed text in the scripts will break associations only with the modified commands.<br><br>Consult voicing documentation for more information and examples.
 Voice Overlap Policy | Prevent Overlap | Dictates how to handle concurrent voices playback:<br> • Allow Overlap — Concurrent voices will be played without limitation.<br> • Prevent Overlap — Prevent concurrent voices playback by stopping any played voice clip before playing a new one.<br> • Prevent Character Overlap — Prevent concurrent voices playback per character; voices of different characters (auto voicing) and any number of [@voice] command are allowed to be played concurrently.
 Custom Audio Mixer | Null | Audio mixer to control audio groups. When not provided, will use a default one.
 Master Volume Handle Name | Master Volume | Name of the mixer's handle (exposed parameter) to control master volume.
@@ -220,6 +221,7 @@ Property | Default Value | Description
 --- | --- | ---
 Skip Time Scale | 10 | Time scale to use when in skip (fast-forward) mode.
 Min Auto Play Delay | 3 | Minimum seconds to wait before executing next command while in auto play mode.
+Complete On Continue | True | Whether to instantly complete blocking (`wait:true`) commands performed over time (eg, animations, hide/reveal, tint changes, etc) when `Continue` input is activated.
 Show Debug On Init | False | Whether to show player debug window on engine initialization.
 
 </div>

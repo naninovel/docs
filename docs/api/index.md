@@ -951,6 +951,7 @@ default | Boolean | Whether to make the printer default and hide other printers 
 waitInput | Boolean | Whether to wait for user input after finishing the printing task.  Default value is controlled via `Auto Wait` property in the printer actor configuration menu.
 br | Integer | Number of line breaks to prepend before the printed text.  Default value is controlled via `Auto Line Break` property in the printer actor configuration menu.
 fadeTime | Decimal | Controls duration (in seconds) of the printers show and hide animations associated with this command.  Default value for each printer is set in the actor configuration.
+voiceId | String | Used by voice map utility to differentiate print commands with equal text within the same script.
 
 </div>
 
@@ -1061,7 +1062,8 @@ The process is asynchronous and is masked with a loading screen ([ILoadingUI](ht
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">Exclude</span> | List&lt;String&gt; | Name of the [engine services](https://naninovel.com/guide/engine-services.html) (interfaces) to exclude from reset.  Consider adding `ICustomVariableManager` to preserve the local variables.
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">Exclude</span> | List&lt;String&gt; | Names of the [engine services](https://naninovel.com/guide/engine-services.html) (interfaces) to exclude from reset.  Consider adding `ICustomVariableManager` to preserve the local variables.
+only | List&lt;String&gt; | Names of the [engine services](https://naninovel.com/guide/engine-services.html) (interfaces) to reset;  other services won't be affected. Doesn't have effect when the nameless (exclude) parameter is assigned.
 
 </div>
 
