@@ -80,6 +80,16 @@ Felix: My score is {GetPlayMakerGlobalVariable("Score")}.
 @endif
 ```
 
+To assign a PlayMaker's global variable value from Naninovel script, use `@pset` command as following:
+
+```
+; Assign "10" to PlayMaker's integer global variable named "Score"
+@pset name:Score value:10
+
+; Assign "Banana" at 10th index of "Groceries" PlayMaker's global array of strings
+@pset name:Groceries index:10 value:Banana
+```
+
 ## IDE Extension
 
 To add support for `@playmaker` command to [Atom IDE extension](/guide/naninovel-scripts.md#ide-support), open metadata file located at `%HOMEPATH%/.atom/packages/language-naniscript/server/metadata.json` (`%HOMEPATH%` is the path to your OS user directory) and add following record to `commands` array: 
