@@ -6,7 +6,7 @@ Custom variables can be created, modified and used both in naninovel scripts via
 
 For example, the following script command will assign a different value to `score` custom variable, based on the choice:
 
-```
+```nani
 @choice "I'm humble, one is enough..." set:score=1
 @choice "Two, please." set:score=2
 @choice "I'll take your entire stock!" set:score=999
@@ -14,7 +14,7 @@ For example, the following script command will assign a different value to `scor
 
 And the following one will re-route the script execution based on the value of the `score` variable:
 
-```
+```nani
 @goto MainRoute if:"score > 1 && score <= 900"
 @goto BadEnd if:score>900
 ```
@@ -35,7 +35,7 @@ It's possible to inject (inline) custom variable to naninovel script parameter v
 
 The following script will show an input field UI where user can enter an arbitrary text. Upon submit the entered text will be assigned to the specified custom variable.
 
-```
+```nani
 ; Allow user to enter an arbitrary text and assign it to `name` custom state variable
 @input name summary:"Choose your name."
 ; Stop command is required to halt script execution until user submits the input
@@ -51,7 +51,7 @@ Archibald: Greetings, {name}!
 
 You can inject the custom variables to any parameter values as long as the type allows. Eg, you can't assign a string (text) to an integer (number) parameter.
 
-```
+```nani
 @set PlayerName="Felix";PlayerYPosition=0.1;PlayerTint="lightblue"
 
 ; The following will produce an error, as `PlayerTint` is not a number.

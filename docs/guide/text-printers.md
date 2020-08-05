@@ -6,7 +6,7 @@ Printers' behavior can be configured using `Naninovel -> Configuration -> Printe
 
 In naninovel scripts, text printers are mostly controlled with [@print] and [@printer] commands:
 
-```
+```nani
 ; Will make the `Dialogue` printer default
 @printer Dialogue
 
@@ -85,7 +85,7 @@ Each print command handled by a fullscreen printer will prepend 2 line breaks be
 
 Below is an example on using fullscreen printer.
 
-```
+```nani
 ; Activate fullscreen printer.
 @printer Fullscreen
 
@@ -116,7 +116,7 @@ Bubble printers can be used for a manga/comic style of text presentation.
 
 The built-in bubble printer supports two appearances: "Left" and "Right", which can be used to align the direction of the printer based on which side it's positioned relative to the character.
 
-```
+```nani
 @printer Bubble.Left pos:42,80 visible:false time:0
 @show Bubble wait:false
 Misaki: Aliquam lobortis!
@@ -142,7 +142,7 @@ Expose the prefab to engine resources using the printer's manager GUI, which can
 
 You can now use the new text printer by activating it via [@printer] command and specifying actor ID you've set in the manager.
 
-```
+```nani
 @printer MyNewPrinter
 ```
 
@@ -186,7 +186,7 @@ Before using the TMPro printers, make sure you have TextMesh Pro installed in yo
 
 You can select the TMPro printers to route all the print commands to them using [@printer] command in naninovel scripts:
 
-```
+```nani
 ; Activate dialogue TMPro printer
 @printer TMProDialogue
 ; Print text using the activated printer
@@ -237,7 +237,7 @@ TextMesh Pro printers support a wide range of additional text tags. See the [off
 
 Support for [ruby](https://en.wikipedia.org/wiki/Ruby_character) (furigana) characters is additionally provided by the Naninovel's TextMesh Pro printers via custom `<ruby>` tag. Wrap the text above which the ruby characters should be placed with the ruby tag and specify the ruby text inside the tag, eg:
 
-```
+```nani
 Lorem <ruby="VERY">ipsum</ruby> dolor sit amet. 
 ```
 — "VERY" ruby text will appear right above "ipsum" word when the message is printed at runtime.

@@ -2,7 +2,7 @@
 
 When changing background and character appearances with [@back] and [@char] or performing scene transition with [@startTrans] and [@finishTrans] commands, you can additionally specify which transition effect to use. For example, following command will transition to "River" background using "DropFade" transition effect:
 
-```
+```nani
 @back River.DropFade
 ```
 
@@ -10,7 +10,7 @@ When no transition effect is specified a cross-fade is used by default.
 
 You can also specify duration of the transition (in seconds) with the `time` parameter:
 
-```
+```nani
 @back River.DropFade time:1.5
 ```
 
@@ -18,7 +18,7 @@ The above statement will transition to "River" background using "DropFade" trans
 
 In case you wish to skip to the next command immediately after executing the transition (and not wait for the duration of the effect), you can set `wait` parameter to `false`. E.g.:
 
-```
+```nani
 @back River.Ripple time:1.5 wait:false
 @bgm PianoTheme
 ```
@@ -26,14 +26,14 @@ In case you wish to skip to the next command immediately after executing the tra
 
 Some of the transition effects also support additional parameters, which you can control with `params` parameter:
 
-```
+```nani
 @back River.Ripple params:10,5,0.02
 ``` 
 — will set frequency of the ripple effect to 10, speed to 5 and amplitude to 0.02. When no `params` is specified, default parameters will be used.
 
 If you wish to modify selected parameters, you can skip others and they'll have their default values:
 
-```
+```nani
 @back River.Ripple params:,,0.02
 ``` 
 
@@ -41,7 +41,7 @@ All the transition parameters are of decimal type.
 
 The above examples work for characters as well, just provide the transition via a standalone `transition` parameter:
 
-```
+```nani
 @char CharID.Appearance transition:TransitionType params:...
 ```
 
@@ -58,7 +58,7 @@ Twist amount | 5
 Frequency | 10
 
 **Examples**
-```
+```nani
 ; Apply the transition with default parameters
 @back Appearance.BandedSwirl
 
@@ -76,7 +76,7 @@ Name |  Default
 Count | 6
 
 **Examples**
-```
+```nani
 ; Apply the transition with default parameters
 @back Appearance.Blinds
 
@@ -94,7 +94,7 @@ Name |  Default
 Fuzzy amount | 0.25
 
 **Examples**
-```
+```nani
 ; Apply the transition with default parameters
 @back Appearance.CircleReveal
 
@@ -107,7 +107,7 @@ Fuzzy amount | 0.25
 [!f09bb69a3c045eeb1f6c8ec0b9dcd790]
 
 **Examples**
-```
+```nani
 ; Apply the transition with default parameters
 @back Appearance.CircleStretch
 ```
@@ -117,7 +117,7 @@ Fuzzy amount | 0.25
 [!618ec451a9e10f70486db0bb4badbb71]
 
 **Examples**
-```
+```nani
 ; Apply the transition with default parameters
 @back Appearance.CloudReveal
 ```
@@ -127,7 +127,7 @@ Fuzzy amount | 0.25
 [!dc4781a577ec891065af1858f5fe2ed1]
 
 **Examples**
-```
+```nani
 ; Apply the transition with default parameters
 @back Appearance.Crossfade
 ```
@@ -137,7 +137,7 @@ Fuzzy amount | 0.25
 [!e27c8477842a2092728ea0cc1ae76bda]
 
 **Examples**
-```
+```nani
 ; Apply the transition with default parameters
 @back Appearance.Crumble
 ```
@@ -152,7 +152,7 @@ Name |  Default
 Step | 99999
 
 **Examples**
-```
+```nani
 ; Apply the transition with default parameters
 @back Appearance.Dissolve
 
@@ -165,7 +165,7 @@ Step | 99999
 [!3c3840bb311ccb9fe223960f2e46f800]
 
 **Examples**
-```
+```nani
 ; Apply the transition with default parameters
 @back Appearance.DropFade
 ```
@@ -182,7 +182,7 @@ Line Normal X | 0.5
 Line Normal Y | 0.5
 
 **Examples**
-```
+```nani
 ; Apply the transition with default parameters
 @back Appearance.LineReveal
 
@@ -195,7 +195,7 @@ Line Normal Y | 0.5
 [!0ac9339b21303e20c524aaf6b6ca95f4]
 
 **Examples**
-```
+```nani
 ; Apply the transition with default parameters
 @back Appearance.Pixelate
 ```
@@ -205,7 +205,7 @@ Line Normal Y | 0.5
 [!f8269fb68519c57c99643948a027a2a1]
 
 **Examples**
-```
+```nani
 ; Apply the transition with default parameters
 @back Appearance.RadialBlur
 ```
@@ -215,7 +215,7 @@ Line Normal Y | 0.5
 [!a401b3b93a61276ed68ededa2e75e9ae]
 
 **Examples**
-```
+```nani
 ; Apply the transition with default parameters
 @back Appearance.RadialWiggle
 ```
@@ -225,7 +225,7 @@ Line Normal Y | 0.5
 [!f6e685b13fe2d76733fd43878602eabc]
 
 **Examples**
-```
+```nani
 ; Apply the transition with default parameters
 @back Appearance.RandomCircleReveal
 ```
@@ -242,7 +242,7 @@ Speed | 10
 Amplitude | 0.5
 
 **Examples**
-```
+```nani
 ; Apply the transition with default parameters
 @back Appearance.Ripple
 
@@ -255,7 +255,7 @@ Amplitude | 0.5
 [!8d476f466858e4788e5ad6014d6db314]
 
 **Examples**
-```
+```nani
 ; Apply the transition with default parameters
 @back Appearance.RotateCrumble
 ```
@@ -265,7 +265,7 @@ Amplitude | 0.5
 [!ad6eb77b7065387b9cb9afd77adbc784]
 
 **Examples**
-```
+```nani
 ; Apply the transition with default parameters
 @back Appearance.Saturate
 ```
@@ -280,7 +280,7 @@ Name |  Default
 Speed | 200
 
 **Examples**
-```
+```nani
 ; Apply the transition with default parameters
 @back Appearance.Shrink
 
@@ -298,7 +298,7 @@ Name |  Default
 Slide amount | 1
 
 **Examples**
-```
+```nani
 ; Apply the transition with default parameters
 @back Appearance.SlideIn
 ```
@@ -314,7 +314,7 @@ Twist amount | 15
 Cell count | 10
 
 **Examples**
-```
+```nani
 ; Apply the transition with default parameters
 @back Appearance.SwirlGrid
 
@@ -332,7 +332,7 @@ Name |  Default
 Twist amount | 15
 
 **Examples**
-```
+```nani
 ; Apply the transition with default parameters
 @back Appearance.Swirl
 
@@ -345,7 +345,7 @@ Twist amount | 15
 [!7c684f9a122006f38a0be2725895b76f]
 
 **Examples**
-```
+```nani
 ; Apply the transition with default parameters
 @back Appearance.Water
 ```
@@ -355,7 +355,7 @@ Twist amount | 15
 [!b6eebcb68002064ababe4d7476139a7c]
 
 **Examples**
-```
+```nani
 ; Apply the transition with default parameters
 @back Appearance.Waterfall
 ```
@@ -372,7 +372,7 @@ Phase | 14
 Frequency | 20
 
 **Examples**
-```
+```nani
 ; Apply the transition with default parameters
 @back Appearance.Wave
 
@@ -392,7 +392,7 @@ You can make custom transitions based on a dissolve mask texture. Dissolve mask 
 
 To make a custom transition, use `Custom` transition mode and specify path (relative to project "Resources" folder) to the dissolve mask texture via the `dissolve` parameter, eg:
 
-```
+```nani
 @back Appearance.Custom dissolve:Textures/Spiral
 ```
 
@@ -444,7 +444,7 @@ fixed4 ApplyTransitionEffect(in sampler2D mainTex, in float2 mainUV, in sampler2
 
 You'll then be able to invoke the added transitions in the same way as the built-in ones, eg:
 
-```
+```nani
 @back Snow.MyCustom1
 @back River.MyCustom2
 ```

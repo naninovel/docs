@@ -42,7 +42,7 @@
 
 以下は、サンプルプロジェクトのスクリプトです:
 
-```
+```nani
 # Start
 
 Select an action.[skipInput]

@@ -2,7 +2,7 @@
 
 When writing naninovel scripts, you can inject expression constructs to command parameter values and generic text lines using curly braces `{}`:
 
-```
+```nani
 One plus two equals {1 + 2}.
 ```
 
@@ -10,14 +10,14 @@ One plus two equals {1 + 2}.
 
 You can use any math and logical operators, as well as all the math functions from the [UnityEngine.Mathf](https://docs.unity3d.com/ScriptReference/Mathf.html) and [System.Math](https://docs.microsoft.com/en-us/dotnet/api/system.math#methods) namespaces:
 
-```
+```nani
 @char Kohaku scale:{Pow(Cosh(33.5), 3) % Log(0.5)}
 ```
 — will scale character with ID "Kohaku" to the reminder from dividing hyperbolic cosine of 33.5 angle increased to power of 3 by natural logarithm of 0.5.
 
 The expression is evaluated at the moment the command is executed, which allows using [custom variables](/guide/custom-variables.md) inside the expressions:
 
-```
+```nani
 @input color summary:"What's your favorite color?"
 @stop
 {color}, huh? { color == "orange" ? "Mine too!" : (color == "black" ? "That's depressing." : "I see...") }
@@ -27,33 +27,33 @@ The expression is evaluated at the moment the command is executed, which allows 
 
 To distinguish a plain text value from a variable name, wrap the value in double quotes `"`:
 
-```
+```nani
 This is just a plain text: { "score" }.
 And this is the value of "score" variable: { score }.
 ```
 In case you wish to include the double quotes in the expression, escape them **twice**:
 
-```
+```nani
 Saying { \\"Stop the car\\" } was a mistake.
 ```
 
 Script expressions used in [@set] and [@if] commands (as well as `set` and `if` parameters in other commands), doesn't require curly braces:
 
-```
+```nani
 @set randomScore=Random(-100,100)
 @goto EpicLabel if:Abs(randomScore)>=50
 ```
 
 Though, just like with all the other parameter values, in case you wish to use spaces inside the expressions, you should wrap them in double quotes:
 
-```
+```nani
 @set "randomScore = Random(-100, 100)"
 @goto EpicLabel if:"Abs(randomScore) >= 50"
 ```
 
 To print curly braces inside a generic text line and prevent them from being recognized as an expression start and end literals, escape the braces with backslashes, eg:
 
-```
+```nani
 Some text \{ text inside braces \}
 ```
 

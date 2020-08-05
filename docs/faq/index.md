@@ -48,7 +48,7 @@ Use [command inlining](/guide/naninovel-scripts.md#command-inlining).
 
 Use positioning over z-axis, eg:
 
-```
+```nani
 ; Make Sora appear at the bottom-center and in front of Felix
 @char Sora pos:50,0,-1
 @char Felix pos:,,0
@@ -58,7 +58,7 @@ Use positioning over z-axis, eg:
 
 Set `visible:false` for the character you wish to hide; the avatar will remain visible, eg:
 
-```
+```nani
 @char CharId visible:false
 ```
 

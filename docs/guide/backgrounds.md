@@ -16,7 +16,7 @@ It's also possible to use [addressable asset system](/guide/resource-providers.m
 
 In naninovel scripts, backgrounds are mostly controlled with [@back] command:
 
-```
+```nani
 ; Set `River` as the appearance of the main background
 @back River
 
@@ -25,7 +25,7 @@ In naninovel scripts, backgrounds are mostly controlled with [@back] command:
 ```
 Backgrounds are handled a bit differently from characters to better accommodate traditional VN game flow. Most of the time you'll probably have a single background actor on scene, which will constantly transition to different appearances. To remove the hassle of repeating same actor ID in scripts, it's possible to provide only the background appearance and transition type (optional) as a nameless parameter assuming `MainBackground` actor should be affected. When this is not the case, ID of the background actor can be explicitly provided via the `id` parameter:
 
-```
+```nani
 ; Given a `CityVideo` background actor with `Night` and `Day` appearances (video clips)
 
 ; Show the video background playing day clip
@@ -46,7 +46,7 @@ Each background has `Poses` property allowing to specify named states (poses).
 
 Pose name can be used as appearance in [@back] command to apply all the parameters specified in the pose state at once, instead of specifying them individually via the command parameters.
 
-```
+```nani
 ; Given `Day` pose is defined for main background, 
 ; applies all the parameters specified in the pose state.
 @back Day
@@ -58,7 +58,7 @@ Pose name can be used as appearance in [@back] command to apply all the paramete
 
 Notice, that when a pose is used as appearance, you can still override individual parameters, eg:
 
-```
+```nani
 ; Given `Day` pose is defined for main background,
 ; applies all the parameters specified in the pose state,
 ; except tint, which is overridden in the command.
@@ -127,7 +127,7 @@ The layered backgrounds are very similar to [layered characters](/guide/characte
 
 Don't forget that nameless parameter in [@back] command is expecting appearance and transition type (not ID and appearance as with [@char] command), so specify layer composition expressions in the following way:
 
-```
+```nani
 ; Given "LayeredForest" background actor
 @back Group>Layer,Other/Group+Layer,-RootLayer.TransitionType id:LayeredForest
 ```
@@ -162,6 +162,6 @@ When assigning resources for a scene background actor, corresponding scene asset
 
 You can now use [@back] command to control the created scene background actor, eg:
 
-```
+```nani
 @back SceneName id:ActorId
 ```

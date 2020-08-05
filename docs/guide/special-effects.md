@@ -2,28 +2,28 @@
 
 Special effects are activated via [@spawn] command followed by the effect name. E.g.:
 
-```
+```nani
 @spawn ShakeBackground
 ```
 — will shake the main background.
 
 You can control parameters of the effect with `params` parameter. E.g.:
 
-```
+```nani
 @spawn ShakeCharacter params:Kohaku,1
 ```
 — will shake character with ID "Kohaku" once, instead of the default 3.
 
 It's possible to selectively specify a subset of the parameters, leaving the rest at the default values:
 
-```
+```nani
 @spawn ShakePrinter params:,,0.5
 ```
 — notice the first two parameters (printer ID and shake count) are skipped and will have their default values, but the third parameter (shake duration) is set to 0.5 seconds.
 
 You can update the effect parameters without re-starting it with the consequent [@spawn]  commands, eg:
 
-```
+```nani
 ; Start slowly shaking `Kohaku` character in a loop, 
 ; don't wait for completion (it's an infinite loop, anyway)
 @spawn ShakeCharacter params:Kohaku,0,,,0.1 wait:false
@@ -34,7 +34,7 @@ Kohaku: It's rumbling!
 
 Some effects are persistent by default and should be manually stopped with [@despawn] command. E.g.:
 
-```
+```nani
 ; Start the rain
 @spawn Rain
 ; Stop the rain
@@ -43,7 +43,7 @@ Some effects are persistent by default and should be manually stopped with [@des
 
 The [@despawn] commands of some effects can also receive parameters (eg, to control the fade-out duration), eg:
 
-```
+```nani
 ; Stops the rain gradually over 10 seconds
 @despawn Rain params:10
 ```
@@ -52,14 +52,14 @@ When no `params` is specified, default parameters will be used. You can find bot
 
 It's possible to start multiple effects of the same type by appending an ID delimited by `#` after the effect name, eg:
 
-```
+```nani
 ; Shake both `Kohaku` and `Yuko` in a loop
 @spawn ShakeCharacter#1 params:Kohaku,0 wait:false
 @spawn ShakeCharacter#2 params:Yuko,0 wait:false
 ```
 
 When stopping or updating instanced effects, don't forget to specify the ID:
-```
+```nani
 ; Stop shaking `Yuko`, increase `Kohaku` amplitude
 @despawn ShakeCharacter#2
 @spawn ShakeCharacter#1 params:k,0,,,1
@@ -87,7 +87,7 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 Be aware, that when UI is set to "Screen Space Overlay" mode, shake amplitude needs to be about x100 times the default one for a noticeable effect.
 
 **Examples**
-```
+```nani
 ; Shake a default printer with default params
 @spawn ShakePrinter
 
@@ -118,7 +118,7 @@ Shake horizontally | Boolean | false | Whether to displace the actor horizontall
 Shake vertically | Boolean | true | Whether to displace the actor vertically (by y-axis).
 
 **Examples**
-```
+```nani
 ; Shake main background with default params
 @spawn ShakeBackground
 
@@ -144,7 +144,7 @@ Shake horizontally | Boolean | false | Whether to displace the actor horizontall
 Shake vertically | Boolean | true | Whether to displace the actor vertically (by y-axis).
 
 **Examples**
-```
+```nani
 ; Shake `Kohaku` character with default parameters
 @spawn ShakeCharacter params:Kohaku
 
@@ -177,7 +177,7 @@ Shake horizontally | Boolean | false | Whether to displace the actor horizontall
 Shake vertically | Boolean | true | Whether to displace the actor vertically (by y-axis).
 
 **Examples**
-```
+```nani
 ; Shake the main Naninovel camera with default params
 @spawn ShakeCamera
 
@@ -203,7 +203,7 @@ Duration | Decimal | 1 | The duration of the effect, in seconds.
 Intensity | Decimal | 1 | The intensity of the effect, in 0.0 to 10.0 range.
 
 **Examples**
-```
+```nani
 ; Apply the glitch effect with default parameters
 @spawn DigitalGlitch
 ; Apply the effect over 3.33 seconds with a low intensity
@@ -229,7 +229,7 @@ Name | Type | Default | Description
 Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn rate from the target level to 0 over the specified time, in seconds.
 
 **Examples**
-```
+```nani
 ; Start intensive rain over 10 seconds
 @spawn Rain params:1500,10
 ; Stop the rain over 30 seconds
@@ -253,7 +253,7 @@ Name | Type | Default | Description
 Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn rate from the target level to 0 over the specified time, in seconds.
 
 **Examples**
-```
+```nani
 ; Start intensive snow over 10 seconds
 @spawn Snow params:300,10
 ; Stop the snow over 30 seconds
@@ -277,7 +277,7 @@ Name | Type | Default | Description
 Fade-out time | Decimal | 3 | The particle system will gradually lower the opacity from the target level to 0 over the specified time, in seconds.
 
 **Examples**
-```
+```nani
 ; Start intensive sunshine over 10 seconds
 @spawn SunShafts params:1,10
 ; Stop the sunshine over 30 seconds
@@ -303,7 +303,7 @@ Name | Type | Default | Description
 Stop Duration | Decimal | 1 | Fade-off (disable) duration for the effect parameters to reach default values where the effect is not visible.
 
 **Examples**
-```
+```nani
 ; Enable the effect with default parameters and lock focus to `Kohaku` game object
 @spawn DepthOfField params:Kohaku
 ; Fade-off (disable) the effect over 10 seconds
@@ -323,7 +323,7 @@ You can add a custom standalone effect (implemented via a prefab, like the "Rain
 
 For example, given there is a `Explosion.prefab` prefab assigned via the spawn manager, following commands will spawn and de-spawn (destroy) the prefab on scene:
 
-```
+```nani
 @spawn Explosion
 @despawn Explosion
 ```
@@ -346,19 +346,19 @@ You can toggle (enable if disabled and vice-versa) the added components via nani
 
 In our case the component's type name is `BloomImageEffect`. Use the type name to toggle this component at runtime like follows:
 
-```
+```nani
 @camera toggle:BloomImageEffect
 ```
 
 You can toggle multiple components at once by delimiting the type names with commas:
 
-```
+```nani
 @camera toggle:BloomImageEffect,Sepia,CameraNoise
 ```
 
 And in case you want to explicitly enable or disable a component:
 
-```
+```nani
 @camera set:BloomImageEffect.true,Sepia.false,CameraNoise.true
 ```
 

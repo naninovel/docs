@@ -20,7 +20,7 @@ Audio playback behavior can be configured using `Naninovel -> Configuration -> A
 
 Use [@bgm] command followed by the clip name to control the music playback in naninovel scripts:
 
-```
+```nani
 ; Starts playing a music track with the name `Sanctuary` in a loop
 @bgm Sanctuary
 
@@ -35,14 +35,14 @@ Music tracks are looped by default. When music track name is not specified in [@
 
 It's possible to play an intro followed by a loop with `intro` parameter, eg:
 
-```
+```nani
 ; Playes `BattleThemeIntro` once and then immediately `BattleThemeMain` in a loop.
 @bgm BattleThemeMain intro:BattleThemeIntro
 ```
 
 To stop a playing music track, use [@stopBgm] command followed by clip name. When clip name is not specified, the command will stop all the currently played tracks.
 
-```
+```nani
 ; Fades-out the `Promenade` music track over 10 seconds and stops the playback
 @stopBgm Promenade fade:10
 
@@ -54,7 +54,7 @@ To stop a playing music track, use [@stopBgm] command followed by clip name. Whe
 
 Use [@sfx] and [@stopSfx] commands followed by the clip name to control playback of the sound effects in naninovel scripts:
 
-```
+```nani
 ; Plays an SFX with the name `Explosion` once
 @sfx Explosion
 
@@ -69,7 +69,7 @@ Sound effect tracks are not looped by default. When sfx track name is not specif
 
 To stop a playing sound effect (no matter looped or not), use [@stopSfx] command followed by clip name. When clip name is not specified, the command will stop all the currently played SFX tracks.
 
-```
+```nani
 ; Stop playing an SFX with the name `Rain`, fading-out for 15 seconds.
 @stopSfx Rain fade:15
 
@@ -89,7 +89,7 @@ It's possible to assign a custom mixer asset, change groups used for each audio 
 
 To play an audio via a custom mixer group, specify group path with `group` parameter available in [@bgm], [@sfx] and [@voice] commands.
 
-```
+```nani
 ; Play `Noise` audio resource in loop via `Master/Ambient` mixer group.
 @sfx Noise loop:true group:Master/Ambient
 

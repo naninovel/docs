@@ -127,7 +127,7 @@ public class SwitchToAdventureMode : Command
 
 The commands can then be used in naninovel scripts:
 
-```
+```nani
 ; Switch to adventure mode.
 @adventure
 ```

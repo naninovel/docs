@@ -48,7 +48,7 @@ UIパーツ（ボタンまたはパネルレイアウトとスタイルの変更
 
 z-axis のポジションを使用してください。 例:
 
-```
+```nani
 ; Sora を Felix の手前かつ下中央に表示する。
 @char Sora pos:50,0,-1
 @char Felix pos:,,0
@@ -58,7 +58,7 @@ z-axis のポジションを使用してください。 例:
 
 キャラクターに `visible:false` を設定してください。アバターは表示されたままになります。例:
 
-```
+```nani
 @char CharId visible:false
 ```
 

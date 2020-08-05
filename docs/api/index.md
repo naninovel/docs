@@ -54,7 +54,7 @@ time | String | Duration of the animations per key, in seconds.  When a key valu
 </div>
 
 #### Example
-```
+```nani
 ; Animate `Kohaku` actor over three animation steps (key frames),
 ; changing positions: first step will take 1, second — 0.5 and third — 3 seconds.
 @animate Kohaku posX:50|0|85 time:1|0.5|3
@@ -98,7 +98,7 @@ author | String | ID of the actor, which should be associated with the appended 
 </div>
 
 #### Example
-```
+```nani
 ; Print first part of the sentence as usual (gradually revealing the message),
 ; then append the end of the sentence at once.
 Lorem ipsum
@@ -123,7 +123,7 @@ time | Decimal | Duration (in seconds) of the arrangement animation. Default val
 </div>
 
 #### Example
-```
+```nani
 ; Evenly distribute all the visible characters
 @arrange
 
@@ -164,7 +164,7 @@ time | Decimal | Duration (in seconds) of the modification. Default value: 0.35 
 </div>
 
 #### Example
-```
+```nani
 ; Set `River` as the appearance of the main background
 @back River
 
@@ -212,7 +212,7 @@ time | Decimal | Duration (in seconds) of the modification. Default value: 0.35 
 </div>
 
 #### Example
-```
+```nani
 ; Starts playing a music track with the name `Sanctuary` in a loop
 @bgm Sanctuary
 
@@ -244,7 +244,7 @@ author | String | ID of the actor, which should be associated with the appended 
 </div>
 
 #### Example
-```
+```nani
 ; Second sentence will be printed on a new line
 Lorem ipsum dolor sit amet.[br]Consectetur adipiscing elit.
 
@@ -276,7 +276,7 @@ time | Decimal | Duration (in seconds) of the modification. Default value: 0.35 
 </div>
 
 #### Example
-```
+```nani
 ; Offset over X-axis (pan) the camera by -3 units and offset over Y-axis by 1.5 units
 @camera offset:-3,1.5
 
@@ -330,7 +330,7 @@ time | Decimal | Duration (in seconds) of the modification. Default value: 0.35 
 </div>
 
 #### Example
-```
+```nani
 ; Shows character with ID `Sora` with a default appearance.
 @char Sora
 
@@ -378,7 +378,7 @@ time | Decimal | Duration (in seconds) of the fade-in (reveal) animation. Defaul
 </div>
 
 #### Example
-```
+```nani
 ; Print the text, then immediately show choices and stop script execution.
 Continue executing this script or ...?[skipInput]
 @choice "Continue"
@@ -428,7 +428,7 @@ Don't forget about cucumbers!
 Removes all the messages from [printer backlog](/guide/text-printers.md#printer-backlog).
 
 #### Example
-```
+```nani
 @clearBacklog
 ```
 
@@ -449,7 +449,7 @@ hide | Boolean | Whether to also hide the affected choice handlers.
 </div>
 
 #### Example
-```
+```nani
 ; Add choices and remove them after a set time (in case the player didn't pick one).
 # Start
 You have 2 seconds to respond![skipInput]
@@ -483,7 +483,7 @@ params | List&lt;String&gt; | Parameters to set before destoying the prefab.  Re
 </div>
 
 #### Example
-```
+```nani
 ; Given a "@spawn Rainbow" command was executed before
 @despawn Rainbow
 ```
@@ -552,7 +552,7 @@ reset | List&lt;String&gt; | When specified, will reset the engine services stat
 </div>
 
 #### Example
-```
+```nani
 ; Navigate the playback to the label `VictoryScene` in the currently played script,
 ; executes the commands and navigates back to the command after the `gosub`.
 @gosub .VictoryScene
@@ -599,7 +599,7 @@ reset | List&lt;String&gt; | When specified, will control whether to reset the e
 </div>
 
 #### Example
-```
+```nani
 ; Loads and starts playing a naninovel script with the name `Script001` from the start.
 @goto Script001
 
@@ -631,7 +631,7 @@ time | Decimal | Duration (in seconds) of the fade animation. Default value: 0.3
 </div>
 
 #### Example
-```
+```nani
 ; Given an actor with ID `SomeActor` is visible, hide (fade-out) it over 3 seconds.
 @hide SomeActor time:3
 
@@ -655,7 +655,7 @@ time | Decimal | Duration (in seconds) of the fade animation. Default value: 0.3
 </div>
 
 #### Example
-```
+```nani
 @hideAll
 ```
 
@@ -675,7 +675,7 @@ time | Decimal | Duration (in seconds) of the fade animation. Default value: 0.3
 </div>
 
 #### Example
-```
+```nani
 @hideChars
 ```
 
@@ -696,7 +696,7 @@ time | Decimal | Duration (in seconds) of the hide animation.  Default value for
 </div>
 
 #### Example
-```
+```nani
 ; Hide a default printer.
 @hidePrinter
 ; Hide printer with ID `Wide`.
@@ -724,7 +724,7 @@ time | Decimal | Duration (in seconds) of the hide animation.  When not specifie
 </div>
 
 #### Example
-```
+```nani
 ; Given a custom `Calendar` UI, the following command will hide it.
 @hideUI Calendar
 
@@ -747,7 +747,7 @@ time | Decimal | Duration (in seconds) of the hide animation.  When not specifie
 Holds script execution until user activates a `continue` input.  Shortcut for `@wait i`.
 
 #### Example
-```
+```nani
 ; User will have to activate a `continue` input after the first sentence
 ; for the printer to contiue printing out the following text.
 Lorem ipsum dolor sit amet.[i] Consectetur adipiscing elit.
@@ -790,7 +790,7 @@ play | Boolean | Whether to automatically resume script playback when user submi
 </div>
 
 #### Example
-```
+```nani
 ; Allow user to enter an arbitrary text and assign it to `name` custom state variable
 @input name summary:"Choose your name."
 ; Stop command is required to halt script execution until user submits the input
@@ -820,7 +820,7 @@ ID | Type | Description
 </div>
 
 #### Example
-```
+```nani
 ; Given auto voicing is disabled and lip sync is driven by text messages,
 ; exclude punctuation from the mouth animation.
 Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true]Consectetur adipiscing elit.
@@ -843,7 +843,7 @@ additive | Boolean | Whether to load the scene additively, or unload any current
 </div>
 
 #### Example
-```
+```nani
 ; Load scene "MyTestScene" in single mode
 @loadScene MyTestScene
 ; Load scene "MyTestScene" in additive mode
@@ -869,7 +869,7 @@ ID | Type | Description
 </div>
 
 #### Example
-```
+```nani
 @lock CG/FightScene1
 ```
 
@@ -892,7 +892,7 @@ gravity | Boolean | Whether to automatically move camera to the initial position
 </div>
 
 #### Example
-```
+```nani
 ; Activate camera look mode with default parameters
 @look
 
@@ -923,7 +923,7 @@ ID | Type | Description
 </div>
 
 #### Example
-```
+```nani
 ; Given an "Opening" video clip is added to the movie resources, plays it
 @movie Opening
 ```
@@ -956,7 +956,7 @@ voiceId | String | Used by voice map utility to differentiate print commands wit
 </div>
 
 #### Example
-```
+```nani
 ; Will print the phrase with a default printer.
 @print "Lorem ipsum dolor sit amet."
 
@@ -989,7 +989,7 @@ time | Decimal | Duration (in seconds) of the modification. Default value: 0.35 
 </div>
 
 #### Example
-```
+```nani
 ; Will make `Wide` printer default and hide any other visible printers.
 @printer Wide
 
@@ -1015,7 +1015,7 @@ set | List&lt;Named&lt;Boolean&gt;&gt; | Allows muting and un-muting individual 
 </div>
 
 #### Example
-```
+```nani
 ; Halt input processing of all the samplers
 @processInput false
 
@@ -1032,7 +1032,7 @@ set | List&lt;Named&lt;Boolean&gt;&gt; | Allows muting and un-muting individual 
 Prevents player from rolling back to the previous state snapshots.
 
 #### Example
-```
+```nani
 ; Prevent player from rolling back to try picking another choice.
 
 @choice "One" goto:.One
@@ -1068,7 +1068,7 @@ only | List&lt;String&gt; | Names of the [engine services](https://naninovel.com
 </div>
 
 #### Example
-```
+```nani
 ; Reset all the services.
 @resetState
 
@@ -1092,7 +1092,7 @@ ID | Type | Description
 </div>
 
 #### Example
-```
+```nani
 ; Clear the content of a default printer.
 @resetText
 ; Clear the content of a printer with ID `Fullscreen`.
@@ -1120,7 +1120,7 @@ reset | List&lt;String&gt; | When specified, will reset the engine services stat
 Automatically save the game to a quick save slot.
 
 #### Example
-```
+```nani
 @save
 ```
 
@@ -1143,7 +1143,7 @@ ID | Type | Description
 </div>
 
 #### Example
-```
+```nani
 ; Assign `foo` variable a `bar` string value
 @set foo="bar"
 
@@ -1215,7 +1215,7 @@ time | Decimal | Duration (in seconds) of the modification. Default value: 0.35 
 </div>
 
 #### Example
-```
+```nani
 ; Plays an SFX with the name `Explosion` once
 @sfx Explosion
 
@@ -1243,7 +1243,7 @@ time | Decimal | Duration (in seconds) of the fade animation. Default value: 0.3
 </div>
 
 #### Example
-```
+```nani
 ; Given an actor with ID `SomeActor` is hidden, reveal (fade-in) it over 3 seconds.
 @show SomeActor time:3
 
@@ -1268,7 +1268,7 @@ time | Decimal | Duration (in seconds) of the show animation.  Default value for
 </div>
 
 #### Example
-```
+```nani
 ; Show a default printer.
 @showPrinter
 ; Show printer with ID `Wide`.
@@ -1292,7 +1292,7 @@ time | Decimal | Duration (in seconds) of the show animation.  When not specifie
 </div>
 
 #### Example
-```
+```nani
 ; Given you've added a custom UI with prefab name `Calendar`,
 ; the following will make it visible on the scene.
 @showUI Calendar
@@ -1320,7 +1320,7 @@ ID | Type | Description
 </div>
 
 #### Example
-```
+```nani
 ; Enable skip mode
 @skip
 ; Disable skip mode
@@ -1333,7 +1333,7 @@ ID | Type | Description
 Can be used in generic text lines to prevent activating `wait for input` mode when the text is printed.
 
 #### Example
-```
+```nani
 ; Script player won't wait for `continue` input before executing the `@sfx` command.
 And the rain starts.[skipInput]
 @sfx Rain
@@ -1363,7 +1363,7 @@ time | Decimal | Duration (in seconds) of the slide animation. Default value: 0.
 </div>
 
 #### Example
-```
+```nani
 ; Given `Jenna` actor is not currenly visible, reveal it with a
 ; `Angry` appearance and slide to the center of the screen.
 @slide Jenna.Angry to:50
@@ -1397,7 +1397,7 @@ params | List&lt;String&gt; | Parameters to set when spawning the prefab.  Requi
 </div>
 
 #### Example
-```
+```nani
 ; Given an `Rainbow` prefab is assigned in spawn resources, instantiate it.
 @spawn Rainbow
 ```
@@ -1411,7 +1411,7 @@ Begins scene transition masking the real scene content with anything that is vis
 The UI will be hidden and user input blocked while the transition is in progress.  You can change that by overriding the `ISceneTransitionUI`, which handles the transition process.<br /><br />  For the list of available transition effect options see [transition effects](/guide/transition-effects.md) guide.
 
 #### Example
-```
+```nani
 ; Transition Felix on sunny day with Jenna on rainy day
 @char Felix
 @back SunnyDay
@@ -1433,7 +1433,7 @@ The UI will be hidden and user input blocked while the transition is in progress
 Stops the naninovel script execution.
 
 #### Example
-```
+```nani
 Show the choices and halt script execution until the player picks one.
 @choice "Choice 1"
 @choice "Choice 2"
@@ -1461,7 +1461,7 @@ fade | Decimal | Duration of the volume fade-out before stopping playback, in se
 </div>
 
 #### Example
-```
+```nani
 ; Fades-out the `Promenade` music track over 10 seconds and stops the playback
 @stopBgm Promenade fade:10
 
@@ -1489,7 +1489,7 @@ fade | Decimal | Duration of the volume fade-out before stopping playback, in se
 </div>
 
 #### Example
-```
+```nani
 ; Stop playing an SFX with the name `Rain`, fading-out for 15 seconds.
 @stopSfx Rain fade:15
 
@@ -1522,7 +1522,7 @@ printer | String | ID of the printer actor to use. Will use a default one when n
 </div>
 
 #### Example
-```
+```nani
 ; Print first two sentences in bold red text with 45px size,
 ; then reset the style and print the last sentence using default style.
 @style color=#ff0000,b,size=45
@@ -1541,7 +1541,7 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 Resets engine state and shows `ITitleUI` UI (main menu).
 
 #### Example
-```
+```nani
 @title
 ```
 
@@ -1564,7 +1564,7 @@ ID | Type | Description
 </div>
 
 #### Example
-```
+```nani
 @unlock CG/FightScene1
 ```
 
@@ -1602,7 +1602,7 @@ ID | Type | Description
 </div>
 
 #### Example
-```
+```nani
 ; "ThunderSound" SFX will play 0.5 seconds after the shake background effect finishes.
 @fx ShakeBackground
 @wait 0.5

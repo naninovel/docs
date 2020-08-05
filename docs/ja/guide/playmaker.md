@@ -39,7 +39,7 @@ PlayMakerアクションブラウザの "Naninovel" カテゴリに、カスタ�
 
 `@playmaker` コマンドを使用して、naninovelスクリプトからカスタムPlayMakerイベントをブロードキャストすることもできます:
 
-```
+```nani
 @playmaker EventName
 ```
 
@@ -47,7 +47,7 @@ PlayMakerアクションブラウザの "Naninovel" カテゴリに、カスタ�
 
 このコマンドでは、`fsm` および `object` パラメーターを使用して、特定のFSMにイベントを送信することもできます。最初のパラメーターは、イベントを受信するFSM名を指定します。例:
 
-```
+```nani
 @playmaker EventName fsm:Fsm1,Fsm2
 ```
 
@@ -55,7 +55,7 @@ PlayMakerアクションブラウザの "Naninovel" カテゴリに、カスタ�
 
 `object` パラメータが指定されている場合、イベントはFSMにのみ送信され、対応する名前を持つゲームオブジェクトに適用されます。例:
 
-```
+```nani
 @playmaker EventName object:Obj1,Obj2
 ```
 
@@ -70,7 +70,7 @@ Naninovelスクリプトから PlayMaker のグローバル変数にアクセス
  - `GetPlayMakerGlobalArray("variableName", arrayIndex)` — "variableName"という名前の配列変数のインデックス "arrayIndex" に格納されている値を取得します
 
 整数 "Score" と、bool配列のグローバルPlayMaker変数 "FinishedRoutes" がある場合、次のように Naninovel スクリプトで使用できます:
-```
+```nani
 Felix: My score is {GetPlayMakerGlobalVariable("Score")}.
 
 @if GetPlayMakerGlobalArray("FinishedRoutes",2)
