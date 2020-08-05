@@ -2,7 +2,7 @@
 
 naninovelスクリプトを作成するときは、中かっこ `{}`を使用して、式の構成をコマンドパラメーター値と一般テキスト行に挿入できます:
 
-```
+```nani
 One plus two equals {1 + 2}.
 ```
 
@@ -10,14 +10,14 @@ One plus two equals {1 + 2}.
 
 [UnityEngine.Mathf](https://docs.unity3d.com/ScriptReference/Mathf.html)および[System.Math](https://docs.microsoft.com/en-us/dotnet/api/system.math#methods) ネームスペースの数学関数に加えて、数式、論理演算子が使えます:
 
-```
+```nani
 @char Kohaku scale:{Pow(Cosh(33.5), 3) % Log(0.5)}
 ```
 — これは IDが "Kohaku" のキャラクターを、33.5度の双曲線コサインを3乗し、自然対数0.5で割ったもので拡大します:
 
 式はコマンドの実行時に評価され、式内で [カスタム変数](/ja/guide/custom-variables.md) を使用できます。
 
-```
+```nani
 @input color summary:"What's your favorite color?"
 @stop
 {color}, huh? { color == "orange" ? "Mine too!" : "I see..."}
@@ -27,33 +27,33 @@ One plus two equals {1 + 2}.
 
 プレーンテキスト値と変数名を区別するには、値を二重引用符 `"` で囲みます:
 
-```
+```nani
 This is just a plain text: { "score" }.
 And this is the value of "score" variable: { score }.
 ```
 式に二重引用符を含める場合は、 **2回** エスケープします:
 
-```
+```nani
 Saying { \\"Stop the car\\" } was a mistake.
 ```
 
 [@set] と [@if] コマンド(他のコマンドの `set` と `if` パラメーターも同様)の中で使われる式は、中かっこは必要ありません:
 
-```
+```nani
 @set randomScore=Random(-100,100)
 @goto EpicLabel if:Abs(randomScore)>=50
 ```
 
 ただし、他のすべてのパラメーター値と同様に、式内でスペースを使用する場合は、二重引用符で囲む必要があります:
 
-```
+```nani
 @set "randomScore = Random(-100, 100)"
 @goto EpicLabel if:"Abs(randomScore) >= 50"
 ```
 
 一般テキスト内に中かっこを表示し、式の開始/終了リテラルとして認識されないようにするには、中かっこをバックスラッシュでエスケープします。例:
 
-```
+```nani
 Some text \{ text inside braces \}
 ```
 

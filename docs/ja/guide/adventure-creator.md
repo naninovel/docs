@@ -28,7 +28,7 @@ ACで作成したゲームの会話シーンとして Naninovel を使用する�
 
 ## 使い方
 
- `Play Naninovel Script` のカスタムACアクションを使用して（任意）ACをオフにし、必要な場合 Naninovel エンジンを初期化します。そして指定した Naninovelスクリプトをロードします。 デフォルトでは、ACカメラと Naninovel カメラも自動的に入れ替わりますが、 `Swap Cameras` プロパティを無効にすることで防ぐことができます。
+`Play Naninovel Script` のカスタムACアクションを使用して（任意）ACをオフにし、必要な場合 Naninovel エンジンを初期化します。そして指定した Naninovelスクリプトをロードします。 デフォルトでは、ACカメラと Naninovel カメラも自動的に入れ替わりますが、 `Swap Cameras` プロパティを無効にすることで防ぐことができます。
 
 Naninovelスクリプトの `@turnOnAC` カスタムコマンドを使用してACを有効にし、Naninovelエンジンの状態をリセットし（任意）、カメラを元に戻します（任意）。状態のリセットは  `reset` で制御され、カメラの入れ替えは `swapCameras` パラメーターで制御されます。
 

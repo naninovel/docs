@@ -39,7 +39,7 @@ Some of the essential Naninovel events can be automatically routed to PlayMaker 
 
 It's also possible to broadcast custom PlayMaker events from naninovel scripts using `@playmaker` command:
 
-```
+```nani
 @playmaker EventName
 ```
 
@@ -47,7 +47,7 @@ It's also possible to broadcast custom PlayMaker events from naninovel scripts u
 
 The command also allows sending events to specific FSMs by using `fsm` and `object` parameters. The first parameter allows specifying FSM names, which should receive the event, eg: 
 
-```
+```nani
 @playmaker EventName fsm:Fsm1,Fsm2
 ```
 
@@ -55,7 +55,7 @@ The command also allows sending events to specific FSMs by using `fsm` and `obje
 
 When `object` parameter is specified, the event will only be sent to FSMs, that are applied to game objects, which has corresponding names, eg:
 
-```
+```nani
 @playmaker EventName object:Obj1,Obj2
 ```
 
@@ -70,7 +70,7 @@ It's possible to access a global PlayMaker variable in Naninovel scripts with th
  - `GetPlayMakerGlobalArray("variableName", arrayIndex)` — retrieves a value stored at "arrayIndex" index of an array variable with the "variableName" name
 
 Given you have a "Score" integer and "FinishedRoutes" bool array global PlayMaker variables, you can use them in Naninovel scripts as follow:
-```
+```nani
 Felix: My score is {GetPlayMakerGlobalVariable("Score")}.
 
 @if GetPlayMakerGlobalArray("FinishedRoutes",2)
@@ -82,7 +82,7 @@ Felix: My score is {GetPlayMakerGlobalVariable("Score")}.
 
 To assign a PlayMaker's global variable value from Naninovel script, use `@pset` command as following:
 
-```
+```nani
 ; Assign "10" to PlayMaker's integer global variable named "Score"
 @pset name:Score value:10
 

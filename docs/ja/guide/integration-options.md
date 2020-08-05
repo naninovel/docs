@@ -131,7 +131,7 @@ public class SwitchToAdventureMode : Command
 
 これでこのコマンドがnaninovel スクリプトで使用できるようになります:
 
-```
+```nani
 ; アドベンチャーモードに切り替え。
 @adventure
 ```

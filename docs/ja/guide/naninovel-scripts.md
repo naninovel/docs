@@ -26,7 +26,7 @@ naninovelスクリプトの各行はステートメントを表し、コマン�
 
 コマンド識別子は大文字と小文字を区別しません。次のステートメントはすべて有効で、同じ `AutoSave` コマンドを呼び出します:
 
-```
+```nani
 @save
 @Save
 @AutoSave
@@ -37,19 +37,19 @@ naninovelスクリプトの各行はステートメントを表し、コマン�
 
 ほとんどのコマンドには、コマンドの効果を定義するパラメーターがいくつかあります。パラメーターはコマンドリテラルの後に定義される、コロン(`:`)で区切られたKey-Value論理式です。パラメーター識別子（キー）は、コマンド実装クラスの対応するパラメーターフィールドの名前または、パラメーターのエイリアス（ `CommandParameter` 属性の `alias` プロパティで定義されている場合）のいずれかです。
 
-```
+```nani
 @commandId paramId:paramValue
 ```
 
 [@hideChars] コマンドを考えてみましょう。このコマンドは、シーンに表示されているすべてのキャラクターを非表示にします。次のように使用できます:
 
-```
+```nani
 @hideChars
 ```
 
 `time` *少数* パラメーターを使用して、キャラクターがフェードアウトして完全に非表示になる（シーンから削除される）までの時間を制御できます:
 
-```
+```nani
 @hideChars time:5.5
 ```
 
@@ -57,7 +57,7 @@ naninovelスクリプトの各行はステートメントを表し、コマン�
 
 また、`wait` *Boolean* パラメーターを使用して、次のコマンドをすぐに実行するか、現在のコマンドの完了を待つかを指定できます:
 
-```
+```nani
 @hideChars time:5.5 wait:false
 @hidePrinter
 ```
@@ -83,7 +83,7 @@ List<>| 上記のタイプのいずれかの値をコンマで区切ったリス
 
 たとえば、[@bgm] コマンドは、再生する音楽トラックの名前を無名パラメーターで指定しています。
 
-```
+```nani
 @bgm PianoTheme
 ```
 ここでの "PianoTheme" は、"BgmPath" *String* パラメータの値です。
@@ -104,25 +104,25 @@ List<>| 上記のタイプのいずれかの値をコンマで区切ったリス
 
 大量のテキストを含むスクリプトを快適に作成するには、一般テキストラインを使用します。先頭が事前定義されたステートメントリテラルでなければ、行は一般テキストステートメントと見なされます。
 
-```
+```nani
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 ```
 
 話者のIDをコロン (`:`)で区切られた一般テキストの先頭に指定して、表示テキストを[キャラクターアクター](/ja/guide/characters.md)に関連付けることができます:
 
-```
+```nani
 Felix: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 ```
 
 表示テキストに関連付けられているキャラクターの外観を常に変更したいときは、話者のIDの後に外観を指定して入力を簡略化することもできます。
 
-```
+```nani
 Felix.Happy: Lorem ipsum dolor sit amet.
 ```
 
 上記の行は以下の2行と同じ意味です:
 
-```
+```nani
 @char Felix.Happy wait:false
 Felix: Lorem ipsum dolor sit amet.
 ```
@@ -133,7 +133,7 @@ Felix: Lorem ipsum dolor sit amet.
 
 中括弧(`[`,`]`) を使用して、一般テキストにコマンド ([組み込み](/ja/api/)と[カスタム](/ja/guide/custom-commands.md)どちらも) を挿入（インライン化）することができます:
 
-```
+```nani
 Felix: Lorem ipsum[char Felix.Happy pos:0.75 wait:false] dolor sit amet, consectetur adipiscing elit.[i] Aenean tempus eleifend ante, ac molestie metus condimentum quis.[i][br 2] Morbi nunc magna, consequat posuere consectetur in, dapibus consectetur lorem. Duis consectetur semper augue nec pharetra.
 ```
 
@@ -141,20 +141,20 @@ Felix: Lorem ipsum[char Felix.Happy pos:0.75 wait:false] dolor sit amet, consect
 
 内部では、一般テキストは、インラインインデックスで識別される個々のコマンドにパースされます。 テキストは [@print] コマンドで表示されます。たとえば、次のnaninovelスクリプトの一般テキスト:
 
-```
+```nani
 Lorem ipsum[char Felix.Happy pos:75 wait:false] dolor sit amet.
 ```
 
 — は、実際には個々のコマンドのシーケンスとしてエンジンで処理されます:
 
-```
+```nani
 @print "Lorem ipsum" waitInput:false
 @char Felix.Happy pos:75 wait:false
 @print "dolor sit amet."
 ```
 
 一般テキスト上で角括弧を実際に表示するには、バックスラッシュでエスケープします。 例:
-```
+```nani
 Some text \[ text inside brackets \]
 ```
 
@@ -164,19 +164,19 @@ Some text \[ text inside brackets \]
 
 ラベルは、[@goto] コマンドでnaninovelスクリプトをジャンプするときに"アンカー"として使用されます。 ラベルを定義するには、行の先頭に `#` リテラルを記述し、ラベル名を続けます:
 
-```
+```nani
 # Epilogue
 ```
 
 [@goto] コマンドでその行にジャンプできます:
 
-```
+```nani
 @goto ScriptName.Epilogue
 ```
 
 指定先のラベルと同じスクリプト内から [@goto] コマンドを使用する場合は、スクリプト名を省略できます:
 
-```
+```nani
 @goto .Epilogue
 ```
 
@@ -185,7 +185,7 @@ Some text \[ text inside brackets \]
 
 セミコロン (`;`) で始まる行は、コメントとみなされます。コメント行は、スクリプトが解析されるときエンジンで完全に無視されます。コメント行を使用して、naninovelスクリプトを使用する自分や他のチームメンバーに、メモまたは注釈を追加できます。
 
-```
+```nani
 ; 次のコマンドはゲームをオートセーブします。
 @save
 ```
@@ -194,7 +194,7 @@ Some text \[ text inside brackets \]
 
 スクリプトはデフォルトでは順番に実行されますが、すべてのコマンドでサポートしている `if` パラメーターを使用して分岐を導入できます。
 
-```
+```nani
 ; `level`の値が数値かつ、9000より大きい場合は、選択肢を追加。
 @choice "It's over 9000!" if:level>9000
 
@@ -219,7 +219,7 @@ Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
 
 [@if] [@else] [@elseif] [@endif] コマンドで、複数行に条件分岐を記述することもできます。
 
-```
+```nani
 @if score>10
 	Good job, you've passed the test!
 	@bgm Victory
@@ -239,7 +239,7 @@ Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
 
 一般テキストで同じことをします:
 
-```
+```nani
 Lorem ipsum dolor sit amet. [if score>10]Duis efficitur imperdiet nunc. [else]Vestibulum sit amet dolor non dolor placerat vehicula.[endif]
 ```
 

@@ -55,7 +55,7 @@ time | String | キーごとのアニメーションの継続時間(秒単位)�
 </div>
 
 #### 例
-```
+```nani
 ; `Kohaku` アクターを三段階のキーフレームでアニメーション化
 ; ポジションの変更: 一段階目で1秒、二段階目で0.5秒、三段階目で3秒。
 @animate Kohaku posX:50|0|85 time:1|0.5|3
@@ -99,7 +99,7 @@ author | String | アクターのID。追加するテキストと関連付ける
 </div>
 
 #### 例
-```
+```nani
 ; 通常どおりに文の最初を表示し（グラデーションでメッセージを表示）、
 ; 次に文末を一度に追加します。
 Lorem ipsum
@@ -124,7 +124,7 @@ time | Decimal | 整列時のアニメーション継続時間(秒単位)。デ�
 </div>
 
 #### 例
-```
+```nani
 ; 表示キャラクターを全て均等に配置
 @arrange
 
@@ -165,7 +165,7 @@ time | Decimal | 継続時間(秒単位)。デフォルト値: 0.35秒。
 </div>
 
 #### 例
-```
+```nani
 ; メイン背景の外観に `River` を設定。
 @back River
 
@@ -213,7 +213,7 @@ time | Decimal | 継続時間(秒単位)。デフォルト値: 0.35秒。
 </div>
 
 #### 例
-```
+```nani
 ; 音楽トラック `Sanctuary` のループ再生を開始。
 @bgm Sanctuary
 
@@ -245,7 +245,7 @@ author | String | アクターのID。追加する改行に関連付ける必要
 </div>
 
 #### 例
-```
+```nani
 ; 2番目の文を改行して表示
 Lorem ipsum dolor sit amet.[br]Consectetur adipiscing elit.
 
@@ -277,7 +277,7 @@ time | Decimal | 継続時間(秒単位)。デフォルト値: 0.35秒。
 </div>
 
 #### 例
-```
+```nani
 
 ; X軸(パン)に対してカメラのオフセットを -3 ユニット、Y軸に対してオフセットを 1.5 ユニットに設定。
 @camera offset:-3,1.5
@@ -332,7 +332,7 @@ time | Decimal | 継続時間(秒単位)。デフォルト値: 0.35秒。
 </div>
 
 #### 例
-```
+```nani
 ; キャラクターID `Sora` をデフォルトの外観で表示。
 @char Sora
 
@@ -379,7 +379,7 @@ time | Decimal | フェードイン(表示)の継続時間(秒単位)。デフ�
 </div>
 
 #### 例
-```
+```nani
 ; テキストを表示し、すぐに選択肢を表示してスクリプトの実行を停止。
 ; このスクリプトの実行を続けるかそれとも、...？[skipInput]
 @choice "Continue"
@@ -423,7 +423,7 @@ Don't forget about cucumbers!
 [テキストバックログ](/ja/guide/text-printers.md#テキストバックログ) から全てのメッセージを削除。
 
 #### 例
-```
+```nani
 @clearBacklog
 ```
 
@@ -444,7 +444,7 @@ hide | Boolean | 影響を受けるプリンターも非表示にするかどう
 </div>
 
 #### 例
-```
+```nani
 ; 選択肢を追加し、プレーヤーが選択しなかった場合は設定時間後に選択肢を削除。
 # Start
 You have 2 seconds to respond![skipInput]
@@ -478,7 +478,7 @@ params | List&lt;String&gt; | プレハブを破棄する前に設定するパ�
 </div>
 
 #### 例
-```
+```nani
 ; "@spawn Rainbow" を事前に実行しています
 @despawn Rainbow
 ```
@@ -547,7 +547,7 @@ reset | List&lt;String&gt; | 指定すると、スクリプトを読み込む前
 </div>
 
 #### 例
-```
+```nani
 ; 現在再生されているスクリプトのラベル `VictoryScene` に移動し、
 ; コマンドを実行し、 `gosub` の後のコマンドに戻ります。
 @gosub .VictoryScene
@@ -595,7 +595,7 @@ reset | List&lt;String&gt; | 指定すると、スクリプトを読み込む前
 </div>
 
 #### 例
-```
+```nani
 ; `Script001` というnaninovelスクリプトをロードして最初から再生を開始します。
 @goto Script001
 
@@ -628,7 +628,7 @@ time | Decimal | フェードアニメーションの継続時間(秒単位)。�
 </div>
 
 #### 例
-```
+```nani
 ; ID `SomeActor` のアクターが表示されているとき、3秒かけて非表示（フェードアウト）にする。
 @hide SomeActor time:3
 
@@ -652,7 +652,7 @@ time | Decimal | フェードアニメーションの継続時間(秒単位)。�
 </div>
 
 #### 例
-```
+```nani
 @hideAll
 ```
 
@@ -672,7 +672,7 @@ time | Decimal | フェードアニメーションの継続時間(秒単位)。�
 </div>
 
 #### 例
-```
+```nani
 @hideChars
 ```
 
@@ -693,7 +693,7 @@ time | Decimal | 非表示アニメーションの継続時間(秒単位) 。 �
 </div>
 
 #### 例
-```
+```nani
 ; デフォルトのプリンターを非表示にする。
 @hidePrinter
 ; ID `Wide` のプリンターを非表示にする。
@@ -721,7 +721,7 @@ time | Decimal | 非表示アニメーションの継続時間(秒単位)。指�
 </div>
 
 #### 例
-```
+```nani
 ; カスタムの `Calendar` UIがあり、次のコマンドでそれを非表示にします。
 @hideUI Calendar
 
@@ -745,7 +745,7 @@ time | Decimal | 非表示アニメーションの継続時間(秒単位)。指�
 ユーザーが `続行` 操作を入力するまでスクリプトの実行を停止します。`@wait i` のショートカット。
 
 #### 例
-```
+```nani
 ; ユーザーは最初の文の後で `続行` 操作を入力する必要があります。
 ; そうするとプリンターが次のテキストを表示します。
 Lorem ipsum dolor sit amet.[i] Consectetur adipiscing elit.
@@ -788,7 +788,7 @@ play | Boolean | ユーザーが入力フォームを送信したときにスク
 </div>
 
 #### 例
-```
+```nani
 ; ユーザーに任意のテキストを入力させ、それをカスタムステート変数 `name` に割り当てます。
 @input name summary:"Choose your name."
 ; ユーザーが入力を送信するまでスクリプトの実行を停止させるため、停止コマンドが必要です
@@ -818,7 +818,7 @@ ID | タイプ | 説明
 </div>
 
 #### 例
-```
+```nani
 ; 自動アテレコ機能は無効になっており、口パクがテキストメッセージによって起動されているとします。
 ; 口パクアニメーションから句読点を除外します。
 Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true]Consectetur adipiscing elit.
@@ -841,7 +841,7 @@ additive | Boolean | シーンを追加でロードするか、現在ロード�
 </div>
 
 #### 例
-```
+```nani
 ; シーン "MyTestScene" をシングルモードでロード。
 @loadScene MyTestScene
 ; シーン "MyTestScene" を追加モードでロード。
@@ -867,7 +867,7 @@ ID | タイプ | 説明
 </div>
 
 #### 例
-```
+```nani
 @lock CG/FightScene1
 ```
 
@@ -890,7 +890,7 @@ gravity | Boolean | ルック入力がアクティブでない場合（たとえ
 </div>
 
 #### 例
-```
+```nani
 ; デフォルトのパラメータでカメラのルックモードを起動。
 @look
 
@@ -921,7 +921,7 @@ ID | タイプ | 説明
 </div>
 
 #### 例
-```
+```nani
 ; ビデオクリップ "Opening" がムービーリソースに追加されており、それを再生。
 @movie Opening
 ```
@@ -953,7 +953,7 @@ fadeTime | Decimal | このコマンドに紐づいているプリンターの�
 </div>
 
 #### 例
-```
+```nani
 ; デフォルトのプリンターで文章を表示。
 @print "Lorem ipsum dolor sit amet."
 
@@ -986,7 +986,7 @@ time | Decimal | 継続時間(秒単位)。デフォルト値: 0.35秒。
 </div>
 
 #### 例
-```
+```nani
 ; `Wide` プリンターをデフォルトにし、他の表示中のプリンターを非表示にします。
 @printer Wide
 
@@ -1011,7 +1011,7 @@ ID | タイプ | 説明
 </div>
 
 #### 例
-```
+```nani
 ; 入力処理を停止。
 @processInput false
 ; 入力処理を再開。
@@ -1024,7 +1024,7 @@ ID | タイプ | 説明
 プレーヤーが前の状態のスナップショットに巻き戻しできないようにします。
 
 #### 例
-```
+```nani
 ; ユーザーが巻き戻しで他の選択肢を選ぶことをさせないようにする。
 
 @choice "One" goto:.One
@@ -1060,7 +1060,7 @@ ID | タイプ | 説明
 </div>
 
 #### 例
-```
+```nani
 ; 全てのサービスをリセット。
 @resetState
 
@@ -1084,7 +1084,7 @@ ID | タイプ | 説明
 </div>
 
 #### 例
-```
+```nani
 ; デフォルトプリンターの内容をクリア。
 @resetText
 ; IDが `Fullscreen` のプリンタのコンテンツをクリア。
@@ -1113,7 +1113,7 @@ reset | List&lt;String&gt; | 指定すると、gosubが入力された元のス�
 ゲームをクイックセーブスロットに自動的に保存します。
 
 #### 例
-```
+```nani
 @save
 ```
 
@@ -1137,7 +1137,7 @@ ID | タイプ | 説明
 </div>
 
 #### 例
-```
+```nani
 ; 変数 `foo` にストリング値 `bar` を割り当てる。
 @set foo="bar"
 
@@ -1209,7 +1209,7 @@ time | Decimal | 継続時間(秒単位)。デフォルト値: 0.35秒。
 </div>
 
 #### 例
-```
+```nani
 ; `Explosion` という名前の効果音を一度だけ再生する。
 @sfx Explosion
 
@@ -1237,7 +1237,7 @@ time | Decimal | フェードアニメーションの継続時間(秒単位)。�
 </div>
 
 #### 例
-```
+```nani
 ; `SomeActor` というIDのアクターがあり非表示になっている時、3秒かけて表示(フェードイン)します。
 @show SomeActor time:3
 
@@ -1262,7 +1262,7 @@ time | Decimal | 表示アニメーションの継続時間(秒単位) 。各プ
 </div>
 
 #### 例
-```
+```nani
 ; デフォルトのプリンターを表示。
 @showPrinter
 ; IDが `Wide` のプリンターを表示。
@@ -1287,7 +1287,7 @@ time | Decimal | 表示アニメーションの継続時間(秒単位) 。指定
 </div>
 
 #### 例
-```
+```nani
 ; `Calendar` というプレハブ名のカスタムUIを追加したとすると、
 ; 次のようにすると、シーンに表示されます。
 @showUI Calendar
@@ -1315,7 +1315,7 @@ ID | タイプ | 説明
 </div>
 
 #### 例
-```
+```nani
 ; スキップモードを有効にする。
 @skip
 ; スキップモードを無効にする。
@@ -1328,7 +1328,7 @@ ID | タイプ | 説明
 一般テキストで使用して、テキストの表示時に `入力待ち` モードをアクティブにしないようにします。
 
 #### 例
-```
+```nani
 ; スクリプトプレーヤーは、`continue` 入力を待たずに `@sfx` コマンドを実行します。
 And the rain starts.[skipInput]
 @sfx Rain
@@ -1358,7 +1358,7 @@ time | Decimal | スライドアニメーションの継続時間(秒単位)。�
 </div>
 
 #### 例
-```
+```nani
 ; アクター `Jenna` が現在非表示であるとして、
 ; `Angry` 外観と共に画面中央にスライドして表示します。
 @slide Jenna.Angry to:50
@@ -1392,7 +1392,7 @@ params | List&lt;String&gt; | プレハブを生成するときに設定する�
 </div>
 
 #### 例
-```
+```nani
 ; `Rainbow` プレハブが生成リソースに追加されているとして、それをインスタンス化します。
 @spawn Rainbow
 ```
@@ -1406,7 +1406,7 @@ params | List&lt;String&gt; | プレハブを生成するときに設定する�
 トランジションの進行中、UIは非表示になり、ユーザー入力はブロックされます。変更するには、トランジションプロセスを処理する `ISceneTransitionUI` を上書きします。<br /><br /> 利用可能なトランジションエフェクトのリストについては、[トランジションエフェクト](/ja/guide/transition-effects.md) ガイドをご覧ください。
 
 #### 例
-```
+```nani
 ; 晴れの日のFelixから雨の日のJennaへトランジションする。
 @char Felix
 @back SunnyDay
@@ -1428,7 +1428,7 @@ params | List&lt;String&gt; | プレハブを生成するときに設定する�
 naninovelスクリプトの実行を停止します。
 
 #### 例
-```
+```nani
 Show the choices and halt script execution until the player picks one.
 @choice "Choice 1"
 @choice "Choice 2"
@@ -1456,7 +1456,7 @@ fade | Decimal | 再生停止時のボリュームフェードアウトの時間
 </div>
 
 #### 例
-```
+```nani
 ; 音楽トラック `Promenade` を10秒かけてフェードアウトし、再生停止する。
 @stopBgm Promenade fade:10
 
@@ -1484,7 +1484,7 @@ fade | Decimal | 再生停止時のボリュームフェードアウトの時間
 </div>
 
 #### 例
-```
+```nani
 ; 効果音 `Rain` を15秒かけてフェードアウトして停止する。
 @stopSfx Rain fade:15
 
@@ -1517,7 +1517,7 @@ printer | String | 使用するプリンターアクターのID。指定しな�
 </div>
 
 #### 例
-```
+```nani
 ; 最初の2つの文章を、45ピクセル、太字、赤いテキストで表示します。
 ; 次にスタイルをリセットし、デフォルトのスタイルで最後の文章を表示します。
 @style color=#ff0000,b,size=45
@@ -1536,7 +1536,7 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 エンジンのステートをリセットし、`ITitleUI` UI（メインメニュー）を表示します。
 
 #### 例
-```
+```nani
 @title
 ```
 
@@ -1559,7 +1559,7 @@ ID | タイプ | 説明
 </div>
 
 #### 例
-```
+```nani
 @unlock CG/FightScene1
 ```
 
@@ -1596,7 +1596,7 @@ ID | タイプ | 説明
 </div>
 
 #### 例
-```
+```nani
 ; 背景を揺らしたあと、効果音 "ThunderSound" を0.5秒再生する。
 @fx ShakeBackground
 @wait 0.5

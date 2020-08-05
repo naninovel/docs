@@ -6,7 +6,7 @@
 
 たとえば以下のスクリプトコマンドは、選択に基づいて、カスタム変数 `score` に異なる値を割り当てます:
 
-```
+```nani
 @choice "I'm humble, one is enough..." set:score=1
 @choice "Two, please." set:score=2
 @choice "I'll take your entire stock!" set:score=999
@@ -14,7 +14,7 @@
 
 次のコードは、`score` 変数の値に基づいてスクリプトの実行を再ルーティングします：
 
-```
+```nani
 @goto MainRoute if:"score > 1 && score <= 900"
 @goto BadEnd if:score>900
 ```
@@ -35,7 +35,7 @@
 
 次のスクリプトは、ユーザーが任意のテキストを入力できる入力フィールドUIを示しています。送信すると、入力したテキストが指定したカスタム変数に割り当てられます。
 
-```
+```nani
 ; ユーザーに任意のテキストを入力させ、それをカスタムステート変数 `name` に割り当てます。
 @input name summary:"Choose your name."
 ; ユーザーが入力を送信するまでスクリプトの実行を停止させるため、停止コマンドが必要です
@@ -51,7 +51,7 @@ Archibald: Greetings, {name}!
 
 使用可能なタイプであれば、カスタム変数を任意のパラメーター値に挿入できます。文字列（テキスト）を整数（数値）パラメータに割り当てることはできません。
 
-```
+```nani
 @set PlayerName="Felix";PlayerYPosition=0.1;PlayerTint="lightblue"
 
 ; 以下はエラーになります。`PlayerTint` は数値ではないためです。

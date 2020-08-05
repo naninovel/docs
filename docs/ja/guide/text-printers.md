@@ -6,7 +6,7 @@
 
 naninovelスクリプトでは、テキストプリンターは基本的に [@print] コマンドと [@printer] コマンドで制御します:
 
-```
+```nani
 ; `Dialogue` プリンターをデフォルトにする。
 @printer Dialogue
 
@@ -79,7 +79,7 @@ Felix: Lorem ipsum dolor sit amet.
 
 以下は、フルスクリーンプリンターの使用例です。
 
-```
+```nani
 ; フルスクリーンプリンターを起動。
 @printer Fullscreen
 
@@ -110,7 +110,7 @@ Morbi ultrices dictum diam, in gravida neque vulputate in.
 
 組み込みの吹き出しプリンターは、"Left" と "Right" の2つの外観をサポートしています。これらは、キャラクター対してどちらの側に配置するか、プリンターの向きを揃えるために使用できます。
 
-```
+```nani
 @printer Bubble.Left pos:42,80 visible:false time:0
 @show Bubble wait:false
 Misaki: Aliquam lobortis!
@@ -136,7 +136,7 @@ Nanikun: Integer nec maximus elit, eget posuere risus.
 
 これで、[@printer] コマンドから新しいプリンターを起動できます。コマンドにはマネージャーで設定したアクターIDを指定します。
 
-```
+```nani
 @printer MyNewPrinter
 ```
 
@@ -180,7 +180,7 @@ TMProプリンターを使う前に、UnityプロジェクトにTextMesh Proが�
 
 TMProプリンターを選択して、naninovelスクリプトで [@printer] コマンドを使用してすべての表示コマンドをルーティングすることができます:
 
-```
+```nani
 ; TMPro プリンターダイアログを起動
 @printer TMProDialogue
 ; 起動したプリンターを使用してテキストを表示
@@ -202,7 +202,7 @@ TextMesh Proプリンターは、幅広い追加テキストタグをサポー�
 
 [ルビ](https://ja.wikipedia.org/wiki/%E3%83%AB%E3%83%93) (フリガナ、振り仮名) のサポートも、Naninovel's TextMesh Pro プリンターのカスタム `<ruby>` タグで提供しています。ルビを付けたい文字をルビタグで囲み、タグの中にルビを指定してください。例:
 
-```
+```nani
 Lorem <ruby="VERY">ipsum</ruby> dolor sit amet.
 ```
 — メッセージがランタイムで表示されると、"VERY" というルビが、"ipsum" という文字の真上に表示されます。

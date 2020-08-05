@@ -16,7 +16,7 @@
 
 naninovel スクリプトでは、キャラクターは基本的に [@char] コマンドで操作します:
 
-```
+```nani
 ; `Sora` という名前のキャラクターをデフォルトの外観で表示。
 @char Sora
 
@@ -36,7 +36,7 @@ naninovel スクリプトでは、キャラクターは基本的に [@char] コ�
 
 ポーズ名を [@char] コマンドの外観として使用すると、コマンドパラメーターで個別に指定する代わりに、ポーズステートで指定されたすべてのパラメーターを一度に適用できます。
 
-```
+```nani
 ; `SuperAngry` ポーズが `Kohaku` キャラクターに定義されているとして、
 ; ポーズステートで指定されたすべてのパラメータを適用します。
 @char Kohaku.SuperAngry
@@ -47,7 +47,7 @@ naninovel スクリプトでは、キャラクターは基本的に [@char] コ�
 
 ポーズを外観として使用する場合でも、個々のパラメータは上書きできます。例：
 
-```
+```nani
 ; `SuperAngry` ポーズが `Kohaku` キャラクターに定義されているとして、
 ; ポーズステートで指定されたすべてのパラメータを色味を除いて適用します。
 ; 色味はコマンドで上書きします。
@@ -66,7 +66,7 @@ naninovelスクリプトでは、表示名をカスタム変数と紐付け、�
 
 これでスクリプトで変数の値を変更できます。これにより、表示名も変更されます:
 
-```
+```nani
 @set PlayerName="Mistery Man"
 Player: ...
 
@@ -76,7 +76,7 @@ Player: You can call me Dr. Stein.
 
 名前の紐付け機能を使うと、 [@input] コマンドでプレイヤーに表示名を入力させることもできます:
 
-```
+```nani
 @input PlayerName summary:"Choose your name."
 @stop
 Player: You can call me {PlayerName}.
@@ -88,11 +88,11 @@ Player: You can call me {PlayerName}.
 
 以下の動画で表示名とメッセージカラーの使い方を解説しています。
 
-[!!u5B5s]
+[!!u5B5s-X2Bw0]
 
 ## アバターテクスチャ
 
- [@char] コマンドの `avatar` パラメーターを使って、キャラクターにアバターテクスチャを設定できます。アバターは、キャラクターに紐付けられたテキストメッセージを表示するときに、対応できるテキストプリンターで表示されます。現在、 `Wide` と `Chat` のテキストプリンターのみがアバター機能をサポートしています。
+[@char] コマンドの `avatar` パラメーターを使って、キャラクターにアバターテクスチャを設定できます。アバターは、キャラクターに紐付けられたテキストメッセージを表示するときに、対応できるテキストプリンターで表示されます。現在、 `Wide` と `Chat` のテキストプリンターのみがアバター機能をサポートしています。
 
 ![](https://i.gyazo.com/83c091c08846fa1cab8764a8d4dddeda.png)
 
@@ -106,7 +106,7 @@ Player: You can call me {PlayerName}.
 
 これで、次のように特定のアバターテクスチャを表示できます。:
 
-```
+```nani
 @char CharacaterId avatar:AvatarName
 ```
 
@@ -117,7 +117,7 @@ Player: You can call me {PlayerName}.
 **アバターはキャラクターの外観と直接繋がっておらず** シーンにキャラクターを表示する方法ではないことに注意してください。キャラクターのリソースマネージャーで設定された外観は、シーン内での実際のキャラクター表示です。アバターは独立した機能で、対応しているテキストプリンターに任意の画像を"挿入"するものです。
 
  [@char] コマンドの `visible` パラメータを `false` に設定することで、キャラクターのアバターのみをテキストプリンター内に表示しキャラクター自体は非表示にすることができます。例:
-```
+```nani
 @char CharacaterId visible:false
 ```
 
@@ -201,27 +201,27 @@ Player: You can call me {PlayerName}.
 
 たとえば、 "Miho" のキャラクターを考えてみましょう。 "Miho" は "Body" グループを持っていて "Uniform"、 "SportSuit"、 "Pajama" の3つのレイヤーが含まれています。"Uniform" レイヤーを有効にして他のレイヤーをすべて無効にするには、次のコマンドを記述します:
 
-```
+```nani
 @char Miho.Body>Uniform
 ```
 
 グループ内の他のレイヤーに影響を与えずにレイヤーを有効または無効にするには、 ">" の代わりに "+" と "-" をそれぞれ使用します。また、複数の構成式をコンマで分割して指定することもできます:
 
-```
+```nani
 ; メガネを有効に、帽子を無効にし、感情は "Cool" を選択。
 @char CharId.Head/Accessories+BlackGlasses,Head-Hat,Head/Emotions>Cool
 ```
 
 グループ外のレイヤー（ルートプレハブの子オブジェクト）を選択するには、グループの部分をスキップします。例:
 
-```
+```nani
 ; "Halo" レイヤーオブジェクトがルートプレハブの下にあり、それを無効にする。
 @char CharId.-Halo
 ```
 
 構成式でレイヤー名を省略することで、グループ内のすべてのレイヤーに適用させることもできます（さらに、select式を使用すると隣接レイヤーに適用されます）:
 
-```
+```nani
 ; "Body/Decoration" グループ内のレイヤーを全て無効にする。
 @char CharId.Body/Decoration-
 
@@ -251,7 +251,7 @@ Player: You can call me {PlayerName}.
 
 — これでキーを使用して、レイヤー化されたアクターの外観を指定できます:
 
-```
+```nani
 ; `Body>Uniform,Hair/Back>Straight,Hair/Front>Straight,Shoes>Grey` を適用する。
 @char Miho.Uniform
 ; `Hair/Back>Straight,Hair/Front>Straight` を適用する。
@@ -290,7 +290,7 @@ Live2D キャラクターの実装は、[Live2D Cubism](https://www.live2d.com) 
 
 実装に使用される Live2D モデルプレハブには、ルートオブジェクトに紐付けられた `Live2DController` コンポーネントが必要です。外観の変更は、[SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) コマンドの外観がトリガー名であるため、アニメーターコンポーネントにルーティングされます。たとえば、Live2Dキャラクタープレハブ "Kaori" があり、"Surprise" という名前のトリガーを呼び出したい場合は、次のコマンドを使用します:
 
-```
+```nani
 @char Kaori.Surprise
 ```
 

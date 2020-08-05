@@ -74,7 +74,7 @@ T_Greeting3: Hi!
 
 — you can reference the values with:
 
-```
+```nani
 @print {Random(T_Greeting1,T_Greeting2,T_Greeting3)}
 ```
 
@@ -92,7 +92,7 @@ To update the managed text documents and their corresponding localization counte
 
  See [Localization](/guide/localization.md) for more info on how to use the localization utility.
 
- ::: example
+::: example
 You can find an example localization setup (including managed text) in the [demo project](/guide/getting-started.md#demo-project). Feel free to use it as a reference in case having issues setting up localization in your own project.
 :::
 

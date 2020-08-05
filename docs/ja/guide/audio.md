@@ -20,7 +20,7 @@ BGMおよびSFXリソースを追加、編集、または削除するには、 `
 
 [@bgm] コマンドの後にクリップの名前を続けることで、naninovel スクリプトで音楽の再生を制御できます:
 
-```
+```nani
 ; 音楽トラック `Sanctuary` のループ再生を開始。
 @bgm Sanctuary
 
@@ -35,14 +35,14 @@ BGMおよびSFXリソースを追加、編集、または削除するには、 `
 
  `intro` パラメーターを入れることで、ループ再生の前にイントロを再生することができます。例:
 
-```
+```nani
 ; `BattleThemeIntro` を一回だけ再生し、その後すぐに `BattleThemeMain` をループ再生する。
 @bgm BattleThemeMain intro:BattleThemeIntro
 ```
 
 音楽トラックの再生を停止するには、 [@stopBgm] コマンドの後にクリップ名を続けてください。クリップ名が指定されていない場合は、再生中の全てのトラックを停止します。
 
-```
+```nani
 ; 音楽トラック `Promenade` を10秒かけてフェードアウトし、再生停止する。
 @stopBgm Promenade fade:10
 
@@ -54,7 +54,7 @@ BGMおよびSFXリソースを追加、編集、または削除するには、 `
 
 [@sfx] と [@stopSfx] コマンドの後にクリップ名を記述して、naninovel スクリプトで効果音の再生を制御します:
 
-```
+```nani
 ; `Explosion` という名前の効果音を一度だけ再生する。
 @sfx Explosion
 
@@ -69,7 +69,7 @@ BGMおよびSFXリソースを追加、編集、または削除するには、 `
 
 ループの有無にかかわらず、再生中のサウンド効果を停止するには、 [@stopSfx] コマンドに続けてクリップ名を記述します。 クリップ名が指定されていない場合、再生中のすべての効果音トラックを停止します。
 
-```
+```nani
 ; 効果音 `Rain` を15秒かけてフェードアウトして停止する。
 @stopSfx Rain fade:15
 
@@ -89,7 +89,7 @@ Naninovelは、BGM、SFX、および音声チャネルを別々に再生する�
 
 カスタムミキサーグループでオーディオを再生するには、 `group` パラメーターでグループパスを指定してください。[@bgm]、 [@sfx]、 [@voice] コマンドで有効です。
 
-```
+```nani
 ; `Master/Ambient` ミキサーグループを使って `Noise` オーディオをループ再生する。
 @sfx Noise loop:true group:Master/Ambient
 
@@ -101,7 +101,7 @@ Naninovelは、BGM、SFX、および音声チャネルを別々に再生する�
 
 C# スクリプトで `IAudioManager` [エンジンサービス](/ja/guide/engine-services.md) を介して、現在使用中のオーディオミキサーを取得できます
 
-```
+```csharp
 var audioManager = Engine.GetService<IAudioManager>();
 var audioMixer = audioManager.AudioMixer;
 ```
