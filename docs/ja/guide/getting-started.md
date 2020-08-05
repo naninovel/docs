@@ -182,7 +182,7 @@ Kohaku.Happy: Hello World!
 メイン背景以外を参照するには（たとえば、複数の背景を互いに重ね合わせたい場合）、アクターのIDを指定します。たとえばメインのアクターの他にIDが `Flower`の背景アクターがあるとして、次のコマンドでその外観を "Bloomed" に変更し、次に "Withered" に変更します:
 
 ```nani
-@back Flower id:Flower
+@back Bloomed id:Flower
 @back Withered id:Flower
 ```
 
