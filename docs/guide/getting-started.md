@@ -182,7 +182,7 @@ This will transition "City" to "School" using "RadialBlur" transition effect.
 To reference a background other then the main one (eg, in case you wish to compose multiple backgrounds on top of each other), specify ID of the actor. For example, given a background actor with ID `Flower` exists beside the main one, following commands will change its appearance to "Bloomed" and then to "Withered":
 
 ```nani
-@back Flower id:Flower
+@back Bloomed id:Flower
 @back Withered id:Flower
 ```
 
