@@ -38,7 +38,7 @@ Press "Generate" button to create (update) the localization resources.
 
 Script localization documents consists of statements in the following format:
 
-```
+```nani
 # ID
 ; Source text
 Translation text
@@ -52,7 +52,7 @@ You're expected to put the actual translation right after the comment line with 
 
 Here is an example translation of a generic text line:
 
-```
+```nani
 # f63f03ea
 ; Yuko: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut ultricies enim, id venenatis arcu. Nullam rhoncus eros eu ante vulputate tempus.
 Yuko: Все известные астероиды имеют прямое движение, при этом весеннее равноденствие отражает гейзер. Уравнение времени однократно. Большая Медведица, оценивая блеск освещенного металлического шарика, пространственно притягивает первоначальный метеорный дождь.
@@ -60,7 +60,7 @@ Yuko: Все известные астероиды имеют прямое дв�
 
 In case the translation takes too much space, you can break it into separate commands:
 
-```
+```nani
 # f63f03ea
 ; Yuko: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut ultricies enim, id venenatis arcu. Nullam rhoncus eros eu ante vulputate tempus.
 Yuko: Все известные астероиды имеют прямое движение, при этом весеннее равноденствие отражает гейзер. Уравнение времени однократно.
@@ -69,7 +69,7 @@ Yuko: Большая Медведица, оценивая блеск освещ�
 
 You're expected to include any inlined commands present in the source statement to the translation:
 
-```
+```nani
 # b53b395d
 ; Kohaku: Qui ante molestie sit tempor felis.[br 2][char Kohaku.Casual/Angry][style #ff0000,bold,45]Adipiscing elit?[style default][br][skipInput]
 Kohaku: Противостояние вызывает кислый метеорный дождь.[br 2][char Kohaku.Casual/Angry][style #ff0000,bold,45]Меандр разрушаем?[style default][br][skipInput]

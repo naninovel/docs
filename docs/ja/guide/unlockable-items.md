@@ -4,11 +4,11 @@
 
 各収集アイテムは、アイテムがロック解除されているかどうかを、文字列識別子とブール値で表します。naninovelスクリプトでは、[@unlock] コマンドと [@lock] コマンドを使用して、特定のIDのアイテムをそれぞれロック解除およびロックします。例:
 
-```
+```nani
 @unlock SecretAchievement
 ```
 — これはアイテム `SecretAchievement` をロック解除し、
-```
+```nani
 @lock SecretAchievement
 ```
 — 再びロックします。
@@ -51,7 +51,7 @@ CGアイテムをギャラリーに追加するには、パスに `CG` を付け
 
 たとえば、上の図で追加された `CG/Map` アイテムのロックを解除するには、次のスクリプトコマンドを使用します:
 
-```
+```nani
 @unlock CG/Map
 ```
 
@@ -86,6 +86,6 @@ Tip4ID: Tip 4 Title | Tip 4 Category |
 テキスト管理ドキュメント `Tips.txt` に少なくとも1つのヒントレコードがある場合、メインメニューとコントロールパネルに "TIPS" ボタンが表示され、Tips画面が表示されます。
 
 naninovelスクリプトでTipレコードをロック解除するには、[@unlock] コマンドと [@lock] コマンドに続けてTip IDを記述します(常にプリフィックス `Tip1ID` を前に付ける必要があります)。例:
-```
+```nani
 @unlock Tips/Tip1ID
 ```

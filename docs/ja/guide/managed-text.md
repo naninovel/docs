@@ -74,7 +74,7 @@ T_Greeting3: Hi!
 
 — 次のようにして値を参照できます:
 
-```
+```nani
 @print {Random(T_Greeting1,T_Greeting2,T_Greeting3)}
 ```
 

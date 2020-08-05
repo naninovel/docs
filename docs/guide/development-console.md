@@ -35,7 +35,7 @@ reload | Performs [hot reload](/guide/naninovel-scripts.md#hot-reload) of the cu
 
 You can invoke the script commands via development console. Input the command string just like you do in naninovel scripts and it will be immediately executed. Among other cases, this could be useful to debug custom state variables. Eg, you can print the current value of any custom variable with:
 
-```
+```nani
 @print {VariableName}
 ```
 

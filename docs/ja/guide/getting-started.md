@@ -89,7 +89,7 @@ Naninovel関連のアセット（作成したスクリプトなど）をエン�
 
 作成したスクリプトをテキストエディターで開き、次のテキストを追加しましょう:
 
-```
+```nani
 Hello World!
 @stop
 ```
@@ -116,7 +116,7 @@ Naninovelのキャラクターは、通常の分解スプライト、アニメ�
 
 追加したキャラクターIDを"Kohaku"としましょう。naninovelスクリプトを編集して、追加した文字を表示します:
 
-```
+```nani
 @char Kohaku
 Hello World!
 @stop
@@ -124,7 +124,7 @@ Hello World!
 
 ゲームを実行すると、画面の中央にキャラクターの外観スプライトの1つが表示されます。外観を指定しない場合は、キャラクターIDと同じ名前か "Default" となっているものがデフォルトで選択されます。特定の外観を選択するには、次のように、ドットで区切られたキャラクターIDの後にその名前を追加します:
 
-```
+```nani
 @char Kohaku.Happy
 Hello World!
 @stop
@@ -134,7 +134,7 @@ Hello World!
 
 コロンの前にIDを追加して、表示テキストにキャラクターを紐付けることができます:
 
-```
+```nani
 @char Kohaku.Happy
 Kohaku: Hello World!
 @stop
@@ -142,13 +142,13 @@ Kohaku: Hello World!
 
 キャラクターの外観を表示テキストと結合させて、より簡単に入力することもできます:
 
-```
+```nani
 Kohaku.Happy: Hello World!
 @stop
 ```
 
 キャラクター（または背景、テキストプリンターなどの他のアクター）を非表示（シーンから削除）にするには、 [@hide] コマンドに続けてアクターIDを記述します:
-```
+```nani
 Kohaku.Happy: Hello World!
 @hide Kohaku
 @stop
@@ -166,13 +166,13 @@ Kohaku.Happy: Hello World!
 
 追加した背景の外観スプライトの名前を "City" とします。背景を表示するには、 [@back] コマンドに続けて背景の外観名を記述します:
 
-```
+```nani
 @back City
 ```
 
 背景の切り替えはデフォルトで、cross-fade [トランジションエフェクト](/ja/guide/transition-effects.md) となっています。エフェクトを変更するには、外観名の後にトランジションの種類を指定します:
 
-```
+```nani
 @back City
 @back School.RadialBlur
 ```
@@ -181,7 +181,7 @@ Kohaku.Happy: Hello World!
 
 メイン背景以外を参照するには（たとえば、複数の背景を互いに重ね合わせたい場合）、アクターのIDを指定します。たとえばメインのアクターの他にIDが `Flower`の背景アクターがあるとして、次のコマンドでその外観を "Bloomed" に変更し、次に "Withered" に変更します:
 
-```
+```nani
 @back Flower id:Flower
 @back Withered id:Flower
 ```
@@ -194,13 +194,13 @@ BGM（バックグラウンドミュージック）またはSFX（効果音）�
 
 追加したBGMファイル名を "ThePromenade" としましょう。BGMとして再生するには、 [@bgm] コマンドに続けてトラック名を記述します:
 
-```
+```nani
 @bgm ThePromenade
 ```
 音楽トラックを切り替えると、クロスフェードエフェクトが自動的に適用されます。音楽はデフォルトでループするようになっていますが、コマンドパラメータを使用して音量やフェード時間と同様に変更できます。
 
 逆に、効果音はデフォルトではループしません。"Explosion" SFXを追加した場合、再生するには [@sfx] コマンドを使用します:
-```
+```nani
 @sfx Explosion
 ```
 

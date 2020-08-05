@@ -16,7 +16,7 @@ It's also possible to use [addressable asset system](/guide/resource-providers.m
 
 In naninovel scripts, characters are mostly controlled with [@char] command:
 
-```
+```nani
 ; Shows character with name `Sora` with a default appearance.
 @char Sora
 
@@ -36,7 +36,7 @@ Each character has `Poses` property allowing to specify named states (poses).
 
 Pose name can be used as appearance in [@char] command to apply all the parameters specified in the pose state at once, instead of specifying them individually via the command parameters.
 
-```
+```nani
 ; Given `SuperAngry` pose is defined for `Kohaku` character,
 ; applies all the parameters specified in the pose state.
 @char Kohaku.SuperAngry
@@ -47,7 +47,7 @@ Pose name can be used as appearance in [@char] command to apply all the paramete
 
 Notice, that when a pose is used as appearance, you can still override individual parameters, eg:
 
-```
+```nani
 ; Given `SuperAngry` pose is defined for `Kohaku` character,
 ; applies all the parameters specified in the pose state,
 ; except tint, which is overridden in the command.
@@ -66,7 +66,7 @@ It's possible to bind a display name to a custom variable to dynamically change 
 
 You can then change the variable value in the scripts and it will also change the display name:
 
-```
+```nani
 @set PlayerName="Mistery Man"
 Player: ...
 
@@ -76,7 +76,7 @@ Player: You can call me Dr. Stein.
 
 It's also possible to use the name binding feature to allow player pick their display name using [@input] command:
 
-```
+```nani
 @input PlayerName summary:"Choose your name."
 @stop
 Player: You can call me {PlayerName}.
@@ -88,7 +88,7 @@ When `Use Character Color` is enabled in the character configuration, printer te
 
 The following video demonstrates how to use display names and character colors.
 
-[!!u5B5s]
+[!!u5B5s-X2Bw0]
 
 ## Avatar Textures
 
@@ -106,7 +106,7 @@ Avatar names can be arbitrary and don't have to contain an existing character ID
 
 You can then show a specific avatar texture like this:
 
-```
+```nani
 @char CharacaterId avatar:AvatarName
 ```
 
@@ -117,7 +117,7 @@ It's also possible to associate avatars with specific character appearances, so 
 Please note, that the **avatars are not directly connected with character appearances** and shouldn't be considered as a way to show character on the scene. Appearances specified in character's resource manager are the actual representation of a character on the scene. Avatars is a standalone feature, that "injects" an arbitrary image to a compatible text printer.
 
 It's possible to show only the avatar of a character inside a text printer, but hide the character itself by setting `visible` parameter of the [@char] command to `false`, eg:
-```
+```nani
 @char CharacaterId visible:false
 ```
 
@@ -209,27 +209,27 @@ To control the layered characters in naninovel scripts, use [@char] command in t
 
 For example, consider a "Miho" character, which has a "Body" group with three layers: "Uniform", "SportSuit" and "Pajama". To enable "Uniform" layer and disable all the others, use the following command:
 
-```
+```nani
 @char Miho.Body>Uniform
 ```
 
 To enable or disable a layer without affecting any other layers in the group, use "+" and "-" respectively instead of ">". You can also specify multiple composition expressions splitting them with commas:
 
-```
+```nani
 ; Enable glasses, disable hat, select "Cool" emotion.
 @char CharId.Head/Accessories+BlackGlasses,Head-Hat,Head/Emotions>Cool
 ```
 
 To select a layer outside of any groups (a child of the root prefab object), just skip the group part, eg:
 
-```
+```nani
 ; Given "Halo" layer object is placed under the prefab root, disable it
 @char CharId.-Halo
 ```
 
 It's also possible to affect all the layers inside a group (and additionally its neighbors when using select expression) by omitting layer name in composition expression:
 
-```
+```nani
 ; Disable all the layers in "Body/Decoration" group
 @char CharId.Body/Decoration-
 
@@ -259,7 +259,7 @@ It's possible to map composition expressions to keys via `Composition Map` prope
 
 — the keys can then be used to specify layered actor appearance:
 
-```
+```nani
 ; Corresponds to `Body>Uniform,Hair/Back>Straight,Hair/Front>Straight,Shoes>Grey`.
 @char Miho.Uniform
 ; Corresponds to `Hair/Back>Straight,Hair/Front>Straight`.
@@ -304,7 +304,7 @@ Then download and import [Live2D extension package](https://github.com/Elringus/
 
 Live2D model prefab used as the resource for the implementation should have a `Live2DController` component attached to the root object. Appearance changes are routed to the animator component as [SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) commands appearance being the trigger name. Eg, if you have a "Kaori" Live2D character prefab and want to invoke a trigger with name "Surprise", use the following command:
 
-```
+```nani
 @char Kaori.Surprise
 ```
 
