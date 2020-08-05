@@ -6,7 +6,7 @@
 
 [@choice] コマンドに続けて選択肢の詳細を記述し、任意で選択肢に追加するnaninovelスクリプトの `goto` パスを記述します:
 
-```
+```nani
 ; テキストを表示し、すぐに選択肢を表示してスクリプトの実行を停止。
 ; このスクリプトの実行を続けるかそれとも、...？[skipInput]
 @choice "Continue from the next line"
@@ -18,7 +18,7 @@
 
  `goto` パラメータの値は、ユーザーが対応する選択肢を選択したときに再ルーティングするパスです。次の形式で指定します:*ScriptName*.*LabelName* 。ラベル名を省略すると、指定したスクリプトが最初から再生されます。スクリプト名を省略すると、現在再生されているスクリプトのラベルを参照します:
 
-```
+```nani
 ; `Script001` というnaninovel スクリプトをロードし、最初から実行。
 goto:Script001
 
@@ -39,7 +39,7 @@ goto:.Epilogue
 
 [@choice] コマンドでは、 "Resources" フォルダーからの相対パスを指定した任意の `button` パラメーターを使用できます。これは選択肢オブジェクトを表すカスタムプレハブへのパスです。
 
-```
+```nani
 @choice handler:ButtonArea button:MapButtons/Home pos:-300,-300 goto:.HomeScene
 ```
 
@@ -63,7 +63,7 @@ goto:.Epilogue
 ## ButtonArea 選択肢ハンドラー
 ボタンリストとは異なり、ボタンエリアは特定のレイアウトを強制せず、追加された選択ボタンの位置を `pos` パラメーターで手動で設定できます。たとえば次の例は、選択コマンドとボタンエリアハンドラーでインタラクティブマップを作成する方法の1つです:
 
-```
+```nani
 # Map
 @back Map
 @hidePrinter
@@ -98,7 +98,7 @@ Don't forget about cucumbers!
 
 これで [@choice] の `handler` パラメーターにIDを指定して、新しい選択肢ハンドラーを利用できます。
 
-```
+```nani
 @choice "Choice summary text." handler:MyNewHandler
 ```
 

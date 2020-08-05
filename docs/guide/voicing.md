@@ -21,7 +21,7 @@ Audio clips used for the auto voicing feature should be grouped under a folder w
 
 For example, consider the following naninovel script with name "Script001":
 
-```
+```nani
 @print text:"Text from a print command."
 Text from a simple generic text line.
 Text from first sentence.[i] Text from second sentence.

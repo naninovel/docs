@@ -2,28 +2,28 @@
 
 特殊エフェクトは、[@spawn] コマンドに続けてエフェクト名を記述することで実行されます。例:
 
-```
+```nani
 @spawn ShakeBackground
 ```
 — これはメイン背景を揺らします。
 
 `params`パラメータでエフェクトのパラメータを制御できます。例:
 
-```
+```nani
 @spawn ShakeCharacter params:Kohaku,1
 ```
 — これは "Kohaku" というIDのキャラクターを、デフォルトの3回ではなく、1回揺らします。
 
 パラメータのサブセットを選択的に指定して、残りをデフォルト値のままにすることができます:
 
-```
+```nani
 @spawn ShakePrinter params:,,0.5
 ```
 — 最初の2つのパラメーター（プリンターIDとシェイク回数）はスキップされ、デフォルト値になります。しかし、3番目のパラメーター（シェイク時間）は0.5秒に設定されます。
 
 [@spawn]コマンドを使うと、再スタートすることなくエフェクトパラメーターを更新できます。例:
 
-```
+```nani
 ; `Kohaku` キャラクターをループでゆっくりと揺らし始め、
 ; 完了を待たない(無限ループになっています)
 @spawn ShakeCharacter params:Kohaku,0,,,0.1 wait:false
@@ -34,7 +34,7 @@ Kohaku: It's rumbling!
 
 一部のエフェクトはデフォルトで永続的になっており、[@despawn] コマンドを使用して手動で停止する必要があります。例:
 
-```
+```nani
 ; 雨をスタート
 @spawn Rain
 ; 雨をストップ
@@ -43,7 +43,7 @@ Kohaku: It's rumbling!
 
 一部のエフェクトの [@despawn] コマンドは、パラメータを受け取ることもできます（たとえば、フェードアウトの持続時間を制御）。例:
 
-```
+```nani
 ; 10秒かけて徐々に雨をストップ
 @despawn Rain params:10
 ```
@@ -52,7 +52,7 @@ Kohaku: It's rumbling!
 
 エフェクト名の後に `#` で区切られたIDを追加することで、同じタイプの複数のエフェクトを開始できます。例:
 
-```
+```nani
 ; `Kohaku` と `Yuko` の両方をループで揺らす
 @spawn ShakeCharacter#1 params:Kohaku,0 wait:false
 @spawn ShakeCharacter#2 params:Yuko,0 wait:false
@@ -60,7 +60,7 @@ Kohaku: It's rumbling!
 
 インスタンス化されたエフェクトを停止または更新するときは、IDを指定してください:
 
-```
+```nani
 ; `Yuko` の揺れを停止し、 `Kohaku` の振幅を上げる
 @despawn ShakeCharacter#2
 @spawn ShakeCharacter#1 params:k,0,,,1
@@ -90,7 +90,7 @@ Shake vertically | Boolean | true | アクターを垂直に（y軸で）揺ら�
 UIが "Screen Space Overlay" モードに設定されている場合、顕著な効果を得るには、シェイクの振幅をデフォルトの約100倍くらいにする必要があります。
 
 **使用例**
-```
+```nani
 ; デフォルトのプリンターを、デフォルトのパラメーターで揺らす。
 @spawn ShakePrinter
 
@@ -124,7 +124,7 @@ Shake vertically | Boolean | true | アクターを垂直に（y軸で）揺ら�
 
 **使用例**
 
-```
+```nani
 ; デフォルトのパラメーターでメイン背景を揺らす。
 @spawn ShakeBackground
 
@@ -152,7 +152,7 @@ Shake horizontally | Boolean | false | アクターを水平方向に（x軸で�
 Shake vertically | Boolean | true | アクターを垂直に（y軸で）揺らすかどうか。
 
 **使用例**
-```
+```nani
 ; キャラクター `Kohaku` をデフォルトのパラメーターで揺らす。
 @spawn ShakeCharacter params:Kohaku
 
@@ -187,7 +187,7 @@ Shake horizontally | Boolean | false | アクターを水平方向に（x軸で�
 Shake vertically | Boolean | true | アクターを垂直に（y軸で）揺らすかどうか。
 
 **使用例**
-```
+```nani
 ; デフォルトのパラメーターでメインのNaninovelカメラを揺らす。
 @spawn ShakeCamera
 
@@ -215,7 +215,7 @@ Duration | Decimal | 1 | エフェクトの持続時間。秒単位。
 Intensity | Decimal | 1 | エフェクトの強さ。0.0から10.0の範囲で。
 
 **使用例**
-```
+```nani
 ; グリッチエフェクトをデフォルトのパラメーターで適用。
 @spawn DigitalGlitch
 ; エフェクトを3.33秒間、強さを低めに適用する。
@@ -244,7 +244,7 @@ Y velocity | Decimal | 1 | パーティクルの垂直速度への乗数。
 Fade-out time | Decimal | 5 | パーティクルシステムは、指定された時間（秒単位）にわたって、生成レートを目標レベルから0に徐々に下げます。
 
 **使用例**
-```
+```nani
 ; 10秒かけて激しい雨を降らせる。
 @spawn Rain params:1500,10
 ; 30秒かけて雨を止める。
@@ -271,7 +271,7 @@ Fade-in time | Decimal | 5 | パーティクルシステムは、指定された
 Fade-out time | Decimal | 5 | パーティクルシステムは、指定された時間（秒単位）にわたって、生成レートを目標レベルから0に徐々に下げます。
 
 **使用例**
-```
+```nani
 ; 10秒かけて激しい雪を降らせる。
 @spawn Snow params:300,10
 ; 30秒かけて雪を止める。
@@ -298,7 +298,7 @@ Fade-in time | Decimal | 3 | パーティクルシステムは、指定された
 Fade-out time | Decimal | 3 | パーティクルシステムは、指定された時間（秒単位）にわたって、透明度を目標レベルから0に徐々に下げます。
 
 **使用例**
-```
+```nani
 ; 10秒かけて強めの太陽光を開始する。
 @spawn SunShafts params:1,10
 ; 30秒かけて太陽光を停止する。
@@ -327,7 +327,7 @@ Duration | Decimal | 1 | 補間時間（パラメーターが目標値に到達�
 Stop Duration | Decimal | 1 | エフェクトプラメーターのフェードオフ時間。エフェクトが適用されていないデフォルト値に到達するまでの時間。
 
 **使用例**
-```
+```nani
 ; デフォルトのパラメーターでエフェクトを有効にし、フォーカスを `Kohaku` ゲームオブジェクトに固定。
 @spawn DepthOfField params:Kohaku
 ; 10秒かけてエフェクトをフェードオフ(無効)する。
@@ -347,7 +347,7 @@ Stop Duration | Decimal | 1 | エフェクトプラメーターのフェード�
 
 たとえば、スポーンマネージャーから割り当てられた `Explosion.prefab` プレハブがあるとします。次のコマンドは、プレハブをシーンに生成および破棄します:
 
-```
+```nani
 @spawn Explosion
 @despawn Explosion
 ```
@@ -370,19 +370,19 @@ Naninovel スクリプトから `toggle` パラメーターを使って、追加
 
 この場合、コンポーネントの種類名は `BloomImageEffect` です。種類名を使用して、次のように実行時にこのコンポーネントを切り替えます:
 
-```
+```nani
 @camera toggle:BloomImageEffect
 ```
 
 種類名をコンマで区切ることにより、複数のコンポーネントを一度に切り替えることができます:
 
-```
+```nani
 @camera toggle:BloomImageEffect,Sepia,CameraNoise
 ```
 
 また、コンポーネントを明示的に有効または無効にする場合:
 
-```
+```nani
 @camera set:BloomImageEffect.true,Sepia.false,CameraNoise.true
 ```
 

@@ -42,7 +42,7 @@ You can add items to the inventory with `@addItem` command and remove with `@rem
 
 Below is a script from the example project:
 
-```
+```nani
 # Start
 
 Select an action.[skipInput]

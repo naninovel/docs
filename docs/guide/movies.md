@@ -16,7 +16,7 @@ Movies playback behavior can be configured using `Naninovel -> Configuration -> 
 
 Use [@movie] command followed by video clip name to play a movie from the naninovel scripts:
 
-```
+```nani
 ; Given an "Opening" video clip is added to the movie resources, play it
 @movie Opening
 ```

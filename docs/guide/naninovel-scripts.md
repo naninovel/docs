@@ -26,7 +26,7 @@ For example, [@save] command (used to auto-save the game) is implemented via the
 
 Command identifiers are case-insensitive; all the following statements are valid and will invoke the same `AutoSave` command:
 
-```
+```nani
 @save
 @Save
 @AutoSave
@@ -37,19 +37,19 @@ Command identifiers are case-insensitive; all the following statements are valid
 
 Most of the commands have a number of parameters that define the effect of the command. Parameter is a key-value expression defined after the command literal separated by a column (`:`). Parameter identifier (key) could be either name of the corresponding parameter field of the command implementation class or the parameter's alias (if defined via `alias` property of `CommandParameter` attribute).
 
-```
+```nani
 @commandId paramId:paramValue 
 ```
 
 Consider a [@hideChars] command, which is used to hide all visible characters on the scene. It could be used as follows:
 
-```
+```nani
 @hideChars
 ```
 
 You can use a `time` *Decimal* parameter here to control for how long the characters will fade-out before becoming completely hidden (removed from scene):
 
-```
+```nani
 @hideChars time:5.5
 ```
 
@@ -57,7 +57,7 @@ This will make the characters to fade-out for 5.5 seconds, before completely rem
 
 You can also use a `wait` *Boolean* parameter to specify whether next command should be executed immediately after or wait for the completion of the current command:
 
-```
+```nani
 @hideChars time:5.5 wait:false
 @hidePrinter
 ```
@@ -83,7 +83,7 @@ Most of the commands have a nameless parameter. A parameter is considered namele
 
 For example, a [@bgm] command expects a nameless parameter specifying the name of the music track to play:
 
-```
+```nani
 @bgm PianoTheme
 ```
 "PianoTheme" here is the value of the "BgmPath" *String* parameter.
@@ -104,25 +104,25 @@ For the list of all the currently available commands with a summary, parameters 
 
 To make writing scripts with large amounts of text more comfortable generic text lines are used. Line is considered a generic text statement if doesn't start with any of the predefined statement literals:
 
-```
+```nani
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 ```
 
 An author ID can be specified at the start of a generic text line separated by a column (`:`) and a space to associate printed text with a [character actor](/guide/characters.md):
 
-```
+```nani
 Felix: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 ```
 
 To save some typing when constantly changing character appearances associated with printed text, you can also specify appearance after the author ID:
 
-```
+```nani
 Felix.Happy: Lorem ipsum dolor sit amet.
 ```
 
 The above line is equal to the following two:
 
-```
+```nani
 @char Felix.Happy wait:false
 Felix: Lorem ipsum dolor sit amet.
 ```
@@ -133,7 +133,7 @@ Sometimes, you may want to execute a command while revealing (printing) a text m
 
 All the commands (both [built-in](/api/) and [custom ones](/guide/custom-commands.md)) can be inlined (injected) to generic text lines using square brackets (`[`,`]`):
 
-```
+```nani
 Felix: Lorem ipsum[char Felix.Happy pos:0.75 wait:false] dolor sit amet, consectetur adipiscing elit.[i] Aenean tempus eleifend ante, ac molestie metus condimentum quis.[i][br 2] Morbi nunc magna, consequat posuere consectetur in, dapibus consectetur lorem. Duis consectetur semper augue nec pharetra.
 ```
 
@@ -141,20 +141,20 @@ Notice, that the inlined command syntax is exactly the same, except `@` literal 
 
 Under the hood, generic text lines are parsed into individual commands identified by inline index; text is printed with [@print] command. For example, following generic text line in a naninovel script:
 
-```
+```nani
 Lorem ipsum[char Felix.Happy pos:75 wait:false] dolor sit amet.
 ```
 
 — is actually handled by the engine as a sequence of individual commands:
 
-```
+```nani
 @print "Lorem ipsum" waitInput:false
 @char Felix.Happy pos:75 wait:false
 @print "dolor sit amet."
 ```
 
 To actually print square brackets via a generic text line, escape them with backslashes, eg:
-```
+```nani
 Some text \[ text inside brackets \]
 ```
 
@@ -164,19 +164,19 @@ Some text \[ text inside brackets \]
 
 Labels are used as "anchors" when navigating the naninovel scripts with [@goto] commands. To define a label, use a `#` literal at the start of the line followed with label name:
 
-```
+```nani
 # Epilogue
 ```
 
 You can then use a [@goto] command to "jump" to that line:
 
-```
+```nani
 @goto ScriptName.Epilogue
 ```
 
 In case you're using [@goto] command from within the same script where the label is defined, you can omit the script name:
 
-```
+```nani
 @goto .Epilogue
 ```
 
@@ -185,7 +185,7 @@ In case you're using [@goto] command from within the same script where the label
 
 When line starts with a semicolon literal (`;`) it's considered a comment statement. Comment lines are completely ignored by the engine when scripts are parsed. You can use comment lines to add notes or annotations for yourself or other team members who work with naninovel scripts.
 
-```
+```nani
 ; The following command will auto-save the game.
 @save
 ```
@@ -194,7 +194,7 @@ When line starts with a semicolon literal (`;`) it's considered a comment statem
 
 While the script are executed in a linear fashion by default, you can introduce branching using `if` parameters supported by all the commands.
 
-```
+```nani
 ; If `level` value is a number and is greater than 9000, add the choice.
 @choice "It's over 9000!" if:level>9000
 
@@ -219,7 +219,7 @@ Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
 
 It's also possible to specify multi-line conditional blocks with [@if], [@else], [@elseif] and [@endif] commands.
 
-```
+```nani
 @if score>10
 	Good job, you've passed the test!
 	@bgm Victory
@@ -239,7 +239,7 @@ Note that tabs here are completely optional and used just for better readability
 
 The same works for generic text lines:
 
-```
+```nani
 Lorem ipsum dolor sit amet. [if score>10]Duis efficitur imperdiet nunc. [else]Vestibulum sit amet dolor non dolor placerat vehicula.[endif]
 ```
 

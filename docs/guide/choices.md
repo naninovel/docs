@@ -6,7 +6,7 @@ The feature allows to present a number of choices to the user and re-route scrip
 
 Use [@choice] commands followed by the choice summary and (optional) `goto` path to add choices from the naninovel scripts:
 
-```
+```nani
 ; Print the text, then immediately show choices and stop script execution.
 Continue executing this script or load another?[skipInput]
 @choice "Continue from the next line"
@@ -18,7 +18,7 @@ Continue executing this script or load another?[skipInput]
 
 Value of the `goto` parameter is the path to re-route into when users selects the corresponding choice. It's specified in the following format: *ScriptName*.*LabelName*. When label name is omitted, provided script will be played from the start; when script name is omitted, a label in the currently played script will be referenced:
 
-```
+```nani
 ; Loads and starts playing a naninovel script with the name `Script001` from the start
 goto:Script001
 
@@ -39,7 +39,7 @@ Choice handlers behavior can be configured using `Naninovel -> Configuration -> 
 
 The [@choice] command accepts an optional `button` parameter specifying a path (relative to a "Resources" folder) to custom prefab representing the choice option object. 
 
-```
+```nani
 @choice handler:ButtonArea button:MapButtons/Home pos:-300,-300 goto:.HomeScene
 ```
 — here we use a choice handler supporting positioning to represent a point of interest on an improvised map, where the `button` parameter is pointing to a prefab consisting of a button wrapped over an image. The prefab is stored at `Assets/Resources/MapButtons/Home.prefab`.
@@ -62,7 +62,7 @@ Button list handler is used by default. It stores the choice buttons inside a ho
 ## ButtonArea Choice Handler
 In contrast to button list, button area doesn't enforce any specific layout and allows manually setting positions of the added choice buttons via `pos` parameter. For example, here is one way to make an interactive map with choice commands and button area handler:
 
-```
+```nani
 # Map
 @back Map
 @hidePrinter
@@ -97,7 +97,7 @@ Expose the handler to engine resources using choice handler manager GUI, which c
 
 You can now use the new choice handler by specifying its ID in `handler` parameter of the [@choice] commands.
 
-```
+```nani
 @choice "Choice summary text." handler:MyNewHandler
 ```
 

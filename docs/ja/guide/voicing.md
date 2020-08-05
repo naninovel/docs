@@ -22,7 +22,7 @@
 
 たとえば、"Script001" という名前の次のnaninovelスクリプトを考えてみます:
 
-```
+```nani
 @print text:"Text from a print command."
 Text from a simple generic text line.
 Text from first sentence.[i] Text from second sentence.

@@ -38,7 +38,7 @@ It's also possible to play a specific AC's action list after turning on AC (exit
 
 We can play them after exiting Naninovel mode like the following:
 
-```
+```nani
 ; Will play "OnNaninovelExit1" action list after exiting Naninovel mode
 @turnOnAC action:OnNaninovelExit1
 

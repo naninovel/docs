@@ -90,7 +90,7 @@ In order for a Naninovel-related asset (like our created script) to become "visi
 
 Open the created script in a text editor and add the following text:
 
-```
+```nani
 Hello World!
 @stop
 ```
@@ -116,7 +116,7 @@ Each character is represented by ID and a set of appearances. To add a character
 
 Let’s assume the added character ID is "Kohaku". Edit naninovel script to show the added character:
 
-```
+```nani
 @char Kohaku
 Hello World!
 @stop
@@ -124,7 +124,7 @@ Hello World!
 
 Run the game and you’ll see one of the character appearance sprites at the center of the screen. When you don’t specify an appearance, either the one named equal to character's ID or "Default" will be chosen by default. To select a specific appearance, add its name after the character ID separated by a dot like this:
 
-```
+```nani
 @char Kohaku.Happy
 Hello World!
 @stop
@@ -134,7 +134,7 @@ Given there is an appearance with the name "Happy" added for the character "Koha
 
 You can now associate the printed text with the character by adding its ID followed by a colon before the text:
 
-```
+```nani
 @char Kohaku.Happy
 Kohaku: Hello World!
 @stop
@@ -142,13 +142,13 @@ Kohaku: Hello World!
 
 It's also possible to join character's appearance with the printed text to save some typing:
 
-```
+```nani
 Kohaku.Happy: Hello World!
 @stop
 ```
 
 To hide (remove from scene) a character (or any other actor, like background, text printer, etc), use [@hide] command followed by actor ID:
-```
+```nani
 Kohaku.Happy: Hello World!
 @hide Kohaku
 @stop
@@ -166,13 +166,13 @@ Add background sprites via `Naninovel -> Resources -> Backgrounds` menu. `MainBa
 
 Let’s assume the added background appearance sprite is named "City". To show a background, use a [@back] command followed by the background appearance name:
 
-```
+```nani
 @back City 
 ```
 
 When switching between backgrounds a cross-fade [transition effect](/guide/transition-effects.md) will be used by default. To change the effect, specify transition type after the appearance name:
 
-```
+```nani
 @back City 
 @back School.RadialBlur
 ```
@@ -181,7 +181,7 @@ This will transition "City" to "School" using "RadialBlur" transition effect.
 
 To reference a background other then the main one (eg, in case you wish to compose multiple backgrounds on top of each other), specify ID of the actor. For example, given a background actor with ID `Flower` exists beside the main one, following commands will change its appearance to "Bloomed" and then to "Withered":
 
-```
+```nani
 @back Flower id:Flower
 @back Withered id:Flower
 ```
@@ -192,13 +192,13 @@ To add a BGM (background music) or SFX (sound effect) asset, use `Naninovel -> R
 ![Managing Audio](https://i.gyazo.com/cacdec36623dbbfcf9f49c594de53c0f.png)
 
 Let’s assume the added BGM file name is "ThePromenade". To play this track as a background music use [@bgm] command followed by the name of the track:
-```
+```nani
 @bgm ThePromenade
 ```
 A cross-fade effect will be automatically applied when switching the music tracks. The music will loop by default, though you can change this, as well as volume and fade duration using command parameters.
 
 On the contrary, sound effects won't loop by default. Assuming you've added an "Explosion" SFX, use an [@sfx] command to play it back:
-```
+```nani
 @sfx Explosion
 ```
 

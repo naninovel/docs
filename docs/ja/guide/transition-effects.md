@@ -2,7 +2,7 @@
 
 [@back] や [@char] で背景やキャラクターの外観を変更する時、または [@startTrans] や [@finishTrans] コマンドでシーンをトランジションする時、トランジションエフェクトを追加で指定できます。たとえば次のコマンドは、"DropFade" トランジション効果を使用して "River" の背景にトランジションします:
 
-```
+```nani
 @back River.DropFade
 ```
 
@@ -10,7 +10,7 @@
 
 また `time` パラメータで、トランジションの継続時間（秒単位）を指定することもできます。
 
-```
+```nani
 @back River.DropFade time:1.5
 ```
 
@@ -18,7 +18,7 @@
 
 トランジションを実行した直後に次のコマンドにスキップしたい場合（エフェクトの継続時間を待たない場合）は、 `wait` パラメーターを `false` に設定できます。 例えば:
 
-```
+```nani
 @back River.Ripple time:1.5 wait:false
 @bgm PianoTheme
 ```
@@ -26,14 +26,14 @@
 
 一部のトランジションエフェクトは、 `params` パラメーターで制御できる追加のパラメーターもサポートします:
 
-```
+```nani
 @back River.Ripple params:10,5,0.02
 ```
 — これはリップルエフェクトの周波数を10、速度を5、振幅を0.02に設定します。`params` が指定されていない場合、デフォルトのパラメータが使用されます。
 
 選択したパラメーターを変更する場合は、他のパラメーターをスキップできます。これらのパラメーターにはデフォルト値があります:
 
-```
+```nani
 @back River.Ripple params:,,0.02
 ```
 
@@ -41,7 +41,7 @@
 
 上記の例はキャラクターでも機能します。スタンドアロンの `transition` パラメータを介してトランジションを指定するだけです:
 
-```
+```nani
 @char CharID.Appearance transition:TransitionType params:...
 ```
 
@@ -59,7 +59,7 @@ Twist amount | 5
 Frequency | 10
 
 **使用例**
-```
+```nani
 ; デフォルトのパラメーターでトランジションを適用。
 @back Appearance.BandedSwirl
 
@@ -78,7 +78,7 @@ Frequency | 10
 Count | 6
 
 **使用例**
-```
+```nani
 ; デフォルトのパラメーターでトランジションを適用。
 @back Appearance.Blinds
 
@@ -98,7 +98,7 @@ Count | 6
 Fuzzy amount | 0.25
 
 **使用例**
-```
+```nani
 ; デフォルトのパラメーターでトランジションを適用。
 @back Appearance.CircleReveal
 
@@ -111,7 +111,7 @@ Fuzzy amount | 0.25
 [!f09bb69a3c045eeb1f6c8ec0b9dcd790]
 
 **使用例**
-```
+```nani
 ; デフォルトのパラメーターでトランジションを適用。
 @back Appearance.CircleStretch
 ```
@@ -121,7 +121,7 @@ Fuzzy amount | 0.25
 [!618ec451a9e10f70486db0bb4badbb71]
 
 **使用例**
-```
+```nani
 ; デフォルトのパラメーターでトランジションを適用。
 @back Appearance.CloudReveal
 ```
@@ -131,7 +131,7 @@ Fuzzy amount | 0.25
 [!dc4781a577ec891065af1858f5fe2ed1]
 
 **使用例**
-```
+```nani
 ; デフォルトのパラメーターでトランジションを適用。
 @back Appearance.Crossfade
 ```
@@ -141,7 +141,7 @@ Fuzzy amount | 0.25
 [!e27c8477842a2092728ea0cc1ae76bda]
 
 **使用例**
-```
+```nani
 ; デフォルトのパラメーターでトランジションを適用。
 @back Appearance.Crumble
 ```
@@ -157,7 +157,7 @@ Fuzzy amount | 0.25
 Step | 99999
 
 **使用例**
-```
+```nani
 ; デフォルトのパラメーターでトランジションを適用。
 @back Appearance.Dissolve
 
@@ -170,7 +170,7 @@ Step | 99999
 [!3c3840bb311ccb9fe223960f2e46f800]
 
 **使用例**
-```
+```nani
 ; デフォルトのパラメーターでトランジションを適用。
 @back Appearance.DropFade
 ```
@@ -188,7 +188,7 @@ Line Normal X | 0.5
 Line Normal Y | 0.5
 
 **使用例**
-```
+```nani
 ; デフォルトのパラメーターでトランジションを適用。
 @back Appearance.LineReveal
 
@@ -201,7 +201,7 @@ Line Normal Y | 0.5
 [!0ac9339b21303e20c524aaf6b6ca95f4]
 
 **使用例**
-```
+```nani
 ; デフォルトのパラメーターでトランジションを適用。
 @back Appearance.Pixelate
 ```
@@ -211,7 +211,7 @@ Line Normal Y | 0.5
 [!f8269fb68519c57c99643948a027a2a1]
 
 **使用例**
-```
+```nani
 ; デフォルトのパラメーターでトランジションを適用。
 @back Appearance.RadialBlur
 ```
@@ -221,7 +221,7 @@ Line Normal Y | 0.5
 [!a401b3b93a61276ed68ededa2e75e9ae]
 
 **使用例**
-```
+```nani
 ; デフォルトのパラメーターでトランジションを適用。
 @back Appearance.RadialWiggle
 ```
@@ -231,7 +231,7 @@ Line Normal Y | 0.5
 [!f6e685b13fe2d76733fd43878602eabc]
 
 **使用例**
-```
+```nani
 ; デフォルトのパラメーターでトランジションを適用。
 @back Appearance.RandomCircleReveal
 ```
@@ -249,7 +249,7 @@ Speed | 10
 Amplitude | 0.5
 
 **使用例**
-```
+```nani
 ; デフォルトのパラメーターでトランジションを適用。
 @back Appearance.Ripple
 
@@ -262,7 +262,7 @@ Amplitude | 0.5
 [!8d476f466858e4788e5ad6014d6db314]
 
 **使用例**
-```
+```nani
 ; デフォルトのパラメーターでトランジションを適用。
 @back Appearance.RotateCrumble
 ```
@@ -272,7 +272,7 @@ Amplitude | 0.5
 [!ad6eb77b7065387b9cb9afd77adbc784]
 
 **使用例**
-```
+```nani
 ; デフォルトのパラメーターでトランジションを適用。
 @back Appearance.Saturate
 ```
@@ -288,7 +288,7 @@ Amplitude | 0.5
 Speed | 200
 
 **使用例**
-```
+```nani
 ; デフォルトのパラメーターでトランジションを適用。
 @back Appearance.Shrink
 
@@ -307,7 +307,7 @@ Speed | 200
 Slide amount | 1
 
 **使用例**
-```
+```nani
 ; デフォルトのパラメーターでトランジションを適用。
 @back Appearance.SlideIn
 ```
@@ -324,7 +324,7 @@ Twist amount | 15
 Cell count | 10
 
 **使用例**
-```
+```nani
 ; デフォルトのパラメーターでトランジションを適用。
 @back Appearance.SwirlGrid
 
@@ -343,7 +343,7 @@ Cell count | 10
 Twist amount | 15
 
 **使用例**
-```
+```nani
 ; デフォルトのパラメーターでトランジションを適用。
 @back Appearance.Swirl
 
@@ -356,7 +356,7 @@ Twist amount | 15
 [!7c684f9a122006f38a0be2725895b76f]
 
 **使用例**
-```
+```nani
 ; デフォルトのパラメーターでトランジションを適用。
 @back Appearance.Water
 ```
@@ -366,7 +366,7 @@ Twist amount | 15
 [!b6eebcb68002064ababe4d7476139a7c]
 
 **使用例**
-```
+```nani
 ; デフォルトのパラメーターでトランジションを適用。
 @back Appearance.Waterfall
 ```
@@ -384,7 +384,7 @@ Phase | 14
 Frequency | 20
 
 **使用例**
-```
+```nani
 ; デフォルトのパラメーターでトランジションを適用。
 @back Appearance.Wave
 
@@ -404,7 +404,7 @@ Frequency | 20
 
 カスタムトランジションを作成するには、 `Custom` トランジションモードを使用し、`dissolve` パラメーターでディゾルブマスクテクスチャへのパス（プロジェクトの "Resources" フォルダーからの相対パス）を指定します。例:
 
-```
+```nani
 @back Appearance.Custom dissolve:Textures/Spiral
 ```
 
@@ -456,7 +456,7 @@ fixed4 ApplyTransitionEffect(in sampler2D mainTex, in float2 mainUV, in sampler2
 
 その後、組み込みのトランジションと同じ方法で、追加したトランジションを呼び出すことができます。例:
 
-```
+```nani
 @back Snow.MyCustom1
 @back River.MyCustom2
 ```
