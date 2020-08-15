@@ -183,13 +183,13 @@ The following video guide covers creating and configuring diced sprite atlas, ad
 
 ## Layered Characters
 
-The layered implementation allows composing characters from multiple sprites (layers) and then toggle them individually or in groups via naninovel scripts at runtime.
+The layered implementation allows composing characters from multiple layers and then toggle them individually or in groups via naninovel scripts at runtime.
 
 To create a layered character prefab, use `Create -> Naninovel -> Character -> Layered` asset context menu. Enter [prefab editing mode](https://docs.unity3d.com/Manual/EditingInPrefabMode.html) to compose the layers. Several layers and groups will be created by default. You can use them or delete and add your own.
 
-Each child game object of the root prefab object with a [sprite renderer](https://docs.unity3d.com/Manual/class-SpriteRenderer.html) component is considered a *layer*; other objects considered *groups*. Aside from organization and transformation purposes, placing layers inside groups will allow you to select a single layer or disable/enable all the layers inside a group with a single expression in naninovel script (more on that later). 
+Each child game object of the root prefab object with a [renderer](https://docs.unity3d.com/ScriptReference/Renderer.html)-derived component (eg, `SpriteRenderer`, `MeshRenderer`, eg) is considered a *layer*; other objects considered *groups*. Aside from organization and transformation purposes, placing layers inside groups will allow you to select a single layer or disable/enable all the layers inside a group with a single expression in naninovel script (more on that later). 
 
-To hide some of the layers from being visible by default, disable sprite renderer components (not the game objects).
+To hide some of the layers from being visible by default, disable renderer components (not the game objects).
 
 The white frame drawn over the prefab is used to describe the actor canvas, which will be rendered to a render texture at runtime. Make sure to minimize the empty areas inside the frame by moving the layers and groups to prevent wasting texture memory and for anchoring to work correctly.
 
@@ -237,7 +237,7 @@ It's also possible to affect all the layers inside a group (and additionally its
 @char CharId.+
 
 ; Given `Poses/Light` and `Poses/Dark` groups (each containing multiple layers), 
-; enable all the sprites inside `Light` group and disable layers inside `Dark` group
+; enable all the layers inside `Light` group and disable layers inside `Dark` group
 @char CharId.Poses/Light>
 ```
 
