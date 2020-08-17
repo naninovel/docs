@@ -78,7 +78,7 @@ CalculateProgress () | Return a float number in 0.0 to 1.0 range, representing h
 
 It's possible to add custom expression functions by assigning `ExpressionFunctions` attribute to a static C# class. All the public methods of this class with compatible signatures will then automatically become available in the script expressions. 
 
-Compatible signatures are the ones that take and return [simple](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/value-types#simple-types) and string types, as well as arrays of those types (with `params` keyword).
+Compatible signatures are the ones that take and return [simple](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types#simple-types) and string types, as well as arrays of those types (with `params` keyword).
 
 ```csharp
 [Naninovel.ExpressionFunctions]
