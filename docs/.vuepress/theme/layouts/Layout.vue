@@ -119,6 +119,14 @@ export default {
     this.$router.afterEach(() => {
       this.isSidebarOpen = false
     })
+
+    // fix scroll on chrome https://github.com/vuejs/vuepress/issues/2558
+    if (location.hash && location.hash !== '#') {
+        const anchorLocation = decodeURIComponent(location.hash)
+        const anchorElement = document.querySelector(anchorLocation)
+        if (anchorElement && anchorElement.offsetTop)
+            window.scrollTo(0, anchorElement.offsetTop)
+    }
   },
 
   methods: {
