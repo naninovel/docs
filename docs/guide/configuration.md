@@ -10,7 +10,7 @@ Notice, that all the configuration menus are supporting [Unity's presets feature
 It's possible to modify configuration objects at runtime, add new custom configurations and change the way the objects are accessed at runtime (eg, read configuration from JSON files stored on a remote host); see [custom configuration](/guide/custom-configuration.md) guide for more information.
 
 ::: note
-This configuration reference is valid for [Naninovel v1.11](https://github.com/Elringus/NaninovelWeb/releases).
+This configuration reference is valid for [Naninovel v1.12](https://github.com/Elringus/NaninovelWeb/releases).
 :::
 
 ## Audio
@@ -245,6 +245,8 @@ Insert Line Key | Space | Hot key used to show `Insert Line` window when the vis
 Insert Line Modifier | Control | Modifier for the `Insert Line Key`. Set to `None` to disable.
 Save Script Key | S | Hot key used to save (serialize) the edited script when the visual editor is in focus. Set to `None` to disable.
 Save Script Modifier | Control | Modifier for the `Save Script Key`. Set to `None` to disable.
+Rewind Mouse Button | 0 | When clicked a line in visual editor, which mouse button should activate rewind: `0` is left, `1` right, `2` middle; set to `-1` to disable.
+Rewind Modifier | Shift | Modifier for `Rewind Mouse Button`. Set to `None` to disable.
 Editor Page Length | 1000 | How many script lines should be rendered per visual editor page.
 Editor Custom Style Sheet | Null | Allows modifying default style of the visual editor.
 Graph Orientation | Horizontal | Whether to build the graph vertically or horizontally.
@@ -320,7 +322,8 @@ Auto Show On Modify | False | Whether to automatically reveal (show) an actor wh
 Property | Default Value | Description
 --- | --- | ---
 Loader | UI- (Addressable, Project) | Configuration of the resource loader used with UI resources.
-Objects Layer | 5 | The layer to assign for the UI elements instatiated by the engine. Used to cull the UI when using `toogle UI` feature.
+Override Objects Layer | True | Whether to assign a specific layer to all the UI objects managed by the engine. Required for some of the built-in features, eg `Toggle UI`.
+Objects Layer | 5 | When `Override Objects Layer` is enabled, the specified layer will be assigned to all the engine objects.
 Render Mode | Screen Space Camera | The canvas render mode to apply for all the managed UI elements.
 Sorting Offset | 1 | The sorting offset to apply for all the managed UI elements.
 
