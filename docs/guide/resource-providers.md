@@ -81,7 +81,11 @@ Implemented via an open source (MIT license) third-party package [UnityGoogleDri
 
 You can share your Google Drive resources folder with other users to work in collaboration without the need to use version control systems or other complicated tools.
 
-In order to be able to choose Google Drive as the resource provider you have to first install [UnityGoogleDrive](https://github.com/Elringus/UnityGoogleDrive). Consult the GitHub project readme for installation and setup instructions. 
+In order to be able to choose Google Drive as the resource provider you have to first install [UnityGoogleDrive](https://github.com/Elringus/UnityGoogleDrive). Consult the GitHub project readme for installation and setup instructions.
+
+::: note
+Before installing a package from a Git repository, make sure a [Git client](https://git-scm.com/downloads) is installed on your machine and Git executable path is set to the [PATH system environment variable](https://en.wikipedia.org/wiki/PATH_(variable)) (usually performed automatically during the installation).
+:::
 
 When UnityGoogleDrive package is installed and configured, related properties will appear in the resource provider configuration menu.
 
