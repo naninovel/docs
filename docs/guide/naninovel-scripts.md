@@ -245,6 +245,42 @@ Lorem ipsum dolor sit amet. [if score>10]Duis efficitur imperdiet nunc. [else]Ve
 
 For more information on the conditional expression format and available operators see the [script expressions](/guide/script-expressions.md) guide.
 
+## Title Script
+
+Title script is a special naninovel script assigned in script configuration menu. When assigned, it's automatically played when the title UI (main menu) is shown. Title script can be used to setup the title screen scene: background, music, effects, etc.
+
+The script can also be used to invoke commands when player clicks "NEW GAME", "EXIT" or any of the save slots to load a game. Below is an example of a title script.
+
+```nani
+; Following commands are played when entering the main menu (before showing title UI).
+; Notice, that we're not waiting for them to show the title UI at the same time.
+@back MainMenuBackground time:3 wait:false
+@bgm MainMenuMusic wait:false
+@spawn Rain wait:false
+@stop
+
+# OnNewGame
+; Following commands will be executed when player clicks "NEW GAME".
+; Notice, that we're waiting for the stopBgm command, 
+; so that the currently played music is fully stopped before new game begin to load.
+@sfx NewGameSoundEffect wait:false
+@stopBgm
+@stop
+
+# OnLoad
+; Below commands will be executed when player loads a saved game.
+@sfx LoadGameEffect
+@wait 0.5
+@stop
+
+# OnExit
+; Below commands will be executed when player clicks "EXIT".
+@sfx ExitGameEffect
+@wait 1.5
+@stop
+
+```
+
 ## Visual Editor
 
 You can use visual script editor to edit the naninovel scripts. Select a script asset and you'll see the visual editor automatically open in the inspector window.
