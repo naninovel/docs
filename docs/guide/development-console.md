@@ -6,7 +6,6 @@ To show the console UI while the game is running, make sure development console 
 
 ![Engine Configuration](https://i.gyazo.com/bc56a837c03d198e2d8141bdebc2e696.png)
 
-
 To expose a C# method to the console, add a `ConsoleCommand` attribute to a static method. The attribute has an optional string argument, allowing to set a shortcut:
 
 ```csharp
