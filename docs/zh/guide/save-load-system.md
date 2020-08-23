@@ -1,17 +1,21 @@
-# Save-Load System
+# 读取保存系统
 
-Game can be saved and loaded at any time by using save and load menus. User can select a save slot to use and delete any previously used slot.
+游戏可以在任何游戏过程中通过菜单来读取或是保存当前游戏进度。用户可以自由选择存储栏位，或是删除之前的存档栏位。
 
 [!a7109097f6abbeea16d6fe773bfffb3f]
 
-Save slots are serialized to either `.json` or binary files (depending on the configuration). File names, slot limit and directory name can be configured using `Naninovel -> Configuration -> State` context menu; for available options see [configuration guide](/zh/guide/configuration.md#state).
+保存栏位数据，是序列化为 `.json`      文件或者二进制文件的（由相关配置决定）。文件名，栏位限制，目录名，可以通过
+ `Naninovel -> Configuration -> State` 菜单配置，其他配置项参考[属性配置](/zh/guide/configuration.md#保存状态).
+
 
 ![State Configuration](https://i.gyazo.com/f9a2462d19eb228224f1dcd5302d6b1c.png)
 
-In WebGL save slots are serialized using cross-browser [IndexedDB API](https://en.wikipedia.org/wiki/Indexed_Database_API).
+WebGL下的存储序列化使用的是跨浏览器[索引数据库 API](https://en.wikipedia.org/wiki/Indexed_Database_API) 。
 
-Menu UIs can be customized or completely replaced using [UI Customization](/zh/guide/user-interface.md#ui-customization) feature.
+菜单UI可以自定义，或其他UI被完全替换，参考[UI 自定义](/zh/guide/user-interface.md#UI自定义) 。
 
-Naninovel provides two serialization handlers out of the box: `System.IO` and `UnityEngine.PlayerPrefs`. Former will store the slots as separate files at [persistentDataPath](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html) and the second one will use Unity's [PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html) API to store the slots in the key-value database. You can select the handler in the state configuration menu. IO handlers are selected by default; consider switching to PlayerPrefs or adding a [custom handler](/zh/guide/state-management.md#custom-serialization-handlers) in case you have issues reading/writing save data on specific platforms.
+Naninovel提供了两种序列化方式`System.IO`和`UnityEngine.PlayerPrefs`。前者会将栏位的信息分别存储于路径[persistentDataPath](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html)
+下。第二种会使用Unity的[PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html) API的键值数据库来存储数据。你可以通过配置菜单选择使用哪种，IO序列化方式是默认的，如果你在其他平台遇到了写入读取问题，尝试更改该配置或[自定义处理](/zh/guide/state-management.md#自定义序列化处理器) 。
 
-For more information on how the state is managed and ways to customize it, see [state management guide](/zh/guide/state-management.md).
+更多状态管理相关和自定义设置参考 [状态管理引导](/zh/guide/state-management.md) 。
+

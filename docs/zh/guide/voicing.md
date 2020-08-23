@@ -1,57 +1,57 @@
-﻿# Voicing
+﻿# 语音
 
-To expose voice clips to the engine, store them under `Resources/Naninovel/Voice` folder (can be changed in audio configuration under `Loader` foldout). You can additionally organize them with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in naninovel scripts. Eg, voice audio clip stored as `Resources/Naninovel/Voice/Intro/Day/25.wav` can be referenced in scripts as `Voice/Intro/Day/25`.
+向引擎添加语音剪辑，将他们存放至`Resources/Naninovel/Voice` （可以通过音频配置菜单的 `Loader` 修改）。
+你也可以通过子文件夹来管理相应资源。脚本中需要使用(`/`)调用。比如`Resources/Naninovel/Voice/Intro/Day/25.wav`的资源，脚本中的调用为：`Voice/Intro/Day/25`。
 
-It's also possible to use [addressable asset system](/zh/guide/resource-providers.md#addressable) to manually expose the resources. To expose an asset, assign address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "Hello.wav" voice clip, assign the clip asset following address: `Naninovel/Voice/Hello`. Be aware, that addressable provider is not used in editor by default; you can allow it by enabling `Enable Addressable In Editor` property in resource provider configuration menu.
+使用[可寻址资源系统](/zh/guide/resource-providers.md#寻址资源系统) 来手动公开资源也是可以的。公开资源地址和上述相同，但是需要省略"Resources/"部分。比如开放 "Hello.wav" 声音剪辑，注册地址为`Naninovel/Voice/Hello`。注意，该系统默认不启用你可以通过资源配置菜单的`Enable Addressable In Editor`属性来启用。
 
-You can use any audio formats [supported by Unity](https://docs.unity3d.com/Manual/AudioFiles.html) for your voice clips.
+你可以使用任何 [Unity支持](https://docs.unity3d.com/Manual/AudioFiles.html) 的影片格式。
 
-Voice playback behavior can be configured using `Naninovel -> Configuration -> Audio` context menu; for available options see [configuration guide](/zh/guide/configuration.md#audio). 
+在菜单 `Naninovel -> Configuration -> Audio` 配置语音表现，可用配置选项参考[属性配置](/zh/guide/configuration.md#音频)。
 
-Use [@voice] command followed by the clip name (path) to play the voice in naninovel scripts.
+在Naninovel脚本中使用[@voice]命令，后接剪辑名字（路径）来播放语音。
 
+## 自动语音
 
-## Auto Voicing
+在全语音的游戏中，每个语音内容都用[@voice]命令配置会很麻烦。自动发声功能允许自动播放名称和当前执行的[@print]命令的行号相同的语音剪辑；这样就完全不需要在naninovel脚本中使用 [@voice] 命令-当在游戏中打印相应的文本行时，声音会自动播放。
 
-In fully-voiced games, it could become tedious to specify a [@voice] command for each voiced line. Auto voicing feature allows to automatically play a voice clip that has a name equal to the line number of the currently played [@print] command; this way, you won't have to use [@voice] commands in naninovel scripts at all — voices will be automatically played when the corresponding text lines are printed in the game.
+要启用自动语音功能，在配置菜单中打开 `Enable Auto Voicing` 选项。
 
-To enable auto voicing feature, use `Enable Auto Voicing` toggle in the Audio configuration menu.
+使用该特性的音频文件应放在和要使用的脚本一样命名的文件夹，命名按*行序号*.*命令序号*方式命名，*行序号*是使用这句语音的打印文本序号，*命令序号*是行内处理常规文本，第几个[@print]命令的序号。
 
-Audio clips used for the auto voicing feature should be grouped under a folder with name equal to the script name, and has the following name: *LineNumber*.*CommandIndex*, where *LineNumber* is the line number of the corresponding print command and *CommandIndex* is the inline or command index of the print command in cases when dealing with generic text lines.
+比如，以下为"Script001"的脚本：
 
-For example, consider the following naninovel script with name "Script001":
-
-```
+```nani
 @print text:"Text from a print command."
 Text from a simple generic text line.
 Text from first sentence.[i] Text from second sentence.
 ```
 
-In order for the auto voicing system to play corresponding audio clips when printing those lines, the clips should be placed under `Resources/Naninovel/Voice/Script001` folder (or registered with [addressable system](/zh/guide/resource-providers.md#addressable)) and have the following names: 
+要对应上述行自动播放语音，音频剪辑应该放在`Resources/Naninovel/Voice/Script001`文件夹下（或使用[可寻址资源系统](/zh/guide/resource-providers.md#寻址资源系统) ），并按下表命名：
 
-Text | Voice Clip Name
+文本 | 音频剪辑名
 --- | ---
 Text from a print command. | 1.0
 Text from a simple generic text line. | 2.0
 Text from first sentence. | 3.0
 Text from second sentence. | 3.2
 
-To simplify the process, when auto voicing feature is enabled, name of voice clip for the currently printed text is displayed in the debug window:
+为简化设置，当该功能启用时，自动语音的音频命名会在debug窗口上显示出来，如下图：
 
 ![auto voicing](https://i.gyazo.com/12772ecc7c14011bcde4a74c81e997b8.png)
 
-To open the debug window, make sure `Enable Development Console` is turned on in the engine configuration, then press `~` key while in play mode, type `debug` and press `Enter`.
+要打开debug窗口，确保配置菜单中`Enable Development Console`启用，在play mode运行时按 `~` 输入`debug`按 `Enter`。
 
-## Voiceover Documents
+## 声音分配文件
 
-You can use voiceover documents generator utility accessible via `Naninovel -> Tools -> Voiceover Documents` to generate documents, containing printed text from the [@print] commands and generic text lines. Each printed text message will be associated with the auto voice clip name to be used with the auto voicing feature.
+可以通过菜单`Naninovel -> Tools -> Voiceover Documents`来生成该文件，内容包含脚本中使用 [@print] 命令的和一般常规文本行。每条文本都会和自动语音功能对应音频名字关联。
 
 ![](https://i.gyazo.com/69466444d4b8b43d76e7f1566db5ca9a.png)
 
-`Locale` property allows to select a specific locale for which to generate the documents (the localized naninovel scripts for the selected locale should exist in your project).
+`Locale` 是用于选择对应的本地化所需来生成（限选已添加进项目的本地化配置）。
 
-When `Use Markdown Format` property is enabled, the generated files will be of [markdown format](https://en.wikipedia.org/wiki/Markdown) (.md extension) with some additional formatting for better readability.
+当 `Use Markdown Format` 开启时，生成文件会按照[markdown格式](https://en.wikipedia.org/wiki/Markdown) (.md 扩展名)，这样会有更好的可读性。 
 
 ![](https://i.gyazo.com/ed6776026a79140de9e9f6a155faffdc.png)
 
-The voiceover documents are intended to be used by the voice actors when recording the voiceover audio clips. 
+该文件旨在方便配音演员在配音时使用。

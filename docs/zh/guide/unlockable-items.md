@@ -1,77 +1,78 @@
-# Unlockable Items
+# 可解锁物件
 
-The unlockables feature allows to manage items, which have a persistent state of being either locked or unlocked. You can use it in a variety of ways, for example to represent slots in a CG or movie gallery, achievements, tips and other systems where some entity should be able to become unlocked or activated when player satisfies a condition.
+可解锁功能允许管理物件，有持久化记录解锁或未解锁状态。该功能有多种使用场景，比如CG和影片的解锁，成就，提示或是其他游戏中玩家达成某些条件后需要激活或解锁的系统。
 
-Each unlockable item is represented by a string identifier and boolean value, indicating whether the item is unlocked. In naninovel scripts, use [@unlock] and [@lock] commands to respectively unlock and lock an item with a specific ID, eg:
+每个可解锁物件都有一个字符串id和布尔值构成，表示该物件是否解锁。在naninovel脚本中使用 [@unlock] 和 [@lock] 命令跟物件ID来解锁或加锁物件，比如：
 
-```
+```nani
 @unlock SecretAchievement
 ```
-— will unlock item `SecretAchievement` and
-```
+— 会解锁物件 `SecretAchievement` 
+```nani
 @lock SecretAchievement
 ```
-— will lock it back.
+— 会为该物件重新加密，变为未解锁状态
 
-The unlockable state of the items is stored under [global scope](/zh/guide/state-management.md#global-state) and doesn't depend on local game sessions; eg, if you unlock some item, it won't become locked again when player starts a new game or loads another saved game.
+可解锁物件状态存储于 [全局状态](/zh/guide/state-management.md#全局状态) 和当前游戏进度无关。比如，如果你解锁了某个物件，在你开始新游戏或是加载另一个存档时，该物件也不会变为未解锁状态。
 
-To bind an actual [GameObject](https://docs.unity3d.com/Manual/class-GameObject.html) with the unlockable item, use `UnlockableTrigger` component:
+要将某个[游戏物体](https://docs.unity3d.com/Manual/class-GameObject.html) 设置为可解锁物件，使用 `UnlockableTrigger` 组件：
 
 ![](https://i.gyazo.com/9e92d5296e5f07d68ce6122ccb1da34a.png)
 
-Set the item's ID to the `Unlockable Item Id` field and bind an command that should be performed when the items is unlocked. The illustration above, for example, makes the GameObject active when `SecretAchievement` is unlocked and vice versa.
+ `Unlockable Item Id` 设置物件ID，并设置解锁时的相应事件。以上图为例，使 `SecretAchievement` 游戏物体在解锁时变为激活状态，反之亦然。
 
-In C# you can access the unlockable items using `UnlockableManager` [engine service](/zh/guide/engine-services.md).
+在C#中你可以使用`UnlockableManager` [引擎服务](/zh/guide/engine-services.md) 获取可解锁物件。
 
-## Unlockable Resources
+## 可解锁资源配置
 
-Under the unlockables configuration menu (`Naninovel -> Configuration -> Unlockables`), you can find resources manager, that allows to store arbitrary assets to be used with the unlockables feature.
+在配置菜单下 (`Naninovel -> Configuration -> Unlockables`)，可找到资源管理器，可以将任意资源设置为可解锁物件。
 
 ![](https://i.gyazo.com/17fa198861ed72de3ab1f9dc6b02b3d8.png)
 
-The unlockable resources are used by the built-in unlockable systems, such as [CG Gallery](/zh/guide/unlockable-items.md#cg-gallery). You can also utilize the manager for you own custom systems.
+该资源配置被用作内建系统使用，比如[CG画廊](/zh/guide/unlockable-items.md#CG画廊) 。你可以将其用于你自己的自定义系统。
 
-## CG Gallery
+## CG画廊
 
-Using the CG gallery feature, you can specify texture resources (images), that can be unlocked throughout the game and then browsed via the `ICGGalleryUI` UI accessible from the title menu.
+使用CG画廊功能，可以将任意资源在游戏内设置为可解锁物件，之后可以在标题画面的 `ICGGalleryUI` UI查看。
 
 [!!wkZeszk6gm0]
 
-By default, all the unlockable texture resources with `CG` prefix added via [unlockable resources manager](/zh/guide/unlockable-items.md#unlockable-resources) and [background](/zh/guide/backgrounds.md) sprite resources of the `MainBackground` actor with the same prefix will be considered unlockable CG items.
+默认情况，所有添加到[可解锁资源管理器](/zh/guide/unlockable-items.md#可解锁资源配置) 带有前缀`CG` 的资源，和 `MainBackground` 元素内的[背景](/zh/guide/backgrounds.md) 精灵，都会被视为可解锁物件。
 
-To add an unlockable CG item to the gallery, you can either use one of the existing main background resources, by prepending `CG` to its path:
+要添加新的资源到CG画廊，可以在已有主背景资源路径前添加 `CG` ，如下所示：
 
 ![](https://i.gyazo.com/83a6eff3f91c05027ba1fbc5098e03c2.png)
 
-— or add a "standalone" texture using the unlockable resources manager, accessible with `Naninovel -> Resources -> Unlockables`:
+— 或者在`Naninovel -> Resources -> Unlockables`内使用资源管理器单独添加资源，如下所示：
 
 ![](https://i.gyazo.com/236bddfd0a02c18b94153cfb7189a877.png)
 
-No matter which way you'll choose, you can then unlock and lock the items using [@unlock] and [@lock] commands respectively.
+两种方式均可，之后就可以使用 [@unlock] 和 [@lock] 命令控制了。
 
-For example, to unlock the `CG/Map` item added in the illustrations above, use the following script command:
+比如，要解锁上图的 `CG/Map` 物件，使用下列命令：
 
-```
+```nani
 @unlock CG/Map
 ```
 
-In case you'll use both unlockable and background resources to add the CG items, the resources specified in the unlockables manager will be displayed in the CG gallery first. You can change this behavior as well as the actual sources from where the available CG resources are retrieved using `Cg Sources` property of `CG Gallery Panel` script, attached to the root of UI prefab representing the CG Gallery (built-in implementation stored at `Naninovel/Prefabs/DefaultUI/ICGGalleryUI.CGGalleryPanel`).
+如果你用了两种方式来添加可解锁物件，可解锁物件管理器内的资源将先在CG画廊显示。可以改变该设置，通过修改`Naninovel/Prefabs/DefaultUI/ICGGalleryUI.CGGalleryPanel`路径下的内置CG画廊UI预制体的 `CG Gallery Panel` 脚本的 `Cg Sources` 参数，该脚本用于检索实际相关资源。
 
 ![](https://i.gyazo.com/c62c69eea8d6b1147aacb178dcaa9347.png)
 
-When there is at least one CG item added to any of the sources (no matter the unlocked state), `CG GALLERY` button will appear in the title menu allowing to access the CG Gallery browser.
+当有可解锁物件添加成功时（无论是否解锁），标题的按钮就会变为可用状态，可点击进行浏览。
 
-You can modify or completely replace the built-in `ICGGalleryUI` implementation using the [UI customization feature](/zh/guide/user-interface.md#ui-customization).
+你可以使用[自定义UI](/zh/guide/user-interface.md#UI自定义) 修改或替换内置`ICGGalleryUI` UI。
 
-## Tips
+## 提示
 
-Unlockable tips system allows to specify a set of text records using localizable [managed text](/zh/guide/managed-text.md) documents; the records can then be unlocked throughout the game and be browsed via the `ITipsUI` UI accessible from the title menu and text printer control panels. 
+可解锁提示系统，允许通过本地[托管文本](/zh/guide/managed-text.md) 来设置一套本地化文本记录。这些记录可以在之后的游戏中解锁，并通过标题菜单和游戏中的文本打字机的控制面板按钮打开名为`ITipsUI` 的UI查看。
 
-The system can be used to build an in-game vocabulary/encyclopedia or achievements tracker.
+该系统可用于游戏内置的词典/百科/成就等系统。
 
 [!!CRZuS1u_J4c]
 
-To define the available tips, create a `Tips.txt` text document inside the [managed text](/zh/guide/managed-text.md) resources directory (`Resources/Naninovel/Text` by default). Each line identifies a single tip record. The line should begin with tip ID followed by colon; then the tip's title, category (optional) and description should be specified, all separated by vertical lines (`|`), eg:
+在托管文本资源路径创建名为 `Tips.txt` 的[托管文本](/zh/guide/managed-text.md)(`Resources/Naninovel/Text`为默认路径) 每行，代表一个独立的提示。一行的内容由，ID接冒号，提示标题，类别（可选），描述构成，中间由(`|`)隔开，如下：
+
 
 ```
 Tip1ID: Tip 1 Title | Tip 1 Category | Tip 1 Description
@@ -81,11 +82,13 @@ Tip4ID: Tip 4 Title | Tip 4 Category |
 ...
 ```
 
-You can use [rich text tags](https://docs.unity3d.com/Manual/StyledText.html) and insert line breaks (`\n`) inside the description section of the tip records.
+你可以使 [富文本标记](https://docs.unity3d.com/Manual/StyledText.html) 并在提示的描述部分从插入 (`\n`) 。
 
+当 `Tips.txt` 托管文本至少有一条记录时，标题菜单和控制面板的 "TIPS" 按钮就会显示出来，可通过它打开相应浏览界面。
 When there is at least one tip record in the `Tips.txt` managed text document, "TIPS" button will appear in the main menu and control panels, leading to the tips browser.
 
-To unlock a tip record, use [@unlock] and [@lock] to lock the record back followed by the tip ID (should always be preceded by `Tips/` prefix) in the naninovel scripts. Eg, to unlock a `Tip1ID` tip record use:
-```
+使用[@unlock] 和 [@lock] 命令来控制提示的解锁和加锁（在脚本中ID前始终要加上 `Tips/` 前缀），如下为解锁ID为 `Tip1ID` 的提示的示例：
+
+```nani
 @unlock Tips/Tip1ID
 ```

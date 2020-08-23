@@ -1,84 +1,87 @@
-# Backgrounds 
+# 背景 
 
-Opposed to [characters](/zh/guide/characters.md), backgrounds are actors used to represent a *back* layer of the scene: locations, sceneries, landscapes or anything that should always appear *behind* the characters. 
+和[角色](/zh/guide/characters.md) 相反，背景是用来表示场景*置后层*的元素：位置，风景或应始终出现在角色*后面*的任何东西。
 
-A background actor is defined with a name, appearance, visibility and transform (position, rotation, scale). It can change appearance, visibility and transform over time.
+背景元素使用名称，外观，可见性和变换（位置，旋转，比例）定义。它们可以随着时间改变其外观，可见性和各种形态改变。
 
-Backgrounds' behavior can be configured using `Naninovel -> Configuration -> Backgrounds` context menu; for available options see [configuration guide](/zh/guide/configuration.md#backgrounds). The backgrounds' resources manager can be accessed using `Naninovel -> Resources -> Backgrounds` context menu.
+通过 `Naninovel -> Configuration -> Backgrounds` 菜单来配置背景行为表现，相关配置信息参考[属性配置](/zh/guide/configuration.md#背景)。 可以使用`Naninovel -> Resources -> Backgrounds`菜单访问背景的资源配置管理器。
 
 ![](https://i.gyazo.com/cccd08280dac72d199ea3465bc167a22.gif)
 
-In case you have a lot of backgrounds and it's inconvenient to assign them via editor menu, it's possible to just drop them at `Resources/Naninovel/Backgrounds` folder, grouped under folders corresponding to actor ID. Eg, to add appearances for a background actor with "MainBackground" ID, store the textures (sprites) at `Resources/Naninovel/Backgrounds/MainBackground` folder and they'll automatically be available in the scripts.
+在通过编辑器菜单添加多个背景的时候，可能并不方便，在`Resources/Naninovel/Backgrounds`目录下直接拖入资源，将其用ID命名的文件夹分类，这样添加也是可以的。比如添加"MainBackground" ID的元素背景，就需要放在`Resources/Naninovel/Backgrounds/MainBackground`目录下，他们就会被自动被注册至脚本。
 
-You can additionally organize appearance resources with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in naninovel scripts. Eg, appearance texture stored as `Resources/Naninovel/Backgrounds/MainBackground/Events/CG251` can be referenced in scripts as `Events/CG251`.
+你也可以通过子文件夹来管理相应资源。脚本中需要使用(`/`)调用。比如`Resources/Naninovel/Backgrounds/MainBackground/Events/CG251`的资源，脚本中的调用为：`Events/CG251`。
 
-It's also possible to use [addressable asset system](/zh/guide/resource-providers.md#addressable) to manually expose the resources. To expose an asset, assign address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "Beach" appearance for "MainBackground" background, assign the texture asset following address: `Naninovel/Backgrounds/MainBackground/Beach`. Be aware, that addressable provider is not used in editor by default; you can allow it by enabling `Enable Addressable In Editor` property in resource provider configuration menu.
+使用[可寻址资源系统](/zh/guide/resource-providers.md#寻址资源系统) 来手动公开资源也是可以的。公开资源地址和上述相同，但是需要省略"Resources/"部分。比如将"Beach"注册到"MainBackground"背景下，地址为`Naninovel/Backgrounds/MainBackground/Beach`。注意，该系统默认不启用你可以通过资源配置菜单的`Enable Addressable In Editor`属性来启用。
 
-In naninovel scripts, backgrounds are mostly controlled with [@back] command:
+在naninovel脚本中，背景大部分由[@back] 命令控制：
 
-```
-; Set `River` as the appearance of the main background
+```nani
+; 将 `River` 设为主背景外观
 @back River
 
-; Same as above, but also use a `RadialBlur` transition effect
+; 同上，但是使用`RadialBlur`（径向模糊）特效
 @back River.RadialBlur
 ```
-Backgrounds are handled a bit differently from characters to better accommodate traditional VN game flow. Most of the time you'll probably have a single background actor on scene, which will constantly transition to different appearances. To remove the hassle of repeating same actor ID in scripts, it's possible to provide only the background appearance and transition type (optional) as a nameless parameter assuming `MainBackground` actor should be affected. When this is not the case, ID of the background actor can be explicitly provided via the `id` parameter:
 
-```
-; Given a `CityVideo` background actor with `Night` and `Day` appearances (video clips)
+背景处理和角色有略微不同以适应传统VN游戏流程。多数情况，都只需要一个背景元素显示，然后由其变化至两外一张。为了避免在脚本中使用相同的元素ID的麻烦，在使用`MainBackground` ID下的元素的时候，可以只用外观名称和过渡效果类型（可选），来调用背景。而其他ID下的背景，则`id` 必须定义了，如下所示：
 
-; Show the video background playing day clip
+```nani
+; 给定`CityVideo`背景元素下的`Night`和`Day`背景（影片剪辑）
+
+; 显示视频背景，播放白天的影片剪辑
 @back Day id:CityVideo
 
-; Transition to night clip with ripple effect
+; 变化至晚上的影片剪辑，使用波浪效果
 @back Night.Ripple id:CityVideo
 
-; Hide the video background
+; 隐藏视频背景
 @hide CityVideo
 ```
 
-Main background actor record is created by default in the background resources manager and can't be renamed or deleted; however, parameters of the main background (implementation, pivot, PPU, etc) can be freely changed.
+资源管理器中的主背景元素条目是不能被重命名或删除的。但其中的参数（实现，锚点，PPU等）可以任意修改。
 
-## Poses
 
-Each background has `Poses` property allowing to specify named states (poses).
+## 姿态
 
-Pose name can be used as appearance in [@back] command to apply all the parameters specified in the pose state at once, instead of specifying them individually via the command parameters.
+每个背景都有`Poses`属性允许指定特定命名状态（姿势）。
 
-```
-; Given `Day` pose is defined for main background, 
-; applies all the parameters specified in the pose state.
+姿态使用通过[@back]命令直接调用，如此就可以将姿态的所有设置参数应用于背景上，而非通过单个背景设置其参数，如下所示：
+
+
+```nani
+; `Day`的姿态配置用于主背景，
+; 将该姿态的所有参数应用于背景。pose state.
 @back Day
 
-; Same as above, but for a background actor with `City` ID
-; and using `DropFade` transition over 3 seconds.
+; 同上，但是为`City` ID下的背景，
+; 使用3s的`DropFade`过渡效果。
 @back Day id:City transition:DropFade time:3
 ```
 
-Notice, that when a pose is used as appearance, you can still override individual parameters, eg:
+请注意，将姿态用作外观时，仍然可以覆盖各个参数，例如：
 
-```
-; Given `Day` pose is defined for main background,
-; applies all the parameters specified in the pose state,
-; except tint, which is overridden in the command.
+```nani
+; `Day`的姿态配置用于主背景，
+; 将该姿态的所有参数应用于背景，
+; 除了着色，由下面的命令来覆写控制。
 @back Day tint:#ff45cb
 ```
 
-## Sprite Backgrounds
+## 图片精灵背景
 
-Sprite implementation of the background actors is the most common and simple one; it uses a single [sprite](https://docs.unity3d.com/Manual/Sprites) asset to represent appearance of the background. The source of the sprite could be a `.jpg` or `.png` image file. 
+精灵背景是最通用也是最简单的，使用单个[精灵](https://docs.unity3d.com/Manual/Sprites) 作为背景。资源类型可为`.jpg` 或 `.png`图像文件。
 
 
-## Video Backgrounds
+## 影片背景
 
-Video backgrounds use [video clip](https://docs.unity3d.com/Manual/class-VideoClip) assets to represent the appearance. 
+硬盘背景使用[影片剪辑](https://docs.unity3d.com/Manual/class-VideoClip) 来表现背景。
 
-Video backgrounds can only be managed by editor GUI.
+影片背景可以通过编辑器GUI来管理。
 
-For the supported video formats for each platform see [Unity docs for video sources](https://docs.unity3d.com/Manual/VideoSources-FileCompatibility.html).
+各个平台支持的视频格式参考[Unity视频资源格式说明](https://docs.unity3d.com/Manual/VideoSources-FileCompatibility.html) 。
 
-For the reference, here is the detailed video parameters of the background video clip that is used in our WebGL demo:
+作为参考，以下为我们在WebGL的demo上使用的视频详细参数：
 
 ~~~
 Container : MPEG-4
@@ -105,63 +108,70 @@ Writing library : x264 core 148 r2795 aaa9aa8
 Encoding settings : cabac=1 / ref=3 / deblock=1:0:0 / analyse=0x3:0x113 / me=hex / subme=7 / psy=1 / psy_rd=1.00:0.00 / mixed_ref=1 / me_range=16 / chroma_me=1 / trellis=1 / 8x8dct=1 / cqm=0 / deadzone=21,11 / fast_pskip=1 / chroma_qp_offset=-2 / threads=12 / lookahead_threads=2 / sliced_threads=0 / nr=0 / decimate=1 / interlaced=0 / bluray_compat=0 / constrained_intra=0 / bframes=3 / b_pyramid=2 / b_adapt=1 / b_bias=0 / direct=1 / weightb=1 / open_gop=0 / weightp=2 / keyint=250 / keyint_min=25 / scenecut=40 / intra_refresh=0 / rc_lookahead=40 / rc=crf / mbtree=1 / crf=23.0 / qcomp=0.60 / qpmin=0 / qpmax=69 / qpstep=4 / ip_ratio=1.40 / aq=1:1.00
 ~~~
 
-And here is the Unity import settings for this video clip:
+以下为Unity的视频导入设置图：
+
 
 ![](https://i.gyazo.com/9e6a9cc0bd79bca2c0e8e35666fbdc7f.png)
 
-Depending on the target platform, it could be required to enable the transcoding in the video clip import settings.
+视发布平台不同，需要看情况勾选转码设置：
 
 ::: example
-In case having issues with achieving a seamless loop, make sure the video has exactly same starting and finishing frames and a compatible encoding setup; check our [video loop example project](https://github.com/Elringus/VideoLoop) for the reference.
+如果不能无缝循环，请保证视频最后一帧和第一张是相同的，并且编码格式正确；参考我们的[视频循环示例工程](https://github.com/Elringus/VideoLoop) 。
 :::
 
-Be aware, that on WebGL video player can only work in the streaming mode, so all the video resources will be copied to `Assets/StreamingAssets/Backgrounds` folder upon building the WebGL player. **StreamingAssets** folder will also appear in the build output directory; make sure to preserve it when publishing the build and check that your web server allows reading the data from this folder.
+注意，在WebGL下视频播放只能使用流模式，所以发布至WebGL时，所有视频资源都会被拷贝至`Assets/StreamingAssets/Backgrounds`文件夹。**StreamingAssets**也会出现在工程输出目录；请确保保留由该文件夹，并检查你的web服务器允许读取该目录。
 
-## Layered Backgrounds
+## 多图层背景
 
-The layered implementation allows composing backgrounds from multiple sprites (layers) and then toggle them individually via naninovel scripts at runtime.
+多图层背景允许组合不同层背景，在运行时通过Naninovel独立切换。
 
-To create a layered background prefab, use `Create -> Naninovel -> Background -> Layered` asset context menu. Enter [prefab editing mode](https://docs.unity3d.com/Manual/EditingInPrefabMode.html) to compose the layers. Several layers and groups will be created by default. You can use them or delete and add your own.
+要创建该类型背景，使用
+To create a layered background prefab, use `Create -> Naninovel -> Background -> Layered` 菜单，进入[预制体编辑模式](https://docs.unity3d.com/Manual/EditingInPrefabMode.html) 来组合图层。默认会创建有多个图层，你可以使用或直接删除这些添加自己的。
 
-The layered backgrounds are very similar to [layered characters](/zh/guide/characters.md#layered-characters); consult the documentation for more info on how to setup and control them via naninovel scripts.
+多图层背景和[多图层人物](/zh/guide/characters.md#分层式人物) 类似。关于如何设置和通过脚本调用，可以参考上述链接。
 
-Don't forget that nameless parameter in [@back] command is expecting appearance and transition type (not ID and appearance as with [@char] command), so specify layer composition expressions in the following way:
+不要忘了[@back]命令的无名参数是默认为外观和过渡效果类型（而非和[@char]命令一样的ID和外观），所以如下所示的方式来指定相应资源表现：
 
-```
-; Given "LayeredForest" background actor
+
+```nani
+;  "LayeredForest" 的多图层背景调用
 @back Group>Layer,Other/Group+Layer,-RootLayer.TransitionType id:LayeredForest
 ```
 
-## Generic Backgrounds
+## 传统模型背景
 
-Generic background is the most flexible background actor implementation. It's based on a prefab with a `BackgroundActorBehaviour` component attached to the root object. Appearance changes and all the other background parameters are routed as [Unity events](https://docs.unity3d.com/Manual/UnityEvents.html) allowing to implement the behavior of the underlying object in any way you wish. 
+传统背景是最灵活的背景元素实现。在根物体上关联有`BackgroundActorBehaviour`组件。外观改变或其他参数修改都通过[Unity事件](https://docs.unity3d.com/Manual/UnityEvents.html) 实现，你可以借此实现任何你想要的表现。
+
 
 ![](https://i.gyazo.com/d8f86c83decfb3c40c8d23602214a743.png)
 
-To create generic background prefab from a template, use `Create -> Naninovel -> Background -> Generic` context asset menu.
+通过菜单`Create -> Naninovel -> Background -> Generic`来创建模板预制体。
 
-Generic backgrounds are very similar to generic characters; check out a tutorial video on setting an animated 3D model as a generic character for one of the possible usage examples.
+传统背景和传统人物类似，观看视频教程了解如何设置有动作的3D模型为传统人物。
+
 
 [!!HPxhR0I1u2Q]
 
-## Scene Backgrounds
+## 场景背景
 
-You can use a [Unity scene](https://docs.unity3d.com/Manual/CreatingScenes) as a background with scene backgrounds implementation. 
+你可以使用[Unity场景](https://docs.unity3d.com/Manual/CreatingScenes) 作为背景来表现场景。
+ 
+场景背景仅可以通过编辑器GUI来管理；场景资源存储于`Assets/Scenes`目录。
 
-Scene backgrounds can only be managed by editor GUI; scene assets should be stored under `Assets/Scenes` project folder.
 
-First, create a new (or move an existing) scene inside `Assets/Scenes` folder and make sure it has at least one [camera](https://docs.unity3d.com/ScriptReference/Camera.html). Upon loading scene background, Naninovel will assign a render texture to the first found camera in the scene. The render texture will then be assigned to a background sprite, representing the scene background inside Naninovel scene space. This way, the scene background will be able to co-exist with other background and character actors, support all the background transition effects and scale to handle various display aspect ratios. 
+首先，创建一个（或是移动已有）场景到`Assets/Scenes`目录下，确保场景中至少有一个[摄像机](https://docs.unity3d.com/ScriptReference/Camera.html)。 加载场景背景时，Naninobel会自动为第一个找到的摄像机绑定render texture，之后会将其绑定到背景精灵上，再现到相应场景的背景图层。这样，场景背景就能够和其他背景角色元素共存，并能支持各种过渡效果，和各种显示比例。
 
-Make sure to position the scene objects in world space so that they don't overlap with objects from other scenes, that could potentially be loaded at the same time (eg, when referenced in a single naninovel script). Additionally, be aware, that in case a scene background object is positioned near the global space origin (`x0 y0 z0`), it could be rendered by Naninovel's main camera; to prevent this, either offset all the scene objects from the global origin, or use `Configuration -> Engine -> Override Objects Layer` to isolate Naninovel-related objects using [layers](https://docs.unity3d.com/Manual/Layers.html).
+确保场景中物体在合适位置，以避免和其他同时加载的场景的物体相互遮挡（比如，在同一个脚本中调用时）。此外，请注意，如果场景背景对象位于全局空间原点（x0 y0 z0）附近，则由Naninovel的主摄像头渲染该对象。为避免这一情况，调整物体偏移远离原点，或是`Configuration -> Engine -> Override Objects Layer`菜单中调整相关物体[层级](https://docs.unity3d.com/Manual/Layers.html)。
 
-After scene setup is complete, create a new background actor via `Naninovel -> Configuration -> Backgrounds` menu, select `SceneBackground` implementation and add the scene asset to the actor resources.
+在场景完成后，通过`Naninovel -> Configuration -> Backgrounds`菜单创建新背景元素，选择`SceneBackground`将其添加到此。
 
 ![](https://i.gyazo.com/d69159ab4d93793022018fa8d244f1aa.png)
 
-When assigning resources for a scene background actor, corresponding scene assets should automatically be added to the [build settings](https://docs.unity3d.com/Manual/BuildSettings.html); in case you're getting an error that a scene asset wasn't added to the build, try adding it manually.
+在注册场景背景资源时，[build settings](https://docs.unity3d.com/Manual/BuildSettings.html) 应该会自动添加该场景，如果报错提示未添加，请检查并手动添加。
 
-You can now use [@back] command to control the created scene background actor, eg:
+你可以使用[@back]来控制创建场景背景元素，如下：
 
-```
+
+```nani
 @back SceneName id:ActorId
 ```
