@@ -1,81 +1,83 @@
 ﻿# FAQ
 
-## Can I use Naninovel as a drop-in dialogue system for an existing game?
+## 我能否将Naninovel作为嵌入对话系统添加到已有的游戏中？
 
-While Naninovel is focused around traditional visual novel games the engine is designed to allow integration with existing projects. If you're making a 3D adventure game, RPG or game of any other genre — you can still use Naninovel as a drop-in dialogue system. 
 
-Be aware, that in most cases such integration will require C# scripting (or [visual scripting](/zh/uide/bolt.md)) in varying extent. See the [engine architecture overview](/zh/uide/engine-architecture.md) to get a grasp of how Naninovel works and [integration guide](/zh/uide/integration-options.md) for more information on the integration options
+尽管Naninovel专注于传统视觉小说游戏，引擎仍然可以与现有项目集成。如果你在制作3D冒险游戏，RPG或任何其他类型的游戏，你仍然可以将Naninovel引入用作嵌入式对话（长篇文字）系统。
 
-## Is it possible to embed a mini-game to Naninovel?
+注意，大多数整合需求都需要C#编程或者[可视化编程](/zh/guide/bolt.md)) 来扩展。查阅[整合引导](/zh/guide/integration-options.md) 来获取Naninovel工作流程和整合的相关说明。
 
-Sure, you can freely "inject" any custom logic to the default Naninovel flow. In most cases, however, this will require using the engine's C# API (via either writing custom C# scripts or using a [visual scripting](/zh/uide/bolt.md) solution). Check the [engine services guide](/zh/uide/engine-services.md) for the list of available open APIs, which allows interaction with the engine; you may also make use of [state outsourcing](/zh/uide/state-management.md#custom-state), [custom actor implementations](/zh/uide/custom-actor-implementations.md) and [custom commands](/zh/uide/custom-commands.md) in the process.
+## 能在Naninovel中嵌入小游戏吗？
 
-## Does it support a specific language?
+当然，你可以自由“植入”任何自有逻辑到Naninovel流程。大多数情况下，这会需要C#API（自编程或是使用[可视化编程](/zh/guide/bolt.md)) ）。参考[e引擎服务引导](/zh/guide/engine-services.md) 获取相关和引擎交互的开放API；在嵌入过程中你可能还需要参考[状态开放](/zh/guide/state-management.md#自定义状态) ， [自定义元素实现](/zh/guide/custom-actor-implementations.md) 和 [自定义命令](/zh/guide/custom-commands.md)。
 
-Naninovel can work with any language, but to display text in some languages, you'll need a compatible font. [Google's Roboto](https://fonts.google.com/specimen/Roboto) is used by default, which supports all Latin, Cyrillic, and Greek characters in Unicode 7.0. You can change the font used in any of the built-in UIs with [UI customization](/zh/uide/user-interface.md#ui-customization) feature; for the printed text messages, [create custom printers](/zh/uide/text-printers.md#adding-custom-printers) and set the desired font.
+## 支持某种特定语言吗？
 
-In case you're aiming to support as much languages, as possible, check out [Noto fonts](https://www.google.com/get/noto/).
+Naninovel可以工作于任何语言环境，但是只能显示部分语言文本，你需要匹配的字体。[Google's Roboto](https://fonts.google.com/specimen/Roboto) 是默认被使用的，支持在Unicode7.0下的拉丁语、西里尔文和希腊语字符。你可以使用 [UI自定义](/zh/guide/user-interface.md#UI自定义) 特性修改所有内置UI的字体；打字机相关字体的改变， [添加自定义打字机](/zh/guide/text-printers.md#添加自定义打字机) 来设置你想要的字体。
 
-## Will I get access to the source code when I buy Naninovel?
+如果你想添加尽可能多的语言，参考[Noto字体](https://www.google.com/get/noto/) 。
 
-All the engine source code is available in the distributed package. A couple of third-party libraries (namely, [NCalc](https://github.com/ncalc/ncalc) and [NLayer](https://github.com/naudio/NLayer)) are pre-compiled, but they're open-sourced (MIT license) with sources hosted on GitHub.
+## 购买Naninovel后我能获取到源码吗？
 
-## Why the package doesn't contain any demo scenes?
+所有源码都在发布的包里。部分第三方库源码（[NCalc](https://github.com/ncalc/ncalc) 和 [NLayer](https://github.com/naudio/NLayer)） 经过预编译，但他们为开源的（MIT许可）在Github可以找到。
 
-Naninovel is designed to be [scene-independent](/zh/uide/engine-architecture.md#scene-independent) and doesn't use [Unity scenes](https://docs.unity3d.com/Manual/CreatingScenes.html) in any way, hence it's not possible to make any kind of example or demo scenes. The engine is automatically initialized when the game is started (can be switched to manual initialization in the engine configuration window) and scenarios are scripted via text documents called [naninovel scripts](/zh/uide/naninovel-scripts.md).
+## 为什么资源包里没有任何示例场景？
 
-Please read through the [getting started](/zh/uide/getting-started.md) guide to get a grasp on how to use the engine. You can find additional examples on using various engine features and script commands in the rest of the [guide](/zh/uide/index.md) and [API command reference](/zh/pi/index.md). In case you'd like a complete working project, which can be used as a reference, take a look at the [demo project](/zh/uide/getting-started.html#demo-project).
+Naninovel设计是[独立于场景](/zh/guide/engine-architecture.md#独立于场景) 的，不会使用[Unity场景](https://docs.unity3d.com/Manual/CreatingScenes.html)  所以无法制作任何基于场景的示例。引擎会在游戏启动时自动初始化（或者在配置菜单设置手动初始化），预设舞台表现都是通过名为[naninovel 脚本](/zh/guide/naninovel-scripts.md) 的文本文件实现。
 
-## How to customize the title (main) menu: add background, music, effects, change buttons, etc?
+请阅读[getting started](/zh/guide/getting-started.md) 获取引擎的基础使用指导。你可以在[概览](/zh/guide/index.md) 和 [API 命令参考](/zh/api/index.md) 看到关于引擎多种特性的使用示例。如果你想参考完整工程，参考[示例工程](/zh/guide/getting-started.html#demo-project)
 
-For the UI part (changing/adding buttons or panel layout and style) use the [UI customization](/zh/uide/user-interface.md#ui-customization) feature; for everything else set `Title Script` at the scripts configuration menu (`Naninovel -> Configuration -> Scripts`) and use script commands to setup the scene just like when writing a scenario. The title script will be automatically played when entering the title menu.
+## 怎么自定义标题菜单：添加背景，音乐，特效，改变按钮等？
 
-## How to remove a sky background appearing by default in all the Unity scenes?
+UI部分（改变/添加按钮，面板布局和风格），使用[UI自定义](/zh/guide/user-interface.md#UI自定义) 特性；其他部分，通过设置(`Naninovel -> Configuration -> Scripts`)菜单内的 `Title Script` 来实现，只需像其他脚本一样来完成想要的效果，即可在进入标题菜单的时候自动执行相应效果。
 
-Remove `Skybox Material` in  `Window -> Rendering -> Lighting Settings` editor menu.
+## 如何移除所有默认Unity场景中的天空背景？
 
-When you remove the skybox, camera's background color will be used instead to fill the screen when no objects are visible. You can change that color (as well as other related settings) by creating a camera prefab and assigning it to `Custom Camera Prefab` property found inside `Naninovel -> Configuration -> Camera` menu. 
+移除  `Window -> Rendering -> Lighting Settings` 中的 `Skybox Material` 。
 
-## How to add a line break to the message?
+当你移除天空盒后，相机的背景色会在没有物体可见的时候填充至屏幕。你可以通过创建相机预制体来改变颜色和其他相关设置，将创建好的相机预制体绑定至 `Naninovel -> Configuration -> Camera` 的 `Custom Camera Prefab` 属性以应用修改。
 
-Check out [`[br]` command](/zh/pi/#br).
+## 如何换行？
 
-## How to inject a command in the midst of a printed text message?
+参考 [`[br]` 命令](/zh/api/#br) 。
 
-Use [command inlining](/zh/uide/naninovel-scripts.md#command-inlining).
+## 如何在文本中间插入命令执行？
 
-## How to make actors appear in front of each other (z-sorting)?
+使用 [command inlining](/zh/guide/naninovel-scripts.md#内联命令执行) 。
 
-Use positioning over z-axis, eg:
+## 如何让元素在其他物体之上(z轴位置)?
 
-```
-; Make Sora appear at the bottom-center and in front of Felix
+定义z轴的位置，比如:
+
+```nani
+; 让Sora在中下位置并置于Felix前面。
 @char Sora pos:50,0,-1
 @char Felix pos:,,0
 ```
 
-## Is it possible to show only the avatar of a character inside a text printer, but hide the character itself?
+## 可以只在打字机显示头像，而不显示角色本身吗？
 
-Set `visible:false` for the character you wish to hide; the avatar will remain visible, eg:
+为想隐藏的角色设置 `visible:false` ；头像会依旧保持可见。比如：
 
-```
+```nani
 @char CharId visible:false
 ```
 
-In case you're constantly changing avatars while the character itself should remain hidden, consider disabling `Auto Show On Modify` in the characters configuration menu; when disabled, you won't have to specify `visible:false` to change any parameters of the character while it's hidden.
+如果你想永久实现这个效果，考虑关闭角色配置菜单 `Auto Show On Modify` 属性；这样在角色被隐藏时，你就不必每次都去修改 `visible:false` ，角色的任何参数。
 
-## I'd like to use backgrounds with a non-standard resolution (eg, 2048x1024), but they look cropped.
+## 我想使用不标准分辨率的背景图（比如2048x1024），但是看起来不对。
 
-Set `Reference Resolution` at the camera configuration menu (`Naninovel -> Configuration -> Camera`) equal to the backgrounds resolution. Also, make sure the background textures are imported with the [correct settings](https://docs.unity3d.com/Manual/class-TextureImporter) (eg, `Max Size` is high enough).
+相机配置菜单中（`Naninovel -> Configuration -> Camera`）配置 `Reference Resolution` 属性，等于背景分辨率。同时确保背景图使用
+[正确设置](https://docs.unity3d.com/Manual/class-TextureImporter) （比如，`Max Size`足够大）。
 
-## How to handle different aspect ratios of the target platforms?
+## 如何解决不同目标平台的纵横比？
 
-For standalone (PC, Mac, Linux) builds you can select the available aspect ratios in the [player settings](https://docs.unity3d.com/Manual/class-PlayerSettingsStandalone.html#Resolution); for web, consoles and mobiles you can't force a specific aspect ratio and have to adapt for the target devices instead. 
+对个人电脑 (PC, Mac, Linux) ，你可以在[player settings](https://docs.unity3d.com/Manual/class-PlayerSettingsStandalone.html#Resolution) 内选择可用的纵横比；对web，主机，移动端，你不能设置强制纵横比，需要相应对其做适配。
 
-Given the source textures (background sprites) of a specific resolution, the only options to "adapt" them for a different aspect ratio are: resize (will distort the image), add black bars or crop. The least noticeable option is to crop, obviously. Naninovel will automatically do the cropping, when `Auto Correct Ortho Size` is enabled in the camera configuration menu and display aspect ratio is different from the `Reference Resolution` aspect set in the same menu. The auto correction will ensure, that the user won't see any black bars or distortions, no matter which display or device is used to run the game.
+某种特殊比例的图像，要让他们适配不同的纵横比的唯一办法就是：重调比例（会失真），加黑边，或是裁剪。显然，最不容易察觉的办法应该是裁剪了。Naninovel会自动裁剪，当相机配置菜单内的 `Auto Correct Ortho Size` 选项开启并且和该菜单的 `Reference Resolution` 不同时，就会自动裁剪。自动纠正，会确保用户不会看到任何黑边或失真，不管使用设备为何种纵横比。
 
-To manually handle the aspect ratio differences (eg, if you prefer to add black bars or resize the images instead of cropping), disable `Auto Correct Ortho Size` option in the camera configuration menu. You can then control orthographic size of the camera used by Naninovel with `CameraManager` [engine service](/zh/uide/engine-services.md).
+想要手动解决纵横比的问题的话（比如，你想加上黑边或重构图像比例，而不是平铺），关闭相机配置菜单内的 `Auto Correct Ortho Size` 选项。之后你就可以在Naninovel里通过 `CameraManager` [引擎服务](/zh/guide/engine-services.md) 控制相机正交大小了。 
 
-## How to run a custom C# code from naninovel scripts?
+## 怎样在Naninovel脚本里运行自己的C#脚本。
 
-Use [custom commands](/zh/uide/custom-commands.md).
+使用 [自定义命令](/zh/guide/custom-commands.md).

@@ -1,80 +1,80 @@
-# Custom Variables
+# 自定义变量
 
-Custom variables feature allows to create user-specified variables, modify and use them to drive conditional execution of naninovel scripts or other systems. For example, custom variables can be used to select one of the multiple naninovel scripts to play (scenario routes), based on the decisions player has made in the past. Another frequently used scenario is player stats screen (eg, scores, money, resources etc), based on the choices the player makes throughout the game.
+自定义变量特性允许用户创建用户指定的变量，使用他们来驱动特定条件下的Naninovel脚本或其他系统执行。比如，自定义变量可以用于选择多个Naninovel脚本中的某一个执行（预设路线），基于用户之前的选择。另一个频繁使用的场景，玩家状态画面（比如，分数，金钱，资源等），基于玩家的游戏中的选择执行操作。
 
-Custom variables can be created, modified and used both in naninovel scripts via [@set] and [@if] commands and in the C# scripts using `ICustomVariableManager` [engine service](/zh/guide/engine-services.md).
+自定义变量可以自己创建，定制并用于Naninovel脚本中的 [@set] 和 [@if] 命令，及C#脚本中的`ICustomVariableManager` [引擎服务](/zh/guide/engine-services.md) 。
 
-For example, the following script command will assign a different value to `score` custom variable, based on the choice:
+比如，以下脚本命令将会根据选择为自定义变量 `score` 赋予不同值：
 
-```
+```nani
 @choice "I'm humble, one is enough..." set:score=1
 @choice "Two, please." set:score=2
 @choice "I'll take your entire stock!" set:score=999
 ```
 
-And the following one will re-route the script execution based on the value of the `score` variable:
+以下脚本将会根据 `score` 值决定脚本执行路线：
 
-```
+```nani
 @goto MainRoute if:"score > 1 && score <= 900"
 @goto BadEnd if:score>900
 ```
 
-See the API reference on [@set] and [@if] commands for more examples.
+察看API参考部分获取更多关于 [@set] 和 [@if] 命令的示例。
 
-All the custom variables are automatically saved with the game. By default, the variables are stored in **local scope**. This means, that if you assign some variable in the course of gameplay and player starts a new game or loads another saved game slot, where that variable wasn't assigned — the value will be lost. This is useful for the most type of variables. If, however, you wish to store the variable in **global scope**, prepend `G_` or `g_` to its name, eg: `G_FinishedMainRoute` or `g_total_score`. Global variables can be used to indicate some meta or total information, for example, the number of times player has finished some route or a total score based on all the playthroughs.
+所有自定义变量都随游戏自动保存。默认情况下，变量存储于**局部范围**中。意味着，在游戏中你注册了某些变量值后，玩家重新开始新游戏或加载了其他栏位的游戏后，该值会丢失。大多数变量适用于此情况。如果，你希望将该变量存储于 **全局范围** ，在其变量名加上 `G_` 或 `g_` ，比如`G_FinishedMainRoute` 或 `g_total_score`。全局变量可以用于表明部分元信息或总信息，比如，玩家完成某些路线的次数，或所有路线中的总分数。
 
-You can set pre-defined custom variables (both global and local) with initial values in the "Custom Variables" configuration menu.
+在配置菜单的 "Custom Variables" 中，你可以为自定义变量（全局和局部范围）预先设置初始值。
 
 ![](https://i.gyazo.com/21701f17403921e34ba4da33b0261ad0.png)
 
-Global pre-defined variables are initialized on first application start, while the locals do so on each state reset. Notice, that the value field in the menu expects a valid script expression and not a raw value string.
+全局预定义值将会随第一个应用启动时初始化，本地变量会在每次状态重置时初始化。请注意，菜单中的value字段需要有效的脚本表达式，而不是原始值字符串。
 
-## Injecting Variables
+## 注入变量
 
-It's possible to inject (inline) custom variable to naninovel script parameter values using the curly braces.
+可以使用花括号将自定义变量注入（内联）到naninovel脚本参数值。
 
-The following script will show an input field UI where user can enter an arbitrary text. Upon submit the entered text will be assigned to the specified custom variable.
+以下脚本将显示一个输入字段UI，用户可以在其中输入任意文本。提交后，输入的文本将分配给指定的自定义变量。
 
-```
-; Allow user to enter an arbitrary text and assign it to `name` custom state variable
+```nani
+; 允许玩家输入任意文本，并绑定到 `name` 自定义变量。
 @input name summary:"Choose your name."
-; Stop command is required to halt script execution until user submits the input
+; 停止命令，挂起脚本直到玩家提交输入值。
 @stop
 
-; You can then inject the assigned `name` variable in naninovel scripts
+; 之后你就可以Naninovel脚本中注入该 `name` 变量值。
 Archibald: Greetings, {name}!
 {name}: Yo!
 
-; ...or use it inside set and conditional expressions
+; ...或在set命令的条件表达式中使用。
 @set score=score+1 if:name=="Felix"
 ```
 
-You can inject the custom variables to any parameter values as long as the type allows. Eg, you can't assign a string (text) to an integer (number) parameter.
+只要类型允许，就可以将自定义变量注入任何参数值。例如，不能将字符串（文本）分配给整数（数字）参数。
 
-```
+```nani
 @set PlayerName="Felix";PlayerYPosition=0.1;PlayerTint="lightblue"
 
-; The following will produce an error, as `PlayerTint` is not a number.
+; 由于 `PlayerTint` 值不是数字，所以会报错。
 @char {PlayerName} pos:50,{PlayerTint} 
 
-; ...and this will execute just fine.
+; ...这句会正常执行。
 @char {PlayerName} pos:50,{PlayerYPosition} tint:{PlayerTint}
 ```
 
-## Variable Triggers
+## 变量触发器
 
-When building a [custom UI](/zh/guide/user-interface.md#ui-customization) or other systems, you may want to listen (react) for events when a variable value is changed. For example, when building a character stats screen, you want make the text to change with the variables. While the conventional way to implement such behavior would be using a C# script, you can also make use of `Custom Variable Trigger` component. The component will invoke Unity events when a variable with specified name is changed. You can bind compatible commands with those events, such as updating the text values.
+在构建 [自定义UI](/zh/guide/user-interface.md#UI自定义) 或其他系统时，可能希望在变量值更改时侦听（反应）事件。比如创建，角色状态界面是，你想让文本跟随变量改变。使用条件判断实现应该会用到C#脚本，你也可以通过 `Custom Variable Trigger` 组件使用达到效果。当给定名字的变量值改变时，该组件会调用Unity事件。你可以将事件和合适命令绑定，比如更新文本值。
 
 ![](https://i.gyazo.com/22eddd109e76d4e63c461e9d75b20ceb.png)
 
-## Variables Debug
+## 变量debug
 
-While the game is running it's possible to view all the existing variables and change their values for debugging purposes.
+在游戏运行时，可以基于debug的目的查看和修改所有已有变量值。
 
-Open [development console](/zh/guide/development-console.md) and enter `var` command to open the variables editor window.
+打开[开发控制台](/zh/guide/development-console.md) ，输入命令，打开 `var` 变量编辑窗口。
 
 ![](https://i.gyazo.com/d1812668c0776b01f3a82c5ddcba0145.png)
 
-When changing value of a variable in the list, a "SET" button will appear, which you can press to apply the changes.
+当改变列表中的值后，“set”按钮会出现，点击后应用该修改。
 
-The variables list is automatically updated when the custom variables are changed while running the game.
+如果游戏运行中变量值改变，变量列表会自动更新对应值。

@@ -1,23 +1,23 @@
-# Render Pipelines
+# 渲染管线
 
-Unity's [scriptable render pipelines](https://docs.unity3d.com/Manual/render-pipelines.html) (SRP) — both URP and HDRP — are supported with some limitations and require additional setup.
+Unity的 [可编程渲染管线](https://docs.unity3d.com/Manual/render-pipelines.html) (URP和HDRP) 部分支持需要额外设置。
+
 
 ::: warn
-The SRPs are still [hardly production-ready](https://forum.unity.com/threads/915275) (despite the official claims from Unity) and lack many features compared to default rendering system. It's not recommended to use the render pipelines, unless you're an advanced user and ready to solve any potential technical issues and limitations.
+SRPs仍不完善（虽然官方说已可用于开发），并缺少许多功能相比于默认渲染系统。不推荐使用该系统，除非你是高级用户，有准备解决潜在问题和技术问题。
 :::
 
-## Setup
+## 安装
+请参阅有关如何安装和配置所选SRP 的[官方文档](https://docs.unity3d.com/Manual/render-pipelines.html)
 
-See the [official documentation](https://docs.unity3d.com/Manual/render-pipelines.html) on how to install and configure your SRP of choice.
-
-Both URP and HDRP doesn't support multiple cameras, so it's required to disable `Use UI Camera` in the camera configuration menu (enabled by default).
+URP和HDRP均不支持多台摄像机，因此需要在摄像机配置菜单中将 `Use UI Camera` 禁用（默认情况下启用）。
 
 ![](https://i.gyazo.com/5b70d18f028d27124bd8f4a25b2df47c.png)
 
-When running under HDRP, change color space to linear (HDRP doesn't support gamma mode, which is set by default).
+在HDRP下运行时，请将颜色空间更改为线性（HDRP不支持默认设置的伽玛模式）。
 
 ![](https://i.gyazo.com/2c053a6e3d79f080469787b7f09ee8f3.png)
 
-## Limitations
+## 限制
 
-Some of the built-in effects and features (eg, Depth Of Field, Digital Glitch, [@startTrans] and [@finishTrans] commands) won't work with SRPs due to lack of the required rendering features. It's possible to replace most of the missing effects and features via various hacks and use them without modifying Naninovel's source code or package content; see [special effects](/zh/guide/special-effects.md#adding-custom-effects) and [custom commands](/zh/guide/custom-commands.md) guides for more information on extending the engine in that regard.
+部分内置效果和特性（比如，景深，数字故障， [@startTrans] 和 [@finishTrans] 命令）不能在SRPs下正常工作因为缺少部分渲染特性。可用各种方法在不修改Naninovel源码或资源包内容的情况下，替换大多数丢失效果和特性。有关在这方面扩展引擎的更多信息，请参见[特殊效果](/zh/guide/special-effects.md#添加自定义效果)和[自定义命令](/zh/guide/custom-commands.md) 指南。

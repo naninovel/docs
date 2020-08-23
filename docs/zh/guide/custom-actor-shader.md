@@ -1,11 +1,12 @@
-﻿# Custom Actor Shader
+﻿# 自定义演出元素shader着色器
 
-When rendering most of the actors (characters and backgrounds, except generic ones) a special shader is used to handle semi-transparency overdraw and to support various effects.
+当在渲染大多数演出元素时候（人物，背景，除传统模型），都使用了特定shader着色器来处理半透明已经其他各种效果。
 
-You can override the default shader by assigning a custom one to `Custom Shader` property available in the actor configuration menu.
+你可以在属性配置中配置`Custom Shader`属性来使用自定义shader着色器。
+
 
 ![](https://i.gyazo.com/0ddd77ffda5e4d31e09be723b318ef43.png)
 
-Be aware, that the shader is expected to have several specific properties and render passes in order to work correctly. You can use the built-in default shader as a reference when writing your own. The built-in shader is located at `Naninovel/Resources/Naninovel/Shaders/TransitionalSprite.shader`.
+注意，自定义shader着色器有几条特定属性和通道为必需的，以确保正常工作。参考内置默认的shader着色器来修改你的自定义shader着色器。内置shader着色器路径为`Naninovel/Resources/Naninovel/Shaders/TransitionalSprite.shader`。
 
-See Unity documentation and tutorials on shaders and graphics programming in general for more info on how to create and modify the shader and what you can achieve with it.
+参考Unity关于shader着色器的手册和教程，了解如何创建和定制你的shader着色器来达到你想要的效果。

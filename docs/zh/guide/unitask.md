@@ -1,6 +1,7 @@
 ﻿# UniTask
 
-[UniTask](https://github.com/Cysharp/UniTask) is an open-sourced (MIT license) library providing a more efficient [Task-based asynchronous programming](https://docs.microsoft.com/en-us/dotnet/standard/parallel-programming/task-based-asynchronous-programming) implementation for Unity (compared to [.NET native](https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.task)). You can find more details regarding the nature of optimizations and usage examples in the [article by the author of the library](https://medium.com/@neuecc/a1ff0766029).
+[UniTask](https://github.com/Cysharp/UniTask) 是基于(MIT license)的开源库，提供的高效的基于任务的异步编程实现（与[.NET native](https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.task) 相比）。你可以在[作者文章库](https://medium.com/@neuecc/a1ff0766029)找到更多说明和使用示例。
 
-All the Naninovel's asynchronous methods are built with UniTask; in order to use the public APIs (eg, to add custom commands or implementations of the engine services), the library should be installed in your Unity project. Naninovel is bundled with a copy of UniTask for convenience; if you already have the library installed, delete `Naninovel/ThirdParty/UniTask` to prevent conflicts.
+Naninovel的所有异步方法都是使用UniTask构建的；为了使用公共API（例如，添加自定义命令或引擎服务的实现），应该在您的Unity项目中安装该库。Naninovel为方便起见内附了UniTask的副本。如果您已经安装了该库，请删除`Naninovel/ThirdParty/UniTask` 目录以防止冲突。
+
 
