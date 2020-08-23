@@ -32,7 +32,7 @@ Naninovel脚本时文本文件 (`.nani` 后缀扩展名) 用于控制场景种�
 命令名不区分大小写，下列所示的表达式，都会调用相同的`AutoSave`自动保存命令：
 
 
-```
+```nani
 @save
 @Save
 @AutoSave
@@ -44,19 +44,19 @@ Naninovel脚本时文本文件 (`.nani` 后缀扩展名) 用于控制场景种�
 许多命令都有很多参数，定义了命令产生的各种效果。参数是由参数名加(`:`)组成。同样可以由生效命令类对应参数名字或`CommandParameter`注释的别名调用。
 
 基本格式如下：
-```
+```nani
 @commandId paramId:paramValue 
 @命令名 参数名:参数值
 ```
 如[@hideChars]命令，用于隐藏所有场景中可见角色，有如下使用方式：
 
-```
+```nani
 @hideChars
 ```
 
 你可以使用`time`参数，小数控制在人物完全消失的渐隐时长如下：
 
-```
+```nani
 @hideChars time:5.5
 ```
 
@@ -64,7 +64,7 @@ Naninovel脚本时文本文件 (`.nani` 后缀扩展名) 用于控制场景种�
 
 你可以使用`wait`布尔参数控制，下一句话是否立即执行，或是在当前命令执行完成后开始执行，如下：
 
-```
+```nani
 @hideChars time:5.5 wait:false
 @hidePrinter
 ```
@@ -78,7 +78,7 @@ Depending on the command parameter, it could expect one of the following value t
 
 类型 | 描述
 --- | ---
-String | 简单string字符串类型， 如`LoremIpsum`，如果中间有空格，记得加双引号如：`"Lorem ipsum dolor sit amet."`。
+String | 简单string字符串类型， 如`LoremIpsum`，如果中间有空格，记得加双引号如：`"Lorem ipsum dolor sit amet."。
 Integer | 整数类型,如：`1`, `150`, `-25`。
 Decimal | 浮点数类型，如：`1.0`, `12.08`, `-0.005`。
 Boolean | 布尔值，`true` or `false`不分大小写。
@@ -91,7 +91,7 @@ List<>|  上述参数值类型组成的参数列表型，由逗号分隔，比�
 
 比如， [@bgm] 命令，就有一个定义播放音轨的无名参数：
 
-```
+```nani
 @bgm PianoTheme
 ```
 "PianoTheme" 在这里就是 "Bgm路径" 的*String* 参数。
@@ -108,33 +108,33 @@ List<>|  上述参数值类型组成的参数列表型，由逗号分隔，比�
 ### 命令API参照
 
 
-当前可用命令，参数以及示例参考 [命令API参照]((/zh/api/). 
+当前可用命令，参数以及示例参考 [命令API参照](/zh/api/). 
 
 ## 普通内容文本行
 
 为了让写大量文本的时候更舒适，普通文本行会被自动应用。当一行文本前没有任何预设前缀符号的时候，这行话会被默认为普通文本行，如下：
 
 
-```
+```nani
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 ```
 
 说话人的ID可以写在内容前面，用(`:`)隔开，这样会自动关联[人物元素](/zh/guide/characters.md)中定义的人物，如下：
 
 
-```
+```nani
 Felix: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 ```
 
 参照如下所示，在人物ID后面定义外观，可以同时改变人物的外观：
 
-```
+```nani
 Felix.Happy: Lorem ipsum dolor sit amet.
 ```
 
 上面两行所示和下面所示行的效果等效：
 
-```
+```nani
 @char Felix.Happy wait:false
 Felix: Lorem ipsum dolor sit amet.
 ```
@@ -146,8 +146,7 @@ Felix: Lorem ipsum dolor sit amet.
 所有命令，([内置命令](/zh/api/) 和 [用户自定义命令](/zh/guide/custom-commands.md)) 都可以内联到普通文本执行，使用中括号隔开(`[`,`]`)，如下：
 
 
-
-```
+```nani
 Felix: Lorem ipsum[char Felix.Happy pos:0.75 wait:false] dolor sit amet, consectetur adipiscing elit.[i] Aenean tempus eleifend ante, ac molestie metus condimentum quis.[i][br 2] Morbi nunc magna, consequat posuere consectetur in, dapibus consectetur lorem. Duis consectetur semper augue nec pharetra.
 ```
 
@@ -156,20 +155,20 @@ Felix: Lorem ipsum[char Felix.Happy pos:0.75 wait:false] dolor sit amet, consect
 在内联使用时，普通文本行会被内联执行目录转化为独立的命令行执行，文本由[@print]开始执行，比如如下naninovel脚本：
 
 
-```
+```nani
 Lorem ipsum[char Felix.Happy pos:75 wait:false] dolor sit amet.
 ```
 
 实际上，被引擎识别为一系列的独立命令：
 
-```
+```nani
 @print "Lorem ipsum" waitInput:false
 @char Felix.Happy pos:75 wait:false
 @print "dolor sit amet."
 ```
 
 如果要在游戏中显示中括号，如下格式书写:
-```
+```nani
 Some text \[ text inside brackets \]
 ```
 
@@ -181,20 +180,20 @@ Some text \[ text inside brackets \]
 要使用标签，在文本行开头使用`#`紧接标签名字：
 
 
-```
+```nani
 # Epilogue
 ```
 你可以使用[@goto]命令跳转到上面这行，如下：
 
 
-```
+```nani
 @goto ScriptName.Epilogue
 ```
 
 在相同脚本中跳转的时候，可以省略脚本名字，如下：
 
 
-```
+```nani
 @goto .Epilogue
 ```
 
@@ -205,7 +204,7 @@ Some text \[ text inside brackets \]
 你可以用来备注，或是为其他开发成员写注释（呵，为其他人写注释，不存在的）：
 
 
-```
+```nani
 ; 如下命令会用于自动保存游戏
 @save
 ```
@@ -215,7 +214,7 @@ Some text \[ text inside brackets \]
 虽然脚本是线性流程，你可以使用`if`参数改变执行结构，`if`能被所有命令使用：
 
 
-```
+```nani
 ; 如果 `level` 值是数字，并且大于9000，添加该选项 。
 @choice "It's over 9000!" if:level>9000
 
@@ -237,7 +236,7 @@ Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
 
 也可在多行，区块间使使用 [@if], [@else], [@elseif] 和 [@endif] 命令：
 
-```
+```nani
 @if score>10
 	Good job, you've passed the test!
 	@bgm Victory
@@ -255,7 +254,7 @@ Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
 
 提行分行只是为了方便阅读，普通文本也可使用：
 
-```
+```nani
 Lorem ipsum dolor sit amet. [if score>10]Duis efficitur imperdiet nunc. [else]Vestibulum sit amet dolor non dolor placerat vehicula.[endif]
 ```
 
@@ -328,7 +327,7 @@ Lorem ipsum dolor sit amet. [if score>10]Duis efficitur imperdiet nunc. [else]Ve
 
 ## IDE支持
 
-IDE特性，比如方法高亮，错误检查，自动补充，文本关联等，能够显著提升编码效率，我们已经提供了免费的开源[Atom editor](https://atom.io) (支持Windows, MacOS 和 Linux)
+IDE特性，比如方法高亮，错误检查，自动补充，文本关联等，能够显著提升编码效率，我们已经提供了免费的开源[Atom](https://atom.io) (支持Windows, MacOS 和 Linux)
 扩展，该插件为naninovel提供了关键的IDE特性支持。
 
 
@@ -338,7 +337,7 @@ IDE特性，比如方法高亮，错误检查，自动补充，文本关联等�
 
 1. 安装 [Atom editor](https://atom.io)
 2. 安装 [language-naniscript](https://atom.io/packages/language-naniscript) 扩展
-3. 安装 [atom-ide-ui](https://atom.io/packages/atom-ide-ui) 扩展 (我们的扩展要求，以提供某些特性支持)
+3. 安装 [atom-ide-ui](https://atom.io/packages/atom-ide-ui) 扩展 (我们的扩展所必须的，以提供某些特性支持)
 4. 重启Atom
 5. 打开naninovel脚本目录，打开单个文件不会激活该扩展
 
@@ -366,7 +365,7 @@ rewind 12
 
 ![Scripts Debug](https://i.gyazo.com/12772ecc7c14011bcde4a74c81e997b8.png)
 
-当前使用的脚本名，行号，内联脚本目录，都会显示在窗口标题上，当[自动语音](/zh/guide/voicing.md#auto-voicing)打开时，播放的语音名字也会显示出来。可以点击标题拖拽窗口。 "Stop" 按钮会停止脚本执行，"Play"会重新开始执行，"Close"按钮关闭debug窗口。
+当前使用的脚本名，行号，内联脚本目录，都会显示在窗口标题上，当[自动语音](/zh/guide/voicing.md#自动语音) 打开时，播放的语音名字也会显示出来。可以点击标题拖拽窗口。 "Stop" 按钮会停止脚本执行，"Play"会重新开始执行，"Close"按钮关闭debug窗口。
 
 debug窗口在编辑器下和发布工程都可以使用。
 

@@ -1,16 +1,14 @@
-# Custom Commands
+# 自定义命令
 
-Command represents a single operation, that controls what happens on the scene; e.g., it can be used to change a background, move a character or load another naninovel script. Parametrized command sequences defined in [naninovel scripts](/zh/guide/naninovel-scripts.md) effectively controls the game flow. You can find available built-in commands in the [API reference](/zh/api/). In code, all the built-in script command implementations are defined under `Naninovel.Commands` namespace.
+命令代表单个操作，控制这场景中的发生事件。比如，可以用于改变背景，移动角色，或是加载其他脚本。[naninovel 脚本](/zh/guide/naninovel-scripts.md) 定义的参数化命令序列可有效控制游戏流程。您可以在[API参考 ](/zh/api/) 中找到可用的内置命令。在代码中，所有内置脚本命令实现均在 `Naninovel.Commands` 命名空间下定义。
 
-## Adding Custom Command
+要添加自己的自定义脚本命令，请创建一个C#的新类派生自`Command` 并实现ExecuteAsync抽象方法。引擎将自动选择创建的类，能够通过类名或别名（如果已分配）从naninovel脚本调用命令。要将别名分配给naninovel命令，请将`CommandAlias` 标签应用于该类。
 
-To add your own custom script command, create a new C# class derived from `Command` and implement `ExecuteAsync` abstract method. The created class will automatically be picked up by the engine and you'll be able to invoke the command from the naninovel scripts by either the class name or an alias (if assigned). To assign an alias to the naninovel command, apply `CommandAlias` attribute to the class.
+`ExecuteAsync` 是当脚本执行命令时调用的异步方法。使用 [引擎服务](/zh/guide/engine-services.md) 访问引擎内置系统。Naninovel脚本将会暂停，直到该执行方法完成返回 `Wait` 参数为 `true`。
 
-`ExecuteAsync` is an async method invoked when the command is executed by the scripts player; put the command logic there. Use [engine services](/zh/guide/engine-services.md) to access the engine built-in systems. Naninovel script execution will halt until this method returns a completed task in case `Wait` parameter is `true`.
+要将命令参数公开给naninovel脚本，请使用一种受支持的类型向命令类添加一个公共字段：
 
-To expose a command parameter to naninovel scripts, add a public field to the command class with one of the supported types: 
-
-Field Type | Value Type | Script Example
+字段类型 | 值类型 | 脚本示例
 --- | --- | ---
 StringParameter | String | `LoremIpsum`, `"Lorem ipsum"`
 IntegerParameter | Int32 | `10`, `0`, `-1`
@@ -29,23 +27,23 @@ NamedIntegerListParameter | List&lt;NamedInteger> | `Yuko.5,Misaki.-8`
 NamedDecimalListParameter | List&lt;NamedFloat> | `Nanikun.88.99,Yuko.-5.1`
 NamedBooleanListParameter | List&lt;NamedBoolean> | `Misaki.false,Kohaku.true`
 
-Optionally, you can apply `[ParameterAlias]` attribute to the field to assign an alias name to the parameter allowing it to be used instead of the field name when referencing the parameter in naninovel scripts. If you wish to make the parameter nameless, set `Command.NamelessParameterAlias` constant (empty string) as the alias; please note, that only one nameless parameter is allowed per command.
+另外，您可以将 `[ParameterAlias]`属性应用于字段，作为参数别名，从而在naninovel脚本中引用参数时可以使用别名而不是字段名称。如果想设置为无名参数，则将 `Command.NamelessParameterAlias` 常量（空字符串）设置为别名；请注意，每个命令只允许使用一个无名参数。
 
-To make parameter required (causing an error to be logged when it's not specified in naninovel script), apply `[RequiredParameter]` attribute to the field. When the attribute is not applied, parameter is considered optional.
+要使参数为必需设置的（在naninovel脚本中未指定该参数时会在控制台报错），请将 `[RequiredParameter]` 属性应用于该字段。如果不应用该属性，则该参数被视为可选参数。
 
-All the parameter types have `HasValue` property, which you can use to test whether the parameter has been assigned in naninovel script; optionally, you can use `Command.Assigned()` static method, which takes a parameter instance and returns true when the provided parameter is not null and has a value assigned.
+所有参数类型都有 `HasValue` 属性，可以使用它来测试是否已在naninovel脚本中分配了参数；（可选）可以使用 `Command.Assigned()` 静态方法，该方法采用参数实例，并在提供的参数不为null并分配了值时返回true。
 
-In case execution of the command requires loading some resources, implement `Command.IPreloadable` interface to preload the required resources when the game is loading.
+如果命令的执行需要加载一些资源，实现`Command.IPreloadable` 接口，以在游戏加载时时预加载要使用的资源。
 
-In case the command have parameters that can be localized (text directly presented to the user, usually), implement `Command.ILocalizable` interface to add the command to the generated script localization documents.
+如果命令具有可以本地化的参数（通常直接向用户显示文本），请实现 `Command.ILocalizable` 接口以将命令添加到生成的脚本本地化文档中。
 
-You can find scripts with all the built-in command implementations at `Naninovel/Runtime/Commands` package folder; feel free to use them as a reference when implementing your own custom commands.
+您可以在 `Naninovel/Runtime/Commands`文件夹中找到所有内置命令实现的脚本。在实现自己的自定义命令时，可以随时将它们用作参考。
 
-Here is an example of a custom command, that can be invoked from naninovel scripts as `@HelloWorld` or `@hello` to print `Hello World!` to the console and can also take an optional `name` parameter (eg, `@hello name:Felix`) to greet the provided name instead of the world:
+这是一个自定义命令的示例，可以从naninovel脚本调用该命令 `@HelloWorld` 或 `@hello` 将 `Hello World!` 打印到控制台，还可以使用一个可选 `name` 参数（例如`@hello name:Felix`）来提供名称：
 
 ```csharp
-using Naninovel;
 using Naninovel.Commands;
+using System.Threading;
 using UniRx.Async;
 using UnityEngine;
 
@@ -70,35 +68,10 @@ public class HelloWorld : Command
 }
 ```
 
-Notice the optional `CancellationToken` argument. In case invoking any async methods, make sure to check the token for cancellation requests and return ASAP.
+注意可选 `CancellationToken` 参数。如果调用任何异步方法，请确保检查该值的取消请求，并尽快返回该值。
 
 ::: example
-Another example of adding custom commands to add/remove items of an inventory system can be found in the [inventory example project on GitHub](https://github.com/Elringus/NaninovelInventory).
+关于添加自定义命令来在背包中增加删除道具的示例在[背包示例项目中](https://github.com/Elringus/NaninovelInventory) 。
 
-Specifically, the command implementations are stored at [Runtime/Commands](https://github.com/Elringus/NaninovelInventory/tree/master/Assets/NaninovelInventory/Runtime/Commands) directory.
+另外，命令实现存储在[Runtime/Commands](https://github.com/Elringus/NaninovelInventory/tree/master/Assets/NaninovelInventory/Runtime/Commands) 目录中。
 :::
-
-## IDE Metadata
-
-When adding custom commands, you may notice that they're highlighted as errors in [IDE extensions](/zh/guide/naninovel-scripts.md#ide-support). That is due to metadata of the custom commands is not available to the extensions. You can use custom commands tool to automatically generate the required metadata file over all the custom commands present in the project.
-
-Open the tool with `Naninovel -> Tools -> Custom Commands` editor menu, then click "Select" button and select path to `server` folder found inside the target IDE extension; eg, for Atom it'll be `%HOMEPATH%/.atom/packages/language-naniscript/server`, where `%HOMEPATH%` is the path to your OS user directory. Click "Generate Custom Commands Metadata" button to generate the file at the specified path and restart IDE for changes to take effect. The custom commands should now be recognized by the IDE. When you add or modify the commands, repeat the process to update metadata file of the target extension.
-
-::: warn
-Implementing types of the custom commands should not be under `Naninovel.Commands` [namespace](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/namespaces/); otherwise, they will be recognized as built-in commands and won't be included in the generated metadata file.
-:::
-
-If you'd like to add documentation to the custom commands and/or parameters, apply `Documentation` attribute to command type and parameter fields respectively:
-
-```csharp
-[Documentation("Summary of the custom command.")]
-public class CustomCommand : Command
-{
-    [Documentation("Summary of the custom parameter.")]
-    public StringParameter CustomParameter;
-}
-```
-
-Below you can find a video tutorial on how to generate metadata of custom commands (via [inventory example project](https://github.com/Elringus/NaninovelInventory)) for Atom IDE extension.
-
-[!!Fg-esrR-0mU]

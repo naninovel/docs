@@ -1,12 +1,12 @@
-﻿# Choices
+﻿# 选择
 
-The feature allows to present a number of choices to the user and re-route script execution depending on the choice the user makes.
+该功能允许向用户呈现许多选择，并根据用户做出的选择重新规划脚本执行流程。
 
 ![Choices](https://i.gyazo.com/023502e43b35caa706c88fd9ab32003d.png)
 
-Use [@choice] commands followed by the choice summary and (optional) `goto` path to add choices from the naninovel scripts:
+在naninovel脚本中使用 [@choice] 命令，后跟选择摘要和（可选）goto路径，以添加选择：
 
-```
+```nani
 ; Print the text, then immediately show choices and stop script execution.
 Continue executing this script or load another?[skipInput]
 @choice "Continue from the next line"
@@ -16,9 +16,9 @@ Continue executing this script or load another?[skipInput]
 @stop
 ```
 
-Value of the `goto` parameter is the path to re-route into when users selects the corresponding choice. It's specified in the following format: *ScriptName*.*LabelName*. When label name is omitted, provided script will be played from the start; when script name is omitted, a label in the currently played script will be referenced:
+该 `goto` 参数的值是用户选择相应选项时要导航至的路径。它以以下格式指定：*ScriptName*.*LabelName*。如果省略标签名称，则将从头开始执行提供的脚本。当省略脚本名称时，将引用当前执行的脚本中的标签：
 
-```
+```nani
 ; Loads and starts playing a naninovel script with the name `Script001` from the start
 goto:Script001
 
@@ -29,40 +29,43 @@ goto:Script001.AfterStorm
 goto:.Epilogue
 ```
 
-When `goto` parameter is not specified, current script will continue executing from the next line.
+如果 `goto` 未指定参数，则当前脚本将从下一行继续执行。
 
-Choice handler actors are used to process the [@choice] commands. You can add, edit and remove choice handlers using the choice manager accessible via `Naninovel -> Resources -> Choice Handlers` context menu.
+选择处理器元素用于处理 [@choice]命令。可以使用可通过`Naninovel -> Resources -> Choice Handlers` 菜单访问的选择管理器来添加，编辑和删除选择处理器。
 
-Choice handlers behavior can be configured using `Naninovel -> Configuration -> Choice Handlers` context menu; for available options see [configuration guide](/zh/guide/configuration.md#choice-handlers).
+可以使用 `Naninovel -> Configuration -> Choice Handlers` 菜单配置选择处理程序的行为。有关可用选项的信息，请参阅 [属性配置](/zh/guide/configuration.md#选择处理器) 。
 
-## Choice Button
+## 选择按钮
 
-The [@choice] command accepts an optional `button` parameter specifying a path (relative to a "Resources" folder) to custom prefab representing the choice option object. 
+ [@choice] 命令有一个可选参数 `button` 用于指定表示选项时使用的预制体的路径（相对于“ Resources”文件夹）。
 
-```
+```nani
 @choice handler:ButtonArea button:MapButtons/Home pos:-300,-300 goto:.HomeScene
 ```
-— here we use a choice handler supporting positioning to represent a point of interest on an improvised map, where the `button` parameter is pointing to a prefab consisting of a button wrapped over an image. The prefab is stored at `Assets/Resources/MapButtons/Home.prefab`.
+— 这里我们使用一个支持定位的选择处理器，在地图的上点位表示相应选择， `button` 参数设置为地图上的一个图像。该预制体存储于 `Assets/Resources/MapButtons/Home.prefab`。
 
-To create a choice button prefab from template, use `Create -> Naninovel -> Choice Button` asset context menu.
+要从模板创建选择按钮预制，请使用 `Create -> Naninovel -> Choice Button` 菜单。
 
 ![](https://i.gyazo.com/c2bd4abaa0275f7cdd37c56fd2ff0dec.png)
 
-Remember to **store the custom choice buttons is a "Resources" folder**, otherwise they won't be able to load when requested.
+请记住，将**自定义选择按钮存储在“资源”文件夹**中，否则当请求时它们将无法加载。
 
-When `button` parameter of the [@choice] command is not specified a default button prefab is used.
+如果未指定命令 `button` 参数， [@choice] 则使用默认按钮预制。
 
-To use a different (eg, TMPro) text component for the choice text, use `On Summary Text Changed` [Unity event](https://docs.unity3d.com/Manual/UnityEvents) of the choice button component.
+要为选择文本使用其他（例如TMPro）文本组件，请使用选择按钮组件的 `On Summary Text Changed`  [Unity事件](https://docs.unity3d.com/Manual/UnityEvents) 。
 
 ![](https://i.gyazo.com/8810c51b336bfd653efcde591fe1c41f.png)
 
-## ButtonList Choice Handler
-Button list handler is used by default. It stores the choice buttons inside a horizontal layout panel and ignores the `pos` parameter of the [@choice] command.
 
-## ButtonArea Choice Handler
-In contrast to button list, button area doesn't enforce any specific layout and allows manually setting positions of the added choice buttons via `pos` parameter. For example, here is one way to make an interactive map with choice commands and button area handler:
+## 按钮列表选择处理器
 
-```
+默认情况下使用按钮列表处理程序。它将选择按钮存储在水平布局面板中，并忽略 [@choice] 命令的 `pos` 参数。
+
+## 按钮区域选择处理器
+
+与按钮列表相比，按钮区域不套用任何特定的布局，而是允许通过 `pos` 参数手动设置添加的选择按钮的位置。例如，以下为一种使用选择命令和按钮区域处理器制作交互式地图的方法：
+
+```nani
 # Map
 @back Map
 @hidePrinter
@@ -83,22 +86,22 @@ Don't forget about cucumbers!
 
 [!!cNRNgk5HhKQ]
 
-## Adding Custom Choice Handlers
+## 添加自定义选择处理器
 
-You can add custom choice handlers based on the built-in templates or create new handlers from scratch. For example, let's customize the built-in `ButtonArea` template. 
+您可以基于内置模板添加自定义选择处理程序，也可以从头开始创建新的处理程序。例如，现在自定义内置 `ButtonArea` 模板。
 
-Use `Create -> Naninovel -> Choice Handler -> ButtonArea` asset context menu to create a button area handler prefab somewhere outside of the Naninovel package, e.g. at the `Assets/ChoiceHandlers` folder. 
+使用 `Create -> Naninovel -> Choice Handler -> ButtonArea` 菜单在Naninovel包之外的某个位置（例如在Assets/ChoiceHandlers文件夹中）创建一个按钮区域处理预制体。
+ 
+编辑处理程序：更改字体，纹理，添加动画等。有关可用UI构建工具的更多信息，请查看[Unity文档](https://docs.unity3d.com/Packages/com.unity.ugui@latest) 。
 
-Edit the handler: change font, textures, add animations, etc. For more information on the available UI building tools, check the [Unity documentation](https://docs.unity3d.com/Packages/com.unity.ugui@latest).
-
-Expose the handler to engine resources using choice handler manager GUI, which can be accessed with `Naninovel -> Resources -> Choice Handlers` editor context menu. Add a new record using `+` (plus) button, enter actor ID (can differ from the prefab name) and double click the record to open actor settings. Drag-drop handler prefab to the `Resource` field.
+通过Naninovel -> Resources -> Choice Handlers菜单，用选择处理程序管理器GUI将选择处理程序公开给引擎资源。使用 `+` （加号）按钮添加新记录，输入元素 ID（可以与预制名称不同），然后双击记录以打开设置。拖放处理程序预制到 `Resource` 区域。如下图所示：
 
 [!cb3a0ff7f22b22cec6546acb388719fc]
 
-You can now use the new choice handler by specifying its ID in `handler` parameter of the [@choice] commands.
+现在，可以在 [@choice] 命令的`handler` 参数中指定新的选择处理程序的ID来使用它。
 
-```
+```nani
 @choice "Choice summary text." handler:MyNewHandler
 ```
 
-It's also possible to create a choice handler from scratch by manually implementing `IChoiceHandlerActor` interface. See the guide on [custom actor implementations](/zh/guide/custom-actor-implementations.md) for more information.
+也可以通过手动实现 `IChoiceHandlerActor` 接口从头创建选择处理程序。有关更多信息，请参见有关[自定义元素实现](/zh/guide/custom-actor-implementations.md) 。

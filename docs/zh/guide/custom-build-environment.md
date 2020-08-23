@@ -1,10 +1,10 @@
-﻿# Custom Build Environment
+﻿# 自定义构建环境
 
-When building the project using editor's [build menu](https://docs.unity3d.com/Manual/BuildSettings.html), Naninovel automatically executes additional pre- and post-processing procedures. Those procedures, among other things, include ensuring that all the resources assigned via Naninovel's configuration menus (eg, script docuements, character appearances, BGM and SFX clips, etc) are included to the build.
+当通过Unity的 [build menu](https://docs.unity3d.com/Manual/BuildSettings.html) 菜单来发布项目时，naninovel会自动执行附加的预处理和后处理过程。这些程序将处理包括确保将Naninovel的配置菜单分配的所有资源（例如，脚本文件，角色外观，BGM和SFX剪辑等）都包含到发布项目中，和其他事项。
 
-In case you're using a custom build environment (eg, [Cloud Build](https://unity3d.com/unity/features/cloud-build) or starting the build via custom scripts or from the command line) you have to manually invoke `Naninovel.BuildProcessor.PreprocessBuild(BuildPlayerOptions)` and `Naninovel.BuildProcessor.PostprocessBuild()` static methods before and after the build respectively.
+如果使用的是自定义构建环境（例如，[Cloud Build](https://unity3d.com/unity/features/cloud-build) 或通过自定义脚本或从命令行启动构建），则必须分别在构建之前和之后手动调用`Naninovel.BuildProcessor.PreprocessBuild(BuildPlayerOptions)` 和 `Naninovel.BuildProcessor.PostprocessBuild()` 静态方法。
 
-Below is an example of Cloud Build custom build processing script, which invokes the required Naninovel processing methods. Consult the [official service docs](https://docs.unity3d.com/Manual/UnityCloudBuildPreAndPostExportMethods.html) on how to setup the processing scripts.
+以下是Cloud Build自定义构建处理脚本的示例，调用的为所需Naninovel处理方法。有关如何设置处理脚本，请查阅[官方服务文档](https://docs.unity3d.com/Manual/UnityCloudBuildPreAndPostExportMethods.html) 。
 
 ```csharp
 public static class CustomBuildProcessor 
@@ -36,4 +36,4 @@ public static class CustomBuildProcessor
 }
 ```
 
-In case you're using you own custom build handler, which supposed to be triggered with the editor's build menu, it's possible to disable the Naninovel's handler by disabling `Enable Build Processing` property in the "Resource Provider" configuration menu.
+如果使用自己的自定义构建处理程序（应该由编辑器的构建菜单触发），则可以通过禁用配置菜单中的`Enable Build Processing`属性来禁用Naninovel的处理程序。
