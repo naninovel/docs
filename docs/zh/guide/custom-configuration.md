@@ -1,24 +1,25 @@
-﻿# Custom Configuration
+﻿# 自定义配置
 
+配置物体用于初始化和配置服务以及其他引擎系统。
 Configuration objects are used to initialize and configure services and other engine systems.
 
-By default, configuration objects are serialized as [scriptable object](https://docs.unity3d.com/Manual/class-ScriptableObject.html) assets and stored at `NaninovelData/Resources/Naninovel/Configuration` project directory. The assets are automatically generated when opening  corresponding configuration menus (`Naninovel -> Configuration`) in the Unity editor for the first time.
+默认情况下，配置物体被序列化为[可编程物体](https://docs.unity3d.com/Manual/class-ScriptableObject.html) 存储在`NaninovelData/Resources/Naninovel/Configuration`路径。该资源会在第一次打开`Naninovel -> Configuration`菜单时自动生成。
 
-To access configuration objects via C# use `Engine.GetConfiguration<T>()` static method, where `T` is type of the configuration object you wish to access. For example, the following example demonstrates how to access [audio configuration](/zh/guide/configuration.md#audio) object:
+要通过C＃访问配置对象，请使用 `Engine.GetConfiguration<T>()`静态方法，其中，`T`是要访问的配置对象的类型。例如，以下示例演示了如何访问 [音频配置](/zh/guide/configuration.md#音频)对象：
 
 ```csharp
 var audioConfig = Engine.GetConfiguration<AudioConfiguration>();
 ```  
 
-Be aware, that `Engine.GetConfiguration` method can only be used when the engine is initialized, as it requires a [configuration provider](/zh/guide/custom-configuration.md#configuration-provider) object, which is specified when initializing the engine to allow custom serving scenarios at runtime. In case you wish to access a configuration asset via default provider, it's possible even when the engine is not initialized with `ProjectConfigurationProvider` class, eg:
+请注意，该`Engine.GetConfiguration` 方法只能在引擎初始化时使用，因为它需要[配置提供程序](/zh/guide/custom-configuration.md#配置加载器) 对象，该对象是在初始化引擎时，在运行时允许自定义服务方案时指定的。如果你想通过默认加载器获取配置，在引擎未初始化的时候也可以通过`ProjectConfigurationProvider`实现，如下：
 
 ```csharp
 var audioConfig = ProjectConfigurationProvider.LoadOrDefault<AudioConfiguration>();
 ``` 
 
-While the configuration properties are meant to be changed via editor menus, it's still possible to modify them at runtime.  Be aware, that the objects returned by default project provider are the actual assets stored in the project; if you modify them, the changes will persist through play mode sessions. This in contrast to the configuration objects provided with `Engine.GetConfiguration` method, which are instances and won't mutate the original assets.
+虽然可以通过编辑器菜单更改配置属性，但仍可以在运行时对其进行修改。注意，修改其实是被应用到存储在项目中的实际物体上的。如果修改，在运行中会一直生效。这和通过`Engine.GetConfiguration` 方法实现的修改是相反的，这个仅影响实例化，而不影响原本的实际物体。
 
-Below is an example on changing `ReferenceResolution` property of camera configuration object right after the engine is initialized:
+以下是在引擎初始化后立即更改摄像机`ReferenceResolution`属性配置对象的示例：
 
 ```csharp
 using Naninovel;
@@ -43,9 +44,9 @@ public static class ModifyConfigAtRuntime
 }
 ```
 
-## Adding Configuration
+## 添加配置
 
-To add a new custom configuration, create a C# class with a `Serializable` attribute and inherit it from `Configuration`.
+要添加新的自定义配置，请创建一个具有`Serializable`属性的C＃类，并继承`Configuration`。
 
 ```csharp
 using Naninovel;
@@ -65,29 +66,29 @@ public class MyCustomConfiguration : Configuration
 }
 ```
 
-Corresponding menu will then automatically be added in the project settings, where you can configure properties of you custom configuration asset just like in all the built-in menus.
+然后，相应的菜单将自动添加到项目设置中，您可以在其中配置自定义配置的属性，像在所有其他内置菜单一样。
 
 ![](https://i.gyazo.com/c1163bba83f5d2b6286b100e837bca40.png)
 
-To access your custom configuration via C# use the same API as for the built-in assets:
+要通过C＃访问自定义配置，像内置资产一样使用相同的API：
 
 ```csharp
 var myConfig = Engine.GetConfiguration<MyCustomConfiguration>();
 ```
 
 ::: example
-Another example of adding a custom configuration menu to setup an inventory system can be found in the [inventory example project on GitHub](https://github.com/Elringus/NaninovelInventory).
+在添加的配置菜单中配置背包的示例参考[GitHub背包示例](https://github.com/Elringus/NaninovelInventory) 。
 
-Specifically, the custom configuration is implemented via [InventoryConfiguration.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryConfiguration.cs) runtime script.
+具体来说，自定义配置是通过[InventoryConfiguration.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryConfiguration.cs) 运行时脚本实现的。
 :::
 
-## Configuration Provider
+## 配置加载器
 
-It's possible to change the way configuration objects are served at runtime. For example, instead of static project assets, you can read the configuration from JSON files stored on a remote host. 
+可以更改在运行时配置物体提供服务的方式。例如，可以从远程主机上存储的JSON文件中读取配置，而不是静态项目文件。
 
-To specify a custom configuration serving scenario, create a C# class and implement `IConfigurationProvider` interface. The interface has just one method, that expects a `Type` argument and returns a `Configuration` object. It's up to you on how to construct and populate requested configuration objects, just make sure type of the returned object is equal to the requested one.
+要指定自定义配置服务方案，请创建C＃类并实现`IConfigurationProvider`接口。该接口仅包含一个方法，需要一个`Type`参数返回`Configuration`对象。由你决定如何构造和配置所请求的类型，只需确保返回的对象的类型等于所请求的对象的类型即可。
 
-Below is an example of a custom provider implementation, that just returns default configuration objects:
+以下是自定义配置加载器实现的示例，该示例仅返回默认配置的对象：
 
 ```csharp
 using Naninovel;
@@ -103,9 +104,9 @@ public class CustomConfigurationProvider : IConfigurationProvider
 }
 ```
 
-Once the custom configuration provider is ready, you have to make the engine use it instead of the built-in one by creating a custom engine initialization script. By default, the engine is initialized via `Naninovel/Runtime/Engine/RuntimeInitializer.cs`; feel free to use it as a reference when creating your own initialization script.
+准备好自定义配置加载器后，您必须通过创建自定义引擎初始化脚本来使引擎使用它而不是内置的加载器。默认情况，引擎初始化使用的时`Naninovel/Runtime/Engine/RuntimeInitializer.cs`脚本；可以在创建你自己的初始化脚本的时候用作参考。
 
-Alternatively, if your goal is just to use a custom configuration provider, but keep the default engine initialization routine, consider using `RuntimeInitializer.InitializeAsync(IConfigurationProvider)` static method, which accepts an optional argument for configuration provider:
+另外，如果你的目的只是使用自定义配置加载器，请保留原来的引擎初始化流程，考虑使用可接受加载器作为参数的`RuntimeInitializer.InitializeAsync(IConfigurationProvider)` 方法：
 
 ```csharp
 using Naninovel;
@@ -123,4 +124,4 @@ public class CustomInitializer
 }
 ```
 
-No matter which way you choose to initialize the engine, don't forget to disable `Initialize On Application Load` option in the engine configuration menu to disable default initialization procedure.
+无论选择哪种方式初始化引擎，都不要忘记在引擎配置菜单中关闭`Initialize On Application Load`选项以禁用默认初始化过程。

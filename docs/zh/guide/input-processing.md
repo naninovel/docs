@@ -1,59 +1,60 @@
-# Input Processing
- 
-Engine processes user input using pre-configured listeners. Each input listener has the following properties:
+# 输入处理
 
-Property | Description
+引擎使用预配置的侦听器处理用户输入。每个输入侦听器均具有以下属性：
+
+
+属性 | 描述
 --- | ---
-Name | Identifier of the input listener. Used to reference the listener by other engine systems.
-Always Process | Whether to process the input while in input blocking mode. E.g. when playing a movie.
-Keys | List of keys (buttons) which activate the input.
-Axes | List of axes (eg, a mouse or a gamepad analog stick) which activate the input.
-Swipes | List of swipes (touch screen) which activate the input.
+Name | 输入侦听器的标识符。用于引用其他引擎系统的侦听器。
+Always Process | 在输入阻止模式下是否处理输入。例如，播放电影时。
+Keys | 激活输入的按键（按钮）列表。
+Axes | 激活输入的轴列表（例如，鼠标或游戏手柄模拟杆）。
+Swipes | 激活输入的滑动列表（触摸屏）。
 
-For specific values see Unity's input guide: [docs.unity3d.com/Manual/ConventionalGameInput](https://docs.unity3d.com/Manual/ConventionalGameInput.html).
+有关特定值，请参见Unity的输入指南：[docs.unity3d.com/Manual/ConventionalGameInput](https://docs.unity3d.com/Manual/ConventionalGameInput.html).
 
-You can configure the built-in input bindings and add new listeners using `Naninovel -> Configuration -> Input` context menu; for available options see [configuration guide](/zh/guide/configuration.md#input).
+您可以使用 `Naninovel -> Configuration -> Input` 菜单配置内置的输入绑定并添加新的侦听器。有关可用选项的信息，请参阅[配置指南](/zh/guide/configuration.md#输入)。
 
 ![Manage Input](https://i.gyazo.com/2f97539323c9fc36124e286856a36f84.png)
 
 ::: example
-Example of adding a custom input binding to toggle inventory UI can be found in the [inventory example project on GitHub](https://github.com/Elringus/NaninovelInventory).
+[在GitHub上的背包示例项目](https://github.com/Elringus/NaninovelInventory) 可以找到添加自定义输入绑定以切换背包UI的示例。
 
-Specifically, the custom "ToggleInventory" binding is used in [UI/InventoryUI.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L215) runtime script. A binding with the same name is added via input configuration menu, under Control Scheme.
+具体来说，[UI/InventoryUI.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L215) 运行时脚本中使用了自定义“ToggleInventory”的绑定。输入配置菜单下添加了具有相同名称的绑定。
 :::
 
-## Gamepad and Keyboard
+## 游戏手柄和键盘
 
-All the built-in features are usable with gamepad or keyboard input. You can remove, change or add gamepad/keyboard-specific hotkey bindings via the aforementioned bindings editor menu.
+所有内置功能均可与游戏手柄或键盘输入一起使用。您可以通过上述绑定编辑器菜单删除，更改或添加特定于游戏手柄/键盘的热键绑定。
 
-The built-in UIs can also be navigated with a gamepad or keyboard, without using mouse or touch input. When in any of modal menus (outside of main gameplay mode, eg title menu, backlog, etc), press a navigation key (directional pad or left stick on gamepad, arrow keys on keyboard) to select a button in the menu. The first focused button (game object) can be changed in each UI using `Focus Object` field.
+内置UI也可以通过游戏手柄或键盘进行导航，而无需使用鼠标或触摸输入。在任何模式菜单中（在主要的游戏模式之外，例如，标题菜单，回顾画面等），按导航键（方向键或游戏板上的左操纵杆，键盘上的箭头键）可以在菜单中选择一个按钮。可以在每个UI中使用 `Focus Object` 字段更改第一个聚焦的按钮（游戏对象）。
 
 ![](https://i.gyazo.com/809d4c423d1696a075d5fb73370d48fa.png)
 
-With `Focus Mode` property you can change whether the assigned game object should be focused immediately after the UI becomes visible or after a navigation key is pressed.
+使用 `Focus Mode` 属性，可以更改是在UI可见之后还是在按下导航键之后立即聚焦指定的游戏对象。
 
 ::: warn
-Gamepad navigation over UIs will only work when Unity's new input system is installed in the project; find more information about the input system below.
+只有在项目中安装了Unity的新输入系统时，才能通过UI进行游戏手柄导航；在下面找到有关输入系统的更多信息。
 :::
 
-When in the main gameplay mode (outside of modal UIs), press a button binded to `Pause` input (`Backspace` key for keyboard and `Start` button for gamepad by default) to open pause menu, where you can save/load game, open settings, exit to title, etc.
+在主要游戏模式（除用户UI界面外）下，按绑定到Pause输入的按钮（默认情况下键盘键的`Backspace` 和游戏手柄的 `Start` 按钮）以打开暂停菜单，可以在其中保存/加载游戏，打开设置，退出标题，等等
 
-## Input System
+## 输入系统
 
-Naninovel supports Unity's new [Input System](https://blogs.unity3d.com/2019/10/14/introducing-the-new-input-system/); see the [official docs](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/Installation.html) on how to install and enable the input system. When the input system package is installed (don't forget to enable new input backend in the player settings), an `Input Actions` property will appear in the input configuration menu.
+Naninovel支持Unity的新[输入系统](https://blogs.unity3d.com/2019/10/14/introducing-the-new-input-system/) ；请参阅[官方文档](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/Installation.html)        了解如何安装和启用输入系统的。安装输入系统软件包后（不要忘记在设置中启用新的输入系统），一个 `Input Actions` 属性将出现在输入配置菜单中。
 
 ![](https://i.gyazo.com/7c6d767c0f3443e1999fe14917080eb1.png)
 
-Assign [input actions asset](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/ActionAssets.html?q=input%20actions%20asset) to the property, then create "Naninovel" action map and add input actions with names equal to the Naninovel's binding names. The list of the built-in binding names can be found in the "Bindings" list under "Control Scheme" in the same configuration window. Below is an example input actions configuration.
+将[input actions asset](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/ActionAssets.html?q=input%20actions%20asset) 绑定到该属性，然后创建“Naninovel”动作配置，添加输入动作名，名字和Naninovel内的绑定名字相同。该绑定名字列表可以在相同配置窗口下的 "Control Scheme" 的 "Bindings" 中找到。以下为输入动作配置示例。
 
 ![](https://i.gyazo.com/36d1951519e4f671509c7136a83d9958.png)
 
-When properly configured, input actions will activate Naninovel's bindings. In case you wish to disable legacy input processing (which is set under the "Bindings" list), disable `Process Legacy Bindings` property under input configuration menu.
+正确配置后，输入操作将激活Naninovel的绑定。如果要禁用旧版输入处理（在 "Bindings" 列表下设置），请在输入配置菜单下禁用 `Process Legacy Bindings` 属性。
 
 ::: warn
-Touch and object-related input is still processed via legacy input, so don't completely disable legacy backend in the player settings, unless you're going to implement the features yourself.
+触摸和依赖物体的出入操作，仍需要通过传统输入实现，因此不要完全关闭传统输入。除非你打算自己实现这些特性。
 :::
 
-Default input actions asset is stored at `Naninovel/Prefabs/DefaultControls.inputactions`.
+默认输入动作配置存储在 `Naninovel/Prefabs/DefaultControls.inputactions`
 
-For more information on using new input system (eg, how to configure particular bindings or allow players to override the bindings at runtime), consult the [official manual](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual).
+有关使用新输入系统的更多信息（例如，如何配置特定的绑定或允许玩家在运行时覆盖绑定），请参阅[官方手册](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual) 。

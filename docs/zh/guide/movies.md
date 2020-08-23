@@ -1,30 +1,35 @@
-﻿# Movies
+﻿# 影片
 
-Movies are videos played on top of the scene via `IMovieUI` UI, halting script execution and user input processing while being played. 
+影片是通过场景中的`IMovieUI`UI来播放，在播放时，代码执行和用户输入都会被中断。
 
-Before starting playing a movie a fade-in to the specified fade texture (solid black by default) is performed. When playback is finished, a fade-out from the fade texture to the scene content is performed. 
 
-Player can skip movie playback with a `Cancel` input (`Esc` by default for standalone input module); binding can be changed in input configuration menu.
+开始播放前会有默认的黑色渐入效果，播放结束的时候会有黑色渐隐特效。
 
-To add, edit and remove movie resources use the movie manager accessible via `Naninovel -> Resources -> Movies` context menu:
+玩家可以通过`Cancel` 的输入（默认`Esc`）来取消播放。按键绑定可以通过输入配置菜单修改。
+
+要添加，编辑和移除影片资源，使用`Naninovel -> Resources -> Movies`菜单内的配置：
+
 
 ![Manage Movies](https://i.gyazo.com/aace59f30f42245fc3ba714d10815d46.png)
 
-You can use any video formats [supported by Unity](https://docs.unity3d.com/Manual/VideoSources-FileCompatibility).
+你可以使用任何 [Unity支持](https://docs.unity3d.com/Manual/VideoSources-FileCompatibility) 的影片格式。
 
-Movies playback behavior can be configured using `Naninovel -> Configuration -> Movies` context menu; for available options see [configuration guide](/zh/guide/configuration.md#movies).
+影片相关表现，可以通过`Naninovel -> Configuration -> Movies`菜单来配置，其他可选配置参考[属性配置](/zh/guide/configuration.md#影片)
 
-Use [@movie] command followed by video clip name to play a movie from the naninovel scripts:
+在Naninovel脚本中使用 [@movie] 加影片名来播放相应影片：
 
-```
-; Given an "Opening" video clip is added to the movie resources, play it
+
+```nani
+; 播放添加到影片资源中的名为“Opening”的影片。
 @movie Opening
 ```
 
-By default, played video is fitted to 16:9 aspect ratio to prevent stretching. You can change this behavior by [overriding](/zh/guide/user-interface.html#ui-customization) `IMovieUI` UI. `Aspect Ratio Fitter` component attached to `MovieImage` game object controls the fitting behavior.
+影片播放默认比例为16:9来避免拉伸。你可以[重写](/zh/guide/user-interface.html#UI自定义) `IMovieUI` UI。`MovieImage`物体上的`Aspect Ratio Fitter`组件控制了视频播放比例。
+
 
 ![](https://i.gyazo.com/38e8b1fc220d5fedd50f62ab855b2e92.png)
 
-## WebGL Limitations
+## WebGL限制
 
-Due to platform limitations, video playback on WebGL possible only in URI streaming mode. When building WebGL player, all the movie resources will automatically be copied to `Assets/StreamingAssets` directory. Make sure your web hosting is configured to allow local file access from the player build directory.
+由于平台限制，WebGL平台下仅支持URL流的视频播放。当发布WebGL平台时，所有影片资源路径会变为`Assets/StreamingAssets`。确保你的网页寄存配置能够让本地文件获取到玩家的发布路径。
+

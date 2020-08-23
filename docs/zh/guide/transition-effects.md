@@ -1,426 +1,429 @@
-﻿# Transition Effects
+﻿# 过渡效果
 
-When changing background and character appearances with [@back] and [@char] or performing scene transition with [@startTrans] and [@finishTrans] commands, you can additionally specify which transition effect to use. For example, following command will transition to "River" background using "DropFade" transition effect:
+当使用[@back] 和 [@char] 命令改变背景和人物元素的时候，或是[@startTrans] 和 [@finishTrans] 命令场景（scene）切换时，你可以定义使用的过渡效果。比如，如下示例会使用"DropFade"效果过渡到 "River" 背景： 
 
-```
+
+```nani
 @back River.DropFade
 ```
 
-When no transition effect is specified a cross-fade is used by default. 
+当未定义特效时，交叉过渡的效果会被默认使用。
 
-You can also specify duration of the transition (in seconds) with the `time` parameter:
+你也可以定义特效时长（单位：秒），用`time`参数：
 
-```
+```nani
 @back River.DropFade time:1.5
 ```
 
-The above statement will transition to "River" background using "DropFade" transition over 1.5 seconds. Default `time` for all transitions is 0.35 seconds.
+上述命令，会使用1.5秒的"DropFade"效果过渡到 "River" 背景。默认的`time`参数值为0.35秒。
 
-In case you wish to skip to the next command immediately after executing the transition (and not wait for the duration of the effect), you can set `wait` parameter to `false`. E.g.:
+如果你想在执行过渡效果后立即跳到下一个命令（而不等待效果的持续时间），可以将`wait`参数设置为false。例如：
 
-```
+```nani
 @back River.Ripple time:1.5 wait:false
 @bgm PianoTheme
 ```
-— "PianoTheme" background music will start playing right away and won't be delayed for 1.5 seconds, while the transition is in progress.
 
-Some of the transition effects also support additional parameters, which you can control with `params` parameter:
+— 在过渡过程中，“ PianoTheme”背景音乐将立即开始播放，并且不会延迟1.5秒。
 
-```
+一些过渡效果还支持其他参数，您可以使用params参数进行控制：
+
+```nani
 @back River.Ripple params:10,5,0.02
 ``` 
-— will set frequency of the ripple effect to 10, speed to 5 and amplitude to 0.02. When no `params` is specified, default parameters will be used.
+— 将波纹效果的频率设置为10，速度设置为5，幅度设置为0.02。如果`params`未设置 ，则将使用默认参数。
 
-If you wish to modify selected parameters, you can skip others and they'll have their default values:
+如果要修改特定的参数，可以跳过其他参数，它们将使用默认值：
 
-```
+
+```nani
 @back River.Ripple params:,,0.02
 ``` 
 
-All the transition parameters are of decimal type.
+所有过渡参数均为decimal类型。
 
-The above examples work for characters as well, just provide the transition via a standalone `transition` parameter:
+上面的示例也适用于人物，只需为其提供独立`transition`参数：
 
-```
+```nani
 @char CharID.Appearance transition:TransitionType params:...
 ```
 
-You can find available transition effects with their parameters and default values in the docs below.
+您可以在下面的文档中找到可用的过渡效果及其参数和默认值。
 
-## BandedSwirl
+## 带状漩涡
 
 <video class="video" loop autoplay><source src=" https://i.gyazo.com/37432ac584ef04d94d3e4f9535fdffc4.mp4" type="video/mp4"></video>
 
-**Parameters**
-Name |  Default 
+**参数**
+名字 |  默认值 
 --- | --- 
 Twist amount | 5
 Frequency | 10
 
-**Examples**
-```
-; Apply the transition with default parameters
+**示例**
+```nani
+; 按默认值使用过渡效果。
 @back Appearance.BandedSwirl
 
-; Apply the transition with defeault twist amount, but low frequency 
+; 按默认值使用扭曲值（twist amount），但是低频率（frequency）。
 @back Appearance.BandedSwirl params:,2.5
 ```
 
-## Blinds
+## 百叶窗
 
 [!73a259f2a513a92ef893ebd6a25e9013]
 
-**Parameters**
-Name |  Default 
+**参数**
+名字 |  默认值 
 --- | --- 
 Count | 6
 
-**Examples**
-```
-; Apply the transition with default parameters
+**示例**
+```nani
+; 按默认值使用过渡效果。
 @back Appearance.Blinds
 
-; Apply the transition using 30 blinds instead of default 6
+; 将默认参数扇叶数量设置为30而非默认的6.
 @back Appearance.Blinds params:30
 ```
 
-## CircleReveal
+## 中心渐入
 
 [!4f914c6741a5e48a22cafe2ab242a426]
 
-**Parameters**
-Name |  Default 
+**参数**
+名字 |  默认值 
 --- | --- 
 Fuzzy amount | 0.25
 
-**Examples**
-```
-; Apply the transition with default parameters
+**示例**
+```nani
+; 按默认值使用过渡效果。
 @back Appearance.CircleReveal
 
-; Apply the transition with a high fuzzy amount
+; 使用高模糊量（Fuzzy amount）的过渡效果。
 @back Appearance.CircleReveal params:3.33
 ```
 
-## CircleStretch
+## 中心扭曲渐入
 
 [!f09bb69a3c045eeb1f6c8ec0b9dcd790]
 
-**Examples**
-```
-; Apply the transition with default parameters
+**示例**
+```nani
+; 按默认值使用过渡效果。
 @back Appearance.CircleStretch
 ```
 
-## CloudReveal
+## 云状渐入
 
 [!618ec451a9e10f70486db0bb4badbb71]
 
-**Examples**
-```
-; Apply the transition with default parameters
+**示例**
+```nani
+; 按默认值使用过渡效果。
 @back Appearance.CloudReveal
 ```
 
-## Crossfade
+## 淡入淡出
 
 [!dc4781a577ec891065af1858f5fe2ed1]
 
-**Examples**
-```
-; Apply the transition with default parameters
+**示例**
+```nani
+; 按默认值使用过渡效果。
 @back Appearance.Crossfade
 ```
 
-## Crumble
+## 瓦解渐入
 
 [!e27c8477842a2092728ea0cc1ae76bda]
 
-**Examples**
-```
-; Apply the transition with default parameters
+**示例**
+```nani
+; 按默认值使用过渡效果。
 @back Appearance.Crumble
 ```
 
-## Dissolve
+## 溶解
 
 [!b2993be8de032a65c7d813c6d749e758]
 
-**Parameters**
-Name |  Default 
+**参数**
+名字 |  默认值 
 --- | --- 
 Step | 99999
 
-**Examples**
-```
-; Apply the transition with default parameters
+**示例**
+```nani
+; 按默认值使用过渡效果。
 @back Appearance.Dissolve
 
-; Apply the transition with a low step
+; 过渡效果设置为低步进。
 @back Appearance.Dissolve params:100
 ```
 
-## DropFade
+## 淡入淡出
 
 [!3c3840bb311ccb9fe223960f2e46f800]
 
-**Examples**
-```
-; Apply the transition with default parameters
+**示例**
+```nani
+; 按默认值使用过渡效果。
 @back Appearance.DropFade
 ```
 
-## LineReveal
+## 斜角渐入
 
 [!c0e5259cd3d4ed2016ab74a65a7eec63]
 
-**Parameters**
-Name |  Default 
+**参数**
+名字 |  默认值 
 --- | --- 
 Fuzzy amount | 0.25
 Line Normal X | 0.5
 Line Normal Y | 0.5
 
-**Examples**
-```
-; Apply the transition with default parameters
+**示例**
+```nani
+; 按默认值使用过渡效果。
 @back Appearance.LineReveal
 
-; Apply the transition with a vertical line slide
+; 垂直方向直角渐入。
 @back Appearance.LineReveal params:,0,1
 ```
 
-## Pixelate
+## 像素化
 
 [!0ac9339b21303e20c524aaf6b6ca95f4]
 
-**Examples**
-```
-; Apply the transition with default parameters
+**示例**
+```nani
+; 按默认值使用过渡效果。
 @back Appearance.Pixelate
 ```
 
-## RadialBlur
+## 径向模糊
 
 [!f8269fb68519c57c99643948a027a2a1]
 
-**Examples**
-```
-; Apply the transition with default parameters
+**示例**
+```nani
+; 按默认值使用过渡效果。
 @back Appearance.RadialBlur
 ```
 
-## RadialWiggle
+## 径向摆动
 
 [!a401b3b93a61276ed68ededa2e75e9ae]
 
-**Examples**
-```
-; Apply the transition with default parameters
+**示例**
+```nani
+; 按默认值使用过渡效果。
 @back Appearance.RadialWiggle
 ```
 
-## RandomCircleReveal
+## 中心不规则显示
 
 [!f6e685b13fe2d76733fd43878602eabc]
 
-**Examples**
-```
-; Apply the transition with default parameters
+**示例**
+```nani
+; 按默认值使用过渡效果。
 @back Appearance.RandomCircleReveal
 ```
 
-## Ripple
+## 波纹
 
 [!ff1bd285dc675ca5ac04f7ae4500f1c4]
 
-**Parameters**
-Name |  Default 
+**参数**
+名字 |  默认值 
 --- | --- 
 Frequency | 20
 Speed | 10
 Amplitude | 0.5
 
-**Examples**
-```
-; Apply the transition with default parameters
+**示例**
+```nani
+; 按默认值使用过渡效果。
 @back Appearance.Ripple
 
-; Apply the transition with a high frequency and amplitude
+; 将过渡效果调整为高频高振幅。
 @back Appearance.Ripple params:45,,1.1
 ```
 
-## RotateCrumble
+## 旋转渐入
 
 [!8d476f466858e4788e5ad6014d6db314]
 
-**Examples**
-```
-; Apply the transition with default parameters
+**示例**
+```nani
+; 按默认值使用过渡效果。
 @back Appearance.RotateCrumble
 ```
 
-## Saturate
+## 高亮渐入
 
 [!ad6eb77b7065387b9cb9afd77adbc784]
 
-**Examples**
-```
-; Apply the transition with default parameters
+**示例**
+```nani
+; 按默认值使用过渡效果。
 @back Appearance.Saturate
 ```
 
-## Shrink
+## 收缩
 
 [!8c8bf00348df28ab89813c21f8655c07]
 
-**Parameters**
-Name |  Default 
+**参数**
+名字 |  默认值 
 --- | --- 
 Speed | 200
 
-**Examples**
-```
-; Apply the transition with default parameters
+**示例**
+```nani
+; 按默认值使用过渡效果。
 @back Appearance.Shrink
 
-; Apply the transition with a low speed
+; 低速应用到过渡效果。
 @back Appearance.Shrink params:50
 ```
 
-## SlideIn
+## 滑入
 
 [!800ee6f5fba39ab8d46f5eb09f2126cf]
 
-**Parameters**
-Name |  Default 
+**参数**
+名字 |  默认值 
 --- | --- 
 Slide amount | 1
 
-**Examples**
-```
-; Apply the transition with default parameters
+**示例**
+```nani
+; 按默认值使用过渡效果。
 @back Appearance.SlideIn
 ```
 
-## SwirlGrid
+## 漩涡网格
 
 [!5a21293d979323a112ffd07f1fffd28d]
 
-**Parameters**
-Name |  Default 
+**参数**
+名字 |  默认值 
 --- | --- 
 Twist amount | 15
 Cell count | 10
 
-**Examples**
-```
-; Apply the transition with default parameters
+**示例**
+```nani
+; 按默认值使用过渡效果。
 @back Appearance.SwirlGrid
 
-; Apply the transition with high twist and low cell count
+; 过渡效果使用高扭曲度，和低单元数量。
 @back Appearance.SwirlGrid params:30,4
 ```
 
-## Swirl
+## 漩涡过渡
 
 [!6ac9a2fe1bb9dfaf6a8292ae5d03960e]
 
-**Parameters**
-Name |  Default 
+**参数**
+名字 |  默认值 
 --- | --- 
 Twist amount | 15
 
-**Examples**
-```
-; Apply the transition with default parameters
+**示例**
+```nani
+; 按默认值使用过渡效果。
 @back Appearance.Swirl
 
-; Apply the transition with high twist
+; 过渡效果使用高扭曲度。
 @back Appearance.Swirl params:25
 ```
 
-## Water
+## 水状过渡
 
 [!7c684f9a122006f38a0be2725895b76f]
 
-**Examples**
-```
-; Apply the transition with default parameters
+**示例**
+```nani
+; 按默认值使用过渡效果。
 @back Appearance.Water
 ```
 
-## Waterfall
+## 瀑布
 
 [!b6eebcb68002064ababe4d7476139a7c]
 
-**Examples**
-```
-; Apply the transition with default parameters
+**示例**
+```nani
+; 按默认值使用过渡效果。
 @back Appearance.Waterfall
 ```
 
-## Wave
+## 规则水波
 
 [!e189ca12868d7ae4c9d8f0ca3d9dd298]
 
-**Parameters**
-Name |  Default 
+**参数**
+名字 |  默认值 
 --- | --- 
 Magnitude | 0.1
 Phase | 14
 Frequency | 20
 
-**Examples**
-```
-; Apply the transition with default parameters
+**示例**
+```nani
+; 按默认值使用过渡效果。
 @back Appearance.Wave
 
-; Apply the transition with a high magnitude and low frequency
+; 过渡效果使用大水波，和低频。
 @back Appearance.Wave params:0.75,,5
 ```
 
-## Custom Transition Effects
+## 自定义过渡效果
 
-### Dissolve Mask
+### 溶解蒙版
 
-You can make custom transitions based on a dissolve mask texture. Dissolve mask is a greyscale texture, where the color defines when the pixel will transition to the target texture. For example, consider following spiral dissolve mask:
+您可以基于溶解蒙版纹理进行自定义过渡。溶解蒙版是灰度贴图，其中颜色定义像素何时过渡到目标纹理。例如，以下螺旋形方块溶解蒙版：
 
 ![](https://i.gyazo.com/3c32e920efdf6cfb35214b6c9b617a6a.png)
 
-— the black square in the top-right corner indicates that the transition target should be displayed there at the start of the transition and the pure-white square in the center will transition in the very end.
+— 右上角的黑色正方形表示在过渡开始时应在此处显示过渡目标，而中间的纯白色正方形将在末尾过渡。
 
-To make a custom transition, use `Custom` transition mode and specify path (relative to project "Resources" folder) to the dissolve mask texture via the `dissolve` parameter, eg:
+要使用自定义过渡,使用 `Custom` 过渡模式并通过 `dissolve` 参数设置蒙版贴图的路径（相对于项目“ Resources”文件夹），如下：
 
-```
+```nani
 @back Appearance.Custom dissolve:Textures/Spiral
 ```
-
-Check out the following video for the usage examples.
+请查看以下视频以了解用法示例。
 
 [!!HZjey6M2-PE]
 
-### Custom Shader
+### 自定义着色器
 
+可以通过自定义[着色器](https://docs.unity3d.com/Manual/ShadersOverview.html) 添加完全自定义的过渡效果。
 It's possible to add a completely custom transition effect via a custom actor [shader](https://docs.unity3d.com/Manual/ShadersOverview.html).
 
 ::: warn
-The topic requires graphic programming skills in Unity. We're not providing any support or tutorials on writing custom shaders; consult the [support page](/zh/support/#unity-support) for more information.
+该板块需要Unity中的图形学编程技能。我们不提供有关编写自定义着色器的任何支持或教程。请自行参阅[支持页面](/zh/support/#unity-支持) 以获取更多信息。
 :::
 
-Create a new shader and assign it to the actors, which are supposed to use your new custom transition effect; see [custom actor shader](/zh/guide/custom-actor-shader.md) guide for more information on how to create and assign custom actor shaders.
+创建一个新的着色器，并将其分配给要使用新的自定义过渡效果的元素；参考[自定义元素着色器](/zh/guide/custom-actor-shader.md) 以获取更多关于如何创建绑定自定义元素着色器的信息。
 
-When a transition name is specified in a script command, [shader keyword](https://docs.unity3d.com/ScriptReference/Shader.EnableKeyword.html) with the same name (prefixed with `NANINOVEL_TRANSITION_`) is enabled in the material used by the actor.
+在脚本命令中指定过渡名称后，元素使用的具有相同[着色器关键字](https://docs.unity3d.com/ScriptReference/Shader.EnableKeyword.html) （前缀`NANINOVEL_TRANSITION_`）的名字的材质将会被启用。
 
-To add your own transitions to a custom actor shader, use `multi_compile` directive, eg:
+要将自己的过渡添加到自定义元素着色器，请使用 `multi_compile` 指令，如下：
 
 ```c
 #pragma multi_compile _ NANINOVEL_TRANSITION_MYCUSTOM1 NANINOVEL_TRANSITION_MYCUSTOM2
 ```
 
-— will add `MyCustom1` and `MyCustom2` transitions.
+— 将添加 `MyCustom1` 和 `MyCustom2` 过渡效果。
 
-You can then use conditional directives to select a specific render method based on the enabled transition keyword. When re-using built-in actor shader, it's possible to implement custom transitions via `ApplyTransitionEffect` method, which is used in the fragment handler:
+然后，可以使用条件判断基于已启用的transition关键字来选择特定的渲染方式。当重新使用内置的元素着色器时，可以使用 `ApplyTransitionEffect` 方法来实现：
 
 ```c
 fixed4 ApplyTransitionEffect(in sampler2D mainTex, in float2 mainUV, in sampler2D transitionTex, in float2 transitionUV, in float progress, in float4 params, in float2 randomSeed, in sampler2D cloudsTex, in sampler2D customTex)
@@ -442,9 +445,9 @@ fixed4 ApplyTransitionEffect(in sampler2D mainTex, in float2 mainUV, in sampler2
 }
 ```
 
-You'll then be able to invoke the added transitions in the same way as the built-in ones, eg:
+然后，你就能够以与内置过渡相同的方式调用添加的过渡，如下：
 
-```
+```nani
 @back Snow.MyCustom1
 @back River.MyCustom2
 ```

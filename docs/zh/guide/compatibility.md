@@ -19,8 +19,8 @@
 
 ## 渲染管线
 
-Unity的 [scriptable render pipelines可编程渲染管线](https://docs.unity3d.com/Manual/render-pipelines.html) (URP和HDRP) 部分支持需要额外设置参考 [render pipelines guide渲染管线引导](/zh/guide/render-pipelines.md) 获取更多信息。
+Unity的 [可编程渲染管线](https://docs.unity3d.com/Manual/render-pipelines.html) (URP和HDRP) 部分支持需要额外设置参考 [渲染管线引导](/zh/guide/render-pipelines.md) 获取更多信息。
 
 ## Managed Stripping
 
-"Medium" and "High" [managed bytecode stripping](https://docs.unity3d.com/Manual/ManagedCodeStripping.html) 预设不支持，使用 "disable" 或者 "Low" 预设 (默认设置)。
+"Medium" 和 "High" 参考[managed bytecode stripping](https://docs.unity3d.com/Manual/ManagedCodeStripping.html) 预设不支持，使用 "disable" 或者 "Low" 预设 (默认设置)。
