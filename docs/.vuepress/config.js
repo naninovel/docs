@@ -68,7 +68,7 @@ module.exports = {
                     {text: '支持', link: '/zh/support/'}
                 ],
                 sidebar: {
-                    '/zh/guide/': getGuideSidebar('指南', '高級', '擴展名')
+                    '/zh/guide/': getGuideSidebar('指南', '高級', '擴展')
                 },
                 lastUpdated: '最近更新時間'
             },
