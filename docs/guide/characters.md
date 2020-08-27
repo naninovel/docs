@@ -201,6 +201,12 @@ You can scale the root game object to fine-tune the default size of the actor.
 
 When authoring layered character art in Photoshop, consider using Unity's [PSD Importer package](https://docs.unity3d.com/Packages/com.unity.2d.psdimporter@3.0/manual/index.html) to automatically generate character prefab preserving all the layers and their positions. To preserve the layers hierarchy, make sure to enable `Use Layer Grouping` option in the import settings.
 
+::: tip
+When using sprites, set `Mesh Type` to `Full Rect` in the texture import settings to prevent rendering issues.
+
+![](https://i.gyazo.com/16ebf843081c826e0add1a6304c2608f.png)
+:::
+
 Don't forget to add the created layered prefab to the character resources (`Naninovel -> Resources -> Characters`). Choose "Naninovel.LayeredCharacter" implementation and drop prefab to the "Resource" field when configuring the resource record.
 
 To control the layered characters in naninovel scripts, use [@char] command in the same way as with the other character implementations. The only difference is how you set the appearance: instead of a single ID, use the *layer composition expression*. There are three expression types:
