@@ -67,8 +67,11 @@ Notice, that when a pose is used as appearance, you can still override individua
 
 ## Sprite Backgrounds
 
-Sprite implementation of the background actors is the most common and simple one; it uses a single [sprite](https://docs.unity3d.com/Manual/Sprites) asset to represent appearance of the background. The source of the sprite could be a `.jpg` or `.png` image file. 
+Sprite implementation of the background actors is the most common and simple one; it uses a single [sprite](https://docs.unity3d.com/Manual/Sprites) asset to represent appearance of the background. The source of the sprite could be a `.jpg`, `.png`, `.tiff`, `.psd` or any other image (texture) file format [supported by Unity](https://docs.unity3d.com/Manual/ImportingTextures). 
 
+::: tip
+Choose file formats that are most comfortable for your development workflow. When building the project, Unity will automatically convert all the source resources (textures, audio, video, etc) to the formats most suitable for the target platform, so it won't make difference in which format you originally store the resources in the project. Find more information on how Unity manage project assets in the [official documentation](https://docs.unity3d.com/Manual/AssetWorkflow).
+:::
 
 ## Video Backgrounds
 
