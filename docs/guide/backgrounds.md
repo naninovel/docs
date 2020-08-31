@@ -69,6 +69,11 @@ Notice, that when a pose is used as appearance, you can still override individua
 
 Sprite implementation of the background actors is the most common and simple one; it uses a single [sprite](https://docs.unity3d.com/Manual/Sprites) asset to represent appearance of the background. The source of the sprite could be a `.jpg` or `.png` image file. 
 
+## Diced Sprite Backgrounds
+
+Built with an open source [SpriteDicing](https://github.com/Elringus/SpriteDicing) package, `DicedSpriteBackground` implementation allows to significantly reduce build size and texture memory by reusing texture areas of the background sprites when the associated textures contain mostly similar data.
+
+Diced background is very similar to diced character implementation; see the [diced characters guide](/guide/characters.html#diced-sprite-characters) for the setup and usage instructions.
 
 ## Video Backgrounds
 
