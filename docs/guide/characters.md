@@ -151,7 +151,11 @@ Be aware, that [@print] commands (that are also used under the hood when printin
 
 ## Sprite Characters 
 
-Sprite implementation of the character actors is the most common and simple one; it uses a set of [sprite](https://docs.unity3d.com/Manual/Sprites) assets to represent appearances of the character. The source of the sprites could be images (textures) of any [formats supported by Unity](https://docs.unity3d.com/Manual/ImportingTextures).
+Sprite implementation of the character actors is the most common and simple one; it uses a set of [sprite](https://docs.unity3d.com/Manual/Sprites) assets to represent appearances of the character. The source of the sprite could be a `.jpg`, `.png`, `.tiff`, `.psd` or any other image (texture) file format [supported by Unity](https://docs.unity3d.com/Manual/ImportingTextures). 
+
+::: tip
+Choose file formats that are most comfortable for your development workflow. When building the project, Unity will automatically convert all the source resources (textures, audio, video, etc) to the formats most suitable for the target platform, so it won't make difference in which format you originally store the resources in the project. Find more information on how Unity manage project assets in the [official documentation](https://docs.unity3d.com/Manual/AssetWorkflow).
+:::
 
 ## Diced Sprite Characters
 
