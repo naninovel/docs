@@ -4,7 +4,7 @@
 
 While Naninovel is focused around traditional visual novel games the engine is designed to allow integration with existing projects. If you're making a 3D adventure game, RPG or game of any other genre — you can still use Naninovel as a drop-in dialogue system. 
 
-Be aware, that in most cases such integration will require C# scripting (or [visual scripting](/guide/bolt.md)) in varying extent. See the [engine architecture overview](/guide/engine-architecture.md) to get a grasp of how Naninovel works and [integration guide](/guide/integration-options.md) for more information on the integration options
+Be aware, that in most cases such integration will require C# scripting (or [visual scripting](/guide/bolt.md)) in varying extent. See the [engine architecture overview](/guide/engine-architecture.md) to get a grasp of how Naninovel works and [integration guide](/guide/integration-options.md) for more information on the integration options.
 
 ## Is it possible to embed a mini-game to Naninovel?
 
@@ -14,7 +14,9 @@ Sure, you can freely "inject" any custom logic to the default Naninovel flow. In
 
 Naninovel can work with any language, but to display text in some languages, you'll need a compatible font. [Google's Roboto](https://fonts.google.com/specimen/Roboto) is used by default, which supports all Latin, Cyrillic, and Greek characters in Unicode 7.0. You can change the font used in any of the built-in UIs with [UI customization](/guide/user-interface.md#ui-customization) feature; for the printed text messages, [create custom printers](/guide/text-printers.md#adding-custom-printers) and set the desired font.
 
-In case you're aiming to support as much languages, as possible, check out [Noto fonts](https://www.google.com/get/noto/).
+In case you're aiming to support as many languages, as possible, check out [Noto fonts](https://www.google.com/get/noto/).
+
+Right-to-left (RTL) languages (Arabic, Hebrew, Persian, etc) are supported by the TMPro text printers, but require additional setup; [see the guide](https://naninovel.com/guide/text-printers.html#right-to-left-arabic-text) for more info.
 
 ## Will I get access to the source code when I buy Naninovel?
 
@@ -28,7 +30,7 @@ Please read through the [getting started](/guide/getting-started.md) guide to ge
 
 ## How to customize the title (main) menu: add background, music, effects, change buttons, etc?
 
-For the UI part (changing/adding buttons or panel layout and style) use the [UI customization](/guide/user-interface.md#ui-customization) feature; for everything else set `Title Script` at the scripts configuration menu (`Naninovel -> Configuration -> Scripts`) and use script commands to setup the scene just like when writing a scenario. The title script will be automatically played when entering the title menu.
+For the UI part (changing/adding buttons or panel layout and style) use the [UI customization](/guide/user-interface.md#ui-customization) feature; for everything else set `Title Script` at the scripts configuration menu (`Naninovel -> Configuration -> Scripts`) and use script commands to set up the scene just like when writing a scenario. The title script will be automatically played when entering the title menu.
 
 ## How to remove a sky background appearing by default in all the Unity scenes?
 
