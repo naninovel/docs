@@ -16,7 +16,7 @@ Naninovel can work with any language, but to display text in some languages, you
 
 In case you're aiming to support as many languages, as possible, check out [Noto fonts](https://www.google.com/get/noto/).
 
-Right-to-left (RTL) languages (Arabic, Hebrew, Persian, etc) are supported by the TMPro text printers, but require additional setup; [see the guide](https://naninovel.com/guide/text-printers.html#right-to-left-arabic-text) for more info.
+Right-to-left (RTL) languages (Arabic, Hebrew, Persian, etc) are supported by the TMPro text printers, but require additional setup; [see the guide](/guide/text-printers.html#right-to-left-arabic-text) for more info.
 
 ## Will I get access to the source code when I buy Naninovel?
 
