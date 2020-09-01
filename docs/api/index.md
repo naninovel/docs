@@ -20,7 +20,7 @@ wait | Boolean | Whether the script player should wait for the async command to 
 </div>
 
 ::: note
-This API reference is valid for [Naninovel v1.12](https://github.com/Elringus/NaninovelWeb/releases).
+This API reference is valid for [Naninovel v1.13](https://github.com/Elringus/NaninovelWeb/releases).
 :::
 
 ## animate
@@ -1342,10 +1342,10 @@ And the rain starts.[skipInput]
 ## slide
 
 #### Summary
-Slides (moves over X-axis) actor (character, background, text printer or choice handler) with the provided ID and optionally changes actor appearance.
+Slides (moves between two positions) an actor (character, background, text printer or choice handler) with the provided ID and optionally changes actor visibility and appearance.  Can be used instead of multiple [@char] or [@back] commands to reveal or hide an actor with a slide animation.
 
 #### Remarks
-Be aware, that this command searches for an actor with the provided ID over all the actor managers,  and in case multiple actors with the same ID exist (eg, a character and a text printer), this will affect only the first found one.
+Be aware, that this command searches for an existing actor with the provided ID over all the actor managers,  and in case multiple actors with the same ID exist (eg, a character and a text printer), this will affect only the first found one.  Make sure the actor exist on scene before referencing it with this command;  eg, if it's a character, you can add it on scene imperceptibly to player with `@char CharID visible:false time:0`.
 
 #### Parameters
 
@@ -1354,8 +1354,8 @@ Be aware, that this command searches for an actor with the provided ID over all 
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">IdAndAppearance</span> | Named&lt;String&gt; | ID of the actor to slide and (optionally) appearance to set.
-from | Decimal | Position over X-axis (in 0 to 100 range, in percents from the left border of the screen) to slide the actor from.  When not provided, will use current actor position in case it's visible and a random off-screen position otherwise.
-<span class="command-param-required" title="Required parameter: parameter should always be specified">to</span> | Decimal | Position over X-axis (in 0 to 100 range, in percents from the left border of the screen) to slide the actor to.
+from | List&lt;Decimal&gt; | Position in scene space to slide the actor from (slide start position).  Described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the screen; Z-component (depth) is in world space.  When not provided, will use current actor position in case it's visible and a random off-screen position otherwise (could slide-in from left or right borders).
+<span class="command-param-required" title="Required parameter: parameter should always be specified">to</span> | List&lt;Decimal&gt; | Position in scene space to slide the actor to (slide finish position).
 visible | Boolean | Change visibility status of the actor (show or hide).  When not set and target actor is hidden, will still automatically show it.
 easing | String | Name of the easing function to use for the modifications.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  When not specified, will use a default easing function set in the actor's manager configuration settings.
 time | Decimal | Duration (in seconds) of the slide animation. Default value: 0.35 seconds.
@@ -1364,17 +1364,17 @@ time | Decimal | Duration (in seconds) of the slide animation. Default value: 0.
 
 #### Example
 ```nani
-; Given `Jenna` actor is not currenly visible, reveal it with a
-; `Angry` appearance and slide to the center of the screen.
+; Given `Jenna` actor is not currenly visible, reveal it with an `Angry` appearance
+; and slide to the center of the screen from either left or right border of the screen.
 @slide Jenna.Angry to:50
 
 ; Given `Sheba` actor is currenly visible,
 ; hide and slide it out of the screen over the left border.
 @slide Sheba to:-10 visible:false
 
-; Slide `Mia` actor from left side of the screen to the right
+; Slide `Mia` actor from left-center side of the screen to the right-bottom
 ; over 5 seconds using `EaseOutBounce` animation easing.
-@slide Sheba from:15 to:85 time:5 easing:EaseOutBounce
+@slide Sheba from:15,50 to:85,0 time:5 easing:EaseOutBounce
 ```
 
 ## spawn
