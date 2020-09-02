@@ -585,7 +585,7 @@ You are victorious!
 ## goto
 
 #### Summary
-Navigates naninovel script playback to the provided path.  When the path leads to another (not the currently played) naninovel script, will also [reset state](/api/#resetstate)  before loading the target script, unless [ResetStateOnLoad](https://naninovel.com/guide/configuration.html#state) is disabled in the configuration.
+Navigates naninovel script playback to the provided path.  When the path leads to another (not the currently played) naninovel script, will also [reset state](/api/#resetstate)  before loading the target script, unless [Reset On Goto](https://naninovel.com/guide/configuration.html#state) is disabled in the configuration.
 
 #### Parameters
 
@@ -594,7 +594,7 @@ Navigates naninovel script playback to the provided path.  When the path leads t
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | Named&lt;String&gt; | Path to navigate into in the following format: `ScriptName.LabelName`.  When label name is ommited, will play provided script from the start.  When script name is ommited, will attempt to find a label in the currently played script.
-reset | List&lt;String&gt; | When specified, will control whether to reset the engine services state before loading a script (in case the path is leading to another script):<br />  - Specify `*` to reset all the services, except the ones with `DontResetAttribute`.<br />  - Specify service type names (separated by comma) to exclude from reset; all the other services will be reset, including the ones with `DontResetAttribute`.<br />  - Specify `-` to force no reset (even if it's enabled by default in the configuration).
+reset | List&lt;String&gt; | When specified, will control whether to reset the engine services state before loading a script (in case the path is leading to another script):<br />  - Specify `*` to reset all the services, except the ones with `Goto.DontReset` attribute.<br />  - Specify service type names (separated by comma) to exclude from reset; all the other services will be reset, including the ones with `Goto.DontReset` attribute.<br />  - Specify `-` to force no reset (even if it's enabled by default in the configuration).<br /><br />  Notice, that while some services have `Goto.DontReset` attribute applied (eg, `CustomVariableManager`) and are not reset by default, they should still be specified when excluding other services from reset; see the below example on excluding audio manager.<br />  Be aware, that excluding a service from reset will leave related resources in memory; find more details in the [engine services guide](/guide/engine-services.md#reset-on-goto).
 
 </div>
 
@@ -609,9 +609,9 @@ reset | List&lt;String&gt; | When specified, will control whether to reset the e
 ; Navigates the playback to the label `Epilogue` in the currently played script.
 @goto .Epilogue
 
-; Load Script001, but don't reset audio manager (any playing audio won't be interrupted).
-; Be aware, that excluding a service form state reset will leave related resources in memory.
-@goto Script001 reset:IAudioManager
+; Load Script001, but don't reset audio (playing tracks won't be interrupted)
+; and custom variable manager services.
+@goto Script001 reset:IAudioManager,ICustomVariableManager
 ```
 
 ## hide
@@ -1054,7 +1054,7 @@ You've picked two.
 Resets state of the [engine services](https://naninovel.com/guide/engine-services.html) and unloads (disposes)  all the resources loaded by Naninovel (textures, audio, video, etc); will basically revert to an empty initial engine state.
 
 #### Remarks
-The process is asynchronous and is masked with a loading screen ([ILoadingUI](https://naninovel.com/guide/user-interface.html#ui-customization)).  <br /><br />  When [ResetStateOnLoad](https://naninovel.com/guide/configuration.html#state) is disabled in the configuration, you can use this command  to manually dispose unused resources to prevent memory leak issues.  <br /><br />  Be aware, that this command can not be undone (rewinded back).
+The process is asynchronous and is masked with a loading screen ([ILoadingUI](https://naninovel.com/guide/user-interface.html#ui-customization)).  <br /><br />  When [Reset On Goto](https://naninovel.com/guide/configuration.html#state) is disabled in the configuration, you can use this command  to manually dispose unused resources to prevent memory leak issues.  <br /><br />  Be aware, that this command can not be undone (rewinded back).
 
 #### Parameters
 
@@ -1072,8 +1072,12 @@ only | List&lt;String&gt; | Names of the [engine services](https://naninovel.com
 ; Reset all the services.
 @resetState
 
-; Reset all the services except variable and audio managers (current audio will continue playing).
+; Reset all the services except custom variable and audio managers,
+; allowing currently played audio tracks continue playing.
 @resetState ICustomVariableManager,IAudioManager
+
+; Reset only the `ICharacterManager` and `IBackgroundManager` services.
+@resetState only:ICharacterManager,IBackgroundManager
 ```
 
 ## resetText
