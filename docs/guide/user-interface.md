@@ -66,9 +66,9 @@ When `Visible On Awake` is enabled, the UI will be visible when the UI is instan
 
 When `Control Opacity` is enabled and `Canvas Group` component is attached to the same game object,  `Alpha` property of the `Canvas Group` component will be changed in sync with the current visibility state of the UI element. `Fade Time` will then control time (duration in seconds) of the opacity fade animation. In case you wish to implement your own effect to accommodate the visibility status of the UI element (eg, slide animation instead of fading the opacity), disable `Control Opacity` property and use `On Show` and `On Hide` Unity events to react on visibility changes.
 
-In case you wish to support gamepad or keyboard navigation over the UI, assign a game object with an interactable component (eg, a `Button`) to `Focus Object` property. This object will then be automatically focused when the UI becomes visible allowing to navigate over other interactable objects with a gamepad and/or keyboard. See Unity's [guide on UI navigation](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-SelectableNavigation.html) for more info on how to setup the navigation behavior.
+In case you wish to support gamepad or keyboard navigation over the UI, assign a game object with an interactable component (eg, a `Button`) to `Focus Object` property. This object will then be automatically focused when the UI becomes visible allowing to navigate over other interactable objects with a gamepad and/or keyboard. See Unity's [guide on UI navigation](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-SelectableNavigation.html) for more info on how to set up the navigation behavior.
 
-When `Focus Object` is assigned, `Focus Mode` property allows to choose when to focus the object: `Visibility` mode will focus it right after the UI becomes visible and `Navigation` will postpone the focus until player activates a navigation key on gamepad (left stick or D-pad) or keyboard (arrow keys). 
+When `Focus Object` is assigned, `Focus Mode` property allows choosing when to focus the object: `Visibility` mode will focus it right after the UI becomes visible and `Navigation` will postpone the focus until player activates a navigation key on gamepad (left stick or D-pad) or keyboard (arrow keys). 
 
 To specify, which text elements should be affected by font and text size changes set in [game settings](/guide/game-settings.md), use `Font Change Configuration` property.
 
@@ -83,13 +83,17 @@ AllowFontChange | Whether to allow changing font of the text component.
 AllowFontSizeChange | Whether to allow changing font size of the text component.
 FontSizes | Actual font sizes to apply for text component. Each element in the list corresponds to font size dropdown list index: Small -> 0, Default -> 1, Large -> 2, Extra Large -> 3 (can be changed via SettingsUI). Default value will be ignored and font size initially set in the prefab will be used instead.
 
-`On Show` and `On Hide` Unity events allow to hook custom handlers to react to the UI visibility changes. For example, you can hook an `Animator` triggers to fire some custom animations when the UI becomes visible and vice-versa.
+Specific text font options available in the game settings menu are set up in the UI configuration menu:
+
+![](https://i.gyazo.com/4a06d2baf086175b168eb284e1f5955f.png)
+
+`On Show` and `On Hide` Unity events allow hooking custom handlers to react to the UI visibility changes. For example, you can hook an `Animator` triggers to fire some custom animations when the UI becomes visible and vice-versa.
 
 When `Hide On Load` is enabled, the UI will automatically be hidden when the engine is starting a load operation. This usually happens when loading another naninovel script or exiting to title menu.
 
 Enabling `Save Visibility State` will make the visibility state of the UI persistent, so that when player loads a saved game, the UI will be in the same state (visible or  hidden) as it was when the game was saved.
 
-`Block Input When Visible` allows to disable [input processing](/guide/input-processing.md) when the UI is visible. This is useful to prevent the player from using various hotkeys (hiding the UI, continue reading, etc) while he's interacting with the UI. `Allowed Samplers` allows to add exceptions to the blocked inputs; eg, you can add `ToggleUI` input name to the list, allowing player to toggle the UI while still preventing activation of any other inputs.
+`Block Input When Visible` allows disabling [input processing](/guide/input-processing.md) when the UI is visible. This is useful to prevent the player from using various hotkeys (hiding the UI, continue reading, etc) while he's interacting with the UI. `Allowed Samplers` allows adding exceptions to the blocked inputs; eg, you can add `ToggleUI` input name to the list, allowing player to toggle the UI while still preventing activation of any other inputs.
 
 Enabling `Modal UI` makes all other UIs ignore interaction while the UI is visible. This is similar to `Block Input When Visible`, but affects event-based interaction (mouse clicks, touches, UI navigation) instead of direct input processing.
 
