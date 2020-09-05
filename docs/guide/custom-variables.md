@@ -78,3 +78,40 @@ Open [development console](/guide/development-console.md) and enter `var` comman
 When changing value of a variable in the list, a "SET" button will appear, which you can press to apply the changes.
 
 The variables list is automatically updated when the custom variables are changed while running the game.
+
+## Using Custom Variables in C#
+
+The custom variables can be accessed in C# via `ICustomVariableManager` [engine service](/guide/engine-services.md).
+
+To get a variable value use `GetVariableValue(name)` method and `SetVariableValue(name, value)` to set variable value; eg, given a "MyVariable" custom string variable exists, the below code will retrieve it, append "Hello!" string to the value and set it back.
+
+```csharp
+var variableManager = Engine.GetService<ICustomVariableManager>();
+var myValue = variableManager.GetVariableValue("MyVariableName");
+myValue += "Hello!";
+variableManager.SetVariableValue("MyVariable", myValue);
+```
+ 
+Be aware, that all the custom variable values are stored as strings. If you want to use them as other types (eg, integer, boolean, etc), you have to parse the returned string values to the desired type and cast them back to strings when setting the values. For most common data types extension methods are available in Naninovel v1.13 and later, eg:
+
+```csharp
+var variableManager = Engine.GetService<ICustomVariableManager>();
+
+variableManager.TryGetVariableValue<float>("MyFloatVariableName", out var floatValue);
+Debug.Log($"My float variable value: {floatValue}");
+
+variableManager.TryGetVariableValue<int>("MyIntegerVariableName", out var intValue);
+Debug.Log($"My integer variable value: {intValue}");
+
+variableManager.TryGetVariableValue<bool>("MyBooleanVariableName", out var boolValue);
+Debug.Log($"My boolean variable value: {boolValue}");
+
+floatValue += 10.5f;
+variableManager.TrySetVariableValue("MyFloatVariableName", floatValue);
+
+intValue = -55;
+variableManager.TrySetVariableValue("MyIntegerVariableName", intValue);
+
+boolValue = !boolValue;
+variableManager.TrySetVariableValue("MyBooleanVariableName", boolValue);
+```
