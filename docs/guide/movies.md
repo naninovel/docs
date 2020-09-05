@@ -28,3 +28,7 @@ By default, played video is fitted to 16:9 aspect ratio to prevent stretching. Y
 ## WebGL Limitations
 
 Due to platform limitations, video playback on WebGL possible only in URI streaming mode. When building WebGL player, all the movie resources will automatically be copied to `Assets/StreamingAssets` directory. Make sure your web hosting is configured to allow local file access from the player build directory.
+
+If you're using a video format other than mp4 (eg, webm), set the extension of the hosted files via `Video Stream Extension` property in the resource provider configuration.
+
+![](https://i.gyazo.com/b3eb1ab2af513e6a131347d6e5e455e5.png)
