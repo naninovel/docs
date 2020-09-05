@@ -59,6 +59,10 @@ Various backlog UI properties are customizable via component attached to the roo
 
 Consult [built-in UI customization guide](/guide/user-interface.md#modifying-built-in-ui) for more info now how to customize and configure the UI. 
 
+It's possible to prevent specific text printers from adding messages to the backlog by disabling `Add To Backlog` property in the printer actor configuration. When `Split Backlog Messages` property is enabled, all the messages added to the backlog will be split (displayed as separate records).
+
+![](https://i.gyazo.com/9f0155dff068dbe1fd821e9007cf4a5a.png)
+
 ## Dialogue Printer
 
 Dialogue printers present text inside windows with a flexible height. They initially take about a third of the screen size and will increase the height when the content requires more space. Dialogue printers also expose associated character name in a label above the text window.
