@@ -89,3 +89,22 @@ To unlock a tip record, use [@unlock] and [@lock] to lock the record back follow
 ```nani
 @unlock Tips/Tip1ID
 ```
+
+### Tips in Printers
+
+It's possible to automatically unlock tips when associated text is printed via a [TMPro printer](/guide/text-printers.md#textmesh-pro); additionally, when such text is clicked by player `ITipsUI` UI will be automatically shown with the associated tip record selected.
+
+[!3c0d761576c351066022be32b8595e6d]
+
+To associate printed text with a tip, use `<tip>` tags, eg:
+
+```nani
+Lorem ipsum <tip="VN">visual novel</tip> pharetra nec.
+```
+— given a tip record with "VN" ID exist, the associated "visual novel" text (when printed by a TMPro printer) will be underlined, the tip record unlocked and when player clicks the text, tips UI will open and show the related record.
+
+To change printer-related tips handling behaviour (eg, modifying formatting of the associated text or adding custom behaviour when the tips are clicked) use the properties under "Tips" section found in `Revealable TMPro Text` component attached to the text game object of all the built-in TMPro text printer prefabs; see the [guide](/guide/text-printers.md#adding-custom-printers) on how to create custom printers to tweak them.
+
+![](https://i.gyazo.com/ec20da3f00b507428540d60f354bdeed.png)
+
+Be aware, that when a custom handler is assigned to `On Tip Clicked` event, default behaviour (showing tips UI) will be disabled.
