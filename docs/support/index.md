@@ -53,7 +53,7 @@ Follow the steps below to create and share a reproduction project:
 
 1. Create a new Unity project. Make sure you're using Unity version supported by the [current Naninovel release](https://github.com/Elringus/NaninovelWeb/releases).
 2. Import the latest available Naninovel version from the Asset Store (in case a pre-release version is available, use it instead).
-3. Add the required assets and modify the project to reproduce the issue. Please **keep naninovel scripts as short as possible** and only add assets that are **essential to replicate the issue**.
+3. Add the required assets and modify the project to reproduce the issue. Please **keep naninovel scripts as short as possible** and only add assets that are **essential to replicate the issue**. Do not modify contents or add anything to the `Naninovel` folder; we're not providing support for modified versions of the package.
 4. Create a text file (.txt) inside the project directory and specify step-by-step instructions on how to reproduce the issue, eg:
 
 ```
