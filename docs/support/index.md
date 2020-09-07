@@ -52,9 +52,12 @@ When reporting an issue, we may ask you to share a "repro" project. Reproduction
 Follow the steps below to create and share a reproduction project:
 
 1. Create a new Unity project. Make sure you're using Unity version supported by the [current Naninovel release](https://github.com/Elringus/NaninovelWeb/releases).
-2. Import the latest available Naninovel version from the Asset Store (in case a pre-release version is available, use it instead).
-3. Add the required assets and modify the project to reproduce the issue. Please **keep naninovel scripts as short as possible** and only add assets that are **essential to replicate the issue**. Do not modify contents or add anything to the `Naninovel` folder; we're not providing support for modified versions of the package.
-4. Create a text file (.txt) inside the project directory and specify step-by-step instructions on how to reproduce the issue, eg:
+2. Import the latest available Naninovel version from the Asset Store; in case a pre-release version is available (via pinned message in `#support` channel of our Discord server), use it instead.
+3. Add the required assets and modify the project to reproduce the issue. Please **keep naninovel scripts as short as possible** and only add assets that are **essential to replicate the issue**. Make sure you're not adding any third-party plugins, extensions or any sort of custom C# scripts. In case a C# script is required for reproduction, ensure it contains only the code required to reproduce the issue.
+::: warn
+Do not modify contents or add/delete anything inside the `Naninovel` folder; we're not providing support for modified versions of the package.
+:::
+4. Create a "repro.txt" text file at the root project directory and specify step-by-step instructions on how to reproduce the issue, eg:
 
 ```
 1. Open scene "SampleScene".
@@ -71,7 +74,7 @@ Expected: Music "Ambient" should start playing.
 Actual: No music is playing.
 ```
 
-5. Close Unity editor and remove all the files and folders in the project directory, except the previously created instructions text file and `Assets`, `Packages` and `ProjectSettings` folders. Most importantly, **make sure you've deleted `Library` folder**, as it contains a lot of auto-generated files, which significantly increase project size.
-6. Archive (zip) the project folder and either upload it to Google Drive or attach to a private message in Discord.
+5. Close Unity editor and remove all the files and folders at the root project directory, except the previously created "repro.txt" file and "Assets", "Packages" and "ProjectSettings" folders. Most importantly, **make sure to delete "Library" folder**, as it contains a lot of auto-generated files, which significantly increase project size.
+6. Archive (zip) the project folder and either attach it to a private message in Discord or upload to a private file hosting (eg, Google Drive with a restricted access).
 
 Remember to share reproduction projects only via private messages; **never share the projects via public channels** to prevent leaking personal data and copyrighted assets.
