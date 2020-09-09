@@ -206,6 +206,7 @@ Auto Build Bundles | True | Whether to automatically build the addressable asset
 Allow Addressable In Editor | False | Whether to use addressable provider in editor. Enable if you're manually exposing resources via addressable address instead of assigning them with Naninovel's resource managers. Be aware, that enabling this could cuase issues when resources are assigned both in resources manager and registered with an addressable address and then renamed or dublicated.
 Extra Labels | Null | Addressable provider will only work with assets, that have the assigned labels in addition to `Naninovel` label. Can be used to filter assets used by the engine based on custom criterias (eg, HD vs SD textures).
 Local Root Path | %DATA%/Resources | Path root to use for the local resource provider. Can be an absolute path to the folder where the resources are located, or a relative path with one of the available origins:<br> • %DATA% — Game data folder on the target device (UnityEngine.Application.dataPath).<br> • %PDATA% — Persistent data directory on the target device (UnityEngine.Application.persistentDataPath).<br> • %STREAM% — `StreamingAssets` folder (UnityEngine.Application.streamingAssetsPath).<br> • %SPECIAL{F}% — An OS special folder (where F is value from System.Environment.SpecialFolder).
+Video Stream Extension | .mp 4 | When streaming videos under WebGL (movies, video backgrounds), specify the extension of the video files.
 Project Root Path | Naninovel | Path relative to `Resources` folders, under which the naninovel-specific assets are located.
 Google Drive Root Path | Resources | Path root to use for the Google Drive resource provider.
 Google Drive Request Limit | 2 | Maximum allowed concurrent requests when contacting Google Drive API.
@@ -326,6 +327,7 @@ Override Objects Layer | True | Whether to assign a specific layer to all the UI
 Objects Layer | 5 | When `Override Objects Layer` is enabled, the specified layer will be assigned to all the engine objects.
 Render Mode | Screen Space Camera | The canvas render mode to apply for all the managed UI elements.
 Sorting Offset | 1 | The sorting offset to apply for all the managed UI elements.
+Font Options | Null | Font options, that should be available in the game settings UI (in addition to `Default`) for the player to choose from.
 
 </div>
 
