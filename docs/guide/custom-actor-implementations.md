@@ -94,14 +94,13 @@ For a complete example on adding custom actor implementation see [Live2D extensi
 
 It's possible to add custom additional data to the actors metadata (of both built-in and custom implementations).
 
-To inject custom data, create a new C# class, inherit it from `UnityEngine.ScriptableObject` and apply `CustomMetadata` attribute. The attribute expects one argument, specifying which actor implementation type the data should be associated with. Below is an example of adding custom data to the characters of "CustomCharacterImplementation" implementation:
+To inject custom data, create a new C# class and inherit it from `CustomMetadata<TActor>` type, where `TActor` is the type of the actor implementation the data should be associated with. Below is an example of adding custom data to the characters of "CustomCharacterImplementation" implementation:
 
 ```csharp
 using Naninovel;
 using UnityEngine;
 
-[System.Serializable, CustomMetadata(typeof(CustomCharacterImplementation))]
-public class MyCharacterData : ScriptableObject
+public class MyCharacterData : CustomMetadata<CustomCharacterImplementation>
 {
     public int MyCustomInt;
     [Range(0f, 100f), Tooltip("Tooltip for my custom range.")]
