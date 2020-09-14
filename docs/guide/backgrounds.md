@@ -180,3 +180,7 @@ You can now use [@back] command to control the created scene background actor, e
 ```nani
 @back SceneName id:ActorId
 ```
+
+## Render to Texture
+
+It's possible to render character and background actors of all the implementations (except generic) to a texture asset, which can then can be assigned to a custom UI, printer, material or any other compatible source. Setting up background actor render to texture is very similar to that of a character; [check the guide](/guide/characters.md#render-to-texture) fore more info and examples.
