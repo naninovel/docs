@@ -298,7 +298,7 @@ Generic character is the most flexible character actor implementation. It's base
 
 To create generic character prefab from a template, use `Create -> Naninovel -> Character -> Generic` context asset menu.
 
-To setup lip sync feature for generic characters, use `On Started Speaking` and `On Finished Speaking` Unity events of `CharacterActorBehaviour` component. When the character becomes or ceases to be the author of any printed message (or rather when the message is fully revealed), the events will be invoked allowing you to trigger any custom logic, like starting or stopping mouth animation of the controlled character. This is similar to how UI's `On Show` and `On Hide` events work; find how they can be used to drive a custom animation in the [UI customization guide](/guide/user-interface.md#adding-custom-ui).
+To set up lip sync feature for generic characters, use `On Started Speaking` and `On Finished Speaking` Unity events of `CharacterActorBehaviour` component. When the character becomes or ceases to be the author of any printed message (or rather when the message is fully revealed), the events will be invoked allowing you to trigger any custom logic, like starting or stopping mouth animation of the controlled character. This is similar to how UI's `On Show` and `On Hide` events work; find how they can be used to drive a custom animation in the [UI customization guide](/guide/user-interface.md#adding-custom-ui).
 
 Check the following video tutorial for example on setting up a 3D rigged model as a generic character and routing appearance changes to the rig animations via [Animator](https://docs.unity3d.com/Manual/class-AnimatorController.html) component.
 
@@ -312,7 +312,7 @@ Live2D character implementation uses assets created with [Live2D Cubism](https:/
 
 In order to be able to use this implementation you have to first install [Live2D Cubism SDK for Unity](https://live2d.github.io/#unity). Consult official Live2D docs for the installation and usage instructions.
 
-Then download and import [Live2D extension package](https://github.com/Elringus/NaninovelLive2D/raw/master/NaninovelLive2D.unitypackage).
+Then download and import Naninovel's [Live2D extension package](https://github.com/Elringus/NaninovelLive2D/raw/master/NaninovelLive2D.unitypackage).
 
 Live2D model prefab used as the resource for the implementation should have a `Live2DController` component attached to the root object. Appearance changes are routed to the animator component as [SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) commands appearance being the trigger name. Eg, if you have a "Kaori" Live2D character prefab and want to invoke a trigger with name "Surprise", use the following command:
 
@@ -322,8 +322,8 @@ Live2D model prefab used as the resource for the implementation should have a `L
 
 Note, that the above command will only attempt to invoke a [SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) with "Surprise" argument on the animator controller attached to the prefab; you have to compose underlying [animator](https://docs.unity3d.com/Manual/Animator) state machine yourself.
 
-::: warn
-Latest version of Cubism SDK for Unity is working directly with `Animator` component; expressions and poses (exported as expression.json and pose.json), that were previously used in Cubism 2.x are now [deprecated](https://docs.live2d.com/cubism-sdk-tutorials/blendexpression) and not supported by Naninovel's extension for Live2D.
+::: note
+Current actual version of Cubism SDK for Unity is working directly with `Animator` component; expressions and poses (exported as expression.json and pose.json), that were previously used in Cubism 2.x are now [deprecated](https://docs.live2d.com/cubism-sdk-tutorials/blendexpression) and not supported by Naninovel's extension for Live2D.
 :::
 
 When Live2D's `CubismLookController` and `CubismMouthController` components are present and setup on the Live2D model prefab, `Live2DController` can optionally use them to control look direction and mouth animation (aka lip sync feature) of the character.
@@ -332,13 +332,13 @@ When Live2D's `CubismLookController` and `CubismMouthController` components are 
 
 Consult Live2D documentation on [eye tracking](https://docs.live2d.com/cubism-sdk-tutorials/lookat) and [lip sync](https://docs.live2d.com/cubism-sdk-tutorials/lipsync) for the setup details.
 
-Be aware, that `Live2DController` expects a "Drawables" gameobject inside the Live2D model prefab (created automatically when importing Live2D models to Unity); the controller will scale this gameobject at runtime in correspondence with "scale" parameter of the [@char] commands. Hence, any local scale values set in the editor will be ignored. To set an initial scale for the Live2D prefabs, please use scale of the parent gameobject as [shown in the video guide](https://youtu.be/rw_Z69z0pAg?t=353).
+In case the model appears too small or large, set an initial scale for the root Live2D prefab game object as [shown in the video guide](https://youtu.be/rw_Z69z0pAg?t=353).
 
-When Live2D extension is installed a "Live2D" item will appear in the Naninovel configuration menu providing following options:
+Internally, Live2D model is rendered to a texture, which is then projected to the screen. This is required to prevent semi-transparency overdraw artifacts when fading the character. Naninovel will attempt to evaluate size of the render canvas automatically, but in case the model contains animated parts that are moved outside of the initial bounds, the parts will be clipped. To prevent that, add `Live2D Render Canvas` component to the root game object of the Live2D prefab and set the desired size of the render canvas manually. Enable [gizmos](https://docs.unity3d.com/Manual/GizmosMenu.html) to preview current render canvas size while in prefab mode.
 
-![](https://i.gyazo.com/435a4824f0ce0dd8c9c3f29d457bab24.png)
+[!2e0c43443dd5c9163af2a6c82dfdd561]
 
-Render layer specifies the layer to apply for the Live2D prefabs and culling mask to use for the cameras that will render the prefabs. Render camera field allows to use a custom setup for the render camera (the default render camera is stored inside the packages "Prefabs" folder). Camera offset allows to offset the render camera from the rendered prefab; you can use this parameters to uniformly position all the Live2D prefabs relative to the camera.
+Be aware, that larger the size, the more memory will the texture consume, so keep it as small, as possible.
 
 Following video guide covers exporting a Live2D character from Cubism Editor, configuring the prefab, creating a simple animator state machine and controlling the character from a naninovel script.
 
@@ -347,3 +347,26 @@ Following video guide covers exporting a Live2D character from Cubism Editor, co
 ::: example
 Check out an [example project on GitHub](https://github.com/Elringus/NaninovelLive2D), where a Live2D character is used with Naninovel. Be aware, that neither Naninovel, nor Live2D SDK packages are distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store and Live2D Cubism SDK from their website to resolve the issues.
 :::
+
+## Render to Texture
+
+It's possible to render character and background actors of all the implementations (except generic) to a texture asset, which can then can be assigned to a custom UI, printer, material or any other compatible source.
+
+Assign the render texture asset via actor configuration with `Render Texture` property. When assigned, a `Correct Render Aspect` property will show up, controlling whether the rendered actor should preserve aspect no matter render texture resolution.
+
+![](https://i.gyazo.com/c281b11a2db0ef13d87eb4bef4d45f7d.png)
+
+Be aware, that when an actor is rendered to a texture, transformations (position, rotation, scale) and some other modifications won't have any effect. Instead, transform the host object of the render texture (eg, image in case the texture is assigned to UI raw image component).
+
+The video below demonstrates how to render a Live2D character to a texture, which is assigned to custom text printer. The printer is linked to the character, so the character will automatically show and hide with the printer when the associated text messages are processed.
+
+[!!81OTbSAnWbw]
+
+::: example
+For a complete example on setting up Live2D character render to texture and binding it with a text printer, see [Live2D extension project on GitHub](https://github.com/Elringus/NaninovelLive2D). Be aware, that neither Naninovel, nor Live2D SDK packages are distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store and Live2D Cubism SDK from their website to resolve the issues.
+:::
+
+::: note
+All the other character and background implementation types (except generic) can be set up to render to texture in the same way, as the Live2D implementation described above.
+:::
+
