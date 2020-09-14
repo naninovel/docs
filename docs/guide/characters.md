@@ -92,9 +92,11 @@ The following video demonstrates how to use display names and character colors.
 
 ## Avatar Textures
 
-You can assign avatar textures to characters using `avatar` parameter of [@char] command. Avatars will be shown by the compatible text printers when they print a text message that is associated with the character. Currently, only `Wide` and `Chat` text printers support the avatars feature.
+You can assign avatar textures to characters using `avatar` parameter of [@char] command. Avatars will be shown by the compatible text printers when they print a text message that is associated with the character.
 
 ![](https://i.gyazo.com/83c091c08846fa1cab8764a8d4dddeda.png)
+
+Currently, only `Wide` and `Chat` built-in printers (as well as their TMPro-counterparts) support the avatars feature. In order to support the feature in a custom printer, assign a game object with `Author Image` component to `Author Avatar Image` property of `Revealable Text Printer Panel` component.
 
 To use any given avatar, you have to first add it to the avatar resources and give it a name. You can do this via `Avatar Resources` property in the characters configuration menu.
 
@@ -114,14 +116,16 @@ To set a default avatar for a character, give the avatar texture resource name t
 
 It's also possible to associate avatars with specific character appearances, so that when character changes appearance, the avatar will also change automatically. For this, name the avatar resources using the following format: `CharacterID/CharacterAppearance`, where `CharacterAppearance` is the name of the appearance for which to map the avatar resource.
 
-Please note, that the **avatars are not directly connected with character appearances** and shouldn't be considered as a way to show character on the scene. Appearances specified in character's resource manager are the actual representation of a character on the scene. Avatars is a standalone feature, that "injects" an arbitrary image to a compatible text printer.
-
-It's possible to show only the avatar of a character inside a text printer, but hide the character itself by setting `visible` parameter of the [@char] command to `false`, eg:
+To show only the avatar of a character inside a text printer, but hide the character itself, set `visible` parameter of the [@char] command to `false`, eg:
 ```nani
 @char CharacaterId visible:false
 ```
 
 In case you're constantly changing avatars while the character itself should remain hidden, consider disabling `Auto Show On Modify` in the characters configuration menu; when disabled, you won't have to specify `visible:false` to change any parameters of the character while it's hidden.
+
+::: note
+The **avatars are not directly connected with character appearances** and shouldn't be considered as a way to represent a character on scene. Avatars is a standalone feature, that "injects" an arbitrary image to a compatible text printer. In case you want an actual character appear inside a text printer (or a custom UI), check [render actor to texture](/guide/characters.html#render-to-texture) feature.
+:::
 
 ## Speaker Highlight
 
@@ -352,7 +356,7 @@ Check out an [example project on GitHub](https://github.com/Elringus/NaninovelLi
 
 It's possible to render character and background actors of all the implementations (except generic) to a texture asset, which can then can be assigned to a custom UI, printer, material or any other compatible source.
 
-Assign the render texture asset via actor configuration with `Render Texture` property. When assigned, a `Correct Render Aspect` property will show up, controlling whether the rendered actor should preserve aspect no matter render texture resolution.
+Assign the render texture asset via actor configuration with `Render Texture` property. When a texture is assigned, the actor won't appear as a game object on scene, but will rather be rendered to the texture. `Correct Render Aspect` property will show up when a texture is assigned, controlling whether the rendered actor should preserve aspect no matter render texture resolution.
 
 ![](https://i.gyazo.com/c281b11a2db0ef13d87eb4bef4d45f7d.png)
 
@@ -363,10 +367,10 @@ The video below demonstrates how to render a Live2D character to a texture, whic
 [!!81OTbSAnWbw]
 
 ::: example
-For a complete example on setting up Live2D character render to texture and binding it with a text printer, see [Live2D extension project on GitHub](https://github.com/Elringus/NaninovelLive2D). Be aware, that neither Naninovel, nor Live2D SDK packages are distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store and Live2D Cubism SDK from their website to resolve the issues.
+For a complete example on setting up Live2D character render to texture and binding it with a text printer, see [Naninovel Live2D project on GitHub](https://github.com/Elringus/NaninovelLive2D). Be aware, that neither Naninovel, nor Live2D SDK packages are distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store and Live2D Cubism SDK from their website to resolve the issues.
 :::
 
 ::: note
-All the other character and background implementation types (except generic) can be set up to render to texture in the same way, as the Live2D implementation described above.
+All the other character and background implementation types (except generic) can be set up to render to texture in the same way, as the Live2D one described above.
 :::
 
