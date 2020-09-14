@@ -16,79 +16,37 @@ Actor implementation can be selected in the configuration managers accessible vi
 ![Default Actor Implementation](https://i.gyazo.com/b372520a15501dc9bc1e5f30f4c7f12d.png)
 ![Actor Implementation](https://i.gyazo.com/3256f3aea99ea453859f67135a7187ee.png)
 
-Implementation drop-down list contains all the types that implements specific actor interface. You can add your own custom implementations and they'll also appear in the list. See `Naninovel/Runtime/Actor` scripts for a reference when creating your own actor implementations. Consider using `Naninovel.MonoBehaviourActor` built-in abstract actor implementation to fulfill most of the base interface requirements.
+Implementation drop-down list contains all the types that implements specific actor interface. You can add your own custom implementations, and they'll also appear in the list. See `Naninovel/Runtime/Actor` scripts for a reference when creating your own actor implementation. Consider using `Naninovel.MonoBehaviourActor` built-in abstract actor implementation to fulfill most of the base interface requirements in case the actor is supposed to be spawned on scene.
 
-When creating custom actor implementations, make sure they have a compatible public constructor: `public CustomActorImplementation (string id, ActorMetadata metadata)`, where `id` is the ID of the actor and `metadata` — either actor's (when actor record exists in the resources) or a default metadata. When implementing a specific actor interface, it's possible to request corresponding specific metadata (eg, "CharacterMetadata" for "ICharacterActor" implementation).
+When creating custom actor implementations, make sure they have a compatible public constructor: 
 
-To load a resource assigned in editor menu, don't forget to specify full path; eg, given you've assigned a resource with "CubeBackground" name:
+```csharp
+public ActorImplementationType (string id, ActorMetadata metadata) { }
+```
+
+— where `id` is the ID of the actor and `metadata` — either actor's (when actor record exists in the resources) or a default metadata. When implementing a specific actor interface, it's possible to request corresponding specific metadata (eg, "CharacterMetadata" for "ICharacterActor" implementation).
+
+::: example
+For a complete example on adding custom actor implementation see [Live2D extension project on GitHub](https://github.com/Elringus/NaninovelLive2D). Specifically, the custom "Live2DCharacter" actor is implemented in [Runtime/Live2DCharacter.cs](https://github.com/Elringus/NaninovelLive2D/blob/master/Assets/NaninovelLive2D/Runtime/Live2DCharacter.cs) script.
+:::
+
+## Actor Resources
+
+Apply `ActorResources` attribute to the implementation type to specify which assets can be used as resources for you custom actor and whether it's allowed to assign multiple resources in the editor menus. When multiple resources are not allowed (default), you can load the single available resource by specifying just the actor ID, eg:
+
+```csharp
+var resource = await resourceLoader.LoadAsync(actorId);
+```
+
+When multiple resources are allowed, specify full path; eg, given you've assigned a resource with "CubeBackground" name:
 
 ![](https://i.gyazo.com/64ff6d6dede1cc8c2c3be83cfe6a6d74.png)
 
 — to load the resource, use:
 
 ```csharp
-var prefabResource = await prefabLoader.LoadAsync(id + "/CubeBackground");
+var resource = await resourceLoader.LoadAsync($"{actorId}/CubeBackground");
 ```
-
-— where `id` is the ID of the actor passed via the constructor.
-
-Below is an example of a dummy `ICharacterActor` implementation, that does nothing, but logs when any of its methods are invoked.
-
-```csharp
-using Naninovel;
-using UniRx.Async;
-using UnityEngine;
-
-public class CustomCharacterImplementation : MonoBehaviourActor, ICharacterActor
-{
-    public override string Appearance { get; set; }
-    public override bool Visible { get; set; }
-    public CharacterLookDirection LookDirection { get; set; }
-
-    public CustomCharacterImplementation (string id, CharacterMetadata metadata)
-        : base (id, metadata)
-    {
-        Debug.Log($"{nameof(CustomCharacterImplementation)}::Ctor({id})");
-    }
-
-    public override UniTask ChangeAppearanceAsync (string appearance, float duration, 
-        EasingType easingType = EasingType.Linear, Transition? transition = default, 
-        CancellationToken cancellationToken = default)
-    {
-        Debug.Log($"{nameof(CustomCharacterImplementation)}::ChangeAppearanceAsync({appearance})");
-        return UniTask.CompletedTask;
-    }
-
-    public override UniTask ChangeVisibilityAsync (bool isVisible, float duration, 
-        EasingType easingType = EasingType.Linear, CancellationToken cancellationToken = default)
-    {
-        Debug.Log($"{nameof(CustomCharacterImplementation)}::ChangeVisibilityAsync({isVisible})");
-        return UniTask.CompletedTask;
-    }
-
-    public UniTask ChangeLookDirectionAsync (CharacterLookDirection lookDirection, float duration,
-        EasingType easingType = EasingType.Linear, CancellationToken cancellationToken = default)
-    {
-        Debug.Log($"{nameof(CustomCharacterImplementation)}::ChangeLookDirectionAsync({lookDirection})");
-        return UniTask.CompletedTask;
-    }
-
-    protected override Color GetBehaviourTintColor ()
-    {
-        Debug.Log($"{nameof(CustomCharacterImplementation)}::GetBehaviourTintColor");
-        return default;
-    }
-
-    protected override void SetBehaviourTintColor (Color tintColor)
-    {
-        Debug.Log($"{nameof(CustomCharacterImplementation)}::SetBehaviourTintColor({tintColor})");
-    }
-}
-```
-
-::: example
-For a complete example on adding custom actor implementation see [Live2D extension project on GitHub](https://github.com/Elringus/NaninovelLive2D). Specifically, the custom "Live2DCharacter" actor is implemented in [Runtime/Live2DCharacter.cs](https://github.com/Elringus/NaninovelLive2D/blob/master/Assets/NaninovelLive2D/Runtime/Live2DCharacter.cs) script.
-:::
 
 ## Custom Metadata
 
