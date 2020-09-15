@@ -338,9 +338,9 @@ Consult Live2D documentation on [eye tracking](https://docs.live2d.com/cubism-sd
 
 In case the model appears too small or large, set an initial scale for the root Live2D prefab game object as [shown in the video guide](https://youtu.be/rw_Z69z0pAg?t=353).
 
-Internally, Live2D model is rendered to a texture, which is then projected to the screen. This is required to prevent semi-transparency overdraw artifacts when fading the character. Naninovel will attempt to evaluate size of the render canvas automatically, but in case the model contains animated parts that are moved outside of the initial bounds, the parts will be clipped. To prevent that, add `Live2D Render Canvas` component to the root game object of the Live2D prefab and set the desired size of the render canvas manually. Enable [gizmos](https://docs.unity3d.com/Manual/GizmosMenu.html) to preview current render canvas size while in prefab mode.
+Internally, Live2D model is rendered to a texture, which is then projected to the screen. This is required to prevent semi-transparency overdraw artifacts when fading the character. Naninovel will attempt to evaluate size of the render canvas automatically, but in case the model contains animated parts that are moved outside of the initial bounds, the parts will be clipped. To prevent that, add `Render Canvas` component to the root game object of the Live2D prefab and set the desired size of the canvas manually. Enable [gizmos](https://docs.unity3d.com/Manual/GizmosMenu.html) to preview current render canvas size while in prefab mode.
 
-[!2e0c43443dd5c9163af2a6c82dfdd561]
+[!23f916ae104f57828914221333e42dbf]
 
 Be aware, that larger the size, the more memory will the texture consume, so keep it as small, as possible.
 
@@ -349,7 +349,7 @@ Following video guide covers exporting a Live2D character from Cubism Editor, co
 [!!rw_Z69z0pAg]
 
 ::: example
-Check out an [example project on GitHub](https://github.com/Elringus/NaninovelLive2D), where a Live2D character is used with Naninovel. Be aware, that neither Naninovel, nor Live2D SDK packages are distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store and Live2D Cubism SDK from their website to resolve the issues.
+Check out an [example project on GitHub](https://github.com/Elringus/NaninovelLive2D), where a Live2D character is used with Naninovel. Be aware, that Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
 :::
 
 ## Render to Texture
@@ -367,7 +367,7 @@ The video below demonstrates how to render a Live2D character to a texture, whic
 [!!81OTbSAnWbw]
 
 ::: example
-For a complete example on setting up Live2D character render to texture and binding it with a text printer, see [Naninovel Live2D project on GitHub](https://github.com/Elringus/NaninovelLive2D). Be aware, that neither Naninovel, nor Live2D SDK packages are distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store and Live2D Cubism SDK from their website to resolve the issues.
+For a complete example on setting up Live2D character render to texture and binding it with a text printer, see [Naninovel Live2D project on GitHub](https://github.com/Elringus/NaninovelLive2D). Be aware, that Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
 :::
 
 ::: note
