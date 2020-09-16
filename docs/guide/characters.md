@@ -199,9 +199,9 @@ To create a layered character prefab, use `Create -> Naninovel -> Character -> L
 
 Each child game object of the root prefab object with a [renderer](https://docs.unity3d.com/ScriptReference/Renderer.html)-derived component (eg, `SpriteRenderer`, `MeshRenderer`, eg) is considered a *layer*; other objects considered *groups*. Aside from organization and transformation purposes, placing layers inside groups will allow you to select a single layer or disable/enable all the layers inside a group with a single expression in naninovel script (more on that later). 
 
-To hide some of the layers from being visible by default, disable renderer components (not the game objects).
+To hide specific layers from being visible by default, disable renderer components (not the game objects).
 
-The white frame drawn over the prefab is used to describe the actor canvas, which will be rendered to a render texture at runtime. Make sure to minimize the empty areas inside the frame by moving the layers and groups to prevent wasting texture memory and for anchoring to work correctly.
+The white frame drawn over the prefab is used to describe the actor canvas, which will be rendered to a render texture at runtime. Make sure to minimize the empty areas inside the frame by moving the layers and groups to prevent wasting texture memory and for anchoring to work correctly. To set a custom canvas size (eg, in case some layers are animated and can stretch out of the default canvas), add `Render Canvas` component to the root object and set `Size` property.
 
 ![](https://i.gyazo.com/4ff103c27858ac9671ba3b94ab1ade20.png)
 
