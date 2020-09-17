@@ -55,7 +55,7 @@ Follow the steps below to create and share a reproduction project:
 ::: note
 Reproduction project should be a new clean Unity project, not the one you're experiencing the issue with. Do not just copy all the assets from one project to another; it's important to isolate the issue by reproducing it in a clean environment, free from any custom configurations and assets, that doesn't directly affect the issue.
 :::
-2. Import the latest available Naninovel version from the Asset Store; in case a pre-release version is available (via pinned message in `#support` channel of our Discord server), use it instead.
+2. Import the latest available Naninovel version from the Asset Store; in case a pre-release version is available (via `#download` channel of our Discord server), use it instead.
 3. Add the required assets and modify the project to reproduce the issue. Please **keep naninovel scripts as short as possible** and only add assets that are **essential to replicate the issue**. Make sure you're not adding any third-party plugins, extensions or any sort of custom C# scripts. In case a C# script is required for reproduction, ensure it contains only the code required to reproduce the issue.
 ::: warn
 Do not modify contents or add/delete anything inside the `Naninovel` folder; we're not providing support for modified versions of the package.
