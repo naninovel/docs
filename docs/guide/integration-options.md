@@ -15,9 +15,28 @@ The first thing you'll probably want to change is disable `Initialize On Applica
 
 ![](https://i.gyazo.com/f58a8af9f2f6d71286061e55fc228896.png)
 
-When enabled, the engine services will automatically initialize on application start. Unless you want to begin your game in novel mode, you would rather manually initialize the engine when it's actually needed. 
+When enabled, the engine services will automatically initialize on application start. Unless you want to begin your game in novel mode, you would rather manually initialize the engine when it's actually needed by either invoking a static `RuntimeInitializer.InitializeAsync()` method from C# or adding a `Runtime Initializer` component to a game object on scene; the latter will make the engine initialize when the scene is loaded in Unity.
 
-Use static async `RuntimeInitializer.InitializeAsync()`  method (or a custom script) to initialize the engine at runtime before using any of the built-in service APIs. You can check whether the engine is currently initialized with `Engine.Initialized` property. Use `Engine.OnInitialized` event to listen for the initialization finished events.
+Be aware, that the engine initialization procedure is asynchronous, so even when automatic initialization is enabled, it may not be available right after Unity loads a scene (eg, in `Awake`, `Start` and `OnEnable` methods). To check whether the engine is currently available, use `Engine.Initialized` property; `Engine.OnInitializationFinished` event allows executing actions after the initialization procedure is finished, eg:
+
+```csharp
+public class MyCustomBehaviour : MonoBehaviour
+{
+    private void Awake ()
+    {
+        // Engine may not be initialized here, so check first.
+        if (Engine.Initialized) DoMyCustomWork();
+        else Engine.OnInitializationFinished += DoMyCustomWork;
+    }
+
+    private void DoMyCustomWork ()
+    {
+        // Engine is initialized here, it's safe to use the APIs.
+        var scriptPlayer = Engine.GetService<IScriptPlayer>();
+        ...
+    }
+}
+```
 
 To reset the engine services (and dispose most of the occupied resources), use `ResetStateAsync()` method of `IStateManager` service; this is useful, when you're going to temporary switch to some other gameplay mode, but be able to return to novel mode without re-initializing the engine.
 
