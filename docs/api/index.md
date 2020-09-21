@@ -907,7 +907,7 @@ gravity | Boolean | Whether to automatically move camera to the initial position
 ## movie
 
 #### Summary
-Playes a movie with the provided name (path).
+Plays a movie with the provided name (path).
 
 #### Remarks
 Will fade-out the screen before playing the movie and fade back in after the play.  Playback can be canceled by activating a `cancel` input (`Esc` key by default).
@@ -1228,6 +1228,34 @@ time | Decimal | Duration (in seconds) of the modification. Default value: 0.35 
 
 ; Changes volume of all the played SFX tracks to 75% over 2.5 seconds and disables looping for all of them
 @sfx volume:0.75 loop:false time:2.5
+```
+
+## sfxFast
+
+#### Summary
+Plays an [SFX (sound effect)](/guide/audio.md#sound-effects) track with the provided name.  Unlike [@sfx] command, the clip is played with minimum delay and is not serialized with the game state (won't be played after loading a game, even if it was played when saved).  The command can be used to play various transient audio clips, such as UI-related sounds (eg, on button click with [`Play Script` component](/guide/user-interface.md#play-script-on-unity-event)).
+
+#### Parameters
+
+<div class="config-table">
+
+ID | Type | Description
+--- | --- | ---
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">SfxPath</span> | String | Path to the sound effect asset to play.
+volume | Decimal | Volume of the sound effect.
+restart | Boolean | Whether to start playing the audio from start in case it's already playing.
+additive | Boolean | Whether to allow playing multiple instances of the same clip; has no effect when `restart` is enabled.
+group | String | Audio mixer [group path](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) that should be used when playing the audio.
+
+</div>
+
+#### Example
+```nani
+; Plays an SFX with the name `Click` once
+@sfxFast Click
+
+; Same as above, but allow concurrent playbacks of the same clip
+@sfxFast Click restart:false
 ```
 
 ## show
