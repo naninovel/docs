@@ -69,7 +69,7 @@ Orthographic | True | Whether the camera should render in orthographic (enabled)
 Custom Camera Prefab | Null | A prefab with a camera component to use for rendering. Will use a default one when not specified. In case you wish to set some camera properties (background color, FOV, HDR, etc) or add post-processing scripts, create a prefab with the desired camera setup and assign the prefab to this field.
 Use UI Camera | True | Whether to render the UI in a separate camera. This will allow to use individual configuration for the main and UI cameras and prevent post-processing (image) effects from affecting the UI at the cost of a slight rendering overhead.
 Custom UI Camera Prefab | Null | A prefab with a camera component to use for UI rendering. Will use a default one when not specified. Has no effect when `UseUICamera` is disabled
-Default Easing | Linear | Eeasing function to use by default for all the camera modifications (changing zoom, position, rotation, etc).
+Default Easing | Linear | Easing function to use by default for all the camera modifications (changing zoom, position, rotation, etc).
 Thumbnail Resolution | (240, 140) | The resolution in which thumbnails to preview game save slots will be captured.
 Hide UI In Thumbnails | False | Whether to ignore UI layer when capturing thumbnails.
 
