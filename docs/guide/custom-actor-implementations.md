@@ -125,3 +125,91 @@ public CustomCharacterImplementation (string id, CharacterMetadata metadata)
     Debug.Log(myData.MyCustomInt);
 }
 ```
+
+## Custom State
+
+To override or extend state type for your custom actor, you'll have to also [override the actor's manager](/guide/engine-services.md#overriding-built-in-services), as the state is serialized and applied to the managed actors there.
+
+::: note
+This applies for custom actor implementations of one of the built-in `IActor` interface derivatives (characters, backgrounds, text printers and choice handlers); if you've inherited your custom actor directly from `IActor`, there's no need to override the built-in managers to use a custom state — just create your own.
+
+In case you're looking to add a custom state for other systems (eg, UIs, game objects or components for various game mechanics outside of Naninovel), see [state management guide](/guide/state-management.md#custom-state).
+:::
+
+Below is an example on extending choice handler state by adding a `LastChoiceTime` field, which stores time of the last added choice. The time is printed to the console when the custom choice handler is shown.
+
+```csharp
+// Our extended state, that serializes the last choice time.
+public class MyChoiceHandlerState : ChoiceHandlerState
+{
+    // This field is serializable and persist through game save-loads.
+    public string LastChoiceTime;
+
+    // This method is invoked when saving the game;
+    // get the required data from the actor and store it with serializable fields.
+    public override void OverwriteFromActor (IChoiceHandlerActor actor)
+    {
+        base.OverwriteFromActor(actor);
+        if (actor is MyCustomChoiceHandler myCustomChoiceHandler)
+            LastChoiceTime = myCustomChoiceHandler.LastChoiceTime;
+    }
+
+    // This method is invoked when loading the game;
+    // get the serialized data back and apply it to the actor.
+    public override void ApplyToActor (IChoiceHandlerActor actor)
+    {
+        base.ApplyToActor(actor);
+        if (actor is MyCustomChoiceHandler myCustomChoiceHandler)
+            myCustomChoiceHandler.LastChoiceTime = LastChoiceTime;
+    }
+}
+
+// Our custom choice handler implementation, that uses the last choice time.
+public class MyCustomChoiceHandler : UIChoiceHandler
+{
+    public string LastChoiceTime { get; set; }
+    
+    public MyCustomChoiceHandler (string id, ChoiceHandlerMetadata metadata) 
+        : base(id, metadata) { }
+
+    public override void AddChoice (ChoiceState choice)
+    {
+        base.AddChoice(choice);
+        LastChoiceTime = DateTime.Now.ToShortTimeString();
+    }
+
+    public override UniTask ChangeVisibilityAsync (bool visible, float duration, 
+        EasingType easingType = default, CancellationToken cancelToken = default)
+    {
+        Debug.Log($"Last choice time: {LastChoiceTime}");
+        return base.ChangeVisibilityAsync(visible, duration, easingType, cancelToken);
+    }
+}
+
+// Overriding the built-in choice handler manager to make it use our extended state.
+// The important step is to specify `MyChoiceHandlerState` in the generic types;
+// other modifications are just to fulfill the interface requirements. 
+[InitializeAtRuntime(@override: typeof(ChoiceHandlerManager))]
+public class MyChoiceHandlerManager : ActorManager<IChoiceHandlerActor, 
+    MyChoiceHandlerState, ChoiceHandlerMetadata, 
+    ChoiceHandlersConfiguration>, IChoiceHandlerManager
+{
+    public MyChoiceHandlerManager (ChoiceHandlersConfiguration config)
+        : base(config) { }
+
+    public UniTask<IChoiceHandlerActor> AddActorAsync (string actorId, 
+        ChoiceHandlerState state)
+    {
+        return base.AddActorAsync(actorId, state as MyChoiceHandlerState);
+    }
+
+    ChoiceHandlerState IActorManager<IChoiceHandlerActor, 
+        ChoiceHandlerState, ChoiceHandlerMetadata, 
+        ChoiceHandlersConfiguration>.GetActorState (string actorId)
+    {
+        return base.GetActorState(actorId);
+    }
+}
+```
+
+Our custom choice handler will now keep the last added choice time and log it in the console, even if the last choice was added in a previous game session loaded from a save slot. You can store any amount of custom data in addition to the built-in actor state this way. For the supported serializable data types see [Unity's serialization guide](https://docs.unity3d.com/Manual/script-Serialization.html).
