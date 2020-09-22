@@ -62,7 +62,7 @@ For localization, use "CharacterNames" [managed text](/guide/managed-text) docum
 
 It's possible to bind a display name to a custom variable to dynamically change it throughout the game via naninovel scripts. To bind a display name, specify name of the custom variable wrapped in curly braces in the character configuration menu.
 
-![](https://i.gyazo.com/9743061df462bd809afc45bff20bbb6d.png)
+![](https://i.gyazo.com/931d0f6b09c77e13e7800d102c089d44.png)
 
 You can then change the variable value in the scripts and it will also change the display name:
 
@@ -80,6 +80,35 @@ It's also possible to use the name binding feature to allow player pick their di
 @input PlayerName summary:"Choose your name."
 @stop
 Player: You can call me {PlayerName}.
+```
+
+The content of the curly braces is actually treated as a full-fledged [script expression](/guide/script-expressions), allowing complex scenarios for evaluating the display name. For example, you may want to keep a pre-defined localizable display name for a character until some point and then let the player pick a custom name.
+
+Let's say the character in questions has "Char1" ID, pre-defined name is stored as "T_PredefinedName" [managed text record](/guide/managed-text.md#script-text), the value entered by the player will be stored as "name" [custom variable](/guide/custom-variables) and "nameSet" variable will be set to "true" when player has set the name. Assign the following expression to the `Display Name` property: `{ nameSet ? name : T_PredefinedName }`.
+
+![](https://i.gyazo.com/b4bed71310ae8d0f80aff11d910d6e5b.png)
+
+Then use the following scenario script:
+
+```nani
+@char Char1
+
+Char1: My name is now pre-defined by `T_PredefinedName` managed text record.
+Char1: It's localizable; try changing the locale and it will update accordingly.
+Char1: Now, we'll make the player input a custom name. 
+
+; Notice the default input value assigned via `value` parameter:
+; it's retrieved from managed text and is localizable as well.
+@input name summary:"Choose your name." value:{T_DefaultName}
+@stop
+
+; Here we set the variable, that is used in the expression
+; for display name to decide where to get the value from.
+@set nameSet=true
+
+Char1: My display name is now bound to `name` custom variable assigned by the player.
+
+@stop
 ```
 
 ## Message Colors
