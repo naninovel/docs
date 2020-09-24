@@ -222,7 +222,7 @@ time | Decimal | Duration (in seconds) of the modification. Default value: 0.35 
 ; Changes volume of all the played music tracks to 50% over 2.5 seconds and makes them play in a loop
 @bgm volume:0.5 loop:true time:2.5
 
-; Playes `BattleThemeIntro` once and then immediately `BattleThemeMain` in a loop.
+; Plays `BattleThemeIntro` once and then immediately `BattleThemeMain` in a loop.
 @bgm BattleThemeMain intro:BattleThemeIntro
 ```
 
@@ -268,8 +268,8 @@ roll | Decimal | Local camera rotation by Z-axis in angle degrees (0.0 to 360.0 
 rotation | List&lt;Decimal&gt; | Local camera rotation over X,Y,Z-axes in angle degrees (0.0 to 360.0 or -180.0 to 180.0).
 zoom | Decimal | Relatize camera zoom (orthographic size or field of view, depending on the render mode), in 0.0 (no zoom) to 1.0 (full zoom) range.
 ortho | Boolean | Whether the camera should render in orthographic (true) or perspective (false) mode.
-toggle | List&lt;String&gt; | Names of the components to toggle (enable if disabled and vice-versa). The components should be attached to the same gameobject as the camera.  This can be used to toggle [custom post-processing effects](/guide/special-effects.md#camera-effects).
-set | List&lt;Named&lt;Boolean&gt;&gt; | Names of the components to enable or disable. The components should be attached to the same gameobject as the camera.  This can be used to explicitly enable or disable [custom post-processing effects](/guide/special-effects.md#camera-effects).  Specified components enabled state will override effect of `toggle` parameter.
+toggle | List&lt;String&gt; | Names of the components to toggle (enable if disabled and vice-versa). The components should be attached to the same game object as the camera.  This can be used to toggle [custom post-processing effects](/guide/special-effects.md#camera-effects).
+set | List&lt;Named&lt;Boolean&gt;&gt; | Names of the components to enable or disable. The components should be attached to the same game object as the camera.  This can be used to explicitly enable or disable [custom post-processing effects](/guide/special-effects.md#camera-effects).  Specified components enabled state will override effect of `toggle` parameter.
 easing | String | Name of the easing function to use for the modification.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  When not specified, will use a default easing function set in the camera configuration settings.
 time | Decimal | Duration (in seconds) of the modification. Default value: 0.35 seconds.
 
@@ -478,7 +478,7 @@ If prefab has a `UnityEngine.MonoBehaviour` component attached the root object, 
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | String | Name (path) of the prefab resource to destroy.  A [@spawn] command with the same parameter is expected to be executed before.
-params | List&lt;String&gt; | Parameters to set before destoying the prefab.  Requires the prefab to have a `Naninovel.Commands.DestroySpawned.IParameterized` component attached the root object.
+params | List&lt;String&gt; | Parameters to set before destroying the prefab.  Requires the prefab to have a `Naninovel.Commands.DestroySpawned.IParameterized` component attached the root object.
 
 </div>
 
@@ -546,7 +546,7 @@ It's possible to declare a gosub outside of the currently played script and use 
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | Named&lt;String&gt; | Path to navigate into in the following format: `ScriptName.LabelName`.  When label name is ommited, will play provided script from the start.  When script name is ommited, will attempt to find a label in the currently played script.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | Named&lt;String&gt; | Path to navigate into in the following format: `ScriptName.LabelName`.  When label name is omitted, will play provided script from the start.  When script name is omitted, will attempt to find a label in the currently played script.
 reset | List&lt;String&gt; | When specified, will reset the engine services state before loading a script (in case the path is leading to another script).  Specify `*` to reset all the services, or specify service names to exclude from reset.  By default, the state does not reset.
 
 </div>
@@ -593,7 +593,7 @@ Navigates naninovel script playback to the provided path.  When the path leads t
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | Named&lt;String&gt; | Path to navigate into in the following format: `ScriptName.LabelName`.  When label name is ommited, will play provided script from the start.  When script name is ommited, will attempt to find a label in the currently played script.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | Named&lt;String&gt; | Path to navigate into in the following format: `ScriptName.LabelName`.  When label name is omitted, will play provided script from the start.  When script name is omitted, will attempt to find a label in the currently played script.
 reset | List&lt;String&gt; | When specified, will control whether to reset the engine services state before loading a script (in case the path is leading to another script):<br />  - Specify `*` to reset all the services, except the ones with `Goto.DontReset` attribute.<br />  - Specify service type names (separated by comma) to exclude from reset; all the other services will be reset, including the ones with `Goto.DontReset` attribute.<br />  - Specify `-` to force no reset (even if it's enabled by default in the configuration).<br /><br />  Notice, that while some services have `Goto.DontReset` attribute applied (eg, `CustomVariableManager`) and are not reset by default, they should still be specified when excluding other services from reset; see the below example on excluding audio manager.<br />  Be aware, that excluding a service from reset will leave related resources in memory; find more details in the [engine services guide](/guide/engine-services.md#reset-on-goto).
 
 </div>
@@ -617,7 +617,7 @@ reset | List&lt;String&gt; | When specified, will control whether to reset the e
 ## hide
 
 #### Summary
-Hides (makes invisible) actors (character, background, text printer, choice handler, etc) with the specified IDs.  In case mutliple actors with the same ID found (eg, a character and a printer), will affect only the first found one.
+Hides (makes invisible) actors (character, background, text printer, choice handler, etc) with the specified IDs.  In case multiple actors with the same ID found (eg, a character and a printer), will affect only the first found one.
 
 #### Parameters
 
@@ -709,7 +709,7 @@ time | Decimal | Duration (in seconds) of the hide animation.  Default value for
 Makes [UI elements](/guide/user-interface.md#ui-customization) with the specified names invisible.  When no names are specified, will stop rendering (hide) the entire UI (including all the built-in UIs).
 
 #### Remarks
-When hiding the entire UI with this command and `allowToggle` parameter is false (default), user won't be able to re-show the UI  back with hotkeys or by clicking anywhere on the screen; use [@showUI] command to make the UI ~~great~~ visible again.
+When hiding the entire UI with this command and `allowToggle` parameter is false (default), user won't be able to re-show the UI  back with hotkeys or by clicking anywhere on the screen; use [@showUI] command to make the UI visible again.
 
 #### Parameters
 
@@ -749,7 +749,7 @@ Holds script execution until user activates a `continue` input.  Shortcut for `@
 #### Example
 ```nani
 ; User will have to activate a `continue` input after the first sentence
-; for the printer to contiue printing out the following text.
+; for the printer to continue printing out the following text.
 Lorem ipsum dolor sit amet.[i] Consectetur adipiscing elit.
 ```
 
@@ -934,7 +934,7 @@ ID | Type | Description
 Prints (reveals over time) specified text message using a text printer actor.
 
 #### Remarks
-This command is used under the hood when processing generic text lines, eg generic line `Kohaku: Hello World!` will be  automatically tranformed into `@print "Hello World!" author:Kohaku` when parsing the naninovel scripts.<br />  Will reset (clear) the printer before printing the new message by default; set `reset` parameter to *false* or disable `Auto Reset` in the printer actor configuration to prevent that and append the text instead.<br />  Will make the printer default and hide other printers by default; set `default` parameter to *false* or disable `Auto Default` in the printer actor configuration to prevent that.<br />  Will wait for user input before finishing the task by default; set `waitInput` parameter to *false* or disable `Auto Wait` in the printer actor configuration to return as soon as the text is fully revealed.<br />
+This command is used under the hood when processing generic text lines, eg generic line `Kohaku: Hello World!` will be  automatically transformed into `@print "Hello World!" author:Kohaku` when parsing the naninovel scripts.<br />  Will reset (clear) the printer before printing the new message by default; set `reset` parameter to *false* or disable `Auto Reset` in the printer actor configuration to prevent that and append the text instead.<br />  Will make the printer default and hide other printers by default; set `default` parameter to *false* or disable `Auto Default` in the printer actor configuration to prevent that.<br />  Will wait for user input before finishing the task by default; set `waitInput` parameter to *false* or disable `Auto Wait` in the printer actor configuration to return as soon as the text is fully revealed.<br />
 
 #### Parameters
 
@@ -1054,7 +1054,7 @@ You've picked two.
 Resets state of the [engine services](https://naninovel.com/guide/engine-services.html) and unloads (disposes)  all the resources loaded by Naninovel (textures, audio, video, etc); will basically revert to an empty initial engine state.
 
 #### Remarks
-The process is asynchronous and is masked with a loading screen ([ILoadingUI](https://naninovel.com/guide/user-interface.html#ui-customization)).  <br /><br />  When [Reset On Goto](https://naninovel.com/guide/configuration.html#state) is disabled in the configuration, you can use this command  to manually dispose unused resources to prevent memory leak issues.  <br /><br />  Be aware, that this command can not be undone (rewinded back).
+The process is asynchronous and is masked with a loading screen ([ILoadingUI](https://naninovel.com/guide/user-interface.html#ui-customization)).  <br /><br />  When [Reset On Goto](https://naninovel.com/guide/configuration.html#state) is disabled in the configuration, you can use this command  to manually dispose unused resources to prevent memory leak issues.  <br /><br />  Be aware, that this command can not be undone (rewound back).
 
 #### Parameters
 
@@ -1134,7 +1134,7 @@ Automatically save the game to a quick save slot.
 Assigns result of a [script expression](/guide/script-expressions.md) to a [custom variable](/guide/custom-variables.md).
 
 #### Remarks
-Variable name should be alphanumeric (latin characters only) and can contain underscores, eg: `name`, `Char1Score`, `my_score`;  the names are case-insensitive, eg: `myscore` is equal to `MyScore`. If a variable with the provided name doesn't exist, it will be automatically created.  <br /><br />  It's possible to define multiple set expressions in one line by separating them with `;`. The expressions will be executed in sequence by the order of declaratation.  <br /><br />  Custom variables are stored in **local scope** by default. This means, that if you assign some variable in the course of gameplay  and player starts a new game or loads another saved game slot, where that variable wasn't assigned — the value will be lost.  If you wish to store the variable in **global scope** instead, prepend `G_` or `g_` to its name, eg: `G_FinishedMainRoute` or `g_total_score`.  <br /><br />  In case variable name starts with `T_` or `t_` it's considered a reference to a value stored in 'Script' [managed text](/guide/managed-text.md) document.  Such variables can't be assiged and mostly used for referencing localizable text values.  <br /><br />  You can get and set custom variables in C# scripts via `CustomVariableManager` [engine service](/guide/engine-services.md).
+Variable name should be alphanumeric (latin characters only) and can contain underscores, eg: `name`, `Char1Score`, `my_score`;  the names are case-insensitive, eg: `myscore` is equal to `MyScore`. If a variable with the provided name doesn't exist, it will be automatically created.  <br /><br />  It's possible to define multiple set expressions in one line by separating them with `;`. The expressions will be executed in sequence by the order of declaration.  <br /><br />  Custom variables are stored in **local scope** by default. This means, that if you assign some variable in the course of gameplay  and player starts a new game or loads another saved game slot, where that variable wasn't assigned — the value will be lost.  If you wish to store the variable in **global scope** instead, prepend `G_` or `g_` to its name, eg: `G_FinishedMainRoute` or `g_total_score`.  <br /><br />  In case variable name starts with `T_` or `t_` it's considered a reference to a value stored in 'Script' [managed text](/guide/managed-text.md) document.  Such variables can't be assigned and mostly used for referencing localizable text values.  <br /><br />  You can get and set custom variables in C# scripts via `CustomVariableManager` [engine service](/guide/engine-services.md).
 
 #### Parameters
 
@@ -1261,7 +1261,7 @@ group | String | Audio mixer [group path](https://docs.unity3d.com/ScriptReferen
 ## show
 
 #### Summary
-Shows (makes visible) actors (character, background, text printer, choice handler, etc) with the specified IDs.  In case mutliple actors with the same ID found (eg, a character and a printer), will affect only the first found one.
+Shows (makes visible) actors (character, background, text printer, choice handler, etc) with the specified IDs.  In case multiple actors with the same ID found (eg, a character and a printer), will affect only the first found one.
 
 #### Parameters
 
@@ -1396,11 +1396,11 @@ time | Decimal | Duration (in seconds) of the slide animation. Default value: 0.
 
 #### Example
 ```nani
-; Given `Jenna` actor is not currenly visible, reveal it with an `Angry` appearance
+; Given `Jenna` actor is not currently visible, reveal it with an `Angry` appearance
 ; and slide to the center of the screen from either left or right border of the screen.
 @slide Jenna.Angry to:50
 
-; Given `Sheba` actor is currenly visible,
+; Given `Sheba` actor is currently visible,
 ; hide and slide it out of the screen over the left border.
 @slide Sheba to:-10 visible:false
 
@@ -1537,7 +1537,7 @@ Stops playback of the currently played voice clip.
 ## style
 
 #### Summary
-Permamently applies [text styles](/guide/text-printers.md#text-styles) to the contents of a text printer.
+Permanently applies [text styles](/guide/text-printers.md#text-styles) to the contents of a text printer.
 
 #### Remarks
 You can also use rich text tags inside text messages to apply the styles selectively.
@@ -1548,7 +1548,7 @@ You can also use rich text tags inside text messages to apply the styles selecti
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">TextStyles</span> | List&lt;String&gt; | Text formatting tags to apply. Angle brackets should be ommited, eg use `b` for &lt;b&gt; and `size=100` for &lt;size=100&gt;. Use `default` keyword to reset the style.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">TextStyles</span> | List&lt;String&gt; | Text formatting tags to apply. Angle brackets should be omitted, eg use `b` for &lt;b&gt; and `size=100` for &lt;size=100&gt;. Use `default` keyword to reset the style.
 printer | String | ID of the printer actor to use. Will use a default one when not provided.
 
 </div>
@@ -1629,7 +1629,7 @@ Holds script execution until the specified wait condition.
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">WaitMode</span> | String | Wait conditions:<br />  - `i` user press continue or skip input key;<br />  - `0.0` timer (seconds);<br />  - `i0.0` timer, that is skippable by continue or skip input keys.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">WaitMode</span> | String | Wait conditions:<br />  - `i` user press continue or skip input key;<br />  - `0.0` timer (seconds);<br />  - `i0.0` timer, that is skip-able by continue or skip input keys.
 
 </div>
 
@@ -1645,7 +1645,7 @@ Lorem ipsum[wait i] dolor sit amet.
 ; You can also use the following shortcut (@i command) for this wait mode.
 Lorem ipsum[i] dolor sit amet.
 
-; Start an SFX, print a message and wait for a skippable 5 seconds delay, then stop the SFX.
+; Start an SFX, print a message and wait for a skip-able 5 seconds delay, then stop the SFX.
 @sfx Noise loop:true
 Jeez, what a disgusting noise. Shut it down![wait i5][skipInput]
 @stopSfx Noise

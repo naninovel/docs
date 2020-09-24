@@ -50,7 +50,7 @@ Metadata | Object Ref | Metadata to use when creating background actors with spe
 Scene Origin | (0.5, 0.0) | Origin point used for reference when positioning actors on scene.
 Z Offset | 100 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
 Z Step | 0.1 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
-Default Easing | Linear | Eeasing function to use by default for all the actor modification animations (changing appearance, position, tint, etc).
+Default Easing | Linear | Easing function to use by default for all the actor modification animations (changing appearance, position, tint, etc).
 Auto Show On Modify | True | Whether to automatically reveal (show) an actor when executing modification commands.
 
 </div>
@@ -88,7 +88,7 @@ Avatar Loader | Character Avatars- (Addressable, Project) | Configuration of the
 Scene Origin | (0.5, 0.0) | Origin point used for reference when positioning actors on scene.
 Z Offset | 50 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
 Z Step | 0.1 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
-Default Easing | Smooth Step | Eeasing function to use by default for all the actor modification animations (changing appearance, position, tint, etc).
+Default Easing | Smooth Step | Easing function to use by default for all the actor modification animations (changing appearance, position, tint, etc).
 Auto Show On Modify | True | Whether to automatically reveal (show) an actor when executing modification commands.
 
 </div>
@@ -102,7 +102,7 @@ Property | Default Value | Description
 Default Handler Id | Button List | ID of the choice handler to use by default.
 Default Metadata | Object Ref | Metadata to use by default when creating choice handler actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating choice handler actors with specific IDs.
-Default Easing | Linear | Eeasing function to use by default for all the actor modification animations (changing appearance, position, tint, etc).
+Default Easing | Linear | Easing function to use by default for all the actor modification animations (changing appearance, position, tint, etc).
 Auto Show On Modify | True | Whether to automatically reveal (show) an actor when executing modification commands.
 
 </div>
@@ -113,7 +113,7 @@ Auto Show On Modify | True | Whether to automatically reveal (show) an actor whe
 
 Property | Default Value | Description
 --- | --- | ---
-Predefined Variables | Object Ref | The list of variables to initialize by default. Global variables (names starting with `G_` or `g_`) are intialized on first application start, and others on each state reset.
+Predefined Variables | Object Ref | The list of variables to initialize by default. Global variables (names starting with `G_` or `g_`) are initialized on first application start, and others on each state reset.
 
 </div>
 
@@ -128,9 +128,10 @@ Override Objects Layer | False | Whether to assign a specific layer to all the e
 Objects Layer | 0 | When `Override Objects Layer` is enabled, the specified layer will be assigned to all the engine objects.
 Async Exception Log Type | Error | Log type to use for UniTask-related exceptions.
 Initialize On Application Load | True | Whether to automatically initialize the engine when application starts.
+Scene Independent | True | Whether to apply `DontDestroyOnLoad` to the engine objects, making their lifetime independent of any loaded scenes. When disabled, the objects will be part of the Unity scene where the engine was initialized and will be destroyed when the scene is unloaded.
 Show Initialization UI | True | Whether to show a loading UI while the engine is initializing.
 Custom Initialization UI | Null | UI to show while the engine is initializing (when enabled). Will use a default one when not provided.
-Show Title UI | True | Whether to automatically show title screen UI (main menu) after engine initializaton. You can modify the title UI using UI customization feature (see online guide for more info).
+Show Title UI | True | Whether to automatically show title screen UI (main menu) after engine initialization. You can modify the title UI using UI customization feature (see online guide for more info).
 Enable Development Console | True | Whether to enable development console.
 Toggle Console Key | Back Quote | Key used to toggle development console. You can also toggle it with a multi (3 or more) touch when using touchscreens.
 
@@ -196,15 +197,15 @@ Intro Movie Name | Null | Path to the intro movie resource.
 
 Property | Default Value | Description
 --- | --- | ---
-Resource Policy | Static | Dictates when the resources are loaded and unloaded during script execution:<br> • Static — All the resources required for the script execution are pre-loaded when starting the playback (masked with a loading screen) and unloaded only when the script has finished playing. This policy is default and recommended for most cases.<br> • Dynamic — Only the resources required for the next `Dynamic Policy Steps` commands are pre-loaded during the script execution and all the unused resources are unloaded immediately. Use this mode when targetting platforms with strict memory limitations and it's impossible to properly organize naninovel scripts. Expect hiccups when the resources are loaded in background while the game is progressing.
+Resource Policy | Static | Dictates when the resources are loaded and unloaded during script execution:<br> • Static — All the resources required for the script execution are pre-loaded when starting the playback (masked with a loading screen) and unloaded only when the script has finished playing. This policy is default and recommended for most cases.<br> • Dynamic — Only the resources required for the next `Dynamic Policy Steps` commands are pre-loaded during the script execution and all the unused resources are unloaded immediately. Use this mode when targeting platforms with strict memory limitations and it's impossible to properly organize naninovel scripts. Expect hiccups when the resources are loaded in background while the game is progressing.
 Dynamic Policy Steps | 25 | When dynamic resource policy is enabled, defines the number of script commands to pre-load.
 Optimize Loading Priority | True | When dynamic resource policy is enabled, this will set Unity's background loading thread priority to low to prevent hiccups when loading resources during script playback.
 Log Resource Loading | False | Whether to log resource loading operations on the loading screen.
 Enable Build Processing | True | Whether to register a custom build player handle to process the assets assigned as Naninovel resources.<br><br>Warning: In order for this setting to take effect, it's required to restart the Unity editor.
 Use Addressables | True | When the Addressable Asset System is installed, enabling this property will optimize asset processing step improving the build time.
 Auto Build Bundles | True | Whether to automatically build the addressable asset bundles when building the player. Has no effect when `Use Addressables` is disabled.
-Allow Addressable In Editor | False | Whether to use addressable provider in editor. Enable if you're manually exposing resources via addressable address instead of assigning them with Naninovel's resource managers. Be aware, that enabling this could cuase issues when resources are assigned both in resources manager and registered with an addressable address and then renamed or dublicated.
-Extra Labels | Null | Addressable provider will only work with assets, that have the assigned labels in addition to `Naninovel` label. Can be used to filter assets used by the engine based on custom criterias (eg, HD vs SD textures).
+Allow Addressable In Editor | False | Whether to use addressable provider in editor. Enable if you're manually exposing resources via addressable address instead of assigning them with Naninovel's resource managers. Be aware, that enabling this could cause issues when resources are assigned both in resources manager and registered with an addressable address and then renamed or duplicated.
+Extra Labels | Null | Addressable provider will only work with assets, that have the assigned labels in addition to `Naninovel` label. Can be used to filter assets used by the engine based on custom criteria (eg, HD vs SD textures).
 Local Root Path | %DATA%/Resources | Path root to use for the local resource provider. Can be an absolute path to the folder where the resources are located, or a relative path with one of the available origins:<br> • %DATA% — Game data folder on the target device (UnityEngine.Application.dataPath).<br> • %PDATA% — Persistent data directory on the target device (UnityEngine.Application.persistentDataPath).<br> • %STREAM% — `StreamingAssets` folder (UnityEngine.Application.streamingAssetsPath).<br> • %SPECIAL{F}% — An OS special folder (where F is value from System.Environment.SpecialFolder).
 Video Stream Extension | .mp 4 | When streaming videos under WebGL (movies, video backgrounds), specify the extension of the video files.
 Project Root Path | Naninovel | Path relative to `Resources` folders, under which the naninovel-specific assets are located.
@@ -235,11 +236,11 @@ Property | Default Value | Description
 --- | --- | ---
 Loader | Scripts- (Addressable, Project) | Configuration of the resource loader used with naninovel script resources.
 Initialization Script | Null | Name of the script to play right after the engine initialization.
-Title Script | Null | Name of the script to play when showing the Title UI. Can be used to setup the title screen scene (backgound, music, etc).
+Title Script | Null | Name of the script to play when showing the Title UI. Can be used to setup the title screen scene (background, music, etc).
 Start Game Script | Null | Name of the script to play when starting a new game. Will use first available when not provided.
 Auto Add Scripts | True | Whether to automatically add created naninovel scripts to the resources.
 Hot Reload Scripts | True | Whether to reload modified (both via visual and external editors) scripts and apply changes during playmode without restarting the playback.
-Count Total Commands | False | Whether to calculate number of commands existing in all the available naninovel scripts on service initalization. If you don't use `TotalCommandsCount` property of a script manager and `CalculateProgress` function in naninovel script expressions, disable to reduce engine initalization time.
+Count Total Commands | False | Whether to calculate number of commands existing in all the available naninovel scripts on service initialization. If you don't use `TotalCommandsCount` property of a script manager and `CalculateProgress` function in naninovel script expressions, disable to reduce engine initialization time.
 Enable Visual Editor | True | Whether to show visual script editor when a script is selected.
 Hide Unused Parameters | True | Whether to hide un-assigned parameters of the command lines when the line is not hovered or focused.
 Insert Line Key | Space | Hot key used to show `Insert Line` window when the visual editor is in focus. Set to `None` to disable.
@@ -255,7 +256,7 @@ Graph Auto Align Padding | (10.0, 0.0) | Padding to add for each node when perfo
 Graph Custom Style Sheet | Null | Allows modifying default style of the script graph.
 Enable Community Modding | False | Whether to allow adding external naninovel scripts to the build.
 External Loader | Scripts- (Local) | Configuration of the resource loader used with external naninovel script resources.
-Enable Navigator | True | Whether to initializte script navigator to browse available naninovel scripts.
+Enable Navigator | True | Whether to initialize script navigator to browse available naninovel scripts.
 Show Navigator On Init | False | Whether to show naninovel script navigator when script manager is initialized.
 Navigator Sort Order | 900 | UI sort order of the script navigator.
 
@@ -311,7 +312,7 @@ Metadata | Object Ref | Metadata to use when creating text printer actors with s
 Scene Origin | (0.5, 0.0) | Origin point used for reference when positioning actors on scene.
 Z Offset | 100 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
 Z Step | 0.1 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
-Default Easing | Linear | Eeasing function to use by default for all the actor modification animations (changing appearance, position, tint, etc).
+Default Easing | Linear | Easing function to use by default for all the actor modification animations (changing appearance, position, tint, etc).
 Auto Show On Modify | False | Whether to automatically reveal (show) an actor when executing modification commands.
 
 </div>
