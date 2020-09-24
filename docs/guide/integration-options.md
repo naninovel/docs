@@ -13,7 +13,7 @@ Check out an [example project](/guide/integration-options.md#example-project), w
 ## Manual Initialization 
 The first thing you'll probably want to change is disable `Initialize On Application Load` option in the engine configuration menu.
 
-![](https://i.gyazo.com/f58a8af9f2f6d71286061e55fc228896.png)
+![](https://i.gyazo.com/6349692c2e2036e908e41c3d89509102.png)
 
 When enabled, the engine services will automatically initialize on application start. Unless you want to begin your game in novel mode, you would rather manually initialize the engine when it's actually needed by either invoking a static `RuntimeInitializer.InitializeAsync()` method from C# or adding a `Runtime Initializer` component to a game object on scene; the latter will make the engine initialize when the scene is loaded in Unity.
 
