@@ -76,10 +76,42 @@ var myConfig = Engine.GetConfiguration<MyCustomConfiguration>();
 ```
 
 ::: example
-Another example of adding a custom configuration menu to setup an inventory system can be found in the [inventory example project on GitHub](https://github.com/Elringus/NaninovelInventory).
+Another example of adding a custom configuration menu to set up an inventory system can be found in the [inventory example project on GitHub](https://github.com/Elringus/NaninovelInventory).
 
 Specifically, the custom configuration is implemented via [InventoryConfiguration.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryConfiguration.cs) runtime script.
 :::
+
+To customize editor behaviour of your custom configuration (when it's drawn in the Naninovel's project settings), create a class under an editor script and inherit it from `ConfigurationSettings<T>`, where `T` is the type of your custom configuration. You can use built-in settings editor scripts stored at `Naninovel/Editor/Settings` package folder for reference when building your own editors.
+
+## Overriding Built-in Editors
+
+It's possible to override the built-in configuration editors (Naninovel's project settings menus) by applying `OverrideSettings` attribute to an editor class inherited from `ConfigurationSettings<T>` (or any of its derivatives), where `T` is the type of the configuration. Make sure to store the custom editor scripts under "Editor" folder to make them included to the editor assembly.
+
+Below is an example on overriding the built-in character manager configuration editor. The new editor is inherited from the built-in one and will additionally insert a label under `Message Color` field of the inspected actor metadata with the name of that color.
+
+```csharp
+[OverrideSettings(typeof(CharactersSettings))]
+public class CustomCharacterSettings : CharactersSettings
+{
+    protected override Dictionary<string, Action<SerializedProperty>> OverrideMetaDrawers
+    {
+        get
+        {
+            var drawers = base.OverrideMetaDrawers;
+            drawers[nameof(CharacterMetadata.MessageColor)] = property =>
+            {
+                EditorGUILayout.PropertyField(property);
+                EditorGUILayout.LabelField($"Message color of `{EditedActorId}` is `{property.colorValue}`.");
+            };
+            return drawers;
+        }
+    }
+}
+```
+
+Given the above editor, inspected characters will now draw as follows:
+
+![](https://i.gyazo.com/a742da2e7474444c9e1306a1414c7dfb.png)
 
 ## Configuration Provider
 
