@@ -70,7 +70,7 @@ public class MyCharacterData : CustomMetadata<CustomCharacterImplementation>
 
 Serializable fields of the created custom data class will be automatically exposed in the Naninovel editor menus, when actor with the associated implementation is selected.
 
-![](https://i.gyazo.com/74698c4a181a2c719d0c1ef8c5672eaa.png)
+![](https://i.gyazo.com/72f46feb74b6de568b299329500bd7d5.png)
 
 To access the custom data at runtime, use `GetCustomData<TData>()` method of `ActorMetadata` instance, where `TData` is the type of the custom data class, eg:
 
@@ -82,6 +82,59 @@ public CustomCharacterImplementation (string id, CharacterMetadata metadata)
     Debug.Log(myData.MyCustomInt);
 }
 ```
+
+### Custom Metadata Editor
+
+It's possible to customize the custom metadata editor via [property drawers](https://docs.unity3d.com/Manual/editor-PropertyDrawers.html). Below is an example on adding a property drawer, which will insert an extra label above the edited field.
+
+```csharp
+// Create an attribute to apply to the serialized fields;
+// don't forget to inherit it from `PropertyAttribute`.
+public class ExtraLabelAttribute : PropertyAttribute
+{
+    public readonly string LabelText;
+    
+    public ExtraLabelAttribute (string labelText)
+    {
+        LabelText = labelText;
+    }
+}
+
+// Create the custom editor, that will used when drawing the affected fields.
+// The script should be inside an `Editor` folder, as it uses `UnityEditor` namespace.
+[CustomPropertyDrawer(typeof(ExtraLabelAttribute))]
+public class ExtraLabelPropertyDrawer : PropertyDrawer
+{
+    public override void OnGUI (Rect rect, SerializedProperty prop, GUIContent label)
+    {
+        var extraLabelAttribute = attribute as ExtraLabelAttribute;
+        
+        rect.height = EditorGUIUtility.singleLineHeight;
+        EditorGUI.LabelField(rect, extraLabelAttribute.LabelText);
+        
+        rect.y += EditorGUIUtility.singleLineHeight + 
+                  EditorGUIUtility.standardVerticalSpacing;
+        EditorGUI.PropertyField(rect, prop);
+    }
+
+    public override float GetPropertyHeight (SerializedProperty prop, GUIContent label)
+    {
+        return EditorGUIUtility.singleLineHeight * 2 + 
+               EditorGUIUtility.standardVerticalSpacing;
+    }
+}
+
+// Now you can use the attribute to apply the extra label to the serialized fields.
+public class MyCharacterData : CustomMetadata<CustomCharacterImplementation>
+{
+    [ExtraLabel("Text from my custom property drawer")]
+    public string MyCustomProperty;
+}
+```
+
+Given the above implementation, our custom character data will now draw as following:
+
+![](https://i.gyazo.com/294a9e2812d33ea3c863f9f53906b327.png)
 
 ## Custom State
 
