@@ -136,6 +136,10 @@ Given the above implementation, our custom character data will now draw as follo
 
 ![](https://i.gyazo.com/294a9e2812d33ea3c863f9f53906b327.png)
 
+::: tip
+It's also possible to override built-in configuration editors as a whole; see [custom configuration](/guide/custom-configuration.md#overriding-built-in-editors) guide for more information and examples.
+:::
+
 ## Custom State
 
 To override or extend state type for your custom actor, you'll have to also [override the actor's manager](/guide/engine-services.md#overriding-built-in-services), as the state is serialized and applied to the managed actors there.
