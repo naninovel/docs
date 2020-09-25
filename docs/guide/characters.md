@@ -381,6 +381,12 @@ Following video guide covers exporting a Live2D character from Cubism Editor, co
 Check out an [example project on GitHub](https://github.com/Elringus/NaninovelLive2D), where a Live2D character is used with Naninovel. Be aware, that Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
 :::
 
+## Narrator Characters
+
+Narrator characters don't have any presence on scene (appearances, position, look direction, tint, etc), but are still able to author printed messages and have the related configuration options (display name, message color, linked printer, etc).
+
+![](https://i.gyazo.com/f1ee43da312b29f3236cf772d9ea9fa7.png)
+
 ## Render to Texture
 
 It's possible to render character and background actors of all the implementations (except generic) to a texture asset, which can then can be assigned to a custom UI, printer, material or any other compatible source.
