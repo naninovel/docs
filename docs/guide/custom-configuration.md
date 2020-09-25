@@ -69,6 +69,10 @@ Corresponding menu will then automatically be added in the project settings, whe
 
 ![](https://i.gyazo.com/c1163bba83f5d2b6286b100e837bca40.png)
 
+::: note
+When adding custom implementation types under a [namespace](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/namespaces/), add the namespace to the `Type Namespaces` list found in the engine configuration menu. Otherwise, the engine won't be able to find your custom type.
+:::
+
 To access your custom configuration via C# use the same API as for the built-in assets:
 
 ```csharp
@@ -122,13 +126,11 @@ To specify a custom configuration serving scenario, create a C# class and implem
 Below is an example of a custom provider implementation, that just returns default configuration objects:
 
 ```csharp
-using Naninovel;
-using UnityEngine;
-
 public class CustomConfigurationProvider : IConfigurationProvider
 {
     public IEnumerable<Type> EngineTypes { get; } = 
-        ReflectionUtils.GetExportedDomainTypes(true, true, true, EngineConfiguration.DefaultTypeNamespaces);
+        ReflectionUtils.GetExportedDomainTypes(true, true, true, 
+        EngineConfiguration.DefaultTypeNamespaces);
 
     public Configuration GetConfiguration (System.Type type)
     {
@@ -143,10 +145,6 @@ Once the custom configuration provider is ready, you have to make the engine use
 Alternatively, if your goal is just to use a custom configuration provider, but keep the default engine initialization routine, consider using `RuntimeInitializer.InitializeAsync(IConfigurationProvider)` static method, which accepts an optional argument for configuration provider:
 
 ```csharp
-using Naninovel;
-using UniRx.Async;
-using UnityEngine;
-
 public class CustomInitializer
 {
     [RuntimeInitializeOnLoadMethod]
