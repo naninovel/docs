@@ -5,16 +5,16 @@ Naninovel is an extension for [Unity game engine](https://unity3d.com). It consi
 [!!lRxIKDU9z4k]
 
 ::: note
-While Naninovel doesn't limit what you can achieve with Unity, there are some requirements (supported Unity versions, project configuration, target platforms) for some of the built-in features to work correctly; consult [compatibility page](/guide/compatibility.md) for more information.
+While Naninovel doesn't limit what you can achieve with Unity, there are requirements (supported Unity versions, project configuration, target platforms) for some built-in features to work correctly; consult [compatibility page](/guide/compatibility.md) for more information.
 :::
 
 Make sure to read [getting started guide](/guide/getting-started.md) when using the engine for the first time. 
 
-If you're looking for a specific topic, try using search bar located at the website header; also, check out the [FAQ](/faq/), where we have answers for some of the frequently asked questions. All the available script commands, supported parameters and usage examples are listed in the [API reference](/api/). Feel free to [contact the support](/support/#developer-support) in case you can't find the required information.
+If you're looking for a specific topic, try using search bar located at the website header; also, check out the [FAQ](/faq/), where we have answers for the frequently asked questions. All the available script commands, supported parameters and usage examples are listed in the [API reference](/api/). Feel free to [contact the support](/support/#developer-support) in case you can't find the required information.
 
 ## Features
 
-Following are some of the features Naninovel provides out of the box:
+Following are some of the features Naninovel provide out of the box:
 
 * [Document-based scripts](/guide/naninovel-scripts.md)
   * [Generic text lines](/guide/naninovel-scripts.md#generic-text-lines)
