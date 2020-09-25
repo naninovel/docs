@@ -127,6 +127,9 @@ using UnityEngine;
 
 public class CustomConfigurationProvider : IConfigurationProvider
 {
+    public IEnumerable<Type> EngineTypes { get; } = 
+        ReflectionUtils.GetExportedDomainTypes(true, true, true, EngineConfiguration.DefaultTypeNamespaces);
+
     public Configuration GetConfiguration (System.Type type)
     {
         var defaultAsset = ScriptableObject.CreateInstance(type);
