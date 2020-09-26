@@ -39,7 +39,7 @@ You can find built-in implementations of the services in the runtime source code
 To add a new custom engine service, implement `IEngineService` interface and add `InitializeAtRuntime` attribute to the implementing class. Instance of the implementation will automatically be created during the engine initialization and become available via `Engine.GetService<TService>()` API.
 
 ::: note
-When adding custom implementation types under a [namespace](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/namespaces/), add the namespace to the `Type Namespaces` list found in the engine configuration menu. Otherwise, the engine won't be able to find your custom type.
+When adding custom implementation types under a non-predefined assembly (via [assembly definitions](https://docs.unity3d.com/Manual/ScriptCompilationAssemblyDefinitionFiles.html)), add the assembly name to the `Type Assemblies` list found in the engine configuration menu. Otherwise, the engine won't be able to locate your custom types.
 :::
 
 You can force your custom service to be initialized before or after other services using `InitializationPriority` argument of `InitializeAtRuntime` attribute; lower values will push it before other services in the initialization queue and vice-versa.

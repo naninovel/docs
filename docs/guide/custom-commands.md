@@ -7,7 +7,7 @@ Command represents a single operation, that controls what happens on the scene; 
 To add your own custom script command, create a new C# class derived from `Command` and implement `ExecuteAsync` abstract method. The created class will automatically be picked up by the engine and you'll be able to invoke the command from the naninovel scripts by either the class name or an alias (if assigned). To assign an alias to the naninovel command, apply `CommandAlias` attribute to the class.
 
 ::: note
-When adding custom implementation types under a [namespace](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/namespaces/), add the namespace to the `Type Namespaces` list found in the engine configuration menu. Otherwise, the engine won't be able to find your custom type.
+When adding custom implementation types under a non-predefined assembly (via [assembly definitions](https://docs.unity3d.com/Manual/ScriptCompilationAssemblyDefinitionFiles.html)), add the assembly name to the `Type Assemblies` list found in the engine configuration menu. Otherwise, the engine won't be able to locate your custom types.
 :::
 
 `ExecuteAsync` is an async method invoked when the command is executed by the scripts player; put the command logic there. Use [engine services](/guide/engine-services.md) to access the engine built-in systems. Naninovel script execution will halt until this method returns a completed task in case `Wait` parameter is `true`.

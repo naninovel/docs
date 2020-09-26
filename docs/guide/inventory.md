@@ -18,7 +18,9 @@ To set up inventory extension on top of an existing Unity project use [UPM](http
 
 ![](https://i.gyazo.com/b54e9daa9a483d9bf7f74f0e94b2d38a.gif)
 
-After importing the package, add `NaninovelInventory` to the `Type Namespaces` list property found in the engine configuration menu.
+After importing the package, add `Elringus.NaninovelInventory.Runtime` and `Elringus.NaninovelInventory.Editor` records to the `Type Assemblies` list property found in the engine configuration menu and restart Unity editor (otherwise the custom implementation types under the assemblies won't be accessible by Naninovel).
+
+![](https://i.gyazo.com/4c16b9f9b71fe3d6f61159fe9d4860f4.png)
 
 ## Usage
 

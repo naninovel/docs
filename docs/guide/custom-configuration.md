@@ -70,7 +70,7 @@ Corresponding menu will then automatically be added in the project settings, whe
 ![](https://i.gyazo.com/c1163bba83f5d2b6286b100e837bca40.png)
 
 ::: note
-When adding custom implementation types under a [namespace](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/namespaces/), add the namespace to the `Type Namespaces` list found in the engine configuration menu. Otherwise, the engine won't be able to find your custom type.
+When adding custom implementation types under a non-predefined assembly (via [assembly definitions](https://docs.unity3d.com/Manual/ScriptCompilationAssemblyDefinitionFiles.html)), add the assembly name to the `Type Assemblies` list found in the engine configuration menu. Otherwise, the engine won't be able to locate your custom types.
 :::
 
 To access your custom configuration via C# use the same API as for the built-in assets:
@@ -128,10 +128,6 @@ Below is an example of a custom provider implementation, that just returns defau
 ```csharp
 public class CustomConfigurationProvider : IConfigurationProvider
 {
-    public IEnumerable<Type> EngineTypes { get; } = 
-        ReflectionUtils.GetExportedDomainTypes(true, true, true, 
-        EngineConfiguration.DefaultTypeNamespaces);
-
     public Configuration GetConfiguration (System.Type type)
     {
         var defaultAsset = ScriptableObject.CreateInstance(type);
