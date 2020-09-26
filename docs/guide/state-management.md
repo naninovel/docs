@@ -132,7 +132,7 @@ To add a custom handler, implement `ISaveSlotManager<GameStateMap>`, `ISaveSlotM
 Implementation should have a compatible public constructor: `public CustomSlotManager (StateConfiguration config, string savesFolderPath)`, where `config` is an instance of state configuration object and `savesFolderPath` is the path to saves folder (you're free to ignore that path and use one you see fit).
 
 ::: note
-When adding custom implementation types under a [namespace](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/namespaces/), add the namespace to the `Type Namespaces` list found in the engine configuration menu. Otherwise, the engine won't be able to find your custom type.
+When adding custom implementation types under a non-predefined assembly (via [assembly definitions](https://docs.unity3d.com/Manual/ScriptCompilationAssemblyDefinitionFiles.html)), add the assembly name to the `Type Assemblies` list found in the engine configuration menu. Otherwise, the engine won't be able to locate your custom types.
 :::
 
 Below is an example of a dummy settings serialization handler, which is doing nothing but logs when any of its methods are invoked.
