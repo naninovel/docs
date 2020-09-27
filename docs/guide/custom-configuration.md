@@ -2,7 +2,7 @@
 
 Configuration objects are used to initialize and configure services and other engine systems.
 
-By default, configuration objects are serialized as [scriptable object](https://docs.unity3d.com/Manual/class-ScriptableObject.html) assets and stored at `NaninovelData/Resources/Naninovel/Configuration` project directory. The assets are automatically generated when opening  corresponding configuration menus (`Naninovel -> Configuration`) in the Unity editor for the first time.
+By default, configuration objects are serialized as [scriptable object](https://docs.unity3d.com/Manual/class-ScriptableObject.html) assets and stored at `NaninovelData/Resources/Naninovel/Configuration` project directory. The assets are automatically generated when opening corresponding configuration menus (`Naninovel -> Configuration`) in the Unity editor for the first time.
 
 To access configuration objects via C# use `Engine.GetConfiguration<T>()` static method, where `T` is type of the configuration object you wish to access. For example, the following example demonstrates how to access [audio configuration](/guide/configuration.md#audio) object:
 
@@ -16,7 +16,7 @@ Be aware, that `Engine.GetConfiguration` method can only be used when the engine
 var audioConfig = ProjectConfigurationProvider.LoadOrDefault<AudioConfiguration>();
 ``` 
 
-While the configuration properties are meant to be changed via editor menus, it's still possible to modify them at runtime.  Be aware, that the objects returned by default project provider are the actual assets stored in the project; if you modify them, the changes will persist through play mode sessions. This in contrast to the configuration objects provided with `Engine.GetConfiguration` method, which are instances and won't mutate the original assets.
+While the configuration properties are meant to be changed via editor menus, it's still possible to modify them at runtime. Be aware, that the objects returned by default project provider are the actual assets stored in the project; if you modify them, the changes will persist through play mode sessions. This is in contrast to the configuration objects provided with `Engine.GetConfiguration` method, which are instances and won't mutate the original assets.
 
 Below is an example on changing `ReferenceResolution` property of camera configuration object right after the engine is initialized:
 
@@ -48,10 +48,7 @@ public static class ModifyConfigAtRuntime
 To add a new custom configuration, create a C# class with a `Serializable` attribute and inherit it from `Configuration`.
 
 ```csharp
-using Naninovel;
-using UnityEngine;
-
-[System.Serializable]
+[EditInProjectSettings]
 public class MyCustomConfiguration : Configuration
 {
     [Header("My Custom Header 1")]
@@ -65,7 +62,7 @@ public class MyCustomConfiguration : Configuration
 }
 ```
 
-Corresponding menu will then automatically be added in the project settings, where you can configure properties of you custom configuration asset just like in all the built-in menus.
+Notice the `EditInProjectSettings` attribute: an associated editor menu is automatically added to the project settings when the attribute is applied, where you can modify serializable properties of you custom configuration asset just like in all the built-in menus.
 
 ![](https://i.gyazo.com/c1163bba83f5d2b6286b100e837bca40.png)
 
