@@ -1,10 +1,10 @@
-# Custom Variables
+# Пользовательские переменные
 
-Custom variables feature allows to create user-specified variables, modify and use them to drive conditional execution of naninovel scripts or other systems. For example, custom variables can be used to select one of the multiple naninovel scripts to play (scenario routes), based on the decisions player has made in the past. Another frequently used scenario is player stats screen (eg, scores, money, resources etc), based on the choices the player makes throughout the game.
+Функция пользовательских переменных позволяет создавать специализированные переменные, изменять и использовать их для управления условным выполнением сценариев Naninovel или других систем. Например, пользовательские переменные могут использоваться для выбора одного из нескольких сценариев Naninovel для воспроизведения (руты сценариев), основанных на решениях, принятых игроком в прошлом. Другой часто используемый сценарий – это экран статистики игрока (например, результаты, деньги, ресурсы и т.д.), основанный на выборах, которые игрок совершает на протяжении всей игры.
 
-Custom variables can be created, modified and used both in naninovel scripts via [@set] and [@if] commands and in the C# scripts using `ICustomVariableManager` [engine service](/ru/guide/engine-services.md).
+Пользовательские переменные могут быть созданы, изменены и использованы в сценариях Naninovel через команды [@set] и [@if] команды и в скриптах C# с помощью [сервиса движка](/ru/guide/engine-services.md) `ICustomVariableManager`.
 
-For example, the following script command will assign a different value to `score` custom variable, based on the choice:
+Например, следующая команда сценария присвоит пользовательской переменной `score` значение в зависимости от выбора игрока:
 
 ```
 @choice "I'm humble, one is enough..." set:score=1
@@ -12,69 +12,69 @@ For example, the following script command will assign a different value to `scor
 @choice "I'll take your entire stock!" set:score=999
 ```
 
-And the following one will re-route the script execution based on the value of the `score` variable:
+А следующая будет перенаправлять выполнение сценария на основе значения переменной `score`:
 
 ```
 @goto MainRoute if:"score > 1 && score <= 900"
 @goto BadEnd if:score>900
 ```
 
-See the API reference on [@set] and [@if] commands for more examples.
+Дополнительные примеры см. в справочнике API по командам [@set] и [@if].
 
-All the custom variables are automatically saved with the game. By default, the variables are stored in **local scope**. This means, that if you assign some variable in the course of gameplay and player starts a new game or loads another saved game slot, where that variable wasn't assigned — the value will be lost. This is useful for the most type of variables. If, however, you wish to store the variable in **global scope**, prepend `G_` or `g_` to its name, eg: `G_FinishedMainRoute` or `g_total_score`. Global variables can be used to indicate some meta or total information, for example, the number of times player has finished some route or a total score based on all the playthroughs.
+Все пользовательские переменные автоматически сохраняются вместе с игрой. По умолчанию переменные хранятся в **локальной области**. Это означает, что если вы назначите какую–то переменную в ходе игрового процесса, а после игрок начнет новую игру или загрузит другой сохраненный игровой слот, где эта переменная не была назначена – значение будет потеряно. Это используется для большинства типов переменных. Однако если вы хотите сохранить переменную в **глобальной области**, добавьте к ее имени `G_` или `g_`, например: `G_FinishedMainRoute` или `g_total_score`. Глобальные переменные могут использоваться для указания некоторой общей информации, например, количества раз, когда игрок закончил какой-то рут, или общего счёта, основанного на всех прохождениях игры.
 
-You can set pre-defined custom variables (both global and local) with initial values in the "Custom Variables" configuration menu.
+Вы можете установить предварительно определенные пользовательские переменные (как глобальные, так и локальные) с начальными значениями в меню конфигурации "Custom Variables".
 
 ![](https://i.gyazo.com/21701f17403921e34ba4da33b0261ad0.png)
 
-Global pre-defined variables are initialized on first application start, while the locals do so on each state reset. Notice, that the value field in the menu expects a valid script expression and not a raw value string.
+Глобальные предопределенные переменные инициализируются при первом запуске приложения, в то время как локальные делают это при каждом сбросе состояния. Обратите внимание, что поле значения в меню ожидает допустимое выражение сценария, а не необработанную строку значения.
 
-## Injecting Variables
+## Внедрение переменных
 
-It's possible to inject (inline) custom variable to naninovel script parameter values using the curly braces.
+Можно внедрить (встроить) пользовательскую переменную в значения параметров сценария Naninovel, используя фигурные скобки.
 
-The following script will show an input field UI where user can enter an arbitrary text. Upon submit the entered text will be assigned to the specified custom variable.
+Следующий скрипт покажет интерфейс поля ввода, где пользователь сможет ввести произвольный текст. После введения введенный текст будет присвоен указанной пользовательской переменной.
 
 ```
-; Allow user to enter an arbitrary text and assign it to `name` custom state variable
+; Разрешить пользователю ввести произвольный текст и назначить его пользовательской переменной состояния `name`.
 @input name summary:"Choose your name."
-; Stop command is required to halt script execution until user submits the input
+; Команда Stop необходима для остановки выполнения скрипта до тех пор, пока пользователь не отправит вводимые данные.
 @stop
 
-; You can then inject the assigned `name` variable in naninovel scripts
+; Теперь можно ввести назначенную переменную `name` в сценарии Naninovel…
 Archibald: Greetings, {name}!
 {name}: Yo!
 
-; ...or use it inside set and conditional expressions
+; … или используйте её внутри набора и условных выражений.
 @set score=score+1 if:name=="Felix"
 ```
 
-You can inject the custom variables to any parameter values as long as the type allows. Eg, you can't assign a string (text) to an integer (number) parameter.
+Вы можете вводить пользовательские переменные в любые значения параметров, если это позволяет тип. Например, вы не можете назначить строку (текст) целочисленному параметру (числу).
 
 ```
 @set PlayerName="Felix";PlayerYPosition=0.1;PlayerTint="lightblue"
 
-; The following will produce an error, as `PlayerTint` is not a number.
+; Следующее выражение вызовет ошибку, так как `PlayerTint` не является числом…
 @char {PlayerName} pos:50,{PlayerTint} 
 
-; ...and this will execute just fine.
+; … а это будет выполнено корректно..
 @char {PlayerName} pos:50,{PlayerYPosition} tint:{PlayerTint}
 ```
 
-## Variable Triggers
+## Переменные триггеры
 
-When building a [custom UI](/ru/guide/user-interface.md#ui-customization) or other systems, you may want to listen (react) for events when a variable value is changed. For example, when building a character stats screen, you want make the text to change with the variables. While the conventional way to implement such behavior would be using a C# script, you can also make use of `Custom Variable Trigger` component. The component will invoke Unity events when a variable with specified name is changed. You can bind compatible commands with those events, such as updating the text values.
+При создании [пользовательского интерфейса](/ru/guide/user-interface.md#ui-customization) или других систем вам может потребоваться реагирование событий на изменения значений переменных. Например, при построении экрана статистики персонажей вы хотите, чтобы текст изменялся вслед за переменными. Хотя обычным способом реализации такого поведения было бы использование скрипта C#, вы также можете использовать компонент `Custom Variable Trigger`. Компонент будет вызывать события Unity при изменении переменной с указанным именем. Вы можете связать совместимые команды с определёнными событиями, такими как обновление текстовых значений.
 
 ![](https://i.gyazo.com/22eddd109e76d4e63c461e9d75b20ceb.png)
 
-## Variables Debug
+## Отладка переменных
 
-While the game is running it's possible to view all the existing variables and change their values for debugging purposes.
+Во время воспроизведения игры можно просматривать все существующие переменные и изменять их значения в целях отладки.
 
-Open [development console](/ru/guide/development-console.md) and enter `var` command to open the variables editor window.
+Откройте [консоль разработчика](/ru/guide/development-console.md) и введите команду `var`, чтобы открыть окно редактора переменных.
 
 ![](https://i.gyazo.com/d1812668c0776b01f3a82c5ddcba0145.png)
 
-When changing value of a variable in the list, a "SET" button will appear, which you can press to apply the changes.
+При изменении значения переменной в списке появится кнопка "SET", которую можно нажать, чтобы применить изменения.
 
-The variables list is automatically updated when the custom variables are changed while running the game.
+Список переменных автоматически обновляется при изменении пользовательских переменных во время воспроизведения.

@@ -1,65 +1,69 @@
-# Integration Options
+# Варианты интеграции
 
-While Naninovel is focused around traditional visual novel games the engine is designed to allow integration with existing projects. If you're making a 3D adventure game, RPG or game of any other genre — you can still use Naninovel as a drop-in dialogue (novel) system. 
+В то время как Naninovel фокусируется на построении традиционных визуальных новелл, движок разработан таким образом, чтобы обеспечить интеграцию в существующие проекты. Если вы создаете 3D-приключенческую игру, RPG или игру любого другого жанра, вы можете использовать Naninovel в качестве встроенной диалоговой системы.
 
 [!b1b6042db4a91b3a8cee74236b33c17c]
 
-There are multiple ways you can integrate Naninovel with a custom project and specific implementation will depend on the type of the project and what exactly you want to achieve with Naninovel. In the following documentation we'll list various configuration options and API that could be useful for "pairing" Naninovel with a standalone game. Before you continue, take a look at the [engine architecture](/ru/guide/engine-architecture.md) to better understand how it behaves on a conceptual level.
+Существует несколько способов интеграции Naninovel в пользовательский проект, и конкретная реализация будет зависеть от типа проекта и того, чего именно вы хотите достичь с помощью Naninovel. В следующей документации мы перечислим различные параметры конфигурации и API, которые могут быть полезны для "сопряжения" Naninovel с автономной игрой. Прежде чем продолжить, взгляните на [архитектуру движка](/ru/guide/engine-architecture.md), чтобы лучше понять, как он ведет себя на концептуальном уровне.
 
 ::: example
-Check out an [example project](/ru/guide/integration-options.md#example-project), where Naninovel is used as both drop-in dialogue for a 3D adventure game and a switchable standalone novel mode. 
+Изучите [пример проекта](/ru/guide/integration-options.md#example-project), где Naninovel используется и как встроенная диалоговая система для 3D приключенческой игры, и как переключаемый автономный новый режим.
 :::
 
-## Manual Initialization 
-The first thing you'll probably want to change is disable `Initialize On Application Load` option in the engine configuration menu.
+## Ручная инициализация 
+
+Первое, что вы, вероятно, захотите изменить – это отключить опцию `Initialize On Application Load` в меню конфигурации движка.
 
 ![](https://i.gyazo.com/f58a8af9f2f6d71286061e55fc228896.png)
 
-When enabled, the engine services will automatically initialize on application start. Unless you want to begin your game in novel mode, you would rather manually initialize the engine when it's actually needed. 
+Если этот параметр включен, сервисы движка будут автоматически инициализироваться при запуске приложения. И если вы не хотите начать свою игру в режиме новеллы, вам стоит вручную инициализировать движок, когда это действительно необходимо.
 
-Use static async `RuntimeInitializer.InitializeAsync()`  method (or a custom script) to initialize the engine at runtime before using any of the built-in service APIs. You can check whether the engine is currently initialized with `Engine.Initialized` property. Use `Engine.OnInitialized` event to listen for the initialization finished events.
+Используйте статический асинхронный метод `RuntimeInitializer.InitializeAsync()` (или пользовательский скрипт) для инициализации движка во время выполнения перед использованием любого из встроенных API сервисов. Вы можете проверить, инициализирован ли движок в данный момент с помощью свойства `Engine.Initialized`. Используйте событие `Engine.OnInitialized` для прослушивания событий завершения инициализации.
 
-To reset the engine services (and dispose most of the occupied resources), use `ResetStateAsync()` method of `IStateManager` service; this is useful, when you're going to temporary switch to some other gameplay mode, but be able to return to novel mode without re-initializing the engine.
+Чтобы сбросить сервисы движка (и выгрузить большую часть занятых ресурсов), используйте метод `ResetStateAsync()` сервиса `IStateManager`; это полезно, когда вы собираетесь временно переключиться в какой-то другой игровой режим, чтобы иметь возможность вернуться в новый режим без повторной инициализации движка.
 
-To destroy all the engine services and completely remove Naninovel from memory, use `Engine.Destroy()` static method.
+Чтобы уничтожить все сервисы движка и полностью удалить Naninovel из памяти, используйте статический метод `Engine.Destroy()`.
 
-## Playing Naninovel Scripts
-To preload and play a naninovel script with a given name, use `PreloadAndPlayAsync(ScriptName)` method of `IScriptPlayer` service. To get an engine service, use `Engine.GetService<TService>()` static method, where `TService` is the type (interface) of the service to retrieve. For example, the following will get a script player service, then preload and play a script with name "Script001":
+## Проигрывание сценариев Naninovel
+
+Чтобы подзагрузить и воспроизвести любой новый сценарий с заданным именем, используйте метод `PreloadAndPlayAsync(ScriptName)` сервиса `IScriptPlayer`. Чтобы получить сервис движка, используйте статический метод `Engine.GetService<TService>()`, где `TService` - это тип (интерфейс) извлекаемого сервиса. Например, ниже будет получен сервис плеера сценариев, затем предварительно загружен и воспроизведён скрипт с именем "Script 001":
 
 ```csharp
 var player = Engine.GetService<IScriptPlayer>();
 await player.PreloadAndPlayAsync("Script001");
 ```
 
-When exiting the novel mode and returning to the main game mode, you probably would like to unload all the resources currently used by Naninovel and stop all the engine services. For this, use `ResetStateAsync()` method of a `IStateManager` service:
+При выходе из нового режима и возвращении в основной игровой режим вы, вероятно, захотите выгрузить все ресурсы, используемые Naninovel в настоящее время, и остановить все сервисы движка. Для этого используйте метод `ResetStateAsync()` сервиса `IStateManager`:
 
 ```csharp
 var stateManager = Engine.GetService<IStateManager>();
 await stateManager.ResetStateAsync();
 ```
 
-## Disable Title Menu
-A built-in title menu implementation will be automatically shown when the engine is initialized, while you'll most likely have your own title menu. You can either modify or completely replace the built-in title menu using [UI customization feature](/ru/guide/user-interface.md#ui-customization) or just disable it by turning off `Show Title UI` toggle in the engine configuration menu.
+## Отключение главного меню
 
-## Engine Objects Layer
-You can make the engine assign a specific [layer](https://docs.unity3d.com/Manual/Layers.html) for all the objects (except UI-related) it creates via configuration menu.
+Встроенная реализация главного меню будет автоматически отображаться при инициализации движка, в то время как у вас, скорее всего, будет свое собственное главное меню. Вы можете либо изменить или полностью заменить встроенное меню, используя [функцию настройки UI](/ru/guide/user-interface.md#ui-customization) или просто отключить его, отключив `Show Title UI` в меню конфигурации движка.
+
+## Слой объектов движка
+
+Вы можете заставить движок назначить определенный [слой](https://docs.unity3d.com/Manual/Layers.html) для всех объектов (кроме связанных с UI), которые он создает, через меню конфигурации.
 
 ![](https://i.gyazo.com/8642fe37ddc45b8514b9f01d70277fbd.png)
 
-This will also make the engine's camera to use [culling mask](https://docs.unity3d.com/ScriptReference/Camera-cullingMask.html) and render only the objects with the specified layer.
+При этом также камера движка будет использовать [обрезную маску](https://docs.unity3d.com/ScriptReference/Camera-cullingMask.html) и визуализировать только объекты с указанным слоем.
 
-To change layer of the UI objects managed by the engine, use `Objects Layer` option in the UI configuration menu.
+Чтобы изменить слой объектов UI, управляемых движком, используйте опцию `Objects Layer` в меню конфигурации UI.
 
 ![](https://i.gyazo.com/56d863bef96bf72c1fed9ae646db4746.png)
 
-## Render to Texture
-You can make the engine's camera render to a custom [render texture](https://docs.unity3d.com/ScriptReference/RenderTexture.html) instead of the screen (and change other camera-related settings) by assigning a custom camera prefab in camera configuration menu.
+## Рендеринг в текстуру
+Вы можете сделать рендеринг камеры движка в пользовательскую [текстуру рендеринга](https://docs.unity3d.com/ScriptReference/RenderTexture.html) вместо экрана (и изменить другие настройки, связанные с камерой), назначив пользовательский префаб камеры в меню конфигурации камеры.
 
 ![](https://i.gyazo.com/1b7116fa1bd170d3753b4cdbd27afcf3.png)
 
-## Switching Modes
+## Переключение режимов
 
-While it heavily depends on the project, following is an abstract example (based on the integration project mentioned previously) on how you can implement switching between "adventure" and "novel" modes via custom commands.
+Хотя это сильно зависит от проекта, ниже приведен абстрактный пример (основанный на упомянутом ранее проекте интеграции) того, как вы можете реализовать переключение между режимами "приключения" и "новеллы" с помощью пользовательских команд.
 
 ```csharp
 [CommandAlias("novel")]
@@ -125,14 +129,14 @@ public class SwitchToAdventureMode : Command
 }
 ```
 
-The commands can then be used in naninovel scripts:
+Затем команды могут быть использованы в сценариях Naninovel:
 
 ```
-; Switch to adventure mode.
+; Перейти в приключенческий режим.
 @adventure
 ```
 
-— or directly in C# (eg, in `OnTrigger` Unity events):
+— или напрямую в C# (например, в событиях Unity `OnTrigger`):
 
 ```csharp
 private void OnTriggerEnter (Collider other)
@@ -142,26 +146,26 @@ private void OnTriggerEnter (Collider other)
 }
 ```
 
-## Other Options
+## Другие варианты
 
-There are multiple other features (state outsourcing, services overriding, custom serialization, resource and configuration providers, etc), which could be situationally helpful when integrating the engine with another systems; check out rest of the guide for more information. Consider investigating the available [configuration options](/ru/guide/configuration.md) as well; some feature may not be described in the guide, but still be handy for integration purposes.
+Существует множество других функций (аутсорсинг состояния, переопределение сервисов, пользовательская сериализация, провайдеры ресурсов и конфигураций и т.д.), которые могут быть ситуационно полезны при интеграции движка в другие системы; ознакомьтесь с остальной частью руководства для получения дополнительной информации. Также вы можете изучить доступные [параметры конфигурации](/ru/guide/configuration.md); некоторые функции могут быть не описаны в руководстве, но все же удобны при интеграции.
 
-If you feel some engine API or system is lacking in extendability and requiring source code modification in order to integrate, please [contact the developer](/ru/support/#developer-support) — we'll consider improving it.
+Если вы чувствуете, что каким-то API или системам движка или не хватает расширяемости и требуется модификация исходного кода для интеграции, пожалуйста, [свяжитесь с разработчиком](/ru/support/#developer—support) – мы рассмотрим возможности улучшения.
 
-## Example Project
+## Демонстрационный проект
 
-An example project with Naninovel used as both drop-in dialogue for a 3D adventure game and a switchable standalone novel mode is [available on GitHub](https://github.com/Elringus/NaninovelIntegrationExample). You can [clone the repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) with a Git client or [download it as a zip archive](https://github.com/Elringus/NaninovelIntegrationExample/archive/master.zip).
+Пример проекта с Naninovel, где движок используется как в качестве диалоговой системы для 3D-приключенческой игры, так и в переключаемом автономном режиме новеллы, [доступен на GitHub](https://github.com/Elringus/NaninovelIntegrationExample). Вы можете [клонировать репозиторий](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) с помощью Git-клиента или [скачать его в виде zip-архива](https://github.com/Elringus/NaninovelIntegrationExample/archive/master.zip).
 
 ::: warn
-Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
+Пакет Naninovel не распространяется вместе с проектом, поэтому ошибки компиляции будут создаваться после его первого открытия; импортируйте Naninovel из Asset Store, чтобы исправить их.
 :::
 
-All the project-specific (example) scripts are stored at `Assets/Runtime` folder.
+Все сценарии, относящиеся к конкретному проекту (примеры), хранятся в папке `Assets/Runtime`.
 
-Naninovel is initialized manually (auto initialization is disabled in the engine configuration menu) via `Runtime/SetupGame.cs` script attached to `SetupGame` game object located on `MainScene` scene.
+Naninovel инициализируется вручную (автоматическая инициализация отключена в меню конфигурации движка) через скрипт `Runtime/SetupGame.cs`, прикреплённый к игровому объекту `SetupGame`, расположенному в сцене `MainScene`.
 
-`Runtime/DialogueTrigger.cs` script used as component on triggers perform switch to dialogue mode when player is hitting the trigger colliders.
+Скрипт `Runtime/DialogueTrigger.cs`, используемый в качестве компонента на триггерах, выполняет переключение в диалоговый режим, когда игрок нажимает на триггерные коллайдеры.
 
-`Runtime/SwitchToNovelMode.cs` custom command is used to switch to novel mode from both C# and naninovel scripts.
+Пользовательская команда `Runtime/SwitchToNovelMode.cs` используется, чтобы переключиться в режим новеллы в C# и сценариях Naninovel.
 
-`Runtime/SwitchToAdventureMode.cs` custom command is used to switch to adventure from novel mode.
+Пользовательская команда `Runtime/SwitchToAdventureMode.cs` используется для переключения в приключенческий режим из режима новеллы.

@@ -1,17 +1,15 @@
-# Game Settings
+# Настройки игры
  
-Game settings can be changed at any time using settings menu.
+Настройки игры можно изменить в любое время с помощью меню настроек.
 
 [!8ef1044cb0b8429298af05e6275ff14d]
 
-Changing locale requires game to be restarted in order for the changes to take effect. Other changes will take effect immediately. 
+Изменение локали требует перезапуска игры для того, чтобы изменения вступили в силу. Другие изменения вступят в силу немедленно.
 
-Settings are serialized to a `Settings.json` file stored over game directory. File name can be configured using `Naninovel -> Configuration -> State` context menu; for available options see [configuration guide](/ru/guide/configuration.md#state).
+Параметры сериализуются в файле `Settings.json`, который хранится в каталоге игры. Имя файла можно настроить с помощью контекстного меню `Naninovel -> Configuration -> State`; доступные параметры см. в [руководстве по конфигурации](/ru/guide/configuration.md#state).
 
-![State Configuration](https://i.gyazo.com/606bb86f6cac2cc2275ca8912f2e6d17.png)
+![Конфигурация состояния](https://i.gyazo.com/606bb86f6cac2cc2275ca8912f2e6d17.png)
 
-In WebGL settings are serialized using cross-browser [IndexedDB API](https://en.wikipedia.org/wiki/Indexed_Database_API).
+В WebGL настройки сериализуются с помощью кросс-браузера [IndexedDB API](https://en.wikipedia.org/wiki/Indexed_Database_API).
 
-Menu UIs can be customized or completely replaced using [UI Customization](/ru/guide/user-interface.md#ui-customization) feature.
-
-
+Интерфейс меню может быть настроен или полностью заменён с помощью функции [кастомизации UI](/ru/guide/user-interface.md#ui-customization).

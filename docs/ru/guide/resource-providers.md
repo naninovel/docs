@@ -1,117 +1,119 @@
-﻿# Resource Providers
+# Провайдеры ресурсов
 
-Resource providers are used to retrieve Naninovel-related data: ".nani" text files for scenario scripts, textures for character sprites, audio clips for music, etc. Each provider specializes in retrieving the data from a specific source: project's "Resources" folders, Unity's addressable asset system, local file storage, a Google Drive account, etc.
+Провайдеры ресурсов используются для извлечения ресурсов, связанных с Naninovel: текстовые файлы ".nani" для сценариев, текстуры для спрайтов персонажей, аудиоклипы для музыки и т.д. Каждый провайдер специализируется на извлечении ресурсов из определенного источника: папки проекта "Resources", адресируемая система ассетов Unity, локальное хранилище файлов, аккаунт Google Drive и т.д.
 
-Providers' general behavior can be configured via `Naninovel -> Configuration -> Resource Provider` menu.
+Общее поведение провайдеров может быть настроено через меню `Naninovel -> Configuration -> Resource Provider`.
 
 ![](https://i.gyazo.com/466488bf852f0dd54aa680012b072af1.png)
 
-`Resource Policy` property dictates when the resources are loaded and unloaded during script execution:
- - Static — All the resources required for the script execution are pre-loaded when starting the playback (masked with a loading screen) and unloaded only when the script has finished playing. This policy is default and recommended for most cases.
- - Dynamic — Only the resources required for the next `Dynamic Policy Steps` commands are pre-loaded when starting the playback and all the unused resources are unloaded immediately. Use this mode when targetting platforms with strict memory limitations and it's impossible to properly organize naninovel scripts. Expect hiccups when the resources are loaded in background while the game is progressing.
+Свойство `Resource Policy` диктует политику загрузки и выгрузки ресурсов во время выполнения скрипта:
 
-When `Log Resources Loading` is enabled, various provider-related log messages will be mirrored to the default loading screen UI.
+- Статическая — все ресурсы, необходимые для выполнения сценария, предварительно загружаются при запуске воспроизведения (маскируются загрузочным экраном) и выгружаются только после завершения воспроизведения сценария. Эта политика используется по умолчанию и рекомендуется для большинства случаев.
+- Динамическая — во время выполнения сценария предварительно загружаются только ресурсы, необходимые для выполнения следующих команд количеством, указанным в Dynamic Policy Steps, а все неиспользуемые ресурсы немедленно выгружаются. Используйте этот режим при работе с платформами со строгими ограничениями памяти и невозможностью правильно организовать сценарии Naninovel. При загрузке ресурсов в фоновом режиме во время игры могут наблюдаться сбои.
 
-`Enable Build Processing` enables a build pre-processing procedure required to inject assets assigned via editor menus to the builds. Only disable this if you're using a [custom build environment](/ru/guide/custom-build-environment.md) or attaching your own build hooks. When [addressable system](https://docs.unity3d.com/Packages/com.unity.addressables@latest) is installed, enabling `Use Addressables` will optimize asset processing step improving the build time; enabling `Auto Build Bundles` at the same time will cause asset bundles to automatically compile when building the player.
+Когда включена функция `Log Resources Loading`, различные связанные с провайдеров сообщения журнала будут зеркально отображаться в UI загрузочного экрана по умолчанию.
 
-Other properties in the configuration menu are provider-specific and described below.
+`Enable Build Processing` включает процедуру предварительной обработки сборки, необходимую для введения в сборки ресурсов, назначенных через меню редактора. Отключайте это только в том случае, если вы используете [пользовательскую среду сборки](/ru/guide/custom-build-environment.md) или прикрепляете свои собственные сборочные крючки. Когда [адресируемая система](https://docs.unity3d.com/Packages/com.unity.addressables@latest) установлена, включение `Use Addressables` оптимизирует этап обработки ассетов, ускоряя процесс сборки; включение `Auto Build Bundles` в то же время приведет к автоматической компиляции пакетов ассетов при сборке плеера.
 
-Resource-specific providers behavior is configured via `Loader` properties, available in the corresponding configuration menus. For example, here is the default loader configuration used to retrieve audio resources (BGM and SFX):
+Другие свойства в меню конфигурации зависят от провайдера и описаны ниже.
+
+Поведение провайдеров ресурсов настраивается с помощью свойств `Loader`, доступных в соответствующих меню конфигурации. Например, вот конфигурация загрузчика по умолчанию, используемая для извлечения аудиоресурсов (BGM и SFX):
 
 ![](https://i.gyazo.com/e9b59f738c93d0cdee6f0999b797a461.png)
 
-`Path Prefix` property allows specifying an additional path over provider's root path for the specific type of resources. Eg, given we're going to retrieve an "Explosion" audio file from a project's "Resources" folder, setting path prefix to "Audio" will result in the following resource request: `Resources.Load("Audio/Explosion")`.
+Свойство `Path Prefix` позволяет указать дополнительный путь поверх корневого пути провайдера для конкретного типа ресурсов. Например, если мы собираемся извлечь аудиофайл "Explosion" из папки проекта "Resources", установка префикса пути к "Audio" приведет к следующему запросу ресурсов: `Resources.Load("Audio/Explosion")`.
 
-`Providers List` allows specifying which provider types to use and in which order. Eg, in the above example, when requesting an audio resource, first an "Addressable" provider will be used and in case the provider won't be able to find the requested resource, "Project" provider will be used.
+`Providers List` позволяет указать, какие типы провайдеров следует использовать и в каком порядке. Например, в приведенном выше примере при запросе аудиоресурса сначала будет использоваться "Addressable" провайдер, а в случае, если провайдер не сможет найти запрашиваемый ресурс, будет использоваться "Project" провайдер.
 
-Be aware, that **while in editor a special "Editor" resource provider is always used first** (no matter the loaders configuration). The provider has access to all the resources assigned via Naninovel's configuration and resource manager menus (`Naninovel -> Resources -> ...`). When the game is built, all such resources are automatically copied to a temporary "Resources" folder or (when [addressable system](https://docs.unity3d.com/Packages/com.unity.addressables@latest) is installed and enabled) registered in the addressables configuration and compiled to asset bundles. Remember to **always perform any provider-related tests in builds**, not in the Unity editor.
+Имейте в виду, что **в то время как в Редакторе всегда в первую очередь используется специальный провайдер ресурсов "Editor"** (независимо от конфигурации загрузчиков). Провайдер имеет доступ ко всем ресурсам, назначенным через меню конфигурации и менеджера ресурсов Naninovel (`Naninovel -> Resources -> ...`). Когда игра собрана, все такие ресурсы автоматически копируются во временную папку "Resources" или (когда [адресируемая система](https://docs.unity3d.com/Packages/com.unity.addressables@latest) установлена и включена) регистрируются в конфигурации адресации и компилируются в пакеты ассетов. Не забывайте **всегда выполнять любые тесты, связанные с провайдерами, в сборках**, а не в редакторе Unity.
 
-## Addressable
+## Адресация 
 
-The [Addressable Asset system](https://docs.unity3d.com/Packages/com.unity.addressables@latest) is a Unity package providing an easy way to load assets by "address". It uses asynchronous loading to support loading from any location (local storage, remote web hosting, etc) with any collection of dependencies. Consult Unity's documentation on how to setup, configure and use the system.
+[Адресируемая система ассетов](https://docs.unity3d.com/Packages/com.unity.addressables@latest) – это пакет Unity, предоставляющий простой способ загрузки ассетов по "адресу". Он использует асинхронную загрузку для поддержки загрузки из любого места (локальное хранилище, удаленный веб-хостинг и т. д.) с любым набором зависимостей. Обратитесь к документации Unity, чтобы узнать, как настроить, настроить и использовать систему.
 
-Naninovel will automatically use addressables when the package is installed in the project. No additional setup is required. All the assets assigned in the Naninovel's configuration menus (eg, scenario scripts, character sprites, audio clips, etc) will be registered with the system (assigned an "address" under "Naninovel" group) when building the player.
+Naninovel будет автоматически использовать адресацию, когда пакет будет установлен в проекте. Никаких дополнительных настроек не требуется. Все ассеты, назначенные в меню конфигурации Naninovel (например, сценарии, спрайты персонажей, аудиоклипы и т.д.), будут зарегистрированы в системе (получат "адрес" в группе "Naninovel") при создании плеера.
 
-Addressable provider is only used in runtime builds and is disabled in editor by default. In case you're manually exposing resources via addressable address instead of assigning them with Naninovel's resource managers, you can enable it with `Enable Addressable In Editor` property in resource provider configuration menu. Be aware, that enabling this could cuase issues when resources are assigned both in resources manager and registered with an addressable address and then renamed, dublicated or removed.
+Адресируемый провайдер используется только в сборках среды выполнения и по умолчанию отключен в Редакторе. Если вы вручную предоставляете ресурсы через адресацию вместо того, чтобы назначать их менеджерам ресурсов Naninovel, вы можете включить его с помощью свойства `Enable Addressable In Editor` в меню конфигурации провайдера ресурсов. Имейте в виду, что включение этого параметра может вызвать проблемы, когда ресурсы назначаются как в диспетчере ресурсов, так и регистрируются при адресации, а затем переименовываются, дублируются или удаляются.
 
-In order for an addressable asset to become "visible" for Naninovel, its address should start with "Naninovel/" and it should has a "Naninovel" label assigned. You can specify additional labels to filter the assets used by Naninovel via `Extra Labels` property in resource provider configuration menu. Be aware, that "Naninovel" addressable group is automatically re-generated on each build; either use another group to specify custom resources or disable `Enable Build Processing` property in resource provider configuration menu and manually process the assets upon build.
+Для того, чтобы адресируемый ассет стал "видимым" для Naninovel, его адрес должен начинаться с "Naninovel/", и ему должна быть присвоена метка "Naninovel". Вы можете указать дополнительные метки для фильтрации ассетов, используемых Naninovel, с помощью свойства `Extra Labels` в меню конфигурации провайдера ресурсов. Имейте в виду, что адресируемая группа "Naninovel" автоматически повторно генерируется при каждой сборке; либо используйте другую группу для указания пользовательских ресурсов, либо отключите свойство `Enable Build Processing` в меню конфигурации провайдера ресурсов и вручную обработайте ассеты при сборке.
 
-In case you wish to configure how the Naninovel addressable assets should be served (eg, specify a remove web host), edit "Naninovel" group via `Window -> Asset Management -> Addressables -> Groups` menu. The group is automatically created when first building the game; in case it's missing, you can create it manually.
+Если вы хотите настроить способ обслуживания адресируемых ассетов Naninovel (например, указать удаленный веб-хост), отредактируйте группу "Naninovel" через меню `Window -> Asset Management -> Addressables -> Groups`. Группа создается автоматически при первой сборке игры; если она отсутствует, вы можете создать ее вручную.
 
 ![](https://i.gyazo.com/c93fbd9e232ec94468c685c4d6003916.png)
 
 ::: warn
-We're not providing any tutorials or support for Unity's addressable asset system itself, be it setting up a remote web hosting for you assets or some other deploy/serving scenario; consult the [support page](/ru/support/#unity-support) for more information.
+Мы не предоставляем никаких туториалов или поддержки для самой адресируемой системы ассетов Unity, будь то настройка удаленного веб-хостинга для ваших ассетов или какое-либо другое развертывание/обслуживание скриптов; обратитесь к [странице поддержки](/ru/support/#unity-support) для получения дополнительной информации.
 :::
 
-## Project
+## Провайдер проекта
 
-Project provider serves the assets located in "Resources" folders of your Unity project. Consult Unity's guide for more information regarding the project [resources loading API](https://docs.unity3d.com/Manual/LoadingResourcesatRuntime).
+Провайдер проекта обслуживает ресурсы, расположенные в папках "Resources" вашего проекта Unity. Обратитесь к руководству Unity для получения дополнительной информации о [API загрузки ресурсов проекта](https://docs.unity3d.com/Manual/LoadingResourcesatRuntime).
 
-Be aware, that in most cases [using "Resources" folders is discouraged](https://docs.unity3d.com/Manual/BestPracticeUnderstandingPerformanceInUnity6). Consider assigning the resource via a Naninovel resource manager menu when possible or use an addressable system instead; don't forget to move the asset out of a "Resources" folder after that.
+Имейте в виду, что в большинстве случаев [использование папок "Resources" не рекомендуется](https://docs.unity3d.com/Manual/BestPracticeUnderstandingPerformanceInUnity6). Предпочтительно вместо этого назначать ресурсы через меню менеджера ресурсов Naninovel, когда это возможно, или использовать адресируемую систему; не забудьте переместить ресурс из папки "Resources" после этого.
 
-## Local
+## Локальный провайдер
 
-Local provider allows serving simple (scenario scripts and managed text, sprite characters and backgrounds, audio) assets from an arbitrary location in the local file system.
+Локальный провайдер позволяет обслуживать простые (сценарии и управляемый текст, спрайты персонажей и фоны, аудио) ассеты из произвольного расположения в локальной файловой системе.
 
-`Local Path Root` property in the resource provider configuration should point to a folder, where the local resources are stored. You can either use an absolute (eg, `C:\Resources`) or a relative path, starting with one of the following origins:
+Свойство `Local Path Root` в конфигурации провайдера ресурсов должно указывать на папку, в которой хранятся локальные ресурсы. Вы можете либо использовать абсолютный (например, `C:\Resources`) или относительный путь, начинающийся с одной из следующих форм:
 
- - `%DATA%` — Game data folder on the target device ([Application.dataPath](https://docs.unity3d.com/ScriptReference/Application-dataPath));
- - `%PDATA%` — Persistent data directory on the target device ([Application.persistentDataPath](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath));
- - `%STREAM%` — "StreamingAssets" folder ([Application.streamingAssetsPath](https://docs.unity3d.com/ScriptReference/Application-streamingAssetsPath));
- - `%SPECIAL{F}%` — An OS special folder, where `F` is the name of a [special folders enum](https://docs.microsoft.com/en-us/dotnet/api/system.environment.specialfolder) value.
+ - `%DATA%` — папка игровых данных на целевом устройстве ([Application.dataPath](https://docs.unity3d.com/ScriptReference/Application-dataPath));
+ - `%PDATA%` — постоянный каталог данных на целевом устройстве ([Application.persistentDataPath](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath));
+ - `%STREAM%` — папка "StreamingAssets" ([Application.streamingAssetsPath](https://docs.unity3d.com/ScriptReference/Application-streamingAssetsPath));
+ - `%SPECIAL{F}%` — специальная папка операционной системы, где `F` - имя [специальной папки](https://docs.microsoft.com/en-us/dotnet/api/system.environment.specialfolder).
 
-Default `%DATA%/Resources` value points to a "Resources" folder inside game's data directory (which is different depending on the target platform).
+Значение `%DATA%/Resources` по умолчанию указывает на папку "Resources" внутри каталога данных игры (которая отличается в зависимости от целевой платформы).
 
-As one of the usage examples, let's say you want to load naninovel scripts from a `C:/Users/Admin/Dropbox/MyGame/Scripts` folder, which you share with collaborators to author the scenario. While it's possible to just specify an absolute path to the root folder (`C:/Users/Admin/Dropbox/MyGame`), that will require all your collaborators to also store the folder by the exact same path (under the same drive label and user name). Instead, use the following relative path over a "UserProfile" special folder origin: `%SPECIAL{UserProfile}%/Dropbox/MyGame`. 
+В качестве одного из примеров использования предположим, что вы хотите загрузить сценарии Naninovel из папки `C:/Users/Admin/Dropbox/MyGame/Scripts`, которой вы делитесь с коллегами, чтобы писать сценарий. Хотя можно просто указать абсолютный путь к корневой папке (`C:/Users/Admin/Dropbox/MyGame`), это потребует от всех ваших сотрудников также хранить папку по одному и тому же пути (под одной и той же меткой диска и именем пользователя). Вместо этого используйте следующий относительный путь от специальной папки "UserProfile": `%SPECIAL{UserProfile}%/Dropbox/MyGame`.
 
 ![](https://i.gyazo.com/eb435b782cfb9df6c403702e8f6124df.png)
 
-Given path prefix under the scripts configuration is set to `Scripts` and local provider is added to the list, script navigator (accessible with `nav` [console command](/ru/guide/development-console.md)) should now pick up any ".nani" text files stored under the folder.
+Данный префикс пути в конфигурации сценарии устанавливается в `Scripts`, локальный провайдер добавляется в список, после чего навигатор сценариев (доступный с помощью [консольной команды](/ru/guide/development-console.md) `nav`) теперь может забрать любой текстовый файл .nani", хранящийся в папке.
 
 ![](https://i.gyazo.com/df8ad31d30b5c10c9a918e69a4543567.png)
 
 ## Google Drive
 
-Implemented via an open source (MIT license) third-party package [UnityGoogleDrive](https://github.com/Elringus/UnityGoogleDrive) allows using [Google Drive](https://www.google.com/drive) as the provider for the following resources: 
+Реализованы с открытым исходным кодом (лицензия MIT) стороннего пакета [UnityGoogleDrive](https://github.com/Elringus/UnityGoogleDrive) позволяет использовать [Google Drive](https://www.google.com/drive) в качестве провайдера для следующих ресурсов:
 
-* Naninovel scripts and managed text (via Google Documents);
-* Characters and backgrounds (sprite implementation only);
-* BGM, SFX and voice.
+* Сценарии Naninovel и управляемые тексты (через Google Documents);
+* Персонажи и фоны (только спрайтовая реализация);
+* BGM, SFX и голоса.
 
-You can share your Google Drive resources folder with other users to work in collaboration without the need to use version control systems or other complicated tools.
+Вы можете делиться своей папкой ресурсов Google Drive с другими пользователями для совместной работы без необходимости использования систем контроля версий или других сложных инструментов.
 
-In order to be able to choose Google Drive as the resource provider you have to first install [UnityGoogleDrive](https://github.com/Elringus/UnityGoogleDrive). Consult the GitHub project readme for installation and setup instructions. 
+Чтобы иметь возможность выбрать Google Drive в качестве провайдера ресурсов, вы должны сначала установить [Unity Google Drive](https://github.com/Elringus/UnityGoogleDrive). Изучите readme проекта GitHub для получения инструкций по установке и настройке.
 
-When UnityGoogleDrive package is installed and configured, related properties will appear in the resource provider configuration menu.
+После установки и настройки пакета Unity Google Drive соответствующие свойства появятся в меню конфигурации провайдера ресурсов.
 
 ![](https://i.gyazo.com/57281ae3a47e85690d9141179af768a8.png)
 
-`Google Drive Root Path` is a relative path inside your google drive's folder to a directory, which should be considered the resources root. Eg, if you want to store the scenario scripts under `MyGame/Scripts`, specify the root as `MyGame`.
+`Google Drive Root Path` – это относительный путь внутри папки вашего Google Drive к каталогу, который следует рассматривать как корневой каталог ресурсов. Например, если вы хотите сохранить сценарии сценариев в разделе  `MyGame/Scripts`, укажите корень как `MyGame`.
 
-With `Google Drive Request Limit` property you can set maximum allowed concurrent requests when contacting Google Drive API. This is required to prevent communication errors when using a personal google drive plan, which is limiting the number of allowed concurrent requests.
+С помощью свойства `Google Drive Request Limit` вы можете установить количество максимально допустимых параллельных запросов при обращении в Google Drive API. Это необходимо для предотвращения ошибок связи при использовании личного плана Google Drive, который ограничивает количество разрешенных одновременных запросов.
 
-`Google Drive Cache Policy` dictates caching behavior of the downloaded resources. `Smart` will attempt to use [Changes API](https://developers.google.com/drive/api/v3/reference/changes) to check whether the requested (cached) resource has changed on the remote folder before downloading it. `Purge All On Init` will purge the cache on engine initialization and always use cached versions after the first download. The cache can also be manually purged at any time with `purge` [console command](/ru/guide/development-console.md).
+`Google Drive Cache Policy` диктует поведение кэширования загруженных ресурсов. `Smart` попытается использовать [Changes API](https://developers.google.com/drive/api/v3/reference/changes), чтобы проверить, изменился ли запрошенный (кэшированный) ресурс в удаленной папке перед его загрузкой. `Purge All On Init` будет очищать кэш при инициализации движка и всегда использовать кэшированные версии после первой загрузки. Кэш также может быть очищен вручную в любое время с помощью [консольной команды](/ru/guide/development-console.md) `purge`.
 
-Don't forget to add google drive to the list of providers for the resources you wish to retrieve with it. Eg, following will make the script manager to look for scripts in the Google Drive in addition to addressable and project sources:
+Не забудьте добавить Google Drive в список провайдеров ресурсов, которые вы хотите использовать с ним. Например, следующее заставит менеджер сценариев искать сценарии в Google Drive в дополнение к адресируемым источникам и источникам проекта:
 
 ![](https://i.gyazo.com/0ad07f73fe12be7ae6d421c5f4f33384.png)
 
 ::: example
-See [NaninovelSandbox](https://github.com/Elringus/NaninovelSandbox) project for an example on how to setup and use Google Drive provider. Be aware, that Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
+
+См. проект [NaninovelSandbox](https://github.com/Elringus/NaninovelSandbox) для примера того, как настроить и использовать провайдер Google Drive. Имейте в виду, что пакет Naninovel не распространяется вместе с проектом, поэтому ошибки компиляции будут возникать после его первого открытия; импортируйте Naninovel из Asset Store, чтобы разрешить эти ошибки.
 :::
 
-## Custom Providers
+## Пользовательские провайдеры
 
-It's possible to add a custom implementation of a resource provider and make Naninovel use it with (or instead of) built-in providers.
+Можно добавить пользовательскую реализацию провайдера ресурсов и заставить Naninovel использовать ее со встроенными провайдерами (или вместо них).
 
-To add a custom provider, create a C# class with a parameterless constructor and implement `IResourceProvider` interface. Once created, custom provider type will appear in all the loader configuration menus along with the built-in types.
+Чтобы добавить пользовательский провайдер, создайте класс C# с конструктором без параметров и реализуйте интерфейс `IResourceProvider`. После создания пользовательский тип провайдера появится во всех меню конфигурации загрузчика вместе со встроенными типами.
 
 ![](https://i.gyazo.com/7176a9d4a4ea2d9414c5495e2e465baf.png)
 
-You can find built-in resource provider implementations at `Naninovel/Runtime/Common/ResourceProvider` package directory; feel free to use them as a reference when implementing your own versions.
+Вы можете найти встроенные реализации провайдеров ресурсов в каталоге пакета `Naninovel/Runtime/Common/ResourceProvider`; используйте их в качестве референсов при реализации своих собственных версий.
 
-Below is an example of a custom provider, that does nothing, but logs messages when used.
+Ниже приведен пример пользовательского провайдера, который ничего не делает, но регистрирует сообщения при использовании.
 
 ```csharp
 using Naninovel;

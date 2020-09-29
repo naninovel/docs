@@ -1,46 +1,46 @@
-﻿# Inventory
+﻿# Инвентарь
 
-While an inventory system is a bit out of scope for VN-style games, we had a lot of requests and questions on how to integrate one with Naninovel. The [GitHub project](https://github.com/Elringus/NaninovelInventory) serves as both an example for creating and integrating an inventory with the engine and an extension, which you can easily setup on top of a Naninovel installation.
+Хотя система инвентаря несколько не в духе игр вроде VN, нам поступило много запросов и просьб интегрировать таковую в Naninovel. [Проект на GitHub](https://github.com/Elringus/NaninovelInventory) служит как примером для создания и интеграции инвентаря в движок, так и расширением, которое вы можете легко настроить для Naninovel.
 
-Example project shows how to make a custom inventory UI with grid layout, pagination and drag-drop window, add custom engine service and related configuration menu, add input bindings, use state outsourcing, author custom scenario commands and expression functions.
+Демонтрационный проект показывает, как создать пользовательский интерфейс инвентаря с макетом сетки, разбиением на страницы и перетаскиванием окна, как добавить пользовательский сервис движка и связанное с ним меню конфигурации, добавить вводные привязки, использовать аутсорсинг состояния, авторские пользовательские команды сценария и функции выражений.
 
 [!86c577f007daf4ec5d79c0e91db7bc10]
 
-You can [clone the project repository with a Git client](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) or [download it as a zip archive](https://github.com/Elringus/NaninovelDemo/archive/master.zip). 
+Вы можете [клонировать репозиторий проекта с помощью клиента Git](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) или [скачать его в виде zip-архива](https://github.com/Elringus/NaninovelDemo/archive/master.zip). 
 
 ::: warn
-Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
+Пакет Naninovel не распространяется вместе с проектом, поэтому ошибки компиляции будут создаваться после его первого открытия; импортируйте Naninovel из Asset Store, чтобы исправить эти ошибки.
 :::
 
-## Installation
+## Установка
 
-To setup inventory extension on top of an existing Unity project use [UPM](https://docs.unity3d.com/Manual/upm-ui.html) to install the package via the following git URL: `https://github.com/Elringus/NaninovelInventory.git?path=Assets/NaninovelInventory` or download and import [NaninovelInventory.unitypackage](https://github.com/Elringus/NaninovelInventory/raw/master/NaninovelInventory.unitypackage) manually.
+Чтобы настроить расширение инвентаря для существующего проекта Unity, используйте [UPM](https://docs.unity3d.com/Manual/upm-ui.html) чтобы установить пакет через следующий URL-адрес Git: `https://github.com/Elringus/NaninovelInventory.git?path=Assets/NaninovelInventory`; или скачайте и импортируйте [NaninovelInventory.unitypackage](https://github.com/Elringus/NaninovelInventory/raw/master/NaninovelInventory.unitypackage) вручную.
 
 ![](https://i.gyazo.com/b54e9daa9a483d9bf7f74f0e94b2d38a.gif)
 
-## Usage
+## Использование
 
-To create a pre-made inventory UI from template, use `Create -> Naninovel -> Inventory -> Inventory UI` asset context menu. Then add the prefab to the Naninovel UI resources via `Naninovel -> Resources -> UI` editor menu. Once added, the UI can be shown/hidden like all the other UIs with [@showUI] and [@hideUI] commands.
+Чтобы создать готовый интерфейс инвентаря из шаблона, используйте контекстное меню ассета `Create -> Naninovel -> Inventory -> Inventory UI`. Затем добавьте префаб для ресурсов UI Naninovel через меню редактора `Naninovel -> Resources -> UI`. После добавления интерфейс может быть показан/скрыт, как и все другие UI, с помощью команд [@showUI] и [@hideUI].
 
-The Inventory UI component has `Capacity` property, where you can change number of slots in the inventory. Slot grid is configured (slot number and layout, slots per page, etc) via `Content/InventoryGrid` game object. Window drag-drop behavior can be configured (disabled) via `Drag Drop` component attached to `Content` game object.
+Компонент UI инвентаря имеет свойство `Capacity`, с помощью которого вы можете изменить количество слотов в инвентаре. Сетка слотов настраивается (номер слота и макет, слоты на странице и т.д.) с помощью игрового объекта `Content/InventoryGrid`. Поведение перетаскивания окна можно настроить (отключить) с помощью компонента `Drag Drop`, прикрепленного к игровому объекту `Content`.
 
-Inventory item prefabs can be created with `Create -> Naninovel -> Inventory -> Inventory Item` asset context menu. The item prefabs will then need to be assigned as inventory resources via `Naninovel -> Resources -> Inventory` editor menu. 
+Префабы предметов инвентаря можно создать с помощью контекстного меню ассета `Create -> Naninovel -> Inventory -> Inventory Item`. Затем префабы предметов должны быть назначены в качестве ресурсов инвентаря через меню редактора `Naninovel -> Resources -> Inventory`.
 
 ![](https://i.gyazo.com/6062f8a433a47306f582a849c7bbf57e.png)
 
-In case you have a lot of items and it's inconvenient to assign them via editor menu, it's possible to just drop them at `Resources/Naninovel/Inventory` folder and they'll automatically be exposed to the engine. You can additionally organize them with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in naninovel scripts. Eg, item stored as `Resources/Naninovel/Inventory/Armor/FullPlate.prefab` can be referenced in scripts as `Armor/FullPlate`.
+Если у вас много предметов и их неудобно назначать через меню редактора, можно просто поместить их в папку `Resources/Naninovel/Inventory`, и они автоматически будут предоставлены движку. Вы можете дополнительно организовать их с помощью подпапок, если хотите; в этом случае используйте прямые косые черты (`/`) при ссылке на них в сценариях Naninovel. Например, элемент, сохранённый как `Resources/Naninovel/Inventory/Armor/FullPlate.prefab`, может использоваться в сценариях в качестве `Armor/FullPlate`.
 
-It's also possible to use [addressable asset system](/ru/guide/resource-providers.md#addressable) to manually expose the resources. To expose an asset, assign address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "FullPlate.prefab" item, assign the prefab asset following address: `Naninovel/Inventory/FullPlate`. Be aware, that addressable provider is not used in editor by default; you can allow it by enabling `Enable Addressable In Editor` property in resource provider configuration menu.
+Также можно использовать [адресируемую систему ассетов](/ru/guide/resource-providers.md#addressable) для ручного предоставления ресурсов. Чтобы предоставить доступ к ассету, назначьте адрес, равный пути, который вы использовали бы для его предоставления с помощью описанного выше метода, за исключением опущенной части "Resources/". Например, выставить "FullPlate.prefab", назначьте префабу следующий адрес:`Naninovel/Inventory/FullPlate`. Имейте в виду, что адресируемый провайдер по умолчанию не используется в редакторе; вы можете разрешить его, включив свойство `Enable Addressable In Editor` в меню конфигурации провайдера ресурсов.
 
-Each item has a `Stack Count Limit` property to limit how much items of this type can be stacked in a single inventory slot and a `On Item Used` Unity event, which is invoked when the item is used (either via `@useItem` command or when user clicks on the item in the inventory). Below is an example on how you can setup the event with `Play Script` component to remove the item once it used, spawn a glitch special effect and print a text message.
+Каждый предмет имеет свойство `Stack Count Limit`, чтобы ограничить количество предметов этого типа, которые могут быть уложены в один слот инвентаря, и событие Unity `On Item Used`, которое вызывается при использовании предмета (либо с помощью команды `@useItem`, либо когда пользователь нажимает на предмет в инвентаре). Ниже приведен пример того, как вы можете настроить событие с помощью компонента `Play Script`, чтобы удалить предмет после его использования, создать спецэффект сбоя и вывести текстовое сообщение.
 
 ![](https://i.gyazo.com/010a9ba35db607ba46d78eda3513f678.png)
 
-You can add items to the inventory with `@addItem` command and remove with `@removeItem` (or `@removeItemAt`, `@removeAllItems`). Item IDs are equal to the item prefab names. Inventory slot IDs are equal to the grid slot indexes (eg, first slot is 0, second is 1, etc).
+Вы можете добавить предметы в инвентарь с помощью команды `@addItem` и удалить с помощью команды  `@removeItem` (или `@removeItemAt`, `@removeAllItems`). ID предметов равны именам их префабов. ID слотов инвентаря равны индексам слотов сетки (например, первый слот равен 0, второй – 1 и т.д.).
 
-`ItemExist()` and `ItemCount()` custom [expression functions](/ru/guide/script-expressions.md#expression-functions) to check wither an items exist in inventory and number of existing items are also available for convenience.
+[Пользовательские функции](/ru/guide/script-expressions.md#expression-functions) `ItemExist()` и `ItemCount()` для проверки наличия предметов в инвентаре и количества существующих предметов также доступны для удобства.
 
-Below is a script from the example project:
+Ниже приведен скрипт из демонстрационного проекта:
 
 ```
 # Start
@@ -64,5 +64,3 @@ Select an action.[skipInput]
 	@goto .Start
 @endif
 ```
-
-

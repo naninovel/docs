@@ -1,134 +1,136 @@
-# User Interface
+# Пользовательский интерфейс
 
-Naninovel comes with multiple built-in UIs: title (main) menu, game settings, save-load menu, backlog panel, CG gallery, tips and many others.
+Naninovel поставляется с несколькими встроенными UI: главное меню, настройки игры, меню сохранения-загрузки, панель бэклога, галерея CG, советы и многие другие.
 
-Each of the built-in UIs can be disabled or customized; see [UI customization](/ru/guide/user-interface.md#ui-customization) guide for more information.
+Каждый из встроенных UI можно отключить или настроить; дополнительные сведения см. в руководстве по [кастомизации UI](/ru/guide/user-interface.md#ui-customization).
 
-## Adaptive UI Layout
+## Адаптивная вёрстка UI
 
-All the built-in UIs are implemented with adaptive layout. This allows the UI to remain usable on all the platforms, no matter the screen resolution.
+Все встроенные интерфейсы реализованы с адаптивной вёрсткой. Это позволяет UI оставаться пригодным для использования на всех платформах, независимо от разрешения экрана.
 
 [!b6bddf8a0c6f2ba68dcdc1bc65db0c09]
 
-## UI Toggling
+## Переключение UI
 
-UI toggling feature allows user to hide/show the in-game UI as a whole.
+Функция переключения пользовательского интерфейса позволяет пользователю скрывать/показывать UI целиком.
 
 [!e267c4ab3654efbfaf611011502de79f]
 
-Activate `ToggleUI` input (`Space` key by default for standalone input module) or use `HIDE` button on the control panel to hide/show the UI.
+Активируйте ввод `ToggleUI` (клавиша `Space` по умолчанию для автономного модуля ввода) или используйте кнопку `HIDE` на панели управления, чтобы скрыть/показать UI.
 
-When UI is hidden, `Continue` input or clicking (touching) the screen will also un-hide the UI.
+Когда пользовательский интерфейс скрыт, ввод `Continue` или щелчок мыши (касание экрана) также вернёт UI.
 
-## UI Customization
+## Кастомизация UI
 
-UI customization feature allows to add a custom UI and modify or completely replace any of the built-in UI elements, like title menu, settings menu, printer backlog, etc.
+Функция настройки UI позволяет добавлять UI, изменить или полностью заменить любой из встроенных элементов UI, таких как меню заголовка, меню настроек, бэклог принтера и т.д.
 
-Be aware, that text printers and choice handlers are implemented via actors interface and are customized in a different way; see the corresponding documentation ([text printers](/ru/guide/text-printers.md), [choice handlers](/ru/guide/choices.md)) for more info.
+Заметьте, что текстовые принтеры и обработчики выборов реализованы через акторов интерфейса и настраиваются по-другому; см. соответствующую документацию по ([текстовым принтерам](/ru/guide/text-printers.md), [обработчикам выборов](/ru/guide/choices.md)) для получения дополнительной информации.
 
 ::: warn
-Before attempting to create custom UIs or modify existing ones first make sure you're familiar with [Unity's UI system](https://docs.unity3d.com/Packages/com.unity.ugui@latest) (uGUI). While there are video tutorials and example projects for UI customization available below, please be aware that we won't be able to provide any additional guidance or support for Unity's built-in tools; consult the [support page](/ru/support/#unity-support) for more information.
+Прежде чем пытаться создавать пользовательские UI или изменять существующие, сначала убедитесь, что вы знакомы с [системой UI Unity](https://docs.unity3d.com/Packages/com.unity.ugui@latest) (uGUI). Хотя ниже представлены видеоуроки и примеры проектов по настройке пользовательского интерфейса, пожалуйста, имейте в виду, что мы не предоставляем никаких дополнительных рекомендаций или поддержку встроенных инструментов Unity; обратитесь к странице [поддержки](/ru/support/#unity-support) для получения дополнительной информации.
 :::
 
-To add a custom UI or modify (disable) a built-in one, use UI resources manager accessible via `Naninovel -> Resources -> UI` editor menu.
+Для добавления пользовательского интерфейса или изменения (отключения) встроенного, используйте менеджер ресурсов UI, доступный через меню редактора `Naninovel -> Resources -> UI`.
 
 ![](https://i.gyazo.com/b0f00e8431e34e59249b3f59919e3b2c.png)
 
-When the engine is initializing it'll instantiate all the UI prefabs assigned in the resources manager.
+Когда движок инициализируется, он создает экземпляры всех префабов UI, назначенных в диспетчере ресурсов.
 
-To show or hide any of the UIs listed in the resources manager use [@showUI] and [@hideUI] commands respectively.
+Чтобы показать или скрыть любой из UI, перечисленных в диспетчере ресурсов, используйте команды [@showUI] и [@hideUI] соответственно.
 
-### Adding Custom UI
+### Добавление пользовательских UI
 
-To add a new custom UI, create a prefab via `Create -> Naninovel -> Custom UI` asset context menu and add it to the UI resources list. It'll then be instantiated along with the other UI prefabs on the engine initialization.
+Чтобы добавить новый UI, создайте префаб через контекстное меню ассета `Create -> Naninovel -> Custom UI` и добавьте его в список ресурсов UI. Затем он будет выведен вместе с другими префабами UI при инициализации движка.
 
-Following video tutorial shows how to add a custom calendar UI with special reveal and hide animations. The calendar will display a date based on a [custom variable](/ru/guide/custom-variables.md), which can be changed via naninovel scripts and is saved with the game. The calendar will automatically update when the variable is changed. All this is achieved without any C# scripting.
+В следующем видеоуроке показано, как добавить пользовательский интерфейс календаря со специальными анимациями раскрытия и скрытия. Календарь будет отображать дату на основе [пользовательской переменной](/ru/guide/custom-variables.md), которая может быть изменена с помощью сценариев Naninovel и сохранена вместе с игрой. Календарь будет автоматически обновляться при изменении переменной. Все это достигается без каких-либо сценариев C#.
 
 [!!wrAm-cwPXy4]
 
 ::: example
-Unity project showed in the above video tutorial is [available on GitHub](https://github.com/Elringus/NaninovelCustomUIExample). You can [clone the repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) with a Git client or [download it as a zip archive](https://github.com/Elringus/NaninovelCustomUIExample/archive/master.zip). Be aware, that Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
+Проект Unity, показанный в приведенном выше видеоуроке, доступен [на GitHub](https://github.com/Elringus/NaninovelCustomUIExample). Вы можете [клонировать репозиторий](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) с помощью Git-клиента или [загрузить его в виде zip-архива](https://github.com/Elringus/NaninovelCustomUIExample/archive/master.zip). Имейте в виду, что пакет Naninovel не распространяется вместе с проектом, следовательно, ошибки компиляции будут возникать после его первого открытия; импортируйте Naninovel из хранилища ассетов, чтобы исправить эти ошибки.
 :::
 
 ::: example
-Another, more advanced example of adding a custom inventory UI with a grid layout, pagination and drag-drop window can be found in the [inventory example project on GitHub](https://github.com/Elringus/NaninovelInventory).
+Другой, более продвинутый пример добавления UI инвентаря с версткой сетки, разбиением на страницы и перетаскиваемым окном можно найти в проекте [примера инвентаря на GitHub](https://github.com/Elringus/NaninovelInventory).
 
-Specifically, the UI-related scripts are stored at [Runtime/UI](https://github.com/Elringus/NaninovelInventory/tree/master/Assets/NaninovelInventory/Runtime/UI) and prefabs at [Prefabs](https://github.com/Elringus/NaninovelInventory/tree/master/Assets/NaninovelInventory/Prefabs) directories.
+В частности, скрипты, связанные с UI, хранятся в директоряих [Runtime/UI](https://github.com/Elringus/NaninovelInventory/tree/master/Assets/NaninovelInventory/Runtime/UI), а префабы в [Prefabs](https://github.com/Elringus/NaninovelInventory/tree/master/Assets/NaninovelInventory/Prefabs).
 :::
 
-When you create a new custom UI prefab via the context menu, the prefab will have a `Custom UI` component attached to the root object. This component (or rather the fact that the component is implementing `IManagedUI` interface) is essential to make the prefab accepted as a UI by the engine.
+Когда вы создаете новый пользовательский префаб UI через контекстное меню, jy будет иметь компонент `Custom UI`, прикрепленный к корневому объекту. Этот компонент (или, скорее, тот факт, что компонент реализует интерфейс `IManagedUI`) необходим для того, чтобы префаб был принят движком в качестве UI.
 
 ![](https://i.gyazo.com/9a4a38754ccf35e48b8bef2c3062ff02.png)
 
-`Disable Interaction` property allows to permanently disable interaction with the UI, no matter the visibility. Requires `Canvas Group` component on the same game object.
+Свойство `Disable Interaction` позволяет навсегда отключить взаимодействие с UI, независимо от его видимости. Требует компонент `Canvas Group` для того же игрового объекта.
 
-When `Visible On Awake` is enabled, the UI will be visible when the UI is instantiated (right after the engine is initialized) and vice-versa.
+Если включен параметр `Visible On Awake`, UI будет виден при его создании (сразу после инициализации движка), и наоборот.
 
-When `Control Opacity` is enabled and `Canvas Group` component is attached to the same game object,  `Alpha` property of the `Canvas Group` component will be changed in sync with the current visibility state of the UI element. `Fade Duration` will then control time (duration in seconds) of the opacity fade animation. In case you wish to implement your own effect to accommodate the visibility status of the UI element (eg, slide animation instead of fading the opacity), disable `Control Opacity` property and use `On Show` and `On Hide` Unity events to react on visibility changes.
+Когда включена функция `Control Opacity` и компонент `Canvas Group` присоединен к тому же игровому объекту, свойство `Alpha` компонента `Canvas Group` будет изменено синхронно с текущим состоянием видимости элемента UI. Затем `Fade Duration` будет управлять временем (длительностью в секундах) анимации затухания непрозрачности. Если вы хотите реализовать свой собственный эффект, для управления состоянием видимости элемента UI (например, анимация слайдов вместо затухания непрозрачности), отключите свойство `Control Opacity` и используйте события Unity `On Show` и `On Hide` для реакции на изменения видимости.
 
-In case you wish to support gamepad or keyboard navigation over the UI, assign a game object with an interactable component (eg, a `Button`) to `Focus Object` property. This object will then be automatically focused when the UI becomes visible allowing to navigate over other interactable objects with a gamepad and/or keyboard. See Unity's [guide on UI navigation](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-SelectableNavigation.html) for more info on how to setup the navigation behavior.
+Если вы хотите поддерживать навигацию по UI геймпадом или клавиатурой, назначьте игровой объект с взаимодействующим компонентом (например, `Button`) свойству `Focus Object`. Затем этот объект будет автоматически сфокусирован, когда UI станет видимым, что позволит перемещаться по другим взаимодействующим объектам с помощью геймпада и/или клавиатуры. См. [руководство по навигации UI Unity](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-SelectableNavigation.html) для получения дополнительной информации о том, как настроить поведение навигации.
 
-When `Focus Object` is assigned, `Focus Mode` property allows to choose when to focus the object: `Visibility` mode will focus it right after the UI becomes visible and `Navigation` will postpone the focus until player activates a navigation key on gamepad (left stick or D-pad) or keyboard (arrow keys). 
+Когда назначается` Focus Object`, свойство `Focus Mode` позволяет выбрать, когда фокусировать объект: режим `Visibility` фокусирует его сразу после того, как UI становится видимым, а `Navigation` откладывает фокусировку до тех пор, пока игрок не активирует навигационную клавишу на геймпаде (левый джойстик или D-pad) или клавиатуре (клавиши со стрелками).
 
-`On Show` and `On Hide` Unity events allow to hook custom handlers to react to the UI visibility changes. For example, you can hook an `Animator` triggers to fire some custom animations when the UI becomes visible and vice-versa.
+События Unity `On Show` и `On Hide` позволяют привязывать пользовательские обработчики реагировать на изменения в интерфейсе видимость. Например, вы можете подключить триггеры `Animator` для запуска пользовательских анимаций, когда UI становится видимым, и наоборот.
 
-When `Hide On Load` is enabled, the UI will automatically be hidden when the engine is starting a load operation. This usually happens when loading another naninovel script or exiting to title menu.
+Если включена функция `Hide On Load`, UI будет автоматически скрыт, когда движок начнет операцию загрузки. Обычно это происходит при загрузке другого сценария Naninovel или выходе из главного меню.
 
-Enabling `Save Visibility State` will make the visibility state of the UI persistent, so that when player loads a saved game, the UI will be in the same state (visible or  hidden) as it was when the game was saved.
+Включение функции `Save Visibility State` сделает состояние видимости UI постоянным, так что когда игрок загружает сохраненную игру, UI будет находиться в том же состоянии (видимом или скрытом), что и при сохранении игры.
 
-`Block Input When Visible` allows to disable [input processing](/ru/guide/input-processing.md) when the UI is visible. This is useful to prevent the player from using various hotkeys (hiding the UI, continue reading, etc) while he's interacting with the UI. `Allowed Samplers` allows to add exceptions to the blocked inputs; eg, you can add `ToggleUI` input name to the list, allowing player to toggle the UI while still preventing activation of any other inputs.
+`Block Input When Visible` позволяет отключить [обработку вводных данных](/ru/guide/input-processing.md), когда UI становится видимым. Это полезно для предотвращения использования игроком различных горячих клавиш (скрытие UI, продолжение чтения и т.д.) во время взаимодействия с UI. `Allowed Samplers` позволяют добавлять исключения к заблокированным входам; например, вы можете добавить имя ввода `ToggleUI` в список, позволяя игроку переключать UI, при этом предотвращая активацию любых других вводов.
 
-Enabling `Modal UI` makes all other UIs ignore interaction while the UI is visible. This is similar to `Block Input When Visible`, but affects event-based interaction (mouse clicks, touches, UI navigation) instead of direct input processing.
+Включение `Modal UI` заставляет все другие UI игнорировать взаимодействие, пока данный UI виден. Это похоже на `Block Input When Visible`, но влияет на взаимодействие на основе событий (щелчки мыши, прикосновения, навигация по UI) вместо прямой обработки ввода.
 
-Several other components will also be added by default when creating a custom UI: 
-- `Canvas Group` allows hiding the UI by changing the opacity (controlled with `Fade Duration`) and allows the UI to ignore user interaction when necessary.
-- `Canvas Scaler` automatically scales the layout to fit current display resolution.
-- `Graphic Raycaster` allows player to interact with buttons and other interactable elements inside the UI canvas.
+Несколько других компонентов также будут добавлены по умолчанию при создании UI:
+- `Canvas Group` позволяет скрывать UI, изменяя непрозрачность (контролируется с помощью `Fade Duration`) и позволяет UI игнорировать взаимодействие с пользователем, когда это необходимо.
+- `Canvas Scaler` автоматически масштабирует вёрстку в соответствии с текущим разрешением дисплея.
+- `Graphic Raycaster` позволяет игроку взаимодействовать с кнопками и другими взаимодействующими элементами внутри холста UI.
 
-You are free to modify or remove any of the above components as you see fit.
+Вы можете изменить или удалить любой из вышеперечисленных компонентов по своему усмотрению.
 
-### Disabling Built-In UI
+### Отключение встроенных UI
 
-To disable a built-in UI remove corresponding record from the UI resources list and the prefab won't be instantiated on engine initialization.
+Чтобы отключить встроенный элемент UI, удалите соответствующую запись из списка ресурсов UI, и префаб не будет использован при инициализации движка.
 
-### Modifying Built-In UI
+### Модификация встроенных UI
 
-If you wish to modify an existing built-in (default) UI prefab, you can find them at `Naninovel/Prefabs/DefaultUI` package folder. 
+Если вы хотите изменить существующий встроенный (базовый) префаб UI, вы можете найти его в папке пакета `Naninovel/Prefabs/DefaultUI`.
 
-While it's possible, **please refrain from editing the built-in prefabs directly** to prevent issues when updating the package. Rather, create a new prefab from template via `Create -> Naninovel -> Default UI -> ...` asset context menu or manually duplicate the prefab you want to modify (Ctrl/Cmd+D) and move it out of the package folder. Then assign the created/modified prefab to an existing record (`Object` field) in the UI resources manager.
+Если это возможно, **пожалуйста, воздержитесь от непосредственного редактирования встроенных префабов**, чтобы предотвратить проблемы при обновлении пакета. Взамен этого, лучше создать новый префаб из шаблона в контекстном меню ассета `Create -> Naninovel -> Default UI -> ...` или вручную дублировать префаб, который вы хотите изменить (Ctrl/Cmd+D), и переместите его из папки пакета. Затем назначьте созданный/измененный префаб существующей записи (поле (`Object`) в диспетчере ресурсов UI.
 
-In the following video tutorial you can learn how to override built-in title (main) menu. It'll also show how to use title script to add a background and special effect when entering the title menu; no C# scripting is used to achieve that.
+В следующем видеоуроке вы узнаете, как переопределить встроенное главное меню. Он также покажет, как использовать скрипт главного меню для добавления фона и специального эффекта при входе в главное меню; для этого не используется сценарий C#.
 
 [!!hqhfhXzQkdk]
 
 ::: example
-Unity project showed in the above video tutorial is [available on GitHub](https://github.com/Elringus/NaninovelCustomUIExample). You can [clone the repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) with a Git client or [download it as a zip archive](https://github.com/Elringus/NaninovelCustomUIExample/archive/master.zip). Be aware, that Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
+Проект Unity, показанный в приведенном выше видеоуроке, доступен [на GitHub](https://github.com/Elringus/NaninovelCustomUIExample). Вы можете [клонировать репозиторий](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) с помощью Git-клиента или [загрузить его в виде zip-архива](https://github.com/Elringus/NaninovelCustomUIExample/archive/master.zip). Имейте в виду, что пакет Naninovel не распространяется вместе с проектом, следовательно, ошибки компиляции будут возникать после его первого открытия; импортируйте Naninovel из хранилища ассетов, чтобы исправить эти ошибки.
 :::
 
-When creating a new prefab from scratch, make sure to attach a component that implements interface of the UI you're going to override. This component should be attached to the root object of the prefab.
+При создании нового префаба с нуля обязательно прикрепите компонент, реализующий интерфейс UI, который вы собираетесь переопределить. Этот компонент должен быть присоединен к корневому объекту префаба.
 
 All the UI interfaces are stored under `Naninovel.UI` namespace:
 
-Interface | Corresponding UI
+Все элементы UI хранятся в пространстве имён `Naninovel.UI`:
+
+Интерфейс | Соответствующий UI
 --- | ---
-IBacklogUI | Printer backlog.
-ILoadingUI | Panel shown when the game is loading.
-IMovieUI | UI used to host movies.
-ISaveLoadUI | Panel used for saving and loading game.
-ISceneTransitionUI | Handles scene transition ( [@startTrans] and  [@finishTrans] commands).
-ISettingsUI | Panel used for changing game settings.
-ITitleUI | Title (main) menu of the game.
-IExternalScriptsUI | External scripts browser UI (community modding feature).
-IVariableInputUI | Input form for assigning an arbitrary text to a custom state variable (used by [@input] command).
-IConfirmationUI | UI panel used to confirm important commands (eg, when exiting to the title menu or deleting saved game slot).
-ICGGalleryUI | Unlockable [CG gallery](/ru/guide/unlockable-items.md#cg-gallery) items browser.
-ITipsUI | Unlockable [tips](/ru/guide/unlockable-items.md#tips) browser.
-IRollbackUI | Indicator for state rollback feature.
-IContinueInputUI | A fullscreen invisible UI layer positioned at the bottom of the UI stack and used to activate a `continue input` trigger when clicked or touched.
+IBacklogUI | Бэклог принтера.
+ILoadingUI | Панель, показываемая при загрузке игры.
+IMovieUI | UI, используемый для воспроизведения видеороликов.
+ISaveLoadUI | Панель загрузки и сохранения.
+ISceneTransitionUI | Обрабатывает переходы сцены(командами [@startTrans] и [@finishTrans]).
+ISettingsUI | Панель игровых настроек.
+ITitleUI | Главное меню игры.
+IExternalScriptsUI | UI браузера внешних сценариев (функция модов коммьюнити).
+IVariableInputUI | Форма ввода для назначения пользовательским переменных произвольного текста(используется командой [@input]).
+IConfirmationUI | Панель UI, используемая для подтверждения важных команд (напр., при выходе в главное меню или удалении слота сохранения).
+ICGGalleryUI | Браузер разблокируемых элементов [галереи CG](/ru/guide/unlockable-items.md#cg-gallery).
+ITipsUI | Браузер разблокируемых [подсказок](/ru/guide/unlockable-items.md#tips).
+IRollbackUI | Индикатор функции отката состояния.
+IContinueInputUI | Полноэкранный невидимый слой UI, расположенный в нижней части стека UI и используемый для активации триггера `continue input` при нажатии или прикосновении.
 
-In order for the UI to support visibility (visible on awake, fade time) and interaction options (disable interaction), also attach a `Canvas Group` component to the same object.
+Чтобы UI поддерживал видимость (видимый при пробуждении, время затухания) и параметры взаимодействия (отключение взаимодействие), также прикрепите компонент `Canvas Group` к тому же объекту.
 
-If you're OK with C# scripting and want to override default logic of the UI, [create a new component](https://docs.unity3d.com/Manual/CreatingAndUsingScripts), implement `IManagedUI` interface (feel free to inherit the component from `CustomUI` or `ScriptableUIBehaviour` to fulfill all the interface requirements) and attach the created custom component instead. Check `Naninovel/Runtime/UI` folder for reference implementations of the built-in UIs. Here is an example of minimal implementation of a custom UI component:
+Если вы знакомы с работой в C# и хотите переопределить базовую логику UI, [создайте новый компонент](https://docs.unity3d.com/Manual/CreatingAndUsingScripts), реализуйте интерфейс `IManagedUI`  (вы можете свободно наследовать компонент от `CustomUI` или `ScriptableUIBehaviour` для выполнения всех требований к интерфейсу) и прикрепите созданный пользовательский компонент. В папке `Naninovel/Runtime/UI` вы можете найти примеры реализаций встроенных UI. Вот пример минимальной реализации пользовательского компонента UI:
 
 ```csharp
 using UniRx.Async;
@@ -139,20 +141,20 @@ public class MyCustomUI : ScriptableUIBehaviour, Naninovel.UI.IManagedUI
 }
 ```
 
-## Play Script On Unity Event
+## Выполнение скрипта на событии Unity
 
-When creating custom UIs, you may want to execute some commands or start playing a specific naninovel script in reaction to some events (eg, a [button click](https://docs.unity3d.com/Manual/script-Button.html)).
+При создании UI вы можете выполнить некоторые команды или начать воспроизведение определенного сценария Naninovel в ответ на некоторые события (например, [нажатие кнопки]). (https://docs.unity3d.com/Manual/script-Button.html)).
 
-Add `Play Script` component to a game object and either select an existing naninovel script or write the commands right inside the text area field; then route [Unity event](https://docs.unity3d.com/Manual/UnityEvents.html) of some other component to invoke `Play()` method on the `Play Script` component. The script will be executed when the event is triggered at play mode. The example below hides a custom UI when the button is clicked.
+Добавьте компонент `Play Script` к игровому объекту и либо выберите существующий сценарий Naninovel, либо запишите команды прямо в поле текстовой области; затем маршрутизируйте [событие Unity](https://docs.unity3d.com/Manual/UnityEvents.html) какого-либо другого компонента для вызова метода `Play()` в компоненте `Play Script`. Сценарий будет выполнен, когда событие будет запущено в режиме воспроизведения. Приведенный ниже пример скрывает UI при нажатии кнопки.
 
 ![](https://i.gyazo.com/5f56fbddc090919cc71f68e82bb1713f.png)
 
-It's also possible to reference Unity event arguments in the script text with `{arg}` expression; supported arguments types are: string, integer, float and boolean. Below example demonstrates executing camera shake and playing a sound effect when a boolean Unity event is positive and playing a background musing when it's negative.
+Также можно ссылаться на аргументы события Unity в тексте скрипта с выражением `{arg}`; поддерживаемые типы аргументов: string, integer, float и boolean. Ниже приведен пример, демонстрирующий выполнение дрожания камеры и воспроизведение звукового эффекта, когда логическое событие Unity является положительным, и воспроизведение фонового размышления, когда оно отрицательно.
 
 ![](https://i.gyazo.com/78e9fa27d6561f8f8aced76bbeb4b542.png)
 
 ::: warn
-Conditional block commands (if, else, elseif, endif) are not supported in the script text.
+Команды условного блока (if, else, elseif, endif) в тексте скрипта не поддерживаются.
 :::
 
-When an existing naninovel script is selected via dropdown list, the script text area will be ignored and selected naninovel script will be played **instead** of the currently played one; in case you wish to additively execute some commands without interrupting the currently played script, use the script text area.
+Когда существующий сценарий Naninovel выбирается с помощью выпадающего списка, область текста скрипта будет проигнорирована, и выбранный сценарий Naninovel будет воспроизводиться **вместо** выполняемого в настоящее время; в случае, если вы хотите дополнительно выполнить некоторые команды, не перебивая воспроизведение текущего сценария, используйте область текста скрипта.

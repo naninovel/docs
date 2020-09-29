@@ -1,10 +1,10 @@
-﻿# Custom Build Environment
+﻿# Пользовательская cреда cборки
 
-When building the project using editor's [build menu](https://docs.unity3d.com/Manual/BuildSettings.html), Naninovel automatically executes additional pre- and post-processing procedures. Those procedures, among other things, include ensuring that all the resources assigned via Naninovel's configuration menus (eg, script docuements, character appearances, BGM and SFX clips, etc) are included to the build.
+При сборке проекта с помощью [меню сборки](https://docs.unity3d.com/Manual/BuildSettings.html) в редакторе, Naninovel автоматически выполняет дополнительные процедуры пре- и пост-обработки. Эти процедуры, среди прочего, включают в себя обеспечение того, чтобы все ресурсы, назначенные через меню конфигурации Naninovel (например, документы сценариев, внешности персонажей, клипы BGM, SFX и т.д.), были включены в сборку.
 
-In case you're using a custom build environment (eg, [Cloud Build](https://unity3d.com/unity/features/cloud-build) or starting the build via custom scripts or from the command line) you have to manually invoke `Naninovel.BuildProcessor.PreprocessBuild(BuildPlayerOptions)` and `Naninovel.BuildProcessor.PostprocessBuild()` static methods before and after the build respectively.
+В случае, если вы используете пользовательскую среду сборки (например, [Cloud Build](https://unity3d.com/unity/features/cloud-build) или запускаете сборку с помощью пользовательских скриптов или из командной строки) вы должны вручную вызвать статические методы `Naninovel.BuildProcessor.PreprocessBuild(BuildPlayerOptions)` и `Naninovel.BuildProcessor.PostprocessBuild()` до и после сборки соответственно.
 
-Below is an example of Cloud Build custom build processing script, which invokes the required Naninovel processing methods. Consult the [official service docs](https://docs.unity3d.com/Manual/UnityCloudBuildPreAndPostExportMethods.html) on how to setup the processing scripts.
+Ниже приведен пример скрипта обработки пользовательских сборок Cloud Build, который вызывает необходимые методы обработки Naninovel. Обратитесь к [официальной документации](https://docs.unity3d.com/Manual/UnityCloudBuildPreAndPostExportMethods.html) для получения информации о том, как настроить сценарии обработки.
 
 ```csharp
 public static class CustomBuildProcessor 
@@ -36,4 +36,4 @@ public static class CustomBuildProcessor
 }
 ```
 
-In case you're using you own custom build handler, which supposed to be triggered with the editor's build menu, it's possible to disable the Naninovel's handler by disabling `Enable Build Processing` property in the "Resource Provider" configuration menu.
+В случае, если вы используете собственный пользовательский обработчик сборки, который должен запускаться с помощью меню сборки редактора, можно отключить обработчик Naninovel, отключив свойство `Enable Build Processing` в меню конфигурации "Resource Provider".

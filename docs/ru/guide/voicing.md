@@ -1,25 +1,24 @@
-﻿# Voicing
+﻿# Озвучивание
 
-To expose voice clips to the engine, store them under `Resources/Naninovel/Voice` folder (can be changed in audio configuration under `Loader` foldout). You can additionally organize them with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in naninovel scripts. Eg, voice audio clip stored as `Resources/Naninovel/Voice/Intro/Day/25.wav` can be referenced in scripts as `Voice/Intro/Day/25`.
+Чтобы предоставить голосовые клипы движку, сохраните их в папке `Resources/Naninovel/Voice` (можно изменить в конфигурации звука в папке `Loader`). Вы можете дополнительно организовать их с помощью подпапок, если хотите; в этом случае используйте косую черту (`/`) при ссылке на них в сценариях Naninovel. Например, голосовой аудиоклип, хранимый как `Resources/Naninovel/Voice/Intro/Day/25.wav`, может использоваться в сценариях как `Voice/Intro/Day/25`.
 
-It's also possible to use [addressable asset system](/ru/guide/resource-providers.md#addressable) to manually expose the resources. To expose an asset, assign address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "Hello.wav" voice clip, assign the clip asset following address: `Naninovel/Voice/Hello`. Be aware, that addressable provider is not used in editor by default; you can allow it by enabling `Enable Addressable In Editor` property in resource provider configuration menu.
+Кроме того, можно использовать [адресируемую систему ассетов](/ru/guide/resource-providers.md#addressable) для ручного предоставления ресурсов. Чтобы предоставить доступ к ассету, назначьте адрес, равный пути, который вы использовали бы для его предоставления с помощью описанного выше метода, за исключением опущенной части "Resources/". Например, чтобы предоставить клип Hello.wav", назначьте ассету клипа следующий адрес: `Naninovel/Voice/Hello`. Имейте в виду, что адресируемый провайдер по умолчанию не используется в редакторе; вы можете разрешить его, включив свойство `Enable Addressable In Editor` в меню конфигурации провайдера ресурсов.
 
-You can use any audio formats [supported by Unity](https://docs.unity3d.com/Manual/AudioFiles.html) for your voice clips.
+Вы можете использовать любые [поддерживаемые Unity](https://docs.unity3d.com/Manual/AudioFiles.html) аудиоформаты для голосовых клипов.
 
-Voice playback behavior can be configured using `Naninovel -> Configuration -> Audio` context menu; for available options see [configuration guide](/ru/guide/configuration.md#audio). 
+Поведение воспроизведения озвучивания можно настроить с помощью контекстного меню `Naninovel -> Configuration -> Audio`; доступные параметры см. в [руководстве по конфигурации](/ru/guide/configuration.md#audio).
 
-Use [@voice] command followed by the clip name (path) to play the voice in naninovel scripts.
+Используйте команду [@voice], за которой следует имя клипа (путь), чтобы воспроизводить голос в сценариях Naninovel.
 
+## Автоматическое озвучивание
 
-## Auto Voicing
+В полностью озвученных играх назначение команды [@voice] для каждой озвученной линии может стать утомительной задачей. Функция автоматического озвучивания позволяет автоматически воспроизводить голосовой клип, имя которого равно номеру строки текущей команды [@print]; таким образом, вам вообще не придется использовать команды [@voice] в сценариях naninovel — голоса будут автоматически воспроизводиться при печати соответствующих строк текста в игре.
 
-In fully-voiced games, it could become tedious to specify a [@voice] command for each voiced line. Auto voicing feature allows to automatically play a voice clip that has a name equal to the line number of the currently played [@print] command; this way, you won't have to use [@voice] commands in naninovel scripts at all — voices will be automatically played when the corresponding text lines are printed in the game.
+Чтобы включить функцию автоматического озвучивания, используйте `Enable Auto Voicing` в меню настроек звука.
 
-To enable auto voicing feature, use `Enable Auto Voicing` toggle in the Audio configuration menu.
+Аудиоклипы, используемые для функции автоматического озвучивания, должны быть сгруппированы в папку с именем, равным имени сценария, и иметь следующее имя: *LineNumber*.*CommandIndex*, где *LineNumber* – номер строки соответствующей команды печати, а *CommandIndex* – встроенный или командный индекс команды печати в случаях, когда речь идет об универсальных текстовых строках.
 
-Audio clips used for the auto voicing feature should be grouped under a folder with name equal to the script name, and has the following name: *LineNumber*.*CommandIndex*, where *LineNumber* is the line number of the corresponding print command and *CommandIndex* is the inline or command index of the print command in cases when dealing with generic text lines.
-
-For example, consider the following naninovel script with name "Script001":
+Например, рассмотрим следующий сценарий Naninovel с именем "Script001":
 
 ```
 @print text:"Text from a print command."
@@ -27,31 +26,31 @@ Text from a simple generic text line.
 Text from first sentence.[i] Text from second sentence.
 ```
 
-In order for the auto voicing system to play corresponding audio clips when printing those lines, the clips should be placed under `Resources/Naninovel/Voice/Script001` folder (or registered with [addressable system](/ru/guide/resource-providers.md#addressable)) and have the following names: 
+Для того чтобы система автоматического озвучивания воспроизводила соответствующие аудиоклипы при печати этих строк, клипы должны быть помещены в папку `Resources/Naninovel/Voice/Script001` (или зарегистрированы в [адресируемой системе](/ru/guide/resource-providers.md#addressable)) и иметь следующие имена:
 
-Text | Voice Clip Name
+Текст | Имя аудиоклипа
 --- | ---
 Text from a print command. | 1.0
 Text from a simple generic text line. | 2.0
 Text from first sentence. | 3.0
 Text from second sentence. | 3.2
 
-To simplify the process, when auto voicing feature is enabled, name of voice clip for the currently printed text is displayed in the debug window:
+Для упрощения процесса при включенной функции автоматического озвучивания в окне отладки отображается имя голосового клипа для выводимого в данный момент текста:
 
 ![auto voicing](https://i.gyazo.com/12772ecc7c14011bcde4a74c81e997b8.png)
 
-To open the debug window, make sure `Enable Development Console` is turned on in the engine configuration, then press `~` key while in play mode, type `debug` and press `Enter`.
+Чтобы открыть окно отладки, убедитесь, что в конфигурации движка включена функция `Enable Development Console`, затем нажмите клавишу `~` в режиме воспроизведения, введите `debug` и нажмите `Enter`.
 
-## Voiceover Documents
+## Документы озвучивания
 
-You can use voiceover documents generator utility accessible via `Naninovel -> Tools -> Voiceover Documents` to generate documents, containing printed text from the [@print] commands and generic text lines. Each printed text message will be associated with the auto voice clip name to be used with the auto voicing feature.
+Вы можете использовать утилиту создания документов озвучивания, доступную через `Naninovel -> Tools -> Voiceover Documents`, для создания документов, содержащих печатный текст из команд [@print] и универсальных текстовых строк. Каждое печатное текстовое сообщение будет связано с именем аудиоклипа, который будет использоваться с функцией автоматического озвучивания.
 
 ![](https://i.gyazo.com/69466444d4b8b43d76e7f1566db5ca9a.png)
 
-`Locale` property allows to select a specific locale for which to generate the documents (the localized naninovel scripts for the selected locale should exist in your project).
+Свойство `Locale` позволяет выбрать конкретную локаль, для которой будут создаваться документы (локализованные сценарии naninovel для выбранной локали должны существовать в вашем проекте).
 
-When `Use Markdown Format` property is enabled, the generated files will be of [markdown format](https://en.wikipedia.org/wiki/Markdown) (.md extension) with some additional formatting for better readability.
+Если свойство `Use Markdown Format` включено, то сгенерированные файлы будут иметь формат [Markdown](https://en.wikipedia.org/wiki/Markdown) (расширение.md) с дополнительным форматированием для лучшей читабельности.
 
 ![](https://i.gyazo.com/ed6776026a79140de9e9f6a155faffdc.png)
 
-The voiceover documents are intended to be used by the voice actors when recording the voiceover audio clips. 
+Документы озвучивания предназначены для использования актерами озвучивания при записи озвучивания.
