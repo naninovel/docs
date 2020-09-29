@@ -22,7 +22,7 @@ Enabling `Delete Unused` property will remove records in the managed text docume
 
 It's possible to bind an arbitrary Unity game object to managed text record without any scripting via `ManagedTextProvider` component; add the component to a game object, specify category (name of the document which will contain the record), key (name of the record inside the document) and use `OnValueChanged` event to bind the value to a game object property.
 
-Below is an example of binding a managed text record stored in "MyCustomDocument" document with key "MyCustomText" to a Untiy's "Text" component.
+Below is an example of binding a managed text record stored in "MyCustomDocument" document with key "MyCustomText" to a Unity's "Text" component.
 
 ![](https://i.gyazo.com/f47a997052674341aa3133deeea1f1cf.png)
 
