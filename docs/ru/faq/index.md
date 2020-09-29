@@ -1,81 +1,81 @@
 ﻿# FAQ
 
-## Can I use Naninovel as a drop-in dialogue system for an existing game?
+## Могу ли я использовать Naninovel в качестве диалоговой системы для существующей игры?
 
-While Naninovel is focused around traditional visual novel games the engine is designed to allow integration with existing projects. If you're making a 3D adventure game, RPG or game of any other genre — you can still use Naninovel as a drop-in dialogue system. 
+В то время как Naninovel ориентирован на традиционные визуальные новеллы, движок разработан для интеграции с существующими проектами. Если вы создаете 3D-приключенческую игру, ролевую игру или проект любого другого жанра, вы все равно можете использовать Naninovel в качестве диалоговой системы.
 
-Be aware, that in most cases such integration will require C# scripting (or [visual scripting](/ru/guide/bolt.md)) in varying extent. See the [engine architecture overview](/ru/guide/engine-architecture.md) to get a grasp of how Naninovel works and [integration guide](/ru/guide/integration-options.md) for more information on the integration options
+Имейте в виду, что в большинстве случаев такая интеграция потребует скриптинга C# (или [визуального скриптинга](/ru/guide/bolt.md)) в той или иной степени. Смотрите [обзор архитектуры движка](/ru/guide/engine-architecture.md), чтобы получить представление о том, как Naninovel работает, и [руководство по интеграции](/ru/guide/integration-options.md) для получения дополнительной информации о вариантах интеграции.
 
-## Is it possible to embed a mini-game to Naninovel?
+## Можно ли встроить мини-игру в Naninovel?
 
-Sure, you can freely "inject" any custom logic to the default Naninovel flow. In most cases, however, this will require using the engine's C# API (via either writing custom C# scripts or using a [visual scripting](/ru/guide/bolt.md) solution). Check the [engine services guide](/ru/guide/engine-services.md) for the list of available open APIs, which allows interaction with the engine; you may also make use of [state outsourcing](/ru/guide/state-management.md#custom-state), [custom actor implementations](/ru/guide/custom-actor-implementations.md) and [custom commands](/ru/guide/custom-commands.md) in the process.
+Конечно, вы можете свободно "внедрить" любую пользовательскую логику в поток Naninovel по умолчанию. Однако в большинстве случаев для этого потребуется использовать C# API движка (либо с помощью написания пользовательских скриптов C#, либо с помощью решения [визуального скриптинга](/ru/guide/bolt.md)). См. [руководство по сервисам движка](/ru/guide/engine-services.md) для получения списка доступных открытых API, которые позволяют взаимодействовать с движком; вы также можете использовать [аутсорсинг состояния](/ru/guide/state-management.md#custom-state), [пользовательские реализации акторов](/ru/guide/state-management.md#custom-state) и [пользовательские команды](/ru/guide/custom-commands.md) в процессе.
 
-## Does it support a specific language?
+## Поддерживаются ли определенные языки?
 
-Naninovel can work with any language, but to display text in some languages, you'll need a compatible font. [Google's Roboto](https://fonts.google.com/specimen/Roboto) is used by default, which supports all Latin, Cyrillic, and Greek characters in Unicode 7.0. You can change the font used in any of the built-in UIs with [UI customization](/ru/guide/user-interface.md#ui-customization) feature; for the printed text messages, [create custom printers](/ru/guide/text-printers.md#adding-custom-printers) and set the desired font.
+Naninovel может работать с любым языком, но для отображения текста на некоторых языках вам понадобится совместимый шрифт. По умолчанию используется [Roboto от Google](https://fonts.google.com/specimen/Roboto), который поддерживает все латинские, кириллические и греческие символы в Unicode 7.0. Вы можете изменить шрифт, используемый в любой из встроенных интерфейсов с помощью функции [настройки UI](/ru/guide/user-interface.md#ui-customization); для выводимых сообщений, [создайте пользовательский принтер](/ru/guide/text-printers.md#adding-custom-printers) и установите нужный шрифт.
 
-In case you're aiming to support as much languages, as possible, check out [Noto fonts](https://www.google.com/get/noto/).
+Если вы хотите поддерживать как можно больше языков, ознакомьтесь с [Noto Fonts](https://www.google.com/get/noto/).
 
-## Will I get access to the source code when I buy Naninovel?
+## Получу ли я доступ к исходному коду, когда куплю Naninovel?
 
-All the engine source code is available in the distributed package. A couple of third-party libraries (namely, [NCalc](https://github.com/ncalc/ncalc) and [NLayer](https://github.com/naudio/NLayer)) are pre-compiled, but they're open-sourced (MIT license) with sources hosted on GitHub.
+Весь исходный код движка доступен в предоставляемом пакете. Несколько сторонних библиотек (а именно [NCalc](https://github.com/ncalc/ncalc) и [NLayer](https://github.com/naudio/NLayer)) предварительно скомпилированы, но они имеют открытый исходный код (лицензия MIT) с исходными кодами, размещенными на GitHub.
 
-## Why the package doesn't contain any demo scenes?
+## Почему пакет не содержит никаких демо-сцен?
 
-Naninovel is designed to be [scene-independent](/ru/guide/engine-architecture.md#scene-independent) and doesn't use [Unity scenes](https://docs.unity3d.com/Manual/CreatingScenes.html) in any way, hence it's not possible to make any kind of example or demo scenes. The engine is automatically initialized when the game is started (can be switched to manual initialization in the engine configuration window) and scenarios are scripted via text documents called [naninovel scripts](/ru/guide/naninovel-scripts.md).
+Naninovel разработан как [независимый от сцен](/ru/guide/engine-architecture.md#scene-independent) и никак не использует [сцены Unity](https://docs.unity3d.com/Manual/CreatingScenes.html), следовательно, невозможно сделать какие-либо демо-сцены. Движок автоматически инициализируется при запуске игры (можно переключиться на ручную инициализацию в окне конфигурации движка), а сценарии пишутся с помощью текстовых документов под названием [сценарии naninovel](/ru/guide/naninovel-scripts.md).
 
-Please read through the [getting started](/ru/guide/getting-started.md) guide to get a grasp on how to use the engine. You can find additional examples on using various engine features and script commands in the rest of the [guide](/ru/guide/index.md) and [API command reference](/ru/api/index.md). In case you'd like a complete working project, which can be used as a reference, take a look at the [demo project](/ru/guide/getting-started.html#demo-project).
+Пожалуйста, прочтите руководство [по началу работы](/ru/guide/getting-started.md), чтобы получить представление о том, как использовать движок. Дополнительные примеры использования различных функций движка и команд сценариев вы можете найти в остальных разделах [гайда](/ru/guide/index.md) и [перечне команд API](/ru/api/index.md). Если вам нужен полный рабочий проект, который можно использовать в качестве справочного, см. [демо-проект](/ru/guide/getting-started.html#demo-project).
 
-## How to customize the title (main) menu: add background, music, effects, change buttons, etc?
+## Как настроить главное меню: добавить фон, музыку, эффекты, изменить кнопки и т.д.?
 
-For the UI part (changing/adding buttons or panel layout and style) use the [UI customization](/ru/guide/user-interface.md#ui-customization) feature; for everything else set `Title Script` at the scripts configuration menu (`Naninovel -> Configuration -> Scripts`) and use script commands to setup the scene just like when writing a scenario. The title script will be automatically played when entering the title menu.
+По части UI (изменение/добавление кнопок, панели макета или стиля) используйте функцию [настройки UI](/ru/guide/user-interface.md#ui-customization); для всего остального установите `Title Script` в меню конфигурации скриптов (`Naninovel -> Configuration -> Scripts`) и используйте команды скрипта для настройки сцены, как и при написании сценария. Сценарий главного меню будет автоматически воспроизводиться при входе в главное меню.
 
-## How to remove a sky background appearing by default in all the Unity scenes?
+## Как удалить фон неба, появляющийся по умолчанию во всех сценах Unity?
 
-Remove `Skybox Material` in  `Window -> Rendering -> Lighting Settings` editor menu.
+Удалите `Skybox Material` в меню редактора `Window -> Rendering -> Lighting Settings`.
 
-When you remove the skybox, camera's background color will be used instead to fill the screen when no objects are visible. You can change that color (as well as other related settings) by creating a camera prefab and assigning it to `Custom Camera Prefab` property found inside `Naninovel -> Configuration -> Camera` menu. 
+Когда вы удаляете скайбокс, будет использоваться цвет фона камеры, чтобы заполнить экран, когда никакие объекты не видны. Вы можете изменить этот цвет (а также другие связанные с ним настройки), создав префаб камеры и назначив его свойству `Custom Camera Prefab`, находящемуся в меню `Naninovel -> Configuration -> Camera`.
 
-## How to add a line break to the message?
+## Как добавить разрыв строки в текстовое сообщение?
 
-Check out [`[br]` command](/ru/api/#br).
+Используйте [команду `[br]`](/ru/api/#br).
 
-## How to inject a command in the midst of a printed text message?
+## Как внедрить команду посреди выводимого текстового сообщения?
 
-Use [command inlining](/ru/guide/naninovel-scripts.md#command-inlining).
+Используйте [внедрение команд в сообщения](/ru/guide/naninovel-scripts.md#command-inlining).
 
-## How to make actors appear in front of each other (z-sorting)?
+## Как заставить акторов появляться поверх друг друга (распределение по оси Z)?
 
-Use positioning over z-axis, eg:
+Используйте позиции по оси Z, напр.:
 
 ```
-; Make Sora appear at the bottom-center and in front of Felix
+; Вывести персонажа "Sora" по центру и поверх персонажа "Felix"
 @char Sora pos:50,0,-1
 @char Felix pos:,,0
 ```
 
-## Is it possible to show only the avatar of a character inside a text printer, but hide the character itself?
+## Можно ли показать только аватар персонажа внутри текстового принтера, но скрыть самого персонажа?
 
-Set `visible:false` for the character you wish to hide; the avatar will remain visible, eg:
+Установите `visible:false` для персонажа, которого вы хотите скрыть; аватар останется видимым, например:
 
 ```
 @char CharId visible:false
 ```
 
-In case you're constantly changing avatars while the character itself should remain hidden, consider disabling `Auto Show On Modify` in the characters configuration menu; when disabled, you won't have to specify `visible:false` to change any parameters of the character while it's hidden.
+Если вы постоянно меняете аватары, в то время как сам персонаж должен оставаться скрытым, вы можете отключить `Auto Show On Modify` в меню конфигурации персонажей; когда он отключен, вам не нужно будет указывать `visible:false`, чтобы изменить какие-либо параметры персонажа, пока он скрыт.
 
-## I'd like to use backgrounds with a non-standard resolution (eg, 2048x1024), but they look cropped.
+## Я хотел бы использовать фоны с нестандартным разрешением (например, 2048x1024), но они выглядят обрезанными.
 
-Set `Reference Resolution` at the camera configuration menu (`Naninovel -> Configuration -> Camera`) equal to the backgrounds resolution. Also, make sure the background textures are imported with the [correct settings](https://docs.unity3d.com/Manual/class-TextureImporter) (eg, `Max Size` is high enough).
+Установите `Reference Resolution` в меню конфигурации камеры (`Naninovel -> Configuration -> Camera`) равным разрешению фона. Кроме того, убедитесь, что фоновые текстуры импортированы с [правильными настройками](https://docs.unity3d.com/Manual/class-TextureImporter) (например, `Max Size` достаточно высок).
 
-## How to handle different aspect ratios of the target platforms?
+## Как обрабатывать различные соотношения сторон для целевых платформ?
 
-For standalone (PC, Mac, Linux) builds you can select the available aspect ratios in the [player settings](https://docs.unity3d.com/Manual/class-PlayerSettingsStandalone.html#Resolution); for web, consoles and mobiles you can't force a specific aspect ratio and have to adapt for the target devices instead. 
+Для автономных сборок (ПК, Mac, Linux) вы можете выбрать доступные соотношения сторон в разделе [настройки проигрывателя](https://docs.unity3d.com/Manual/class-PlayerSettingsStandalone.html#Resolution); для веб-версий, консолей и мобильных телефонов вы не можете принудительно установить определенное соотношение сторон и вместо этого должны адаптироваться к целевым устройствам.
 
-Given the source textures (background sprites) of a specific resolution, the only options to "adapt" them for a different aspect ratio are: resize (will distort the image), add black bars or crop. The least noticeable option is to crop, obviously. Naninovel will automatically do the cropping, when `Auto Correct Ortho Size` is enabled in the camera configuration menu and display aspect ratio is different from the `Reference Resolution` aspect set in the same menu. The auto correction will ensure, that the user won't see any black bars or distortions, no matter which display or device is used to run the game.
+Учитывая исходные текстуры (фоновые спрайты) определенного разрешения, единственными вариантами "адаптации" их к другому соотношению сторон являются: изменение размера (искажение изображения), добавление черных полос или обрезка. Наименее заметный вариант – это, очевидно, обрезка. Naninovel автоматически выполнит обрезку, если в меню конфигурации камеры включен параметр `Auto Correct Ortho Size` и соотношение сторон дисплея отличается от параметра `Reference Resolution`, установленного в том же меню. Автокоррекция гарантирует, что пользователь не увидит никаких черных полос или искажений, независимо от того, какой дисплей или устройство используется для запуска игры.
 
-To manually handle the aspect ratio differences (eg, if you prefer to add black bars or resize the images instead of cropping), disable `Auto Correct Ortho Size` option in the camera configuration menu. You can then control orthographic size of the camera used by Naninovel with `CameraManager` [engine service](/ru/guide/engine-services.md).
+Чтобы вручную обрабатывать различия в соотношении сторон (например, если вы предпочитаете добавлять черные полосы или изменять размер изображений вместо обрезки), отключите опцию `Auto Correct Ortho Size` в меню конфигурации камеры. Затем вы можете управлять орфографическим размером камеры, используемой Naninovel, с помощью [сервиса движка](/ru/guide/engine-services.md) `CameraManager`.
 
-## How to run a custom C# code from naninovel scripts?
+## Как задействовать пользовательский код C# в сценариях naninovel?
 
-Use [custom commands](/ru/guide/custom-commands.md).
+Используйте [пользовательские команды](/ru/guide/custom-commands.md).

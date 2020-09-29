@@ -1,24 +1,24 @@
-﻿# Custom Configuration
+﻿# Пользовательская конфигурация
 
-Configuration objects are used to initialize and configure services and other engine systems.
+Объекты конфигурации используются для инициализации и настройки служб и других систем движка.
 
-By default, configuration objects are serialized as [scriptable object](https://docs.unity3d.com/Manual/class-ScriptableObject.html) assets and stored at `NaninovelData/Resources/Naninovel/Configuration` project directory. The assets are automatically generated when opening  corresponding configuration menus (`Naninovel -> Configuration`) in the Unity editor for the first time.
+По умолчанию объекты конфигурации сериализуются как ассеты [объектов сценария](https://docs.unity3d.com/Manual/class-ScriptableObject.html) активы и хранятся в каталоге проекта `NaninovelData/Resources/Naninovel/Configuration`. Ассеты автоматически генерируются при первом открытии соответствующих конфигурационных меню (`Naninovel -> Configuration`) в редакторе Unity.
 
-To access configuration objects via C# use `Engine.GetConfiguration<T>()` static method, where `T` is type of the configuration object you wish to access. For example, the following example demonstrates how to access [audio configuration](/ru/guide/configuration.md#audio) object:
+Для доступа к объектам конфигурации через C# используйте статический метод `Engine.GetConfiguration<T>()`, где `T` – тип объекта конфигурации, к которому вы хотите получить доступ. Например, в следующем примере показано, как получить доступ к объекту [конфигурации аудио](/ru/guide/configuration.md#audio) :
 
 ```csharp
 var audioConfig = Engine.GetConfiguration<AudioConfiguration>();
 ```  
 
-Be aware, that `Engine.GetConfiguration` method can only be used when the engine is initialized, as it requires a [configuration provider](/ru/guide/custom-configuration.md#configuration-provider) object, which is specified when initializing the engine to allow custom serving scenarios at runtime. In case you wish to access a configuration asset via default provider, it's possible even when the engine is not initialized with `ProjectConfigurationProvider` class, eg:
+Имейте в виду, что метод `Engine.GetConfiguration` может быть использован только тогда, когда движок инициализирован, так как требует объекта [конфигурации провайдера](/ru/guide/custom-configuration.md#configuration-provider), который указывается при инициализациидвижка, чтобы позволить использовать пользовательскую обработку сценариев во время выполнения. Если вы хотите получить доступ к ассету конфигурации через провайдера по умолчанию, это возможно даже в том случае, если движок не инициализирован классом `ProjectConfigurationProvider`, например:
 
 ```csharp
 var audioConfig = ProjectConfigurationProvider.LoadOrDefault<AudioConfiguration>();
 ``` 
 
-While the configuration properties are meant to be changed via editor menus, it's still possible to modify them at runtime.  Be aware, that the objects returned by default project provider are the actual assets stored in the project; if you modify them, the changes will persist through play mode sessions. This in contrast to the configuration objects provided with `Engine.GetConfiguration` method, which are instances and won't mutate the original assets.
+Хотя свойства конфигурации предназначены для изменения с помощью меню редактора, их все еще можно изменять во время выполнения. Имейте в виду, что объекты, возвращаемые провайдером проекта по умолчанию, являются фактическими ассетами, хранящимися в проекте; если вы измените их, изменения произойдут и в режиме воспроизведения. Это отличает их от конфигурационных объектов, предоставляемых с помощью метода `Engine.GetConfiguration`, который являются копиями и не будут влиять на исходные ассеты.
 
-Below is an example on changing `ReferenceResolution` property of camera configuration object right after the engine is initialized:
+Ниже приведен пример изменения свойства `ReferenceResolution` объекта конфигурации камеры сразу после инициализации движка:
 
 ```csharp
 using Naninovel;
@@ -43,9 +43,9 @@ public static class ModifyConfigAtRuntime
 }
 ```
 
-## Adding Configuration
+## Добавление конфигурации
 
-To add a new custom configuration, create a C# class with a `Serializable` attribute and inherit it from `Configuration`.
+Чтобы добавить новую пользовательскую конфигурацию, создайте наследуемый от `Configuration` класс C# с атрибутом `Serializable`.
 
 ```csharp
 using Naninovel;
@@ -65,29 +65,29 @@ public class MyCustomConfiguration : Configuration
 }
 ```
 
-Corresponding menu will then automatically be added in the project settings, where you can configure properties of you custom configuration asset just like in all the built-in menus.
+Затем соответствующее меню будет автоматически добавлено в настройки проекта, где вы сможете настроить свойства вашего пользовательского ассета конфигурации точно так же, как и во всех встроенных меню.
 
 ![](https://i.gyazo.com/c1163bba83f5d2b6286b100e837bca40.png)
 
-To access your custom configuration via C# use the same API as for the built-in assets:
+Для доступа к пользовательской конфигурации через C# используйте тот же API, что и для встроенных ассетов:
 
 ```csharp
 var myConfig = Engine.GetConfiguration<MyCustomConfiguration>();
 ```
 
 ::: example
-Another example of adding a custom configuration menu to setup an inventory system can be found in the [inventory example project on GitHub](https://github.com/Elringus/NaninovelInventory).
+Другой пример добавления меню пользовательской конфигурации для настройки системы инвентаря можно найти в [примере проекта инвентаря на GitHub](https://github.com/Elringus/NaninovelInventory).
 
-Specifically, the custom configuration is implemented via [InventoryConfiguration.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryConfiguration.cs) runtime script.
+В частности, пользовательская конфигурация реализуется с помощью скрипта воспроизведения [InventoryConfiguration.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryConfiguration.cs).
 :::
 
-## Configuration Provider
+## Провайдер конфигурации
 
-It's possible to change the way configuration objects are served at runtime. For example, instead of static project assets, you can read the configuration from JSON files stored on a remote host. 
+Можно изменить способ обработки объектов конфигурации во время выполнения. Например, вместо статических ресурсов проекта можно прочитать конфигурацию из файлов JSON, хранящихся на удаленном хосте.
 
-To specify a custom configuration serving scenario, create a C# class and implement `IConfigurationProvider` interface. The interface has just one method, that expects a `Type` argument and returns a `Configuration` object. It's up to you on how to construct and populate requested configuration objects, just make sure type of the returned object is equal to the requested one.
+Чтобы указать пользовательский сценарий обработки конфигурации, создайте класс C# и реализуйте интерфейс `IConfigurationProvider`. Интерфейс имеет только один метод, который ожидает аргумент `Type` и возвращает объект `Configuration`. Это зависит от вас, как построить и заполнить запрошенные объекты конфигурации; только убедитесь, что тип возвращаемого объекта равен запрошенному.
 
-Below is an example of a custom provider implementation, that just returns default configuration objects:
+Ниже приведен пример реализации пользовательского провайдера, который просто возвращает объекты конфигурации по умолчанию:
 
 ```csharp
 using Naninovel;
@@ -103,9 +103,9 @@ public class CustomConfigurationProvider : IConfigurationProvider
 }
 ```
 
-Once the custom configuration provider is ready, you have to make the engine use it instead of the built-in one by creating a custom engine initialization script. By default, the engine is initialized via `Naninovel/Runtime/Engine/RuntimeInitializer.cs`; feel free to use it as a reference when creating your own initialization script.
+Как только пользовательский провайдер конфигураций будет готов, вы должны заставить движок использовать его вместо встроенного, создав пользовательский сценарий инициализации движка. По умолчанию движок инициализируется через `Naninovel/Runtime/Engine/RuntimeInitializer.cs`; вы можете использовать его в качестве примера при создании собственного сценария инициализации.
 
-Alternatively, if your goal is just to use a custom configuration provider, but keep the default engine initialization routine, consider using `RuntimeInitializer.InitializeAsync(IConfigurationProvider)` static method, which accepts an optional argument for configuration provider:
+С другой стороны, если ваша цель – просто использовать пользовательский провайдер конфигурации, но сохранить процедуру инициализации движка по умолчанию, вы можете воспользоваться статическим методом `RuntimeInitializer.InitializeAsync(IConfigurationProvider)`, который принимает необязательный аргумент для провайдера конфигурации:
 
 ```csharp
 using Naninovel;
@@ -123,4 +123,4 @@ public class CustomInitializer
 }
 ```
 
-No matter which way you choose to initialize the engine, don't forget to disable `Initialize On Application Load` option in the engine configuration menu to disable default initialization procedure.
+Независимо от того, какой способ вы выберете для инициализации движка, не забудьте отключить опцию `Initialize On Application Load` в меню конфигурации движка, чтобы отключить процедуру инициализации по умолчанию.

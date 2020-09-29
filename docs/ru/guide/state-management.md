@@ -1,65 +1,66 @@
-﻿# State Management
+﻿# Управление состоянием
 
-All the persistent data generated and used by Naninovel at runtime is divided intro three categories:
+Все постоянные данные, генерируемые и используемые Naninovel во время выполнения, делятся на три категории:
 
-- Game state
-- Global state
-- User settings
+- Состояние игры
+- Глобальное состояние
+- Пользовательская настройка
 
-The data is serialized to JSON format and stored as either binary `.nson` (default) or text `.json` (can be switched in state configuration menu) save slot files under a platform-specific [persistent data directory](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html). Under WebGL platform, due to LFS security policy in modern web-browsers, the serialized data is stored over the [Indexed DB](https://en.wikipedia.org/wiki/Indexed_Database_API) instead.
+Данные сериализуются в формат JSON и хранятся как двоичные файлы `.nson` (по умолчанию) или text `.json` (можно переключить в меню конфигурации состояния) слотов сохранения в специфичном для платформы [постоянном каталоге данных](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html). В рамках же платформы WebGL, благодаря политике безопасности LFS в современных веб-браузерах, сериализованные данные хранятся поверх [индексированной DB](https://en.wikipedia.org/wiki/Indexed_Database_API).
 
-Instead of local files, it's possible to store state slots in key-value [PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html) database by selecting corresponding serialization handlers in the configuration menu.
+Вместо локальных файлов можно хранить слоты состояний в базе данных ключ-значение [PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html), выбрав соответствующие обработчики сериализации в меню конфигурации.
 
-Path to the save folder, maximum allowed amount of the save slots and file names can be modified via the state configuration menu.
+Путь к папке сохранения, максимально допустимое количество слотов сохранения и имена файлов могут быть изменены с помощью меню конфигурации состояния.
 
 ![](https://i.gyazo.com/f9a2462d19eb228224f1dcd5302d6b1c.png)
 
-## Game State
+## Состояние игры
 
-Game state is the data that varies per game save slot, describing state of the engine services and other objects in relation to the player progress with the game. The examples of the game state data are: currently played naninovel script and index of the played script command withing the script, currently visible characters and their positions on scene, currently played background music track name and its volume and so on.
+Состояние игры – это данные, которые варьируются в зависимости от игрового слота сохранения, описывая состояние сервисов движка и других объектов по отношению к прогрессу игрока в игре. Примерами данных состояния игры являются: текущий воспроизводимый сценарий Naninovel и индекс команды сценария в пределах сценария, текущие видимые персонажи и их позиции в сцене,  название текущей воспроизведимой музыки, ее громкость и так далее.
 
-To save or load current game state to specific save slot, use `IStateManager` engine service as follows:
+Чтобы сохранить или загрузить текущее состояние игры в определенный слот сохранения, используйте сервис движка `IStateManager` следующим образом:
 
 ```csharp
-// Get instance of a state manager.
+// Получить экземпляр менеджера состояний.
 var stateManager = Engine.GetService<IStateManager>();
 
-// Save current game session to `mySaveSlot` slot.
+// Сохранить текущую игровую сессию в слоте `mySaveSlot`.
 await stateManager.SaveGameAsync("mySaveSlot");
-// Load game session from `mySaveSlot` slot.
+// Загрузить игровую сессию из слота `mySaveSlot`.
 await stateManager.LoadGameAsync("mySaveSlot");
 
-// You can also use quick save-load methods without specifying the slot names.
+// Вы также можете использовать методы быстрого сохранения и загрузки без указания имен слотов.
 await stateManager.QuickSaveAsync();
 await stateManager.QuickLoadAsync();
 ```
-Notice, that the save-load API is [asynchronous](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/). In case you're invoking the API from synchronous methods, use `IStateManager.OnGameSaveFinished` and `IStateManager.OnGameLoadFinished` for subscribing to the completion events.
 
-## Global State
+Обратите внимание, что API сохранения-загрузки является [асинхронным](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/). Если вы вызываете API из синхронных методов, используйте `IStateManager.OnGameSaveFinished` и `IStateManager.OnGameLoadFinished` для подписки на события завершения.
 
-Some data, however, should be persistent across the game sessions. For example, "Skip Read Text" feature requires the engine to store data describing which naninovel script commands were executed at least once (meaning the player has already "seen" them). The data like this is stored in a single "global" save slot and doesn't depend on the game save-load operations.
+## Глобальное состояние
 
-The global state is loaded automatically on engine initialization. You can save the global state at any time using `IStateManager` as follows:
+Некоторые данные, однако, должны быть постоянными во всех игровых сессиях. Например, функция "Пропускать прочитанный текст" ("Skip Read Text") требует, чтобы движок хранил данные, описывающие, какие команды сценария Naninovel были выполнены хотя бы один раз (то есть игрок уже "видел" их). Такие данные хранятся в одном "глобальном" слоте сохранения и не зависят от операций сохранения и загрузки игры.
+
+Глобальное состояние загружается автоматически при инициализации движка. Вы можете сохранить глобальное состояние в любое время с помощью `IStateManager` следующим образом:
 
 ```csharp
 await stateManager.SaveGlobalStateAsync();
 ```
 
-## User Settings
+## Пользовательские настройки
 
-Similar to the global state, user settings data (display resolution, language, sound volume, etc) is stored in a single save slot, but treated a bit differently by default: the generated save file is placed outside of the "Saves" folder and formatted in a readable fashion, so that user can modify the values if he wishes. 
+Как и глобальное состояние, данные пользовательских настроек (разрешение дисплея, язык, громкость звука и т.д.) хранятся в одном слоте сохранения, но по умолчанию обрабатываются немного по-другому: сгенерированный файл сохранения помещается вне папки "Saves" и форматируется читаемым образом, так что пользователь может изменять значения, если пожелает.
 
-The user settings are loaded automatically on engine initialization. You can save the settings at any time using `IStateManager` as follows:
+Пользовательские настройки загружаются автоматически при инициализации движка. Вы можете сохранить настройки в любое время с помощью `IStateManager` следующим образом:
 
 ```csharp
 await stateManager.SaveSettingsAsync();
 ```
 
-## Custom State
+## Пользовательское состояние
 
-It's possible to "outsource" state handling of your custom objects to a `IStateManager`, so that they will serialize to the save slots with all the engine's data when player saves the game and deserialize back when the game is loaded. 
+Можно "передать на аутсорсинг" обработку состояния ваших пользовательских объектов в `IStateManager`, чтобы они сериализовались в слоты сохранения со всеми данными движка, когда игрок сохраняет игру, и десериализовались обратно, когда игра загружается.
 
-The following example demonstrates how to subscribe a generic `MonoBehaviour` to the save and load operations.
+В следующем примере показано, как подписаться на универсальное `MonoBehaviour` для операций сохранения и загрузки.
 
 ```csharp
 using UniRx.Async;
@@ -118,20 +119,21 @@ public class MyCustomBehaviour : MonoBehaviour
 ```
 
 ::: example
-A more advanced example of using custom state with a list of custom structs to save-load state of an inventory UI can be found in the [inventory example project on GitHub](https://github.com/Elringus/NaninovelInventory).
+Более продвинутый пример использования пользовательского состояния со списком пользовательских структур для сохранения-загрузки состояния UI инвентаря можно найти в [примере проекта инвентаря на GitHub](https://github.com/Elringus/NaninovelInventory).
 
-Specifically, de-/serialization of the custom state is implemented in [InventoryUI.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L238) runtime script; custom state for UI slots is implemented via [InventorySlotState.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/InventorySlotState.cs).
+В частности, де-/сериализация пользовательского состояния реализуется в сценарии выполнения [InventoryUI.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L238); пользовательское состояние для слотов UI реализуется через [InventorySlotState.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/InventorySlotState.cs).
+
 :::
 
-## Custom Serialization Handlers
+## Обработчики пользовательской сериализации
 
-By default, the engine state (game saves, global state, settings) is serialized to local file system via cross-platform IO API. However, in some cases platform-specific implementations are not available out of the box. Eg, Nintendo decided to restrict access to the Switch native libraries, making it impossible to support the platform in third-party solutions. For such cases, Naninovel allows to provide custom serialization handlers.
+По умолчанию состояние движка (сохранение игры, глобальное состояние, настройки) сериализуется в локальную файловую систему через кросс-платформенный API IO. Однако в некоторых случаях специфичные для платформы реализации недоступны из коробки. Например, Nintendo решила ограничить доступ к собственным библиотекам Switch, сделав невозможной поддержку платформы в сторонних решениях. Для таких случаев Naninovel позволяет предоставлять пользовательские обработчики сериализации.
 
-To add a custom handler, implement `ISaveSlotManager<GameStateMap>`, `ISaveSlotManager<GlobalStateMap>`, `ISaveSlotManager<SettingsStateMap>` interfaces for the game save slots, global state and settings respectively (each should have its own implementing class).
+Чтобы добавить пользовательский обработчик, реализуйте интерфейсы `ISaveSlotManager<GameStateMap>`, `ISaveSlotManager<GlobalStateMap>`, `ISaveSlotManager<SettingsStateMap>` для игровых слотов сохранения, глобального состояния и параметров соответственно (каждая из них должна иметь свой собственный реализующий класс).
 
-Implementation should have a compatible public constructor: `public CustomSlotManager (StateConfiguration config, string savesFolderPath)`, where `config` is an instance of state configuration object and `savesFolderPath` is the path to saves folder (you're free to ignore that path and use one you see fit).
+Реализация должна иметь совместимый публичный конструктор: `public CustomSlotManager (StateConfiguration config, string savesFolderPath)`, где `config` – это экземпляр конфигурации состояния объекта, а `savesFolderPath` – это путь к папке сохранений (вы вольны игнорировать этот путь и использовать тот, который вы считаете нужным).
 
-Below is an example of a dummy settings serialization handler, which is doing nothing but logs when any of its methods are invoked.
+Ниже приведен пример фиктивного обработчика сериализации настроек, который ничего не делает, но создает записи в логах, когда вызывается любой из его методов.
 
 ```csharp
 using Naninovel;
@@ -192,10 +194,10 @@ public class CustomSettingsSlotManager : ISaveSlotManager<SettingsStateMap>
 ```
 
 ::: note
-You can pick any name for your custom serialization handler, `CustomSettingsSlotManager` is just an example.
+Вы можете выбрать любое имя для вашего пользовательского обработчика сериализации, `CustomSettingsSlotManager` – это всего лишь пример.
 :::
 
-When a custom handler is implemented, it'll appear in the state configuration menu, where you can set it instead of the built-in one.
+Когда пользовательский обработчик будет реализован, он появится в меню конфигурации состояния, где вы можете установить его вместо встроенного.
 
 ![](https://i.gyazo.com/213bc2bb8c7cc0e62ae98a579579f313.png)
 

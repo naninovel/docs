@@ -1,17 +1,17 @@
-# Save-Load System
+# Система сохранений-загрузок
 
-Game can be saved and loaded at any time by using save and load menus. User can select a save slot to use and delete any previously used slot.
+Игра может быть сохранена и загружена в любой момент с помощью меню сохранений и загрузок. Пользователь может выбрать слот сохранения для использования и удалить любой ранее используемый слот.
 
 [!a7109097f6abbeea16d6fe773bfffb3f]
 
-Save slots are serialized to either `.json` or binary files (depending on the configuration). File names, slot limit and directory name can be configured using `Naninovel -> Configuration -> State` context menu; for available options see [configuration guide](/ru/guide/configuration.md#state).
+Слоты сохранения сериализуются в `.json` или двоичные файлы (в зависимости от конфигурации). Имена файлов, лимит слотов и имя каталога можно настроить с помощью контекстного меню `Naninovel -> Configuration -> State`; доступные параметры см. в [руководстве по конфигурации](/ru/guide/configuration.md#state).
 
-![State Configuration](https://i.gyazo.com/f9a2462d19eb228224f1dcd5302d6b1c.png)
+![Конфигурация состояния](https://i.gyazo.com/f9a2462d19eb228224f1dcd5302d6b1c.png)
 
-In WebGL save slots are serialized using cross-browser [IndexedDB API](https://en.wikipedia.org/wiki/Indexed_Database_API).
+В WebGL слоты сохранения сериализуются с помощью кросс-браузера [IndexedDB API](https://en.wikipedia.org/wiki/Indexed_Database_API).
 
-Menu UIs can be customized or completely replaced using [UI Customization](/ru/guide/user-interface.md#ui-customization) feature.
+Меню интерфейса можно настраивать или полностью заменить с помощью функции [кастомизации UI](/ru/guide/user-interface.md#ui-customization).
 
-Naninovel provides two serialization handlers out of the box: `System.IO` and `UnityEngine.PlayerPrefs`. Former will store the slots as separate files at [persistentDataPath](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html) and the second one will use Unity's [PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html) API to store the slots in the key-value database. You can select the handler in the state configuration menu. IO handlers are selected by default; consider switching to PlayerPrefs or adding a [custom handler](/ru/guide/state-management.md#custom-serialization-handlers) in case you have issues reading/writing save data on specific platforms.
+Naninovel предоставляет два обработчика сериализации из коробки: `System.IO` и `UnityEngine.PlayerPrefs`. Первый будет хранить слоты в виде отдельных файлов в [persistentDataPath](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html), а второй будет использовать Unity [PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html) API для хранения слотов в базе данных «ключ-значение». Вы можете выбрать обработчик в меню конфигурации состояния. Обработчики ввода-вывода выбраны по умолчанию; вы можете переключиться на PlayerPrefs или добавить [пользовательский обработчик](/ru/guide/state-management.md#custom-serialization-handlers) в случае возникновения проблем с чтением/записью сохраненных данных на определенных платформах.
 
-For more information on how the state is managed and ways to customize it, see [state management guide](/ru/guide/state-management.md).
+Для получения дополнительной информации о том, как управлять состоянием и настраивать его, см. [руководство управления состоянием](/ru/guide/state-management.md).

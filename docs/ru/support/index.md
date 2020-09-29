@@ -1,77 +1,78 @@
-# Support
+# Поддержка
 
-If you have issues with the engine, first make sure to read the [guide](/ru/guide/) and [command reference](/ru/api/) topics related to the feature you're having issues with; also check the [FAQ](/ru/faq/) for some frequently asked questions.
+Если у вас есть проблемы с движком, сначала обязательно прочтите разделы [руководства](/ru/guide/) и [справочник команд](/api/), связанные с функцией, с которой у вас возникли проблемы; также проверьте [FAQ](/ru/faq/).
 
-In case you're sure the engine is not working as intended, check if you're running the latest available version. You can update the main package inside the Unity editor using [Asset Store window](https://docs.unity3d.com/Manual/AssetStore.html). When using any of the engine extensions, download and import the latest packages:
+Если вы уверены, что движок не работает должным образом, проверьте, установлена ли у вас последняя доступная версия. Вы можете обновить основной пакет в редакторе Unity, используя [Asset Store](https://docs.unity3d.com/Manual/AssetStore.html). При использовании любого из расширений движка загрузите и импортируйте последние пакеты:
 
 - [NaninovelLive2D](https://github.com/Elringus/NaninovelLive2D/raw/master/NaninovelLive2D.unitypackage)
 - [NaninovelPlayMaker](https://github.com/Elringus/NaninovelPlayMaker/raw/master/NaninovelPlayMaker.unitypackage)
 - [NaninovelAdventureCreator](https://github.com/Elringus/NaninovelAdventureCreator/raw/master/NaninovelAdventureCreator.unitypackage)
 
-If updating didn't help, try to re-install the package by deleting `Naninovel` folder from the project and re-importing it from the Asset Store. Make sure to follow upgrade instructions specified on the [release page](https://github.com/Elringus/NaninovelWeb/releases) when updating the engine.
+Если обновление не помогло, попробуйте переустановить пакет, удалив папку Naninovel из проекта и повторно импортировав ее из Asset Store. При обновлении движка обязательно следуйте инструкциям по обновлению, указанным на [странице релиза](https://github.com/Elringus/NaninovelWeb/releases).
 
-Always **remember to backup your project** (or use a [VCS](https://en.wikipedia.org/wiki/Version_control)) before updating or deleting a package. ~~Haruhi~~ God knows what could happen in the process. `ʕノ•ᴥ•ʔノ ︵ ┻━┻`
+Всегда **не забывайте делать резервную копию вашего проекта** (или используйте [VCS] (https://en.wikipedia.org/wiki/Version_control)) перед обновлением или удалением пакета. ~~Харухи~~ Бог знает, что может произойти в процессе. `ʕノ•ᴥ•ʔノ︵┻━┻`
 
-## Issue Tracker
+## Трекер проблем
 
-In case the above steps didn't help to resolve the issue, check the [issue tracker](https://github.com/Elringus/NaninovelWeb/issues?q=is%3Aissue+label%3Abug) — chances are the problem is already being worked on.
+Если описанные выше шаги не помогли решить проблему, проверьте [средство отслеживания проблем](https://github.com/Elringus/NaninovelWeb/issues?q=is%3Aissue+label%3Abug) - скорее всего, проблема уже взята в работу.
 
-## Community Forum
+## Форум
 
-Consider joining dedicated [Naninovel forum](https://forum.naninovel.com), where users help each other solve development issues, share best practices and showcase their projects. The issue you're facing could potentially be already solved by other users there; and you can always ask for help, if it's not.
+Рассмотрите возможность присоединения к специальному [форуму Naninovel](https://forum.naninovel.com), где пользователи помогают друг другу решать проблемы разработки, делятся передовым опытом и демонстрируют свои проекты. Проблема, с которой вы столкнулись, потенциально может быть уже решена другими пользователями; и вы всегда можете попросить о помощи, если это не так.
 
 ## Unity Support
 
-While we have several video tutorials and example projects showing how to use Unity to achieve some Naninovel-specific goals, please be aware that we are not able to provide any additional guidance or direct support for Unity's built-in tools.
+Несмотря на то, что у нас есть несколько видеоуроков и примеров проектов, показывающих, как использовать Unity для достижения некоторых специфических целей Naninovel, имейте в виду, что мы не можем предоставить никаких дополнительных рекомендаций или прямой поддержки для встроенных инструментов Unity.
 
-Unity is a standalone product with an enormous set of features; it has its own documentation, support services and vast community, which produced numerous learning materials over the engine's more than a decade lifespan. Usually, you'll be able to easily find a video tutorial, guide or forum thread for any question or issue you may have; and in the rare cases it's not available, you can always ask on the [Unity forum](https://forum.unity.com), [Q&A service](https://answers.unity.com/questions/ask.html) or use one of the official [support options](https://unity.com/support-services).
+Unity - это отдельный продукт с огромным набором функций; у него есть собственная документация, служба поддержки и обширное сообщество, которое выпустило множество учебных материалов за более чем десятилетний срок работы движка. Вы можете легко найти видеоурок, руководство или ветку форума по любому вопросу или проблеме, которые могут у вас возникнуть; а в редких случаях, когда он недоступен, вы всегда можете задать вопрос на [форуме Unity](https://forum.unity.com), [служба вопросов и ответов](https://answers.unity.com/questions/ask.html) или воспользуйтесь одним из официальных [вариантов поддержки](https://unity.com/support-services).
 
 ## Developer Support
 
 ::: warn
-Developer support is limited to Naninovel-specific topics only and can be provided in either English or Russian languages. For anything Unity-related (build UIs with uGUI, setup addressable system, write C# scripts, etc) see the [information above](/ru/support/#unity-support).
+Поддержка разработчика ограничена только темами, относящимися к Naninovel, и может быть предоставлена на английском или русском языке. По поводу всего, что связано с Unity (создание пользовательских интерфейсов с uGUI, настройка адресной системы, написание сценариев C# и т.д.), См. [Информацию выше](/ru/support/#unity-support).
 :::
 
-To receive direct developer support join Naninovel Discord server ([discord.gg/BfkNqem](https://discord.gg/BfkNqem)) and register your copy of the asset using the following registration form: [naninovel.com/register](https://naninovel.com/register/).
 
-After the registration you'll automatically get a "Verified User" role on the server and access to the `#support` channel. You can also message `@Elringus#6359` to discuss the issue in private.
+Чтобы получить прямую поддержку разработчика, присоединитесь к серверу Discord Naninovel ([discord.gg/BfkNqem](https://discord.gg/BfkNqem)) и зарегистрируйте свою копию актива, используя следующую регистрационную форму: [naninovel.com/register](https://naninovel.com/register/).
+
+После регистрации вы автоматически получаете роль «Проверенный пользователь» на сервере и доступ к каналу `#support`. Вы также можете написать `@Elringus#6359`, чтобы обсудить проблему лично.
 
 <iframe src="https://discordapp.com/widget?id=545676116871086080&theme=dark" width="100%" height="500" allowtransparency="true" frameborder="0"></iframe>
 
-Be aware, that the **developer response may be delayed by up to 24 hours** (in some cases more), so make sure to:
- - Provide a clear and concise description of the issue and step-by-step instructions on how to reproduce it.
- - Specify Naninovel and Unity versions you're using, target platform (Android, iOS, WebGL, etc) and operating system you're running the editor under (Windows, Mac or Linux).
- - Attach a [log file](https://docs.unity3d.com/Manual/LogFiles.html) containing error or warning messages related to the issue.
+Имейте в виду, что **ответ разработчика может быть отложен на срок до 24 часов** (в некоторых случаях и больше), поэтому обязательно:
+  - Дайте четкое и краткое описание проблемы и пошаговые инструкции о том, как ее воспроизвести.
+  - Укажите версии Naninovel и Unity, которые вы используете, целевую платформу (Android, iOS, WebGL и т. Д.) и операционную систему, в которой работает редактор (Windows, Mac или Linux).
+  - Прикрепите [лог файл](https://docs.unity3d.com/Manual/LogFiles.html), содержащий сообщения об ошибках или предупреждения, связанные с проблемой.
  
-Attaching a [reproduction project](/ru/support/#reproduction-project) greatly increases the chances to identify and fix the issue as soon as possible.
+Прикрепление [репро проекта](/ru/support/#reproduction-project) значительно увеличивает шансы выявить и исправить проблему как можно скорее.
 
 ## Reproduction Project
 
-When reporting an issue, we may ask you to share a "repro" project. Reproduction project is a clean new Unity project containing only the **bare minimum** modifications and additional assets required to reproduce the issue. 
+Сообщая о проблеме, мы можем попросить вас поделиться «репро» проектом. Проект воспроизведения - это чистый новый проект Unity, содержащий только **самый минимум** модификаций и дополнительных ресурсов, необходимых для воспроизведения проблемы.
 
-Follow the steps below to create and share a reproduction project:
+Выполните следующие действия, чтобы создать проект воспроизведения и поделиться им:
 
-1. Create a new Unity project. Make sure you're using Unity version supported by the [current Naninovel release](https://github.com/Elringus/NaninovelWeb/releases).
-2. Import the latest available Naninovel version from the Asset Store (in case a pre-release version is available, use it instead).
-3. Add the required assets and modify the project to reproduce the issue. Please **keep naninovel scripts as short as possible** and only add assets that are **essential to replicate the issue**.
-4. Create a text file (.txt) inside the project directory and specify step-by-step instructions (in English) on how to reproduce the issue, eg:
-
-```
-1. Open scene "SampleScene".
-2. Enter play mode in the editor.
-3. Start a new game.
-4. Play through to the line number 15.
-5. Save and load the game.
-```
-
-Then add what you've expected to happen and what is actually happening, eg:
+1. Создайте новый проект Unity. Убедитесь, что вы используете версию Unity, поддерживаемую [текущим релизом Naninovel](https://github.com/Elringus/NaninovelWeb/releases).
+2. Импортируйте последнюю доступную версию Naninovel из Asset Store (если доступна предварительная версия, используйте ее вместо нее).
+3. Добавьте необходимые ресурсы и измените проект, чтобы воспроизвести проблему. Пожалуйста, **делайте скрипты нановеллы как можно короче** и добавляйте только те ресурсы, которые **необходимы для воспроизведения проблемы**.
+4. Создайте текстовый файл (.txt) в каталоге проекта и укажите пошаговые инструкции (на английском языке) о том, как воспроизвести проблему, например:
 
 ```
-Expected: Music "Ambient" should start playing.
-Actual: No music is playing.
+1. Откройте сцену «SampleScene».
+2. Войдите в режим воспроизведения в редакторе.
+3. Начните новую игру.
+4. Играйте до строки номер 15.
+5. Сохраните и загрузите игру.
 ```
 
-5. Close Unity editor and remove all the files and folders in the project directory, except the previously created instructions text file and `Assets`, `Packages` and `ProjectSettings` folders. Most importantly, **make sure you've deleted `Library` folder**, as it contains a lot of auto-generated files, which significantly increase project size.
-6. Archive (zip) the project folder and either upload it to Google Drive or attach to a private message in Discord.
+Затем добавьте то, что вы ожидали, и что происходит на самом деле, например:
 
-Remember to share reproduction projects only via private messages; **never share the projects via public channels** to prevent leaking personal data and copyrighted assets.
+```
+Ожидается: должна заиграть музыка "Эмбиент".
+Фактически: Музыка не воспроизводится.
+```
+
+5. Закройте редактор Unity и удалите все файлы и папки в каталоге проекта, за исключением ранее созданного текстового файла инструкций и папок Assets, Packages и ProjectSettings. Самое главное, **убедитесь, что вы удалили папку `Library`**, так как она содержит много автоматически сгенерированных файлов, что значительно увеличивает размер проекта.
+6. Заархивируйте (zip) папку проекта и либо загрузите ее на Google Диск, либо прикрепите к личному сообщению в Discord.
+
+Не забывайте делиться проектами воспроизведения только через личные сообщения; **никогда не делитесь проектами через общедоступные каналы**, чтобы предотвратить утечку личных данных и активов, защищенных авторским правом.

@@ -1,44 +1,43 @@
-﻿# Development Console
+﻿# Консоль разработчика
 
-Development console is used to execute static C# methods via in-game UI.
+Консоль разработчика используется для выполнения статических методов C# с помощью внутриигрового UI.
 
-To show the console UI while the game is running, make sure development console is enabled in the engine configuration and press `~` (tilde) key. In case you have issues using the default key (eg, when under Unity editor on Mac OS), you can change it via `Toggle Console Key` property.
+Чтобы отобразить UI консоли во время работы игры, убедитесь, что консоль разработчика включена в конфигурации движка, и нажмите клавишу `~` (тильда). Если у вас возникли проблемы с использованием клавиши по умолчанию (например, в редакторе Unity на Mac OS), вы можете изменить его с помощью свойства `Toggle Console Key`.
 
-![Engine Configuration](https://i.gyazo.com/bc56a837c03d198e2d8141bdebc2e696.png)
+![Конфигурация движка](https://i.gyazo.com/bc56a837c03d198e2d8141bdebc2e696.png)
 
-
-To expose a C# method to the console, add a `ConsoleCommand` attribute to a static method. The attribute has an optional string argument, allowing to set a shortcut:
+Чтобы предоставить методу C# консоли, добавьте атрибут `ConsoleCommand` к статическому методу. Атрибут имеет необязательный строковый аргумент, позволяющий задать короткую ссылку:
 
 ```csharp
 [ConsoleCommand("debug")]
 public static void ToggleDebugInfo () => UI.DebugInfoGUI.Toggle();
 ```
 
-In the console, type either full method name or the shortcut (if applied) and press `Enter` key to execute the method.
+В консоли введите полное имя метода или короткую ссылку (если она применяется) и нажмите клавишу `Enter` для выполнения метода.
 
 [!bd41a9a8fff91eb575b235a6b641dcce]
 
-Following commands are currently available:
+Следующие команды доступны на данный момент:
 
-Command | Description
+Команда | Описание
 --- | ---
-nav | Toggles naninovel script navigator UI.
-debug | Toggles [naninovel script debug](/ru/guide/naninovel-scripts.md#scripts-debug) window.
-var | Toggles [custom variable editor](/ru/guide/custom-variables.md#variables-debug) window.
-purge | When [Google Drive provider](/ru/guide/resource-providers.md#google-drive) is used, purges the downloaded resources cache.
-play | Starts executing currently loaded naninovel script.
-stop | Halts execution of the currently loaded naninovel script.
-rewind (int) | Rewinds currently loaded naninovel script to the provided line index. The line should be either a command or a generic text. When rewinding back, the line should exist in the rollback stack.
-reload | Performs [hot reload](/ru/guide/naninovel-scripts.md#hot-reload) of the currently played naninovel script. Works only in Unity editor.
+nav | Переключает UI навигатора сценариев Naninovel.
+debug | Переключает окно [отладки сценариев Naninovel](/ru/guide/naninovel-scripts.md#scripts-debug).
+var | Переключает окно[редактора пользовательских переменных](/ru/guide/custom-variables.md#variables-debug).
+purge | Сбрасывает кэш загруженных ресурсов, когда используется провайдер [Google Drive](/ru/guide/resource-providers.md#google-drive).
+play | Начинает исполнять загруженный в данный момент сценарий Naninovel.
+stop | Останавливает исполнение загруженного в данный момент сценарая Naninovel.
+rewind (int) | Откатывает загруженный в данный момент сценарий Naninovel к строке с заданным индексом. Строка должна быть либо командой, либо универсальным текстом. При перемотке назад строка должна существовать в стеке отката.
+reload | Исполняет [горячую перезагрузку](/ru/guide/naninovel-scripts.md#hot-reload) проигрываемого в данный момент сценарая Naninovel. Работает только в редакторе Unity.
 
-## Executing Commands
+## Исполнение команд
 
-You can invoke the script commands via development console. Input the command string just like you do in naninovel scripts and it will be immediately executed. Among other cases, this could be useful to debug custom state variables. Eg, you can print the current value of any custom variable with:
+Вы можете вызвать команды сценария через консоль разработчика. Введите командную строку точно так же, как вы это делаете в сценариях Naninovel, и она будет немедленно выполнена. Помимо прочего, это может быть полезно для отладки пользовательских переменных состояния. Например, вы можете вывести текущее значение любой пользовательской переменной:
 
 ```
 @print {VariableName}
 ```
 
-— will print the value of the `VariableName` with the default printer.
+— выведет значение переменной `VariableName` в стандартном принтере.
 
 [!!wcgTGro0_SE]

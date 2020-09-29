@@ -1,123 +1,123 @@
-# Text Printers
+# Текстовые принтеры
 
-Text printers are actors used to present text messages, that can be revealed (printed) over time.
+Текстовые принтеры – это акторы, используемые для представления текстовых сообщений, выводимых (печатаемых) в течение некоторого времени.
 
-Printers' behavior can be configured using `Naninovel -> Configuration -> Printers` context menu; for available options see [configuration guide](/ru/guide/configuration.md#printers). The printers' resources manager can be accessed using `Naninovel -> Resources -> Printers` context menu.
+Поведение принтеров может настраиваться через контекстное меню `Naninovel -> Configuration -> Printers`; для существующих вариантов см. [руководство по конфигурации](/ru/guide/configuration.md#printers). Менеджер ресурсов принтеровдоступен в контекстном меню `Naninovel -> Resources -> Printers`.
 
-In naninovel scripts, text printers are mostly controlled with [@print] and [@printer] commands:
+В сценариях Naninovel текстовые принтеры, как правило, контролируется с помощью команд [@print] и [@printer]:
 
 ```
-; Will make the `Dialogue` printer default
+; Сделает принтер `Dialogue` принтером по умолчанию
 @printer Dialogue
 
-; Will make the `Fullscreen` printer default
+; Сделает принтер `Fullscreen` принтером по умолчанию
 @printer Fullscreen
 
-; Will print the phrase using a default printer
+; Выведет фразу, используя принтер по умолчанию
 @print text:"Lorem ipsum dolor sit amet."
 
-; The same as above, but using generic text statement
+; То же, что и выше, но используя универсальное текстовое выражение
 Lorem ipsum dolor sit amet.
 
-; The same as above, but associated with character "Felix"
+; То же, что и выше, но ассоциированное с персонажем "Felix"
 Felix: Lorem ipsum dolor sit amet.
 ```
 
-Be aware, that even though the built-in printers are implemented as UIs, they're still actors and all the actor-related visibility changes (show/hide animations) use durations set either in the corresponding commands or actor configuration: eg, `time` parameter of [@showPrinter] command controls show animation duration and when it's not specified, `Change Visibility Duration` printer actor configuration property is used as a default duration; `Fade Time` property found on the root of the printer UI prefab is ignored in this case.
+Имейте в виду, что даже несмотря на то, что встроенные принтеры реализованы как UI, они все еще являются акторами, и все связанные с акторами изменения видимости (анимации "показать/скрыть") используют длительности, заданные либо в соответствующих командах, либо в конфигурации актора: например, параметр `time` команды [@showPrinter] управляет длительностью анимации, а когда он не указан, свойство `Change Visibility Duration` конфигурации актора принтера используется в качестве длительности по умолчанию; свойство `Fade Time` из корня префаба UI принтера в этом случае игнорируется.
 
-## Auto-Advance Text
+## Авточтение текста
 
-Auto-advance feature allows to automatically continue script execution when handling [`i`](/ru/api/#i) commands. 
+Функция авточтения текста позволяет автоматически продолжать выполнение сценария при обработке команд [`i`](/ru/api/#i).
 
 [!e6f58f861fa18bd62591db9794e7641b]
 
-Wait for user input or "i" commands halt script execution until user activates a `Continue` input and are typically used after printing-out a text message. When in auto-advance mode, "i" commands will instead halt script execution for a period of time and then finish, allowing execution of the following command. Halt period depends on the length of the last printed text message and further modified by "Print speed" game setting.
+Ожидание ввода пользователем или команды "i" останавливает выполнение сценария до тех пор, пока пользователь не активирует ввод `Continue`, и обычно используются после выведения текстового сообщения. Когда вы находитесь в режиме авточтения текста, команды "i" вместо этого останавливают выполнение сценария на некоторое время, а затем заканчивают, позволяя выполнить следующую команду. Период остановки зависит от длины последнего напечатанного текстового сообщения и дополнительно изменяется настройкой игры "скорость печати" ("Print speed").
 
-Auto-advance mode can be toggled using `AutoPlay` input (`A` key by default for standalone input module) or "AUTO" button in the control panel.
+Режим авточтения текста можно переключить с помощью ввода `AutoPlay` (клавиша `A` по умолчанию для автономного модуля ввода) или кнопки "AUTO" на панели управления.
 
-## Text Skipping
+## Пропуск текста
 
-Text skipping feature allows to fast-forward execution of the [@print] commands, effectively skipping text revealing (printing) process. 
+Функция пропуска текста позволяет ускорить выполнение команд [@print], эффективно пропуская процесс выведения (печати) текста.
 
 [!9605a5c8cd1911217350d77712f47e7d]
 
-Skip mode can be toggled using `Skip` input (`Ctrl` key by default for standalone input module) or "SKIP" button in the control panel.
+Режим пропуска можно переключать с помощью ввода `Skip` (клавиша `Ctrl` по умолчанию для автономного модуля ввода) или кнопки "SKIP" на панели управления.
 
-By default, skip mode is only available while executing commands that was already executed in the past; e.g. if the user hadn't already read the text that is going to be printed, skip mode won't be available. This can be changed in the game settings using "Skip mode" setting.
+По умолчанию режим пропуска доступен только при выполнении команд, которые уже были выполнены в прошлом; например, если пользователь еще не прочитал текст, который будет напечатан, режим пропуска будет недоступен. Это можно изменить в настройках игры, используя настройку "Режим пропуска" ("Skip mode").
 
-## Printer Backlog
+## Бэклог принтера
 
-Printer backlog is a feature allowing user to re-read previously printed text. 
+Бэклог принтера – это функция, позволяющая пользователю перечитывать ранее выведенный текст.
 
 [!4bde6752b676aa1acedb54d2af075ced]
 
-Backlog can be shown at any time during main game loop by activating `ShowBacklog` input (`L` key by default for standalone input module) or pressing "LOG" button in the control panel.
+Бэклог может быть показан в любое время во время основного игрового процесса через ввод `ShowBacklog` (клавиша `L` по умолчанию для автономного модуля ввода) или по нажатию кнопки "LOG" на панели управления.
 
-## Dialogue Printer
+## Диалоговый принтер
 
-Dialogue printers present text inside windows with a flexible height. They initially take about a third of the screen size and will increase the height when the content requires more space. Dialogue printers also expose associated character name in a label above the text window.
+Диалоговые принтеры представляют текст внутри окон с переменной высотой. Они изначально занимают около трети размера экрана и увеличивают высоту, когда содержимое требует больше места. Диалоговые принтеры также выводят имя связанного с репликой персонажа в виде метке над текстовым окном.
 
 ![Dialogue Printer](https://i.gyazo.com/73abe9eabc7b285109b08e77dbf75430.png)
 
-## Wide Printer
+## Широкий принтер
 
-Wide printers are very like dialogue printers, except for some changes in the panel layout tailored for wide displays. Wide printers also support [character avatars](/ru/guide/characters.md#avatar-textures) feature.
+Широкие принтеры очень похожи на диалоговые принтеры, за исключением некоторых изменений в компоновке панелей, адаптированных для широких дисплеев. Широкие принтеры также поддерживают функцию [аватаров персонажей](/ru/guide/characters.md#avatar-textures).
 
 ![Wide Printer](https://i.gyazo.com/83c091c08846fa1cab8764a8d4dddeda.png)
 
-## Fullscreen Printer
+## Полноэкранный принтер
 
-Fullscreen printers present text inside windows with a static size. They take most of the screen size and are indented for presenting large amounts of text, aka "NVL" mode.
+Полноэкранные принтеры представляют текст внутри окон со статическим размером. Они занимают большую часть размера экрана и предназначены для представления больших объемов текста (так называемый "NVL" режим).
 
 ![Fullscreen Printer](https://i.gyazo.com/c7861949717f9b600b664365af53abbc.png)
 
-Fullscreen printers won't reset text by default on each consequent print command; instead, use [@resetText] command to clear contents of the printer when required. This can be changed by enabling `Auto Reset` in the printer actor configuration menu.
+Полноэкранные принтеры по умолчанию не сбрасывают текст при каждой последующей команде печати; вместо этого используйте команду [@resetText] для очистки содержимого принтера, когда это необходимо. Это можно изменить, включив функцию `Auto Reset` в меню конфигурации актора принтера.
 
-Each print command handled by a fullscreen printer will prepend 2 line breaks before the printed text by default (except when current content of the printer is empty). This can be disabled in the printer actor configuration menu by setting `Auto Line Break` to zero.
+Каждая команда печати, обрабатываемая полноэкранным принтером, по умолчанию вводит 2 разрыва строки перед напечатанным текстом (за исключением случаев, когда текущее содержимое принтера пусто). Это можно отключить в меню конфигурации актора принтера, установив `Auto Line Break` равным нулю.
 
 ![](https://i.gyazo.com/978c2eb05215aac2d62177cfb58bfbef.png)
 
-Below is an example on using fullscreen printer.
+Ниже приведен пример использования полноэкранного принтера.
 
 ```
-; Activate fullscreen printer.
+; Активировать полноэкранный принтер.
 @printer Fullscreen
 
-; Following lines will be printed in the same window, separated by two line breaks.
+; Следующие строки будут напечатаны в том же окне, разделенные двумя разрывами строк.
 Lorem ipsum dolor sit amet. Proin ultricies in leo id scelerisque. 
 Praesent vel orci luctus, tincidunt nisi et, fringilla arcu. In a metus orci. 
 Maecenas congue nunc quis lectus porttitor, eget commodo massa congue.
 
-; Clear contents of the printer.
+; Очистить содержимое принтера.
 @resetText
 
-; Print more lines.
+; Вывести текст снова.
 Morbi ultrices dictum diam, in gravida neque vulputate in. 
 ...
 ```
 
-## Chat Printer
+## Чат-принтер
 
-Chat printer presents text inside message bubbles framed in a window with vertically-scrollable content, resembling a mobile messager app. Instead of revealing the printed message character by character, it shows "author is typing" animation for the duration of the reveal effect and then instantly shows the printed message. Chat printer supports [character avatars](/ru/guide/characters.md#avatar-textures) feature.
+Чат-принтер представляет текст внутри сообщений-"пузырьков", обрамленных в окно с вертикально прокручиваемым содержимым, что напоминает мобильный мессенджер. Вместо того, чтобы показывать печатное сообщение символ за символом, он показывает анимацию "автор печатает" в течение всего эффекта раскрытия, а затем мгновенно выводит текстовое сообщение. Чат-принтер поддерживает функцию [аватаров персонажей](/ru/guide/characters.md#avatar-textures).
 
 ![Chat Printer](https://i.gyazo.com/3c04aecabe7f754ffc9ce5452eeba270.png)
 
-When using generic text lines and [@print] commands, the text in the target printer will reset (clear) by default. In case with chat printers, this will remove all the messages when a new one is added, which may not be desirable in most cases. Setting `reset` parameter to *false* will prevent clearing the printer, eg:
+При использовании универсальных текстовых строк и команд [@print] текст в целевом принтере по умолчанию сбрасывается (очищается). В случае с чат-принтерами это приведет к удалению всех сообщений при добавлении нового, что в большинстве случаев может быть нежелательно. Установка параметра `reset` в значение *false* предотвратит очистку принтера, например:
 
 ```
 @print "Orci varius natoque penatibus." author:Kohaku reset:false
 @print "Integer ullamcorper fringilla ipsum a scelerisque." author:Yuko reset:false
 ```
 
-— will print two messages without resetting the printer.
+— выведет два сообщения без очистки содержимого принтера.
 
-## Bubble Printer
+## Баббл-принтер
 
-Bubble printers can be used for a manga/comic style of text presentation. 
+Баббл-принтеры могут использоваться для презентации текста в стиле манги/комиксов. 
 
 ![](https://i.gyazo.com/900ee728505a0d7ce2eb597f3aa2249a.png)
 
-The built-in bubble printer supports two appearances: "Left" and "Right", which can be used to align the direction of the printer based on which side it's positioned relative to the character.
+Встроенный баббл-принтер поддерживает два варианта внешнего вида: "Left" и "Right", которые можно использовать для подстраивания направления принтера в зависимости от того, с какой стороны он расположен относительно персонажа.
 
 ```
 @printer Bubble.Left pos:42,80 visible:false time:0
@@ -129,96 +129,95 @@ Misaki: Aliquam lobortis!
 Nanikun: Integer nec maximus elit, eget posuere risus.
 ```
 
-To display more than one bubble (or any other) printer at a time, add custom printers.
+Чтобы одновременно отображать более одного баббл-принтера (или любого другого), добавьте пользовательские принтеры.
 
-## Adding Custom Printers
+## Добавление пользовательских принтеров
 
-You can add custom text printers based on the built-in templates or create new printers from scratch. For example, let's customize the built-in `Dialogue` template. 
+Вы можете добавлять пользовательские текстовые принтеры на основе встроенных шаблонов или создавать новые принтеры с нуля. Например, давайте рассмотрим настройку встроенного шаблона `Dialogue`.
 
-Use `Create -> Naninovel -> Text Printers -> Dialogue` asset context menu to create a dialogue prefab somewhere outside of the Naninovel package, e.g. at the `Assets/TextPrinters` folder. 
+Используйте контекстное меню ассетов `Create -> Naninovel -> Text Printers -> Dialogue`, чтобы создать префаб диалога вне пакета Naninovel, например в папке `Assets/TextPrinters`.
 
-Edit the prefab: change font, textures, add animations, etc. For more information on the available UI building tools consult [Unity documentation for uGUI](https://docs.unity3d.com/Packages/com.unity.ugui@latest). There are also a couple of tutorial videos and an example project on working with uGUI in the [UI customization guide](/ru/guide/user-interface.md#ui-customization).
+Отредактируйте префаб: измените шрифт, текстуры, добавьте анимацию и т. д. Для получения дополнительной информации о доступных инструментах построения UI обратитесь к [документации Unity для uGUI](https://docs.unity3d.com/Packages/com.unity.ugui@latest). Есть также несколько обучающих видеороликов и пример проекта по работе с uGUI в [руководстве по настройке UI](/ru/guide/user-interface.md#ui-customization).
 
-Expose the prefab to engine resources using the printer's manager GUI, which can be accessed with `Naninovel -> Resources -> Printers` context menu. Add a new record using `+` (plus) button, enter actor ID (can differ from the prefab name) and double click the record to open actor settings. Drag-drop printer prefab to the `Resource` field.
+Предоставьте префаб ресурсам движка через GUI менеджера принтеров, которые доступен через контекстном меню `Naninovel -> Resources -> Printers`. Добавьте новую запись с помощью кнопки `+` (плюс), введите ID актора (может отличаться от имени префаба) и дважды щелкните запись, чтобы открыть настройки актора. Перетащите префаб принтера в поле `Resource`.
 
 [!3f51881fa554720b7a4092dca42fd15e]
 
-You can now use the new text printer by activating it via [@printer] command and specifying actor ID you've set in the manager.
+Теперь вы можете использовать новый текстовый принтер, активировав его с помощью команды [@printer] и указав ID актора, установленный в менеджере.
 
 ```
 @printer MyNewPrinter
 ```
 
 ::: example
-Check out [demo project](/ru/guide/getting-started.md#demo-project) for an example on adding a custom printer. The prefab is stored as `Assets/Prefabs/PimpedPrinter.prefab`; the printer appears in the demo when Kohaku-chan attempts to create her own one :3
+Пример добавления пользовательского принтера см. в разделе [демо-проекта](/ru/guide/getting-started.md#demo-project). Префаб хранится как `Assets/Prefabs/PimpedPrinter.prefab`; принтер появляется в демо, когда Кохаку-тян пытается создать свой собственный: 3
 :::
 
-It's also possible to create a printer from scratch by manually implementing `ITextPrinterActor` interface. See the guide on [custom actor implementations](/ru/guide/custom-actor-implementations.md) for more information.
+Кроме того, можно создать принтер с нуля, вручную реализовав интерфейс `ITextPrinterActor`. См. руководство по [реализации пользовательских акторов](/ru/guide/custom-actor-implementations.md) для получения дополнительной информации.
 
-When modifying text component, be aware, that line hight less than 1.0 is not supported (rendered lines will overlap in this case, making it impossible to apply reveal effect). Consider editing the text font itself to reduce vertical clearing.
+При изменении текстового компонента имейте в виду, что высота строк меньше 1,0 не поддерживается (в этом случае визуализируемые строки будут перекрываться, что делает невозможным применение эффекта раскрытия). Рассмотрите возможность редактирования самого шрифта текста, чтобы уменьшить вертикальное перекрытие.
 
-## Text Reveal Effect
+## Эффект проявления текста
 
-By default, a gradient fade effect is applied when printing out the text messages. If, however, you prefer the more conventional "typewriter" style, you can disable the fade effect by disabling `Slide Clip Rect` and setting `Reveal Fade Width` property in `Revealable Text` component to zero. `Revealable Text` components are applied to the text objects in some of the built-in printers; eg, you can find it attached to `Fullscreen/Content/Printer/Text` game object of a `Fullscreen` printer prefab.
+По умолчанию при печати текстовых сообщений применяется эффект градиентного проявления. Однако если вы предпочитаете более традиционный стиль "пишущей машинки", вы можете отключить эффект затухания, отключив `Slide Clip Rect` и установив свойство `Reveal Fade Width` в компоненте `Revealable Text` равным нулю. Компоненты `Revealable Text` применяются к текстовым объектам в некоторых встроенных принтерах; например, вы можете найти его прикрепленным к игровому объекту `Fullscreen/Content/Printer/Text` префаба принтера `Fullscreen`.
 
 ![](https://i.gyazo.com/ab848f3c1c56921634b9d2b872e7c0cb.png)
 
-## Text Reveal Sounds
+## Звук проявления текста
 
-For the built-in printers, that support revealing effect (currently, `Dialogue`, `Fullscreen` and `Wide`) you can optionally set SFX to be played when the characters are revealed. 
+Для встроенных принтеров, поддерживающих эффект проявления (в настоящее время `Dialogue`, `Fullscreen` и `Wide`), вы можете дополнительно установить SFX для воспроизведения при выведении символов.
 
-Follow the "Adding Custom Printers" guide above to create a custom printer based on any of the built-in ones, then find `Revealable Text Printer Panel` component attached to the root object of the prefab and use `Reveal Sfx` property to set the SFX to be played when a character is revealed. The actual list of the available options is based on the audio resources you've added via the `Naninovel -> Resources -> Audio` menu.
+Следуйте приведенному выше руководству "добавление пользовательских принтеров", чтобы создать пользовательский принтер на основе любого из встроенных принтеров, затем найдите компонент `Revealable Text Printer Panel`, прикрепленный к корневому объекту префаба, и используйте свойство `Reveal Sfx`, чтобы настроить воспроизведение SFX при обнаружении символа. Актуальный список доступных опций основан на аудиоресурсах, которые вы добавили через меню `Naninovel -> Resources -> Audio`.
 
-You can also use `Chars SFX` list property to map multiple SFXs to specific characters. The following illustration represents setup, where "Keystroke2" SFX will be played for spaces, "Explosion" for characters `D`, `d`, `F`, `1`, `4`, `9`, and `*`, no SFX will be played for `%` character and "Keystroke1" will be played for all the other characters.
+Вы также можете использовать свойство списка `Chars SFX` для сопоставления нескольких SFX с определенными символами. На следующем рисунке представлена настройка, где SFX "Keystroke2" будет воспроизводиться для пробелов, "Explosion" – для символов `D`, `d`, `F`, `1`, `4`, `9` и `*`, никакой SFX не будет воспроизводиться для символа `%`, а "Keystroke1" будет воспроизводиться для всех остальных символов.
 
 ![](https://i.gyazo.com/c51247254e262dca35267b3689460ad2.png)
 
-Alternatively, you can set `Message Sound` in the character configuration menus to play character-specific sounds when the text is revealed while that character is the author of the message (no matter which text printer is printing that message). In case both `Message Sound` of the message's author and `Reveal Sfx` of the default printer are assigned, `Message Sound` will be played instead of the printer's default `Reveal SFX`. `Chars SFX`, when configured, will always be played, no matter if `Message Sound` of the author is specified or not.
+Кроме того, вы можете установить `Message Sound` в меню конфигурации персонажей, чтобы воспроизводить определённые для персонажа звуки при выведении текста, когда этот персонаж является автором сообщения (независимо от того, какой текстовый принтер печатает это сообщение). В случае, если и `Message Sound` автора сообщения, и `Reveal Sfx` принтера по умолчанию назначены, `Message Sound` будет воспроизводиться вместо `Reveal SFX` принтера по умолчанию. `Chars SFX`, если он назначен, всегда будет воспроизводиться, независимо от того, указан ли `Message Sound` автора или нет.
 
-The text reveal sounds are played very often (depending on the message reveal speed) and are clipped when same sound is played in consequence, so make sure the corresponding audio clips are very short and sharp (without any pause/silence at the beginning).
+Звуки выведения текста воспроизводятся очень часто (в зависимости от скорости выведения сообщения) и обрезаются при последующем воспроизведении одного и того же звука, поэтому убедитесь, что соответствующие аудиоклипы очень короткие и резкие (без какой-либо паузы/тишины в начале).
 
-In case the reveal sounds are not working for you (eg, the sound is not short enough to play it on each char reveal), consider using `OnPrintTextStarted` and `OnPrintTextFinished` events of the `TextPrinterManager` [engine service](/ru/guide/engine-services.md) to start/stop looping the sound accordingly. Those events are also exposed to PlayMaker, in case you prefer a [visual scripting](/ru/guide/playmaker.md) solution.
+В случае, если звуки выведения не работают для вас (например, звук недостаточно короток, чтобы воспроизводить его на выведении каждого символа), возможно использование событий `OnPrintTextStarted` и `OnPrintTextFinished` в [сервисе движка](/ru/guide/engine-services.md) `TextPrinterManager` для запуска/остановки циклического воспроизведения звука соответственно. Эти события также доступны PlayMaker, если вы предпочитаете использование [визуального скриптинга](/ru/guide/playmaker.md).
 
 ## TextMesh Pro
 
-Naninovel supports [TextMesh Pro](https://assetstore.unity.com/packages/essentials/beta-projects/textmesh-pro-84126) via built-in `TMProFullscreen`, `TMProDialogue`, `TMProWide` and `TMProBubble` printers implemented with the TMPro UI text components.
+Naninovel поддерживает [TextMesh Pro](https://assetstore.unity.com/packages/essentials/beta-projects/textmesh-pro-84126) через встроенные `TMProFullscreen`, `TMProDialogue`, `TMProWide` и  `TMProBubble` принтеры, реализованные с текстовыми компонентами UI TMPro.
 
 ![](https://i.gyazo.com/bb143607ce79e5a28d89052c7f9fb07c.png)
 
-Before using the TMPro printers, make sure you have TextMesh Pro installed in your Unity project. TextMesh Pro can be installed via package manager accessible via `Window -> Package Manager` menu.
+Перед использованием принтеров TMPro убедитесь, что в вашем проекте Unity установлен TextMesh Pro. TextMesh Pro можно установить с помощью диспетчера пакетов, доступного через меню `Window -> Package Manager`.
 
-You can select the TMPro printers to route all the print commands to them using [@printer] command in naninovel scripts:
+Вы можете выбрать принтеры TMPro, чтобы направить на них все команды печати, используя команду [@printer] в сценариях Naninovel:
 
 ```
-; Activate dialogue TMPro printer
+; Активировать диалоговый принтер TMPro
 @printer TMProDialogue
-; Print text using the activated printer
+; Вывести текст, используя активированный принтер
 Hello World!
 ```
-
-When creating custom TextMesh Pro font assets or materials, don't forget to apply `Naninovel/RevealableTMProText` shader to the font material, otherwise text reveal effect won't work.
+При создании пользовательских ассетов шрифтов или материалов TextMesh Pro не забудьте применить шейдер `Naninovel/RevealableTMProText` к материалу шрифта, иначе эффект проявления текста не будет работать.
 
 ![](https://i.gyazo.com/18e112ba90cad84f44f0b78db0db303a.png)
 
-## Text Styles
+## Стили текста
 
-Various text styles can be applied via rich text tags placed right inside the text or using [@style] command.
+Различные стили текста могут быть применены с помощью тегов Rich text, размещенных прямо внутри текста, или с помощью команды [@style].
 
-The default (non-TMPro) text printers are based on [Unity's text rendering system](https://docs.unity3d.com/Manual/script-Text.html) and support basic text styling like color, size, bold, italic, etc. Refer to [guide on text tags](https://docs.unity3d.com/Manual/StyledText.html) for more info.
+Текстовые принтеры по умолчанию (не TMPro) основаны на [системе рендеринга текста Unity](https://docs.unity3d.com/Manual/script-Text.html) и поддерживают основные стили текста, такие как цвет, размер, полужирный, курсив и т.д. См. [руководство по текстовым тегам](https://docs.unity3d.com/Manual/StyledText.html) для получения дополнительной информации.
 
-TextMesh Pro printers support a wide range of additional text tags. See the [official documentation](http://digitalnativestudios.com/textmeshpro/docs/rich-text/) for more info. 
+Принтеры TextMesh Pro поддерживают широкий спектр дополнительных текстовых тегов. См. [официальную документацию](http://digitalnativestudios.com/textmeshpro/docs/rich-text/) для получения дополнительной информации.
 
-Support for [ruby](https://en.wikipedia.org/wiki/Ruby_character) (furigana) characters is additionally provided by the Naninovel's TextMesh Pro printers via custom `<ruby>` tag. Wrap the text above which the ruby characters should be placed with the ruby tag and specify the ruby text inside the tag, eg:
+Поддержка [Ruby](https://en.wikipedia.org/wiki/Ruby_character) (фуригана) символов также предоставляется TextMesh Pro принтерами Naninovel с помощью пользовательского тега `<ruby>`. Оформите текст, над которым должны быть помещены символы Ruby, в тег Ruby, затем укажите текст Ruby внутри тега, например:
 
 ```
 Lorem <ruby="VERY">ipsum</ruby> dolor sit amet. 
 ```
-— "VERY" ruby text will appear right above "ipsum" word when the message is printed at runtime.
+— Ruby текст "VERY" появится прямо над словом "ipsum" при выведении текста во время выполнения.
 
-You can additionally control the size and vertical line offset of the ruby text by changing properties of `RevealableTMProText` component attached to the printer prefabs.
+Вы можете дополнительно управлять размером и смещением текста Ruby по вертикали, изменяя свойства компонента `RevealableTMProText`, прикрепленного к префабам принтеров.
 
 ![](https://i.gyazo.com/7e1e927c144f30353baaab2ac7b643c7.png)
 
-Below is a video demonstration of the ruby tags in action.
+Ниже приводится видео-демонстрация тегов Ruby в действии.
 
 [!!aWdq7YxIxkE]

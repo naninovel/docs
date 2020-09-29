@@ -3,14 +3,14 @@
 
 Используйте `Naninovel -> Configuration` или `Edit -> Project Settings -> Naninovel` для доступа к меню конфигурации.
 
-Обратите внимание, что все меню конфигурации поддерживают [функцию пресетов Unity](https://docs.unity3d.com/Manual/Presets). Это может помочь в создании нескольких пресетов конфигурации при подготовке сборок для различных целевых платформ (например, мобильных, standalone?, консольных и т.д.).
+Обратите внимание, что все меню конфигурации поддерживают [функцию пресетов Unity](https://docs.unity3d.com/Manual/Presets). Это может помочь в создании нескольких пресетов конфигурации при подготовке сборок для различных целевых платформ (например, мобильных, standalone, консольных и т.д.).
 
 [!55f5c74bfc16e1af2455034647525df3]
 
-Можно изменять объекты конфигурации во время выполнения, добавлять новые пользовательские конфигурации и изменить способ доступа к объектам во время выполнения (например, считывать конфигурацию из JSON файлы, хранящихся на удаленном устройстве?); см. руководство по [пользовательским настройкам](/ru/guide/custom-configuration.md) для получения дополнительной информации.
+Можно изменять объекты конфигурации во время выполнения, добавлять новые пользовательские конфигурации и изменить способ доступа к объектам во время выполнения (например, считывать конфигурацию из JSON файлы, хранящихся на удаленном устройстве); см. руководство по [пользовательским настройкам](/ru/guide/custom-configuration.md) для получения дополнительной информации.
 
 ::: note
-Данная информация о конфигурации? актуальна для [Naninovel v1. 10](https://github.com/Elringus/NaninovelWeb/releases).
+Данная информация о конфигурации актуальна для [Naninovel v1. 10](https://github.com/Elringus/NaninovelWeb/releases).
 :::
 
 ## Аудио
@@ -19,21 +19,21 @@
 
 Свойство | Значение по умолчанию | Описание
 --- | --- | ---
-Audio Loader | Audio- (адресируемое, проект?) | Отвечает за конфигурацию загрузчика ресурсов, используемого при работе с аудиоресурсами (BGM и SFX).
-Voice Loader | Voice- (адресируемое, проект?) |  Отвечает за конфигурацию загрузчика ресурсов, используемого при работе с аудиоресурсами голосовой озвучки.
+Audio Loader | Audio- (Addressable, Project) | Отвечает за конфигурацию загрузчика ресурсов, используемого при работе с аудиоресурсами (BGM и SFX).
+Voice Loader | Voice- (Addressable, Project) |  Отвечает за конфигурацию загрузчика ресурсов, используемого при работе с аудиоресурсами голосовой озвучки.
 Default Master Volume | 1 | Уровень звукового мастер-канала при первом запуске игры.
 Default Bgm Volume | 1 | Уровень канала BGM при первом запуске игры.
 Default Sfx Volume | 1 | Уровень канала SFX при первом запуске игры.
 Default Voice Volume | 1 | Уровень канала голосовой озвучки при первом запуске игры.
 Enable Auto Voicing | False | При включении параметра каждая команда `PrintText` будет пытаться проиграть голосовой клип из `VoiceResourcesPrefix/ScriptName/LineIndex.ActionIndex`.
-Voice Overlap Policy | Prevent Overlap | Диктует принципы обработки одновременно воспроизводящихся голосов:<br> • Allow Overlap – одновременно звучащие голоса будут воспроизводиться без ограничений.<br> • Prevent Overlap — предотвращает одновременное воспроизведение путем остановки воспроизводимого в данный момент голосового клипа перед воспроизведением нового.<br> • Prevent Character Overlap – предотвращает одновременное воспроизведение голосовых клипов для персонажа; голоса разных персонажей (автоматическое озвучивание) и любое количество команд [@voice] могут быть воспроизведены одновременно?.
+Voice Overlap Policy | Prevent Overlap | Диктует принципы обработки одновременно воспроизводящихся голосов:<br> • Allow Overlap – одновременно звучащие голоса будут воспроизводиться без ограничений.<br> • Prevent Overlap — предотвращает одновременное воспроизведение путем остановки воспроизводимого в данный момент голосового клипа перед воспроизведением нового.<br> • Prevent Character Overlap – предотвращает одновременное воспроизведение голосовых клипов для персонажа; голоса разных персонажей (автоматическое озвучивание) и любое количество команд [@voice] могут быть воспроизведены одновременно.
 Custom Audio Mixer | Null | Аудиомикшер для контроля аудиогрупп. По умолчанию использует стандартный, если никакого иного не предоставлено.
 Master Volume Handle Name | Master Volume | Имя обработчика микшера (предоставленный параметр) для управления уровнем мастер-канала.
-Bgm Group Path | Master/BGM | Путь к группе микшера для управления уровнем BGM канала. *(в англ. тексте опечатка – master volume?)*
+Bgm Group Path | Master/BGM | Путь к группе микшера для управления уровнем BGM канала.
 Bgm Volume Handle Name | BGM Volume | Имя обработчика микшера (предоставленный параметр) для управления уровнем BGM канала.
-Sfx Group Path | Master/SFX | Путь к группе микшера для управления уровнем SFX канала. *(в англ. тексте опечатка – background music?)*
+Sfx Group Path | Master/SFX | Путь к группе микшера для управления уровнем SFX канала.
 Sfx Volume Handle Name | SFX Volume | Имя обработчика микшера (предоставленный параметр) для управления уровнем SFX канала.
-Voice Group Path | Master/Voice | Путь к группе микшера для управления уровнем канала голосовой озвучки. *(в англ. тексте опечатка – sound effects?)*
+Voice Group Path | Master/Voice | Путь к группе микшера для управления уровнем канала голосовой озвучки.
 Voice Volume Handle Name | Voice Volume | Имя обработчика микшера (предоставленный параметр) для управления уровнем канала озвучки.
 
 </div>
@@ -44,12 +44,12 @@ Voice Volume Handle Name | Voice Volume | Имя обработчика микш
 
 Свойство | Значение по умолчанию | Описание
 --- | --- | ---
-Default Metadata | Object Ref | Метаданные, используемые по умолчанию при создании фоновых акторов, и пользовательские метаданные для созданного актора с неуказанным ID?.
+Default Metadata | Object Ref | Метаданные, используемые по умолчанию при создании фоновых акторов, и пользовательские метаданные для созданного актора с неуказанным ID.
 Metadata | Object Ref | Метаданные, используемые при создании фоновых акторов с конкретным ID.
 Scene Origin | (0.5, 0.0) | Исходная точка, используемая для отсчета при позиционировании актеров в сцене.
 Z Offset | 100 | Начальное смещение по оси Z (глубина) акторов относительно камеры, установленное при создании акторов.
 Z Step | 0.1 | Расстояние по оси Z, установленное между акторами при их создании; используется для предотвращения проблем наложения.
-Default Easing | Linear | Функция смягчения, используемая по умолчанию для всех анимаций модификации актора (изменение внешности, положения, оттенка и пр.). *(в англ. тексте опечатка – Eeasing?)*
+Default Easing | Linear | Функция смягчения, используемая по умолчанию для всех анимаций модификации актора (изменение внешности, положения, оттенка и пр.).
 Auto Show On Modify | True | Следует ли автоматически выводить (показывать) актора при выполнении команд модификации.
 
 </div>
@@ -61,276 +61,275 @@ Auto Show On Modify | True | Следует ли автоматически вы
 Свойство | Значение по умолчанию | Описание
 --- | --- | ---
 Reference Resolution | (1920, 1080) | Эталонное разрешение используется для оценки правильных размеров рендеринга, чтобы спрайтовые ассеты (например, фоны и персонажи) были правильно расположены на сцене. Как правило, должно быть установлено в значение, равное разрешению фоновых текстур, которые вы используете в игре.
-Auto Correct Ortho Size | True | Следует ли автоматически корректировать ортогональный размер кадра на основе текущего соотношения сторон дисплея, чтобы обеспечить правильное расположение фонов и персонажей?.
+Auto Correct Ortho Size | True | Следует ли автоматически корректировать ортогональный размер кадра на основе текущего соотношения сторон дисплея, чтобы обеспечить правильное расположение фонов и персонажей.
 Default Ortho Size | 5.35 | Ортогональный размер, устанавливаемый по умолчанию при отключенной автоматической коррекции.
 Initial Position | (0.0, 0.0, -10.0) | Исходное положение камеры в пространстве.
 Orthographic | True | Должна ли камера по умолчанию рендерить в ортогональном (включен) или перспективном (отключен) режиме. Не имеет эффекта, когда назначается пользовательский префаб камеры.
 Custom Camera Prefab | Null | Префаб с компонентом камеры, используемой для рендеринга. Будет использоваться стандартный, если иного не указано. Если вы хотите настроить некоторые свойства камеры (цвет фона, FOV, HDR и т.д.) или добавить сценарии постобработки, создайте префаб с необходимой настройкой камеры и назначьте данный префаб этому полю.
 Use UI Camera | True | Следует ли визуализировать пользовательский интерфейс в отдельной камере. Это позволит использовать раздельные конфигурации для основной камеры и камеры UI и предотвратить влияние эффектов постобработки (изображения) на пользовательский интерфейс за счет незначительных ресурсных расходов на рендеринг.
-Custom UI Camera Prefab | Null | Префаб с компонентом камеры, используемой для рендеринга пользовательского интерфейса. Будет использоваться стандартный, если иного не указано. Не имеет никакого эффекта, если параметр `UseUICamera` отключен. *(в англ. тексте опечатка – пропущена точка в конце?)*
+Custom UI Camera Prefab | Null | Префаб с компонентом камеры, используемой для рендеринга пользовательского интерфейса. Будет использоваться стандартный, если иного не указано. Не имеет никакого эффекта, если параметр `UseUICamera` отключен.
 Default Easing | Linear | Функция смягчения, используемая по умолчанию для всех модификаций камеры (изменение масштаба, положение, поворот и пр.).
 Thumbnail Resolution | (240, 140) | Разрешение, в котором будут захвачены миниатюры для превью в слотах сохранения.
 Hide UI In Thumbnails | False | Игнорировать ли слой интерфейса при захвате миниатюр.
 
 </div>
 
-## Characters
+## Персонажи
 
 <div class="config-table">
 
-Property | Default Value | Description
+Свойство | Значение по умолчанию | Описание
 --- | --- | ---
-Auto Arrange On Add | True | Whether to evenly distribute characters by X-axis when adding a new character without a specified position.
-Default Metadata | Object Ref | Metadata to use by default when creating character actors and custom metadata for the created actor ID doesn't exist.
-Metadata | Object Ref | Metadata to use when creating character actors with specific IDs.
-Avatar Loader | Character Avatars- (Addressable, Project) | Configuration of the resource loader used with character avatar texture resources.
-Scene Origin | (0.5, 0.0) | Origin point used for reference when positioning actors on scene.
-Z Offset | 50 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
-Z Step | 0.1 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
-Default Easing | Smooth Step | Eeasing function to use by default for all the actor modification animations (changing appearance, position, tint, etc).
-Auto Show On Modify | True | Whether to automatically reveal (show) an actor when executing modification commands.
+Auto Arrange On Add | True | Следует ли равномерно распределять персонажей по оси X при добавлении нового персонажа без заданной позиции.
+Default Metadata | Object Ref | Метаданные, используемые по умолчанию при создании акторов персонажей; пользовательские метаданные для созданного актора без указанного ID.
+Metadata | Object Ref | Метаданные, используемые при создании акторов персонажей с определенными ID.
+Avatar Loader | Character Avatars- (Addressable, Project) | Конфигурация загрузчика ресурсов, используемого для ресурсов текстур аватаров персонажей.
+Scene Origin | (0.5, 0.0) | Исходная точка отсчета при позиционировании акторов в сцене.
+Z Offset | 50 | Начальное смещение по оси Z (глубина) акторов относительно камеры, установленное при создании акторов.
+Z Step | 0.1 | Расстояние по оси Z, установленное между акторами при их создании; используется для предотвращения проблем наложения.
+Default Easing | Smooth Step | Функция смягчения, используемая по умолчанию для всех анимаций модификации актора (изменение внешности, положения, оттенка и пр.).
+Auto Show On Modify | True | Следует ли автоматически выводить (показывать) актора при выполнении команд модификации.
 
 </div>
 
-## Choice Handlers
+## Обработчики вариантов выбора
 
 <div class="config-table">
 
-Property | Default Value | Description
+Свойство | Значение по умолчанию | Описание
 --- | --- | ---
-Default Handler Id | Button List | ID of the choice handler to use by default.
-Default Metadata | Object Ref | Metadata to use by default when creating choice handler actors and custom metadata for the created actor ID doesn't exist.
-Metadata | Object Ref | Metadata to use when creating choice handler actors with specific IDs.
-Default Easing | Linear | Eeasing function to use by default for all the actor modification animations (changing appearance, position, tint, etc).
-Auto Show On Modify | True | Whether to automatically reveal (show) an actor when executing modification commands.
+Default Handler Id | Button List | ID обработчика выбора, используемое по умолчанию.
+Default Metadata | Object Ref | Метаданные, используемые по умолчанию при создании акторов обработчиков; пользовательские метаданные для созданного актора без указанного ID.
+Metadata | Object Ref | Метаданные, используемые при создании акторов обработчиков с определенными ID.
+Default Easing | Linear | Функция смягчения, используемая по умолчанию для всех анимаций модификации актора (изменение внешности, положения, оттенка и пр.).
+Auto Show On Modify | True | Следует ли автоматически выводить (показывать) актора при выполнении команд модификации.
 
 </div>
 
-## Custom Variables
+## Пользовательские переменные
 
 <div class="config-table">
 
-Property | Default Value | Description
+Свойство | Значение по умолчанию | Описание
 --- | --- | ---
-Predefined Variables | Object Ref | The list of variables to initialize by default. Global variables (names starting with `G_` or `g_`) are intialized on first application start, and others on each state reset.
+Predefined Variables | Object Ref | Список переменных для инициализации по умолчанию. Глобальные переменные (имена которых начинаются с `G_` или `g_`) инициализируются при первом запуске приложения, а другие – при каждом сбросе состояния.
 
 </div>
 
-## Engine
+## Движок
 
 <div class="config-table">
 
-Property | Default Value | Description
+Свойство | Значение по умолчанию | Описание
 --- | --- | ---
-Generated Data Path | Naninovel Data | Relative (to the application data directory) path to store the automatically generated assets.
-Override Objects Layer | False | Whether to assign a specific layer to all the engine objects. Engine's camera will use the layer for the culling mask. Use this to isolate Naninovel objects from being rendered by other cameras.
-Objects Layer | 0 | When `Override Objects Layer` is enabled, the specified layer will be assigned to all the engine objects.
-Async Exception Log Type | Error | Log type to use for UniTask-related exceptions.
-Initialize On Application Load | True | Whether to automatically initialize the engine when application starts.
-Show Initialization UI | True | Whether to show a loading UI while the engine is initializing.
-Custom Initialization UI | Null | UI to show while the engine is initializing (when enabled). Will use a default one when not provided.
-Show Title UI | True | Whether to automatically show title screen UI (main menu) after engine initializaton. You can modify the title UI using UI customization feature (see online guide for more info).
-Enable Development Console | True | Whether to enable development console.
-Toggle Console Key | Back Quote | Key used to toggle development console. You can also toggle it with a multi (3 or more) touch when using touchscreens.
+Generated Data Path | Naninovel Data | Относительный (к каталогу данных приложения) путь для хранения автоматически сгенерированных ассетов.
+Override Objects Layer | False | Следует ли назначать определенный слой всем объектам движка. Камера движка будет использовать слой для обрезной маски. Используйте это, чтобы изолировать объекты Naninovel от визуализации другими камерами.
+Objects Layer | 0 | Если включен параметр `Override Objects Layer`, указанный слой будет присвоен всем объектам движка.
+Async Exception Log Type | Error | Тип лога для исключений, связанных с UniTask.
+Initialize On Application Load | True | Следует ли автоматически инициализировать движок при запуске приложения.
+Show Initialization UI | True | Показывать ли UI загрузки во время инициализации движка.
+Custom Initialization UI | Null | UI для отображения во время инициализации движка (если он включен). Будет использован стандартный, если иного не указано.
+Show Title UI | True | Следует ли автоматически отображать UI титульного экрана (главное меню) после инициализации движка. Вы можете изменить пользовательский интерфейс титульного экрана с помощью функции настройки пользовательского интерфейса (см. онлайн-руководство для получения дополнительной информации).
+Enable Development Console | True | Нужно ли включать консоль разработки.
+Toggle Console Key | Back Quote | Клавиша, используемая для доступа к консоли разработки. Вы также можете включать консоль с помощью нескольких (3 или более) касаний при использовании сенсорных экранов.
 
 </div>
 
-## Input
+## Ввод
 
 <div class="config-table">
 
-Property | Default Value | Description
+Свойство | Значение по умолчанию | Описание
 --- | --- | ---
-Spawn Event System | True | Whether to spawn an event system when initializing.
-Custom Event System | Null | A prefab with an `EventSystem` component to spawn for input processing. Will spawn a default one when not specified.
-Spawn Input Module | True | Whether to spawn an input module when initializing.
-Custom Input Module | Null | A prefab with an `InputModule` component to spawn for input processing. Will spawn a default one when not specified.
-Touch Frequency Limit | 0.1 | Limits frequency of the registered touch inputs, in seconds.
-Process Legacy Bindings | True | Whether to process legacy input bindings. Disable in case you're using Unity's new input system and don't want the legacy bindings to work in addition to input actions.
-Bindings | Object Ref | Bindings to process input for.
+Spawn Event System | True | Следует ли создавать систему событий при инициализации.
+Custom Event System | Null | Префаб с компонентом `EventSystem`, который будет создаваться для обработки входящих данных. Будет создан стандартный, если иного не указано.
+Spawn Input Module | True | Следует ли создавать модуль ввода при инициализации.
+Custom Input Module | Null | Префаб с компонентом `InputModule`, который будет создаваться для ввода данных. Будет создан стандартный, если иного не указано.
+Touch Frequency Limit | 0.1 | Ограничивает частоту регистрируемых вводных команд, в секундах.
+Process Legacy Bindings | True | Следует ли обрабатывать устаревшие вводные привязки. Отключите его, если вы используете новую систему ввода Unity и не хотите, чтобы устаревшие привязки работали в дополнение к действиям ввода.
+Bindings | Object Ref | Привязки для обработки вводных данных.
 
 </div>
 
-## Localization
+## Локализация
 
 <div class="config-table">
 
-Property | Default Value | Description
+Свойство | Значение по умолчанию | Описание
 --- | --- | ---
-Loader | Localization- (Addressable, Project) | Configuration of the resource loader used with the localization resources.
-Source Locale | En | Locale of the source project resources (language in which the project assets are being authored).
-Default Locale | Null | Locale selected by default when running the game for the first time. Will select `Source Locale` when not specified.
+Loader | Localization- (Addressable, Project) | Конфигурация загрузчика ресурсов, используемого для ресурсов локализации.
+Source Locale | En | Локаль исходных ресурсов проекта (языка, на котором были созданы ресурсы проекта).
+Default Locale | Null | Локаль, используемая по умолчанию при первом запуске игры. Будет использована `Source Locale`, если иная не указана.
 
 </div>
 
-## Managed Text
+## Управляемый текст
 
 <div class="config-table">
 
-Property | Default Value | Description
+Свойство | Значение по умолчанию | Описание
 --- | --- | ---
-Loader | Text- (Addressable, Project) | Configuration of the resource loader used with the managed text documents.
+Loader | Text- (Addressable, Project) | Конфигурация загрузчика ресурсов, используемого для управляемых текстовых документов.
 
 </div>
 
-## Movies
+## Видеоролики
 
 <div class="config-table">
 
-Property | Default Value | Description
+Свойство | Значение по умолчанию | Описание
 --- | --- | ---
-Loader | Movies- (Addressable, Project) | Configuration of the resource loader used with movie resources.
-Skip On Input | True | Whether to skip movie playback when user activates `cancel` input keys.
-Skip Frames | True | Whether to skip frames to catch up with current time.
-Fade Duration | 1 | Time in seconds to fade in/out before starting/finishing playing the movie.
-Custom Fade Texture | Null | Texture to show while fading. Will use a simple black texture when not provided.
-Play Intro Movie | False | Whether to automatically play a movie after engine initialization and before showing the main menu.
-Intro Movie Name | Null | Path to the intro movie resource.
+Loader | Movies- (Addressable, Project) | Конфигурация загрузчика ресурсов, используемого для ресурсов видеороликов.
+Skip On Input | True | Следует ли пропускать воспроизведение ролика при нажатии пользователем клавиши команды `cancel`. 
+Skip Frames | True | Можно ли пропускать кадры, чтобы догнать текущее время.
+Fade Duration | 1 | Время в секундах для плавного появления/затухания перед началом/окончанием воспроизведения ролика.
+Custom Fade Texture | Null | Текстура для появления/затухания. Будет использована простая черная, если иная не задана.
+Play Intro Movie | False | Следует ли автоматически воспроизводить интро-ролик после инициализации движка и перед отображением главного меню.
+Intro Movie Name | Null | Путь к ресурсу интро-ролика.
 
 </div>
 
-## Resource Provider
+## Провайдер ресурсов
 
 <div class="config-table">
 
-Property | Default Value | Description
+Свойство | Значение по умолчанию | Описание
 --- | --- | ---
-Resource Policy | Static | Dictates when the resources are loaded and unloaded during script execution:<br> • Static — All the resources required for the script execution are pre-loaded when starting the playback (masked with a loading screen) and unloaded only when the script has finished playing. This policy is default and recommended for most cases.<br> • Dynamic — Only the resources required for the next `Dynamic Policy Steps` commands are pre-loaded during the script execution and all the unused resources are unloaded immediately. Use this mode when targetting platforms with strict memory limitations and it's impossible to properly organize naninovel scripts. Expect hiccups when the resources are loaded in background while the game is progressing.
-Dynamic Policy Steps | 25 | When dynamic resource policy is enabled, defines the number of script commands to pre-load.
-Optimize Loading Priority | True | When dynamic resource policy is enabled, this will set Unity's background loading thread priority to low to prevent hiccups when loading resources during script playback.
-Log Resource Loading | False | Whether to log resource loading operations on the loading screen.
-Enable Build Processing | True | Whether to register a custom build player handle to process the assets assigned as Naninovel resources.<br><br>Warning: In order for this setting to take effect, it's required to restart the Unity editor.
-Use Addressables | True | When the Addressable Asset System is installed, enabling this property will optimize asset processing step improving the build time.
-Auto Build Bundles | True | Whether to automatically build the addressable asset bundles when building the player. Has no effect when `Use Addressables` is disabled.
-Allow Addressable In Editor | False | Whether to use addressable provider in editor. Enable if you're manually exposing resources via addressable address instead of assigning them with Naninovel's resource managers. Be aware, that enabling this could cuase issues when resources are assigned both in resources manager and registered with an addressable address and then renamed or dublicated.
-Extra Labels | Null | Addressable provider will only work with assets, that have the assigned labels in addition to `Naninovel` label. Can be used to filter assets used by the engine based on custom criterias (eg, HD vs SD textures).
-Local Root Path | %DATA%/Resources | Path root to use for the local resource provider. Can be an absolute path to the folder where the resources are located, or a relative path with one of the available origins:<br> • %DATA% — Game data folder on the target device (UnityEngine.Application.dataPath).<br> • %PDATA% — Persistent data directory on the target device (UnityEngine.Application.persistentDataPath).<br> • %STREAM% — `StreamingAssets` folder (UnityEngine.Application.streamingAssetsPath).<br> • %SPECIAL{F}% — An OS special folder (where F is value from System.Environment.SpecialFolder).
-Project Root Path | Naninovel | Path relative to `Resources` folders, under which the naninovel-specific assets are located.
-Google Drive Root Path | Resources | Path root to use for the Google Drive resource provider.
-Google Drive Request Limit | 2 | Maximum allowed concurrent requests when contacting Google Drive API.
-Google Drive Caching Policy | Smart | Cache policy to use when downloading resources. `Smart` will attempt to use Changes API to check for the modifications on the drive. `PurgeAllOnInit` will to re-download all the resources when the provider is initialized.
+Resource Policy | Static | Диктует политику загрузки и выгрузки ресурсов во время выполнения скрипта:<br> • Статическая — все ресурсы, необходимые для выполнения сценария, предварительно загружаются при запуске воспроизведения (маскируются загрузочным экраном) и выгружаются только после завершения воспроизведения сценария. Эта политика используется по умолчанию и рекомендуется для большинства случаев.<br> • Динамическая — во время выполнения сценария предварительно загружаются только ресурсы, необходимые для выполнения следующих команд количеством, указанным в `Dynamic Policy Steps`, а все неиспользуемые ресурсы немедленно выгружаются. Используйте этот режим при работе с платформами со строгими ограничениями памяти и невозможностью правильно организовать сценарии Naninovel. При загрузке ресурсов в фоновом режиме во время игры могут наблюдаться сбои.
+Dynamic Policy Steps | 25 | определяя количество команд скрипта для предварительной загрузки, когда включена динамическая политика ресурсов.
+Optimize Loading Priority | True | Понижает приоритет потока фоновой загрузки Unity, чтобы предотвратить сбои при загрузке ресурсов во время воспроизведения.
+Log Resource Loading | False | Следует ли выводить операции загрузки ресурсов на экране загрузки.
+Enable Build Processing | True | Следует ли регистрировать пользовательский обработчик воспроизведения для обработки ресурсов, назначенных в качестве ресурсов Naninovel.<br><br> Предупреждение: чтобы эта настройка вступила в силу, необходимо перезапустить редактор Unity.
+Use Addressables | True | При установке адресируемой системы ассетов включение этого свойства оптимизирует этап обработки ассетов, уменьшая время загрузки.
+Auto Build Bundles | True | Следует ли автоматически создавать адресируемые пакеты ассетов при создании плеера. Не имеет эффекта, когда `Use Addressables` отключено.
+Allow Addressable In Editor | False | Следует ли использовать адресируемый провайдер в редакторе. Включите его, если вы вручную назначаете ресурсы с помощью адресации, а не назначаете их менеджерам ресурсов Naninovel. Имейте в виду, что включение этого может вызвать проблемы, когда ресурсы как назначаются в диспетчере ресурсов, так и регистрируются с помощью адресации, после чего переименовываются или дублируются.
+Extra Labels | Null | Адресируемый провайдер будет работать только с ассетами, которые имеют назначенные метки в дополнение к метке `Naninovel`. Может использоваться для фильтрации ассетов, используемых движком, на основе пользовательских критериев (например, HD и SD текстуры). 
+Local Root Path | %DATA%/Resources | Корневой путь, используемый для локального провайдера ресурсов. Это может быть абсолютный путь к папке, в которой находятся ресурсы, или относительный путь с одним из доступных источников:<br> • %DATA% — папка игровых данных на целевом устройстве (UnityEngine.Application.dataPath).<br> • %PDATA% – каталог постоянных данных на целевом устройстве (UnityEngine.Application.persistentDataPath).<br> • %STREAM% - папка `StreamingAssets` (UnityEngine.Application.streamingAssetsPath).<br> • %SPECIAL{F}% - специальная папка ОС (где F – значение из System.Environment.SpecialFolder).
+Project Root Path | Naninovel | Путь относительно папок `Resources`, в которых находятся специфические для Naninovel ассеты.
+Google Drive Root Path | Resources | Корневой путь, используемый для провайдера ресурсов Google Drive.
+Google Drive Request Limit | 2 | Максимум допустимых одновременных запросов при обращении к API Google Drive.
+Google Drive Caching Policy | Smart | Политика кэша, используемая при загрузке ресурсов. `Smart` попытается использовать Changes API, чтобы проверить наличие изменений на диске. `PurgeAllOnInit` повторно загрузит все ресурсы при инициализации провайдера.
 
 </div>
 
-## Script Player
+## Плеер сценариев
 
 <div class="config-table">
 
-Property | Default Value | Description
+Свойство | Значение по умолчанию | Описание
 --- | --- | ---
-Skip Time Scale | 10 | Time scale to use when in skip (fast-forward) mode.
-Min Auto Play Delay | 3 | Minimum seconds to wait before executing next command while in auto play mode.
-Show Debug On Init | False | Whether to show player debug window on engine initialization.
+Skip Time Scale | 10 | Шкала ускорения времени в режиме пропуска (быстрой перемотки вперед).
+Min Auto Play Delay | 3 | Минимум секунд ожидания перед выполнением следующей команды в режиме авточтения.
+Show Debug On Init | False | Нужно ли показывать окно отладки плеера при инициализации движка.
 
 </div>
 
-## Scripts
+## Сценарии
 
 <div class="config-table">
 
-Property | Default Value | Description
+Свойство | Значение по умолчанию | Описание
 --- | --- | ---
-Loader | Scripts- (Addressable, Project) | Configuration of the resource loader used with naninovel script resources.
-Initialization Script | Null | Name of the script to play right after the engine initialization.
-Title Script | Null | Name of the script to play when showing the Title UI. Can be used to setup the title screen scene (backgound, music, etc).
-Start Game Script | Null | Name of the script to play when starting a new game. Will use first available when not provided.
-Auto Add Scripts | True | Whether to automatically add created naninovel scripts to the resources.
-Hot Reload Scripts | True | Whether to reload modified (both via visual and external editors) scripts and apply changes during playmode without restarting the playback.
-Count Total Commands | False | Whether to calculate number of commands existing in all the available naninovel scripts on service initalization. If you don't use `TotalCommandsCount` property of a script manager and `CalculateProgress` function in naninovel script expressions, disable to reduce engine initalization time.
-Enable Visual Editor | True | Whether to show visual script editor when a script is selected.
-Hide Unused Parameters | True | Whether to hide un-assigned parameters of the command lines when the line is not hovered or focused.
-Insert Line Key | Space | Hot key used to show `Insert Line` window when the visual editor is in focus. Set to `None` to disable.
-Insert Line Modifier | Control | Modifier for the `Insert Line Key`. Set to `None` to disable.
-Save Script Key | S | Hot key used to save (serialize) the edited script when the visual editor is in focus. Set to `None` to disable.
-Save Script Modifier | Control | Modifier for the `Save Script Key`. Set to `None` to disable.
-Editor Page Length | 1000 | How many script lines should be rendered per visual editor page.
-Editor Custom Style Sheet | Null | Allows modifying default style of the visual editor.
-Graph Orientation | Horizontal | Whether to build the graph vertically or horizontally.
-Graph Auto Align Padding | (10.0, 0.0) | Padding to add for each node when performing auto align.
-Graph Custom Style Sheet | Null | Allows modifying default style of the script graph.
-Enable Community Modding | False | Whether to allow adding external naninovel scripts to the build.
-External Loader | Scripts- (Local) | Configuration of the resource loader used with external naninovel script resources.
-Enable Navigator | True | Whether to initializte script navigator to browse available naninovel scripts.
-Show Navigator On Init | False | Whether to show naninovel script navigator when script manager is initialized.
-Navigator Sort Order | 900 | UI sort order of the script navigator.
+Loader | Scripts- (Addressable, Project) | Конфигурация загрузчика ресурсов, используемого для ресурсов сценариев Naninovel.
+Initialization Script | Null | Имя сценария, воспроизводимого сразу после инициализации движка.
+Title Script | Null | Имя сценария, воспроизводимого при отображении титульного экрана. Может использоваться для настройки сцены титульного экрана (фон, музыка и т.д.).
+Start Game Script | Null | Имя сценария, воспроизводимого при запуске новой игры. Будет использован первый доступный, если иного не указано.
+Auto Add Scripts | True | Следует ли автоматически добавлять созданные сценарии Naninovel к ресурсам.
+Hot Reload Scripts | True | Следует ли повторно загружать измененные (как с помощью визуального, так и внешнего редакторов) сценарии и применять изменения во время воспроизведения без перезапуска.
+Count Total Commands | False | Следует ли вычислять количество команд, существующих во всех доступных сценариях Naninovel при инициализации сервиса. Если вы не используете свойство `TotalCommandsCount` диспетчера сценариев и функцию `CalculateProgress` в выражениях сценариев Naninovel, отключите данное свойство, чтобы сократить время инициализации движка.
+Enable Visual Editor | True | Следует ли открывать визуальный редактор сценариев при выборе файла сценария.
+Hide Unused Parameters | True | Следует ли скрывать неназначенные параметры командных строк, когда строка не под курсором или не выбрана.
+Insert Line Key | Space | Горячая клавиша для отображения окна `Insert Line`, когда выбран визуальный редактор. Установите значение `None`, чтобы отключить.
+Insert Line Modifier | Control | Модификатор для `Insert Line Key`. Установите значение `None`, чтобы отключить.
+Save Script Key | S | Горячая клавиша для сохранения (сериализации) отредактированного сценария, когда выбран визуальный редактор. Установите значение `None`, чтобы отключить.
+Save Script Modifier | Control | Модификатор для `Save Script Key`. Установите значение `None`, чтобы отключить.
+Editor Page Length | 1000 | Сколько строк сценария должно быть отображено на одной странице визуального редактора.
+Editor Custom Style Sheet | Null | Позволяет изменять стандартный стиль визуального редактора.
+Graph Orientation | Horizontal | Строить график вертикально или же горизонтально.
+Graph Auto Align Padding | (10.0, 0.0) | Добавление отступов для каждого узла при выполнении автоматического выравнивания.
+Graph Custom Style Sheet | Null |  Позволяет изменять стандартный стиль графика сценария.
+Enable Community Modding | False | Следует ли разрешить добавление внешних сценариев Naninovel в сборку.
+External Loader | Scripts- (Local) | Конфигурация загрузчика ресурсов, используемого для ресурсов внешних сценариев Naninovel.
+Enable Navigator | True | Следует ли инициализировать навигатор сценариев для просмотра доступных сценариев Naninovel.
+Show Navigator On Init | False | Следует ли показывать навигатор сценариев Naninovel, когда инициализирован менеджер сценариев.
+Navigator Sort Order | 900 | Порядок сортировки UI навигатора сценариев.
 
 </div>
 
-## Spawn
+## Создание экземпляров
 
 <div class="config-table">
 
-Property | Default Value | Description
+Свойство | Значение по умолчанию | Описание
 --- | --- | ---
-Loader | Spawn- (Addressable, Project) | Configuration of the resource loader used with spawn resources.
+Loader | Spawn- (Addressable, Project) | Конфигурация загрузчика ресурсов, используемого для создаваемых экземпляров ресурсов.
 
 </div>
 
-## State
+## Состояние
 
 <div class="config-table">
 
-Property | Default Value | Description
+Свойство | Значение по умолчанию | Описание
 --- | --- | ---
-Save Folder Name | Saves | The folder will be created in the game data folder.
-Default Settings Slot Id | Settings | The name of the settings save file.
-Default Global Slot Id | Global Save | The name of the global save file.
-Save Slot Mask | Game Save{0:000} | Mask used to name save slots.
-Quick Save Slot Mask | Game Quick Save{0:000} | Mask used to name quick save slots.
-Save Slot Limit | 99 | Maximum number of save slots.
-Quick Save Slot Limit | 18 | Maximum number of quick save slots.
-Binary Save Files | True | Whether to compress and store the saves as binary files (.nson) instead of text files (.json). This will significantly reduce the files size and make them harder to edit (to prevent cheating), but will consume more memory and CPU time when saving and loading.
-Load Start Delay | 0.3 | Seconds to wait before starting load operations; used to allow pre-load animations to complete before any load-related stutters could happen.
-Reset On Goto | True | Whether to reset state of the engine services and unload (dispose) resources when loading another script via [@goto] command. It's recommended to leave this enabled to prevent memory leak issues. If you choose to disable this option, you can still reset the state and dispose resources manually at any time using [@resetState] command.
-Enable State Rollback | True | Whether to enable state rollback feature allowing player to rewind the script backwards.
-State Rollback Steps | 1024 | The number of state snapshots to keep at runtime; determines how far back the rollback (rewind) can be performed. Increasing this value will consume more memory.
-Saved Rollback Steps | 128 | The number of state snapshots to serialize (save) under the save game slots; determines how far back the rollback can be performed after loading a saved game. Increasing this value will enlarge save game files.
-Game State Handler | Naninovel.IO Game State Slot Manager, Elringus.Naninovel.Runtime, Version=0.0.0.0, Culture=neutral, Public Key Token=null | Implementation responsible for de-/serializing local (session-specific) game state; see `State Management` guide on how to add custom serialization handlers.
-Global State Handler | Naninovel.IO Global State Slot Manager, Elringus.Naninovel.Runtime, Version=0.0.0.0, Culture=neutral, Public Key Token=null | Implementation responsible for de-/serializing global game state; see `State Management` guide on how to add custom serialization handlers.
-Settings State Handler | Naninovel.IO Settings Slot Manager, Elringus.Naninovel.Runtime, Version=0.0.0.0, Culture=neutral, Public Key Token=null | Implementation responsible for de-/serializing game settings; see `State Management` guide on how to add custom serialization handlers.
+Save Folder Name | Saves | Папка (сохранений), которая будет создана в папке игровых данных.
+Default Settings Slot Id | Settings | Имя файла настроек сохранения.
+Default Global Slot Id | Global Save | Имя файла глобального сохранения.
+Save Slot Mask | Game Save{0:000} | Формат названия слотов сохранения.
+Quick Save Slot Mask | Game Quick Save{0:000} | Формат названия слотов быстрого сохранения.
+Save Slot Limit | 99 | Максимум слотов сохранения.
+Quick Save Slot Limit | 18 | Максимум слотов быстрого сохранения.
+Binary Save Files | True | Следует ли сжимать и хранить сохраненные файлы в виде двоичных файлов (.nson) вместо текстовых файлов (.json). Это значительно уменьшит размер файлов и затруднит их редактирование (чтобы предотвратить читерство), но будет потреблять больше памяти и ресурсов ЦП при сохранении и загрузке.
+Load Start Delay | 0.3 | Ожидание в секундах перед началом операции загрузки; используется для завершения анимации предварительной загрузки до того, как возникнут какие-либо связанные с загрузкой сбои.
+Reset On Goto | True | Следует ли сбрасывать состояние сервисов движка и выгружать (утилизировать) ресурсы при загрузке другого сценария при исполнении команды [@goto]. Рекомендуется оставить этот параметр включенным, чтобы предотвратить проблемы с утечкой памяти. Если вы решите отключить эту опцию, вы все равно сможете сбрасывать состояние и выгружать ресурсы вручную в любое время с помощью команды [@resetState].
+Enable State Rollback | True | Следует ли включить функцию отката, позволяющую игроку перемотать сценарий назад.
+State Rollback Steps | 1024 | Количество снимков состояния, сохраняемых во время выполнения; определяет, как далеко назад может быть выполнен откат (перемотка назад). Увеличение этого значения будет потреблять больше памяти.
+Saved Rollback Steps | 128 | Количество снимков состояния для сериализации (сохранения) в слотах сохранения; определяет, как далеко назад может быть выполнен откат после загрузки сохраненной игры. Увеличение этого значения приведет к увеличению файлов сохранений.
+Game State Handler | Naninovel.IO Game State Slot Manager, Elringus.Naninovel.Runtime, Version=0.0.0.0, Culture=neutral, Public Key Token=null | Реализация, ответственная за де-/сериализацию локального (специфичного для игровой сессии) состояния игры; см. руководство `State Management` о том, как добавить пользовательские обработчики сериализации.
+Global State Handler | Naninovel.IO Global State Slot Manager, Elringus.Naninovel.Runtime, Version=0.0.0.0, Culture=neutral, Public Key Token=null | Реализация, ответственная за де-/сериализацию глобального состояния игры; см. руководство `State Management` о том, как добавить пользовательские обработчики сериализации.
+Settings State Handler | Naninovel.IO Settings Slot Manager, Elringus.Naninovel.Runtime, Version=0.0.0.0, Culture=neutral, Public Key Token=null | Реализация, ответственная за де-/сериализацию игровых настроек; см. руководство `State Management` о том, как добавить пользовательские обработчики сериализации.
 
 </div>
 
-## Text Printers
+## Текстовые принтеры
 
 <div class="config-table">
 
-Property | Default Value | Description
+Свойство | Значение по умолчанию | Описание
 --- | --- | ---
-Default Printer Id | Dialogue | ID of the text printer to use by default.
-Max Reveal Delay | 0.06 | Delay limit (in seconds) when revealing (printing) the text messages. Specific reveal speed is set via `message speed` in the game settings; this value defines the available range (higher the value, lower the reveal speed).
-Max Auto Wait Delay | 0.02 | Delay limit (in seconds) per each printed character while waiting to continue in auto play mode. Specific delay is set via `auto delay` in the game settings; this value defines the available range.
-Scale Auto Wait | True | Whether to scale the wait time in auto play mode by the reveal speed set in the print commands.
-Default Metadata | Object Ref | Metadata to use by default when creating text printer actors and custom metadata for the created actor ID doesn't exist.
-Metadata | Object Ref | Metadata to use when creating text printer actors with specific IDs.
-Scene Origin | (0.5, 0.0) | Origin point used for reference when positioning actors on scene.
-Z Offset | 100 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
-Z Step | 0.1 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
-Default Easing | Linear | Eeasing function to use by default for all the actor modification animations (changing appearance, position, tint, etc).
-Auto Show On Modify | False | Whether to automatically reveal (show) an actor when executing modification commands.
+Default Printer Id | Dialogue | ID текстового принтера, используемого по умолчанию.
+Max Reveal Delay | 0.06 | Ограничение задержки (в секундах) при выводе (печати) текстовых сообщений. Конкретная скорость вывода устанавливается через `message speed` в настройках игры; это значение определяет доступный диапазон (чем выше значение, тем ниже скорость вывода).
+Max Auto Wait Delay | 0.02 | Ограничение задержки (в секундах) на каждый печатный символ во время ожидания продолжения в режиме авточтения. Конкретная задержка устанавливается с помощью `auto delay` в настройках игры; это значение определяет доступный диапазон.
+Scale Auto Wait | True | Следует ли масштабировать время ожидания в режиме авточтения по скорости вывода, установленной в командах вывода.
+Default Metadata | Object Ref | Метаданные, используемые по умолчанию при создании акторов текстовых принтеров, и пользовательские метаданные для созданного актора с неуказанным ID.
+Metadata | Object Ref | Метаданные, используемые при создании акторов с указанными ID.
+Scene Origin | (0.5, 0.0) | Исходная точка отсчета при позиционировании акторов в сцене.
+Z Offset | 100 | Начальное смещение по оси Z (глубина) акторов относительно камеры, установленное при создании акторов.
+Z Step | 0.1 | Расстояние по оси Z, установленное между акторами при их создании; используется для предотвращения проблем наложения.
+Default Easing | Linear | Функция смягчения, используемая по умолчанию для всех анимаций модификации актора (изменение внешности, положения, оттенка и пр.).
+Auto Show On Modify | False | Следует ли автоматически выводить (показывать) актора при выполнении команд модификации.
 
 </div>
 
-## UI
+## Пользовательский интерфейс
 
 <div class="config-table">
 
-Property | Default Value | Description
+Свойство | Значение по умолчанию | Описание
 --- | --- | ---
-Loader | UI- (Addressable, Project) | Configuration of the resource loader used with UI resources.
-Objects Layer | 5 | The layer to assign for the UI elements instatiated by the engine. Used to cull the UI when using `toogle UI` feature.
-Render Mode | Screen Space Camera | The canvas render mode to apply for all the managed UI elements.
-Sorting Offset | 1 | The sorting offset to apply for all the managed UI elements.
-
+Loader | UI- (Addressable, Project) | Конфигурация загрузчика ресурсов, используемого для ресурсов UI.
+Objects Layer | 5 | Слой, назначаемый для элементов UI, создаваемых движком. Используется для обрезки при использовании функции UI `toogle UI`.
+Render Mode | Screen Space Camera | Режим визуализации, применяемый для всех управляемых элементов UI.
+Sorting Offset | 1 | Смещение сортировки, применяемое для всех управляемых элементов UI.
 </div>
 
-## Unlockables
+## Разблокируемые ресурсы
 
 <div class="config-table">
 
-Property | Default Value | Description
+Свойство | Значение по умолчанию | Описание
 --- | --- | ---
-Loader | Unlockables- (Addressable, Project) | Configuration of the resource loader used with unlockable resources.
+Loader | Unlockables- (Addressable, Project) | Конфигурация загрузчика ресурсов, используемого для разблокируемых ресурсов.
 
 </div>
 
