@@ -1,23 +1,23 @@
-# Render Pipelines
+# Каналы рендеринга
 
-Unity's [scriptable render pipelines](https://docs.unity3d.com/Manual/render-pipelines.html) (SRP) — both URP and HDRP — are supported with some limitations and require additional setup.
+[Скриптуемые каналы рендеринга](https://docs.unity3d.com/Manual/render-pipelines.html) Unity (SRP) — поддерживаются как URP, так и HDRP с некоторыми ограничениями, а также требуют дополнительной установки.
 
 ::: warn
-The SRPs are still hardly production-ready (despite the official claims from Unity) and lack many features compared to default rendering system. It's not recommended to use the render pipelines, unless you're an advanced user and ready to solve any potential technical issues and limitations.
+SRP все еще вряд ли готовы к продакшну (несмотря на официальные заявления Unity) и лишены многих функций по сравнению со стандартной системой рендеринга. Не рекомендуется использовать каналы рендеринга, если вы не являетесь опытным пользователем и не готовы разрешать любые потенциальные технические проблемы и ограничения.
 :::
 
-## Setup
+## Установка
 
-See the [official documentation](https://docs.unity3d.com/Manual/render-pipelines.html) on how to install and configure your SRP of choice.
+Изучите [официальную документацию](https://docs.unity3d.com/Manual/render-pipelines.html) для того, чтобы установить и настроить выбранные вами SRP.
 
-Both URP and HDRP doesn't support multiple cameras, so it's required to disable `Use UI Camera` in the camera configuration menu (enabled by default).
+Как URP, так и HDRP не поддерживают множественные камеры, поэтому необходимо отключить свойство `Use UI Camera` в меню конфигурации камеры (включено по умолчанию).
 
 ![](https://i.gyazo.com/5b70d18f028d27124bd8f4a25b2df47c.png)
 
-When running under HDRP, change color space to linear (HDRP doesn't support gamma mode, which is set by default).
+При работе в режиме HDRP измените цветовое пространство на линейное (HDRP не поддерживает гамма-режим, который установлен по умолчанию).
 
 ![](https://i.gyazo.com/2c053a6e3d79f080469787b7f09ee8f3.png)
 
-## Limitations
+## Ограничения
 
-Some of the built-in effects and features (eg, Depth Of Field, Digital Glitch, [@startTrans] and [@finishTrans] commands) won't work with SRPs due to lack of the required rendering features. It's possible to replace most of the missing effects and features via various hacks and use them without modifying Naninovel's source code or package content; see [special effects guide](/ru/guide/special-effects.md#adding-custom-effects) and [custom commands](/ru/guide/custom-commands.md) guides for more information on extending the engine in that regard.
+Некоторые встроенные эффекты и функции (например, Depth Of Field, Digital Glitch, команды `@startTrans` и `@finishTrans`) не будут работать с SRP из-за отсутствия необходимых функций рендеринга. Можно заменить большую часть недостающих эффектов и функций через различные хаки и использовать их, не изменяя исходный код Naninovel или содержимого пакета; см. гайды по [спецэффектам](/ru/guide/special-effects.md#adding-custom-effects) и [пользовательским командам](/ru/guide/custom-commands.md) для получения дополнительной информации о развитии движка в этом отношении.

@@ -1,154 +1,154 @@
-﻿# Special Effects
+﻿# Спецэффекты
 
-Special effects are activated via [@spawn] command followed by the effect name. E.g.:
+Спецэффекты активируются с помощью команды [@spawn], за которой следует имя эффекта. Например:
 
 ```
 @spawn ShakeBackground
 ```
-— will shake the main background.
+— вызовет тряску фонового изображения.
 
-You can control parameters of the effect with `params` parameter. E.g.:
+Вы можете контролировать параметры эффекта через параметр `params`. Например:
 
 ```
 @spawn ShakeCharacter params:Kohaku,1
 ```
-— will shake character with ID "Kohaku" once, instead of the default 3.
+— встряхнёт персонажа с ID "Kohaku" один раз вместо стандартных 3.
 
-It's possible to selectively specify a subset of the parameters, leaving the rest at the default values:
+Можно выборочно указать подмножество параметров, оставив остальные значения по умолчанию:
 
 ```
 @spawn ShakePrinter params:,,0.5
 ```
-— notice the first two parameters (printer ID and shake count) are skipped and will have their default values, but the third parameter (shake duration) is set to 0.5 seconds.
+— обратите внимание, что первые два параметра (ID принтера и количество встряхиваний) пропущены и будут иметь значения по умолчанию, а третий параметр (длительность встряхивания) установлен на 0,5 секунды.
 
-You can update the effect parameters without re-starting it with the consequent [@spawn]  commands, eg:
+Вы можете обновить параметры эффекта, не перезапуская его, с помощью последовательных команд [@spawn], например:
 
 ```
-; Start slowly shaking `Kohaku` character in a loop, 
-; don't wait for completion (it's an infinite loop, anyway)
+; Начать медленно трясти персонажа `Kohaku` зацикленно, 
+; не дожидаясь окончания анимации (поскольку цикл бесконечен)
 @spawn ShakeCharacter params:Kohaku,0,,,0.1 wait:false
 Kohaku: It's rumbling!
-; Shake 3 more times with an increased amplitude
+; Встряхнуть ещё 3 раза с увеличенной амплитудой
 @spawn ShakeCharacter params:Kohaku,3,,,0.8
 ```
 
-Some effects are persistent by default and should be manually stopped with [@despawn] command. E.g.:
+Некоторые эффекты являются постоянными по умолчанию и должны быть остановлены вручную командой [@despawn]. Например:
 
 ```
-; Start the rain
+; Начать дождь
 @spawn Rain
-; Stop the rain
+; Остановить дождь
 @despawn Rain
 ```
 
-The [@despawn] commands of some effects can also receive parameters (eg, to control the fade-out duration), eg:
+Команды [@despawn] некоторых эффектов также могут принимать параметры (например, для управления длительностью затухания), например:
 
 ```
-; Stops the rain gradually over 10 seconds
+; Остановить дождь постепенно в течение 10 секунд
 @despawn Rain params:10
 ```
 
-When no `params` is specified, default parameters will be used. You can find both "start" (accepted by the [@spawn] command) and "stop" (accepted by the [@despawn] command) parameters available for each effect and their default values in the docs below.
+Если значения `params` не указаны, то будут использоваться параметры по умолчанию. Вы можете найти как параметры "start" (принимаемые командой [@spawn]), так и "stop" (принимаемые командой [@despawn]), доступные для каждого эффекта, а также их значения по умолчанию в приведенной ниже документации.
 
-It's possible to start multiple effects of the same type by appending an ID delimited by `#` after the effect name, eg:
+Можно запустить несколько эффектов одного и того же типа, добавив ID, отделенный символом `#` после имени эффекта, например:
 
 ```
-; Shake both `Kohaku` and `Yuko` in a loop
+; Встряхнуть обоих `Kohaku` и `Yuko` зацикленно
 @spawn ShakeCharacter#1 params:Kohaku,0 wait:false
 @spawn ShakeCharacter#2 params:Yuko,0 wait:false
 ```
 
-When stopping or updating instanced effects, don't forget to specify the ID:
+При остановке или обновлении таких воспроизводимых эффектов не забудьте указать ID:
 ```
-; Stop shaking `Yuko`, increase `Kohaku` amplitude
+; Перестать трясти `Yuko`, увеличить амплитуду для `Kohaku`
 @despawn ShakeCharacter#2
 @spawn ShakeCharacter#1 params:k,0,,,1
 ```
 
-You can use any string for ID (it can be a number like above, or something more meaningful, eg `@spawn ShakeCharacter#Kohaku`), just make sure it's unique among other IDs you're using with a given effect name.
+Вы можете использовать любую строку для ID (это может быть число, как указано выше, или что-то более значимое, например `@spawn ShakeCharacter#Kohaku`), просто убедитесь, что она уникальна среди других ID, которые вы используете с данным эффектом.
 
 ## Shake Printer
-Shakes printer with the specified ID or the default one.
+Встряхивает принтер с указанным ID, или же принтер по умолчанию.
 
 [!f61fc35e318cce1949b00e5fe2448a80]
 
-**Start Parameters**
-Name | Type | Default | Description
+**Стартовые параметры**
+Имя | Тип | По умолчанию | Описание
 --- | --- | --- | ---
-Printer ID | String | null | ID of the printer to shake. Will shake a default printer when not specified.
-Shake count | Integer | 2 | The number of shake iterations. When set to 0 or less, will loop the effect until stopped with [@despawn].
-Shake duration | Decimal | 0.15 | The base duration of each shake iteration, in seconds.
-Duration variation | Decimal | 0.25 | The randomized delta modifier applied to the base duration of the effect.
-Shake amplitude | Decimal | 0.5 | The base displacement amplitude of each shake iteration, in units.
-Amplitude variation | Decimal | 0.1 | The randomized delta modifier applied to the base displacement amplitude of the effect.
-Shake horizontally | Boolean | false | Whether to displace the actor horizontally (by x-axis).
-Shake vertically | Boolean | true | Whether to displace the actor vertically (by y-axis).
+Printer ID | String | null | ID принтера для встряхивания. Встряхнет принтер по умолчанию, если не указано.
+Shake count | Integer | 2 | Количество итераций встряхивания. Если установлено значение 0 или меньше, то эффект будет зациклен до тех пор, пока не будет остановлен с помощью [@despawn].
+Shake duration | Decimal | 0.15 | Базовая длительность каждой итерации встряхивания, в секундах.
+Duration variation | Decimal | 0.25 | Рандомизированный дельта-модификатор, применяемый к базовой длительности эффекта.
+Shake amplitude | Decimal | 0.5 | Базовая амплитуда смещения каждой итерации встряхивания, в юнитах.
+Amplitude variation | Decimal | 0.1 | Рандомизированный дельта-модификатор, применяемый к базовой амплитуде смещения эффекта.
+Shake horizontally | Boolean | false | Следует ли перемещать актора по горизонтали (по оси x).
+Shake vertically | Boolean | true | Следует ли перемещать актора вертикально (по оси y).
 
-Be aware, that when UI is set to "Screen Space Overlay" mode, shake amplitude needs to be about x100 times the default one for a noticeable effect.
+Имейте в виду, что когда UI настроен на режим "Screen Space Overlay", амплитуда встряхивания должна быть примерно в 100 раз больше, чем по умолчанию, для заметного эффекта.
 
-**Examples**
+**Примеры**
 ```
-; Shake a default printer with default params
+; Встряхнуть стандартный принтер с параметрами по умолчанию
 @spawn ShakePrinter
 
-; Shake a default printer horizontally 10 times 
+; Встряхнуть стандартный принтер по горизонтали 10 раз 
 @spawn ShakePrinter params:,10,,,,,true,false
 
-; Start shaking a default printer in loop, print some text, stop the shaking
+; Начать трясти стандартный принтер зацикленно, вывести текст, остановить встряску
 @spawn ShakePrinter params:,0 wait:false
 What a shaky situation!
 @despawn ShakePrinter
 ```
 
 ## Shake Background
-Shakes background with the specified ID or the main one.
+Встряхивает фон с указанным ID, или же основной фон.
 
 [!fcf1153a0ad3d9a153908206211f5f5f]
 
-**Start Parameters**
-Name | Type | Default | Description
+**Стартовые параметры**
+Имя | Тип | По умолчанию | Описание
 --- | --- | --- | ---
-Background ID | String | null | ID of the background to shake. Will shake main background when not specified.
-Shake count | Integer | 3 | The number of shake iterations. When set to 0 or less, will loop the effect until stopped with [@despawn].
-Shake duration | Decimal | 0.15 | The base duration of each shake iteration, in seconds.
-Duration variation | Decimal | 0.25 | The randomized delta modifier applied to the base duration of the effect.
-Shake amplitude | Decimal | 0.5 | The base displacement amplitude of each shake iteration, in units.
-Amplitude variation | Decimal | 0.5 | The randomized delta modifier applied to the base displacement amplitude of the effect.
-Shake horizontally | Boolean | false | Whether to displace the actor horizontally (by x-axis).
-Shake vertically | Boolean | true | Whether to displace the actor vertically (by y-axis).
+Background ID | String | null | ID фона для встряхивания. Встряхнет основной фон, если не указано.
+Shake count | Integer | 3 | Количество итераций встряхивания. Если установлено значение 0 или меньше, то эффект будет зациклен до тех пор, пока не будет остановлен с помощью [@despawn].
+Shake duration | Decimal | 0.15 | Базовая длительность каждой итерации встряхивания, в секундах.
+Duration variation | Decimal | 0.25 | Рандомизированный дельта-модификатор, применяемый к базовой длительности эффекта.
+Shake amplitude | Decimal | 0.5 | Базовая амплитуда смещения каждой итерации встряхивания, в юнитах.
+Amplitude variation | Decimal | 0.5 | Рандомизированный дельта-модификатор, применяемый к базовой амплитуде смещения эффекта.
+Shake horizontally | Boolean | false | Следует ли перемещать актора по горизонтали (по оси x).
+Shake vertically | Boolean | true | Следует ли перемещать актора вертикально (по оси y).
 
-**Examples**
+**Примеры**
 ```
-; Shake main background with default params
+; Встряхнуть основной фон с параметрами по умолчанию
 @spawn ShakeBackground
 
-; Shake `Video` background twice 
+; Встряхнуть фон `Video` дважды 
 @spawn ShakeBackground params:Video,2
 ```
 
 ## Shake Character
-Shakes character with the specified ID or a random visible one.
+Встряхивает персонажа с указанным ID, или же случайного видимого.
 
 [!6001d3cfbee855c8a783d10e4a784042]
 
-**Start Parameters**
-Name | Type | Default | Description
+**Стартовые параметры**
+Имя | Тип | По умолчанию | Описание
 --- | --- | --- | ---
-Character ID | String | null | ID of the character to shake. Will shake a random visible one when not specified.
-Shake count | Integer | 3 | The number of shake iterations. When set to 0 or less, will loop the effect until stopped with [@despawn].
-Shake duration | Decimal | 0.15 | The base duration of each shake iteration, in seconds.
-Duration variation | Decimal | 0.25 | The randomized delta modifier applied to the base duration of the effect.
-Shake amplitude | Decimal | 0.5 | The base displacement amplitude of each shake iteration, in units.
-Amplitude variation | Decimal | 0.5 | The randomized delta modifier applied to the base displacement amplitude of the effect.
-Shake horizontally | Boolean | false | Whether to displace the actor horizontally (by x-axis).
-Shake vertically | Boolean | true | Whether to displace the actor vertically (by y-axis).
+Character ID | String | null | ID персонажа для встряхивания. Встряхнет случайного видимого персонажа, если не указано.
+Shake count | Integer | 3 | Количество итераций встряхивания. Если установлено значение 0 или меньше, то эффект будет зациклен до тех пор, пока не будет остановлен с помощью [@despawn].
+Shake duration | Decimal | 0.15 | Базовая длительность каждой итерации встряхивания, в секундах.
+Duration variation | Decimal | 0.25 | Рандомизированный дельта-модификатор, применяемый к базовой длительности эффекта.
+Shake amplitude | Decimal | 0.5 | Базовая амплитуда смещения каждой итерации встряхивания, в юнитах.
+Amplitude variation | Decimal | 0.5 | Рандомизированный дельта-модификатор, применяемый к базовой амплитуде смещения эффекта.
+Shake horizontally | Boolean | false | Следует ли перемещать актора по горизонтали (по оси x).
+Shake vertically | Boolean | true | Следует ли перемещать актора вертикально (по оси y).
 
-**Examples**
+**Примеры**
 ```
-; Shake `Kohaku` character with default parameters
+; Встряхнуть персонажа `Kohaku` с параметрами по умолчанию
 @spawn ShakeCharacter params:Kohaku
 
-; Start shaking a random character, show a choice to stop and act accordingly
+; Начать трясти случайного персонажа, вывести выбор для остановки и действовать соответственно
 @spawn ShakeCharacter params:,0
 @choice "Continue shaking" goto:.Continue
 @choice "Stop shaking" goto:.Stop
@@ -160,212 +160,213 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 ```
 
 ## Shake Camera
-Shakes the main Naninovel render camera.
+Встряхивает основную камеру рендера Naninovel.
 
 [!f9521fbcf959d0b72e449ae6e2191f9f]
 
-**Start Parameters**
-Name | Type | Default | Description
+**Стартовые параметры**
+Имя | Тип | По умолчанию | Описание
 --- | --- | --- | ---
-Camera Name | String | null | Name of the camera object to shake. Will shake the main Naninovel camera when not provided.
-Shake count | Integer | 3 | The number of shake iterations. When set to 0 or less, will loop the effect until stopped with [@despawn].
-Shake duration | Decimal | 0.15 | The base duration of each shake iteration, in seconds.
-Duration variation | Decimal | 0.25 | The randomized delta modifier applied to the base duration of the effect.
-Shake amplitude | Decimal | 0.5 | The base displacement amplitude of each shake iteration, in units.
-Amplitude variation | Decimal | 0.5 | The randomized delta modifier applied to the base displacement amplitude of the effect.
-Shake horizontally | Boolean | false | Whether to displace the actor horizontally (by x-axis).
-Shake vertically | Boolean | true | Whether to displace the actor vertically (by y-axis).
+Camera Name | String | null | Имя камеры для встряхивания. Встряхнет основную камеру рендера Naninovel, если не указано.
+Shake count | Integer | 3 | Количество итераций встряхивания. Если установлено значение 0 или меньше, то эффект будет зациклен до тех пор, пока не будет остановлен с помощью [@despawn].
+Shake duration | Decimal | 0.15 | Базовая длительность каждой итерации встряхивания, в секундах.
+Duration variation | Decimal | 0.25 | Рандомизированный дельта-модификатор, применяемый к базовой длительности эффекта.
+Shake amplitude | Decimal | 0.5 | Базовая амплитуда смещения каждой итерации встряхивания, в юнитах.
+Amplitude variation | Decimal | 0.5 | Рандомизированный дельта-модификатор, применяемый к базовой амплитуде смещения эффекта.
+Shake horizontally | Boolean | false | Следует ли перемещать актора по горизонтали (по оси x).
+Shake vertically | Boolean | true | Следует ли перемещать актора вертикально (по оси y).
 
-**Examples**
+**Примеры**
 ```
-; Shake the main Naninovel camera with default params
+; Встряхнуть основную камеру Naninovel с параметрами по умолчанию
 @spawn ShakeCamera
 
-; Shake the main Naninovel camera horizontally 5 times 
+; Встряхнуть основную камеру Naninovel горизонтально 5 раз 
 @spawn ShakeCamera params:,5,,,,,true,false
 ```
 
 ## Animate Actor
 
-In case you wish to change (animate) actor parameters directly, consider using [@animate] command.
+Если вы хотите изменить (анимировать) параметры актора напрямую, воспользуйтесь командой [@animate].
 
 [!a0494329c713c4309a52d57d0b297bee]
 
 ## Digital Glitch
-Applies a post-processing effect to the main camera simulating digital video distortion and artifacts.
+
+Применяет эффект постобработки к основной камере, имитируя искажения и артефакты цифрового видео.
 
 [!94cb6db25c17956473db4de149281df5]
 
-**Start Parameters**
-Name | Type | Default | Description
+**Стартовые параметры**
+Имя | Тип | По умолчанию | Описание
 --- | --- | --- | ---
-Duration | Decimal | 1 | The duration of the effect, in seconds.
-Intensity | Decimal | 1 | The intensity of the effect, in 0.0 to 10.0 range.
+Duration | Decimal | 1 | Длительность эффекта, в секундах.
+Intensity | Decimal | 1 | Интенсивность эффекта в диапазоне от 0.0 до 10.0.
 
-**Examples**
+**Примеры**
 ```
-; Apply the glitch effect with default parameters
+; Применить эффект глитча с параметрами по умолчанию
 @spawn DigitalGlitch
-; Apply the effect over 3.33 seconds with a low intensity
+; Применять эффект в течение 3.33 секунд с низкой интенсивностью
 @spawn DigitalGlitch params:3.33,0.1
 ```
 
 ## Rain
-Spawns a particle system simulating a rain.
+Создать систему частиц, имитирующую дождь.
 
 [!74af9eec30f6517ea5b8453a9c86d33c]
 
-**Start Parameters**
-Name | Type | Default | Description
+**Стартовые параметры**
+Имя | Тип | По умолчанию | Описание
 --- | --- | --- | ---
-Intensity | Decimal | 500 | The intensity of the rain (particles spawn rate per second).
-Fade-in time | Decimal | 5 | The particle system will gradually grow the spawn rate from 0 to the target level over the specified time, in seconds.
-X velocity | Decimal | 1 | Multiplier to the horizontal speed of the particles. Use to change angle of the rain drops.
-Y velocity | Decimal | 1 | Multiplier to the vertical speed of the particles.
+Intensity | Decimal | 500 | Интенсивность дождя (количество частиц, появляющихся в секунду).
+Fade-in time | Decimal | 5 | Система частиц будет постепенно увеличивать скорость появления частиц от 0 до целевого уровня в течение указанного времени, в секундах.
+X velocity | Decimal | 1 | Множитель горизонтальной скорости частиц. Используйте для изменения угла наклона капель дождя.
+Y velocity | Decimal | 1 | Множитель вертикальной скорости частиц.
 
-**Stop Parameters**
-Name | Type | Default | Description
+**Параметры остановки**
+Имя | Тип | По умолчанию | Описание
 --- | --- | --- | ---
-Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn rate from the target level to 0 over the specified time, in seconds.
+Fade-out time | Decimal | 5 | Система частиц будет постепенно снижать скорость появления частиц с целевого уровня до 0 в течение указанного времени, в секундах.
 
-**Examples**
+**Примеры**
 ```
-; Start intensive rain over 10 seconds
+; Начать интенсивный дождь в течение 10 секунд
 @spawn Rain params:1500,10
-; Stop the rain over 30 seconds
+; Остановить дождь за 30 секунд
 @despawn Rain params:30
 ```
 
 ## Snow
-Spawns a particle system simulating a snow.
+Создать систему частиц, имитирующую снег.
 
 [!25a052444c561e40c8318272f51edf47]
 
-**Start Parameters**
-Name | Type | Default | Description
+**Стартовые параметры**
+Имя | Тип | По умолчанию | Описание
 --- | --- | --- | ---
-Intensity | Decimal | 100 | The intensity of the snow (particles spawn rate per second).
-Fade-in time | Decimal | 5 | The particle system will gradually grow the spawn rate from 0 to the target level over the specified time, in seconds.
+Intensity | Decimal | 100 | Интенсивность снега (количество частиц, появляющихся в секунду).
+Fade-in time | Decimal | 5 | Система частиц будет постепенно увеличивать скорость появления частиц от 0 до целевого уровня в течение указанного времени, в секундах..
 
-**Stop Parameters**
-Name | Type | Default | Description
+**Параметры остановки**
+Имя | Тип | По умолчанию | Описание
 --- | --- | --- | ---
-Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn rate from the target level to 0 over the specified time, in seconds.
+Fade-out time | Decimal | 5 | Система частиц будет постепенно снижать скорость появления частиц с целевого уровня до 0 в течение указанного времени, в секундах.
 
-**Examples**
+**Примеры**
 ```
-; Start intensive snow over 10 seconds
+; Начать интенсивный снег в течение 10 секунд
 @spawn Snow params:300,10
-; Stop the snow over 30 seconds
+; Остановить снег за 30 секунд
 @despawn Snow params:30
 ```
 
 ## Sun Shafts
-Spawns a particle system simulating sun shafts (rays).
+Создать систему частиц, имитирующую солнечные лучи.
 
 [!7edc4777699229abc508f2bdb404522e]
 
-**Start Parameters**
-Name | Type | Default | Description
+**Стартовые параметры**
+Имя | Тип | По умолчанию | Описание
 --- | --- | --- | ---
-Intensity | Decimal | 0.85 | The intensity of the rays (opacity).
-Fade-in time | Decimal | 3 | The particle system will gradually grow the intensity from 0 to the target level over the specified time, in seconds.
+Intensity | Decimal | 0.85 | Интенсивность лучей (непрозрачность).
+Fade-in time | Decimal | 3 | Система частиц будет постепенно увеличивать скорость появления частиц от 0 до целевого уровня в течение указанного времени, в секундах.
 
-**Stop Parameters**
-Name | Type | Default | Description
+**Параметры остановки**
+Имя | Тип | По умолчанию | Описание
 --- | --- | --- | ---
-Fade-out time | Decimal | 3 | The particle system will gradually lower the opacity from the target level to 0 over the specified time, in seconds.
+Fade-out time | Decimal | 3 | Система частиц будет постепенно снижать скорость появления частиц с целевого уровня до 0 в течение указанного времени, в секундах.
 
 **Examples**
 ```
-; Start intensive sunshine over 10 seconds
+; Создать интенсивные солнечные лучи в течение 10 секунд
 @spawn SunShafts params:1,10
-; Stop the sunshine over 30 seconds
+; Остановить лучи за 30 секунд
 @despawn SunShafts params:30
 ```
 
 ## Depth of Field (Bokeh)
-Simulates depth of field (aka DOF, bokeh) effect, when only the object in focus stays sharp, while the other image is blurred.
+Имитирует эффект глубины резкости (боке), при котором объект в фокусе остаётся чётким, в то время как остальное изображение размыто.
 
 [!616a023c46f207b4a3a33d3d3fd9fbc9]
 
-**Start Parameters**
-Name | Type | Default | Description
+**Стартовые параметры**
+Имя | Тип | По умолчанию | Описание
 --- | --- | --- | ---
-Focus Object Name | String | null | Name of the game object to set focus for (optional). When set, the focus will always stay on the game object and `Focus Distance` parameter will be ignored.
-Focus Distance | Decimal | 10 | Distance from the Naninovel camera to the focus point. Ignored when `Focus Object Name` is specified.
-Focal Length | Decimal | 3.75 | Amount of blur to apply for the de-focused areas; also determines focus sensitivity.
-Duration | Decimal | 1 | Interpolation time (how fast the parameters will reach the target values).
+Focus Object Name | String | null | Имя игрового объекта для установки фокуса (необязательно). При установке фокус всегда будет оставаться на игровом объекте, а параметр `Focus Distance` будет проигнорирован.
+Focus Distance | Decimal | 10 | Расстояние от камеры Naninovel до точки фокусировки. Игнорируется, если указано `Focus Object Name`.
+Focal Length | Decimal | 3.75 | Величина размытия, применяемая для областей вне фокуса; также определяет чувствительность фокуса.
+Duration | Decimal | 1 | Время интерполяции (как быстро параметры достигнут целевых значений).
 
-**Stop Parameters**
-Name | Type | Default | Description
+**Параметры остановки**
+Имя | Тип | По умолчанию | Описание
 --- | --- | --- | ---
-Stop Duration | Decimal | 1 | Fade-off (disable) duration for the effect parameters to reach default values where the effect is not visible.
+Stop Duration | Decimal | 1 | Длительность затухания (отключения) для достижения параметрами эффекта значений по умолчанию, когда эффект не виден.
 
-**Examples**
+**Примеры**
 ```
-; Enable the effect with default parameters and lock focus to `Kohaku` game object
+; Включить эффект с параметрами по умолчанию и зафиксировать фокус на игровом объекте `Kohaku`
 @spawn DepthOfField params:Kohaku
-; Fade-off (disable) the effect over 10 seconds
+; Отключить эффект за 10 секунд
 @despawn DepthOfField params:10
-; Set focus point 10 units away from the camera,
-; focal distance to 0.95 and apply it over 3 seconds
+; Установить точку фокусировки на расстоянии 10 единиц от камеры,
+; фокусное расстояние до 0,95 и включить эффект за 3 секунды
 @spawn DepthOfField params:,10,0.95,3
 ```
 
-## Adding Custom Effects
+## Добавление пользовательских эффектов
 
-### Standalone Effects
+### Автономные эффекты
 
-You can add a custom standalone effect (implemented via a prefab, like the "Rain" and "Snow" built-in effects) by adding the effect prefab via spawn resources managers (`Naninovel -> Resources -> Spwan`) and using [@spawn] and [@despawn] commands in the same way as with the built-in effects.
+Вы можете добавить пользовательский автономный эффект (реализованный через префаб, как встроенные эффекты "Rain" и "Snow"), добавив префаб эффекта через менеджеры создания ресурсов (`Naninovel -> Resources -> Spawn`) и используя команды [@spawn] и [@despawn] таким же образом, как и со встроенными эффектами.
 
 ![](https://i.gyazo.com/45b9d8fb51ffb368ff9f792221f10ca6.png)
 
-For example, given there is a `Explosion.prefab` prefab assigned via the spawn manager, following commands will spawn and de-spawn (destroy) the prefab on scene:
+Например, для приведённого здесь префаба `Explosion.prefab`, назначенного менеджером, следующие команды будут создавать и уничтожать префаб в сцене:
 
 ```
 @spawn Explosion
 @despawn Explosion
 ```
 
-In case you have a lot of prefabs to spawn and it's inconvenient to assign them via editor menu, it's possible to just drop them at `Resources/Naninovel/Spawn` folder and they'll automatically be available in the scripts. You can additionally organize them with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in naninovel scripts. Eg, prefab asset stored as `Resources/Naninovel/Spawn/Explosions/Boom01` can be referenced in scripts as `Explosions/Boom01`.
+Если у вас есть много префабов для выведения и их неудобно назначать через меню редактора, можно просто поместить их в папку `Resources/Naninovel/Spawn`, и они автоматически будут доступны в сценариях. Вы можете дополнительно организовать их с помощью подпапок, если хотите; в этом случае используйте косую черту ( `/` ) при ссылке на них в сценариях Naninovel. Например, ассет префаба, сохранённый как `Resources/Naninovel/Spawn/Explosions/Boom01` может использоваться в сценариях как `Explosions/Boom01`.
 
-It's also possible to use [addressable asset system](/ru/guide/resource-providers.md#addressable) to manually expose the resources. To expose an asset, assign address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "Boom01" prefab asset, assign the asset following address: `Naninovel/Spawn/Boom01`. Be aware, that addressable provider is not used in editor by default; you can allow it by enabling `Enable Addressable In Editor` property in resource provider configuration menu.
+Кроме того, можно использовать [систему адресируемых ассетов](/ru/guide/resource-providers.md#addressable) для ручного предоставления ресурсов. Чтобы предоставить доступ к ассету, назначьте адрес, равный пути, который вы использовали бы для его предоставления с помощью описанного выше метода, за исключением опущенной части "Resources/". Например, чтобы предоставить ассет префаба "Boom01", назначьте ему следующий адрес: `Naninovel/Spawn/Boom01`. Имейте в виду, что адресируемый провайдер по умолчанию не используется в редакторе; вы можете включить его, включив свойство `Enable Addressable In Editor` в меню конфигурации провайдера ресурсов.
 
-Check the built-in effect prefabs stored at `Naninovel/Prefabs/FX` for reference implementations.
+Используйте встроенные префабы эффектов, хранящиеся в `Naninovel/Prefabs/FX`, в качестве референсов для реализаций.
 
-### Camera Effects
+### Эффекты камеры
 
-If you wish to apply a custom [post-processing effect](https://assetstore.unity.com/?q=post%20processing&orderBy=1) (aka image effect or camera filter, like the "Digital Glitch" built-in effect) to the Naninovel camera, [create a camera prefab](https://docs.unity3d.com/Manual/CreatingPrefabs.html), [add the required effect components](https://docs.unity3d.com/Manual/UsingComponents.html) to the camera's object and assign the prefab to `Custom Camera Prefab` field in the camera configuration menu (`Naninovel -> Configuration -> Camera`).
+Если вы хотите применить пользовательский [эффект пост-обработки](https://assetstore.unity.com/?q=post%20processing&orderBy=1) (aka эффект изображения или фильтр камеры, как встроенный эффект "Digital Glitch") к камере Naninovel, [создайте префаб камеры](https://docs.unity3d.com/Manual/CreatingPrefabs.html), [добавьте нужные компоненты эффектов](https://docs.unity3d.com/Manual/UsingComponents.html) к объекту камеры и присвоить префаб полю `Custom Camera Prefab` в меню конфигурации камеры (`Naninovel -> Configuration -> Camera`).
 
 ![](https://i.gyazo.com/6024aac1d2665dd96915758cd5c09fde.png)
 
-You can toggle (enable if disabled and vice-versa) the added components via naninovel scripts using `toggle` parameter and explicitly set the enabled state with `set` parameter of the [@camera] command. For example, let's assume you've added a "Bloom Image Effect" component to the camera object. First, find out what is the type name of the component; it's usually specified in the `Script` field of the component.
+Вы можете переключать (включать, если отключено, и наоборот) добавленные компоненты с помощью скриптов Naninovel, используя нараметр `toggle`, и явно устанавливать состояние с помощью параметра `set` команды [@camera]. Например, предположим, что вы добавили компонент "Bloom Image Effect" к объекту камеры. Во-первых, выясните, каково имя типа компонента; обычно оно указывается в поле `Script` компонента.
 
 ![](https://i.gyazo.com/73b7eabfe97ed84796cbe715b7dafc14.png)
 
-In our case the component's type name is `BloomImageEffect`. Use the type name to toggle this component at runtime like follows:
+В нашем случае имя типа компонента — `BloomImageEffect`. Используйте имя типа для переключения этого компонента во время выполнения следующим образом:
 
 ```
 @camera toggle:BloomImageEffect
 ```
 
-You can toggle multiple components at once by delimiting the type names with commas:
+Вы можете переключать несколько компонентов одновременно, разделяя имена типов запятыми:
 
 ```
 @camera toggle:BloomImageEffect,Sepia,CameraNoise
 ```
 
-And in case you want to explicitly enable or disable a component:
+И в случае, если вы хотите явно включить или отключить компонент:
 
 ```
 @camera set:BloomImageEffect.true,Sepia.false,CameraNoise.true
 ```
 
-— will enabled `BloomImageEffect` and `CameraNoise` components, while disabling `Sepia`.
+— будут включены компоненты `BloomImageEffect` и `CameraNoise` компонентов, а так же отключен компонент `Sepia`.
 
-The state of the currently enabled (and disabled) custom camera components will be automatically saved and restored on game save-loading operations.
+Состояние включенных в данный момент (и отключенных) пользовательских компонентов камеры будет автоматически сохранено и восстановлено при выполнении операций сохранения и загрузки игры.
 
-Check out the following video for example on adding a custom camera filter effect.
+Посмотрите следующее видео с примером добавления пользовательского эффекта фильтра камеры.
 
 [!!IbT6MTecO-k]
