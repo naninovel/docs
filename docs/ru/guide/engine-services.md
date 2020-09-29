@@ -1,56 +1,56 @@
-# Engine Services
+ # Сервисы движка
 
-Most of the engine features are implemented via engine services. Engine service is an implementation of an `IEngineService` interface, which handles a specific job, like executing naninovel scripts, managing actors or saving-loading the game state.
+Большинство функций движка реализуются через его сервисы. Сервис движка – это реализация интерфейса `IEngineService`, который выполняет определенную работу, например, выполнение сценариев Naninovel, управление акторами или сохранение-загрузка состояния игры.
 
-In case you wish to interact with an engine system, you'll most likely want to use an engine service. You can get a reference to an engine service using `Engine.GetService<TService>()` static method, where `TService` is the interface of the service you wish to get; e.g., to get a `IScriptPlayer` service:
+В случае, если вы хотите взаимодействовать с системой движка, вам, скорее всего, захочется использовать сервис движка. Вы можете получить ссылку на него, используя статический метод `Engine.GetService<TService>()`, где `TService` – интерфейс сервиса, который вы хотите получить; например, чтобы получить сервис `IScriptPlayer`:
 
 ```csharp
 var player = Engine.GetService<IScriptPlayer>();
 player.Stop();
 ```
 
-The following services are currently available:
+В настоящее время доступны следующие сервисы:
 
-Service Interface | Description
+Интерфейс сервиса | Описание
 --- | ---
-IBackgroundManager | Manages [background](/ru/guide/backgrounds.md) actors.
-ICharacterManager | Manages [character](/ru/guide/characters.md) actors.
-IChoiceHandlerManager | Manages [choice handler](/ru/guide/choices.md) actors.
-ITextPrinterManager | Manages [text printer](/ru/guide/text-printers.md) actors.
-IAudioManager | Manages the audio: [SFX](/ru/guide/audio.md#sound-effects), [BGM](/ru/guide/audio.md#background-music) and [voicing](/ru/guide/voicing.md).
-IInputManager | Manages the user [input processing](/ru/guide/input-processing.md).
-ILocalizationManager| Manages the [localization](/ru/guide/localization.md) activities.
-ITextManager | Handles [managed text](/ru/guide/managed-text.md) feature.
-IMoviePlayer | Handles [movie](/ru/guide/movies.md) playing.
-IScriptManager | Manages [naninovel script](/ru/guide/naninovel-scripts.md) resources.
-IScriptPlayer | Handles [naninovel scripts](/ru/guide/naninovel-scripts.md) execution.
-ICameraManager | Manages cameras and other systems required for scene rendering.
-IResourceProviderManager | Manages `IResourceProvider` objects.
-IStateManager | Handles `IEngineService`-related persistent data de-/serialization; provides API to [save and load](/ru/guide/save-load-system.md) game state.
-IUIManager | Manages `IManagedUI` objects and handles [UI customization](/ru/guide/user-interface.md#ui-customization) feature.
-ICustomVariableManager | Provides access and allows modifying [custom variables](/ru/guide/custom-variables.md). 
-ISpawnManager | Manages objects spawned with [@spawn] commands.
-IUnlockableManager | Manages [unlockable items](/ru/guide/unlockable-items.md) (CG and movie gallery items, tips, etc).
+IBackgroundManager | Управляет акторами [фонов](/ru/guide/backgrounds.md).
+ICharacterManager | Управляет акторами [персонажей](/ru/guide/characters.md).
+IChoiceHandlerManager | Управляет акторами [обработчиков выбора](/ru/guide/choices.md).
+ITextPrinterManager | Управляет акторами [текстовых принтеров](/ru/guide/text-printers.md).
+IAudioManager | Управляет аудио: [SFX](/ru/guide/audio.md#sound-effects), [BGM](/ru/guide/audio.md#background-music) и [озвучкой](/ru/guide/voicing.md).
+IInputManager | Управляет пользовательским [вводом](/ru/guide/input-processing.md).
+ILocalizationManager| Управляет функциями [локализации](/ru/guide/localization.md).
+ITextManager | Обрабатывает функцию [управляемого текста](/ru/guide/managed-text.md).
+IMoviePlayer | Обрабатывает воспроизведение [видео](/ru/guide/movies.md).
+IScriptManager | Управляет ресурсами [сценариев Naninovel](/ru/guide/naninovel-scripts.md).
+IScriptPlayer | Управляет воспроизведением [сценариев Naninovel](/ru/guide/naninovel-scripts.md).
+ICameraManager | Управляет камерами и другими системами, необходимыми для визуализации сцены.
+IResourceProviderManager | Управляет объектами `IResourceProvider`.
+IStateManager | Управляет де-/сериализацией постоянной информации, связанной с `IEngineService`; поставляет API для [сохранения и загрузки](/ru/guide/save-load-system.md) состояния игры?.
+IUIManager | Управляет объектами `IManagedUI`и обрабатывает функцию [кастомизации UI](/ru/guide/user-interface.md#ui-customization).
+ICustomVariableManager | Предоставляет доступ к [пользовательским переменных](/ru/guide/custom-variables.md) и позволяет их модифицировать. 
+ISpawnManager | Управляет объектами, созданными с помощью команд [@spawn].
+IUnlockableManager | Управляет [разблокировываемыми предметами](/ru/guide/unlockable-items.md) (предметы галерей иллюстрации и видео, советы и пр.).
 
-You can find built-in implementations of the services in the runtime source code stored at `Naninovel/Runtime`.
+Встроенные реализации сервисов можно найти в исходном коде среды выполнения, хранящемся в разделе `Naninovel/Runtime`.
 
-## Adding Custom Services
+## Добавление пользовательских сервисов
 
-To add a new custom engine service, implement `IEngineService` interface and add `InitializeAtRuntime` attribute to the implementing class. Instance of the implementation will automatically be created during the engine initialization and become available via `Engine.GetService<TService>()` API.
+Чтобы добавить новый пользовательский сервис движка, реализуйте интерфейс `IEngineService` и добавьте атрибут `InitializeAtRuntime` к реализуемому классу. Экземпляр реализации будет автоматически создан во время инициализации движка и станет доступен через API `Engine.GetService<TService>()`.
 
-You can force your custom service to be initialized before or after other services using `InitializationPriority` argument of `InitializeAtRuntime` attribute; lower values will push it before other services in the initialization queue and vice-versa.
+Вы можете принудительно инициализировать свой пользовательский сервис раньше или позже других сервисов, используя аргумент `InitializationPriority` атрибута `InitializeAtRuntime`; более низкие значения будут размещать сервис перед другими сервисами в очереди инициализации и наоборот.
 
-In order to be automatically instantiated, service implementation should have a compatible constructor (or a default one). Following arguments (in any order) are allowed:
+Для автоматического создания экземпляра реализация сервиса должна иметь совместимый конструктор (или конструктор по умолчанию). Допускаются следующие аргументы (в любом порядке):
  
-- Any number of other services (`IEngineService`-derived)
-- Any number of configuration objects (`Configuration`-derived)
-- A Unity's "MonoBehavior" proxy object (`IEngineBehaviour`-derived)
+- Любое количество других сервисов (производные от `IEngineService`)
+- Любое количество объектов конфигурации (производные от `Configuration`)
+- Прокси-объект Unity "MonoBehavior" (производные`IEngineBehaviour`)
 
-Be aware, that it's not safe to use other services in the constructor. Instead, perform any initialization activities that require using other services at `InitializeServiceAsync` method; to make sure required services are initialized when you're accessing them, list them in the service constructor (initialization queue is topologically sorted based on the constructor arguments).
+Имейте в виду, что использовать другие сервисы в конструкторе небезопасно. Вместо этого используйте любые действия инициализации, требующие использования других служб в методе `InitializeServiceAsync`; чтобы убедиться, что необходимые сервисы инициализируются при обращении к ним, перечислите их в конструкторе служб (очередь инициализации топологически сортируется на основе аргументов конструктора).
 
-In case your custom service has a persistent state, which you wish to de-/serialize with other engine services, implement `IStatefulService<TState>` interface, where `TState` is either `GameStateMap`, `GlobalStateMap` or `SettingsStateMap` depending if you want to store the state with the game sessions-specific, global state or settings. It's allowed to implement all three interfaces for a single service if required. For more information on different types of engine state see [state management guide](/ru/guide/state-management.md).
+В случае, если пользовательский сервис имеет постоянное состояние, которое вы хотите де-/сериализировать с другими сервисами движка, реализуйте интерфейс `IStatefulService<TState>`,  используйте `TState` или `GameStateMap`, `GlobalStateMap` или `SettingsStateMap` в зависимости от того, хотите ли вы сохранить состояние конкретной игровой сессии, глобального состояния или настроек. При необходимости можно реализовать все три интерфейса для одного сервиса. Для получения дополнительной информации о различных типах состояния движка см. [руководство управления состояниями](/ru/guide/state-management.md).
 
-Below is an example of a custom engine service implementation with some usage notices.
+Ниже приведен пример реализации пользовательского сервиса движка с некоторыми уведомлениями об использовании.
 
 ```csharp
 using Naninovel;
@@ -65,16 +65,16 @@ public class CustomService : IEngineService
 
     public CustomService (InputManager inputManager, ScriptPlayer scriptPlayer)
     {
-        // The services are potentially not yet initialized here, 
-        // refrain from using them.
+        // Потенциально сервисы здесь ещё не инициализированы, 
+        // воздержитесь от их использования.
         this.inputManager = inputManager;
         this.scriptPlayer = scriptPlayer;
     }
 
     public UniTask InitializeServiceAsync ()
     {
-    	// Initialize the service here.
-        // It's now safe to use services requested in the constructor.
+    	// Сервис инициализируется здесь.
+        // Теперь можно безопасно использовать сервисы, необходимые конструктору.
         Debug.Log(inputManager.ProcessInput);
         Debug.Log(scriptPlayer.PlayedScript);
         return UniTask.CompletedTask;
@@ -82,35 +82,35 @@ public class CustomService : IEngineService
 
     public void ResetService ()
     {
-        // Reset service state here.
+        // Сброс состояния сервиса.
     }
 
     public void DestroyService ()
     {
-        // Stop the service and release any used resources here.
+        // Остановка сервиса и разгрузка всех используемых ресурсов.
     }
 }
 ```
 
-Given the aforementioned service, you can get via the engine API in the following way:
+Вышеупомянутый сервис вы можете получить его через API движка следующим образом:
 
 ```csharp
 var customService = Engine.GetService<CustomService>();
 ```
 
 ::: example
-Another example of adding a custom engine service to manage item resources and configuration of an inventory UI can be found in the [inventory example project on GitHub](https://github.com/Elringus/NaninovelInventory).
+Другой пример добавления пользовательского сервиса движка для управления ресурсами предметов и конфигурацией UI инвентаря можно найти в [примере проекта инвентаря на GitHub](https://github.com/Elringus/NaninovelInventory).
 
-Specifically, the custom engine service is implemented via [InventoryManager.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryManager.cs) runtime script.
+Данный пользовательский сервис движка реализован с помощью скрипта воспроизведения [InventoryManager.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryManager.cs).
 :::
 
-## Overriding Built-in Services
+## Переопределение встроенных сервисов
 
-All the built-in services are referenced via interfaces in the engine source code, making it possible to swap any of them with a custom implementation.
+Ссылки на все встроенные сервисы происходят через интерфейсы в исходном коде движка, что позволяет заменить любой из этих сервисов пользовательской реализацией.
 
-Add a custom service in the same way as described above, but instead of `IEngineService` implement a concrete engine interface and specify the overridden type (implementation type, not the interface) via `InitializeAtRuntime` attribute. Your custom implementation will then be initialized instead of the built-in one.
+Добавьте пользовательский сервис таким же образом, как описано выше, но вместо `IEngineService` реализуйте конкретный интерфейс движка и укажите переопределенный тип (тип реализации, а не интерфейса) с помощью атрибута `InitializeAtRuntime`. После этого ваша пользовательская реализация будет инициализирована вместо встроенной.
 
-Below is an example of a dummy `IInputManager` implementation, that does nothing, but logs when any of its methods are invoked.
+Ниже приведен пример фиктивной реализации `IInputManager`, которая ничего не делает, но регистрирует, когда любой из ее методов вызывается.
 
 ```csharp
 using Naninovel;
@@ -162,4 +162,4 @@ public class CustomInputManager : IInputManager
     }
 }
 ```
-Now, when an input manager is requested via `Engine.GetService<IInputManager>()`, your custom implementation will be provided instead of the built-in `Naninovel.InputManager`.
+Теперь, когда менеджер ввода запрашивается через `Engine.GetService<IInputManager>()`, ваша пользовательская реализация будет предоставлена вместо встроенной `Naninovel.InputManager`.

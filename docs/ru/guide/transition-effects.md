@@ -1,68 +1,68 @@
-﻿# Transition Effects
+﻿# Эффекты переходов
 
-When changing background and character appearances with [@back] and [@char] or performing scene transition with [@startTrans] and [@finishTrans] commands, you can additionally specify which transition effect to use. For example, following command will transition to "River" background using "DropFade" transition effect:
+При изменении внешности фонов и персонажей с помощью команд [@back] и [@char] или при выполнении перехода сцены с помощью команд [@startTrans] и [@finishTrans] можно дополнительно указать, какой эффект перехода использовать. Например, следующая команда будет переходить на фон "River" с помощью эффекта перехода "DropFade":
 
 ```
 @back River.DropFade
 ```
 
-When no transition effect is specified a cross-fade is used by default. 
+Если эффект перехода не задан, то по умолчанию используется кросс-фейд (перекрестное затухание).
 
-You can also specify duration of the transition (in seconds) with the `time` parameter:
+Вы также можете указать продолжительность перехода (в секундах) с помощью параметра `time`:
 
 ```
 @back River.DropFade time:1.5
 ```
 
-The above statement will transition to "River" background using "DropFade" transition over 1.5 seconds. Default `time` for all transitions is 0.35 seconds.
+Приведенное выше выражение будет вызывать переход на фон "River" с помощью перехода "DropFade" за 1,5 секунды. По умолчанию `time` для всех переходов составляет 0,35 секунды.
 
-In case you wish to skip to the next command immediately after executing the transition (and not wait for the duration of the effect), you can set `wait` parameter to `false`. E.g.:
+В случае, если вы хотите перейти к следующей команде сразу после выполнения перехода (не ждать окончания эффекта перехода), вы можете установить параметр `wait` в значение `false`. Напр.:
 
 ```
 @back River.Ripple time:1.5 wait:false
 @bgm PianoTheme
 ```
-— "PianoTheme" background music will start playing right away and won't be delayed for 1.5 seconds, while the transition is in progress.
+— Фоновая музыка "PianoTheme" начнет играть сразу же и не будет задерживаться на 1,5 секунды, пока идет переход.
 
-Some of the transition effects also support additional parameters, which you can control with `params` parameter:
+Некоторые эффекты перехода также поддерживают дополнительные параметры, которыми можно управлять с помощью параметра `params`:
 
 ```
 @back River.Ripple params:10,5,0.02
 ``` 
-— will set frequency of the ripple effect to 10, speed to 5 and amplitude to 0.02. When no `params` is specified, default parameters will be used.
+— установит частоту эффекта пульсации на 10, скорость на 5 и амплитуду на 0,02. Если параметр `params` не указан, то будут использоваться параметры по умолчанию.
 
-If you wish to modify selected parameters, you can skip others and they'll have their default values:
+Если вы хотите изменить выбранные параметры, вы можете пропустить другие, и они будут иметь свои значения по умолчанию:
 
 ```
 @back River.Ripple params:,,0.02
 ``` 
 
-All the transition parameters are of decimal type.
+Все параметры перехода имеют тип Decimal (десятичный).
 
-The above examples work for characters as well, just provide the transition via a standalone `transition` parameter:
+Приведенные выше примеры также работают для персонажей, просто обеспечьте переход через автономный параметр `transition`:
 
 ```
 @char CharID.Appearance transition:TransitionType params:...
 ```
 
-You can find available transition effects with their parameters and default values in the docs below.
+Доступные эффекты перехода с их параметрами и значениями по умолчанию можно найти в приведенной ниже документации.
 
 ## BandedSwirl
 
 <video class="video" loop autoplay><source src=" https://i.gyazo.com/37432ac584ef04d94d3e4f9535fdffc4.mp4" type="video/mp4"></video>
 
-**Parameters**
-Name |  Default 
+**Параметры**
+Имя |  По умолчанию 
 --- | --- 
-Twist amount | 5
-Frequency | 10
+Количество закруток | 5
+Частота | 10
 
-**Examples**
+**Примеры**
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.BandedSwirl
 
-; Apply the transition with defeault twist amount, but low frequency 
+; Применить переход со стандартным количеством закруток, но с низкой частотой ?? defeault
 @back Appearance.BandedSwirl params:,2.5
 ```
 
@@ -70,17 +70,17 @@ Frequency | 10
 
 [!73a259f2a513a92ef893ebd6a25e9013]
 
-**Parameters**
-Name |  Default 
+**Параметры**
+Имя |  По умолчанию 
 --- | --- 
-Count | 6
+Количество | 6
 
-**Examples**
+**Примеры**
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.Blinds
 
-; Apply the transition using 30 blinds instead of default 6
+; Применить переход, используя 30 полос вместо стандартных 6
 @back Appearance.Blinds params:30
 ```
 
@@ -88,17 +88,17 @@ Count | 6
 
 [!4f914c6741a5e48a22cafe2ab242a426]
 
-**Parameters**
-Name |  Default 
+**Параметры**
+Имя |  По умолчанию 
 --- | --- 
-Fuzzy amount | 0.25
+Уровень размытия | 0.25
 
-**Examples**
+**Примеры**
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.CircleReveal
 
-; Apply the transition with a high fuzzy amount
+; Применить переход с большим уровнем размытия
 @back Appearance.CircleReveal params:3.33
 ```
 
@@ -106,9 +106,9 @@ Fuzzy amount | 0.25
 
 [!f09bb69a3c045eeb1f6c8ec0b9dcd790]
 
-**Examples**
+**Примеры**
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.CircleStretch
 ```
 
@@ -116,9 +116,9 @@ Fuzzy amount | 0.25
 
 [!618ec451a9e10f70486db0bb4badbb71]
 
-**Examples**
+**Примеры**
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.CloudReveal
 ```
 
@@ -126,9 +126,9 @@ Fuzzy amount | 0.25
 
 [!dc4781a577ec891065af1858f5fe2ed1]
 
-**Examples**
+**Примеры**
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.Crossfade
 ```
 
@@ -136,9 +136,9 @@ Fuzzy amount | 0.25
 
 [!e27c8477842a2092728ea0cc1ae76bda]
 
-**Examples**
+**Примеры**
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.Crumble
 ```
 
@@ -146,17 +146,17 @@ Fuzzy amount | 0.25
 
 [!b2993be8de032a65c7d813c6d749e758]
 
-**Parameters**
-Name |  Default 
+**Параметры**
+Имя |  По умолчанию  
 --- | --- 
-Step | 99999
+Шаг | 99999
 
 **Examples**
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.Dissolve
 
-; Apply the transition with a low step
+; Применить переход с малым шагом
 @back Appearance.Dissolve params:100
 ```
 
@@ -164,9 +164,9 @@ Step | 99999
 
 [!3c3840bb311ccb9fe223960f2e46f800]
 
-**Examples**
+**Примеры**
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.DropFade
 ```
 
@@ -174,19 +174,19 @@ Step | 99999
 
 [!c0e5259cd3d4ed2016ab74a65a7eec63]
 
-**Parameters**
-Name |  Default 
+**Параметры**
+Имя |  По умолчанию  
 --- | --- 
-Fuzzy amount | 0.25
-Line Normal X | 0.5
-Line Normal Y | 0.5
+Уровень размытия | 0.25
+Уклон по оси X | 0.5
+Уклом по оси Y | 0.5
 
-**Examples**
+**Примеры**
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.LineReveal
 
-; Apply the transition with a vertical line slide
+; Применить переход с вертикальной линией слайда
 @back Appearance.LineReveal params:,0,1
 ```
 
@@ -194,9 +194,9 @@ Line Normal Y | 0.5
 
 [!0ac9339b21303e20c524aaf6b6ca95f4]
 
-**Examples**
+**Примеры**
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.Pixelate
 ```
 
@@ -204,9 +204,9 @@ Line Normal Y | 0.5
 
 [!f8269fb68519c57c99643948a027a2a1]
 
-**Examples**
+**Примеры**
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.RadialBlur
 ```
 
@@ -214,9 +214,9 @@ Line Normal Y | 0.5
 
 [!a401b3b93a61276ed68ededa2e75e9ae]
 
-**Examples**
+**Примеры**
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.RadialWiggle
 ```
 
@@ -224,9 +224,9 @@ Line Normal Y | 0.5
 
 [!f6e685b13fe2d76733fd43878602eabc]
 
-**Examples**
+**Примеры**
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.RandomCircleReveal
 ```
 
@@ -234,19 +234,19 @@ Line Normal Y | 0.5
 
 [!ff1bd285dc675ca5ac04f7ae4500f1c4]
 
-**Parameters**
-Name |  Default 
+**Параметры**
+Имя |  По умолчанию  
 --- | --- 
-Frequency | 20
-Speed | 10
-Amplitude | 0.5
+Частота | 20
+Скорость | 10
+Амплитуда | 0.5
 
-**Examples**
+**Примеры**
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.Ripple
 
-; Apply the transition with a high frequency and amplitude
+; Применить переход с высокими частотой и амплитудой
 @back Appearance.Ripple params:45,,1.1
 ```
 
@@ -254,9 +254,9 @@ Amplitude | 0.5
 
 [!8d476f466858e4788e5ad6014d6db314]
 
-**Examples**
+**Примеры**
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.RotateCrumble
 ```
 
@@ -264,9 +264,9 @@ Amplitude | 0.5
 
 [!ad6eb77b7065387b9cb9afd77adbc784]
 
-**Examples**
+**Примеры**
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.Saturate
 ```
 
@@ -274,17 +274,17 @@ Amplitude | 0.5
 
 [!8c8bf00348df28ab89813c21f8655c07]
 
-**Parameters**
-Name |  Default 
+**Параметры**
+Имя |  По умолчанию 
 --- | --- 
-Speed | 200
+Скорость | 200
 
-**Examples**
+**Примеры**
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.Shrink
 
-; Apply the transition with a low speed
+; Применить переход с низкой скоростью
 @back Appearance.Shrink params:50
 ```
 
@@ -292,14 +292,14 @@ Speed | 200
 
 [!800ee6f5fba39ab8d46f5eb09f2126cf]
 
-**Parameters**
-Name |  Default 
+**Параметры**
+Имя |  По умолчанию 
 --- | --- 
-Slide amount | 1
+Количество слайдов | 1
 
-**Examples**
+**Примеры**
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.SlideIn
 ```
 
@@ -307,18 +307,18 @@ Slide amount | 1
 
 [!5a21293d979323a112ffd07f1fffd28d]
 
-**Parameters**
-Name |  Default 
+**Параметры**
+Имя |  По умолчанию 
 --- | --- 
-Twist amount | 15
-Cell count | 10
+Сила скручивания | 15
+Количество клеток | 10
 
-**Examples**
+**Примеры**
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.SwirlGrid
 
-; Apply the transition with high twist and low cell count
+; Применить переход с высокой силой скручивания и малым количеством клеток
 @back Appearance.SwirlGrid params:30,4
 ```
 
@@ -326,17 +326,17 @@ Cell count | 10
 
 [!6ac9a2fe1bb9dfaf6a8292ae5d03960e]
 
-**Parameters**
-Name |  Default 
+**Параметры**
+Имя |  По умолчанию 
 --- | --- 
-Twist amount | 15
+Сила скручивания | 15
 
-**Examples**
+**Примеры**
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.Swirl
 
-; Apply the transition with high twist
+; Применить переход с высокой силой скручивания
 @back Appearance.Swirl params:25
 ```
 
@@ -344,9 +344,9 @@ Twist amount | 15
 
 [!7c684f9a122006f38a0be2725895b76f]
 
-**Examples**
+**Примеры**
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.Water
 ```
 
@@ -354,9 +354,9 @@ Twist amount | 15
 
 [!b6eebcb68002064ababe4d7476139a7c]
 
-**Examples**
+**Примеры**
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.Waterfall
 ```
 
@@ -364,63 +364,63 @@ Twist amount | 15
 
 [!e189ca12868d7ae4c9d8f0ca3d9dd298]
 
-**Parameters**
-Name |  Default 
+**Параметры**
+Имя |  По умолчанию 
 --- | --- 
-Magnitude | 0.1
-Phase | 14
-Frequency | 20
+Магнитуда | 0.1
+Фаза | 14
+Частота | 20
 
-**Examples**
+**Примеры**
 ```
-; Apply the transition with default parameters
+; Применить переход со стандартными параметрами
 @back Appearance.Wave
 
-; Apply the transition with a high magnitude and low frequency
+; Применить переход с высокой магнитудой и низкой частотой
 @back Appearance.Wave params:0.75,,5
 ```
 
-## Custom Transition Effects
+## Пользовательские эффекты перехода
 
-### Dissolve Mask
+### Маска растворения
 
-You can make custom transitions based on a dissolve mask texture. Dissolve mask is a greyscale texture, where the color defines when the pixel will transition to the target texture. For example, consider following spiral dissolve mask:
+Вы можете создавать пользовательские переходы на основе текстуры маски растворения. Маска растворения – это текстура в оттенках серого, где цвет определяет, когда пиксель перейдет к целевой текстуре. Например, рассмотрим следующую спиральную маску растворения:
 
 ![](https://i.gyazo.com/3c32e920efdf6cfb35214b6c9b617a6a.png)
 
-— the black square in the top-right corner indicates that the transition target should be displayed there at the start of the transition and the pure-white square in the center will transition in the very end.
+– Черный квадрат в правом верхнем углу указывает, что цель перехода должна быть отображена там в самом начале перехода, а белый квадрат в центре будет совершать переход в самом конце.
 
-To make a custom transition, use `Custom` transition mode and specify path (relative to project "Resources" folder) to the dissolve mask texture via the `dissolve` parameter, eg:
+Чтобы сделать пользовательский переход, используйте режим перехода `Custom` и укажите путь (относительно папки project "Resources") к текстуре маски растворения с помощью параметра `dissolve`, например:
 
 ```
 @back Appearance.Custom dissolve:Textures/Spiral
 ```
 
-Check out the following video for the usage examples.
+Посмотрите следующее видео с примерами использования функции.
 
 [!!HZjey6M2-PE]
 
-### Custom Shader
+### Пользовательский шейдер
 
-It's possible to add a completely custom transition effect via a custom actor [shader](https://docs.unity3d.com/Manual/ShadersOverview.html).
+Можно добавить полностью настраиваемый пользовательский эффект перехода с помощью пользовательского [шейдера](https://docs.unity3d.com/Manual/ShadersOverview.html) акторов.
 
 ::: warn
-The topic requires graphic programming skills in Unity. We're not providing any support or tutorials on writing custom shaders; consult the [support page](/ru/support/#unity-support) for more information.
+Данная тема требует навыков графического программирования в Unity. Мы не предоставляем никакой поддержки или учебных пособий по написанию пользовательских шейдеров; обратитесь к странице [поддержки](/ru/support/#unity-support) для получения дополнительной информации.
 :::
 
-Create a new shader and assign it to the actors, which are supposed to use your new custom transition effect; see [custom actor shader](/ru/guide/custom-actor-shader.md) guide for more information on how to create and assign custom actor shaders.
+Создайте новый шейдер и назначьте его акторам, которые должны использовать ваш новый пользовательский эффект перехода; дополнительные сведения о создании и назначении пользовательских шейдеров актеров см. в руководстве [по пользовательскому шейдеру](/ru/guide/custom-actor-shader.md) акторов.
 
-When a transition name is specified in a script command, [shader keyword](https://docs.unity3d.com/ScriptReference/Shader.EnableKeyword.html) with the same name (prefixed with `NANINOVEL_TRANSITION_`) is enabled in the material used by the actor.
+Если в команде скрипта указано имя перехода, то [ключевое слово шейдера](https://docs.unity3d.com/ScriptReference/Shader.EnableKeyword.html) с тем же именем (с префиксом `NANINOVEL_TRANSITION_`) включается в материал, используемый актором.
 
-To add your own transitions to a custom actor shader, use `multi_compile` directive, eg:
+Чтобы добавить свои собственные переходы в пользовательский шейдер актора, используйте директиву `multi_compile`, например:
 
 ```c
 #pragma multi_compile _ NANINOVEL_TRANSITION_MYCUSTOM1 NANINOVEL_TRANSITION_MYCUSTOM2
 ```
 
-— will add `MyCustom1` and `MyCustom2` transitions.
+— добавит переходы `MyCustom1` и `MyCustom2`.
 
-You can then use conditional directives to select a specific render method based on the enabled transition keyword. When re-using built-in actor shader, it's possible to implement custom transitions via `ApplyTransitionEffect` method, which is used in the fragment handler:
+Затем можно использовать условные директивы для выбора конкретного метода визуализации на основе ключевого слова перехода. При повторном использовании встроенного шейдера акторов можно реализовать пользовательские переходы с помощью метода `ApplyTransitionEffect`, который используется в обработчике фрагментов:
 
 ```c
 fixed4 ApplyTransitionEffect(in sampler2D mainTex, in float2 mainUV, in sampler2D transitionTex, in float2 transitionUV, in float progress, in float4 params, in float2 randomSeed, in sampler2D cloudsTex, in sampler2D customTex)
@@ -429,21 +429,20 @@ fixed4 ApplyTransitionEffect(in sampler2D mainTex, in float2 mainUV, in sampler2
     fixed4 mainColor = Tex2DClip01(mainTex, mainUV, CLIP_COLOR);
     fixed4 transitionColor = Tex2DClip01(transitionTex, transitionUV, CLIP_COLOR);
 
-    #ifdef NANINOVEL_TRANSITION_MYCUSTOM1 // MyCustom1 transition.
+    #ifdef NANINOVEL_TRANSITION_MYCUSTOM1 // переход MyCustom1.
     return transitionUV.x > progress ? mainColor : lerp(mainColor / progress * .1, transitionColor, progress);
     #endif
 
-    #ifdef NANINOVEL_TRANSITION_MYCUSTOM2 // MyCustom2 transition.
+    #ifdef NANINOVEL_TRANSITION_MYCUSTOM2 // переход MyCustom2.
     return lerp(mainColor * (1.0 - progress), transitionColor * progress, progress);
     #endif
 
-    // When no transition keywords enabled default to crossfade.
+    // Когда ключевые слова перехода не включены, по умолчанию используется кроссфейд.
     return lerp(mainColor, transitionColor, progress);
 }
 ```
 
-You'll then be able to invoke the added transitions in the same way as the built-in ones, eg:
-
+Затем вы сможете вызывать добавленные переходы таким же образом, как и встроенные, например:
 ```
 @back Snow.MyCustom1
 @back River.MyCustom2

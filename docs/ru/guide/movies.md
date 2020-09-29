@@ -1,30 +1,30 @@
-﻿# Movies
+﻿# Видеоролики
 
-Movies are videos played on top of the scene via `IMovieUI` UI, halting script execution and user input processing while being played. 
+Видеоролики – это видео, воспроизводимое поверх сцены с помощью пользовательского интерфейса `IMovieUI`, останавливающее выполнение скрипта и обработку пользовательского ввода во время воспроизведения.
 
-Before starting playing a movie a fade-in to the specified fade texture (solid black by default) is performed. When playback is finished, a fade-out from the fade texture to the scene content is performed. 
+Перед началом воспроизведения ролика выполняется переход к указанной текстуре затухания (по умолчанию сплошная черная). Когда воспроизведение завершено, выполняется переход от текстуры затухания к содержимому сцены.
 
-Player can skip movie playback with a `Cancel` input (`Esc` by default for standalone input module); binding can be changed in input configuration menu.
+Игрок может пропустить воспроизведение ролика с помощью ввода `Cancel` (`Esc` по умолчанию для автономного модуля ввода); привязка может быть изменена в меню конфигурации ввода.
 
-To add, edit and remove movie resources use the movie manager accessible via `Naninovel -> Resources -> Movies` context menu:
+Для добавления, редактирования и удаления ресурсов видеороликов используйте менеджер роликов, доступный через контекстное меню `Naninovel -> Resources -> Movies`:
 
-![Manage Movies](https://i.gyazo.com/aace59f30f42245fc3ba714d10815d46.png)
+![Управление роликами](https://i.gyazo.com/aace59f30f42245fc3ba714d10815d46.png)
 
-You can use any video formats [supported by Unity](https://docs.unity3d.com/Manual/VideoSources-FileCompatibility).
+Вы можете использовать любые видеоформаты, [поддерживаемые Unity](https://docs.unity3d.com/Manual/VideoSources-FileCompatibility).
 
-Movies playback behavior can be configured using `Naninovel -> Configuration -> Movies` context menu; for available options see [configuration guide](/ru/guide/configuration.md#movies).
+Поведение воспроизведения роликов можно настроить с помощью контекстного меню `Naninovel -> Configuration -> Movies`; доступные параметры см. в [руководстве по конфигурации](/ru/guide/configuration.md#movies).
 
-Use [@movie] command followed by video clip name to play a movie from the naninovel scripts:
+Используйте команду [@movie], а следом за ней имя клипа для проигрывания ролика в сценариях Naninovel:
 
 ```
-; Given an "Opening" video clip is added to the movie resources, play it
+; Дан клип "Opening", добавленный в ресурсы видеороликов, проиграть его
 @movie Opening
 ```
 
-By default, played video is fitted to 16:9 aspect ratio to prevent stretching. You can change this behavior by [overriding](/ru/guide/user-interface.html#ui-customization) `IMovieUI` UI. `Aspect Ratio Fitter` component attached to `MovieImage` game object controls the fitting behavior.
+По умолчанию воспроизводимое видео имеет соотношение сторон 16:9, чтобы предотвратить растягивание. Вы можете изменить это поведение с помощью [переопределения](/ru/guide/user-interface.html#ui-customization) интерфейса `IMovieUI`. Компонент  `Aspect Ratio Fitter`, прикрепленный к игровому объекту `MovieImage`, управляет поведением подгонки.
 
 ![](https://i.gyazo.com/38e8b1fc220d5fedd50f62ab855b2e92.png)
 
-## WebGL Limitations
+## Ограничения WebGL
 
-Due to platform limitations, video playback on WebGL possible only in URI streaming mode. When building WebGL player, all the movie resources will automatically be copied to `Assets/StreamingAssets` directory. Make sure your web hosting is configured to allow local file access from the player build directory.
+Из-за ограничений платформы воспроизведение видео на WebGL возможно только в потоковом режиме URI. При создании плеера WebGL все ресурсы видео будут автоматически скопированы в каталог `Assets/StreamingAssets`. Убедитесь, что ваш веб-хостинг настроен так, чтобы предоставлять доступ к локальным файлам из каталога сборки плеера.

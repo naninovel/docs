@@ -1,11 +1,11 @@
-﻿# Custom Actor Shader
+﻿# Пользовательские шейдеры акторов
 
-When rendering most of the actors (characters and backgrounds, except generic ones) a special shader is used to handle semi-transparency overdraw and to support various effects.
+При рендеринге большинства акторов (персонажей и фонов, кроме универсальных) используется специальный шейдер для обработки полупрозрачной прорисовки и поддержки различных эффектов.
 
-You can override the default shader by assigning a custom one to `Custom Shader` property available in the actor configuration menu.
+Вы можете переопределить шейдер по умолчанию, назначив пользовательский шейдер свойству `Custom Shader`, доступному в меню конфигурации актора.
 
 ![](https://i.gyazo.com/0ddd77ffda5e4d31e09be723b318ef43.png)
 
-Be aware, that the shader is expected to have several specific properties and render passes in order to work correctly. You can use the built-in default shader as a reference when writing your own. The built-in shader is located at `Naninovel/Resources/Naninovel/Shaders/TransitionalSprite.shader`.
+Имейте в виду, что шейдер должен иметь несколько определенных свойств и проходов рендеринга, чтобы работать правильно. Вы можете использовать встроенный шейдер по умолчанию в качестве примера при написании своего собственного. Встроенный шейдер находится по адресу `Naninovel/Resources/Naninovel/Shaders/TransitionalSprite.shader`.
 
-See Unity documentation and tutorials on shaders and graphics programming in general for more info on how to create and modify the shader and what you can achieve with it.
+Дополнительную информацию о том, как создавать и изменять шейдер, а также что можно достичь с его помощью, смотрите в документации Unity и учебных пособиях по шейдерам и графическому программированию в целом.

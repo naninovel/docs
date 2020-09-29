@@ -1,30 +1,30 @@
 ﻿# Playmaker
 
-[PlayMaker](https://assetstore.unity.com/packages/tools/visual-scripting/playmaker-368) is a popular visual scripting tool for Unity specifically designed to be friendly for non-programmers. 
+[PlayMaker](https://assetstore.unity.com/packages/tools/visual-scripting/playmaker-368) – популярный визуальный сценарный инструмент Unity, специально разработанный для удобства работы пользователей, не являющихся программистами. 
 
 ![](https://i.gyazo.com/0a5b219b059fd61c85d225e903d77857.png)
 
-Be aware, that in contrast to Bolt, where all the Naninovel's C# API is available by default, PlayMaker requires creating a special C# class for each action. This means that only a limited subset of the engine API is available out of the box when using PlayMaker. The available custom actions could also break in case Naninovel's API change.
+Имейте в виду, что в отличие от Bolt, где все C# API Naninovel доступны по умолчанию, PlayMaker требует создания специального класса C# для каждого действия. Это означает, что только ограниченное подмножество API движка доступно из коробки при использовании PlayMaker. Доступные пользовательские действия также могут нарушиться в случае изменения API Naninovel.
 
-## Setup
+## Установка
 
-Install PlayMaker following instructions from the [official manual](https://hutonggames.fogbugz.com/default.asp?W11).
+Установите PlayMaker, следуя инструкциям из [официального руководства](https://hutonggames.fogbugz.com/default.asp?W11).
 
-Download and import [PlayMaker extension package](https://github.com/Elringus/NaninovelPlayMaker/raw/master/NaninovelPlayMaker.unitypackage).
+Скачайте и импортируйте [пакет расширения PlayMaker](https://github.com/Elringus/NaninovelPlayMaker/raw/master/NaninovelPlayMaker.unitypackage).
 
-The custom Naninovel actions should appear in the PlayMaker actions browser under "Naninovel" category.
+Пользовательские действия Naninovel должны появиться в браузере действий PlayMaker в категории "Naninovel".
 
 ![](https://i.gyazo.com/a40b0b7b21c73d3b5f64b005085198ea.png)
 
-## Usage
+## Использование
 
-The following video demonstrates using PlayMaker FSM (finite state machine) to initialize Naninovel engine, preload and play a scenario script.
+В следующем видео демонстрируется использование FSM PlayMaker (finite state machine) для инициализации движка Naninovel, предварительной загрузки и воспроизведения сценария.
 
 [!!N856vi18XVU]
 
-### Events
+### События
 
-Some of the essential Naninovel events can be automatically routed to PlayMaker FSMs. For this, create a global [user event](https://hutonggames.fogbugz.com/default.asp?W148) with an appropriate name and use it inside an FSM. Following are the available event names:
+Некоторые из основных событий Naninovel могут быть автоматически перенаправлены в FSM PlayMaker. Для этого создайте глобальное [пользовательское событие](https://hutonggames.fogbugz.com/default.asp?W148) с соответствующим именем и используйте его внутри FSM. Ниже приведены доступные имена событий:
 
 - `Naninovel/Engine/OnInitialized`
 - `Naninovel/ScriptPlayer/OnPlay`
@@ -37,39 +37,40 @@ Some of the essential Naninovel events can be automatically routed to PlayMaker 
 - `Naninovel/TextPrinterManager/OnPrintTextFinished`
 - `Naninovel/LocalizationManager/OnLocaleChanged`
 
-It's also possible to broadcast custom PlayMaker events from naninovel scripts using `@playmaker` command:
+Кроме того, можно транслировать пользовательские события PlayMaker из сценариев Naninovel с помощью команды `@playmaker`:
 
 ```
 @playmaker EventName
 ```
 
-— will invoke a global user event named "EventName" in all the active FSMs on scene.
+— вызовет глобальное пользовательское событие с именем "EventName" во всех активных FSM в сцене.
 
-The command also allows sending events to specific FSMs by using `fsm` and `object` parameters. The first parameter allows specifying FSM names, which should receive the event, eg: 
+Команда также позволяет отправлять события в определенные FSM с помощью параметров `fsm` и `object`. Первый параметр позволяет указать имена FSM, которые должны принимать событие, например:
 
 ```
 @playmaker EventName fsm:Fsm1,Fsm2
 ```
 
-— will invoke an event named "EventName" for FSMs with name "Fsm1" and "Fsm2".  
+— вызовет событие с именем "EventName" для FSM с именами "Fsm1" и "Fsm2".
 
-When `object` parameter is specified, the event will only be sent to FSMs, that are applied to game objects, which has corresponding names, eg:
-
+Когда параметр `object` задан, событие будет отправлено только в те FSM, которые применяются к игровым объектам, имеющим соответствующие имена, например:
 ```
 @playmaker EventName object:Obj1,Obj2
 ```
 
-— will invoke an event named "EventName" for all the FSMs, that are attached to game objects with names "Obj1" and "Obj2".  
+— вызовет событие с именем "EventName" для всех FSM, которые прикреплены к игровым объектам с именами "Obj1" и "Obj2".
 
-You can as well combine `fsm` and `object` parameters to farther filter the FSMs, that should receive the event.
+Вы также можете объединить параметры `fsm` и `object` для дальнейшей фильтрации FSM, которые должны получить событие.
 
-### Global Variables
+### Глобальные переменные
 
-It's possible to access a global PlayMaker variable in Naninovel scripts with the following custom [expression functions](/ru/guide/script-expressions.html#expression-functions) available in the extension package:
- - `GetPlayMakerGlobalVariable("variableName")` — retrieves a variable of a simple type (int, float, string, etc) with the "variableName" name
- - `GetPlayMakerGlobalArray("variableName", arrayIndex)` — retrieves a value stored at "arrayIndex" index of an array variable with the "variableName" name
+В сценариях Naninovel можно получить доступ к глобальной переменной PlayMaker со следующими пользовательскими [выражениями функций](/ru/guide/script-expressions.html#expression-functions), доступными в пакете расширений:
+ - `GetPlayMakerGlobalVariable("variableName")` — возвращает переменную простого типа (int, float, строка, и т.д.) c именем "variableName"
+ - `GetPlayMakerGlobalArray("variableName", arrayIndex)` — возвращает значение, хранящееся в индексе "arrayIndex" массива переменной с именем "variableName"
 
-Given you have a "Score" integer and "FinishedRoutes" bool array global PlayMaker variables, you can use them in Naninovel scripts as follow:
+К примеру, у вас есть целое число "Score" и глобальные переменные PlayMaker булева массива "FinishedRoutes" – вы можете использовать их в сценариях Naninovel следующим образом:
+
+
 ```
 Felix: My score is {GetPlayMakerGlobalVariable("Score")}.
 
@@ -80,9 +81,9 @@ Felix: My score is {GetPlayMakerGlobalVariable("Score")}.
 @endif
 ```
 
-## IDE Extension
+## Расширение IDE
 
-To add support for `@playmaker` command to [Atom IDE extension](/ru/guide/naninovel-scripts.md#ide-support), open metadata file located at `%HOMEPATH%/.atom/packages/language-naniscript/server/metadata.json` (`%HOMEPATH%` is the path to your OS user directory) and add following record to `commands` array: 
+Чтобы добавить поддержку команды `@playmaker` в [расширение IDE Atom](/ru/guide/naninovel-scripts.md#ide-support), откройте файл метаданных, расположенный по адресу `%HOMEPATH%/.atom/packages/language-naniscript/server/metadata.json` (где `%HOMEPATH%` – это путь к каталогу пользователя вашей ОС), и добавьте следующую запись в массив `commands`:
 
 ```json
 {
@@ -127,7 +128,7 @@ To add support for `@playmaker` command to [Atom IDE extension](/ru/guide/nanino
 },
 ```
 
-After the edit, the file should start as follows:
+После редактирования файл должен начинаться следующим образом:
 
 ```json
 {
@@ -137,5 +138,4 @@ After the edit, the file should start as follows:
       "alias": "playmaker",
 ```
 
-Restart the Atom editor (in case it was running), and the `@playmaker` command should no longer be highlighted as an error.
-
+Перезагрузите Atom (если он был запущен), и команда `@playmaker` больше не должна выделяться как ошибка.

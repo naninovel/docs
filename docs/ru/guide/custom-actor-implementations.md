@@ -1,41 +1,42 @@
-# Custom Actor Implementations
+# Пользовательские реализации акторов
 
-Actor is a scene entity defined by a name, appearance, visibility and transform (position, rotation and scale). It can asynchronously change appearance, visibility and transform over time. Examples of actors are characters, backgrounds, text printers and choice handlers. 
+Актор – объект сцены, определяемый именем, внешностью, видимостью и трансформацией (положение, поворот и масштаб). Он может асинхронно изменять внешность, видимость и трансформироваться с течением времени. Примерами акторов являются персонажи, фон, текстовые принтеры и обработчики выбора.
 
-Actors are represented by `IActor` interface and its derivatives:
+Акторы представлены интерфейсом `IActor` и его производными:
 
 * `ICharacterActor`
 * `IBackgroundActor`
 * `ITextPrinterActor`
 * `IChoiceHandlerActor`
 
-Each actor interface can have multiple implementations; e.g. character actors currently have four built-in implementations: sprite, diced sprite, generic and Live2D.
+Каждый интерфейс актора может иметь несколько реализаций; например, акторы персонажей в настоящее время имеют четыре встроенные реализации: спрайт, нарезанный спрайт, универсальный и Live2D.
 
-Actor implementation can be selected in the configuration managers accessible via `Naninovel -> Configuration` context menu. You can both change default implementation used for all the actors or set specific implementation per actor. To change default implementation, use `Default Metadata` property and to set specific ones, use an `Implementation` drop-down list in actor's configuration. 
+Реализации акторов могут быть выбраны в менеджерах конфигураций, доступных через контекстное меню `Naninovel -> Configuration`. Вы можете как изменить реализацию по умолчанию, используемую для всех акторов, так и установить конкретную реализацию для каждого актора. Чтобы изменить реализацию по умолчанию, используйте свойство `Default Metadata`, а чтобы задать конкретные, используйте выпадающий список `Implementation` в конфигурации актора.
 
-![Default Actor Implementation](https://i.gyazo.com/b372520a15501dc9bc1e5f30f4c7f12d.png)
-![Actor Implementation](https://i.gyazo.com/3256f3aea99ea453859f67135a7187ee.png)
+![Реализация актора по умолчанию](https://i.gyazo.com/b372520a15501dc9bc1e5f30f4c7f12d.png)
+![Реализация актора](https://i.gyazo.com/3256f3aea99ea453859f67135a7187ee.png)
 
-Implementation drop-down list contains all the types that implements specific actor interface. You can add your own custom implementations and they'll also appear in the list. See `Naninovel/Runtime/Actor` scripts for a reference when creating your own actor implementations. Consider using `Naninovel.MonoBehaviourActor` built-in abstract actor implementation to fulfill most of the base interface requirements.
+Выпадающий список реализации содержит все типы, реализующие определенный интерфейс актора. Вы можете добавить свои собственные пользовательские реализации, и они также появятся в списке. См. `Naninovel/Runtime/Actor` для справки при создании собственных реализаций акторов. Вы можете использовать встроенную реализацию абстрактного актора `Naninovel.MonoBehaviourActor` для реализации большинства требований базового интерфейса.
 
-When creating custom actor implementations, make sure they have a compatible public constructor: `public CustomActorImplementation (string id, ActorMetadata metadata)`, where `id` is the ID of the actor and `metadata` — either actor's (when actor record exists in the resources) or a default metadata. When implementing a specific actor interface, it's possible to request corresponding specific metadata (eg, "CharacterMetadata" for "ICharacterActor" implementation).
+При создании пользовательских реализаций акторов, убедитесь, что они используют совместимый публичный конструктор: `public CustomActorImplementation (string id, ActorMetadata metadata)`, где `ID` – идентификатор актора и `metadata` — метаданные либо актора (если запись актора существует в ресурсах), либо метаданные по умолчанию. При реализации конкретного интерфейса актора можно запросить соответствующие конкретные метаданные (например, "CharacterMetadata" для реализации "ICharacterActor").
 
-To load a resource assigned in editor menu, don't forget to specify full path; eg, given you've assigned a resource with "CubeBackground" name:
+Чтобы загрузить ресурс, назначенный в меню редактора, не забудьте указать полный путь; например, если вы назначили ресурс с именем "CubeBackground":
 
 ![](https://i.gyazo.com/64ff6d6dede1cc8c2c3be83cfe6a6d74.png)
 
-— to load the resource, use:
+— для загрузки ресурса используйте:
 
 ```csharp
 var prefabResource = await prefabLoader.LoadAsync(id + "/CubeBackground");
 ```
 
-— where `id` is the ID of the actor passed via the constructor.
+— где `id` – ID актора, проходящего через конструктор.
 
-Below is an example of a dummy `ICharacterActor` implementation, that does nothing, but logs when any of its methods are invoked.
+Ниже приведен пример фиктивной реализации `ICharacterActor`, которая ничего не делает, но регистрирует, когда вызывается любой из ее методов.
 
 ```csharp
 using Naninovel;
+using System.Threading;
 using UniRx.Async;
 using UnityEngine;
 

@@ -1,30 +1,30 @@
-# Naninovel Scripts
+# Сценарии Naninovel
 
-Naninovel scripts are text documents (`.nani` extension) where you control what happens on scenes. Script assets are created with `Create -> Naninovel -> Naninovel Script` asset context menu. You can open and edit them with the built-in [visual editor](#visual-editor) or with an external text editor of your choice, like Notepad, TextEdit or [Atom](https://atom.io).
+Скрипты Naninovel – это текстовые документы (c расширениеv `.nani`), где вы контролируете то, что происходит в сценах. Ассеты сценариев создаются с помощью контекстного меню ассета `Create -> Naninovel -> Naninovel Script`. Вы можете открывать и редактировать их с помощью встроенного [визуального редактора](#visual-editor) или с помощью внешнего текстового редактора, например блокнот, TextEdit или [Atom](https://atom.io).
 
 ![](https://i.gyazo.com/f552c2ef323f9ec1171eba72e0c55432.png)
 
-Each line in a naninovel script represents a statement, which can be a command, generic text, label or a comment. Type of the statement is determined by the literal that is placed at the start of the line:
+Каждая строка в сценарии Naninovel представляет собой инструкцию, которая может быть командой, обычным текстом, меткой или комментарием. Тип оператора определяется литералом, который помещается в начале строки:
 
-Literal | Statement Type 
-:---: | --- 
-@ | [Command](#command-lines)
-# | [Label](#label-lines)
-; | [Comment](#comment-lines)
+Литерал | Тип инструкции 
+--- | --- 
+@ | [Команда](#command-lines)
+# | [Метка](#label-lines)
+; | [Комментарий](#comment-lines)
 
-When none of the above literals are present at the start of the line, it's considered a [generic text](#generic-text-lines) statement.
+Если в начале строки нет ни одного из вышеуказанных литералов, она воспринимается как строка [общего текста](#generic-text-lines).
 
-## Command Lines
+## Командные строки
 
-Line is considered a command statement if it starts with a `@` literal. Command represents a single operation, that controls what happens on the scene; eg, it can be used to change a background, move a character or load another naninovel script.
+Строка воспринимается как командная, если начинается с литерала `@`. Команда представляет собой одиночную операцию, которая управляет тем, что происходит в сцене; например, она может быть использована для изменения фона, перемещения персонажа или загрузки другого сценария Naninovel.
 
-### Command Identifier
+### Идентификатор команды
 
-Right after the command literal a command identifier is expected. This could either be name of the C# class that implements the command or the command's alias (if it's applied via `CommandAlias` attribute). 
+Сразу после литерала команды ожидается идентификатор команды. Это может быть либо имя класса C#, реализующего команду, либо псевдоним команды (если он применяется через атрибут `CommandAlias`).
 
-For example, [@save] command (used to auto-save the game) is implemented via the `AutoSave` C# class. The implementing class also has a `[CommandAlias("save")]` attribute applied, so you can use both `@save` and `@AutoSave` statements in the script to invoke this command. 
+Например, команда [@save] (используемая для автоматического сохранения игры) реализуется через C# класс `AutoSave`. Реализующий класс также имеет атрибут `[CommandAlias("save")]`, поэтому для вызова этой команды в скрипте можно использовать операторы `@save` и `@AutoSave`.
 
-Command identifiers are case-insensitive; all the following statements are valid and will invoke the same `AutoSave` command:
+Идентификаторы команд не чувствительны к регистру; все следующие операторы действительны и вызовут одну и ту же команду `AutoSave`:
 
 ```
 @save
@@ -33,119 +33,119 @@ Command identifiers are case-insensitive; all the following statements are valid
 @autosave
 ``` 
 
-### Command Parameters
+### Параметры команд
 
-Most of the commands have a number of parameters that define the effect of the command. Parameter is a key-value expression defined after the command literal separated by a column (`:`). Parameter identifier (key) could be either name of the corresponding parameter field of the command implementation class or the parameter's alias (if defined via `alias` property of `CommandParameter` attribute).
+Большинство команд имеют ряд параметров, определяющих действие команды. Параметр – это выражение типа "ключ-значение", определяемое после командного литерала, разделенного столбцом (`:`). Идентификатор параметра (ключ) может быть либо именем соответствующего поля параметра класса реализации команды, либо псевдонимом параметра (если он определен через свойство `alias` атрибута `CommandParameter`).
 
 ```
 @commandId paramId:paramValue 
 ```
 
-Consider a [@hideChars] command, which is used to hide all visible characters on the scene. It could be used as follows:
+Рассмотрим команду [@hideChars], которая используется для скрытия всех видимых персонажей в сцене. Её можно использовать следующим образом:
 
 ```
 @hideChars
 ```
 
-You can use a `time` *Decimal* parameter here to control for how long the characters will fade-out before becoming completely hidden (removed from scene):
+Вы можете здесь использовать параметр `time` типа *Decimal* для того, чтобы указать, как долго персонажи будут растворяться, прежде чем полностью скроются (исчезнут из сцены):
 
 ```
 @hideChars time:5.5
 ```
 
-This will make the characters to fade-out for 5.5 seconds, before completely removing them from scene.
+Так персонажи будут угасать в течение 5.5 секунд до того, как полностью исчезнут из сцены.
 
-You can also use a `wait` *Boolean* parameter to specify whether next command should be executed immediately after or wait for the completion of the current command:
+Вы также можете использовать параметр `wait` типа *Boolean*, чтобы указать, следует ли выполнять следующую команду сразу после завершения текущей команды или дождаться ее завершения:
 
 ```
 @hideChars time:5.5 wait:false
 @hidePrinter
 ```
 
-This will hide the text printer right after characters will begin to fade-out. If `wait` would be `true` or not specified, the printer would be hidden only when the [@hideChars] complete the execution.
+Так текстовый принтер скроется сразу после того, как персонажи начнут исчезать. Если `wait` будет иметь значение `true` (или значение не будет указано), принтер будет скрыт только тогда, когда [@hideChars] завершит выполнение.
 
-### Parameter Value Types
+### Типы значений параметров
 
-Depending on the command parameter, it could expect one of the following value types: 
+В зависимости от собственного типа параметры могут ожидать один из следующих типов значений:
 
-Type | Description
+Тип | Описание
 --- | ---
-String | A simple string value, eg: `LoremIpsum`. Don't forget to wrap the string in double quotes in case it contain spaces, eg: `"Lorem ipsum dolor sit amet."`.
-Integer | A number which is not a fraction; a whole number, eg: `1`, `150`, `-25`.
-Decimal | A decimal number with fraction delimited by a dot, eg: `1.0`, `12.08`, `-0.005`.
-Boolean | Can have one of two possible values: `true` or `false` (case-insensitive).
-Named<> | A name string associated with a value of one of the above types. The name part is delimited by a dot. Eg for *Named&lt;Integer&gt;*: `foo.8`, `bar.-20`.
-List<>| A comma-separated list of values of one of the above types. Eg for *List&lt;String&gt;*: `foo,bar,"Lorem ipsum."`, for *List&lt;Decimal&gt;*: `12,-8,0.105,2`
+String | Простое строковое значение, например: `LoremIpsum`. Не забудьте заключить строку в двойные кавычки, если она содержит пробелы, например: `"Lorem ipsum dolor sit amet."`.
+Integer | Число без дробей; целочисленное значение, например: `1`, `150`, `-25`.
+Decimal | Десятичное число с дробью, отделённой точкой, например: `1.0`, `12.08`, `-0.005`.
+Boolean | Имеет два доступных значения: `true` or `false` (нечуствительна к регистру).
+Named<> | Строка имени, связанная со значением одного из вышеперечисленных типов. Часть имени отделена точкой. Например, для *Named&lt;Integer&gt;*: `foo.8`, `bar.-20`.
+List<>| Список из значений одного из вышеперечисленных типов, разделённых точками. Например, для *List&lt;String&gt;*: `foo,bar,"Lorem ipsum."`, для *List&lt;Decimal&gt;*: `12,-8,0.105,2`
 
-### Nameless Parameters
+### Безымянные параметры
 
-Most of the commands have a nameless parameter. A parameter is considered nameless when it could be used without specifying its name. 
+Большинство команд имеют безымянный параметр. Параметр считается безымянным, если может быть использован без указания его имени. 
 
-For example, a [@bgm] command expects a nameless parameter specifying the name of the music track to play:
+Например, команда [@bgm] ожидает безымянный параметр, указывающий имя музыкального трека, который нужно проиграть:
 
 ```
 @bgm PianoTheme
 ```
-"PianoTheme" here is the value of the "BgmPath" *String* parameter.
+"PianoTheme" здесь – это значение типа *String* параметра "BgmPath".
 
-There could be only one nameless parameter per command and it should always be specified before any other parameters.
+В каждой команде может быть только один безымянный параметр, и он всегда должен указываться перед любыми другими параметрами.
 
-### Optional and Required Parameters
+### Опциональные и обязательные параметры
 
-Most of the command parameters are *optional*. It means they either have a predefined value or just doesn't require any value in order for the command to be executed. For example, when a [@resetText] command is used without specifying any parameters it will reset text of a default printer, but you can also set a specific printer ID like this: `@resetText printer:Dialogue`.
+Большинство параметров команды являются *опциональными*. Это означает, что они либо имеют предопределенное значение, либо просто не требуют никакого значения для выполнения команды. Например, если команда [@resetText] используется без указания каких-либо параметров, она сбросит текст в принтере по умолчанию, но вы также можете установить определенный ID принтера следующим образом: `@resetText printer:Dialogue`.
 
-Some parameters however are *required* in order for the command to execute and should always be specified.
+Однако некоторые параметры являются *обязательными* для выполнения команды и всегда должны быть указаны.
 
-### Commands API Reference
+### Справочик команд API
 
-For the list of all the currently available commands with a summary, parameters and usage examples see [commands API reference](/ru/api/). 
+Для списка всех доступных сейчас команд с описанием, параметрами и примерами использования см. [справочник команд API](/ru/api/). 
 
-## Generic Text Lines
+## Универсальные текстовые строки
 
-To make writing scripts with large amounts of text more comfortable generic text lines are used. Line is considered a generic text statement if doesn't start with any of the predefined statement literals:
+Чтобы сделать написание скриптов с большим объемом текста более удобным, используются универсальные текстовые строки. Строка считается универсальным текстовым оператором, если она не начинается ни с одного из вышеуказанных литералов операторов:
 
 ```
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 ```
 
-An author ID can be specified at the start of a generic text line separated by a column (`:`) to associate printed text with a [character actor](/ru/guide/characters.md):
+ID говорящего можно указать в начале универсальной текстовой строки, отделив их двоеточием (`:`), чтобы связать печатный текст с [актором персонажа](/ru/guide/characters.md):
 
 ```
 Felix: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 ```
 
-To save some typing when constantly changing character appearances associated with printed text, you can also specify appearance after the author ID:
+Чтобы сэкономить время и текст при постоянном изменении внешности персонажей, связанных с печатным текстом, вы также можете указать внешность после ID персонажа:
 
 ```
 Felix.Happy: Lorem ipsum dolor sit amet.
 ```
 
-The above line is equal to the following two:
+Строка выше аналогична следующим двум:
 
 ```
 @char Felix.Happy wait:false
 Felix: Lorem ipsum dolor sit amet.
 ```
 
-### Command Inlining
+### Встраивание команд
 
-Sometimes, you may want to execute a command while revealing (printing) a text message, right after or before a specific character. For example, an actor would change their appearance (expression) when a specific word is printed or a particular sound effect would be played in reaction to some event described in the midst of a printed message. Command inlining feature allows to handle cases like that.
+Иногда вам может потребоваться выполнить команду во время отображения (печати) текстового сообщения, сразу после или перед определенным символом. Например, актор изменил бы свою внешность (выражение) при выведении определенного слова; или воспроизведение определенного звукового эффекта в ответ на какое-то событие, описанное в середине печатного сообщения. Функция встраивания команд позволяет обрабатывать подобные ситуации.
 
-All the commands (both [built-in](/ru/api/) and [custom ones](/ru/guide/custom-commands.md)) can be inlined (injected) to generic text lines using square brackets (`[`,`]`):
+Все команды, (как [встроенные](/ru/api/) и [пользовательские](/ru/guide/custom-commands.md)) могут быть встроены в универсальные текстовые строки с использованием квадратных скобок (`[`,`]`):
 
 ```
 Felix: Lorem ipsum[char Felix.Happy pos:0.75 wait:false] dolor sit amet, consectetur adipiscing elit.[i] Aenean tempus eleifend ante, ac molestie metus condimentum quis.[i][br 2] Morbi nunc magna, consequat posuere consectetur in, dapibus consectetur lorem. Duis consectetur semper augue nec pharetra.
 ```
 
-Notice, that the inlined command syntax is exactly the same, except `@` literal is omitted and command body is wrapped in square brackets. Basically, you can take any command line, inline it to a generic text line and it will have the exact same effect, but at a different moment, depending on the position inside text message.
+Обратите внимание, что синтаксис встроенной команды остаётся точно таким же, за исключением того, что литерал `@` опущен, а тело команды заключено в квадратные скобки. Вы можете взять любую командную строку, встроить ее в общую текстовую строку, и она будет иметь точно такой же эффект, но в другой момент, в зависимости от позиции внутри текстового сообщения.
 
-Under the hood, generic text lines are parsed into individual commands identified by inline index; text is printed with [@print] command. For example, following generic text line in a naninovel script:
+Под капотом универсальные текстовые строки разбираются на отдельные команды, идентифицируемые встроенным индексом; текст печатается с помощью команды [@print]. Например, следующая универсальная текстовая строка в скрипте Naninovel:
 
 ```
 Lorem ipsum[char Felix.Happy pos:75 wait:false] dolor sit amet.
 ```
 
-— is actually handled by the engine as a sequence of individual commands:
+— в действительности обрабатывается движком как последовательность отдельных команд:
 
 ```
 @print "Lorem ipsum" waitInput:false
@@ -153,71 +153,70 @@ Lorem ipsum[char Felix.Happy pos:75 wait:false] dolor sit amet.
 @print "dolor sit amet."
 ```
 
-To actually print square brackets via a generic text line, escape them with backslashes, eg:
+Чтобы напечатать квадратные скобки через универсальную текстовую строку, экранируйте их с помощью обратного слэша, например:
 ```
 Some text \[ text inside brackets \]
 ```
 
-— will print "Some text [ text inside brackets ]" in-game.
+— напечатает "Some text [ text inside brackets ]" в игре.
 
-## Label Lines
+## Строки-метки
 
-Labels are used as "anchors" when navigating the naninovel scripts with [@goto] commands. To define a label, use a `#` literal at the start of the line followed with label name:
+Метки используются в качестве "якорей" при навигации по сценариям Naninovel с помощью команд [@goto]. Чтобы объявить метку, используйте литерал `#` в начале строки, за которым следует имя метки:
 
 ```
 # Epilogue
 ```
 
-You can then use a [@goto] command to "jump" to that line:
+Теперь можно использовать команду [@goto], чтобы "прыгнуть" к этой строке:
 
 ```
 @goto ScriptName.Epilogue
 ```
 
-In case you're using [@goto] command from within the same script where the label is defined, you can omit the script name:
+В случае, если вы используете команду [@goto] из того же сценария, в котором находится искомая метка, вы можете опустить имя сценария:
 
 ```
 @goto .Epilogue
 ```
 
+## Строки-комментарии
 
-## Comment Lines
-
-When line starts with a semicolon literal (`;`) it's considered a comment statement. Comment lines are completely ignored by the engine when scripts are parsed. You can use comment lines to add notes or annotations for yourself or other team members who work with naninovel scripts.
+Когда строка начинается с литерала точки с запятой (`;`), она считается оператором комментария. Строки комментариев полностью игнорируются движком при выполнении сценариев. Вы можете использовать строки комментариев для добавления заметок или аннотаций для себя или других членов команды, работающих со сценариями Naninovel.
 
 ```
-; The following command will auto-save the game.
+; Следующая команда выполнит автосохранение игры.
 @save
 ```
 
-## Conditional Execution
+## Условия исполнения
 
-While the script are executed in a linear fashion by default, you can introduce branching using `if` parameters supported by all the commands.
+Хотя сценарий по умолчанию выполняется линейно, вы можете ввести ветвление, используя параметры `if`, поддерживаемые всеми командами.
 
 ```
-; If `level` value is a number and is greater than 9000, add the choice.
+; Если значение `level` – это номер, и он больше 9000, добавить выбор.
 @choice "It's over 9000!" if:level>9000
 
-; If `dead` variable is a bool and equal to `false`, execute the print command.
+; Ессли переменная `dead` – булева и имеет значение `false`, выполнить команду вывода текста.
 @print text:"I'm still alive." if:!dead
 
-; If `glitch` is a bool and equals `true` or random function in 1 to 10 range 
-; returns 5 or more, execute `@spawn` command.
+; Если переменная `glitch`– булева и имеет значение `true`, или функция вывода случайного числа в диапазоне от 1 до 10 
+; возвращает 5 или больше, выполнить команду `@spawn`.
 @spawn GlitchCamera if:"glitch || Random(1, 10) >= 5"
 
-; If `score` value is in 7 to 13 range or `lucky` variable is a bool and equals 
-; `true`, load `LuckyEnd` script.
+; Если `score` имеет значение от 7 до 13, или переменная `lucky`– булева 
+; и возвращает `true`, загрузить скрипт `LuckyEnd`.
 @goto LuckyEnd if:"(score >= 7 && score <= 13) || lucky"
 
-; You can also use conditionals in the inlined commands.
+; Вы также можете использовать условия во встроенных командах.
 Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
 
-; When using double quotes inside the expression itself, 
-; don't forget to double-escape them.
+; Если в самом выражении используются двойные кавычки, 
+; не забывайте дважды экранировать их.
 @print {remark} if:remark=="Saying \\"Stop the car\\" was a mistake."
 ```
 
-It's also possible to specify multi-line conditional blocks with [@if], [@else], [@elseif] and [@endif] commands.
+Также возможно указывать многострочные условные блоки с помощью команд [@if], [@else], [@elseif] и [@endif].
 
 ```
 @if score>10
@@ -235,106 +234,106 @@ It's also possible to specify multi-line conditional blocks with [@if], [@else],
 @endif
 ```
 
-Note that tabs here are completely optional and used just for better readability.
+Обратите внимание, что табуляции полностью опциональны и используются здесь только для лучшей читаемости.
 
-The same works for generic text lines:
+То же самое работает и для универсальных текстовых строк:
 
 ```
 Lorem ipsum dolor sit amet. [if score>10]Duis efficitur imperdiet nunc. [else]Vestibulum sit amet dolor non dolor placerat vehicula.[endif]
 ```
 
-For more information on the conditional expression format and available operators see the [script expressions](/ru/guide/script-expressions.md) guide.
+Для дополнительной информации о форматах условных выражений и доступных операторах см. гайд по [выражениям сценариев](/ru/guide/script-expressions.md).
 
-## Visual Editor
+## Визуальный редактор
 
-You can use visual script editor to edit the naninovel scripts. Select a script asset and you'll see the visual editor automatically open in the inspector window.
+Вы можете использовать визуальный редактор сценариев для редактирования сценариев Naninovel. Выберите ресурс сценария, и вы увидите, что визуальный редактор автоматически откроется в окне инспектора.
 
 [!ba57b9f78116e57408125325bdf66be9]
 
-To add a new line to the script, either right-click the place, where you want to insert the line, or press `Ctrl+Space` (you can change the default key bindings in the input configuration menu) and select the desired line or command type. To re-order lines, drag them using their number labels. To remove a line, right-click it and choose "Remove".
+Чтобы добавить новую строку в сценарий, щелкните правой кнопкой мыши в месте, куда вы хотите вставить строку, или же нажмите `Ctrl+Space` (вы можете изменить привязки клавиш по умолчанию в меню конфигурации ввода) и выберите нужную строку или тип команды. Чтобы изменить порядок строк, перетащите их за номерные метки. Чтобы удалить строку, щелкните ее правой кнопкой мыши и выберите пункт "Удалить".
 
-When you've changed the script using visual editor, you'll see an asterisk (`*`) over the script name in the inspector header. That means the asset is dirty and need to be saved; press `Ctrl+S` to save the asset. In case you'll attempt to select another asset while the script is dirty, a dialogue window will pop-up allowing to either save or revert the changes.
+Когда вы изменили сценарий с помощью визуального редактора, вы увидите звездочку (`*`) над именем сценария в заголовке инспектора. Это означает, что ассет был изменён и должен быть сохранен; нажмите `Ctrl+S`, чтобы сохранить ассет. Если вы попытаетесь выбрать другой ассет после изменения сценария, появится диалоговое окно, позволяющее либо сохранить, либо отменить изменения.
 
-The visual editor will automatically sync edited script if you update it externally, so you can seamlessly work with the scripts in both text and visual editors. In case auto-sync is not working, make sure `Auto Refresh` is enabled in the `Edit -> Preferences -> General` Unity editor menu.
+Визуальный редактор автоматически синхронизирует отредактированный сценарий, если вы обновите его внешне, так что вы можете легко работать со сценариями как в текстовых, так и в визуальных редакторах. В случае, если автосинхронизация не работает, убедитесь, что функция `Auto Refresh` включена в меню редактора Unity `Edit -> Preferences -> General`.
 
-During the playmode, you can use visual editor to track which script line is currently being played and right-click a line to rewind the playback. This feature requires the script to have equal resource ID (when assigned in the resources manager menu) and asset name.
+В режиме воспроизведения вы можете использовать визуальный редактор, чтобы отслеживать, какая строка сценария воспроизводится в данный момент, и щелкнуть правой кнопкой мыши строку, чтобы перемотать сценарий назад. Эта функция требует, чтобы сценарий имел одинаковый ID ресурса (при назначении в меню менеджера ресурсов) и имя ассета.
 
 [!b6e04d664ce4b513296b378b7c25be03]
 
-Currently played line will be highlighted with green color; when script playback is halted due waiting for user input, played line will be highlighted with yellow instead.
+Строка, воспроизводимая в настоящее время, будет выделена зеленым цветом; когда воспроизведение скрипта будет остановлено при ожидании ввода пользователем, воспроизводимая строка будет выделена желтым цветом.
 
-You can tweak the editor behavior and looks in the scripts configuration menu.
+Вы можете настроить поведение редактора и внешний вид в меню конфигурации сценариев.
 
 ![](https://i.gyazo.com/4b4b2608e7662b02a61b00734910308c.png)
 
 [!!9UmccF9R9xI]
 
-## Script Graph
+## Схемы сценариев
 
-When working with large amount of scripts and non-linear stories, it could become handy to have some kind of visual representation of the story flow. This is where script graph tool comes in handy.
+При работе с большим количеством сценариев и нелинейных историй, удобным может быть наличие визуального представления развития истории. Здесь вам может пригодиться инструмент сценарных схем.
 
 [!0dd3ec2393807fb03d501028e1526895]
 
-To open the graph window use `Naninovel -> Script Graph` editor menu. You can dock the window as any other editor panel if you like to.
+Чтобы открыть окно схемы, испольуйте меню редактора `Naninovel -> Script Graph`. Вы можете закрепить это окно как любую другую панель редактора, если хотите.
 
-The tool will automatically build graph representation of all the naninovel scripts (represented as nodes) assigned via editor resources (`Naninovel -> Resources -> Scripts`) and connections between them.
+Инструмент автоматически построит графическое представление всех сценариев Naninovel (в виде узлов), назначенных через ресурсы редактора (`Naninovel -> Resources -> Scripts`), и связей между ними.
 
-The connections are generated based on [@goto] and [@gosub] commands. If the command has a conditional expression assigned (`if` parameter), corresponding port in the node will be highlighted with yellow and you'll be able to see the expression when hovering the port.
+Соединения генерируются на основе команд [@goto] и [@gosub]. Если команде назначено условное выражение (параметр `if`), соответствующий порт в узле будет выделен желтым цветом, и вы сможете увидеть выражение при наведении курсора на порт.
 
-You can select script asset and open visual editor by double-clicking nodes or clicking ports. Clicking the ports will also scroll the visual editor to a line containing label (in case there were a label specified).
+Вы можете выбрать ассет сценария и открыть визуальный редактор, дважды щелкнув по узлу или порту. Щелчок по портам также приведет к прокрутке визуального редактора до строки, содержащей метку (в случае, если была указана метка).
 
-You can re-position the nodes as you like and their positions will be automatically saved when closing the graph window or exiting Unity; the positions will then be restored when re-open the window. You can also save manually by clicking "Save" button. Clicking "Auto Align" button will reset all the positions.
+Вы можете изменять положение узлов по своему усмотрению, и их позиции будут автоматически сохранены при закрытии окна схемы или выходе из Unity; затем позиции будут восстановлены при повторном открытии окна. Вы также можете сохранить положения вручную, нажав кнопку "Save". Нажатие кнопки "Auto Align" приведет к сбросу всех позиций.
 
-When changing scripts or adding new ones, click "Rebuild Graph" button to sync it.
+При изменении сценариев или добавлении новых нажмите кнопку "Rebuild Graph", чтобы синхронизировать изменения.
 
-## Hot Reload
+## Горячая перезагрузка
 
-It's possible to edit scripts at play mode (via both visual and external editors) and have the changes applied immediately, without game restart. The feature is controlled via `Hot Reload Scripts` property in the scripts configuration and is enabled by default.
+Можно редактировать сценарии в режиме воспроизведения (как с помощью визуальных, так и внешних редакторов) и сразу же применять изменения, не перезапуская игру. Эта функция управляется через свойство `Hot Reload Scripts` в конфигурации сценариев и включена по умолчанию.
 
-When modifying, adding or removing a line before the currently played one, state rollback will automatically happen to the modified line to prevent state inconsistency.
+При изменении, добавлении или удалении строки перед воспроизводимой в данный момент, откат состояния автоматически произойдет с измененной строкой, чтобы предотвратить несоответствие состояния.
 
-In case hot reload is not working, make sure `Auto Refresh` is enabled and `Script Changes While Playing` is set to `Recompile And Continue Playing`. Both properties can be found at `Edit -> Preferences -> General` Unity editor menu.
+В случае, если горячая перезагрузка не работает, убедитесь, что включено свойство `Auto Refresh`, а `Script Changes While Playing` установлено на `Recompile And Continue Playing`. Оба свойства можно найти в меню редактора Unity `Edit -> Preferences -> General`.
 
 ![](https://i.gyazo.com/5d433783e1a12531c79fe6be80c92da7.png)
 
-To manually initiate hot reload of the currently played naninovel script (eg, when editing script file outside of Unity project), use `reload` [console command](/ru/guide/development-console.md). The command is editor-only (won't work in builds).
+Чтобы вручную инициировать горячую перезагрузку текущего сценария Naninovel (например, при редактировании файла скрипта вне проекта Unity), используйте [консольную команду](/ru/guide/development-console.md) `reload`. Команда предназначена только для редактора (не будет работать в сборках).
 
-## IDE Support
+## Поддержка IDE
 
-IDE features, like syntax highlighting, error checking, auto-completion and interactive documentation could significantly increase productivity when writing scripts. We've made an extension for a free and open-source [Atom editor](https://atom.io) (available for Windows, MacOS and Linux), which provides the essential IDE support for NaniScript syntax.
+Такие функции IDE, как подсветка синтаксиса, проверка ошибок, автозавершение и интерактивная документация, могут значительно повысить производительность при написании сценариев. Мы сделали расширение для бесплатного open-source [редактора Atom](https://atom.io) (доступен для Windows, MacOS и Linux), которое обеспечивает существенную поддержку IDE для синтаксиса NaniScript.
 
 ![](https://i.gyazo.com/e3de33e372887b0466ea513576beadd0.png)
 
-To use the extension:
+Для использования расширения:
 
-1. Install [Atom editor](https://atom.io)
-2. Install [language-naniscript](https://atom.io/packages/language-naniscript) extension
-3. Install [atom-ide-ui](https://atom.io/packages/atom-ide-ui) extension (required for our extension to provide some of the features)
-4. Restart the Atom editor
-5. Open a folder with naninovel scripts (opening a single file won't activate the extension)
+1. Установите [редактор Atom](https://atom.io)
+2. Установите расширение [language-naniscript](https://atom.io/packages/language-naniscript)
+3. Установите расширение [atom-ide-ui](https://atom.io/packages/atom-ide-ui) (требуется для нашего расширения, чтобы обеспечить работу некоторых функций)
+4. Перезапустите Atom
+5. Откройте папку со сценариями Naninovel (открытие одиночного файла не активирует расширение)
 
-Check the following video tutorial on activating and using the extension.
+Посмотрите следующий видеогайд по активации и использованию расширения.
 
 [!!njKxsjtewzA]
 
-Support for other editors is possible in the future; check [the issue on GitHub](https://github.com/Elringus/NaninovelWeb/issues/56#issuecomment-492987029) for more information.
+Поддержка других редакторов возможна в будущем; проверьте [тему на GitHub](https://github.com/Elringus/NaninovelWeb/issues/56#issuecomment-492987029) для получения дополнительной информации.
 
-## Scripts Debug
+## Отладка сценариев
 
-When working with large naninovel scripts, it could become tedious to always play them from start in order to check how things work in particular parts of the script. 
+При работе с большими сценариями Naninovel может стать утомительным всегда воспроизводить их с самого начала, чтобы проверить, как все работает в определенных частях скрипта.
 
-Using [development console](/ru/guide/development-console.md) you can instantly "rewind" currently played script to an arbitrary line:
+С помощью [консоли разработчика](/ru/guide/development-console.md) вы можете мгновенно "перемотать" воспроизводимый в данный момент сценарий на произвольную строку:
 
 ```
 rewind 12
 ```
 
-— will start playing current script from the 12th line; you can rewind forward and backward in the same way. To open the console while game is running, make sure the console is enabled in the engine configuration and press `~` key (can be changed in the configuration) or perform multi-touch (3 or more simultaneous touches) in case the build is running on a touchscreen device.
+— начнёт воспроизведение текущего скрипта с 12-й строки; вы можете перемотать его вперед и назад таким же образом. Чтобы открыть консоль во время работы игры, убедитесь, что консоль включена в конфигурации движка, и нажмите клавишу `~` (может быть изменена в конфигурации) или выполните мультитач (3 или более одновременных касаний) в случае, если сборка проигрывается на устройстве с сенсорным экраном.
 
-To find out which script and line is currently playing, use debug window: type `debug` in the development console and press `Enter` to show the window.
+Чтобы узнать, какой сценарий и какая строка воспроизводятся в данный момент, используйте окно отладки: введите `debug` в консоли разработки и нажмите `Enter`, чтобы открыть окно.
 
-![Scripts Debug](https://i.gyazo.com/12772ecc7c14011bcde4a74c81e997b8.png)
+![Отладка сценариев](https://i.gyazo.com/12772ecc7c14011bcde4a74c81e997b8.png)
 
-Currently played script name, line number and command (inline) index are displayed in the title of the window. When [auto voicing](/ru/guide/voicing.md#auto-voicing) feature is enabled, name of the corresponding voice clip will also be displayed. You can re-position the window by dragging it by the title. "Stop" button will halt script execution; when script player is stopped "Play" button will resume the execution. You can close the debug window by pressing the "Close" button.
+В заголовке окна отображаются имя текущего воспроизводимого сценария, номер строки и индекс команды. Если включена функция [автоозвучивания](/ru/guide/voicing.md#auto-voicing), то также будет отображаться имя соответствующего голосового клипа. Вы можете изменить положение окна, перетащив его по заголовку. Кнопка "Stop" остановит выполнение скрипта; когда проигрыватель скриптов остановлен, кнопка "Play" возобновит выполнение. Вы можете закрыть окно отладки, нажав кнопку "Close".
 
-Debug window is available in both editor and player builds.
+Окно отладки доступно как в редакторе, так и в сборках.
