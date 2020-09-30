@@ -58,7 +58,16 @@ Here is an example translation of a generic text line:
 Yuko: Все известные астероиды имеют прямое движение, при этом весеннее равноденствие отражает гейзер. Уравнение времени однократно. Большая Медведица, оценивая блеск освещенного металлического шарика, пространственно притягивает первоначальный метеорный дождь.
 ```
 
-You're expected to include all the inlined commands present in the source statement to the translation, preserving the order and content of the commands:
+In case the translation takes too much space, you can break it into separate commands:
+
+```nani
+# f63f03ea
+; Yuko: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut ultricies enim, id venenatis arcu. Nullam rhoncus eros eu ante vulputate tempus.
+Yuko: Все известные астероиды имеют прямое движение, при этом весеннее равноденствие отражает гейзер. Уравнение времени однократно.
+Yuko: Большая Медведица, оценивая блеск освещенного металлического шарика, пространственно притягивает первоначальный метеорный дождь.
+```
+
+You're expected to include any inlined commands present in the source statement to the translation:
 
 ```nani
 # b53b395d
