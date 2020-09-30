@@ -58,16 +58,20 @@ Here is an example translation of a generic text line:
 Yuko: Все известные астероиды имеют прямое движение, при этом весеннее равноденствие отражает гейзер. Уравнение времени однократно. Большая Медведица, оценивая блеск освещенного металлического шарика, пространственно притягивает первоначальный метеорный дождь.
 ```
 
-In case the translation takes too much space, you can break it into separate commands:
+::: warn
+You **should not translate character IDs** (or any other actor IDs). If you do so, some features (eg, character highlight and lip sync) will break. In case you wish to translate author names displayed in text printers, use [display names](/guide/characters.md#display-names) feature instead.
+:::
+
+If you have state rollback feature enabled (set in the state configuration menu), it's possible to break the translated content into multiple lines and/or modify inlined commands:
 
 ```nani
 # f63f03ea
-; Yuko: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut ultricies enim, id venenatis arcu. Nullam rhoncus eros eu ante vulputate tempus.
+; Yuko: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut ultricies enim, id venenatis arcu.[i] Nullam rhoncus eros eu ante vulputate tempus.
 Yuko: Все известные астероиды имеют прямое движение, при этом весеннее равноденствие отражает гейзер. Уравнение времени однократно.
 Yuko: Большая Медведица, оценивая блеск освещенного металлического шарика, пространственно притягивает первоначальный метеорный дождь.
 ```
 
-You're expected to include any inlined commands present in the source statement to the translation:
+Otherwise, you're expected to include all the inlined commands present in the source statement to the translation, preserving the order and content of the commands:
 
 ```nani
 # b53b395d
@@ -76,7 +80,7 @@ Kohaku: Противостояние вызывает кислый метеор�
 ```
 
 ::: warn
-You **should not translate character IDs** (or any other actor IDs). If you do so, some features (eg, character highlight and lip sync) will break. In case you wish to translate author names displayed in text printers, use [display names](/guide/characters.md#display-names) feature instead.
+When state rollback is disabled and command count in the localized content doesn't exactly match the source, changing locale at the affected playback spots could mutate the state unpredictably or make it impossible to continue playing the script. Warnings will be logged when such localization scripts are played with disabled rollback.
 :::
 
 Total word count contained in the generated localization documents (excluding the hash lines) is shown in the localization tool window when the generation procedure is finished.
