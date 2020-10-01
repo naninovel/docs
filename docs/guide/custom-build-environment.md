@@ -1,6 +1,6 @@
 ﻿# Custom Build Environment
 
-When building the project using editor's [build menu](https://docs.unity3d.com/Manual/BuildSettings.html), Naninovel automatically executes additional pre- and post-processing procedures. Those procedures, among other things, include ensuring that all the resources assigned via Naninovel's configuration menus (eg, script docuements, character appearances, BGM and SFX clips, etc) are included to the build.
+When building the project using editor's [build menu](https://docs.unity3d.com/Manual/BuildSettings.html), Naninovel automatically executes additional pre- and post-processing procedures. Those procedures, among other things, include ensuring that all the resources assigned via Naninovel's configuration menus (eg, script documents, character appearances, BGM and SFX clips, etc) are included to the build.
 
 In case you're using a custom build environment (eg, [Cloud Build](https://unity3d.com/unity/features/cloud-build) or starting the build via custom scripts or from the command line) you have to manually invoke `Naninovel.BuildProcessor.PreprocessBuild(BuildPlayerOptions)` and `Naninovel.BuildProcessor.PostprocessBuild()` static methods before and after the build respectively.
 
