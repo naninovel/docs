@@ -94,18 +94,15 @@ Below is an example on overriding the built-in character manager configuration e
 [OverrideSettings(typeof(CharactersSettings))]
 public class CustomCharacterSettings : CharactersSettings
 {
-    protected override Dictionary<string, Action<SerializedProperty>> OverrideMetaDrawers
+    protected override Dictionary<string, Action<SerializedProperty>> OverrideMetaDrawers ()
     {
-        get
+        var drawers = base.OverrideMetaDrawers();
+        drawers[nameof(CharacterMetadata.MessageColor)] = property =>
         {
-            var drawers = base.OverrideMetaDrawers;
-            drawers[nameof(CharacterMetadata.MessageColor)] = property =>
-            {
-                EditorGUILayout.PropertyField(property);
-                EditorGUILayout.LabelField($"Message color of `{EditedActorId}` is `{property.colorValue}`.");
-            };
-            return drawers;
-        }
+            EditorGUILayout.PropertyField(property);
+            EditorGUILayout.LabelField($"Message color of `{EditedActorId}` is `{property.colorValue}`.");
+        };
+        return drawers;
     }
 }
 ```
