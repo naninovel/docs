@@ -38,7 +38,7 @@ With `Focus Mode` property you can change whether the assigned game object shoul
 Gamepad navigation over UIs will only work when Unity's new input system is installed in the project; find more information about the input system below.
 :::
 
-When in the main gameplay mode (outside of modal UIs), press a button binded to `Pause` input (`Backspace` key for keyboard and `Start` button for gamepad by default) to open pause menu, where you can save/load game, open settings, exit to title, etc.
+When in the main gameplay mode (outside of modal UIs), press a button bind to `Pause` input (`Backspace` key for keyboard and `Start` button for gamepad by default) to open pause menu, where you can save/load game, open settings, exit to title, etc.
 
 ## Input System
 

@@ -286,7 +286,7 @@ It's also possible to affect all the layers inside a group (and additionally its
 @char CharId.Poses/Light>
 ```
 
-The above expressions will affect not only the direct descendants of the target groups, but all the layers contained in the underlaying groups, recursively.
+The above expressions will affect not only the direct descendants of the target groups, but all the layers contained in the underlying groups, recursively.
 
 When an appearance is not specified (eg, `@char CharId` without previously setting any appearance), a default appearance will be used; default appearance of the layered characters equals to how the layered prefab looks in the editor.
 

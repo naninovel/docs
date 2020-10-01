@@ -134,7 +134,7 @@ To add support for `@playmaker` command to [Atom IDE extension](/guide/naninovel
       "summary": "Names of game objects for which to broadcast the event."
     }
   ]
-},
+}
 ```
 
 After the edit, the file should start as follows:
@@ -144,7 +144,7 @@ After the edit, the file should start as follows:
   "commands": [
     {
       "id": "BroadcastPlayMakerEvent",
-      "alias": "playmaker",
+      "alias": "playmaker"
 ```
 
 Restart the Atom editor (in case it was running), and the `@playmaker` command should no longer be highlighted as an error.

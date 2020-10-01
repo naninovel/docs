@@ -8,7 +8,7 @@ Providers' general behavior can be configured via `Naninovel -> Configuration ->
 
 `Resource Policy` property dictates when the resources are loaded and unloaded during script execution:
  - Static — All the resources required for the script execution are pre-loaded when starting the playback (masked with a loading screen) and unloaded only when the script has finished playing. This policy is default and recommended for most cases.
- - Dynamic — Only the resources required for the next `Dynamic Policy Steps` commands are pre-loaded when starting the playback and all the unused resources are unloaded immediately. Use this mode when targetting platforms with strict memory limitations and it's impossible to properly organize naninovel scripts. Expect hiccups when the resources are loaded in background while the game is progressing.
+ - Dynamic — Only the resources required for the next `Dynamic Policy Steps` commands are pre-loaded when starting the playback and all the unused resources are unloaded immediately. Use this mode when targeting platforms with strict memory limitations and it's impossible to properly organize naninovel scripts. Expect hiccups when the resources are loaded in background while the game is progressing.
 
 When `Log Resources Loading` is enabled, various provider-related log messages will be mirrored to the default loading screen UI.
 
@@ -28,11 +28,11 @@ Be aware, that **while in editor a special "Editor" resource provider is always 
 
 ## Addressable
 
-The [Addressable Asset system](https://docs.unity3d.com/Packages/com.unity.addressables@latest) is a Unity package providing an easy way to load assets by "address". It uses asynchronous loading to support loading from any location (local storage, remote web hosting, etc) with any collection of dependencies. Consult Unity's documentation on how to setup, configure and use the system.
+The [Addressable Asset system](https://docs.unity3d.com/Packages/com.unity.addressables@latest) is a Unity package providing an easy way to load assets by "address". It uses asynchronous loading to support loading from any location (local storage, remote web hosting, etc) with any collection of dependencies. Consult Unity's documentation on how to set up, configure and use the system.
 
 Naninovel will automatically use addressables when the package is installed in the project. No additional setup is required. All the assets assigned in the Naninovel's configuration menus (eg, scenario scripts, character sprites, audio clips, etc) will be registered with the system (assigned an "address" under "Naninovel" group) when building the player.
 
-Addressable provider is only used in runtime builds and is disabled in editor by default. In case you're manually exposing resources via addressable address instead of assigning them with Naninovel's resource managers, you can enable it with `Enable Addressable In Editor` property in resource provider configuration menu. Be aware, that enabling this could cuase issues when resources are assigned both in resources manager and registered with an addressable address and then renamed, dublicated or removed.
+Addressable provider is only used in runtime builds and is disabled in editor by default. In case you're manually exposing resources via addressable address instead of assigning them with Naninovel's resource managers, you can enable it with `Enable Addressable In Editor` property in resource provider configuration menu. Be aware, that enabling this could cause issues when resources are assigned both in resources manager and registered with an addressable address and then renamed, duplicated or removed.
 
 In order for an addressable asset to become "visible" for Naninovel, its address should start with "Naninovel/" and it should has a "Naninovel" label assigned. You can specify additional labels to filter the assets used by Naninovel via `Extra Labels` property in resource provider configuration menu. Be aware, that "Naninovel" addressable group is automatically re-generated on each build; either use another group to specify custom resources or disable `Enable Build Processing` property in resource provider configuration menu and manually process the assets upon build.
 
