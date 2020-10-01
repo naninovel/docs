@@ -80,7 +80,11 @@ Kohaku: Противостояние вызывает кислый метеор�
 ```
 
 ::: warn
-When state rollback is disabled and command count in the localized content doesn't exactly match the source, changing locale at the affected playback spots could mutate the state unpredictably or make it impossible to continue playing the script. Warnings will be logged when such localization scripts are played with disabled rollback.
+When state rollback is disabled and command count in the localized content doesn't exactly match the source, changing locale while the script is played could mutate the state unpredictably or make it impossible to continue the playback. Warnings will be logged when such localization scripts are detected.
+:::
+
+::: tip
+In case you don't want to let the player use rollback, remove `Rollback` binding from the input configuration menu. This will preserve all the associated engine capabilities (eg, variable localized content, rewind via visual editor and developer console, etc), while preventing the player from accessing the feature.
 :::
 
 Total word count contained in the generated localization documents (excluding the hash lines) is shown in the localization tool window when the generation procedure is finished.
