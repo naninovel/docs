@@ -91,7 +91,7 @@ It's possible to override the built-in configuration editors (Naninovel's projec
 Below is an example on overriding the built-in character manager configuration editor. The new editor is inherited from the built-in one and will additionally insert a label under `Message Color` field of the inspected actor metadata with the name of that color.
 
 ```csharp
-[OverrideSettings(typeof(CharactersSettings))]
+[OverrideSettings]
 public class CustomCharacterSettings : CharactersSettings
 {
     protected override Dictionary<string, Action<SerializedProperty>> OverrideMetaDrawers ()
