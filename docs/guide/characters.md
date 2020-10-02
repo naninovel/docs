@@ -409,3 +409,9 @@ For a complete example on setting up Live2D character render to texture and bind
 All the other character and background implementation types (except generic) can be set up to render to texture in the same way, as the Live2D one described above.
 :::
 
+::: warn
+Due to a [Unity bug](https://issuetracker.unity3d.com/product/unity/issues/guid/1277169), when using [addressables package](https://docs.unity3d.com/Manual/com.unity.addressables.html) the actor render textures won't work properly in build when used inside an addressable prefab. For a workaround, instead of directly assigning the render texture, use `Get Actor Render Texture` component as illustrated below.
+
+![](https://i.gyazo.com/92772b1fa51e6042efcd3de67d05fd79.png)
+
+:::
