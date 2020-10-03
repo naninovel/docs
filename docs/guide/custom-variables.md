@@ -92,7 +92,7 @@ myValue += "Hello!";
 variableManager.SetVariableValue("MyVariable", myValue);
 ```
  
-Be aware, that all the custom variable values are stored as strings. If you want to use them as other types (eg, integer, boolean, etc), you have to parse the returned string values to the desired type and cast them back to strings when setting the values. For most common data types extension methods are available in Naninovel v1.13 and later, eg:
+Be aware, that all the custom variable values are stored as strings. If you want to use them as other types (eg, integer, boolean, etc), you have to parse the returned string values to the desired type and cast them back to strings when setting the values. For most common data types extension methods are available, eg:
 
 ```csharp
 var variableManager = Engine.GetService<ICustomVariableManager>();
