@@ -79,12 +79,10 @@ Serializable fields of the created custom data class will be automatically expos
 To access the custom data at runtime, use `GetCustomData<TData>()` method of `ActorMetadata` instance, where `TData` is the type of the custom data class, eg:
 
 ```csharp
-public CustomCharacterImplementation (string id, CharacterMetadata metadata)
-    : base (id, metadata)
-{
-    var myData = metadata.GetCustomData<MyCharacterData>();
-    Debug.Log(myData.MyCustomInt);
-}
+var charsConfig = Engine.GetConfiguration<CharactersConfiguration>();
+var myCharMeta = charsConfig.GetMetadataOrDefault("CharId");
+var myCharData = myCharMeta.GetCustomData<MyCharacterData>();
+Debug.Log(myCharData.MyCustomInt);
 ```
 
 ### Custom Metadata Editor
