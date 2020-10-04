@@ -2,7 +2,7 @@
 
 При изменении внешности фона с помощью команды [`@back`](/ru/api/#back) можно дополнительно указать, какой эффект перехода следует использовать. Например, следующая команда будет переходить к фону "River" с помощью эффекта перехода "DropFade":
 
-```
+```nani
 @back River.DropFade
 ```
 
@@ -10,7 +10,7 @@
 
 Вы также можете указать продолжительность перехода (в секундах) с помощью параметра `time`:
 
-```
+```nani
 @back River.DropFade time:1.5
 ```
 
@@ -18,7 +18,7 @@
 
 Если вы хотите перейти к следующей команде сразу после объявления перехода (а не ждать окончания перехода), вы можете установить параметр `wait` в значение `false`. Напр.:
 
-```
+```nani
 @back River.Ripple time:1.5 wait:false
 @bgm PianoTheme
 ```
@@ -26,14 +26,14 @@
 
 Некоторые эффекты перехода также поддерживают дополнительные параметры, которыми можно управлять с помощью параметра `params`:
 
-```
+```nani
 @back River.Ripple params:10,5,0.02
 ``` 
 — установит частоту эффекта пульсации на 10, скорость на 5 и амплитуду на 0,02. Если параметр `params` не указан, будут использоваться значения по умолчанию.
 
 Если вы хотите изменить отдельные параметры, вы можете пропустить другие, и они будут иметь свои значения по умолчанию:
 
-```
+```nani
 @back River.Ripple params:,,0.02
 ``` 
 
@@ -52,7 +52,7 @@
 Частота | 10
 
 ### Примеры
-```
+```nani
 ; Применить переход со стандартными параметрами
 @back Appearance.BandedSwirl
 
@@ -72,7 +72,7 @@
 Количество | 6
 
 ### Примеры
-```
+```nani
 ; Применить переход со стандартными параметрами
 @back Appearance.Blinds
 
@@ -92,7 +92,7 @@
 Уровень размытия | 0.25
 
 ### Примеры
-```
+```nani
 ; Применить переход со стандартными параметрами
 @back Appearance.CircleReveal
 
@@ -107,7 +107,7 @@
 <video class="video" loop autoplay><source src="https://i.gyazo.com/f09bb69a3c045eeb1f6c8ec0b9dcd790.mp4" type="video/mp4"></video>
 
 ### Примеры
-```
+```nani
 ; Применить переход со стандартными параметрами
 @back Appearance.CircleStretch
 ```
@@ -119,7 +119,7 @@
 <video class="video" loop autoplay><source src="https://i.gyazo.com/618ec451a9e10f70486db0bb4badbb71.mp4" type="video/mp4"></video>
 
 ### Примеры
-```
+```nani
 ; Применить переход со стандартными параметрами
 @back Appearance.CloudReveal
 ```
@@ -131,7 +131,7 @@
 <video class="video" loop autoplay><source src="https://i.gyazo.com/dc4781a577ec891065af1858f5fe2ed1.mp4" type="video/mp4"></video>
 
 ### Примеры
-```
+```nani
 ; Применить переход со стандартными параметрами
 @back Appearance.Crossfade
 ```
@@ -143,7 +143,7 @@
 <video class="video" loop autoplay><source src="https://i.gyazo.com/e27c8477842a2092728ea0cc1ae76bda.mp4" type="video/mp4"></video>
 
 ### Примеры
-```
+```nani
 ; Применить переход со стандартными параметрами
 @back Appearance.Crumble
 ```
@@ -160,7 +160,7 @@
 Шаг | 99999
 
 ### Примеры
-```
+```nani
 ; Применить переход со стандартными параметрами
 @back Appearance.Disolve
 
@@ -175,7 +175,7 @@
 <video class="video" loop autoplay><source src="https://i.gyazo.com/3c3840bb311ccb9fe223960f2e46f800.mp4" type="video/mp4"></video>
 
 ### Примеры
-```
+```nani
 ; Применить переход со стандартными параметрами
 @back Appearance.DropFade
 ```
@@ -194,7 +194,7 @@
 Уклон по оси Y | 0.5
 
 ### Примеры
-```
+```nani
 ; Применить переход со стандартными параметрами
 @back Appearance.LineReveal
 
@@ -209,7 +209,7 @@
 <video class="video" loop autoplay><source src="https://i.gyazo.com/0ac9339b21303e20c524aaf6b6ca95f4.mp4" type="video/mp4"></video>
 
 ### Примеры
-```
+```nani
 ; Применить переход со стандартными параметрами
 @back Appearance.Pixelate
 ```
@@ -221,7 +221,7 @@
 <video class="video" loop autoplay><source src="https://i.gyazo.com/f8269fb68519c57c99643948a027a2a1.mp4" type="video/mp4"></video>
 
 ### Примеры
-```
+```nani
 ; Применить переход со стандартными параметрами
 @back Appearance.RadialBlur
 ```
@@ -233,7 +233,7 @@
 <video class="video" loop autoplay><source src="https://i.gyazo.com/a401b3b93a61276ed68ededa2e75e9ae.mp4" type="video/mp4"></video>
 
 ### Примеры
-```
+```nani
 ; Применить переход со стандартными параметрами
 @back Appearance.RadialWiggle
 ```
@@ -245,7 +245,7 @@
 <video class="video" loop autoplay><source src="https://i.gyazo.com/f6e685b13fe2d76733fd43878602eabc.mp4" type="video/mp4"></video>
 
 ### Примеры
-```
+```nani
 ; Применить переход со стандартными параметрами
 @back Appearance.RandomCircleReveal
 ```
@@ -264,7 +264,7 @@
 Амплитуда | 0.5
 
 ### Примеры
-```
+```nani
 ; Применить переход со стандартными параметрами
 @back Appearance.Ripple
 
@@ -279,7 +279,7 @@
 <video class="video" loop autoplay><source src="https://i.gyazo.com/8d476f466858e4788e5ad6014d6db314.mp4" type="video/mp4"></video>
 
 ### Примеры
-```
+```nani
 ; Применить переход со стандартными параметрами
 @back Appearance.RotateCrumble
 ```
@@ -291,7 +291,7 @@
 <video class="video" loop autoplay><source src="https://i.gyazo.com/ad6eb77b7065387b9cb9afd77adbc784.mp4" type="video/mp4"></video>
 
 ### Примеры
-```
+```nani
 ; Применить переход со стандартными параметрами
 @back Appearance.Saturate
 ```
@@ -308,7 +308,7 @@
 Скорость | 200
 
 ### Примеры
-```
+```nani
 ; Применить переход со стандартными параметрами
 @back Appearance.Shrink
 
@@ -328,7 +328,7 @@
 Количество слайдов | 1
 
 ### Примеры
-```
+```nani
 ; Применить переход со стандартными параметрами
 @back Appearance.SlideIn
 ```
@@ -346,7 +346,7 @@
 Количество клеток | 10
 
 ### Примеры
-```
+```nani
 ; Применить переход со стандартными параметрами
 @back Appearance.SwirlGrid
 
@@ -366,7 +366,7 @@
 Количество скруток | 15
 
 ### Примеры
-```
+```nani
 ; Применить переход со стандартными параметрами
 @back Appearance.Swirl
 
@@ -381,7 +381,7 @@
 <video class="video" loop autoplay><source src="https://i.gyazo.com/7c684f9a122006f38a0be2725895b76f.mp4" type="video/mp4"></video>
 
 ### Примеры
-```
+```nani
 ; Применить переход со стандартными параметрами
 @back Appearance.Water
 ```
@@ -393,7 +393,7 @@
 <video class="video" loop autoplay><source src="https://i.gyazo.com/b6eebcb68002064ababe4d7476139a7c.mp4" type="video/mp4"></video>
 
 ### Примеры
-```
+```nani
 ; Применить переход со стандартными параметрами
 @back Appearance.Waterfall
 ```
@@ -412,7 +412,7 @@
 Частота | 20
 
 ### Примеры
-```
+```nani
 ; Применить переход со стандартными параметрами
 @back Appearance.Wave
 
@@ -430,7 +430,7 @@
 
 Чтобы создать пользовательский переход, используйте режим перехода `Custom` и укажите путь (относительно папки "Resources" проекта) к текстуре маски растворения с помощью параметра `dissolve`, например:
 
-```
+```nani
 @back Appearance.Custom dissolve:Textures/Spiral
 ```
 

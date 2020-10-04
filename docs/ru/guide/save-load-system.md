@@ -4,13 +4,13 @@
 
 [!a7109097f6abbeea16d6fe773bfffb3f]
 
-Слоты сохранения сериализуются в `.json` или двоичные файлы (в зависимости от конфигурации). Имена файлов, лимит слотов и имя каталога можно настроить с помощью контекстного меню `Naninovel -> Configuration -> State`; доступные параметры см. в [руководстве по конфигурации](/ru/guide/configuration.md#state).
+Слоты сохранения сериализуются в `.json` или двоичные файлы (в зависимости от конфигурации). Имена файлов, лимит слотов и имя каталога можно настроить с помощью контекстного меню `Naninovel -> Configuration -> State`; доступные параметры см. в [руководстве по конфигурации](/ru/guide/configuration.md#состояние).
 
 ![Конфигурация состояния](https://i.gyazo.com/f9a2462d19eb228224f1dcd5302d6b1c.png)
 
 В WebGL слоты сохранения сериализуются с помощью кросс-браузера [IndexedDB API](https://en.wikipedia.org/wiki/Indexed_Database_API).
 
-Меню интерфейса можно настраивать или полностью заменить с помощью функции [кастомизации UI](/ru/guide/user-interface.md#ui-customization).
+Меню интерфейса можно настраивать или полностью заменить с помощью функции [кастомизации UI](/ru/guide/user-interface.md#кастомизация-UI).
 
 Naninovel предоставляет два обработчика сериализации из коробки: `System.IO` и `UnityEngine.PlayerPrefs`. Первый будет хранить слоты в виде отдельных файлов в [persistentDataPath](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html), а второй будет использовать Unity [PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html) API для хранения слотов в базе данных «ключ-значение». Вы можете выбрать обработчик в меню конфигурации состояния. Обработчики ввода-вывода выбраны по умолчанию; вы можете переключиться на PlayerPrefs или добавить [пользовательский обработчик](/ru/guide/state-management.md#custom-serialization-handlers) в случае возникновения проблем с чтением/записью сохраненных данных на определенных платформах.
 
