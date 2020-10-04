@@ -2,7 +2,7 @@
 
 При написании сценариев naninovel можно вводить конструкции выражений в значения параметров команд и общие текстовые строки с помощью фигурных скобок `{}`:
 
-```
+```nani
 One plus two equals {1 + 2}.
 ```
 
@@ -10,7 +10,7 @@ One plus two equals {1 + 2}.
 
 Вы можете использовать любые математические и логические операторы, а также все математические функции из пространств имён [UnityEngine.Mathf](https://docs.unity3d.com/ScriptReference/Mathf.html) и [System.Math](https://docs.microsoft.com/en-us/dotnet/api/system.math#methods):
 
-```
+```nani
 @char Kohaku scale:{Pow(Cosh(33.5), 3) % Log(0.5)}
 ```
 
@@ -18,7 +18,7 @@ One plus two equals {1 + 2}.
 
 Выражение вычисляется в момент выполнения команды, что позволяет использовать [пользовательские переменные](/ru/guide/custom-variables.md) внутри выражений:
 
-```
+```nani
 @input color summary:"What's your favorite color?"
 @stop
 {color}, huh? { color == "orange" ? "Mine too!" : "I see..."}
@@ -28,34 +28,34 @@ One plus two equals {1 + 2}.
 
 Чтобы отличить обычное текстовое значение от имени переменной, заключите его в двойные кавычки `"`:
 
-```
+```nani
 This is just a plain text: { "score" }.
 And this is the value of "score" variable: { score }.
 ```
 
 Если вы хотите включить двойные кавычки в выражение, экранируйте их **дважды**:
 
-```
+```nani
 Saying { \\"Stop the car\\" } was a mistake.
 ```
 
 Выражения сценария с использованием команд [@set] и [@if] (а также `set` и `if` параметры в других командах) не требуют фигурных скобок:
 
-```
+```nani
 @set randomScore=Random(-100,100)
 @goto EpicLabel if:Abs(randomScore)>=50
 ```
 
 Однако, как и во всех других значениях параметров, если вы хотите использовать пробелы внутри выражений, вам следует заключить их в двойные кавычки:
 
-```
+```nani
 @set "randomScore = Random(-100, 100)"
 @goto EpicLabel if:"Abs(randomScore) >= 50"
 ```
 
 Чтобы напечатать фигурные скобки внутри общей текстовой строки и предотвратить их распознавание как начальных и конечных литералов выражения, экранируйте фигурные скобки с помощью обратной косой черты, например:
 
-```
+```nani
 Some text \{ text inside braces \}
 ```
 
