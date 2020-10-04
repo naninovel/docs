@@ -39,7 +39,7 @@
 
 Кроме того, можно транслировать пользовательские события PlayMaker из сценариев Naninovel с помощью команды `@playmaker`:
 
-```
+```nani
 @playmaker EventName
 ```
 
@@ -47,14 +47,14 @@
 
 Команда также позволяет отправлять события в определенные FSM с помощью параметров `fsm` и `object`. Первый параметр позволяет указать имена FSM, которые должны принимать событие, например:
 
-```
+```nani
 @playmaker EventName fsm:Fsm1,Fsm2
 ```
 
 — вызовет событие с именем "EventName" для FSM с именами "Fsm1" и "Fsm2".
 
 Когда параметр `object` задан, событие будет отправлено только в те FSM, которые применяются к игровым объектам, имеющим соответствующие имена, например:
-```
+```nani
 @playmaker EventName object:Obj1,Obj2
 ```
 
@@ -71,7 +71,7 @@
 К примеру, у вас есть целое число "Score" и глобальные переменные PlayMaker булева массива "FinishedRoutes" – вы можете использовать их в сценариях Naninovel следующим образом:
 
 
-```
+```nani
 Felix: My score is {GetPlayMakerGlobalVariable("Score")}.
 
 @if GetPlayMakerGlobalArray("FinishedRoutes",2)
@@ -83,7 +83,7 @@ Felix: My score is {GetPlayMakerGlobalVariable("Score")}.
 
 ## Расширение IDE
 
-Чтобы добавить поддержку команды `@playmaker` в [расширение IDE Atom](/ru/guide/naninovel-scripts.md#ide-support), откройте файл метаданных, расположенный по адресу `%HOMEPATH%/.atom/packages/language-naniscript/server/metadata.json` (где `%HOMEPATH%` – это путь к каталогу пользователя вашей ОС), и добавьте следующую запись в массив `commands`:
+Чтобы добавить поддержку команды `@playmaker` в [расширение IDE Atom](/ru/guide/naninovel-scripts.md#поддержка-IDE), откройте файл метаданных, расположенный по адресу `%HOMEPATH%/.atom/packages/language-naniscript/server/metadata.json` (где `%HOMEPATH%` – это путь к каталогу пользователя вашей ОС), и добавьте следующую запись в массив `commands`:
 
 ```json
 {
