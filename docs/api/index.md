@@ -900,7 +900,7 @@ gravity | Boolean | Whether to automatically move camera to the initial position
 @look zone:6.5,4 speed:3,2.5 gravity:true
 
 ; Disable camera look mode and reset camera offset
-@look enabled:false
+@look enable:false
 @camera offset:0,0
 ```
 
