@@ -149,15 +149,23 @@ Don't forget that nameless parameter in [@back] command is expecting appearance 
 
 ## Generic Backgrounds
 
-Generic background is the most flexible background actor implementation. It's based on a prefab with a `BackgroundActorBehaviour` component attached to the root object. Appearance changes and all the other background parameters are routed as [Unity events](https://docs.unity3d.com/Manual/UnityEvents.html) allowing to implement the behavior of the underlying object in any way you wish. 
+Generic background is the most flexible background actor implementation. It's based on a prefab with a `Generic Background Behaviour` component attached to the root object. Appearance changes and all the other background parameters are routed as [Unity events](https://docs.unity3d.com/Manual/UnityEvents.html) allowing to implement the behavior of the underlying object in any way you wish. 
 
-![](https://i.gyazo.com/d8f86c83decfb3c40c8d23602214a743.png)
+![](https://i.gyazo.com/6483ef3e84549c1bbfbdffc6556308ea.png)
+
+::: warn
+Generic actor implementations just route events from the scenario scripts and it's up to user to implement the underlying behaviour, eg how the actor should react to the appearance or visibility change commands, whether and how it will adapt to aspect ratio changes, etc. Don't expect most of the actor-related features to work automatically with the generic implementations.
+:::
 
 To create generic background prefab from a template, use `Create -> Naninovel -> Background -> Generic` context asset menu.
 
-Generic backgrounds are very similar to generic characters; check out a tutorial video on setting an animated 3D model as a generic character for one of the possible usage examples.
+Generic backgrounds are very similar to generic characters; check out a tutorial video on setting an animated 3D model as a generic character for one of the possible usage examples. Be aware, that the video is captured with an old Naninovel version and some properties and component names are different now; see the above docs for the up to date information. 
 
 [!!HPxhR0I1u2Q]
+
+::: tip
+Unity's `Animator` component could fail to register `SetTrigger` when the game object is enabled/disabled in the same frame; in case you use `GameObject.SetActive` to handle visibility changes (as it's shown in the above tutorial), consider enabling/disabling the child objects with renderers instead.
+:::
 
 ## Scene Backgrounds
 

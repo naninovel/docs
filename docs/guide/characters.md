@@ -164,13 +164,13 @@ When enabled in the character configuration, will tint the character based on wh
 
 ## Lip Sync
 
-[Generic](/guide/characters.md#generic-characters) and [Live2D](/guide/characters.md#live2d-characters) character implementations support so called "lip synchronization" feature, allowing to drive character's mouth animation while its the author of the printed message by sending the appropriate events. 
+[Generic](/guide/characters.md#generic-characters), [layered](/guide/characters.md#layered-characters) and [Live2D](/guide/characters.md#live2d-characters) character implementations support lip synchronization feature, allowing drive character's mouth animation while it's the author of the printed message by sending the appropriate events. 
 
 [!!fx_YS2ZQGHI]
 
 When [auto voicing](/guide/voicing.md#auto-voicing) feature is enabled, lip sync events will be driven by the voice over; otherwise, printed text messages will activate the events. In the latter case, you'll probably sometimes want to manually start or stop the lip sync (eg, to prevent mouth animation when punctuation marks are printed); for such cases, use [@lipSync] command.
 
-See [Generic](/guide/characters.md#generic-characters) and [Live2D](/guide/characters.md#live2d-characters) character implementation docs below for the details on how to setup the lip sync feature.
+See [Generic](/guide/characters.md#generic-characters), [layered](/guide/characters.md#layered-characters) and [Live2D](/guide/characters.md#live2d-characters) character implementation docs below for the details on how to set up the lip sync feature.
 
 ## Linked Printer
 
@@ -298,7 +298,7 @@ The video below demonstrates how to setup a layered character and control it via
 `@char Miho.Shoes>` command displayed in the video will actually select the "Shoes" group (disabling all the neighbor groups), not hide it. Correct command to hide a group is `@char Miho.Shoes-`.
 :::
 
-It's possible to map composition expressions to keys via `Composition Map` property of `Layered Actor Behaviour` component:
+It's possible to map composition expressions to keys via `Composition Map` property of `Layered Character Behaviour` component:
 
 ![](https://i.gyazo.com/ede5cde3548a3187aa714d3e140750ba.png)
 
@@ -321,23 +321,31 @@ Be aware, that the layer objects are not directly rendered by Unity cameras at r
 It's not recommended to use semi-transparent textures for root layers; otherwise, the non-opaque areas will appear darker, than they actually are. If using such layers is a must, one solution is to render the actor in reversed order with a special shader; see [the forum thread](https://forum.naninovel.com/viewtopic.php?f=8&t=59) for an example.
 :::
 
-In case you wish to apply an animation or other dynamic behaviour to the layered character, enable `Animated` property found on `Layered Actor Behaviour` component. When the property is enabled, the layers will be rendered each frame (instead once per appearance change).
+In case you wish to apply an animation or other dynamic behaviour to the layered character, enable `Animated` property found on `Layered Character Behaviour` component. When the property is enabled, the layers will be rendered each frame (instead once per appearance change).
+
+To set up lip sync feature for layered characters, use `On Started Speaking` and `On Finished Speaking` Unity events of `Layered Character Behaviour` component. When the character becomes or ceases to be the author of any printed message (or rather when the message is fully revealed), the events will be invoked allowing you to trigger any custom logic, like starting or stopping mouth animation of the controlled character.
 
 ## Generic Characters
 
-Generic character is the most flexible character actor implementation. It's based on a prefab with a `CharacterActorBehaviour` component attached to the root object. Appearance changes and all the other character parameters are routed as [Unity events](https://docs.unity3d.com/Manual/UnityEvents.html) allowing to implement the behavior of the underlying object in any way you wish.
+Generic character is the most flexible character actor implementation. It's based on a prefab with a `Generic Character Behaviour` component attached to the root object. Appearance changes and all the other character parameters are routed as [Unity events](https://docs.unity3d.com/Manual/UnityEvents.html) allowing to implement the behavior of the underlying object in any way you wish.
 
-![](https://i.gyazo.com/9f799f4152782afb6ab86d3c494f4cc4.png)
+![](https://i.gyazo.com/d0ea1bf7a5ed3b4bb7eb70c4ddbfeba2.png)
+
+::: warn
+Generic actor implementations just route events from the scenario scripts and it's up to user to implement the underlying behaviour, eg how the actor should react to the appearance or visibility change commands, whether and how it will support speaker highlight feature, etc. Don't expect most of the actor-related features to work automatically with the generic implementations.
+:::
 
 To create generic character prefab from a template, use `Create -> Naninovel -> Character -> Generic` context asset menu.
 
-To set up lip sync feature for generic characters, use `On Started Speaking` and `On Finished Speaking` Unity events of `CharacterActorBehaviour` component. When the character becomes or ceases to be the author of any printed message (or rather when the message is fully revealed), the events will be invoked allowing you to trigger any custom logic, like starting or stopping mouth animation of the controlled character. This is similar to how UI's `On Show` and `On Hide` events work; find how they can be used to drive a custom animation in the [UI customization guide](/guide/user-interface.md#adding-custom-ui).
+To set up lip sync feature for generic characters, use `On Started Speaking` and `On Finished Speaking` Unity events of `Generic Character Behaviour` component. When the character becomes or ceases to be the author of any printed message (or rather when the message is fully revealed), the events will be invoked allowing you to trigger any custom logic, like starting or stopping mouth animation of the controlled character. This is similar to how UI's `On Show` and `On Hide` events work; find how they can be used to drive a custom animation in the [UI customization guide](/guide/user-interface.md#adding-custom-ui).
 
-Check the following video tutorial for example on setting up a 3D rigged model as a generic character and routing appearance changes to the rig animations via [Animator](https://docs.unity3d.com/Manual/class-AnimatorController.html) component.
+Check the following video tutorial for example on setting up a 3D rigged model as a generic character and routing appearance changes to the rig animations via [Animator](https://docs.unity3d.com/Manual/class-AnimatorController.html) component. Be aware, that the video is captured with an old Naninovel version and some properties and component names are different now; see the above docs for the up to date information.
 
 [!!HPxhR0I1u2Q]
 
-Be aware, that Unity's `Animator` component could fail to register `SetTrigger` when the game object is enabled/disabled in the same frame; in case you use `GameObject.SetActive` to handle visibility changes (as it's shown in the above tutorial), consider enabling/disabling the child objects with renderers instead.
+::: tip
+Unity's `Animator` component could fail to register `SetTrigger` when the game object is enabled/disabled in the same frame; in case you use `GameObject.SetActive` to handle visibility changes (as it's shown in the above tutorial), consider enabling/disabling the child objects with renderers instead.
+:::
 
 ## Live2D Characters
 
