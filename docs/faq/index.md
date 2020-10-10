@@ -40,7 +40,10 @@ When you remove the skybox, camera's background color will be used instead to fi
 
 ## How to add a line break to the message?
 
-Check out [`[br]` command](/api/#br).
+Check out [`[br]` command](/api/#br). Alternatively, `<br>` tag will work with [TMPro printers](/guide/text-printers.md#textmesh-pro), eg:
+```nani
+Lorem ipsum dolor sit amet.<br>Consectetur adipiscing elit. 
+```
 
 ## How to inject a command in the midst of a printed text message?
 
