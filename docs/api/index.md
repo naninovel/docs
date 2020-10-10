@@ -231,6 +231,9 @@ time | Decimal | Duration (in seconds) of the modification. Default value: 0.35 
 #### Summary
 Adds a line break to a text printer.
 
+#### Remarks
+Consider using &lt;br&gt; tag instead with [TMPro printers](/guide/text-printers.md#textmesh-pro).
+
 #### Parameters
 
 <div class="config-table">
