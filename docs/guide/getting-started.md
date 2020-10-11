@@ -66,7 +66,7 @@ Use `Create -> Naninovel -> Naninovel Script` assets context menu to create a na
 You can create and store naninovel scripts (as well as all the other Naninovel resources) under any project folder and organize them in any way you like; the naming is also up to you. The above illustration is just an example.
 :::
 
-Naninovel scripts are text documents (`.nani` extension) where you control what happens on scenes. You can open and edit them with a text editor of your choice, like Notepad, TextEdit or [Atom](https://atom.io).
+Naninovel scripts are text documents (`.nani` extension) where you control what happens on scenes. You can open and edit them with a text editor of your choice, like Notepad, TextEdit or [VS Code](https://code.visualstudio.com).
 
 ![Open Naninovel Script](https://i.gyazo.com/f552c2ef323f9ec1171eba72e0c55432.png)
 

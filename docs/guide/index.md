@@ -22,7 +22,7 @@ Following are some of the features Naninovel provide out of the box:
   * [Commands inlining](/guide/naninovel-scripts.md#command-inlining)
   * [Visual editor](/guide/naninovel-scripts.md#visual-editor)
   * [Hot reload](/guide/naninovel-scripts.md#hot-reload)
-  * [IDE support (syntax highlighting, auto-completion, etc)](/guide/naninovel-scripts.md#ide-support)
+  * [IDE support (syntax highlighting, auto-completion, etc)](/guide/ide-extension.md)
 * [Text printers](/guide/text-printers.md)
   * [Dialogue](/guide/text-printers.md#dialogue-printer)
   * [Fullscreen](/guide/text-printers.md#fullscreen-printer)

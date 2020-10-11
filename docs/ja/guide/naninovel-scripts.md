@@ -1,6 +1,6 @@
 # Naninovel スクリプト
 
-Naninovelスクリプトはテキストドキュメント（ `.nani`拡張子）であり、シーンで発生する動作を制御します。スクリプトアセットはコンテキストメニュー `Create -> Naninovel -> Naninovel Script` で作成できます。組み込みの [ビジュアルエディター](#ビジュアルエディター) か、メモ帳、TextEdit、[Atom](https://atom.io) などの任意のテキストエディターで開いて編集できます。
+Naninovelスクリプトはテキストドキュメント（ `.nani`拡張子）であり、シーンで発生する動作を制御します。スクリプトアセットはコンテキストメニュー `Create -> Naninovel -> Naninovel Script` で作成できます。組み込みの [ビジュアルエディター](#ビジュアルエディター) か、メモ帳、TextEdit、[VS Code](https://code.visualstudio.com) などの任意のテキストエディターで開いて編集できます。
 
 ![](https://i.gyazo.com/f552c2ef323f9ec1171eba72e0c55432.png)
 
@@ -301,23 +301,13 @@ Lorem ipsum dolor sit amet. [if score>10]Duis efficitur imperdiet nunc. [else]Ve
 
 ## IDE サポート
 
-構文のハイライト、エラーチェック、オートコンプリート、インタラクティブドキュメントといったIDE機能で、スクリプト作成時の生産性が大幅に向上します。無料でオープンソースの [Atom エディター](https://atom.io)（Windows、MacOS、Linuxで利用可能）用の拡張機能を作成しました。これは、NaniScript構文に不可欠なIDEサポートを提供します。
+構文のハイライト、エラーチェック、オートコンプリート、インタラクティブドキュメントといったIDE機能で、スクリプト作成時の生産性が大幅に向上します。無料でオープンソースの [VS Code](https://code.visualstudio.com)（Windows、MacOS、Linuxで利用可能）用の拡張機能を作成しました。これは、NaniScript構文に不可欠なIDEサポートを提供します。
 
-![](https://i.gyazo.com/e3de33e372887b0466ea513576beadd0.png)
-
-拡張機能を使うには:
-
-1. [Atom エディター](https://atom.io) をインストール
-2. [language-naniscript](https://atom.io/packages/language-naniscript) 拡張機能をインストール
-3. [atom-ide-ui](https://atom.io/packages/atom-ide-ui) 拡張機能をインストール（拡張機能で一部の機能を提供するために必要です）
-4. Atom エディターを再起動
-5. naninovelスクリプトでフォルダーを開く（単一のファイルを開いても拡張機能はアクティブになりません）
+![](https://i.gyazo.com/b1f5c6845c04d1b18b2196aa29ea6c19.png)
 
 拡張機能のアクティベートと利用に関しては、次のビデオチュートリアルを確認してください。
 
-[!!njKxsjtewzA]
-
-将来的に他のエディターのサポートも可能です。詳細は [GitHub の issue](https://github.com/Elringus/NaninovelWeb/issues/56#issuecomment-492987029) をご確認ください。
+[!!xxx]
 
 ## スクリプトデバッグ
 

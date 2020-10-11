@@ -1,6 +1,6 @@
 # Naninovel Scripts
 
-Naninovel scripts are text documents (`.nani` extension) where you control what happens on scenes. Script assets are created with `Create -> Naninovel -> Naninovel Script` asset context menu. You can open and edit them with the built-in [visual editor](#visual-editor) or with an external text editor of your choice, like Notepad, TextEdit or [Atom](https://atom.io).
+Naninovel scripts are text documents (`.nani` extension) where you control what happens on scenes. Script assets are created with `Create -> Naninovel -> Naninovel Script` asset context menu. You can open and edit them with the built-in [visual editor](#visual-editor) or with an external text editor of your choice, like Notepad, TextEdit or [VS Code](https://code.visualstudio.com).
 
 ![](https://i.gyazo.com/f552c2ef323f9ec1171eba72e0c55432.png)
 
@@ -337,23 +337,11 @@ To manually initiate hot reload of the currently played naninovel script (eg, wh
 
 ## IDE Support
 
-IDE features, like syntax highlighting, error checking, auto-completion and interactive documentation could significantly increase productivity when writing scripts. We've made an extension for a free and open-source [Atom editor](https://atom.io) (available for Windows, MacOS and Linux), which provides the essential IDE support for NaniScript syntax.
+IDE features, like syntax highlighting, error checking, auto-completion and interactive documentation could significantly increase productivity when writing scripts. We've made an extension for a free and open-source [VS Code editor](https://code.visualstudio.com) (available for Windows, MacOS and Linux), which provides the essential IDE support for NaniScript syntax.
 
-![](https://i.gyazo.com/e3de33e372887b0466ea513576beadd0.png)
+![](https://i.gyazo.com/b1f5c6845c04d1b18b2196aa29ea6c19.png)
 
-To use the extension:
-
-1. Install [Atom editor](https://atom.io)
-2. Install [language-naniscript](https://atom.io/packages/language-naniscript) extension
-3. Install [atom-ide-ui](https://atom.io/packages/atom-ide-ui) extension (required for our extension to provide some of the features)
-4. Restart the Atom editor
-5. Open a folder with naninovel scripts (opening a single file won't activate the extension)
-
-Check the following video tutorial on activating and using the extension.
-
-[!!njKxsjtewzA]
-
-Support for other editors is possible in the future; check [the issue on GitHub](https://github.com/Elringus/NaninovelWeb/issues/56#issuecomment-492987029) for more information.
+For more information on how to install and use the extension see the [IDE extension guide](/guide/ide-extension.md).
 
 ## Scripts Debug
 

@@ -149,6 +149,7 @@ function getGuideSidebar (groupA, groupB, groupC) {
                 'getting-started',
                 'configuration',
                 'naninovel-scripts',
+                'ide-extension',
                 'text-printers',
                 'characters',
                 'backgrounds',

@@ -1,6 +1,6 @@
 # Naninovel 脚本
 
-Naninovel脚本时文本文件 (`.nani` 后缀扩展名) 用于控制场景种的事件发生。脚本创建使用 `Create -> Naninovel -> Naninovel Script` 菜单。你可以使用[内置可视化编辑器](#内置可视化编辑器) 或外置文本编辑器, 比如 Notepad, TextEdit 或者 [Atom](https://atom.io).
+Naninovel脚本时文本文件 (`.nani` 后缀扩展名) 用于控制场景种的事件发生。脚本创建使用 `Create -> Naninovel -> Naninovel Script` 菜单。你可以使用[内置可视化编辑器](#内置可视化编辑器) 或外置文本编辑器, 比如 Notepad, TextEdit 或者 [VS Code](https://code.visualstudio.com).
 
 ![](https://i.gyazo.com/f552c2ef323f9ec1171eba72e0c55432.png)
 
@@ -327,23 +327,15 @@ Lorem ipsum dolor sit amet. [if score>10]Duis efficitur imperdiet nunc. [else]Ve
 
 ## IDE支持
 
-IDE特性，比如方法高亮，错误检查，自动补充，文本关联等，能够显著提升编码效率，我们已经提供了免费的开源[Atom](https://atom.io) (支持Windows, MacOS 和 Linux)
+IDE特性，比如方法高亮，错误检查，自动补充，文本关联等，能够显著提升编码效率，我们已经提供了免费的开源[VS Code](https://code.visualstudio.com) (支持Windows, MacOS 和 Linux)
 扩展，该插件为naninovel提供了关键的IDE特性支持。
 
 
-![](https://i.gyazo.com/e3de33e372887b0466ea513576beadd0.png)
-
-要使用该扩展:
-
-1. 安装 [Atom editor](https://atom.io)
-2. 安装 [language-naniscript](https://atom.io/packages/language-naniscript) 扩展
-3. 安装 [atom-ide-ui](https://atom.io/packages/atom-ide-ui) 扩展 (我们的扩展所必须的，以提供某些特性支持)
-4. 重启Atom
-5. 打开naninovel脚本目录，打开单个文件不会激活该扩展
+![](https://i.gyazo.com/b1f5c6845c04d1b18b2196aa29ea6c19.png)
 
 参考以下视频教程，激活和使用该扩展。
 
-[!!njKxsjtewzA]
+[!!xxx]
 
 其他浏览器支持会在后续添加， 更多信息参考 [the issue on GitHub](https://github.com/Elringus/NaninovelWeb/issues/56#issuecomment-492987029)。
 

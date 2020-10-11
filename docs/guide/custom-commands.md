@@ -111,25 +111,4 @@ Yuko: [s 0.1] Print text 10 times slower than usual. [s 2] Print 2 times faster.
 
 ## IDE Metadata
 
-When adding custom commands, you may notice that they're highlighted as errors in [IDE extensions](/guide/naninovel-scripts.md#ide-support). That is due to metadata of the custom commands is not available to the extensions. You can use custom commands tool to automatically generate the required metadata file over all the custom commands present in the project.
-
-Open the tool with `Naninovel -> Tools -> Custom Commands` editor menu, then click "Select" button and select path to `server` folder found inside the target IDE extension; eg, for Atom it'll be `%HOMEPATH%/.atom/packages/language-naniscript/server`, where `%HOMEPATH%` is the path to your OS user directory. Click "Generate Custom Commands Metadata" button to generate the file at the specified path and restart IDE for changes to take effect. The custom commands should now be recognized by the IDE. When you add or modify the commands, repeat the process to update metadata file of the target extension.
-
-::: warn
-Implementing types of the custom commands should not be under `Naninovel.Commands` [namespace](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/namespaces/); otherwise, they will be recognized as built-in commands and won't be included in the generated metadata file.
-:::
-
-If you'd like to add documentation to the custom commands and/or parameters, apply `Documentation` attribute to command type and parameter fields respectively:
-
-```csharp
-[Documentation("Summary of the custom command.")]
-public class CustomCommand : Command
-{
-    [Documentation("Summary of the custom parameter.")]
-    public StringParameter CustomParameter;
-}
-```
-
-Below you can find a video tutorial on how to generate metadata of custom commands (via [inventory example project](https://github.com/Elringus/NaninovelInventory)) for Atom IDE extension.
-
-[!!Fg-esrR-0mU]
+When adding custom commands, you may notice that they're highlighted as errors in IDE extensions. That is due to metadata of the custom commands is not available to the extensions. You can use IDE metadata tool to automatically generate the required metadata file over all the custom commands present in the project; see the [IDE extension guide](/guide/ide-extension.md#ide-metadata) for more information.
