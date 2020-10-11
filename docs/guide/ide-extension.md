@@ -6,7 +6,7 @@ IDE features, like syntax highlighting, error checking, auto-completion and inte
 
 ## Installation
 
-## Spell Checking
+## Spell Check
 
 To enable spell checking in the naninovel scripts, install a spell checker extension, eg. [Code Spell Check](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) and turn on the checking for `naniscript` language; see the [settings section](/guide/ide-extension.md#vs-code-settings) below for an example on how to enable naniscript language for the Code Spell Check extension.
 
