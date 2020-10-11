@@ -65,7 +65,7 @@ Naninovelを使用する過程で、いくつかのアセット（コンフィ�
 Naninovelスクリプト（および他のすべてのNaninovelリソース）は任意のプロジェクトフォルダーに保存し、好きなように整理することができます。命名も自由です。上図は一例です。
 :::
 
-Naninovelスクリプトはテキストドキュメント（ `.nani`拡張子）であり、シーンで発生する動作を制御します。メモ帳、TextEdit、[Atom](https://atom.io) などの任意のテキストエディターで開いて編集できます。
+Naninovelスクリプトはテキストドキュメント（ `.nani`拡張子）であり、シーンで発生する動作を制御します。メモ帳、TextEdit、[VS Code](https://code.visualstudio.com) などの任意のテキストエディターで開いて編集できます。
 
 ![Open Naninovel Script](https://i.gyazo.com/f552c2ef323f9ec1171eba72e0c55432.png)
 

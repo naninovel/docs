@@ -66,7 +66,7 @@ Naninovel是 [Unity游戏引擎](https://unity.com/) 扩展资源，所以确保
 以下示例仅供参考，文件夹和其他资源位置，命名等随意，按使用者自己需求
 :::
 
-Naninovel脚本是文本文件（扩展名为.nani），用于控制你场景的演出，你可以使用任何文本编辑器进行修改，比如Notepad，TextEdit，或者 [Atom](https://atom.io).
+Naninovel脚本是文本文件（扩展名为.nani），用于控制你场景的演出，你可以使用任何文本编辑器进行修改，比如Notepad，TextEdit，或者 [VS Code](https://code.visualstudio.com).
 
 ![Open Naninovel Script](https://i.gyazo.com/f552c2ef323f9ec1171eba72e0c55432.png)
 
