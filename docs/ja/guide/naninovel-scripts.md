@@ -307,7 +307,7 @@ Lorem ipsum dolor sit amet. [if score>10]Duis efficitur imperdiet nunc. [else]Ve
 
 拡張機能のアクティベートと利用に関しては、次のビデオチュートリアルを確認してください。
 
-[!!xxx]
+[!!y87wd5jHfFw]
 
 ## スクリプトデバッグ
 
