@@ -306,7 +306,7 @@ Lorem ipsum dolor sit amet. [if score>10]Duis efficitur imperdiet nunc. [else]Ve
 
 Посмотрите следующий видеогайд по активации и использованию расширения.
 
-[!!xxx]
+[!!y87wd5jHfFw]
 
 Поддержка других редакторов возможна в будущем; проверьте [тему на GitHub](https://github.com/Elringus/NaninovelWeb/issues/56#issuecomment-492987029) для получения дополнительной информации.
 

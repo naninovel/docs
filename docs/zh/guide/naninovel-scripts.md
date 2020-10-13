@@ -335,7 +335,7 @@ IDE特性，比如方法高亮，错误检查，自动补充，文本关联等�
 
 参考以下视频教程，激活和使用该扩展。
 
-[!!xxx]
+[!!y87wd5jHfFw]
 
 其他浏览器支持会在后续添加， 更多信息参考 [the issue on GitHub](https://github.com/Elringus/NaninovelWeb/issues/56#issuecomment-492987029)。
 
