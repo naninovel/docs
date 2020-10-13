@@ -1,6 +1,6 @@
 ﻿# IDE Extension
 
-IDE features, like syntax highlighting, error checking, auto-completion and interactive documentation could significantly increase productivity when writing [naninovel scripts](/guide/naninovel-scripts.md). We've made an extension for a free and open-source [VS Code editor](https://code.visualstudio.com) (available for Windows, MacOS and Linux), which provides the essential IDE support for NaniScript syntax.
+IDE features, like syntax highlighting, error checking, auto-completion and interactive documentation could significantly increase productivity when writing [naninovel scripts](/guide/naninovel-scripts.md). We've made an extension for a free and open-source [Visual Studio Code](https://code.visualstudio.com) (available for Windows, MacOS and Linux) IDE, which provides the essential IDE support for NaniScript syntax.
 
 [!c07e4a512dec21b2dfdf582e73cc3b10]
 
