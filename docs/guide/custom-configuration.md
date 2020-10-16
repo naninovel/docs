@@ -8,9 +8,13 @@ To access configuration objects via C# use `Engine.GetConfiguration<T>()` static
 
 ```csharp
 var audioConfig = Engine.GetConfiguration<AudioConfiguration>();
-```  
+```
 
-Be aware, that `Engine.GetConfiguration` method can only be used when the engine is initialized, as it requires a [configuration provider](/guide/custom-configuration.md#configuration-provider) object, which is specified when initializing the engine to allow custom serving scenarios at runtime. In case you wish to access a configuration asset via default provider, it's possible even when the engine is not initialized with `ProjectConfigurationProvider` class, eg:
+::: note
+The engine initialization procedure is asynchronous, so even when automatic initialization is enabled, engine APIs (eg, `GetConfiguration` method) may not be available right after Unity loads a scene (eg, in `Awake`, `Start` and `OnEnable` [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html) methods); see [accessing engine API](/guide/integration-options.md#accessing-engine-api) guide for more info.
+:::
+
+While `Engine.GetConfiguration` method can only be used when the engine is initialized, as it requires a [configuration provider](/guide/custom-configuration.md#configuration-provider) object, which is specified when initializing the engine to allow custom serving scenarios at runtime, it's possible to access a configuration asset via default provider even when the engine is not initialized with `ProjectConfigurationProvider`, eg:
 
 ```csharp
 var audioConfig = ProjectConfigurationProvider.LoadOrDefault<AudioConfiguration>();

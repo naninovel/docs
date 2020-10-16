@@ -11,13 +11,24 @@ Check out an [example project](/guide/integration-options.md#example-project), w
 :::
 
 ## Manual Initialization 
-The first thing you'll probably want to change is disable `Initialize On Application Load` option in the engine configuration menu.
+
+When `Initialize On Application Load` option in the engine configuration menu is enabled, the engine services will automatically initialize on application start.
 
 ![](https://i.gyazo.com/6349692c2e2036e908e41c3d89509102.png)
 
-When enabled, the engine services will automatically initialize on application start. Unless you want to begin your game in novel mode, you would rather manually initialize the engine when it's actually needed by either invoking a static `RuntimeInitializer.InitializeAsync()` method from C# or adding a `Runtime Initializer` component to a game object on scene; the latter will make the engine initialize when the scene is loaded in Unity.
+Unless you want to begin your game in novel mode, you would rather manually initialize the engine when it's actually needed by either invoking a static `RuntimeInitializer.InitializeAsync()` method from C# or adding a `Runtime Initializer` component to a game object on scene; the latter will make the engine initialize when the scene is loaded in Unity.
 
-Be aware, that the engine initialization procedure is asynchronous, so even when automatic initialization is enabled, it may not be available right after Unity loads a scene (eg, in `Awake`, `Start` and `OnEnable` methods). To check whether the engine is currently available, use `Engine.Initialized` property; `Engine.OnInitializationFinished` event allows executing actions after the initialization procedure is finished, eg:
+Disabling `Scene Independent` option will make all the Naninovel-related objects part of the Unity scene where the engine was initialized; the engine will be destroyed when the scene is unloaded.
+
+To reset the engine services (and dispose most of the occupied resources), use `ResetStateAsync()` method of `IStateManager` service; this is useful, when you're going to temporary switch to some other gameplay mode, but be able to return to novel mode without re-initializing the engine.
+
+To destroy all the engine services and completely remove Naninovel from memory, use `Engine.Destroy()` static method.
+
+## Accessing Engine API
+
+The engine initialization procedure is asynchronous, so even when automatic initialization is enabled, engine APIs may not be available right after Unity loads a scene (eg, in `Awake`, `Start` and `OnEnable` [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html) methods).
+
+To check whether the engine is currently available, use `Engine.Initialized` property; `Engine.OnInitializationFinished` event allows executing actions after the initialization procedure is finished, eg:
 
 ```csharp
 public class MyCustomBehaviour : MonoBehaviour
@@ -38,11 +49,8 @@ public class MyCustomBehaviour : MonoBehaviour
 }
 ```
 
-To reset the engine services (and dispose most of the occupied resources), use `ResetStateAsync()` method of `IStateManager` service; this is useful, when you're going to temporary switch to some other gameplay mode, but be able to return to novel mode without re-initializing the engine.
-
-To destroy all the engine services and completely remove Naninovel from memory, use `Engine.Destroy()` static method.
-
 ## Playing Naninovel Scripts
+
 To preload and play a naninovel script with a given name, use `PreloadAndPlayAsync(ScriptName)` method of `IScriptPlayer` service. To get an engine service, use `Engine.GetService<TService>()` static method, where `TService` is the type (interface) of the service to retrieve. For example, the following will get a script player service, then preload and play a script with name "Script001":
 
 ```csharp
@@ -58,6 +66,7 @@ await stateManager.ResetStateAsync();
 ```
 
 ## Disable Title Menu
+
 A built-in title menu implementation will be automatically shown when the engine is initialized, while you'll most likely have your own title menu. You can either modify or completely replace the built-in title menu using [UI customization feature](/guide/user-interface.md#ui-customization) or just disable it by turning off `Show Title UI` toggle in the engine configuration menu.
 
 ## Engine Objects Layer
@@ -72,6 +81,7 @@ To change layer of the UI objects managed by the engine, use `Objects Layer` opt
 ![](https://i.gyazo.com/56d863bef96bf72c1fed9ae646db4746.png)
 
 ## Render to Texture
+
 You can make the engine's camera render to a custom [render texture](https://docs.unity3d.com/ScriptReference/RenderTexture.html) instead of the screen (and change other camera-related settings) by assigning a custom camera prefab in camera configuration menu.
 
 ![](https://i.gyazo.com/1b7116fa1bd170d3753b4cdbd27afcf3.png)
