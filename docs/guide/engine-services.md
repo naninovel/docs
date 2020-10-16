@@ -9,6 +9,10 @@ var player = Engine.GetService<IScriptPlayer>();
 player.Stop();
 ```
 
+::: note
+The engine initialization procedure is asynchronous, so even when automatic initialization is enabled, engine APIs (eg, `GetService` method) may not be available right after Unity loads a scene (eg, in `Awake`, `Start` and `OnEnable` [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html) methods); see [accessing engine API](/guide/integration-options.md#accessing-engine-api) guide for more info.
+:::
+
 The following services are currently available:
 
 Service Interface | Description
