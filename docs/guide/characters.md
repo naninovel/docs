@@ -418,8 +418,7 @@ All the other character and background implementation types (except generic) can
 :::
 
 ::: warn
-Due to a [Unity bug](https://issuetracker.unity3d.com/product/unity/issues/guid/1277169), when using [addressables package](https://docs.unity3d.com/Manual/com.unity.addressables.html) the actor render textures won't work properly in build when used inside an addressable prefab. For a workaround, instead of directly assigning the render texture, use `Get Actor Render Texture` component as illustrated below.
+When using [addressables package](https://docs.unity3d.com/Manual/com.unity.addressables.html), Unity [can't properly track asset references](https://issuetracker.unity3d.com/product/unity/issues/guid/1277169), which may cause render texture duplication in build preventing the feature from working correctly. Either manually handle the references (via `AssetReference` API) or use `Get Actor Render Texture` component as illustrated below.
 
 ![](https://i.gyazo.com/92772b1fa51e6042efcd3de67d05fd79.png)
-
 :::
