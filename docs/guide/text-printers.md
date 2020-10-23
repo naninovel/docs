@@ -227,8 +227,12 @@ Character Set: Unicode Range (Hex) with this Sequence:
 Font Render Mode: Distance Field 16
 ```
 
+::: example
+For a complete example on setting up custom text mesh pro printer with right-to-left (Arabic) text support, see [Naninovel RTL project on GitHub](https://github.com/Elringus/NaninovelRTL). Be aware, that Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
+:::
+
 ::: note
-Be aware, that neither uGUI, nor TMPro [natively support Arabic text](http://digitalnativestudios.com/forum/index.php?topic=462.msg12139#msg12139). When `Fix Arabic Text` is enabled, Naninovel uses a modified version of [third party library](https://github.com/mnarimani/RTLTMPro) to correctly display Arabic text. You may need to use such third party tools to properly display the text on other UI components.
+Neither uGUI, nor TMPro [natively support Arabic text](http://digitalnativestudios.com/forum/index.php?topic=462.msg12139#msg12139). When `Fix Arabic Text` is enabled, Naninovel uses a modified version of [third party library](https://github.com/mnarimani/RTLTMPro) to correctly display Arabic text. You may need to use such third party tools to properly display the text on other UI components.
 :::
 
 ## Text Styles
