@@ -1313,7 +1313,7 @@ time | Decimal | Duration (in seconds) of the show animation.  Default value for
 ## showUI
 
 #### Summary
-Makes [UI elements](/guide/user-interface.md) with the specified prefab names visible.  When no names are specified, will reveal the entire UI (in case it was hidden with [@hideUI]).
+Makes [UI elements](/guide/user-interface.md) with the specified resource names visible.  When no names are specified, will reveal the entire UI (in case it was hidden with [@hideUI]).
 
 #### Parameters
 
@@ -1321,14 +1321,14 @@ Makes [UI elements](/guide/user-interface.md) with the specified prefab names vi
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">UINames</span> | List&lt;String&gt; | Name of the UI prefab to make visible.
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">UINames</span> | List&lt;String&gt; | Name of the UI resource to make visible.
 time | Decimal | Duration (in seconds) of the show animation.  When not specified, will use UI-specific duration.
 
 </div>
 
 #### Example
 ```nani
-; Given you've added a custom UI with prefab name `Calendar`,
+; Given you've added a custom UI with `Calendar` name,
 ; the following will make it visible on the scene.
 @showUI Calendar
 
