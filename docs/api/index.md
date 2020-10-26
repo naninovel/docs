@@ -597,7 +597,7 @@ Navigates naninovel script playback to the provided path.  When the path leads t
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | Named&lt;String&gt; | Path to navigate into in the following format: `ScriptName.LabelName`.  When label name is omitted, will play provided script from the start.  When script name is omitted, will attempt to find a label in the currently played script.
-reset | List&lt;String&gt; | When specified, will control whether to reset the engine services state before loading a script (in case the path is leading to another script):<br />  - Specify `*` to reset all the services, except the ones with `Goto.DontReset` attribute.<br />  - Specify service type names (separated by comma) to exclude from reset; all the other services will be reset, including the ones with `Goto.DontReset` attribute.<br />  - Specify `-` to force no reset (even if it's enabled by default in the configuration).<br /><br />  Notice, that while some services have `Goto.DontReset` attribute applied (eg, `CustomVariableManager`) and are not reset by default, they should still be specified when excluding other services from reset; see the below example on excluding audio manager.<br />  Be aware, that excluding a service from reset will leave related resources in memory; find more details in the [engine services guide](/guide/engine-services.md#reset-on-goto).
+reset | List&lt;String&gt; | When specified, will control whether to reset the engine services state before loading a script (in case the path is leading to another script):<br />  - Specify `*` to reset all the services, except the ones with `Goto.DontReset` attribute.<br />  - Specify service type names (separated by comma) to exclude from reset; all the other services will be reset, including the ones with `Goto.DontReset` attribute.<br />  - Specify `-` to force no reset (even if it's enabled by default in the configuration).<br /><br />  Notice, that while some services have `Goto.DontReset` attribute applied and are not reset by default, they should still be specified when excluding other services from reset; see the below example on excluding audio manager.<br />  Be aware, that excluding a service from reset will leave related resources in memory; find more details in the [engine services guide](/guide/engine-services.md#reset-on-goto).
 
 </div>
 
@@ -612,9 +612,9 @@ reset | List&lt;String&gt; | When specified, will control whether to reset the e
 ; Navigates the playback to the label `Epilogue` in the currently played script.
 @goto .Epilogue
 
-; Load Script001, but don't reset audio (playing tracks won't be interrupted)
-; and custom variable manager services.
-@goto Script001 reset:IAudioManager,ICustomVariableManager
+; Load Script001, but don't reset audio (preserve playing tracks),
+; custom variables and state manager (allow rollback to the previous script).
+@goto Script001 reset:IAudioManager,ICustomVariableManager,IStateManager
 ```
 
 ## hide
