@@ -42,15 +42,7 @@ When in the main gameplay mode (outside of modal UIs), press a button bind to `P
 
 ## Input System
 
-Naninovel supports Unity's new [Input System](https://blogs.unity3d.com/2019/10/14/introducing-the-new-input-system/); see the [official docs](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/Installation.html) on how to install and enable the input system. When the input system package is installed (don't forget to enable new input backend in the player settings), an `Input Actions` property will appear in the input configuration menu.
-
-![](https://i.gyazo.com/7c6d767c0f3443e1999fe14917080eb1.png)
-
-Assign [input actions asset](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/ActionAssets.html?q=input%20actions%20asset) to the property, then create "Naninovel" action map and add input actions with names equal to the Naninovel's binding names. The list of the built-in binding names can be found in the "Bindings" list under "Control Scheme" in the same configuration window. Below is an example input actions configuration.
-
-![](https://i.gyazo.com/36d1951519e4f671509c7136a83d9958.png)
-
-When properly configured, input actions will activate Naninovel's bindings. In case you wish to disable legacy input processing (which is set under the "Bindings" list), disable `Process Legacy Bindings` property under input configuration menu.
+Naninovel supports Unity's new [Input System](https://blogs.unity3d.com/2019/10/14/introducing-the-new-input-system/); see the [official docs](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/Installation.html) on how to install and enable the input system package.
 
 ::: warn
 Touch and object-related input is still processed via legacy input, so don't completely disable legacy backend in the player settings, unless you're going to implement the features yourself.
@@ -58,6 +50,22 @@ Touch and object-related input is still processed via legacy input, so don't com
 ![](https://i.gyazo.com/bdac8d3ce8380f571bc3bc2e18a0074d.png)
 :::
 
-Default input actions asset is stored at `Naninovel/Prefabs/DefaultControls.inputactions`.
+After the package is installed, create an event system prefab; you can use `UI -> Event System` in the hierarchy window to create a default one. Make sure `Input System UI Input Module` is attached to the prefab. When creating a default event system, Unity will suggest to automatically convert legacy input module component to the new one.
+
+![](https://i.gyazo.com/965b87f8585cb31ae2452f19882bdab7.png)
+
+Assign the created event system prefab to `Custom Event System` property in the Naninovel UI configuration menu, then disable `Spawn Input Module` in the same menu.
+
+![](https://i.gyazo.com/b06177545022b8816e342b984afecaea.png)
+
+When the input system package is installed, an `Input Actions` property will appear in the input configuration menu. Assign [input actions asset](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/ActionAssets.html?q=input%20actions%20asset) to the property, then create "Naninovel" action map and add input actions with names equal to the Naninovel's binding names. The list of the built-in binding names can be found in the "Bindings" list under "Control Scheme" in the same configuration window. Below is an example input actions configuration.
+
+![](https://i.gyazo.com/07fb5702badd3e698c3533f28585a15b.png)
+
+::: tip
+Default input actions asset is stored at `Naninovel/Prefabs/DefaultControls.inputactions`. Feel free to use it as a reference when creating your own.
+:::
+
+When properly configured, input actions will activate Naninovel's bindings. In case you wish to disable legacy input processing (which is set under the "Bindings" list), disable `Process Legacy Bindings` property under input configuration menu.
 
 For more information on using new input system (eg, how to configure particular bindings or allow players to override the bindings at runtime), consult the [official manual](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual).
