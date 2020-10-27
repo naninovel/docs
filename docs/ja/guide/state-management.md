@@ -119,9 +119,9 @@ public class MyCustomBehaviour : MonoBehaviour
 ```
 
 ::: example
-インベントリUIでカスタムステートを使用したセーブロードステートの例は、 [GitHubのインベントリサンプルプロジェクト](https://github.com/Elringus/NaninovelInventory) にあります。
+インベントリUIでカスタムステートを使用したセーブロードステートの例は、 [GitHubのインベントリサンプルプロジェクト](https://github.com/Naninovel/Inventory) にあります。
 
-具体的には、カスタムステートの非/シリアル化は [InventoryUI.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L238) ランタイムスクリプトで実装されています。UIスロットのカスタムステートは [InventorySlotState.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/InventorySlotState.cs) で実装されています。
+具体的には、カスタムステートの非/シリアル化は [InventoryUI.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L238) ランタイムスクリプトで実装されています。UIスロットのカスタムステートは [InventorySlotState.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/InventorySlotState.cs) で実装されています。
 :::
 
 ## カスタムシリアル化ハンドラー

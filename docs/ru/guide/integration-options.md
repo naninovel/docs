@@ -154,7 +154,7 @@ private void OnTriggerEnter (Collider other)
 
 ## Демонстрационный проект
 
-Пример проекта с Naninovel, где движок используется как в качестве диалоговой системы для 3D-приключенческой игры, так и в переключаемом автономном режиме новеллы, [доступен на GitHub](https://github.com/Elringus/NaninovelIntegrationExample). Вы можете [клонировать репозиторий](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) с помощью Git-клиента или [скачать его в виде zip-архива](https://github.com/Elringus/NaninovelIntegrationExample/archive/master.zip).
+Пример проекта с Naninovel, где движок используется как в качестве диалоговой системы для 3D-приключенческой игры, так и в переключаемом автономном режиме новеллы, [доступен на GitHub](https://github.com/Naninovel/IntegrationExample). Вы можете [клонировать репозиторий](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) с помощью Git-клиента или [скачать его в виде zip-архива](https://github.com/Naninovel/IntegrationExample/archive/master.zip).
 
 ::: warn
 Пакет Naninovel не распространяется вместе с проектом, поэтому ошибки компиляции будут создаваться после его первого открытия; импортируйте Naninovel из Asset Store, чтобы исправить их.

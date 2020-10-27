@@ -11,7 +11,7 @@
 実行時にコンフィグオブジェクトを変更し、新しいカスタムコンフィグを追加して、実行時にオブジェクトにアクセスする方法を変更することができます（たとえば、コンフィグをリモートホストに保存されているJSONファイルから読み取る）。詳細については、[カスタムコンフィグ](/ja/guide/custom-configuration.md) ガイドを参照してください。
 
 ::: note
-このコンフィグレーションリファレンスは [Naninovel v1.10](https://github.com/Elringus/NaninovelWeb/releases) で有効です。
+このコンフィグレーションリファレンスは [Naninovel v1.10](https://github.com/Naninovel/Documentation/releases) で有効です。
 :::
 
 ## Audio

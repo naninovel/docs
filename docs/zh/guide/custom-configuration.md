@@ -77,9 +77,9 @@ var myConfig = Engine.GetConfiguration<MyCustomConfiguration>();
 ```
 
 ::: example
-在添加的配置菜单中配置背包的示例参考[GitHub背包示例](https://github.com/Elringus/NaninovelInventory) 。
+在添加的配置菜单中配置背包的示例参考[GitHub背包示例](https://github.com/Naninovel/Inventory) 。
 
-具体来说，自定义配置是通过[InventoryConfiguration.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryConfiguration.cs) 运行时脚本实现的。
+具体来说，自定义配置是通过[InventoryConfiguration.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryConfiguration.cs) 运行时脚本实现的。
 :::
 
 ## 配置加载器

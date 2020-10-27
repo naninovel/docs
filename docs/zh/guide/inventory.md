@@ -1,12 +1,12 @@
 ﻿# 背包
 
-尽管背包系统在VN类游戏中可能不太适用，我们也有很多整合进Naninovel的要求和问题需要说明。[GitHub示例](https://github.com/Elringus/NaninovelInventory) 是关于将背包，创建和作为扩展整合进Naninovel的示例，帮你快速完成设置。
+尽管背包系统在VN类游戏中可能不太适用，我们也有很多整合进Naninovel的要求和问题需要说明。[GitHub示例](https://github.com/Naninovel/Inventory) 是关于将背包，创建和作为扩展整合进Naninovel的示例，帮你快速完成设置。
 
 示例演示了如何为背包应用网格布局，页码和拖拽窗口，添加自定义引擎服务和相关配置菜单，添加按键绑定，使用状态外包，自定义的特定作者预设命令和表达式方法。
 
 [!86c577f007daf4ec5d79c0e91db7bc10]
 
-你可以使用git客户端[克隆存储库](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) 或是 [下载为zip存档](https://github.com/Elringus/NaninovelDemo/archive/master.zip) 。
+你可以使用git客户端[克隆存储库](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) 或是 [下载为zip存档](https://github.com/Naninovel/Demo/archive/master.zip) 。
 
 ::: warn
 注意，其中不包含Naninovel资源包，第一次打开会产生编译错误，导入资源以解决报错。
@@ -15,7 +15,7 @@
 ## 安装
 
 要为已有项目添加背包扩展，使用[UPM](https://docs.unity3d.com/Manual/upm-ui.html) 通过以下git链接导入包：
-`https://github.com/Elringus/NaninovelInventory.git?path=Assets/NaninovelInventory`  或是使用下载[NaninovelInventory.unitypackage](https://github.com/Elringus/NaninovelInventory/raw/master/NaninovelInventory.unitypackage) 手动添加。
+`https://github.com/Naninovel/Inventory.git?path=Assets/NaninovelInventory`  或是使用下载[NaninovelInventory.unitypackage](https://github.com/Naninovel/Inventory/raw/master/NaninovelInventory.unitypackage) 手动添加。
 
 ![](https://i.gyazo.com/b54e9daa9a483d9bf7f74f0e94b2d38a.gif)
 

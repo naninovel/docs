@@ -99,9 +99,9 @@ var customService = Engine.GetService<CustomService>();
 ```
 
 ::: example
-Другой пример добавления пользовательского сервиса движка для управления ресурсами предметов и конфигурацией UI инвентаря можно найти в [примере проекта инвентаря на GitHub](https://github.com/Elringus/NaninovelInventory).
+Другой пример добавления пользовательского сервиса движка для управления ресурсами предметов и конфигурацией UI инвентаря можно найти в [примере проекта инвентаря на GitHub](https://github.com/Naninovel/Inventory).
 
-Данный пользовательский сервис движка реализован с помощью скрипта воспроизведения [InventoryManager.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryManager.cs).
+Данный пользовательский сервис движка реализован с помощью скрипта воспроизведения [InventoryManager.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryManager.cs).
 :::
 
 ## Переопределение встроенных сервисов

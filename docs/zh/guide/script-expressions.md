@@ -104,7 +104,7 @@ public static class CustomFunctions
 ```
 
 ::: example
-[背包示例](https://github.com/Elringus/NaninovelInventory) 为演示添加自定义表达式，来判断某个道具是否在背包里。
+[背包示例](https://github.com/Naninovel/Inventory) 为演示添加自定义表达式，来判断某个道具是否在背包里。
 
-另外，命令实现存储在[InventoryFunctions.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryFunctions.cs) 目录中。
+另外，命令实现存储在[InventoryFunctions.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryFunctions.cs) 目录中。
 :::

@@ -17,9 +17,9 @@ You can configure the built-in input bindings and add new listeners using `Nanin
 ![Manage Input](https://i.gyazo.com/2f97539323c9fc36124e286856a36f84.png)
 
 ::: example
-Example of adding a custom input binding to toggle inventory UI can be found in the [inventory example project on GitHub](https://github.com/Elringus/NaninovelInventory).
+Example of adding a custom input binding to toggle inventory UI can be found in the [inventory example project on GitHub](https://github.com/Naninovel/Inventory).
 
-Specifically, the custom "ToggleInventory" binding is used in [UI/InventoryUI.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L215) runtime script. A binding with the same name is added via input configuration menu, under Control Scheme.
+Specifically, the custom "ToggleInventory" binding is used in [UI/InventoryUI.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L215) runtime script. A binding with the same name is added via input configuration menu, under Control Scheme.
 :::
 
 It's possible to halt and resume input processing with [@processInput] command.

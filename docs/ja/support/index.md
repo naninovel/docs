@@ -4,17 +4,17 @@
 
 エンジンが意図したとおりに動作していない場合は、最新バージョンを実行しているかどうかを確認してください。Unity editorの [アセットストアウィンドウ](https://docs.unity3d.com/Manual/AssetStore.html) からメインパッケージをアップデートできます。エンジン拡張機能を使用する場合は、最新のパッケージをダウンロードしてインポートします:
 
-- [NaninovelLive2D](https://github.com/Elringus/NaninovelLive2D/raw/master/NaninovelLive2D.unitypackage)
-- [NaninovelPlayMaker](https://github.com/Elringus/NaninovelPlayMaker/raw/master/NaninovelPlayMaker.unitypackage)
-- [NaninovelAdventureCreator](https://github.com/Elringus/NaninovelAdventureCreator/raw/master/NaninovelAdventureCreator.unitypackage)
+- [NaninovelLive2D](https://github.com/Naninovel/Live2D/raw/master/NaninovelLive2D.unitypackage)
+- [NaninovelPlayMaker](https://github.com/Naninovel/PlayMaker/raw/master/NaninovelPlayMaker.unitypackage)
+- [NaninovelAdventureCreator](https://github.com/Naninovel/AdventureCreator/raw/master/NaninovelAdventureCreator.unitypackage)
 
-更新しても問題が解決しない場合は、プロジェクトから `Naninovel` フォルダを削除し、アセットストアから再インポートして、パッケージを再インストールしてみてください。エンジンを更新するときは、[リリースページ](https://github.com/Elringus/NaninovelWeb/releases) で指定されているアップグレード手順に従ってください。
+更新しても問題が解決しない場合は、プロジェクトから `Naninovel` フォルダを削除し、アセットストアから再インポートして、パッケージを再インストールしてみてください。エンジンを更新するときは、[リリースページ](https://github.com/Naninovel/Documentation/releases) で指定されているアップグレード手順に従ってください。
 
 パッケージのアップデートや削除の前に、必ず **プロジェクトをバックアップしてください** (または [VCS](https://ja.wikipedia.org/wiki/%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E7%AE%A1%E7%90%86%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0) を利用してください)。~~ハルヒ~~ その過程で何が起きるかは神のみぞ知る。`ʕノ•ᴥ•ʔノ ︵ ┻━┻`
 
 ## Issue Tracker
 
-上記の手順で問題を解決できなかった場合は、[issue tracker](https://github.com/Elringus/NaninovelWeb/issues?q=is%3Aissue+label%3Abug) を確認してください。すでにその問題に取り組んでいるかもしれません。
+上記の手順で問題を解決できなかった場合は、[issue tracker](https://github.com/Naninovel/Documentation/issues?q=is%3Aissue+label%3Abug) を確認してください。すでにその問題に取り組んでいるかもしれません。
 
 ## コミュニティフォーラム
 
@@ -51,7 +51,7 @@ Unityは、膨大な機能を備えたスタンドアロン製品です。独自
 
 以下の手順に従って、複製プロジェクトを作成および共有します:
 
-1. 新しいUnityプロジェクトを作成します。[現在のNaninovelリリース](https://github.com/Elringus/NaninovelWeb/releases) でサポートされているUnityバージョンを使用していることを確認してください。
+1. 新しいUnityプロジェクトを作成します。[現在のNaninovelリリース](https://github.com/Naninovel/Documentation/releases) でサポートされているUnityバージョンを使用していることを確認してください。
 2. Asset Storeから最新のNaninovelバージョンをインポートします（プレリリースバージョンがある場合は、代わりにそれを使用してください）。
 3. 必要なアセットを追加し、プロジェクトを変更して問題を再現します。**Naninovelスクリプトはできるだけ短くして**、**問題を再現するのに必要な** アセットだけを追加してください。
 4. プロジェクトディレクトリ内にテキストファイル（.txt）を作成し、問題を再現する手順を段階ごとに（英語）で記述します。例:

@@ -103,7 +103,7 @@ public static class CustomFunctions
 ```
 
 ::: example
-カスタム式関数を追加して、アイテムがインベントリに存在するかどうかを確認する別の例は [GitHubのインベントリサンプルプロジェクト](https://github.com/Elringus/NaninovelInventory) にあります。。
+カスタム式関数を追加して、アイテムがインベントリに存在するかどうかを確認する別の例は [GitHubのインベントリサンプルプロジェクト](https://github.com/Naninovel/Inventory) にあります。。
 
-具体的には、カスタム関数は [InventoryFunctions.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryFunctions.cs) ランタイムスクリプトで実装されています。
+具体的には、カスタム関数は [InventoryFunctions.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryFunctions.cs) ランタイムスクリプトで実装されています。
 :::

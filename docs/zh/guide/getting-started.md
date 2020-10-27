@@ -212,9 +212,9 @@ BGM默认循环播放，使用渐隐切换过去，音量循环等可以使用�
 
 ## Demo 工程示例
 
-GitHub完整Demo资源地址：[github.com/Elringus/NaninovelDemo](https://github.com/Elringus/NaninovelDemo). 
+GitHub完整Demo资源地址：[github.com/Naninovel/Demo](https://github.com/Naninovel/Demo). 
 
-可以[使用Git客户端克隆库](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) 或者 [作为zip档案下载](https://github.com/Elringus/NaninovelDemo/archive/master.zip)。
+可以[使用Git客户端克隆库](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) 或者 [作为zip档案下载](https://github.com/Naninovel/Demo/archive/master.zip)。
 Demo仅供学习使用。
 
 ::: warn
