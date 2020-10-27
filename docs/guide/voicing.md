@@ -77,7 +77,6 @@ If you then add, delete or reorder lines in the scripts, associations won't brea
 
 In cases same author have equal text messages (in the same or a different script), both messages will be associated with the same voice clip. If that is not desired, change one of the messages to be printed via [@print] command with an arbitrary `voiceId` parameter to differentiate the messages.
 
-
 ## Author Volume
 
 When using auto voicing, you may want to let players control voice volume for specific [characters](/guide/characters.md) or, more correctly, authors of the printed text messages. For example, a player may decide to mute voice of the main protagonist or make a specific character voice lower.
@@ -87,6 +86,24 @@ To setup per-author voice control, [create a custom settings UI](/guide/user-int
 ![](https://i.gyazo.com/5a8db32ca5d971f2876f71d35f1a020c.png)
 
 The added slider will now control voice volume of the specified character. When nothing is assigned to the author ID field, the slider will control volume of the audio mixer's voice group, affecting all the voices.
+
+## Voice Language
+
+When adding voice over for different localizations, it's possible to allow player to select the voice language independently of the main localization (eg, play the game with English text and UI, but with Japanese voice over).
+
+To add voice language dropdown to the game settings, assign `Voice Locales` property in the audio configuration menu. Add the language tags of the locales for which you have the corresponding voice resources. Eg, the example below will allow the player to choose from English and Japanese voices:
+
+![](https://i.gyazo.com/904a59d1a18510373da97bc9b26e8880.png)
+
+When the property is assigned, "Voice language" dropdown will appear in the game settings menu:
+
+![](https://i.gyazo.com/70382bb24637a4d8846c3b65f1ea01d9.png)
+
+::: warn
+The voice language feature won't work with `Content Hash` auto voicing mode, as this mode binds voice resources directly to the script content, which is different for each localization. Use either `Playback Spot` auto voicing mode or manually play the voice clips with [@voice] command.
+:::
+
+For more information on how to localize game resources, see the [localization guide](/guide/localization.md).
 
 ## Voiceover Documents
 
