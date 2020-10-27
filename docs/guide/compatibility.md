@@ -4,7 +4,7 @@
 
 Minimum supported Unity version is **2019.4**.x; this won't change throughout Naninovel v1.x releases.
 
-In case Unity introduce breaking changes or fix critical issues throughout the 2019.4 release cycle, minimum supported patch version (the ".x" part) could change. You can always find minimum supported Unity version for specific Naninovel release in the [change log](https://github.com/Elringus/NaninovelWeb/releases).
+In case Unity introduce breaking changes or fix critical issues throughout the 2019.4 release cycle, minimum supported patch version (the ".x" part) could change. You can always find minimum supported Unity version for specific Naninovel release in the [change log](https://github.com/Naninovel/Documentation/releases).
 
 Support for new releases from the [TECH stream](https://blogs.unity3d.com/2018/04/09/new-plans-for-unity-releases-introducing-the-tech-and-long-term-support-lts-streams/) is added once they're out of beta.
 

@@ -10,7 +10,7 @@
 
 同时安装AC和Naninovel（顺序无关紧要）。
 
-下载并导入 [AC扩展包](https://github.com/Elringus/NaninovelAdventureCreator/raw/master/NaninovelAdventureCreator.unitypackage) 。
+下载并导入 [AC扩展包](https://github.com/Naninovel/AdventureCreator/raw/master/NaninovelAdventureCreator.unitypackage) 。
 
 在下图所示位置填入`NaninovelAdventureCreator/Runtime/Actions`，参考[AC指南](https://www.adventurecreator.org/tutorials/writing-custom-action) 了解更多其他相关设置。
 
@@ -37,5 +37,5 @@
 [!!7tOIFZRSAec]
 
 ::: example
-在 [GitHub项目](https://github.com/Elringus/NaninovelAdventureCreator) 获取集成示例。第一次打开如果不导入AC和Naninovel资源包会报错，导入后会自动解决编译错误。
+在 [GitHub项目](https://github.com/Naninovel/AdventureCreator) 获取集成示例。第一次打开如果不导入AC和Naninovel资源包会报错，导入后会自动解决编译错误。
 :::

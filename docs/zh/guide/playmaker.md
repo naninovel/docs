@@ -10,7 +10,7 @@
 
 安装playmaker参考[官方文档](https://hutonggames.fogbugz.com/default.asp?W11) 。
 
-下载并导入[PlayMaker引擎扩展包](https://github.com/Elringus/NaninovelPlayMaker/raw/master/NaninovelPlayMaker.unitypackage) 。
+下载并导入[PlayMaker引擎扩展包](https://github.com/Naninovel/PlayMaker/raw/master/NaninovelPlayMaker.unitypackage) 。
 
 自定义Naninovel操作应出现在PlayMaker操作浏览器的“ Naninovel”类别下。
 

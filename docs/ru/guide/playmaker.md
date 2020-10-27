@@ -10,7 +10,7 @@
 
 Установите PlayMaker, следуя инструкциям из [официального руководства](https://hutonggames.fogbugz.com/default.asp?W11).
 
-Скачайте и импортируйте [пакет расширения PlayMaker](https://github.com/Elringus/NaninovelPlayMaker/raw/master/NaninovelPlayMaker.unitypackage).
+Скачайте и импортируйте [пакет расширения PlayMaker](https://github.com/Naninovel/PlayMaker/raw/master/NaninovelPlayMaker.unitypackage).
 
 Пользовательские действия Naninovel должны появиться в браузере действий PlayMaker в категории "Naninovel".
 

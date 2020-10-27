@@ -10,7 +10,7 @@ Be aware, that in contrast to Bolt, where all the Naninovel's C# API is availabl
 
 Install PlayMaker following instructions from the [official manual](https://hutonggames.fogbugz.com/default.asp?W11).
 
-Download and import [PlayMaker extension package](https://github.com/Elringus/NaninovelPlayMaker/raw/master/NaninovelPlayMaker.unitypackage).
+Download and import [PlayMaker extension package](https://github.com/Naninovel/PlayMaker/raw/master/NaninovelPlayMaker.unitypackage).
 
 The custom Naninovel actions should appear in the PlayMaker actions browser under "Naninovel" category.
 

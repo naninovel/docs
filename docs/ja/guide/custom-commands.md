@@ -71,7 +71,7 @@ public class HelloWorld : Command
 オプションの `CancellationToken` 引数に注意してください。非同期メソッドを呼び出す場合は、キャンセルリクエストのトークンを確認して、できるだけ早く返してください。
 
 ::: example
-別の例として、インベントリシステムにアイテムを追加/削除するカスタムコマンドは [GitHubのインベントリサンプルプロジェクト](https://github.com/Elringus/NaninovelInventory) で見ることができます。
+別の例として、インベントリシステムにアイテムを追加/削除するカスタムコマンドは [GitHubのインベントリサンプルプロジェクト](https://github.com/Naninovel/Inventory) で見ることができます。
 
-具体的には、コマンドの実装は [Runtime/Commands](https://github.com/Elringus/NaninovelInventory/tree/master/Assets/NaninovelInventory/Runtime/Commands) ディレクトリに保存されています。
+具体的には、コマンドの実装は [Runtime/Commands](https://github.com/Naninovel/Inventory/tree/master/Assets/NaninovelInventory/Runtime/Commands) ディレクトリに保存されています。
 :::

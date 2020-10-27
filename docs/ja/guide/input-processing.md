@@ -17,9 +17,9 @@ Swipes | 入力をアクティブにするスワイプ（タッチスクリー�
 ![Manage Input](https://i.gyazo.com/2f97539323c9fc36124e286856a36f84.png)
 
 ::: example
-カスタム入力バインディングを追加してインベントリUIを切り替える例は [GitHubのインベントリサンプルプロジェクト](https://github.com/Elringus/NaninovelInventory) にあります。
+カスタム入力バインディングを追加してインベントリUIを切り替える例は [GitHubのインベントリサンプルプロジェクト](https://github.com/Naninovel/Inventory) にあります。
 
-具体的には、カスタムの "ToggleInventory" バインディングが [UI/InventoryUI.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L215) ランタイムスクリプトで使用されます。同じ名前のバインディングは、制御スキームの下の入力構成メニューから追加されます。
+具体的には、カスタムの "ToggleInventory" バインディングが [UI/InventoryUI.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L215) ランタイムスクリプトで使用されます。同じ名前のバインディングは、制御スキームの下の入力構成メニューから追加されます。
 :::
 
 ## ゲームパッドとキーボード

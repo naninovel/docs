@@ -105,9 +105,9 @@ public static class CustomFunctions
 ```
 
 ::: example
-Другой пример добавления пользовательских функций выражений для проверки наличия элемента в инвентаре можно найти в проекте [пример инвентаря на GitHub](https://github.com/Elringus/NaninovelInventory).
+Другой пример добавления пользовательских функций выражений для проверки наличия элемента в инвентаре можно найти в проекте [пример инвентаря на GitHub](https://github.com/Naninovel/Inventory).
 
-В частности, пользовательские функции реализуются через сценарий выполнения [Inventory Functions.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryFunctions.cs).
+В частности, пользовательские функции реализуются через сценарий выполнения [Inventory Functions.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryFunctions.cs).
 :::
 
 

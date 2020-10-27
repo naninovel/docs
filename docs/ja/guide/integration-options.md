@@ -154,7 +154,7 @@ private void OnTriggerEnter (Collider other)
 
 ## サンプルプロジェクト
 
-3Dアドベンチャーゲームの一時的なダイアログと、スタンドアロンのノベルモードとして Naninovelを利用したサンプルプロジェクトは [GitHub にあります](https://github.com/Elringus/NaninovelIntegrationExample)。[Git clientでリポジトリをクローン](https://help.github.com/ja/github/creating-cloning-and-archiving-repositories/cloning-a-repository) するか [zipファイルをダウンロード](https://github.com/Elringus/NaninovelDemo/archive/master.zip) することができます。
+3Dアドベンチャーゲームの一時的なダイアログと、スタンドアロンのノベルモードとして Naninovelを利用したサンプルプロジェクトは [GitHub にあります](https://github.com/Naninovel/IntegrationExample)。[Git clientでリポジトリをクローン](https://help.github.com/ja/github/creating-cloning-and-archiving-repositories/cloning-a-repository) するか [zipファイルをダウンロード](https://github.com/Naninovel/Demo/archive/master.zip) することができます。
 
 ::: warn
 プロジェクトに Naninovel パッケージは含まれないため、初めて開く際はコンパイルエラーが発生します。問題を解決するには、アセットストアから Naninovel をインポートします。

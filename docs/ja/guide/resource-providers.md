@@ -99,7 +99,7 @@ UnityGoogleDrive パッケージをインストールして構成すると、関
 ![](https://i.gyazo.com/0ad07f73fe12be7ae6d421c5f4f33384.png)
 
 ::: example
-[NaninovelSandbox](https://github.com/Elringus/NaninovelSandbox) プロジェクトで、Google ドライブプロバイダーの設定方法の例をご覧ください。プロジェクトに Naninovel パッケージは含まれないため、初めて開く際はコンパイルエラーが発生します。問題を解決するには、アセットストアから Naninovel をインポートします。
+[NaninovelSandbox](https://github.com/Naninovel/Sandbox) プロジェクトで、Google ドライブプロバイダーの設定方法の例をご覧ください。プロジェクトに Naninovel パッケージは含まれないため、初めて開く際はコンパイルエラーが発生します。問題を解決するには、アセットストアから Naninovel をインポートします。
 :::
 
 ## カスタムプロバイダー

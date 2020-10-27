@@ -210,9 +210,9 @@ Kohaku.Happy: Hello World!
 
 ## Демо-проект
 
-Полные исходники демо-проекта (того же, что демонстрировался в магазине) доступны на GitHub здесь: [github.com/Elringus/NaninovelDemo](https://github.com/Elringus/NaninovelDemo). 
+Полные исходники демо-проекта (того же, что демонстрировался в магазине) доступны на GitHub здесь: [github.com/Naninovel/Demo](https://github.com/Naninovel/Demo). 
 
-Вы можете [клонировать репозиторий с помощью клиента Git](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) или [скачать его в виде zip-архива](https://github.com/Elringus/NaninovelDemo/archive/master.zip). Обратите внимание на то, что ресурсы, распространяемые вместе с демо-проектом, могут быть предметами пользовательских лицензий и предоставляться исключительно в учебных целях.
+Вы можете [клонировать репозиторий с помощью клиента Git](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) или [скачать его в виде zip-архива](https://github.com/Naninovel/Demo/archive/master.zip). Обратите внимание на то, что ресурсы, распространяемые вместе с демо-проектом, могут быть предметами пользовательских лицензий и предоставляться исключительно в учебных целях.
 
 ::: warn
 Пакет Naninovel не распространяется вместе с проектом, а значит, при первом его открытии могут появиться ошибки компиляции; импортируйте Naninovel из Asset Store, чтобы решить эту проблему.

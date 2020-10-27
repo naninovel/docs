@@ -76,9 +76,9 @@ var myConfig = Engine.GetConfiguration<MyCustomConfiguration>();
 ```
 
 ::: example
-カスタムコンフィグメニューを追加してインベントリシステムをセットアップする別の例は、[GitHubのインベントリサンプルプロジェクト](https://github.com/Elringus/NaninovelInventory) にあります。
+カスタムコンフィグメニューを追加してインベントリシステムをセットアップする別の例は、[GitHubのインベントリサンプルプロジェクト](https://github.com/Naninovel/Inventory) にあります。
 
-具体的には、カスタムコンフィグレーションは [InventoryConfiguration.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryConfiguration.cs) ランタイムスクリプトを介して実装されます。
+具体的には、カスタムコンフィグレーションは [InventoryConfiguration.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryConfiguration.cs) ランタイムスクリプトを介して実装されます。
 :::
 
 ## コンフィグレーションプロバイダー

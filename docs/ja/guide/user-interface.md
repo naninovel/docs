@@ -47,13 +47,13 @@ UIが非表示になっている場合、`Continue` 操作または画面をク�
 [!!wrAm-cwPXy4]
 
 ::: example
-上記のチュートリアル動画で示したUnityプロジェクトは [GitHubにあります](https://github.com/Elringus/NaninovelCustomUIExample)。[Git clientでリポジトリをクローン](https://help.github.com/ja/github/creating-cloning-and-archiving-repositories/cloning-a-repository) するか [zipファイルをダウンロード](https://github.com/Elringus/NaninovelDemo/archive/master.zip) することができます。プロジェクトに Naninovel パッケージは含まれないため、初めて開く際はコンパイルエラーが発生します。問題を解決するには、アセットストアから Naninovel をインポートします。
+上記のチュートリアル動画で示したUnityプロジェクトは [GitHubにあります](https://github.com/Naninovel/CustomUIExample)。[Git clientでリポジトリをクローン](https://help.github.com/ja/github/creating-cloning-and-archiving-repositories/cloning-a-repository) するか [zipファイルをダウンロード](https://github.com/Naninovel/Demo/archive/master.zip) することができます。プロジェクトに Naninovel パッケージは含まれないため、初めて開く際はコンパイルエラーが発生します。問題を解決するには、アセットストアから Naninovel をインポートします。
 :::
 
 ::: example
-グリッドレイアウト、ページング、ドラッグアンドドロップを使用したカスタムインベントリUIの上級の例は、[GitHubのインベントリサンプルプロジェクト](https://github.com/Elringus/NaninovelInventory) にあります。
+グリッドレイアウト、ページング、ドラッグアンドドロップを使用したカスタムインベントリUIの上級の例は、[GitHubのインベントリサンプルプロジェクト](https://github.com/Naninovel/Inventory) にあります。
 
-具体的には、UI関連のスクリプトは [Runtime/UI](https://github.com/Elringus/NaninovelInventory/tree/master/Assets/NaninovelInventory/Runtime/UI) に、プレハブは [Prefabs](https://github.com/Elringus/NaninovelInventory/tree/master/Assets/NaninovelInventory/Prefabs) ディレクトリにあります。
+具体的には、UI関連のスクリプトは [Runtime/UI](https://github.com/Naninovel/Inventory/tree/master/Assets/NaninovelInventory/Runtime/UI) に、プレハブは [Prefabs](https://github.com/Naninovel/Inventory/tree/master/Assets/NaninovelInventory/Prefabs) ディレクトリにあります。
 :::
 
 コンテキストメニューから新しいカスタムUIプレハブを作成すると、プレハブのルートオブジェクトに `Custom UI` コンポーネントが紐付けられます。このコンポーネント（コンポーネントが `IManagedUI` インターフェースを実装しているということ）は、エンジンがプレハブをUIとして受け入れるために不可欠です。
@@ -102,7 +102,7 @@ UIでゲームパッドまたはキーボードナビゲーションをサポー
 [!!hqhfhXzQkdk]
 
 ::: example
-上記のチュートリアル動画で示したUnityプロジェクトは [GitHubにあります](https://github.com/Elringus/NaninovelCustomUIExample)。[Git clientでリポジトリをクローン](https://help.github.com/ja/github/creating-cloning-and-archiving-repositories/cloning-a-repository) するか [zipファイルをダウンロード](https://github.com/Elringus/NaninovelDemo/archive/master.zip) することができます。プロジェクトに Naninovel パッケージは含まれないため、初めて開く際はコンパイルエラーが発生します。問題を解決するには、アセットストアから Naninovel をインポートします。
+上記のチュートリアル動画で示したUnityプロジェクトは [GitHubにあります](https://github.com/Naninovel/CustomUIExample)。[Git clientでリポジトリをクローン](https://help.github.com/ja/github/creating-cloning-and-archiving-repositories/cloning-a-repository) するか [zipファイルをダウンロード](https://github.com/Naninovel/Demo/archive/master.zip) することができます。プロジェクトに Naninovel パッケージは含まれないため、初めて開く際はコンパイルエラーが発生します。問題を解決するには、アセットストアから Naninovel をインポートします。
 :::
 
 新しいプレハブをスクラッチで作成する場合は、上書きするUIのインターフェイスを実装するコンポーネントを必ず追加してください。このコンポーネントは、プレハブのルートオブジェクトに追加する必要があります。
