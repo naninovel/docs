@@ -16,7 +16,7 @@ git init
 git config --local core.autocrlf false
 git add -A
 git commit -m 'deploy'
-git push -f git@github.com:Elringus/NaninovelWeb.git master:gh-pages
+git push -f git@github.com:Naninovel/Documentation.git master:gh-pages
 
 cd -
 

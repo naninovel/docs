@@ -18,9 +18,9 @@ Swipes | 激活输入的滑动列表（触摸屏）。
 ![Manage Input](https://i.gyazo.com/2f97539323c9fc36124e286856a36f84.png)
 
 ::: example
-[在GitHub上的背包示例项目](https://github.com/Elringus/NaninovelInventory) 可以找到添加自定义输入绑定以切换背包UI的示例。
+[在GitHub上的背包示例项目](https://github.com/Naninovel/Inventory) 可以找到添加自定义输入绑定以切换背包UI的示例。
 
-具体来说，[UI/InventoryUI.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L215) 运行时脚本中使用了自定义“ToggleInventory”的绑定。输入配置菜单下添加了具有相同名称的绑定。
+具体来说，[UI/InventoryUI.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L215) 运行时脚本中使用了自定义“ToggleInventory”的绑定。输入配置菜单下添加了具有相同名称的绑定。
 :::
 
 ## 游戏手柄和键盘

@@ -20,7 +20,7 @@ wait | Boolean | Должен ли проигрыватель сценариев
 </div>
 
 ::: note
-Эта ссылка API действительна для [Naninovel v1.10](https://github.com/Elringus/NaninovelWeb/releases).
+Эта ссылка API действительна для [Naninovel v1.10](https://github.com/Naninovel/Documentation/releases).
 :::
 
 ## animate

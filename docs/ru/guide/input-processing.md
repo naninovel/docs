@@ -17,9 +17,9 @@ Swipes | Список свайпов (сенсорный экран), актив
 ![Управление вводом](https://i.gyazo.com/2f97539323c9fc36124e286856a36f84.png)
 
 ::: example
-Пример добавления пользовательской вводной привязки для переключения UI инвентаря можно найти в проекте [примера инвентаря на GitHub](https://github.com/Elringus/NaninovelInventory).
+Пример добавления пользовательской вводной привязки для переключения UI инвентаря можно найти в проекте [примера инвентаря на GitHub](https://github.com/Naninovel/Inventory).
 
-В частности, пользовательская привязка "ToggleInventory" используется в выполняемом сценарии [UI/InventoryUI.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L215). Привязка с таким же именем добавляется через меню конфигурации ввода в разделе Control Scheme.
+В частности, пользовательская привязка "ToggleInventory" используется в выполняемом сценарии [UI/InventoryUI.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L215). Привязка с таким же именем добавляется через меню конфигурации ввода в разделе Control Scheme.
 :::
 
 ## Геймпад и клавиатура

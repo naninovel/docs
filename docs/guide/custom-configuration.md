@@ -81,9 +81,9 @@ var myConfig = Engine.GetConfiguration<MyCustomConfiguration>();
 ```
 
 ::: example
-Another example of adding a custom configuration menu to set up an inventory system can be found in the [inventory example project on GitHub](https://github.com/Elringus/NaninovelInventory).
+Another example of adding a custom configuration menu to set up an inventory system can be found in the [inventory example project on GitHub](https://github.com/Naninovel/Inventory).
 
-Specifically, the custom configuration is implemented via [InventoryConfiguration.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryConfiguration.cs) runtime script.
+Specifically, the custom configuration is implemented via [InventoryConfiguration.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryConfiguration.cs) runtime script.
 :::
 
 To customize editor behaviour of your custom configuration (when it's drawn in the Naninovel's project settings), create a class under an editor script and inherit it from `ConfigurationSettings<T>`, where `T` is the type of your custom configuration. You can use built-in settings editor scripts stored at `Naninovel/Editor/Settings` package folder for reference when building your own editors.

@@ -4,17 +4,17 @@
 
 如果你确定你遇到的问题没有相关描述，检查是否使用最新版本资源。使用Unity内的[Asset Store window](https://docs.unity3d.com/Manual/AssetStore.html) 来更新。使用相关扩展资源时，下载导入最新的扩展支持包：
 
-- [Naninovel Live2D角色使用](https://github.com/Elringus/NaninovelLive2D/raw/master/NaninovelLive2D.unitypackage)
-- [Naninovel PlayMaker使用](https://github.com/Elringus/NaninovelPlayMaker/raw/master/NaninovelPlayMaker.unitypackage)
-- [Naninovel AdventureCreator使用](https://github.com/Elringus/NaninovelAdventureCreator/raw/master/NaninovelAdventureCreator.unitypackage)
+- [Naninovel Live2D角色使用](https://github.com/Naninovel/Live2D/raw/master/NaninovelLive2D.unitypackage)
+- [Naninovel PlayMaker使用](https://github.com/Naninovel/PlayMaker/raw/master/NaninovelPlayMaker.unitypackage)
+- [Naninovel AdventureCreator使用](https://github.com/Naninovel/AdventureCreator/raw/master/NaninovelAdventureCreator.unitypackage)
 
-如果更新后依旧有问题，试着删除`Naninovel` 目录后，重新安装资源包。确保更新时严格按照[更新说明](https://github.com/Elringus/NaninovelWeb/releases) 执行操作。
+如果更新后依旧有问题，试着删除`Naninovel` 目录后，重新安装资源包。确保更新时严格按照[更新说明](https://github.com/Naninovel/Documentation/releases) 执行操作。
 
 记得在更新或删除包以前**备份你的工程** （或使用[VCS](https://en.wikipedia.org/wiki/Version_control) 版本控制）。
 
 ## 问题追踪
 
-如果上述没有任何作用，查阅[问题追踪](https://github.com/Elringus/NaninovelWeb/issues?q=is%3Aissue+label%3Abug) — 也许是已经解决过的问题。
+如果上述没有任何作用，查阅[问题追踪](https://github.com/Naninovel/Documentation/issues?q=is%3Aissue+label%3Abug) — 也许是已经解决过的问题。
 
 ## 社区论坛
 
@@ -51,7 +51,7 @@ To receive direct developer support join Naninovel Discord server ([discord.gg/B
 报告问题是，我们可能会要求复制工程，复制工程是用于再现问题的仅包含基础相关资源和设置的**极小化**的新工程。
 
 跟随以下步骤来创建分享复制工程：
-1. 创建新Unity工程，确保使用的Unity版本能被支持，参考[当前Naninovel支持](https://github.com/Elringus/NaninovelWeb/releases) 。
+1. 创建新Unity工程，确保使用的Unity版本能被支持，参考[当前Naninovel支持](https://github.com/Naninovel/Documentation/releases) 。
 2. 导入最新Naninovel包（或是导入之前可用版本的包）。
 3. 添加重现问题需要的设置和资源。**确保Naninovel脚本足够短小**以及资源为**重现问题必需的**。
 4. 创建文本文件（.txt），使用英语一步一步记述如何再现该问题。如下：

@@ -286,7 +286,7 @@ Live2D キャラクターの実装は、[Live2D Cubism](https://www.live2d.com) 
 
 利用するには、始めに [Live2D Cubism SDK for Unity](https://live2d.github.io/#unity) をインストールする必要があります。インストール方法や使い方は、公式のLive2Dドキュメントをご覧ください。
 
-その後 [Live2D 拡張パッケージ](https://github.com/Elringus/NaninovelLive2D/raw/master/NaninovelLive2D.unitypackage) をダウンロードします。
+その後 [Live2D 拡張パッケージ](https://github.com/Naninovel/Live2D/raw/master/NaninovelLive2D.unitypackage) をダウンロードします。
 
 実装に使用される Live2D モデルプレハブには、ルートオブジェクトに紐付けられた `Live2DController` コンポーネントが必要です。外観の変更は、[SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) コマンドの外観がトリガー名であるため、アニメーターコンポーネントにルーティングされます。たとえば、Live2Dキャラクタープレハブ "Kaori" があり、"Surprise" という名前のトリガーを呼び出したい場合は、次のコマンドを使用します:
 
@@ -320,5 +320,5 @@ Live2D拡張機能がインストールされると、Naninovelコンフィグ�
 [!!rw_Z69z0pAg]
 
 ::: example
-[GitHubのサンプルプロジェクト](https://github.com/Elringus/NaninovelLive2D) で Naninovel で Live2D キャラクターを扱っているので、参考にしてください。Naninovel と Live2D SDK パッケージはプロジェクトと一緒に配布されていないため、初めて開く際にコンパイルエラーが発生します。アセットストアから Naninovel パッケージをインポートし、ウェブサイトから Live2D Cubism SDK をインポートして問題を解決してください。
+[GitHubのサンプルプロジェクト](https://github.com/Naninovel/Live2D) で Naninovel で Live2D キャラクターを扱っているので、参考にしてください。Naninovel と Live2D SDK パッケージはプロジェクトと一緒に配布されていないため、初めて開く際にコンパイルエラーが発生します。アセットストアから Naninovel パッケージをインポートし、ウェブサイトから Live2D Cubism SDK をインポートして問題を解決してください。
 :::

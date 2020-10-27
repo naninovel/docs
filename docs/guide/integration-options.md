@@ -179,7 +179,7 @@ If you feel some engine API or system is lacking in extendability and requiring 
 
 ## Example Project
 
-An example project with Naninovel used as both drop-in dialogue for a 3D adventure game and a switchable standalone novel mode is [available on GitHub](https://github.com/Elringus/NaninovelIntegrationExample). You can [clone the repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) with a Git client or [download it as a zip archive](https://github.com/Elringus/NaninovelIntegrationExample/archive/master.zip).
+An example project with Naninovel used as both drop-in dialogue for a 3D adventure game and a switchable standalone novel mode is [available on GitHub](https://github.com/Naninovel/IntegrationExample). You can [clone the repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) with a Git client or [download it as a zip archive](https://github.com/Naninovel/IntegrationExample/archive/master.zip).
 
 ::: warn
 Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.

@@ -10,7 +10,7 @@
 
 Установите Adventure Creator и Naninovel (порядок установки не имеет значения).
 
-Скачайте и импортируйте [пакет расширения Adventure Creator](https://github.com/Elringus/NaninovelAdventureCreator/raw/master/NaninovelAdventureCreator.unitypackage).
+Скачайте и импортируйте [пакет расширения Adventure Creator](https://github.com/Naninovel/AdventureCreator/raw/master/NaninovelAdventureCreator.unitypackage).
 
 Назначьте `NaninovelAdventureCreator/Runtime/Actions` в качестве источника для пользовательских действий в настройках AC. Обратитесь к [руководству по AC](https://www.adventurecreator.org/tutorials/writing-custom-action) для дополнительной информации о пользовательских действиях.
 
@@ -37,5 +37,5 @@
 [!!7tOIFZRSAec]
 
 ::: example
-См. [проект GitHub](https://github.com/Elringus/NaninovelAdventureCreator) в качестве примера интеграции. При первом открытии проекта возникнут ошибки из-за отсутствия пакетов Adventure Creator и Naninovel. Импортируйте их из Asset Store для исправления данных ошибок.
+См. [проект GitHub](https://github.com/Naninovel/AdventureCreator) в качестве примера интеграции. При первом открытии проекта возникнут ошибки из-за отсутствия пакетов Adventure Creator и Naninovel. Импортируйте их из Asset Store для исправления данных ошибок.
 :::

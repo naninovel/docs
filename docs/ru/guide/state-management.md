@@ -119,9 +119,9 @@ public class MyCustomBehaviour : MonoBehaviour
 ```
 
 ::: example
-Более продвинутый пример использования пользовательского состояния со списком пользовательских структур для сохранения-загрузки состояния UI инвентаря можно найти в [примере проекта инвентаря на GitHub](https://github.com/Elringus/NaninovelInventory).
+Более продвинутый пример использования пользовательского состояния со списком пользовательских структур для сохранения-загрузки состояния UI инвентаря можно найти в [примере проекта инвентаря на GitHub](https://github.com/Naninovel/Inventory).
 
-В частности, де-/сериализация пользовательского состояния реализуется в сценарии выполнения [InventoryUI.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L238); пользовательское состояние для слотов UI реализуется через [InventorySlotState.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/InventorySlotState.cs).
+В частности, де-/сериализация пользовательского состояния реализуется в сценарии выполнения [InventoryUI.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L238); пользовательское состояние для слотов UI реализуется через [InventorySlotState.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/InventorySlotState.cs).
 
 :::
 

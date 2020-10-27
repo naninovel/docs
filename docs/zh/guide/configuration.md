@@ -10,7 +10,7 @@
 
 在项目运行的时候也可以修改或是添加新配置，或是改变读取配置信息的方式，（如，从远端读取json文档），详情参考 [自定义配置](/zh/guide/custom-configuration.md)。
 ::: note
-该配置根据版本 [Naninovel v1.10](https://github.com/Elringus/NaninovelWeb/releases).
+该配置根据版本 [Naninovel v1.10](https://github.com/Naninovel/Documentation/releases).
 :::
 
 ## 音频

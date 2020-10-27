@@ -20,7 +20,7 @@ wait | Boolean | スクリプトプレイヤーが次のコマンドを実行す
 </div>
 
 ::: note
-この APIリファレンスは [Naninovel v1.10](https://github.com/Elringus/NaninovelWeb/releases) で有効です。
+この APIリファレンスは [Naninovel v1.10](https://github.com/Naninovel/Documentation/releases) で有効です。
 :::
 
 ## animate

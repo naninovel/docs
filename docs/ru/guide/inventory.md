@@ -1,12 +1,12 @@
 ﻿# Инвентарь
 
-Хотя система инвентаря несколько не в духе игр вроде VN, нам поступило много запросов и просьб интегрировать таковую в Naninovel. [Проект на GitHub](https://github.com/Elringus/NaninovelInventory) служит как примером для создания и интеграции инвентаря в движок, так и расширением, которое вы можете легко настроить для Naninovel.
+Хотя система инвентаря несколько не в духе игр вроде VN, нам поступило много запросов и просьб интегрировать таковую в Naninovel. [Проект на GitHub](https://github.com/Naninovel/Inventory) служит как примером для создания и интеграции инвентаря в движок, так и расширением, которое вы можете легко настроить для Naninovel.
 
 Демонтрационный проект показывает, как создать пользовательский интерфейс инвентаря с макетом сетки, разбиением на страницы и перетаскиванием окна, как добавить пользовательский сервис движка и связанное с ним меню конфигурации, добавить вводные привязки, использовать аутсорсинг состояния, авторские пользовательские команды сценария и функции выражений.
 
 [!86c577f007daf4ec5d79c0e91db7bc10]
 
-Вы можете [клонировать репозиторий проекта с помощью клиента Git](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) или [скачать его в виде zip-архива](https://github.com/Elringus/NaninovelDemo/archive/master.zip). 
+Вы можете [клонировать репозиторий проекта с помощью клиента Git](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) или [скачать его в виде zip-архива](https://github.com/Naninovel/Demo/archive/master.zip). 
 
 ::: warn
 Пакет Naninovel не распространяется вместе с проектом, поэтому ошибки компиляции будут создаваться после его первого открытия; импортируйте Naninovel из Asset Store, чтобы исправить эти ошибки.
@@ -14,7 +14,7 @@
 
 ## Установка
 
-Чтобы настроить расширение инвентаря для существующего проекта Unity, используйте [UPM](https://docs.unity3d.com/Manual/upm-ui.html) чтобы установить пакет через следующий URL-адрес Git: `https://github.com/Elringus/NaninovelInventory.git?path=Assets/NaninovelInventory`; или скачайте и импортируйте [NaninovelInventory.unitypackage](https://github.com/Elringus/NaninovelInventory/raw/master/NaninovelInventory.unitypackage) вручную.
+Чтобы настроить расширение инвентаря для существующего проекта Unity, используйте [UPM](https://docs.unity3d.com/Manual/upm-ui.html) чтобы установить пакет через следующий URL-адрес Git: `https://github.com/Naninovel/Inventory.git?path=Assets/NaninovelInventory`; или скачайте и импортируйте [NaninovelInventory.unitypackage](https://github.com/Naninovel/Inventory/raw/master/NaninovelInventory.unitypackage) вручную.
 
 ![](https://i.gyazo.com/b54e9daa9a483d9bf7f74f0e94b2d38a.gif)
 

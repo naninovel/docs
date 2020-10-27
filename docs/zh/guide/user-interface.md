@@ -52,13 +52,13 @@ UI自定义特性允许用户添加自建UI，或使其替代任何内置UI元�
 [!!wrAm-cwPXy4]
 
 ::: example
-上述视频用的Unity工程文件在[GitHub获取](https://github.com/Elringus/NaninovelCustomUIExample) 。你可以使用git客户端[克隆存储库](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) 或是 [下载为zip存档](https://github.com/Elringus/NaninovelCustomUIExample/archive/master.zip) 。注意，其中不包含Naninovel资源包，导入资源以解决报错。
+上述视频用的Unity工程文件在[GitHub获取](https://github.com/Naninovel/CustomUIExample) 。你可以使用git客户端[克隆存储库](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) 或是 [下载为zip存档](https://github.com/Naninovel/CustomUIExample/archive/master.zip) 。注意，其中不包含Naninovel资源包，导入资源以解决报错。
 :::
 
 ::: example
-其他高级示例，如添加使用网格组件，页码，拖拽等功能的的自定义背包参考[GitHub背包工程示例](https://github.com/Elringus/NaninovelInventory)。
+其他高级示例，如添加使用网格组件，页码，拖拽等功能的的自定义背包参考[GitHub背包工程示例](https://github.com/Naninovel/Inventory)。
 
-另外，UI相关代码和预制体都在[运行时/UI](https://github.com/Elringus/NaninovelInventory/tree/master/Assets/NaninovelInventory/Runtime/UI) 和 [预制体](https://github.com/Elringus/NaninovelInventory/tree/master/Assets/NaninovelInventory/Prefabs)
+另外，UI相关代码和预制体都在[运行时/UI](https://github.com/Naninovel/Inventory/tree/master/Assets/NaninovelInventory/Runtime/UI) 和 [预制体](https://github.com/Naninovel/Inventory/tree/master/Assets/NaninovelInventory/Prefabs)
 
 :::
 
@@ -112,7 +112,7 @@ UI自定义特性允许用户添加自建UI，或使其替代任何内置UI元�
 [!!hqhfhXzQkdk]
 
 ::: example
-上述视频用的Unity工程文件在[GitHub获取](https://github.com/Elringus/NaninovelCustomUIExample) 。你可以使用git客户端[克隆存储库](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) 或是 [下载为zip存档](https://github.com/Elringus/NaninovelCustomUIExample/archive/master.zip) 。注意，其中不包含Naninovel资源包，导入资源以解决报错。
+上述视频用的Unity工程文件在[GitHub获取](https://github.com/Naninovel/CustomUIExample) 。你可以使用git客户端[克隆存储库](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) 或是 [下载为zip存档](https://github.com/Naninovel/CustomUIExample/archive/master.zip) 。注意，其中不包含Naninovel资源包，导入资源以解决报错。
 :::
 
 从头开始创建新的预制体时，确保你要覆写的UI上的相应组件都已关联好。这些组件都应该被关联至预制体的根物体上。

@@ -26,5 +26,5 @@
 
 
 ::: 示例
-在GitHub: [github.com/Elringus/NaninovelBolt](https://github.com/Elringus/NaninovelBolt)有用于本教程的使用示例。 注意其中不包含Naninovel和Bolt资源，直接打开会报错，导入相关资源来解决报错。
+在GitHub: [github.com/Naninovel/Bolt](https://github.com/Naninovel/Bolt)有用于本教程的使用示例。 注意其中不包含Naninovel和Bolt资源，直接打开会报错，导入相关资源来解决报错。
 :::

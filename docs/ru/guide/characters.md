@@ -286,7 +286,7 @@ Player: You can call me {PlayerName}.
 
 Чтобы иметь возможность использовать эту реализацию, необходимо сначала установить [Live2D Cubism SDK для Unity](https://live2d.github.io/#unity). Обратитесь к официальной документации Live2D для получения инструкций по установке и использованию.
 
-После этого скачайте и импортируйте [пакет расширения Live2D](https://github.com/Elringus/NaninovelLive2D/raw/master/NaninovelLive2D.unitypackage).
+После этого скачайте и импортируйте [пакет расширения Live2D](https://github.com/Naninovel/Live2D/raw/master/NaninovelLive2D.unitypackage).
 
 Префаб модели Live2D, используемый в качестве ресурса для реализации, должен иметь компонент `Live2DController`, прикрепленный к корневому объекту. Изменения внешности направляются в компонент аниматора как команды [SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html), используя внешность как имя триггера. Например, если у вас есть Live2D-префаб персонажа "Kaori", и вы хотите вызвать триггер с именем "Surprise", используйте следующую команду:
 
@@ -319,5 +319,5 @@ Player: You can call me {PlayerName}.
 [!!rw_Z69z0pAg]
 
 ::: example
-Ознакомьтесь с [примером проекта на GitHub](https://github.com/Elringus/NaninovelLive2D), где персонаж Live2D используется в Naninovel. Имейте в виду, что ни пакеты Naninovel, ни пакеты Live2D SDK не поставляются вместе с проектом, поэтому после его первого открытия появятся ошибки компиляции; импортируйте Naninovel из Asset Store и Live2D Cubism SDK с их веб-сайта, чтобы решить эти проблемы.
+Ознакомьтесь с [примером проекта на GitHub](https://github.com/Naninovel/Live2D), где персонаж Live2D используется в Naninovel. Имейте в виду, что ни пакеты Naninovel, ни пакеты Live2D SDK не поставляются вместе с проектом, поэтому после его первого открытия появятся ошибки компиляции; импортируйте Naninovel из Asset Store и Live2D Cubism SDK с их веб-сайта, чтобы решить эти проблемы.
 :::

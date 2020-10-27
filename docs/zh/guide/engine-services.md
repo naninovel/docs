@@ -100,9 +100,9 @@ var customService = Engine.GetService<CustomService>();
 ```
 
 ::: example
-在[GitHub的背包示例项目](https://github.com/Elringus/NaninovelInventory) 中，可以找到添加自定义引擎服务以管理背包UI配置和资源的相关示例。
+在[GitHub的背包示例项目](https://github.com/Naninovel/Inventory) 中，可以找到添加自定义引擎服务以管理背包UI配置和资源的相关示例。
 
-具体来说，这个示例的定制引擎服务是通过[InventoryManager.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryManager.cs) 运行时脚本实现的。
+具体来说，这个示例的定制引擎服务是通过[InventoryManager.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryManager.cs) 运行时脚本实现的。
 :::
 
 ## 覆盖内置服务

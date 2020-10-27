@@ -1,12 +1,12 @@
 ﻿# Inventory
 
-While an inventory system is a bit out of scope for VN-style games, we had a lot of requests and questions on how to integrate one with Naninovel. The [GitHub project](https://github.com/Elringus/NaninovelInventory) serves as both an example for creating and integrating an inventory with the engine and an extension, which you can easily setup on top of a Naninovel installation.
+While an inventory system is a bit out of scope for VN-style games, we had a lot of requests and questions on how to integrate one with Naninovel. The [GitHub project](https://github.com/Naninovel/Inventory) serves as both an example for creating and integrating an inventory with the engine and an extension, which you can easily setup on top of a Naninovel installation.
 
 Example project shows how to make a custom inventory UI with grid layout, pagination and drag-drop window, add custom engine service and related configuration menu, add input bindings, use state outsourcing, author custom scenario commands and expression functions.
 
 [!86c577f007daf4ec5d79c0e91db7bc10]
 
-You can [clone the project repository with a Git client](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) or [download it as a zip archive](https://github.com/Elringus/NaninovelDemo/archive/master.zip). 
+You can [clone the project repository with a Git client](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) or [download it as a zip archive](https://github.com/Naninovel/Demo/archive/master.zip). 
 
 ::: warn
 Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
@@ -14,7 +14,7 @@ Naninovel package is not distributed with the project, hence compilation errors 
 
 ## Installation
 
-To set up inventory extension on top of an existing Unity project use [UPM](https://docs.unity3d.com/Manual/upm-ui.html) to install the package via the following git URL: `https://github.com/Elringus/NaninovelInventory.git?path=Assets/NaninovelInventory` or download and import [NaninovelInventory.unitypackage](https://github.com/Elringus/NaninovelInventory/raw/master/NaninovelInventory.unitypackage) manually.
+To set up inventory extension on top of an existing Unity project use [UPM](https://docs.unity3d.com/Manual/upm-ui.html) to install the package via the following git URL: `https://github.com/Naninovel/Inventory.git?path=Assets/NaninovelInventory` or download and import [NaninovelInventory.unitypackage](https://github.com/Naninovel/Inventory/raw/master/NaninovelInventory.unitypackage) manually.
 
 ![](https://i.gyazo.com/b54e9daa9a483d9bf7f74f0e94b2d38a.gif)
 
