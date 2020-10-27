@@ -10,7 +10,7 @@ Notice, that all the configuration menus are supporting [Unity's presets feature
 It's possible to modify configuration objects at runtime, add new custom configurations and change the way the objects are accessed at runtime (eg, read configuration from JSON files stored on a remote host); see [custom configuration](/guide/custom-configuration.md) guide for more information.
 
 ::: note
-This configuration reference is valid for [Naninovel v1.13](https://github.com/Naninovel/Documentation/releases).
+This configuration reference is valid for [Naninovel v1.14](https://github.com/Naninovel/Documentation/releases).
 :::
 
 ## Audio
@@ -28,6 +28,7 @@ Default Voice Volume | 1 | Voice volume to set when the game is first started.
 Enable Auto Voicing | False | When enabled, each `@print` command will attempt to play an associated voice clip.
 Auto Voice Mode | Playback Spot | When auto voicing is enabled, controls method to associate voice clips with @print commands:<br> • Playback Spot — Voice clips are associated by script name, line and inline indexes (playback spot) of the @print commands. Works best when voicing is added after the scenario scripts are finished. Removing, adding or re-ordering scenario script lines will break the associations.<br> • Content Hash — Voice clips are associated manually via voice map utility by the printed text and author name. Works best when adding voicing before the scenario scripts are finished. Removing, adding or re-ordering scenario script lines won't break the associations. Modifying printed text in the scripts will break associations only with the modified commands.<br><br>Consult voicing documentation for more information and examples.
 Voice Overlap Policy | Prevent Overlap | Dictates how to handle concurrent voices playback:<br> • Allow Overlap — Concurrent voices will be played without limitation.<br> • Prevent Overlap — Prevent concurrent voices playback by stopping any played voice clip before playing a new one.<br> • Prevent Character Overlap — Prevent concurrent voices playback per character; voices of different characters (auto voicing) and any number of [@voice] command are allowed to be played concurrently.
+Voice Locales | Null | Assign localization tags to allow selecting voice language in the game settings independently of the main localization. Doesn't work with `Content Hash` auto voice mode.
 Custom Audio Mixer | Null | Audio mixer to control audio groups. When not provided, will use a default one.
 Master Volume Handle Name | Master Volume | Name of the mixer's handle (exposed parameter) to control master volume.
 Bgm Group Path | Master/BGM | Path of the mixer's group to control master volume.
@@ -254,6 +255,7 @@ Editor Page Length | 1000 | How many script lines should be rendered per visual 
 Editor Custom Style Sheet | Null | Allows modifying default style of the visual editor.
 Graph Orientation | Horizontal | Whether to build the graph vertically or horizontally.
 Graph Auto Align Padding | (10.0, 0.0) | Padding to add for each node when performing auto align.
+Show Synopsis | True | Whether to show fist comment lines of the script inside the graph node.
 Graph Custom Style Sheet | Null | Allows modifying default style of the script graph.
 Enable Community Modding | False | Whether to allow adding external naninovel scripts to the build.
 External Loader | Scripts- (Local) | Configuration of the resource loader used with external naninovel script resources.
