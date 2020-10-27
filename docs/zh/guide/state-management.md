@@ -119,9 +119,9 @@ public class MyCustomBehaviour : MonoBehaviour
 
 ::: example
 
-更加进阶的自定义状态示例，是基于背包UI的状态读取加载[GitHub背包状态存储加载示例](https://github.com/Elringus/NaninovelInventory)。
+更加进阶的自定义状态示例，是基于背包UI的状态读取加载[GitHub背包状态存储加载示例](https://github.com/Naninovel/Inventory)。
 
-[InventoryUI.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L238) 运行时脚本中实现了自定义状态的反序列化；UI自定义状态存储的通过[InventorySlotState.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/InventorySlotState.cs) 实现。
+[InventoryUI.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L238) 运行时脚本中实现了自定义状态的反序列化；UI自定义状态存储的通过[InventorySlotState.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/InventorySlotState.cs) 实现。
 :::
 
 ## 自定义序列化处理器

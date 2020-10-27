@@ -22,5 +22,5 @@
 ![](https://i.gyazo.com/080106d574ea894f62ea79b7dd904ab2.png)
 
 ::: example
-Пример проекта доступен на GitHub: [github.com/Elringus/NaninovelBolt](https://github.com/Elringus/NaninovelBolt). Имейте в виду, что ни Naninovel, ни Bolt не поставляются вместе с проектом, поэтому ошибки компиляции будут возникать после его первого открытия; импортируйте пакеты из Asset Store, чтобы решить эту проблему.
+Пример проекта доступен на GitHub: [github.com/Naninovel/Bolt](https://github.com/Naninovel/Bolt). Имейте в виду, что ни Naninovel, ни Bolt не поставляются вместе с проектом, поэтому ошибки компиляции будут возникать после его первого открытия; импортируйте пакеты из Asset Store, чтобы решить эту проблему.
 :::

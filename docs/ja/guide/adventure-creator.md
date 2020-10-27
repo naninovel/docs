@@ -10,7 +10,7 @@ ACの中でNaninovelを使用して会話シーンを処理したり、Naninovel
 
 Adventure Creator と Naninovel を両方インストールします(順番は関係ありません)。
 
-[Adventure Creator extension package](https://github.com/Elringus/NaninovelAdventureCreator/raw/master/NaninovelAdventureCreator.unitypackage) をダウンロードしてインポートします。
+[Adventure Creator extension package](https://github.com/Naninovel/AdventureCreator/raw/master/NaninovelAdventureCreator.unitypackage) をダウンロードしてインポートします。
 
 ACの設定の中のカスタムアクションに、`NaninovelAdventureCreator/Runtime/Actions` を設定します。カスタムアクションについての詳細は [ACガイド](https://www.adventurecreator.org/tutorials/writing-custom-action) を参照してください。
 
@@ -37,5 +37,5 @@ Naninovelスクリプトの `@turnOnAC` カスタムコマンドを使用してA
 [!!7tOIFZRSAec]
 
 ::: example
-インテグレーションの例については、 [GitHubプロジェクト](https://github.com/Elringus/NaninovelAdventureCreator) をご覧ください。初めてプロジェクトを開くと、Adventure Creator と Naninovel のパッケージが存在しないのでエラーが発生します。Asset Storeからインポートするだけで、エラーは解消されます。
+インテグレーションの例については、 [GitHubプロジェクト](https://github.com/Naninovel/AdventureCreator) をご覧ください。初めてプロジェクトを開くと、Adventure Creator と Naninovel のパッケージが存在しないのでエラーが発生します。Asset Storeからインポートするだけで、エラーは解消されます。
 :::

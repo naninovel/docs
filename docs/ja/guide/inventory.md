@@ -1,12 +1,12 @@
 ﻿# インベントリ
 
-インベントリシステムはビジュアルノベルスタイルのゲームでは少し範囲外ですが、Naninovelで活用する方法について多くの問合せがありました。[GitHubプロジェクト](https://github.com/Elringus/NaninovelInventory) には、インベントリをエンジンや拡張機能として作成し統合する例があります。Naninovel上で簡単にセットアップできます。
+インベントリシステムはビジュアルノベルスタイルのゲームでは少し範囲外ですが、Naninovelで活用する方法について多くの問合せがありました。[GitHubプロジェクト](https://github.com/Naninovel/Inventory) には、インベントリをエンジンや拡張機能として作成し統合する例があります。Naninovel上で簡単にセットアップできます。
 
 サンプルプロジェクトは、グリッドレイアウト、ページネーション、ドラッグドロップウィンドウといったカスタムインベントリUIを作成する方法、カスタムエンジンサービスと関連するコンフィグメニューを追加する方法、入力バインディングを追加する方法、ステートのアウトソーシングを使用する方法、カスタムシナリオコマンドと式関数を作成する方法を示しています。
 
 [!86c577f007daf4ec5d79c0e91db7bc10]
 
-[Git clientでリポジトリをクローン](https://help.github.com/ja/github/creating-cloning-and-archiving-repositories/cloning-a-repository) するか [zipファイルをダウンロード](https://github.com/Elringus/NaninovelDemo/archive/master.zip) することができます。
+[Git clientでリポジトリをクローン](https://help.github.com/ja/github/creating-cloning-and-archiving-repositories/cloning-a-repository) するか [zipファイルをダウンロード](https://github.com/Naninovel/Demo/archive/master.zip) することができます。
 
 ::: warn
 プロジェクトに Naninovel パッケージは含まれないため、初めて開く際はコンパイルエラーが発生します。問題を解決するには、アセットストアから Naninovel をインポートします。
@@ -14,7 +14,7 @@
 
 ## インストール
 
-既存のUnityプロジェクトの上にインベントリ拡張機能を設定するには、[UPM](https://docs.unity3d.com/Manual/upm-ui.html) を使用して、次のgit URL経由でパッケージをインストールします: `https://github.com/Elringus/NaninovelInventory.git?path=Assets/NaninovelInventory` または[NaninovelInventory.unitypackage](https://github.com/Elringus/NaninovelInventory/raw/master/NaninovelInventory.unitypackage) を手動でダウンロードしてインポートします。
+既存のUnityプロジェクトの上にインベントリ拡張機能を設定するには、[UPM](https://docs.unity3d.com/Manual/upm-ui.html) を使用して、次のgit URL経由でパッケージをインストールします: `https://github.com/Naninovel/Inventory.git?path=Assets/NaninovelInventory` または[NaninovelInventory.unitypackage](https://github.com/Naninovel/Inventory/raw/master/NaninovelInventory.unitypackage) を手動でダウンロードしてインポートします。
 
 ![](https://i.gyazo.com/b54e9daa9a483d9bf7f74f0e94b2d38a.gif)
 

@@ -76,9 +76,9 @@ var myConfig = Engine.GetConfiguration<MyCustomConfiguration>();
 ```
 
 ::: example
-Другой пример добавления меню пользовательской конфигурации для настройки системы инвентаря можно найти в [примере проекта инвентаря на GitHub](https://github.com/Elringus/NaninovelInventory).
+Другой пример добавления меню пользовательской конфигурации для настройки системы инвентаря можно найти в [примере проекта инвентаря на GitHub](https://github.com/Naninovel/Inventory).
 
-В частности, пользовательская конфигурация реализуется с помощью скрипта воспроизведения [InventoryConfiguration.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryConfiguration.cs).
+В частности, пользовательская конфигурация реализуется с помощью скрипта воспроизведения [InventoryConfiguration.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryConfiguration.cs).
 :::
 
 ## Провайдер конфигурации

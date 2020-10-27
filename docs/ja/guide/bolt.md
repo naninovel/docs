@@ -21,5 +21,5 @@ Boltパッケージをダウンロードし、自身の Naninovel プロジェ�
 ![](https://i.gyazo.com/080106d574ea894f62ea79b7dd904ab2.png)
 
 ::: example
-サンプルプロジェクトはGitHubで入手できます: [github.com/Elringus/NaninovelBolt](https://github.com/Elringus/NaninovelBolt)。Naninovel と Bolt のパッケージはプロジェクトと一緒に配布されていないため、初めて開く際にコンパイルエラーが発生します。アセットストアからパッケージをインポートして、問題を解決してください。
+サンプルプロジェクトはGitHubで入手できます: [github.com/Naninovel/Bolt](https://github.com/Naninovel/Bolt)。Naninovel と Bolt のパッケージはプロジェクトと一緒に配布されていないため、初めて開く際にコンパイルエラーが発生します。アセットストアからパッケージをインポートして、問題を解決してください。
 :::

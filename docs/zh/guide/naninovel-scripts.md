@@ -337,7 +337,7 @@ IDE特性，比如方法高亮，错误检查，自动补充，文本关联等�
 
 [!!y87wd5jHfFw]
 
-其他浏览器支持会在后续添加， 更多信息参考 [the issue on GitHub](https://github.com/Elringus/NaninovelWeb/issues/56#issuecomment-492987029)。
+其他浏览器支持会在后续添加， 更多信息参考 [the issue on GitHub](https://github.com/Naninovel/Documentation/issues/56#issuecomment-492987029)。
 
 ## 脚本Debug
 

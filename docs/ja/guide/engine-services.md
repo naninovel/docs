@@ -99,9 +99,9 @@ var customService = Engine.GetService<CustomService>();
 ```
 
 ::: example
-アイテムのリソースとインベントリUIの構成を管理するカスタムエンジンサービスを追加する別の例は、[GitHubのインベントリサンプルプロジェクト](https://github.com/Elringus/NaninovelInventory) にあります。
+アイテムのリソースとインベントリUIの構成を管理するカスタムエンジンサービスを追加する別の例は、[GitHubのインベントリサンプルプロジェクト](https://github.com/Naninovel/Inventory) にあります。
 
-具体的には、カスタムエンジンサービスは [InventoryManager.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryManager.cs)  ランタイムスクリプトを介して実装されます。
+具体的には、カスタムエンジンサービスは [InventoryManager.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryManager.cs)  ランタイムスクリプトを介して実装されます。
 :::
 
 ## 組み込みサービスの上書き

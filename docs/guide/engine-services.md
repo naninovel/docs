@@ -107,9 +107,9 @@ var customService = Engine.GetService<CustomService>();
 ```
 
 ::: example
-Another example of adding a custom engine service to manage item resources and configuration of an inventory UI can be found in the [inventory example project on GitHub](https://github.com/Elringus/NaninovelInventory).
+Another example of adding a custom engine service to manage item resources and configuration of an inventory UI can be found in the [inventory example project on GitHub](https://github.com/Naninovel/Inventory).
 
-Specifically, the custom engine service is implemented via [InventoryManager.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryManager.cs) runtime script.
+Specifically, the custom engine service is implemented via [InventoryManager.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryManager.cs) runtime script.
 :::
 
 ## Overriding Built-in Services
@@ -181,7 +181,7 @@ In some cases, however, it may not be desired to reset a particular services on 
 To exclude an engine service from automatic reset on goto commands, apply `[Naninovel.Commands.Goto.DontReset]` attribute to the service implementation. When the attribute is applied, service won't be reset automatically on goto, even when `Reset On Goto` is enabled in state configuration; it'll still be possible to manually reset the service via [@resetState] command or by invoking `ResetService` directly via C#. The attribute can be applied to both custom services and overridden built-in services.
 
 ::: example
-You can find an example on using the "don't reset" attribute in [inventory example project on GitHub](https://github.com/Elringus/NaninovelInventory).
+You can find an example on using the "don't reset" attribute in [inventory example project on GitHub](https://github.com/Naninovel/Inventory).
 
-Specifically, the attribute is applied to "Inventory Manager" custom service, which is implemented in [InventoryManager.cs](https://github.com/Elringus/NaninovelInventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryManager.cs) runtime script.
+Specifically, the attribute is applied to "Inventory Manager" custom service, which is implemented in [InventoryManager.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryManager.cs) runtime script.
 :::

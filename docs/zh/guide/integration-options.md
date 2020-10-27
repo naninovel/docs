@@ -155,7 +155,7 @@ private void OnTriggerEnter (Collider other)
 
 ## 示例工程
 
-[GitHub上](https://github.com/Elringus/NaninovelIntegrationExample) 提供了一个示例项目，其中Naninovel用作3D冒险游戏的直接对话和可切换的独立小说模式。您可以使用Git客户端[克隆存储库](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository)， 也可以将其[下载为zip存档](https://github.com/Elringus/NaninovelIntegrationExample/archive/master.zip)。
+[GitHub上](https://github.com/Naninovel/IntegrationExample) 提供了一个示例项目，其中Naninovel用作3D冒险游戏的直接对话和可切换的独立小说模式。您可以使用Git客户端[克隆存储库](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository)， 也可以将其[下载为zip存档](https://github.com/Naninovel/IntegrationExample/archive/master.zip)。
 
 ::: warn
 Naninovel软件包未包含在内，因此，首次打开该工程会产生编译错误；从资源商店导入Naninovel以解决问题。

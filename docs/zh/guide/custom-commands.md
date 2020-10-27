@@ -71,7 +71,7 @@ public class HelloWorld : Command
 注意可选 `CancellationToken` 参数。如果调用任何异步方法，请确保检查该值的取消请求，并尽快返回该值。
 
 ::: example
-关于添加自定义命令来在背包中增加删除道具的示例在[背包示例项目中](https://github.com/Elringus/NaninovelInventory) 。
+关于添加自定义命令来在背包中增加删除道具的示例在[背包示例项目中](https://github.com/Naninovel/Inventory) 。
 
-另外，命令实现存储在[Runtime/Commands](https://github.com/Elringus/NaninovelInventory/tree/master/Assets/NaninovelInventory/Runtime/Commands) 目录中。
+另外，命令实现存储在[Runtime/Commands](https://github.com/Naninovel/Inventory/tree/master/Assets/NaninovelInventory/Runtime/Commands) 目录中。
 :::

@@ -4,17 +4,17 @@ If you have issues with the engine, first make sure to read the [guide](/guide/)
 
 In case you're sure the engine is not working as intended, check if you're running the latest available version. You can update the main package inside the Unity editor using [Asset Store window](https://docs.unity3d.com/Manual/AssetStore.html). When using any of the engine extensions, download and import the latest packages:
 
-- [NaninovelLive2D](https://github.com/Elringus/NaninovelLive2D/raw/master/NaninovelLive2D.unitypackage)
-- [NaninovelPlayMaker](https://github.com/Elringus/NaninovelPlayMaker/raw/master/NaninovelPlayMaker.unitypackage)
-- [NaninovelAdventureCreator](https://github.com/Elringus/NaninovelAdventureCreator/raw/master/NaninovelAdventureCreator.unitypackage)
+- [NaninovelLive2D](https://github.com/Naninovel/Live2D/raw/master/NaninovelLive2D.unitypackage)
+- [NaninovelPlayMaker](https://github.com/Naninovel/PlayMaker/raw/master/NaninovelPlayMaker.unitypackage)
+- [NaninovelAdventureCreator](https://github.com/Naninovel/AdventureCreator/raw/master/NaninovelAdventureCreator.unitypackage)
 
-If updating didn't help, try to re-install the package by deleting `Naninovel` folder from the project and re-importing it from the Asset Store. Make sure to follow upgrade instructions specified on the [release page](https://github.com/Elringus/NaninovelWeb/releases) when updating the engine.
+If updating didn't help, try to re-install the package by deleting `Naninovel` folder from the project and re-importing it from the Asset Store. Make sure to follow upgrade instructions specified on the [release page](https://github.com/Naninovel/Documentation/releases) when updating the engine.
 
 Always **remember to backup your project** (or use a [VCS](https://en.wikipedia.org/wiki/Version_control)) before updating or deleting a package. ~~Haruhi~~ God knows what could happen in the process. `ʕノ•ᴥ•ʔノ ︵ ┻━┻`
 
 ## Issue Tracker
 
-In case the above steps didn't help to resolve the issue, check the [issue tracker](https://github.com/Elringus/NaninovelWeb/issues?q=is%3Aissue+label%3Abug) — chances are the problem is already being worked on.
+In case the above steps didn't help to resolve the issue, check the [issue tracker](https://github.com/Naninovel/Documentation/issues?q=is%3Aissue+label%3Abug) — chances are the problem is already being worked on.
 
 ## Community Forum
 
@@ -51,7 +51,7 @@ When reporting an issue, we may ask you to share a "repro" project. Reproduction
 
 Follow the steps below to create and share a reproduction project:
 
-1. Create a new Unity project. Make sure you're using Unity version supported by the [current Naninovel release](https://github.com/Elringus/NaninovelWeb/releases).
+1. Create a new Unity project. Make sure you're using Unity version supported by the [current Naninovel release](https://github.com/Naninovel/Documentation/releases).
 ::: note
 Reproduction project should be a new clean Unity project, not the one you're experiencing the issue with. Do not just copy all the assets from one project to another; it's important to isolate the issue by reproducing it in a clean environment, free from any custom configurations and assets, that doesn't directly affect the issue.
 :::
