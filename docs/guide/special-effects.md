@@ -76,7 +76,7 @@ Shakes printer with the specified ID or the default one.
 Name | Type | Default | Description
 --- | --- | --- | ---
 Printer ID | String | null | ID of the printer to shake. Will shake a default printer when not specified.
-Shake count | Integer | 2 | The number of shake iterations. When set to 0 or less, will loop the effect until stopped with [@despawn].
+Shake count | Integer | 2 | The number of shake iterations. When set to 0, will loop the effect until stopped with [@despawn].
 Shake duration | Decimal | 0.15 | The base duration of each shake iteration, in seconds.
 Duration variation | Decimal | 0.25 | The randomized delta modifier applied to the base duration of the effect.
 Shake amplitude | Decimal | 0.5 | The base displacement amplitude of each shake iteration, in units.
@@ -109,7 +109,7 @@ Shakes background with the specified ID or the main one.
 Name | Type | Default | Description
 --- | --- | --- | ---
 Background ID | String | null | ID of the background to shake. Will shake main background when not specified.
-Shake count | Integer | 3 | The number of shake iterations. When set to 0 or less, will loop the effect until stopped with [@despawn].
+Shake count | Integer | 3 | The number of shake iterations. When set to 0, will loop the effect until stopped with [@despawn].
 Shake duration | Decimal | 0.15 | The base duration of each shake iteration, in seconds.
 Duration variation | Decimal | 0.25 | The randomized delta modifier applied to the base duration of the effect.
 Shake amplitude | Decimal | 0.5 | The base displacement amplitude of each shake iteration, in units.
@@ -135,7 +135,7 @@ Shakes character with the specified ID or a random visible one.
 Name | Type | Default | Description
 --- | --- | --- | ---
 Character ID | String | null | ID of the character to shake. Will shake a random visible one when not specified.
-Shake count | Integer | 3 | The number of shake iterations. When set to 0 or less, will loop the effect until stopped with [@despawn].
+Shake count | Integer | 3 | The number of shake iterations. When set to 0, will loop the effect until stopped with [@despawn].
 Shake duration | Decimal | 0.15 | The base duration of each shake iteration, in seconds.
 Duration variation | Decimal | 0.25 | The randomized delta modifier applied to the base duration of the effect.
 Shake amplitude | Decimal | 0.5 | The base displacement amplitude of each shake iteration, in units.
@@ -168,7 +168,7 @@ Shakes the main Naninovel render camera.
 Name | Type | Default | Description
 --- | --- | --- | ---
 Camera Name | String | null | Name of the camera object to shake. Will shake the main Naninovel camera when not provided.
-Shake count | Integer | 3 | The number of shake iterations. When set to 0 or less, will loop the effect until stopped with [@despawn].
+Shake count | Integer | 3 | The number of shake iterations. When set to 0, will loop the effect until stopped with [@despawn].
 Shake duration | Decimal | 0.15 | The base duration of each shake iteration, in seconds.
 Duration variation | Decimal | 0.25 | The randomized delta modifier applied to the base duration of the effect.
 Shake amplitude | Decimal | 0.5 | The base displacement amplitude of each shake iteration, in units.
