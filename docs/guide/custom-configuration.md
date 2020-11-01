@@ -49,7 +49,7 @@ public static class ModifyConfigAtRuntime
 
 ## Adding Configuration
 
-To add a new custom configuration, create a C# class with a `Serializable` attribute and inherit it from `Configuration`.
+To add a new custom configuration, create a C# class and inherit it from `Configuration`.
 
 ```csharp
 [EditInProjectSettings]
