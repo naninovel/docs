@@ -184,11 +184,15 @@ Be aware, that [@print] commands (that are also used under the hood when printin
 
 ## Sprite Characters 
 
-Sprite implementation of the character actors is the most common and simple one; it uses a set of [sprite](https://docs.unity3d.com/Manual/Sprites) assets to represent appearances of the character. The source of the sprite could be a `.jpg`, `.png`, `.tiff`, `.psd` or any other image (texture) file format [supported by Unity](https://docs.unity3d.com/Manual/ImportingTextures). 
+Sprite implementation of the character actors is the most common and simple one; it uses a set of [texture](https://docs.unity3d.com/Manual/Textures.html) assets wrapped over a quad mesh (sprite) to represent appearances of the character. The textures can be based on `.jpg`, `.png`, `.tiff`, `.psd` or any other image file format [supported by Unity](https://docs.unity3d.com/Manual/ImportingTextures). 
 
 ::: tip
 Choose file formats that are most comfortable for your development workflow. When building the project, Unity will automatically convert all the source resources (textures, audio, video, etc) to the formats most suitable for the target platform, so it won't make difference in which format you originally store the resources in the project. Find more information on how Unity manage project assets in the [official documentation](https://docs.unity3d.com/Manual/AssetWorkflow).
 :::
+
+Initial (unscaled) size of the sprite character mesh on scene depends on the [reference resolution](/guide/backgrounds.md#reference-resolution), character's `Pixel Per Unit` property (set for each character actor in the configuration menu) and source texture resolution.
+
+To achieve best render quality and optimal performance, it's generally advised to keep the default `Pixel Per Unit` value (100) for all the characters and control the desired initial character size via texture resolution. For example, given reference resolution in your game is the default `1920x1080` pixels, to make a character occupy the whole screen height, set height of the character's texture (eg, by resizing it via Photoshop or other image editor) to `1080` pixels; to make another character occupy 2/3 of the screen height, set the height to `1080 * 2/3` and so on.
 
 ## Diced Sprite Characters
 
