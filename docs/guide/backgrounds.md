@@ -40,6 +40,22 @@ Backgrounds are handled a bit differently from characters to better accommodate 
 
 Main background actor record is created by default in the background resources manager and can't be renamed or deleted; however, parameters of the main background (implementation, pivot, PPU, etc) can be freely changed.
 
+## Reference Resolution
+
+When [camera](https://docs.unity3d.com/Manual/class-Camera.html) is rendering in orthographic mode and `Auto Correct Ortho Size` is enabled in the camera configuration, Naninovel will control the camera size based on `Reference Resolution` (set in the same menu) in order to make the background actors fill the entire screen. This ensures player won't see any black bars or distortions when the display [aspect ratio](https://en.wikipedia.org/wiki/Aspect_ratio_(image)) is different from the reference resolution.
+
+![](https://i.gyazo.com/f09cd07e0841023a3f36a67d1e8949e5.png)
+
+While for standalone (PC, Mac, Linux) builds you can limit the available aspect ratios in the [player settings](https://docs.unity3d.com/Manual/class-PlayerSettingsStandalone.html#Resolution), on web, consoles and mobiles it's not possible and the applications have to adapt for the target devices instead. 
+
+Given the source background textures of a specific resolution, there are following options to adapt them for a different aspect ratio: resize (will distort the texture), add black bars or crop. When `Auto Correct Ortho Size` is enabled, Naninovel will automatically perform the least noticeable and distracting option — cropping, by modifying orthographic size of the camera. Auto correction will also handle relative actors positioning on scene, so that, for example, `pos:25` is always a quarter from the left screen border, no matter if the screen ratio is 4:3 or 21:9.
+
+::: tip
+Define reference resolution with your team before starting the work on the art assets (both characters and backgrounds). This way the artists will be able to author the assets with the correct dimensions and you won't have to edit them later.
+:::
+
+To manually handle the aspect ratio differences (eg, if you prefer to add black bars or resize the images instead of cropping), disable `Auto Correct Ortho Size` option in the camera configuration menu. You can then control orthographic size of the camera used by Naninovel with `ICameraManager` [engine service](/guide/engine-services.md).
+
 ## Poses
 
 Each background has `Poses` property allowing to specify named states (poses).
@@ -67,11 +83,17 @@ Notice, that when a pose is used as appearance, you can still override individua
 
 ## Sprite Backgrounds
 
-Sprite implementation of the background actors is the most common and simple one; it uses a single [sprite](https://docs.unity3d.com/Manual/Sprites) asset to represent appearance of the background. The source of the sprite could be a `.jpg`, `.png`, `.tiff`, `.psd` or any other image (texture) file format [supported by Unity](https://docs.unity3d.com/Manual/ImportingTextures). 
+Sprite implementation of the background actors is the most common and simple one; it uses a set of [texture](https://docs.unity3d.com/Manual/Textures.html) assets wrapped over a quad mesh (sprite) to represent appearances of the background. The textures can be based on `.jpg`, `.png`, `.tiff`, `.psd` or any other image file format [supported by Unity](https://docs.unity3d.com/Manual/ImportingTextures). 
 
 ::: tip
 Choose file formats that are most comfortable for your development workflow. When building the project, Unity will automatically convert all the source resources (textures, audio, video, etc) to the formats most suitable for the target platform, so it won't make difference in which format you originally store the resources in the project. Find more information on how Unity manage project assets in the [official documentation](https://docs.unity3d.com/Manual/AssetWorkflow).
 :::
+
+When authoring source textures for the backgrounds, keep in mind [reference resolution](/guide/backgrounds.md#reference-resolution) set in the camera configuration. Naninovel will attempt to make the backgrounds cover the whole camera frustum by default, so make sure to size the source textures so that the aspect ratio is equal to the reference resolution.
+
+Initial (unscaled) size of the sprite background mesh on scene depends on the [reference resolution](/guide/backgrounds.md#reference-resolution), background's `Pixel Per Unit` property (set for each background actor in the configuration menu) and source texture resolution.
+
+To achieve best render quality and optimal performance, it's generally advised to keep the default `Pixel Per Unit` value (100) for all the backgrounds and control the desired initial background size via texture resolution. For example, given reference resolution in your game is the default `1920x1080` pixels, to make a background occupy the whole screen, set height of the background's texture (eg, by resizing it via Photoshop or other image editor) to `1080` pixels; to make another background occupy 2/3 of the screen height, set the height to `1080 * 2/3` and so on.
 
 ## Diced Sprite Backgrounds
 

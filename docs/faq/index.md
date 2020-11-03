@@ -38,6 +38,10 @@ Remove `Skybox Material` in  `Window -> Rendering -> Lighting Settings` editor m
 
 When you remove the skybox, camera's background color will be used instead to fill the screen when no objects are visible. You can change that color (as well as other related settings) by creating a camera prefab and assigning it to `Custom Camera Prefab` property found inside `Naninovel -> Configuration -> Camera` menu. 
 
+## Why a background is cropped?
+
+Make sure aspect ratio of the background texture resolution is equal to the [reference resolution](/guide/backgrounds.html#reference-resolution) set in the camera configuration. Also, ensure the texture is imported with the [correct settings](https://docs.unity3d.com/Manual/class-TextureImporter) (eg, `Max Size` is high enough).
+
 ## How to add a line break to the message?
 
 Check out [`[br]` command](/api/#br). Alternatively, `<br>` tag will work with [TMPro printers](/guide/text-printers.md#textmesh-pro), eg:
@@ -69,17 +73,7 @@ Set `visible:false` for the character you wish to hide; the avatar will remain v
 
 In case you're constantly changing avatars while the character itself should remain hidden, consider disabling `Auto Show On Modify` in the characters configuration menu; when disabled, you won't have to specify `visible:false` to change any parameters of the character while it's hidden.
 
-## I'd like to use backgrounds with a non-standard resolution (eg, 2048x1024), but they look cropped.
-
-Set `Reference Resolution` at the camera configuration menu (`Naninovel -> Configuration -> Camera`) equal to the backgrounds resolution. Also, make sure the background textures are imported with the [correct settings](https://docs.unity3d.com/Manual/class-TextureImporter) (eg, `Max Size` is high enough).
-
-## How to handle different aspect ratios of the target platforms?
-
-For standalone (PC, Mac, Linux) builds you can select the available aspect ratios in the [player settings](https://docs.unity3d.com/Manual/class-PlayerSettingsStandalone.html#Resolution); for web, consoles and mobiles you can't force a specific aspect ratio and have to adapt for the target devices instead. 
-
-Given the source textures (background sprites) of a specific resolution, the only options to "adapt" them for a different aspect ratio are: resize (will distort the image), add black bars or crop. The least noticeable option is to crop, obviously. Naninovel will automatically do the cropping, when `Auto Correct Ortho Size` is enabled in the camera configuration menu and display aspect ratio is different from the `Reference Resolution` aspect set in the same menu. The auto correction will ensure, that the user won't see any black bars or distortions, no matter which display or device is used to run the game.
-
-To manually handle the aspect ratio differences (eg, if you prefer to add black bars or resize the images instead of cropping), disable `Auto Correct Ortho Size` option in the camera configuration menu. You can then control orthographic size of the camera used by Naninovel with `CameraManager` [engine service](/guide/engine-services.md).
+Alternatively, check out [render actor to texture](/guide/characters.md#render-to-texture) feature.
 
 ## How to run a custom C# code from naninovel scripts?
 
