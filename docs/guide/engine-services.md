@@ -171,17 +171,3 @@ public class CustomInputManager : IInputManager
 }
 ```
 Now, when an input manager is requested via `Engine.GetService<IInputManager>()`, your custom implementation will be provided instead of the built-in `Naninovel.InputManager`.
-
-## Reset On Goto
-
-Most of the engine services are automatically reset (have `ResetService` method invoked) when processing [@goto] commands while `Reset On Goto` is enabled in state configuration. This allows preventing memory leaks between naninovel scripts by releasing the associated resources.
-
-In some cases, however, it may not be desired to reset a particular services on each [@goto]; eg, `ICustomVariableManager`, when reset, will also reset all the local variable values, which shouldn't happen when navigating over naninovel scripts.
-
-To exclude an engine service from automatic reset on goto commands, apply `[Naninovel.Commands.Goto.DontReset]` attribute to the service implementation. When the attribute is applied, service won't be reset automatically on goto, even when `Reset On Goto` is enabled in state configuration; it'll still be possible to manually reset the service via [@resetState] command or by invoking `ResetService` directly via C#. The attribute can be applied to both custom services and overridden built-in services.
-
-::: example
-You can find an example on using the "don't reset" attribute in [inventory example project on GitHub](https://github.com/Naninovel/Inventory).
-
-Specifically, the attribute is applied to "Inventory Manager" custom service, which is implemented in [InventoryManager.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryManager.cs) runtime script.
-:::
