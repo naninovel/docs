@@ -271,8 +271,8 @@ roll | Decimal | Local camera rotation by Z-axis in angle degrees (0.0 to 360.0 
 rotation | List&lt;Decimal&gt; | Local camera rotation over X,Y,Z-axes in angle degrees (0.0 to 360.0 or -180.0 to 180.0).
 zoom | Decimal | Relative camera zoom (orthographic size or field of view, depending on the render mode), in 0.0 (no zoom) to 1.0 (full zoom) range.
 ortho | Boolean | Whether the camera should render in orthographic (true) or perspective (false) mode.
-toggle | List&lt;String&gt; | Names of the components to toggle (enable if disabled and vice-versa). The components should be attached to the same game object as the camera.  This can be used to toggle [custom post-processing effects](/guide/special-effects.md#camera-effects).
-set | List&lt;Named&lt;Boolean&gt;&gt; | Names of the components to enable or disable. The components should be attached to the same game object as the camera.  This can be used to explicitly enable or disable [custom post-processing effects](/guide/special-effects.md#camera-effects).  Specified components enabled state will override effect of `toggle` parameter.
+toggle | List&lt;String&gt; | Names of the components to toggle (enable if disabled and vice-versa). The components should be attached to the same game object as the camera.  This can be used to toggle [custom post-processing effects](/guide/special-effects.md#camera-effects).  Use `*` to affect all the components attached to the camera object.
+set | List&lt;Named&lt;Boolean&gt;&gt; | Names of the components to enable or disable. The components should be attached to the same game object as the camera.  This can be used to explicitly enable or disable [custom post-processing effects](/guide/special-effects.md#camera-effects).  Specified components enabled state will override effect of `toggle` parameter.  Use `*` to affect all the components attached to the camera object.
 easing | String | Name of the easing function to use for the modification.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  When not specified, will use a default easing function set in the camera configuration settings.
 time | Decimal | Duration (in seconds) of the modification. Default value: 0.35 seconds.
 
@@ -300,6 +300,9 @@ time | Decimal | Duration (in seconds) of the modification. Default value: 0.35 
 
 ; Set `FancyCameraFilter` component enabled and `Bloom` disabled
 @camera set:FancyCameraFilter.true,Bloom.false
+
+; Disable all components attached to the camera object
+@camera set:*.false
 ```
 
 ## char
