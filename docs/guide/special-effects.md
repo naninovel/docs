@@ -364,7 +364,20 @@ And in case you want to explicitly enable or disable a component:
 
 — will enabled `BloomImageEffect` and `CameraNoise` components, while disabling `Sepia`.
 
-The state of the currently enabled (and disabled) custom camera components will be automatically saved and restored on game save-loading operations.
+To toggle, disable or enable all the components attached to the camera object, use `*` symbol.
+
+```nani
+; Toggle all components
+@camera toggle:*
+
+; Disable all components
+@camera set:*.false
+
+; Enable all components
+@camera set:*.true
+```
+
+The state of the currently enabled (and disabled) camera components will be automatically saved and restored on game save-loading operations.
 
 Check out the following video for example on adding a custom camera filter effect.
 
