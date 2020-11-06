@@ -53,6 +53,15 @@ First line.<br>Second line.
 
 Use [command inlining](/guide/naninovel-scripts.md#command-inlining).
 
+## Hot to run commands concurrently?
+
+Use `wait` parameter, eg:
+```nani
+; Printer will start fading out at the same time as the characters
+@hideChars wait:false
+@hidePrinter
+```
+
 ## How to make actors appear in front of each other (z-sorting)?
 
 Use positioning over z-axis, eg:
