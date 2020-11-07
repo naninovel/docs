@@ -9,14 +9,14 @@ Actors are represented by `IActor` interface and its derivatives:
 * `ITextPrinterActor`
 * `IChoiceHandlerActor`
 
-Each actor interface can have multiple implementations; e.g. character actors currently have four built-in implementations: sprite, diced sprite, generic and Live2D.
+Each actor interface can have multiple implementations; e.g. character actors currently have six built-in implementations: sprite, diced sprite, generic, layered, narrator and Live2D.
 
 Actor implementation can be selected in the configuration managers accessible via `Naninovel -> Configuration` context menu. You can both change default implementation used for all the actors or set specific implementation per actor. To change default implementation, use `Default Metadata` property and to set specific ones, use an `Implementation` drop-down list in actor's configuration. 
 
-![Default Actor Implementation](https://i.gyazo.com/b372520a15501dc9bc1e5f30f4c7f12d.png)
-![Actor Implementation](https://i.gyazo.com/3256f3aea99ea453859f67135a7187ee.png)
+![](https://i.gyazo.com/74625fa24b58362de15bb8e07753824d.png)
+![](https://i.gyazo.com/eeb42043eb9a841de003f8db848f1427.png)
 
-Implementation drop-down list contains all the types that implements specific actor interface. You can add your own custom implementations, and they'll also appear in the list. See `Naninovel/Runtime/Actor` scripts for a reference when creating your own actor implementation. Consider using `Naninovel.MonoBehaviourActor` built-in abstract actor implementation to fulfill most of the base interface requirements in case the actor is supposed to be spawned on scene.
+Implementation drop-down list contains all the types that implements specific actor interface. You can add your own custom implementations, and they'll also appear in the list. See `Naninovel/Runtime/Actor` scripts for a reference when creating your own actor implementation. Consider using `MonoBehaviourActor` built-in abstract actor implementation to fulfill most of the base interface requirements in case the actor is supposed to be spawned on scene.
 
 When creating custom actor implementations, make sure they have a compatible public constructor: 
 
