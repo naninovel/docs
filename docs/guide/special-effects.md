@@ -59,10 +59,11 @@ It's possible to start multiple effects of the same type by appending an ID deli
 ```
 
 When stopping or updating instanced effects, don't forget to specify the ID:
+
 ```nani
 ; Stop shaking `Yuko`, increase `Kohaku` amplitude
 @despawn ShakeCharacter#2
-@spawn ShakeCharacter#1 params:k,0,,,1
+@spawn ShakeCharacter#1 params:Kohaku,0,,,1
 ```
 
 You can use any string for ID (it can be a number like above, or something more meaningful, eg `@spawn ShakeCharacter#Kohaku`), just make sure it's unique among other IDs you're using with a given effect name.
