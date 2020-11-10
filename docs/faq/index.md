@@ -38,9 +38,15 @@ Remove `Skybox Material` in  `Window -> Rendering -> Lighting Settings` editor m
 
 When you remove the skybox, camera's background color will be used instead to fill the screen when no objects are visible. You can change that color (as well as other related settings) by creating a camera prefab and assigning it to `Custom Camera Prefab` property found inside `Naninovel -> Configuration -> Camera` menu. 
 
+## How to change a font?
+
+Built-in UIs bundled with Naninovel use a single default font. While you can easily specify additional fonts for the player to choose from (via `Font Options` property in the UI configuration menu), you'd probably like to change the default font as well.
+
+Font is an individual property of a [text component](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-Text.html); all the text components are part of specific UI prefabs. When [adding custom UIs](/guide/user-interface.md#adding-custom-ui), you're free to set any fonts you like; they'll be used when "Default" font option is selected by the player in the game settings menu. In order to change a font in the specific text component of a built-in UI, [modify it](/guide/user-interface.md#modifying-built-in-ui). 
+
 ## Why a background is cropped?
 
-Make sure aspect ratio of the background texture resolution is equal to the [reference resolution](/guide/backgrounds.html#reference-resolution) set in the camera configuration. Also, ensure the texture is imported with the [correct settings](https://docs.unity3d.com/Manual/class-TextureImporter) (eg, `Max Size` is high enough).
+Make sure aspect ratio of the background texture resolution is equal to the [reference resolution](/guide/backgrounds.md#reference-resolution) set in the camera configuration. Also, ensure the texture is imported with the [correct settings](https://docs.unity3d.com/Manual/class-TextureImporter) (eg, `Max Size` is high enough).
 
 ## How to add a line break to the message?
 
