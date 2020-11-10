@@ -30,7 +30,7 @@ Please read through the [getting started](/guide/getting-started.md) guide to ge
 
 ## How to customize the title (main) menu: add background, music, effects, change buttons, etc?
 
-For the UI part (changing/adding buttons or panel layout and style) use the [UI customization](/guide/user-interface.md#ui-customization) feature; for everything else set `Title Script` at the scripts configuration menu (`Naninovel -> Configuration -> Scripts`) and use script commands to set up the scene just like when writing a scenario. The title script will be automatically played when entering the title menu.
+For the UI part (changing/adding buttons or panel layout and style) [modify the built-in Title UI prefab](/guide/user-interface.md#modifying-built-in-ui); for everything else set `Title Script` at the scripts configuration menu (`Naninovel -> Configuration -> Scripts`) and use script commands to set up the scene just like when writing a scenario. The title script will be automatically played when entering the title menu. An example of the entire customization process is shown in the following video tutorial: [youtu.be/hqhfhXzQkdk](https://youtu.be/hqhfhXzQkdk).
 
 ## How to remove a sky background appearing by default in all the Unity scenes?
 
