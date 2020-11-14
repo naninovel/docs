@@ -48,7 +48,7 @@ When [camera](https://docs.unity3d.com/Manual/class-Camera.html) is rendering in
 
 While for standalone (PC, Mac, Linux) builds you can limit the available aspect ratios in the [player settings](https://docs.unity3d.com/Manual/class-PlayerSettingsStandalone.html#Resolution), on web, consoles and mobiles it's not possible and the applications have to adapt for the target devices instead. 
 
-Given the source background textures of a specific resolution, there are following options to adapt them for a different aspect ratio: resize (will distort the texture), add black bars or crop. When `Auto Correct Ortho Size` is enabled, Naninovel will automatically perform the least noticeable and distracting option — cropping, by modifying orthographic size of the camera. Auto correction will also handle relative actors positioning on scene, so that, for example, `pos:25` is always a quarter from the left screen border, no matter if the screen ratio is 4:3 or 21:9.
+Given the source background textures of a specific resolution, there are following options to adapt them for a different aspect ratio: resize (will distort the texture), add black bars or crop. When `Auto Correct Ortho Size` is enabled, Naninovel will automatically perform the least noticeable and distracting option — cropping, by modifying orthographic size of the camera.
 
 ::: tip
 Define reference resolution with your team before starting the work on the art assets (both characters and backgrounds). This way the artists will be able to author the assets with the correct dimensions and you won't have to edit them later.

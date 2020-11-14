@@ -247,7 +247,7 @@ For more information on the conditional expression format and available operator
 
 ## Title Script
 
-Title script is a special naninovel script assigned in script configuration menu. When assigned, it's automatically played when the title UI (main menu) is shown. Title script can be used to setup the title screen scene: background, music, effects, etc.
+Title script is a special naninovel script assigned in script configuration menu. When assigned, it's automatically played when the title UI (main menu) is shown. Title script can be used to set up the title screen scene: background, music, effects, etc.
 
 The script can also be used to invoke commands when player clicks "NEW GAME", "EXIT" or any of the save slots to load a game. Below is an example of a title script.
 
