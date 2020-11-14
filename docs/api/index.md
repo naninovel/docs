@@ -42,8 +42,8 @@ loop | boolean | Whether to loop the animation; make sure to set `wait` to false
 appearance | string | Appearances to set for the animated actors.
 transition | string | Type of the [transition effect](/guide/transition-effects.md) to use when animating appearance change (crossfade is used by default).
 visibility | string | Visibility status to set for the animated actors.
-posX | string | Position values over X-axis (in 0 to 100 range, in percents from the left border of the screen) to set for the animated actors.
-posY | string | Position values over Y-axis (in 0 to 100 range, in percents from the bottom border of the screen) to set for the animated actors.
+posX | string | Position values over X-axis (in 0 to 100 range, in percents from the left border of the scene) to set for the animated actors.
+posY | string | Position values over Y-axis (in 0 to 100 range, in percents from the bottom border of the scene) to set for the animated actors.
 posZ | string | Position values over Z-axis (in world space) to set for the animated actors; while in ortho mode, can only be used for sorting.
 rotation | string | Rotation values (over Z-axis) to set for the animated actors.
 scale | string | Scale (`x,y,z` or a single uniform value) to set for the animated actors.
@@ -116,7 +116,7 @@ Arranges specified characters by X-axis. When no parameters provided, will execu
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">characterPositions</span> | named decimal list | A collection of character ID to scene X-axis position (relative to the left screen border, in percents) named values. Position 0 relates to the left border and 100 to the right border of the screen; 50 is the center.
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">characterPositions</span> | named decimal list | A collection of character ID to scene X-axis position (relative to the left scene border, in percents) named values. Position 0 relates to the left border and 100 to the right border of the scene; 50 is the center.
 look | boolean | When performing auto-arrange, controls whether to also make the characters look at the scene origin (enabled by default).
 time | decimal | Duration (in seconds) of the arrangement animation. Default value: 0.35 seconds.
 
@@ -128,7 +128,7 @@ time | decimal | Duration (in seconds) of the arrangement animation. Default val
 @arrange
 
 ; Place character with ID `Jenna` 15%, `Felix` 50% and `Mia` 85% away
-; from the left border of the screen.
+; from the left border of the scene.
 @arrange Jenna.15,Felix.50,Mia.85
 ```
 
@@ -147,7 +147,7 @@ Backgrounds are handled a bit differently from characters to better accommodate 
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">appearanceAndTransition</span> | named string | Appearance (or [pose](/guide/backgrounds.md#poses)) to set for the modified background and type of a [transition effect](/guide/transition-effects.md) to use. When transition is not provided, a cross-fade effect will be used by default.
-pos | decimal list | Position (relative to the screen borders, in percents) to set for the modified actor. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the screen. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode.
+pos | decimal list | Position (relative to the scene borders, in percents) to set for the modified actor. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode.
 id | string | ID of the actor to modify; specify `*` to affect all visible actors.
 appearance | string | Appearance (or pose) to set for the modified actor.
 transition | string | Type of the [transition effect](/guide/transition-effects.md) to use (crossfade is used by default).
@@ -319,7 +319,7 @@ ID | Type | Description
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">idAndAppearance</span> | named string | ID of the character to modify (specify `*` to affect all visible characters) and an appearance (or [pose](/guide/characters.md#poses)) to set. When appearance is not provided, will use either a `Default` (is exists) or a random one.
 look | string | Look direction of the actor; supported values: left, right, center.
 avatar | string | Name (path) of the [avatar texture](/guide/characters.md#avatar-textures) to assign for the character. Use `none` to remove (un-assign) avatar texture from the character.
-pos | decimal list | Position (relative to the screen borders, in percents) to set for the modified actor. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the screen. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode.
+pos | decimal list | Position (relative to the scene borders, in percents) to set for the modified actor. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode.
 id | string | ID of the actor to modify; specify `*` to affect all visible actors.
 appearance | string | Appearance (or pose) to set for the modified actor.
 transition | string | Type of the [transition effect](/guide/transition-effects.md) to use (crossfade is used by default).
@@ -344,7 +344,7 @@ time | decimal | Duration (in seconds) of the modification. Default value: 0.35 
 @char Sora.Happy
 
 ; Same as above, but also positions the character 45% away from the left border
-; of the screen and 10% away from the bottom border; also makes him look to the left.
+; of the scene and 10% away from the bottom border; also makes him look to the left.
 @char Sora.Happy look:left pos:45,10
 
 ; Make Sora appear at the bottom-center and in front of Felix
@@ -984,7 +984,7 @@ ID | Type | Description
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">idAndAppearance</span> | named string | ID of the printer to modify and the appearance to set. When ID or appearance are not provided, will use default ones.
 default | boolean | Whether to make the printer the default one. Default printer will be subject of all the printer-related commands when `printer` parameter is not specified.
 hideOther | boolean | Whether to hide all the other printers.
-pos | decimal list | Position (relative to the screen borders, in percents) to set for the modified printer. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the screen.
+pos | decimal list | Position (relative to the scene borders, in percents) to set for the modified printer. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene.
 visible | boolean | Whether to show or hide the printer.
 time | decimal | Duration (in seconds) of the modification. Default value: 0.35 seconds.
 
@@ -996,7 +996,7 @@ time | decimal | Duration (in seconds) of the modification. Default value: 0.35 
 @printer Wide
 
 ; Will assign `Right` appearance to `Bubble` printer, make is default,
-; position at the center of the screen and won't hide other printers.
+; position at the center of the scene and won't hide other printers.
 @printer Bubble.Right pos:50,50 hideOther:false
 ```
 
@@ -1388,7 +1388,7 @@ Be aware, that this command searches for an existing actor with the provided ID 
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">idAndAppearance</span> | named string | ID of the actor to slide and (optionally) appearance to set.
-from | decimal list | Position in scene space to slide the actor from (slide start position). Described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the screen; Z-component (depth) is in world space. When not provided, will use current actor position in case it's visible and a random off-screen position otherwise (could slide-in from left or right borders).
+from | decimal list | Position in scene space to slide the actor from (slide start position). Described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene; Z-component (depth) is in world space. When not provided, will use current actor position in case it's visible and a random off-scene position otherwise (could slide-in from left or right borders).
 <span class="command-param-required" title="Required parameter: parameter should always be specified">to</span> | decimal list | Position in scene space to slide the actor to (slide finish position).
 visible | boolean | Change visibility status of the actor (show or hide). When not set and target actor is hidden, will still automatically show it.
 easing | string | Name of the easing function to use for the modifications. <br /><br /> Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic. <br /><br /> When not specified, will use a default easing function set in the actor's manager configuration settings.
@@ -1399,14 +1399,14 @@ time | decimal | Duration (in seconds) of the slide animation. Default value: 0.
 #### Example
 ```nani
 ; Given `Jenna` actor is not currently visible, reveal it with an `Angry` appearance
-; and slide to the center of the screen from either left or right border of the screen.
+; and slide to the center of the scene from either left or right border of the scene.
 @slide Jenna.Angry to:50
 
 ; Given `Sheba` actor is currently visible,
-; hide and slide it out of the screen over the left border.
+; hide and slide it out of the scene over the left border.
 @slide Sheba to:-10 visible:false
 
-; Slide `Mia` actor from left-center side of the screen to the right-bottom
+; Slide `Mia` actor from left-center side of the scene to the right-bottom
 ; over 5 seconds using `EaseOutBounce` animation easing.
 @slide Sheba from:15,50 to:85,0 time:5 easing:EaseOutBounce
 ```

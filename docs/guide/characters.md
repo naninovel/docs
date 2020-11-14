@@ -24,7 +24,7 @@ In naninovel scripts, characters are mostly controlled with [@char] command:
 @char Sora.Happy
 
 ; Same as above, but also positions the character 45% away from the left border
-; of the screen and 10% away from the bottom border; also makes him look to the left.
+; of the scene and 10% away from the bottom border; also makes him look to the left.
 @char Sora.Happy look:left pos:45,10
 ```
 
