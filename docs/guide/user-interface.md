@@ -173,3 +173,7 @@ Conditional block commands (if, else, elseif, endif) are not supported in the sc
 :::
 
 When an existing naninovel script is selected via dropdown list, the script text area will be ignored and selected naninovel script will be played **instead** of the currently played one; in case you wish to additively execute some commands without interrupting the currently played script, use the script text area.
+
+::: example
+Find an example on using `Play Script` component in the [UI example project](https://github.com/Naninovel/CustomUIExample); the component is used on "CloseButton" game object placed inside "Prefabs/Calendar" custom UI prefab. You can [clone the repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) with a Git client or [download it as a zip archive](https://github.com/Naninovel/CustomUIExample/archive/master.zip). Be aware, that Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
+:::
