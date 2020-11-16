@@ -10,7 +10,7 @@ Notice, that all the configuration menus are supporting [Unity's presets feature
 It's possible to modify configuration objects at runtime, add new custom configurations and change the way the objects are accessed at runtime (eg, read configuration from JSON files stored on a remote host); see [custom configuration](/guide/custom-configuration.md) guide for more information.
 
 ::: note
-This configuration reference is valid for [Naninovel v1.14](https://github.com/Naninovel/Documentation/releases).
+This configuration reference is valid for [Naninovel v1.15](https://github.com/Naninovel/Documentation/releases).
 :::
 
 ## Audio
@@ -62,14 +62,13 @@ Auto Show On Modify | True | Whether to automatically reveal (show) an actor whe
 
 Property | Default Value | Description
 --- | --- | ---
-Reference Resolution | (1920, 1080) | The reference resolution is used to evaluate proper rendering dimensions, so that sprite assets (like backgrounds and characters) are correctly positioned on scene. As a rule of thumb, set this equal to the resolution of the background textures you make for the game.
-Auto Correct Ortho Size | True | Whether to automatically correct camera's orthographic size based on the current display aspect ratio to ensure the backgrounds and characters are positioned correctly.
-Default Ortho Size | 5.35 | The orthographic size to set by default when auto correction is disabled.
-Initial Position | (0.0, 0.0, -10.0) | Initial world position of the camera.
-Orthographic | True | Whether the camera should render in orthographic (enabled) or perspective (disabled) mode by default. Has no effect when a custom camera prefab is assigned.
+Reference Resolution | (1920, 1080) | The reference resolution is used to evaluate proper rendering dimensions, so that actors are correctly positioned on scene. As a rule of thumb, set this equal to the resolution of the background textures you make for the game.
+Reference PPU | 100 | How many pixels correspond to a scene unit. Reducing this will make all the actors appear smaller and vice-versa. Default value of 100 is recommended for most cases.
+Match Screen Width | False | Whether reference scene rectangle width should be matched against screen width. When enabled, relative (scene) position evaluation will use screen border as the origin; otherwise reference resolution is used.
+Initial Position | (0.0, 0.0, -10.0) | Initial world position of the managed cameras.
 Custom Camera Prefab | Null | A prefab with a camera component to use for rendering. Will use a default one when not specified. In case you wish to set some camera properties (background color, FOV, HDR, etc) or add post-processing scripts, create a prefab with the desired camera setup and assign the prefab to this field.
 Use UI Camera | True | Whether to render the UI in a separate camera. This will allow to use individual configuration for the main and UI cameras and prevent post-processing (image) effects from affecting the UI at the cost of a slight rendering overhead.
-Custom UI Camera Prefab | Null | A prefab with a camera component to use for UI rendering. Will use a default one when not specified. Has no effect when `UseUICamera` is disabled
+Custom UI Camera Prefab | Null | A prefab with a camera component to use for UI rendering. Will use a default one when not specified. Has no effect when `Use UI Camera` is disabled
 Default Easing | Linear | Easing function to use by default for all the camera modifications (changing zoom, position, rotation, etc).
 Thumbnail Resolution | (240, 140) | The resolution in which thumbnails to preview game save slots will be captured.
 Hide UI In Thumbnails | False | Whether to ignore UI layer when capturing thumbnails.
