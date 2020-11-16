@@ -46,7 +46,9 @@ Font is an individual property of a [text component](https://docs.unity3d.com/Pa
 
 ## Why a background is cropped?
 
-Make sure aspect ratio of the background texture resolution is equal to the [reference resolution](/guide/backgrounds.md#reference-resolution) set in the camera configuration. Also, ensure the texture is imported with the [correct settings](https://docs.unity3d.com/Manual/class-TextureImporter) (eg, `Max Size` is high enough).
+Make sure aspect ratio of the background texture resolution is equal to the reference resolution set in the camera configuration. Also, ensure the texture is imported with the [correct settings](https://docs.unity3d.com/Manual/class-TextureImporter) (eg, `Max Size` is high enough).
+
+When screen aspect ratio is different from the reference resolution ratio, background actor will attempt to match by default, which could cause cropping; see [match mode guide](/guide/backgrounds.md#match-mode) for more information.
 
 ## How to add a line break to the message?
 
