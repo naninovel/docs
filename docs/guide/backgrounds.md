@@ -56,6 +56,10 @@ Following match modes can be set for each background actor (except of generic im
  Fit | The whole background area will always remain visible, but black bars will appear when the aspect ratios are different.
  Custom | Allows matching either width or height with a custom ratio. The ratio is controlled with `Custom Match Ratio` property: minimum (0) value will match width and ignore height, maximum (1) — vice-versa.
  Disable | Don't perform any matching.
+ 
+ ::: tip
+ In case you wish to implement a similar matching feature for a generic or custom background see the [scale to screen example](https://forum.naninovel.com/viewtopic.php?f=8&t=107&p=335#p335) on the forum.
+ :::
 
 ## Poses
 
