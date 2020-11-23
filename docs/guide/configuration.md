@@ -82,6 +82,7 @@ Hide UI In Thumbnails | False | Whether to ignore UI layer when capturing thumbn
 Property | Default Value | Description
 --- | --- | ---
 Auto Arrange On Add | True | Whether to evenly distribute characters by X-axis when adding a new character without a specified position.
+Arrange Range | (0.0, 1.0) | Start (x) and end (y) positions (in 0.0 to 1.0 range) relative to scene width representing the range over which the characters are arranged.
 Default Metadata | Object Ref | Metadata to use by default when creating character actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating character actors with specific IDs.
 Avatar Loader | Character Avatars- (Addressable, Project) | Configuration of the resource loader used with character avatar texture resources.
