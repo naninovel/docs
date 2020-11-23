@@ -1,6 +1,6 @@
 # Unlockable Items
 
-The unlockables feature allows to manage items, which have a persistent state of being either locked or unlocked. You can use it in a variety of ways, for example to represent slots in a CG or movie gallery, achievements, tips and other systems where some entity should be able to become unlocked or activated when player satisfies a condition.
+The unlockables feature allows managing items, which have a persistent state of being either locked or unlocked. You can use it in a variety of ways, for example to represent slots in a CG or movie gallery, achievements, tips and other systems where some entity should be able to become unlocked or activated when player satisfies a condition.
 
 Each unlockable item is represented by a string identifier and boolean value, indicating whether the item is unlocked. In naninovel scripts, use [@unlock] and [@lock] commands to respectively unlock and lock an item with a specific ID, eg:
 
@@ -19,13 +19,13 @@ To bind an actual [GameObject](https://docs.unity3d.com/Manual/class-GameObject.
 
 ![](https://i.gyazo.com/9e92d5296e5f07d68ce6122ccb1da34a.png)
 
-Set the item's ID to the `Unlockable Item Id` field and bind an command that should be performed when the items is unlocked. The illustration above, for example, makes the GameObject active when `SecretAchievement` is unlocked and vice versa.
+Set the item's ID to the `Unlockable Item Id` field and bind a command that should be performed when the item is unlocked. The illustration above, for example, makes the GameObject active when `SecretAchievement` is unlocked and vice versa.
 
 In C# you can access the unlockable items using `UnlockableManager` [engine service](/guide/engine-services.md).
 
 ## Unlockable Resources
 
-Under the unlockables configuration menu (`Naninovel -> Configuration -> Unlockables`), you can find resources manager, that allows to store arbitrary assets to be used with the unlockables feature.
+Under the unlockables configuration menu (`Naninovel -> Configuration -> Unlockables`), you can find resources manager, that allows storing arbitrary assets to be used with the unlockables feature.
 
 ![](https://i.gyazo.com/17fa198861ed72de3ab1f9dc6b02b3d8.png)
 
@@ -78,7 +78,6 @@ Tip1ID: Tip 1 Title | Tip 1 Category | Tip 1 Description
 Tip2ID: Tip 2 Title || Tip 2 Description
 Tip3ID: Tip 3 Title 
 Tip4ID: Tip 4 Title | Tip 4 Category |
-...
 ```
 
 You can use [rich text tags](https://docs.unity3d.com/Manual/StyledText.html) and insert line breaks (`\n`) inside the description section of the tip records.
