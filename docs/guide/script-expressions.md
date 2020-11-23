@@ -71,6 +71,7 @@ Random (*System.Double* min, *System.Double* max) | Return a random float number
 Random (*System.Int32* min, *System.Int32* max) | Return a random integer number between min [inclusive] and max [inclusive]. | `Random(0, 100)`
 Random (*System.String[]* args) | Return a string chosen from one of the provided strings. | `Random("Foo", "Bar", "Foobar")`
 CalculateProgress () | Return a float number in 0.0 to 1.0 range, representing how many unique commands were ever executed compared to the total number of commands in all the available naninovel scripts. 1.0 means the player had `read through` or `seen` all the available game content. Make sure to enable `Count Total Commands` in the script configuration menu before using this function. | `CalculateProgress()`
+IsUnlocked (*System.String* unlockableId) | Checks whether an unlockable item with the provided ID is currently unlocked. | `IsUnlocked("Tips/MyTip")`
 
 </div>
 
