@@ -351,6 +351,14 @@ Check the following video tutorial for example on setting up a 3D rigged model a
 Unity's `Animator` component could fail to register `SetTrigger` when the game object is enabled/disabled in the same frame; in case you use `GameObject.SetActive` to handle visibility changes (as it's shown in the above tutorial), consider enabling/disabling the child objects with renderers instead.
 :::
 
+## Video Characters
+
+Video characters use looped [video clip](https://docs.unity3d.com/Manual/class-VideoClip) assets to represent the appearance. 
+
+For the supported video formats for each platform see [Unity docs for video sources](https://docs.unity3d.com/Manual/VideoSources-FileCompatibility.html).
+
+When using video with an alpha channel (transparency), see the [guide on the supported formats](https://docs.unity3d.com/Manual/VideoTransparency.html).
+
 ## Live2D Characters
 
 Live2D character implementation uses assets created with [Live2D Cubism](https://www.live2d.com) 2D modeling and animation software. 

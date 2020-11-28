@@ -110,11 +110,11 @@ Diced background is very similar to diced character implementation; see the [dic
 
 ## Video Backgrounds
 
-Video backgrounds use [video clip](https://docs.unity3d.com/Manual/class-VideoClip) assets to represent the appearance. 
-
-Video backgrounds can only be managed by editor GUI.
+Video backgrounds use looped [video clip](https://docs.unity3d.com/Manual/class-VideoClip) assets to represent the appearance. 
 
 For the supported video formats for each platform see [Unity docs for video sources](https://docs.unity3d.com/Manual/VideoSources-FileCompatibility.html).
+
+When using video with an alpha channel (transparency), see the [guide on the supported formats](https://docs.unity3d.com/Manual/VideoTransparency.html).
 
 For the reference, here is the detailed video parameters of the background video clip that is used in our WebGL demo:
 
