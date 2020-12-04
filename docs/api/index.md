@@ -984,8 +984,18 @@ ID | Type | Description
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">idAndAppearance</span> | named string | ID of the printer to modify and the appearance to set. When ID or appearance are not provided, will use default ones.
 default | boolean | Whether to make the printer the default one. Default printer will be subject of all the printer-related commands when `printer` parameter is not specified.
 hideOther | boolean | Whether to hide all the other printers.
-pos | decimal list | Position (relative to the scene borders, in percents) to set for the modified printer. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene.
-visible | boolean | Whether to show or hide the printer.
+pos | decimal list | Position (relative to the scene borders, in percents) to set for the modified actor. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode.
+id | string | ID of the actor to modify; specify `*` to affect all visible actors.
+appearance | string | Appearance (or pose) to set for the modified actor.
+transition | string | Type of the [transition effect](/guide/transition-effects.md) to use (crossfade is used by default).
+params | decimal list | Parameters of the transition effect.
+dissolve | string | Path to the [custom dissolve](/guide/transition-effects.md#custom-transition-effects) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode.
+visible | boolean | Visibility status to set for the modified actor.
+position | decimal list | Position (in world space) to set for the modified actor. Use Z-component (third member) to move (sort) by depth while in ortho mode.
+rotation | decimal list | Rotation to set for the modified actor.
+scale | decimal list | Scale to set for the modified actor.
+tint | string | Tint color to set for the modified actor. <br /><br /> Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF. <br /><br /> Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta.
+easing | string | Name of the easing function to use for the modification. <br /><br /> Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic. <br /><br /> When not specified, will use a default easing function set in the actor's manager configuration settings.
 time | decimal | Duration (in seconds) of the modification. Default value: 0.35 seconds.
 
 </div>
