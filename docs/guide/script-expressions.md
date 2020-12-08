@@ -1,4 +1,4 @@
-﻿# Script Expressions
+# Script Expressions
 
 When writing naninovel scripts, you can inject expression constructs to command parameter values and generic text lines using curly braces `{}`:
 
