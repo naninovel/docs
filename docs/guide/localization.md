@@ -103,6 +103,8 @@ You can find an example localization setup in the [demo project](/guide/getting-
 
 ::: tip
 In case you're looking for an option to compile all the project scenario script and managed text localizable data into a single spreadsheet (eg, to share the text with a translation agency or editors for proofreading), check out [spreadsheet extension](/guide/spreadsheet).
+
+![](https://i.gyazo.com/e8b46fc74a5f633bdce9ec578b3ddf94.png)
 :::
 
 ## UI Localization
