@@ -36,6 +36,12 @@ To add a custom UI or modify (disable) a built-in one, use UI resources manager 
 
 When the engine is initializing it'll instantiate all the UI prefabs assigned in the resources manager.
 
+::: note
+Some features (eg, [UI toggling](/guide/user-interface.md#ui-toggling)) require the UIs to be rendered in `Screen Space - Camera` mode. For best compatibility, make sure your custom UIs have the correct render mode selected and render camera field is empty (UI manager will assign the camera automatically). 
+
+![](https://i.gyazo.com/d62bed3ba0c85972b12e759cc7b44c91.png)
+:::
+
 To show or hide any of the UIs listed in the resources manager use [@showUI] and [@hideUI] commands respectively.
 
 ### Adding Custom UI
