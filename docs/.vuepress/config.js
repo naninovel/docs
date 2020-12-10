@@ -197,6 +197,7 @@ function getGuideSidebar (groupA, groupB, groupC) {
                 'bolt',
                 'adventure-creator',
                 'inventory',
+                'spreadsheet',
                 'unitask'
             ]
         }

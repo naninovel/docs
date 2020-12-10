@@ -101,6 +101,10 @@ By default, the generated documents will contain the text to translate taken fro
 You can find an example localization setup in the [demo project](/guide/getting-started.md#demo-project). Feel free to use it as a reference in case having issues setting up localization in your own project.
 :::
 
+::: tip
+In case you're looking for an option to compile all the project scenario script and managed text localizable data into a single spreadsheet (eg, to share the text with a translation agency or editors for proofreading), check out [spreadsheet extension](/guide/spreadsheet).
+:::
+
 ## UI Localization
 
 To localize both custom and built-in UIs, use [managed text provider](/guide/managed-text.md#managed-text-provider) component. It can also be used to localize any other custom game objects (prefabs). For more information on how to use managed text records and localize them, refer to the managed text guide.
