@@ -28,7 +28,13 @@ The resources localization scheme described above works with all the resource ty
 
 ![Localization Tool](https://i.gyazo.com/5c6b023cbf4617f44102593f13131571.png)
 
-First, select path to the locale folder where to store the generated localization resources. Make sure you've selected an actual locale folder (eg, `Resources/Naninovel/Localization/ja-JP`) and not just the *localization resources root*. Label under the property field will indicate when a valid output locale folder is selected displaying name of the selected localization target.
+First, select path to the locale folder where to store the generated localization resources. Make sure you've selected an actual locale folder (eg, `Resources/Naninovel/Localization/ja-JP`). Label under the property field will indicate when a valid output locale folder is selected displaying name of the selected localization target.
+
+::: tip
+It's possible to generate resources for all the available locales in the project at once; select *localization resources root* directory instead of a specific locale folder and continue as usual. The tool will iterate the subfolders of the selected directory and generate resources for each of them.
+
+![](https://i.gyazo.com/4f0a6373755f0e122958f1f98de13013.png)
+:::
 
 Enabling "Try update" property will attempt to preserve any currently existing localization resources; when disabled all the existing localization resources at the specified path will be lost.
 
