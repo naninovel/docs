@@ -179,11 +179,11 @@ time | decimal | Duration (in seconds) of the modification. Default value: 0.35 
 @sfx ExplosionSound volume:0.1
 @back id:ExplosionSprite scale:0.3 pos:55,60 time:0 isVisible:false
 @back id:ExplosionSprite
-@fx ShakeBackground params:,1
+@spawn ShakeBackground params:,1
 @hide ExplosionSprite
 @sfx ExplosionSound volume:1.5
 @back id:ExplosionSprite pos:65 scale:1
-@fx ShakeBackground params:,3
+@spawn ShakeBackground params:,3
 @hide ExplosionSprite
 ```
 
@@ -376,7 +376,7 @@ handler | string | ID of the choice handler to add choice for. Will use a defaul
 goto | named string | Path to go when the choice is selected by user; see [@goto] command for the path format.
 gosub | named string | Path to a subroutine to go when the choice is selected by user; see [@gosub] command for the path format. When `goto` is assigned this parameter will be ignored.
 set | string | Set expression to execute when the choice is selected by user; see [@set] command for syntax reference.
-do | string list | Script commands to execute when the choice is selected by user; don't forget to escape commas inside list values to prevent them being treated as delimiters. The commands will be invoked in order after `set`, `goto` and `gosub` are handled (if assigned).
+do | string list | Script commands to execute when the choice is selected by user. Escape commas inside list values to prevent them being treated as delimiters. The commands will be invoked in order after `set`, `goto` and `gosub` are handled (if assigned).
 play | boolean | Whether to automatically continue playing script from the next line, when neither `goto` nor `gosub` parameters are specified. Has no effect in case the script is already playing when the choice is processed.
 show | boolean | Whether to also show choice handler the choice is added for; enabled by default.
 time | decimal | Duration (in seconds) of the fade-in (reveal) animation. Default value: 0.35 seconds.
@@ -886,7 +886,7 @@ Activates/disables camera look mode, when player can offset the main camera with
 
 ID | Type | Description
 --- | --- | ---
-enable | boolean | Whether to enable or disable the camera look mode. Default: true.
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">enable</span> | boolean | Whether to enable or disable the camera look mode. Default: true.
 zone | decimal list | A bound box with X,Y sizes in units from the initial camera position, describing how far the camera can be moved. Default: 5,3.
 speed | decimal list | Camera movement speed (sensitivity) by X,Y axes. Default: 1.5,1.
 gravity | boolean | Whether to automatically move camera to the initial position when the look input is not active (eg, mouse is not moving or analog stick is in default position). Default: false.
@@ -901,9 +901,11 @@ gravity | boolean | Whether to automatically move camera to the initial position
 ; Activate camera look mode with custom parameters
 @look zone:6.5,4 speed:3,2.5 gravity:true
 
-; Disable camera look mode and reset camera offset
-@look enable:false
-@camera offset:0,0
+; Disable look mode and instantly reset the offset
+@look false
+
+; Disable look, but reset gradually, with 0.25 speed
+@look false gravity:true speed:0.25
 ```
 
 ## movie
@@ -1459,14 +1461,14 @@ The UI will be hidden and user input blocked while the transition is in progress
 ; Transition Felix on sunny day with Jenna on rainy day
 @char Felix
 @back SunnyDay
-@fx SunShafts
+@spawn SunShafts
 @startTrans
 ; The following modifications won't be visible until we finish the transition
 @hideChars time:0
 @char Jenna time:0
 @back RainyDay time:0
-@stopFx SunShafts params:0
-@fx Rain params:,0
+@despawn SunShafts params:0
+@spawn Rain params:,0
 ; Transition the initially captured scene to the new one with `DropFade` effect over 3 seconds
 @finishTrans DropFade time:3
 ```
@@ -1642,13 +1644,14 @@ Holds script execution until the specified wait condition.
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">waitMode</span> | string | Wait conditions:<br /> - `i` user press continue or skip input key;<br /> - `0.0` timer (seconds);<br /> - `i0.0` timer, that is skip-able by continue or skip input keys.
+do | string list | Script commands to execute when the wait is over. Escape commas inside list values to prevent them being treated as delimiters.
 
 </div>
 
 #### Example
 ```nani
 ; "ThunderSound" SFX will play 0.5 seconds after the shake background effect finishes.
-@fx ShakeBackground
+@spawn ShakeBackground
 @wait 0.5
 @sfx ThunderSound
 
@@ -1657,9 +1660,15 @@ Lorem ipsum[wait i] dolor sit amet.
 ; You can also use the following shortcut (@i command) for this wait mode.
 Lorem ipsum[i] dolor sit amet.
 
-; Start an SFX, print a message and wait for a skip-able 5 seconds delay, then stop the SFX.
+; Start a looped SFX, print a message and wait for a skippable 5 seconds delay,
+; then stop the SFX.
 @sfx Noise loop:true
 Jeez, what a disgusting noise. Shut it down![wait i5][skipInput]
 @stopSfx Noise
+
+; The text is printed without delay, as the `wait` command is not awaited (wait:false).
+; The thunder effects are played after a random delay of 3 to 8 seconds.
+@wait {Random(3,8)} do:"@sfx ThunderSound, @spawn ShakeBackground params:\,1" wait:false
+The thunder might go off any second...
 ```
 
