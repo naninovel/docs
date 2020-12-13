@@ -232,7 +232,7 @@ time | decimal | Duration (in seconds) of the modification. Default value: 0.35 
 Adds a line break to a text printer.
 
 #### Remarks
-Consider using &lt;br&gt; tag instead with [TMPro printers](/guide/text-printers.md#textmesh-pro).
+Consider using `<br>` tag instead with [TMPro printers](/guide/text-printers.md#textmesh-pro).
 
 #### Parameters
 
@@ -583,8 +583,8 @@ You are victorious!
 ...
 
 # Room
-@print "It's too early, I should visit this place when it's dark." if:time&lt;21&amp;&amp;time&gt;6
-@print "I can sense an ominous presence here!" if:time&gt;21&amp;&amp;time&lt;6
+@print "It's too early, I should visit this place when it's dark." if:time<21&&time>6
+@print "I can sense an ominous presence here!" if:time>21&&time<6
 @return
 ```
 
@@ -1199,7 +1199,7 @@ ID | Type | Description
 # EnlargeLoop
 @char Misaki.Default scale:{scale}
 @set scale=scale+0.1
-@goto .EnlargeLoop if:scale&lt;1
+@goto .EnlargeLoop if:scale<1
 
 ; ..and generic text lines
 @set name="Dr. Stein";drink="Dr. Pepper"
@@ -1562,7 +1562,7 @@ You can also use rich text tags inside text messages to apply the styles selecti
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">textStyles</span> | string list | Text formatting tags to apply. Angle brackets should be omitted, eg use `b` for &lt;b&gt; and `size=100` for &lt;size=100&gt;. Use `default` keyword to reset the style.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">textStyles</span> | string list | Text formatting tags to apply. Angle brackets should be omitted, eg use `b` for `<b>` and `size=100` for `<size=100>`. Use `default` keyword to reset the style.
 printer | string | ID of the printer actor to use. Will use a default one when not provided.
 
 </div>
@@ -1578,7 +1578,7 @@ Cras ut nisi eget ex viverra egestas in nec magna.
 Consectetur adipiscing elit.
 
 ; Print starting part of the sentence normally, but the last one in bold.
-Lorem ipsum sit amet. &lt;b&gt;Consectetur adipiscing elit.&lt;/b&gt;
+Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 ```
 
 ## title
