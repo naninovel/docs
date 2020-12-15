@@ -68,30 +68,13 @@ Yuko: Все известные астероиды имеют прямое дв�
 You **should not translate character IDs** (or any other actor IDs). If you do so, some features (eg, character highlight and lip sync) will break. In case you wish to translate author names displayed in text printers, use [display names](/guide/characters.md#display-names) feature instead.
 :::
 
-If you have state rollback feature enabled (set in the state configuration menu), it's possible to break the translated content into multiple lines and/or modify inlined commands:
-
-```nani
-# f63f03ea
-; Yuko: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ut ultricies enim, id venenatis arcu.[i] Nullam rhoncus eros eu ante vulputate tempus.
-Yuko: Все известные астероиды имеют прямое движение, при этом весеннее равноденствие отражает гейзер. Уравнение времени однократно.
-Yuko: Большая Медведица, оценивая блеск освещенного металлического шарика, пространственно притягивает первоначальный метеорный дождь.
-```
-
-Otherwise, you're expected to include all the inlined commands present in the source statement to the translation, preserving the order and content of the commands:
+You're expected to include all the inlined commands present in the source statement to the translation, preserving the order and content of the commands:
 
 ```nani
 # b53b395d
 ; Kohaku: Qui ante molestie sit tempor felis.[br 2][char Kohaku.Casual/Angry][style #ff0000,bold,45]Adipiscing elit?[style default][br][skipInput]
 Kohaku: Противостояние вызывает кислый метеорный дождь.[br 2][char Kohaku.Casual/Angry][style #ff0000,bold,45]Меандр разрушаем?[style default][br][skipInput]
 ```
-
-::: warn
-When state rollback is disabled and command count in the localized content doesn't exactly match the source, changing locale while the script is played could mutate the state unpredictably or make it impossible to continue the playback. Warnings will be logged when such localization scripts are detected.
-:::
-
-::: tip
-In case you don't want to let the player use rollback, remove `Rollback` binding from the input configuration menu. This will preserve all the associated engine capabilities (eg, variable localized content, rewind via visual editor and developer console, etc), while preventing the player from accessing the feature.
-:::
 
 Total word count contained in the generated localization documents (excluding the hash lines) is shown in the localization tool window when the generation procedure is finished.
 
