@@ -94,5 +94,5 @@ Managed text localization process resemble the one for naninovel scripts:
 有关如何使用本地化实用程序的更多信息，请参见[本地化](/zh/guide/localization.md) 。
 
  ::: example
- 可以参考本地化示例（包含托管文本）[示例工程](/zh/guide/getting-started.md#Demo-工程示例)。 如果你在自己的项目中遇到问题，请用做参考。
+ 可以参考本地化示例（包含托管文本）[演示项目](/zh/guide/getting-started.md#演示项目)。 如果你在自己的项目中遇到问题，请用做参考。
 :::

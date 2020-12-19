@@ -7,7 +7,7 @@
 
 ## 安装
 
-下载并导入Bolt资源到你的Naninovel工程，**推荐版本Bolt v2**，因为之前版本
+下载并导入Bolt资源到你的Naninovel项目，**推荐版本Bolt v2**，因为之前版本
 不支持在AOT（预编译）平台下的泛型（在Naninovel中的核心API中则大量使用了泛型）。
 
 现在我们需要将Naninovel的API开放给Bolt，通过`Tools/Bolt/Extractor...`打开提取工具：

@@ -11,7 +11,7 @@
 注意，你不用为*source locale*（源语言环境）在*localization resources root*
 （本地化资源根目录）内创建子文件夹。默认所有在此之外的资源都属于*source locale*（源语言环境）范畴。
 
-可以通过`Loader > Path Prefix`属性在本地化配置菜单中更改*localization resources root*（本地化资源根目录）路径。注意，为"Resources"文件夹（而非"Assets"）的相对路径。资源文件夹由Unity 以[特殊方式](https://docs.unity3d.com/Manual/LoadingResourcesatRuntime.html) 处理。你可以在工程里任意位置放多个"Resources"文件夹来达到管理资源的目的。
+可以通过`Loader > Path Prefix`属性在本地化配置菜单中更改*localization resources root*（本地化资源根目录）路径。注意，为"Resources"文件夹（而非"Assets"）的相对路径。资源文件夹由Unity 以[特殊方式](https://docs.unity3d.com/Manual/LoadingResourcesatRuntime.html) 处理。你可以在项目里任意位置放多个"Resources"文件夹来达到管理资源的目的。
 
 您可以设置在玩家首次运行游戏时默认选择的语言环境，通过设置本地化配置菜单中`Default Locale`属性。如果未指定该属性，则默认情况下，游戏将在*source locale*（源语言环境）中启动。
 
@@ -87,5 +87,5 @@ Kohaku: Противостояние вызывает кислый метеор�
 默认情况下，生成的文档将包含从源naninovel脚本获取的待翻译文本。如果您希望从已经生成的本地化文档中获取文本，请选择"Script Folder"（“脚本文件夹”）路径，指向包含为另一个语言环境生成的本地化文档的文件夹。例如，假设您的来源语言环境是西班牙语。默认情况下，本地化文档将包含西班牙语的源文本。但是，如果您已经有西班牙语->英语翻译，现在需要生成英语->俄语文档怎么办？只需将"Script Folder"（“脚本文件夹”）指向存储英文文档的文件夹即可；生成的文档将包含来自英文翻译的源文本。
 
 ::: example
-您可以在[演示项目](/zh/guide/getting-started.md#Demo-工程示例) 中找到示例本地化设置。如果在自己的项目中设置本地化时遇到问题，请将其用作参考。
+您可以在[演示项目](/zh/guide/getting-started.md#演示项目) 中找到示例本地化设置。如果在自己的项目中设置本地化时遇到问题，请将其用作参考。
 :::

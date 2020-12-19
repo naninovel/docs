@@ -1,7 +1,7 @@
 # 介绍
 
 ::: warn
-這是文檔的翻譯版本。 它可能是不完整和過時的。 對於當前版本[切換到英語](/guide/)。
+这是文档的翻译版本。它可能是不完整或过时的。对于当前版本[切换到英文版](/guide/)。
 :::
 
 Naninovel是 [Unity引擎](https://unity3d.com) 的扩展。包含C#框架，以及编辑器程序，用以开发[VN视觉小说类游戏](https://en.wikipedia.org/wiki/Visual_novel).
@@ -9,12 +9,12 @@ Naninovel是 [Unity引擎](https://unity3d.com) 的扩展。包含C#框架，以
 [!!lRxIKDU9z4k]
 
 ::: note
-虽然Naninovel不限制你在Unity中的任何功能实现，但有部分要求（如支持unity版本，项目配置，目标平台）来确保内置功能的正常工作。详情参考[兼容性页](/zh/guide/compatibility.md) 
+尽管Naninovel不会限制你想用Unity实现什么，但有部分前提条件（如支持unity版本，项目配置，目标平台）来确保Naninovel内置功能的正常工作。详情参考[兼容性页](/zh/guide/compatibility.md) 
 :::
 
-确保你第一次使用时阅读。[开始指南](/zh/guide/getting-started.md)
+确保你第一次使用时阅读 [快速上手](/zh/guide/getting-started.md)。
 
-如果你咋查找某个问题，尝试使用本站上方的搜索栏；或者查阅 [FAQ](/zh/faq/), 这里有一些我们已经回答过的常见问题。所有可用脚本命令，支持参数，已经可用示例都列举在 [API参考](/zh/api/)。如果找不到所需问题也可以直接联系技术支持。 [联系支持](/zh/support/#开发支持) 。
+如果你想查找某个问题，尝试使用本站上方的搜索栏；或者查阅 [常问问题](/zh/faq/), 这里有一些我们已经回答过的常见问题。所有可用脚本命令，支持参数，已经可用示例都列举在 [API参考](/zh/api/)。如果找不到所需问题也可以直接联系[技术支持](/zh/support/#开发支持) 。
 
 ## 特点
 
@@ -51,7 +51,7 @@ Naninovel是 [Unity引擎](https://unity3d.com) 的扩展。包含C#框架，以
 * [过渡效果](/zh/guide/transition-effects.md)
 * [透视相机及漫游](https://youtu.be/rC6C9mA7Szw)
 * [特殊效果](/zh/guide/special-effects.md)
-* [(BGM) 背景音乐](/zh/guide/audio.md#背景音乐)
+* [(BGM)背景音乐](/zh/guide/audio.md#背景音乐)
 * [(SFX)音效](/zh/guide/audio.md#音效)
 * [相机动画](/zh/api/#camera)
 * [人声和自动人声](/zh/guide/voicing.md)
@@ -61,7 +61,7 @@ Naninovel是 [Unity引擎](https://unity3d.com) 的扩展。包含C#框架，以
 * [状态回溯](https://youtu.be/HJnOoUrqHis)
 * [脚本表达式](/zh/guide/script-expressions.md)
 * [游戏内输入](/zh/api/#input)
-* [C条件脚本流 ](/zh/api/#if)
+* [条件判断](/zh/api/#if)
 * [读取保存系统](/zh/guide/save-load-system.md)
 * [动态资源管理](https://youtu.be/cFikLjfeKyc)
 * [游戏设置](/zh/guide/game-settings.md)
@@ -78,7 +78,7 @@ Naninovel是 [Unity引擎](https://unity3d.com) 的扩展。包含C#框架，以
 * [本地化](/zh/guide/localization.md)
   * [脚本本地化](/zh/guide/localization.md#脚本本地化)
   * [资源本地化](/zh/guide/localization.md#资源本地化)
-* [Community modding ](/zh/guide/community-modding.md)
+* [社区模组](/zh/guide/community-modding.md)
 * [内置调试UI](/zh/guide/development-console.md)
 * [调式debug](/zh/guide/naninovel-scripts.md#脚本Debug)
 * [自定义命令](/zh/guide/custom-commands.md)

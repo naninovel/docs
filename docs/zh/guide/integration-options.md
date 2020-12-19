@@ -4,10 +4,10 @@
 
 [!b1b6042db4a91b3a8cee74236b33c17c]
 
-有多种方式可以将Naninovel整合到你的工程，取决于你想要通过Naninovel实现什么样的效果。在之后的文档中，我们会展示多种配置选项和API来保证Naninovel和一个游戏的匹配。在你开始前，请先参考[引擎设计](/zh/guide/engine-architecture.md) 来更好理解引擎如何在设计概念上实现这些。
+有多种方式可以将Naninovel整合到你的项目，取决于你想要通过Naninovel实现什么样的效果。在之后的文档中，我们会展示多种配置选项和API来保证Naninovel和一个游戏的匹配。在你开始前，请先参考[引擎设计](/zh/guide/engine-architecture.md) 来更好理解引擎如何在设计概念上实现这些。
 
 ::: example
-参考[示例工程](/zh/guide/integration-options.md#示例工程)， 在此项目中，Nnianovel有作为嵌入对话系统和可切换的独立小说模式使用。
+参考[示例项目](/zh/guide/integration-options.md#示例项目)， 在此项目中，Nnianovel有作为嵌入对话系统和可切换的独立小说模式使用。
 :::
 
 ## 手动初始化
@@ -151,14 +151,14 @@ private void OnTriggerEnter (Collider other)
 
 还有许多其他功能（状态开放，服务重写，自定义序列化，资源和配置加载器等），这些都在整合另一个系统的时候非常有用。参考剩余部分教程获取更多信息。同时参考[配置选项](/zh/guide/configuration.md)。 部分特性或许教程没有提及，但是对整合来说仍然很有用。
 
-如果你觉得API扩展性不足，或是需要源码修改来整合，可以[联系支持](/zh/support/#开发支持) — 我们会考虑改进。
+如果你觉得API扩展性不足，或是需要源码修改来整合，可以联系[技术支持](/zh/support/#开发支持) — 我们会考虑改进。
 
-## 示例工程
+## 示例项目
 
 [GitHub上](https://github.com/Naninovel/IntegrationExample) 提供了一个示例项目，其中Naninovel用作3D冒险游戏的直接对话和可切换的独立小说模式。您可以使用Git客户端[克隆存储库](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository)， 也可以将其[下载为zip存档](https://github.com/Naninovel/IntegrationExample/archive/master.zip)。
 
 ::: warn
-Naninovel软件包未包含在内，因此，首次打开该工程会产生编译错误；从资源商店导入Naninovel以解决问题。
+Naninovel软件包未包含在内，因此，首次打开该项目会产生编译错误；从资源商店导入Naninovel以解决问题。
 :::
 
 所有示例脚本都存储在 `Assets/Runtime` 目录。

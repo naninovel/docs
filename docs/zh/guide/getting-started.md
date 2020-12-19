@@ -210,7 +210,7 @@ BGM默认循环播放，使用渐隐切换过去，音量循环等可以使用�
 
 [!!wFil5vje3NE]
 
-## Demo 工程示例
+## 演示项目
 
 GitHub完整Demo资源地址：[github.com/Naninovel/Demo](https://github.com/Naninovel/Demo). 
 
