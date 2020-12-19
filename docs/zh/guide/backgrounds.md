@@ -116,10 +116,10 @@ Encoding settings : cabac=1 / ref=3 / deblock=1:0:0 / analyse=0x3:0x113 / me=hex
 视发布平台不同，需要看情况勾选转码设置：
 
 ::: example
-如果不能无缝循环，请保证视频最后一帧和第一张是相同的，并且编码格式正确；参考我们的[视频循环示例工程](https://github.com/Elringus/VideoLoop) 。
+如果不能无缝循环，请保证视频最后一帧和第一张是相同的，并且编码格式正确；参考我们的[视频循环示例](https://github.com/Elringus/VideoLoop) 。
 :::
 
-注意，在WebGL下视频播放只能使用流模式，所以发布至WebGL时，所有视频资源都会被拷贝至`Assets/StreamingAssets/Backgrounds`文件夹。**StreamingAssets**也会出现在工程输出目录；请确保保留由该文件夹，并检查你的web服务器允许读取该目录。
+注意，在WebGL下视频播放只能使用流模式，所以发布至WebGL时，所有视频资源都会被拷贝至`Assets/StreamingAssets/Backgrounds`文件夹。**StreamingAssets**也会出现在项目输出目录；请确保保留由该文件夹，并检查你的web服务器允许读取该目录。
 
 ## 多图层背景
 

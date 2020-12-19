@@ -320,7 +320,7 @@ Lorem ipsum dolor sit amet. [if score>10]Duis efficitur imperdiet nunc. [else]Ve
 
 ![](https://i.gyazo.com/5d433783e1a12531c79fe6be80c92da7.png)
 
-要手动加载要执行的脚本（比如，编辑脚本在Unity工程外），使用
+要手动加载要执行的脚本（比如，编辑脚本在Unity项目外），使用
 `reload` [控制台命令](/zh/guide/development-console.md)
 该命令只能在编辑器使用，不会在发布后生效。
 
@@ -359,5 +359,5 @@ rewind 12
 
 当前使用的脚本名，行号，内联脚本目录，都会显示在窗口标题上，当[自动语音](/zh/guide/voicing.md#自动语音) 打开时，播放的语音名字也会显示出来。可以点击标题拖拽窗口。 "Stop" 按钮会停止脚本执行，"Play"会重新开始执行，"Close"按钮关闭debug窗口。
 
-debug窗口在编辑器下和发布工程都可以使用。
+debug窗口在编辑器下和发布项目都可以使用。
 
