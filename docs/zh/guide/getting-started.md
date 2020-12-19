@@ -1,4 +1,4 @@
-﻿# 开始指南
+﻿# 快速上手
 
 ## 使用前提
 
@@ -52,7 +52,7 @@ Naninovel是 [Unity游戏引擎](https://unity.com/) 扩展资源，所以确保
 
 ## 安装 Naninovel
 
-从 [Asset商店窗口](https://docs.unity3d.com/Manual/AssetStore.html) 下载并等待导入编译完成。Naninovel资源的文件夹位置可以在资源文件夹内随意移动。
+从 [Asset Store 窗口](https://docs.unity3d.com/Manual/AssetStore.html) 下载并等待导入编译完成。Naninovel资源的文件夹位置可以在资源文件夹内随意移动。
 
 在使用该资源各项功能（配置，设置，保存等）后会自动生成文件夹 `Assets/NaninovelData` 。 和上面相反，不要移动该目录（移动后再运行是会重新生成），如果你想改变该目录， 编辑引擎配置菜单中的 `Generated Data Path` 。
 
