@@ -1,7 +1,6 @@
-﻿# FAQ
+﻿# 常见问题
 
 ## 我能否将Naninovel作为嵌入对话系统添加到已有的游戏中？
-
 
 尽管Naninovel专注于传统视觉小说游戏，引擎仍然可以与现有项目集成。如果你在制作3D冒险游戏，RPG或任何其他类型的游戏，你仍然可以将Naninovel引入用作嵌入式对话（长篇文字）系统。
 
@@ -25,7 +24,7 @@ Naninovel可以工作于任何语言环境，但是只能显示部分语言文�
 
 Naninovel设计是[独立于场景](/zh/guide/engine-architecture.md#独立于场景) 的，不会使用[Unity场景](https://docs.unity3d.com/Manual/CreatingScenes.html)  所以无法制作任何基于场景的示例。引擎会在游戏启动时自动初始化（或者在配置菜单设置手动初始化），预设舞台表现都是通过名为[naninovel 脚本](/zh/guide/naninovel-scripts.md) 的文本文件实现。
 
-请阅读[getting started](/zh/guide/getting-started.md) 获取引擎的基础使用指导。你可以在[概览](/zh/guide/index.md) 和 [API 命令参考](/zh/api/index.md) 看到关于引擎多种特性的使用示例。如果你想参考完整工程，参考[示例工程](/zh/guide/getting-started.html#demo-project)
+请阅读[快速上手](/zh/guide/getting-started.md) 获取引擎的基础使用指导。你可以在[概览](/zh/guide/index.md) 和 [API 命令参考](/zh/api/index.md) 看到关于引擎多种特性的使用示例。如果你想参考完整项目，参考[演示项目](/zh/guide/getting-started.html#演示项目)
 
 ## 怎么自定义标题菜单：添加背景，音乐，特效，改变按钮等？
 
