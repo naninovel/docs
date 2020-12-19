@@ -165,7 +165,7 @@ Use `Create -> Naninovel -> Text Printers -> Dialogue` asset context menu to cre
 ```
 
 ::: 示例
-也可参考[demo project](/zh/guide/getting-started.md#Demo-工程示例) ，该打字机存储在`Assets/Prefabs/PimpedPrinter.prefab`。在Kohaku-chan使用时调用了。
+也可参考[演示项目](/zh/guide/getting-started.md#演示项目) ，该打字机存储在`Assets/Prefabs/PimpedPrinter.prefab`。在Kohaku-chan使用时调用了。
 :::
 
 也可以通过接口`ITextPrinterActor`来从零开始创建你的自定义打字机。相关功能实现参考[自定义元素实现](/zh/guide/custom-actor-implementations.md) 。

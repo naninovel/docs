@@ -58,19 +58,19 @@ module.exports = {
                 lastUpdated: '最終更新 日'
             },
             '/zh/': {
-                selectText: '語言',
-                ariaLabel: '語言',
+                selectText: '语言',
+                ariaLabel: '语言',
                 label: '中文',
                 nav: [
-                    {text: 'FAQ', link: '/zh/faq/'},
+                    {text: '常见问题', link: '/zh/faq/'},
                     {text: '指南', link: '/zh/guide/'},
                     {text: '指令', link: '/zh/api/'},
-                    {text: '支持', link: '/zh/support/'}
+                    {text: '技术支持', link: '/zh/support/'}
                 ],
                 sidebar: {
-                    '/zh/guide/': getGuideSidebar('指南', '高級', '擴展')
+                    '/zh/guide/': getGuideSidebar('指南', '高级', '扩展')
                 },
-                lastUpdated: '最近更新時間'
+                lastUpdated: '最近更新时间'
             },
             '/ru/': {
                 selectText: 'Язык',
@@ -128,7 +128,7 @@ module.exports = {
         '/zh/': {
             lang: 'zh-CN',
             title: 'Naninovel',
-            description: '功能齊全，易於編寫且易於自定義的Unity遊戲引擎视觉小说擴展。'
+            description: '功能齐全、易于编写且完全可自定义的Unity游戏引擎视觉小说插件。'
         },
         '/ru/': {
             lang: 'ru-RU',
