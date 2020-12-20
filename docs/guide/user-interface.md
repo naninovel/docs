@@ -10,6 +10,8 @@ All the built-in UIs are implemented with adaptive layout. This allows the UI to
 
 [!b6bddf8a0c6f2ba68dcdc1bc65db0c09]
 
+In case you wish to change how the UIs adapt to the screen resolution and/or aspect ratio or building custom UIs and want to configure the adaptive layout, see the Unity guides and tutorials on uGUI for the available options, eg: [Designing UI for Multiple Resolutions](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/HOWTO-UIMultiResolution.html).
+
 ## UI Toggling
 
 UI toggling feature allows user to hide/show the in-game UI as a whole.
