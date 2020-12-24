@@ -110,13 +110,25 @@ Diced background is very similar to diced character implementation; see the [dic
 
 ## Video Backgrounds
 
-Video backgrounds use looped [video clip](https://docs.unity3d.com/Manual/class-VideoClip) assets to represent the appearance. 
+Video backgrounds use looped [video clip](https://docs.unity3d.com/Manual/class-VideoClip) assets to represent the appearance.
 
-For the supported video formats for each platform see [Unity docs for video sources](https://docs.unity3d.com/Manual/VideoSources-FileCompatibility.html).
+For the supported video formats for each platform see [Unity docs for video sources](https://docs.unity3d.com/Manual/VideoSources-FileCompatibility.html). When using video with an alpha channel (transparency), see the [guide on the supported formats](https://docs.unity3d.com/Manual/VideoTransparency.html).
 
-When using video with an alpha channel (transparency), see the [guide on the supported formats](https://docs.unity3d.com/Manual/VideoTransparency.html).
+::: note
+When `Transcode` is disabled in the video asset import settings, the clip may not be playable on some platforms. When a video is not playing in the build, try enabling the transcode option and rebuild the player.
 
-For the reference, here is the detailed video parameters of the background video clip that is used in our WebGL demo:
+![](https://i.gyazo.com/9c3fb59dc8ebb2fbd0f5a5e79542e11f.png)
+:::
+
+::: example
+In case having issues with achieving a seamless loop, make sure the video has exactly same starting and finishing frames and a compatible encoding setup; check our [video loop example project](https://github.com/Elringus/VideoLoop) for the reference.
+:::
+
+### WebGL Limitations
+
+On WebGL Unity's video player can only work in streaming mode, so all the video resources will be copied to `Assets/StreamingAssets/Backgrounds` folder upon building the WebGL player. **StreamingAssets** folder will also appear in the build output directory; make sure to preserve it when publishing the build and check that your web server allows reading the data from this folder.
+
+The copied video files won't be transcoded by Unity (even if the option is enabled), so the source files should initially be in a format supported by the web browsers; alternatively, you can replace the clip files in the game directory after the build. Below is the detailed metadata of a background video clip that is used in our WebGL demo:
 
 ~~~
 Container : MPEG-4
@@ -142,20 +154,6 @@ Scan type : Progressive
 Writing library : x264 core 148 r2795 aaa9aa8
 Encoding settings : cabac=1 / ref=3 / deblock=1:0:0 / analyse=0x3:0x113 / me=hex / subme=7 / psy=1 / psy_rd=1.00:0.00 / mixed_ref=1 / me_range=16 / chroma_me=1 / trellis=1 / 8x8dct=1 / cqm=0 / deadzone=21,11 / fast_pskip=1 / chroma_qp_offset=-2 / threads=12 / lookahead_threads=2 / sliced_threads=0 / nr=0 / decimate=1 / interlaced=0 / bluray_compat=0 / constrained_intra=0 / bframes=3 / b_pyramid=2 / b_adapt=1 / b_bias=0 / direct=1 / weightb=1 / open_gop=0 / weightp=2 / keyint=250 / keyint_min=25 / scenecut=40 / intra_refresh=0 / rc_lookahead=40 / rc=crf / mbtree=1 / crf=23.0 / qcomp=0.60 / qpmin=0 / qpmax=69 / qpstep=4 / ip_ratio=1.40 / aq=1:1.00
 ~~~
-
-And here is the Unity import settings for this video clip:
-
-![](https://i.gyazo.com/9e6a9cc0bd79bca2c0e8e35666fbdc7f.png)
-
-Depending on the target platform, it could be required to enable the transcoding in the video clip import settings.
-
-::: example
-In case having issues with achieving a seamless loop, make sure the video has exactly same starting and finishing frames and a compatible encoding setup; check our [video loop example project](https://github.com/Elringus/VideoLoop) for the reference.
-:::
-
-### WebGL Limitations
-
-Be aware, that on WebGL video player can only work in the streaming mode, so all the video resources will be copied to `Assets/StreamingAssets/Backgrounds` folder upon building the WebGL player. **StreamingAssets** folder will also appear in the build output directory; make sure to preserve it when publishing the build and check that your web server allows reading the data from this folder.
 
 If you're using a video format other than mp4 (eg, webm), set the extension of the hosted files via `Video Stream Extension` property in the resource provider configuration.
 
