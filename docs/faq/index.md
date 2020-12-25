@@ -80,7 +80,7 @@ Use positioning over z-axis, eg:
 @char Felix pos:,,0
 ```
 
-Find more information on how objects are sorted in Unity in the [2D sorting manual](https://docs.unity3d.com/Manual/2DSorting.html).
+In case you have sorting issues in perspective camera mode, try changing `Transparency Sort Mode` found in "Edit > Projecting Settings > Graphics" editor menu to `Orthographic`. Find more information on how objects are sorted in Unity in the [2D sorting manual](https://docs.unity3d.com/Manual/2DSorting.html).
 
 ## Is it possible to show only the avatar of a character inside a text printer, but hide the character itself?
 
