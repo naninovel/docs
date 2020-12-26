@@ -1,14 +1,18 @@
 ﻿# FAQ
 
+## Do I need to know programming to use Naninovel?
+
+Naninovel is designed to be friendly for non-programmers and doesn't require any programming knowledge in order to create basic visual novels. For example, our [WebGL demo](/demo) is created without any custom C# scripts. Check the [getting started guide](/guide/getting-started) and [video tutorial](https://youtu.be/wFil5vje3NE) for an example of the basic workflow. However, adding custom features (gameplay) or integrating with other third-party packages will require C# (or [visual](/guide/playmaker.md)) scripting in most cases. Specific features (eg, [UI customization](/guide/user-interface.html#ui-customization)) could also require some experience with the Unity editor.
+
 ## Can I use Naninovel as a drop-in dialogue system for an existing game?
 
 While Naninovel is focused around traditional visual novel games the engine is designed to allow integration with existing projects. If you're making a 3D adventure game, RPG or game of any other genre — you can still use Naninovel as a drop-in dialogue system. 
 
-Be aware, that in most cases such integration will require C# scripting (or [visual scripting](/guide/bolt.md)) in varying extent. See the [engine architecture overview](/guide/engine-architecture.md) to get a grasp of how Naninovel works and [integration guide](/guide/integration-options.md) for more information on the integration options.
+Be aware, that in most cases such integration will require C# (or [visual](/guide/playmaker.md)) scripting in varying extent. See the [engine architecture overview](/guide/engine-architecture.md) to get a grasp of how Naninovel works and [integration guide](/guide/integration-options.md) for more information on the integration options.
 
 ## Is it possible to embed a mini-game to Naninovel?
 
-Sure, you can freely "inject" any custom logic to the default Naninovel flow. In most cases, however, this will require using the engine's C# API (via either writing custom C# scripts or using a [visual scripting](/guide/bolt.md) solution). Check the [engine services guide](/guide/engine-services.md) for the list of available open APIs, which allows interaction with the engine; you may also make use of [state outsourcing](/guide/state-management.md#custom-state), [custom actor implementations](/guide/custom-actor-implementations.md) and [custom commands](/guide/custom-commands.md) in the process.
+Sure, you can freely "inject" any custom logic to the default Naninovel flow. In most cases, however, this will require using the engine's C# API (via either writing custom C# scripts or using a [visual scripting](/guide/playmaker.md) solution). Check the [engine services guide](/guide/engine-services.md) for the list of available open APIs, which allows interaction with the engine; you may also make use of [state outsourcing](/guide/state-management.md#custom-state), [custom actor implementations](/guide/custom-actor-implementations.md) and [custom commands](/guide/custom-commands.md) in the process.
 
 ## Does it support a specific language?
 
