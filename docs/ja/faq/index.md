@@ -4,11 +4,11 @@
 
 Naninovel は典型的なビジュアルノベルゲームのための用途を想定していますが、エンジンは既存のプロジェクトと連携できるように設計されています。 3Dアドベンチャーゲーム、RPG、または他のジャンルのゲームを作成している場合でも、一時的な会話システムとして Naninovel を使用できます。
 
-ほとんどの場合、そのような連携にはさまざまな範囲のC＃スクリプト(または [ビジュアルスクリプティング](/ja/guide/bolt.md))が必要になりますのでご留意ください。 Naninovel の仕組みを理解するには、[エンジンアーキテクチャー](/ja/guide/engine-architecture.md) を参照してください。連携のオプションについては [インテグレーションガイド](/ja/guide/integration-options.md) をご覧ください。
+ほとんどの場合、そのような連携にはさまざまな範囲のC＃スクリプト(または [ビジュアルスクリプティング](/ja/guide/visual-scripting.md))が必要になりますのでご留意ください。 Naninovel の仕組みを理解するには、[エンジンアーキテクチャー](/ja/guide/engine-architecture.md) を参照してください。連携のオプションについては [インテグレーションガイド](/ja/guide/integration-options.md) をご覧ください。
 
 ## Naninovel にミニゲームを埋め込むことはできますか?
 
-もちろんです。既存の Naninovel のフローにカスタムロジックを自由に挿入できます。ただしほとんどの場合、エンジンの C# API が必要です(カスタム C# スクリプトを記述するか、[ビジュアルスクリプティング](/ja/guide/bolt.md) を使用します)。エンジンとのやり取りをするための利用可能な API 一覧は [エンジンサービスガイド](/ja/guide/engine-services.md) をご覧ください。他にも [ステートのアウトソース](/ja/guide/state-management.md#カスタムステート)、 [カスタムアクターの実装](/ja/guide/custom-actor-implementations.md)、 [カスタムコマンド](/ja/guide/custom-commands.md)が参考になるかも知れません。
+もちろんです。既存の Naninovel のフローにカスタムロジックを自由に挿入できます。ただしほとんどの場合、エンジンの C# API が必要です(カスタム C# スクリプトを記述するか、[ビジュアルスクリプティング](/ja/guide/visual-scripting.md) を使用します)。エンジンとのやり取りをするための利用可能な API 一覧は [エンジンサービスガイド](/ja/guide/engine-services.md) をご覧ください。他にも [ステートのアウトソース](/ja/guide/state-management.md#カスタムステート)、 [カスタムアクターの実装](/ja/guide/custom-actor-implementations.md)、 [カスタムコマンド](/ja/guide/custom-commands.md)が参考になるかも知れません。
 
 ## どの言語をサポートしていますか?
 

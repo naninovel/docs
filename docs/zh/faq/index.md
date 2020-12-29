@@ -4,11 +4,11 @@
 
 尽管Naninovel专注于传统视觉小说游戏，引擎仍然可以与现有项目集成。如果你在制作3D冒险游戏，RPG或任何其他类型的游戏，你仍然可以将Naninovel引入用作嵌入式对话（长篇文字）系统。
 
-注意，大多数整合需求都需要C#编程或者[可视化编程](/zh/guide/bolt.md)) 来扩展。查阅[整合引导](/zh/guide/integration-options.md) 来获取Naninovel工作流程和整合的相关说明。
+注意，大多数整合需求都需要C#编程或者[可视化编程](/zh/guide/visual-scripting.md)) 来扩展。查阅[整合引导](/zh/guide/integration-options.md) 来获取Naninovel工作流程和整合的相关说明。
 
 ## 能在Naninovel中嵌入小游戏吗？
 
-当然，你可以自由“植入”任何自有逻辑到Naninovel流程。大多数情况下，这会需要C#API（自编程或是使用[可视化编程](/zh/guide/bolt.md)) ）。参考[e引擎服务引导](/zh/guide/engine-services.md) 获取相关和引擎交互的开放API；在嵌入过程中你可能还需要参考[状态开放](/zh/guide/state-management.md#自定义状态) ， [自定义元素实现](/zh/guide/custom-actor-implementations.md) 和 [自定义命令](/zh/guide/custom-commands.md)。
+当然，你可以自由“植入”任何自有逻辑到Naninovel流程。大多数情况下，这会需要C#API（自编程或是使用[可视化编程](/zh/guide/visual-scripting.md)) ）。参考[e引擎服务引导](/zh/guide/engine-services.md) 获取相关和引擎交互的开放API；在嵌入过程中你可能还需要参考[状态开放](/zh/guide/state-management.md#自定义状态) ， [自定义元素实现](/zh/guide/custom-actor-implementations.md) 和 [自定义命令](/zh/guide/custom-commands.md)。
 
 ## 支持某种特定语言吗？
 

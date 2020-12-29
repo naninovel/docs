@@ -194,7 +194,7 @@ function getGuideSidebar (groupA, groupB, groupC) {
             collapsable: true,
             children: [
                 'playmaker',
-                'bolt',
+                'visual-scripting',
                 'adventure-creator',
                 'inventory',
                 'spreadsheet',

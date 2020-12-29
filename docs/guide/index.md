@@ -80,4 +80,4 @@ Following are some of the features Naninovel provide out of the box:
 * [Custom commands](/guide/custom-commands.md)
 * [Custom actor implementations](/guide/custom-actor-implementations.md)
 * [Google Drive integration](/guide/resource-providers.md#google-drive)
-* [Visual scripting](/guide/playmaker.md)
+* [Visual scripting](/guide/visual-scripting.md)
