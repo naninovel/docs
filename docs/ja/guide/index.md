@@ -84,4 +84,4 @@ NaninovelはUnityで実現できることを制限しませんが、一部の組
 * [カスタムコマンド](/ja/guide/custom-commands.md)
 * [カスタムアクターの実装](/ja/guide/custom-actor-implementations.md)
 * [Google Drive 連携](/ja/guide/resource-providers.md#google-drive)
-* [ビジュアルスクリプティング](/ja/guide/playmaker.md)
+* [ビジュアルスクリプティング](/ja/guide/visual-scripting.md)

@@ -84,4 +84,4 @@ Naninovel是 [Unity引擎](https://unity3d.com) 的扩展。包含C#框架，以
 * [自定义命令](/zh/guide/custom-commands.md)
 * [自定义演出元素](/zh/guide/custom-actor-implementations.md)
 * [Google Drive整合](/zh/guide/resource-providers.md#google-drive)
-* [可视化编程playmaker](/zh/guide/playmaker.md)
+* [可视化编程](/zh/guide/visual-scripting.md)

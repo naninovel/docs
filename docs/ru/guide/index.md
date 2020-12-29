@@ -84,4 +84,4 @@ Naninovel – это расширение для [игрового движка 
 * [Пользовательские команды](/ru/guide/custom-commands.md)
 * [Пользовательские реализации акторов](/ru/guide/custom-actor-implementations.md)
 * [Интеграция Google Drive](/ru/guide/resource-providers.md#google-drive)
-* [Визуальное редактирование сценариев](/ru/guide/playmaker.md)
+* [Визуальное редактирование сценариев](/ru/guide/visual-scripting.md)
