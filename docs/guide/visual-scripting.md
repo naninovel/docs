@@ -24,7 +24,7 @@ Don't forget to regenerate units after adding the libraries and types to apply t
 
 ## Usage
 
-When Naninovel library and types are added in the visual scripting settings, the engine APIs will become available in the fuzzy finder under graph view and can be used in the same way as the other Unity or third-party APIs. For example, below is an example on initializing the engine and playing a script. Make sure to disable `Initialize On Applicatoin Load` and `Show Title UI`, before trying this example.
+When Naninovel library and types are added in the visual scripting settings, the engine APIs will become available in the fuzzy finder under graph view and can be used in the same way as the other Unity or third-party APIs. Below is an example on initializing the engine and playing a script. Make sure to disable `Initialize On Application Load` and `Show Title UI`, before trying this example.
 
 ![](https://i.gyazo.com/505b019b76d568e06788b505040b36f1.png)
 
