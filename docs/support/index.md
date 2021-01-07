@@ -26,19 +26,19 @@ While we have several video tutorials and example projects showing how to use Un
 
 Unity is a standalone product with an enormous set of features; it has its own documentation, support services and vast community, which produced numerous learning materials over the engine's more than a decade lifespan. Usually, you'll be able to easily find a video tutorial, guide or forum thread for any question or issue you may have; and in the rare cases it's not available, you can always ask on the [Unity forum](https://forum.unity.com), [Q&A service](https://answers.unity.com/questions/ask.html) or use one of the official [support options](https://unity.com/support-services).
 
-## Developer Support
+## Naninovel Support
 
 ::: warn
-Developer support is limited to Naninovel-specific topics only. For anything Unity-related (build UIs with uGUI, setup addressable system, write C# scripts, etc) see the [information above](/support/#unity-support).
+The support is limited to Naninovel-specific topics only. For anything Unity-related (build UIs with uGUI, setup addressable system, write C# scripts, etc) see the [information above](/support/#unity-support).
 :::
 
-To receive direct developer support join Naninovel Discord server ([discord.gg/BfkNqem](https://discord.gg/BfkNqem)) and register your copy of the asset using the following registration form: [naninovel.com/register](https://naninovel.com/register/).
+To receive direct support join Naninovel Discord server ([discord.gg/BfkNqem](https://discord.gg/BfkNqem)) and register your copy of the asset using the following registration form: [naninovel.com/register](https://naninovel.com/register/).
 
-After the registration you'll automatically get a "Verified User" role on the server and access to the `#support` channel. You can also message `@Elringus#6359` to discuss the issue in private.
+After the registration you'll automatically get a "Verified User" role on the server and access to the `#support` and `#download` channels. You can also send a message to a member with support role to discuss the issue in private.
 
 <iframe src="https://discordapp.com/widget?id=545676116871086080&theme=dark" width="100%" height="500" allowtransparency="true" frameborder="0"></iframe>
 
-Be aware, that the **developer response may be delayed by up to 24 hours** (in some cases more), so make sure to:
+Be aware, that the support is only available on business days and the **response may be delayed by up to 24 hours** (in some cases more), so make sure to:
  - Provide a clear and concise description of the issue and step-by-step instructions on how to reproduce it.
  - Specify Naninovel and Unity versions you're using, target platform (Android, iOS, WebGL, etc) and operating system you're running the editor under (Windows, Mac or Linux).
  - Attach a [log file](https://docs.unity3d.com/Manual/LogFiles.html) containing error or warning messages related to the issue.
