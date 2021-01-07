@@ -32,9 +32,7 @@ Unityは、膨大な機能を備えたスタンドアロン製品です。独自
 開発者サポートは、Naninovel固有のトピックのみに限定され、英語またはロシア語で提供しています。Unity関連（uGUIでのUIの構築、Addressableシステムのセットアップ、C# スクリプトの記述など）については、[上記の情報](/ja/support/#unity-サポート)を参照してください。
 :::
 
-直接開発者サポートを受けるには、Naninovel Discordサーバー([discord.gg/BfkNqem](https://discord.gg/BfkNqem)) に参加し、次の登録フォームを使用してアセットのコピーを登録してください: [naninovel.com/register](https://naninovel.com/register/)。
-
-登録後、サーバーで自動的に "Verified User" の役割が取得され、 `#support` チャネルにアクセスできます。 また `@Elringus#6359` にメッセージを送り、問題について非公開で相談することもできます。
+直接開発者サポートを受けるには、Naninovel Discordサーバー([discord.gg/BfkNqem](https://discord.gg/BfkNqem)) に参加し、次の登録フォームを使用してアセットのコピーを登録してください: [naninovel.com/register](https://naninovel.com/register/)。 登録後、サーバーで自動的に "Verified User" の役割が取得され、 `#support` チャネルにアクセスできます。
 
 <iframe src="https://discordapp.com/widget?id=545676116871086080&theme=dark" width="100%" height="500" allowtransparency="true" frameborder="0"></iframe>
 
