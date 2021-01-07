@@ -32,10 +32,7 @@ untiy是个人电脑产品，拥有众多特性；它有自己的说明文档，
 开发支持仅用于英语和俄语讨论Naninovel相关的话题。其他关于Unity（uGUI，寻址系统，C#代码）的任何问题参考[Unity支持](/zh/support/#unity支持)。
 :::
 
-要获得直接开发支持，加入Discord服务器[discord.gg/BfkNqem](https://discord.gg/BfkNqem)) 然后注册你的资源副本到注册论坛[naninovel.com/register](https://naninovel.com/register/) 。
-To receive direct developer support join Naninovel Discord server ([discord.gg/BfkNqem](https://discord.gg/BfkNqem)) and register your copy of the asset using the following registration form: [naninovel.com/register](https://naninovel.com/register/).
-
-注册完成后，你会自动变成 "Verified User"（认证用户），并开通 
+要获得直接开发支持，加入Discord服务器[discord.gg/BfkNqem](https://discord.gg/BfkNqem)) 然后注册你的资源副本到注册论坛[naninovel.com/register](https://naninovel.com/register/) 。注册完成后，你会自动变成 "Verified User"（认证用户），并开通 `#support` 渠道.
 
 <iframe src="https://discordapp.com/widget?id=545676116871086080&theme=dark" width="100%" height="500" allowtransparency="true" frameborder="0"></iframe>
 
