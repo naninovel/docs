@@ -175,7 +175,7 @@ private void OnTriggerEnter (Collider other)
 
 There are multiple other features (state outsourcing, services overriding, custom serialization, resource and configuration providers, etc), which could be situationally helpful when integrating the engine with another systems; check out rest of the guide for more information. Consider investigating the available [configuration options](/guide/configuration.md) as well; some feature may not be described in the guide, but still be handy for integration purposes.
 
-If you feel some engine API or system is lacking in extendability and requiring source code modification in order to integrate, please [contact the developer](/support/#developer-support) — we'll consider improving it.
+If you feel some engine API or system is lacking in extendability and requiring source code modification in order to integrate, please [contact the support](/support/#naninovel-support) — we'll consider improving it.
 
 ## Example Project
 
