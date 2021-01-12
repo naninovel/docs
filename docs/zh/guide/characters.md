@@ -319,8 +319,7 @@ Live2D人物模型使用的是通过[Live2D Cubism](https://www.live2d.com) 2D�
 
 然后下载导入[Live2D扩展支持包](https://github.com/Naninovel/Live2D/raw/master/NaninovelLive2D.unitypackage) 。
 
-Live2D模型预制体使用时，都必须有`Live2DController`组件。外观动作调用使用的是Animator组件的[SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) 命令触发。相应外观为触发名。比如，如果你想调用“Kaori”的live2D模型预制体，并想调用其名为“surprise”的触发器，使用以下命令：
-
+Live2D模型预制体使用时，都必须有`Live2DController`组件。外观动作调用使用的是Animator组件的[SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) 命令触发。相应外观为触发名。比如，如果你想调用“Kaori”的live2D模型预制体，并想调用其名为“surprise”的触发器，使用以下命令
 
 ```nani
 @char Kaori.Surprise
@@ -328,13 +327,11 @@ Live2D模型预制体使用时，都必须有`Live2DController`组件。外观�
 
 注意，以上命令只是试图去调用预制体上位于animator控制器内的[SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) 内“surprise”的参数。你必须去自己手动设置好[animator](https://docs.unity3d.com/Manual/Animator) 其中要使用的调用参数。
 
-
 ::: warn
 最新版本的Cubism-SDk是直接和`Animator`组件一起工作的。Cubism 2.x版本的表情和动作（分别导出为expression.json和pose.json文件），现在已经被[弃用](https://docs.live2d.com/cubism-sdk-tutorials/blendexpression) ，也不被Naninovel的live2D扩展支持了。
 :::
 
 当`CubismLookController` 和 `CubismMouthController`组件存在在于预制体时，`Live2DController`组件就能够控制人物的朝向以及嘴唇动画（即是嘴型同步特性）。
-
 
 ![](https://i.gyazo.com/498fe948bc5cbdb4dfc5ebc5437ae6b4.png)
 
@@ -343,16 +340,7 @@ Live2D模型预制体使用时，都必须有`Live2DController`组件。外观�
 
 请注意，Live2DController在Live2D模型预制体（将Live2D模型导入Unity时会自动创建）中需要一个“可绘制”的游戏对象。控制器将在运行时根据@char命令的“ scale”参数缩放此游戏对象。因此，将忽略在编辑器中设置的任何本地缩放值。要设置Live2D预制体的初始缩放，请设置父游戏对象的缩放值[参考该视频指引](https://youtu.be/rw_Z69z0pAg?t=353) 。
 
-
-在Live2D扩展导入后，“Live2D”条目会出现在Naninovel的配置菜单上，如下图：
-
-![](https://i.gyazo.com/435a4824f0ce0dd8c9c3f29d457bab24.png)
-
-上图中render layer设置用于摄像机渲染预制体以及其遮挡剔除。render camera参数允许使用自定义相机（默认相机预制体位于“Prefabs”文件夹）。Camera offset（相机偏移）设置，用于设置渲染相机和预制体之间的偏移量，使用该设置来控制预制体在相机上的位置分布。
-
-
 以下视频引导，包含内容为：从Cubism编辑器导出Live2D人物；配置预制体；创建简单动画状态机；通过Naninovel脚本控制人物。
-
 
 [!!rw_Z69z0pAg]
 
