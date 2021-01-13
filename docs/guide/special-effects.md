@@ -288,6 +288,10 @@ Fade-out time | Decimal | 3 | The particle system will gradually lower the opaci
 ## Depth of Field (Bokeh)
 Simulates depth of field (aka DOF, bokeh) effect, when only the object in focus stays sharp, while the other image is blurred.
 
+::: tip
+In case you want to blur just one object (actor), consider using [Blur effect](/guide/special-effects.md#blur) instead.
+:::
+
 [!616a023c46f207b4a3a33d3d3fd9fbc9]
 
 **Start Parameters**
@@ -312,6 +316,33 @@ Stop Duration | Decimal | 1 | Fade-off (disable) duration for the effect paramet
 ; Set focus point 10 units away from the camera,
 ; focal distance to 0.95 and apply it over 3 seconds
 @spawn DepthOfField params:,10,0.95,3
+```
+
+## Blur
+Applies a blur filter to a supported actor: backgrounds and characters of sprite, layered, diced, Live2D, video and scene implementations. By default (when first parameter is not specified), the effect is applied to `MainBackground` actor.
+
+[!067614d77783683e74ca79652099b58d]
+
+**Start Parameters**
+Name | Type | Default | Description
+--- | --- | --- | ---
+Actor ID | String | MainBackground | ID of the actor to apply the effect for. The actor should have `IBlurable` interface implemented in order to support the effect.
+Intensity | Decimal | 0.5 | Intensity of the effect, in 0.0 to 1.0 range.
+Duration | Decimal | 1 | Interpolation time, in seconds (how fast the intensity will reach the target value).
+
+**Stop Parameters**
+Name | Type | Default | Description
+--- | --- | --- | ---
+Stop Duration | Decimal | 1 | Fade-off (disable) duration for the effect, in seconds.
+
+**Examples**
+```nani
+; Apply the blur to the current main background
+@spawn Blur
+; Apply the blur to `Sky` background with full intensity over 2.5 seconds
+@spawn Blur params:Sky,1,2.5
+; Fade-off and disable the blur
+@despawn Blur
 ```
 
 ## Adding Custom Effects
