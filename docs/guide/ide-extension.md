@@ -26,10 +26,14 @@ When adding custom commands, you may notice they're highlighted as errors. Also,
 
 Open the tool with `Naninovel -> Tools -> IDE Metadata` Unity editor menu, then click "Select" button and select path to `server` folder found inside the target IDE extension; eg, for VS Code it'll be `~/.vscode/extensions/naninovel/server` (where `~` is the user directory). Click "Generate IDE Metadata" button to generate the file at the specified path and restart IDE for changes to take effect.
 
-The custom commands should now be recognized by the IDE and autocomplete will work for the available project resources and actors. When you add or modify the commands or resources, repeat the process to update the metadata file.
-
 ::: warn
 Implementing types of the custom commands should not be under `Naninovel.Commands` [namespace](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/namespaces/); otherwise, they will be recognized as built-in commands and won't be included in the generated metadata file.
+:::
+
+The custom commands should now be recognized by the IDE and autocomplete will work for the available project resources and actors. When you add or modify the commands or resources, repeat the process to update the metadata file.
+
+::: note
+When typing generic text lines, author ID auto-completion won't trigger automatically, as it's impossible to guess whether you want to specify author ID or just typing text to print. Use the hotkey (`Ctrl+Space` by default) to trigger auto-complete manually.
 :::
 
 If you'd like to add documentation to the custom commands and/or parameters, apply `Documentation` attribute to command type and parameter fields respectively:
