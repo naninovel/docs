@@ -29,6 +29,13 @@ You can set pre-defined custom variables (both global and local) with initial va
 
 Global pre-defined variables are initialized on first application start, while the locals do so on each state reset. Notice, that the value field in the menu expects a valid script expression and not a raw value string.
 
+::: tip
+In case you want to make a kind of global counter, that will only increment once, even when re-played (eg, with rollback or after restarting the game), use `HasPlayed()` [expression function](/guide/script-expressions.md#expression-functions):
+```nani
+@set g_GlobalCounter++ if:!HasPlayed()
+```
+:::
+
 ## Injecting Variables
 
 It's possible to inject (inline) custom variable to naninovel script parameter values using the curly braces.
