@@ -16,7 +16,7 @@ Path to the save folder, maximum allowed amount of the save slots and file names
 
 ## Game State
 
-Game state is the data that varies per game save slot, describing state of the engine services and other objects in relation to the player progress with the game. The examples of the game state data are: currently played naninovel script and index of the played script command withing the script, currently visible characters and their positions on scene, currently played background music track name and its volume and so on.
+Game state is the data that varies per game save slot, describing state of the engine services and other objects in relation to the player progress with the game. The examples of the game state data are: currently played naninovel script and index of the played script command within the script, currently visible characters and their positions on scene, currently played background music track name and its volume and so on.
 
 To save or load current game state to specific save slot, use `IStateManager` engine service as follows:
 
@@ -47,7 +47,7 @@ await stateManager.SaveGlobalStateAsync();
 
 ## User Settings
 
-Similar to the global state, user settings data (display resolution, language, sound volume, etc) is stored in a single save slot, but treated a bit differently by default: the generated save file is placed outside of the "Saves" folder and formatted in a readable fashion, so that user can modify the values if he wishes. 
+Similar to the global state, user settings data (display resolution, language, sound volume, etc) is stored in a single save slot, but treated a bit differently by default: the generated save file is placed outside of the "Saves" folder and formatted in a readable fashion, so that user can modify the values if they wish. 
 
 The user settings are loaded automatically on engine initialization. You can save the settings at any time using `IStateManager` as follows:
 
