@@ -1207,6 +1207,13 @@ ID | Type | Description
 
 ; When using double quotes inside the expression itself, don't forget to double-escape them
 @set remark="Saying \\"Stop the car\\" was a mistake."
+
+; Use global variable to indicate player reaching "Ending 001".
+; The variable will remain true even when the game is restarted.
+@set g_Engine001Reached=true
+
+; Increment the global variable only once, even when re-played.
+@set g_GlobalCounter++ if:!HasPlayed()
 ```
 
 ## sfx
