@@ -24,7 +24,7 @@ To enable spell checking in the naninovel scripts, install a spell checker exten
 
 When adding custom commands, you may notice they're highlighted as errors. Also, available project resources and actors won't autocomplete by default. That is due to project metadata is not available to the extension. Use IDE metadata tool to automatically generate the required metadata file and enable the features.
 
-Open the tool with `Naninovel -> Tools -> IDE Metadata` Unity editor menu, then click "Select" button and select path to `server` folder found inside the target IDE extension; eg, for VS Code it'll be `~/.vscode/extensions/naninovel/server` (where `~` is the user directory). Click "Generate IDE Metadata" button to generate the file at the specified path and restart IDE for changes to take effect.
+Open the tool with `Naninovel -> Tools -> IDE Metadata` Unity editor menu, then click "Select" button and select path to `server` folder found inside the target IDE extension; eg, for VS Code it'll be `~/.vscode/extensions/naninovel/server` (where `~` is the user directory). Click "Generate IDE Metadata" button to generate the file at the specified path and restart IDE (or press Ctrl+Shift+P and select "Developer: Reload Window") for changes to take effect.
 
 ::: warn
 Implementing types of the custom commands should not be under `Naninovel.Commands` [namespace](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/namespaces/); otherwise, they will be recognized as built-in commands and won't be included in the generated metadata file.
