@@ -316,8 +316,8 @@ Scale Auto Wait | True | Whether to scale the wait time in auto play mode by the
 Default Metadata | Object Ref | Metadata to use by default when creating text printer actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating text printer actors with specific IDs.
 Scene Origin | (0.5, 0.0) | Origin point used for reference when positioning actors on scene.
-Z Offset | 100 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
-Z Step | 0.1 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
+Z Offset | 0 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
+Z Step | 0 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
 Default Easing | Linear | Easing function to use by default for all the actor modification animations (changing appearance, position, tint, etc).
 Auto Show On Modify | False | Whether to automatically reveal (show) an actor when executing modification commands.
 
