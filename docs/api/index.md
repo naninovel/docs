@@ -165,11 +165,15 @@ time | decimal | Duration (in seconds) of the modification. Default value: 0.35 
 
 #### Example
 ```nani
-; Set `River` as the appearance of the main background
+; Set `River` as the appearance of the main background.
 @back River
 
-; Same as above, but also use a `RadialBlur` transition effect
+; Same as above, but also use a `RadialBlur` transition effect.
 @back River.RadialBlur
+
+; Position `Smoke` background at the center of the screen
+; and scale it 50% of the original size.
+@back id:Smoke pos:50,50 scale:0.5
 
 ; Tint all visible backgrounds on scene.
 @back id:* tint:#ffdc22
