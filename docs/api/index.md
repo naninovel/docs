@@ -173,18 +173,6 @@ time | decimal | Duration (in seconds) of the modification. Default value: 0.35 
 
 ; Tint all visible backgrounds on scene.
 @back id:* tint:#ffdc22
-
-; Given an `ExplosionSound` SFX and an `ExplosionSprite` background, the following
-; script sequence will simulate two explosions appearing far and close to the camera.
-@sfx ExplosionSound volume:0.1
-@back id:ExplosionSprite scale:0.3 pos:55,60 time:0 isVisible:false
-@back id:ExplosionSprite
-@spawn ShakeBackground params:,1
-@hide ExplosionSprite
-@sfx ExplosionSound volume:1.5
-@back id:ExplosionSprite pos:65 scale:1
-@spawn ShakeBackground params:,3
-@hide ExplosionSprite
 ```
 
 ## bgm
