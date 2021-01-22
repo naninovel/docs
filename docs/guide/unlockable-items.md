@@ -47,9 +47,14 @@ To add an unlockable CG item to the gallery, you can either use one of the exist
 
 ![](https://i.gyazo.com/236bddfd0a02c18b94153cfb7189a877.png)
 
-No matter which way you'll choose, you can then unlock and lock the items using [@unlock] and [@lock] commands respectively.
+To group multiple CGs into one gallery slot (eg, variations of a single scene), add `_` followed by a number to the unlockable ID. For instance, if you add CGs with the following IDs:
+ - `CG/EpicScene_1`
+ - `CG/EpicScene_2`
+ - `CG/EpicScene_3`
 
-For example, to unlock the `CG/Map` item added in the illustrations above, use the following script command:
+— they all will be grouped under a single CG slot and shown in sequence with crossfade effect when player clicks the screen.
+
+To unlock and lock CG items use [@unlock] and [@lock] commands respectively. For example, to unlock `CG/Map` item added in the illustrations above, use the following script command:
 
 ```nani
 @unlock CG/Map
