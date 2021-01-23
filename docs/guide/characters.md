@@ -351,6 +351,10 @@ Check the following video tutorial for example on setting up a 3D rigged model a
 Unity's `Animator` component could fail to register `SetTrigger` when the game object is enabled/disabled in the same frame; in case you use `GameObject.SetActive` to handle visibility changes (as it's shown in the above tutorial), consider enabling/disabling the child objects with renderers instead.
 :::
 
+::: example
+Find [example project on GitHub](https://github.com/Naninovel/GenericActor), where generic character implementation is used to host a 3D animated model.
+:::
+
 ## Video Characters
 
 Video characters use looped [video clip](https://docs.unity3d.com/Manual/class-VideoClip) assets to represent the appearance. 
