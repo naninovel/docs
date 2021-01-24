@@ -124,7 +124,7 @@ time | decimal | Duration (in seconds) of the arrangement animation. Default val
 
 #### Example
 ```nani
-; Evenly distribute all the visible characters
+; Evenly distribute all the visible characters.
 @arrange
 
 ; Place character with ID `Jenna` 15%, `Felix` 50% and `Mia` 85% away
@@ -205,13 +205,14 @@ time | decimal | Duration (in seconds) of the modification. Default value: 0.35 
 
 #### Example
 ```nani
-; Starts playing a music track with the name `Sanctuary` in a loop
+; Starts playing a music track with the name `Sanctuary` in a loop.
 @bgm Sanctuary
 
-; Same as above, but fades-in the volume over 10 seconds and plays only once
+; Same as above, but fades-in the volume over 10 seconds and plays only once.
 @bgm Sanctuary fade:10 loop:false
 
-; Changes volume of all the played music tracks to 50% over 2.5 seconds and makes them play in a loop
+; Changes volume of all the played music tracks to 50% over 2.5 seconds
+; and makes them play in a loop.
 @bgm volume:0.5 loop:true time:2.5
 
 ; Plays `BattleThemeIntro` once and then immediately `BattleThemeMain` in a loop.
@@ -240,10 +241,10 @@ author | string | ID of the actor, which should be associated with the appended 
 
 #### Example
 ```nani
-; Second sentence will be printed on a new line
+; Second sentence will be printed on a new line.
 Lorem ipsum dolor sit amet.[br]Consectetur adipiscing elit.
 
-; Second sentence will be printer two lines under the first one
+; Second sentence will be printer two lines under the first one.
 Lorem ipsum dolor sit amet.[br 2]Consectetur adipiscing elit.
 ```
 
@@ -272,28 +273,28 @@ time | decimal | Duration (in seconds) of the modification. Default value: 0.35 
 
 #### Example
 ```nani
-; Offset over X-axis (pan) the camera by -3 units and offset over Y-axis by 1.5 units
+; Offset over X-axis (pan) the camera by -3 units and offset over Y-axis by 1.5 units.
 @camera offset:-3,1.5
 
-; Set camera in perspective mode, zoom-in by 50% and move back by 5 units
+; Set camera in perspective mode, zoom-in by 50% and move back by 5 units.
 @camera ortho:false offset:,,-5 zoom:0.5
 
-; Set camera in orthographic mode and roll by 10 degrees clock-wise
+; Set camera in orthographic mode and roll by 10 degrees clock-wise.
 @camera ortho:true roll:10
 
-; Offset, zoom and roll simultaneously animated over 5 seconds
+; Offset, zoom and roll simultaneously animated over 5 seconds.
 @camera offset:-3,1.5 zoom:0.5 roll:10 time:5
 
-; Instantly reset camera to the default state
+; Instantly reset camera to the default state.
 @camera offset:0,0 zoom:0 rotation:0,0,0 time:0
 
-; Toggle `FancyCameraFilter` and `Bloom` components attached to the camera
+; Toggle `FancyCameraFilter` and `Bloom` components attached to the camera.
 @camera toggle:FancyCameraFilter,Bloom
 
-; Set `FancyCameraFilter` component enabled and `Bloom` disabled
+; Set `FancyCameraFilter` component enabled and `Bloom` disabled.
 @camera set:FancyCameraFilter.true,Bloom.false
 
-; Disable all components attached to the camera object
+; Disable all components attached to the camera object.
 @camera set:*.false
 ```
 
@@ -339,7 +340,7 @@ time | decimal | Duration (in seconds) of the modification. Default value: 0.35 
 ; of the scene and 10% away from the bottom border; also makes him look to the left.
 @char Sora.Happy look:left pos:45,10
 
-; Make Sora appear at the bottom-center and in front of Felix
+; Make Sora appear at the bottom-center and in front of Felix.
 @char Sora pos:50,0,-1
 @char Felix pos:,,0
 
@@ -390,34 +391,14 @@ Continue executing this script or ...?[skipInput]
 @choice "Two, please." set:score=score+2
 @choice "I'll take the entire stock!" set:karma--;score=999
 
-; Play a sound effect and arrange characters when choice is picked
-@choice "Arrange" do:"@sfx Click, @arrange k.10\,y.55"
+; Play a sound effect and arrange characters when choice is picked.
+@choice Arrange do:"@sfx Click, @arrange k.10\,y.55"
 
-; Print a text line corresponding to the picked choice
+; Print a text line corresponding to the picked choice.
 @choice "Ask about color" do:"What's your favorite color?"
 @choice "Ask about age" do:"How old are you?"
 @choice "Keep silent" do:"..."
 @stop
-
-; Following example shows how to make an interactive map via `@choice` commands.
-; For this example, we assume, that inside a `Resources/MapButtons` folder you've
-; stored prefabs with `ChoiceHandlerButton` component attached to their root objects.
-# Map
-@back Map
-@hidePrinter
-@choice handler:ButtonArea button:MapButtons/Home pos:-300,-300 goto:.HomeScene
-@choice handler:ButtonArea button:MapButtons/Shop pos:300,200 goto:.ShopScene
-@stop
-
-# HomeScene
-@back Home
-Home, sweet home!
-@goto .Map
-
-# ShopScene
-@back Shop
-Don't forget about cucumbers!
-@goto .Map
 ```
 
 ## clearBacklog
@@ -427,6 +408,8 @@ Removes all the messages from [printer backlog](/guide/text-printers.md#printer-
 
 #### Example
 ```nani
+; Even though we're going to print some text, it will then be removed from the backlog.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 @clearBacklog
 ```
 
@@ -448,15 +431,15 @@ hide | boolean | Whether to also hide the affected choice handlers.
 
 #### Example
 ```nani
-; Add choices and remove them after a set time (in case the player didn't pick one).
+; Give the player 2 seconds to pick a choice.
 # Start
 You have 2 seconds to respond![skipInput]
-@choice "Cats" goto:.PickedChoice
-@choice "Dogs" goto:.PickedChoice
+@choice Cats goto:.PickedChoice
+@choice Dogs goto:.PickedChoice
 @wait 2
 @clearChoice
 Too late!
-@goto .Start
+@stop
 # PickedChoice
 Good!
 ```
@@ -482,7 +465,7 @@ params | string list | Parameters to set before destroying the prefab. Requires 
 
 #### Example
 ```nani
-; Given a "@spawn Rainbow" command was executed before
+; Given a `@spawn Rainbow` command was executed before.
 @despawn Rainbow
 ```
 
@@ -556,7 +539,6 @@ reset | string list | When specified, will reset the engine services state befor
 @gosub .VictoryScene
 ...
 @stop
-
 # VictoryScene
 @back Victory
 @sfx Fireworks
@@ -566,17 +548,16 @@ You are victorious!
 
 ; Another example with some branching inside the subroutine.
 @set time=10
-; Here we get one result
+; Here we get one result.
 @gosub .Room
 ...
 @set time=3
-; And here we get another
+; And here we get another.
 @gosub .Room
-...
-
+@stop
 # Room
-@print "It's too early, I should visit this place when it's dark." if:time<21&&time>6
-@print "I can sense an ominous presence here!" if:time>21&&time<6
+@print "It's too early, I should visit this place when it's dark." if:time<21&time>6
+@print "I can sense an ominous presence!" if:time>21|time<6
 @return
 ```
 
@@ -606,6 +587,9 @@ reset | string list | When specified, will control whether to reset the engine s
 
 ; Navigates the playback to the label `Epilogue` in the currently played script.
 @goto .Epilogue
+...
+# Epilogue
+...
 ```
 
 ## hide
@@ -626,8 +610,8 @@ time | decimal | Duration (in seconds) of the fade animation. Default value: 0.3
 
 #### Example
 ```nani
-; Given an actor with ID `SomeActor` is visible, hide (fade-out) it over 3 seconds.
-@hide SomeActor time:3
+; Given an actor with ID `Smoke` is visible, hide (fade-out) it over 3 seconds.
+@hide Smoke time:3
 
 ; Hide `Kohaku` and `Yuko` actors.
 @hide Kohaku,Yuko
@@ -650,6 +634,7 @@ time | decimal | Duration (in seconds) of the fade animation. Default value: 0.3
 
 #### Example
 ```nani
+; Hide all the visible actors (chars, backs, printers, choice handlers) on scene.
 @hideAll
 ```
 
@@ -670,6 +655,7 @@ time | decimal | Duration (in seconds) of the fade animation. Default value: 0.3
 
 #### Example
 ```nani
+; Hide all the visible character actors on scene.
 @hideChars
 ```
 
@@ -693,6 +679,7 @@ time | decimal | Duration (in seconds) of the hide animation. Default value for 
 ```nani
 ; Hide a default printer.
 @hidePrinter
+
 ; Hide printer with ID `Wide`.
 @hidePrinter Wide
 ```
@@ -722,13 +709,13 @@ time | decimal | Duration (in seconds) of the hide animation. When not specified
 ; Given a custom `Calendar` UI, the following command will hide it.
 @hideUI Calendar
 
-; Hide the entire UI, won't allow user to re-show it
+; Hide the entire UI, won't allow user to re-show it.
 @hideUI
 ...
-; Make the UI visible again
+; Make the UI visible again.
 @showUI
 
-; Hide the entire UI, but allow the user to toggle it back
+; Hide the entire UI, but allow the user to toggle it back.
 @hideUI allowToggle:true
 
 ; Simultaneously hide built-in `TipsUI` and custom `Calendar` UIs.
@@ -785,16 +772,16 @@ play | boolean | Whether to automatically resume script playback when user submi
 
 #### Example
 ```nani
-; Allow user to enter an arbitrary text and assign it to `name` custom state variable
+; Allow player to enter an arbitrary text and assign it to `name` custom state variable.
 @input name summary:"Choose your name."
-; Stop command is required to halt script execution until user submits the input
+; Stop command is required to halt script execution until user submits the input.
 @stop
 
-; You can then inject the assigned `name` variable in naninovel scripts
+; You can then inject the assigned `name` variable in naninovel scripts.
 Archibald: Greetings, {name}!
 {name}: Yo!
 
-; ...or use it inside set and conditional expressions
+; ...or use it inside set and conditional expressions.
 @set score=score+1 if:name=="Felix"
 ```
 
@@ -838,10 +825,11 @@ additive | boolean | Whether to load the scene additively, or unload any current
 
 #### Example
 ```nani
-; Load scene "MyTestScene" in single mode
-@loadScene MyTestScene
-; Load scene "MyTestScene" in additive mode
-@loadScene MyTestScene additive:true
+; Load scene `TestScene1` in single mode.
+@loadScene TestScene1
+
+; Load scene `TestScene2` in additive mode.
+@loadScene TestScene2 additive:true
 ```
 
 ## lock
@@ -864,6 +852,7 @@ ID | Type | Description
 
 #### Example
 ```nani
+; Lock an unlockable CG record with ID `FightScene1`.
 @lock CG/FightScene1
 ```
 
@@ -887,16 +876,16 @@ gravity | boolean | Whether to automatically move camera to the initial position
 
 #### Example
 ```nani
-; Activate camera look mode with default parameters
+; Activate camera look mode with default parameters.
 @look
 
-; Activate camera look mode with custom parameters
+; Activate camera look mode with custom parameters.
 @look zone:6.5,4 speed:3,2.5 gravity:true
 
-; Disable look mode and instantly reset the offset
+; Disable look mode and instantly reset the offset.
 @look false
 
-; Disable look, but reset gradually, with 0.25 speed
+; Disable look, but reset gradually, with 0.25 speed.
 @look false gravity:true speed:0.25
 ```
 
@@ -920,7 +909,7 @@ ID | Type | Description
 
 #### Example
 ```nani
-; Given an "Opening" video clip is added to the movie resources, plays it
+; Given an `Opening` video clip is added to the movie resources, plays it.
 @movie Opening
 ```
 
@@ -957,7 +946,7 @@ voiceId | string | Used by voice map utility to differentiate print commands wit
 @print "Lorem ipsum dolor sit amet."
 
 ; To include quotes in the text itself, escape them.
-@print "Saying \"Stop the car\" was a mistake."
+@print "Shouting \"Stop the car!\" was a mistake."
 
 ; Reveal message with half of the normal speed and
 ; don't wait for user input to continue.
@@ -1022,13 +1011,13 @@ set | named boolean list | Allows muting and un-muting individual input samplers
 
 #### Example
 ```nani
-; Halt input processing of all the samplers
+; Halt input processing of all the samplers.
 @processInput false
 
-; Resume input processing of all the samplers
+; Resume input processing of all the samplers.
 @processInput true
 
-; Mute `Rollback` and `Pause` inputs and un-mute `Continue` input
+; Mute `Rollback` and `Pause` inputs and un-mute `Continue` input.
 @processInput set:Rollback.false,Pause.false,Continue.true
 ```
 
@@ -1041,17 +1030,20 @@ Prevents player from rolling back to the previous state snapshots.
 ```nani
 ; Prevent player from rolling back to try picking another choice.
 
-@choice "One" goto:.One
-@choice "Two" goto:.Two
+Pick a choice. You won't be able to rollback.
+@choice One goto:.One
+@choice Two goto:.Two
 @stop
 
 # One
 @purgeRollback
 You've picked one.
+@stop
 
 # Two
 @purgeRollback
 You've picked two.
+@stop
 ```
 
 ## resetState
@@ -1082,7 +1074,7 @@ only | string list | Names of the [engine services](https://naninovel.com/guide/
 ; allowing currently played audio tracks continue playing.
 @resetState ICustomVariableManager,IAudioManager
 
-; Reset only the `ICharacterManager` and `IBackgroundManager` services.
+; Reset only `ICharacterManager` and `IBackgroundManager` services.
 @resetState only:ICharacterManager,IBackgroundManager
 ```
 
@@ -1103,10 +1095,13 @@ ID | Type | Description
 
 #### Example
 ```nani
-; Clear the content of a default printer.
+; Print and then clear contents of the default printer.
+This line will disappear.
 @resetText
-; Clear the content of a printer with ID `Fullscreen`.
-@resetText Fullscreen
+
+; Same as above, but with `Wide` printer.
+@print "This line will disappear." printer:Wide
+@resetText Wide
 ```
 
 ## return
@@ -1129,11 +1124,6 @@ reset | string list | When specified, will reset the engine services state befor
 #### Summary
 Automatically save the game to a quick save slot.
 
-#### Example
-```nani
-@save
-```
-
 ## set
 
 #### Summary
@@ -1154,53 +1144,54 @@ ID | Type | Description
 
 #### Example
 ```nani
-; Assign `foo` variable a `bar` string value
+; Assign `foo` variable a `bar` string value.
 @set foo="bar"
 
-; Assign `foo` variable a 1 number value
+; Assign `foo` variable a 1 number value.
 @set foo=1
 
-; Assign `foo` variable a `true` boolean value
+; Assign `foo` variable a `true` boolean value.
 @set foo=true
 
-; If `foo` is a number, add 0.5 to its value
+; If `foo` is a number, add 0.5 to its value.
 @set foo=foo+0.5
 
-; If `angle` is a number, assign its cosine to `result` variable
-@set result=Cos(angle)
+; If `angle` is a number, assign its cosine to `foo` variable.
+@set foo=Cos(angle)
 
-; Get a random integer between -100 and 100, then raise to power of 4 and assign to `result` variable
-@set "result = Pow(Random(-100, 100), 4)"
+; Get a random integer between -100 and 100, then raise to power of 4 and assign to 
+; `foo` variable. Quotes required when whitespace is present inside the expression.
+@set "foo = Pow(Random(-100, 100), 4)"
 
-; If `foo` is a number, add 1 to its value
+; If `foo` is a number, add 1 to its value (increment).
 @set foo++
 
-; If `foo` is a number, subtract 1 from its value
+; If `foo` is a number, subtract 1 from its value (decrement).
 @set foo--
 
-; Assign `foo` variable value of the `bar` variable, which is `Hello World!`.
-; Notice, that `bar` variable should actually exist, otherwise `bar` plain text value will be assigned instead.
+; Assign `foo` variable value of the `bar` variable, which is `Hello World!` string.
 @set bar="Hello World!"
 @set foo=bar
 
-; Defining multiple set expressions in one line (the result will be the same as above)
+; Defining multiple set expressions in one line (the result will be the same as above).
 @set bar="Hello World!";foo=bar
 
-; It's possible to inject variables to naninovel script command parameters
+; It's possible to inject variables to naninovel script command parameters.
 @set scale=0
 # EnlargeLoop
-@char Misaki.Default scale:{scale}
+@char Kohaku.Default scale:{scale}
 @set scale=scale+0.1
 @goto .EnlargeLoop if:scale<1
 
-; ..and generic text lines
+; ...and generic text lines.
 @set name="Dr. Stein";drink="Dr. Pepper"
 {name}: My favourite drink is {drink}!
 
-; When using double quotes inside the expression itself, don't forget to double-escape them
-@set remark="Saying \\"Stop the car\\" was a mistake."
+; When using double quotes inside the expression itself, 
+; don't forget to double-escape them.
+@set remark="Shouting \\"Stop the car!\\" was a mistake."
 
-; Use global variable to indicate player reaching "Ending 001".
+; Use global variable to indicate player reaching `Ending 001`.
 ; The variable will remain true even when the game is restarted.
 @set g_Engine001Reached=true
 
@@ -1233,13 +1224,14 @@ time | decimal | Duration (in seconds) of the modification. Default value: 0.35 
 
 #### Example
 ```nani
-; Plays an SFX with the name `Explosion` once
+; Plays an SFX with the name `Explosion` once.
 @sfx Explosion
 
-; Plays an SFX with the name `Rain` in a loop and fades-in over 30 seconds
+; Plays an SFX with the name `Rain` in a loop and fades-in over 30 seconds.
 @sfx Rain loop:true fade:30
 
-; Changes volume of all the played SFX tracks to 75% over 2.5 seconds and disables looping for all of them
+; Changes volume of all the played SFX tracks to 75% over 2.5 seconds
+; and disables looping for all of them.
 @sfx volume:0.75 loop:false time:2.5
 ```
 
@@ -1264,10 +1256,10 @@ group | string | Audio mixer [group path](https://docs.unity3d.com/ScriptReferen
 
 #### Example
 ```nani
-; Plays an SFX with the name `Click` once
+; Plays an SFX with the name `Click` once.
 @sfxFast Click
 
-; Same as above, but allow concurrent playbacks of the same clip
+; Same as above, but allow concurrent playbacks of the same clip.
 @sfxFast Click restart:false
 ```
 
@@ -1289,8 +1281,8 @@ time | decimal | Duration (in seconds) of the fade animation. Default value: 0.3
 
 #### Example
 ```nani
-; Given an actor with ID `SomeActor` is hidden, reveal (fade-in) it over 3 seconds.
-@show SomeActor time:3
+; Given an actor with ID `Smoke` is hidden, reveal (fade-in) it over 3 seconds.
+@show Smoke time:3
 
 ; Show `Kohaku` and `Yuko` actors.
 @show Kohaku,Yuko
@@ -1316,6 +1308,7 @@ time | decimal | Duration (in seconds) of the show animation. Default value for 
 ```nani
 ; Show a default printer.
 @showPrinter
+
 ; Show printer with ID `Wide`.
 @showPrinter Wide
 ```
@@ -1342,7 +1335,7 @@ time | decimal | Duration (in seconds) of the show animation. When not specified
 ; the following will make it visible on the scene.
 @showUI Calendar
 
-; Given you've hide the entire UI with @hideUI, show it back
+; Given you've hidden the entire UI with @hideUI, show it back.
 @showUI
 
 ; Simultaneously reveal built-in `TipsUI` and custom `Calendar` UIs.
@@ -1366,9 +1359,10 @@ ID | Type | Description
 
 #### Example
 ```nani
-; Enable skip mode
+; Enable skip mode.
 @skip
-; Disable skip mode
+
+; Disable skip mode.
 @skip false
 ```
 
@@ -1417,6 +1411,7 @@ time | decimal | Duration (in seconds) of the slide animation. Default value: 0.
 ; hide and slide it out of the scene over the left border.
 @slide Sheba to:-10 visible:false
 
+
 ; Slide `Mia` actor from left-center side of the scene to the right-bottom
 ; over 5 seconds using `EaseOutBounce` animation easing.
 @slide Sheba from:15,50 to:85,0 time:5 easing:EaseOutBounce
@@ -1443,7 +1438,7 @@ params | string list | Parameters to set when spawning the prefab. Requires the 
 
 #### Example
 ```nani
-; Given an `Rainbow` prefab is assigned in spawn resources, instantiate it.
+; Given a `Rainbow` prefab is assigned in spawn resources, instantiate it.
 @spawn Rainbow
 ```
 
@@ -1457,18 +1452,19 @@ The UI will be hidden and user input blocked while the transition is in progress
 
 #### Example
 ```nani
-; Transition Felix on sunny day with Jenna on rainy day
+; Transition Felix on sunny day with Jenna on rainy day.
 @char Felix
 @back SunnyDay
 @spawn SunShafts
 @startTrans
-; The following modifications won't be visible until we finish the transition
+; The following modifications won't be visible until we finish the transition.
 @hideChars time:0
 @char Jenna time:0
 @back RainyDay time:0
 @despawn SunShafts params:0
 @spawn Rain params:,0
-; Transition the initially captured scene to the new one with `DropFade` effect over 3 seconds
+; Transition the initially captured scene to the new one
+; with `DropFade` effect over 3 seconds.
 @finishTrans DropFade time:3
 ```
 
@@ -1507,10 +1503,10 @@ fade | decimal | Duration of the volume fade-out before stopping playback, in se
 
 #### Example
 ```nani
-; Fades-out the `Promenade` music track over 10 seconds and stops the playback
-@stopBgm Promenade fade:10
+; Fades-out the `Sanctuary` music track over 10 seconds and stops the playback.
+@stopBgm Sanctuary fade:10
 
-; Stops all the currently played music tracks
+; Stops all the currently played music tracks.
 @stopBgm
 ```
 
@@ -1538,7 +1534,7 @@ fade | decimal | Duration of the volume fade-out before stopping playback, in se
 ; Stop playing an SFX with the name `Rain`, fading-out for 15 seconds.
 @stopSfx Rain fade:15
 
-; Stops all the currently played sound effect tracks
+; Stops all the currently played sound effect tracks.
 @stopSfx
 ```
 
@@ -1546,6 +1542,12 @@ fade | decimal | Duration of the volume fade-out before stopping playback, in se
 
 #### Summary
 Stops playback of the currently played voice clip.
+
+#### Example
+```nani
+; Given a voice is being played, stop it.
+@stopVoice
+```
 
 ## style
 
@@ -1587,6 +1589,7 @@ Resets engine state and shows `ITitleUI` UI (main menu).
 
 #### Example
 ```nani
+; Exit to title UI, no matter which script is playing.
 @title
 ```
 
@@ -1610,6 +1613,7 @@ ID | Type | Description
 
 #### Example
 ```nani
+; Unlocks an unlockable CG record with ID `FightScene1`.
 @unlock CG/FightScene1
 ```
 
@@ -1631,6 +1635,12 @@ authorId | string | ID of the character actor this voice belongs to. When provid
 
 </div>
 
+#### Example
+```nani
+; Given a `Rawr` voice resource is available, play it.
+@voice Rawr
+```
+
 ## wait
 
 #### Summary
@@ -1649,10 +1659,10 @@ do | string list | Script commands to execute when the wait is over. Escape comm
 
 #### Example
 ```nani
-; "ThunderSound" SFX will play 0.5 seconds after the shake background effect finishes.
+; `Thunder` SFX will play 0.5 seconds after the shake background effect finishes.
 @spawn ShakeBackground
 @wait 0.5
-@sfx ThunderSound
+@sfx Thunder
 
 ; Print first two words, then wait for user input before printing the remaining phrase.
 Lorem ipsum[wait i] dolor sit amet.
@@ -1667,7 +1677,7 @@ Jeez, what a disgusting noise. Shut it down![wait i5][skipInput]
 
 ; The text is printed without delay, as the `wait` command is not awaited (wait:false).
 ; The thunder effects are played after a random delay of 3 to 8 seconds.
-@wait {Random(3,8)} do:"@sfx ThunderSound, @spawn ShakeBackground params:\,1" wait:false
+@wait {Random(3,8)} do:"@sfx Thunder, @spawn ShakeBackground params:\,1" wait:false
 The thunder might go off any second...
 ```
 
