@@ -21,6 +21,7 @@ Property | Default Value | Description
 --- | --- | ---
 Audio Loader | Audio- (Addressable, Project) | Configuration of the resource loader used with audio (BGM and SFX) resources.
 Voice Loader | Voice- (Addressable, Project) | Configuration of the resource loader used with voice resources.
+Audio Player | Naninovel.Audio Player, Elringus.Naninovel.Runtime, Version=0.0.0.0, Culture=neutral, Public Key Token=null | `IAudioPlayer` implementation responsible for playing audio clips.
 Default Master Volume | 1 | Master volume to set when the game is first started.
 Default Bgm Volume | 1 | BGM volume to set when the game is first started.
 Default Sfx Volume | 1 | SFX volume to set when the game is first started.
