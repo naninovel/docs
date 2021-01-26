@@ -65,11 +65,11 @@ Following match modes can be set for each background actor (except of generic im
 
 Each background has `Poses` property allowing to specify named states (poses).
 
-Pose name can be used as appearance in [@back] command to apply all the parameters specified in the pose state at once, instead of specifying them individually via the command parameters.
+Pose name can be used as appearance in [@back] command to apply all the selected parameters specified in the pose at once, instead of specifying them individually via the command parameters.
 
 ```nani
 ; Given `Day` pose is defined for main background, 
-; applies all the parameters specified in the pose state.
+; applies all the selected parameters specified in the pose.
 @back Day
 
 ; Same as above, but for a background actor with `City` ID

@@ -32,13 +32,13 @@ In naninovel scripts, characters are mostly controlled with [@char] command:
 
 Each character has `Poses` property allowing to specify named states (poses).
 
-![](https://i.gyazo.com/5b022d32eddb3e721ed036c96f662f5d.png)
+![](https://i.gyazo.com/a049313d5c7cfa9897dd8c5f5ee00af3.png)
 
-Pose name can be used as appearance in [@char] command to apply all the parameters specified in the pose state at once, instead of specifying them individually via the command parameters.
+Pose name can be used as appearance in [@char] command to apply all the selected parameters specified in the pose at once, instead of specifying them individually via the command parameters.
 
 ```nani
 ; Given `SuperAngry` pose is defined for `Kohaku` character,
-; applies all the parameters specified in the pose state.
+; applies all the selected parameters specified in the pose.
 @char Kohaku.SuperAngry
 
 ; Same as above, but using `DropFade` transition over 3 seconds.
@@ -158,7 +158,7 @@ The **avatars are not directly connected with character appearances** and should
 
 ## Speaker Highlight
 
-When enabled in the character configuration, will tint the character based on whether the last printed message is associated with it.
+When enabled in the character configuration, will set specified [poses](/guide/characters.md#poses) to the character based on whether the last printed message is associated with it. The video below demonstrates the feature with a previous version of Naninovel, where it was possible to apply only tint color for speakers; setup with the current version is similar, but instead tint color, specify a pose name.
 
 [!!gobowgagdyE]
 
