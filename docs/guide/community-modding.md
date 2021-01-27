@@ -4,7 +4,7 @@ Community modding feature allows players to modify the build, adding their own s
 
 To activate the feature, enable `Enable Community Modding` property in the script's configuration UI accessible with `Naninovel -> Configuration -> Scripts` context menu and [setup local provider](/guide/resource-providers.md#local) for the resources, that should be exposed for modding; make sure local provider's root path is set to default value (`%DATA%/Resources`), so it will look for the additional resources under the build directory.
 
-![Scripts Configuration](https://i.gyazo.com/96630a3a1c592c43f73c47d1bc3bbea1.png)
+![](https://i.gyazo.com/b16e92596963cb5debc3e565f480802b.png)
 
 When the feature is enabled, an "EXTERNAL SCRIPTS" button will appear in the title menu; it will open external scripts browser. While in editor the browser will also list naninovel scripts from the project assets.
 
