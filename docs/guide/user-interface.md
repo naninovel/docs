@@ -150,6 +150,7 @@ ICGGalleryUI | Unlockable [CG gallery](/guide/unlockable-items.md#cg-gallery) it
 ITipsUI | Unlockable [tips](/guide/unlockable-items.md#tips) browser.
 IRollbackUI | Indicator for state rollback feature.
 IContinueInputUI | A fullscreen invisible UI layer positioned at the bottom of the UI stack and used to activate a `continue input` trigger when clicked or touched.
+IToastUI | A general-purpose UI for self-hiding popup notifications aka "toasts"; can be used from naninovel scripts with [@toast] command.
 
 In order for the UI to support visibility (visible on awake, fade time) and interaction options (disable interaction), also attach a `Canvas Group` component to the same object.
 

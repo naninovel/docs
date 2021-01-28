@@ -1593,6 +1593,38 @@ Resets engine state and shows `ITitleUI` UI (main menu).
 @title
 ```
 
+## toast
+
+#### Summary
+Shows a UI for general-purpose self-hiding popup notification (aka "toast") with the provided text and (optionally) appearance and duration. The UI is automatically hidden after the specified (or default) duration.
+
+#### Remarks
+Appearance name is the name of a game object with `Toast Appearance` component inside the `ToastUI` UI prefab (case-insensitive).
+
+#### Parameters
+
+<div class="config-table">
+
+ID | Type | Description
+--- | --- | ---
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">text</span> | string | The text content to set for the toast.
+appearance | string | Appearance variant (game object name) of the toast. When not specified, will use default appearance set in Toast UI prefab.
+time | decimal | Seconds to wait before hiding the toast. When not specified, will use duration set by default in Toast UI prefab.
+
+</div>
+
+#### Example
+```nani
+; Shows a default toast with `Hello World!` content.
+@toast "Hello World!"
+
+; Shows a toast with a `warning` appearance.
+@toast "You're in danger!" appearance:warning
+
+; The toast will disappear in one second.
+@toast "I'll disappear in 1 second." time:1
+```
+
 ## unlock
 
 #### Summary
