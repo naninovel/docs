@@ -214,13 +214,11 @@ When "SpriteDicing" extension is installed via UPM, a `Naninovel.DicedSpriteChar
 
 `DicedSpriteAtlas` assets containing character appearances are used as the resources for the diced sprite characters. Each appearance is mapped by name to the diced sprites contained in the atlas.
 
-Be aware, that some of diced character metadata properties (eg, pixels per unit, pivot) are controlled by the atlas asset; while the values in the character configuration are applied to a render texture used to represent the actual sprite. When changing the atlas properties, don't forget to rebuild it for changes to take effect.
+::: tip
+Character metadata properties (eg, pixels per unit, pivot) are applied to render texture used to represent the character on scene, while similar diced atlas properties are applied to the generated diced sprites. When changing atlas properties, don't forget to rebuild it for changes to take effect.
+:::
 
-Before generating the diced atlas, make sure to enable `Keep Original` under the `Pivot` option.
-
-![](https://i.gyazo.com/9efa21f6272e00a3a5d8f27d9feb88ff.png)
-
-The following video guide covers creating and configuring diced sprite atlas, adding new diced character based on the created atlas and controlling the character from a naninovel script.
+Following video guide covers creating and configuring diced sprite atlas, adding new diced character based on the created atlas and controlling the character from a naninovel script.
 
 [!!6PdOAOsnhio]
 
