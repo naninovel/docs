@@ -202,9 +202,7 @@ Find [example project on GitHub](https://github.com/Naninovel/GenericActor), whe
 
 You can use a [Unity scene](https://docs.unity3d.com/Manual/CreatingScenes) as a background with scene backgrounds implementation. 
 
-Scene backgrounds can only be managed by editor GUI; scene assets should be stored under `Assets/Scenes` project folder.
-
-First, create a new (or move an existing) scene inside `Assets/Scenes` folder and make sure it has at least one [camera](https://docs.unity3d.com/ScriptReference/Camera.html). Upon loading scene background, Naninovel will assign a render texture to the first found camera in the scene. The render texture will then be assigned to a background sprite, representing the scene background inside Naninovel scene space. This way, the scene background will be able to co-exist with other background and character actors, support all the background transition effects and scale to handle various display aspect ratios. 
+Create a new (or move an existing) scene inside `Assets/Scenes` folder and make sure it has at least one [camera](https://docs.unity3d.com/ScriptReference/Camera.html) component attached to a root game object inside the scene. Upon loading scene background, Naninovel will assign a render texture to the first found camera in the scene. The render texture will then be assigned to a background sprite, representing the scene background inside Naninovel scene space. This way, the scene background will be able to co-exist with other background and character actors, support all the background transition effects and scale to handle various display aspect ratios. 
 
 Make sure to position the scene objects in world space so that they don't overlap with objects from other scenes, that could potentially be loaded at the same time (eg, when referenced in a single naninovel script). Additionally, be aware, that in case a scene background object is positioned near the global space origin (`x0 y0 z0`), it could be rendered by Naninovel's main camera; to prevent this, either offset all the scene objects from the global origin, or use `Configuration -> Engine -> Override Objects Layer` to isolate Naninovel-related objects using [layers](https://docs.unity3d.com/Manual/Layers.html).
 
@@ -217,8 +215,15 @@ When assigning resources for a scene background actor, corresponding scene asset
 You can now use [@back] command to control the created scene background actor, eg:
 
 ```nani
-@back SceneName id:ActorId
+; Show `Scene` background actor with content from `TestScene1` Unity scene.
+@back TestScene1 id:Scene
+; Transition the same actor to `TestScene2` with `RandomCircleReveal` effect.
+@back TestScene2.RandomCircleReveal id:Scene
 ```
+
+::: tip
+When composing backgrounds with Unity scenes, consider adding [custom commands](/guide/custom-commands) to control scene state (eg, modify light color to change time of day or move camera to change the view) instead of creating multiple scenes for each appearance. This way you won't have to track objects position to prevent overlap when multiple scenes are loaded.
+:::
 
 ## Render to Texture
 
