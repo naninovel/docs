@@ -213,8 +213,8 @@ While the script are executed in a linear fashion by default, you can introduce 
 Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
 
 ; When using double quotes inside the expression itself, 
-; don't forget to double-escape them.
-@print {remark} if:remark=="Saying \\"Stop the car\\" was a mistake."
+; don't forget to escape them.
+@print {remark} if:remark=="Saying \"Stop the car\" was a mistake."
 ```
 
 It's also possible to specify multi-line conditional blocks with [@if], [@else], [@elseif] and [@endif] commands.
