@@ -75,7 +75,7 @@ integer | A number which is not a fraction; a whole number, eg: `1`, `150`, `-25
 decimal | A decimal number with fraction delimited by a dot, eg: `1.0`, `12.08`, `-0.005`.
 boolean | Can have one of two possible values: `true` or `false` (case-insensitive).
 named | A name string associated with a value of one of the above types. The name part is delimited by a dot. Eg for named integer: `foo.8`, `bar.-20`.
-list| A comma-separated list of values of one of the above types. Eg for string list: `foo,bar,"Lorem\\, ipsum."`, for decimal list: `12,-8,0.105,2`
+list| A comma-separated list of values of one of the above types. Eg for string list: `foo,bar,"Lorem ipsum."`, for decimal list: `12,-8,0.105,2`
 
 ### Nameless Parameters
 
