@@ -21,7 +21,7 @@ Property | Default Value | Description
 --- | --- | ---
 Audio Loader | Audio- (Addressable, Project) | Configuration of the resource loader used with audio (BGM and SFX) resources.
 Voice Loader | Voice- (Addressable, Project) | Configuration of the resource loader used with voice resources.
-Audio Player | Naninovel.Audio Player, Elringus.Naninovel.Runtime, Version=0.0.0.0, Culture=neutral, Public Key Token=null | `IAudioPlayer` implementation responsible for playing audio clips.
+Audio Player | Naninovel.Audio Player, Elringus.Naninovel.Runtime, Version=0.0.0.0, Culture=neutral, Public Key Token=null | IAudioPlayer implementation responsible for playing audio clips.
 Default Master Volume | 1 | Master volume to set when the game is first started.
 Default Bgm Volume | 1 | BGM volume to set when the game is first started.
 Default Sfx Volume | 1 | SFX volume to set when the game is first started.
@@ -239,6 +239,7 @@ Show Debug On Init | False | Whether to show player debug window on engine initi
 Property | Default Value | Description
 --- | --- | ---
 Loader | Scripts- (Addressable, Project) | Configuration of the resource loader used with naninovel script resources.
+Script Parser | Naninovel.Script Parser, Elringus.Naninovel.Runtime, Version=0.0.0.0, Culture=neutral, Public Key Token=null | IScriptParser implementation to use for creating script assets from text. Don't forget to re-import script assets after modifying this property.
 Initialization Script | Null | Name of the script to play right after the engine initialization.
 Title Script | Null | Name of the script to play when showing the Title UI. Can be used to setup the title screen scene (background, music, etc).
 Start Game Script | Null | Name of the script to play when starting a new game. Will use first available when not provided.
@@ -247,13 +248,14 @@ Hot Reload Scripts | True | Whether to reload modified (both via visual and exte
 Count Total Commands | False | Whether to calculate number of commands existing in all the available naninovel scripts on service initialization. If you don't use `TotalCommandsCount` property of a script manager and `CalculateProgress` function in naninovel script expressions, disable to reduce engine initialization time.
 Enable Visual Editor | True | Whether to show visual script editor when a script is selected.
 Hide Unused Parameters | True | Whether to hide un-assigned parameters of the command lines when the line is not hovered or focused.
+Select Played Script | True | Whether to automatically select currently played script when visual editor is open.
 Insert Line Key | Space | Hot key used to show `Insert Line` window when the visual editor is in focus. Set to `None` to disable.
 Insert Line Modifier | Control | Modifier for the `Insert Line Key`. Set to `None` to disable.
 Save Script Key | S | Hot key used to save (serialize) the edited script when the visual editor is in focus. Set to `None` to disable.
 Save Script Modifier | Control | Modifier for the `Save Script Key`. Set to `None` to disable.
 Rewind Mouse Button | 0 | When clicked a line in visual editor, which mouse button should activate rewind: `0` is left, `1` right, `2` middle; set to `-1` to disable.
 Rewind Modifier | Shift | Modifier for `Rewind Mouse Button`. Set to `None` to disable.
-Editor Page Length | 1000 | How many script lines should be rendered per visual editor page.
+Editor Page Length | 300 | How many script lines should be rendered per visual editor page.
 Editor Custom Style Sheet | Null | Allows modifying default style of the visual editor.
 Graph Orientation | Horizontal | Whether to build the graph vertically or horizontally.
 Graph Auto Align Padding | (10.0, 0.0) | Padding to add for each node when performing auto align.
@@ -288,7 +290,7 @@ Default Settings Slot Id | Settings | The name of the settings save file.
 Default Global Slot Id | Global Save | The name of the global save file.
 Save Slot Mask | Game Save{0:000} | Mask used to name save slots.
 Quick Save Slot Mask | Game Quick Save{0:000} | Mask used to name quick save slots.
-Save Slot Limit | 99 | Maximum number of save slots.
+Save Slot Limit | 36 | Maximum number of save slots.
 Quick Save Slot Limit | 18 | Maximum number of quick save slots.
 Binary Save Files | True | Whether to compress and store the saves as binary files (.nson) instead of text files (.json). This will significantly reduce the files size and make them harder to edit (to prevent cheating), but will consume more memory and CPU time when saving and loading.
 Load Start Delay | 0.3 | Seconds to wait before starting load operations; used to allow pre-load animations to complete before any load-related stutters could happen.
