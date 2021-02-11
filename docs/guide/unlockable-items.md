@@ -54,6 +54,16 @@ To group multiple CGs into one gallery slot (eg, variations of a single scene), 
 
 — they all will be grouped under a single CG slot and shown in sequence with crossfade effect when player clicks the screen.
 
+::: note
+CG slots in the UI grid are arranged left to right, top to bottom and ordered by the unlockable path name. Position in the resources editor menu is ignored. In case you want to arrange the slots in a specific order, name the resources accordingly, eg:
+- `CG/01`
+- `CG/02_1`
+- `CG/02_2`
+- ...  
+- `CG/35`
+- `CG/36`
+:::
+
 To unlock and lock CG items use [@unlock] and [@lock] commands respectively. For example, to unlock `CG/Map` item added in the illustrations above, use the following script command:
 
 ```nani
@@ -76,7 +86,7 @@ The system can be used to build an in-game vocabulary/encyclopedia or achievemen
 
 [!!CRZuS1u_J4c]
 
-To define the available tips, create a `Tips.txt` text document inside the [managed text](/guide/managed-text.md) resources directory (`Resources/Naninovel/Text` by default). Each line identifies a single tip record. The line should begin with tip ID followed by colon; then the tip's title, category (optional) and description should be specified, all separated by vertical lines (`|`), eg:
+To define the available tips, create a `Tips.txt` text document inside the [managed text](/guide/managed-text.md) resources directory (`Resources/Naninovel/Text` by default). Each line identifies a single tip record. The line should begin with tip ID followed by a colon; then the tip's title, category (optional) and description should be specified, all separated by vertical lines (`|`), eg:
 
 ```
 Tip1ID: Tip 1 Title | Tip 1 Category | Tip 1 Description
