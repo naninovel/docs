@@ -183,6 +183,7 @@ function getGuideSidebar (groupA, groupB, groupC) {
                 'custom-configuration',
                 'custom-actor-implementations',
                 'custom-actor-shader',
+                `custom-parser`,
                 'state-management',
                 'integration-options',
                 'render-pipelines',
