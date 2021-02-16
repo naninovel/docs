@@ -36,4 +36,4 @@ public static class CustomBuildProcessor
 }
 ```
 
-In case you're using you own custom build handler, which supposed to be triggered with the editor's build menu, it's possible to disable the Naninovel's handler by disabling `Enable Build Processing` property in the "Resource Provider" configuration menu.
+In case you're using you own custom build handler, which supposed to be triggered with the editor's build menu, it's possible to disable the Naninovel's handler by disabling `Enable Build Processing` property in the "Resource Provider" configuration menu. When enabling or disabling the property, restart Unity editor in order for the change to take effect.
