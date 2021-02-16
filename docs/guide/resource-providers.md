@@ -12,7 +12,9 @@ Providers' general behavior can be configured via `Naninovel -> Configuration ->
 
 When `Log Resources Loading` is enabled, various provider-related log messages will be mirrored to the default loading screen UI.
 
-`Enable Build Processing` enables a build pre-processing procedure required to inject assets assigned via editor menus to the builds. Only disable this if you're using a [custom build environment](/guide/custom-build-environment.md) or attaching your own build hooks. When [addressable system](https://docs.unity3d.com/Packages/com.unity.addressables@latest) is installed, enabling `Use Addressables` will optimize asset processing step improving the build time; enabling `Auto Build Bundles` at the same time will cause asset bundles to automatically compile when building the player.
+`Enable Build Processing` enables a build pre-processing procedure required to ensure assets assigned via editor menus are available in the builds. Disabling the processing may be required if you're using a [custom build environment](/guide/custom-build-environment.md) or attaching your own build hooks. When enabling or disabling the property, restart Unity editor in order for the change to take effect.
+
+When [addressable system](https://docs.unity3d.com/Packages/com.unity.addressables@latest) is installed, enabling `Use Addressables` will optimize asset processing step improving the build time; enabling `Auto Build Bundles` at the same time will cause asset bundles to automatically compile when building the player.
 
 Other properties in the configuration menu are provider-specific and described below.
 
@@ -28,17 +30,21 @@ Be aware, that **while in editor a special "Editor" resource provider is always 
 
 ## Addressable
 
-The [Addressable Asset system](https://docs.unity3d.com/Packages/com.unity.addressables@latest) is a Unity package providing an easy way to load assets by "address". It uses asynchronous loading to support loading from any location (local storage, remote web hosting, etc) with any collection of dependencies. Consult Unity's documentation on how to set up, configure and use the system.
+The [Addressable Asset system](https://docs.unity3d.com/Packages/com.unity.addressables@latest) is a Unity package allowing to load assets by "address". It uses asynchronous loading to support loading from any location (local storage, remote web hosting, etc) with any collection of dependencies. Consult Unity's documentation on how to set up, configure and use the system.
 
-Naninovel will automatically use addressables when the package is installed in the project. No additional setup is required. All the assets assigned in the Naninovel's configuration menus (eg, scenario scripts, character sprites, audio clips, etc) will be registered with the system (assigned an "address" under "Naninovel" group) when building the player.
+Naninovel will automatically use addressables when the package is installed in the project and `Use Addressables` property is enabled in resource provider configuration. No additional setup is required. All the assets assigned in the Naninovel's configuration menus (eg, scenario scripts, character sprites, audio clips, etc) will be registered with the system (assigned an "address" under "Naninovel" group) when building the player.
 
-Addressable provider is only used in runtime builds and is disabled in editor by default. In case you're manually exposing resources via addressable address instead of assigning them with Naninovel's resource managers, you can enable it with `Enable Addressable In Editor` property in resource provider configuration menu. Be aware, that enabling this could cause issues when resources are assigned both in resources manager and registered with an addressable address and then renamed, duplicated or removed.
+In case you wish to configure how the Naninovel addressable assets are served (eg, specify a remove web host), edit "Naninovel" group via `Window -> Asset Management -> Addressables -> Groups` menu. The group is automatically created when first building the game; in case it's missing, you can create it manually.
 
-In order for an addressable asset to become "visible" for Naninovel, its address should start with "Naninovel/" and it should has a "Naninovel" label assigned. You can specify additional labels to filter the assets used by Naninovel via `Extra Labels` property in resource provider configuration menu. Be aware, that "Naninovel" addressable group is automatically re-generated on each build; either use another group to specify custom resources or disable `Enable Build Processing` property in resource provider configuration menu and manually process the assets upon build.
-
-In case you wish to configure how the Naninovel addressable assets should be served (eg, specify a remove web host), edit "Naninovel" group via `Window -> Asset Management -> Addressables -> Groups` menu. The group is automatically created when first building the game; in case it's missing, you can create it manually.
+::: note
+Asset records under "Naninovel" addressable group are automatically generated on each build. Don't edit the records manually, as any changes will be lost on build.
+:::
 
 ![](https://i.gyazo.com/c93fbd9e232ec94468c685c4d6003916.png)
+
+To expose an addressable asset to Naninovel without using editor menus, use a custom addressable group; group can have any name, except the reserved "Naninovel". Address of the exposed assets should start with "Naninovel/" and they should have a "Naninovel" label assigned. You can specify additional labels to filter the assets used by Naninovel via `Extra Labels` property in resource provider configuration menu.
+
+Addressable provider is only used in runtime builds and is disabled in editor by default. In case you're manually exposing resources via addressable address instead of assigning them with Naninovel's resource managers, you can enable it with `Enable Addressable In Editor` property in resource provider configuration menu. Be aware, that enabling this could cause issues when resources are assigned both in resources manager and registered with an addressable address and then renamed, duplicated or removed.
 
 ::: warn
 We're not providing any tutorials or support for Unity's addressable asset system itself, be it setting up a remote web hosting for you assets or some other deploy/serving scenario; consult the [support page](/support/#unity-support) for more information.
