@@ -250,6 +250,16 @@ Lorem <ruby="VERY">ipsum</ruby> dolor sit amet.
 ```
 — "VERY" ruby text will appear right above "ipsum" word when the message is printed at runtime.
 
+![](https://i.gyazo.com/ec5eb47c3cf0951ccb589fe49c144418.png)
+
+::: note
+When combining `<ruby>` with other tags, specify ruby tag first to prevent formatting issues, eg:
+
+```nani
+Lorem <ruby="VERY"><tip="TipID">ipsum</tip></ruby> dolor sit amet. 
+```
+:::
+
 You can additionally control the size and vertical line offset of the ruby text by changing properties of `RevealableTMProText` component attached to the printer prefabs.
 
 ![](https://i.gyazo.com/7e1e927c144f30353baaab2ac7b643c7.png)
