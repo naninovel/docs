@@ -408,32 +408,33 @@ It's possible to add a completely custom transition effect via a custom actor [s
 The topic requires graphic programming skills in Unity. We're not providing any support or tutorials on writing custom shaders; consult the [support page](/support/#unity-support) for more information.
 :::
 
-Create a new shader and assign it to the actors, which are supposed to use your new custom transition effect; see [custom actor shader](/guide/custom-actor-shader.md) guide for more information on how to create and assign custom actor shaders.
+Create a new shader and assign it to `Custom Texture Shader` property of the actors, which are supposed to use the custom transition effects; see [custom actor shader](/guide/custom-actor-shader.md) guide for more information on how to create and assign custom actor shaders.
 
 When a transition name is specified in a script command, [shader keyword](https://docs.unity3d.com/ScriptReference/Shader.EnableKeyword.html) with the same name (prefixed with `NANINOVEL_TRANSITION_`) is enabled in the material used by the actor.
 
 To add your own transitions to a custom actor shader, use `multi_compile` directive, eg:
 
 ```c
-#pragma multi_compile _ NANINOVEL_TRANSITION_MYCUSTOM1 NANINOVEL_TRANSITION_MYCUSTOM2
+#pragma multi_compile_local _ NANINOVEL_TRANSITION_CUSTOM1 NANINOVEL_TRANSITION_CUSTOM2
 ```
 
-— will add `MyCustom1` and `MyCustom2` transitions.
+— will add `Custom1` and `Custom2` transitions.
 
 You can then use conditional directives to select a specific render method based on the enabled transition keyword. When re-using built-in actor shader, it's possible to implement custom transitions via `ApplyTransitionEffect` method, which is used in the fragment handler:
 
 ```c
-fixed4 ApplyTransitionEffect(in sampler2D mainTex, in float2 mainUV, in sampler2D transitionTex, in float2 transitionUV, in float progress, in float4 params, in float2 randomSeed, in sampler2D cloudsTex, in sampler2D customTex)
+fixed4 ApplyTransitionEffect(sampler2D mainTex, float2 mainUV, sampler2D transitionTex, float2 transitionUV, 
+    float progress, float4 params, float2 randomSeed, sampler2D cloudsTex, sampler2D customTex)
 {
     const fixed4 CLIP_COLOR = fixed4(0, 0, 0, 0);
     fixed4 mainColor = Tex2DClip01(mainTex, mainUV, CLIP_COLOR);
     fixed4 transitionColor = Tex2DClip01(transitionTex, transitionUV, CLIP_COLOR);
 
-    #ifdef NANINOVEL_TRANSITION_MYCUSTOM1 // MyCustom1 transition.
+    #ifdef NANINOVEL_TRANSITION_CUSTOM1 // Custom1 transition.
     return transitionUV.x > progress ? mainColor : lerp(mainColor / progress * .1, transitionColor, progress);
     #endif
 
-    #ifdef NANINOVEL_TRANSITION_MYCUSTOM2 // MyCustom2 transition.
+    #ifdef NANINOVEL_TRANSITION_CUSTOM2 // Custom2 transition.
     return lerp(mainColor * (1.0 - progress), transitionColor * progress, progress);
     #endif
 
@@ -445,6 +446,8 @@ fixed4 ApplyTransitionEffect(in sampler2D mainTex, in float2 mainUV, in sampler2
 You'll then be able to invoke the added transitions in the same way as the built-in ones, eg:
 
 ```nani
-@back Snow.MyCustom1
-@back River.MyCustom2
+@back Snow.Custom1
+@back River.Custom2
 ```
+
+For the complete shader example see [custom actor shader](/guide/custom-actor-shader.md) guide.
