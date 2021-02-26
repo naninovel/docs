@@ -23,6 +23,18 @@
     </div>
 </div>
 
+<div id="confirmation" class="container" style="width: 25rem;" hidden>
+    <h2>Confirm Discord User</h2>
+    <p>Is this the Discord user you want to register?<br>Click "Register" button again to confirm.</p>
+    <div class="card" style="width: 13rem;">
+        <img id="confirm-image" src="" class="card-img-top">
+        <div class="card-body">
+            <h5 id="confirm-user" class="card-title">Card title</h5>
+        </div>
+    </div>
+    <br><br>
+</div>
+
 <form class="d-flex justify-content-center form-inline" id="form-add" action="" method="post" enctype='application/json'>
 
     <label class="sr-only" for="invoice">Invoice (order number)</label>
@@ -76,6 +88,8 @@
 
 <script type="text/javascript">
 
+    let confirmedId;
+
     $(document).ready(function(){
 
         $("#submit-add").on('click', function() {
@@ -102,10 +116,11 @@
                 // url: 'http://localhost:8080/.netlify/functions/register-customer',
                 type: 'POST',
                 crossDomain: true,
-                data: `{ "invoice": "${invoice}", "discord": "${discord}" }`,
+                data: `{ "invoice": "${invoice}", "discord": "${discord}", "confirm": ${needConfirm()} }`,
                 success: function(result) {
                     deafult();
-                    modal('Success', 'User with the provided Discord ID should now have a "Verified User" role and access to the #support channel on the server.');
+                    if (needConfirm()) doConfirm(result, discord);
+                    else modal('Success', 'User with the provided Discord ID should now have a "Verified User" role and access to the #support channel on the server.');
                 },
                 error: function(xhr, resp, text) {
                     deafult();
@@ -116,8 +131,22 @@
 
     });
 
+    function needConfirm() {
+        return confirmedId !== $('#discord').val();
+    }
+
+    function doConfirm(result, userid) {
+        confirmedId = userid;
+        const json = jQuery.parseJSON(result);
+        if (json.avatar != null)
+            $("#confirm-image").attr("src", `https://cdn.discordapp.com/avatars/${userid}/${json.avatar}.png`);
+        else $("#confirm-image").attr("src", `https://cdn.discordapp.com/embed/avatars/${json.discriminator % 5}.png`);
+        $("#confirm-user").html(`${json.username}#${json.discriminator}`);
+        $("#confirmation").removeAttr('hidden');
+    }
+
     function modal(title, body) {
-        var modal = $('#modal');
+        const modal = $('#modal');
         modal.find('#modalTitle').text(title);
         modal.find('.modal-body').html(body);
         modal.modal('show');
