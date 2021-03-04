@@ -32,17 +32,21 @@ Be aware, that **while in editor a special "Editor" resource provider is always 
 
 The [Addressable Asset system](https://docs.unity3d.com/Packages/com.unity.addressables@latest) is a Unity package allowing to load assets by "address". It uses asynchronous loading to support loading from any location (local storage, remote web hosting, etc) with any collection of dependencies. Consult Unity's documentation on how to set up, configure and use the system.
 
-Naninovel will automatically use addressables when the package is installed in the project and `Use Addressables` property is enabled in resource provider configuration. No additional setup is required. All the assets assigned in the Naninovel's configuration menus (eg, scenario scripts, character sprites, audio clips, etc) will be registered with the system (assigned an "address" under "Naninovel" group) when building the player.
+Naninovel will automatically use addressables when the package is installed in the project and `Use Addressables` property is enabled in resource provider configuration. No additional setup is required. All the assets assigned in the Naninovel's configuration menus (eg, scenario scripts, character sprites, audio clips, etc) will be registered with the system (assigned an address) when building the player.
 
-In case you wish to configure how the Naninovel addressable assets are served (eg, specify a remove web host), edit "Naninovel" group via `Window -> Asset Management -> Addressables -> Groups` menu. The group is automatically created when first building the game; in case it's missing, you can create it manually.
-
-::: note
-Asset records under "Naninovel" addressable group are automatically generated on each build. Don't edit the records manually, as any changes will be lost on build.
-:::
+In case you wish to configure how the Naninovel addressable assets are served (eg, specify a remote web host), edit Naninovel groups via `Window -> Asset Management -> Addressables -> Groups` menu. The groups are automatically created when first building the game; in case they're missing, you can create them manually.
 
 ![](https://i.gyazo.com/c93fbd9e232ec94468c685c4d6003916.png)
 
-To expose an addressable asset to Naninovel without using editor menus, use a custom addressable group; group can have any name, except the reserved "Naninovel". Address of the exposed assets should start with "Naninovel/" and they should have a "Naninovel" label assigned. You can specify additional labels to filter the assets used by Naninovel via `Extra Labels` property in resource provider configuration menu.
+::: note
+Asset records under Naninovel addressable groups are automatically generated on each build. Don't edit the records manually, as any changes will be lost on build.
+:::
+
+By default, `Group By Category` option in resource provider configuration is disabled, making all the Naninovel resources be added under a single "Naninovel" addressable group. In case you wish to group the resources by category (eg, to specify individual packing or serving options), enable the property and re-build. When enabled, each resource category (eg, scripts, audio, characters, etc) will be added under their own addressable group named "Naninovel-*Category*", where *Category* is the category of the resource.
+
+![](https://i.gyazo.com/80938ca5ca1021e8a71f783eef516d15.png)
+
+To expose an addressable asset to Naninovel without using editor menus, use a custom addressable group; group can have any name, except it can't start with the reserved "Naninovel" (otherwise, it'll be recognized as an auto-generated and will be cleared on build). Address of the exposed assets should start with "Naninovel/" and they should have a "Naninovel" label assigned. You can specify additional labels to filter the assets used by Naninovel via `Extra Labels` property in resource provider configuration menu.
 
 Addressable provider is only used in runtime builds and is disabled in editor by default. In case you're manually exposing resources via addressable address instead of assigning them with Naninovel's resource managers, you can enable it with `Enable Addressable In Editor` property in resource provider configuration menu. Be aware, that enabling this could cause issues when resources are assigned both in resources manager and registered with an addressable address and then renamed, duplicated or removed.
 
