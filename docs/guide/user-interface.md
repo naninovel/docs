@@ -55,13 +55,11 @@ Following video tutorial shows how to add a custom calendar UI with special reve
 [!!wrAm-cwPXy4]
 
 ::: example
-Unity project showed in the above video tutorial is [available on GitHub](https://github.com/Naninovel/CustomUIExample). You can [clone the repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) with a Git client or [download it as a zip archive](https://github.com/Naninovel/CustomUIExample/archive/master.zip). Be aware, that Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
+Unity project showed in the above video tutorial is [available on GitHub](https://github.com/Naninovel/CustomUIExample). You can [clone the repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) with a Git client or [download it as a zip archive](https://github.com/Naninovel/CustomUIExample/archive/master.zip).
 :::
 
 ::: example
-Another, more advanced example of adding a custom inventory UI with a grid layout, pagination and drag-drop window can be found in the [inventory example project on GitHub](https://github.com/Naninovel/Inventory).
-
-Specifically, the UI-related scripts are stored at [Runtime/UI](https://github.com/Naninovel/Inventory/tree/master/Assets/NaninovelInventory/Runtime/UI) and prefabs at [Prefabs](https://github.com/Naninovel/Inventory/tree/master/Assets/NaninovelInventory/Prefabs) directories.
+Another, more advanced example of adding a custom inventory UI with a grid layout, pagination and drag-drop window can be found in the [inventory example project on GitHub](https://github.com/Naninovel/Inventory). Specifically, the UI-related scripts are stored at [Runtime/UI](https://github.com/Naninovel/Inventory/tree/master/Assets/NaninovelInventory/Runtime/UI) and prefabs at [Prefabs](https://github.com/Naninovel/Inventory/tree/master/Assets/NaninovelInventory/Prefabs) directories.
 :::
 
 When you create a new custom UI prefab via the context menu, the prefab will have a `Custom UI` component attached to the root object. This component (or rather the fact that the component is implementing `IManagedUI` interface) is essential to make the prefab accepted as a UI by the engine.
@@ -127,7 +125,7 @@ In the following video tutorial you can learn how to override built-in title (ma
 [!!hqhfhXzQkdk]
 
 ::: example
-Unity project showed in the above video tutorial is [available on GitHub](https://github.com/Naninovel/CustomUIExample). You can [clone the repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) with a Git client or [download it as a zip archive](https://github.com/Naninovel/CustomUIExample/archive/master.zip). Be aware, that Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
+Unity project showed in the above video tutorial is [available on GitHub](https://github.com/Naninovel/CustomUIExample).
 :::
 
 When creating a new prefab from scratch, make sure to attach a component that implements interface of the UI you're going to override. This component should be attached to the root object of the prefab.
@@ -184,5 +182,5 @@ Conditional block commands (if, else, elseif, endif) are not supported in the sc
 When an existing naninovel script is selected via dropdown list, the script text area will be ignored and selected naninovel script will be played **instead** of the currently played one; in case you wish to additively execute some commands without interrupting the currently played script, use the script text area.
 
 ::: example
-Find an example on using `Play Script` component in the [UI example project](https://github.com/Naninovel/CustomUIExample); the component is used on "CloseButton" game object placed inside "Prefabs/Calendar" custom UI prefab. You can [clone the repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) with a Git client or [download it as a zip archive](https://github.com/Naninovel/CustomUIExample/archive/master.zip). Be aware, that Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
+Find an example on using `Play Script` component in the [UI example project](https://github.com/Naninovel/CustomUIExample); the component is used on "CloseButton" game object placed inside "Prefabs/Calendar" custom UI prefab.
 :::

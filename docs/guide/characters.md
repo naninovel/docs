@@ -400,7 +400,7 @@ Following video guide covers exporting a Live2D character from Cubism Editor, co
 [!!rw_Z69z0pAg]
 
 ::: example
-Check out an [example project on GitHub](https://github.com/Naninovel/Live2D), where a Live2D character is used with Naninovel. Be aware, that Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
+Check out an [example project on GitHub](https://github.com/Naninovel/Live2D), where a Live2D character is used with Naninovel.
 :::
 
 ## Narrator Characters
@@ -424,7 +424,7 @@ The video below demonstrates how to render a Live2D character to a texture, whic
 [!!81OTbSAnWbw]
 
 ::: example
-For a complete example on setting up Live2D character render to texture and binding it with a text printer, see [Naninovel Live2D project on GitHub](https://github.com/Naninovel/Live2D). Be aware, that Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
+Find a complete example on setting up Live2D character render to texture and binding it with a text printer in the [Naninovel Live2D project on GitHub](https://github.com/Naninovel/Live2D).
 :::
 
 ::: note
