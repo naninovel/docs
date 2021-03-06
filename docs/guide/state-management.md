@@ -57,9 +57,9 @@ await stateManager.SaveSettingsAsync();
 
 ## Custom State
 
-It's possible to "outsource" state handling of your custom objects to a `IStateManager`, so that they will serialize to the save slots with all the engine's data when player saves the game and deserialize back when the game is loaded. 
+It's possible to delegate state handling of your custom objects to `IStateManager`, so that they will serialize to the save slots with all the engine's data when player saves the game and deserialize back when the game is loaded. All the built-in state-related features (eg, rollback) will also work out of the box with the custom state.
 
-The following example demonstrates how to subscribe a generic `MonoBehaviour` to the save and load operations.
+Following example demonstrates delegating state handling of "MyCustomBehaviour" component.
 
 ```csharp
 using UniRx.Async;
@@ -71,12 +71,12 @@ public class MyCustomBehaviour : MonoBehaviour
     [System.Serializable]
     private class GameState 
     { 
-    	public bool MyCustomBoolVariable; 
-    	public string MyCustomStringVariable; 
+    	public bool MyCustomBool;
+    	public string MyCustomString;
     }
 
-    private bool myCustomBoolVariable;
-    private string myCustomStringVariable;
+    private bool myCustomBool;
+    private string myCustomString;
     private IStateManager stateManager;
 
     private void Awake ()
@@ -99,8 +99,8 @@ public class MyCustomBehaviour : MonoBehaviour
     private void SerializeState (GameStateMap stateMap)
     {
         var state = new GameState() {
-            MyCustomBoolVariable = myCustomBoolVariable,
-            MyCustomStringVariable = myCustomStringVariable
+            MyCustomBool = myCustomBool,
+            MyCustomString = myCustomString
         };
         stateMap.SetState(state);
     }
@@ -110,18 +110,57 @@ public class MyCustomBehaviour : MonoBehaviour
         var state = stateMap.GetState<GameState>();
         if (state is null) return UniTask.CompletedTask;
 
-        myCustomBoolVariable = state.MyCustomBoolVariable;
-        myCustomStringVariable = state.MyCustomStringVariable;
+        myCustomBool = state.MyCustomBool;
+        myCustomString = state.MyCustomString;
         return UniTask.CompletedTask;
     }
 }
 ```
 
 ::: example
-A more advanced example of using custom state with a list of custom structs to save-load state of an inventory UI can be found in the [inventory example project on GitHub](https://github.com/Naninovel/Inventory).
-
-Specifically, de-/serialization of the custom state is implemented in [InventoryUI.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L238) runtime script; custom state for UI slots is implemented via [InventorySlotState.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/InventorySlotState.cs).
+A more advanced example of using custom state with a list of custom structs to save-load game state of an inventory UI can be found in the [inventory example project on GitHub](https://github.com/Naninovel/Inventory). Specifically, de-/serialization of the custom state is implemented in [InventoryUI.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L246) custom UI.
 :::
+
+It's also possible to access global and settings state of the engine to store custom data with them. Unlike game state, which is specific to game sessions and requires subscribing to save/load events, global and settings state objects are singletons and can be directly accessed via properties of the state manager.
+
+```csharp
+[System.Serializable]
+class MySettings
+{ 
+    public bool MySettingsBool; 
+}
+
+[System.Serializable]
+class MyGlobal
+{ 
+    public string MyGlobalString; 
+}
+
+MySettings MySettings
+{
+    get => stateManager.SettingsState.GetState<MySettings>();
+    set => stateManager.SettingsState.SetState<MySettings>(value);
+}
+
+MyGlobal MyGlobal
+{
+    get => stateManager.GlobalState.GetState<MyGlobal>();
+    set => stateManager.GlobalState.SetState<MyGlobal>(value);
+}
+```
+
+The state objects are indexed by type, while in some cases you may have multiple object instances of the same type each with their own individual state. Both `GetState` and `SetState` methods allows providing an optional `instanceId` argument to discriminate such objects, eg:
+
+```csharp
+[System.Serializable]
+class MonsterState
+{ 
+    public int Health; 
+}
+
+var monster1 = stateMap.GetState<MonsterState>("1");
+var monster2 = stateMap.GetState<MonsterState>("2");
+```
 
 ## Custom Serialization Handlers
 
@@ -131,7 +170,7 @@ To add a custom handler, implement `ISaveSlotManager<GameStateMap>`, `ISaveSlotM
 
 Implementation should have a compatible public constructor: `public CustomSlotManager (StateConfiguration config, string savesFolderPath)`, where `config` is an instance of state configuration object and `savesFolderPath` is the path to saves folder (you're free to ignore that path and use one you see fit).
 
-::: note
+::: warn
 When adding custom implementation types under a non-predefined assembly (via [assembly definitions](https://docs.unity3d.com/Manual/ScriptCompilationAssemblyDefinitionFiles.html)), add the assembly name to the `Type Assemblies` list found in the engine configuration menu. Otherwise, the engine won't be able to locate your custom types.
 :::
 

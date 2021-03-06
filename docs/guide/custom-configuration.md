@@ -70,7 +70,7 @@ Notice the `EditInProjectSettings` attribute: an associated editor menu is autom
 
 ![](https://i.gyazo.com/c1163bba83f5d2b6286b100e837bca40.png)
 
-::: note
+::: warn
 When adding custom implementation types under a non-predefined assembly (via [assembly definitions](https://docs.unity3d.com/Manual/ScriptCompilationAssemblyDefinitionFiles.html)), add the assembly name to the `Type Assemblies` list found in the engine configuration menu. Otherwise, the engine won't be able to locate your custom types.
 :::
 
