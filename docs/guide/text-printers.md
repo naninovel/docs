@@ -228,7 +228,7 @@ Font Render Mode: Distance Field 16
 ```
 
 ::: example
-For a complete example on setting up custom text mesh pro printer with right-to-left (Arabic) text support, see [Naninovel RTL project on GitHub](https://github.com/Naninovel/RTL). Be aware, that Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
+For a complete example on setting up custom text mesh pro printer with right-to-left (Arabic) text support, see [Naninovel RTL project on GitHub](https://github.com/Naninovel/RTL).
 :::
 
 ::: note

@@ -112,7 +112,7 @@ Don't forget to add Google Drive to the list of providers for the resources you 
 ![](https://i.gyazo.com/0ad07f73fe12be7ae6d421c5f4f33384.png)
 
 ::: example
-See [NaninovelSandbox](https://github.com/Naninovel/Sandbox) project for an example on how to set up and use Google Drive provider.
+Check [NaninovelSandbox](https://github.com/Naninovel/Sandbox) project for an example on how to set up and use Google Drive provider. In the project, scripts, characters, backgrounds and audio resources are served from corresponding files stored on authorized user drive.
 :::
 
 ## Custom Providers
