@@ -51,7 +51,7 @@ To expose an addressable asset to Naninovel without using editor menus, use a cu
 Addressable provider is only used in runtime builds and is disabled in editor by default. In case you're manually exposing resources via addressable address instead of assigning them with Naninovel's resource managers, you can enable it with `Enable Addressable In Editor` property in resource provider configuration menu. Be aware, that enabling this could cause issues when resources are assigned both in resources manager and registered with an addressable address and then renamed, duplicated or removed.
 
 ::: warn
-We're not providing any tutorials or support for Unity's addressable asset system itself, be it setting up a remote web hosting for you assets or some other deploy/serving scenario; consult the [support page](/support/#unity-support) for more information.
+We're not providing any tutorials or support for Unity's addressable asset system itself, like setting up a remote web hosting for you assets or other deploy/serving scenarios; consult the [support page](/support/#unity-support) for more information.
 :::
 
 ## Project
