@@ -101,13 +101,13 @@ When UnityGoogleDrive package is installed and configured, related properties wi
 
 ![](https://i.gyazo.com/57281ae3a47e85690d9141179af768a8.png)
 
-`Google Drive Root Path` is a relative path inside your google drive's folder to a directory, which should be considered the resources root. Eg, if you want to store the scenario scripts under `MyGame/Scripts`, specify the root as `MyGame`.
+`Google Drive Root Path` is a relative path inside your Google Drive's folder to a directory, which should be considered the resources root. Eg, if you want to store the scenario scripts under `MyGame/Scripts`, specify the root as `MyGame`.
 
-With `Google Drive Request Limit` property you can set maximum allowed concurrent requests when contacting Google Drive API. This is required to prevent communication errors when using a personal google drive plan, which is limiting the number of allowed concurrent requests.
+With `Google Drive Request Limit` property you can set maximum allowed concurrent requests when contacting Google Drive API. This is required to prevent communication errors when using a personal Google Drive plan, which is limiting the number of allowed concurrent requests.
 
 `Google Drive Cache Policy` dictates caching behavior of the downloaded resources. `Smart` will attempt to use [Changes API](https://developers.google.com/drive/api/v3/reference/changes) to check whether the requested (cached) resource has changed on the remote folder before downloading it. `Purge All On Init` will purge the cache on engine initialization and always use cached versions after the first download. The cache can also be manually purged at any time with `purge` [console command](/guide/development-console.md).
 
-Don't forget to add google drive to the list of providers for the resources you wish to retrieve with it. Eg, following will make the script manager to look for scripts in the Google Drive in addition to addressable and project sources:
+Don't forget to add Google Drive to the list of providers for the resources you wish to retrieve with it. Eg, following will make the script manager to look for scripts in the Google Drive in addition to addressable and project sources:
 
 ![](https://i.gyazo.com/0ad07f73fe12be7ae6d421c5f4f33384.png)
 
