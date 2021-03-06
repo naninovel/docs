@@ -112,7 +112,7 @@ Don't forget to add google drive to the list of providers for the resources you 
 ![](https://i.gyazo.com/0ad07f73fe12be7ae6d421c5f4f33384.png)
 
 ::: example
-See [NaninovelSandbox](https://github.com/Naninovel/Sandbox) project for an example on how to setup and use Google Drive provider. Be aware, that Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
+See [NaninovelSandbox](https://github.com/Naninovel/Sandbox) project for an example on how to set up and use Google Drive provider.
 :::
 
 ## Custom Providers
