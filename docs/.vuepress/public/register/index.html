@@ -5,21 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="icon" href="/logo.png">
+    <style>
+        .popover {
+            max-width: 100%;
+        }
+    </style>
     <title>Register Naninovel</title>
 </head>
 <body>
 
 <div class="jumbotron">
     <div class="container mw-125">
-    <h1 class="display-4">Register Naninovel</h1>
-    <p class="lead">Thank you for purchasing Naninovel! Registering will allow you to access direct support on the Naninovel discord server.</p>
-    <hr class="my-4">
-    <p>Fill in the invoice number and Discord ID fields in the form at the bottom of the page and press <em>Register</em> button to perform the registration.</p>
-    <p>You can find your <b>invoice number</b> in the purchase confirmation email sent by Unity. If you didn't receive the invoice or can't find it, <a href="https://support.unity3d.com/hc/en-us/articles/205055849">contact Unity support</a>.</p>
-        <p>To find your <b>Discord ID</b> enable developer mode in the Discord client (<small>user settings -> appearance -> developer mode</small>), then right-click your portrait in the server's member list and choose <em>Copy ID</em>. Check out this <a href="https://support.discord.com/hc/en-us/articles/206346498">detailed guide</a> or <a href="https://youtu.be/1T0L4c9hWTo">video</a> if you have troubles finding the ID. Don't forget to <a href="https://discord.gg/avhRzP3">join Naninovel discord server</a> before the registration!</p>
-    <div class="alert alert-warning" role="alert"><b>Discord ID</b> contain only numbers, eg <mark>9563248795123659874</mark>. In case you're attempting to enter something like <mark>Mike#5874</mark> — it is not ID, but username and won't work. See the information above on how to find your Discord ID.</div>
+        <h1 class="display-4">Register Naninovel</h1>
+        <p class="lead">Thank you for purchasing Naninovel! Registering will allow you to access direct support on the Naninovel discord server.</p>
+        <hr class="my-4">
+        <p>Fill in the invoice number and Discord ID fields in the form at the bottom of the page and press "Register" button to perform the registration.</p>
+        <p>You can find your <mark><abbr title="" data-toggle="popover-hover" data-img="https://i.gyazo.com/52a47e7b392ed2ab5fce4784f3a0beee.png">invoice number</abbr></mark> (starts with "IN") in the PDF attached to the purchase confirmation email sent by Unity. If you have not received the invoice or can't find it, <a href="https://support.unity.com/hc/en-us/articles/360054437152" target="_blank">contact Unity support</a>.</p>
+        <p>Your <mark><abbr title="" data-toggle="popover-hover" data-img="https://i.gyazo.com/ef9a2cc9c59df1826d3dc26d081ddfd6.png">Discord ID</abbr></mark> will be revealed in the direct (private) message sent by <em>MEE6</em> bot when you join the Discord server. In case you can't find the message or want to register another user, check the <a href="https://support.discord.com/hc/en-us/articles/206346498" target="_blank">article</a> on how to manually get the user ID. Make sure the user has joined <a href="https://discord.gg/avhRzP3" target="_blank">Naninovel discord server</a> before performing the registration!</p>
         <p>When the registration is completed you will automatically receive a <em>Verified User</em> role on the server and access to the <em>#support</em> and <em>#download</em> channels.</p>
-    <p>If you have any issues during the registration, send a private message to <mark>@Elringus#6359</mark> on Discord.</p>
+        <p>If you have any issues during the registration, send a private message to <em>@Elringus#6359</em> on Discord.</p>
     </div>
 </div>
 
@@ -37,12 +41,12 @@
 
 <form class="d-flex justify-content-center form-inline" id="form-add" action="" method="post" enctype='application/json'>
 
-    <label class="sr-only" for="invoice">Invoice (order number)</label>
+    <label class="sr-only" for="invoice">Invoice number</label>
     <div class="input-group mb-2 mr-sm-2">
         <div class="input-group-prepend">
             <div class="input-group-text">#</div>
         </div>
-        <input type="text" class="form-control" id="invoice" placeholder="Invoice (order number)">
+        <input type="text" class="form-control" id="invoice" placeholder="Invoice number">
     </div>
 
     <label class="sr-only" for="discord">Discord ID</label>
@@ -87,7 +91,15 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 <script type="text/javascript">
+    $('[data-toggle="popover-hover"]').popover({
+        html: true,
+        trigger: 'hover',
+        placement: 'bottom',
+        content: function () { return '<img src="' + $(this).data('img') + '" />'; }
+    });
+</script>
 
+<script type="text/javascript">
     let confirmedId;
 
     $(document).ready(function(){
@@ -163,7 +175,6 @@
         $("#working").attr('hidden', true);
         $("#default").removeAttr('hidden');
     }
-
 </script>
 
 </body>
