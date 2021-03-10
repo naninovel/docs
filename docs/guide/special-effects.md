@@ -319,7 +319,7 @@ Stop Duration | Decimal | 1 | Fade-off (disable) duration for the effect paramet
 ```
 
 ## Blur
-Applies a blur filter to a supported actor: backgrounds and characters of sprite, layered, diced, Live2D, video and scene implementations. By default (when first parameter is not specified), the effect is applied to `MainBackground` actor.
+Applies a blur filter to a supported actor: backgrounds and characters of sprite, layered, diced, Live2D, Spine, video and scene implementations. By default (when first parameter is not specified), the effect is applied to `MainBackground` actor.
 
 [!067614d77783683e74ca79652099b58d]
 

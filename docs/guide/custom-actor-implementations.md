@@ -9,7 +9,7 @@ Actors are represented by `IActor` interface and its derivatives:
 * `ITextPrinterActor`
 * `IChoiceHandlerActor`
 
-Each actor interface can have multiple implementations; e.g. character actors currently have six built-in implementations: sprite, diced sprite, generic, layered, narrator and Live2D.
+Each actor interface can have multiple implementations; e.g. character actors currently have seven built-in implementations: sprite, diced sprite, generic, layered, narrator, Spine and Live2D.
 
 Actor implementation can be selected in the configuration managers accessible via `Naninovel -> Configuration` context menu. You can both change default implementation used for all the actors or set specific implementation per actor. To change default implementation, use `Default Metadata` property and to set specific ones, use an `Implementation` drop-down list in actor's configuration. 
 
