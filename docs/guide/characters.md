@@ -413,7 +413,7 @@ Spine character implementation uses assets created with [Spine](http://esoterics
 
 In order to be able to use this implementation you have to first install [Spine runtime for Unity](http://esotericsoftware.com/spine-unity-download). Consult [the official docs](http://esotericsoftware.com/spine-unity) for the installation and usage instructions.
 
-Then download and import Naninovel's [Spine extension package](https://github.com/Naninovel/Spine/raw/master/NaninovelSpine.unitypackage).
+Then download and import Naninovel's [Spine extension package](https://github.com/Naninovel/Spine/raw/main/NaninovelSpine.unitypackage).
 
 Spine character prefab used as the resource for the implementation should have a `Spine Controller` component attached to the root object. Appearance changes from naninovel scripts commands (such as `@char`) are routed to the controller's `On Appearance Changed` commands similar to [generic implementation](/guide/characters.md#generic-characters). You can handle the events as you wish; for example, use Spine's `SetAnimation` method or invoke a trigger in Unity's animator controller.
 
