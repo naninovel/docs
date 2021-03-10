@@ -363,7 +363,9 @@ When using video with an alpha channel (transparency), see the [guide on the sup
 
 ## Live2D Characters
 
-Live2D character implementation uses assets created with [Live2D Cubism](https://www.live2d.com) 2D modeling and animation software. 
+Live2D character implementation uses assets created with [Live2D Cubism](https://www.live2d.com) 2D modeling and animation software.
+
+[!b81df72fc7afaed569520496cbee09f0]
 
 In order to be able to use this implementation you have to first install [Live2D Cubism SDK for Unity](https://live2d.github.io/#unity). Consult official Live2D docs for the installation and usage instructions.
 
@@ -401,6 +403,30 @@ Following video guide covers exporting a Live2D character from Cubism Editor, co
 
 ::: example
 Check out an [example project on GitHub](https://github.com/Naninovel/Live2D), where a Live2D character is used with Naninovel.
+:::
+
+## Spine Characters
+
+Spine character implementation uses assets created with [Spine](http://esotericsoftware.com) 2D modeling and animation software.
+
+[!08b04de115d97427d152cb5f37065d2d]
+
+In order to be able to use this implementation you have to first install [Spine runtime for Unity](http://esotericsoftware.com/spine-unity-download). Consult [the official docs](http://esotericsoftware.com/spine-unity) for the installation and usage instructions.
+
+Then download and import Naninovel's [Spine extension package](https://github.com/Naninovel/Spine/raw/master/NaninovelSpine.unitypackage).
+
+Spine character prefab used as the resource for the implementation should have a `Spine Controller` component attached to the root object. Appearance changes from naninovel scripts commands (such as `@char`) are routed to the controller's `On Appearance Changed` commands similar to [generic implementation](/guide/characters.md#generic-characters). You can handle the events as you wish; for example, use Spine's `SetAnimation` method or invoke a trigger in Unity's animator controller.
+
+![](https://i.gyazo.com/6a2772a3e4137413a7c1587788c54c41.png)
+
+::: tip
+It's possible to use a custom component inherited from `Spine Controller`. This way you'll be able to override the virtual methods and associated behaviour (eg, handle appearance change with a specific duration or transition parameters).
+:::
+
+Internally, Spine model is rendered to a texture, which is then projected to the screen. This is required to prevent semi-transparency overdraw artifacts when fading the character. To specify the texture size, use `Render Canvas` component (attached automatically when adding `Spine Controller`). Enable [gizmos](https://docs.unity3d.com/Manual/GizmosMenu.html) to preview current the size while in prefab mode. Be aware, that larger the size, the more memory will the texture consume, so keep it as small, as possible.
+
+::: example
+Check out an [example project on GitHub](https://github.com/Naninovel/Spine), where a Spine character is used with Naninovel.
 :::
 
 ## Narrator Characters

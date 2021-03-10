@@ -36,6 +36,7 @@ Following are some of the features Naninovel provide out of the box:
   * [Layered characters](/guide/characters.md#layered-characters)
   * [Generic characters](/guide/characters.md#generic-characters)
   * [Live2D characters](/guide/characters.md#live2d-characters)
+  * [Spine characters](/guide/characters.md#spine-characters)
   * [Character-specific message colors](/guide/characters.md#message-colors)
   * [Lip sync](/guide/characters.md#lip-sync)
 * [Backgrounds](/guide/backgrounds.md)
