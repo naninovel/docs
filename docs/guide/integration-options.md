@@ -18,6 +18,21 @@ When `Initialize On Application Load` option in the engine configuration menu is
 
 Unless you want to begin your game in novel mode, you would rather manually initialize the engine when it's actually needed by either invoking a static `RuntimeInitializer.InitializeAsync()` method from C# or adding a `Runtime Initializer` component to a game object on scene; the latter will make the engine initialize when the scene is loaded in Unity.
 
+Below is an example of manual initialization from a [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html) script:
+
+```csharp
+using Naninovel;
+using UnityEngine;
+
+public class MyScript : MonoBehaviour
+{
+    private async void Start ()
+    {
+        await RuntimeInitializer.InitializeAsync();
+    }
+}
+```
+
 Disabling `Scene Independent` option will make all the Naninovel-related objects part of the Unity scene where the engine was initialized; the engine will be destroyed when the scene is unloaded.
 
 To reset the engine services (and dispose most of the occupied resources), use `ResetStateAsync()` method of `IStateManager` service; this is useful, when you're going to temporary switch to some other gameplay mode, but be able to return to novel mode without re-initializing the engine.
@@ -31,7 +46,7 @@ The engine initialization procedure is asynchronous, so even when automatic init
 To check whether the engine is currently available, use `Engine.Initialized` property; `Engine.OnInitializationFinished` event allows executing actions after the initialization procedure is finished, eg:
 
 ```csharp
-public class MyCustomBehaviour : MonoBehaviour
+public class MyScript : MonoBehaviour
 {
     private void Awake ()
     {
