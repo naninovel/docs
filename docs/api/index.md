@@ -149,7 +149,8 @@ ID | Type | Description
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">appearanceAndTransition</span> | named string | Appearance (or [pose](/guide/backgrounds.md#poses)) to set for the modified background and type of a [transition effect](/guide/transition-effects.md) to use. When transition is not provided, a cross-fade effect will be used by default.
 pos | decimal list | Position (relative to the scene borders, in percents) to set for the modified actor. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode.
 id | string | ID of the actor to modify; specify `*` to affect all visible actors.
-appearance | string | Appearance (or pose) to set for the modified actor.
+appearance | string | Appearance to set for the modified actor.
+pose | string | Pose to set for the modified actor.
 transition | string | Type of the [transition effect](/guide/transition-effects.md) to use (crossfade is used by default).
 params | decimal list | Parameters of the transition effect.
 dissolve | string | Path to the [custom dissolve](/guide/transition-effects.md#custom-transition-effects) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode.
@@ -314,7 +315,8 @@ look | string | Look direction of the actor; supported values: left, right, cent
 avatar | string | Name (path) of the [avatar texture](/guide/characters.md#avatar-textures) to assign for the character. Use `none` to remove (un-assign) avatar texture from the character.
 pos | decimal list | Position (relative to the scene borders, in percents) to set for the modified actor. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode.
 id | string | ID of the actor to modify; specify `*` to affect all visible actors.
-appearance | string | Appearance (or pose) to set for the modified actor.
+appearance | string | Appearance to set for the modified actor.
+pose | string | Pose to set for the modified actor.
 transition | string | Type of the [transition effect](/guide/transition-effects.md) to use (crossfade is used by default).
 params | decimal list | Parameters of the transition effect.
 dissolve | string | Path to the [custom dissolve](/guide/transition-effects.md#custom-transition-effects) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode.
@@ -969,7 +971,8 @@ default | boolean | Whether to make the printer the default one. Default printer
 hideOther | boolean | Whether to hide all the other printers.
 pos | decimal list | Position (relative to the scene borders, in percents) to set for the modified actor. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode.
 id | string | ID of the actor to modify; specify `*` to affect all visible actors.
-appearance | string | Appearance (or pose) to set for the modified actor.
+appearance | string | Appearance to set for the modified actor.
+pose | string | Pose to set for the modified actor.
 transition | string | Type of the [transition effect](/guide/transition-effects.md) to use (crossfade is used by default).
 params | decimal list | Parameters of the transition effect.
 dissolve | string | Path to the [custom dissolve](/guide/transition-effects.md#custom-transition-effects) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode.
