@@ -209,6 +209,7 @@ Enable Build Processing | True | Whether to register a custom build player handl
 Use Addressables | True | When the Addressable Asset System is installed, enabling this property will optimize asset processing step improving the build time.
 Auto Build Bundles | True | Whether to automatically build the addressable asset bundles when building the player. Has no effect when `Use Addressables` is disabled.
 Allow Addressable In Editor | False | Whether to use addressable provider in editor. Enable if you're manually exposing resources via addressable address instead of assigning them with Naninovel's resource managers. Be aware, that enabling this could cause issues when resources are assigned both in resources manager and registered with an addressable address and then renamed or duplicated.
+Group By Category | False | Whether to create an addressable group per Naninovel resource category: scripts, characters, audio, etc. When disabled, will use a single `Naninovel` group for all the resources.
 Extra Labels | Null | Addressable provider will only work with assets, that have the assigned labels in addition to `Naninovel` label. Can be used to filter assets used by the engine based on custom criteria (eg, HD vs SD textures).
 Local Root Path | %DATA%/Resources | Path root to use for the local resource provider. Can be an absolute path to the folder where the resources are located, or a relative path with one of the available origins:<br> • %DATA% — Game data folder on the target device (UnityEngine.Application.dataPath).<br> • %PDATA% — Persistent data directory on the target device (UnityEngine.Application.persistentDataPath).<br> • %STREAM% — `StreamingAssets` folder (UnityEngine.Application.streamingAssetsPath).<br> • %SPECIAL{F}% — An OS special folder (where F is value from System.Environment.SpecialFolder).
 Video Stream Extension | .mp 4 | When streaming videos under WebGL (movies, video backgrounds), specify the extension of the video files.
@@ -245,6 +246,8 @@ Title Script | Null | Name of the script to play when showing the Title UI. Can 
 Start Game Script | Null | Name of the script to play when starting a new game. Will use first available when not provided.
 Auto Add Scripts | True | Whether to automatically add created naninovel scripts to the resources.
 Hot Reload Scripts | True | Whether to reload modified (both via visual and external editors) scripts and apply changes during playmode without restarting the playback.
+Watch Scripts | True | Whether to run a file system watcher over `.nani` files in the project. Required to register script changes when edited with an external application. Restart Unity editor for changes to take effect.
+Watched Directory |  | When `Watch Scripts` is enabled, select a specific directory to watch instead of the whole project to reduce CPU usage. Restart Unity editor for changes to take effect.
 Count Total Commands | False | Whether to calculate number of commands existing in all the available naninovel scripts on service initialization. If you don't use `TotalCommandsCount` property of a script manager and `CalculateProgress` function in naninovel script expressions, disable to reduce engine initialization time.
 Enable Visual Editor | True | Whether to show visual script editor when a script is selected.
 Hide Unused Parameters | True | Whether to hide un-assigned parameters of the command lines when the line is not hovered or focused.
@@ -290,7 +293,7 @@ Default Settings Slot Id | Settings | The name of the settings save file.
 Default Global Slot Id | Global Save | The name of the global save file.
 Save Slot Mask | Game Save{0:000} | Mask used to name save slots.
 Quick Save Slot Mask | Game Quick Save{0:000} | Mask used to name quick save slots.
-Save Slot Limit | 36 | Maximum number of save slots.
+Save Slot Limit | 99 | Maximum number of save slots.
 Quick Save Slot Limit | 18 | Maximum number of quick save slots.
 Binary Save Files | True | Whether to compress and store the saves as binary files (.nson) instead of text files (.json). This will significantly reduce the files size and make them harder to edit (to prevent cheating), but will consume more memory and CPU time when saving and loading.
 Load Start Delay | 0.3 | Seconds to wait before starting load operations; used to allow pre-load animations to complete before any load-related stutters could happen.
@@ -336,6 +339,7 @@ Loader | UI- (Addressable, Project) | Configuration of the resource loader used 
 Override Objects Layer | True | Whether to assign a specific layer to all the UI objects managed by the engine. Required for some of the built-in features, eg `Toggle UI`.
 Objects Layer | 5 | When `Override Objects Layer` is enabled, the specified layer will be assigned to all the managed UI objects.
 Font Options | Null | Font options, that should be available in the game settings UI (in addition to `Default`) for the player to choose from.
+Default Font | Null | Name (ID) of a font from `Font Options` to apply by default when the game is first started. When not specified, `Default` font is applied.
 
 </div>
 
