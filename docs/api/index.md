@@ -1436,6 +1436,10 @@ ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">path</span> | string | Name (path) of the prefab resource to spawn.
 params | string list | Parameters to set when spawning the prefab. Requires the prefab to have a `IParameterized` component attached the root object.
+pos | decimal list | Position (relative to the scene borders, in percents) to set for the spawned object. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode.
+position | decimal list | Position (in world space) to set for the spawned object.
+rotation | decimal list | Rotation to set for the spawned object.
+scale | decimal list | Scale to set for the spawned object.
 
 </div>
 

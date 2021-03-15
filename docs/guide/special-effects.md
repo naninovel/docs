@@ -349,7 +349,7 @@ Stop Duration | Decimal | 1 | Fade-off (disable) duration for the effect, in sec
 
 ### Standalone Effects
 
-You can add a custom standalone effect (implemented via a prefab, like the "Rain" and "Snow" built-in effects) by adding the effect prefab via spawn resources managers (`Naninovel -> Resources -> Spwan`) and using [@spawn] and [@despawn] commands in the same way as with the built-in effects.
+You can add a custom standalone effect (implemented via a prefab, like the "Rain" and "Snow" built-in effects) by adding the effect prefab via spawn resources manager (`Naninovel -> Resources -> Spwan`) and using [@spawn] and [@despawn] commands in the same way as with the built-in effects.
 
 ![](https://i.gyazo.com/45b9d8fb51ffb368ff9f792221f10ca6.png)
 
@@ -358,6 +358,14 @@ For example, given there is a `Explosion.prefab` prefab assigned via the spawn m
 ```nani
 @spawn Explosion
 @despawn Explosion
+```
+
+The command supports transform parameters, allowing to spawn the object at a specific scene or world positions and with a specific rotation or scale, eg:
+
+```nani
+; Spawn Explosion 15% from the left border of the screen
+; with x10 scale and rotated by 15 degrees over z-axis.
+@spawn Explosion pos:15 scale:10 rotation:,,15
 ```
 
 In case you have a lot of prefabs to spawn and it's inconvenient to assign them via editor menu, it's possible to just drop them at `Resources/Naninovel/Spawn` folder and they'll automatically be available in the scripts. You can additionally organize them with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in naninovel scripts. Eg, prefab asset stored as `Resources/Naninovel/Spawn/Explosions/Boom01` can be referenced in scripts as `Explosions/Boom01`.
