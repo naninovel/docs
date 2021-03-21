@@ -100,7 +100,7 @@ public class CustomService : IEngineService
 }
 ```
 
-Given the aforementioned service, you can get via the engine API in the following way:
+You can now access the aforementioned custom service it in the following way:
 
 ```csharp
 var customService = Engine.GetService<CustomService>();
