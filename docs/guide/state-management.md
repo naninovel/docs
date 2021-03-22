@@ -166,6 +166,10 @@ var monster2 = stateMap.GetState<MonsterState>("2");
 
 By default, the engine state (game saves, global state, settings) is serialized to local file system via cross-platform IO API. However, in some cases platform-specific implementations are not available out of the box. Eg, Nintendo decided to restrict access to the Switch native libraries, making it impossible to support the platform in third-party solutions. For such cases, Naninovel allows to provide custom serialization handlers.
 
+::: tip
+Naninovel has a built-in `PlayerPrefs` serialization handler, which uses Unity's [PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html) API to persist the save data. While it's not optimal for storing large amounts of data, it could work with consoles out of the box, so you won't have to implement your own handler.
+:::
+
 To add a custom handler, implement `ISaveSlotManager<GameStateMap>`, `ISaveSlotManager<GlobalStateMap>`, `ISaveSlotManager<SettingsStateMap>` interfaces for the game save slots, global state and settings respectively (each should have its own implementing class).
 
 Implementation should have a compatible public constructor: `public CustomSlotManager (StateConfiguration config, string savesFolderPath)`, where `config` is an instance of state configuration object and `savesFolderPath` is the path to saves folder (you're free to ignore that path and use one you see fit).
