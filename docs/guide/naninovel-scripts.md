@@ -315,13 +315,17 @@ To open the graph window use `Naninovel -> Script Graph` editor menu. You can do
 
 The tool will automatically build graph representation of all the naninovel scripts (represented as nodes) assigned via editor resources (`Naninovel -> Resources -> Scripts`) and connections between them.
 
-The connections are generated based on [@goto] and [@gosub] commands. If the command has a conditional expression assigned (`if` parameter), corresponding port in the node will be highlighted with yellow and you'll be able to see the expression when hovering the port.
+The connections are generated based on [@goto], [@gosub] and [@choice] (when it has a `goto` parameter) commands. If the command has a conditional expression assigned (`if` parameter), corresponding port in the node will be highlighted with yellow and you'll be able to see the expression when hovering the port.
 
 You can select script asset and open visual editor by double-clicking nodes or clicking ports. Clicking the ports will also scroll the visual editor to a line containing label (in case there were a label specified).
 
 You can re-position the nodes as you like and their positions will be automatically saved when closing the graph window or exiting Unity; the positions will then be restored when re-open the window. You can also save manually by clicking "Save" button. Clicking "Auto Align" button will reset all the positions.
 
 When changing scripts or adding new ones, click "Rebuild Graph" button to sync it.
+
+When [comment lines](/guide/naninovel-scripts.md#comment-lines) are present at the top of a script, associated graph node will show those as a synopsis. To disable that, uncheck `Show Synopsis` in the scripts configuration menu.
+
+![](https://i.gyazo.com/15682b202d37ad8f12b0f839063a530f.png)
 
 ## Hot Reload
 
