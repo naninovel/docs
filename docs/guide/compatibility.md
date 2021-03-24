@@ -35,7 +35,7 @@ While Unity allows building for game consoles (Switch, PlayStation, Xbox, etc), 
 
 ## Render Pipelines
 
-Unity's [scriptable render pipelines](https://docs.unity3d.com/Manual/render-pipelines.html) (both URP and HDRP) are supported with some limitations and require additional setup; see [render pipelines guide](/guide/render-pipelines.md) for more information.
+While it's possible to use Nanionvel with Unity's [scriptable render pipelines](https://docs.unity3d.com/Manual/render-pipelines.html) (both URP and HDRP), some built-in features may not work out of the box and we won't be able to provide any support in such cases; see [render pipelines guide](/guide/render-pipelines.md) for more information.
 
 ## Managed Stripping
 
