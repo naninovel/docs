@@ -101,4 +101,8 @@ You can now use the new choice handler by specifying its ID in `handler` paramet
 @choice "Choice summary text." handler:MyNewHandler
 ```
 
+::: example
+Find an example on creating a custom choice handler with a particle system in the following project on GitHub: [github.com/Naninovel/CustomUIExample](https://github.com/Naninovel/CustomUIExample).
+:::
+
 It's also possible to create a choice handler from scratch by manually implementing `IChoiceHandlerActor` interface. See the guide on [custom actor implementations](/guide/custom-actor-implementations.md) for more information.
