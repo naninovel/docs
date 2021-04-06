@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="../assets/img/logo.png">
+    <title>Unregister Naninovel</title>
+</head>
+<body>
+
+<h1>Unregister User</h1>
+<form id="form-unregister" action="" method="post" enctype='application/json'>
+    <div class="form-group">
+        Invoice: <input type="text" name="invoice">
+        <input id="submit-unregister" type="button" name="submit" value="submit">
+    </div>
+</form>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#submit-unregister").on('click', function () {
+            $.ajax({
+                url: 'https://nifty-northcutt-9e33d4.netlify.app/.netlify/functions/unregister-customer',
+                type: 'POST',
+                crossDomain: true,
+                data: $("#form-unregister input[name='invoice']").val(),
+                success: function (result) {
+                    window.document.body.innerHTML = result;
+                },
+                error: function (xhr, resp, text) {
+                    window.document.body.innerHTML = xhr.responseText;
+                }
+            });
+            window.document.body.innerHTML = 'Processing, please wait...';
+        });
+    });
+</script>
+
+</body>
+</html>
