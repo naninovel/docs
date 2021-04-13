@@ -64,6 +64,22 @@ Be aware, that in most cases [using "Resources" folders is discouraged](https://
 
 Local provider allows serving simple (scenario scripts and managed text, sprite characters and backgrounds, audio) assets from an arbitrary location in the local file system.
 
+::: warn
+Local provider loads raw files from the file system and converts them at runtime, which is slow and limits the supported file types compared to other providers. Only use it in development or for specific features (eg, [community modding](/guide/community-modding.md)).
+:::
+
+Supported file formats:
+
+ - `.nani` plain text files for scenario scripts
+ - `.png` and `.jpg` for images/textures
+ - `.mp3` and `.wav` (PCM16 44100Hz stereo only) for audio
+
+::: tip
+Add more supported file formats by overriding `IResourceProviderManager` [engine service](/guide/engine-services.md#overriding-built-in-services) and adding a custom converter for the local provider.
+
+![](https://i.gyazo.com/d4e63726c2d1d75e2677cab7f2503546.png)
+:::
+
 `Local Path Root` property in the resource provider configuration should point to a folder, where the local resources are stored. You can either use an absolute (eg, `C:\Resources`) or a relative path, starting with one of the following origins:
 
  - `%DATA%` — Game data folder on the target device ([Application.dataPath](https://docs.unity3d.com/ScriptReference/Application-dataPath));
