@@ -181,7 +181,7 @@ Nanikun: Integer nec maximus elit, eget posuere risus.
 
 ## TextMesh Pro
 
-Naninovel поддерживает [TextMesh Pro](https://assetstore.unity.com/packages/essentials/beta-projects/textmesh-pro-84126) через встроенные `TMProFullscreen`, `TMProDialogue`, `TMProWide` и  `TMProBubble` принтеры, реализованные с текстовыми компонентами UI TMPro.
+Naninovel поддерживает [TextMesh Pro](https://docs.unity3d.com/Manual/com.unity.textmeshpro.html) через встроенные `TMProFullscreen`, `TMProDialogue`, `TMProWide` и  `TMProBubble` принтеры, реализованные с текстовыми компонентами UI TMPro.
 
 ![](https://i.gyazo.com/bb143607ce79e5a28d89052c7f9fb07c.png)
 
