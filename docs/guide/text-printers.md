@@ -182,7 +182,7 @@ In case the reveal sounds are not working for you (eg, the sound is not short en
 
 ## TextMesh Pro
 
-Naninovel supports [TextMesh Pro](https://assetstore.unity.com/packages/essentials/beta-projects/textmesh-pro-84126) via built-in `TMProFullscreen`, `TMProDialogue`, `TMProWide` and `TMProBubble` printers implemented with the TMPro UI text components.
+Naninovel supports [TextMesh Pro](https://docs.unity3d.com/Manual/com.unity.textmeshpro.html) via built-in `TMProFullscreen`, `TMProDialogue`, `TMProWide` and `TMProBubble` printers implemented with the TMPro UI text components.
 
 ![](https://i.gyazo.com/bb143607ce79e5a28d89052c7f9fb07c.png)
 

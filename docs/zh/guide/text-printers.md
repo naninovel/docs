@@ -200,7 +200,7 @@ Use `Create -> Naninovel -> Text Printers -> Dialogue` asset context menu to cre
 
 ## TextMesh Pro
 
-Naninovel 支持 [TextMesh Pro](https://assetstore.unity.com/packages/essentials/beta-projects/textmesh-pro-84126) 通过内置的 `TMProFullscreen`, `TMProDialogue`, `TMProWide` and `TMProBubble` 打字机模板使用TMPro UI text组件来实现。
+Naninovel 支持 [TextMesh Pro](https://docs.unity3d.com/Manual/com.unity.textmeshpro.html) 通过内置的 `TMProFullscreen`, `TMProDialogue`, `TMProWide` and `TMProBubble` 打字机模板使用TMPro UI text组件来实现。
 
 ![](https://i.gyazo.com/bb143607ce79e5a28d89052c7f9fb07c.png)
 
