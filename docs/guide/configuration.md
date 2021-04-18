@@ -10,7 +10,7 @@ Notice, that all the configuration menus are supporting [Unity's presets feature
 It's possible to modify configuration objects at runtime, add new custom configurations and change the way the objects are accessed at runtime (eg, read configuration from JSON files stored on a remote host); see [custom configuration](/guide/custom-configuration.md) guide for more information.
 
 ::: note
-This configuration reference is valid for [Naninovel v1.15](https://github.com/Naninovel/Documentation/releases).
+This configuration reference is valid for [Naninovel v1.16](https://github.com/Naninovel/Documentation/releases).
 :::
 
 ## Audio
@@ -246,8 +246,8 @@ Title Script | Null | Name of the script to play when showing the Title UI. Can 
 Start Game Script | Null | Name of the script to play when starting a new game. Will use first available when not provided.
 Auto Add Scripts | True | Whether to automatically add created naninovel scripts to the resources.
 Hot Reload Scripts | True | Whether to reload modified (both via visual and external editors) scripts and apply changes during playmode without restarting the playback.
-Watch Scripts | True | Whether to run a file system watcher over `.nani` files in the project. Required to register script changes when edited with an external application. Restart Unity editor for changes to take effect.
-Watched Directory |  | When `Watch Scripts` is enabled, select a specific directory to watch instead of the whole project to reduce CPU usage. Restart Unity editor for changes to take effect.
+Watch Scripts | True | Whether to run a file system watcher over `.nani` files in the project. Required to register script changes when edited with an external application.
+Watched Directory |  | When `Watch Scripts` is enabled, select a specific directory to watch instead of the whole project to reduce CPU usage.
 Count Total Commands | False | Whether to calculate number of commands existing in all the available naninovel scripts on service initialization. If you don't use `TotalCommandsCount` property of a script manager and `CalculateProgress` function in naninovel script expressions, disable to reduce engine initialization time.
 Enable Visual Editor | True | Whether to show visual script editor when a script is selected.
 Hide Unused Parameters | True | Whether to hide un-assigned parameters of the command lines when the line is not hovered or focused.
