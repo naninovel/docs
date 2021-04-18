@@ -20,7 +20,7 @@ wait | Boolean | Whether the script player should wait for the async command to 
 </div>
 
 ::: note
-This API reference is valid for [Naninovel v1.15](https://github.com/Naninovel/Documentation/releases).
+This API reference is valid for [Naninovel v1.16](https://github.com/Naninovel/Documentation/releases).
 :::
 
 ## animate
@@ -1630,6 +1630,28 @@ time | decimal | Seconds to wait before hiding the toast. When not specified, wi
 
 ; The toast will disappear in one second.
 @toast "I'll disappear in 1 second." time:1
+```
+
+## unloadScene
+
+#### Summary
+Unloads a [Unity scene](https://docs.unity3d.com/Manual/CreatingScenes.html) with the provided name. Don't forget to add the required scenes to the [build settings](https://docs.unity3d.com/Manual/BuildSettings.html) to make them available for loading. Be aware, that only scenes loaded additively can be then unloaded (at least one scene should always remain loaded).
+
+#### Parameters
+
+<div class="config-table">
+
+ID | Type | Description
+--- | --- | ---
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">sceneName</span> | string | Name of the scene to unload.
+
+</div>
+
+#### Example
+```nani
+; Load scene `TestScene2` in additive mode and then unload it.
+@loadScene TestScene2 additive:true
+@unloadScene TestScene2
 ```
 
 ## unlock
