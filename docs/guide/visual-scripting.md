@@ -26,7 +26,7 @@ Don't forget to regenerate units after adding the libraries and types to apply t
 
 When Naninovel library and types are added in the visual scripting settings, the engine APIs will become available in the fuzzy finder under graph view and can be used in the same way as the other Unity or third-party APIs. Below is an example on initializing the engine and playing a script. Make sure to disable `Initialize On Application Load` and `Show Title UI`, before trying this example.
 
-![](https://i.gyazo.com/505b019b76d568e06788b505040b36f1.png)
+![](https://i.gyazo.com/2692def80d4c67cc350ca3fe6a4b37dc.png)
 
 In case you wish to send an event from a scenario script to a visual scripting graph or state machine, below is example of a [custom command](/guide/custom-commands.md), which will attempt to find a game object with the provided name and send an event with the specified name and arguments:
 
