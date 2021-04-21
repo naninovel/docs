@@ -80,7 +80,7 @@ HasPlayed () | Checks whether currently played command has ever been played befo
 
 It's possible to add custom expression functions by assigning `ExpressionFunctions` attribute to a static C# class. All the public methods of this class with compatible signatures will then automatically become available in the script expressions. 
 
-Compatible signatures are the ones that take and return [simple](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types#simple-types) and string types, as well as arrays of those types (with `params` keyword).
+Compatible signatures are the ones that take and return [simple](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types#simple-types) and string types, as well as arrays of those types (with `params` keyword). To represent fractions, use `double` type (`float` is not supported).
 
 ```csharp
 [Naninovel.ExpressionFunctions]
@@ -91,6 +91,9 @@ public static class CustomFunctions
 
     // Returns the sum of the provided numbers.
     public static int Add (int a, int b) => a + b;
+    
+    // Returns the remainder resulting from dividing the provided numbers.
+    public static double Modulus (double a, double b) => a % b;
 
     // Returns a string randomly chosen from one of the provided strings.
     public static string Random (params string[] args) 
