@@ -915,6 +915,30 @@ ID | Type | Description
 @movie Opening
 ```
 
+## openURL
+
+#### Summary
+Opens specified URL (web address) with a default web browser.
+
+#### Remarks
+Unity's `Application.OpenURL` method is used to handle the command; consult the [documentation](https://docs.unity3d.com/ScriptReference/Application.OpenURL.html) for behaviour details and limitations.
+
+#### Parameters
+
+<div class="config-table">
+
+ID | Type | Description
+--- | --- | ---
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">uRL</span> | string | URL to open.
+
+</div>
+
+#### Example
+```nani
+; Open Naninovel website.
+@openURL "https://naninovel.com"
+```
+
 ## print
 
 #### Summary
