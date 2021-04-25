@@ -313,9 +313,9 @@ It's possible to map composition expressions to keys via `Composition Map` prope
 @char Miho.StraightHair
 ```
 
-While editing layered character prefab, it's possible to preview mapped composition expressions by right-clicking a map record and selecting "Preview Composition".
+While editing layered character prefab, it's possible to preview mapped composition expressions by right-clicking a map record and selecting "Preview Composition". Another menu item — "Paste Current Composition" — will generate current composition expression string of the character (based on enabled/disabled sprite renderers in the hierarchy) and paste it to the inspected record; use it to quickly map current prefab state to a composition item.
 
-![](https://i.gyazo.com/9fb0aeccf4f33245d9f975592ee86dbc.gif)
+[!84a2f8e51997cdccbfb8321d58586d2a]
 
 Be aware, that the layer objects are not directly rendered by Unity cameras at runtime; instead, they're rendered once upon each composition (appearance) change to a temporary render texture, which is then fed to a custom mesh visible to the Naninovel camera. This setup is required to prevent semi-transparency overdraw issues and to support transition animation effects.
 
