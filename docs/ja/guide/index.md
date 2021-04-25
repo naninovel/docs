@@ -54,7 +54,7 @@ NaninovelはUnityで実現できることを制限しませんが、一部の組
 * [バックグラウンドミュージック (BGM)](/ja/guide/audio.md#バックグラウンドミュージック)
 * [効果音 (SFX)](/ja/guide/audio.md#効果音)
 * [カメラアニメーション](/ja/api/#カメラ)
-* [ボイス収録と自動ボイス収録](/ja/guide/voicing.md)
+* [ボイスと自動ボイス再生](/ja/guide/voicing.md)
 * [動画](/ja/guide/movies.md)
 * [選択肢](/ja/guide/choices.md)
 * [カスタム変数](/ja/guide/custom-variables.md)

@@ -17,7 +17,7 @@ IBackgroundManager | [背景](/ja/guide/backgrounds.md) アクターの管理
 ICharacterManager | [キャラクター](/ja/guide/characters.md) アクターの管理
 IChoiceHandlerManager | [選択肢ハンドラー](/ja/guide/choices.md) アクターの管理
 ITextPrinterManager | [テキストプリンター](/ja/guide/text-printers.md) アクターの管理
-IAudioManager | オーディオ: [SFX](/ja/guide/audio.md#効果音)、 [BGM](/ja/guide/audio.md#background-music)、 [ボイス収録](/ja/guide/voicing.md)の管理
+IAudioManager | オーディオ: [SFX](/ja/guide/audio.md#効果音)、 [BGM](/ja/guide/audio.md#background-music)、 [ボイス](/ja/guide/voicing.md)の管理
 IInputManager | ユーザー [入力処理](/ja/guide/input-processing.md)の管理
 ILocalizationManager| [ローカライズ](/ja/guide/localization.md) アクティビティの管理
 ITextManager | [テキスト管理](/ja/guide/managed-text.md) 機能を制御
