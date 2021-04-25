@@ -1,6 +1,6 @@
 ﻿# オーディオ
 
-この記事ではバックグラウンドミュージック (BGM) と 効果音 (SFX) について記載しています。声については [ボイス収録ガイド](/ja/guide/voicing.md) をご覧ください。
+この記事ではバックグラウンドミュージック (BGM) と 効果音 (SFX) について記載しています。声については [ボイスガイド](/ja/guide/voicing.md) をご覧ください。
 
 BGMおよびSFXリソースを追加、編集、または削除するには、 `Naninovel -> Resources -> Audio` へアクセスして、オーディオリソースマネージャーを使用します。 [Unityでサポートされている](https://docs.unity3d.com/Manual/AudioFiles.html) 任意のオーディオ形式を使用できます。
 
