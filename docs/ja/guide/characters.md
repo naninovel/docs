@@ -316,3 +316,28 @@ Live2Dの `CubismLookController` および `CubismMouthController` コンポー�
 ::: example
 [GitHubのサンプルプロジェクト](https://github.com/Naninovel/Live2D) で Naninovel で Live2D キャラクターを扱っているので、参考にしてください。Naninovel と Live2D SDK パッケージはプロジェクトと一緒に配布されていないため、初めて開く際にコンパイルエラーが発生します。アセットストアから Naninovel パッケージをインポートし、ウェブサイトから Live2D Cubism SDK をインポートして問題を解決してください。
 :::
+
+## Spine キャラクター
+
+Spine キャラクターの実装は、[Spine](http://esotericsoftware.com) という 2D モデリング・アニメーションソフトで制作されたアセットを使用します。
+
+[!08b04de115d97427d152cb5f37065d2d]
+
+この実装を使用するためには、最初に [Spine runtime for Unity](http://esotericsoftware.com/spine-unity-download) をインストールします。インストール方法や使用方法については、[公式ドキュメント](http://esotericsoftware.com/spine-unity)を参照してください。
+
+次に、Naninovel の [Spine 拡張パッケージ](https://github.com/Naninovel/Spine/raw/main/NaninovelSpine.unitypackage)をダウンロードし、インポートします。
+
+実装のリソースとして使用される Spine キャラクターのプレハブは、ルートのオブジェクトに `Spine Controller` コンポーネントがアタッチされている必要があります。Naninovel スクリプトのコマンド（`@char` など）による外観の変更は、[一般キャラクターの実装](/guide/characters.md#generic-characters)と同様に、Controller の `On Appearance Changed` イベントにルーティングされます。Spine の `SetAnimation` メソッドを使用したり、Unity の Animator Controller のトリガーを起動したりといったように、自由にイベントを扱うことができます。
+
+![](https://i.gyazo.com/6a2772a3e4137413a7c1587788c54c41.png)
+
+::: tip
+`Spine Controller` を継承したカスタムコンポーネントを使用することもできます。これにより、仮想メソッドや関連する動作をオーバーライドすることができます（例えば、特定の期間やトランジションパラメータで外観の変化を処理するなど）。
+:::
+
+内部的には、Spine モデルはテクスチャにレンダリングされ、それがスクリーンに投影されます。これは、キャラクターをフェードする際に、半透明のオーバードローのアーティファクトを防ぐために必要です。テクスチャのサイズを指定するには、`Render Canvas` コンポーネントを使用します（`Spine Controller` の追加時に自動的にアタッチされます）。プレハブモード時に現在のサイズをプレビューする[ギズモ](https://docs.unity3d.com/Manual/GizmosMenu.html)を有効にしてください。サイズが大きくなると、テクスチャーが消費するメモリも大きくなるので、できるだけ小さくしておきましょう。
+
+::: example
+Spine キャラクターを Naninovel で使用する[サンプルプロジェクト](https://github.com/Naninovel/Spine)をチェックしてください。
+:::
+
