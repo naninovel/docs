@@ -280,6 +280,14 @@ Player: You can call me {PlayerName}.
 
 Unityの `Animator` コンポーネントは、ゲームオブジェクトが同じフレームで有効化/無効化されると、 `SetTrigger` の登録に失敗する可能性があります。`GameObject.SetActive` で可視状態を変更する場合（上記のチュートリアルで示しています）は、代わりにレンダラーで子オブジェクトを有効/無効にすることを検討してください。
 
+## ビデオキャラクター
+
+ビデオキャラクター（VideoCharacter）は、ループする[ビデオクリップ](https://docs.unity3d.com/ja/current/Manual/class-VideoClip.html)アセットによって外観が表されます。
+
+各プラットフォームでサポートされているビデオフォーマットについては、[Unity のドキュメント](https://docs.unity3d.com/ja/current/Manual/VideoSources-FileCompatibility.html)を参照してください。
+
+アルファチャンネル（透明度）のあるビデオを使用する場合は、[サポートされているフォーマットのガイド](https://docs.unity3d.com/ja/current/Manual/VideoTransparency.html)を参照してください。
+
 ## Live2D キャラクター
 
 Live2D キャラクターの実装は、[Live2D Cubism](https://www.live2d.com) 2Dモデリングとアニメーションソフトで制作されたアセットを使用します。
