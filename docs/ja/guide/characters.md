@@ -340,4 +340,10 @@ Spine キャラクターの実装は、[Spine](http://esotericsoftware.com) と�
 ::: example
 Spine キャラクターを Naninovel で使用する[サンプルプロジェクト](https://github.com/Naninovel/Spine)をチェックしてください。
 :::
+
+## ナレーターキャラクター
+
+ナレーターキャラクターは、シーン上に目に見える形（外見、位置、視線方向、色合いなど）では存在しませんが、プリンターメッセージを作成することができ、関連する構成オプション（表示名、メッセージカラー、リンクされたプリンターなど）を持っています。
+
+![](https://i.gyazo.com/f1ee43da312b29f3236cf772d9ea9fa7.png)
 
