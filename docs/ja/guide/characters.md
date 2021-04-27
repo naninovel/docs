@@ -151,7 +151,15 @@ Player: You can call me {PlayerName}.
 
 ## スプライトキャラクター
 
-キャラクターアクターのスプライト実装は最も一般的で簡単です。一連の [スプライト](https://docs.unity3d.com/Manual/Sprites) アセットを使用して、キャラクターの外観を表します。[Unityでサポートされている形式](https://docs.unity3d.com/Manual/ImportingTextures) の画像（テクスチャ）をスプライトのソースにできます。
+スプライト実装のキャラクターアクターは、最も一般的でシンプルなものです。これは、クアッドメッシュ（スプライト）にラップされた[テクスチャ](https://docs.unity3d.com/ja/current/Manual/Textures.html)アセットのセットによって、キャラクターの外観を表示します。テクスチャには、`.jpg`、`.png`、`.tiff`、`.psd` といった、[Unity でサポートされている画像ファイル形式](https://docs.unity3d.com/ja/current/Manual/ImportingTextures.html)を使用できます。
+
+::: tip
+開発のワークフローに合った、最も使いやすいファイル形式を選択してください。プロジェクトをビルドする際、Unity はすべてのソースリソース（テクスチャ、オーディオ、ビデオなど）を、ターゲットプラットフォームに最も適した形式に自動的に変換するので、プロジェクト内のリソースをどのような形式で保存しても、違いはありません。Unity がプロジェクトのアセットを管理する方法については、[公式ドキュメント](https://docs.unity3d.com/ja/current/Manual/AssetWorkflow.html)を参照してください。
+:::
+
+シーン上のスプライトキャラクターのメッシュの初期サイズ（スケーリングされていないサイズ）は、Naninovel のカメラ設定の `Reference Resolution`、キャラクターの `Pixel Per Unit` プロパティ（設定メニューでキャラクターアクターごとに設定されます）、ソースとなるテクスチャの解像度に依存します。
+
+最高のレンダリング品質と最適なパフォーマンスを得るためには、一般的に、すべてのキャラクターの `Pixel Per Unit` をデフォルト値（100）のままにし、テクスチャの解像度によってキャラクターの初期サイズを制御することをお勧めします。例えば、ゲームの `Reference Resolution` がデフォルトの 1920 x 1080 px である場合、キャラクターが画面全体を占めるようにするには、キャラクターのテクスチャの高さを（Photoshop などの画像編集ソフトで）`1080` px にリサイズします。同様に、画面の 2/3 を占めるようにするには、高さを `1080 * 2/3` px にします。
 
 ## 分解スプライトキャラクター
 
@@ -280,6 +288,14 @@ Player: You can call me {PlayerName}.
 
 Unityの `Animator` コンポーネントは、ゲームオブジェクトが同じフレームで有効化/無効化されると、 `SetTrigger` の登録に失敗する可能性があります。`GameObject.SetActive` で可視状態を変更する場合（上記のチュートリアルで示しています）は、代わりにレンダラーで子オブジェクトを有効/無効にすることを検討してください。
 
+## ビデオキャラクター
+
+ビデオキャラクター（VideoCharacter）は、ループする[ビデオクリップ](https://docs.unity3d.com/ja/current/Manual/class-VideoClip.html)アセットによって外観が表されます。
+
+各プラットフォームでサポートされているビデオフォーマットについては、[Unity のドキュメント](https://docs.unity3d.com/ja/current/Manual/VideoSources-FileCompatibility.html)を参照してください。
+
+アルファチャンネル（透明度）のあるビデオを使用する場合は、[サポートされているフォーマットのガイド](https://docs.unity3d.com/ja/current/Manual/VideoTransparency.html)を参照してください。
+
 ## Live2D キャラクター
 
 Live2D キャラクターの実装は、[Live2D Cubism](https://www.live2d.com) 2Dモデリングとアニメーションソフトで制作されたアセットを使用します。
@@ -315,4 +331,62 @@ Live2Dの `CubismLookController` および `CubismMouthController` コンポー�
 
 ::: example
 [GitHubのサンプルプロジェクト](https://github.com/Naninovel/Live2D) で Naninovel で Live2D キャラクターを扱っているので、参考にしてください。Naninovel と Live2D SDK パッケージはプロジェクトと一緒に配布されていないため、初めて開く際にコンパイルエラーが発生します。アセットストアから Naninovel パッケージをインポートし、ウェブサイトから Live2D Cubism SDK をインポートして問題を解決してください。
+:::
+
+## Spine キャラクター
+
+Spine キャラクターの実装は、[Spine](http://esotericsoftware.com) という 2D モデリング・アニメーションソフトで制作されたアセットを使用します。
+
+[!08b04de115d97427d152cb5f37065d2d]
+
+この実装を使用するためには、最初に [Spine runtime for Unity](http://esotericsoftware.com/spine-unity-download) をインストールします。インストール方法や使用方法については、[公式ドキュメント](http://esotericsoftware.com/spine-unity)を参照してください。
+
+次に、Naninovel の [Spine 拡張パッケージ](https://github.com/Naninovel/Spine/raw/main/NaninovelSpine.unitypackage)をダウンロードし、インポートします。
+
+実装のリソースとして使用される Spine キャラクターのプレハブは、ルートのオブジェクトに `Spine Controller` コンポーネントがアタッチされている必要があります。Naninovel スクリプトのコマンド（`@char` など）による外観の変更は、[一般キャラクターの実装](/guide/characters.md#generic-characters)と同様に、Controller の `On Appearance Changed` イベントにルーティングされます。Spine の `SetAnimation` メソッドを使用したり、Unity の Animator Controller のトリガーを起動したりといったように、自由にイベントを扱うことができます。
+
+![](https://i.gyazo.com/6a2772a3e4137413a7c1587788c54c41.png)
+
+::: tip
+`Spine Controller` を継承したカスタムコンポーネントを使用することもできます。これにより、仮想メソッドや関連する動作をオーバーライドすることができます（例えば、特定の期間やトランジションパラメータで外観の変化を処理するなど）。
+:::
+
+内部的には、Spine モデルはテクスチャにレンダリングされ、それがスクリーンに投影されます。これは、キャラクターをフェードする際に、半透明のオーバードローのアーティファクトを防ぐために必要です。テクスチャのサイズを指定するには、`Render Canvas` コンポーネントを使用します（`Spine Controller` の追加時に自動的にアタッチされます）。プレハブモード時に現在のサイズをプレビューする[ギズモ](https://docs.unity3d.com/Manual/GizmosMenu.html)を有効にしてください。サイズが大きくなると、テクスチャーが消費するメモリも大きくなるので、できるだけ小さくしておきましょう。
+
+::: example
+Spine キャラクターを Naninovel で使用する[サンプルプロジェクト](https://github.com/Naninovel/Spine)をチェックしてください。
+:::
+
+## ナレーターキャラクター
+
+ナレーターキャラクターは、シーン上に目に見える形（外見、位置、視線方向、色合いなど）では存在しませんが、プリンターメッセージを作成することができ、関連する構成オプション（表示名、メッセージカラー、リンクされたプリンターなど）を持っています。
+
+![](https://i.gyazo.com/f1ee43da312b29f3236cf772d9ea9fa7.png)
+
+## テクスチャへのレンダリング
+
+すべての実装（一般キャラクターを除く）のキャラクターアクターと背景アクターは、テクスチャアセットにレンダリングすることができます。このアセットは、カスタム UI、プリンタ、マテリアル、またはその他の互換性のあるソースに割り当てることができます。
+
+`Render Texture` プロパティを持つアクターの設定で、レンダーテクスチャアセットを割り当ててください。テクスチャが割り当てられると、アクターはシーン上のゲームオブジェクトとしては表示されず、そのテクスチャにレンダリングされます。また、`Correct Render Aspect` プロパティが出現します。これは、レンダーテクスチャの解像度にかかわらず、レンダリングされたアクターがアスペクト比を維持するかどうかをコントロールします。
+
+![](https://i.gyazo.com/c281b11a2db0ef13d87eb4bef4d45f7d.png)
+
+アクターがテクスチャにレンダリングされると、トランスフォーム（位置、回転、スケール）やその他の変更は何の効果もないことに注意してください。代わりに、レンダーテクスチャのホストオブジェクトを変更してください（例：テクスチャが UI の RawImage コンポーネントに割り当てられている場合は、Image）。
+
+下のビデオは、Live2D キャラクターを、カスタムテキストプリンターに割り当てられたテクスチャにレンダリングする方法を示しています。プリンターはキャラクターにリンクされているので、関連するテキストメッセージが処理されると、キャラクターは自動的にプリンターと一緒に表示されたり隠れたりします。
+
+[!!81OTbSAnWbw]
+
+::: example
+Live2D キャラクターをテクスチャにレンダリングし、テキストプリンターと結合する完全な作例が、[GitHub の Naninovel Live2D プロジェクト](https://github.com/Naninovel/Live2D)にあります。
+:::
+
+::: note
+一般キャラクターを除いた他のキャラクター、および背景の実装タイプは、上述の Live2D のものと同様、テクスチャにレンダリングするように設定できます。
+:::
+
+::: warn
+[Addressables パッケージ](https://docs.unity3d.com/ja/current/Manual/com.unity.addressables.html)を使用している場合、Unity は[アセットの参照を適切に追跡できない](https://issuetracker.unity3d.com/product/unity/issues/guid/1277169)ため、ビルド時にレンダーテクスチャの重複が発生し、この機能が正しく動作しないことがあります。参照を手動で（`AssetReference API` で）処理するか、以下の図のように `Get Actor Render Texture` コンポーネントを使用してください。
+
+![](https://i.gyazo.com/92772b1fa51e6042efcd3de67d05fd79.png)
 :::
