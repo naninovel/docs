@@ -863,6 +863,9 @@ ID | Type | Description
 #### Summary
 Activates/disables camera look mode, when player can offset the main camera with input devices (eg, by moving a mouse or using gamepad analog stick). Check [this video](https://youtu.be/rC6C9mA7Szw) for a quick demonstration of the command.
 
+#### Remarks
+It's also possible to control the look by rotating a mobile device (in case it has a gyroscope). This requires using Unity's new input system and manually [enabling gyroscope](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/Sensors.html) device. Check out [input example project](https://github.com/Naninovel/Input) for a reference on how to setup camera look with gyroscope.
+
 #### Parameters
 
 <div class="config-table">
