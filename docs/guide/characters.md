@@ -425,6 +425,10 @@ It's possible to use a custom component inherited from `Spine Controller`. This 
 
 Internally, Spine model is rendered to a texture, which is then projected to the screen. This is required to prevent semi-transparency overdraw artifacts when fading the character. To specify the texture size, use `Render Canvas` component (attached automatically when adding `Spine Controller`). Enable [gizmos](https://docs.unity3d.com/Manual/GizmosMenu.html) to preview current the size while in prefab mode. Be aware, that larger the size, the more memory will the texture consume, so keep it as small, as possible.
 
+::: note
+Spine's [Skeleton Render Separator](https://github.com/pharan/spine-unity-docs/blob/master/spine-unity-skeletonrenderseparator.md) (multi-render) workflow is not supported; to integrate that workflow with Naninovel, create a custom character implementation.
+:::
+
 ::: example
 Check out an [example project on GitHub](https://github.com/Naninovel/Spine), where a Spine character is used with Naninovel.
 :::
