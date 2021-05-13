@@ -226,6 +226,7 @@ Google Drive Caching Policy | Smart | Cache policy to use when downloading resou
 
 Property | Default Value | Description
 --- | --- | ---
+Default Skip Mode | Read Only | Default skip mode to set when the game is first started.
 Skip Time Scale | 10 | Time scale to use when in skip (fast-forward) mode.
 Min Auto Play Delay | 3 | Minimum seconds to wait before executing next command while in auto play mode.
 Complete On Continue | True | Whether to instantly complete blocking (`wait:true`) commands performed over time (eg, animations, hide/reveal, tint changes, etc) when `Continue` input is activated.
