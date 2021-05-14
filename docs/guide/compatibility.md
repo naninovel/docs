@@ -33,6 +33,12 @@ The following platforms were tested for compatibility:
 While Unity allows building for game consoles (Switch, PlayStation, Xbox, etc), some features (eg, IO-related) are not implemented out of the box, as access to the platform-specific SDKs is restricted for registered developers only. In Naninovel case, this affects the save system, which will require implementing [custom serialization handlers](/guide/state-management.md#custom-serialization-handlers) in order to work correctly on the consoles. Find more information about developing for game consoles in [the article](https://unity.com/how-to/develop-console-video-games-unity).
 :::
 
+## Enter Play Mode
+
+Naninovel supports disabling both `Reload Domain` and `Reload Scene` options under "Enter Play Mode Settings" category of the project settings. Disabling the options will make entering play mode take less time, especially in large projects.
+
+![](https://i.gyazo.com/dd0a3037a0bca8b73608ecc7b71c3982.png)
+
 ## Render Pipelines
 
 While it's possible to use Nanionvel with Unity's [scriptable render pipelines](https://docs.unity3d.com/Manual/render-pipelines.html) (both URP and HDRP), some built-in features may not work out of the box and we won't be able to provide any support in such cases; see [render pipelines guide](/guide/render-pipelines.md) for more information.
