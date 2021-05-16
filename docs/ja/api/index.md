@@ -1540,6 +1540,40 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 @title
 ```
 
+## toast
+
+#### 概要
+
+提供されたテキストと（オプションで）外観と期間を含む、汎用のポップアップ通知（通称「トースト」）のUIを表示します。 UIは、指定された（またはデフォルトの）期間が経過すると自動的に非表示になります。
+
+#### 備考
+
+`appearance` は、 `ToastUI` UIプレハブ（大文字と小文字を区別しない）内に` ToastAppearance`コンポーネントを持つゲームオブジェクトの名前です。
+
+#### パラメーター
+
+<div class="config-table">
+
+ID | タイプ | 説明
+--- | --- | ---
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">text</span> | string | 設定するテキスト。
+appearance | string | トーストの外観（ゲームオブジェクト名）。指定しない場合、ToastUIプレハブで設定されたデフォルトの外観を使用します。
+time | Decimal | トーストが非表示になるまで待つ秒数。指定しない場合、ToastUIプレハブでデフォルトで設定されている時間を使用します。
+
+</div>
+
+#### 例
+```nani
+; `Hello World！` という文字を含むデフォルトのトーストを表示
+@toast "Hello World!"
+
+; 「警告」の外観のトーストを表示
+@toast "You're in danger!" appearance:warning
+
+; トーストを1秒後に消す
+@toast "I'll disappear in 1 second." time:1
+```
+
 ## unlock
 
 #### 概要
