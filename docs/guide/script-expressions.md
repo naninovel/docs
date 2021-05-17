@@ -81,7 +81,7 @@ GetName (*System.String* id) | Returns display name of a character actor with th
 
 It's possible to add custom expression functions by assigning `ExpressionFunctions` attribute to a static C# class. All the public methods of this class with compatible signatures will then automatically become available in the script expressions. 
 
-Compatible signatures are the ones that take and return [simple](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types#simple-types) and string types, as well as arrays of those types (with `params` keyword). To represent fractions, use `double` type (`float` is not supported).
+Only [simple](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types#simple-types) and string types are supported as argument and return types. It's also possible to use a single variadic (`params` keyword) argument; mixing a variadic with other arguments is not supported. To represent fractions, use `double` type (`float` is not supported).
 
 ```csharp
 [Naninovel.ExpressionFunctions]
