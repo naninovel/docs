@@ -48,7 +48,7 @@ To create a choice button prefab from template, use `Create -> Naninovel -> Choi
 
 ![](https://i.gyazo.com/c2bd4abaa0275f7cdd37c56fd2ff0dec.png)
 
-Remember to **store the custom choice buttons is a "Resources" folder**, otherwise they won't be able to load when requested.
+Remember to **store the custom choice buttons in a "Resources" folder**, otherwise they won't be able to load when requested.
 
 When `button` parameter of the [@choice] command is not specified a default button prefab is used.
 
