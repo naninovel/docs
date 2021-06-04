@@ -323,10 +323,6 @@ While editing layered character prefab, it's possible to preview mapped composit
 
 Be aware, that the layer objects are not directly rendered by Unity cameras at runtime; instead, they're rendered once upon each composition (appearance) change to a temporary render texture, which is then fed to a custom mesh visible to the Naninovel camera. This setup is required to prevent semi-transparency overdraw issues and to support transition animation effects.
 
-::: note
-It's not recommended to use semi-transparent textures for root layers; otherwise, the non-opaque areas will appear darker, than they actually are. If using such layers is a must, one solution is to render the actor in reversed order with a special shader; see [the forum thread](https://forum.naninovel.com/viewtopic.php?f=8&t=59) for an example.
-:::
-
 In case you wish to apply an animation or other dynamic behaviour to the layered character, enable `Animated` property found on `Layered Character Behaviour` component. When the property is enabled, the layers will be rendered each frame (instead once per appearance change).
 
 To set up lip sync feature for layered characters, use `On Started Speaking` and `On Finished Speaking` Unity events of `Layered Character Behaviour` component. When the character becomes or ceases to be the author of any printed message (or rather when the message is fully revealed), the events will be invoked allowing you to trigger any custom logic, like starting or stopping mouth animation of the controlled character.
