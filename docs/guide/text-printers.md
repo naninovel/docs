@@ -182,7 +182,7 @@ In case the reveal sounds are not working for you (eg, the sound is not short en
 
 ## TextMesh Pro
 
-Naninovel supports [TextMesh Pro](https://docs.unity3d.com/Manual/com.unity.textmeshpro.html) via built-in `TMProFullscreen`, `TMProDialogue`, `TMProWide` and `TMProBubble` printers implemented with the TMPro UI text components.
+Naninovel supports [TextMesh Pro](https://docs.unity3d.com/Manual/com.unity.textmeshpro.html) via built-in `TMProFullscreen`, `TMProDialogue`, `TMProWide`, `TMProChat` and `TMProBubble` printers implemented with the TMPro UI text components.
 
 ![](https://i.gyazo.com/bb143607ce79e5a28d89052c7f9fb07c.png)
 
@@ -232,7 +232,7 @@ For a complete example on setting up custom text mesh pro printer with right-to-
 :::
 
 ::: note
-Neither uGUI, nor TMPro [natively support Arabic text](http://digitalnativestudios.com/forum/index.php?topic=462.msg12139#msg12139). When `Fix Arabic Text` is enabled, Naninovel uses a modified version of [third party library](https://github.com/mnarimani/RTLTMPro) to correctly display Arabic text. You may need to use such third party tools to properly display the text on other UI components.
+Neither uGUI, nor TMPro [natively support Arabic text](http://digitalnativestudios.com/forum/index.php?topic=462.msg12139#msg12139). Consider using `Naninovel TMPro Text` component for text labels (other than printers) that should support Arabic.
 :::
 
 ## Text Styles
