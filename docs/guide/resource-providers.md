@@ -51,7 +51,7 @@ To expose an addressable asset to Naninovel without using editor menus, use a cu
 Addressable provider is only used in runtime builds and is disabled in editor by default. In case you're manually exposing resources via addressable address instead of assigning them with Naninovel's resource managers, you can enable it with `Allow Addressable In Editor` property in resource provider configuration menu.
 
 ::: example
-Check the [example project](https://github.com/Naninovel/Addressable) on how to manually expose Naninovel resources to addressable provider (without using resource editor menus) and serve specific assets from a remote host.
+Check the [example project](https://github.com/Naninovel/Addressables) on how to manually expose Naninovel resources to addressable provider (without using resource editor menus) and serve specific assets from a remote host.
 :::
 
 ::: note
