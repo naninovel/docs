@@ -100,4 +100,4 @@ Alternatively, check out [render actor to texture](/guide/characters.md#render-t
 
 ## How to run a custom C# code from naninovel scripts?
 
-Use [custom commands](/guide/custom-commands.md).
+To invoke a C# behaviour (eg, access a game object on scene), use [custom commands](/guide/custom-commands.md); to get value from a C# method and use it in naninovel script, use [expression functions](/guide/script-expressions.md#adding-custom-functions).
