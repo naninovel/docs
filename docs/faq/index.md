@@ -28,7 +28,7 @@ All the engine source code is available in the distributed package. A couple of 
 
 ## What are the legal usage terms and conditions?
 
-All the assets distributed on the Asset Store are governed by the same EULA: [unity3d.com/legal/as_terms](https://unity3d.com/legal/as_terms).
+Naninovel is governed by the Asset Store EULA: [unity3d.com/legal/as_terms](https://unity3d.com/legal/as_terms).
 
 ## Why the package doesn't contain any demo scenes?
 
