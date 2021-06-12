@@ -26,6 +26,10 @@ Right-to-left (RTL) languages (Arabic, Hebrew, Persian, etc) are supported by th
 
 All the engine source code is available in the distributed package. A couple of third-party libraries (namely, [NCalc](https://github.com/ncalc/ncalc) and [NLayer](https://github.com/naudio/NLayer)) are pre-compiled, but they're open-sourced (MIT license) with sources hosted on GitHub.
 
+## What are the legal usage terms and conditions?
+
+All the assets distributed on the Asset Store are governed by the same EULA: [unity3d.com/legal/as_terms](https://unity3d.com/legal/as_terms).
+
 ## Why the package doesn't contain any demo scenes?
 
 Naninovel is designed to be [scene-independent](/guide/engine-architecture.md#scene-independent) and doesn't use [Unity scenes](https://docs.unity3d.com/Manual/CreatingScenes.html) in any way, hence it's not possible to make any kind of example or demo scenes. The engine is automatically initialized when the game is started (can be switched to manual initialization in the engine configuration window) and scenarios are scripted via text documents called [naninovel scripts](/guide/naninovel-scripts.md).
