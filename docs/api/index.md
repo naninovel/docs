@@ -607,6 +607,7 @@ ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">actorIds</span> | string list | IDs of the actors to hide.
 time | decimal | Duration (in seconds) of the fade animation. Default value: 0.35 seconds.
+remove | boolean | Whether to remove (destroy) the actor after it's hidden. Use to unload resources associated with the actor and prevent memory leaks.
 
 </div>
 
@@ -617,6 +618,9 @@ time | decimal | Duration (in seconds) of the fade animation. Default value: 0.3
 
 ; Hide `Kohaku` and `Yuko` actors.
 @hide Kohaku,Yuko
+
+; Hide and remove `Kohaku` actor.
+@hide Kohaku remove:true
 ```
 
 ## hideAll
@@ -631,6 +635,7 @@ Hides (removes) all the actors (eg characters, backgrounds, text printers, choic
 ID | Type | Description
 --- | --- | ---
 time | decimal | Duration (in seconds) of the fade animation. Default value: 0.35 seconds.
+remove | boolean | Whether to remove (destroy) the actors after they are hidden. Use to unload resources associated with the actors and prevent memory leaks.
 
 </div>
 
@@ -638,6 +643,9 @@ time | decimal | Duration (in seconds) of the fade animation. Default value: 0.3
 ```nani
 ; Hide all the visible actors (chars, backs, printers, choice handlers) on scene.
 @hideAll
+
+; Same as above, but also remove all the actors after they're hidden.
+@hideAll remove:true
 ```
 
 ## hideChars
@@ -652,6 +660,7 @@ Hides (removes) all the visible characters on scene.
 ID | Type | Description
 --- | --- | ---
 time | decimal | Duration (in seconds) of the fade animation. Default value: 0.35 seconds.
+remove | boolean | Whether to remove (destroy) the characters after they are hidden. Use to unload resources associated with the characters and prevent memory leaks.
 
 </div>
 
