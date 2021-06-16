@@ -597,7 +597,7 @@ reset | string list | When specified, will control whether to reset the engine s
 ## hide
 
 #### Summary
-Hides (makes invisible) actors (character, background, text printer, choice handler, etc) with the specified IDs. In case multiple actors with the same ID found (eg, a character and a printer), will affect only the first found one.
+Hides (removes) actors (character, background, text printer, choice handler) with the specified IDs. In case multiple actors with the same ID found (eg, a character and a printer), will affect only the first found one.
 
 #### Parameters
 
@@ -626,7 +626,7 @@ remove | boolean | Whether to remove (destroy) the actor after it's hidden. Use 
 ## hideAll
 
 #### Summary
-Hides (removes) all the actors (eg characters, backgrounds, text printers, choice handlers, etc) on scene.
+Hides (removes) all the actors (characters, backgrounds, text printers, choice handlers) on scene.
 
 #### Parameters
 
