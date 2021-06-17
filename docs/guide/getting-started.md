@@ -160,13 +160,6 @@ Kohaku.Happy: Hello World!
 @stop
 ```
 
-::: note
-By default, [@hide] won't remove actual game object from scene allowing to [@show] the actor again preserving its state (position, appearance, tint, etc). In case you don't need the actor anymore, specify `remove` parameter to destroy the actor object and release associated resources. This is essential to [prevent memory leaks](/guide/naninovel-scripts.md#memory-management) for both characters and backgrounds.
-```nani
-@hide Kohaku remove:true
-```
-:::
-
 ## Add Background
 
 Similar to characters, a background can be represented in multiple ways in Naninovel: sprite, generic object, video and scene; custom user implementations are also possible. 
