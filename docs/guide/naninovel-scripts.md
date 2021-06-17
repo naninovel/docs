@@ -255,7 +255,7 @@ Some script commands require loading resources in order to work: audio track for
 
 Policy | Description
 :---: | --- 
-Static | All the resources required for script execution are preloaded when starting the playback (usually on [@goto]) and unloaded only when the script has finished playing. The loading operation is masked with loading UI. This policy is default and recommended for most cases.
+Static | All the resources required for script execution are preloaded when starting the playback (usually on [@goto]) and unloaded when the script has finished playing. The loading operation is masked with loading UI. This policy is default and recommended for most cases.
 Dynamic | Only the resources required for the next `Dynamic Policy Steps` commands are preloaded during script execution and all the unused resources are unloaded immediately. Use this mode when targeting platforms with strict memory limitations and it's impossible to properly organize naninovel scripts. Expect hiccups when the resources are loaded in background while the game is progressing.
 
 However, in some cases Naninovel won't be able to automatically unload resources. Specifically, layered, diced sprite, generic, Live2D and Spine actors all require a monolith prefab in order to represent any of the appearances making it impossible to independently load resources per appearance. To prevent memory leaks, unload such resources manually in one of the ways described below.
