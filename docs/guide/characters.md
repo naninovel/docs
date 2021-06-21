@@ -443,11 +443,17 @@ Narrator characters don't have any presence on scene (appearances, position, loo
 
 It's possible to render character and background actors of all the implementations (except generic) to a texture asset, which can then can be assigned to a custom UI, printer, material or any other compatible source.
 
-Assign the render texture asset via actor configuration with `Render Texture` property. When a texture is assigned, the actor won't appear as a game object on scene, but will rather be rendered to the texture. `Correct Render Aspect` property will show up when a texture is assigned, controlling whether the rendered actor should preserve aspect no matter render texture resolution.
+Assign the render texture asset via actor configuration with `Render Texture` property. When a texture is assigned, the actor won't appear as a game object on scene, but will rather be rendered to the texture. `Render Rectangle` property allows specifying a region of the actor to render into texture.
 
-![](https://i.gyazo.com/c281b11a2db0ef13d87eb4bef4d45f7d.png)
+![](https://i.gyazo.com/7224fa44695507b0ce0274940d630299.png)
 
-Be aware, that when an actor is rendered to a texture, transformations (position, rotation, scale) and some other modifications won't have any effect. Instead, transform the host object of the render texture (eg, image in case the texture is assigned to UI raw image component).
+::: note
+When using [addressables package](https://docs.unity3d.com/Manual/com.unity.addressables.html), Unity [can't properly track asset references](https://issuetracker.unity3d.com/product/unity/issues/guid/1277169), which may cause render texture duplication in build preventing the feature from working correctly. Either manually handle the references (via `AssetReference` API) or use `Get Actor Render Texture` component as illustrated below.
+
+![](https://i.gyazo.com/92772b1fa51e6042efcd3de67d05fd79.png)
+:::
+
+When an actor is rendered to a texture, transformations (position, rotation, scale) and some other modifications won't have any effect. Instead, transform the host object of the render texture (eg, image in case the texture is assigned to UI raw image component).
 
 The video below demonstrates how to render a Live2D character to a texture, which is assigned to custom text printer. The printer is linked to the character, so the character will automatically show and hide with the printer when the associated text messages are processed.
 
@@ -457,12 +463,4 @@ The video below demonstrates how to render a Live2D character to a texture, whic
 Find a complete example on setting up Live2D character render to texture and binding it with a text printer in the [Naninovel Live2D project on GitHub](https://github.com/Naninovel/Live2D).
 :::
 
-::: note
-All the other character and background implementation types (except generic) can be set up to render to texture in the same way, as the Live2D one described above.
-:::
-
-::: warn
-When using [addressables package](https://docs.unity3d.com/Manual/com.unity.addressables.html), Unity [can't properly track asset references](https://issuetracker.unity3d.com/product/unity/issues/guid/1277169), which may cause render texture duplication in build preventing the feature from working correctly. Either manually handle the references (via `AssetReference` API) or use `Get Actor Render Texture` component as illustrated below.
-
-![](https://i.gyazo.com/92772b1fa51e6042efcd3de67d05fd79.png)
-:::
+All the other character and background implementation types (except generic) can be set up to render to texture similar to Live2D example.
