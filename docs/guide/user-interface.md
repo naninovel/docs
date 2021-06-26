@@ -55,7 +55,7 @@ Following video tutorial shows how to add a custom calendar UI with special reve
 [!!wrAm-cwPXy4]
 
 ::: example
-Unity project showed in the above video tutorial is [available on GitHub](https://github.com/Naninovel/CustomUIExample). You can [clone the repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) with a Git client or [download it as a zip archive](https://github.com/Naninovel/CustomUIExample/archive/master.zip).
+Unity project showed in the above video tutorial is [available on GitHub](https://github.com/Naninovel/CustomUIExample). It also contains examples for adding credits screen with scroll view and web links, choice buttons with particle effect, using emojis in text printer, adding timestamps to chat printer and others.
 :::
 
 ::: example
