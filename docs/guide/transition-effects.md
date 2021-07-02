@@ -396,6 +396,12 @@ To make a custom transition, use `Custom` transition mode and specify path (rela
 @back Appearance.Custom dissolve:Textures/Spiral
 ```
 
+To smooth (fuzzy) borders of the transition, use first parameter in 0 (no smoothing) to 100 (max smoothing) range, eg:
+
+```nani
+@back Appearance.Custom dissolve:Textures/Spiral params:90
+```
+
 Check out the following video for the usage examples.
 
 [!!HZjey6M2-PE]
