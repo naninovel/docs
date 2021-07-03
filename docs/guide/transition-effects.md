@@ -390,13 +390,19 @@ You can make custom transitions based on a dissolve mask texture. Dissolve mask 
 
 — the black square in the top-right corner indicates that the transition target should be displayed there at the start of the transition and the pure-white square in the center will transition in the very end.
 
+::: tip
+For optimal memory usage, set "Single Channel" and "Red" in the dissolve texture import settings. Also, make sure `Non-Power of 2` and `Generate Mip Maps` options are disabled to prevent visual artifacts.
+
+![](https://i.gyazo.com/7c38c89948b6d040c0b21ca573cf2968.png)
+:::
+
 To make a custom transition, use `Custom` transition mode and specify path (relative to project "Resources" folder) to the dissolve mask texture via the `dissolve` parameter, eg:
 
 ```nani
 @back Appearance.Custom dissolve:Textures/Spiral
 ```
 
-To smooth (fuzzy) borders of the transition, use first parameter in 0 (no smoothing) to 100 (max smoothing) range, eg:
+To smooth (fuzz) borders of the transition, use first parameter in 0 (no smoothing) to 100 (max smoothing) range, eg:
 
 ```nani
 @back Appearance.Custom dissolve:Textures/Spiral params:90
