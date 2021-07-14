@@ -6,7 +6,7 @@
 
 ## Setup
 
-First, make sure you're using a compatible Unity version (2021.1.0b1 or newer) and `Visual Scripting` package is installed in the package manager.
+First, make sure you're using a compatible Unity version (2021.2 or newer) and `Visual Scripting` package is installed in the package manager.
 
 ![](https://i.gyazo.com/885ebb9808b369c30dfcaab19b0cee2f.png)
 
