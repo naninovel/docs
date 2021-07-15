@@ -1,6 +1,6 @@
 # Privacy Policy
 
-Effective date: November 28, 2018
+Effective date: July 15, 2021
 
 Naninovel ("us", "we", or "our") operates the [naninovel.com](https://naninovel.com) website (the "Service").
 
