@@ -63,6 +63,16 @@ It's possible to prevent specific text printers from adding messages to the back
 
 ![](https://i.gyazo.com/9f0155dff068dbe1fd821e9007cf4a5a.png)
 
+## Authored Template
+
+It's possible to automate additional processing for text messages with an associated author (aka direct speech). The processing is configured individually for each text printer actor via `Authored Template` property. 
+
+![](https://i.gyazo.com/55e68990067ade056d69f73470e0f23c.png)
+
+You can specify any text formatting tags or characters and use `%TEXT%` to be replaced with the message text and `%AUTHOR%` with the author name (character display name). For example, consider the following template: `“%TEXT%” — <i>%AUTHOR%</i>` — it will wrap the printed message in quotes followed by a dash and author name in italics; for example, `Kohaku: Lorem ipsum.` processed with such template will result in:
+
+![](https://i.gyazo.com/53b5ba0f426afc847e51d843ffd6e808.png)
+
 ## Dialogue Printer
 
 Dialogue printers present text inside windows with a flexible height. They initially take about a third of the screen size and will increase the height when the content requires more space. Dialogue printers also expose associated character name in a label above the text window.
