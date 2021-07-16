@@ -1,12 +1,12 @@
 # Privacy Policy
 
-Effective date: July 15, 2021
+Effective date: July 17, 2021
 
 Naninovel ("us", "we", or "our") operates the [naninovel.com](https://naninovel.com) website (the "Service").
 
 This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data.
 
-We use your data to provide and improve the Service. By using the Service, you agree to the collection and use of information in accordance with this policy. Unless otherwise defined in this Privacy Policy, terms used in this Privacy Policy have the same meanings as in our Terms and Conditions, accessible from [naninovel.com](https://naninovel.com).
+We use your data to provide and improve the Service. By using the Service, you agree to the collection and use of information in accordance with this policy.
 
 ## Information Collection And Use
 
@@ -19,7 +19,6 @@ We collect several different types of information for various purposes to provid
 While using our Service, we may ask you to provide us with certain personally identifiable information that can be used to contact or identify you ("Personal Data"). Personally identifiable information may include, but is not limited to:
 
 * Email address
-* First name and last name
 * Cookies and Usage Data
 
 #### Usage Data
@@ -45,8 +44,7 @@ Examples of Cookies we use:
 Naninovel uses the collected data for various purposes:
 
 * To provide and maintain the Service
-* To notify you about changes to our Service
-* To allow you to participate in interactive features of our Service when you choose to do so
+* To allow you to use interactive features of our Service when you choose to do so
 * To provide customer care and support
 * To provide analysis or valuable information so that we can improve the Service
 * To monitor the usage of the Service
@@ -76,6 +74,16 @@ Naninovel may disclose your Personal Data in the good faith belief that such act
 
 The security of your data is important to us, but remember that no method of transmission over the Internet, or method of electronic storage is 100% secure. While we strive to use commercially acceptable means to protect your Personal Data, we cannot guarantee its absolute security.
 
+### Password
+
+Personal password is used to access your account at "Naninovel Account".
+
+Your password is ciphered (a one-way hash) so that it is secure. However, it is recommended that you do not reuse the same password across a number of different websites.
+
+Under no circumstance will anyone affiliated with Naninovel or another 3rd party legitimately ask you for your password.
+
+Should you forget your password for your account, you can use the "Forgot Password" feature provided by the "Naninovel Account" software. This process will ask you to submit your email, then the software will allow to change the password to restore access to your account.
+
 ## Service Providers
 
 We may employ third party companies and individuals to facilitate our Service ("Service Providers"), to provide the Service on our behalf, to perform Service-related services or to assist us in analyzing how our Service is used.
@@ -94,16 +102,8 @@ Our Service may contain links to other sites that are not operated by us. If you
 
 We have no control over and assume no responsibility for the content, privacy policies or practices of any third party sites or services.
 
-## Children's Privacy
-
-Our Service does not address anyone under the age of 18 ("Children").
-
-We do not knowingly collect personally identifiable information from anyone under the age of 18. If you are a parent or guardian and you are aware that your Children has provided us with Personal Data, please contact us. If we become aware that we have collected Personal Data from children without verification of parental consent, we take steps to remove that information from our servers.
-
 ## Changes To This Privacy Policy
 
-We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page.
-
-We will let you know via email and/or a prominent notice on our Service, prior to the change becoming effective and update the "effective date" at the top of this Privacy Policy.
+We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "effective date" at the top of this Privacy Policy.
 
 You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.
