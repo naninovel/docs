@@ -192,6 +192,11 @@ In case you wish to change (animate) actor parameters directly, consider using [
 
 [!a0494329c713c4309a52d57d0b297bee]
 
+```nani
+; Example from the video above
+@animate Yuko appearance:Surprise|Sad|Default|Angry transition:DropFade|Ripple|Pixelate posX:15|85|50 posY:0|-25|-85 scale:1|1.25|1.85 tint:fuchsia|lightblue|white|olive easing:EaseInBounce|EaseInQuad time:3|2|1|0.5
+```
+
 ## Digital Glitch
 Applies a post-processing effect to the main camera simulating digital video distortion and artifacts.
 
