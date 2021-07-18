@@ -408,6 +408,12 @@ To smooth (fuzz) borders of the transition, use first parameter in 0 (no smoothi
 @back Appearance.Custom dissolve:Textures/Spiral params:90
 ```
 
+To invert the transition (brighter areas of the dissolve mask will be displayed first), set second parameter to 1, eg:
+
+```nani
+@back Appearance.Custom dissolve:Textures/Spiral params:,1
+```
+
 Check out the following video for the usage examples.
 
 [!!HZjey6M2-PE]
