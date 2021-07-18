@@ -40,20 +40,43 @@ UI上のゲームパッドナビゲーションは、Unityの新しい入力シ�
 
 ## 入力システム
 
-Naninovel は Unity の新しい[入力システム](https://blogs.unity3d.com/2019/10/14/introducing-the-new-input-system/) に対応しています。入力システムをインストールして有効にする方法については、[公式ドキュメント](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/Installation.html) を参照してください。入力システムパッケージがインストールされたら（プレーヤーの設定で新しい入力バックエンドを有効にするのを忘れないでください）、 `Input Actions` プロパティが入力コンフィグメニューに表示されます。
+Naninovel は Unity の[新しい入力システム](https://blogs.unity3d.com/2019/10/14/introducing-the-new-input-system/) に対応しています。入力システムをインストールして有効にする方法については、[公式ドキュメント](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/Installation.html) を参照してください。
 
-![](https://i.gyazo.com/7c6d767c0f3443e1999fe14917080eb1.png)
 
-[input actions asset](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/ActionAssets.html?q=input%20actions%20asset) をプロパティに割り当てて、 "Naninovel" アクションマップを作成し、Naninovelのバインディング名と同じ名前の入力アクションを追加します。 組み込みバインディング名のリストは、同じコンフィグウィンドウの "Bindings" の下の "Control Scheme" リストにあります。以下は、入力アクション構成の例です。
+::: note
 
-![](https://i.gyazo.com/36d1951519e4f671509c7136a83d9958.png)
+サポートされている最小入力システムパッケージは1.1で、現在プレビュー中です。プロジェクトをインストールするには、Package Manager側で `preview packages` を有効にする必要があります。
 
-適切に構成されている場合、入力アクションは Naninovel のバインディングをアクティブにします。レガシー入力処理（"Bindings" リストで設定されています）を無効にしたい場合は、入力コンフィグメニューの `Process Legacy Bindings` プロパティを無効にします。
-
-::: warn
-タッチおよびオブジェクト関連の入力は引き続きレガシー入力を介して処理されるため、プレーヤー設定でレガシーバックエンドを完全に無効にしないでください。機能を自分で実装する場合はこの限りではありません。
+[!1a662215459f936d1a3b49d9089e8357]
 :::
 
-デフォルトの入力アクションアセットは、`Naninovel/Prefabs/DefaultControls.inputactions` に保存されます。
+::: warn
+タッチおよびオブジェクト関連の入力は引き続き古い方の入力を介して処理されるため、機能を自分で実装する場合を除いて、プレーヤー設定でレガシーバックエンドを完全に無効にしないで(Active Input HandlingをBothにして)ください。
 
-新しい入力システムの使用に関する詳細（たとえば、特定のバインディングを構成する方法、または実行時にプレーヤーがバインディングを上書きできるようにする方法）については、[公式マニュアル](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual) を参照してください。
+![](https://i.gyazo.com/bdac8d3ce8380f571bc3bc2e18a0074d.png)
+:::
+
+パッケージがインストールされたら、イベントシステムプレハブを作成します。 `UI -> Event System` から、デフォルトのウィンドウを作成できます。 `Input System UI Input Module` プレハブに取り付けられていることを確認してください。デフォルトのイベントシステムを作成するとき、Unityは古い入力モジュールコンポーネントを新しいものに自動的に変換することを勧めています。
+
+![](https://i.gyazo.com/965b87f8585cb31ae2452f19882bdab7.png)
+
+作成したイベントシステムプレハブを `Custom Event System` に割り当て、 `Spawn Input Module` を無効にします。
+
+![](https://i.gyazo.com/b06177545022b8816e342b984afecaea.png)
+
+入力システムパッケージがインストールされると、 `Input Actions` プロパティが入力構成メニューに表示されます。入力アクションアセットをプロパティに割り当ててから、「Naninovel」アクションマップを作成し、Naninovelのバインディング名と同じ名前の入力アクションを追加します。組み込みバインディング名のリストは、同じ構成ウィンドウの「制御スキーム」の下にある「バインディング」リストにあります。以下は、入力アクションの構成例です。
+
+![](https://i.gyazo.com/07fb5702badd3e698c3533f28585a15b.png)
+
+::: tip
+
+デフォルトの入力アクションアセットは `Naninovel/Prefabs/DefaultControls.inputactions` に保存されます。自分で作成する際の参考にしてください。
+:::
+
+適切に構成されていれば、入力アクションはNaninovelのバインディングをアクティブにします。従来の入力処理（「バインディング」リストで設定）を無効にする場合は入力構成メニューの `Process Legacy Bindings` プロパティを無効にします。
+
+::: example
+GitHubに、Naninovelを使用した新しい入力システムのセットアップと使用に関するサンプルプロジェクトがあります： [github.com/Naninovel/Input](https://github.com/Naninovel/Input)
+:::
+
+入力システムの詳しい使い方（特定のバインディングを構成する方法、またはプレーヤーが実行時にバインディングをオーバーライドできるようにする方法など）については、[公式マニュアル](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual)を参照してください。
