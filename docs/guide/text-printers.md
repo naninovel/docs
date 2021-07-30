@@ -194,9 +194,7 @@ In case the reveal sounds are not working for you (eg, the sound is not short en
 
 Naninovel supports [TextMesh Pro](https://docs.unity3d.com/Manual/com.unity.textmeshpro.html) via built-in `TMProFullscreen`, `TMProDialogue`, `TMProWide`, `TMProChat` and `TMProBubble` printers implemented with the TMPro UI text components.
 
-![](https://i.gyazo.com/bb143607ce79e5a28d89052c7f9fb07c.png)
-
-Before using the TMPro printers, make sure you have TextMesh Pro installed in your Unity project. TextMesh Pro can be installed via package manager accessible via `Window -> Package Manager` menu.
+Before using the TMPro printers, make sure you have TextMesh Pro installed in your Unity project. TextMesh Pro can be installed via package manager accessible with `Window -> Package Manager` menu.
 
 You can select the TMPro printers to route all the print commands to them using [@printer] command in naninovel scripts:
 
@@ -209,7 +207,17 @@ Hello World!
 
 When creating custom TextMesh Pro font assets or materials, don't forget to apply `Naninovel/RevealableTMProText` shader to the font material, otherwise text reveal effect won't work.
 
-![](https://i.gyazo.com/18e112ba90cad84f44f0b78db0db303a.png)
+![](https://i.gyazo.com/21521e4bb92c414e0f718a867c3c2a8c.png)
+
+### Embedded Sprites (Emoji)
+
+To make [TMPro's sprites](http://digitalnativestudios.com/textmeshpro/docs/sprites/) support text reveal effect, create a custom sprite asset and assign a material with `Naninovel/RevealableTMProSprite` shader.
+
+![](https://i.gyazo.com/a7d7e17d00e82816c69ca9c79dd20b81.png)
+
+Make sure the material has sprite atlas texture assigned, as it won't automatically find the texture assigned in sprite asset.
+
+![](https://i.gyazo.com/79d80a4d14bc53dee934d4b5f965bff5.png)
 
 ### Right to Left (Arabic) Text
 
