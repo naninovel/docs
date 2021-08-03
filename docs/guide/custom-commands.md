@@ -58,7 +58,7 @@ public class HelloWorld : Command
 {
     public StringParameter Name;
 
-    public override UniTask ExecuteAsync (CancellationToken cancellationToken = default)
+    public override UniTask ExecuteAsync (AsyncToken asyncToken = default)
     {
         if (Assigned(Name))
         {
@@ -74,13 +74,35 @@ public class HelloWorld : Command
 }
 ```
 
-Notice the optional `CancellationToken` argument. When using [async methods](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/), make sure to check the token for cancellation requests and react accordingly. `CancelASAP` means the engine has either been destroyed or performing a state reset; in both cases it's no longer safe to use the engine APIs and any mutation to the state could cause issues, so the command should return immediately, discarding any currently performed activities. `CancelLazy` means the command is expected to complete all the activities as fast as possible; eg, if you're running animations, finish them instantly, no matter the initial duration.
-
 ::: example
 Another example of adding custom commands to add/remove items of an inventory system can be found in the [inventory example project on GitHub](https://github.com/Naninovel/Inventory).
 
 Specifically, the command implementations are stored at [Runtime/Commands](https://github.com/Naninovel/Inventory/tree/master/Assets/NaninovelInventory/Runtime/Commands) directory.
 :::
+
+### AsyncToken
+
+Notice the optional `AsyncToken` argument provided for the `ExecuteAsync` method. When performing [async operations](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/), make sure to check the token for cancellation and completion requests after each async operation and react accordingly:
+
+ - `AsyncToken.Canceled` means the engine has been destroyed or reset; in both cases it's no longer safe to use the engine APIs and any state mutations will lead to an undefined behaviour. When canceled, the command implementation is expected to throw `AsyncOperationCanceledException` immediately, discarding any currently performed activities.
+ - `AsyncToken.Completed` means the command is expected to complete all the activities as fast as possible; eg, if you're running animations, finish them instantly, no matter the expected duration. This usually happens when player activates continue input or a save game operation is started.
+
+```csharp
+public override async UniTask ExecuteAsync (AsyncToken asyncToken = default)
+{
+    await PerformSomethingAsync();
+    // The engine may have been destroyed while the above async method been running;
+    // below will check and throw the exception if that's the case.
+    asyncToken.ThrowIfCanceled();
+    // It's safe to continue using the Engine APIs after the check.
+    var someUI = Engine.GetService<IUIManager>().GetUI<SomeUI>();
+    // In case completion is requested, fade the UI instantly.
+    var fadeDuration = asyncToken.Completed ? 0 : 5;
+    await someUI.ChangeVisibilityAsync(false, fadeDuration, asyncToken);
+    // Notice the method above accepted the async token; such methods will handle
+    // the cancellations internally, freeing you from checking after awaiting them.
+}
+```
 
 ## Overriding Built-In Command
 
@@ -94,10 +116,10 @@ Below is an example of overriding built-in [@print] command, so that the printed
 [CommandAlias("print")]
 public class MyCustomPrintCommand : PrintText
 {
-    public override UniTask ExecuteAsync (CancellationToken cancellationToken = default)
+    public override UniTask ExecuteAsync (AsyncToken asyncToken = default)
     {
         Debug.Log(Text);
-        return base.ExecuteAsync(cancellationToken);
+        return base.ExecuteAsync(asyncToken);
     }
 }
 ```

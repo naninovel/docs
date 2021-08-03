@@ -195,10 +195,10 @@ public class MyCustomChoiceHandler : UIChoiceHandler
     }
 
     public override UniTask ChangeVisibilityAsync (bool visible, float duration, 
-        EasingType easingType = default, CancellationToken cancelToken = default)
+        EasingType easingType = default, AsyncToken asyncToken = default)
     {
         Debug.Log($"Last choice time: {LastChoiceTime}");
-        return base.ChangeVisibilityAsync(visible, duration, easingType, cancelToken);
+        return base.ChangeVisibilityAsync(visible, duration, easingType, asyncToken);
     }
 }
 
