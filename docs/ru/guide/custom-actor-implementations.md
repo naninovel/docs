@@ -54,21 +54,21 @@ public class CustomCharacterImplementation : MonoBehaviourActor, ICharacterActor
 
     public override UniTask ChangeAppearanceAsync (string appearance, float duration, 
         EasingType easingType = EasingType.Linear, Transition? transition = default, 
-        CancellationToken cancellationToken = default)
+        AsyncToken asyncToken = default)
     {
         Debug.Log($"{nameof(CustomCharacterImplementation)}::ChangeAppearanceAsync({appearance})");
         return UniTask.CompletedTask;
     }
 
     public override UniTask ChangeVisibilityAsync (bool isVisible, float duration, 
-        EasingType easingType = EasingType.Linear, CancellationToken cancellationToken = default)
+        EasingType easingType = EasingType.Linear, AsyncToken asyncToken = default)
     {
         Debug.Log($"{nameof(CustomCharacterImplementation)}::ChangeVisibilityAsync({isVisible})");
         return UniTask.CompletedTask;
     }
 
     public UniTask ChangeLookDirectionAsync (CharacterLookDirection lookDirection, float duration,
-        EasingType easingType = EasingType.Linear, CancellationToken cancellationToken = default)
+        EasingType easingType = EasingType.Linear, AsyncToken asyncToken = default)
     {
         Debug.Log($"{nameof(CustomCharacterImplementation)}::ChangeLookDirectionAsync({lookDirection})");
         return UniTask.CompletedTask;

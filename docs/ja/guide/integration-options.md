@@ -72,7 +72,7 @@ public class SwitchToNovelMode : Command
     public StringParameter ScriptName;
     public StringParameter Label;
 
-    public override async UniTask ExecuteAsync (CancellationToken cancellationToken = default)
+    public override async UniTask ExecuteAsync (AsyncToken asyncToken = default)
     {
         // 1. キャラクターコントロールを無効にします。
         var controller = Object.FindObjectOfType<CharacterController3D>();
@@ -102,7 +102,7 @@ public class SwitchToNovelMode : Command
 [CommandAlias("adventure")]
 public class SwitchToAdventureMode : Command
 {
-    public override async UniTask ExecuteAsync (CancellationToken cancellationToken = default)
+    public override async UniTask ExecuteAsync (AsyncToken asyncToken = default)
     {
         // 1. Naninovel入力を無効にします。
         var inputManager = Engine.GetService<IInputManager>();

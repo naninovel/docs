@@ -52,7 +52,7 @@ public class HelloWorld : Command
 {
     public StringParameter Name;
 
-    public override UniTask ExecuteAsync (CancellationToken cancellationToken = default)
+    public override UniTask ExecuteAsync (AsyncToken asyncToken = default)
     {
         if (Assigned(Name))
         {
@@ -68,7 +68,7 @@ public class HelloWorld : Command
 }
 ```
 
-オプションの `CancellationToken` 引数に注意してください。非同期メソッドを呼び出す場合は、キャンセルリクエストのトークンを確認して、できるだけ早く返してください。
+オプションの `AsyncToken` 引数に注意してください。非同期メソッドを呼び出す場合は、キャンセルリクエストのトークンを確認して、できるだけ早く返してください。
 
 ::: example
 別の例として、インベントリシステムにアイテムを追加/削除するカスタムコマンドは [GitHubのインベントリサンプルプロジェクト](https://github.com/Naninovel/Inventory) で見ることができます。

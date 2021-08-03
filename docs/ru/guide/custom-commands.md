@@ -52,7 +52,7 @@ public class HelloWorld : Command
 {
     public StringParameter Name;
 
-    public override UniTask ExecuteAsync (CancellationToken cancellationToken = default)
+    public override UniTask ExecuteAsync (AsyncToken asyncToken = default)
     {
         if (Assigned(Name))
         {
@@ -68,7 +68,7 @@ public class HelloWorld : Command
 }
 ```
 
-Обратите внимание на необязательный аргумент `CancellationToken`. В случае вызова каких-либо асинхронных методов обязательно проверьте токен на наличие запросов на отмену и возврат как можно скорее.
+Обратите внимание на необязательный аргумент `AsyncToken`. В случае вызова каких-либо асинхронных методов обязательно проверьте токен на наличие запросов на отмену и возврат как можно скорее.
 
 ::: example
 Другой пример добавления пользовательских команд для добавления/удаления элементов системы инвентаря можно найти в [примере проекта инвентаря на GitHub](https://github.com/Naninovel/Inventory).

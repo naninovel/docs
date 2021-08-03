@@ -47,7 +47,7 @@ public class BroadcastBoltEvent : Command
     [ParameterAlias("args")]
     public StringListParameter Arguments;
     
-    public override UniTask ExecuteAsync (CancellationToken cancellationToken = default)
+    public override UniTask ExecuteAsync (AsyncToken asyncToken = default)
     {
         var gameObject = GameObject.Find(GameObjectName);
         if (gameObject == null)

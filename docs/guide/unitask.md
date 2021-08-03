@@ -15,7 +15,7 @@ using Naninovel;
 public class UniTaskCommand : Command
 {
     // This method uses embedded UniTask v1.
-    public override async UniRx.Async.UniTask ExecuteAsync (CancellationToken cancellationToken = default)
+    public override async UniRx.Async.UniTask ExecuteAsync (AsyncToken asyncToken = default)
     {
         var message = await WaitAndReturnMessageAsync();
         Debug.Log(message);
