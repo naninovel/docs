@@ -4,10 +4,6 @@ Naninovel scripts are text documents (`.nani` extension) where you control what 
 
 ![](https://i.gyazo.com/f552c2ef323f9ec1171eba72e0c55432.png)
 
-::: tip
-Keep all the naninovel scripts in a single directory (eg, `Assets/Scripts`). Storing scripts in multiple directories and/or sub-directories may cause issues when using some tools and extensions, such as [spreadsheet](/guide/spreadsheet.md). To organize script assets inside the directory, use labels and [search filters](https://docs.unity3d.com/Manual/Searching.html).
-:::
-
 Each line in a naninovel script represents a statement, which can be a command, generic text, label or a comment. Type of the statement is determined by the literal placed at the start of the line:
 
 Literal | Statement Type 

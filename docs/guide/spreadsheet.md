@@ -26,10 +26,6 @@ When the localization data is up to date, open spreadsheet tool with `Naninovel 
 
 To import all the data into a single spreadsheet file, enable `Single Spreadsheet`, create a new `.xlsx` spreadsheet file (eg, with Microsoft Excel 2007 or newer) and specify location of the file. To import the data into multiple spreadsheets, specify the output folder and make sure `Single Spreadsheet` is disabled. Then specify folders containing naninovel scripts, managed text and localization root.
 
-::: note
-Make sure all the source naninovel scripts are stored in a single directory; storing scripts in multiple directories and/or sub-directories is not supported by the extension. To organize script assets inside the directory, use labels and [search filters](https://docs.unity3d.com/Manual/Searching.html).
-:::
-
 Click "Export" button to export the project data to the selected destination.
 
 When using single spreadsheet, each script and managed text document will be exported to an individual sheet inside the Excel file; otherwise, an Excel file per document will be created. Sheets will have at least two columns: "Template" and "Arguments". Template column contain all the source file (script or managed text) lines, with localizable parts (text) replaced with placeholders (eg, `{0}`, `{1}` and so on). Each consecutive non-localizable script line (eg, command lines that don't contain parameters that can be translated) will be appended to single template column cell, until a localizable line is discovered. Arguments column contain the text extracted from the associated localizable line.
