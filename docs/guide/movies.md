@@ -12,7 +12,7 @@ To add, edit and remove movie resources use the movie manager accessible via `Na
 
 You can use any video formats [supported by Unity](https://docs.unity3d.com/Manual/VideoSources-FileCompatibility).
 
-Movies playback behavior can be configured using `Naninovel -> Configuration -> Movies` context menu; for available options see [configuration guide](/guide/configuration.md#movies).
+Movies playback behavior can be configured using `Naninovel -> Configuration -> Movies` editor menu; for available options see [configuration guide](/guide/configuration.md#movies).
 
 Use [@movie] command followed by video clip name to play a movie from the naninovel scripts:
 
