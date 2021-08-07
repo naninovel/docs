@@ -1388,6 +1388,10 @@ ID | タイプ | 説明
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | String | 生成するプレハブリソースの名前（パス）。
 params | List&lt;String&gt; | プレハブを生成するときに設定するパラメーター。プレハブには、ルートオブジェクトに紐付けられた `Naninovel.Commands.Spawn.IParameterized` コンポーネントが必要です。
+pos | decimal list |オブジェクトに設定する位置（シーンの境界に対する相対的な位置 パーセント単位）。 位置は次のように記述されます。「0,0」は左下、「50,50」は中央、「100,100」はシーンの右上隅です。カメラのortho modeでZコンポーネント（3番目のメンバ、たとえば `,, 10`）を使用して、深さで移動（並べ替え）します。
+position | decimal list | オブジェクトに設定する位置（World space内）
+rotation | String | オブジェクトに設定するZ軸上の回転の値
+scale | decimal list | Scale to set for the spawned object.
 
 </div>
 
