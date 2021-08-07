@@ -926,6 +926,30 @@ ID | タイプ | 説明
 @movie Opening
 ```
 
+## openURL
+
+#### Summary
+デフォルトのWebブラウザで指定されたURL（Webアドレス）を開きます。
+
+#### Remarks
+Unityの `Application.OpenURL`メソッドがコマンドの処理に使用されます。動作の詳細と制限については、[ドキュメント](https://docs.unity3d.com/ScriptReference/Application.OpenURL.html) を参照してください。
+
+#### Parameters
+
+<div class="config-table">
+
+ID | タイプ | 説明
+--- | --- | ---
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">URL</span> | string | 開くURL.
+
+</div>
+
+#### 例
+```nani
+; Open Naninovel website.
+@openURL "https://naninovel.com"
+```
+
 ## print
 
 #### 概要
