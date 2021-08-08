@@ -624,6 +624,7 @@ ID | タイプ | 説明
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">ActorIds</span> | List&lt;String&gt; | 非表示にするアクターのID。
 time | Decimal | フェードアニメーションの継続時間(秒単位)。デフォルト値: 0.35秒。
+remove | boolean |非表示にした後でアクターを破棄するかどうか。 アクターに関連付けられたリソースをアンロードし、メモリリークを防ぐために使用します。
 
 </div>
 
@@ -648,6 +649,7 @@ time | Decimal | フェードアニメーションの継続時間(秒単位)。�
 ID | タイプ | 説明
 --- | --- | ---
 time | Decimal | フェードアニメーションの継続時間(秒単位)。デフォルト値: 0.35秒。
+remove | boolean |アクターが非表示になった後でアクターを破棄するかどうか。 アクターに関連付けられたリソースをアンロードし、メモリリークを防ぐために使用します。
 
 </div>
 
@@ -668,6 +670,7 @@ time | Decimal | フェードアニメーションの継続時間(秒単位)。�
 ID | タイプ | 説明
 --- | --- | ---
 time | Decimal | フェードアニメーションの継続時間(秒単位)。デフォルト値: 0.35秒。
+remove | boolean | 非表示にしたキャラクターを削除破棄するかどうか。 文字に関連付けられたリソースをアンロードし、メモリリークを防ぐために使用します。
 
 </div>
 
@@ -926,6 +929,30 @@ ID | タイプ | 説明
 @movie Opening
 ```
 
+## openURL
+
+#### Summary
+デフォルトのWebブラウザで指定されたURL（Webアドレス）を開きます。
+
+#### Remarks
+Unityの `Application.OpenURL`メソッドがコマンドの処理に使用されます。動作の詳細と制限については、[ドキュメント](https://docs.unity3d.com/ScriptReference/Application.OpenURL.html) を参照してください。
+
+#### Parameters
+
+<div class="config-table">
+
+ID | タイプ | 説明
+--- | --- | ---
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">URL</span> | string | 開くURL.
+
+</div>
+
+#### 例
+```nani
+; Open Naninovel website.
+@openURL "https://naninovel.com"
+```
+
 ## print
 
 #### 概要
@@ -1056,6 +1083,7 @@ You've picked two.
 ID | タイプ | 説明
 --- | --- | ---
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">Exclude</span> | List&lt;String&gt; | リセットから除外する[エンジンサービス](/ja/guide/engine-services.html) （インターフェース）の名前。パラメータを指定するときは、ローカル変数を保持するために常に `ICustomVariableManager` を追加することを検討してください。
+only | string list |リセットする [エンジンサービス](https://naninovel.com/guide/engine-services.html) （インターフェース）の名前。 他のサービスは影響を受けません。 名前のない（除外）パラメーターが割り当てられている場合は効果がありません。
 
 </div>
 
@@ -1388,6 +1416,10 @@ ID | タイプ | 説明
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Path</span> | String | 生成するプレハブリソースの名前（パス）。
 params | List&lt;String&gt; | プレハブを生成するときに設定するパラメーター。プレハブには、ルートオブジェクトに紐付けられた `Naninovel.Commands.Spawn.IParameterized` コンポーネントが必要です。
+pos | decimal list |オブジェクトに設定する位置（シーンの境界に対する相対的な位置 パーセント単位）。 位置は次のように記述されます。「0,0」は左下、「50,50」は中央、「100,100」はシーンの右上隅です。カメラのortho modeでZコンポーネント（3番目のメンバ、たとえば `,, 10`）を使用して、深さで移動（並べ替え）します。
+position | decimal list | オブジェクトに設定する位置（World space内）
+rotation | String | オブジェクトに設定するZ軸上の回転の値
+scale | decimal list | オブジェクトに設定する大きさの値
 
 </div>
 
