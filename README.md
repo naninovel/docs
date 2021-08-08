@@ -4,7 +4,25 @@
 
 This project is used to host online documentation and tracking tools for [Naninovel](https://naninovel.com) visual novel engine.
 
-## VuePress Upgrade
+## How to Run Locally
+
+1. Install nodejs https://nodejs.org
+2. Fork this repository on Github
+3. Install npm dependencies
+```$
+npm install
+```
+4. Build the project
+```$
+npm run docs:build
+```
+5. Launch local web server
+```$
+npm run docs:dev
+```
+6. Access with a web browser http://localhost:8080/
+
+## How to Upgrade VuePress
 
 1. Delete `docs/.vuepress/theme`
 2. Upgrade vuepress
