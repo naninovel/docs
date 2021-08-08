@@ -624,6 +624,7 @@ ID | タイプ | 説明
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">ActorIds</span> | List&lt;String&gt; | 非表示にするアクターのID。
 time | Decimal | フェードアニメーションの継続時間(秒単位)。デフォルト値: 0.35秒。
+remove | boolean |非表示にした後でアクターを破棄するかどうか。 アクターに関連付けられたリソースをアンロードし、メモリリークを防ぐために使用します。
 
 </div>
 
@@ -648,6 +649,7 @@ time | Decimal | フェードアニメーションの継続時間(秒単位)。�
 ID | タイプ | 説明
 --- | --- | ---
 time | Decimal | フェードアニメーションの継続時間(秒単位)。デフォルト値: 0.35秒。
+remove | boolean |アクターが非表示になった後でアクターを破棄するかどうか。 アクターに関連付けられたリソースをアンロードし、メモリリークを防ぐために使用します。
 
 </div>
 
@@ -668,6 +670,7 @@ time | Decimal | フェードアニメーションの継続時間(秒単位)。�
 ID | タイプ | 説明
 --- | --- | ---
 time | Decimal | フェードアニメーションの継続時間(秒単位)。デフォルト値: 0.35秒。
+remove | boolean | 非表示にしたキャラクターを削除破棄するかどうか。 文字に関連付けられたリソースをアンロードし、メモリリークを防ぐために使用します。
 
 </div>
 
@@ -1080,6 +1083,7 @@ You've picked two.
 ID | タイプ | 説明
 --- | --- | ---
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">Exclude</span> | List&lt;String&gt; | リセットから除外する[エンジンサービス](/ja/guide/engine-services.html) （インターフェース）の名前。パラメータを指定するときは、ローカル変数を保持するために常に `ICustomVariableManager` を追加することを検討してください。
+only | string list |リセットする [エンジンサービス](https://naninovel.com/guide/engine-services.html) （インターフェース）の名前。 他のサービスは影響を受けません。 名前のない（除外）パラメーターが割り当てられている場合は効果がありません。
 
 </div>
 
