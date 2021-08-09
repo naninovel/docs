@@ -6,13 +6,13 @@ All the persistent data generated and used by Naninovel at runtime is divided in
 - Global state
 - User settings
 
-The data is serialized to JSON format and stored as either binary `.nson` (default) or text `.json` (can be switched in state configuration menu) save slot files under a platform-specific [persistent data directory](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html). Under WebGL platform, due to LFS security policy in modern web-browsers, the serialized data is stored over the [Indexed DB](https://en.wikipedia.org/wiki/Indexed_Database_API) instead.
+The data is serialized to JSON format and stored as either binary `.nson` (default) or text `.json` save slot files under a platform-specific [persistent data directory](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html). Under WebGL platform, due to LFS security policy in modern web-browsers, the serialized data is stored over the [Indexed DB](https://en.wikipedia.org/wiki/Indexed_Database_API) instead.
 
-Instead of local files, it's possible to store state slots in key-value [PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html) database by selecting corresponding serialization handlers in the configuration menu.
+The serialization behaviour is controlled by serialization handlers independently for game saves, global state and user settings. By default, universal serialization handlers are used. In most cases, they will use asynchronous [System.IO](https://docs.microsoft.com/en-us/dotnet/api/system.io) to read and write the slot files to the local file system. However, on some platforms (eg, consoles) the .NET IO APIs are not available, in which case the universal handlers will fallback to Unity's cross-platform [PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html).
 
-Path to the save folder, maximum allowed amount of the save slots and file names can be modified via the state configuration menu.
+Serialization handlers, path to the save folder, maximum allowed amount of the save slots and other related parameters can be modified via the state configuration menu.
 
-![](https://i.gyazo.com/f9a2462d19eb228224f1dcd5302d6b1c.png)
+![](https://i.gyazo.com/d1e5cfd136544f2c1b74966e3fd1bb45.png)
 
 ## Game State
 
@@ -164,21 +164,17 @@ var monster2 = stateMap.GetState<MonsterState>("2");
 
 ## Custom Serialization Handlers
 
-By default, the engine state (game saves, global state, settings) is serialized to local file system via cross-platform IO API. However, in some cases platform-specific implementations are not available out of the box. Eg, Nintendo decided to restrict access to the Switch native libraries, making it impossible to support the platform in third-party solutions. For such cases, Naninovel allows to provide custom serialization handlers.
-
-::: tip
-Naninovel has a built-in `PlayerPrefs` serialization handler, which uses Unity's [PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html) API to persist the save data. While it's not optimal for storing large amounts of data, it could work with consoles out of the box, so you won't have to implement your own handler.
-:::
+By default, when universal serialization handlers are selected, the engine state (game saves, global state, settings) is serialized either via asynchronous [System.IO](https://docs.microsoft.com/en-us/dotnet/api/system.io) or with Unity's cross-platform [PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html) as a fallback for some platforms. To customize the serialization scenario, use custom handlers.
 
 To add a custom handler, implement `ISaveSlotManager<GameStateMap>`, `ISaveSlotManager<GlobalStateMap>`, `ISaveSlotManager<SettingsStateMap>` interfaces for the game save slots, global state and settings respectively (each should have its own implementing class).
 
-Implementation should have a compatible public constructor: `public CustomSlotManager (StateConfiguration config, string savesFolderPath)`, where `config` is an instance of state configuration object and `savesFolderPath` is the path to saves folder (you're free to ignore that path and use one you see fit).
+Implementation is expected to have a public constructor with `StateConfiguration` and `string` arguments, where the first one is an instance of state configuration object and second is the path to saves folder; you're free to ignore the arguments in your custom implementation.
 
 ::: warn
 When adding custom implementation types under a non-predefined assembly (via [assembly definitions](https://docs.unity3d.com/Manual/ScriptCompilationAssemblyDefinitionFiles.html)), add the assembly name to the `Type Assemblies` list found in the engine configuration menu. Otherwise, the engine won't be able to locate your custom types.
 :::
 
-Below is an example of a dummy settings serialization handler, which is doing nothing but logs when any of its methods are invoked.
+Below is an example of a custom settings serialization handler, which is doing nothing but logs when any of its methods are invoked.
 
 ```csharp
 using Naninovel;
