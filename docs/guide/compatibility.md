@@ -22,15 +22,14 @@ Only verified package versions are supported. When installing or updating a pack
 
 All the engine features are implemented using cross-platform APIs and are expected to be compatible with all the platforms Unity can target. 
 
-The following platforms were tested for compatibility:
+The following platforms were tested for compatibility and are officially supported by us:
 * Standalone: PC, Mac, Linux
 * WebGL
 * iOS
 * Android
-* UWP (IL2CPP scripting backend only)
 
 ::: note
-While Unity allows building for game consoles (Switch, PlayStation, Xbox, etc), some features (eg, IO-related) are not implemented out of the box, as access to the platform-specific SDKs is restricted for registered developers only. In Naninovel case, this affects the save system, which will require implementing [custom serialization handlers](/guide/state-management.md#custom-serialization-handlers) in order to work correctly on the consoles. Find more information about developing for game consoles in [the article](https://unity.com/how-to/develop-console-video-games-unity).
+While Unity allows building for numerous other platforms (PlayStation, Xbox, Stadia, etc), some features (eg, save system) may not work out of the box, as access to the platform-specific SDKs is restricted for registered developers only. We don't have the access to such SDKs and are not able to provide support for platforms outside of the list above. Find more information about developing for game consoles in [the article](https://unity.com/how-to/develop-console-video-games-unity).
 :::
 
 ## Enter Play Mode
