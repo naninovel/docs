@@ -10,6 +10,8 @@ Providers' general behavior can be configured via `Naninovel -> Configuration ->
  - Static — All the resources required for the script execution are pre-loaded when starting the playback (masked with a loading screen) and unloaded only when the script has finished playing. This policy is default and recommended for most cases.
  - Dynamic — Only the resources required for the next `Dynamic Policy Steps` commands are pre-loaded when starting the playback and all the unused resources are unloaded immediately. Use this mode when targeting platforms with strict memory limitations and it's impossible to properly organize naninovel scripts. Expect hiccups when the resources are loaded in background while the game is progressing.
 
+Find more about how Naninovel loads and loads the resources in the [memory management guide](/guide/resource-providers.md#memory-management).
+
 When `Log Resources Loading` is enabled, various provider-related log messages will be mirrored to the default loading screen UI.
 
 `Enable Build Processing` enables a build pre-processing procedure required to ensure assets assigned via editor menus are available in the builds. Disabling the processing may be required if you're using a [custom build environment](/guide/custom-build-environment.md) or attaching your own build hooks. When enabling or disabling the property, restart Unity editor in order for the change to take effect.
@@ -236,3 +238,78 @@ public class CustomResourceProvider : IResourceProvider
 }
 ```
 
+## Memory Management
+
+Naninovel is independent of Unity scenes, hence the assets (textures, audio, prefabs, etc) are loaded when they're required by the played script and unloaded automatically; specific policy can be selected via `Resource Policy` property in resource provider configuration menu.
+
+Resource provider manager keep track of the references to the loaded resources and dispose (unload) the resources when they're not used ("held") by any users ("holders").
+
+The mechanism is most prominent in script commands. For example, let's assume you want to play a background music with a custom command. The audio player will require an audio clip asset (resource) to play, so we need to preload and "hold" the asset before the command is executed and release it after:
+
+```csharp
+public class PlayMusic : Command, Command.IPreloadable
+{
+    public StringParameter MusicName;
+
+    public async UniTask PreloadResourcesAsync ()
+    {
+        await GetAudioManager().AudioLoader.LoadAndHoldAsync(MusicName, this);
+    }
+
+    public void ReleasePreloadedResources ()
+    {
+        GetAudioManager().AudioLoader.Release(MusicName, this);
+    }
+
+    public override async UniTask ExecuteAsync (AsyncToken asyncToken = default)
+    {
+        await GetAudioManager().PlayBgmAsync(MusicName, asyncToken: asyncToken);
+    }
+
+    private IAudioManager GetAudioManager () => Engine.GetService<IAudioManager>();
+}
+```
+
+Notice the command implements `Command.IPreloadable` interface. Script player will detect such commands and invoke the preload and unload methods to ensure the assets are ready before the command is executed and released after.
+
+### Sharing Resources
+
+In some cases you many want to share resources between Naninovel and a custom gameplay mode. In case the custom gameplay is implemented independently of Naninovel (the engine is disabled when the custom mode is active), there shouldn't be any issues. However, if both the custom mode and Naninovel are used at the same time, you have to pay attention to how the resources are used.
+
+For example, let's assume you have a Naninovel's sprite background with an appearances texture that is also used as a source for some UI element. At some point Naninovel will attempt to release the texture and it will also disappear in the UI element. That happens, because the engine is not aware, that you're using the texture and it shouldn't be unloaded.
+
+To notify Naninovel, that you're using an asset, use `Hold` method of resource provider service:
+
+```csharp
+var resourceManager = Engine.GetService<IResourceProviderManager>();
+resourceManager.Hold(asset, holder);
+```
+
+Be aware, that while you're holding an asset, it won't be unloaded by Naninovel, so it's up to you to dispose it to prevent memory leaks:
+
+```csharp
+var holdersCount = resourceManager.Release(asset, holder);
+// In case no one else is holding the asset, we should unload it.
+if (holdersCount == 0) Resources.UnloadAsset(asset);
+```
+
+"Holder" can be a reference to any object; usually it's the same class that is using the asset. It's used to distinguish the holders and prevent same holder from accidentally holding a resource multiple times.
+
+Below is an example of Unity component, which will prevent Naninovel from ever unloading an asset:
+
+```csharp
+using Naninovel;
+using UniRx.Async;
+using UnityEngine;
+
+public class HoldObject : MonoBehaviour
+{
+    public Object ObjectToHold;
+    
+    private async void Start()
+    {
+        while (!Engine.Initialized) await UniTask.DelayFrame(1);
+        Engine.GetService<IResourceProviderManager>().Hold(ObjectToHold, this);
+    }
+}
+```

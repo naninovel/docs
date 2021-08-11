@@ -39,7 +39,7 @@ To make parameter required (causing an error to be logged when it's not specifie
 
 All the parameter types have `HasValue` property, which you can use to test whether the parameter has been assigned in naninovel script; optionally, you can use `Assigned()` static method, which takes a parameter instance and returns true when the provided parameter is not null and has a value assigned.
 
-In case execution of the command requires loading some resources, implement `Command.IPreloadable` interface to preload the required resources when the game is loading.
+In case execution of the command requires loading some resources, implement `Command.IPreloadable` interface to preload the required resources when the game is loading; find more about memory management in the [resource providers guide](/guide/resource-providers.md#memory-management).
 
 In case the command has parameters that can be localized (text directly presented to the user, usually), implement `Command.ILocalizable` interface to add the command to the generated [script localization](/guide/localization.md#scripts-localization) documents.
 
