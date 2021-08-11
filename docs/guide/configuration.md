@@ -10,7 +10,7 @@ Notice, that all the configuration menus are supporting [Unity's presets feature
 It's possible to modify configuration objects at runtime, add new custom configurations and change the way the objects are accessed at runtime (eg, read configuration from JSON files stored on a remote host); see [custom configuration](/guide/custom-configuration.md) guide for more information.
 
 ::: note
-This configuration reference is valid for [Naninovel v1.16](https://github.com/Naninovel/Documentation/releases).
+This configuration reference is valid for [Naninovel v1.17](https://github.com/Naninovel/Documentation/releases).
 :::
 
 ## Audio
@@ -49,7 +49,7 @@ Property | Default Value | Description
 --- | --- | ---
 Default Metadata | Object Ref | Metadata to use by default when creating background actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating background actors with specific IDs.
-Scene Origin | (0.5, 0.0) | Origin point used for reference when positioning actors on scene.
+Scene Origin | (0.5, 0.0) | Reference point on scene to be considered as origin for the managed actors. Doesn't affect positioning.
 Z Offset | 100 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
 Z Step | 0.1 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
 Default Easing | Linear | Easing function to use by default for all the actor modification animations (changing appearance, position, tint, etc).
@@ -87,7 +87,7 @@ Arrange Range | (0.0, 1.0) | Start (x) and end (y) positions (in 0.0 to 1.0 rang
 Default Metadata | Object Ref | Metadata to use by default when creating character actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating character actors with specific IDs.
 Avatar Loader | Character Avatars- (Addressable, Project) | Configuration of the resource loader used with character avatar texture resources.
-Scene Origin | (0.5, 0.0) | Origin point used for reference when positioning actors on scene.
+Scene Origin | (0.5, 0.0) | Reference point on scene to be considered as origin for the managed actors. Doesn't affect positioning.
 Z Offset | 50 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
 Z Step | 0.1 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
 Default Easing | Smooth Step | Easing function to use by default for all the actor modification animations (changing appearance, position, tint, etc).
@@ -302,9 +302,9 @@ Reset On Goto | False | Whether to reset state of the engine services when loadi
 Enable State Rollback | True | Whether to enable state rollback feature allowing player to rewind the script backwards.
 State Rollback Steps | 1024 | The number of state snapshots to keep at runtime; determines how far back the rollback (rewind) can be performed. Increasing this value will consume more memory.
 Saved Rollback Steps | 128 | The number of state snapshots to serialize (save) under the save game slots; determines how far back the rollback can be performed after loading a saved game. Increasing this value will enlarge save game files.
-Game State Handler | Naninovel.IO Game State Slot Manager, Elringus.Naninovel.Runtime, Version=0.0.0.0, Culture=neutral, Public Key Token=null | Implementation responsible for de-/serializing local (session-specific) game state; see `State Management` guide on how to add custom serialization handlers.
-Global State Handler | Naninovel.IO Global State Slot Manager, Elringus.Naninovel.Runtime, Version=0.0.0.0, Culture=neutral, Public Key Token=null | Implementation responsible for de-/serializing global game state; see `State Management` guide on how to add custom serialization handlers.
-Settings State Handler | Naninovel.IO Settings Slot Manager, Elringus.Naninovel.Runtime, Version=0.0.0.0, Culture=neutral, Public Key Token=null | Implementation responsible for de-/serializing game settings; see `State Management` guide on how to add custom serialization handlers.
+Game State Handler | Naninovel.Universal Game State Serializer, Elringus.Naninovel.Runtime, Version=0.0.0.0, Culture=neutral, Public Key Token=null | Implementation responsible for de-/serializing local (session-specific) game state; see `State Management` guide on how to add custom serialization handlers.
+Global State Handler | Naninovel.Universal Global State Serializer, Elringus.Naninovel.Runtime, Version=0.0.0.0, Culture=neutral, Public Key Token=null | Implementation responsible for de-/serializing global game state; see `State Management` guide on how to add custom serialization handlers.
+Settings State Handler | Naninovel.Universal Settings State Serializer, Elringus.Naninovel.Runtime, Version=0.0.0.0, Culture=neutral, Public Key Token=null | Implementation responsible for de-/serializing game settings; see `State Management` guide on how to add custom serialization handlers.
 
 </div>
 
@@ -322,7 +322,7 @@ Max Auto Wait Delay | 0.02 | Delay limit (in seconds) per each printed character
 Scale Auto Wait | True | Whether to scale the wait time in auto play mode by the reveal speed set in the print commands.
 Default Metadata | Object Ref | Metadata to use by default when creating text printer actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating text printer actors with specific IDs.
-Scene Origin | (0.5, 0.0) | Origin point used for reference when positioning actors on scene.
+Scene Origin | (0.5, 0.0) | Reference point on scene to be considered as origin for the managed actors. Doesn't affect positioning.
 Z Offset | 0 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
 Z Step | 0 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
 Default Easing | Linear | Easing function to use by default for all the actor modification animations (changing appearance, position, tint, etc).
