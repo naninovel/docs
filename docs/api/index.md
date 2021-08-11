@@ -1106,14 +1106,17 @@ only | string list | Names of the [engine services](https://naninovel.com/guide/
 
 #### Example
 ```nani
-; Reset all the services.
+; Reset all the services (script will stop playing).
 @resetState
 
-; Reset all the services except custom variable and audio managers,
-; allowing currently played audio tracks continue playing.
-@resetState ICustomVariableManager,IAudioManager
+; Reset all the services except script player, custom variable and
+; audio managers, allowing current script and audio tracks
+; continue playing and preserving values of the custom variables.
+@resetState IScriptPlayer,ICustomVariableManager,IAudioManager
 
-; Reset only `ICharacterManager` and `IBackgroundManager` services.
+; Reset only `ICharacterManager` and `IBackgroundManager` services
+; removing all the character and background actors from scene
+; and unloading associated resources from memory.
 @resetState only:ICharacterManager,IBackgroundManager
 ```
 
