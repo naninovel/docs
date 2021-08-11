@@ -20,7 +20,7 @@ wait | Boolean | Whether the script player should wait for the async command to 
 </div>
 
 ::: note
-This API reference is valid for [Naninovel v1.16](https://github.com/Naninovel/Documentation/releases).
+This API reference is valid for [Naninovel v1.17](https://github.com/Naninovel/Documentation/releases).
 :::
 
 ## animate
@@ -918,6 +918,7 @@ Will fade-out the screen before playing the movie and fade back in after the pla
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">movieName</span> | string | Name of the movie resource to play.
+time | decimal | Duration (in seconds) of the fade animation. When not specified, will use fade duration set in the movie configuration.
 
 </div>
 
