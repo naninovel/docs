@@ -261,11 +261,11 @@ However, in some cases Naninovel won't be able to automatically unload resources
 Use [@hide] command with `remove` parameter to hide and dispose specific actors. Applicable when some actors are expected to live across scripts.
 
 ```nani
-@back LayeredBackground
+@back id:LayeredBackground
 @char GenericCharacter
 @char DicedCharacter
 ; We expect `LayeredBackground` to survive when `NextScript` is loaded,
-; but both layered characters should be disposed.
+; but both characters should be disposed.
 @hide GenericCharacter,DicedCharacter remove:true
 @goto NextScript
 ```
