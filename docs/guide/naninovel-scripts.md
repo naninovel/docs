@@ -265,7 +265,7 @@ Use [@hide] command with `remove` parameter to hide and dispose specific actors.
 @char GenericCharacter
 @char DicedCharacter
 ; We expect `LayeredBackground` to survive when `NextScript` is loaded,
-; but both layered characters should be disposed.
+; but both characters should be disposed.
 @hide GenericCharacter,DicedCharacter remove:true
 @goto NextScript
 ```
