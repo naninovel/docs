@@ -27,6 +27,7 @@ The following platforms were tested for compatibility and are officially support
 * WebGL
 * iOS
 * Android
+* Nintendo Switch
 
 ::: note
 While Unity allows building for numerous other platforms (PlayStation, Xbox, Stadia, etc), some features (eg, save system) may not work out of the box, as access to the platform-specific SDKs is restricted for registered developers only. We don't have the access to such SDKs and are not able to provide support for platforms outside of the list above. Find more information about developing for game consoles in [the article](https://unity.com/how-to/develop-console-video-games-unity).
