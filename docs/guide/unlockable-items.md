@@ -23,6 +23,10 @@ Set the item's ID to the `Unlockable Item Id` field and bind a command that shou
 
 In C# you can access the unlockable items using `UnlockableManager` [engine service](/guide/engine-services.md).
 
+::: example
+Find example on using the unlockable system to implement music gallery without any C# scripting in the [UI example project](https://github.com/Naninovel/CustomUIExample) on GitHub.
+:::
+
 ## Unlockable Resources
 
 Under the unlockables configuration menu (`Naninovel -> Configuration -> Unlockables`), you can find resources manager, that allows storing arbitrary assets to be used with the unlockables feature.
