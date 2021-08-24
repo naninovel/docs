@@ -24,7 +24,7 @@ Set the item's ID to the `Unlockable Item Id` field and bind a command that shou
 In C# you can access the unlockable items using `UnlockableManager` [engine service](/guide/engine-services.md).
 
 ::: example
-Find example on using the unlockable system to implement music gallery without any C# scripting in the [UI example project](https://github.com/Naninovel/CustomUIExample) on GitHub.
+Find example on using the unlockable system to implement music gallery without any C# scripting in the [UI example project](https://github.com/Naninovel/CustomUIExample) on GitHub. Other types of unlockable galleries (movies, achievements, etc.) can be implemented in a similar fashion. 
 :::
 
 ## Unlockable Resources
