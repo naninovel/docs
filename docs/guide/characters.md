@@ -28,6 +28,10 @@ In naninovel scripts, characters are mostly controlled with [@char] command:
 @char Sora.Happy look:left pos:45,10
 ```
 
+::: tip
+Consider using [Naninovel Transformer](https://forum.naninovel.com/viewtopic.php?f=8&t=325) extension to help with positioning the actors on scene.
+:::
+
 ## Poses
 
 Each character has `Poses` property allowing to specify named states (poses).
