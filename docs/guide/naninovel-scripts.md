@@ -64,6 +64,10 @@ You can also use a `wait` *Boolean* parameter to specify whether next command sh
 
 This will hide the text printer right after characters will begin to fade-out. If `wait` would be `true` or not specified, the printer would be hidden only when the [@hideChars] complete the execution.
 
+::: tip
+If you find yourself specifying `wait:false` more often than not, consider disabling `Wait By Default` option in script player configuration; this way the player won't wait the commands, unless wait parameter is explicitly set to true.
+:::
+
 ### Parameter Value Types
 
 Depending on the command parameter, it could expect one of the following value types: 
