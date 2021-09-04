@@ -57,7 +57,7 @@ Archibald: Greetings, {name}!
 {name}: Yo!
 
 ; ...or use it inside set and conditional expressions
-@set score=score+1 if:name=="Felix"
+@set score+=3 if:name=="Felix"
 ```
 
 You can inject the custom variables to any parameter values as long as the type allows. Eg, you can't assign a string (text) to an integer (number) parameter.
