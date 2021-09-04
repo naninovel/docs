@@ -214,9 +214,6 @@ Extra Labels | Null | Addressable provider will only work with assets, that have
 Local Root Path | %DATA%/Resources | Path root to use for the local resource provider. Can be an absolute path to the folder where the resources are located, or a relative path with one of the available origins:<br> • %DATA% — Game data folder on the target device (UnityEngine.Application.dataPath).<br> • %PDATA% — Persistent data directory on the target device (UnityEngine.Application.persistentDataPath).<br> • %STREAM% — `StreamingAssets` folder (UnityEngine.Application.streamingAssetsPath).<br> • %SPECIAL{F}% — An OS special folder (where F is value from System.Environment.SpecialFolder).
 Video Stream Extension | .mp 4 | When streaming videos under WebGL (movies, video backgrounds), specify the extension of the video files.
 Project Root Path | Naninovel | Path relative to `Resources` folders, under which the naninovel-specific assets are located.
-Google Drive Root Path | Resources | Path root to use for the Google Drive resource provider.
-Google Drive Request Limit | 2 | Maximum allowed concurrent requests when contacting Google Drive API.
-Google Drive Caching Policy | Smart | Cache policy to use when downloading resources. `Smart` will attempt to use Changes API to check for the modifications on the drive. `PurgeAllOnInit` will to re-download all the resources when the provider is initialized.
 
 </div>
 
@@ -231,6 +228,7 @@ Skip Time Scale | 10 | Time scale to use when in skip (fast-forward) mode.
 Min Auto Play Delay | 3 | Minimum seconds to wait before executing next command while in auto play mode.
 Complete On Continue | True | Whether to instantly complete blocking (`wait:true`) commands performed over time (eg, animations, hide/reveal, tint changes, etc) when `Continue` input is activated.
 Show Debug On Init | False | Whether to show player debug window on engine initialization.
+Wait By Default | True | Whether to wait the played commands when the `wait` parameter is not explicitly specified.
 
 </div>
 
