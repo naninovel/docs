@@ -1181,7 +1181,7 @@ If a variable with the provided name doesn't exist, it will be automatically cre
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | Set expression. <br /><br /> The expression should be in the following format: `VariableName=ExpressionBody`, where `VariableName` is the name of the custom variable to assign and `ExpressionBody` is a [script expression](/guide/script-expressions.md), the result of which should be assigned to the variable. <br /><br /> It's also possible to use increment and decrement unary operators, eg: `@set foo++`, `@set foo--`.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | Set expression. <br /><br /> The expression should be in the following format: `VariableName=ExpressionBody`, where `VariableName` is the name of the custom variable to assign and `ExpressionBody` is a [script expression](/guide/script-expressions.md), the result of which should be assigned to the variable. <br /><br /> It's also possible to use increment and decrement unary operators (`@set foo++`, `@set foo--`) and compound assignment (`@set foo+=10`, `@set foo-=3`, `@set foo*=0.1`, `@set foo/=2`).
 
 </div>
 
@@ -1197,7 +1197,7 @@ ID | Type | Description
 @set foo=true
 
 ; If `foo` is a number, add 0.5 to its value.
-@set foo=foo+0.5
+@set foo+=0.5
 
 ; If `angle` is a number, assign its cosine to `foo` variable.
 @set foo=Cos(angle)
@@ -1223,7 +1223,7 @@ ID | Type | Description
 @set scale=0
 # EnlargeLoop
 @char Kohaku.Default scale:{scale}
-@set scale=scale+0.1
+@set scale+=0.1
 @goto .EnlargeLoop if:scale<1
 
 ; ...and generic text lines.
@@ -1236,7 +1236,7 @@ ID | Type | Description
 
 ; Use global variable to indicate player reaching `Ending 001`.
 ; The variable will remain true even when the game is restarted.
-@set g_Engine001Reached=true
+@set g_Ending001Reached=true
 
 ; Increment the global variable only once, even when re-played.
 @set g_GlobalCounter++ if:!HasPlayed()
