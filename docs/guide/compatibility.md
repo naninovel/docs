@@ -9,7 +9,7 @@ In case breaking changes or critical fixes are introduced throughout the release
 Support for new releases from the [TECH stream](https://blogs.unity3d.com/2018/04/09/new-plans-for-unity-releases-introducing-the-tech-and-long-term-support-lts-streams/) is added once they're out of beta.
 
 ::: note
-Unity [2019.4.24](https://unity3d.com/unity/whats-new/2019.4.24) is the most tested and stable version to use with Naninovel at the moment. It's not uncommon for Unity to introduce regressions even in LTS patches (let alone minor and major releases), so we highly recommend using this version to minimize production risks.
+Unity [2019.4.30](https://unity3d.com/unity/whats-new/2019.4.30) is the most tested and stable version to use with Naninovel at the moment. It's not uncommon for Unity to introduce regressions even in LTS patches (let alone minor and major releases), so we highly recommend using this version to minimize production risks.
 :::
 
 ## UPM Packages
