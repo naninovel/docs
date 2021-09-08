@@ -24,7 +24,7 @@ Right-to-left (RTL) languages (Arabic, Hebrew, Persian, etc) are supported by th
 
 ## Will I get access to the source code when I buy Naninovel?
 
-All the engine source code is available in the distributed package. A couple of third-party libraries (namely, [NCalc](https://github.com/ncalc/ncalc) and [NLayer](https://github.com/naudio/NLayer)) are pre-compiled, but they're open-sourced (MIT license) with sources hosted on GitHub.
+All the Unity-related source code is available in the distributed package. Some Naninovel core sources are precompiled and we are not able to provide access to them at the moment.
 
 ## What are the legal usage terms and conditions?
 
