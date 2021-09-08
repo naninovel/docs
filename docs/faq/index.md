@@ -24,7 +24,7 @@ Right-to-left (RTL) languages (Arabic, Hebrew, Persian, etc) are supported by th
 
 ## Will I get access to the source code when I buy Naninovel?
 
-All the Unity-related source code is available in the distributed package. Some Naninovel core sources are precompiled and we are not able to provide access to them at the moment.
+All the Unity-related source code is available in the distributed package, while some core Naninovel sources are precompiled into dynamic assemblies. You can download the precompiled sources in the account ([account.naninovel.com](https://account.naninovel.com)) after registering a Naninovel license.
 
 ## What are the legal usage terms and conditions?
 
