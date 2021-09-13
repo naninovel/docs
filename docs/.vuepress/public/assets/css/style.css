@@ -1,6 +1,5 @@
 .logo-dark {
-    width: 51px;
-    height: 37px;
+    height: 40px;
     opacity: 0.65;
     transition: opacity .5s ease-out;
     -moz-transition: opacity .5s ease-out;
@@ -13,9 +12,7 @@
 }
 
 .logo-light {
-    width: 68px;
     height: 50px;
-    filter: invert(1);
 }
 
 .block-number {
