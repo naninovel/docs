@@ -137,6 +137,7 @@ Custom Initialization UI | Null | UI to show while the engine is initializing (w
 Show Title UI | True | Whether to automatically show title screen UI (main menu) after engine initialization. You can modify the title UI using UI customization feature (see online guide for more info).
 Enable Bridging | True | Whether to automatically start the bridging server to communicate with external Naninovel tools: IDE extension, web editor, etc.
 Server Port | 41016 | The network port for the server to listen. Change both here and in the external tools in case the default port is occupied by another application.
+Auto Generate Metadata | True | Whether to automatically generate project metadata when Unity editor is started.
 Enable Development Console | True | Whether to enable development console.
 Toggle Console Key | Back Quote | Key used to toggle development console. You can also toggle it with a multi (3 or more) touch when using touchscreens.
 
