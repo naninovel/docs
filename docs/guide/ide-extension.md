@@ -61,15 +61,13 @@ Feel free to customize the settings as you see fit.
 
 ## IDE Metadata
 
-When adding custom commands, you may notice they're highlighted as errors. Also, available project resources and actors won't autocomplete by default. That is due to project metadata is not available to the extension. Use IDE metadata tool to automatically generate the required metadata file and enable the features.
+The project metadata (actors, scripts, custom commands, etc) is stored as `NaninovelData/Metadata.xml` file. It's automatically generated when Unity editor is started. To update the metadata while the project is opened, either use `Naninovel -> Update Metadata` editor menu or `Ctrl + Shift + U` hotkey.
 
-Open the tool with `Naninovel -> Tools -> IDE Metadata` Unity editor menu, then click "Select" button and select path to `server` folder found inside the target IDE extension; eg, for VS Code it'll be `~/.vscode/extensions/naninovel/server` (where `~` is the user directory). Click "Generate IDE Metadata" button to generate the file at the specified path and restart IDE (or press Ctrl+Shift+P and select "Developer: Reload Window") for changes to take effect.
+The metadata is automatically synced with the IDE each time it's updated. In case you wish to manually provide a specific project metadata to the IDE extension, you can copy-paste the xml file to `~/.vscode/extensions/naninovel/server` folder (where `~` is the user directory).
 
-::: warn
-Implementing types of the custom commands should not be under `Naninovel.Commands` [namespace](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/namespaces/); otherwise, they will be recognized as built-in commands and won't be included in the generated metadata file.
-:::
+To disable automatic metadata sync in the IDE and other related features, use extension settings under "Naninovel" category. Restart the IDE after changing the settings (or press Ctrl+Shift+P and select "Developer: Reload Window") for changes to take effect.
 
-The custom commands should now be recognized by the IDE and autocomplete will work for the available project resources and actors. When you add or modify the commands or resources, repeat the process to update the metadata file.
+![](https://i.gyazo.com/becbd3b30d94938e9ae526e60e15a5bb.png)
 
 ::: note
 When typing generic text lines, author ID auto-completion won't trigger automatically, as it's impossible to guess whether you want to specify author ID or just typing text to print. Use the hotkey (`Ctrl+Space` by default) to trigger auto-complete manually.
@@ -77,9 +75,9 @@ When typing generic text lines, author ID auto-completion won't trigger automati
 
 ## Video Tutorial
 
-Below is a video tutorial on how to install, configure and use the VS Code extension; it also covers generating metadata for custom commands, resources and actors.
+Below is a video tutorial on how to install, configure and use the VS Code extension.
 
-[!!y87wd5jHfFw]
+[!!TA-kx6B9uD8]
 
 ## IDE Attributes
 
