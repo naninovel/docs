@@ -131,6 +131,3 @@ Yuko: [s 0.1] Print text 10 times slower than usual. [s 2] Print 2 times faster.
 ```
 :::
 
-## IDE Metadata
-
-When adding custom commands, you may notice that they're highlighted as errors in IDE extensions. That is due to metadata of the custom commands is not available to the extensions. You can use IDE metadata tool to automatically generate the required metadata file over all the custom commands present in the project; see the [IDE extension guide](/guide/ide-extension.md#ide-metadata) for more information.
