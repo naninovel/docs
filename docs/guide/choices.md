@@ -87,7 +87,11 @@ Don't forget about cucumbers!
 @goto .Map
 ```
 
-[!!cNRNgk5HhKQ]
+:::example
+Find a more advanced implementation of interactive map with Naninovel in the Map example project on GitHub: [github.com/Naninovel/Map](https://github.com/Naninovel/Map).
+
+[!4987b1c53cd275f3fa56b533f53f3d8c]
+:::
 
 ## Adding Custom Choice Handlers
 

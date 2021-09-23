@@ -78,6 +78,12 @@ When building a [custom UI](/guide/user-interface.md#ui-customization) or other 
 
 ![](https://i.gyazo.com/22eddd109e76d4e63c461e9d75b20ceb.png)
 
+:::example
+Find example on using variable triggers to drive availability of map locations in the Map example project on GitHub: [github.com/Naninovel/Map](https://github.com/Naninovel/Map).
+
+[!4987b1c53cd275f3fa56b533f53f3d8c]
+:::
+
 ## Variables Debug
 
 While the game is running it's possible to view all the existing variables and change their values for debugging purposes.
