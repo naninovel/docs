@@ -45,9 +45,7 @@ When in the main gameplay mode (outside of modal UIs), press a button bind to `P
 Naninovel supports Unity's new [Input System](https://blogs.unity3d.com/2019/10/14/introducing-the-new-input-system/); see the [official docs](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.1/manual/Installation.html) on how to install and enable the input system package.
 
 ::: note
-Minimum supported input system package is 1.1, which is currently in preview. You may need to enable preview packages in the project in order to install it.
-
-[!1a662215459f936d1a3b49d9089e8357]
+Minimum supported input system package version is 1.1. Make sure to update the package via the Unity's [package manager](https://docs.unity3d.com/Manual/upm-ui.html).
 :::
 
 ::: warn
