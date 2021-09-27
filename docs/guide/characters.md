@@ -319,6 +319,8 @@ It's possible to map composition expressions to keys via `Composition Map` prope
 @char Miho.Uniform
 ; Corresponds to `Hair/Back>Straight,Hair/Front>Straight`.
 @char Miho.StraightHair
+; It's also possible to combine keys and expressions.
+@char Miho.Uniform,Hair/Front>Short
 ```
 
 While editing layered character prefab, it's possible to preview mapped composition expressions by right-clicking a map record and selecting "Preview Composition". Another menu item — "Paste Current Composition" — will generate current composition expression string of the character (based on enabled/disabled sprite renderers in the hierarchy) and paste it to the inspected record; use it to quickly map current prefab state to a composition item.
