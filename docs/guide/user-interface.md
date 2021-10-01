@@ -184,3 +184,11 @@ When an existing naninovel script is selected via dropdown list, the script text
 ::: example
 Find an example on using `Play Script` component in the [UI example project](https://github.com/Naninovel/CustomUIExample); the component is used on "CloseButton" game object placed inside "Prefabs/Calendar" custom UI prefab.
 :::
+
+## UI Toolkit
+
+Unity's new UI authoring solution — [UI Toolkit](https://docs.unity3d.com/Packages/com.unity.ui@latest) — is not supported out of the box, but can be used with Naninovel with an adapter, which implements `IManagedUI` interface. Find an example of such adapter in the UI Toolkit example project on GitHub: [github.com/Naninovel/UIToolkit](https://github.com/Naninovel/UIToolkit).
+
+::: warn
+UI Toolkit is still in early development and miss lots of features compared to the default UI solution (uGUI). Do not use it, unless you're an advanced developer and ready to solve all the related issues. Be aware, that we won't be able to provide any support or guidance on using the toolkit with Naninovel.
+:::
