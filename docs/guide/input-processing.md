@@ -75,7 +75,7 @@ Default input actions asset is stored at `Naninovel/Prefabs/DefaultControls.inpu
 When properly configured, input actions will activate Naninovel's bindings. In case you wish to disable legacy input processing (which is set under the "Bindings" list), disable `Process Legacy Bindings` property under input configuration menu.
 
 ::: example
-Find an example project on setting up and using the new input system with Naninovel on GitHub: [github.com/Naninovel/Input](https://github.com/Naninovel/Input).
+Find an example project on using the new input system and implementing a rebind UI to allow player change default controls on GitHub: [github.com/Naninovel/Input](https://github.com/Naninovel/Input).
 :::
 
-For more information on using the input system (eg, how to configure particular bindings or allow players to override the bindings at runtime), consult the [official manual](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual).
+For more information on using the input system, consult the [official manual](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual).
