@@ -4,7 +4,7 @@
 
 Naninovel uses a stripped and modified version of UniTask v1, which is embedded inside the engine runtime assembly; most of the asynchronous methods return `UniTask` objects, which you can await in the same way as default `Task` objects from the "System.Threading" namespace.
 
-In case you want to use full standalone UniTask library, install UniTask v2 from the official repository: [github.com/Cysharp/UniTask](https://github.com/Cysharp/UniTask#install-via-git-url) and specify "UniRx.Async.UniTask" for the Naninovel APIs when required, eg:
+In case you want to use full standalone UniTask library, install UniTask v2 from the official repository: [github.com/Cysharp/UniTask](https://github.com/Cysharp/UniTask#install-via-git-url) and specify "Naninovel.UniTask" for the Naninovel APIs when required, eg:
 
 ```csharp
 // Using standalone UniTask v2 by default.
@@ -15,7 +15,7 @@ using Naninovel;
 public class UniTaskCommand : Command
 {
     // This method uses embedded UniTask v1.
-    public override async UniRx.Async.UniTask ExecuteAsync (AsyncToken asyncToken = default)
+    public override async Naninovel.UniTask ExecuteAsync (AsyncToken asyncToken = default)
     {
         var message = await WaitAndReturnMessageAsync();
         Debug.Log(message);

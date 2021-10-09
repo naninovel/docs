@@ -62,7 +62,6 @@ It's possible to delegate state handling of your custom objects to `IStateManage
 Following example demonstrates delegating state handling of "MyCustomBehaviour" component.
 
 ```csharp
-using UniRx.Async;
 using UnityEngine;
 using Naninovel;
 
@@ -179,7 +178,6 @@ Below is an example of a custom settings serialization handler, which is doing n
 ```csharp
 using Naninovel;
 using System;
-using UniRx.Async;
 using UnityEngine;
 
 public class CustomSettingsSlotManager : ISaveSlotManager<SettingsStateMap>

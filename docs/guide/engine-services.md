@@ -62,7 +62,6 @@ Below is an example of a custom engine service implementation with some usage no
 
 ```csharp
 using Naninovel;
-using UniRx.Async;
 using UnityEngine;
 
 [InitializeAtRuntime]
@@ -123,7 +122,6 @@ Below is an example of a dummy `IInputManager` implementation, that does nothing
 ```csharp
 using Naninovel;
 using Naninovel.UI;
-using UniRx.Async;
 using UnityEngine;
 
 [InitializeAtRuntime(@override: typeof(InputManager))]
