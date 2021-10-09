@@ -50,7 +50,6 @@ Below is an example of a custom command, that can be invoked from naninovel scri
 ```csharp
 using Naninovel;
 using Naninovel.Commands;
-using UniRx.Async;
 using UnityEngine;
 
 [CommandAlias("hello")]

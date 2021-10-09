@@ -153,7 +153,6 @@ Below is an example of a custom provider, that does nothing, but logs messages w
 using Naninovel;
 using System;
 using System.Collections.Generic;
-using UniRx.Async;
 
 public class CustomResourceProvider : IResourceProvider
 {
@@ -299,7 +298,6 @@ Below is an example of Unity component, which will prevent Naninovel from ever u
 
 ```csharp
 using Naninovel;
-using UniRx.Async;
 using UnityEngine;
 
 public class HoldObject : MonoBehaviour

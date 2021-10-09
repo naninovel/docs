@@ -33,7 +33,6 @@ In case you wish to send an event from a scenario script to a visual scripting g
 ```csharp
 using Naninovel;
 using Naninovel.Commands;
-using UniRx.Async;
 using Unity.VisualScripting;
 using UnityEngine;
 
