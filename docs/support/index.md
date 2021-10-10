@@ -4,9 +4,11 @@ If you have issues with the engine, first make sure to read the [guide](/guide/)
 
 In case you're sure the engine is not working as intended, check if you're running the latest available version. You can update the main package inside the Unity editor using [Asset Store window](https://docs.unity3d.com/Manual/AssetStore.html). When using any of the engine extensions, download and import the latest packages:
 
-- [NaninovelLive2D](https://github.com/Naninovel/Live2D/raw/master/NaninovelLive2D.unitypackage)
-- [NaninovelPlayMaker](https://github.com/Naninovel/PlayMaker/raw/master/NaninovelPlayMaker.unitypackage)
-- [NaninovelAdventureCreator](https://github.com/Naninovel/AdventureCreator/raw/master/NaninovelAdventureCreator.unitypackage)
+- [Live2D](https://github.com/Naninovel/Live2D/raw/master/NaninovelLive2D.unitypackage)
+- [Spine](https://github.com/Naninovel/Spine/raw/main/NaninovelSpine.unitypackage)
+- [Inventory](https://github.com/Naninovel/Inventory/raw/master/NaninovelInventory.unitypackage)
+- [PlayMaker](https://github.com/Naninovel/PlayMaker/raw/master/NaninovelPlayMaker.unitypackage)
+- [AdventureCreator](https://github.com/Naninovel/AdventureCreator/raw/master/NaninovelAdventureCreator.unitypackage)
 
 If updating didn't help, try to re-install the package by deleting `Naninovel` folder from the project and re-importing it from the Asset Store. Make sure to follow upgrade instructions specified on the [release page](https://github.com/Naninovel/Documentation/releases) when updating the engine.
 
