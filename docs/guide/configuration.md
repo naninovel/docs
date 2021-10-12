@@ -30,6 +30,7 @@ Enable Auto Voicing | False | When enabled, each `@print` command will attempt t
 Auto Voice Mode | Playback Spot | When auto voicing is enabled, controls method to associate voice clips with @print commands:<br> • Playback Spot — Voice clips are associated by script name, line and inline indexes (playback spot) of the @print commands. Works best when voicing is added after the scenario scripts are finished. Removing, adding or re-ordering scenario script lines will break the associations.<br> • Content Hash — Voice clips are associated manually via voice map utility by the printed text and author name. Works best when adding voicing before the scenario scripts are finished. Removing, adding or re-ordering scenario script lines won't break the associations. Modifying printed text in the scripts will break associations only with the modified commands.<br><br>Consult voicing documentation for more information and examples.
 Voice Overlap Policy | Prevent Overlap | Dictates how to handle concurrent voices playback:<br> • Allow Overlap — Concurrent voices will be played without limitation.<br> • Prevent Overlap — Prevent concurrent voices playback by stopping any played voice clip before playing a new one.<br> • Prevent Character Overlap — Prevent concurrent voices playback per character; voices of different characters (auto voicing) and any number of [@voice] command are allowed to be played concurrently.
 Voice Locales | Null | Assign localization tags to allow selecting voice language in the game settings independently of the main localization. Doesn't work with `Content Hash` auto voice mode.
+Default Fade Duration | 0.35 | Default duration of the volume fade in/out when starting or stopping playing audio.
 Custom Audio Mixer | Null | Audio mixer to control audio groups. When not provided, will use a default one.
 Master Volume Handle Name | Master Volume | Name of the mixer's handle (exposed parameter) to control master volume.
 Bgm Group Path | Master/BGM | Path of the mixer's group to control master volume.
@@ -52,6 +53,7 @@ Metadata | Object Ref | Metadata to use when creating background actors with spe
 Scene Origin | (0.5, 0.0) | Reference point on scene to be considered as origin for the managed actors. Doesn't affect positioning.
 Z Offset | 100 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
 Z Step | 0.1 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
+Default Duration | 0.35 | Default duration (in seconds) for all the actor modifications (changing appearance, position, tint, etc).
 Default Easing | Linear | Easing function to use by default for all the actor modification animations (changing appearance, position, tint, etc).
 Auto Show On Modify | True | Whether to automatically reveal (show) an actor when executing modification commands.
 
@@ -70,6 +72,7 @@ Initial Position | (0.0, 0.0, -10.0) | Initial world position of the managed cam
 Custom Camera Prefab | Null | A prefab with a camera component to use for rendering. Will use a default one when not specified. In case you wish to set some camera properties (background color, FOV, HDR, etc) or add post-processing scripts, create a prefab with the desired camera setup and assign the prefab to this field.
 Use UI Camera | True | Whether to render the UI in a separate camera. This will allow to use individual configuration for the main and UI cameras and prevent post-processing (image) effects from affecting the UI at the cost of a slight rendering overhead.
 Custom UI Camera Prefab | Null | A prefab with a camera component to use for UI rendering. Will use a default one when not specified. Has no effect when `Use UI Camera` is disabled
+Default Duration | 0.35 | Default duration (in seconds) for all the camera modifications (changing zoom, position, rotation, etc).
 Default Easing | Linear | Easing function to use by default for all the camera modifications (changing zoom, position, rotation, etc).
 Thumbnail Resolution | (240, 140) | The resolution in which thumbnails to preview game save slots will be captured.
 Hide UI In Thumbnails | False | Whether to ignore UI layer when capturing thumbnails.
@@ -90,6 +93,7 @@ Avatar Loader | Character Avatars- (Addressable, Project) | Configuration of the
 Scene Origin | (0.5, 0.0) | Reference point on scene to be considered as origin for the managed actors. Doesn't affect positioning.
 Z Offset | 50 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
 Z Step | 0.1 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
+Default Duration | 0.35 | Default duration (in seconds) for all the actor modifications (changing appearance, position, tint, etc).
 Default Easing | Smooth Step | Easing function to use by default for all the actor modification animations (changing appearance, position, tint, etc).
 Auto Show On Modify | True | Whether to automatically reveal (show) an actor when executing modification commands.
 
@@ -104,6 +108,7 @@ Property | Default Value | Description
 Default Handler Id | Button List | ID of the choice handler to use by default.
 Default Metadata | Object Ref | Metadata to use by default when creating choice handler actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating choice handler actors with specific IDs.
+Default Duration | 0.35 | Default duration (in seconds) for all the actor modifications (changing appearance, position, tint, etc).
 Default Easing | Linear | Easing function to use by default for all the actor modification animations (changing appearance, position, tint, etc).
 Auto Show On Modify | True | Whether to automatically reveal (show) an actor when executing modification commands.
 
@@ -326,6 +331,7 @@ Metadata | Object Ref | Metadata to use when creating text printer actors with s
 Scene Origin | (0.5, 0.0) | Reference point on scene to be considered as origin for the managed actors. Doesn't affect positioning.
 Z Offset | 0 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
 Z Step | 0 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
+Default Duration | 0.35 | Default duration (in seconds) for all the actor modifications (changing appearance, position, tint, etc).
 Default Easing | Linear | Easing function to use by default for all the actor modification animations (changing appearance, position, tint, etc).
 Auto Show On Modify | False | Whether to automatically reveal (show) an actor when executing modification commands.
 
