@@ -48,15 +48,15 @@ To create a choice button prefab from template, use `Create -> Naninovel -> Choi
 
 ![](https://i.gyazo.com/c2bd4abaa0275f7cdd37c56fd2ff0dec.png)
 
-Remember to **store the custom choice buttons in a "Resources" folder**, otherwise they won't be able to load when requested.
+If you don't want to store the choice button prefabs in `Resources` folder or need to localize them, set a custom loader in choice handler configuration menu and use any of the available [resource providers](/guide/resource-providers).
+
+![](https://i.gyazo.com/9b50d543b5a6843b13b415c3c2ae9641.png)
 
 When `button` parameter of the [@choice] command is not specified, default button prefab is used.
 
-::: tip
 To change choice button used by default, create a [custom choice handler](/guide/choices.md#adding-custom-choice-handlers) and assign the prefab to `Default Button Prefab` property of `Choice Handler Panel` component or use a custom component.
 
 ![](https://i.gyazo.com/0972b2725ed043d050804d3833a83b73.png)
-:::
 
 To use a different (eg, TMPro) text component for the choice text, use `On Summary Text Changed` [Unity event](https://docs.unity3d.com/Manual/UnityEvents) of the choice button component.
 
