@@ -7,10 +7,8 @@ Naninovel uses a stripped and modified version of UniTask v1, which is embedded 
 In case you want to use full standalone UniTask library, install UniTask v2 from the official repository: [github.com/Cysharp/UniTask](https://github.com/Cysharp/UniTask#install-via-git-url) and specify "Naninovel.UniTask" for the Naninovel APIs when required, eg:
 
 ```csharp
-// Using standalone UniTask v2 by default.
-using Cysharp.Threading.Tasks;
-using UnityEngine;
 using Naninovel;
+using UnityEngine;
 
 public class UniTaskCommand : Command
 {
@@ -22,9 +20,9 @@ public class UniTaskCommand : Command
     }
 
     // This method uses standalone UniTask v2.
-    private async UniTask<string> WaitAndReturnMessageAsync ()
+    private async Cysharp.Threading.Tasks.UniTask<string> WaitAndReturnMessageAsync ()
     {
-        await UniTask.DelayFrame(100);
+        await Cysharp.Threading.Tasks.UniTask.DelayFrame(100);
         return "Hello from UniTask v2!";
     }
 }
