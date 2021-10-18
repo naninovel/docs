@@ -34,4 +34,4 @@ You can find list of all the currently available engine services and information
 
 The following UML diagram illustrates a high-level concept of the engine architecture. Note that all the class and interface names in the diagram are organized under `Naninovel` namespace. Eg, to reference `Engine` class, use `Naninovel.Engine` or [include the namespace](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/namespaces/using-namespaces).
 
-<object style="width:100%; max-width:699px" data="/engine-design.svg" type="image/svg+xml"></object>
+<object style="width:100%; max-width:699px" data="/assets/img/engine-design.svg" type="image/svg+xml"></object>
