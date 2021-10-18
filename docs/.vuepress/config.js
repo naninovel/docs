@@ -3,17 +3,9 @@ module.exports = {
     description: 'A full-featured, writer-friendly and completely customizable visual novel extension for Unity game engine.',
     contentLoading: true,
     head: [
-        ['link', {rel: 'icon', href: '/assets/img/logo.png'}],
-        ['link', {rel: 'manifest', href: '/manifest.json'}],
-        ['meta', {name: 'theme-color', content: '#4985c2'}],
-        ['meta', {name: 'apple-mobile-web-app-capable', content: 'yes'}],
-        ['meta', {name: 'apple-mobile-web-app-status-bar-style', content: 'black'}],
+        ['link', {rel: 'icon', href: '/assets/img/nani-logo.svg'}],
         ['meta', {name: 'og:image', content: '/assets/img/og.jpg'}],
         ['meta', {name: 'twitter:card', content: 'summary_large_image'}],
-        ['link', {rel: 'apple-touch-icon', href: '/assets/icons/apple-touch-icon-152x152.png'}],
-        ['link', {rel: 'mask-icon', href: '/assets/icons/safari-pinned-tab.svg', color: '#3eaf7c'}],
-        ['meta', {name: 'msapplication-TileImage', content: '/assets/icons/msapplication-icon-144x144.png'}],
-        ['meta', {name: 'msapplication-TileColor', content: '#000000'}],
         ['meta', {name: 'google-site-verification', content: 'cdvgJ2XFFbaGErDKJtTbFj9u9frfReZ9rzUnsf9F6nI'}]
     ],
     themeConfig: {
