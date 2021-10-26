@@ -106,6 +106,7 @@ Auto Show On Modify | True | Whether to automatically reveal (show) an actor whe
 Property | Default Value | Description
 --- | --- | ---
 Default Handler Id | Button List | ID of the choice handler to use by default.
+Choice Button Loader | - (Addressable, Project) | Configuration of the resource loader used for loading custom choice buttons.
 Default Metadata | Object Ref | Metadata to use by default when creating choice handler actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating choice handler actors with specific IDs.
 Default Duration | 0.35 | Default duration (in seconds) for all the actor modifications (changing appearance, position, tint, etc).
