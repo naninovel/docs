@@ -23,11 +23,10 @@ Only verified package versions are supported. When installing or updating a pack
 All the engine features are implemented using cross-platform APIs and are expected to be compatible with all the platforms Unity can target. 
 
 The following platforms were tested for compatibility and are officially supported by us:
-* Standalone: PC, Mac, Linux
-* WebGL
-* iOS
-* Android
-* Nintendo Switch
+* Standalone: Windows, Mac, Linux
+* Mobiles: iOS, Android
+* Web: WebGL
+* Consoles: Nintendo Switch
 
 ::: note
 While Unity allows building for numerous other platforms (PlayStation, Xbox, Stadia, etc), some features (eg, save system) may not work out of the box, as access to the platform-specific SDKs is restricted for registered developers only. We don't have the access to such SDKs and are not able to provide support for platforms outside of the list above. Find more information about developing for game consoles in [the article](https://unity.com/how-to/develop-console-video-games-unity).
