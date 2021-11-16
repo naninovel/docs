@@ -92,53 +92,53 @@ public class CustomCommand : Command
 }
 ```
 
-To make a parameter auto-complete with both built-in and custom expression functions and pre-defined custom variables use `IDEExpression` attribute.
+To make a parameter auto-complete with both built-in and custom expression functions and pre-defined custom variables use `ExpressionContext` attribute.
 
 ```csharp
-[IDEExpression]
+[ExpressionContext]
 public StringParameter Expression;
 ```
 
-To auto-complete with values from an arbitrary [enumeration type](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/enum) use `IDEConstant` attribute.
+To auto-complete with values from an arbitrary [enumeration type](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/enum) use `ConstantContext` attribute.
 
 ```csharp
-[IDEConstant(typeof(PlatformID))]
+[ConstantContext(typeof(PlatformID))]
 public StringParameter Platform;
 ```
 
-To auto-complete with a resource use `IDEResource` and provide path prefix of the resources. Below example will complete with audio resources:
+To auto-complete with a resource use `ResourceContext` and provide path prefix of the resources. Below example will complete with audio resources:
 
 ```csharp
-[IDEResource(AudioConfiguration.DefaultAudioPathPrefix)]
+[ResourceContext(AudioConfiguration.DefaultAudioPathPrefix)]
 public StringParameter Audio;
 ```
 
-To auto-complete with an actor ID (of any type) use `IDEActor` attribute.
+To auto-complete with an actor ID (of any type) use `ActorContext` attribute.
 
 ```csharp
-[IDEActor]
+[ActorContext]
 public StringParameter ActorId;
 ```
 
-To auto-complete with an actor ID of specific type use `IDEActor` attribute with first argument specifying path prefix of the actor resources. Below will complete with printer IDs:
+To auto-complete with an actor ID of specific type use `ActorContext` attribute with first argument specifying path prefix of the actor resources. Below will complete with printer IDs:
 
 ```csharp
-[IDEActor(TextPrintersConfiguration.DefaultPathPrefix)]
+[ActorContext(TextPrintersConfiguration.DefaultPathPrefix)]
 public StringParameter PrinterId;
 ```
 
-To auto-complete appearances of an actor with ID specified in the same named or another parameter in the current command, use `IDEAppearance` attribute. Be aware, that this requires `IDEActor` attribute specified in the same command.
+To auto-complete appearances of an actor with ID specified in the same named or another parameter in the current command, use `AppearanceContext` attribute. Be aware, that this requires `ActorContext` attribute specified in the same command.
 
 ```csharp
-[IDEActor(CharactersConfiguration.DefaultPathPrefix)]
+[ActorContext(CharactersConfiguration.DefaultPathPrefix)]
 public StringParameter CharacterId;
-[IDEAppearance]
+[AppearanceContext]
 public StringParameter CharacterAppearance;
 ```
 
 Notice, that each of the above attributes allows providing an optional `namedIndex` argument. Use it with named parameters to specify for which part of the parameter value the attribute belongs. Below example will allow auto-completing name part of the named parameter with character IDs and value part with appearances for the currently typed character (similar to nameless parameter of [@char] command).
 
 ```csharp
-[IDEActor(CharactersConfiguration.DefaultPathPrefix, 0), IDEAppearance(1)]
+[ActorContext(CharactersConfiguration.DefaultPathPrefix, 0), AppearanceContext(1)]
 public NamedStringParameter IdAndAppearance;
 ```
