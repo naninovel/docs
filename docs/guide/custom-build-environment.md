@@ -36,4 +36,15 @@ public static class CustomBuildProcessor
 }
 ```
 
+When using assembly definitions for custom commands, Unity editor may start importing assets before compiling all the assemblies leading to build errors when using Cloud Build. This can be solved by reimporting the script assets before starting the build, eg:
+
+```csharp
+var scriptGuids = AssetDatabase.FindAssets("t:Naninovel.script");
+foreach (var scriptGuid in scriptGuids)
+{
+    var scriptPath = AssetDatabase.GUIDToAssetPath(scriptGuid);
+    AssetDatabase.ImportAsset(scriptPath);
+}
+```
+
 In case you're using you own custom build handler, which supposed to be triggered with the editor's build menu, it's possible to disable the Naninovel's handler by disabling `Enable Build Processing` property in the "Resource Provider" configuration menu. When enabling or disabling the property, restart Unity editor in order for the change to take effect.
