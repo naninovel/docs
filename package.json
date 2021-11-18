@@ -11,7 +11,7 @@
   },
   "scripts": {
     "docs:dev": "set NODE_OPTIONS=--openssl-legacy-provider && vuepress dev docs",
-    "docs:build": "vuepress build docs",
+    "docs:build": "set NODE_OPTIONS=--openssl-legacy-provider && vuepress build docs",
     "docs:eject": "vuepress eject ./docs"
   }
 }
