@@ -10,7 +10,7 @@
     "vuepress": "1.5.2"
   },
   "scripts": {
-    "docs:dev": "vuepress dev docs",
+    "docs:dev": "set NODE_OPTIONS=--openssl-legacy-provider && vuepress dev docs",
     "docs:build": "vuepress build docs",
     "docs:eject": "vuepress eject ./docs"
   }
