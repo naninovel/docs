@@ -20,7 +20,7 @@ wait | Boolean | Whether the script player should wait for the async command to 
 </div>
 
 ::: note
-This API reference is valid for [Naninovel v1.17](https://github.com/Naninovel/Documentation/releases).
+This API reference is valid for [Naninovel v1.18](https://github.com/Naninovel/Documentation/releases).
 :::
 
 ## animate

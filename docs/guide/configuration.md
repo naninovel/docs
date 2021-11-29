@@ -10,7 +10,7 @@ Notice, that all the configuration menus are supporting [Unity's presets feature
 It's possible to modify configuration objects at runtime, add new custom configurations and change the way the objects are accessed at runtime (eg, read configuration from JSON files stored on a remote host); see [custom configuration](/guide/custom-configuration.md) guide for more information.
 
 ::: note
-This configuration reference is valid for [Naninovel v1.17](https://github.com/Naninovel/Documentation/releases).
+This configuration reference is valid for [Naninovel v1.18](https://github.com/Naninovel/Documentation/releases).
 :::
 
 ## Audio
