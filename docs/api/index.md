@@ -997,6 +997,9 @@ voiceId | string | Used by voice map utility to differentiate print commands wit
 #### Summary
 Modifies a [text printer actor](/guide/text-printers.md).
 
+#### Remarks
+Be aware, that rotation is not supported by the text reveal effect; use `rotation` parameter only with printers, that doesn't make use of the effect (eg, chat or custom ones).
+
 #### Parameters
 
 <div class="config-table">
