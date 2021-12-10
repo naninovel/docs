@@ -1,6 +1,10 @@
 ﻿# Inventory
 
-While an inventory system is a bit out of scope for VN-style games, we had a lot of requests and questions on how to integrate one with Naninovel. The [GitHub project](https://github.com/Naninovel/Inventory) serves as both an example for creating and integrating an inventory with the engine and an extension, which you can easily setup on top of a Naninovel installation.
+While an inventory system is out of scope for visual novels, we had a lot of requests and questions on how to integrate one with [Naninovel](https://naninovel.com). The [GitHub project](https://github.com/Elringus/NaninovelInventory) serves as an example for creating and integrating an inventory extension, which you can set up on top of Naninovel installation without modifying the engine source code.
+
+::: note
+The inventory is not a standalone product and/or part of Naninovel. Use it to learn how to extend and customize the engine, but don't expect it to be production-ready solution for inventory systems. If you're looking for one, [check the Asset Store](https://assetstore.unity.com/?q=inventory) or create a custom one from scratch.
+:::
 
 Example project shows how to make a custom inventory UI with grid layout, pagination and drag-drop window, add custom engine service and related configuration menu, add input bindings, use state outsourcing, author custom scenario commands and expression functions.
 
@@ -68,5 +72,3 @@ Select an action.[skipInput]
 	@goto .Start
 @endif
 ```
-
-
