@@ -47,7 +47,7 @@ When reporting an issue, we may ask you to share a "repro" project. Reproduction
 
 Follow the steps below to create and share a reproduction project:
 
-1. Create a new Unity project. Make sure you're using Unity version supported by the [current Naninovel release](https://github.com/Naninovel/Documentation/releases).
+1. Create a new Unity project. Make sure you're using the [minimum/recommended Unity version](/guide/compatibility.html#unity-version); in case the issue is only reproduced in a newer Unity release, [submit a regression report to Unity](https://unity3d.com/unity/qa/bug-reporting).
 ::: note
 Reproduction project should be a new clean Unity project, not the one you're experiencing the issue with. Do not just copy all the assets from one project to another; it's important to isolate the issue by reproducing it in a clean environment, free from any custom configurations and assets, that are not directly affecting the issue.
 :::
