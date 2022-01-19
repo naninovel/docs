@@ -210,6 +210,10 @@ After scene setup is complete, create a new background actor via `Naninovel -> C
 
 ![](https://i.gyazo.com/d69159ab4d93793022018fa8d244f1aa.png)
 
+::: warn
+Resource name is expected to be equal to the assigned scene asset name; otherwise, Naninovel wouldn't be able to locate and load the scene at runtime.
+:::
+
 When assigning resources for a scene background actor, corresponding scene assets should automatically be added to the [build settings](https://docs.unity3d.com/Manual/BuildSettings.html); in case you're getting an error that a scene asset wasn't added to the build, try adding it manually.
 
 You can now use [@back] command to control the created scene background actor, eg:
