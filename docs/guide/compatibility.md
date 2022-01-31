@@ -7,7 +7,7 @@ Minimum supported and recommended Unity version is 2019.4.x; this won't change u
 In case breaking changes or critical fixes are introduced throughout the release cycle, minimum supported patch version (the ".x" part) could change. You can always find minimum supported Unity version for specific Naninovel release in the [change log](https://github.com/Naninovel/Documentation/releases).
 
 ::: note
-Unity [2019.4.30](https://unity3d.com/unity/whats-new/2019.4.30) is the most tested and stable version to use with Naninovel at the moment. It's not uncommon for Unity to introduce regressions even in LTS patches (let alone minor and major releases), so we highly recommend using this version to minimize production risks.
+Unity [2019.4.35](https://unity3d.com/unity/whats-new/2019.4.35) is the most tested and stable version to use with Naninovel at the moment. It's not uncommon for Unity to introduce regressions even in LTS patches (let alone minor and major releases), so we highly recommend using this version to minimize production risks.
 :::
 
 ## UPM Packages
