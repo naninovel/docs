@@ -93,3 +93,7 @@ In case you're looking for an option to compile all the project scenario script 
 ## UI Localization
 
 To localize both custom and built-in UIs, use [managed text provider](/guide/managed-text.md#managed-text-provider) component. It can also be used to localize any other custom game objects (prefabs). For more information on how to use managed text records and localize them, refer to the managed text guide.
+
+To associate a font with a specific locale, use `Apply On Locale` property of font options found in UI configuration. When a locale is selected, the font will be automatically applied when that locale is selected in the game settings.
+
+![](https://i.gyazo.com/52e1a5eaaf99f5b4415083d1c86e9c10.png)
