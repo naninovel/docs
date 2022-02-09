@@ -28,7 +28,7 @@ All the Unity-related source code is available in the distributed package, while
 
 ## What are the legal usage terms and conditions?
 
-Naninovel is governed by the Asset Store EULA: [unity3d.com/legal/as_terms](https://unity3d.com/legal/as_terms).
+Naninovel is governed by the following End User License Agreement (EULA): [naninovel.com/eula](https://naninovel.com/eula). Please read the document carefully before downloading or using the application.
 
 ## Why the package doesn't contain any demo scenes?
 
