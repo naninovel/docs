@@ -60,6 +60,10 @@ Disable `Reload Domain` and `Reload Scene` options under "Enter Play Mode" proje
 
 Drag and drop `Naninovel.package` to the project pane of the Unity editor (or import the package via [Asset Store menu](https://docs.unity3d.com/Manual/AssetStore.html) in case you've purchased it on the store) and wait for the initial scripts compilation and assets import process. You are free to move `Naninovel` package folder anywhere inside your project assets directory, if you wish.
 
+::: warn
+Don't store, modify or delete anything inside the `Naninovel` folder. Any such change will be lost when the package is updated and we won't provide any support for the modified versions of the package.
+:::
+
 Over the course of using Naninovel a number of assets (configuration, settings, saves, etc) will be automatically generated inside `Assets/NaninovelData` folder. In contrast to the package folder, you shouldn't manually move the data folder (it'll be automatically regenerated). If you wish to change the location of the data folder, edit `Generated Data Path` property in the engine configuration menu.
 
 ## Add Naninovel Script
