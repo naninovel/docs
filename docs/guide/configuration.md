@@ -347,7 +347,7 @@ Property | Default Value | Description
 Loader | UI- (Addressable, Project) | Configuration of the resource loader used with UI resources.
 Override Objects Layer | True | Whether to assign a specific layer to all the UI objects managed by the engine. Required for some of the built-in features, eg `Toggle UI`.
 Objects Layer | 5 | When `Override Objects Layer` is enabled, the specified layer will be assigned to all the managed UI objects.
-Font Options | Null | Font options, that should be available in the game settings UI (in addition to `Default`) for the player to choose from.
+Font Options | Object Ref | Font options, that should be available in the game settings UI (in addition to `Default`) for the player to choose from.
 Default Font | Null | Name (ID) of a font from `Font Options` to apply by default when the game is first started. When not specified, `Default` font is applied.
 
 </div>
