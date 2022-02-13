@@ -6,8 +6,6 @@ In case you're sure the engine is not working as intended, check if you're runni
 
 If updating didn't help, try to re-install the package by deleting `Naninovel` folder from the project and re-importing it from the Asset Store. Make sure to follow upgrade instructions specified on the [release page](https://github.com/Naninovel/Documentation/releases) when updating the engine.
 
-Always **remember to backup your project** (or use a [VCS](https://en.wikipedia.org/wiki/Version_control)) before updating or deleting a package. ~~Haruhi~~ God knows what could happen in the process. `ʕノ•ᴥ•ʔノ ︵ ┻━┻`
-
 ## Issue Tracker
 
 In case the above steps didn't help to resolve the issue, check the [issue tracker](https://github.com/Naninovel/Documentation/issues?q=is%3Aissue+label%3Abug) — chances are the problem is already being worked on.
