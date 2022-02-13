@@ -10,8 +10,6 @@
 
 如果更新后依旧有问题，试着删除`Naninovel` 目录后，重新安装资源包。确保更新时严格按照[更新说明](https://github.com/Naninovel/Documentation/releases) 执行操作。
 
-记得在更新或删除包以前**备份你的项目** （或使用[VCS](https://en.wikipedia.org/wiki/Version_control) 版本控制）。
-
 ## 问题追踪
 
 如果上述没有任何作用，查阅[问题追踪](https://github.com/Naninovel/Documentation/issues?q=is%3Aissue+label%3Abug) — 也许是已经解决过的问题。

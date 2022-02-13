@@ -10,8 +10,6 @@
 
 更新しても問題が解決しない場合は、プロジェクトから `Naninovel` フォルダを削除し、アセットストアから再インポートして、パッケージを再インストールしてみてください。エンジンを更新するときは、[リリースページ](https://github.com/Naninovel/Documentation/releases) で指定されているアップグレード手順に従ってください。
 
-パッケージのアップデートや削除の前に、必ず **プロジェクトをバックアップしてください** (または [VCS](https://ja.wikipedia.org/wiki/%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E7%AE%A1%E7%90%86%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0) を利用してください)。~~ハルヒ~~ その過程で何が起きるかは神のみぞ知る。`ʕノ•ᴥ•ʔノ ︵ ┻━┻`
-
 ## Issue Tracker
 
 上記の手順で問題を解決できなかった場合は、[issue tracker](https://github.com/Naninovel/Documentation/issues?q=is%3Aissue+label%3Abug) を確認してください。すでにその問題に取り組んでいるかもしれません。
