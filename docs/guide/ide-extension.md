@@ -166,3 +166,5 @@ public class CustomCommand : Command
     public NamedStringParameter IdAndAppearance;
 }
 ```
+
+The parameter-related context attributes are applied to class instead of fields to allow specifying (or overriding) the contexts for the fields declared in parent classes. For example, while `Id` parameter is declared in the abstract `ModifyActor` command, the context is applied in `ModifyCharacter` and `ModifyBackground` inherited classes. You can repurpose the same tactic when inheriting custom commands from the built-in ones.
