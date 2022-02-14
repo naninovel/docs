@@ -97,50 +97,72 @@ public class CustomCommand : Command
 To make a parameter auto-complete with both built-in and custom expression functions and pre-defined custom variables use `ExpressionContext` attribute.
 
 ```csharp
-[ExpressionContext]
-public StringParameter Expression;
+[ExpressionContext(nameof(Expression))]
+public class CustomCommand : Command
+{
+    public StringParameter Expression;
+}
 ```
 
 To auto-complete with values from an arbitrary [enumeration type](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/enum) use `ConstantContext` attribute.
 
 ```csharp
-[ConstantContext(typeof(PlatformID))]
-public StringParameter Platform;
+[ConstantContext(nameof(Platform), typeof(PlatformID))]
+public class CustomCommand : Command
+{
+    public StringParameter Platform;
+}
 ```
 
 To auto-complete with a resource use `ResourceContext` and provide path prefix of the resources. Below example will complete with audio resources:
 
 ```csharp
-[ResourceContext(AudioConfiguration.DefaultAudioPathPrefix)]
-public StringParameter Audio;
+[ResourceContext(nameof(Audio), AudioConfiguration.DefaultAudioPathPrefix)]
+public class CustomCommand : Command
+{
+    public StringParameter Audio;
+}
 ```
 
 To auto-complete with an actor ID (of any type) use `ActorContext` attribute.
 
 ```csharp
-[ActorContext]
-public StringParameter ActorId;
+[ActorContext(nameof(ActorId))]
+public class CustomCommand : Command
+{
+    public StringParameter ActorId;
+}
 ```
 
 To auto-complete with an actor ID of specific type use `ActorContext` attribute with first argument specifying path prefix of the actor resources. Below will complete with printer IDs:
 
 ```csharp
-[ActorContext(TextPrintersConfiguration.DefaultPathPrefix)]
-public StringParameter PrinterId;
+[ActorContext(nameof(PrinterId), TextPrintersConfiguration.DefaultPathPrefix)]
+public class CustomCommand : Command
+{
+    public StringParameter PrinterId;
+}
 ```
 
-To auto-complete appearances of an actor with ID specified in the same named or another parameter in the current command, use `AppearanceContext` attribute. Be aware, that this requires `ActorContext` attribute specified in the same command.
+To auto-complete appearances of an actor with ID specified in the same named or another parameter in the command, use `AppearanceContext` attribute. Be aware, that this requires `ActorContext` attribute specified in the same command.
 
 ```csharp
-[ActorContext(CharactersConfiguration.DefaultPathPrefix)]
-public StringParameter CharacterId;
-[AppearanceContext]
-public StringParameter CharacterAppearance;
+[ActorContext(nameof(CharacterId), CharactersConfiguration.DefaultPathPrefix)]
+[AppearanceContext(nameof(CharacterAppearance))]
+public class CustomCommand : Command
+{
+    public StringParameter CharacterId;
+    public StringParameter CharacterAppearance;
+}
 ```
 
 Notice, that each of the above attributes allows providing an optional `namedIndex` argument. Use it with named parameters to specify for which part of the parameter value the attribute belongs. Below example will allow auto-completing name part of the named parameter with character IDs and value part with appearances for the currently typed character (similar to nameless parameter of [@char] command).
 
 ```csharp
-[ActorContext(CharactersConfiguration.DefaultPathPrefix, 0), AppearanceContext(1)]
-public NamedStringParameter IdAndAppearance;
+[ActorContext(nameof(IdAndAppearance), CharactersConfiguration.DefaultPathPrefix, 0)]
+[AppearanceContext(nameof(IdAndAppearance), 1)]
+public class CustomCommand : Command
+{
+    public NamedStringParameter IdAndAppearance;
+}
 ```
