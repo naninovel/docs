@@ -161,7 +161,7 @@ You can now use the new text printer by activating it via [@printer] command and
 ```
 
 ::: example
-Check out [demo project](/guide/getting-started.md#demo-project) for an example on adding a custom printer. The prefab is stored as `Assets/Prefabs/PimpedPrinter.prefab`; the printer appears in the demo when Kohaku-chan attempts to create her own one :3
+Check out [demo project](/guide/getting-started.md#demo-project) for an example on adding a custom printer. The prefab is stored as `Assets/Prefabs/CustomPrinter.prefab`.
 :::
 
 It's also possible to create a printer from scratch by manually implementing `ITextPrinterActor` interface. See the guide on [custom actor implementations](/guide/custom-actor-implementations.md) for more information.
