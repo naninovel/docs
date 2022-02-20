@@ -93,3 +93,13 @@ In case you're looking for an option to compile all the project scenario script 
 ## UI Localization
 
 To localize both custom and built-in UIs, use [managed text provider](/guide/managed-text.md#managed-text-provider) component. It can also be used to localize any other custom game objects (prefabs). For more information on how to use managed text records and localize them, refer to the managed text guide.
+
+## Fonts
+
+To display text in some languages, you'll need a compatible font. [Google's Roboto](https://fonts.google.com/specimen/Roboto) is used by default, which supports all Latin, Cyrillic, and Greek characters in Unicode 7.0. You can change the font used in any of the built-in UIs with [UI customization](/guide/user-interface.md#ui-customization) feature; for the printed text messages, [create custom printers](/guide/text-printers.md#adding-custom-printers) and set the desired font.
+
+::: tip
+In case you're aiming to support multiple languages with a single font, check out [Noto fonts](https://www.google.com/get/noto/).
+:::
+
+Right-to-left (RTL) languages (Arabic, Hebrew, Persian, etc) are supported by the TMPro text printers, but require additional setup; [see the guide](/guide/text-printers.html#right-to-left-arabic-text) for more info.
