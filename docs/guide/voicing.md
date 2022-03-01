@@ -107,14 +107,46 @@ For more information on how to localize game resources, see the [localization gu
 
 ## Voiceover Documents
 
+The voiceover documents are intended to be used by the voice actors when recording the voiceover audio clips.
+
 You can use voiceover documents generator utility accessible via `Naninovel -> Tools -> Voiceover Documents` to generate documents, containing printed text from the [@print] commands and generic text lines. Each printed text message will be associated with the auto voice clip name to be used with the auto voicing feature.
 
-![](https://i.gyazo.com/69466444d4b8b43d76e7f1566db5ca9a.png)
+![](https://i.gyazo.com/d1e40ff118daebd83b55e0433431b2a8.png)
 
 `Locale` property allows to select a specific locale for which to generate the documents (the localized naninovel scripts for the selected locale should exist in your project).
 
-When `Use Markdown Format` property is enabled, the generated files will be of [markdown format](https://en.wikipedia.org/wiki/Markdown) (.md extension) with some additional formatting for better readability.
+`Format` property controls type of file and formatting of the voiceover documents to produce:
+ - Plaintext — Plaintext file without any formatting.
+ - Markdown — [Markdown](https://en.wikipedia.org/wiki/Markdown) file with additional formatting for better readability.
+ - CSV — [Comma-separated values](https://en.wikipedia.org/wiki/Comma-separated_values) file to be used with table processors, such as Google Sheets or Microsoft Excel.
+
+Below is an example of a voiceover document generated with markdown format.
 
 ![](https://i.gyazo.com/ed6776026a79140de9e9f6a155faffdc.png)
 
-The voiceover documents are intended to be used by the voice actors when recording the voiceover audio clips. 
+### Custom Generator
+
+It's possible to inject custom voiceover document generator in case you wish to format and/or serialize the documents in a special way.
+
+To add custom generator, create a new C# class with a parameterless constructor and implement `IVoiceoverDocumentGenerator` interface. The utility will automatically pick such class and use it instead of the built-in generators.
+
+`GenerateVoiceoverDocument` method will be invoked by the utility for each script found in the project for the selected locale. `list` argument is the list of commands contained in the script. `locale` represents the locale (language) selected in the utility. `outDir` is the output path selected in the utility.
+
+Below is an example of a custom voiceover generator, which appends a header with script name and locale followed by `voice path > author > text` line for each print text command found in the script.
+
+```csharp
+public class VoiceoverGenerator : IVoiceoverDocumentGenerator
+{
+    public void GenerateVoiceoverDocument (ScriptPlaylist list, string locale, string outDir)
+    {
+        var builder = new StringBuilder();
+        builder.AppendLine($"Voiceover for '{list.ScriptName}' ({locale} locale)");
+        foreach (var cmd in list.OfType<PrintText>())
+        {
+            var voicePath = AudioConfiguration.GetAutoVoiceClipPath(cmd.PlaybackSpot);
+            builder.AppendLine($"{voicePath} > {cmd.AuthorId} > {cmd.Text}");
+        }
+        File.WriteAllText($"{outDir}/{list.ScriptName}.txt", builder.ToString());
+    }
+}
+```
