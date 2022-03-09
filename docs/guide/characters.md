@@ -168,13 +168,19 @@ When enabled in the character configuration, will set specified [poses](/guide/c
 
 ## Lip Sync
 
-[Generic](/guide/characters.md#generic-characters), [layered](/guide/characters.md#layered-characters) and [Live2D](/guide/characters.md#live2d-characters) character implementations support lip synchronization feature, allowing drive character's mouth animation while it's the author of the printed message by sending the appropriate events. 
+### Event Driven
+
+Animatable character implementations (generic, layered, Live2D, etc) provide `On Started Speaking` and `On Finished Speaking` Unity events. When such character becomes or ceases to be the author of a printed message (or rather when the message is fully revealed), the events will be invoked allowing you to trigger any custom logic, like starting or stopping mouth animation of the controlled character.
 
 [!!fx_YS2ZQGHI]
 
-When [auto voicing](/guide/voicing.md#auto-voicing) feature is enabled, lip sync events will be driven by the voice over; otherwise, printed text messages will activate the events. In the latter case, you'll probably sometimes want to manually start or stop the lip sync (eg, to prevent mouth animation when punctuation marks are printed); for such cases, use [@lipSync] command.
+When [auto voicing](/guide/voicing.md#auto-voicing) feature is enabled, the events will be driven by the voice-over; otherwise, printed text messages will activate the events. In the latter case, you'll probably want to manually mute the events (eg, to prevent mouth animation when punctuation marks are printed); for such cases, use [@lipSync] command.
 
-See [Generic](/guide/characters.md#generic-characters), [layered](/guide/characters.md#layered-characters) and [Live2D](/guide/characters.md#live2d-characters) character implementation docs below for the details on how to set up the lip sync feature.
+### Audio Driven
+
+In case you'd like to drive character mouth animation by the actual waves of the voice audio clips, use `Voice Source` option in the character configuration. When a prefab with Unity's `Audio Source` component is assigned, Naninovel will instantiate the prefab under the character object and play the voice of the character via the audio source component.
+
+By having access to a dedicated audio source component used for character voice, you can hook a custom solution to analyze the waves of the played audio and drive mouth animation accordingly. There are multiple third-party solutions that can help achieve that. For example, Live2D's `Cubism Audio Mouth Input` component or [SALSA](https://assetstore.unity.com/packages/tools/animation/salsa-lipsync-suite-148442).
 
 ## Linked Printer
 
@@ -331,8 +337,6 @@ Be aware, that the layer objects are not directly rendered by Unity cameras at r
 
 In case you wish to apply an animation or other dynamic behaviour to the layered character, enable `Animated` property found on `Layered Character Behaviour` component. When the property is enabled, the layers will be rendered each frame (instead once per appearance change).
 
-To set up lip sync feature for layered characters, use `On Started Speaking` and `On Finished Speaking` Unity events of `Layered Character Behaviour` component. When the character becomes or ceases to be the author of any printed message (or rather when the message is fully revealed), the events will be invoked allowing you to trigger any custom logic, like starting or stopping mouth animation of the controlled character.
-
 ## Generic Characters
 
 Generic character is the most flexible character actor implementation. It's based on a prefab with a `Generic Character Behaviour` component attached to the root object. Appearance changes and all the other character parameters are routed as [Unity events](https://docs.unity3d.com/Manual/UnityEvents.html) allowing to implement the behavior of the underlying object in any way you wish.
@@ -344,8 +348,6 @@ Generic actor implementations just route events from the scenario scripts and it
 :::
 
 To create generic character prefab from a template, use `Create -> Naninovel -> Character -> Generic` context asset menu.
-
-To set up lip sync feature for generic characters, use `On Started Speaking` and `On Finished Speaking` Unity events of `Generic Character Behaviour` component. When the character becomes or ceases to be the author of any printed message (or rather when the message is fully revealed), the events will be invoked allowing you to trigger any custom logic, like starting or stopping mouth animation of the controlled character. This is similar to how UI's `On Show` and `On Hide` events work; find how they can be used to drive a custom animation in the [UI customization guide](/guide/user-interface.md#adding-custom-ui).
 
 Check the following video tutorial for example on setting up a 3D rigged model as a generic character and routing appearance changes to the rig animations via [Animator](https://docs.unity3d.com/Manual/class-AnimatorController.html) component. Be aware, that the video is captured with an old Naninovel version and some properties and component names are different now; see the above docs for the up to date information.
 
