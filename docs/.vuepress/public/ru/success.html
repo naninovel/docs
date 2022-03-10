@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Спасибо за покупку</title>
+    <link href="../assets/css/page.min.css" rel="stylesheet">
+    <link rel="icon" href="../assets/img/nani-logo.svg" sizes="any" type="image/svg+xml">
+</head>
+<body class="layout-centered" style="background-image: linear-gradient(-45deg, #1baeea 0%, #2b3a97 100%);">
+<canvas class="constellation" data-radius="0" style="z-index: -1"></canvas>
+
+<main class="main-content">
+
+    <div class="bg-white rounded w-400 p-6">
+        <h5 class="mb-7" style="font-family: sans-serif">Спасибо за покупку!</h5>
+        <p>Ваш номер лицензии: <strong id="licenseNumber"></strong>. Сохраните его.</p>
+        <p>Скачать Naninovel и получить техническую поддержку (только англ.) можно на нашем Discord сервере: <a href="https://discord.gg/BfkNqem" target="_blank">discord.gg/BfkNqem</a>.</p>
+        <p>Для получения доступа к каналам загрузки и поддержки, <a href="https://naninovel.com/register" target="_blank">зарегистрируйте учётную запись</a> и активируйте лицензию используя указанный выше номер.</p>
+    </div>
+
+</main>
+
+<script src="../assets/js/page.min.js"></script>
+<script src="../assets/js/script.js"></script>
+
+<script>
+
+    window.onload = function () {
+        document.getElementById("licenseNumber").innerText = getLicenseNumber();
+    };
+
+    function getLicenseNumber () {
+        return "TK" + new URL(document.URL).searchParams.get("PaymentId");
+    }
+
+</script>
+
+</body>
+</html>
