@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Купить Naninovel</title>
+    <link href="../assets/css/page.min.css" rel="stylesheet">
+    <link rel="icon" href="../assets/img/nani-logo.svg" sizes="any" type="image/svg+xml">
+</head>
+<body class="layout-centered" style="background-image: linear-gradient(-45deg, #1baeea 0%, #2b3a97 100%);">
+<canvas class="constellation" data-radius="0" style="z-index: -1"></canvas>
+
+<main class="main-content">
+
+    <div class="bg-white rounded w-400 p-6">
+        <h5 class="mb-7" style="font-family: sans-serif">Покупка лицензии Naninovel для одного рабочего места</h5>
+        <form name="TinkoffPayForm" onsubmit="window.pay(this); return false;">
+
+            <input type="hidden" name="terminalkey" value="1646832078054">
+            <input type="hidden" name="frame" value="false">
+            <input type="hidden" name="language" value="ru">
+            <input type="hidden" name="amount" value="9500">
+
+            <input class="form-control form-group" type="email" placeholder="e-mail (адрес электронной почты)" name="email" value="" required>
+            <p class="text-muted small-2">Лицензия будет зарегистрирована на указанный e-mail. Убедитесь, что у вас есть к нему доступ.</p>
+
+            <div class="form-group py-3">
+                <div class="custom-control custom-checkbox">
+                    <input type="checkbox" class="custom-control-input" value="" required>
+                    <label class="custom-control-label">Я согласен с <a class="ml-1" href="https://naninovel.com/eula" target="_blank">условиями использования</a></label>
+                </div>
+            </div>
+
+            <input id="pay" class="form-group btn btn-block btn-primary" type="submit" value="Оплатить 9500 ₽">
+        </form>
+    </div>
+
+</main>
+
+<script src="../assets/js/page.min.js"></script>
+<script src="../assets/js/script.js"></script>
+<script src="https://securepay.tinkoff.ru/html/payForm/js/tinkoff_v2.js"></script>
+
+</body>
+</html>
