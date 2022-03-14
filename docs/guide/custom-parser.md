@@ -4,6 +4,10 @@ Script parsing is a process of transforming source script text (contained in .na
 
 It's possible to tweak or even completely change the way parsing behaves with a custom script parser implementation. Akin to other custom implementations, it's added simply by creating a new C# class, which implements a specific interface, in this case `IScriptParser`.
 
+::: warn
+When adding custom implementation types under a non-predefined assembly (via [assembly definitions](https://docs.unity3d.com/Manual/ScriptCompilationAssemblyDefinitionFiles.html)), add the assembly name to the `Type Assemblies` list found in the engine configuration menu. Otherwise, the engine won't be able to locate your custom types.
+:::
+
 Script parser can be selected in scripts configuration menu with `Script Parser` property:
 
 ![](https://i.gyazo.com/12a03e71e66d1fb0901317e380c9694e.png)
