@@ -135,7 +135,6 @@ Generated Data Path | Naninovel Data | Relative (to the application data directo
 Override Objects Layer | False | Whether to assign a specific layer to all the engine objects. Engine's camera will use the layer for the culling mask. Use this to isolate Naninovel objects from being rendered by other cameras.
 Objects Layer | 0 | When `Override Objects Layer` is enabled, the specified layer will be assigned to all the engine objects.
 Async Exception Log Type | Error | Log type to use for UniTask-related exceptions.
-Type Assemblies | Object Ref | When looking for various types (eg, actor implementations, serialization handlers, managed text, etc) the engine will only scan the exported types of the specified assemblies for better performance. In case you're keeping your Naninovel-related types outside of Unity's predefined assemblies (using assembly definitions), add the assembly names here.<br><br>Warning: Recompile the solution or restart Unity editor after modifying the list in order for changes to take effect.
 Initialize On Application Load | True | Whether to automatically initialize the engine when application starts.
 Scene Independent | True | Whether to apply `DontDestroyOnLoad` to the engine objects, making their lifetime independent of any loaded scenes. When disabled, the objects will be part of the Unity scene where the engine was initialized and will be destroyed when the scene is unloaded.
 Show Initialization UI | True | Whether to show a loading UI while the engine is initializing.
