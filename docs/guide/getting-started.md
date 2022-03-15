@@ -2,14 +2,7 @@
 
 ## Prerequisites
 
-Naninovel is an extension for [Unity game engine](https://unity.com/), so it's strongly recommended to at least learn the basics of using the engine before starting with Naninovel.
-
-The following manual chapters should be considered essential:
-- [Installing Unity](https://docs.unity3d.com/Manual/GettingStartedInstallingHub)
-- [Creating Projects](https://docs.unity3d.com/Manual/GettingStarted)
-- [Editor Interface](https://docs.unity3d.com/Manual/LearningtheInterface)
-- [Using the Asset Store](https://docs.unity3d.com/Manual/AssetStore)
-- [Publishing Builds](https://docs.unity3d.com/Manual/PublishingBuilds)
+Naninovel is an extension for [Unity game engine](https://unity.com), so it's strongly recommended to at least [learn the basics](https://learn.unity.com) of using the engine before starting with Naninovel.
 
 In case you're not going to build any custom gameplay outside of Naninovel, feel free to ignore the scene-related information altogether, as Naninovel will take care of that.
 
@@ -44,7 +37,7 @@ In case you're familiar with programming, take a look at the [engine architectur
 
 ## Create New Unity Project
 
-With the core concepts in mind, let's start the initial setup. The first thing you'd need is a Unity project. Consult [Unity manual](https://docs.unity3d.com/Manual/GettingStarted) on how to create one.
+With the core concepts in mind, let's start the initial setup. The first thing you'd need is a Unity project. Consult [Unity manual](https://learn.unity.com/tutorial/creating-new-projects) on how to create one.
 
 When creating a project you'd probably like to use `2D Template` to set the editor in 2D behaviour mode, so that images will be imported as sprite assets by default and you won't have to manually change the import settings. You can change the editor behaviour mode later using the [project settings](https://docs.unity3d.com/Manual/2DAnd3DModeSettings.html).
 
