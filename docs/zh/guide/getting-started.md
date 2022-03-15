@@ -6,7 +6,7 @@ Naninovel是 [Unity游戏引擎](https://unity.com/) 扩展资源，所以确保
 
 使用这套资源以前应该有对Unity的基础了解：
 - [安装Unity；](https://docs.unity3d.com/Manual/GettingStartedInstallingHub)
-- [创建项目；](https://docs.unity3d.com/Manual/GettingStarted)
+- [创建项目；](https://docs.unity3d.com/Manual)
 - [编辑器界面交互；](https://docs.unity3d.com/Manual/LearningtheInterface)
 - [使用Assets Store资源商店；](https://docs.unity3d.com/Manual/AssetStore)
 - [发布项目到对应平台；](https://docs.unity3d.com/Manual/PublishingBuilds)
@@ -44,7 +44,7 @@ Naninovel是 [Unity游戏引擎](https://unity.com/) 扩展资源，所以确保
 
 ## 创建新Unity项目：
 
-了解到核心概念之后，开始第一步，创建新项目，可以从 [Unity 手册](https://docs.unity3d.com/Manual/GettingStarted) 学习如何创建新项目。
+了解到核心概念之后，开始第一步，创建新项目，可以从 [Unity 手册](https://docs.unity3d.com/Manual) 学习如何创建新项目。
 
 创建时使用`2D Template` 免得频繁手动修改导入图片素材的Import settings。也可以创建后在 [project settings](https://docs.unity3d.com/Manual/2DAnd3DModeSettings.html) 手动修改。
 

@@ -6,7 +6,7 @@ Naninovelは [Unityゲームエンジン](https://unity3d.com) 用の拡張機�
 
 以下のマニュアルは特に重要です:
 - [Unity をインストール](https://docs.unity3d.com/Manual/GettingStartedInstallingHub)
-- [プロジェクトの作成](https://docs.unity3d.com/Manual/GettingStarted)
+- [プロジェクトの作成](https://docs.unity3d.com/Manual)
 - [エディターインターフェース](https://docs.unity3d.com/Manual/LearningtheInterface)
 - [アセットストアの使用](https://docs.unity3d.com/Manual/AssetStore)
 - [ビルドの作成](https://docs.unity3d.com/Manual/PublishingBuilds)
@@ -43,7 +43,7 @@ Naninovel をセットアップして使用する前に、基本概念につい�
 
 ## 新規 Unity プロジェクトを作成する
 
-基本概念を念頭に置きつつ、早速初期設定を始めましょう。始めに Unity プロジェクトが必要です。作成方法は、[Unityマニュアル](https://docs.unity3d.com/Manual/GettingStarted) を参照してください。
+基本概念を念頭に置きつつ、早速初期設定を始めましょう。始めに Unity プロジェクトが必要です。作成方法は、[Unityマニュアル](https://docs.unity3d.com/Manual) を参照してください。
 
 プロジェクトは `2D テンプレート` を使用して2Dモードのエディターで作成するのがよいでしょう。そうすれば画像はデフォルトでスプライトアセットとしてインポートされるので、手動でインポート設定を変える必要がありません。エディターモードは後から [プロジェクト設定](https://docs.unity3d.com/Manual/2DAnd3DModeSettings.html) で変更できます。
 
