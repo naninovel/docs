@@ -6,7 +6,7 @@ Naninovel – это расширение для [игрового движка 
 
 Указанные ниже главы руководства являются важнейшими:
 - [Установка Unity](https://docs.unity3d.com/Manual/GettingStartedInstallingHub)
-- [Создание проектов](https://docs.unity3d.com/Manual/GettingStarted)
+- [Создание проектов](https://docs.unity3d.com/Manual)
 - [Интерфейс редактора](https://docs.unity3d.com/Manual/LearningtheInterface)
 - [Использование Asset Store](https://docs.unity3d.com/Manual/AssetStore)
 - [Публикация сборок](https://docs.unity3d.com/Manual/PublishingBuilds)
@@ -44,7 +44,7 @@ Naninovel – это расширение для [игрового движка 
 
 ## Создание нового проекта Unity
 
-Итак, держа основные концепты в уме, начнем первоначальную настройку. Первое, что вам понадобится – проект Unity. Обратитесь к [руководству Unity](https://docs.unity3d.com/Manual/GettingStarted), описывающему создание проекта.
+Итак, держа основные концепты в уме, начнем первоначальную настройку. Первое, что вам понадобится – проект Unity. Обратитесь к [руководству Unity](https://docs.unity3d.com/Manual), описывающему создание проекта.
 
 При создании проекта вы, вероятно, захотите использовать шаблон `2D Template`, чтобы установить редактор в режим 2D проекта, благодаря чему изображения будут импортироваться по умолчанию как спрайты, и вам не придется вручную изменять настройки импорта. Вы можете изменить режим работы редактора позже, используя [настройки проекта](https://docs.unity3d.com/Manual/2DAnd3DModeSettings.html).
 
