@@ -122,6 +122,8 @@ Chat printer presents text inside message bubbles framed in a window with vertic
 
 ![Chat Printer](https://i.gyazo.com/3c04aecabe7f754ffc9ce5452eeba270.png)
 
+To embed choices inside the chat printer, see [ChatReply](/guide/choices.md#chatreply-choice-handler) choice handler.
+
 ## Bubble Printer
 
 Bubble printers can be used for a manga/comic style of text presentation. 
