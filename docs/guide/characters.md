@@ -29,7 +29,7 @@ In naninovel scripts, characters are mostly controlled with [@char] command:
 ```
 
 ::: tip
-Consider using [Naninovel Transformer](https://forum.naninovel.com/viewtopic.php?f=8&t=325) extension to help with positioning the actors on scene.
+Consider using [Scene Assistant](https://github.com/idaocracy/NaninovelSceneAssistant) extension to help with positioning the actors on scene.
 :::
 
 ## Poses
