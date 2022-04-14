@@ -2,7 +2,7 @@
 
 ## Unity Version
 
-Minimum supported and recommended Unity version is 2019.4.x; this won't change until the stream is out of maintenance (expected in summer 2022), at which point we'll upgrade to the next LTS stream.
+Minimum supported and recommended Unity version is 2019.4.x; this won't change until the stream is out of maintenance, at which point we'll upgrade to the next LTS stream.
 
 In case breaking changes or critical fixes are introduced throughout the release cycle, minimum supported patch version (the ".x" part) could change. You can always find minimum supported Unity version for specific Naninovel release in the [change log](https://github.com/Naninovel/Documentation/releases).
 
