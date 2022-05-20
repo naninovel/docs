@@ -58,6 +58,20 @@ Notice, that when a pose is used as appearance, you can still override individua
 @char Kohaku.SuperAngry tint:#ff45cb
 ```
 
+In the character and background configurations you can also find `Shared Poses` — these poses are shared between all the respective actors. Example use cases for shared poses are re-using speaking/non-speaking template or creating pre-defined stages respective to camera.
+
+![](https://i.gyazo.com/c4c6d850d2a6efae269164af58da1ed3.png)
+
+Both per-actor and shared poses can also be applied via dedicated `pose` parameter:
+
+```nani
+@char Kohaku.Happy pose:DownLeft
+@char Yuko.Surprise pose:UpCenter
+@char Misaki pose:UpRight
+```
+
+![](https://i.gyazo.com/7bdbad68dd08c97032af174875ac4978.png)
+
 ## Display Names
 
 In the character configuration you can set a `Display Name` for specific characters. When set, display name will be shown in the printer name label UI, instead of the character's ID. This allows using compound character names, that contains spaces and special characters (which is not allowed for IDs).
