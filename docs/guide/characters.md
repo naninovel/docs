@@ -72,6 +72,8 @@ Both per-actor and shared poses can also be applied via dedicated `pose` paramet
 
 ![](https://i.gyazo.com/7bdbad68dd08c97032af174875ac4978.png)
 
+Per-actor poses have priority over shared poses meaning if actor pose name is equal to a shared pose, actor's pose will be used. This allows overriding shared poses for specific actors when necessary.
+
 ## Display Names
 
 In the character configuration you can set a `Display Name` for specific characters. When set, display name will be shown in the printer name label UI, instead of the character's ID. This allows using compound character names, that contains spaces and special characters (which is not allowed for IDs).
