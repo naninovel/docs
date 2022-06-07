@@ -82,6 +82,44 @@ Below is a video tutorial on how to install, configure and use the VS Code exten
 
 [!!TA-kx6B9uD8]
 
+## Metadata Providers
+
+To fill generated metadata with additional custom values, implement `IMetadataProvider` interface. The implementations are expected to have a parameterless constructor and will be instantiated and used each time project metadata is generated (eg, when syncing with an IDE extension). The results of each implementation will be merged with each other; this way you can have multiple providers that generate specific metadata.
+
+Below is an example of a built-in metadata provider, that generates script label constants to be used in autocompletion.
+
+```csharp
+public class LabelConstantProvider : IMetadataProvider
+{
+    public Project GetMetadata (MetadataOptions options)
+    {
+        var scripts = LoadScripts();
+        var constants = scripts.Select(CreateLabelConstant);
+        return new Project { Constants = constants.ToArray() };
+    }
+
+    private Script[] LoadScripts ()
+    {
+        return EditorResources.LoadOrDefault()
+            .GetAllRecords(ScriptsConfiguration.DefaultPathPrefix)
+            .Select(kv => AssetDatabase.GUIDToAssetPath(kv.Value))
+            .Where(path => !string.IsNullOrEmpty(path))
+            .Select(AssetDatabase.LoadAssetAtPath<Script>)
+            .ToArray();
+    }
+
+    private Constant CreateLabelConstant (Script script)
+    {
+        var name = $"Labels/{script.Name}";
+        var values = script.Lines
+            .OfType<LabelScriptLine>()
+            .Where(l => !string.IsNullOrWhiteSpace(l.LabelText))
+            .Select(l => l.LabelText.Trim());
+        return new Constant { Name = name, Values = values.ToArray() };
+    }
+}
+```
+
 ## IDE Attributes
 
 Naninovel has a number of [C# attributes](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes) to provide various IDE-related functionality to custom commands. For example, to add on-hover documentation to the custom commands and/or parameters, apply `Documentation` attribute to command type and parameter fields respectively:
@@ -154,3 +192,25 @@ public class ModifyBackground : ModifyActor { }
 ```
 
 You can repurpose the same tactic when inheriting custom commands from the built-in ones. Don't forget to provide the optional `paramId` argument when applying parameter context attribute to a class instead of field.
+
+## Constant Expressions
+
+When using `ConstantContext` IDE Attribute, instead of enum it's possible to specify an expression to be evaluated by the IDE to produce a constant name based on command parameter values or other variables, such as currently inspected script.
+
+Expression syntax: 
+ - Evaluated parts should be wrapped in curly braces (`{}`)
+ - To reference currently inspected script name, use `$Script`
+ - To reference parameter value, use `:` followed by the parameter ID (field name as specified in C#, not alias)
+ - Use `[0]` or `[1]` after parameter reference to specify named value (0 for name and 1 for index)
+ - Use null coalescing (`??`) after parameter reference for fallback in case the value is not specified
+
+For example, check the expression assigned to `Path` parameter of the built-in `[@goto]` command:
+
+```csharp
+[ConstantContext("Labels/{:Path[0]??$Script}", 1)]
+public NamedStringParameter Path;
+```
+
+— when name component of the parameter is assigned with `foo`, it will evaluate to `Labels/foo`, otherwise, given inspected script name is `bar` it will evaluate to `Labels/bar`.
+
+Constant expressions combined with [custom metadata providers](/guide/ide-extension.md#metadata-providers) allow creating arbitrary autocompletion scenarios for the IDE extension.
