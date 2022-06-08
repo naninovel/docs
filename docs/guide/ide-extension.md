@@ -89,7 +89,7 @@ To fill generated metadata with additional custom values, implement `IMetadataPr
 Below is an example of a built-in metadata provider, that generates script label constants to be used in autocompletion.
 
 ```csharp
-public class LabelConstantProvider : IMetadataProvider
+public class LabelMetadataProvider : IMetadataProvider
 {
     public Project GetMetadata (MetadataOptions options)
     {
