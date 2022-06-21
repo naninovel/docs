@@ -47,6 +47,10 @@ public static class ModifyConfigAtRuntime
 }
 ```
 
+::: note
+Naninovel doesn't expect configurations to change while the engine is initialized, so you may need to apply the modifications before initializing the engine with either `ProjectConfigurationProvider` or a [custom provider](/guide/custom-configuration.md#configuration-provider) in order for some changes to take effect.
+:::
+
 ## Adding Configuration
 
 To add a new custom configuration, create a C# class and inherit it from `Configuration`.
