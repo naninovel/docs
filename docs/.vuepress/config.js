@@ -186,6 +186,7 @@ function getGuideSidebar (groupA, groupB, groupC) {
             title: groupC,
             collapsable: true,
             children: [
+                'fountain',
                 'playmaker',
                 'visual-scripting',
                 'adventure-creator',
