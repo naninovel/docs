@@ -66,9 +66,7 @@ Feel free to customize the settings as you see fit.
 
 The project metadata (actors, scripts, custom commands, etc) is stored as `NaninovelData/Metadata.xml` file. It's automatically generated when Unity editor is started. To update the metadata while the project is opened, either use `Naninovel -> Update Metadata` editor menu or `Ctrl + Shift + U` hotkey.
 
-The metadata is automatically synced with the IDE each time it's updated. In case you wish to manually provide a specific project metadata to the IDE extension, you can copy-paste the xml file to `~/.vscode/extensions/naninovel/server` folder (where `~` is the user directory).
-
-To disable automatic metadata sync in the IDE and other related features, use extension settings under "Naninovel" category. Restart the IDE after changing the settings (or press Ctrl+Shift+P and select "Developer: Reload Window") for changes to take effect.
+The metadata is automatically synced with the IDE each time it's updated. To disable automatic metadata sync in the IDE and other related features, use extension settings under "Naninovel" category. Restart the IDE after changing the settings (or press Ctrl+Shift+P and select "Developer: Reload Window") for changes to take effect.
 
 ![](https://i.gyazo.com/becbd3b30d94938e9ae526e60e15a5bb.png)
 
