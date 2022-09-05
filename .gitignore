@@ -7,6 +7,7 @@ node_modules
 docs/.vuepress/dist
 docs/.vuepress/public/addressable
 docs/.vuepress/public/demo
+docs/.vuepress/public/editor
 docs/.vuepress/public/sandbox
 
 # User-specific stuff
