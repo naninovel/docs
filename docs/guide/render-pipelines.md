@@ -14,11 +14,13 @@ The SRPs are still [hardly production-ready](https://forum.unity.com/threads/915
 
 See the [official documentation](https://docs.unity3d.com/Manual/render-pipelines.html) on how to install and configure your SRP of choice.
 
-Both URP and HDRP don't support multiple cameras, so it's required to disable `Use UI Camera` in the camera configuration menu (enabled by default).
+If you're using URP, no Naninovel-specific configuration is required for basic setup.
+
+HDRP doesn't support camera stacking, so it's required to disable `Use UI Camera` in the camera configuration menu (enabled by default).
 
 ![](https://i.gyazo.com/5b70d18f028d27124bd8f4a25b2df47c.png)
 
-When running under HDRP, change color space to linear (HDRP doesn't support gamma mode, which is set by default).
+When running under HDRP, change color space to linear. HDRP doesn't support gamma mode, which is set by default when creating a new Unity project.
 
 ![](https://i.gyazo.com/2c053a6e3d79f080469787b7f09ee8f3.png)
 

@@ -14,24 +14,24 @@ When adding custom implementation types under a non-predefined assembly (via [as
 
 To expose a command parameter to naninovel scripts, add a public field to the command class with one of the supported types: 
 
-Field Type | Value Type | Script Example
---- | --- | ---
-StringParameter | String | `LoremIpsum`, `"Lorem ipsum"`
-IntegerParameter | Int32 | `10`, `0`, `-1`
-DecimalParameter | Single | `0.525`, `-55.1`
-BooleanParameter | Boolean | `true`, `false`
-NamedStringParameter | NamedString |  `Script001.LabelName`, `.LabelName`
-NamedIntegerParameter | NamedInteger | `Yuko.5`
-NamedDecimalParameter | NamedFloat | `Kohaku.-10.25`
-NamedBooleanParameter | NamedBoolean | `Misaki.false`
-StringListParameter | List&lt;String> | `Lorem,ipsum,"doler sit amet"`
-IntegerListParameter | List&lt;Int32> | `10,-1,0`
-DecimalListParameter | List&lt;Single> | `0.2,10.5,-88.99`
-BooleanListParameter | List&lt;Boolean> | `true,false,true`
-NamedStringListParameter | List&lt;NamedString> | `Felix.Happy,Jenna.Confidence`
-NamedIntegerListParameter | List&lt;NamedInteger> | `Yuko.5,Misaki.-8`
-NamedDecimalListParameter | List&lt;NamedFloat> | `Nanikun.88.99,Yuko.-5.1`
-NamedBooleanListParameter | List&lt;NamedBoolean> | `Misaki.false,Kohaku.true`
+| Field Type                | Value Type            | Script Example                      |
+|---------------------------|-----------------------|-------------------------------------|
+| StringParameter           | String                | `LoremIpsum`, `"Lorem ipsum"`       |
+| IntegerParameter          | Int32                 | `10`, `0`, `-1`                     |
+| DecimalParameter          | Single                | `0.525`, `-55.1`                    |
+| BooleanParameter          | Boolean               | `true`, `false`                     |
+| NamedStringParameter      | NamedString           | `Script001.LabelName`, `.LabelName` |
+| NamedIntegerParameter     | NamedInteger          | `Yuko.5`                            |
+| NamedDecimalParameter     | NamedFloat            | `Kohaku.-10.25`                     |
+| NamedBooleanParameter     | NamedBoolean          | `Misaki.false`                      |
+| StringListParameter       | List&lt;String>       | `Lorem,ipsum,"doler sit amet"`      |
+| IntegerListParameter      | List&lt;Int32>        | `10,-1,0`                           |
+| DecimalListParameter      | List&lt;Single>       | `0.2,10.5,-88.99`                   |
+| BooleanListParameter      | List&lt;Boolean>      | `true,false,true`                   |
+| NamedStringListParameter  | List&lt;NamedString>  | `Felix.Happy,Jenna.Confidence`      |
+| NamedIntegerListParameter | List&lt;NamedInteger> | `Yuko.5,Misaki.-8`                  |
+| NamedDecimalListParameter | List&lt;NamedFloat>   | `Nanikun.88.99,Yuko.-5.1`           |
+| NamedBooleanListParameter | List&lt;NamedBoolean> | `Misaki.false,Kohaku.true`          |
 
 Optionally, you can apply `[ParameterAlias]` attribute to the field to assign an alias name to the parameter allowing it to be used instead of the field name when referencing the parameter in naninovel scripts. If you wish to make the parameter nameless, set `NamelessParameterAlias` constant (empty string) as the alias; please note, that only one nameless parameter is allowed per command.
 
@@ -129,4 +129,3 @@ Find a more useful example of overriding built-in commands [on the forum](https:
 Yuko: [s 0.1] Print text 10 times slower than usual. [s 2] Print 2 times faster.
 ```
 :::
-

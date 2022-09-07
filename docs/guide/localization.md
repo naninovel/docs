@@ -103,3 +103,7 @@ In case you're aiming to support multiple languages with a single font, check ou
 :::
 
 Right-to-left (RTL) languages (Arabic, Hebrew, Persian, etc) are supported by the TMPro text printers, but require additional setup; [see the guide](/guide/text-printers.html#right-to-left-arabic-text) for more info.
+
+To associate a font with a specific locale, use `Apply On Locale` property of font options found in UI configuration. When a locale is selected, the font will be automatically applied when that locale is selected in the game settings.
+
+![](https://i.gyazo.com/52e1a5eaaf99f5b4415083d1c86e9c10.png)

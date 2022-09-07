@@ -61,27 +61,29 @@ You may also wish to name and organize the voice clips in a custom manner, or re
 
 ![](https://i.gyazo.com/5588b50df2f0c6af5522a950d550fe2d.png)
 
-In contrast to the default, content hash mode associates voice clips with the printed text and author ID, instead of script names, line and inline indexes (aka playback spots). The association is also performed manually via voice map utility.
+In contrast to the default, content hash mode associates voice clips with the printed text and author ID, instead of script names, line and inline indexes (aka playback spots). The association can be performed either via voice map utility or by assigning addresses to audio clip assets with Unity's addressable asset system (or otherwise exposing the assets to another [resource provider](/guide/resource-providers.md)).
 
 When the content hash mode is selected, an "Open Voice Map Utility" button will appear in the audio configuration menu; you can also access the utility via `Naninovel -> Tools -> Voice Map` editor menu.
 
-![](https://i.gyazo.com/3456bfd4b8874771d5b5ce76c4f06a64.png)
+[!3c8fad99f7a18e3f0eaf419c9be92277]
 
-First, select script file for which to map the voice clips. If the selected script contains any print commands (or generic text lines), they will be listed in pairs with audio clip fields. Drop (or select) a voice clip via the field to associate voice with the text.
+First, select script file for which to map the voice clips. If the selected script contains any print commands (or generic text lines), they will be listed in pairs with audio clip fields. Drop (or select) a voice clip via the field to associate voice with the text. It's also possible to auto-map the clips; for this name the clip assets equal to the start of the voiced line text and drag the clips (or folder with the clips) to the voice map utility.
 
 ::: warn
-When using content hash auto voice mode, make sure to store the voice clips outside of any "Resources" folders to prevent conflicts.
+When assigning the clips via voice map window, make sure to store the voice clips outside any "Resources" folders to prevent conflicts.
 :::
 
 If you then add, delete or reorder lines in the scripts, associations won't break. However, be aware, that changing printed text content will break association with the modified line.
 
 In cases same author have equal text messages (in the same or a different script), both messages will be associated with the same voice clip. If that is not desired, change one of the messages to be printed via [@print] command with an arbitrary `voiceId` parameter to differentiate the messages.
 
+To associate the clips without using voice map utility, expose the assets to a resource provider using voice hash as the resource name prefixed by the voice loader prefix (`Voice` by default). To find voice hash of a particular voiced line, use [voiceover documents](/guide/voicing.md#voiceover-documents); the hash is displayed after voice's playback spot prefixed by `#`. For example, to associate a line with `#2670eb4` hash with addressable resource provider, use the following address `Naninovel/Voice/2670eb4`.
+
 ## Author Volume
 
 When using auto voicing, you may want to let players control voice volume for specific [characters](/guide/characters.md) or, more correctly, authors of the printed text messages. For example, a player may decide to mute voice of the main protagonist or make a specific character voice lower.
 
-To setup per-author voice control, [create a custom settings UI](/guide/user-interface.md#modifying-built-in-ui), add a new slider (you can duplicate "VoiceVolumeSlider" already present in the prefab) and specify author (character) ID in the `Author ID` field.
+To set up per-author voice control, [create a custom settings UI](/guide/user-interface.md#modifying-built-in-ui), add a new slider (you can duplicate "VoiceVolumeSlider" already present in the prefab) and specify author (character) ID in the `Author ID` field.
 
 ![](https://i.gyazo.com/5a8db32ca5d971f2876f71d35f1a020c.png)
 
@@ -107,14 +109,47 @@ For more information on how to localize game resources, see the [localization gu
 
 ## Voiceover Documents
 
-You can use voiceover documents generator utility accessible via `Naninovel -> Tools -> Voiceover Documents` to generate documents, containing printed text from the [@print] commands and generic text lines. Each printed text message will be associated with the auto voice clip name to be used with the auto voicing feature.
+The voiceover documents are intended to be used by the voice recording engineers and actors when producing the voiceover audio.
 
-![](https://i.gyazo.com/69466444d4b8b43d76e7f1566db5ca9a.png)
+Use voiceover documents generator utility accessible via `Naninovel -> Tools -> Voiceover Documents` to generate the documents, containing printed text from the [@print] commands and generic text lines. Each printed text message will be associated with the auto voice clip name and hash to be used with the auto voicing feature.
+
+![](https://i.gyazo.com/d1e40ff118daebd83b55e0433431b2a8.png)
 
 `Locale` property allows to select a specific locale for which to generate the documents (the localized naninovel scripts for the selected locale should exist in your project).
 
-When `Use Markdown Format` property is enabled, the generated files will be of [markdown format](https://en.wikipedia.org/wiki/Markdown) (.md extension) with some additional formatting for better readability.
+`Format` property controls type of file and formatting of the voiceover documents to produce:
+ - Plaintext — Plaintext file without any formatting.
+ - Markdown — [Markdown](https://en.wikipedia.org/wiki/Markdown) file with additional formatting for better readability.
+ - CSV — [Comma-separated values](https://en.wikipedia.org/wiki/Comma-separated_values) file to be used with table processors, such as Google Sheets or Microsoft Excel.
 
-![](https://i.gyazo.com/ed6776026a79140de9e9f6a155faffdc.png)
+Below is an example of a voiceover document generated with Markdown format.
 
-The voiceover documents are intended to be used by the voice actors when recording the voiceover audio clips. 
+![](https://i.gyazo.com/a85d5885b11e99bfe24665a1162e148d.png)
+
+### Custom Generator
+
+It's possible to inject custom voiceover document generator in case you wish to format and/or serialize the documents in a special way.
+
+To add custom generator, create a new C# class with a parameterless constructor and implement `IVoiceoverDocumentGenerator` interface. The utility will automatically pick such class and use it instead of the built-in generators.
+
+`GenerateVoiceoverDocument` method will be invoked by the utility for each script found in the project for the selected locale. `list` argument is the list of commands contained in the script. `locale` represents the locale (language) selected in the utility. `outDir` is the output path selected in the utility.
+
+Below is an example of a custom voiceover generator, which appends a header with script name and locale followed by `voice path and hash > author > text` line for each print text command found in the script.
+
+```csharp
+public class VoiceoverGenerator : IVoiceoverDocumentGenerator
+{
+    public void GenerateVoiceoverDocument (ScriptPlaylist list, string locale, string outDir)
+    {
+        var builder = new StringBuilder();
+        builder.AppendLine($"Voiceover for '{list.ScriptName}' ({locale} locale)");
+        foreach (var cmd in list.OfType<PrintText>())
+        {
+            var voicePath = AudioConfiguration.GetAutoVoiceClipPath(cmd.PlaybackSpot);
+            var voiceHash = AudioConfiguration.GetAutoVoiceClipPath(cmd);
+            builder.AppendLine($"{voicePath} #{voiceHash} > {cmd.AuthorId} > {cmd.Text}");
+        }
+        File.WriteAllText($"{outDir}/{list.ScriptName}.txt", builder.ToString());
+    }
+}
+```

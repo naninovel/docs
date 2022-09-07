@@ -180,6 +180,7 @@ Name |  Default
 Fuzzy amount | 0.25
 Line Normal X | 0.5
 Line Normal Y | 0.5
+Reverse | 0
 
 **Examples**
 ```nani
@@ -188,6 +189,9 @@ Line Normal Y | 0.5
 
 ; Apply the transition with a vertical line slide
 @back Appearance.LineReveal params:,0,1
+
+; Apply the transition in reverse (right to left)
+@back Appearance.LineReveal params:,,,1
 ```
 
 ## Pixelate
