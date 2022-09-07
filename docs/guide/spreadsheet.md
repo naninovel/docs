@@ -40,6 +40,38 @@ After performing the required modifications, click "Import" button to import the
 Project resources will be overwritten when importing from spreadsheet, so refrain from modifying the scenario scripts, managed text and associated localization documents, while the spreadsheet is being edited.
 :::
 
+## Custom Processor
+
+It's possible to inject a custom spreadsheet processor to customize the way spreadsheets are generated as well as the import and export processes.
+
+Create a custom processor class by inheriting built-in `SpreadsheetProcessor` and apply `[SpreadsheetProcessor]` attribute to the class. The utility will automatically pick a class with the attribute and use it instead of the built-in processor.
+
+Below is an example of a custom processor with some key override points.
+
+```csharp
+[SpreadsheetProcessor]
+public class CustomProcessor : SpreadsheetProcessor
+{
+    public CustomProcessor (Parameters parameters, Action<ProgressChangedArgs> onProgress)
+        : base(parameters, onProgress) { }
+
+    // Override project writer (import from excel spreadsheet to script assets)
+    protected override ProjectWriter CreateProjectWriter (CompositeSheet composite) { }
+
+    // Override spreadsheet writer (export from script assets to excel spreadsheet)
+    protected override SpreadsheetWriter CreateSpreadsheetWriter (CompositeSheet composite) { }
+    
+    // Override script reader (filling sheet columns from script assets)
+    protected override ScriptReader CreateScriptReader (CompositeSheet composite) { }
+    
+    // Override managed text reader (filling sheet columns from managed text docs)
+    protected override ManagedTextReader CreateManagedTextReader (CompositeSheet composite) { }
+
+    // Override spreadsheet reader (filling sheet columns from excel spreadsheet)
+    protected override SpreadsheetReader CreateSpreadsheetReader (CompositeSheet composite) { }
+}
+```
+
 ## Example
 
 Find an example on how to setup and use the extension in the following project hosted on GitHub: [github.com/Naninovel/Spreadsheet](https://github.com/Naninovel/Spreadsheet).

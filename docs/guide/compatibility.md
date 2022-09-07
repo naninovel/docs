@@ -2,17 +2,15 @@
 
 ## Unity Version
 
-Minimum supported and recommended Unity version is 2019.4.x; this won't change until the stream is out of maintenance, at which point we'll upgrade to the next LTS stream.
-
-In case breaking changes or critical fixes are introduced throughout the release cycle, minimum supported patch version (the ".x" part) could change. You can always find minimum supported Unity version for specific Naninovel release in the [change log](https://github.com/Naninovel/Documentation/releases).
+Minimum supported and recommended Unity version is [2019.4.35](https://unity3d.com/unity/whats-new/2019.4.35). As a legacy [LTS stream](https://unity.com/releases/lts-vs-tech-stream), it's the most tested and stable to use with the current Naninovel release. Supported Unity versions for other Naninovel releases are specified in the [change logs](https://github.com/Naninovel/Documentation/releases).
 
 ::: note
-Unity [2019.4.30](https://unity3d.com/unity/whats-new/2019.4.30) is the most tested and stable version to use with Naninovel at the moment. It's not uncommon for Unity to introduce regressions even in LTS patches (let alone minor and major releases), so we highly recommend using this version to minimize production risks.
+It's not uncommon for Unity to introduce regressions even in LTS patches (let alone minor and major releases), so we highly recommend using the recommended version to minimize production risks.
 :::
 
 ## UPM Packages
 
-Only verified package versions are supported. When installing or updating a package via UPM (unity package manager), make sure it has a "verified" label for the Unity version you're currently using.
+Only verified package versions are supported. When installing or updating a package via Unity's package manager, make sure it has a "verified" label for the Unity version you're currently using.
 
 ![](https://i.gyazo.com/a06f8b0cefff2fc5e578c60cae4ed33f.png)
 

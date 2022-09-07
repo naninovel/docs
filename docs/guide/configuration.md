@@ -10,7 +10,7 @@ Notice, that all the configuration menus are supporting [Unity's presets feature
 It's possible to modify configuration objects at runtime, add new custom configurations and change the way the objects are accessed at runtime (eg, read configuration from JSON files stored on a remote host); see [custom configuration](/guide/custom-configuration.md) guide for more information.
 
 ::: note
-This configuration reference is valid for [Naninovel v1.17](https://github.com/Naninovel/Documentation/releases).
+This configuration reference is valid for [Naninovel v1.18](https://github.com/Naninovel/Documentation/releases).
 :::
 
 ## Audio
@@ -50,6 +50,7 @@ Property | Default Value | Description
 --- | --- | ---
 Default Metadata | Object Ref | Metadata to use by default when creating background actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating background actors with specific IDs.
+Shared Poses | Object Ref | Named states (poses) shared between the backgrounds; pose name can be used as appearance in `@back` commands to set enabled properties of the associated state.
 Scene Origin | (0.5, 0.0) | Reference point on scene to be considered as origin for the managed actors. Doesn't affect positioning.
 Z Offset | 100 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
 Z Step | 0.1 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
@@ -70,7 +71,7 @@ Reference PPU | 100 | How many pixels correspond to a scene unit. Reducing this 
 Match Screen Width | False | Whether reference scene rectangle width should be matched against screen width. When enabled, relative (scene) position evaluation will use screen border as the origin; otherwise reference resolution is used.
 Initial Position | (0.0, 0.0, -10.0) | Initial world position of the managed cameras.
 Custom Camera Prefab | Null | A prefab with a camera component to use for rendering. Will use a default one when not specified. In case you wish to set some camera properties (background color, FOV, HDR, etc) or add post-processing scripts, create a prefab with the desired camera setup and assign the prefab to this field.
-Use UI Camera | True | Whether to render the UI in a separate camera. This will allow to use individual configuration for the main and UI cameras and prevent post-processing (image) effects from affecting the UI at the cost of a slight rendering overhead.
+Use UI Camera | True | Whether to render the UI with a dedicated camera. This option is for backward-compatibility and should not be disabled in new projects. Expect issues when disabled (eg, constant uGUI layout rebuilds on camera animations).
 Custom UI Camera Prefab | Null | A prefab with a camera component to use for UI rendering. Will use a default one when not specified. Has no effect when `Use UI Camera` is disabled
 Default Duration | 0.35 | Default duration (in seconds) for all the camera modifications (changing zoom, position, rotation, etc).
 Default Easing | Linear | Easing function to use by default for all the camera modifications (changing zoom, position, rotation, etc).
@@ -90,6 +91,7 @@ Arrange Range | (0.0, 1.0) | Start (x) and end (y) positions (in 0.0 to 1.0 rang
 Default Metadata | Object Ref | Metadata to use by default when creating character actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating character actors with specific IDs.
 Avatar Loader | Character Avatars- (Addressable, Project) | Configuration of the resource loader used with character avatar texture resources.
+Shared Poses | Object Ref | Named states (poses) shared between the characters; pose name can be used as appearance in `@char` commands to set enabled properties of the associated state.
 Scene Origin | (0.5, 0.0) | Reference point on scene to be considered as origin for the managed actors. Doesn't affect positioning.
 Z Offset | 50 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
 Z Step | 0.1 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
@@ -144,6 +146,7 @@ Show Title UI | True | Whether to automatically show title screen UI (main menu)
 Enable Bridging | True | Whether to automatically start the bridging server to communicate with external Naninovel tools: IDE extension, web editor, etc.
 Server Port | 41016 | The network port for the server to listen. Change both here and in the external tools in case the default port is occupied by another application.
 Auto Generate Metadata | True | Whether to automatically generate project metadata when Unity editor is started.
+Generate Label Metadata | True | Whether to generate metadata used for script labels autocompletion. May take a substantial time when there are a lot of scripts in the project.
 Enable Development Console | True | Whether to enable development console.
 Toggle Console Key | Back Quote | Key used to toggle development console. You can also toggle it with a multi (3 or more) touch when using touchscreens.
 
@@ -347,7 +350,7 @@ Property | Default Value | Description
 Loader | UI- (Addressable, Project) | Configuration of the resource loader used with UI resources.
 Override Objects Layer | True | Whether to assign a specific layer to all the UI objects managed by the engine. Required for some of the built-in features, eg `Toggle UI`.
 Objects Layer | 5 | When `Override Objects Layer` is enabled, the specified layer will be assigned to all the managed UI objects.
-Font Options | Null | Font options, that should be available in the game settings UI (in addition to `Default`) for the player to choose from.
+Font Options | Object Ref | Font options, that should be available in the game settings UI (in addition to `Default`) for the player to choose from.
 Default Font | Null | Name (ID) of a font from `Font Options` to apply by default when the game is first started. When not specified, `Default` font is applied.
 
 </div>

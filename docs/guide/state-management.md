@@ -182,10 +182,14 @@ using UnityEngine;
 
 public class CustomSettingsSlotManager : ISaveSlotManager<SettingsStateMap>
 {
-    public event Action OnBeforeSave;
-    public event Action OnSaved;
-    public event Action OnBeforeLoad;
-    public event Action OnLoaded;
+    public event Action<string> OnBeforeSave;
+    public event Action<string> OnSaved;
+    public event Action<string> OnBeforeLoad;
+    public event Action<string> OnLoaded;
+    public event Action<string> OnBeforeDelete;
+    public event Action<string> OnDeleted;
+    public event Action<string, string> OnBeforeRename;
+    public event Action<string, string> OnRenamed;
 
     public bool Loading => false;
     public bool Saving => false;
@@ -211,17 +215,13 @@ public class CustomSettingsSlotManager : ISaveSlotManager<SettingsStateMap>
 
     public UniTask SaveAsync (string slotId, SettingsStateMap data)
     {
-        OnBeforeSave?.Invoke();
         Debug.Log($"SaveAsync({slotId})");
-        OnSaved?.Invoke();
         return UniTask.CompletedTask;
     }
 
     public UniTask<SettingsStateMap> LoadAsync (string slotId)
     {
-        OnBeforeLoad?.Invoke();
         Debug.Log($"LoadAsync({slotId})");
-        OnLoaded?.Invoke();
         return UniTask.FromResult(new SettingsStateMap());
     }
 
@@ -239,4 +239,3 @@ You can pick any name for your custom serialization handler, `CustomSettingsSlot
 When a custom handler is implemented, it'll appear in the state configuration menu, where you can set it instead of the built-in one.
 
 ![](https://i.gyazo.com/213bc2bb8c7cc0e62ae98a579579f313.png)
-

@@ -20,7 +20,7 @@ wait | Boolean | Whether the script player should wait for the async command to 
 </div>
 
 ::: note
-This API reference is valid for [Naninovel v1.17](https://github.com/Naninovel/Documentation/releases).
+This API reference is valid for [Naninovel v1.18](https://github.com/Naninovel/Documentation/releases).
 :::
 
 ## animate
@@ -29,7 +29,7 @@ This API reference is valid for [Naninovel v1.17](https://github.com/Naninovel/D
 Animate properties of the actors with the specified IDs via key frames. Key frames for the animated parameters are delimited with `|` literals.
 
 #### Remarks
-Be aware, that this command searches for actors with the provided IDs over all the actor managers, and in case multiple actors with the same ID exist (eg, a character and a text printer), this will affect only the first found one. <br /><br /> When running the animate commands in parallel (`wait` is set to false) the affected actors state can mutate unpredictably. This could cause unexpected results when rolling back or performing other commands that affect state of the actor. Make sure to reset affected properties of the animated actors (position, tint, appearance, etc) after the command finishes or use `@animate CharacterId` (without any args) to stop the animation prematurely.
+It's not recommended to use this command for complex animations. Naniscript is a scenario scripting DSL and not suited for complex automation or specification such as animation. Consider using dedicated animation tools instead, such as Unity's [Animator](https://docs.unity3d.com/Manual/AnimationSection.html). <br /><br /> Be aware, that this command searches for actors with the provided IDs over all the actor managers, and in case multiple actors with the same ID exist (eg, a character and a text printer), this will affect only the first found one. <br /><br /> When running the animate commands in parallel (`wait` is set to false) the affected actors state can mutate unpredictably. This could cause unexpected results when rolling back or performing other commands that affect state of the actor. Make sure to reset affected properties of the animated actors (position, tint, appearance, etc) after the command finishes or use `@animate CharacterId` (without any args) to stop the animation prematurely.
 
 #### Parameters
 
@@ -467,8 +467,21 @@ params | string list | Parameters to set before destroying the prefab. Requires 
 
 #### Example
 ```nani
-; Given a `@spawn Rainbow` command was executed before.
+; Given a `@spawn Rainbow` command was executed before, de-spawn (destroy) it.
 @despawn Rainbow
+```
+
+## despawnAll
+
+#### Summary
+Destroys all the objects spawned with [@spawn] command. Equal to invoking [@despawn] for all the currently spawned objects.
+
+#### Example
+```nani
+@spawn Rainbow
+@spawn SunShafts
+; Will de-spawn (destroy) both rainbow and SunShafts.
+@despawnAll
 ```
 
 ## else
@@ -1233,9 +1246,8 @@ ID | Type | Description
 @set name="Dr. Stein";drink="Dr. Pepper"
 {name}: My favourite drink is {drink}!
 
-; When using double quotes inside the expression itself, 
-; don't forget to double-escape them.
-@set remark="Shouting \\"Stop the car!\\" was a mistake."
+; When using double quotes inside text expression value, escape them.
+@set remark="Shouting \"Stop the car!\" was a mistake."
 
 ; Use global variable to indicate player reaching `Ending 001`.
 ; The variable will remain true even when the game is restarted.
@@ -1784,3 +1796,4 @@ Jeez, what a disgusting noise. Shut it down![wait i5][skipInput]
 @wait {Random(3,8)} do:"@sfx Thunder, @spawn ShakeBackground params:\,1" wait:false
 The thunder might go off any second...
 ```
+

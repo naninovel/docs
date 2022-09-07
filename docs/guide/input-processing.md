@@ -42,13 +42,7 @@ When in the main gameplay mode (outside of modal UIs), press a button bind to `P
 
 ## Input System
 
-Naninovel supports Unity's new [Input System](https://blogs.unity3d.com/2019/10/14/introducing-the-new-input-system/); see the [official docs](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.1/manual/Installation.html) on how to install and enable the input system package.
-
-::: note
-Minimum supported input system package is 1.1, which is currently in preview. You may need to enable preview packages in the project in order to install it.
-
-[!1a662215459f936d1a3b49d9089e8357]
-:::
+Naninovel supports Unity's new [Input System](https://blogs.unity3d.com/2019/10/14/introducing-the-new-input-system/); see the [official docs](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.2/manual/Installation.html) on how to install and enable the input system package.
 
 ::: warn
 Touch and object-related input is still processed via legacy input, so don't completely disable legacy backend in the player settings, unless you're going to implement the features yourself.
@@ -78,4 +72,4 @@ When properly configured, input actions will activate Naninovel's bindings. In c
 Find an example project on using the new input system and implementing a rebind UI to allow player change default controls on GitHub: [github.com/Naninovel/Input](https://github.com/Naninovel/Input).
 :::
 
-For more information on using the input system, consult the [official manual](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual).
+For more information on using the input system, consult the [official manual](https://docs.unity3d.com/Packages/com.unity.inputsystem@latest).

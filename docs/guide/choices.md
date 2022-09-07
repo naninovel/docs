@@ -93,6 +93,20 @@ Find a more advanced implementation of interactive map with Naninovel in the Map
 [!4987b1c53cd275f3fa56b533f53f3d8c]
 :::
 
+## ChatReply Choice Handler
+
+Used by [chat text printer](/guide/text-printers.md#chat-printer) to represent reply choices. Example:
+
+```nani
+@printer Chat
+Kohaku: Where're you right now?
+@choice "Play dumb" handler:ChatReply do:"Yuko: ¯\_(ツ)_/¯"
+@choice "Answer" handler:ChatReply do:"Yuko: school. preping for the festival"
+@stop
+```
+
+[!338f8519b3a1656059a407fe0232b376]
+
 ## Adding Custom Choice Handlers
 
 You can add custom choice handlers based on the built-in templates or create new handlers from scratch. For example, let's customize the built-in `ButtonArea` template. 

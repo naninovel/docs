@@ -74,24 +74,7 @@ When `Control Opacity` is enabled and `Canvas Group` component is attached to th
 
 In case you wish to support gamepad or keyboard navigation over the UI, assign a game object with an interactable component (eg, a `Button`) to `Focus Object` property. This object will then be automatically focused when the UI becomes visible allowing to navigate over other interactable objects with a gamepad and/or keyboard. See Unity's [guide on UI navigation](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-SelectableNavigation.html) for more info on how to set up the navigation behavior.
 
-When `Focus Object` is assigned, `Focus Mode` property allows choosing when to focus the object: `Visibility` mode will focus it right after the UI becomes visible and `Navigation` will postpone the focus until player activates a navigation key on gamepad (left stick or D-pad) or keyboard (arrow keys). 
-
-To specify, which text elements should be affected by font and text size changes set in [game settings](/guide/game-settings.md), use `Font Change Configuration` property.
-
-![](https://i.gyazo.com/f8e8b03580940cce72de9e9970512902.png)
-
-Each element in the configuration list has following properties:
-
-Property | Description
---- | ---
-Object | The game object with a text component, which should be affected by font changes. It works with both uGUI and TMPro text components.
-AllowFontChange | Whether to allow changing font of the text component.
-AllowFontSizeChange | Whether to allow changing font size of the text component.
-FontSizes | Actual font sizes to apply for text component. Each element in the list corresponds to font size dropdown list index: Small -> 0, Default -> 1, Large -> 2, Extra Large -> 3 (can be changed via SettingsUI). Default value will be ignored and font size initially set in the prefab will be used instead.
-
-Specific text font options available in the game settings menu are set up in the UI configuration menu:
-
-![](https://i.gyazo.com/4a06d2baf086175b168eb284e1f5955f.png)
+When `Focus Object` is assigned, `Focus Mode` property allows choosing when to focus the object: `Visibility` mode will focus it right after the UI becomes visible and `Navigation` will postpone the focus until player activates a navigation key on gamepad (left stick or D-pad) or keyboard (arrow keys).
 
 `On Show` and `On Hide` Unity events allow hooking custom handlers to react to the UI visibility changes. For example, you can hook an `Animator` triggers to fire some custom animations when the UI becomes visible and vice-versa.
 
@@ -109,6 +92,27 @@ Several other components will also be added by default when creating a custom UI
 - `Graphic Raycaster` allows player to interact with buttons and other interactable elements inside the UI canvas.
 
 You are free to modify or remove any of the above components as you see fit.
+
+### Changing Font
+
+To specify, which text elements should be affected by font and text size changes set in [game settings](/guide/game-settings.md), use `Font Change Configuration` property of `Custom UI` and derived components.
+
+![](https://i.gyazo.com/f8e8b03580940cce72de9e9970512902.png)
+
+Each element in the configuration list has following properties:
+
+Property | Description
+--- | ---
+Object | The game object with a text component, which should be affected by font changes. It works with both uGUI and TMPro text components.
+AllowFontChange | Whether to allow changing font of the text component.
+AllowFontSizeChange | Whether to allow changing font size of the text component.
+FontSizes | Actual font sizes to apply for text component. Each element in the list corresponds to font size dropdown list index: Small -> 0, Default -> 1, Large -> 2, Extra Large -> 3 (can be changed via SettingsUI). Default value will be ignored and font size initially set in the prefab will be used instead.
+
+Specific text font options available in the game settings menu are set up in the UI configuration menu:
+
+![](https://i.gyazo.com/4a06d2baf086175b168eb284e1f5955f.png)
+
+To change the font outside of `Custom UI` objects (eg, on choice handler button prefab), use `Font Changer` component. It has the same font configuration option and can be applied to any game object.
 
 ### Disabling Built-In UI
 
