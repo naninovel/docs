@@ -30,7 +30,7 @@ To receive direct support join Naninovel Discord server ([discord.gg/BfkNqem](ht
 
 After the registration you'll automatically get a "Verified User" role on the server and access to the `#support` and `#download` channels. You can also send a message to a member with support role to discuss the issue in private.
 
-<iframe src="https://discordapp.com/widget?id=545676116871086080&theme=dark" width="100%" height="500" allowtransparency="true" frameborder="0"></iframe>
+<iframe src="https://discord.com/widget?id=545676116871086080&theme=dark" width="400" height="300" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
 
 Be aware, that the support is only available on business days and the **response may be delayed by up to 24 hours** (in some cases more), so make sure to:
  - Provide a clear and concise description of the issue and step-by-step instructions on how to reproduce it.
