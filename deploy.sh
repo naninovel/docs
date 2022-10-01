@@ -8,7 +8,7 @@ echo 'naninovel.com' > CNAME
 
 git init
 git config --local core.autocrlf false
-git add -A
+git add -A -f
 git commit -m 'deploy'
 git push -f git@github.com:Naninovel/Documentation.git master:gh-pages
 
