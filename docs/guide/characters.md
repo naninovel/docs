@@ -78,7 +78,7 @@ Per-actor poses have priority over shared poses meaning if actor pose name is eq
 
 In the character configuration you can set a `Display Name` for specific characters. When set, display name will be shown in the printer name label UI, instead of the character's ID. This allows using compound character names, that contains spaces and special characters (which is not allowed for IDs).
 
-For localization, use "CharacterNames" [managed text](/guide/managed-text) document, which is automatically created when running generate managed text resources task. Values from the "CharacterNames" document won't override values set in the character metadata when under the source locale.
+Alternatively, the names can be specified with "CharacterNames" [managed text](/guide/managed-text) document, which is automatically created when running generate managed text resources task. Use this to localize display names and/or edit them outside of Unity editor. Records in the managed text document have priority over display names set in actor configuration and will override them.
 
 It's possible to bind a display name to a custom variable to dynamically change it throughout the game via naninovel scripts. To bind a display name, specify name of the custom variable wrapped in curly braces in the character configuration menu.
 
