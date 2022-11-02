@@ -138,6 +138,34 @@ public class CustomConfigurationProvider : IConfigurationProvider
 }
 ```
 
+Another example on overriding default characters configuration to inject metadata at runtime:
+
+```csharp
+public class CustomConfigurationProvider : ProjectConfigurationProvider
+{
+    public override Configuration GetConfiguration (System.Type type)
+    {
+        // Return default configs for everything but characters.
+        if (type != typeof(CharactersConfiguration))
+            return base.GetConfiguration(type);
+
+        // Inject (or override) metadata of the actors.
+        // The actual data can be retrieved via external sources at runtime.
+        var charsConfig = (CharactersConfiguration)base.GetConfiguration(type);
+        charsConfig.Metadata["NewCustomChar"] = new CharacterMetadata {
+            Implementation = typeof(NarratorCharacter).AssemblyQualifiedName,
+            DisplayName = "Custom Narrator",
+            UseCharacterColor = true,
+            MessageColor = Color.cyan,
+            // etc...
+        };
+
+        // Return our modified characters config.
+        return charsConfig;
+    }
+}
+```
+
 Once the custom configuration provider is ready, you have to make the engine use it instead of the built-in one by creating a custom engine initialization script. By default, the engine is initialized via `Naninovel/Runtime/Engine/RuntimeInitializer.cs`; feel free to use it as a reference when creating your own initialization script.
 
 Alternatively, if your goal is just to use a custom configuration provider, but keep the default engine initialization routine, consider using `RuntimeInitializer.InitializeAsync(IConfigurationProvider)` static method, which accepts an optional argument for configuration provider:
