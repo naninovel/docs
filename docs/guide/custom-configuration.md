@@ -138,18 +138,18 @@ public class CustomConfigurationProvider : IConfigurationProvider
 }
 ```
 
-Another example on overriding default characters configuration to inject metadata at runtime:
+Another example on overriding project characters configuration to inject metadata at runtime:
 
 ```csharp
 public class CustomConfigurationProvider : ProjectConfigurationProvider
 {
     public override Configuration GetConfiguration (System.Type type)
     {
-        // Return default configs for everything but characters.
+        // Return project configs as-is for everything but characters.
         if (type != typeof(CharactersConfiguration))
             return base.GetConfiguration(type);
 
-        // Inject (or override) metadata of the actors.
+        // Inject (or override) metadata of the characters.
         // The actual data can be retrieved via external sources at runtime.
         var charsConfig = (CharactersConfiguration)base.GetConfiguration(type);
         charsConfig.Metadata["NewCustomChar"] = new CharacterMetadata {
