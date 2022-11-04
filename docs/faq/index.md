@@ -26,6 +26,14 @@ All the Unity-related source code is available in the distributed package, while
 
 Naninovel is governed by the following End User License Agreement (EULA): [naninovel.com/eula](https://naninovel.com/eula). Please read the document carefully before downloading or using the application.
 
+## Why am I getting "asset wasn't downloaded" error when attempting to register Asset Store license?
+
+The asset download verification is required when Naninovel is purchased via Unity's Asset Store. In order for the verification to succeed, Naninovel has to be downloaded at least once via Unity's [package manager](https://docs.unity3d.com/Manual/Packages.html) by the user, which purchased the asset. In case multiple copies of the asset has been purchased, each copy has to be downloaded by the associated organization user.
+
+In case you've made sure all the associated users have downloaded the asset but the error is still there, try waiting for some time to allow notification propagate on the Unity side. If it's still not working, contact Unity support with the order number and ask them to check why the download status is not changing.
+
+We recommend purchasing Naninovel [directly from us](https://naninovel.com/), especially when you need multiple licenses/seats. It's both cheaper and won't require any additional verifications.
+
 ## Why the package doesn't contain any demo scenes?
 
 Naninovel is designed to be [scene-independent](/guide/engine-architecture.md#scene-independent) and doesn't use [Unity scenes](https://docs.unity3d.com/Manual/CreatingScenes.html) in any way, hence it's not possible to make any kind of example or demo scenes. The engine is automatically initialized when the game is started (can be switched to manual initialization in the engine configuration window) and scenarios are scripted via text documents called [naninovel scripts](/guide/naninovel-scripts.md).
