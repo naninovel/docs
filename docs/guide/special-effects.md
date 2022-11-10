@@ -354,7 +354,7 @@ Stop Duration | Decimal | 1 | Fade-off (disable) duration for the effect, in sec
 
 ### Standalone Effects
 
-You can add a custom standalone effect (implemented via a prefab, like the "Rain" and "Snow" built-in effects) by adding the effect prefab via spawn resources manager (`Naninovel -> Resources -> Spwan`) and using [@spawn] and [@despawn] commands in the same way as with the built-in effects.
+You can add a custom standalone effect (implemented via a prefab, like the "Rain" and "Snow" built-in effects) by adding the effect prefab via spawn resources manager (`Naninovel -> Resources -> Spawn`) and using [@spawn] and [@despawn] commands in the same way as with the built-in effects.
 
 ![](https://i.gyazo.com/45b9d8fb51ffb368ff9f792221f10ca6.png)
 
