@@ -223,7 +223,7 @@ time | decimal | Duration (in seconds) of the modification.
 ## blur
 
 #### Summary
-Applies a blur filter to a supported actor: backgrounds and characters of sprite, layered, diced, Live2D, Spine, video and scene implementations.
+Applies [blur effect](/guide/special-effects.html#blur) to supported actor: backgrounds and characters of sprite, layered, diced, Live2D, Spine, video and scene implementations.
 
 #### Remarks
 The actor should have `IBlurable` interface implemented in order to support the effect.
