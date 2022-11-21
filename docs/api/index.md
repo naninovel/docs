@@ -20,7 +20,7 @@ wait | Boolean | Whether the script player should wait for the async command to 
 </div>
 
 ::: note
-This API reference is valid for [Naninovel v1.18](https://github.com/Naninovel/Documentation/releases).
+This API reference is valid for [Naninovel v1.19](https://github.com/Naninovel/Documentation/releases).
 :::
 
 ## animate
@@ -218,6 +218,68 @@ time | decimal | Duration (in seconds) of the modification.
 
 ; Plays `BattleThemeIntro` once and then immediately `BattleThemeMain` in a loop.
 @bgm BattleThemeMain intro:BattleThemeIntro
+```
+
+## blur
+
+#### Summary
+Applies a blur filter to a supported actor: backgrounds and characters of sprite, layered, diced, Live2D, Spine, video and scene implementations.
+
+#### Remarks
+The actor should have `IBlurable` interface implemented in order to support the effect.
+
+#### Parameters
+
+<div class="config-table">
+
+ID | Type | Description
+--- | --- | ---
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">actorId</span> | string | ID of the actor to apply the effect for; in case multiple actors with the same ID found (eg, a character and a printer), will affect only the first found one. When not specified, applies to the main background.
+power | decimal | Intensity of the effect, in 0.0 to 1.0 range. Defaults to 0.5. Set to 0 to disable (de-spawn) the effect.
+time | decimal | How long it will take the parameters to reach the target values, in seconds. Defaults to 1.0.
+
+</div>
+
+#### Example
+```nani
+; Blur main background with default parameters.
+@blur
+; Remove blur from the main background.
+@blur 0
+
+; Blur `Kohaku` actor with max power over 5 seconds.
+@blur Kohaku power:1 time:5
+; Remove blur from `Kohaku` over 3.1 seconds.
+@blur Kohaku power:0 time:3.1
+```
+
+## bokeh
+
+#### Summary
+Simulates [depth of field](/guide/special-effects.html#depth-of-field-bokeh) (aka DOF, bokeh) effect, when only the object in focus stays sharp, while others are blurred.
+
+#### Parameters
+
+<div class="config-table">
+
+ID | Type | Description
+--- | --- | ---
+focus | string | Name of the game object to set focus for (optional). When set, the focus will always stay on the game object, while `dist` parameter will be ignored.
+dist | decimal | Distance (in units) from Naninovel camera to the focus point. Ignored when `focus` parameter is specified. Defaults to 10.
+power | decimal | Amount of blur to apply for the de-focused areas; also determines focus sensitivity. Defaults to 3.75. Set to 0 to disable (de-spawn) the effect.
+time | decimal | How long it will take the parameters to reach the target values, in seconds. Defaults to 1.0.
+
+</div>
+
+#### Example
+```nani
+; Enable the effect with default parameters and lock focus to `Kohaku` game object.
+@bokeh focus:Kohaku
+; Fade-off (disable) the effect over 10 seconds.
+@bokeh power:0 time:10
+; Set focus point 10 units away from the camera,
+; focal distance to 0.95 and apply it over 3 seconds.
+@bokeh dist:10 power:0.95 time:3
 ```
 
 ## br
@@ -527,6 +589,30 @@ easing | string | Name of the easing function to use for the modification. <br /
 time | decimal | Duration (in seconds) of the transition.
 
 </div>
+
+## glitch
+
+#### Summary
+Applies [digital glitch](/guide/special-effects.html#digital-glitch) post-processing effect to the main camera simulating digital video distortion and artifacts.
+
+#### Parameters
+
+<div class="config-table">
+
+ID | Type | Description
+--- | --- | ---
+time | decimal | The duration of the effect, in seconds; default is 1.
+power | decimal | The intensity of the effect, in 0.0 to 10.0 range; default is 1.
+
+</div>
+
+#### Example
+```nani
+; Apply the glitch effect with default parameters.
+@glitch
+; Apply the effect over 3.33 seconds with a low intensity.
+@glitch time:3.33 power:0.1
+```
 
 ## gosub
 
@@ -1102,6 +1188,36 @@ You've picked two.
 @stop
 ```
 
+## rain
+
+#### Summary
+Spawns particle system simulating [rain](/guide/special-effects.html#rain).
+
+#### Parameters
+
+<div class="config-table">
+
+ID | Type | Description
+--- | --- | ---
+power | decimal | The intensity of the rain (particles spawn rate per second); defaults to 500. Set to 0 to disable (de-spawn) the effect.
+time | decimal | The particle system will gradually grow the spawn rate to the target level over the specified time, in seconds.
+xSpeed | decimal | Multiplier to the horizontal speed of the particles. Use to change angle of the rain drops.
+ySpeed | decimal | Multiplier to the vertical speed of the particles.
+pos | decimal list | Position (relative to the scene borders, in percents) to set for the spawned effect game object. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode.
+position | decimal list | Position (in world space) to set for the spawned effect game object.
+rotation | decimal list | Rotation to set for the spawned effect game object.
+scale | decimal list | Scale to set for the spawned effect game object.
+
+</div>
+
+#### Example
+```nani
+; Start intensive rain over 10 seconds.
+@rain power:1500 time:10
+; Stop the rain over 30 seconds.
+@rain power:0 time:30
+```
+
 ## resetState
 
 #### Summary
@@ -1321,6 +1437,47 @@ group | string | Audio mixer [group path](https://docs.unity3d.com/ScriptReferen
 @sfxFast Click restart:false
 ```
 
+## shake
+
+#### Summary
+Applies [shake effect](/guide/special-effects.html#shake) for the actor with the specified ID or main camera.
+
+#### Parameters
+
+<div class="config-table">
+
+ID | Type | Description
+--- | --- | ---
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">actorId</span> | string | ID of the actor to shake. In case multiple actors with the same ID found (eg, a character and a printer), will affect only the first found one. To shake main camera, use "Camera" keyword.
+count | integer | The number of shake iterations. When set to 0, will loop until stopped with -1.
+time | decimal | The base duration of each shake iteration, in seconds.
+deltaTime | decimal | The randomizer modifier applied to the base duration of the effect.
+power | decimal | The base displacement amplitude of each shake iteration, in units.
+deltaPower | decimal | The randomized modifier applied to the base displacement amplitude.
+hor | boolean | Whether to displace the actor horizontally (by x-axis).
+ver | boolean | Whether to displace the actor vertically (by y-axis).
+
+</div>
+
+#### Example
+```nani
+; Shake `Dialogue` text printer with default params.
+@shake Dialogue
+;
+; Start shaking `Kohaku` character, show a choice to stop and act accordingly.
+@shake Kohaku count:0 wait:false
+@choice "Continue shaking" goto:.Continue
+@choice "Stop shaking" goto:.Stop
+@stop
+# Stop
+@shake Kohaku count:-1
+# Continue
+...
+
+; Shake main Naninovel camera horizontally 5 times.
+@shake Camera count:5 hor:true ver:false
+```
+
 ## show
 
 #### Summary
@@ -1473,6 +1630,34 @@ time | decimal | Duration (in seconds) of the slide animation.
 ; Slide `Mia` actor from left-center side of the scene to the right-bottom
 ; over 5 seconds using `EaseOutBounce` animation easing.
 @slide Sheba from:15,50 to:85,0 time:5 easing:EaseOutBounce
+```
+
+## snow
+
+#### Summary
+Spawns particle system simulating [snow](/guide/special-effects.html#snow).
+
+#### Parameters
+
+<div class="config-table">
+
+ID | Type | Description
+--- | --- | ---
+power | decimal | The intensity of the snow (particles spawn rate per second); defaults to 100. Set to 0 to disable (de-spawn) the effect.
+time | decimal | The particle system will gradually grow the spawn rate to the target level over the specified time, in seconds.
+pos | decimal list | Position (relative to the scene borders, in percents) to set for the spawned effect game object. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode.
+position | decimal list | Position (in world space) to set for the spawned effect game object.
+rotation | decimal list | Rotation to set for the spawned effect game object.
+scale | decimal list | Scale to set for the spawned effect game object.
+
+</div>
+
+#### Example
+```nani
+; Start intensive snow over 10 seconds.
+@snow power:300 time:10
+; Stop the snow over 30 seconds.
+@snow power:0 time:30
 ```
 
 ## spawn
@@ -1642,6 +1827,34 @@ Consectetur adipiscing elit.
 
 ; Print starting part of the sentence normally, but the last one in bold.
 Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
+```
+
+## sun
+
+#### Summary
+Spawns particle system simulating [sun shafts](/guide/special-effects.html#sun-shafts) aka god rays.
+
+#### Parameters
+
+<div class="config-table">
+
+ID | Type | Description
+--- | --- | ---
+power | decimal | The intensity of the rays (opacity), in 0.0 to 1.0 range; default is 0.85. Set to 0 to disable (de-spawn) the effect.
+time | decimal | The particle system will gradually grow the spawn rate to the target level over the specified time, in seconds.
+pos | decimal list | Position (relative to the scene borders, in percents) to set for the spawned effect game object. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode.
+position | decimal list | Position (in world space) to set for the spawned effect game object.
+rotation | decimal list | Rotation to set for the spawned effect game object.
+scale | decimal list | Scale to set for the spawned effect game object.
+
+</div>
+
+#### Example
+```nani
+; Start intensive sunshine over 10 seconds.
+@sun power:1 time:10
+; Stop the sunshine over 30 seconds.
+@sun power:0 time:30
 ```
 
 ## title
