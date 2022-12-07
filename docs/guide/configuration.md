@@ -241,6 +241,7 @@ Min Auto Play Delay | 3 | Minimum seconds to wait before executing next command 
 Complete On Continue | True | Whether to instantly complete blocking (`wait:true`) commands performed over time (eg, animations, hide/reveal, tint changes, etc) when `Continue` input is activated.
 Show Debug On Init | False | Whether to show player debug window on engine initialization.
 Wait By Default | True | Whether to wait the played commands when the `wait` parameter is not explicitly specified.
+Load On Goto | True | Whether to show `ILoadingUI` when [@goto] command requires loading another script. Allows masking resource pre-loading process with the loading screen.
 
 </div>
 
@@ -307,7 +308,6 @@ Quick Save Slot Mask | Game Quick Save{0:000} | Mask used to name quick save slo
 Save Slot Limit | 99 | Maximum number of save slots.
 Quick Save Slot Limit | 18 | Maximum number of quick save slots.
 Binary Save Files | True | Whether to compress and store the saves as binary files (.nson) instead of text files (.json). This will significantly reduce the files size and make them harder to edit (to prevent cheating), but will consume more memory and CPU time when saving and loading.
-Load Start Delay | 0.3 | Seconds to wait before starting load operations; used to allow pre-load animations to complete before any load-related stutters could happen.
 Reset On Goto | False | Whether to reset state of the engine services when loading another script via [@goto] command. Can be used instead of [@resetState] command to automatically unload all the resources on each goto.
 Enable State Rollback | True | Whether to enable state rollback feature allowing player to rewind the script backwards.
 State Rollback Steps | 1024 | The number of state snapshots to keep at runtime; determines how far back the rollback (rewind) can be performed. Increasing this value will consume more memory.
