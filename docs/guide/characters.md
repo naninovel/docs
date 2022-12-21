@@ -353,6 +353,12 @@ Be aware, that the layer objects are not directly rendered by Unity cameras at r
 
 In case you wish to apply an animation or other dynamic behaviour to the layered character, enable `Animated` property found on `Layered Character Behaviour` component. When the property is enabled, the layers will be rendered each frame (instead once per appearance change).
 
+### Outsourcing Appearance Management
+
+You may find layered implementation useful for supporting various built-in render features (semi-transparency overdraw handling, transition effects, blur and depth-of-field support, etc), but would like to use external tools for managing appearance of the actor, such as Unity's [Animator](https://docs.unity3d.com/Manual/class-Animator.html). By default, layered behaviour will use layered expressions when notifying about appearance changes via `On Appearance Changed` event, which may not be desired in such case.
+
+Enabling `Render Only` option will disable layer-related behaviour and make the event report the appearance as it's specified in script commands. You will also have to specify `Default Appearance` on the behaviour component to prevent it from evaluating default appearance based on the initial prefab layer composition.
+
 ## Generic Characters
 
 Generic character is the most flexible character actor implementation. It's based on a prefab with a `Generic Character Behaviour` component attached to the root object. Appearance changes and all the other character parameters are routed as [Unity events](https://docs.unity3d.com/Manual/UnityEvents.html) allowing to implement the behavior of the underlying object in any way you wish.
