@@ -107,3 +107,31 @@ Right-to-left (RTL) languages (Arabic, Hebrew, Persian, etc) are supported by th
 To associate a font with a specific locale, use `Apply On Locale` property of font options found in UI configuration. When a locale is selected, the font will be automatically applied when that locale is selected in the game settings.
 
 ![](https://i.gyazo.com/52e1a5eaaf99f5b4415083d1c86e9c10.png)
+
+## Community Localization
+
+When released title gains enough popularity, community (players) may look to contribute additional localizations; this often leads to users hacking build assets to replace the displayed text. Naninovel provides runtime localization option allowing to add community localizations without tampering with the build files.
+
+### Ejecting Localization Resources
+
+To generate localization resources (script and managed text docs), run the game executable with `-nani-eject` argument, eg:
+
+```
+./game.exe -nani-eject
+```
+
+— this will launch the game as usual, but after Naninovel is initialized, it will eject the localization resources to Unity's [persistent data folder](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html) under `Localization` folder. For example, if the application's company is `Foo` and game title is `Bar` ejected path on Windows will be following: `C:/Users/User/AppData/LocalLow/Foo/Bar/Localization`.
+
+If you'd like to generate localization resources based on a built-in localization, append the locale tag to the eject arg. Eg, given the game has `ja-JP` localization, use the following args to eject the Japanese localization documents: `-nani-eject-ja-JP`. When the locale tag is not specified, documents for the source locale are ejected.
+
+Notice `Localization/Author.txt` file; you can specify author of the localization by replacing the default content of the file. The content is displayed in the language dropdown by default, but developer may customize this behaviour. Don't delete the file itself, as it's required to detect presence of the community localization.
+
+### Translating
+
+After the documents are ejected you can start the translation. The process is similar to the "Scripts Localization" and "UI Localization" explained above. Script localization documents are stored at `Localization/Scripts` folder, while managed text docs are stored at `Localization/Text`.
+
+Restart the game as usual (without the eject arg) and it will automatically use the localization resources at the persistent data folder. For changes in script localization to take effect, associated script have to be re-loaded (save-loading is usually enough), but it may be required to restart the game in some cases.
+
+In case developer updates the game, you can eject again to update the existing localization; new lines and records will be inserted, while existing translation for the unchanged source material will not be lost.
+
+After the localization is finished, share the `Localization` folder and instruct end-users to place it under the aformentioned persistent data directory to activate the localization. To disable the localization, delete the folder.
