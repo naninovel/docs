@@ -391,6 +391,8 @@ For the supported video formats for each platform see [Unity docs for video sour
 
 When using video with an alpha channel (transparency), see the [guide on the supported formats](https://docs.unity3d.com/Manual/VideoTransparency.html).
 
+To prevent specific appearance from looping, append `NoLoop` (case-insensitive) to the appearance name.
+
 ## Live2D Characters
 
 Live2D character implementation uses assets created with [Live2D Cubism](https://www.live2d.com) 2D modeling and animation software.

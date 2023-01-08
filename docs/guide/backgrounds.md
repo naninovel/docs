@@ -124,6 +124,8 @@ When `Transcode` is disabled in the video asset import settings, the clip may no
 In case having issues with achieving a seamless loop, make sure the video has exactly same starting and finishing frames and a compatible encoding setup; check our [video loop example project](https://github.com/Elringus/VideoLoop) for the reference.
 :::
 
+To prevent specific appearance from looping, append `NoLoop` (case-insensitive) to the appearance name.
+
 ### WebGL Limitations
 
 On WebGL Unity's video player can only work in streaming mode, so all the video resources will be copied to `Assets/StreamingAssets/Backgrounds` folder upon building the WebGL player. **StreamingAssets** folder will also appear in the build output directory; make sure to preserve it when publishing the build and check that your web server allows reading the data from this folder.
