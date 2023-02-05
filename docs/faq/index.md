@@ -20,7 +20,7 @@ Naninovel can work with any language, but to display text in some languages, you
 
 ## Will I get access to the source code when I buy Naninovel?
 
-All the Unity-related source code is available in the distributed package, while some core Naninovel sources are precompiled into dynamic assemblies. You can download the precompiled sources in the account ([account.naninovel.com](https://account.naninovel.com)) after registering a Naninovel license.
+All the Unity-related sources are available in the distributed package. Common Naninovel modules are precompiled into dynamic assembly with sources hosted on GitHub: [github.com/Naninovel/Common](https://github.com/Naninovel/Common).
 
 ## What are the legal usage terms and conditions?
 
