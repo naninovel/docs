@@ -194,18 +194,7 @@ In case the reveal sounds are not working for you (eg, the sound is not short en
 
 ## TextMesh Pro
 
-Naninovel supports [TextMesh Pro](https://docs.unity3d.com/Manual/com.unity.textmeshpro.html) via built-in `TMProFullscreen`, `TMProDialogue`, `TMProWide`, `TMProChat` and `TMProBubble` printers implemented with the TMPro UI text components.
-
-Before using the TMPro printers, make sure you have TextMesh Pro installed in your Unity project. TextMesh Pro can be installed via package manager accessible with `Window -> Package Manager` menu.
-
-You can select the TMPro printers to route all the print commands to them using [@printer] command in naninovel scripts:
-
-```nani
-; Activate dialogue TMPro printer
-@printer TMProDialogue
-; Print text using the activated printer
-Hello World!
-```
+Naninovel uses [TextMesh Pro](https://docs.unity3d.com/Manual/com.unity.textmeshpro.html) in all the built-in printers. Legacy UI Text (uGUI) is not supported. TextMesh Pro can be installed via package manager accessible with `Window -> Package Manager` menu (pre-installed by default since Unity 2019.4).
 
 When creating custom TextMesh Pro font assets or materials, don't forget to apply `Naninovel/RevealableTMProText` shader to the font material, otherwise text reveal effect won't work.
 
@@ -223,13 +212,13 @@ Make sure the material has sprite atlas texture assigned, as it won't automatica
 
 ### Right to Left (Arabic) Text
 
-Naninovel supports RTL text reveal effect in TMPro printers.
+Supports for RTL text reveal effect can be enabled in all the built-in printers.
 
 [!38b9ec2bbf18dc6ee469c3fb452eae29]
 
-To use RTL text in a TMPro printer, do the following:
-1. Create a custom TMPro text printer.
-3. Apply `Naninovel/RevealableTMProText RTL` shader to the [font material](http://digitalnativestudios.com/textmeshpro/docs/font/) used by the printer.
+To use RTL text in a printer, do the following:
+1. Create custom text printer from any built-in template.
+2. Apply `Naninovel/RevealableTMProText RTL` shader to the [font material](http://digitalnativestudios.com/textmeshpro/docs/font/) used by the printer.
 3. Set `Enable RTL Editor` property in "Revealable TM Pro Text" component inside the printer.
 4. Optionally, enable `Fix Arabic Text` property on the same component.
 
@@ -257,13 +246,9 @@ Neither uGUI, nor TMPro [natively support Arabic text](http://digitalnativestudi
 
 ## Text Styles
 
-Various text styles can be applied via rich text tags placed right inside the text or using [@style] command.
+Various text styles can be applied via rich text tags placed right inside the text or using [@style] command. See the [official documentation](http://digitalnativestudios.com/textmeshpro/docs/rich-text/) for more info. 
 
-The default (non-TMPro) text printers are based on [Unity's text rendering system](https://docs.unity3d.com/Manual/script-Text.html) and support basic text styling like color, size, bold, italic, etc. Refer to [guide on text tags](https://docs.unity3d.com/Manual/StyledText.html) for more info.
-
-TextMesh Pro printers support a wide range of additional text tags. See the [official documentation](http://digitalnativestudios.com/textmeshpro/docs/rich-text/) for more info. 
-
-Support for [ruby](https://en.wikipedia.org/wiki/Ruby_character) (furigana) characters is additionally provided by the Naninovel's TextMesh Pro printers via custom `<ruby>` tag. Wrap the text above which the ruby characters should be placed with the ruby tag and specify the ruby text inside the tag, eg:
+Support for [ruby](https://en.wikipedia.org/wiki/Ruby_character) (furigana) characters is additionally provided by Naninovel's `Naninovel TMPro Text` component via custom `<ruby>` tag. Wrap the text above which the ruby characters should be placed with the ruby tag and specify the ruby text inside the tag, eg:
 
 ```nani
 Lorem <ruby="VERY">ipsum</ruby> dolor sit amet. 
