@@ -180,6 +180,8 @@ When `Slack Opacity` is below 1, opacity of the text printed before the last app
 
 [!29017ea20e8b7b95c3f7f25658b645f9]
 
+When text printer has constant dimensions and can't accommodate varying message length and/or font size, set TMPro's text overflow mode to "page" and add `Reveal Paginator` component, which will sync currently displayed page with the reveal progress. Find example setup in `Fullscreen` built-in printer.
+
 ## Text Styles
 
 Various text styles can be applied via rich text tags placed right inside the text or using [@style] command. See the [official documentation](http://digitalnativestudios.com/textmeshpro/docs/rich-text/) for more info.
