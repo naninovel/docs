@@ -201,6 +201,7 @@ Expression syntax:
  - To reference parameter value, use `:` followed by the parameter ID (field name as specified in C#, not alias)
  - Use `[0]` or `[1]` after parameter reference to specify named value (0 for name and 1 for index)
  - Use null coalescing (`??`) after parameter reference for fallback in case the value is not specified
+ - Use concatenation operator (`+`) to merge values from multiple constants
 
 For example, check the expression assigned to `Path` parameter of the built-in `[@goto]` command:
 
@@ -210,5 +211,14 @@ public NamedStringParameter Path;
 ```
 
 — when name component of the parameter is assigned with `foo`, it will evaluate to `Labels/foo`, otherwise, given inspected script name is `bar` it will evaluate to `Labels/bar`.
+
+Another example for character poses applied to `@char` command:
+
+```csharp
+[ConstantContext("Poses/Characters/{:Id??:IdAndAppearance[0]}+Poses/Characters/*", paramId: nameof(Pose))]
+public class ModifyCharacter { ... }
+```
+
+— will merge shared character poses with poses for characters with ID assigned to "ID" parameter or (when not assigned) name component of "IdAndAppearance" parameter.
 
 Constant expressions combined with [custom metadata providers](/guide/ide-extension.md#metadata-providers) allow creating arbitrary autocompletion scenarios for the IDE extension.
