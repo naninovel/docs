@@ -148,6 +148,7 @@ Server Port | 41016 | The network port for the server to listen. Change both her
 Auto Generate Metadata | True | Whether to automatically generate project metadata when Unity editor is started.
 Generate Label Metadata | True | Whether to generate metadata used for script labels autocompletion. May take a substantial time when there are a lot of scripts in the project.
 Enable Development Console | True | Whether to enable development console.
+Debug Only Console | False | When enabled, development console will only be available in development (debug) builds.
 Toggle Console Key | Back Quote | Key used to toggle development console. You can also toggle it with a multi (3 or more) touch when using touchscreens.
 
 </div>
@@ -347,11 +348,12 @@ Auto Show On Modify | False | Whether to automatically reveal (show) an actor wh
 
 Property | Default Value | Description
 --- | --- | ---
-Loader | UI- (Addressable, Project) | Configuration of the resource loader used with UI resources.
+UI Loader | UI- (Addressable, Project) | Configuration of the resource loader used with UI resources.
+Font Loader | Fonts- (Addressable, Project) | Configuration of the resource loader used with font resources.
 Override Objects Layer | True | Whether to assign a specific layer to all the UI objects managed by the engine. Required for some of the built-in features, eg `Toggle UI`.
 Objects Layer | 5 | When `Override Objects Layer` is enabled, the specified layer will be assigned to all the managed UI objects.
 Font Options | Object Ref | Font options, that should be available in the game settings UI (in addition to `Default`) for the player to choose from.
-Default Font | Null | Name (ID) of a font from `Font Options` to apply by default when the game is first started. When not specified, `Default` font is applied.
+Default Font | Null | Font name from `Font Options` to apply by default when the game is first started. When not specified, `Default` font is applied.
 
 </div>
 

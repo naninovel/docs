@@ -1030,10 +1030,10 @@ time | decimal | Duration (in seconds) of the fade animation. When not specified
 ## openURL
 
 #### Summary
-Opens specified URL (web address) with a default web browser.
+Opens specified URL (web address) with default web browser.
 
 #### Remarks
-Unity's `Application.OpenURL` method is used to handle the command; consult the [documentation](https://docs.unity3d.com/ScriptReference/Application.OpenURL.html) for behaviour details and limitations.
+When outside of WebGL or in editor, Unity's `Application.OpenURL` method is used to handle the command; consult the [documentation](https://docs.unity3d.com/ScriptReference/Application.OpenURL.html) for behaviour details and limitations. Under WebGL native `window.open()` JS function is invoked: https://developer.mozilla.org/en-US/docs/Web/API/Window/open.
 
 #### Parameters
 
@@ -1042,13 +1042,17 @@ Unity's `Application.OpenURL` method is used to handle the command; consult the 
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">uRL</span> | string | URL to open.
+target | string | Browsing context: _self (current tab), _blank (new tab), _parent, _top.
 
 </div>
 
 #### Example
 ```nani
-; Open Naninovel website.
-@openURL "https://naninovel.com"
+; Open blank page in the current tab.
+@openURL "about:blank"
+
+; Open Naninovel website in new tab.
+@openURL "https://naninovel.com" target:_blank
 ```
 
 ## print
