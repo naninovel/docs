@@ -620,7 +620,7 @@ power | decimal | The intensity of the effect, in 0.0 to 10.0 range; default is 
 Navigates naninovel script playback to the provided path and saves that path to global state; [@return] commands use this info to redirect to command after the last invoked gosub command.
 
 #### Remarks
-Designed to serve as a function (subroutine) in a programming language, allowing to reuse a piece of naninovel script. It's possible to declare a gosub outside of the currently played script and use it from any other scripts, which could be useful for invoking a repeating set of commands multiple times.
+While this command can be used as a function (subroutine) to invoke a common set of script lines, remember that NaniScript is a scenario scripting DSL and is not suited for general programming. It's strongly recommended to use [custom commands](/guide/custom-commands.md) instead.
 
 #### Parameters
 
