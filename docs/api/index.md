@@ -26,7 +26,7 @@ This API reference is valid for [Naninovel v1.19](https://github.com/Naninovel/D
 ## animate
 
 #### Summary
-Animate properties of the actors with the specified IDs via key frames. Key frames for the animated parameters are delimited with `|` literals.
+Animate properties of the actors with the specified IDs via key frames. Key frames for the animated parameters are delimited with commas.
 
 #### Remarks
 It's not recommended to use this command for complex animations. Naniscript is a scenario scripting DSL and not suited for complex automation or specification such as animation. Consider using dedicated animation tools instead, such as Unity's [Animator](https://docs.unity3d.com/Manual/AnimationSection.html). <br /><br /> Be aware, that this command searches for actors with the provided IDs over all the actor managers, and in case multiple actors with the same ID exist (eg, a character and a text printer), this will affect only the first found one. <br /><br /> When running the animate commands in parallel (`wait` is set to false) the affected actors state can mutate unpredictably. This could cause unexpected results when rolling back or performing other commands that affect state of the actor. Make sure to reset affected properties of the animated actors (position, tint, appearance, etc) after the command finishes or use `@animate CharacterId` (without any args) to stop the animation prematurely.
@@ -57,17 +57,17 @@ time | string | Duration of the animations per key, in seconds. When a key value
 ```nani
 ; Animate `Kohaku` actor over three animation steps (key frames),
 ; changing positions: first step will take 1, second — 0.5 and third — 3 seconds.
-@animate Kohaku posX:50|0|85 time:1|0.5|3
+@animate Kohaku posX:50,0,85 time:1,0.5,3
 
 ; Start loop animations of `Yuko` and `Kohaku` actors; notice, that you can skip
 ; key values indicating that the parameter shouldn't change during the animation step.
-@animate Kohaku,Yuko loop:true appearance:Surprise|Sad|Default|Angry transition:DropFade|Ripple|Pixelate posX:15|85|50 posY:0|-25|-85 scale:1|1.25|1.85 tint:#25f1f8|lightblue|#ffffff|olive easing:EaseInBounce|EaseInQuad time:3|2|1|0.5 wait:false
+@animate Kohaku,Yuko loop:true appearance:Surprise,Sad,Default,Angry transition:DropFade,Ripple,Pixelate posX:15,85,50 posY:0,-25,-85 scale:1,1.25,1.85 tint:#25f1f8,lightblue,#ffffff,olive easing:EaseInBounce,EaseInQuad time:3,2,1,0.5 wait:false
 ...
 ; Stop the animations.
 @animate Yuko,Kohaku loop:false
 
 ; Start a long background animation for `Kohaku`.
-@animate Kohaku posX:90|0|90 scale:1|2|1 time:10 wait:false
+@animate Kohaku posX:90,0,90 scale:1,2,1 time:10 wait:false
 ; Do something else while the animation is running.
 ...
 ; Here we're going to set a specific position for the character,
@@ -658,7 +658,7 @@ You are victorious!
 @stop
 # Room
 @print "It's too early, I should visit this place when it's dark." if:time<21&time>6
-@print "I can sense an ominous presence!" if:time>21|time<6
+@print "I can sense an ominous presence!" if:{time>21|time<6}
 @return
 ```
 
@@ -1260,7 +1260,7 @@ only | string list | Names of the [engine services](https://naninovel.com/guide/
 ## resetText
 
 #### Summary
-Resets (clears) the contents of a text printer.
+Resets (clears) the contents of a text printer and optionally resets author ID.
 
 #### Parameters
 
@@ -1269,6 +1269,7 @@ Resets (clears) the contents of a text printer.
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">printerId</span> | string | ID of the printer actor to use. Will use a default one when not provided.
+resetAuthor | boolean | Whether to also reset author of the currently printed text message.
 
 </div>
 
