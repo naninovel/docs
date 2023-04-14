@@ -262,6 +262,7 @@ Hot Reload Scripts | True | Whether to reload modified (both via visual and exte
 Watch Scripts | True | Whether to run a file system watcher over `.nani` files in the project. Required to register script changes when edited with an external application.
 Watched Directory |  | When `Watch Scripts` is enabled, select a specific directory to watch instead of the whole project to reduce CPU usage.
 Count Total Commands | False | Whether to calculate number of commands existing in all the available naninovel scripts on service initialization. If you don't use `TotalCommandsCount` property of a script manager and `CalculateProgress` function in naninovel script expressions, disable to reduce engine initialization time.
+Show Script Navigator | False | Whether to auto-show script navigator UI after engine is initialized (requires `IScriptNavigatorUI` available in UI resources).
 Enable Visual Editor | True | Whether to show visual script editor when a script is selected.
 Hide Unused Parameters | True | Whether to hide un-assigned parameters of the command lines when the line is not hovered or focused.
 Select Played Script | True | Whether to automatically select currently played script when visual editor is open.
@@ -279,9 +280,6 @@ Show Synopsis | True | Whether to show fist comment lines of the script inside t
 Graph Custom Style Sheet | Null | Allows modifying default style of the script graph.
 Enable Community Modding | False | Whether to allow adding external naninovel scripts to the build.
 External Loader | Scripts- (Local) | Configuration of the resource loader used with external naninovel script resources.
-Enable Navigator | True | Whether to initialize script navigator to browse available naninovel scripts.
-Show Navigator On Init | False | Whether to show naninovel script navigator when script manager is initialized.
-Navigator Sort Order | 900 | UI sort order of the script navigator.
 
 </div>
 
