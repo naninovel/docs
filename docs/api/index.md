@@ -889,7 +889,6 @@ play | boolean | Whether to automatically resume script playback when user submi
 
 ; You can then inject the assigned `name` variable in naninovel scripts.
 Archibald: Greetings, {name}!
-{name}: Yo!
 
 ; ...or use it inside set and conditional expressions.
 @set score=score+1 if:name=="Felix"
@@ -1364,8 +1363,8 @@ ID | Type | Description
 @goto .EnlargeLoop if:scale<1
 
 ; ...and generic text lines.
-@set name="Dr. Stein";drink="Dr. Pepper"
-{name}: My favourite drink is {drink}!
+@set drink="Dr. Pepper"
+My favourite drink is {drink}!
 
 ; When using double quotes inside text expression value, escape them.
 @set remark="Shouting \"Stop the car!\" was a mistake."
