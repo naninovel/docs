@@ -24,7 +24,7 @@ Set the item's ID to the `Unlockable Item Id` field and bind a command that shou
 In C# you can access the unlockable items using `UnlockableManager` [engine service](/guide/engine-services.md).
 
 ::: example
-Find example on using the unlockable system to implement music gallery without any C# scripting in the [UI example project](https://github.com/Naninovel/CustomUIExample) on GitHub. Other types of unlockable galleries (movies, achievements, etc.) can be implemented in a similar fashion. 
+Find example on using the unlockable system to implement music gallery without any C# scripting in the [UI example project](https://github.com/Naninovel/CustomUIExample) on GitHub. Other types of unlockable galleries (movies, achievements, etc.) can be implemented in a similar fashion.
 :::
 
 ## Unlockable Resources
@@ -52,9 +52,10 @@ To add an unlockable CG item to the gallery, you can either use one of the exist
 ![](https://i.gyazo.com/236bddfd0a02c18b94153cfb7189a877.png)
 
 To group multiple CGs into one gallery slot (eg, variations of a single scene), add `_` followed by a number to the unlockable ID. For instance, if you add CGs with the following IDs:
- - `CG/EpicScene_1`
- - `CG/EpicScene_2`
- - `CG/EpicScene_3`
+
+- `CG/EpicScene_1`
+- `CG/EpicScene_2`
+- `CG/EpicScene_3`
 
 — they all will be grouped under a single CG slot and shown in sequence with crossfade effect when player clicks the screen.
 
@@ -63,7 +64,7 @@ CG slots in the UI grid are arranged left to right, top to bottom and ordered by
 - `CG/01`
 - `CG/02_1`
 - `CG/02_2`
-- ...  
+- ...
 - `CG/35`
 - `CG/36`
 :::
@@ -84,22 +85,52 @@ You can modify or completely replace the built-in `ICGGalleryUI` implementation 
 
 ## Tips
 
-Unlockable tips system allows to specify a set of text records using localizable [managed text](/guide/managed-text.md) documents; the records can then be unlocked throughout the game and be browsed via the `ITipsUI` UI accessible from the title menu and text printer control panels. 
+Unlockable tips system allows to specify a set of text records using localizable [managed text](/guide/managed-text.md) documents; the records can then be unlocked throughout the game and be browsed via the `ITipsUI` UI accessible from the title menu and text printer control panels.
 
 The system can be used to build an in-game vocabulary/encyclopedia or achievements tracker.
 
 [!!CRZuS1u_J4c]
 
-To define the available tips, create a `Tips.txt` text document inside the [managed text](/guide/managed-text.md) resources directory (`Resources/Naninovel/Text` by default). Each line identifies a single tip record. The line should begin with tip ID followed by a colon; then the tip's title, category (optional) and description should be specified, all separated by vertical lines (`|`), eg:
+:::note
+Video above is demonstrating inline managed text document format, which is not the default for tips in modern Naninovel versions; see below on the current default (multiline) format and how to switch to inline.
+:::
+
+To define the available tips, create a `Tips.txt` text document inside the [managed text](/guide/managed-text.md) resources directory (`Resources/Naninovel/Text` by default). Format is similar to script localization documents (multiline): lines starting with `#` stores tip ID (key); lines below correspond to the tip record value, which can contain title (required), category and description (optional) seperated by `|`, eg:
 
 ```
-Tip1ID: Tip 1 Title | Tip 1 Category | Tip 1 Description
-Tip2ID: Tip 2 Title || Tip 2 Description
-Tip3ID: Tip 3 Title 
-Tip4ID: Tip 4 Title | Tip 4 Category |
+# Tip1ID
+Tip 1 Title | Tip 1 Category | Tip 1 Description
+# Tip2ID
+Tip 2 Title || Tip 2 Description
+# Tip3ID
+Tip 3 Title 
+# Tip4ID
+Tip 4 Title | Tip 4 Category |
 ```
 
-You can use [rich text tags](https://docs.unity3d.com/Manual/StyledText.html) and insert line breaks (`\n`) inside the description section of the tip records.
+When tip value is too long, you can break it into multiple lines for readability:
+
+```
+# Tip1
+Title | Category |
+Long description line 1.<br>
+Long description line 2.<br>
+
+# Tip2
+Title | Category |
+Long description line 1.<br>
+...
+```
+
+In case you prefer inline format, remove `Tips` from `Multiline Categories` list in managed text configuration; the tips can then be authored similar to other managed text documents:
+
+```
+Tip1ID: Title
+Tip2ID: Title | Category | Description
+Tip3ID: Title || Description
+```
+
+Apart from `<br>` tag, you can use other rich text tags supported by the text rendering system of your choice (TMPro is used in built-in tips UI).
 
 When there is at least one tip record in the `Tips.txt` managed text document, "TIPS" button will appear in the main menu and control panels, leading to the tips browser.
 
