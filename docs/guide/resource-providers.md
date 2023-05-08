@@ -84,7 +84,7 @@ Supported file formats:
 
  - `.nani` plain text files for scenario scripts
  - `.png` and `.jpg` for images/textures
- - `.mp3` and `.wav` (PCM16 44100Hz stereo only) for audio
+ - `.wav` (PCM16 44100Hz stereo only) for audio
 
 ::: tip
 Add more supported file formats by overriding `IResourceProviderManager` [engine service](/guide/engine-services.md#overriding-built-in-services) and adding a custom converter for the local provider.
