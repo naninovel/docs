@@ -1,5 +1,5 @@
 # Input Processing
- 
+
 Engine processes user input using pre-configured listeners. Each input listener has the following properties:
 
 Property | Description
@@ -17,7 +17,7 @@ You can configure the built-in input bindings and add new listeners using `Nanin
 ![Manage Input](https://i.gyazo.com/2f97539323c9fc36124e286856a36f84.png)
 
 ::: example
-Example of adding a custom input binding to toggle inventory UI can be found in the [inventory example project on GitHub](https://github.com/Naninovel/Inventory).
+An example of adding custom input binding to toggle inventory UI can be found in the [inventory project on GitHub](https://github.com/Naninovel/Inventory).
 
 Specifically, the custom "ToggleInventory" binding is used in [UI/InventoryUI.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L215) runtime script. A binding with the same name is added via input configuration menu, under Control Scheme.
 :::
@@ -38,17 +38,11 @@ With `Focus Mode` property you can change whether the assigned game object shoul
 Gamepad navigation over UIs will only work when Unity's new input system is installed in the project; find more information about the input system below.
 :::
 
-When in the main gameplay mode (outside of modal UIs), press a button bind to `Pause` input (`Backspace` key for keyboard and `Start` button for gamepad by default) to open pause menu, where you can save/load game, open settings, exit to title, etc.
+When in the main gameplay mode (outside modal UIs), press a button bind to `Pause` input (`Backspace` key for keyboard and `Start` button for gamepad by default) to open pause menu, where you can save/load game, open settings, exit to title, etc.
 
 ## Input System
 
-Naninovel supports Unity's new [Input System](https://blogs.unity3d.com/2019/10/14/introducing-the-new-input-system/); see the [official docs](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.2/manual/Installation.html) on how to install and enable the input system package.
-
-::: warn
-Touch and object-related input is still processed via legacy input, so don't completely disable legacy backend in the player settings, unless you're going to implement the features yourself.
-
-![](https://i.gyazo.com/bdac8d3ce8380f571bc3bc2e18a0074d.png)
-:::
+Naninovel supports Unity's new [Input System](https://blogs.unity3d.com/2019/10/14/introducing-the-new-input-system/); see the [official docs](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.5/manual/Installation.html) on how to install and enable the input system package.
 
 After the package is installed, create an event system prefab; you can use `UI -> Event System` in the hierarchy window to create a default one. Make sure `Input System UI Input Module` is attached to the prefab. When creating a default event system, Unity will suggest to automatically convert legacy input module component to the new one.
 
