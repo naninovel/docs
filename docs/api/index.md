@@ -658,7 +658,7 @@ You are victorious!
 @stop
 # Room
 @print "It's too early, I should visit this place when it's dark." if:time<21&time>6
-@print "I can sense an ominous presence!" if:{time>21|time<6}
+@print "I can sense an ominous presence!" if:time>21|time<6
 @return
 ```
 
@@ -1077,7 +1077,6 @@ default | boolean | Whether to make the printer default and hide other printers 
 waitInput | boolean | Whether to wait for user input after finishing the printing task. Default value is controlled via `Auto Wait` property in the printer actor configuration menu.
 br | integer | Number of line breaks to prepend before the printed text. Default value is controlled via `Auto Line Break` property in the printer actor configuration menu.
 fadeTime | decimal | Controls duration (in seconds) of the printers show and hide animations associated with this command. Default value for each printer is set in the actor configuration.
-voiceId | string | Used by voice map utility to differentiate print commands with equal text within the same script.
 
 </div>
 
