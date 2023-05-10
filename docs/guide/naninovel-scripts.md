@@ -6,11 +6,11 @@ Naninovel scripts are text documents (`.nani` extension) where you control what 
 
 Each line in a naninovel script represents a statement, which can be a command, generic text, label or a comment. Type of the statement is determined by the literal placed at the start of the line:
 
-Literal | Statement Type 
-:---: | --- 
-@ | [Command](#command-lines)
-# | [Label](#label-lines)
-; | [Comment](#comment-lines)
+| Literal | Statement Type            |
+|:-------:|---------------------------|
+|    @    | [Command](#command-lines) |
+|    #    | [Label](#label-lines)     |
+|    ;    | [Comment](#comment-lines) |
 
 When none of the above literals are present at the start of the line, it's considered a [generic text](#generic-text-lines) statement.
 
@@ -79,7 +79,7 @@ integer | A number which is not a fraction; a whole number, eg: `1`, `150`, `-25
 decimal | A decimal number with fraction delimited by a dot, eg: `1.0`, `12.08`, `-0.005`.
 boolean | Can have one of two possible values: `true` or `false` (case-insensitive).
 named | A name string associated with a value of one of the above types. The name part is delimited by a dot. Eg for named integer: `foo.8`, `bar.-20`.
-list| A comma-separated list of values of one of the above types. Eg for string list: `foo,bar,"Lorem ipsum."`, for decimal list: `12,-8,0.105,2`
+list | A comma-separated list of values of one of the above types. Eg for string list: `foo,bar,"Lorem ipsum."`, for decimal list: `12,-8,0.105,2`
 
 ### Nameless Parameters
 
@@ -416,8 +416,8 @@ Features like [script localization](/guide/localization.md#scripts-localization)
 
 By default, Naninovel will automatically identify all the localizable text by its content hash when importing script assets. This works fine as long as you don't modify the text; but after you do, all the associations will break: you'll have to re-map auto voice clips or re-translate changed text statements.
 
-To prevent associations from breaking when editing text, enable `Stable Identification` under scripts configuration menu. When enabled, Naninovel will explicitly write unique IDs to each localizable text in imported scripts. The downside is that the script text will now have IDs appended to each localizable parameter (wrapped in `|`), but in return, as long as you don't remove or change the IDs, the associations won't break.
+To prevent associations from breaking when editing text, enable `Stable Identification` under scripts configuration menu. When enabled, Naninovel will explicitly write unique IDs to each localizable text in imported scripts. The downside is that the script text will now have IDs appended to each localizable parameter (eg, `Kohaku: Hello!|#ID|`, `@choice "Option 1|#ID|`), but in return, as long as you don't remove or change the IDs, the associations won't break.
 
 To make text IDs less distracting, they are colored dim by the IDE extension and are hidden when editing scripts via standalone visual editor.
 
-![](https://i.gyazo.com/d746a76143b84b21a02dba5e44f94006.png)
+![](https://i.gyazo.com/2892818b06f5fd8fe929d6d0a2b3a60f.png)
