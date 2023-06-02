@@ -2,7 +2,7 @@
 
 ## Unity Version
 
-Minimum supported and recommended Unity version is [2019.4.35](https://unity3d.com/unity/whats-new/2019.4.35). As a legacy [LTS stream](https://unity.com/releases/lts-vs-tech-stream), it's the most tested and stable to use with the current Naninovel release. Supported Unity versions for other Naninovel releases are specified in the [change logs](https://github.com/Naninovel/Documentation/releases).
+Minimum supported and recommended Unity version is [2019.4.40](https://unity3d.com/unity/whats-new/2019.4.40). As a legacy [LTS stream](https://unity.com/releases/lts-vs-tech-stream), it's the most tested and stable to use with the current Naninovel release. Supported Unity versions for other Naninovel releases are specified in the [change logs](https://github.com/Naninovel/Documentation/releases).
 
 ::: note
 It's not uncommon for Unity to introduce regressions even in LTS patches (let alone minor and major releases), so we highly recommend using the recommended version to minimize production risks.
