@@ -22,15 +22,9 @@ Unity is a standalone product with an enormous set of features; it has its own d
 
 ## Naninovel Support
 
-::: warn
-The support is limited to Naninovel-specific topics only. For anything Unity-related (eg, build UIs with uGUI, set up addressable system, write C# scripts, etc) see the [information above](/support/#unity-support).
-:::
-
 To receive direct support join Naninovel Discord server ([discord.gg/BfkNqem](https://discord.gg/BfkNqem)) and register your copy of the asset using the following registration form: [naninovel.com/register](https://naninovel.com/register/).
 
 After the registration you'll automatically get a "Verified User" role on the server and access to the `#support` and `#download` channels. You can also send a message to a member with support role to discuss the issue in private.
-
-<iframe src="https://discord.com/widget?id=545676116871086080&theme=dark" width="400" height="300" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
 
 Be aware, that the support is only available on business days and the **response may be delayed by up to 24 hours** (in some cases more), so make sure to:
  - Provide a clear and concise description of the issue and step-by-step instructions on how to reproduce it.
@@ -38,6 +32,26 @@ Be aware, that the support is only available on business days and the **response
  - Attach a [log file](https://docs.unity3d.com/Manual/LogFiles.html) containing error or warning messages related to the issue.
  
 Attaching a [reproduction project](/support/#reproduction-project) greatly increases the chances to identify and fix the issue as soon as possible.
+
+### Moderation
+
+Support capability is limited; to ensure all users receive equal attention, please note the following:
+
+ - The support is limited to Naninovel-specific topics only. For anything Unity-related (eg, build UIs with uGUI, set up addressable system, write C# scripts, etc) see the [information above](/support/#unity-support);
+ - Don't expect the support to provide samples for your specific needs. We may suggest how to achieve a custom feature, but providing reference implementations is not something we can help with; consider hiring professional developers for that;
+ - Don't excessively ping/mention (via `@`) or send private messages to the support or developers; this won't expedite the answer, but will instead make us temporary mute you;
+ - Feel free to discuss any Naninovel-related topics in `#general` and `#devtalk` channels, but please only use `#support` when you seek attention from the support stuff; feel free to create [threads](https://support.discord.com/hc/en-us/articles/4403205878423-Threads-FAQ) if you feel the channel is too noisy.
+
+Violating any of the above guidelines may result in 24-hours mute on the server; in the extreme cases the mute can be extended.
+
+::: danger
+Of course, basic communication etiquette is expected from all users; any of the following will result in a temporary or even **permanent ban**:
+ 
+ - Threatening, abusive, vulgar, disrespectful or otherwise offensive behaviour;
+ - Asset Store reviews manipulation (using negative reviews to extort special attention);
+ - Spam or advertising of products and services not related to Naninovel or VN-dev in general;
+ - Illegally sharing copyrighted, personal or sensitive information and assets.
+:::
 
 ## Reproduction Project
 
