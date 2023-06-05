@@ -40,7 +40,7 @@ Support capability is limited; to ensure all users receive equal attention, plea
  - The support is limited to Naninovel-specific topics only. For anything Unity-related (eg, build UIs with uGUI, set up addressable system, write C# scripts, etc) see the [information above](/support/#unity-support);
  - Don't expect the support to provide samples for your specific needs. We may suggest how to achieve a custom feature, but providing reference implementations is not something we can help with; consider hiring professional developers for that;
  - Don't excessively ping/mention (via `@`) or send private messages to the support or developers; this won't expedite the answer, but will instead make us temporary mute you;
- - Feel free to discuss any Naninovel-related topics in `#general` and `#devtalk` channels, but please only use `#support` when you seek attention from the support stuff; feel free to create [threads](https://support.discord.com/hc/en-us/articles/4403205878423-Threads-FAQ) if you feel the channel is too noisy.
+ - Feel free to discuss any Naninovel-related topics in `#general` and `#devtalk` channels, but please only use `#support` when you seek attention from the support stuff; use [threads](https://support.discord.com/hc/en-us/articles/4403205878423-Threads-FAQ) if you find the channel too noisy.
 
 Violating any of the above guidelines may result in 24-hours mute on the server; in the extreme cases the mute can be extended.
 
