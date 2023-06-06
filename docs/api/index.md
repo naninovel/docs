@@ -205,7 +205,7 @@ time | decimal | Duration (in seconds) of the modification.
 ; Starts playing a music track with the name `Sanctuary` in a loop.
 @bgm Sanctuary
 
-; Same as above, but fades-in the volume over 10 seconds and plays only once.
+; Same as above, but fades-in the volume over 10 seconds and plays once.
 @bgm Sanctuary fade:10 loop:false
 
 ; Changes volume of all the played music tracks to 50% over 2.5 seconds
@@ -1991,7 +1991,7 @@ do | string list | Script commands to execute when the wait is over. Escape comm
 
 #### Example
 ```nani
-; `Thunder` SFX will play 0.5 seconds after shake background effect finishes.
+; Thunder SFX will play 0.5 seconds after shake background effect finishes.
 @spawn ShakeBackground
 @wait 0.5
 @sfx Thunder
