@@ -5,13 +5,9 @@ Use `Naninovel -> Configuration` or `Edit -> Project Settings -> Naninovel` to a
 
 Notice, that all the configuration menus are supporting [Unity's presets feature](https://docs.unity3d.com/Manual/Presets). It could be useful to create several configuration presets when deploying to different target platforms (eg, mobile, standalone, consoles, etc).
 
-[!55f5c74bfc16e1af2455034647525df3]
+[!https://i.gyazo.com/55f5c74bfc16e1af2455034647525df3.mp4]
 
-It's possible to modify configuration objects at runtime, add new custom configurations and change the way the objects are accessed at runtime (eg, read configuration from JSON files stored on a remote host); see [custom configuration](/guide/custom-configuration.md) guide for more information.
-
-::: note
-This configuration reference is valid for [Naninovel v1.19](https://github.com/Naninovel/Documentation/releases).
-:::
+It's possible to modify configuration objects at runtime, add new custom configurations and change the way the objects are accessed at runtime (eg, read configuration from JSON files stored on a remote host); see [custom configuration](/guide/custom-configuration) guide for more information.
 
 ## Audio
 
@@ -26,7 +22,7 @@ Default Master Volume | 1 | Master volume to set when the game is first started.
 Default Bgm Volume | 1 | BGM volume to set when the game is first started.
 Default Sfx Volume | 1 | SFX volume to set when the game is first started.
 Default Voice Volume | 1 | Voice volume to set when the game is first started.
-Enable Auto Voicing | False | When enabled, each `@print` command will attempt to play an associated voice clip.
+Enable Auto Voicing | False | When enabled, each [@print] command will attempt to play an associated voice clip.
 Auto Voice Mode | Text Id | When auto voicing is enabled, controls method to associate voice clips with @print commands:<br> • Text ID — Voice clips are associated by localizable text IDs. Removing, adding or re-ordering scenario script lines won't break the associations. Modifying printed text will break associations unless stable text identification is enabled.<br> • Playback Spot — Voice clips are associated by script name, line and inline indexes (playback spot). Removing, adding or re-ordering scenario script lines will break the associations. Modifying printed text will not break associations.
 Voice Overlap Policy | Prevent Overlap | Dictates how to handle concurrent voices playback:<br> • Allow Overlap — Concurrent voices will be played without limitation.<br> • Prevent Overlap — Prevent concurrent voices playback by stopping any played voice clip before playing a new one.<br> • Prevent Character Overlap — Prevent concurrent voices playback per character; voices of different characters (auto voicing) and any number of [@voice] command are allowed to be played concurrently.
 Voice Locales | Null | Assign localization tags to allow selecting voice language in the game settings independently of the main localization.
@@ -50,7 +46,7 @@ Property | Default Value | Description
 --- | --- | ---
 Default Metadata | Object Ref | Metadata to use by default when creating background actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating background actors with specific IDs.
-Shared Poses | Object Ref | Named states (poses) shared between the backgrounds; pose name can be used as appearance in `@back` commands to set enabled properties of the associated state.
+Shared Poses | Object Ref | Named states (poses) shared between the backgrounds; pose name can be used as appearance in [@back] commands to set enabled properties of the associated state.
 Scene Origin | (0.5, 0.0) | Reference point on scene to be considered as origin for the managed actors. Doesn't affect positioning.
 Z Offset | 100 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
 Z Step | 0.1 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
@@ -91,7 +87,7 @@ Arrange Range | (0.0, 1.0) | Start (x) and end (y) positions (in 0.0 to 1.0 rang
 Default Metadata | Object Ref | Metadata to use by default when creating character actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating character actors with specific IDs.
 Avatar Loader | Character Avatars- (Addressable, Project) | Configuration of the resource loader used with character avatar texture resources.
-Shared Poses | Object Ref | Named states (poses) shared between the characters; pose name can be used as appearance in `@char` commands to set enabled properties of the associated state.
+Shared Poses | Object Ref | Named states (poses) shared between the characters; pose name can be used as appearance in [@char] commands to set enabled properties of the associated state.
 Scene Origin | (0.5, 0.0) | Reference point on scene to be considered as origin for the managed actors. Doesn't affect positioning.
 Z Offset | 50 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
 Z Step | 0.1 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
