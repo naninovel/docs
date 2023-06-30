@@ -6,7 +6,7 @@ sidebar: auto
 
 Script commands API reference. Use the side bar to quickly navigate between available commands. 
 
-~~Strikethrough~~ indicates a nameless parameter, and **bold** stands for required parameter; other parameters should be considered optional. Consult [naninovel scripts guide](/guide/naninovel-scripts) in case you have no idea what's this all about.
+~~Strikethrough~~ indicates a nameless parameter, and **bold** stands for required parameter; other parameters should be considered optional. Consult [naninovel scripts guide](/guide/naninovel-scripts.md) in case you have no idea what's this all about.
 
 The following parameters are supported by all the script commands:
 
@@ -14,15 +14,19 @@ The following parameters are supported by all the script commands:
 
 ID | Type | Description
 --- | --- | ---
-if | String |  A boolean [script expression](/guide/script-expressions), controlling whether the command should execute.
+if | String |  A boolean [script expression](/guide/script-expressions.md), controlling whether the command should execute.
 wait | Boolean | Whether the script player should wait for the async command to finish execution before executing the next one. Has no effect when the command is executed instantly.
 
 </div>
 
+::: note
+This API reference is valid for [Naninovel v1.18](https://github.com/Naninovel/Documentation/releases).
+:::
+
 ## animate
 
 #### Summary
-Animate properties of the actors with the specified IDs via key frames. Key frames for the animated parameters are delimited with commas.
+Animate properties of the actors with the specified IDs via key frames. Key frames for the animated parameters are delimited with `|` literals.
 
 #### Remarks
 It's not recommended to use this command for complex animations. Naniscript is a scenario scripting DSL and not suited for complex automation or specification such as animation. Consider using dedicated animation tools instead, such as Unity's [Animator](https://docs.unity3d.com/Manual/AnimationSection.html). <br /><br /> Be aware, that this command searches for actors with the provided IDs over all the actor managers, and in case multiple actors with the same ID exist (eg, a character and a text printer), this will affect only the first found one. <br /><br /> When running the animate commands in parallel (`wait` is set to false) the affected actors state can mutate unpredictably. This could cause unexpected results when rolling back or performing other commands that affect state of the actor. Make sure to reset affected properties of the animated actors (position, tint, appearance, etc) after the command finishes or use `@animate CharacterId` (without any args) to stop the animation prematurely.
@@ -36,7 +40,7 @@ ID | Type | Description
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">actorIds</span> | string list | IDs of the actors to animate.
 loop | boolean | Whether to loop the animation; make sure to set `wait` to false when loop is enabled, otherwise script playback will loop indefinitely.
 appearance | string | Appearances to set for the animated actors.
-transition | string | Type of the [transition effect](/guide/transition-effects) to use when animating appearance change (crossfade is used by default).
+transition | string | Type of the [transition effect](/guide/transition-effects.md) to use when animating appearance change (crossfade is used by default).
 visibility | string | Visibility status to set for the animated actors.
 posX | string | Position values over X-axis (in 0 to 100 range, in percents from the left border of the scene) to set for the animated actors.
 posY | string | Position values over Y-axis (in 0 to 100 range, in percents from the bottom border of the scene) to set for the animated actors.
@@ -53,17 +57,17 @@ time | string | Duration of the animations per key, in seconds. When a key value
 ```nani
 ; Animate `Kohaku` actor over three animation steps (key frames),
 ; changing positions: first step will take 1, second — 0.5 and third — 3 seconds.
-@animate Kohaku posX:50,0,85 time:1,0.5,3
+@animate Kohaku posX:50|0|85 time:1|0.5|3
 
 ; Start loop animations of `Yuko` and `Kohaku` actors; notice, that you can skip
 ; key values indicating that the parameter shouldn't change during the animation step.
-@animate Kohaku,Yuko loop:true appearance:Surprise,Sad,Default,Angry transition:DropFade,Ripple,Pixelate posX:15,85,50 posY:0,-25,-85 scale:1,1.25,1.85 tint:#25f1f8,lightblue,#ffffff,olive easing:EaseInBounce,EaseInQuad time:3,2,1,0.5 wait:false
+@animate Kohaku,Yuko loop:true appearance:Surprise|Sad|Default|Angry transition:DropFade|Ripple|Pixelate posX:15|85|50 posY:0|-25|-85 scale:1|1.25|1.85 tint:#25f1f8|lightblue|#ffffff|olive easing:EaseInBounce|EaseInQuad time:3|2|1|0.5 wait:false
 ...
 ; Stop the animations.
 @animate Yuko,Kohaku loop:false
 
 ; Start a long background animation for `Kohaku`.
-@animate Kohaku posX:90,0,90 scale:1,2,1 time:10 wait:false
+@animate Kohaku posX:90|0|90 scale:1|2|1 time:10 wait:false
 ; Do something else while the animation is running.
 ...
 ; Here we're going to set a specific position for the character,
@@ -95,7 +99,7 @@ author | string | ID of the actor, which should be associated with the appended 
 
 #### Example
 ```nani
-; Print first part of the sentence as usual (with gradual reveal),
+; Print first part of the sentence as usual (gradually revealing the message),
 ; then append the end of the sentence at once.
 Lorem ipsum
 @append " dolor sit amet."
@@ -131,7 +135,7 @@ time | decimal | Duration (in seconds) of the arrangement animation.
 ## back
 
 #### Summary
-Modifies a [background actor](/guide/backgrounds).
+Modifies a [background actor](/guide/backgrounds.md).
 
 #### Remarks
 Backgrounds are handled a bit differently from characters to better accommodate traditional VN game flow. Most of the time you'll probably have a single background actor on scene, which will constantly transition to different appearances. To remove the hassle of repeating same actor ID in scripts, it's possible to provide only the background appearance and transition type (optional) as a nameless parameter assuming `MainBackground` actor should be affected. When this is not the case, ID of the background actor can be explicitly provided via the `id` parameter.
@@ -142,14 +146,14 @@ Backgrounds are handled a bit differently from characters to better accommodate 
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">appearanceAndTransition</span> | named string | Appearance (or [pose](/guide/backgrounds#poses)) to set for the modified background and type of a [transition effect](/guide/transition-effects) to use. When transition is not provided, a cross-fade effect will be used by default.
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">appearanceAndTransition</span> | named string | Appearance (or [pose](/guide/backgrounds.md#poses)) to set for the modified background and type of a [transition effect](/guide/transition-effects.md) to use. When transition is not provided, a cross-fade effect will be used by default.
 pos | decimal list | Position (relative to the scene borders, in percents) to set for the modified actor. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode.
 id | string | ID of the actor to modify; specify `*` to affect all visible actors.
 appearance | string | Appearance to set for the modified actor.
 pose | string | Pose to set for the modified actor.
-transition | string | Type of the [transition effect](/guide/transition-effects) to use (crossfade is used by default).
+transition | string | Type of the [transition effect](/guide/transition-effects.md) to use (crossfade is used by default).
 params | decimal list | Parameters of the transition effect.
-dissolve | string | Path to the [custom dissolve](/guide/transition-effects#custom-transition-effects) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode.
+dissolve | string | Path to the [custom dissolve](/guide/transition-effects.md#custom-transition-effects) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode.
 visible | boolean | Visibility status to set for the modified actor.
 position | decimal list | Position (in world space) to set for the modified actor. Use Z-component (third member) to move (sort) by depth while in ortho mode.
 rotation | decimal list | Rotation to set for the modified actor.
@@ -179,7 +183,7 @@ time | decimal | Duration (in seconds) of the modification.
 ## bgm
 
 #### Summary
-Plays or modifies currently played [BGM (background music)](/guide/audio#background-music) track with the provided name.
+Plays or modifies currently played [BGM (background music)](/guide/audio.md#background-music) track with the provided name.
 
 #### Remarks
 Music tracks are looped by default. When music track name (BgmPath) is not specified, will affect all the currently played tracks. When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start), but the specified parameters (volume and whether the track is looped) will be applied.
@@ -205,77 +209,15 @@ time | decimal | Duration (in seconds) of the modification.
 ; Starts playing a music track with the name `Sanctuary` in a loop.
 @bgm Sanctuary
 
-; Same as above, but fades-in the volume over 10 seconds and plays once.
+; Same as above, but fades-in the volume over 10 seconds and plays only once.
 @bgm Sanctuary fade:10 loop:false
 
 ; Changes volume of all the played music tracks to 50% over 2.5 seconds
 ; and makes them play in a loop.
 @bgm volume:0.5 loop:true time:2.5
 
-; Plays `BattleThemeIntro` once, then loops `BattleThemeMain`.
+; Plays `BattleThemeIntro` once and then immediately `BattleThemeMain` in a loop.
 @bgm BattleThemeMain intro:BattleThemeIntro
-```
-
-## blur
-
-#### Summary
-Applies [blur effect](/guide/special-effects.html#blur) to supported actor: backgrounds and characters of sprite, layered, diced, Live2D, Spine, video and scene implementations.
-
-#### Remarks
-The actor should have `IBlurable` interface implemented in order to support the effect.
-
-#### Parameters
-
-<div class="config-table">
-
-ID | Type | Description
---- | --- | ---
-<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">actorId</span> | string | ID of the actor to apply the effect for; in case multiple actors with the same ID found (eg, a character and a printer), will affect only the first found one. When not specified, applies to the main background.
-power | decimal | Intensity of the effect, in 0.0 to 1.0 range. Defaults to 0.5. Set to 0 to disable (de-spawn) the effect.
-time | decimal | How long it will take the parameters to reach the target values, in seconds. Defaults to 1.0.
-
-</div>
-
-#### Example
-```nani
-; Blur main background with default parameters.
-@blur
-; Remove blur from the main background.
-@blur 0
-
-; Blur `Kohaku` actor with max power over 5 seconds.
-@blur Kohaku power:1 time:5
-; Remove blur from `Kohaku` over 3.1 seconds.
-@blur Kohaku power:0 time:3.1
-```
-
-## bokeh
-
-#### Summary
-Simulates [depth of field](/guide/special-effects.html#depth-of-field-bokeh) (aka DOF, bokeh) effect, when only the object in focus stays sharp, while others are blurred.
-
-#### Parameters
-
-<div class="config-table">
-
-ID | Type | Description
---- | --- | ---
-focus | string | Name of the game object to set focus for (optional). When set, the focus will always stay on the game object, while `dist` parameter will be ignored.
-dist | decimal | Distance (in units) from Naninovel camera to the focus point. Ignored when `focus` parameter is specified. Defaults to 10.
-power | decimal | Amount of blur to apply for the de-focused areas; also determines focus sensitivity. Defaults to 3.75. Set to 0 to disable (de-spawn) the effect.
-time | decimal | How long it will take the parameters to reach the target values, in seconds. Defaults to 1.0.
-
-</div>
-
-#### Example
-```nani
-; Enable the effect with defaults and lock focus on `Kohaku` game object.
-@bokeh focus:Kohaku
-; Fade-off (disable) the effect over 10 seconds.
-@bokeh power:0 time:10
-; Set focus point 10 units away from the camera,
-; focal distance to 0.95 and apply it over 3 seconds.
-@bokeh dist:10 power:0.95 time:3
 ```
 
 ## br
@@ -284,7 +226,7 @@ time | decimal | How long it will take the parameters to reach the target values
 Adds a line break to a text printer.
 
 #### Remarks
-Consider using `<br>` tag instead with [TMPro printers](/guide/text-printers#textmesh-pro).
+Consider using `<br>` tag instead with [TMPro printers](/guide/text-printers.md#textmesh-pro).
 
 #### Parameters
 
@@ -323,8 +265,8 @@ roll | decimal | Local camera rotation by Z-axis in angle degrees (0.0 to 360.0 
 rotation | decimal list | Local camera rotation over X,Y,Z-axes in angle degrees (0.0 to 360.0 or -180.0 to 180.0).
 zoom | decimal | Relative camera zoom (orthographic size or field of view, depending on the render mode), in 0.0 (no zoom) to 1.0 (full zoom) range.
 ortho | boolean | Whether the camera should render in orthographic (true) or perspective (false) mode.
-toggle | string list | Names of the components to toggle (enable if disabled and vice-versa). The components should be attached to the same game object as the camera. This can be used to toggle [custom post-processing effects](/guide/special-effects#camera-effects). Use `*` to affect all the components attached to the camera object.
-set | named boolean list | Names of the components to enable or disable. The components should be attached to the same game object as the camera. This can be used to explicitly enable or disable [custom post-processing effects](/guide/special-effects#camera-effects). Specified components enabled state will override effect of `toggle` parameter. Use `*` to affect all the components attached to the camera object.
+toggle | string list | Names of the components to toggle (enable if disabled and vice-versa). The components should be attached to the same game object as the camera. This can be used to toggle [custom post-processing effects](/guide/special-effects.md#camera-effects). Use `*` to affect all the components attached to the camera object.
+set | named boolean list | Names of the components to enable or disable. The components should be attached to the same game object as the camera. This can be used to explicitly enable or disable [custom post-processing effects](/guide/special-effects.md#camera-effects). Specified components enabled state will override effect of `toggle` parameter. Use `*` to affect all the components attached to the camera object.
 easing | string | Name of the easing function to use for the modification. <br /><br /> Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic. <br /><br /> When not specified, will use a default easing function set in the camera configuration settings.
 time | decimal | Duration (in seconds) of the modification.
 
@@ -332,7 +274,7 @@ time | decimal | Duration (in seconds) of the modification.
 
 #### Example
 ```nani
-; Offset the camera by -3 units over X-axis and by 1.5 units Y-axis.
+; Offset over X-axis (pan) the camera by -3 units and offset over Y-axis by 1.5 units.
 @camera offset:-3,1.5
 
 ; Set camera in perspective mode, zoom-in by 50% and move back by 5 units.
@@ -360,7 +302,7 @@ time | decimal | Duration (in seconds) of the modification.
 ## char
 
 #### Summary
-Modifies a [character actor](/guide/characters).
+Modifies a [character actor](/guide/characters.md).
 
 #### Parameters
 
@@ -368,16 +310,16 @@ Modifies a [character actor](/guide/characters).
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">idAndAppearance</span> | named string | ID of the character to modify (specify `*` to affect all visible characters) and an appearance (or [pose](/guide/characters#poses)) to set. When appearance is not provided, will use either a `Default` (is exists) or a random one.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">idAndAppearance</span> | named string | ID of the character to modify (specify `*` to affect all visible characters) and an appearance (or [pose](/guide/characters.md#poses)) to set. When appearance is not provided, will use either a `Default` (is exists) or a random one.
 look | string | Look direction of the actor; supported values: left, right, center.
-avatar | string | Name (path) of the [avatar texture](/guide/characters#avatar-textures) to assign for the character. Use `none` to remove (un-assign) avatar texture from the character.
+avatar | string | Name (path) of the [avatar texture](/guide/characters.md#avatar-textures) to assign for the character. Use `none` to remove (un-assign) avatar texture from the character.
 pos | decimal list | Position (relative to the scene borders, in percents) to set for the modified actor. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode.
 id | string | ID of the actor to modify; specify `*` to affect all visible actors.
 appearance | string | Appearance to set for the modified actor.
 pose | string | Pose to set for the modified actor.
-transition | string | Type of the [transition effect](/guide/transition-effects) to use (crossfade is used by default).
+transition | string | Type of the [transition effect](/guide/transition-effects.md) to use (crossfade is used by default).
 params | decimal list | Parameters of the transition effect.
-dissolve | string | Path to the [custom dissolve](/guide/transition-effects#custom-transition-effects) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode.
+dissolve | string | Path to the [custom dissolve](/guide/transition-effects.md#custom-transition-effects) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode.
 visible | boolean | Visibility status to set for the modified actor.
 position | decimal list | Position (in world space) to set for the modified actor. Use Z-component (third member) to move (sort) by depth while in ortho mode.
 rotation | decimal list | Rotation to set for the modified actor.
@@ -396,9 +338,8 @@ time | decimal | Duration (in seconds) of the modification.
 ; Same as above, but sets appearance to `Happy`.
 @char Sora.Happy
 
-; Same as above, but additionally positions the character 45% away 
-; from the left border of the scene and 10% away from the bottom border; 
-; also makes it look to the left.
+; Same as above, but also positions the character 45% away from the left border
+; of the scene and 10% away from the bottom border; also makes him look to the left.
 @char Sora.Happy look:left pos:45,10
 
 ; Make Sora appear at the bottom-center and in front of Felix.
@@ -412,7 +353,7 @@ time | decimal | Duration (in seconds) of the modification.
 ## choice
 
 #### Summary
-Adds a [choice](/guide/choices) option to a choice handler with the specified ID (or default one).
+Adds a [choice](/guide/choices.md) option to a choice handler with the specified ID (or default one).
 
 #### Remarks
 When `goto`, `gosub` and `do` parameters are not specified, will continue script execution from the next script line.
@@ -424,7 +365,7 @@ When `goto`, `gosub` and `do` parameters are not specified, will continue script
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">choiceSummary</span> | string | Text to show for the choice. When the text contain spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them.
-button | string | Path (relative to a `Resources` folder) to a [button prefab](/guide/choices#choice-button) representing the choice. The prefab should have a `ChoiceHandlerButton` component attached to the root object. Will use a default button when not provided.
+button | string | Path (relative to a `Resources` folder) to a [button prefab](/guide/choices.md#choice-button) representing the choice. The prefab should have a `ChoiceHandlerButton` component attached to the root object. Will use a default button when not provided.
 pos | decimal list | Local position of the choice button inside the choice handler (if supported by the handler implementation).
 handler | string | ID of the choice handler to add choice for. Will use a default handler if not provided.
 goto | named string | Path to go when the choice is selected by user; see [@goto] command for the path format.
@@ -442,9 +383,9 @@ time | decimal | Duration (in seconds) of the fade-in (reveal) animation.
 ; Print the text, then immediately show choices and stop script execution.
 Continue executing this script or ...?[skipInput]
 @choice "Continue"
-@choice "Load another script from start" goto:Another
-@choice "Load another script from \"Label\" label" goto:Another.Label
-@choice "Goto to \"Sub\" subroutine in another script" gosub:Another.Sub
+@choice "Load another script from start" goto:AnotherScript
+@choice "Load another script from \"MyLabel\" label" goto:AnotherScript.MyLabel
+@choice "Goto to \"MySub\" subroutine in another script" gosub:AnotherScript.MySub
 @stop
 
 ; You can also set custom variables based on choices.
@@ -465,11 +406,11 @@ Continue executing this script or ...?[skipInput]
 ## clearBacklog
 
 #### Summary
-Removes all the messages from [printer backlog](/guide/text-printers#printer-backlog).
+Removes all the messages from [printer backlog](/guide/text-printers.md#printer-backlog).
 
 #### Example
 ```nani
-; Printed text will be removed from the backlog.
+; Even though we're going to print some text, it will then be removed from the backlog.
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 @clearBacklog
 ```
@@ -526,7 +467,7 @@ params | string list | Parameters to set before destroying the prefab. Requires 
 
 #### Example
 ```nani
-; Given `@spawn Rainbow` command was executed before, de-spawn (destroy) it.
+; Given a `@spawn Rainbow` command was executed before, de-spawn (destroy) it.
 @despawn Rainbow
 ```
 
@@ -546,12 +487,12 @@ Destroys all the objects spawned with [@spawn] command. Equal to invoking [@desp
 ## else
 
 #### Summary
-Marks a branch of a conditional execution block, which is always executed in case conditions of the opening [@if] and all the preceding [@elseif] (if any) commands are not met. For usage examples see [conditional execution](/guide/naninovel-scripts#conditional-execution) guide.
+Marks a branch of a conditional execution block, which is always executed in case conditions of the opening [@if] and all the preceding [@elseif] (if any) commands are not met. For usage examples see [conditional execution](/guide/naninovel-scripts.md#conditional-execution) guide.
 
 ## elseIf
 
 #### Summary
-Marks a branch of a conditional execution block, which is executed in case own condition is met (expression is evaluated to be true), while conditions of the opening [@if] and all the preceding [@elseif] (if any) commands are not met. For usage examples see [conditional execution](/guide/naninovel-scripts#conditional-execution) guide.
+Marks a branch of a conditional execution block, which is executed in case own condition is met (expression is evaluated to be true), while conditions of the opening [@if] and all the preceding [@elseif] (if any) commands are not met. For usage examples see [conditional execution](/guide/naninovel-scripts.md#conditional-execution) guide.
 
 #### Parameters
 
@@ -559,14 +500,14 @@ Marks a branch of a conditional execution block, which is executed in case own c
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [script expression](/guide/script-expressions), which should return a boolean value.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [script expression](/guide/script-expressions.md), which should return a boolean value.
 
 </div>
 
 ## endIf
 
 #### Summary
-Closes an [@if] conditional execution block. For usage examples see [conditional execution](/guide/naninovel-scripts#conditional-execution) guide.
+Closes an [@if] conditional execution block. For usage examples see [conditional execution](/guide/naninovel-scripts.md#conditional-execution) guide.
 
 ## finishTrans
 
@@ -579,37 +520,13 @@ Finishes scene transition started with [@startTrans] command; see the start comm
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">transition</span> | string | Type of the [transition effect](/guide/transition-effects) to use (crossfade is used by default).
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">transition</span> | string | Type of the [transition effect](/guide/transition-effects.md) to use (crossfade is used by default).
 params | decimal list | Parameters of the transition effect.
-dissolve | string | Path to the [custom dissolve](/guide/transition-effects#custom-transition-effects) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode.
+dissolve | string | Path to the [custom dissolve](/guide/transition-effects.md#custom-transition-effects) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode.
 easing | string | Name of the easing function to use for the modification. <br /><br /> Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic. <br /><br /> When not specified, will use a default easing function set in the actor's manager configuration settings.
 time | decimal | Duration (in seconds) of the transition.
 
 </div>
-
-## glitch
-
-#### Summary
-Applies [digital glitch](/guide/special-effects.html#digital-glitch) post-processing effect to the main camera simulating digital video distortion and artifacts.
-
-#### Parameters
-
-<div class="config-table">
-
-ID | Type | Description
---- | --- | ---
-time | decimal | The duration of the effect, in seconds; default is 1.
-power | decimal | The intensity of the effect, in 0.0 to 10.0 range; default is 1.
-
-</div>
-
-#### Example
-```nani
-; Apply the glitch effect with default parameters.
-@glitch
-; Apply the effect over 3.33 seconds with a low intensity.
-@glitch time:3.33 power:0.1
-```
 
 ## gosub
 
@@ -617,7 +534,7 @@ power | decimal | The intensity of the effect, in 0.0 to 10.0 range; default is 
 Navigates naninovel script playback to the provided path and saves that path to global state; [@return] commands use this info to redirect to command after the last invoked gosub command.
 
 #### Remarks
-While this command can be used as a function (subroutine) to invoke a common set of script lines, remember that NaniScript is a scenario scripting DSL and is not suited for general programming. It's strongly recommended to use [custom commands](/guide/custom-commands) instead.
+Designed to serve as a function (subroutine) in a programming language, allowing to reuse a piece of naninovel script. It's possible to declare a gosub outside of the currently played script and use it from any other scripts, which could be useful for invoking a repeating set of commands multiple times.
 
 #### Parameters
 
@@ -632,8 +549,8 @@ reset | string list | When specified, will reset the engine services state befor
 
 #### Example
 ```nani
-; Navigate to `VictoryScene` label in the currently played script, then
-; execute the commands and navigate back to the command after the `gosub`.
+; Navigate the playback to the label `VictoryScene` in the currently played script,
+; executes the commands and navigates back to the command after the `gosub`.
 @gosub .VictoryScene
 ...
 @stop
@@ -654,7 +571,7 @@ You are victorious!
 @gosub .Room
 @stop
 # Room
-@print "It's too early, I should visit after sunset." if:time<21&time>6
+@print "It's too early, I should visit this place when it's dark." if:time<21&time>6
 @print "I can sense an ominous presence!" if:time>21|time<6
 @return
 ```
@@ -677,13 +594,13 @@ reset | string list | When specified, will control whether to reset the engine s
 
 #### Example
 ```nani
-; Loads and starts playing `Script001` script from the start.
+; Loads and starts playing a naninovel script with the name `Script001` from the start.
 @goto Script001
 
 ; Save as above, but start playing from the label `AfterStorm`.
 @goto Script001.AfterStorm
 
-; Navigates to `Epilogue` label in the currently played script.
+; Navigates the playback to the label `Epilogue` in the currently played script.
 @goto .Epilogue
 ...
 # Epilogue
@@ -709,7 +626,7 @@ remove | boolean | Whether to remove (destroy) the actor after it's hidden. Use 
 
 #### Example
 ```nani
-; Given an actor with ID `Smoke` is visible, hide it over 3 seconds.
+; Given an actor with ID `Smoke` is visible, hide (fade-out) it over 3 seconds.
 @hide Smoke time:3
 
 ; Hide `Kohaku` and `Yuko` actors.
@@ -737,7 +654,7 @@ remove | boolean | Whether to remove (destroy) the actors after they are hidden.
 
 #### Example
 ```nani
-; Hide all the visible actors (chars, backs, printers, etc) on scene.
+; Hide all the visible actors (chars, backs, printers, choice handlers) on scene.
 @hideAll
 
 ; Same as above, but also remove all the actors after they're hidden.
@@ -794,7 +711,7 @@ time | decimal | Duration (in seconds) of the hide animation. Default value for 
 ## hideUI
 
 #### Summary
-Makes [UI elements](/guide/user-interface#ui-customization) with the specified names invisible. When no names are specified, will stop rendering (hide) the entire UI (including all the built-in UIs).
+Makes [UI elements](/guide/user-interface.md#ui-customization) with the specified names invisible. When no names are specified, will stop rendering (hide) the entire UI (including all the built-in UIs).
 
 #### Remarks
 When hiding the entire UI with this command and `allowToggle` parameter is false (default), user won't be able to re-show the UI back with hotkeys or by clicking anywhere on the screen; use [@showUI] command to make the UI visible again.
@@ -844,7 +761,7 @@ Lorem ipsum dolor sit amet.[i] Consectetur adipiscing elit.
 ## if
 
 #### Summary
-Marks the beginning of a conditional execution block. Should always be closed with an [@endif] command. For usage examples see [conditional execution](/guide/naninovel-scripts#conditional-execution) guide.
+Marks the beginning of a conditional execution block. Should always be closed with an [@endif] command. For usage examples see [conditional execution](/guide/naninovel-scripts.md#conditional-execution) guide.
 
 #### Parameters
 
@@ -852,7 +769,7 @@ Marks the beginning of a conditional execution block. Should always be closed wi
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [script expression](/guide/script-expressions), which should return a boolean value.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [script expression](/guide/script-expressions.md), which should return a boolean value.
 
 </div>
 
@@ -879,13 +796,14 @@ play | boolean | Whether to automatically resume script playback when user submi
 
 #### Example
 ```nani
-; Prompt to enter an arbitrary text and assign it to `name` custom variable.
+; Allow player to enter an arbitrary text and assign it to `name` custom state variable.
 @input name summary:"Choose your name."
-; Halt the playback until player submits the input.
+; Stop command is required to halt script execution until user submits the input.
 @stop
 
 ; You can then inject the assigned `name` variable in naninovel scripts.
 Archibald: Greetings, {name}!
+{name}: Yo!
 
 ; ...or use it inside set and conditional expressions.
 @set score=score+1 if:name=="Felix"
@@ -894,7 +812,7 @@ Archibald: Greetings, {name}!
 ## lipSync
 
 #### Summary
-Allows to force-stop the lip sync mouth animation for a character with the provided ID; when stopped, the animation won't start again, until this command is used again to allow it. The character should be able to receive the lip sync events (currently generic, layered and Live2D implementations only). See [characters guide](/guide/characters#lip-sync) for more information on lip sync feature.
+Allows to force-stop the lip sync mouth animation for a character with the provided ID; when stopped, the animation won't start again, until this command is used again to allow it. The character should be able to receive the lip sync events (currently generic, layered and Live2D implementations only). See [characters guide](/guide/characters.md#lip-sync) for more information on lip sync feature.
 
 #### Parameters
 
@@ -941,10 +859,10 @@ additive | boolean | Whether to load the scene additively, or unload any current
 ## lock
 
 #### Summary
-Sets an [unlockable item](/guide/unlockable-items) with the provided ID to `locked` state.
+Sets an [unlockable item](/guide/unlockable-items.md) with the provided ID to `locked` state.
 
 #### Remarks
-The unlocked state of the items is stored in [global scope](/guide/state-management#global-state).<br /> In case item with the provided ID is not registered in the global state map, the corresponding record will automatically be added.
+The unlocked state of the items is stored in [global scope](/guide/state-management.md#global-state).<br /> In case item with the provided ID is not registered in the global state map, the corresponding record will automatically be added.
 
 #### Parameters
 
@@ -1026,10 +944,10 @@ time | decimal | Duration (in seconds) of the fade animation. When not specified
 ## openURL
 
 #### Summary
-Opens specified URL (web address) with default web browser.
+Opens specified URL (web address) with a default web browser.
 
 #### Remarks
-When outside of WebGL or in editor, Unity's `Application.OpenURL` method is used to handle the command; consult the [documentation](https://docs.unity3d.com/ScriptReference/Application.OpenURL.html) for behaviour details and limitations. Under WebGL native `window.open()` JS function is invoked: https://developer.mozilla.org/en-US/docs/Web/API/Window/open.
+Unity's `Application.OpenURL` method is used to handle the command; consult the [documentation](https://docs.unity3d.com/ScriptReference/Application.OpenURL.html) for behaviour details and limitations.
 
 #### Parameters
 
@@ -1038,17 +956,13 @@ When outside of WebGL or in editor, Unity's `Application.OpenURL` method is used
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">uRL</span> | string | URL to open.
-target | string | Browsing context: _self (current tab), _blank (new tab), _parent, _top.
 
 </div>
 
 #### Example
 ```nani
-; Open blank page in the current tab.
-@openURL "about:blank"
-
-; Open Naninovel website in new tab.
-@openURL "https://naninovel.com" target:_blank
+; Open Naninovel website.
+@openURL "https://naninovel.com"
 ```
 
 ## print
@@ -1074,6 +988,7 @@ default | boolean | Whether to make the printer default and hide other printers 
 waitInput | boolean | Whether to wait for user input after finishing the printing task. Default value is controlled via `Auto Wait` property in the printer actor configuration menu.
 br | integer | Number of line breaks to prepend before the printed text. Default value is controlled via `Auto Line Break` property in the printer actor configuration menu.
 fadeTime | decimal | Controls duration (in seconds) of the printers show and hide animations associated with this command. Default value for each printer is set in the actor configuration.
+voiceId | string | Used by voice map utility to differentiate print commands with equal text within the same script.
 
 </div>
 
@@ -1093,7 +1008,7 @@ fadeTime | decimal | Controls duration (in seconds) of the printers show and hid
 ## printer
 
 #### Summary
-Modifies a [text printer actor](/guide/text-printers).
+Modifies a [text printer actor](/guide/text-printers.md).
 
 #### Remarks
 Be aware, that rotation is not supported by the text reveal effect; use `rotation` parameter only with printers, that doesn't make use of the effect (eg, chat or custom ones).
@@ -1111,9 +1026,9 @@ pos | decimal list | Position (relative to the scene borders, in percents) to se
 id | string | ID of the actor to modify; specify `*` to affect all visible actors.
 appearance | string | Appearance to set for the modified actor.
 pose | string | Pose to set for the modified actor.
-transition | string | Type of the [transition effect](/guide/transition-effects) to use (crossfade is used by default).
+transition | string | Type of the [transition effect](/guide/transition-effects.md) to use (crossfade is used by default).
 params | decimal list | Parameters of the transition effect.
-dissolve | string | Path to the [custom dissolve](/guide/transition-effects#custom-transition-effects) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode.
+dissolve | string | Path to the [custom dissolve](/guide/transition-effects.md#custom-transition-effects) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode.
 visible | boolean | Visibility status to set for the modified actor.
 position | decimal list | Position (in world space) to set for the modified actor. Use Z-component (third member) to move (sort) by depth while in ortho mode.
 rotation | decimal list | Rotation to set for the modified actor.
@@ -1187,36 +1102,6 @@ You've picked two.
 @stop
 ```
 
-## rain
-
-#### Summary
-Spawns particle system simulating [rain](/guide/special-effects.html#rain).
-
-#### Parameters
-
-<div class="config-table">
-
-ID | Type | Description
---- | --- | ---
-power | decimal | The intensity of the rain (particles spawn rate per second); defaults to 500. Set to 0 to disable (de-spawn) the effect.
-time | decimal | The particle system will gradually grow the spawn rate to the target level over the specified time, in seconds.
-xSpeed | decimal | Multiplier to the horizontal speed of the particles. Use to change angle of the rain drops.
-ySpeed | decimal | Multiplier to the vertical speed of the particles.
-pos | decimal list | Position (relative to the scene borders, in percents) to set for the spawned effect game object. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode.
-position | decimal list | Position (in world space) to set for the spawned effect game object.
-rotation | decimal list | Rotation to set for the spawned effect game object.
-scale | decimal list | Scale to set for the spawned effect game object.
-
-</div>
-
-#### Example
-```nani
-; Start intensive rain over 10 seconds.
-@rain power:1500 time:10
-; Stop the rain over 30 seconds.
-@rain power:0 time:30
-```
-
 ## resetState
 
 #### Summary
@@ -1255,7 +1140,7 @@ only | string list | Names of the [engine services](https://naninovel.com/guide/
 ## resetText
 
 #### Summary
-Resets (clears) the contents of a text printer and optionally resets author ID.
+Resets (clears) the contents of a text printer.
 
 #### Parameters
 
@@ -1264,7 +1149,6 @@ Resets (clears) the contents of a text printer and optionally resets author ID.
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">printerId</span> | string | ID of the printer actor to use. Will use a default one when not provided.
-resetAuthor | boolean | Whether to also reset author of the currently printed text message.
 
 </div>
 
@@ -1302,10 +1186,10 @@ Automatically save the game to a quick save slot.
 ## set
 
 #### Summary
-Assigns result of a [script expression](/guide/script-expressions) to a [custom variable](/guide/custom-variables).
+Assigns result of a [script expression](/guide/script-expressions.md) to a [custom variable](/guide/custom-variables.md).
 
 #### Remarks
-If a variable with the provided name doesn't exist, it will be automatically created. <br /><br /> It's possible to define multiple set expressions in one line by separating them with `;`. The expressions will be executed in sequence by the order of declaration. <br /><br /> In case variable name starts with `T_` or `t_` it's considered a reference to a value stored in 'Script' [managed text](/guide/managed-text) document. Such variables can't be assigned and mostly used for referencing localizable text values.
+If a variable with the provided name doesn't exist, it will be automatically created. <br /><br /> It's possible to define multiple set expressions in one line by separating them with `;`. The expressions will be executed in sequence by the order of declaration. <br /><br /> In case variable name starts with `T_` or `t_` it's considered a reference to a value stored in 'Script' [managed text](/guide/managed-text.md) document. Such variables can't be assigned and mostly used for referencing localizable text values.
 
 #### Parameters
 
@@ -1313,7 +1197,7 @@ If a variable with the provided name doesn't exist, it will be automatically cre
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | Set expression. <br /><br /> The expression should be in the following format: `VariableName=ExpressionBody`, where `VariableName` is the name of the custom variable to assign and `ExpressionBody` is a [script expression](/guide/script-expressions), the result of which should be assigned to the variable. <br /><br /> It's also possible to use increment and decrement unary operators (`@set foo++`, `@set foo--`) and compound assignment (`@set foo+=10`, `@set foo-=3`, `@set foo*=0.1`, `@set foo/=2`).
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | Set expression. <br /><br /> The expression should be in the following format: `VariableName=ExpressionBody`, where `VariableName` is the name of the custom variable to assign and `ExpressionBody` is a [script expression](/guide/script-expressions.md), the result of which should be assigned to the variable. <br /><br /> It's also possible to use increment and decrement unary operators (`@set foo++`, `@set foo--`) and compound assignment (`@set foo+=10`, `@set foo-=3`, `@set foo*=0.1`, `@set foo/=2`).
 
 </div>
 
@@ -1334,9 +1218,8 @@ ID | Type | Description
 ; If `angle` is a number, assign its cosine to `foo` variable.
 @set foo=Cos(angle)
 
-; Get random number between -100 and 100, then raise to power of 4 
-; and assign to `foo` variable. Quotes are required when whitespace 
-; is present inside the expression.
+; Get a random integer between -100 and 100, then raise to power of 4 and assign to 
+; `foo` variable. Quotes required when whitespace is present inside the expression.
 @set "foo = Pow(Random(-100, 100), 4)"
 
 ; If `foo` is a number, add 1 to its value (increment).
@@ -1345,13 +1228,11 @@ ID | Type | Description
 ; If `foo` is a number, subtract 1 from its value (decrement).
 @set foo--
 
-; Assign `foo` variable value of the `bar` variable, 
-; which is `Hello World!` string.
+; Assign `foo` variable value of the `bar` variable, which is `Hello World!` string.
 @set bar="Hello World!"
 @set foo=bar
 
-; Defining multiple set expressions in one line; 
-; the result will be the same as above.
+; Defining multiple set expressions in one line (the result will be the same as above).
 @set bar="Hello World!";foo=bar
 
 ; It's possible to inject variables to naninovel script command parameters.
@@ -1362,8 +1243,8 @@ ID | Type | Description
 @goto .EnlargeLoop if:scale<1
 
 ; ...and generic text lines.
-@set drink="Dr. Pepper"
-My favourite drink is {drink}!
+@set name="Dr. Stein";drink="Dr. Pepper"
+{name}: My favourite drink is {drink}!
 
 ; When using double quotes inside text expression value, escape them.
 @set remark="Shouting \"Stop the car!\" was a mistake."
@@ -1379,7 +1260,7 @@ My favourite drink is {drink}!
 ## sfx
 
 #### Summary
-Plays or modifies currently played [SFX (sound effect)](/guide/audio#sound-effects) track with the provided name.
+Plays or modifies currently played [SFX (sound effect)](/guide/audio.md#sound-effects) track with the provided name.
 
 #### Remarks
 Sound effect tracks are not looped by default. When sfx track name (SfxPath) is not specified, will affect all the currently played tracks. When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start), but the specified parameters (volume and whether the track is looped) will be applied.
@@ -1415,7 +1296,7 @@ time | decimal | Duration (in seconds) of the modification.
 ## sfxFast
 
 #### Summary
-Plays an [SFX (sound effect)](/guide/audio#sound-effects) track with the provided name. Unlike [@sfx] command, the clip is played with minimum delay and is not serialized with the game state (won't be played after loading a game, even if it was played when saved). The command can be used to play various transient audio clips, such as UI-related sounds (eg, on button click with [`Play Script` component](/guide/user-interface#play-script-on-unity-event)).
+Plays an [SFX (sound effect)](/guide/audio.md#sound-effects) track with the provided name. Unlike [@sfx] command, the clip is played with minimum delay and is not serialized with the game state (won't be played after loading a game, even if it was played when saved). The command can be used to play various transient audio clips, such as UI-related sounds (eg, on button click with [`Play Script` component](/guide/user-interface.md#play-script-on-unity-event)).
 
 #### Parameters
 
@@ -1440,47 +1321,6 @@ group | string | Audio mixer [group path](https://docs.unity3d.com/ScriptReferen
 @sfxFast Click restart:false
 ```
 
-## shake
-
-#### Summary
-Applies [shake effect](/guide/special-effects.html#shake) for the actor with the specified ID or main camera.
-
-#### Parameters
-
-<div class="config-table">
-
-ID | Type | Description
---- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">actorId</span> | string | ID of the actor to shake. In case multiple actors with the same ID found (eg, a character and a printer), will affect only the first found one. To shake main camera, use "Camera" keyword.
-count | integer | The number of shake iterations. When set to 0, will loop until stopped with -1.
-time | decimal | The base duration of each shake iteration, in seconds.
-deltaTime | decimal | The randomizer modifier applied to the base duration of the effect.
-power | decimal | The base displacement amplitude of each shake iteration, in units.
-deltaPower | decimal | The randomized modifier applied to the base displacement amplitude.
-hor | boolean | Whether to displace the actor horizontally (by x-axis).
-ver | boolean | Whether to displace the actor vertically (by y-axis).
-
-</div>
-
-#### Example
-```nani
-; Shake `Dialogue` text printer with default params.
-@shake Dialogue
-;
-; Start shaking `Kohaku` character, show choice to stop and act accordingly.
-@shake Kohaku count:0 wait:false
-@choice "Continue shaking" goto:.Continue
-@choice "Stop shaking" goto:.Stop
-@stop
-# Stop
-@shake Kohaku count:-1
-# Continue
-...
-
-; Shake main Naninovel camera horizontally 5 times.
-@shake Camera count:5 hor:true ver:false
-```
-
 ## show
 
 #### Summary
@@ -1499,7 +1339,7 @@ time | decimal | Duration (in seconds) of the fade animation.
 
 #### Example
 ```nani
-; Given an actor with ID `Smoke` is hidden, reveal it over 3 seconds.
+; Given an actor with ID `Smoke` is hidden, reveal (fade-in) it over 3 seconds.
 @show Smoke time:3
 
 ; Show `Kohaku` and `Yuko` actors.
@@ -1534,7 +1374,7 @@ time | decimal | Duration (in seconds) of the show animation. Default value for 
 ## showUI
 
 #### Summary
-Makes [UI elements](/guide/user-interface) with the specified resource names visible. When no names are specified, will reveal the entire UI (in case it was hidden with [@hideUI]).
+Makes [UI elements](/guide/user-interface.md) with the specified resource names visible. When no names are specified, will reveal the entire UI (in case it was hidden with [@hideUI]).
 
 #### Parameters
 
@@ -1591,7 +1431,7 @@ Can be used in generic text lines to prevent activating `wait for input` mode wh
 
 #### Example
 ```nani
-; Script player won't wait for continue input before executing @sfx command.
+; Script player won't wait for `continue` input before executing the `@sfx` command.
 And the rain starts.[skipInput]
 @sfx Rain
 ```
@@ -1621,8 +1461,8 @@ time | decimal | Duration (in seconds) of the slide animation.
 
 #### Example
 ```nani
-; Given `Jenna` actor is not visible, reveal it with an `Angry` appearance
-; and slide to the center from either left or right border of the scene.
+; Given `Jenna` actor is not currently visible, reveal it with an `Angry` appearance
+; and slide to the center of the scene from either left or right border of the scene.
 @slide Jenna.Angry to:50
 
 ; Given `Sheba` actor is currently visible,
@@ -1635,38 +1475,10 @@ time | decimal | Duration (in seconds) of the slide animation.
 @slide Sheba from:15,50 to:85,0 time:5 easing:EaseOutBounce
 ```
 
-## snow
-
-#### Summary
-Spawns particle system simulating [snow](/guide/special-effects.html#snow).
-
-#### Parameters
-
-<div class="config-table">
-
-ID | Type | Description
---- | --- | ---
-power | decimal | The intensity of the snow (particles spawn rate per second); defaults to 100. Set to 0 to disable (de-spawn) the effect.
-time | decimal | The particle system will gradually grow the spawn rate to the target level over the specified time, in seconds.
-pos | decimal list | Position (relative to the scene borders, in percents) to set for the spawned effect game object. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode.
-position | decimal list | Position (in world space) to set for the spawned effect game object.
-rotation | decimal list | Rotation to set for the spawned effect game object.
-scale | decimal list | Scale to set for the spawned effect game object.
-
-</div>
-
-#### Example
-```nani
-; Start intensive snow over 10 seconds.
-@snow power:300 time:10
-; Stop the snow over 30 seconds.
-@snow power:0 time:30
-```
-
 ## spawn
 
 #### Summary
-Instantiates a prefab or a [special effect](/guide/special-effects); when performed over an already spawned object, will update the spawn parameters instead.
+Instantiates a prefab or a [special effect](/guide/special-effects.md); when performed over an already spawned object, will update the spawn parameters instead.
 
 #### Remarks
 If prefab has a `MonoBehaviour` component attached the root object, and the component implements a `IParameterized` interface, will pass the specified `params` values after the spawn; if the component implements `IAwaitable` interface, command execution will wait for the async completion task returned by the implementation.
@@ -1698,7 +1510,7 @@ scale | decimal list | Scale to set for the spawned object.
 Begins scene transition masking the real scene content with anything that is visible at the moment (except the UI). When the new scene is ready, finish with [@finishTrans] command.
 
 #### Remarks
-The UI will be hidden and user input blocked while the transition is in progress. You can change that by overriding the `ISceneTransitionUI`, which handles the transition process.<br /><br /> For the list of available transition effect options see [transition effects](/guide/transition-effects) guide.
+The UI will be hidden and user input blocked while the transition is in progress. You can change that by overriding the `ISceneTransitionUI`, which handles the transition process.<br /><br /> For the list of available transition effect options see [transition effects](/guide/transition-effects.md) guide.
 
 #### Example
 ```nani
@@ -1707,7 +1519,7 @@ The UI will be hidden and user input blocked while the transition is in progress
 @back SunnyDay
 @spawn SunShafts
 @startTrans
-; Following modifications won't be visible until the transition is finished.
+; The following modifications won't be visible until we finish the transition.
 @hideChars time:0
 @char Jenna time:0
 @back RainyDay time:0
@@ -1753,7 +1565,7 @@ fade | decimal | Duration of the volume fade-out before stopping playback, in se
 
 #### Example
 ```nani
-; Fades-out `Sanctuary` bgm track over 10 seconds and stops the playback.
+; Fades-out the `Sanctuary` music track over 10 seconds and stops the playback.
 @stopBgm Sanctuary fade:10
 
 ; Stops all the currently played music tracks.
@@ -1802,7 +1614,7 @@ Stops playback of the currently played voice clip.
 ## style
 
 #### Summary
-Permanently applies [text styles](/guide/text-printers#text-styles) to the contents of a text printer.
+Permanently applies [text styles](/guide/text-printers.md#text-styles) to the contents of a text printer.
 
 #### Remarks
 You can also use rich text tags inside text messages to apply the styles selectively.
@@ -1830,34 +1642,6 @@ Consectetur adipiscing elit.
 
 ; Print starting part of the sentence normally, but the last one in bold.
 Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
-```
-
-## sun
-
-#### Summary
-Spawns particle system simulating [sun shafts](/guide/special-effects.html#sun-shafts) aka god rays.
-
-#### Parameters
-
-<div class="config-table">
-
-ID | Type | Description
---- | --- | ---
-power | decimal | The intensity of the rays (opacity), in 0.0 to 1.0 range; default is 0.85. Set to 0 to disable (de-spawn) the effect.
-time | decimal | The particle system will gradually grow the spawn rate to the target level over the specified time, in seconds.
-pos | decimal list | Position (relative to the scene borders, in percents) to set for the spawned effect game object. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode.
-position | decimal list | Position (in world space) to set for the spawned effect game object.
-rotation | decimal list | Rotation to set for the spawned effect game object.
-scale | decimal list | Scale to set for the spawned effect game object.
-
-</div>
-
-#### Example
-```nani
-; Start intensive sunshine over 10 seconds.
-@sun power:1 time:10
-; Stop the sunshine over 30 seconds.
-@sun power:0 time:30
 ```
 
 ## title
@@ -1928,10 +1712,10 @@ ID | Type | Description
 ## unlock
 
 #### Summary
-Sets an [unlockable item](/guide/unlockable-items) with the provided ID to `unlocked` state.
+Sets an [unlockable item](/guide/unlockable-items.md) with the provided ID to `unlocked` state.
 
 #### Remarks
-The unlocked state of the items is stored in [global scope](/guide/state-management#global-state).<br /> In case item with the provided ID is not registered in the global state map, the corresponding record will automatically be added.
+The unlocked state of the items is stored in [global scope](/guide/state-management.md#global-state).<br /> In case item with the provided ID is not registered in the global state map, the corresponding record will automatically be added.
 
 #### Parameters
 
@@ -1963,7 +1747,7 @@ ID | Type | Description
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">voicePath</span> | string | Path to the voice clip to play.
 volume | decimal | Volume of the playback.
 group | string | Audio mixer [group path](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) that should be used when playing the audio.
-authorId | string | ID of the character actor this voice belongs to. When provided and [per-author volume](/guide/voicing#author-volume) is used, volume will be adjusted accordingly.
+authorId | string | ID of the character actor this voice belongs to. When provided and [per-author volume](/guide/voicing.md#author-volume) is used, volume will be adjusted accordingly.
 
 </div>
 
@@ -1991,25 +1775,25 @@ do | string list | Script commands to execute when the wait is over. Escape comm
 
 #### Example
 ```nani
-; Thunder SFX will play 0.5 seconds after shake background effect finishes.
+; `Thunder` SFX will play 0.5 seconds after the shake background effect finishes.
 @spawn ShakeBackground
 @wait 0.5
 @sfx Thunder
 
-; Print first 2 words, then wait for input before printing the rest.
+; Print first two words, then wait for user input before printing the remaining phrase.
 Lorem ipsum[wait i] dolor sit amet.
 ; You can also use the following shortcut (@i command) for this wait mode.
 Lorem ipsum[i] dolor sit amet.
 
-; Start looped SFX, print message and wait for a skippable 5 seconds delay,
+; Start a looped SFX, print a message and wait for a skippable 5 seconds delay,
 ; then stop the SFX.
 @sfx Noise loop:true
 Jeez, what a disgusting noise. Shut it down![wait i5][skipInput]
 @stopSfx Noise
 
-; The text is printed without delay, as the `wait` command is not awaited.
+; The text is printed without delay, as the `wait` command is not awaited (wait:false).
 ; The thunder effects are played after a random delay of 3 to 8 seconds.
-@wait {Random(3,8)} do:"@sfx Thunder, @shake Camera" wait:false
+@wait {Random(3,8)} do:"@sfx Thunder, @spawn ShakeBackground params:\,1" wait:false
 The thunder might go off any second...
 ```
 
