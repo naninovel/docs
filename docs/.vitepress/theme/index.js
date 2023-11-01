@@ -31,11 +31,12 @@ function handleIntersections(videos, observer) {
 
 function handleIntersection(video, observer) {
     if (!video.isIntersecting) return;
-    for (const id in video.target.children) {
-        const source = video.target.children[id];
-        if (typeof source.tagName === "string" && source.tagName === "SOURCE")
-            source.src = source.dataset.src;
-    }
+    // for (const id in video.target.children) {
+    //     const source = video.target.children[id];
+    //     if (typeof source.tagName === "string" && source.tagName === "SOURCE")
+    //         source.src = source.dataset.src;
+    // }
+    video.target.src = video.target.dataset.src;
     video.target.load();
     observer.unobserve(video.target);
 }
