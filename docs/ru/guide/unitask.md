@@ -1,4 +1,4 @@
-﻿# UniTask
+# UniTask
 
 [UniTask](https://github.com/Cysharp/UniTask) - это библиотека с открытым исходным кодом (лицензия MIT), обеспечивающая более эффективную реализацию [асинхронного программирования на основе задач](https://docs.microsoft.com/en-us/dotnet/standard/parallel-programming/task-based-asynchronous-programming) для Unity (по сравнению с [.NET native](https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.task)). Более подробную информацию о характере оптимизаций и примерах их использования вы можете найти в [статье автора библиотеки](https://medium.com/@neuecc/a1ff0766029).
 

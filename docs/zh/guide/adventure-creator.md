@@ -1,4 +1,4 @@
-﻿# Adventure Creator
+# Adventure Creator
 
 [Adventure Creator](https://www.adventurecreator.org/) （下简称AC）使您可以制作传统的2D，2.5D和3D冒险游戏-强调讲故事，探索和解谜的游戏，例如《Monkey Island》，《Grim Fandango》，《The Longest Journey》和《行尸走肉》。
 
@@ -34,8 +34,8 @@
 
 以下视频演示了与Naninovel集成在一起以处理对话的AC演示场景。
 
-[!!7tOIFZRSAec]
+![](https://www.youtube.com/watch?v=7tOIFZRSAec)
 
-::: example
+::: tip EXAMPLE
 在 [GitHub项目](https://github.com/Naninovel/AdventureCreator) 获取集成示例。第一次打开如果不导入AC和Naninovel资源包会报错，导入后会自动解决编译错误。
 :::

@@ -1,4 +1,4 @@
-﻿# Getting Started
+# Getting Started
 
 ## Prerequisites
 
@@ -16,10 +16,10 @@ Actor is an abstract entity and can't exist directly; instead, specialized versi
 
 Actor Type | Additional Parameters | Description
 --- | --- | ---
-[Character](/guide/characters.md) | Look Direction | Represents a character on scene.
-[Background](/guide/backgrounds.md) | None | Represents a background on scene; placed behind character actors by default.
-[Text Printer](/guide/text-printers.md) | Text, Author ID, Reveal Progress | Gradually reveals (prints) text messages over time.
-[Choice Handler](/guide/choices.md) | Choices | Allows player to pick one of the available choices.
+[Character](/guide/characters) | Look Direction | Represents a character on scene.
+[Background](/guide/backgrounds) | None | Represents a background on scene; placed behind character actors by default.
+[Text Printer](/guide/text-printers) | Text, Author ID, Reveal Progress | Gradually reveals (prints) text messages over time.
+[Choice Handler](/guide/choices) | Choices | Allows player to pick one of the available choices.
 
 Consider a typical visual novel setup, with a character portrayed on top of a background. In Naninovel terms, it will be represented in the following way.
 
@@ -27,13 +27,13 @@ Consider a typical visual novel setup, with a character portrayed on top of a ba
 
 Now, let's say you want to make "Kohaku" character look happy. You have several textures (images) of that character, each portraying different emotion. In Naninovel such textures are called *appearances* of an actor. To achieve the goal, we have to change appearance of the character actor. Similarly, to make "MainBackground" display something else, we have to change appearance of that background actor.
 
-Actors and their parameters are controlled (directed) via commands specified in [naninovel scripts](/guide/naninovel-scripts.md).
+Actors and their parameters are controlled (directed) via commands specified in [naninovel scripts](/guide/naninovel-scripts).
 
-Another widely used concept is [user interface](/guide/user-interface.md) (UI). UIs are used by player to interact with actors and the rest of the game. This includes various menus (title, save-load, settings, etc) and control panels (toggle auto read mode, skip text, etc). UI elements are positioned on top of actors by default.
+Another widely used concept is [user interface](/guide/user-interface) (UI). UIs are used by player to interact with actors and the rest of the game. This includes various menus (title, save-load, settings, etc) and control panels (toggle auto read mode, skip text, etc). UI elements are positioned on top of actors by default.
 
 Text printers and choice handlers are considered both actors and UI elements, meaning they share actor qualities and can be controlled via naninovel scripts, while, at the same time, used by players to interact with the game.
 
-In case you're familiar with programming, take a look at the [engine architecture](/guide/engine-architecture.md) to get a grasp on how it's designed from a software perspective.
+In case you're familiar with programming, take a look at the [engine architecture](/guide/engine-architecture) to get a grasp on how it's designed from a software perspective.
 
 ## Create New Unity Project
 
@@ -44,7 +44,7 @@ When creating a project you'd probably like to use `2D Template` to set the edit
 When you create a new project, Unity will automatically add a sample scene with two game objects inside it: a "Main Camera" and "Directional Light". Naninovel is completely scene-independent, so you can remove those two objects from the scene so they don't produce any unnecessary performance overhead. You can also remove the sample scene itself, though it's recommended to have at least one scene in a project for some editor features to work correctly.
 
 ::: tip
-Disable `Reload Domain` and `Reload Scene` options under "Enter Play Mode" project settings to enter play mode faster. 
+Disable `Reload Domain` and `Reload Scene` options under "Enter Play Mode" project settings to enter play mode faster.
 
 ![](https://i.gyazo.com/dd0a3037a0bca8b73608ecc7b71c3982.png)
 :::
@@ -53,19 +53,23 @@ Disable `Reload Domain` and `Reload Scene` options under "Enter Play Mode" proje
 
 Drag and drop `Naninovel.package` to the project pane of the Unity editor (or import the package via [Asset Store menu](https://docs.unity3d.com/Manual/AssetStore.html) in case you've purchased it on the store) and wait for the initial scripts compilation and assets import process. You are free to move `Naninovel` package folder anywhere inside your project assets directory, if you wish.
 
-::: warn
-Don't store, modify or delete anything inside the `Naninovel` folder. Any such change will be lost when the package is updated and we won't provide any support for the modified versions of the package.
+::: tip
+Naninovel package hosted on Asset Store (and delivered via Unity's package manager) is usually outdated. Get latest version on our [Discord server](https://discord.gg/BfkNqem).
 :::
 
 Over the course of using Naninovel a number of assets (configuration, settings, saves, etc) will be automatically generated inside `Assets/NaninovelData` folder. In contrast to the package folder, you shouldn't manually move the data folder (it'll be automatically regenerated). If you wish to change the location of the data folder, edit `Generated Data Path` property in the engine configuration menu.
 
+::: warning
+Don't store, modify or delete anything inside `Naninovel` folder. Any such change will be lost when the package is updated and we won't provide any support for the modified versions of the package.
+:::
+
 ## Add Naninovel Script
 
-Use `Create -> Naninovel -> Naninovel Script` assets context menu to create a naninovel script asset. 
+Use `Create -> Naninovel -> Naninovel Script` assets context menu to create a naninovel script asset.
 
 ![Create Naninovel Script](https://i.gyazo.com/be7677077abeb4f805979bd647d6d90e.png)
 
-::: note
+::: info NOTE
 You can create and store naninovel scripts (as well as all the other Naninovel resources) under any project folder and organize them in any way you like; the naming is also up to you. The above illustration is just an example.
 :::
 
@@ -75,7 +79,7 @@ Naninovel scripts are text documents (`.nani` extension) where you control what 
 
 You can also use visual script editor to edit the naninovel scripts. Select the created script asset and you'll see the visual editor automatically open in the inspector window.
 
-[!ba57b9f78116e57408125325bdf66be9]
+![](https://i.gyazo.com/ba57b9f78116e57408125325bdf66be9.mp4)
 
 To add a new line to the script, either right-click the place, where you want to insert the line, or press `Ctrl+Space` (you can change the default key bindings in the input configuration menu) and select the desired line or command type. To re-order lines, drag them using their number labels. To remove a line, right-click it and choose "Remove".
 
@@ -83,7 +87,7 @@ When you've changed the script using visual editor, you'll see an asterisk (`*`)
 
 The visual editor will automatically sync edited script if you update it externally, so you can seamlessly work with the scripts in both text and visual editors.
 
-::: note
+::: info NOTE
 In the rest of this guide we will use a text editor, but you can repeat all the same steps with the visual editor, if you wish.
 :::
 
@@ -101,19 +105,19 @@ The first line will print the text "Hello World!" when the game is run and the s
 
 Enter play mode and start a new game to see the result.
 
-::: note
-All the available built-in script commands, supported parameters and usage examples are listed in the [API reference](/api/). It's also possible to add custom commands; see [the guide](/guide/custom-commands.md) for more information.
+::: info NOTE
+All the available built-in script commands, supported parameters and usage examples are listed in the [API reference](/api/). It's also possible to add custom commands; see [the guide](/guide/custom-commands) for more information.
 :::
 
-In case "NEW GAME" button of the title menu is not active, make sure `Start Game Script` property in the script configuration (`Naninovel -> Configuration -> Scripts`) is equal to the name of the created script. The property is populated automatically when creating the first script via create asset menu, but this may not work if you copy some existing script to the project.
+In case "NEW GAME" button of the title menu is not active, make sure `Start Game Script` property in the script configuration (`Naninovel -> Configuration -> Scripts`) is equal to the name of the created script.
 
 ![](https://i.gyazo.com/47e34c913994a5b3e88d8f30d5127b7b.png)
 
 ## Add Character
 
-Characters in Naninovel can be based on regular and diced sprites, animated Live2D or Spine models and 3D meshes; you can add your own implementations as well. For the purpose of this tutorial, we’ll use a sprite implementation. 
+Characters in Naninovel can be based on regular and diced sprites, animated Live2D or Spine models and 3D meshes; you can add your own implementations as well. For the purpose of this tutorial, we’ll use a sprite implementation.
 
-Each character is represented by ID and a set of appearances. To add a character, use character manager GUI accessible via `Naninovel -> Resources -> Characters` menu, add a new character actor record specifying its ID, then double click the record (or press button at the and of the record) and add all the appearance sprites to the `Resources` list. Just like with naninovel scripts, you can drag-drop multiple assets and folders to the list.
+Each character is represented by ID and a set of appearances. To add a character, use character manager GUI accessible via `Naninovel -> Resources -> Characters` menu, add a new character actor record specifying its ID, then double-click the record (or press button at the and of the record) and add all the appearance sprites to the `Resources` list. Just like with naninovel scripts, you can drag-drop multiple assets and folders to the list.
 
 ![Add Character](https://i.gyazo.com/0c1e81ea1a20165c1bf88854df177b7f.png)
 
@@ -159,7 +163,7 @@ Kohaku.Happy: Hello World!
 
 ## Add Background
 
-Similar to characters, a background can be represented in multiple ways in Naninovel: sprite, generic object, video and scene; custom user implementations are also possible. 
+Similar to characters, a background can be represented in multiple ways in Naninovel: sprite, generic object, video and scene; custom user implementations are also possible.
 
 While you can create multiple independent background actors, in a typical VN game you'll usually use just one and transition it to different appearances. To simplify the routine, a `MainBackground` actor is added to the background actors list by default and you don't have to specify the ID every time to change its appearance in naninovel scripts.
 
@@ -170,13 +174,13 @@ Add background sprites via `Naninovel -> Resources -> Backgrounds` menu. `MainBa
 Let’s assume the added background appearance sprite is named "City". To show a background, use a [@back] command followed by the background appearance name:
 
 ```nani
-@back City 
+@back City
 ```
 
-When switching between backgrounds a cross-fade [transition effect](/guide/transition-effects.md) will be used by default. To change the effect, specify transition type after the appearance name:
+When switching between backgrounds a cross-fade [transition effect](/guide/transition-effects) will be used by default. To change the effect, specify transition type after the appearance name:
 
 ```nani
-@back City 
+@back City
 @back School.RadialBlur
 ```
 
@@ -209,14 +213,14 @@ On the contrary, sound effects won't loop by default. Assuming you've added an "
 
 In case you prefer following video guides, here is one illustrating the above instructions.
 
-[!!wFil5vje3NE]
+![](https://www.youtube.com/watch?v=wFil5vje3NE)
 
 ## Demo Project
 
-Complete sources of the demo project (the same one showcased on the store) are available on GitHub via [github.com/Naninovel/Demo](https://github.com/Naninovel/Demo). 
+Complete sources of the demo project (the same one showcased on the store) are available on GitHub via [github.com/Naninovel/Demo](https://github.com/Naninovel/Demo).
 
 You can [clone the repository with a Git client](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) or [download it as a zip archive](https://github.com/Naninovel/Demo/archive/master.zip). Be aware, that assets distributed with the demo project may be subject to custom licenses and are provided solely for learning purposes.
 
-::: warn
-Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
+::: warning
+Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; importing the package will resolve the issues.
 :::

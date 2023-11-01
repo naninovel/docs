@@ -1,4 +1,4 @@
-﻿# 開発コンソール
+# 開発コンソール
 
 開発コンソールは、ゲーム内UIから静的 C# メソッドを実行するために使用します。
 
@@ -16,20 +16,20 @@ public static void ToggleDebugInfo () => UI.DebugInfoGUI.Toggle();
 
 コンソールでメソッド名またはショートカット（適用されている場合）を入力し、Enterキーを押してメソッドを実行します。
 
-[!bd41a9a8fff91eb575b235a6b641dcce]
+![](https://i.gyazo.com/bd41a9a8fff91eb575b235a6b641dcce.mp4)
 
 現在以下のコマンドが利用できます:
 
 コマンド | 説明
 --- | ---
 nav | NaninovelスクリプトナビゲーターUIを切り替え。
-debug | [naninovelスクリプトデバッグ](/ja/guide/naninovel-scripts.md#スクリプトデバッグ) ウィンドウを切り替え。
-var | [カスタム変数エディター](/ja/guide/custom-variables.md#変数のデバッグ) ウィンドウを切り替え。
-purge | [Google Drive プロバイダー](/ja/guide/resource-providers.md#google-drive)が使用されている場合、ダウンロードされたリソースキャッシュをパージ。
+debug | [naninovelスクリプトデバッグ](/ja/guide/naninovel-scripts#スクリプトデバッグ) ウィンドウを切り替え。
+var | [カスタム変数エディター](/ja/guide/custom-variables#変数のデバッグ) ウィンドウを切り替え。
+purge | [Google Drive プロバイダー](/ja/guide/resource-providers#google-drive)が使用されている場合、ダウンロードされたリソースキャッシュをパージ。
 play | ロード中のnaninovelスクリプトの実行を開始。
 stop | ロード中のnaninovelスクリプトの実行を停止。
 rewind (int) | ロード中のnaninovelスクリプトを指定された行番号まで巻き戻し。行はコマンドまたは一般テキストのいずれかである必要があります。巻き戻し時には、行はロールバックスタックに存在する必要があります。
-reload | ロード中のnaninovelスクリプトの[ホットリロード](/ja/guide/naninovel-scripts.md#ホットリロード) を実行。Unityエディターでのみ機能します。
+reload | ロード中のnaninovelスクリプトの[ホットリロード](/ja/guide/naninovel-scripts#ホットリロード) を実行。Unityエディターでのみ機能します。
 
 ## コマンドの実行
 
@@ -42,4 +42,4 @@ reload | ロード中のnaninovelスクリプトの[ホットリロード](/ja/g
 — デフォルトプリンターに `VariableName` の値が表示されます。
 
 
-[!!wcgTGro0_SE]
+![](https://www.youtube.com/watch?v=wcgTGro0_SE)

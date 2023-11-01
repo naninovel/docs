@@ -1,4 +1,4 @@
-# 沙盒 
+# 沙盒
 
 沙盒是一个WebGL程序，你可以这里体验引擎的所有功能，以便助您判断是否想要前往Asset Store购买Naninovel。这个试玩沙盒将使用[Google 云端硬盘](https://drive.google.com/drive/my-drive)作为资源服务器，你可以将自己的的游戏素材（如人物、精灵人物、背景、音乐等）存放于其中，并通过[Google Docs](https://www.google.com/docs/about)编写Naninovel scripts（演出脚本）来调试演出。
 
@@ -16,6 +16,4 @@
 
 您也可以观看我们的视频教学来一步步的学习如何安装、设置并使用Naninovel沙盒。
 
-<div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/tn14ZhBTFew" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+![](https://www.youtube.com/watch?v=tn14ZhBTFew)

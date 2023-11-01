@@ -1,4 +1,4 @@
-﻿# Управление состоянием
+# Управление состоянием
 
 Все постоянные данные, генерируемые и используемые Naninovel во время выполнения, делятся на три категории:
 
@@ -70,10 +70,10 @@ using Naninovel;
 public class MyCustomBehaviour : MonoBehaviour
 {
     [System.Serializable]
-    private class GameState 
-    { 
-    	public bool MyCustomBoolVariable; 
-    	public string MyCustomStringVariable; 
+    private class GameState
+    {
+    	public bool MyCustomBoolVariable;
+    	public string MyCustomStringVariable;
     }
 
     private bool myCustomBoolVariable;
@@ -118,7 +118,7 @@ public class MyCustomBehaviour : MonoBehaviour
 }
 ```
 
-::: example
+::: tip EXAMPLE
 Более продвинутый пример использования пользовательского состояния со списком пользовательских структур для сохранения-загрузки состояния UI инвентаря можно найти в [примере проекта инвентаря на GitHub](https://github.com/Naninovel/Inventory).
 
 В частности, де-/сериализация пользовательского состояния реализуется в сценарии выполнения [InventoryUI.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L238); пользовательское состояние для слотов UI реализуется через [InventorySlotState.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/InventorySlotState.cs).
@@ -193,11 +193,10 @@ public class CustomSettingsSlotManager : ISaveSlotManager<SettingsStateMap>
 }
 ```
 
-::: note
+::: info NOTE
 Вы можете выбрать любое имя для вашего пользовательского обработчика сериализации, `CustomSettingsSlotManager` – это всего лишь пример.
 :::
 
 Когда пользовательский обработчик будет реализован, он появится в меню конфигурации состояния, где вы можете установить его вместо встроенного.
 
 ![](https://i.gyazo.com/213bc2bb8c7cc0e62ae98a579579f313.png)
-

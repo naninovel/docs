@@ -1,0 +1,168 @@
+<linker>
+  <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.LegacyResourcesProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.AssetBundleProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.BundledAssetProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.InstanceProvider" preserve="all" />
+    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.SceneProvider" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Texture2D" preserve="all" />
+    <type fullname="UnityEngine.Sprite" preserve="all" />
+    <type fullname="UnityEngine.GameObject" preserve="all" />
+    <type fullname="UnityEngine.Transform" preserve="all" />
+    <type fullname="UnityEngine.Material" preserve="all" />
+    <type fullname="UnityEngine.Shader" preserve="all" />
+    <type fullname="UnityEngine.RectTransform" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.UI.CanvasScaler" preserve="all" />
+    <type fullname="UnityEngine.UI.Text" preserve="all" />
+    <type fullname="UnityEngine.UI.Scrollbar" preserve="all" />
+    <type fullname="UnityEngine.UI.Image" preserve="all" />
+    <type fullname="UnityEngine.UI.GridLayoutGroup" preserve="all" />
+    <type fullname="UnityEngine.UI.ContentSizeFitter" preserve="all" />
+    <type fullname="UnityEngine.UI.LayoutElement" preserve="all" />
+    <type fullname="UnityEngine.UI.AspectRatioFitter" preserve="all" />
+    <type fullname="UnityEngine.UI.Mask" preserve="all" />
+    <type fullname="UnityEngine.UI.Shadow" preserve="all" />
+    <type fullname="UnityEngine.UI.ScrollRect" preserve="all" />
+    <type fullname="UnityEngine.UI.Button" preserve="all" />
+    <type fullname="UnityEngine.UI.RawImage" preserve="all" />
+    <type fullname="UnityEngine.UI.VerticalLayoutGroup" preserve="all" />
+    <type fullname="UnityEngine.UI.InputField" preserve="all" />
+    <type fullname="UnityEngine.UI.HorizontalLayoutGroup" preserve="all" />
+    <type fullname="UnityEngine.UI.GraphicRaycaster" preserve="all" />
+    <type fullname="UnityEngine.UI.Dropdown" preserve="all" />
+    <type fullname="UnityEngine.UI.Toggle" preserve="all" />
+    <type fullname="UnityEngine.UI.Slider" preserve="all" />
+    <type fullname="UnityEngine.UI.ToggleGroup" preserve="all" />
+  </assembly>
+  <assembly fullname="Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="TMPro.TMP_FontAsset" preserve="all" />
+    <type fullname="TMPro.TextMeshProUGUI" preserve="all" />
+  </assembly>
+  <assembly fullname="Elringus.Naninovel.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="Naninovel.UI.ControlPanelSettingsButton" preserve="all" />
+    <type fullname="Naninovel.UI.RevealableTextPrinterPanel" preserve="all" />
+    <type fullname="Naninovel.UI.PingPongInputIndicator" preserve="all" />
+    <type fullname="Naninovel.UI.AuthorImage" preserve="all" />
+    <type fullname="Naninovel.UI.LoadLoggerScrollRect" preserve="all" />
+    <type fullname="Naninovel.ScriptableLabeledButton" preserve="all" />
+    <type fullname="Naninovel.UI.RollbackUI" preserve="all" />
+    <type fullname="Naninovel.Script" preserve="all" />
+    <type fullname="Naninovel.UI.VariableInputPanel" preserve="all" />
+    <type fullname="Naninovel.FX.Snow" preserve="all" />
+    <type fullname="Naninovel.UI.TipsReturnButton" preserve="all" />
+    <type fullname="Naninovel.UI.ChatMessage" preserve="all" />
+    <type fullname="Naninovel.FX.Animate" preserve="all" />
+    <type fullname="Naninovel.CGGalleryGridSlot" preserve="all" />
+    <type fullname="Naninovel.UI.BacklogCloseButton" preserve="all" />
+    <type fullname="Naninovel.UI.GameSettingsReturnButton" preserve="all" />
+    <type fullname="Naninovel.UI.CGViewerPanel" preserve="all" />
+    <type fullname="Naninovel.UI.BacklogPanel" preserve="all" />
+    <type fullname="Naninovel.UI.ExternalScriptsBrowserReturnButton" preserve="all" />
+    <type fullname="Naninovel.UI.TitleMenu" preserve="all" />
+    <type fullname="Naninovel.UI.GameSettingsMenu" preserve="all" />
+    <type fullname="Naninovel.UI.GameSettingsAutoDelaySlider" preserve="all" />
+    <type fullname="Naninovel.UI.ControlPanelLogButton" preserve="all" />
+    <type fullname="Naninovel.UI.GameSettingsScreenModeDropdown" preserve="all" />
+    <type fullname="Naninovel.FX.DigitalGlitch" preserve="all" />
+    <type fullname="Naninovel.UI.ChoiceHandlerPanel" preserve="all" />
+    <type fullname="Naninovel.CGGalleryGrid" preserve="all" />
+    <type fullname="Naninovel.LabeledButton" preserve="all" />
+    <type fullname="Naninovel.PlayScript" preserve="all" />
+    <type fullname="Naninovel.FX.ShakeCamera" preserve="all" />
+    <type fullname="Naninovel.UI.GameStateSlot" preserve="all" />
+    <type fullname="Naninovel.FX.Rain" preserve="all" />
+    <type fullname="Naninovel.UI.ControlPanelHideButton" preserve="all" />
+    <type fullname="Naninovel.UI.TitleTipsButton" preserve="all" />
+    <type fullname="Naninovel.ManagedTextProvider" preserve="all" />
+    <type fullname="Naninovel.GameSettingsPreviewPrinter" preserve="all" />
+    <type fullname="Naninovel.UI.CGGalleryPanel" preserve="all" />
+    <type fullname="Naninovel.UI.GameSettingsVoiceVolumeSlider" preserve="all" />
+    <type fullname="Naninovel.UI.TypingIndicator" preserve="all" />
+    <type fullname="Naninovel.FX.ShakeBackground" preserve="all" />
+    <type fullname="Naninovel.UI.GameSettingsLanguageDropdown" preserve="all" />
+    <type fullname="Naninovel.FX.DepthOfField" preserve="all" />
+    <type fullname="Naninovel.UI.ControlPanelTipsButton" preserve="all" />
+    <type fullname="Naninovel.UI.ControlPanelQuickLoadButton" preserve="all" />
+    <type fullname="Naninovel.UI.GameSettingsResolutionDropdown" preserve="all" />
+    <type fullname="Naninovel.UI.ClickThroughPanel" preserve="all" />
+    <type fullname="Naninovel.UI.ControlPanelSkipButton" preserve="all" />
+    <type fullname="Naninovel.UI.ContinueInputUI" preserve="all" />
+    <type fullname="Naninovel.FX.ShakePrinter" preserve="all" />
+    <type fullname="Naninovel.UI.GameSettingsSfxVolumeSlider" preserve="all" />
+    <type fullname="Naninovel.FX.ShakeCharacter" preserve="all" />
+    <type fullname="Naninovel.UI.SaveLoadMenuReturnButton" preserve="all" />
+    <type fullname="Naninovel.UI.ConfirmationPanel" preserve="all" />
+    <type fullname="Naninovel.UI.TitleExternalScriptsButton" preserve="all" />
+    <type fullname="Naninovel.UI.ExternalScriptsBrowserPanel" preserve="all" />
+    <type fullname="Naninovel.UI.LoadingIcon" preserve="all" />
+    <type fullname="Naninovel.UI.ToastUI" preserve="all" />
+    <type fullname="Naninovel.UI.NavigatorPlayButton" preserve="all" />
+    <type fullname="Naninovel.UI.SceneTransitionUI" preserve="all" />
+    <type fullname="Naninovel.UI.CGGalleryReturnButton" preserve="all" />
+    <type fullname="Naninovel.UI.ControlPanelQuickSaveButton" preserve="all" />
+    <type fullname="Naninovel.UI.TitleExitButton" preserve="all" />
+    <type fullname="Naninovel.TipsListItem" preserve="all" />
+    <type fullname="Naninovel.BacklogMessage" preserve="all" />
+    <type fullname="Naninovel.UI.TitleSettingsButton" preserve="all" />
+    <type fullname="Naninovel.UI.GameSettingsFontDropdown" preserve="all" />
+    <type fullname="Naninovel.UI.GameSettingsMasterVolumeSlider" preserve="all" />
+    <type fullname="Naninovel.UI.TipsPanel" preserve="all" />
+    <type fullname="Naninovel.UI.GameStateSlotsGrid" preserve="all" />
+    <type fullname="Naninovel.UI.GameSettingsFontSizeDropdown" preserve="all" />
+    <type fullname="Naninovel.UI.RevealableTMProText" preserve="all" />
+    <type fullname="Naninovel.UI.ToastAppearance" preserve="all" />
+    <type fullname="Naninovel.UI.GameSettingsBgmVolumeSlider" preserve="all" />
+    <type fullname="Naninovel.UI.ControlPanelAutoPlayButton" preserve="all" />
+    <type fullname="Naninovel.UI.GameSettingsSkipModeDropdown" preserve="all" />
+    <type fullname="Naninovel.ReactToAspectRatio" preserve="all" />
+    <type fullname="Naninovel.UI.ControlPanelLoadButton" preserve="all" />
+    <type fullname="Naninovel.UI.LoadingPanel" preserve="all" />
+    <type fullname="Naninovel.UI.GameSettingsVoiceLocaleDropdown" preserve="all" />
+    <type fullname="Naninovel.UI.ChatPrinterPanel" preserve="all" />
+    <type fullname="Naninovel.UI.ControlPanelTitleButton" preserve="all" />
+    <type fullname="Naninovel.UI.TitleCGGalleryButton" preserve="all" />
+    <type fullname="Naninovel.UI.ControlPanelSaveButton" preserve="all" />
+    <type fullname="Naninovel.UI.TitleContinueButton" preserve="all" />
+    <type fullname="Naninovel.UI.GameSettingsMessageSpeedSlider" preserve="all" />
+    <type fullname="Naninovel.UI.PauseUI" preserve="all" />
+    <type fullname="Naninovel.UI.ChoiceHandlerButton" preserve="all" />
+    <type fullname="Naninovel.ScriptableButton" preserve="all" />
+    <type fullname="Naninovel.FX.SunShafts" preserve="all" />
+    <type fullname="Naninovel.UI.EngineVersionText" preserve="all" />
+    <type fullname="Naninovel.UI.MovieUI" preserve="all" />
+    <type fullname="Naninovel.UI.AuthorNameTMProPanel" preserve="all" />
+    <type fullname="Naninovel.UI.SaveLoadMenu" preserve="all" />
+    <type fullname="Naninovel.UI.GameSettingsGraphicsDropdown" preserve="all" />
+    <type fullname="Naninovel.FX.Blur" preserve="all" />
+    <type fullname="Naninovel.UI.RevealableUIText" preserve="all" />
+    <type fullname="Naninovel.UI.AuthorNameUIPanel" preserve="all" />
+    <type fullname="Naninovel.CommandScriptLine" preserve="nothing" serialized="true" />
+    <type fullname="Naninovel.Commands.ExitToTitle" preserve="nothing" serialized="true" />
+    <type fullname="Naninovel.Commands.ModifyBackground" preserve="nothing" serialized="true" />
+    <type fullname="Naninovel.Commands.PrintText" preserve="nothing" serialized="true" />
+    <type fullname="Naninovel.EmptyScriptLine" preserve="nothing" serialized="true" />
+    <type fullname="Naninovel.GenericTextScriptLine" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="UnityEditor, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEditor.MonoScript" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.TextRenderingModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Font" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.ParticleSystem" preserve="all" />
+    <type fullname="UnityEngine.ParticleSystemRenderer" preserve="all" />
+  </assembly>
+  <assembly fullname="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.CanvasRenderer" preserve="all" />
+    <type fullname="UnityEngine.Canvas" preserve="all" />
+    <type fullname="UnityEngine.CanvasGroup" preserve="all" />
+  </assembly>
+</linker>

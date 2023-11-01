@@ -1,4 +1,4 @@
-﻿# Visual Scripting
+# Visual Scripting
 
 [Visual scripting](https://docs.unity3d.com/Packages/com.unity.visualscripting@latest) (previously known as Bolt) is a built-in package bundled by default with Unity 2021 and newer version. It enables you to create logic for games or applications with unit-based graphs that both programmers and non-programmers can use without writing code.
 
@@ -14,7 +14,7 @@ Add `Elringus.Naninovel.Runtime` library to the `Node Library` list found in "Vi
 
 ![](https://i.gyazo.com/38afd2ea477fcf0921114e3847de6c85.png)
 
-The Visual Scripting doesn't automatically expose all the available types in the libraries, so we additionally need to add the required Naninovel types to the `Type Options` list found in the same settings menu. In the example below we added `Engine` and `Script Player Interface`, but you'll probably need more types, like the other [engine service interfaces](/guide/engine-services.md), configurations, etc.
+The Visual Scripting doesn't automatically expose all the available types in the libraries, so we additionally need to add the required Naninovel types to the `Type Options` list found in the same settings menu. In the example below we added `Engine` and `Script Player Interface`, but you'll probably need more types, like the other [engine service interfaces](/guide/engine-services), configurations, etc.
 
 ![](https://i.gyazo.com/2e416a015d980cbedfa49d1589505e17.png)
 
@@ -28,7 +28,7 @@ When Naninovel library and types are added in the visual scripting settings, the
 
 ![](https://i.gyazo.com/a890edf4425ba94d934c31ced6ca0f53.png)
 
-In case you wish to send an event from a scenario script to a visual scripting graph or state machine, below is example of a [custom command](/guide/custom-commands.md), which will attempt to find a game object with the provided name and send an event with the specified name and arguments:
+In case you wish to send an event from a scenario script to a visual scripting graph or state machine, below is example of a [custom command](/guide/custom-commands), which will attempt to find a game object with the provided name and send an event with the specified name and arguments:
 
 ```csharp
 using Naninovel;
@@ -45,7 +45,7 @@ public class BroadcastBoltEvent : Command
     public StringParameter EventName;
     [ParameterAlias("args")]
     public StringListParameter Arguments;
-    
+
     public override UniTask ExecuteAsync (AsyncToken asyncToken = default)
     {
         var gameObject = GameObject.Find(GameObjectName);
@@ -54,9 +54,9 @@ public class BroadcastBoltEvent : Command
             Debug.LogError($"Failed to find `{GameObjectName}` game object.");
             return UniTask.CompletedTask;
         }
-        
+
         CustomEvent.Trigger(gameObject, EventName, Arguments);
-        
+
         return UniTask.CompletedTask;
     }
 }
@@ -73,6 +73,6 @@ Below is an example graph, that, when attached to a `ExampleEvent` game object, 
 
 ![](https://i.gyazo.com/fa613006433d43cd8e25b4c9aed33d78.png)
 
-::: example
+::: tip EXAMPLE
 An example project containing all the aforementioned graphs and test scripts is available on GitHub: [github.com/Naninovel/VisualScripting](https://github.com/Naninovel/VisualScripting). Be aware, that Naninovel is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import the package from the Asset Store to resolve the issues.
 :::

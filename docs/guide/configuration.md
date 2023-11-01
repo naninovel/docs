@@ -1,11 +1,11 @@
 # Configuration
-The engine configuration is stored in multiple scriptable object assets located at `Assets/NaninovelData/Resources/Naninovel/Configuration` folder. They are automatically generated when opening the corresponding configuration menus in the Unity editor for the first time. 
+The engine configuration is stored in multiple scriptable object assets located at `Assets/NaninovelData/Resources/Naninovel/Configuration` folder. They are automatically generated when opening the corresponding configuration menus in the Unity editor for the first time.
 
 Use `Naninovel -> Configuration` or `Edit -> Project Settings -> Naninovel` to access the configuration menu.
 
 Notice, that all the configuration menus are supporting [Unity's presets feature](https://docs.unity3d.com/Manual/Presets). It could be useful to create several configuration presets when deploying to different target platforms (eg, mobile, standalone, consoles, etc).
 
-[!https://i.gyazo.com/55f5c74bfc16e1af2455034647525df3.mp4]
+![](https://i.gyazo.com/55f5c74bfc16e1af2455034647525df3.mp4)
 
 It's possible to modify configuration objects at runtime, add new custom configurations and change the way the objects are accessed at runtime (eg, read configuration from JSON files stored on a remote host); see [custom configuration](/guide/custom-configuration) guide for more information.
 
@@ -363,4 +363,3 @@ Property | Default Value | Description
 Loader | Unlockables- (Addressable, Project) | Configuration of the resource loader used with unlockable resources.
 
 </div>
-

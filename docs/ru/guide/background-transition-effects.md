@@ -1,4 +1,4 @@
-﻿# Эффекты переходов фонов
+# Эффекты переходов фонов
 
 При изменении внешности фона с помощью команды [@back] можно дополнительно указать, какой эффект перехода следует использовать. Например, следующая команда будет переходить к фону "River" с помощью эффекта перехода "DropFade":
 
@@ -28,14 +28,14 @@
 
 ```nani
 @back River.Ripple params:10,5,0.02
-``` 
+```
 — установит частоту эффекта пульсации на 10, скорость на 5 и амплитуду на 0,02. Если параметр `params` не указан, будут использоваться значения по умолчанию.
 
 Если вы хотите изменить отдельные параметры, вы можете пропустить другие, и они будут иметь свои значения по умолчанию:
 
 ```nani
 @back River.Ripple params:,,0.02
-``` 
+```
 
 Все параметры перехода имеют десятичный тип. Доступные эффекты перехода с их параметрами и значениями по умолчанию можно найти в приведенной ниже документации.
 
@@ -43,11 +43,11 @@
 
 ### Демонстрация
 
-<video class="video" loop autoplay><source src=" https://i.gyazo.com/37432ac584ef04d94d3e4f9535fdffc4.mp4" type="video/mp4"></video>
+![](https://i.gyazo.com/37432ac584ef04d94d3e4f9535fdffc4.mp4)
 
 ### Параметры
-Имя |  По умолчанию 
---- | --- 
+Имя |  По умолчанию
+--- | ---
 Количество скруток | 5
 Частота | 10
 
@@ -56,7 +56,7 @@
 ; Применить переход со стандартными параметрами
 @back Appearance.BandedSwirl
 
-; Применить переход со стандартным количеством скруток, но низкой частотой 
+; Применить переход со стандартным количеством скруток, но низкой частотой
 @back Appearance.BandedSwirl params:,2.5
 ```
 
@@ -64,11 +64,11 @@
 
 ### Демонстрация
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/73a259f2a513a92ef893ebd6a25e9013.mp4" type="video/mp4"></video>
+![](https://i.gyazo.com/73a259f2a513a92ef893ebd6a25e9013.mp4)
 
 ### Параметры
-Имя |  По умолчанию 
---- | --- 
+Имя |  По умолчанию
+--- | ---
 Количество | 6
 
 ### Примеры
@@ -84,11 +84,11 @@
 
 ### Демонстрация
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/4f914c6741a5e48a22cafe2ab242a426.mp4" type="video/mp4"></video>
+![](https://i.gyazo.com/4f914c6741a5e48a22cafe2ab242a426.mp4)
 
 ### Параметры
-Имя |  По умолчанию 
---- | --- 
+Имя |  По умолчанию
+--- | ---
 Уровень размытия | 0.25
 
 ### Примеры
@@ -104,7 +104,7 @@
 
 ### Демонстрация
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/f09bb69a3c045eeb1f6c8ec0b9dcd790.mp4" type="video/mp4"></video>
+![](https://i.gyazo.com/f09bb69a3c045eeb1f6c8ec0b9dcd790.mp4)
 
 ### Примеры
 ```nani
@@ -116,7 +116,7 @@
 
 ### Демонстрация
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/618ec451a9e10f70486db0bb4badbb71.mp4" type="video/mp4"></video>
+![](https://i.gyazo.com/618ec451a9e10f70486db0bb4badbb71.mp4)
 
 ### Примеры
 ```nani
@@ -128,7 +128,7 @@
 
 ### Демонстрация
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/dc4781a577ec891065af1858f5fe2ed1.mp4" type="video/mp4"></video>
+![](https://i.gyazo.com/dc4781a577ec891065af1858f5fe2ed1.mp4)
 
 ### Примеры
 ```nani
@@ -140,7 +140,7 @@
 
 ### Демонстрация
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/e27c8477842a2092728ea0cc1ae76bda.mp4" type="video/mp4"></video>
+![](https://i.gyazo.com/e27c8477842a2092728ea0cc1ae76bda.mp4)
 
 ### Примеры
 ```nani
@@ -152,11 +152,11 @@
 
 ### Демонстрация
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/b2993be8de032a65c7d813c6d749e758.mp4" type="video/mp4"></video>
+![](https://i.gyazo.com/b2993be8de032a65c7d813c6d749e758.mp4)
 
 ### Параметры
-Имя |  По умолчанию 
---- | --- 
+Имя |  По умолчанию
+--- | ---
 Шаг | 99999
 
 ### Примеры
@@ -172,7 +172,7 @@
 
 ### Демонстрация
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/3c3840bb311ccb9fe223960f2e46f800.mp4" type="video/mp4"></video>
+![](https://i.gyazo.com/3c3840bb311ccb9fe223960f2e46f800.mp4)
 
 ### Примеры
 ```nani
@@ -184,11 +184,11 @@
 
 ### Демонстрация
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/c0e5259cd3d4ed2016ab74a65a7eec63.mp4" type="video/mp4"></video>
+![](https://i.gyazo.com/c0e5259cd3d4ed2016ab74a65a7eec63.mp4)
 
 ### Параметры
 Имя |  По умолчанию
---- | --- 
+--- | ---
 Уровень размытия | 0.25
 Уклон по оси X | 0.5
 Уклон по оси Y | 0.5
@@ -206,7 +206,7 @@
 
 ### Демонстрация
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/0ac9339b21303e20c524aaf6b6ca95f4.mp4" type="video/mp4"></video>
+![](https://i.gyazo.com/0ac9339b21303e20c524aaf6b6ca95f4.mp4)
 
 ### Примеры
 ```nani
@@ -218,7 +218,7 @@
 
 ### Демонстрация
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/f8269fb68519c57c99643948a027a2a1.mp4" type="video/mp4"></video>
+![](https://i.gyazo.com/f8269fb68519c57c99643948a027a2a1.mp4)
 
 ### Примеры
 ```nani
@@ -230,7 +230,7 @@
 
 ### Демонстрация
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/a401b3b93a61276ed68ededa2e75e9ae.mp4" type="video/mp4"></video>
+![](https://i.gyazo.com/a401b3b93a61276ed68ededa2e75e9ae.mp4)
 
 ### Примеры
 ```nani
@@ -242,7 +242,7 @@
 
 ### Демонстрация
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/f6e685b13fe2d76733fd43878602eabc.mp4" type="video/mp4"></video>
+![](https://i.gyazo.com/f6e685b13fe2d76733fd43878602eabc.mp4)
 
 ### Примеры
 ```nani
@@ -254,11 +254,11 @@
 
 ### Демонстрация
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/ff1bd285dc675ca5ac04f7ae4500f1c4.mp4" type="video/mp4"></video>
+![](https://i.gyazo.com/ff1bd285dc675ca5ac04f7ae4500f1c4.mp4)
 
 ### Параметры
 Имя |  По умолчанию
---- | --- 
+--- | ---
 Частота | 20
 Скорость | 10
 Амплитуда | 0.5
@@ -276,7 +276,7 @@
 
 ### Демонстрация
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/8d476f466858e4788e5ad6014d6db314.mp4" type="video/mp4"></video>
+![](https://i.gyazo.com/8d476f466858e4788e5ad6014d6db314.mp4)
 
 ### Примеры
 ```nani
@@ -288,7 +288,7 @@
 
 ### Демонстрация
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/ad6eb77b7065387b9cb9afd77adbc784.mp4" type="video/mp4"></video>
+![](https://i.gyazo.com/ad6eb77b7065387b9cb9afd77adbc784.mp4)
 
 ### Примеры
 ```nani
@@ -300,11 +300,11 @@
 
 ### Демонстрация
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/8c8bf00348df28ab89813c21f8655c07.mp4" type="video/mp4"></video>
+![](https://i.gyazo.com/8c8bf00348df28ab89813c21f8655c07.mp4)
 
 ### Параметры
 Имя |  По умолчанию
---- | --- 
+--- | ---
 Скорость | 200
 
 ### Примеры
@@ -320,11 +320,11 @@
 
 ### Демонстрация
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/800ee6f5fba39ab8d46f5eb09f2126cf.mp4" type="video/mp4"></video>
+![](https://i.gyazo.com/800ee6f5fba39ab8d46f5eb09f2126cf.mp4)
 
 ### Параметры
 Имя |  По умолчанию
---- | --- 
+--- | ---
 Количество слайдов | 1
 
 ### Примеры
@@ -337,11 +337,11 @@
 
 ### Демонстрация
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/5a21293d979323a112ffd07f1fffd28d.mp4" type="video/mp4"></video>
+![](https://i.gyazo.com/5a21293d979323a112ffd07f1fffd28d.mp4)
 
 ### Параметры
 Имя |  По умолчанию
---- | --- 
+--- | ---
 Количество скруток | 15
 Количество клеток | 10
 
@@ -358,11 +358,11 @@
 
 ### Демонстрация
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/6ac9a2fe1bb9dfaf6a8292ae5d03960e.mp4" type="video/mp4"></video>
+![](https://i.gyazo.com/6ac9a2fe1bb9dfaf6a8292ae5d03960e.mp4)
 
 ### Параметры
 Имя |  По умолчанию
---- | --- 
+--- | ---
 Количество скруток | 15
 
 ### Примеры
@@ -378,7 +378,7 @@
 
 ### Демонстрация
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/7c684f9a122006f38a0be2725895b76f.mp4" type="video/mp4"></video>
+![](https://i.gyazo.com/7c684f9a122006f38a0be2725895b76f.mp4)
 
 ### Примеры
 ```nani
@@ -390,7 +390,7 @@
 
 ### Демонстрация
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/b6eebcb68002064ababe4d7476139a7c.mp4" type="video/mp4"></video>
+![](https://i.gyazo.com/b6eebcb68002064ababe4d7476139a7c.mp4)
 
 ### Примеры
 ```nani
@@ -402,11 +402,11 @@
 
 ### Демонстрация
 
-<video class="video" loop autoplay><source src="https://i.gyazo.com/e189ca12868d7ae4c9d8f0ca3d9dd298.mp4" type="video/mp4"></video>
+![](https://i.gyazo.com/e189ca12868d7ae4c9d8f0ca3d9dd298.mp4)
 
 ### Параметры
 Имя |  По умолчанию
---- | --- 
+--- | ---
 Интенсивность | 0.1
 Фаза | 14
 Частота | 20
@@ -436,7 +436,4 @@
 
 Посмотрите следующее видео для примеров использования:
 
-<div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/HZjey6M2-PE" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
-
+![](https://www.youtube.com/watch?v=HZjey6M2-PE)

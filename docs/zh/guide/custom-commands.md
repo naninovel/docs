@@ -1,10 +1,10 @@
 # 自定义命令
 
-命令代表单个操作，控制这场景中的发生事件。比如，可以用于改变背景，移动角色，或是加载其他脚本。[naninovel 脚本](/zh/guide/naninovel-scripts.md) 定义的参数化命令序列可有效控制游戏流程。您可以在[API参考 ](/zh/api/) 中找到可用的内置命令。在代码中，所有内置脚本命令实现均在 `Naninovel.Commands` 命名空间下定义。
+命令代表单个操作，控制这场景中的发生事件。比如，可以用于改变背景，移动角色，或是加载其他脚本。[naninovel 脚本](/zh/guide/naninovel-scripts) 定义的参数化命令序列可有效控制游戏流程。您可以在[API参考 ](/zh/api/) 中找到可用的内置命令。在代码中，所有内置脚本命令实现均在 `Naninovel.Commands` 命名空间下定义。
 
 要添加自己的自定义脚本命令，请创建一个C#的新类派生自`Command` 并实现ExecuteAsync抽象方法。引擎将自动选择创建的类，能够通过类名或别名（如果已分配）从naninovel脚本调用命令。要将别名分配给naninovel命令，请将`CommandAlias` 标签应用于该类。
 
-`ExecuteAsync` 是当脚本执行命令时调用的异步方法。使用 [引擎服务](/zh/guide/engine-services.md) 访问引擎内置系统。Naninovel脚本将会暂停，直到该执行方法完成返回 `Wait` 参数为 `true`。
+`ExecuteAsync` 是当脚本执行命令时调用的异步方法。使用 [引擎服务](/zh/guide/engine-services) 访问引擎内置系统。Naninovel脚本将会暂停，直到该执行方法完成返回 `Wait` 参数为 `true`。
 
 要将命令参数公开给naninovel脚本，请使用一种受支持的类型向命令类添加一个公共字段：
 
@@ -70,7 +70,7 @@ public class HelloWorld : Command
 
 注意可选 `AsyncToken` 参数。如果调用任何异步方法，请确保检查该值的取消请求，并尽快返回该值。
 
-::: example
+::: tip EXAMPLE
 关于添加自定义命令来在背包中增加删除道具的示例在[背包示例项目中](https://github.com/Naninovel/Inventory) 。
 
 另外，命令实现存储在[Runtime/Commands](https://github.com/Naninovel/Inventory/tree/master/Assets/NaninovelInventory/Runtime/Commands) 目录中。

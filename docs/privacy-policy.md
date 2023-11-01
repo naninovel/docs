@@ -1,3 +1,7 @@
+---
+editLink: false
+---
+
 # Privacy Policy
 
 Effective date: July 17, 2021
@@ -40,7 +44,7 @@ Examples of Cookies we use:
 * **Security Cookies.** We use Security Cookies for security purposes.
 
 ## Use of Data
-    
+
 Naninovel uses the collected data for various purposes:
 
 * To provide and maintain the Service
@@ -92,7 +96,7 @@ These third parties have access to your Personal Data only to perform these task
 
 ### Analytics
 
-We may use third-party Service Providers to monitor and analyze the use of our Service: 
+We may use third-party Service Providers to monitor and analyze the use of our Service:
 
 * **Google Analytics** Google Analytics is a web analytics service offered by Google that tracks and reports website traffic. Google uses the data collected to track and monitor the use of our Service. This data is shared with other Google services. Google may use the collected data to contextualize and personalize the ads of its own advertising network. You can opt-out of having made your activity on the Service available to Google Analytics by installing the Google Analytics opt-out browser add-on. The add-on prevents the Google Analytics JavaScript (ga.js, analytics.js, and dc.js) from sharing information with Google Analytics about visits activity. For more information on the privacy practices of Google, please visit the Google Privacy & Terms web page: [policies.google.com/privacy](https://policies.google.com/privacy).
 

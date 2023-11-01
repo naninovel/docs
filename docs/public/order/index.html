@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Naninovel | Confirm Order</title>
+    <link href="../assets/css/page.min.css" rel="stylesheet">
+    <link href="../assets/css/style.css" rel="stylesheet">
+    <link rel="icon" href="../assets/img/nani-logo.svg" sizes="any" type="image/svg+xml">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light navbar-stick-dark" data-navbar="sticky">
+    <div class="container">
+
+        <div class="navbar-left">
+            <button class="navbar-toggler" type="button"><span class="navbar-toggler-icon"></span></button>
+            <a class="navbar-brand" href="/">
+                <img class="logo-light" src="../assets/img/nani-logo.svg" alt="logo">
+            </a>
+        </div>
+
+        <section class="navbar-mobile">
+            <span class="navbar-divider d-mobile-none"></span>
+            <ul class="nav nav-navbar">
+                <a class="nav-link" href="/faq/">FAQ</a>
+                <a class="nav-link" href="/guide/">Guide</a>
+                <a class="nav-link" href="https://account.naninovel.com">Account</a>
+                <a class="nav-link" href="https://forum.naninovel.com">Forum</a>
+                <a class="nav-link" href="/support/">Support</a>
+            </ul>
+        </section>
+
+    </div>
+</nav>
+
+<!-- MAIN -->
+<header class="header text-white h-fullscreen overflow-hidden" style="background-image: linear-gradient(-45deg, #1baeea 0%, #2b3a97 100%);">
+    <canvas class="constellation" data-radius="0"></canvas>
+    <div class="container position-static">
+
+        <div class="row align-items-center h-100">
+
+            <div class="col-lg-7" id="working">
+                <h1 class="display-4 fw-500">Processing order...</h1>
+                <p class="lead mt-5 mb-7">The page will update automatically, do not refresh it. If nothing happens, please contact support.</p>
+                <a class="btn btn-xl btn-round btn-outline-light px-6" href="mailto:info@naninovel.com">Contact Support</a>
+            </div>
+
+            <div class="col-lg-7" id="fail" hidden>
+                <h1 class="display-4 fw-500">Failed to confirm order</h1>
+                <p class="lead mt-5 mb-7" id="error-message"></p>
+                <a class="btn btn-xl btn-round btn-outline-light px-6" href="mailto:info@naninovel.com">Contact Support</a>
+            </div>
+
+            <div class="col-lg-7" id="success" hidden>
+                <h1 class="display-4 fw-500">Order confirmed</h1>
+                <p class="lead mt-5">Your order number is <strong id="receipt">XXXX-XXXX</strong>. Purchase confirmation e-mail from Stripe will arrive shortly with the same number.</p>
+                <p class="lead mb-7">Download button below will work for 24 hours. To download Naninovel after that, register and activate the license using the order number.</p>
+                <a class="btn btn-xl btn-round btn-success w-200 mr-3 px-6" onclick="downloadPackage()">Download</a>
+                <a class="btn btn-xl btn-round btn-outline-light w-200 px-6" href="https://account.naninovel.com/Identity/Account/Register">Register</a>
+            </div>
+
+        </div>
+
+    </div>
+</header>
+
+<script src="../assets/js/page.min.js"></script>
+<script src="../assets/js/script.js"></script>
+
+<script>
+
+    window.onload = async function () {
+        const xhr = new XMLHttpRequest();
+        xhr.open("POST", `https://account.naninovel.com/ConfirmOrder?handler=ConfirmOrder&sessionId=${getSessionId()}`, true);
+        xhr.onreadystatechange = handleStateChange;
+        xhr.send();
+    };
+
+    function downloadPackage() {
+        window.location.href = `https://account.naninovel.com/ConfirmOrder?sessionId=${getSessionId()}`;
+    }
+
+    function getSessionId() {
+        return new URL(document.URL).searchParams.get("session");
+    }
+
+    function handleStateChange(_) {
+        if (this.readyState !== 4) return;
+        const response = this.responseText;
+        if (!response.startsWith("Receipt:")) setError(response);
+        else setReceipt(response);
+    }
+
+    function setReceipt(response) {
+        document.getElementById("working").hidden = true;
+        document.getElementById("success").hidden = false;
+        document.getElementById("receipt").innerText = response.split(":")[1];
+    }
+
+    function setError(message) {
+        document.getElementById("working").hidden = true;
+        document.getElementById("fail").hidden = false;
+        document.getElementById("error-message").innerText = message;
+    }
+
+</script>
+
+</body>
+</html>

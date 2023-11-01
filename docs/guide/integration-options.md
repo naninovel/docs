@@ -1,16 +1,16 @@
 # Integration Options
 
-While Naninovel is focused around traditional visual novel games the engine is designed to allow integration with existing projects. If you're making a 3D adventure game, RPG or game of any other genre — you can still use Naninovel as a drop-in dialogue (novel) system. 
+While Naninovel is focused around traditional visual novel games the engine is designed to allow integration with existing projects. If you're making a 3D adventure game, RPG or game of any other genre — you can still use Naninovel as a drop-in dialogue (novel) system.
 
-[!b1b6042db4a91b3a8cee74236b33c17c]
+![](https://i.gyazo.com/b1b6042db4a91b3a8cee74236b33c17c.mp4)
 
-There are multiple ways you can integrate Naninovel with a custom project and specific implementation will depend on the type of the project and what exactly you want to achieve with Naninovel. In the following documentation we'll list various configuration options and API that could be useful for "pairing" Naninovel with a standalone game. Before you continue, take a look at the [engine architecture](/guide/engine-architecture.md) to better understand how it behaves on a conceptual level.
+There are multiple ways you can integrate Naninovel with a custom project and specific implementation will depend on the type of the project and what exactly you want to achieve with Naninovel. In the following documentation we'll list various configuration options and API that could be useful for "pairing" Naninovel with a standalone game. Before you continue, take a look at the [engine architecture](/guide/engine-architecture) to better understand how it behaves on a conceptual level.
 
-::: example
-Check out an [example project](/guide/integration-options.md#example-project), where Naninovel is used as both drop-in dialogue for a 3D adventure game and a switchable standalone novel mode. 
+::: tip EXAMPLE
+Check out an [example project](/guide/integration-options#example-project), where Naninovel is used as both drop-in dialogue for a 3D adventure game and a switchable standalone novel mode.
 :::
 
-## Manual Initialization 
+## Manual Initialization
 
 When `Initialize On Application Load` option in the engine configuration menu is enabled, the engine services will automatically initialize on application start.
 
@@ -82,7 +82,7 @@ await stateManager.ResetStateAsync();
 
 ## Disable Title Menu
 
-A built-in title menu implementation will be automatically shown when the engine is initialized, while you'll most likely have your own title menu. You can either modify or completely replace the built-in title menu using [UI customization feature](/guide/user-interface.md#ui-customization) or just disable it by turning off `Show Title UI` toggle in the engine configuration menu.
+A built-in title menu implementation will be automatically shown when the engine is initialized, while you'll most likely have your own title menu. You can either modify or completely replace the built-in title menu using [UI customization feature](/guide/user-interface#ui-customization) or just disable it by turning off `Show Title UI` toggle in the engine configuration menu.
 
 ## Engine Objects Layer
 You can make the engine assign a specific [layer](https://docs.unity3d.com/Manual/Layers.html) for all the objects (except UI-related) it creates via configuration menu.
@@ -105,21 +105,23 @@ You can make the engine's camera render to a custom [render texture](https://doc
 
 While it heavily depends on the project, following is an abstract example (based on the integration project mentioned previously) on how you can implement switching between "adventure" and "novel" modes via custom commands.
 
-```csharp
+::: code-group
+
+```csharp [SwitchToNovelMode.cs]
 [CommandAlias("novel")]
 public class SwitchToNovelMode : Command
 {
     public StringParameter ScriptName;
     public StringParameter Label;
 
-    public override async UniTask ExecuteAsync (AsyncToken asyncToken = default)
+    public override async UniTask ExecuteAsync (AsyncToken asyncToken)
     {
         // 1. Disable character control.
         var controller = Object.FindObjectOfType<CharacterController3D>();
         controller.IsInputBlocked = true;
 
         // 2. Switch cameras.
-        var advCamera = GameObject.Find("AdventureModeCamera").GetComponent<Camera>();
+        var advCamera = GameObject.Find("AdvCamera").GetComponent<Camera>();
         advCamera.enabled = false;
         var naniCamera = Engine.GetService<ICameraManager>().Camera;
         naniCamera.enabled = true;
@@ -128,7 +130,7 @@ public class SwitchToNovelMode : Command
         if (Assigned(ScriptName))
         {
             var scriptPlayer = Engine.GetService<IScriptPlayer>();
-            await scriptPlayer.PreloadAndPlayAsync(ScriptName, label: Label);
+            await scriptPlayer.PreloadAndPlayAsync(ScriptName, label);
         }
 
         // 4. Enable Naninovel input.
@@ -138,11 +140,11 @@ public class SwitchToNovelMode : Command
 }
 ```
 
-```csharp
+```csharp [SwitchToAdventureMode.cs]
 [CommandAlias("adventure")]
 public class SwitchToAdventureMode : Command
 {
-    public override async UniTask ExecuteAsync (AsyncToken asyncToken = default)
+    public override async UniTask ExecuteAsync (AsyncToken asyncToken)
     {
         // 1. Disable Naninovel input.
         var inputManager = Engine.GetService<IInputManager>();
@@ -157,7 +159,7 @@ public class SwitchToAdventureMode : Command
         await stateManager.ResetStateAsync();
 
         // 4. Switch cameras.
-        var advCamera = GameObject.Find("AdventureModeCamera").GetComponent<Camera>();
+        var advCamera = GameObject.Find("AdvCamera").GetComponent<Camera>();
         advCamera.enabled = true;
         var naniCamera = Engine.GetService<ICameraManager>().Camera;
         naniCamera.enabled = false;
@@ -168,6 +170,8 @@ public class SwitchToAdventureMode : Command
     }
 }
 ```
+
+:::
 
 The commands can then be used in naninovel scripts:
 
@@ -188,7 +192,7 @@ private void OnTriggerEnter (Collider other)
 
 ## Other Options
 
-There are multiple other features (state outsourcing, services overriding, custom serialization, resource and configuration providers, etc), which could be situationally helpful when integrating the engine with another systems; check out rest of the guide for more information. Consider investigating the available [configuration options](/guide/configuration.md) as well; some feature may not be described in the guide, but still be handy for integration purposes.
+There are multiple other features (state outsourcing, services overriding, custom serialization, resource and configuration providers, etc), which could be situationally helpful when integrating the engine with another systems; check out rest of the guide for more information. Consider investigating the available [configuration options](/guide/configuration) as well; some feature may not be described in the guide, but still be handy for integration purposes.
 
 If you feel some engine API or system is lacking in extendability and requiring source code modification in order to integrate, please [contact the support](/support/#naninovel-support) — we'll consider improving it.
 
@@ -196,8 +200,8 @@ If you feel some engine API or system is lacking in extendability and requiring 
 
 An example project with Naninovel used as both drop-in dialogue for a 3D adventure game and a switchable standalone novel mode is [available on GitHub](https://github.com/Naninovel/IntegrationExample). You can [clone the repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) with a Git client or [download it as a zip archive](https://github.com/Naninovel/IntegrationExample/archive/master.zip).
 
-::: warn
-Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
+::: warning
+Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; importing the package will resolve the issues.
 :::
 
 All the project-specific (example) scripts are stored at `Assets/Runtime` folder.

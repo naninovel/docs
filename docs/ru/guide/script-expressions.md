@@ -1,4 +1,4 @@
-﻿# Выражения сценария
+# Выражения сценария
 
 При написании сценариев naninovel можно вводить конструкции выражений в значения параметров команд и общие текстовые строки с помощью фигурных скобок `{}`:
 
@@ -16,7 +16,7 @@ One plus two equals {1 + 2}.
 
 – будет масштабировать персонажа с ID "Kohaku" со значением от деления гиперболического косинуса угла в 33,5 °, возведённого в третью степень, на натуральный логарифм от 0,5.
 
-Выражение вычисляется в момент выполнения команды, что позволяет использовать [пользовательские переменные](/ru/guide/custom-variables.md) внутри выражений:
+Выражение вычисляется в момент выполнения команды, что позволяет использовать [пользовательские переменные](/ru/guide/custom-variables) внутри выражений:
 
 ```nani
 @input color summary:"What's your favorite color?"
@@ -93,22 +93,19 @@ public static class CustomFunctions
     public static int Add (int a, int b) => a + b;
 
     // Возвращает одну случайную из предоставленных строк.
-    public static string Random (params string[] args) 
+    public static string Random (params string[] args)
 	{
-		if (args == null || args.Length == 0) 
+		if (args == null || args.Length == 0)
 			return default;
-        
+
         var randomIndex = UnityEngine.Random.Range(0, args.Length);
 		return args[randomIndex];
-	} 
+	}
 }
 ```
 
-::: example
+::: tip EXAMPLE
 Другой пример добавления пользовательских функций выражений для проверки наличия элемента в инвентаре можно найти в проекте [пример инвентаря на GitHub](https://github.com/Naninovel/Inventory).
 
 В частности, пользовательские функции реализуются через сценарий выполнения [Inventory Functions.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryFunctions.cs).
 :::
-
-
-

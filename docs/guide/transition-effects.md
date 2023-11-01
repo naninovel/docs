@@ -1,4 +1,4 @@
-﻿# Transition Effects
+# Transition Effects
 
 When changing background and character appearances with [@back] and [@char] or performing scene transition with [@startTrans] and [@finishTrans] commands, you can additionally specify which transition effect to use. For example, following command will transition to "River" background using "DropFade" transition effect:
 
@@ -6,7 +6,7 @@ When changing background and character appearances with [@back] and [@char] or p
 @back River.DropFade
 ```
 
-When no transition effect is specified a cross-fade is used by default. 
+When no transition effect is specified a cross-fade is used by default.
 
 You can also specify duration of the transition (in seconds) with the `time` parameter:
 
@@ -28,14 +28,14 @@ Some of the transition effects also support additional parameters, which you can
 
 ```nani
 @back River.Ripple params:10,5,0.02
-``` 
+```
 — will set frequency of the ripple effect to 10, speed to 5 and amplitude to 0.02. When no `params` is specified, default parameters will be used.
 
 If you wish to modify selected parameters, you can skip others and they'll have their default values:
 
 ```nani
 @back River.Ripple params:,,0.02
-``` 
+```
 
 All the transition parameters are of decimal type.
 
@@ -49,11 +49,11 @@ You can find available transition effects with their parameters and default valu
 
 ## BandedSwirl
 
-<video class="video" loop autoplay><source src=" https://i.gyazo.com/37432ac584ef04d94d3e4f9535fdffc4.mp4" type="video/mp4"></video>
+![](https://i.gyazo.com/37432ac584ef04d94d3e4f9535fdffc4.mp4)
 
 **Parameters**
-Name |  Default 
---- | --- 
+Name |  Default
+--- | ---
 Twist amount | 5
 Frequency | 10
 
@@ -62,17 +62,17 @@ Frequency | 10
 ; Apply the transition with default parameters
 @back Appearance.BandedSwirl
 
-; Apply the transition with defeault twist amount, but low frequency 
+; Apply the transition with defeault twist amount, but low frequency
 @back Appearance.BandedSwirl params:,2.5
 ```
 
 ## Blinds
 
-[!73a259f2a513a92ef893ebd6a25e9013]
+![](https://i.gyazo.com/73a259f2a513a92ef893ebd6a25e9013.mp4)
 
 **Parameters**
-Name |  Default 
---- | --- 
+Name |  Default
+--- | ---
 Count | 6
 
 **Examples**
@@ -86,11 +86,11 @@ Count | 6
 
 ## CircleReveal
 
-[!4f914c6741a5e48a22cafe2ab242a426]
+![](https://i.gyazo.com/4f914c6741a5e48a22cafe2ab242a426.mp4)
 
 **Parameters**
-Name |  Default 
---- | --- 
+Name |  Default
+--- | ---
 Fuzzy amount | 0.25
 
 **Examples**
@@ -104,7 +104,7 @@ Fuzzy amount | 0.25
 
 ## CircleStretch
 
-[!f09bb69a3c045eeb1f6c8ec0b9dcd790]
+![](https://i.gyazo.com/f09bb69a3c045eeb1f6c8ec0b9dcd790.mp4)
 
 **Examples**
 ```nani
@@ -114,7 +114,7 @@ Fuzzy amount | 0.25
 
 ## CloudReveal
 
-[!618ec451a9e10f70486db0bb4badbb71]
+![](https://i.gyazo.com/618ec451a9e10f70486db0bb4badbb71.mp4)
 
 **Examples**
 ```nani
@@ -124,7 +124,7 @@ Fuzzy amount | 0.25
 
 ## Crossfade
 
-[!dc4781a577ec891065af1858f5fe2ed1]
+![](https://i.gyazo.com/dc4781a577ec891065af1858f5fe2ed1.mp4)
 
 **Examples**
 ```nani
@@ -134,7 +134,7 @@ Fuzzy amount | 0.25
 
 ## Crumble
 
-[!e27c8477842a2092728ea0cc1ae76bda]
+![](https://i.gyazo.com/e27c8477842a2092728ea0cc1ae76bda.mp4)
 
 **Examples**
 ```nani
@@ -144,11 +144,11 @@ Fuzzy amount | 0.25
 
 ## Dissolve
 
-[!b2993be8de032a65c7d813c6d749e758]
+![](https://i.gyazo.com/b2993be8de032a65c7d813c6d749e758.mp4)
 
 **Parameters**
-Name |  Default 
---- | --- 
+Name |  Default
+--- | ---
 Step | 99999
 
 **Examples**
@@ -162,7 +162,7 @@ Step | 99999
 
 ## DropFade
 
-[!3c3840bb311ccb9fe223960f2e46f800]
+![](https://i.gyazo.com/3c3840bb311ccb9fe223960f2e46f800.mp4)
 
 **Examples**
 ```nani
@@ -172,11 +172,11 @@ Step | 99999
 
 ## LineReveal
 
-[!c0e5259cd3d4ed2016ab74a65a7eec63]
+![](https://i.gyazo.com/c0e5259cd3d4ed2016ab74a65a7eec63.mp4)
 
 **Parameters**
-Name |  Default 
---- | --- 
+Name |  Default
+--- | ---
 Fuzzy amount | 0.25
 Line Normal X | 0.5
 Line Normal Y | 0.5
@@ -196,7 +196,7 @@ Reverse | 0
 
 ## Pixelate
 
-[!0ac9339b21303e20c524aaf6b6ca95f4]
+![](https://i.gyazo.com/0ac9339b21303e20c524aaf6b6ca95f4.mp4)
 
 **Examples**
 ```nani
@@ -206,7 +206,7 @@ Reverse | 0
 
 ## RadialBlur
 
-[!f8269fb68519c57c99643948a027a2a1]
+![](https://i.gyazo.com/f8269fb68519c57c99643948a027a2a1.mp4)
 
 **Examples**
 ```nani
@@ -216,7 +216,7 @@ Reverse | 0
 
 ## RadialWiggle
 
-[!a401b3b93a61276ed68ededa2e75e9ae]
+![](https://i.gyazo.com/a401b3b93a61276ed68ededa2e75e9ae.mp4)
 
 **Examples**
 ```nani
@@ -226,7 +226,7 @@ Reverse | 0
 
 ## RandomCircleReveal
 
-[!f6e685b13fe2d76733fd43878602eabc]
+![](https://i.gyazo.com/f6e685b13fe2d76733fd43878602eabc.mp4)
 
 **Examples**
 ```nani
@@ -236,11 +236,11 @@ Reverse | 0
 
 ## Ripple
 
-[!ff1bd285dc675ca5ac04f7ae4500f1c4]
+![](https://i.gyazo.com/ff1bd285dc675ca5ac04f7ae4500f1c4.mp4)
 
 **Parameters**
-Name |  Default 
---- | --- 
+Name |  Default
+--- | ---
 Frequency | 20
 Speed | 10
 Amplitude | 0.5
@@ -256,7 +256,7 @@ Amplitude | 0.5
 
 ## RotateCrumble
 
-[!8d476f466858e4788e5ad6014d6db314]
+![](https://i.gyazo.com/8d476f466858e4788e5ad6014d6db314.mp4)
 
 **Examples**
 ```nani
@@ -266,7 +266,7 @@ Amplitude | 0.5
 
 ## Saturate
 
-[!ad6eb77b7065387b9cb9afd77adbc784]
+![](https://i.gyazo.com/ad6eb77b7065387b9cb9afd77adbc784.mp4)
 
 **Examples**
 ```nani
@@ -276,11 +276,11 @@ Amplitude | 0.5
 
 ## Shrink
 
-[!8c8bf00348df28ab89813c21f8655c07]
+![](https://i.gyazo.com/8c8bf00348df28ab89813c21f8655c07.mp4)
 
 **Parameters**
-Name |  Default 
---- | --- 
+Name |  Default
+--- | ---
 Speed | 200
 
 **Examples**
@@ -294,11 +294,11 @@ Speed | 200
 
 ## SlideIn
 
-[!800ee6f5fba39ab8d46f5eb09f2126cf]
+![](https://i.gyazo.com/800ee6f5fba39ab8d46f5eb09f2126cf.mp4)
 
 **Parameters**
-Name |  Default 
---- | --- 
+Name |  Default
+--- | ---
 Slide amount | 1
 
 **Examples**
@@ -309,11 +309,11 @@ Slide amount | 1
 
 ## SwirlGrid
 
-[!5a21293d979323a112ffd07f1fffd28d]
+![](https://i.gyazo.com/5a21293d979323a112ffd07f1fffd28d.mp4)
 
 **Parameters**
-Name |  Default 
---- | --- 
+Name |  Default
+--- | ---
 Twist amount | 15
 Cell count | 10
 
@@ -328,11 +328,11 @@ Cell count | 10
 
 ## Swirl
 
-[!6ac9a2fe1bb9dfaf6a8292ae5d03960e]
+![](https://i.gyazo.com/6ac9a2fe1bb9dfaf6a8292ae5d03960e.mp4)
 
 **Parameters**
-Name |  Default 
---- | --- 
+Name |  Default
+--- | ---
 Twist amount | 15
 
 **Examples**
@@ -346,7 +346,7 @@ Twist amount | 15
 
 ## Water
 
-[!7c684f9a122006f38a0be2725895b76f]
+![](https://i.gyazo.com/7c684f9a122006f38a0be2725895b76f.mp4)
 
 **Examples**
 ```nani
@@ -356,7 +356,7 @@ Twist amount | 15
 
 ## Waterfall
 
-[!b6eebcb68002064ababe4d7476139a7c]
+![](https://i.gyazo.com/b6eebcb68002064ababe4d7476139a7c.mp4)
 
 **Examples**
 ```nani
@@ -366,11 +366,11 @@ Twist amount | 15
 
 ## Wave
 
-[!e189ca12868d7ae4c9d8f0ca3d9dd298]
+![](https://i.gyazo.com/e189ca12868d7ae4c9d8f0ca3d9dd298.mp4)
 
 **Parameters**
-Name |  Default 
---- | --- 
+Name |  Default
+--- | ---
 Magnitude | 0.1
 Phase | 14
 Frequency | 20
@@ -420,17 +420,17 @@ To invert the transition (brighter areas of the dissolve mask will be displayed 
 
 Check out the following video for the usage examples.
 
-[!!HZjey6M2-PE]
+![](https://www.youtube.com/watch?v=HZjey6M2-PE)
 
 ### Custom Shader
 
 It's possible to add a completely custom transition effect via a custom actor [shader](https://docs.unity3d.com/Manual/ShadersOverview.html).
 
-::: warn
+::: warning
 The topic requires graphic programming skills in Unity. We're not providing any support or tutorials on writing custom shaders; consult the [support page](/support/#unity-support) for more information.
 :::
 
-Create a new shader and assign it to `Custom Texture Shader` property of the actors, which are supposed to use the custom transition effects; see [custom actor shader](/guide/custom-actor-shader.md) guide for more information on how to create and assign custom actor shaders.
+Create a new shader and assign it to `Custom Texture Shader` property of the actors, which are supposed to use the custom transition effects; see [custom actor shader](/guide/custom-actor-shader) guide for more information on how to create and assign custom actor shaders.
 
 When a transition name is specified in a script command, [shader keyword](https://docs.unity3d.com/ScriptReference/Shader.EnableKeyword.html) with the same name (prefixed with `NANINOVEL_TRANSITION_`) is enabled in the material used by the actor.
 
@@ -445,23 +445,25 @@ To add your own transitions to a custom actor shader, use `multi_compile` direct
 You can then use conditional directives to select a specific render method based on the enabled transition keyword. When re-using built-in actor shader, it's possible to implement custom transitions via `ApplyTransitionEffect` method, which is used in the fragment handler:
 
 ```c
-fixed4 ApplyTransitionEffect(sampler2D mainTex, float2 mainUV, sampler2D transitionTex, float2 transitionUV, 
-    float progress, float4 params, float2 randomSeed, sampler2D cloudsTex, sampler2D customTex)
+fixed4 ApplyTransitionEffect(sampler2D mainTex, float2 mainUV,
+    sampler2D transitionTex, float2 transitionUV, float progress,
+    float4 params, float2 randomSeed, sampler2D cloudsTex, sampler2D customTex)
 {
     const fixed4 CLIP_COLOR = fixed4(0, 0, 0, 0);
     fixed4 mainColor = Tex2DClip01(mainTex, mainUV, CLIP_COLOR);
-    fixed4 transitionColor = Tex2DClip01(transitionTex, transitionUV, CLIP_COLOR);
+    fixed4 transColor = Tex2DClip01(transitionTex, transitionUV, CLIP_COLOR);
 
     #ifdef NANINOVEL_TRANSITION_CUSTOM1 // Custom1 transition.
-    return transitionUV.x > progress ? mainColor : lerp(mainColor / progress * .1, transitionColor, progress);
+    return transitionUV.x > progress ? mainColor
+        : lerp(mainColor / progress * .1, transColor, progress);
     #endif
 
     #ifdef NANINOVEL_TRANSITION_CUSTOM2 // Custom2 transition.
-    return lerp(mainColor * (1.0 - progress), transitionColor * progress, progress);
+    return lerp(mainColor * (1.0 - progress), transColor * progress, progress);
     #endif
 
     // When no transition keywords enabled default to crossfade.
-    return lerp(mainColor, transitionColor, progress);
+    return lerp(mainColor, transColor, progress);
 }
 ```
 
@@ -472,4 +474,4 @@ You'll then be able to invoke the added transitions in the same way as the built
 @back River.Custom2
 ```
 
-For the complete shader example see [custom actor shader](/guide/custom-actor-shader.md) guide.
+For the complete shader example see [custom actor shader](/guide/custom-actor-shader) guide.

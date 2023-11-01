@@ -26,7 +26,7 @@ untiy是个人电脑产品，拥有众多特性；它有自己的说明文档，
 
 ## 开发支持Developer Support
 
-::: warn
+::: warning
 开发支持仅用于英语和俄语讨论Naninovel相关的话题。其他关于Unity（uGUI，寻址系统，C#代码）的任何问题参考[Unity支持](/zh/support/#unity支持)。
 :::
 
@@ -38,9 +38,9 @@ untiy是个人电脑产品，拥有众多特性；它有自己的说明文档，
  - 提供清晰简明的问题描述，并一步一步说明如何再现问题。
  - 明确使用的Naninovel和unity版本，目标平台（Android，iOS，WebGL，等），电脑操作系统（Windows，Mac 或 Linux）。
  - 附加上包含该描述问题的错误或警告的[log文件](https://docs.unity3d.com/Manual/LogFiles.html) 。
- 
+
 附加上[复制项目](/zh/support/#复制项目) 会大大提高并尽快识别修复该问题的可能。
-  
+
 ## 复制项目
 
 报告问题是，我们可能会要求复制项目，复制项目是用于再现问题的仅包含基础相关资源和设置的**极小化**的新项目。
@@ -69,4 +69,4 @@ Actual: No music is playing.
 5. 关闭Unity编辑器，除了创建的文本文件，及 `Assets`，`Packages` 和 `ProjectSettings` 目录外，移除所有其他目录。最主要的是 **确保删除了 `Library` 目录**，因为其中包含了很多自动生成的文件，会显著增大包大小。
 6. 将项目压缩为zip，上传至Google Drive或是在Discord附件私信。
 
-记得进通过私信来提交你都项目，**千万不要在公共频道发出**，以避免个人数据或者版权资源的泄露。 
+记得进通过私信来提交你都项目，**千万不要在公共频道发出**，以避免个人数据或者版权资源的泄露。

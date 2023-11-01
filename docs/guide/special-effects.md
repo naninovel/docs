@@ -1,4 +1,4 @@
-﻿# Special Effects
+# Special Effects
 
 Special effects are activated via [@spawn] command followed by the effect name. E.g.:
 
@@ -24,7 +24,7 @@ It's possible to selectively specify a subset of the parameters, leaving the res
 You can update the effect parameters without re-starting it with the consequent [@spawn]  commands, eg:
 
 ```nani
-; Start slowly shaking `Kohaku` character in a loop, 
+; Start slowly shaking `Kohaku` character in a loop,
 ; don't wait for completion (it's an infinite loop, anyway)
 @spawn ShakeCharacter params:Kohaku,0,,,0.1 wait:false
 Kohaku: It's rumbling!
@@ -87,7 +87,7 @@ You can use the following:
 ## Shake Printer
 Shakes printer with the specified ID or the default one. Dedicated command: [@shake]
 
-[!f61fc35e318cce1949b00e5fe2448a80]
+![](https://i.gyazo.com/f61fc35e318cce1949b00e5fe2448a80.mp4)
 
 **Start Parameters**
 Name | Type | Default | Description
@@ -108,7 +108,7 @@ Be aware, that when UI is set to "Screen Space Overlay" mode, shake amplitude ne
 ; Shake a default printer with default params
 @spawn ShakePrinter
 
-; Shake a default printer horizontally 10 times 
+; Shake a default printer horizontally 10 times
 @spawn ShakePrinter params:,10,,,,,true,false
 
 ; Start shaking a default printer in loop, print some text, stop the shaking
@@ -120,7 +120,7 @@ What a shaky situation!
 ## Shake Background
 Shakes background with the specified ID or the main one. Dedicated command: [@shake]
 
-[!fcf1153a0ad3d9a153908206211f5f5f]
+![](https://i.gyazo.com/fcf1153a0ad3d9a153908206211f5f5f.mp4)
 
 **Start Parameters**
 Name | Type | Default | Description
@@ -139,14 +139,14 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 ; Shake main background with default params
 @spawn ShakeBackground
 
-; Shake `Video` background twice 
+; Shake `Video` background twice
 @spawn ShakeBackground params:Video,2
 ```
 
 ## Shake Character
 Shakes character with the specified ID or a random visible one. Dedicated command: [@shake]
 
-[!6001d3cfbee855c8a783d10e4a784042]
+![](https://i.gyazo.com/6001d3cfbee855c8a783d10e4a784042.mp4)
 
 **Start Parameters**
 Name | Type | Default | Description
@@ -179,7 +179,7 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 ## Shake Camera
 Shakes the main Naninovel render camera. Dedicated command: [@shake]
 
-[!f9521fbcf959d0b72e449ae6e2191f9f]
+![](https://i.gyazo.com/f9521fbcf959d0b72e449ae6e2191f9f.mp4)
 
 **Start Parameters**
 Name | Type | Default | Description
@@ -198,7 +198,7 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 ; Shake the main Naninovel camera with default params
 @spawn ShakeCamera
 
-; Shake the main Naninovel camera horizontally 5 times 
+; Shake the main Naninovel camera horizontally 5 times
 @spawn ShakeCamera params:,5,,,,,true,false
 ```
 
@@ -206,7 +206,7 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 
 In case you wish to change (animate) actor parameters directly, consider using [@animate] command.
 
-[!a0494329c713c4309a52d57d0b297bee]
+![](https://i.gyazo.com/a0494329c713c4309a52d57d0b297bee.mp4)
 
 ```nani
 ; Example from the video above
@@ -216,7 +216,7 @@ In case you wish to change (animate) actor parameters directly, consider using [
 ## Digital Glitch
 Applies a post-processing effect to the main camera simulating digital video distortion and artifacts. Dedicated command: [@glitch]
 
-[!94cb6db25c17956473db4de149281df5]
+![](https://i.gyazo.com/94cb6db25c17956473db4de149281df5.mp4)
 
 **Start Parameters**
 Name | Type | Default | Description
@@ -235,7 +235,7 @@ Intensity | Decimal | 1 | The intensity of the effect, in 0.0 to 10.0 range.
 ## Rain
 Spawns a particle system simulating a rain. Dedicated command: [@rain]
 
-[!74af9eec30f6517ea5b8453a9c86d33c]
+![](https://i.gyazo.com/74af9eec30f6517ea5b8453a9c86d33c.mp4)
 
 **Start Parameters**
 Name | Type | Default | Description
@@ -261,7 +261,7 @@ Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn
 ## Snow
 Spawns a particle system simulating a snow. Dedicated command: [@snow]
 
-[!25a052444c561e40c8318272f51edf47]
+![](https://i.gyazo.com/25a052444c561e40c8318272f51edf47.mp4)
 
 **Start Parameters**
 Name | Type | Default | Description
@@ -285,7 +285,7 @@ Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn
 ## Sun Shafts
 Spawns a particle system simulating sun shafts (rays). Dedicated command: [@sun]
 
-[!7edc4777699229abc508f2bdb404522e]
+![](https://i.gyazo.com/7edc4777699229abc508f2bdb404522e.mp4)
 
 **Start Parameters**
 Name | Type | Default | Description
@@ -310,10 +310,10 @@ Fade-out time | Decimal | 3 | The particle system will gradually lower the opaci
 Simulates depth of field (aka DOF, bokeh) effect, when only the object in focus stays sharp, while the other image is blurred. Dedicated command: [@bokeh]
 
 ::: tip
-In case you want to blur just one object (actor), consider using [Blur effect](/guide/special-effects.md#blur) instead.
+In case you want to blur just one object (actor), consider using [Blur effect](/guide/special-effects#blur) instead.
 :::
 
-[!616a023c46f207b4a3a33d3d3fd9fbc9]
+![](https://i.gyazo.com/616a023c46f207b4a3a33d3d3fd9fbc9.mp4)
 
 **Start Parameters**
 Name | Type | Default | Description
@@ -330,7 +330,7 @@ Stop Duration | Decimal | 1 | Fade-off (disable) duration for the effect paramet
 
 **Examples**
 ```nani
-; Enable the effect with default parameters and lock focus to `Kohaku` game object
+; Enable the effect with default params and lock focus to `Kohaku` game object
 @spawn DepthOfField params:Kohaku
 ; Fade-off (disable) the effect over 10 seconds
 @despawn DepthOfField params:10
@@ -342,7 +342,7 @@ Stop Duration | Decimal | 1 | Fade-off (disable) duration for the effect paramet
 ## Blur
 Applies a blur filter to a supported actor: backgrounds and characters of sprite, layered, diced, Live2D, Spine, video and scene implementations. By default (when first parameter is not specified), the effect is applied to `MainBackground` actor. Dedicated command: [@blur]
 
-[!067614d77783683e74ca79652099b58d]
+![](https://i.gyazo.com/067614d77783683e74ca79652099b58d.mp4)
 
 **Start Parameters**
 Name | Type | Default | Description
@@ -391,7 +391,7 @@ The command supports transform parameters, allowing to spawn the object at a spe
 
 In case you have a lot of prefabs to spawn and it's inconvenient to assign them via editor menu, it's possible to just drop them at `Resources/Naninovel/Spawn` folder and they'll automatically be available in the scripts. You can additionally organize them with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in naninovel scripts. Eg, prefab asset stored as `Resources/Naninovel/Spawn/Explosions/Boom01` can be referenced in scripts as `Explosions/Boom01`.
 
-It's also possible to use [addressable asset system](/guide/resource-providers.md#addressable) to manually expose the resources. To expose an asset, assign address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "Boom01" prefab asset, assign the asset following address: `Naninovel/Spawn/Boom01`. Be aware, that addressable provider is not used in editor by default; you can allow it by enabling `Enable Addressable In Editor` property in resource provider configuration menu.
+It's also possible to use [addressable asset system](/guide/resource-providers#addressable) to manually expose the resources. To expose an asset, assign address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "Boom01" prefab asset, assign the asset following address: `Naninovel/Spawn/Boom01`. Be aware, that addressable provider is not used in editor by default; you can allow it by enabling `Enable Addressable In Editor` property in resource provider configuration menu.
 
 Check the built-in effect prefabs stored at `Naninovel/Prefabs/FX` for reference implementations.
 
@@ -442,4 +442,4 @@ The state of the currently enabled (and disabled) camera components will be auto
 
 Check out the following video for example on adding a custom camera filter effect.
 
-[!!IbT6MTecO-k]
+![](https://www.youtube.com/watch?v=IbT6MTecO-k)

@@ -1,10 +1,10 @@
 # キャラクター
 
-キャラクターアクターはシーンの中で[背景](/ja/guide/backgrounds.md) の上に存在するアクターです。
+キャラクターアクターはシーンの中で[背景](/ja/guide/backgrounds) の上に存在するアクターです。
 
 キャラクターアクターは、名前、外観、可視性、および形状（位置、回転、スケール）および視線の向きで定義されます。外観、可視性、変形、および視線の向きを時間をかけて変化させることもできます。
 
-キャラクターの動きはコンテキストメニューの `Naninovel -> Configuration AM-> Characters` で設定できます。利用可能なオプションについては [コンフィグガイド](/ja/guide/configuration.md#characters) をご覧ください。キャラクターのリソースマネージャーはコンテキストメニューの `Naninovel -> Resources -> Characters` からアクセスできます。
+キャラクターの動きはコンテキストメニューの `Naninovel -> Configuration AM-> Characters` で設定できます。利用可能なオプションについては [コンフィグガイド](/ja/guide/configuration#characters) をご覧ください。キャラクターのリソースマネージャーはコンテキストメニューの `Naninovel -> Resources -> Characters` からアクセスできます。
 
 ![Add Character](https://i.gyazo.com/c8a4f7f987621831b4a2ecb3145a4a07.png)
 
@@ -12,7 +12,7 @@
 
 必要に応じて、外観リソースをサブフォルダで整理できます。 その場合、naninovelスクリプトで参照するにはスラッシュ (`/`) を使用します。 たとえば、`Resources/Naninovel/Characters/Kohaku/Casual/Angry` に保存された外観テクスチャは、 `Casual/Angry` でスクリプトから参照できます。
 
-[addressable asset system](/ja/guide/resource-providers.md#addressable) を使用して手動でリソースを公開することもできます。アセットを公開するには、使用するパスと同じアドレスを "Resources/" の部分を除いて、上記の方法で割り当てます。例えば、"Happy" の外観を "Kohaku" キャラクターで公開するには, 次のアドレスにテクスチャアセットを割り当てます: `Naninovel/Characters/Kohaku/Happy`. addressable 機能はデフォルトではエディターで使用できないことに注意してください。リソースプロバイダーのコンフィグメニューで `Enable Addressable In Editor` プロパティを有効にすることで許可できます。
+[addressable asset system](/ja/guide/resource-providers#addressable) を使用して手動でリソースを公開することもできます。アセットを公開するには、使用するパスと同じアドレスを "Resources/" の部分を除いて、上記の方法で割り当てます。例えば、"Happy" の外観を "Kohaku" キャラクターで公開するには, 次のアドレスにテクスチャアセットを割り当てます: `Naninovel/Characters/Kohaku/Happy`. addressable 機能はデフォルトではエディターで使用できないことに注意してください。リソースプロバイダーのコンフィグメニューで `Enable Addressable In Editor` プロパティを有効にすることで許可できます。
 
 naninovel スクリプトでは、キャラクターは基本的に [@char] コマンドで操作します:
 
@@ -88,7 +88,7 @@ Player: You can call me {PlayerName}.
 
 以下の動画で表示名とメッセージカラーの使い方を解説しています。
 
-[!!u5B5s-X2Bw0]
+![](https://www.youtube.com/watch?v=u5B5s-X2Bw0)
 
 ## アバターテクスチャ
 
@@ -100,7 +100,7 @@ Player: You can call me {PlayerName}.
 
 ![](https://i.gyazo.com/5a0f10d174aa75ed87da1b472567e40b.png)
 
-::: note
+::: info NOTE
 アバター名は任意に設定することができ、既存のキャラクターIDや外観を含める必要はありません。アバターをキャラクターに関連付けて自動的に表示したい場合には必要です。
 :::
 
@@ -127,21 +127,21 @@ Player: You can call me {PlayerName}.
 
 キャラクターコンフィグで有効にすると、最後に表示されたメッセージによって話しているキャラクターを色付けします。
 
-[!!gobowgagdyE]
+![](https://www.youtube.com/watch?v=gobowgagdyE)
 
 ## 口パク
 
-[一般](/ja/guide/characters.md#一般キャラクター) と [Live2D](/ja/guide/characters.md#live2d-キャラクター) のキャラクター実装では、いわゆる "口パク" を利用できます。イベントを送ることで、表示メッセージを発しているキャラクターの口パクアニメーションを動作させることが出来ます。
+[一般](/ja/guide/characters#一般キャラクター) と [Live2D](/ja/guide/characters#live2d-キャラクター) のキャラクター実装では、いわゆる "口パク" を利用できます。イベントを送ることで、表示メッセージを発しているキャラクターの口パクアニメーションを動作させることが出来ます。
 
-[!!fx_YS2ZQGHI]
+![](https://www.youtube.com/watch?v=fx_YS2ZQGHI)
 
-[自動ボイス再生](/ja/guide/voicing.md#自動ボイス再生) 機能が有効になっていると、口パクイベントはボイスオーバーによって起動します。それ以外の場合は、表示テキストメッセージによってイベントがアクティブになります。後者の場合、手動で口パクを開始または停止したい場合があると思います（句読点のときに口パクアニメーションを停止する時など）。その場合は、[@lipSync] コマンドを使用してください。
+[自動ボイス再生](/ja/guide/voicing#自動ボイス再生) 機能が有効になっていると、口パクイベントはボイスオーバーによって起動します。それ以外の場合は、表示テキストメッセージによってイベントがアクティブになります。後者の場合、手動で口パクを開始または停止したい場合があると思います（句読点のときに口パクアニメーションを停止する時など）。その場合は、[@lipSync] コマンドを使用してください。
 
-口パクを設定する方法について詳しくは、 [一般](/ja/guide/characters.md#一般キャラクター) と [Live2D](/ja/guide/characters.md#live2d-キャラクター) のキャラクター実装についてのドキュメントをご覧ください。
+口パクを設定する方法について詳しくは、 [一般](/ja/guide/characters#一般キャラクター) と [Live2D](/ja/guide/characters#live2d-キャラクター) のキャラクター実装についてのドキュメントをご覧ください。
 
 ## プリンターのリンク
 
-`Linked Printer` プロパティを使用して、 [テキストプリンター](/ja/guide/text-printers.md) をキャラクターに関連付けることができます。
+`Linked Printer` プロパティを使用して、 [テキストプリンター](/ja/guide/text-printers) をキャラクターに関連付けることができます。
 
 ![](https://i.gyazo.com/50ca6b39cd7f708158678339244b1dc4.png)
 
@@ -169,7 +169,7 @@ Player: You can call me {PlayerName}.
 
 [Unityパッケージマネージャー](https://docs.unity3d.com/Manual/upm-ui.html) でパッケージをインストールします: パッケージマネージャーを開く (Window -> Package Manager)、 "+" ボタンをクリック、 "Add package from git URL" を選択、入力欄に `https://github.com/Elringus/SpriteDicing.git#package` と入力し、 "Add" をクリック。
 
-[!b54e9daa9a483d9bf7f74f0e94b2d38a]
+![](https://i.gyazo.com/b54e9daa9a483d9bf7f74f0e94b2d38a.mp4)
 
 キャラクターの外観を含む `DicedSpriteAtlas` アセットは、分解スプライトキャラクターのリソースとして使用されます。各外観は、アトラスに含まれている分解スプライトに名前でマップされます。
 
@@ -179,7 +179,7 @@ Player: You can call me {PlayerName}.
 
 以下のビデオガイドでは、分解スプライトアトラスの作成と構成、作成したアトラスに基づく新しい分解キャラクターの追加、naninovelスクリプトからのキャラクターの制御について説明しています。
 
-[!!6PdOAOsnhio]
+![](https://www.youtube.com/watch?v=6PdOAOsnhio)
 
 ## キャラクター差分
 
@@ -247,9 +247,9 @@ Player: You can call me {PlayerName}.
 
 以下の動画は、キャラクター差分を設定してnaninovelコマンドで操作するデモです。
 
-[!!Bl3kXrg8tiI]
+![](https://www.youtube.com/watch?v=Bl3kXrg8tiI)
 
-::: note
+::: info NOTE
 動画で表示されている `@char Miho.Shoes>` コマンドは実際には "Shoes"グループ（すべての隣接グループを無効にしています）を選択し、非表示にしていません。グループを非表示にする正しいコマンドは `@char Miho.Shoes-` です。
 :::
 
@@ -280,11 +280,11 @@ Player: You can call me {PlayerName}.
 
 テンプレートから一般キャラクタープレハブを作成するには、コンテキストメニューから `Create -> Naninovel -> Character -> Generic` を使用してください。
 
-一般キャラクターで口パク機能を利用するには、 `CharacterActorBehaviour` コンポーネントの `On Started Speaking` と `On Finished Speaking` Unityイベントを使用してください。そのキャラクターが表示メッセージを話始める時（またはメッセージが完全に表示された時）イベントが呼び出され、そのキャラクターの口パクアニメーションの開始や停止などのカスタムロジックをトリガーできます。これはUIの `On Show` イベントと `On Hide` イベントの仕組みに似ています。 [UIカスタマイズガイド](/ja/guide/user-interface.md#カスタムUIの追加)でカスタムアニメーションの駆動に使用する方法を見つけてください。
+一般キャラクターで口パク機能を利用するには、 `CharacterActorBehaviour` コンポーネントの `On Started Speaking` と `On Finished Speaking` Unityイベントを使用してください。そのキャラクターが表示メッセージを話始める時（またはメッセージが完全に表示された時）イベントが呼び出され、そのキャラクターの口パクアニメーションの開始や停止などのカスタムロジックをトリガーできます。これはUIの `On Show` イベントと `On Hide` イベントの仕組みに似ています。 [UIカスタマイズガイド](/ja/guide/user-interface#カスタムUIの追加)でカスタムアニメーションの駆動に使用する方法を見つけてください。
 
 次の動画は、3Dリグモデルを一般キャラクターとして設定し、[Animator](https://docs.unity3d.com/Manual/class-AnimatorController.html) コンポーネントでリグアニメーションの外観の変更をルーティングする例です。
 
-[!!HPxhR0I1u2Q]
+![](https://www.youtube.com/watch?v=HPxhR0I1u2Q)
 
 Unityの `Animator` コンポーネントは、ゲームオブジェクトが同じフレームで有効化/無効化されると、 `SetTrigger` の登録に失敗する可能性があります。`GameObject.SetActive` で可視状態を変更する場合（上記のチュートリアルで示しています）は、代わりにレンダラーで子オブジェクトを有効/無効にすることを検討してください。
 
@@ -312,7 +312,7 @@ Live2D キャラクターの実装は、[Live2D Cubism](https://www.live2d.com) 
 
 上記のコマンドは、プレハブに紐付けられたアニメーターコントローラーで "Surprise" 引数を指定して [SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) を呼び出すのみです。基礎となる [animator](https://docs.unity3d.com/Manual/Animator) ステートマシンは自分で作成する必要があります。
 
-::: warn
+::: warning
 Cubism SDK for Unity 最新バージョンは `Animator` コンポーネントと直接連携しています。これまで Cubism 2.x で使われていた式とポーズは [非推奨](https://docs.live2d.com/cubism-sdk-tutorials/blendexpression) となっており、Live2D用 Naninovel 拡張機能ではサポートしていません。
 :::
 
@@ -327,9 +327,9 @@ Live2Dの `CubismLookController` および `CubismMouthController` コンポー�
 
 次のビデオガイドでは、 Cubism Editor からの Live2D キャラクターのエクポートプレハブの設定、簡単なアニメーターステートマシンの作成、naninovelスクリプトでのキャラクターの操作について解説しています。
 
-[!!rw_Z69z0pAg]
+![](https://www.youtube.com/watch?v=rw_Z69z0pAg)
 
-::: example
+::: tip EXAMPLE
 [GitHubのサンプルプロジェクト](https://github.com/Naninovel/Live2D) で Naninovel で Live2D キャラクターを扱っているので、参考にしてください。Naninovel と Live2D SDK パッケージはプロジェクトと一緒に配布されていないため、初めて開く際にコンパイルエラーが発生します。アセットストアから Naninovel パッケージをインポートし、ウェブサイトから Live2D Cubism SDK をインポートして問題を解決してください。
 :::
 
@@ -337,13 +337,13 @@ Live2Dの `CubismLookController` および `CubismMouthController` コンポー�
 
 Spine キャラクターの実装は、[Spine](http://esotericsoftware.com) という 2D モデリング・アニメーションソフトで制作されたアセットを使用します。
 
-[!08b04de115d97427d152cb5f37065d2d]
+![](https://i.gyazo.com/08b04de115d97427d152cb5f37065d2d.mp4)
 
 この実装を使用するためには、最初に [Spine runtime for Unity](http://esotericsoftware.com/spine-unity-download) をインストールします。インストール方法や使用方法については、[公式ドキュメント](http://esotericsoftware.com/spine-unity)を参照してください。
 
 次に、Naninovel の [Spine 拡張パッケージ](https://github.com/Naninovel/Spine/raw/main/NaninovelSpine.unitypackage)をダウンロードし、インポートします。
 
-実装のリソースとして使用される Spine キャラクターのプレハブは、ルートのオブジェクトに `Spine Controller` コンポーネントがアタッチされている必要があります。Naninovel スクリプトのコマンド（`@char` など）による外観の変更は、[一般キャラクターの実装](/guide/characters.md#generic-characters)と同様に、Controller の `On Appearance Changed` イベントにルーティングされます。Spine の `SetAnimation` メソッドを使用したり、Unity の Animator Controller のトリガーを起動したりといったように、自由にイベントを扱うことができます。
+実装のリソースとして使用される Spine キャラクターのプレハブは、ルートのオブジェクトに `Spine Controller` コンポーネントがアタッチされている必要があります。Naninovel スクリプトのコマンド（`@char` など）による外観の変更は、[一般キャラクターの実装](/guide/characters#generic-characters)と同様に、Controller の `On Appearance Changed` イベントにルーティングされます。Spine の `SetAnimation` メソッドを使用したり、Unity の Animator Controller のトリガーを起動したりといったように、自由にイベントを扱うことができます。
 
 ![](https://i.gyazo.com/6a2772a3e4137413a7c1587788c54c41.png)
 
@@ -353,7 +353,7 @@ Spine キャラクターの実装は、[Spine](http://esotericsoftware.com) と�
 
 内部的には、Spine モデルはテクスチャにレンダリングされ、それがスクリーンに投影されます。これは、キャラクターをフェードする際に、半透明のオーバードローのアーティファクトを防ぐために必要です。テクスチャのサイズを指定するには、`Render Canvas` コンポーネントを使用します（`Spine Controller` の追加時に自動的にアタッチされます）。プレハブモード時に現在のサイズをプレビューする[ギズモ](https://docs.unity3d.com/Manual/GizmosMenu.html)を有効にしてください。サイズが大きくなると、テクスチャーが消費するメモリも大きくなるので、できるだけ小さくしておきましょう。
 
-::: example
+::: tip EXAMPLE
 Spine キャラクターを Naninovel で使用する[サンプルプロジェクト](https://github.com/Naninovel/Spine)をチェックしてください。
 :::
 
@@ -375,17 +375,17 @@ Spine キャラクターを Naninovel で使用する[サンプルプロジェ�
 
 下のビデオは、Live2D キャラクターを、カスタムテキストプリンターに割り当てられたテクスチャにレンダリングする方法を示しています。プリンターはキャラクターにリンクされているので、関連するテキストメッセージが処理されると、キャラクターは自動的にプリンターと一緒に表示されたり隠れたりします。
 
-[!!81OTbSAnWbw]
+![](https://www.youtube.com/watch?v=81OTbSAnWbw)
 
-::: example
+::: tip EXAMPLE
 Live2D キャラクターをテクスチャにレンダリングし、テキストプリンターと結合する完全な作例が、[GitHub の Naninovel Live2D プロジェクト](https://github.com/Naninovel/Live2D)にあります。
 :::
 
-::: note
+::: info NOTE
 一般キャラクターを除いた他のキャラクター、および背景の実装タイプは、上述の Live2D のものと同様、テクスチャにレンダリングするように設定できます。
 :::
 
-::: warn
+::: warning
 [Addressables パッケージ](https://docs.unity3d.com/ja/current/Manual/com.unity.addressables.html)を使用している場合、Unity は[アセットの参照を適切に追跡できない](https://issuetracker.unity3d.com/product/unity/issues/guid/1277169)ため、ビルド時にレンダーテクスチャの重複が発生し、この機能が正しく動作しないことがあります。参照を手動で（`AssetReference API` で）処理するか、以下の図のように `Get Actor Render Texture` コンポーネントを使用してください。
 
 ![](https://i.gyazo.com/92772b1fa51e6042efcd3de67d05fd79.png)

@@ -1,3 +1,7 @@
+---
+editLink: false
+---
+
 # End User License Agreement
 
 This End User License Agreement ("EULA") is a non-exclusive, legally binding end user license agreement between any individual or a single entity ("END-USER") that acquires a license to Naninovel — Visual Novel Engine ("Asset") by ReWaffle LLC ("Licensor").
@@ -64,4 +68,4 @@ Licensor reserves the right, at its sole discretion, to modify or replace this A
 
 ## Contact Information
 
-If you have any questions about this Agreement, please [contact the support](https://naninovel.com/support/#naninovel-support). 
+If you have any questions about this Agreement, please [contact the support](https://naninovel.com/support/#naninovel-support).

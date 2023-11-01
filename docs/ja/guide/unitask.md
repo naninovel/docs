@@ -1,4 +1,4 @@
-﻿# UniTask
+# UniTask
 
 [UniTask](https://github.com/Cysharp/UniTask) はオープンソース（MITライセンス）のライブラリで、Unity向けのより効率的な [タスクベースの非同期プログラミング](https://docs.microsoft.com/en-us/dotnet/standard/parallel-programming/task-based-asynchronous-programming) 実装を提供します ([.NET native](https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.task)と比較して)。最適化の性質と使用例の詳細については、[ライブラリ作成者による記事](https://medium.com/@neuecc/a1ff0766029)を参照してください。
 
@@ -8,7 +8,7 @@ Naninovelの非同期メソッドはすべて UniTask で構築されていま�
 
 NaninovelにはUniTask v1がバンドルされ、使用されています。UniTask v2はより多くの機能を提供し、アロケーションもわずかに少なくなっていますが、不安定であり、頻繁に変更が加えられています。
 
-::: note
+::: info NOTE
 UniTask v2が十分に安定したら、デフォルトでそれを使用する予定です。それまでは、UniTask v2を使用しているプロジェクトの開発者のサポートはできません。
 :::
 

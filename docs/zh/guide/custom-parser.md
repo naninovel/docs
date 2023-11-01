@@ -8,7 +8,7 @@ Script parser can be selected in scripts configuration menu with `Script Parser`
 
 ![](https://i.gyazo.com/12a03e71e66d1fb0901317e380c9694e.png)
 
-::: note
+::: info NOTE
 After switching script parser in the configuration, it's required to re-import script assets (right-click folder containing the assets and choose `Reimport`) in order for the changes to take effect.
 :::
 
@@ -20,7 +20,7 @@ using Naninovel;
 
 public class CustomParser : ScriptParser
 {
-    public override Script ParseText (string scriptName, string scriptText, 
+    public override Script ParseText (string scriptName, string scriptText,
         ICollection<ScriptParseError> errors = null)
     {
         scriptText = scriptText.Replace("...", "...[wait 1]");
@@ -38,11 +38,11 @@ using Naninovel;
 
 public class CustomParser : ScriptParser
 {
-    protected override GenericTextLineParser GenericTextLineParser { get; } 
+    protected override GenericTextLineParser GenericTextLineParser { get; }
         = new CustomGenericLineParser();
 }
 ```
 
-::: example
+::: tip EXAMPLE
 Find example of `CustomGenericLineParser` implementation that extracts a number from author ID and modifies consequent print commands to control reveal speed in the GitHub project: [github.com/Naninovel/CustomParser](https://github.com/Naninovel/CustomParser).
 :::

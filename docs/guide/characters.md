@@ -1,18 +1,18 @@
-# Characters 
+# Characters
 
-Characters are actors used to represent scene entities that are placed on top of the [backgrounds](/guide/backgrounds.md). 
+Characters are actors used to represent scene entities that are placed on top of the [backgrounds](/guide/backgrounds).
 
 A character actor is defined with a name, appearance, visibility, transform (position, rotation, scale) and look direction. It can change appearance, visibility, transform and look direction over time.
 
-Characters' behavior can be configured using `Naninovel -> Configuration -> Characters` context menu; for available options see [configuration guide](/guide/configuration.md#characters). The characters' resources manager can be accessed using `Naninovel -> Resources -> Characters` context menu.
+Characters' behavior can be configured using `Naninovel -> Configuration -> Characters` context menu; for available options see [configuration guide](/guide/configuration#characters). The characters' resources manager can be accessed using `Naninovel -> Resources -> Characters` context menu.
 
 ![Add Character](https://i.gyazo.com/c8a4f7f987621831b4a2ecb3145a4a07.png)
 
 In case you have a lot of characters and/or appearances per character and it's inconvenient to assign them all via editor menu, use actor record assets (`Crate -> Naninovel -> Actor Record -> Character`) which support multi-editing and organizing the records with folders; check the video below for an example.
 
-[!!2YP-36THHvk]
+![](https://www.youtube.com/watch?v=2YP-36THHvk)
 
-It's possible to use [addressable asset system](/guide/resource-providers.md#addressable) to associate resources with actor records without using editor menus. Eg, to associate a "Happy" appearance with "Kohaku" character, assign the texture asset following address: `Naninovel/Characters/Kohaku/Happy` and assign `Naninovel` label to the asset in addressable group configuration. Be aware, that addressable provider is not used in editor by default; you can allow it by enabling `Allow Addressable In Editor` property in resource provider configuration menu. Find more info on using addressable provider in the [resource providers documentation](/guide/resource-providers.md#addressable).
+It's possible to use [addressable asset system](/guide/resource-providers#addressable) to associate resources with actor records without using editor menus. Eg, to associate a "Happy" appearance with "Kohaku" character, assign the texture asset following address: `Naninovel/Characters/Kohaku/Happy` and assign `Naninovel` label to the asset in addressable group configuration. Be aware, that addressable provider is not used in editor by default; you can allow it by enabling `Allow Addressable In Editor` property in resource provider configuration menu. Find more info on using addressable provider in the [resource providers documentation](/guide/resource-providers#addressable).
 
 In naninovel scripts, characters are mostly controlled with [@char] command:
 
@@ -23,8 +23,9 @@ In naninovel scripts, characters are mostly controlled with [@char] command:
 ; Same as above, but sets appearance to `Happy`.
 @char Sora.Happy
 
-; Same as above, but also positions the character 45% away from the left border
-; of the scene and 10% away from the bottom border; also makes him look to the left.
+; Same as above, but also positions the character 45% away from the left
+; border of the scene and 10% away from the bottom border;
+; also makes him look to the left.
 @char Sora.Happy look:left pos:45,10
 ```
 
@@ -104,7 +105,7 @@ Player: You can call me {PlayerName}.
 
 The content of the curly braces is actually treated as a full-fledged [script expression](/guide/script-expressions), allowing complex scenarios for evaluating the display name. For example, you may want to keep a pre-defined localizable display name for a character until some point and then let the player pick a custom name.
 
-Let's say the character in questions has "Char1" ID, pre-defined name is stored as "T_PredefinedName" [managed text record](/guide/managed-text.md#script-text), the value entered by the player will be stored as "name" [custom variable](/guide/custom-variables) and "nameSet" variable will be set to "true" when player has set the name. Assign the following expression to the `Display Name` property: `{ nameSet ? name : T_PredefinedName }`.
+Let's say the character in questions has "Char1" ID, pre-defined name is stored as "T_PredefinedName" [managed text record](/guide/managed-text#script-text), the value entered by the player will be stored as "name" [custom variable](/guide/custom-variables) and "nameSet" variable will be set to "true" when player has set the name. Assign the following expression to the `Display Name` property: `{ nameSet ? name : T_PredefinedName }`.
 
 ![](https://i.gyazo.com/b4bed71310ae8d0f80aff11d910d6e5b.png)
 
@@ -115,7 +116,7 @@ Then use the following scenario script:
 
 Char1: My name is now pre-defined by `T_PredefinedName` managed text record.
 Char1: It's localizable; try changing the locale and it will update accordingly.
-Char1: Now, we'll make the player input a custom name. 
+Char1: Now, we'll make the player input a custom name.
 
 ; Notice the default input value assigned via `value` parameter:
 ; it's retrieved from managed text and is localizable as well.
@@ -126,7 +127,7 @@ Char1: Now, we'll make the player input a custom name.
 ; for display name to decide where to get the value from.
 @set nameSet=true
 
-Char1: My display name is now bound to `name` custom variable assigned by the player.
+Char1: My display name is now bound to `name` custom variable.
 
 @stop
 ```
@@ -137,7 +138,7 @@ When `Use Character Color` is enabled in the character configuration, printer te
 
 The following video demonstrates how to use display names and character colors.
 
-[!!u5B5s-X2Bw0]
+![](https://www.youtube.com/watch?v=u5B5s-X2Bw0)
 
 ## Avatar Textures
 
@@ -151,7 +152,7 @@ To use any given avatar, you have to first add it to the avatar resources and gi
 
 ![](https://i.gyazo.com/5a0f10d174aa75ed87da1b472567e40b.png)
 
-::: note
+::: info NOTE
 Avatar names can be arbitrary and don't have to contain an existing character ID or appearance. This is only required when you want to associate an avatar with a character so that it's shown automatically.
 :::
 
@@ -172,15 +173,15 @@ To show only the avatar of a character inside a text printer, but hide the chara
 
 In case you're constantly changing avatars while the character itself should remain hidden, consider disabling `Auto Show On Modify` in the characters configuration menu; when disabled, you won't have to specify `visible:false` to change any parameters of the character while it's hidden.
 
-::: note
+::: info NOTE
 The **avatars are not directly connected with character appearances** and shouldn't be considered as a way to represent a character on scene. Avatars is a standalone feature, that "injects" an arbitrary image to a compatible text printer. In case you want an actual character appear inside a text printer (or a custom UI), check [render actor to texture](/guide/characters.html#render-to-texture) feature.
 :::
 
 ## Speaker Highlight
 
-When enabled in the character configuration, will set specified [poses](/guide/characters.md#poses) to the character based on whether the last printed message is associated with it. The video below demonstrates the feature with a previous version of Naninovel, where it was possible to apply only tint color for speakers; setup with the current version is similar, but instead tint color, specify a pose name.
+When enabled in the character configuration, will set specified [poses](/guide/characters#poses) to the character based on whether the last printed message is associated with it. The video below demonstrates the feature with a previous version of Naninovel, where it was possible to apply only tint color for speakers; setup with the current version is similar, but instead tint color, specify a pose name.
 
-[!!gobowgagdyE]
+![](https://www.youtube.com/watch?v=gobowgagdyE)
 
 ## Lip Sync
 
@@ -188,9 +189,9 @@ When enabled in the character configuration, will set specified [poses](/guide/c
 
 Animatable character implementations (generic, layered, Live2D, etc) provide `On Started Speaking` and `On Finished Speaking` Unity events. When such character becomes or ceases to be the author of a printed message (or rather when the message is fully revealed), the events will be invoked allowing you to trigger any custom logic, like starting or stopping mouth animation of the controlled character.
 
-[!!fx_YS2ZQGHI]
+![](https://www.youtube.com/watch?v=fx_YS2ZQGHI)
 
-When [auto voicing](/guide/voicing.md#auto-voicing) feature is enabled, the events will be driven by the voice-over; otherwise, printed text messages will activate the events. In the latter case, you'll probably want to manually mute the events (eg, to prevent mouth animation when punctuation marks are printed); for such cases, use [@lipSync] command.
+When [auto voicing](/guide/voicing#auto-voicing) feature is enabled, the events will be driven by the voice-over; otherwise, printed text messages will activate the events. In the latter case, you'll probably want to manually mute the events (eg, to prevent mouth animation when punctuation marks are printed); for such cases, use [@lipSync] command.
 
 ### Audio Driven
 
@@ -200,7 +201,7 @@ By having access to a dedicated audio source component used for character voice,
 
 ## Linked Printer
 
-It's possible to associate a [text printer](/guide/text-printers.md) with a character using `Linked Printer` property.
+It's possible to associate a [text printer](/guide/text-printers) with a character using `Linked Printer` property.
 
 ![](https://i.gyazo.com/50ca6b39cd7f708158678339244b1dc4.png)
 
@@ -208,9 +209,9 @@ When linked, the printer will automatically be used to handle messages authored 
 
 Be aware, that [@print] commands (that are also used under the hood when printing generic text lines) make associated printers default and hide other visible printers by default. When printers are linked to characters, print commands will automatically change the currently visible and default text printer, while printing text associated with the corresponding characters. It's possible to prevent this behavior by disabling `Auto Default` property in printer actor configuration menu; when disabled you'll have to manually show/hide and switch default printers with [@printer] commands.
 
-## Sprite Characters 
+## Sprite Characters
 
-Sprite implementation of the character actors is the most common and simple one; it uses a set of [texture](https://docs.unity3d.com/Manual/Textures.html) assets wrapped over a quad mesh (sprite) to represent appearances of the character. The textures can be based on `.jpg`, `.png`, `.tiff`, `.psd` or any other image file format [supported by Unity](https://docs.unity3d.com/Manual/ImportingTextures). 
+Sprite implementation of the character actors is the most common and simple one; it uses a set of [texture](https://docs.unity3d.com/Manual/Textures.html) assets wrapped over a quad mesh (sprite) to represent appearances of the character. The textures can be based on `.jpg`, `.png`, `.tiff`, `.psd` or any other image file format [supported by Unity](https://docs.unity3d.com/Manual/ImportingTextures).
 
 ::: tip
 Choose file formats that are most comfortable for your development workflow. When building the project, Unity will automatically convert all the source resources (textures, audio, video, etc) to the formats most suitable for the target platform, so it won't make difference in which format you originally store the resources in the project. Find more information on how Unity manage project assets in the [official documentation](https://docs.unity3d.com/Manual/AssetWorkflow).
@@ -222,15 +223,15 @@ To achieve best render quality and optimal performance, it's generally advised t
 
 ## Diced Sprite Characters
 
-Built with an open source [SpriteDicing](https://github.com/Elringus/SpriteDicing) package, `DicedSpriteCharacter` implementation allows to significantly reduce build size and texture memory by reusing texture areas of the character sprites. 
+Built with an open source [SpriteDicing](https://github.com/Elringus/SpriteDicing) package, `DicedSpriteCharacter` implementation allows to significantly reduce build size and texture memory by reusing texture areas of the character sprites.
 
 ![Sprite Dicing](https://i.gyazo.com/af08d141e7a08b6a8e2ef60c07332bbf.png)
 
 Install the package via [Unity package manager](https://docs.unity3d.com/Manual/upm-ui.html): open package manager window (Window -> Package Manager), click "+" button, choose "Add package from git URL", enter `https://github.com/Elringus/SpriteDicing.git#package` to the input field and click "Add".
 
-[!b54e9daa9a483d9bf7f74f0e94b2d38a]
+![](https://i.gyazo.com/b54e9daa9a483d9bf7f74f0e94b2d38a.mp4)
 
-::: note
+::: info NOTE
 Before installing a package from a Git repository, make sure a [Git client](https://git-scm.com/downloads) is installed on your machine and Git executable path is set to the [PATH system environment variable](https://en.wikipedia.org/wiki/PATH_(variable)) (usually performed automatically during the installation).
 :::
 
@@ -246,18 +247,22 @@ Character metadata properties (eg, pixels per unit, pivot) are applied to render
 
 Following video guide covers creating and configuring diced sprite atlas, adding new diced character based on the created atlas and controlling the character from a naninovel script.
 
-[!!6PdOAOsnhio]
+![](https://www.youtube.com/watch?v=6PdOAOsnhio)
 
 ## Layered Characters
 
 The layered implementation allows composing characters from multiple layers and then toggle them individually or in groups via naninovel scripts at runtime.
 
+::: tip
+Layered actor implementation has been evolving and is currently the most flexible with support for all the rendering features (in contrast to generic). Even if you don't want to use layer expressions, but instead control the appearance with Unity's Animator or other custom systems; or need to render non-trivial objects such as particle systems and/or utilize third-party renderers, check [render only](/guide/characters#outsourcing-appearance-management) and [camera rendering](/guide/characters#camera-rendering) options available for layered actors before reserving to generic or custom implementation.
+:::
+
 To create a layered character prefab, use `Create -> Naninovel -> Character -> Layered` asset context menu. Enter [prefab editing mode](https://docs.unity3d.com/Manual/EditingInPrefabMode.html) to compose the layers. Several layers and groups will be created by default. You can use them or delete and add your own.
 
 Each child game object of the root prefab object with a [renderer](https://docs.unity3d.com/ScriptReference/Renderer.html)-derived component (eg, `SpriteRenderer`, `MeshRenderer`, eg) is considered a *layer*; other objects considered *groups*. Aside from organization and transformation purposes, placing layers inside groups will allow you to select a single layer or disable/enable all the layers inside a group with a single expression in naninovel script (more on that later).
 
-::: note
-Only "simple" draw mode for `Sprite Renderer` is supported; when choosing other modes they'll be rendered as it was set to  simple.
+::: info NOTE
+Only "simple" draw mode for `Sprite Renderer` is supported in default (non-camera) render mode; when choosing other modes they'll be rendered as it was set to simple.
 :::
 
 To hide specific layers from being visible by default, disable renderer components (not the game objects).
@@ -280,9 +285,9 @@ Don't forget to add the created layered prefab to the character resources (`Nani
 
 To control the layered characters in naninovel scripts, use [@char] command in the same way as with the other character implementations. The only difference is how you set the appearance: instead of a single ID, use the *layer composition expression*. There are three expression types:
 
- - Enable a single layer in group: `group>layer`
- - Enable a layer: `group+layer`
- - Disable a layer: `group-layer`
+- Enable a single layer in group: `group>layer`
+- Enable a layer: `group+layer`
+- Disable a layer: `group-layer`
 
 For example, consider a "Miho" character, which has a "Body" group with three layers: "Uniform", "SportSuit" and "Pajama". To enable "Uniform" layer and disable all the others, use the following command:
 
@@ -300,21 +305,21 @@ To enable or disable a layer without affecting any other layers in the group, us
 To select a layer outside of any groups (a child of the root prefab object), just skip the group part, eg:
 
 ```nani
-; Given "Halo" layer object is placed under the prefab root, disable it
+; Given "Halo" layer object is placed under the prefab root, disable it.
 @char CharId.-Halo
 ```
 
 It's also possible to affect all the layers inside a group (and additionally its neighbors when using select expression) by omitting layer name in composition expression:
 
 ```nani
-; Disable all the layers in "Body/Decoration" group
+; Disable all the layers in "Body/Decoration" group.
 @char CharId.Body/Decoration-
 
 ; Enable all the existing layers.
 @char CharId.+
 
-; Given `Poses/Light` and `Poses/Dark` groups (each containing multiple layers), 
-; enable all the layers inside `Light` group and disable layers inside `Dark` group
+; Given `Poses/Light` and `Poses/Dark` groups, enable all the layers
+; inside `Light` group and disable layers inside `Dark` group.
 @char CharId.Poses/Light>
 ```
 
@@ -322,11 +327,11 @@ The above expressions will affect not only the direct descendants of the target 
 
 When an appearance is not specified (eg, `@char CharId` without previously setting any appearance), a default appearance will be used; default appearance of the layered characters equals to how the layered prefab looks in the editor.
 
-The video below demonstrates how to setup a layered character and control it via naninovel commands.
+The video below demonstrates how to set up a layered character and control it via naninovel commands.
 
-[!!Bl3kXrg8tiI]
+![](https://www.youtube.com/watch?v=Bl3kXrg8tiI)
 
-::: note
+::: info NOTE
 `@char Miho.Shoes>` command displayed in the video will actually select the "Shoes" group (disabling all the neighbor groups), not hide it. Correct command to hide a group is `@char Miho.Shoes-`.
 :::
 
@@ -337,9 +342,9 @@ It's possible to map composition expressions to keys via `Composition Map` prope
 — the keys can then be used to specify layered actor appearance:
 
 ```nani
-; Corresponds to `Body>Uniform,Hair/Back>Straight,Hair/Front>Straight,Shoes>Grey`.
+; Equal to `Body>Uniform,Hair/Back>Straight,Hair/Front>Straight,Shoes>Grey`.
 @char Miho.Uniform
-; Corresponds to `Hair/Back>Straight,Hair/Front>Straight`.
+; Equal to `Hair/Back>Straight,Hair/Front>Straight`.
 @char Miho.StraightHair
 ; It's also possible to combine keys and expressions.
 @char Miho.Uniform,Hair/Front>Short
@@ -347,7 +352,7 @@ It's possible to map composition expressions to keys via `Composition Map` prope
 
 While editing layered character prefab, it's possible to preview mapped composition expressions by right-clicking a map record and selecting "Preview Composition". Another menu item — "Paste Current Composition" — will generate current composition expression string of the character (based on enabled/disabled sprite renderers in the hierarchy) and paste it to the inspected record; use it to quickly map current prefab state to a composition item.
 
-[!84a2f8e51997cdccbfb8321d58586d2a]
+![](https://i.gyazo.com/84a2f8e51997cdccbfb8321d58586d2a.mp4)
 
 Be aware, that the layer objects are not directly rendered by Unity cameras at runtime; instead, they're rendered once upon each composition (appearance) change to a temporary render texture, which is then fed to a custom mesh visible to the Naninovel camera. This setup is required to prevent semi-transparency overdraw issues and to support transition animation effects.
 
@@ -359,13 +364,41 @@ You may find layered implementation useful for supporting various built-in rende
 
 Enabling `Render Only` option will disable layer-related behaviour and make the event report the appearance as it's specified in script commands. You will also have to specify `Default Appearance` on the behaviour component to prevent it from evaluating default appearance based on the initial prefab layer composition.
 
+### Camera Rendering
+
+In case your character prefab contains non-trivial renderers like particle systems, trails, sprite masks or custom/third-party renderers, you can still use them with layered implementation by assigning a camera to `Render Camera` field of `Layered Behaviour` component (the camera has to be inside character's prefab).
+
+When assigned, instead of custom render procedure, the actor will use the camera to render contents, which lifts all the inherent limitations, such as lacking stencil support. The drawback is, in order to ensure the content is only rendered to the actor texture (and doesn't "leak" to the main camera), you'll have to reserve camera [layers](https://docs.unity3d.com/Manual/Layers.html) specifically for rendering this kind of actor.
+
+There a total of 32 layers available in Unity, while 8 of them are reserved for engine internals. You can use remaining layers as you wish (they're unused by default). To allow Naninovel use a layer for rendering layered actors in camera mode, give the layer name starting with `Naninovel`; eg: `Naninovel 1`, `Naninovel 2` and so on.
+
+![](https://i.gyazo.com/dfbb4306553c85a4683fffb0fef03de3.png)
+
+Total number of layers to add depends on how many actors you want to be displayed at the same time. When layered actor is rendered, it holds a layer from the pool. When the actor hidden, it releases the layer, allowing it to be re-used by other actors. Be aware, that layered actors are rendered on appearance change, which happens when they're initially added to scene (even if they're initially hidden), so layer pool size should accommodate total number of camera-rendered actors in a scenario script.
+
+While in camera rendering mode, game objects of the layered actor prefab are considered layers when they have `Layered Actor Layer` component attached, other objects are considered groups. After attaching the component, configure what should happen when camera layer is held and released with `On Layer Held` and `On Layer Released` Unity events. Typically, you'd assign the held layer to the host game object and enable associated renderer and disable the renderer when released (to make sure the object is not picked by other cameras).
+
+![](https://i.gyazo.com/4dbfe57dbf6b7365e1e7db78f707f412.png)
+
+Layer active state is also reflected differently in camera mode: instead of renderer component enabled state, game object's active state is used. To set up default appearance of the actor, enable/disable game objects.
+
+::: tip
+When layer contains lots of children, it would be tedious to set the layer held/release events for each of them individually. In this case use custom event handler to apply the changes in batch. Check [the example](https://forum.naninovel.com/viewtopic.php?t=606) on applying the changes to all the children renderers of a layer.
+:::
+
+When `Render Canvas` component is attached to the layer actor prefab root, it'll work same as in normal render mode, restricting render texture size; when not present, render texture will equal camera's pixel size. It's recommended to use render canvas to optimize performance, as camera size will usually be higher than necessary.
+
+::: tip EXAMPLE
+Find example on setting up layered background containing particle systems in the URP project on GitHub: [github.com/Naninovel/URP](https://github.com/Naninovel/URP). (URP is not required for this feature, it'll work the same with the default render backend)
+:::
+
 ## Generic Characters
 
 Generic character is the most flexible character actor implementation. It's based on a prefab with a `Generic Character Behaviour` component attached to the root object. Appearance changes and all the other character parameters are routed as [Unity events](https://docs.unity3d.com/Manual/UnityEvents.html) allowing to implement the behavior of the underlying object in any way you wish.
 
 ![](https://i.gyazo.com/d0ea1bf7a5ed3b4bb7eb70c4ddbfeba2.png)
 
-::: warn
+::: warning
 Generic actor implementations just route events from the scenario scripts and it's up to user to implement the underlying behaviour, eg how the actor should react to the appearance or visibility change commands, whether and how it will support speaker highlight feature, etc. Don't expect most of the actor-related features to work automatically with the generic implementations.
 :::
 
@@ -373,19 +406,19 @@ To create generic character prefab from a template, use `Create -> Naninovel -> 
 
 Check the following video tutorial for example on setting up a 3D rigged model as a generic character and routing appearance changes to the rig animations via [Animator](https://docs.unity3d.com/Manual/class-AnimatorController.html) component. Be aware, that the video is captured with an old Naninovel version and some properties and component names are different now; see the above docs for the up to date information.
 
-[!!HPxhR0I1u2Q]
+![](https://www.youtube.com/watch?v=HPxhR0I1u2Q)
 
 ::: tip
 Unity's `Animator` component could fail to register `SetTrigger` when the game object is enabled/disabled in the same frame; in case you use `GameObject.SetActive` to handle visibility changes (as it's shown in the above tutorial), consider enabling/disabling the child objects with renderers instead.
 :::
 
-::: example
+::: tip EXAMPLE
 Find [example project on GitHub](https://github.com/Naninovel/GenericActor), where generic character implementation is used to host a 3D animated model.
 :::
 
 ## Video Characters
 
-Video characters use looped [video clip](https://docs.unity3d.com/Manual/class-VideoClip) assets to represent the appearance. 
+Video characters use looped [video clip](https://docs.unity3d.com/Manual/class-VideoClip) assets to represent the appearance.
 
 For the supported video formats for each platform see [Unity docs for video sources](https://docs.unity3d.com/Manual/VideoSources-FileCompatibility.html).
 
@@ -397,7 +430,7 @@ To prevent specific appearance from looping, append `NoLoop` (case-insensitive) 
 
 Live2D character implementation uses assets created with [Live2D Cubism](https://www.live2d.com) 2D modeling and animation software.
 
-[!b81df72fc7afaed569520496cbee09f0]
+![](https://i.gyazo.com/b81df72fc7afaed569520496cbee09f0.mp4)
 
 In order to be able to use this implementation you have to first install [Live2D Cubism SDK for Unity](https://live2d.github.io/#unity). Consult official Live2D docs for the installation and usage instructions.
 
@@ -411,7 +444,7 @@ Live2D model prefab used as the resource for the implementation should have a `L
 
 Note, that the above command will only attempt to invoke a [SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) with "Surprise" argument on the animator controller attached to the prefab; you have to compose underlying [animator](https://docs.unity3d.com/Manual/Animator) state machine yourself.
 
-::: note
+::: info NOTE
 Current actual version of Cubism SDK for Unity is working directly with `Animator` component; expressions and poses (exported as expression.json and pose.json), that were previously used in Cubism 2.x are now [deprecated](https://docs.live2d.com/cubism-sdk-tutorials/blendexpression) and not supported by Naninovel's extension for Live2D.
 :::
 
@@ -425,15 +458,15 @@ In case the model appears too small or large, set an initial scale for the root 
 
 Internally, Live2D model is rendered to a texture, which is then projected to the screen. This is required to prevent semi-transparency overdraw artifacts when fading the character. Naninovel will attempt to evaluate size of the render canvas automatically, but in case the model contains animated parts that are moved outside of the initial bounds, the parts will be clipped. To prevent that, add `Render Canvas` component to the root game object of the Live2D prefab and set the desired size of the canvas manually. Enable [gizmos](https://docs.unity3d.com/Manual/GizmosMenu.html) to preview current render canvas size while in prefab mode.
 
-[!23f916ae104f57828914221333e42dbf]
+![](https://i.gyazo.com/23f916ae104f57828914221333e42dbf.mp4)
 
 Be aware, that larger the size, the more memory will the texture consume, so keep it as small, as possible.
 
 Following video guide covers exporting a Live2D character from Cubism Editor, configuring the prefab, creating a simple animator state machine and controlling the character from a naninovel script.
 
-[!!rw_Z69z0pAg]
+![](https://www.youtube.com/watch?v=rw_Z69z0pAg)
 
-::: example
+::: tip EXAMPLE
 Check out an [example project on GitHub](https://github.com/Naninovel/Live2D), where a Live2D character is used with Naninovel.
 :::
 
@@ -441,13 +474,13 @@ Check out an [example project on GitHub](https://github.com/Naninovel/Live2D), w
 
 Spine character implementation uses assets created with [Spine](http://esotericsoftware.com) 2D modeling and animation software.
 
-[!08b04de115d97427d152cb5f37065d2d]
+![](https://i.gyazo.com/08b04de115d97427d152cb5f37065d2d.mp4)
 
 In order to be able to use this implementation you have to first install [Spine runtime for Unity](http://esotericsoftware.com/spine-unity-download). Consult [the official docs](http://esotericsoftware.com/spine-unity) for the installation and usage instructions.
 
 Then download and import Naninovel's [Spine extension package](https://github.com/Naninovel/Spine/raw/main/NaninovelSpine.unitypackage).
 
-Spine character prefab used as the resource for the implementation should have a `Spine Controller` component attached to the root object. Appearance changes from naninovel scripts commands (such as `@char`) are routed to the controller's `On Appearance Changed` events similar to [generic implementation](/guide/characters.md#generic-characters). You can handle the events as you wish; for example, use Spine's `SetAnimation` method or invoke a trigger in Unity's animator controller.
+Spine character prefab used as the resource for the implementation should have a `Spine Controller` component attached to the root object. Appearance changes from naninovel scripts commands (such as `@char`) are routed to the controller's `On Appearance Changed` events similar to [generic implementation](/guide/characters#generic-characters). You can handle the events as you wish; for example, use Spine's `SetAnimation` method or invoke a trigger in Unity's animator controller.
 
 ![](https://i.gyazo.com/6a2772a3e4137413a7c1587788c54c41.png)
 
@@ -457,11 +490,11 @@ It's possible to use a custom component inherited from `Spine Controller`. This 
 
 Internally, Spine model is rendered to a texture, which is then projected to the screen. This is required to prevent semi-transparency overdraw artifacts when fading the character. To specify the texture size, use `Render Canvas` component (attached automatically when adding `Spine Controller`). Enable [gizmos](https://docs.unity3d.com/Manual/GizmosMenu.html) to preview current the size while in prefab mode. Be aware, that larger the size, the more memory will the texture consume, so keep it as small, as possible.
 
-::: note
-Spine's [Skeleton Render Separator](https://github.com/pharan/spine-unity-docs/blob/master/spine-unity-skeletonrenderseparator.md) (multi-render) workflow is not supported; to integrate that workflow with Naninovel, create a custom character implementation.
+::: info NOTE
+Spine's [Skeleton Render Separator](https://github.com/pharan/spine-unity-docs/blob/master/spine-unity-skeletonrenderseparator) (multi-render) workflow is not supported; to integrate that workflow with Naninovel, create a custom character implementation.
 :::
 
-::: example
+::: tip EXAMPLE
 Check out an [example project on GitHub](https://github.com/Naninovel/Spine), where a Spine character is used with Naninovel.
 :::
 
@@ -479,7 +512,7 @@ Assign the render texture asset via actor configuration with `Render Texture` pr
 
 ![](https://i.gyazo.com/7224fa44695507b0ce0274940d630299.png)
 
-::: note
+::: info NOTE
 When using [addressables package](https://docs.unity3d.com/Manual/com.unity.addressables.html), Unity [can't properly track asset references](https://issuetracker.unity3d.com/product/unity/issues/guid/1277169), which may cause render texture duplication in build preventing the feature from working correctly. Either manually handle the references (via `AssetReference` API) or use `Get Actor Render Texture` component as illustrated below.
 
 ![](https://i.gyazo.com/92772b1fa51e6042efcd3de67d05fd79.png)
@@ -489,9 +522,9 @@ When an actor is rendered to a texture, transformations (position, rotation, sca
 
 The video below demonstrates how to render a Live2D character to a texture, which is assigned to custom text printer. The printer is linked to the character, so the character will automatically show and hide with the printer when the associated text messages are processed.
 
-[!!81OTbSAnWbw]
+![](https://www.youtube.com/watch?v=81OTbSAnWbw)
 
-::: example
+::: tip EXAMPLE
 Find a complete example on setting up Live2D character render to texture and binding it with a text printer in the [Naninovel Live2D project on GitHub](https://github.com/Naninovel/Live2D).
 :::
 

@@ -1,6 +1,6 @@
-﻿# Adventure Creator
+# Adventure Creator
 
-[Adventure Creator](https://www.adventurecreator.org/) lets you make traditional 2D, 2.5D and 3D adventure games - those that emphasize storytelling, exploration and puzzles - such as Monkey Island, Grim Fandango, The Longest Journey, and Telltale's The Walking Dead. 
+[Adventure Creator](https://www.adventurecreator.org/) lets you make traditional 2D, 2.5D and 3D adventure games - those that emphasize storytelling, exploration and puzzles - such as Monkey Island, Grim Fandango, The Longest Journey, and Telltale's The Walking Dead.
 
 ![](https://i.gyazo.com/74a12fa535198cb26a87a5037b15a988.jpg)
 
@@ -20,7 +20,7 @@ You should now see "Play Naninovel Script" action available under "Custom" categ
 
 ![](https://i.gyazo.com/faf33afa1df8ff98ea04ef9cf1a44f8f.png)
 
-Depending on the setup, you may need to assign a special layer for Naninovel objects to prevent them from being rendered by AC cameras and vice-versa. This can be done via Naninovel's Engine configuration window. 
+Depending on the setup, you may need to assign a special layer for Naninovel objects to prevent them from being rendered by AC cameras and vice-versa. This can be done via Naninovel's Engine configuration window.
 
 ![](https://i.gyazo.com/ed765928c0420ec2b1e26d6bf4a66e6c.png)
 
@@ -39,17 +39,17 @@ It's also possible to play a specific AC's action list after turning on AC (exit
 We can play them after exiting Naninovel mode like the following:
 
 ```nani
-; Will play "OnNaninovelExit1" action list after exiting Naninovel mode
+; Will play "OnNaninovelExit1" action list after exiting Naninovel mode.
 @turnOnAC action:OnNaninovelExit1
 
-; Will play "OnNaninovelExit2" action list after exiting Naninovel mode
+; Will play "OnNaninovelExit2" action list after exiting Naninovel mode.
 @turnOnAC action:OnNaninovelExit2
 ```
 
 The following video demonstrates AC's demo scene integrated with Naninovel to handle a dialogue.
 
-[!!7tOIFZRSAec]
+![](https://www.youtube.com/watch?v=7tOIFZRSAec)
 
-::: example
-See the [GitHub project](https://github.com/Naninovel/AdventureCreator) for an integration example. When opening the project for the first time you'll get errors due to missing Adventure Creator and Naninovel packages. Just import them from Asset Store and the errors will go away.
+::: tip EXAMPLE
+See the [GitHub project](https://github.com/Naninovel/AdventureCreator) for an integration example. When opening the project for the first time you'll get errors due to missing Adventure Creator and Naninovel packages; import them and the errors will go away.
 :::

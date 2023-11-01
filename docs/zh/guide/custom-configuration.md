@@ -1,21 +1,21 @@
-﻿# 自定义配置
+# 自定义配置
 
 配置物体用于初始化和配置服务以及其他引擎系统。
 Configuration objects are used to initialize and configure services and other engine systems.
 
 默认情况下，配置物体被序列化为[可编程物体](https://docs.unity3d.com/Manual/class-ScriptableObject.html) 存储在`NaninovelData/Resources/Naninovel/Configuration`路径。该资源会在第一次打开`Naninovel -> Configuration`菜单时自动生成。
 
-要通过C＃访问配置对象，请使用 `Engine.GetConfiguration<T>()`静态方法，其中，`T`是要访问的配置对象的类型。例如，以下示例演示了如何访问 [音频配置](/zh/guide/configuration.md#音频)对象：
+要通过C＃访问配置对象，请使用 `Engine.GetConfiguration<T>()`静态方法，其中，`T`是要访问的配置对象的类型。例如，以下示例演示了如何访问 [音频配置](/zh/guide/configuration#音频)对象：
 
 ```csharp
 var audioConfig = Engine.GetConfiguration<AudioConfiguration>();
-```  
+```
 
-请注意，该`Engine.GetConfiguration` 方法只能在引擎初始化时使用，因为它需要[配置提供程序](/zh/guide/custom-configuration.md#配置加载器) 对象，该对象是在初始化引擎时，在运行时允许自定义服务方案时指定的。如果你想通过默认加载器获取配置，在引擎未初始化的时候也可以通过`ProjectConfigurationProvider`实现，如下：
+请注意，该`Engine.GetConfiguration` 方法只能在引擎初始化时使用，因为它需要[配置提供程序](/zh/guide/custom-configuration#配置加载器) 对象，该对象是在初始化引擎时，在运行时允许自定义服务方案时指定的。如果你想通过默认加载器获取配置，在引擎未初始化的时候也可以通过`ProjectConfigurationProvider`实现，如下：
 
 ```csharp
 var audioConfig = ProjectConfigurationProvider.LoadOrDefault<AudioConfiguration>();
-``` 
+```
 
 虽然可以通过编辑器菜单更改配置属性，但仍可以在运行时对其进行修改。注意，修改其实是被应用到存储在项目中的实际物体上的。如果修改，在运行中会一直生效。这和通过`Engine.GetConfiguration` 方法实现的修改是相反的，这个仅影响实例化，而不影响原本的实际物体。
 
@@ -76,7 +76,7 @@ public class MyCustomConfiguration : Configuration
 var myConfig = Engine.GetConfiguration<MyCustomConfiguration>();
 ```
 
-::: example
+::: tip EXAMPLE
 在添加的配置菜单中配置背包的示例参考[GitHub背包示例](https://github.com/Naninovel/Inventory) 。
 
 具体来说，自定义配置是通过[InventoryConfiguration.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryConfiguration.cs) 运行时脚本实现的。

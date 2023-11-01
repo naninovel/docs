@@ -1,21 +1,21 @@
 # 用户界面UI
 
 naninovel由许多内置UI构成：标题菜单，游戏设置，保存加载菜单，回看面板，CG回顾，提示面板等。
- 
-每个内置UI都可以关闭或是自定义修改；参考[UI自定义](/zh/guide/user-interface.md#UI自定义) 。
+
+每个内置UI都可以关闭或是自定义修改；参考[UI自定义](/zh/guide/user-interface#UI自定义) 。
 
 
 ## 自适应UI布局
 
 所有内置UI都做了自适应。这使得UI能在各种平台和各种分辨率下都能够保持可用状态。
 
-[!b6bddf8a0c6f2ba68dcdc1bc65db0c09]
+![](https://i.gyazo.com/b6bddf8a0c6f2ba68dcdc1bc65db0c09.mp4)
 
 ## UI切换
 
 UI切换特性，能让用户整体隐藏/显示游戏内UI。
 
-[!e267c4ab3654efbfaf611011502de79f]
+![](https://i.gyazo.com/e267c4ab3654efbfaf611011502de79f.mp4)
 
 激活`ToggleUI`输入（个人电脑默认`Space`键）或使用控制面板下的`HIDE`按钮来隐藏/显示游戏内UI。
 
@@ -25,10 +25,10 @@ UI切换特性，能让用户整体隐藏/显示游戏内UI。
 
 UI自定义特性允许用户添加自建UI，或使其替代任何内置UI元素，如标题菜单，设置菜单，回看面板等。
 
-注意，文本打字机和选择处理器，是不同的元素交互，非UI范围内的定制。参考说明[文本打字机](/zh/guide/text-printers.md)和 [选择处理器](/zh/guide/choices.md)。
+注意，文本打字机和选择处理器，是不同的元素交互，非UI范围内的定制。参考说明[文本打字机](/zh/guide/text-printers)和 [选择处理器](/zh/guide/choices)。
 
 
-::: warn
+::: warning
 
 在尝试自建UI或修改前，确保你已经熟悉[UGUI](https://docs.unity3d.com/Packages/com.unity.ugui@latest)。即使下面有示例项目和视频教程，但我们不会提供任何关于UGUI的问题支持。详情参考[技术支持](/zh/support/#unity-支持)页面。
 
@@ -46,15 +46,15 @@ UI自定义特性允许用户添加自建UI，或使其替代任何内置UI元�
 
 要添加新的自定义UI，通过菜单`Create -> Naninovel -> Custom UI`来添加，并将其添加到资源列表内。这样它就会随引擎初始化时进行初始化。
 
-以下视频教程，展示了如何添加用户自定义的日历UI，并使用特殊的出现/隐藏的动画。该日历会根据[自定义变量](/zh/guide/custom-variables.md) （可通过Naninovel来控制并随游戏保存）来显示。并且日历会随数据变化而同步更新。这些功能实现都不需要C#代码来实现。
+以下视频教程，展示了如何添加用户自定义的日历UI，并使用特殊的出现/隐藏的动画。该日历会根据[自定义变量](/zh/guide/custom-variables) （可通过Naninovel来控制并随游戏保存）来显示。并且日历会随数据变化而同步更新。这些功能实现都不需要C#代码来实现。
 
-[!!wrAm-cwPXy4]
+![](https://www.youtube.com/watch?v=wrAm-cwPXy4)
 
-::: example
+::: tip EXAMPLE
 上述视频用的Unity项目文件在[GitHub获取](https://github.com/Naninovel/CustomUIExample) 。你可以使用git客户端[克隆存储库](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) 或是 [下载为zip存档](https://github.com/Naninovel/CustomUIExample/archive/master.zip) 。注意，其中不包含Naninovel资源包，导入资源以解决报错。
 :::
 
-::: example
+::: tip EXAMPLE
 其他高级示例，如添加使用网格组件，页码，拖拽等功能的的自定义背包参考[GitHub背包项目示例](https://github.com/Naninovel/Inventory)。
 
 另外，UI相关代码和预制体都在[运行时/UI](https://github.com/Naninovel/Inventory/tree/master/Assets/NaninovelInventory/Runtime/UI) 和 [预制体](https://github.com/Naninovel/Inventory/tree/master/Assets/NaninovelInventory/Prefabs)
@@ -82,7 +82,7 @@ UI自定义特性允许用户添加自建UI，或使其替代任何内置UI元�
 
 `Save Visibility State`开启时，会对UI可见度状态做持久化保存，在下次加载游戏时，UI会保持和之前退出时一样的状态。
 
-`Block Input When Visible`允许在UI可见时关闭[输入](/zh/guide/input-processing.md)。 这有助于防止玩家在与UI交互时使用各种快捷键（隐藏UI，继续阅读等）。`Allowed Samplers` 允许使用的快捷键。比如，你可以将`ToggleUI` 输入添加到此，能让玩家使用该功能的快捷键，而其他所有快捷键都将无效化。
+`Block Input When Visible`允许在UI可见时关闭[输入](/zh/guide/input-processing)。 这有助于防止玩家在与UI交互时使用各种快捷键（隐藏UI，继续阅读等）。`Allowed Samplers` 允许使用的快捷键。比如，你可以将`ToggleUI` 输入添加到此，能让玩家使用该功能的快捷键，而其他所有快捷键都将无效化。
 
 启用`Modal UI`会使所有其他UI在可见时都忽略交互。这类似于`Block Input When Visible`，但是会影响基于事件的交互（鼠标单击，触摸，UI导航），而不影响直接输入处理。
 
@@ -108,9 +108,9 @@ UI自定义特性允许用户添加自建UI，或使其替代任何内置UI元�
 
 在下面的视频教程中，您可以学习如何覆盖内置标题（主）菜单。以及进入标题菜单时如何使用标题脚本添加背景和特殊效果。不需要使用C＃脚本来实现。
 
-[!!hqhfhXzQkdk]
+![](https://www.youtube.com/watch?v=hqhfhXzQkdk)
 
-::: example
+::: tip EXAMPLE
 上述视频用的Unity项目文件在[GitHub获取](https://github.com/Naninovel/CustomUIExample) 。你可以使用git客户端[克隆存储库](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) 或是 [下载为zip存档](https://github.com/Naninovel/CustomUIExample/archive/master.zip) 。注意，其中不包含Naninovel资源包，导入资源以解决报错。
 :::
 
@@ -130,8 +130,8 @@ ITitleUI | 游戏的标题（主）菜单。
 IExternalScriptsUI | 外部脚本浏览器UI (社区修改功能)。
 IVariableInputUI | 用于输入将任意文本分配给自定义状态变量 ([@input] 命令调用).
 IConfirmationUI | 用于确认重要命令的UI面板 (例如，退出标题菜单或删除保存的游戏时)。
-ICGGalleryUI | 解锁 [CG 画廊](/zh/guide/unlockable-items.md#CG画廊) 窗口。
-ITipsUI | 解锁 [提示](/zh/guide/unlockable-items.md#提示) 窗口。
+ICGGalleryUI | 解锁 [CG 画廊](/zh/guide/unlockable-items#CG画廊) 窗口。
+ITipsUI | 解锁 [提示](/zh/guide/unlockable-items#提示) 窗口。
 IRollbackUI | 状态回滚功能的指示器。
 IContinueInputUI | 全屏不可见的UI层，位于UI层的底部，在点击或触击时激活`continue input`的触发。
 
@@ -161,9 +161,8 @@ public class MyCustomUI : ScriptableUIBehaviour, Naninovel.UI.IManagedUI
 
 ![](https://i.gyazo.com/78e9fa27d6561f8f8aced76bbeb4b542.png)
 
-::: warn
+::: warning
 条件判断 (if, else, elseif, endif) 在此位置不被支持.
 :::
 
 当通过下拉列表选择现有的naninovel脚本时，脚本文本区域将被忽略，所选的naninovel脚本将被执行，**而不是**当前执行的脚本。如果您希望在不中断当前执行的脚本的情况下附加执行某些命令，请使用脚本文本区域。
-

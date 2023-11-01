@@ -1,4 +1,4 @@
-﻿# 選択肢
+# 選択肢
 
 この機能は、ユーザーにいくつかの選択肢を提示し、ユーザーの選択に応じてスクリプトの実行を再ルーティングできます。
 
@@ -33,7 +33,7 @@ goto:.Epilogue
 
  [@choice] コマンドを処理するために、選択肢ハンドラアクターが使用されます。 `Naninovel -> Resources -> Choice Handlers` コンテキストメニューから選択肢マネージャーを使用して、選択肢ハンドラーの追加、編集、削除ができます。
 
-選択肢ハンドラーの挙動はコンテキストメニュー `Naninovel -> Configuration -> Choice Handlers` から設定できます。可能なオプションについては [コンフィグガイド](/ja/guide/configuration.md#choice-handlers) をご覧ください。
+選択肢ハンドラーの挙動はコンテキストメニュー `Naninovel -> Configuration -> Choice Handlers` から設定できます。可能なオプションについては [コンフィグガイド](/ja/guide/configuration#choice-handlers) をご覧ください。
 
 ## 選択ボタン
 
@@ -82,7 +82,7 @@ Don't forget about cucumbers!
 @goto .Map
 ```
 
-[!!cNRNgk5HhKQ]
+![](https://www.youtube.com/watch?v=cNRNgk5HhKQ)
 
 ## 選択肢ハンドラーの追加
 
@@ -94,7 +94,7 @@ Don't forget about cucumbers!
 
 エディターのコンテキストメニューから `Naninovel -> Resources -> Choice Handlers` へアクセスし、選択ハンドラーマネージャーGUIを使用して、ハンドラーをエンジンリソースに公開します。  `+` （プラス）ボタンで新しいレコードを追加し、アクターID（プレハブ名とは異なる場合があります）を入力し、レコードをダブルクリックしてアクター設定を開きます。ハンドラープレハブを`Resource` フィールドにドラッグアンドドロップします。
 
-[!cb3a0ff7f22b22cec6546acb388719fc]
+![](https://i.gyazo.com/cb3a0ff7f22b22cec6546acb388719fc.mp4)
 
 これで [@choice] の `handler` パラメーターにIDを指定して、新しい選択肢ハンドラーを利用できます。
 
@@ -102,4 +102,4 @@ Don't forget about cucumbers!
 @choice "Choice summary text." handler:MyNewHandler
 ```
 
-`IChoiceHandlerActor` インターフェイスを手動で実装することで、選択肢ハンドラを最初から作成することもできます。詳細は、[カスタムアクターの実装](/ja/guide/custom-actor-implementations.md) のガイドを参照してください。
+`IChoiceHandlerActor` インターフェイスを手動で実装することで、選択肢ハンドラを最初から作成することもできます。詳細は、[カスタムアクターの実装](/ja/guide/custom-actor-implementations) のガイドを参照してください。

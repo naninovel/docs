@@ -1,4 +1,4 @@
-﻿# 自定义构建环境
+# 自定义构建环境
 
 当通过Unity的 [build menu](https://docs.unity3d.com/Manual/BuildSettings.html) 菜单来发布项目时，naninovel会自动执行附加的预处理和后处理过程。这些程序将处理包括确保将Naninovel的配置菜单分配的所有资源（例如，脚本文件，角色外观，BGM和SFX剪辑等）都包含到发布项目中，和其他事项。
 

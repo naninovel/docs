@@ -1,4 +1,4 @@
-﻿# Adventure Creator
+# Adventure Creator
 
 [Adventure Creator](https://www.adventurecreator.org/) では昔ながらの2D、2.5D、3Dアドベンチャーゲームを作ることが出来ます。ストーリー重視のもの、探索、パズル、例えば Monkey Island、Grim Fandango、The Longest Journey、Telltaleの The Walking Dead などです。
 
@@ -34,8 +34,8 @@ Naninovelスクリプトの `@turnOnAC` カスタムコマンドを使用してA
 
 次の動画は、ACで Naninovel と連携して会話シーンを処理するデモです。
 
-[!!7tOIFZRSAec]
+![](https://www.youtube.com/watch?v=7tOIFZRSAec)
 
-::: example
+::: tip EXAMPLE
 インテグレーションの例については、 [GitHubプロジェクト](https://github.com/Naninovel/AdventureCreator) をご覧ください。初めてプロジェクトを開くと、Adventure Creator と Naninovel のパッケージが存在しないのでエラーが発生します。Asset Storeからインポートするだけで、エラーは解消されます。
 :::

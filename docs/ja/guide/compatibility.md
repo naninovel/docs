@@ -19,7 +19,7 @@
 
 ## レンダーパイプライン
 
-Unity の [Scriptableレンダーパイプライン](https://docs.unity3d.com/Manual/render-pipelines.html) (URP と HDRP) は、いくつかの制限と追加設定により対応しています。詳細は [レンダーパイプラインガイド](/ja/guide/render-pipelines.md) を参照してください。
+Unity の [Scriptableレンダーパイプライン](https://docs.unity3d.com/Manual/render-pipelines.html) (URP と HDRP) は、いくつかの制限と追加設定により対応しています。詳細は [レンダーパイプラインガイド](/ja/guide/render-pipelines) を参照してください。
 
 ## マネージコードストリッピング
 

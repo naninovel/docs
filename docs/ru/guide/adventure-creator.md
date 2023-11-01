@@ -1,4 +1,4 @@
-﻿# Adventure Creator
+# Adventure Creator
 
 [Adventure Creator](https://www.adventurecreator.org/) позволяет вам создавать традиционные 2D, 2.5D и 3D-приключенческие игры – те, в основе которых лежат повествование, исследование и головоломки, такие, как: Monkey Island, Grim Fandango, The Longest Journey и The Walking Dead от Telltale.
 
@@ -34,8 +34,8 @@
 
 Следующее видео демонстрирует сцену AC с интегрированным Naninovel для обработки диалога.
 
-[!!7tOIFZRSAec]
+![](https://www.youtube.com/watch?v=7tOIFZRSAec)
 
-::: example
+::: tip EXAMPLE
 См. [проект GitHub](https://github.com/Naninovel/AdventureCreator) в качестве примера интеграции. При первом открытии проекта возникнут ошибки из-за отсутствия пакетов Adventure Creator и Naninovel. Импортируйте их из Asset Store для исправления данных ошибок.
 :::

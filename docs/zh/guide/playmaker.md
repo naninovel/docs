@@ -1,4 +1,4 @@
-﻿# Playmaker
+# Playmaker
 
 [PlayMaker](https://assetstore.unity.com/packages/tools/visual-scripting/playmaker-368) 是用于unity很受欢迎的可视化编程扩展，旨在用于便于无代码基础的人使用。
 
@@ -21,7 +21,7 @@
 以下视频演示了如何使用PlayMaker FSM（有限状态机）初始化Naninovel引擎，预加载并运行脚本。
 
 
-[!!N856vi18XVU]
+![](https://www.youtube.com/watch?v=N856vi18XVU)
 
 ### 事件
 
@@ -53,7 +53,7 @@
 ```
 
 — 将为名称为“ Fsm1”和“ Fsm2”的FSM调用名为“ EventName”的事件。
- 
+
 当 `object` 指定参数时，事件将仅发送到应用于游戏对象的FSM，FSM具有相应的名称，例如：
 
 ```nani
@@ -81,4 +81,3 @@ Felix: My score is {GetPlayMakerGlobalVariable("Score")}.
     Not yet.
 @endif
 ```
-

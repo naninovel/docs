@@ -1,4 +1,4 @@
-﻿# Development Console
+# Development Console
 
 Development console is used to execute static C# methods via in-game UI.
 
@@ -15,20 +15,20 @@ public static void ToggleDebugInfo () => UI.DebugInfoGUI.Toggle();
 
 In the console, type either full method name or the shortcut (if applied) and press `Enter` key to execute the method.
 
-[!bd41a9a8fff91eb575b235a6b641dcce]
+![](https://i.gyazo.com/bd41a9a8fff91eb575b235a6b641dcce.mp4)
 
 Following commands are currently available:
 
 Command | Description
 --- | ---
 nav | Toggles naninovel script navigator UI.
-debug | Toggles [naninovel script debug](/guide/naninovel-scripts.md#scripts-debug) window.
-var | Toggles [custom variable editor](/guide/custom-variables.md#variables-debug) window.
-purge | When [Google Drive provider](/guide/resource-providers.md#google-drive) is used, purges the downloaded resources cache.
+debug | Toggles [naninovel script debug](/guide/naninovel-scripts#scripts-debug) window.
+var | Toggles [custom variable editor](/guide/custom-variables#variables-debug) window.
+purge | When [Google Drive provider](/guide/resource-providers#google-drive) is used, purges the downloaded resources cache.
 play | Starts executing currently loaded naninovel script.
 stop | Halts execution of the currently loaded naninovel script.
 rewind (int) | Rewinds currently loaded naninovel script to the provided line index. The line should be either a command or a generic text. When rewinding back, the line should exist in the rollback stack.
-reload | Performs [hot reload](/guide/naninovel-scripts.md#hot-reload) of the currently played naninovel script. Works only in Unity editor.
+reload | Performs [hot reload](/guide/naninovel-scripts#hot-reload) of the currently played naninovel script. Works only in Unity editor.
 
 ## Executing Commands
 
@@ -40,4 +40,4 @@ You can invoke the script commands via development console. Input the command st
 
 — will print the value of the `VariableName` with the default printer.
 
-[!!wcgTGro0_SE]
+![](https://www.youtube.com/watch?v=wcgTGro0_SE)

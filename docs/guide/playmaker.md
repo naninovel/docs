@@ -1,6 +1,6 @@
-﻿# Playmaker
+# Playmaker
 
-[PlayMaker](https://assetstore.unity.com/packages/tools/visual-scripting/playmaker-368) is a popular visual scripting tool for Unity specifically designed to be friendly for non-programmers. 
+[PlayMaker](https://assetstore.unity.com/packages/tools/visual-scripting/playmaker-368) is a popular visual scripting tool for Unity specifically designed to be friendly for non-programmers.
 
 ![](https://i.gyazo.com/0a5b219b059fd61c85d225e903d77857.png)
 
@@ -18,7 +18,7 @@ The custom Naninovel actions should appear in the PlayMaker actions browser unde
 
 The following video demonstrates using PlayMaker FSM (finite state machine) to initialize Naninovel engine, preload and play a scenario script.
 
-[!!N856vi18XVU]
+![](https://www.youtube.com/watch?v=N856vi18XVU)
 
 ### Events
 
@@ -43,13 +43,13 @@ It's also possible to broadcast custom PlayMaker events from naninovel scripts u
 
 — will invoke a global user event named "EventName" in all the active FSMs on scene.
 
-The command also allows sending events to specific FSMs by using `fsm` and `object` parameters. The first parameter allows specifying FSM names, which should receive the event, eg: 
+The command also allows sending events to specific FSMs by using `fsm` and `object` parameters. The first parameter allows specifying FSM names, which should receive the event, eg:
 
 ```nani
 @playmaker EventName fsm:Fsm1,Fsm2
 ```
 
-— will invoke an event named "EventName" for FSMs with name "Fsm1" and "Fsm2".  
+— will invoke an event named "EventName" for FSMs with name "Fsm1" and "Fsm2".
 
 When `object` parameter is specified, the event will only be sent to FSMs, that are applied to game objects, which has corresponding names, eg:
 
@@ -57,7 +57,7 @@ When `object` parameter is specified, the event will only be sent to FSMs, that 
 @playmaker EventName object:Obj1,Obj2
 ```
 
-— will invoke an event named "EventName" for all the FSMs, that are attached to game objects with names "Obj1" and "Obj2".  
+— will invoke an event named "EventName" for all the FSMs, that are attached to game objects with names "Obj1" and "Obj2".
 
 You can as well combine `fsm` and `object` parameters to farther filter the FSMs, that should receive the event.
 
@@ -81,13 +81,13 @@ Felix: My score is {GetPlayMakerGlobalVariable("Score")}.
 To assign a PlayMaker's global variable value from Naninovel script, use `@pset` command as following:
 
 ```nani
-; Assign "10" to PlayMaker's integer global variable named "Score"
+; Assign "10" to PlayMaker's integer global variable named "Score".
 @pset name:Score value:10
 
-; Assign "Banana" at 10th index of "Groceries" PlayMaker's global array of strings
+; Assign "Banana" at 10th index of "Groceries" PlayMaker's global array.
 @pset name:Groceries index:10 value:Banana
 ```
 
 ## IDE Extension
 
-To add IDE support for playmaker-specific commands distributed with the extension package (eg, `@playmaker`), see the [guide on generating metadata for custom commands](/guide/custom-commands.md#ide-metadata).
+To add IDE support for playmaker-specific commands distributed with the extension package (eg, `@playmaker`), see the [guide on generating metadata for custom commands](/guide/custom-commands#ide-metadata).

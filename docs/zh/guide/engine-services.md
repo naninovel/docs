@@ -14,24 +14,24 @@ player.Stop();
 
 服务接口 | 描述
 --- | ---
-IBackgroundManager | 管理 [背景](/zh/guide/backgrounds.md) 元素。
-ICharacterManager | 管理 [角色](/zh/guide/characters.md) 元素。
-IChoiceHandlerManager | 管理 [选择处理器](/zh/guide/choices.md) 元素。
-ITextPrinterManager | 管理 [文本打字机](/zh/guide/text-printers.md) 元素。
-IAudioManager | 管理音频: [音效](/zh/guide/audio.md#音效) ， [背景音乐](/zh/guide/audio.md#背景音乐) 和 [语音](/zh/guide/voicing.md) 。
-IInputManager | 管理[输入操作](/zh/guide/input-processing.md) 。
-ILocalizationManager| 管理[本地化](/zh/guide/localization.md) 。
-ITextManager | 处理[托管文本](/zh/guide/managed-text.md) 特性。
-IMoviePlayer | 处理 [影片](/zh/guide/movies.md) 播放。
-IScriptManager | 管理 [naninovel脚本](/zh/guide/naninovel-scripts.md) 资源。
-IScriptPlayer | 处理[naninovel脚本](/zh/guide/naninovel-scripts.md) 执行。
+IBackgroundManager | 管理 [背景](/zh/guide/backgrounds) 元素。
+ICharacterManager | 管理 [角色](/zh/guide/characters) 元素。
+IChoiceHandlerManager | 管理 [选择处理器](/zh/guide/choices) 元素。
+ITextPrinterManager | 管理 [文本打字机](/zh/guide/text-printers) 元素。
+IAudioManager | 管理音频: [音效](/zh/guide/audio#音效) ， [背景音乐](/zh/guide/audio#背景音乐) 和 [语音](/zh/guide/voicing) 。
+IInputManager | 管理[输入操作](/zh/guide/input-processing) 。
+ILocalizationManager| 管理[本地化](/zh/guide/localization) 。
+ITextManager | 处理[托管文本](/zh/guide/managed-text) 特性。
+IMoviePlayer | 处理 [影片](/zh/guide/movies) 播放。
+IScriptManager | 管理 [naninovel脚本](/zh/guide/naninovel-scripts) 资源。
+IScriptPlayer | 处理[naninovel脚本](/zh/guide/naninovel-scripts) 执行。
 ICameraManager | 管理场景渲染所需的相机和其他系统。
 IResourceProviderManager | 管理 `IResourceProvider` 物体.
-IStateManager | 处理 `IEngineService` 相关持久化数据的，序列化和反序列化；及用于[保存加载](/zh/guide/save-load-system.md) 游戏的API。
-IUIManager | 管理 `IManagedUI` 物体和处理[自定义UI](/zh/guide/user-interface.md#UI自定义) 特性。
-ICustomVariableManager | 提供访问权限并允许修改[自定义变量](/zh/guide/custom-variables.md). 
+IStateManager | 处理 `IEngineService` 相关持久化数据的，序列化和反序列化；及用于[保存加载](/zh/guide/save-load-system) 游戏的API。
+IUIManager | 管理 `IManagedUI` 物体和处理[自定义UI](/zh/guide/user-interface#UI自定义) 特性。
+ICustomVariableManager | 提供访问权限并允许修改[自定义变量](/zh/guide/custom-variables).
 ISpawnManager | 使用 [@spawn] 命令生成的对象。
-IUnlockableManager | 管理 [可解锁项目](/zh/guide/unlockable-items.md) （CG和 影片，画廊，提示等）。
+IUnlockableManager | 管理 [可解锁项目](/zh/guide/unlockable-items) （CG和 影片，画廊，提示等）。
 
 你可以在`Naninovel/Runtime`内运行时代码中找到内置的服务实现。
 
@@ -49,7 +49,7 @@ IUnlockableManager | 管理 [可解锁项目](/zh/guide/unlockable-items.md) （
 
 请注意，在构造函数中使用其他服务并不安全。相反，执行相关初始化操作所需服务须在 `InitializeServiceAsync` 方法中调用；为了确保在访问所需服务时已对其进行了初始化，请在服务构造函数中罗列（初始化队列将按构造函数参数拓扑排序）。
 
-如果你的自定义服务使用持久化处理，希望和其他服务一起做序列化和反序列化，继承`IStatefulService<TState>` 接口，`TState`是`GameStateMap`，`GlobalStateMap` ，`SettingsStateMap` 三者之一，取决于你的服务所属种类，游戏状态，全局状态，设置状态。如果必要可以在一个服务中继承三个状态接口。更多相关信息参考[状态管理](/guide/state-management.md)。
+如果你的自定义服务使用持久化处理，希望和其他服务一起做序列化和反序列化，继承`IStatefulService<TState>` 接口，`TState`是`GameStateMap`，`GlobalStateMap` ，`SettingsStateMap` 三者之一，取决于你的服务所属种类，游戏状态，全局状态，设置状态。如果必要可以在一个服务中继承三个状态接口。更多相关信息参考[状态管理](/guide/state-management)。
 
 以下是带有一些使用注意事项的自定义引擎服务实现的示例。
 
@@ -99,7 +99,7 @@ public class CustomService : IEngineService
 var customService = Engine.GetService<CustomService>();
 ```
 
-::: example
+::: tip EXAMPLE
 在[GitHub的背包示例项目](https://github.com/Naninovel/Inventory) 中，可以找到添加自定义引擎服务以管理背包UI配置和资源的相关示例。
 
 具体来说，这个示例的定制引擎服务是通过[InventoryManager.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryManager.cs) 运行时脚本实现的。

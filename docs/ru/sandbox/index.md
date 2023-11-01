@@ -16,6 +16,4 @@
 
 Ознакомьтесь с нашим видео-руководством, в котором вы найдете пошаговое руководство по настройке и началу использования песочницы Naninovel.
 
-<div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/tn14ZhBTFew" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+![](https://www.youtube.com/watch?v=tn14ZhBTFew)

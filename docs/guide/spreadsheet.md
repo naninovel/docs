@@ -1,4 +1,4 @@
-﻿# Spreadsheet
+# Spreadsheet
 
 At some point you may look for an option to compile all the project scenario script and managed text localizations into spreadsheets. For example, you may want to share the text with a translation agency or editors for proofreading.
 
@@ -12,7 +12,7 @@ Before exporting the project data, always generate localization data with the lo
 
 ![](https://i.gyazo.com/047d43250a941b918de65205a19b2d78.png)
 
-For more information on how to use the tool, see [localization guide](/guide/localization.md).
+For more information on how to use the tool, see [localization guide](/guide/localization).
 
 When the localization data is up-to-date, open spreadsheet tool with `Naninovel -> Tools -> Spreadsheet` editor menu.
 
@@ -20,7 +20,7 @@ When the localization data is up-to-date, open spreadsheet tool with `Naninovel 
 
 Specify the required folders:
  - Input Script Folder — folder where you store source naninovel scenario scripts (`.nani`); usually in our example projects we store them under `Assets/Scripts` folder.
- - Input Text Folder — folder where [managed text documents](/guide/managed-text.md) are generated to; it's `Assets/Resources/Naninovel/Text` by default. Make sure to generate managed text documents via associated tool in case the folder is missing.
+ - Input Text Folder — folder where [managed text documents](/guide/managed-text) are generated to; it's `Assets/Resources/Naninovel/Text` by default. Make sure to generate managed text documents via associated tool in case the folder is missing.
  - Input Localization Folder — localization root where resources for all the different locales are stored; `Assets/Resources/Naninovel/Localization` by default.
  - Output Folder — folder where to store generated or import edited sheets from.
 
@@ -28,13 +28,15 @@ Click "Export" button to export sheets to the selected destination.
 
 Each script and managed text document will be exported to an individual sheet. Each sheets will have "ID" column storing localizable text IDs and additional column per each locale. You're free to modify all the columns in the spreadsheet except "ID"; however, modifying column associated with the source locale won't have any effect on import.
 
-After performing the required modifications, click "Import" button to import the data back to the project.
+When **Include Annotations** option is enabled, generated sheets will also contain a column with script comments placed before localized lines. The column is ignored during import.
 
-::: warn
+After performing required modifications, click "Import" button to import the data back to the project.
+
+::: warning
 Project's localization documents will be overwritten when importing from spreadsheet, so refrain from modifying them while the spreadsheet is being edited to prevent conflicts.
 :::
 
-::: note
+::: info NOTE
 The sheets `.csv` format is expected to be compliant with [RFC-4180](https://datatracker.ietf.org/doc/html/rfc4180) standard. However, some sheet processors, such as Microsoft Excel don't wrap cells with trailing whitespace in double quotes on save, which may lead to missing spaces in some cases (eg, spaces between text and inlined commands or expressions). Consult following thread for various workarounds: [techcommunity.microsoft.com/excel/223484](https://techcommunity.microsoft.com/t5/excel/save-as-csv-file-utf-8-with-double-quotes-how/m-p/223484).
 :::
 
@@ -72,12 +74,12 @@ public class CustomProcessor : Processor
 
 ## Example
 
-Find an example on how to set up and use the extension in the following project hosted on GitHub: [github.com/Naninovel/Spreadsheet](https://github.com/Naninovel/Spreadsheet).
+Find an example on how to set up and use the tool in the following project hosted on GitHub: [github.com/Naninovel/Spreadsheet](https://github.com/Naninovel/Spreadsheet).
 
 You can [clone the project with a Git client](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) or [download it as a zip archive](https://github.com/Naninovel/Spreadsheet/archive/main.zip).
 
-::: warn
-Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
+::: warning
+Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; importing the package will resolve the issues.
 :::
 
 The project has a couple of test scripts stored in `Assets/Scripts` folder, managed text documents at `Assets/Resources/Naninovel/Text` and a sheets at the root directory.

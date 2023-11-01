@@ -1,4 +1,4 @@
-﻿# Choices
+# Choices
 
 The feature allows to present a number of choices to the user and re-route script execution depending on the choice the user makes.
 
@@ -19,13 +19,13 @@ Continue executing this script or load another?[skipInput]
 Value of the `goto` parameter is the path to re-route into when users selects the corresponding choice. It's specified in the following format: *ScriptName*.*LabelName*. When label name is omitted, provided script will be played from the start; when script name is omitted, a label in the currently played script will be referenced:
 
 ```nani
-; Loads and starts playing a naninovel script with the name `Script001` from the start
+; Starts playing naninovel `Script001` script from the start.
 goto:Script001
 
-; Save as above, but start playing from the label `AfterStorm`
+; Save as above, but start playing from the label `AfterStorm`.
 goto:Script001.AfterStorm
 
-; Jumps the playback to the label `Epilogue` in the currently played script
+; Jumps the playback to the label `Epilogue` in the currently played script.
 goto:.Epilogue
 ```
 
@@ -33,11 +33,11 @@ When `goto` parameter is not specified, current script will continue executing f
 
 Choice handler actors are used to process the [@choice] commands. You can add, edit and remove choice handlers using the choice manager accessible via `Naninovel -> Resources -> Choice Handlers` context menu.
 
-Choice handlers behavior can be configured using `Naninovel -> Configuration -> Choice Handlers` context menu; for available options see [configuration guide](/guide/configuration.md#choice-handlers).
+Choice handlers behavior can be configured using `Naninovel -> Configuration -> Choice Handlers` context menu; for available options see [configuration guide](/guide/configuration#choice-handlers).
 
 ## Choice Button
 
-The [@choice] command accepts an optional `button` parameter specifying a path (relative to a "Resources" folder) to custom prefab representing the choice option object. 
+The [@choice] command accepts an optional `button` parameter specifying a path (relative to a "Resources" folder) to custom prefab representing the choice option object.
 
 ```nani
 @choice handler:ButtonArea button:MapButtons/Home pos:-300,-300 goto:.HomeScene
@@ -54,7 +54,7 @@ If you don't want to store the choice button prefabs in `Resources` folder or ne
 
 When `button` parameter of the [@choice] command is not specified, default button prefab is used.
 
-To change choice button used by default, create a [custom choice handler](/guide/choices.md#adding-custom-choice-handlers) and assign the prefab to `Default Button Prefab` property of `Choice Handler Panel` component or use a custom component.
+To change choice button used by default, create a [custom choice handler](/guide/choices#adding-custom-choice-handlers) and assign the prefab to `Default Button Prefab` property of `Choice Handler Panel` component or use a custom component.
 
 ![](https://i.gyazo.com/0972b2725ed043d050804d3833a83b73.png)
 
@@ -87,15 +87,15 @@ Don't forget about cucumbers!
 @goto .Map
 ```
 
-:::example
+::: tip EXAMPLE
 Find a more advanced implementation of interactive map with Naninovel in the Map example project on GitHub: [github.com/Naninovel/Map](https://github.com/Naninovel/Map).
 
-[!4987b1c53cd275f3fa56b533f53f3d8c]
+![](https://i.gyazo.com/4987b1c53cd275f3fa56b533f53f3d8c.mp4)
 :::
 
 ## ChatReply Choice Handler
 
-Used by [chat text printer](/guide/text-printers.md#chat-printer) to represent reply choices. Example:
+Used by [chat text printer](/guide/text-printers#chat-printer) to represent reply choices. Example:
 
 ```nani
 @printer Chat
@@ -105,19 +105,19 @@ Kohaku: Where're you right now?
 @stop
 ```
 
-[!338f8519b3a1656059a407fe0232b376]
+![](https://i.gyazo.com/338f8519b3a1656059a407fe0232b376.mp4)
 
 ## Adding Custom Choice Handlers
 
-You can add custom choice handlers based on the built-in templates or create new handlers from scratch. For example, let's customize the built-in `ButtonArea` template. 
+You can add custom choice handlers based on the built-in templates or create new handlers from scratch. For example, let's customize the built-in `ButtonArea` template.
 
-Use `Create -> Naninovel -> Choice Handler -> ButtonArea` asset context menu to create a button area handler prefab somewhere outside of the Naninovel package, e.g. at the `Assets/ChoiceHandlers` folder. 
+Use `Create -> Naninovel -> Choice Handler -> ButtonArea` asset context menu to create a button area handler prefab somewhere outside of the Naninovel package, e.g. at the `Assets/ChoiceHandlers` folder.
 
 Edit the handler: change font, textures, add animations, etc. For more information on the available UI building tools, check the [Unity documentation](https://docs.unity3d.com/Packages/com.unity.ugui@latest).
 
 Expose the handler to engine resources using choice handler manager GUI, which can be accessed with `Naninovel -> Resources -> Choice Handlers` editor context menu. Add a new record using `+` (plus) button, enter actor ID (can differ from the prefab name) and double click the record to open actor settings. Drag-drop handler prefab to the `Resource` field.
 
-[!cb3a0ff7f22b22cec6546acb388719fc]
+![](https://i.gyazo.com/cb3a0ff7f22b22cec6546acb388719fc.mp4)
 
 You can now use the new choice handler by specifying its ID in `handler` parameter of the [@choice] commands.
 
@@ -125,8 +125,8 @@ You can now use the new choice handler by specifying its ID in `handler` paramet
 @choice "Choice summary text." handler:MyNewHandler
 ```
 
-::: example
+::: tip EXAMPLE
 Find an example on creating a custom choice handler with a particle system in the following project on GitHub: [github.com/Naninovel/CustomUIExample](https://github.com/Naninovel/CustomUIExample).
 :::
 
-It's also possible to create a choice handler from scratch by manually implementing `IChoiceHandlerActor` interface. See the guide on [custom actor implementations](/guide/custom-actor-implementations.md) for more information.
+It's also possible to create a choice handler from scratch by manually implementing `IChoiceHandlerActor` interface. See the guide on [custom actor implementations](/guide/custom-actor-implementations) for more information.

@@ -1,24 +1,24 @@
-﻿# Custom Configuration
+# Custom Configuration
 
 Configuration objects are used to initialize and configure services and other engine systems.
 
 By default, configuration objects are serialized as [scriptable object](https://docs.unity3d.com/Manual/class-ScriptableObject.html) assets and stored at `NaninovelData/Resources/Naninovel/Configuration` project directory. The assets are automatically generated when opening corresponding configuration menus (`Naninovel -> Configuration`) in the Unity editor for the first time.
 
-To access configuration objects via C# use `Engine.GetConfiguration<T>()` static method, where `T` is type of the configuration object you wish to access. For example, the following example demonstrates how to access [audio configuration](/guide/configuration.md#audio) object:
+To access configuration objects via C# use `Engine.GetConfiguration<T>()` static method, where `T` is type of the configuration object you wish to access. For example, the following example demonstrates how to access [audio configuration](/guide/configuration#audio) object:
 
 ```csharp
 var audioConfig = Engine.GetConfiguration<AudioConfiguration>();
 ```
 
-::: note
-The engine initialization procedure is asynchronous, so even when automatic initialization is enabled, engine APIs (eg, `GetConfiguration` method) may not be available right after Unity loads a scene (eg, in `Awake`, `Start` and `OnEnable` [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html) methods); see [accessing engine API](/guide/integration-options.md#accessing-engine-api) guide for more info.
+::: info NOTE
+The engine initialization procedure is asynchronous, so even when automatic initialization is enabled, engine APIs (eg, `GetConfiguration` method) may not be available right after Unity loads a scene (eg, in `Awake`, `Start` and `OnEnable` [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html) methods); see [accessing engine API](/guide/integration-options#accessing-engine-api) guide for more info.
 :::
 
-While `Engine.GetConfiguration` method can only be used when the engine is initialized, as it requires a [configuration provider](/guide/custom-configuration.md#configuration-provider) object, which is specified when initializing the engine to allow custom serving scenarios at runtime, it's possible to access a configuration asset via default provider even when the engine is not initialized with `ProjectConfigurationProvider`, eg:
+While `Engine.GetConfiguration` method can only be used when the engine is initialized, as it requires a [configuration provider](/guide/custom-configuration#configuration-provider) object, which is specified when initializing the engine to allow custom serving scenarios at runtime, it's possible to access a configuration asset via default provider even when the engine is not initialized with `ProjectConfigurationProvider`, eg:
 
 ```csharp
-var audioConfig = ProjectConfigurationProvider.LoadOrDefault<AudioConfiguration>();
-``` 
+var config = ProjectConfigurationProvider.LoadOrDefault<AudioConfiguration>();
+```
 
 While the configuration properties are meant to be changed via editor menus, it's still possible to modify them at runtime. Be aware, that the objects returned by default project provider are the actual assets stored in the project; if you modify them, the changes will persist through play mode sessions. This is in contrast to the configuration objects provided with `Engine.GetConfiguration` method, which are instances and won't mutate the original assets.
 
@@ -47,8 +47,8 @@ public static class ModifyConfigAtRuntime
 }
 ```
 
-::: note
-Naninovel doesn't expect configurations to change while the engine is initialized, so you may need to apply the modifications before initializing the engine with either `ProjectConfigurationProvider` or a [custom provider](/guide/custom-configuration.md#configuration-provider) in order for some changes to take effect.
+::: info NOTE
+Naninovel doesn't expect configurations to change while the engine is initialized, so you may need to apply the modifications before initializing the engine with either `ProjectConfigurationProvider` or a [custom provider](/guide/custom-configuration#configuration-provider) in order for some changes to take effect.
 :::
 
 ## Adding Configuration
@@ -74,7 +74,7 @@ Notice the `EditInProjectSettings` attribute: an associated editor menu is autom
 
 ![](https://i.gyazo.com/c1163bba83f5d2b6286b100e837bca40.png)
 
-::: warn
+::: warning
 When adding custom implementation types under a non-predefined assembly (via [assembly definitions](https://docs.unity3d.com/Manual/ScriptCompilationAssemblyDefinitionFiles.html)), add the assembly name to the `Type Assemblies` list found in the engine configuration menu. Otherwise, the engine won't be able to locate your custom types.
 :::
 
@@ -84,7 +84,7 @@ To access your custom configuration via C# use the same API as for the built-in 
 var myConfig = Engine.GetConfiguration<MyCustomConfiguration>();
 ```
 
-::: example
+::: tip EXAMPLE
 Another example of adding a custom configuration menu to set up an inventory system can be found in the [inventory example project on GitHub](https://github.com/Naninovel/Inventory).
 
 Specifically, the custom configuration is implemented via [InventoryConfiguration.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryConfiguration.cs) runtime script.
@@ -121,7 +121,7 @@ Given the above editor, inspected characters will now draw as follows:
 
 ## Configuration Provider
 
-It's possible to change the way configuration objects are served at runtime. For example, instead of static project assets, you can read the configuration from JSON files stored on a remote host. 
+It's possible to change the way configuration objects are served at runtime. For example, instead of static project assets, you can read the configuration from JSON files stored on a remote host.
 
 To specify a custom configuration serving scenario, create a C# class and implement `IConfigurationProvider` interface. The interface has just one method, that expects a `Type` argument and returns a `Configuration` object. It's up to you on how to construct and populate requested configuration objects, just make sure type of the returned object is equal to the requested one.
 

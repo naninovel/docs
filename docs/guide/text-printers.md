@@ -2,7 +2,7 @@
 
 Text printers are actors used to present text messages, that can be revealed (printed) over time.
 
-Printers' behavior can be configured using `Naninovel -> Configuration -> Printers` context menu; for available options see [configuration guide](/guide/configuration.md#printers). The printers' resources manager can be accessed using `Naninovel -> Resources -> Printers` context menu.
+Printers' behavior can be configured using `Naninovel -> Configuration -> Printers` context menu; for available options see [configuration guide](/guide/configuration#printers). The printers' resources manager can be accessed using `Naninovel -> Resources -> Printers` context menu.
 
 In naninovel scripts, text printers are mostly controlled with [@print] and [@printer] commands:
 
@@ -27,9 +27,9 @@ Be aware, that even though the built-in printers are implemented as UIs, they're
 
 ## Auto-Advance Text
 
-Auto-advance feature allows to automatically continue script execution when handling [`i`](/api/#i) commands. 
+Auto-advance feature allows to automatically continue script execution when handling [`i`](/api/#i) commands.
 
-[!e6f58f861fa18bd62591db9794e7641b]
+![](https://i.gyazo.com/e6f58f861fa18bd62591db9794e7641b.mp4)
 
 Wait for user input or "i" commands halt script execution until user activates a `Continue` input and are typically used after printing-out a text message. When in auto-advance mode, "i" commands will instead halt script execution for a period of time and then finish, allowing execution of the following command. Halt period depends on the length of the last printed text message and further modified by "Print speed" game setting.
 
@@ -37,9 +37,9 @@ Auto-advance mode can be toggled using `AutoPlay` input (`A` key by default for 
 
 ## Text Skipping
 
-Text skipping feature allows to fast-forward execution of the [@print] commands, effectively skipping text revealing (printing) process. 
+Text skipping feature allows to fast-forward execution of the [@print] commands, effectively skipping text revealing (printing) process.
 
-[!9605a5c8cd1911217350d77712f47e7d]
+![](https://i.gyazo.com/9605a5c8cd1911217350d77712f47e7d.mp4)
 
 Skip mode can be toggled using `Skip` input (`Ctrl` key by default for standalone input module) or "SKIP" button in the control panel.
 
@@ -49,7 +49,7 @@ By default, skip mode is only available while executing commands that was alread
 
 Printer backlog is a feature allowing user to re-read previously printed text, revise selected choices, replay voiced lines and (optionally) rollback to the logged messages.
 
-[!cf9c11c242907e0eae7f5f1b4e2b9f38]
+![](https://i.gyazo.com/cf9c11c242907e0eae7f5f1b4e2b9f38.mp4)
 
 Backlog can be shown at any time during main game loop by activating `ShowBacklog` input (`L` key by default for standalone input module) or pressing "LOG" button in the control panel.
 
@@ -57,7 +57,7 @@ Various backlog UI properties are customizable via component attached to the roo
 
 ![](https://i.gyazo.com/40e44a4ed69f75fa5fb9c36cdae6226a.png)
 
-Consult [built-in UI customization guide](/guide/user-interface.md#modifying-built-in-ui) for more info now how to customize and configure the UI. 
+Consult [built-in UI customization guide](/guide/user-interface#modifying-built-in-ui) for more info now how to customize and configure the UI.
 
 It's possible to prevent specific text printers from adding messages to the backlog by disabling `Add To Backlog` property in the printer actor configuration. When `Split Backlog Messages` property is enabled, all the messages added to the backlog will be split (displayed as separate records).
 
@@ -65,13 +65,33 @@ It's possible to prevent specific text printers from adding messages to the back
 
 ## Authored Template
 
-It's possible to automate additional processing for text messages with an associated author (aka direct speech). The processing is configured individually for each text printer actor via `Authored Template` property. 
+It's possible to automate additional processing for text messages with an associated author (aka direct speech). The processing is configured individually for each text printer actor via `Authored Template` property.
 
 ![](https://i.gyazo.com/55e68990067ade056d69f73470e0f23c.png)
 
 You can specify any text formatting tags or characters and use `%TEXT%` to be replaced with the message text and `%AUTHOR%` with the author name (character display name). For example, consider the following template: `“%TEXT%” — <i>%AUTHOR%</i>` — it will wrap the printed message in quotes followed by a dash and author name in italics; for example, `Kohaku: Lorem ipsum.` processed with such template will result in:
 
 ![](https://i.gyazo.com/53b5ba0f426afc847e51d843ffd6e808.png)
+
+Alternatively, if you just want to print author name followed by colon at the beginning of generic line, consider following:
+
+```nani
+; Prints "John: Hello!" without any actor-specific options.
+John\: Hello!
+
+; Given there is a character actor with ID "john", prints "John: Hello!"
+; with all the actor-specific options (eg, message color).
+john: John: Hello!
+
+; Given john's display name is "John Doe", prints "John Doe: Hello!"
+; with all the actor-specific options.
+john: {GetName(john)}: Hello!
+
+; GetName function can be replaced with managed text variable.
+john: {t_johnName}: Hello!
+```
+
+— "Authored Template" option should be disabled for the above to work.
 
 ## Dialogue Printer
 
@@ -81,7 +101,7 @@ Dialogue printers present text inside windows with a flexible height. They initi
 
 ## Wide Printer
 
-Wide printers are very like dialogue printers, except for some changes in the panel layout tailored for wide displays. Wide printers also support [character avatars](/guide/characters.md#avatar-textures) feature.
+Wide printers are very like dialogue printers, except for some changes in the panel layout tailored for wide displays. Wide printers also support [character avatars](/guide/characters#avatar-textures) feature.
 
 ![Wide Printer](https://i.gyazo.com/83c091c08846fa1cab8764a8d4dddeda.png)
 
@@ -103,30 +123,30 @@ Below is an example on using fullscreen printer.
 ; Activate fullscreen printer.
 @printer Fullscreen
 
-; Following lines will be printed in the same window, separated by two line breaks.
-Lorem ipsum dolor sit amet. Proin ultricies in leo id scelerisque. 
-Praesent vel orci luctus, tincidunt nisi et, fringilla arcu. In a metus orci. 
+; Following lines will be printed in the same window, separated by 2 breaks.
+Lorem ipsum dolor sit amet. Proin ultricies in leo id scelerisque.
+Praesent vel orci luctus, tincidunt nisi et, fringilla arcu. In a metus orci.
 Maecenas congue nunc quis lectus porttitor, eget commodo massa congue.
 
 ; Clear contents of the printer.
 @resetText
 
 ; Print more lines.
-Morbi ultrices dictum diam, in gravida neque vulputate in. 
+Morbi ultrices dictum diam, in gravida neque vulputate in.
 ...
 ```
 
 ## Chat Printer
 
-Chat printer presents text inside message bubbles framed in a window with vertically-scrollable content, resembling a mobile messager app. Instead of revealing the printed message character by character, it shows "author is typing" animation for the duration of the reveal effect and then instantly shows the printed message. Chat printer supports [character avatars](/guide/characters.md#avatar-textures) feature.
+Chat printer presents text inside message bubbles framed in a window with vertically-scrollable content, resembling a mobile messager app. Instead of revealing the printed message character by character, it shows "author is typing" animation for the duration of the reveal effect and then instantly shows the printed message. Chat printer supports [character avatars](/guide/characters#avatar-textures) feature.
 
 ![Chat Printer](https://i.gyazo.com/3c04aecabe7f754ffc9ce5452eeba270.png)
 
-To embed choices inside the chat printer, see [ChatReply](/guide/choices.md#chatreply-choice-handler) choice handler. You can also specify custom handler via `Choice Handler Id` property found on `Chat Printer Panel` component.
+To embed choices inside the chat printer, see [ChatReply](/guide/choices#chatreply-choice-handler) choice handler. You can also specify custom handler via `Choice Handler Id` property found on `Chat Printer Panel` component.
 
 ## Bubble Printer
 
-Bubble printers can be used for a manga/comic style of text presentation. 
+Bubble printers can be used for a manga/comic style of text presentation.
 
 ![](https://i.gyazo.com/900ee728505a0d7ce2eb597f3aa2249a.png)
 
@@ -146,15 +166,15 @@ To display more than one bubble (or any other) printer at a time, add custom pri
 
 ## Adding Custom Printers
 
-You can add custom text printers based on the built-in templates or create new printers from scratch. For example, let's customize the built-in `Dialogue` template. 
+You can add custom text printers based on the built-in templates or create new printers from scratch. For example, let's customize the built-in `Dialogue` template.
 
-Use `Create -> Naninovel -> Text Printers -> Dialogue` asset context menu to create a dialogue prefab somewhere outside of the Naninovel package, e.g. at the `Assets/TextPrinters` folder. 
+Use `Create -> Naninovel -> Text Printers -> Dialogue` asset context menu to create a dialogue prefab somewhere outside of the Naninovel package, e.g. at the `Assets/TextPrinters` folder.
 
-Edit the prefab: change font, textures, add animations, etc. For more information on the available UI building tools consult [Unity documentation for uGUI](https://docs.unity3d.com/Packages/com.unity.ugui@latest). There are also a couple of tutorial videos and an example project on working with uGUI in the [UI customization guide](/guide/user-interface.md#ui-customization).
+Edit the prefab: change font, textures, add animations, etc. For more information on the available UI building tools consult [Unity documentation for uGUI](https://docs.unity3d.com/Packages/com.unity.ugui@latest). There are also a couple of tutorial videos and an example project on working with uGUI in the [UI customization guide](/guide/user-interface#ui-customization).
 
 Expose the prefab to engine resources using the printer's manager GUI, which can be accessed with `Naninovel -> Resources -> Printers` context menu. Add a new record using `+` (plus) button, enter actor ID (can differ from the prefab name) and double click the record to open actor settings. Drag-drop printer prefab to the `Resource` field.
 
-[!3f51881fa554720b7a4092dca42fd15e]
+![](https://i.gyazo.com/3f51881fa554720b7a4092dca42fd15e.mp4)
 
 You can now use the new text printer by activating it via [@printer] command and specifying actor ID you've set in the manager.
 
@@ -162,11 +182,11 @@ You can now use the new text printer by activating it via [@printer] command and
 @printer MyNewPrinter
 ```
 
-::: example
-Check out [demo project](/guide/getting-started.md#demo-project) for an example on adding a custom printer. The prefab is stored as `Assets/Prefabs/CustomPrinter.prefab`.
+::: tip EXAMPLE
+Check out [demo project](/guide/getting-started#demo-project) for an example on adding a custom printer. The prefab is stored as `Assets/Prefabs/CustomPrinter.prefab`.
 :::
 
-It's also possible to create a printer from scratch by manually implementing `ITextPrinterActor` interface. See the guide on [custom actor implementations](/guide/custom-actor-implementations.md) for more information.
+It's also possible to create a printer from scratch by manually implementing `ITextPrinterActor` interface. See the guide on [custom actor implementations](/guide/custom-actor-implementations) for more information.
 
 ## Text Reveal Effect
 
@@ -174,11 +194,11 @@ Reveal progress of printed text messages is maintained by `Revealable Text` comp
 
 ![](https://i.gyazo.com/cb76ab871fe4691646e968b2c49d0a13.png)
 
-To change the reveal effect intensity (how far the fade stretches), change `Length` property. 
+To change the reveal effect intensity (how far the fade stretches), change `Length` property.
 
 When `Slack Opacity` is below 1, opacity of the text printed before the last append will fade to the specified value over `Slack Duration` seconds (enabled by default in built-in `Fullscreen` printer).
 
-[!29017ea20e8b7b95c3f7f25658b645f9]
+![](https://i.gyazo.com/29017ea20e8b7b95c3f7f25658b645f9.mp4)
 
 When text printer has constant dimensions and can't accommodate varying message length and/or font size, set TMPro's text overflow mode to "page" and add `Reveal Paginator` component, which will sync currently displayed page with the reveal progress. Find example setup in `Fullscreen` built-in printer.
 
@@ -191,17 +211,17 @@ Various text styles can be applied via rich text tags placed right inside the te
 Support for [ruby](https://en.wikipedia.org/wiki/Ruby_character) characters is provided by Naninovel's `Naninovel TMPro Text` component (`Revealable Text` is based on it) via custom `<ruby>` tag. Wrap the text above which the ruby characters should be placed with the ruby tag and specify the ruby text inside the tag, eg:
 
 ```nani
-Lorem <ruby="VERY">ipsum</ruby> dolor sit amet. 
+Lorem <ruby="VERY">ipsum</ruby> dolor sit amet.
 ```
 — "VERY" ruby text will appear right above "ipsum" word when the message is printed at runtime.
 
 ![](https://i.gyazo.com/ec5eb47c3cf0951ccb589fe49c144418.png)
 
-::: note
+::: info NOTE
 When combining `<ruby>` with other tags, specify ruby tag first to prevent formatting issues, eg:
 
 ```nani
-Lorem <ruby="VERY"><tip="TipID">ipsum</tip></ruby> dolor sit amet. 
+Lorem <ruby="VERY"><tip="TipID">ipsum</tip></ruby> dolor sit amet.
 ```
 :::
 
@@ -213,13 +233,13 @@ By default, when a ruby text is inserted to the printed message, line height is 
 
 Below is a video demonstration of the ruby tags in action.
 
-[!!aWdq7YxIxkE]
+![](https://www.youtube.com/watch?v=aWdq7YxIxkE)
 
 ## Right to Left (Arabic) Text
 
 Supports for RTL text reveal effect can be enabled in all the built-in printers.
 
-[!38b9ec2bbf18dc6ee469c3fb452eae29]
+![](https://i.gyazo.com/38b9ec2bbf18dc6ee469c3fb452eae29.mp4)
 
 To use RTL text in a printer, do the following:
 1. Create custom text printer from any built-in template.
@@ -240,12 +260,28 @@ Character Set: Unicode Range (Hex) with this Sequence:
 Font Render Mode: Distance Field 16
 ```
 
-::: example
+::: tip EXAMPLE
 For a complete example on setting up custom text mesh pro printer with right-to-left (Arabic) text support, see [Naninovel RTL project on GitHub](https://github.com/Naninovel/RTL).
 :::
 
-::: note
+::: info NOTE
 Unity doesn't natively support Arabic text. Consider using `Naninovel TMPro Text` component for text labels (other than printers) that should support Arabic.
+:::
+
+## CJK Languages
+
+Chinese, Japanese and Korean languages have lots of unique symbols, while only a small subset is usually required in the game. To optimize generated font atlases size, TMPro has an option to specify the character set for which to build the SDF textures.
+
+![](https://i.gyazo.com/cdd1dc10d872d6bcb4d44c14c61df588.png)
+
+To find which characters will be displayed by Naninovel, use Character Utility accessible via `Naninovel -> Tools -> Character Extractor` editor menu.
+
+![](https://i.gyazo.com/706613a08aa2519964ccd98bd12a288f.png)
+
+The tool will inspect both scenario scripts and managed text documents in the specified folder (including all the sub-folders), so you'll get the chars for all the text ever displayed to the player by Naninovel, including all the printed text, UI labels, unlockable tips, etc.
+
+::: tip EXAMPLE
+Check the [GitHub project](https://github.com/Naninovel/Spreadsheet) for an example on using custom TMPro font atlas for Japanese locale. The font automatically switched when Japanese language is selected and switched back to the default atlas when other languages are selected.
 :::
 
 ## Text Reveal Sounds
@@ -262,4 +298,24 @@ Alternatively, you can set `Message Sound` in the character configuration menus 
 
 The text reveal sounds are played very often (depending on the message reveal speed) and are clipped when same sound is played in consequence, so make sure the corresponding audio clips are very short and sharp (without any pause/silence at the beginning).
 
-In case the reveal sounds are not working for you (eg, the sound is not short enough to play it on each char reveal), consider using `OnPrintTextStarted` and `OnPrintTextFinished` events of the `TextPrinterManager` [engine service](/guide/engine-services.md) to start/stop looping the sound accordingly. Those events are also exposed to PlayMaker, in case you prefer a [visual scripting](/guide/playmaker.md) solution.
+In case the reveal sounds are not working for you (eg, the sound is not short enough to play it on each char reveal), consider using `OnPrintTextStarted` and `OnPrintTextFinished` events of the `TextPrinterManager` [engine service](/guide/engine-services) to start/stop looping the sound accordingly. Those events are also exposed to PlayMaker, in case you prefer a [visual scripting](/guide/playmaker) solution.
+
+## Reveal Events
+
+It's possible to hook for events when specific character is revealed to perform arbitrary actions. Designate the place in printed text where event should be invoked with `<@...>` tags. For example, to trigger reveal event with "foo" payload after "dolor" is revealed:
+
+```nani
+Lorem ipsum dolor<@foo> sit amet.
+```
+
+Use `Event Broadcaster` component attached to the revealable text object of printer prefab to listen for event. All the built-in printers have the component already attached, so you just have to wire a listener.
+
+![](https://i.gyazo.com/b0fad2439f2b2136a3b3c13f84f365d2.png)
+
+Built-in printers also have **Play Command** option enabled. This will make the component attempt to parse and execute event body (the part after `@`) as command. For example, following will tint background when "dolor" is revealed:
+
+```nani
+Lorem ipsum dolor<@back tint:blue> sit amet.
+```
+
+You can use event tags instead of [inlined commands](/guide/naninovel-scripts#command-inlining) to expose them to [localization documents](/guide/localization#scripts-localization) allowing translators override executed commands based on selected locale.

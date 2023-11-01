@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>NaninovelDemo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #222;
+        }
+
+        #gameContainer canvas {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+        }
+
+        div#webgl-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            -webkit-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+        }
+
+        div#loadingBox {
+            width: 100%;
+            height: 0;
+            position: absolute;
+            top: 50%;
+            margin-top: 137px;
+            text-align: center;
+        }
+
+        div#icon {
+            width: 300px;
+            height: 310px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -185px;
+            margin-left: -150px;
+            background: url("/demo/Template/loader.png") no-repeat;
+            box-shadow: 1px 1px 5px #141414;
+        }
+
+        div#box {
+            width: 328px;
+            height: 367px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -199px;
+            margin-left: -164px;
+            background: #222;
+            box-shadow: 1px 1px 5px #000;
+        }
+
+        div#bgBar {
+            display: none;
+            position: absolute;
+            width: 300px;
+            margin-left: -150px;
+            left: 50%;
+            height: 18px;
+            background-color: #215e88;
+            box-shadow: 1px 1px 5px #111;
+        }
+
+        div#progressBar {
+            display: none;
+            left: 50%;
+            position: absolute;
+            margin-left: -150px;
+            width: 0;
+            height: 18px;
+            background-color: #46bae2;
+        }
+
+        p#loadingInfo {
+            color: #fff;
+            letter-spacing: 1px;
+            position: absolute;
+            width: 100%;
+            font-family: sans-serif;
+            text-align: center;
+            top: 50%;
+            font-size: 11px;
+            font-weight: 500;
+            margin-top: 140px;
+            text-shadow: 0 0 5px #000;
+        }
+
+        div#spinner {
+            height: 18px;
+            left: 50%;
+            margin-left: -150px;
+            width: 300px;
+            position: relative;
+            overflow: hidden;
+            background-color: #215e88;
+            box-shadow: 1px 1px 5px #111;
+        }
+
+        div#spinner:before {
+            display: block;
+            position: absolute;
+            content: "";
+            width: 150%;
+            margin-left: -10px;
+            height: 10px;
+            background-color: #46bae2;
+            transform: rotate(-5deg);
+            animation: loading 1s linear infinite;
+        }
+
+        @keyframes loading {
+            from {
+                top: -185%
+            }
+            to {
+                top: 225%
+            }
+        }
+    </style>
+</head>
+<body>
+<div id="webgl-content" style="width: 100%; height: 100%">
+    <div id="gameContainer" style="width: 100%; height: 100%"></div>
+</div>
+<div id="loading-content" style="display: none">
+    <div id="box"></div>
+    <div id="loadingBox">
+        <div id="spinner"></div>
+        <div id="bgBar"></div>
+        <div id="progressBar"></div>
+    </div>
+    <div id="icon"></div>
+    <p id="loadingInfo"></p>
+</div>
+
+<script src="/demo/Build/UnityLoader.js"></script>
+<script>
+    function UnityProgress(gameInstance, progress) {
+        var container = document.getElementById("gameContainer");
+        if (container) document.body.style.background = container.style.background;
+
+        if (!gameInstance.Module) {
+            return;
+        } else if (progress === "complete") {
+            document.getElementById("loadingBox").style.display = "none";
+            document.getElementById("icon").style.display = "none";
+            document.getElementById("loadingInfo").style.display = "none";
+            document.getElementById("box").style.display = "none";
+            return;
+        } else if (progress >= 0.9) { // On recent versions it's stopping at 0.9
+            document.getElementById("loadingInfo").innerHTML = "PROCESSING...";
+            document.getElementById("spinner").style.display = "inherit";
+            document.getElementById("bgBar").style.display = "none";
+            document.getElementById("progressBar").style.display = "none";
+        } else if (progress > 0) {
+            document.getElementById("loading-content").style.display = "inherit";
+            document.getElementById("progressBar").style.width = 300 * progress + "px";
+            document.getElementById("loadingInfo").innerHTML = Math.round(progress * 100) + "%";
+            document.getElementById("spinner").style.display = "none";
+            document.getElementById("bgBar").style.display = "block";
+            document.getElementById("progressBar").style.display = "inherit";
+        }
+    }
+
+    UnityLoader.Error.handler = function () {}; // Turn-off warnings for mobiles and old browsers.
+
+    document.getElementById("loading-content").style.display = "inherit";
+    document.getElementById("loadingInfo").innerHTML = "INITIALIZING...";
+    document.getElementById("spinner").style.display = "inherit";
+
+    window.onload = function () {
+        var gameInstance = UnityLoader.instantiate("gameContainer", "/demo/Build/demo.json", {
+            onProgress: UnityProgress,
+            Module: {
+                onRuntimeInitialized: function () { UnityProgress(gameInstance, "complete"); }
+            }
+        });
+    };
+</script>
+
+</body>
+</html>

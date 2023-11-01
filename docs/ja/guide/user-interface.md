@@ -2,19 +2,19 @@
 
 Naninovelには様々な組み込みUIが付属しています。タイトル画面、ゲーム設定、セーブロードメニュー、バックログ、CGギャラリー、Tipsなどです。
 
-組み込みの各UIは、無効化またはカスタマイズできます。 詳細については、[カスタムUI](/ja/guide/user-interface.md#カスタムUI) ガイドを参照してください。
+組み込みの各UIは、無効化またはカスタマイズできます。 詳細については、[カスタムUI](/ja/guide/user-interface#カスタムUI) ガイドを参照してください。
 
 ## 適合性のあるUIレイアウト
 
 すべての組み込みUIは、アダプティブレイアウトで実装されています。これにより、画面の解像度に関係なく、すべてのプラットフォームでUIをそのまま使用できます。
 
-[!b6bddf8a0c6f2ba68dcdc1bc65db0c09]
+![](https://i.gyazo.com/b6bddf8a0c6f2ba68dcdc1bc65db0c09.mp4)
 
 ## UI切替
 
 UI切り替え機能により、ユーザーはゲーム内UI全体を非表示/表示にできます。
 
-[!e267c4ab3654efbfaf611011502de79f]
+![](https://i.gyazo.com/e267c4ab3654efbfaf611011502de79f.mp4)
 
 `ToggleUI` 入力（スタンドアロン入力モジュールのデフォルトでは `Space` キー）を実行するか、コントロールパネルの `HIDE` ボタンを使用してUIを非表示/表示します。
 
@@ -24,9 +24,9 @@ UIが非表示になっている場合、`Continue` 操作または画面をク�
 
 カスタムUI機能は、組み込みのタイトルメニュー、設定画面、バックログなどのUIを、カスタムUIを追加して編集するか、完全に置き換えることができます。
 
-テキストプリンターと選択ハンドラーは、アクターインターフェイスを介して実装されているため、別の方法でカスタマイズします。詳細については、それぞれのドキュメント（[テキストプリンター](/ja/guide/text-printers.md)、[選択肢ハンドラー](/ja/guide/choices.md)）を参照してください。
+テキストプリンターと選択ハンドラーは、アクターインターフェイスを介して実装されているため、別の方法でカスタマイズします。詳細については、それぞれのドキュメント（[テキストプリンター](/ja/guide/text-printers)、[選択肢ハンドラー](/ja/guide/choices)）を参照してください。
 
-::: warn
+::: warning
 カスタムUIを作成したり、既存のUIを変更したりする前に、まず[UnityのUIシステム](https://docs.unity3d.com/Packages/com.unity.ugui@latest)（uGUI）をよく確認してください。以下で利用できるUIカスタマイズのチュートリアル動画とサンプルプロジェクトがありますが、Unityの組み込みツールについて追加のガイダンスまたはサポートは提供していませんので、ご注意してください。詳細は [サポートページ](/ja/support/#unityサポート) をご覧ください。
 :::
 
@@ -42,15 +42,15 @@ UIが非表示になっている場合、`Continue` 操作または画面をク�
 
 新しいカスタムUIを追加するには、アセットコンテキストメニュー `Create -> Naninovel -> Custom UI` からプレハブを作成し、UIリソースリストに追加します。すると、エンジンの初期化時に他のUIプレハブと共にインスタンス化されます。
 
-次のチュートリアル動画は、特殊な表示/非表示のアニメーションを備えた、カスタムカレンダーUIを追加する方法を示しています。カレンダーには、[カスタム変数](/ja/guide/custom-variables.md) に基づく日付が表示されます。これはnaninovelスクリプトで変更でき、ゲームに保存されます。変数が変更されると、カレンダーは自動的に更新されます。すべて、C# スクリプトなしで実現できます。
+次のチュートリアル動画は、特殊な表示/非表示のアニメーションを備えた、カスタムカレンダーUIを追加する方法を示しています。カレンダーには、[カスタム変数](/ja/guide/custom-variables) に基づく日付が表示されます。これはnaninovelスクリプトで変更でき、ゲームに保存されます。変数が変更されると、カレンダーは自動的に更新されます。すべて、C# スクリプトなしで実現できます。
 
-[!!wrAm-cwPXy4]
+![](https://www.youtube.com/watch?v=wrAm-cwPXy4)
 
-::: example
+::: tip EXAMPLE
 上記のチュートリアル動画で示したUnityプロジェクトは [GitHubにあります](https://github.com/Naninovel/CustomUIExample)。[Git clientでリポジトリをクローン](https://help.github.com/ja/github/creating-cloning-and-archiving-repositories/cloning-a-repository) するか [zipファイルをダウンロード](https://github.com/Naninovel/Demo/archive/master.zip) することができます。プロジェクトに Naninovel パッケージは含まれないため、初めて開く際はコンパイルエラーが発生します。問題を解決するには、アセットストアから Naninovel をインポートします。
 :::
 
-::: example
+::: tip EXAMPLE
 グリッドレイアウト、ページング、ドラッグアンドドロップを使用したカスタムインベントリUIの上級の例は、[GitHubのインベントリサンプルプロジェクト](https://github.com/Naninovel/Inventory) にあります。
 
 具体的には、UI関連のスクリプトは [Runtime/UI](https://github.com/Naninovel/Inventory/tree/master/Assets/NaninovelInventory/Runtime/UI) に、プレハブは [Prefabs](https://github.com/Naninovel/Inventory/tree/master/Assets/NaninovelInventory/Prefabs) ディレクトリにあります。
@@ -76,7 +76,7 @@ UIでゲームパッドまたはキーボードナビゲーションをサポー
 
 `Save Visibility State` を有効にすると、UIの可視状態が永続的になるため、プレイヤーが保存されたゲームをロードすると、UIはゲームが保存されたときと同じ状態（表示または非表示）になります。
 
-`Block Input When Visible` は、UIが表示されているときに [入力処理](/ja/guide/input-processing.md) を無効にできます。これは、UIの操作中にプレーヤーがさまざまなホットキー（UIを非表示にする、読み続けるなど）を使用できないようにするのに役立ちます。`Allowed Samplers` では、ブロックする入力の例外を追加できます。たとえば、`ToggleUI` をリストに追加すると、プレーヤーはUIを切り替えることができますが、他の入力はアクティブになりません。
+`Block Input When Visible` は、UIが表示されているときに [入力処理](/ja/guide/input-processing) を無効にできます。これは、UIの操作中にプレーヤーがさまざまなホットキー（UIを非表示にする、読み続けるなど）を使用できないようにするのに役立ちます。`Allowed Samplers` では、ブロックする入力の例外を追加できます。たとえば、`ToggleUI` をリストに追加すると、プレーヤーはUIを切り替えることができますが、他の入力はアクティブになりません。
 
 `Modal UI` を有効にすると、UIが表示されている間、他のすべてのUIは操作を無視します。 これは `Block Input When Visible` に似ていますが、直接入力処理ではなく、イベントベースの操作（マウスのクリック、タッチ、UIナビゲーション）に影響します。
 
@@ -99,9 +99,9 @@ UIでゲームパッドまたはキーボードナビゲーションをサポー
 
 次のチュートリアル動画では、組み込みのタイトル（メイン）メニューを上書きする方法を学習できます。また、タイトルスクリプトを使用して、タイトルメニューに背景と特殊効果を追加する方法も紹介しています。これは C# スクリプトは必要ありません。
 
-[!!hqhfhXzQkdk]
+![](https://www.youtube.com/watch?v=hqhfhXzQkdk)
 
-::: example
+::: tip EXAMPLE
 上記のチュートリアル動画で示したUnityプロジェクトは [GitHubにあります](https://github.com/Naninovel/CustomUIExample)。[Git clientでリポジトリをクローン](https://help.github.com/ja/github/creating-cloning-and-archiving-repositories/cloning-a-repository) するか [zipファイルをダウンロード](https://github.com/Naninovel/Demo/archive/master.zip) することができます。プロジェクトに Naninovel パッケージは含まれないため、初めて開く際はコンパイルエラーが発生します。問題を解決するには、アセットストアから Naninovel をインポートします。
 :::
 
@@ -121,8 +121,8 @@ ITitleUI | ゲームのタイトル画面。
 IExternalScriptsUI | 外部スクリプトブラウザーUI（コミュニティMod機能）。
 IVariableInputUI | カスタムステート変数に任意のテキストを割り当てるための入力フォーム（[@input]コマンドで使用）。
 IConfirmationUI | 重要なコマンドを確認するために使用するUIパネル（たとえば、タイトルメニューを終了するとき、またはセーブしたゲームスロットを削除するとき）。
-ICGGalleryUI | [CGギャラリー](/ja/guide/unlockable-items.md#CGギャラリー) アイテム画面。
-ITipsUI | [Tips](/ja/guide/unlockable-items.md#tips) 画面。
+ICGGalleryUI | [CGギャラリー](/ja/guide/unlockable-items#CGギャラリー) アイテム画面。
+ITipsUI | [Tips](/ja/guide/unlockable-items#tips) 画面。
 IRollbackUI | ステート巻き戻し機能のインジケーター。
 IContinueInputUI | UIスタックの下部に配置されたフルスクリーンの非表示UIレイヤーで、クリックまたはタッチされたときに `continue input` トリガーをアクティブ化するために使用されます。
 
@@ -151,7 +151,7 @@ public class MyCustomUI : ScriptableUIBehaviour, Naninovel.UI.IManagedUI
 
 ![](https://i.gyazo.com/78e9fa27d6561f8f8aced76bbeb4b542.png)
 
-::: warn
+::: warning
 条件付きブロックコマンド（if、else、elseif、endif）は、スクリプトテキストではサポートしていません。
 :::
 

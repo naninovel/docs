@@ -2,7 +2,7 @@
 
 自定义变量特性允许用户创建用户指定的变量，使用他们来驱动特定条件下的Naninovel脚本或其他系统执行。比如，自定义变量可以用于选择多个Naninovel脚本中的某一个执行（预设路线），基于用户之前的选择。另一个频繁使用的场景，玩家状态画面（比如，分数，金钱，资源等），基于玩家的游戏中的选择执行操作。
 
-自定义变量可以自己创建，定制并用于Naninovel脚本中的 [@set] 和 [@if] 命令，及C#脚本中的`ICustomVariableManager` [引擎服务](/zh/guide/engine-services.md) 。
+自定义变量可以自己创建，定制并用于Naninovel脚本中的 [@set] 和 [@if] 命令，及C#脚本中的`ICustomVariableManager` [引擎服务](/zh/guide/engine-services) 。
 
 比如，以下脚本命令将会根据选择为自定义变量 `score` 赋予不同值：
 
@@ -55,7 +55,7 @@ Archibald: Greetings, {name}!
 @set PlayerName="Felix";PlayerYPosition=0.1;PlayerTint="lightblue"
 
 ; 由于 `PlayerTint` 值不是数字，所以会报错。
-@char {PlayerName} pos:50,{PlayerTint} 
+@char {PlayerName} pos:50,{PlayerTint}
 
 ; ...这句会正常执行。
 @char {PlayerName} pos:50,{PlayerYPosition} tint:{PlayerTint}
@@ -63,7 +63,7 @@ Archibald: Greetings, {name}!
 
 ## 变量触发器
 
-在构建 [自定义UI](/zh/guide/user-interface.md#UI自定义) 或其他系统时，可能希望在变量值更改时侦听（反应）事件。比如创建，角色状态界面是，你想让文本跟随变量改变。使用条件判断实现应该会用到C#脚本，你也可以通过 `Custom Variable Trigger` 组件使用达到效果。当给定名字的变量值改变时，该组件会调用Unity事件。你可以将事件和合适命令绑定，比如更新文本值。
+在构建 [自定义UI](/zh/guide/user-interface#UI自定义) 或其他系统时，可能希望在变量值更改时侦听（反应）事件。比如创建，角色状态界面是，你想让文本跟随变量改变。使用条件判断实现应该会用到C#脚本，你也可以通过 `Custom Variable Trigger` 组件使用达到效果。当给定名字的变量值改变时，该组件会调用Unity事件。你可以将事件和合适命令绑定，比如更新文本值。
 
 ![](https://i.gyazo.com/22eddd109e76d4e63c461e9d75b20ceb.png)
 
@@ -71,7 +71,7 @@ Archibald: Greetings, {name}!
 
 在游戏运行时，可以基于debug的目的查看和修改所有已有变量值。
 
-打开[开发控制台](/zh/guide/development-console.md) ，输入命令，打开 `var` 变量编辑窗口。
+打开[开发控制台](/zh/guide/development-console) ，输入命令，打开 `var` 变量编辑窗口。
 
 ![](https://i.gyazo.com/d1812668c0776b01f3a82c5ddcba0145.png)
 

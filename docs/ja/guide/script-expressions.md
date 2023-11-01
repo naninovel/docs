@@ -1,4 +1,4 @@
-﻿# スクリプト表記
+# スクリプト表記
 
 naninovelスクリプトを作成するときは、中かっこ `{}`を使用して、式の構成をコマンドパラメーター値と一般テキスト行に挿入できます:
 
@@ -15,7 +15,7 @@ One plus two equals {1 + 2}.
 ```
 — これは IDが "Kohaku" のキャラクターを、33.5度の双曲線コサインを3乗し、自然対数0.5で割ったもので拡大します:
 
-式はコマンドの実行時に評価され、式内で [カスタム変数](/ja/guide/custom-variables.md) を使用できます。
+式はコマンドの実行時に評価され、式内で [カスタム変数](/ja/guide/custom-variables) を使用できます。
 
 ```nani
 @input color summary:"What's your favorite color?"
@@ -102,7 +102,7 @@ public static class CustomFunctions
 }
 ```
 
-::: example
+::: tip EXAMPLE
 カスタム式関数を追加して、アイテムがインベントリに存在するかどうかを確認する別の例は [GitHubのインベントリサンプルプロジェクト](https://github.com/Naninovel/Inventory) にあります。。
 
 具体的には、カスタム関数は [InventoryFunctions.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryFunctions.cs) ランタイムスクリプトで実装されています。

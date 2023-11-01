@@ -1,4 +1,4 @@
-﻿---
+---
 sidebar: auto
 ---
 
@@ -6,7 +6,7 @@ sidebar: auto
 
 スクリプトコマンド API のリファレンスです。サイドバーを使用すると目的のコマンドへ素早く移動できます。
 
-~~打ち消し線~~は名前のないパラメーターを示し、**太字**は必須パラメーターを表します。他のパラメーターはオプションです。もし何か分からない場合は、[Naninovel スクリプトガイド](/ja/guide/naninovel-scripts.md) を参照してください。
+~~打ち消し線~~は名前のないパラメーターを示し、**太字**は必須パラメーターを表します。他のパラメーターはオプションです。もし何か分からない場合は、[Naninovel スクリプトガイド](/ja/guide/naninovel-scripts) を参照してください。
 
 以下のパラメーターは全てのスクリプトコマンドで使用できます:
 
@@ -14,12 +14,12 @@ sidebar: auto
 
 ID | タイプ | 説明
 --- | --- | ---
-if | String |  boolean型の [スクリプト表記](/ja/guide/script-expressions.md) で、コマンドを実行するかどうかを制御します。
+if | String |  boolean型の [スクリプト表記](/ja/guide/script-expressions) で、コマンドを実行するかどうかを制御します。
 wait | Boolean | スクリプトプレイヤーが次のコマンドを実行する前に、非同期コマンドの実行が完了するのを待つかどうか。コマンドが即座に実行される場合は影響しません。
 
 </div>
 
-::: note
+::: info NOTE
 この APIリファレンスは [Naninovel v1.10](https://github.com/Naninovel/Documentation/releases) で有効です。
 :::
 
@@ -41,7 +41,7 @@ ID | タイプ | 説明
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">ActorIds</span> | List&lt;String&gt; | アニメーション化するアクターのID
 loop | Boolean | アニメーションをループするかどうか。loop を有効にした場合、必ず `wait` を false にしてください。そうしないとスクリプトの再生が無限にループします。
 appearance | String | アニメーション化するアクターに設定する外観。
-transition | String | 外観の変化をアニメーション化するときに使用する[トランジションエフェクト](/ja/guide/transition-effects.md)の種類（デフォルトではクロスフェードが使用されます）。
+transition | String | 外観の変化をアニメーション化するときに使用する[トランジションエフェクト](/ja/guide/transition-effects)の種類（デフォルトではクロスフェードが使用されます）。
 visibility | String | アニメーション化するアクターに設定する可視状態。
 posX | String | アニメーション化するアクターに設定するポジションの、X軸の値 (0から100の間で、画面左端からのパーセントで指定)
 posY | String | アニメーション化するアクターに設定するポジションの、Y軸の値 (0から100の間で、画面下部からのパーセントで指定)
@@ -136,7 +136,7 @@ time | Decimal | 整列時のアニメーション継続時間(秒単位)。デ�
 ## back
 
 #### 概要
-[背景アクター](/ja/guide/backgrounds.md) の操作。
+[背景アクター](/ja/guide/backgrounds) の操作。
 
 #### 備考
 従来のビジュアルノベルゲームの仕組みに合わせ、背景の扱いはキャラクターとは少し異なります。ほとんどの場合、シーンに背景アクターが一つ存在し、都度変化します。スクリプトで同じアクターIDを繰り返す手間を省くために、背景の外観とトランジションの種類（オプション）のみを無名パラメーターとして記述することができます。これは `MainBackground` アクターを使用するものとみなされます。それ以外の場合、背景アクターのIDを `id` パラメータで明示的に指定できます。
@@ -147,13 +147,13 @@ time | Decimal | 整列時のアニメーション継続時間(秒単位)。デ�
 
 ID | タイプ | 説明
 --- | --- | ---
-<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">AppearanceAndTransition</span> | Named&lt;String&gt; | 背景に設定する外観(または [ポーズ](/ja/guide/backgrounds.md#ポーズ))と、[トランジションエフェクト](/ja/guide/transition-effects.md) の種類。
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">AppearanceAndTransition</span> | Named&lt;String&gt; | 背景に設定する外観(または [ポーズ](/ja/guide/backgrounds#ポーズ))と、[トランジションエフェクト](/ja/guide/transition-effects) の種類。
 pos | List&lt;Decimal&gt; | 変更するアクターに設定するポジション（画面の端を基準としたパーセント）。ポジションは以下のように記述します: `0,0` が左下、`50,50` が中央、 `100,100` が画面の右上。Zコンポーネント（3つ目のメンバー、たとえば、 `,, 10`）を指定して、直交モードで深度を移動（ソート）します。
 id | String | 変更するアクターのID。表示されているすべてのアクターを対象にするには、 `*` を指定します。
 appearance | String | 変更するアクターに設定する外観（またはポーズ）。
-transition | String | 使用する[トランジションエフェクト](/ja/guide/transition-effects.md)の種類（デフォルトではクロスフェードが使用されます）。
+transition | String | 使用する[トランジションエフェクト](/ja/guide/transition-effects)の種類（デフォルトではクロスフェードが使用されます）。
 params | List&lt;Decimal&gt; | トランジションエフェクトのパラメーター。
-dissolve | String | [カスタムディゾルブ](/ja/guide/transition-effects.md#カスタムトランジションエフェクト) テクスチャへのパス（パスは `Resources`フォルダーからの相対パスで指定）。トランジションが `Custom` モードに設定されている場合に有効です。
+dissolve | String | [カスタムディゾルブ](/ja/guide/transition-effects#カスタムトランジションエフェクト) テクスチャへのパス（パスは `Resources`フォルダーからの相対パスで指定）。トランジションが `Custom` モードに設定されている場合に有効です。
 visible | Boolean | 変更するアクターの可視状態。
 position | List&lt;Decimal&gt; | 変更するアクターに設定するポジション(ワールドスペース内)。 Zコンポーネント（3番目のメンバー）指定すると、直交モードで深度移動（ソート）します。
 rotation | List&lt;Decimal&gt; | アクターを回転。
@@ -191,7 +191,7 @@ time | Decimal | 継続時間(秒単位)。デフォルト値: 0.35秒。
 ## bgm
 
 #### 概要
-名前を指定して [BGM (バックグラウンドミュージック)](/ja/guide/audio.md#バックグラウンドミュージック) を再生または再生中のものを変更します。
+名前を指定して [BGM (バックグラウンドミュージック)](/ja/guide/audio#バックグラウンドミュージック) を再生または再生中のものを変更します。
 
 #### 備考
 音楽トラックはデフォルトでループされます。音楽トラック名 (BgmPath) が指定されていない場合は、現在再生されているすべてのトラックに影響します。既に再生中のトラックを呼び出した場合、再生は影響を受けません（トラックの最初から再生を始めることはありません）が、指定したパラメーター(ボリュームとトラックのループ状態)は適用されます。
@@ -269,8 +269,8 @@ roll | Decimal | Z軸に対するローカルカメラの回転角度（0.0〜36
 rotation | List&lt;Decimal&gt; | X、Y、Z軸上のローカルカメラの回転角度（0.0〜360.0または-180.0〜180.0）。
 zoom | Decimal | カメラのズーム（レンダーモードによって、正射投影サイズまたは視野）を0.0（ズームなし）から1.0（フルズーム）の範囲で指定。
 ortho | Boolean | カメラを正射投影(true)モードまたは遠近法(false)どちらでレンダーするか。
-toggle | List&lt;String&gt; | トグル（無効の場合は有効、有効の場合は無効）するコンポーネントの名前。コンポーネントは、カメラと同じゲームオブジェクトに紐付ける必要があります。これは [カスタムポストプロセッシングエフェクト](/ja/guide/special-effects.md#カメラエフェクト) の切り替えに使用します。
-set | List&lt;Named&lt;Boolean&gt;&gt; | 有効または無効にするコンポーネントの名前。コンポーネントは、カメラと同じゲームオブジェクトに紐づける必要があります。これは [カスタムポストプロセッシングエフェクト](/ja/guide/special-effects.md#カメラエフェクト) を明示的に有効または無効にすることができます。指定したコンポーネントが有効になっていると、 `toggle` パラメーターを上書きします。
+toggle | List&lt;String&gt; | トグル（無効の場合は有効、有効の場合は無効）するコンポーネントの名前。コンポーネントは、カメラと同じゲームオブジェクトに紐付ける必要があります。これは [カスタムポストプロセッシングエフェクト](/ja/guide/special-effects#カメラエフェクト) の切り替えに使用します。
+set | List&lt;Named&lt;Boolean&gt;&gt; | 有効または無効にするコンポーネントの名前。コンポーネントは、カメラと同じゲームオブジェクトに紐づける必要があります。これは [カスタムポストプロセッシングエフェクト](/ja/guide/special-effects#カメラエフェクト) を明示的に有効または無効にすることができます。指定したコンポーネントが有効になっていると、 `toggle` パラメーターを上書きします。
 easing | String | 変更に使用するイージング関数の名前。 <br /><br />  利用可能なオプション: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  特に指定しない場合、カメラのコンフィグ設定で設定されたデフォルトのイージング関数を使用します。
 time | Decimal | 継続時間(秒単位)。デフォルト値: 0.35秒。
 
@@ -304,7 +304,7 @@ time | Decimal | 継続時間(秒単位)。デフォルト値: 0.35秒。
 ## char
 
 #### 概要
-[キャラクターアクター](/ja/guide/characters.md) を操作します。
+[キャラクターアクター](/ja/guide/characters) を操作します。
 
 #### パラメーター
 
@@ -312,15 +312,15 @@ time | Decimal | 継続時間(秒単位)。デフォルト値: 0.35秒。
 
 ID | タイプ | 説明
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">IdAndAppearance</span> | Named&lt;String&gt; | 変更するキャラクターのID (全てのキャラクターを対象とするには `*` を指定) と外観 (または[ポーズ](/ja/guide/characters.md#ポーズ)) を設定。外観を指定しない場合は、`Default` (存在する場合) またはランダムになります。
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">IdAndAppearance</span> | Named&lt;String&gt; | 変更するキャラクターのID (全てのキャラクターを対象とするには `*` を指定) と外観 (または[ポーズ](/ja/guide/characters#ポーズ)) を設定。外観を指定しない場合は、`Default` (存在する場合) またはランダムになります。
 look | String | アクターの向き。サポートされている値: left, right, center
-avatar | String | キャラクターに設定する [アバターテクスチャ](/ja/guide/characters.md#アバターテクスチャ) の名前(パス)。キャラクターからアバターの設定を解除するには `none` を指定。
+avatar | String | キャラクターに設定する [アバターテクスチャ](/ja/guide/characters#アバターテクスチャ) の名前(パス)。キャラクターからアバターの設定を解除するには `none` を指定。
 pos | List&lt;Decimal&gt; | 変更するアクターに設定するポジション（画面の境界を基準としたパーセント）。ポジションは以下の方法で記述: 画面端から左下は `0,0` 、 `50,50` で中央、 `100,100` で右上。 Zコンポーネント（3番目のメンバー、たとえば、 `,,10`）を使用して、直交モードで深度を移動（ソート）します。
 id | String | 変更するアクターのID。表示中の全てのキャラクターを対象とするには `*` を指定。
 appearance | String | 変更するアクターに設定する外観(またはポーズ)。
-transition | String | 使用する [トランジションエフェクト](/ja/guide/transition-effects.md) の種類 (デフォルトでクロスフェードが使用されます).
+transition | String | 使用する [トランジションエフェクト](/ja/guide/transition-effects) の種類 (デフォルトでクロスフェードが使用されます).
 params | List&lt;Decimal&gt; | トランジションエフェクトのパラメーター。
-dissolve | String | [カスタムディゾルブ](/ja/guide/transition-effects.md#カスタムトランジションエフェクト) テクスチャーへのパス （パスは `Resources` フォルダーからの相対パスで指定します。トランジションが `Custom` モードに設定されている場合にのみ有効です。
+dissolve | String | [カスタムディゾルブ](/ja/guide/transition-effects#カスタムトランジションエフェクト) テクスチャーへのパス （パスは `Resources` フォルダーからの相対パスで指定します。トランジションが `Custom` モードに設定されている場合にのみ有効です。
 visible | Boolean | 変更するアクターに設定する表示状態。
 position | List&lt;Decimal&gt; | 変更するアクターに設定するポジション(ワールドスペース内) 。Zコンポーネント（3番目のメンバー、たとえば、 `,,10`）を使用して、直交モードで深度を移動（ソート）します。
 rotation | List&lt;Decimal&gt; | 変更するアクターに設定する回転。
@@ -354,7 +354,7 @@ time | Decimal | 継続時間(秒単位)。デフォルト値: 0.35秒。
 ## choice
 
 #### 概要
-IDを指定(またはデフォルトのまま)して選択肢ハンドラーに [選択肢](/ja/guide/choices.md) を追加します。
+IDを指定(またはデフォルトのまま)して選択肢ハンドラーに [選択肢](/ja/guide/choices) を追加します。
 
 #### 備考
 `goto`、 `gosub`、 `do` パラメータが指定されていない場合、スクリプトの実行は次のスクリプト行から続行されます。
@@ -366,7 +366,7 @@ IDを指定(またはデフォルトのまま)して選択肢ハンドラーに 
 ID | タイプ | 説明
 --- | --- | ---
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">ChoiceSummary</span> | String | 選択肢に表示するテキスト。テキストにスペースが含まれる場合は、ダブルクオーテーション (`"`) で囲みます。テキスト自体にダブルクオーテーションを含める場合は、エスケープします。
-button | String | 選択肢を表す [ボタンプレハブ](/ja/guide/choices.md#選択ボタン) へのパス (`Resources`フォルダーからの相対パス)。このプレハブには、ルートオブジェクトに関連づけられた `ChoiceHandlerButton` コンポーネントが必要です。指定がない場合はデフォルトのボタンを使用します。
+button | String | 選択肢を表す [ボタンプレハブ](/ja/guide/choices#選択ボタン) へのパス (`Resources`フォルダーからの相対パス)。このプレハブには、ルートオブジェクトに関連づけられた `ChoiceHandlerButton` コンポーネントが必要です。指定がない場合はデフォルトのボタンを使用します。
 pos | List&lt;Decimal&gt; | 選択肢ハンドラー内の選択肢ボタンのローカルポジション（ハンドラーの実装でサポートされている場合）。
 handler | String | 選択肢を追加する選択肢ハンドラのID。 指定しない場合、デフォルトのハンドラーを使用します。
 goto | Named&lt;String&gt; | 選択肢を選んだ時の行き先。パスの形式については、 [@goto] コマンドを参照してください。
@@ -420,7 +420,7 @@ Don't forget about cucumbers!
 ## clearBacklog
 
 #### 概要
-[テキストバックログ](/ja/guide/text-printers.md#テキストバックログ) から全てのメッセージを削除。
+[テキストバックログ](/ja/guide/text-printers#テキストバックログ) から全てのメッセージを削除。
 
 #### 例
 ```nani
@@ -486,12 +486,12 @@ params | List&lt;String&gt; | プレハブを破棄する前に設定するパ�
 ## else
 
 #### 概要
-条件分岐のブランチ。開始の [@if]コマンドとすべての先行する [@elseif]（存在する場合）コマンドの条件が満たされない場合は常に実行されます。 使用例については、 [条件分岐](/ja/guide/naninovel-scripts.md#条件分岐) ガイドを参照してください。
+条件分岐のブランチ。開始の [@if]コマンドとすべての先行する [@elseif]（存在する場合）コマンドの条件が満たされない場合は常に実行されます。 使用例については、 [条件分岐](/ja/guide/naninovel-scripts#条件分岐) ガイドを参照してください。
 
 ## elseIf
 
 #### 概要
-条件分岐のブランチ。独自の条件が満たされた場合（式が真であると評価された場合）かつ、開始の [@if] と先行する全ての [@elseif] (存在する場合) の条件が満たされていない場合に実行されます。使用例については、 [条件分岐](/ja/guide/naninovel-scripts.md#条件分岐) ガイドを参照してください。
+条件分岐のブランチ。独自の条件が満たされた場合（式が真であると評価された場合）かつ、開始の [@if] と先行する全ての [@elseif] (存在する場合) の条件が満たされていない場合に実行されます。使用例については、 [条件分岐](/ja/guide/naninovel-scripts#条件分岐) ガイドを参照してください。
 
 #### パラメーター
 
@@ -499,14 +499,14 @@ params | List&lt;String&gt; | プレハブを破棄する前に設定するパ�
 
 ID | タイプ | 説明
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | [スクリプト表記](/ja/guide/script-expressions.md)。boolean 値を返します.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | [スクリプト表記](/ja/guide/script-expressions)。boolean 値を返します.
 
 </div>
 
 ## endIf
 
 #### 概要
-[@if] 条件分岐を閉じます。使用例については、 [条件分岐](/ja/guide/naninovel-scripts.md#条件分岐) ガイドを参照してください。
+[@if] 条件分岐を閉じます。使用例については、 [条件分岐](/ja/guide/naninovel-scripts#条件分岐) ガイドを参照してください。
 
 ## finishTrans
 
@@ -519,9 +519,9 @@ ID | タイプ | 説明
 
 ID | タイプ | 説明
 --- | --- | ---
-<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">Transition</span> | String | 使用する [トランジションエフェクト](/ja/guide/transition-effects.md) の種類 （デフォルトでクロスフェードが使用されます）。
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">Transition</span> | String | 使用する [トランジションエフェクト](/ja/guide/transition-effects) の種類 （デフォルトでクロスフェードが使用されます）。
 params | List&lt;Decimal&gt; | トランジションエフェクトのパラメーター。
-dissolve | String |  [カスタムディゾルブ](/ja/guide/transition-effects.md#カスタムトランジションエフェクト) テクスチャーへのパス（パスは `Resources` フォルダーからの相対パスで指定します）。トランジションが `Custom` モードに設定されている場合にのみ有効です。
+dissolve | String |  [カスタムディゾルブ](/ja/guide/transition-effects#カスタムトランジションエフェクト) テクスチャーへのパス（パスは `Resources` フォルダーからの相対パスで指定します）。トランジションが `Custom` モードに設定されている場合にのみ有効です。
 easing | String | 変更に使用するイージング関数の名前。 <br /><br />  利用可能なオプション: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  特に指定しない場合、アクターのマネージャーコンフィグ設定で設定されたデフォルトのイージング関数を使用します。
 time | Decimal | トランジションの継続時間(秒単位) 。デフォルト値: 0.35秒。
 
@@ -706,7 +706,7 @@ time | Decimal | 非表示アニメーションの継続時間(秒単位) 。 �
 ## hideUI
 
 #### 概要
-指定した名前の [UI要素](/ja/guide/user-interface.md#カスタムUI) を非表示にします。名前を指定しない場合、UI全体（すべての組み込みUIを含む）のレンダリングを停止（非表示）します。
+指定した名前の [UI要素](/ja/guide/user-interface#カスタムUI) を非表示にします。名前を指定しない場合、UI全体（すべての組み込みUIを含む）のレンダリングを停止（非表示）します。
 
 #### 備考
 `allowToggle` パラメーターがfalse（デフォルト）の時にこのコマンドでUI全体を非表示にした場合、ユーザーはホットキーや画面の任意の場所をクリックして、UIを再表示することはできません。[@showUI] コマンドを使用して、UIを~~ great ~~に再表示します。
@@ -757,7 +757,7 @@ Lorem ipsum dolor sit amet.[i] Consectetur adipiscing elit.
 ## if
 
 #### 概要
-条件分岐の開始を宣言します。必ず [@endif] コマンドで閉じる必要があります。使用例については、 [条件分岐](/ja/guide/naninovel-scripts.md#条件分岐) ガイドを参照してください。
+条件分岐の開始を宣言します。必ず [@endif] コマンドで閉じる必要があります。使用例については、 [条件分岐](/ja/guide/naninovel-scripts#条件分岐) ガイドを参照してください。
 
 #### パラメーター
 
@@ -765,7 +765,7 @@ Lorem ipsum dolor sit amet.[i] Consectetur adipiscing elit.
 
 ID | タイプ | 説明
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | ブール値を返す[スクリプト表記](/ja/guide/script-expressions.md)。
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | ブール値を返す[スクリプト表記](/ja/guide/script-expressions)。
 
 </div>
 
@@ -808,7 +808,7 @@ Archibald: Greetings, {name}!
 ## lipSync
 
 #### 概要
-指定したIDのキャラクターの口パクアニメーションを強制停止できます。停止すると、このコマンドを再度使用して許可するまで、アニメーションは再開されません。キャラクターは口パクイベントを受信できる必要があります（現在、一般およびLive2D実装のみ）。口パク機能の詳細については、[キャラクターガイド](/ja/guide/characters.md#口パク) をご覧ください。
+指定したIDのキャラクターの口パクアニメーションを強制停止できます。停止すると、このコマンドを再度使用して許可するまで、アニメーションは再開されません。キャラクターは口パクイベントを受信できる必要があります（現在、一般およびLive2D実装のみ）。口パク機能の詳細については、[キャラクターガイド](/ja/guide/characters#口パク) をご覧ください。
 
 #### パラメーター
 
@@ -854,10 +854,10 @@ additive | Boolean | シーンを追加でロードするか、現在ロード�
 ## lock
 
 #### 概要
-提供したIDで[収集アイテム](/ja/guide/unlockable-items.md) を"ロックされた"状態に設定します。
+提供したIDで[収集アイテム](/ja/guide/unlockable-items) を"ロックされた"状態に設定します。
 
 #### 備考
-アイテムのロック状態は [グローバルスコープ](/ja/guide/state-management.md#グローバルステート) に保存されています。<br />  指定されたIDのアイテムがグローバルステートマップに登録されていない場合、対応するレコードが自動的に追加されます。
+アイテムのロック状態は [グローバルスコープ](/ja/guide/state-management#グローバルステート) に保存されています。<br />  指定されたIDのアイテムがグローバルステートマップに登録されていない場合、対応するレコードが自動的に追加されます。
 
 #### パラメーター
 
@@ -995,7 +995,7 @@ fadeTime | Decimal | このコマンドに紐づいているプリンターの�
 ## printer
 
 #### 概要
-[テキストプリンターアクター](/ja/guide/text-printers.md) を編集します。
+[テキストプリンターアクター](/ja/guide/text-printers) を編集します。
 
 #### パラメーター
 
@@ -1148,11 +1148,11 @@ reset | List&lt;String&gt; | 指定すると、gosubが入力された元のス�
 ## set
 
 #### 概要
-[式](/ja/guide/script-expressions.md) の結果を [カスタム変数](/ja/guide/custom-variables.md) にセットします。
+[式](/ja/guide/script-expressions) の結果を [カスタム変数](/ja/guide/custom-variables) にセットします。
 
 #### 備考
 
-変数名は英数字（ラテン文字のみ）である必要があり、下線を含めることができます。例: `name`、` Char1Score`、 `my_score`。名前は大文字と小文字を区別しません。例: `myscore`は` MyScore`と同じです。指定した名前の変数が存在しない場合は、自動的に作成されます。<br /><br />`;`で区切ることにより、1行で複数のセット式を定義できます。式は宣言順に実行されます。 <br /><br /> カスタム変数はデフォルトで **ローカルスコープ** に保存されます。つまり、ゲームプレイ中に変数を割り当て、プレーヤーが新しいゲームを開始したり、その変数が割り当てられていない別の保存済みゲームスロットを読み込んだりすると、値は失われます。これはほとんどの変数に便利です。しかし、もし **グローバルスコープ** に変数を保存したい場合は、変数名に `G_` か `g_` を付与してください。例: `G_FinishedMainRoute` または `g_total_score`。<br /><br />変数名が `T_` か `t_` で始まる場合、'Script' [テキスト管理](/ja/guide/managed-text.md)ドキュメントに保存されている値への参照と見なされます。このような変数は利用できず、主にローカライズするテキスト値を参照するために使用します。 <br /><br /> `CustomVariableManager` [エンジンサービス](/ja/guide/engine-services.md) を介して C# スクリプトでカスタム変数を取得および設定できます。
+変数名は英数字（ラテン文字のみ）である必要があり、下線を含めることができます。例: `name`、` Char1Score`、 `my_score`。名前は大文字と小文字を区別しません。例: `myscore`は` MyScore`と同じです。指定した名前の変数が存在しない場合は、自動的に作成されます。<br /><br />`;`で区切ることにより、1行で複数のセット式を定義できます。式は宣言順に実行されます。 <br /><br /> カスタム変数はデフォルトで **ローカルスコープ** に保存されます。つまり、ゲームプレイ中に変数を割り当て、プレーヤーが新しいゲームを開始したり、その変数が割り当てられていない別の保存済みゲームスロットを読み込んだりすると、値は失われます。これはほとんどの変数に便利です。しかし、もし **グローバルスコープ** に変数を保存したい場合は、変数名に `G_` か `g_` を付与してください。例: `G_FinishedMainRoute` または `g_total_score`。<br /><br />変数名が `T_` か `t_` で始まる場合、'Script' [テキスト管理](/ja/guide/managed-text)ドキュメントに保存されている値への参照と見なされます。このような変数は利用できず、主にローカライズするテキスト値を参照するために使用します。 <br /><br /> `CustomVariableManager` [エンジンサービス](/ja/guide/engine-services) を介して C# スクリプトでカスタム変数を取得および設定できます。
 
 #### パラメーター
 
@@ -1160,7 +1160,7 @@ reset | List&lt;String&gt; | 指定すると、gosubが入力された元のス�
 
 ID | タイプ | 説明
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | セット式。  <br /><br />  式は次のフォーマットで指定します: `VariableName=ExpressionBody`、ここで `VariableName` は割り当てるカスタム変数の名前で、 `ExpressionBody` は [スクリプト式](/ja/guide/script-expressions.md) です。この結果が変数に割り当てられます。<br /><br />  単項演算子のインクリメントおよびデクリメントを使用することもできます。例：`@set foo++`、 `@set foo--`。
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | セット式。  <br /><br />  式は次のフォーマットで指定します: `VariableName=ExpressionBody`、ここで `VariableName` は割り当てるカスタム変数の名前で、 `ExpressionBody` は [スクリプト式](/ja/guide/script-expressions) です。この結果が変数に割り当てられます。<br /><br />  単項演算子のインクリメントおよびデクリメントを使用することもできます。例：`@set foo++`、 `@set foo--`。
 
 </div>
 
@@ -1216,7 +1216,7 @@ ID | タイプ | 説明
 ## sfx
 
 #### 概要
-指定した名前で [SFX (sound effect)](/ja/guide/audio.md#効果音) トラックを再生または再生中のものを変更します。
+指定した名前で [SFX (sound effect)](/ja/guide/audio#効果音) トラックを再生または再生中のものを変更します。
 
 #### 備考
 効果音はデフォルトではループしません。効果音のトラック名が (SfxPath) 指定されていない場合は、再生中の全てのトラックが影響を受けます。既に再生中のトラックに対して呼び出された場合、再生は影響を受けません（トラックが最初から再生されることはありません）が、指定したパラメーター（ボリュームとトラックのループ状態）には影響します。
@@ -1301,7 +1301,7 @@ time | Decimal | 表示アニメーションの継続時間(秒単位) 。各プ
 
 #### 概要
 
-指定されたプレハブ名の [UI要素](/ja/guide/user-interface.md) を表示します。名前が指定されていない場合、UI全体が表示されます（[@hideUI] で非表示になっている場合）。
+指定されたプレハブ名の [UI要素](/ja/guide/user-interface) を表示します。名前が指定されていない場合、UI全体が表示されます（[@hideUI] で非表示になっている場合）。
 
 #### パラメーター
 
@@ -1403,7 +1403,7 @@ time | Decimal | スライドアニメーションの継続時間(秒単位)。�
 ## spawn
 
 #### 概要
-プレハブまたは [特殊効果](/ja/guide/special-effects.md) をインスタンス化します。既に生成されたオブジェクトに対して実行すると、代わりに生成パラメータを更新します。
+プレハブまたは [特殊効果](/ja/guide/special-effects) をインスタンス化します。既に生成されたオブジェクトに対して実行すると、代わりに生成パラメータを更新します。
 
 #### 備考
 プレハブに `UnityEngine.MonoBehaviour` コンポーネントが追加されルートオブジェクトに関連づけられており、かつコンポーネントが `Naninovel.Commands.Spawn.IParameterized` インターフェースを実装している場合、オブジェクトを破棄する前に指定した `params` 値を渡します。コンポーネントが `Naninovel.Commands.Spawn.IAwaitable` を実装している場合、コマンドの実行はオブジェクトを破棄する前に実装によって返された非同期完了タスクを待ちます。
@@ -1435,7 +1435,7 @@ scale | decimal list | オブジェクトに設定する大きさの値
 現在表示されているもの（UIを除く）について、実際のシーンコンテンツをマスキングするシーントランジションを開始します。新しいシーンの準備ができたら、[@finishTrans] コマンドで終了します。
 
 #### 備考
-トランジションの進行中、UIは非表示になり、ユーザー入力はブロックされます。変更するには、トランジションプロセスを処理する `ISceneTransitionUI` を上書きします。<br /><br /> 利用可能なトランジションエフェクトのリストについては、[トランジションエフェクト](/ja/guide/transition-effects.md) ガイドをご覧ください。
+トランジションの進行中、UIは非表示になり、ユーザー入力はブロックされます。変更するには、トランジションプロセスを処理する `ISceneTransitionUI` を上書きします。<br /><br /> 利用可能なトランジションエフェクトのリストについては、[トランジションエフェクト](/ja/guide/transition-effects) ガイドをご覧ください。
 
 #### 例
 ```nani
@@ -1532,7 +1532,7 @@ fade | Decimal | 再生停止時のボリュームフェードアウトの時間
 ## style
 
 #### 概要
-テキストプリンターのコンテンツに永続的に適用されます。[テキストスタイル](/ja/guide/text-printers.md#テキストスタイル)
+テキストプリンターのコンテンツに永続的に適用されます。[テキストスタイル](/ja/guide/text-printers#テキストスタイル)
 
 #### 備考
 テキストメッセージ内でリッチテキストタグを使用して、スタイルを選択的に適用することもできます。
@@ -1609,10 +1609,10 @@ time | Decimal | トーストが非表示になるまで待つ秒数。指定し
 ## unlock
 
 #### 概要
-指定したIDの[収集アイテム](/ja/guide/unlockable-items.md) を `unlocked` 状態に設定します。
+指定したIDの[収集アイテム](/ja/guide/unlockable-items) を `unlocked` 状態に設定します。
 
 #### 備考
-アイテムのロック状態は [グローバルスコープ](/ja/guide/state-management.md#グローバルステート) に保存されています。<br /> 指定されたIDのアイテムがグローバルステートマップに登録されていない場合、対応するレコードが自動的に追加されます。
+アイテムのロック状態は [グローバルスコープ](/ja/guide/state-management#グローバルステート) に保存されています。<br /> 指定されたIDのアイテムがグローバルステートマップに登録されていない場合、対応するレコードが自動的に追加されます。
 
 #### パラメーター
 

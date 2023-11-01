@@ -1,4 +1,4 @@
-﻿# 资源加载器
+# 资源加载器
 
 资源加载器是用于检索Naninovel相关的数据，".nani"后缀的文本脚本，用于人物表现的角色贴图，用于声音表现音频剪辑等资源的工具类。每个加载器都被用于从特定目录来检索加载相应资源：项目目录下的"Resources"文件夹，Unity的可寻址资源系统，本地资源，Google Drive账号等。
 
@@ -12,7 +12,7 @@
 
 当`Log Resources Loading`打开时，加载器相关的信息，会默认输出到加载画面的UI上。
 
-`Enable Build Processing`用于打包时，启用预读取流程来注入在编辑器菜单中绑定的资源，仅在[自定义构建环境](/zh/guide/custom-build-environment.md) 或附加自己的构建挂钩时才禁用此功能。当[可寻址系统](https://docs.unity3d.com/Packages/com.unity.addressables@latest)被安装，开启`Use Addressables`将优化资源的处理步骤减少打包时间; 同时启用`Auto Build Bundles`将让asset bundles在打包时自动编译。
+`Enable Build Processing`用于打包时，启用预读取流程来注入在编辑器菜单中绑定的资源，仅在[自定义构建环境](/zh/guide/custom-build-environment) 或附加自己的构建挂钩时才禁用此功能。当[可寻址系统](https://docs.unity3d.com/Packages/com.unity.addressables@latest)被安装，开启`Use Addressables`将优化资源的处理步骤减少打包时间; 同时启用`Auto Build Bundles`将让asset bundles在打包时自动编译。
 
 其他属性，不同加载器有所不同，将在后文详细说明。
 
@@ -42,7 +42,7 @@ Naninovel会自动在该系统安装后调用，不需要额外设置。在发�
 
 ![](https://i.gyazo.com/c93fbd9e232ec94468c685c4d6003916.png)
 
-::: warn
+::: warning
 我们不提供任何Unity可寻址系统用于远端主机或是部署/服务相关架构的支持或教程。参考[技术支持](/zh/support/#unity-支持)页面获取更多信息。
 :::
 
@@ -70,7 +70,7 @@ Naninovel会自动在该系统安装后调用，不需要额外设置。在发�
 
 ![](https://i.gyazo.com/eb435b782cfb9df6c403702e8f6124df.png)
 
-脚本配置菜单的给定目录前缀用于添加脚本及相应的加载器，脚本导航器（通过`nav`[控制台命令](/zh/guide/development-console.md)使用） ，之后该工具就能抓取所有在其目录下的后缀“.nani”的脚本。
+脚本配置菜单的给定目录前缀用于添加脚本及相应的加载器，脚本导航器（通过`nav`[控制台命令](/zh/guide/development-console)使用） ，之后该工具就能抓取所有在其目录下的后缀“.nani”的脚本。
 
 ![](https://i.gyazo.com/df8ad31d30b5c10c9a918e69a4543567.png)
 
@@ -102,14 +102,14 @@ public class CustomResourceProvider : IResourceProvider
     public float LoadProgress => default;
     public IEnumerable<Resource> LoadedResources => default;
 
-    public Resource<T> GetLoadedResourceOrNull<T> (string path) 
+    public Resource<T> GetLoadedResourceOrNull<T> (string path)
         where T : UnityEngine.Object
     {
         OnMessage?.Invoke($"GetLoadedResourceOrNull: {path}");
         return default;
     }
 
-    public UniTask<Resource<T>> LoadResourceAsync<T> (string path) 
+    public UniTask<Resource<T>> LoadResourceAsync<T> (string path)
         where T : UnityEngine.Object
     {
         OnMessage?.Invoke($"LoadResourceAsync: {path}");
@@ -117,7 +117,7 @@ public class CustomResourceProvider : IResourceProvider
         return default;
     }
 
-    public UniTask<IEnumerable<Resource<T>>> LoadResourcesAsync<T> (string path) 
+    public UniTask<IEnumerable<Resource<T>>> LoadResourcesAsync<T> (string path)
         where T : UnityEngine.Object
     {
         OnMessage?.Invoke($"LoadResourcesAsync: {path}");
@@ -131,14 +131,14 @@ public class CustomResourceProvider : IResourceProvider
         return default;
     }
 
-    public UniTask<IEnumerable<string>> LocateResourcesAsync<T> (string path) 
+    public UniTask<IEnumerable<string>> LocateResourcesAsync<T> (string path)
         where T : UnityEngine.Object
     {
         OnMessage?.Invoke($"LocateResourcesAsync: {path}");
         return default;
     }
 
-    public UniTask<bool> ResourceExistsAsync<T> (string path) 
+    public UniTask<bool> ResourceExistsAsync<T> (string path)
         where T : UnityEngine.Object
     {
         OnMessage?.Invoke($"ResourceExistsAsync: {path}");
@@ -157,7 +157,7 @@ public class CustomResourceProvider : IResourceProvider
         return default;
     }
 
-    public bool SupportsType<T> () 
+    public bool SupportsType<T> ()
         where T : UnityEngine.Object
     {
         OnMessage?.Invoke($"SupportsType: {typeof(T).Name}");
@@ -175,4 +175,3 @@ public class CustomResourceProvider : IResourceProvider
     }
 }
 ```
-

@@ -16,6 +16,4 @@
 
 Naninovelサンドボックスの設定や使用開始についてのチュートリアルは、動画ガイドをご覧ください。
 
-<div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/tn14ZhBTFew" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+![](https://www.youtube.com/watch?v=tn14ZhBTFew)

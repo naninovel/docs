@@ -1,8 +1,8 @@
-﻿# Movies
+# Movies
 
-Movies are videos played on top of the scene via `IMovieUI` UI, halting script execution and user input processing while being played. 
+Movies are videos played on top of the scene via `IMovieUI` UI, halting script execution and user input processing while being played.
 
-Before starting playing a movie a fade-in to the specified fade texture (solid black by default) is performed. When playback is finished, a fade-out from the fade texture to the scene content is performed. 
+Before starting playing a movie a fade-in to the specified fade texture (solid black by default) is performed. When playback is finished, a fade-out from the fade texture to the scene content is performed.
 
 Player can skip movie playback with a `Cancel` input (`Esc` by default for standalone input module); binding can be changed in input configuration menu.
 
@@ -12,12 +12,12 @@ To add, edit and remove movie resources use the movie manager accessible via `Na
 
 You can use any video formats [supported by Unity](https://docs.unity3d.com/Manual/VideoSources-FileCompatibility).
 
-Movies playback behavior can be configured using `Naninovel -> Configuration -> Movies` editor menu; for available options see [configuration guide](/guide/configuration.md#movies).
+Movies playback behavior can be configured using `Naninovel -> Configuration -> Movies` editor menu; for available options see [configuration guide](/guide/configuration#movies).
 
 Use [@movie] command followed by video clip name to play a movie from the naninovel scripts:
 
 ```nani
-; Given an "Opening" video clip is added to the movie resources, play it
+; Given an "Opening" video clip is added to the movie resources, play it.
 @movie Opening
 ```
 

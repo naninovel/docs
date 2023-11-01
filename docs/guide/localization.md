@@ -1,4 +1,4 @@
-﻿# Localization
+# Localization
 
 All the game resources (scripts, audio, voice, backgrounds, etc) can be localized to multiple languages/cultures.
 
@@ -12,8 +12,8 @@ Be aware, that you don't have to create a sub-folder in the *localization resour
 
 *Localization resources root* specific path can be changed in the localization configuration menu via `Loader > Path Prefix` property. Notice, that the configured path is relative to a "Resources" folder (not the "Assets"). The resources folders are [handled in a special way](https://docs.unity3d.com/Manual/LoadingResourcesatRuntime.html) by Unity; you can have multiple such folders stored anywhere inside the project assets for organization purposes.
 
-::: note
-Like with any other type of resources, instead of using `Resources` folder you can opt for a different resource provider; for example, with [addressables](/guide/resource-providers.md#addressable) provider you can bundle locale-specific resources independently of the main game package and download them on-demand.
+::: info NOTE
+Like with any other type of resources, instead of using `Resources` folder you can opt for a different resource provider; for example, with [addressables](/guide/resource-providers#addressable) provider you can bundle locale-specific resources independently of the main game package and download them on-demand.
 :::
 
 To specify which locale is selected by default when player first runs the game use `Default Locale` property in the localization configuration menu. When the property is not specified, the game will start in *source locale* by default.
@@ -30,9 +30,9 @@ For example, if you wish to replace a "City" appearance sprite of a main backgro
 
 The resources localization scheme described above works with all the resource types, except naninovel scripts and managed text documents. For these type of resources, use localization tool accessible via `Naninovel -> Tools -> Localization`:
 
-![](https://i.gyazo.com/fb39cd0d10bfc8dbf5a3a5ae8be694c4.png)
+![](https://i.gyazo.com/1b47d70dcbbb45a3ab955b44c9b50942.png)
 
-First, pick `Scripts Folder (input)` — project directory where Naninovel scenario scripts (`.nani`) are stored (eg, `Assets/Scripts`). Optionally, to generate localization documents for [managed text](/guide/managed-text.md) as well, pick `Text Folder (input)` — directory where the managed text documents are stored (`Assets/Resources/Naninovel/Text` by default).
+First, pick `Scripts Folder (input)` — project directory where Naninovel scenario scripts (`.nani`) are stored (eg, `Assets/Scripts`). Optionally, to generate localization documents for [managed text](/guide/managed-text) as well, pick `Text Folder (input)` — directory where the managed text documents are stored (`Assets/Resources/Naninovel/Text` by default).
 
 Alternatively, in case you wish to generate localization documents not on the source locale, but on a previously generated documents for another locale, instead of source scenario scripts folder pick text folder with existing localization documents for another locale, eg `Assets/Resources/Naninovel/Localization/ja-JP/Text`.
 
@@ -62,13 +62,31 @@ You're expected to put the actual translation right after the comment line with 
 
 ```nani
 # aj0e5dea
-; Aliquam ut <b>ultricies</b> enim, id venenatis arcu.<br>Nullam rhoncus eros tempus.
+; Aliquam ut <b>ultricies</b> enim, id venenatis.<br>Nullam rhoncus eros tempus.
 Оценивая блеск <b>металлического</b> шарика, пространство равноденственно.<br>
 Противостояние есть метеорный дождь.
 ```
 
-::: example
-Find example localization setup in the [demo project](/guide/getting-started.md#demo-project). Consider using it as a reference in case having issues setting up localization in your own project.
+When **Include Annotations** option is enabled, generated localization documents will contain script comments placed before localized lines. For example, given following source script text:
+
+```nani
+; Player has to pick route.
+@choice "Go left"
+@choice "Go right"
+```
+
+— following localization document will be generated:
+
+```nani
+# id1
+; Go left;; Player has to pick route.
+
+# id2
+; Go right
+```
+
+::: tip EXAMPLE
+Find example localization setup in the [demo project](/guide/getting-started#demo-project). Consider using it as a reference in case having issues setting up localization in your own project.
 :::
 
 ::: tip
@@ -79,11 +97,11 @@ In case looking for an option to compile all the project scenario script and man
 
 ## UI Localization
 
-To localize both custom and built-in UIs, use [managed text provider](/guide/managed-text.md#managed-text-provider) component. It can also be used to localize any other custom game objects (prefabs). For more information on how to use managed text records and localize them, refer to the managed text guide.
+To localize both custom and built-in UIs, use [managed text provider](/guide/managed-text#managed-text-provider) component. It can also be used to localize any other custom game objects (prefabs). For more information on how to use managed text records and localize them, refer to the managed text guide.
 
 ## Fonts
 
-To display text in some languages, you'll need a compatible font. [Google's Roboto](https://fonts.google.com/specimen/Roboto) is used by default, which supports all Latin, Cyrillic, and Greek characters in Unicode 7.0. You can change the font used in any of the built-in UIs with [UI customization](/guide/user-interface.md#ui-customization) feature; for the printed text messages, [create custom printers](/guide/text-printers.md#adding-custom-printers) and set the desired font.
+To display text in some languages, you'll need a compatible font. [Google's Roboto](https://fonts.google.com/specimen/Roboto) is used by default, which supports all Latin, Cyrillic, and Greek characters in Unicode 7.0.
 
 ::: tip
 In case you're aiming to support multiple languages with a single font, check out [Noto fonts](https://www.google.com/get/noto/).
@@ -91,9 +109,13 @@ In case you're aiming to support multiple languages with a single font, check ou
 
 Right-to-left (RTL) languages (Arabic, Hebrew, Persian, etc) are supported by the TMPro text printers, but require additional setup; [see the guide](/guide/text-printers.html#right-to-left-arabic-text) for more info.
 
+When publishing for CJK languages (Chinese, Japanese and Korean), consider using Character Extractor utility to optimize TMPro font atlases size. ([guide](/guide/text-printers.html#cjk-languages))
+
 To associate a font with a specific locale, use `Apply On Locale` property of font options found in UI configuration. When a locale is selected, the font will be automatically applied when that locale is selected in the game settings.
 
 ![](https://i.gyazo.com/52e1a5eaaf99f5b4415083d1c86e9c10.png)
+
+In order for the feature to work, make sure `Font Change Configuration` component is set up properly on the text printer. ([guide](/guide/user-interface#changing-font))
 
 ## Community Localization
 
