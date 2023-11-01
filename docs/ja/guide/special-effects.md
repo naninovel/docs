@@ -1,4 +1,4 @@
-﻿# 特殊エフェクト
+# 特殊エフェクト
 
 特殊エフェクトは、[@spawn] コマンドに続けてエフェクト名を記述することで実行されます。例:
 
@@ -72,7 +72,7 @@ IDには任意の文字列を使用できます（上記のような数字、ま
 
 指定したIDまたはデフォルトのIDを持つプリンターを揺らします。
 
-[!f61fc35e318cce1949b00e5fe2448a80]
+![](https://i.gyazo.com/f61fc35e318cce1949b00e5fe2448a80.mp4)
 
 **パラメーター**
 
@@ -107,7 +107,7 @@ What a shaky situation!
 
 指定されたIDまたはメインの背景を揺らします。
 
-[!fcf1153a0ad3d9a153908206211f5f5f]
+![](https://i.gyazo.com/fcf1153a0ad3d9a153908206211f5f5f.mp4)
 
 **パラメーター**
 
@@ -136,7 +136,7 @@ Shake vertically | Boolean | true | アクターを垂直に（y軸で）揺ら�
 
 指定したIDまたは、表示されているキャラクターをランダムに揺らします。
 
-[!6001d3cfbee855c8a783d10e4a784042]
+![](https://i.gyazo.com/6001d3cfbee855c8a783d10e4a784042.mp4)
 
 **パラメーター**
 
@@ -171,7 +171,7 @@ Shake vertically | Boolean | true | アクターを垂直に（y軸で）揺ら�
 
 メインのNaninovelレンダーカメラをシェイクします。
 
-[!f9521fbcf959d0b72e449ae6e2191f9f]
+![](https://i.gyazo.com/f9521fbcf959d0b72e449ae6e2191f9f.mp4)
 
 **パラメーター**
 
@@ -199,13 +199,13 @@ Shake vertically | Boolean | true | アクターを垂直に（y軸で）揺ら�
 
 （アニメーション）アクターパラメータを直接変更したい場合は、[@animate] コマンドの使用を検討してください。
 
-[!a0494329c713c4309a52d57d0b297bee]
+![](https://i.gyazo.com/a0494329c713c4309a52d57d0b297bee.mp4)
 
 ## デジタルグリッチ
 
 デジタルビデオの歪みと乱れをシミュレートする後処理エフェクトを、メインカメラに適用します。
 
-[!94cb6db25c17956473db4de149281df5]
+![](https://i.gyazo.com/94cb6db25c17956473db4de149281df5.mp4)
 
 **パラメーター**
 
@@ -226,7 +226,7 @@ Intensity | Decimal | 1 | エフェクトの強さ。0.0から10.0の範囲で�
 
 雨をシミュレートするパーティクルシステムを生成します。
 
-[!74af9eec30f6517ea5b8453a9c86d33c]
+![](https://i.gyazo.com/74af9eec30f6517ea5b8453a9c86d33c.mp4)
 
 **パラメーター**
 
@@ -255,7 +255,7 @@ Fade-out time | Decimal | 5 | パーティクルシステムは、指定され�
 
 雪をシミュレートするパーティクルシステムを生成します。
 
-[!25a052444c561e40c8318272f51edf47]
+![](https://i.gyazo.com/25a052444c561e40c8318272f51edf47.mp4)
 
 **パラメーター**
 
@@ -282,7 +282,7 @@ Fade-out time | Decimal | 5 | パーティクルシステムは、指定され�
 
 太陽光線をシミュレートするパーティクルシステムを生成します。
 
-[!7edc4777699229abc508f2bdb404522e]
+![](https://i.gyazo.com/7edc4777699229abc508f2bdb404522e.mp4)
 
 **パラメーター**
 
@@ -310,10 +310,10 @@ Fade-out time | Decimal | 3 | パーティクルシステムは、指定され�
 焦点の合ったオブジェクトだけが鮮明で、他の画像がボケた状態にする際の、被写界深度（別名DOF、ボケ）効果をシミュレートします。
 
 ::: tip
-1 つのオブジェクト（アクター）だけをぼかしたい場合は、代わりに「[ぼかしエフェクト](/ja/guide/special-effects.md#blur)」の使用を検討してください。
+1 つのオブジェクト（アクター）だけをぼかしたい場合は、代わりに「[ぼかしエフェクト](/ja/guide/special-effects#blur)」の使用を検討してください。
 :::
 
-[!616a023c46f207b4a3a33d3d3fd9fbc9]
+![](https://i.gyazo.com/616a023c46f207b4a3a33d3d3fd9fbc9.mp4)
 
 **パラメーター**
 
@@ -345,7 +345,7 @@ Stop Duration | Decimal | 1 | エフェクトパラメーターがデフォル�
 
 アクターにぼかしフィルタを適用します。サポートされているアクターは、スプライト、レイヤー、分解スプライト、Live2D、Spine、ビデオ、シーンなどの実装の背景とキャラクターです。デフォルト（第 1 パラメーターが指定されていない場合）では、エフェクトは `MainBackground` アクターに適用されます。
 
-[!067614d77783683e74ca79652099b58d]
+![](https://i.gyazo.com/067614d77783683e74ca79652099b58d.mp4)
 
 **パラメーター**
 
@@ -389,7 +389,7 @@ Stop Duration | Decimal | 1 | エフェクトのフェードオフ（無効化�
 
 大量のスポーンプレハブがありエディターメニューから割り当てるのが大変な場合は、 `Resources/Naninovel/Spawn` フォルダーにドロップするだけで自動的にスクリプトで使用できるようになります。必要に応じて、さらにサブフォルダで整理することもできます。この場合、naninovelスクリプトで参照する場合はスラッシュ (`/`) を使用します。たとえば、 `Resources/Naninovel/Spawn/Explosions/Boom01` として保存されたプレハブは、 `Explosions/Boom01` としてスクリプトから参照できます。
 
-[addressable asset system](/ja/guide/resource-providers.md#addressable) を使用して手動でリソースを公開することもできます。アセットを公開するには、使用するパスと同じアドレスを "Resources/" の部分を除いて、上記の方法で割り当てます。たとえば、"Boom01" プレハブアセットを公開するには、次のアドレスにアセットを割り当てます: `Naninovel/Spawn/Boom01`。Addressable 機能はデフォルトではエディターで使用できないことに注意してください。リソースプロバイダーのコンフィグメニューで `Enable Addressable In Editor` プロパティを有効にすることで許可できます。
+[addressable asset system](/ja/guide/resource-providers#addressable) を使用して手動でリソースを公開することもできます。アセットを公開するには、使用するパスと同じアドレスを "Resources/" の部分を除いて、上記の方法で割り当てます。たとえば、"Boom01" プレハブアセットを公開するには、次のアドレスにアセットを割り当てます: `Naninovel/Spawn/Boom01`。Addressable 機能はデフォルトではエディターで使用できないことに注意してください。リソースプロバイダーのコンフィグメニューで `Enable Addressable In Editor` プロパティを有効にすることで許可できます。
 
 実装の参考として、`Naninovel/Prefabs/FX` に保存されている組み込みのエフェクトプレハブをご覧ください。
 
@@ -427,4 +427,4 @@ Naninovel スクリプトから `toggle` パラメーターを使って、追加
 
 カスタムカメラフィルター効果の追加例については、次のどうがをご覧ください。
 
-[!!IbT6MTecO-k]
+![](https://www.youtube.com/watch?v=IbT6MTecO-k)

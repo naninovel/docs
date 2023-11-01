@@ -1,6 +1,6 @@
-﻿# Audio
+# Audio
 
-Background music (BGM) and sound effects (SFX) are covered in this article; for the voices see [voicing guide](/guide/voicing.md).
+Background music (BGM) and sound effects (SFX) are covered in this article; for the voices see [voicing guide](/guide/voicing).
 
 To add, edit or remove BGM and SFX resources use audio resources manager accessible via `Naninovel -> Resources -> Audio`. You can use any audio formats [supported by Unity](https://docs.unity3d.com/Manual/AudioFiles.html).
 
@@ -12,26 +12,27 @@ Choose file formats that are most comfortable for your development workflow. Whe
 
 In case you have a lot of audio files and it's inconvenient to assign them via editor menu, it's possible to just drop them at `Resources/Naninovel/Audio` folder, and they'll automatically be available in the scripts. You can additionally organize them with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in naninovel scripts. Eg, audio clip stored as `Resources/Naninovel/Audio/Music/Ambient/Noise002.wav` can be referenced in scripts as `Music/Ambient/Noise002`.
 
-It's also possible to use [addressable asset system](/guide/resource-providers.md#addressable) to manually expose the resources. To expose an asset, assign address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "MainTheme.wav" BGM, assign the clip asset following address: `Naninovel/Audio/MainTheme`. Be aware, that addressable provider is not used in editor by default; you can allow it by enabling `Enable Addressable In Editor` property in resource provider configuration menu.
+It's also possible to use [addressable asset system](/guide/resource-providers#addressable) to manually expose the resources. To expose an asset, assign address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "MainTheme.wav" BGM, assign the clip asset following address: `Naninovel/Audio/MainTheme`. Be aware, that addressable provider is not used in editor by default; you can allow it by enabling `Enable Addressable In Editor` property in resource provider configuration menu.
 
-::: warn
+::: warning
 Audio assets not assigned via resources manager won't be available in various editor dropdowns, such as the one used to select `Message Sound` for a character actor.
-::: 
+:::
 
-Audio playback behavior can be configured using `Naninovel -> Configuration -> Audio` context menu; for available options see [configuration guide](/guide/configuration.md#audio). 
+Audio playback behavior can be configured using `Naninovel -> Configuration -> Audio` context menu; for available options see [configuration guide](/guide/configuration#audio).
 
 ## Background Music
 
 Use [@bgm] command followed by the clip name to control the music playback in naninovel scripts:
 
 ```nani
-; Starts playing a music track with the name `Sanctuary` in a loop
+; Starts playing a music track with the name `Sanctuary` in a loop.
 @bgm Sanctuary
 
-; Same as above, but fades-in the volume over 10 seconds and plays only once
+; Same as above, but fades-in the volume over 10 seconds and plays only once.
 @bgm Sanctuary fade:10 loop:false
 
-; Changes volume of all the played music tracks to 50% over 2.5 seconds and makes them play in a loop
+; Changes volume of all the played music tracks to 50% over 2.5 seconds
+; and makes them play in a loop.
 @bgm volume:0.5 loop:true time:2.5
 ```
 
@@ -40,17 +41,17 @@ Music tracks are looped by default. When music track name is not specified in [@
 It's possible to play an intro followed by a loop with `intro` parameter, eg:
 
 ```nani
-; Playes `BattleThemeIntro` once and then immediately `BattleThemeMain` in a loop.
+; Playes `BattleThemeIntro` once and then `BattleThemeMain` in a loop.
 @bgm BattleThemeMain intro:BattleThemeIntro
 ```
 
 To stop a playing music track, use [@stopBgm] command followed by clip name. When clip name is not specified, the command will stop all the currently played tracks.
 
 ```nani
-; Fades-out the `Promenade` music track over 10 seconds and stops the playback
+; Fades-out the `Promenade` music track over 10 seconds and stops the playback.
 @stopBgm Promenade fade:10
 
-; Stops all the currently played music tracks
+; Stops all the currently played music tracks.
 @stopBgm
 ```
 
@@ -59,13 +60,14 @@ To stop a playing music track, use [@stopBgm] command followed by clip name. Whe
 Use [@sfx] and [@stopSfx] commands followed by the clip name to control playback of the sound effects in naninovel scripts:
 
 ```nani
-; Plays an SFX with the name `Explosion` once
+; Plays an SFX with the name `Explosion` once.
 @sfx Explosion
 
-; Plays an SFX with the name `Rain` in a loop
+; Plays an SFX with the name `Rain` in a loop.
 @sfx Rain loop:true
 
-; Changes volume of all the played SFX tracks to 75% over 2.5 seconds and disables looping for all of them
+; Changes volume of all the played SFX tracks to 75% over 2.5
+; seconds and disables looping for all of them.
 @sfx volume:0.75 loop:false time:2.5
 ```
 
@@ -77,7 +79,7 @@ To stop a playing sound effect (no matter looped or not), use [@stopSfx] command
 ; Stop playing an SFX with the name `Rain`, fading-out for 15 seconds.
 @stopSfx Rain fade:15
 
-; Stops all the currently played sound effect tracks
+; Stops all the currently played sound effect tracks.
 @stopSfx
 ```
 
@@ -103,10 +105,9 @@ To play an audio via a custom mixer group, specify group path with `group` param
 
 Groups are retrieved with `FindMatchingGroups(groupPath)` method of the currently assigned audio mixer asset; see [Unity documentation](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) for more information on the expected path format. In case multiple groups are associated with the provided path, the first one will be used to play the audio.
 
-In C# scripts, currently used audio mixer can be retrieved via `IAudioManager` [engine service](/guide/engine-services.md).
+In C# scripts, currently used audio mixer can be retrieved via `IAudioManager` [engine service](/guide/engine-services).
 
 ```csharp
 var audioManager = Engine.GetService<IAudioManager>();
 var audioMixer = audioManager.AudioMixer;
 ```
-

@@ -1,10 +1,10 @@
-# 人物 
+# 人物
 
-人物时用于表现独立场景的演出元素，置于[背景](/zh/guide/backgrounds.md) 之上。
- 
+人物时用于表现独立场景的演出元素，置于[背景](/zh/guide/backgrounds) 之上。
+
 一个角色元素由名字，外观，可见度，位置，旋转，缩放，朝向定义组成。在运行中，上述属性可改变。
 
-角色配置可以通过`Naninovel -> Configuration -> Characters`菜单来配置。其他可选配置参考[属性配置](/zh/guide/configuration.md#人物) 。角色资源管理通过`Naninovel -> Resources -> Characters`管理。
+角色配置可以通过`Naninovel -> Configuration -> Characters`菜单来配置。其他可选配置参考[属性配置](/zh/guide/configuration#人物) 。角色资源管理通过`Naninovel -> Resources -> Characters`管理。
 
 
 ![Add Character](https://i.gyazo.com/c8a4f7f987621831b4a2ecb3145a4a07.png)
@@ -14,7 +14,7 @@
 
 另外你可以通过子文件夹管理相应资源。该情况下，你可以用正斜杠 (`/`)在Naninovel脚本中调用。比如，资源路径为`Resources/Naninovel/Characters/Kohaku/Casual/Angry` 的资源，调用时为`Casual/Angry`。
 
-你也可使用[可寻址资源系统](/zh/guide/resource-providers.md#寻址资源系统) 手动调用资源。你可以通过省略上述的"Resources/"部分的路径来直接调用相应资源。
+你也可使用[可寻址资源系统](/zh/guide/resource-providers#寻址资源系统) 手动调用资源。你可以通过省略上述的"Resources/"部分的路径来直接调用相应资源。
 比如，如果你想使用"Kohaku"的"Happy"外观，绑定资源地址为`Naninovel/Characters/Kohaku/Happy`。注意该调用系统默认关闭，打开资源提供配置菜单的`Enable Addressable In Editor`属性来启用。
 
 在Naninovel脚本中，人物大多数由[@char]命令控制：
@@ -98,7 +98,7 @@ Player: You can call me {PlayerName}.
 
 以下视频为显示姓名功能和文本颜色的演示：
 
-[!!u5B5s]
+![](https://www.youtube.com/watch?v=u5B5s)
 
 ## 头像贴图
 
@@ -111,7 +111,7 @@ Player: You can call me {PlayerName}.
 
 ![](https://i.gyazo.com/5a0f10d174aa75ed87da1b472567e40b.png)
 
-::: note
+::: info NOTE
 
 头像名字可以说随意取，也并不需要和已有的角色或外观姓名有关联。除了当你像想让他们自动关联显示的时候。
 
@@ -129,7 +129,7 @@ Player: You can call me {PlayerName}.
 
 请注意，**头像显示和角色立绘显示无关**，不应当将此功能用作立绘显示。立绘显示时绘制于场景之上，而头像仅仅将任意图像“注入”到打字机的图像匹配区域。
 
-通过设置[@char]命令的 `visible` 参数值为 `false`，可以隐藏角色，而只显示头像，如下： 
+通过设置[@char]命令的 `visible` 参数值为 `false`，可以隐藏角色，而只显示头像，如下：
 
 ```nani
 @char CharacaterId visible:false
@@ -142,22 +142,22 @@ Player: You can call me {PlayerName}.
 
 当在角色配置菜单中打开时，将为说话的角色加高亮效果提示。参考如下视频：
 
-[!!gobowgagdyE]
+![](https://www.youtube.com/watch?v=gobowgagdyE)
 
 ## 嘴唇同步
 
-[传统立绘](/zh/guide/characters.md#传统人物) and [Live2D](/zh/guide/characters.md#Live2D人物) 人物支持名为“嘴唇同步”的特性，允许通过合适的事件通知，来在显示文字的时候，控制角色的嘴唇动画。
+[传统立绘](/zh/guide/characters#传统人物) and [Live2D](/zh/guide/characters#Live2D人物) 人物支持名为“嘴唇同步”的特性，允许通过合适的事件通知，来在显示文字的时候，控制角色的嘴唇动画。
 
-[!!fx_YS2ZQGHI]
+![](https://www.youtube.com/watch?v=fx_YS2ZQGHI)
 
-当[自动语音](/zh/guide/voicing.md#自动语音) 功能开启时，嘴唇同步会由语音控制。另外，文字打印时也会激活该事件，在这种情况下，如果你想开始或停止该功能，（比如：在显示文字符号的时候停止嘴唇同步），使用[@lipSync]命令。
+当[自动语音](/zh/guide/voicing#自动语音) 功能开启时，嘴唇同步会由语音控制。另外，文字打印时也会激活该事件，在这种情况下，如果你想开始或停止该功能，（比如：在显示文字符号的时候停止嘴唇同步），使用[@lipSync]命令。
 
 
-参考 [传统立绘](/zh/guide/characters.md#传统人物) and [Live2D](/zh/guide/characters.md#Live2D人物) 人物的实现部分来使用此功能。
+参考 [传统立绘](/zh/guide/characters#传统人物) and [Live2D](/zh/guide/characters#Live2D人物) 人物的实现部分来使用此功能。
 
 ## 关联打字机
 
-用户可以使用`关联打字机`属性，将[文本打字机](/zh/guide/text-printers.md)和人物相关联。
+用户可以使用`关联打字机`属性，将[文本打字机](/zh/guide/text-printers)和人物相关联。
 
 ![](https://i.gyazo.com/50ca6b39cd7f708158678339244b1dc4.png)
 
@@ -179,7 +179,7 @@ Player: You can call me {PlayerName}.
 
 通过unity内置的[Unity package manager](https://docs.unity3d.com/Manual/upm-ui.html) 来安装该资源包。打开该窗口，(Window -> Package Manager)点击“+”按钮，选择"Add package from git URL"，输入地址：`https://github.com/Elringus/SpriteDicing.git#package`点击“Add”导入。参考下图来安装：
 
-[!b54e9daa9a483d9bf7f74f0e94b2d38a]
+![](https://i.gyazo.com/b54e9daa9a483d9bf7f74f0e94b2d38a.mp4)
 
 `切片精灵人物`资源包含用于人物表现的切片精灵，每个外观都由名字来切分出其包含在图集中的精灵。
 
@@ -189,7 +189,7 @@ Player: You can call me {PlayerName}.
 
 以下视频内容为：创建和配置切分精灵图集；在已创建图集中添加新切分人物；使用Naninovel脚本控制其中人物。
 
-[!!6PdOAOsnhio]
+![](https://www.youtube.com/watch?v=6PdOAOsnhio)
 
 ## 分层式人物
 
@@ -251,7 +251,7 @@ Player: You can call me {PlayerName}.
 ; 打开所有存在的图层
 @char CharId.+
 
-; 假定`Poses/Light` 和 `Poses/Dark` 组 (每个都有多个图层), 
+; 假定`Poses/Light` 和 `Poses/Dark` 组 (每个都有多个图层),
 ; 打开所有 `Light` 组内的精灵，而关闭所有 `Dark` 组内的图层。
 @char CharId.Poses/Light>
 ```
@@ -263,9 +263,9 @@ Player: You can call me {PlayerName}.
 以下视频内容时演示如何设置分层式人物，以及如何通过naninovel脚本来控制。
 
 
-[!!Bl3kXrg8tiI]
+![](https://www.youtube.com/watch?v=Bl3kXrg8tiI)
 
-::: note
+::: info NOTE
 `@char Miho.Shoes>`命令在视频中实际上时选中的"Shoes"组（关闭所有相邻组），而不是隐藏。正确的隐藏命令为`@char Miho.Shoes-`，
 :::
 
@@ -301,12 +301,12 @@ Player: You can call me {PlayerName}.
 
 要通过模板创建通用人物预制体，请使用Create -> Naninovel -> Character -> Generic菜单。
 
-要为通用人物模型设置嘴型同步特性，使用`CharacterActorBehaviour`组件上的`On Started Speaking`和`On Finished Speaking`的unity事件。当角色成为或不再是任何已打印消息的作者时（或者当消息完全显示时），将调用事件来触发任何自定义逻辑实现，例如开始或停止受控角色的嘴部动画。这类似于UI的`On Show` 和`On Hide`事件。参考[自定义UI引导](/zh/guide/user-interface.md#添加自定义UI) 来了解其工作机制。
+要为通用人物模型设置嘴型同步特性，使用`CharacterActorBehaviour`组件上的`On Started Speaking`和`On Finished Speaking`的unity事件。当角色成为或不再是任何已打印消息的作者时（或者当消息完全显示时），将调用事件来触发任何自定义逻辑实现，例如开始或停止受控角色的嘴部动画。这类似于UI的`On Show` 和`On Hide`事件。参考[自定义UI引导](/zh/guide/user-interface#添加自定义UI) 来了解其工作机制。
 
 参考以下视频来了解如何设置3D骨骼模型为传统模型，并通过[Animator](https://docs.unity3d.com/Manual/class-AnimatorController.html) 组件来调用外观改变。
 
 
-[!!HPxhR0I1u2Q]
+![](https://www.youtube.com/watch?v=HPxhR0I1u2Q)
 
 注意，unity的`Animator`组件如果在游戏物体同一帧进行开启/关闭触发时调用`SetTrigger` 可能会失败。因此，你可以使用`GameObject.SetActive`方法解决可见度的修改（参考上述教程），考虑使用渲染器来开启/关闭子物体。
 
@@ -327,7 +327,7 @@ Live2D模型预制体使用时，都必须有`Live2DController`组件。外观�
 
 注意，以上命令只是试图去调用预制体上位于animator控制器内的[SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) 内“surprise”的参数。你必须去自己手动设置好[animator](https://docs.unity3d.com/Manual/Animator) 其中要使用的调用参数。
 
-::: warn
+::: warning
 最新版本的Cubism-SDk是直接和`Animator`组件一起工作的。Cubism 2.x版本的表情和动作（分别导出为expression.json和pose.json文件），现在已经被[弃用](https://docs.live2d.com/cubism-sdk-tutorials/blendexpression) ，也不被Naninovel的live2D扩展支持了。
 :::
 
@@ -342,8 +342,8 @@ Live2D模型预制体使用时，都必须有`Live2DController`组件。外观�
 
 以下视频引导，包含内容为：从Cubism编辑器导出Live2D人物；配置预制体；创建简单动画状态机；通过Naninovel脚本控制人物。
 
-[!!rw_Z69z0pAg]
+![](https://www.youtube.com/watch?v=rw_Z69z0pAg)
 
-::: example
+::: tip EXAMPLE
 参考 [GitHub的Live2D示例](https://github.com/Naninovel/Live2D) 来了解使用。注意其中不包含Live2D的SDK以及Naninovel相关资源。直接打开会有报错，再导入后解决报错。
 :::

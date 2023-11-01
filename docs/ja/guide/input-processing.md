@@ -12,11 +12,11 @@ Swipes | 入力をアクティブにするスワイプ（タッチスクリー�
 
 特定の値については Unity の入力ガイドをご覧ください: [docs.unity3d.com/Manual/ConventionalGameInput](https://docs.unity3d.com/Manual/ConventionalGameInput.html).
 
-組み込みの入力バインディングを設定し、コンテキストメニュー `Naninovel -> Configuration -> Input` から新しいリスナーを追加できます。使用可能なオプションについては、 [コンフィグガイド](/ja/guide/configuration.md#input) を参照してください。
+組み込みの入力バインディングを設定し、コンテキストメニュー `Naninovel -> Configuration -> Input` から新しいリスナーを追加できます。使用可能なオプションについては、 [コンフィグガイド](/ja/guide/configuration#input) を参照してください。
 
 ![Manage Input](https://i.gyazo.com/2f97539323c9fc36124e286856a36f84.png)
 
-::: example
+::: tip EXAMPLE
 カスタム入力バインディングを追加してインベントリUIを切り替える例は [GitHubのインベントリサンプルプロジェクト](https://github.com/Naninovel/Inventory) にあります。
 
 具体的には、カスタムの "ToggleInventory" バインディングが [UI/InventoryUI.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L215) ランタイムスクリプトで使用されます。同じ名前のバインディングは、制御スキームの下の入力構成メニューから追加されます。
@@ -32,7 +32,7 @@ Swipes | 入力をアクティブにするスワイプ（タッチスクリー�
 
 `Focus Mode` プロパティを使用すると、UIが表示された直後、またはナビゲーションキーが押された直後に、割り当てられたゲームオブジェクトにフォーカスを合わせるかどうかを変更できます。
 
-::: warn
+::: warning
 UI上のゲームパッドナビゲーションは、Unityの新しい入力システムがプロジェクトにインストールされている場合にのみ機能します。入力システムの詳細については、以下をご覧ください。
 :::
 
@@ -43,14 +43,14 @@ UI上のゲームパッドナビゲーションは、Unityの新しい入力シ�
 Naninovel は Unity の[新しい入力システム](https://blogs.unity3d.com/2019/10/14/introducing-the-new-input-system/) に対応しています。入力システムをインストールして有効にする方法については、[公式ドキュメント](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/Installation.html) を参照してください。
 
 
-::: note
+::: info NOTE
 
 サポートされている最小入力システムパッケージは1.1で、現在プレビュー中です。プロジェクトをインストールするには、Package Manager側で `preview packages` を有効にする必要があります。
 
-[!1a662215459f936d1a3b49d9089e8357]
+![](https://i.gyazo.com/1a662215459f936d1a3b49d9089e8357.mp4)
 :::
 
-::: warn
+::: warning
 タッチおよびオブジェクト関連の入力は引き続き古い方の入力を介して処理されるため、機能を自分で実装する場合を除いて、プレーヤー設定でレガシーバックエンドを完全に無効にしないで(Active Input HandlingをBothにして)ください。
 
 ![](https://i.gyazo.com/bdac8d3ce8380f571bc3bc2e18a0074d.png)
@@ -75,7 +75,7 @@ Naninovel は Unity の[新しい入力システム](https://blogs.unity3d.com/2
 
 適切に構成されていれば、入力アクションはNaninovelのバインディングをアクティブにします。従来の入力処理（「バインディング」リストで設定）を無効にする場合は入力構成メニューの `Process Legacy Bindings` プロパティを無効にします。
 
-::: example
+::: tip EXAMPLE
 GitHubに、Naninovelを使用した新しい入力システムのセットアップと使用に関するサンプルプロジェクトがあります： [github.com/Naninovel/Input](https://github.com/Naninovel/Input)
 :::
 

@@ -1,12 +1,12 @@
-﻿# ボイス
+# ボイス
 
 ボイスクリップをエンジンに公開するには、`Resources/Naninovel/Voice` フォルダーに保存します（`Loader`フォルダーのオーディオ設定で変更できます）。サブフォルダで整理することもできます。この場合、naninovelスクリプトで参照する場合はスラッシュ (`/`) を使用します。たとえば、`Resources/Naninovel/Voice/Intro/Day/25.wav` として保存されたボイスクリップは、`Voice/Intro/Day/25` としてスクリプトから参照できます。
 
-[addressable asset system](/ja/guide/resource-providers.md#addressable) を使用して手動でリソースを公開することもできます。アセットを公開するには、使用するパスと同じアドレスを "Resources/" の部分を除いて、上記の方法で割り当てます。例えばボイスクリップ "Hello.wav" を公開するには、次のアドレスにクリップアセットを割り当てます `Naninovel/Voice/Hello`。Addressable 機能はデフォルトではエディターで使用できないことに注意してください。リソースプロバイダーのコンフィグメニューで `Enable Addressable In Editor` プロパティを有効にすることで許可できます。
+[addressable asset system](/ja/guide/resource-providers#addressable) を使用して手動でリソースを公開することもできます。アセットを公開するには、使用するパスと同じアドレスを "Resources/" の部分を除いて、上記の方法で割り当てます。例えばボイスクリップ "Hello.wav" を公開するには、次のアドレスにクリップアセットを割り当てます `Naninovel/Voice/Hello`。Addressable 機能はデフォルトではエディターで使用できないことに注意してください。リソースプロバイダーのコンフィグメニューで `Enable Addressable In Editor` プロパティを有効にすることで許可できます。
 
 [Unityでサポートされている](https://docs.unity3d.com/Manual/AudioFiles.html) 任意のオーディオ形式をボイスクリップに使用できます。
 
-ボイス再生動作はコンテキストメニューの `Naninovel -> Configuration -> Audio` で設定できます。利用可能なオプションは [コンフィグガイド](/ja/guide/configuration.md#audio) をご覧ください。
+ボイス再生動作はコンテキストメニューの `Naninovel -> Configuration -> Audio` で設定できます。利用可能なオプションは [コンフィグガイド](/ja/guide/configuration#audio) をご覧ください。
 
 [@voice] コマンドの後にボイスクリップの名前を続けることで、naninovel スクリプトでボイスの再生を制御できます。
 
@@ -27,7 +27,7 @@ Text from a simple generic text line.
 Text from first sentence.[i] Text from second sentence.
 ```
 
-行の表示時に自動ボイス再生システムで対応するオーディオクリップを再生するためには、`Resources/Naninovel/Voice/Script001` にクリップを保存します(または[Addressable システム](/ja/guide/resource-providers.md#addressable) で登録)。以下の名前をつけます:
+行の表示時に自動ボイス再生システムで対応するオーディオクリップを再生するためには、`Resources/Naninovel/Voice/Script001` にクリップを保存します(または[Addressable システム](/ja/guide/resource-providers#addressable) で登録)。以下の名前をつけます:
 
 テキスト | ボイスクリップ名
 --- | ---
@@ -50,7 +50,7 @@ Text from first sentence.[i] Text from second sentence.
 
 `Locale` プロパティで、ドキュメントを生成する特定のロケールを選択できます（選択したロケールは、ローカライズされたnaninovelスクリプトがプロジェクトに存在する必要があります）。
 
-`Use Markdown Format` プロパティが有効だと、生成されるファイルは[マークダウンフォーマット](https://en.wikipedia.org/wiki/Markdown) (拡張子は .md)になり、より見やすいフォーマットになります。
+`Use Markdown Format` プロパティが有効だと、生成されるファイルは[マークダウンフォーマット](https://en.wikipedia.org/wiki/Markdown) (拡張子は )になり、より見やすいフォーマットになります。
 
 ![](https://i.gyazo.com/ed6776026a79140de9e9f6a155faffdc.png)
 

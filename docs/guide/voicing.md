@@ -1,12 +1,12 @@
-﻿# Voicing
+# Voicing
 
 To expose voice clips to the engine, store them under `Resources/Naninovel/Voice` folder (can be changed in audio configuration under `Loader` foldout). You can additionally organize them with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in naninovel scripts. Eg, voice audio clip stored as `Resources/Naninovel/Voice/Intro/Day/25.wav` can be referenced in scripts as `Intro/Day/25`.
 
-It's also possible to use [addressable asset system](/guide/resource-providers.md#addressable) to manually expose the resources. To expose an asset, assign address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "Hello.wav" voice clip, assign the clip asset following address: `Naninovel/Voice/Hello`. Be aware, that addressable provider is not used in editor by default; you can allow it by enabling `Enable Addressable In Editor` property in resource provider configuration menu.
+It's also possible to use [addressable asset system](/guide/resource-providers#addressable) to manually expose the resources. To expose an asset, assign address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "Hello.wav" voice clip, assign the clip asset following address: `Naninovel/Voice/Hello`. Be aware, that addressable provider is not used in editor by default; you can allow it by enabling `Enable Addressable In Editor` property in resource provider configuration menu.
 
 You can use any audio formats [supported by Unity](https://docs.unity3d.com/Manual/AudioFiles.html) for your voice clips.
 
-Voice playback behavior can be configured using `Naninovel -> Configuration -> Audio` context menu; for available options see [configuration guide](/guide/configuration.md#audio).
+Voice playback behavior can be configured using `Naninovel -> Configuration -> Audio` context menu; for available options see [configuration guide](/guide/configuration#audio).
 
 Use [@voice] command followed by the clip name (path) to play the voice in naninovel scripts, eg:
 
@@ -16,7 +16,7 @@ Use [@voice] command followed by the clip name (path) to play the voice in nanin
 
 — will play a voice clip asset stored at `Resources/Naninovel/Voice/Hello.wav`.
 
-::: note
+::: info NOTE
 The [@voice] commands are intended to occasionally play voice clips at specific moments and are not suited for implementing a complete voiceover; see the "Auto Voicing" section below for more information on how to handle voicing in projects, where most of the text lines have an associated voice clip. Some built-in features (eg, replay voice in backlog, voiceover documents, etc) works only with the auto voice workflow.
 :::
 
@@ -30,28 +30,32 @@ The association mode can be selected in the audio configuration via `Auto Voice 
 
 ### Text ID
 
-Text ID mode associates voice clips with localizable text identifiers. The association can be performed either via voice map utility or by assigning addresses to audio clip assets with Unity's addressable asset system (or otherwise exposing the assets to another [resource provider](/guide/resource-providers.md)).
+Text ID mode associates voice clips with localizable text identifiers. The association can be performed either via voice map utility or by assigning addresses to audio clip assets with Unity's addressable asset system (or otherwise exposing the assets to another [resource provider](/guide/resource-providers)).
 
 When Text ID mode is selected, an "Open Voice Map Utility" button will appear in the audio configuration menu; you can also access the utility via `Naninovel -> Tools -> Voice Map` editor menu.
 
-[!3c8fad99f7a18e3f0eaf419c9be92277]
+![](https://i.gyazo.com/3c8fad99f7a18e3f0eaf419c9be92277.mp4)
 
 First, select script file for which to map the voice clips. If the selected script contains any print commands (or generic text lines), they will be listed in pairs with audio clip fields. Drop (or select) a voice clip via the field to associate voice with the text. It's also possible to auto-map the clips; for this name the clip assets equal to the start of the voiced line text and drag the clips (or folder with the clips) to the voice map utility.
 
-::: warn
+::: warning
 When assigning the clips via voice map window, make sure to store the voice clips outside any "Resources" folders to prevent conflicts.
 :::
 
-To associate voice clips for non-source locale, pick [script localization document](/guide/localization.md#scripts-localization) with `Localization Document` field. When valid document is picked, assigned voice clips will be automatically prefixed with the locale under which the document is stored and used whe corresponding [voice language](/guide/voicing.md#voice-language) is selected.
+To associate voice clips for non-source locale, pick [script localization document](/guide/localization#scripts-localization) with `Localization Document` field. When valid document is picked, assigned voice clips will be automatically prefixed with the locale under which the document is stored and used whe corresponding [voice language](/guide/voicing#voice-language) is selected.
 
-In cases same author have equal text messages (in the same or a different script), both messages will be associated with the same voice clip. If that is not desired, add unique text identifier to one of the messages, eg:
+In cases same author have equal text messages (in the same script), both messages will be associated with the same voice clip. If that is not desired, add unique text identifier to one of the messages, eg:
 
 ```nani
 Hello.
-Hello.|uniqueid|
+Hello.|#uniqueid|
 ```
 
-To associate the clips without using voice map utility, expose the assets to a resource provider using text ID as the resource name prefixed by the voice loader prefix (`Voice` by default). To find text ID of a particular text, use [voiceover documents](/guide/voicing.md#voiceover-documents); the ID is displayed after voice's playback spot prefixed by `#`. For example, to associate a line with `2670eb4` ID with addressable resource provider, use the following address `Naninovel/Voice/2670eb4`.
+::: tip
+Enable `Stable Identification` under scripts configuration menu to make Naninovel automatically generate unique IDs for all localizable script text, including voiced lines. This way you won't have to manually assign IDs for duplicate lines and editing already mapped lines won't break the associations. See [text identification](/guide/naninovel-scripts#text-identification) for more info.
+:::
+
+To associate the clips without using voice map utility, expose the assets to a resource provider using text ID as the resource name prefixed by the voice loader prefix (`Voice` by default). To find text ID of a particular text, use [voiceover documents](/guide/voicing#voiceover-documents); the ID is displayed after voice's playback spot prefixed by `#`. For example, to associate a line with `2670eb4` ID with addressable resource provider, use the following address `Naninovel/Voice/2670eb4`.
 
 To find text ID associated with the currently printed text while the game is running use debug window:
 
@@ -73,7 +77,7 @@ Text from a simple generic text line.
 Text from first sentence.[i] Text from second sentence.
 ```
 
-In order for the auto voicing system to play corresponding audio clips when printing those lines, the clips should be placed under `Resources/Naninovel/Voice/Script001` folder (or registered with [addressable system](/guide/resource-providers.md#addressable)) and have the following names:
+In order for the auto voicing system to play corresponding audio clips when printing those lines, the clips should be placed under `Resources/Naninovel/Voice/Script001` folder (or registered with [addressable system](/guide/resource-providers#addressable)) and have the following names:
 
 Text | Voice Clip Name
 --- | ---
@@ -86,9 +90,9 @@ The voice clip names will be displayed in debug window instead of IDs when the m
 
 ## Author Volume
 
-When using auto voicing, you may want to let players control voice volume for specific [characters](/guide/characters.md) or, more correctly, authors of the printed text messages. For example, a player may decide to mute voice of the main protagonist or make a specific character voice lower.
+When using auto voicing, you may want to let players control voice volume for specific [characters](/guide/characters) or, more correctly, authors of the printed text messages. For example, a player may decide to mute voice of the main protagonist or make a specific character voice lower.
 
-To set up per-author voice control, [create a custom settings UI](/guide/user-interface.md#modifying-built-in-ui), add a new slider (you can duplicate "VoiceVolumeSlider" already present in the prefab) and specify author (character) ID in the `Author ID` field.
+To set up per-author voice control, [create a custom settings UI](/guide/user-interface#modifying-built-in-ui), add a new slider (you can duplicate "VoiceVolumeSlider" already present in the prefab) and specify author (character) ID in the `Author ID` field.
 
 ![](https://i.gyazo.com/5a8db32ca5d971f2876f71d35f1a020c.png)
 
@@ -106,7 +110,7 @@ When the property is assigned, "Voice language" dropdown will appear in the game
 
 ![](https://i.gyazo.com/70382bb24637a4d8846c3b65f1ea01d9.png)
 
-For more information on how to localize game resources, see the [localization guide](/guide/localization.md).
+For more information on how to localize game resources, see the [localization guide](/guide/localization).
 
 ## Voiceover Documents
 

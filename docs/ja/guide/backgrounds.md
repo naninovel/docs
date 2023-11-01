@@ -1,10 +1,10 @@
 # 背景
 
- [キャラクター](/ja/guide/characters.md) とは異なり、背景はシーンの *back* レイヤーを表すために使用されるアクターです。ロケーション、シーン、ランドスケープ、その他常にキャラクターの *背後に* 表示される必要があるものです。
+ [キャラクター](/ja/guide/characters) とは異なり、背景はシーンの *back* レイヤーを表すために使用されるアクターです。ロケーション、シーン、ランドスケープ、その他常にキャラクターの *背後に* 表示される必要があるものです。
 
 背景アクターは、名前、外観、可視性、および形状（位置、回転、スケール）で定義されます。 外観、可視性、形状は、時間をかけて変化させることもできます。
 
-背景の動作は、コンテキストメニュー `Naninovel -> Configuration -> Backgrounds` から設定できます。使用可能なオプションについては、 [コンフィグガイド](/ja/guide/configuration.md#backgrounds)を参照してください。背景のリソースマネージャーは、コンテキストメニュー `Naninovel -> Resources -> Backgrounds` からアクセスできます。
+背景の動作は、コンテキストメニュー `Naninovel -> Configuration -> Backgrounds` から設定できます。使用可能なオプションについては、 [コンフィグガイド](/ja/guide/configuration#backgrounds)を参照してください。背景のリソースマネージャーは、コンテキストメニュー `Naninovel -> Resources -> Backgrounds` からアクセスできます。
 
 ![](https://i.gyazo.com/cccd08280dac72d199ea3465bc167a22.gif)
 
@@ -12,7 +12,7 @@
 
 必要に応じて、外観リソースをサブフォルダで整理できます。 その場合、naninovelスクリプトで参照するにはスラッシュ (`/`) を使用します。 たとえば、 `Resources/Naninovel/Backgrounds/MainBackground/Events/CG251` に保存された外観テクスチャは、`Events/CG251` でスクリプトから参照できます。
 
-[addressable asset system](/ja/guide/resource-providers.md#addressable) を使用して手動でリソースを公開することもできます。アセットを公開するには、使用するパスと同じアドレスを "Resources/" の部分を除いて、上記の方法で割り当てます。たとえば、 "Beach" の外観を "MainBackground" で公開するには、次のアドレスにクリップアセットを割り当てます: `Naninovel/Backgrounds/MainBackground/Beach`。 addressable 機能はデフォルトではエディターで使用できないことに注意してください。リソースプロバイダーのコンフィグメニューで `Enable Addressable In Editor` プロパティを有効にすることで許可できます。
+[addressable asset system](/ja/guide/resource-providers#addressable) を使用して手動でリソースを公開することもできます。アセットを公開するには、使用するパスと同じアドレスを "Resources/" の部分を除いて、上記の方法で割り当てます。たとえば、 "Beach" の外観を "MainBackground" で公開するには、次のアドレスにクリップアセットを割り当てます: `Naninovel/Backgrounds/MainBackground/Beach`。 addressable 機能はデフォルトではエディターで使用できないことに注意してください。リソースプロバイダーのコンフィグメニューで `Enable Addressable In Editor` プロパティを有効にすることで許可できます。
 
 naninovel スクリプトでは、背景は基本的に [@back] コマンドで操作します:
 
@@ -110,8 +110,8 @@ naninovel スクリプトでは、背景は基本的に [@back] コマンドで�
 
 対象のプラットフォームによっては、ビデオクリップのインポート設定でトランスコーディングを有効にする必要がある場合があります。
 
-::: example
-シームレスなループが上手くいかないようなら、動画の開始フレームと終了フレームが完全に同じで、互換性のあるエンコーディング設定になっていることを確認してください。[動画をループするサンプルプロジェクト](https://github.com/Elringus/VideoLoop) を参考にしてください。
+::: tip EXAMPLE
+シームレスなループが上手くいかないようなら、動画の開始フレームと終了フレームが完全に同じで、互換性のあるエンコーディング設定になっていることを確認してください。[動画をループするサンプルプロジェクト](https://github.com/Naninovel/Video) を参考にしてください。
 :::
 
 WebGLでは、ビデオプレーヤーはストリーミングモードでのみ機能するため、WebGLプレーヤーのビルド時にすべてのビデオリソースは `Assets/StreamingAssets/Backgrounds` フォルダーにコピーされます。 **StreamingAssets** フォルダーもビルド出力ディレクトリに表示されます。ビルドを公開するときに必ず保存し、お使いのWebサーバーがこのフォルダーからのデータの読み取りを許可しているかどうか確認してください。
@@ -122,7 +122,7 @@ WebGLでは、ビデオプレーヤーはストリーミングモードでのみ
 
 レイヤー背景のプレハブを作るには、コンテキストメニューの `Create -> Naninovel -> Background -> Layered` アセットを使用してください。[プレハブ編集モード](https://docs.unity3d.com/Manual/EditingInPrefabMode.html) に入ってレイヤーを作成します。いくつかのレイヤーとグループがデフォルトで作成されます。そのまま使用するか、削除して独自のものを追加できます。
 
-レイヤー背景は [キャラクター差分](/ja/guide/characters.md#キャラクター差分) とよく似ています。naninovelスクリプトで設定および制御する方法の詳細については、このドキュメントを参照してください。
+レイヤー背景は [キャラクター差分](/ja/guide/characters#キャラクター差分) とよく似ています。naninovelスクリプトで設定および制御する方法の詳細については、このドキュメントを参照してください。
 
 [@back] コマンドの名前のないパラメーターは、外観とトランジションの種類を想定しています（[@char] コマンドのようにIDと外観ではないことに注意してください）。そのため、次のようにレイヤー構成式を指定します:
 
@@ -141,7 +141,7 @@ WebGLでは、ビデオプレーヤーはストリーミングモードでのみ
 
 一般背景は一般キャラクターとよく似ています。実際の利用例として、アニメーション3Dモデルを一般キャラクターとして設定するチュートリアル動画をご覧ください。
 
-[!!HPxhR0I1u2Q]
+![](https://www.youtube.com/watch?v=HPxhR0I1u2Q)
 
 ## シーン背景
 

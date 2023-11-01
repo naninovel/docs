@@ -1,12 +1,12 @@
-﻿---
+---
 sidebar: auto
 ---
 
 # API Reference
 
-Script commands API reference. Use the side bar to quickly navigate between available commands. 
+Script commands API reference. Use the side bar to quickly navigate between available commands.
 
-~~Strikethrough~~ indicates a nameless parameter, and **bold** stands for required parameter; other parameters should be considered optional. Consult [naninovel scripts guide](/zh/uide/naninovel-scripts.md) in case you have no idea what's this all about.
+~~Strikethrough~~ indicates a nameless parameter, and **bold** stands for required parameter; other parameters should be considered optional. Consult [naninovel scripts guide](/zh/guide/naninovel-scripts) in case you have no idea what's this all about.
 
 The following parameters are supported by all the script commands:
 
@@ -14,12 +14,12 @@ The following parameters are supported by all the script commands:
 
 ID | Type | Description
 --- | --- | ---
-if | String |  A boolean [script expression](/zh/uide/script-expressions.md), controlling whether the command should execute.
+if | String |  A boolean [script expression](/zh/guide/script-expressions), controlling whether the command should execute.
 wait | Boolean | Whether the script player should wait for the async command to finish execution before executing the next one. Has no effect when the command is executed instantly.
 
 </div>
 
-::: note
+::: info NOTE
 This API reference is valid for [Naninovel v1.11](https://github.com/Naninovel/Documentation/releases).
 :::
 
@@ -40,7 +40,7 @@ ID | Type | Description
 <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">ActorIds</span> | List&lt;String&gt; | IDs of the actors to animate.
 loop | Boolean | Whether to loop the animation; make sure to set `wait` to false when loop is enabled,  otherwise script playback will loop indefinitely.
 appearance | String | Appearances to set for the animated actors.
-transition | String | Type of the [transition effect](/zh/uide/transition-effects.md) to use when animating appearance change (crossfade is used by default).
+transition | String | Type of the [transition effect](/zh/guide/transition-effects) to use when animating appearance change (crossfade is used by default).
 visibility | String | Visibility status to set for the animated actors.
 posX | String | Position values over X-axis (in 0 to 100 range, in percents from the left border of the screen) to set for the animated actors.
 posY | String | Position values over Y-axis (in 0 to 100 range, in percents from the bottom border of the screen) to set for the animated actors.
@@ -135,7 +135,7 @@ time | Decimal | Duration (in seconds) of the arrangement animation. Default val
 ## back
 
 #### Summary
-Modifies a [background actor](/zh/uide/backgrounds.md).
+Modifies a [background actor](/zh/guide/backgrounds).
 
 #### Remarks
 Backgrounds are handled a bit differently from characters to better accommodate traditional VN game flow.  Most of the time you'll probably have a single background actor on scene, which will constantly transition to different appearances.  To remove the hassle of repeating same actor ID in scripts, it's possible to provide only  the background appearance and transition type (optional) as a nameless parameter assuming `MainBackground`  actor should be affected. When this is not the case, ID of the background actor can be explicitly provided via the `id` parameter.
@@ -146,13 +146,13 @@ Backgrounds are handled a bit differently from characters to better accommodate 
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">AppearanceAndTransition</span> | Named&lt;String&gt; | Appearance (or [pose](/zh/uide/backgrounds.md#poses)) to set for the modified background and type of a [transition effect](/zh/uide/transition-effects.md) to use.  When transition is not provided, a cross-fade effect will be used by default.
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">AppearanceAndTransition</span> | Named&lt;String&gt; | Appearance (or [pose](/zh/guide/backgrounds#poses)) to set for the modified background and type of a [transition effect](/zh/guide/transition-effects) to use.  When transition is not provided, a cross-fade effect will be used by default.
 pos | List&lt;Decimal&gt; | Position (relative to the screen borders, in percents) to set for the modified actor.  Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the screen.  Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode.
 id | String | ID of the actor to modify; specify `*` to affect all visible actors.
 appearance | String | Appearance (or pose) to set for the modified actor.
-transition | String | Type of the [transition effect](/zh/uide/transition-effects.md) to use (crossfade is used by default).
+transition | String | Type of the [transition effect](/zh/guide/transition-effects) to use (crossfade is used by default).
 params | List&lt;Decimal&gt; | Parameters of the transition effect.
-dissolve | String | Path to the [custom dissolve](/zh/uide/transition-effects.md#custom-transition-effects) texture (path should be relative to a `Resources` folder).  Has effect only when the transition is set to `Custom` mode.
+dissolve | String | Path to the [custom dissolve](/zh/guide/transition-effects#custom-transition-effects) texture (path should be relative to a `Resources` folder).  Has effect only when the transition is set to `Custom` mode.
 visible | Boolean | Visibility status to set for the modified actor.
 position | List&lt;Decimal&gt; | Position (in world space) to set for the modified actor.  Use Z-component (third member) to move (sort) by depth while in ortho mode.
 rotation | List&lt;Decimal&gt; | Rotation to set for the modified actor.
@@ -190,7 +190,7 @@ time | Decimal | Duration (in seconds) of the modification. Default value: 0.35 
 ## bgm
 
 #### Summary
-Plays or modifies currently played [BGM (background music)](/zh/uide/audio.md#background-music) track with the provided name.
+Plays or modifies currently played [BGM (background music)](/zh/guide/audio#background-music) track with the provided name.
 
 #### Remarks
 Music tracks are looped by default.  When music track name (BgmPath) is not specified, will affect all the currently played tracks.  When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start),  but the specified parameters (volume and whether the track is looped) will be applied.
@@ -268,8 +268,8 @@ roll | Decimal | Local camera rotation by Z-axis in angle degrees (0.0 to 360.0 
 rotation | List&lt;Decimal&gt; | Local camera rotation over X,Y,Z-axes in angle degrees (0.0 to 360.0 or -180.0 to 180.0).
 zoom | Decimal | Relatize camera zoom (orthographic size or field of view, depending on the render mode), in 0.0 (no zoom) to 1.0 (full zoom) range.
 ortho | Boolean | Whether the camera should render in orthographic (true) or perspective (false) mode.
-toggle | List&lt;String&gt; | Names of the components to toggle (enable if disabled and vice-versa). The components should be attached to the same gameobject as the camera.  This can be used to toggle [custom post-processing effects](/zh/uide/special-effects.md#camera-effects).
-set | List&lt;Named&lt;Boolean&gt;&gt; | Names of the components to enable or disable. The components should be attached to the same gameobject as the camera.  This can be used to explicitly enable or disable [custom post-processing effects](/zh/uide/special-effects.md#camera-effects).  Specified components enabled state will override effect of `toggle` parameter.
+toggle | List&lt;String&gt; | Names of the components to toggle (enable if disabled and vice-versa). The components should be attached to the same gameobject as the camera.  This can be used to toggle [custom post-processing effects](/zh/guide/special-effects#camera-effects).
+set | List&lt;Named&lt;Boolean&gt;&gt; | Names of the components to enable or disable. The components should be attached to the same gameobject as the camera.  This can be used to explicitly enable or disable [custom post-processing effects](/zh/guide/special-effects#camera-effects).  Specified components enabled state will override effect of `toggle` parameter.
 easing | String | Name of the easing function to use for the modification.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  When not specified, will use a default easing function set in the camera configuration settings.
 time | Decimal | Duration (in seconds) of the modification. Default value: 0.35 seconds.
 
@@ -302,7 +302,7 @@ time | Decimal | Duration (in seconds) of the modification. Default value: 0.35 
 ## char
 
 #### Summary
-Modifies a [character actor](/zh/uide/characters.md).
+Modifies a [character actor](/zh/guide/characters).
 
 #### Parameters
 
@@ -310,15 +310,15 @@ Modifies a [character actor](/zh/uide/characters.md).
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">IdAndAppearance</span> | Named&lt;String&gt; | ID of the character to modify (specify `*` to affect all visible characters) and an appearance (or [pose](/zh/uide/characters.md#poses)) to set.  When appearance is not provided, will use either a `Default` (is exists) or a random one.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">IdAndAppearance</span> | Named&lt;String&gt; | ID of the character to modify (specify `*` to affect all visible characters) and an appearance (or [pose](/zh/guide/characters#poses)) to set.  When appearance is not provided, will use either a `Default` (is exists) or a random one.
 look | String | Look direction of the actor; supported values: left, right, center.
-avatar | String | Name (path) of the [avatar texture](/zh/uide/characters.md#avatar-textures) to assign for the character.  Use `none` to remove (un-assign) avatar texture from the character.
+avatar | String | Name (path) of the [avatar texture](/zh/guide/characters#avatar-textures) to assign for the character.  Use `none` to remove (un-assign) avatar texture from the character.
 pos | List&lt;Decimal&gt; | Position (relative to the screen borders, in percents) to set for the modified actor.  Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the screen.  Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode.
 id | String | ID of the actor to modify; specify `*` to affect all visible actors.
 appearance | String | Appearance (or pose) to set for the modified actor.
-transition | String | Type of the [transition effect](/zh/uide/transition-effects.md) to use (crossfade is used by default).
+transition | String | Type of the [transition effect](/zh/guide/transition-effects) to use (crossfade is used by default).
 params | List&lt;Decimal&gt; | Parameters of the transition effect.
-dissolve | String | Path to the [custom dissolve](/zh/uide/transition-effects.md#custom-transition-effects) texture (path should be relative to a `Resources` folder).  Has effect only when the transition is set to `Custom` mode.
+dissolve | String | Path to the [custom dissolve](/zh/guide/transition-effects#custom-transition-effects) texture (path should be relative to a `Resources` folder).  Has effect only when the transition is set to `Custom` mode.
 visible | Boolean | Visibility status to set for the modified actor.
 position | List&lt;Decimal&gt; | Position (in world space) to set for the modified actor.  Use Z-component (third member) to move (sort) by depth while in ortho mode.
 rotation | List&lt;Decimal&gt; | Rotation to set for the modified actor.
@@ -352,7 +352,7 @@ time | Decimal | Duration (in seconds) of the modification. Default value: 0.35 
 ## choice
 
 #### Summary
-Adds a [choice](/zh/uide/choices.md) option to a choice handler with the specified ID (or default one).
+Adds a [choice](/zh/guide/choices) option to a choice handler with the specified ID (or default one).
 
 #### Remarks
 When `goto`, `gosub` and `do` parameters are not specified, will continue script execution from the next script line.
@@ -364,7 +364,7 @@ When `goto`, `gosub` and `do` parameters are not specified, will continue script
 ID | Type | Description
 --- | --- | ---
 <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">ChoiceSummary</span> | String | Text to show for the choice.  When the text contain spaces, wrap it in double quotes (`"`).  In case you wish to include the double quotes in the text itself, escape them.
-button | String | Path (relative to a `Resources` folder) to a [button prefab](/zh/uide/choices.md#choice-button) representing the choice.  The prefab should have a `ChoiceHandlerButton` component attached to the root object.  Will use a default button when not provided.
+button | String | Path (relative to a `Resources` folder) to a [button prefab](/zh/guide/choices#choice-button) representing the choice.  The prefab should have a `ChoiceHandlerButton` component attached to the root object.  Will use a default button when not provided.
 pos | List&lt;Decimal&gt; | Local position of the choice button inside the choice handler (if supported by the handler implementation).
 handler | String | ID of the choice handler to add choice for. Will use a default handler if not provided.
 goto | Named&lt;String&gt; | Path to go when the choice is selected by user;  see [@goto] command for the path format.
@@ -418,7 +418,7 @@ Don't forget about cucumbers!
 ## clearBacklog
 
 #### Summary
-Removes all the messages from [printer backlog](/zh/uide/text-printers.md#printer-backlog).
+Removes all the messages from [printer backlog](/zh/guide/text-printers#printer-backlog).
 
 #### Example
 ```
@@ -484,12 +484,12 @@ params | List&lt;String&gt; | Parameters to set before destoying the prefab.  Re
 ## else
 
 #### Summary
-Marks a branch of a conditional execution block,  which is always executed in case conditions of the opening [@if] and all the preceding [@elseif] (if any) commands are not met.  For usage examples see [conditional execution](/zh/uide/naninovel-scripts.md#conditional-execution) guide.
+Marks a branch of a conditional execution block,  which is always executed in case conditions of the opening [@if] and all the preceding [@elseif] (if any) commands are not met.  For usage examples see [conditional execution](/zh/guide/naninovel-scripts#conditional-execution) guide.
 
 ## elseIf
 
 #### Summary
-Marks a branch of a conditional execution block,  which is executed in case own condition is met (expression is evaluated to be true), while conditions of the opening [@if]  and all the preceding [@elseif] (if any) commands are not met.  For usage examples see [conditional execution](/zh/uide/naninovel-scripts.md#conditional-execution) guide.
+Marks a branch of a conditional execution block,  which is executed in case own condition is met (expression is evaluated to be true), while conditions of the opening [@if]  and all the preceding [@elseif] (if any) commands are not met.  For usage examples see [conditional execution](/zh/guide/naninovel-scripts#conditional-execution) guide.
 
 #### Parameters
 
@@ -497,14 +497,14 @@ Marks a branch of a conditional execution block,  which is executed in case own 
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | A [script expression](/zh/uide/script-expressions.md), which should return a boolean value.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | A [script expression](/zh/guide/script-expressions), which should return a boolean value.
 
 </div>
 
 ## endIf
 
 #### Summary
-Closes an [@if] conditional execution block.  For usage examples see [conditional execution](/zh/uide/naninovel-scripts.md#conditional-execution) guide.
+Closes an [@if] conditional execution block.  For usage examples see [conditional execution](/zh/guide/naninovel-scripts#conditional-execution) guide.
 
 ## finishTrans
 
@@ -517,9 +517,9 @@ Finishes scene transition started with [@startTrans] command;  see the start com
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">Transition</span> | String | Type of the [transition effect](/zh/uide/transition-effects.md) to use (crossfade is used by default).
+<span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID">Transition</span> | String | Type of the [transition effect](/zh/guide/transition-effects) to use (crossfade is used by default).
 params | List&lt;Decimal&gt; | Parameters of the transition effect.
-dissolve | String | Path to the [custom dissolve](/zh/uide/transition-effects.md#custom-transition-effects) texture (path should be relative to a `Resources` folder).  Has effect only when the transition is set to `Custom` mode.
+dissolve | String | Path to the [custom dissolve](/zh/guide/transition-effects#custom-transition-effects) texture (path should be relative to a `Resources` folder).  Has effect only when the transition is set to `Custom` mode.
 easing | String | Name of the easing function to use for the modification.  <br /><br />  Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic.  <br /><br />  When not specified, will use a default easing function set in the actor's manager configuration settings.
 time | Decimal | Duration (in seconds) of the transition. Default value: 0.35 seconds.
 
@@ -578,7 +578,7 @@ You are victorious!
 ## goto
 
 #### Summary
-Navigates naninovel script playback to the provided path.  When the path leads to another (not the currently played) naninovel script, will also [reset state](/zh/pi/#resetstate)  before loading the target script, unless [ResetStateOnLoad](https://naninovel.com/guide/configuration.html#state) is disabled in the configuration.
+Navigates naninovel script playback to the provided path.  When the path leads to another (not the currently played) naninovel script, will also [reset state](/zh/api/#resetstate)  before loading the target script, unless [ResetStateOnLoad](https://naninovel.com/guide/configuration.html#state) is disabled in the configuration.
 
 #### Parameters
 
@@ -699,7 +699,7 @@ time | Decimal | Duration (in seconds) of the hide animation.  Default value for
 ## hideUI
 
 #### Summary
-Makes [UI elements](/zh/uide/user-interface.md#ui-customization) with the specified names invisible.  When no names are specified, will stop rendering (hide) the entire UI (including all the built-in UIs).
+Makes [UI elements](/zh/guide/user-interface#ui-customization) with the specified names invisible.  When no names are specified, will stop rendering (hide) the entire UI (including all the built-in UIs).
 
 #### Remarks
 When hiding the entire UI with this command and `allowToggle` parameter is false (default), user won't be able to re-show the UI  back with hotkeys or by clicking anywhere on the screen; use [@showUI] command to make the UI ~~great~~ visible again.
@@ -749,7 +749,7 @@ Lorem ipsum dolor sit amet.[i] Consectetur adipiscing elit.
 ## if
 
 #### Summary
-Marks the beginning of a conditional execution block.  Should always be closed with an [@endif] command.  For usage examples see [conditional execution](/zh/uide/naninovel-scripts.md#conditional-execution) guide.
+Marks the beginning of a conditional execution block.  Should always be closed with an [@endif] command.  For usage examples see [conditional execution](/zh/guide/naninovel-scripts#conditional-execution) guide.
 
 #### Parameters
 
@@ -757,7 +757,7 @@ Marks the beginning of a conditional execution block.  Should always be closed w
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | A [script expression](/zh/uide/script-expressions.md), which should return a boolean value.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | A [script expression](/zh/guide/script-expressions), which should return a boolean value.
 
 </div>
 
@@ -767,7 +767,7 @@ ID | Type | Description
 Shows an input field UI where user can enter an arbitrary text.  Upon submit the entered text will be assigned to the specified custom variable.
 
 #### Remarks
-Check out this [video guide](https://youtu.be/F9meuMzvGJw) on usage example.  <br /><br />  To assign a display name for a character using this command consider [binding the name to a custom variable](/zh/uide/characters.html#display-names).
+Check out this [video guide](https://youtu.be/F9meuMzvGJw) on usage example.  <br /><br />  To assign a display name for a character using this command consider [binding the name to a custom variable](/zh/guide/characters.html#display-names).
 
 #### Parameters
 
@@ -800,7 +800,7 @@ Archibald: Greetings, {name}!
 ## lipSync
 
 #### Summary
-Allows to force-stop the lip sync mouth animation for a character with the provided ID; when stopped, the animation  won't start again, until this command is used again to allow it.  The character should be able to receive the lip sync events (currently generic and Live2D implementations only).  See [characters guide](/zh/uide/characters.md#lip-sync) for more information on lip sync feature.
+Allows to force-stop the lip sync mouth animation for a character with the provided ID; when stopped, the animation  won't start again, until this command is used again to allow it.  The character should be able to receive the lip sync events (currently generic and Live2D implementations only).  See [characters guide](/zh/guide/characters#lip-sync) for more information on lip sync feature.
 
 #### Parameters
 
@@ -846,10 +846,10 @@ additive | Boolean | Whether to load the scene additively, or unload any current
 ## lock
 
 #### Summary
-Sets an [unlockable item](/zh/uide/unlockable-items.md) with the provided ID to `locked` state.
+Sets an [unlockable item](/zh/guide/unlockable-items) with the provided ID to `locked` state.
 
 #### Remarks
-The unlocked state of the items is stored in [global scope](/zh/uide/state-management.md#global-state).<br />  In case item with the provided ID is not registered in the global state map,  the corresponding record will automatically be added.
+The unlocked state of the items is stored in [global scope](/zh/guide/state-management#global-state).<br />  In case item with the provided ID is not registered in the global state map,  the corresponding record will automatically be added.
 
 #### Parameters
 
@@ -963,7 +963,7 @@ fadeTime | Decimal | Controls duration (in seconds) of the printers show and hid
 ## printer
 
 #### Summary
-Modifies a [text printer actor](/zh/uide/text-printers.md).
+Modifies a [text printer actor](/zh/guide/text-printers).
 
 #### Parameters
 
@@ -1113,10 +1113,10 @@ Automatically save the game to a quick save slot.
 ## set
 
 #### Summary
-Assigns result of a [script expression](/zh/uide/script-expressions.md) to a [custom variable](/zh/uide/custom-variables.md).
+Assigns result of a [script expression](/zh/guide/script-expressions) to a [custom variable](/zh/guide/custom-variables).
 
 #### Remarks
-Variable name should be alphanumeric (latin characters only) and can contain underscores, eg: `name`, `Char1Score`, `my_score`;  the names are case-insensitive, eg: `myscore` is equal to `MyScore`. If a variable with the provided name doesn't exist, it will be automatically created.  <br /><br />  It's possible to define multiple set expressions in one line by separating them with `;`. The expressions will be executed in sequence by the order of declaratation.  <br /><br />  Custom variables are stored in **local scope** by default. This means, that if you assign some variable in the course of gameplay  and player starts a new game or loads another saved game slot, where that variable wasn't assigned — the value will be lost.  If you wish to store the variable in **global scope** instead, prepend `G_` or `g_` to its name, eg: `G_FinishedMainRoute` or `g_total_score`.  <br /><br />  In case variable name starts with `T_` or `t_` it's considered a reference to a value stored in 'Script' [managed text](/zh/uide/managed-text.md) document.  Such variables can't be assiged and mostly used for referencing localizable text values.  <br /><br />  You can get and set custom variables in C# scripts via `CustomVariableManager` [engine service](/zh/uide/engine-services.md).
+Variable name should be alphanumeric (latin characters only) and can contain underscores, eg: `name`, `Char1Score`, `my_score`;  the names are case-insensitive, eg: `myscore` is equal to `MyScore`. If a variable with the provided name doesn't exist, it will be automatically created.  <br /><br />  It's possible to define multiple set expressions in one line by separating them with `;`. The expressions will be executed in sequence by the order of declaratation.  <br /><br />  Custom variables are stored in **local scope** by default. This means, that if you assign some variable in the course of gameplay  and player starts a new game or loads another saved game slot, where that variable wasn't assigned — the value will be lost.  If you wish to store the variable in **global scope** instead, prepend `G_` or `g_` to its name, eg: `G_FinishedMainRoute` or `g_total_score`.  <br /><br />  In case variable name starts with `T_` or `t_` it's considered a reference to a value stored in 'Script' [managed text](/zh/guide/managed-text) document.  Such variables can't be assiged and mostly used for referencing localizable text values.  <br /><br />  You can get and set custom variables in C# scripts via `CustomVariableManager` [engine service](/zh/guide/engine-services).
 
 #### Parameters
 
@@ -1124,7 +1124,7 @@ Variable name should be alphanumeric (latin characters only) and can contain und
 
 ID | Type | Description
 --- | --- | ---
-<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | Set expression.  <br /><br />  The expression should be in the following format: `VariableName=ExpressionBody`, where `VariableName` is the name of the custom  variable to assign and `ExpressionBody` is a [script expression](/zh/uide/script-expressions.md), the result of which should be assigned to the variable.  <br /><br />  It's also possible to use increment and decrement unary operators, eg: `@set foo++`, `@set foo--`.
+<span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifer without specifying parameter ID  Required parameter: parameter should always be specified">Expression</span> | String | Set expression.  <br /><br />  The expression should be in the following format: `VariableName=ExpressionBody`, where `VariableName` is the name of the custom  variable to assign and `ExpressionBody` is a [script expression](/zh/guide/script-expressions), the result of which should be assigned to the variable.  <br /><br />  It's also possible to use increment and decrement unary operators, eg: `@set foo++`, `@set foo--`.
 
 </div>
 
@@ -1180,7 +1180,7 @@ ID | Type | Description
 ## sfx
 
 #### Summary
-Plays or modifies currently played [SFX (sound effect)](/zh/uide/audio.md#sound-effects) track with the provided name.
+Plays or modifies currently played [SFX (sound effect)](/zh/guide/audio#sound-effects) track with the provided name.
 
 #### Remarks
 Sound effect tracks are not looped by default.  When sfx track name (SfxPath) is not specified, will affect all the currently played tracks.  When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start),  but the specified parameters (volume and whether the track is looped) will be applied.
@@ -1264,7 +1264,7 @@ time | Decimal | Duration (in seconds) of the show animation.  Default value for
 ## showUI
 
 #### Summary
-Makes [UI elements](/zh/uide/user-interface.md) with the specified prefab names visible.  When no names are specified, will reveal the entire UI (in case it was hidden with [@hideUI]).
+Makes [UI elements](/zh/guide/user-interface) with the specified prefab names visible.  When no names are specified, will reveal the entire UI (in case it was hidden with [@hideUI]).
 
 #### Parameters
 
@@ -1366,7 +1366,7 @@ time | Decimal | Duration (in seconds) of the slide animation. Default value: 0.
 ## spawn
 
 #### Summary
-Instantiates a prefab or a [special effect](/zh/uide/special-effects.md);  when performed over an already spawned object, will update the spawn parameters instead.
+Instantiates a prefab or a [special effect](/zh/guide/special-effects);  when performed over an already spawned object, will update the spawn parameters instead.
 
 #### Remarks
 If prefab has a `UnityEngine.MonoBehaviour` component attached the root object, and the component implements  a `Naninovel.Commands.Spawn.IParameterized` interface, will pass the specified `params` values after the spawn;  if the component implements `Naninovel.Commands.Spawn.IAwaitable` interface, command execution will wait for  the async completion task returned by the implementation.
@@ -1394,7 +1394,7 @@ params | List&lt;String&gt; | Parameters to set when spawning the prefab.  Requi
 Begins scene transition masking the real scene content with anything that is visible at the moment (except the UI).  When the new scene is ready, finish with [@finishTrans] command.
 
 #### Remarks
-The UI will be hidden and user input blocked while the transition is in progress.  You can change that by overriding the `ISceneTransitionUI`, which handles the transition process.<br /><br />  For the list of available transition effect options see [transition effects](/zh/uide/transition-effects.md) guide.
+The UI will be hidden and user input blocked while the transition is in progress.  You can change that by overriding the `ISceneTransitionUI`, which handles the transition process.<br /><br />  For the list of available transition effect options see [transition effects](/zh/guide/transition-effects) guide.
 
 #### Example
 ```
@@ -1491,7 +1491,7 @@ Stops playback of the currently played voice clip.
 ## style
 
 #### Summary
-Permamently applies [text styles](/zh/uide/text-printers.md#text-styles) to the contents of a text printer.
+Permamently applies [text styles](/zh/guide/text-printers#text-styles) to the contents of a text printer.
 
 #### Remarks
 You can also use rich text tags inside text messages to apply the styles selectively.
@@ -1534,10 +1534,10 @@ Resets engine state and shows `ITitleUI` UI (main menu).
 ## unlock
 
 #### Summary
-Sets an [unlockable item](/zh/uide/unlockable-items.md) with the provided ID to `unlocked` state.
+Sets an [unlockable item](/zh/guide/unlockable-items) with the provided ID to `unlocked` state.
 
 #### Remarks
-The unlocked state of the items is stored in [global scope](/zh/uide/state-management.md#global-state).<br />  In case item with the provided ID is not registered in the global state map,  the corresponding record will automatically be added.
+The unlocked state of the items is stored in [global scope](/zh/guide/state-management#global-state).<br />  In case item with the provided ID is not registered in the global state map,  the corresponding record will automatically be added.
 
 #### Parameters
 
@@ -1603,4 +1603,3 @@ Lorem ipsum[i] dolor sit amet.
 Jeez, what a disgusting noise. Shut it down![wait i5][skipInput]
 @stopSfx Noise
 ```
-

@@ -13,7 +13,7 @@ Each unlockable item is represented by a string identifier and boolean value, in
 ```
 — will lock it back.
 
-The unlockable state of the items is stored under [global scope](/guide/state-management.md#global-state) and doesn't depend on local game sessions; eg, if you unlock some item, it won't become locked again when player starts a new game or loads another saved game.
+The unlockable state of the items is stored under [global scope](/guide/state-management#global-state) and doesn't depend on local game sessions; eg, if you unlock some item, it won't become locked again when player starts a new game or loads another saved game.
 
 To bind an actual [GameObject](https://docs.unity3d.com/Manual/class-GameObject.html) with the unlockable item, use `UnlockableTrigger` component:
 
@@ -21,9 +21,9 @@ To bind an actual [GameObject](https://docs.unity3d.com/Manual/class-GameObject.
 
 Set the item's ID to the `Unlockable Item Id` field and bind a command that should be performed when the item is unlocked. The illustration above, for example, makes the GameObject active when `SecretAchievement` is unlocked and vice versa.
 
-In C# you can access the unlockable items using `UnlockableManager` [engine service](/guide/engine-services.md).
+In C# you can access the unlockable items using `UnlockableManager` [engine service](/guide/engine-services).
 
-::: example
+::: tip EXAMPLE
 Find example on using the unlockable system to implement music gallery without any C# scripting in the [UI example project](https://github.com/Naninovel/CustomUIExample) on GitHub. Other types of unlockable galleries (movies, achievements, etc.) can be implemented in a similar fashion.
 :::
 
@@ -33,15 +33,15 @@ Under the unlockables configuration menu (`Naninovel -> Configuration -> Unlocka
 
 ![](https://i.gyazo.com/17fa198861ed72de3ab1f9dc6b02b3d8.png)
 
-The unlockable resources are used by the built-in unlockable systems, such as [CG Gallery](/guide/unlockable-items.md#cg-gallery). You can also utilize the manager for you own custom systems.
+The unlockable resources are used by the built-in unlockable systems, such as [CG Gallery](/guide/unlockable-items#cg-gallery). You can also utilize the manager for you own custom systems.
 
 ## CG Gallery
 
 Using the CG gallery feature, you can specify texture resources (images), that can be unlocked throughout the game and then browsed via the `ICGGalleryUI` UI accessible from the title menu.
 
-[!!wkZeszk6gm0]
+![](https://www.youtube.com/watch?v=wkZeszk6gm0)
 
-By default, all the unlockable texture resources with `CG` prefix added via [unlockable resources manager](/guide/unlockable-items.md#unlockable-resources) and [background](/guide/backgrounds.md) sprite resources of the `MainBackground` actor with the same prefix will be considered unlockable CG items.
+By default, all the unlockable texture resources with `CG` prefix added via [unlockable resources manager](/guide/unlockable-items#unlockable-resources) and [background](/guide/backgrounds) sprite resources of the `MainBackground` actor with the same prefix will be considered unlockable CG items.
 
 To add an unlockable CG item to the gallery, you can either use one of the existing main background resources, by prepending `CG` to its path:
 
@@ -59,7 +59,7 @@ To group multiple CGs into one gallery slot (eg, variations of a single scene), 
 
 — they all will be grouped under a single CG slot and shown in sequence with crossfade effect when player clicks the screen.
 
-::: note
+::: info NOTE
 CG slots in the UI grid are arranged left to right, top to bottom and ordered by the unlockable path name. Position in the resources editor menu is ignored. In case you want to arrange the slots in a specific order, name the resources accordingly, eg:
 - `CG/01`
 - `CG/02_1`
@@ -81,21 +81,21 @@ In case you'll use both unlockable and background resources to add the CG items,
 
 When there is at least one CG item added to any of the sources (no matter the unlocked state), `CG GALLERY` button will appear in the title menu allowing to access the CG Gallery browser.
 
-You can modify or completely replace the built-in `ICGGalleryUI` implementation using the [UI customization feature](/guide/user-interface.md#ui-customization).
+You can modify or completely replace the built-in `ICGGalleryUI` implementation using the [UI customization feature](/guide/user-interface#ui-customization).
 
 ## Tips
 
-Unlockable tips system allows to specify a set of text records using localizable [managed text](/guide/managed-text.md) documents; the records can then be unlocked throughout the game and be browsed via the `ITipsUI` UI accessible from the title menu and text printer control panels.
+Unlockable tips system allows to specify a set of text records using localizable [managed text](/guide/managed-text) documents; the records can then be unlocked throughout the game and be browsed via the `ITipsUI` UI accessible from the title menu and text printer control panels.
 
 The system can be used to build an in-game vocabulary/encyclopedia or achievements tracker.
 
-[!!CRZuS1u_J4c]
+![](https://www.youtube.com/watch?v=CRZuS1u_J4c)
 
-:::note
+::: info NOTE
 Video above is demonstrating inline managed text document format, which is not the default for tips in modern Naninovel versions; see below on the current default (multiline) format and how to switch to inline.
 :::
 
-To define the available tips, create a `Tips.txt` text document inside the [managed text](/guide/managed-text.md) resources directory (`Resources/Naninovel/Text` by default). Format is similar to script localization documents (multiline): lines starting with `#` stores tip ID (key); lines below correspond to the tip record value, which can contain title (required), category and description (optional) seperated by `|`, eg:
+To define the available tips, create a `Tips.txt` text document inside the [managed text](/guide/managed-text) resources directory (`Resources/Naninovel/Text` by default). Format is similar to script localization documents (multiline): lines starting with `#` stores tip ID (key); lines below correspond to the tip record value, which can contain title (required), category and description (optional) seperated by `|`, eg:
 
 ```
 # Tip1ID
@@ -103,7 +103,7 @@ Tip 1 Title | Tip 1 Category | Tip 1 Description
 # Tip2ID
 Tip 2 Title || Tip 2 Description
 # Tip3ID
-Tip 3 Title 
+Tip 3 Title
 # Tip4ID
 Tip 4 Title | Tip 4 Category |
 ```
@@ -141,9 +141,9 @@ To unlock a tip record, use [@unlock] and [@lock] to lock the record back follow
 
 ### Tips in Printers
 
-It's possible to automatically unlock tips when associated text is printed via a [TMPro printer](/guide/text-printers.md#textmesh-pro); additionally, when such text is clicked by player `ITipsUI` UI will be automatically shown with the associated tip record selected.
+It's possible to automatically unlock tips when associated text is printed via a [TMPro printer](/guide/text-printers#textmesh-pro); additionally, when such text is clicked by player `ITipsUI` UI will be automatically shown with the associated tip record selected.
 
-[!3c0d761576c351066022be32b8595e6d]
+![](https://i.gyazo.com/3c0d761576c351066022be32b8595e6d.mp4)
 
 To associate printed text with a tip, use `<tip>` tags, eg:
 
@@ -152,7 +152,7 @@ Lorem ipsum <tip="VN">visual novel</tip> pharetra nec.
 ```
 — given a tip record with "VN" ID exist, the associated "visual novel" text (when printed by a TMPro printer) will be underlined, the tip record unlocked and when player clicks the text, tips UI will open and show the related record.
 
-To change printer-related tips handling behaviour (eg, modifying formatting of the associated text or adding custom behaviour when the tips are clicked) use the properties under "Tips" section found in `Revealable TMPro Text` component attached to the text game object of all the built-in TMPro text printer prefabs; see the [guide](/guide/text-printers.md#adding-custom-printers) on how to create custom printers to tweak them.
+To change printer-related tips handling behaviour (eg, modifying formatting of the associated text or adding custom behaviour when the tips are clicked) use the properties under "Tips" section found in `Revealable TMPro Text` component attached to the text game object of all the built-in TMPro text printer prefabs; see the [guide](/guide/text-printers#adding-custom-printers) on how to create custom printers to tweak them.
 
 ![](https://i.gyazo.com/ec20da3f00b507428540d60f354bdeed.png)
 

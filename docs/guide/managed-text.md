@@ -36,7 +36,7 @@ When `ManagedTextProvider` component is used in a custom UI, text printer or cho
 
 ## Managed Text Variables
 
-It's also possible to bind managed text records with variables in the source code. For this, add `ManagedText` attribute to a static string field and declaring class. Field's value will be overwritten with the value specified in the managed text document on engine initialization. 
+It's also possible to bind managed text records with variables in the source code. For this, add `ManagedText` attribute to a static string field and declaring class. Field's value will be overwritten with the value specified in the managed text document on engine initialization.
 
 Below is an example on using a managed text variable to localize a text label in a C# script.
 
@@ -44,30 +44,31 @@ Below is an example on using a managed text variable to localize a text label in
 using Naninovel;
 using UnityEngine.UI;
 
-// Inheriting our class from the Unity's text component, so we can use it as one.
+// Inheriting from Unity's text component, so we can use it as one.
 [ManagedText]
 public class CustomLabel : Text
 {
-    // Value of the "CustomLabel.LabelText" managed text record will be assigned 
-    // to the below variable on engine initialization and updated on locale changes.
-    [ManagedText("MyCustomUI")] // "MyCustomUI" is the name of managed text document where the record will be kept.
-    public static string LabelText = "Default Value"; // "Default Value" is the default value of the record.
+    // Value of the "CustomLabel.LabelText" managed text record will be assigned
+    // to the below variable on engine init and updated on locale changes.
+    [ManagedText("foo")] // "foo" is the document name for the record.
+    public static string LabelText = "bar"; // "bar" is the default value.
 
     protected override void Awake ()
     {
         base.Awake();
 
-        text = LabelText; // Assign current value of the managed text record to the label.
+        text = LabelText; // Assign current record value to the label.
 
+        var l10n = Engine.GetService<ILocalizationManager>();
         // Update the label when user changes the locale at runtime.
-        Engine.GetService<ILocalizationManager>().OnLocaleChanged += _ => text = LabelText;
+        l10n.OnLocaleChanged += _ => text = LabelText;
     }
 }
 ```
 
 ## Script Text
 
-It's possible to get managed text values directly from naninovel scripts. This could be handy, when it's required to use some text in the script expressions and the text should be localizable. 
+It's possible to get managed text values directly from naninovel scripts. This could be handy, when it's required to use some text in the script expressions and the text should be localizable.
 
 Create a managed text document named "Script" and add records using keys with `T_` or `t_` prefix. It's now possible to reference the values in script expressions; eg given the following records in the "Script" managed text document:
 
@@ -75,7 +76,7 @@ Create a managed text document named "Script" and add records using keys with `T
 T_Greeting1: Hey!
 T_Greeting2: Hello!
 T_Greeting3: Hi!
-``` 
+```
 
 — you can reference the values with:
 
@@ -87,7 +88,7 @@ T_Greeting3: Hi!
 
 ## Localization
 
-Managed text localization process resemble the one for naninovel scripts: 
+Managed text localization process resemble the one for naninovel scripts:
 
 1. Generate (create, edit) the required managed text documents in a `Resources/Naninovel/Text` folder.
 2. Run the localization utility in a locale folder (`Resources/Naninovel/Localization/{Locale}`, where `{Locale}` is the tag of the target locale).
@@ -95,8 +96,8 @@ Managed text localization process resemble the one for naninovel scripts:
 
 To update the managed text documents and their corresponding localization counterparts, first run the generate managed text utility in a `Resources/Naninovel/Text` folder, and then the localization utility in a `Resources/Naninovel/Localization/{Locale}` folder. Both utilities will attempt to preserve any existing modifications (managed text records and their translations) by default, so you won't have to re-write everything from scratch on each update.
 
- See [Localization](/guide/localization.md) for more info on how to use the localization utility.
+ See [Localization](/guide/localization) for more info on how to use the localization utility.
 
-::: example
+::: tip EXAMPLE
 You can find an example localization setup (including managed text) in the [demo](https://github.com/Naninovel/Demo) and [spreadsheet](https://github.com/Naninovel/Spreadsheet) sample projects. Use them as a reference in case having issues setting up localization in your own project.
 :::

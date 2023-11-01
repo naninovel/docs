@@ -1,4 +1,4 @@
-﻿# Custom Build Environment
+# Custom Build Environment
 
 When building the project using editor's [build menu](https://docs.unity3d.com/Manual/BuildSettings.html), Naninovel automatically executes additional pre- and post-processing procedures. Those procedures, among other things, include ensuring that all the resources assigned via Naninovel's configuration menus (eg, script documents, character appearances, BGM and SFX clips, etc) are included to the build.
 
@@ -7,31 +7,31 @@ In case you're using a custom build environment (eg, [Cloud Build](https://unity
 Below is an example of Cloud Build custom build processing script, which invokes the required Naninovel processing methods. Consult the [official service docs](https://docs.unity3d.com/Manual/UnityCloudBuildPreAndPostExportMethods.html) on how to setup the processing scripts.
 
 ```csharp
-public static class CustomBuildProcessor 
+public static class CustomBuildProcessor
 {
 	#if UNITY_CLOUD_BUILD
-    public static void PreExport(UnityEngine.CloudBuild.BuildManifestObject manifest)
+    public static void PreExport (BuildManifestObject manifest)
     {
         var options = new UnityEditor.BuildPlayerOptions();
-        var cloudBuildTargetName = manifest.GetValue<string>("cloudBuildTargetName").ToString().ToLower();
+        var target = manifest.GetValue<string>("target").ToString().ToLower();
 
-        if (cloudBuildTargetName.Contains("windows") && cloudBuildTargetName.Contains("64"))
+        if (target.Contains("windows") && target.Contains("64"))
             options.target = UnityEditor.BuildTarget.StandaloneWindows64;
-        else if (cloudBuildTargetName.Contains("windows"))
+        else if (target.Contains("windows"))
             options.target = UnityEditor.BuildTarget.StandaloneWindows;
-        else if (cloudBuildTargetName.Contains("android"))
+        else if (target.Contains("android"))
             options.target = UnityEditor.BuildTarget.Android;
-        else if (cloudBuildTargetName.Contains("webgl"))
+        else if (target.Contains("webgl"))
             options.target = UnityEditor.BuildTarget.WebGL;
-        else throw new System.ArgumentException($"Unhandled cloudBuildTargetName: {cloudBuildTargetName}");
-    
+        else throw new System.ArgumentException($"Unhandled target: {target}");
+
         Naninovel.BuildProcessor.PreprocessBuild(options);
     }
 	#endif
 
     public static void PostExport(string exportPath)
     {
-        Naninovel.BuildProcessor.PostprocessBuild();        
+        Naninovel.BuildProcessor.PostprocessBuild();
     }
 }
 ```

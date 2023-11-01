@@ -1,4 +1,4 @@
-﻿# 脚本表达式
+# 脚本表达式
 
 编写naninovel脚本时，可以使用花括号将表达式构造注入命令参数值和通用文本行{}：
 
@@ -17,7 +17,7 @@ One plus two equals {1 + 2}.
 
 — 将ID为 “Kohaku” 的角色缩放值为后面数学运算的结果值。
 
-在执行命令时对表达式进行求值，允许在表达式内部使用 [自定义变量](/zh/guide/custom-variables.md) ：
+在执行命令时对表达式进行求值，允许在表达式内部使用 [自定义变量](/zh/guide/custom-variables) ：
 
 ```nani
 @input color summary:"What's your favorite color?"
@@ -92,18 +92,18 @@ public static class CustomFunctions
     public static int Add (int a, int b) => a + b;
 
     // Returns a string randomly chosen from one of the provided strings.
-    public static string Random (params string[] args) 
+    public static string Random (params string[] args)
 	{
-		if (args == null || args.Length == 0) 
+		if (args == null || args.Length == 0)
 			return default;
-        
+
         var randomIndex = UnityEngine.Random.Range(0, args.Length);
 		return args[randomIndex];
-	} 
+	}
 }
 ```
 
-::: example
+::: tip EXAMPLE
 [背包示例](https://github.com/Naninovel/Inventory) 为演示添加自定义表达式，来判断某个道具是否在背包里。
 
 另外，命令实现存储在[InventoryFunctions.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryFunctions.cs) 目录中。

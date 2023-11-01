@@ -16,6 +16,4 @@ After uploading the data navigate to your Google Drive, drop the required resour
 
 Check out our video guide for the step-by-step tutorial on how to set up and start using Naninovel sandbox.
 
-<div class="video-container">
-    <iframe src="https://www.youtube-nocookie.com/embed/tn14ZhBTFew" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-</div>
+![](https://www.youtube.com/watch?v=tn14ZhBTFew)

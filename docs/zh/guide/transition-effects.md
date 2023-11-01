@@ -1,6 +1,6 @@
-﻿# 过渡效果
+# 过渡效果
 
-当使用[@back] 和 [@char] 命令改变背景和人物元素的时候，或是[@startTrans] 和 [@finishTrans] 命令场景（scene）切换时，你可以定义使用的过渡效果。比如，如下示例会使用"DropFade"效果过渡到 "River" 背景： 
+当使用[@back] 和 [@char] 命令改变背景和人物元素的时候，或是[@startTrans] 和 [@finishTrans] 命令场景（scene）切换时，你可以定义使用的过渡效果。比如，如下示例会使用"DropFade"效果过渡到 "River" 背景：
 
 
 ```nani
@@ -30,7 +30,7 @@
 
 ```nani
 @back River.Ripple params:10,5,0.02
-``` 
+```
 — 将波纹效果的频率设置为10，速度设置为5，幅度设置为0.02。如果`params`未设置 ，则将使用默认参数。
 
 如果要修改特定的参数，可以跳过其他参数，它们将使用默认值：
@@ -38,7 +38,7 @@
 
 ```nani
 @back River.Ripple params:,,0.02
-``` 
+```
 
 所有过渡参数均为decimal类型。
 
@@ -52,11 +52,11 @@
 
 ## 带状漩涡
 
-<video class="video" loop autoplay><source src=" https://i.gyazo.com/37432ac584ef04d94d3e4f9535fdffc4.mp4" type="video/mp4"></video>
+![](https://i.gyazo.com/37432ac584ef04d94d3e4f9535fdffc4.mp4)
 
 **参数**
-名字 |  默认值 
---- | --- 
+名字 |  默认值
+--- | ---
 Twist amount | 5
 Frequency | 10
 
@@ -71,11 +71,11 @@ Frequency | 10
 
 ## 百叶窗
 
-[!73a259f2a513a92ef893ebd6a25e9013]
+![](https://i.gyazo.com/73a259f2a513a92ef893ebd6a25e9013.mp4)
 
 **参数**
-名字 |  默认值 
---- | --- 
+名字 |  默认值
+--- | ---
 Count | 6
 
 **示例**
@@ -89,11 +89,11 @@ Count | 6
 
 ## 中心渐入
 
-[!4f914c6741a5e48a22cafe2ab242a426]
+![](https://i.gyazo.com/4f914c6741a5e48a22cafe2ab242a426.mp4)
 
 **参数**
-名字 |  默认值 
---- | --- 
+名字 |  默认值
+--- | ---
 Fuzzy amount | 0.25
 
 **示例**
@@ -107,7 +107,7 @@ Fuzzy amount | 0.25
 
 ## 中心扭曲渐入
 
-[!f09bb69a3c045eeb1f6c8ec0b9dcd790]
+![](https://i.gyazo.com/f09bb69a3c045eeb1f6c8ec0b9dcd790.mp4)
 
 **示例**
 ```nani
@@ -117,7 +117,7 @@ Fuzzy amount | 0.25
 
 ## 云状渐入
 
-[!618ec451a9e10f70486db0bb4badbb71]
+![](https://i.gyazo.com/618ec451a9e10f70486db0bb4badbb71.mp4)
 
 **示例**
 ```nani
@@ -127,7 +127,7 @@ Fuzzy amount | 0.25
 
 ## 淡入淡出
 
-[!dc4781a577ec891065af1858f5fe2ed1]
+![](https://i.gyazo.com/dc4781a577ec891065af1858f5fe2ed1.mp4)
 
 **示例**
 ```nani
@@ -137,7 +137,7 @@ Fuzzy amount | 0.25
 
 ## 瓦解渐入
 
-[!e27c8477842a2092728ea0cc1ae76bda]
+![](https://i.gyazo.com/e27c8477842a2092728ea0cc1ae76bda.mp4)
 
 **示例**
 ```nani
@@ -147,11 +147,11 @@ Fuzzy amount | 0.25
 
 ## 溶解
 
-[!b2993be8de032a65c7d813c6d749e758]
+![](https://i.gyazo.com/b2993be8de032a65c7d813c6d749e758.mp4)
 
 **参数**
-名字 |  默认值 
---- | --- 
+名字 |  默认值
+--- | ---
 Step | 99999
 
 **示例**
@@ -165,7 +165,7 @@ Step | 99999
 
 ## 淡入淡出
 
-[!3c3840bb311ccb9fe223960f2e46f800]
+![](https://i.gyazo.com/3c3840bb311ccb9fe223960f2e46f800.mp4)
 
 **示例**
 ```nani
@@ -175,11 +175,11 @@ Step | 99999
 
 ## 斜角渐入
 
-[!c0e5259cd3d4ed2016ab74a65a7eec63]
+![](https://i.gyazo.com/c0e5259cd3d4ed2016ab74a65a7eec63.mp4)
 
 **参数**
-名字 |  默认值 
---- | --- 
+名字 |  默认值
+--- | ---
 Fuzzy amount | 0.25
 Line Normal X | 0.5
 Line Normal Y | 0.5
@@ -195,7 +195,7 @@ Line Normal Y | 0.5
 
 ## 像素化
 
-[!0ac9339b21303e20c524aaf6b6ca95f4]
+![](https://i.gyazo.com/0ac9339b21303e20c524aaf6b6ca95f4.mp4)
 
 **示例**
 ```nani
@@ -205,7 +205,7 @@ Line Normal Y | 0.5
 
 ## 径向模糊
 
-[!f8269fb68519c57c99643948a027a2a1]
+![](https://i.gyazo.com/f8269fb68519c57c99643948a027a2a1.mp4)
 
 **示例**
 ```nani
@@ -215,7 +215,7 @@ Line Normal Y | 0.5
 
 ## 径向摆动
 
-[!a401b3b93a61276ed68ededa2e75e9ae]
+![](https://i.gyazo.com/a401b3b93a61276ed68ededa2e75e9ae.mp4)
 
 **示例**
 ```nani
@@ -225,7 +225,7 @@ Line Normal Y | 0.5
 
 ## 中心不规则显示
 
-[!f6e685b13fe2d76733fd43878602eabc]
+![](https://i.gyazo.com/f6e685b13fe2d76733fd43878602eabc.mp4)
 
 **示例**
 ```nani
@@ -235,11 +235,11 @@ Line Normal Y | 0.5
 
 ## 波纹
 
-[!ff1bd285dc675ca5ac04f7ae4500f1c4]
+![](https://i.gyazo.com/ff1bd285dc675ca5ac04f7ae4500f1c4.mp4)
 
 **参数**
-名字 |  默认值 
---- | --- 
+名字 |  默认值
+--- | ---
 Frequency | 20
 Speed | 10
 Amplitude | 0.5
@@ -255,7 +255,7 @@ Amplitude | 0.5
 
 ## 旋转渐入
 
-[!8d476f466858e4788e5ad6014d6db314]
+![](https://i.gyazo.com/8d476f466858e4788e5ad6014d6db314.mp4)
 
 **示例**
 ```nani
@@ -265,7 +265,7 @@ Amplitude | 0.5
 
 ## 高亮渐入
 
-[!ad6eb77b7065387b9cb9afd77adbc784]
+![](https://i.gyazo.com/ad6eb77b7065387b9cb9afd77adbc784.mp4)
 
 **示例**
 ```nani
@@ -275,11 +275,11 @@ Amplitude | 0.5
 
 ## 收缩
 
-[!8c8bf00348df28ab89813c21f8655c07]
+![](https://i.gyazo.com/8c8bf00348df28ab89813c21f8655c07.mp4)
 
 **参数**
-名字 |  默认值 
---- | --- 
+名字 |  默认值
+--- | ---
 Speed | 200
 
 **示例**
@@ -293,11 +293,11 @@ Speed | 200
 
 ## 滑入
 
-[!800ee6f5fba39ab8d46f5eb09f2126cf]
+![](https://i.gyazo.com/800ee6f5fba39ab8d46f5eb09f2126cf.mp4)
 
 **参数**
-名字 |  默认值 
---- | --- 
+名字 |  默认值
+--- | ---
 Slide amount | 1
 
 **示例**
@@ -308,11 +308,11 @@ Slide amount | 1
 
 ## 漩涡网格
 
-[!5a21293d979323a112ffd07f1fffd28d]
+![](https://i.gyazo.com/5a21293d979323a112ffd07f1fffd28d.mp4)
 
 **参数**
-名字 |  默认值 
---- | --- 
+名字 |  默认值
+--- | ---
 Twist amount | 15
 Cell count | 10
 
@@ -327,11 +327,11 @@ Cell count | 10
 
 ## 漩涡过渡
 
-[!6ac9a2fe1bb9dfaf6a8292ae5d03960e]
+![](https://i.gyazo.com/6ac9a2fe1bb9dfaf6a8292ae5d03960e.mp4)
 
 **参数**
-名字 |  默认值 
---- | --- 
+名字 |  默认值
+--- | ---
 Twist amount | 15
 
 **示例**
@@ -345,7 +345,7 @@ Twist amount | 15
 
 ## 水状过渡
 
-[!7c684f9a122006f38a0be2725895b76f]
+![](https://i.gyazo.com/7c684f9a122006f38a0be2725895b76f.mp4)
 
 **示例**
 ```nani
@@ -355,7 +355,7 @@ Twist amount | 15
 
 ## 瀑布
 
-[!b6eebcb68002064ababe4d7476139a7c]
+![](https://i.gyazo.com/b6eebcb68002064ababe4d7476139a7c.mp4)
 
 **示例**
 ```nani
@@ -365,11 +365,11 @@ Twist amount | 15
 
 ## 规则水波
 
-[!e189ca12868d7ae4c9d8f0ca3d9dd298]
+![](https://i.gyazo.com/e189ca12868d7ae4c9d8f0ca3d9dd298.mp4)
 
 **参数**
-名字 |  默认值 
---- | --- 
+名字 |  默认值
+--- | ---
 Magnitude | 0.1
 Phase | 14
 Frequency | 20
@@ -400,18 +400,18 @@ Frequency | 20
 ```
 请查看以下视频以了解用法示例。
 
-[!!HZjey6M2-PE]
+![](https://www.youtube.com/watch?v=HZjey6M2-PE)
 
 ### 自定义着色器
 
 可以通过自定义[着色器](https://docs.unity3d.com/Manual/ShadersOverview.html) 添加完全自定义的过渡效果。
 It's possible to add a completely custom transition effect via a custom actor [shader](https://docs.unity3d.com/Manual/ShadersOverview.html).
 
-::: warn
+::: warning
 该板块需要Unity中的图形学编程技能。我们不提供有关编写自定义着色器的任何支持或教程。请自行参阅[技术支持](/zh/support/#unity-支持)页面以获取更多信息。
 :::
 
-创建一个新的着色器，并将其分配给要使用新的自定义过渡效果的元素；参考[自定义元素着色器](/zh/guide/custom-actor-shader.md) 以获取更多关于如何创建绑定自定义元素着色器的信息。
+创建一个新的着色器，并将其分配给要使用新的自定义过渡效果的元素；参考[自定义元素着色器](/zh/guide/custom-actor-shader) 以获取更多关于如何创建绑定自定义元素着色器的信息。
 
 在脚本命令中指定过渡名称后，元素使用的具有相同[着色器关键字](https://docs.unity3d.com/ScriptReference/Shader.EnableKeyword.html) （前缀`NANINOVEL_TRANSITION_`）的名字的材质将会被启用。
 

@@ -1,4 +1,4 @@
-﻿# ステート管理
+# ステート管理
 
 Naninovelによって実行時に生成および使用されるすべての永続データは、3つのカテゴリに分かれています:
 
@@ -118,7 +118,7 @@ public class MyCustomBehaviour : MonoBehaviour
 }
 ```
 
-::: example
+::: tip EXAMPLE
 インベントリUIでカスタムステートを使用したセーブロードステートの例は、 [GitHubのインベントリサンプルプロジェクト](https://github.com/Naninovel/Inventory) にあります。
 
 具体的には、カスタムステートの非/シリアル化は [InventoryUI.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L238) ランタイムスクリプトで実装されています。UIスロットのカスタムステートは [InventorySlotState.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/InventorySlotState.cs) で実装されています。
@@ -192,7 +192,7 @@ public class CustomSettingsSlotManager : ISaveSlotManager<SettingsStateMap>
 }
 ```
 
-::: note
+::: info NOTE
 カスタムシリアル化ハンドラーには任意の名前を付けることができます。`CustomSettingsSlotManager` は一例です。
 :::
 

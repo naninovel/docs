@@ -1,6 +1,6 @@
-﻿# オーディオ
+# オーディオ
 
-この記事ではバックグラウンドミュージック (BGM) と 効果音 (SFX) について記載しています。声については [ボイスガイド](/ja/guide/voicing.md) をご覧ください。
+この記事ではバックグラウンドミュージック (BGM) と 効果音 (SFX) について記載しています。声については [ボイスガイド](/ja/guide/voicing) をご覧ください。
 
 BGMおよびSFXリソースを追加、編集、または削除するには、 `Naninovel -> Resources -> Audio` へアクセスして、オーディオリソースマネージャーを使用します。 [Unityでサポートされている](https://docs.unity3d.com/Manual/AudioFiles.html) 任意のオーディオ形式を使用できます。
 
@@ -8,13 +8,13 @@ BGMおよびSFXリソースを追加、編集、または削除するには、 `
 
 大量のオーディオファイルがありエディターメニューから割り当てるのが大変な場合は、 `Resources/Naninovel/Audio` フォルダーにドロップするだけで自動的にスクリプトで使用できるようになります。必要に応じて、さらにサブフォルダで整理することもできます。この場合、naninovelスクリプトで参照する場合はスラッシュ (`/`) を使用します。たとえば、 `Resources/Naninovel/Audio/Music/Ambient/Noise002.wav` として保存されたオーディオクリップは、 `Music/Ambient/Noise002` としてスクリプトから参照できます。
 
-[addressable asset system](/ja/guide/resource-providers.md#addressable) を使用して手動でリソースを公開することもできます。アセットを公開するには、使用するパスと同じアドレスを "Resources/" の部分を除いて、上記の方法で割り当てます。たとえば、`MainTheme.wav` BGMを公開するには、次のアドレスにクリップアセットを割り当てます：`Naninovel/Audio/MainTheme`。addressable 機能はデフォルトではエディターで使用できないことに注意してください。リソースプロバイダーのコンフィグメニューで `Enable Addressable In Editor` プロパティを有効にすることで許可できます。
+[addressable asset system](/ja/guide/resource-providers#addressable) を使用して手動でリソースを公開することもできます。アセットを公開するには、使用するパスと同じアドレスを "Resources/" の部分を除いて、上記の方法で割り当てます。たとえば、`MainTheme.wav` BGMを公開するには、次のアドレスにクリップアセットを割り当てます：`Naninovel/Audio/MainTheme`。addressable 機能はデフォルトではエディターで使用できないことに注意してください。リソースプロバイダーのコンフィグメニューで `Enable Addressable In Editor` プロパティを有効にすることで許可できます。
 
-::: warn
+::: warning
 リソースマネージャーを介して割り当てられていないオーディオアセットは、キャラクターアクターの `Message Sound` の選択など、さまざまなエディタードロップダウン項目で使用できません。
 :::
 
-オーディオ再生の設定は、コンテキストメニューの `Naninovel -> Configuration -> Audio` で設定できます。利用可能なオプションは [コンフィグガイド](/ja/guide/configuration.md#audio) をご覧ください。
+オーディオ再生の設定は、コンテキストメニューの `Naninovel -> Configuration -> Audio` で設定できます。利用可能なオプションは [コンフィグガイド](/ja/guide/configuration#audio) をご覧ください。
 
 ## バックグラウンドミュージック
 
@@ -99,7 +99,7 @@ Naninovelは、BGM、SFX、および音声チャネルを別々に再生する�
 
 グループは、現在割り当てられているオーディオミキサーアセットの `FindMatchingGroups(groupPath)` メソッドで取得されます。 望ましいパス形式については、[Unityドキュメント](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) を参照してください。指定されたパスに複数のグループが関連付けられている場合、最初のグループがオーディオの再生に使用されます。
 
-C# スクリプトで `IAudioManager` [エンジンサービス](/ja/guide/engine-services.md) を介して、現在使用中のオーディオミキサーを取得できます
+C# スクリプトで `IAudioManager` [エンジンサービス](/ja/guide/engine-services) を介して、現在使用中のオーディオミキサーを取得できます
 
 ```csharp
 var audioManager = Engine.GetService<IAudioManager>();

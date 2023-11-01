@@ -1,13 +1,13 @@
-﻿# 语音
+# 语音
 
 向引擎添加语音剪辑，将他们存放至`Resources/Naninovel/Voice` （可以通过音频配置菜单的 `Loader` 修改）。
 你也可以通过子文件夹来管理相应资源。脚本中需要使用(`/`)调用。比如`Resources/Naninovel/Voice/Intro/Day/25.wav`的资源，脚本中的调用为：`Voice/Intro/Day/25`。
 
-使用[可寻址资源系统](/zh/guide/resource-providers.md#寻址资源系统) 来手动公开资源也是可以的。公开资源地址和上述相同，但是需要省略"Resources/"部分。比如开放 "Hello.wav" 声音剪辑，注册地址为`Naninovel/Voice/Hello`。注意，该系统默认不启用你可以通过资源配置菜单的`Enable Addressable In Editor`属性来启用。
+使用[可寻址资源系统](/zh/guide/resource-providers#寻址资源系统) 来手动公开资源也是可以的。公开资源地址和上述相同，但是需要省略"Resources/"部分。比如开放 "Hello.wav" 声音剪辑，注册地址为`Naninovel/Voice/Hello`。注意，该系统默认不启用你可以通过资源配置菜单的`Enable Addressable In Editor`属性来启用。
 
 你可以使用任何 [Unity支持](https://docs.unity3d.com/Manual/AudioFiles.html) 的影片格式。
 
-在菜单 `Naninovel -> Configuration -> Audio` 配置语音表现，可用配置选项参考[属性配置](/zh/guide/configuration.md#音频)。
+在菜单 `Naninovel -> Configuration -> Audio` 配置语音表现，可用配置选项参考[属性配置](/zh/guide/configuration#音频)。
 
 在Naninovel脚本中使用[@voice]命令，后接剪辑名字（路径）来播放语音。
 
@@ -27,7 +27,7 @@ Text from a simple generic text line.
 Text from first sentence.[i] Text from second sentence.
 ```
 
-要对应上述行自动播放语音，音频剪辑应该放在`Resources/Naninovel/Voice/Script001`文件夹下（或使用[可寻址资源系统](/zh/guide/resource-providers.md#寻址资源系统) ），并按下表命名：
+要对应上述行自动播放语音，音频剪辑应该放在`Resources/Naninovel/Voice/Script001`文件夹下（或使用[可寻址资源系统](/zh/guide/resource-providers#寻址资源系统) ），并按下表命名：
 
 文本 | 音频剪辑名
 --- | ---
@@ -50,7 +50,7 @@ Text from second sentence. | 3.2
 
 `Locale` 是用于选择对应的本地化所需来生成（限选已添加进项目的本地化配置）。
 
-当 `Use Markdown Format` 开启时，生成文件会按照[markdown格式](https://en.wikipedia.org/wiki/Markdown) (.md 扩展名)，这样会有更好的可读性。 
+当 `Use Markdown Format` 开启时，生成文件会按照[markdown格式](https://en.wikipedia.org/wiki/Markdown) (.md 扩展名)，这样会有更好的可读性。
 
 ![](https://i.gyazo.com/ed6776026a79140de9e9f6a155faffdc.png)
 

@@ -6,11 +6,11 @@ Naninovelスクリプトはテキストドキュメント（ `.nani`拡張子）
 
 naninovelスクリプトの各行はステートメントを表し、コマンド、一般テキスト、ラベル、またはコメントになります。ステートメントのタイプは、行の先頭に置かれているリテラルによって決まります:
 
-リテラル | ステートメントのタイプ
-:---: | ---
-@ | [コマンド](#コマンドライン)
-# | [ラベル](#ラベル)
-; | [コメント](#コメント)
+| リテラル | ステートメントのタイプ      |
+|:----:|------------------|
+|  @   | [コマンド](#コマンドライン) |
+|  #   | [ラベル](#ラベル)      |
+|  ;   | [コメント](#コメント)    |
 
 上記のリテラルのいずれも行の先頭にない場合、[一般テキスト](#一般テキスト)ステートメントと見なされます。
 
@@ -108,7 +108,7 @@ List<>| 上記のタイプのいずれかの値をコンマで区切ったリス
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 ```
 
-話者のIDをコロン (`:`)で区切られた一般テキストの先頭に指定して、表示テキストを[キャラクターアクター](/ja/guide/characters.md)に関連付けることができます:
+話者のIDをコロン (`:`)で区切られた一般テキストの先頭に指定して、表示テキストを[キャラクターアクター](/ja/guide/characters)に関連付けることができます:
 
 ```nani
 Felix: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -131,7 +131,7 @@ Felix: Lorem ipsum dolor sit amet.
 
 テキストメッセージを表示中、特定の文字の直後または直前にコマンドを実行したい場合があります。たとえば、特定の単語が表示されたときにアクターの外観（表現）を変更したり、表示メッセージの中のイベントに反応して特定の効果音が再生されるなど。コマンドのインライン化機能により、このようなケースを処理できます。
 
-中括弧(`[`,`]`) を使用して、一般テキストにコマンド ([組み込み](/ja/api/)と[カスタム](/ja/guide/custom-commands.md)どちらも) を挿入（インライン化）することができます:
+中括弧(`[`,`]`) を使用して、一般テキストにコマンド ([組み込み](/ja/api/)と[カスタム](/ja/guide/custom-commands)どちらも) を挿入（インライン化）することができます:
 
 ```nani
 Felix: Lorem ipsum[char Felix.Happy pos:0.75 wait:false] dolor sit amet, consectetur adipiscing elit.[i] Aenean tempus eleifend ante, ac molestie metus condimentum quis.[i][br 2] Morbi nunc magna, consequat posuere consectetur in, dapibus consectetur lorem. Duis consectetur semper augue nec pharetra.
@@ -243,13 +243,13 @@ Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
 Lorem ipsum dolor sit amet. [if score>10]Duis efficitur imperdiet nunc. [else]Vestibulum sit amet dolor non dolor placerat vehicula.[endif]
 ```
 
-条件式のフォーマットと使用可能な演算子の詳細については、[スクリプト表記](/ja/guide/script-expressions.md) ガイドを参照してください。
+条件式のフォーマットと使用可能な演算子の詳細については、[スクリプト表記](/ja/guide/script-expressions) ガイドを参照してください。
 
 ## ビジュアルエディター
 
 ビジュアルスクリプトエディターを使用して、naninovelスクリプトを編集することができます。スクリプトアセットを選択すると、ビジュアルエディターが自動的にインスペクターウィンドウで開きます。
 
-[!ba57b9f78116e57408125325bdf66be9]
+![](https://i.gyazo.com/ba57b9f78116e57408125325bdf66be9.mp4)
 
 スクリプトに新しい行を追加するには、行を挿入したい場所を右クリックするか、 `Ctrl+Space` を押して（入力コンフィグメニューでデフォルトのキー紐付けを変更できます）、目的の行またはコマンドの種類を選択します。行を並べ替えるには、番号ラベルを使用してドラッグします。行を削除するには、行を右クリックして "Remove" を選択します。
 
@@ -259,7 +259,7 @@ Lorem ipsum dolor sit amet. [if score>10]Duis efficitur imperdiet nunc. [else]Ve
 
 プレイモード中、ビジュアルエディターで現在再生中のスクリプトラインを追跡し、ラインを右クリックして再生を巻き戻すことができます。この機能では、スクリプトに同じリソースID（リソースマネージャーメニューで割り当てられている場合）とアセット名が必要です。
 
-[!b6e04d664ce4b513296b378b7c25be03]
+![](https://i.gyazo.com/b6e04d664ce4b513296b378b7c25be03.mp4)
 
 再生中のラインは緑色でハイライトされます。ユーザーの入力を待つ間スクリプトの再生が停止すると、再生されたラインが黄色でハイライトされます。
 
@@ -267,13 +267,13 @@ Lorem ipsum dolor sit amet. [if score>10]Duis efficitur imperdiet nunc. [else]Ve
 
 ![](https://i.gyazo.com/4b4b2608e7662b02a61b00734910308c.png)
 
-[!!9UmccF9R9xI]
+![](https://www.youtube.com/watch?v=9UmccF9R9xI)
 
 ## スクリプトグラフ
 
 大量のスクリプトや非連続ストーリーを扱う場合、ストーリーフローを視覚的に表現できると便利です。スクリプトグラフツールはこのような時に便利です。
 
-[!0dd3ec2393807fb03d501028e1526895]
+![](https://i.gyazo.com/0dd3ec2393807fb03d501028e1526895.mp4)
 
 グラフウィンドウは、`Naninovel -> Script Graph` エディターメニューで開きます。必要に応じて、ウィンドウを他のエディターパネルと同じようにドッキングできます。
 
@@ -297,7 +297,7 @@ Lorem ipsum dolor sit amet. [if score>10]Duis efficitur imperdiet nunc. [else]Ve
 
 ![](https://i.gyazo.com/5d433783e1a12531c79fe6be80c92da7.png)
 
-再生中のnaninovelスクリプトのホットリロードを手動で開始するには（たとえば、Unityプロジェクトの外部でスクリプトファイルを編集している場合）、 `reload` [コンソールコマンド](/ja/guide/development-console.md)を使用します。このコマンドはエディターのみで機能します（ビルドでは機能しません）。
+再生中のnaninovelスクリプトのホットリロードを手動で開始するには（たとえば、Unityプロジェクトの外部でスクリプトファイルを編集している場合）、 `reload` [コンソールコマンド](/ja/guide/development-console)を使用します。このコマンドはエディターのみで機能します（ビルドでは機能しません）。
 
 ## IDE サポート
 
@@ -307,13 +307,13 @@ Lorem ipsum dolor sit amet. [if score>10]Duis efficitur imperdiet nunc. [else]Ve
 
 拡張機能のアクティベートと利用に関しては、次のビデオチュートリアルを確認してください。
 
-[!!y87wd5jHfFw]
+![](https://www.youtube.com/watch?v=y87wd5jHfFw)
 
 ## スクリプトデバッグ
 
 大きなnaninovelスクリプトで作業しているとき、特定の部分の機能を確認するのに、常に最初からスクリプトを再生するのは面倒かもしれません。
 
-[開発コンソール](/ja/guide/development-console.md) で、現在再生中のスクリプトを任意の行に瞬時に「巻き戻す」ことができます:
+[開発コンソール](/ja/guide/development-console) で、現在再生中のスクリプトを任意の行に瞬時に「巻き戻す」ことができます:
 
 ```
 rewind 12
@@ -325,6 +325,6 @@ rewind 12
 
 ![Scripts Debug](https://i.gyazo.com/12772ecc7c14011bcde4a74c81e997b8.png)
 
-再生中のスクリプト名、行番号、コマンド（インライン）インデックスがウィンドウのタイトルに表示されます。[自動ボイス再生](/ja/guide/voicing.md#自動ボイス再生) 機能が有効の場合は、対応するボイスクリップの名前も表示されます。タイトルをドラッグすることでウィンドウの位置を変更できます。"Stop" ボタンはスクリプトの実行を停止します。スクリプトプレーヤーが停止すると、 "Play" ボタンで実行を再開できます。 "Close" ボタンを押すとデバッグウィンドウを閉じることができます。
+再生中のスクリプト名、行番号、コマンド（インライン）インデックスがウィンドウのタイトルに表示されます。[自動ボイス再生](/ja/guide/voicing#自動ボイス再生) 機能が有効の場合は、対応するボイスクリップの名前も表示されます。タイトルをドラッグすることでウィンドウの位置を変更できます。"Stop" ボタンはスクリプトの実行を停止します。スクリプトプレーヤーが停止すると、 "Play" ボタンで実行を再開できます。 "Close" ボタンを押すとデバッグウィンドウを閉じることができます。
 
 デバッグウィンドウは、エディタービルドとプレーヤービルドの両方で使用できます。

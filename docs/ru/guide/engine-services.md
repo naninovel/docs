@@ -13,24 +13,24 @@ player.Stop();
 
 Интерфейс сервиса | Описание
 --- | ---
-IBackgroundManager | Управляет акторами [фонов](/ru/guide/backgrounds.md).
-ICharacterManager | Управляет акторами [персонажей](/ru/guide/characters.md).
-IChoiceHandlerManager | Управляет акторами [обработчиков выбора](/ru/guide/choices.md).
-ITextPrinterManager | Управляет акторами [текстовых принтеров](/ru/guide/text-printers.md).
-IAudioManager | Управляет аудио: [SFX](/ru/guide/audio.md#звуковые-эффекты), [BGM](/ru/guide/audio.md#фоновая-музыка) и [озвучкой](/ru/guide/voicing.md).
-IInputManager | Управляет пользовательским [вводом](/ru/guide/input-processing.md).
-ILocalizationManager| Управляет функциями [локализации](/ru/guide/localization.md).
-ITextManager | Обрабатывает функцию [управляемого текста](/ru/guide/managed-text.md).
-IMoviePlayer | Обрабатывает воспроизведение [видео](/ru/guide/movies.md).
-IScriptManager | Управляет ресурсами [сценариев Naninovel](/ru/guide/naninovel-scripts.md).
-IScriptPlayer | Управляет воспроизведением [сценариев Naninovel](/ru/guide/naninovel-scripts.md).
+IBackgroundManager | Управляет акторами [фонов](/ru/guide/backgrounds).
+ICharacterManager | Управляет акторами [персонажей](/ru/guide/characters).
+IChoiceHandlerManager | Управляет акторами [обработчиков выбора](/ru/guide/choices).
+ITextPrinterManager | Управляет акторами [текстовых принтеров](/ru/guide/text-printers).
+IAudioManager | Управляет аудио: [SFX](/ru/guide/audio#звуковые-эффекты), [BGM](/ru/guide/audio#фоновая-музыка) и [озвучкой](/ru/guide/voicing).
+IInputManager | Управляет пользовательским [вводом](/ru/guide/input-processing).
+ILocalizationManager| Управляет функциями [локализации](/ru/guide/localization).
+ITextManager | Обрабатывает функцию [управляемого текста](/ru/guide/managed-text).
+IMoviePlayer | Обрабатывает воспроизведение [видео](/ru/guide/movies).
+IScriptManager | Управляет ресурсами [сценариев Naninovel](/ru/guide/naninovel-scripts).
+IScriptPlayer | Управляет воспроизведением [сценариев Naninovel](/ru/guide/naninovel-scripts).
 ICameraManager | Управляет камерами и другими системами, необходимыми для визуализации сцены.
 IResourceProviderManager | Управляет объектами `IResourceProvider`.
-IStateManager | Управляет де-/сериализацией постоянной информации, связанной с `IEngineService`; поставляет API для [сохранения и загрузки](/ru/guide/save-load-system.md) состояния игры?.
-IUIManager | Управляет объектами `IManagedUI`и обрабатывает функцию [кастомизации UI](/ru/guide/user-interface.md#кастомизация-UI).
-ICustomVariableManager | Предоставляет доступ к [пользовательским переменных](/ru/guide/custom-variables.md) и позволяет их модифицировать. 
+IStateManager | Управляет де-/сериализацией постоянной информации, связанной с `IEngineService`; поставляет API для [сохранения и загрузки](/ru/guide/save-load-system) состояния игры?.
+IUIManager | Управляет объектами `IManagedUI`и обрабатывает функцию [кастомизации UI](/ru/guide/user-interface#кастомизация-UI).
+ICustomVariableManager | Предоставляет доступ к [пользовательским переменных](/ru/guide/custom-variables) и позволяет их модифицировать.
 ISpawnManager | Управляет объектами, созданными с помощью команд [@spawn].
-IUnlockableManager | Управляет [разблокировываемыми предметами](/ru/guide/unlockable-items.md) (предметы галерей иллюстрации и видео, советы и пр.).
+IUnlockableManager | Управляет [разблокировываемыми предметами](/ru/guide/unlockable-items) (предметы галерей иллюстрации и видео, советы и пр.).
 
 Встроенные реализации сервисов можно найти в исходном коде среды выполнения, хранящемся в разделе `Naninovel/Runtime`.
 
@@ -41,14 +41,14 @@ IUnlockableManager | Управляет [разблокировываемыми 
 Вы можете принудительно инициализировать свой пользовательский сервис раньше или позже других сервисов, используя аргумент `InitializationPriority` атрибута `InitializeAtRuntime`; более низкие значения будут размещать сервис перед другими сервисами в очереди инициализации и наоборот.
 
 Для автоматического создания экземпляра реализация сервиса должна иметь совместимый конструктор (или конструктор по умолчанию). Допускаются следующие аргументы (в любом порядке):
- 
+
 - Любое количество других сервисов (производные от `IEngineService`)
 - Любое количество объектов конфигурации (производные от `Configuration`)
 - Прокси-объект Unity "MonoBehavior" (производные`IEngineBehaviour`)
 
 Имейте в виду, что использовать другие сервисы в конструкторе небезопасно. Вместо этого используйте любые действия инициализации, требующие использования других служб в методе `InitializeServiceAsync`; чтобы убедиться, что необходимые сервисы инициализируются при обращении к ним, перечислите их в конструкторе служб (очередь инициализации топологически сортируется на основе аргументов конструктора).
 
-В случае, если пользовательский сервис имеет постоянное состояние, которое вы хотите де-/сериализировать с другими сервисами движка, реализуйте интерфейс `IStatefulService<TState>`,  используйте `TState` или `GameStateMap`, `GlobalStateMap` или `SettingsStateMap` в зависимости от того, хотите ли вы сохранить состояние конкретной игровой сессии, глобального состояния или настроек. При необходимости можно реализовать все три интерфейса для одного сервиса. Для получения дополнительной информации о различных типах состояния движка см. [руководство управления состояниями](/ru/guide/state-management.md).
+В случае, если пользовательский сервис имеет постоянное состояние, которое вы хотите де-/сериализировать с другими сервисами движка, реализуйте интерфейс `IStatefulService<TState>`,  используйте `TState` или `GameStateMap`, `GlobalStateMap` или `SettingsStateMap` в зависимости от того, хотите ли вы сохранить состояние конкретной игровой сессии, глобального состояния или настроек. При необходимости можно реализовать все три интерфейса для одного сервиса. Для получения дополнительной информации о различных типах состояния движка см. [руководство управления состояниями](/ru/guide/state-management).
 
 Ниже приведен пример реализации пользовательского сервиса движка с некоторыми уведомлениями об использовании.
 
@@ -65,7 +65,7 @@ public class CustomService : IEngineService
 
     public CustomService (InputManager inputManager, ScriptPlayer scriptPlayer)
     {
-        // Потенциально сервисы здесь ещё не инициализированы, 
+        // Потенциально сервисы здесь ещё не инициализированы,
         // воздержитесь от их использования.
         this.inputManager = inputManager;
         this.scriptPlayer = scriptPlayer;
@@ -98,7 +98,7 @@ public class CustomService : IEngineService
 var customService = Engine.GetService<CustomService>();
 ```
 
-::: example
+::: tip EXAMPLE
 Другой пример добавления пользовательского сервиса движка для управления ресурсами предметов и конфигурацией UI инвентаря можно найти в [примере проекта инвентаря на GitHub](https://github.com/Naninovel/Inventory).
 
 Данный пользовательский сервис движка реализован с помощью скрипта воспроизведения [InventoryManager.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryManager.cs).

@@ -4,7 +4,7 @@ Script parsing is a process of transforming source script text (contained in .na
 
 It's possible to tweak or even completely change the way parsing behaves with a custom script parser implementation. Akin to other custom implementations, it's added simply by creating a new C# class, which implements a specific interface, in this case `IScriptParser`.
 
-::: warn
+::: warning
 When adding custom implementation types under a non-predefined assembly (via [assembly definitions](https://docs.unity3d.com/Manual/ScriptCompilationAssemblyDefinitionFiles.html)), add the assembly name to the `Type Assemblies` list found in the engine configuration menu. Otherwise, the engine won't be able to locate your custom types.
 :::
 
@@ -12,7 +12,7 @@ Script parser can be selected in scripts configuration menu with `Script Parser`
 
 ![](https://i.gyazo.com/12a03e71e66d1fb0901317e380c9694e.png)
 
-::: note
+::: info NOTE
 After switching script parser in the configuration, it's required to re-import script assets (right-click folder containing the assets and choose `Reimport`) in order for the changes to take effect.
 :::
 
@@ -21,7 +21,7 @@ Below is an example of a custom parser, which automatically inserts wait command
 ```csharp
 public class CustomParser : ScriptParser
 {
-    public override Script ParseText (string scriptName, string scriptText, 
+    public override Script ParseText (string scriptName, string scriptText,
         ParseOptions options = default)
     {
         scriptText = scriptText.Replace("...", "...[wait 1]");
@@ -39,11 +39,11 @@ using Naninovel;
 
 public class CustomParser : ScriptParser
 {
-    protected override GenericTextLineParser GenericTextLineParser { get; } 
+    protected override GenericTextLineParser GenericTextLineParser { get; }
         = new CustomGenericLineParser();
 }
 ```
 
-::: example
+::: tip EXAMPLE
 Find example of `CustomGenericLineParser` implementation that extracts a number from author ID and modifies consequent print commands to control reveal speed in the GitHub project: [github.com/Naninovel/CustomParser](https://github.com/Naninovel/CustomParser).
 :::

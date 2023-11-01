@@ -1,16 +1,16 @@
-﻿# カスタムコンフィグレーション
+# カスタムコンフィグレーション
 
 コンフィグレーションオブジェクトは、サービスやその他のエンジンシステムを初期化および構成するために使用されます。
 
 デフォルトではコンフィグレーションオブジェクトは [scriptable object](https://docs.unity3d.com/Manual/class-ScriptableObject.html) としてシリアル化されており、`Assets/NaninovelData/Resources/Naninovel/Configuration` フォルダーにあります。 これらはUnityエディターで対応するコンフィグメニューを初めて開いたときに、自動的に生成されます。これらはUnityエディターで対応するコンフィグメニュー (`Naninovel -> Configuration`) を初めて開いたときに、自動的に生成されます。
 
-C# でコンフィグレーションオブジェクトにアクセスするには、静的メソッド `Engine.GetConfiguration<T>()` を使います。`T` はアクセスしたいコンフィグレーションオブジェクトの名前です。以下の例は、[オーディオコンフィグ](/ja/guide/configuration.md#audio) オブジェクトへアクセスするデモです:
+C# でコンフィグレーションオブジェクトにアクセスするには、静的メソッド `Engine.GetConfiguration<T>()` を使います。`T` はアクセスしたいコンフィグレーションオブジェクトの名前です。以下の例は、[オーディオコンフィグ](/ja/guide/configuration#audio) オブジェクトへアクセスするデモです:
 
 ```csharp
 var audioConfig = Engine.GetConfiguration<AudioConfiguration>();
-```  
+```
 
-`Engine.GetConfiguration` メソッドはエンジンが初期化された時のみ使えます。実行時にカスタム配信シナリオを許可するエンジンを初期化するのに指定する [コンフィグレーションプロバイダー](/ja/guide/custom-configuration.md#コンフィグレーションプロバイダー) オブジェクトが必要なためです。デフォルトのプロバイダーを介して設定アセットにアクセスする場合は、エンジンが `ProjectConfigurationProvider` クラスで初期化されていなくても可能です。例:
+`Engine.GetConfiguration` メソッドはエンジンが初期化された時のみ使えます。実行時にカスタム配信シナリオを許可するエンジンを初期化するのに指定する [コンフィグレーションプロバイダー](/ja/guide/custom-configuration#コンフィグレーションプロバイダー) オブジェクトが必要なためです。デフォルトのプロバイダーを介して設定アセットにアクセスする場合は、エンジンが `ProjectConfigurationProvider` クラスで初期化されていなくても可能です。例:
 
 ```csharp
 var audioConfig = ProjectConfigurationProvider.LoadOrDefault<AudioConfiguration>();
@@ -75,7 +75,7 @@ C# でカスタムコンフィグレーションにアクセスするには、�
 var myConfig = Engine.GetConfiguration<MyCustomConfiguration>();
 ```
 
-::: example
+::: tip EXAMPLE
 カスタムコンフィグメニューを追加してインベントリシステムをセットアップする別の例は、[GitHubのインベントリサンプルプロジェクト](https://github.com/Naninovel/Inventory) にあります。
 
 具体的には、カスタムコンフィグレーションは [InventoryConfiguration.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryConfiguration.cs) ランタイムスクリプトを介して実装されます。

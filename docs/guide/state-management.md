@@ -1,4 +1,4 @@
-﻿# State Management
+# State Management
 
 All the persistent data generated and used by Naninovel at runtime is divided intro three categories:
 
@@ -47,7 +47,7 @@ await stateManager.SaveGlobalStateAsync();
 
 ## User Settings
 
-Similar to the global state, user settings data (display resolution, language, sound volume, etc) is stored in a single save slot, but treated a bit differently by default: the generated save file is placed outside of the "Saves" folder and formatted in a readable fashion, so that user can modify the values if they wish. 
+Similar to the global state, user settings data (display resolution, language, sound volume, etc) is stored in a single save slot, but treated a bit differently by default: the generated save file is placed outside of the "Saves" folder and formatted in a readable fashion, so that user can modify the values if they wish.
 
 The user settings are loaded automatically on engine initialization. You can save the settings at any time using `IStateManager` as follows:
 
@@ -68,8 +68,8 @@ using Naninovel;
 public class MyCustomBehaviour : MonoBehaviour
 {
     [System.Serializable]
-    private class GameState 
-    { 
+    private class GameState
+    {
     	public bool MyCustomBool;
     	public string MyCustomString;
     }
@@ -116,7 +116,7 @@ public class MyCustomBehaviour : MonoBehaviour
 }
 ```
 
-::: example
+::: tip EXAMPLE
 A more advanced example of using custom state with a list of custom structs to save-load game state of an inventory UI can be found in the [inventory example project on GitHub](https://github.com/Naninovel/Inventory). Specifically, de-/serialization of the custom state is implemented in [InventoryUI.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L246) custom UI.
 :::
 
@@ -125,14 +125,14 @@ It's also possible to access global and settings state of the engine to store cu
 ```csharp
 [System.Serializable]
 class MySettings
-{ 
-    public bool MySettingsBool; 
+{
+    public bool MySettingsBool;
 }
 
 [System.Serializable]
 class MyGlobal
-{ 
-    public string MyGlobalString; 
+{
+    public string MyGlobalString;
 }
 
 MySettings MySettings
@@ -153,8 +153,8 @@ The state objects are indexed by type, while in some cases you may have multiple
 ```csharp
 [System.Serializable]
 class MonsterState
-{ 
-    public int Health; 
+{
+    public int Health;
 }
 
 var monster1 = stateMap.GetState<MonsterState>("1");
@@ -169,7 +169,7 @@ To add a custom handler, implement `ISaveSlotManager<GameStateMap>`, `ISaveSlotM
 
 Implementation is expected to have a public constructor with `StateConfiguration` and `string` arguments, where the first one is an instance of state configuration object and second is the path to saves folder; you're free to ignore the arguments in your custom implementation.
 
-::: warn
+::: warning
 When adding custom implementation types under a non-predefined assembly (via [assembly definitions](https://docs.unity3d.com/Manual/ScriptCompilationAssemblyDefinitionFiles.html)), add the assembly name to the `Type Assemblies` list found in the engine configuration menu. Otherwise, the engine won't be able to locate your custom types.
 :::
 
@@ -194,9 +194,9 @@ public class CustomSettingsSlotManager : ISaveSlotManager<SettingsStateMap>
     public bool Loading => false;
     public bool Saving => false;
 
-    public CustomSettingsSlotManager (StateConfiguration config, string savesFolderPath)
+    public CustomSettingsSlotManager (StateConfiguration config, string saveDir)
     {
-        Debug.Log($"Ctor({savesFolderPath})");
+        Debug.Log($"Ctor({saveDir})");
     }
 
     public bool AnySaveExists () => true;
@@ -232,7 +232,7 @@ public class CustomSettingsSlotManager : ISaveSlotManager<SettingsStateMap>
 }
 ```
 
-::: note
+::: info NOTE
 You can pick any name for your custom serialization handler, `CustomSettingsSlotManager` is just an example.
 :::
 

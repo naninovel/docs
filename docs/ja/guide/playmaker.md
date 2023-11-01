@@ -1,4 +1,4 @@
-﻿# Playmaker
+# Playmaker
 
 [PlayMaker](https://assetstore.unity.com/packages/tools/visual-scripting/playmaker-368) は、非プログラマー向けに設計された、人気のあるUnity用のビジュアルスクリプトツールです。
 
@@ -20,7 +20,7 @@ PlayMakerアクションブラウザの "Naninovel" カテゴリに、カスタ�
 
 次の動画は、PlayMaker FSM（有限状態マシン）を使用して Naninovel エンジンを初期化し、シナリオスクリプトをプリロードして再生する方法を紹介しています。
 
-[!!N856vi18XVU]
+![](https://www.youtube.com/watch?v=N856vi18XVU)
 
 ### イベント
 

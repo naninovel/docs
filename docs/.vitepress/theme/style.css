@@ -1,0 +1,357 @@
+/**
+ * Customize default theme styling by overriding CSS variables:
+ * https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css
+ */
+
+/**
+ * Fonts
+ * -------------------------------------------------------------------------- */
+
+:root {
+    --vp-font-family-mono: "JetBrains Mono Variable", monospace;
+    --vp-layout-max-width: 1450px; /** Default is 1440px **/
+}
+
+.VPDoc.has-aside .content-container {
+    max-width: 720px !important; /** 80 chars in code. Default is 688px **/
+}
+
+pre {
+    font-variant-ligatures: none;
+}
+
+/**
+ * Brand
+ * -------------------------------------------------------------------------- */
+
+:root {
+    /* Main highlight/link color. */
+    --vp-c-brand-1: #1baeea;
+    /* Link hover color. */
+    --vp-c-brand-2: #7ddaff;
+    /* ??? */
+    --vp-c-brand-3: #1baeea;
+    /* Background on `` snippets under tip blocks. */
+    --vp-c-brand-soft: var(--vp-c-gray-soft);
+
+    --vp-c-brand-light: #42beef;
+    --vp-c-brand-lighter: #70cbef;
+    --vp-c-brand-lightest: #abe0f5;
+    --vp-c-brand-dark: #118dc0;
+    --vp-c-brand-darker: #0e79a5;
+    --vp-c-brand-dimm: rgba(27, 174, 234, 0.08);
+}
+
+/*.dark {*/
+/*    !* Background of main bg. *!*/
+/*    --vp-c-bg: #1b1d1f;*/
+/*    !* Background of some lighter bgs (eg, algolia search). *!*/
+/*    --vp-c-bg-soft: #1f2426;*/
+/*    !* Background of menus (eg, lang selection) *!*/
+/*    --vp-c-bg-elv: #1f2426;*/
+/*    !* Background of sidebar bg. *!*/
+/*    --vp-c-bg-alt: #151617;*/
+/*    --vp-sidebar-bg-color: var(--vp-c-bg-alt);*/
+/*}*/
+
+.VPImage.logo {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+}
+
+/**
+ * Buttons
+ * -------------------------------------------------------------------------- */
+
+.vp-doc a {
+    text-underline-position: from-font;
+    /*text-decoration: none;*/
+}
+
+.external-link-icon {
+    /*display: inline-block;*/
+    /*width: 15px;*/
+    /*height: 15px;*/
+    margin-left: -2px;
+    margin-right: 2px;
+}
+
+/**
+ * Table
+ * -------------------------------------------------------------------------- */
+
+.vp-doc th, .vp-doc td, .vp-doc tr {
+    border: inherit !important;
+}
+
+table {
+    --border: 1px solid var(--vp-c-divider);
+    width: fit-content;
+    border-radius: 8px;
+    border-spacing: 0;
+    border-collapse: separate !important;
+    border: var(--border) !important;
+    overflow: hidden;
+}
+
+table th:not(:last-child),
+table td:not(:last-child) {
+    border-right: var(--border) !important;
+}
+
+table>thead>tr:not(:last-child)>th,
+table>thead>tr:not(:last-child)>td,
+table>tbody>tr:not(:last-child)>th,
+table>tbody>tr:not(:last-child)>td,
+table>tfoot>tr:not(:last-child)>th,
+table>tfoot>tr:not(:last-child)>td,
+table>tr:not(:last-child)>td,
+table>tr:not(:last-child)>th,
+table>thead:not(:last-child),
+table>tbody:not(:last-child),
+table>tfoot:not(:last-child) {
+    border-bottom: var(--border) !important;
+}
+
+/**
+ * NavBar
+ * -------------------------------------------------------------------------- */
+
+.VPNavBar {
+    --nav-c-bg: rgba(255, 255, 255, 0.75);
+}
+
+.dark .VPNavBar {
+    --nav-c-bg: rgba(30, 30, 32, 0.5);
+}
+
+@media (min-width: 961px) {
+    .VPNavBarTitle.has-sidebar {
+        background-color: var(--vp-c-bg-alt);
+        transition: background-color 0.5s;
+    }
+}
+
+/**
+ * Custom Block
+ * -------------------------------------------------------------------------- */
+
+:root {
+    --vp-custom-block-tip-border: var(--vp-c-brand);
+    --vp-custom-block-tip-text: var(--vp-c-brand-darker);
+    --vp-custom-block-tip-bg: var(--vp-c-brand-dimm);
+}
+
+.dark {
+    --vp-custom-block-tip-border: var(--vp-c-brand);
+    --vp-custom-block-tip-text: var(--vp-c-brand-lightest);
+    --vp-custom-block-tip-bg: var(--vp-c-brand-dimm);
+}
+
+.custom-block.tip code,
+.custom-block.info code {
+    color: unset;
+}
+
+.danger .custom-block-title {
+    display: none;
+}
+
+/**
+ * Code
+ * -------------------------------------------------------------------------- */
+
+:root {
+    --vp-code-color: #476582;
+    /*--vp-code-bg: var(--vp-c-gray-soft);*/
+    /*--vp-code-block-bg: #161618;*/
+    /*--vp-code-lang-color: rgba(235, 235, 245, 0.38);*/
+}
+
+.dark body {
+    --vp-code-color: #c9def1;
+}
+
+.vp-doc a:hover > code {
+    color: inherit !important;
+}
+
+/**
+ * Algolia Search
+ * -------------------------------------------------------------------------- */
+
+.DocSearch {
+    --docsearch-primary-color: var(--vp-c-brand) !important;
+    --docsearch-bg-color: rgba(255, 255, 255, 0.5);
+    --docsearch-modal-shadow: 0 0 15px 0 var(--vp-c-border);
+}
+
+.dark .DocSearch {
+    --docsearch-modal-shadow: none;
+    --docsearch-bg-color: rgba(30, 30, 32, 0.5);
+}
+
+.dark .DocSearch-Modal {
+    border: solid 1px var(--vp-c-divider);
+}
+
+@media (min-width: 769px) {
+    .DocSearch--active {
+        overflow: unset !important;
+    }
+}
+
+.DocSearch-Container {
+    background-color: transparent !important;
+    transition: background-color .2s ease;
+}
+
+.DocSearch--active .DocSearch-Container {
+    background-color: var(--docsearch-bg-color) !important;
+}
+
+.DocSearch-Modal {
+    opacity: 0;
+    transform: translateY(-15%) scale(0.95);
+    transition: opacity, transform .2s ease;
+}
+
+.DocSearch--active .DocSearch-Modal {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.DocSearch-Container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    transition: backdrop-filter .2s ease;
+    backdrop-filter: blur(5px) opacity(0);
+}
+
+.DocSearch--active .DocSearch-Container::after {
+    backdrop-filter: blur(5px) opacity(1);
+}
+
+/**
+ * Overrides and hacks
+ * -------------------------------------------------------------------------- */
+
+/* remove opacity gradient fade under navbar */
+.curtain {
+    display: none !important;
+}
+
+/* same as above, but for the right/aside column */
+.aside-curtain {
+    display: none !important;
+}
+
+/* remove navbar background (using blur effect below instead) */
+.VPNavBar:not(.has-sidebar):not(.top) {
+    background: transparent !important;
+}
+
+/* the navbar blur effect */
+.content-body {
+    background: var(--nav-c-bg) !important;
+}
+
+.content-body::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: saturate(180%) blur(5px);
+    z-index: -1;
+}
+
+/**
+ * Custom elements
+ * -------------------------------------------------------------------------- */
+
+.engine-design-light {
+    width: 100%;
+    display: block;
+}
+
+.engine-design-dark {
+    width: 100%;
+    display: none;
+}
+
+.dark .engine-design-light {
+    display: none;
+}
+
+.dark .engine-design-dark {
+    display: block;
+}
+
+.image {
+    border-radius: 8px;
+}
+
+.video {
+    width: 100%;
+    border-radius: 8px;
+}
+
+.youtube {
+    display: block;
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+}
+
+.youtube iframe,
+.youtube object,
+.youtube embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
+}
+
+.config-table table {
+    display: table;
+    width: 100%;
+}
+
+.config-table th:nth-child(1),
+.config-table td:nth-child(1) {
+    width: 25%;
+}
+
+.config-table th:nth-child(2),
+.config-table td:nth-child(2) {
+    width: 25%;
+}
+
+.config-table th:nth-child(3),
+.config-table td:nth-child(3) {
+    width: 50%;
+}
+
+.command-param-nameless {
+    text-decoration: line-through;
+    border-bottom: 1px dotted #000;
+    cursor: help;
+}
+
+.command-param-required {
+    font-weight: 600;
+    border-bottom: 1px dotted #000;
+    cursor: help;
+}

@@ -1,4 +1,4 @@
-﻿# Resource Providers
+# Resource Providers
 
 Resource providers are used to retrieve Naninovel-related data: ".nani" text files for scenario scripts, textures for character sprites, audio clips for music, etc. Each provider specializes in retrieving the data from a specific source: project's "Resources" folders, Unity's addressable asset system, local file storage, a Google Drive account, etc.
 
@@ -10,11 +10,11 @@ Providers' general behavior can be configured via `Naninovel -> Configuration ->
  - Static — All the resources required for the script execution are pre-loaded when starting the playback (masked with a loading screen) and unloaded only when the script has finished playing. This policy is default and recommended for most cases.
  - Dynamic — Only the resources required for the next `Dynamic Policy Steps` commands are pre-loaded when starting the playback and all the unused resources are unloaded immediately. Use this mode when targeting platforms with strict memory limitations and it's impossible to properly organize naninovel scripts. Expect hiccups when the resources are loaded in background while the game is progressing.
 
-Find more about how Naninovel loads and loads the resources in the [memory management guide](/guide/resource-providers.md#memory-management).
+Find more about how Naninovel loads and loads the resources in the [memory management guide](/guide/resource-providers#memory-management).
 
 When `Log Resources Loading` is enabled, various provider-related log messages will be mirrored to the default loading screen UI.
 
-`Enable Build Processing` enables a build pre-processing procedure required to ensure assets assigned via editor menus are available in the builds. Disabling the processing may be required if you're using a [custom build environment](/guide/custom-build-environment.md) or attaching your own build hooks. When enabling or disabling the property, restart Unity editor in order for the change to take effect.
+`Enable Build Processing` enables a build pre-processing procedure required to ensure assets assigned via editor menus are available in the builds. Disabling the processing may be required if you're using a [custom build environment](/guide/custom-build-environment) or attaching your own build hooks. When enabling or disabling the property, restart Unity editor in order for the change to take effect.
 
 When [addressable system](https://docs.unity3d.com/Packages/com.unity.addressables@latest) is installed, enabling `Use Addressables` will optimize asset processing step improving the build time; enabling `Auto Build Bundles` at the same time will cause asset bundles to automatically compile when building the player.
 
@@ -36,7 +36,7 @@ The [Addressable Asset system](https://docs.unity3d.com/Packages/com.unity.addre
 
 Naninovel will automatically use addressables when the package is installed in the project and `Use Addressables` property is enabled in resource provider configuration. No additional setup is required. All the assets assigned in the Naninovel's configuration menus (eg, scenario scripts, character sprites, audio clips, etc) will be registered with the system (assigned an address) when building the player.
 
-::: warn
+::: warning
 Due to a [Unity bug](https://github.com/Naninovel/Documentation/issues/159), addressable can't unload individual assets packed into a common bundle; for a temporary workaround, either distribute the assets between bundles or set `Bundle Mode` addressable group settings to `Pack Separately`.
 
 ![](https://i.gyazo.com/60a42ec15609d8dbc5258687d9045797.png)
@@ -46,7 +46,7 @@ In case you wish to configure how the Naninovel addressable assets are served (e
 
 ![](https://i.gyazo.com/c93fbd9e232ec94468c685c4d6003916.png)
 
-::: note
+::: info NOTE
 Asset records under Naninovel addressable groups are automatically generated on each build. Don't edit the records manually, as any changes will be lost on build.
 :::
 
@@ -58,13 +58,13 @@ To expose an addressable asset to Naninovel without using editor menus, use a cu
 
 Addressable provider is only used in runtime builds and is disabled in editor by default. In case you're manually exposing resources via addressable address instead of assigning them with Naninovel's resource managers, you can enable it with `Allow Addressable In Editor` property in resource provider configuration menu.
 
-::: example
+::: tip EXAMPLE
 Check the [example project](https://github.com/Naninovel/Addressables) on how to manually expose Naninovel resources to addressable provider (without using resource editor menus) and serve specific assets from a remote host.
 
 You may also find official Unity learning materials for addressable useful: https://learn.unity.com/course/get-started-with-addressables.
 :::
 
-::: note
+::: info NOTE
 We're not providing any tutorials or support for Unity's addressable asset system itself, like setting up a remote web hosting for you assets or other deploy/serving scenarios; consult the [support page](/support/#unity-support) for more information.
 :::
 
@@ -78,8 +78,8 @@ Be aware, that in most cases [using "Resources" folders is discouraged](https://
 
 Local provider allows serving simple (scenario scripts and managed text, sprite characters and backgrounds, audio) assets from an arbitrary location in the local file system.
 
-::: warn
-Local provider loads raw files from the file system and converts them at runtime, which is slow and limits the supported file types compared to other providers. Only use it in development or for specific features (eg, [community modding](/guide/community-modding.md)).
+::: warning
+Local provider loads raw files from the file system and converts them at runtime, which is slow and limits the supported file types compared to other providers. Only use it in development or for specific features (eg, [community modding](/guide/community-modding)).
 :::
 
 Supported file formats:
@@ -89,7 +89,7 @@ Supported file formats:
  - `.wav` (PCM16 44100Hz stereo only) for audio
 
 ::: tip
-Add more supported file formats by overriding `IResourceProviderManager` [engine service](/guide/engine-services.md#overriding-built-in-services) and adding a custom converter for the local provider ([example](https://github.com/Naninovel/Sandbox/blob/master/Assets/Runtime/WebResourceProvider.cs#L12)).
+Add more supported file formats by overriding `IResourceProviderManager` [engine service](/guide/engine-services#overriding-built-in-services) and adding a custom converter for the local provider ([example](https://github.com/Naninovel/Sandbox/blob/master/Assets/Runtime/WebResourceProvider.cs#L12)).
 
 ![](https://i.gyazo.com/d4e63726c2d1d75e2677cab7f2503546.png)
 :::
@@ -103,17 +103,17 @@ Add more supported file formats by overriding `IResourceProviderManager` [engine
 
 Default `%DATA%/Resources` value points to a "Resources" folder inside game's data directory (which is different depending on the target platform).
 
-As one of the usage examples, let's say you want to load naninovel scripts from a `C:/Users/Admin/Dropbox/MyGame/Scripts` folder, which you share with collaborators to author the scenario. While it's possible to just specify an absolute path to the root folder (`C:/Users/Admin/Dropbox/MyGame`), that will require all your collaborators to also store the folder by the exact same path (under the same drive label and user name). Instead, use the following relative path over a "UserProfile" special folder origin: `%SPECIAL{UserProfile}%/Dropbox/MyGame`. 
+As one of the usage examples, let's say you want to load naninovel scripts from a `C:/Users/Admin/Dropbox/MyGame/Scripts` folder, which you share with collaborators to author the scenario. While it's possible to just specify an absolute path to the root folder (`C:/Users/Admin/Dropbox/MyGame`), that will require all your collaborators to also store the folder by the exact same path (under the same drive label and user name). Instead, use the following relative path over a "UserProfile" special folder origin: `%SPECIAL{UserProfile}%/Dropbox/MyGame`.
 
 ![](https://i.gyazo.com/eb435b782cfb9df6c403702e8f6124df.png)
 
-Given path prefix under the scripts configuration is set to `Scripts` and local provider is added to the list, script navigator (accessible with `nav` [console command](/guide/development-console.md)) should now pick up any ".nani" text files stored under the folder.
+Given path prefix under the scripts configuration is set to `Scripts` and local provider is added to the list, script navigator (accessible with `nav` [console command](/guide/development-console)) should now pick up any ".nani" text files stored under the folder.
 
 ![](https://i.gyazo.com/df8ad31d30b5c10c9a918e69a4543567.png)
 
 ## Google Drive
 
-Implemented via an open source (MIT license) third-party package [UnityGoogleDrive](https://github.com/Elringus/UnityGoogleDrive) allows using [Google Drive](https://www.google.com/drive) as the provider for the following resources: 
+Implemented via an open source (MIT license) third-party package [UnityGoogleDrive](https://github.com/Elringus/UnityGoogleDrive) allows using [Google Drive](https://www.google.com/drive) as the provider for the following resources:
 
 * Naninovel scripts and managed text (via Google Documents);
 * Characters and backgrounds (sprite implementation only);
@@ -123,7 +123,7 @@ You can share your Google Drive resources folder with other users to work in col
 
 In order to be able to choose Google Drive as the resource provider you have to first install [UnityGoogleDrive](https://github.com/Elringus/UnityGoogleDrive). Consult the GitHub project readme for installation and setup instructions.
 
-::: note
+::: info NOTE
 Before installing a package from a Git repository, make sure a [Git client](https://git-scm.com/downloads) is installed on your machine and Git executable path is set to the [PATH system environment variable](https://en.wikipedia.org/wiki/PATH_(variable)) (usually performed automatically during the installation).
 :::
 
@@ -135,13 +135,13 @@ When UnityGoogleDrive package is installed and configured, related properties wi
 
 With `Google Drive Request Limit` property you can set maximum allowed concurrent requests when contacting Google Drive API. This is required to prevent communication errors when using a personal Google Drive plan, which is limiting the number of allowed concurrent requests.
 
-`Google Drive Cache Policy` dictates caching behavior of the downloaded resources. `Smart` will attempt to use [Changes API](https://developers.google.com/drive/api/v3/reference/changes) to check whether the requested (cached) resource has changed on the remote folder before downloading it. `Purge All On Init` will purge the cache on engine initialization and always use cached versions after the first download. The cache can also be manually purged at any time with `purge` [console command](/guide/development-console.md).
+`Google Drive Cache Policy` dictates caching behavior of the downloaded resources. `Smart` will attempt to use [Changes API](https://developers.google.com/drive/api/v3/reference/changes) to check whether the requested (cached) resource has changed on the remote folder before downloading it. `Purge All On Init` will purge the cache on engine initialization and always use cached versions after the first download. The cache can also be manually purged at any time with `purge` [console command](/guide/development-console).
 
 Don't forget to add Google Drive to the list of providers for the resources you wish to retrieve with it. Eg, following will make the script manager to look for scripts in the Google Drive in addition to addressable and project sources:
 
 ![](https://i.gyazo.com/0ad07f73fe12be7ae6d421c5f4f33384.png)
 
-::: example
+::: tip EXAMPLE
 Check [NaninovelSandbox](https://github.com/Naninovel/Sandbox) project for an example on how to set up and use Google Drive provider. In the project, scripts, characters, backgrounds and audio resources are served from corresponding files stored on authorized user drive.
 :::
 
@@ -171,14 +171,14 @@ public class CustomResourceProvider : IResourceProvider
     public float LoadProgress => default;
     public IEnumerable<Resource> LoadedResources => default;
 
-    public Resource<T> GetLoadedResourceOrNull<T> (string path) 
+    public Resource<T> GetLoadedResourceOrNull<T> (string path)
         where T : UnityEngine.Object
     {
         OnMessage?.Invoke($"GetLoadedResourceOrNull: {path}");
         return default;
     }
 
-    public UniTask<Resource<T>> LoadResourceAsync<T> (string path) 
+    public UniTask<Resource<T>> LoadResourceAsync<T> (string path)
         where T : UnityEngine.Object
     {
         OnMessage?.Invoke($"LoadResourceAsync: {path}");
@@ -186,7 +186,7 @@ public class CustomResourceProvider : IResourceProvider
         return default;
     }
 
-    public UniTask<IEnumerable<Resource<T>>> LoadResourcesAsync<T> (string path) 
+    public UniTask<IEnumerable<Resource<T>>> LoadResourcesAsync<T> (string path)
         where T : UnityEngine.Object
     {
         OnMessage?.Invoke($"LoadResourcesAsync: {path}");
@@ -200,14 +200,14 @@ public class CustomResourceProvider : IResourceProvider
         return default;
     }
 
-    public UniTask<IEnumerable<string>> LocateResourcesAsync<T> (string path) 
+    public UniTask<IEnumerable<string>> LocateResourcesAsync<T> (string path)
         where T : UnityEngine.Object
     {
         OnMessage?.Invoke($"LocateResourcesAsync: {path}");
         return default;
     }
 
-    public UniTask<bool> ResourceExistsAsync<T> (string path) 
+    public UniTask<bool> ResourceExistsAsync<T> (string path)
         where T : UnityEngine.Object
     {
         OnMessage?.Invoke($"ResourceExistsAsync: {path}");
@@ -226,7 +226,7 @@ public class CustomResourceProvider : IResourceProvider
         return default;
     }
 
-    public bool SupportsType<T> () 
+    public bool SupportsType<T> ()
         where T : UnityEngine.Object
     {
         OnMessage?.Invoke($"SupportsType: {typeof(T).Name}");
@@ -258,22 +258,22 @@ public class PlayMusic : Command, Command.IPreloadable
 {
     public StringParameter MusicName;
 
+    private IAudioManager audio => Engine.GetService<IAudioManager>();
+
     public async UniTask PreloadResourcesAsync ()
     {
-        await GetAudioManager().AudioLoader.LoadAndHoldAsync(MusicName, this);
+        await audio.AudioLoader.LoadAndHoldAsync(MusicName, this);
     }
 
     public void ReleasePreloadedResources ()
     {
-        GetAudioManager().AudioLoader.Release(MusicName, this);
+        audio.AudioLoader.Release(MusicName, this);
     }
 
     public override async UniTask ExecuteAsync (AsyncToken asyncToken = default)
     {
-        await GetAudioManager().PlayBgmAsync(MusicName, asyncToken: asyncToken);
+        await audio.PlayBgmAsync(MusicName, asyncToken: asyncToken);
     }
-
-    private IAudioManager GetAudioManager () => Engine.GetService<IAudioManager>();
 }
 ```
 
@@ -311,7 +311,7 @@ using UnityEngine;
 public class HoldObject : MonoBehaviour
 {
     public Object ObjectToHold;
-    
+
     private async void Start()
     {
         while (!Engine.Initialized) await UniTask.DelayFrame(1);

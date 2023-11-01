@@ -1,4 +1,4 @@
-﻿# 特殊效果
+# 特殊效果
 
 特殊效果激活都是使用[@spawn] 接效果名调用：
 
@@ -58,7 +58,7 @@ Kohaku: It's rumbling!
 
 
 ```nani
-; 同时循坏抖动`Kohaku` 和 `Yuko` 
+; 同时循坏抖动`Kohaku` 和 `Yuko`
 @spawn ShakeCharacter#1 params:Kohaku,0 wait:false
 @spawn ShakeCharacter#2 params:Yuko,0 wait:false
 ```
@@ -76,7 +76,7 @@ Kohaku: It's rumbling!
 ## 抖动打字机
 震动某个特定ID打字机或默认打字机。
 
-[!f61fc35e318cce1949b00e5fe2448a80]
+![](https://i.gyazo.com/f61fc35e318cce1949b00e5fe2448a80.mp4)
 
 **开始 参数**
 参数名 | 值类型 | 默认值 | 描述
@@ -98,7 +98,7 @@ Shake vertically | Boolean | true | 是否纵向震动（根据y轴）。
 ; 用默认参数抖动打字机
 @spawn ShakePrinter
 
-; 水平方向抖动默认打字机10次 
+; 水平方向抖动默认打字机10次
 @spawn ShakePrinter params:,10,,,,,true,false
 
 ; 开始循坏抖动默认打字机，打印文本，停止抖动
@@ -110,7 +110,7 @@ What a shaky situation!
 ## 抖动背景
 抖动特定ID的背景或者主背景。
 
-[!fcf1153a0ad3d9a153908206211f5f5f]
+![](https://i.gyazo.com/fcf1153a0ad3d9a153908206211f5f5f.mp4)
 
 **开始 参数**
 参数名 | 值类型 | 默认值 | 描述
@@ -129,14 +129,14 @@ Shake vertically | Boolean | true | 是否纵向震动（根据y轴）。
 ; 使用默认参数抖动主背景。
 @spawn ShakeBackground
 
-; 抖动 `Video` 背景 2次。 
+; 抖动 `Video` 背景 2次。
 @spawn ShakeBackground params:Video,2
 ```
 
 ## 抖动角色
 抖动特定ID的角色，不定义时抖动随机可见角色。
 
-[!6001d3cfbee855c8a783d10e4a784042]
+![](https://i.gyazo.com/6001d3cfbee855c8a783d10e4a784042.mp4)
 
 **开始 参数**
 参数名 | 值类型 | 默认值 | 描述
@@ -169,7 +169,7 @@ Shake vertically | Boolean | true | 是否纵向震动（根据y轴）。
 ## 抖动相机
 抖动Naninovel的渲染相机。
 
-[!f9521fbcf959d0b72e449ae6e2191f9f]
+![](https://i.gyazo.com/f9521fbcf959d0b72e449ae6e2191f9f.mp4)
 
 **开始 参数**
 参数名 | 值类型 | 默认值 | 描述
@@ -188,7 +188,7 @@ Shake vertically | Boolean | true | 是否纵向震动（根据y轴）。
 ; 使用默认参数抖动主相机。
 @spawn ShakeCamera
 
-; 水平抖动相机5次。 
+; 水平抖动相机5次。
 @spawn ShakeCamera params:,5,,,,,true,false
 ```
 
@@ -196,12 +196,12 @@ Shake vertically | Boolean | true | 是否纵向震动（根据y轴）。
 
 如果你想直接调整参数做想要的动画效果，使用[@animate]命令。
 
-[!a0494329c713c4309a52d57d0b297bee]
+![](https://i.gyazo.com/a0494329c713c4309a52d57d0b297bee.mp4)
 
 ## 数字故障
 应用到相机的后处理效果，模拟数字视频的变形故障效果。
 
-[!94cb6db25c17956473db4de149281df5]
+![](https://i.gyazo.com/94cb6db25c17956473db4de149281df5.mp4)
 
 **开始 参数**
 参数名 | 值类型 | 默认值 | 描述
@@ -220,7 +220,7 @@ Intensity | Decimal | 1 | 效果的剧烈程度，从 0.0 到 10.0范围。
 ## 雨
 生成粒子系统模拟雨效果。
 
-[!74af9eec30f6517ea5b8453a9c86d33c]
+![](https://i.gyazo.com/74af9eec30f6517ea5b8453a9c86d33c.mp4)
 
 **开始 参数**
 参数名 | 值类型 | 默认值 | 描述
@@ -246,7 +246,7 @@ Fade-out time | Decimal | 5 | 粒子系统会在设置时间内逐渐减少生�
 ## 雪
 生成粒子系统模拟雪效果。
 
-[!25a052444c561e40c8318272f51edf47]
+![](https://i.gyazo.com/25a052444c561e40c8318272f51edf47.mp4)
 
 **开始 参数**
 参数名 | 值类型 | 默认值 | 描述
@@ -270,7 +270,7 @@ Fade-out time | Decimal | 5 | 粒子系统会在设置时间内逐渐减少生�
 ## 阳光射线
 生成粒子系统模拟阳光效果。
 
-[!7edc4777699229abc508f2bdb404522e]
+![](https://i.gyazo.com/7edc4777699229abc508f2bdb404522e.mp4)
 
 **开始 参数**
 参数名 | 值类型 | 默认值 | 描述
@@ -294,7 +294,7 @@ Fade-out time | Decimal | 3 | 粒子系统会在设置时间内逐渐减少强�
 ## 景深 (焦外虚化)
 模拟景深效果，对焦点外物体虚化处理，仅仅保持焦点内物体清晰。如下图。
 
-[!616a023c46f207b4a3a33d3d3fd9fbc9]
+![](https://i.gyazo.com/616a023c46f207b4a3a33d3d3fd9fbc9.mp4)
 
 **开始 参数**
 参数名 | 值类型 | 默认值 | 描述
@@ -336,7 +336,7 @@ Stop Duration | Decimal | 1 | 关闭景深效果，渐隐到目标值的持续�
 ```
 大量添加预制体的时候可以在`Resources/Naninovel/Spawn`目录下直接放入预制体，它们会被自动注册至脚本，你也可以放在其中的子文件夹里分类，此时的调用方法需要添加(`/`)。比如要调用的资源存储目录为`Resources/Naninovel/Spawn/Explosions/Boom01`，脚本调用时使用`Explosions/Boom01`。
 
-你也可以使用[可寻址资源系统](/zh/guide/resource-providers.md#寻址资源系统)
+你也可以使用[可寻址资源系统](/zh/guide/resource-providers#寻址资源系统)
 来绑定你的资源位置，像说明一样记得省略"Resources/"部分。比如，前面资源的目录地址就绑定为：`Naninovel/Spawn/Boom01` 。注意该资源系统默认是关闭的，记得将资源加载配置菜单的`Enable Addressable In Editor`属性启用。
 
 参考`Naninovel/Prefabs/FX`内置预制体效果来构建你的自定义效果。
@@ -378,4 +378,4 @@ Stop Duration | Decimal | 1 | 关闭景深效果，渐隐到目标值的持续�
 
 参考以下视频来添加自定义相机滤镜效果。
 
-[!!IbT6MTecO-k]
+![](https://www.youtube.com/watch?v=IbT6MTecO-k)

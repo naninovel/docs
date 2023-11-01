@@ -2,11 +2,13 @@
 
 ## Unity Version
 
-Minimum supported and recommended Unity version is [2019.4.40](https://unity3d.com/unity/whats-new/2019.4.40). As a legacy [LTS stream](https://unity.com/releases/lts-vs-tech-stream), it's the most tested and stable to use with the current Naninovel release. Supported Unity versions for other Naninovel releases are specified in the [change logs](https://github.com/Naninovel/Documentation/releases).
+Supported Unity version range: `2019.4 - 2022.3`. Only latest patches of the associated [LTS streams](https://unity.com/releases/lts-vs-tech-stream) in the range are supported. Alpha, beta and non-LTS releases (eg `2021.1` or `2022.2`) are not supported. They may work, but we won't be able to provide any support for using Naninovel with them. Recommended Unity version is [2019.4.40](https://unity3d.com/unity/whats-new/2019.4.40).
 
-::: note
-It's not uncommon for Unity to introduce regressions even in LTS patches (let alone minor and major releases), so we highly recommend using the recommended version to minimize production risks.
+::: tip
+It's not uncommon for Unity to introduce regressions even in LTS patches (let alone major releases), hence we recommend 2019.4.40, which is in its final state and doesn't have any known bugs associated with typical VN development. 2020 and 2021 are known to suffer from stability and performance regressions; in case you need a modern Unity version — use 2022.3.
 :::
+
+Compatibility issues with future Unity releases (once they reach LTS status) will be addressed in the next Naninovel releases. Compatible Unity versions for past Naninovel releases are specified in the [change logs](https://github.com/Naninovel/Documentation/releases).
 
 ## UPM Packages
 
@@ -16,7 +18,7 @@ Only verified package versions are supported. When installing or updating a pack
 
 ## Platforms
 
-All the engine features are implemented using cross-platform APIs and are expected to be compatible with all the platforms Unity can target. 
+All the engine features are implemented using cross-platform APIs and are expected to be compatible with all the platforms Unity can target.
 
 The following platforms were tested for compatibility and are officially supported by us:
 * Standalone: Windows, Mac, Linux
@@ -24,7 +26,7 @@ The following platforms were tested for compatibility and are officially support
 * Web: WebGL
 * Consoles: Nintendo Switch
 
-::: note
+::: info NOTE
 While Unity allows building for numerous other platforms (PlayStation, Xbox, Stadia, etc), some features (eg, save system) may not work out of the box, as access to the platform-specific SDKs is restricted for registered developers only. We don't have the access to such SDKs and are not able to provide support for platforms outside of the list above. Find more information about developing for game consoles in [the article](https://unity.com/how-to/develop-console-video-games-unity).
 :::
 
@@ -36,7 +38,7 @@ Naninovel supports disabling both `Reload Domain` and `Reload Scene` options und
 
 ## Render Pipelines
 
-While it's possible to use Nanionvel with Unity's [scriptable render pipelines](https://docs.unity3d.com/Manual/render-pipelines.html) (both URP and HDRP), some built-in features may not work out of the box and we won't be able to provide any support in such cases; see [render pipelines guide](/guide/render-pipelines.md) for more information.
+While it's possible to use Nanionvel with Unity's [scriptable render pipelines](https://docs.unity3d.com/Manual/render-pipelines.html) (both URP and HDRP), some built-in features may not work out of the box and we won't be able to provide any support in such cases; see [render pipelines guide](/guide/render-pipelines) for more information.
 
 ## Text
 

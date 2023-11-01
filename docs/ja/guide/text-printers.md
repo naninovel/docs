@@ -2,7 +2,7 @@
 
 テキストプリンターはテキストメッセージを表示するためのアクターで、時間をかけて表示させることができます。
 
-プリンターの動作はコンテキストメニューの `Naninovel -> Configuration -> Printers` で設定できます。利用可能なオプションについては、[コンフィグガイド](/ja/guide/configuration.md#printers) をご覧ください。プリンターのリソースマネージャーへは、コンテキストメニューの `Naninovel -> Resources -> Printers` からアクセスできます。
+プリンターの動作はコンテキストメニューの `Naninovel -> Configuration -> Printers` で設定できます。利用可能なオプションについては、[コンフィグガイド](/ja/guide/configuration#printers) をご覧ください。プリンターのリソースマネージャーへは、コンテキストメニューの `Naninovel -> Resources -> Printers` からアクセスできます。
 
 naninovelスクリプトでは、テキストプリンターは基本的に [@print] コマンドと [@printer] コマンドで制御します:
 
@@ -29,7 +29,7 @@ Felix: Lorem ipsum dolor sit amet.
 
 自動読み進み機能は、[`i`](/ja/api/#i) コマンドを操作するスクリプトを自動で実行します。
 
-[!e6f58f861fa18bd62591db9794e7641b]
+![](https://i.gyazo.com/e6f58f861fa18bd62591db9794e7641b.mp4)
 
 "i" コマンドは、ユーザーが `Continue` 操作を入力をするまで実行が停止されます。これはよくテキストの表示後に使われます。自動読み進みモードでは、"i" コマンドは停止する代わりに一定時間スクリプトの実行を待って完了し、次のコマンドを実行します。待機時間は、直前に表示されたテキストメッセージの長さに依存し、ゲーム設定の "Print speed" にで変更できます。
 
@@ -39,7 +39,7 @@ Felix: Lorem ipsum dolor sit amet.
 
 テキストスキップ機能により、[@print ]コマンドの実行を早送りして、テキストの表示プロセスを効果的にスキップできます。
 
-[!9605a5c8cd1911217350d77712f47e7d]
+![](https://i.gyazo.com/9605a5c8cd1911217350d77712f47e7d.mp4)
 
 スキップモードは、`Skip` 入力（スタンドアロン入力モジュールのデフォルトでは `Ctrl` キー）またはコントロールパネルの "SKIP" ボタンをで切り替えることができます。
 
@@ -49,7 +49,7 @@ Felix: Lorem ipsum dolor sit amet.
 
 プリンターバックログは、ユーザーが以前に表示したテキストを再表示できる機能です。
 
-[!4bde6752b676aa1acedb54d2af075ced]
+![](https://i.gyazo.com/4bde6752b676aa1acedb54d2af075ced.mp4)
 
 バックログはメインゲームループ中にいつでも表示できます。`ShowBacklog` を入力（スタンドアロン入力モジュールではデフォルトで `L`キー）するか、コントロールパネルの "LOG" ボタンを押すと起動します。
 
@@ -61,7 +61,7 @@ Felix: Lorem ipsum dolor sit amet.
 
 ## ワイドプリンター
 
-ワイドプリンターは、ダイアログプリンターによく似ていますが、ワイドディスプレイ用に調整されたパネルレイアウトが一部変更されています。ワイドプリンターは、[キャラクターアバター](/ja/guide/characters.md#アバターテクスチャ) 機能もサポートしています。
+ワイドプリンターは、ダイアログプリンターによく似ていますが、ワイドディスプレイ用に調整されたパネルレイアウトが一部変更されています。ワイドプリンターは、[キャラクターアバター](/ja/guide/characters#アバターテクスチャ) 機能もサポートしています。
 
 ![Wide Printer](https://i.gyazo.com/83c091c08846fa1cab8764a8d4dddeda.png)
 
@@ -98,7 +98,7 @@ Morbi ultrices dictum diam, in gravida neque vulputate in.
 
 ## チャットプリンター
 
-チャットプリンターはウィンドウ内の吹き出し内にテキストを表示します。コンテンツは垂直方向にスクロール可能で、モバイルメッセージアプリに似ています。キャラクターごとにテキストを表示するのではなく、"タイプ中" アニメーションを一定時間かけてエフェクトで表示し、即座にメッセージを表示します。チャットプリンターは [キャラクターアバター](/ja/guide/characters.md#アバターテクスチャ) をサポートしています。
+チャットプリンターはウィンドウ内の吹き出し内にテキストを表示します。コンテンツは垂直方向にスクロール可能で、モバイルメッセージアプリに似ています。キャラクターごとにテキストを表示するのではなく、"タイプ中" アニメーションを一定時間かけてエフェクトで表示し、即座にメッセージを表示します。チャットプリンターは [キャラクターアバター](/ja/guide/characters#アバターテクスチャ) をサポートしています。
 
 ![Chat Printer](https://i.gyazo.com/3c04aecabe7f754ffc9ce5452eeba270.png)
 
@@ -128,11 +128,11 @@ Nanikun: Integer nec maximus elit, eget posuere risus.
 
 アセットコンテキストメニューの `Create -> Naninovel -> Text Printers -> Dialogue` から、ダイアログプレハブを、Naninovelパッケージの外に作ります。例えば `Assets/TextPrinters` フォルダーなど。
 
-プレハブを編集: フォント、テクスチャの変更、アニメーションの追加など。利用可能なUIビルディングツールについては [uGUIのUnityドキュメント](https://docs.unity3d.com/Packages/com.unity.ugui@latest) をご覧ください。[UIカスタムガイド](/ja/guide/user-interface.md#カスタムUI) にチュートリアル動画と、uGUIの操作に関するサンプルプロジェクトもいくつかあります。
+プレハブを編集: フォント、テクスチャの変更、アニメーションの追加など。利用可能なUIビルディングツールについては [uGUIのUnityドキュメント](https://docs.unity3d.com/Packages/com.unity.ugui@latest) をご覧ください。[UIカスタムガイド](/ja/guide/user-interface#カスタムUI) にチュートリアル動画と、uGUIの操作に関するサンプルプロジェクトもいくつかあります。
 
 プリンタのマネージャGUIを使用して、プレハブをエンジンリソースに公開します。コンテキストメニューの `Naninovel -> Resources -> Printers` からアクセスできます。`+` (プラス)ボタンで新しいレコードを追加し、アクターID(プレハブ名により変わります)を入力し、レコードをダブルクリックしてアクター設定を開きます。プリンタープレハブを `Resource` フィールドにドラッグアンドドロップします。
 
-[!3f51881fa554720b7a4092dca42fd15e]
+![](https://i.gyazo.com/3f51881fa554720b7a4092dca42fd15e.mp4)
 
 これで、[@printer] コマンドから新しいプリンターを起動できます。コマンドにはマネージャーで設定したアクターIDを指定します。
 
@@ -140,11 +140,11 @@ Nanikun: Integer nec maximus elit, eget posuere risus.
 @printer MyNewPrinter
 ```
 
-::: example
-カスタムプリンターの追加は、[デモプロジェクト](/ja/guide/getting-started.md#デモプロジェクト) をご覧ください。プレハブは `Assets/Prefabs/PimpedPrinter.prefab` として保存されます。Kohakuちゃんが自分でプリンターを作成しようとすると、プリンターがデモに表示されます。
+::: tip EXAMPLE
+カスタムプリンターの追加は、[デモプロジェクト](/ja/guide/getting-started#デモプロジェクト) をご覧ください。プレハブは `Assets/Prefabs/PimpedPrinter.prefab` として保存されます。Kohakuちゃんが自分でプリンターを作成しようとすると、プリンターがデモに表示されます。
 :::
 
-また、`ITextPrinterActor` インターフェイスを手動で実装することにより、プリンターをスクラッチで作成することもできます。詳細については、[カスタムアクターの実装](/ja/guide/custom-actor-implementations.md) ガイドを参照してください。
+また、`ITextPrinterActor` インターフェイスを手動で実装することにより、プリンターをスクラッチで作成することもできます。詳細については、[カスタムアクターの実装](/ja/guide/custom-actor-implementations) ガイドを参照してください。
 
 テキストコンポーネントを変更するときは、1.0未満の高さのラインはサポートされないことに注意してください（この場合、レンダリングされたラインが重なり、表示エフェクトを適用できなくなります）。垂直方向のクリアを減らしたい場合は、テキストフォント自体を編集することを検討してください。
 
@@ -168,7 +168,7 @@ Nanikun: Integer nec maximus elit, eget posuere risus.
 
 テキスト表示サウンドは非常に高頻度に再生され（メッセージ表示スピードによって異なります）、同じサウンドが再生されるとクリップされます。そのため、対応するオーディオクリップは非常に短くてシャープなものにしてください（最初に一時停止/無音がないこと）。
 
-表示サウンドがうまくいかない場合（たとえば、サウンドが各文字表示で再生できるほど短くない）、`TextPrinterManager` [エンジンサービス](/ja/guide/engine-services.md) の `OnPrintTextStarted` と `OnPrintTextFinished` イベントで、表示に合わせて再生/停止させてみてください。[ビジュアルスクリプティング](/ja/guide/playmaker.md) ソリューションを利用したい方は、これらのイベントも PlayMaker に公開されます。
+表示サウンドがうまくいかない場合（たとえば、サウンドが各文字表示で再生できるほど短くない）、`TextPrinterManager` [エンジンサービス](/ja/guide/engine-services) の `OnPrintTextStarted` と `OnPrintTextFinished` イベントで、表示に合わせて再生/停止させてみてください。[ビジュアルスクリプティング](/ja/guide/playmaker) ソリューションを利用したい方は、これらのイベントも PlayMaker に公開されます。
 
 ## TextMesh Pro
 
@@ -213,4 +213,4 @@ Lorem <ruby="VERY">ipsum</ruby> dolor sit amet.
 
 以下の動画はルビタグのデモです。
 
-[!!aWdq7YxIxkE]
+![](https://www.youtube.com/watch?v=aWdq7YxIxkE)

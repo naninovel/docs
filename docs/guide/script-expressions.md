@@ -15,7 +15,7 @@ You can use any math and logical operators, as well as all the math functions fr
 ```
 — will scale character with ID "Kohaku" to the reminder from dividing hyperbolic cosine of 33.5 angle increased to power of 3 by natural logarithm of 0.5.
 
-The expression is evaluated at the moment the command is executed, which allows using [custom variables](/guide/custom-variables.md) inside the expressions:
+The expression is evaluated at the moment the command is executed, which allows using [custom variables](/guide/custom-variables) inside the expressions:
 
 ```nani
 @input color summary:"What's your favorite color?"
@@ -80,7 +80,7 @@ GetName (*System.String* id) | Returns display name of a character actor with th
 
 ## Adding Custom Functions
 
-It's possible to add custom expression functions by assigning `ExpressionFunctions` attribute to a static C# class. All the public methods of this class with compatible signatures will then automatically become available in the script expressions. 
+It's possible to add custom expression functions by assigning `ExpressionFunctions` attribute to a static C# class. All the public methods of this class with compatible signatures will then automatically become available in the script expressions.
 
 Only [simple](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types#simple-types) and string types are supported as argument and return types. It's also possible to use a single variadic (`params` keyword) argument; mixing a variadic with other arguments is not supported. To represent fractions, use `double` type (`float` is not supported).
 
@@ -93,27 +93,24 @@ public static class CustomFunctions
 
     // Returns the sum of the provided numbers.
     public static int Add (int a, int b) => a + b;
-    
+
     // Returns the remainder resulting from dividing the provided numbers.
     public static double Modulus (double a, double b) => a % b;
 
     // Returns a string randomly chosen from one of the provided strings.
-    public static string Random (params string[] args) 
+    public static string Random (params string[] args)
 	{
-		if (args == null || args.Length == 0) 
+		if (args == null || args.Length == 0)
 			return default;
-        
+
         var randomIndex = UnityEngine.Random.Range(0, args.Length);
 		return args[randomIndex];
-	} 
+	}
 }
 ```
 
-::: example
+::: tip EXAMPLE
 Another example of adding custom expression functions to check whether an item exists in an inventory can be found in the [inventory example project on GitHub](https://github.com/Naninovel/Inventory).
 
 Specifically, the custom functions are implemented via [InventoryFunctions.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryFunctions.cs) runtime script.
 :::
-
-
-

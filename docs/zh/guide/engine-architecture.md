@@ -1,4 +1,4 @@
-﻿# 引擎架构
+# 引擎架构
 
 该引擎在设计时考虑了以下原则： **场景独立性** 和 **面向服务** 。
 
@@ -34,7 +34,7 @@ var player = Engine.GetService<IScriptPlayer>();
 player.Stop();
 ```
 
-你可以在[引擎服务](/zh/guide/engine-services.md) 中找到现在可用的服务列表，和关于如何重写/添加自定义服务的信息。
+你可以在[引擎服务](/zh/guide/engine-services) 中找到现在可用的服务列表，和关于如何重写/添加自定义服务的信息。
 
 ## 高级概念
 

@@ -1,4 +1,4 @@
-﻿# 状态管理
+# 状态管理
 
 所有运行时由Naninovel生成的持久化数据可分为以下三类：
 - 游戏状态
@@ -47,7 +47,7 @@ await stateManager.SaveGlobalStateAsync();
 
 ## 用户设置
 
-和全局数据类似，用户设置数据（显示分辨率，语言，音量，等）存储于单独保存位，但和默认处理方式略有不同：生成保存文件和游戏状态保存目录不同，并且为可读文件格式，如有需要用户可以自己修改对应值。 
+和全局数据类似，用户设置数据（显示分辨率，语言，音量，等）存储于单独保存位，但和默认处理方式略有不同：生成保存文件和游戏状态保存目录不同，并且为可读文件格式，如有需要用户可以自己修改对应值。
 
 用户设置会在引擎初始化时自动加载。你可以通过`IStateManager`手动随时存储全局状态如下：
 
@@ -69,10 +69,10 @@ using Naninovel;
 public class MyCustomBehaviour : MonoBehaviour
 {
     [System.Serializable]
-    private class GameState 
-    { 
-    	public bool MyCustomBoolVariable; 
-    	public string MyCustomStringVariable; 
+    private class GameState
+    {
+    	public bool MyCustomBoolVariable;
+    	public string MyCustomStringVariable;
     }
 
     private bool myCustomBoolVariable;
@@ -117,7 +117,7 @@ public class MyCustomBehaviour : MonoBehaviour
 }
 ```
 
-::: example
+::: tip EXAMPLE
 
 更加进阶的自定义状态示例，是基于背包UI的状态读取加载[GitHub背包状态存储加载示例](https://github.com/Naninovel/Inventory)。
 
@@ -193,11 +193,10 @@ public class CustomSettingsSlotManager : ISaveSlotManager<SettingsStateMap>
 }
 ```
 
-::: note
+::: info NOTE
 你可以使用任何名字来命名你的自定义序列化处理器，`CustomSettingsSlotManager`名字只是个示例。
 :::
 
 当自定义的处理器设置完成，它会出现状态配置菜单，你可以在此启用它而非内置的。
 
 ![](https://i.gyazo.com/213bc2bb8c7cc0e62ae98a579579f313.png)
-

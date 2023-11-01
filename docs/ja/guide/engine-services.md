@@ -13,24 +13,24 @@ player.Stop();
 
 サービスインターフェース | 説明
 --- | ---
-IBackgroundManager | [背景](/ja/guide/backgrounds.md) アクターの管理
-ICharacterManager | [キャラクター](/ja/guide/characters.md) アクターの管理
-IChoiceHandlerManager | [選択肢ハンドラー](/ja/guide/choices.md) アクターの管理
-ITextPrinterManager | [テキストプリンター](/ja/guide/text-printers.md) アクターの管理
-IAudioManager | オーディオ: [SFX](/ja/guide/audio.md#効果音)、 [BGM](/ja/guide/audio.md#background-music)、 [ボイス](/ja/guide/voicing.md)の管理
-IInputManager | ユーザー [入力処理](/ja/guide/input-processing.md)の管理
-ILocalizationManager| [ローカライズ](/ja/guide/localization.md) アクティビティの管理
-ITextManager | [テキスト管理](/ja/guide/managed-text.md) 機能を制御
-IMoviePlayer | [ムービー](/ja/guide/movies.md) 再生を制御
-IScriptManager | [Naninovel スクリプト](/ja/guide/naninovel-scripts.md) リソースの管理
-IScriptPlayer | [Naninovel スクリプト](/ja/guide/naninovel-scripts.md) 実行を制御
+IBackgroundManager | [背景](/ja/guide/backgrounds) アクターの管理
+ICharacterManager | [キャラクター](/ja/guide/characters) アクターの管理
+IChoiceHandlerManager | [選択肢ハンドラー](/ja/guide/choices) アクターの管理
+ITextPrinterManager | [テキストプリンター](/ja/guide/text-printers) アクターの管理
+IAudioManager | オーディオ: [SFX](/ja/guide/audio#効果音)、 [BGM](/ja/guide/audio#background-music)、 [ボイス](/ja/guide/voicing)の管理
+IInputManager | ユーザー [入力処理](/ja/guide/input-processing)の管理
+ILocalizationManager| [ローカライズ](/ja/guide/localization) アクティビティの管理
+ITextManager | [テキスト管理](/ja/guide/managed-text) 機能を制御
+IMoviePlayer | [ムービー](/ja/guide/movies) 再生を制御
+IScriptManager | [Naninovel スクリプト](/ja/guide/naninovel-scripts) リソースの管理
+IScriptPlayer | [Naninovel スクリプト](/ja/guide/naninovel-scripts) 実行を制御
 ICameraManager | シーンのレンダリングに必要なカメラやその他のシステムを管理
 IResourceProviderManager | `IResourceProvider` オブジェクトを管理
-IStateManager | `IEngineService`関連の永続的なデータの逆シリアル化を処理。 [セーブロードシステム](/ja/guide/save-load-system.md) ゲームステートにAPIを提供。
-IUIManager | `IManagedUI` オブジェクトを管理し、[カスタムUI](/ja/guide/user-interface.md#カスタムUI) 機能を制御
-ICustomVariableManager | [カスタム変数](/ja/guide/custom-variables.md) へのアクセスと編集を可能にする
+IStateManager | `IEngineService`関連の永続的なデータの逆シリアル化を処理。 [セーブロードシステム](/ja/guide/save-load-system) ゲームステートにAPIを提供。
+IUIManager | `IManagedUI` オブジェクトを管理し、[カスタムUI](/ja/guide/user-interface#カスタムUI) 機能を制御
+ICustomVariableManager | [カスタム変数](/ja/guide/custom-variables) へのアクセスと編集を可能にする
 ISpawnManager | [@spawn] コマンドで生成されたオブジェクトを管理
-IUnlockableManager | [収集アイテム](/ja/guide/unlockable-items.md) (CGやムービーギャラリー, tipsなど) を管理
+IUnlockableManager | [収集アイテム](/ja/guide/unlockable-items) (CGやムービーギャラリー, tipsなど) を管理
 
 サービスの組み込み実装は、 `Naninovel/Runtime` に格納されているランタイムソースコードにあります。
 
@@ -48,7 +48,7 @@ IUnlockableManager | [収集アイテム](/ja/guide/unlockable-items.md) (CGや�
 
 コンストラクタで他のサービスを使用するのは安全ではないので、注意してください。代わりに、 `InitializeServiceAsync` メソッドで他のサービスを使用する必要がある初期化アクティビティを実行します。サービスにアクセスするときに必要なサービスが確実に初期化されるようにするには、それらをサービスコンストラクターにリストします（初期化キューは、コンストラクターの引数に基づいてトポロジ的にソートされます）。
 
-カスタムサービスに永続的なステートがあり、他のエンジンサービスで非/シリアル化したい場合は、  `IStatefulService<TState>` インターフェイスを実装します。ここで、`TState` は、`GameStateMap`、`GlobalStateMap`、または `SettingsStateMap`です。これはステートをゲームセッション固有のもの、グローバルステートまたは、設定で保存するかによって決まります。必要に応じて、1つのサービスに3つすべてのインターフェースを実装することができます。さまざまなタイプのエンジン状態の詳細については、[ステート管理ガイド](/ja/guide/state-management.md)を参照してください。
+カスタムサービスに永続的なステートがあり、他のエンジンサービスで非/シリアル化したい場合は、  `IStatefulService<TState>` インターフェイスを実装します。ここで、`TState` は、`GameStateMap`、`GlobalStateMap`、または `SettingsStateMap`です。これはステートをゲームセッション固有のもの、グローバルステートまたは、設定で保存するかによって決まります。必要に応じて、1つのサービスに3つすべてのインターフェースを実装することができます。さまざまなタイプのエンジン状態の詳細については、[ステート管理ガイド](/ja/guide/state-management)を参照してください。
 
 以下は、いくつかの使用上の注意を伴うカスタムエンジンサービス実装の例です:
 
@@ -98,7 +98,7 @@ public class CustomService : IEngineService
 var customService = Engine.GetService<CustomService>();
 ```
 
-::: example
+::: tip EXAMPLE
 アイテムのリソースとインベントリUIの構成を管理するカスタムエンジンサービスを追加する別の例は、[GitHubのインベントリサンプルプロジェクト](https://github.com/Naninovel/Inventory) にあります。
 
 具体的には、カスタムエンジンサービスは [InventoryManager.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryManager.cs)  ランタイムスクリプトを介して実装されます。

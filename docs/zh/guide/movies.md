@@ -1,4 +1,4 @@
-﻿# 影片
+# 影片
 
 影片是通过场景中的`IMovieUI`UI来播放，在播放时，代码执行和用户输入都会被中断。
 
@@ -14,7 +14,7 @@
 
 你可以使用任何 [Unity支持](https://docs.unity3d.com/Manual/VideoSources-FileCompatibility) 的影片格式。
 
-影片相关表现，可以通过`Naninovel -> Configuration -> Movies`菜单来配置，其他可选配置参考[属性配置](/zh/guide/configuration.md#影片)
+影片相关表现，可以通过`Naninovel -> Configuration -> Movies`菜单来配置，其他可选配置参考[属性配置](/zh/guide/configuration#影片)
 
 在Naninovel脚本中使用 [@movie] 加影片名来播放相应影片：
 
@@ -32,4 +32,3 @@
 ## WebGL限制
 
 由于平台限制，WebGL平台下仅支持URL流的视频播放。当发布WebGL平台时，所有影片资源路径会变为`Assets/StreamingAssets`。确保你的网页寄存配置能够让本地文件获取到玩家的发布路径。
-

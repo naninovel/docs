@@ -1,6 +1,6 @@
-﻿# Playmaker
+# Playmaker
 
-[PlayMaker](https://assetstore.unity.com/packages/tools/visual-scripting/playmaker-368) – популярный визуальный сценарный инструмент Unity, специально разработанный для удобства работы пользователей, не являющихся программистами. 
+[PlayMaker](https://assetstore.unity.com/packages/tools/visual-scripting/playmaker-368) – популярный визуальный сценарный инструмент Unity, специально разработанный для удобства работы пользователей, не являющихся программистами.
 
 ![](https://i.gyazo.com/0a5b219b059fd61c85d225e903d77857.png)
 
@@ -20,7 +20,7 @@
 
 В следующем видео демонстрируется использование FSM PlayMaker (finite state machine) для инициализации движка Naninovel, предварительной загрузки и воспроизведения сценария.
 
-[!!N856vi18XVU]
+![](https://www.youtube.com/watch?v=N856vi18XVU)
 
 ### События
 

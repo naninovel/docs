@@ -13,11 +13,11 @@ Swipes | 激活输入的滑动列表（触摸屏）。
 
 有关特定值，请参见Unity的输入指南：[docs.unity3d.com/Manual/ConventionalGameInput](https://docs.unity3d.com/Manual/ConventionalGameInput.html).
 
-您可以使用 `Naninovel -> Configuration -> Input` 菜单配置内置的输入绑定并添加新的侦听器。有关可用选项的信息，请参阅[配置指南](/zh/guide/configuration.md#输入)。
+您可以使用 `Naninovel -> Configuration -> Input` 菜单配置内置的输入绑定并添加新的侦听器。有关可用选项的信息，请参阅[配置指南](/zh/guide/configuration#输入)。
 
 ![Manage Input](https://i.gyazo.com/2f97539323c9fc36124e286856a36f84.png)
 
-::: example
+::: tip EXAMPLE
 [在GitHub上的背包示例项目](https://github.com/Naninovel/Inventory) 可以找到添加自定义输入绑定以切换背包UI的示例。
 
 具体来说，[UI/InventoryUI.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L215) 运行时脚本中使用了自定义“ToggleInventory”的绑定。输入配置菜单下添加了具有相同名称的绑定。
@@ -33,7 +33,7 @@ Swipes | 激活输入的滑动列表（触摸屏）。
 
 使用 `Focus Mode` 属性，可以更改是在UI可见之后还是在按下导航键之后立即聚焦指定的游戏对象。
 
-::: warn
+::: warning
 只有在项目中安装了Unity的新输入系统时，才能通过UI进行游戏手柄导航；在下面找到有关输入系统的更多信息。
 :::
 
@@ -51,7 +51,7 @@ Naninovel支持Unity的新[输入系统](https://blogs.unity3d.com/2019/10/14/in
 
 正确配置后，输入操作将激活Naninovel的绑定。如果要禁用旧版输入处理（在 "Bindings" 列表下设置），请在输入配置菜单下禁用 `Process Legacy Bindings` 属性。
 
-::: warn
+::: warning
 触摸和依赖物体的出入操作，仍需要通过传统输入实现，因此不要完全关闭传统输入。除非你打算自己实现这些特性。
 :::
 

@@ -1,18 +1,18 @@
-﻿# FAQ
+# FAQ
 
 ## Naninovel を既存のゲームの会話システムとして利用できますか?
 
 Naninovel は典型的なビジュアルノベルゲームのための用途を想定していますが、エンジンは既存のプロジェクトと連携できるように設計されています。 3Dアドベンチャーゲーム、RPG、または他のジャンルのゲームを作成している場合でも、一時的な会話システムとして Naninovel を使用できます。
 
-ほとんどの場合、そのような連携にはさまざまな範囲のC＃スクリプト(または [ビジュアルスクリプティング](/ja/guide/visual-scripting.md))が必要になりますのでご留意ください。 Naninovel の仕組みを理解するには、[エンジンアーキテクチャー](/ja/guide/engine-architecture.md) を参照してください。連携のオプションについては [インテグレーションガイド](/ja/guide/integration-options.md) をご覧ください。
+ほとんどの場合、そのような連携にはさまざまな範囲のC＃スクリプト(または [ビジュアルスクリプティング](/ja/guide/visual-scripting))が必要になりますのでご留意ください。 Naninovel の仕組みを理解するには、[エンジンアーキテクチャー](/ja/guide/engine-architecture) を参照してください。連携のオプションについては [インテグレーションガイド](/ja/guide/integration-options) をご覧ください。
 
 ## Naninovel にミニゲームを埋め込むことはできますか?
 
-もちろんです。既存の Naninovel のフローにカスタムロジックを自由に挿入できます。ただしほとんどの場合、エンジンの C# API が必要です(カスタム C# スクリプトを記述するか、[ビジュアルスクリプティング](/ja/guide/visual-scripting.md) を使用します)。エンジンとのやり取りをするための利用可能な API 一覧は [エンジンサービスガイド](/ja/guide/engine-services.md) をご覧ください。他にも [ステートのアウトソース](/ja/guide/state-management.md#カスタムステート)、 [カスタムアクターの実装](/ja/guide/custom-actor-implementations.md)、 [カスタムコマンド](/ja/guide/custom-commands.md)が参考になるかも知れません。
+もちろんです。既存の Naninovel のフローにカスタムロジックを自由に挿入できます。ただしほとんどの場合、エンジンの C# API が必要です(カスタム C# スクリプトを記述するか、[ビジュアルスクリプティング](/ja/guide/visual-scripting) を使用します)。エンジンとのやり取りをするための利用可能な API 一覧は [エンジンサービスガイド](/ja/guide/engine-services) をご覧ください。他にも [ステートのアウトソース](/ja/guide/state-management#カスタムステート)、 [カスタムアクターの実装](/ja/guide/custom-actor-implementations)、 [カスタムコマンド](/ja/guide/custom-commands)が参考になるかも知れません。
 
 ## どの言語をサポートしていますか?
 
-Naninovel はどの言語でも動作しますが、特定の言語の表示には互換性のあるフォントが必要です。デフォルトは [Google Roboto](https://fonts.google.com/specimen/Roboto) で、Unicode 7.0 の全てのラテン文字、キリル文字、ギリシャ文字をサポートしています。[カスタムUI](/ja/guide/user-interface.md#カスタムUI) 機能を使用して組み込みUIのフォントを変更できます。表示テキストメッセージについては、[カスタムプリンターを作成](/ja/guide/text-printers.md#カスタムプリンターの追加) して希望のフォントを設定します。
+Naninovel はどの言語でも動作しますが、特定の言語の表示には互換性のあるフォントが必要です。デフォルトは [Google Roboto](https://fonts.google.com/specimen/Roboto) で、Unicode 7.0 の全てのラテン文字、キリル文字、ギリシャ文字をサポートしています。[カスタムUI](/ja/guide/user-interface#カスタムUI) 機能を使用して組み込みUIのフォントを変更できます。表示テキストメッセージについては、[カスタムプリンターを作成](/ja/guide/text-printers#カスタムプリンターの追加) して希望のフォントを設定します。
 
 できるだけ多くの言語をサポートしたい場合は、[Noto フォント](https://www.google.com/get/noto/) をご検討ください。
 
@@ -22,13 +22,13 @@ Naninovel はどの言語でも動作しますが、特定の言語の表示に�
 
 ## どうしてパッケージにはデモシーンが含まれていないのですか?
 
-Naninovel は [シーンから独立](/ja/guide/engine-architecture.md#シーンから独立) して設計されており、[Unity シーン](https://docs.unity3d.com/Manual/CreatingScenes.html) を利用することがありません。したがって、どのような例やデモシーンも作成することはできません。 ゲームの開始時にエンジンが自動的に初期化され（エンジンのコンフィグウィンドウで手動初期化に切り替えることができます）、シナリオは [Naninovel スクリプト](/ja/guide/naninovel-scripts.md) と呼ばれるテキストドキュメントを介してスクリプト化されます。
+Naninovel は [シーンから独立](/ja/guide/engine-architecture#シーンから独立) して設計されており、[Unity シーン](https://docs.unity3d.com/Manual/CreatingScenes.html) を利用することがありません。したがって、どのような例やデモシーンも作成することはできません。 ゲームの開始時にエンジンが自動的に初期化され（エンジンのコンフィグウィンドウで手動初期化に切り替えることができます）、シナリオは [Naninovel スクリプト](/ja/guide/naninovel-scripts) と呼ばれるテキストドキュメントを介してスクリプト化されます。
 
-このエンジンの使い方を理解するには [スタートガイド](/ja/guide/getting-started.md)  を一読してください。様々な機能やスクリプトコマンドの使用例は、 [ガイド](/ja/guide/index.md) と [APIコマンドリファレンス](/ja/api/index.md) で見ることが出来ます。実際のプロジェクトを参照したい場合は、[デモプロジェクト](/ja/guide/getting-started.html#デモプロジェクト) をご覧ください。
+このエンジンの使い方を理解するには [スタートガイド](/ja/guide/getting-started)  を一読してください。様々な機能やスクリプトコマンドの使用例は、 [ガイド](/ja/guide/index) と [APIコマンドリファレンス](/ja/api/index) で見ることが出来ます。実際のプロジェクトを参照したい場合は、[デモプロジェクト](/ja/guide/getting-started.html#デモプロジェクト) をご覧ください。
 
 ## タイトル画面、背景、音楽、効果音、ボタンなどをカスタマイズするにはどうすればいいですか?
 
-UIパーツ（ボタンまたはパネルレイアウトとスタイルの変更/追加）に関しては、[カスタムUI](/ja/guide/user-interface.md#カスタムUI) 機能を使用します。それ以外の場合は、スクリプトコンフィグメニュー (`Naninovel -> Configuration -> Scripts`) で  `Title Script` を設定し、シナリオを作成するときと同じようにスクリプトコマンドを使用してシーンを設定します。タイトルスクリプトは、タイトルメニューに入ると自動的に再生されます。
+UIパーツ（ボタンまたはパネルレイアウトとスタイルの変更/追加）に関しては、[カスタムUI](/ja/guide/user-interface#カスタムUI) 機能を使用します。それ以外の場合は、スクリプトコンフィグメニュー (`Naninovel -> Configuration -> Scripts`) で  `Title Script` を設定し、シナリオを作成するときと同じようにスクリプトコマンドを使用してシーンを設定します。タイトルスクリプトは、タイトルメニューに入ると自動的に再生されます。
 
 ## Unityシーンにデフォルトで表示される空の背景を消すにはどうすればいいですか?
 
@@ -42,7 +42,7 @@ UIパーツ（ボタンまたはパネルレイアウトとスタイルの変更
 
 ## テキストメッセージの中にコマンドを表示する方法は？
 
-[コマンドのインライン化](/ja/guide/naninovel-scripts.md#コマンドのインライン化) を使用してください。
+[コマンドのインライン化](/ja/guide/naninovel-scripts#コマンドのインライン化) を使用してください。
 
 ## アクターの前後の並びを設定して表示する方法（Zソート）を教えてください。
 
@@ -74,8 +74,8 @@ z-axis のポジションを使用してください。 例:
 
 特定の解像度のソーステクスチャ（背景スプライト）でなければならない場合、それらを異なるアスペクト比に「適応」させる方法は、サイズ変更（イメージを歪める）、黒い縁の追加、またはトリミングです。 最も目立たない方法は、トリミングすることです。 Naninovelは、以下の条件で自動的にトリミングを行います: カメラ構成メニューで `Auto Correct Ortho Size` が有効になっていて、現在のアスペクト比がそのメニューで設定されている `Reference Resolution` アスペクトと異なる場合。自動修正を使用することで、ゲームの実行に使用されているディスプレイやデバイスに関係なく、黒い縁や歪みが生じなくなります。
 
-アスペクト比の違いを手動で処理するには（たとえば、黒い縁を追加したり、トリミングではなく画像のサイズを変更したりする場合）、カメラコンフィグメニューの `Auto Correct Ortho Size` オプションを無効にします。その後 `CameraManager` [エンジンサービス](/ja/guide/engine-services.md) を使用して、Naninovelが使用するカメラの正投影サイズを制御できます。
+アスペクト比の違いを手動で処理するには（たとえば、黒い縁を追加したり、トリミングではなく画像のサイズを変更したりする場合）、カメラコンフィグメニューの `Auto Correct Ortho Size` オプションを無効にします。その後 `CameraManager` [エンジンサービス](/ja/guide/engine-services) を使用して、Naninovelが使用するカメラの正投影サイズを制御できます。
 
 ## naninovelスクリプトからカスタム C# コードを実行するにはどうすればいいですか?
 
-[カスタムコマンド](/ja/guide/custom-commands.md) を使用してください。
+[カスタムコマンド](/ja/guide/custom-commands) を使用してください。

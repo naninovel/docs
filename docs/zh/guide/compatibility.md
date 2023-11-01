@@ -19,7 +19,7 @@
 
 ## 渲染管线
 
-Unity的 [可编程渲染管线](https://docs.unity3d.com/Manual/render-pipelines.html) (URP和HDRP) 部分支持需要额外设置参考 [渲染管线引导](/zh/guide/render-pipelines.md) 获取更多信息。
+Unity的 [可编程渲染管线](https://docs.unity3d.com/Manual/render-pipelines.html) (URP和HDRP) 部分支持需要额外设置参考 [渲染管线引导](/zh/guide/render-pipelines) 获取更多信息。
 
 ## Managed Stripping
 

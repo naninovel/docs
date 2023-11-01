@@ -1,4 +1,4 @@
-﻿# UniTask
+# UniTask
 
 [UniTask](https://github.com/Cysharp/UniTask) 是基于(MIT license)的开源库，提供的高效的基于任务的异步编程实现（与[.NET native](https://docs.microsoft.com/en-us/dotnet/api/system.threading.tasks.task) 相比）。你可以在[作者文章库](https://medium.com/@neuecc/a1ff0766029)找到更多说明和使用示例。
 
