@@ -36,20 +36,20 @@ function buildCommandTags(match, env) {
 /** @param {string[]} match */
 function buildImageTags(match) {
     const size = getMediaSize(match[2]);
-    return `<img class="image" src="${match[2]}" alt="${match[1]}" width="${size.width}" height="${size.height}">`;
+    return `<img class="image" loading="lazy" src="${match[2]}" alt="${match[1]}" width="${size.width}" height="${size.height}">`;
 }
 
 /** @param {string[]} match */
 function buildVideoTags(match) {
     const size = getMediaSize(match[2]);
-    const source = `<source src="${match[2]}" type="video/mp4">`;
-    return `<video class="video" loop autoplay muted playsinline width="${size.width}" height="${size.height}">${source}</video>`;
+    const source = `<source data-src="${match[2]}" type="video/mp4">`;
+    return `<video class="video" preload="none" loop autoplay muted playsinline poster="/assets/img/video-poster.svg" width="${size.width}" height="${size.height}">${source}</video>`;
 }
 
 /** @param {string[]} match */
 function buildYouTubeTags(match) {
     const source = `https://www.youtube-nocookie.com/embed/${match[2]}`;
-    return `<span class="youtube"><iframe src="${source}" allowfullscreen width="720" height="405"></iframe></span>`;
+    return `<span class="youtube"><iframe title="yt-${match[1]}" src="${source}" allowfullscreen width="720" height="405"></iframe></span>`;
 }
 
 /** @param {string} uri */

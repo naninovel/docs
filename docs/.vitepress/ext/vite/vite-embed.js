@@ -25,7 +25,7 @@ import crypto from "node:crypto";
 
 /** @type {Options} */
 export const defaultOptions = {
-    urlRegex: /\b(https?:\/\/[\w_#&?.\/-]*?\.(?:png|jpe?g|svg|gif|mp4))(?=[`'")\]])/ig,
+    urlRegex: /\b(https?:\/\/[\w_#&?.\/-]*?\.(?:png|jpe?g|webp|svg|gif|mp4))(?=[`'")\]])/ig,
     assetsDir: "./node_modules/.remote-assets",
     downloadTimeout: 30,
     downloadRetryLimit: 3,
