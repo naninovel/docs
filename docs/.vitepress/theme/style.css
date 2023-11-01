@@ -100,17 +100,17 @@ table td:not(:last-child) {
     border-right: var(--border) !important;
 }
 
-table>thead>tr:not(:last-child)>th,
-table>thead>tr:not(:last-child)>td,
-table>tbody>tr:not(:last-child)>th,
-table>tbody>tr:not(:last-child)>td,
-table>tfoot>tr:not(:last-child)>th,
-table>tfoot>tr:not(:last-child)>td,
-table>tr:not(:last-child)>td,
-table>tr:not(:last-child)>th,
-table>thead:not(:last-child),
-table>tbody:not(:last-child),
-table>tfoot:not(:last-child) {
+table > thead > tr:not(:last-child) > th,
+table > thead > tr:not(:last-child) > td,
+table > tbody > tr:not(:last-child) > th,
+table > tbody > tr:not(:last-child) > td,
+table > tfoot > tr:not(:last-child) > th,
+table > tfoot > tr:not(:last-child) > td,
+table > tr:not(:last-child) > td,
+table > tr:not(:last-child) > th,
+table > thead:not(:last-child),
+table > tbody:not(:last-child),
+table > tfoot:not(:last-child) {
     border-bottom: var(--border) !important;
 }
 
@@ -300,7 +300,6 @@ table>tfoot:not(:last-child) {
 }
 
 .video {
-    width: 100%;
     border-radius: 8px;
 }
 
