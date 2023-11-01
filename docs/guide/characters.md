@@ -78,7 +78,7 @@ Per-actor poses have priority over shared poses meaning if actor pose name is eq
 
 In the character configuration you can set a `Display Name` for specific characters. When set, display name will be shown in the printer name label UI, instead of the character's ID. This allows using compound character names, that contains spaces and special characters (which is not allowed for IDs).
 
-For localization, use "CharacterNames" [managed text](/guide/managed-text) document, which is automatically created when running generate managed text resources task. Values from the "CharacterNames" document won't override values set in the character metadata when under the source locale.
+Alternatively, the names can be specified with "CharacterNames" [managed text](/guide/managed-text) document, which is automatically created when running generate managed text resources task. Use this to localize display names and/or edit them outside of Unity editor. Records in the managed text document have priority over display names set in actor configuration and will override them.
 
 It's possible to bind a display name to a custom variable to dynamically change it throughout the game via naninovel scripts. To bind a display name, specify name of the custom variable wrapped in curly braces in the character configuration menu.
 
@@ -352,6 +352,12 @@ While editing layered character prefab, it's possible to preview mapped composit
 Be aware, that the layer objects are not directly rendered by Unity cameras at runtime; instead, they're rendered once upon each composition (appearance) change to a temporary render texture, which is then fed to a custom mesh visible to the Naninovel camera. This setup is required to prevent semi-transparency overdraw issues and to support transition animation effects.
 
 In case you wish to apply an animation or other dynamic behaviour to the layered character, enable `Animated` property found on `Layered Character Behaviour` component. When the property is enabled, the layers will be rendered each frame (instead once per appearance change).
+
+### Outsourcing Appearance Management
+
+You may find layered implementation useful for supporting various built-in render features (semi-transparency overdraw handling, transition effects, blur and depth-of-field support, etc), but would like to use external tools for managing appearance of the actor, such as Unity's [Animator](https://docs.unity3d.com/Manual/class-Animator.html). By default, layered behaviour will use layered expressions when notifying about appearance changes via `On Appearance Changed` event, which may not be desired in such case.
+
+Enabling `Render Only` option will disable layer-related behaviour and make the event report the appearance as it's specified in script commands. You will also have to specify `Default Appearance` on the behaviour component to prevent it from evaluating default appearance based on the initial prefab layer composition.
 
 ## Generic Characters
 

@@ -6,7 +6,7 @@ It's also possible to use [addressable asset system](/guide/resource-providers.m
 
 You can use any audio formats [supported by Unity](https://docs.unity3d.com/Manual/AudioFiles.html) for your voice clips.
 
-Voice playback behavior can be configured using `Naninovel -> Configuration -> Audio` context menu; for available options see [configuration guide](/guide/configuration.md#audio). 
+Voice playback behavior can be configured using `Naninovel -> Configuration -> Audio` context menu; for available options see [configuration guide](/guide/configuration.md#audio).
 
 Use [@voice] command followed by the clip name (path) to play the voice in naninovel scripts, eg:
 
@@ -22,48 +22,17 @@ The [@voice] commands are intended to occasionally play voice clips at specific 
 
 ## Auto Voicing
 
-In fully-voiced games, it could become tedious to specify a [@voice] command for each voiced line. Auto voicing feature allows to automatically play a voice clip that has a name equal to the line number of the currently played [@print] command; this way, you won't have to use [@voice] commands in naninovel scripts at all — voices will be automatically played when the corresponding text lines are printed in the game.
+In fully-voiced games, it could become tedious to specify a [@voice] command for each voiced line. Auto voicing feature allows automatically playing voice clip associated with either playback spot or unique text identifier (default). To enable auto voicing feature, enable `Enable Auto Voicing` toggle in the Audio configuration menu.
 
-To enable auto voicing feature, use `Enable Auto Voicing` toggle in the Audio configuration menu.
+![](https://i.gyazo.com/686a08d61430b3b3a8eedc9b1289919a.png)
 
-Audio clips used for the auto voicing feature should be grouped under a folder with name equal to the script name, and has the following name: *LineNumber*.*CommandIndex*, where *LineNumber* is the line number of the corresponding print command and *CommandIndex* is the inline or command index of the print command in cases when dealing with generic text lines.
+The association mode can be selected in the audio configuration via `Auto Voice Mode` option. Playback spot mode is less robust and considered legacy; please check out Text ID mode description below and if for some reason it won't suit you, continue reading about Playback spot mode.
 
-For example, consider the following naninovel script with name "Script001":
+### Text ID
 
-```nani
-@print text:"Text from a print command."
-Text from a simple generic text line.
-Text from first sentence.[i] Text from second sentence.
-```
+Text ID mode associates voice clips with localizable text identifiers. The association can be performed either via voice map utility or by assigning addresses to audio clip assets with Unity's addressable asset system (or otherwise exposing the assets to another [resource provider](/guide/resource-providers.md)).
 
-In order for the auto voicing system to play corresponding audio clips when printing those lines, the clips should be placed under `Resources/Naninovel/Voice/Script001` folder (or registered with [addressable system](/guide/resource-providers.md#addressable)) and have the following names: 
-
-Text | Voice Clip Name
---- | ---
-Text from a print command. | 1.0
-Text from a simple generic text line. | 2.0
-Text from first sentence. | 3.0
-Text from second sentence. | 3.2
-
-To simplify the process, when auto voicing feature is enabled, name of voice clip for the currently printed text is displayed in the debug window:
-
-![auto voicing](https://i.gyazo.com/12772ecc7c14011bcde4a74c81e997b8.png)
-
-To open the debug window, make sure `Enable Development Console` is turned on in the engine configuration, then press `~` key while in play mode, type `debug` and press `Enter`.
-
-## Auto Voice Mode
-
-The auto voicing workflow described above works best, when the voiceover is added after scenario scripts are finished. In case you wish to add voicing and modify scripts at the same time, you may find yourself constantly changing voice clip names to accommodate edits in the associated scripts.
-
-You may also wish to name and organize the voice clips in a custom manner, or refrain from using the ["Resources" folders](https://docs.unity3d.com/Manual/BestPracticeUnderstandingPerformanceInUnity6.html).
-
-`Content Hash` auto voice mode was added to address the above cases. You can set voice mode in the audio configuration menu via `Auto Voice Mode` dropdown; make sure `Enable Auto Voicing` property is enabled, otherwise the dropdown won't show.
-
-![](https://i.gyazo.com/5588b50df2f0c6af5522a950d550fe2d.png)
-
-In contrast to the default, content hash mode associates voice clips with the printed text and author ID, instead of script names, line and inline indexes (aka playback spots). The association can be performed either via voice map utility or by assigning addresses to audio clip assets with Unity's addressable asset system (or otherwise exposing the assets to another [resource provider](/guide/resource-providers.md)).
-
-When the content hash mode is selected, an "Open Voice Map Utility" button will appear in the audio configuration menu; you can also access the utility via `Naninovel -> Tools -> Voice Map` editor menu.
+When Text ID mode is selected, an "Open Voice Map Utility" button will appear in the audio configuration menu; you can also access the utility via `Naninovel -> Tools -> Voice Map` editor menu.
 
 [!3c8fad99f7a18e3f0eaf419c9be92277]
 
@@ -73,11 +42,47 @@ First, select script file for which to map the voice clips. If the selected scri
 When assigning the clips via voice map window, make sure to store the voice clips outside any "Resources" folders to prevent conflicts.
 :::
 
-If you then add, delete or reorder lines in the scripts, associations won't break. However, be aware, that changing printed text content will break association with the modified line.
+To associate voice clips for non-source locale, pick [script localization document](/guide/localization.md#scripts-localization) with `Localization Document` field. When valid document is picked, assigned voice clips will be automatically prefixed with the locale under which the document is stored and used whe corresponding [voice language](/guide/voicing.md#voice-language) is selected.
 
-In cases same author have equal text messages (in the same or a different script), both messages will be associated with the same voice clip. If that is not desired, change one of the messages to be printed via [@print] command with an arbitrary `voiceId` parameter to differentiate the messages.
+In cases same author have equal text messages (in the same or a different script), both messages will be associated with the same voice clip. If that is not desired, add unique text identifier to one of the messages, eg:
 
-To associate the clips without using voice map utility, expose the assets to a resource provider using voice hash as the resource name prefixed by the voice loader prefix (`Voice` by default). To find voice hash of a particular voiced line, use [voiceover documents](/guide/voicing.md#voiceover-documents); the hash is displayed after voice's playback spot prefixed by `#`. For example, to associate a line with `#2670eb4` hash with addressable resource provider, use the following address `Naninovel/Voice/2670eb4`.
+```nani
+Hello.
+Hello.|uniqueid|
+```
+
+To associate the clips without using voice map utility, expose the assets to a resource provider using text ID as the resource name prefixed by the voice loader prefix (`Voice` by default). To find text ID of a particular text, use [voiceover documents](/guide/voicing.md#voiceover-documents); the ID is displayed after voice's playback spot prefixed by `#`. For example, to associate a line with `2670eb4` ID with addressable resource provider, use the following address `Naninovel/Voice/2670eb4`.
+
+To find text ID associated with the currently printed text while the game is running use debug window:
+
+![auto voicing](https://i.gyazo.com/12772ecc7c14011bcde4a74c81e997b8.png)
+
+To show the window, make sure `Enable Development Console` is turned on in the engine configuration, then press `~` key while in play mode, type `debug` and press `Enter`.
+
+### Playback Spot
+
+Legacy playback spot mode will automatically play voice clip that has name equal line number of the currently played [@print] command. This works fine as long as the voiceover is added after scenario scripts are finished, but when working on voicing and authoring/editing scripts at the same time, you may find yourself constantly changing voice clip names to accommodate edits in the associated scripts. For this reason we recommend using Text ID mode, where associations won't break when editing scenario.
+
+Audio clips used with playback spot mode should be grouped under a folder with name equal to the script name, and has the following name: *LineNumber*.*CommandIndex*, where *LineNumber* is the line number of the corresponding print command and *CommandIndex* is the inline or command index of the print command in cases when dealing with generic text lines.
+
+For example, consider the following naninovel script with name "Script001":
+
+```nani
+@print text:"Text from a print command."
+Text from a simple generic text line.
+Text from first sentence.[i] Text from second sentence.
+```
+
+In order for the auto voicing system to play corresponding audio clips when printing those lines, the clips should be placed under `Resources/Naninovel/Voice/Script001` folder (or registered with [addressable system](/guide/resource-providers.md#addressable)) and have the following names:
+
+Text | Voice Clip Name
+--- | ---
+Text from a print command. | 1.0
+Text from a simple generic text line. | 2.0
+Text from first sentence. | 3.0
+Text from second sentence. | 3.2
+
+The voice clip names will be displayed in debug window instead of IDs when the mode is selected.
 
 ## Author Volume
 
@@ -101,10 +106,6 @@ When the property is assigned, "Voice language" dropdown will appear in the game
 
 ![](https://i.gyazo.com/70382bb24637a4d8846c3b65f1ea01d9.png)
 
-::: warn
-The voice language feature won't work with `Content Hash` auto voicing mode, as this mode binds voice resources directly to the script content, which is different for each localization. Use either `Playback Spot` auto voicing mode or manually play the voice clips with [@voice] command.
-:::
-
 For more information on how to localize game resources, see the [localization guide](/guide/localization.md).
 
 ## Voiceover Documents
@@ -118,9 +119,9 @@ Use voiceover documents generator utility accessible via `Naninovel -> Tools -> 
 `Locale` property allows to select a specific locale for which to generate the documents (the localized naninovel scripts for the selected locale should exist in your project).
 
 `Format` property controls type of file and formatting of the voiceover documents to produce:
- - Plaintext — Plaintext file without any formatting.
- - Markdown — [Markdown](https://en.wikipedia.org/wiki/Markdown) file with additional formatting for better readability.
- - CSV — [Comma-separated values](https://en.wikipedia.org/wiki/Comma-separated_values) file to be used with table processors, such as Google Sheets or Microsoft Excel.
+- Plaintext — Plaintext file without any formatting.
+- Markdown — [Markdown](https://en.wikipedia.org/wiki/Markdown) file with additional formatting for better readability.
+- CSV — [Comma-separated values](https://en.wikipedia.org/wiki/Comma-separated_values) file to be used with table processors, such as Google Sheets or Microsoft Excel.
 
 Below is an example of a voiceover document generated with Markdown format.
 

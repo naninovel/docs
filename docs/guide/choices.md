@@ -58,7 +58,7 @@ To change choice button used by default, create a [custom choice handler](/guide
 
 ![](https://i.gyazo.com/0972b2725ed043d050804d3833a83b73.png)
 
-To use a different (eg, TMPro) text component for the choice text, use `On Summary Text Changed` [Unity event](https://docs.unity3d.com/Manual/UnityEvents) of the choice button component.
+To use a different text component for the choice text, use `On Summary Text Changed` [Unity event](https://docs.unity3d.com/Manual/UnityEvents) of the choice button component.
 
 ![](https://i.gyazo.com/8810c51b336bfd653efcde591fe1c41f.png)
 

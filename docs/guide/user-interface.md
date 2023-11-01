@@ -104,13 +104,18 @@ Each element in the configuration list has following properties:
 Property | Description
 --- | ---
 Object | The game object with a text component, which should be affected by font changes. It works with both uGUI and TMPro text components.
-AllowFontChange | Whether to allow changing font of the text component.
-AllowFontSizeChange | Whether to allow changing font size of the text component.
-FontSizes | Actual font sizes to apply for text component. Each element in the list corresponds to font size dropdown list index: Small -> 0, Default -> 1, Large -> 2, Extra Large -> 3 (can be changed via SettingsUI). Default value will be ignored and font size initially set in the prefab will be used instead.
+Include Children | Whether to affect container children game objects; when disabled only text component on the specified container object will be affected.
+Allow Font Change | Whether to allow changing font of the text component.
+Allow Font Size Change | Whether to allow changing font size of the text component.
+Font Sizes | Actual font sizes to apply for text component. Each element in the list corresponds to font size dropdown list index: Small -> 0, Default -> 1, Large -> 2, Extra Large -> 3 (can be changed via SettingsUI). Default value will be ignored and font size initially set in the prefab will be used instead.
+
+`Font Sizes` asset can be created via `Create -> Naninovel -> Font Sizes` assets context menu; use the asset to share common font sizes across multiple UIs.
 
 Specific text font options available in the game settings menu are set up in the UI configuration menu:
 
-![](https://i.gyazo.com/4a06d2baf086175b168eb284e1f5955f.png)
+![](https://i.gyazo.com/31a9b81dae56fb114a75e25211d26126.png)
+
+`Font Resource` should specify [resources path](/guide/resource-providers.md) to `TMPro Font` asset. By default, Naninovel will use addressable and project resource providers to look for font assets; use `Font Loader` to change the behaviour. The simplest way to expose font asset while using default settings is to place the font inside `Resources/Naninovel/Fonts` folder; then you can use the font's asset name as the font resource path. Consult Unity's TextMesh Pro documentation for more info on how to create and configure the fonts.
 
 To change the font outside of `Custom UI` objects (eg, on choice handler button prefab), use `Font Changer` component. It has the same font configuration option and can be applied to any game object.
 

@@ -86,10 +86,10 @@ Supported file formats:
 
  - `.nani` plain text files for scenario scripts
  - `.png` and `.jpg` for images/textures
- - `.mp3` and `.wav` (PCM16 44100Hz stereo only) for audio
+ - `.wav` (PCM16 44100Hz stereo only) for audio
 
 ::: tip
-Add more supported file formats by overriding `IResourceProviderManager` [engine service](/guide/engine-services.md#overriding-built-in-services) and adding a custom converter for the local provider.
+Add more supported file formats by overriding `IResourceProviderManager` [engine service](/guide/engine-services.md#overriding-built-in-services) and adding a custom converter for the local provider ([example](https://github.com/Naninovel/Sandbox/blob/master/Assets/Runtime/WebResourceProvider.cs#L12)).
 
 ![](https://i.gyazo.com/d4e63726c2d1d75e2677cab7f2503546.png)
 :::

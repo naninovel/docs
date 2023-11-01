@@ -163,6 +163,7 @@ function getGuideSidebar(groupA, groupB, groupC) {
                 "script-expressions",
                 "managed-text",
                 "localization",
+                "spreadsheet",
                 "resource-providers",
                 "community-modding",
                 "development-console"
@@ -194,7 +195,6 @@ function getGuideSidebar(groupA, groupB, groupC) {
                 "visual-scripting",
                 "adventure-creator",
                 "inventory",
-                "spreadsheet",
                 "unitask"
             ]
         }
