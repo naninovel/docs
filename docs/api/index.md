@@ -1081,18 +1081,18 @@ Spawns particle system simulating [rain](/guide/special-effects.html#rain).
 
 ## resetState
 
-Resets state of the [engine services](https://naninovel.com/guide/engine-services.html) and unloads (disposes) all the resources loaded by Naninovel (textures, audio, video, etc); will basically revert to an empty initial engine state.
+Resets state of the [engine services](/guide/engine-services) and unloads (disposes) all the resources loaded by Naninovel (textures, audio, video, etc); will basically revert to an empty initial engine state.
 
 ::: info NOTE
-The process is asynchronous and is masked with a loading screen ([ILoadingUI](https://naninovel.com/guide/user-interface.html#ui-customization)). <br /><br /> Be aware, that this command can not be undone (rewound back).
+The process is asynchronous and is masked with a loading screen ([ILoadingUI](/guide/user-interface#ui-customization)). <br /><br /> Be aware, that this command can not be undone (rewound back).
 :::
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">exclude</span> | string list | Names of the [engine services](https://naninovel.com/guide/engine-services.html) (interfaces) to exclude from reset. Consider adding `ICustomVariableManager` to preserve the local variables. |
-| only | string list | Names of the [engine services](https://naninovel.com/guide/engine-services.html) (interfaces) to reset; other services won't be affected. Doesn't have effect when the nameless (exclude) parameter is assigned. |
+| <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">exclude</span> | string list | Names of the [engine services](/guide/engine-services) (interfaces) to exclude from reset. Consider adding `ICustomVariableManager` to preserve the local variables. |
+| only | string list | Names of the [engine services](/guide/engine-services) (interfaces) to reset; other services won't be affected. Doesn't have effect when the nameless (exclude) parameter is assigned. |
 
 </div>
 

@@ -1,5 +1,5 @@
 # Configuration
-The engine configuration is stored in multiple scriptable object assets located at `Assets/NaninovelData/Resources/Naninovel/Configuration` folder. They are automatically generated when opening the corresponding configuration menus in the Unity editor for the first time.
+The engine configuration is stored in multiple scriptable object assets located at `Assets/NaninovelData/Resources/Naninovel/Configuration` folder. They are automatically generated when opening the corresponding configuration menus in the Unity editor for the first time. 
 
 Use `Naninovel -> Configuration` or `Edit -> Project Settings -> Naninovel` to access the configuration menu.
 
@@ -28,12 +28,13 @@ Voice Overlap Policy | Prevent Overlap | Dictates how to handle concurrent voice
 Voice Locales | Null | Assign localization tags to allow selecting voice language in the game settings independently of the main localization.
 Default Fade Duration | 0.35 | Default duration of the volume fade in/out when starting or stopping playing audio.
 Custom Audio Mixer | Null | Audio mixer to control audio groups. When not provided, will use a default one.
+Master Group Path | Master | Path of the mixer's group to control master volume.
 Master Volume Handle Name | Master Volume | Name of the mixer's handle (exposed parameter) to control master volume.
-Bgm Group Path | Master/BGM | Path of the mixer's group to control master volume.
+Bgm Group Path | Master/BGM | Path of the mixer's group to control volume of background music.
 Bgm Volume Handle Name | BGM Volume | Name of the mixer's handle (exposed parameter) to control background music volume.
-Sfx Group Path | Master/SFX | Path of the mixer's group to control background music volume.
+Sfx Group Path | Master/SFX | Path of the mixer's group to control sound effects music volume.
 Sfx Volume Handle Name | SFX Volume | Name of the mixer's handle (exposed parameter) to control sound effects volume.
-Voice Group Path | Master/Voice | Path of the mixer's group to control sound effects volume.
+Voice Group Path | Master/Voice | Path of the mixer's group to control voice volume.
 Voice Volume Handle Name | Voice Volume | Name of the mixer's handle (exposed parameter) to control voice volume.
 
 </div>
@@ -138,14 +139,12 @@ Initialize On Application Load | True | Whether to automatically initialize the 
 Scene Independent | True | Whether to apply `DontDestroyOnLoad` to the engine objects, making their lifetime independent of any loaded scenes. When disabled, the objects will be part of the Unity scene where the engine was initialized and will be destroyed when the scene is unloaded.
 Show Initialization UI | True | Whether to show a loading UI while the engine is initializing.
 Custom Initialization UI | Null | UI to show while the engine is initializing (when enabled). Will use a default one when not provided.
-Show Title UI | True | Whether to automatically show title screen UI (main menu) after engine initialization. You can modify the title UI using UI customization feature (see online guide for more info).
-Enable Bridging | True | Whether to automatically start the bridging server to communicate with external Naninovel tools: IDE extension, web editor, etc.
+Enable Bridging | False | Whether to automatically start the bridging server to communicate with external Naninovel tools: IDE extension, web editor, etc.
 Server Port | 41016 | The network port for the server to listen. Change both here and in the external tools in case the default port is occupied by another application.
 Auto Generate Metadata | True | Whether to automatically generate project metadata when Unity editor is started.
 Generate Label Metadata | True | Whether to generate metadata used for script labels autocompletion. May take a substantial time when there are a lot of scripts in the project.
 Enable Development Console | True | Whether to enable development console.
 Debug Only Console | False | When enabled, development console will only be available in development (debug) builds.
-Toggle Console Key | Back Quote | Key used to toggle development console. You can also toggle it with a multi (3 or more) touch when using touchscreens.
 
 </div>
 
@@ -159,10 +158,12 @@ Spawn Event System | True | Whether to spawn an event system when initializing.
 Custom Event System | Null | A prefab with an `EventSystem` component to spawn for input processing. Will spawn a default one when not specified.
 Spawn Input Module | True | Whether to spawn an input module when initializing.
 Custom Input Module | Null | A prefab with an `InputModule` component to spawn for input processing. Will spawn a default one when not specified.
-Touch Frequency Limit | 0.1 | Limits frequency of the registered touch inputs, in seconds.
-Touch Distance Limit | 25 | Limits distance of the registered touch inputs, in pixels.
+Input Actions | Null | When Unity's new input system is installed, assign input actions asset here.<br><br>To map input actions to Naninovel's input bindings, create `Naninovel` action map and add actions with names equal to the binding names (found below under `Control Scheme` -> Bindings list).<br><br>Be aware, that 2-dimensional (Vector2) axes are not supported.
 Process Legacy Bindings | True | Whether to process legacy input bindings. Disable in case you're using Unity's new input system and don't want the legacy bindings to work in addition to input actions.
-Bindings | Object Ref | Bindings to process input for.
+Touch Frequency Limit | 0.1 | Limits frequency of the registered touch inputs, in seconds. For legacy input only.
+Touch Distance Limit | 25 | Limits distance of the registered touch inputs, in pixels. For legacy input only.
+Detect Input Mode | True | Whether to change input mode when associated device is activated. Eg, switch to gamepad when any gamepad button is pressed and switch back to mouse when mouse button clicked. Requires new input system.
+Bindings | Object Ref | Bindings to process input for; find descriptions for each default input in the 'Input Processing' guide.
 
 </div>
 
@@ -173,6 +174,7 @@ Bindings | Object Ref | Bindings to process input for.
 Property | Default Value | Description
 --- | --- | ---
 Loader | Localization- (Addressable, Project) | Configuration of the resource loader used with the localization resources.
+Languages | Object Ref | RFC5646 language tags mapped to default language display names. Restart Unity editor for changes to take effect.
 Source Locale | En | Locale of the source project resources (language in which the project assets are being authored).
 Default Locale | Null | Locale selected by default when running the game for the first time. Will select `Source Locale` when not specified.
 
@@ -241,6 +243,7 @@ Show Debug On Init | False | Whether to show player debug window on engine initi
 Wait By Default | True | Whether to wait the played commands when the `wait` parameter is not explicitly specified.
 Unload Assets On Play | True | Whether to force-unload unused assets before starting script playback. Required to unload released assets from memory when using addressables.
 Load On Goto | True | Whether to show `ILoadingUI` when [@goto] command requires loading another script. Allows masking resource pre-loading process with the loading screen.
+Resolve Mode | Nearest | The mode in which script player handles missing playback spots when loading state. This may happen when player saved a game amidst a scenario script, which is then changed (eg, via a game update) and the saved playback spot (line and inline indexes) is no longer available.<br> • Nearest — Attempt to play from the nearest next spot; in case no next spots found (script was made shorter), start from nearest previous one. Most forgiving mode, but could cause an undefined behaviour.<br> • Restart — Start playing current script from start. Won't cause undefined behaviour in case all the state is local to scenario script, but player will have to re-play the script form the start.<br> • Error — Throw an error. Choose this option in case undefined behaviour is not acceptable.
 
 </div>
 
@@ -363,3 +366,4 @@ Property | Default Value | Description
 Loader | Unlockables- (Addressable, Project) | Configuration of the resource loader used with unlockable resources.
 
 </div>
+
