@@ -68,8 +68,24 @@ When stopping or updating instanced effects, don't forget to specify the ID:
 
 You can use any string for ID (it can be a number like above, or something more meaningful, eg `@spawn ShakeCharacter#Kohaku`), just make sure it's unique among other IDs you're using with a given effect name.
 
+::: tip
+Starting with Naninovel v1.19 all the built-in effects have dedicated commands with support for autocompletion in the IDE extension. For example, instead of:
+
+```nani
+@spawn Blur params:,1,2.5
+@despawn Blur params:1
+```
+
+You can use the following:
+
+```nani
+@blur power:1 time:2.5
+@blur power:0 time:1
+```
+:::
+
 ## Shake Printer
-Shakes printer with the specified ID or the default one.
+Shakes printer with the specified ID or the default one. Dedicated command: [@shake]
 
 [!f61fc35e318cce1949b00e5fe2448a80]
 
@@ -102,7 +118,7 @@ What a shaky situation!
 ```
 
 ## Shake Background
-Shakes background with the specified ID or the main one.
+Shakes background with the specified ID or the main one. Dedicated command: [@shake]
 
 [!fcf1153a0ad3d9a153908206211f5f5f]
 
@@ -128,7 +144,7 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 ```
 
 ## Shake Character
-Shakes character with the specified ID or a random visible one.
+Shakes character with the specified ID or a random visible one. Dedicated command: [@shake]
 
 [!6001d3cfbee855c8a783d10e4a784042]
 
@@ -161,7 +177,7 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 ```
 
 ## Shake Camera
-Shakes the main Naninovel render camera.
+Shakes the main Naninovel render camera. Dedicated command: [@shake]
 
 [!f9521fbcf959d0b72e449ae6e2191f9f]
 
@@ -198,7 +214,7 @@ In case you wish to change (animate) actor parameters directly, consider using [
 ```
 
 ## Digital Glitch
-Applies a post-processing effect to the main camera simulating digital video distortion and artifacts.
+Applies a post-processing effect to the main camera simulating digital video distortion and artifacts. Dedicated command: [@glitch]
 
 [!94cb6db25c17956473db4de149281df5]
 
@@ -217,7 +233,7 @@ Intensity | Decimal | 1 | The intensity of the effect, in 0.0 to 10.0 range.
 ```
 
 ## Rain
-Spawns a particle system simulating a rain.
+Spawns a particle system simulating a rain. Dedicated command: [@rain]
 
 [!74af9eec30f6517ea5b8453a9c86d33c]
 
@@ -243,7 +259,7 @@ Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn
 ```
 
 ## Snow
-Spawns a particle system simulating a snow.
+Spawns a particle system simulating a snow. Dedicated command: [@snow]
 
 [!25a052444c561e40c8318272f51edf47]
 
@@ -267,7 +283,7 @@ Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn
 ```
 
 ## Sun Shafts
-Spawns a particle system simulating sun shafts (rays).
+Spawns a particle system simulating sun shafts (rays). Dedicated command: [@sun]
 
 [!7edc4777699229abc508f2bdb404522e]
 
@@ -291,7 +307,7 @@ Fade-out time | Decimal | 3 | The particle system will gradually lower the opaci
 ```
 
 ## Depth of Field (Bokeh)
-Simulates depth of field (aka DOF, bokeh) effect, when only the object in focus stays sharp, while the other image is blurred.
+Simulates depth of field (aka DOF, bokeh) effect, when only the object in focus stays sharp, while the other image is blurred. Dedicated command: [@bokeh]
 
 ::: tip
 In case you want to blur just one object (actor), consider using [Blur effect](/guide/special-effects.md#blur) instead.
@@ -324,7 +340,7 @@ Stop Duration | Decimal | 1 | Fade-off (disable) duration for the effect paramet
 ```
 
 ## Blur
-Applies a blur filter to a supported actor: backgrounds and characters of sprite, layered, diced, Live2D, Spine, video and scene implementations. By default (when first parameter is not specified), the effect is applied to `MainBackground` actor.
+Applies a blur filter to a supported actor: backgrounds and characters of sprite, layered, diced, Live2D, Spine, video and scene implementations. By default (when first parameter is not specified), the effect is applied to `MainBackground` actor. Dedicated command: [@blur]
 
 [!067614d77783683e74ca79652099b58d]
 

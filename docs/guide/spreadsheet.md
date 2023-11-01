@@ -1,16 +1,10 @@
 ﻿# Spreadsheet
 
-At some point you may look for an option to compile all the project scenario script and managed text localizable data into a single or multiple spreadsheets. For example, you may want to share the text with a translation agency or editors for proofreading.
+At some point you may look for an option to compile all the project scenario script and managed text localizations into spreadsheets. For example, you may want to share the text with a translation agency or editors for proofreading.
 
-Spreadsheet extension allows to extract all the localizable data (text) from the project to `.xlsx` spreadsheets and then import it back.
+Spreadsheet tool allows extracting all the localizable text from the project to `.csv` sheets and then import it back.
 
-![](https://i.gyazo.com/e8b46fc74a5f633bdce9ec578b3ddf94.png)
-
-## Installation
-
-To set up spreadsheet extension on top of an existing Unity project use [UPM](https://docs.unity3d.com/Manual/upm-ui.html) to install the package via the following git URL: `https://github.com/Naninovel/Spreadsheet.git?path=Assets/NaninovelSpreadsheet` or download and import [NaninovelSpreadsheet.unitypackage](https://github.com/Naninovel/Spreadsheet/raw/main/NaninovelSpreadsheet.unitypackage) manually.
-
-![](https://i.gyazo.com/b54e9daa9a483d9bf7f74f0e94b2d38a.gif)
+![](https://i.gyazo.com/50767f3193ae5b3ed423ea7c213c786b.png)
 
 ## Usage
 
@@ -20,66 +14,70 @@ Before exporting the project data, always generate localization data with the lo
 
 For more information on how to use the tool, see [localization guide](/guide/localization.md).
 
-When the localization data is up to date, open spreadsheet tool with `Naninovel -> Tools -> Spreadsheet` editor menu.
+When the localization data is up-to-date, open spreadsheet tool with `Naninovel -> Tools -> Spreadsheet` editor menu.
 
-![](https://i.gyazo.com/6789ed37b8e72282522bd34d332516af.png)
+![](https://i.gyazo.com/f583374cc46f9b24af8f493c6693f0c1.png)
 
-To import all the data into a single spreadsheet file, enable `Single Spreadsheet`, create a new `.xlsx` spreadsheet file (eg, with Microsoft Excel 2007 or newer) and specify location of the file. To import the data into multiple spreadsheets, specify the output folder and make sure `Single Spreadsheet` is disabled. Then specify folders containing naninovel scripts, managed text and localization root.
+Specify the required folders:
+ - Input Script Folder — folder where you store source naninovel scenario scripts (`.nani`); usually in our example projects we store them under `Assets/Scripts` folder.
+ - Input Text Folder — folder where [managed text documents](/guide/managed-text.md) are generated to; it's `Assets/Resources/Naninovel/Text` by default. Make sure to generate managed text documents via associated tool in case the folder is missing.
+ - Input Localization Folder — localization root where resources for all the different locales are stored; `Assets/Resources/Naninovel/Localization` by default.
+ - Output Folder — folder where to store generated or import edited sheets from.
 
-Click "Export" button to export the project data to the selected destination.
+Click "Export" button to export sheets to the selected destination.
 
-When using single spreadsheet, each script and managed text document will be exported to an individual sheet inside the Excel file; otherwise, an Excel file per document will be created. Sheets will have at least two columns: "Template" and "Arguments". Template column contain all the source file (script or managed text) lines, with localizable parts (text) replaced with placeholders (eg, `{0}`, `{1}` and so on). Each consecutive non-localizable script line (eg, command lines that don't contain parameters that can be translated) will be appended to single template column cell, until a localizable line is discovered. Arguments column contain the text extracted from the associated localizable line.
-
-![](https://i.gyazo.com/709cc837db4e0bc1fe988c9a29ed8956.png)
-
-When locales are defined in the project (via folder inside localization root), the associated columns will be added after the argument column. You're free to modify all the columns in the spreadsheet (including the template column), just make sure to preserve the argument to template relations.
+Each script and managed text document will be exported to an individual sheet. Each sheets will have "ID" column storing localizable text IDs and additional column per each locale. You're free to modify all the columns in the spreadsheet except "ID"; however, modifying column associated with the source locale won't have any effect on import.
 
 After performing the required modifications, click "Import" button to import the data back to the project.
 
 ::: warn
-Project resources will be overwritten when importing from spreadsheet, so refrain from modifying the scenario scripts, managed text and associated localization documents, while the spreadsheet is being edited.
+Project's localization documents will be overwritten when importing from spreadsheet, so refrain from modifying them while the spreadsheet is being edited to prevent conflicts.
+:::
+
+::: note
+The sheets `.csv` format is expected to be compliant with [RFC-4180](https://datatracker.ietf.org/doc/html/rfc4180) standard. However, some sheet processors, such as Microsoft Excel don't wrap cells with trailing whitespace in double quotes on save, which may lead to missing spaces in some cases (eg, spaces between text and inlined commands or expressions). Consult following thread for various workarounds: [techcommunity.microsoft.com/excel/223484](https://techcommunity.microsoft.com/t5/excel/save-as-csv-file-utf-8-with-double-quotes-how/m-p/223484).
 :::
 
 ## Custom Processor
 
-It's possible to inject a custom spreadsheet processor to customize the way spreadsheets are generated as well as the import and export processes.
+It's possible to inject custom spreadsheet processor to customize the way sheets are generated as well as the import and export processes.
 
-Create a custom processor class by inheriting built-in `SpreadsheetProcessor` and apply `[SpreadsheetProcessor]` attribute to the class. The utility will automatically pick a class with the attribute and use it instead of the built-in processor.
+Create a custom processor class by inheriting built-in `Naninovel.Spreadsheet.Processor` handler. The utility will automatically pick the custom handler and use it instead of the built-in one.
 
 Below is an example of a custom processor with some key override points.
 
 ```csharp
-[SpreadsheetProcessor]
-public class CustomProcessor : SpreadsheetProcessor
+using Naninovel.Spreadsheet;
+
+public class CustomProcessor : Processor
 {
-    public CustomProcessor (Parameters parameters, Action<ProgressChangedArgs> onProgress)
-        : base(parameters, onProgress) { }
+    public CustomProcessor (ProcessorOptions options) : base(options)
+    {
+        // Access export/import process options, eg:
+        // options.ScriptFolder
+        // options.SourceLocale
+        // ...etc
+    }
 
-    // Override project writer (import from excel spreadsheet to script assets)
-    protected override ProjectWriter CreateProjectWriter (CompositeSheet composite) { }
-
-    // Override spreadsheet writer (export from script assets to excel spreadsheet)
-    protected override SpreadsheetWriter CreateSpreadsheetWriter (CompositeSheet composite) { }
-    
-    // Override script reader (filling sheet columns from script assets)
-    protected override ScriptReader CreateScriptReader (CompositeSheet composite) { }
-    
-    // Override managed text reader (filling sheet columns from managed text docs)
-    protected override ManagedTextReader CreateManagedTextReader (CompositeSheet composite) { }
-
-    // Override spreadsheet reader (filling sheet columns from excel spreadsheet)
-    protected override SpreadsheetReader CreateSpreadsheetReader (CompositeSheet composite) { }
+    // Override how scripts are exported from project to sheets.
+    protected override void ExportScripts () { }
+    // Override how managed text is exported from project to sheets.
+    protected override void ExportText () { }
+    // Override how script are imported from sheets to project.
+    protected override void ImportText () { }
+    // Override how managed text is imported from sheets to project
+    protected override void ImportScripts () { }
 }
 ```
 
 ## Example
 
-Find an example on how to setup and use the extension in the following project hosted on GitHub: [github.com/Naninovel/Spreadsheet](https://github.com/Naninovel/Spreadsheet).
+Find an example on how to set up and use the extension in the following project hosted on GitHub: [github.com/Naninovel/Spreadsheet](https://github.com/Naninovel/Spreadsheet).
 
-You can [clone the project with a Git client](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) or [download it as a zip archive](https://github.com/Naninovel/Spreadsheet/archive/main.zip). 
+You can [clone the project with a Git client](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) or [download it as a zip archive](https://github.com/Naninovel/Spreadsheet/archive/main.zip).
 
 ::: warn
 Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import Naninovel from the Asset Store to resolve the issues.
 :::
 
-The project has a couple of test scripts stored in `Assets/Scripts` folder, managed text documents at `Assets/Resources/Naninovel/Text` and a `Spreadsheet.xlsx` at the root directory.
+The project has a couple of test scripts stored in `Assets/Scripts` folder, managed text documents at `Assets/Resources/Naninovel/Text` and a sheets at the root directory.

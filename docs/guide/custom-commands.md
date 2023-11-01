@@ -17,6 +17,7 @@ To expose a command parameter to naninovel scripts, add a public field to the co
 | Field Type                | Value Type            | Script Example                      |
 |---------------------------|-----------------------|-------------------------------------|
 | StringParameter           | String                | `LoremIpsum`, `"Lorem ipsum"`       |
+| LocalizableTextParameter  | LocalizableText       | `"Lorem ipsum|#id|"`                |
 | IntegerParameter          | Int32                 | `10`, `0`, `-1`                     |
 | DecimalParameter          | Single                | `0.525`, `-55.1`                    |
 | BooleanParameter          | Boolean               | `true`, `false`                     |

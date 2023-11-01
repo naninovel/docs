@@ -18,6 +18,10 @@ You can edit the values and the changes will be applied on the next run.
 
 Enabling `Delete Unused` property will remove records in the managed text documents that are not directly referenced neither via `ManagedTextProvider` components, nor via `ManagedText` attributes in the source code (more on that below).
 
+::: tip
+To insert line break in managed text value, use `<br>` tag, which is supported by TMPro text out of the box.
+:::
+
 ## Managed Text Provider
 
 It's possible to bind an arbitrary Unity game object to managed text record without any scripting via `ManagedTextProvider` component; add the component to a game object, specify category (name of the document which will contain the record), key (name of the record inside the document) and use `OnValueChanged` event to bind the value to a game object property.

@@ -19,16 +19,13 @@ After switching script parser in the configuration, it's required to re-import s
 Below is an example of a custom parser, which automatically inserts wait commands after each `...` found in the source script text.
 
 ```csharp
-using System.Collections.Generic;
-using Naninovel;
-
 public class CustomParser : ScriptParser
 {
     public override Script ParseText (string scriptName, string scriptText, 
-        ICollection<ScriptParseError> errors = null)
+        ParseOptions options = default)
     {
         scriptText = scriptText.Replace("...", "...[wait 1]");
-        return base.ParseText(scriptName, scriptText, errors);
+        return base.ParseText(scriptName, scriptText, options);
     }
 }
 ```

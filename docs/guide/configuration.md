@@ -5,13 +5,9 @@ Use `Naninovel -> Configuration` or `Edit -> Project Settings -> Naninovel` to a
 
 Notice, that all the configuration menus are supporting [Unity's presets feature](https://docs.unity3d.com/Manual/Presets). It could be useful to create several configuration presets when deploying to different target platforms (eg, mobile, standalone, consoles, etc).
 
-[!55f5c74bfc16e1af2455034647525df3]
+[!https://i.gyazo.com/55f5c74bfc16e1af2455034647525df3.mp4]
 
-It's possible to modify configuration objects at runtime, add new custom configurations and change the way the objects are accessed at runtime (eg, read configuration from JSON files stored on a remote host); see [custom configuration](/guide/custom-configuration.md) guide for more information.
-
-::: note
-This configuration reference is valid for [Naninovel v1.18](https://github.com/Naninovel/Documentation/releases).
-:::
+It's possible to modify configuration objects at runtime, add new custom configurations and change the way the objects are accessed at runtime (eg, read configuration from JSON files stored on a remote host); see [custom configuration](/guide/custom-configuration) guide for more information.
 
 ## Audio
 
@@ -26,10 +22,10 @@ Default Master Volume | 1 | Master volume to set when the game is first started.
 Default Bgm Volume | 1 | BGM volume to set when the game is first started.
 Default Sfx Volume | 1 | SFX volume to set when the game is first started.
 Default Voice Volume | 1 | Voice volume to set when the game is first started.
-Enable Auto Voicing | False | When enabled, each `@print` command will attempt to play an associated voice clip.
-Auto Voice Mode | Playback Spot | When auto voicing is enabled, controls method to associate voice clips with @print commands:<br> • Playback Spot — Voice clips are associated by script name, line and inline indexes (playback spot) of the @print commands. Works best when voicing is added after the scenario scripts are finished. Removing, adding or re-ordering scenario script lines will break the associations.<br> • Content Hash — Voice clips are associated manually via voice map utility by the printed text and author name. Works best when adding voicing before the scenario scripts are finished. Removing, adding or re-ordering scenario script lines won't break the associations. Modifying printed text in the scripts will break associations only with the modified commands.<br><br>Consult voicing documentation for more information and examples.
+Enable Auto Voicing | False | When enabled, each [@print] command will attempt to play an associated voice clip.
+Auto Voice Mode | Text Id | When auto voicing is enabled, controls method to associate voice clips with @print commands:<br> • Text ID — Voice clips are associated by localizable text IDs. Removing, adding or re-ordering scenario script lines won't break the associations. Modifying printed text will break associations unless stable text identification is enabled.<br> • Playback Spot — Voice clips are associated by script name, line and inline indexes (playback spot). Removing, adding or re-ordering scenario script lines will break the associations. Modifying printed text will not break associations.
 Voice Overlap Policy | Prevent Overlap | Dictates how to handle concurrent voices playback:<br> • Allow Overlap — Concurrent voices will be played without limitation.<br> • Prevent Overlap — Prevent concurrent voices playback by stopping any played voice clip before playing a new one.<br> • Prevent Character Overlap — Prevent concurrent voices playback per character; voices of different characters (auto voicing) and any number of [@voice] command are allowed to be played concurrently.
-Voice Locales | Null | Assign localization tags to allow selecting voice language in the game settings independently of the main localization. Doesn't work with `Content Hash` auto voice mode.
+Voice Locales | Null | Assign localization tags to allow selecting voice language in the game settings independently of the main localization.
 Default Fade Duration | 0.35 | Default duration of the volume fade in/out when starting or stopping playing audio.
 Custom Audio Mixer | Null | Audio mixer to control audio groups. When not provided, will use a default one.
 Master Volume Handle Name | Master Volume | Name of the mixer's handle (exposed parameter) to control master volume.
@@ -50,7 +46,7 @@ Property | Default Value | Description
 --- | --- | ---
 Default Metadata | Object Ref | Metadata to use by default when creating background actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating background actors with specific IDs.
-Shared Poses | Object Ref | Named states (poses) shared between the backgrounds; pose name can be used as appearance in `@back` commands to set enabled properties of the associated state.
+Shared Poses | Object Ref | Named states (poses) shared between the backgrounds; pose name can be used as appearance in [@back] commands to set enabled properties of the associated state.
 Scene Origin | (0.5, 0.0) | Reference point on scene to be considered as origin for the managed actors. Doesn't affect positioning.
 Z Offset | 100 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
 Z Step | 0.1 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
@@ -91,7 +87,7 @@ Arrange Range | (0.0, 1.0) | Start (x) and end (y) positions (in 0.0 to 1.0 rang
 Default Metadata | Object Ref | Metadata to use by default when creating character actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating character actors with specific IDs.
 Avatar Loader | Character Avatars- (Addressable, Project) | Configuration of the resource loader used with character avatar texture resources.
-Shared Poses | Object Ref | Named states (poses) shared between the characters; pose name can be used as appearance in `@char` commands to set enabled properties of the associated state.
+Shared Poses | Object Ref | Named states (poses) shared between the characters; pose name can be used as appearance in [@char] commands to set enabled properties of the associated state.
 Scene Origin | (0.5, 0.0) | Reference point on scene to be considered as origin for the managed actors. Doesn't affect positioning.
 Z Offset | 50 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
 Z Step | 0.1 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
@@ -148,6 +144,7 @@ Server Port | 41016 | The network port for the server to listen. Change both her
 Auto Generate Metadata | True | Whether to automatically generate project metadata when Unity editor is started.
 Generate Label Metadata | True | Whether to generate metadata used for script labels autocompletion. May take a substantial time when there are a lot of scripts in the project.
 Enable Development Console | True | Whether to enable development console.
+Debug Only Console | False | When enabled, development console will only be available in development (debug) builds.
 Toggle Console Key | Back Quote | Key used to toggle development console. You can also toggle it with a multi (3 or more) touch when using touchscreens.
 
 </div>
@@ -188,6 +185,7 @@ Default Locale | Null | Locale selected by default when running the game for the
 Property | Default Value | Description
 --- | --- | ---
 Loader | Text- (Addressable, Project) | Configuration of the resource loader used with the managed text documents.
+Multiline Categories | Object Ref | Document categories (local resource paths) for which to use multiline document format.
 
 </div>
 
@@ -241,6 +239,8 @@ Min Auto Play Delay | 3 | Minimum seconds to wait before executing next command 
 Complete On Continue | True | Whether to instantly complete blocking (`wait:true`) commands performed over time (eg, animations, hide/reveal, tint changes, etc) when `Continue` input is activated.
 Show Debug On Init | False | Whether to show player debug window on engine initialization.
 Wait By Default | True | Whether to wait the played commands when the `wait` parameter is not explicitly specified.
+Unload Assets On Play | True | Whether to force-unload unused assets before starting script playback. Required to unload released assets from memory when using addressables.
+Load On Goto | True | Whether to show `ILoadingUI` when [@goto] command requires loading another script. Allows masking resource pre-loading process with the loading screen.
 
 </div>
 
@@ -252,6 +252,7 @@ Property | Default Value | Description
 --- | --- | ---
 Loader | Scripts- (Addressable, Project) | Configuration of the resource loader used with naninovel script resources.
 Script Parser | Naninovel.Script Parser, Elringus.Naninovel.Runtime, Version=0.0.0.0, Culture=neutral, Public Key Token=null | IScriptParser implementation to use for creating script assets from text. Don't forget to re-import script assets after modifying this property.
+Stable Identification | False | Whether to automatically write identifiers to all the localizable text parameters in imported scripts. Enable to persist associations (eg, localization and voiceover) while editing text content. Re-import the scripts for the change to take effect.
 Initialization Script | Null | Name of the script to play right after the engine initialization.
 Title Script | Null | Name of the script to play when showing the Title UI. Can be used to setup the title screen scene (background, music, etc).
 Start Game Script | Null | Name of the script to play when starting a new game. Will use first available when not provided.
@@ -260,6 +261,7 @@ Hot Reload Scripts | True | Whether to reload modified (both via visual and exte
 Watch Scripts | True | Whether to run a file system watcher over `.nani` files in the project. Required to register script changes when edited with an external application.
 Watched Directory |  | When `Watch Scripts` is enabled, select a specific directory to watch instead of the whole project to reduce CPU usage.
 Count Total Commands | False | Whether to calculate number of commands existing in all the available naninovel scripts on service initialization. If you don't use `TotalCommandsCount` property of a script manager and `CalculateProgress` function in naninovel script expressions, disable to reduce engine initialization time.
+Show Script Navigator | False | Whether to auto-show script navigator UI after engine is initialized (requires `IScriptNavigatorUI` available in UI resources).
 Enable Visual Editor | True | Whether to show visual script editor when a script is selected.
 Hide Unused Parameters | True | Whether to hide un-assigned parameters of the command lines when the line is not hovered or focused.
 Select Played Script | True | Whether to automatically select currently played script when visual editor is open.
@@ -277,9 +279,6 @@ Show Synopsis | True | Whether to show fist comment lines of the script inside t
 Graph Custom Style Sheet | Null | Allows modifying default style of the script graph.
 Enable Community Modding | False | Whether to allow adding external naninovel scripts to the build.
 External Loader | Scripts- (Local) | Configuration of the resource loader used with external naninovel script resources.
-Enable Navigator | True | Whether to initialize script navigator to browse available naninovel scripts.
-Show Navigator On Init | False | Whether to show naninovel script navigator when script manager is initialized.
-Navigator Sort Order | 900 | UI sort order of the script navigator.
 
 </div>
 
@@ -307,7 +306,6 @@ Quick Save Slot Mask | Game Quick Save{0:000} | Mask used to name quick save slo
 Save Slot Limit | 99 | Maximum number of save slots.
 Quick Save Slot Limit | 18 | Maximum number of quick save slots.
 Binary Save Files | True | Whether to compress and store the saves as binary files (.nson) instead of text files (.json). This will significantly reduce the files size and make them harder to edit (to prevent cheating), but will consume more memory and CPU time when saving and loading.
-Load Start Delay | 0.3 | Seconds to wait before starting load operations; used to allow pre-load animations to complete before any load-related stutters could happen.
 Reset On Goto | False | Whether to reset state of the engine services when loading another script via [@goto] command. Can be used instead of [@resetState] command to automatically unload all the resources on each goto.
 Enable State Rollback | True | Whether to enable state rollback feature allowing player to rewind the script backwards.
 State Rollback Steps | 1024 | The number of state snapshots to keep at runtime; determines how far back the rollback (rewind) can be performed. Increasing this value will consume more memory.
@@ -347,11 +345,12 @@ Auto Show On Modify | False | Whether to automatically reveal (show) an actor wh
 
 Property | Default Value | Description
 --- | --- | ---
-Loader | UI- (Addressable, Project) | Configuration of the resource loader used with UI resources.
+UI Loader | UI- (Addressable, Project) | Configuration of the resource loader used with UI resources.
+Font Loader | Fonts- (Addressable, Project) | Configuration of the resource loader used with font resources.
 Override Objects Layer | True | Whether to assign a specific layer to all the UI objects managed by the engine. Required for some of the built-in features, eg `Toggle UI`.
 Objects Layer | 5 | When `Override Objects Layer` is enabled, the specified layer will be assigned to all the managed UI objects.
 Font Options | Object Ref | Font options, that should be available in the game settings UI (in addition to `Default`) for the player to choose from.
-Default Font | Null | Name (ID) of a font from `Font Options` to apply by default when the game is first started. When not specified, `Default` font is applied.
+Default Font | Null | Font name from `Font Options` to apply by default when the game is first started. When not specified, `Default` font is applied.
 
 </div>
 

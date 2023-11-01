@@ -6,11 +6,11 @@ Naninovel scripts are text documents (`.nani` extension) where you control what 
 
 Each line in a naninovel script represents a statement, which can be a command, generic text, label or a comment. Type of the statement is determined by the literal placed at the start of the line:
 
-Literal | Statement Type 
-:---: | --- 
-@ | [Command](#command-lines)
-# | [Label](#label-lines)
-; | [Comment](#comment-lines)
+| Literal | Statement Type            |
+|:-------:|---------------------------|
+|    @    | [Command](#command-lines) |
+|    #    | [Label](#label-lines)     |
+|    ;    | [Comment](#comment-lines) |
 
 When none of the above literals are present at the start of the line, it's considered a [generic text](#generic-text-lines) statement.
 
@@ -20,9 +20,9 @@ Line is considered a command statement if it starts with a `@` literal. Command 
 
 ### Command Identifier
 
-Right after the command literal a command identifier is expected. This could either be name of the C# class that implements the command or the command's alias (if it's applied via `CommandAlias` attribute). 
+Right after the command literal a command identifier is expected. This could either be name of the C# class that implements the command or the command's alias (if it's applied via `CommandAlias` attribute).
 
-For example, [@save] command (used to auto-save the game) is implemented via the `AutoSave` C# class. The implementing class also has a `[CommandAlias("save")]` attribute applied, so you can use both `@save` and `@AutoSave` statements in the script to invoke this command. 
+For example, [@save] command (used to auto-save the game) is implemented via the `AutoSave` C# class. The implementing class also has a `[CommandAlias("save")]` attribute applied, so you can use both `@save` and `@AutoSave` statements in the script to invoke this command.
 
 Command identifiers are case-insensitive; all the following statements are valid and will invoke the same `AutoSave` command:
 
@@ -70,7 +70,7 @@ If you find yourself specifying `wait:false` more often than not, consider disab
 
 ### Parameter Value Types
 
-Depending on the command parameter, it could expect one of the following value types: 
+Depending on the command parameter, it could expect one of the following value types:
 
 Type | Description
 --- | ---
@@ -79,11 +79,11 @@ integer | A number which is not a fraction; a whole number, eg: `1`, `150`, `-25
 decimal | A decimal number with fraction delimited by a dot, eg: `1.0`, `12.08`, `-0.005`.
 boolean | Can have one of two possible values: `true` or `false` (case-insensitive).
 named | A name string associated with a value of one of the above types. The name part is delimited by a dot. Eg for named integer: `foo.8`, `bar.-20`.
-list| A comma-separated list of values of one of the above types. Eg for string list: `foo,bar,"Lorem ipsum."`, for decimal list: `12,-8,0.105,2`
+list | A comma-separated list of values of one of the above types. Eg for string list: `foo,bar,"Lorem ipsum."`, for decimal list: `12,-8,0.105,2`
 
 ### Nameless Parameters
 
-Most of the commands have a nameless parameter. A parameter is considered nameless when it could be used without specifying its name. 
+Most of the commands have a nameless parameter. A parameter is considered nameless when it could be used without specifying its name.
 
 For example, a [@bgm] command expects a nameless parameter specifying the name of the music track to play:
 
@@ -102,7 +102,7 @@ Some parameters however are *required* in order for the command to execute and s
 
 ### Commands API Reference
 
-For the list of all the currently available commands with a summary, parameters and usage examples see [commands API reference](/api/). 
+For the list of all the currently available commands with a summary, parameters and usage examples see [commands API reference](/api/).
 
 ## Generic Text Lines
 
@@ -183,7 +183,6 @@ In case you're using [@goto] command from within the same script where the label
 ```nani
 @goto .Epilogue
 ```
-
 
 ## Comment Lines
 
@@ -393,7 +392,7 @@ For more information on how to install and use the extension see the [IDE extens
 
 ## Scripts Debug
 
-When working with large naninovel scripts, it could become tedious to always play them from start in order to check how things work in particular parts of the script. 
+When working with large naninovel scripts, it could become tedious to always play them from start in order to check how things work in particular parts of the script.
 
 Using [development console](/guide/development-console.md) you can instantly "rewind" currently played script to an arbitrary line:
 
@@ -410,3 +409,15 @@ To find out which script and line is currently playing, use debug window: type `
 Currently played script name, line number and command (inline) index are displayed in the title of the window. When [auto voicing](/guide/voicing.md#auto-voicing) feature is enabled, name of the corresponding voice clip will also be displayed. You can re-position the window by dragging it by the title. "Stop" button will halt script execution; when script player is stopped "Play" button will resume the execution. You can close the debug window by pressing the "Close" button.
 
 Debug window is available in both editor and player builds.
+
+## Text Identification
+
+Features like [script localization](/guide/localization.md#scripts-localization) and [auto voicing](/guide/voicing.md#auto-voicing) require associating text written in Naninovel scenario scripts with other resources; for example translated text to show instead of the associated one or voice clip to play when associated text is printed. For this to work we have to assign each such text a unique identifier.
+
+By default, Naninovel will automatically identify all the localizable text by its content hash when importing script assets. This works fine as long as you don't modify the text; but after you do, all the associations will break: you'll have to re-map auto voice clips or re-translate changed text statements.
+
+To prevent associations from breaking when editing text, enable `Stable Identification` under scripts configuration menu. When enabled, Naninovel will explicitly write unique IDs to each localizable text in imported scripts. The downside is that the script text will now have IDs appended to each localizable parameter (eg, `Kohaku: Hello!|#ID|`, `@choice "Option 1|#ID|`), but in return, as long as you don't remove or change the IDs, the associations won't break.
+
+To make text IDs less distracting, they are colored dim by the IDE extension and are hidden when editing scripts via standalone visual editor.
+
+![](https://i.gyazo.com/2892818b06f5fd8fe929d6d0a2b3a60f.png)

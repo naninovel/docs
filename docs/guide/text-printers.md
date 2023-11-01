@@ -168,102 +168,27 @@ Check out [demo project](/guide/getting-started.md#demo-project) for an example 
 
 It's also possible to create a printer from scratch by manually implementing `ITextPrinterActor` interface. See the guide on [custom actor implementations](/guide/custom-actor-implementations.md) for more information.
 
-When modifying text component, be aware, that line hight less than 1.0 is not supported (rendered lines will overlap in this case, making it impossible to apply reveal effect). Consider editing the text font itself to reduce vertical clearing.
-
 ## Text Reveal Effect
 
-By default, a gradient fade effect is applied when printing out the text messages. If, however, you prefer the more conventional "typewriter" style, you can disable the fade effect by disabling `Slide Clip Rect` and setting `Reveal Fade Width` property in `Revealable Text` component to zero. `Revealable Text` components are applied to the text objects in some of the built-in printers; eg, you can find it attached to `Fullscreen/Content/Printer/Text` game object of a `Fullscreen` printer prefab.
+Reveal progress of printed text messages is maintained by `Revealable Text` component, which wraps Unity's TMPro Text and supports all the same features. By itself, however, the component doesn't apply any reveal effects. For this standalone components are used, such as `Reveal Clipped`, which limits maximum visible characters in accordance with the current reveal progress. Most built-in printers also have `Reveal Fader` component applied, which adds gradient opacity fade to the revealed characters.
 
-![](https://i.gyazo.com/ab848f3c1c56921634b9d2b872e7c0cb.png)
+![](https://i.gyazo.com/cb76ab871fe4691646e968b2c49d0a13.png)
 
-## Text Reveal Sounds
+To change the reveal effect intensity (how far the fade stretches), change `Length` property. 
 
-For the built-in printers, that support revealing effect (currently, `Dialogue`, `Fullscreen` and `Wide`) you can optionally set SFX to be played when the characters are revealed. 
+When `Slack Opacity` is below 1, opacity of the text printed before the last append will fade to the specified value over `Slack Duration` seconds (enabled by default in built-in `Fullscreen` printer).
 
-Follow the "Adding Custom Printers" guide above to create a custom printer based on any of the built-in ones, then find `Revealable Text Printer Panel` component attached to the root object of the prefab and use `Reveal Sfx` property to set the SFX to be played when a character is revealed. The actual list of the available options is based on the audio resources you've added via the `Naninovel -> Resources -> Audio` menu.
+[!29017ea20e8b7b95c3f7f25658b645f9]
 
-You can also use `Chars SFX` list property to map multiple SFXs to specific characters. The following illustration represents setup, where "Keystroke2" SFX will be played for spaces, "Explosion" for characters `D`, `d`, `F`, `1`, `4`, `9`, and `*`, no SFX will be played for `%` character and "Keystroke1" will be played for all the other characters.
-
-![](https://i.gyazo.com/c51247254e262dca35267b3689460ad2.png)
-
-Alternatively, you can set `Message Sound` in the character configuration menus to play character-specific sounds when the text is revealed while that character is the author of the message (no matter which text printer is printing that message). In case both `Message Sound` of the message's author and `Reveal Sfx` of the default printer are assigned, `Message Sound` will be played instead of the printer's default `Reveal SFX`. `Chars SFX`, when configured, will always be played, no matter if `Message Sound` of the author is specified or not.
-
-The text reveal sounds are played very often (depending on the message reveal speed) and are clipped when same sound is played in consequence, so make sure the corresponding audio clips are very short and sharp (without any pause/silence at the beginning).
-
-In case the reveal sounds are not working for you (eg, the sound is not short enough to play it on each char reveal), consider using `OnPrintTextStarted` and `OnPrintTextFinished` events of the `TextPrinterManager` [engine service](/guide/engine-services.md) to start/stop looping the sound accordingly. Those events are also exposed to PlayMaker, in case you prefer a [visual scripting](/guide/playmaker.md) solution.
-
-## TextMesh Pro
-
-Naninovel supports [TextMesh Pro](https://docs.unity3d.com/Manual/com.unity.textmeshpro.html) via built-in `TMProFullscreen`, `TMProDialogue`, `TMProWide`, `TMProChat` and `TMProBubble` printers implemented with the TMPro UI text components.
-
-Before using the TMPro printers, make sure you have TextMesh Pro installed in your Unity project. TextMesh Pro can be installed via package manager accessible with `Window -> Package Manager` menu.
-
-You can select the TMPro printers to route all the print commands to them using [@printer] command in naninovel scripts:
-
-```nani
-; Activate dialogue TMPro printer
-@printer TMProDialogue
-; Print text using the activated printer
-Hello World!
-```
-
-When creating custom TextMesh Pro font assets or materials, don't forget to apply `Naninovel/RevealableTMProText` shader to the font material, otherwise text reveal effect won't work.
-
-![](https://i.gyazo.com/21521e4bb92c414e0f718a867c3c2a8c.png)
-
-### Embedded Sprites (Emoji)
-
-To make [TMPro's sprites](http://digitalnativestudios.com/textmeshpro/docs/sprites/) support text reveal effect, create a custom sprite asset and assign a material with `Naninovel/RevealableTMProSprite` shader.
-
-![](https://i.gyazo.com/a7d7e17d00e82816c69ca9c79dd20b81.png)
-
-Make sure the material has sprite atlas texture assigned, as it won't automatically find the texture assigned in sprite asset.
-
-![](https://i.gyazo.com/79d80a4d14bc53dee934d4b5f965bff5.png)
-
-### Right to Left (Arabic) Text
-
-Naninovel supports RTL text reveal effect in TMPro printers.
-
-[!38b9ec2bbf18dc6ee469c3fb452eae29]
-
-To use RTL text in a TMPro printer, do the following:
-1. Create a custom TMPro text printer.
-3. Apply `Naninovel/RevealableTMProText RTL` shader to the [font material](http://digitalnativestudios.com/textmeshpro/docs/font/) used by the printer.
-3. Set `Enable RTL Editor` property in "Revealable TM Pro Text" component inside the printer.
-4. Optionally, enable `Fix Arabic Text` property on the same component.
-
-![](https://i.gyazo.com/9dfc9fa47ad15b70691b992c4b1451bf.png)
-
-Don't forget to use a [compatible font](https://fonts.google.com/?subset=arabic&sort=popularity) and atlas configuration; here is an example:
-
-```
-Font Size: Auto Sizing
-Font padding: 5
-Packing Method: Optimum
-Atlas res: 1024x1024
-Character Set: Unicode Range (Hex) with this Sequence:
-20-7E,600-603,60B-615,61B,61E-61F,621-63A,640-65E,660-6DC,6DF-6E8,6EA-6FF,750-76D,FB50-FBB1,FBD3-FBE9,FBFC-FBFF,FC5E-FC62,FD3E-FD3F,FDF2,FDFC,FE80-FEFC
-Font Render Mode: Distance Field 16
-```
-
-::: example
-For a complete example on setting up custom text mesh pro printer with right-to-left (Arabic) text support, see [Naninovel RTL project on GitHub](https://github.com/Naninovel/RTL).
-:::
-
-::: note
-Neither uGUI, nor TMPro [natively support Arabic text](http://digitalnativestudios.com/forum/index.php?topic=462.msg12139#msg12139). Consider using `Naninovel TMPro Text` component for text labels (other than printers) that should support Arabic.
-:::
+When text printer has constant dimensions and can't accommodate varying message length and/or font size, set TMPro's text overflow mode to "page" and add `Reveal Paginator` component, which will sync currently displayed page with the reveal progress. Find example setup in `Fullscreen` built-in printer.
 
 ## Text Styles
 
-Various text styles can be applied via rich text tags placed right inside the text or using [@style] command.
+Various text styles can be applied via rich text tags placed right inside the text or using [@style] command. See the [official documentation](http://digitalnativestudios.com/textmeshpro/docs/rich-text/) for more info.
 
-The default (non-TMPro) text printers are based on [Unity's text rendering system](https://docs.unity3d.com/Manual/script-Text.html) and support basic text styling like color, size, bold, italic, etc. Refer to [guide on text tags](https://docs.unity3d.com/Manual/StyledText.html) for more info.
+## Ruby (Furigana)
 
-TextMesh Pro printers support a wide range of additional text tags. See the [official documentation](http://digitalnativestudios.com/textmeshpro/docs/rich-text/) for more info. 
-
-Support for [ruby](https://en.wikipedia.org/wiki/Ruby_character) (furigana) characters is additionally provided by the Naninovel's TextMesh Pro printers via custom `<ruby>` tag. Wrap the text above which the ruby characters should be placed with the ruby tag and specify the ruby text inside the tag, eg:
+Support for [ruby](https://en.wikipedia.org/wiki/Ruby_character) characters is provided by Naninovel's `Naninovel TMPro Text` component (`Revealable Text` is based on it) via custom `<ruby>` tag. Wrap the text above which the ruby characters should be placed with the ruby tag and specify the ruby text inside the tag, eg:
 
 ```nani
 Lorem <ruby="VERY">ipsum</ruby> dolor sit amet. 
@@ -282,8 +207,6 @@ Lorem <ruby="VERY"><tip="TipID">ipsum</tip></ruby> dolor sit amet.
 
 You can additionally control the size and vertical line offset of the ruby text by changing properties of `RevealableTMProText` component used in the printer prefabs.
 
-![](https://i.gyazo.com/7e1e927c144f30353baaab2ac7b643c7.png)
-
 By default, when a ruby text is inserted to the printed message, line height is increased to compensate for the new content. To ensure equal height for all lines (both with and without ruby text), disable `Add Ruby Line Height` property and increase default line height.
 
 ![](https://i.gyazo.com/6b4d9d41438dfc36309a6dc04682dbf5.png)
@@ -291,3 +214,52 @@ By default, when a ruby text is inserted to the printed message, line height is 
 Below is a video demonstration of the ruby tags in action.
 
 [!!aWdq7YxIxkE]
+
+## Right to Left (Arabic) Text
+
+Supports for RTL text reveal effect can be enabled in all the built-in printers.
+
+[!38b9ec2bbf18dc6ee469c3fb452eae29]
+
+To use RTL text in a printer, do the following:
+1. Create custom text printer from any built-in template.
+2. Set `Enable RTL Editor` property in `Revealable Text` component inside the printer.
+3. Enable `Fix Arabic Text` property on the same component (under "Naninovel Settings" dropdown).
+
+![](https://i.gyazo.com/3eec751d0c85da8f9cfb20a6fe6902bb.png)
+
+Don't forget to use a [compatible font](https://fonts.google.com/?subset=arabic&sort=popularity) and atlas configuration; here is an example:
+
+```
+Font Size: Auto Sizing
+Font padding: 5
+Packing Method: Optimum
+Atlas res: 1024x1024
+Character Set: Unicode Range (Hex) with this Sequence:
+20-7E,600-603,60B-615,61B,61E-61F,621-63A,640-65E,660-6DC,6DF-6E8,6EA-6FF,750-76D,FB50-FBB1,FBD3-FBE9,FBFC-FBFF,FC5E-FC62,FD3E-FD3F,FDF2,FDFC,FE80-FEFC
+Font Render Mode: Distance Field 16
+```
+
+::: example
+For a complete example on setting up custom text mesh pro printer with right-to-left (Arabic) text support, see [Naninovel RTL project on GitHub](https://github.com/Naninovel/RTL).
+:::
+
+::: note
+Unity doesn't natively support Arabic text. Consider using `Naninovel TMPro Text` component for text labels (other than printers) that should support Arabic.
+:::
+
+## Text Reveal Sounds
+
+For the built-in printers, that support revealing effect (currently, `Dialogue`, `Fullscreen` and `Wide`) you can optionally set SFX to be played when the characters are revealed.
+
+Follow the "Adding Custom Printers" guide above to create a custom printer based on any of the built-in ones, then find `Revealable Text Printer Panel` component attached to the root object of the prefab and use `Reveal Sfx` property to set the SFX to be played when a character is revealed. The actual list of the available options is based on the audio resources you've added via the `Naninovel -> Resources -> Audio` menu.
+
+You can also use `Chars SFX` list property to map multiple SFXs to specific characters. The following illustration represents setup, where "Keystroke2" SFX will be played for spaces, "Explosion" for characters `D`, `d`, `F`, `1`, `4`, `9`, and `*`, no SFX will be played for `%` character and "Keystroke1" will be played for all the other characters.
+
+![](https://i.gyazo.com/c51247254e262dca35267b3689460ad2.png)
+
+Alternatively, you can set `Message Sound` in the character configuration menus to play character-specific sounds when the text is revealed while that character is the author of the message (no matter which text printer is printing that message). In case both `Message Sound` of the message's author and `Reveal Sfx` of the default printer are assigned, `Message Sound` will be played instead of the printer's default `Reveal SFX`. `Chars SFX`, when configured, will always be played, no matter if `Message Sound` of the author is specified or not.
+
+The text reveal sounds are played very often (depending on the message reveal speed) and are clipped when same sound is played in consequence, so make sure the corresponding audio clips are very short and sharp (without any pause/silence at the beginning).
+
+In case the reveal sounds are not working for you (eg, the sound is not short enough to play it on each char reveal), consider using `OnPrintTextStarted` and `OnPrintTextFinished` events of the `TextPrinterManager` [engine service](/guide/engine-services.md) to start/stop looping the sound accordingly. Those events are also exposed to PlayMaker, in case you prefer a [visual scripting](/guide/playmaker.md) solution.
