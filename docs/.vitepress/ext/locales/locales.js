@@ -209,7 +209,7 @@ function buildNav(text, lang) {
         {
             text: "v1.19", items: [
                 { text: "Changelog", link: "https://github.com/Naninovel/Documentation/releases/tag/v1.19" },
-                { text: "Contributing", link: "https://github.com/Naninovel/naninovel.github.io/blob/main/CONTRIBUTING.md" }
+                { text: "Contributing", link: "https://github.com/Naninovel/Documentation/blob/master/CONTRIBUTING.md" }
             ]
         }
     ];
