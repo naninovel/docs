@@ -7,11 +7,11 @@ export const Vite = {
     plugins: [
         EmbedAssets({ assetsDir: "./docs/.vitepress/cache/.remote-assets" }),
         // A hack due to vite not resolving "data-source" attr: https://github.com/vitejs/vite/issues/5098
-        {
-            name: "data-source",
-            transformIndexHtml: (html) => html.replace(
-                new RegExp(/<source data-src="(.+?)"/g), "<source data-src=\"$1\" src=\"$1\"")
-        }
+        // {
+        //     name: "data-source",
+        //     transformIndexHtml: (html) => html.replace(
+        //         new RegExp(/<source data-src="(.+?)"/g), "<source data-src=\"$1\" src=\"$1\"")
+        // }
     ]
 };
 
