@@ -27,9 +27,9 @@ pre {
 
 :root {
     /* Main highlight/link color. */
-    --vp-c-brand-1: #1baeea;
+    --vp-c-brand-1: #00a3e6;
     /* Link hover color. */
-    --vp-c-brand-2: #7ddaff;
+    --vp-c-brand-2: #006e9b;
     /* ??? */
     --vp-c-brand-3: #1baeea;
     /* Background on `` snippets under tip blocks. */
@@ -43,17 +43,22 @@ pre {
     --vp-c-brand-dimm: rgba(27, 174, 234, 0.08);
 }
 
-/*.dark {*/
-/*    !* Background of main bg. *!*/
-/*    --vp-c-bg: #1b1d1f;*/
-/*    !* Background of some lighter bgs (eg, algolia search). *!*/
-/*    --vp-c-bg-soft: #1f2426;*/
-/*    !* Background of menus (eg, lang selection) *!*/
-/*    --vp-c-bg-elv: #1f2426;*/
-/*    !* Background of sidebar bg. *!*/
-/*    --vp-c-bg-alt: #151617;*/
-/*    --vp-sidebar-bg-color: var(--vp-c-bg-alt);*/
-/*}*/
+.dark {
+    /* Main highlight/link color. */
+    --vp-c-brand-1: #1baeea;
+    /* Link hover color. */
+    --vp-c-brand-2: #7ddaff;
+
+    /*!* Background of main bg. *!*/
+    /*--vp-c-bg: #1b1d1f;*/
+    /*!* Background of some lighter bgs (eg, algolia search). *!*/
+    /*--vp-c-bg-soft: #1f2426;*/
+    /*!* Background of menus (eg, lang selection) *!*/
+    /*--vp-c-bg-elv: #1f2426;*/
+    /*!* Background of sidebar bg. *!*/
+    /*--vp-c-bg-alt: #151617;*/
+    /*--vp-sidebar-bg-color: var(--vp-c-bg-alt);*/
+}
 
 .VPImage.logo {
     width: 30px;
