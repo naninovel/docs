@@ -1,4 +1,5 @@
-import DefaultTheme from "vitepress/theme";
+import DefaultTheme from 'vitepress/theme-without-fonts'
+import "@fontsource-variable/inter";
 import "@fontsource-variable/jetbrains-mono";
 import "./style.css";
 

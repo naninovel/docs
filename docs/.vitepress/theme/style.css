@@ -8,6 +8,7 @@
  * -------------------------------------------------------------------------- */
 
 :root {
+    --vp-font-family-base: "Inter Variable", sans-serif;
     --vp-font-family-mono: "JetBrains Mono Variable", monospace;
     --vp-layout-max-width: 1450px; /** Default is 1440px **/
 }
