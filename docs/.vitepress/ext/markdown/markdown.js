@@ -42,8 +42,7 @@ function buildImageTags(match) {
 /** @param {string[]} match */
 function buildVideoTags(match) {
     const size = getMediaSize(match[2]);
-    // const source = `<source data-src="${match[2]}" type="video/mp4">`;
-    const source = `<source src="${match[2]}" type="video/mp4">`;
+    const source = `<source data-src="${match[2]}" type="video/mp4">`;
     return `<video class="video" preload="none" loop autoplay muted playsinline poster="/assets/img/video-poster.svg" width="${size.width}" height="${size.height}">${source}</video>`;
 }
 
