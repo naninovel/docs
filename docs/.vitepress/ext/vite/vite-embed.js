@@ -5,11 +5,11 @@ import probes from "ffprobe-static";
 import fs from "node:fs";
 import afs from "node:fs/promises";
 import path from "node:path";
-import crypto from "node:crypto";
 
 /** @typedef Options
  *  @property {RegExp?} urlRegex The regex to match remote asset URLs.
- *  @property {string?} assetsDir Directory path (relative to the project root) to store downloaded assets.
+ *  @property {string?} serveDir Directory from where downloaded assets will be served at production.
+ *  @property {string?} localDir Directory path to store downloaded assets at development.
  *  @property {number?} downloadTimeout How long to wait when downloading each asset, in seconds.
  *  @property {number?} downloadRetryLimit How many times to restart the download when request fails.
  *  @property {number?} downloadRetryDelay How long to wait before restarting a failed download, in seconds.
@@ -26,7 +26,8 @@ import crypto from "node:crypto";
 /** @type {Options} */
 export const defaultOptions = {
     urlRegex: /\b(https?:\/\/[\w_#&?.\/-]*?\.(?:png|jpe?g|webp|svg|gif|mp4))(?=[`'")\]])/ig,
-    assetsDir: "./node_modules/.remote-assets",
+    serveDir: "/images/remote",
+    localDir: "./node_modules/imagenie/remote",
     downloadTimeout: 30,
     downloadRetryLimit: 3,
     downloadRetryDelay: 6,
@@ -37,7 +38,8 @@ export const defaultOptions = {
  *  @return {import("vite").Plugin} */
 export const EmbedAssets = (options) => {
     const pattern = options?.urlRegex ?? defaultOptions.urlRegex;
-    const assetsDir = path.resolve(options?.assetsDir ?? defaultOptions.assetsDir);
+    const serveDir = options?.serveDir ?? defaultOptions.serveDir;
+    const localDir = options?.localDir ?? path.resolve(defaultOptions.localDir);
     const timeoutSeconds = options?.downloadTimeout ?? defaultOptions.downloadTimeout;
     const retryLimit = options?.downloadRetryLimit ?? defaultOptions.downloadRetryLimit;
     const maxRetryDelay = options?.downloadRetryDelay ?? defaultOptions.downloadRetryDelay;
@@ -64,8 +66,8 @@ export const EmbedAssets = (options) => {
     async function initialize(resolved) {
         config = resolved;
         if (config.server.force)
-            await emptyDir(assetsDir);
-        ensureDir(assetsDir);
+            await emptyDir(localDir);
+        ensureDir(localDir);
     }
 
     /** @param {string} code
@@ -95,11 +97,10 @@ export const EmbedAssets = (options) => {
     /** @param {string} id
      *  @param {string} url */
     async function resolve(id, url) {
-        const fileName = md5(url) + path.extname(url);
-        const filePath = path.resolve(assetsDir, fileName);
+        const fileName = path.basename(url);
+        const filePath = path.resolve(localDir, fileName);
         await downloadQueued(url, filePath);
-        let newUrl = path.relative(path.dirname(id), `${assetsDir}/${fileName}`);
-        if (!newUrl.startsWith("./")) newUrl = "./" + newUrl;
+        const newUrl = `${serveDir}/${fileName}`;
         return appendSize ? appendMediaSize(newUrl, await resolveMediaQueued(filePath)) : newUrl;
     }
 
@@ -123,6 +124,7 @@ export const EmbedAssets = (options) => {
     /** @param {string} url
      *  @param {string} filepath */
     async function downloadWithRetries(url, filepath) {
+        console.info(`Downloading ${url} to ${localDir}`);
         try { return await downloadTo(url, filepath); }
         catch (error) {
             retries.set(filepath, (retries.get(filepath) ?? 0) + 1);
@@ -165,11 +167,6 @@ function isValidHttpUrl(str) {
     try { url = new URL(str); }
     catch (_) { return false; }
     return url.protocol === "http:" || url.protocol === "https:";
-}
-
-/** @param {string} url */
-function md5(url) {
-    return crypto.createHash("md5").update(url).digest("hex");
 }
 
 /** @param {number} seconds
