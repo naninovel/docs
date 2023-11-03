@@ -12,16 +12,20 @@ export default {
         /** @param {import("vitepress").EnhanceAppContext} ctx */
         enhanceApp: (ctx) => {
             DefaultTheme.enhanceApp(ctx);
-            ctx.router.onAfterRouteChanged = observeVideos;
+            ctx.router.onAfterRouteChanged = () => void setTimeout(observeVideos, 0);
         }
     }
 };
 
 function observeVideos() {
-    if (typeof document !== "object") return;
+    if (!canObserve()) return;
     const observer = new IntersectionObserver(handleIntersections);
     for (const element of document.querySelectorAll("video.video"))
         observer.observe(element);
+}
+
+function canObserve() {
+    return typeof document === "object" && "IntersectionObserver" in window;
 }
 
 function handleIntersections(entries, observer) {
