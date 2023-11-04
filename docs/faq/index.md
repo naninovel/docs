@@ -34,7 +34,7 @@ We are using [Stripe](https://stripe.com) to process the payments, which is the 
 
 Another issue with purchasing on Asset Store is the requirement to validate the purchase to receive support and access latest updates. When purchasing directly from us, you just use the order number, whilst with Asset Store you have to wait until invoice is generated (which may take up to 24 hours) and download the asset via package manager at least once in order for the verification to work.
 
-The only "extra" you'd get when purchasing on Asset Store is the option to download the package via Unity's package manager. However, due to long review processes, Naninovel version on the store is usually outdated, so you'll most likely end up downloading it directly form us anyway.
+The only "extra" you'd get when purchasing on Asset Store is the option to download the package via Unity's package manager. However, due to long review processes, Naninovel version on the store is usually outdated, so you'll most likely end up downloading it directly from us anyway.
 
 ## Why am I getting "asset wasn't downloaded" error when attempting to register Asset Store license?
 
