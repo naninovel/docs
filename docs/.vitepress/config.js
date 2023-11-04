@@ -35,4 +35,7 @@ export default defineConfig(imgit.vitepress.installConfig({
     locales: Locales.Config,
     markdown: Markdown,
     vite: Vite
-}, { serveDir: "/assets/remote", localDir: "./docs/public/assets/remote" }));
+}, {
+    serveDir: "/assets/remote",
+    localDir: "./docs/public/assets/remote"
+}));
