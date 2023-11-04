@@ -8,10 +8,9 @@ import { Plugin as VitePlugin } from "../vite/plugin";
  *  @return {import("vitepress").UserConfig} */
 export function installConfig(config, options = undefined) {
     if (options) configure(options);
-    return {
-        markdown: { ...config.markdown, config: configMarkdownIt(config.markdown.config) },
-        vite: { ...config.vite, plugins: [...config.vite, VitePlugin()] }
-    };
+    config.markdown.config = configMarkdownIt(config.markdown.config);
+    config.vite.plugins?.push(VitePlugin());
+    return config;
 }
 
 /** @param {import("vitepress").EnhanceAppContext} app */
