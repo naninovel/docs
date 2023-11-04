@@ -1,3 +1,3 @@
 export * as Locales from "./locales/locales";
-export * from "./markdown/markdown";
+export * from "./md/md";
 export * from "./vite/vite";

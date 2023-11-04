@@ -1,4 +1,4 @@
-import { inherits } from "util";
+import { inherits } from "node:util";
 
 // Based on https://github.com/rlidwka/markdown-it-regexp.
 

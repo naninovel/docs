@@ -1,10 +1,8 @@
 import { fileURLToPath } from "url";
-import { EmbedAssets } from "./vite-embed";
 
 /** @type import("vite").UserConfig */
 export const Vite = {
-    resolve: { alias: [override("NotFound", "not-found")] },
-    plugins: [EmbedAssets({ serveDir: "/assets/remote", localDir: "./docs/public/assets/remote" })]
+    resolve: { alias: [override("NotFound", "not-found")] }
 };
 
 /** https://vitepress.dev/guide/extending-default-theme#overriding-internal-components

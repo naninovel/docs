@@ -301,15 +301,15 @@ table > tfoot:not(:last-child) {
     display: block;
 }
 
-.image {
+.imgit-image {
     border-radius: 8px;
 }
 
-.video {
+.imgit-video {
     border-radius: 8px;
 }
 
-.youtube {
+.imgit-youtube {
     display: block;
     position: relative;
     padding-bottom: 56.25%;
@@ -317,9 +317,9 @@ table > tfoot:not(:last-child) {
     overflow: hidden;
 }
 
-.youtube iframe,
-.youtube object,
-.youtube embed {
+.imgit-youtube iframe,
+.imgit-youtube object,
+.imgit-youtube embed {
     position: absolute;
     top: 0;
     left: 0;
