@@ -1,7 +1,9 @@
 import { fileURLToPath } from "url";
+import imgit from "../../imgit/vite-plugin-imgit";
 
 /** @type import("vite").UserConfig */
 export const Vite = {
+    plugins: [imgit({ ext: ".md", enforce: "pre", serveDir: "/assets/remote", localDir: "./docs/public/assets/remote" })],
     resolve: { alias: [override("NotFound", "not-found")] }
 };
 

@@ -1,5 +1,5 @@
 /** @typedef Options
- *  @property {RegExp?} regex The assets regex to capture. 1st capture group is title, 2nd is source.
+ *  @property {RegExp?} regex The asset regex to transform; expects <title> and <uri> capture groups.
  *  @property {string?} localDir Directory where the assets are stored locally in development environment.
  *  @property {string?} serveDir Directory from where the assets are served in production environment.
  *  @property {number?} fetchTimeout How long to wait when downloading remote asset, in seconds.
@@ -7,14 +7,14 @@
  *  @property {number?} fetchDelay How long to wait before restarting a failed download, in seconds. */
 
 /** @type {Options} */
-const defaults = {
-    regex: /!\[(.*?)]\((.+?)\)/,
+export const defaults = Object.freeze({
+    regex: /!\[(?<title>.*?)]\((?<uri>.+?)\)/g,
     localDir: "./imgit/remote",
     serveDir: "/images/remote",
     fetchTimeout: 30,
     fetchRetries: 3,
     fetchDelay: 6
-};
+});
 
 /** @type {Options} */
 export const options = { ...defaults };

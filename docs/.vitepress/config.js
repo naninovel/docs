@@ -1,9 +1,8 @@
 import { defineConfig } from "vitepress";
 import { Locales, Markdown, Vite } from "./ext";
-import imgit from "./imgit";
 
 // https://vitepress.dev/reference/site-config
-export default defineConfig(imgit.vitepress.installConfig({
+export default defineConfig({
     title: "Naninovel",
     cleanUrls: true,
     lastUpdated: true,
@@ -35,7 +34,4 @@ export default defineConfig(imgit.vitepress.installConfig({
     locales: Locales.Config,
     markdown: Markdown,
     vite: Vite
-}, {
-    serveDir: "/assets/remote",
-    localDir: "./docs/public/assets/remote"
-}));
+});

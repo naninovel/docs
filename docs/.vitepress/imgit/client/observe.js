@@ -1,4 +1,4 @@
-export function observeVideos() {
+export function observe() {
     if (!canObserve()) return;
     const observer = new IntersectionObserver(handleIntersections);
     for (const element of document.querySelectorAll("video.imgit-video"))
