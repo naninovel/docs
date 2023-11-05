@@ -8,10 +8,19 @@ export default function (options = undefined) {
     return {
         name: "vite-plugin-imgit",
         enforce: options?.enforce,
-        transform(source, filename) {
-            if (!options?.ext || filename.endsWith(options.ext))
-                return transform(source);
-            return source;
+        transform: handleTransform,
+        transformIndexHtml: {
+            order: options?.enforce,
+            handler: (source, ctx) => handleTransform(source, ctx.filename)
         }
     };
+
+    /** @param {string} source
+     *  @param {string} filename
+     *  @return {Promise<string>} */
+    async function handleTransform(source, filename) {
+        if (!options?.ext || filename.endsWith(options.ext))
+            return await transform(source);
+        return source;
+    }
 };
