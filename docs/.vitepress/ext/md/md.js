@@ -1,6 +1,6 @@
 import { AppendIconToExternalLinks } from "./md-link";
+import { Replacer } from "./md-replacer";
 import { NaniScript } from "../language/language";
-import imgit from "../../imgit";
 
 /** @type import("vitepress").MarkdownOptions */
 export const Markdown = {
@@ -15,7 +15,7 @@ export const Markdown = {
 
 /** @return import("vitepress").MarkdownRenderer */
 function installPlugins(md) {
-    md.use(imgit.Replacer(/\[@(\w+?)]/, buildCommandTags));
+    md.use(Replacer(/\[@(\w+?)]/m, buildCommandTags));
     md.use(AppendIconToExternalLinks);
 }
 

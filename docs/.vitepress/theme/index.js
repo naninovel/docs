@@ -1,5 +1,5 @@
 import DefaultTheme from "vitepress/theme-without-fonts";
-import imgit from "../imgit";
+import { observe } from "../imgit";
 import "@fontsource-variable/inter";
 import "@fontsource-variable/jetbrains-mono";
 import "./style.css";
@@ -13,7 +13,7 @@ export default {
         /** @param {import("vitepress").EnhanceAppContext} app */
         enhanceApp: (app) => {
             DefaultTheme.enhanceApp(app);
-            imgit.vitepress.installApp(app);
+            app.router.onAfterRouteChanged = _ => void setTimeout(observe, 0);
         }
     }
 };
