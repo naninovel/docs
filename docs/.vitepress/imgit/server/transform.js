@@ -5,7 +5,7 @@ import { resolveMediaInfo } from "./media";
 import { AssetType, resolveAssetType } from "./asset";
 import { buildImage, buildVideo, buildYouTube } from "./build";
 
-/** @param {string} source The content in which to capture and optimize assets. */
+/** @param {string} source The content in which to transform the assets. */
 export async function transform(source) {
     /** @type {Set<string>} */
     const matches = new Set;
