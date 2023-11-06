@@ -1,5 +1,5 @@
 import { fileURLToPath } from "url";
-import imgit from "../../imgit/vite-plugin-imgit";
+import imgit from "../../imgit/server/vite";
 
 /** @type import("vite").UserConfig */
 export const Vite = {

@@ -1,5 +1,5 @@
 import DefaultTheme from "vitepress/theme-without-fonts";
-import { observe } from "../imgit";
+import { observe } from "../imgit/client/observe";
 import "@fontsource-variable/inter";
 import "@fontsource-variable/jetbrains-mono";
 import "./style.css";
