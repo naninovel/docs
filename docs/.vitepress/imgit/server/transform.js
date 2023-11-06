@@ -1,22 +1,25 @@
 import fs from "node:fs";
-import afs from "node:fs/promises";
 import path from "node:path";
+import { Readable } from "node:stream";
+import { finished } from "node:stream/promises";
 import { options } from "./options";
 import { AssetType, resolveAssetType } from "./asset";
 import { resolveMediaInfo } from "./media";
 import { buildImage, buildVideo, buildYouTube } from "./build";
 
+/** @type {Map<string, Promise<void>>} */
+const downloads = new Map;
+/** @type {Map<string, number>} */
+const retries = new Map;
+
 /** @param {string} source The content in which to capture and optimize assets. */
 export async function transform(source) {
     const { regex, localDir, serveDir, fetchTimeout, fetchRetries, fetchDelay } = options;
-    /** @type {Map<string, Promise<void>>} */
-    const downloads = new Map;
-    /** @type {Map<string, number>} */
-    const retries = new Map;
     /** @type {Set<string>} */
     const matches = new Set;
     ensureDir(localDir);
-    await Promise.all([...source.matchAll(new RegExp(regex))].map(handleMatch));
+    for (const match of source.matchAll(new RegExp(regex)))
+        await handleMatch(match);
     return source;
 
     /** @param {RegExpMatchArray} match */
@@ -65,7 +68,7 @@ export async function transform(source) {
      *  @param {string} filepath */
     async function downloadWithRetries(uri, filepath) {
         console.info(`Downloading ${uri} to ${localDir}`);
-        try { return await downloadWithTimeout(uri, filepath); }
+        try { return downloadWithTimeout(uri, filepath); }
         catch (error) {
             retries.set(filepath, (retries.get(filepath) ?? 0) + 1);
             if (retries.get(filepath) > fetchRetries) {
@@ -80,7 +83,7 @@ export async function transform(source) {
 
     /** @param {string} uri
      *  @param {string} filepath */
-    async function downloadWithTimeout(uri, filepath) {
+    function downloadWithTimeout(uri, filepath) {
         const abort = new AbortController();
         const timeout = setTimeout(abort.abort, fetchTimeout * 1000);
         try { return downloadTo(uri, filepath, abort.signal); }
@@ -91,10 +94,7 @@ export async function transform(source) {
      *  @param {string} filepath
      *  @param {AbortSignal} signal */
     async function downloadTo(uri, filepath, signal) {
-        const response = await fetch(uri, {
-            headers: [["content-type", "application/octet-stream"]],
-            signal
-        });
+        const response = await fetch(uri, { signal });
         if (response.status === 429) {
             const delay = response.headers["retry-after"];
             if (typeof delay !== "number") throw Error(`${uri}: 429 without retry-after header.`);
@@ -102,7 +102,10 @@ export async function transform(source) {
             await wait(delay + 1);
             return downloadWithTimeout(uri, filepath);
         }
-        await afs.writeFile(filepath, response.data);
+        // noinspection JSCheckFunctionSignatures
+        const body = Readable.fromWeb(response.body);
+        const stream = fs.createWriteStream(filepath);
+        return finished(body.pipe(stream));
     }
 }
 
