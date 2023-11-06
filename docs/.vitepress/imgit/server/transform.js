@@ -1,5 +1,4 @@
 import get from "axios";
-import MagicString from "magic-string";
 import fs from "node:fs";
 import afs from "node:fs/promises";
 import path from "node:path";
@@ -16,21 +15,24 @@ export async function transform(source) {
     const downloads = new Map;
     /** @type {Map<string, number>} */
     const retries = new Map;
+    /** @type {Set<string>} */
+    const matches = new Set;
 
     ensureDir(localDir);
-    const magic = new MagicString(source);
-    for (let match; (match = regex.exec(source));)
-        await handleMatch(match);
-    return magic.hasChanged() ? magic.toString() : source;
 
-    /** @param {RegExpExecArray} match */
+    for (const match of source.matchAll(new RegExp(regex, regex.flags)))
+        await handleMatch(match);
+
+    return source;
+
+    /** @param {RegExpMatchArray} match */
     async function handleMatch(match) {
-        const start = match.index;
-        const end = start + match[0].length;
+        if (matches.has(match[0])) return;
+        matches.add(match[0]);
         const type = resolveAssetType(match.groups.uri);
         if (!type) return;
         const html = await buildHtml(type, match.groups.title, match.groups.uri);
-        magic.overwrite(start, end, html);
+        source = source.replaceAll(match[0], html);
     }
 
     /** @param {AssetType} type

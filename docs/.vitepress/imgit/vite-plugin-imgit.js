@@ -8,11 +8,7 @@ export default function (options = undefined) {
     return {
         name: "vite-plugin-imgit",
         enforce: options?.enforce,
-        transform: handleTransform,
-        transformIndexHtml: {
-            order: options?.enforce,
-            handler: (source, ctx) => handleTransform(source, ctx.filename)
-        }
+        transform: handleTransform
     };
 
     /** @param {string} source
