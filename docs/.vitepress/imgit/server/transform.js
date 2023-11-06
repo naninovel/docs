@@ -1,4 +1,3 @@
-import get from "axios";
 import fs from "node:fs";
 import afs from "node:fs/promises";
 import path from "node:path";
@@ -66,7 +65,7 @@ export async function transform(source) {
      *  @param {string} filepath */
     async function downloadWithRetries(uri, filepath) {
         console.info(`Downloading ${uri} to ${localDir}`);
-        try { return await downloadTo(uri, filepath); }
+        try { return await downloadWithTimeout(uri, filepath); }
         catch (error) {
             retries.set(filepath, (retries.get(filepath) ?? 0) + 1);
             if (retries.get(filepath) > fetchRetries) {
@@ -81,22 +80,28 @@ export async function transform(source) {
 
     /** @param {string} uri
      *  @param {string} filepath */
-    async function downloadTo(uri, filepath) {
-        const response = await get(uri, {
-            responseType: "arraybuffer",
-            timeout: fetchTimeout * 1000,
-            timeoutErrorMessage: `Failed to download ${uri}: timeout > ${fetchTimeout} seconds.`,
-            validateStatus: status => (status >= 200 && status < 300) || status === 429
-        });
+    async function downloadWithTimeout(uri, filepath) {
+        const abort = new AbortController();
+        const timeout = setTimeout(abort.abort, fetchTimeout * 1000);
+        try { return downloadTo(uri, filepath, abort.signal); }
+        finally { clearTimeout(timeout); }
+    }
 
+    /** @param {string} uri
+     *  @param {string} filepath
+     *  @param {AbortSignal} signal */
+    async function downloadTo(uri, filepath, signal) {
+        const response = await fetch(uri, {
+            headers: [["content-type", "application/octet-stream"]],
+            signal
+        });
         if (response.status === 429) {
             const delay = response.headers["retry-after"];
             if (typeof delay !== "number") throw Error(`${uri}: 429 without retry-after header.`);
             console.warn(`Too many download requests; the host asked to wait ${delay} seconds.`);
             await wait(delay + 1);
-            return await downloadTo(uri, filepath);
+            return downloadWithTimeout(uri, filepath);
         }
-
         await afs.writeFile(filepath, response.data);
     }
 }
