@@ -6,7 +6,7 @@ import { AssetType, resolveAssetType } from "./asset";
 import { buildImage, buildVideo, buildYouTube } from "./build";
 
 /** @param {string} source The content in which to transform the assets.
- *  @return {string} Transformed content. */
+ *  @return {Promise<string>} Transformed content. */
 export async function transform(source) {
     /** @type {Set<string>} */
     const matches = new Set;
