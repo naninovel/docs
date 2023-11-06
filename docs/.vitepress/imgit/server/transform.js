@@ -10,19 +10,14 @@ import { buildImage, buildVideo, buildYouTube } from "./build";
 /** @param {string} source The content in which to capture and optimize assets. */
 export async function transform(source) {
     const { regex, localDir, serveDir, fetchTimeout, fetchRetries, fetchDelay } = options;
-
     /** @type {Map<string, Promise<void>>} */
     const downloads = new Map;
     /** @type {Map<string, number>} */
     const retries = new Map;
     /** @type {Set<string>} */
     const matches = new Set;
-
     ensureDir(localDir);
-
-    for (const match of source.matchAll(new RegExp(regex, regex.flags)))
-        await handleMatch(match);
-
+    await Promise.all([...source.matchAll(new RegExp(regex))].map(handleMatch));
     return source;
 
     /** @param {RegExpMatchArray} match */
@@ -87,7 +82,6 @@ export async function transform(source) {
     /** @param {string} uri
      *  @param {string} filepath */
     async function downloadTo(uri, filepath) {
-        // noinspection JSUnusedGlobalSymbols
         const response = await get(uri, {
             responseType: "arraybuffer",
             timeout: fetchTimeout * 1000,
