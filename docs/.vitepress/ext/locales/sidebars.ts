@@ -1,5 +1,6 @@
-/** @type import("vitepress/theme").DefaultTheme.SidebarItem[] */
-export const EnGuideSidebar = [
+import { DefaultTheme } from "vitepress";
+
+export const EnGuideSidebar: DefaultTheme.SidebarItem[] = [
     {
         text: "Guide",
         collapsed: true,
@@ -66,8 +67,7 @@ export const EnGuideSidebar = [
     }
 ];
 
-/** @type import("vitepress/theme").DefaultTheme.SidebarItem[] */
-export const JaGuideSidebar = [
+export const JaGuideSidebar: DefaultTheme.SidebarItem[] = [
     {
         text: "ガイド",
         collapsed: true,
@@ -133,8 +133,7 @@ export const JaGuideSidebar = [
     }
 ];
 
-/** @type import("vitepress/theme").DefaultTheme.SidebarItem[] */
-export const ZnGuideSidebar = [
+export const ZnGuideSidebar: DefaultTheme.SidebarItem[] = [
     {
         text: "指南",
         collapsed: true,
@@ -200,8 +199,7 @@ export const ZnGuideSidebar = [
     }
 ];
 
-/** @type import("vitepress/theme").DefaultTheme.SidebarItem[] */
-export const RuGuideSidebar = [
+export const RuGuideSidebar: DefaultTheme.SidebarItem[] = [
     {
         text: "Руководство",
         collapsed: true,

@@ -1,9 +1,9 @@
+import { MarkdownOptions, MarkdownRenderer, MarkdownEnv } from "vitepress";
 import { AppendIconToExternalLinks } from "./md-link";
 import { Replacer } from "./md-replacer";
 import { NaniScript } from "../language/language";
 
-/** @type import("vitepress").MarkdownOptions */
-export const Markdown = {
+export const Markdown: MarkdownOptions = {
     config: installPlugins,
     languages: [NaniScript],
     theme: {
@@ -13,15 +13,12 @@ export const Markdown = {
     attrs: { disable: true } // https://github.com/vuejs/vitepress/issues/2440
 };
 
-/** @return import("vitepress").MarkdownRenderer */
-function installPlugins(md) {
+function installPlugins(md: MarkdownRenderer) {
     md.use(Replacer(/\[@(\w+?)]/m, buildCommandTags));
     md.use(AppendIconToExternalLinks);
 }
 
-/** @param {string[]} match
- *  @param import("vitepress").MarkdownEnv env */
-function buildCommandTags(match, env) {
+function buildCommandTags(match: string[], env: MarkdownEnv) {
     let url = `/api/#${match[1].toLowerCase()}`;
     if (env.relativePath.startsWith("ja/")) url = "/ja" + url;
     else if (env.relativePath.startsWith("zh/")) url = "/zh" + url;
