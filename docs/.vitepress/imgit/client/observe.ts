@@ -9,16 +9,20 @@ function canObserve() {
     return typeof document === "object" && "IntersectionObserver" in window;
 }
 
-function handleIntersections(entries, observer) {
+function handleIntersections(entries: IntersectionObserverEntry[], observer: IntersectionObserver) {
     for (const entry of entries)
         if (entry.isIntersecting)
             handleIntersection(entry, observer);
 }
 
-function handleIntersection(entry, observer) {
+function handleIntersection(entry: IntersectionObserverEntry, observer: IntersectionObserver) {
     for (const child of entry.target.children)
-        if (typeof child.tagName === "string" && child.tagName === "SOURCE")
+        if (isSourceElement(child))
             child.src = child.dataset.src;
-    entry.target.load();
+    (entry.target as HTMLVideoElement).load();
     observer.unobserve(entry.target);
+}
+
+function isSourceElement(element: Element): element is HTMLSourceElement {
+    return element.tagName === "SOURCE";
 }
