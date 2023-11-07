@@ -6,9 +6,9 @@
 
 /** Configures plugin behaviour.
  *  @typedef {Object} Options
- *  @property {string} localDir
+ *  @property {string} root
  *  Directory where the asset files are stored locally in development environment.
- *  @property {string} serveDir
+ *  @property {string} serve
  *  Directory from which the assets are served in production environment.
  *  @property {RegExp?} regex
  *  Regular expression to use for capturing transformed assets syntax.
@@ -30,32 +30,14 @@
  *  @property {(string | boolean)?} poster
  *  Source of an image to use for all video posters. When undefined automatically generates
  *  unique image for each video; assign <code>false</code> to disable posters completely.
- *  @property {TransformOptions?} transform
- *  Configure document and asset transformation process.
+ *  @property {FetchOptions?} fetch
+ *  Configure remote assets fetching.
+ *  @property {EncodeOptions?} encode
+ *  Configure assets encoding.
  *  @property {BuildOptions?} build
- *  Configure process of building HTML syntax for transformed assets.
- *  @property {(FetchOptions | boolean)?} fetch
- *  Configure remote assets fetching; assign <code>false</code> to disable fetching.
- *  @property {(EncodeOptions | boolean)?} encode
- *  Configure assets encoding; assign <code>false</code> to disable encoding. */
-
-/** Configures document transformation behaviour.
- *  @typedef {Object} TransformOptions
- *  @property {((filepath: string, content: string) => Promise<SourceAsset[]>)?} extract
- *  Finds assets to transform in the document with specified file path and content.
- *  @property {((filepath: string, source: SourceAsset) => Promise<HtmlAsset[]>)?} build
- *  Produces HTML to rewrite source asset syntax in the transformed document with specified file path.
- *  @property {((filepath: string, content: string, assets: HtmlAsset[]) => Promise<string>)?} rewrite
- *  Rewrites content of the document with specified assets; returns modified document content. */
-
-/** Configures HTML building for transformed assets of specific types.
- *  @typedef {Object} BuildOptions
- *  @property {((source: SourceAsset) => Promise<string>)?} image
- *  Returns HTML string for specified source image asset.
- *  @property {((source: SourceAsset) => Promise<string>)?} video
- *  Returns HTML string for specified source video asset.
- *  @property {((source: SourceAsset) => Promise<string>)?} youtube
- *  Returns HTML string for specified source YouTube asset. */
+ *  Configure HTML building for source assets of specific types.
+ *  @property {TransformOptions?} transform
+ *  Configure document transformation process.*/
 
 /** Configures remote assets fetching behaviour.
  * @typedef {Object} FetchOptions
@@ -64,25 +46,48 @@
  * @property {number?} retries
  * How many times to restart the download when request fails.
  * @property {number?} delay
- * How long to wait before restarting a failed download, in seconds.
- * @property {((url: string, filepath: string) => Promise<void>)?} download
- * Fetches asset content from specified URL and writes it to specified file path. */
+ * How long to wait before restarting a failed download, in seconds. */
 
-/** Configures asset encoding behaviour.
+/** Configures asset encoding and optimization.
  * @typedef {Object} EncodeOptions
- * @property {string?} image
- * ffmpeg arguments specified when encoding still image assets (png, jpg).
- * @property {string?} animation
- * ffmpeg arguments specified when encoding animated image assets (gif).
- * @property {string?} video
- * ffmpeg arguments specified when encoding video assets (mp4).
- * @property {((asset: SourceAsset, filepath: string) => Promise<void>)?} encode
- * Encodes specified asset and writes encoded content to specified file path. */
+ * @property {(string | boolean)?} image
+ * ffmpeg arguments specified when encoding still image assets (png, jpg);
+ * assign <code>false</code> to disable images encoding.
+ * @property {(string | boolean)?} animation
+ * ffmpeg arguments specified when encoding animated image assets (gif);
+ * assign <code>false</code> to disable animated images encoding.
+ * @property {(string | boolean)?} video
+ * ffmpeg arguments specified when encoding video assets (mp4);
+ * assign <code>false</code> to disable video encoding.*/
+
+/** Configures HTML building for source assets of specific types.
+ *  @typedef {Object} BuildOptions
+ *  @property {((asset: EncodedAsset) => Promise<string>)?} image
+ *  Returns HTML string for specified source image asset.
+ *  @property {((asset: EncodedAsset) => Promise<string>)?} video
+ *  Returns HTML string for specified source video asset.
+ *  @property {((asset: EncodedAsset) => Promise<string>)?} youtube
+ *  Returns HTML string for specified source YouTube asset. */
+
+/** Configures document transformation process.
+ *  @typedef {Object} TransformOptions
+ *  @property {((docpath: string, content: string) => Promise<SourceAsset[]>)?} capture
+ *  1st phase: finds assets to transform in the document with specified file path and content.
+ *  @property {((docpath: string, assets: SourceAsset[]) => Promise<FetchedAsset[]>)?} fetch
+ *  2nd phase: fetches file content for the captured source assets from the specified document file path.
+ *  @property {((docpath: string, assets: FetchedAsset[]) => Promise<ProbedAsset[]>)?} probe
+ *  3rd phase: probes fetched files content to evaluate their width and height.
+ *  @property {((docpath: string, assets: ProbedAsset[]) => Promise<EncodedAsset[]>)?} encode
+ *  4th phase: creates optimized versions of the source asset files.
+ *  @property {((docpath: string, assets: EncodedAsset[]) => Promise<BuiltAsset[]>)?} build
+ *  5th phase: builds HTML for the optimized assets to overwrite source syntax.
+ *  @property {((docpath: string, content: string, assets: BuiltAsset[]) => Promise<string>)?} rewrite
+ *  6th phase: rewrites content of the document with specified assets; returns modified document content. */
 
 /** @type {Options} */
 export const defaults = Object.freeze({
-    localDir: undefined,
-    serveDir: undefined,
+    root: undefined,
+    serve: undefined,
     regex: /!\[(?<title>.*?)]\((?<uri>.+?)\)/g,
     suffix: "-imgit",
     width: undefined,
@@ -90,27 +95,28 @@ export const defaults = Object.freeze({
     video: ["mp4"],
     youtube: true,
     poster: undefined,
-    transform: {
-        extract: undefined,
-        build: undefined,
-        rewrite: undefined
+    fetch: {
+        timeout: 30,
+        retries: 3,
+        delay: 6
+    },
+    encode: {
+        image: "-loglevel warning -stats -c:v librav1e -rav1e-params speed=4:quantizer=100:still_picture=true",
+        animation: "-loglevel warning -stats -c:v librav1e -rav1e-params speed=6:quantizer=150",
+        video: "-loglevel warning -stats -c:v libsvtav1 -preset 4"
     },
     build: {
         image: undefined,
         video: undefined,
         youtube: undefined
     },
-    fetch: {
-        timeout: 30,
-        retries: 3,
-        delay: 6,
-        download: undefined
-    },
-    encode: {
-        image: "-loglevel warning -stats -c:v librav1e -rav1e-params speed=4:quantizer=100:still_picture=true",
-        animation: "-loglevel warning -stats -c:v librav1e -rav1e-params speed=6:quantizer=150",
-        video: "-loglevel warning -stats -c:v libsvtav1 -preset 4",
-        encode: undefined
+    transform: {
+        capture: undefined,
+        fetch: undefined,
+        probe: undefined,
+        encode: undefined,
+        build: undefined,
+        rewrite: undefined
     }
 });
 

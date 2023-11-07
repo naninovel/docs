@@ -1,7 +1,9 @@
 import { transform } from "./transform";
 import { configure } from "./options";
 
-/** @param {(import("./options").Options & { ext?: string, enforce?: "pre" | "post" })?} options
+/** @typedef {import("./options.js").Options} Options */
+
+/** @param {(Options & { ext?: string, enforce?: "pre" | "post" })?} options
  *  @return {import("vite").Plugin} */
 export default function (options = undefined) {
     if (options) configure(options);
