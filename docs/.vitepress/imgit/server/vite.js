@@ -6,7 +6,7 @@ import { configure } from "./options";
 export default function (options = undefined) {
     if (options) configure(options);
     return {
-        name: "vite-plugin-imgit",
+        name: "imgit",
         enforce: options?.enforce,
         transform: handleTransform
     };
