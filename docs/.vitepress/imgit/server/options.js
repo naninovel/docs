@@ -107,9 +107,9 @@ export const defaults = Object.freeze({
         download: undefined
     },
     encode: {
-        image: "-c:v librav1e -rav1e-params speed=4:quantizer=115:still_picture=true -v quiet -stats",
-        animation: "-c:v librav1e -rav1e-params speed=6:quantizer=150 -v quiet -stats",
-        video: "-c:v libsvtav1 -preset 4 -v quiet -stats",
+        image: "-loglevel warning -stats -c:v librav1e -rav1e-params speed=4:quantizer=100:still_picture=true",
+        animation: "-loglevel warning -stats -c:v librav1e -rav1e-params speed=6:quantizer=150",
+        video: "-loglevel warning -stats -c:v libsvtav1 -preset 4",
         encode: undefined
     }
 });

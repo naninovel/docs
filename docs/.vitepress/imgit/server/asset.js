@@ -12,7 +12,7 @@ export const AssetType = {
     YouTube: "YouTube"
 };
 
-/** Asset syntax captured from a transformed document.
+/** Asset syntax captured from transformed document.
  *  @typedef {Object} SourceAsset
  *  @property {number} start First index of the captured asset syntax in the transformed document.
  *  @property {number} end Last index of the captured asset syntax in the transformed document.
@@ -31,7 +31,8 @@ export const AssetType = {
 
 /** Asset with encoded counterpart.
  *  @typedef {ProbedAsset} EncodedAsset
- *  @property {string} encodedfile Path to the encoded asset content file on local file system. */
+ *  @property {string} encodedfile Path to the encoded asset content file on local file system.
+ *  @property {string?} posterfile Path to the video poster file or undefined when N/A or disabled. */
 
 /** Final product of asset transformation with associated HTML.
  *  @typedef {ProbedAsset} BuiltAsset
