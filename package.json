@@ -1,17 +1,13 @@
 {
     "type": "module",
     "scripts": {
-        "update": "ncu --interactive",
-        "docs:dev": "vitepress dev docs",
-        "docs:build": "vitepress build docs",
-        "docs:preview": "vitepress preview docs"
+        "dev": "vitepress dev docs",
+        "build": "vitepress build docs",
+        "preview": "vitepress preview docs"
     },
     "devDependencies": {
         "vitepress": "1.0.0-rc.25",
         "@fontsource-variable/inter": "^5.0.15",
-        "@fontsource-variable/jetbrains-mono": "^5.0.18",
-        "ffprobe": "1.1.2",
-        "ffprobe-static": "3.1.0",
-        "npm-check-updates": "16.14.6"
+        "@fontsource-variable/jetbrains-mono": "^5.0.18"
     }
 }
