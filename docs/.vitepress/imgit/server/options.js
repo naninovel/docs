@@ -1,5 +1,8 @@
 /** @typedef {import("./asset").SourceAsset} SourceAsset
- *  @typedef {import("./asset").HtmlAsset} HtmlAsset */
+ *  @typedef {import("./asset").FetchedAsset} FetchedAsset
+ *  @typedef {import("./asset").ProbedAsset} ProbedAsset
+ *  @typedef {import("./asset").EncodedAsset} EncodedAsset
+ *  @typedef {import("./asset").BuiltAsset} BuiltAsset */
 
 /** Configures plugin behaviour.
  *  @typedef {Object} Options

@@ -1,4 +1,6 @@
-/** Asset types that can be transformed.
+import { options } from "./options.js";
+
+/** Transformed asset types.
  *  @readonly
  *  @enum {string} */
 export const AssetType = {
@@ -10,35 +12,41 @@ export const AssetType = {
     YouTube: "YouTube"
 };
 
-/** Original asset extracted from a transformed document.
+/** Asset syntax captured from a transformed document.
  *  @typedef {Object} SourceAsset
- *  @property {number} start First index of the asset syntax in the transformed document.
- *  @property {number} end Last index of the asset syntax in the transformed document.
- *  @property {AssetType} type Type of the asset.
- *  @property {string} source Either absolute remote or relative URL of the asset content.
- *  @property {string?} filepath When local or downloaded remote asset, defines file path of the asset content.
- *  @property {string?} title Optional title of the asset. */
+ *  @property {number} start First index of the captured asset syntax in the transformed document.
+ *  @property {number} end Last index of the captured asset syntax in the transformed document.
+ *  @property {string} source URL of the source asset content resolved from captured syntax.
+ *  @property {AssetType} type Type of the asset resolved from captured syntax.
+ *  @property {string?} title Optional title of the asset resolved from captured syntax. */
 
-/** Product of asset transformation.
- *  @typedef {SourceAsset} HtmlAsset
+/** Asset with file content fetched and available for probing.
+ *  @typedef {SourceAsset} FetchedAsset
+ *  @property {string} sourcefile Path to the source asset content file on local file system. */
+
+/** Asset with identified dimensions.
+ *  @typedef {FetchedAsset} ProbedAsset
+ *  @property {number} width Width of the source asset content, in pixels.
+ *  @property {number} height Height of the source asset content, in pixels. */
+
+/** Asset with encoded counterpart.
+ *  @typedef {ProbedAsset} EncodedAsset
+ *  @property {string} encodedfile Path to the encoded asset content file on local file system. */
+
+/** Final product of asset transformation with associated HTML.
+ *  @typedef {ProbedAsset} BuiltAsset
  *  @property {string} html Transformed asset syntax in HTML form. */
 
 /** @param {string} source
  *  @return {AssetType | undefined} */
 export function resolveAssetType(source) {
+    const { image, video, youtube } = options;
     if (source.includes("youtube.com/watch?v="))
-        return AssetType.YouTube;
-    switch (getFileExtension(source)) {
-    case "png":
-    case "jpg":
-    case "jpeg":
-    case "gif":
-        return AssetType.Image;
-    case "mp4":
-        return AssetType.Video;
-    default:
-        return undefined;
-    }
+        return youtube ? AssetType.YouTube : undefined;
+    const ext = getFileExtension(source);
+    if (image.includes(ext)) return AssetType.Image;
+    if (video.includes(ext)) return AssetType.Video;
+    return undefined;
 }
 
 /** @param {string} uri */
