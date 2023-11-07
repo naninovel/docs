@@ -6,6 +6,8 @@
         "preview": "vitepress preview docs"
     },
     "devDependencies": {
+        "typescript": "^5.2.2",
+        "@types/node": "^20.8.10",
         "vitepress": "1.0.0-rc.25",
         "@fontsource-variable/inter": "^5.0.15",
         "@fontsource-variable/jetbrains-mono": "^5.0.18"

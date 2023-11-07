@@ -1,7 +1,7 @@
+import { DefaultTheme, LocaleConfig } from "vitepress";
 import { EnGuideSidebar, JaGuideSidebar, ZnGuideSidebar, RuGuideSidebar } from "./sidebars";
 
-/** @type import("vitepress").LocaleConfig<import("vitepress/theme")> */
-export const Config = {
+export const Config: LocaleConfig<DefaultTheme.Config> = {
     root: {
         lang: "en-US",
         label: "English",
@@ -72,8 +72,7 @@ export const Config = {
     }
 };
 
-/** @type {Record<string, Partial<import("vitepress/theme").AlgoliaSearchOptions>>} */
-export const Search = {
+export const Search: Record<string, Partial<DefaultTheme.AlgoliaSearchOptions>> = {
     ja: {
         placeholder: "文書を検索する",
         translations: {
@@ -197,10 +196,7 @@ export const Search = {
     }
 };
 
-/** @param {string[]} text
- *  @param {string?} lang
- *  @return {import("vitepress/theme").NavItem[]} */
-function buildNav(text, lang) {
+function buildNav(text: string[], lang?: string): DefaultTheme.NavItem[] {
     return [
         { text: text[0], link: buildLink("faq") },
         { text: text[1], link: buildLink("guide"), activeMatch: "/guide/" },
@@ -221,8 +217,6 @@ function buildNav(text, lang) {
     }
 }
 
-/** @param {string} text
- *  @return {EditLink} */
-function buildEditLink(text) {
+function buildEditLink(text: string): DefaultTheme.EditLink {
     return { pattern: "https://github.com/Naninovel/Documentation/edit/master/docs/:path", text };
 }
