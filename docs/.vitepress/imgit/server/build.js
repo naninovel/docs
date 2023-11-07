@@ -2,7 +2,7 @@
  *  @param {string} uri */
 export function buildImage(title, uri) {
     const { width, height } = getMediaSize(uri);
-    return `<img class="imgit-image" loading="lazy" src="${uri}" alt="${title}" style="width: ${width}; height: ${height}"/>`;
+    return `<img class="imgit-image" loading="lazy" decoding="async" src="${uri}" alt="${title}" style="width: ${width}; height: ${height}"/>`;
 }
 
 /** @param {string} title
