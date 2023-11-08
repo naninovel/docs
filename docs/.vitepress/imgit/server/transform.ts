@@ -1,7 +1,7 @@
 import path from "node:path";
 import { options } from "./options";
 import { fetchQueued } from "./fetch";
-import { resolveMediaInfo, MediaInfo } from "./media";
+import { resolveMediaInfo } from "./media";
 import { AssetType, resolveAssetType } from "./asset";
 import { buildImage, buildVideo, buildYouTube } from "./build";
 
@@ -18,7 +18,7 @@ export async function transform(source: string): Promise<string> {
         if (!match.groups || matches.has(match[0])) return;
         matches.add(match[0]);
         const type = resolveAssetType(match.groups.uri);
-        if (!type) return;
+        if (type === undefined) return;
         const html = await buildHtml(type, match.groups.title, match.groups.uri);
         source = source.replaceAll(match[0], html);
     }
@@ -33,16 +33,10 @@ export async function transform(source: string): Promise<string> {
     }
 
     async function resolveSource(uri: string): Promise<string> {
-        const fileName = path.basename(uri);
-        const filePath = path.resolve(local, fileName);
-        await fetchQueued(uri, filePath);
-        const info = await resolveMediaInfo(filePath);
-        return appendMediaSize(`${serve}/${fileName}`, info);
+        const filename = path.basename(uri);
+        const filepath = path.resolve(local, filename);
+        await fetchQueued(uri, filepath);
+        const info = await resolveMediaInfo(filepath);
+        return `${serve}/${filename}?width=${info.width}&height=${info.height}`;
     }
-}
-
-function appendMediaSize(uri: string, info: MediaInfo) {
-    const width = info.streams[0].width;
-    const height = info.streams[0].height;
-    return `${uri}?width=${width}&height=${height}`;
 }
