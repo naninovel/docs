@@ -1,93 +1,94 @@
-/** @typedef {import("./asset").SourceAsset} SourceAsset
- *  @typedef {import("./asset").FetchedAsset} FetchedAsset
- *  @typedef {import("./asset").ProbedAsset} ProbedAsset
- *  @typedef {import("./asset").EncodedAsset} EncodedAsset
- *  @typedef {import("./asset").BuiltAsset} BuiltAsset */
+import { CapturedAsset, FetchedAsset, ProbedAsset, EncodedAsset, BuiltAsset } from "./asset";
 
-/** Configures plugin behaviour.
- *  @typedef {Object} Options
- *  @property {string} root
- *  Directory where the asset files are stored locally in development environment.
- *  @property {string} serve
- *  Directory from which the assets are served in production environment.
- *  @property {RegExp?} regex
- *  Regular expression to use for capturing transformed assets syntax.
- *  Expects <code>title</code> and <code>uri</code> capture groups.
- *  By default, captures Markdown image syntax: <code>/!\[(?<title>.*?)]\((?<uri>.+?)\)/g</code>.
- *  @property {string?} suffix
- *  Text to append to the name of encoded asset files; <code>-imgit</code> by default.
- *  @property {number?} width
- *  Width limit for the transformed assets, in pixels. When source asset is larger,
- *  will resize the content (given encoding is not disabled). No limit by default.
- *  @property {string[]?} image
- *  File extensions (w/o dot) to encode into av1 still frame under avif container
- *  and transform into HTML picture (with fallback to source); default: png, jpg, jpeg and gif.
- *  @property {string[]?} video
- *  File extensions (w/o dot) to encode into av1 video under mp4 container
- *  and transform into HTML video (with fallback to source); default: mp4.
- *  @property {boolean?} youtube
- *  Whether to transform YouTube links as videos; enabled by default.
- *  @property {(string | boolean)?} poster
- *  Source of an image to use for all video posters. When undefined automatically generates
- *  unique image for each video; assign <code>false</code> to disable posters completely.
- *  @property {FetchOptions?} fetch
- *  Configure remote assets fetching.
- *  @property {EncodeOptions?} encode
- *  Configure assets encoding.
- *  @property {BuildOptions?} build
- *  Configure HTML building for source assets of specific types.
- *  @property {TransformOptions?} transform
- *  Configure document transformation process.*/
+/** Configures plugin behaviour. */
+export type Options = Record<string, unknown> & {
+    /** Local directory where the asset files are stored; <code>./public/assets</code> by default. */
+    local?: string;
+    /** URL prefix for served asset sources: relative to host or absolute when serving from a CDN;
+     *  <code>/assets</code> by default. */
+    serve?: string;
+    /** Regular expression to use for capturing transformed assets syntax.
+     *  Expects <code>title</code> and <code>uri</code> capture groups.
+     *  By default, captures Markdown image syntax: <code>/!\[(?<title>.*?)]\((?<uri>.+?)\)/g</code>. */
+    regex?: RegExp;
+    /** Text to append to the name of encoded asset files; <code>-imgit</code> by default. */
+    suffix?: string;
+    /** Width limit for the transformed assets, in pixels. When source asset is larger,
+     *  will resize the content (given encoding is not disabled). No limit by default. */
+    width?: number;
+    /** File extensions (w/o dot) to encode into av1 still frame under avif container
+     *  and transform into HTML picture (with fallback to source); default: png, jpg, jpeg and gif. */
+    image?: string[];
+    /** File extensions (w/o dot) to encode into av1 video under mp4 container
+     *  and transform into HTML video (with fallback to source); default: mp4. */
+    video?: string[];
+    /** Whether to transform YouTube links as videos; enabled by default. */
+    youtube?: boolean;
+    /** Source of an image to use for all video posters. When undefined automatically generates
+     *  unique image for each video; assign <code>false</code> to disable posters completely. */
+    poster?: string | boolean;
+    /** Configure remote assets fetching. */
+    fetch?: FetchOptions;
+    /** Configure assets encoding. */
+    encode?: EncodeOptions;
+    /** Configure HTML building for source assets of specific types. */
+    build?: BuildOptions;
+    /** Configure document transformation process. */
+    transform?: TransformOptions;
+};
 
-/** Configures remote assets fetching behaviour.
- * @typedef {Object} FetchOptions
- * @property {number?} timeout
- * How long to wait when downloading remote asset, in seconds.
- * @property {number?} retries
- * How many times to restart the download when request fails.
- * @property {number?} delay
- * How long to wait before restarting a failed download, in seconds. */
+/** Configures remote assets fetching behaviour. */
+export type FetchOptions = {
+    /** How long to wait when downloading remote asset, in seconds; 30 by default. */
+    timeout?: number;
+    /** How many times to restart the download when request fails; 3 by default. */
+    retries?: number;
+    /** How long to wait before restarting a failed download, in seconds; 6 by default.*/
+    delay?: number;
+};
 
-/** Configures asset encoding and optimization.
- * @typedef {Object} EncodeOptions
- * @property {(string | boolean)?} image
- * ffmpeg arguments specified when encoding still image assets (png, jpg);
- * assign <code>false</code> to disable images encoding.
- * @property {(string | boolean)?} animation
- * ffmpeg arguments specified when encoding animated image assets (gif);
- * assign <code>false</code> to disable animated images encoding.
- * @property {(string | boolean)?} video
- * ffmpeg arguments specified when encoding video assets (mp4);
- * assign <code>false</code> to disable video encoding.*/
+/** Configures asset encoding and optimization. */
+export type EncodeOptions = {
+    /** ffmpeg arguments specified when encoding still image assets (png, jpg);
+     *  assign <code>false</code> to disable images encoding. */
+    image?: string | boolean;
+    /** ffmpeg arguments specified when encoding animated image assets (gif);
+     *  assign <code>false</code> to disable animated images encoding. */
+    animation?: string | boolean;
+    /** ffmpeg arguments specified when encoding video assets (mp4);
+     *  assign <code>false</code> to disable video encoding.*/
+    video?: string | boolean;
+};
 
-/** Configures HTML building for source assets of specific types.
- *  @typedef {Object} BuildOptions
- *  @property {((asset: EncodedAsset) => Promise<string>)?} image
- *  Returns HTML string for specified source image asset.
- *  @property {((asset: EncodedAsset) => Promise<string>)?} video
- *  Returns HTML string for specified source video asset.
- *  @property {((asset: EncodedAsset) => Promise<string>)?} youtube
- *  Returns HTML string for specified source YouTube asset. */
+/** Configures HTML building for source assets of specific types. */
+export type BuildOptions = {
+    /** Returns HTML string for specified source image asset. */
+    image?: (asset: EncodedAsset) => Promise<string>;
+    /** Returns HTML string for specified source video asset. */
+    video?: (asset: EncodedAsset) => Promise<string>;
+    /** Returns HTML string for specified source YouTube asset. */
+    youtube?: (asset: EncodedAsset) => Promise<string>;
+};
 
-/** Configures document transformation process.
- *  @typedef {Object} TransformOptions
- *  @property {((docpath: string, content: string) => Promise<SourceAsset[]>)?} capture
- *  1st phase: finds assets to transform in the document with specified file path and content.
- *  @property {((docpath: string, assets: SourceAsset[]) => Promise<FetchedAsset[]>)?} fetch
- *  2nd phase: fetches file content for the captured source assets from the specified document file path.
- *  @property {((docpath: string, assets: FetchedAsset[]) => Promise<ProbedAsset[]>)?} probe
- *  3rd phase: probes fetched files content to evaluate their width and height.
- *  @property {((docpath: string, assets: ProbedAsset[]) => Promise<EncodedAsset[]>)?} encode
- *  4th phase: creates optimized versions of the source asset files.
- *  @property {((docpath: string, assets: EncodedAsset[]) => Promise<BuiltAsset[]>)?} build
- *  5th phase: builds HTML for the optimized assets to overwrite source syntax.
- *  @property {((docpath: string, content: string, assets: BuiltAsset[]) => Promise<string>)?} rewrite
- *  6th phase: rewrites content of the document with specified assets; returns modified document content. */
+/** Configures document transformation process. */
+export type TransformOptions = {
+    /** 1st phase: finds assets to transform in the document with specified file path and content. */
+    capture?: (path: string, content: string) => Promise<CapturedAsset[]>;
+    /** 2nd phase: fetches file content for the captured source assets from the specified document file path. */
+    fetch?: (path: string, assets: CapturedAsset[]) => Promise<FetchedAsset[]>;
+    /** 3rd phase: probes fetched files content to evaluate their width and height. */
+    probe?: (path: string, assets: FetchedAsset[]) => Promise<ProbedAsset[]>;
+    /** 4th phase: creates optimized versions of the source asset files. */
+    encode?: (path: string, assets: ProbedAsset[]) => Promise<EncodedAsset[]>;
+    /** 5th phase: builds HTML for the optimized assets to overwrite source syntax. */
+    build?: (path: string, assets: EncodedAsset[]) => Promise<BuiltAsset[]>;
+    /** 6th phase: rewrites content of the document with specified assets; returns modified document content. */
+    rewrite?: (path: string, content: string, assets: BuiltAsset[]) => Promise<string>;
+};
 
-/** @type {Options} */
 export const defaults = Object.freeze({
-    root: undefined,
-    serve: undefined,
+    local: "./public/assets",
+    serve: "/assets",
     regex: /!\[(?<title>.*?)]\((?<uri>.+?)\)/g,
     suffix: "-imgit",
     width: undefined,
@@ -120,12 +121,10 @@ export const defaults = Object.freeze({
     }
 });
 
-/** @type {Options} */
 export const options = { ...defaults };
 
-/** @param {Options} settings */
-export function configure(settings) {
+export function configure(settings: Options) {
     for (const prop in settings)
         if (options.hasOwnProperty(prop))
-            options[prop] = settings[prop];
+            (<Record<string, unknown>>options)[prop] = settings[prop];
 }

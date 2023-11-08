@@ -1,21 +1,21 @@
 import ffprobe from "ffprobe";
 import probes from "ffprobe-static";
 
-/** @typedef MediaStream
- *  @property {number} index
- *  @property {number} width
- *  @property {number} height */
+type MediaStream = {
+    index: number,
+    width: number,
+    height: number
+};
 
-/** @typedef MediaInfo
- *  @property {MediaStream[]} streams */
+export type MediaInfo = {
+    streams: MediaStream[]
+};
 
-/** @type {Map<string, Promise<MediaInfo>>} */
-const resolves = new Map;
+const resolves = new Map<string, Promise<MediaInfo>>;
 
-/** @param {string} filePath
- *  @return {Promise<MediaInfo>} */
-export async function resolveMediaInfo(filePath) {
-    if (resolves.has(filePath)) return resolves.get(filePath);
-    resolves.set(filePath, ffprobe(filePath, { path: probes.path }));
-    return resolves.get(filePath);
+export async function resolveMediaInfo(filepath: string): Promise<MediaInfo> {
+    if (resolves.has(filepath))
+        return resolves.get(filepath)!;
+    resolves.set(filepath, ffprobe(filepath, { path: probes.path }));
+    return resolves.get(filepath)!;
 }

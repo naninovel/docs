@@ -17,7 +17,7 @@ function handleIntersections(entries: IntersectionObserverEntry[], observer: Int
 
 function handleIntersection(entry: IntersectionObserverEntry, observer: IntersectionObserver) {
     for (const child of entry.target.children)
-        if (isSourceElement(child))
+        if (isSourceElement(child) && child.dataset.src)
             child.src = child.dataset.src;
     (entry.target as HTMLVideoElement).load();
     observer.unobserve(entry.target);
