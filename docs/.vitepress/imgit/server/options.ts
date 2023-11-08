@@ -27,6 +27,8 @@ export type Options = Record<string, unknown> & {
     /** Source of an image to use for all video posters. When undefined automatically generates
      *  unique image for each video; assign <code>false</code> to disable posters completely. */
     poster?: string | boolean;
+    /** Configure logging behaviour; assign <code>false</code> to disable logging. */
+    log?: LogOptions | boolean;
     /** Configure remote assets fetching. */
     fetch?: FetchOptions;
     /** Configure assets encoding. */
@@ -35,6 +37,19 @@ export type Options = Record<string, unknown> & {
     build?: BuildOptions;
     /** Configure document transformation process. */
     transform?: TransformOptions;
+};
+
+/** Configures logging behaviour. */
+export type LogOptions = {
+    /** Logs informational message, such as which assets were downloaded and encoded;
+     *  assign <code>false</code> to disable logging informational messages. */
+    info?: ((msg: string) => void) | boolean;
+    /** Logs warning message, such as a non-fatal issue with encoding process;
+     *  assign <code>false</code> to disable logging warning messages. */
+    warn?: ((msg: string) => void) | boolean;
+    /** Logs error message associated with a failed procedure;
+     *  assign <code>false</code> to disable logging error messages. */
+    err?: ((msg: string) => void) | boolean;
 };
 
 /** Configures remote assets fetching behaviour. */
