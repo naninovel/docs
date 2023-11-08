@@ -2,89 +2,67 @@ import fs from "node:fs";
 import path from "node:path";
 import { Readable } from "node:stream";
 import { finished } from "node:stream/promises";
-import { options } from "./options.js";
+import { options, defaults } from "./options.js";
 
-/** @type {Map<string, Promise<void>>} */
-const fetches = new Map;
-/** @type {Map<string, number>} */
-const retries = new Map;
+const fetching = new Map<string, Promise<void>>;
+const retrying = new Map<string, number>;
 
-/** @param {string} uri
- *  @param {string} filePath
- *  @return {Promise<void>}*/
-export function fetchQueued(uri, filepath) {
-    const { localDir, fetchTimeout, fetchRetries, fetchDelay } = options;
-    if (fetches.has(filepath)) return fetches.get(filepath);
-    fetches.set(filepath, fs.existsSync(filepath)
+export async function fetchQueued(uri: string, filepath: string): Promise<void> {
+    const { local } = options;
+    const { timeout, retries, delay } = options.fetch ?? defaults.fetch!;
+    if (fetching.has(filepath)) return fetching.get(filepath);
+    fetching.set(filepath, fs.existsSync(filepath)
         ? Promise.resolve()
         : fetchWithRetries(uri, filepath));
-    return fetches.get(filepath);
+    return fetching.get(filepath);
 
-    /** @param {string} uri
-     *  @param {string} filepath */
-    async function fetchWithRetries(uri, filepath) {
-        console.info(`Downloading ${uri} to ${localDir}`);
-        try { return fetchWithTimeout(uri, filepath); }
-        catch (error) {
-            retries.set(filepath, (retries.get(filepath) ?? 0) + 1);
-            if (retries.get(filepath) > fetchRetries) {
+    async function fetchWithRetries(uri: string, filepath: string): Promise<void> {
+        console.info(`Downloading ${uri} to ${local}`);
+        try { return fetchWithTimeout(uri, filepath); } catch (error) {
+            retrying.set(filepath, (retrying.get(filepath) ?? 0) + 1);
+            if (retrying.get(filepath)! > retries) {
                 fs.unlink(filepath, _ => {});
                 throw error;
             }
             console.warn(`Failed to download ${uri}, retrying. (error: ${error})`);
-            await wait(Math.floor(Math.random() * fetchDelay));
+            await wait(Math.floor(Math.random() * delay));
             return fetchWithRetries(uri, filepath);
         }
     }
 
-    /** @param {string} uri
-     *  @param {string} filepath */
-    function fetchWithTimeout(uri, filepath) {
+    function fetchWithTimeout(uri: string, filepath: string): Promise<void> {
         const abort = new AbortController();
-        const timeout = setTimeout(abort.abort, fetchTimeout * 1000);
-        try { return fetchAndWriteTo(uri, filepath, abort.signal); }
-        finally { clearTimeout(timeout); }
+        const timeoutId = setTimeout(abort.abort, timeout * 1000);
+        try { return fetchAndWriteTo(uri, filepath, abort.signal); } finally { clearTimeout(timeoutId); }
     }
 
-    /** @param {string} uri
-     *  @param {string} filepath
-     *  @param {AbortSignal} signal */
-    async function fetchAndWriteTo(uri, filepath, signal) {
+    async function fetchAndWriteTo(uri: string, filepath: string, signal: AbortSignal): Promise<void> {
         const response = await fetch(uri, { signal });
         if (response.status === 429) return handleRetryResponse(response);
         return write(response, filepath);
     }
 
-    /** @param {Response} response
-     *  @return {Promise<void>} */
-    async function handleRetryResponse(response) {
-        const delay = response.headers["retry-after"];
-        if (typeof delay !== "number") throw Error(`${uri}: 429 without retry-after header.`);
+    async function handleRetryResponse(response: Response): Promise<void> {
+        const delay = Number(response.headers.get("retry-after"));
+        if (isNaN(delay)) throw Error(`${uri}: 429 without retry-after header (${delay}).`);
         console.warn(`Too many fetch requests; the host asked to wait ${delay} seconds.`);
         await wait(delay + 1);
         return fetchWithTimeout(uri, filepath);
     }
 }
 
-/** @param {Response} response
- *  @param {string} filepath
- *  @return {Promise<void>} */
-function write(response, filepath) {
+function write(response: Response, filepath: string): Promise<void> {
     ensureDir(path.dirname(filepath));
-    // noinspection JSCheckFunctionSignatures
-    const body = Readable.fromWeb(response.body);
+    const body = Readable.fromWeb(<never>response.body);
     const stream = fs.createWriteStream(filepath);
     return finished(body.pipe(stream));
 }
 
-/** @param {number} seconds
- *  @return {Promise<void>} */
-function wait(seconds) {
+function wait(seconds: number): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, seconds * 1000));
 }
 
-/** @param {string} dir */
-function ensureDir(dir) {
+function ensureDir(dir: string) {
     if (!fs.existsSync(dir))
         fs.mkdirSync(dir, { recursive: true });
 }

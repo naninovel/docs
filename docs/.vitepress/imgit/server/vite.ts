@@ -1,11 +1,15 @@
+import { Plugin } from "vite";
 import { transform } from "./transform";
-import { configure } from "./options";
+import { configure, Options } from "./options";
 
-/** @typedef {import("./options.js").Options} Options */
+export type ViteOptions = Options & {
+    /** Extension of the source files to transform. */
+    ext?: string,
+    /** Force the plugin to run either before are after other plugins. */
+    enforce?: "pre" | "post"
+};
 
-/** @param {(Options & { ext?: string, enforce?: "pre" | "post" })?} options
- *  @return {import("vite").Plugin} */
-export default function (options = undefined) {
+export default function (options?: ViteOptions): Plugin {
     if (options) configure(options);
     return {
         name: "imgit",
@@ -13,10 +17,7 @@ export default function (options = undefined) {
         transform: handleTransform
     };
 
-    /** @param {string} source
-     *  @param {string} filename
-     *  @return {Promise<string>} */
-    async function handleTransform(source, filename) {
+    async function handleTransform(source: string, filename: string): Promise<string> {
         if (!options?.ext || filename.endsWith(options.ext))
             return await transform(source);
         return source;
