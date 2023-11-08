@@ -8,7 +8,7 @@ export type Options = Record<string, unknown> & {
      *  <code>/assets</code> by default. */
     serve?: string;
     /** Regular expression to use for capturing transformed assets syntax.
-     *  Expects <code>title</code> and <code>uri</code> capture groups.
+     *  Expects <code><title></code> and <code><uri></code> capture groups.
      *  By default, captures Markdown image syntax: <code>/!\[(?<title>.*?)]\((?<uri>.+?)\)/g</code>. */
     regex?: RegExp;
     /** Text to append to the name of encoded asset files; <code>-imgit</code> by default. */
@@ -111,6 +111,11 @@ export const defaults = Object.freeze({
     video: ["mp4"],
     youtube: true,
     poster: undefined,
+    log: {
+        info: console.info,
+        warn: console.warn,
+        err: console.error,
+    },
     fetch: {
         timeout: 30,
         retries: 3,
