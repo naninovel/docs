@@ -25,12 +25,14 @@ export type Options = Record<string, unknown> & {
     /** Whether to transform YouTube links as videos; enabled by default. */
     youtube?: boolean;
     /** Source of an image to use for all video posters. When undefined automatically generates
-     *  unique image for each video; assign <code>false</code> to disable posters completely. */
-    poster?: string | boolean;
-    /** Configure logging behaviour; assign <code>false</code> to disable logging. */
-    log?: LogOptions | boolean;
+     *  unique image for each video; assign <code>null</code> to disable posters completely. */
+    poster?: string | null;
+    /** Configure logging behaviour; assign <code>null</code> to disable logging. */
+    log?: LogOptions | null;
     /** Configure remote assets fetching. */
     fetch?: FetchOptions;
+    /** Configure assets probing. */
+    probe?: ProbeOptions;
     /** Configure assets encoding. */
     encode?: EncodeOptions;
     /** Configure HTML building for source assets of specific types. */
@@ -42,14 +44,14 @@ export type Options = Record<string, unknown> & {
 /** Configures logging behaviour. */
 export type LogOptions = {
     /** Logs informational message, such as which assets were downloaded and encoded;
-     *  assign <code>false</code> to disable logging informational messages. */
-    info?: ((msg: string) => void) | boolean;
+     *  assign <code>null</code> to disable logging informational messages. */
+    info?: ((msg: string) => void) | null;
     /** Logs warning message, such as a non-fatal issue with encoding process;
-     *  assign <code>false</code> to disable logging warning messages. */
-    warn?: ((msg: string) => void) | boolean;
+     *  assign <code>null</code> to disable logging warning messages. */
+    warn?: ((msg: string) => void) | null;
     /** Logs error message associated with a failed procedure;
-     *  assign <code>false</code> to disable logging error messages. */
-    err?: ((msg: string) => void) | boolean;
+     *  assign <code>null</code> to disable logging error messages. */
+    err?: ((msg: string) => void) | null;
 };
 
 /** Configures remote assets fetching behaviour. */
@@ -62,17 +64,23 @@ export type FetchOptions = {
     delay?: number;
 };
 
+/** Configures asset probing. */
+export type ProbeOptions = {
+    /** ffprobe arguments specified when probing assets. */
+    args?: string | boolean;
+};
+
 /** Configures asset encoding and optimization. */
 export type EncodeOptions = {
     /** ffmpeg arguments specified when encoding still image assets (png, jpg);
-     *  assign <code>false</code> to disable images encoding. */
-    image?: string | boolean;
+     *  assign <code>null</code> to disable images encoding. */
+    image?: string | null;
     /** ffmpeg arguments specified when encoding animated image assets (gif);
-     *  assign <code>false</code> to disable animated images encoding. */
-    animation?: string | boolean;
+     *  assign <code>null</code> to disable animated images encoding. */
+    animation?: string | null;
     /** ffmpeg arguments specified when encoding video assets (mp4);
-     *  assign <code>false</code> to disable video encoding.*/
-    video?: string | boolean;
+     *  assign <code>null</code> to disable video encoding.*/
+    video?: string | null;
 };
 
 /** Configures HTML building for source assets of specific types. */
@@ -114,17 +122,20 @@ export const defaults = Object.freeze({
     log: {
         info: console.info,
         warn: console.warn,
-        err: console.error,
-    },
+        err: console.error
+    } as LogOptions | null,
     fetch: {
         timeout: 30,
         retries: 3,
         delay: 6
     },
+    probe: {
+        args: "-loglevel error -select_streams v -show_entries stream=width,height -of csv=p=0:s=x"
+    },
     encode: {
-        image: "-loglevel warning -stats -c:v librav1e -rav1e-params speed=4:quantizer=100:still_picture=true",
-        animation: "-loglevel warning -stats -c:v librav1e -rav1e-params speed=6:quantizer=150",
-        video: "-loglevel warning -stats -c:v libsvtav1 -preset 4"
+        image: "-loglevel error -stats -c:v librav1e -rav1e-params speed=4:quantizer=100:still_picture=true",
+        animation: "-loglevel error -stats -c:v librav1e -rav1e-params speed=6:quantizer=150",
+        video: "-loglevel error -stats -c:v libsvtav1 -preset 4"
     },
     build: {
         image: undefined,
@@ -145,6 +156,6 @@ export const options = { ...defaults };
 
 export function configure(settings: Options) {
     for (const prop in settings)
-        if (options.hasOwnProperty(prop))
+        if (options.hasOwnProperty(prop) && settings[prop] !== undefined)
             (<Record<string, unknown>>options)[prop] = settings[prop];
 }

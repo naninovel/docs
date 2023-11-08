@@ -12,13 +12,13 @@ export async function resolveMediaInfo(filepath: string): Promise<MediaInfo> {
     if (resolves.has(filepath)) return resolves.get(filepath)!;
     let resolve: (value: (MediaInfo)) => void;
     resolves.set(filepath, new Promise<MediaInfo>(r => resolve = r));
-    exec(`ffprobe -v error -select_streams v -show_entries stream=width,height -of csv=p=0:s=x "${filepath}"`,
+    exec(`ffprobe ${options.probe.args} "${filepath}"`,
         (err, out) => handleProbe(resolve, err, out));
     return resolves.get(filepath)!;
 }
 
 function handleProbe(resolve: (info: MediaInfo) => void, error: (ExecException | null), out: string) {
-    if (error) options.log.err(`error: ${error.message}`);
+    if (error) options.log?.err?.(`error: ${error.message}`);
     resolve(parseOut(out));
 }
 

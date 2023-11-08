@@ -8,7 +8,7 @@ const fetching = new Map<string, Promise<void>>;
 const retrying = new Map<string, number>;
 
 export async function fetchQueued(uri: string, filepath: string): Promise<void> {
-    const { local } = options;
+    const { local, log } = options;
     const { timeout, retries, delay } = options.fetch;
     if (fetching.has(filepath)) return fetching.get(filepath);
     fetching.set(filepath, fs.existsSync(filepath)
@@ -17,14 +17,14 @@ export async function fetchQueued(uri: string, filepath: string): Promise<void> 
     return fetching.get(filepath);
 
     async function fetchWithRetries(uri: string, filepath: string): Promise<void> {
-        console.info(`Downloading ${uri} to ${local}`);
+        log?.info?.(`Downloading ${uri} to ${local}`);
         try { return fetchWithTimeout(uri, filepath); } catch (error) {
             retrying.set(filepath, (retrying.get(filepath) ?? 0) + 1);
             if (retrying.get(filepath)! > retries) {
                 fs.unlink(filepath, _ => {});
                 throw error;
             }
-            console.warn(`Failed to download ${uri}, retrying. (error: ${error})`);
+            log?.warn?.(`Failed to download ${uri}, retrying. (error: ${error})`);
             await wait(Math.floor(Math.random() * delay));
             return fetchWithRetries(uri, filepath);
         }
@@ -45,7 +45,7 @@ export async function fetchQueued(uri: string, filepath: string): Promise<void> 
     async function handleRetryResponse(response: Response): Promise<void> {
         const delay = Number(response.headers.get("retry-after"));
         if (isNaN(delay)) throw Error(`${uri}: 429 without retry-after header (${delay}).`);
-        console.warn(`Too many fetch requests; the host asked to wait ${delay} seconds.`);
+        log?.warn?.(`Too many fetch requests; the host asked to wait ${delay} seconds.`);
         await wait(delay + 1);
         return fetchWithTimeout(uri, filepath);
     }
