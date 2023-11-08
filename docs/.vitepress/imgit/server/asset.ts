@@ -54,11 +54,11 @@ export type BuiltAsset = EncodedAsset & {
     html: string;
 };
 
-export function resolveAssetType(sourceUrl: string): AssetType | undefined {
+export function resolveAssetType(uri: string): AssetType | undefined {
     const { image, video, youtube } = options;
-    if (sourceUrl.includes("youtube.com/watch?v="))
+    if (uri.includes("youtube.com/watch?v="))
         return youtube ? AssetType.YouTube : undefined;
-    const ext = getFileExtension(sourceUrl);
+    const ext = getFileExtension(uri);
     if (image?.includes(ext)) return AssetType.Image;
     if (video?.includes(ext)) return AssetType.Video;
     return undefined;
