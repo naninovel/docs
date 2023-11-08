@@ -8,8 +8,8 @@ import { buildImage, buildVideo, buildYouTube } from "./build";
 /** @param source The content in which to transform the assets.
  *  @return Transformed content. */
 export async function transform(source: string): Promise<string> {
-    const matches = new Set<string>;
     const { regex, local, serve } = options;
+    const matches = new Set<string>;
     for (const match of source.matchAll(new RegExp(regex)))
         await handleMatch(match);
     return source;

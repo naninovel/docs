@@ -2,14 +2,14 @@ import fs from "node:fs";
 import path from "node:path";
 import { Readable } from "node:stream";
 import { finished } from "node:stream/promises";
-import { options, defaults } from "./options.js";
+import { options } from "./options.js";
 
 const fetching = new Map<string, Promise<void>>;
 const retrying = new Map<string, number>;
 
 export async function fetchQueued(uri: string, filepath: string): Promise<void> {
     const { local } = options;
-    const { timeout, retries, delay } = options.fetch ?? defaults.fetch!;
+    const { timeout, retries, delay } = options.fetch;
     if (fetching.has(filepath)) return fetching.get(filepath);
     fetching.set(filepath, fs.existsSync(filepath)
         ? Promise.resolve()
