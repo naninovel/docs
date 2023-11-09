@@ -28,14 +28,14 @@ export type CapturedAsset = {
     title?: string;
 };
 
-/** Asset with file content fetched and available for probing. */
-export type FetchedAsset = CapturedAsset & {
+/** Asset with file content downloaded and available for probing. */
+export type DownloadedAsset = CapturedAsset & {
     /** Full path to the source asset file on local file system. */
     sourcePath: string;
 };
 
 /** Asset with identified content metadata. */
-export type ProbedAsset = FetchedAsset & {
+export type ProbedAsset = DownloadedAsset & {
     /** Width of the source asset content, in pixels. */
     width: number;
     /** Height of the source asset content, in pixels. */
