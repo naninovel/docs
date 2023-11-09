@@ -9,7 +9,7 @@ import { config } from "../config";
 const fetching = new Map<string, Promise<void>>;
 const retrying = new Map<string, number>;
 
-/** Downloads file content for the assets captured from the specified document file path. */
+/** Downloads file content for the captured assets. */
 export async function download(assets: CapturedAsset[]): Promise<DownloadedAsset[]> {
     const downloaded = new Array<DownloadedAsset>;
     for (const asset of assets)
