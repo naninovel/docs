@@ -27,7 +27,7 @@ async function probeSize(filepath: string): Promise<AssetSize> {
 }
 
 function handleProbe(resolve: (info: AssetSize) => void, error: (ExecException | null), out: string) {
-    if (error) config.log?.err?.(`error: ${error.message}`);
+    if (error) config.log?.err?.(`ffprobe error: ${error.message}`);
     resolve(parseOut(out));
 }
 
