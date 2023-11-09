@@ -2,9 +2,9 @@ import fs from "node:fs";
 import path from "node:path";
 import { Readable } from "node:stream";
 import { finished } from "node:stream/promises";
-import { ensureDir, wait } from "./common";
-import { options } from "./options.js";
-import { CapturedAsset, DownloadedAsset } from "./asset";
+import { ensureDir, wait } from "../common";
+import { config } from "../config";
+import { CapturedAsset, DownloadedAsset } from "../asset";
 
 const fetching = new Map<string, Promise<void>>;
 const retrying = new Map<string, number>;
@@ -15,9 +15,9 @@ export function download(path: string, assets: CapturedAsset[]): Promise<Downloa
 }
 
 async function downloadAsset(asset: CapturedAsset): Promise<DownloadedAsset> {
-    const { local, log } = options;
-    const { timeout, retries, delay } = options.fetch;
-    const sourcePath = path.resolve(options.local, path.basename(asset.sourceUrl));
+    const { local, log } = config;
+    const { timeout, retries, delay } = config.fetch;
+    const sourcePath = path.resolve(config.local, path.basename(asset.sourceUrl));
     const downloadedAsset: DownloadedAsset = { ...asset, sourcePath };
     if (fs.existsSync(sourcePath) || fetching.has(sourcePath)) return downloadedAsset;
     const fetchPromise = fetchWithRetries(asset.sourceUrl, sourcePath);

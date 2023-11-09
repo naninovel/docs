@@ -1,8 +1,6 @@
-import { CapturedAsset, DownloadedAsset, ProbedAsset, EncodedAsset, BuiltAsset } from "./asset";
-import { capture } from "./catpture";
-import { download } from "./download";
+import { CapturedAsset, DownloadedAsset, ProbedAsset, EncodedAsset, BuiltAsset } from "../asset";
 
-/** Configures server behaviour. */
+/** Configures build server behaviour. */
 export type Options = Record<string, unknown> & {
     /** Local directory where the asset files are stored;
      *  <code>./public/assets</code> by default. */
@@ -110,7 +108,7 @@ export type TransformOptions = {
     capture?: (path: string, content: string) => Promise<CapturedAsset[]>;
     /** 2nd phase: downloads file content for the assets captured from the specified document file path. */
     download?: (path: string, assets: CapturedAsset[]) => Promise<DownloadedAsset[]>;
-    /** 3rd phase: probes fetched files content to evaluate their width and height. */
+    /** 3rd phase: probes downloaded asset files to evaluate their width and height. */
     probe?: (path: string, assets: DownloadedAsset[]) => Promise<ProbedAsset[]>;
     /** 4th phase: creates optimized versions of the source asset files. */
     encode?: (path: string, assets: ProbedAsset[]) => Promise<EncodedAsset[]>;
@@ -119,57 +117,3 @@ export type TransformOptions = {
     /** 6th phase: rewrites content of the document with specified assets; returns modified document content. */
     rewrite?: (path: string, content: string, assets: BuiltAsset[]) => Promise<string>;
 };
-
-export const defaults = Object.freeze({
-    local: "./public/assets",
-    cache: "./node_modules/.cache/imgit",
-    serve: "/assets",
-    regex: /!\[(?<title>.*?)]\((?<uri>.+?)\)/g,
-    suffix: "-imgit",
-    width: undefined,
-    image: ["png", "jpg", "jpeg"],
-    animation: ["gif"],
-    video: ["mp4"],
-    youtube: true,
-    poster: undefined,
-    log: {
-        info: console.info,
-        warn: console.warn,
-        err: console.error
-    } as LogOptions | null,
-    fetch: {
-        timeout: 30,
-        retries: 3,
-        delay: 6
-    },
-    probe: {
-        args: "-loglevel error -select_streams v -show_entries stream=width,height -of csv=p=0:s=x"
-    },
-    encode: {
-        image: "-loglevel error -stats -c:v librav1e -rav1e-params speed=4:quantizer=100:still_picture=true",
-        animation: "-loglevel error -stats -c:v librav1e -rav1e-params speed=6:quantizer=150",
-        video: "-loglevel error -stats -c:v libsvtav1 -preset 4"
-    },
-    build: {
-        image: undefined,
-        animation: undefined,
-        video: undefined,
-        youtube: undefined
-    },
-    transform: {
-        capture,
-        download,
-        probe: undefined,
-        encode: undefined,
-        build: undefined,
-        rewrite: undefined
-    }
-});
-
-export const options = { ...defaults };
-
-export function configure(settings: Options) {
-    for (const prop in settings)
-        if (options.hasOwnProperty(prop) && settings[prop] !== undefined)
-            (<Record<string, unknown>>options)[prop] = settings[prop];
-}

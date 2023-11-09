@@ -1,7 +1,8 @@
-import { Options, configure } from "./options";
+import { configure } from "./config";
+import { Options } from "./config/options";
 import * as cache from "./cache";
 
-export type { Options } from "./options";
+export * from "./config/options";
 export { transform } from "./transform";
 
 /** Initializes build server with specified options.

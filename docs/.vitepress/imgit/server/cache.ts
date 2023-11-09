@@ -1,14 +1,14 @@
 import { existsSync, readFileSync, writeFileSync } from "fs";
+import { AssetSize } from "./asset";
 import { ensureDir } from "./common";
-import { MediaInfo } from "./media";
 import { options } from "./options";
 
 export const cache = {
-    media: {} as Record<string, MediaInfo>
+    size: {} as Record<string, AssetSize>
 };
 
 const files = {
-    media: `${options.cache}/media.json`
+    size: `${options.cache}/size.json`
 } as Record<string, string>;
 
 export function load() {

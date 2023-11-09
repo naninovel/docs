@@ -1,5 +1,3 @@
-import { options } from "./options";
-
 /** Transformed asset type. */
 export enum AssetType {
     /** Still image rendered with <code><picture></code> HTML tag; eg, png or jpg. */
@@ -12,14 +10,20 @@ export enum AssetType {
     YouTube
 }
 
+/** Dimensions of the source asset content. */
+export type AssetSize = {
+    /** Width of the source asset content, in pixels. */
+    width: number;
+    /** Height of the source asset content, in pixels. */
+    height: number;
+}
+
 /** Asset syntax captured from transformed document. */
 export type CapturedAsset = {
     /** Full text of the captured syntax. */
     syntax: string;
-    /** First index of the captured syntax text. */
-    startIndex: number;
-    /** Last index of the captured syntax text. */
-    endIndex: number;
+    /** First index of the captured syntax text inside transformed document content. */
+    index: number;
     /** URL of the source asset resolved from captured syntax. */
     sourceUrl: string;
     /** Type of the asset resolved from captured syntax. */
@@ -36,10 +40,8 @@ export type DownloadedAsset = CapturedAsset & {
 
 /** Asset with identified content metadata. */
 export type ProbedAsset = DownloadedAsset & {
-    /** Width of the source asset content, in pixels. */
-    width: number;
-    /** Height of the source asset content, in pixels. */
-    height: number;
+    /** Size of the source asset content. */
+    size: AssetSize;
 };
 
 /** Asset with encoded counterpart. */
@@ -55,20 +57,3 @@ export type BuiltAsset = EncodedAsset & {
     /** Transformed asset syntax in HTML form. */
     html: string;
 };
-
-export function resolveAssetType(uri: string): AssetType | undefined {
-    const { image, animation, video, youtube } = options;
-    if (uri.includes("youtube.com/watch?v="))
-        return youtube ? AssetType.YouTube : undefined;
-    const ext = getFileExtension(uri);
-    if (image?.includes(ext)) return AssetType.Image;
-    if (animation?.includes(ext)) return AssetType.Animation;
-    if (video?.includes(ext)) return AssetType.Video;
-    return undefined;
-}
-
-function getFileExtension(uri: string) {
-    const start = uri.lastIndexOf(".") + 1;
-    if (start >= uri.length) return "";
-    return uri.substring(start);
-}
