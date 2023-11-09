@@ -2,8 +2,12 @@ import { CapturedAsset, FetchedAsset, ProbedAsset, EncodedAsset, BuiltAsset } fr
 
 /** Configures plugin behaviour. */
 export type Options = Record<string, unknown> & {
-    /** Local directory where the asset files are stored; <code>./public/assets</code> by default. */
+    /** Local directory where the asset files are stored;
+     *  <code>./public/assets</code> by default. */
     local?: string;
+    /** Local directory where the cache files are stored;
+     *  <code>./node_modules/.cache/imgit</code> by default. */
+    cache?: string;
     /** URL prefix for served asset sources: relative to host or absolute when serving from a CDN;
      *  <code>/assets</code> by default. */
     serve?: string;
@@ -111,6 +115,7 @@ export type TransformOptions = {
 
 export const defaults = Object.freeze({
     local: "./public/assets",
+    cache: "./node_modules/.cache/imgit",
     serve: "/assets",
     regex: /!\[(?<title>.*?)]\((?<uri>.+?)\)/g,
     suffix: "-imgit",
