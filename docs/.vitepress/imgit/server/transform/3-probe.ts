@@ -28,12 +28,11 @@ async function probeSize(filepath: string): Promise<AssetSize> {
 
 function handleProbe(resolve: (info: AssetSize) => void, error: (ExecException | null), out: string) {
     if (error) config.log?.err?.(`error: ${error.message}`);
-    const info = parseOut(out);
-    resolve(info);
+    resolve(parseOut(out));
 }
 
 function parseOut(out: string): AssetSize {
-    if (!out?.includes("x")) return { width: 0, height: 0 };
+    if (!out?.includes("x")) return { width: NaN, height: NaN };
     const parts = out.split("x");
     return { width: Number(parts[0]), height: Number(parts[1]) };
 }
