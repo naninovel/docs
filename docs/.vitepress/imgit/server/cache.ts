@@ -1,5 +1,5 @@
-import { existsSync, readFileSync, writeFileSync } from "fs";
-import { join } from "path";
+import fs from "fs";
+import path from "path";
 import { AssetSize } from "./asset";
 import { ensureDir } from "./common";
 import { config } from "./config";
@@ -8,27 +8,30 @@ export const cache = {
     size: {} as Record<string, AssetSize>
 };
 
-const files = {
-    size: "size.json"
-} as Record<string, string>;
-
 export function load() {
-    for (const prop of Object.getOwnPropertyNames(files)) {
-        const path = files[prop] = join(config.cache, files[prop]);
-        if (existsSync(path)) (<Record<string, unknown>>cache)[prop] = read(path);
+    for (const prop of Object.getOwnPropertyNames(cache)) {
+        const filepath = buildCacheFilePath(prop);
+        if (fs.existsSync(filepath))
+            (<Record<string, unknown>>cache)[prop] = read(filepath);
     }
 }
 
 export function save() {
     ensureDir(config.cache);
-    for (const prop of Object.getOwnPropertyNames(files))
-        write(files[prop], (<Record<string, unknown>>cache)[prop]);
+    for (const prop of Object.getOwnPropertyNames(cache)) {
+        const filepath = buildCacheFilePath(prop);
+        write(filepath, (<Record<string, unknown>>cache)[prop]);
+    }
 }
 
 function read(filepath: string) {
-    return JSON.parse(readFileSync(filepath, "utf-8"));
+    return JSON.parse(fs.readFileSync(filepath, "utf-8"));
 }
 
 function write(filepath: string, object: unknown) {
-    return writeFileSync(filepath, JSON.stringify(object), "utf-8");
+    return fs.writeFileSync(filepath, JSON.stringify(object), "utf-8");
+}
+
+function buildCacheFilePath(prop: string) {
+    return path.join(config.cache, `${prop}.json`);
 }
