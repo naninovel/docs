@@ -10,8 +10,11 @@ const fetching = new Map<string, Promise<void>>;
 const retrying = new Map<string, number>;
 
 /** Downloads file content for the assets captured from the specified document file path. */
-export function download(assets: CapturedAsset[]): Promise<DownloadedAsset[]> {
-    return Promise.all(assets.map(downloadAsset));
+export async function download(assets: CapturedAsset[]): Promise<DownloadedAsset[]> {
+    const downloaded = new Array<DownloadedAsset>;
+    for (const asset of assets)
+        downloaded.push(await downloadAsset(asset));
+    return downloaded;
 }
 
 async function downloadAsset(asset: CapturedAsset): Promise<DownloadedAsset> {
