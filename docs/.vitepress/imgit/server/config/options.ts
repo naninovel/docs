@@ -72,6 +72,8 @@ export type DownloadOptions = {
     retries?: number;
     /** How long to wait before restarting a failed download, in seconds; 6 by default.*/
     delay?: number;
+    /** Builds local directory path to store the downloaded assets. */
+    buildLocalRoot?: (asset: CapturedAsset) => string;
 };
 
 /** Configures asset probing. */
@@ -103,8 +105,8 @@ export type BuildOptions = {
     video?: (asset: EncodedAsset) => Promise<string>;
     /** Returns HTML string for specified source YouTube asset. */
     youtube?: (asset: EncodedAsset) => Promise<string>;
-    /** Returns serve root (local to host or absolute) for the generated assets source. */
-    root?: (asset: EncodedAsset) => Promise<string>;
+    /** Builds serve root (local to host or absolute) for the generated asset sources. */
+    buildServeRoot?: (asset: EncodedAsset) => string;
 };
 
 /** Configures document transformation process. */
