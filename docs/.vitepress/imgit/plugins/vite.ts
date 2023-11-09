@@ -1,7 +1,7 @@
 import { Plugin } from "vite";
-import { transform } from "./transform";
-import { configure, Options } from "./options";
+import { boot, exit, transform, Options } from "../server";
 
+/** Configures plugin behaviour. */
 export type ViteOptions = Options & {
     /** Extension of the source files to transform. */
     ext?: string,
@@ -9,12 +9,14 @@ export type ViteOptions = Options & {
     enforce?: "pre" | "post"
 };
 
+/** Creates imgit plugin instance for vite. */
 export default function (options?: ViteOptions): Plugin {
-    if (options) configure(options);
+    boot(options);
     return {
         name: "imgit",
         enforce: options?.enforce,
-        transform: handleTransform
+        transform: handleTransform,
+        buildEnd: exit
     };
 
     async function handleTransform(source: string, filename: string): Promise<string> {

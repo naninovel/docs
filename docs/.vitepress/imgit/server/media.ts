@@ -1,25 +1,36 @@
 import { exec, ExecException } from "node:child_process";
 import { options } from "./options";
+import { cache } from "./cache";
 
 export type MediaInfo = {
     width: number;
     height: number;
 };
 
+type ProbeArgs = {
+    filepath: string;
+    resolve: (info: MediaInfo) => void;
+    error: (ExecException | null);
+    out: string;
+}
+
 const resolves = new Map<string, Promise<MediaInfo>>;
 
 export async function resolveMediaInfo(filepath: string): Promise<MediaInfo> {
+    if (cache.media.hasOwnProperty(filepath)) return cache.media[filepath];
     if (resolves.has(filepath)) return resolves.get(filepath)!;
     let resolve: (value: (MediaInfo)) => void;
     resolves.set(filepath, new Promise<MediaInfo>(r => resolve = r));
     exec(`ffprobe ${options.probe.args} "${filepath}"`,
-        (err, out) => handleProbe(resolve, err, out));
+        (error, out) => handleProbe({ filepath, resolve, error, out }));
     return resolves.get(filepath)!;
 }
 
-function handleProbe(resolve: (info: MediaInfo) => void, error: (ExecException | null), out: string) {
+function handleProbe({ error, filepath, out, resolve }: ProbeArgs) {
     if (error) options.log?.err?.(`error: ${error.message}`);
-    resolve(parseOut(out));
+    const info = parseOut(out);
+    cache.media[filepath] = info;
+    resolve(info);
 }
 
 function parseOut(out: string): MediaInfo {

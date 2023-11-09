@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { Readable } from "node:stream";
 import { finished } from "node:stream/promises";
+import { ensureDir, wait } from "./common";
 import { options } from "./options.js";
 
 const fetching = new Map<string, Promise<void>>;
@@ -56,13 +57,4 @@ function write(response: Response, filepath: string): Promise<void> {
     const body = Readable.fromWeb(<never>response.body);
     const stream = fs.createWriteStream(filepath);
     return finished(body.pipe(stream));
-}
-
-function wait(seconds: number): Promise<void> {
-    return new Promise(resolve => setTimeout(resolve, seconds * 1000));
-}
-
-function ensureDir(dir: string) {
-    if (!fs.existsSync(dir))
-        fs.mkdirSync(dir, { recursive: true });
 }
