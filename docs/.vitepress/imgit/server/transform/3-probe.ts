@@ -6,7 +6,7 @@ import { DownloadedAsset, ProbedAsset, AssetSize, AssetType } from "../asset";
 const probing = new Map<string, Promise<AssetSize>>;
 
 /** Probes downloaded asset files to evaluate their width and height. */
-export function probe(path: string, assets: DownloadedAsset[]): Promise<ProbedAsset[]> {
+export function probe(assets: DownloadedAsset[]): Promise<ProbedAsset[]> {
     return Promise.all(assets.map(probeAsset));
 }
 

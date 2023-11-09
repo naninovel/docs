@@ -2,7 +2,7 @@ import { CapturedAsset, AssetType } from "../asset";
 import { config } from "../config";
 
 /** Finds assets to transform in the document with specified file path and content. */
-export async function capture(path: string, content: string): Promise<CapturedAsset[]> {
+export async function capture(content: string): Promise<CapturedAsset[]> {
     const captures = new Array<CapturedAsset>();
     for (const match of content.matchAll(new RegExp(config.regex)))
         handleMatch(match);

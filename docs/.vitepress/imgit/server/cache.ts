@@ -1,14 +1,14 @@
 import { existsSync, readFileSync, writeFileSync } from "fs";
 import { AssetSize } from "./asset";
 import { ensureDir } from "./common";
-import { options } from "./options";
+import { config } from "./config";
 
 export const cache = {
     size: {} as Record<string, AssetSize>
 };
 
 const files = {
-    size: `${options.cache}/size.json`
+    size: `${config.cache}/size.json`
 } as Record<string, string>;
 
 export function load() {
@@ -18,7 +18,7 @@ export function load() {
 }
 
 export function save() {
-    ensureDir(options.cache);
+    ensureDir(config.cache);
     for (const prop in files)
         writeCached(files[prop], (<Record<string, unknown>>cache)[prop]);
 }
