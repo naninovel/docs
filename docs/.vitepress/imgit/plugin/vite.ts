@@ -19,9 +19,9 @@ export default function (options?: ViteOptions): Plugin {
         buildEnd: exit
     };
 
-    async function handleTransform(source: string, filename: string): Promise<string> {
-        if (!options?.ext || filename.endsWith(options.ext))
-            return await transform(source);
-        return source;
+    async function handleTransform(code: string, id: string): Promise<string> {
+        if (!options?.ext || id.endsWith(options.ext))
+            return await transform(id, code);
+        return code;
     }
 };

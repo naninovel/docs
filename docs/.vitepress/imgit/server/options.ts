@@ -1,6 +1,6 @@
 import { CapturedAsset, FetchedAsset, ProbedAsset, EncodedAsset, BuiltAsset } from "./asset";
 
-/** Configures plugin behaviour. */
+/** Configures server behaviour. */
 export type Options = Record<string, unknown> & {
     /** Local directory where the asset files are stored;
      *  <code>./public/assets</code> by default. */
@@ -21,8 +21,11 @@ export type Options = Record<string, unknown> & {
      *  will resize the content (given encoding is not disabled). No limit by default. */
     width?: number;
     /** File extensions (w/o dot) to encode into av1 still frame under avif container
-     *  and transform into HTML picture (with fallback to source); default: png, jpg, jpeg and gif. */
+     *  and transform into HTML picture (with fallback to source); default: png, jpg, and jpeg. */
     image?: string[];
+    /** File extensions (w/o dot) to encode into looped sequence of av1 still frames under avif container
+     *  and transform into HTML picture (with fallback to source); default: gif. */
+    animation?: string[];
     /** File extensions (w/o dot) to encode into av1 video under mp4 container
      *  and transform into HTML video (with fallback to source); default: mp4. */
     video?: string[];
@@ -91,6 +94,8 @@ export type EncodeOptions = {
 export type BuildOptions = {
     /** Returns HTML string for specified source image asset. */
     image?: (asset: EncodedAsset) => Promise<string>;
+    /** Returns HTML string for specified source animation asset. */
+    animation?: (asset: EncodedAsset) => Promise<string>;
     /** Returns HTML string for specified source video asset. */
     video?: (asset: EncodedAsset) => Promise<string>;
     /** Returns HTML string for specified source YouTube asset. */
@@ -120,7 +125,8 @@ export const defaults = Object.freeze({
     regex: /!\[(?<title>.*?)]\((?<uri>.+?)\)/g,
     suffix: "-imgit",
     width: undefined,
-    image: ["png", "jpg", "jpeg", "gif"],
+    image: ["png", "jpg", "jpeg"],
+    animation: ["gif"],
     video: ["mp4"],
     youtube: true,
     poster: undefined,
@@ -144,6 +150,7 @@ export const defaults = Object.freeze({
     },
     build: {
         image: undefined,
+        animation: undefined,
         video: undefined,
         youtube: undefined
     },

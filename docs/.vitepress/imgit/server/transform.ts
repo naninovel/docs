@@ -1,18 +1,20 @@
 import path from "node:path";
 import { options } from "./options";
-import { fetchQueued } from "./fetch";
-import { resolveMediaInfo } from "./media";
+import { download } from "./download";
+import { probe } from "./probe";
 import { AssetType, resolveAssetType } from "./asset";
 import { buildImage, buildVideo, buildYouTube } from "./build";
 
-/** @param source The content in which to transform the assets.
+/** Transforms document (eg, .md, .js or .html) with specified filename and content.
+ *  @param filename Full file path of the transformed document.
+ *  @param content The content in which to transform the assets.
  *  @return Transformed content. */
-export async function transform(source: string): Promise<string> {
+export async function transform(filename: string, content: string): Promise<string> {
     const { regex, local, serve } = options;
     const matches = new Set<string>;
-    for (const match of source.matchAll(new RegExp(regex)))
+    for (const match of content.matchAll(new RegExp(regex)))
         await handleMatch(match);
-    return source;
+    return content;
 
     async function handleMatch(match: RegExpMatchArray) {
         if (!match.groups || matches.has(match[0])) return;
@@ -20,7 +22,7 @@ export async function transform(source: string): Promise<string> {
         const type = resolveAssetType(match.groups.uri);
         if (type === undefined) return;
         const html = await buildHtml(type, match.groups.title, match.groups.uri);
-        source = source.replaceAll(match[0], html);
+        content = content.replaceAll(match[0], html);
     }
 
     async function buildHtml(type: AssetType, title: string, url: string): Promise<string> {
@@ -35,8 +37,8 @@ export async function transform(source: string): Promise<string> {
     async function resolveSource(uri: string): Promise<string> {
         const filename = path.basename(uri);
         const filepath = path.resolve(local, filename);
-        await fetchQueued(uri, filepath);
-        const info = await resolveMediaInfo(filepath);
+        await download(uri, filepath);
+        const info = await probe(filepath);
         return `${serve}/${filename}?width=${info.width}&height=${info.height}`;
     }
 }
