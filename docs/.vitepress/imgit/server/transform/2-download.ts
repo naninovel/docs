@@ -14,6 +14,7 @@ export async function download(assets: CapturedAsset[]): Promise<DownloadedAsset
     const downloaded = new Array<DownloadedAsset>;
     for (const asset of assets)
         downloaded.push(await downloadAsset(asset));
+    await Promise.all(fetching.values());
     return downloaded;
 }
 
