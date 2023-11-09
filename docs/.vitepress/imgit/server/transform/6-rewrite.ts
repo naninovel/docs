@@ -1,7 +1,15 @@
 import { BuiltAsset } from "../asset";
 
 /** Rewrites content of the document with specified assets; returns modified document content. */
-export async function rewrite (content: string, assets: BuiltAsset[]): Promise<string> {
-    // const html = await buildHtml(type, match.groups.title, match.groups.uri);
-    // content = content.replaceAll(match[0], html);
+export async function rewrite(content: string, assets: BuiltAsset[]): Promise<string> {
+    const replaced = new Set<string>;
+    for (const asset of assets)
+        replace(asset.syntax, asset.html);
+    return content;
+
+    function replace(search: string, replace: string) {
+        if (replaced.has(search)) return;
+        content = content.replaceAll(search, replace);
+        replaced.add(search);
+    }
 }
