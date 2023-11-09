@@ -18,9 +18,10 @@ export async function download(assets: CapturedAsset[]): Promise<DownloadedAsset
 }
 
 export function buildLocalRoot(asset: CapturedAsset): string {
-    if (asset.sourceUrl.startsWith(config.serve))
-        return path.join(config.local, path.resolve(config.serve, path.dirname(asset.sourceUrl)));
-    return path.join(config.local, config.remote);
+    if (!asset.sourceUrl.startsWith(config.serve))
+        return path.join(config.local, config.remote);
+    const endIdx = asset.sourceUrl.length - path.basename(asset.sourceUrl).length;
+    return path.join(config.local, asset.sourceUrl.substring(config.serve.length, endIdx));
 }
 
 async function downloadAsset(asset: CapturedAsset): Promise<DownloadedAsset> {
