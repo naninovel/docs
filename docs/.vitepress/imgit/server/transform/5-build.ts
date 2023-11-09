@@ -41,7 +41,7 @@ export async function buildYouTube(asset: EncodedAsset): Promise<string> {
     return `<span class="imgit-youtube"><iframe title="${title}" src="${source}" allowfullscreen></iframe></span>`;
 }
 
-export function buildRoot(asset: EncodedAsset): string {
+export function buildServeRoot(asset: EncodedAsset): string {
     if (asset.sourceUrl.startsWith(config.serve))
         return asset.sourceUrl.substring(0, asset.sourceUrl.lastIndexOf("/"));
     return path.join(config.serve, config.remote);

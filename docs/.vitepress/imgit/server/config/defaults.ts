@@ -1,6 +1,6 @@
 import { LogOptions } from "./options";
 import { capture } from "../transform/1-capture";
-import { download } from "../transform/2-download";
+import { download, buildLocalRoot } from "../transform/2-download";
 import { probe } from "../transform/3-probe";
 import { encode } from "../transform/4-encode";
 import * as builds from "../transform/5-build";
@@ -25,10 +25,11 @@ export const defaults = Object.freeze({
         warn: console.warn,
         err: console.error
     }) as Readonly<LogOptions | null>,
-    fetch: Object.freeze({
+    download: Object.freeze({
         timeout: 30,
         retries: 3,
-        delay: 6
+        delay: 6,
+        buildLocalRoot
     }),
     probe: Object.freeze({
         args: "-loglevel error -select_streams v -show_entries stream=width,height -of csv=p=0:s=x"
@@ -43,7 +44,7 @@ export const defaults = Object.freeze({
         animation: builds.buildAnimation,
         video: builds.buildVideo,
         youtube: builds.buildYouTube,
-        root: builds.buildRoot
+        root: builds.buildServeRoot
     }),
     transform: Object.freeze({
         capture,
