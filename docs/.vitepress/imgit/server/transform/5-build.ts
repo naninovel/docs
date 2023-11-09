@@ -42,6 +42,7 @@ export async function buildYouTube(asset: EncodedAsset): Promise<string> {
 }
 
 export function buildRoot(asset: EncodedAsset): string {
-    if (asset.sourceUrl.startsWith(config.serve)) path.dirname(asset.sourceUrl);
-    return path.join(config.serve, config.remote, path.basename(asset.sourceUrl));
+    if (asset.sourceUrl.startsWith(config.serve))
+        return path.dirname(asset.sourceUrl);
+    return path.join(config.serve, config.remote);
 }
