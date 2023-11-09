@@ -3,7 +3,7 @@ import { capture } from "../transform/1-capture";
 import { download } from "../transform/2-download";
 import { probe } from "../transform/3-probe";
 import { encode } from "../transform/4-encode";
-import { build, buildImage, buildAnimation, buildVideo, buildYouTube } from "../transform/5-build";
+import * as builds from "../transform/5-build";
 import { rewrite } from "../transform/6-rewrite";
 
 /** Default build server configuration. */
@@ -11,6 +11,7 @@ export const defaults = Object.freeze({
     local: "./public/assets",
     cache: "./node_modules/.cache/imgit",
     serve: "/assets",
+    remote: "remote",
     regex: Object.freeze(/!\[(?<title>.*?)]\((?<uri>.+?)\)/g),
     suffix: "-imgit",
     width: undefined,
@@ -38,17 +39,18 @@ export const defaults = Object.freeze({
         video: "-loglevel error -c:v libsvtav1 -preset 4"
     }),
     build: Object.freeze({
-        image: buildImage,
-        animation: buildAnimation,
-        video: buildVideo,
-        youtube: buildYouTube
+        image: builds.buildImage,
+        animation: builds.buildAnimation,
+        video: builds.buildVideo,
+        youtube: builds.buildYouTube,
+        root: builds.buildRoot
     }),
     transform: Object.freeze({
         capture,
         download,
         probe,
         encode,
-        build,
+        build: builds.build,
         rewrite
     })
 });

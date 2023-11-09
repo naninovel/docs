@@ -11,6 +11,9 @@ export type Options = Record<string, unknown> & {
     /** URL prefix for served asset sources: relative to host or absolute when serving from a CDN;
      *  <code>/assets</code> by default. */
     serve?: string;
+    /** Path to append to <code>local</code> and <code>serve</code> for downloaded remote assets;
+     *  <code>remote</code> by default. */
+    remote?: string;
     /** Regular expression to use for capturing transformed assets syntax.
      *  Expects <code><title></code> and <code><uri></code> capture groups.
      *  By default, captures Markdown image syntax: <code>/!\[(?<title>.*?)]\((?<uri>.+?)\)/g</code>. */
@@ -100,6 +103,8 @@ export type BuildOptions = {
     video?: (asset: EncodedAsset) => Promise<string>;
     /** Returns HTML string for specified source YouTube asset. */
     youtube?: (asset: EncodedAsset) => Promise<string>;
+    /** Returns serve root (local to host or absolute) for the generated assets source. */
+    root?: (asset: EncodedAsset) => Promise<string>;
 };
 
 /** Configures document transformation process. */
