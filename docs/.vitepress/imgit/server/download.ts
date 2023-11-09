@@ -4,18 +4,25 @@ import { Readable } from "node:stream";
 import { finished } from "node:stream/promises";
 import { ensureDir, wait } from "./common";
 import { options } from "./options.js";
+import { CapturedAsset, DownloadedAsset } from "./asset";
 
 const fetching = new Map<string, Promise<void>>;
 const retrying = new Map<string, number>;
 
-export async function download(uri: string, filepath: string): Promise<void> {
+/** Downloads file content for the assets captured from the specified document file path. */
+export function download(path: string, assets: CapturedAsset[]): Promise<DownloadedAsset[]> {
+    return Promise.all(assets.map(downloadAsset));
+}
+
+async function downloadAsset(asset: CapturedAsset): Promise<DownloadedAsset> {
     const { local, log } = options;
     const { timeout, retries, delay } = options.fetch;
-    if (fetching.has(filepath)) return fetching.get(filepath);
-    fetching.set(filepath, fs.existsSync(filepath)
-        ? Promise.resolve()
-        : fetchWithRetries(uri, filepath));
-    return fetching.get(filepath);
+    const sourcePath = path.resolve(options.local, path.basename(asset.sourceUrl));
+    const downloadedAsset: DownloadedAsset = { ...asset, sourcePath };
+    if (fs.existsSync(sourcePath) || fetching.has(sourcePath)) return downloadedAsset;
+    const fetchPromise = fetchWithRetries(asset.sourceUrl, sourcePath);
+    fetching.set(sourcePath, fetchPromise);
+    return fetchPromise.then(() => downloadedAsset);
 
     async function fetchWithRetries(uri: string, filepath: string): Promise<void> {
         log?.info?.(`Downloading ${uri} to ${local}`);
@@ -45,10 +52,10 @@ export async function download(uri: string, filepath: string): Promise<void> {
 
     async function handleRetryResponse(response: Response): Promise<void> {
         const delay = Number(response.headers.get("retry-after"));
-        if (isNaN(delay)) throw Error(`${uri}: 429 without retry-after header (${delay}).`);
+        if (isNaN(delay)) throw Error(`${asset.sourceUrl}: 429 without retry-after header (${delay}).`);
         log?.warn?.(`Too many fetch requests; the host asked to wait ${delay} seconds.`);
         await wait(delay + 1);
-        return fetchWithTimeout(uri, filepath);
+        return fetchWithTimeout(asset.sourceUrl, sourcePath);
     }
 }
 

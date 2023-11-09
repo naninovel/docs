@@ -1,4 +1,6 @@
-import { CapturedAsset, FetchedAsset, ProbedAsset, EncodedAsset, BuiltAsset } from "./asset";
+import { CapturedAsset, DownloadedAsset, ProbedAsset, EncodedAsset, BuiltAsset } from "./asset";
+import { capture } from "./catpture";
+import { download } from "./download";
 
 /** Configures server behaviour. */
 export type Options = Record<string, unknown> & {
@@ -36,8 +38,8 @@ export type Options = Record<string, unknown> & {
     poster?: string | null;
     /** Configure logging behaviour; assign <code>null</code> to disable logging. */
     log?: LogOptions | null;
-    /** Configure remote assets fetching. */
-    fetch?: FetchOptions;
+    /** Configure remote assets downloading. */
+    download?: DownloadOptions;
     /** Configure assets probing. */
     probe?: ProbeOptions;
     /** Configure assets encoding. */
@@ -61,8 +63,8 @@ export type LogOptions = {
     err?: ((msg: string) => void) | null;
 };
 
-/** Configures remote assets fetching behaviour. */
-export type FetchOptions = {
+/** Configures remote assets downloading behaviour. */
+export type DownloadOptions = {
     /** How long to wait when downloading remote asset, in seconds; 30 by default. */
     timeout?: number;
     /** How many times to restart the download when request fails; 3 by default. */
@@ -106,10 +108,10 @@ export type BuildOptions = {
 export type TransformOptions = {
     /** 1st phase: finds assets to transform in the document with specified file path and content. */
     capture?: (path: string, content: string) => Promise<CapturedAsset[]>;
-    /** 2nd phase: fetches file content for the captured source assets from the specified document file path. */
-    fetch?: (path: string, assets: CapturedAsset[]) => Promise<FetchedAsset[]>;
+    /** 2nd phase: downloads file content for the assets captured from the specified document file path. */
+    download?: (path: string, assets: CapturedAsset[]) => Promise<DownloadedAsset[]>;
     /** 3rd phase: probes fetched files content to evaluate their width and height. */
-    probe?: (path: string, assets: FetchedAsset[]) => Promise<ProbedAsset[]>;
+    probe?: (path: string, assets: DownloadedAsset[]) => Promise<ProbedAsset[]>;
     /** 4th phase: creates optimized versions of the source asset files. */
     encode?: (path: string, assets: ProbedAsset[]) => Promise<EncodedAsset[]>;
     /** 5th phase: builds HTML for the optimized assets to overwrite source syntax. */
@@ -155,8 +157,8 @@ export const defaults = Object.freeze({
         youtube: undefined
     },
     transform: {
-        capture: undefined,
-        fetch: undefined,
+        capture,
+        download,
         probe: undefined,
         encode: undefined,
         build: undefined,
