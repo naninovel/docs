@@ -2,9 +2,11 @@ import { options } from "./options";
 
 /** Transformed asset type. */
 export enum AssetType {
-    /** Still or animated image rendered with <code><picture></code> HTML tag. */
+    /** Still image rendered with <code><picture></code> HTML tag; eg, png or jpg. */
     Image,
-    /** Video rendered with <code><video></code> HTML tag. */
+    /** Looped sequence of still images rendered with <code><picture></code> HTML tag; eg, gif. */
+    Animation,
+    /** Video rendered with <code><video></code> HTML tag; eg, mp4. */
     Video,
     /** YouTube video embedded within <code><iframe></code> HTML tag. */
     YouTube
@@ -28,7 +30,7 @@ export type CapturedAsset = {
 
 /** Asset with file content fetched and available for probing. */
 export type FetchedAsset = CapturedAsset & {
-    /** Path to the source asset content file on local file system. */
+    /** Full path to the source asset file on local file system. */
     sourcePath: string;
 };
 
@@ -42,9 +44,9 @@ export type ProbedAsset = FetchedAsset & {
 
 /** Asset with encoded counterpart. */
 export type EncodedAsset = ProbedAsset & {
-    /** Path to the encoded asset content file on local file system. */
+    /** Full path to the encoded asset content file on local file system. */
     encodedPath: string;
-    /** Path to the video poster file or undefined when N/A or disabled. */
+    /** Full path to the video poster file or undefined when N/A or disabled. */
     posterPath?: string;
 };
 
@@ -55,11 +57,12 @@ export type BuiltAsset = EncodedAsset & {
 };
 
 export function resolveAssetType(uri: string): AssetType | undefined {
-    const { image, video, youtube } = options;
+    const { image, animation, video, youtube } = options;
     if (uri.includes("youtube.com/watch?v="))
         return youtube ? AssetType.YouTube : undefined;
     const ext = getFileExtension(uri);
     if (image?.includes(ext)) return AssetType.Image;
+    if (animation?.includes(ext)) return AssetType.Animation;
     if (video?.includes(ext)) return AssetType.Video;
     return undefined;
 }

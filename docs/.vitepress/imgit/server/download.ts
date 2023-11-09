@@ -8,7 +8,7 @@ import { options } from "./options.js";
 const fetching = new Map<string, Promise<void>>;
 const retrying = new Map<string, number>;
 
-export async function fetchQueued(uri: string, filepath: string): Promise<void> {
+export async function download(uri: string, filepath: string): Promise<void> {
     const { local, log } = options;
     const { timeout, retries, delay } = options.fetch;
     if (fetching.has(filepath)) return fetching.get(filepath);

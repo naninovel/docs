@@ -16,7 +16,7 @@ type ProbeArgs = {
 
 const resolves = new Map<string, Promise<MediaInfo>>;
 
-export async function resolveMediaInfo(filepath: string): Promise<MediaInfo> {
+export async function probe(filepath: string): Promise<MediaInfo> {
     if (cache.media.hasOwnProperty(filepath)) return cache.media[filepath];
     if (resolves.has(filepath)) return resolves.get(filepath)!;
     let resolve: (value: (MediaInfo)) => void;

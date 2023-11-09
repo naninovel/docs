@@ -1,6 +1,6 @@
 import { fileURLToPath } from "url";
 import { UserConfig, Alias } from "vite";
-import imgit from "../../imgit/plugins/vite";
+import imgit from "../../imgit/plugin/vite";
 
 export const Vite: UserConfig = {
     plugins: [imgit({ ext: ".md", enforce: "pre", local: "./docs/public/assets/remote", serve: "/assets/remote" })],
