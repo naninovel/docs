@@ -104,16 +104,16 @@ export type BuildOptions = {
 
 /** Configures document transformation process. */
 export type TransformOptions = {
-    /** 1st phase: finds assets to transform in the document with specified file path and content. */
-    capture?: (path: string, content: string) => Promise<CapturedAsset[]>;
-    /** 2nd phase: downloads file content for the assets captured from the specified document file path. */
-    download?: (path: string, assets: CapturedAsset[]) => Promise<DownloadedAsset[]>;
+    /** 1st phase: finds assets to transform in the document with specified content. */
+    capture?: (content: string) => Promise<CapturedAsset[]>;
+    /** 2nd phase: downloads file content for the captured assets. */
+    download?: (assets: CapturedAsset[]) => Promise<DownloadedAsset[]>;
     /** 3rd phase: probes downloaded asset files to evaluate their width and height. */
-    probe?: (path: string, assets: DownloadedAsset[]) => Promise<ProbedAsset[]>;
+    probe?: (assets: DownloadedAsset[]) => Promise<ProbedAsset[]>;
     /** 4th phase: creates optimized versions of the source asset files. */
-    encode?: (path: string, assets: ProbedAsset[]) => Promise<EncodedAsset[]>;
+    encode?: (assets: ProbedAsset[]) => Promise<EncodedAsset[]>;
     /** 5th phase: builds HTML for the optimized assets to overwrite source syntax. */
-    build?: (path: string, assets: EncodedAsset[]) => Promise<BuiltAsset[]>;
+    build?: (assets: EncodedAsset[]) => Promise<BuiltAsset[]>;
     /** 6th phase: rewrites content of the document with specified assets; returns modified document content. */
-    rewrite?: (path: string, content: string, assets: BuiltAsset[]) => Promise<string>;
+    rewrite?: (content: string, assets: BuiltAsset[]) => Promise<string>;
 };

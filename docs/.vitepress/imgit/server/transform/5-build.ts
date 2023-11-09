@@ -1,7 +1,7 @@
 import { EncodedAsset, BuiltAsset } from "../asset";
 
 /** Builds HTML for the optimized assets to overwrite source syntax. */
-export async function build(path: string, assets: EncodedAsset[]): Promise<BuiltAsset[]> {
+export async function build(assets: EncodedAsset[]): Promise<BuiltAsset[]> {
     // if (type === AssetType.YouTube)
     //     return buildYouTube(title, url);
     // const source = await resolveSource(url);
