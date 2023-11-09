@@ -1,14 +1,15 @@
 import { configure } from "./config";
 import { Options } from "./config/options";
+import { defaults } from "./config/defaults";
 import * as cache from "./cache";
 
-export * from "./config/options";
 export { transform } from "./transform";
+export * from "./config/options";
 
 /** Initializes build server with specified options.
  *  Expected to be invoked before any other server APIs. */
 export function boot(options?: Options) {
-    if (options) configure(options);
+    configure(<never>{ ...defaults, ...(options ?? []) });
     cache.load();
 }
 

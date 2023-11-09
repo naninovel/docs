@@ -1,4 +1,5 @@
 import { existsSync, readFileSync, writeFileSync } from "fs";
+import { join } from "path";
 import { AssetSize } from "./asset";
 import { ensureDir } from "./common";
 import { config } from "./config";
@@ -8,25 +9,26 @@ export const cache = {
 };
 
 const files = {
-    size: `${config.cache}/size.json`
+    size: "size.json"
 } as Record<string, string>;
 
 export function load() {
-    for (const prop in files)
-        if (existsSync(files[prop]))
-            (<Record<string, unknown>>cache)[prop] = readCached(files[prop]);
+    for (const prop of Object.getOwnPropertyNames(files)) {
+        const path = files[prop] = join(config.cache, files[prop]);
+        if (existsSync(path)) (<Record<string, unknown>>cache)[prop] = read(path);
+    }
 }
 
 export function save() {
     ensureDir(config.cache);
-    for (const prop in files)
-        writeCached(files[prop], (<Record<string, unknown>>cache)[prop]);
+    for (const prop of Object.getOwnPropertyNames(files))
+        write(files[prop], (<Record<string, unknown>>cache)[prop]);
 }
 
-function readCached(file: string) {
-    return JSON.parse(readFileSync(file, "utf-8"));
+function read(filepath: string) {
+    return JSON.parse(readFileSync(filepath, "utf-8"));
 }
 
-function writeCached(file: string, object: unknown) {
-    return writeFileSync(file, JSON.stringify(object), "utf-8");
+function write(filepath: string, object: unknown) {
+    return writeFileSync(filepath, JSON.stringify(object), "utf-8");
 }

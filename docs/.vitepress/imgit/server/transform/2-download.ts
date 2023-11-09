@@ -2,9 +2,9 @@ import fs from "node:fs";
 import path from "node:path";
 import { Readable } from "node:stream";
 import { finished } from "node:stream/promises";
+import { CapturedAsset, DownloadedAsset, AssetType } from "../asset";
 import { ensureDir, wait } from "../common";
 import { config } from "../config";
-import { CapturedAsset, DownloadedAsset } from "../asset";
 
 const fetching = new Map<string, Promise<void>>;
 const retrying = new Map<string, number>;
@@ -15,6 +15,7 @@ export function download(assets: CapturedAsset[]): Promise<DownloadedAsset[]> {
 }
 
 async function downloadAsset(asset: CapturedAsset): Promise<DownloadedAsset> {
+    if (asset.type === AssetType.YouTube) return { ...asset, sourcePath: "" };
     const { local, log } = config;
     const { timeout, retries, delay } = config.fetch;
     const sourcePath = path.resolve(config.local, path.basename(asset.sourceUrl));

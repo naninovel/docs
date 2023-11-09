@@ -15,11 +15,11 @@ async function probeAsset(asset: DownloadedAsset): Promise<ProbedAsset> {
     if (asset.type === AssetType.YouTube) size = { width: 0, height: 0 };
     else if (cache.size.hasOwnProperty(asset.sourcePath)) size = cache.size[asset.sourcePath];
     else if (probing.has(asset.sourcePath)) size = await probing.get(asset.sourcePath)!;
-    else size = cache.size[asset.sourcePath] = await getMediaInfo(asset.sourcePath);
+    else size = cache.size[asset.sourcePath] = await probeSize(asset.sourcePath);
     return { ...asset, size };
 }
 
-async function getMediaInfo(filepath: string): Promise<AssetSize> {
+async function probeSize(filepath: string): Promise<AssetSize> {
     let resolve: (value: (AssetSize)) => void;
     probing.set(filepath, new Promise<AssetSize>(r => resolve = r));
     exec(`ffprobe ${config.probe.args} "${filepath}"`, (err, out) => handleProbe(resolve, err, out));
