@@ -3,7 +3,12 @@ import { UserConfig, Alias } from "vite";
 import imgit from "../../imgit/plugin/vite";
 
 export const Vite: UserConfig = {
-    plugins: [imgit({ ext: ".md", enforce: "pre", local: "./docs/public/assets" })],
+    plugins: [imgit({
+        ext: ".md",
+        enforce: "pre",
+        local: "./docs/public/assets",
+        cache: "./docs/public/assets/remote/.cache"
+    })],
     resolve: { alias: [override("NotFound", "not-found")] }
 };
 
