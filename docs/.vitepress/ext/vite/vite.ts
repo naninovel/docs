@@ -7,7 +7,8 @@ export const Vite: UserConfig = {
         ext: ".md",
         enforce: "pre",
         local: "./docs/public/assets",
-        cache: "./docs/public/assets/remote/.cache"
+        cache: "./docs/public/assets/remote/.cache",
+        width: 720
     })],
     resolve: { alias: [override("NotFound", "not-found")] }
 };
