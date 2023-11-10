@@ -4,6 +4,7 @@ import { defaults } from "./config/defaults";
 import * as cache from "./cache";
 
 export { transform } from "./transform";
+export { defaults };
 export * from "./config/options";
 
 /** Initializes build server with specified options.
