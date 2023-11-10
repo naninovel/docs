@@ -19,8 +19,8 @@ async function buildAsset(asset: EncodedAsset): Promise<BuiltAsset> {
 export async function buildImage(asset: EncodedAsset): Promise<string> {
     const src = path.join(config.build.root(asset), path.basename(asset.sourceUrl));
     const alt = asset.title ?? "";
-    const style = buildStyle(asset.size);
-    return `<img class="imgit-image" loading="lazy" decoding="async" src="${src}" alt="${alt}" ${style}/>`;
+    const size = buildSizes(asset.size);
+    return `<img class="imgit-image" loading="lazy" decoding="async" src="${src}" alt="${alt}" ${size}/>`;
 }
 
 export async function buildAnimation(asset: EncodedAsset): Promise<string> {
@@ -29,9 +29,9 @@ export async function buildAnimation(asset: EncodedAsset): Promise<string> {
 
 export async function buildVideo(asset: EncodedAsset): Promise<string> {
     const src = path.join(config.build.root(asset), path.basename(asset.sourceUrl));
-    const style = buildStyle(asset.size);
+    const size = buildSizes(asset.size);
     const source = `<source data-src="${src}" type="video/mp4">`;
-    return `<video class="imgit-video" preload="none" loop autoplay muted playsinline poster="/assets/img/video-poster.svg" ${style}>${source}</video>`;
+    return `<video class="imgit-video" preload="none" loop autoplay muted playsinline poster="/assets/img/video-poster.svg" ${size}>${source}</video>`;
 }
 
 export async function buildYouTube(asset: EncodedAsset): Promise<string> {
@@ -47,8 +47,9 @@ export function buildServeRoot(asset: EncodedAsset): string {
     return path.join(config.serve, config.remote);
 }
 
-function buildStyle(size: AssetSize) {
+function buildSizes(size: AssetSize) {
     const mod = config.width && size.width > config.width ? config.width / size.width : 1;
     const width = Math.floor(size.width * mod);
-    return `style="width: ${width}px; height: 100%"`;
+    const height = Math.floor(size.height * mod);
+    return `width="${width}" height="${height}"`;
 }
