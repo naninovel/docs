@@ -1,7 +1,4 @@
-/**
- * Customize default theme styling by overriding CSS variables:
- * https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css
- */
+/** https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/styles/vars.css */
 
 /**
  * Fonts
@@ -9,12 +6,14 @@
 
 @font-face {
     font-family: "Inter Variable";
+    /* noinspection CssUnknownTarget */
     src: url(/assets/fonts/inter.woff2) format("woff2");
     font-display: swap;
 }
 
 @font-face {
     font-family: "JetBrains Mono";
+    /* noinspection CssUnknownTarget */
     src: url(/assets/fonts/jetbrains.woff2) format("woff2");
     font-display: swap;
 }
