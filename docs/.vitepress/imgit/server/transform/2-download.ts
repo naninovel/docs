@@ -22,14 +22,17 @@ export function buildLocalRoot(asset: CapturedAsset): string {
     if (!asset.sourceUrl.startsWith(config.serve))
         return path.join(config.local, config.remote);
     const endIdx = asset.sourceUrl.length - path.basename(asset.sourceUrl).length;
-    return path.join(config.local, asset.sourceUrl.substring(config.serve.length, endIdx));
+    const subdir = asset.sourceUrl.substring(config.serve.length, endIdx);
+    return path.join(config.local, subdir);
 }
 
 async function downloadAsset(asset: CapturedAsset): Promise<DownloadedAsset> {
     if (asset.type === AssetType.YouTube) return { ...asset, sourcePath: "" };
     const { local, log } = config;
     const { timeout, retries, delay } = config.download;
-    const sourcePath = path.resolve(config.download.buildLocalRoot(asset), path.basename(asset.sourceUrl));
+    const sourcePath = path.join(
+        config.download.buildLocalRoot(asset),
+        path.basename(asset.sourceUrl)).replaceAll("\\", "/");
     const downloadedAsset: DownloadedAsset = { ...asset, sourcePath };
     if (fs.existsSync(sourcePath) || fetching.has(sourcePath)) return downloadedAsset;
     const fetchPromise = fetchWithRetries(asset.sourceUrl, sourcePath);
