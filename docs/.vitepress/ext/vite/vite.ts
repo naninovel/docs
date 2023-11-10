@@ -4,8 +4,8 @@ import imgit from "../../imgit/plugin/vite";
 
 export const Vite: UserConfig = {
     plugins: [imgit({
-        ext: ".md",
         enforce: "pre",
+        skip: (_, id) => !id.endsWith(".md"),
         local: "./docs/public/assets",
         cache: "./docs/public/assets/remote/.cache",
         width: 720

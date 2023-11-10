@@ -12,18 +12,19 @@ export function probe(assets: DownloadedAsset[]): Promise<ProbedAsset[]> {
 
 async function probeAsset(asset: DownloadedAsset): Promise<ProbedAsset> {
     let size: AssetSize;
+    const url = asset.sourceUrl;
     if (asset.type === AssetType.YouTube) size = { width: 0, height: 0 };
-    else if (cache.size.hasOwnProperty(asset.sourcePath)) size = cache.size[asset.sourcePath];
-    else if (probing.has(asset.sourcePath)) size = await probing.get(asset.sourcePath)!;
-    else size = cache.size[asset.sourcePath] = await probeSize(asset.sourcePath);
+    else if (cache.size.hasOwnProperty(url)) size = cache.size[url];
+    else if (probing.has(url)) size = await probing.get(url)!;
+    else size = cache.size[url] = await probeSize(asset.sourcePath, url);
     return { ...asset, size };
 }
 
-async function probeSize(filepath: string): Promise<AssetSize> {
-    let resolve: (value: (AssetSize)) => void;
-    probing.set(filepath, new Promise<AssetSize>(r => resolve = r));
-    exec(`ffprobe ${config.probe.args} "${filepath}"`, (err, out) => handleProbe(resolve, err, out));
-    return probing.get(filepath)!;
+async function probeSize(path: string, url: string): Promise<AssetSize> {
+    let resolve: (value: (AssetSize)) => void, promise;
+    probing.set(url, promise = new Promise<AssetSize>(r => resolve = r));
+    exec(`ffprobe ${config.probe.args} "${path}"`, (err, out) => handleProbe(resolve, err, out));
+    return promise;
 }
 
 function handleProbe(resolve: (info: AssetSize) => void, error: (ExecException | null), out: string) {

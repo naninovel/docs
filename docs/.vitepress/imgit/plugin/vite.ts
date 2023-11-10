@@ -1,22 +1,28 @@
-import { Plugin } from "vite";
 import { boot, exit, transform, Options } from "../server";
 
-/** Configures plugin behaviour. */
+/** Configures vite plugin behaviour. */
 export type ViteOptions = Options & {
-    /** Extension of the source files to transform; transforms all files by default. */
-    ext?: string,
     /** Force the plugin to run either before are after other plugins. */
-    enforce?: "pre" | "post"
+    enforce?: "pre" | "post";
+    /** Specify condition when document shouldn't be transformed by the plugin. */
+    skip?: (code: string, id: string, options?: { ssr?: boolean; }) => boolean;
 };
 
+declare interface VitePlugin {
+    name: string;
+    enforce?: "pre" | "post";
+    buildStart?: (options: unknown) => Promise<void> | void;
+    transform?: (code: string, id: string, options?: { ssr?: boolean; }) => Promise<string> | string;
+    buildEnd?: (error?: Error) => void;
+}
+
 /** Creates imgit plugin instance for vite. */
-export default function (options?: ViteOptions): Plugin {
-    boot(options);
-    const skip = (id: string) => options?.ext && !id.endsWith(options.ext);
+export default function (options?: ViteOptions): VitePlugin {
     return {
         name: "imgit",
         enforce: options?.enforce,
-        transform: (code, id) => skip(id) ? code : transform(code),
+        buildStart: _ => boot(options),
+        transform: (code, id, opt) => options?.skip?.(code, id, opt) ? code : transform(code),
         buildEnd: exit
     };
 };
