@@ -50,6 +50,5 @@ export function buildServeRoot(asset: EncodedAsset): string {
 function buildStyle(size: AssetSize) {
     const mod = config.width && size.width > config.width ? config.width / size.width : 1;
     const width = Math.floor(size.width * mod);
-    const height = Math.floor(size.height * mod);
-    return `style="width: ${width}px; height: ${height}px"`;
+    return `style="width: ${width}px; height: 100%"`;
 }
