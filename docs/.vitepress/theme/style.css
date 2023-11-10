@@ -7,9 +7,21 @@
  * Fonts
  * -------------------------------------------------------------------------- */
 
+@font-face {
+    font-family: "Inter Variable";
+    src: url(/assets/fonts/inter.woff2) format("woff2");
+    font-display: swap;
+}
+
+@font-face {
+    font-family: "JetBrains Mono";
+    src: url(/assets/fonts/jetbrains.woff2) format("woff2");
+    font-display: swap;
+}
+
 :root {
     --vp-font-family-base: "Inter Variable", sans-serif;
-    --vp-font-family-mono: "JetBrains Mono Variable", monospace;
+    --vp-font-family-mono: "JetBrains Mono", monospace;
     --vp-layout-max-width: 1450px; /** Default is 1440px **/
 }
 
