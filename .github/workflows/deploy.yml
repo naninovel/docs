@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
-      - uses: FedericoCarboni/setup-ffmpeg@v2
+      - run: sudo apt install ffmpeg -y
       - run: npm ci
       - name: build
         run: npm run build
