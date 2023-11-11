@@ -14,7 +14,7 @@ export * from "./config/options";
  *  @param platform Runtime APIs to use; will attempt to detect automatically when not assigned. */
 export async function boot(options?: Options, platform?: Platform): Promise<void> {
     configure({ ...defaults, ...(options ?? []) });
-    bind(platform ?? await detectPlatform());
+    await bind(platform);
     cache.load();
 }
 
@@ -22,14 +22,4 @@ export async function boot(options?: Options, platform?: Platform): Promise<void
  *  Expected to be invoked before finishing the build process.  */
 export function exit(): void {
     cache.save();
-}
-
-async function detectPlatform(): Promise<Platform> {
-    if (typeof process === "object" && "bun" in process.versions)
-        return (await import("./platform/bun")).bun;
-    if (typeof window === "object" && "Deno" in window)
-        return (await import("./platform/deno")).deno;
-    if (typeof process === "object" && "node" in process.versions)
-        return (await import("./platform/node")).node;
-    throw Error("Failed to detect JavaScript runtime; specify 'platform' via plugin options.");
 }
