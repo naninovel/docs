@@ -1,3 +1,9 @@
+import fs from "node:fs";
+import path from "node:path";
+import proc from "node:child_process";
+import { Readable } from "node:stream";
+import { finished } from "node:stream/promises";
+
 import { LogOptions } from "./options";
 import { capture } from "../transform/1-capture";
 import { download, buildLocalRoot } from "../transform/2-download";
@@ -57,5 +63,22 @@ export const defaults = Object.freeze({
         encode,
         build: builds.build,
         rewrite
+    }),
+    platform: Object.freeze({
+        fs: Object.freeze({
+            exists: fs.existsSync,
+            read: fs.readFileSync,
+            write: fs.writeFileSync,
+            stream: (path: string, stream: ReadableStream<Uint8Array>) =>
+                finished(Readable.fromWeb(<never>stream).pipe(fs.createWriteStream(path))),
+            remove: fs.unlinkSync,
+            mkdir: (path: string) => fs.mkdirSync(path, { recursive: true })
+        }),
+        path: Object.freeze({
+            join: path.join,
+            basename: path.basename,
+            dirname: path.dirname
+        }),
+        exec: proc.exec
     })
 });

@@ -1,5 +1,3 @@
-import fs from "fs";
-import path from "path";
 import { AssetSize } from "./asset";
 import { ensureDir } from "./common";
 import { config } from "./config";
@@ -11,7 +9,7 @@ export const cache = {
 export function load() {
     for (const prop of Object.getOwnPropertyNames(cache)) {
         const filepath = buildCacheFilePath(prop);
-        if (fs.existsSync(filepath))
+        if (config.platform.fs.exists(filepath))
             (<Record<string, unknown>>cache)[prop] = read(filepath);
     }
 }
@@ -25,13 +23,13 @@ export function save() {
 }
 
 function read(filepath: string) {
-    return JSON.parse(fs.readFileSync(filepath, "utf-8"));
+    return JSON.parse(config.platform.fs.read(filepath, "utf-8"));
 }
 
 function write(filepath: string, object: unknown) {
-    return fs.writeFileSync(filepath, JSON.stringify(object), "utf-8");
+    return config.platform.fs.write(filepath, JSON.stringify(object), "utf-8");
 }
 
 function buildCacheFilePath(prop: string) {
-    return path.join(config.cache, `${prop}.json`);
+    return config.platform.path.join(config.cache, `${prop}.json`);
 }
