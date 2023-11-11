@@ -17,7 +17,7 @@ async function buildAsset(asset: EncodedAsset): Promise<BuiltAsset> {
 
 export async function buildImage(asset: EncodedAsset): Promise<string> {
     const path = config.platform.path;
-    const src = path.join(config.build.root(asset), path.basename(asset.sourceUrl));
+    const src = path.join(buildServeRoot(asset), path.basename(asset.sourceUrl));
     const alt = asset.title ?? "";
     const size = buildSizes(asset.size);
     return `<img class="imgit-image" loading="lazy" decoding="async" src="${src}" alt="${alt}" ${size}/>`;
@@ -29,7 +29,7 @@ export async function buildAnimation(asset: EncodedAsset): Promise<string> {
 
 export async function buildVideo(asset: EncodedAsset): Promise<string> {
     const path = config.platform.path;
-    const src = path.join(config.build.root(asset), path.basename(asset.sourceUrl));
+    const src = path.join(buildServeRoot(asset), path.basename(asset.sourceUrl));
     const size = buildSizes(asset.size);
     const source = `<source data-src="${src}" type="video/mp4">`;
     return `<video class="imgit-video" preload="none" loop autoplay muted playsinline poster="/assets/img/video-poster.svg" ${size}>${source}</video>`;
@@ -42,7 +42,7 @@ export async function buildYouTube(asset: EncodedAsset): Promise<string> {
     return `<span class="imgit-youtube"><iframe title="${title}" src="${source}" allowfullscreen></iframe></span>`;
 }
 
-export function buildServeRoot(asset: EncodedAsset): string {
+function buildServeRoot(asset: EncodedAsset): string {
     if (asset.sourceUrl.startsWith(config.serve))
         return asset.sourceUrl.substring(0, asset.sourceUrl.lastIndexOf("/"));
     return config.platform.path.join(config.serve, config.remote);

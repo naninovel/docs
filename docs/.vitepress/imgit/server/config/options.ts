@@ -22,7 +22,7 @@ export type Options = Record<string, unknown> & {
     suffix?: string;
     /** Width limit for the transformed assets, in pixels. When source asset is larger,
      *  will resize the content (given encoding is not disabled). No limit by default. */
-    width?: number;
+    width?: number | null;
     /** File extensions (w/o dot) to encode into av1 still frame under avif container
      *  and transform into HTML picture (with fallback to source); default: png, jpg, and jpeg. */
     image?: string[];
@@ -57,111 +57,107 @@ export type Options = Record<string, unknown> & {
 export type LogOptions = {
     /** Logs informational message, such as which assets were downloaded and encoded;
      *  assign <code>null</code> to disable logging informational messages. */
-    info?: ((msg: string) => void) | null;
+    info: ((msg: string) => void) | null;
     /** Logs warning message, such as a non-fatal issue with encoding process;
      *  assign <code>null</code> to disable logging warning messages. */
-    warn?: ((msg: string) => void) | null;
+    warn: ((msg: string) => void) | null;
     /** Logs error message associated with a failed procedure;
      *  assign <code>null</code> to disable logging error messages. */
-    err?: ((msg: string) => void) | null;
+    err: ((msg: string) => void) | null;
 };
 
 /** Configures remote assets downloading behaviour. */
 export type DownloadOptions = {
     /** How long to wait when downloading remote asset, in seconds; 30 by default. */
-    timeout?: number;
+    timeout: number;
     /** How many times to restart the download when request fails; 3 by default. */
-    retries?: number;
+    retries: number;
     /** How long to wait before restarting a failed download, in seconds; 6 by default.*/
-    delay?: number;
-    /** Builds local directory path to store the downloaded assets. */
-    buildLocalRoot?: (asset: CapturedAsset) => string;
+    delay: number;
 };
 
 /** Configures asset probing. */
 export type ProbeOptions = {
     /** ffprobe arguments specified when probing assets. */
-    args?: string | boolean;
+    args: string;
 };
 
 /** Configures asset encoding and optimization. */
 export type EncodeOptions = {
     /** ffmpeg arguments specified when encoding still image assets (png, jpg);
      *  assign <code>null</code> to disable images encoding. */
-    image?: string | null;
+    image: string | null;
     /** ffmpeg arguments specified when encoding animated image assets (gif);
      *  assign <code>null</code> to disable animated images encoding. */
-    animation?: string | null;
+    animation: string | null;
     /** ffmpeg arguments specified when encoding video assets (mp4);
      *  assign <code>null</code> to disable video encoding. */
-    video?: string | null;
+    video: string | null;
     /** Poster (covers for lazy-loaded assets) encoding options. */
-    poster?: {
+    poster: {
         /** ffmpeg arguments specified when encoding posters. */
-        args?: string;
+        args: string;
         /** ffmpeg filter to apply for generated posters; blur is applied by default.
          *  assign <code>null</code> to disable poster filtering. */
-        filter?: string | null
+        filter: string | null
     }
 };
 
 /** Configures HTML building for source assets of specific types. */
 export type BuildOptions = {
     /** Returns HTML string for specified source image asset. */
-    image?: (asset: EncodedAsset) => Promise<string>;
+    image: (asset: EncodedAsset) => Promise<string>;
     /** Returns HTML string for specified source animation asset. */
-    animation?: (asset: EncodedAsset) => Promise<string>;
+    animation: (asset: EncodedAsset) => Promise<string>;
     /** Returns HTML string for specified source video asset. */
-    video?: (asset: EncodedAsset) => Promise<string>;
+    video: (asset: EncodedAsset) => Promise<string>;
     /** Returns HTML string for specified source YouTube asset. */
-    youtube?: (asset: EncodedAsset) => Promise<string>;
-    /** Builds serve root (local to host or absolute) for the generated asset sources. */
-    buildServeRoot?: (asset: EncodedAsset) => string;
+    youtube: (asset: EncodedAsset) => Promise<string>;
 };
 
 /** Configures document transformation process. */
 export type TransformOptions = {
     /** 1st phase: finds assets to transform in the document with specified content. */
-    capture?: (content: string) => Promise<CapturedAsset[]>;
+    capture: (content: string) => Promise<CapturedAsset[]>;
     /** 2nd phase: downloads file content for the captured assets. */
-    download?: (assets: CapturedAsset[]) => Promise<DownloadedAsset[]>;
+    download: (assets: CapturedAsset[]) => Promise<DownloadedAsset[]>;
     /** 3rd phase: probes downloaded asset files to evaluate their width and height. */
-    probe?: (assets: DownloadedAsset[]) => Promise<ProbedAsset[]>;
+    probe: (assets: DownloadedAsset[]) => Promise<ProbedAsset[]>;
     /** 4th phase: creates optimized versions of the source asset files. */
-    encode?: (assets: ProbedAsset[]) => Promise<EncodedAsset[]>;
+    encode: (assets: ProbedAsset[]) => Promise<EncodedAsset[]>;
     /** 5th phase: builds HTML for the optimized assets to overwrite source syntax. */
-    build?: (assets: EncodedAsset[]) => Promise<BuiltAsset[]>;
+    build: (assets: EncodedAsset[]) => Promise<BuiltAsset[]>;
     /** 6th phase: rewrites content of the document with specified assets; returns modified document content. */
-    rewrite?: (content: string, assets: BuiltAsset[]) => Promise<string>;
+    rewrite: (content: string, assets: BuiltAsset[]) => Promise<string>;
 };
 
 /** Configures low-level API usage. */
 export type PlatformOptions = {
     /** Local file system access APIs. */
-    fs?: {
+    fs: {
         /** Returns whether directory or file with specified path exists. */
-        exists?: (path: string) => boolean;
+        exists: (path: string) => boolean;
         /** Returns UTF-8 encoded content of text file with specified path. */
-        read?: (path: string) => string;
+        read: (path: string) => string;
         /** Writes UTF-8 encoded content to the file with specified path. */
-        write?: (path: string, content: string) => void;
+        write: (path: string, content: string) => void;
         /** Asynchronously writes specified byte stream to the file with specified path. */
-        stream?: (path: string, stream: ReadableStream<Uint8Array>) => Promise<void>;
+        stream: (path: string, stream: ReadableStream<Uint8Array>) => Promise<void>;
         /** Deletes file with specified path. */
-        remove?: (path: string) => void;
+        remove: (path: string) => void;
         /** Creates directory with specified path (recursive). */
-        mkdir?: (path: string) => void;
+        mkdir: (path: string) => void;
     };
     /** File system path APIs. */
-    path?: {
+    path: {
         /** Joins specified path parts and normalizes the result. */
-        join?: (...paths: string[]) => string;
+        join: (...paths: string[]) => string;
         /** Extracts file name with extension from specified path. */
-        basename?: (path: string) => string;
+        basename: (path: string) => string;
         /** Extracts directory name from specified path. */
-        dirname?: (path: string) => string;
+        dirname: (path: string) => string;
     };
     /** Executes specified command in system shell. */
-    exec?: (cmd: string, onexit: (err: Error | null, out: string) => void) => void;
+    exec: (cmd: string, onexit: (err: Error | null, out: string) => void) => void;
     // TODO: Fetch.
 };

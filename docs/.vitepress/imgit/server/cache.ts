@@ -23,11 +23,11 @@ export function save() {
 }
 
 function read(filepath: string) {
-    return JSON.parse(config.platform.fs.read(filepath, "utf-8"));
+    return JSON.parse(config.platform.fs.read(filepath));
 }
 
 function write(filepath: string, object: unknown) {
-    return config.platform.fs.write(filepath, JSON.stringify(object), "utf-8");
+    return config.platform.fs.write(filepath, JSON.stringify(object));
 }
 
 function buildCacheFilePath(prop: string) {
