@@ -1,4 +1,3 @@
-import { exec, ExecException } from "node:child_process";
 import { config } from "../config";
 import { cache } from "../cache";
 import { DownloadedAsset, ProbedAsset, AssetSize, AssetType } from "../asset";
@@ -23,11 +22,12 @@ async function probeAsset(asset: DownloadedAsset): Promise<ProbedAsset> {
 async function probeSize(path: string, url: string): Promise<AssetSize> {
     let resolve: (value: (AssetSize)) => void, promise;
     probing.set(url, promise = new Promise<AssetSize>(r => resolve = r));
-    exec(`ffprobe ${config.probe.args} "${path}"`, (err, out) => handleProbe(resolve, err, out));
+    config.platform.exec(`ffprobe ${config.probe.args} "${path}"`,
+        (err, out) => handleProbe(resolve, err, out));
     return promise;
 }
 
-function handleProbe(resolve: (info: AssetSize) => void, error: (ExecException | null), out: string) {
+function handleProbe(resolve: (info: AssetSize) => void, error: (Error | null), out: string) {
     if (error) config.log?.err?.(`ffprobe error: ${error.message}`);
     resolve(parseOut(out));
 }

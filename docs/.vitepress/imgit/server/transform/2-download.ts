@@ -1,7 +1,3 @@
-import fs from "node:fs";
-import path from "node:path";
-import { Readable } from "node:stream";
-import { finished } from "node:stream/promises";
 import { CapturedAsset, DownloadedAsset, AssetType } from "../asset";
 import { ensureDir, wait } from "../common";
 import { config } from "../config";
@@ -19,6 +15,7 @@ export async function download(assets: CapturedAsset[]): Promise<DownloadedAsset
 }
 
 export function buildLocalRoot(asset: CapturedAsset): string {
+    const path = config.platform.path;
     if (!asset.sourceUrl.startsWith(config.serve))
         return path.join(config.local, config.remote);
     const endIdx = asset.sourceUrl.length - path.basename(asset.sourceUrl).length;
@@ -30,11 +27,12 @@ async function downloadAsset(asset: CapturedAsset): Promise<DownloadedAsset> {
     if (asset.type === AssetType.YouTube) return { ...asset, sourcePath: "" };
     const { local, log } = config;
     const { timeout, retries, delay } = config.download;
+    const { path, fs } = config.platform;
     const sourcePath = path.join(
         config.download.buildLocalRoot(asset),
         path.basename(asset.sourceUrl)).replaceAll("\\", "/");
     const downloadedAsset: DownloadedAsset = { ...asset, sourcePath };
-    if (fs.existsSync(sourcePath) || fetching.has(sourcePath)) return downloadedAsset;
+    if (fs.exists(sourcePath) || fetching.has(sourcePath)) return downloadedAsset;
     const fetchPromise = fetchWithRetries(asset.sourceUrl, sourcePath);
     fetching.set(sourcePath, fetchPromise);
     return fetchPromise.then(() => downloadedAsset);
@@ -44,7 +42,7 @@ async function downloadAsset(asset: CapturedAsset): Promise<DownloadedAsset> {
         try { return fetchWithTimeout(uri, filepath); } catch (error) {
             retrying.set(filepath, (retrying.get(filepath) ?? 0) + 1);
             if (retrying.get(filepath)! > retries) {
-                fs.unlink(filepath, _ => {});
+                fs.remove(filepath);
                 throw error;
             }
             log?.warn?.(`Failed to download ${uri}, retrying. (error: ${error})`);
@@ -75,8 +73,7 @@ async function downloadAsset(asset: CapturedAsset): Promise<DownloadedAsset> {
 }
 
 function write(response: Response, filepath: string): Promise<void> {
+    const { path, fs } = config.platform;
     ensureDir(path.dirname(filepath));
-    const body = Readable.fromWeb(<never>response.body);
-    const stream = fs.createWriteStream(filepath);
-    return finished(body.pipe(stream));
+    return fs.stream(filepath, response.body!);
 }
