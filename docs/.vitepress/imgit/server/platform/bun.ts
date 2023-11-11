@@ -1,3 +1,3 @@
-import { PlatformOptions } from "../server";
+import { Platform } from "./platform";
 
-export const bun: PlatformOptions = <never>{};
+export const bun: Platform = <never>{};

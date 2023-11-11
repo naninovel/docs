@@ -1,8 +1,9 @@
 import { Options } from "./options";
-import { defaults } from "./defaults";
+
+export * from "./options";
 
 /** Current active build server configuration. */
-export const config: typeof defaults = <never>{};
+export const config: Readonly<Required<Options>> = <never>{};
 
 /** Set current active build server configuration. */
 export function configure(options: Options) {

@@ -3,9 +3,9 @@ import path from "node:path";
 import proc from "node:child_process";
 import { Readable } from "node:stream";
 import { finished } from "node:stream/promises";
-import { PlatformOptions } from "../server";
+import { Platform } from "./platform";
 
-export const node: PlatformOptions = {
+export const node: Platform = {
     fs: Object.freeze({
         exists: fs.existsSync,
         read: path => fs.readFileSync(path, "utf-8"),
