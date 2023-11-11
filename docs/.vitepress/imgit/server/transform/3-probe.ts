@@ -17,7 +17,7 @@ async function probeAsset(asset: DownloadedAsset): Promise<ProbedAsset> {
     else if (cache.size.hasOwnProperty(url)) size = cache.size[url];
     else if (probing.has(url)) size = await probing.get(url)!;
     else size = cache.size[url] = await probeSize(asset.sourcePath, url);
-    return { ...asset, size };
+    return { ...asset, size, alpha: false }; // TODO: Probe alpha.
 }
 
 async function probeSize(path: string, url: string): Promise<AssetSize> {

@@ -35,9 +35,13 @@ export const defaults = Object.freeze({
         args: "-loglevel error -select_streams v -show_entries stream=width,height -of csv=p=0:s=x"
     }),
     encode: Object.freeze({
-        image: "-loglevel error -c:v librav1e -rav1e-params speed=4:quantizer=100:still_picture=true",
-        animation: "-loglevel error -c:v librav1e -rav1e-params speed=6:quantizer=150",
-        video: "-loglevel error -c:v libsvtav1 -preset 4"
+        image: "-loglevel error -still-picture 1 -crf 23 -cpu-used 6",
+        animation: "-loglevel error -crf 63 -cpu-used 6",
+        video: "-loglevel error -c:v libaom-av1 -crf 45 -cpu-used 6",
+        poster: Object.freeze({
+            args: "-loglevel error -still-picture 1 -crf 50 -cpu-used 6",
+            blur: "boxblur=2"
+        })
     }),
     build: Object.freeze({
         image: builds.buildImage,

@@ -42,6 +42,8 @@ export type DownloadedAsset = CapturedAsset & {
 export type ProbedAsset = DownloadedAsset & {
     /** Size of the source asset content. */
     size: AssetSize;
+    /** Whether the asset has alpha channel (transparency). */
+    alpha: boolean;
 };
 
 /** Asset with encoded counterpart. */

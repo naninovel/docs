@@ -4,3 +4,7 @@ import { ProbedAsset, EncodedAsset } from "../asset";
 export async function encode(assets: ProbedAsset[]): Promise<EncodedAsset[]> {
     return assets.map(a => ({ ...a, encodedPath: "" }));
 }
+
+function buildFilter(asset: ProbedAsset): string {
+    return "";
+}

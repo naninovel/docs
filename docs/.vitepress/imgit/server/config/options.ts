@@ -91,8 +91,16 @@ export type EncodeOptions = {
      *  assign <code>null</code> to disable animated images encoding. */
     animation?: string | null;
     /** ffmpeg arguments specified when encoding video assets (mp4);
-     *  assign <code>null</code> to disable video encoding.*/
+     *  assign <code>null</code> to disable video encoding. */
     video?: string | null;
+    /** Poster (covers for lazy-loaded assets) encoding options. */
+    poster?: {
+        /** ffmpeg arguments specified when encoding posters. */
+        args?: string;
+        /** ffmpeg filter to apply for generated posters; blur is applied by default.
+         *  assign <code>null</code> to disable poster filtering. */
+        filter?: string | null
+    }
 };
 
 /** Configures HTML building for source assets of specific types. */
