@@ -24,10 +24,10 @@ export function exit(): void {
 async function resolvePlatform(options?: Options): Promise<PlatformOptions> {
     if (options?.platform) return options.platform;
     if (typeof process === "object" && "bun" in process.versions)
-        return (await import("../platform/bun")).bun;
+        return (await import("./platform/bun")).bun;
     if (typeof window === "object" && "Deno" in window)
-        return (await import("../platform/deno")).deno;
+        return (await import("./platform/deno")).deno;
     if (typeof process === "object" && "node" in process.versions)
-        return (await import("../platform/node")).node;
+        return (await import("./platform/node")).node;
     throw Error("Failed to detect JavaScript runtime; specify 'platform' via plugin options.");
 }
