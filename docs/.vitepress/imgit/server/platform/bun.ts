@@ -1,3 +1,3 @@
 import { Platform } from "./platform";
 
-export const bun: Platform = <never>{};
+export const bun: Readonly<Platform> = <never>{};

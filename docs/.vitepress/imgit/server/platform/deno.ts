@@ -1,3 +1,3 @@
 import { Platform } from "./platform";
 
-export const deno: Platform = <never>{};
+export const deno: Readonly<Platform> = <never>{};

@@ -5,19 +5,19 @@ import { Readable } from "node:stream";
 import { finished } from "node:stream/promises";
 import { Platform } from "./platform";
 
-export const node: Platform = {
-    fs: Object.freeze({
+export const node: Readonly<Platform> = {
+    fs: {
         exists: fs.existsSync,
         read: path => fs.readFileSync(path, "utf-8"),
         write: (path, text) => fs.writeFileSync(path, text, "utf-8"),
         stream: (path, stream) => finished(Readable.fromWeb(<never>stream).pipe(fs.createWriteStream(path))),
         remove: fs.unlinkSync,
         mkdir: (path: string) => fs.mkdirSync(path, { recursive: true })
-    }),
-    path: Object.freeze({
+    },
+    path: {
         join: path.join,
         basename: path.basename,
         dirname: path.dirname
-    }),
+    },
     exec: proc.exec
 };
