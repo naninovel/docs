@@ -1,4 +1,4 @@
-/** Low-level APIs abstraction required by the plugin. */
+/** Low-level APIs used by the plugin. */
 export type Platform = Record<string, unknown> & {
     /** Local file system access APIs. */
     fs: {
