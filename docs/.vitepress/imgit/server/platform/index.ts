@@ -46,5 +46,5 @@ async function detect(): Promise<Platform> {
         return (await import("./deno")).deno;
     if (typeof process === "object" && "node" in process.versions)
         return (await import("./node")).node;
-    throw Error("Failed to detect JavaScript runtime; specify 'platform' via plugin options.");
+    throw Error("Failed to detect JavaScript runtime; specify 'platform' plugin parameter.");
 }
