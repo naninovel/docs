@@ -55,6 +55,5 @@ export const defaults: Readonly<Required<Options>> = {
         encode,
         build: builds.build,
         rewrite
-    },
-    platform: <never>undefined
+    }
 };

@@ -1,5 +1,6 @@
 import { CapturedAsset, DownloadedAsset, AssetType } from "../asset";
 import { ensureDir, wait } from "../common";
+import { platform } from "../platform";
 import { config } from "../config";
 
 const fetching = new Map<string, Promise<void>>;
@@ -18,7 +19,7 @@ async function downloadAsset(asset: CapturedAsset): Promise<DownloadedAsset> {
     if (asset.type === AssetType.YouTube) return { ...asset, sourcePath: "" };
     const { local, log } = config;
     const { timeout, retries, delay } = config.download;
-    const { path, fs } = config.platform;
+    const { path, fs } = platform;
     const sourcePath = path.join(buildLocalRoot(asset),
         path.basename(asset.sourceUrl)).replaceAll("\\", "/");
     const downloadedAsset: DownloadedAsset = { ...asset, sourcePath };
@@ -63,7 +64,7 @@ async function downloadAsset(asset: CapturedAsset): Promise<DownloadedAsset> {
 }
 
 function buildLocalRoot(asset: CapturedAsset): string {
-    const path = config.platform.path;
+    const path = platform.path;
     if (!asset.sourceUrl.startsWith(config.serve))
         return path.join(config.local, config.remote);
     const endIdx = asset.sourceUrl.length - path.basename(asset.sourceUrl).length;
@@ -72,7 +73,7 @@ function buildLocalRoot(asset: CapturedAsset): string {
 }
 
 function write(response: Response, filepath: string): Promise<void> {
-    const { path, fs } = config.platform;
+    const { path, fs } = platform;
     ensureDir(path.dirname(filepath));
     return fs.stream(filepath, response.body!);
 }

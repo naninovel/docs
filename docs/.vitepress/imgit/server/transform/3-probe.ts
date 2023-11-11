@@ -1,3 +1,4 @@
+import { platform } from "../platform";
 import { config } from "../config";
 import { cache } from "../cache";
 import { DownloadedAsset, ProbedAsset, AssetSize, AssetType } from "../asset";
@@ -22,8 +23,7 @@ async function probeAsset(asset: DownloadedAsset): Promise<ProbedAsset> {
 async function probeSize(path: string, url: string): Promise<AssetSize> {
     let resolve: (value: (AssetSize)) => void, promise;
     probing.set(url, promise = new Promise<AssetSize>(r => resolve = r));
-    config.platform.exec(`ffprobe ${config.probe.args} "${path}"`,
-        (err, out) => handleProbe(resolve, err, out));
+    platform.exec(`ffprobe ${config.probe.args} "${path}"`, (err, out) => handleProbe(resolve, err, out));
     return promise;
 }
 

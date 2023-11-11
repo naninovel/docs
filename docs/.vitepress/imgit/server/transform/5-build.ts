@@ -1,3 +1,4 @@
+import { platform } from "../platform";
 import { EncodedAsset, BuiltAsset, AssetType, AssetSize } from "../asset";
 import { config } from "../config";
 
@@ -16,7 +17,7 @@ async function buildAsset(asset: EncodedAsset): Promise<BuiltAsset> {
 }
 
 export async function buildImage(asset: EncodedAsset): Promise<string> {
-    const path = config.platform.path;
+    const path = platform.path;
     const src = path.join(buildServeRoot(asset), path.basename(asset.sourceUrl));
     const alt = asset.title ?? "";
     const size = buildSizes(asset.size);
@@ -28,7 +29,7 @@ export async function buildAnimation(asset: EncodedAsset): Promise<string> {
 }
 
 export async function buildVideo(asset: EncodedAsset): Promise<string> {
-    const path = config.platform.path;
+    const path = platform.path;
     const src = path.join(buildServeRoot(asset), path.basename(asset.sourceUrl));
     const size = buildSizes(asset.size);
     const source = `<source data-src="${src}" type="video/mp4">`;
@@ -45,7 +46,7 @@ export async function buildYouTube(asset: EncodedAsset): Promise<string> {
 function buildServeRoot(asset: EncodedAsset): string {
     if (asset.sourceUrl.startsWith(config.serve))
         return asset.sourceUrl.substring(0, asset.sourceUrl.lastIndexOf("/"));
-    return config.platform.path.join(config.serve, config.remote);
+    return platform.path.join(config.serve, config.remote);
 }
 
 function buildSizes(size: AssetSize) {

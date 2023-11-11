@@ -1,4 +1,4 @@
-import { boot, exit, transform, Options } from "../server";
+import { boot, exit, transform, Options, Platform } from "../server";
 
 /** Configures vite plugin behaviour. */
 export type ViteOptions = Options & {
@@ -16,12 +16,14 @@ declare interface VitePlugin {
     buildEnd?: (error?: Error) => void;
 }
 
-/** Creates imgit plugin instance for vite. */
-export default function (options?: ViteOptions): VitePlugin {
+/** Creates imgit plugin instance for vite.
+ *  @param options Plugin preferences; will use pre-defined defaults when not assigned.
+ *  @param platform Runtime APIs to use; will attempt to detect automatically when not assigned. */
+export default function (options?: ViteOptions, platform?: Platform): VitePlugin {
     return {
         name: "imgit",
         enforce: options?.enforce,
-        buildStart: _ => boot(options),
+        buildStart: _ => boot(options, platform),
         transform: (code, id, opt) => options?.skip?.(code, id, opt) ? code : transform(code),
         buildEnd: exit
     };
