@@ -1,3 +1,3 @@
-import { Platform } from "./index";
+import { Platform } from "./platform";
 
 export const bun: Readonly<Platform> = <never>{};

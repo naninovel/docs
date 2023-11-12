@@ -3,7 +3,7 @@ import path from "node:path";
 import proc from "node:child_process";
 import { Readable } from "node:stream";
 import { finished } from "node:stream/promises";
-import { Platform } from "./index";
+import { Platform } from "./platform";
 
 export const node: Readonly<Platform> = {
     fs: {
