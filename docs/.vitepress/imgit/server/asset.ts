@@ -10,12 +10,14 @@ export enum AssetType {
     YouTube
 }
 
-/** Dimensions of the source asset content. */
-export type AssetSize = {
+/** Media info of the source asset content. */
+export type MediaInfo = {
     /** Width of the source asset content, in pixels. */
     width: number;
     /** Height of the source asset content, in pixels. */
     height: number;
+    /** Whether the source asset content has alpha channel (transparency). */
+    alpha: boolean;
 }
 
 /** Asset syntax captured from transformed document. */
@@ -40,10 +42,8 @@ export type DownloadedAsset = CapturedAsset & {
 
 /** Asset with identified content metadata. */
 export type ProbedAsset = DownloadedAsset & {
-    /** Size of the source asset content. */
-    size: AssetSize;
-    /** Whether the asset has alpha channel (transparency). */
-    alpha: boolean;
+    /** Media info of the source asset content. */
+    sourceInfo: MediaInfo;
 };
 
 /** Asset with encoded counterpart. */
