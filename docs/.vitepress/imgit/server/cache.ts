@@ -16,7 +16,7 @@ export async function load() {
 }
 
 export async function save() {
-    ensureDir(config.cache);
+    await ensureDir(config.cache);
     for (const prop of Object.getOwnPropertyNames(cache)) {
         const filepath = buildCacheFilePath(prop);
         await write(filepath, (<Record<string, unknown>>cache)[prop]);

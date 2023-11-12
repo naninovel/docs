@@ -24,8 +24,10 @@ export const bun: Readonly<Platform> = {
     fs: {
         exists: path => Bun.file(path).exists(),
         read: path => Bun.file(path).text(),
-        write: (path, text) => Bun.write(path, text).then(),
-        stream: async (path, stream) => Bun.write(path, await Bun.readableStreamToBlob(stream)).then(),
+        write: async (path, content) => {
+            if (typeof content === "string") return Bun.write(path, content).then();
+            return Bun.write(path, await Bun.readableStreamToBlob(content)).then();
+        },
         remove: fs.unlink,
         mkdir: (path: string) => fs.mkdir(path, { recursive: true }).then()
     },

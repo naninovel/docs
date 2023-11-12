@@ -6,10 +6,8 @@ export type Platform = Record<string, unknown> & {
         exists: (path: string) => Promise<boolean>;
         /** Returns UTF-8 encoded content of text file with specified path. */
         read: (path: string) => Promise<string>;
-        /** Writes UTF-8 encoded content to the file with specified path. */
-        write: (path: string, content: string) => Promise<void>;
-        /** Asynchronously writes specified byte stream to the file with specified path. */
-        stream: (path: string, stream: ReadableStream<Uint8Array>) => Promise<void>;
+        /** Writes UTF-8 encoded string or stream to the file with specified path. */
+        write: (path: string, content: string | ReadableStream) => Promise<void>;
         /** Deletes file with specified path. */
         remove: (path: string) => Promise<void>;
         /** Creates directory with specified path (recursive). */

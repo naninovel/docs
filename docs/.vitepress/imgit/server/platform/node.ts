@@ -11,8 +11,10 @@ export const node: Readonly<Platform> = {
     fs: {
         exists: async path => fs.existsSync(path),
         read: path => afs.readFile(path, "utf-8"),
-        write: (path, text) => afs.writeFile(path, text, "utf-8"),
-        stream: (path, stream) => finished(Readable.fromWeb(<never>stream).pipe(fs.createWriteStream(path))),
+        write: (path, content) => {
+            if (typeof content === "string") return afs.writeFile(path, content, "utf-8");
+            return finished(Readable.fromWeb(<never>content).pipe(fs.createWriteStream(path)));
+        },
         remove: afs.unlink,
         mkdir: (path: string) => afs.mkdir(path, { recursive: true }).then()
     },
