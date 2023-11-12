@@ -26,7 +26,8 @@ export type Platform = Record<string, unknown> & {
     };
     /** Executes specified command in system shell. */
     exec: (cmd: string, onexit: (err: Error | null, out: string) => void) => void;
-    // TODO: Fetch.
+    /** Fetches a remote resource with specified url. */
+    fetch: (url: string, abort?: AbortSignal) => Promise<Response>;
 };
 
 /** Current active platform. */
