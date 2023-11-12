@@ -14,9 +14,9 @@ export const Vite: UserConfig = {
             ...defaults.build,
             video: async asset => {
                 const base = await defaults.build.video(asset);
-                const mod = asset.size.width > 720 ? 720 / asset.size.width : 1;
-                const width = Math.floor(asset.size.width * mod);
-                const height = Math.floor(asset.size.height * mod);
+                const mod = asset.sourceInfo.width > 720 ? 720 / asset.sourceInfo.width : 1;
+                const width = Math.floor(asset.sourceInfo.width * mod);
+                const height = Math.floor(asset.sourceInfo.height * mod);
                 return base.replace("width=", `style="width: ${width}px; height: ${height}px;" width=`);
             }
         }

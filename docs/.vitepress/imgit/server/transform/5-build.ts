@@ -1,5 +1,5 @@
 import { platform } from "../platform";
-import { EncodedAsset, BuiltAsset, AssetType, AssetSize } from "../asset";
+import { EncodedAsset, BuiltAsset, AssetType, MediaInfo } from "../asset";
 import { config } from "../config";
 
 /** Builds HTML for the optimized assets to overwrite source syntax. */
@@ -20,7 +20,7 @@ export async function buildImage(asset: EncodedAsset): Promise<string> {
     const path = platform.path;
     const src = path.join(buildServeRoot(asset), path.basename(asset.sourceUrl));
     const alt = asset.title ?? "";
-    const size = buildSizes(asset.size);
+    const size = buildSizes(asset.sourceInfo);
     return `<img class="imgit-image" loading="lazy" decoding="async" src="${src}" alt="${alt}" ${size}/>`;
 }
 
@@ -31,7 +31,7 @@ export async function buildAnimation(asset: EncodedAsset): Promise<string> {
 export async function buildVideo(asset: EncodedAsset): Promise<string> {
     const path = platform.path;
     const src = path.join(buildServeRoot(asset), path.basename(asset.sourceUrl));
-    const size = buildSizes(asset.size);
+    const size = buildSizes(asset.sourceInfo);
     const source = `<source data-src="${src}" type="video/mp4">`;
     return `<video class="imgit-video" preload="none" loop autoplay muted playsinline poster="/assets/img/video-poster.svg" ${size}>${source}</video>`;
 }
@@ -49,9 +49,9 @@ function buildServeRoot(asset: EncodedAsset): string {
     return platform.path.join(config.serve, config.remote);
 }
 
-function buildSizes(size: AssetSize) {
-    const mod = config.width && size.width > config.width ? config.width / size.width : 1;
-    const width = Math.floor(size.width * mod);
-    const height = Math.floor(size.height * mod);
+function buildSizes(info: MediaInfo): string {
+    const mod = config.width && info.width > config.width ? config.width / info.width : 1;
+    const width = Math.floor(info.width * mod);
+    const height = Math.floor(info.height * mod);
     return `width="${width}" height="${height}"`;
 }
