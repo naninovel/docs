@@ -210,8 +210,7 @@ function buildNav(text: string[], lang?: string): DefaultTheme.NavItem[] {
         }
     ];
 
-    /** @param {string} baseUri */
-    function buildLink(baseUri) {
+    function buildLink(baseUri: string) {
         if (lang == null) return `/${baseUri}/`;
         return `/${lang}/${baseUri}/`;
     }

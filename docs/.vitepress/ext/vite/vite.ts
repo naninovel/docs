@@ -21,7 +21,8 @@ export const Vite: UserConfig = {
             }
         }
     })],
-    resolve: { alias: [override("NotFound", "not-found")] }
+    resolve: { alias: [override("NotFound", "not-found")] },
+    server: { open: "/guide/" }
 };
 
 // https://vitepress.dev/guide/extending-default-theme#overriding-internal-components
