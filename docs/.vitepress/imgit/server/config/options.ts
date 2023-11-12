@@ -24,13 +24,13 @@ export type Options = Record<string, unknown> & {
      *  will resize the content (given encoding is not disabled). No limit by default. */
     width?: number | null;
     /** File extensions (w/o dot) to encode into av1 still frame under avif container
-     *  and transform into HTML picture (with fallback to source); default: png, jpg, and jpeg. */
+     *  and transform into HTML picture (with fallback to source); default: png, jpg, jpeg and webp. */
     image?: string[];
     /** File extensions (w/o dot) to encode into looped sequence of av1 still frames under avif container
-     *  and transform into HTML picture (with fallback to source); default: gif. */
+     *  and transform into HTML picture (with fallback to source); default: gif and apng. */
     animation?: string[];
     /** File extensions (w/o dot) to encode into av1 video under mp4 container
-     *  and transform into HTML video (with fallback to source); default: mp4. */
+     *  and transform into HTML video (with fallback to source); default: mp4 and webm. */
     video?: string[];
     /** Whether to transform YouTube links as videos; enabled by default. */
     youtube?: boolean;
