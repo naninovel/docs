@@ -11,7 +11,7 @@ export async function load() {
     for (const prop of Object.getOwnPropertyNames(cache)) {
         const filepath = buildCacheFilePath(prop);
         if (await platform.fs.exists(filepath))
-            (<Record<string, unknown>>cache)[prop] = read(filepath);
+            (<Record<string, unknown>>cache)[prop] = await read(filepath);
     }
 }
 
