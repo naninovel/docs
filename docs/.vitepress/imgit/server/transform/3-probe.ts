@@ -21,15 +21,13 @@ async function probeAsset(asset: DownloadedAsset): Promise<ProbedAsset> {
 }
 
 async function probeSize(path: string, url: string): Promise<AssetSize> {
-    let resolve: (value: (AssetSize)) => void, promise;
-    probing.set(url, promise = new Promise<AssetSize>(r => resolve = r));
-    platform.exec(`ffprobe ${config.probe.args} "${path}"`, (err, out) => handleProbe(resolve, err, out));
-    return promise;
-}
-
-function handleProbe(resolve: (info: AssetSize) => void, error: (Error | null), out: string) {
-    if (error) config.log?.err?.(`ffprobe error: ${error.message}`);
-    resolve(parseOut(out));
+    let resolve: (value: (AssetSize)) => void;
+    probing.set(url, new Promise<AssetSize>(r => resolve = r));
+    const { out, err } = await platform.exec(`ffprobe ${config.probe.args} "${path}"`);
+    if (err) config.log?.err?.(`ffprobe error: ${err}`);
+    const size = parseOut(out);
+    resolve!(parseOut(out));
+    return size;
 }
 
 function parseOut(out: string): AssetSize {

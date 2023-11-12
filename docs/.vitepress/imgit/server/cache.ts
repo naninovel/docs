@@ -7,24 +7,24 @@ export const cache = {
     size: {} as Record<string, AssetSize>
 };
 
-export function load() {
+export async function load() {
     for (const prop of Object.getOwnPropertyNames(cache)) {
         const filepath = buildCacheFilePath(prop);
-        if (platform.fs.exists(filepath))
+        if (await platform.fs.exists(filepath))
             (<Record<string, unknown>>cache)[prop] = read(filepath);
     }
 }
 
-export function save() {
+export async function save() {
     ensureDir(config.cache);
     for (const prop of Object.getOwnPropertyNames(cache)) {
         const filepath = buildCacheFilePath(prop);
-        write(filepath, (<Record<string, unknown>>cache)[prop]);
+        await write(filepath, (<Record<string, unknown>>cache)[prop]);
     }
 }
 
-function read(filepath: string) {
-    return JSON.parse(platform.fs.read(filepath));
+async function read(filepath: string) {
+    return JSON.parse(await platform.fs.read(filepath));
 }
 
 function write(filepath: string, object: unknown) {

@@ -15,11 +15,11 @@ export * from "./config/options";
 export async function boot(options?: Options, platform?: Platform): Promise<void> {
     configure({ ...defaults, ...(options ?? []) });
     await bind(platform);
-    cache.load();
+    await cache.load();
 }
 
 /** De-initializes build server caching results for subsequent runs.
  *  Expected to be invoked before finishing the build process.  */
-export function exit(): void {
-    cache.save();
+export function exit(): Promise<void> {
+    return cache.save();
 }
