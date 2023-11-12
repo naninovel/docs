@@ -20,17 +20,11 @@ declare interface VitePlugin {
  *  @param options Plugin preferences; will use pre-defined defaults when not assigned.
  *  @param platform Runtime APIs to use; will attempt to detect automatically when not assigned. */
 export default function (options?: ViteOptions, platform?: Platform): VitePlugin {
-    // Hack for vite invoking buildEnd hook twice.
-    let exited = false;
     return {
         name: "imgit",
         enforce: options?.enforce,
         buildStart: _ => boot(options, platform),
         transform: (code, id, opt) => options?.skip?.(code, id, opt) ? code : transform(code),
-        buildEnd: _ => {
-            if (exited) return;
-            exited = true;
-            return exit();
-        }
+        buildEnd: exit
     };
 };
