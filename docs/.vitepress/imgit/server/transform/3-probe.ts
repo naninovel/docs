@@ -34,7 +34,6 @@ function parseOut(out: string): MediaInfo {
     if (!out?.includes(",")) return { width: NaN, height: NaN, alpha: false };
     const parts = out.split(",");
     const alpha = alphaFormats.has(parts[2].trim());
-    console.log(parts[2]);
     return { width: Number(parts[0]), height: Number(parts[1]), alpha };
 }
 
