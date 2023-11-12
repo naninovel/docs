@@ -23,7 +23,7 @@ async function downloadAsset(asset: CapturedAsset): Promise<DownloadedAsset> {
     const sourcePath = path.join(buildLocalRoot(asset),
         path.basename(asset.sourceUrl)).replaceAll("\\", "/");
     const downloadedAsset: DownloadedAsset = { ...asset, sourcePath };
-    if (fs.exists(sourcePath) || fetching.has(sourcePath)) return downloadedAsset;
+    if (await fs.exists(sourcePath) || fetching.has(sourcePath)) return downloadedAsset;
     const fetchPromise = fetchWithRetries(asset.sourceUrl, sourcePath);
     fetching.set(sourcePath, fetchPromise);
     return fetchPromise.then(() => downloadedAsset);
@@ -33,7 +33,7 @@ async function downloadAsset(asset: CapturedAsset): Promise<DownloadedAsset> {
         try { return fetchWithTimeout(uri, filepath); } catch (error) {
             retrying.set(filepath, (retrying.get(filepath) ?? 0) + 1);
             if (retrying.get(filepath)! > retries) {
-                fs.remove(filepath);
+                await fs.remove(filepath);
                 throw error;
             }
             log?.warn?.(`Failed to download ${uri}, retrying. (error: ${error})`);

@@ -3,17 +3,17 @@ export type Platform = Record<string, unknown> & {
     /** Local file system access APIs. */
     fs: {
         /** Returns whether directory or file with specified path exists. */
-        exists: (path: string) => boolean;
+        exists: (path: string) => Promise<boolean>;
         /** Returns UTF-8 encoded content of text file with specified path. */
-        read: (path: string) => string;
+        read: (path: string) => Promise<string>;
         /** Writes UTF-8 encoded content to the file with specified path. */
-        write: (path: string, content: string) => void;
+        write: (path: string, content: string) => Promise<void>;
         /** Asynchronously writes specified byte stream to the file with specified path. */
         stream: (path: string, stream: ReadableStream<Uint8Array>) => Promise<void>;
         /** Deletes file with specified path. */
-        remove: (path: string) => void;
+        remove: (path: string) => Promise<void>;
         /** Creates directory with specified path (recursive). */
-        mkdir: (path: string) => void;
+        mkdir: (path: string) => Promise<void>;
     };
     /** File system path APIs. */
     path: {
@@ -25,7 +25,7 @@ export type Platform = Record<string, unknown> & {
         dirname: (path: string) => string;
     };
     /** Executes specified command in system shell. */
-    exec: (cmd: string, onexit: (err: Error | null, out: string) => void) => void;
+    exec: (cmd: string) => Promise<{ out: string, err?: Error }>;
     /** Fetches a remote resource with specified url. */
     fetch: (url: string, abort?: AbortSignal) => Promise<Response>;
 };

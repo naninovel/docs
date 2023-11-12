@@ -4,7 +4,7 @@ export function wait(seconds: number): Promise<void> {
     return new Promise(resolve => setTimeout(resolve, seconds * 1000));
 }
 
-export function ensureDir(dir: string) {
-    if (!platform.fs.exists(dir))
-        platform.fs.mkdir(dir);
+export async function ensureDir(dir: string) {
+    if (!await platform.fs.exists(dir))
+        await platform.fs.mkdir(dir);
 }

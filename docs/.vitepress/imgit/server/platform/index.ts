@@ -13,10 +13,10 @@ export async function bind(api?: Platform) {
 }
 
 async function detect(): Promise<Platform> {
-    if (typeof process === "object" && "bun" in process.versions)
-        return (await import("./bun")).bun;
     if (typeof window === "object" && "Deno" in window)
         return (await import("./deno")).deno;
+    if (typeof process === "object" && "bun" in process.versions)
+        return (await import("./bun")).bun;
     if (typeof process === "object" && "node" in process.versions)
         return (await import("./node")).node;
     throw Error("Failed to detect JavaScript runtime; specify 'platform' via plugin parameter.");
