@@ -49,7 +49,7 @@ async function downloadAsset(asset: CapturedAsset): Promise<DownloadedAsset> {
     }
 
     async function fetchAndWriteTo(uri: string, filepath: string, signal: AbortSignal): Promise<void> {
-        const response = await fetch(uri, { signal });
+        const response = await platform.fetch(uri, signal);
         if (response.status === 429) return handleRetryResponse(response);
         return write(response, filepath);
     }

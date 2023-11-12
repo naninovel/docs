@@ -3,7 +3,7 @@ import path from "node:path";
 import proc from "node:child_process";
 import { Readable } from "node:stream";
 import { finished } from "node:stream/promises";
-import { Platform } from "./platform";
+import { Platform } from "./index";
 
 export const node: Readonly<Platform> = {
     fs: {
@@ -19,5 +19,6 @@ export const node: Readonly<Platform> = {
         basename: path.basename,
         dirname: path.dirname
     },
-    exec: proc.exec
+    exec: proc.exec,
+    fetch: (url, abort) => fetch(url, { signal: abort })
 };
