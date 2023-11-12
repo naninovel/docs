@@ -54,11 +54,14 @@ The following script will show an input field UI where user can enter an arbitra
 
 ; You can then inject the assigned `name` variable in naninovel scripts.
 Archibald: Greetings, {name}!
-{name}: Yo!
 
 ; ...or use it inside set and conditional expressions.
 @set score+=3 if:name=="Felix"
 ```
+
+::: tip
+To make character names dynamic, use [display name](/guide/characters#display-names) feature.
+:::
 
 You can inject the custom variables to any parameter values as long as the type allows. Eg, you can't assign a string (text) to an integer (number) parameter.
 
