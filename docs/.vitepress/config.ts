@@ -1,5 +1,5 @@
 import { defineConfig } from "vitepress";
-import { Locales, Markdown, Vite } from "./ext";
+import { l10n, md, vite } from "./ext";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -23,7 +23,7 @@ export default defineConfig({
                 appId: "4PDIF5MCBA",
                 apiKey: "61d68d300d7651efc10f2ff65fbbc047",
                 indexName: "naninovel",
-                locales: Locales.Search
+                locales: l10n.search
             }
         },
         socialLinks: [
@@ -33,7 +33,7 @@ export default defineConfig({
         ]
     },
     sitemap: { hostname: "https://naninovel.com" },
-    locales: Locales.Config,
-    markdown: Markdown,
-    vite: Vite
+    locales: l10n.config,
+    markdown: md,
+    vite: vite
 });

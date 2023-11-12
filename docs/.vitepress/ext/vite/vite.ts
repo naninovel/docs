@@ -3,7 +3,7 @@ import { UserConfig, Alias } from "vite";
 import { defaults } from "../../imgit/server";
 import imgit from "../../imgit/plugin/vite";
 
-export const Vite: UserConfig = {
+export const vite: UserConfig = {
     plugins: [imgit({
         enforce: "pre",
         skip: (_, id) => !id.endsWith(".md"),
@@ -21,8 +21,7 @@ export const Vite: UserConfig = {
             }
         }
     })],
-    resolve: { alias: [override("NotFound", "not-found")] },
-    server: { open: "/guide/" }
+    resolve: { alias: [override("NotFound", "not-found")] }
 };
 
 // https://vitepress.dev/guide/extending-default-theme#overriding-internal-components

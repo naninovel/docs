@@ -1,7 +1,7 @@
 import { DefaultTheme, LocaleConfig } from "vitepress";
 import { EnGuideSidebar, JaGuideSidebar, ZnGuideSidebar, RuGuideSidebar } from "./sidebars";
 
-export const Config: LocaleConfig<DefaultTheme.Config> = {
+export const config: LocaleConfig<DefaultTheme.Config> = {
     root: {
         lang: "en-US",
         label: "English",
@@ -72,7 +72,7 @@ export const Config: LocaleConfig<DefaultTheme.Config> = {
     }
 };
 
-export const Search: Record<string, Partial<DefaultTheme.AlgoliaSearchOptions>> = {
+export const search: Record<string, Partial<DefaultTheme.AlgoliaSearchOptions>> = {
     ja: {
         placeholder: "文書を検索する",
         translations: {

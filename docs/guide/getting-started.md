@@ -23,7 +23,7 @@ Actor Type | Additional Parameters | Description
 
 Consider a typical visual novel setup, with a character portrayed on top of a background. In Naninovel terms, it will be represented in the following way.
 
-![](/assets/img/actor-concept.mp4)
+![](https://i.gyazo.com/1d4d5130056f7d6acee978c5fde42cfc.gif)
 
 Now, let's say you want to make "Kohaku" character look happy. You have several textures (images) of that character, each portraying different emotion. In Naninovel such textures are called *appearances* of an actor. To achieve the goal, we have to change appearance of the character actor. Similarly, to make "MainBackground" display something else, we have to change appearance of that background actor.
 
