@@ -72,8 +72,8 @@ function buildLocalRoot(asset: CapturedAsset): string {
     return path.join(config.local, subdir);
 }
 
-function write(response: Response, filepath: string): Promise<void> {
+async function write(response: Response, filepath: string): Promise<void> {
     const { path, fs } = platform;
-    ensureDir(path.dirname(filepath));
-    return fs.stream(filepath, response.body!);
+    await ensureDir(path.dirname(filepath));
+    return fs.write(filepath, response.body!);
 }

@@ -13,7 +13,7 @@ export function probe(assets: DownloadedAsset[]): Promise<ProbedAsset[]> {
 async function probeAsset(asset: DownloadedAsset): Promise<ProbedAsset> {
     let size: AssetSize;
     const url = asset.sourceUrl;
-    if (asset.type === AssetType.YouTube) size = { width: 0, height: 0 };
+    if (asset.type === AssetType.YouTube) size = { width: NaN, height: NaN };
     else if (cache.size.hasOwnProperty(url)) size = cache.size[url];
     else if (probing.has(url)) size = await probing.get(url)!;
     else size = cache.size[url] = await probeSize(asset.sourcePath, url);
@@ -26,7 +26,7 @@ async function probeSize(path: string, url: string): Promise<AssetSize> {
     const { out, err } = await platform.exec(`ffprobe ${config.probe.args} "${path}"`);
     if (err) config.log?.err?.(`ffprobe error: ${err}`);
     const size = parseOut(out);
-    resolve!(parseOut(out));
+    resolve!(size);
     return size;
 }
 

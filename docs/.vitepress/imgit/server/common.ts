@@ -5,6 +5,6 @@ export function wait(seconds: number): Promise<void> {
 }
 
 export async function ensureDir(dir: string) {
-    if (!await platform.fs.exists(dir))
+    if (!(await platform.fs.exists(dir)))
         await platform.fs.mkdir(dir);
 }
