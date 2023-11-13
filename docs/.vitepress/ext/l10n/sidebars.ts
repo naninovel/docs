@@ -1,6 +1,6 @@
 import { DefaultTheme } from "vitepress";
 
-export const EnGuideSidebar: DefaultTheme.SidebarItem[] = [
+export const en: DefaultTheme.SidebarItem[] = [
     {
         text: "Guide",
         collapsed: true,
@@ -67,7 +67,7 @@ export const EnGuideSidebar: DefaultTheme.SidebarItem[] = [
     }
 ];
 
-export const JaGuideSidebar: DefaultTheme.SidebarItem[] = [
+export const js: DefaultTheme.SidebarItem[] = [
     {
         text: "ガイド",
         collapsed: true,
@@ -133,7 +133,7 @@ export const JaGuideSidebar: DefaultTheme.SidebarItem[] = [
     }
 ];
 
-export const ZnGuideSidebar: DefaultTheme.SidebarItem[] = [
+export const zn: DefaultTheme.SidebarItem[] = [
     {
         text: "指南",
         collapsed: true,
@@ -199,7 +199,7 @@ export const ZnGuideSidebar: DefaultTheme.SidebarItem[] = [
     }
 ];
 
-export const RuGuideSidebar: DefaultTheme.SidebarItem[] = [
+export const ru: DefaultTheme.SidebarItem[] = [
     {
         text: "Руководство",
         collapsed: true,

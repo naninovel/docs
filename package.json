@@ -1,7 +1,6 @@
 {
     "type": "module",
     "scripts": {
-        "update": "ncu --interactive",
         "dev": "vitepress dev docs",
         "build": "vitepress build docs",
         "preview": "vitepress preview docs"
