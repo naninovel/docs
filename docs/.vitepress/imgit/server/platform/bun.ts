@@ -2,16 +2,15 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { Platform } from "./platform";
 
+// https://github.com/oven-sh/bun/tree/main/packages/bun-types
+
 declare module Bun {
-    // https://bun.sh/docs/api/file-io
     const file: (path: string) => {
         exists: () => Promise<boolean>;
         text: () => Promise<string>;
     };
     const write: (path: string, content: string | Blob) => Promise<number>;
-    // https://bun.sh/docs/api/streams
     const readableStreamToBlob: (stream: ReadableStream) => Promise<Blob>;
-    // https://bun.sh/docs/api/spawn
     const spawn: (cmd: string[]) => {
         exited: Promise<void>;
         exitCode: number;
