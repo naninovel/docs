@@ -111,6 +111,21 @@ ISequence RouteY => On(Choosing, Choose(), Var("g_completedY", false));
 
 — notice how choice sequences for days 1-3 of the common route leading either to "X" or "Y" routes are composed to `CommonX` and `CommonY` variables, which are in turn composed inside the actual test method.
 
+## Referencing Choices
+
+As you've noticed above, choices can be referenced in the tests via strings like `d1-qte-x`. Those are custom [text identifiers](/guide/naninovel-scripts#text-identification) assigned in scenario scripts. Even when stable text identification is enabled, you can still define custom text IDs in the scripts and they will be preserved by the system. For example, consider following scenario script:
+
+```nani
+@choice "Choice 1|#my-id-for-choice-1|"
+@choice "Choice 2|#my-id-for-choice-2|"
+```
+
+— here we've assigned `my-id-for-choice-1` for the first choice and `my-id-for-choice-2` for the second one; actual IDs can be anything, just make sure they're unique inside the script. You can now reference the choices in the tests via the assigned IDs:
+
+```csharp
+Once(Choosing).Choose("my-id-for-choice-2")
+```
+
 ::: tip EXAMPLE
 Find sample E2E project on GitHub: [github.com/Naninovel/E2E](https://github.com/Naninovel/E2E). It shows most of the available shortcuts, extensions and testing scenarios.
 :::
