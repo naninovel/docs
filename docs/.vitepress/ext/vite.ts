@@ -1,7 +1,7 @@
 import { fileURLToPath } from "url";
 import { UserConfig, Alias } from "vite";
-import { defaults } from "../../imgit/server";
-import imgit from "../../imgit/plugin/vite";
+import { defaults } from "../imgit/server";
+import imgit from "../imgit/plugin/vite";
 
 export const vite: UserConfig = {
     plugins: [imgit({
@@ -28,6 +28,6 @@ export const vite: UserConfig = {
 function override(original: string, override: string): Alias {
     return {
         find: new RegExp(`^.*\\/${original}\\.vue$`),
-        replacement: fileURLToPath(new URL(`../../theme/${override}.vue`, import.meta.url))
+        replacement: fileURLToPath(new URL(`../theme/${override}.vue`, import.meta.url))
     };
 }

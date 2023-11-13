@@ -8,7 +8,7 @@ export type ViteOptions = Options & {
     skip?: (code: string, id: string, options?: { ssr?: boolean; }) => boolean;
 };
 
-declare interface VitePlugin {
+declare type VitePlugin = {
     name: string;
     enforce?: "pre" | "post";
     buildStart?: (options: unknown) => Promise<void> | void;
