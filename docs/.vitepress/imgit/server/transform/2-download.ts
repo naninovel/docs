@@ -20,8 +20,7 @@ async function downloadAsset(asset: CapturedAsset): Promise<DownloadedAsset> {
     const { local, log } = config;
     const { timeout, retries, delay } = config.download;
     const { path, fs } = platform;
-    const sourcePath = path.join(buildLocalRoot(asset),
-        path.basename(asset.sourceUrl)).replaceAll("\\", "/");
+    const sourcePath = path.resolve(buildLocalRoot(asset), path.basename(asset.sourceUrl));
     const downloadedAsset: DownloadedAsset = { ...asset, sourcePath };
     if (await fs.exists(sourcePath) || fetching.has(sourcePath)) return downloadedAsset;
     const fetchPromise = fetchWithRetries(asset.sourceUrl, sourcePath);
