@@ -37,7 +37,8 @@ function parseOut(out: string): MediaInfo {
     return { width: Number(parts[0]), height: Number(parts[1]), alpha };
 }
 
-// Print list of all the known formats with alpha channel (may vary with ffprobe version):
+// region alpha formats
+// print list of all the known formats with alpha channel (may vary with ffprobe version):
 // ffprobe -show_entries pixel_format=name:flags=alpha -of csv=p=0
 const alphaFormats = new Set<string>([
     "pal8",
@@ -94,3 +95,4 @@ const alphaFormats = new Set<string>([
     "rgbaf32be",
     "rgbaf32le"
 ]);
+// endregion
