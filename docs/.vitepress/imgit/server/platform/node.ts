@@ -20,6 +20,7 @@ export const node: Readonly<Platform> = {
     },
     path: {
         join: path.join,
+        resolve: path.resolve,
         basename: path.basename,
         dirname: path.dirname
     },

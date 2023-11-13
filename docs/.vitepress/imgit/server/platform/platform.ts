@@ -17,6 +17,8 @@ export type Platform = Record<string, unknown> & {
     path: {
         /** Joins specified path parts and normalizes the result. */
         join: (...paths: string[]) => string;
+        /** Builds absolute path from specified parts and normalizes the result. */
+        resolve: (...paths: string[]) => string;
         /** Extracts file name with extension from specified path. */
         basename: (path: string) => string;
         /** Extracts directory name from specified path. */

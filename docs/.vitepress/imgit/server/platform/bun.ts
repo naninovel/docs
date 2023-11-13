@@ -32,11 +32,12 @@ export const bun: Readonly<Platform> = {
     },
     path: {
         join: path.join,
+        resolve: path.resolve,
         basename: path.basename,
         dirname: path.dirname
     },
     exec: async cmd => {
-        const proc = Bun.spawn([cmd]);
+        const proc = Bun.spawn(cmd.split(" "));
         await proc.exited;
         const failed = proc.exitCode !== 0;
         const out = await new Response(proc.stdout).text();

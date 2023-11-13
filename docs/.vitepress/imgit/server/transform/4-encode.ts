@@ -5,6 +5,14 @@ export async function encode(assets: ProbedAsset[]): Promise<EncodedAsset[]> {
     return assets.map(a => ({ ...a, encodedPath: "" }));
 }
 
-function buildFilter(asset: ProbedAsset): string {
-    return "";
-}
+// function encodeAsset(asset: ProbedAsset): EncodedAsset {
+//
+// }
+//
+// function buildArgs(asset: ProbedAsset): string {
+//
+// }
+//
+// function buildFilter(asset: ProbedAsset): string {
+//     return "";
+// }
