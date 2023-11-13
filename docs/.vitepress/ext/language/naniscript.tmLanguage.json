@@ -98,7 +98,7 @@
                 {
                     "comment": "Text Identifier - |#Textid|",
                     "name": "naniscript.textidentifier",
-                    "match": "(?<!\\\\)\\|#\\w+\\|"
+                    "match": "(?<!\\\\)\\|#[\\w-]+\\|"
                 },
                 {
                     "comment": "Text Identifier - |#|",
