@@ -12,6 +12,7 @@ export function encode(assets: ProbedAsset[]): Promise<EncodedAsset[]> {
 async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
     if (!shouldEncode()) return asset;
     if (encoding.has(asset.sourceUrl)) return encoding.get(asset.sourceUrl)!;
+    const info = asset.sourceInfo!;
     const sourcePath = asset.sourcePath!;
     const encodedPath = buildEncodedPath();
     const task = encodeAsset();
@@ -19,7 +20,7 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
     return task;
 
     function shouldEncode() {
-        if (!asset.sourcePath) return false;
+        if (!asset.sourcePath || !asset.sourceInfo) return false;
         return asset.type === AssetType.Image && config.encode.image ||
             asset.type === AssetType.Animation && config.encode.animation ||
             asset.type === AssetType.Video && config.encode.video;
@@ -46,7 +47,9 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
     }
 
     function buildFilter(): string {
-        return "";
+        const scale = config.width && info.width > config.width;
+        const rgb = scale ? `[0:v]scale=${config.width}:-1[rgb];` : `[0:v]copy[rgb];`;
+        const alpha = info.alpha ? `[0:v]alphaextract[a]` : "";
+        return `-filter_complex "${rgb}${alpha}"`;
     }
-
 }
