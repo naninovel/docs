@@ -11,13 +11,10 @@ export function encode(assets: ProbedAsset[]): Promise<EncodedAsset[]> {
 
 async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
     if (!shouldEncode()) return asset;
-    if (encoding.has(asset.sourceUrl)) return encoding.get(asset.sourceUrl)!;
-    const info = asset.sourceInfo!;
-    const sourcePath = asset.sourcePath!;
     const encodedPath = buildEncodedPath();
-    const task = encodeAsset();
-    encoding.set(asset.sourceUrl, task);
-    return task;
+    if (await platform.fs.exists(encodedPath)) return { ...asset, encodedPath };
+    if (encoding.has(asset.sourceUrl)) return encoding.get(asset.sourceUrl)!;
+    return encoding.set(asset.sourceUrl, encodeAsset()).get(asset.sourceUrl)!;
 
     function shouldEncode() {
         if (!asset.sourcePath || !asset.sourceInfo) return false;
@@ -27,8 +24,8 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
     }
 
     function buildEncodedPath() {
-        const extIdx = sourcePath.lastIndexOf(".");
-        const base = sourcePath.substring(0, extIdx) + config.suffix;
+        const extIdx = asset.sourcePath!.lastIndexOf(".");
+        const base = asset.sourcePath!.substring(0, extIdx) + config.suffix;
         if (asset.type === AssetType.Video) return `${base}.mp4`;
         return `${base}.avif`;
     }
@@ -43,13 +40,15 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
         const options = asset.type === AssetType.Image ? config.encode.image :
             asset.type === AssetType.Animation ? config.encode.animation : config.encode.video;
         const map = asset.sourceInfo?.alpha ? `-map "[rgb]" -map "[a]"` : `-map "[rgb]"`;
-        return `-i "${sourcePath}" ${options} ${buildFilter()} ${map} "${encodedPath}"`;
+        return `-i "${asset.sourcePath}" ${options} ${buildFilter()} ${map} "${encodedPath}"`;
     }
 
     function buildFilter(): string {
+        const info = asset.sourceInfo!;
         const scale = config.width && info.width > config.width;
         const rgb = scale ? `[0:v]scale=${config.width}:-1[rgb];` : `[0:v]copy[rgb];`;
-        const alpha = info.alpha ? `[0:v]alphaextract[a]` : "";
+        const alphaScale = scale && info.alpha ? `,scale=72:-1` : "";
+        const alpha = info.alpha ? `[0:v]alphaextract${alphaScale}[a]` : "";
         return `-filter_complex "${rgb}${alpha}"`;
     }
 }
