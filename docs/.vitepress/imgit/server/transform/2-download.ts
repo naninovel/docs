@@ -1,5 +1,5 @@
 import { CapturedAsset, DownloadedAsset, AssetType } from "../asset";
-import { ensureDir, wait } from "../common";
+import { ensureDir, wait, buildLocalPath } from "../common";
 import { platform } from "../platform";
 import { config } from "../config";
 
@@ -16,11 +16,11 @@ export async function download(assets: CapturedAsset[]): Promise<DownloadedAsset
 }
 
 async function downloadAsset(asset: CapturedAsset): Promise<DownloadedAsset> {
-    if (asset.type === AssetType.YouTube) return { ...asset, sourcePath: "" };
+    if (asset.type === AssetType.YouTube) return asset;
     const { local, log } = config;
     const { timeout, retries, delay } = config.download;
-    const { path, fs } = platform;
-    const sourcePath = path.resolve(buildLocalRoot(asset), path.basename(asset.sourceUrl));
+    const { fs } = platform;
+    const sourcePath = buildLocalPath(asset.sourceUrl);
     const downloadedAsset: DownloadedAsset = { ...asset, sourcePath };
     if (await fs.exists(sourcePath) || fetching.has(sourcePath)) return downloadedAsset;
     const fetchPromise = fetchWithRetries(asset.sourceUrl, sourcePath);
@@ -60,15 +60,6 @@ async function downloadAsset(asset: CapturedAsset): Promise<DownloadedAsset> {
         await wait(delay + 1);
         return fetchWithTimeout(asset.sourceUrl, sourcePath);
     }
-}
-
-function buildLocalRoot(asset: CapturedAsset): string {
-    const path = platform.path;
-    if (!asset.sourceUrl.startsWith(config.serve))
-        return path.join(config.local, config.remote);
-    const endIdx = asset.sourceUrl.length - path.basename(asset.sourceUrl).length;
-    const subdir = asset.sourceUrl.substring(config.serve.length, endIdx);
-    return path.join(config.local, subdir);
 }
 
 async function write(response: Response, filepath: string): Promise<void> {
