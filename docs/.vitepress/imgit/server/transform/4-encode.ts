@@ -27,8 +27,8 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
     }
 
     function buildEncodedPath() {
-        const extIndex = sourcePath.lastIndexOf(".");
-        const base = sourcePath.substring(0, extIndex) + config.suffix;
+        const extIdx = sourcePath.lastIndexOf(".");
+        const base = sourcePath.substring(0, extIdx) + config.suffix;
         if (asset.type === AssetType.Video) return `${base}.mp4`;
         return `${base}.avif`;
     }
