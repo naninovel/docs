@@ -14,10 +14,10 @@ export type Options = Record<string, unknown> & {
     /** Path to append to <code>local</code> and <code>serve</code> for downloaded remote assets;
      *  <code>remote</code> by default. */
     remote?: string;
-    /** Regular expression to use for capturing transformed assets syntax.
+    /** Regular expressions to use for capturing transformed assets syntax.
      *  Expects <code><title></code> and <code><uri></code> capture groups.
      *  By default, captures Markdown image syntax: <code>/!\[(?<title>.*?)]\((?<uri>.+?)\)/g</code>. */
-    regex?: RegExp;
+    regex?: RegExp[];
     /** Text to append to the name of encoded asset files; <code>-imgit</code> by default. */
     suffix?: string;
     /** Width limit for the transformed assets, in pixels. When source asset is larger,

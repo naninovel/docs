@@ -49,7 +49,8 @@ function buildServeRoot(asset: EncodedAsset): string {
     return platform.path.join(config.serve, config.remote);
 }
 
-function buildSizes(info: MediaInfo): string {
+function buildSizes(info?: MediaInfo): string {
+    if (!info) return "";
     const mod = config.width && info.width > config.width ? config.width / info.width : 1;
     const width = Math.floor(info.width * mod);
     const height = Math.floor(info.height * mod);

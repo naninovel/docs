@@ -4,8 +4,9 @@ import { config } from "../config";
 /** Finds assets to transform in the document with specified content. */
 export async function capture(content: string): Promise<CapturedAsset[]> {
     const captures = new Array<CapturedAsset>();
-    for (const match of content.matchAll(new RegExp(config.regex)))
-        handleMatch(match);
+    for (const regex of config.regex)
+        for (const match of content.matchAll(new RegExp(regex)))
+            handleMatch(match);
     return captures;
 
     function handleMatch(match: RegExpMatchArray) {
