@@ -36,21 +36,21 @@ export type CapturedAsset = {
 
 /** Asset with file content downloaded and available for probing. */
 export type DownloadedAsset = CapturedAsset & {
-    /** Full path to the source asset file on local file system. */
-    sourcePath: string;
+    /** Full path to the source asset file on local file system or undefined when N/A. */
+    sourcePath?: string;
 };
 
 /** Asset with identified content metadata. */
 export type ProbedAsset = DownloadedAsset & {
     /** Media info of the source asset content. */
-    sourceInfo: MediaInfo;
+    sourceInfo?: MediaInfo;
 };
 
 /** Asset with encoded counterpart. */
 export type EncodedAsset = ProbedAsset & {
-    /** Full path to the encoded asset content file on local file system. */
-    encodedPath: string;
-    /** Full path to the video poster file or undefined when N/A or disabled. */
+    /** Full path to the encoded file on local file system or undefined when N/A or disabled. */
+    encodedPath?: string;
+    /** Full path to the poster file or undefined when N/A or disabled. */
     posterPath?: string;
 };
 

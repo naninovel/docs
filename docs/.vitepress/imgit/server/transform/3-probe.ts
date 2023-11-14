@@ -1,26 +1,26 @@
 import { platform } from "../platform";
 import { config } from "../config";
 import { cache } from "../cache";
-import { DownloadedAsset, ProbedAsset, MediaInfo, AssetType } from "../asset";
+import { DownloadedAsset, ProbedAsset, MediaInfo } from "../asset";
 
 const probing = new Map<string, Promise<MediaInfo>>;
 
 /** Probes downloaded asset files to evaluate their width and height. */
 export function probe(assets: DownloadedAsset[]): Promise<ProbedAsset[]> {
-    return Promise.all(assets.map(probeAsset));
+    return Promise.all(assets.map(probeDistinct));
 }
 
-async function probeAsset(asset: DownloadedAsset): Promise<ProbedAsset> {
+async function probeDistinct(asset: DownloadedAsset): Promise<ProbedAsset> {
+    if (!asset.sourcePath) return asset;
     let info: MediaInfo;
     const url = asset.sourceUrl;
-    if (asset.type === AssetType.YouTube) info = { width: 0, height: 0, alpha: false };
-    else if (cache.probes.hasOwnProperty(url)) info = cache.probes[url];
+    if (cache.probes.hasOwnProperty(url)) info = cache.probes[url];
     else if (probing.has(url)) info = await probing.get(url)!;
-    else info = cache.probes[url] = await probeMedia(asset.sourcePath, url);
+    else info = cache.probes[url] = await probeAsset(asset.sourcePath, url);
     return { ...asset, sourceInfo: info };
 }
 
-async function probeMedia(path: string, url: string): Promise<MediaInfo> {
+async function probeAsset(path: string, url: string): Promise<MediaInfo> {
     let resolve: (value: (MediaInfo)) => void;
     probing.set(url, new Promise<MediaInfo>(r => resolve = r));
     const { out, err } = await platform.exec(`ffprobe ${config.probe.args} "${path}"`);

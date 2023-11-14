@@ -1,18 +1,52 @@
-import { ProbedAsset, EncodedAsset } from "../asset";
+import { ProbedAsset, EncodedAsset, AssetType } from "../asset";
+import { config } from "../config";
+import { platform } from "../platform";
+
+const encoding = new Map<string, Promise<EncodedAsset>>;
 
 /** Creates optimized versions of the source asset files. */
-export async function encode(assets: ProbedAsset[]): Promise<EncodedAsset[]> {
-    return assets.map(a => ({ ...a, encodedPath: "" }));
+export function encode(assets: ProbedAsset[]): Promise<EncodedAsset[]> {
+    return Promise.all(assets.map(encodeDistinct));
 }
 
-// function encodeAsset(asset: ProbedAsset): EncodedAsset {
-//
-// }
-//
-// function buildArgs(asset: ProbedAsset): string {
-//
-// }
-//
-// function buildFilter(asset: ProbedAsset): string {
-//     return "";
-// }
+async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
+    if (!shouldEncode()) return asset;
+    if (encoding.has(asset.sourceUrl)) return encoding.get(asset.sourceUrl)!;
+    const sourcePath = asset.sourcePath!;
+    const encodedPath = buildEncodedPath();
+    const task = encodeAsset();
+    encoding.set(asset.sourceUrl, task);
+    return task;
+
+    function shouldEncode() {
+        if (!asset.sourcePath) return false;
+        return asset.type === AssetType.Image && config.encode.image ||
+            asset.type === AssetType.Animation && config.encode.animation ||
+            asset.type === AssetType.Video && config.encode.video;
+    }
+
+    function buildEncodedPath() {
+        const extIndex = sourcePath.lastIndexOf(".") + 1;
+        const base = sourcePath.substring(extIndex) + config.suffix;
+        if (asset.type === AssetType.Video) return `${base}.mp4`;
+        return `${base}.avif`;
+    }
+
+    async function encodeAsset(): Promise<EncodedAsset> {
+        const { err } = await platform.exec(`ffmpeg ${buildArgs()}`);
+        if (err) config.log?.err?.(`ffmpeg error: ${err}`);
+        return { ...asset, encodedPath };
+    }
+
+    function buildArgs(): string {
+        const options = asset.type === AssetType.Image ? config.encode.image :
+            asset.type === AssetType.Animation ? config.encode.animation : config.encode.video;
+        const map = asset.sourceInfo?.alpha ? `-map "[rgb]" -map "[a]"` : `-map "[rgb]"`;
+        return `-i "${sourcePath}" ${options} ${buildFilter()} ${map} "${encodedPath}"`;
+    }
+
+    function buildFilter(): string {
+        return "";
+    }
+
+}
