@@ -17,30 +17,57 @@ async function buildAsset(asset: EncodedAsset): Promise<BuiltAsset> {
 }
 
 export async function buildImage(asset: EncodedAsset): Promise<string> {
-    const path = platform.path;
-    const src = path.join(buildServeRoot(asset), path.basename(asset.sourceUrl));
+    const { src, encodedSrc } = buildSources(asset);
     const alt = asset.title ?? "";
     const size = buildSizes(asset.sourceInfo);
-    return `<img class="imgit-image" loading="lazy" decoding="async" src="${src}" alt="${alt}" ${size}/>`;
+    const cls = `class="${config.style.className.image}"`;
+    return `
+<picture>
+  ${encodedSrc ? `<source srcset="${encodedSrc}" type="image/avif" ${cls} ${size}/>` : ""}
+  <img loading="lazy" decoding="async" src="${src}" alt="${alt}" ${cls} ${size}/>
+</picture>
+`;
 }
 
 export async function buildAnimation(asset: EncodedAsset): Promise<string> {
-    return buildImage(asset);
+    const { src, encodedSrc } = buildSources(asset);
+    const alt = asset.title ?? "";
+    const size = buildSizes(asset.sourceInfo);
+    const cls = `class="${config.style.className.animation}"`;
+    return `
+<picture>
+  ${encodedSrc ? `<source srcset="${encodedSrc}" type="image/avif" ${cls} ${size}/>` : ""}
+  <img loading="lazy" decoding="async" src="${src}" alt="${alt}" ${cls} ${size}/>
+</picture>
+`;
 }
 
 export async function buildVideo(asset: EncodedAsset): Promise<string> {
-    const path = platform.path;
-    const src = path.join(buildServeRoot(asset), path.basename(asset.sourceUrl));
+    const { src, encodedSrc } = buildSources(asset);
     const size = buildSizes(asset.sourceInfo);
-    const source = `<source data-src="${src}" type="video/mp4">`;
-    return `<video class="imgit-video" preload="none" loop autoplay muted playsinline poster="/assets/img/video-poster.svg" ${size}>${source}</video>`;
+    const cls = `class="${config.style.className.video}"`;
+    return `
+<video ${cls} preload="none" loop autoplay muted playsinline poster="/assets/img/video-poster.svg" ${size}>
+    ${encodedSrc ? `<source data-src="${encodedSrc}" type="video/mp4; codecs=av01.0.05M.08">` : ""}
+    <source data-src="${src}" type="video/mp4">
+</video>
+`;
 }
 
 export async function buildYouTube(asset: EncodedAsset): Promise<string> {
     const title = asset.title ?? "";
+    const cls = `class="${config.style.className.youtube}"`;
     const id = asset.sourceUrl.split("youtube.com/watch?v=")[1];
     const source = `https://www.youtube-nocookie.com/embed/${id}`;
-    return `<span class="imgit-youtube"><iframe title="${title}" src="${source}" allowfullscreen></iframe></span>`;
+    return `<span ${cls}><iframe title="${title}" src="${source}" allowfullscreen></iframe></span>`;
+}
+
+function buildSources(asset: EncodedAsset) {
+    const path = platform.path;
+    const root = buildServeRoot(asset);
+    const src = path.join(root, path.basename(asset.sourceUrl));
+    const encodedSrc = asset.encodedPath ? path.join(root, path.basename(asset.encodedPath)) : undefined;
+    return { src, encodedSrc };
 }
 
 function buildServeRoot(asset: EncodedAsset): string {
