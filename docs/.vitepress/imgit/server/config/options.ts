@@ -49,6 +49,8 @@ export type Options = Record<string, unknown> & {
     build?: BuildOptions;
     /** Configure document transformation process. */
     transform?: TransformOptions;
+    /** Configure generated CSS styles. */
+    style?: StyleOptions;
 };
 
 /** Configures logging behaviour. */
@@ -128,3 +130,18 @@ export type TransformOptions = {
     /** 6th phase: rewrites content of the document with specified assets; returns modified document content. */
     rewrite: (content: string, assets: BuiltAsset[]) => Promise<string>;
 };
+
+/** Configures generated CSS styles. */
+export type StyleOptions = {
+    /** Class names assigned to generated HTML. */
+    className: {
+        /** Class name assigned to generated images HTML; imgit-image by default. */
+        image: string;
+        /** Class name assigned to generated video HTML; imgit-video by default. */
+        video: string;
+        /** Class name assigned to generated animation HTML; imgit-animation by default. */
+        animation: string;
+        /** Class name assigned to generated YouTube HTML; imgit-youtube by default. */
+        youtube: string;
+    }
+}

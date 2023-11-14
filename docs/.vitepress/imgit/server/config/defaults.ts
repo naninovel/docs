@@ -55,5 +55,13 @@ export const defaults: Readonly<Required<Options>> = {
         encode,
         build: builds.build,
         rewrite
+    },
+    style: {
+        className: {
+            image: "imgit-image",
+            animation: "imgit-animation",
+            video: "imgit-video",
+            youtube: "imgit-youtube"
+        }
     }
 };
