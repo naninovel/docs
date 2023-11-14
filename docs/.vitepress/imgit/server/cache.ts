@@ -4,7 +4,7 @@ import { ensureDir } from "./common";
 import { MediaInfo } from "./asset";
 
 export const cache = {
-    probes: {} as Record<string, MediaInfo>
+    probes: {} as Record<string, MediaInfo | undefined>
 };
 
 export async function load() {

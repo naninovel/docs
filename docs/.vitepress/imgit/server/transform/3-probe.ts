@@ -3,7 +3,7 @@ import { config } from "../config";
 import { cache } from "../cache";
 import { DownloadedAsset, ProbedAsset, MediaInfo } from "../asset";
 
-const probing = new Map<string, Promise<MediaInfo>>;
+const probing = new Map<string, Promise<MediaInfo | undefined>>;
 
 /** Probes downloaded asset files to evaluate their width and height. */
 export function probe(assets: DownloadedAsset[]): Promise<ProbedAsset[]> {
@@ -12,7 +12,7 @@ export function probe(assets: DownloadedAsset[]): Promise<ProbedAsset[]> {
 
 async function probeDistinct(asset: DownloadedAsset): Promise<ProbedAsset> {
     if (!asset.sourcePath) return asset;
-    let info: MediaInfo;
+    let info: MediaInfo | undefined;
     const url = asset.sourceUrl;
     if (cache.probes.hasOwnProperty(url)) info = cache.probes[url];
     else if (probing.has(url)) info = await probing.get(url)!;
@@ -20,9 +20,9 @@ async function probeDistinct(asset: DownloadedAsset): Promise<ProbedAsset> {
     return { ...asset, sourceInfo: info };
 }
 
-async function probeAsset(path: string, url: string): Promise<MediaInfo> {
-    let resolve: (value: (MediaInfo)) => void;
-    probing.set(url, new Promise<MediaInfo>(r => resolve = r));
+async function probeAsset(path: string, url: string): Promise<MediaInfo | undefined> {
+    let resolve: (value: (MediaInfo | undefined)) => void;
+    probing.set(url, new Promise<MediaInfo | undefined>(r => resolve = r));
     const { out, err } = await platform.exec(`ffprobe ${config.probe.args} "${path}"`);
     if (err) config.log?.err?.(`ffprobe error: ${err}`);
     const info = parseOut(out);
@@ -30,8 +30,8 @@ async function probeAsset(path: string, url: string): Promise<MediaInfo> {
     return info;
 }
 
-function parseOut(out: string): MediaInfo {
-    if (!out?.includes(",")) return { width: NaN, height: NaN, alpha: false };
+function parseOut(out: string): MediaInfo | undefined {
+    if (!out?.includes(",")) return undefined;
     const parts = out.split(",");
     const alpha = alphaFormats.has(parts[2].trim());
     return { width: Number(parts[0]), height: Number(parts[1]), alpha };
