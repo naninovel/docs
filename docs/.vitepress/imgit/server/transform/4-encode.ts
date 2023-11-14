@@ -47,7 +47,7 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
         const info = asset.sourceInfo!;
         const scale = config.width && info.width > config.width;
         const rgb = scale ? `[0:v]scale=${config.width}:-1[rgb];` : `[0:v]copy[rgb];`;
-        const alphaScale = scale && info.alpha ? `,scale=72:-1` : "";
+        const alphaScale = scale && info.alpha ? `,scale=${config.width}:-1` : "";
         const alpha = info.alpha ? `[0:v]alphaextract${alphaScale}[a]` : "";
         return `-filter_complex "${rgb}${alpha}"`;
     }
