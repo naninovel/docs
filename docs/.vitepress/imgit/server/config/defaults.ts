@@ -14,7 +14,7 @@ export const defaults: Readonly<Required<Options>> = {
     remote: "remote",
     regex: [/!\[(?<title>.*?)]\((?<uri>.+?)\)/g],
     suffix: "-imgit",
-    width: null,
+    width: Number.MAX_VALUE,
     image: ["png", "jpg", "jpeg", "webp"],
     animation: ["gif", "apng"],
     video: ["mp4", "webm"],

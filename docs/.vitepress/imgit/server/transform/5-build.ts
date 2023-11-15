@@ -78,7 +78,7 @@ function buildServeRoot(asset: EncodedAsset): string {
 
 function buildSizes(info?: MediaInfo): string {
     if (!info) return "";
-    const mod = config.width && info.width > config.width ? config.width / info.width : 1;
+    const mod = info.width > config.width ? config.width / info.width : 1;
     const width = Math.floor(info.width * mod);
     const height = Math.floor(info.height * mod);
     return `width="${width}" height="${height}"`;
