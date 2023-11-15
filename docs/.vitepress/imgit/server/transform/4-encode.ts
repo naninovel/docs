@@ -71,8 +71,8 @@ async function ffmpeg(type: AssetType, info: MediaInfo, src: string, out: string
     }
 
     function buildFilter(): string {
-        const scale = info.width > config.width;
-        const width = (scale ? config.width : info.width) * (poster ? config.encode.poster.scale : 1);
+        const scale = config.width && info.width > config.width;
+        const width = (scale ? config.width! : info.width) * (poster ? config.encode.poster.scale : 1);
         const blur = poster && config.encode.poster.filter ? `,${config.encode.poster.filter}` : "";
         const select = poster && type !== AssetType.Image ? "select=eq(n\\,0)," : "";
         const rgb = scale ? `[0:v]${select}scale=${width}:-1${blur}[rgb];` : `[0:v]${select}copy${blur}[rgb];`;

@@ -22,7 +22,7 @@ export type Options = Record<string, unknown> & {
     suffix?: string;
     /** Width limit for the transformed assets, in pixels. When source asset is larger,
      *  will resize the content (given encoding is not disabled). No limit by default. */
-    width?: number;
+    width?: number | null;
     /** File extensions (w/o dot) to encode into av1 still frame under avif container
      *  and transform into HTML picture (with fallback to source); default: png, jpg, jpeg and webp. */
     image?: string[];
