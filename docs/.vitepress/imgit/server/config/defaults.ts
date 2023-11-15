@@ -39,6 +39,7 @@ export const defaults: Readonly<Required<Options>> = {
         video: "-loglevel error -c:v libaom-av1 -crf 45 -cpu-used 6",
         poster: {
             args: "-loglevel error -still-picture 1 -crf 50 -cpu-used 6",
+            scale: 0.1,
             filter: "boxblur=2"
         }
     },

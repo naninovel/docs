@@ -97,6 +97,8 @@ export type EncodeOptions = {
     poster: {
         /** ffmpeg arguments specified when encoding posters. */
         args: string;
+        /** Scale modifier relative to the source asset to use for generated poster; 0.1 by default. */
+        scale: number;
         /** ffmpeg filter to apply for generated posters; blur is applied by default.
          *  assign <code>null</code> to disable poster filtering. */
         filter: string | null
