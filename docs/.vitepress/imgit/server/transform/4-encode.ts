@@ -47,8 +47,10 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
     }
 
     async function encodeAsset(): Promise<EncodedAsset> {
-        await ffmpeg(asset.type, asset.sourceInfo!, asset.sourcePath!, encodedPath);
-        if (posterPath) await ffmpeg("poster", asset.sourceInfo!, asset.sourcePath!, posterPath);
+        if (!(await platform.fs.exists(encodedPath)))
+            await ffmpeg(asset.type, asset.sourceInfo!, asset.sourcePath!, encodedPath);
+        if (posterPath && !(await platform.fs.exists(posterPath)))
+            await ffmpeg("poster", asset.sourceInfo!, asset.sourcePath!, posterPath);
         return { ...asset, encodedPath, posterPath };
     }
 }
