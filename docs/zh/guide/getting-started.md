@@ -30,7 +30,7 @@ Naninovel是 [Unity游戏引擎](https://unity.com/) 扩展资源，所以确保
 
 典型VN游戏，由人物和其背景组成。在Naninovel规范里，由以下方式呈现。
 
-![](https://i.gyazo.com/1d4d5130056f7d6acee978c5fde42cfc.gif)
+![](/assets/img/docs/actor-concept.mp4)
 
 现在，我们想让"Kohaku" 呈现高兴的样子。我们有不同表情的立绘。在 Naninovel这种图像的元素，称为演出元素（Actor）的*外观appearances*。 要达到这个目的，我们就得改变人物演出元素的外观，背景演出元素同理。
 
