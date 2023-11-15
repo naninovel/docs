@@ -13,7 +13,7 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
     if (!shouldEncode()) return asset;
     const encodedPath = buildEncodedPath();
     const posterPath = buildPosterPath();
-    if (await platform.fs.exists(encodedPath)) return { ...asset, encodedPath, posterPath };
+    if (await hasEncoded()) return { ...asset, encodedPath, posterPath };
     if (encoding.has(asset.sourceUrl)) return encoding.get(asset.sourceUrl)!;
     return encoding.set(asset.sourceUrl, encodeAsset()).get(asset.sourceUrl)!;
 
@@ -22,6 +22,11 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
         return asset.type === AssetType.Image && config.encode.image ||
             asset.type === AssetType.Animation && config.encode.animation ||
             asset.type === AssetType.Video && config.encode.video;
+    }
+
+    async function hasEncoded() {
+        return await platform.fs.exists(encodedPath) &&
+            (!posterPath || await platform.fs.exists(posterPath));
     }
 
     function buildEncodedPath() {
@@ -42,28 +47,27 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
     }
 
     async function encodeAsset(): Promise<EncodedAsset> {
-        const cmd = `ffmpeg ${buildArgs(asset.type, asset.sourceInfo!, asset.sourcePath!, encodedPath)}`;
-        const { err } = await platform.exec(cmd);
-        if (err) config.log?.err?.(`ffmpeg error: ${err}`);
-        if (posterPath) await encodePoster(posterPath);
+        await ffmpeg(asset.type, asset.sourceInfo!, asset.sourcePath!, encodedPath);
+        if (posterPath) await ffmpeg("poster", asset.sourceInfo!, asset.sourcePath!, posterPath);
         return { ...asset, encodedPath, posterPath };
-    }
-
-    async function encodePoster(posterPath: string): Promise<void> {
-        const cmd = `ffmpeg ${buildArgs("poster", asset.sourceInfo!, asset.sourcePath!, posterPath)}`;
-        const { err } = await platform.exec(cmd);
-        if (err) config.log?.err?.(`ffmpeg error: ${err}`);
     }
 }
 
-function buildArgs(type: AssetType | "poster", info: MediaInfo, sourcePath: string, encodedPath: string): string {
-    let options;
-    if (type === AssetType.Image) options = config.encode.image;
-    else if (type === AssetType.Animation) options = config.encode.animation;
-    else if (type === AssetType.Video) options = config.encode.video;
-    else options = config.encode.poster.args;
-    const map = info.alpha ? `-map "[rgb]" -map "[a]"` : `-map "[rgb]"`;
-    return `-i "${sourcePath}" ${options} ${buildFilter()} ${map} "${encodedPath}"`;
+async function ffmpeg(type: AssetType | "poster", info: MediaInfo, src: string, out: string): Promise<void> {
+    const cmd = `ffmpeg ${buildArgs()}`;
+    const { err } = await platform.exec(cmd);
+    if (err) config.log?.err?.(`ffmpeg error: ${err}`);
+
+    function buildArgs(): string {
+        let options;
+        if (type === AssetType.Image) options = config.encode.image;
+        else if (type === AssetType.Animation) options = config.encode.animation;
+        else if (type === AssetType.Video) options = config.encode.video;
+        else options = config.encode.poster.args;
+        const map = info.alpha ? `-map "[rgb]" -map "[a]"` : `-map "[rgb]"`;
+        return `-i "${src}" ${options} ${buildFilter()} ${map} "${out}"`;
+
+    }
 
     function buildFilter(): string {
         const scale = info.width > config.width;
