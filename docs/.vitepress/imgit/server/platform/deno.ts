@@ -30,10 +30,10 @@ export const deno: Readonly<Platform> = {
         mkdir: (path: string) => Deno.mkdir(path, { recursive: true })
     },
     path: {
-        join: path.join,
-        resolve: path.resolve,
+        join: (...p) => path.join(...p).replaceAll("\\", "/"),
+        resolve: (...p) => path.resolve(...p).replaceAll("\\", "/"),
         basename: path.basename,
-        dirname: path.dirname
+        dirname: p => path.dirname(p).replaceAll("\\", "/")
     },
     exec: async cmd => {
         const proc = new Deno.Command(cmd);

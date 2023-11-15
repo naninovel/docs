@@ -13,7 +13,7 @@ export type Platform = Record<string, unknown> & {
         /** Creates directory with specified path (recursive). */
         mkdir: (path: string) => Promise<void>;
     };
-    /** File system path APIs. */
+    /** File system path APIs. All results are expected with forward slashes (even on Windows). */
     path: {
         /** Joins specified path parts and normalizes the result. */
         join: (...paths: string[]) => string;
@@ -21,7 +21,7 @@ export type Platform = Record<string, unknown> & {
         resolve: (...paths: string[]) => string;
         /** Extracts file name with extension from specified path. */
         basename: (path: string) => string;
-        /** Extracts directory name from specified path. */
+        /** Extracts directory name from specified path and normalizes the result. */
         dirname: (path: string) => string;
     };
     /** Executes specified command in system shell. */
