@@ -21,7 +21,7 @@ export type Options = Record<string, unknown> & {
     /** Text to append to the name of encoded asset files; <code>-imgit</code> by default. */
     suffix?: string;
     /** Default width limit for the transformed assets, in pixels. When source asset is larger,
-     *  will resize the content (given encoding is not disabled). In case the source is at least 2x larger,
+     *  will resize the content (given encoding is not disabled). In case the source is 2x or larger,
      *  images and animations will as well get additional variant for high-density displays.
      *  Default limit is ignored when asset has individual limit specified via its syntax. */
     width?: number | null;
