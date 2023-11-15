@@ -21,7 +21,8 @@ export type Options = Record<string, unknown> & {
     /** Text to append to the name of encoded asset files; <code>-imgit</code> by default. */
     suffix?: string;
     /** Width limit for the transformed assets, in pixels. When source asset is larger,
-     *  will resize the content (given encoding is not disabled). No limit by default. */
+     *  will resize the content (given encoding is not disabled). In case the source is at least 2x larger,
+     *  images and animations will as well get additional variant for high-density displays. */
     width?: number | null;
     /** File extensions (w/o dot) to encode into av1 still frame under avif container
      *  and transform into HTML picture (with fallback to source); default: png, jpg, jpeg and webp. */
