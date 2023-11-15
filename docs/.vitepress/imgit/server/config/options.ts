@@ -20,10 +20,10 @@ export type Options = Record<string, unknown> & {
     regex?: RegExp[];
     /** Text to append to the name of encoded asset files; <code>-imgit</code> by default. */
     suffix?: string;
-    /** Default width limit for the transformed assets, in pixels. When source asset is larger,
+    /** Default width threshold for the transformed assets, in pixels. When source asset is larger,
      *  will resize the content (given encoding is not disabled). In case the source is 2x or larger,
      *  images and animations will as well get additional variant for high-density displays.
-     *  Default limit is ignored when asset has individual limit specified via options syntax. */
+     *  Default threshold is ignored when asset has individual threshold specified via options syntax. */
     width?: number | null;
     /** File extensions (w/o dot) to encode into av1 still frame under avif container
      *  and transform into HTML picture (with fallback to source); default: png, jpg, jpeg and webp. */
