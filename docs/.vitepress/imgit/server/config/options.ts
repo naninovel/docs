@@ -36,7 +36,7 @@ export type Options = Record<string, unknown> & {
     youtube?: boolean;
     /** Source of an image to use for all video posters. When undefined automatically generates
      *  unique image for each video; assign <code>null</code> to disable posters completely. */
-    poster?: string | null;
+    poster?: string | null | "auto";
     /** Configure logging behaviour; assign <code>null</code> to disable logging. */
     log?: LogOptions | null;
     /** Configure remote assets downloading. */
