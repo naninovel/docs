@@ -31,7 +31,7 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
     }
 
     function buildPosterPath() {
-        if (config.poster === undefined)
+        if (config.poster === "auto")
             return `${buildBasePath()}-poster.avif`;
         return undefined;
     }

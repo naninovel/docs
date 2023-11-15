@@ -19,7 +19,7 @@ export const defaults: Readonly<Required<Options>> = {
     animation: ["gif", "apng"],
     video: ["mp4", "webm"],
     youtube: true,
-    poster: null,
+    poster: "auto",
     log: {
         info: console.info,
         warn: console.warn,
