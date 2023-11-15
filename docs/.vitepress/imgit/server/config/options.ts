@@ -34,7 +34,7 @@ export type Options = Record<string, unknown> & {
     video?: string[];
     /** Whether to transform YouTube links as videos; enabled by default. */
     youtube?: boolean;
-    /** Source of an image to use for all video posters. When undefined automatically generates
+    /** Source of an image to use for all posters. When undefined automatically generates
      *  unique image for each video; assign <code>null</code> to disable posters completely. */
     poster?: string | null | "auto";
     /** Configure logging behaviour; assign <code>null</code> to disable logging. */
