@@ -35,7 +35,7 @@ export const defaults: Readonly<Required<Options>> = {
     },
     encode: {
         image: "-loglevel error -still-picture 1 -crf 23 -cpu-used 6",
-        animation: "-loglevel error -crf 63 -cpu-used 6",
+        animation: "-loglevel error -crf 23 -cpu-used 6",
         video: "-loglevel error -c:v libaom-av1 -crf 45 -cpu-used 6",
         poster: {
             args: "-loglevel error -still-picture 1 -crf 50 -cpu-used 6",
