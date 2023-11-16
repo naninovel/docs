@@ -4,7 +4,7 @@
 
 ### PNG
 
-![png](/assets/imgit/png.png)
+![png{"lazy":false}](/assets/imgit/png.png)
 
 ### JPG
 
@@ -12,7 +12,7 @@
 
 ### JPEG
 
-![jpeg](/assets/imgit/jpeg.jpeg)
+![jpeg{"width":1920}](/assets/imgit/jpeg.jpeg)
 
 ### WEBP
 

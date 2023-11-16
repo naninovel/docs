@@ -22,10 +22,11 @@ export async function buildImage(asset: EncodedAsset): Promise<string> {
     const size = buildSizes(asset.sourceInfo);
     const cls = `class="${config.style.className.image}"`;
     const x2 = encoded2xSrc ? `, ${encoded2xSrc} 2x` : "";
+    const lazy = asset.meta?.lazy === false ? "" : `loading="lazy" decoding="async"`;
     return `
 <picture>
     ${encodedSrc ? `<source srcset="${encodedSrc} 1x${x2}" type="image/avif" ${cls} ${size}/>` : ""}
-    <img loading="lazy" decoding="async" src="${src}" alt="${alt}" ${cls} ${size}/>
+    <img src="${src}" alt="${alt}" ${cls} ${size} ${lazy}/>
 </picture>`;
 }
 
@@ -35,10 +36,11 @@ export async function buildAnimation(asset: EncodedAsset): Promise<string> {
     const size = buildSizes(asset.sourceInfo);
     const cls = `class="${config.style.className.animation}"`;
     const x2 = encoded2xSrc ? `, ${encoded2xSrc} 2x` : "";
+    const lazy = asset.meta?.lazy === false ? "" : `loading="lazy" decoding="async"`;
     return `
 <picture>
     ${encodedSrc ? `<source srcset="${encodedSrc} 1x${x2}" type="image/avif" ${cls} ${size}/>` : ""}
-    <img loading="lazy" decoding="async" src="${src}" alt="${alt}" ${cls} ${size}/>
+    <img src="${src}" alt="${alt}" ${cls} ${size} ${lazy}/>
 </picture>`;
 }
 
