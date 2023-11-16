@@ -1,8 +1,11 @@
-export function observe() {
-    if (!canObserve()) return;
-    const observer = new IntersectionObserver(handleIntersections);
-    for (const element of document.querySelectorAll("video.imgit-video"))
-        observer.observe(element);
+const observer = canObserve() ? new IntersectionObserver(handleIntersections) : undefined;
+
+export function observeIntersections(element: HTMLElement) {
+    observer?.observe(element);
+}
+
+export function unobserveIntersections(element: HTMLElement) {
+    observer?.unobserve(element);
 }
 
 function canObserve() {

@@ -1,17 +1,6 @@
-import { EnhanceAppContext } from "vitepress";
-import { observe } from "../imgit/client/observe";
 import DefaultTheme from "vitepress/theme-without-fonts";
+import "../imgit/client";
 import "./style.css";
 
 // https://vitepress.dev/guide/extending-default-theme
-// noinspection JSUnusedGlobalSymbols
-
-export default {
-    extends: {
-        Layout: DefaultTheme.Layout,
-        enhanceApp: (app: EnhanceAppContext) => {
-            DefaultTheme.enhanceApp(app);
-            app.router.onAfterRouteChanged = _ => void setTimeout(observe, 0);
-        }
-    }
-};
+export default { extends: { Layout: DefaultTheme.Layout } };
