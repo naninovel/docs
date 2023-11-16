@@ -50,6 +50,8 @@ export type ProbedAsset = DownloadedAsset & {
 export type EncodedAsset = ProbedAsset & {
     /** Full path to the encoded file on local file system or undefined when N/A or disabled. */
     encodedPath?: string;
+    /** Full path to the encoded file with 2x scale on local file system or undefined when N/A or disabled. */
+    encoded2xPath?: string;
     /** Full path to the poster file or undefined when N/A or disabled. */
     posterPath?: string;
 };
