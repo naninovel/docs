@@ -20,6 +20,16 @@ export type MediaInfo = {
     alpha: boolean;
 }
 
+/** User-defined optional asset metadata. */
+export type AssetMeta = {
+    /** Width threshold of the source asset content, in pixels.
+     *  Overrides global <code>width</code> parameter. */
+    width?: number;
+    /** When set to <code>false</code> the asset will be loaded eagerly (instead of lazy).
+     *  Use for above the fold content, ie initially visible w/o scrolling, such as hero image. */
+    lazy?: boolean;
+}
+
 /** Asset syntax captured from transformed document. */
 export type CapturedAsset = {
     /** Full text of the captured syntax. */
@@ -32,6 +42,8 @@ export type CapturedAsset = {
     type: AssetType;
     /** Optional title of the asset resolved from captured syntax. */
     title?: string;
+    /** User-defined optional asset metadata. */
+    meta?: AssetMeta;
 };
 
 /** Asset with file content downloaded and available for probing. */
