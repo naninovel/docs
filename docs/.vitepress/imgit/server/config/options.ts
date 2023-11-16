@@ -23,7 +23,7 @@ export type Options = Record<string, unknown> & {
     /** Default width threshold for the transformed assets, in pixels. When source asset is larger,
      *  will downscale it while preserving the original aspect. In case the source is 2x or larger,
      *  images and animations will as well get additional variant for high-density displays.
-     *  Default threshold is ignored when asset has individual threshold specified via options syntax. */
+     *  Default threshold is ignored when asset has individual threshold specified via meta syntax. */
     width?: number | null;
     /** File extensions (w/o dot) to encode into av1 still frame under avif container
      *  and transform into HTML picture (with fallback to source); default: png, jpg, jpeg and webp. */
