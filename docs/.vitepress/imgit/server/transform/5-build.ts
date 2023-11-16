@@ -25,7 +25,7 @@ export async function buildImage(asset: EncodedAsset): Promise<string> {
     const lazy = asset.meta?.lazy === false ? "" : `loading="lazy" decoding="async"`;
     return `
 <picture>
-    ${encodedSrc ? `<source srcset="${encodedSrc} 1x${x2}" type="image/avif" ${cls} ${size}/>` : ""}
+    ${encodedSrc ? `<source srcset="${encodedSrc} 1x${x2}" type="image/avif"/>` : ""}
     <img src="${src}" alt="${alt}" ${cls} ${size} ${lazy}/>
 </picture>`;
 }
@@ -39,7 +39,7 @@ export async function buildAnimation(asset: EncodedAsset): Promise<string> {
     const lazy = asset.meta?.lazy === false ? "" : `loading="lazy" decoding="async"`;
     return `
 <picture>
-    ${encodedSrc ? `<source srcset="${encodedSrc} 1x${x2}" type="image/avif" ${cls} ${size}/>` : ""}
+    ${encodedSrc ? `<source srcset="${encodedSrc} 1x${x2}" type="image/avif"/>` : ""}
     <img src="${src}" alt="${alt}" ${cls} ${size} ${lazy}/>
 </picture>`;
 }
