@@ -16,7 +16,8 @@ export type Options = Record<string, unknown> & {
     remote?: string;
     /** Regular expressions to use for capturing transformed assets syntax. Expects <code><uri></code>,
      *  <code><title></code> and <code><meta></code> capture groups (title and meta are optional).
-     *  By default, captures Markdown image syntax: <code>/!\[(?<title>.*?)]\((?<uri>.+?)\)/g</code>. */
+     *  By default, captures Markdown image syntax with meta specified after title in curly braces:
+     *  <code>/!\[(?<title>.*?(?<meta>{.+?})?)]\((?<uri>.+?)\)/g</code>. */
     regex?: RegExp[];
     /** Text to append to the name of encoded asset files; <code>-imgit</code> by default. */
     suffix?: string;

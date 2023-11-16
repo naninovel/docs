@@ -21,7 +21,8 @@ export async function capture(content: string): Promise<CapturedAsset[]> {
             index: match.index!,
             sourceUrl: match.groups.uri,
             type,
-            title: match.groups.title
+            title: match.groups.title,
+            meta: match.groups.meta ? JSON.parse(match.groups.meta) : undefined
         });
     }
 }

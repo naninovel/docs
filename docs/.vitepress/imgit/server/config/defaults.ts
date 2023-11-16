@@ -12,7 +12,7 @@ export const defaults: Readonly<Required<Options>> = {
     cache: "./node_modules/.cache/imgit",
     serve: "/assets",
     remote: "remote",
-    regex: [/!\[(?<title>.*?)]\((?<uri>.+?)\)/g],
+    regex: [/!\[(?<title>.*?)(?<meta>{.+?})?]\((?<uri>.+?)\)/g],
     suffix: "-imgit",
     width: null,
     image: ["png", "jpg", "jpeg", "webp"],

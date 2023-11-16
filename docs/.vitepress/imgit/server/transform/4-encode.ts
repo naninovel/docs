@@ -12,6 +12,7 @@ export function encode(assets: ProbedAsset[]): Promise<EncodedAsset[]> {
 async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
     if (!shouldEncode()) return asset;
     const info = asset.sourceInfo!;
+    const threshold = asset.meta?.width ?? config.width;
     const sourcePath = asset.sourcePath!;
     const encodedPath = buildEncodedPath();
     const encoded2xPath = buildEncoded2xPath();
@@ -40,7 +41,7 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
     }
 
     function buildEncoded2xPath() {
-        if (asset.type !== AssetType.Video && config.width && info.width >= config.width * 2)
+        if (asset.type !== AssetType.Video && threshold && info.width >= threshold * 2)
             return `${buildBasePath()}-2x.avif`;
         return undefined;
     }
@@ -84,13 +85,15 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
         }
 
         function buildFilter(): string {
-            const scale = poster || !x2 && (config.width && info.width > config.width);
+            const scaling = poster || !x2 && (threshold && info.width > threshold);
             const scaleModifier = poster ? config.encode.poster.scale : 1;
-            const width = (scale ? config.width ?? info.width : info.width) * scaleModifier;
+            const scale = (scaling ? threshold ?? info.width : info.width) * scaleModifier;
             const blur = poster && config.encode.poster.filter ? `,${config.encode.poster.filter}` : "";
             const select = poster && asset.type !== AssetType.Image ? "select=eq(n\\,0)," : "";
-            const rgb = scale ? `[0:v]${select}scale=${width}:-1${blur}[rgb];` : `[0:v]${select}copy${blur}[rgb];`;
-            const alphaScale = scale && info.alpha ? `,scale=${width}:-1` : "";
+            const rgb = scaling
+                ? `[0:v]${select}scale=${scale}:-1${blur}[rgb];`
+                : `[0:v]${select}copy${blur}[rgb];`;
+            const alphaScale = scaling && info.alpha ? `,scale=${scale}:-1` : "";
             const alpha = info.alpha ? `[0:v]${select}alphaextract${alphaScale}${blur}[a]` : "";
             return `-filter_complex "${rgb}${alpha}"`;
         }
