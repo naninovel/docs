@@ -1,5 +1,5 @@
 import { platform } from "../platform";
-import { EncodedAsset, BuiltAsset, AssetType, MediaInfo } from "../asset";
+import { EncodedAsset, BuiltAsset, MediaInfo, AssetType } from "../asset";
 import { config } from "../config";
 
 /** Builds HTML for the optimized assets to overwrite source syntax. */
