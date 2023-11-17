@@ -31,11 +31,11 @@ export const defaults: Readonly<Required<Options>> = {
         delay: 6
     },
     encode: {
-        image: "-loglevel error -still-picture 1 -crf 23 -cpu-used 6",
-        animation: "-loglevel error -crf 23 -cpu-used 6",
-        video: "-loglevel error -c:v libaom-av1 -crf 45 -cpu-used 6",
+        image: "-loglevel error -y -still-picture 1 -crf 23 -cpu-used 6",
+        animation: "-loglevel error -y -crf 23 -cpu-used 6",
+        video: "-loglevel error -y -c:v libaom-av1 -crf 45 -cpu-used 6",
         poster: {
-            args: "-loglevel error -still-picture 1 -crf 50 -cpu-used 6",
+            args: "-loglevel error -y -still-picture 1 -crf 50 -cpu-used 6",
             scale: 0.1,
             filter: "boxblur=2"
         }
