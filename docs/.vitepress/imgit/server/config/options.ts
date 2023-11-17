@@ -26,14 +26,15 @@ export type Options = Record<string, unknown> & {
      *  images and animations will as well get additional variant for high-density displays.
      *  Default threshold is ignored when asset has individual threshold specified via meta syntax. */
     width?: number | null;
-    /** File extensions (w/o dot) to encode into av1 still frame under avif container and transform into
-     *  HTML picture (with fallback to source); default: png, jpg, jpeg, webp, bmp, tif, tiff, tga and psd. */
+    /** File extensions (w/o dot) to encode into av1 still frame under avif container and
+     *  transform into HTML picture with a fallback to a legacy format, such as png and jpg;
+     *  default: png, jpg, jpeg, webp, avif, bmp, tif, tiff, tga and psd. */
     image?: string[];
     /** File extensions (w/o dot) to encode into looped sequence of av1 still frames under avif container
-     *  and transform into HTML picture (with fallback to source); default: gif and apng. */
+     *  and transform into HTML picture with a fallback to source; default: gif and apng. */
     animation?: string[];
     /** File extensions (w/o dot) to encode into av1 video under mp4 container
-     *  and transform into HTML video (with fallback to source); default: mp4 and webm. */
+     *  and transform into HTML video with a fallback to source; default: mp4 and webm. */
     video?: string[];
     /** Whether to transform YouTube links as videos; enabled by default. */
     youtube?: boolean;

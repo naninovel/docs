@@ -18,6 +18,10 @@
 
 ![webp](/assets/imgit/webp.webp)
 
+### AVIF
+
+![avif](/assets/imgit/avif.avif)
+
 ### BMP
 
 ![bmp](/assets/imgit/bmp.bmp)
