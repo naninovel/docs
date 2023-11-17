@@ -1,7 +1,9 @@
 import { ProbedAsset, EncodedAsset, AssetType } from "../asset";
 import { config } from "../config";
 import { platform } from "../platform";
+import { getExtension } from "../common";
 
+const compatibleExt = new Set<string>(["png", "jpg", "jpeg", "webp"]);
 const encoding = new Map<string, Promise<EncodedAsset>>;
 
 /** Creates optimized versions of the source asset files. */
@@ -13,13 +15,17 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
     if (!shouldEncode()) return asset;
     const info = asset.sourceInfo!;
     const threshold = asset.meta?.width ?? config.width;
-    const sourcePath = asset.sourcePath!;
+    const originalSourcePath = asset.sourcePath!;
+    const compatibleSourcePath = buildCompatibleSourcePath();
+    const sourcePath = compatibleSourcePath ?? originalSourcePath;
     const encodedPath = buildEncodedPath();
     const encoded2xPath = buildEncoded2xPath();
     const posterPath = buildPosterPath();
-    if (await hasEncoded()) return { ...asset, encodedPath, encoded2xPath, posterPath };
+    const encodedAsset = { ...asset, sourcePath, encodedPath, encoded2xPath, posterPath };
+    if (await hasEverythingEncoded()) return encodedAsset;
     if (encoding.has(asset.sourceUrl)) return encoding.get(asset.sourceUrl)!;
-    return encoding.set(asset.sourceUrl, encodeAsset()).get(asset.sourceUrl)!;
+    encoding.set(asset.sourceUrl, encodeAsset().then(() => encodedAsset));
+    return encodedAsset;
 
     function shouldEncode() {
         if (!asset.sourcePath || !asset.sourceInfo) return false;
@@ -28,10 +34,19 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
             asset.type === AssetType.Video && config.encode.video;
     }
 
-    async function hasEncoded() {
+    async function hasEverythingEncoded() {
         return await platform.fs.exists(encodedPath) &&
+            (!compatibleSourcePath || await platform.fs.exists(compatibleSourcePath)) &&
             (!encoded2xPath || await platform.fs.exists(encoded2xPath)) &&
             (!posterPath || await platform.fs.exists(posterPath));
+    }
+
+    function buildCompatibleSourcePath() {
+        if (asset.type !== AssetType.Image) return undefined;
+        const ext = getExtension(originalSourcePath);
+        if (compatibleExt.has(ext)) return undefined;
+        const base = originalSourcePath.substring(0, originalSourcePath.length - ext.length);
+        return base + (info.alpha ? "png" : "jpg");
     }
 
     function buildEncodedPath() {
@@ -57,17 +72,18 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
         return sourcePath.substring(0, extIdx) + config.suffix;
     }
 
-    async function encodeAsset(): Promise<EncodedAsset> {
+    async function encodeAsset(): Promise<void> {
+        if (compatibleSourcePath && !(await platform.fs.exists(compatibleSourcePath)))
+            await ffmpeg(originalSourcePath, compatibleSourcePath);
         if (!(await platform.fs.exists(encodedPath)))
-            await ffmpeg(encodedPath);
+            await ffmpeg(sourcePath, encodedPath);
         if (encoded2xPath && !(await platform.fs.exists(encoded2xPath)))
-            await ffmpeg(encoded2xPath, { x2: true });
+            await ffmpeg(sourcePath, encoded2xPath, { x2: true });
         if (posterPath && !(await platform.fs.exists(posterPath)))
-            await ffmpeg(posterPath, { poster: true });
-        return { ...asset, encodedPath, posterPath };
+            await ffmpeg(sourcePath, posterPath, { poster: true });
     }
 
-    async function ffmpeg(out: string, meta?: { poster?: boolean, x2?: boolean }): Promise<void> {
+    async function ffmpeg(src: string, out: string, meta?: { poster?: boolean, x2?: boolean }): Promise<void> {
         const poster = meta?.poster;
         const x2 = meta?.x2;
         const cmd = `ffmpeg ${buildArgs()}`;
@@ -81,7 +97,7 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
             else if (asset.type === AssetType.Video) options = config.encode.video;
             else options = config.encode.poster.args;
             const map = info.alpha ? `-map "[rgb]" -map "[a]"` : `-map "[rgb]"`;
-            return `-i "${sourcePath}" ${options} ${buildFilter()} ${map} "${out}"`;
+            return `-i "${src}" ${options} ${buildFilter()} ${map} "${out}"`;
         }
 
         function buildFilter(): string {

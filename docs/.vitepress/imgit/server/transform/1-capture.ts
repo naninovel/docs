@@ -1,4 +1,5 @@
 import { CapturedAsset, AssetType } from "../asset";
+import { getExtension } from "../common";
 import { config } from "../config";
 
 /** Finds assets to transform in the document with specified content. */
@@ -31,15 +32,9 @@ function resolveType(uri: string): AssetType | undefined {
     const { image, animation, video, youtube } = config;
     if (uri.includes("youtube.com/watch?v="))
         return youtube ? AssetType.YouTube : undefined;
-    const ext = getFileExtension(uri).toLowerCase();
+    const ext = getExtension(uri).toLowerCase();
     if (image?.includes(ext)) return AssetType.Image;
     if (animation?.includes(ext)) return AssetType.Animation;
     if (video?.includes(ext)) return AssetType.Video;
     return undefined;
-}
-
-function getFileExtension(uri: string) {
-    const start = uri.lastIndexOf(".") + 1;
-    if (start >= uri.length) return "";
-    return uri.substring(start);
 }

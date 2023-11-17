@@ -22,7 +22,12 @@ export const vite: UserConfig = {
             }
         }
     })],
-    resolve: { alias: [override("NotFound", "not-found")] }
+    resolve: {
+        alias: [
+            override("NotFound", "not-found"),
+            { find: /\.(:?tif|tiff|bmp|tga|psd)$/, replacement: ".jpg" }
+        ]
+    }
 };
 
 // https://vitepress.dev/guide/extending-default-theme#overriding-internal-components
