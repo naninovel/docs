@@ -30,9 +30,6 @@ export const defaults: Readonly<Required<Options>> = {
         retries: 3,
         delay: 6
     },
-    probe: {
-        args: "-loglevel error -select_streams v:0 -show_entries stream=width,height,pix_fmt -of csv=p=0"
-    },
     encode: {
         image: "-loglevel error -still-picture 1 -crf 23 -cpu-used 6",
         animation: "-loglevel error -crf 23 -cpu-used 6",
