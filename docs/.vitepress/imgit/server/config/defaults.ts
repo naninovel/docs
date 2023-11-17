@@ -15,7 +15,7 @@ export const defaults: Readonly<Required<Options>> = {
     regex: [/!\[(?<title>.*?)(?<meta>{.+?})?]\((?<uri>.+?)\)/g],
     suffix: "-imgit",
     width: null,
-    image: ["png", "jpg", "jpeg", "webp"],
+    image: ["png", "jpg", "jpeg", "webp", "bmp", "tif", "tiff", "tga", "psd"],
     animation: ["gif", "apng"],
     video: ["mp4", "webm"],
     youtube: true,
