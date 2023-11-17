@@ -1,10 +1,10 @@
 import { platform } from "./platform";
 import { config } from "./config";
 import { ensureDir } from "./common";
-import { MediaInfo } from "./asset";
+import { SourceInfo } from "./asset";
 
 export const cache = {
-    probes: {} as Record<string, MediaInfo | undefined>
+    probes: {} as Record<string, SourceInfo | undefined>
 };
 
 export async function load() {

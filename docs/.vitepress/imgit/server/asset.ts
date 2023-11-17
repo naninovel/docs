@@ -11,13 +11,15 @@ export enum AssetType {
 }
 
 /** Media info of the source asset content. */
-export type MediaInfo = {
+export type SourceInfo = {
     /** Width of the source asset content, in pixels. */
     width: number;
     /** Height of the source asset content, in pixels. */
     height: number;
     /** Whether the source asset content has alpha channel (transparency). */
     alpha: boolean;
+    /** When the asset file was last modified, in ms since epoch. */
+    modified: number;
 }
 
 /** User-defined optional asset metadata. */
@@ -55,7 +57,9 @@ export type DownloadedAsset = CapturedAsset & {
 /** Asset with identified content metadata. */
 export type ProbedAsset = DownloadedAsset & {
     /** Media info of the source asset content. */
-    sourceInfo?: MediaInfo;
+    sourceInfo?: SourceInfo;
+    /** Whether source asset file was modified since last build. */
+    dirty?: boolean;
 };
 
 /** Asset with encoded counterpart. */

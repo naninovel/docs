@@ -35,7 +35,7 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
     }
 
     async function hasEverythingEncoded() {
-        return await platform.fs.exists(encodedPath) &&
+        return await platform.fs.exists(encodedPath) && !asset.dirty &&
             (!compatibleSourcePath || await platform.fs.exists(compatibleSourcePath)) &&
             (!encoded2xPath || await platform.fs.exists(encoded2xPath)) &&
             (!posterPath || await platform.fs.exists(posterPath));
@@ -73,13 +73,13 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
     }
 
     async function encodeAsset(): Promise<void> {
-        if (compatibleSourcePath && !(await platform.fs.exists(compatibleSourcePath)))
+        if (compatibleSourcePath && (!(await platform.fs.exists(compatibleSourcePath)) || asset.dirty))
             await ffmpeg(originalSourcePath, compatibleSourcePath);
-        if (!(await platform.fs.exists(encodedPath)))
+        if (!(await platform.fs.exists(encodedPath)) || asset.dirty)
             await ffmpeg(sourcePath, encodedPath);
-        if (encoded2xPath && !(await platform.fs.exists(encoded2xPath)))
+        if (encoded2xPath && (!(await platform.fs.exists(encoded2xPath)) || asset.dirty))
             await ffmpeg(sourcePath, encoded2xPath, { x2: true });
-        if (posterPath && !(await platform.fs.exists(posterPath)))
+        if (posterPath && (!(await platform.fs.exists(posterPath)) || asset.dirty))
             await ffmpeg(sourcePath, posterPath, { poster: true });
     }
 

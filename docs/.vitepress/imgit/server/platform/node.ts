@@ -10,6 +10,7 @@ import { Platform } from "./platform";
 export const node: Readonly<Platform> = {
     fs: {
         exists: async path => fs.existsSync(path),
+        stat: path => afs.stat(path).then(s => ({ modified: s.mtimeMs })),
         read: path => afs.readFile(path, "utf-8"),
         write: (path, content) => {
             if (typeof content === "string") return afs.writeFile(path, content, "utf-8");
