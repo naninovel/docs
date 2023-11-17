@@ -1,9 +1,9 @@
 import { platform } from "../platform";
 import { config } from "../config";
 import { cache } from "../cache";
-import { DownloadedAsset, ProbedAsset, MediaInfo } from "../asset";
+import { DownloadedAsset, ProbedAsset, SourceInfo } from "../asset";
 
-const probing = new Map<string, Promise<MediaInfo | undefined>>;
+const probing = new Map<string, Promise<SourceInfo | undefined>>;
 const args = "-loglevel error -select_streams v:0 -show_entries stream=width,height,pix_fmt -of csv=p=0";
 
 /** Probes downloaded asset files to evaluate their width and height. */
@@ -13,29 +13,39 @@ export function probe(assets: DownloadedAsset[]): Promise<ProbedAsset[]> {
 
 async function probeDistinct(asset: DownloadedAsset): Promise<ProbedAsset> {
     if (!asset.sourcePath) return asset;
-    let info: MediaInfo | undefined;
+    let info: SourceInfo | undefined;
     const url = asset.sourceUrl;
-    if (cache.probes.hasOwnProperty(url)) info = cache.probes[url];
+    const path = asset.sourcePath;
+    const modified = (await platform.fs.stat(asset.sourcePath)).modified;
+    const cached = getCached();
+    if (cached) info = cached;
     else if (probing.has(url)) info = await probing.get(url)!;
-    else info = cache.probes[url] = await probeAsset(asset.sourcePath, url);
-    return { ...asset, sourceInfo: info };
-}
+    else info = cache.probes[url] = await probeAsset();
+    return { ...asset, sourceInfo: info, dirty: !cached };
 
-async function probeAsset(path: string, url: string): Promise<MediaInfo | undefined> {
-    let resolve: (value: (MediaInfo | undefined)) => void;
-    probing.set(url, new Promise<MediaInfo | undefined>(r => resolve = r));
-    const { out, err } = await platform.exec(`ffprobe ${args} "${path}"`);
-    if (err) config.log?.err?.(`ffprobe error: ${err}`);
-    const info = parseOut(out);
-    resolve!(info);
-    return info;
-}
+    function getCached(): SourceInfo | undefined {
+        if (!cache.probes.hasOwnProperty(url)) return undefined;
+        const cached = cache.probes[url]!;
+        if (modified > cached.modified) return undefined;
+        return cached;
+    }
 
-function parseOut(out: string): MediaInfo | undefined {
-    if (!out?.includes(",")) return undefined;
-    const parts = out.split(",");
-    const alpha = alphaFormats.has(parts[2].trim());
-    return { width: Number(parts[0]), height: Number(parts[1]), alpha };
+    async function probeAsset(): Promise<SourceInfo | undefined> {
+        let resolve: (value: (SourceInfo | undefined)) => void;
+        probing.set(url, new Promise<SourceInfo | undefined>(r => resolve = r));
+        const { out, err } = await platform.exec(`ffprobe ${args} "${path}"`);
+        if (err) config.log?.err?.(`ffprobe error: ${err}`);
+        const info = parseOut(out);
+        resolve!(info);
+        return info;
+    }
+
+    function parseOut(out: string): SourceInfo | undefined {
+        if (!out?.includes(",")) return undefined;
+        const parts = out.split(",");
+        const alpha = alphaFormats.has(parts[2].trim());
+        return { width: Number(parts[0]), height: Number(parts[1]), alpha, modified };
+    }
 }
 
 // region alpha formats

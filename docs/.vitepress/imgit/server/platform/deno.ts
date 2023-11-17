@@ -12,6 +12,7 @@ declare module Deno {
     const writeTextFile: (path: string, content: string) => Promise<void>;
     const remove: (path: string) => Promise<void>;
     const mkdir: (path: string, options: { recursive: boolean }) => Promise<void>;
+    const stat: (path: string) => Promise<{ mtime: Date }>;
     export class Command {
         constructor(command: string);
         output(): Promise<{ success: boolean, stdout: BufferSource, stderr: BufferSource }>;
@@ -21,6 +22,7 @@ declare module Deno {
 export const deno: Readonly<Platform> = {
     fs: {
         exists: fs.exists,
+        stat: path => Deno.stat(path).then(s => ({ modified: s.mtime.getUTCMilliseconds() })),
         read: Deno.readTextFile,
         write: async (path, content) => {
             if (typeof content === "string") return Deno.writeTextFile(path, content);

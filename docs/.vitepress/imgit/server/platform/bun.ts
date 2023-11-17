@@ -22,6 +22,7 @@ declare module Bun {
 export const bun: Readonly<Platform> = {
     fs: {
         exists: path => Bun.file(path).exists(),
+        stat: path => fs.stat(path).then(s => ({ modified: s.mtimeMs })),
         read: path => Bun.file(path).text(),
         write: async (path, content) => {
             if (typeof content === "string") return Bun.write(path, content).then();

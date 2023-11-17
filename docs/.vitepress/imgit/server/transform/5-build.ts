@@ -1,5 +1,5 @@
 import { platform } from "../platform";
-import { EncodedAsset, BuiltAsset, MediaInfo, AssetType } from "../asset";
+import { EncodedAsset, BuiltAsset, SourceInfo, AssetType } from "../asset";
 import { config } from "../config";
 
 /** Builds HTML for the optimized assets to overwrite source syntax. */
@@ -82,7 +82,7 @@ function buildServeRoot(asset: EncodedAsset): string {
     return platform.path.join(config.serve, config.remote);
 }
 
-function buildSizes(info?: MediaInfo): string {
+function buildSizes(info?: SourceInfo): string {
     if (!info) return "";
     const mod = config.width && info.width > config.width ? config.width / info.width : 1;
     const width = Math.floor(info.width * mod);
