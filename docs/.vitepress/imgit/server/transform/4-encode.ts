@@ -74,18 +74,18 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
 
     async function encodeAsset(): Promise<void> {
         if (compatibleSourcePath && (!(await platform.fs.exists(compatibleSourcePath)) || asset.dirty))
-            await ffmpeg(originalSourcePath, compatibleSourcePath);
+            await ffmpeg(originalSourcePath, compatibleSourcePath, { noscale: true });
         if (!(await platform.fs.exists(encodedPath)) || asset.dirty)
             await ffmpeg(sourcePath, encodedPath);
         if (encoded2xPath && (!(await platform.fs.exists(encoded2xPath)) || asset.dirty))
-            await ffmpeg(sourcePath, encoded2xPath, { x2: true });
+            await ffmpeg(sourcePath, encoded2xPath, { noscale: true });
         if (posterPath && (!(await platform.fs.exists(posterPath)) || asset.dirty))
             await ffmpeg(sourcePath, posterPath, { poster: true });
     }
 
-    async function ffmpeg(src: string, out: string, meta?: { poster?: boolean, x2?: boolean }): Promise<void> {
+    async function ffmpeg(src: string, out: string, meta?: { poster?: boolean, noscale?: boolean }): Promise<void> {
         const poster = meta?.poster;
-        const x2 = meta?.x2;
+        const noscale = meta?.noscale;
         const cmd = `ffmpeg ${buildArgs()}`;
         const { err } = await platform.exec(cmd);
         if (err) config.log?.err?.(`ffmpeg error: ${err}`);
@@ -101,7 +101,7 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
         }
 
         function buildFilter(): string {
-            const scaling = poster || !x2 && (threshold && info.width > threshold);
+            const scaling = poster || !noscale && (threshold && info.width > threshold);
             const scaleModifier = poster ? config.encode.poster.scale : 1;
             const scale = (scaling ? threshold ?? info.width : info.width) * scaleModifier;
             const blur = poster && config.encode.poster.filter ? `,${config.encode.poster.filter}` : "";
