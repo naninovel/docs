@@ -18,6 +18,26 @@
 
 ![webp](/assets/imgit/webp.webp)
 
+### BMP
+
+![bmp(/assets/imgit/bmp.bmp)
+
+### TIF
+
+![tif](/assets/imgit/tif.tif)
+
+### TIFF
+
+![tiff](/assets/imgit/tiff.tiff)
+
+### TGA
+
+![tga](/assets/imgit/tga.tga)
+
+### PSD
+
+![psd](/assets/imgit/psd.psd)
+
 ## Animation
 
 ### GIF

@@ -31,7 +31,7 @@ function resolveType(uri: string): AssetType | undefined {
     const { image, animation, video, youtube } = config;
     if (uri.includes("youtube.com/watch?v="))
         return youtube ? AssetType.YouTube : undefined;
-    const ext = getFileExtension(uri);
+    const ext = getFileExtension(uri).toLowerCase();
     if (image?.includes(ext)) return AssetType.Image;
     if (animation?.includes(ext)) return AssetType.Animation;
     if (video?.includes(ext)) return AssetType.Video;
