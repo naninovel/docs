@@ -45,8 +45,6 @@ export type Options = Record<string, unknown> & {
     log?: LogOptions | null;
     /** Configure remote assets downloading. */
     download?: DownloadOptions;
-    /** Configure assets probing. */
-    probe?: ProbeOptions;
     /** Configure assets encoding. */
     encode?: EncodeOptions;
     /** Configure HTML building for source assets of specific types. */
@@ -78,12 +76,6 @@ export type DownloadOptions = {
     retries: number;
     /** How long to wait before restarting a failed download, in seconds; 6 by default.*/
     delay: number;
-};
-
-/** Configures asset probing. */
-export type ProbeOptions = {
-    /** ffprobe arguments specified when probing assets. */
-    args: string;
 };
 
 /** Configures asset encoding and optimization. */
