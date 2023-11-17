@@ -4,6 +4,7 @@ import { cache } from "../cache";
 import { DownloadedAsset, ProbedAsset, MediaInfo } from "../asset";
 
 const probing = new Map<string, Promise<MediaInfo | undefined>>;
+const args = "-loglevel error -select_streams v:0 -show_entries stream=width,height,pix_fmt -of csv=p=0";
 
 /** Probes downloaded asset files to evaluate their width and height. */
 export function probe(assets: DownloadedAsset[]): Promise<ProbedAsset[]> {
@@ -23,7 +24,6 @@ async function probeDistinct(asset: DownloadedAsset): Promise<ProbedAsset> {
 async function probeAsset(path: string, url: string): Promise<MediaInfo | undefined> {
     let resolve: (value: (MediaInfo | undefined)) => void;
     probing.set(url, new Promise<MediaInfo | undefined>(r => resolve = r));
-    const args = "-loglevel error -select_streams v:0 -show_entries stream=width,height,pix_fmt -of csv=p=0";
     const { out, err } = await platform.exec(`ffprobe ${args} "${path}"`);
     if (err) config.log?.err?.(`ffprobe error: ${err}`);
     const info = parseOut(out);
