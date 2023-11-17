@@ -20,7 +20,7 @@
 
 ### BMP
 
-![bmp(/assets/imgit/bmp.bmp)
+![bmp](/assets/imgit/bmp.bmp)
 
 ### TIF
 
