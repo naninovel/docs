@@ -30,7 +30,7 @@ export type Options = Record<string, unknown> & {
      *  transform into HTML picture with a fallback to a legacy format, such as png and jpg;
      *  default: png, jpg, jpeg, webp, avif, bmp, tif, tiff, tga and psd. */
     image?: string[];
-    /** File extensions (w/o dot) to encode into looped sequence of av1 still frames under avif container
+    /** File extensions (w/o dot) to encode into looped sequence of av1 frames under avif container
      *  and transform into HTML picture with a fallback to source; default: gif and apng. */
     animation?: string[];
     /** File extensions (w/o dot) to encode into av1 video under mp4 container
