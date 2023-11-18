@@ -8,6 +8,6 @@
     "devDependencies": {
         "typescript": "^5.2.2",
         "@types/node": "^20.9.1",
-        "vitepress": "^1.0.0-rc.27"
+        "vitepress": "^1.0.0-rc.28"
     }
 }
