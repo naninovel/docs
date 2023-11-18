@@ -1,4 +1,5 @@
 import { CapturedAsset, DownloadedAsset, ProbedAsset, EncodedAsset, BuiltAsset } from "../asset";
+import { Encoder } from "../encoder";
 
 /** Configures build server behaviour. */
 export type Options = Record<string, unknown> & {
@@ -78,27 +79,36 @@ export type DownloadOptions = {
     delay: number;
 };
 
-/** Configures asset encoding and optimization. */
+/** Configures assets encoding. */
 export type EncodeOptions = {
-    /** ffmpeg arguments specified when encoding still image assets (png, jpg);
-     *  assign <code>null</code> to disable images encoding. */
-    image: string | null;
-    /** ffmpeg arguments specified when encoding animated image assets (gif);
-     *  assign <code>null</code> to disable animated images encoding. */
-    animation: string | null;
-    /** ffmpeg arguments specified when encoding video assets (mp4);
-     *  assign <code>null</code> to disable video encoding. */
-    video: string | null;
-    /** Poster (covers for lazy-loaded assets) encoding options. */
-    poster: {
-        /** ffmpeg arguments specified when encoding posters. */
-        args: string;
-        /** Scale modifier relative to the source asset to use for generated poster; 0.1 by default. */
-        scale: number;
-        /** ffmpeg filter to apply for generated posters; blur is applied by default.
-         *  assign <code>null</code> to disable poster filtering. */
-        filter: string | null
-    }
+    /** Implementation to probe and encode media files with; specify to swap ffmpeg used by default. */
+    encoder: Encoder;
+    /** Configure image encoding; specify <code>null</code> to disable image encoding. */
+    image: EncodeQuality | null;
+    /** Configure animation encoding; specify <code>null</code> to disable animation encoding. */
+    animation: EncodeQuality | null;
+    /** Configure animation encoding; specify <code>null</code> to disable animation encoding. */
+    video: EncodeQuality | null;
+    /** Configure poster encoding. */
+    poster: PosterOptions;
+};
+
+/** Configures encoding quality. */
+export type EncodeQuality = {
+    /** File size to quality ratio, in 0.0 to 1.0 range; 0 - min. size, 1 - best quality. */
+    quality: number;
+    /** File size to speed ratio, in 0.0 to 1.0 range; 0 - min. size, 1 - fastest encoding. */
+    speed: number;
+};
+
+/** Configures poster generation parameters. */
+export type PosterOptions = EncodeQuality & {
+    /** Scale modifier relative to the source asset to use for generated poster; 0.1 by default.
+     *  Specify <code>null</code> to disable poster scaling. */
+    scale: number | null;
+    /** Blur strength applied to the posters, in 0.0 to 1.0 range; 0.2 by default.
+     *  Specify <code>null</code> to disable poster blur. */
+    blur: number | null;
 };
 
 /** Configures HTML building for source assets of specific types. */

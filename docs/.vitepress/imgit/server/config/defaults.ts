@@ -1,4 +1,5 @@
 import { Options } from "./options";
+import { ffprobe, ffmpeg } from "../encoder";
 import { capture } from "../transform/1-capture";
 import { download } from "../transform/2-download";
 import { probe } from "../transform/3-probe";
@@ -31,14 +32,11 @@ export const defaults: Readonly<Required<Options>> = {
         delay: 6
     },
     encode: {
-        image: "-loglevel error -y -still-picture 1 -crf 23 -cpu-used 6",
-        animation: "-loglevel error -y -crf 23 -cpu-used 6",
-        video: "-loglevel error -y -c:v libaom-av1 -crf 45 -cpu-used 6",
-        poster: {
-            args: "-loglevel error -y -still-picture 1 -crf 50 -cpu-used 6",
-            scale: 0.1,
-            filter: "boxblur=2"
-        }
+        encoder: { probe: ffprobe, encode: ffmpeg },
+        image: { quality: 1, speed: 0.6 },
+        animation: { quality: 1, speed: 0.6 },
+        video: { quality: 0.5, speed: 0.6 },
+        poster: { quality: 0.3, speed: 0.6, scale: 0.1, blur: 0.2 }
     },
     build: {
         image: builds.buildImage,

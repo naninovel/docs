@@ -1,7 +1,7 @@
 import { ProbedAsset, EncodedAsset, AssetType } from "../asset";
 import { config } from "../config";
 import { platform } from "../platform";
-import { getExtension, wait } from "../common";
+import { getExtension } from "../common";
 
 const compatibleExt = new Set<string>(["png", "jpg", "jpeg", "webp"]);
 const encoding = new Map<string, Promise<void>>;
@@ -66,14 +66,32 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
     async function encodeAsset(): Promise<void> {
         if (await hasEverythingEncoded()) return;
         config.log?.info?.(`Encoding ${asset.sourceUrl}`);
+        const quality = asset.type === AssetType.Image
+            ? config.encode.image! : asset.type === AssetType.Animation
+                ? config.encode.animation! : config.encode.video!;
         if (compatibleSourcePath && (!(await platform.fs.exists(compatibleSourcePath)) || asset.dirty))
-            await ffmpeg(originalSourcePath, compatibleSourcePath, { noscale: true });
+            await config.encode.encoder.encode({
+                probe: info, input: originalSourcePath,
+                output: compatibleSourcePath, ...quality
+            });
         if (!(await platform.fs.exists(encodedPath)) || asset.dirty)
-            await ffmpeg(sourcePath, encodedPath);
+            await config.encode.encoder.encode({
+                probe: info, input: sourcePath, output: encodedPath,
+                width: threshold ?? undefined, ...quality
+            });
         if (encoded2xPath && (!(await platform.fs.exists(encoded2xPath)) || asset.dirty))
-            await ffmpeg(sourcePath, encoded2xPath, { noscale: true });
+            await config.encode.encoder.encode({
+                probe: info, input: sourcePath,
+                output: encoded2xPath, ...quality
+            });
         if (posterPath && (!(await platform.fs.exists(posterPath)) || asset.dirty))
-            await ffmpeg(sourcePath, posterPath, { poster: true });
+            await config.encode.encoder.encode({
+                probe: info, input: sourcePath, output: posterPath,
+                width: config.encode.poster!.scale ? config.encode.poster!.scale * info.width : undefined,
+                blur: config.encode.poster!.blur ?? undefined,
+                quality: config.encode.poster!.quality,
+                speed: config.encode.poster!.speed
+            });
     }
 
     async function hasEverythingEncoded() {
@@ -81,38 +99,5 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
             (!compatibleSourcePath || await platform.fs.exists(compatibleSourcePath)) &&
             (!encoded2xPath || await platform.fs.exists(encoded2xPath)) &&
             (!posterPath || await platform.fs.exists(posterPath));
-    }
-
-    async function ffmpeg(src: string, out: string, meta?: { poster?: boolean, noscale?: boolean }): Promise<void> {
-        const poster = meta?.poster;
-        const noscale = meta?.noscale;
-        const cmd = `ffmpeg ${buildArgs()}`;
-        const { err } = await platform.exec(cmd);
-        if (err) config.log?.err?.(`ffmpeg error: ${err}`);
-        await wait(0.01); // Prevent oversaturating CPU utilization.
-
-        function buildArgs(): string {
-            let options;
-            if (asset.type === AssetType.Image) options = config.encode.image;
-            else if (asset.type === AssetType.Animation) options = config.encode.animation;
-            else if (asset.type === AssetType.Video) options = config.encode.video;
-            else options = config.encode.poster.args;
-            const map = info.alpha ? `-map "[rgb]" -map "[a]"` : `-map "[rgb]"`;
-            return `-i "${src}" ${options} ${buildFilter()} ${map} "${out}"`;
-        }
-
-        function buildFilter(): string {
-            const scaling = poster || !noscale && (threshold && info.width > threshold);
-            const scaleModifier = poster ? config.encode.poster.scale : 1;
-            const scale = (scaling ? threshold ?? info.width : info.width) * scaleModifier;
-            const blur = poster && config.encode.poster.filter ? `,${config.encode.poster.filter}` : "";
-            const select = poster && asset.type !== AssetType.Image ? "select=eq(n\\,0)," : "";
-            const rgb = scaling
-                ? `[0:v]${select}scale=${scale}:-1${blur}[rgb];`
-                : `[0:v]${select}copy${blur}[rgb];`;
-            const alphaScale = scaling && info.alpha ? `,scale=${scale}:-1` : "";
-            const alpha = info.alpha ? `[0:v]${select}alphaextract${alphaScale}${blur}[a]` : "";
-            return `-filter_complex "${rgb}${alpha}"`;
-        }
     }
 }
