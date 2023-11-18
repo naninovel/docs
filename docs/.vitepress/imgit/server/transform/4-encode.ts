@@ -1,10 +1,10 @@
 import { ProbedAsset, EncodedAsset, AssetType } from "../asset";
 import { config } from "../config";
 import { platform } from "../platform";
-import { getExtension } from "../common";
+import { getExtension, wait } from "../common";
 
 const compatibleExt = new Set<string>(["png", "jpg", "jpeg", "webp"]);
-const encoding = new Map<string, Promise<EncodedAsset>>;
+const encoding = new Map<string, Promise<void>>;
 
 /** Creates optimized versions of the source asset files. */
 export function encode(assets: ProbedAsset[]): Promise<EncodedAsset[]> {
@@ -22,23 +22,14 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
     const encoded2xPath = buildEncoded2xPath();
     const posterPath = buildPosterPath();
     const encodedAsset = { ...asset, sourcePath, encodedPath, encoded2xPath, posterPath };
-    if (await hasEverythingEncoded()) return encodedAsset;
-    if (encoding.has(asset.sourceUrl)) return encoding.get(asset.sourceUrl)!;
-    encoding.set(asset.sourceUrl, encodeAsset().then(() => encodedAsset));
-    return encodedAsset;
+    if (encoding.has(asset.sourceUrl)) return encoding.get(asset.sourceUrl)!.then(() => encodedAsset);
+    return encoding.set(asset.sourceUrl, encodeAsset()).get(asset.sourceUrl)!.then(() => encodedAsset);
 
     function shouldEncode() {
         if (!asset.sourcePath || !asset.sourceInfo) return false;
         return asset.type === AssetType.Image && config.encode.image ||
             asset.type === AssetType.Animation && config.encode.animation ||
             asset.type === AssetType.Video && config.encode.video;
-    }
-
-    async function hasEverythingEncoded() {
-        return await platform.fs.exists(encodedPath) && !asset.dirty &&
-            (!compatibleSourcePath || await platform.fs.exists(compatibleSourcePath)) &&
-            (!encoded2xPath || await platform.fs.exists(encoded2xPath)) &&
-            (!posterPath || await platform.fs.exists(posterPath));
     }
 
     function buildCompatibleSourcePath() {
@@ -73,6 +64,8 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
     }
 
     async function encodeAsset(): Promise<void> {
+        if (await hasEverythingEncoded()) return;
+        config.log?.info?.(`Encoding ${asset.sourceUrl}`);
         if (compatibleSourcePath && (!(await platform.fs.exists(compatibleSourcePath)) || asset.dirty))
             await ffmpeg(originalSourcePath, compatibleSourcePath, { noscale: true });
         if (!(await platform.fs.exists(encodedPath)) || asset.dirty)
@@ -83,12 +76,20 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
             await ffmpeg(sourcePath, posterPath, { poster: true });
     }
 
+    async function hasEverythingEncoded() {
+        return await platform.fs.exists(encodedPath) && !asset.dirty &&
+            (!compatibleSourcePath || await platform.fs.exists(compatibleSourcePath)) &&
+            (!encoded2xPath || await platform.fs.exists(encoded2xPath)) &&
+            (!posterPath || await platform.fs.exists(posterPath));
+    }
+
     async function ffmpeg(src: string, out: string, meta?: { poster?: boolean, noscale?: boolean }): Promise<void> {
         const poster = meta?.poster;
         const noscale = meta?.noscale;
         const cmd = `ffmpeg ${buildArgs()}`;
         const { err } = await platform.exec(cmd);
         if (err) config.log?.err?.(`ffmpeg error: ${err}`);
+        await wait(0.01); // Prevent oversaturating CPU utilization.
 
         function buildArgs(): string {
             let options;
