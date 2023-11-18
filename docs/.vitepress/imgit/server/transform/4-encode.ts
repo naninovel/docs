@@ -14,7 +14,7 @@ export function encode(assets: ProbedAsset[]): Promise<EncodedAsset[]> {
 async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
     if (!shouldEncode()) return asset;
     const info = asset.sourceInfo!;
-    const threshold = asset.meta?.width ?? config.width;
+    const threshold = evaluateThreshold();
     const originalSourcePath = asset.sourcePath!;
     const compatibleSourcePath = buildCompatibleSourcePath();
     const sourcePath = compatibleSourcePath ?? originalSourcePath;
@@ -30,6 +30,12 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
         return asset.type === AssetType.Image && config.encode.image ||
             asset.type === AssetType.Animation && config.encode.animation ||
             asset.type === AssetType.Video && config.encode.video;
+    }
+
+    function evaluateThreshold(): number | undefined {
+        if (asset.meta?.width) return asset.meta.width;
+        if (!config.width) return undefined;
+        return info.width > config.width ? config.width : undefined;
     }
 
     function buildCompatibleSourcePath() {
@@ -86,11 +92,11 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
             });
         if (posterPath && (!(await platform.fs.exists(posterPath)) || asset.dirty))
             await config.encode.encoder.encode({
-                probe: info, input: sourcePath, output: posterPath,
-                width: config.encode.poster!.scale ? config.encode.poster!.scale * info.width : undefined,
-                blur: config.encode.poster!.blur ?? undefined,
-                quality: config.encode.poster!.quality,
-                speed: config.encode.poster!.speed
+                probe: info, input: sourcePath, output: posterPath, single: true,
+                width: evalPosterWidth(),
+                blur: config.encode.poster.blur ?? undefined,
+                quality: config.encode.poster.quality,
+                speed: config.encode.poster.speed
             });
     }
 
@@ -99,5 +105,10 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
             (!compatibleSourcePath || await platform.fs.exists(compatibleSourcePath)) &&
             (!encoded2xPath || await platform.fs.exists(encoded2xPath)) &&
             (!posterPath || await platform.fs.exists(posterPath));
+    }
+
+    function evalPosterWidth() {
+        if (!config.encode.poster.scale) return undefined;
+        return config.encode.poster.scale * (threshold ? threshold : info.width);
     }
 }
