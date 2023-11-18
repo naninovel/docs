@@ -20,6 +20,8 @@ export type EncodeProps = {
     quality: number;
     /** File size to speed ratio, in 0.0 to 1.0 range; 0 - min. size, 1 - fastest encoding. */
     speed: number;
+    /** Whether single frame should be encoded in case input file has multiple frames. */
+    single?: boolean;
     /** When specified, content is scaled to the specified width preserving the aspect. */
     width?: number;
     /** When specified, blur filter is applied with strength in 0.0 to 1.0 range. */

@@ -2,6 +2,7 @@ import { ProbeResult } from "./encoder";
 import { platform } from "../platform";
 import { config } from "../config";
 
+// https://ffmpeg.org/ffprobe.html
 const args = "-loglevel error -select_streams v:0 -show_entries stream=width,height,pix_fmt -of csv=p=0";
 
 export async function ffprobe(path: string): Promise<ProbeResult> {
