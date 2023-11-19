@@ -55,12 +55,12 @@ function buildPicture(asset: EncodedAsset): string {
     const size = buildSizes(asset.sourceInfo);
     const cls = asset.type === AssetType.Image ? config.style.className.image : config.style.className.animation;
     const x2 = encoded2xSrc ? `, ${encoded2xSrc} 2x` : "";
-    const lazy = asset.meta?.lazy === false ? "" : `loading="lazy" decoding="async"`;
+    const load = asset.meta?.lazy === false ? `decoding="sync"` : `loading="lazy" decoding="async"`;
     return `
 <div data-imgit-picture class="${config.style.className.container}">
     <picture>
         ${encodedSrc ? `<source srcset="${encodedSrc} 1x${x2}" type="image/avif"/>` : ""}
-        <img src="${src}" alt="${alt}" class="${cls}" ${size} ${lazy}/>
+        <img src="${src}" alt="${alt}" class="${cls}" ${size} ${load}/>
     </picture>
     ${posterSrc ? buildPoster(posterSrc, size) : ""}
 </div>`;
@@ -69,10 +69,12 @@ function buildPicture(asset: EncodedAsset): string {
 function buildSources(asset: EncodedAsset) {
     const path = platform.path;
     const root = buildServeRoot(asset);
-    const src = path.join(root, path.basename(asset.sourceUrl));
+    const src = path.join(root, path.basename(asset.sourcePath ?? asset.sourceUrl));
     const encodedSrc = asset.encodedPath ? path.join(root, path.basename(asset.encodedPath)) : undefined;
     const encoded2xSrc = asset.encoded2xPath ? path.join(root, path.basename(asset.encoded2xPath)) : undefined;
-    const posterSrc = asset.posterPath ? path.join(root, path.basename(asset.posterPath)) : config.poster ?? undefined;
+    const posterSrc = asset.posterPath ?
+        path.join(root, path.basename(asset.posterPath)) :
+        (config.poster === "auto" ? undefined : config.poster);
     return { src, encodedSrc, encoded2xSrc, posterSrc };
 }
 
@@ -91,5 +93,12 @@ function buildSizes(info?: SourceInfo): string {
 }
 
 function buildPoster(src: string, size: string): string {
-    return `<img src="${src}" class="${config.style.className.poster}" ${size} decoding="sync"/>`;
+    const cls = config.style.className.poster;
+    const avif = src.endsWith(".avif");
+    const blank = "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
+    return `
+<picture data-imgit-poster>
+    ${avif ? `<source srcset="${src}" type="image/avif"/>` : ""}
+    <img src="${avif ? blank : src}" alt="poster" class="${cls}" ${size} decoding="sync"/>
+</picture>`;
 }

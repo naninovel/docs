@@ -59,7 +59,7 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
     }
 
     function buildPosterPath() {
-        if (config.poster === "auto")
+        if (config.poster === "auto" && asset.meta?.lazy !== false)
             return `${buildBasePath()}-poster.avif`;
         return undefined;
     }

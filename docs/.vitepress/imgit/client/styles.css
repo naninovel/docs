@@ -2,10 +2,10 @@
     display: flex;
 }
 
-.imgit-poster {
+[data-imgit-poster] {
     position: absolute;
 }
 
-.imgit-container[data-imgit-loaded] > .imgit-poster {
+[data-imgit-loaded] [data-imgit-poster] {
     opacity: 0;
 }
