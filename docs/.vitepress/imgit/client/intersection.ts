@@ -20,12 +20,9 @@ function handleIntersections(entries: IntersectionObserverEntry[], observer: Int
 
 function handleIntersection(entry: IntersectionObserverEntry, observer: IntersectionObserver) {
     for (const child of entry.target.children)
-        if (isSourceElement(child) && child.dataset.src)
+        if (child instanceof HTMLSourceElement && child.dataset.src)
             child.src = child.dataset.src;
-    (entry.target as HTMLVideoElement).load();
+    if (entry.target instanceof HTMLVideoElement)
+        entry.target.load();
     observer.unobserve(entry.target);
-}
-
-function isSourceElement(element: Element): element is HTMLSourceElement {
-    return element.tagName === "SOURCE";
 }

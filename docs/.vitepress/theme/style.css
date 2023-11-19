@@ -312,7 +312,7 @@ table > tfoot:not(:last-child) {
     display: block;
 }
 
-.imgit-image, .imgit-animation, .imgit-video {
+.imgit-image, .imgit-animation, .imgit-video, .imgit-poster {
     border-radius: 8px;
 }
 

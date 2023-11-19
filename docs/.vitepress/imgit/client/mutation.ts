@@ -27,13 +27,11 @@ function handleMutation(mutation: MutationRecord) {
 }
 
 function handleAddedNode(added: HTMLElement) {
-    for (const element of added.querySelectorAll("video.imgit-video"))
-        if (element instanceof HTMLElement)
-            observeIntersections(element);
+    for (const element of added.querySelectorAll("[data-imgit-video]"))
+        observeIntersections(element.querySelector("video")!);
 }
 
 function handleRemovedNode(removed: HTMLElement) {
-    for (const element of removed.querySelectorAll("video.imgit-video"))
-        if (element instanceof HTMLElement)
-            unobserveIntersections(element);
+    for (const element of removed.querySelectorAll("[data-imgit-video]"))
+        unobserveIntersections(element.querySelector("video")!);
 }
