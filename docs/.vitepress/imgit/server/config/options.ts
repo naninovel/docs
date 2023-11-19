@@ -143,6 +143,8 @@ export type TransformOptions = {
 export type StyleOptions = {
     /** Class names assigned to generated HTML. */
     className: {
+        /** Class name assigned to div containing generated HTML; imgit-container by default. */
+        container: string;
         /** Class name assigned to generated images HTML; imgit-image by default. */
         image: string;
         /** Class name assigned to generated video HTML; imgit-video by default. */
@@ -151,5 +153,7 @@ export type StyleOptions = {
         animation: string;
         /** Class name assigned to generated YouTube HTML; imgit-youtube by default. */
         youtube: string;
+        /** Class name assigned to generated poster HTML; imgit-poster by default. */
+        poster: string;
     }
 }

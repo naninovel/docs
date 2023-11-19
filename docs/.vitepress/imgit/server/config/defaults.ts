@@ -54,10 +54,12 @@ export const defaults: Readonly<Required<Options>> = {
     },
     style: {
         className: {
+            container: "imgit-container",
             image: "imgit-image",
             animation: "imgit-animation",
             video: "imgit-video",
-            youtube: "imgit-youtube"
+            youtube: "imgit-youtube",
+            poster: "imgit-poster"
         }
     }
 };

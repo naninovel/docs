@@ -1,0 +1,15 @@
+.imgit-container {
+
+}
+
+.imgit-container > * {
+    position: absolute;
+}
+
+.imgit-poster {
+    background-size: cover;
+}
+
+.imgit-container[data-imgit-loaded] > .imgit-poster {
+    opacity: 0;
+}
