@@ -1,13 +1,9 @@
 .imgit-container {
-
-}
-
-.imgit-container > * {
-    position: absolute;
+    display: flex;
 }
 
 .imgit-poster {
-    background-size: cover;
+    position: absolute;
 }
 
 .imgit-container[data-imgit-loaded] > .imgit-poster {

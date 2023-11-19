@@ -26,15 +26,15 @@ export async function buildAnimation(asset: EncodedAsset): Promise<string> {
 
 export async function buildVideo(asset: EncodedAsset): Promise<string> {
     const { src, encodedSrc, posterSrc } = buildSources(asset);
-    const sizes = buildSizes(asset.sourceInfo);
+    const size = buildSizes(asset.sourceInfo);
     const cls = `class="${config.style.className.video}"`;
     return `
-<div data-imgit-video class="${config.style.className.container}" style="${buildSizeStyle(sizes)}">
-    <video preload="none" loop autoplay muted playsinline ${cls} ${buildSizeAttr(sizes)}>
+<div data-imgit-video class="${config.style.className.container}">
+    <video preload="none" loop autoplay muted playsinline ${cls} ${size}>
         ${encodedSrc ? `<source data-src="${encodedSrc}" type="video/mp4; codecs=av01.0.05M.08">` : ""}
         <source data-src="${src}" type="video/mp4">
     </video>
-    ${buildPoster(posterSrc, sizes)}
+    ${posterSrc ? buildPoster(posterSrc, size) : ""}
 </div>`;
 }
 
@@ -52,18 +52,17 @@ export async function buildYouTube(asset: EncodedAsset): Promise<string> {
 function buildPicture(asset: EncodedAsset): string {
     const { src, encodedSrc, encoded2xSrc, posterSrc } = buildSources(asset);
     const alt = asset.title ?? "";
-    const sizes = buildSizes(asset.sourceInfo);
+    const size = buildSizes(asset.sourceInfo);
     const cls = asset.type === AssetType.Image ? config.style.className.image : config.style.className.animation;
     const x2 = encoded2xSrc ? `, ${encoded2xSrc} 2x` : "";
-    const sizeStyle = buildSizeStyle(sizes);
     const lazy = asset.meta?.lazy === false ? "" : `loading="lazy" decoding="async"`;
     return `
-<div data-imgit-picture class="${config.style.className.container}" style="${sizeStyle}">
+<div data-imgit-picture class="${config.style.className.container}">
     <picture>
         ${encodedSrc ? `<source srcset="${encodedSrc} 1x${x2}" type="image/avif"/>` : ""}
-        <img src="${src}" alt="${alt}" class="${cls}" ${buildSizeAttr(sizes)} ${lazy} style="${sizeStyle}"/>
+        <img src="${src}" alt="${alt}" class="${cls}" ${size} ${lazy}/>
     </picture>
-    ${buildPoster(posterSrc, sizes)}
+    ${posterSrc ? buildPoster(posterSrc, size) : ""}
 </div>`;
 }
 
@@ -83,27 +82,14 @@ function buildServeRoot(asset: EncodedAsset): string {
     return platform.path.join(config.serve, config.remote);
 }
 
-function buildSizeAttr(size?: { width: number, height: number }) {
-    if (!size) return "";
-    return `width="${size.width}" height="${size.height}"`;
-}
-
-function buildSizeStyle(size?: { width: number, height: number }) {
-    if (!size) return "";
-    return `width: ${size.width}px; height: ${size.height}px;`;
-}
-
-function buildSizes(info?: SourceInfo): { width: number; height: number; } | undefined {
-    if (!info) return undefined;
+function buildSizes(info?: SourceInfo): string {
+    if (!info) return "";
     const mod = config.width && info.width > config.width ? config.width / info.width : 1;
     const width = Math.floor(info.width * mod);
     const height = Math.floor(info.height * mod);
-    return { width, height };
+    return `width="${width}" height="${height}"`;
 }
 
-function buildPoster(src?: string, sizes?: { width: number; height: number; }): string {
-    if (!src || !sizes) return "";
-    const cls = config.style.className.poster;
-    const sizeStyle = buildSizeStyle(sizes);
-    return `<div class="${cls}" style="background-image: url('${src}'); ${sizeStyle};"/>`;
+function buildPoster(src: string, size: string): string {
+    return `<img src="${src}" class="${config.style.className.poster}" ${size} decoding="sync"/>`;
 }
