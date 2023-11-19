@@ -316,6 +316,10 @@ table > tfoot:not(:last-child) {
     border-radius: 8px;
 }
 
+.imgit-video {
+    height: auto !important;
+}
+
 .imgit-youtube {
     display: block;
     position: relative;

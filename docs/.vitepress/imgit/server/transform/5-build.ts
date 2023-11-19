@@ -44,9 +44,9 @@ export async function buildYouTube(asset: EncodedAsset): Promise<string> {
     const id = asset.sourceUrl.split("youtube.com/watch?v=")[1];
     const source = `https://www.youtube-nocookie.com/embed/${id}`;
     return `
-<span data-imgit-youtube ${cls}>
+<div data-imgit-youtube ${cls}>
     <iframe title="${title}" src="${source}" allowfullscreen></iframe>
-</span>`;
+</div>`;
 }
 
 function buildPicture(asset: EncodedAsset): string {
