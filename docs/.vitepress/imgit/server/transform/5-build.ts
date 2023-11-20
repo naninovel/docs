@@ -30,8 +30,8 @@ export async function buildVideo(asset: EncodedAsset): Promise<string> {
     const size = buildSizes(asset.sourceInfo);
     const codec = "av01.0.04M.08"; // https://jakearchibald.com/2022/html-codecs-parameter-for-av1
     return `
-<div data-imgit-video class="${config.style.className.container}">
-    <video preload="none" loop autoplay muted playsinline ${cls} ${size}>
+<div class="${config.style.className.container}">
+    <video data-imgit-lazy preload="none" loop autoplay muted playsinline ${cls} ${size}>
         ${encodedSrc ? `<source data-src="${encodedSrc}" type="video/mp4; codecs=${codec}">` : ""}
         <source data-src="${src}" type="video/mp4">
     </video>
@@ -45,7 +45,7 @@ export async function buildYouTube(asset: EncodedAsset): Promise<string> {
     const id = asset.sourceUrl.split("youtube.com/watch?v=")[1];
     const source = `https://www.youtube-nocookie.com/embed/${id}`;
     return `
-<div data-imgit-youtube ${cls}>
+<div ${cls}>
     <iframe title="${title}" src="${source}" allowfullscreen></iframe>
 </div>`;
 }
@@ -56,14 +56,16 @@ function buildPicture(asset: EncodedAsset): string {
     const size = buildSizes(asset.sourceInfo);
     const cls = asset.type === AssetType.Image ? config.style.className.image : config.style.className.animation;
     const x2 = encoded2xSrc ? `, ${encoded2xSrc} 2x` : "";
-    const load = asset.meta?.lazy === false ? `decoding="sync"` : `loading="lazy" decoding="async"`;
+    const lazy = asset.meta?.lazy !== false;
+    const load = lazy ? `loading="lazy" decoding="async"` : `decoding="sync"`;
+    const data = lazy ? `data-imgit-lazy` : ""
     return `
-<div data-imgit-picture class="${config.style.className.container}">
+<div class="${config.style.className.container}">
     <picture>
         ${encodedSrc ? `<source srcset="${encodedSrc} 1x${x2}" type="image/avif"/>` : ""}
-        <img src="${src}" alt="${alt}" class="${cls}" ${size} ${load}/>
+        <img ${data} src="${src}" alt="${alt}" class="${cls}" ${size} ${load}/>
     </picture>
-    ${posterSrc ? buildPoster(posterSrc, size) : ""}
+    ${lazy && posterSrc ? buildPoster(posterSrc, size) : ""}
 </div>`;
 }
 

@@ -1,12 +1,12 @@
 const observer = canObserve() ? new IntersectionObserver(handleIntersections) : undefined;
 const edge = isEdge();
 
-export function observeIntersections(element: HTMLElement) {
-    observer?.observe(element);
+export function observeVideo(video: HTMLVideoElement) {
+    observer?.observe(video);
 }
 
-export function unobserveIntersections(element: HTMLElement) {
-    observer?.unobserve(element);
+export function unobserveVideo(video: HTMLVideoElement) {
+    observer?.unobserve(video);
 }
 
 function canObserve() {
@@ -21,11 +21,14 @@ function handleIntersections(entries: IntersectionObserverEntry[], observer: Int
 
 function handleIntersection(entry: IntersectionObserverEntry, observer: IntersectionObserver) {
     for (const child of entry.target.children)
-        if (child instanceof HTMLSourceElement && child.dataset.src && !av1OnEdge(child))
+        if (isSource(child) && child.dataset.src && !av1OnEdge(child))
             child.src = child.dataset.src;
-    if (entry.target instanceof HTMLVideoElement)
-        entry.target.load();
+    (<HTMLVideoElement>entry.target).load();
     observer.unobserve(entry.target);
+}
+
+function isSource(element: Element): element is HTMLSourceElement {
+    return "src" in element;
 }
 
 function av1OnEdge(source: HTMLSourceElement) {
