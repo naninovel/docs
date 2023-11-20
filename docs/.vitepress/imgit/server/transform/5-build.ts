@@ -1,6 +1,6 @@
+import { config } from "../config";
 import { platform } from "../platform";
 import { EncodedAsset, BuiltAsset, SourceInfo, AssetType } from "../asset";
-import { config } from "../config";
 
 /** Builds HTML for the optimized assets to overwrite source syntax. */
 export async function build(assets: EncodedAsset[]): Promise<BuiltAsset[]> {
@@ -26,8 +26,8 @@ export async function buildAnimation(asset: EncodedAsset): Promise<string> {
 
 export async function buildVideo(asset: EncodedAsset): Promise<string> {
     const { src, encodedSrc, posterSrc } = buildSources(asset);
-    const size = buildSizes(asset.sourceInfo);
     const cls = `class="${config.style.className.video}"`;
+    const size = buildSizes(asset.sourceInfo);
     const codec = "av01.0.04M.08"; // https://jakearchibald.com/2022/html-codecs-parameter-for-av1
     return `
 <div data-imgit-video class="${config.style.className.container}">
