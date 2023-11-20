@@ -4,6 +4,7 @@ import { l10n, md, vite } from "./ext";
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
     title: "Naninovel",
+    titleTemplate: ":title • Naninovel",
     cleanUrls: true,
     lastUpdated: true,
     head: [
