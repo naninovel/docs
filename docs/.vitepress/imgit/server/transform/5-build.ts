@@ -28,10 +28,11 @@ export async function buildVideo(asset: EncodedAsset): Promise<string> {
     const { src, encodedSrc, posterSrc } = buildSources(asset);
     const size = buildSizes(asset.sourceInfo);
     const cls = `class="${config.style.className.video}"`;
+    const codec = "av01.0.04M.08"; // https://jakearchibald.com/2022/html-codecs-parameter-for-av1
     return `
 <div data-imgit-video class="${config.style.className.container}">
     <video preload="none" loop autoplay muted playsinline ${cls} ${size}>
-        ${encodedSrc ? `<source data-src="${encodedSrc}" type="video/mp4; codecs=av01.0.05M.08">` : ""}
+        ${encodedSrc ? `<source data-src="${encodedSrc}" type="video/mp4; codecs=${codec}">` : ""}
         <source data-src="${src}" type="video/mp4">
     </video>
     ${posterSrc ? buildPoster(posterSrc, size) : ""}
