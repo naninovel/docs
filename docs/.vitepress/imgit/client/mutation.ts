@@ -1,10 +1,10 @@
-import { observeIntersections, unobserveIntersections } from "./intersection";
+import { observeVideo, unobserveVideo } from "./intersection";
 
 const observer = canObserve() ? new MutationObserver(handleMutations) : undefined;
 
 export function observeMutations() {
     observer?.observe(document.body, { childList: true, subtree: true });
-    if (canObserve()) handleAddedNode(document.body);
+    if (canObserve()) handleAdded(document.body);
 }
 
 function canObserve() {
@@ -17,21 +17,26 @@ function handleMutations(mutations: MutationRecord[]) {
 }
 
 function handleMutation(mutation: MutationRecord) {
-    if (mutation.type !== "childList") return;
     for (const node of mutation.addedNodes)
-        if (node instanceof HTMLElement)
-            handleAddedNode(node);
+        if (isElement(node)) handleAdded(node);
     for (const node of mutation.removedNodes)
-        if (node instanceof HTMLElement)
-            handleRemovedNode(node);
+        if (isElement(node)) handleRemoved(node);
 }
 
-function handleAddedNode(added: HTMLElement) {
-    for (const element of added.querySelectorAll("[data-imgit-video]"))
-        observeIntersections(element.querySelector("video")!);
+function handleAdded(added: Element) {
+    for (const element of added.querySelectorAll("[data-imgit-lazy]"))
+        if (isVideo(element)) observeVideo(element);
 }
 
-function handleRemovedNode(removed: HTMLElement) {
-    for (const element of removed.querySelectorAll("[data-imgit-video]"))
-        unobserveIntersections(element.querySelector("video")!);
+function handleRemoved(removed: Element) {
+    for (const element of removed.querySelectorAll("[data-imgit-lazy]"))
+        if (isVideo(element)) unobserveVideo(element);
+}
+
+function isElement(node: Node): node is Element {
+    return "querySelector" in node;
+}
+
+function isVideo(element: Element): element is HTMLVideoElement {
+    return "getVideoPlaybackQuality" in element;
 }
