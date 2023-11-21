@@ -57,7 +57,7 @@ async function downloadAsset(asset: CapturedAsset): Promise<DownloadedAsset> {
         const delay = Number(response.headers.get("retry-after"));
         if (isNaN(delay)) throw Error(`${asset.sourceUrl}: 429 without retry-after header (${delay}).`);
         log?.warn?.(`Too many fetch requests; the host asked to wait ${delay} seconds.`);
-        await wait(delay + 1);
+        await wait(delay);
         return fetchWithTimeout(asset.sourceUrl, sourcePath);
     }
 }
