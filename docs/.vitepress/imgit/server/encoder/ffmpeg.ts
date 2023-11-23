@@ -10,7 +10,7 @@ export async function ffmpeg(props: EncodeProps): Promise<void> {
     function buildArgs(): string {
         // https://trac.ffmpeg.org/wiki/Encode/AV1
         const still = isImage(props.input) ? "-still-picture 1" : null;
-        const codec = isVideo(props.input) ? "-c:v libaom-av1" : null;
+        const codec = isVideo(props.input) ? "-c:v libaom-av1 -an" : null;
         const quality = `-crf ${lerp(63, 23, props.quality)} -cpu-used ${props.speed * 10}`;
         const filter = buildFilter();
         const map = props.probe.alpha ? `-map "[rgb]" -map "[a]"` : `-map "[rgb]"`;
