@@ -1,7 +1,6 @@
-import { ProbedAsset, EncodedAsset, AssetType } from "../asset";
-import { config } from "../config";
+import { ProbedAsset, EncodedAsset, AssetType, getExtension } from "../common";
 import { platform } from "../platform";
-import { getExtension } from "../common";
+import { config } from "../config";
 
 const compatibleExt = new Set<string>(["png", "jpg", "jpeg", "webp"]);
 const encoding = new Map<string, Promise<void>>;

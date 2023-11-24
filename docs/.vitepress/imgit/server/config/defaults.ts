@@ -1,5 +1,6 @@
 import { Options } from "./options";
 import { logTTY } from "../common";
+import * as cache from "../cache";
 import { ffprobe, ffmpeg } from "../encoder";
 import { capture } from "../transform/1-capture";
 import { download } from "../transform/2-download";
@@ -11,7 +12,6 @@ import { rewrite } from "../transform/6-rewrite";
 /** Default build server configuration. */
 export const defaults: Readonly<Required<Options>> = {
     local: "./public/assets",
-    cache: "./node_modules/.cache/imgit",
     serve: "/assets",
     remote: "remote",
     regex: [/!\[(?<title>.*?)(?<meta>{.+?})?]\((?<uri>.+?)\)/g],
@@ -22,6 +22,11 @@ export const defaults: Readonly<Required<Options>> = {
     video: ["mp4", "webm"],
     youtube: true,
     poster: "auto",
+    cache: {
+        save: cache.save,
+        load: cache.load,
+        root: "./node_modules/.cache/imgit"
+    },
     log: {
         info: logTTY,
         warn: console.warn,

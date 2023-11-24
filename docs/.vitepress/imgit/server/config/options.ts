@@ -1,14 +1,12 @@
-import { CapturedAsset, DownloadedAsset, ProbedAsset, EncodedAsset, BuiltAsset } from "../asset";
+import { Context, CapturedAsset, DownloadedAsset, ProbedAsset, EncodedAsset, BuiltAsset } from "../common";
 import { Encoder } from "../encoder";
+import { Cache } from "../cache";
 
 /** Configures build server behaviour. */
 export type Options = Record<string, unknown> & {
     /** Local directory where the asset files are stored;
      *  <code>./public/assets</code> by default. */
     local?: string;
-    /** Local directory where the cache files are stored;
-     *  <code>./node_modules/.cache/imgit</code> by default. */
-    cache?: string;
     /** URL prefix for served asset sources: relative to host or absolute when serving from a CDN;
      *  <code>/assets</code> by default. */
     serve?: string;
@@ -44,6 +42,8 @@ export type Options = Record<string, unknown> & {
     poster?: string | null | "auto";
     /** Configure logging behaviour; assign <code>null</code> to disable logging. */
     log?: LogOptions | null;
+    /** Configure caching behaviour; assign <code>null</code> to disable caching. */
+    cache?: CacheOptions | null;
     /** Configure remote assets downloading. */
     download?: DownloadOptions;
     /** Configure assets encoding. */
@@ -126,18 +126,29 @@ export type BuildOptions = {
 /** Configures document transformation process. */
 export type TransformOptions = {
     /** 1st phase: finds assets to transform in the document with specified content. */
-    capture: (content: string) => Promise<CapturedAsset[]>;
+    capture: (content: string, ctx: Context) => Promise<CapturedAsset[]>;
     /** 2nd phase: downloads file content for the captured assets. */
-    download: (assets: CapturedAsset[]) => Promise<DownloadedAsset[]>;
+    download: (assets: CapturedAsset[], ctx: Context) => Promise<DownloadedAsset[]>;
     /** 3rd phase: probes downloaded asset files to evaluate their width and height. */
-    probe: (assets: DownloadedAsset[]) => Promise<ProbedAsset[]>;
+    probe: (assets: DownloadedAsset[], ctx: Context) => Promise<ProbedAsset[]>;
     /** 4th phase: creates optimized versions of the source asset files. */
-    encode: (assets: ProbedAsset[]) => Promise<EncodedAsset[]>;
+    encode: (assets: ProbedAsset[], ctx: Context) => Promise<EncodedAsset[]>;
     /** 5th phase: builds HTML for the optimized assets to overwrite source syntax. */
-    build: (assets: EncodedAsset[]) => Promise<BuiltAsset[]>;
+    build: (assets: EncodedAsset[], ctx: Context) => Promise<BuiltAsset[]>;
     /** 6th phase: rewrites content of the document with specified assets; returns modified document content. */
-    rewrite: (content: string, assets: BuiltAsset[]) => Promise<string>;
+    rewrite: (content: string, assets: BuiltAsset[], ctx: Context) => Promise<string>;
 };
+
+/** Configures server cache. */
+export type CacheOptions = {
+    /** Local directory where the cache files are stored;
+     *  <code>./node_modules/.cache/imgit</code> by default. */
+    root: string;
+    /** Persists specified cache instance for consequent run. */
+    save: (cache: Cache) => Promise<void>;
+    /** Loads cache instance of the previous run. */
+    load: () => Promise<Cache>;
+}
 
 /** Configures generated CSS styles. */
 export type StyleOptions = {

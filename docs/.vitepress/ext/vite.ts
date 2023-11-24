@@ -8,19 +8,8 @@ export const vite: UserConfig = {
         enforce: "pre",
         skip: (_, id) => !id.endsWith(".md"),
         local: "./docs/public/assets",
-        cache: "./docs/public/assets/remote/.cache",
-        width: 720,
-        // poster: "/assets/img/video-poster.svg",
-        build: { // Hack for chrome. TODO: Remove after implementing posters w/o video.poster attribute.
-            ...defaults.build,
-            video: async asset => {
-                const base = await defaults.build.video(asset);
-                const mod = asset.sourceInfo!.width > 720 ? 720 / asset.sourceInfo!.width : 1;
-                const width = Math.floor(asset.sourceInfo!.width * mod);
-                const height = Math.floor(asset.sourceInfo!.height * mod);
-                return base.replace("width=", `style="width: ${width}px; height: ${height}px;" width=`);
-            }
-        }
+        cache: { ...defaults.cache!, root: "./docs/public/assets/remote/.cache" },
+        width: 720
     })],
     resolve: {
         alias: [

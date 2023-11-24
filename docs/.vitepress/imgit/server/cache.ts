@@ -1,22 +1,25 @@
 import { platform } from "./platform";
 import { config } from "./config";
-import { ensureDir } from "./common";
-import { SourceInfo } from "./asset";
+import { SourceInfo, ensureDir } from "./common";
 
-export const cache = {
-    probes: {} as Record<string, SourceInfo | undefined>
+export type Cache = {
+    probes: Record<string, SourceInfo | undefined>
 };
 
-export async function load() {
+export async function load(): Promise<Cache> {
+    const cache: Cache = { probes: {} };
+    if (!config.cache) return cache;
     for (const prop of Object.getOwnPropertyNames(cache)) {
         const filepath = buildCacheFilePath(prop);
         if (await platform.fs.exists(filepath))
             (<Record<string, unknown>>cache)[prop] = await read(filepath);
     }
+    return cache;
 }
 
-export async function save() {
-    await ensureDir(config.cache);
+export async function save(cache: Cache): Promise<void> {
+    if (!config.cache) return;
+    await ensureDir(config.cache.root);
     for (const prop of Object.getOwnPropertyNames(cache)) {
         const filepath = buildCacheFilePath(prop);
         await write(filepath, (<Record<string, unknown>>cache)[prop]);
@@ -32,5 +35,5 @@ function write(filepath: string, object: unknown) {
 }
 
 function buildCacheFilePath(prop: string) {
-    return platform.path.join(config.cache, `${prop}.json`);
+    return platform.path.join(config.cache!.root, `${prop}.json`);
 }

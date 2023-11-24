@@ -1,5 +1,4 @@
-import { CapturedAsset, AssetType } from "../asset";
-import { getExtension } from "../common";
+import { CapturedAsset, AssetType, getExtension } from "../common";
 import { config } from "../config";
 
 /** Finds assets to transform in the document with specified content. */
