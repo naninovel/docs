@@ -1,9 +1,9 @@
 import { Cache } from "../cache";
 
-/** Shared state of server. */
+/** Shared state of a build operation. */
 export type Context = {
-    /** Cached results of the previous server runs. */
+    /** Cached results of a previous build operation. */
     cache: Cache;
-    /** Fetch operations performed by the server during current run. */
+    /** Fetch operations performed during current build. */
     fetches: Array<Promise<void>>;
 };
