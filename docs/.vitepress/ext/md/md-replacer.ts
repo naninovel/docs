@@ -1,4 +1,3 @@
-// noinspection TypeScriptUnresolvedReference
 // Based on https://github.com/rlidwka/markdown-it-regexp.
 
 import { inherits } from "node:util";
@@ -7,7 +6,7 @@ import { MarkdownEnv, MarkdownRenderer } from "vitepress";
 let instanceId = 0;
 
 export function Replacer(regexp: RegExp, replace: (match: string[], env: MarkdownEnv) => string) {
-    let self = md => self.init(md);
+    let self: any = (md: any) => self.init(md);
     self.__proto__ = Replacer.prototype;
     self.regexp = new RegExp("^" + regexp.source, regexp.flags);
     self.replace = replace;
@@ -23,7 +22,7 @@ Replacer.prototype.init = function (md: MarkdownRenderer) {
     md.renderer.rules[this.id] = this.render.bind(this);
 };
 
-Replacer.prototype.parse = function (state, silent) {
+Replacer.prototype.parse = function (state: any, silent: any) {
     let match = this.regexp.exec(state.src.slice(state.pos));
     if (!match) return false;
 
@@ -35,6 +34,6 @@ Replacer.prototype.parse = function (state, silent) {
     return true;
 };
 
-Replacer.prototype.render = function (tokens, id, options, env: MarkdownEnv) {
+Replacer.prototype.render = function (tokens: any, id: any, options: any, env: MarkdownEnv) {
     return this.replace(tokens[id].meta.match, env);
 };
