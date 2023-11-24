@@ -1,6 +1,6 @@
-import { config } from "../config";
+import { EncodedAsset, BuiltAsset, SourceInfo, AssetType } from "../common";
 import { platform } from "../platform";
-import { EncodedAsset, BuiltAsset, SourceInfo, AssetType } from "../asset";
+import { config } from "../config";
 
 /** Builds HTML for the optimized assets to overwrite source syntax. */
 export async function build(assets: EncodedAsset[]): Promise<BuiltAsset[]> {
@@ -58,7 +58,7 @@ function buildPicture(asset: EncodedAsset): string {
     const x2 = encoded2xSrc ? `, ${encoded2xSrc} 2x` : "";
     const lazy = asset.meta?.lazy !== false;
     const load = lazy ? `loading="lazy" decoding="async"` : `decoding="sync"`;
-    const data = lazy ? `data-imgit-lazy` : ""
+    const data = lazy ? `data-imgit-lazy` : "";
     return `
 <div class="${config.style.className.container}">
     <picture>

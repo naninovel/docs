@@ -1,4 +1,4 @@
-import { BuiltAsset } from "../asset";
+import { BuiltAsset } from "../common";
 
 /** Rewrites content of the document with specified assets; returns modified document content. */
 export async function rewrite(content: string, assets: BuiltAsset[]): Promise<string> {
