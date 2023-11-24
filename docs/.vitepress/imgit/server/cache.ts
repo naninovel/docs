@@ -2,7 +2,9 @@ import { platform } from "./platform";
 import { config } from "./config";
 import { SourceInfo, ensureDir } from "./common";
 
+/** Cached results of a previous build operation. */
 export type Cache = {
+    /** Results of assets probing. */
     probes: Record<string, SourceInfo | undefined>
 };
 
