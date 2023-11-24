@@ -1,5 +1,5 @@
 const observer = canObserve() ? new IntersectionObserver(handleIntersections) : undefined;
-const edge = isEdge();
+const edge = observer && isEdge();
 
 export function observeVideo(video: HTMLVideoElement) {
     observer?.observe(video);

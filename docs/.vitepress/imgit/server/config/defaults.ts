@@ -1,4 +1,5 @@
 import { Options } from "./options";
+import { logTTY } from "../common";
 import { ffprobe, ffmpeg } from "../encoder";
 import { capture } from "../transform/1-capture";
 import { download } from "../transform/2-download";
@@ -22,7 +23,7 @@ export const defaults: Readonly<Required<Options>> = {
     youtube: true,
     poster: "auto",
     log: {
-        info: console.info,
+        info: logTTY,
         warn: console.warn,
         err: console.error
     },
