@@ -13,12 +13,15 @@ export const cfg: Readonly<Options> = defaults;
 /** Specifies build server configuration. */
 export function configure(prefs: Prefs) {
     for (const prop of Object.getOwnPropertyNames(prefs))
-        assign(prefs, cfg, prop);
+        merge(prefs, cfg, prop);
 }
 
-function assign(from: Record<string, unknown>, to: Record<string, unknown>, prop: string) {
-    if (from[prop] !== null && typeof from[prop] === "object" && !Array.isArray(from[prop]))
-        for (const inner of Object.getOwnPropertyNames(from[prop]))
-            assign(<never>from[prop], <never>to[prop], inner);
-    else to[prop] = from[prop];
+function merge(from: Record<string, unknown>, to: Record<string, unknown>, prop: string) {
+    if (!isSubOptions(from[prop])) to[prop] = from[prop];
+    else for (const sub of Object.getOwnPropertyNames(from[prop]))
+        merge(<never>from[prop], <never>to[prop], sub);
+}
+
+function isSubOptions(obj: unknown): obj is Record<string, unknown> {
+    return obj !== null && typeof obj === "object" && !Array.isArray(obj);
 }
