@@ -45,5 +45,6 @@ export const bun: Readonly<Platform> = {
         const err = failed ? Error(await new Response(proc.stderr).text()) : undefined;
         return { out, err };
     },
-    fetch: (url, abort) => fetch(url, { signal: abort })
+    fetch: (url, abort) => fetch(url, { signal: abort }),
+    wait: (seconds) => new Promise(resolve => setTimeout(resolve, seconds * 1000))
 };

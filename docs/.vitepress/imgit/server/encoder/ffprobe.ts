@@ -1,13 +1,13 @@
 import { ProbeResult } from "./encoder";
-import { platform } from "../platform";
-import { config } from "../config";
+import { std } from "../platform";
+import { cfg } from "../config";
 
 // https://ffmpeg.org/ffprobe.html
 const args = "-loglevel error -select_streams v:0 -show_entries stream=width,height,pix_fmt -of csv=p=0";
 
 export async function ffprobe(path: string): Promise<ProbeResult> {
-    const { out, err } = await platform.exec(`ffprobe ${args} "${path}"`);
-    if (err) config.log?.err?.(`ffprobe error: ${err}`);
+    const { out, err } = await std.exec(`ffprobe ${args} "${path}"`);
+    if (err) cfg.log?.err?.(`ffprobe error: ${err}`);
     const parts = out.split(",");
     const alpha = alphaFormats.has(parts[2].trim());
     return { width: Number(parts[0]), height: Number(parts[1]), alpha };

@@ -30,4 +30,6 @@ export type Platform = Record<string, unknown> & {
     exec: (cmd: string) => Promise<{ out: string, err?: Error }>;
     /** Fetches a remote resource with specified url. */
     fetch: (url: string, abort?: AbortSignal) => Promise<Response>;
+    /** Returns promise resolved after specified number of seconds. */
+    wait: (seconds: number) => Promise<void>;
 };

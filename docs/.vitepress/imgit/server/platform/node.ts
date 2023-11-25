@@ -30,5 +30,6 @@ export const node: Readonly<Platform> = {
         const { stdout, stderr } = await execAsync(cmd);
         return { out: stdout, err: stderr?.length > 0 ? Error(stderr) : undefined };
     },
-    fetch: (url, abort) => fetch(url, { signal: abort })
+    fetch: (url, abort) => fetch(url, { signal: abort }),
+    wait: (seconds) => new Promise(resolve => setTimeout(resolve, seconds * 1000))
 };

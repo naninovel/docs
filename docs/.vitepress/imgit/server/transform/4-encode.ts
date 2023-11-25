@@ -1,6 +1,6 @@
 import { ProbedAsset, EncodedAsset, AssetType, getExtension } from "../common";
-import { platform } from "../platform";
-import { config } from "../config";
+import { std } from "../platform";
+import { cfg } from "../config";
 
 const compatibleExt = new Set<string>(["png", "jpg", "jpeg", "webp"]);
 const encoding = new Map<string, Promise<void>>;
@@ -26,15 +26,15 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
 
     function shouldEncode() {
         if (!asset.sourcePath || !asset.sourceInfo) return false;
-        return asset.type === AssetType.Image && config.encode.image ||
-            asset.type === AssetType.Animation && config.encode.animation ||
-            asset.type === AssetType.Video && config.encode.video;
+        return asset.type === AssetType.Image && cfg.encode.image ||
+            asset.type === AssetType.Animation && cfg.encode.animation ||
+            asset.type === AssetType.Video && cfg.encode.video;
     }
 
     function evaluateThreshold(): number | undefined {
         if (asset.meta?.width) return asset.meta.width;
-        if (!config.width) return undefined;
-        return info.width > config.width ? config.width : undefined;
+        if (!cfg.width) return undefined;
+        return info.width > cfg.width ? cfg.width : undefined;
     }
 
     function buildCompatibleSourcePath() {
@@ -58,56 +58,56 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
     }
 
     function buildPosterPath() {
-        if (config.poster === "auto" && asset.meta?.lazy !== false)
-            return `${buildBasePath()}-poster.avif`;
+        if (cfg.poster === "auto" && asset.meta?.lazy !== false)
+            return `${buildBasePath()}-${cfg.encode.poster.suffix}.avif`;
         return undefined;
     }
 
     function buildBasePath() {
         const extIdx = sourcePath.lastIndexOf(".");
-        return sourcePath.substring(0, extIdx) + config.suffix;
+        return sourcePath.substring(0, extIdx) + cfg.encode.suffix;
     }
 
     async function encodeAsset(): Promise<void> {
         if (await hasEverythingEncoded()) return;
-        config.log?.info?.(`Encoding ${asset.sourceUrl}`);
+        cfg.log?.info?.(`Encoding ${asset.sourceUrl}`);
         const quality = asset.type === AssetType.Image
-            ? config.encode.image! : asset.type === AssetType.Animation
-                ? config.encode.animation! : config.encode.video!;
-        if (compatibleSourcePath && (!(await platform.fs.exists(compatibleSourcePath)) || asset.dirty))
-            await config.encode.encoder.encode({
+            ? cfg.encode.image! : asset.type === AssetType.Animation
+                ? cfg.encode.animation! : cfg.encode.video!;
+        if (compatibleSourcePath && (!(await std.fs.exists(compatibleSourcePath)) || asset.dirty))
+            await cfg.encode.encoder.encode({
                 probe: info, input: originalSourcePath,
                 output: compatibleSourcePath, ...quality
             });
-        if (!(await platform.fs.exists(encodedPath)) || asset.dirty)
-            await config.encode.encoder.encode({
+        if (!(await std.fs.exists(encodedPath)) || asset.dirty)
+            await cfg.encode.encoder.encode({
                 probe: info, input: sourcePath, output: encodedPath,
                 width: threshold ?? undefined, ...quality
             });
-        if (encoded2xPath && (!(await platform.fs.exists(encoded2xPath)) || asset.dirty))
-            await config.encode.encoder.encode({
+        if (encoded2xPath && (!(await std.fs.exists(encoded2xPath)) || asset.dirty))
+            await cfg.encode.encoder.encode({
                 probe: info, input: sourcePath,
                 output: encoded2xPath, ...quality
             });
-        if (posterPath && (!(await platform.fs.exists(posterPath)) || asset.dirty))
-            await config.encode.encoder.encode({
+        if (posterPath && (!(await std.fs.exists(posterPath)) || asset.dirty))
+            await cfg.encode.encoder.encode({
                 probe: info, input: sourcePath, output: posterPath, single: true,
                 width: evalPosterWidth(),
-                blur: config.encode.poster.blur ?? undefined,
-                quality: config.encode.poster.quality,
-                speed: config.encode.poster.speed
+                blur: cfg.encode.poster.blur ?? undefined,
+                quality: cfg.encode.poster.quality,
+                speed: cfg.encode.poster.speed
             });
     }
 
     async function hasEverythingEncoded() {
-        return await platform.fs.exists(encodedPath) && !asset.dirty &&
-            (!compatibleSourcePath || await platform.fs.exists(compatibleSourcePath)) &&
-            (!encoded2xPath || await platform.fs.exists(encoded2xPath)) &&
-            (!posterPath || await platform.fs.exists(posterPath));
+        return await std.fs.exists(encodedPath) && !asset.dirty &&
+            (!compatibleSourcePath || await std.fs.exists(compatibleSourcePath)) &&
+            (!encoded2xPath || await std.fs.exists(encoded2xPath)) &&
+            (!posterPath || await std.fs.exists(posterPath));
     }
 
     function evalPosterWidth() {
-        if (!config.encode.poster.scale) return undefined;
-        return config.encode.poster.scale * (threshold ? threshold : info.width);
+        if (!cfg.encode.poster.scale) return undefined;
+        return cfg.encode.poster.scale * (threshold ? threshold : info.width);
     }
 }

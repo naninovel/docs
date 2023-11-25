@@ -44,5 +44,6 @@ export const deno: Readonly<Platform> = {
         const err = success ? undefined : Error(new TextDecoder().decode(stderr));
         return { out, err };
     },
-    fetch: (url, abort) => fetch(url, { signal: abort })
+    fetch: (url, abort) => fetch(url, { signal: abort }),
+    wait: (seconds) => new Promise(resolve => setTimeout(resolve, seconds * 1000))
 };

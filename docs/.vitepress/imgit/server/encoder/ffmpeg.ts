@@ -1,11 +1,11 @@
-import { platform } from "../platform";
-import { config } from "../config";
+import { std } from "../platform";
+import { cfg } from "../config";
 import { getExtension } from "../common";
 import { EncodeProps } from "./encoder";
 
 export async function ffmpeg(props: EncodeProps): Promise<void> {
-    const { err } = await platform.exec(`ffmpeg ${buildArgs()}`);
-    if (err) config.log?.err?.(`ffmpeg error: ${err}`);
+    const { err } = await std.exec(`ffmpeg ${buildArgs()}`);
+    if (err) cfg.log?.err?.(`ffmpeg error: ${err}`);
 
     function buildArgs(): string {
         // https://trac.ffmpeg.org/wiki/Encode/AV1
@@ -31,12 +31,12 @@ export async function ffmpeg(props: EncodeProps): Promise<void> {
 
 function isImage(path: string) {
     const xt = getExtension(path);
-    return config.image.includes(xt);
+    return cfg.image.includes(xt);
 }
 
 function isVideo(path: string) {
     const xt = getExtension(path);
-    return config.video.includes(xt);
+    return cfg.video.includes(xt);
 }
 
 function lerp(a: number, b: number, w: number) {
