@@ -1,5 +1,5 @@
-import { std } from "./platform";
 import { cfg } from "./config";
+import { std } from "./platform";
 import { SourceInfo, ensureDir } from "./common";
 
 /** Cached results of a previous build operation.
