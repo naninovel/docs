@@ -85,7 +85,7 @@ async function buildSources(asset: EncodedAsset, ctx: Context) {
 
 function rel(path: string) {
     const root = std.path.resolve(cfg.root);
-    return path.substring(root.length);
+    return path.substring(root.length + 1);
 }
 
 function buildSizes(info?: SourceInfo): string {
