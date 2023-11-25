@@ -7,7 +7,7 @@ export type Options = {
     /** Local root directory under which project's asset files are stored;
      *  <code>./public/assets</code> by default. */
     root: string;
-    /** Remote root directory under which media asset files are served when deployed;
+    /** Remote root directory under which asset files are served when deployed;
      *  <code>/assets</code> by default. */
     host: string;
     /** Given file path to an asset (relative to <code>root</code>), returns URL under which
