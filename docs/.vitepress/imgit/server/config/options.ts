@@ -12,7 +12,7 @@ export type Options = {
     host: string;
     /** Given file path to an asset (relative to <code>root</code>), returns URL under which
      *  the asset will be served. Use to upload generated asset to a CDN and return designated URL
-     *  or resolve relative URL when self-hosted; resolves to <code>/{host}/{path}</code> by default. */
+     *  or resolve relative URL when self-hosted; resolves to <code>{host}/{path}</code> by default. */
     serve: (path: string, asset: EncodedAsset, ctx: Context) => string | Promise<string>;
     /** Regular expressions to use for capturing transformed assets syntax. Expects <code><url></code>,
      *  <code><title></code> and <code><meta></code> capture groups (title and meta are optional).
