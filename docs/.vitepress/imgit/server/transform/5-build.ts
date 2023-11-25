@@ -73,20 +73,17 @@ async function buildPicture(asset: EncodedAsset, ctx: Context): Promise<string> 
 }
 
 async function buildSources(asset: EncodedAsset, ctx: Context) {
-    const src = await cfg.serve(relativeToRoot(asset.sourcePath!), asset, ctx);
-    const encodedSrc = asset.encodedPath
-        ? await cfg.serve(relativeToRoot(asset.encodedPath), asset, ctx)
-        : undefined;
-    const encoded2xSrc = asset.encoded2xPath
-        ? await cfg.serve(relativeToRoot(asset.encoded2xPath), asset, ctx)
-        : undefined;
-    const posterSrc = asset.posterPath
-        ? await cfg.serve(relativeToRoot(asset.posterPath), asset, ctx)
-        : (cfg.poster === "auto" ? undefined : cfg.poster);
-    return { src, encodedSrc, encoded2xSrc, posterSrc };
+    return {
+        src: await cfg.serve(rel(asset.sourcePath!), asset, ctx),
+        encodedSrc: asset.encodedPath && await cfg.serve(rel(asset.encodedPath), asset, ctx),
+        encoded2xSrc: asset.encoded2xPath && await cfg.serve(rel(asset.encoded2xPath), asset, ctx),
+        posterSrc: asset.posterPath
+            ? await cfg.serve(rel(asset.posterPath), asset, ctx)
+            : (cfg.poster === "auto" ? undefined : cfg.poster)
+    };
 }
 
-function relativeToRoot(path: string) {
+function rel(path: string) {
     const root = std.path.resolve(cfg.root);
     return path.substring(root.length);
 }
