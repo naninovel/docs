@@ -13,7 +13,7 @@ import { rewrite } from "../transform/6-rewrite";
 export const defaults: Readonly<Options> = {
     root: "./public/assets",
     host: "/assets",
-    serve: path => `${defaults.host}/${path}`,
+    serve: "auto",
     regex: [/!\[(?<title>.*?)(?<meta>{.+?})?]\((?<url>.+?)\)/g],
     image: ["png", "jpg", "jpeg", "webp", "avif", "bmp", "tif", "tiff", "tga", "psd"],
     animation: ["gif", "apng"],

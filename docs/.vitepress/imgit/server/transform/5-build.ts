@@ -74,18 +74,20 @@ async function buildPicture(asset: EncodedAsset, ctx: Context): Promise<string> 
 
 async function buildSources(asset: EncodedAsset, ctx: Context) {
     return {
-        src: await cfg.serve(rel(asset.sourcePath!), asset, ctx),
-        encodedSrc: asset.encodedPath && await cfg.serve(rel(asset.encodedPath), asset, ctx),
-        encoded2xSrc: asset.encoded2xPath && await cfg.serve(rel(asset.encoded2xPath), asset, ctx),
+        src: await serve(asset.sourcePath!, asset, ctx),
+        encodedSrc: asset.encodedPath && await serve(asset.encodedPath, asset, ctx),
+        encoded2xSrc: asset.encoded2xPath && await serve(asset.encoded2xPath, asset, ctx),
         posterSrc: asset.posterPath
-            ? await cfg.serve(rel(asset.posterPath), asset, ctx)
+            ? await serve(asset.posterPath, asset, ctx)
             : (cfg.poster === "auto" ? undefined : cfg.poster)
     };
 }
 
-function rel(path: string) {
-    const root = std.path.resolve(cfg.root);
-    return path.substring(root.length + 1);
+function serve(fullPath: string, asset: EncodedAsset, ctx: Context): string | Promise<string> {
+    const fullRoot = std.path.resolve(cfg.root);
+    const relativePath = fullPath.substring(fullRoot.length + 1);
+    if (cfg.serve === "auto") return `${cfg.host}/${relativePath}`;
+    return cfg.serve(relativePath, asset, ctx);
 }
 
 function buildSizes(info?: SourceInfo): string {
