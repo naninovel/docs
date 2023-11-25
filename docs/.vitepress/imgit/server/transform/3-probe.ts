@@ -1,6 +1,6 @@
-import { Context, DownloadedAsset, ProbedAsset, SourceInfo, wait } from "../common";
-import { platform } from "../platform";
-import { config } from "../config";
+import { Context, DownloadedAsset, ProbedAsset, SourceInfo } from "../common";
+import { std } from "../platform";
+import { cfg } from "../config";
 
 const probing = new Map<string, Promise<SourceInfo | undefined>>;
 
@@ -14,11 +14,11 @@ export async function probe(assets: DownloadedAsset[], ctx: Context): Promise<Pr
 // while some files are still downloading; encoding multiple files
 // in parallel tend to oversaturate CPU utilization, which degrades fetching.
 async function everythingIsDownloaded(ctx: Context): Promise<void> {
-    let length = -1;
-    while (length !== ctx.fetches.length) {
+    let length = 0;
+    while (length < ctx.fetches.length) {
         length = ctx.fetches.length;
         await Promise.all(ctx.fetches);
-        await wait(1);
+        await std.wait(0);
     }
 }
 
@@ -26,7 +26,7 @@ async function probeDistinct(asset: DownloadedAsset, ctx: Context): Promise<Prob
     if (!asset.sourcePath) return asset;
     let info: SourceInfo | undefined;
     const url = asset.sourceUrl;
-    const modified = (await platform.fs.stat(asset.sourcePath)).modified;
+    const modified = (await std.fs.stat(asset.sourcePath)).modified;
     const cached = getCached();
     if (cached) info = cached;
     else if (probing.has(url)) info = await probing.get(url)!;
@@ -43,7 +43,7 @@ async function probeDistinct(asset: DownloadedAsset, ctx: Context): Promise<Prob
     async function probeAsset(): Promise<SourceInfo | undefined> {
         let resolve: (value: (SourceInfo | undefined)) => void;
         probing.set(url, new Promise<SourceInfo | undefined>(r => resolve = r));
-        info = { ...(await config.encode.encoder.probe(asset.sourcePath!)), modified };
+        info = { ...(await cfg.encode.encoder.probe(asset.sourcePath!)), modified };
         resolve!(info);
         return info;
     }

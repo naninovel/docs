@@ -1,14 +1,9 @@
-import { platform } from "../platform";
-
-/** Waits for specified seconds. */
-export function wait(seconds: number): Promise<void> {
-    return new Promise(resolve => setTimeout(resolve, seconds * 1000));
-}
+import { std } from "../platform";
 
 /** Creates specified directory in case it doesn't exist (recursive). */
 export async function ensureDir(dir: string): Promise<void> {
-    if (!(await platform.fs.exists(dir)))
-        await platform.fs.mkdir(dir);
+    if (!(await std.fs.exists(dir)))
+        await std.fs.mkdir(dir);
 }
 
 /** Returns extension (without dot) of file with specified path. */

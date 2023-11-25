@@ -1,7 +1,7 @@
-import { Context, Options, Platform, boot, exit, transform } from "../server";
+import { Context, Platform, Prefs, boot, exit, transform } from "../server";
 
 /** Configures vite plugin behaviour. */
-export type ViteOptions = Options & {
+export type VitePrefs = Prefs & {
     /** Force the plugin to run either before are after other plugins. */
     enforce?: "pre" | "post";
     /** Specify condition when document shouldn't be transformed by the plugin. */
@@ -17,15 +17,15 @@ declare type VitePlugin = {
 }
 
 /** Creates imgit plugin instance for vite.
- *  @param options Plugin preferences; will use pre-defined defaults when not assigned.
+ *  @param prefs Plugin preferences; will use pre-defined defaults when not assigned.
  *  @param platform Runtime APIs to use; will attempt to detect automatically when not assigned. */
-export default function (options?: ViteOptions, platform?: Platform): VitePlugin {
+export default function (prefs?: VitePrefs, platform?: Platform): VitePlugin {
     let ctx: Context;
     return {
         name: "imgit",
-        enforce: options?.enforce,
-        buildStart: async _ => void (ctx = await boot(options, platform)),
-        transform: (code, id, opt) => options?.skip?.(code, id, opt) ? code : transform(code, ctx),
+        enforce: prefs?.enforce,
+        buildStart: async _ => void (ctx = await boot(prefs, platform)),
+        transform: (code, id, opt) => prefs?.skip?.(code, id, opt) ? code : transform(code, ctx),
         buildEnd: _ => exit(ctx)
     };
 };

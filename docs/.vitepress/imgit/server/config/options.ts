@@ -2,58 +2,52 @@ import { Context, CapturedAsset, DownloadedAsset, ProbedAsset, EncodedAsset, Bui
 import { Encoder } from "../encoder";
 import { Cache } from "../cache";
 
-/** Configures build server behaviour. */
-export type Options = Record<string, unknown> & {
-    /** Local directory where the asset files are stored;
+/** Configures build behaviour. */
+export type Options = {
+    /** Local root directory under which project's asset files are stored;
      *  <code>./public/assets</code> by default. */
-    local?: string;
-    /** URL prefix for served asset sources: relative to host or absolute when serving from a CDN;
+    root: string;
+    /** Remote root directory under which media asset files are served when deployed;
      *  <code>/assets</code> by default. */
-    serve?: string;
-    /** Path to append to <code>local</code> and <code>serve</code> for downloaded remote assets;
-     *  <code>remote</code> by default. */
-    remote?: string;
-    /** Regular expressions to use for capturing transformed assets syntax. Expects <code><uri></code>,
+    host: string;
+    /** Given file path to an asset (relative to <code>root</code>), returns URL under which
+     *  the asset will be served. Use to upload generated asset to a CDN and return designated URL
+     *  or resolve relative URL when self-hosted; resolves to <code>/{host}/{path}</code> by default. */
+    serve: (path: string, asset: EncodedAsset, ctx: Context) => string | Promise<string>;
+    /** Regular expressions to use for capturing transformed assets syntax. Expects <code><url></code>,
      *  <code><title></code> and <code><meta></code> capture groups (title and meta are optional).
-     *  By default, captures Markdown image syntax with meta specified after title in curly braces:
-     *  <code>/!\[(?<title>.*?(?<meta>{.+?})?)]\((?<uri>.+?)\)/g</code>. */
-    regex?: RegExp[];
-    /** Text to append to the name of encoded asset files; <code>-imgit</code> by default. */
-    suffix?: string;
+     *  By default, captures Markdown image syntax with meta JSON specified after title:
+     *  <code>/!\[(?<title>.*?(?<meta>{.+?})?)]\((?<url>.+?)\)/g</code>. */
+    regex: RegExp[];
+    /** Image file extensions (w/o dot) to optimize;
+     *  default: png, jpg, jpeg, webp, avif, bmp, tif, tiff, tga and psd. */
+    image: string[];
+    /** Animation file extensions (w/o dot) to optimize; default: gif and apng. */
+    animation: string[];
+    /** Video file extensions (w/o dot) to optimize; default: mp4 and webm. */
+    video: string[];
+    /** Whether to transform YouTube links as videos; enabled by default. */
+    youtube: boolean;
+    /** Remote source of an image to use for all posters. When undefined automatically generates
+     *  unique image for each asset; assign <code>null</code> to disable posters completely. */
+    poster: string | null | "auto";
     /** Default width threshold for the transformed assets, in pixels. When source asset is larger,
      *  will downscale it while preserving the original aspect. In case the source is 2x or larger,
      *  images and animations will as well get additional variant for high-density displays.
      *  Default threshold is ignored when asset has individual threshold specified via meta syntax. */
-    width?: number | null;
-    /** File extensions (w/o dot) to encode into av1 still frame under avif container and
-     *  transform into HTML picture with a fallback to a legacy format, such as png and jpg;
-     *  default: png, jpg, jpeg, webp, avif, bmp, tif, tiff, tga and psd. */
-    image?: string[];
-    /** File extensions (w/o dot) to encode into looped sequence of av1 frames under avif container
-     *  and transform into HTML picture with a fallback to source; default: gif and apng. */
-    animation?: string[];
-    /** File extensions (w/o dot) to encode into av1 video under mp4 container
-     *  and transform into HTML video with a fallback to source; default: mp4 and webm. */
-    video?: string[];
-    /** Whether to transform YouTube links as videos; enabled by default. */
-    youtube?: boolean;
-    /** Source of an image to use for all posters. When undefined automatically generates
-     *  unique image for each asset; assign <code>null</code> to disable posters completely. */
-    poster?: string | null | "auto";
+    width: number | null;
     /** Configure logging behaviour; assign <code>null</code> to disable logging. */
-    log?: LogOptions | null;
+    log: LogOptions | null;
     /** Configure caching behaviour; assign <code>null</code> to disable caching. */
-    cache?: CacheOptions | null;
+    cache: CacheOptions | null;
     /** Configure remote assets downloading. */
-    download?: DownloadOptions;
+    download: DownloadOptions;
     /** Configure assets encoding. */
-    encode?: EncodeOptions;
+    encode: EncodeOptions;
     /** Configure HTML building for source assets of specific types. */
-    build?: BuildOptions;
+    build: BuildOptions;
     /** Configure document transformation process. */
-    transform?: TransformOptions;
-    /** Configure generated CSS styles. */
-    style?: StyleOptions;
+    transform: TransformOptions;
 };
 
 /** Configures logging behaviour. */
@@ -69,8 +63,22 @@ export type LogOptions = {
     err: ((msg: string) => void) | null;
 };
 
+/** Configures server cache. */
+export type CacheOptions = {
+    /** Local directory where the cache files are stored;
+     *  <code>./node_modules/.cache/imgit</code> by default. */
+    root: string;
+    /** Persists specified cache instance for consequent run. */
+    save: (cache: Cache) => Promise<void>;
+    /** Loads cache instance of the previous run. */
+    load: () => Promise<Cache>;
+}
+
 /** Configures remote assets downloading behaviour. */
 export type DownloadOptions = {
+    /** Local directory to store downloaded assets and optimized files generated for them;
+     *  <code>./public/assets/remote</code> by default. */
+    root: string;
     /** How long to wait when downloading remote asset, in seconds; 30 by default. */
     timeout: number;
     /** How many times to restart the download when request fails; 3 by default. */
@@ -91,6 +99,8 @@ export type EncodeOptions = {
     video: EncodeQuality | null;
     /** Configure poster encoding. */
     poster: PosterOptions;
+    /** Tag to append to the names of encoded files; <code>-imgit</code> by default. */
+    suffix: string;
 };
 
 /** Configures encoding quality. */
@@ -109,46 +119,23 @@ export type PosterOptions = EncodeQuality & {
     /** Blur strength applied to the posters, in 0.0 to 1.0 range; 0.2 by default.
      *  Specify <code>null</code> to disable poster blur. */
     blur: number | null;
+    /** Tag to append to the names of generated poster files; <code>-poster</code> by default. */
+    suffix: string;
 };
 
 /** Configures HTML building for source assets of specific types. */
 export type BuildOptions = {
     /** Returns HTML string for specified source image asset. */
-    image: (asset: EncodedAsset) => Promise<string>;
+    image: (asset: EncodedAsset, ctx: Context) => Promise<string>;
     /** Returns HTML string for specified source animation asset. */
-    animation: (asset: EncodedAsset) => Promise<string>;
+    animation: (asset: EncodedAsset, ctx: Context) => Promise<string>;
     /** Returns HTML string for specified source video asset. */
-    video: (asset: EncodedAsset) => Promise<string>;
+    video: (asset: EncodedAsset, ctx: Context) => Promise<string>;
     /** Returns HTML string for specified source YouTube asset. */
-    youtube: (asset: EncodedAsset) => Promise<string>;
+    youtube: (asset: EncodedAsset, ctx: Context) => Promise<string>;
+    /** Configure generated CSS styles for built HTML. */
+    style: StyleOptions;
 };
-
-/** Configures document transformation process. */
-export type TransformOptions = {
-    /** 1st phase: finds assets to transform in the document with specified content. */
-    capture: (content: string, ctx: Context) => Promise<CapturedAsset[]>;
-    /** 2nd phase: downloads file content for the captured assets. */
-    download: (assets: CapturedAsset[], ctx: Context) => Promise<DownloadedAsset[]>;
-    /** 3rd phase: probes downloaded asset files to evaluate their width and height. */
-    probe: (assets: DownloadedAsset[], ctx: Context) => Promise<ProbedAsset[]>;
-    /** 4th phase: creates optimized versions of the source asset files. */
-    encode: (assets: ProbedAsset[], ctx: Context) => Promise<EncodedAsset[]>;
-    /** 5th phase: builds HTML for the optimized assets to overwrite source syntax. */
-    build: (assets: EncodedAsset[], ctx: Context) => Promise<BuiltAsset[]>;
-    /** 6th phase: rewrites content of the document with specified assets; returns modified document content. */
-    rewrite: (content: string, assets: BuiltAsset[], ctx: Context) => Promise<string>;
-};
-
-/** Configures server cache. */
-export type CacheOptions = {
-    /** Local directory where the cache files are stored;
-     *  <code>./node_modules/.cache/imgit</code> by default. */
-    root: string;
-    /** Persists specified cache instance for consequent run. */
-    save: (cache: Cache) => Promise<void>;
-    /** Loads cache instance of the previous run. */
-    load: () => Promise<Cache>;
-}
 
 /** Configures generated CSS styles. */
 export type StyleOptions = {
@@ -168,3 +155,19 @@ export type StyleOptions = {
         poster: string;
     }
 }
+
+/** Configures document transformation process. */
+export type TransformOptions = {
+    /** 1st phase: finds assets to transform in the document with specified content. */
+    capture: (content: string, ctx: Context) => Promise<CapturedAsset[]>;
+    /** 2nd phase: downloads file content for the captured assets. */
+    download: (assets: CapturedAsset[], ctx: Context) => Promise<DownloadedAsset[]>;
+    /** 3rd phase: probes downloaded asset files to evaluate their width and height. */
+    probe: (assets: DownloadedAsset[], ctx: Context) => Promise<ProbedAsset[]>;
+    /** 4th phase: creates optimized versions of the source asset files. */
+    encode: (assets: ProbedAsset[], ctx: Context) => Promise<EncodedAsset[]>;
+    /** 5th phase: builds HTML for the optimized assets to overwrite source syntax. */
+    build: (assets: EncodedAsset[], ctx: Context) => Promise<BuiltAsset[]>;
+    /** 6th phase: rewrites content of the document with specified assets; returns modified document content. */
+    rewrite: (content: string, assets: BuiltAsset[], ctx: Context) => Promise<string>;
+};
