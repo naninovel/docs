@@ -1,4 +1,4 @@
-import { Prefs, configure, cfg, defaults } from "./config";
+import { Prefs, configure, cfg } from "./config";
 import { Platform, bind } from "./platform";
 import { Context } from "./common";
 
@@ -11,7 +11,7 @@ export { transform } from "./transform";
  *  @param prefs Plugin preferences; will use pre-defined defaults when not assigned.
  *  @param platform Runtime APIs to use; will attempt to detect automatically when not assigned. */
 export async function boot(prefs?: Prefs, platform?: Platform): Promise<Context> {
-    configure({ ...defaults, ...(prefs ?? []) });
+    if (prefs) configure(prefs);
     await bind(platform);
     return {
         fetches: [],

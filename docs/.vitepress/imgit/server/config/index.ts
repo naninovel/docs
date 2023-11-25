@@ -1,8 +1,8 @@
 import { Options } from "./options";
 import { defaults } from "./defaults";
 
-export { defaults } from "./defaults";
 export * from "./options";
+export { defaults } from "./defaults";
 
 /** User-defined build preferences. */
 export type Prefs = { [P in keyof Options]?: Partial<Options[P]>; };
@@ -17,7 +17,7 @@ export function configure(prefs: Prefs) {
 }
 
 function assign(from: Record<string, unknown>, to: Record<string, unknown>, prop: string) {
-    if (typeof from[prop] === "object")
+    if (from[prop] !== null && typeof from[prop] === "object" && !Array.isArray(from[prop]))
         for (const inner of Object.getOwnPropertyNames(from[prop]))
             assign(<never>from[prop], <never>to[prop], inner);
     else to[prop] = from[prop];
