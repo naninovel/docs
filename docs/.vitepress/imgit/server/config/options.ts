@@ -168,6 +168,6 @@ export type TransformOptions = {
     encode: (assets: ProbedAsset[], ctx: Context) => Promise<EncodedAsset[]>;
     /** 5th phase: builds HTML for the optimized assets to overwrite source syntax. */
     build: (assets: EncodedAsset[], ctx: Context) => Promise<BuiltAsset[]>;
-    /** 6th phase: rewrites content of the document with specified assets; returns modified document content. */
+    /** 6th phase: rewrites content of the document with built HTML; returns modified document content. */
     rewrite: (content: string, assets: BuiltAsset[], ctx: Context) => Promise<string>;
 };
