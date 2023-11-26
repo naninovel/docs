@@ -7,10 +7,10 @@ import { Platform } from "./platform";
 declare module Bun {
     const file: (path: string) => {
         exists: () => Promise<boolean>;
+        arrayBuffer: () => Promise<ArrayBuffer>;
         text: () => Promise<string>;
     };
-    const write: (path: string, content: string | Blob) => Promise<number>;
-    const readableStreamToBlob: (stream: ReadableStream) => Promise<Blob>;
+    const write: (path: string, content: string | Uint8Array) => Promise<number>;
     const spawn: (cmd: string[]) => {
         exited: Promise<void>;
         exitCode: number;
@@ -23,10 +23,14 @@ export const bun: Readonly<Platform> = {
     fs: {
         exists: path => Bun.file(path).exists(),
         stat: path => fs.stat(path).then(s => ({ modified: s.mtimeMs })),
-        read: path => Bun.file(path).text(),
+        read: async (path, encoding) => {
+            const file = Bun.file(path);
+            if (encoding === "utf8") return <never>await file.text();
+            return <never>new Uint8Array(await file.arrayBuffer());
+        },
         write: async (path, content) => {
             if (typeof content === "string") return Bun.write(path, content).then();
-            return Bun.write(path, await Bun.readableStreamToBlob(content)).then();
+            return Bun.write(path, content).then();
         },
         remove: fs.unlink,
         mkdir: (path: string) => fs.mkdir(path, { recursive: true }).then()
@@ -46,5 +50,6 @@ export const bun: Readonly<Platform> = {
         return { out, err };
     },
     fetch: (url, abort) => fetch(url, { signal: abort }),
-    wait: (seconds) => new Promise(resolve => setTimeout(resolve, seconds * 1000))
+    wait: (seconds) => new Promise(resolve => setTimeout(resolve, seconds * 1000)),
+    base64: async data => Buffer.from(data).toString("base64")
 };

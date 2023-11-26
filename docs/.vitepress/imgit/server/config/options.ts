@@ -1,4 +1,4 @@
-import { Context, CapturedAsset, DownloadedAsset, ProbedAsset, EncodedAsset, BuiltAsset } from "../common";
+import { CapturedAsset, DownloadedAsset, ProbedAsset, EncodedAsset, BuiltAsset } from "../asset";
 import { Encoder } from "../encoder";
 import { Cache } from "../cache";
 
@@ -13,7 +13,7 @@ export type Options = {
     /** Given file path to an asset (relative to <code>root</code>), returns URL under which
      *  the asset will be served. Use to upload generated asset to a CDN and return designated URL
      *  or resolve relative URL when self-hosted; resolves to <code>{host}/{path}</code> by default. */
-    serve: ((path: string, asset: EncodedAsset, ctx: Context) => string | Promise<string>) | "auto";
+    serve: ((path: string, asset: EncodedAsset) => string | Promise<string>) | "auto";
     /** Regular expressions to use for capturing transformed assets syntax. Expects <code><url></code>,
      *  <code><title></code> and <code><meta></code> capture groups (title and meta are optional).
      *  By default, captures Markdown image syntax with meta JSON specified after title:
@@ -28,9 +28,11 @@ export type Options = {
     video: string[];
     /** Whether to transform YouTube links as videos; enabled by default. */
     youtube: boolean;
-    /** Remote source of an image to use for all posters. When undefined automatically generates
-     *  unique image for each asset; assign <code>null</code> to disable posters completely. */
-    poster: string | null | "auto";
+    /** Image source to use for posters. When poster generation enabled in encode options (default),
+     *  will use specified source only as a fallback for legacy browsers, otherwise will use the
+     *  source for all posters. Empty base64-encoded image is used by default for compatibility;
+     *  assign <code>null</code> to disable posters completely. */
+    poster: string | null;
     /** Default width threshold for the transformed assets, in pixels. When source asset is larger,
      *  will downscale it while preserving the original aspect. In case the source is 2x or larger,
      *  images and animations will as well get additional variant for high-density displays.
@@ -68,9 +70,9 @@ export type CacheOptions = {
     /** Local directory where the cache files are stored;
      *  <code>./node_modules/.cache/imgit</code> by default. */
     root: string;
-    /** Persists specified cache instance for consequent run. */
+    /** Persists specified cache instance for consequent runs. */
     save: (cache: Cache) => Promise<void>;
-    /** Loads cache instance of the previous run. */
+    /** Loads cache instance of a previous run. */
     load: () => Promise<Cache>;
 }
 
@@ -97,8 +99,8 @@ export type EncodeOptions = {
     animation: EncodeQuality | null;
     /** Configure animation encoding; specify <code>null</code> to disable animation encoding. */
     video: EncodeQuality | null;
-    /** Configure poster encoding. */
-    poster: PosterOptions;
+    /** Configure poster generation; specify <code>null</code> to disable poster generation. */
+    poster: PosterOptions | null;
     /** Tag to append to the names of encoded files; <code>-imgit</code> by default. */
     suffix: string;
 };
@@ -126,13 +128,13 @@ export type PosterOptions = EncodeQuality & {
 /** Configures HTML building for source assets of specific types. */
 export type BuildOptions = {
     /** Returns HTML string for specified source image asset. */
-    image: (asset: EncodedAsset, ctx: Context) => Promise<string>;
+    image: (asset: EncodedAsset) => Promise<string>;
     /** Returns HTML string for specified source animation asset. */
-    animation: (asset: EncodedAsset, ctx: Context) => Promise<string>;
+    animation: (asset: EncodedAsset) => Promise<string>;
     /** Returns HTML string for specified source video asset. */
-    video: (asset: EncodedAsset, ctx: Context) => Promise<string>;
+    video: (asset: EncodedAsset) => Promise<string>;
     /** Returns HTML string for specified source YouTube asset. */
-    youtube: (asset: EncodedAsset, ctx: Context) => Promise<string>;
+    youtube: (asset: EncodedAsset) => Promise<string>;
     /** Configure generated CSS styles for built HTML. */
     style: StyleOptions;
 };
@@ -159,15 +161,15 @@ export type StyleOptions = {
 /** Configures document transformation process. */
 export type TransformOptions = {
     /** 1st phase: finds assets to transform in the document with specified content. */
-    capture: (content: string, ctx: Context) => Promise<CapturedAsset[]>;
+    capture: (content: string) => Promise<CapturedAsset[]>;
     /** 2nd phase: downloads file content for the captured assets. */
-    download: (assets: CapturedAsset[], ctx: Context) => Promise<DownloadedAsset[]>;
+    download: (assets: CapturedAsset[]) => Promise<DownloadedAsset[]>;
     /** 3rd phase: probes downloaded asset files to evaluate their width and height. */
-    probe: (assets: DownloadedAsset[], ctx: Context) => Promise<ProbedAsset[]>;
+    probe: (assets: DownloadedAsset[]) => Promise<ProbedAsset[]>;
     /** 4th phase: creates optimized versions of the source asset files. */
-    encode: (assets: ProbedAsset[], ctx: Context) => Promise<EncodedAsset[]>;
+    encode: (assets: ProbedAsset[]) => Promise<EncodedAsset[]>;
     /** 5th phase: builds HTML for the optimized assets to overwrite source syntax. */
-    build: (assets: EncodedAsset[], ctx: Context) => Promise<BuiltAsset[]>;
+    build: (assets: EncodedAsset[]) => Promise<BuiltAsset[]>;
     /** 6th phase: rewrites content of the document with built HTML; returns modified document content. */
-    rewrite: (content: string, assets: BuiltAsset[], ctx: Context) => Promise<string>;
+    rewrite: (content: string, assets: BuiltAsset[]) => Promise<string>;
 };

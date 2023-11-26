@@ -1,6 +1,6 @@
-import { Context, EncodedAsset } from "../server";
+import { Context } from "../server";
+import { EncodedAsset } from "../server/asset";
 
-export default function (credentials: unknown):
-    (path: string, asset: EncodedAsset, ctx: Context) => Promise<string> {
-    return async (path, ctx) => "";
+export default function (credentials: unknown): (path: string, asset: EncodedAsset) => Promise<string> {
+    return async (path, asset) => "";
 }

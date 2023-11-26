@@ -1,5 +1,5 @@
-import { CapturedAsset, AssetType, getExtension } from "../common";
-import { cfg } from "../config";
+import { CapturedAsset, AssetType } from "../asset";
+import { cfg, getExtension } from "../common";
 
 /** Finds assets to transform in the document with specified content. */
 export async function capture(content: string): Promise<CapturedAsset[]> {

@@ -1,20 +1,19 @@
-import { Context, CapturedAsset, DownloadedAsset, AssetType, ensureDir } from "../common";
-import { std } from "../platform";
-import { cfg } from "../config";
+import { CapturedAsset, DownloadedAsset, AssetType } from "../asset";
+import { std, cfg, ctx, ensureDir } from "../common";
 
 const fetching = new Map<string, Promise<void>>;
 const retrying = new Map<string, number>;
 
 /** Downloads file content for the captured assets. */
-export async function download(assets: CapturedAsset[], ctx: Context): Promise<DownloadedAsset[]> {
+export async function download(assets: CapturedAsset[]): Promise<DownloadedAsset[]> {
     const downloaded = new Array<DownloadedAsset>;
     for (const asset of assets)
-        downloaded.push(await downloadAsset(asset, ctx));
+        downloaded.push(await downloadAsset(asset));
     await Promise.all(fetching.values());
     return downloaded;
 }
 
-async function downloadAsset(asset: CapturedAsset, ctx: Context): Promise<DownloadedAsset> {
+async function downloadAsset(asset: CapturedAsset): Promise<DownloadedAsset> {
     if (asset.type === AssetType.YouTube) return asset;
     const { fs, path, wait } = std;
     const { timeout, retries, delay } = cfg.download;

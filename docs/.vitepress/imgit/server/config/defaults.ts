@@ -19,7 +19,7 @@ export const defaults: Readonly<Options> = {
     animation: ["gif", "apng"],
     video: ["mp4", "webm"],
     youtube: true,
-    poster: "auto",
+    poster: "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=", // empty gif (min. valid src)
     width: null,
     log: {
         info: logTTY,

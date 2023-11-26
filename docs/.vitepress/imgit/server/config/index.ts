@@ -7,10 +7,10 @@ export { defaults } from "./defaults";
 /** User-defined build preferences. */
 export type Prefs = { [P in keyof Options]?: Partial<Options[P]>; };
 
-/** Current active build server configuration. */
+/** Current build configuration. */
 export const cfg: Readonly<Options> = defaults;
 
-/** Specifies build server configuration. */
+/** Specifies current build configuration. */
 export function configure(prefs: Prefs) {
     for (const prop of Object.getOwnPropertyNames(prefs))
         merge(prefs, cfg, prop);

@@ -1,6 +1,4 @@
-import { std } from "../platform";
-import { cfg } from "../config";
-import { getExtension } from "../common";
+import { std, cfg, getExtension } from "../common";
 import { EncodeProps } from "./encoder";
 
 export async function ffmpeg(props: EncodeProps): Promise<void> {
