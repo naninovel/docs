@@ -11,7 +11,10 @@ export const node: Readonly<Platform> = {
     fs: {
         exists: async path => fs.existsSync(path),
         stat: path => afs.stat(path).then(s => ({ modified: s.mtimeMs })),
-        read: path => afs.readFile(path, "utf-8"),
+        read: async (path, encoding) => {
+            if (encoding === "utf8") return <never>await afs.readFile(path, "utf-8");
+            return <never>new Uint8Array(await afs.readFile(path));
+        },
         write: (path, content) => {
             if (typeof content === "string") return afs.writeFile(path, content, "utf-8");
             return finished(Readable.fromWeb(<never>content).pipe(fs.createWriteStream(path)));
@@ -31,5 +34,6 @@ export const node: Readonly<Platform> = {
         return { out: stdout, err: stderr?.length > 0 ? Error(stderr) : undefined };
     },
     fetch: (url, abort) => fetch(url, { signal: abort }),
-    wait: (seconds) => new Promise(resolve => setTimeout(resolve, seconds * 1000))
+    wait: (seconds) => new Promise(resolve => setTimeout(resolve, seconds * 1000)),
+    base64: async data => Buffer.from(data).toString("base64")
 };

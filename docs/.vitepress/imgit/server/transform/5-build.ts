@@ -1,42 +1,41 @@
-import { EncodedAsset, BuiltAsset, SourceInfo, AssetType, Context } from "../common";
-import { std } from "../platform";
-import { cfg } from "../config";
+import { EncodedAsset, BuiltAsset, SourceInfo, AssetType } from "../asset";
+import { std, cfg, cache } from "../common";
 
 /** Builds HTML for the optimized assets to overwrite source syntax. */
-export function build(assets: EncodedAsset[], ctx: Context): Promise<BuiltAsset[]> {
-    return Promise.all(assets.map(a => buildAsset(a, ctx)));
+export function build(assets: EncodedAsset[]): Promise<BuiltAsset[]> {
+    return Promise.all(assets.map(buildAsset));
 }
 
-async function buildAsset(asset: EncodedAsset, ctx: Context): Promise<BuiltAsset> {
+async function buildAsset(asset: EncodedAsset): Promise<BuiltAsset> {
     let html: string;
-    if (asset.type === AssetType.Image) html = await cfg.build.image(asset, ctx);
-    else if (asset.type === AssetType.Animation) html = await cfg.build.animation(asset, ctx);
-    else if (asset.type === AssetType.Video) html = await cfg.build.video(asset, ctx);
-    else html = await cfg.build.youtube(asset, ctx);
+    if (asset.type === AssetType.Image) html = await cfg.build.image(asset);
+    else if (asset.type === AssetType.Animation) html = await cfg.build.animation(asset);
+    else if (asset.type === AssetType.Video) html = await cfg.build.video(asset);
+    else html = await cfg.build.youtube(asset);
     return { ...asset, html };
 }
 
-export function buildImage(asset: EncodedAsset, ctx: Context): Promise<string> {
-    return buildPicture(asset, ctx);
+export function buildImage(asset: EncodedAsset): Promise<string> {
+    return buildPicture(asset);
 }
 
-export function buildAnimation(asset: EncodedAsset, ctx: Context): Promise<string> {
-    return buildPicture(asset, ctx);
+export function buildAnimation(asset: EncodedAsset): Promise<string> {
+    return buildPicture(asset);
 }
 
-export async function buildVideo(asset: EncodedAsset, ctx: Context): Promise<string> {
-    const { src, encodedSrc, posterSrc } = await buildSources(asset, ctx);
+export async function buildVideo(asset: EncodedAsset): Promise<string> {
+    const { src, encodedSrc } = await buildSources(asset);
     const cls = `class="${cfg.build.style.className.video}"`;
     const size = buildSizes(asset.sourceInfo);
     // https://jakearchibald.com/2022/html-codecs-parameter-for-av1
     const codec = "av01.0.04M.08"; // TODO: Resolve for each file in probe.
     return `
 <div class="${cfg.build.style.className.container}">
-    <video data-imgit-lazy preload="none" loop autoplay muted playsinline ${cls} ${size}>
+    <video data-imgit preload="none" loop autoplay muted playsinline ${cls} ${size}>
         ${encodedSrc ? `<source data-src="${encodedSrc}" type="video/mp4; codecs=${codec}">` : ""}
         <source data-src="${src}" type="video/mp4">
     </video>
-    ${posterSrc ? buildPoster(posterSrc, size) : ""}
+    ${await buildPoster(asset, size)}
 </div>`;
 }
 
@@ -51,8 +50,8 @@ export async function buildYouTube(asset: EncodedAsset): Promise<string> {
 </div>`;
 }
 
-async function buildPicture(asset: EncodedAsset, ctx: Context): Promise<string> {
-    const { src, encodedSrc, encoded2xSrc, posterSrc } = await buildSources(asset, ctx);
+async function buildPicture(asset: EncodedAsset): Promise<string> {
+    const { src, encodedSrc, encoded2xSrc } = await buildSources(asset);
     const alt = asset.title ?? "";
     const size = buildSizes(asset.sourceInfo);
     const cls = asset.type === AssetType.Image
@@ -61,33 +60,29 @@ async function buildPicture(asset: EncodedAsset, ctx: Context): Promise<string> 
     const x2 = encoded2xSrc ? `, ${encoded2xSrc} 2x` : "";
     const lazy = asset.meta?.lazy !== false;
     const load = lazy ? `loading="lazy" decoding="async"` : `decoding="sync"`;
-    const data = lazy ? `data-imgit-lazy` : "";
     return `
 <div class="${cfg.build.style.className.container}">
     <picture>
         ${encodedSrc ? `<source srcset="${encodedSrc} 1x${x2}" type="image/avif"/>` : ""}
-        <img ${data} src="${src}" alt="${alt}" class="${cls}" ${size} ${load}/>
+        <img data-imgit src="${src}" alt="${alt}" class="${cls}" ${size} ${load}/>
     </picture>
-    ${lazy && posterSrc ? buildPoster(posterSrc, size) : ""}
+    ${await buildPoster(asset, size)}
 </div>`;
 }
 
-async function buildSources(asset: EncodedAsset, ctx: Context) {
+async function buildSources(asset: EncodedAsset) {
     return {
-        src: await serve(asset.sourcePath!, asset, ctx),
-        encodedSrc: asset.encodedPath && await serve(asset.encodedPath, asset, ctx),
-        encoded2xSrc: asset.encoded2xPath && await serve(asset.encoded2xPath, asset, ctx),
-        posterSrc: asset.posterPath
-            ? await serve(asset.posterPath, asset, ctx)
-            : (cfg.poster === "auto" ? undefined : cfg.poster)
+        src: await serve(asset.sourcePath!, asset),
+        encodedSrc: asset.encodedPath && await serve(asset.encodedPath, asset),
+        encoded2xSrc: asset.encoded2xPath && await serve(asset.encoded2xPath, asset)
     };
 }
 
-function serve(fullPath: string, asset: EncodedAsset, ctx: Context): string | Promise<string> {
+function serve(fullPath: string, asset: EncodedAsset): string | Promise<string> {
     const fullRoot = std.path.resolve(cfg.root);
     const relativePath = fullPath.substring(fullRoot.length + 1);
     if (cfg.serve === "auto") return `${cfg.host}/${relativePath}`;
-    return cfg.serve(relativePath, asset, ctx);
+    return cfg.serve(relativePath, asset);
 }
 
 function buildSizes(info?: SourceInfo): string {
@@ -98,13 +93,25 @@ function buildSizes(info?: SourceInfo): string {
     return `width="${width}" height="${height}"`;
 }
 
-function buildPoster(src: string, size: string): string {
+async function buildPoster(asset: EncodedAsset, size: string): Promise<string> {
+    if (!cfg.poster) return "";
     const cls = cfg.build.style.className.poster;
-    const avif = src.endsWith(".avif");
-    const blank = "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=";
+    const avif = asset.posterPath
+        ? await getPosterBase64(asset.sourceUrl, asset.posterPath, asset.dirty)
+        : undefined;
     return `
 <picture data-imgit-poster>
-    ${avif ? `<source srcset="${src}" type="image/avif"/>` : ""}
-    <img src="${avif ? blank : src}" alt="poster" class="${cls}" ${size} decoding="sync"/>
+    ${avif ? `<source srcset="${avif}" type="image/avif"/>` : ""}
+    <img src="${cfg.poster}" alt="poster" class="${cls}" ${size} decoding="sync"/>
 </picture>`;
+}
+
+async function getPosterBase64(src: string, path: string, dirty?: boolean): Promise<string> {
+    if (!dirty && cache.posters.hasOwnProperty(src))
+        return cache.posters[src];
+    const file = await std.fs.read(path, "bin");
+    const data = await std.base64(file);
+    const base64 = `data:image/gif;base64,${data}`;
+    cache[src] = base64;
+    return base64;
 }

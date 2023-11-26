@@ -2,7 +2,7 @@ import { Platform } from "./platform";
 
 export { Platform } from "./platform";
 
-/** Current active platform APIs. */
+/** Platform-specific APIs. */
 export const std: Readonly<Platform> = <never>{};
 
 /** Binds platform APIs or attempts to auto-detect when not specified. */

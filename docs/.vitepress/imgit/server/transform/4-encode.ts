@@ -1,6 +1,6 @@
-import { ProbedAsset, EncodedAsset, AssetType, getExtension } from "../common";
-import { std } from "../platform";
-import { cfg } from "../config";
+import { ProbedAsset, EncodedAsset, AssetType } from "../asset";
+import { std, cfg, getExtension } from "../common";
+import { PosterOptions } from "../config";
 
 const compatibleExt = new Set<string>(["png", "jpg", "jpeg", "webp"]);
 const encoding = new Map<string, Promise<void>>;
@@ -58,7 +58,7 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
     }
 
     function buildPosterPath() {
-        if (cfg.poster === "auto" && asset.meta?.lazy !== false)
+        if (cfg.poster && cfg.encode.poster)
             return `${buildBasePath()}${cfg.encode.poster.suffix}.avif`;
         return undefined;
     }
@@ -92,10 +92,10 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
         if (posterPath && (!(await std.fs.exists(posterPath)) || asset.dirty))
             await cfg.encode.encoder.encode({
                 probe: info, input: sourcePath, output: posterPath, single: true,
-                width: evalPosterWidth(),
-                blur: cfg.encode.poster.blur ?? undefined,
-                quality: cfg.encode.poster.quality,
-                speed: cfg.encode.poster.speed
+                width: evalPosterWidth(cfg.encode.poster!),
+                blur: cfg.encode.poster!.blur ?? undefined,
+                quality: cfg.encode.poster!.quality,
+                speed: cfg.encode.poster!.speed
             });
     }
 
@@ -106,8 +106,8 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
             (!posterPath || await std.fs.exists(posterPath));
     }
 
-    function evalPosterWidth() {
-        if (!cfg.encode.poster.scale) return undefined;
-        return cfg.encode.poster.scale * (threshold ? threshold : info.width);
+    function evalPosterWidth(poster: PosterOptions) {
+        if (!poster.scale) return undefined;
+        return poster.scale * (threshold ? threshold : info.width);
     }
 }
