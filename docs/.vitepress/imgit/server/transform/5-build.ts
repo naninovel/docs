@@ -112,6 +112,6 @@ async function getPosterBase64(src: string, path: string, dirty?: boolean): Prom
     const file = await std.fs.read(path, "bin");
     const data = await std.base64(file);
     const base64 = `data:image/gif;base64,${data}`;
-    cache[src] = base64;
+    cache.posters[src] = base64;
     return base64;
 }

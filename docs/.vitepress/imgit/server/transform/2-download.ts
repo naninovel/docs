@@ -34,9 +34,7 @@ async function downloadAsset(asset: CapturedAsset): Promise<DownloadedAsset> {
 
     async function fetchWithRetries(url: string, filepath: string): Promise<void> {
         cfg.log?.info?.(`Downloading ${url} to ${cfg.download.root}`);
-        try {
-            return fetchWithTimeout(url, filepath);
-        } catch (error) {
+        try { return fetchWithTimeout(url, filepath); } catch (error) {
             retrying.set(filepath, (retrying.get(filepath) ?? 0) + 1);
             if (retrying.get(filepath)! > retries) {
                 await fs.remove(filepath);

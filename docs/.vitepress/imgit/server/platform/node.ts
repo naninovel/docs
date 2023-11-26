@@ -3,8 +3,6 @@ import afs from "node:fs/promises";
 import path from "node:path";
 import { promisify } from "node:util";
 import { exec } from "node:child_process";
-import { Readable } from "node:stream";
-import { finished } from "node:stream/promises";
 import { Platform } from "./platform";
 
 export const node: Readonly<Platform> = {
@@ -17,7 +15,7 @@ export const node: Readonly<Platform> = {
         },
         write: (path, content) => {
             if (typeof content === "string") return afs.writeFile(path, content, "utf-8");
-            return finished(Readable.fromWeb(<never>content).pipe(fs.createWriteStream(path)));
+            return afs.writeFile(path, content);
         },
         remove: afs.unlink,
         mkdir: (path: string) => afs.mkdir(path, { recursive: true }).then()
