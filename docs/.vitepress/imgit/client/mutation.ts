@@ -24,12 +24,12 @@ function handleMutation(mutation: MutationRecord) {
 }
 
 function handleAdded(added: Element) {
-    for (const element of added.querySelectorAll("[data-imgit-lazy]"))
+    for (const element of added.querySelectorAll("[data-imgit]"))
         if (isVideo(element)) observeVideo(element);
 }
 
 function handleRemoved(removed: Element) {
-    for (const element of removed.querySelectorAll("[data-imgit-lazy]"))
+    for (const element of removed.querySelectorAll("[data-imgit]"))
         if (isVideo(element)) unobserveVideo(element);
 }
 
