@@ -107,11 +107,8 @@ async function buildPoster(asset: EncodedAsset, size: string): Promise<string> {
 }
 
 async function getPosterBase64(src: string, path: string, dirty?: boolean): Promise<string> {
-    if (!dirty && cache.posters.hasOwnProperty(src))
-        return cache.posters[src];
-    const file = await std.fs.read(path, "bin");
-    const data = await std.base64(file);
-    const base64 = `data:image/gif;base64,${data}`;
-    cache.posters[src] = base64;
-    return base64;
+    const data = !dirty && cache.posters.hasOwnProperty(src)
+        ? cache.posters[src]
+        : cache.posters[src] = await std.base64(await std.fs.read(path, "bin"));
+    return `data:image/avif;base64,${data}`;
 }
