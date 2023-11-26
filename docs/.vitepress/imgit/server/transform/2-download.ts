@@ -59,7 +59,7 @@ async function downloadAsset(asset: CapturedAsset): Promise<DownloadedAsset> {
         const response = await std.fetch(url, signal);
         if (response.status === 429) return handleRetryResponse(response);
         await ensureDir(path.dirname(filepath));
-        return fs.write(filepath, response.body!);
+        return fs.write(filepath, (await response.body!.getReader().read()).value!);
     }
 
     async function handleRetryResponse(response: Response): Promise<void> {
