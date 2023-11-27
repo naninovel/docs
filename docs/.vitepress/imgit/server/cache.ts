@@ -1,13 +1,13 @@
 import { std, cfg, ensureDir } from "./common";
-import { SourceInfo } from "./asset";
+import { AssetContent } from "./asset";
 
 /** Cached results of the build operations.
  *  Each property is persisted between build runs;
  *  custom properties can be added when used from extensions. */
 export type Cache = Record<string, unknown> & {
-    /** Results of assets probing mapped by source asset URL. */
-    probes: Record<string, SourceInfo | undefined>;
-    /** Base64-encoded poster images mapped by source asset URL. */
+    /** Results of asset's content probing mapped by remote content URL. */
+    probes: Record<string, AssetContent>;
+    /** Base64-encoded poster images mapped by asset's syntax URL. */
     posters: Record<string, string>;
 };
 

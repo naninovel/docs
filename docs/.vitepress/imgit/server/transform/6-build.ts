@@ -1,4 +1,4 @@
-import { EncodedAsset, BuiltAsset, SourceInfo, AssetType } from "../asset";
+import { EncodedAsset, BuiltAsset, AssetContent, AssetType } from "../asset";
 import { std, cfg, cache } from "../common";
 
 /** Builds HTML for the optimized assets to overwrite source syntax. */
@@ -26,7 +26,7 @@ export function buildAnimation(asset: EncodedAsset): Promise<string> {
 export async function buildVideo(asset: EncodedAsset): Promise<string> {
     const { src, encodedSrc } = await buildSources(asset);
     const cls = `class="${cfg.build.style.className.video}"`;
-    const size = buildSizes(asset.sourceInfo);
+    const size = buildSizes(asset.content);
     // https://jakearchibald.com/2022/html-codecs-parameter-for-av1
     const codec = "av01.0.04M.08"; // TODO: Resolve for each file in probe.
     return `
@@ -53,7 +53,7 @@ export async function buildYouTube(asset: EncodedAsset): Promise<string> {
 async function buildPicture(asset: EncodedAsset): Promise<string> {
     const { src, encodedSrc, encoded2xSrc } = await buildSources(asset);
     const alt = asset.title ?? "";
-    const size = buildSizes(asset.sourceInfo);
+    const size = buildSizes(asset.content);
     const cls = asset.type === AssetType.Image
         ? cfg.build.style.className.image
         : cfg.build.style.className.animation;
@@ -72,7 +72,7 @@ async function buildPicture(asset: EncodedAsset): Promise<string> {
 
 async function buildSources(asset: EncodedAsset) {
     return {
-        src: await serve(asset.sourcePath!, asset),
+        src: await serve(asset.contentPath!, asset),
         encodedSrc: asset.encodedPath && await serve(asset.encodedPath, asset),
         encoded2xSrc: asset.encoded2xPath && await serve(asset.encoded2xPath, asset)
     };
@@ -85,7 +85,7 @@ function serve(fullPath: string, asset: EncodedAsset): string | Promise<string> 
     return cfg.serve(relativePath, asset);
 }
 
-function buildSizes(info?: SourceInfo): string {
+function buildSizes(info?: AssetContent): string {
     if (!info) return "";
     const mod = cfg.width && info.width > cfg.width ? cfg.width / info.width : 1;
     const width = Math.floor(info.width * mod);
@@ -96,8 +96,8 @@ function buildSizes(info?: SourceInfo): string {
 async function buildPoster(asset: EncodedAsset, size: string): Promise<string> {
     if (!cfg.poster) return "";
     const cls = cfg.build.style.className.poster;
-    const avif = asset.posterPath
-        ? await getPosterBase64(asset.sourceUrl, asset.posterPath, asset.dirty)
+    const avif = asset.encodedPosterPath
+        ? await getPosterBase64(asset.sourceUrl, asset.encodedPosterPath, asset.dirty)
         : undefined;
     return `
 <picture data-imgit-poster>

@@ -12,9 +12,9 @@ export function encode(assets: ProbedAsset[]): Promise<EncodedAsset[]> {
 
 async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
     if (!shouldEncode()) return asset;
-    const info = asset.sourceInfo!;
+    const info = asset.content!;
     const threshold = evaluateThreshold();
-    const originalSourcePath = asset.sourcePath!;
+    const originalSourcePath = asset.contentPath!;
     const compatibleSourcePath = buildCompatibleSourcePath();
     const sourcePath = compatibleSourcePath ?? originalSourcePath;
     const encodedPath = buildEncodedPath();
@@ -25,7 +25,7 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
     return encoding.set(asset.sourceUrl, encodeAsset()).get(asset.sourceUrl)!.then(() => encodedAsset);
 
     function shouldEncode() {
-        if (!asset.sourcePath || !asset.sourceInfo) return false;
+        if (!asset.contentPath || !asset.content) return false;
         return asset.type === AssetType.Image && cfg.encode.image ||
             asset.type === AssetType.Animation && cfg.encode.animation ||
             asset.type === AssetType.Video && cfg.encode.video;
