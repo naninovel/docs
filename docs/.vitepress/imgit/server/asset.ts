@@ -31,7 +31,7 @@ export type AssetSyntax = {
          *  and switch to "narrow.png" when the window width is equal or below 799px.
          *  @example
          *  ![](/wide.png?media=(min-width:800px))
-         *  ![](/narrow.png?media=(max-width:799px)&merge)*/
+         *  ![](/narrow.png?media=(max-width:799px)&merge) */
         media?: string;
     };
 }
