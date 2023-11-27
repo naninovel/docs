@@ -4,7 +4,7 @@ export type Platform = Record<string, unknown> & {
     fs: {
         /** Returns whether directory or file with specified path exists. */
         exists: (path: string) => Promise<boolean>;
-        /** Returns last modified time of the file with specified path, in full seconds since epoch. */
+        /** Returns last modified time of the file with specified path, in full seconds since unix epoch. */
         stat: (path: string) => Promise<{ modified: number }>;
         /** Returns content of the file with specified path and encoding. */
         read: <T extends "bin" | "utf8">(path: string, encoding: T)
