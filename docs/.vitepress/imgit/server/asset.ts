@@ -1,75 +1,93 @@
-/** Transformed asset type. */
-export enum AssetType {
-    /** Still image rendered with <code><picture></code> HTML tag; eg, png or jpg. */
-    Image,
-    /** Looped sequence of still images rendered with <code><picture></code> HTML tag; eg, gif. */
-    Animation,
-    /** Video rendered with <code><video></code> HTML tag; eg, mp4. */
-    Video,
-    /** YouTube video embedded within <code><iframe></code> HTML tag. */
-    YouTube
+/** Asset captured from transformed document. */
+export type CapturedAsset = {
+    /** Syntax of the captured asset. */
+    syntax: AssetSyntax;
+};
+
+/** Asset syntax captured from transformed document. */
+export type AssetSyntax = {
+    /** Full text of the captured syntax. */
+    text: string;
+    /** First index of the captured syntax text inside transformed document content. */
+    index: number;
+    /** URL from captured syntax; may be direct location of the asset's content (eg, image link)
+     *  or endpoint for resolving the content, such as REST API or YouTube link. */
+    url: string;
+    /** Optional title of the asset from captured syntax. */
+    title?: string;
+    /** Optional user-defined asset metadata from captured syntax. */
+    meta?: AssetMeta;
 }
 
-/** Media info of the source asset content. */
-export type SourceInfo = {
-    /** Width of the source asset content, in pixels. */
-    width: number;
-    /** Height of the source asset content, in pixels. */
-    height: number;
-    /** Whether the source asset content has alpha channel (transparency). */
-    alpha: boolean;
-    /** When the asset file was last modified, in full seconds since epoch. */
-    modified: number;
-}
-
-/** User-defined optional asset metadata. */
+/** User-defined optional asset metadata from captured syntax. */
 export type AssetMeta = {
     /** Width threshold of the source asset content, in pixels.
      *  Overrides global <code>width</code> parameter. */
     width?: number;
-    /** When set to <code>false</code> the asset will be loaded eagerly (instead of lazy).
+    /** When set to <code>true</code> the asset will be loaded eagerly (instead of default lazy).
      *  Use for above the fold content, ie initially visible w/o scrolling, such as hero image. */
-    lazy?: boolean;
+    eager?: boolean;
 }
 
-/** Asset syntax captured from transformed document. */
-export type CapturedAsset = {
-    /** Full text of the captured syntax. */
-    syntax: string;
-    /** First index of the captured syntax text inside transformed document content. */
-    index: number;
-    /** URL of the source asset resolved from captured syntax. */
-    sourceUrl: string;
-    /** Type of the asset resolved from captured syntax. */
-    type: AssetType;
-    /** Optional title of the asset resolved from captured syntax. */
-    title?: string;
-    /** User-defined optional asset metadata. */
-    meta?: AssetMeta;
+/** Asset with resolved remote content locations and type. */
+export type ResolvedAsset = CapturedAsset & {
+    /** Asset's content locations (URL) resolved from captured syntax. */
+    remote: {
+        /** Location (URL) of the asset's main content file, when applicable. */
+        main?: string;
+        /** Location (URL) of the asset's poster file, when applicable. */
+        poster?: string;
+    };
+    /** Resolved type of the asset. Could be either a MIME type (eg, "image/png") or a custom
+     *  embedded type when the asset doesn't have an associated main content file (eg, "embed/youtube"). */
+    type: string;
+}
+
+/** Asset with content files downloaded to local file system. */
+export type DownloadedAsset = ResolvedAsset & {
+    /** Full paths to the asset's content files on local file system. */
+    local: {
+        /** Full path to the asset's main content file, when applicable. */
+        main?: string;
+        /** Full path to the asset's poster file, when applicable. */
+        poster?: string;
+    }
 };
 
-/** Asset with file content downloaded and available for probing. */
-export type DownloadedAsset = CapturedAsset & {
-    /** Full path to the source asset file on local file system or undefined when N/A. */
-    sourcePath?: string;
-};
-
-/** Asset with identified content metadata. */
+/** Asset with identified (probed) content. */
 export type ProbedAsset = DownloadedAsset & {
-    /** Media info of the source asset content. */
-    sourceInfo?: SourceInfo;
-    /** Whether source asset file was modified since last build. */
+    /** Info about the probed asset content. */
+    content: {
+        main?: AssetContent;
+        poster?: AssetContent
+    };
+    /** Whether any of the asset content files were modified since last build. */
     dirty?: boolean;
 };
 
-/** Asset with encoded counterpart. */
+/** Identified (probed) content of an asset. */
+export type AssetContent = {
+    /** Width of the content, in pixels. */
+    width: number;
+    /** Height of the content, in pixels. */
+    height: number;
+    /** Whether the content has alpha channel (transparency). */
+    alpha: boolean;
+    /** When the content file was last modified, in full seconds since epoch. */
+    modified: number;
+}
+
+/** Asset with encoded content. */
 export type EncodedAsset = ProbedAsset & {
-    /** Full path to the encoded file on local file system or undefined when N/A or disabled. */
-    encodedPath?: string;
-    /** Full path to the encoded file with 2x scale on local file system or undefined when N/A or disabled. */
-    encoded2xPath?: string;
-    /** Full path to the poster file or undefined when N/A or disabled. */
-    posterPath?: string;
+    /** Full paths to the asset's encoded content files on local file system. */
+    encoded: {
+        /** Full path to the asset's main encoded content file, when applicable. */
+        main?: string;
+        /** Full path to the asset's encoded content file with double resolution, when applicable. */
+        x2?: string;
+        /** Full path to the asset's encoded poster file, when applicable. */
+        poster?: string;
+    }
 };
 
 /** Final product of asset transformation with associated HTML. */
