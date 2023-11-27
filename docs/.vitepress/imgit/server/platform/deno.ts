@@ -25,7 +25,7 @@ declare module Deno {
 export const deno: Readonly<Platform> = {
     fs: {
         exists: fs.exists,
-        stat: path => Deno.stat(path).then(s => ({ modified: s.mtime.getUTCMilliseconds() })),
+        stat: path => Deno.stat(path).then(s => ({ modified: Math.floor(s.mtime.getTime() / 1000) })),
         read: (path, encoding) => <never>(encoding === "bin" ? Deno.readFile(path) : Deno.readTextFile(path)),
         write: async (path, content) => {
             if (typeof content === "string") return Deno.writeTextFile(path, content);

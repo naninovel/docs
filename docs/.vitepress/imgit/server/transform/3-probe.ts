@@ -35,7 +35,7 @@ async function probeDistinct(asset: DownloadedAsset): Promise<ProbedAsset> {
     function getCached(): SourceInfo | undefined {
         if (!cache.probes.hasOwnProperty(url)) return undefined;
         const cached = cache.probes[url]!;
-        if (modified !== cached.modified) return undefined;
+        if (modified > cached.modified) return undefined;
         return cached;
     }
 

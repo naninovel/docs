@@ -22,7 +22,7 @@ declare module Bun {
 export const bun: Readonly<Platform> = {
     fs: {
         exists: path => Bun.file(path).exists(),
-        stat: path => fs.stat(path).then(s => ({ modified: s.mtimeMs })),
+        stat: path => fs.stat(path).then(s => ({ modified: Math.floor(s.mtimeMs / 1000) })),
         read: async (path, encoding) => {
             const file = Bun.file(path);
             if (encoding === "utf8") return <never>await file.text();
