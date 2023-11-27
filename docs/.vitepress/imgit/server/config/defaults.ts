@@ -14,7 +14,7 @@ export const defaults: Readonly<Options> = {
     root: "./public/assets",
     host: "/assets",
     serve: "auto",
-    regex: [/!\[(?<title>.*?)(?<meta>{.+?})?]\((?<url>.+?)\)/g],
+    regex: [/!\[(?<title>.*?)(?<spec>{.+?})?]\((?<url>.+?)\)/g],
     image: ["png", "jpg", "jpeg", "webp", "avif", "bmp", "tif", "tiff", "tga", "psd"],
     animation: ["gif", "apng"],
     video: ["mp4", "webm"],

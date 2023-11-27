@@ -32,7 +32,7 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
     }
 
     function evaluateThreshold(): number | undefined {
-        if (asset.meta?.width) return asset.meta.width;
+        if (asset.spec?.width) return asset.spec.width;
         if (!cfg.width) return undefined;
         return info.width > cfg.width ? cfg.width : undefined;
     }
