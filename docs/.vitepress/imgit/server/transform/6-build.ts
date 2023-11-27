@@ -3,6 +3,8 @@ import { std, cfg, cache } from "../common";
 
 /** Builds HTML for the optimized assets to overwrite source syntax. */
 export function build(assets: EncodedAsset[]): Promise<BuiltAsset[]> {
+    // Group master + adjacent "next" assets for builders; still return all the assets in same order,
+    // just assign empty html for assets with "next" spec (master will contain all the html).
     return Promise.all(assets.map(buildAsset));
 }
 
