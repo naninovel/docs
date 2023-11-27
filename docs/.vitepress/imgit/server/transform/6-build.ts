@@ -58,7 +58,7 @@ async function buildPicture(asset: EncodedAsset): Promise<string> {
         ? cfg.build.style.className.image
         : cfg.build.style.className.animation;
     const x2 = encoded2xSrc ? `, ${encoded2xSrc} 2x` : "";
-    const lazy = asset.meta?.lazy !== false;
+    const lazy = asset.spec?.lazy !== false;
     const load = lazy ? `loading="lazy" decoding="async"` : `decoding="sync"`;
     return `
 <div class="${cfg.build.style.className.container}">

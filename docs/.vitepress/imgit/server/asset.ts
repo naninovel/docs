@@ -15,23 +15,20 @@ export type AssetSyntax = {
     url: string;
     /** Optional title of the asset from captured syntax. */
     title?: string;
-    /** Optional user-defined asset metadata from captured syntax. */
-    meta?: AssetMeta;
-}
-
-/** User-defined optional asset metadata from captured syntax. */
-export type AssetMeta = {
-    /** Width threshold of the source asset content, in pixels.
-     *  Overrides global <code>width</code> parameter. */
-    width?: number;
-    /** When set to <code>true</code> the asset will be loaded eagerly (instead of default lazy).
-     *  Use for above the fold content, ie initially visible w/o scrolling, such as hero image. */
-    eager?: boolean;
+    /** Optional specifications from captured syntax. */
+    spec?: {
+        /** Width threshold of the source asset content, in pixels.
+         *  Overrides global <code>width</code> parameter. */
+        width?: number;
+        /** When set to <code>true</code> the asset will be loaded eagerly (instead of default lazy).
+         *  Use for above the fold content, ie initially visible w/o scrolling, such as hero image. */
+        eager?: boolean;
+    };
 }
 
 /** Asset with resolved remote content locations and type. */
 export type ResolvedAsset = CapturedAsset & {
-    /** Asset's content locations (URL) resolved from captured syntax. */
+    /** Asset's remote content locations (URL) resolved from captured syntax. */
     remote: {
         /** Location (URL) of the asset's main content file, when applicable. */
         main?: string;

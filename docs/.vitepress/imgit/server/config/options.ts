@@ -15,9 +15,9 @@ export type Options = {
      *  or resolve relative URL when self-hosted; resolves to <code>{host}/{path}</code> by default. */
     serve: ((path: string, asset: EncodedAsset) => string | Promise<string>) | "auto";
     /** Regular expressions to use for capturing transformed assets syntax. Expects <code><url></code>,
-     *  <code><title></code> and <code><meta></code> capture groups (title and meta are optional).
-     *  By default, captures Markdown image syntax with meta JSON specified after title:
-     *  <code>/!\[(?<title>.*?(?<meta>{.+?})?)]\((?<url>.+?)\)/g</code>. */
+     *  <code><title></code> and <code><spec></code> capture groups (title and spec are optional).
+     *  By default, captures Markdown image syntax with optional spec JSON specified after title:
+     *  <code>/!\[(?<title>.*?(?<spec>{.+?})?)]\((?<url>.+?)\)/g</code>. */
     regex: RegExp[];
     /** Image file extensions (w/o dot) to optimize;
      *  default: png, jpg, jpeg, webp, avif, bmp, tif, tiff, tga and psd. */
@@ -36,7 +36,7 @@ export type Options = {
     /** Default width threshold for the transformed assets, in pixels. When source asset is larger,
      *  will downscale it while preserving the original aspect. In case the source is 2x or larger,
      *  images and animations will as well get additional variant for high-density displays.
-     *  Default threshold is ignored when asset has individual threshold specified via meta syntax. */
+     *  This option is ignored when asset has width explicitly assigned via spec syntax. */
     width: number | null;
     /** Configure logging behaviour; assign <code>null</code> to disable logging. */
     log: LogOptions | null;

@@ -22,7 +22,7 @@ export async function capture(content: string): Promise<CapturedAsset[]> {
             sourceUrl: match.groups.url,
             type,
             title: match.groups.title,
-            meta: match.groups.meta ? JSON.parse(match.groups.meta) : undefined
+            spec: match.groups.spec ? JSON.parse(match.groups.spec) : undefined
         });
     }
 }
