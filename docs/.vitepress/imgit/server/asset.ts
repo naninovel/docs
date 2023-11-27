@@ -26,13 +26,13 @@ export type AssetSyntax = {
     };
 }
 
-/** Asset with resolved remote content locations and type. */
+/** Asset with resolved content URLs and type. */
 export type ResolvedAsset = CapturedAsset & {
-    /** Asset's remote content locations (URL) resolved from captured syntax. */
+    /** Asset's content locations (absolute or relative URLs) resolved from captured syntax. */
     remote: {
-        /** Location (URL) of the asset's main content file, when applicable. */
+        /** URL of the asset's main content file, when applicable. */
         main?: string;
-        /** Location (URL) of the asset's poster file, when applicable. */
+        /** URL of the asset's poster file, when applicable. */
         poster?: string;
     };
     /** Resolved type of the asset. Could be either a MIME type (eg, "image/png") or a custom

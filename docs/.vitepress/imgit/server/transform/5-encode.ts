@@ -1,6 +1,6 @@
 import { ProbedAsset, EncodedAsset, AssetType } from "../asset";
 import { std, cfg, getExtension } from "../common";
-import { PosterOptions } from "../config";
+import { PosterEncodeOptions } from "../config";
 
 const compatibleExt = new Set<string>(["png", "jpg", "jpeg", "webp"]);
 const encoding = new Map<string, Promise<void>>;
@@ -106,7 +106,7 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
             (!posterPath || await std.fs.exists(posterPath));
     }
 
-    function evalPosterWidth(poster: PosterOptions) {
+    function evalPosterWidth(poster: PosterEncodeOptions) {
         if (!poster.scale) return undefined;
         return poster.scale * (threshold ? threshold : info.width);
     }
