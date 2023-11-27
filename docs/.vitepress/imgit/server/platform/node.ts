@@ -8,7 +8,7 @@ import { Platform } from "./platform";
 export const node: Readonly<Platform> = {
     fs: {
         exists: async path => fs.existsSync(path),
-        stat: path => afs.stat(path).then(s => ({ modified: s.mtimeMs })),
+        stat: path => afs.stat(path).then(s => ({ modified: Math.floor(s.mtimeMs / 1000) })),
         read: async (path, encoding) => {
             if (encoding === "utf8") return <never>await afs.readFile(path, "utf-8");
             return <never>new Uint8Array(await afs.readFile(path));

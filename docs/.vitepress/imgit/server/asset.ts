@@ -18,7 +18,7 @@ export type SourceInfo = {
     height: number;
     /** Whether the source asset content has alpha channel (transparency). */
     alpha: boolean;
-    /** When the asset file was last modified, in ms since epoch. */
+    /** When the asset file was last modified, in full seconds since epoch. */
     modified: number;
 }
 
