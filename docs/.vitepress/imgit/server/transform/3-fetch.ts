@@ -1,4 +1,4 @@
-import { FetchedAsset, ResolvedAsset } from "../asset";
+import { ResolvedAsset, FetchedAsset } from "../asset";
 import { std, cfg, ctx, ensureDir } from "../common";
 
 const fetching = new Map<string, Promise<void>>;
