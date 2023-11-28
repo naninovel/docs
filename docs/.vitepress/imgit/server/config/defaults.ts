@@ -14,9 +14,9 @@ import { rewrite } from "../transform/7-rewrite";
 export const defaults: Readonly<Options> = {
     root: "./public",
     regex: [/!\[(?<alt>.*?)(?<spec>\?\S+?)?]\((?<url>.+?)\)/g],
-    resolve: [],
-    build: [],
-    serve: [],
+    resolvers: [],
+    builders: [],
+    servers: [],
     poster: "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=", // empty gif (smallest valid src)
     width: null,
     log: {
