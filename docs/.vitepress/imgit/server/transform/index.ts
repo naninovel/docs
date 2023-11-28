@@ -6,7 +6,8 @@ import { cfg } from "../common";
  *  @return Transformed content of the document. */
 export async function transform(content: string): Promise<string> {
     const captured = await cfg.transform.capture(content);
-    const downloaded = await cfg.transform.download(captured);
+    const resolved = await cfg.transform.resolve(captured);
+    const downloaded = await cfg.transform.download(resolved);
     const probed = await cfg.transform.probe(downloaded);
     const encoded = await cfg.transform.encode(probed);
     const built = await cfg.transform.build(encoded);

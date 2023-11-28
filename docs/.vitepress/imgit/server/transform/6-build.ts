@@ -42,19 +42,17 @@ export async function buildVideo(asset: EncodedAsset): Promise<string> {
 }
 
 export async function buildYouTube(asset: EncodedAsset): Promise<string> {
-    const title = asset.title ?? "";
     const cls = `class="${cfg.build.style.className.youtube}"`;
     const id = asset.sourceUrl.split("youtube.com/watch?v=")[1];
     const source = `https://www.youtube-nocookie.com/embed/${id}`;
     return `
 <div ${cls}>
-    <iframe title="${title}" src="${source}" allowfullscreen></iframe>
+    <iframe title="${asset.alt}" src="${source}" allowfullscreen></iframe>
 </div>`;
 }
 
 async function buildPicture(asset: EncodedAsset): Promise<string> {
     const { src, encodedSrc, encoded2xSrc } = await buildSources(asset);
-    const alt = asset.title ?? "";
     const size = buildSizes(asset.content);
     const cls = asset.type === AssetType.Image
         ? cfg.build.style.className.image
@@ -66,7 +64,7 @@ async function buildPicture(asset: EncodedAsset): Promise<string> {
 <div class="${cfg.build.style.className.container}">
     <picture>
         ${encodedSrc ? `<source srcset="${encodedSrc} 1x${x2}" type="image/avif"/>` : ""}
-        <img data-imgit src="${src}" alt="${alt}" class="${cls}" ${size} ${load}/>
+        <img data-imgit src="${src}" alt="${asset.alt}" class="${cls}" ${size} ${load}/>
     </picture>
     ${await buildPoster(asset, size)}
 </div>`;
