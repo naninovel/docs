@@ -8,42 +8,31 @@ export type ProbeResult = {
     alpha: boolean;
 };
 
-/** Parameters of a media encoding operation. */
-export type EncodeProps = {
-    /** Full path to file to encode. */
-    input: string;
-    /** Full path to write encoded file. */
-    output: string;
-    /** Information about the encoded content. */
-    probe: ProbeResult;
-    /** Quality-related encode parameters. */
-    quality: EncodeQuality;
-    /** Filter-related encode parameters. */
-    filter: EncodeFilter;
-    /** Whether single frame should be encoded in case input file has multiple frames. */
-    single?: boolean;
-};
-
-/** Configures encode quality. */
-export type EncodeQuality = {
-    /** File size to quality ratio, in 0.0 to 1.0 range; 0 - min. size, 1 - best quality. */
-    quality: number;
-    /** File size to speed ratio, in 0.0 to 1.0 range; 0 - min. size, 1 - fastest encoding. */
-    speed: number;
-};
-
 /** Configures transformation to use when encoding. */
-export type EncodeFilter = {
-    /** When specified, content is scaled to the specified width preserving the aspect. */
-    width?: number;
-    /** When specified, blur filter is applied with strength in 0.0 to 1.0 range. */
+export type EncodeSpec = {
+    /** File size to visual quality ratio, in 0.0 to 1.0 range;
+     *  0 - min. size, 1 - best quality (lossless or perceptually indistinguishable from the source). */
+    quality: number;
+    /** File size to encode speed ratio, in 0.0 to 1.0 range;
+     *  0 - min. size, 1 - fastest encoding (at build time, doesn't affect client/runtime). */
+    speed: number;
+    /** Select frame with specified index (0-based) instead of encoding full stream. */
+    select?: number;
+    /** Scale to the specified ratio preserving the aspect. */
+    scale?: number;
+    /** Apply blur with intensity in 0.0 to 1.0 range. */
     blur?: number;
 };
 
 /** Implementation is able to probe and encode media files. */
 export type Encoder = {
-    /** Resolves media info of the file with specified path. */
+    /** Resolves media info of the file with specified full path. */
     probe: (path: string) => Promise<ProbeResult>;
-    /** Encodes image with specified props. */
-    encode: (props: EncodeProps) => Promise<void>;
+    /** Encodes and writes media file with specified parameters.
+     *  @param src Full path to file to encode.
+     *  @param out Full path to write encoded file.
+     *  @param probe Media info about the source content.
+     *  @param spec Encode specifications.
+     *  @return Promise resolved when the file is encoded and written to the file system. */
+    encode: (src: string, out: string, probe: ProbeResult, spec: EncodeSpec) => Promise<void>;
 };

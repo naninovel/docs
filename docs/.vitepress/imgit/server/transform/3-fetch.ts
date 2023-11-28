@@ -1,24 +1,24 @@
-import { DownloadedAsset, ResolvedAsset } from "../asset";
+import { FetchedAsset, ResolvedAsset } from "../asset";
 import { std, cfg, ctx, ensureDir } from "../common";
 
 const fetching = new Map<string, Promise<void>>;
 const retrying = new Map<string, number>;
 
 /** Downloads file content for the resolved assets. */
-export async function download(assets: ResolvedAsset[]): Promise<DownloadedAsset[]> {
-    const downloaded = new Array<DownloadedAsset>;
+export async function fetch(assets: ResolvedAsset[]): Promise<FetchedAsset[]> {
+    const downloaded = new Array<FetchedAsset>;
     for (const asset of assets)
         downloaded.push(await downloadAsset(asset));
     await Promise.all(fetching.values());
     return downloaded;
 }
 
-async function downloadAsset(asset: ResolvedAsset): Promise<DownloadedAsset> {
+async function downloadAsset(asset: ResolvedAsset): Promise<FetchedAsset> {
     if (asset.type === AssetType.YouTube) return asset;
     const { fs, path, wait } = std;
-    const { timeout, retries, delay } = cfg.download;
+    const { timeout, retries, delay } = cfg.fetch;
     const sourcePath = path.resolve(buildLocalRoot(asset.sourceUrl), path.basename(asset.sourceUrl));
-    const downloadedAsset: DownloadedAsset = { ...asset, contentPath: sourcePath };
+    const downloadedAsset: FetchedAsset = { ...asset, contentPath: sourcePath };
     if (await fs.exists(sourcePath) || fetching.has(sourcePath)) return downloadedAsset;
     const fetchPromise = fetchWithRetries(asset.sourceUrl, sourcePath);
     fetching.set(sourcePath, fetchPromise);
@@ -26,14 +26,14 @@ async function downloadAsset(asset: ResolvedAsset): Promise<DownloadedAsset> {
     return fetchPromise.then(() => downloadedAsset);
 
     function buildLocalRoot(url: string): string {
-        if (!url.startsWith("/")) return cfg.download.root;
+        if (!url.startsWith("/")) return cfg.fetch.root;
         const endIdx = url.length - path.basename(url).length;
         const subdir = url.substring(cfg.host.length, endIdx);
         return path.join(cfg.root, subdir);
     }
 
     async function fetchWithRetries(url: string, filepath: string): Promise<void> {
-        cfg.log?.info?.(`Downloading ${url} to ${cfg.download.root}`);
+        cfg.log?.info?.(`Downloading ${url} to ${cfg.fetch.root}`);
         try { return fetchWithTimeout(url, filepath); } catch (error) {
             retrying.set(filepath, (retrying.get(filepath) ?? 0) + 1);
             if (retrying.get(filepath)! > retries) {

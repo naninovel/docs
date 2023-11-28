@@ -1,10 +1,10 @@
-import { DownloadedAsset, ProbedAsset, AssetContent } from "../asset";
+import { FetchedAsset, ProbedAsset, AssetContent } from "../asset";
 import { std, cfg, ctx, cache } from "../common";
 
 const probing = new Map<string, Promise<AssetContent | undefined>>;
 
 /** Probes downloaded asset files to evaluate their width and height. */
-export async function probe(assets: DownloadedAsset[]): Promise<ProbedAsset[]> {
+export async function probe(assets: FetchedAsset[]): Promise<ProbedAsset[]> {
     await everythingIsDownloaded();
     return Promise.all(assets.map(probeDistinct));
 }
@@ -21,7 +21,7 @@ async function everythingIsDownloaded(): Promise<void> {
     }
 }
 
-async function probeDistinct(asset: DownloadedAsset): Promise<ProbedAsset> {
+async function probeDistinct(asset: FetchedAsset): Promise<ProbedAsset> {
     if (!asset.contentPath) return asset;
     let info: AssetContent | undefined;
     const url = asset.sourceUrl;
