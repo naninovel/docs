@@ -76,22 +76,22 @@ async function encodeDistinct(asset: ProbedAsset): Promise<EncodedAsset> {
                 ? cfg.encode.animation! : cfg.encode.video!;
         if (compatibleSourcePath && (!(await std.fs.exists(compatibleSourcePath)) || asset.dirty))
             await cfg.encode.encoder.encode({
-                probe: info, input: originalSourcePath,
-                output: compatibleSourcePath, ...quality
+                probe: info, src: originalSourcePath,
+                out: compatibleSourcePath, ...quality
             });
         if (!(await std.fs.exists(encodedPath)) || asset.dirty)
             await cfg.encode.encoder.encode({
-                probe: info, input: sourcePath, output: encodedPath,
+                probe: info, src: sourcePath, out: encodedPath,
                 width: threshold ?? undefined, ...quality
             });
         if (encoded2xPath && (!(await std.fs.exists(encoded2xPath)) || asset.dirty))
             await cfg.encode.encoder.encode({
-                probe: info, input: sourcePath,
-                output: encoded2xPath, ...quality
+                probe: info, src: sourcePath,
+                out: encoded2xPath, ...quality
             });
         if (posterPath && (!(await std.fs.exists(posterPath)) || asset.dirty))
             await cfg.encode.encoder.encode({
-                probe: info, input: sourcePath, output: posterPath, single: true,
+                probe: info, src: sourcePath, out: posterPath, single: true,
                 width: evalPosterWidth(cfg.encode.poster!),
                 blur: cfg.encode.poster!.blur ?? undefined,
                 quality: cfg.encode.poster!.quality,

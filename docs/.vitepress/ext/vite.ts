@@ -7,7 +7,7 @@ export const vite: UserConfig = {
         enforce: "pre",
         skip: (_, id) => !id.endsWith(".md"),
         root: "./docs/public/assets",
-        download: { root: "./docs/public/assets/remote" },
+        fetch: { root: "./docs/public/assets/remote" },
         cache: { root: "./docs/public/assets/remote/.cache" },
         width: 720
     })],

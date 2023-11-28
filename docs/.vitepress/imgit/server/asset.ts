@@ -53,7 +53,7 @@ export type ResolvedAsset = CapturedAsset & {
 }
 
 /** Asset with content files downloaded to local file system. */
-export type DownloadedAsset = ResolvedAsset & {
+export type FetchedAsset = ResolvedAsset & {
     /** Full paths to the asset's content files on local file system. */
     local: {
         /** Full path to the asset's main content file, when applicable. */
@@ -64,7 +64,7 @@ export type DownloadedAsset = ResolvedAsset & {
 };
 
 /** Asset with identified (probed) content. */
-export type ProbedAsset = DownloadedAsset & {
+export type ProbedAsset = FetchedAsset & {
     /** Info about the probed asset content. */
     content: {
         main?: AssetContent;

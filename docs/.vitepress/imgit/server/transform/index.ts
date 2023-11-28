@@ -7,8 +7,8 @@ import { cfg } from "../common";
 export async function transform(content: string): Promise<string> {
     const captured = await cfg.transform.capture(content);
     const resolved = await cfg.transform.resolve(captured);
-    const downloaded = await cfg.transform.download(resolved);
-    const probed = await cfg.transform.probe(downloaded);
+    const fetched = await cfg.transform.fetch(resolved);
+    const probed = await cfg.transform.probe(fetched);
     const encoded = await cfg.transform.encode(probed);
     const built = await cfg.transform.build(encoded);
     return cfg.transform.rewrite(content, built);

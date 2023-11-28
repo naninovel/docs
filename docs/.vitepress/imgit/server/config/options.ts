@@ -1,5 +1,5 @@
-import { CapturedAsset, ResolvedAsset, DownloadedAsset, ProbedAsset, EncodedAsset, BuiltAsset } from "../asset";
-import { Encoder, EncodeQuality, EncodeFilter } from "../encoder";
+import { CapturedAsset, ResolvedAsset, FetchedAsset, ProbedAsset, EncodedAsset, BuiltAsset } from "../asset";
+import { Encoder, EncodeSpec } from "../encoder";
 import { Cache } from "../cache";
 
 /** Configures server behaviour. */
@@ -36,7 +36,7 @@ export type Options = {
     /** Configure caching behaviour; assign <code>null</code> to disable caching. */
     cache: CacheOptions | null;
     /** Configure remote content fetching. */
-    download: DownloadOptions;
+    fetch: FetchOptions;
     /** Configure content encoding. */
     encode: EncodeOptions;
     /** Configure document transformation process. */
@@ -88,9 +88,9 @@ export type CacheOptions = {
 }
 
 /** Configures remote assets downloading behaviour. */
-export type DownloadOptions = {
+export type FetchOptions = {
     /** Local directory to store downloaded remote content files;
-     *  <code>./node_modules/.bin/imgit/fetched</code> by default. */
+     *  <code>./node_modules/.cache/imgit/fetched</code> by default. */
     root: string;
     /** How long to wait when downloading remote asset, in seconds; 30 by default. */
     timeout: number;
@@ -103,14 +103,14 @@ export type DownloadOptions = {
 /** Configures assets encoding. */
 export type EncodeOptions = {
     /** Local directory to store encoded content files and generated posters;
-     *  <code>./node_modules/.bin/imgit/encoded</code> by default. */
+     *  <code>./node_modules/.cache/imgit/encoded</code> by default. */
     root: string;
     /** Implementation to probe and encode media files with; specify to swap ffmpeg used by default. */
     encoder: Encoder;
-    /** Encode quality mapped by content MIME type. */
-    quality: Map<string | RegExp, EncodeQuality>;
+    /** Encode parameters mapped by content MIME type. */
+    specs: [string | RegExp, EncodeSpec][];
     /** Configure poster generation; specify <code>null</code> to disable per-asset poster generation. */
-    poster: EncodeQuality & EncodeFilter & {
+    poster: EncodeSpec & {
         /** Tag to append to the names of generated poster files; <code>-poster</code> by default. */
         suffix: string;
     } | null;
@@ -125,9 +125,9 @@ export type TransformOptions = {
     /** 2nd phase: resolves type, content locations and specs of the captured syntax. */
     resolve: (assets: CapturedAsset[]) => Promise<ResolvedAsset[]>;
     /** 3rd phase: downloads file content for the resolved assets. */
-    download: (assets: ResolvedAsset[]) => Promise<DownloadedAsset[]>;
+    fetch: (assets: ResolvedAsset[]) => Promise<FetchedAsset[]>;
     /** 4th phase: probes downloaded asset files to evaluate their content properties. */
-    probe: (assets: DownloadedAsset[]) => Promise<ProbedAsset[]>;
+    probe: (assets: FetchedAsset[]) => Promise<ProbedAsset[]>;
     /** 5th phase: creates optimized versions of the source content files. */
     encode: (assets: ProbedAsset[]) => Promise<EncodedAsset[]>;
     /** 6th phase: builds HTML for the optimized asset content. */

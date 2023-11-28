@@ -3,21 +3,20 @@ import { logTTY } from "../common";
 import * as cache from "../cache";
 import { ffprobe, ffmpeg } from "../encoder";
 import { capture } from "../transform/1-capture";
-import { download } from "../transform/3-download";
+import { resolve } from "../transform/2-resolve";
+import { fetch } from "../transform/3-fetch";
 import { probe } from "../transform/4-probe";
 import { encode } from "../transform/5-encode";
-import * as builds from "../transform/6-build";
+import { build } from "../transform/6-build";
 import { rewrite } from "../transform/7-rewrite";
 
 /** Default build server configuration. */
 export const defaults: Readonly<Options> = {
     root: "./public",
-    host: "/assets",
     regex: [/!\[(?<alt>.*?)(?<spec>\?\S+?)?]\((?<url>.+?)\)/g],
-    image: ["png", "jpg", "jpeg", "webp", "avif", "bmp", "tif", "tiff", "tga", "psd"],
-    animation: ["gif", "apng"],
-    video: ["mp4", "webm"],
-    youtube: true,
+    resolve: [],
+    build: [],
+    serve: [],
     poster: "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=", // empty gif (smallest valid src)
     width: null,
     log: {
@@ -26,46 +25,25 @@ export const defaults: Readonly<Options> = {
         err: console.error
     },
     cache: {
+        root: "./node_modules/.cache/imgit",
         save: cache.save,
-        load: cache.load,
-        root: "./node_modules/.cache/imgit"
+        load: cache.load
     },
-    download: {
-        root: "./public/assets/remote",
+    fetch: {
+        root: "./node_modules/.cache/imgit/fetched",
         timeout: 30,
         retries: 3,
         delay: 6
     },
     encode: {
+        root: "./node_modules/.cache/imgit/encoded",
         encoder: { probe: ffprobe, encode: ffmpeg },
-        image: { quality: 1, speed: 0.6 },
-        animation: { quality: 1, speed: 0.6 },
-        video: { quality: 0.5, speed: 0.6 },
-        poster: { quality: 0.3, speed: 0.6, scale: 0.1, blur: 0.2, suffix: "-poster" },
+        specs: [
+            [/^image\/.+/, { quality: 1, speed: 0.5 }],
+            [/^video\/.+/, { quality: 0.5, speed: 0.5 }]
+        ],
+        poster: { quality: 0.3, speed: 0.5, select: 0, scale: 0.1, blur: 0.2, suffix: "-poster" },
         suffix: "-imgit"
     },
-    build: {
-        image: builds.buildImage,
-        animation: builds.buildAnimation,
-        video: builds.buildVideo,
-        youtube: builds.buildYouTube,
-        style: {
-            className: {
-                container: "imgit-container",
-                image: "imgit-image",
-                animation: "imgit-animation",
-                video: "imgit-video",
-                youtube: "imgit-youtube",
-                poster: "imgit-poster"
-            }
-        }
-    },
-    transform: {
-        capture,
-        download,
-        probe,
-        encode,
-        build: builds.build,
-        rewrite
-    }
+    transform: { capture, resolve, fetch, probe, encode, build, rewrite }
 };
