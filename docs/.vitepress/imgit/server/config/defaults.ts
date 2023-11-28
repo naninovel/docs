@@ -3,23 +3,22 @@ import { logTTY } from "../common";
 import * as cache from "../cache";
 import { ffprobe, ffmpeg } from "../encoder";
 import { capture } from "../transform/1-capture";
-import { download } from "../transform/2-download";
-import { probe } from "../transform/3-probe";
-import { encode } from "../transform/4-encode";
-import * as builds from "../transform/5-build";
-import { rewrite } from "../transform/6-rewrite";
+import { download } from "../transform/3-download";
+import { probe } from "../transform/4-probe";
+import { encode } from "../transform/5-encode";
+import * as builds from "../transform/6-build";
+import { rewrite } from "../transform/7-rewrite";
 
 /** Default build server configuration. */
 export const defaults: Readonly<Options> = {
-    root: "./public/assets",
+    root: "./public",
     host: "/assets",
-    serve: "auto",
-    regex: [/!\[(?<title>.*?)(?<spec>{.+?})?]\((?<url>.+?)\)/g],
+    regex: [/!\[(?<alt>.*?)(?<spec>\?\S+?)?]\((?<url>.+?)\)/g],
     image: ["png", "jpg", "jpeg", "webp", "avif", "bmp", "tif", "tiff", "tga", "psd"],
     animation: ["gif", "apng"],
     video: ["mp4", "webm"],
     youtube: true,
-    poster: "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=", // empty gif (min. valid src)
+    poster: "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=", // empty gif (smallest valid src)
     width: null,
     log: {
         info: logTTY,

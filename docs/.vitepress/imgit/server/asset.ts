@@ -13,10 +13,26 @@ export type AssetSyntax = {
     /** URL from captured syntax; may be direct location of the asset's content (eg, image link)
      *  or endpoint for resolving the content, such as REST API or YouTube link. */
     url: string;
-    /** Optional title of the asset from captured syntax. */
-    title?: string;
-    /** Optional specifications from captured syntax. */
-    spec?: {
+    /** Optional alternate text from captured syntax. */
+    alt?: string;
+    /** Optional un-parsed spec from captured syntax. */
+    spec?: string;
+}
+
+/** Asset with resolved types, content URLs and specs. */
+export type ResolvedAsset = CapturedAsset & {
+    /** Resolved type of the asset. Could be either a MIME type (eg, "image/png") or a custom
+     *  type to be handled by extensions (eg, "youtube"). */
+    type: string;
+    /** Asset's content locations (absolute or relative URLs) resolved from captured syntax. */
+    remote: {
+        /** URL of the asset's main content file, when applicable. */
+        main?: string;
+        /** URL of the asset's poster file, when applicable. */
+        poster?: string;
+    };
+    /** Specifications resolved (parsed) from captured syntax. */
+    spec: {
         /** Width threshold of the source asset content, in pixels.
          *  Overrides global <code>width</code> parameter. */
         width?: number;
@@ -28,26 +44,12 @@ export type AssetSyntax = {
         merge?: boolean;
         /** Media attribute to specify for applicable source tag. Can be used with the "merge" spec
          *  for art direction. Example below will show "wide.png" when window width is 800px or more
-         *  and switch to "narrow.png" when the window width is equal or below 799px.
+         *  and switch to "narrow.png" when the window width is equal to or below 799px.
          *  @example
-         *  ![](/wide.png?media=(min-width:800px))
-         *  ![](/narrow.png?media=(max-width:799px)&merge) */
+         *  ![?media=(min-width:800px)](/wide.png)
+         *  ![?media=(max-width:799px)&merge](/narrow.png) */
         media?: string;
     };
-}
-
-/** Asset with resolved content URLs and type. */
-export type ResolvedAsset = CapturedAsset & {
-    /** Asset's content locations (absolute or relative URLs) resolved from captured syntax. */
-    remote: {
-        /** URL of the asset's main content file, when applicable. */
-        main?: string;
-        /** URL of the asset's poster file, when applicable. */
-        poster?: string;
-    };
-    /** Resolved type of the asset. Could be either a MIME type (eg, "image/png") or a custom
-     *  embedded type when the asset doesn't have an associated main content file (eg, "embed/youtube"). */
-    type: string;
 }
 
 /** Asset with content files downloaded to local file system. */
