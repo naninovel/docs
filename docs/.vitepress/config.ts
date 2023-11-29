@@ -16,7 +16,7 @@ export default defineConfig({
     ],
     themeConfig: {
         logo: { src: "/favicon.svg" },
-        logoLink: "https://naninovel.com",
+        logoLink: "//naninovel.com",
         search: {
             provider: "algolia",
             options: {
