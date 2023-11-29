@@ -1,17 +1,11 @@
-import { LanguageRegistration } from "shikiji";
-import { ThemeOptions } from "vitepress";
-import grammar from "./textmate.json";
-import themeLight from "./theme-light.json";
-import themeDark from "./theme-dark.json";
+import { resolve } from "path";
+import { ILanguageRegistration } from "shiki";
 
-export const lang: LanguageRegistration = {
+// https://github.com/shikijs/shiki/blob/main/docs/languages.md#supporting-your-own-languages-with-shiki
+
+export default {
     id: "naniscript",
     aliases: ["nani"],
     scopeName: "source.naniscript",
-    ...grammar as any
-};
-
-export const theme: ThemeOptions = {
-    light: themeLight as any,
-    dark: themeDark as any
-};
+    path: resolve("./docs/.vitepress/ext/lang/textmate.json")
+} as ILanguageRegistration;
