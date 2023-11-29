@@ -1,16 +1,16 @@
 import { fileURLToPath } from "url";
 import { UserConfig, Alias } from "vite";
-import imgit from "../imgit/plugin/vite";
+// import imgit from "../imgit/plugin/vite";
 
 export const vite: UserConfig = {
-    plugins: [imgit({
-        enforce: "pre",
-        skip: (_, id) => !id.endsWith(".md"),
-        root: "./docs/public/assets",
-        fetch: { root: "./docs/public/assets/remote" },
-        cache: { root: "./docs/public/assets/remote/.cache" },
-        width: 720
-    })],
+    // plugins: [imgit({
+    //     enforce: "pre",
+    //     skip: (_, id) => !id.endsWith(".md"),
+    //     root: "./docs/public/assets",
+    //     fetch: { root: "./docs/public/assets/remote" },
+    //     cache: { root: "./docs/public/assets/remote/.cache" },
+    //     width: 720
+    // })],
     resolve: {
         alias: [
             override("NotFound", "not-found"),
