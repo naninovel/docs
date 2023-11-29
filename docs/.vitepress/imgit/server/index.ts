@@ -1,23 +1,25 @@
-import { Prefs, configure, cfg } from "./config";
+import { Options, configure } from "./config";
+import { defaults } from "./config/defaults";
 import { Platform, bind } from "./platform";
-import { cache } from "./cache";
+import * as cache from "./cache";
 
-export { Platform, std } from "./platform";
-export { Prefs, cfg, defaults } from "./config";
-export { Context, ctx } from "./context";
-export { Cache, cache } from "./cache";
+export { Platform } from "./platform";
 export { transform } from "./transform";
+export { defaults };
+export * from "./config/options";
 
-/** Initializes new build operation with specified options.
- *  @param prefs Plugin preferences; will use pre-defined defaults when not assigned.
+/** Initializes build server with specified options.
+ *  Expected to be invoked before any other server APIs.
+ *  @param options Plugin preferences; will use pre-defined defaults when not assigned.
  *  @param platform Runtime APIs to use; will attempt to detect automatically when not assigned. */
-export async function boot(prefs?: Prefs, platform?: Platform): Promise<void> {
+export async function boot(options?: Options, platform?: Platform): Promise<void> {
+    configure({ ...defaults, ...(options ?? []) });
     await bind(platform);
-    if (prefs) configure(prefs);
-    if (cfg.cache) Object.assign(cache, await cfg.cache.load());
+    await cache.load();
 }
 
-/** De-initializes current build operation and caches results. */
-export async function exit(): Promise<void> {
-    if (cfg.cache) await cfg.cache.save(cache);
+/** De-initializes build server caching results for subsequent runs.
+ *  Expected to be invoked before finishing the build process.  */
+export function exit(): Promise<void> {
+    return cache.save();
 }

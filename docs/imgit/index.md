@@ -4,7 +4,7 @@
 
 ### PNG
 
-![png?eager](/assets/imgit/png.png)
+![png{"lazy":false}](/assets/imgit/png.png)
 
 ### JPG
 
@@ -12,35 +12,11 @@
 
 ### JPEG
 
-![jpeg?width=1920](/assets/imgit/jpeg.jpeg)
+![jpeg{"width":1920}](/assets/imgit/jpeg.jpeg)
 
 ### WEBP
 
 ![webp](/assets/imgit/webp.webp)
-
-### AVIF
-
-![avif](/assets/imgit/avif.avif)
-
-### BMP
-
-![bmp](/assets/imgit/bmp.bmp)
-
-### TIF
-
-![tif](/assets/imgit/tif.tif)
-
-### TIFF
-
-![tiff](/assets/imgit/tiff.tiff)
-
-### TGA
-
-![tga](/assets/imgit/tga.tga)
-
-### PSD
-
-![psd](/assets/imgit/psd.psd)
 
 ## Animation
 
