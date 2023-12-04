@@ -1,10 +1,10 @@
-import { observeIntersections, unobserveIntersections } from "./intersection";
+import { observeVideo, unobserveVideo } from "./intersection";
 
 const observer = canObserve() ? new MutationObserver(handleMutations) : undefined;
 
 export function observeMutations() {
     observer?.observe(document.body, { childList: true, subtree: true });
-    if (canObserve()) handleAddedNode(document.body);
+    if (canObserve()) handleAdded(document.body);
 }
 
 function canObserve() {
@@ -17,23 +17,39 @@ function handleMutations(mutations: MutationRecord[]) {
 }
 
 function handleMutation(mutation: MutationRecord) {
-    if (mutation.type !== "childList") return;
     for (const node of mutation.addedNodes)
-        if (node instanceof HTMLElement)
-            handleAddedNode(node);
+        if (isElement(node)) handleAdded(node);
     for (const node of mutation.removedNodes)
-        if (node instanceof HTMLElement)
-            handleRemovedNode(node);
+        if (isElement(node)) handleRemoved(node);
 }
 
-function handleAddedNode(added: HTMLElement) {
-    for (const element of added.querySelectorAll("video.imgit-video"))
-        if (element instanceof HTMLElement)
-            observeIntersections(element);
+function handleAdded(added: Element) {
+    for (const element of added.querySelectorAll("[data-imgit-loadable]")) {
+        if (isVideo(element)) observeVideo(element);
+        element.addEventListener("load", handleLoaded);
+        element.addEventListener("loadeddata", handleLoaded);
+    }
 }
 
-function handleRemovedNode(removed: HTMLElement) {
-    for (const element of removed.querySelectorAll("video.imgit-video"))
-        if (element instanceof HTMLElement)
-            unobserveIntersections(element);
+function handleRemoved(removed: Element) {
+    for (const element of removed.querySelectorAll("[data-imgit-loadable]")) {
+        if (isVideo(element)) unobserveVideo(element);
+        element.removeEventListener("load", handleLoaded);
+        element.removeEventListener("loadeddata", handleLoaded);
+    }
+}
+
+function isElement(obj: Node | EventTarget): obj is Element {
+    return "querySelector" in obj;
+}
+
+function isVideo(element: Element): element is HTMLVideoElement {
+    return "getVideoPlaybackQuality" in element;
+}
+
+function handleLoaded(event: Event) {
+    if (!event.currentTarget || !isElement(event.currentTarget)) return;
+    const container = event.currentTarget.closest("[data-imgit-container]");
+    if (!container) return;
+    (<HTMLElement>container).dataset.imgitLoaded = "";
 }

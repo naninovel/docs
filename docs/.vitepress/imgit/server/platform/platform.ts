@@ -1,13 +1,16 @@
-/** Low-level APIs used by the plugin. */
+/** Platform-specific APIs used in build operations. */
 export type Platform = Record<string, unknown> & {
     /** Local file system access APIs. */
     fs: {
         /** Returns whether directory or file with specified path exists. */
         exists: (path: string) => Promise<boolean>;
-        /** Returns UTF-8 encoded content of text file with specified path. */
-        read: (path: string) => Promise<string>;
-        /** Writes UTF-8 encoded string or stream to the file with specified path. */
-        write: (path: string, content: string | ReadableStream) => Promise<void>;
+        /** Returns size of the file with specified path, in bytes. */
+        size: (path: string) => Promise<number>;
+        /** Returns content of the file with specified path and encoding. */
+        read: <T extends "bin" | "utf8">(path: string, encoding: T)
+            => Promise<T extends "bin" ? Uint8Array : string>;
+        /** Writes binary array or UTF-8 encoded string to the file with specified path. */
+        write: (path: string, content: Uint8Array | string) => Promise<void>;
         /** Deletes file with specified path. */
         remove: (path: string) => Promise<void>;
         /** Creates directory with specified path (recursive). */
@@ -19,6 +22,8 @@ export type Platform = Record<string, unknown> & {
         join: (...paths: string[]) => string;
         /** Builds absolute path from specified parts and normalizes the result. */
         resolve: (...paths: string[]) => string;
+        /** Builds relative path from specified 'from' path to 'to' path. */
+        relative: (from: string, to: string) => string;
         /** Extracts file name with extension from specified path. */
         basename: (path: string) => string;
         /** Extracts directory name from specified path and normalizes the result. */
@@ -28,4 +33,8 @@ export type Platform = Record<string, unknown> & {
     exec: (cmd: string) => Promise<{ out: string, err?: Error }>;
     /** Fetches a remote resource with specified url. */
     fetch: (url: string, abort?: AbortSignal) => Promise<Response>;
+    /** Returns promise resolved after specified number of seconds. */
+    wait: (seconds: number) => Promise<void>;
+    /** Encodes specified binary data to base64 string. */
+    base64: (data: Uint8Array) => Promise<string>;
 };
