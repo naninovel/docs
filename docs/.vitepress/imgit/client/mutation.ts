@@ -1,5 +1,9 @@
 import { observeVideo, unobserveVideo } from "./intersection";
 
+const IMAGE_LOADED_EVENT = "load";
+const VIDEO_LOADED_EVENT = "loadeddata";
+const IMGIT_LOADED_EVENT = "imgit-loaded";
+
 const observer = canObserve() ? new MutationObserver(handleMutations) : undefined;
 
 export function observeMutations() {
@@ -25,17 +29,23 @@ function handleMutation(mutation: MutationRecord) {
 
 function handleAdded(added: Element) {
     for (const element of added.querySelectorAll("[data-imgit-loadable]")) {
-        if (isVideo(element)) observeVideo(element);
-        element.addEventListener("load", handleLoaded);
-        element.addEventListener("loadeddata", handleLoaded);
+        if (isImage(element)) {
+            if (element.complete) signalLoaded(element);
+            else element.addEventListener(IMAGE_LOADED_EVENT, handleLoaded);
+        } else if (isVideo(element)) {
+            observeVideo(element);
+            if (element.readyState >= 2) signalLoaded(element);
+            else element.addEventListener(VIDEO_LOADED_EVENT, handleLoaded);
+        } else element.addEventListener(IMGIT_LOADED_EVENT, handleLoaded);
     }
 }
 
 function handleRemoved(removed: Element) {
     for (const element of removed.querySelectorAll("[data-imgit-loadable]")) {
         if (isVideo(element)) unobserveVideo(element);
-        element.removeEventListener("load", handleLoaded);
-        element.removeEventListener("loadeddata", handleLoaded);
+        element.removeEventListener(IMAGE_LOADED_EVENT, handleLoaded);
+        element.removeEventListener(VIDEO_LOADED_EVENT, handleLoaded);
+        element.removeEventListener(IMGIT_LOADED_EVENT, handleLoaded);
     }
 }
 
@@ -47,9 +57,17 @@ function isVideo(element: Element): element is HTMLVideoElement {
     return "getVideoPlaybackQuality" in element;
 }
 
+function isImage(element: Element): element is HTMLImageElement {
+    return "complete" in element;
+}
+
 function handleLoaded(event: Event) {
-    if (!event.currentTarget || !isElement(event.currentTarget)) return;
-    const container = event.currentTarget.closest("[data-imgit-container]");
+    if (event.currentTarget && isElement(event.currentTarget))
+        signalLoaded(event.currentTarget);
+}
+
+function signalLoaded(element: Element) {
+    const container = element.closest("[data-imgit-container]");
     if (!container) return;
     (<HTMLElement>container).dataset.imgitLoaded = "";
 }
