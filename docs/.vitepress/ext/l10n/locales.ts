@@ -204,8 +204,8 @@ function buildNav(text: string[], lang?: string): DefaultTheme.NavItem[] {
         { text: text[3], link: buildLink("support") },
         {
             text: "v1.19", items: [
-                { text: "Changelog", link: "https://github.com/Naninovel/Documentation/releases/tag/v1.19" },
-                { text: "Contributing", link: "https://github.com/Naninovel/Documentation/blob/master/CONTRIBUTING.md" }
+                { text: "Changelog", link: "https://github.com/naninovel/docs/releases/tag/v1.19" },
+                { text: "Contributing", link: "https://github.com/naninovel/docs/blob/master/CONTRIBUTING.md" }
             ]
         }
     ];
@@ -217,5 +217,5 @@ function buildNav(text: string[], lang?: string): DefaultTheme.NavItem[] {
 }
 
 function buildEditLink(text: string): DefaultTheme.EditLink {
-    return { pattern: "https://github.com/Naninovel/Documentation/edit/master/docs/:path", text };
+    return { pattern: "https://github.com/naninovel/docs/edit/master/docs/:path", text };
 }

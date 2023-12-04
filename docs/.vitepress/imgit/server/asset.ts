@@ -1,72 +1,111 @@
-/** Transformed asset type. */
-export enum AssetType {
-    /** Still image rendered with <code><picture></code> HTML tag; eg, png or jpg. */
-    Image,
-    /** Looped sequence of still images rendered with <code><picture></code> HTML tag; eg, gif. */
-    Animation,
-    /** Video rendered with <code><video></code> HTML tag; eg, mp4. */
-    Video,
-    /** YouTube video embedded within <code><iframe></code> HTML tag. */
-    YouTube
-}
+import { MediaInfo } from "./encoder";
 
-/** Media info of the source asset content. */
-export type MediaInfo = {
-    /** Width of the source asset content, in pixels. */
-    width: number;
-    /** Height of the source asset content, in pixels. */
-    height: number;
-    /** Whether the source asset content has alpha channel (transparency). */
-    alpha: boolean;
-}
-
-/** User-defined optional asset metadata. */
-export type AssetMeta = {
-    /** Width threshold of the source asset content, in pixels.
-     *  Overrides global <code>width</code> parameter. */
-    width?: number;
-    /** When set to <code>false</code> the asset will be loaded eagerly (instead of lazy).
-     *  Use for above the fold content, ie initially visible w/o scrolling, such as hero image. */
-    lazy?: boolean;
-}
+/** Asset captured from transformed document. */
+export type CapturedAsset = {
+    /** Syntax of the captured asset. */
+    syntax: AssetSyntax;
+};
 
 /** Asset syntax captured from transformed document. */
-export type CapturedAsset = {
+export type AssetSyntax = {
     /** Full text of the captured syntax. */
-    syntax: string;
+    text: string;
     /** First index of the captured syntax text inside transformed document content. */
     index: number;
-    /** URL of the source asset resolved from captured syntax. */
-    sourceUrl: string;
-    /** Type of the asset resolved from captured syntax. */
-    type: AssetType;
-    /** Optional title of the asset resolved from captured syntax. */
-    title?: string;
-    /** User-defined optional asset metadata. */
-    meta?: AssetMeta;
+    /** URL from captured syntax; may be direct location of the asset's source content (eg, image link)
+     *  or endpoint for resolving the content, such as REST API or YouTube link. */
+    url: string;
+    /** Optional alternate text from captured syntax. */
+    alt?: string;
+    /** Optional raw (un-parsed) user-defined asset specifications from captured syntax. */
+    spec?: string;
+}
+
+/** Asset with resolved source content locations and specs. */
+export type ResolvedAsset = CapturedAsset & {
+    /** Main source content of the asset, when applicable. */
+    main?: ResolvedContent;
+    /** Poster source content of the asset, when applicable. */
+    poster?: ResolvedContent;
+    /** Optional user-defined asset specifications resolved (parsed) from captured syntax. */
+    spec: AssetSpec;
+}
+
+/** Source content of an asset resolved from captured syntax. */
+export type ResolvedContent = {
+    /** Location (absolute or relative URL) of the source content file. */
+    src: string;
+}
+
+/** Per-asset specifications assigned by the user. */
+export type AssetSpec = {
+    /** Width threshold for the asset content, in pixels.
+     *  Overrides global <code>width</code> parameter. */
+    width?: number;
+    /** When set to <code>true</code> the asset will be loaded eagerly (instead of default lazy).
+     *  Use for above the fold content, ie initially visible w/o scrolling, such as hero image. */
+    eager?: boolean;
+    /** When set to <code>true</code> syntax will be merged with the previous one in the document.
+     *  Can be used to specify multiple sources with different specs for a single asset. */
+    merge?: boolean;
+    /** Media attribute to specify for applicable source tag. Can be used with the "merge" spec
+     *  for art direction. Example below will show "wide.png" when window width is 800px or more
+     *  and switch to "narrow.png" when the window width is equal to or below 799px.
+     *  @example
+     *  ![?media=(min-width:800px)](/wide.png)
+     *  ![?media=(max-width:799px)&merge](/narrow.png) */
+    media?: string;
+}
+
+/** Asset with all the applicable source content files available on the local file system. */
+export type FetchedAsset = ResolvedAsset & {
+    /** Main source content of the asset, when applicable. */
+    main?: FetchedContent;
+    /** Poster source content of the asset, when applicable. */
+    poster?: FetchedContent;
+    /** Whether any of the source content files were modified since last build. */
+    dirty?: boolean;
 };
 
-/** Asset with file content downloaded and available for probing. */
-export type DownloadedAsset = CapturedAsset & {
-    /** Full path to the source asset file on local file system or undefined when N/A. */
-    sourcePath?: string;
+/** Fetched source content of an asset. */
+export type FetchedContent = ResolvedContent & {
+    /** Full path to the asset's source content file on local file system. */
+    local: string;
+}
+
+/** Asset with identified source content. */
+export type ProbedAsset = FetchedAsset & {
+    /** Main source content of the asset, when applicable. */
+    main?: ProbedContent;
+    /** Poster source content of the asset, when applicable. */
+    poster?: ProbedContent;
 };
 
-/** Asset with identified content metadata. */
-export type ProbedAsset = DownloadedAsset & {
-    /** Media info of the source asset content. */
-    sourceInfo?: MediaInfo;
-};
+/** Identified source content of an asset. */
+export type ProbedContent = FetchedContent & {
+    /** Media info about the probed source content. */
+    info: MediaInfo;
+}
 
-/** Asset with encoded counterpart. */
+/** Asset with all the applicable encoded/generated content available on local file system. */
 export type EncodedAsset = ProbedAsset & {
-    /** Full path to the encoded file on local file system or undefined when N/A or disabled. */
-    encodedPath?: string;
-    /** Full path to the encoded file with 2x scale on local file system or undefined when N/A or disabled. */
-    encoded2xPath?: string;
-    /** Full path to the poster file or undefined when N/A or disabled. */
-    posterPath?: string;
+    /** Main source content of the asset, when applicable. */
+    main?: EncodedContent;
+    /** Poster source content of the asset, when applicable. */
+    poster?: EncodedContent;
 };
+
+/** Optimized source of an asset with optional generated content. */
+export type EncodedContent = ProbedContent & {
+    /** Full path to the asset's encoded/optimized content file on local file system. */
+    encoded: string;
+    /** Generate variant of the source content for compatibility/fallback, when applicable. */
+    safe?: string;
+    /** Generated variant of the source content for high-dpi displays, when applicable. */
+    dense?: string;
+    /** Generated variant of the source content to cover loading process, when applicable. */
+    cover?: string;
+}
 
 /** Final product of asset transformation with associated HTML. */
 export type BuiltAsset = EncodedAsset & {

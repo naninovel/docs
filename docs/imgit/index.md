@@ -4,7 +4,7 @@
 
 ### PNG
 
-![png{"lazy":false}](/assets/imgit/png.png)
+![png?eager](/assets/imgit/png.png)
 
 ### JPG
 
@@ -12,11 +12,35 @@
 
 ### JPEG
 
-![jpeg{"width":1920}](/assets/imgit/jpeg.jpeg)
+![jpeg?width=1920](/assets/imgit/jpeg.jpeg)
 
 ### WEBP
 
 ![webp](/assets/imgit/webp.webp)
+
+### AVIF
+
+![avif](/assets/imgit/avif.avif)
+
+### BMP
+
+![bmp](/assets/imgit/bmp.bmp)
+
+### TIF
+
+![tif](/assets/imgit/tif.tif)
+
+### TIFF
+
+![tiff](/assets/imgit/tiff.tiff)
+
+### TGA
+
+![tga](/assets/imgit/tga.tga)
+
+### PSD
+
+![psd](/assets/imgit/psd.psd)
 
 ## Animation
 
@@ -38,6 +62,23 @@
 
 ![webm](/assets/imgit/webm.webm)
 
+### AVI
+
+![mp4](/assets/imgit/avi.avi)
+
+### MKV
+
+![webm](/assets/imgit/mkv.mkv)
+
+### MOV
+
+![webm](/assets/imgit/mov.mov)
+
 ## YouTube
 
 ![youtube](https://www.youtube.com/watch?v=M_GUlXJ52YA)
+
+## Art Direction
+
+![?media=(min-width:800px)](/assets/imgit/art-wide.jpg)
+![?media=(max-width:799px)&merge](/assets/imgit/art-square.jpg)

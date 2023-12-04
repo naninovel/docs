@@ -1,15 +1,12 @@
 import { MarkdownOptions, MarkdownRenderer, MarkdownEnv } from "vitepress";
 import { AppendIconToExternalLinks } from "./md-link";
 import { Replacer } from "./md-replacer";
-import naniscript from "../lang";
+import { lang, theme } from "../lang";
 
 export const md: MarkdownOptions = {
     config: installPlugins,
-    languages: [naniscript],
-    theme: {
-        light: "../../../docs/.vitepress/ext/lang/theme-light",
-        dark: "../../../docs/.vitepress/ext/lang/theme-dark"
-    },
+    languages: [lang],
+    theme: theme,
     attrs: { disable: true } // https://github.com/vuejs/vitepress/issues/2440
 };
 

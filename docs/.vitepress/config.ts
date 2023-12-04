@@ -4,6 +4,7 @@ import { l10n, md, vite } from "./ext";
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
     title: "Naninovel",
+    titleTemplate: ":title • Naninovel",
     cleanUrls: true,
     lastUpdated: true,
     head: [
@@ -16,7 +17,7 @@ export default defineConfig({
     ],
     themeConfig: {
         logo: { src: "/favicon.svg" },
-        logoLink: "//naninovel.com",
+        logoLink: "https://naninovel.com",
         search: {
             provider: "algolia",
             options: {
@@ -27,7 +28,7 @@ export default defineConfig({
             }
         },
         socialLinks: [
-            { icon: "github", link: "https://github.com/Naninovel" },
+            { icon: "github", link: "https://github.com/naninovel" },
             { icon: "discord", link: "https://discord.gg/BfkNqem" },
             { icon: "twitter", link: "https://twitter.com/naniengine" }
         ]
