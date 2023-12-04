@@ -30,7 +30,8 @@ function handleMutation(mutation: MutationRecord) {
 function handleAdded(added: Element) {
     for (const element of added.querySelectorAll("[data-imgit-loadable]")) {
         if (isImage(element)) {
-            if (element.complete) signalLoaded(element);
+            // Height check is a hack for firefox, which returns false-positive on complete.
+            if (element.complete && element.naturalHeight > 0) signalLoaded(element);
             else element.addEventListener(IMAGE_LOADED_EVENT, handleLoaded);
         } else if (isVideo(element)) {
             observeVideo(element);
