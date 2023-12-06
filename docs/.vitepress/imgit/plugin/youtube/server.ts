@@ -1,6 +1,6 @@
-import { Plugin } from "../server";
-import { BuiltAsset, ResolvedAsset } from "../server/asset";
-import { Cache, cache, std, cfg } from "../server";
+import { Plugin } from "../../server";
+import { BuiltAsset, ResolvedAsset } from "../../server/asset";
+import { Cache, cache, std, cfg, defaults } from "../../server";
 
 type YouTubeCache = Cache & {
     /** Resolved thumbnail URLs mapped by YouTube video ID. */
@@ -9,38 +9,46 @@ type YouTubeCache = Cache & {
 
 /** YouTube thumbnail variants; each video is supposed to have at least "0". */
 const thumbs = ["maxresdefault", "mqdefault", "0"];
-const playButtonSvg = `
-<svg height="100%" viewBox="0 0 68 48" width="100%" class="imgit-youtube-play-button">
-    <path fill="#f00" d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z"></path>
-    <path fill="#fff" d="M 45,24 27,14 27,34"></path>
-</svg>`;
 
 /** Allows embedding YouTube videos with imgit.
- *  @example ![](https://www.youtube.com/watch?v=3SjX_X0oGxo) */
+ *  @example ![](https://www.youtube.com/watch?v=d_xyD3nNQuo) */
 export default function (): Plugin {
     if (!cache.hasOwnProperty("youtube")) cache.youtube = {};
     return {
-        resolvers: [resolve],
-        builders: [build]
+        resolvers: [resolveYouTubeAsset],
+        builders: [buildYouTubeHtml]
     };
 };
 
-async function resolve(asset: ResolvedAsset): Promise<boolean> {
+async function resolveYouTubeAsset(asset: ResolvedAsset): Promise<boolean> {
     if (!isYouTube(asset.syntax.url)) return false;
     const id = getYouTubeId(asset.syntax.url);
     asset.content = { src: await resolveThumbnailUrl(id) };
     return true;
 }
 
-function build(asset: BuiltAsset): boolean {
+async function buildYouTubeHtml(asset: BuiltAsset): Promise<boolean> {
     if (!isYouTube(asset.syntax.url)) return false;
     const id = getYouTubeId(asset.syntax.url);
     const source = `https://www.youtube-nocookie.com/embed/${id}`;
     asset.html = `
-<div class="imgit-youtube" data-imgit-container>
-    <iframe title="${asset.syntax.alt}" src="${source}" allowfullscreen></iframe>
+<div class="imgit-youtube" data-imgit-container title="Play YouTube video">
+    <button class="imgit-youtube-play-button"/>
+    <div class="imgit-youtube-poster">
+        ${await buildPosterHtml(asset)}
+    </div>
+    <div class="imgit-youtube-player" hidden>
+        <iframe title="${asset.syntax.alt}" data-imgit-src="${source}" allowfullscreen></iframe>
+    </div>
 </div>`;
     return true;
+}
+
+async function buildPosterHtml(asset: BuiltAsset): Promise<string> {
+    // Pretend the asset is an image to re-use default picture build procedure.
+    asset = { ...asset, syntax: { ...asset.syntax, url: "" } };
+    await defaults.transform.build([asset]);
+    return asset.html;
 }
 
 /** Whether specified url is a valid YouTube video link. */
@@ -66,4 +74,8 @@ async function resolveThumbnailUrl(id: string): Promise<string> {
 
 function buildThumbnailUrl(id: string, variant: string): string {
     return `https://i.ytimg.com/vi_webp/${id}/${variant}.webp`;
+}
+
+function handlePosterClick(event: Event) {
+
 }
