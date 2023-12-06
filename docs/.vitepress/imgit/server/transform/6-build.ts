@@ -21,12 +21,12 @@ async function buildAsset(asset: BuiltAsset, merges: BuiltAsset[]): Promise<void
     throw Error(`Failed to build HTML for '${asset.syntax.url}': unknown type (${asset.content.info.type}).`);
 }
 
-async function buildPicture(content: EncodedContent, asset: BuiltAsset, merges?: BuiltAsset[]): Promise<void> {
+async function buildPicture(content: EncodedContent, asset: BuiltAsset, merges: BuiltAsset[]): Promise<void> {
     const size = buildSizeAttributes(content.info);
     const lazy = asset.spec?.eager == null;
     const load = lazy ? `loading="lazy" decoding="async"` : `decoding="sync"`;
     let sourcesHtml = await buildPictureSources(content, asset);
-    if (merges) for (const merge of merges)
+    for (const merge of merges)
         if (merge.content) sourcesHtml += await buildPictureSources(merge.content, merge);
     sourcesHtml += `<img data-imgit-loadable alt="${asset.syntax.alt}" ${size} ${load}/>`;
     asset.html = `
@@ -68,10 +68,10 @@ async function buildVideo(content: EncodedContent, asset: BuiltAsset, merges: Bu
 </div>`;
 }
 
-async function buildCover(asset: EncodedAsset, size: string, merges?: BuiltAsset[]): Promise<string> {
+async function buildCover(asset: EncodedAsset, size: string, merges: BuiltAsset[]): Promise<string> {
     if (!cfg.cover) return "";
     let sourcesHtml = asset.content?.cover ? await buildCoverSource(asset.content.cover, asset) : "";
-    if (merges) for (const merge of merges)
+    for (const merge of merges)
         if (merge.content?.cover && merge.content)
             sourcesHtml += await buildCoverSource(merge.content?.cover, merge);
     sourcesHtml += `<img src="${cfg.cover}" alt="cover" ${size} decoding="sync"/>`;
