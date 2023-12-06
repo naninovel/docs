@@ -13,6 +13,7 @@ const thumbs = ["maxresdefault", "hqdefault", "mqdefault", "sddefault", "default
 /** Allows embedding YouTube videos with imgit.
  *  @example ![](https://www.youtube.com/watch?v=J7UwSVsiwzI) */
 export default function (): Plugin {
+    if (!cache.hasOwnProperty("youtube")) cache.youtube = {};
     return {
         resolvers: [resolve],
         builders: [build]
@@ -48,7 +49,7 @@ function build(asset: BuiltAsset): boolean {
 }
 
 async function resolveThumbnailUrl(id: string): Promise<string> {
-    if ((<YouTubeCache>cache).youtube?.hasOwnProperty(id))
+    if ((<YouTubeCache>cache).youtube.hasOwnProperty(id))
         return (<YouTubeCache>cache).youtube[id];
     let response: Response;
     for (const variant of thumbs)
