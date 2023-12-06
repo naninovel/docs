@@ -48,7 +48,7 @@ function build(asset: BuiltAsset): boolean {
 }
 
 async function resolveThumbnailUrl(id: string): Promise<string> {
-    if ((<YouTubeCache>cache).youtube.hasOwnProperty(id))
+    if ((<YouTubeCache>cache).youtube?.hasOwnProperty(id))
         return (<YouTubeCache>cache).youtube[id];
     let response: Response;
     for (const variant of thumbs)
