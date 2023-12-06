@@ -56,12 +56,12 @@ function getYouTubeId(url: string): string {
 async function resolveThumbnailUrl(id: string): Promise<string> {
     if ((<YouTubeCache>cache).youtube.hasOwnProperty(id))
         return (<YouTubeCache>cache).youtube[id];
-    let response: Response;
+    let response: Response = <never>null;
     for (const variant of thumbs)
         if ((response = await std.fetch(buildThumbnailUrl(id, variant))).ok) break;
-    if (!response!.ok) cfg.log?.warn?.(`Failed to resolve thumbnail for "${id}" YouTube video.`);
-    else (<YouTubeCache>cache).youtube[id] = response!.url;
-    return response!.url;
+    if (!response.ok) cfg.log?.warn?.(`Failed to resolve thumbnail for "${id}" YouTube video.`);
+    else (<YouTubeCache>cache).youtube[id] = response.url;
+    return response.url;
 }
 
 function buildThumbnailUrl(id: string, variant: string): string {
