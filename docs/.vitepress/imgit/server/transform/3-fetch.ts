@@ -9,8 +9,7 @@ export async function fetch(assets: ResolvedAsset[]): Promise<FetchedAsset[]> {
 }
 
 async function fetchAsset(asset: FetchedAsset): Promise<void> {
-    if (asset.main) await fetchContent(asset.main, asset);
-    if (asset.poster) await fetchContent(asset.poster, asset);
+    if (asset.content) await fetchContent(asset.content, asset);
 }
 
 async function fetchContent(content: FetchedContent, asset: FetchedAsset): Promise<void> {

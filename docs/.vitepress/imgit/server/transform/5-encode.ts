@@ -23,17 +23,15 @@ async function everythingIsFetched(): Promise<void> {
 }
 
 async function encodeAsset(asset: EncodedAsset): Promise<void> {
-    if (asset.main) {
-        await encodeMain(asset.main, asset);
-        await encodeSafe(asset.main, asset);
-        await encodeDense(asset.main, asset);
-    }
-    if (asset.poster) await encodeCover(asset.poster, asset);
-    else if (asset.main) await encodeCover(asset.main, asset);
+    if (!asset.content) return;
+    await encodeMain(asset.content, asset);
+    await encodeSafe(asset.content, asset);
+    await encodeDense(asset.content, asset);
+    await encodeCover(asset.content, asset);
 }
 
 async function encodeMain(content: EncodedContent, asset: EncodedAsset): Promise<void> {
-    const spec = getSpec(content.info.type, content.info, asset.spec.width);
+    const spec = getSpec(content.info.type, content.info, asset.spec?.width);
     if (!spec) throw Error(`Failed to get encoding spec for ${content.src}.`);
     const ext = content.info.type.startsWith("image/") ? "avif" : "mp4";
     content.encoded = buildEncodedPath(content, ext);
@@ -43,7 +41,7 @@ async function encodeMain(content: EncodedContent, asset: EncodedAsset): Promise
 async function encodeSafe(content: EncodedContent, asset: EncodedAsset): Promise<void> {
     if (!cfg.encode.safe || isSafe(content.info.type, cfg.encode.safe.types)) return;
     const type = content.info.type.startsWith("image/") ? "image/webp" : "video/mp4";
-    const spec = getSpec(type, content.info, asset.spec.width);
+    const spec = getSpec(type, content.info, asset.spec?.width);
     if (!spec) return;
     spec.codec = undefined;
     const ext = type.substring(type.indexOf("/") + 1);
@@ -53,9 +51,9 @@ async function encodeSafe(content: EncodedContent, asset: EncodedAsset): Promise
 
 async function encodeDense(content: EncodedContent, asset: EncodedAsset): Promise<void> {
     if (!cfg.encode.dense || !content.info.type.startsWith("image/")) return;
-    const threshold = getThreshold(asset.spec.width);
+    const threshold = getThreshold(asset.spec?.width);
     if (!threshold || content.info.width < threshold * 2) return;
-    const spec = getSpec(content.info.type, content.info, asset.spec.width);
+    const spec = getSpec(content.info.type, content.info, asset.spec?.width);
     if (!spec) return;
     spec.scale = undefined;
     content.dense = buildEncodedPath(content, "avif", cfg.encode.dense.suffix);
@@ -64,7 +62,7 @@ async function encodeDense(content: EncodedContent, asset: EncodedAsset): Promis
 
 async function encodeCover(content: EncodedContent, asset: EncodedAsset): Promise<void> {
     if (!cfg.cover || !cfg.encode.cover) return;
-    const scale = getScale(cfg.encode.cover, content.info, asset.spec.width);
+    const scale = getScale(cfg.encode.cover, content.info, asset.spec?.width);
     const spec = { ...cfg.encode.cover, scale };
     content.cover = buildEncodedPath(content, "avif", cfg.encode.cover.suffix);
     await encodeContent(`${content.src}@cover`, content.local, content.cover, content.info, spec);

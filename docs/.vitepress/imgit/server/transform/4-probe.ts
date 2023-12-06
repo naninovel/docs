@@ -9,8 +9,7 @@ export async function probe(assets: FetchedAsset[]): Promise<ProbedAsset[]> {
 }
 
 async function probeAsset(asset: ProbedAsset): Promise<void> {
-    if (asset.main) await probeContent(asset.main, asset.dirty);
-    if (asset.poster) await probeContent(asset.poster, asset.dirty);
+    if (asset.content) await probeContent(asset.content, asset.dirty);
 }
 
 async function probeContent(content: ProbedContent, dirty?: boolean): Promise<void> {

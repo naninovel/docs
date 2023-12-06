@@ -23,12 +23,10 @@ export type AssetSyntax = {
 
 /** Asset with resolved source content locations and specs. */
 export type ResolvedAsset = CapturedAsset & {
-    /** Main source content of the asset, when applicable. */
-    main?: ResolvedContent;
-    /** Poster source content of the asset, when applicable. */
-    poster?: ResolvedContent;
+    /** Source content of the asset, when applicable. */
+    content?: ResolvedContent;
     /** Optional user-defined asset specifications resolved (parsed) from captured syntax. */
-    spec: AssetSpec;
+    spec?: AssetSpec;
 }
 
 /** Source content of an asset resolved from captured syntax. */
@@ -59,10 +57,8 @@ export type AssetSpec = {
 
 /** Asset with all the applicable source content files available on the local file system. */
 export type FetchedAsset = ResolvedAsset & {
-    /** Main source content of the asset, when applicable. */
-    main?: FetchedContent;
-    /** Poster source content of the asset, when applicable. */
-    poster?: FetchedContent;
+    /** Source content of the asset, when applicable. */
+    content?: FetchedContent;
     /** Whether any of the source content files were modified since last build. */
     dirty?: boolean;
 };
@@ -75,10 +71,8 @@ export type FetchedContent = ResolvedContent & {
 
 /** Asset with identified source content. */
 export type ProbedAsset = FetchedAsset & {
-    /** Main source content of the asset, when applicable. */
-    main?: ProbedContent;
-    /** Poster source content of the asset, when applicable. */
-    poster?: ProbedContent;
+    /** Source content of the asset, when applicable. */
+    content?: ProbedContent;
 };
 
 /** Identified source content of an asset. */
@@ -89,17 +83,15 @@ export type ProbedContent = FetchedContent & {
 
 /** Asset with all the applicable encoded/generated content available on local file system. */
 export type EncodedAsset = ProbedAsset & {
-    /** Main source content of the asset, when applicable. */
-    main?: EncodedContent;
-    /** Poster source content of the asset, when applicable. */
-    poster?: EncodedContent;
+    /** Source content of the asset, when applicable. */
+    content?: EncodedContent;
 };
 
 /** Optimized source of an asset with optional generated content. */
 export type EncodedContent = ProbedContent & {
     /** Full path to the asset's encoded/optimized content file on local file system. */
     encoded: string;
-    /** Generate variant of the source content for compatibility/fallback, when applicable. */
+    /** Generated variant of the source content for compatibility/fallback, when applicable. */
     safe?: string;
     /** Generated variant of the source content for high-dpi displays, when applicable. */
     dense?: string;
