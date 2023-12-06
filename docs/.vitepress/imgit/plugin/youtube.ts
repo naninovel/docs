@@ -16,7 +16,7 @@ const playButtonSvg = `
 </svg>`;
 
 /** Allows embedding YouTube videos with imgit.
- *  @example ![](https://www.youtube.com/watch?v=J7UwSVsiwzI) */
+ *  @example ![](https://www.youtube.com/watch?v=3SjX_X0oGxo) */
 export default function (): Plugin {
     if (!cache.hasOwnProperty("youtube")) cache.youtube = {};
     return {
