@@ -7,8 +7,8 @@ type YouTubeCache = Cache & {
     youtube: Record<string, string>;
 }
 
-/** YouTube thumbnail variants; each video is supposed to have at least "default". */
-const thumbs = ["maxresdefault", "hqdefault", "mqdefault", "sddefault", "default"];
+/** YouTube thumbnail variants; each video is supposed to have at least "0". */
+const thumbs = ["maxresdefault", "mqdefault", "0"];
 
 /** Allows embedding YouTube videos with imgit.
  *  @example ![](https://www.youtube.com/watch?v=J7UwSVsiwzI) */
