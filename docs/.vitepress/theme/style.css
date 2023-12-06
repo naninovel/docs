@@ -294,10 +294,6 @@ table > tfoot:not(:last-child) {
  * Custom elements
  * -------------------------------------------------------------------------- */
 
-[data-imgit-container] * {
-    border-radius: 8px;
-}
-
 .engine-design-light {
     width: 100%;
     display: block;
@@ -314,6 +310,30 @@ table > tfoot:not(:last-child) {
 
 .dark .engine-design-dark {
     display: block;
+}
+
+.imgit-picture *, .imgit-video * {
+    border-radius: 8px;
+}
+
+.imgit-youtube {
+    display: block;
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+}
+
+.imgit-youtube iframe,
+.imgit-youtube object,
+.imgit-youtube embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
 }
 
 .config-table table {
