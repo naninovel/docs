@@ -98,7 +98,7 @@ Player: You can call me {PlayerName}.
 
 以下视频为显示姓名功能和文本颜色的演示：
 
-![](https://www.youtube.com/watch?v=u5B5s)
+![](https://www.youtube.com/watch?v=u5B5s-X2Bw0)
 
 ## 头像贴图
 
