@@ -1,6 +1,6 @@
 import { MediaInfo } from "../encoder";
 import { EncodedAsset, BuiltAsset, EncodedContent } from "../asset";
-import { std, cfg, cache, isYouTube, getYouTubeId } from "../common";
+import { std, cfg, cache } from "../common";
 
 /** Builds HTML for the optimized assets to overwrite source syntax. */
 export async function build(assets: EncodedAsset[]): Promise<BuiltAsset[]> {
@@ -15,7 +15,6 @@ async function buildAsset(asset: BuiltAsset, merges: BuiltAsset[]): Promise<void
     for (const builder of cfg.builders)
         if (await builder(asset, merges)) return;
     for (const merge of merges) merge.html = "";
-    if (isYouTube(asset.syntax.url)) return buildYouTube(asset);
     if (!asset.main) throw Error(`Failed to build HTML for '${asset.syntax.url}': missing content.`);
     if (asset.main.info.type.startsWith("image/")) return buildPicture(asset.main, asset, merges);
     if (asset.main.info.type.startsWith("video/")) return buildVideo(asset.main, asset, merges);
@@ -66,15 +65,6 @@ async function buildVideo(content: EncodedContent, asset: BuiltAsset, merges: Bu
         <source data-imgit-src="${safe}" type="video/mp4"/>
     </video>
     ${await buildCover(asset, size, merges)}
-</div>`;
-}
-
-async function buildYouTube(asset: BuiltAsset): Promise<void> {
-    const id = getYouTubeId(asset.syntax.url);
-    const source = `https://www.youtube-nocookie.com/embed/${id}`;
-    asset.html = `
-<div class="imgit-youtube" data-imgit-container>
-    <iframe title="${asset.syntax.alt}" src="${source}" allowfullscreen></iframe>
 </div>`;
 }
 

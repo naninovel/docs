@@ -28,13 +28,3 @@ export function logTTY(msg: string): void {
     process.stdout.cursorTo(0);
     process.stdout.write(msg);
 }
-
-/** Whether specified url is a valid YouTube video link. */
-export function isYouTube(url: string): boolean {
-    return url.includes("youtube.com/watch?v=");
-}
-
-/** Given valid url to a YouTube video, extracts video ID. */
-export function getYouTubeId(url: string): string {
-    return new URL(url).searchParams.get("v")!;
-}

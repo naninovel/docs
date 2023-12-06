@@ -1,5 +1,5 @@
-import { CapturedAsset, ResolvedAsset, AssetSpec, ResolvedContent } from "../asset";
-import { cfg, isYouTube, getYouTubeId } from "../common";
+import { CapturedAsset, ResolvedAsset, AssetSpec } from "../asset";
+import { cfg } from "../common";
 
 /** Resolves content locations and specs of the captured syntax. */
 export async function resolve(assets: CapturedAsset[]): Promise<ResolvedAsset[]> {
@@ -11,19 +11,8 @@ export async function resolve(assets: CapturedAsset[]): Promise<ResolvedAsset[]>
 async function resolveAsset(asset: ResolvedAsset): Promise<void> {
     for (const resolver of cfg.resolvers)
         if (await resolver(asset)) return;
-    asset.main = resolveMain(asset.syntax.url);
-    asset.poster = resolvePoster(asset.syntax.url);
+    asset.main = { src: asset.syntax.url };
     asset.spec = resolveSpec(asset.syntax.spec);
-}
-
-function resolveMain(url: string): ResolvedContent | undefined {
-    if (isYouTube(url)) return undefined;
-    return { src: url };
-}
-
-function resolvePoster(url: string): ResolvedContent | undefined {
-    if (!isYouTube(url)) return undefined;
-    return { src: `https://img.youtube.com/vi/${getYouTubeId(url)}/maxresdefault.jpg` };
 }
 
 function resolveSpec(query?: string): AssetSpec {
