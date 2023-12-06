@@ -46,19 +46,19 @@ export type Options = {
 /** User-defined asset resolver. Given captured asset syntax, resolves asset type,
  *  content locations and specs (in-place). Return false when the resolver can't or shouldn't
  *  handle the asset, in which case it'll be handled by next resolvers in the chain. */
-export type AssetResolver = (asset: ResolvedAsset) => Promise<boolean>;
+export type AssetResolver = (asset: ResolvedAsset) => boolean | Promise<boolean>;
 
 /** User-defined asset HTML builder. Given encoded asset(s), build HTML (in-place for all the input
  *  assets) to replace captured syntax in the transformed document. May include additional merged
  *  assets when associated syntax were joined via "merge" spec. Return false when the builder can't
  *  or shouldn't  handle the assets, in which case they'll be handled by next builders in the chain. */
-export type AssetBuilder = (asset: BuiltAsset, merges?: BuiltAsset[]) => Promise<boolean>;
+export type AssetBuilder = (asset: BuiltAsset, merges?: BuiltAsset[]) => boolean | Promise<boolean>;
 
 /** User-defined asset server. Given full path to a content file and associated asset info,
  *  return URL under which the file will be served and prepare the file to be served (eg, copy to
  *  the static assets dir or upload to a CDN). Return null when the server can't or shouldn't
  *  handle the asset, in which case it'll be handled by next servers in the chain. */
-export type AssetServer = (path: string, asset: Readonly<EncodedAsset>) => Promise<string | null>;
+export type AssetServer = (path: string, asset: Readonly<EncodedAsset>) => null | Promise<string | null>;
 
 /** Configures logging behaviour. */
 export type LogOptions = {

@@ -1,16 +1,18 @@
 import { fileURLToPath } from "url";
 import { UserConfig, Alias } from "vite";
 import imgit from "../imgit/plugin/vite";
+import youtube from "../imgit/plugin/youtube";
 
 export const vite: UserConfig = {
     plugins: [imgit({
         enforce: "pre",
         skip: (_, id) => !id.endsWith(".md"),
+        width: 720,
         root: "./docs/public",
         cache: { root: "./docs/public/imgit" },
         fetch: { root: "./docs/public/imgit/fetched" },
         encode: { root: "./docs/public/imgit/encoded" },
-        width: 720
+        plugins: [youtube()]
     })],
     resolve: {
         alias: [
