@@ -25,16 +25,6 @@ export default function (): Plugin {
     };
 };
 
-/** Whether specified url is a valid YouTube video link. */
-function isYouTube(url: string): boolean {
-    return url.includes("youtube.com/watch?v=");
-}
-
-/** Given valid url to a YouTube video, extracts video ID. */
-function getYouTubeId(url: string): string {
-    return new URL(url).searchParams.get("v")!;
-}
-
 async function resolve(asset: ResolvedAsset): Promise<boolean> {
     if (!isYouTube(asset.syntax.url)) return false;
     const id = getYouTubeId(asset.syntax.url);
@@ -51,6 +41,16 @@ function build(asset: BuiltAsset): boolean {
     <iframe title="${asset.syntax.alt}" src="${source}" allowfullscreen></iframe>
 </div>`;
     return true;
+}
+
+/** Whether specified url is a valid YouTube video link. */
+function isYouTube(url: string): boolean {
+    return url.includes("youtube.com/watch?v=");
+}
+
+/** Given valid url to a YouTube video, extracts video ID. */
+function getYouTubeId(url: string): string {
+    return new URL(url).searchParams.get("v")!;
 }
 
 async function resolveThumbnailUrl(id: string): Promise<string> {
