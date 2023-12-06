@@ -20,12 +20,6 @@
 .imgit-youtube-poster {
     contain: content;
     cursor: pointer;
-    filter: none;
-    transition: opacity 0.3s;
-}
-
-.imgit-youtube:hover .imgit-youtube-poster {
-    opacity: 0.85;
 }
 
 .imgit-youtube-poster::before {
