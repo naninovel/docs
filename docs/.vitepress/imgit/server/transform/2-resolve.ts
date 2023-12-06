@@ -11,12 +11,11 @@ export async function resolve(assets: CapturedAsset[]): Promise<ResolvedAsset[]>
 async function resolveAsset(asset: ResolvedAsset): Promise<void> {
     for (const resolver of cfg.resolvers)
         if (await resolver(asset)) return;
-    asset.main = { src: asset.syntax.url };
-    asset.spec = resolveSpec(asset.syntax.spec);
+    asset.content = { src: asset.syntax.url };
+    asset.spec = asset.syntax.spec ? resolveSpec(asset.syntax.spec) : undefined;
 }
 
-function resolveSpec(query?: string): AssetSpec {
-    if (!query) return {};
+function resolveSpec(query: string): AssetSpec {
     const params = new URLSearchParams(query);
     return {
         eager: params.has("eager") ? true : undefined,
