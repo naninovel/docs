@@ -76,7 +76,7 @@
 
 ## YouTube
 
-![youtube](https://www.youtube.com/watch?v=d_xyD3nNQuo)
+![Oahu Hawaii – Island in the Sun](https://www.youtube.com/watch?v=arbuYnJoLtU)
 
 ## Art Direction
 

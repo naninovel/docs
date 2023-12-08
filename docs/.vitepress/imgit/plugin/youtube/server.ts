@@ -11,7 +11,7 @@ type YouTubeCache = Cache & {
 const thumbs = ["maxresdefault", "mqdefault", "0"];
 
 /** Allows embedding YouTube videos with imgit.
- *  @example ![](https://www.youtube.com/watch?v=d_xyD3nNQuo) */
+ *  @example ![](https://www.youtube.com/watch?v=arbuYnJoLtU) */
 export default function (): Plugin {
     if (!cache.hasOwnProperty("youtube")) cache.youtube = {};
     return {
@@ -32,9 +32,11 @@ async function buildYouTubeHtml(asset: BuiltAsset): Promise<boolean> {
     const id = getYouTubeId(asset.syntax.url);
     const source = `https://www.youtube-nocookie.com/embed/${id}`;
     asset.html = `
-<div class="imgit-youtube" data-imgit-container title="Play YouTube video">
-    <button class="imgit-youtube-play-button"/>
-    <div class="imgit-youtube-poster">
+<div class="imgit-youtube" data-imgit-container>
+    <div class="imgit-youtube-title">${asset.syntax.alt}</div>
+    <button class="imgit-youtube-watch-button" title="Watch video on YouTube">Watch on</button>
+    <div class="imgit-youtube-poster" title="Play YouTube video">
+        <button class="imgit-youtube-play-button" title="Play YouTube video"/>
         ${await buildPosterHtml(asset)}
     </div>
     <div class="imgit-youtube-player" hidden>
