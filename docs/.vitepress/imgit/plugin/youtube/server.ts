@@ -26,19 +26,19 @@ export default function ($prefs?: Prefs): Plugin {
     if (!cache.hasOwnProperty("youtube")) cache.youtube = {};
     Object.assign(prefs, $prefs);
     return {
-        resolvers: [resolveYouTubeAsset],
-        builders: [buildYouTubeHtml]
+        resolvers: [resolve],
+        builders: [build]
     };
 };
 
-async function resolveYouTubeAsset(asset: ResolvedAsset): Promise<boolean> {
+async function resolve(asset: ResolvedAsset): Promise<boolean> {
     if (!isYouTube(asset.syntax.url)) return false;
     const id = getYouTubeId(asset.syntax.url);
     asset.content = { src: await resolveThumbnailUrl(id) };
     return true;
 }
 
-async function buildYouTubeHtml(asset: BuiltAsset): Promise<boolean> {
+async function build(asset: BuiltAsset): Promise<boolean> {
     if (!isYouTube(asset.syntax.url)) return false;
     const id = getYouTubeId(asset.syntax.url);
     const source = `https://www.youtube-nocookie.com/embed/${id}`;
@@ -50,7 +50,7 @@ async function buildYouTubeHtml(asset: BuiltAsset): Promise<boolean> {
 <div class="imgit-youtube" data-imgit-container>${title}${banner}
     <div class="imgit-youtube-poster" title="Play YouTube video">
         <button class="imgit-youtube-play" title="Play YouTube video"/>
-        ${await buildPosterHtml(asset)}
+        ${await buildPoster(asset)}
     </div>
     <div class="imgit-youtube-player" hidden>
         <iframe title="${asset.syntax.alt}" data-imgit-src="${source}" allowfullscreen></iframe>
@@ -59,7 +59,7 @@ async function buildYouTubeHtml(asset: BuiltAsset): Promise<boolean> {
     return true;
 }
 
-async function buildPosterHtml(asset: BuiltAsset): Promise<string> {
+async function buildPoster(asset: BuiltAsset): Promise<string> {
     // Pretend the asset is an image to re-use default picture build procedure.
     asset = { ...asset, syntax: { ...asset.syntax, url: "" } };
     await defaults.transform.build([asset]);
