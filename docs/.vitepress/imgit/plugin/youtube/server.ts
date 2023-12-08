@@ -2,6 +2,14 @@ import { Plugin } from "../../server";
 import { BuiltAsset, ResolvedAsset } from "../../server/asset";
 import { Cache, cache, std, cfg, defaults } from "../../server";
 
+/** YouTube plugin preferences. */
+export type Prefs = {
+    /** Whether to show captured alt syntax as video title; enabled by default. */
+    title?: boolean;
+    /** Whether to show "Watch on YouTube" banner; enabled by default. */
+    banner?: boolean;
+}
+
 type YouTubeCache = Cache & {
     /** Resolved thumbnail URLs mapped by YouTube video ID. */
     youtube: Record<string, string>;
@@ -9,11 +17,13 @@ type YouTubeCache = Cache & {
 
 /** YouTube thumbnail variants; each video is supposed to have at least "0". */
 const thumbs = ["maxresdefault", "mqdefault", "0"];
+let pluginPrefs: Prefs | undefined;
 
 /** Allows embedding YouTube videos with imgit.
  *  @example ![](https://www.youtube.com/watch?v=arbuYnJoLtU) */
-export default function (): Plugin {
+export default function (prefs?: Prefs): Plugin {
     if (!cache.hasOwnProperty("youtube")) cache.youtube = {};
+    pluginPrefs = prefs;
     return {
         resolvers: [resolveYouTubeAsset],
         builders: [buildYouTubeHtml]
@@ -31,12 +41,14 @@ async function buildYouTubeHtml(asset: BuiltAsset): Promise<boolean> {
     if (!isYouTube(asset.syntax.url)) return false;
     const id = getYouTubeId(asset.syntax.url);
     const source = `https://www.youtube-nocookie.com/embed/${id}`;
+    const title = pluginPrefs?.title !== false
+        ? `<div class="imgit-youtube-title">${asset.syntax.alt}</div>` : ``;
+    const banner = pluginPrefs?.banner !== false
+        ? `<button class="imgit-youtube-banner" title="Watch video on YouTube">Watch on</button>` : ``;
     asset.html = `
-<div class="imgit-youtube" data-imgit-container>
-    <div class="imgit-youtube-title">${asset.syntax.alt}</div>
-    <button class="imgit-youtube-watch-button" title="Watch video on YouTube">Watch on</button>
+<div class="imgit-youtube" data-imgit-container>${title}${banner}
     <div class="imgit-youtube-poster" title="Play YouTube video">
-        <button class="imgit-youtube-play-button" title="Play YouTube video"/>
+        <button class="imgit-youtube-play" title="Play YouTube video"/>
         ${await buildPosterHtml(asset)}
     </div>
     <div class="imgit-youtube-player" hidden>
@@ -76,8 +88,4 @@ async function resolveThumbnailUrl(id: string): Promise<string> {
 
 function buildThumbnailUrl(id: string, variant: string): string {
     return `https://i.ytimg.com/vi_webp/${id}/${variant}.webp`;
-}
-
-function handlePosterClick(event: Event) {
-
 }
