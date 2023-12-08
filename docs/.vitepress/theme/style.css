@@ -294,7 +294,9 @@ table > tfoot:not(:last-child) {
  * Custom elements
  * -------------------------------------------------------------------------- */
 
-[data-imgit-container] * {
+[data-imgit-container],
+[data-imgit-container] img,
+[data-imgit-container] video {
     border-radius: 8px;
 }
 
