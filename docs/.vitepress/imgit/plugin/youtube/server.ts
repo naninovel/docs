@@ -1,6 +1,6 @@
 import { Plugin } from "../../server";
 import { BuiltAsset, ResolvedAsset } from "../../server/asset";
-import { Cache, cache, std, cfg, defaults } from "../../server";
+import { Cache, cache as $cache, cfg, std, defaults } from "../../server";
 
 /** YouTube plugin preferences. */
 export type Prefs = {
@@ -17,13 +17,14 @@ type YouTubeCache = Cache & {
 
 /** YouTube thumbnail variants; each video is supposed to have at least "0". */
 const thumbs = ["maxresdefault", "mqdefault", "0"];
-let pluginPrefs: Prefs | undefined;
+const cache = <YouTubeCache>$cache;
+const prefs: Prefs = {};
 
 /** Allows embedding YouTube videos with imgit.
  *  @example ![](https://www.youtube.com/watch?v=arbuYnJoLtU) */
-export default function (prefs?: Prefs): Plugin {
+export default function ($prefs?: Prefs): Plugin {
     if (!cache.hasOwnProperty("youtube")) cache.youtube = {};
-    pluginPrefs = prefs;
+    Object.assign(prefs, $prefs);
     return {
         resolvers: [resolveYouTubeAsset],
         builders: [buildYouTubeHtml]
@@ -41,9 +42,9 @@ async function buildYouTubeHtml(asset: BuiltAsset): Promise<boolean> {
     if (!isYouTube(asset.syntax.url)) return false;
     const id = getYouTubeId(asset.syntax.url);
     const source = `https://www.youtube-nocookie.com/embed/${id}`;
-    const title = pluginPrefs?.title !== false
+    const title = prefs.title !== false
         ? `<div class="imgit-youtube-title">${asset.syntax.alt}</div>` : ``;
-    const banner = pluginPrefs?.banner !== false
+    const banner = prefs.banner !== false
         ? `<button class="imgit-youtube-banner" title="Watch video on YouTube">Watch on</button>` : ``;
     asset.html = `
 <div class="imgit-youtube" data-imgit-container>${title}${banner}
@@ -76,8 +77,8 @@ function getYouTubeId(url: string): string {
 }
 
 async function resolveThumbnailUrl(id: string): Promise<string> {
-    if ((<YouTubeCache>cache).youtube.hasOwnProperty(id))
-        return (<YouTubeCache>cache).youtube[id];
+    if (cache.youtube.hasOwnProperty(id))
+        return cache.youtube[id];
     let response: Response = <never>null;
     for (const variant of thumbs)
         if ((response = await std.fetch(buildThumbnailUrl(id, variant))).ok) break;
