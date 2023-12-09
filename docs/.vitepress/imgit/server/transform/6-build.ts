@@ -25,12 +25,13 @@ async function buildPicture(content: EncodedContent, asset: BuiltAsset, merges?:
     const size = buildSizeAttributes(content.info);
     const lazy = asset.spec?.eager == null;
     const load = lazy ? `loading="lazy" decoding="async"` : `decoding="sync"`;
+    const cls = `imgit-picture ${asset.spec?.class ?? ""}`;
     let sourcesHtml = await buildPictureSources(content, asset);
     if (merges) for (const merge of merges)
         if (merge.content) sourcesHtml += await buildPictureSources(merge.content, merge);
     sourcesHtml += `<img data-imgit-loadable alt="${asset.syntax.alt}" ${size} ${load}/>`;
     asset.html = `
-<div class="imgit-picture" data-imgit-container>
+<div class="${cls}" data-imgit-container>
     <picture>${sourcesHtml}</picture>
     ${await buildCover(asset, size, merges)}
 </div>`;
@@ -56,10 +57,11 @@ async function buildVideo(content: EncodedContent, asset: BuiltAsset, merges: Bu
     const encoded = await serve(content.encoded, asset);
     const size = buildSizeAttributes(content.info);
     const media = asset.spec?.media ? `media="${asset.spec.media}"` : "";
+    const cls = `imgit-video ${asset.spec?.class ?? ""}`;
     // https://jakearchibald.com/2022/html-codecs-parameter-for-av1
     const codec = "av01.0.04M.08"; // TODO: Resolve actual spec at the encoding stage.
     asset.html = `
-<div class="imgit-video" data-imgit-container>
+<div class="${cls}" data-imgit-container>
     <video data-imgit-loadable preload="none" loop autoplay muted playsinline ${size}>
         <source data-imgit-src="${encoded}" type="video/mp4; codecs=${codec}" ${media}/>
         <source data-imgit-src="${safe}" type="video/mp4"/>

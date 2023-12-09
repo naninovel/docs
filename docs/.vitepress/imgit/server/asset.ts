@@ -53,6 +53,8 @@ export type AssetSpec = {
      *  ![?media=(min-width:800px)](/wide.png)
      *  ![?media=(max-width:799px)&merge](/narrow.png) */
     media?: string;
+    /** When specified, adds specified class attribute to generated HTML container. */
+    class?: string;
 }
 
 /** Asset with all the applicable source content files available on the local file system. */

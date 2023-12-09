@@ -41,12 +41,13 @@ async function resolve(asset: ResolvedAsset): Promise<boolean> {
 async function build(asset: BuiltAsset): Promise<boolean> {
     if (!isYouTube(asset.syntax.url)) return false;
     const id = getYouTubeId(asset.syntax.url);
+    const cls = `imgit-youtube ${asset.spec?.class ?? ""}`;
     const source = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&playsinline=1`;
     const allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
     const banner = buildBanner(asset.syntax);
     const title = buildTitle(asset.syntax);
     asset.html = `
-<div class="imgit-youtube" data-imgit-container>${title}${banner}
+<div class="${cls}" data-imgit-container>${title}${banner}
     <div class="imgit-youtube-poster" title="Play YouTube video">
         <div class="imgit-youtube-play" title="Play YouTube video"/>
         ${await buildPoster(asset)}

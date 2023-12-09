@@ -21,6 +21,7 @@ function resolveSpec(query: string): AssetSpec {
         eager: params.has("eager") ? true : undefined,
         merge: params.has("merge") ? true : undefined,
         width: params.has("width") ? parseInt(params.get("width")!) : undefined,
-        media: params.get("media") ?? undefined
+        media: params.get("media") ?? undefined,
+        class: params.get("class") ?? undefined
     };
 }
