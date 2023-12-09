@@ -4,9 +4,9 @@ import { Platform, Prefs, Plugin, boot, exit, transform, std } from "../server";
 export type VitePrefs = Prefs & {
     /** Force the vite plugin to run either before are after other plugins. */
     enforce?: "pre" | "post";
-    /** Specify condition when document shouldn't be transformed by the plugin. */
+    /** Specify condition when document shouldn't be transformed by the vite plugin. */
     skip?: (code: string, id: string, options?: { ssr?: boolean; }) => boolean;
-    /** Whether to inject imgit runtime JavaScript module to index HTML; enabled by default. */
+    /** Whether to inject imgit client JavaScript module to index HTML; enabled by default. */
     inject?: boolean;
 };
 
