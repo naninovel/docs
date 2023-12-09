@@ -2,7 +2,7 @@ import { Platform, Prefs, Plugin, boot, exit, transform, std } from "../server";
 
 /** Configures vite plugin behaviour. */
 export type VitePrefs = Prefs & {
-    /** Force the plugin to run either before are after other plugins. */
+    /** Force the vite plugin to run either before are after other plugins. */
     enforce?: "pre" | "post";
     /** Specify condition when document shouldn't be transformed by the plugin. */
     skip?: (code: string, id: string, options?: { ssr?: boolean; }) => boolean;
