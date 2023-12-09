@@ -2,6 +2,7 @@ import { addHandler } from "../../client/mutation";
 import "./styles.css";
 
 addHandler([handleAdded, handleRemoved]);
+handleAdded(document.body);
 
 function handleAdded(added: Element) {
     for (const banner of added.querySelectorAll<HTMLButtonElement>("button.imgit-youtube-banner"))
