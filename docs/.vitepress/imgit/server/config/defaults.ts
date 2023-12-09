@@ -1,16 +1,10 @@
 import { Options } from "./options";
 import { logTTY } from "../common";
-import * as cache from "../cache";
-import * as transform from "../transform";
-import { ffprobe, ffmpeg } from "../encoder";
 
 /** Default build server configuration. */
 export const defaults: Readonly<Options> = {
     root: "./public",
     regex: [/!\[(?<alt>.*?)(?<spec>\?\S+?)?]\((?<url>.+?)\)/g],
-    resolvers: [],
-    builders: [],
-    servers: [],
     cover: "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=", // empty gif (smallest valid src)
     width: null,
     log: {
@@ -18,11 +12,7 @@ export const defaults: Readonly<Options> = {
         warn: console.warn,
         err: console.error
     },
-    cache: {
-        root: "./node_modules/.cache/imgit",
-        save: cache.save,
-        load: cache.load
-    },
+    cache: { root: "./node_modules/.cache/imgit" },
     fetch: {
         root: "./node_modules/.cache/imgit/fetched",
         timeout: 30,
@@ -31,7 +21,6 @@ export const defaults: Readonly<Options> = {
     },
     encode: {
         root: "./node_modules/.cache/imgit/encoded",
-        encoder: { probe: ffprobe, encode: ffmpeg },
         specs: [
             // https://trac.ffmpeg.org/wiki/Encode/AV1#libaom
             [/^image\/(?:gif|apng)$/, { codec: "libaom-av1 -crf 23 -cpu-used 5" }],
@@ -52,5 +41,5 @@ export const defaults: Readonly<Options> = {
         dense: { suffix: "-dense" },
         suffix: "-imgit"
     },
-    transform
+    plugins: []
 };

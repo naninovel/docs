@@ -1,10 +1,10 @@
-import { MediaInfo } from "./encoder";
+import { ContentInfo } from "../asset";
 import { std, cfg, getExtension } from "../common";
 
 // https://ffmpeg.org/ffprobe.html
 const args = "-loglevel error -select_streams v:0 -show_entries stream=width,height,pix_fmt -of csv=p=0";
 
-export async function ffprobe(path: string): Promise<MediaInfo> {
+export async function ffprobe(path: string): Promise<ContentInfo> {
     const { out, err } = await std.exec(`ffprobe ${args} "${path}"`);
     if (err) cfg.log?.err?.(`ffprobe error: ${err}`);
     const parts = out.split(",");

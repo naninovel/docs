@@ -1,5 +1,3 @@
-import { MediaInfo } from "./encoder";
-
 /** Asset captured from transformed document. */
 export type CapturedAsset = {
     /** Syntax of the captured asset. */
@@ -23,10 +21,10 @@ export type AssetSyntax = {
 
 /** Asset with resolved source content locations and specs. */
 export type ResolvedAsset = CapturedAsset & {
-    /** Source content of the asset, when applicable. */
-    content?: ResolvedContent;
+    /** Source content of the asset. */
+    content: ResolvedContent;
     /** Optional user-defined asset specifications resolved (parsed) from captured syntax. */
-    spec?: AssetSpec;
+    spec: AssetSpec;
 }
 
 /** Source content of an asset resolved from captured syntax. */
@@ -59,8 +57,8 @@ export type AssetSpec = {
 
 /** Asset with all the applicable source content files available on the local file system. */
 export type FetchedAsset = ResolvedAsset & {
-    /** Source content of the asset, when applicable. */
-    content?: FetchedContent;
+    /** Source content of the asset. */
+    content: FetchedContent;
     /** Whether any of the source content files were modified since last build. */
     dirty?: boolean;
 };
@@ -73,20 +71,32 @@ export type FetchedContent = ResolvedContent & {
 
 /** Asset with identified source content. */
 export type ProbedAsset = FetchedAsset & {
-    /** Source content of the asset, when applicable. */
-    content?: ProbedContent;
+    /** Source content of the asset. */
+    content: ProbedContent;
 };
 
 /** Identified source content of an asset. */
 export type ProbedContent = FetchedContent & {
     /** Media info about the probed source content. */
-    info: MediaInfo;
+    info: ContentInfo;
 }
+
+/** Result of probing a content file. */
+export type ContentInfo = {
+    /** MIME type of the media content. */
+    type: string;
+    /** Width of the media content, in pixels. */
+    width: number;
+    /** Height of the media content, in pixels. */
+    height: number;
+    /** Whether the media content has alpha channel (transparency). */
+    alpha: boolean;
+};
 
 /** Asset with all the applicable encoded/generated content available on local file system. */
 export type EncodedAsset = ProbedAsset & {
-    /** Source content of the asset, when applicable. */
-    content?: EncodedContent;
+    /** Source content of the asset. */
+    content: EncodedContent;
 };
 
 /** Optimized source of an asset with optional generated content. */

@@ -1,10 +1,11 @@
 import { Prefs, configure, cfg } from "./config";
 import { Platform, bind } from "./platform";
-import { cache } from "./cache";
+import * as cache from "./cache";
 import { clear as clearContext } from "./context";
 
 export { Platform, std } from "./platform";
-export { Plugin, Prefs, cfg, defaults } from "./config";
+export { Prefs, cfg, defaults } from "./config";
+export { Plugin } from "./config/plugin";
 export { ctx } from "./context";
 export { Cache, cache } from "./cache";
 export { transform } from "./transform";
@@ -15,11 +16,11 @@ export { transform } from "./transform";
 export async function boot(prefs?: Prefs, platform?: Platform): Promise<void> {
     await bind(platform);
     if (prefs) configure(prefs);
-    if (cfg.cache) Object.assign(cache, await cfg.cache.load());
+    if (cfg.cache) Object.assign(cache, await cache.load());
 }
 
 /** Resets build context and caches results. */
 export async function exit(): Promise<void> {
     clearContext();
-    if (cfg.cache) await cfg.cache.save(cache);
+    if (cfg.cache) await cache.save(cache.cache);
 }

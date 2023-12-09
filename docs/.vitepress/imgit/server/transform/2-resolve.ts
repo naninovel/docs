@@ -2,17 +2,17 @@ import { CapturedAsset, ResolvedAsset, AssetSpec } from "../asset";
 import { cfg } from "../common";
 
 /** Resolves content locations and specs of the captured syntax. */
-export async function resolve(assets: CapturedAsset[]): Promise<ResolvedAsset[]> {
+export async function resolveAll(assets: CapturedAsset[]): Promise<ResolvedAsset[]> {
     for (const asset of assets)
-        await resolveAsset(<ResolvedAsset>asset);
+        if (!(await resolveWithPlugins(<ResolvedAsset>asset)))
+            resolve(<ResolvedAsset>asset);
     return <ResolvedAsset[]>assets;
 }
 
-async function resolveAsset(asset: ResolvedAsset): Promise<void> {
-    for (const resolver of cfg.resolvers)
-        if (await resolver(asset)) return;
+/** Resolves media asset type supported by default. */
+export function resolve(asset: ResolvedAsset): void {
     asset.content = { src: asset.syntax.url };
-    asset.spec = asset.syntax.spec ? resolveSpec(asset.syntax.spec) : undefined;
+    asset.spec = asset.syntax.spec ? resolveSpec(asset.syntax.spec) : {};
 }
 
 function resolveSpec(query: string): AssetSpec {
@@ -24,4 +24,12 @@ function resolveSpec(query: string): AssetSpec {
         media: params.get("media") ?? undefined,
         class: params.get("class") ?? undefined
     };
+}
+
+async function resolveWithPlugins(asset: ResolvedAsset): Promise<boolean> {
+    if (!cfg.plugins) return false;
+    for (const plugin of cfg.plugins)
+        if (plugin.resolve && await plugin.resolve(asset))
+            return true;
+    return false;
 }
