@@ -4,6 +4,7 @@
     padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
+    user-select: none;
 }
 
 .imgit-youtube iframe,
@@ -88,8 +89,30 @@
     position: absolute;
     top: 10px;
     left: 14px;
-    z-index: 2;
+    z-index: 1;
     color: white;
     font-size: 18px;
     pointer-events: none;
+}
+
+.imgit-youtube-loading .imgit-youtube-poster {
+    cursor: default;
+    pointer-events: none;
+}
+
+.imgit-youtube-loading .imgit-youtube-banner {
+    opacity: 0;
+    transform: translateX(-100%);
+    transition: opacity .5s ease-out, transform .4s;
+}
+
+.imgit-youtube-loading .imgit-youtube-play {
+    opacity: 0.2 !important;
+    transform: scale(10);
+    transition: opacity .5s ease-out, transform .4s;
+}
+
+.imgit-youtube-playing .imgit-youtube-poster,
+.imgit-youtube-playing .imgit-youtube-title {
+    display: none;
 }
