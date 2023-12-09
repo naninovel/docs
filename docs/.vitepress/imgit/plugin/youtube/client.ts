@@ -37,7 +37,6 @@ function handlePlayerLoaded(event: Event) {
     const iframe = <HTMLIFrameElement>event.currentTarget;
     const player = <HTMLDivElement>iframe.parentElement;
     const container = <HTMLDivElement>player.parentElement;
-    iframe.click();
     container.classList.add("imgit-youtube-playing");
     player.hidden = false;
 }
