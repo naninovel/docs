@@ -1,24 +1,39 @@
-import { MediaInfo } from "../encoder";
-import { EncodedAsset, BuiltAsset, EncodedContent } from "../asset";
+import { EncodedAsset, BuiltAsset, EncodedContent, ContentInfo } from "../asset";
 import { std, cfg, cache } from "../common";
 
 /** Builds HTML for the optimized assets to overwrite source syntax. */
-export async function build(assets: EncodedAsset[]): Promise<BuiltAsset[]> {
+export async function buildAll(assets: EncodedAsset[]): Promise<BuiltAsset[]> {
     const merges = new Array<BuiltAsset>;
     for (let i = assets.length - 1; i >= 0; i--)
         if (assets[i].spec?.merge) merges.push(<BuiltAsset>assets[i]);
-        else await buildAsset(<BuiltAsset>assets[i], merges).then(() => merges.length = 0);
+        else {
+            if (!(await buildWithPlugins(<BuiltAsset>assets[i], merges)))
+                await build(<BuiltAsset>assets[i], merges);
+            merges.length = 0;
+        }
     return <BuiltAsset[]>assets;
 }
 
-async function buildAsset(asset: BuiltAsset, merges: BuiltAsset[]): Promise<void> {
-    for (const builder of cfg.builders)
-        if (await builder(asset, merges)) return;
+/** Default HTML builder for supported asset types (images and video). */
+export async function build(asset: BuiltAsset, merges: BuiltAsset[]): Promise<void> {
     for (const merge of merges) merge.html = "";
     if (!asset.content) throw Error(`Failed to build HTML for '${asset.syntax.url}': missing content.`);
     if (asset.content.info.type.startsWith("image/")) return buildPicture(asset.content, asset, merges);
     if (asset.content.info.type.startsWith("video/")) return buildVideo(asset.content, asset, merges);
     throw Error(`Failed to build HTML for '${asset.syntax.url}': unknown type (${asset.content.info.type}).`);
+}
+
+/** Builds serve url for content file with specified full path based on configured root option. */
+export function buildContentSource(path: string) {
+    return `/${std.path.relative(cfg.root, std.path.dirname(path))}/${std.path.basename(path)}`;
+}
+
+async function buildWithPlugins(asset: BuiltAsset, merges: BuiltAsset[]): Promise<boolean> {
+    if (!cfg.plugins) return false;
+    for (const plugin of cfg.plugins)
+        if (plugin.build && await plugin.build(asset, merges))
+            return true;
+    return false;
 }
 
 async function buildPicture(content: EncodedContent, asset: BuiltAsset, merges?: BuiltAsset[]): Promise<void> {
@@ -70,7 +85,7 @@ async function buildVideo(content: EncodedContent, asset: BuiltAsset, merges: Bu
 </div>`;
 }
 
-async function buildCover(asset: EncodedAsset, size: string, merges?: BuiltAsset[]): Promise<string> {
+async function buildCover(asset: BuiltAsset, size: string, merges?: BuiltAsset[]): Promise<string> {
     if (!cfg.cover) return "";
     let sourcesHtml = asset.content?.cover ? await buildCoverSource(asset.content.cover, asset) : "";
     if (merges) for (const merge of merges)
@@ -80,7 +95,7 @@ async function buildCover(asset: EncodedAsset, size: string, merges?: BuiltAsset
     return `<picture class="imgit-cover">${sourcesHtml}</picture>`;
 }
 
-async function buildCoverSource(path: string, asset: EncodedAsset): Promise<string> {
+async function buildCoverSource(path: string, asset: BuiltAsset): Promise<string> {
     const avif = await getCoverBase64(asset.syntax.url, path, asset.dirty);
     const mediaAttr = asset.spec?.media ? `media="${asset.spec.media}"` : "";
     return `<source srcset="${avif}" type="image/avif" ${mediaAttr}/>`;
@@ -93,17 +108,19 @@ async function getCoverBase64(src: string, path: string, dirty?: boolean): Promi
     return `data:image/avif;base64,${data}`;
 }
 
-function buildSizeAttributes(info: MediaInfo): string {
+function buildSizeAttributes(info: ContentInfo): string {
     const mod = cfg.width && info.width > cfg.width ? cfg.width / info.width : 1;
     const width = Math.floor(info.width * mod);
     const height = Math.floor(info.height * mod);
     return `width="${width}" height="${height}"`;
 }
 
-async function serve(path: string, asset: EncodedAsset): Promise<string> {
-    for (const server of cfg.servers) {
-        const src = await server(path, asset);
-        if (src) return src;
-    }
-    return `/${std.path.relative(cfg.root, std.path.dirname(path))}/${std.path.basename(path)}`;
+async function serve(path: string, asset: BuiltAsset): Promise<string> {
+    if (cfg.plugins)
+        for (const plugin of cfg.plugins)
+            if (plugin.serve) {
+                const src = await plugin.serve(path, asset);
+                if (src) return src;
+            }
+    return buildContentSource(path);
 }

@@ -1,13 +1,31 @@
-import { ProbedAsset, EncodedAsset, EncodedContent, ProbedContent } from "../asset";
-import { MediaInfo, EncodeSpec } from "../encoder";
+import { ProbedAsset, EncodedAsset, EncodedContent, ProbedContent, ContentInfo } from "../asset";
+import { EncodeSpec } from "../config";
 import { std, cfg, ctx, cache } from "../common";
+import { ffmpeg } from "../ffmpeg";
 
 /** Generates optimized versions of the source content files. */
-export async function encode(assets: ProbedAsset[]): Promise<EncodedAsset[]> {
+export async function encodeAll(assets: ProbedAsset[]): Promise<EncodedAsset[]> {
     await everythingIsFetched();
     for (const asset of assets)
-        await encodeAsset(<EncodedAsset>asset);
+        if (!(await encodeWithPlugins(<EncodedAsset>asset)))
+            await encodeAsset(<EncodedAsset>asset);
     return <EncodedAsset[]>assets;
+}
+
+/** Encodes asset content with ffmpeg. */
+export async function encodeAsset(asset: EncodedAsset): Promise<void> {
+    await encodeMain(asset.content, asset);
+    await encodeSafe(asset.content, asset);
+    await encodeDense(asset.content, asset);
+    await encodeCover(asset.content, asset);
+}
+
+async function encodeWithPlugins(asset: EncodedAsset): Promise<boolean> {
+    if (!cfg.plugins) return false;
+    for (const plugin of cfg.plugins)
+        if (plugin.encode && await plugin.encode(asset))
+            return true;
+    return false;
 }
 
 // Bundlers typically process files in parallel, so we end up encoding
@@ -20,14 +38,6 @@ async function everythingIsFetched(): Promise<void> {
         await Promise.all(ctx.fetches.values());
         await std.wait(0);
     }
-}
-
-async function encodeAsset(asset: EncodedAsset): Promise<void> {
-    if (!asset.content) return;
-    await encodeMain(asset.content, asset);
-    await encodeSafe(asset.content, asset);
-    await encodeDense(asset.content, asset);
-    await encodeCover(asset.content, asset);
 }
 
 async function encodeMain(content: EncodedContent, asset: EncodedAsset): Promise<void> {
@@ -69,11 +79,11 @@ async function encodeCover(content: EncodedContent, asset: EncodedAsset): Promis
 }
 
 async function encodeContent(key: string, path: string, out: string,
-    info: MediaInfo, spec: EncodeSpec, dirty?: boolean): Promise<void> {
+    info: ContentInfo, spec: EncodeSpec, dirty?: boolean): Promise<void> {
     if (!dirty && await cacheValid(key, out, spec)) return;
     if (ctx.encodes.has(key)) return ctx.encodes.get(key)!;
     cfg.log?.info?.(`Encoding ${key}`);
-    const promise = cfg.encode.encoder.encode(path, out, info, spec);
+    const promise = ffmpeg(path, out, info, spec);
     ctx.encodes.set(key, promise);
     await promise;
     cache.specs[key] = spec;
@@ -98,14 +108,14 @@ function isSafe(type: string, safe: (string | RegExp)[]): boolean {
     return false;
 }
 
-function getSpec(type: string, info: MediaInfo, specWidth?: number): EncodeSpec | undefined {
+function getSpec(type: string, info: ContentInfo, specWidth?: number): EncodeSpec | undefined {
     for (const [regex, spec] of cfg.encode.specs)
         if (new RegExp(regex).test(type))
             return { ...spec, scale: getScale(spec, info, specWidth) };
     return undefined;
 }
 
-function getScale(spec: EncodeSpec, info: MediaInfo, specWidth?: number) {
+function getScale(spec: EncodeSpec, info: ContentInfo, specWidth?: number) {
     const threshold = getThreshold(specWidth);
     const width = (threshold && threshold < info.width) ? threshold : info.width;
     return (spec.scale ?? 1) * (width / info.width);

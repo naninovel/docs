@@ -1,5 +1,6 @@
 import { std, cfg, ensureDir } from "./common";
-import { MediaInfo, EncodeSpec } from "./encoder";
+import { ContentInfo } from "./asset";
+import { EncodeSpec } from "./config";
 
 /** Cached results of the build operations. Each property is persisted as a
  *  standalone JSON file between build runs. Custom properties can be added. */
@@ -7,7 +8,7 @@ export type Cache = Record<string, unknown> & {
     /** Sizes of the asset source content in bytes, mapped by content URL. */
     sizes: Record<string, number>;
     /** Results of the asset source content probing, mapped by content URL. */
-    probes: Record<string, MediaInfo>;
+    probes: Record<string, ContentInfo>;
     /** Encode specifications used for the last encode pass, mapped by content URL. */
     specs: Record<string, EncodeSpec>;
     /** Base64-encoded generated cover images mapped by asset's syntax URL. */

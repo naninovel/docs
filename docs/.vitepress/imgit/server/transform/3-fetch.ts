@@ -1,20 +1,18 @@
-import { ResolvedAsset, FetchedAsset, FetchedContent } from "../asset";
+import { ResolvedAsset, FetchedAsset } from "../asset";
 import { std, cfg, ctx, cache, ensureDir } from "../common";
 
 /** Downloads source content files for the resolved assets. */
-export async function fetch(assets: ResolvedAsset[]): Promise<FetchedAsset[]> {
+export async function fetchAll(assets: ResolvedAsset[]): Promise<FetchedAsset[]> {
     for (const asset of assets)
-        await fetchAsset(<FetchedAsset>asset);
+        if (!(await fetchWithPlugins(<FetchedAsset>asset)))
+            await fetch(<FetchedAsset>asset);
     return <FetchedAsset[]>assets;
 }
 
-async function fetchAsset(asset: FetchedAsset): Promise<void> {
-    if (asset.content) await fetchContent(asset.content, asset);
-}
-
-async function fetchContent(content: FetchedContent, asset: FetchedAsset): Promise<void> {
-    const src = content.src;
-    const out = content.local = buildLocalPath(src);
+/** Fetches asset's source content. */
+export async function fetch(asset: FetchedAsset): Promise<void> {
+    const src = asset.content.src;
+    const out = asset.content.local = buildLocalPath(src);
 
     if (src.startsWith("/")) return;
     if (ctx.fetches.has(src)) return ctx.fetches.get(src)!;
@@ -25,6 +23,14 @@ async function fetchContent(content: FetchedContent, asset: FetchedAsset): Promi
     ctx.fetches.set(src, fetchPromise);
     await fetchPromise;
     cache.sizes[src] = await std.fs.size(out);
+}
+
+async function fetchWithPlugins(asset: FetchedAsset): Promise<boolean> {
+    if (!cfg.plugins) return false;
+    for (const plugin of cfg.plugins)
+        if (plugin.fetch && await plugin.fetch(asset))
+            return true;
+    return false;
 }
 
 async function fetchWithRetries(src: string, out: string): Promise<void> {

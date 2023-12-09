@@ -24,7 +24,7 @@ export default function (prefs?: VitePrefs, platform?: Platform): VitePlugin {
         name: "imgit",
         enforce: prefs?.enforce,
         buildStart: _ => boot(prefs, platform),
-        transform: (code, id, opt) => prefs?.skip?.(code, id, opt) ? code : transform(code),
+        transform: (code, id, opt) => prefs?.skip?.(code, id, opt) ? code : transform(id, code),
         buildEnd: exit
     };
 };

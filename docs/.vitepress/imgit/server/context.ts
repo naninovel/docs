@@ -1,5 +1,5 @@
 import { CapturedAsset } from "./asset";
-import { MediaInfo } from "./encoder";
+import { ContentInfo } from "./asset";
 
 /** Shared mutable state of the current build operation. */
 export const ctx = {
@@ -10,7 +10,7 @@ export const ctx = {
     /** Fetch retry count mapped by fetched content location (URL). */
     retries: new Map<string, number>(),
     /** Probing operations mapped by source content location (URL). */
-    probes: new Map<string, Promise<MediaInfo>>,
+    probes: new Map<string, Promise<ContentInfo>>,
     /** Encode operations mapped by source content location (URL) + encode target. */
     encodes: new Map<string, Promise<void>>
 };

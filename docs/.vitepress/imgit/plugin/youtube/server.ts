@@ -1,6 +1,7 @@
 import { Plugin } from "../../server";
 import { BuiltAsset, ResolvedAsset, AssetSyntax } from "../../server/asset";
-import { Cache, cache as $cache, cfg, std, defaults } from "../../server";
+import { Cache, cache as $cache, cfg, std } from "../../server";
+import { build as buildDefault } from "../../server/transform/6-build";
 
 /** YouTube plugin preferences. */
 export type Prefs = {
@@ -25,10 +26,7 @@ const prefs: Prefs = {};
 export default function ($prefs?: Prefs): Plugin {
     if (!cache.hasOwnProperty("youtube")) cache.youtube = {};
     Object.assign(prefs, $prefs);
-    return {
-        resolvers: [resolve],
-        builders: [build]
-    };
+    return { resolve, build };
 };
 
 async function resolve(asset: ResolvedAsset): Promise<boolean> {
@@ -75,7 +73,7 @@ function buildBanner(syntax: AssetSyntax): string {
 async function buildPoster(asset: BuiltAsset): Promise<string> {
     // Pretend the asset is an image to re-use default picture build procedure.
     asset = { ...asset, syntax: { ...asset.syntax, url: "" } };
-    await defaults.transform.build([asset]);
+    await buildDefault(asset, []);
     return asset.html;
 }
 
