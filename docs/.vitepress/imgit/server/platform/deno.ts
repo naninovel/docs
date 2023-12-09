@@ -32,7 +32,7 @@ export const deno: Readonly<Platform> = {
             return Deno.writeFile(path, content);
         },
         remove: Deno.remove,
-        mkdir: (path: string) => Deno.mkdir(path, { recursive: true }),
+        mkdir: (path: string) => Deno.mkdir(path, { recursive: true })
     },
     path: {
         join: (...p) => path.join(...p).replaceAll("\\", "/"),
