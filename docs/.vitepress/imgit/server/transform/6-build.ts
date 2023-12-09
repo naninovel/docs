@@ -38,9 +38,9 @@ async function buildWithPlugins(asset: BuiltAsset, merges: BuiltAsset[]): Promis
 
 async function buildPicture(content: EncodedContent, asset: BuiltAsset, merges?: BuiltAsset[]): Promise<void> {
     const size = buildSizeAttributes(content.info);
-    const lazy = asset.spec?.eager == null;
+    const lazy = asset.spec.eager == null;
     const load = lazy ? `loading="lazy" decoding="async"` : `decoding="sync"`;
-    const cls = `imgit-picture ${asset.spec?.class ?? ""}`;
+    const cls = `imgit-picture ${asset.spec.class ?? ""}`;
     let sourcesHtml = await buildPictureSources(content, asset);
     if (merges) for (const merge of merges)
         if (merge.content) sourcesHtml += await buildPictureSources(merge.content, merge);
@@ -56,8 +56,8 @@ async function buildPictureSources(content: EncodedContent, asset: BuiltAsset) {
     const safe = await serve(content.safe ?? content.local, asset);
     const encoded = await serve(content.encoded, asset);
     const dense = content.dense && await serve(content.dense, asset);
-    return buildPictureSource(encoded, "image/avif", dense, asset.spec?.media) +
-        buildPictureSource(safe, undefined, undefined, asset.spec?.media);
+    return buildPictureSource(encoded, "image/avif", dense, asset.spec.media) +
+        buildPictureSource(safe, undefined, undefined, asset.spec.media);
 }
 
 function buildPictureSource(src: string, type?: string, dense?: string, media?: string): string {
@@ -71,8 +71,8 @@ async function buildVideo(content: EncodedContent, asset: BuiltAsset, merges: Bu
     const safe = await serve(content.safe ?? content.local, asset);
     const encoded = await serve(content.encoded, asset);
     const size = buildSizeAttributes(content.info);
-    const media = asset.spec?.media ? `media="${asset.spec.media}"` : "";
-    const cls = `imgit-video ${asset.spec?.class ?? ""}`;
+    const media = asset.spec.media ? `media="${asset.spec.media}"` : "";
+    const cls = `imgit-video ${asset.spec.class ?? ""}`;
     // https://jakearchibald.com/2022/html-codecs-parameter-for-av1
     const codec = "av01.0.04M.08"; // TODO: Resolve actual spec at the encoding stage.
     asset.html = `
@@ -97,7 +97,7 @@ async function buildCover(asset: BuiltAsset, size: string, merges?: BuiltAsset[]
 
 async function buildCoverSource(path: string, asset: BuiltAsset): Promise<string> {
     const avif = await getCoverBase64(asset.syntax.url, path, asset.dirty);
-    const mediaAttr = asset.spec?.media ? `media="${asset.spec.media}"` : "";
+    const mediaAttr = asset.spec.media ? `media="${asset.spec.media}"` : "";
     return `<source srcset="${avif}" type="image/avif" ${mediaAttr}/>`;
 }
 

@@ -40,4 +40,5 @@ player.Stop();
 
 下面的UML图说明了引擎体系结构的高级概念。请注意，图中的所有类和接口名称都在Naninovel命名空间下。例如，要引用 `Engine` 类，请使用 `Naninovel.Engine`或[包含名称空间](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/namespaces/using-namespaces) 。
 
-<object style="width:100%; max-width:699px" data="/assets/img/engine-design.svg" type="image/svg+xml"></object>
+<object class="engine-design-dark" data="/assets/img/engine-design-dark.svg" type="image/svg+xml"></object>
+<object class="engine-design-light" data="/assets/img/engine-design-light.svg" type="image/svg+xml"></object>

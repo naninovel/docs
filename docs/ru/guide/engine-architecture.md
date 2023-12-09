@@ -39,4 +39,5 @@ player.Stop();
 
 Следующая диаграмма UML иллюстрирует высокоуровневую концепцию архитектуры движка. Обратите внимание, что все имена классов и интерфейсов на диаграмме организованы в пространстве имён `Naninovel`. Например, чтобы сослаться на класс `Engine`, используйте `Naninovel.Engine` или [включите пространство имён](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/namespaces/using-namespaces).
 
-<object style="width:100%; max-width:699px" data="/assets/img/engine-design.svg" type="image/svg+xml"></object>
+<object class="engine-design-dark" data="/assets/img/engine-design-dark.svg" type="image/svg+xml"></object>
+<object class="engine-design-light" data="/assets/img/engine-design-light.svg" type="image/svg+xml"></object>

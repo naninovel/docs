@@ -1,6 +1,7 @@
 import { fileURLToPath } from "url";
 import { UserConfig, Alias } from "vite";
 import imgit from "../imgit/plugin/vite";
+import svg from "../imgit/plugin/svg";
 import youtube from "../imgit/plugin/youtube";
 
 export const vite: UserConfig = {
@@ -12,7 +13,7 @@ export const vite: UserConfig = {
         cache: { root: "./docs/public/imgit" },
         fetch: { root: "./docs/public/imgit/fetched" },
         encode: { root: "./docs/public/imgit/encoded" },
-        plugins: [youtube()]
+        plugins: [svg(), youtube()]
     })],
     resolve: {
         alias: [

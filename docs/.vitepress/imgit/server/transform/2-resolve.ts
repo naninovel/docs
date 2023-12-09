@@ -9,13 +9,14 @@ export async function resolveAll(assets: CapturedAsset[]): Promise<ResolvedAsset
     return <ResolvedAsset[]>assets;
 }
 
-/** Resolves media asset type supported by default. */
+/** Resolves asset types supported by default. */
 export function resolve(asset: ResolvedAsset): void {
     asset.content = { src: asset.syntax.url };
     asset.spec = asset.syntax.spec ? resolveSpec(asset.syntax.spec) : {};
 }
 
-function resolveSpec(query: string): AssetSpec {
+/** Resolves spec formatted as URL query parameters. */
+export function resolveSpec(query: string): AssetSpec {
     const params = new URLSearchParams(query);
     return {
         eager: params.has("eager") ? true : undefined,

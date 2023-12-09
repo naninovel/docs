@@ -39,4 +39,5 @@ player.Stop();
 
 次のUML図は、エンジンアーキテクチャの高レベルの概念を示しています。図のすべてのクラスとインターフェースの名前は `Naninovel` ネームスペース以下で整理されています。たとえば `Engine` クラスを参照するには `Naninovel.Engine` または[ネームスペースを含めて](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/namespaces/using-namespaces) ください。
 
-<object style="width:100%; max-width:699px" data="/assets/img/engine-design.svg" type="image/svg+xml"></object>
+<object class="engine-design-dark" data="/assets/img/engine-design-dark.svg" type="image/svg+xml"></object>
+<object class="engine-design-light" data="/assets/img/engine-design-light.svg" type="image/svg+xml"></object>

@@ -1,32 +1,22 @@
 import { Plugin } from "../server";
-import { ResolvedAsset, BuiltAsset } from "../server/asset";
+import { CapturedAsset, BuiltAsset } from "../server/asset";
+import { std } from "../server";
 
-/** Adds support for SVG assets with imgit.
- *  Requires cover specified in imgit prefs to utilize lazy-load crossfade.
+/** Adds support for inlining SVG assets with imgit.
  *  @example ![](/assets/diagram.svg) */
 export default function (): Plugin {
-    return {
-        resolvers: [resolve],
-        builders: [build]
-    };
+    // Skipping probe and encode stages; we'll just embed SVG content into HTML.
+    return { probe: isSvg, encode: isSvg, build };
 };
 
-function resolve(asset: ResolvedAsset): boolean {
-    if (!isSvg(asset.syntax.url)) return false;
-    asset.content = { src: asset.syntax.url };
-    return true;
+function isSvg(asset: CapturedAsset): boolean {
+    return asset.syntax.url.endsWith(".svg");
 }
 
-function build(asset: BuiltAsset): boolean {
-    if (!isSvg(asset.syntax.url)) return false;
-    const cls = `imgit-svg ${asset.spec?.class ?? ""}`;
-    asset.html = `
-<div class="${cls}" data-imgit-container>
-    <object data="/assets/img/engine-design-dark.svg" type="image/svg+xml"></object>
-</div>`;
+async function build(asset: BuiltAsset): Promise<boolean> {
+    if (!isSvg(asset)) return false;
+    const cls = `imgit-svg ${asset.spec.class ?? ""}`;
+    const svg = await std.fs.read(asset.content.local, "utf8");
+    asset.html = `<div class="${cls}" data-imgit-container>${svg}</div>`;
     return true;
-}
-
-function isSvg(url: string): boolean {
-    return url.endsWith(".svg");
 }
