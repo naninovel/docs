@@ -1,6 +1,7 @@
 import { Plugin } from "../../server";
 import { BuiltAsset, ResolvedAsset, AssetSyntax } from "../../server/asset";
 import { Cache, cache as $cache, cfg, std } from "../../server";
+import { resolveSpec } from "../../server/transform/2-resolve";
 import { build as buildDefault } from "../../server/transform/6-build";
 
 /** YouTube plugin preferences. */
@@ -21,7 +22,7 @@ const thumbs = ["maxresdefault", "mqdefault", "0"];
 const cache = <YouTubeCache>$cache;
 const prefs: Prefs = {};
 
-/** Allows embedding YouTube videos with imgit.
+/** Adds support for embedding YouTube videos with imgit.
  *  @example ![](https://www.youtube.com/watch?v=arbuYnJoLtU) */
 export default function ($prefs?: Prefs): Plugin {
     if (!cache.hasOwnProperty("youtube")) cache.youtube = {};
@@ -33,13 +34,14 @@ async function resolve(asset: ResolvedAsset): Promise<boolean> {
     if (!isYouTube(asset.syntax.url)) return false;
     const id = getYouTubeId(asset.syntax.url);
     asset.content = { src: await resolveThumbnailUrl(id) };
+    asset.spec = asset.syntax.spec ? resolveSpec(asset.syntax.spec) : {};
     return true;
 }
 
 async function build(asset: BuiltAsset): Promise<boolean> {
     if (!isYouTube(asset.syntax.url)) return false;
     const id = getYouTubeId(asset.syntax.url);
-    const cls = `imgit-youtube ${asset.spec?.class ?? ""}`;
+    const cls = `imgit-youtube ${asset.spec.class ?? ""}`;
     const source = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&playsinline=1`;
     const allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
     const banner = buildBanner(asset.syntax);

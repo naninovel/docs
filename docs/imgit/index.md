@@ -74,11 +74,15 @@
 
 ![webm](/assets/imgit/mov.mov)
 
-## YouTube
-
-![Oahu Hawaii – Island in the Sun](https://www.youtube.com/watch?v=arbuYnJoLtU)
-
 ## Art Direction
 
 ![?media=(min-width:800px)](/assets/imgit/art-wide.jpg)
 ![?media=(max-width:799px)&merge](/assets/imgit/art-square.jpg)
+
+## YouTube
+
+![Oahu Hawaii – Island in the Sun](https://www.youtube.com/watch?v=arbuYnJoLtU)
+
+## SVG
+
+![](/assets/imgit/svg.svg)

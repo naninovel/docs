@@ -300,20 +300,17 @@ table > tfoot:not(:last-child) {
     border-radius: 8px;
 }
 
-.engine-design-light {
-    width: 100%;
-    display: block;
-}
-
+.engine-design-light,
 .engine-design-dark {
     width: 100%;
-    display: none;
 }
 
+.engine-design-dark,
 .dark .engine-design-light {
     display: none;
 }
 
+.engine-design-light,
 .dark .engine-design-dark {
     display: block;
 }
