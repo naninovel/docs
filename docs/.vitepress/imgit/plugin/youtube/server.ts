@@ -1,6 +1,5 @@
-import { Plugin } from "../../server";
+import { Plugin, Cache, cache as $cache, cfg, std } from "../../server";
 import { BuiltAsset, ResolvedAsset, AssetSyntax } from "../../server/asset";
-import { Cache, cache as $cache, cfg, std } from "../../server";
 import { resolveSpec } from "../../server/transform/2-resolve";
 import { build as buildDefault } from "../../server/transform/6-build";
 
