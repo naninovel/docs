@@ -2,13 +2,20 @@ import { observeVideo, unobserveVideo } from "./intersection";
 
 const IMAGE_LOADED_EVENT = "load";
 const VIDEO_LOADED_EVENT = "loadeddata";
-const IMGIT_LOADED_EVENT = "imgit-loaded";
+
+/** External mutation handlers. */
+export type Handler = [(added: Element) => void, (removed: Element) => void];
 
 const observer = canObserve() ? new MutationObserver(handleMutations) : undefined;
+const handlers: Array<Handler> = [];
 
 export function observeMutations() {
     observer?.observe(document.body, { childList: true, subtree: true });
     if (canObserve()) handleAdded(document.body);
+}
+
+export function addHandler(handler: Handler) {
+    handlers.push(handler);
 }
 
 function canObserve() {
@@ -37,8 +44,11 @@ function handleAdded(added: Element) {
             observeVideo(element);
             if (element.readyState >= 2) signalLoaded(element);
             else element.addEventListener(VIDEO_LOADED_EVENT, handleLoaded);
-        } else element.addEventListener(IMGIT_LOADED_EVENT, handleLoaded);
+        }
     }
+
+    for (const handler of handlers)
+        handler[0](added);
 }
 
 function handleRemoved(removed: Element) {
@@ -46,8 +56,10 @@ function handleRemoved(removed: Element) {
         if (isVideo(element)) unobserveVideo(element);
         element.removeEventListener(IMAGE_LOADED_EVENT, handleLoaded);
         element.removeEventListener(VIDEO_LOADED_EVENT, handleLoaded);
-        element.removeEventListener(IMGIT_LOADED_EVENT, handleLoaded);
     }
+
+    for (const handler of handlers)
+        handler[1](removed);
 }
 
 function isElement(obj: Node | EventTarget): obj is Element {

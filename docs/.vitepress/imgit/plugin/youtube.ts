@@ -1,6 +1,14 @@
-import { Plugin } from "../server";
-import { BuiltAsset, ResolvedAsset } from "../server/asset";
-import { Cache, cache, std, cfg } from "../server";
+import { Plugin } from "../../server";
+import { BuiltAsset, ResolvedAsset, AssetSyntax } from "../../server/asset";
+import { Cache, cache as $cache, cfg, std, defaults } from "../../server";
+
+/** YouTube plugin preferences. */
+export type Prefs = {
+    /** Whether to show captured alt syntax as video title; enabled by default. */
+    title?: boolean;
+    /** Whether to show "Watch on YouTube" banner; enabled by default. */
+    banner?: boolean;
+}
 
 type YouTubeCache = Cache & {
     /** Resolved thumbnail URLs mapped by YouTube video ID. */
@@ -9,16 +17,14 @@ type YouTubeCache = Cache & {
 
 /** YouTube thumbnail variants; each video is supposed to have at least "0". */
 const thumbs = ["maxresdefault", "mqdefault", "0"];
-const playButtonSvg = `
-<svg height="100%" viewBox="0 0 68 48" width="100%" class="imgit-youtube-play-button">
-    <path fill="#f00" d="M66.52,7.74c-0.78-2.93-2.49-5.41-5.42-6.19C55.79,.13,34,0,34,0S12.21,.13,6.9,1.55 C3.97,2.33,2.27,4.81,1.48,7.74C0.06,13.05,0,24,0,24s0.06,10.95,1.48,16.26c0.78,2.93,2.49,5.41,5.42,6.19 C12.21,47.87,34,48,34,48s21.79-0.13,27.1-1.55c2.93-0.78,4.64-3.26,5.42-6.19C67.94,34.95,68,24,68,24S67.94,13.05,66.52,7.74z"></path>
-    <path fill="#fff" d="M 45,24 27,14 27,34"></path>
-</svg>`;
+const cache = <YouTubeCache>$cache;
+const prefs: Prefs = {};
 
 /** Allows embedding YouTube videos with imgit.
- *  @example ![](https://www.youtube.com/watch?v=3SjX_X0oGxo) */
-export default function (): Plugin {
+ *  @example ![](https://www.youtube.com/watch?v=arbuYnJoLtU) */
+export default function ($prefs?: Prefs): Plugin {
     if (!cache.hasOwnProperty("youtube")) cache.youtube = {};
+    Object.assign(prefs, $prefs);
     return {
         resolvers: [resolve],
         builders: [build]
@@ -32,15 +38,44 @@ async function resolve(asset: ResolvedAsset): Promise<boolean> {
     return true;
 }
 
-function build(asset: BuiltAsset): boolean {
+async function build(asset: BuiltAsset): Promise<boolean> {
     if (!isYouTube(asset.syntax.url)) return false;
     const id = getYouTubeId(asset.syntax.url);
-    const source = `https://www.youtube-nocookie.com/embed/${id}`;
+    const source = `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&playsinline=1`;
+    const allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
+    const banner = buildBanner(asset.syntax);
+    const title = buildTitle(asset.syntax);
     asset.html = `
-<div class="imgit-youtube" data-imgit-container>
-    <iframe title="${asset.syntax.alt}" src="${source}" allowfullscreen></iframe>
+<div class="imgit-youtube" data-imgit-container>${title}${banner}
+    <div class="imgit-youtube-poster" title="Play YouTube video">
+        <div class="imgit-youtube-play" title="Play YouTube video"/>
+        ${await buildPoster(asset)}
+    </div>
+    <div class="imgit-youtube-player" hidden>
+        <iframe title="${asset.syntax.alt}" data-src="${source}" allow="${allow}" allowfullscreen/>
+    </div>
 </div>`;
     return true;
+}
+
+function buildTitle(syntax: AssetSyntax) {
+    if (prefs.title === false || !syntax.alt) return "";
+    const cls = "imgit-youtube-title";
+    return `<div class="${cls}">${syntax.alt}</div>`;
+}
+
+function buildBanner(syntax: AssetSyntax): string {
+    if (prefs.banner === false) return "";
+    const cls = "imgit-youtube-banner";
+    const title = "Watch video on YouTube";
+    return `<button class="${cls}" title="${title}" data-href="${syntax.url}">Watch on</button>`;
+}
+
+async function buildPoster(asset: BuiltAsset): Promise<string> {
+    // Pretend the asset is an image to re-use default picture build procedure.
+    asset = { ...asset, syntax: { ...asset.syntax, url: "" } };
+    await defaults.transform.build([asset]);
+    return asset.html;
 }
 
 /** Whether specified url is a valid YouTube video link. */
@@ -54,8 +89,8 @@ function getYouTubeId(url: string): string {
 }
 
 async function resolveThumbnailUrl(id: string): Promise<string> {
-    if ((<YouTubeCache>cache).youtube.hasOwnProperty(id))
-        return (<YouTubeCache>cache).youtube[id];
+    if (cache.youtube.hasOwnProperty(id))
+        return cache.youtube[id];
     let response: Response = <never>null;
     for (const variant of thumbs)
         if ((response = await std.fetch(buildThumbnailUrl(id, variant))).ok) break;
