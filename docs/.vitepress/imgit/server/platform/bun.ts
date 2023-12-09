@@ -10,6 +10,7 @@ declare module Bun {
         arrayBuffer: () => Promise<ArrayBuffer>;
         text: () => Promise<string>;
     };
+    const fileURLToPath: (url: string) => string;
     const write: (path: string, content: string | Uint8Array) => Promise<number>;
     const spawn: (cmd: string[]) => {
         exited: Promise<void>;
@@ -40,7 +41,8 @@ export const bun: Readonly<Platform> = {
         resolve: (...p) => path.resolve(...p).replaceAll("\\", "/"),
         relative: (from, to) => path.relative(from, to).replaceAll("\\", "/"),
         basename: path.basename,
-        dirname: p => path.dirname(p).replaceAll("\\", "/")
+        dirname: p => path.dirname(p).replaceAll("\\", "/"),
+        fileUrlToPath: url => Bun.fileURLToPath(url).replaceAll("\\", "/")
     },
     exec: async cmd => {
         const proc = Bun.spawn(cmd.split(" "));

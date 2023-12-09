@@ -26,7 +26,7 @@ const prefs: Prefs = {};
 export default function ($prefs?: Prefs): Plugin {
     if (!cache.hasOwnProperty("youtube")) cache.youtube = {};
     Object.assign(prefs, $prefs);
-    return { resolve, build, inject: () => `${__dirname}/client.ts` };
+    return { resolve, build, inject: () => `${std.path.dirname(std.path.fileUrlToPath(import.meta.url))}/client.ts` };
 };
 
 async function resolve(asset: ResolvedAsset): Promise<boolean> {

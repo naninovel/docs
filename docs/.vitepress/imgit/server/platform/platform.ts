@@ -28,6 +28,8 @@ export type Platform = Record<string, unknown> & {
         basename: (path: string) => string;
         /** Extracts directory name from specified path and normalizes the result. */
         dirname: (path: string) => string;
+        /** Converts specified file URL (usually <code>import.meta.url</code>) to local file path. */
+        fileUrlToPath: (url: string) => string;
     };
     /** Executes specified command in system shell. */
     exec: (cmd: string) => Promise<{ out: string, err?: Error }>;

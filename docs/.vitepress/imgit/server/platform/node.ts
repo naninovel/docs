@@ -2,6 +2,7 @@ import fs from "node:fs";
 import afs from "node:fs/promises";
 import path from "node:path";
 import { promisify } from "node:util";
+import { fileURLToPath } from "node:url";
 import { exec } from "node:child_process";
 import { Platform } from "./platform";
 
@@ -25,7 +26,8 @@ export const node: Readonly<Platform> = {
         resolve: (...p) => path.resolve(...p).replaceAll("\\", "/"),
         relative: (from, to) => path.relative(from, to).replaceAll("\\", "/"),
         basename: path.basename,
-        dirname: p => path.dirname(p).replaceAll("\\", "/")
+        dirname: p => path.dirname(p).replaceAll("\\", "/"),
+        fileUrlToPath: url => fileURLToPath(url).replaceAll("\\", "/")
     },
     exec: async cmd => {
         const execAsync = promisify(exec);

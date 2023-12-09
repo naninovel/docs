@@ -1,9 +1,9 @@
 // @ts-ignore
-import * as fs from "https://deno.land/std@0.208.0/fs/mod.ts";
+import * as fs from "https://deno.land/std/fs/mod.ts";
 // @ts-ignore
-import * as path from "https://deno.land/std@0.208.0/path/mod.ts";
+import * as path from "https://deno.land/std/path/mod.ts";
 // @ts-ignore
-import { encodeBase64 } from "https://deno.land/std@0.208.0/encoding/base64.ts";
+import { encodeBase64 } from "https://deno.land/std/encoding/base64.ts";
 import { Platform } from "./platform";
 
 // https://github.com/denoland/deno/releases/download/v1.38.1/lib.deno.d.ts
@@ -32,14 +32,15 @@ export const deno: Readonly<Platform> = {
             return Deno.writeFile(path, content);
         },
         remove: Deno.remove,
-        mkdir: (path: string) => Deno.mkdir(path, { recursive: true })
+        mkdir: (path: string) => Deno.mkdir(path, { recursive: true }),
     },
     path: {
         join: (...p) => path.join(...p).replaceAll("\\", "/"),
         resolve: (...p) => path.resolve(...p).replaceAll("\\", "/"),
         relative: (from, to) => path.relative(from, to).replaceAll("\\", "/"),
         basename: path.basename,
-        dirname: p => path.dirname(p).replaceAll("\\", "/")
+        dirname: p => path.dirname(p).replaceAll("\\", "/"),
+        fileUrlToPath: url => path.fromFileUrl(url).replaceAll("\\", "/")
     },
     exec: async cmd => {
         const proc = new Deno.Command(cmd);
