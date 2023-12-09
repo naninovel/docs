@@ -1,6 +1,4 @@
 import DefaultTheme from "vitepress/theme-without-fonts";
-import "../imgit/client";
-import "../imgit/plugin/youtube/client";
 import "./style.css";
 
 // https://vitepress.dev/guide/extending-default-theme

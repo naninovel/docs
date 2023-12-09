@@ -36,4 +36,6 @@ export type Plugin = {
      *  of transformed document return overwritten content or false when can't or shouldn't handle the case,
      *  in which case it'll be handled by next procedures in the plugin chain. */
     rewrite?: (id: string, content: string, assets: BuiltAsset[]) => (string | null) | Promise<string | null>;
+    /** When specified, will inject returned file path as client JavaScript module. */
+    inject?: () => string;
 };
