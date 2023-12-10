@@ -6,8 +6,8 @@
         "preview": "vitepress preview docs"
     },
     "devDependencies": {
-        "typescript": "^5.3.2",
-        "@types/node": "^20.10.3",
+        "typescript": "^5.3.3",
+        "@types/node": "^20.10.4",
         "vitepress": "^1.0.0-rc.31"
     }
 }
