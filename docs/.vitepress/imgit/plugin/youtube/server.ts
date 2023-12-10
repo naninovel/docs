@@ -72,9 +72,8 @@ function buildBanner(syntax: AssetSyntax): string {
 }
 
 async function buildPoster(asset: BuiltAsset): Promise<string> {
-    // Pretend the asset is an image to re-use default picture build procedure.
-    asset = { ...asset, syntax: { ...asset.syntax, url: "" } };
-    await buildDefault(asset, []);
+    // Reuse default picture build procedure.
+    await buildDefault(asset);
     return asset.html;
 }
 

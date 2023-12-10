@@ -15,9 +15,8 @@ export async function buildAll(assets: EncodedAsset[]): Promise<BuiltAsset[]> {
 }
 
 /** Default HTML builder for supported asset types (images and video). */
-export async function build(asset: BuiltAsset, merges: BuiltAsset[]): Promise<void> {
-    for (const merge of merges) merge.html = "";
-    if (!asset.content) throw Error(`Failed to build HTML for '${asset.syntax.url}': missing content.`);
+export async function build(asset: BuiltAsset, merges?: BuiltAsset[]): Promise<void> {
+    if (merges) for (const merge of merges) merge.html = "";
     if (asset.content.info.type.startsWith("image/")) return buildPicture(asset.content, asset, merges);
     if (asset.content.info.type.startsWith("video/")) return buildVideo(asset.content, asset, merges);
     throw Error(`Failed to build HTML for '${asset.syntax.url}': unknown type (${asset.content.info.type}).`);
@@ -67,7 +66,7 @@ function buildPictureSource(src: string, type?: string, dense?: string, media?: 
     return `<source srcset="${srcset}" ${typeAttr} ${mediaAttr}/>`;
 }
 
-async function buildVideo(content: EncodedContent, asset: BuiltAsset, merges: BuiltAsset[]): Promise<void> {
+async function buildVideo(content: EncodedContent, asset: BuiltAsset, merges?: BuiltAsset[]): Promise<void> {
     const safe = await serve(content.safe ?? content.local, asset);
     const encoded = await serve(content.encoded, asset);
     const size = buildSizeAttributes(content.info);
