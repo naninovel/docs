@@ -27,9 +27,8 @@ export const defaults: Readonly<Options> = {
             [/^video\/.+/, { codec: "libaom-av1 -crf 45 -cpu-used 5" }]
         ],
         cover: {
-            // https://ffmpeg.org/ffmpeg-all.html#libwebp
-            codec: "libwebp -lossless 0 -preset icon",
-            suffix: "-cover", select: 0, scale: 0.05, blur: 0.2
+            codec: "libaom-av1 -still-picture 1 -crf 23 -cpu-used 5",
+            suffix: "-cover", select: 0, scale: 0.05, blur: 0.4
         },
         safe: {
             types: [

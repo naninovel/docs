@@ -74,7 +74,7 @@ async function encodeCover(content: EncodedContent, asset: EncodedAsset): Promis
     if (cfg.cover === null || !cfg.encode.cover) return;
     const scale = getScale(cfg.encode.cover, content.info, asset.spec.width);
     const spec = { ...cfg.encode.cover, scale };
-    content.cover = buildEncodedPath(content, "webp", cfg.encode.cover.suffix);
+    content.cover = buildEncodedPath(content, "avif", cfg.encode.cover.suffix);
     await encodeContent(`${content.src}@cover`, content.local, content.cover, content.info, spec);
 }
 

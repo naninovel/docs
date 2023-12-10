@@ -32,7 +32,7 @@ function buildFilter(info: ContentInfo, spec: EncodeSpec, mapAlpha: boolean): st
 
 function evalBlur(ratio: number, info: ContentInfo, scale?: number): number {
     // boxblur must be less or equal min. input (width or height) divided by 2
-    const max = (Math.min(info.width, info.height) * (scale ?? 1)) / 2;
+    const max = (Math.min(info.width, info.height) * (scale ?? 1)) / 4;
     return Math.floor(lerp(0, max, ratio));
 }
 

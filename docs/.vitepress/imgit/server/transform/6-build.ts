@@ -97,14 +97,14 @@ async function buildCover(asset: BuiltAsset, size: string, merges?: BuiltAsset[]
 async function buildCoverSource(asset: BuiltAsset, path: string): Promise<string> {
     const data = await getCoverData(asset, path);
     const mediaAttr = asset.spec.media ? `media="${asset.spec.media}"` : "";
-    return `<source srcset="${data}" type="image/webp" ${mediaAttr}/>`;
+    return `<source srcset="${data}" type="image/avif" ${mediaAttr}/>`;
 }
 
 async function getCoverData(asset: BuiltAsset, path: string): Promise<string> {
     const data = !asset.dirty && cache.covers.hasOwnProperty(asset.syntax.url)
         ? cache.covers[asset.syntax.url]
         : cache.covers[asset.syntax.url] = await std.base64(await std.fs.read(path, "bin"));
-    return `data:image/webp;base64,${data}`;
+    return `data:image/avif;base64,${data}`;
 }
 
 function buildSizeAttributes(info: ContentInfo): string {

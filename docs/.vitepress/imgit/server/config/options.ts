@@ -11,7 +11,7 @@ export type Options = {
      *  query params after alt: <code>!\[(?<alt>.*?)(?<spec>\?\S+?)?]\((?<url>\S+?)\)</code> */
     regex: RegExp[];
     /** Image source to show while content is loading. When per-asset cover generation is enabled
-     *  in encode options, will use specified source as a fallback for legacy browsers (lacking webp support),
+     *  in encode options, will use specified source as a fallback for legacy browsers (lacking avif support),
      *  otherwise will use the source for all covers; assign <code>null</code> to disable covers completely. */
     cover?: string | null;
     /** Default width threshold for the transformed assets, in pixels. When source asset is larger,
