@@ -86,26 +86,25 @@ async function buildVideo(content: EncodedContent, asset: BuiltAsset, merges: Bu
 }
 
 async function buildCover(asset: BuiltAsset, size: string, merges?: BuiltAsset[]): Promise<string> {
-    if (!cfg.cover) return "";
-    let sourcesHtml = asset.content?.cover ? await buildCoverSource(asset.content.cover, asset) : "";
-    if (merges) for (const merge of merges)
-        if (merge.content?.cover && merge.content)
-            sourcesHtml += await buildCoverSource(merge.content?.cover, merge);
-    sourcesHtml += `<img src="${cfg.cover}" alt="cover" ${size} decoding="sync"/>`;
-    return `<picture class="imgit-cover">${sourcesHtml}</picture>`;
+    if (cfg.cover === null) return "";
+    let html = asset.content.cover ? await buildCoverSource(asset, asset.content.cover) : "";
+    if (merges) for (const merge of merges) if (merge.content.cover)
+        html += await buildCoverSource(merge, merge.content.cover);
+    html += `<img src="${cfg.cover ?? "//:0"}" alt="cover" ${size} decoding="sync"/>`;
+    return `<picture class="imgit-cover">${html}</picture>`;
 }
 
-async function buildCoverSource(path: string, asset: BuiltAsset): Promise<string> {
-    const avif = await getCoverBase64(asset.syntax.url, path, asset.dirty);
+async function buildCoverSource(asset: BuiltAsset, path: string): Promise<string> {
+    const data = await getCoverData(asset, path);
     const mediaAttr = asset.spec.media ? `media="${asset.spec.media}"` : "";
-    return `<source srcset="${avif}" type="image/avif" ${mediaAttr}/>`;
+    return `<source srcset="${data}" type="image/webp" ${mediaAttr}/>`;
 }
 
-async function getCoverBase64(src: string, path: string, dirty?: boolean): Promise<string> {
-    const data = !dirty && cache.covers.hasOwnProperty(src)
-        ? cache.covers[src]
-        : cache.covers[src] = await std.base64(await std.fs.read(path, "bin"));
-    return `data:image/avif;base64,${data}`;
+async function getCoverData(asset: BuiltAsset, path: string): Promise<string> {
+    const data = !asset.dirty && cache.covers.hasOwnProperty(asset.syntax.url)
+        ? cache.covers[asset.syntax.url]
+        : cache.covers[asset.syntax.url] = await std.base64(await std.fs.read(path, "bin"));
+    return `data:image/webp;base64,${data}`;
 }
 
 function buildSizeAttributes(info: ContentInfo): string {
@@ -116,11 +115,10 @@ function buildSizeAttributes(info: ContentInfo): string {
 }
 
 async function serve(path: string, asset: BuiltAsset): Promise<string> {
-    if (cfg.plugins)
-        for (const plugin of cfg.plugins)
-            if (plugin.serve) {
-                const src = await plugin.serve(path, asset);
-                if (src) return src;
-            }
+    if (cfg.plugins) for (const plugin of cfg.plugins)
+        if (plugin.serve) {
+            const src = await plugin.serve(path, asset);
+            if (src) return src;
+        }
     return buildContentSource(path);
 }

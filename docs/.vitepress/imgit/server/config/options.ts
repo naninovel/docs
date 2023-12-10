@@ -10,11 +10,10 @@ export type Options = {
      *  (alt and spec are optional). By default, captures Markdown image syntax with spec defined as
      *  query params after alt: <code>!\[(?<alt>.*?)(?<spec>\?\S+?)?]\((?<url>\S+?)\)</code> */
     regex: RegExp[];
-    /** Image source to show while content is loading. When cover generation is enabled in encode options,
-     *  will use specified source as a fallback for legacy browsers, otherwise will use the
-     *  source for all covers. Empty base64-encoded image is used by default for compatibility;
-     *  assign <code>null</code> to disable covers completely. */
-    cover: string | null;
+    /** Image source to show while content is loading. When per-asset cover generation is enabled
+     *  in encode options, will use specified source as a fallback for legacy browsers (lacking webp support),
+     *  otherwise will use the source for all covers; assign <code>null</code> to disable covers completely. */
+    cover?: string | null;
     /** Default width threshold for the transformed assets, in pixels. When source asset is larger,
      *  will downscale it while preserving the original aspect. In case the source is 2x or larger,
      *  will as well generate additional "dense" variant that will be shown on high-dpi displays.
@@ -73,7 +72,9 @@ export type EncodeOptions = {
     root: string;
     /** Encode parameters mapped by content MIME type; matched in order. */
     specs: [string | Readonly<RegExp>, Readonly<EncodeSpec>][];
-    /** Configure cover generation; specify <code>null</code> to disable per-asset cover generation. */
+    /** Configure cover generation. By default, a tiny blurred webp cover is generated from source
+     *  content and embedded as base64-encoded data for image HTML, which is shown while the source
+     *  content is lazy-loading; specify <code>null</code> to disable cover generation. */
     cover: EncodeSpec & {
         /** Tag to append to the names of generated cover files; <code>-cover</code> by default. */
         suffix: string;

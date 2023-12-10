@@ -5,7 +5,6 @@ import { logTTY } from "../common";
 export const defaults: Readonly<Options> = {
     root: "./public",
     regex: [/!\[(?<alt>.*?)(?<spec>\?\S+?)?]\((?<url>.+?)\)/g],
-    cover: "data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=", // empty gif (smallest valid src)
     width: null,
     log: {
         info: logTTY,
@@ -28,7 +27,8 @@ export const defaults: Readonly<Options> = {
             [/^video\/.+/, { codec: "libaom-av1 -crf 45 -cpu-used 5" }]
         ],
         cover: {
-            codec: "libaom-av1 -still-picture 1 -crf 23 -cpu-used 5",
+            // https://ffmpeg.org/ffmpeg-all.html#libwebp
+            codec: "libwebp -lossless 0 -preset icon",
             suffix: "-cover", select: 0, scale: 0.05, blur: 0.2
         },
         safe: {
