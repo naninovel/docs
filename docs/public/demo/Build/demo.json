@@ -1,7 +1,7 @@
 {
 "companyName": "Elringus",
 "productName": "NaninovelDemo",
-"productVersion": "1.3",
+"productVersion": "1.19",
 "dataUrl": "demo.data.unityweb",
 "wasmCodeUrl": "demo.wasm.code.unityweb",
 "wasmFrameworkUrl": "demo.wasm.framework.unityweb",
@@ -11,5 +11,5 @@
 "backgroundColor": "#231F20",
 "developmentBuild": false,
 "multithreading": false,
-"unityVersion": "2019.4.35f1"
+"unityVersion": "2019.4.40f1"
 }
