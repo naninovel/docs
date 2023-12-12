@@ -1,8 +1,8 @@
 import { fileURLToPath } from "url";
 import { UserConfig, Alias } from "vite";
-import imgit from "../imgit/plugin/vite";
-import svg from "../imgit/plugin/svg";
-import youtube from "../imgit/plugin/youtube";
+import imgit from "imgit/vite";
+import svg from "imgit/svg";
+import youtube from "imgit/youtube";
 
 export const vite: UserConfig = {
     plugins: [imgit({
