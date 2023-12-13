@@ -25,7 +25,7 @@ export function AppendIconToExternalLinks(md: MarkdownRenderer) {
     md.renderer.rules.link_close = (tokens, idx, options, env, self) => {
         if (externalLinkOpen) {
             externalLinkOpen = false;
-            return `<span class="external-link-icon">&nbsp;🡕</span>${self.renderToken(tokens, idx, options)}`;
+            return `<span class="external-link-icon">&nbsp;↗</span>${self.renderToken(tokens, idx, options)}`;
         }
         return defaultLinkCloseRenderer(tokens, idx, options, env, self);
     };
