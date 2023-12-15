@@ -9,6 +9,6 @@
         "typescript": "^5.3.3",
         "@types/node": "^20.10.4",
         "vitepress": "^1.0.0-rc.31",
-        "imgit": "^0.0.0-alpha.9"
+        "imgit": "^0.0.0-alpha.11"
     }
 }
