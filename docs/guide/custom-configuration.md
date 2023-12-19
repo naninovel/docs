@@ -96,28 +96,59 @@ To customize editor behaviour of your custom configuration (when it's drawn in t
 
 It's possible to override the built-in configuration editors (Naninovel's project settings menus) by applying `OverrideSettings` attribute to an editor class inherited from `ConfigurationSettings<T>` (or any of its derivatives), where `T` is the type of the configuration. Make sure to store the custom editor scripts under "Editor" folder to make them included to the editor assembly.
 
-Below is an example on overriding the built-in character manager configuration editor. The new editor is inherited from the built-in one and will additionally insert a label under `Message Color` field of the inspected actor metadata with the name of that color.
+Below is an example on overriding the built-in character manager configuration editor. The new editor is inherited from the built-in one and will additionally insert a label under `Shared Poses` field with the total number of shared poses.
 
 ```csharp
 [OverrideSettings]
 public class CustomCharacterSettings : CharactersSettings
 {
-    protected override Dictionary<string, Action<SerializedProperty>> OverrideMetaDrawers ()
+    protected override Dictionary<string, Action<SerializedProperty>>
+        OverrideConfigurationDrawers ()
     {
-        var drawers = base.OverrideMetaDrawers();
-        drawers[nameof(CharacterMetadata.MessageColor)] = property =>
-        {
-            EditorGUILayout.PropertyField(property);
-            EditorGUILayout.LabelField($"Message color of `{EditedActorId}` is `{property.colorValue}`.");
+        var drawers = base.OverrideConfigurationDrawers();
+        drawers[nameof(CharactersConfiguration.SharedPoses)] = property => {
+            ActorPosesEditor.Draw(property);
+            EditorGUILayout.LabelField(
+                $"Number of shared poses is {property.arraySize}.");
         };
         return drawers;
     }
 }
 ```
 
-Given the above editor, inspected characters will now draw as follows:
+Given the above editor, characters configuration will now draw as follows:
 
-![](https://i.gyazo.com/a742da2e7474444c9e1306a1414c7dfb.png)
+![](https://i.gyazo.com/5555e8c3eb33c3783bef8ef852a7e765.png)
+
+It's also possible to override built-in actor metadata editors. Below will insert a label under `Message Color` field of the inspected actor with the name of that color.
+
+```csharp
+[OverrideSettings]
+public class CustomCharacterSettings : CharactersSettings
+{
+    protected override MetadataEditor<ICharacterActor,
+        CharacterMetadata> MetadataEditor { get; } = new MetaEditor();
+
+    private class MetaEditor : CharacterMetadataEditor
+    {
+        protected override Action<SerializedProperty>
+            GetCustomDrawer (string propertyName)
+        {
+            if (propertyName == nameof(CharacterMetadata.MessageColor))
+                return property => {
+                    EditorGUILayout.PropertyField(property);
+                    EditorGUILayout.LabelField($"Message color of " +
+                        "'{Metadata.DisplayName}' is '{property.colorValue}'.");
+                };
+            return base.GetCustomDrawer(propertyName);
+        }
+    }
+}
+```
+
+— will result in:
+
+![](https://i.gyazo.com/60abbf6b773b6c66cf138ac40882b1c1.png)
 
 ## Configuration Provider
 
