@@ -299,9 +299,7 @@ table > tfoot:not(:last-child) {
  * -------------------------------------------------------------------------- */
 
 /* Stretch YouTube embeds with small thumbnails. */
-.imgit-youtube,
-.imgit-youtube-poster,
-.imgit-youtube-poster img {
+.imgit-youtube {
     width: 100%;
 }
 
