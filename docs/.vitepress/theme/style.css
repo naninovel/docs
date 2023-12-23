@@ -294,6 +294,14 @@ table > tfoot:not(:last-child) {
  * Custom elements
  * -------------------------------------------------------------------------- */
 
+.imgit-cover {
+    display: flex;
+}
+
+.imgit-cover img {
+    contain: size;
+}
+
 [data-imgit-container],
 [data-imgit-container] img,
 [data-imgit-container] video {

@@ -6,14 +6,13 @@ import youtube from "imgit/youtube";
 
 export const vite: UserConfig = {
     plugins: [imgit({
-        enforce: "pre",
-        skip: (_, id) => !id.endsWith(".md"),
         width: 720,
         root: "./docs/public",
         cache: { root: "./docs/public/imgit" },
         fetch: { root: "./docs/public/imgit/fetched" },
         encode: { root: "./docs/public/imgit/encoded" },
-        plugins: [svg(), youtube()]
+        plugins: [svg(), youtube()],
+        skip: filename => !filename.endsWith(".md")
     })],
     resolve: {
         alias: [
