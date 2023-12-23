@@ -266,7 +266,7 @@ table > tfoot:not(:last-child) {
 
 /* remove opacity gradient under navbar */
 .curtain,
-.aside-curtain{
+.aside-curtain {
     display: none !important;
 }
 
@@ -300,7 +300,8 @@ table > tfoot:not(:last-child) {
 
 /* Stretch YouTube embeds with small thumbnails. */
 .imgit-youtube,
-.imgit-youtube img {
+.imgit-youtube-poster,
+.imgit-youtube-poster img {
     width: 100%;
 }
 
