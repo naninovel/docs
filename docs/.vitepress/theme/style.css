@@ -256,30 +256,34 @@ table > tfoot:not(:last-child) {
 }
 
 /**
- * Overrides and hacks
+ * Navbar blur effect
  * -------------------------------------------------------------------------- */
 
-/* remove opacity gradient fade under navbar */
-.curtain {
-    display: none !important;
-}
-
-/* same as above, but for the right/aside column */
-.aside-curtain {
-    display: none !important;
-}
-
-/* remove navbar background (using blur effect below instead) */
-.VPNavBar:not(.has-sidebar):not(.top) {
-    background: transparent !important;
-}
-
-/* the navbar blur effect */
+/* remove default opaque bg from navbar */
 .content-body {
+    background: none !important;
+}
+
+/* remove opacity gradient under navbar */
+.curtain,
+.aside-curtain{
+    display: none !important;
+}
+
+/* a hack for logo title to keep sidebar bg color */
+@media (min-width: 960px) {
+    .VPNavBar.has-sidebar div.title {
+        background: var(--vp-sidebar-bg-color) !important;
+    }
+}
+
+/* a bit of tint to make navbar not as transparent */
+.VPNavBar {
     background: var(--nav-c-bg) !important;
 }
 
-.content-body::after {
+/* the blur effect */
+.VPNav::after {
     content: "";
     position: absolute;
     top: 0;
@@ -293,6 +297,12 @@ table > tfoot:not(:last-child) {
 /**
  * Custom elements
  * -------------------------------------------------------------------------- */
+
+/* Stretch YouTube embeds with small thumbnails. */
+.imgit-youtube,
+.imgit-youtube img {
+    width: 100%;
+}
 
 [data-imgit-container],
 [data-imgit-container] img,
