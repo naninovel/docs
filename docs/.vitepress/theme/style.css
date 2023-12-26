@@ -132,25 +132,6 @@ table > tfoot:not(:last-child) {
 }
 
 /**
- * NavBar
- * -------------------------------------------------------------------------- */
-
-.VPNavBar {
-    --nav-c-bg: rgba(255, 255, 255, 0.75);
-}
-
-.dark .VPNavBar {
-    --nav-c-bg: rgba(30, 30, 32, 0.5);
-}
-
-@media (min-width: 961px) {
-    .VPNavBarTitle.has-sidebar {
-        background-color: var(--vp-c-bg-alt);
-        transition: background-color 0.5s;
-    }
-}
-
-/**
  * Custom Block
  * -------------------------------------------------------------------------- */
 
@@ -279,7 +260,11 @@ table > tfoot:not(:last-child) {
 
 /* a bit of tint to make navbar not as transparent */
 .VPNavBar {
-    background: var(--nav-c-bg) !important;
+    background: rgba(255, 255, 255, 0.75) !important;
+}
+
+.dark .VPNavBar {
+    background: rgba(30, 30, 32, 0.5) !important;
 }
 
 /* the blur effect */
@@ -300,7 +285,7 @@ table > tfoot:not(:last-child) {
 
 /* Stretch YouTube embeds with small thumbnails. */
 .imgit-youtube {
-    width: 100%;
+    width: 100% !important;
 }
 
 [data-imgit-container],
