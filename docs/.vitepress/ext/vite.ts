@@ -11,15 +11,9 @@ export const vite: UserConfig = {
         cache: { root: "./docs/public/imgit" },
         fetch: { root: "./docs/public/imgit/fetched" },
         encode: { root: "./docs/public/imgit/encoded" },
-        plugins: [svg(), youtube()],
-        skip: filename => !filename.endsWith(".md")
+        plugins: [svg(), youtube()]
     })],
-    resolve: {
-        alias: [
-            override("NotFound", "not-found"),
-            { find: /\.(:?tif|tiff|bmp|tga|psd|avi|mkv|mov)$/, replacement: ".webp" }
-        ]
-    }
+    resolve: { alias: [override("NotFound", "not-found")] }
 };
 
 // https://vitepress.dev/guide/extending-default-theme#overriding-internal-components
