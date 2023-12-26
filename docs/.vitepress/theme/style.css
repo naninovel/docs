@@ -132,25 +132,6 @@ table > tfoot:not(:last-child) {
 }
 
 /**
- * NavBar
- * -------------------------------------------------------------------------- */
-
-.VPNavBar {
-    --nav-c-bg: rgba(255, 255, 255, 0.75);
-}
-
-.dark .VPNavBar {
-    --nav-c-bg: rgba(30, 30, 32, 0.5);
-}
-
-@media (min-width: 961px) {
-    .VPNavBarTitle.has-sidebar {
-        background-color: var(--vp-c-bg-alt);
-        transition: background-color 0.5s;
-    }
-}
-
-/**
  * Custom Block
  * -------------------------------------------------------------------------- */
 
@@ -256,30 +237,38 @@ table > tfoot:not(:last-child) {
 }
 
 /**
- * Overrides and hacks
+ * Navbar blur effect
  * -------------------------------------------------------------------------- */
 
-/* remove opacity gradient fade under navbar */
-.curtain {
-    display: none !important;
+/* remove default opaque bg from navbar */
+.content-body {
+    background: none !important;
 }
 
-/* same as above, but for the right/aside column */
+/* remove opacity gradient under navbar */
+.curtain,
 .aside-curtain {
     display: none !important;
 }
 
-/* remove navbar background (using blur effect below instead) */
-.VPNavBar:not(.has-sidebar):not(.top) {
-    background: transparent !important;
+/* a hack for logo title to keep sidebar bg color */
+@media (min-width: 960px) {
+    .VPNavBar.has-sidebar div.title {
+        background: var(--vp-sidebar-bg-color) !important;
+    }
 }
 
-/* the navbar blur effect */
-.content-body {
-    background: var(--nav-c-bg) !important;
+/* a bit of tint to make navbar not as transparent */
+.VPNavBar {
+    background: rgba(255, 255, 255, 0.75) !important;
 }
 
-.content-body::after {
+.dark .VPNavBar {
+    background: rgba(30, 30, 32, 0.5) !important;
+}
+
+/* the blur effect */
+.VPNav::after {
     content: "";
     position: absolute;
     top: 0;
@@ -293,6 +282,11 @@ table > tfoot:not(:last-child) {
 /**
  * Custom elements
  * -------------------------------------------------------------------------- */
+
+/* Stretch YouTube embeds with small thumbnails. */
+.imgit-youtube {
+    width: 100% !important;
+}
 
 [data-imgit-container],
 [data-imgit-container] img,

@@ -1,13 +1,11 @@
 import { fileURLToPath } from "url";
 import { UserConfig, Alias } from "vite";
-import imgit from "../imgit/plugin/vite";
-import svg from "../imgit/plugin/svg";
-import youtube from "../imgit/plugin/youtube";
+import imgit from "imgit/vite";
+import svg from "imgit/svg";
+import youtube from "imgit/youtube";
 
 export const vite: UserConfig = {
     plugins: [imgit({
-        enforce: "pre",
-        skip: (_, id) => !id.endsWith(".md"),
         width: 720,
         root: "./docs/public",
         cache: { root: "./docs/public/imgit" },
@@ -15,12 +13,7 @@ export const vite: UserConfig = {
         encode: { root: "./docs/public/imgit/encoded" },
         plugins: [svg(), youtube()]
     })],
-    resolve: {
-        alias: [
-            override("NotFound", "not-found"),
-            { find: /\.(:?tif|tiff|bmp|tga|psd|avi|mkv|mov)$/, replacement: ".webp" }
-        ]
-    }
+    resolve: { alias: [override("NotFound", "not-found")] }
 };
 
 // https://vitepress.dev/guide/extending-default-theme#overriding-internal-components
