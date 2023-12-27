@@ -5,6 +5,7 @@ import { l10n, md, vite } from "./ext";
 export default defineConfig({
     title: "Naninovel",
     titleTemplate: ":title • Naninovel",
+    appearance: "dark",
     cleanUrls: true,
     lastUpdated: true,
     head: [
