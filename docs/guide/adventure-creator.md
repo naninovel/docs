@@ -6,6 +6,10 @@
 
 You can use Naninovel to handle dialogue scenes in AC or load AC from a Naninovel-based game for some custom gameplay.
 
+::: info NOTE
+Extensions for third-party products serve mostly as examples on how you can integrate Naninovel with other tools. They contain bare minimum functionality and may become incompatible due to changes in third-party product. Please do not consider these extensions part of Naninovel: we are not providing any support or help on using them with Naninovel beyond the scope of sample projects.
+:::
+
 ## Setup
 
 Install both Adventure Creator and Naninovel (the order doesn't matter).

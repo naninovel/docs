@@ -167,6 +167,7 @@ To set a default avatar for a character, give the avatar texture resource name t
 It's also possible to associate avatars with specific character appearances, so that when character changes appearance, the avatar will also change automatically. For this, name the avatar resources using the following format: `CharacterID/CharacterAppearance`, where `CharacterAppearance` is the name of the appearance for which to map the avatar resource.
 
 To show only the avatar of a character inside a text printer, but hide the character itself, set `visible` parameter of the [@char] command to `false`, eg:
+
 ```nani
 @char CharacaterId visible:false
 ```
@@ -432,9 +433,11 @@ Live2D character implementation uses assets created with [Live2D Cubism](https:/
 
 ![](https://i.gyazo.com/b81df72fc7afaed569520496cbee09f0.mp4)
 
-In order to be able to use this implementation you have to first install [Live2D Cubism SDK for Unity](https://live2d.github.io/#unity). Consult official Live2D docs for the installation and usage instructions.
+In order to be able to use this implementation you have to first install [Live2D Cubism SDK for Unity](https://live2d.github.io/#unity). Consult official Live2D docs for the installation and usage instructions. Then download and import Naninovel's sample [Live2D extension package](https://github.com/Naninovel/Live2D/raw/master/NaninovelLive2D.unitypackage).
 
-Then download and import Naninovel's [Live2D extension package](https://github.com/Naninovel/Live2D/raw/master/NaninovelLive2D.unitypackage).
+::: info NOTE
+This integration with third-party commercial product serve mostly as an example on how you can make Naninovel work with another tool. While we're committed to keep the sample integration compatible with Live2D updates and changes, please be aware that the functionality will remain bare minimum and we won't be able to provide any support or help on using another product with Naninovel beyond the scope of the sample.
+:::
 
 Live2D model prefab used as the resource for the implementation should have a `Live2DController` component attached to the root object. Appearance changes are routed to the animator component as [SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) commands appearance being the trigger name. Eg, if you have a "Kaori" Live2D character prefab and want to invoke a trigger with name "Surprise", use the following command:
 
@@ -476,9 +479,11 @@ Spine character implementation uses assets created with [Spine](http://esoterics
 
 ![](https://i.gyazo.com/08b04de115d97427d152cb5f37065d2d.mp4)
 
-In order to be able to use this implementation you have to first install [Spine runtime for Unity](http://esotericsoftware.com/spine-unity-download). Consult [the official docs](http://esotericsoftware.com/spine-unity) for the installation and usage instructions.
+In order to be able to use this implementation you have to first install [Spine runtime for Unity](http://esotericsoftware.com/spine-unity-download). Consult [the official docs](http://esotericsoftware.com/spine-unity) for the installation and usage instructions. Then download and import Naninovel's sample [Spine extension package](https://github.com/Naninovel/Spine/raw/main/NaninovelSpine.unitypackage).
 
-Then download and import Naninovel's [Spine extension package](https://github.com/Naninovel/Spine/raw/main/NaninovelSpine.unitypackage).
+::: info NOTE
+This integration with third-party commercial product serve mostly as an example on how you can make Naninovel work with another tool. While we're committed to keep the sample integration compatible with Spine updates and changes, please be aware that the functionality will remain bare minimum and we won't be able to provide any support or help on using another product with Naninovel beyond the scope of the sample.
+:::
 
 Spine character prefab used as the resource for the implementation should have a `Spine Controller` component attached to the root object. Appearance changes from naninovel scripts commands (such as `@char`) are routed to the controller's `On Appearance Changed` events similar to [generic implementation](/guide/characters#generic-characters). You can handle the events as you wish; for example, use Spine's `SetAnimation` method or invoke a trigger in Unity's animator controller.
 
