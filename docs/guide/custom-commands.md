@@ -159,9 +159,9 @@ Notice `ClipPath.DynamicValue` check: we wouldn't be able to preload the resourc
 You can find scripts with all the built-in command implementations at `Naninovel/Runtime/Commands` package folder; feel free to use them as a reference when implementing your own custom commands.
 
 ::: tip EXAMPLE
-Another example of adding custom commands to add/remove items of an inventory system can be found in the [inventory example project on GitHub](https://github.com/Naninovel/Inventory).
+Another example of adding custom commands to add/remove items of an inventory system can be found in the [inventory example project on GitHub](https://github.com/naninovel/samples/tree/main/unity/inventory).
 
-Specifically, the command implementations are stored at [Runtime/Commands](https://github.com/Naninovel/Inventory/tree/master/Assets/NaninovelInventory/Runtime/Commands) directory.
+Specifically, the command implementations are stored at [Runtime/Commands](https://github.com/naninovel/samples/tree/main/unity/inventory/Assets/NaninovelInventory/Runtime/Commands) directory.
 :::
 
 ## Overriding Built-In Command

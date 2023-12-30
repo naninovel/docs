@@ -82,7 +82,7 @@ When building a [custom UI](/guide/user-interface#ui-customization) or other sys
 ![](https://i.gyazo.com/22eddd109e76d4e63c461e9d75b20ceb.png)
 
 ::: tip EXAMPLE
-Find example on using variable triggers to drive availability of map locations in the Map example project on GitHub: [github.com/Naninovel/Map](https://github.com/Naninovel/Map).
+Find example on using variable triggers to drive availability of map locations in the [Map example project on GitHub](https://github.com/naninovel/samples/tree/main/unity/map).
 
 ![](https://i.gyazo.com/4987b1c53cd275f3fa56b533f53f3d8c.mp4)
 :::

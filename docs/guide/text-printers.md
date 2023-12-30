@@ -261,7 +261,7 @@ Font Render Mode: Distance Field 16
 ```
 
 ::: tip EXAMPLE
-For a complete example on setting up custom text mesh pro printer with right-to-left (Arabic) text support, see [Naninovel RTL project on GitHub](https://github.com/Naninovel/RTL).
+For a complete example on setting up custom text mesh pro printer with right-to-left (Arabic) text support, see [Naninovel RTL project on GitHub](https://github.com/naninovel/samples/tree/main/unity/rtl).
 :::
 
 ::: info NOTE
@@ -281,7 +281,7 @@ To find which characters will be displayed by Naninovel, use Character Utility a
 The tool will inspect both scenario scripts and managed text documents in the specified folder (including all the sub-folders), so you'll get the chars for all the text ever displayed to the player by Naninovel, including all the printed text, UI labels, unlockable tips, etc.
 
 ::: tip EXAMPLE
-Check the [GitHub project](https://github.com/Naninovel/Spreadsheet) for an example on using custom TMPro font atlas for Japanese locale. The font automatically switched when Japanese language is selected and switched back to the default atlas when other languages are selected.
+Check the [GitHub project](https://github.com/naninovel/samples/tree/main/unity/spreadsheet) for an example on using custom TMPro font atlas for Japanese locale. The font automatically switched when Japanese language is selected and switched back to the default atlas when other languages are selected.
 :::
 
 ## Text Reveal Sounds

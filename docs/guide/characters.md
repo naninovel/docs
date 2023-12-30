@@ -224,11 +224,11 @@ To achieve best render quality and optimal performance, it's generally advised t
 
 ## Diced Sprite Characters
 
-Built with an open source [SpriteDicing](https://github.com/Elringus/SpriteDicing) package, `DicedSpriteCharacter` implementation allows to significantly reduce build size and texture memory by reusing texture areas of the character sprites.
+Built with an open source [SpriteDicing](https://github.com/elringus/SpriteDicing) package, `DicedSpriteCharacter` implementation allows to significantly reduce build size and texture memory by reusing texture areas of the character sprites.
 
 ![Sprite Dicing](https://i.gyazo.com/af08d141e7a08b6a8e2ef60c07332bbf.png)
 
-Install the package via [Unity package manager](https://docs.unity3d.com/Manual/upm-ui.html): open package manager window (Window -> Package Manager), click "+" button, choose "Add package from git URL", enter `https://github.com/Elringus/SpriteDicing.git#package` to the input field and click "Add".
+Install the package via [Unity package manager](https://docs.unity3d.com/Manual/upm-ui.html): open package manager window (Window -> Package Manager), click "+" button, choose "Add package from git URL", enter `https://github.com/elringus/SpriteDicing.git#package` to the input field and click "Add".
 
 ![](https://i.gyazo.com/b54e9daa9a483d9bf7f74f0e94b2d38a.mp4)
 
@@ -390,7 +390,7 @@ When layer contains lots of children, it would be tedious to set the layer held/
 When `Render Canvas` component is attached to the layer actor prefab root, it'll work same as in normal render mode, restricting render texture size; when not present, render texture will equal camera's pixel size. It's recommended to use render canvas to optimize performance, as camera size will usually be higher than necessary.
 
 ::: tip EXAMPLE
-Find example on setting up layered background containing particle systems in the URP project on GitHub: [github.com/Naninovel/URP](https://github.com/Naninovel/URP). (URP is not required for this feature, it'll work the same with the default render backend)
+Find example on setting up layered background containing particle systems in the URP project on GitHub: [github.com/Naninovel/URP](https://github.com/naninovel/samples/tree/main/unity/urp). (URP is not required for this feature, it'll work the same with the default render backend)
 :::
 
 ## Generic Characters
@@ -414,7 +414,7 @@ Unity's `Animator` component could fail to register `SetTrigger` when the game o
 :::
 
 ::: tip EXAMPLE
-Find [example project on GitHub](https://github.com/Naninovel/GenericActor), where generic character implementation is used to host a 3D animated model.
+Find [example project on GitHub](https://github.com/naninovel/samples/tree/main/unity/generic-actor), where generic character implementation is used to host a 3D animated model.
 :::
 
 ## Video Characters
@@ -433,7 +433,7 @@ Live2D character implementation uses assets created with [Live2D Cubism](https:/
 
 ![](https://i.gyazo.com/b81df72fc7afaed569520496cbee09f0.mp4)
 
-In order to be able to use this implementation you have to first install [Live2D Cubism SDK for Unity](https://live2d.github.io/#unity). Consult official Live2D docs for the installation and usage instructions. Then download and import Naninovel's sample [Live2D extension package](https://github.com/Naninovel/Live2D/raw/master/NaninovelLive2D.unitypackage).
+In order to be able to use this implementation you have to first install [Live2D Cubism SDK for Unity](https://live2d.github.io/#unity). Consult official Live2D docs for the installation and usage instructions. Then download and import Naninovel's sample [Live2D extension package](https://github.com/naninovel/samples/raw/main/unity/live2d/NaninovelLive2D.unitypackage).
 
 ::: info NOTE
 This integration with third-party commercial product serve mostly as an example on how you can make Naninovel work with another tool. While we're committed to keep the sample integration compatible with Live2D updates and changes, please be aware that the functionality will remain bare minimum and we won't be able to provide any support or help on using another product with Naninovel beyond the scope of the sample.
@@ -470,7 +470,7 @@ Following video guide covers exporting a Live2D character from Cubism Editor, co
 ![](https://www.youtube.com/watch?v=rw_Z69z0pAg)
 
 ::: tip EXAMPLE
-Check out an [example project on GitHub](https://github.com/Naninovel/Live2D), where a Live2D character is used with Naninovel.
+Check out an [example project on GitHub](https://github.com/naninovel/samples/tree/main/unity/live2d), where a Live2D character is used with Naninovel.
 :::
 
 ## Spine Characters
@@ -479,7 +479,7 @@ Spine character implementation uses assets created with [Spine](http://esoterics
 
 ![](https://i.gyazo.com/08b04de115d97427d152cb5f37065d2d.mp4)
 
-In order to be able to use this implementation you have to first install [Spine runtime for Unity](http://esotericsoftware.com/spine-unity-download). Consult [the official docs](http://esotericsoftware.com/spine-unity) for the installation and usage instructions. Then download and import Naninovel's sample [Spine extension package](https://github.com/Naninovel/Spine/raw/main/NaninovelSpine.unitypackage).
+In order to be able to use this implementation you have to first install [Spine runtime for Unity](http://esotericsoftware.com/spine-unity-download). Consult [the official docs](http://esotericsoftware.com/spine-unity) for the installation and usage instructions. Then download and import Naninovel's sample [Spine extension package](https://github.com/naninovel/samples/raw/main/unity/spine/NaninovelSpine.unitypackage).
 
 ::: info NOTE
 This integration with third-party commercial product serve mostly as an example on how you can make Naninovel work with another tool. While we're committed to keep the sample integration compatible with Spine updates and changes, please be aware that the functionality will remain bare minimum and we won't be able to provide any support or help on using another product with Naninovel beyond the scope of the sample.
@@ -500,7 +500,7 @@ Spine's [Skeleton Render Separator](https://github.com/pharan/spine-unity-docs/b
 :::
 
 ::: tip EXAMPLE
-Check out an [example project on GitHub](https://github.com/Naninovel/Spine), where a Spine character is used with Naninovel.
+Check out an [example project on GitHub](https://github.com/naninovel/samples/tree/main/unity/spine), where a Spine character is used with Naninovel.
 :::
 
 ## Narrator Characters
@@ -530,7 +530,7 @@ The video below demonstrates how to render a Live2D character to a texture, whic
 ![](https://www.youtube.com/watch?v=81OTbSAnWbw)
 
 ::: tip EXAMPLE
-Find a complete example on setting up Live2D character render to texture and binding it with a text printer in the [Naninovel Live2D project on GitHub](https://github.com/Naninovel/Live2D).
+Find a complete example on setting up Live2D character render to texture and binding it with a text printer in the [Naninovel Live2D project on GitHub](https://github.com/naninovel/samples/tree/main/unity/live2d).
 :::
 
 All the other character and background implementation types (except generic) can be set up to render to texture similar to Live2D example.

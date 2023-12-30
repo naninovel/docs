@@ -74,5 +74,5 @@ Below is an example graph, that, when attached to a `ExampleEvent` game object, 
 ![](https://i.gyazo.com/fa613006433d43cd8e25b4c9aed33d78.png)
 
 ::: tip EXAMPLE
-An example project containing all the aforementioned graphs and test scripts is available on GitHub: [github.com/Naninovel/VisualScripting](https://github.com/Naninovel/VisualScripting). Be aware, that Naninovel is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import the package from the Asset Store to resolve the issues.
+An example project containing all the aforementioned graphs and test scripts is [available on GitHub](https://github.com/naninovel/samples/tree/main/unity/visual-scripting). Be aware, that Naninovel is not distributed with the project, hence compilation errors will be produced after opening it for the first time; import the package from the Asset Store to resolve the issues.
 :::

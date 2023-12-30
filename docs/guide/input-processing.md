@@ -15,9 +15,9 @@ For specific values see Unity's input guide: [docs.unity3d.com/Manual/Convention
 You can configure the built-in input bindings and add new listeners using `Naninovel -> Configuration -> Input` context menu; for available options see [configuration guide](/guide/configuration#input).
 
 ::: tip EXAMPLE
-An example of adding custom input binding to toggle inventory UI can be found in the [inventory project on GitHub](https://github.com/Naninovel/Inventory).
+An example of adding custom input binding to toggle inventory UI can be found in the [inventory project on GitHub](https://github.com/naninovel/samples/tree/main/unity/inventory).
 
-Specifically, the custom "ToggleInventory" binding is used in [UI/InventoryUI.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L215) runtime script. A binding with the same name is added via input configuration menu, under Control Scheme.
+Specifically, the custom "ToggleInventory" binding is used in [UI/InventoryUI.cs](https://github.com/naninovel/samples/blob/main/unity/inventory/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L215) runtime script. A binding with the same name is added via input configuration menu, under Control Scheme.
 :::
 
 It's possible to halt and resume input processing with [@processInput] command.
@@ -71,7 +71,7 @@ Default event system and input action assets are stored at `Naninovel/Prefabs/In
 When properly configured, input actions will activate Naninovel's bindings. In case you wish to disable legacy input processing (which is set under the "Bindings" list), disable `Process Legacy Bindings` property under input configuration menu.
 
 ::: tip EXAMPLE
-Find an example project on using the new input system and implementing a rebind UI to allow player change default controls on GitHub: [github.com/Naninovel/Input](https://github.com/Naninovel/Input).
+Find an example project on using the new input system and implementing a rebind UI to allow player change default controls on [GitHub](https://github.com/naninovel/samples/tree/main/unity/input-rebind).
 :::
 
 For more information on using the input system, consult the [official manual](https://docs.unity3d.com/Packages/com.unity.inputsystem@latest).

@@ -106,7 +106,7 @@ Define reference resolution with your team before starting the work on the art a
 
 ## Diced Sprite Backgrounds
 
-Built with an open source [SpriteDicing](https://github.com/Elringus/SpriteDicing) package, `DicedSpriteBackground` implementation allows to significantly reduce build size and texture memory by reusing texture areas of the background sprites when the associated textures contain mostly similar data.
+Built with an open source [SpriteDicing](https://github.com/elringus/SpriteDicing) package, `DicedSpriteBackground` implementation allows to significantly reduce build size and texture memory by reusing texture areas of the background sprites when the associated textures contain mostly similar data.
 
 Diced background is very similar to diced character implementation; see the [diced characters guide](/guide/characters.html#diced-sprite-characters) for the setup and usage instructions.
 
@@ -123,7 +123,7 @@ When `Transcode` is disabled in the video asset import settings, the clip may no
 :::
 
 ::: tip EXAMPLE
-In case having issues with achieving a seamless loop, make sure the video has exactly same starting and finishing frames and a compatible encoding setup; check our [video loop example project](https://github.com/Naninovel/Video) for the reference.
+In case having issues with achieving a seamless loop, make sure the video has exactly same starting and finishing frames and a compatible encoding setup; check our [video actor example project](https://github.com/naninovel/samples/tree/main/unity/video-actor) for the reference.
 :::
 
 To prevent specific appearance from looping, append `NoLoop` (case-insensitive) to the appearance name.
@@ -203,7 +203,7 @@ Unity's `Animator` component could fail to register `SetTrigger` when the game o
 :::
 
 ::: tip EXAMPLE
-Find [example project on GitHub](https://github.com/Naninovel/GenericActor), where generic background implementation is used to host animated sprites.
+Find [example project on GitHub](https://github.com/naninovel/samples/tree/main/unity/generic-actor), where generic background implementation is used to host animated sprites.
 :::
 
 ## Scene Backgrounds

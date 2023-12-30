@@ -244,6 +244,6 @@ Constant expressions combined with [custom metadata providers](/guide/ide-extens
 
 ## Other IDEs and Editors
 
-While we don't maintain extensions for other editors, we have an open-sourced language server for Naninovel: [github.com/Naninovel/Language](https://github.com/Naninovel/Language). It's written in C#, but has JavaScript bindings and can be used in most modern IDEs. The implementation covers syntax highlighting, autocompletion, errors checking, etc. VS Code extension (which is built upon the language server) is open-sourced as well: [github.com/Naninovel/VSCode](https://github.com/Naninovel/VSCode).
+While we don't maintain extensions for other editors, we have an open-sourced language server for Naninovel: [github.com/naninovel/language](https://github.com/naninovel/language). It's written in C#, but has JavaScript bindings and can be used in most modern IDEs. The implementation covers syntax highlighting, autocompletion, errors checking, etc. VS Code extension (which is built upon the language server) is open-sourced as well: [github.com/Naninovel/VSCode](https://github.com/Naninovel/VSCode).
 
-Alternatively, in case you're using an editor with TextMate grammar support (eg, [Sublime](https://www.sublimetext.com) or [Visual Studio](https://visualstudio.microsoft.com)), we have one ready: [naniscript.tmLanguage](https://github.com/Naninovel/Documentation/blob/main/docs/.vitepress/ext/language/naniscript.tmLanguage.json).
+Alternatively, in case you're using an editor with TextMate grammar support (eg, [Sublime](https://www.sublimetext.com) or [Visual Studio](https://visualstudio.microsoft.com)), we have one ready: [textmate.json](https://github.com/naninovel/docs/blob/master/docs/.vitepress/ext/lang/textmate.json).

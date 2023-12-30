@@ -37,7 +37,7 @@ The [Addressable Asset system](https://docs.unity3d.com/Packages/com.unity.addre
 Naninovel will automatically use addressables when the package is installed in the project and `Use Addressables` property is enabled in resource provider configuration. No additional setup is required. All the assets assigned in the Naninovel's configuration menus (eg, scenario scripts, character sprites, audio clips, etc) will be registered with the system (assigned an address) when building the player.
 
 ::: warning
-Due to a [Unity bug](https://github.com/Naninovel/Documentation/issues/159), addressable can't unload individual assets packed into a common bundle; for a temporary workaround, either distribute the assets between bundles or set `Bundle Mode` addressable group settings to `Pack Separately`.
+Due to a [Unity bug](https://github.com/naninovel/docs/issues/159), addressable can't unload individual assets packed into a common bundle; for a temporary workaround, either distribute the assets between bundles or set `Bundle Mode` addressable group settings to `Pack Separately`.
 
 ![](https://i.gyazo.com/60a42ec15609d8dbc5258687d9045797.png)
 :::
@@ -59,7 +59,7 @@ To expose an addressable asset to Naninovel without using editor menus, use a cu
 Addressable provider is only used in runtime builds and is disabled in editor by default. In case you're manually exposing resources via addressable address instead of assigning them with Naninovel's resource managers, you can enable it with `Allow Addressable In Editor` property in resource provider configuration menu.
 
 ::: tip EXAMPLE
-Check the [example project](https://github.com/Naninovel/Addressables) on how to manually expose Naninovel resources to addressable provider (without using resource editor menus) and serve specific assets from a remote host.
+Check the [example project](https://github.com/naninovel/samples/tree/main/unity/addressable) on how to manually expose Naninovel resources to addressable provider (without using resource editor menus) and serve specific assets from a remote host.
 
 You may also find official Unity learning materials for addressable useful: https://learn.unity.com/course/get-started-with-addressables.
 :::
@@ -89,7 +89,7 @@ Supported file formats:
  - `.wav` (PCM16 44100Hz stereo only) for audio
 
 ::: tip
-Add more supported file formats by overriding `IResourceProviderManager` [engine service](/guide/engine-services#overriding-built-in-services) and adding a custom converter for the local provider ([example](https://github.com/Naninovel/Sandbox/blob/master/Assets/Runtime/WebResourceProvider.cs#L12)).
+Add more supported file formats by overriding `IResourceProviderManager` [engine service](/guide/engine-services#overriding-built-in-services) and adding a custom converter for the local provider ([example](https://github.com/naninovel/samples/blob/main/unity/sandbox/Assets/Runtime/WebResourceProvider.cs#L12)).
 
 ![](https://i.gyazo.com/d4e63726c2d1d75e2677cab7f2503546.png)
 :::
@@ -113,7 +113,7 @@ Given path prefix under the scripts configuration is set to `Scripts` and local 
 
 ## Google Drive
 
-Implemented via an open source (MIT license) third-party package [UnityGoogleDrive](https://github.com/Elringus/UnityGoogleDrive) allows using [Google Drive](https://www.google.com/drive) as the provider for the following resources:
+Implemented via an open source (MIT license) third-party package [UnityGoogleDrive](https://github.com/elringus/UnityGoogleDrive) allows using [Google Drive](https://www.google.com/drive) as the provider for the following resources:
 
 * Naninovel scripts and managed text (via Google Documents);
 * Characters and backgrounds (sprite implementation only);
@@ -121,7 +121,7 @@ Implemented via an open source (MIT license) third-party package [UnityGoogleDri
 
 You can share your Google Drive resources folder with other users to work in collaboration without the need to use version control systems or other complicated tools.
 
-In order to be able to choose Google Drive as the resource provider you have to first install [UnityGoogleDrive](https://github.com/Elringus/UnityGoogleDrive). Consult the GitHub project readme for installation and setup instructions.
+In order to be able to choose Google Drive as the resource provider you have to first install [UnityGoogleDrive](https://github.com/elringus/UnityGoogleDrive). Consult the GitHub project readme for installation and setup instructions.
 
 ::: info NOTE
 Before installing a package from a Git repository, make sure a [Git client](https://git-scm.com/downloads) is installed on your machine and Git executable path is set to the [PATH system environment variable](https://en.wikipedia.org/wiki/PATH_(variable)) (usually performed automatically during the installation).
@@ -142,7 +142,7 @@ Don't forget to add Google Drive to the list of providers for the resources you 
 ![](https://i.gyazo.com/0ad07f73fe12be7ae6d421c5f4f33384.png)
 
 ::: tip EXAMPLE
-Check [NaninovelSandbox](https://github.com/Naninovel/Sandbox) project for an example on how to set up and use Google Drive provider. In the project, scripts, characters, backgrounds and audio resources are served from corresponding files stored on authorized user drive.
+Check [NaninovelSandbox](https://github.com/naninovel/samples/tree/main/unity/sandbox) project for an example on how to set up and use Google Drive provider. In the project, scripts, characters, backgrounds and audio resources are served from corresponding files stored on authorized user drive.
 :::
 
 ## Custom Providers

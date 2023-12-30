@@ -8,7 +8,7 @@ Supported Unity version range: `2019.4 - 2022.3`. Only latest patches of the ass
 It's not uncommon for Unity to introduce regressions even in LTS patches (let alone major releases), hence we recommend 2019.4.40, which is in its final state and doesn't have any known bugs associated with typical VN development. 2020 and 2021 are known to suffer from stability and performance regressions; in case you need a modern Unity version — use 2022.3.
 :::
 
-Compatibility issues with future Unity releases (once they reach LTS status) will be addressed in the next Naninovel releases. Compatible Unity versions for past Naninovel releases are specified in the [change logs](https://github.com/Naninovel/Documentation/releases).
+Compatibility issues with future Unity releases (once they reach LTS status) will be addressed in the next Naninovel releases. Compatible Unity versions for past Naninovel releases are specified in the [change logs](https://github.com/naninovel/docs/releases).
 
 ## UPM Packages
 
