@@ -217,7 +217,7 @@ In case you prefer following video guides, here is one illustrating the above in
 
 ## Demo Project
 
-Complete sources of the demo project (the same one showcased on the store) are available on GitHub via [github.com/Naninovel/Demo](https://github.com/Naninovel/Demo).
+Complete sources of the demo project (the same one showcased on the store) are [available on GitHub](https://github.com/naninovel/samples/tree/main/unity/demo).
 
 You can [clone the repository with a Git client](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) or [download it as a zip archive](https://github.com/Naninovel/Demo/archive/master.zip). Be aware, that assets distributed with the demo project may be subject to custom licenses and are provided solely for learning purposes.
 

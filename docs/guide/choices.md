@@ -88,7 +88,7 @@ Don't forget about cucumbers!
 ```
 
 ::: tip EXAMPLE
-Find a more advanced implementation of interactive map with Naninovel in the Map example project on GitHub: [github.com/Naninovel/Map](https://github.com/Naninovel/Map).
+Find a more advanced implementation of interactive map with Naninovel in the Map example project on GitHub: [github.com/Naninovel/Map](https://github.com/naninovel/samples/tree/main/unity/map).
 
 ![](https://i.gyazo.com/4987b1c53cd275f3fa56b533f53f3d8c.mp4)
 :::
@@ -111,7 +111,7 @@ Kohaku: Where're you right now?
 
 You can add custom choice handlers based on the built-in templates or create new handlers from scratch. For example, let's customize the built-in `ButtonArea` template.
 
-Use `Create -> Naninovel -> Choice Handler -> ButtonArea` asset context menu to create a button area handler prefab somewhere outside of the Naninovel package, e.g. at the `Assets/ChoiceHandlers` folder.
+Use `Create -> Naninovel -> Choice Handler -> ButtonArea` asset context menu to create a button area handler prefab somewhere outside the Naninovel package, e.g. at the `Assets/ChoiceHandlers` folder.
 
 Edit the handler: change font, textures, add animations, etc. For more information on the available UI building tools, check the [Unity documentation](https://docs.unity3d.com/Packages/com.unity.ugui@latest).
 
@@ -126,7 +126,7 @@ You can now use the new choice handler by specifying its ID in `handler` paramet
 ```
 
 ::: tip EXAMPLE
-Find an example on creating a custom choice handler with a particle system in the following project on GitHub: [github.com/Naninovel/CustomUIExample](https://github.com/Naninovel/CustomUIExample).
+Find an example on creating a custom choice handler with a particle system in the following project on GitHub: [github.com/Naninovel/CustomUIExample](https://github.com/naninovel/samples/tree/main/unity/ui).
 :::
 
 It's also possible to create a choice handler from scratch by manually implementing `IChoiceHandlerActor` interface. See the guide on [custom actor implementations](/guide/custom-actor-implementations) for more information.

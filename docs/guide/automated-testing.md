@@ -127,7 +127,7 @@ Once(Choosing).Choose("my-id-for-choice-2")
 ```
 
 ::: tip EXAMPLE
-Find sample E2E project on GitHub: [github.com/Naninovel/E2E](https://github.com/Naninovel/E2E). It shows most of the available shortcuts, extensions and testing scenarios.
+Find sample E2E project on GitHub: [github.com/Naninovel/E2E](https://github.com/naninovel/samples/tree/main/unity/e2e). It shows most of the available shortcuts, extensions and testing scenarios.
 :::
 
 ## Coverage

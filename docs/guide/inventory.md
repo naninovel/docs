@@ -1,6 +1,6 @@
 # Inventory
 
-While an inventory system is out of scope for visual novels, we had a lot of requests and questions on how to integrate one with Naninovel. The [GitHub project](https://github.com/Elringus/NaninovelInventory) serves as an example for creating and integrating an inventory extension, which you can set up on top of Naninovel installation without modifying the engine source code.
+While an inventory system is out of scope for visual novels, we had a lot of requests and questions on how to integrate one with Naninovel. The [GitHub project](https://github.com/naninovel/samples/tree/main/unity/inventory) serves as an example for creating and integrating an inventory extension, which you can set up on top of Naninovel installation without modifying the engine source code.
 
 ::: info NOTE
 The inventory is not a standalone product and/or part of Naninovel. Use it to learn how to extend and customize the engine, but don't expect it to be production-ready solution for inventory systems. If you're looking for one, [check the Asset Store](https://assetstore.unity.com/?q=inventory) or create a custom one from scratch.
@@ -18,7 +18,7 @@ Naninovel package is not distributed with the project, hence compilation errors 
 
 ## Installation
 
-To set up inventory extension on top of an existing Unity project use [UPM](https://docs.unity3d.com/Manual/upm-ui.html) to install the package via the following git URL: `https://github.com/Naninovel/Inventory.git?path=Assets/NaninovelInventory` or download and import [NaninovelInventory.unitypackage](https://github.com/Naninovel/Inventory/raw/master/NaninovelInventory.unitypackage) manually.
+To set up inventory extension on top of an existing Unity project download and import [NaninovelInventory.unitypackage](https://github.com/naninovel/samples/raw/main/unity/inventory/NaninovelInventory.unitypackage) manually.
 
 ![](https://i.gyazo.com/b54e9daa9a483d9bf7f74f0e94b2d38a.gif)
 

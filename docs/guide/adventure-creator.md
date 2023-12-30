@@ -14,7 +14,7 @@ Extensions for third-party products serve mostly as examples on how you can inte
 
 Install both Adventure Creator and Naninovel (the order doesn't matter).
 
-Download and import [Adventure Creator extension package](https://github.com/Naninovel/AdventureCreator/raw/master/NaninovelAdventureCreator.unitypackage).
+Download and import [Adventure Creator extension package](https://github.com/naninovel/samples/blob/main/unity/ac/NaninovelAdventureCreator.unitypackage).
 
 Set `NaninovelAdventureCreator/Runtime/Actions` as the source for custom actions in AC settings. Consult [AC guide](https://www.adventurecreator.org/tutorials/writing-custom-action) for more info on custom actions.
 
@@ -55,5 +55,5 @@ The following video demonstrates AC's demo scene integrated with Naninovel to ha
 ![](https://www.youtube.com/watch?v=7tOIFZRSAec)
 
 ::: tip EXAMPLE
-See the [GitHub project](https://github.com/Naninovel/AdventureCreator) for an integration example. When opening the project for the first time you'll get errors due to missing Adventure Creator and Naninovel packages; import them and the errors will go away.
+See the [GitHub project](https://github.com/naninovel/samples/tree/main/unity/ac) for an integration example. When opening the project for the first time you'll get errors due to missing Adventure Creator and Naninovel packages; import them and the errors will go away.
 :::

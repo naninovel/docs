@@ -20,7 +20,7 @@ Naninovel can work with any language, but to display text in some languages, you
 
 ## Will I get access to the source code when I buy Naninovel?
 
-All the Unity-related sources are available in the distributed package. Common Naninovel modules are precompiled into dynamic assembly with sources hosted on GitHub: [github.com/Naninovel/Common](https://github.com/Naninovel/Common).
+All the Unity-related sources are available in the distributed package. Common Naninovel modules are precompiled into dynamic assembly with sources hosted on GitHub: [github.com/naninovel/common](https://github.com/naninovel/common).
 
 ## What are the legal usage terms and conditions?
 

@@ -110,7 +110,7 @@ public static class CustomFunctions
 ```
 
 ::: tip EXAMPLE
-Another example of adding custom expression functions to check whether an item exists in an inventory can be found in the [inventory example project on GitHub](https://github.com/Naninovel/Inventory).
+Another example of adding custom expression functions to check whether an item exists in an inventory can be found in the [inventory example project on GitHub](https://github.com/naninovel/samples/tree/main/unity/inventory).
 
-Specifically, the custom functions are implemented via [InventoryFunctions.cs](https://github.com/Naninovel/Inventory/blob/master/Assets/NaninovelInventory/Runtime/InventoryFunctions.cs) runtime script.
+Specifically, the custom functions are implemented via [InventoryFunctions.cs](https://github.com/naninovel/samples/blob/main/unity/inventory/Assets/NaninovelInventory/Runtime/InventoryFunctions.cs) runtime script.
 :::
