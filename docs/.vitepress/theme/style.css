@@ -59,6 +59,8 @@ pre {
     --vp-c-brand-1: #1baeea;
     /* Link hover color. */
     --vp-c-brand-2: #7ddaff;
+    /* Border under the navbar. */
+    --vp-c-gutter: #111;
 
     /*!* Background of main bg. *!*/
     /*--vp-c-bg: #1b1d1f;*/
@@ -245,12 +247,6 @@ table > tfoot:not(:last-child) {
     background: none !important;
 }
 
-/* remove opacity gradient under navbar */
-.curtain,
-.aside-curtain {
-    display: none !important;
-}
-
 /* a hack for logo title to keep sidebar bg color */
 @media (min-width: 960px) {
     .VPNavBar.has-sidebar div.title {
@@ -267,8 +263,27 @@ table > tfoot:not(:last-child) {
     background: rgba(30, 30, 32, 0.5) !important;
 }
 
+.VPLocalNav {
+    background: rgba(255, 255, 255, 0.75) !important;
+}
+
+.dark .VPLocalNav {
+    background: rgba(30, 30, 32, 0.5) !important;
+}
+
 /* the blur effect */
 .VPNav::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    backdrop-filter: saturate(180%) blur(5px);
+    z-index: -1;
+}
+
+.VPLocalNav::after {
     content: "";
     position: absolute;
     top: 0;
