@@ -4,6 +4,10 @@
 
 ![](https://i.gyazo.com/0a5b219b059fd61c85d225e903d77857.png)
 
+::: info NOTE
+Extensions for third-party products serve mostly as examples on how you can integrate Naninovel with other tools. They contain bare minimum functionality and may become incompatible due to changes in third-party product. Please do not consider these extensions part of Naninovel: we are not providing any support or help on using them with Naninovel beyond the scope of sample projects.
+:::
+
 ## Setup
 
 Install PlayMaker following instructions from the [official manual](https://hutonggames.fogbugz.com/default.asp?W11).
