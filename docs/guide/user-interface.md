@@ -59,7 +59,7 @@ Unity project showed in the above video tutorial is [available on GitHub](https:
 :::
 
 ::: tip EXAMPLE
-Another, more advanced example of adding a custom inventory UI with a grid layout, pagination and drag-drop window can be found in the [inventory example project on GitHub](https://github.com/naninovel/samples/tree/main/unity/inventory). Specifically, the UI-related scripts are stored at [Runtime/UI](https://github.com/Naninovel/Inventory/tree/master/Assets/NaninovelInventory/Runtime/UI) and prefabs at [Prefabs](https://github.com/Naninovel/Inventory/tree/master/Assets/NaninovelInventory/Prefabs) directories.
+Another, more advanced example of adding a custom inventory UI with a grid layout, pagination and drag-drop window can be found in the [inventory example project on GitHub](https://github.com/naninovel/samples/tree/main/unity/inventory). Specifically, the UI-related scripts are stored at [Runtime/UI](https://github.com/naninovel/samples/tree/main/unity/inventory/Assets/NaninovelInventory/Runtime/UI) and prefabs at [Prefabs](https://github.com/Naninovel/Inventory/tree/master/Assets/NaninovelInventory/Prefabs) directories.
 :::
 
 When you create a new custom UI prefab via the context menu, the prefab will have a `Custom UI` component attached to the root object. This component (or rather the fact that the component is implementing `IManagedUI` interface) is essential to make the prefab accepted as a UI by the engine.
