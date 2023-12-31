@@ -31,7 +31,7 @@ When adding custom implementation types under a non-predefined assembly (via [as
 :::
 
 ::: tip EXAMPLE
-For a complete example on adding custom actor implementation see [Live2D extension project on GitHub](https://github.com/naninovel/samples/tree/main/unity/live2d). Specifically, the custom "Live2DCharacter" actor is implemented in [Runtime/Live2DCharacter.cs](https://github.com/Naninovel/Live2D/blob/master/Assets/NaninovelLive2D/Runtime/Live2DCharacter.cs) script.
+For a complete example on adding custom actor implementation see [Live2D extension project on GitHub](https://github.com/naninovel/samples/tree/main/unity/live2d). Specifically, the custom "Live2DCharacter" actor is implemented in [Live2DCharacter.cs](https://github.com/naninovel/samples/blob/main/unity/live2d/Assets/NaninovelLive2D/Runtime/Live2DCharacter.cs) script.
 :::
 
 ## Actor Resources

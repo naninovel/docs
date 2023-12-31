@@ -390,7 +390,7 @@ When layer contains lots of children, it would be tedious to set the layer held/
 When `Render Canvas` component is attached to the layer actor prefab root, it'll work same as in normal render mode, restricting render texture size; when not present, render texture will equal camera's pixel size. It's recommended to use render canvas to optimize performance, as camera size will usually be higher than necessary.
 
 ::: tip EXAMPLE
-Find example on setting up layered background containing particle systems in the URP project on GitHub: [github.com/Naninovel/URP](https://github.com/naninovel/samples/tree/main/unity/urp). (URP is not required for this feature, it'll work the same with the default render backend)
+Find example on setting up layered background containing particle systems in the [URP project on GitHub](https://github.com/naninovel/samples/tree/main/unity/urp). (URP is not required for this feature, it'll work the same with the default render backend)
 :::
 
 ## Generic Characters

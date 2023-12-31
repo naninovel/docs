@@ -3,7 +3,8 @@
     "scripts": {
         "dev": "vitepress dev docs",
         "build": "vitepress build docs",
-        "preview": "vitepress preview docs"
+        "preview": "vitepress preview docs",
+        "patch": "sh scripts/patch.sh"
     },
     "devDependencies": {
         "typescript": "^5.3.3",

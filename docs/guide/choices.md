@@ -88,7 +88,7 @@ Don't forget about cucumbers!
 ```
 
 ::: tip EXAMPLE
-Find a more advanced implementation of interactive map with Naninovel in the Map example project on GitHub: [github.com/Naninovel/Map](https://github.com/naninovel/samples/tree/main/unity/map).
+Find a more advanced implementation of interactive map with Naninovel in the [Map sample project on GitHub](https://github.com/naninovel/samples/tree/main/unity/map).
 
 ![](https://i.gyazo.com/4987b1c53cd275f3fa56b533f53f3d8c.mp4)
 :::
@@ -126,7 +126,7 @@ You can now use the new choice handler by specifying its ID in `handler` paramet
 ```
 
 ::: tip EXAMPLE
-Find an example on creating a custom choice handler with a particle system in the following project on GitHub: [github.com/Naninovel/CustomUIExample](https://github.com/naninovel/samples/tree/main/unity/ui).
+Find an example on creating a custom choice handler with a particle system in the [UI sample on GitHub](https://github.com/naninovel/samples/tree/main/unity/ui).
 :::
 
 It's also possible to create a choice handler from scratch by manually implementing `IChoiceHandlerActor` interface. See the guide on [custom actor implementations](/guide/custom-actor-implementations) for more information.

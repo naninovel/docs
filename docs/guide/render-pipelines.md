@@ -25,7 +25,7 @@ When running under HDRP, change color space to linear. HDRP doesn't support gamm
 ![](https://i.gyazo.com/2c053a6e3d79f080469787b7f09ee8f3.png)
 
 ::: tip EXAMPLE
-Check the project on GitHub for an example on how to set up and use URP with Naninovel: [github.com/Naninovel/URP](https://github.com/naninovel/samples/tree/main/unity/urp).
+Check [URP sample project](https://github.com/naninovel/samples/tree/main/unity/urp) for an example on how to set up and use URP with Naninovel.
 :::
 
 ## Limitations
