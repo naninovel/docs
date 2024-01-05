@@ -12,13 +12,12 @@ export default defineConfig({
         ["link", { rel: "icon", href: "/favicon.svg" }],
         ["link", { rel: "preload", href: "/assets/fonts/inter.woff2", as: "font", type: "font/woff2", crossorigin: "" }],
         ["link", { rel: "preload", href: "/assets/fonts/jetbrains.woff2", as: "font", type: "font/woff2", crossorigin: "" }],
-        ["meta", { name: "theme-color", content: "#1baeea" }],
         ["meta", { name: "og:image", content: "/assets/img/og.jpg" }],
         ["meta", { name: "twitter:card", content: "summary_large_image" }]
     ],
     themeConfig: {
         logo: { src: "/favicon.svg" },
-        logoLink: "https://naninovel.com",
+        logoLink: { link: "/", target: "_self" },
         search: {
             provider: "algolia",
             options: {
