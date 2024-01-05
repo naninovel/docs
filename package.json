@@ -3,13 +3,12 @@
     "scripts": {
         "dev": "vitepress dev docs",
         "build": "vitepress build docs",
-        "preview": "vitepress preview docs",
-        "patch": "sh scripts/patch.sh"
+        "preview": "vitepress preview docs"
     },
     "devDependencies": {
         "typescript": "^5.3.3",
         "@types/node": "^20.10.6",
-        "vitepress": "^1.0.0-rc.34",
-        "imgit": "^0.1.0"
+        "vitepress": "^1.0.0-rc.35",
+        "imgit": "^0.1.1"
     }
 }
