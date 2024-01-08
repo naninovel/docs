@@ -11,7 +11,7 @@ export default defineConfig({
     head: [
         ["link", { rel: "icon", href: "/favicon.svg" }],
         ["link", { rel: "preload", href: "/assets/fonts/inter.woff2", as: "font", type: "font/woff2", crossorigin: "" }],
-        ["link", { rel: "preload", href: "/assets/fonts/jetbrains.woff2", as: "font", type: "font/woff2", crossorigin: "" }],
+        ["link", { rel: "preload", href: "/assets/fonts/jb.woff2", as: "font", type: "font/woff2", crossorigin: "" }],
         ["meta", { name: "og:image", content: "/assets/img/og.jpg" }],
         ["meta", { name: "twitter:card", content: "summary_large_image" }]
     ],
