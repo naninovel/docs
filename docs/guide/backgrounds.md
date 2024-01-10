@@ -10,7 +10,7 @@ Backgrounds' behavior can be configured using `Naninovel -> Configuration -> Bac
 
 ![](https://i.gyazo.com/cccd08280dac72d199ea3465bc167a22.gif)
 
-In case you have a lot of backgrounds and/or appearances per background and it's inconvenient to assign them all via editor menu, use actor record assets (`Crate -> Naninovel -> Actor Record -> Background`) which support multi-editing and organizing the records with folders; check the video below for an example.
+In case you have a lot of backgrounds and/or appearances per background and it's inconvenient to assign them all via editor menu, use actor record assets (`Create -> Naninovel -> Actor Record -> Background`) which support multi-editing and organizing the records with folders; check the video below for an example.
 
 ![](https://www.youtube.com/watch?v=2YP-36THHvk)
 

@@ -8,7 +8,7 @@ Characters' behavior can be configured using `Naninovel -> Configuration -> Char
 
 ![Add Character](https://i.gyazo.com/c8a4f7f987621831b4a2ecb3145a4a07.png)
 
-In case you have a lot of characters and/or appearances per character and it's inconvenient to assign them all via editor menu, use actor record assets (`Crate -> Naninovel -> Actor Record -> Character`) which support multi-editing and organizing the records with folders; check the video below for an example.
+In case you have a lot of characters and/or appearances per character and it's inconvenient to assign them all via editor menu, use actor record assets (`Create -> Naninovel -> Actor Record -> Character`) which support multi-editing and organizing the records with folders; check the video below for an example.
 
 ![](https://www.youtube.com/watch?v=2YP-36THHvk)
 
