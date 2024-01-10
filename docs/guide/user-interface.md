@@ -103,7 +103,7 @@ Each element in the configuration list has following properties:
 
 Property | Description
 --- | ---
-Object | The game object with a text component, which should be affected by font changes. It works with both uGUI and TMPro text components.
+Object | The game object with a text component, which should be affected by font changes.
 Include Children | Whether to affect container children game objects; when disabled only text component on the specified container object will be affected.
 Allow Font Change | Whether to allow changing font of the text component.
 Allow Font Size Change | Whether to allow changing font size of the text component.
