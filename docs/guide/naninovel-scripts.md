@@ -4,7 +4,7 @@ Naninovel scripts are text documents (`.nani` extension) where you control what 
 
 ![](https://i.gyazo.com/f552c2ef323f9ec1171eba72e0c55432.png)
 
-Each line in a naninovel script represents a statement, which can be a command, generic text, label or a comment. Type of the statement is determined by the literal placed at the start of the line:
+Each line in naninovel script represents a statement, which can be a command, generic text, label or comment. Type of the statement is determined by the literal placed at the start of the line:
 
 | Literal | Statement Type            |
 |:-------:|---------------------------|
@@ -16,13 +16,13 @@ When none of the above literals are present at the start of the line, it's consi
 
 ## Command Lines
 
-Line is considered a command statement if it starts with a `@` literal. Command represents a single operation, that controls what happens on the scene; eg, it can be used to change a background, move a character or load another naninovel script.
+Line is considered a command statement if it starts with `@` literal. Command represents a single operation, that controls what happens on the scene; eg, it can be used to change a background, move a character or load another naninovel script.
 
 ### Command Identifier
 
-Right after the command literal a command identifier is expected. This could either be name of the C# class that implements the command or the command's alias (if it's applied via `CommandAlias` attribute).
+Right after the command literal a command identifier is expected. This could either be a name of the C# class that implements the command or the command's alias (when applied via `CommandAlias` attribute).
 
-For example, [@save] command (used to auto-save the game) is implemented via the `AutoSave` C# class. The implementing class also has a `[CommandAlias("save")]` attribute applied, so you can use both `@save` and `@AutoSave` statements in the script to invoke this command.
+For example, [@save] command (used to auto-save the game) is implemented via `AutoSave` C# class. The implementing class also has `[CommandAlias("save")]` attribute applied, so you can use both `@save` and `@AutoSave` statements in the script to invoke this command.
 
 Command identifiers are case-insensitive; all the following statements are valid and will invoke the same `AutoSave` command:
 
@@ -35,42 +35,42 @@ Command identifiers are case-insensitive; all the following statements are valid
 
 ### Command Parameters
 
-Most of the commands have a number of parameters that define the effect of the command. Parameter is a key-value expression defined after the command literal separated by a column (`:`). Parameter identifier (key) could be either name of the corresponding parameter field of the command implementation class or the parameter's alias (if defined via `alias` property of `CommandParameter` attribute).
+Most of the commands have a number of parameters that define the effect of the command. Parameter is a key-value expression defined after the command literal separated by a column (`:`). Parameter identifier (key) can be either name of the corresponding parameter field of the command implementation class or the parameter's alias (when defined via `alias` property of `CommandParameter` attribute).
 
 ```nani
 @commandId paramId:paramValue
 ```
 
-Consider a [@hideChars] command, which is used to hide all visible characters on the scene. It could be used as follows:
+Consider [@hideChars] command, which is used to hide all visible characters on the scene. It can be used as follows:
 
 ```nani
 @hideChars
 ```
 
-You can use a `time` *Decimal* parameter here to control for how long the characters will fade-out before becoming completely hidden (removed from scene):
+You can use `time` *Decimal* parameter here to control how long the characters will fade-out before becoming completely hidden (removed from scene):
 
 ```nani
 @hideChars time:5.5
 ```
 
-This will make the characters to fade-out for 5.5 seconds, before completely removing them from scene.
+This will make the characters fade-out for 5.5 seconds, before completely removing them from scene.
 
-You can also use a `wait` *Boolean* parameter to specify whether next command should be executed immediately after or wait for the completion of the current command:
+You can also use `wait` *Boolean* parameter to specify whether next command should be executed immediately after or wait for the completion of the current command:
 
 ```nani
 @hideChars time:5.5 wait:false
 @hidePrinter
 ```
 
-This will hide the text printer right after characters will begin to fade-out. If `wait` would be `true` or not specified, the printer would be hidden only when the [@hideChars] complete the execution.
+This will hide the text printer right after characters begin to fade-out. If `wait` would be `true` or not specified, the printer would be hidden only when [@hideChars] complete the execution.
 
 ::: tip
-If you find yourself specifying `wait:false` more often than not, consider disabling `Wait By Default` option in script player configuration; this way the player won't wait the commands, unless wait parameter is explicitly set to true.
+If you find yourself specifying `wait:false` more often than not, consider disabling `Wait By Default` option in script player configuration; this way script player won't wait the commands, unless wait parameter is explicitly set to true.
 :::
 
 ### Parameter Value Types
 
-Depending on the command parameter, it could expect one of the following value types:
+Depending on the command parameter, it can expect one of the following value types:
 
 Type | Description
 --- | ---
@@ -83,20 +83,20 @@ list | A comma-separated list of values of one of the above types. Eg for string
 
 ### Nameless Parameters
 
-Most of the commands have a nameless parameter. A parameter is considered nameless when it could be used without specifying its name.
+Most commands have a nameless parameter. A parameter is considered nameless when it can be used without specifying its name.
 
-For example, a [@bgm] command expects a nameless parameter specifying the name of the music track to play:
+For example, [@bgm] command expects a nameless parameter specifying name of the music track to play:
 
 ```nani
 @bgm PianoTheme
 ```
-"PianoTheme" here is the value of the "BgmPath" *String* parameter.
+"PianoTheme" here is the value of "BgmPath" *String* parameter.
 
-There could be only one nameless parameter per command and it should always be specified before any other parameters.
+There can be only one nameless parameter per command and it should always be specified before any other parameters.
 
 ### Optional and Required Parameters
 
-Most of the command parameters are *optional*. It means they either have a predefined value or just doesn't require any value in order for the command to be executed. For example, when a [@resetText] command is used without specifying any parameters it will reset text of a default printer, but you can also set a specific printer ID like this: `@resetText printer:Dialogue`.
+Most of the command parameters are *optional*. It means they either have a predefined value or just don't require any value in order for the command to be executed. For example, when [@resetText] command is used without specifying any parameters it will reset text of a default printer, but you can also set a specific printer ID like this: `@resetText printer:Dialogue`.
 
 Some parameters however are *required* in order for the command to execute and should always be specified.
 
@@ -106,13 +106,13 @@ For the list of all the currently available commands with a summary, parameters 
 
 ## Generic Text Lines
 
-To make writing scripts with large amounts of text more comfortable generic text lines are used. Line is considered a generic text statement if doesn't start with any of the predefined statement literals:
+To make writing scripts with large amounts of text easier generic text lines are used. Line is considered a generic text statement when it doesn't start with any of the predefined statement literals:
 
 ```nani
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 ```
 
-An author ID can be specified at the start of a generic text line separated by a column (`:`) and a space to associate printed text with a [character actor](/guide/characters):
+An author ID can be specified at the start of a generic text line separated by a column followed with space ((`: `)) to associate printed text with a [character actor](/guide/characters):
 
 ```nani
 Felix: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -133,17 +133,17 @@ Felix: Lorem ipsum dolor sit amet.
 
 ### Command Inlining
 
-Sometimes, you may want to execute a command while revealing (printing) a text message, right after or before a specific character. For example, an actor would change their appearance (expression) when a specific word is printed or a particular sound effect would be played in reaction to some event described in the midst of a printed message. Command inlining feature allows to handle cases like that.
+Sometimes, you may want to execute a command while revealing (printing) text message, right after or before specific character. For example, an actor would change their appearance (expression) when a specific word is printed or a particular sound effect would be played in reaction to some event described in the midst of a printed message. Command inlining feature allows handling cases like that.
 
-All the commands (both [built-in](/api/) and [custom ones](/guide/custom-commands)) can be inlined (injected) to generic text lines using square brackets (`[`,`]`):
+All the commands (both [built-in](/api/) and [custom ones](/guide/custom-commands)) can be inlined (injected) to generic text lines using square brackets (`[ ]`):
 
 ```nani
 Felix: Lorem ipsum[char Felix.Happy pos:0.75 wait:false] dolor sit amet, consectetur adipiscing elit.[i] Aenean tempus eleifend ante, ac molestie metus condimentum quis.[i][br 2] Morbi nunc magna, consequat posuere consectetur in, dapibus consectetur lorem. Duis consectetur semper augue nec pharetra.
 ```
 
-Notice, that the inlined command syntax is exactly the same, except `@` literal is omitted and command body is wrapped in square brackets. Basically, you can take any command line, inline it to a generic text line and it will have the exact same effect, but at a different moment, depending on the position inside text message.
+Notice, that the inlined command syntax is exactly the same, except `@` literal is omitted and command body is wrapped in square brackets. Basically, you can take any command line, inline it to a generic text and it will have the exact same effect, but at a different moment, depending on the position inside text message.
 
-Under the hood, generic text lines are parsed into individual commands identified by inline index; text is printed with [@print] command. For example, following generic text line in a naninovel script:
+Under the hood, generic text lines are parsed into individual commands identified by inline index; text is printed with [@print] command. For example, following generic text line:
 
 ```nani
 Lorem ipsum[char Felix.Happy pos:75 wait:false] dolor sit amet.
@@ -157,7 +157,7 @@ Lorem ipsum[char Felix.Happy pos:75 wait:false] dolor sit amet.
 @print "dolor sit amet."
 ```
 
-To actually print square brackets via a generic text line, escape them with backslashes, eg:
+To actually print square brackets within generic text line, escape them with backslashes, eg:
 ```nani
 Some text \[ text inside brackets \]
 ```
@@ -166,19 +166,19 @@ Some text \[ text inside brackets \]
 
 ## Label Lines
 
-Labels are used as "anchors" when navigating the naninovel scripts with [@goto] commands. To define a label, use a `#` literal at the start of the line followed with label name:
+Labels are used as "anchors" when navigating naninovel scripts with [@goto] commands. To define a label, use `#` literal at the start of the line followed with label name:
 
 ```nani
 # Epilogue
 ```
 
-You can then use a [@goto] command to "jump" to that line:
+You can then use [@goto] command to "jump" to that line:
 
 ```nani
 @goto ScriptName.Epilogue
 ```
 
-In case you're using [@goto] command from within the same script where the label is defined, you can omit the script name:
+When both [@goto] and target label are in the same script, you can omit script name:
 
 ```nani
 @goto .Epilogue
@@ -186,7 +186,7 @@ In case you're using [@goto] command from within the same script where the label
 
 ## Comment Lines
 
-When line starts with a semicolon literal (`;`) it's considered a comment statement. Comment lines are completely ignored by the engine when scripts are parsed. You can use comment lines to add notes or annotations for yourself or other team members who work with naninovel scripts.
+When line starts with semicolon literal (`;`) it's considered a comment statement. Comment lines are completely ignored by the engine when scripts are parsed. Use comment lines to add notes or annotations for yourself or other team members working with naninovel scripts.
 
 ```nani
 ; The following command will auto-save the game.
@@ -238,7 +238,9 @@ It's also possible to specify multi-line conditional blocks with [@if], [@else],
 @endif
 ```
 
-Note that tabs here are completely optional and used just for better readability.
+::: info NOTE
+The tabs in the above sample are used for better readability and are completely optional. Naninovel ignores any kind of white space (spaces, tabs, etc) before and after command and label lines, so that you can format them as you see fit.
+:::
 
 The same works for generic text lines:
 
@@ -246,7 +248,7 @@ The same works for generic text lines:
 Lorem ipsum dolor sit amet. [if score>10]Duis efficitur imperdiet nunc. [else]Vestibulum sit amet dolor non dolor placerat vehicula.[endif]
 ```
 
-For more information on the conditional expression format and available operators see the [script expressions](/guide/script-expressions) guide.
+For more information on the conditional expression format and available operators see [script expressions](/guide/script-expressions) guide.
 
 ## Memory Management
 
