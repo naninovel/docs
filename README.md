@@ -4,4 +4,4 @@
 
 Online documentation and tracking tools for [Naninovel](https://naninovel.com) visual novel engine.
 
-To help us improve the documentation (eg, fix a typo or update translation) check out [contributing article](https://github.com/Naninovel/naninovel.github.io/blob/main/CONTRIBUTING.md).
+To help us improve the documentation (eg, fix a typo or update translation) check out [contributing article](https://github.com/naninovel/docs/blob/main/CONTRIBUTING.md).
