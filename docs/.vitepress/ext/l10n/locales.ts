@@ -205,7 +205,7 @@ function buildNav(text: string[], lang?: string): DefaultTheme.NavItem[] {
         {
             text: "v1.19", items: [
                 { text: "Changelog", link: "https://github.com/naninovel/docs/releases/tag/v1.19" },
-                { text: "Contributing", link: "https://github.com/naninovel/docs/blob/master/CONTRIBUTING.md" }
+                { text: "Contributing", link: "https://github.com/naninovel/docs/blob/main/CONTRIBUTING.md" }
             ]
         }
     ];
@@ -217,5 +217,5 @@ function buildNav(text: string[], lang?: string): DefaultTheme.NavItem[] {
 }
 
 function buildEditLink(text: string): DefaultTheme.EditLink {
-    return { pattern: "https://github.com/naninovel/docs/edit/master/docs/:path", text };
+    return { pattern: "https://github.com/naninovel/docs/edit/main/docs/:path", text };
 }
