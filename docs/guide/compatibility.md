@@ -2,10 +2,10 @@
 
 ## Unity Version
 
-Supported Unity version range: `2019.4 - 2022.3`. Only latest patches of the associated [LTS streams](https://unity.com/releases/lts-vs-tech-stream) in the range are supported. Alpha, beta and non-LTS releases (eg `2021.1` or `2022.2`) are not supported. They may work, but we won't be able to provide any support for using Naninovel with them. Recommended Unity version is [2019.4.40](https://unity3d.com/unity/whats-new/2019.4.40).
+Supported Unity version range: `2022.3 - 6`. Only latest patches of the associated [LTS streams](https://unity.com/releases/lts-vs-tech-stream) in the range are supported. Alpha, beta and non-LTS releases (eg `2022.1` or `2023.2`) are not supported. They may work, but we won't be able to provide any support for using Naninovel with them. Recommended Unity version is [2022.3](https://docs.unity3d.com/2022.3/Documentation/Manual/WhatsNew2022LTS.html).
 
 ::: tip
-It's not uncommon for Unity to introduce regressions even in LTS patches (let alone major releases), hence we recommend 2019.4.40, which is in its final state and doesn't have any known bugs associated with typical VN development. 2020 and 2021 are known to suffer from stability and performance regressions; in case you need a modern Unity version — use 2022.3.
+It's not uncommon for Unity to introduce regressions even in LTS patches (let alone major releases), hence we recommend 2022.3, which is in its final state and doesn't have any known bugs associated with typical VN development. Additionally, 2022.3 is the last LTS release that is not subject to the infamous [runtime fee](https://unity.com/pricing-updates).
 :::
 
 Compatibility issues with future Unity releases (once they reach LTS status) will be addressed in the next Naninovel releases. Compatible Unity versions for past Naninovel releases are specified in the [change logs](https://github.com/naninovel/docs/releases).
