@@ -1,6 +1,6 @@
 # Commands
 
-Script commands API reference. Use the side bar to quickly navigate between available commands.
+Script commands API reference. Use the side bar to quickly navigate between available commands. 
 
 ~~Strikethrough~~ indicates a nameless parameter, and **bold** stands for required parameter; other parameters should be considered optional. Consult [naninovel scripts guide](/guide/naninovel-scripts) in case you have no idea what's this all about.
 
@@ -358,8 +358,8 @@ Modifies a [character actor](/guide/characters).
 ; Same as above, but sets appearance to `Happy`.
 @char Sora.Happy
 
-; Same as above, but additionally positions the character 45% away
-; from the left border of the scene and 10% away from the bottom border;
+; Same as above, but additionally positions the character 45% away 
+; from the left border of the scene and 10% away from the bottom border; 
 ; also makes it look to the left.
 @char Sora.Happy look:left pos:45,10
 
@@ -384,6 +384,7 @@ When `goto`, `gosub` and `do` parameters are not specified, will continue script
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">choiceSummary</span> | string | Text to show for the choice. When the text contain spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
+| locked | boolean | Whether the choice should be disabled or otherwise not accessible for player to pick; see [choice docs](/guide/choices#locked-choice) for more info. Disabled by default. |
 | button | string | Path (relative to a `Resources` folder) to a [button prefab](/guide/choices#choice-button) representing the choice. The prefab should have a `ChoiceHandlerButton` component attached to the root object. Will use a default button when not provided. |
 | pos | decimal list | Local position of the choice button inside the choice handler (if supported by the handler implementation). |
 | handler | string | ID of the choice handler to add choice for. Will use a default handler if not provided. |
@@ -419,6 +420,9 @@ Continue executing this script or ...?[skipInput]
 @choice "Ask about age" do:"How old are you?"
 @choice "Keep silent" do:"..."
 @stop
+
+; Make choice disabled/locked when 'score' variable is below 10.
+@choice "Secret option" locked:{score<10}
 ```
 
 ## clearBacklog
@@ -1182,8 +1186,8 @@ If a variable with the provided name doesn't exist, it will be automatically cre
 ; If `angle` is a number, assign its cosine to `foo` variable.
 @set foo=Cos(angle)
 
-; Get random number between -100 and 100, then raise to power of 4
-; and assign to `foo` variable. Quotes are required when whitespace
+; Get random number between -100 and 100, then raise to power of 4 
+; and assign to `foo` variable. Quotes are required when whitespace 
 ; is present inside the expression.
 @set "foo = Pow(Random(-100, 100), 4)"
 
@@ -1193,12 +1197,12 @@ If a variable with the provided name doesn't exist, it will be automatically cre
 ; If `foo` is a number, subtract 1 from its value (decrement).
 @set foo--
 
-; Assign `foo` variable value of the `bar` variable,
+; Assign `foo` variable value of the `bar` variable, 
 ; which is `Hello World!` string.
 @set bar="Hello World!"
 @set foo=bar
 
-; Defining multiple set expressions in one line;
+; Defining multiple set expressions in one line; 
 ; the result will be the same as above.
 @set bar="Hello World!";foo=bar
 
@@ -1783,3 +1787,4 @@ Jeez, what a disgusting noise. Shut it down![wait i5][skipInput]
 @wait {Random(3,8)} do:"@sfx Thunder, @shake Camera" wait:false
 The thunder might go off any second...
 ```
+
