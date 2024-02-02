@@ -4,7 +4,7 @@
 
 如果你确定你遇到的问题没有相关描述，检查是否使用最新版本资源。使用Unity内的[Asset Store window](https://docs.unity3d.com/Manual/AssetStore.html) 来更新。使用相关扩展资源时，下载导入最新的扩展支持包：
 
-- [Naninovel Live2D角色使用](https://github.com/Naninovel/Live2D/raw/master/NaninovelLive2D.unitypackage)
+- [Naninovel Live2D角色使用](https://github.com/naninovel/samples/raw/main/unity/live2d/NaninovelLive2D.unitypackage)
 - [Naninovel PlayMaker使用](https://github.com/Naninovel/PlayMaker/raw/master/NaninovelPlayMaker.unitypackage)
 - [Naninovel AdventureCreator使用](https://github.com/Naninovel/AdventureCreator/raw/master/NaninovelAdventureCreator.unitypackage)
 
