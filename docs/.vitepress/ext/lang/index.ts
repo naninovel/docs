@@ -1,4 +1,4 @@
-import { LanguageRegistration } from "shikiji";
+import { LanguageRegistration } from "shiki";
 import { ThemeOptions } from "vitepress";
 import grammar from "./textmate.json";
 import themeLight from "./theme-light.json";
