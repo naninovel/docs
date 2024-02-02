@@ -302,7 +302,7 @@ Live2D キャラクターの実装は、[Live2D Cubism](https://www.live2d.com) 
 
 利用するには、始めに [Live2D Cubism SDK for Unity](https://live2d.github.io/#unity) をインストールする必要があります。インストール方法や使い方は、公式のLive2Dドキュメントをご覧ください。
 
-その後 [Live2D 拡張パッケージ](https://github.com/Naninovel/Live2D/raw/master/NaninovelLive2D.unitypackage) をダウンロードします。
+その後 [Live2D 拡張パッケージ](https://github.com/naninovel/samples/raw/main/unity/live2d/NaninovelLive2D.unitypackage) をダウンロードします。
 
 実装に使用される Live2D モデルプレハブには、ルートオブジェクトに紐付けられた `Live2DController` コンポーネントが必要です。外観の変更は、[SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) コマンドの外観がトリガー名であるため、アニメーターコンポーネントにルーティングされます。たとえば、Live2Dキャラクタープレハブ "Kaori" があり、"Surprise" という名前のトリガーを呼び出したい場合は、次のコマンドを使用します:
 

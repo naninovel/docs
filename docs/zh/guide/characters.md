@@ -317,7 +317,7 @@ Live2D人物模型使用的是通过[Live2D Cubism](https://www.live2d.com) 2D�
 
 要是live2D模型，你需要先导入[Unity Live2D Cubism 开发SDK](https://live2d.github.io/#unity) ，参阅官方说明文档。
 
-然后下载导入[Live2D扩展支持包](https://github.com/Naninovel/Live2D/raw/master/NaninovelLive2D.unitypackage) 。
+然后下载导入[Live2D扩展支持包](https://github.com/naninovel/samples/raw/main/unity/live2d/NaninovelLive2D.unitypackage) 。
 
 Live2D模型预制体使用时，都必须有`Live2DController`组件。外观动作调用使用的是Animator组件的[SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) 命令触发。相应外观为触发名。比如，如果你想调用“Kaori”的live2D模型预制体，并想调用其名为“surprise”的触发器，使用以下命令
 
