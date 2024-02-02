@@ -384,7 +384,7 @@ When `goto`, `gosub` and `do` parameters are not specified, will continue script
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">choiceSummary</span> | string | Text to show for the choice. When the text contain spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
-| locked | boolean | Whether the choice should be disabled or otherwise not accessible for player to pick; see [choice docs](/guide/choices#locked-choice) for more info. Disabled by default. |
+| lock | boolean | Whether the choice should be disabled or otherwise not accessible for player to pick; see [choice docs](/guide/choices#locked-choice) for more info. Disabled by default. |
 | button | string | Path (relative to a `Resources` folder) to a [button prefab](/guide/choices#choice-button) representing the choice. The prefab should have a `ChoiceHandlerButton` component attached to the root object. Will use a default button when not provided. |
 | pos | decimal list | Local position of the choice button inside the choice handler (if supported by the handler implementation). |
 | handler | string | ID of the choice handler to add choice for. Will use a default handler if not provided. |
@@ -422,7 +422,7 @@ Continue executing this script or ...?[skipInput]
 @stop
 
 ; Make choice disabled/locked when 'score' variable is below 10.
-@choice "Secret option" locked:{score<10}
+@choice "Secret option" lock:{score<10}
 ```
 
 ## clearBacklog
