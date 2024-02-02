@@ -74,7 +74,7 @@ While it's possible to implement this with a choice button parameter outlined ab
 
 ```nani
 ; Make choice disabled/locked when 'score' variable is below 10.
-@choice "Secret option" locked:{score<10}
+@choice "Secret option" lock:{score<10}
 ```
 
 Built-in choice button has `On Lock` event invoked each time choice is added, which will set the underlying button's `Interactible` property, making it interactable when the choice is not locked and vice-versa. You can override or extend the behaviour by attaching a custom handler to `On Lock` event or by overriding `HandleLockChanged` method of the choice button class.
