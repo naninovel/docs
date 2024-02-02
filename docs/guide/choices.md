@@ -66,6 +66,21 @@ To use a different text component for the choice text, use `On Summary Text Chan
 
 ![](https://i.gyazo.com/8810c51b336bfd653efcde591fe1c41f.png)
 
+## Locked Choice
+
+A common use case with choices is to make one locked/disabled or otherwise not available for player to pick based on a condition. For example, you may wish to restrict player access to a particular story branch in case a condition was not met prior to the choice.
+
+While it's possible to implement this with a choice button parameter outlined above, the use case is pretty common, so Naninovel has a dedicated way to make this work with `lock` parameter of [@choice] command:
+
+```nani
+; Make choice disabled/locked when 'score' variable is below 10.
+@choice "Secret option" locked:{score<10}
+```
+
+Built-in choice button has `On Lock` event invoked each time choice is added, which will set the underlying button's `Interactible` property, making it interactable when the choice is not locked and vice-versa. You can override or extend the behaviour by attaching a custom handler to `On Lock` event or by overriding `HandleLockChanged` method of the choice button class.
+
+![](https://i.gyazo.com/ec5ef74ec9af1aa46a18d89bd34d866f.png)
+
 ## ButtonList Choice Handler
 Button list handler is used by default. It stores the choice buttons inside a horizontal layout panel and ignores the `pos` parameter of the [@choice] command.
 
