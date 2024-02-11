@@ -65,7 +65,7 @@ You may also find official Unity learning materials for addressable useful: http
 :::
 
 ::: info NOTE
-We're not providing any tutorials or support for Unity's addressable asset system itself, like setting up a remote web hosting for you assets or other deploy/serving scenarios; consult the [support page](/support/#unity-support) for more information.
+We're not providing any tutorials or support for Unity's addressable asset system itself, like setting up a remote web hosting for your assets or other deploy/serving scenarios; consult the [support page](/support/#unity-support) for more information.
 :::
 
 ## Project
