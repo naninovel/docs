@@ -61,6 +61,7 @@ When screen aspect ratio is different from the reference resolution ratio, backg
 ## How to add a line break to the message?
 
 Check out [`[br]` command](/api/#br). Alternatively, `<br>` tag will work with [TMPro printers](/guide/text-printers#textmesh-pro), eg:
+
 ```nani
 First line.<br>Second line.
 ```
@@ -71,14 +72,15 @@ Use [command inlining](/guide/naninovel-scripts#command-inlining).
 
 ## How to run commands concurrently?
 
-Use `wait` parameter, eg:
+Use wait flag, eg:
+
 ```nani
 ; Printer will start fading out at the same time as the characters
-@hideChars wait:false
+@hideChars >
 @hidePrinter
 ```
 
-Alternatively, disable `Wait By Default` option in script player configuration; this way all commands will execute concurrently by default, unless `wait` is set to "true".
+Alternatively, disable `Wait By Default` option in script player configuration; this way all commands will execute concurrently by default, unless wait flag is reversed. Refer to the [wait flag documentation](/guide/naninovel-scripts#wait-flag) for more info.
 
 ## How to make actors appear in front of each other (z-sorting)?
 

@@ -154,11 +154,11 @@ The built-in bubble printer supports two appearances: "Left" and "Right", which 
 
 ```nani
 @printer Bubble.Left pos:42,80 visible:false time:0
-@show Bubble wait:false
+@show Bubble >
 Misaki: Aliquam lobortis!
-@char Nanikun.Happy wait:false
+@char Nanikun.Happy >
 @printer Bubble.Right pos:53,55 visible:false time:0
-@show Bubble wait:false
+@show Bubble >
 Nanikun: Integer nec maximus elit, eget posuere risus.
 ```
 

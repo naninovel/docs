@@ -50,13 +50,13 @@ It's not recommended to use this command for complex animations. Naniscript is a
 
 ; Start loop animations of `Yuko` and `Kohaku` actors; notice, that you can skip
 ; key values indicating that the parameter shouldn't change during the animation step.
-@animate Kohaku,Yuko loop:true appearance:Surprise,Sad,Default,Angry transition:DropFade,Ripple,Pixelate posX:15,85,50 posY:0,-25,-85 scale:1,1.25,1.85 tint:#25f1f8,lightblue,#ffffff,olive easing:EaseInBounce,EaseInQuad time:3,2,1,0.5 wait:false
+@animate Kohaku,Yuko loop:true appearance:Surprise,Sad,Default,Angry transition:DropFade,Ripple,Pixelate posX:15,85,50 posY:0,-25,-85 scale:1,1.25,1.85 tint:#25f1f8,lightblue,#ffffff,olive easing:EaseInBounce,EaseInQuad time:3,2,1,0.5 >
 ...
 ; Stop the animations.
 @animate Yuko,Kohaku loop:false
 
 ; Start a long background animation for `Kohaku`.
-@animate Kohaku posX:90,0,90 scale:1,2,1 time:10 wait:false
+@animate Kohaku posX:90,0,90 scale:1,2,1 time:10 >
 ; Do something else while the animation is running.
 ...
 ; Here we're going to set a specific position for the character,
@@ -1309,7 +1309,7 @@ Applies [shake effect](/guide/special-effects.html#shake) for the actor with the
 @shake Dialogue
 ;
 ; Start shaking `Kohaku` character, show choice to stop and act accordingly.
-@shake Kohaku count:0 wait:false
+@shake Kohaku count:0 >
 @choice "Continue shaking" goto:.Continue
 @choice "Stop shaking" goto:.Stop
 @stop
@@ -1784,7 +1784,7 @@ Jeez, what a disgusting noise. Shut it down![wait i5][skipInput]
 
 ; The text is printed without delay, as the `wait` command is not awaited.
 ; The thunder effects are played after a random delay of 3 to 8 seconds.
-@wait {Random(3,8)} do:"@sfx Thunder, @shake Camera" wait:false
+@wait {Random(3,8)} do:"@sfx Thunder, @shake Camera" >
 The thunder might go off any second...
 ```
 
