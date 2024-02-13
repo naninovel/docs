@@ -127,6 +127,11 @@
                     "match": "\\s\\w+:"
                 },
                 {
+                    "comment": "Wait Flag",
+                    "name": "naniscript.command.waitflag",
+                    "match": "\\s[>|<]$"
+                },
+                {
                     "comment": "Quoted String - \"String\"",
                     "name": "naniscript.quoted-text",
                     "match": "\"(?:[^\"\\\\]|\\\\.)*\"",
