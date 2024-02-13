@@ -80,7 +80,7 @@ Use wait flag, eg:
 @hidePrinter
 ```
 
-Alternatively, disable `Wait By Default` option in script player configuration; this way all commands will execute concurrently by default, unless wait flag is reversed. Refer to the [wait flag documentation](/guide/naninovel-scripts#wait-flag) for more info.
+Alternatively, disable `Wait By Default` option in script player configuration; this way all commands will execute concurrently by default, unless wait flag is reversed. Refer to the [wait flag documentation](/guide/naninovel-scripts#wait-flags) for more info.
 
 ## How to make actors appear in front of each other (z-sorting)?
 

@@ -179,7 +179,7 @@ When line starts with semicolon literal (`;`) it's considered a comment statemen
 @save
 ```
 
-## Wait Flag
+## Wait Flags
 
 Wait flags are `>` and `<` symbols specified at the end of command. Use them to control whether next command should be executed immediately after or wait for the completion of the current command, eg:
 
