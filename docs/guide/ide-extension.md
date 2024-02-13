@@ -131,6 +131,10 @@ public class LabelMetadataProvider : IMetadataProvider
 }
 ```
 
+::: info NOTE
+Starting with v1.20 label auto-completion no longer requires metadata sync, hence the above code has been removed from the Naninovel sources, but it's still a valid example on implementing custom metadata providers.
+:::
+
 ## IDE Attributes
 
 Naninovel has a number of [C# attributes](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes) to provide various IDE-related functionality to custom commands. For example, to add on-hover documentation to the custom commands and/or parameters, apply `Documentation` attribute to command type and parameter fields respectively:
@@ -216,6 +220,7 @@ You can repurpose the same tactic when inheriting custom commands from the built
 When using `ConstantContext` IDE Attribute, instead of enum it's possible to specify an expression to be evaluated by the IDE to produce a constant name based on command parameter values or other variables, such as currently inspected script.
 
 Expression syntax:
+
 - Evaluated parts should be wrapped in curly braces (`{}`)
 - To reference currently inspected script name, use `$Script`
 - To reference parameter value, use `:` followed by the parameter ID (field name as specified in C#, not alias)

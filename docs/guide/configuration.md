@@ -142,7 +142,6 @@ Custom Initialization UI | Null | UI to show while the engine is initializing (w
 Enable Bridging | False | Whether to automatically start the bridging server to communicate with external Naninovel tools: IDE extension, web editor, etc.
 Server Port | 41016 | The network port for the server to listen. Change both here and in the external tools in case the default port is occupied by another application.
 Auto Generate Metadata | True | Whether to automatically generate project metadata when Unity editor is started.
-Generate Label Metadata | True | Whether to generate metadata used for script labels autocompletion. May take a substantial time when there are a lot of scripts in the project.
 Enable Development Console | True | Whether to enable development console.
 Debug Only Console | False | When enabled, development console will only be available in development (debug) builds.
 
