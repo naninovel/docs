@@ -2,13 +2,13 @@
 
 Engine processes user input using pre-configured listeners. Each input listener has the following properties:
 
-Property | Description
---- | ---
-Name | Identifier of the input listener. Used to reference the listener by other engine systems.
-Always Process | Whether to process the input while in input blocking mode. E.g. when playing a movie.
-Keys | List of keys (buttons) which activate the input.
-Axes | List of axes (eg, a mouse or a gamepad analog stick) which activate the input.
-Swipes | List of swipes (touch screen) which activate the input.
+| Property       | Description                                                                               |
+|----------------|-------------------------------------------------------------------------------------------|
+| Name           | Identifier of the input listener. Used to reference the listener by other engine systems. |
+| Always Process | Whether to process the input while in input blocking mode. E.g. when playing a movie.     |
+| Keys           | List of keys (buttons) which activate the input.                                          |
+| Axes           | List of axes (eg, a mouse or a gamepad analog stick) which activate the input.            |
+| Swipes         | List of swipes (touch screen) which activate the input.                                   |
 
 For specific values see Unity's input guide: [docs.unity3d.com/Manual/ConventionalGameInput](https://docs.unity3d.com/Manual/ConventionalGameInput.html).
 
@@ -70,11 +70,15 @@ Default event system and input action assets are stored at `Naninovel/Prefabs/In
 
 When properly configured, input actions will activate Naninovel's bindings. In case you wish to disable legacy input processing (which is set under the "Bindings" list), disable `Process Legacy Bindings` property under input configuration menu.
 
-::: tip EXAMPLE
-Find an example project on using the new input system and implementing a rebind UI to allow player change default controls on [GitHub](https://github.com/naninovel/samples/tree/main/unity/input-rebind).
+::: warning
+When `Process Legacy Bindings` is left enabled, some bindings may trigger twice (one from new input and another from legacy). Either make sure each binding is only processed under its respective system or disable the option completely.
 :::
 
 For more information on using the input system, consult the [official manual](https://docs.unity3d.com/Packages/com.unity.inputsystem@latest).
+
+::: tip EXAMPLE
+Find an example project on using the new input system and implementing a rebind UI to allow player change default controls on [GitHub](https://github.com/naninovel/samples/tree/main/unity/input-rebind).
+:::
 
 ## Adapt to Input Mode
 
