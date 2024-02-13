@@ -52,21 +52,7 @@ You can use `time` *Decimal* parameter here to control how long the characters w
 ```nani
 @hideChars time:5.5
 ```
-
 This will make the characters fade-out for 5.5 seconds, before completely removing them from scene.
-
-You can also use `wait` *Boolean* parameter to specify whether next command should be executed immediately after or wait for the completion of the current command:
-
-```nani
-@hideChars time:5.5 wait:false
-@hidePrinter
-```
-
-This will hide the text printer right after characters begin to fade-out. If `wait` would be `true` or not specified, the printer would be hidden only when [@hideChars] complete the execution.
-
-::: tip
-If you find yourself specifying `wait:false` more often than not, consider disabling `Wait By Default` option in script player configuration; this way script player won't wait the commands, unless wait parameter is explicitly set to true.
-:::
 
 ### Parameter Value Types
 
@@ -192,6 +178,46 @@ When line starts with semicolon literal (`;`) it's considered a comment statemen
 ; The following command will auto-save the game.
 @save
 ```
+
+## Wait Flag
+
+Wait flags are `>` and `<` symbols specified at the end of command. Use them to control whether next command should be executed immediately after or wait for the completion of the current command, eg:
+
+```nani
+@snow >
+@camera zoom:0.5 >
+Kohaku: Looks like it's starting to snow.
+```
+
+— will start printing the generic line without waiting for snow FX and zoom camera commands to complete, making all the commands run in parallel.
+
+If you find yourself specifying `>` more often than not, consider disabling `Wait By Default` option in script player configuration; this way script player won't wait the commands:
+
+```nani
+@snow
+@camera zoom:0.5
+Kohaku: Looks like it's starting to snow.
+```
+
+— given `Wait By Default` is disabled, above will work same as before, without the need to specify wait flags. If you'd want to wait for command completion with default wait disabled, use reverse wait flag:
+
+```nani
+@snow
+@camera zoom:0.5 <
+Kohaku: Looks like it's starting to snow.
+```
+
+— will wait for zoom to complete before starting to print the generic line.
+
+Wait flags can be used inside inlined commands as well, eg:
+
+```nani
+Kohaku: Printed before shake[shake Kohaku >] printing while Kohaku is shaking.
+```
+
+::: info NOTE
+Wait flags are shortcuts for specifying `wait` parameter. When command ends with `>` it's parsed as if it has `wait:false` parameter, while `<` is parsed as `wait:true`. When both wait parameter and wait flag are specified, wait flag overrides effect of the wait parameter.
+:::
 
 ## Conditional Execution
 
