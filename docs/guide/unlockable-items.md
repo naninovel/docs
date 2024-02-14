@@ -95,29 +95,29 @@ The system can be used to build an in-game vocabulary/encyclopedia or achievemen
 Video above is demonstrating inline managed text document format, which is not the default for tips in modern Naninovel versions; see below on the current default (multiline) format and how to switch to inline.
 :::
 
-To define the available tips, create a `Tips.txt` text document inside the [managed text](/guide/managed-text) resources directory (`Resources/Naninovel/Text` by default). Format is similar to script localization documents (multiline): lines starting with `#` stores tip ID (key); lines below correspond to the tip record value, which can contain title (required), category and description (optional) seperated by `|`, eg:
+To define the available tips, create a `Tips.txt` text document inside the [managed text](/guide/managed-text) resources directory (`Resources/Naninovel/Text` by default). Format is similar to script localization documents (multiline): lines starting with `#` stores tip ID (key); lines below correspond to the tip record value, which can contain title (required), category and description (optional) seperated by `^`, eg:
 
 ```
 # Tip1ID
-Tip 1 Title | Tip 1 Category | Tip 1 Description
+Tip 1 Title ^ Tip 1 Category ^ Tip 1 Description
 # Tip2ID
-Tip 2 Title || Tip 2 Description
+Tip 2 Title ^^ Tip 2 Description
 # Tip3ID
 Tip 3 Title
 # Tip4ID
-Tip 4 Title | Tip 4 Category |
+Tip 4 Title ^ Tip 4 Category ^
 ```
 
 When tip value is too long, you can break it into multiple lines for readability:
 
 ```
 # Tip1
-Title | Category |
+Title ^ Category ^
 Long description line 1.<br>
 Long description line 2.<br>
 
 # Tip2
-Title | Category |
+Title ^ Category ^
 Long description line 1.<br>
 ...
 ```
@@ -126,8 +126,8 @@ In case you prefer inline format, remove `Tips` from `Multiline Categories` list
 
 ```
 Tip1ID: Title
-Tip2ID: Title | Category | Description
-Tip3ID: Title || Description
+Tip2ID: Title ^ Category ^ Description
+Tip3ID: Title ^^ Description
 ```
 
 Apart from `<br>` tag, you can use other rich text tags supported by the text rendering system of your choice (TMPro is used in built-in tips UI).
