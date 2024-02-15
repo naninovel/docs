@@ -67,23 +67,70 @@ You're expected to put the actual translation right after the comment line with 
 Противостояние есть метеорный дождь.
 ```
 
-When **Include Annotations** option is enabled, generated localization documents will contain script comments placed before localized lines. For example, given following source script text:
+### Joined Lines
+
+When translated generic line contains inlined commands or expressions, it'll be split into multiple text fragments, each mapped to unique text ID. When **Join Lines** option is enabled, such fragments will be joined into single line with pipe symbol `|`.
+
+For example, given following source script text:
+
+```nani
+Looks like rain is starting[rain]. Hey, {MC}, hurry up!
+```
+
+— following localization document will be generated:
+
+```nani
+# id1|id2|id3
+; Looks like rain is starting|. Hey, |, hurry up!
+```
+
+Notice inlined command and expression replaced with `|`. Remember to preserve them in the translated text:
+
+```nani
+# id1|id2|id3
+; Looks like rain is starting|. Hey, |, hurry up!
+Похоже, дождь начинается|. Эй, |, поспеши!
+```
+
+It's also possible to re-arrange localized text between fragments, if required by the target localization, eg:
+
+```nani
+# id1|id2
+; Hey, |, hurry up!
+|, эй, поспеши!
+```
+— this will print `{MC}` (main character name) before the rest of the sentence.
+
+### Annotations
+
+When **Include Annotations** option is enabled, generated localization documents will contain source script content being localized (command or generic line), as well as any comments placed before that. For example, given following source script text:
 
 ```nani
 ; Player has to pick route.
-@choice "Go left"
-@choice "Go right"
+@choice "Go left" set:route="left"
+@choice "Go right" set:route="right"
+@stop
+Narrator: You've decided to go {route}. Wise choice!
 ```
 
 — following localization document will be generated:
 
 ```nani
 # id1
-; Go left;; Player has to pick route.
+;; Player has to pick route.
+;; @choice "Go left" set:route="left"
+; Go left
 
 # id2
+;; @choice "Go right" set:route="right"
 ; Go right
+
+# id3|id4
+;; Narrator: …{route}…
+; You've decided to go |. Wise choice!
 ```
+
+This may be useful to give translator more context on the localized text. Make sure to only translate content placed after single `;`. Annotations (content after `;;`) should not be included in the translated text.
 
 ::: tip EXAMPLE
 Find example localization setup in the [demo project](/guide/getting-started#demo-project). Consider using it as a reference in case having issues setting up localization in your own project.

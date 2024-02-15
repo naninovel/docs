@@ -14,7 +14,7 @@
                 {
                     "comment": "Label - #...",
                     "name": "naniscript.label",
-                    "match": "^[\\t ]*(#[\\t ]*\\w+)(\\s[\\s\\w]*)[\\t ]*$",
+                    "match": "^[\\t ]*(#[\\t ]*)(\\s[\\s\\w|]*)[\\t ]*$",
                     "captures": {
                         "1": { "name": "naniscript.label" },
                         "2": { "name": "naniscript.label.spaceinlabel" }
