@@ -74,7 +74,7 @@ CalculateProgress () | Return a float number in 0.0 to 1.0 range, representing h
 IsUnlocked (*System.String* unlockableId) | Checks whether an unlockable item with the provided ID is currently unlocked. | `IsUnlocked("Tips/MyTip")`
 HasPlayed () | Checks whether currently played command has ever been played before. | `HasPlayed()`
 HasPlayed (*System.String* scriptName) | Checks whether script with the provided name has ever been played before. | `HasPlayed("Script001")`
-GetName (*System.String* id) | Returns display name of a character actor with the provided ID. | `GetName("Kohaku")`
+GetName (*System.String* id) | Returns author name of a character actor with the provided ID. | `GetName("Kohaku")`
 
 </div>
 
