@@ -6,19 +6,27 @@ Resources originally used to author the project are associated with *source loca
 
 The *source locale* can be changed via `Naninovel -> Configuration -> Localization` menu with `Source Locale` property. `Source Locale` property only determines the name (ID) of the locale associated with source project assets and is used in the "Language" drop-down settings menu and related engine APIs to distinguish the locale.
 
+![](https://i.gyazo.com/2edec18fab84cc750e8bd9d3634d3856.png)
+
 To add a locale create sub-folder inside `Resources/Naninovel/Localization` (the so-called *localization resources root*) with a name equal to one of the [RFC5646](https://gist.github.com/Elringus/db90d9c74f13c00fa35131e61d1b73cb) language tags you wish to add localization for. For example, to add German locale, create `Resources/Naninovel/Localization/de` folder. The "Language" drop-down list in the game settings built-in UI will automatically incorporate all the added locales.
 
 Be aware, that you don't have to create a sub-folder in the *localization resources root* for the *source locale*. All the project resources stored outside the *localization resources root* belong to the *source locale* by default.
 
 *Localization resources root* specific path can be changed in the localization configuration menu via `Loader > Path Prefix` property. Notice, that the configured path is relative to a "Resources" folder (not the "Assets"). The resources folders are [handled in a special way](https://docs.unity3d.com/Manual/LoadingResourcesatRuntime.html) by Unity; you can have multiple such folders stored anywhere inside the project assets for organization purposes.
 
-::: info NOTE
+::: tip
 Like with any other type of resources, instead of using `Resources` folder you can opt for a different resource provider; for example, with [addressables](/guide/resource-providers#addressable) provider you can bundle locale-specific resources independently of the main game package and download them on-demand.
 :::
 
-To specify which locale is selected by default when player first runs the game use `Default Locale` property in the localization configuration menu. When the property is not specified, the game will start in *source locale* by default.
+## Default Locale
 
-![](https://i.gyazo.com/fb50a8c5f5fa6624105f8eeca6a7523e.png)
+To specify which locale is selected by default when player first runs the game use `Default Locale` property in the localization configuration menu. When the property is not specified, the game will start in `Source Locale`.
+
+When `Auto Detect Locale` option is enabled in the configuration and the game is running for the first time, Naninovel will attempt to automatically detect locale based on system language. When succeeds and the locale is supported by the game, it'll be selected; otherwise falls back to `Default Locale`.
+
+::: warning
+Automatically detected locale won't have specifier, ie when system language is English, the detected locale will be `en`, never `en-US` or `en-GB`. This is a limitation of Unity's [system language detection](https://docs.unity3d.com/ScriptReference/Application-systemLanguage). When relying on auto-detection, make sure to not use specifiers in the added locales.
+:::
 
 ## Resources Localization
 
