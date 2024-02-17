@@ -176,6 +176,7 @@ Loader | Localization- (Addressable, Project) | Configuration of the resource lo
 Languages | Object Ref | RFC5646 language tags mapped to default language display names. Restart Unity editor for changes to take effect.
 Source Locale | En | Locale of the source project resources (language in which the project assets are being authored).
 Default Locale | Null | Locale selected by default when running the game for the first time. Will select `Source Locale` when not specified.
+Auto Detect Locale | True | When enabled and the game is running for the first time, attempts to automatically detect locale based on system language. When succeeds and the locale is supported by the game, selects it; otherwise falls back to 'Default Locale'.
 
 </div>
 

@@ -77,7 +77,7 @@ Per-actor poses have priority over shared poses meaning if actor pose name is eq
 
 ## Display Names
 
-In the character configuration you can set a `Display Name` for specific characters. When set, display name will be shown in the printer name label UI, instead of the character's ID. This allows using compound character names, that contains spaces and special characters (which is not allowed for IDs).
+In the character configuration, given `Has Name` is enabled, you can set a `Display Name` for specific characters. When set, display name will be shown in the printer name label UI, instead of the character's ID. This allows using compound character names, that contains spaces and special characters (which is not allowed for IDs).
 
 Alternatively, the names can be specified with "CharacterNames" [managed text](/guide/managed-text) document, which is automatically created when running generate managed text resources task. Use this to localize display names and/or edit them outside of Unity editor. Records in the managed text document have priority over display names set in actor configuration and will override them.
 
@@ -131,6 +131,8 @@ Char1: My display name is now bound to `name` custom variable.
 
 @stop
 ```
+
+When `Has Name` is disabled, neither display name, nor character ID will be displayed in the printer UI. This is useful for [narrator characters](/guide/characters#narrator-characters), which could have a [linked printer](/guide/characters#linked-printer), but their ID shouldn't be displayed.
 
 ## Message Colors
 
@@ -209,6 +211,10 @@ It's possible to associate a [text printer](/guide/text-printers) with a charact
 When linked, the printer will automatically be used to handle messages authored by the character.
 
 Be aware, that [@print] commands (that are also used under the hood when printing generic text lines) make associated printers default and hide other visible printers by default. When printers are linked to characters, print commands will automatically change the currently visible and default text printer, while printing text associated with the corresponding characters. It's possible to prevent this behavior by disabling `Auto Default` property in printer actor configuration menu; when disabled you'll have to manually show/hide and switch default printers with [@printer] commands.
+
+::: tip
+Link a printer with [narrator character](/guide/characters#narrator-characters) and disable `Has Name` to make narrated text linked with a printer, so that you won't have to use [@printer] to switch back to non-character (default) printer all the time.
+:::
 
 ## Sprite Characters
 
