@@ -188,7 +188,18 @@ To generate localization resources (script and managed text docs), run the game 
 
 If you'd like to generate localization resources based on a built-in localization, append the locale tag to the eject arg. Eg, given the game has `ja-JP` localization, use the following args to eject the Japanese localization documents: `-nani-eject-ja-JP`. When the locale tag is not specified, documents for the source locale are ejected.
 
-Notice `Localization/Author.txt` file; you can specify author of the localization by replacing the default content of the file. The content is displayed in the language dropdown by default, but developer may customize this behaviour. Don't delete the file itself, as it's required to detect presence of the community localization.
+Now supply a font to use with the localization. Drop the font file under the Localization directory, eg: `Localization/Noto.ttf`.
+
+Notice the `Localization/Info.txt` file. Here you have to specify author of the localization (first line) and supplied font name (second line) by replacing the default content of the file. Here's an example:
+
+```
+Awesome Author
+Noto.ttf
+```
+
+— "Awesome Author" will be displayed in the language dropdown by default, but developer may customize this behaviour. Font will be applied by default when the game is started.
+
+Don't delete or move the `Info.txt` file, as it's required to detect presence of the community localization.
 
 ### Translating
 
