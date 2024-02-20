@@ -606,6 +606,8 @@ Navigates naninovel script playback to the provided path.
 | --- | --- | --- |
 | <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">path</span> | named string | Path to navigate into in the following format: `ScriptName.LabelName`. When label name is omitted, will play provided script from the start. When script name is omitted, will attempt to find a label in the currently played script. |
 | reset | string list | When specified, will control whether to reset the engine services state before loading a script (in case the path is leading to another script):<br /> - Specify `*` to reset all the services, except the ones with `Goto.DontReset` attribute.<br /> - Specify service type names (separated by comma) to exclude from reset; all the other services will be reset, including the ones with `Goto.DontReset` attribute.<br /> - Specify `-` to force no reset (even if it's enabled by default in the configuration).<br /><br /> Notice, that while some services have `Goto.DontReset` attribute applied and are not reset by default, they should still be specified when excluding specific services from reset. |
+| hold | boolean | Whether to hold resources in the target script, which make them preload together with the script this command specified in. Has no effect outside of `Conservative` resource policy. Refer to [memory management](/guide/memory-management) guide for more info. |
+| release | boolean | Whether to release resources before navigating to the target script to free the memory. Has no effect outside of `Optimistic` resource policy. Refer to [memory management](/guide/memory-management) guide for more info. |
 
 </div>
 
@@ -1088,7 +1090,7 @@ Spawns particle system simulating [rain](/guide/special-effects.html#rain).
 Resets state of the [engine services](/guide/engine-services) and unloads (disposes) all the resources loaded by Naninovel (textures, audio, video, etc); will basically revert to an empty initial engine state.
 
 ::: info NOTE
-The process is asynchronous and is masked with a loading screen ([ILoadingUI](/guide/user-interface#ui-customization)). <br /><br /> Be aware, that this command can not be undone (rewound back).
+Be aware, that this command can not be undone (rewound back).
 :::
 
 <div class="config-table">

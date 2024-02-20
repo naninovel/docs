@@ -131,7 +131,7 @@ public class PrintText : Command, Command.ILocalizable
 
 ### Preloadable Command
 
-In case execution of the command requires loading some resources, implement `Command.IPreloadable` interface to preload the required resources when the game is loading; find more about memory management in the [resource providers guide](/guide/resource-providers#memory-management).
+In case execution of the command requires loading some resources, implement `Command.IPreloadable` interface to preload the required resources when the game is loading. Refer to [memory management](/guide/memory-management) guide for more info.
 
 ```csharp
 public class PlayAudioClip : Command, Command.IPreloadable

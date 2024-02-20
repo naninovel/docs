@@ -110,6 +110,10 @@ Built with an open source [SpriteDicing](https://github.com/elringus/SpriteDicin
 
 Diced background is very similar to diced character implementation; see the [diced characters guide](/guide/characters.html#diced-sprite-characters) for the setup and usage instructions.
 
+::: warning
+Diced backgrounds have to be manually unloaded to prevent memory leaks. Refer to [memory management](/guide/memory-management#unloading-resources) guide for more info and examples.
+:::
+
 ## Video Backgrounds
 
 Video backgrounds use looped [video clip](https://docs.unity3d.com/Manual/class-VideoClip) assets to represent the appearance.
@@ -182,19 +186,23 @@ Don't forget that nameless parameter in [@back] command is expecting appearance 
 @back Group>Layer,Other/Group+Layer,-RootLayer.TransitionType id:LayeredForest
 ```
 
+::: warning
+Layered backgrounds have to be manually unloaded to prevent memory leaks. Refer to [memory management](/guide/memory-management#unloading-resources) guide for more info and examples.
+:::
+
 ## Generic Backgrounds
 
 Generic background is the most flexible background actor implementation. It's based on a prefab with a `Generic Background Behaviour` component attached to the root object. Appearance changes and all the other background parameters are routed as [Unity events](https://docs.unity3d.com/Manual/UnityEvents.html) allowing to implement the behavior of the underlying object in any way you wish.
 
 ![](https://i.gyazo.com/6483ef3e84549c1bbfbdffc6556308ea.png)
 
-::: warning
+::: info NOTE
 Generic actor implementations just route events from the scenario scripts and it's up to user to implement the underlying behaviour, eg how the actor should react to the appearance or visibility change commands, whether and how it will adapt to aspect ratio changes, etc. Don't expect most of the actor-related features to work automatically with the generic implementations.
 :::
 
 To create generic background prefab from a template, use `Create -> Naninovel -> Background -> Generic` context asset menu.
 
-Generic backgrounds are very similar to generic characters; check out a tutorial video on setting an animated 3D model as a generic character for one of the possible usage examples. Be aware, that the video is captured with an old Naninovel version and some properties and component names are different now; see the above docs for the up to date information.
+Generic backgrounds are very similar to generic characters; check out a tutorial video on setting an animated 3D model as a generic character for one of the possible usage examples. Be aware, that the video is captured with an old Naninovel version and some properties and component names are different now; see the above docs for the up-to-date information.
 
 ![](https://www.youtube.com/watch?v=HPxhR0I1u2Q)
 
@@ -204,6 +212,10 @@ Unity's `Animator` component could fail to register `SetTrigger` when the game o
 
 ::: tip EXAMPLE
 Find [example project on GitHub](https://github.com/naninovel/samples/tree/main/unity/generic-actor), where generic background implementation is used to host animated sprites.
+:::
+
+::: warning
+Generic backgrounds have to be manually unloaded to prevent memory leaks. Refer to [memory management](/guide/memory-management#unloading-resources) guide for more info and examples.
 :::
 
 ## Scene Backgrounds

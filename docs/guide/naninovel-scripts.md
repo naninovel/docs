@@ -276,46 +276,6 @@ Lorem ipsum dolor sit amet. [if score>10]Duis efficitur imperdiet nunc. [else]Ve
 
 For more information on the conditional expression format and available operators see [script expressions](/guide/script-expressions) guide.
 
-## Memory Management
-
-Some script commands require loading resources in order to work: audio track for [@bgm], character prefab and/or appearance textures for [@char], video clip for [@movie] and so on. Naninovel takes care of preloading and unloading most of the resources depending on `Resource Policy` setting found in resource provider configuration:
-
-Policy | Description
-:---: | ---
-Static | All the resources required for script execution are preloaded when starting the playback (usually on [@goto]) and unloaded when the script has finished playing. The loading operation is masked with loading UI. This policy is default and recommended for most cases.
-Dynamic | Only the resources required for the next `Dynamic Policy Steps` commands are preloaded during script execution and all the unused resources are unloaded immediately. Use this mode when targeting platforms with strict memory limitations and it's impossible to properly organize naninovel scripts. Expect hiccups when the resources are loaded in background while the game is progressing.
-
-However, in some cases Naninovel won't be able to automatically unload resources. Specifically, layered, diced sprite, generic, Live2D and Spine actors all require a monolith prefab in order to represent any of the appearances making it impossible to independently load resources per appearance. To prevent memory leaks, unload such resources manually in one of the ways described below.
-
-### Remove Individual Actors
-
-Use [@hide] command with `remove` parameter to hide and dispose specific actors. Applicable when some actors are expected to live across scripts.
-
-```nani
-@back id:LayeredBackground
-@char GenericCharacter
-@char DicedCharacter
-; We expect `LayeredBackground` to survive when `NextScript` is loaded,
-; but both characters should be disposed.
-@hide GenericCharacter,DicedCharacter remove:true
-@goto NextScript
-```
-
-### Remove All Actors
-
-Use [@hideAll] with `remove` parameter to hide and dispose all the existing actors (including text printers and choice handlers) or [@resetState] with `only` parameter to immediately dispose actors of specific type: `ICharacterManager` for character and `IBackgroundManager` for backgrounds. Applicable when all actors or actors of specific type are not expected to survive script loading.
-
-```nani
-...
-@goto NextScript
-; Dispose all the existing backgrounds.
-@resetState only:IBackgroundManager
-```
-
-### Reset On Goto
-
-In case you don't need any [engine service](/guide/engine-services) state to persist between scripts (including currently played music, special effects, etc), enable `Reset On Goto` in state configuration. This way all the services will automatically dispose associated resources when navigating between naninovel scripts and you won't have to use any special commands to unload the resources.
-
 ## Title Script
 
 Title script is a special naninovel script assigned in script configuration menu. When assigned, it's automatically played when the title UI (main menu) is shown. Title script can be used to set up the title screen scene: background, music, effects, etc.
