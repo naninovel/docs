@@ -305,6 +305,23 @@ table > tfoot:not(:last-child) {
  * -------------------------------------------------------------------------- */
 
 /* Stretch YouTube embeds with small thumbnails. */
+.txt-ok {
+    color: var(--vp-c-green-2);
+}
+
+.txt-warn {
+    color: var(--vp-c-yellow-2);
+}
+
+.txt-err {
+    color: var(--vp-c-red-2);
+}
+
+abbr {
+    cursor: help;
+    text-underline-position: from-font;
+}
+
 .imgit-youtube {
     width: 100% !important;
 }

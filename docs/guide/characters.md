@@ -256,6 +256,10 @@ Following video guide covers creating and configuring diced sprite atlas, adding
 
 ![](https://www.youtube.com/watch?v=6PdOAOsnhio)
 
+::: warning
+Diced characters have to be manually unloaded to prevent memory leaks. Refer to [memory management](/guide/memory-management#unloading-resources) guide for more info and examples.
+:::
+
 ## Layered Characters
 
 The layered implementation allows composing characters from multiple layers and then toggle them individually or in groups via naninovel scripts at runtime.
@@ -365,6 +369,10 @@ Be aware, that the layer objects are not directly rendered by Unity cameras at r
 
 In case you wish to apply an animation or other dynamic behaviour to the layered character, enable `Animated` property found on `Layered Character Behaviour` component. When the property is enabled, the layers will be rendered each frame (instead once per appearance change).
 
+::: warning
+Layered characters have to be manually unloaded to prevent memory leaks. Refer to [memory management](/guide/memory-management#unloading-resources) guide for more info and examples.
+:::
+
 ### Outsourcing Appearance Management
 
 You may find layered implementation useful for supporting various built-in render features (semi-transparency overdraw handling, transition effects, blur and depth-of-field support, etc), but would like to use external tools for managing appearance of the actor, such as Unity's [Animator](https://docs.unity3d.com/Manual/class-Animator.html). By default, layered behaviour will use layered expressions when notifying about appearance changes via `On Appearance Changed` event, which may not be desired in such case.
@@ -405,13 +413,13 @@ Generic character is the most flexible character actor implementation. It's base
 
 ![](https://i.gyazo.com/d0ea1bf7a5ed3b4bb7eb70c4ddbfeba2.png)
 
-::: warning
+::: info NOTE
 Generic actor implementations just route events from the scenario scripts and it's up to user to implement the underlying behaviour, eg how the actor should react to the appearance or visibility change commands, whether and how it will support speaker highlight feature, etc. Don't expect most of the actor-related features to work automatically with the generic implementations.
 :::
 
 To create generic character prefab from a template, use `Create -> Naninovel -> Character -> Generic` context asset menu.
 
-Check the following video tutorial for example on setting up a 3D rigged model as a generic character and routing appearance changes to the rig animations via [Animator](https://docs.unity3d.com/Manual/class-AnimatorController.html) component. Be aware, that the video is captured with an old Naninovel version and some properties and component names are different now; see the above docs for the up to date information.
+Check the following video tutorial for example on setting up a 3D rigged model as a generic character and routing appearance changes to the rig animations via [Animator](https://docs.unity3d.com/Manual/class-AnimatorController.html) component. Be aware, that the video is captured with an old Naninovel version and some properties and component names are different now; see the above docs for the up-to-date information.
 
 ![](https://www.youtube.com/watch?v=HPxhR0I1u2Q)
 
@@ -421,6 +429,10 @@ Unity's `Animator` component could fail to register `SetTrigger` when the game o
 
 ::: tip EXAMPLE
 Find [example project on GitHub](https://github.com/naninovel/samples/tree/main/unity/generic-actor), where generic character implementation is used to host a 3D animated model.
+:::
+
+::: warning
+Generic characters have to be manually unloaded to prevent memory leaks. Refer to [memory management](/guide/memory-management#unloading-resources) guide for more info and examples.
 :::
 
 ## Video Characters
@@ -479,6 +491,10 @@ Following video guide covers exporting a Live2D character from Cubism Editor, co
 Check out an [example project on GitHub](https://github.com/naninovel/samples/tree/main/unity/live2d), where a Live2D character is used with Naninovel.
 :::
 
+::: warning
+Live2D characters have to be manually unloaded to prevent memory leaks. Refer to [memory management](/guide/memory-management#unloading-resources) guide for more info and examples.
+:::
+
 ## Spine Characters
 
 Spine character implementation uses assets created with [Spine](http://esotericsoftware.com) 2D modeling and animation software.
@@ -507,6 +523,10 @@ Spine's [Skeleton Render Separator](https://github.com/pharan/spine-unity-docs/b
 
 ::: tip EXAMPLE
 Check out an [example project on GitHub](https://github.com/naninovel/samples/tree/main/unity/spine), where a Spine character is used with Naninovel.
+:::
+
+::: warning
+Spine characters have to be manually unloaded to prevent memory leaks. Refer to [memory management](/guide/memory-management#unloading-resources) guide for more info and examples.
 :::
 
 ## Narrator Characters

@@ -30,6 +30,7 @@ export const en: DefaultTheme.SidebarItem[] = [
             { text: "Managed Text", link: "/guide/managed-text" },
             { text: "Localization", link: "/guide/localization" },
             { text: "Spreadsheet", link: "/guide/spreadsheet" },
+            { text: "Memory Management", link: "/guide/memory-management" },
             { text: "Resource Providers", link: "/guide/resource-providers" },
             { text: "Community Modding", link: "/guide/community-modding" },
             { text: "Development Console", link: "/guide/development-console" }
