@@ -12,11 +12,11 @@ Some script commands require loading resources in order to work: audio clips for
 
 Below is a summary of the policies:
 
-| Policy       |             Memory Usage             |             CPU Usage             | Loading Screens                                   | Rollback                                         |
-|--------------|:------------------------------------:|:---------------------------------:|---------------------------------------------------|--------------------------------------------------|
-| Lazy         |   <span class="txt-ok">Low</span>    | <span class="txt-err">High</span> | <span class="txt-ok">None</span>                  | <span class="txt-err">Always slow</span>         |
-| Conservative | <span class="txt-warn">Medium</span> |  <span class="txt-ok">Low</span>  | <span class="txt-err">On goto, unless held</span> | <span class="txt-warn">Fast inside script</span> |
-| Optimistic   |  <span class="txt-err">High</span>   |  <span class="txt-ok">Low</span>  | <span class="txt-warn">None until released</span> | <span class="txt-ok">Fast until released</span>  |
+| Policy       |             Memory Usage             |             CPU Usage             | Loading Screens                                   | Rollback                                        |
+|--------------|:------------------------------------:|:---------------------------------:|---------------------------------------------------|-------------------------------------------------|
+| Lazy         |   <span class="txt-ok">Low</span>    | <span class="txt-err">High</span> | <span class="txt-ok">None</span>                  | <span class="txt-err">Always slow</span>        |
+| Conservative | <span class="txt-warn">Medium</span> |  <span class="txt-ok">Low</span>  | <span class="txt-err">On goto, unless held</span> | <span class="txt-warn">Slow, unless held</span> |
+| Optimistic   |  <span class="txt-err">High</span>   |  <span class="txt-ok">Low</span>  | <span class="txt-warn">None until released</span> | <span class="txt-ok">Fast until released</span> |
 
 ## Unloading Resources
 
