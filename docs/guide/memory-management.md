@@ -2,21 +2,160 @@
 
 Some script commands require loading resources in order to work: audio clips for [@bgm], character prefab and/or appearance textures for [@char], video clip for [@movie] and so on. Naninovel takes care of pre-/loading and unloading most of the resources. Default behaviour is based on `Resource Policy` setting found in resource provider configuration.
 
-![](https://i.gyazo.com/1344beb404abb7026cc0fe8998496334.png)
+![](https://i.gyazo.com/731327625e0bb0d326740f036d026a6a.png)
 
 ## Conservative Policy
 
+The default mode with balanced memory and CPU utilization. All the resources required for script execution are preloaded when starting the playback and unloaded when the script has finished playing. Scripts referenced in [@gosub] commands are preloaded as well. Additional scripts can be preloaded by using `hold` parameter of [@goto] command.
+
+Below is a demo on how resources will un-/load under Conservative policy:
+
+::: code-group
+
+```nani [Script1.nani]
+Resources from Script1, Script2 and ScriptGosub are loaded here.
+Script2 is loaded, because it's navigated to with "@goto hold:true".
+ScriptGosub is loaded, because "@gosub" are always pre-loaded.
+
+...
+
+Loading screen won't show, because gosub is always pre-loaded.
+@gosub ScriptGosub
+
+...
+
+Loading screen won't show, because we're using "hold:true".
+@goto Script2 hold:true
+```
+
+```nani [Script2.nani]
+Resources from Script1, Script2 and ScriptGosub are all still loaded,
+because this script was navigated to with "@goto hold:true",
+hence it's considered a dependency of Script1 and vice-versa.
+
+...
+
+Loading screen will show, because we're not using "hold:true".
+@goto Script3
+```
+
+```nani [Script3.nani]
+Resources from Script1, Script2 are now unloaded, while resources
+form Script3 (this script) are loaded.
+Resources from ScriptGosub are still loaded, because we're using it here.
+
+...
+
+Loading screen won't show, because gosub is always pre-loaded.
+@gosub ScriptGosub
+
+...
+
+Loading screen will show, because we're not using "hold:true".
+@goto Script4
+```
+
+```nani [Script4.nani]
+All the resources are now unloaded (including ScriptGosub) and only
+resources form Script4 (this script) are loaded.
+
+...
+
+@stop
+```
+
+```nani [ScriptGosub.nani]
+Various resources may be loaded here, depending from which script
+we navigated here.
+
+...
+
+Loading screen won't show, as gosubs are always loaded with the script
+which navigates to the gosub and are not unloaded until the script unloads.
+@return
+```
+
+:::
+
 ## Optimistic Policy
+
+All the resources required by the played script, as well all resources of all the scripts specified in [@goto] and [@gosub] commands are preloaded and not unloaded unless `release` parameter is specified in [@goto] command. This minimizes loading screens and allows smooth rollback, but requires manually specifying when the resources have to be unloaded, increasing risk of out of memory exceptions.
+
+Below is a demo of similar set of scripts, but now we're using Optimistic policy:
+
+::: code-group
+
+```nani [Script1.nani]
+Resources from Script1, Script2, Script3 and ScriptGosub are all loaded here.
+Script4 is not loaded, because it's navigated to with "@goto release:true".
+
+...
+
+Loading screen won't show, because gosub is always pre-loaded.
+@gosub ScriptGosub
+
+...
+
+Loading screen won't show by default, unless "release:true" is specified.
+@goto Script2
+```
+
+```nani [Script2.nani]
+Everyting except Script4 is still loaded.
+
+...
+
+Loading screen won't show by default, unless "release:true" is specified.
+@goto Script3
+```
+
+```nani [Script3.nani]
+Everyting except Script4 is still loaded.
+
+...
+
+Loading screen won't show, because gosub is always pre-loaded.
+@gosub ScriptGosub
+
+...
+
+Loading screen will now show, because of "release:true".
+@goto Script4 release:true
+```
+
+```nani [Script4.nani]
+All the resources except Script4 are now unloaded, because we navigated here
+with "@goto release:true".
+
+...
+
+@stop
+```
+
+```nani [ScriptGosub.nani]
+Various resources may be loaded here, depending from which script
+we navigated here.
+
+...
+
+Loading screen won't show, as gosubs are always loaded with the script
+which navigates to the gosub and are not unloaded until the script unloads.
+@return
+```
+
+:::
 
 ## Lazy Policy
 
+Minimal memory usage at the expense of high CPU utilization during playback. Only the resources required for the next `Lazy Policy Steps` commands are preloaded and kept in memory, while other resources are unloaded immediately. This mode is not recommended, unless targeting platforms with strict memory limitations and it's impossible to properly organize scenario scripts. Expect unstable FPS and hiccups during playback caused by resources being un-/loaded in the background.
+
 Below is a summary of the policies:
 
-| Policy       |             Memory Usage             |             CPU Usage             | Loading Screens                                   | Rollback                                        |
-|--------------|:------------------------------------:|:---------------------------------:|---------------------------------------------------|-------------------------------------------------|
-| Lazy         |   <span class="txt-ok">Low</span>    | <span class="txt-err">High</span> | <span class="txt-ok">None</span>                  | <span class="txt-err">Always slow</span>        |
-| Conservative | <span class="txt-warn">Medium</span> |  <span class="txt-ok">Low</span>  | <span class="txt-err">On goto, unless held</span> | <span class="txt-warn">Slow, unless held</span> |
-| Optimistic   |  <span class="txt-err">High</span>   |  <span class="txt-ok">Low</span>  | <span class="txt-warn">None until released</span> | <span class="txt-ok">Fast until released</span> |
+| Policy       |             Memory Usage             |             CPU Usage             | Loading Screens                                   | Rollback                                         |
+|--------------|:------------------------------------:|:---------------------------------:|---------------------------------------------------|--------------------------------------------------|
+| Lazy         |   <span class="txt-ok">Low</span>    | <span class="txt-err">High</span> | <span class="txt-ok">None</span>                  | <span class="txt-err">Always slow</span>         |
+| Conservative | <span class="txt-warn">Medium</span> |  <span class="txt-ok">Low</span>  | <span class="txt-err">On goto, unless held</span> | <span class="txt-warn">Fast inside script</span> |
+| Optimistic   |  <span class="txt-err">High</span>   |  <span class="txt-ok">Low</span>  | <span class="txt-warn">None until released</span> | <span class="txt-ok">Fast until released</span>  |
 
 ## Unloading Resources
 
