@@ -31,7 +31,7 @@ Loading screen won't show, because we're using "hold:true".
 ```nani [Script2.nani]
 Resources from Script1, Script2 and ScriptGosub are all still loaded,
 because this script was navigated to with "@goto hold:true",
-hence it's considered a dependency of Script1 and vice-versa.
+hence it's considered a dependency of Script1.
 
 ...
 
