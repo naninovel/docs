@@ -560,3 +560,15 @@ Find a complete example on setting up Live2D character render to texture and bin
 :::
 
 All the other character and background implementation types (except generic) can be set up to render to texture similar to Live2D example.
+
+## Multiple Appearances
+
+Generic, Live2D and Spine actors support multiple appearances applied at once, eg:
+
+```nani
+@char Kohaku.Body/Pose1,Face/Smile
+```
+
+— will invoke `Body/Pose1` and `Face/Smile` appearance change events. Use this to trigger multiple animator triggers simultaneously to set up complex animation states. All the appearances will as well serialize with the actor state and restore on game load or rollback.
+
+![](https://i.gyazo.com/f438703100ca8c695de814fe08ff2427.mp4)
