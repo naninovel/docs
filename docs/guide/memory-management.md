@@ -157,27 +157,39 @@ Below is a summary of the policies:
 | Conservative | <span class="txt-warn">Medium</span> |  <span class="txt-ok">Low</span>  | <span class="txt-err">On goto, unless held</span> | <span class="txt-warn">Fast inside script</span> |
 | Optimistic   |  <span class="txt-err">High</span>   |  <span class="txt-ok">Low</span>  | <span class="txt-warn">None until released</span> | <span class="txt-ok">Fast until released</span>  |
 
-## Unloading Resources
+## Actor Resources
 
-In some cases Naninovel won't be able to automatically unload resources. Specifically, layered, diced sprite, generic, Live2D and Spine actors all require a monolith prefab in order to represent any of the appearances making it impossible to independently load resources per appearance. To prevent memory leaks, unload such resources manually in one of the ways described below.
+Actors (characters, backgrounds, text printers and choice handlers) are the key entities in Naninovel. Most memory used by actors is associated with their appearances.
+
+### Appearances
+
+Some actor implementations have their appearance mapped 1:1 to a resource: sprite actor appearance is associated with a single texture asset, video actor appearance is a single video clip and so on. This allows Naninovel manage their resources based on specific appearances referenced in scenario scripts. For example, in case only `Happy` and `Sad` appearances of sprite character are used in a given script, only `Happy.png` and `Sad.png` textures will preload before the script is played, no matter how many other appearances character has.
+
+However, layered, diced sprite, generic, Live2D and Spine actors all require monolith prefab in order to represent any of the associated appearances making it impossible to independently load resources. In such cases, Naninovel will preload the whole prefab with all its dependencies and only unload it when the actor is not referenced in any of the commands, no matter which appearances are used.
+
+### Scene Objects
+
+Built-in implementations use the bare minimum [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html) infrastructure to represent the actors on Unity scenes, hence the underlying scene (game) objects are lightweight and don't use much memory. To prevent unnecessary CPU overhead, once instantiated, actor objects won't be automatically destroyed, until associated engine service is reset or the engine is de-initialized.
+
+In case you'd still like to destroy actor objects, use of one of the ways described below.
 
 ### Remove Individual Actors
 
-Use [@hide] command with `remove` parameter to hide and dispose specific actors. Applicable when some actors are expected to live across scripts.
+Use [@hide] command with `remove` parameter to hide and dispose specific actors. Applicable when some actor objects should persist across scripts.
 
 ```nani
 @back id:LayeredBackground
 @char GenericCharacter
 @char DicedCharacter
-; We expect `LayeredBackground` to survive when `NextScript` is loaded,
-; but both characters should be disposed.
+; "LayeredBackground" won't be destroyed when "NextScript" is loaded,
+; but both characters will.
 @hide GenericCharacter,DicedCharacter remove:true
 @goto NextScript
 ```
 
 ### Remove All Actors
 
-Use [@hideAll] with `remove` parameter to hide and dispose all the existing actors (including text printers and choice handlers) or [@resetState] with `only` parameter to immediately dispose actors of specific type: `ICharacterManager` for character and `IBackgroundManager` for backgrounds. Applicable when all actors or actors of specific type are not expected to survive script loading.
+Use [@hideAll] with `remove` parameter to hide and dispose all the existing actors (including text printers and choice handlers) or [@resetState] with `only` parameter to immediately dispose actors of specific type: `ICharacterManager` for character and `IBackgroundManager` for backgrounds. Applicable when all actors or actors of specific type should be disposed.
 
 ```nani
 ...
@@ -188,7 +200,7 @@ Use [@hideAll] with `remove` parameter to hide and dispose all the existing acto
 
 ### Reset On Goto
 
-In case you don't need any [engine service](/guide/engine-services) state to persist between scripts (including currently played music, special effects, etc), enable `Reset On Goto` in state configuration. This way all the services will automatically dispose associated resources when navigating between naninovel scripts and you won't have to use any special commands to unload the resources.
+In case you don't need any [engine service](/guide/engine-services) state to persist between scripts (including currently played music, special effects, etc), enable `Reset On Goto` in state configuration. This way all the services will automatically dispose associated resources when navigating between naninovel scripts and you won't have to use any special commands to destroy the actor objects.
 
 ## Lifetime Management
 
