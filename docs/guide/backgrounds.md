@@ -25,6 +25,7 @@ In naninovel scripts, backgrounds are mostly controlled with [@back] command:
 ; Same as above, but also use a `RadialBlur` transition effect
 @back River.RadialBlur
 ```
+
 Backgrounds are handled a bit differently from characters to better accommodate traditional VN game flow. Most of the time you'll probably have a single background actor on scene, which will constantly transition to different appearances. To remove the hassle of repeating same actor ID in scripts, it's possible to provide only the background appearance and transition type (optional) as a nameless parameter assuming `MainBackground` actor should be affected. When this is not the case, ID of the background actor can be explicitly provided via the `id` parameter:
 
 ```nani
@@ -52,16 +53,16 @@ While for standalone (PC, Mac, Linux) builds you can limit the available aspect 
 
 Following match modes can be set for each background actor (except of generic implementation):
 
- Mode | Description
- --- | ---
- Crop | The background will always occupy the whole camera frustum, ensuring no black bars are visible to the player, no matter the display aspect ratio; however, some background areas could be cropped. Set by default for new background actors.
- Fit | The whole background area will always remain visible, but black bars will appear when the aspect ratios are different.
- Custom | Allows matching either width or height with a custom ratio. The ratio is controlled with `Custom Match Ratio` property: minimum (0) value will match width and ignore height, maximum (1) — vice-versa.
+ Mode    | Description
+ ---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ Crop    | The background will always occupy the whole camera frustum, ensuring no black bars are visible to the player, no matter the display aspect ratio; however, some background areas could be cropped. Set by default for new background actors.
+ Fit     | The whole background area will always remain visible, but black bars will appear when the aspect ratios are different.
+ Custom  | Allows matching either width or height with a custom ratio. The ratio is controlled with `Custom Match Ratio` property: minimum (0) value will match width and ignore height, maximum (1) — vice-versa.
  Disable | Don't perform any matching.
 
- ::: tip
- In case you wish to implement a similar matching feature for a generic or custom background see the [scale to screen example](https://forum.naninovel.com/viewtopic.php?f=8&t=107&p=335#p335) on the forum.
- :::
+::: tip
+In case you wish to implement a similar matching feature for a generic or custom background see the [scale to screen example](https://forum.naninovel.com/viewtopic.php?f=8&t=107&p=335#p335) on the forum.
+:::
 
 ## Poses
 
@@ -109,10 +110,6 @@ Define reference resolution with your team before starting the work on the art a
 Built with an open source [SpriteDicing](https://github.com/elringus/SpriteDicing) package, `DicedSpriteBackground` implementation allows to significantly reduce build size and texture memory by reusing texture areas of the background sprites when the associated textures contain mostly similar data.
 
 Diced background is very similar to diced character implementation; see the [diced characters guide](/guide/characters.html#diced-sprite-characters) for the setup and usage instructions.
-
-::: warning
-Diced backgrounds have to be manually unloaded to prevent memory leaks. Refer to [memory management](/guide/memory-management#unloading-resources) guide for more info and examples.
-:::
 
 ## Video Backgrounds
 
@@ -186,10 +183,6 @@ Don't forget that nameless parameter in [@back] command is expecting appearance 
 @back Group>Layer,Other/Group+Layer,-RootLayer.TransitionType id:LayeredForest
 ```
 
-::: warning
-Layered backgrounds have to be manually unloaded to prevent memory leaks. Refer to [memory management](/guide/memory-management#unloading-resources) guide for more info and examples.
-:::
-
 ## Generic Backgrounds
 
 Generic background is the most flexible background actor implementation. It's based on a prefab with a `Generic Background Behaviour` component attached to the root object. Appearance changes and all the other background parameters are routed as [Unity events](https://docs.unity3d.com/Manual/UnityEvents.html) allowing to implement the behavior of the underlying object in any way you wish.
@@ -212,10 +205,6 @@ Unity's `Animator` component could fail to register `SetTrigger` when the game o
 
 ::: tip EXAMPLE
 Find [example project on GitHub](https://github.com/naninovel/samples/tree/main/unity/generic-actor), where generic background implementation is used to host animated sprites.
-:::
-
-::: warning
-Generic backgrounds have to be manually unloaded to prevent memory leaks. Refer to [memory management](/guide/memory-management#unloading-resources) guide for more info and examples.
 :::
 
 ## Scene Backgrounds
