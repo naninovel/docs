@@ -225,7 +225,7 @@ Lorem <ruby="VERY"><tip="TipID">ipsum</tip></ruby> dolor sit amet.
 ```
 :::
 
-You can additionally control the size and vertical line offset of the ruby text by changing properties of `RevealableTMProText` component used in the printer prefabs.
+You can additionally control the size and vertical line offset of the ruby text by changing properties of `Naninovel TMPro Text` component used in the printer prefabs.
 
 By default, when a ruby text is inserted to the printed message, line height is increased to compensate for the new content. To ensure equal height for all lines (both with and without ruby text), disable `Add Ruby Line Height` property and increase default line height.
 
