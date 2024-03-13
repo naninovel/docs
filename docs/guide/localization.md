@@ -145,7 +145,7 @@ Find example localization setup in the [demo project](/guide/getting-started#dem
 :::
 
 ::: tip
-In case looking for an option to compile all the project scenario script and managed text localizable data into a single spreadsheet (eg, to share the text with a translation agency or editors for proofreading), check out [spreadsheet extension](/guide/spreadsheet).
+In case looking for an option to compile all the project scenario script and managed text localizable data into spreadsheets (eg, to share the text with a translation agency or editors for proofreading), check out [spreadsheet extension](/guide/spreadsheet).
 
 ![](https://i.gyazo.com/50767f3193ae5b3ed423ea7c213c786b.png)
 :::
