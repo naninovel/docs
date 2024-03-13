@@ -28,7 +28,7 @@ Click "Export" button to export sheets to the selected destination.
 
 Each script and managed text document will be exported to an individual sheet. Each sheets will have "ID" column storing localizable text IDs and additional column per each locale. You're free to modify all the columns in the spreadsheet except "ID"; however, modifying column associated with the source locale won't have any effect on import.
 
-When **Include Annotations** option is enabled, generated sheets will also contain a column with script comments placed before localized lines. The column is ignored during import.
+When **Include Annotations** option is enabled, generated sheets will also contain a column with the source script content, such as author names, inlined commands and comments placed before localized lines. The column is ignored during import.
 
 After performing required modifications, click "Import" button to import the data back to the project.
 
