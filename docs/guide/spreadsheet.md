@@ -16,7 +16,7 @@ For more information on how to use the tool, see [localization guide](/guide/loc
 
 When the localization data is up-to-date, open spreadsheet tool with `Naninovel -> Tools -> Spreadsheet` editor menu.
 
-![](https://i.gyazo.com/f583374cc46f9b24af8f493c6693f0c1.png)
+![](https://i.gyazo.com/16cd076ebcc43b2d1a058c10e9dea43d.png)
 
 Specify the required folders:
  - Input Script Folder — folder where you store source naninovel scenario scripts (`.nani`); usually in our example projects we store them under `Assets/Scripts` folder.
