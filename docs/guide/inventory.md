@@ -6,7 +6,7 @@ While an inventory system is out of scope for visual novels, we had a lot of req
 The inventory is not a standalone product and/or part of Naninovel. Use it to learn how to extend and customize the engine, but don't expect it to be production-ready solution for inventory systems. If you're looking for one, [check the Asset Store](https://assetstore.unity.com/?q=inventory) or create a custom one from scratch.
 :::
 
-Example project shows how to make a custom inventory UI with grid layout, pagination and drag-drop window, add custom engine service and related configuration menu, add input bindings, use state outsourcing, author custom scenario commands and expression functions.
+Example project shows how to make custom inventory UI with grid layout, pagination and drag-drop window, add custom engine service and related configuration menu, add input bindings, use state outsourcing, author custom scenario commands and expression functions.
 
 ![](https://i.gyazo.com/86c577f007daf4ec5d79c0e91db7bc10.mp4)
 
@@ -18,9 +18,7 @@ Naninovel package is not distributed with the project, hence compilation errors 
 
 ## Installation
 
-To set up inventory extension on top of an existing Unity project download and import [NaninovelInventory.unitypackage](https://github.com/naninovel/samples/raw/main/unity/inventory/NaninovelInventory.unitypackage) manually.
-
-![](https://i.gyazo.com/b54e9daa9a483d9bf7f74f0e94b2d38a.gif)
+To set up inventory extension on top of an existing Unity project download and import [NaninovelInventory.unitypackage](https://github.com/naninovel/samples/raw/main/unity/inventory/NaninovelInventory.unitypackage).
 
 After importing the package, add `Elringus.NaninovelInventory.Runtime` and `Elringus.NaninovelInventory.Editor` records to the `Type Assemblies` list property found in the engine configuration menu and restart Unity editor (otherwise the custom implementation types under the assemblies won't be accessible by Naninovel).
 
