@@ -61,7 +61,7 @@ Select an action.[skipInput]
 # Adventure
 
 @if ItemExist("Sword")
-	@set monstersSlayed="{ItemExist("Armor") ? Random(3,5) : 2}"
+	@set monstersSlayed={ItemExist("Armor") ? Random(3,5) : 2}
 	@addItem Food amount:{monstersSlayed}
 	You've encountered and slayed {monstersSlayed} monsters with your sword.[if !ItemExist("Armor")] You could've been more productive with an armor, though.[endif][i][showUI Inventory >] Check your inventory for the loot!
 	@goto .Start
