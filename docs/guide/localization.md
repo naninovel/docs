@@ -156,7 +156,7 @@ To localize both custom and built-in UIs, use [managed text provider](/guide/man
 
 ## Fonts
 
-To display text in some languages, you'll need a compatible font. [Google's Roboto](https://fonts.google.com/specimen/Roboto) is used by default, which supports all Latin, Cyrillic, and Greek characters in Unicode 7.0.
+To display text in some languages, you'll need a compatible font. [Inter](https://github.com/rsms/inter) is used by default, which supports all Latin, Cyrillic, and Greek characters in Unicode 7.0.
 
 ::: tip
 In case you're aiming to support multiple languages with a single font, check out [Noto fonts](https://www.google.com/get/noto/).
