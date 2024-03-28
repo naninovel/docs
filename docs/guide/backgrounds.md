@@ -42,6 +42,34 @@ Backgrounds are handled a bit differently from characters to better accommodate 
 
 Main background actor record is created by default in the background resources manager and can't be renamed or deleted; however, parameters of the main background (implementation, pivot, PPU, etc) can be freely changed.
 
+## Z-order
+
+When showing multiple backgrounds simultaneously, they tend to cover each other:
+
+```nani
+@back id:1
+@back id:2
+```
+
+— in case both background `1` and `2` are full-screen opaque textures, one added later will completely cover the other. To show first one back, either hide the other or change z-position (depth) to chane the draw order:
+
+```nani
+; Hide background 2 to reveal first one back
+@back id:2 visible:false
+; There is also a dedicated command to hide actors
+@hide 2
+
+; Alternatively, change z-position
+@back id:1 pos:,,98
+@back id:2 pos:,,99
+```
+
+Higher z-positions result in further distance from the camera, hence first actor being placed closer to the camera will render on top of the other.
+
+Backgrounds are placed with a specific z-offset by default to make them appear behind other actor types. The offset value can be changed via `Z Offset` property in background settings.
+
+To prevent z-fighting issues, backgrounds are further offset apart from each other over z-axis when first added (shown). The offset is controlled with `Z Step` setting.
+
 ## Match Mode
 
 When [camera](https://docs.unity3d.com/Manual/class-Camera.html) is rendering in orthographic mode and `Match Mode` in background actor configuration is not disabled, the actor will attempt to match its size against current screen size. This is performed to handle the cases when display [aspect ratio](https://en.wikipedia.org/wiki/Aspect_ratio_(image)) is different from the background's. When the matching is disabled and the aspect ratios are different, "black bars" will appear.
