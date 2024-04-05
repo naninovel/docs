@@ -230,13 +230,17 @@ To achieve best render quality and optimal performance, it's generally advised t
 
 ## Diced Sprite Characters
 
-Built with an open source [SpriteDicing](https://github.com/elringus/SpriteDicing) package, `DicedSpriteCharacter` implementation allows to significantly reduce build size and texture memory by reusing texture areas of the character sprites.
+Built with an open source [SpriteDicing](https://github.com/elringus/sprite-dicing) package, `DicedSpriteCharacter` implementation allows to significantly reduce build size and texture memory by reusing texture areas of the character sprites.
 
 ![Sprite Dicing](https://i.gyazo.com/af08d141e7a08b6a8e2ef60c07332bbf.png)
 
-Install the package via [Unity package manager](https://docs.unity3d.com/Manual/upm-ui.html): open package manager window (Window -> Package Manager), click "+" button, choose "Add package from git URL", enter `https://github.com/elringus/SpriteDicing.git#package` to the input field and click "Add".
+Install the package via [Unity package manager](https://docs.unity3d.com/Manual/upm-ui.html): open package manager window (Window -> Package Manager), click "+" button, choose "Add package from git URL", enter following URL:
+```
+https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteDicing`
+```
+— to the input field and click "Add".
 
-![](https://i.gyazo.com/b54e9daa9a483d9bf7f74f0e94b2d38a.mp4)
+![](/assets/img/docs/upm.mp4)
 
 ::: info NOTE
 Before installing a package from a Git repository, make sure a [Git client](https://git-scm.com/downloads) is installed on your machine and Git executable path is set to the [PATH system environment variable](https://en.wikipedia.org/wiki/PATH_(variable)) (usually performed automatically during the installation).
@@ -255,6 +259,8 @@ Character metadata properties (eg, pixels per unit, pivot) are applied to render
 Following video guide covers creating and configuring diced sprite atlas, adding new diced character based on the created atlas and controlling the character from a naninovel script.
 
 ![](https://www.youtube.com/watch?v=6PdOAOsnhio)
+
+For more information on available dicing options and usage examples, refer to the extension docs: https://dicing.elringus.me/guide/unity.
 
 ## Layered Characters
 
