@@ -134,6 +134,24 @@ Char1: My display name is now bound to `name` custom variable.
 
 When `Has Name` is disabled, neither display name, nor character ID will be displayed in the printer UI. This is useful for [narrator characters](/guide/characters#narrator-characters), which could have a [linked printer](/guide/characters#linked-printer), but their ID shouldn't be displayed.
 
+::: tip
+In case you want to change name of the actor for a few lines or make multiple actors authors of the same line, it's not practical to use display name. In this case, consider using `as` parameter of the [@print] command:
+
+```nani
+; Even though "Kohaku" character may have custom display name
+; set in configuration, print this line with "Someone" as name.
+@print "Lorem ipsum." author:Kohaku as:"Someone"
+
+; Print the line with "All Together" displayed as author name
+; and make all visible characters author of the printed text.
+@print "Lorem ipsum!" author:* as:"All Together"
+
+; Similar, but make only "Kohaku" and "Yuko" the authors.
+@print "Lorem ipsum?" author:Kohaku,Yuko as:"Kohaku and Yuko"
+```
+— `as` parameters are localizable and will be exposed in the localization documents for translation. Additionally, [speaker highlighting](/guide/characters.html#speaker-highlight) feature will recognize `*` and `,` specified in author ID and highlight all/selected characters as speakers.
+:::
+
 ## Message Colors
 
 When `Use Character Color` is enabled in the character configuration, printer text messages and name labels will be tinted in the specified colors when the corresponding character ID is specified in a [@print] command or generic text line.
