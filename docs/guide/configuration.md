@@ -27,6 +27,7 @@ Auto Voice Mode | Text Id | When auto voicing is enabled, controls method to ass
 Voice Overlap Policy | Prevent Overlap | Dictates how to handle concurrent voices playback:<br> • Allow Overlap — Concurrent voices will be played without limitation.<br> • Prevent Overlap — Prevent concurrent voices playback by stopping any played voice clip before playing a new one.<br> • Prevent Character Overlap — Prevent concurrent voices playback per character; voices of different characters (auto voicing) and any number of [@voice] command are allowed to be played concurrently.
 Voice Locales | Null | Assign localization tags to allow selecting voice language in the game settings independently of the main localization.
 Default Fade Duration | 0.35 | Default duration of the volume fade in/out when starting or stopping playing audio.
+Play Sfx While Skipping | True | Whether to play non-looped sound effects (SFX) while in skip mode. When disabled, will ignore @sfx commands without loop:true while skipping.
 Custom Audio Mixer | Null | Audio mixer to control audio groups. When not provided, will use a default one.
 Master Group Path | Master | Path of the mixer's group to control master volume.
 Master Volume Handle Name | Master Volume | Name of the mixer's handle (exposed parameter) to control master volume.
@@ -237,7 +238,7 @@ Property | Default Value | Description
 --- | --- | ---
 Default Skip Mode | Read Only | Default skip mode to set when the game is first started.
 Skip Time Scale | 10 | Time scale to use when in skip (fast-forward) mode.
-Min Auto Play Delay | 3 | Minimum seconds to wait before executing next command while in auto play mode.
+Min Auto Play Delay | 1 | Minimum seconds to wait before executing next command while in auto play mode.
 Complete On Continue | True | Whether to instantly complete blocking (`wait:true`) commands performed over time (eg, animations, hide/reveal, tint changes, etc) when `Continue` input is activated.
 Show Debug On Init | False | Whether to show player debug window on engine initialization.
 Wait By Default | True | Whether to wait the played commands when the `wait` parameter is not explicitly specified.

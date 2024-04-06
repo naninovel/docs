@@ -79,7 +79,7 @@ The entire text will be appended immediately, without triggering reveal effect o
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">text</span> | string | The text to append. |
-| printer | string | ID of the printer actor to use. Will use a a default one when not provided. |
+| printer | string | ID of the printer actor to use. Will use a default one when not provided. |
 | author | string | ID of the actor, which should be associated with the appended text. |
 
 </div>
@@ -953,7 +953,8 @@ This command is used under the hood when processing generic text lines, eg gener
 | --- | --- | --- |
 | <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">text</span> | string | Text of the message to print. When the text contain spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
 | printer | string | ID of the printer actor to use. Will use a default one when not provided. |
-| author | string | ID of the actor, which should be associated with the printed message. |
+| author | string | ID of the actor, which should be associated with the printed message. Specify `*` or use `,` to delimit multiple actor IDs to make all/selected characters authors of the text; useful when coupled with `as` parameter to represent multiple characters speaking at the same time. |
+| as | string | When specified, will use the label instead of author ID (or associated display name) to represent author name in the text printer while printing the message. Useful to override default name for a few messages or represent multiple authors speaking at the same time without triggering author-specific behaviour of the text printer, such as message color or avatar. |
 | speed | decimal | Text reveal speed multiplier; should be positive or zero. Setting to one will yield the default speed. |
 | reset | boolean | Whether to reset text of the printer before executing the printing task. Default value is controlled via `Auto Reset` property in the printer actor configuration menu. |
 | default | boolean | Whether to make the printer default and hide other printers before executing the printing task. Default value is controlled via `Auto Default` property in the printer actor configuration menu. |
@@ -973,6 +974,13 @@ This command is used under the hood when processing generic text lines, eg gener
 ; Reveal message with half of the normal speed and
 ; don't wait for user input to continue.
 @print "Lorem ipsum dolor sit amet." speed:0.5 waitInput:false
+
+; Print the line with "Together" displayed as author name and
+; make all visible characters author of the printed text.
+@print "Hello World!" author:* as:"Together"
+
+; Similar, but make only "Kohaku" and "Yuko" the authors.
+@print "Hello World!" author:Kohaku,Yuko as:"Kohaku and Yuko"
 ```
 
 ## printer
