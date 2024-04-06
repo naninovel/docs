@@ -134,8 +134,9 @@ Char1: My display name is now bound to `name` custom variable.
 
 When `Has Name` is disabled, neither display name, nor character ID will be displayed in the printer UI. This is useful for [narrator characters](/guide/characters#narrator-characters), which could have a [linked printer](/guide/characters#linked-printer), but their ID shouldn't be displayed.
 
-::: tip
-In case you want to change name of the actor for a few lines or make multiple actors authors of the same line, it's not practical to use display name. In this case, consider using `as` parameter of the [@print] command:
+## Name Labels
+
+While display names discussed above are recommended in most cases, sometimes you may want to change name of the actor for a few lines or make multiple actors authors of the same line. Setting up a dedicated actor or variable display name for each such occurrence would be impractical. Instead, consider using `as` parameter of the [@print] command:
 
 ```nani
 ; Even though "Kohaku" character may have custom display name
@@ -149,8 +150,7 @@ In case you want to change name of the actor for a few lines or make multiple ac
 ; Similar, but make only "Kohaku" and "Yuko" the authors.
 @print "Lorem ipsum?" author:Kohaku,Yuko as:"Kohaku and Yuko"
 ```
-— `as` parameters are localizable and will be exposed in the localization documents for translation. Additionally, [speaker highlighting](/guide/characters.html#speaker-highlight) feature will recognize `*` and `,` specified in author ID and highlight all/selected characters as speakers.
-:::
+— `as` parameters are localizable and will be exposed in the script localization documents for translation. Additionally, [speaker highlighting](/guide/characters.html#speaker-highlight) feature will recognize `*` and `,` specified in author ID and highlight all/selected characters as speakers.
 
 ## Message Colors
 
