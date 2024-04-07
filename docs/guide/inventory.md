@@ -63,7 +63,7 @@ Select an action.[skipInput]
 @if ItemExist("Sword")
 	@set monstersSlayed={ItemExist("Armor") ? Random(3,5) : 2}
 	@addItem Food amount:{monstersSlayed}
-	You've encountered and slayed {monstersSlayed} monsters with your sword.[if !ItemExist("Armor")] You could've been more productive with an armor, though.[endif][i][showUI Inventory >] Check your inventory for the loot!
+	You've encountered and slayed {monstersSlayed} monsters with your sword.[if !ItemExist("Armor")] You could've been more productive with an armor, though.[endif][i][showUI Inventory !wait] Check your inventory for the loot!
 	@goto .Start
 @else
 	But you don't have a weapon! You've been beaten by the monsters.[if ItemExist("Armor")] At least it didn't hurt that much, thanks to the armor.[endif] Let's prepare better next time.

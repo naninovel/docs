@@ -29,11 +29,11 @@ Use [@bgm] command followed by the clip name to control the music playback in na
 @bgm Sanctuary
 
 ; Same as above, but fades-in the volume over 10 seconds and plays only once.
-@bgm Sanctuary fade:10 loop:false
+@bgm Sanctuary fade:10 !loop
 
 ; Changes volume of all the played music tracks to 50% over 2.5 seconds
 ; and makes them play in a loop.
-@bgm volume:0.5 loop:true time:2.5
+@bgm volume:0.5 loop! time:2.5
 ```
 
 Music tracks are looped by default. When music track name is not specified in [@bgm] command, all the currently played tracks will be affected. When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start), but the specified parameters (volume and whether the track is looped) will be applied.
@@ -64,11 +64,11 @@ Use [@sfx] and [@stopSfx] commands followed by the clip name to control playback
 @sfx Explosion
 
 ; Plays an SFX with the name `Rain` in a loop.
-@sfx Rain loop:true
+@sfx Rain loop!
 
 ; Changes volume of all the played SFX tracks to 75% over 2.5
 ; seconds and disables looping for all of them.
-@sfx volume:0.75 loop:false time:2.5
+@sfx volume:0.75 !loop time:2.5
 ```
 
 Sound effect tracks are not looped by default. When sfx track name is not specified in [@sfx] command, all the currently played tracks will be affected. When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start), but the specified parameters (volume and whether the track is looped) will be applied.
@@ -97,7 +97,7 @@ To play an audio via a custom mixer group, specify group path with `group` param
 
 ```nani
 ; Play `Noise` audio resource in loop via `Master/Ambient` mixer group.
-@sfx Noise loop:true group:Master/Ambient
+@sfx Noise loop! group:Master/Ambient
 
 ; Play `ScaryVoice` voice resource via `Master/Reverb` mixer group.
 @voice ScaryVoice group:Master/Reverb

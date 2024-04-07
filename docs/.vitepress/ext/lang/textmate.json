@@ -112,10 +112,20 @@
                 }
             ]
         },
+        "bool-flags": {
+            "patterns": [
+                {
+                    "comment": "Boolean Flag - !",
+                    "name": "naniscript.command.parameter.value",
+                    "match": "!"
+                }
+            ]
+        },
         "params": {
             "patterns": [
                 { "include": "#expression" },
                 { "include": "#text-identifier" },
+                { "include": "#boolean-flag" },
                 {
                     "comment": "Missing parameter value",
                     "match": "\\s(\\w+:)(\\s|$)+",
@@ -127,9 +137,16 @@
                     "match": "\\s\\w+:"
                 },
                 {
-                    "comment": "Wait Flag",
-                    "name": "naniscript.command.waitflag",
-                    "match": "\\s[>|<]$"
+                    "comment": "Parameter ID With Positive Boolean Flag - id!",
+                    "name": "naniscript.command.parameter.id",
+                    "match": "\\s\\w+(!)",
+                    "captures": { "0": { "patterns": [{ "include": "#bool-flags" }] } }
+                },
+                {
+                    "comment": "Parameter ID With Negative Boolean Flag - !id",
+                    "name": "naniscript.command.parameter.id",
+                    "match": "\\s!\\w+",
+                    "captures": { "0": { "patterns": [{ "include": "#bool-flags" }] } }
                 },
                 {
                     "comment": "Quoted String - \"String\"",

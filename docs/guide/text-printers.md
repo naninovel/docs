@@ -153,12 +153,12 @@ Bubble printers can be used for a manga/comic style of text presentation.
 The built-in bubble printer supports two appearances: "Left" and "Right", which can be used to align the direction of the printer based on which side it's positioned relative to the character.
 
 ```nani
-@printer Bubble.Left pos:42,80 visible:false time:0
-@show Bubble >
+@printer Bubble.Left pos:42,80 !visible time:0
+@show Bubble !wait
 Misaki: Aliquam lobortis!
-@char Nanikun.Happy >
-@printer Bubble.Right pos:53,55 visible:false time:0
-@show Bubble >
+@char Nanikun.Happy !wait
+@printer Bubble.Right pos:53,55 !visible time:0
+@show Bubble !wait
 Nanikun: Integer nec maximus elit, eget posuere risus.
 ```
 
@@ -168,11 +168,11 @@ To display more than one bubble (or any other) printer at a time, add custom pri
 
 You can add custom text printers based on the built-in templates or create new printers from scratch. For example, let's customize the built-in `Dialogue` template.
 
-Use `Create -> Naninovel -> Text Printers -> Dialogue` asset context menu to create a dialogue prefab somewhere outside of the Naninovel package, e.g. at the `Assets/TextPrinters` folder.
+Use `Create -> Naninovel -> Text Printers -> Dialogue` asset context menu to create a dialogue prefab somewhere outside the Naninovel package, e.g. at the `Assets/TextPrinters` folder.
 
 Edit the prefab: change font, textures, add animations, etc. For more information on the available UI building tools consult [Unity documentation for uGUI](https://docs.unity3d.com/Packages/com.unity.ugui@latest). There are also a couple of tutorial videos and an example project on working with uGUI in the [UI customization guide](/guide/user-interface#ui-customization).
 
-Expose the prefab to engine resources using the printer's manager GUI, which can be accessed with `Naninovel -> Resources -> Printers` context menu. Add a new record using `+` (plus) button, enter actor ID (can differ from the prefab name) and double click the record to open actor settings. Drag-drop printer prefab to the `Resource` field.
+Expose the prefab to engine resources using the printer's manager GUI, which can be accessed with `Naninovel -> Resources -> Printers` context menu. Add a new record using `+` (plus) button, enter actor ID (can differ from the prefab name) and double-click the record to open actor settings. Drag-drop printer prefab to the `Resource` field.
 
 ![](https://i.gyazo.com/3f51881fa554720b7a4092dca42fd15e.mp4)
 
