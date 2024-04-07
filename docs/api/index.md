@@ -50,13 +50,13 @@ It's not recommended to use this command for complex animations. Naniscript is a
 
 ; Start loop animations of `Yuko` and `Kohaku` actors; notice, that you can skip
 ; key values indicating that the parameter shouldn't change during the animation step.
-@animate Kohaku,Yuko loop:true appearance:Surprise,Sad,Default,Angry transition:DropFade,Ripple,Pixelate posX:15,85,50 posY:0,-25,-85 scale:1,1.25,1.85 tint:#25f1f8,lightblue,#ffffff,olive easing:EaseInBounce,EaseInQuad time:3,2,1,0.5 >
+@animate Kohaku,Yuko loop! !wait appearance:Surprise,Sad,Default,Angry transition:DropFade,Ripple,Pixelate posX:15,85,50 posY:0,-25,-85 scale:1,1.25,1.85 tint:#25f1f8,lightblue,#ffffff,olive easing:EaseInBounce,EaseInQuad time:3,2,1,0.5
 ...
 ; Stop the animations.
-@animate Yuko,Kohaku loop:false
+@animate Yuko,Kohaku !loop
 
 ; Start a long background animation for `Kohaku`.
-@animate Kohaku posX:90,0,90 scale:1,2,1 time:10 >
+@animate Kohaku posX:90,0,90 scale:1,2,1 time:10 !wait
 ; Do something else while the animation is running.
 ...
 ; Here we're going to set a specific position for the character,
@@ -186,11 +186,11 @@ Music tracks are looped by default. When music track name (BgmPath) is not speci
 @bgm Sanctuary
 
 ; Same as above, but fades-in the volume over 10 seconds and plays once.
-@bgm Sanctuary fade:10 loop:false
+@bgm Sanctuary fade:10 !loop
 
 ; Changes volume of all the played music tracks to 50% over 2.5 seconds
 ; and makes them play in a loop.
-@bgm volume:0.5 loop:true time:2.5
+@bgm volume:0.5 loop! time:2.5
 
 ; Plays `BattleThemeIntro` once, then loops `BattleThemeMain`.
 @bgm BattleThemeMain intro:BattleThemeIntro
@@ -302,10 +302,10 @@ Modifies the main camera, changing offset, zoom level and rotation over time. Ch
 @camera offset:-3,1.5
 
 ; Set camera in perspective mode, zoom-in by 50% and move back by 5 units.
-@camera ortho:false offset:,,-5 zoom:0.5
+@camera !ortho offset:,,-5 zoom:0.5
 
 ; Set camera in orthographic mode and roll by 10 degrees clock-wise.
-@camera ortho:true roll:10
+@camera ortho! roll:10
 
 ; Offset, zoom and roll simultaneously animated over 5 seconds.
 @camera offset:-3,1.5 zoom:0.5 roll:10 time:5
@@ -647,7 +647,7 @@ Hides (removes) actors (character, background, text printer, choice handler) wit
 @hide Kohaku,Yuko
 
 ; Hide and remove `Kohaku` actor.
-@hide Kohaku remove:true
+@hide Kohaku remove!
 ```
 
 ## hideAll
@@ -668,7 +668,7 @@ Hides (removes) all the actors (characters, backgrounds, text printers, choice h
 @hideAll
 
 ; Same as above, but also remove all the actors after they're hidden.
-@hideAll remove:true
+@hideAll remove!
 ```
 
 ## hideChars
@@ -739,7 +739,7 @@ When hiding the entire UI with this command and `allowToggle` parameter is false
 @showUI
 
 ; Hide the entire UI, but allow the user to toggle it back.
-@hideUI allowToggle:true
+@hideUI allowToggle!
 
 ; Simultaneously hide built-in `TipsUI` and custom `Calendar` UIs.
 @hideUI TipsUI,Calendar
@@ -835,7 +835,7 @@ Loads a [Unity scene](https://docs.unity3d.com/Manual/CreatingScenes.html) with 
 @loadScene TestScene1
 
 ; Load scene `TestScene2` in additive mode.
-@loadScene TestScene2 additive:true
+@loadScene TestScene2 additive!
 ```
 
 ## lock
@@ -883,13 +883,13 @@ It's also possible to control the look by rotating a mobile device (in case it h
 @look
 
 ; Activate camera look mode with custom parameters.
-@look zone:6.5,4 speed:3,2.5 gravity:true
+@look zone:6.5,4 speed:3,2.5 gravity!
 
 ; Disable look mode and instantly reset the offset.
 @look false
 
 ; Disable look, but reset gradually, with 0.25 speed.
-@look false gravity:true speed:0.25
+@look false gravity! speed:0.25
 ```
 
 ## movie
@@ -973,7 +973,7 @@ This command is used under the hood when processing generic text lines, eg gener
 
 ; Reveal message with half of the normal speed and
 ; don't wait for user input to continue.
-@print "Lorem ipsum dolor sit amet." speed:0.5 waitInput:false
+@print "Lorem ipsum dolor sit amet." speed:0.5 !waitInput
 
 ; Print the line with "Together" displayed as author name and
 ; make all visible characters author of the printed text.
@@ -1017,7 +1017,7 @@ Modifies a [text printer actor](/guide/text-printers).
 
 ; Will assign `Right` appearance to `Bubble` printer, make is default,
 ; position at the center of the scene and won't hide other printers.
-@printer Bubble.Right pos:50,50 hideOther:false
+@printer Bubble.Right pos:50,50 !hideOther
 ```
 
 ## processInput
@@ -1264,11 +1264,11 @@ Sound effect tracks are not looped by default. When sfx track name (SfxPath) is 
 @sfx Explosion
 
 ; Plays an SFX with the name `Rain` in a loop and fades-in over 30 seconds.
-@sfx Rain loop:true fade:30
+@sfx Rain loop! fade:30
 
 ; Changes volume of all the played SFX tracks to 75% over 2.5 seconds
 ; and disables looping for all of them.
-@sfx volume:0.75 loop:false time:2.5
+@sfx volume:0.75 !loop time:2.5
 ```
 
 ## sfxFast
@@ -1292,7 +1292,7 @@ Plays an [SFX (sound effect)](/guide/audio#sound-effects) track with the provide
 @sfxFast Click
 
 ; Same as above, but allow concurrent playbacks of the same clip.
-@sfxFast Click restart:false
+@sfxFast Click !restart
 ```
 
 ## shake
@@ -1319,7 +1319,7 @@ Applies [shake effect](/guide/special-effects.html#shake) for the actor with the
 @shake Dialogue
 ;
 ; Start shaking `Kohaku` character, show choice to stop and act accordingly.
-@shake Kohaku count:0 >
+@shake Kohaku count:0 !wait
 @choice "Continue shaking" goto:.Continue
 @choice "Stop shaking" goto:.Stop
 @stop
@@ -1329,7 +1329,7 @@ Applies [shake effect](/guide/special-effects.html#shake) for the actor with the
 ...
 
 ; Shake main Naninovel camera horizontally 5 times.
-@shake Camera count:5 hor:true ver:false
+@shake Camera count:5 hor! !ver
 ```
 
 ## show
@@ -1457,7 +1457,7 @@ Be aware, that this command searches for an existing actor with the provided ID 
 
 ; Given `Sheba` actor is currently visible,
 ; hide and slide it out of the scene over the left border.
-@slide Sheba to:-10 visible:false
+@slide Sheba to:-10 !visible
 
 
 ; Slide `Mia` actor from left-center side of the scene to the right-bottom
@@ -1717,7 +1717,7 @@ Unloads a [Unity scene](https://docs.unity3d.com/Manual/CreatingScenes.html) wit
 
 ```nani
 ; Load scene `TestScene2` in additive mode and then unload it.
-@loadScene TestScene2 additive:true
+@loadScene TestScene2 additive!
 @unloadScene TestScene2
 ```
 
@@ -1788,13 +1788,13 @@ Lorem ipsum[i] dolor sit amet.
 
 ; Start looped SFX, print message and wait for a skippable 5 seconds delay,
 ; then stop the SFX.
-@sfx Noise loop:true
+@sfx Noise loop!
 Jeez, what a disgusting noise. Shut it down![wait i5][skipInput]
 @stopSfx Noise
 
 ; The text is printed without delay, as the `wait` command is not awaited.
 ; The thunder effects are played after a random delay of 3 to 8 seconds.
-@wait {Random(3,8)} do:"@sfx Thunder, @shake Camera" >
+@wait {Random(3,8)} do:"@sfx Thunder, @shake Camera" !wait
 The thunder might go off any second...
 ```
 

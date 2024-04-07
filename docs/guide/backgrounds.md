@@ -56,7 +56,7 @@ When showing multiple backgrounds simultaneously, they tend to cover each other:
 
 ```nani
 ; Hide background 2 to reveal first one back
-@back id:2 visible:false
+@back id:2 !visible
 ; There is also a dedicated command to hide actors
 @hide 2
 

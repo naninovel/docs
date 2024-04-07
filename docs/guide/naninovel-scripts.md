@@ -52,20 +52,21 @@ You can use `time` *Decimal* parameter here to control how long the characters w
 ```nani
 @hideChars time:5.5
 ```
+
 This will make the characters fade-out for 5.5 seconds, before completely removing them from scene.
 
 ### Parameter Value Types
 
 Depending on the command parameter, it can expect one of the following value types:
 
-Type | Description
---- | ---
-string | A simple string value, eg: `LoremIpsum`. Don't forget to wrap the string in double quotes in case it contain spaces, eg: `"Lorem ipsum dolor sit amet."`.
-integer | A number which is not a fraction; a whole number, eg: `1`, `150`, `-25`.
-decimal | A decimal number with fraction delimited by a dot, eg: `1.0`, `12.08`, `-0.005`.
-boolean | Can have one of two possible values: `true` or `false` (case-insensitive).
-named | A name string associated with a value of one of the above types. The name part is delimited by a dot. Eg for named integer: `foo.8`, `bar.-20`.
-list | A comma-separated list of values of one of the above types. Eg for string list: `foo,bar,"Lorem ipsum."`, for decimal list: `12,-8,0.105,2`
+| Type    | Description                                                                                                                                                                                                                                            |
+|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| string  | A simple string value, eg: `LoremIpsum`. Don't forget to wrap the string in double quotes in case it contain spaces, eg: `"Lorem ipsum dolor sit amet."`.                                                                                              |
+| integer | A number which is not a fraction; a whole number, eg: `1`, `150`, `-25`.                                                                                                                                                                               |
+| decimal | A decimal number with fraction delimited by a dot, eg: `1.0`, `12.08`, `-0.005`.                                                                                                                                                                       |
+| boolean | Can have one of two possible values: `true` or `false`. In most cases you can use [boolean flags](/guide/naninovel-scripts#boolean-flags) instead of typing "true" and "false", eg: `@camera ortho! !wait` instead of `@camera ortho:true wait:false`. |
+| named   | A name string associated with a value of one of the above types. The name part is delimited by a dot. Eg for named integer: `foo.8`, `bar.-20`.                                                                                                        |
+| list    | A comma-separated list of values of one of the above types. Eg for string list: `foo,bar,"Lorem ipsum."`, for decimal list: `12,-8,0.105,2`                                                                                                            |
 
 ### Nameless Parameters
 
@@ -76,6 +77,7 @@ For example, [@bgm] command expects a nameless parameter specifying name of the 
 ```nani
 @bgm PianoTheme
 ```
+
 "PianoTheme" here is the value of "BgmPath" *String* parameter.
 
 There can be only one nameless parameter per command and it should always be specified before any other parameters.
@@ -113,7 +115,7 @@ Felix.Happy: Lorem ipsum dolor sit amet.
 The above line is equal to the following two:
 
 ```nani
-@char Felix.Happy wait:false
+@char Felix.Happy !wait
 Felix: Lorem ipsum dolor sit amet.
 ```
 
@@ -124,7 +126,7 @@ Sometimes, you may want to execute a command while revealing (printing) text mes
 All the commands (both [built-in](/api/) and [custom ones](/guide/custom-commands)) can be inlined (injected) to generic text lines using square brackets (`[ ]`):
 
 ```nani
-Felix: Lorem ipsum[char Felix.Happy pos:0.75 wait:false] dolor sit amet, consectetur adipiscing elit.[i] Aenean tempus eleifend ante, ac molestie metus condimentum quis.[i][br 2] Morbi nunc magna, consequat posuere consectetur in, dapibus consectetur lorem. Duis consectetur semper augue nec pharetra.
+Felix: Lorem ipsum[char Felix.Happy pos:0.75 !wait] dolor sit amet, consectetur adipiscing elit.[i] Aenean tempus eleifend ante, ac molestie metus condimentum quis.[i][br 2] Morbi nunc magna, consequat posuere consectetur in, dapibus consectetur lorem. Duis consectetur semper augue nec pharetra.
 ```
 
 Notice, that the inlined command syntax is exactly the same, except `@` literal is omitted and command body is wrapped in square brackets. Basically, you can take any command line, inline it to a generic text and it will have the exact same effect, but at a different moment, depending on the position inside text message.
@@ -132,18 +134,19 @@ Notice, that the inlined command syntax is exactly the same, except `@` literal 
 Under the hood, generic text lines are parsed into individual commands identified by inline index; text is printed with [@print] command. For example, following generic text line:
 
 ```nani
-Lorem ipsum[char Felix.Happy pos:75 wait:false] dolor sit amet.
+Lorem ipsum[char Felix.Happy pos:75 !wait] dolor sit amet.
 ```
 
 — is actually handled by the engine as a sequence of individual commands:
 
 ```nani
-@print "Lorem ipsum" waitInput:false
-@char Felix.Happy pos:75 wait:false
+@print "Lorem ipsum" !waitInput
+@char Felix.Happy pos:75 !wait
 @print "dolor sit amet."
 ```
 
 To actually print square brackets within generic text line, escape them with backslashes, eg:
+
 ```nani
 Some text \[ text inside brackets \]
 ```
@@ -179,45 +182,47 @@ When line starts with semicolon literal (`;`) it's considered a comment statemen
 @save
 ```
 
-## Wait Flags
+## Boolean Flags
 
-Wait flags are `>` and `<` symbols specified at the end of command. Use them to control whether next command should be executed immediately after or wait for the completion of the current command, eg:
-
-```nani
-@snow >
-@camera zoom:0.5 >
-Kohaku: Looks like it's starting to snow.
-```
-
-— will start printing the generic line without waiting for snow FX and zoom camera commands to complete, making all the commands run in parallel.
-
-If you find yourself specifying `>` more often than not, consider disabling `Wait By Default` option in script player configuration; this way script player won't wait the commands:
+Use boolean flags as shortcuts for boolean parameter values, eg:
 
 ```nani
-@snow
-@camera zoom:0.5
-Kohaku: Looks like it's starting to snow.
+; Make Kohaku character visible.
+@char Kohaku visible!
+; Is equivalent to:
+@char Kohaku visible:true
+
+; Make Kohaku character invisible.
+@char Kohaku !visible
+; Is equivalent to:
+@char Kohaku visible:false
+
+; Inlined commands support the flags as well.
+Lorem ipsum[shake Camera ver! !wait] dolor sit amet.
+; Is equivalent to:
+Lorem ipsum[shake Camera ver:true wait:false] dolor sit amet.
 ```
 
-— given `Wait By Default` is disabled, above will work same as before, without the need to specify wait flags. If you'd want to wait for command completion with default wait disabled, use reverse wait flag:
+The only reasons to use full boolean form is when you want to evaluate the value dynamically via [script expression](/guide/script-expressions), eg:
 
 ```nani
-@snow
-@camera zoom:0.5 <
-Kohaku: Looks like it's starting to snow.
+; Make Kohaku visible if "score" variable is above 10.
+@char Kohaku visible:{score>10}
 ```
 
-— will wait for zoom to complete before starting to print the generic line.
-
-Wait flags can be used inside inlined commands as well, eg:
+— or when boolean parameter is nameless, eg:
 
 ```nani
-Kohaku: Printed before shake[shake Kohaku >] printing while Kohaku is shaking.
+; Disable camera look mode with nameless parameter.
+@look false
 ```
 
-::: info NOTE
-Wait flags are shortcuts for specifying `wait` parameter. When command ends with `>` it's parsed as if it has `wait:false` parameter, while `<` is parsed as `wait:true`. When both wait parameter and wait flag are specified, wait flag overrides effect of the wait parameter.
-:::
+Though in the latter case you can specify ID of the nameless parameter and still use it with boolean flag:
+
+```nani
+; Disable camera look mode with boolean flag.
+@look !enable
+```
 
 ## Conditional Execution
 
@@ -285,16 +290,16 @@ The script can also be used to invoke commands when player clicks "NEW GAME", "E
 ```nani
 ; Following commands are played when entering the main menu.
 ; Notice, they're not awaited so that title UI is shown at the same time.
-@back MainMenuBackground time:3 wait:false
-@bgm MainMenuMusic wait:false
-@spawn Rain wait:false
+@back MainMenuBackground time:3 !wait
+@bgm MainMenuMusic !wait
+@spawn Rain !wait
 @stop
 
 # OnNewGame
 ; Following commands will be executed when player clicks "NEW GAME".
 ; Notice, that `stopBgm` command is awaited, so that the music
 ; is fully stopped before new game begin to load.
-@sfx NewGameSoundEffect wait:false
+@sfx NewGameSoundEffect !wait
 @stopBgm
 @stop
 
@@ -405,11 +410,13 @@ Features like [script localization](/guide/localization#scripts-localization) an
 By default, Naninovel will automatically identify all the localizable text by its content hash when importing script assets. This works fine as long as you don't modify the text; but after you do, all the associations will break: you'll have to re-map auto voice clips or re-translate changed text statements.
 
 To prevent associations from breaking when editing text, enable `Stable Identification` under scripts configuration menu. When enabled, Naninovel will explicitly write unique IDs to each localizable text in imported scripts. The downside is that the script text will now have IDs appended to each localizable parameter, eg:
+
 ```nani
 Kohaku: Hey!|#1|[i] What's up?|#2|
 @choice "Option 1|#3|"
 @choice "Option 2|#4|"
 ```
+
 — but in return, as long as you don't remove or change the IDs, the associations won't break. To make text IDs less distracting, they are colored dim by the IDE extension and visual editor.
 
 When stable identification is enabled, the system will also make sure all the generated text IDs are unique and were never used before inside the script document; for this, it'll store latest revision numbers in `NaninovelData/ScriptRevisions` editor asset. Whenever you remove a line with an assigned text ID, you can be sure that this ID won't suddenly appear in some other place (unless you specify it manually).

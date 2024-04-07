@@ -74,15 +74,15 @@ Use [command inlining](/guide/naninovel-scripts#command-inlining).
 
 ## How to run commands concurrently?
 
-Use wait flag, eg:
+Negate (set to false) `wait` parameter, which is available in all async commands, eg:
 
 ```nani
 ; Printer will start fading out at the same time as the characters
-@hideChars >
+@hideChars !wait
 @hidePrinter
 ```
 
-Alternatively, disable `Wait By Default` option in script player configuration; this way all commands will execute concurrently by default, unless wait flag is reversed. Refer to the [wait flag documentation](/guide/naninovel-scripts#wait-flags) for more info.
+Alternatively, disable `Wait By Default` option in script player configuration; this way all commands will execute concurrently by default, unless `wait` is positive (set to true).
 
 ## How to make actors appear in front of each other (z-sorting)?
 

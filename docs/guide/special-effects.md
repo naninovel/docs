@@ -26,7 +26,7 @@ You can update the effect parameters without re-starting it with the consequent 
 ```nani
 ; Start slowly shaking `Kohaku` character in a loop,
 ; don't wait for completion (it's an infinite loop, anyway)
-@spawn ShakeCharacter params:Kohaku,0,,,0.1 >
+@spawn ShakeCharacter params:Kohaku,0,,,0.1 !wait
 Kohaku: It's rumbling!
 ; Shake 3 more times with an increased amplitude
 @spawn ShakeCharacter params:Kohaku,3,,,0.8
@@ -54,8 +54,8 @@ It's possible to start multiple effects of the same type by appending an ID deli
 
 ```nani
 ; Shake both `Kohaku` and `Yuko` in a loop
-@spawn ShakeCharacter#1 params:Kohaku,0 >
-@spawn ShakeCharacter#2 params:Yuko,0 >
+@spawn ShakeCharacter#1 params:Kohaku,0 !wait
+@spawn ShakeCharacter#2 params:Yuko,0 !wait
 ```
 
 When stopping or updating instanced effects, don't forget to specify the ID:
@@ -112,7 +112,7 @@ Be aware, that when UI is set to "Screen Space Overlay" mode, shake amplitude ne
 @spawn ShakePrinter params:,10,,,,,true,false
 
 ; Start shaking a default printer in loop, print some text, stop the shaking
-@spawn ShakePrinter params:,0 >
+@spawn ShakePrinter params:,0 !wait
 What a shaky situation!
 @despawn ShakePrinter
 ```
@@ -166,7 +166,7 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 @spawn ShakeCharacter params:Kohaku
 
 ; Start shaking a random character, show a choice to stop and act accordingly
-@spawn ShakeCharacter params:,0 >
+@spawn ShakeCharacter params:,0 !wait
 @choice "Continue shaking" goto:.Continue
 @choice "Stop shaking" goto:.Stop
 @stop

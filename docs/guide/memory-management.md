@@ -14,7 +14,7 @@ Below is a demo on how resources will un-/load under Conservative policy:
 
 ```nani [Script1.nani]
 Resources from Script1, Script2 and ScriptGosub are loaded here.
-Script2 is loaded, because it's navigated to with "@goto hold:true".
+Script2 is loaded, because it's navigated to with "@goto hold!".
 ScriptGosub is loaded, because "@gosub" are always pre-loaded.
 
 ...
@@ -24,18 +24,18 @@ Loading screen won't show, because gosub is always pre-loaded.
 
 ...
 
-Loading screen won't show, because we're using "hold:true".
-@goto Script2 hold:true
+Loading screen won't show, because we're using "hold!".
+@goto Script2 hold!
 ```
 
 ```nani [Script2.nani]
 Resources from Script1, Script2 and ScriptGosub are all still loaded,
-because this script was navigated to with "@goto hold:true",
+because this script was navigated to with "@goto hold!",
 hence it's considered a dependency of Script1.
 
 ...
 
-Loading screen will show, because we're not using "hold:true".
+Loading screen will show, because we're not using "hold!".
 @goto Script3
 ```
 
@@ -51,7 +51,7 @@ Loading screen won't show, because gosub is always pre-loaded.
 
 ...
 
-Loading screen will show, because we're not using "hold:true".
+Loading screen will show, because we're not using "hold!".
 @goto Script4
 ```
 
@@ -87,7 +87,7 @@ Below is a demo of similar set of scripts, but now we're using Optimistic policy
 
 ```nani [Script1.nani]
 Resources from Script1, Script2, Script3 and ScriptGosub are all loaded here.
-Script4 is not loaded, because it's navigated to with "@goto release:true".
+Script4 is not loaded, because it's navigated to with "@goto release!".
 
 ...
 
@@ -96,7 +96,7 @@ Loading screen won't show, because gosub is always pre-loaded.
 
 ...
 
-Loading screen won't show by default, unless "release:true" is specified.
+Loading screen won't show by default, unless "release!" is specified.
 @goto Script2
 ```
 
@@ -105,7 +105,7 @@ Everyting except Script4 is still loaded.
 
 ...
 
-Loading screen won't show by default, unless "release:true" is specified.
+Loading screen won't show by default, unless "release!" is specified.
 @goto Script3
 ```
 
@@ -119,13 +119,13 @@ Loading screen won't show, because gosub is always pre-loaded.
 
 ...
 
-Loading screen will now show, because of "release:true".
-@goto Script4 release:true
+Loading screen will now show, because of "release!".
+@goto Script4 release!
 ```
 
 ```nani [Script4.nani]
 All the resources except Script4 are now unloaded, because we navigated here
-with "@goto release:true".
+with "@goto release!".
 
 ...
 
@@ -183,7 +183,7 @@ Use [@hide] command with `remove` parameter to hide and dispose specific actors.
 @char DicedCharacter
 ; "LayeredBackground" won't be destroyed when "NextScript" is loaded,
 ; but both characters will.
-@hide GenericCharacter,DicedCharacter remove:true
+@hide GenericCharacter,DicedCharacter remove!
 @goto NextScript
 ```
 
