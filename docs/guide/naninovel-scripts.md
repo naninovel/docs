@@ -251,14 +251,14 @@ Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
 @print {remark} if:remark=="Saying \"Stop the car\" was a mistake."
 ```
 
-It's also possible to specify multi-line conditional blocks with [@if], [@else], [@elseif] and [@endif] commands.
+It's also possible to specify multi-line conditional blocks with [@if] and [@else] commands.
 
 ```nani
 @if score>10
 	Good job, you've passed the test!
 	@bgm Victory
 	@spawn Fireworks
-@elseif attempts>100
+@else if:attempts>100
 	You're hopeless... Need help?
 	@choice "Yeah, please!" goto:.GetHelp
 	@choice "I'll keep trying." goto:.BeginTest
@@ -266,17 +266,25 @@ It's also possible to specify multi-line conditional blocks with [@if], [@else],
 @else
 	You've failed. Try again!
 	@goto .BeginTest
-@endif
 ```
 
-::: info NOTE
-The tabs in the above sample are used for better readability and are completely optional. Naninovel ignores any kind of white space (spaces, tabs, etc) before and after command and label lines, so that you can format them as you see fit.
-:::
-
-The same works for generic text lines:
+Notice how conditional branches are indented: each indent level is exactly 4 spaces. Tabs and indents with other space length will be ignored. Nested blocks of any level are possible: just indent deeper with the same 4 spaces, eg:
 
 ```nani
-Lorem ipsum dolor sit amet. [if score>10]Duis efficitur imperdiet nunc. [else]Vestibulum sit amet dolor non dolor placerat vehicula.[endif]
+@if score>10
+	You've passed the test.
+	@if score>20
+	    Most impressive!
+    @else
+        Good job!
+@else
+	You've failed. Try again!
+```
+
+It's also possible to use conditional blocks inside generic text lines. However, instead of indents, use [@endif] command to mark end of block:
+
+```nani
+You've passed the test.[if score>20] Most impressive![else] Good job![endif]
 ```
 
 For more information on the conditional expression format and available operators see [script expressions](/guide/script-expressions) guide.

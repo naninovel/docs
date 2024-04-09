@@ -71,7 +71,7 @@ It's possible to access a global PlayMaker variable in Naninovel scripts with th
  - `GetPlayMakerGlobalVariable("variableName")` — retrieves a variable of a simple type (int, float, string, etc) with the "variableName" name
  - `GetPlayMakerGlobalArray("variableName", arrayIndex)` — retrieves a value stored at "arrayIndex" index of an array variable with the "variableName" name
 
-Given you have a "Score" integer and "FinishedRoutes" bool array global PlayMaker variables, you can use them in Naninovel scripts as follow:
+Given you have a "Score" integer and "FinishedRoutes" bool array global PlayMaker variables, you can use them in Naninovel scripts as follows:
 ```nani
 Felix: My score is {GetPlayMakerGlobalVariable("Score")}.
 
@@ -79,7 +79,6 @@ Felix: My score is {GetPlayMakerGlobalVariable("Score")}.
     Third route (second array index) is completed.
 @else
     Not yet.
-@endif
 ```
 
 To assign a PlayMaker's global variable value from Naninovel script, use `@pset` command as following:
