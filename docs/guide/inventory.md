@@ -68,5 +68,4 @@ Select an action.[skipInput]
 @else
 	But you don't have a weapon! You've been beaten by the monsters.[if ItemExist("Armor")] At least it didn't hurt that much, thanks to the armor.[endif] Let's prepare better next time.
 	@goto .Start
-@endif
 ```
