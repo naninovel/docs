@@ -289,7 +289,9 @@ It's also possible to use conditional blocks inside generic text lines. However,
 You've passed the test.[if score>20] Most impressive![else] Good job![endif]
 ```
 
-For more information on the conditional expression format and available operators see [script expressions](/guide/script-expressions) guide.
+::: info
+Find more about conditional expressions and available operators in [script expressions](/guide/script-expressions) guide.
+:::
 
 ## Title Script
 
