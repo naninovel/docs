@@ -391,7 +391,6 @@ When `goto`, `gosub` and `do` parameters are not specified, will continue script
 | goto | named string | Path to go when the choice is selected by user; see [@goto] command for the path format. |
 | gosub | named string | Path to a subroutine to go when the choice is selected by user; see [@gosub] command for the path format. When `goto` is assigned this parameter will be ignored. |
 | set | string | Set expression to execute when the choice is selected by user; see [@set] command for syntax reference. |
-| do | string list | Script commands to execute when the choice is selected by user. Escape commas inside list values to prevent them being treated as delimiters. The commands will be invoked in order after `set`, `goto` and `gosub` are handled (if assigned). |
 | play | boolean | Whether to automatically continue playing script from the next line, when neither `goto` nor `gosub` parameters are specified. Has no effect in case the script is already playing when the choice is processed. |
 | show | boolean | Whether to also show choice handler the choice is added for; enabled by default. |
 | time | decimal | Duration (in seconds) of the fade-in (reveal) animation. |
@@ -413,12 +412,17 @@ Continue executing this script or ...?[skipInput]
 @choice "I'll take the entire stock!" set:karma--;score=999
 
 ; Play a sound effect and arrange characters when choice is picked.
-@choice Arrange do:"@sfx Click, @arrange k.10\,y.55"
+@choice Arrange
+    @sfx Click
+    @arrange k.10,y.55
 
 ; Print a text line corresponding to the picked choice.
-@choice "Ask about color" do:"What's your favorite color?"
-@choice "Ask about age" do:"How old are you?"
-@choice "Keep silent" do:"..."
+@choice "Ask about color"
+    What's your favorite color?
+@choice "Ask about age"
+    How old are you?
+@choice "Keep silent"
+    ...
 @stop
 
 ; Make choice disabled/locked when 'score' variable is below 10.
@@ -497,23 +501,11 @@ Destroys all the objects spawned with [@spawn] command. Equal to invoking [@desp
 
 ## else
 
-Marks a branch of a conditional execution block, which is always executed in case conditions of the opening [@if] and all the preceding [@elseif] (if any) commands are not met. For usage examples see [conditional execution](/guide/naninovel-scripts#conditional-execution) guide.
-
-## elseIf
-
-Marks a branch of a conditional execution block, which is executed in case own condition is met (expression is evaluated to be true), while conditions of the opening [@if] and all the preceding [@elseif] (if any) commands are not met. For usage examples see [conditional execution](/guide/naninovel-scripts#conditional-execution) guide.
-
-<div class="config-table">
-
-| Parameter | Type | Description |
-| --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [script expression](/guide/script-expressions), which should return a boolean value. |
-
-</div>
+Marks a branch of a conditional execution block, which is executed in case condition of the opening [@if] and preceding [@else] (if any) commands are not met. For usage examples see [conditional execution](/guide/naninovel-scripts#conditional-execution) guide.
 
 ## endIf
 
-Closes an [@if] conditional execution block. For usage examples see [conditional execution](/guide/naninovel-scripts#conditional-execution) guide.
+Alternative to using indentation in conditional blocks: marks end of the block opened with previous [@if] command, no matter the indentation. For usage examples see [conditional execution](/guide/naninovel-scripts#conditional-execution) guide.
 
 ## finishTrans
 
@@ -606,8 +598,8 @@ Navigates naninovel script playback to the provided path.
 | --- | --- | --- |
 | <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">path</span> | named string | Path to navigate into in the following format: `ScriptName.LabelName`. When label name is omitted, will play provided script from the start. When script name is omitted, will attempt to find a label in the currently played script. |
 | reset | string list | When specified, will control whether to reset the engine services state before loading a script (in case the path is leading to another script):<br /> - Specify `*` to reset all the services, except the ones with `Goto.DontReset` attribute.<br /> - Specify service type names (separated by comma) to exclude from reset; all the other services will be reset, including the ones with `Goto.DontReset` attribute.<br /> - Specify `-` to force no reset (even if it's enabled by default in the configuration).<br /><br /> Notice, that while some services have `Goto.DontReset` attribute applied and are not reset by default, they should still be specified when excluding specific services from reset. |
-| hold | boolean | Whether to hold resources in the target script, which make them preload together with the script this command specified in. Has no effect outside of `Conservative` resource policy. Refer to [memory management](/guide/memory-management) guide for more info. |
-| release | boolean | Whether to release resources before navigating to the target script to free the memory. Has no effect outside of `Optimistic` resource policy. Refer to [memory management](/guide/memory-management) guide for more info. |
+| hold | boolean | Whether to hold resources in the target script, which make them preload together with the script this command specified in. Has no effect outside `Conservative` resource policy. Refer to [memory management](/guide/memory-management) guide for more info. |
+| release | boolean | Whether to release resources before navigating to the target script to free the memory. Has no effect outside `Optimistic` resource policy. Refer to [memory management](/guide/memory-management) guide for more info. |
 
 </div>
 
@@ -757,13 +749,13 @@ Lorem ipsum dolor sit amet.[i] Consectetur adipiscing elit.
 
 ## if
 
-Marks the beginning of a conditional execution block. Should always be closed with an [@endif] command. For usage examples see [conditional execution](/guide/naninovel-scripts#conditional-execution) guide.
+Marks the beginning of a conditional execution block. Following lines with +1 indent level are considered body of the block and will be executed only in case the conditional nameless parameter is evaluated to true. For usage examples see [conditional execution](/guide/naninovel-scripts#conditional-execution) guide.
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [script expression](/guide/script-expressions), which should return a boolean value. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [script expression](/guide/script-expressions), which should return a boolean value determining whether the associated block will be executed. |
 
 </div>
 
@@ -1794,7 +1786,9 @@ Jeez, what a disgusting noise. Shut it down![wait i5][skipInput]
 
 ; The text is printed without delay, as the `wait` command is not awaited.
 ; The thunder effects are played after a random delay of 3 to 8 seconds.
-@wait {Random(3,8)} do:"@sfx Thunder, @shake Camera" !wait
+@wait {Random(3,8)} !wait
+    @sfx Thunder
+    @shake Camera
 The thunder might go off any second...
 ```
 

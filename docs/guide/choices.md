@@ -39,9 +39,27 @@ Choice handler actors are used to process the [@choice] commands. You can add, e
 
 Choice handlers behavior can be configured using `Naninovel -> Configuration -> Choice Handlers` context menu; for available options see [configuration guide](/guide/configuration#choice-handlers).
 
-## Nested Handlers
+## Nested Callback
 
-...
+When the consequence of picking a choice is small (eg, you may just want to print a couple of sentences), it's impractical to designate a label and use `goto` or `gosub` parameters. Instead, nest commands to execute when the choice is picked:
+
+```nani
+@choice "Ask about color"
+    Kohaku: What's your favorite color?
+    Yuko: Magenta.
+@choice "Ask about age"
+    Kohaku: How old are you?
+    @shake Yuko !wait
+    Yuko: Why?
+@choice "Keep silent"
+    Kohaku: ...
+    Awkward silence fell.
+@stop
+```
+
+::: info NOTE
+Nested choice callback is not compatible with `goto`, `gosub`, `set` and `play` parameters. Instead of specifying them as parameters, use the appropriate commands inside the nested block: [@goto] instead of `goto` parameter, [@set] instead of `set` parameter and so on.
+:::
 
 ## Choice Button
 
@@ -50,6 +68,7 @@ The [@choice] command accepts an optional `button` parameter specifying a path (
 ```nani
 @choice handler:ButtonArea button:MapButtons/Home pos:-300,-300 goto:.HomeScene
 ```
+
 — here we use a choice handler supporting positioning to represent a point of interest on an improvised map, where the `button` parameter is pointing to a prefab consisting of a button wrapped over an image. The prefab is stored at `Assets/Resources/MapButtons/Home.prefab`.
 
 To create a choice button prefab from template, use `Create -> Naninovel -> Choice Button` asset context menu.
@@ -86,9 +105,11 @@ Built-in choice button has `On Lock` event invoked each time choice is added, wh
 ![](https://i.gyazo.com/ec5ef74ec9af1aa46a18d89bd34d866f.png)
 
 ## ButtonList Choice Handler
+
 Button list handler is used by default. It stores the choice buttons inside a horizontal layout panel and ignores the `pos` parameter of the [@choice] command.
 
 ## ButtonArea Choice Handler
+
 In contrast to button list, button area doesn't enforce any specific layout and allows manually setting positions of the added choice buttons via `pos` parameter. For example, here is one way to make an interactive map with choice commands and button area handler:
 
 ```nani
