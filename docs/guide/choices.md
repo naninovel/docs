@@ -57,6 +57,25 @@ When the consequence of picking a choice is small (eg, you may just want to prin
 @stop
 ```
 
+Any level of nesting is supported:
+
+```nani
+@choice "Ask about age"
+    Kohaku: How old are you?
+    @shake Yuko !wait
+    Yuko: Why?
+    @choice "Insist"
+        Kohaku: Just asking. Is that a secret?
+        Yuko.Angry: It is!
+    @choice "Give up"
+        Kohaku: Never mind, forget about that.
+        @char Yuko.Relieved
+    @stop
+@choice "Keep silent"
+    ...
+@stop
+```
+
 ::: info NOTE
 Nested choice callback is not compatible with `goto`, `gosub`, `set` and `play` parameters. Instead of specifying them as parameters, use the appropriate commands inside the nested block: [@goto] instead of `goto` parameter, [@set] instead of `set` parameter and so on.
 :::
