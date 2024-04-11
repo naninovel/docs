@@ -55,10 +55,8 @@ Select an action.[skipInput]
 
 @choice "Pick up sword" if:!ItemExist("Sword")
     @addItem Sword
-    @goto .Adventure
 @choice "Pick up armor" if:!ItemExist("Armor")
     @addItem Armor
-    @goto .Adventure
 @choice "Adventure awaits, venture forth!"
 @stop
 
