@@ -175,12 +175,8 @@
                             "match": "\\\\[{}\\[\\]\"]"
                         },
                         {
-                            "match": "^([\\w\\.,\\+\\-/\\{\\}>]+\\.+:) ",
-                            "captures": { "1": { "name": "naniscript.author.missingappearance" } }
-                        },
-                        {
                             "name": "naniscript.author",
-                            "match": "^([\\w\\.,\\+\\-/\\{\\}>]+:) ",
+                            "match": "([\\w\\.,\\+\\-/\\{\\}>]+:) ",
                             "captures": { "1": { "patterns": [{ "include": "#expression" }] } }
                         },
                         { "include": "#expression" },
