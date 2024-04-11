@@ -251,7 +251,9 @@ Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
 @print {remark} if:remark=="Saying \"Stop the car\" was a mistake."
 ```
 
-It's also possible to specify multi-line conditional blocks with [@if] and [@else] commands.
+### Conditional Blocks
+
+It's possible to specify multi-line conditional blocks with [@if] and [@else] commands.
 
 ```nani
 @if score>10
@@ -268,7 +270,7 @@ It's also possible to specify multi-line conditional blocks with [@if] and [@els
 	@goto .BeginTest
 ```
 
-Notice how conditional branches are indented: each indent level is exactly 4 spaces. Tabs and indents with other space length will be ignored. Nested blocks of any level are possible: just indent deeper with the same 4 spaces, eg:
+Notice how conditional branches are indented: each indent level is exactly **4 spaces**. Tabs and indents with other space length will be ignored. Nested blocks of any level are possible: just indent deeper with the same 4 spaces, eg:
 
 ```nani
 @if score>10

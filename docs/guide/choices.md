@@ -39,6 +39,10 @@ Choice handler actors are used to process the [@choice] commands. You can add, e
 
 Choice handlers behavior can be configured using `Naninovel -> Configuration -> Choice Handlers` context menu; for available options see [configuration guide](/guide/configuration#choice-handlers).
 
+## Nested Handlers
+
+...
+
 ## Choice Button
 
 The [@choice] command accepts an optional `button` parameter specifying a path (relative to a "Resources" folder) to custom prefab representing the choice option object.
