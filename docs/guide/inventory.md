@@ -53,8 +53,12 @@ Below is a script from the example project:
 
 Select an action.[skipInput]
 
-@choice "Pick up sword" if:!ItemExist("Sword") do:"@addItem Sword, @goto .Adventure"
-@choice "Pick up armor" if:!ItemExist("Armor") do:"@addItem Armor, @goto .Adventure"
+@choice "Pick up sword" if:!ItemExist("Sword")
+    @addItem Sword
+    @goto .Adventure
+@choice "Pick up armor" if:!ItemExist("Armor")
+    @addItem Armor
+    @goto .Adventure
 @choice "Adventure awaits, venture forth!"
 @stop
 

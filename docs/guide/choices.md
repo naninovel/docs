@@ -123,8 +123,10 @@ Used by [chat text printer](/guide/text-printers#chat-printer) to represent repl
 ```nani
 @printer Chat
 Kohaku: Where're you right now?
-@choice "Play dumb" handler:ChatReply do:"Yuko: ¯\_(ツ)_/¯"
-@choice "Answer" handler:ChatReply do:"Yuko: school. preping for the festival"
+@choice "Play dumb" handler:ChatReply
+    Yuko: ¯\_(ツ)_/¯
+@choice "Answer" handler:ChatReply
+    Yuko: school. preping for the festival
 @stop
 ```
 
