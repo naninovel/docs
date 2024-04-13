@@ -296,7 +296,7 @@ Commands such as [@if], [@else], [@choice] and several others support associatin
 
 Commands which support this feature are known as *nested hosts*; in C# such commands are distinguished by having `Command.INestedHost` interface implemented. Host commands are able to control which or whether nested commands are executed and in which order.
 
-Each host command has its own behaviour when executing the nested commands. For example, [@if] will skip the nested commands when the specified condition is not met, while [@print] will execute nested commands when (if) player pick associated choice:
+Each host command has its own behaviour when executing the nested commands. For example, [@if] will skip the nested commands when the specified condition is not met, while [@choice] will execute nested commands when (if) player pick associated choice:
 
 ```nani
 @if score>10
