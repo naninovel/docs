@@ -41,7 +41,7 @@ Choice handlers behavior can be configured using `Naninovel -> Configuration -> 
 
 ## Nested Callback
 
-When the consequence of picking a choice is small (eg, you may just want to print a couple of sentences), it's impractical to designate a label and use `goto` or `gosub` parameters. Instead, nest commands to execute when the choice is picked:
+When the consequence of picking a choice is small (eg, you may just want to print a couple of sentences), it's impractical to designate a label and use `goto` or `gosub` parameters. Instead, [nest](/guide/naninovel-scripts#nesting) commands to execute when the choice is picked:
 
 ```nani
 @choice "Ask about color"
