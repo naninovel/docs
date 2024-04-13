@@ -253,26 +253,13 @@ Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
 
 ### Conditional Blocks
 
-It's possible to specify multi-line conditional blocks with [@if] and [@else] commands.
+It's possible to [nest](/guide/naninovel-scripts#nesting) multiline conditional blocks under [@if] and [@else] commands:
 
 ```nani
-@if score>10
-	Good job, you've passed the test!
-	@bgm Victory
-	@spawn Fireworks
-@else if:attempts>100
-	You're hopeless... Need help?
-	@choice "Yeah, please!" goto:.GetHelp
-	@choice "I'll keep trying." goto:.BeginTest
-	@stop
-@else
-	You've failed. Try again!
-	@goto .BeginTest
-```
-
-Notice how conditional branches are indented: each indent level is exactly **4 spaces**. Tabs and indents with other space length will be ignored. Nested blocks of any level are possible: just indent deeper with the same 4 spaces, eg:
-
-```nani
+; Print text line(s) depending on "score" variable:
+;   "You've failed. Try again!" - when score below 10.
+;   "You've passed the test." and "Most impressive!" - when score above 20.
+;   "You've passed the test." and "Good job!" - otherwise.
 @if score>10
 	You've passed the test.
 	@if score>20
@@ -283,15 +270,53 @@ Notice how conditional branches are indented: each indent level is exactly **4 s
 	You've failed. Try again!
 ```
 
-It's also possible to use conditional blocks inside generic text lines. However, instead of indents, use [@endif] command to mark end of block:
+It's also possible to use conditional blocks inside [generic text lines](/guide/naninovel-scripts#generic-text-lines). Instead of indents, use [@endif] command to mark end of block:
 
 ```nani
+; Print "You've passed the test. Most impressive!" when score above 20,
+; otherwise print "You've passed the test. Good job!".
 You've passed the test.[if score>20] Most impressive![else] Good job![endif]
 ```
 
 ::: info
 Find more about conditional expressions and available operators in [script expressions](/guide/script-expressions) guide.
 :::
+
+## Nesting
+
+Commands such as [@if], [@else], [@choice] and several others support associating other commands with them via indentation:
+
+```nani
+@if score>10
+    @bgm Victory
+    Good job, you've passed the test!
+```
+
+— here [@bgm] command and following [generic text line](/guide/naninovel-scripts#generic-text-lines) are associated with [@if] command.
+
+Commands which support this feature are known as *nested hosts*; in C# such commands are distinguished by having `Command.INestedHost` interface implemented. Host commands are able to control which or whether nested commands are executed and in which order.
+
+Each host command has its own behaviour when executing the nested commands. For example, [@if] will skip the nested commands when the specified condition is not met, while [@print] will execute nested commands when (if) player pick associated choice:
+
+```nani
+@if score>10
+	Good job, you've passed the test!
+	@bgm Victory
+	@spawn Fireworks
+@else if:attempts>100
+	You're hopeless... Need help?
+	@choice "Yeah, please!"
+	    @set score+=10
+	    @goto .BeginTest
+	@choice "I'll keep trying."
+	    @goto .BeginTest
+	@stop
+@else
+	You've failed. Try again!
+	@goto .BeginTest
+```
+
+Notice how nested blocks are indented: each indent level is exactly **4 spaces**. Tabs and indents with other space length will be ignored. Nested blocks of any level are possible: just indent deeper with the same 4 spaces.
 
 ## Title Script
 
