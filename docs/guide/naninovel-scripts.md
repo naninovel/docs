@@ -258,12 +258,15 @@ It's possible to [nest](/guide/naninovel-scripts#nesting) multiline conditional 
 ```nani
 ; Print text line(s) depending on "score" variable:
 ;   "You've failed. Try again!" - when score below 10.
-;   "You've passed the test." and "Most impressive!" - when score above 20.
+;   "You've passed the test." and "Brilliant!" - when score is above 20.
+;   "You've passed the test." and "Impressive!" - when score is above 15.
 ;   "You've passed the test." and "Good job!" - otherwise.
 @if score>10
 	You've passed the test.
 	@if score>20
-	    Most impressive!
+	    Brilliant!
+	@else if:score>15
+	    Impressive!
     @else
         Good job!
 @else
