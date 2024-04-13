@@ -270,7 +270,7 @@ It's possible to [nest](/guide/naninovel-scripts#nesting) multiline conditional 
 	You've failed. Try again!
 ```
 
-It's also possible to use conditional blocks inside [generic text lines](/guide/naninovel-scripts#generic-text-lines). Instead of indents, use [@endif] command to mark end of block:
+It's also possible to use conditional blocks inside generic text lines. Instead of indents, use [@endif] command to mark end of block:
 
 ```nani
 ; Print "You've passed the test. Most impressive!" when score above 20,
@@ -284,7 +284,7 @@ Find more about conditional expressions and available operators in [script expre
 
 ## Nesting
 
-Commands such as [@if], [@else], [@choice] and several others support associating other commands with them via indentation:
+Commands such as [@if], [@else], [@choice] and several others support associating other commands and generic text lines with them via indentation:
 
 ```nani
 @if score>10
@@ -292,7 +292,7 @@ Commands such as [@if], [@else], [@choice] and several others support associatin
     Good job, you've passed the test!
 ```
 
-— here [@bgm] command and following [generic text line](/guide/naninovel-scripts#generic-text-lines) are associated with [@if] command.
+— here [@bgm] command and following generic text line are associated with [@if] command.
 
 Commands which support this feature are known as *nested hosts*; in C# such commands are distinguished by having `Command.INestedHost` interface implemented. Host commands are able to control which or whether nested commands are executed and in which order.
 
