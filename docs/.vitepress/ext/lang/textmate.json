@@ -48,11 +48,6 @@
                             ]
                         }
                     }
-                },
-                {
-                    "comment": "Command - @...",
-                    "match": "^[\\t ]*@[\\t ]*$",
-                    "name": "naniscript.command.missing"
                 }
             ]
         },
@@ -125,12 +120,6 @@
             "patterns": [
                 { "include": "#expression" },
                 { "include": "#text-identifier" },
-                { "include": "#boolean-flag" },
-                {
-                    "comment": "Missing parameter value",
-                    "match": "\\s(\\w+:)(\\s|$)+",
-                    "captures": { "1": { "name": "naniscript.command.parameter.missingvalue" } }
-                },
                 {
                     "comment": "Parameter ID - id:",
                     "name": "naniscript.command.parameter.id",
@@ -139,13 +128,13 @@
                 {
                     "comment": "Parameter ID With Positive Boolean Flag - id!",
                     "name": "naniscript.command.parameter.id",
-                    "match": "\\s\\w+(!)",
+                    "match": "\\s\\w+(!)(\\s|$)+",
                     "captures": { "0": { "patterns": [{ "include": "#bool-flags" }] } }
                 },
                 {
                     "comment": "Parameter ID With Negative Boolean Flag - !id",
                     "name": "naniscript.command.parameter.id",
-                    "match": "\\s!\\w+",
+                    "match": "(!)\\w+",
                     "captures": { "0": { "patterns": [{ "include": "#bool-flags" }] } }
                 },
                 {
@@ -165,19 +154,15 @@
         },
         "generic-text": {
             "name": "naniscript.generic-text",
-            "match": "^[ \\t]*([^#@;\\s].*)[ \\t]*$",
+            "match": "^\\s*(\\S+: ){0,1}(.+)",
             "captures": {
-                "1": {
+                "1": { "patterns": [{ "name": "naniscript.author", "match": "\\S+:" }] },
+                "2": {
                     "patterns": [
                         {
                             "name": "naniscript.generic-text.escaped-char",
                             "comment": "Escaped characters",
                             "match": "\\\\[{}\\[\\]\"]"
-                        },
-                        {
-                            "name": "naniscript.author",
-                            "match": "([\\w\\.,\\+\\-/\\{\\}>]+:) ",
-                            "captures": { "1": { "patterns": [{ "include": "#expression" }] } }
                         },
                         { "include": "#expression" },
                         { "include": "#text-identifier" },

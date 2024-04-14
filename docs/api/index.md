@@ -749,13 +749,13 @@ Lorem ipsum dolor sit amet.[i] Consectetur adipiscing elit.
 
 ## if
 
-Marks the beginning of a conditional execution block. Following lines with +1 indent level are considered body of the block and will be executed only in case the conditional nameless parameter is evaluated to true. For usage examples see [conditional execution](/guide/naninovel-scripts#conditional-execution) guide.
+Marks the beginning of a conditional execution block. Nested lines are considered body of the block and will be executed only in case the conditional nameless parameter is evaluated to true. For usage examples see [conditional execution](/guide/naninovel-scripts#conditional-execution) guide.
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [script expression](/guide/script-expressions), which should return a boolean value determining whether the associated block will be executed. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [script expression](/guide/script-expressions), which should return a boolean value determining whether the associated nested block will be executed. |
 
 </div>
 
@@ -1790,5 +1790,31 @@ Jeez, what a disgusting noise. Shut it down![wait i5][skipInput]
     @sfx Thunder
     @shake Camera
 The thunder might go off any second...
+```
+
+## while
+
+Executes nested lines in a loop, as long as specified conditional expression resolves to `true`.
+
+<div class="config-table">
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [script expression](/guide/script-expressions), which should return a boolean value determining whether the associated nested block should continue executing in loop. |
+
+</div>
+
+```nani
+@set number=Random(0,100)
+@set answer=-1
+@while answer!=number
+    @input answer summary:"Guess a number between 0 and 100"
+    @stop
+    @if answer<number
+        Wrong, too low.
+    @else if:answer>number
+        Wrong, too high.
+    @else
+        Correct!
 ```
 
