@@ -287,7 +287,7 @@ Find more about conditional expressions and available operators in [script expre
 
 ## Nesting
 
-Commands such as [@if], [@else], [@choice] and several others support associating other commands and generic text lines with them via indentation:
+Commands such as [@if], [@choice], [@while] and several others support associating other commands and generic text lines with them via indentation:
 
 ```nani
 @if score>10
