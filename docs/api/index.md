@@ -1805,10 +1805,11 @@ Executes nested lines in a loop, as long as specified conditional expression res
 </div>
 
 ```nani
-@set number=Random(0,100)
-@set answer=-1
+; Guess the number game.
+@set number=Random(1,100)
+@set answer=0
 @while answer!=number
-    @input answer summary:"Guess a number between 0 and 100"
+    @input answer summary:"Guess number between 1 and 100"
     @stop
     @if answer<number
         Wrong, too low.
