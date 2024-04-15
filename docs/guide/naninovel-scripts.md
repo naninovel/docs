@@ -265,7 +265,7 @@ It's possible to [nest](/guide/naninovel-scripts#nesting) multiline conditional 
     You've passed the test.
     @if score>8
         Brilliant!
-	@else if:score>7
+    @else if:score>7
         Impressive!
     @else
         Good job!
@@ -305,20 +305,20 @@ Each host command has its own behaviour when executing the nested commands. For 
 
 ```nani
 @if score>10
-	Good job, you've passed the test!
-	@bgm Victory
-	@spawn Fireworks
+    Good job, you've passed the test!
+    @bgm Victory
+    @spawn Fireworks
 @else if:attempts>100
-	You're hopeless... Need help?
-	@choice "Yeah, please!"
-	    @set score+=10
-	    @goto .BeginTest
-	@choice "I'll keep trying."
-	    @goto .BeginTest
-	@stop
+    You're hopeless... Need help?
+    @choice "Yeah, please!"
+        @set score+=10
+        @goto .BeginTest
+    @choice "I'll keep trying."
+        @goto .BeginTest
+    @stop
 @else
-	You've failed. Try again!
-	@goto .BeginTest
+    You've failed. Try again!
+    @goto .BeginTest
 ```
 
 Notice how nested blocks are indented: each indent level is exactly **4 spaces**. Tabs and indents with other space length will be ignored. Nested blocks of any level are possible: just indent deeper with the same 4 spaces.
