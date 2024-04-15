@@ -769,7 +769,7 @@ Marks the beginning of a conditional execution block. Nested lines are considere
     You've passed the test.
     @if score>8
         Brilliant!
-	@else if:score>7
+    @else if:score>7
         Impressive!
     @else
         Good job!
