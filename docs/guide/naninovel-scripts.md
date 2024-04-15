@@ -257,28 +257,30 @@ It's possible to [nest](/guide/naninovel-scripts#nesting) multiline conditional 
 
 ```nani
 ; Print text line(s) depending on "score" variable:
-;   "You've failed. Try again!" - when score below 10.
-;   "You've passed the test." and "Brilliant!" - when score is above 20.
-;   "You've passed the test." and "Impressive!" - when score is above 15.
+;   "You've failed. Try again!" - when score is below 6.
+;   "You've passed the test." and "Brilliant!" - when score is above 8.
+;   "You've passed the test." and "Impressive!" - when score is above 7.
 ;   "You've passed the test." and "Good job!" - otherwise.
-@if score>10
-	You've passed the test.
-	@if score>20
-	    Brilliant!
-	@else if:score>15
-	    Impressive!
+@if score>6
+    You've passed the test.
+    @if score>8
+        Brilliant!
+	@else if:score>7
+        Impressive!
     @else
         Good job!
 @else
-	You've failed. Try again!
+    You've failed. Try again!
 ```
 
 It's also possible to use conditional blocks inside generic text lines. Instead of indents, use [@endif] command to mark end of block:
 
 ```nani
-; Print "You've passed the test. Most impressive!" when score above 20,
-; otherwise print "You've passed the test. Good job!".
-You've passed the test.[if score>20] Most impressive![else] Good job![endif]
+; Print text line depending on "score" variable:
+;   "Test result: Failed." - when score is below 6.
+;   "Test result: Perfect!" - when score is above above 8.
+;   "Test result: Passed." - otherwise.
+Test result:[if score>8] Perfect![else if:score>6] Passed.[else] Failed.[endif]
 ```
 
 ::: info
