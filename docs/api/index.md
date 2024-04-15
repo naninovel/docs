@@ -749,7 +749,7 @@ Lorem ipsum dolor sit amet.[i] Consectetur adipiscing elit.
 
 ## if
 
-Marks the beginning of a conditional execution block. Nested lines are considered body of the block and will be executed only in case the conditional nameless parameter is evaluated to true. For usage examples see [conditional execution](/guide/naninovel-scripts#conditional-execution) guide.
+Marks the beginning of a conditional execution block. Nested lines are considered body of the block and will be executed only in case the conditional nameless parameter is evaluated to true. See [conditional execution](/guide/naninovel-scripts#conditional-execution) guide for more info.
 
 <div class="config-table">
 
@@ -758,6 +758,30 @@ Marks the beginning of a conditional execution block. Nested lines are considere
 | <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [script expression](/guide/script-expressions), which should return a boolean value determining whether the associated nested block will be executed. |
 
 </div>
+
+```nani
+; Print text line(s) depending on "score" variable:
+;   "You've failed. Try again!" - when score is below 6.
+;   "You've passed the test." and "Brilliant!" - when score is above 8.
+;   "You've passed the test." and "Impressive!" - when score is above 7.
+;   "You've passed the test." and "Good job!" - otherwise.
+@if score>6
+    You've passed the test.
+    @if score>8
+        Brilliant!
+	@else if:score>7
+        Impressive!
+    @else
+        Good job!
+@else
+    You've failed. Try again!
+
+; Print text line depending on "score" variable:
+;   "Test result: Failed." - when score is below 6.
+;   "Test result: Perfect!" - when score is above above 8.
+;   "Test result: Passed." - otherwise.
+Test result:[if score>8] Perfect![else if:score>6] Passed.[else] Failed.[endif]
+```
 
 ## input
 
