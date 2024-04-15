@@ -270,6 +270,10 @@ Hide Unused Parameters | True | Whether to hide un-assigned parameters of the co
 Select Played Script | True | Whether to automatically select currently played script when visual editor is open.
 Insert Line Key | Space | Hot key used to show `Insert Line` window when the visual editor is in focus. Set to `None` to disable.
 Insert Line Modifier | Control | Modifier for the `Insert Line Key`. Set to `None` to disable.
+Indent Line Key | Right Arrow | Hot key used to indent lines. Set to `None` to disable.
+Indent Line Modifier | Control | Modifier for the `Indent Line Key`. Set to `None` to disable.
+Unindent Line Key | Left Arrow | Hot key used to un-indent lines. Set to `None` to disable.
+Unindent Line Modifier | Control | Modifier for the `Unindent Line Key`. Set to `None` to disable.
 Save Script Key | S | Hot key used to save (serialize) the edited script when the visual editor is in focus. Set to `None` to disable.
 Save Script Modifier | Control | Modifier for the `Save Script Key`. Set to `None` to disable.
 Rewind Mouse Button | 0 | When clicked a line in visual editor, which mouse button should activate rewind: `0` is left, `1` right, `2` middle; set to `-1` to disable.
