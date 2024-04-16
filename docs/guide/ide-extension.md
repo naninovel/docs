@@ -77,6 +77,21 @@ You can access the settings JSON file via `File -> Preference -> Settings` menu 
 
 Feel free to customize the settings as you see fit.
 
+## Folding
+
+Following artifacts get folding support by default:
+
+- Labels, until other label
+- Joint comment lines
+- Indented (nested) blocks
+
+It's also possible to specify custom folding regions via comments with special syntax:
+
+1. Open with `; > region name`, where "region name" can be anything
+2. Close with `; < region name`, where "region name" equals the opening name
+
+![?width=450px](https://i.gyazo.com/1e84951c9d5c34e0295e58bb4e1ebe28.mp4)
+
 ## IDE Metadata
 
 The project metadata (actors, scripts, custom commands, etc) is stored as `NaninovelData/Metadata.json` file. It's automatically generated when Unity editor is started. To update the metadata while the project is opened, either use `Naninovel -> Update Metadata` editor menu or `Ctrl + Shift + U` hotkey.
