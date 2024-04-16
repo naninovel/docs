@@ -466,6 +466,31 @@ Too late!
 Good!
 ```
 
+## delay
+
+Delays execution of the nested commands for specified time interval.
+
+::: info NOTE
+Be aware, that the delayed execution won't happen if game gets saved/loaded or rolled-back. It's fine to use delayed execution for "cosmetic" events, such as one-shot visual or audio effects, but don't delay commands, which could affect persistent game state, as this could lead to undefined behaviour.
+:::
+
+<div class="config-table">
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">seconds</span> | decimal | Delay time, in seconds. |
+
+</div>
+
+```nani
+; The text is printed without delay, as the `@delay` command is not awaited by default.
+; The thunder effects are played after a random delay of 3 to 8 seconds.
+@delay {Random(3,8)}
+    @sfx Thunder
+    @shake Camera
+The thunder might go off any second...
+```
+
 ## despawn
 
 Destroys an object spawned with [@spawn] command.
@@ -1787,7 +1812,6 @@ Holds script execution until the specified wait condition.
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">waitMode</span> | string | Wait conditions:<br /> - `i` user press continue or skip input key;<br /> - `0.0` timer (seconds);<br /> - `i0.0` timer, that is skip-able by continue or skip input keys. |
-| do | string list | Script commands to execute when the wait is over. Escape commas inside list values to prevent them being treated as delimiters. |
 
 </div>
 
