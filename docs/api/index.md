@@ -483,7 +483,7 @@ Be aware, that the delayed execution won't happen if game gets saved/loaded or r
 </div>
 
 ```nani
-; The text is printed without delay, as the `@delay` command is not awaited by default.
+; The text is printed without delay, as the `@delay` command is not awaited.
 ; The thunder effects are played after a random delay of 3 to 8 seconds.
 @delay {Random(3,8)}
     @sfx Thunder
