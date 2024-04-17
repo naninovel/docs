@@ -323,6 +323,21 @@ Each host command has its own behaviour when executing the nested commands. For 
 
 Notice how nested blocks are indented: each indent level is exactly **4 spaces**. Tabs and indents with other space length will be ignored. Nested blocks of any level are possible: just indent deeper with the same 4 spaces.
 
+Sometimes, you may need to group several commands under single host. For example, to execute a random block of commands with [@random]. In such cases, use [@group] command:
+
+```nani
+; Random command chooses one of the nested lines, but ignores children
+; of its nested lines. Group command used here to group multiple lines,
+; so that random command will actually execute multiple lines.
+@random
+    @group
+        @back tint:red
+        Paint it red.
+    @group
+        @back tint:black
+        Paint it black.
+```
+
 ## Title Script
 
 Title script is a special naninovel script assigned in script configuration menu. When assigned, it's automatically played when the title UI (main menu) is shown. Title script can be used to set up the title screen scene: background, music, effects, etc.
