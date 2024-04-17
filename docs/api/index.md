@@ -642,6 +642,23 @@ Navigates naninovel script playback to the provided path.
 ...
 ```
 
+## group
+
+Allows grouping commands inside nested block.
+
+```nani
+; Random command chooses one of the nested lines, but ignores children
+; of its nested lines. Group command used here to group multiple lines,
+; so that random command will actually execute multiple lines.
+@random
+    @group
+        @back tint:red
+        Paint it red.
+    @group
+        @back tint:black
+        Paint it black.
+```
+
 ## hide
 
 Hides (removes) actors (character, background, text printer, choice handler) with the specified IDs. In case multiple actors with the same ID found (eg, a character and a printer), will affect only the first found one.
@@ -1132,6 +1149,45 @@ Spawns particle system simulating [rain](/guide/special-effects.html#rain).
 @rain power:1500 time:10
 ; Stop the rain over 30 seconds.
 @rain power:0 time:30
+```
+
+## random
+
+Executes one of the nested commands, picked randomly.
+
+<div class="config-table">
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| weight | decimal list | Customized probability for the nested commands, in 0.0 to 1.0 range. By default all the commands have equal probability of being picked. |
+
+</div>
+
+```nani
+; Play one of 3 sounds with equal probability.
+@random
+    @sfx Sound1
+    @sfx Sound2
+    @sfx Sound3
+
+; Play 2nd sound with 80% probability or 1st/3rd with 10% each.
+@random weight:0.1,0.8,0.1
+    @sfx Sound1
+    @sfx Sound2
+    @sfx Sound3
+
+; Add a choice to shake camera, tint Kohaku actor or play 'SoundX' SFX,
+; all with 33% probability. However, SFX playback will only be considered
+; in case score is above 10.
+@random
+    @choice "Shake camera!"
+        You've asked for it!
+        @shake Camera
+    @group
+        Going to tint Kohaku!
+        @char Kohaku tint:red
+    @sfx SoundX if:score>10
+@stop
 ```
 
 ## resetState
