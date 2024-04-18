@@ -49,7 +49,7 @@ When the consequence of picking a choice is small (eg, you may just want to prin
     Yuko: Magenta.
 @choice "Ask about age"
     Kohaku: How old are you?
-    @shake Yuko !wait
+    @shake Yuko
     Yuko: Why?
 @choice "Keep silent"
     Kohaku: ...
@@ -62,7 +62,7 @@ Any level of nesting is supported:
 ```nani
 @choice "Ask about age"
     Kohaku: How old are you?
-    @shake Yuko !wait
+    @shake Yuko
     Yuko: Why?
     @choice "Insist"
         Kohaku: Just asking. Is that a secret?

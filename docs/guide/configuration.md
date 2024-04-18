@@ -241,7 +241,7 @@ Skip Time Scale | 10 | Time scale to use when in skip (fast-forward) mode.
 Min Auto Play Delay | 1 | Minimum seconds to wait before executing next command while in auto play mode.
 Complete On Continue | True | Whether to instantly complete blocking (`wait!`) commands performed over time (eg, animations, hide/reveal, tint changes, etc) when `Continue` input is activated.
 Show Debug On Init | False | Whether to show player debug window on engine initialization.
-Wait By Default | True | Whether to wait the played commands when the `wait` parameter is not explicitly specified.
+Wait By Default | False | Whether to wait the played commands when the `wait` parameter is not explicitly specified.
 Show Loading UI | True | Whether to show `ILoadingUI` while a script is pre-/loaded. Allows masking resource loading process with the loading screen.
 Resolve Mode | Nearest | The mode in which script player handles missing playback spots when loading state. This may happen when player saved a game amidst a scenario script, which is then changed (eg, via a game update) and the saved playback spot (line and inline indexes) is no longer available.<br> • Nearest — Attempt to play from the nearest next spot; in case no next spots found (script was made shorter), start from nearest previous one. Most forgiving mode, but could cause an undefined behaviour.<br> • Restart — Start playing current script from start. Won't cause undefined behaviour in case all the state is local to scenario script, but player will have to re-play the script form the start.<br> • Error — Throw an error. Choose this option in case undefined behaviour is not acceptable.
 
