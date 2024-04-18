@@ -46,17 +46,17 @@ It's not recommended to use this command for complex animations. Naniscript is a
 ```nani
 ; Animate `Kohaku` actor over three animation steps (key frames),
 ; changing positions: first step will take 1, second — 0.5 and third — 3 seconds.
-@animate Kohaku posX:50,0,85 time:1,0.5,3
+@animate Kohaku posX:50,0,85 time:1,0.5,3 wait!
 
 ; Start loop animations of `Yuko` and `Kohaku` actors; notice, that you can skip
 ; key values indicating that the parameter shouldn't change during the animation step.
-@animate Kohaku,Yuko loop! !wait appearance:Surprise,Sad,Default,Angry transition:DropFade,Ripple,Pixelate posX:15,85,50 posY:0,-25,-85 scale:1,1.25,1.85 tint:#25f1f8,lightblue,#ffffff,olive easing:EaseInBounce,EaseInQuad time:3,2,1,0.5
+@animate Kohaku,Yuko loop! appearance:Surprise,Sad,Default,Angry transition:DropFade,Ripple,Pixelate posX:15,85,50 posY:0,-25,-85 scale:1,1.25,1.85 tint:#25f1f8,lightblue,#ffffff,olive easing:EaseInBounce,EaseInQuad time:3,2,1,0.5
 ...
 ; Stop the animations.
 @animate Yuko,Kohaku !loop
 
 ; Start a long background animation for `Kohaku`.
-@animate Kohaku posX:90,0,90 scale:1,2,1 time:10 !wait
+@animate Kohaku posX:90,0,90 scale:1,2,1 time:10
 ; Do something else while the animation is running.
 ...
 ; Here we're going to set a specific position for the character,
@@ -112,6 +112,25 @@ Arranges specified characters by X-axis. When no parameters provided, will execu
 ; Place character with ID `Jenna` 15%, `Felix` 50% and `Mia` 85% away
 ; from the left border of the scene.
 @arrange Jenna.15,Felix.50,Mia.85
+```
+
+## await
+
+Holds script execution until all the nested async commands finished execution. Useful for grouping multiple async commands to wait until they all finish before proceeding with the script playback.
+
+::: info NOTE
+The nested block is expected to always finish; don't nest any commands that could navigate outside the nested block, as this may cause undefined behaviour.
+:::
+
+```nani
+; Run nested lines in parallel and wait until they all are finished.
+@await
+    @back RainyScene
+    @bgm RainAmbient
+    @camera zoom:0.5 time:3
+    @print "It starts raining..." !waitInput
+; Following line will execute after all the above is finished.
+...
 ```
 
 ## back
@@ -1416,7 +1435,7 @@ Applies [shake effect](/guide/special-effects.html#shake) for the actor with the
 @shake Dialogue
 ;
 ; Start shaking `Kohaku` character, show choice to stop and act accordingly.
-@shake Kohaku count:0 !wait
+@shake Kohaku count:0
 @choice "Continue shaking" goto:.Continue
 @choice "Stop shaking" goto:.Stop
 @stop
@@ -1887,13 +1906,6 @@ Lorem ipsum[i] dolor sit amet.
 @sfx Noise loop!
 Jeez, what a disgusting noise. Shut it down![wait i5][skipInput]
 @stopSfx Noise
-
-; The text is printed without delay, as the `wait` command is not awaited.
-; The thunder effects are played after a random delay of 3 to 8 seconds.
-@wait {Random(3,8)} !wait
-    @sfx Thunder
-    @shake Camera
-The thunder might go off any second...
 ```
 
 ## while

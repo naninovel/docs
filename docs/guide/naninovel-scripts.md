@@ -115,7 +115,7 @@ Felix.Happy: Lorem ipsum dolor sit amet.
 The above line is equal to the following two:
 
 ```nani
-@char Felix.Happy !wait
+@char Felix.Happy
 Felix: Lorem ipsum dolor sit amet.
 ```
 
@@ -126,7 +126,7 @@ Sometimes, you may want to execute a command while revealing (printing) text mes
 All the commands (both [built-in](/api/) and [custom ones](/guide/custom-commands)) can be inlined (injected) to generic text lines using square brackets (`[ ]`):
 
 ```nani
-Felix: Lorem ipsum[char Felix.Happy pos:0.75 !wait] dolor sit amet, consectetur adipiscing elit.[i] Aenean tempus eleifend ante, ac molestie metus condimentum quis.[i][br 2] Morbi nunc magna, consequat posuere consectetur in, dapibus consectetur lorem. Duis consectetur semper augue nec pharetra.
+Felix: Lorem ipsum[char Felix.Happy pos:0.75] dolor sit amet, consectetur adipiscing elit.[i] Aenean tempus eleifend ante, ac molestie metus condimentum quis.[i][br 2] Morbi nunc magna, consequat posuere consectetur in, dapibus consectetur lorem. Duis consectetur semper augue nec pharetra.
 ```
 
 Notice, that the inlined command syntax is exactly the same, except `@` literal is omitted and command body is wrapped in square brackets. Basically, you can take any command line, inline it to a generic text and it will have the exact same effect, but at a different moment, depending on the position inside text message.
@@ -338,6 +338,52 @@ Sometimes, you may need to group several commands under single host. For example
         Paint it black.
 ```
 
+## Async Execution
+
+Some commands may execute over time. For example, [@hide] command will fade-out specified actor over the course of set time, which can be changed with `time` parameter. Consider following scenario:
+
+```nani
+@hide Kohaku
+@show Yuko
+```
+
+— when played, you'll notice that Yuko actor would start fading-in at the same time Kohaku is faded-out. This is because, by default, all async commands are not awaited: `@show` will start fading-in Yuko right after `@hide` starts fading-out Kohaku.
+
+If you'd like to wait for an async command to complete before proceeding with the playback, use `wait` parameter:
+
+```nani
+@hide Kohaku wait!
+@show Yuko
+```
+
+— now Yuko will start fading-in only after Kohaku is completely faded-out.
+
+It's common to specify multiple async commands to set up a scene and then wait until they all finish. To make the process simpler, use [@await] command:
+
+```nani
+; Run nested lines in parallel and wait until they all are finished.
+@await
+    @back RainyScene
+    @bgm RainAmbient
+    @camera zoom:0.5 time:3
+    @print "It starts raining..." !waitInput
+; Following line will execute after all the above is finished.
+...
+```
+
+In case you find yourself using `wait!` parameters more often than not, it's possible to change the default behaviour by enabling `Wait By Default` in script player configuration. When enabled, all the commands will be awaited by default and you'll be able to prevent specific commands from being awaited by negating the `wait` flag:
+
+```nani
+; Given 'Wait By Default' is enabled, Yuko will start
+; fading-in only after Kohaku is faded-out.
+@hide Kohaku
+@show Yuko
+
+; Fade-in and fade-out will happen simultaneously.
+@hide Kohaku !wait
+@show Yuko
+```
+
 ## Title Script
 
 Title script is a special naninovel script assigned in script configuration menu. When assigned, it's automatically played when the title UI (main menu) is shown. Title script can be used to set up the title screen scene: background, music, effects, etc.
@@ -347,16 +393,16 @@ The script can also be used to invoke commands when player clicks "NEW GAME", "E
 ```nani
 ; Following commands are played when entering the main menu.
 ; Notice, they're not awaited so that title UI is shown at the same time.
-@back MainMenuBackground time:3 !wait
-@bgm MainMenuMusic !wait
-@spawn Rain !wait
+@back MainMenuBackground time:3
+@bgm MainMenuMusic
+@spawn Rain
 @stop
 
 # OnNewGame
 ; Following commands will be executed when player clicks "NEW GAME".
 ; Notice, that `stopBgm` command is awaited, so that the music
 ; is fully stopped before new game begin to load.
-@sfx NewGameSoundEffect !wait
+@sfx NewGameSoundEffect
 @stopBgm
 @stop
 

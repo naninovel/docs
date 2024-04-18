@@ -19,7 +19,7 @@ The above statement will transition to "River" background using "DropFade" trans
 In case you wish to skip to the next command immediately after executing the transition (and not wait for the duration of the effect), you can set `wait` parameter to `false`. E.g.:
 
 ```nani
-@back River.Ripple time:1.5 !wait
+@back River.Ripple time:1.5
 @bgm PianoTheme
 ```
 — "PianoTheme" background music will start playing right away and won't be delayed for 1.5 seconds, while the transition is in progress.
