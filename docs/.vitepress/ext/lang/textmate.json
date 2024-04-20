@@ -54,9 +54,9 @@
         "inline-command": {
             "patterns": [
                 {
-                    "comment": "Inline command - [command paramters]",
+                    "comment": "Inline command - [command parameters]",
                     "name": "naniscript.command.parameter.value",
-                    "match": "(\\[[\\t ]*\\w+)([^\\r\\n\\[\\]]*)(\\]|$)",
+                    "match": "(\\[[\\t ]*[<\\w]+)([^\\r\\n\\[\\]]*)(\\]|$)",
                     "captures": {
                         "1": { "name": "naniscript.command.inline" },
                         "2": { "patterns": [{ "include": "#params" }] },
@@ -93,7 +93,7 @@
                 {
                     "comment": "Text Identifier - |#Textid|",
                     "name": "naniscript.textidentifier",
-                    "match": "(?<!\\\\)\\|#[\\w-]+\\|"
+                    "match": "(?<!\\\\)\\|#&*[\\w-]+\\|"
                 },
                 {
                     "comment": "Text Identifier - |#|",

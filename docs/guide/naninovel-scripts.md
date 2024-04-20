@@ -153,6 +153,32 @@ Some text \[ text inside brackets \]
 
 — will print "Some text [ text inside brackets ]" in-game.
 
+### Generic Parameters
+
+In some cases you may look to modify or assign [@print] parameters for specific parts or the whole generic text line. Use special command `<`, available only in generic lines, which will do just that:
+
+```nani
+; After printing following line waiting for input won't activate
+; (player won't have to confirm prompt to continue reading).
+Lorem ipsum dolor sit amet.[< skip:true]
+
+; Following line will be authored by Kohaku and Yuko actors, while
+; the display name label on the printer will show 'All Together'.
+Kohaku,Yuko: How low hello![< as:"All Together"]
+
+; First part of the sentence will be printed with 50% speed,
+; while the second one with 250% speed and wait for input won't activate.
+Lorem ipsum[< speed:0.5] dolor sit amet.[< speed:2.5 skip:true]
+```
+
+The command will apply specified parameters to the last text line placed before the command, no matter if other commands are inlined between the `<` and text:
+
+```nani
+; The speed will still be applied to "Lorem ipsum" part, even
+; though the parameters are placed after [i] inlined command.
+Lorem ipsum[i][< speed:0.5] dolor sit amet.
+```
+
 ## Label Lines
 
 Labels are used as "anchors" when navigating naninovel scripts with [@goto] commands. To define a label, use `#` literal at the start of the line followed with label name:
@@ -523,3 +549,23 @@ Kohaku: Hey!|#1|[i] What's up?|#2|
 — but in return, as long as you don't remove or change the IDs, the associations won't break. To make text IDs less distracting, they are colored dim by the IDE extension and visual editor.
 
 When stable identification is enabled, the system will also make sure all the generated text IDs are unique and were never used before inside the script document; for this, it'll store latest revision numbers in `NaninovelData/ScriptRevisions` editor asset. Whenever you remove a line with an assigned text ID, you can be sure that this ID won't suddenly appear in some other place (unless you specify it manually).
+
+### Identified Text References
+
+In some rare cases you may look to intentionally duplicate localizable text identifier. For example, when creating an instance of command in C#, which should re-use localized parameter specified in script.
+
+Should you just assign `LocalizableTextParameter` parameter value, Naninovel will warn about duplicate text IDs. Instead, use `Ref()` instance method of the parameter:
+
+```cs
+var myPrintCommand = new PrintText();
+myPrintCommand.AuthorLabel = printFromScript.AuthorLabel.Ref();
+```
+
+To reference an existing localized text inside scenario script, append `&` to the identifier:
+
+```nani
+; Show choice with "Some Text" and then print the same text.
+@choice "Some Text|#SOMEID|"
+@stop
+@print |#&SOMEID|
+```

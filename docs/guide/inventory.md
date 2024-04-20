@@ -51,7 +51,7 @@ Below is a script from the example project:
 ```nani
 # Start
 
-Select an action.[skipInput]
+Select an action.[< skip!]
 
 @choice "Pick up sword" if:!ItemExist("Sword")
     @addItem Sword

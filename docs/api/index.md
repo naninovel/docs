@@ -418,7 +418,7 @@ When `goto`, `gosub` and `do` parameters are not specified, will continue script
 
 ```nani
 ; Print the text, then immediately show choices and stop script execution.
-Continue executing this script or ...?[skipInput]
+Continue executing this script or ...?[< skip!]
 @choice "Continue"
 @choice "Load another script from start" goto:Another
 @choice "Load another script from \"Label\" label" goto:Another.Label
@@ -474,7 +474,7 @@ Removes all the choice options in the choice handler with the provided ID (or in
 ```nani
 ; Give the player 2 seconds to pick a choice.
 # Start
-You have 2 seconds to respond![skipInput]
+You have 2 seconds to respond![< skip!]
 @choice Cats goto:.PickedChoice
 @choice Dogs goto:.PickedChoice
 @wait 2
@@ -1535,16 +1535,6 @@ Allows to enable or disable script player "skip" mode.
 @skip false
 ```
 
-## skipInput
-
-Can be used in generic text lines to prevent activating `wait for input` mode when the text is printed.
-
-```nani
-; Script player won't wait for continue input before executing @sfx command.
-And the rain starts.[skipInput]
-@sfx Rain
-```
-
 ## slide
 
 Slides (moves between two positions) an actor (character, background, text printer or choice handler) with the provided ID and optionally changes actor visibility and appearance. Can be used instead of multiple [@char] or [@back] commands to reveal or hide an actor with a slide animation.
@@ -1904,7 +1894,7 @@ Lorem ipsum[i] dolor sit amet.
 ; Start looped SFX, print message and wait for a skippable 5 seconds delay,
 ; then stop the SFX.
 @sfx Noise loop!
-Jeez, what a disgusting noise. Shut it down![wait i5][skipInput]
+Jeez, what a disgusting noise. Shut it down![wait i5][< skip!]
 @stopSfx Noise
 ```
 
