@@ -160,7 +160,7 @@ In some cases you may look to modify or assign [@print] parameters for specific 
 ```nani
 ; After printing following line waiting for input won't activate
 ; (player won't have to confirm prompt to continue reading).
-Lorem ipsum dolor sit amet.[< skip:true]
+Lorem ipsum dolor sit amet.[< skip!]
 
 ; Following line will be authored by Kohaku and Yuko actors, while
 ; the display name label on the printer will show 'All Together'.
@@ -168,7 +168,7 @@ Kohaku,Yuko: How low hello![< as:"All Together"]
 
 ; First part of the sentence will be printed with 50% speed,
 ; while the second one with 250% speed and wait for input won't activate.
-Lorem ipsum[< speed:0.5] dolor sit amet.[< speed:2.5 skip:true]
+Lorem ipsum[< speed:0.5] dolor sit amet.[< speed:2.5 skip!]
 ```
 
 The command will apply specified parameters to the last text line placed before the command, no matter if other commands are inlined between the `<` and text:
