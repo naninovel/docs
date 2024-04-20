@@ -8,7 +8,7 @@ Use [@choice] commands followed by the choice summary and (optional) `goto` path
 
 ```nani
 ; Print the text, then immediately show choices and stop script execution.
-Continue executing this script or load another?[skipInput]
+Continue executing this script or load another?[< skip!]
 @choice "Continue from the next line"
 @choice "Continue from the specified label" goto:.Labelname
 @choice "Load another from start" goto:AnotherScript
