@@ -179,6 +179,21 @@ The command will apply specified parameters to the last text line placed before 
 Lorem ipsum[i][< speed:0.5] dolor sit amet.
 ```
 
+### White Space Delimiters
+
+In cases, when generic text line starts or ends with a white space (eg, tab or space), it could be useful to explicitly delimit where the content intended to be printed actually start or ends. Especially so, when using nesting.
+
+Use `[]` (empty inlined command) as the delimiter of generic text line boundaries:
+
+```nani
+; Print "Some text  continuation." (with 2 spaces between)
+@group
+    ; Ensure white space at the end is preserved.
+    Some text []
+    ; Ensure white space at the start is preserved.
+    [] continuation.[< join!]
+```
+
 ## Label Lines
 
 Labels are used as "anchors" when navigating naninovel scripts with [@goto] commands. To define a label, use `#` literal at the start of the line followed with label name:
