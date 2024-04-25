@@ -92,6 +92,17 @@ Some parameters however are *required* in order for the command to execute and s
 
 For the list of all the currently available commands with a summary, parameters and usage examples see [commands API reference](/api/).
 
+## Comment Lines
+
+When line starts with semicolon literal (`;`) it's considered a comment statement. Comment lines are completely ignored by the engine when scripts are parsed. Use comment lines to add notes or annotations for yourself or other team members working with naninovel scripts.
+
+```nani
+; The following command will auto-save the game.
+@save
+```
+
+We will use comment lines in the rest of the guide to annotate sample NaniScript snippets.
+
 ## Generic Text Lines
 
 To make writing scripts with large amounts of text easier generic text lines are used. Line is considered a generic text statement when it doesn't start with any of the predefined statement literals:
@@ -212,15 +223,6 @@ When both [@goto] and target label are in the same script, you can omit script n
 
 ```nani
 @goto .Epilogue
-```
-
-## Comment Lines
-
-When line starts with semicolon literal (`;`) it's considered a comment statement. Comment lines are completely ignored by the engine when scripts are parsed. Use comment lines to add notes or annotations for yourself or other team members working with naninovel scripts.
-
-```nani
-; The following command will auto-save the game.
-@save
 ```
 
 ## Boolean Flags
