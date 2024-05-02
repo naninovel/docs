@@ -210,3 +210,5 @@ Restart the game as usual (without the eject arg) and it will automatically use 
 In case developer updates the game, you can eject again to update the existing localization; new lines and records will be inserted, while existing translation for the unchanged source material will not be lost.
 
 After the localization is finished, share the `Localization` folder and instruct end-users to place it under the aforementioned persistent data directory to activate the localization. To disable the localization, delete the folder.
+
+## Compiler Localization
