@@ -1285,14 +1285,14 @@ Automatically save the game to a quick save slot.
 Assigns result of a [script expression](/guide/script-expressions) to a [custom variable](/guide/custom-variables).
 
 ::: info NOTE
-If a variable with the provided name doesn't exist, it will be automatically created. <br /><br /> It's possible to define multiple set expressions in one line by separating them with `;`. The expressions will be executed in sequence by the order of declaration. <br /><br /> In case variable name starts with `T_` or `t_` it's considered a reference to a value stored in 'Script' [managed text](/guide/managed-text) document. Such variables can't be assigned and mostly used for referencing localizable text values.
+If a variable with the provided name doesn't exist, it will be automatically created. <br /><br /> Specify multiple set expressions by separating them with `;`. The expressions will be executed in sequence in the order of declaration. <br /><br /> In case variable name starts with `t_` it's considered a reference to a value stored in 'Script' [managed text](/guide/managed-text) document. Such variables can't be assigned and are intended for referencing localizable text values.
 :::
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | Set expression. <br /><br /> The expression should be in the following format: `VariableName=ExpressionBody`, where `VariableName` is the name of the custom variable to assign and `ExpressionBody` is a [script expression](/guide/script-expressions), the result of which should be assigned to the variable. <br /><br /> It's also possible to use increment and decrement unary operators (`@set foo++`, `@set foo--`) and compound assignment (`@set foo+=10`, `@set foo-=3`, `@set foo*=0.1`, `@set foo/=2`). |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | Assignment expression. <br /><br /> The expression should be in the following format: `var=expression`, where `var` is the name of the custom variable to assign and `expression` is a [script expression](/guide/script-expressions), the result of which should be assigned to the variable. <br /><br /> It's possible to use increment and decrement unary operators (`@set foo++`, `@set foo--`) and compound assignment (`@set foo+=10`, `@set foo-=3`, `@set foo*=0.1`, `@set foo/=2`). |
 
 </div>
 

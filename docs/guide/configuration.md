@@ -121,7 +121,7 @@ Auto Show On Modify | True | Whether to automatically reveal (show) an actor whe
 
 Property | Default Value | Description
 --- | --- | ---
-Predefined Variables | Object Ref | The list of variables to initialize by default. Global variables (names starting with `G_` or `g_`) are initialized on first application start, and others on each state reset.
+Predefined Variables | Object Ref | The list of variables to initialize by default. Global variables (names starting with `g_`) are initialized on first application start, and others on each state reset.
 
 </div>
 
@@ -254,30 +254,31 @@ Resolve Mode | Nearest | The mode in which script player handles missing playbac
 Property | Default Value | Description
 --- | --- | ---
 Loader | Scripts- (Addressable, Project) | Configuration of the resource loader used with naninovel script resources.
-Script Parser | Naninovel.Script Parser, Elringus.Naninovel.Runtime, Version=0.0.0.0, Culture=neutral, Public Key Token=null | IScriptParser implementation to use for creating script assets from text. Don't forget to re-import script assets after modifying this property.
+Script Parser | Naninovel.Script Asset Parser, Elringus.Naninovel.Runtime, Version=0.0.0.0, Culture=neutral, Public Key Token=null | IScriptParser implementation to use for creating script assets from text. Reimport script assets after modifying this setting for changes to take effect.
+Compiler Localization |  (Naninovel.Compiler Localization) | Locale-specific NaniScript compiler options. Will propagate to IDE extension on metadata sync. Restart Unity editor and reimport script assets for changes to take effect.
 Stable Identification | False | Whether to automatically write identifiers to all the localizable text parameters in imported scripts. Enable to persist associations (eg, localization and voiceover) while editing text content. Re-import the scripts for the change to take effect.
 Initialization Script | Null | Name of the script to play right after the engine initialization.
 Title Script | Null | Name of the script to play when showing the Title UI. Can be used to setup the title screen scene (background, music, etc).
 Start Game Script | Null | Name of the script to play when starting a new game. Will use first available when not provided.
 Auto Add Scripts | True | Whether to automatically add created naninovel scripts to the resources.
 Hot Reload Scripts | True | Whether to reload modified (both via visual and external editors) scripts and apply changes during playmode without restarting the playback.
-Watch Scripts | True | Whether to run a file system watcher over `.nani` files in the project. Required to register script changes when edited with an external application.
-Watched Directory |  | When `Watch Scripts` is enabled, select a specific directory to watch instead of the whole project to reduce CPU usage.
-Count Total Commands | False | Whether to calculate number of commands existing in all the available naninovel scripts on service initialization. If you don't use `TotalCommandsCount` property of a script manager and `CalculateProgress` function in naninovel script expressions, disable to reduce engine initialization time.
-Show Script Navigator | False | Whether to auto-show script navigator UI after engine is initialized (requires `IScriptNavigatorUI` available in UI resources).
+Watch Scripts | True | Whether to run a file system watcher over '.nani' files in the project. Required to register script changes when edited with an external application.
+Watched Directory |  | When 'Watch Scripts' is enabled, select a specific directory to watch instead of the whole project to reduce CPU usage.
+Count Total Commands | False | Whether to calculate number of commands existing in all the available naninovel scripts on service initialization. If you don't use 'TotalCommandsCount' property of a script manager and 'CalculateProgress' function in naninovel script expressions, disable to reduce engine initialization time.
+Show Script Navigator | False | Whether to auto-show script navigator UI after engine is initialized (requires 'IScriptNavigatorUI' available in UI resources).
 Enable Visual Editor | True | Whether to show visual script editor when a script is selected.
 Hide Unused Parameters | True | Whether to hide un-assigned parameters of the command lines when the line is not hovered or focused.
 Select Played Script | True | Whether to automatically select currently played script when visual editor is open.
-Insert Line Key | Space | Hot key used to show `Insert Line` window when the visual editor is in focus. Set to `None` to disable.
-Insert Line Modifier | Control | Modifier for the `Insert Line Key`. Set to `None` to disable.
-Indent Line Key | Right Arrow | Hot key used to indent lines. Set to `None` to disable.
-Indent Line Modifier | Control | Modifier for the `Indent Line Key`. Set to `None` to disable.
-Unindent Line Key | Left Arrow | Hot key used to un-indent lines. Set to `None` to disable.
-Unindent Line Modifier | Control | Modifier for the `Unindent Line Key`. Set to `None` to disable.
-Save Script Key | S | Hot key used to save (serialize) the edited script when the visual editor is in focus. Set to `None` to disable.
-Save Script Modifier | Control | Modifier for the `Save Script Key`. Set to `None` to disable.
-Rewind Mouse Button | 0 | When clicked a line in visual editor, which mouse button should activate rewind: `0` is left, `1` right, `2` middle; set to `-1` to disable.
-Rewind Modifier | Shift | Modifier for `Rewind Mouse Button`. Set to `None` to disable.
+Insert Line Key | Space | Hot key used to show 'Insert Line' window when the visual editor is in focus. Set to 'None' to disable.
+Insert Line Modifier | Control | Modifier for the 'Insert Line Key'. Set to 'None' to disable.
+Indent Line Key | Right Arrow | Hot key used to indent lines. Set to 'None' to disable.
+Indent Line Modifier | Control | Modifier for the 'Indent Line Key'. Set to 'None' to disable.
+Unindent Line Key | Left Arrow | Hot key used to un-indent lines. Set to 'None' to disable.
+Unindent Line Modifier | Control | Modifier for the 'Unindent Line Key'. Set to 'None' to disable.
+Save Script Key | S | Hot key used to save (serialize) the edited script when the visual editor is in focus. Set to 'None' to disable.
+Save Script Modifier | Control | Modifier for the 'Save Script Key'. Set to 'None' to disable.
+Rewind Mouse Button | 0 | When clicked a line in visual editor, which mouse button should activate rewind: '0' is left, '1' right, '2' middle; set to '-1' to disable.
+Rewind Modifier | Shift | Modifier for 'Rewind Mouse Button'. Set to 'None' to disable.
 Editor Page Length | 300 | How many script lines should be rendered per visual editor page.
 Editor Custom Style Sheet | Null | Allows modifying default style of the visual editor.
 Graph Orientation | Horizontal | Whether to build the graph vertically or horizontally.
