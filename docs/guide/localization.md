@@ -238,5 +238,5 @@ Localized artifacts will propagate to visual editor and [IDE extension](/guide/i
 ![](https://i.gyazo.com/fde9998597ffedb8a025401bb2f71ce9.png)
 
 ::: tip EXAMPLE
-Find sample project with compiler localized to Russian language on GitHub:
+Find sample project with compiler localized to Russian language on GitHub: https://github.com/naninovel/samples/tree/main/unity/compiler-localization
 :::
