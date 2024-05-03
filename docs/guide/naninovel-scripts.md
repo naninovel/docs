@@ -14,6 +14,10 @@ Each line in naninovel script represents a statement, which can be a command, ge
 
 When none of the above literals are present at the start of the line, it's considered a [generic text](#generic-text-lines) statement.
 
+::: tip
+It's possible to change all the pre-defined compiler artifacts, such as control characters, command identifiers, constants and basically anything you ever have to type while authoring scripts via [compiler localization](/guide/localization#compiler-localization) feature.
+:::
+
 ## Command Lines
 
 Line is considered a command statement if it starts with `@` literal. Command represents a single operation, that controls what happens on the scene; eg, it can be used to change a background, move a character or load another naninovel script.
