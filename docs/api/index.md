@@ -44,26 +44,26 @@ It's not recommended to use this command for complex animations. Naniscript is a
 </div>
 
 ```nani
-; Animate `Kohaku` actor over three animation steps (key frames),
+; Animate 'kohaku' actor over three animation steps (key frames),
 ; changing positions: first step will take 1, second — 0.5 and third — 3 seconds.
-@animate Kohaku posX:50,0,85 time:1,0.5,3 wait!
+@animate kohaku posX:50,0,85 time:1,0.5,3 wait!
 
-; Start loop animations of `Yuko` and `Kohaku` actors; notice, that you can skip
+; Start loop animations of 'yuko' and 'kohaku' actors; notice, that you can skip
 ; key values indicating that the parameter shouldn't change during the animation step.
-@animate Kohaku,Yuko loop! appearance:Surprise,Sad,Default,Angry transition:DropFade,Ripple,Pixelate posX:15,85,50 posY:0,-25,-85 scale:1,1.25,1.85 tint:#25f1f8,lightblue,#ffffff,olive easing:EaseInBounce,EaseInQuad time:3,2,1,0.5
+@animate kohaku,yuko loop! appearance:Surprise,Sad,Default,angry transition:DropFade,Ripple,Pixelate posX:15,85,50 posY:0,-25,-85 scale:1,1.25,1.85 tint:#25f1f8,lightblue,#ffffff,olive easing:EaseInBounce,EaseInQuad time:3,2,1,0.5
 ...
 ; Stop the animations.
-@animate Yuko,Kohaku !loop
+@animate yuko,kohaku !loop
 
-; Start a long background animation for `Kohaku`.
-@animate Kohaku posX:90,0,90 scale:1,2,1 time:10
+; Start a long background animation for 'kohaku'.
+@animate kohaku posX:90,0,90 scale:1,2,1 time:10
 ; Do something else while the animation is running.
 ...
 ; Here we're going to set a specific position for the character,
 ; but the animation could still be running in background, so reset it first.
-@animate Kohaku
+@animate kohaku
 ; Now it's safe to modify previously animated properties.
-@char Kohaku pos:50 scale:1
+@char kohaku pos:50 scale:1
 ```
 
 ## append
@@ -109,9 +109,9 @@ Arranges specified characters by X-axis. When no parameters provided, will execu
 ; Evenly distribute all the visible characters.
 @arrange
 
-; Place character with ID `Jenna` 15%, `Felix` 50% and `Mia` 85% away
+; Place character with ID 'jenna' 15%, 'felix' 50% and 'mia' 85% away
 ; from the left border of the scene.
-@arrange Jenna.15,Felix.50,Mia.85
+@arrange jenna.15,felix.50,mia.85
 ```
 
 ## await
@@ -125,8 +125,8 @@ The nested block is expected to always finish; don't nest any commands that coul
 ```nani
 ; Run nested lines in parallel and wait until they all are finished.
 @await
-    @back RainyScene
-    @bgm RainAmbient
+    @back rainyScene
+    @bgm rainAmbient
     @camera zoom:0.5 time:3
     @print "It starts raining..." !waitInput
 ; Following line will execute after all the above is finished.
@@ -164,15 +164,15 @@ Backgrounds are handled a bit differently from characters to better accommodate 
 </div>
 
 ```nani
-; Set `River` as the appearance of the main background.
-@back River
+; Set 'river' as the appearance of the main background.
+@back river
 
-; Same as above, but also use a `RadialBlur` transition effect.
-@back River.RadialBlur
+; Same as above, but also use a 'RadialBlur' transition effect.
+@back river.RadialBlur
 
-; Position `Smoke` background at the center of the screen
+; Position 'smoke' background at the center of the screen
 ; and scale it 50% of the original size.
-@back id:Smoke pos:50,50 scale:0.5
+@back id:smoke pos:50,50 scale:0.5
 
 ; Tint all visible backgrounds on scene.
 @back id:* tint:#ffdc22
@@ -201,18 +201,18 @@ Music tracks are looped by default. When music track name (BgmPath) is not speci
 </div>
 
 ```nani
-; Starts playing a music track with the name `Sanctuary` in a loop.
-@bgm Sanctuary
+; Starts playing a music track with the name 'sanctuary' in a loop.
+@bgm sanctuary
 
 ; Same as above, but fades-in the volume over 10 seconds and plays once.
-@bgm Sanctuary fade:10 !loop
+@bgm sanctuary fade:10 !loop
 
 ; Changes volume of all the played music tracks to 50% over 2.5 seconds
 ; and makes them play in a loop.
 @bgm volume:0.5 loop! time:2.5
 
-; Plays `BattleThemeIntro` once, then loops `BattleThemeMain`.
-@bgm BattleThemeMain intro:BattleThemeIntro
+; Plays 'battle_theme_intro' once, then loops 'battle_theme_main'.
+@bgm battle_theme_main intro:battle_theme_intro
 ```
 
 ## blur
@@ -239,10 +239,10 @@ The actor should have `IBlurable` interface implemented in order to support the 
 ; Remove blur from the main background.
 @blur power:0
 
-; Blur `Kohaku` actor with max power over 5 seconds.
-@blur Kohaku power:1 time:5
-; Remove blur from `Kohaku` over 3.1 seconds.
-@blur Kohaku power:0 time:3.1
+; Blur 'kohaku' actor with max power over 5 seconds.
+@blur kohaku power:1 time:5
+; Remove blur from 'kohaku' over 3.1 seconds.
+@blur kohaku power:0 time:3.1
 ```
 
 ## bokeh
@@ -261,8 +261,8 @@ Simulates [depth of field](/guide/special-effects.html#depth-of-field-bokeh) (ak
 </div>
 
 ```nani
-; Enable the effect with defaults and lock focus on `Kohaku` game object.
-@bokeh focus:Kohaku
+; Enable the effect with defaults and lock focus on 'kohaku' game object.
+@bokeh focus:kohaku
 ; Fade-off (disable) the effect over 10 seconds.
 @bokeh power:0 time:10
 ; Set focus point 10 units away from the camera,
@@ -332,10 +332,10 @@ Modifies the main camera, changing offset, zoom level and rotation over time. Ch
 ; Instantly reset camera to the default state.
 @camera offset:0,0 zoom:0 rotation:0,0,0 time:0
 
-; Toggle `FancyCameraFilter` and `Bloom` components attached to the camera.
+; Toggle 'FancyCameraFilter' and 'Bloom' components attached to the camera.
 @camera toggle:FancyCameraFilter,Bloom
 
-; Set `FancyCameraFilter` component enabled and `Bloom` disabled.
+; Set 'FancyCameraFilter' component enabled and 'Bloom' disabled.
 @camera set:FancyCameraFilter.true,Bloom.false
 
 ; Disable all components attached to the camera object.
@@ -371,20 +371,20 @@ Modifies a [character actor](/guide/characters).
 </div>
 
 ```nani
-; Shows character with ID `Sora` with a default appearance.
-@char Sora
+; Shows character with ID 'sora' with a default appearance.
+@char sora
 
-; Same as above, but sets appearance to `Happy`.
-@char Sora.Happy
+; Same as above, but sets appearance to 'happy'.
+@char sora.happy
 
 ; Same as above, but additionally positions the character 45% away 
 ; from the left border of the scene and 10% away from the bottom border; 
 ; also makes it look to the left.
-@char Sora.Happy look:left pos:45,10
+@char sora.happy look:left pos:45,10
 
-; Make Sora appear at the bottom-center and in front of Felix.
-@char Sora pos:50,0,-1
-@char Felix pos:,,0
+; Make sora appear at the bottom-center and in front of felix.
+@char sora pos:50,0,-1
+@char felix pos:,,0
 
 ; Tint all visible characters on scene.
 @char * tint:#ffdc22
@@ -432,7 +432,7 @@ Continue executing this script or ...?[< skip!]
 
 ; Play a sound effect and arrange characters when choice is picked.
 @choice Arrange
-    @sfx Click
+    @sfx click
     @arrange k.10,y.55
 
 ; Print a text line corresponding to the picked choice.
@@ -502,10 +502,10 @@ Be aware, that the delayed execution won't happen if game gets saved/loaded or r
 </div>
 
 ```nani
-; The text is printed without delay, as the `@delay` command is not awaited.
+; The text is printed without delay, as the '@delay' command is not awaited.
 ; The thunder effects are played after a random delay of 3 to 8 seconds.
-@delay {Random(3,8)}
-    @sfx Thunder
+@delay {random(3,8)}
+    @sfx thunder
     @shake Camera
 The thunder might go off any second...
 ```
@@ -528,8 +528,8 @@ If prefab has a `MonoBehaviour` component attached the root object, and the comp
 </div>
 
 ```nani
-; Given `@spawn Rainbow` command was executed before, de-spawn (destroy) it.
-@despawn Rainbow
+; Given '@spawn rainbow' command was executed before, de-spawn (destroy) it.
+@despawn rainbow
 ```
 
 ## despawnAll
@@ -537,7 +537,7 @@ If prefab has a `MonoBehaviour` component attached the root object, and the comp
 Destroys all the objects spawned with [@spawn] command. Equal to invoking [@despawn] for all the currently spawned objects.
 
 ```nani
-@spawn Rainbow
+@spawn rainbow
 @spawn SunShafts
 ; Will de-spawn (destroy) both rainbow and SunShafts.
 @despawnAll
@@ -605,15 +605,15 @@ While this command can be used as a function (subroutine) to invoke a common set
 </div>
 
 ```nani
-; Navigate to `VictoryScene` label in the currently played script, then
-; execute the commands and navigate back to the command after the `gosub`.
+; Navigate to 'VictoryScene' label in the currently played script, then
+; execute the commands and navigate back to the command after the 'gosub'.
 @gosub .VictoryScene
 ...
 @stop
 # VictoryScene
 @back Victory
-@sfx Fireworks
-@bgm Fanfares
+@sfx fireworks
+@bgm fanfares
 You are victorious!
 @return
 
@@ -648,13 +648,13 @@ Navigates naninovel script playback to the provided path.
 </div>
 
 ```nani
-; Loads and starts playing `Script001` script from the start.
-@goto Script001
+; Loads and starts playing 'script_001' script from the start.
+@goto script_001
 
-; Save as above, but start playing from the label `AfterStorm`.
-@goto Script001.AfterStorm
+; Save as above, but start playing from the label 'AfterStorm'.
+@goto script_001.AfterStorm
 
-; Navigates to `Epilogue` label in the currently played script.
+; Navigates to 'Epilogue' label in the currently played script.
 @goto .Epilogue
 ...
 # Epilogue
@@ -693,14 +693,14 @@ Hides (removes) actors (character, background, text printer, choice handler) wit
 </div>
 
 ```nani
-; Given an actor with ID `Smoke` is visible, hide it over 3 seconds.
-@hide Smoke time:3
+; Given an actor with ID 'smoke' is visible, hide it over 3 seconds.
+@hide smoke time:3
 
-; Hide `Kohaku` and `Yuko` actors.
-@hide Kohaku,Yuko
+; Hide 'kohaku' and 'yuko' actors.
+@hide kohaku,yuko
 
-; Hide and remove `Kohaku` actor.
-@hide Kohaku remove!
+; Hide and remove 'kohaku' actor.
+@hide kohaku remove!
 ```
 
 ## hideAll
@@ -759,8 +759,8 @@ Hides a text printer.
 ; Hide a default printer.
 @hidePrinter
 
-; Hide printer with ID `Wide`.
-@hidePrinter Wide
+; Hide printer with ID 'wide'.
+@hidePrinter wide
 ```
 
 ## hideUI
@@ -782,8 +782,8 @@ When hiding the entire UI with this command and `allowToggle` parameter is false
 </div>
 
 ```nani
-; Given a custom `Calendar` UI, the following command will hide it.
-@hideUI Calendar
+; Given a custom 'calendar' UI, the following command will hide it.
+@hideUI calendar
 
 ; Hide the entire UI, won't allow user to re-show it.
 @hideUI
@@ -794,8 +794,8 @@ When hiding the entire UI with this command and `allowToggle` parameter is false
 ; Hide the entire UI, but allow the user to toggle it back.
 @hideUI allowToggle!
 
-; Simultaneously hide built-in `TipsUI` and custom `Calendar` UIs.
-@hideUI TipsUI,Calendar
+; Simultaneously hide built-in 'tips_ui' and custom 'calendar' UIs.
+@hideUI tips_ui,calendar
 ```
 
 ## i
@@ -803,7 +803,7 @@ When hiding the entire UI with this command and `allowToggle` parameter is false
 Holds script execution until user activates a `continue` input. Shortcut for `@wait i`.
 
 ```nani
-; User will have to activate a `continue` input after the first sentence
+; User will have to activate a 'continue' input after the first sentence
 ; for the printer to continue printing out the following text.
 Lorem ipsum dolor sit amet.[i] Consectetur adipiscing elit.
 ```
@@ -864,16 +864,16 @@ Check out this [video guide](https://youtu.be/F9meuMzvGJw) on usage example. <br
 </div>
 
 ```nani
-; Prompt to enter an arbitrary text and assign it to `name` custom variable.
+; Prompt to enter an arbitrary text and assign it to 'name' custom variable.
 @input name summary:"Choose your name."
 ; Halt the playback until player submits the input.
 @stop
 
-; You can then inject the assigned `name` variable in naninovel scripts.
+; You can then inject the assigned 'name' variable in naninovel scripts.
 Archibald: Greetings, {name}!
 
 ; ...or use it inside set and conditional expressions.
-@set score=score+1 if:name=="Felix"
+@set score=score+1 if:name=="felix"
 ```
 
 ## lipSync
@@ -891,7 +891,7 @@ Allows to force-stop the lip sync mouth animation for a character with the provi
 ```nani
 ; Given auto voicing is disabled and lip sync is driven by text messages,
 ; exclude punctuation from the mouth animation.
-Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true]Consectetur adipiscing elit.
+kohaku: Lorem ipsum dolor sit amet[lipSync kohaku.false]... [lipSync kohaku.true]Consectetur adipiscing elit.
 ```
 
 ## loadScene
@@ -908,10 +908,10 @@ Loads a [Unity scene](https://docs.unity3d.com/Manual/CreatingScenes.html) with 
 </div>
 
 ```nani
-; Load scene `TestScene1` in single mode.
+; Load scene 'TestScene1' in single mode.
 @loadScene TestScene1
 
-; Load scene `TestScene2` in additive mode.
+; Load scene 'TestScene2' in additive mode.
 @loadScene TestScene2 additive!
 ```
 
@@ -932,7 +932,7 @@ The unlocked state of the items is stored in [global scope](/guide/state-managem
 </div>
 
 ```nani
-; Lock an unlockable CG record with ID `FightScene1`.
+; Lock an unlockable CG record with ID 'FightScene1'.
 @lock CG/FightScene1
 ```
 
@@ -987,7 +987,7 @@ Will fade-out the screen before playing the movie and fade back in after the pla
 </div>
 
 ```nani
-; Given an `Opening` video clip is added to the movie resources, plays it.
+; Given an 'Opening' video clip is added to the movie resources, plays it.
 @movie Opening
 ```
 
@@ -1056,8 +1056,8 @@ This command is used under the hood when processing generic text lines, eg gener
 ; make all visible characters author of the printed text.
 @print "Hello World!" author:* as:"Together"
 
-; Similar, but make only "Kohaku" and "Yuko" the authors.
-@print "Hello World!" author:Kohaku,Yuko as:"Kohaku and Yuko"
+; Similar, but make only "kohaku" and "yuko" the authors.
+@print "Hello World!" author:kohaku,yuko as:"kohaku and yuko"
 ```
 
 ## printer
@@ -1089,12 +1089,12 @@ Modifies a [text printer actor](/guide/text-printers).
 </div>
 
 ```nani
-; Will make `Wide` printer default and hide any other visible printers.
-@printer Wide
+; Will make 'wide' printer default and hide any other visible printers.
+@printer wide
 
-; Will assign `Right` appearance to `Bubble` printer, make is default,
+; Will assign 'Right' appearance to 'bubble' printer, make is default,
 ; position at the center of the scene and won't hide other printers.
-@printer Bubble.Right pos:50,50 !hideOther
+@printer bubble.Right pos:50,50 !hideOther
 ```
 
 ## processInput
@@ -1117,7 +1117,7 @@ Allows halting and resuming user input processing (eg, reacting to pressing keyb
 ; Resume input processing of all the samplers.
 @processInput true
 
-; Mute `Rollback` and `Pause` inputs and un-mute `Continue` input.
+; Mute 'Rollback' and 'Pause' inputs and un-mute 'Continue' input.
 @processInput set:Rollback.false,Pause.false,Continue.true
 ```
 
@@ -1163,13 +1163,6 @@ Spawns particle system simulating [rain](/guide/special-effects.html#rain).
 
 </div>
 
-```nani
-; Start intensive rain over 10 seconds.
-@rain power:1500 time:10
-; Stop the rain over 30 seconds.
-@rain power:0 time:30
-```
-
 ## random
 
 Executes one of the nested commands, picked randomly.
@@ -1195,7 +1188,7 @@ Executes one of the nested commands, picked randomly.
     @sfx Sound2
     @sfx Sound3
 
-; Add a choice to shake camera, tint Kohaku actor or play 'SoundX' SFX,
+; Add a choice to shake camera, tint kohaku actor or play 'SoundX' SFX,
 ; all with 33% probability. However, SFX playback will only be considered
 ; in case score is above 10.
 @random
@@ -1203,8 +1196,8 @@ Executes one of the nested commands, picked randomly.
         You've asked for it!
         @shake Camera
     @group
-        Going to tint Kohaku!
-        @char Kohaku tint:red
+        Going to tint kohaku!
+        @char kohaku tint:red
     @sfx SoundX if:score>10
 @stop
 ```
@@ -1235,7 +1228,7 @@ Be aware, that this command can not be undone (rewound back).
 ; continue playing and preserving values of the custom variables.
 @resetState IScriptPlayer,ICustomVariableManager,IAudioManager
 
-; Reset only `ICharacterManager` and `IBackgroundManager` services
+; Reset only 'ICharacterManager' and 'IBackgroundManager' services
 ; removing all the character and background actors from scene
 ; and unloading associated resources from memory.
 @resetState only:ICharacterManager,IBackgroundManager
@@ -1259,9 +1252,9 @@ Resets (clears) the contents of a text printer and optionally resets author ID.
 This line will disappear.
 @resetText
 
-; Same as above, but with `Wide` printer.
-@print "This line will disappear." printer:Wide
-@resetText Wide
+; Same as above, but with 'wide' printer.
+@print "This line will disappear." printer:wide
+@resetText wide
 ```
 
 ## return
@@ -1297,34 +1290,34 @@ If a variable with the provided name doesn't exist, it will be automatically cre
 </div>
 
 ```nani
-; Assign `foo` variable a `bar` string value.
+; Assign 'foo' variable a 'bar' string value.
 @set foo="bar"
 
-; Assign `foo` variable a 1 number value.
+; Assign 'foo' variable a 1 number value.
 @set foo=1
 
-; Assign `foo` variable a `true` boolean value.
+; Assign 'foo' variable a 'true' boolean value.
 @set foo=true
 
-; If `foo` is a number, add 0.5 to its value.
+; If 'foo' is a number, add 0.5 to its value.
 @set foo+=0.5
 
-; If `angle` is a number, assign its cosine to `foo` variable.
-@set foo=Cos(angle)
+; If 'angle' is a number, assign its cosine to 'foo' variable.
+@set foo=cos(angle)
 
 ; Get random number between -100 and 100, then raise to power of 4 
-; and assign to `foo` variable. Quotes are required when whitespace 
+; and assign to 'foo' variable. Quotes are required when whitespace 
 ; is present inside the expression.
-@set "foo = Pow(Random(-100, 100), 4)"
+@set "foo = pow(random(-100, 100), 4)"
 
-; If `foo` is a number, add 1 to its value (increment).
+; If 'foo' is a number, add 1 to its value (increment).
 @set foo++
 
-; If `foo` is a number, subtract 1 from its value (decrement).
+; If 'foo' is a number, subtract 1 from its value (decrement).
 @set foo--
 
-; Assign `foo` variable value of the `bar` variable, 
-; which is `Hello World!` string.
+; Assign 'foo' variable value of the 'bar' variable, 
+; which is 'Hello World!' string.
 @set bar="Hello World!"
 @set foo=bar
 
@@ -1334,10 +1327,10 @@ If a variable with the provided name doesn't exist, it will be automatically cre
 
 ; It's possible to inject variables to naninovel script command parameters.
 @set scale=0
-# EnlargeLoop
-@char Kohaku.Default scale:{scale}
+# enlarge_loop
+@char kohaku.default scale:{scale}
 @set scale+=0.1
-@goto .EnlargeLoop if:scale<1
+@goto .enlarge_loop if:scale<1
 
 ; ...and generic text lines.
 @set drink="Dr. Pepper"
@@ -1346,12 +1339,12 @@ My favourite drink is {drink}!
 ; When using double quotes inside text expression value, escape them.
 @set remark="Shouting \"Stop the car!\" was a mistake."
 
-; Use global variable to indicate player reaching `Ending 001`.
+; Use global variable ('g_' prefix) to persist the value across sessions.
 ; The variable will remain true even when the game is restarted.
-@set g_Ending001Reached=true
+@set g_ending_001_reached=true
 
 ; Increment the global variable only once, even when re-played.
-@set g_GlobalCounter++ if:!HasPlayed()
+@set g_global_counter++ if:!has_played()
 ```
 
 ## sfx
@@ -1376,11 +1369,11 @@ Sound effect tracks are not looped by default. When sfx track name (SfxPath) is 
 </div>
 
 ```nani
-; Plays an SFX with the name `Explosion` once.
-@sfx Explosion
+; Plays an SFX with the name 'explosion' once.
+@sfx explosion
 
-; Plays an SFX with the name `Rain` in a loop and fades-in over 30 seconds.
-@sfx Rain loop! fade:30
+; Plays an SFX with the name 'rain' in a loop and fades-in over 30 seconds.
+@sfx rain loop! fade:30
 
 ; Changes volume of all the played SFX tracks to 75% over 2.5 seconds
 ; and disables looping for all of them.
@@ -1404,11 +1397,11 @@ Plays an [SFX (sound effect)](/guide/audio#sound-effects) track with the provide
 </div>
 
 ```nani
-; Plays an SFX with the name `Click` once.
-@sfxFast Click
+; Plays an SFX with the name 'click' once.
+@sfxFast click
 
 ; Same as above, but allow concurrent playbacks of the same clip.
-@sfxFast Click !restart
+@sfxFast click !restart
 ```
 
 ## shake
@@ -1431,16 +1424,16 @@ Applies [shake effect](/guide/special-effects.html#shake) for the actor with the
 </div>
 
 ```nani
-; Shake `Dialogue` text printer with default params.
+; Shake 'Dialogue' text printer with default params.
 @shake Dialogue
 ;
-; Start shaking `Kohaku` character, show choice to stop and act accordingly.
-@shake Kohaku count:0
+; Start shaking 'kohaku' character, show choice to stop and act accordingly.
+@shake kohaku count:0
 @choice "Continue shaking" goto:.Continue
 @choice "Stop shaking" goto:.Stop
 @stop
 # Stop
-@shake Kohaku count:-1
+@shake kohaku count:-1
 # Continue
 ...
 
@@ -1462,11 +1455,11 @@ Shows (makes visible) actors (character, background, text printer, choice handle
 </div>
 
 ```nani
-; Given an actor with ID `Smoke` is hidden, reveal it over 3 seconds.
-@show Smoke time:3
+; Given an actor with ID 'smoke' is hidden, reveal it over 3 seconds.
+@show smoke time:3
 
-; Show `Kohaku` and `Yuko` actors.
-@show Kohaku,Yuko
+; Show 'kohaku' and 'yuko' actors.
+@show kohaku,yuko
 ```
 
 ## showPrinter
@@ -1486,8 +1479,8 @@ Shows a text printer.
 ; Show a default printer.
 @showPrinter
 
-; Show printer with ID `Wide`.
-@showPrinter Wide
+; Show printer with ID 'wide'.
+@showPrinter wide
 ```
 
 ## showUI
@@ -1504,15 +1497,15 @@ Makes [UI elements](/guide/user-interface) with the specified resource names vis
 </div>
 
 ```nani
-; Given you've added a custom UI with `Calendar` name,
+; Given you've added a custom UI with 'calendar' name,
 ; the following will make it visible on the scene.
-@showUI Calendar
+@showUI calendar
 
 ; Given you've hidden the entire UI with @hideUI, show it back.
 @showUI
 
-; Simultaneously reveal built-in `TipsUI` and custom `Calendar` UIs.
-@showUI TipsUI,Calendar
+; Simultaneously reveal built-in 'tips_ui' and custom 'calendar' UIs.
+@showUI tips_ui,calendar
 ```
 
 ## skip
@@ -1557,18 +1550,18 @@ Be aware, that this command searches for an existing actor with the provided ID 
 </div>
 
 ```nani
-; Given `Jenna` actor is not visible, reveal it with an `Angry` appearance
+; Given 'jenna' actor is not visible, reveal it with an 'angry' appearance
 ; and slide to the center from either left or right border of the scene.
-@slide Jenna.Angry to:50
+@slide jenna.angry to:50
 
-; Given `Sheba` actor is currently visible,
+; Given 'sheba' actor is currently visible,
 ; hide and slide it out of the scene over the left border.
-@slide Sheba to:-10 !visible
+@slide sheba to:-10 !visible
 
 
-; Slide `Mia` actor from left-center side of the scene to the right-bottom
-; over 5 seconds using `EaseOutBounce` animation easing.
-@slide Sheba from:15,50 to:85,0 time:5 easing:EaseOutBounce
+; Slide 'mia' actor from left-center side of the scene to the right-bottom
+; over 5 seconds using 'EaseOutBounce' animation easing.
+@slide sheba from:15,50 to:85,0 time:5 easing:EaseOutBounce
 ```
 
 ## snow
@@ -1617,8 +1610,8 @@ If prefab has a `MonoBehaviour` component attached the root object, and the comp
 </div>
 
 ```nani
-; Given a `Rainbow` prefab is assigned in spawn resources, instantiate it.
-@spawn Rainbow
+; Given a 'rainbow' prefab is assigned in spawn resources, instantiate it.
+@spawn rainbow
 ```
 
 ## startTrans
@@ -1630,19 +1623,19 @@ The UI will be hidden and user input blocked while the transition is in progress
 :::
 
 ```nani
-; Transition Felix on sunny day with Jenna on rainy day.
-@char Felix
-@back SunnyDay
+; Transition felix on sunny day with jenna on rainy day.
+@char felix
+@back sunny_day
 @spawn SunShafts
 @startTrans
 ; Following modifications won't be visible until the transition is finished.
 @hideChars time:0
-@char Jenna time:0
-@back RainyDay time:0
+@char jenna time:0
+@back rainy_day time:0
 @despawn SunShafts params:0
-@spawn Rain params:,0
+@spawn rain params:,0
 ; Transition the initially captured scene to the new one
-; with `DropFade` effect over 3 seconds.
+; with 'DropFade' effect over 3 seconds.
 @finishTrans DropFade time:3
 ```
 
@@ -1676,8 +1669,8 @@ When music track name (BgmPath) is not specified, will stop all the currently pl
 </div>
 
 ```nani
-; Fades-out `Sanctuary` bgm track over 10 seconds and stops the playback.
-@stopBgm Sanctuary fade:10
+; Fades-out 'sanctuary' bgm track over 10 seconds and stops the playback.
+@stopBgm sanctuary fade:10
 
 ; Stops all the currently played music tracks.
 @stopBgm
@@ -1701,8 +1694,8 @@ When sound effect track name (SfxPath) is not specified, will stop all the curre
 </div>
 
 ```nani
-; Stop playing an SFX with the name `Rain`, fading-out for 15 seconds.
-@stopSfx Rain fade:15
+; Stop playing an SFX with the name 'rain', fading-out for 15 seconds.
+@stopSfx rain fade:15
 
 ; Stops all the currently played sound effect tracks.
 @stopSfx
@@ -1799,10 +1792,10 @@ Appearance name is the name of a game object with `Toast Appearance` component i
 </div>
 
 ```nani
-; Shows a default toast with `Hello World!` content.
+; Shows a default toast with 'Hello World!' content.
 @toast "Hello World!"
 
-; Shows a toast with a `warning` appearance.
+; Shows a toast with a 'warning' appearance.
 @toast "You're in danger!" appearance:warning
 
 ; The toast will disappear in one second.
@@ -1822,7 +1815,7 @@ Unloads a [Unity scene](https://docs.unity3d.com/Manual/CreatingScenes.html) wit
 </div>
 
 ```nani
-; Load scene `TestScene2` in additive mode and then unload it.
+; Load scene 'TestScene2' in additive mode and then unload it.
 @loadScene TestScene2 additive!
 @unloadScene TestScene2
 ```
@@ -1844,7 +1837,7 @@ The unlocked state of the items is stored in [global scope](/guide/state-managem
 </div>
 
 ```nani
-; Unlocks an unlockable CG record with ID `FightScene1`.
+; Unlocks an unlockable CG record with ID 'FightScene1'.
 @unlock CG/FightScene1
 ```
 
@@ -1864,8 +1857,8 @@ Plays a voice clip at the provided path.
 </div>
 
 ```nani
-; Given a `Rawr` voice resource is available, play it.
-@voice Rawr
+; Given a 'rawr' voice resource is available, play it.
+@voice rawr
 ```
 
 ## wait
@@ -1881,10 +1874,10 @@ Holds script execution until the specified wait condition.
 </div>
 
 ```nani
-; Thunder SFX will play 0.5 seconds after shake background effect finishes.
+; thunder SFX will play 0.5 seconds after shake background effect finishes.
 @spawn ShakeBackground
 @wait 0.5
-@sfx Thunder
+@sfx thunder
 
 ; Print first 2 words, then wait for input before printing the rest.
 Lorem ipsum[wait i] dolor sit amet.
@@ -1893,9 +1886,9 @@ Lorem ipsum[i] dolor sit amet.
 
 ; Start looped SFX, print message and wait for a skippable 5 seconds delay,
 ; then stop the SFX.
-@sfx Noise loop!
+@sfx noise loop!
 Jeez, what a disgusting noise. Shut it down![wait i5][< skip!]
-@stopSfx Noise
+@stopSfx noise
 ```
 
 ## while
@@ -1912,7 +1905,7 @@ Executes nested lines in a loop, as long as specified conditional expression res
 
 ```nani
 ; Guess the number game.
-@set number=Random(1,100)
+@set number=random(1,100)
 @set answer=0
 @while answer!=number
     @input answer summary:"Guess number between 1 and 100"
