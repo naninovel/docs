@@ -91,7 +91,7 @@ approx(a, b) | Compares two floating point values and returns true if they are s
 
 It's possible to add custom expression functions by assigning `ExpressionFunction` attribute to a public static C# method with compatible signatures, which will then automatically become available in script expressions.
 
-Only [simple](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types#simple-types) and string types are supported as argument and return types. It's also possible to use a single variadic (`params` keyword) argument; mixing a variadic with other arguments is not supported. To represent fractions, use `double` type (`float` is not supported).
+Only [simple](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types#simple-types) and string types are supported as argument and return types. It's also possible to use a single variadic (`params` keyword) argument; mixing a variadic with other arguments is not supported.
 
 ```csharp
 public static class CustomFunctions

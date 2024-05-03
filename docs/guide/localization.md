@@ -212,3 +212,31 @@ In case developer updates the game, you can eject again to update the existing l
 After the localization is finished, share the `Localization` folder and instruct end-users to place it under the aforementioned persistent data directory to activate the localization. To disable the localization, delete the folder.
 
 ## Compiler Localization
+
+NaniScript is special among domain scripting languages in sense that it's heavily intertwined with natural languages, ie you have to constantly switch between typing prose displayed to the player, such as printed text lines and engine scripting constructs, such as commands and labels.
+
+As long as you're authoring the scenario in English, it's not a problem, but imagine scenario writer working in other language: they would have to constantly switch between layouts to input natural text in their language and command lines. Even worth, some layouts don't have required control keys, such as `@` used for commands, requiring writers to input them via key codes.
+
+To help authoring scenarios in languages other than English, Naninovel has compiler localization feature. It allows re-mapping all the control characters, as well as command and parameter identifiers, constants and basically anything you ever have to type when authoring the scenario scripts.
+
+First, create compiler localization asset via `Create -> Naninovel -> Compiler Localization` context menu. Select the asset and specify preferred localization to the compiler artifacts:
+
+![](https://i.gyazo.com/5ffcd8e06231616598cc8317f7854f9a.png)
+
+To override command, parameters, functions and constants, use dedicated lists. You can as well localize documentation and usage examples associated with commands and parameters. It will be shown in IDE extension.
+
+![](https://i.gyazo.com/4fdcdcec7361a9ccbcc1012d842ef4ad.png)
+
+The lists are initially empty. To populate them with commands and functions available in the project, use inspector context menu.
+
+![](https://i.gyazo.com/cddd1981c5aef5f16da2052898c7a530.png)
+
+After making required changes restart Unity editor and re-import scenario script assets in order for changes to take effect.
+
+Localized artifacts will propagate to visual editor and [IDE extension](/guide/ide-extension), so you'll get auto-complete and on-hover documentation after syncing metadata.
+
+![](https://i.gyazo.com/fde9998597ffedb8a025401bb2f71ce9.png)
+
+::: tip EXAMPLE
+Find sample project with compiler localized to Russian language on GitHub:
+:::
