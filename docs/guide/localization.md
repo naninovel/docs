@@ -213,11 +213,11 @@ After the localization is finished, share the `Localization` folder and instruct
 
 ## Compiler Localization
 
-NaniScript is special among domain scripting languages in sense that it's heavily intertwined with natural languages, ie you have to constantly switch between typing prose displayed to the player, such as printed text lines and engine scripting constructs, such as commands and labels.
+NaniScript is special among domain-specific languages in that it's heavily intertwined with natural languages, ie you have to constantly switch between typing prose displayed to the player, such as printed text lines and engine scripting constructs, such as commands and labels.
 
-As long as you're authoring the scenario in English, it's not a problem, but imagine scenario writer working in other language: they would have to constantly switch between layouts to input natural text in their language and command lines. Even worth, some layouts don't have required control keys, such as `@` used for commands, requiring writers to input them via key codes.
+As long as you're authoring scenario in English, it's not a problem, but imagine scenario writer working in other language: they would have to constantly switch between layouts to input natural text in their language and command lines in English. Even worse, some keyboard layouts may not have required control keys, such as `@` used for commands, requiring writers to input them via key codes.
 
-To help authoring scenarios in languages other than English, Naninovel has compiler localization feature. It allows re-mapping all the control characters, as well as command and parameter identifiers, constants and basically anything you ever have to type when authoring the scenario scripts.
+To help authoring scenarios in languages other than English, Naninovel has compiler localization feature. It allows re-mapping all the control characters, as well as command and parameter names, constants and basically anything you ever have to type when authoring the scenario.
 
 First, create compiler localization asset via `Create -> Naninovel -> Compiler Localization` context menu. Select the asset and specify preferred localization to the compiler artifacts:
 
@@ -238,5 +238,5 @@ Localized artifacts will propagate to visual editor and [IDE extension](/guide/i
 ![](https://i.gyazo.com/fde9998597ffedb8a025401bb2f71ce9.png)
 
 ::: tip EXAMPLE
-Find sample project with compiler localized to Russian language on GitHub: https://github.com/naninovel/samples/tree/main/unity/compiler-localization
+Find sample project with compiler localized to Russian language and keyboard layout on GitHub: https://github.com/naninovel/samples/tree/main/unity/compiler-localization
 :::
