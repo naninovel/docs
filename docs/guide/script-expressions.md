@@ -97,7 +97,7 @@ Only [simple](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/
 public static class CustomFunctions
 {
 	// Returns the provided string with all characters converted to lower-case.
-	[ExpressionFunction("to_lower")]
+	[ExpressionFunction("toLower")]
     public static string ToLower (string content) => content.ToLower();
 
     // Returns the sum of the provided numbers.
