@@ -21,6 +21,10 @@ Newtonsoft Json package is only used in editor for serializing bridging communic
 2. Search for "Naninovel" and click "Install" button
 3. When a .nani file is opened, the extension will activate automatically
 
+::: info NOTE
+Extension in the VS Code registry is compatible with the current stable Naninovel release. When using legacy (unsupported) Naninovel version, disable auto-update in VS Code and install associated legacy version of the extension. When using preview release of the engine, download associated preview extension via `#download` channel on our Discord server.
+:::
+
 ## Spell Check
 
 To enable spell checking in the naninovel scripts, install a spell checker extension, eg. [Code Spell Check](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) and turn on the checking for `naniscript` language; see the [settings section](/guide/ide-extension#vs-code-settings) below for an example on how to enable naniscript language for the Code Spell Check extension.
