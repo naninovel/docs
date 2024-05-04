@@ -69,11 +69,11 @@ Signature | Description | Example
 --- | --- | ---
 random(min, max) | Return a random integer number between min [inclusive] and max [inclusive]. | `random(0, 100)`
 random(args) | Return a string chosen from one of the provided strings. | `random("foo", "bar", "baz")`
-calculate_progress() | Returns scenario completion ratio, in 0.0 to 1.0 range, where 1.0 means all the script lines were executed at least once. | `calculate_progress()`
-is_unlocked(id) | Checks whether an unlockable item with the provided ID is currently unlocked. | `is_unlocked("tips/my_tip")`
-has_played() | Checks whether currently played command has ever been played before. | `has_played()`
-has_played(script) | Checks whether script with the provided name has ever been played before. | `has_played("my_script")`
-get_name(id) | Returns author name of a character actor with the provided ID. | `get_name("kohaku")`
+calculateProgress() | Returns scenario completion ratio, in 0.0 to 1.0 range, where 1.0 means all the script lines were executed at least once. | `calculateProgress()`
+isUnlocked(id) | Checks whether an unlockable item with the provided ID is currently unlocked. | `isUnlocked("Tips/MyTip")`
+hasPlayed() | Checks whether currently played command has ever been played before. | `hasPlayed()`
+hasPlayed(script) | Checks whether script with the provided name has ever been played before. | `hasPlayed("MyScript")`
+getName(id) | Returns author name of a character actor with the provided ID. | `getName("Kohaku")`
 pow(num, pow) | Returns num raised to power. | `pow(2, 3)`
 sqrt(num) | Returns square root of num. | `sqrt(2)`
 cos(num) | Returns the cosine of angle. | `cos(180)`
