@@ -44,7 +44,7 @@ Each item has a `Stack Count Limit` property to limit how much items of this typ
 
 You can add items to the inventory with `@addItem` command and remove with `@removeItem` (or `@removeItemAt`, `@removeAllItems`). Item IDs are equal to the item prefab names. Inventory slot IDs are equal to the grid slot indexes (eg, first slot is 0, second is 1, etc).
 
-`ItemExist()` and `ItemCount()` custom [expression functions](/guide/script-expressions#expression-functions) to check wither an items exist in inventory and number of existing items are also available for convenience.
+`itemExist()` and `itemCount()` custom [expression functions](/guide/script-expressions#expression-functions) to check wither an items exist in inventory and number of existing items are also available for convenience.
 
 Below is a script from the example project:
 
@@ -53,21 +53,21 @@ Below is a script from the example project:
 
 Select an action.[< skip!]
 
-@choice "Pick up sword" if:!ItemExist("Sword")
+@choice "Pick up sword" if:!itemExist("Sword")
     @addItem Sword
-@choice "Pick up armor" if:!ItemExist("Armor")
+@choice "Pick up armor" if:!itemExist("Armor")
     @addItem Armor
 @choice "Adventure awaits, venture forth!"
 @stop
 
 # Adventure
 
-@if ItemExist("Sword")
-	@set monstersSlayed={ItemExist("Armor") ? Random(3,5) : 2}
+@if itemExist("Sword")
+	@set monstersSlayed={itemExist("Armor") ? random(3,5) : 2}
 	@addItem Food amount:{monstersSlayed}
-	You've encountered and slayed {monstersSlayed} monsters with your sword.[if !ItemExist("Armor")] You could've been more productive with an armor, though.[endif][i][showUI Inventory] Check your inventory for the loot!
+	You've encountered and slayed {monstersSlayed} monsters with your sword.[if !itemExist("Armor")] You could've been more productive with an armor, though.[endif][i][showUI Inventory] Check your inventory for the loot!
 	@goto .Start
 @else
-	But you don't have a weapon! You've been beaten by the monsters.[if ItemExist("Armor")] At least it didn't hurt that much, thanks to the armor.[endif] Let's prepare better next time.
+	But you don't have a weapon! You've been beaten by the monsters.[if itemExist("Armor")] At least it didn't hurt that much, thanks to the armor.[endif] Let's prepare better next time.
 	@goto .Start
 ```
