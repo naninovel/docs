@@ -24,11 +24,7 @@ You should now see "Play Naninovel Script" action available under "Custom" categ
 
 ![](https://i.gyazo.com/faf33afa1df8ff98ea04ef9cf1a44f8f.png)
 
-Depending on the setup, you may need to assign a special layer for Naninovel objects to prevent them from being rendered by AC cameras and vice-versa. This can be done via Naninovel's Engine configuration window.
-
-![](https://i.gyazo.com/ed765928c0420ec2b1e26d6bf4a66e6c.png)
-
-When using Naninovel as a drop-in system from AC-based game, you may also want to disable `Initialize On Application Load` and `Show Title UI` options in the Engine configuration.
+Depending on the setup, you may also want to assign special layer for Naninovel objects to prevent them from being rendered by AC cameras and vice-versa. This can be done via Naninovel's Engine configuration window. When using Naninovel as a drop-in system for AC-based game, consider disabling `Initialize On Application Load` in the same menu. Consult [integration guide](/guide/integration-options) for more info on the topic.
 
 ## Usage
 
