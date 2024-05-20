@@ -26,24 +26,6 @@ All the Unity-related sources are available in the distributed package. Common N
 
 Naninovel is governed by the following End User License Agreement (EULA): [naninovel.com/eula](https://naninovel.com/eula). Please read the document carefully before downloading or using the application.
 
-## What's the difference between purchasing Naninovel on Asset Store vs our website?
-
-We recommend purchasing Naninovel directly [from our website](https://naninovel.com), as it's both cheaper and provide diverse payment options: cards and direct bank debit, Apple and Google Pay, WeChat, Alipay and more, as well as "buy now, pay later" option via Klarna or Affirm.
-
-We are using [Stripe](https://stripe.com) to process the payments, which is the leading solution in the field providing secure and reliable service. On the other hand, we had several cases when Asset Store failed to process payments resulting in funds being frozen for weeks.
-
-Another issue with purchasing on Asset Store is the requirement to validate the purchase to receive support and access latest updates. When purchasing directly from us, you just use the order number, whilst with Asset Store you have to wait until invoice is generated (which may take up to 24 hours) and download the asset via package manager at least once in order for the verification to work.
-
-The only "extra" you'd get when purchasing on Asset Store is the option to download the package via Unity's package manager. However, due to long review processes, Naninovel version on the store is usually outdated, so you'll most likely end up downloading it directly from us anyway.
-
-## Why am I getting "asset wasn't downloaded" error when attempting to register Asset Store license?
-
-The asset download verification is required when Naninovel is purchased via Unity's Asset Store. In order for the verification to succeed, Naninovel has to be downloaded at least once via Unity's [package manager](https://docs.unity3d.com/Manual/Packages.html) by the user, which purchased the asset. In case multiple copies of the asset have been purchased, each copy has to be downloaded by the associated organization user.
-
-::: warning
-When asset is purchased from an organization account, the organization owner have to download the asset to satisfy the check (assigned members won't count). This is an Asset Store limitation. In case it's not possible for organization owner to download the asset, request a refund on Asset Store and instead [get Naninovel directly from us](https://naninovel.com). You'll have an option to purchase multiple licenses (separately or from single order), which you can then assign to organization members (seats) via our [dashboard](https://account.naninovel.com) without any additional checks or limitations.
-:::
-
 ## Why the package doesn't contain any demo scenes?
 
 Naninovel is designed to be [scene-independent](/guide/engine-architecture#scene-independent) and doesn't use [Unity scenes](https://docs.unity3d.com/Manual/CreatingScenes.html) in any way, hence it's not possible to make any kind of example or demo scenes. The engine is automatically initialized when the game is started (can be switched to manual initialization in the engine configuration window) and scenarios are scripted via text documents called [naninovel scripts](/guide/naninovel-scripts).
