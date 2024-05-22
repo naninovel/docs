@@ -319,3 +319,19 @@ Lorem ipsum dolor<@back tint:blue> sit amet.
 ```
 
 You can use event tags instead of [inlined commands](/guide/naninovel-scripts#command-inlining) to expose them to [localization documents](/guide/localization#scripts-localization) allowing translators override executed commands based on selected locale.
+
+## Reveal Expressions
+
+In some rare cases, it may be required to include [script expressions](/guide/script-expressions) to the generated localization documents or force expression re-evaluation when language (locale) is changed.
+
+The process is similar to including raw commands via [reveal events](/guide/text-printers#reveal-events), but instead of `@` use `:`:
+
+```nani
+Lorem ipsum <:random(t_text1, t_text2)> sit amet.
+```
+
+— `random(t_text1, t_text2)` expression will be re-evaluated each time the text is assigned to printer, including instances when language is changed, making `t_text1` and `t_text2` [script text variables](/guide/managed-text#script-text) in sync with the currently active locale. The expression will as well be included to the localization documents allowing to change it for each specific language.
+
+::: warning
+Refrain from using this feature with expressions that mutate or depend on game state, as it may cause undefined behaviour. For example, consider an expression, which result depends on a local variable `foo`, while a message with this expression was printed at some point and is kept in backlog. Should player change locale, the expression will be re-evaluated using whatever value `foo` has at the time locale is changed, which may be different from the time when it was initially printed.
+:::
