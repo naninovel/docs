@@ -92,13 +92,13 @@ In case you have sorting issues in perspective camera mode, try changing `Transp
 
 ## Is it possible to show only the avatar of a character inside a text printer, but hide the character itself?
 
-Set `visible:false` for the character you wish to hide; the avatar will remain visible, eg:
+Specify `!visible` for the character you wish to hide; the avatar will remain visible, eg:
 
 ```nani
-@char CharId visible:false
+@char CharId !visible
 ```
 
-In case you're constantly changing avatars while the character itself should remain hidden, consider disabling `Auto Show On Modify` in the characters configuration menu; when disabled, you won't have to specify `visible:false` to change any parameters of the character while it's hidden.
+In case you're constantly changing avatars while the character itself should remain hidden, consider disabling `Auto Show On Modify` in the characters configuration menu; when disabled, you won't have to specify `!visible` to change any parameters of the character while it's hidden.
 
 Alternatively, check out [render actor to texture](/guide/characters#render-to-texture) feature.
 
