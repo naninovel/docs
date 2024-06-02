@@ -133,3 +133,51 @@ Another example of adding custom expression functions to check whether an item e
 
 Specifically, the custom functions are implemented via [InventoryFunctions.cs](https://github.com/naninovel/samples/blob/main/unity/inventory/Assets/NaninovelInventory/Runtime/InventoryFunctions.cs) runtime script.
 :::
+
+## Parameter Context
+
+Similar to command parameters, function parameters may have context attributes applied to make them auto-complete and diagnosed by the [IDE extension](/guide/ide-extension).
+
+For example, you can associate function parameter with an enum:
+
+```cs
+public enum Quest { Quest1, Quest2, Quest3, ... }
+
+public static class CustomFunctions
+{
+	[ExpressionFunction]
+    public static bool IsComplete ([ConstantContext(typeof(Quest))] string name)
+    {
+        Enum.TryParse<Quest>(content, out var quest);
+        // run custom logic to check if 'quest' is complete
+    }
+}
+```
+
+— IDE will make sure supplied values for `quest` parameter are valid and provide completion.
+
+![](https://i.gyazo.com/0f1519347ac9b619444371922e0fd1f5.mp4)
+
+You can as well use other contexts, such as actors, resources, endpoints and others. For example, below is the built-in `getName()` function, which takes an actor ID and returns its display name. With `ActorContext` applied, it'll complete over actor IDs available in the project:
+
+```cs
+[ExpressionFunction]
+static string GetName (
+    [ActorContext(CharactersConfiguration.DefaultPathPrefix)] string id)
+{
+    return Engine.GetService<ICharacterManager>().GetAuthorName(id);
+}
+```
+
+Another example, which will complete on unlockable IDs:
+
+```cs
+[ExpressionFunction]
+static bool IsUnlocked (
+    [ResourceContext(UnlockablesConfiguration.DefaultPathPrefix)] string id)
+{
+    return Engine.GetService<IUnlockableManager>()?.ItemUnlocked(id) ?? false;
+}
+```
+
+Find more examples and available contexts in the [IDE guide](/guide/ide-extension#ide-attributes).
