@@ -8,7 +8,7 @@ IDE features, like syntax highlighting, error checking, auto-completion and inte
 
 ### Unity
 
-1. Install [Newtonsoft Json](https://docs.unity3d.com/Packages/com.unity.nuget.newtonsoft-json@3.2/manual/index.html) via Unity's package manager: click `+` button, then "Add package by name.." and enter `com.unity.nuget.newtonsoft-json`.
+1. Install [Newtonsoft Json](https://docs.unity3d.com/Packages/com.unity.nuget.newtonsoft-json@3.2/manual/index.html) via [Unity's package manager](https://docs.unity3d.com/Manual/upm-ui.html): click `+` button in the top-left corner of the package manager window, select "Add package by name.." and enter `com.unity.nuget.newtonsoft-json`.
 2. Make sure `Enable Bridging` option is enabled in engine configuration.
 
 ::: info NOTE
