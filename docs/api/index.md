@@ -680,7 +680,7 @@ Allows grouping commands inside nested block.
 
 ## hide
 
-Hides (removes) actors (character, background, text printer, choice handler) with the specified IDs. In case multiple actors with the same ID found (eg, a character and a printer), will affect only the first found one.
+Hides actors (character, background, text printer, choice handler) with the specified IDs. In case multiple actors with the same ID found (eg, a character and a printer), will affect only the first found one.
 
 <div class="config-table">
 
@@ -688,7 +688,6 @@ Hides (removes) actors (character, background, text printer, choice handler) wit
 | --- | --- | --- |
 | <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">actorIds</span> | string list | IDs of the actors to hide. |
 | time | decimal | Duration (in seconds) of the fade animation. |
-| remove | boolean | Whether to remove (destroy) the actor after it's hidden. Use to unload resources associated with the actor and prevent memory leaks. |
 
 </div>
 
@@ -698,42 +697,34 @@ Hides (removes) actors (character, background, text printer, choice handler) wit
 
 ; Hide 'Kohaku' and 'Yuko' actors.
 @hide Kohaku,Yuko
-
-; Hide and remove 'Kohaku' actor.
-@hide Kohaku remove!
 ```
 
 ## hideAll
 
-Hides (removes) all the actors (characters, backgrounds, text printers, choice handlers) on scene.
+Hides all the actors (characters, backgrounds, text printers, choice handlers) on scene.
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
 | time | decimal | Duration (in seconds) of the fade animation. |
-| remove | boolean | Whether to remove (destroy) the actors after they are hidden. Use to unload resources associated with the actors and prevent memory leaks. |
 
 </div>
 
 ```nani
 ; Hide all the visible actors (chars, backs, printers, etc) on scene.
 @hideAll
-
-; Same as above, but also remove all the actors after they're hidden.
-@hideAll remove!
 ```
 
 ## hideChars
 
-Hides (removes) all the visible characters on scene.
+Hides all the visible characters on scene.
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
 | time | decimal | Duration (in seconds) of the fade animation. |
-| remove | boolean | Whether to remove (destroy) the characters after they are hidden. Use to unload resources associated with the characters and prevent memory leaks. |
 
 </div>
 
@@ -1208,6 +1199,32 @@ Executes one of the nested commands, picked randomly.
         @char Kohaku tint:red
     @sfx SoundX if:score>10
 @stop
+```
+
+## remove
+
+Removes (disposes) actors (character, background, text printer, choice handler) with the specified IDs. In case multiple actors with the same ID found (eg, a character and a printer), will affect only the first found one.
+
+::: info NOTE
+This command should only be used with actor implementations, which don't support per-appearance resource mapping and only when experiencing issues with memory usage. Consult [memory management](https://pre.naninovel.com/guide/memory-management#actor-resources) guide for more info.
+:::
+
+<div class="config-table">
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">actorIds</span> | string list | IDs of the actors to remove or `*` to remove all actors. |
+
+</div>
+
+```nani
+; Fade-off and then dispose Kohaku and Yuko actors.
+@hide Kohaku,Yuko wait!
+@remove Kohaku,Yuko
+
+; Fade-off and remove all actors.
+@hideAll wait!
+@remove *
 ```
 
 ## resetState
