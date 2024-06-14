@@ -175,7 +175,7 @@ In case you'd still like to destroy actor objects, use of one of the ways descri
 
 ### Remove Individual Actors
 
-Use [@hide] command with `remove` parameter to hide and dispose specific actors. Applicable when some actor objects should persist across scripts.
+Use [@remove] command to dispose specific actors. Applicable when some actor objects should persist across scripts.
 
 ```nani
 @back id:LayeredBackground
@@ -183,13 +183,14 @@ Use [@hide] command with `remove` parameter to hide and dispose specific actors.
 @char DicedCharacter
 ; "LayeredBackground" won't be destroyed when "NextScript" is loaded,
 ; but both characters will.
-@hide GenericCharacter,DicedCharacter remove!
+@hide GenericCharacter,DicedCharacter wait!
+@remove GenericCharacter,DicedCharacter
 @goto NextScript
 ```
 
 ### Remove All Actors
 
-Use [@hideAll] with `remove` parameter to hide and dispose all the existing actors (including text printers and choice handlers) or [@resetState] with `only` parameter to immediately dispose actors of specific type: `ICharacterManager` for character and `IBackgroundManager` for backgrounds. Applicable when all actors or actors of specific type should be disposed.
+Use [@remove] with `*` parameter to dispose all the existing actors (including text printers and choice handlers) or [@resetState] with `only` parameter to immediately dispose actors of specific type: `ICharacterManager` for character and `IBackgroundManager` for backgrounds. Applicable when all actors or actors of specific type should be disposed.
 
 ```nani
 ...
