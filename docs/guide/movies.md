@@ -4,7 +4,7 @@ Movies are videos played on top of the scene via `IMovieUI` UI, halting script e
 
 Before starting playing a movie a fade-in to the specified fade texture (solid black by default) is performed. When playback is finished, a fade-out from the fade texture to the scene content is performed.
 
-Player can skip movie playback with a `Cancel` input (`Esc` by default for standalone input module); binding can be changed in input configuration menu.
+Player can skip movie playback with a `SkipMovie` input (`Esc` by default for standalone input module); binding can be changed in input configuration menu.
 
 To add, edit and remove movie resources use the movie manager accessible via `Naninovel -> Resources -> Movies` context menu:
 
