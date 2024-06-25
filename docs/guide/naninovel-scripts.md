@@ -479,7 +479,7 @@ When you've changed the script using visual editor, you'll see an asterisk (`*`)
 
 The visual editor will automatically sync edited script if you update it externally, so you can seamlessly work with the scripts in both text and visual editors. In case auto-sync is not working, make sure `Auto Refresh` is enabled in the `Edit -> Preferences -> General` Unity editor menu.
 
-During the playmode, you can use visual editor to track which script line is currently being played and use context menu (or click a line while holding `Shift`) to rewind the playback. This feature requires the script to have equal resource ID (when assigned in the resources manager menu) and asset name.
+During the playmode, you can use visual editor to track which script line is currently being played and use context menu (or click a line while holding `Shift`) to rewind the playback.
 
 ![](https://i.gyazo.com/b6e04d664ce4b513296b378b7c25be03.mp4)
 
