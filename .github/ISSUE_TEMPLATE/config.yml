@@ -1,5 +1,5 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Naninovel Support
+  - name: Contact Support
     url: https://naninovel.com/support
-    about: We're not providing support via GitHub issues. Please see the link above for available options.
+    about: We're not providing support via GitHub issues; see naninovel.com/support for more info.
