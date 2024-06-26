@@ -38,6 +38,10 @@ pre {
     font-variant-ligatures: none;
 }
 
+u {
+    text-underline-position: under;
+}
+
 /**
  * Brand
  * -------------------------------------------------------------------------- */
