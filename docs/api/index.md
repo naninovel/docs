@@ -217,7 +217,7 @@ Music tracks are looped by default. When music track name (BgmPath) is not speci
 
 ## blur
 
-Applies [blur effect](/guide/special-effects.html#blur) to supported actor: backgrounds and characters of sprite, layered, diced, Live2D, Spine, video and scene implementations.
+Applies [blur effect](/guide/special-effects#blur) to supported actor: backgrounds and characters of sprite, layered, diced, Live2D, Spine, video and scene implementations.
 
 ::: info NOTE
 The actor should have `IBlurable` interface implemented in order to support the effect.
@@ -247,7 +247,7 @@ The actor should have `IBlurable` interface implemented in order to support the 
 
 ## bokeh
 
-Simulates [depth of field](/guide/special-effects.html#depth-of-field-bokeh) (aka DOF, bokeh) effect, when only the object in focus stays sharp, while others are blurred.
+Simulates [depth of field](/guide/special-effects#depth-of-field-bokeh) (aka DOF, bokeh) effect, when only the object in focus stays sharp, while others are blurred.
 
 <div class="config-table">
 
@@ -569,7 +569,7 @@ Finishes scene transition started with [@startTrans] command; see the start comm
 
 ## glitch
 
-Applies [digital glitch](/guide/special-effects.html#digital-glitch) post-processing effect to the main camera simulating digital video distortion and artifacts.
+Applies [digital glitch](/guide/special-effects#digital-glitch) post-processing effect to the main camera simulating digital video distortion and artifacts.
 
 <div class="config-table">
 
@@ -840,7 +840,7 @@ Test result:[if score>8] Perfect![else if:score>6] Passed.[else] Failed.[endif]
 Shows an input field UI where user can enter an arbitrary text. Upon submit the entered text will be assigned to the specified custom variable.
 
 ::: info NOTE
-Check out this [video guide](https://youtu.be/F9meuMzvGJw) on usage example. <br /><br /> To assign a display name for a character using this command consider [binding the name to a custom variable](/guide/characters.html#display-names).
+Check out this [video guide](https://youtu.be/F9meuMzvGJw) on usage example. <br /><br /> To assign a display name for a character using this command consider [binding the name to a custom variable](/guide/characters#display-names).
 :::
 
 <div class="config-table">
@@ -1138,7 +1138,7 @@ You've picked two.
 
 ## rain
 
-Spawns particle system simulating [rain](/guide/special-effects.html#rain).
+Spawns particle system simulating [rain](/guide/special-effects#rain).
 
 <div class="config-table">
 
@@ -1431,7 +1431,7 @@ Plays an [SFX (sound effect)](/guide/audio#sound-effects) track with the provide
 
 ## shake
 
-Applies [shake effect](/guide/special-effects.html#shake) for the actor with the specified ID or main camera.
+Applies [shake effect](/guide/special-effects#shake) for the actor with the specified ID or main camera.
 
 <div class="config-table">
 
@@ -1591,7 +1591,7 @@ Be aware, that this command searches for an existing actor with the provided ID 
 
 ## snow
 
-Spawns particle system simulating [snow](/guide/special-effects.html#snow).
+Spawns particle system simulating [snow](/guide/special-effects#snow).
 
 <div class="config-table">
 
@@ -1767,7 +1767,7 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 
 ## sun
 
-Spawns particle system simulating [sun shafts](/guide/special-effects.html#sun-shafts) aka god rays.
+Spawns particle system simulating [sun shafts](/guide/special-effects#sun-shafts) aka god rays.
 
 <div class="config-table">
 
