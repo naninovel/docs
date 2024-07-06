@@ -1,6 +1,6 @@
 # Fountain
 
-[Fountain](https://fountain.io) is a markup syntax for writing, editing and sharing screenplays in plain, human-readable text. It's supported by the industry-leading screenwriting software, such as [Highland](https://highland2.app), [Final Draft](https://www.finaldraft.com) and [Scrivener](https://www.literatureandlatte.com/scrivener).
+[Fountain](https://fountain.io) is a markup syntax for writing, editing and sharing screenplays in plain, human-readable text. It's supported by the screenwriting software, such as [Highland](https://highland2.app), [Final Draft](https://www.finaldraft.com) and [Scrivener](https://www.literatureandlatte.com/scrivener).
 
 ![](https://i.gyazo.com/a4efc6cd882a12799f548ecf1dde4824.png)
 
