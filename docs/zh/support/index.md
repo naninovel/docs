@@ -2,11 +2,7 @@
 
 如果有任何关于引擎的问题，请确保先阅读了[开始引导](/zh/guide/) 和 [API命令参考](/zh/api/) 中你遇到问题的相应部分；也可以查阅[常见问题](/zh/faq/) ，了解常见问题。
 
-如果你确定你遇到的问题没有相关描述，检查是否使用最新版本资源。使用Unity内的[Asset Store window](https://docs.unity3d.com/Manual/AssetStore.html) 来更新。使用相关扩展资源时，下载导入最新的扩展支持包：
-
-- [Naninovel Live2D角色使用](https://github.com/naninovel/samples/raw/main/unity/live2d/NaninovelLive2D.unitypackage)
-- [Naninovel PlayMaker使用](https://github.com/Naninovel/PlayMaker/raw/master/NaninovelPlayMaker.unitypackage)
-- [Naninovel AdventureCreator使用](https://github.com/Naninovel/AdventureCreator/raw/master/NaninovelAdventureCreator.unitypackage)
+如果你确定你遇到的问题没有相关描述，检查是否使用最新版本资源。使用Unity内的[Asset Store window](https://docs.unity3d.com/Manual/AssetStore.html) 来更新。
 
 如果更新后依旧有问题，试着删除`Naninovel` 目录后，重新安装资源包。确保更新时严格按照[更新说明](https://github.com/Naninovel/Documentation/releases) 执行操作。
 
