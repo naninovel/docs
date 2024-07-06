@@ -29,7 +29,6 @@ export const en: DefaultTheme.SidebarItem[] = [
             { text: "Script Expressions", link: "/guide/script-expressions" },
             { text: "Managed Text", link: "/guide/managed-text" },
             { text: "Localization", link: "/guide/localization" },
-            { text: "Spreadsheet", link: "/guide/spreadsheet" },
             { text: "Memory Management", link: "/guide/memory-management" },
             { text: "Resource Providers", link: "/guide/resource-providers" },
             { text: "Community Modding", link: "/guide/community-modding" },
@@ -58,6 +57,7 @@ export const en: DefaultTheme.SidebarItem[] = [
         text: "Extensions",
         collapsed: true,
         items: [
+            { text: "Spreadsheet", link: "/guide/spreadsheet" },
             { text: "Fountain", link: "/guide/fountain" },
             { text: "Playmaker", link: "/guide/playmaker" },
             { text: "Visual Scripting", link: "/guide/visual-scripting" },
@@ -97,7 +97,6 @@ export const js: DefaultTheme.SidebarItem[] = [
             { text: "スクリプト表記", link: "/ja/guide/script-expressions" },
             { text: "テキスト管理", link: "/ja/guide/managed-text" },
             { text: "ローカライズ", link: "/ja/guide/localization" },
-            { text: "Spreadsheet", link: "/ja/guide/spreadsheet" },
             { text: "リソースプロバイダー", link: "/ja/guide/resource-providers" },
             { text: "コミュニティMod", link: "/ja/guide/community-modding" },
             { text: "開発コンソール", link: "/ja/guide/development-console" }
@@ -124,6 +123,7 @@ export const js: DefaultTheme.SidebarItem[] = [
         text: "エクステンション",
         collapsed: true,
         items: [
+            { text: "Spreadsheet", link: "/ja/guide/spreadsheet" },
             { text: "Fountain", link: "/ja/guide/fountain" },
             { text: "Playmaker", link: "/ja/guide/playmaker" },
             { text: "Visual Scripting", link: "/ja/guide/visual-scripting" },
@@ -163,7 +163,6 @@ export const zn: DefaultTheme.SidebarItem[] = [
             { text: "脚本表达式", link: "/zh/guide/script-expressions" },
             { text: "托管文本", link: "/zh/guide/managed-text" },
             { text: "本地化", link: "/zh/guide/localization" },
-            { text: "Spreadsheet", link: "/zh/guide/spreadsheet" },
             { text: "资源加载器", link: "/zh/guide/resource-providers" },
             { text: "社区模组", link: "/zh/guide/community-modding" },
             { text: "开发控制台", link: "/zh/guide/development-console" }
@@ -190,6 +189,7 @@ export const zn: DefaultTheme.SidebarItem[] = [
         text: "扩展",
         collapsed: true,
         items: [
+            { text: "Spreadsheet", link: "/zh/guide/spreadsheet" },
             { text: "Fountain", link: "/zh/guide/fountain" },
             { text: "Playmaker", link: "/zh/guide/playmaker" },
             { text: "Visual Scripting", link: "/zh/guide/visual-scripting" },
@@ -229,7 +229,6 @@ export const ru: DefaultTheme.SidebarItem[] = [
             { text: "Выражения сценария", link: "/ru/guide/script-expressions" },
             { text: "Управляемый текст", link: "/ru/guide/managed-text" },
             { text: "Локализация", link: "/ru/guide/localization" },
-            { text: "Таблицы", link: "/ru/guide/spreadsheet" },
             { text: "Провайдеры ресурсов", link: "/ru/guide/resource-providers" },
             { text: "Моддинг сообщества", link: "/ru/guide/community-modding" },
             { text: "Консоль разработчика", link: "/ru/guide/development-console" }
@@ -256,6 +255,7 @@ export const ru: DefaultTheme.SidebarItem[] = [
         text: "Расширения",
         collapsed: true,
         items: [
+            { text: "Таблицы", link: "/ru/guide/spreadsheet" },
             { text: "Fountain", link: "/ru/guide/fountain" },
             { text: "Playmaker", link: "/ru/guide/playmaker" },
             { text: "Visual Scripting", link: "/ru/guide/visual-scripting" },
