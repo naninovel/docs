@@ -2,7 +2,7 @@
 
 If you have issues with the engine, first make sure to read the [guide](/guide/) and [command reference](/api/) topics related to the feature you're having issues with; also check the [FAQ](/faq/) for some frequently asked questions.
 
-In case you're sure the engine is not working as intended, check if you're running the latest available version. Most recent patches are published on our Discord server; always use them instead of importing the package from Unity's package manager, as the latter is usually outdated. When using any of the engine extensions, download and import the latest packages: [Live2D](https://github.com/naninovel/samples/raw/main/unity/live2d/NaninovelLive2D.unitypackage), [Spine](https://github.com/naninovel/samples/raw/main/unity/spine/NaninovelSpine.unitypackage), [Inventory](https://github.com/naninovel/samples/raw/main/unity/inventory/NaninovelInventory.unitypackage), [PlayMaker](https://github.com/naninovel/samples/raw/main/unity/playmaker/NaninovelPlayMaker.unitypackage), [AdventureCreator](https://github.com/naninovel/samples/raw/main/unity/ac/NaninovelAdventureCreator.unitypackage).
+In case you're sure the engine is not working as intended, check if you're running the latest available version. Most recent patches are published on our Discord server; always use them instead of importing the package from Unity's package manager, as the latter is usually outdated.
 
 If upgrading didn't help, try to re-install the package by deleting `Naninovel` folder from the project and re-importing it. Make sure to follow upgrade instructions specified on the [release page](https://github.com/naninovel/docs/releases) when upgrading from on older version.
 

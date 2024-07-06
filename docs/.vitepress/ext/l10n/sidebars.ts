@@ -59,9 +59,7 @@ export const en: DefaultTheme.SidebarItem[] = [
         items: [
             { text: "Spreadsheet", link: "/guide/spreadsheet" },
             { text: "Fountain", link: "/guide/fountain" },
-            { text: "Playmaker", link: "/guide/playmaker" },
             { text: "Visual Scripting", link: "/guide/visual-scripting" },
-            { text: "Adventure Creator", link: "/guide/adventure-creator" },
             { text: "Inventory", link: "/guide/inventory" },
             { text: "UniTask", link: "/guide/unitask" }
         ]
@@ -125,9 +123,7 @@ export const js: DefaultTheme.SidebarItem[] = [
         items: [
             { text: "Spreadsheet", link: "/ja/guide/spreadsheet" },
             { text: "Fountain", link: "/ja/guide/fountain" },
-            { text: "Playmaker", link: "/ja/guide/playmaker" },
             { text: "Visual Scripting", link: "/ja/guide/visual-scripting" },
-            { text: "Adventure Creator", link: "/ja/guide/adventure-creator" },
             { text: "インベントリ", link: "/ja/guide/inventory" },
             { text: "UniTask", link: "/ja/guide/unitask" }
         ]
@@ -191,9 +187,7 @@ export const zn: DefaultTheme.SidebarItem[] = [
         items: [
             { text: "Spreadsheet", link: "/zh/guide/spreadsheet" },
             { text: "Fountain", link: "/zh/guide/fountain" },
-            { text: "Playmaker", link: "/zh/guide/playmaker" },
             { text: "Visual Scripting", link: "/zh/guide/visual-scripting" },
-            { text: "Adventure Creator", link: "/zh/guide/adventure-creator" },
             { text: "背包", link: "/zh/guide/inventory" },
             { text: "UniTask", link: "/zh/guide/unitask" }
         ]
@@ -257,9 +251,7 @@ export const ru: DefaultTheme.SidebarItem[] = [
         items: [
             { text: "Таблицы", link: "/ru/guide/spreadsheet" },
             { text: "Fountain", link: "/ru/guide/fountain" },
-            { text: "Playmaker", link: "/ru/guide/playmaker" },
             { text: "Visual Scripting", link: "/ru/guide/visual-scripting" },
-            { text: "Adventure Creator", link: "/ru/guide/adventure-creator" },
             { text: "Инвентарь", link: "/ru/guide/inventory" },
             { text: "UniTask", link: "/ru/guide/unitask" }
         ]

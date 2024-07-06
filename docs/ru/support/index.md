@@ -2,11 +2,7 @@
 
 Если у вас есть проблемы с движком, сначала обязательно прочтите разделы [руководства](/ru/guide/) и [справочник команд](/api/), связанные с функцией, с которой у вас возникли проблемы; также проверьте [FAQ](/ru/faq/).
 
-Если вы уверены, что движок не работает должным образом, проверьте, установлена ли у вас последняя доступная версия. Вы можете обновить основной пакет в редакторе Unity, используя [Asset Store](https://docs.unity3d.com/Manual/AssetStore.html). При использовании любого из расширений движка загрузите и импортируйте последние пакеты:
-
-- [NaninovelLive2D](https://github.com/naninovel/samples/raw/main/unity/live2d/NaninovelLive2D.unitypackage)
-- [NaninovelPlayMaker](https://github.com/Naninovel/PlayMaker/raw/master/NaninovelPlayMaker.unitypackage)
-- [NaninovelAdventureCreator](https://github.com/Naninovel/AdventureCreator/raw/master/NaninovelAdventureCreator.unitypackage)
+Если вы уверены, что движок не работает должным образом, проверьте, установлена ли у вас последняя доступная версия. Вы можете обновить основной пакет в редакторе Unity, используя [Asset Store](https://docs.unity3d.com/Manual/AssetStore.html).
 
 Если обновление не помогло, попробуйте переустановить пакет, удалив папку Naninovel из проекта и повторно импортировав ее из Asset Store. При обновлении движка обязательно следуйте инструкциям по обновлению, указанным на [странице релиза](https://github.com/Naninovel/Documentation/releases).
 

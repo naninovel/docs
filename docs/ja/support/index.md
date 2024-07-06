@@ -2,11 +2,7 @@
 
 エンジンで困ったことがあったら、まずは [ガイド](/ja/guide/) と、その問題に関係する [コマンドリファレンス](/ja/api/) のトピックを参照してください。またよくある質問については [FAQ](/ja/faq/) を参照してください。
 
-エンジンが意図したとおりに動作していない場合は、最新バージョンを実行しているかどうかを確認してください。Unity editorの [アセットストアウィンドウ](https://docs.unity3d.com/Manual/AssetStore.html) からメインパッケージをアップデートできます。エンジン拡張機能を使用する場合は、最新のパッケージをダウンロードしてインポートします:
-
-- [NaninovelLive2D](https://github.com/naninovel/samples/raw/main/unity/live2d/NaninovelLive2D.unitypackage)
-- [NaninovelPlayMaker](https://github.com/Naninovel/PlayMaker/raw/master/NaninovelPlayMaker.unitypackage)
-- [NaninovelAdventureCreator](https://github.com/Naninovel/AdventureCreator/raw/master/NaninovelAdventureCreator.unitypackage)
+エンジンが意図したとおりに動作していない場合は、最新バージョンを実行しているかどうかを確認してください。Unity editorの [アセットストアウィンドウ](https://docs.unity3d.com/Manual/AssetStore.html) からメインパッケージをアップデートできます。
 
 更新しても問題が解決しない場合は、プロジェクトから `Naninovel` フォルダを削除し、アセットストアから再インポートして、パッケージを再インストールしてみてください。エンジンを更新するときは、[リリースページ](https://github.com/Naninovel/Documentation/releases) で指定されているアップグレード手順に従ってください。
 
