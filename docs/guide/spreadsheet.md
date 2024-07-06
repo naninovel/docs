@@ -74,7 +74,7 @@ public class CustomProcessor : Processor
 
 ## Example
 
-Find an example on how to set up and use the tool in the following project [hosted on GitHub](https://github.com/naninovel/samples/tree/main/unity/spreadsheet).
+Find an example on how to set up and use the tool in the following project [hosted on GitHub](https://github.com/naninovel/samples/tree/main/unity/localization).
 
 You can [clone the project with a Git client](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) or [download it as a zip archive](https://github.com/naninovel/samples/archive/main.zip).
 
