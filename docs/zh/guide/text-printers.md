@@ -195,7 +195,7 @@ Use `Create -> Naninovel -> Text Printers -> Dialogue` asset context menu to cre
 
 由于显示音效会被经常播放（取决于消息显示速度），同一音效反复播放会影响效果，所以确保你的配置音效简短连续（在开头没有任何停顿或空白）。
 
-如果显示文本声效不工作（比如，声音太长），考虑使用`TextPrinterManager` [引擎支持](/zh/guide/engine-services) 的`OnPrintTextStarted`和`OnPrintTextFinished`事件来开始/停止音效循环。这些事件也对playmaker公开，如果你想使用[可视化编程](/zh/guide/playmaker)。
+如果显示文本声效不工作（比如，声音太长），考虑使用`TextPrinterManager` [引擎支持](/zh/guide/engine-services) 的`OnPrintTextStarted`和`OnPrintTextFinished`事件来开始/停止音效循环。
 
 
 ## TextMesh Pro

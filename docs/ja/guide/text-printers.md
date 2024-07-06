@@ -168,7 +168,7 @@ Nanikun: Integer nec maximus elit, eget posuere risus.
 
 テキスト表示サウンドは非常に高頻度に再生され（メッセージ表示スピードによって異なります）、同じサウンドが再生されるとクリップされます。そのため、対応するオーディオクリップは非常に短くてシャープなものにしてください（最初に一時停止/無音がないこと）。
 
-表示サウンドがうまくいかない場合（たとえば、サウンドが各文字表示で再生できるほど短くない）、`TextPrinterManager` [エンジンサービス](/ja/guide/engine-services) の `OnPrintTextStarted` と `OnPrintTextFinished` イベントで、表示に合わせて再生/停止させてみてください。[ビジュアルスクリプティング](/ja/guide/playmaker) ソリューションを利用したい方は、これらのイベントも PlayMaker に公開されます。
+表示サウンドがうまくいかない場合（たとえば、サウンドが各文字表示で再生できるほど短くない）、`TextPrinterManager` [エンジンサービス](/ja/guide/engine-services) の `OnPrintTextStarted` と `OnPrintTextFinished` イベントで、表示に合わせて再生/停止させてみてください。
 
 ## TextMesh Pro
 
