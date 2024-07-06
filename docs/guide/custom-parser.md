@@ -43,7 +43,3 @@ public class CustomParser : ScriptParser
         = new CustomGenericLineParser();
 }
 ```
-
-::: tip EXAMPLE
-Find example of `CustomGenericLineParser` implementation that extracts a number from author ID and modifies consequent print commands to control reveal speed in the [GitHub project](https://github.com/naninovel/samples/tree/main/unity/parser).
-:::
