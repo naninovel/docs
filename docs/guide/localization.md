@@ -125,20 +125,20 @@ Narrator: You've decided to go {route}. Wise choice!
 
 ```nani
 # id1
-;; Player has to pick route.
-;; @choice "Go left" set:route="left"
+; > Player has to pick route.
+; > @choice "…" set:route="left"
 ; Go left
 
 # id2
-;; @choice "Go right" set:route="right"
+; > @choice "…" set:route="right"
 ; Go right
 
 # id3|id4
-;; Narrator: …{route}…
+; > Narrator: …{route}…
 ; You've decided to go |. Wise choice!
 ```
 
-This may be useful to give translator more context on the localized text. Make sure to only translate content placed after single `;`. Annotations (content after `;;`) should not be included in the translated text.
+This may be useful to give translator more context on the localized text. Make sure to **NOT** include annotations (lines starting with `; >`) into the translation lines. Only localized text on the lines starting with single `;` is expected to be translated.
 
 ::: tip EXAMPLE
 Find example localization setup in the [demo project](/guide/getting-started#demo-project). Consider using it as a reference in case having issues setting up localization in your own project.
