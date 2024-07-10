@@ -204,14 +204,13 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 
 ## Animate Actor
 
-In case you wish to change (animate) actor parameters directly, consider using [@animate] command.
+To animate (interpolate) specific actor parameters over a range of key frames, consider using [@animate] command as a "quick and dirty" solution.
 
 ![](https://i.gyazo.com/a0494329c713c4309a52d57d0b297bee.mp4)
 
-```nani
-; Example from the video above
-@animate Yuko appearance:Surprise|Sad|Default|Angry transition:DropFade|Ripple|Pixelate posX:15|85|50 posY:0|-25|-85 scale:1|1.25|1.85 tint:fuchsia|lightblue|white|olive easing:EaseInBounce|EaseInQuad time:3|2|1|0.5
-```
+::: info NOTE
+Scenario scripts are not designed for any kind of animation specifications. Whenever possible, use dedicated solutions instead, like Unity's [Animator](https://docs.unity3d.com/Manual/class-Animator.html) or third-party animation tools. You can incorporate any kind of animation solution with [layered](https://naninovel.com/guide/characters#layered-characters) and [generic](https://naninovel.com/guide/characters#generic-characters) actors; we also have built-in support for [Live2D](https://naninovel.com/guide/characters#live2d-characters) and [Spine](https://naninovel.com/guide/characters#spine-characters) actors.
+:::
 
 ## Digital Glitch
 Applies a post-processing effect to the main camera simulating digital video distortion and artifacts. Dedicated command: [@glitch]
@@ -240,7 +239,7 @@ Spawns a particle system simulating a rain. Dedicated command: [@rain]
 **Start Parameters**
 Name | Type | Default | Description
 --- | --- | --- | ---
-Intensity | Decimal | 500 | The intensity of the rain (particles spawn rate per second).
+Intensity | Decimal | 0.5 | The intensity of the rain (particles spawn rate per second).
 Fade-in time | Decimal | 5 | The particle system will gradually grow the spawn rate from 0 to the target level over the specified time, in seconds.
 X velocity | Decimal | 1 | Multiplier to the horizontal speed of the particles. Use to change angle of the rain drops.
 Y velocity | Decimal | 1 | Multiplier to the vertical speed of the particles.
@@ -253,7 +252,7 @@ Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn
 **Examples**
 ```nani
 ; Start intensive rain over 10 seconds
-@spawn Rain params:1500,10
+@spawn Rain params:1,10
 ; Stop the rain over 30 seconds
 @despawn Rain params:30
 ```
@@ -266,7 +265,7 @@ Spawns a particle system simulating a snow. Dedicated command: [@snow]
 **Start Parameters**
 Name | Type | Default | Description
 --- | --- | --- | ---
-Intensity | Decimal | 100 | The intensity of the snow (particles spawn rate per second).
+Intensity | Decimal | 0.5 | The intensity of the snow (particles spawn rate per second).
 Fade-in time | Decimal | 5 | The particle system will gradually grow the spawn rate from 0 to the target level over the specified time, in seconds.
 
 **Stop Parameters**
@@ -277,7 +276,7 @@ Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn
 **Examples**
 ```nani
 ; Start intensive snow over 10 seconds
-@spawn Snow params:300,10
+@spawn Snow params:1,10
 ; Stop the snow over 30 seconds
 @despawn Snow params:30
 ```

@@ -147,7 +147,7 @@ IBacklogUI | Printer backlog.
 ILoadingUI | Panel shown when the game is loading.
 IMovieUI | UI used to host movies.
 ISaveLoadUI | Panel used for saving and loading game.
-ISceneTransitionUI | Handles scene transition ( [@startTrans] and  [@finishTrans] commands).
+ISceneTransitionUI | Handles scene transition ([@trans] command).
 ISettingsUI | Panel used for changing game settings.
 ITitleUI | Title (main) menu of the game.
 IExternalScriptsUI | External scripts browser UI (community modding feature).

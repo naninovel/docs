@@ -30,4 +30,4 @@ Check [URP sample project](https://github.com/naninovel/samples/tree/main/unity/
 
 ## Limitations
 
-Some built-in effects and features, like Depth Of Field, Digital Glitch, [@startTrans] and [@finishTrans] commands may not work with SRPs due to lack of the required rendering features. It's possible to replace most of the missing effects and features via various hacks and use them without modifying Naninovel's source code or package content; see [special effects](/guide/special-effects#adding-custom-effects) and [custom commands](/guide/custom-commands) guides for more information on extending the engine in that regard.
+Some built-in effects and features, like Depth Of Field, Digital Glitch and [@trans] command may not work with SRPs due to lack of the required rendering features. It's possible to replace most of the missing effects and features via various hacks and use them without modifying Naninovel's source code or package content; see [special effects](/guide/special-effects#adding-custom-effects) and [custom commands](/guide/custom-commands) guides for more information on extending the engine in that regard.

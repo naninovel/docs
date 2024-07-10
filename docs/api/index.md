@@ -38,7 +38,7 @@ It's not recommended to use this command for complex animations. Naniscript is a
 | rotation | string | Rotation values (over Z-axis) to set for the animated actors. |
 | scale | string | Scale (`x,y,z` or a single uniform value) to set for the animated actors. |
 | tint | string | Tint colors to set for the animated actors. <br /><br /> Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF. <br /><br /> Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
-| easing | string | Names of the easing functions to use for the animations. <br /><br /> Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic. <br /><br /> When not specified, will use a default easing function set in the actor's manager configuration settings. |
+| easing | string | Names of the [easing functions](/guide/transition-effects#animation-easing) to use for the animations.<br /> When not specified, will use a default easing function set in the actor's manager configuration settings. |
 | time | string | Duration of the animations per key, in seconds. When a key value is missing, will use one from a previous key. When not assigned, will use 0.35 seconds duration for all keys. |
 
 </div>
@@ -158,7 +158,7 @@ Backgrounds are handled a bit differently from characters to better accommodate 
 | rotation | decimal list | Rotation to set for the modified actor. |
 | scale | decimal list | Scale to set for the modified actor. |
 | tint | string | Tint color to set for the modified actor. <br /><br /> Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF. <br /><br /> Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
-| easing | string | Name of the easing function to use for the modification. <br /><br /> Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic. <br /><br /> When not specified, will use a default easing function set in the actor's manager configuration settings. |
+| easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to use for the modification.<br /> When not specified, will use a default easing function set in the actor's manager configuration settings. |
 | time | decimal | Duration (in seconds) of the modification. |
 
 </div>
@@ -311,7 +311,7 @@ Modifies the main camera, changing offset, zoom level and rotation over time. Ch
 | ortho | boolean | Whether the camera should render in orthographic (true) or perspective (false) mode. |
 | toggle | string list | Names of the components to toggle (enable if disabled and vice-versa). The components should be attached to the same game object as the camera. This can be used to toggle [custom post-processing effects](/guide/special-effects#camera-effects). Use `*` to affect all the components attached to the camera object. |
 | set | named boolean list | Names of the components to enable or disable. The components should be attached to the same game object as the camera. This can be used to explicitly enable or disable [custom post-processing effects](/guide/special-effects#camera-effects). Specified components enabled state will override effect of `toggle` parameter. Use `*` to affect all the components attached to the camera object. |
-| easing | string | Name of the easing function to use for the modification. <br /><br /> Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic. <br /><br /> When not specified, will use a default easing function set in the camera configuration settings. |
+| easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to use for the modification.<br /> When not specified, will use a default easing function set in the camera configuration settings. |
 | time | decimal | Duration (in seconds) of the modification. |
 
 </div>
@@ -365,7 +365,7 @@ Modifies a [character actor](/guide/characters).
 | rotation | decimal list | Rotation to set for the modified actor. |
 | scale | decimal list | Scale to set for the modified actor. |
 | tint | string | Tint color to set for the modified actor. <br /><br /> Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF. <br /><br /> Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
-| easing | string | Name of the easing function to use for the modification. <br /><br /> Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic. <br /><br /> When not specified, will use a default easing function set in the actor's manager configuration settings. |
+| easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to use for the modification.<br /> When not specified, will use a default easing function set in the actor's manager configuration settings. |
 | time | decimal | Duration (in seconds) of the modification. |
 
 </div>
@@ -550,22 +550,6 @@ Marks a branch of a conditional execution block, which is executed in case condi
 ## endIf
 
 Alternative to using indentation in conditional blocks: marks end of the block opened with previous [@if] command, no matter the indentation. For usage examples see [conditional execution](/guide/naninovel-scripts#conditional-execution) guide.
-
-## finishTrans
-
-Finishes scene transition started with [@startTrans] command; see the start command reference for more information and usage examples.
-
-<div class="config-table">
-
-| Parameter | Type | Description |
-| --- | --- | --- |
-| <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">transition</span> | string | Type of the [transition effect](/guide/transition-effects) to use (crossfade is used by default). |
-| params | decimal list | Parameters of the transition effect. |
-| dissolve | string | Path to the [custom dissolve](/guide/transition-effects#custom-transition-effects) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
-| easing | string | Name of the easing function to use for the modification. <br /><br /> Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic. <br /><br /> When not specified, will use a default easing function set in the actor's manager configuration settings. |
-| time | decimal | Duration (in seconds) of the transition. |
-
-</div>
 
 ## glitch
 
@@ -1075,7 +1059,7 @@ Modifies a [text printer actor](/guide/text-printers).
 | rotation | decimal list | Rotation to set for the modified actor. |
 | scale | decimal list | Scale to set for the modified actor. |
 | tint | string | Tint color to set for the modified actor. <br /><br /> Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF. <br /><br /> Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
-| easing | string | Name of the easing function to use for the modification. <br /><br /> Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic. <br /><br /> When not specified, will use a default easing function set in the actor's manager configuration settings. |
+| easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to use for the modification.<br /> When not specified, will use a default easing function set in the actor's manager configuration settings. |
 | time | decimal | Duration (in seconds) of the modification. |
 
 </div>
@@ -1569,7 +1553,7 @@ Be aware, that this command searches for an existing actor with the provided ID 
 | from | decimal list | Position in scene space to slide the actor from (slide start position). Described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene; Z-component (depth) is in world space. When not provided, will use current actor position in case it's visible and a random off-scene position otherwise (could slide-in from left or right borders). |
 | <span class="command-param-required" title="Required parameter: parameter should always be specified">to</span> | decimal list | Position in scene space to slide the actor to (slide finish position). |
 | visible | boolean | Change visibility status of the actor (show or hide). When not set and target actor is hidden, will still automatically show it. |
-| easing | string | Name of the easing function to use for the modifications. <br /><br /> Available options: Linear, SmoothStep, Spring, EaseInQuad, EaseOutQuad, EaseInOutQuad, EaseInCubic, EaseOutCubic, EaseInOutCubic, EaseInQuart, EaseOutQuart, EaseInOutQuart, EaseInQuint, EaseOutQuint, EaseInOutQuint, EaseInSine, EaseOutSine, EaseInOutSine, EaseInExpo, EaseOutExpo, EaseInOutExpo, EaseInCirc, EaseOutCirc, EaseInOutCirc, EaseInBounce, EaseOutBounce, EaseInOutBounce, EaseInBack, EaseOutBack, EaseInOutBack, EaseInElastic, EaseOutElastic, EaseInOutElastic. <br /><br /> When not specified, will use a default easing function set in the actor's manager configuration settings. |
+| easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to use for the modifications.<br /> When not specified, will use a default easing function set in the actor's manager configuration settings. |
 | time | decimal | Duration (in seconds) of the slide animation. |
 
 </div>
@@ -1637,31 +1621,6 @@ If prefab has a `MonoBehaviour` component attached the root object, and the comp
 ```nani
 ; Given a 'Rainbow' prefab is assigned in spawn resources, instantiate it.
 @spawn Rainbow
-```
-
-## startTrans
-
-Begins scene transition masking the real scene content with anything that is visible at the moment (except the UI). When the new scene is ready, finish with [@finishTrans] command.
-
-::: info NOTE
-The UI will be hidden and user input blocked while the transition is in progress. You can change that by overriding the `ISceneTransitionUI`, which handles the transition process.<br /><br /> For the list of available transition effect options see [transition effects](/guide/transition-effects) guide.
-:::
-
-```nani
-; Transition Felix on sunny day with Jenna on Rainy day.
-@char Felix
-@back SunnyDay
-@spawn SunShafts
-@startTrans
-; Following modifications won't be visible until the transition is finished.
-@hideChars time:0
-@char Jenna time:0
-@back RainyDay time:0
-@despawn SunShafts params:0
-@spawn Rain params:,0
-; Transition the initially captured scene to the new one
-; with 'DropFade' effect over 3 seconds.
-@finishTrans DropFade time:3
 ```
 
 ## stop
@@ -1825,6 +1784,44 @@ Appearance name is the name of a game object with `Toast Appearance` component i
 
 ; The toast will disappear in one second.
 @toast "I'll disappear in 1 second." time:1
+```
+
+## trans
+
+Performs scene transition masking the real scene content with anything that is visible at the moment the command starts execution (except the UI), executing nested commands to change the scene and finishing with specified [transition effect](/guide/transition-effects).<br /><br /> The command works similar to actor appearance transitions, but covers the whole scene. Use it to change multiple actors and other visible entities to a new state in a single batch with a transition effect.
+
+::: info NOTE
+The UI will be hidden and user input blocked while the transition is in progress (nested commands are running). You can change that by overriding the `ISceneTransitionUI`, which handles the transition process.<br /><br /> Async nested commands will execute immediately, w/o the need to specify `time:0` for each.<br /><br /> The nested block is expected to always finish; don't nest any commands that could navigate outside the nested block, as this may cause undefined behaviour.
+:::
+
+<div class="config-table">
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">transition</span> | string | Type of the [transition effect](/guide/transition-effects) to use (crossfade is used by default). |
+| params | decimal list | Parameters of the transition effect. |
+| dissolve | string | Path to the [custom dissolve](/guide/transition-effects#custom-transition-effects) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
+| easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to use for the modification.<br /> When not specified, will use a default easing function set in the actor's manager configuration settings. |
+| time | decimal | Duration (in seconds) of the transition. |
+
+</div>
+
+```nani
+; Set up initial scene with 'Felix' character and sunny vibe.
+@char Felix
+@back SunnyDay
+@sun power:1
+Felix: What a nice day!
+
+; Transition to new scene with 'Jenna' character and rainy vibe
+; via 'DropFade' transition effect over 3 seconds.
+@trans DropFade time:3
+    @hide Felix
+    @char Jenna
+    @back RainyDay
+    @sun power:0
+    @rain power:1
+Jenna: When will the damn rain stop?
 ```
 
 ## unloadScene
