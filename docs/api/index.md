@@ -1801,7 +1801,7 @@ The UI will be hidden and user input blocked while the transition is in progress
 | <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">transition</span> | string | Type of the [transition effect](/guide/transition-effects) to use (crossfade is used by default). |
 | params | decimal list | Parameters of the transition effect. |
 | dissolve | string | Path to the [custom dissolve](/guide/transition-effects#custom-transition-effects) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
-| easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to use for the modification.<br /> When not specified, will use a default easing function set in the actor's manager configuration settings. |
+| easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to use for the transition. |
 | time | decimal | Duration (in seconds) of the transition. |
 
 </div>
