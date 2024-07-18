@@ -1928,8 +1928,7 @@ Executes nested lines in a loop, as long as specified conditional expression res
 
 ```nani
 ; Guess the number game.
-@set number=random(1,100)
-@set answer=0
+@set number=random(1,100);answer=0
 @while answer!=number
     @input answer type:numeric summary:"Guess a number between 1 and 100"
     @stop
