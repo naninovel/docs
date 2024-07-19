@@ -126,15 +126,15 @@ Narrator: You've decided to go {route}. Wise choice!
 ```nani
 # id1
 ; > Player has to pick route.
-; > @choice "…" set:route="left"
+; > @choice "|#id1|" set:route="left"
 ; Go left
 
 # id2
-; > @choice "…" set:route="right"
+; > @choice "|#id2|" set:route="right"
 ; Go right
 
 # id3|id4
-; > Narrator: …{route}…
+; > Narrator: |#id3|{route}|#id4|
 ; You've decided to go |. Wise choice!
 ```
 
