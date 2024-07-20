@@ -164,6 +164,10 @@ Nanikun: Integer nec maximus elit, eget posuere risus.
 
 To display more than one bubble (or any other) printer at a time, add custom printers.
 
+::: tip
+It could be tedious to manually specify positions for aligning bubble printers with the associated actors. Check [the topic on our forum](https://forum.naninovel.com/viewtopic.php?t=647) for an example on automating the ordeal.
+:::
+
 ## Adding Custom Printers
 
 You can add custom text printers based on the built-in templates or create new printers from scratch. For example, let's customize the built-in `Dialogue` template.
