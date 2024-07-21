@@ -180,7 +180,6 @@ Default Locale | Null | Locale selected by default when running the game for the
 Auto Detect Locale | True | When enabled and the game is running for the first time, attempts to automatically detect locale based on system language. When succeeds and the locale is supported by the game, selects it; otherwise falls back to 'Default Locale'.
 Record Separator | | | Text character to join common localized script records, such as parts of generic text lines and localizable parameter values.
 Annotation Prefix | >  | Text character to insert before annotation lines to distinguish them for the localized text. Annotations are comments optionally added to the generated localization documents to provide additional context for the translators, such as author of the printed text messages, inlined commands and command lines containing localized parameters. Stub character is used to replace localized parts of such annotations, as they're duplicated on the next comment line containing the text to localize.
-Annotation Stub | … | Text character to replace stub content of the annotations.
 
 </div>
 
