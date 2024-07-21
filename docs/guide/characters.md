@@ -407,6 +407,10 @@ There a total of 32 layers available in Unity, while 8 of them are reserved for 
 
 Total number of layers to add depends on the max amount of unique camera-rendered layered actors spawned at any given time, no matter visible or not. When layered actor is rendered, it holds a layer from the pool. When the actor is hidden, it releases the layer, allowing it to be re-used by other actors. However, the actors are also rendered on appearance change, which happen when they're initially added to scene (even if they're hidden) or when game is loaded or rolled-back, so **layer pool size has to accommodate total number of camera-rendered actors spawned at a time**, and not just amount of such actors visible at a time. To destroy (de-spawn) an actor after hiding it, use [@remove] command.
 
+After adding the layers, assign `Custom Camera Prebab` in Naninovel's camera configuration with a camera prefab, which has culling mask with the `Naninovel ...` layers disabled. This is required to prevent the "raw" layered actors from leaking into the main Naninovel camera. Note that the assigned camera should be a dedicated camera prefab, not the camera you've used inside layered actor prefabs.
+
+![](https://i.gyazo.com/e2f713e4e212718f50e028cdf546aaba.png)
+
 While in camera rendering mode, game objects of the layered actor prefab are considered layers when they have `Layered Actor Layer` component attached, other objects are considered groups. After attaching the component, configure what should happen when camera layer is held and released with `On Layer Held` and `On Layer Released` Unity events. Typically, you'd assign the held layer to the host game object and enable associated renderer and disable the renderer when released (to make sure the object is not picked by other cameras).
 
 ![](https://i.gyazo.com/4dbfe57dbf6b7365e1e7db78f707f412.png)
@@ -417,7 +421,9 @@ Layer active state is also reflected differently in camera mode: instead of rend
 When layer contains lots of children, it would be tedious to set the layer held/release events for each of them individually. In this case use custom event handler to apply the changes in batch. Check [the example](https://forum.naninovel.com/viewtopic.php?t=606) on applying the changes to all the children renderers of a layer.
 :::
 
-When `Render Canvas` component is attached to the layer actor prefab root, it'll work same as in normal render mode, restricting render texture size; when not present, render texture will equal camera's pixel size. It's recommended to use render canvas to optimize performance, as camera size will usually be higher than necessary.
+Make sure `Render Canvas` component is attached to the layer actor prefab root, as it's required for the camera mode. It works similar to normal render mode, restricting render texture size, so keep it compact.
+
+In case extra layers are required for rendering the actor (for example, a layer dedicated for Unity's Lights 2D), add them via `Camera Mask` property found on the layered behaviour component. Naninovel will preserve specified layers in the camera culling mask when rendering the actor.
 
 ::: tip EXAMPLE
 Find example on setting up layered background containing particle systems in the [URP project on GitHub](https://github.com/naninovel/samples/tree/main/unity/urp). (URP is not required for this feature, it'll work the same with the default render backend)
