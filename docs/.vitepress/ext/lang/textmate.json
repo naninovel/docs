@@ -1,5 +1,5 @@
 {
-    "name": "NaniScript",
+    "name": "naniscript",
     "scopeName": "source.naniscript",
     "fileTypes": ["nani"],
     "patterns": [
@@ -14,16 +14,7 @@
                 {
                     "comment": "Label - #...",
                     "name": "naniscript.label",
-                    "match": "^[\\t ]*(#[\\t ]*)(\\s[\\s\\w|]*)[\\t ]*$",
-                    "captures": {
-                        "1": { "name": "naniscript.label" },
-                        "2": { "name": "naniscript.label.spaceinlabel" }
-                    }
-                },
-                {
-                    "comment": "Missing label",
-                    "name": "naniscript.label.missing",
-                    "match": "^[\\t ]*#[\\t ]*$"
+                    "match": "^[\\t ]*(#[\\t ]*)(\\s[\\s\\w|]*)[\\t ]*$"
                 }
             ]
         },
@@ -42,7 +33,7 @@
                                 {
                                     "comment": "@Command",
                                     "name": "naniscript.command",
-                                    "match": "@\\s*\\w+"
+                                    "match": "@\\w+"
                                 },
                                 { "include": "#params" }
                             ]
@@ -56,54 +47,30 @@
                 {
                     "comment": "Inline command - [command parameters]",
                     "name": "naniscript.command.parameter.value",
-                    "match": "(\\[[\\t ]*[<\\w]+)([^\\r\\n\\[\\]]*)(\\]|$)",
+                    "match": "(\\[[<\\w]*)([^\\r\\n\\[\\]]*)(\\]|$)",
                     "captures": {
                         "1": { "name": "naniscript.command.inline" },
                         "2": { "patterns": [{ "include": "#params" }] },
                         "3": { "name": "naniscript.command.inline" }
                     }
-                },
-                {
-                    "name": "naniscript.command.missing",
-                    "match": "\\[\\s*\\]"
                 }
             ]
         },
         "expression": {
             "patterns": [
                 {
-                    "comment": "Empty expression",
-                    "name": "naniscript.expression.missingbody",
-                    "match": "(?<!\\\\)\\{\\s*((?<!\\\\)\\}|$)"
-                },
-                {
-                    "comment": "Basic expression. Handles escaped {} but does not handle nested subexpressions.",
+                    "comment": "Expression - {exp}",
                     "name": "naniscript.expression",
                     "match": "(?<!\\\\)\\{(?:[^\\[\\]\\{\\}]*|\\\\\\{|\\\\\\})*((?<!\\\\)\\}|$)"
-                },
-                {
-                    "comment": "Detects nested subexpressions. {{x} + 1.2} will match. {{x - 1} + {y} + 1} will not match the outer brackets",
-                    "name": "naniscript.expression",
-                    "match": "(?<!\\\\)\\{((?:[^\\[\\]\\{\\}]*|\\\\\\{|\\\\\\})*)(?<!\\\\)\\{(?:[^\\[\\]\\{\\}]*|\\\\\\{|\\\\\\})*((?<!\\\\)\\})(?:[^\\[\\]\\{\\}]*|\\\\\\{|\\\\\\})*((?<!\\\\)\\}|$)"
                 }
             ]
         },
         "text-identifier": {
             "patterns": [
                 {
-                    "comment": "Text Identifier - |#Textid|",
-                    "name": "naniscript.textidentifier",
+                    "comment": "Text Identifier - |#ID|",
+                    "name": "naniscript.text-identifier",
                     "match": "(?<!\\\\)\\|#&*[\\w-]+\\|"
-                },
-                {
-                    "comment": "Text Identifier - |#|",
-                    "name": "naniscript.textidentifier.missingbody",
-                    "match": "(?<!\\\\)\\|#\\|"
-                },
-                {
-                    "comment": "Text Identifier not closed- |# |#",
-                    "name": "naniscript.textidentifier.missingbody",
-                    "match": "(?<!\\\\)\\|#\\w*(\\s|$)"
                 }
             ]
         },
@@ -128,27 +95,14 @@
                 {
                     "comment": "Parameter ID With Positive Boolean Flag - id!",
                     "name": "naniscript.command.parameter.id",
-                    "match": "\\s\\w+(!)(\\s|$)+",
-                    "captures": { "0": { "patterns": [{ "include": "#bool-flags" }] } }
+                    "match": "\\s\\w+(!)(?=\\s|$)",
+                    "captures": { "1": { "patterns": [{ "include": "#bool-flags" }] } }
                 },
                 {
                     "comment": "Parameter ID With Negative Boolean Flag - !id",
                     "name": "naniscript.command.parameter.id",
-                    "match": "(!)\\w+",
-                    "captures": { "0": { "patterns": [{ "include": "#bool-flags" }] } }
-                },
-                {
-                    "comment": "Quoted String - \"String\"",
-                    "name": "naniscript.quoted-text",
-                    "match": "\"(?:[^\"\\\\]|\\\\.)*\"",
-                    "captures": {
-                        "0": {
-                            "patterns": [
-                                { "include": "#text-identifier" },
-                                { "include": "#expression" }
-                            ]
-                        }
-                    }
+                    "match": "\\s(!)\\w+",
+                    "captures": { "1": { "patterns": [{ "include": "#bool-flags" }] } }
                 }
             ]
         },

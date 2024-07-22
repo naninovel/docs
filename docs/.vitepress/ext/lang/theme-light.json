@@ -184,117 +184,15 @@
     },
     "semanticHighlighting": true,
     "tokenColors": [
-        {
-            "scope": ["naniscript.comment"],
-            "settings": {
-                "foreground": "#acb5c6"
-            }
-        },
-        {
-            "scope": ["naniscript.label"],
-            "settings": {
-                "foreground": "#51a612"
-            }
-        },
-        {
-            "scope": [
-                "naniscript.label.missing",
-                "naniscript.label.spaceinlabel"
-            ],
-            "settings": {
-                "foreground": "#51a612",
-                "fontStyle": "underline italic"
-            }
-        },
-        {
-            "scope": ["naniscript.command", "naniscript.command.inline"],
-            "settings": {
-                "foreground": "#257dc8"
-            }
-        },
-        {
-            "scope": ["naniscript.command.missing"],
-            "settings": {
-                "foreground": "#257dc8",
-                "fontStyle": "underline italic"
-            }
-        },
-        {
-            "scope": ["naniscript.command.parameter.id"],
-            "settings": {
-                "foreground": "#c642a5"
-            }
-        },
-        {
-            "scope": [
-                "naniscript.command.parameter.value",
-                "naniscript.quoted-text"
-            ],
-            "settings": {
-                "foreground": "#9250bf"
-            }
-        },
-        {
-            "scope": ["naniscript.command.parameter.missingvalue"],
-            "settings": {
-                "foreground": "#c642a5",
-                "fontStyle": "underline italic"
-            }
-        },
-        {
-            "scope": [
-                "naniscript.generic-text",
-                "naniscript.generic-text.escaped-char"
-            ],
-            "settings": {
-                "foreground": "#4b5871"
-            }
-        },
-        {
-            "scope": ["naniscript.expression"],
-            "settings": {
-                "foreground": "#3abfb3"
-            }
-        },
-        {
-            "scope": ["naniscript.expression.missingbody"],
-            "settings": {
-                "foreground": "#3abfb3",
-                "fontStyle": "underline italic"
-            }
-        },
-        {
-            "scope": ["naniscript.textidentifier"],
-            "settings": {
-                "foreground": "#acb5c6"
-            }
-        },
-        {
-            "scope": ["naniscript.textidentifier.missingbody"],
-            "settings": {
-                "foreground": "#acb5c6",
-                "fontStyle": "underline italic"
-            }
-        },
-        {
-            "scope": ["naniscript.author"],
-            "settings": {
-                "foreground": "#9250bf"
-            }
-        },
-        {
-            "scope": ["naniscript.author.missingappearance"],
-            "settings": {
-                "foreground": "#9250bf",
-                "fontStyle": "underline italic"
-            }
-        },
-        {
-            "scope": ["naniscript.error"],
-            "settings": {
-                "foreground": "#d14e4e"
-            }
-        },
+        { "scope": ["naniscript.comment"], "settings": { "foreground": "#acb5c6" } },
+        { "scope": ["naniscript.label"], "settings": { "foreground": "#51a612" } },
+        { "scope": ["naniscript.command"], "settings": { "foreground": "#257dc8" } },
+        { "scope": ["naniscript.command.parameter.id"], "settings": { "foreground": "#c642a5" } },
+        { "scope": ["naniscript.command.parameter.value"], "settings": { "foreground": "#9250bf" } },
+        { "scope": ["naniscript.generic-text"], "settings": { "foreground": "#4b5871" } },
+        { "scope": ["naniscript.author"], "settings": { "foreground": "#9250bf" } },
+        { "scope": ["naniscript.expression"], "settings": { "foreground": "#3abfb3" } },
+        { "scope": ["naniscript.text-identifier"], "settings": { "foreground": "#acb5c6" } },
         {
             "scope": ["comment", "punctuation.definition.comment", "string.comment"],
             "settings": {
