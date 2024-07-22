@@ -6,13 +6,13 @@ Naninovel is designed to be friendly for non-programmers and doesn't require any
 
 ## Can I use Naninovel as a drop-in dialogue system for an existing game?
 
-While Naninovel is focused around traditional visual novel games the engine is designed to allow integration with existing projects. If you're making a 3D adventure game, RPG or game of any other genre — you can still use Naninovel as a drop-in dialogue system.
+While Naninovel is focused around traditional visual novel games and works best as a template for one, it's possible to integrate the engine with existing projects. If you're making a 3D adventure game, RPG or game of any other genre — you can still use Naninovel as a drop-in dialogue system.
 
 Be aware, that in most cases such integration will require C# (or [visual](/guide/visual-scripting)) scripting in varying extent. See the [engine architecture overview](/guide/engine-architecture) to get a grasp of how Naninovel works and [integration guide](/guide/integration-options) for more information on the integration options.
 
 ## Is it possible to embed a mini-game to Naninovel?
 
-Sure, you can freely "inject" any custom logic to the default Naninovel flow. In most cases, however, this will require using the engine's C# API (via either writing custom C# scripts or using a [visual scripting](/guide/visual-scripting) solution). Check the [engine services guide](/guide/engine-services) for the list of available open APIs, which allows interaction with the engine; you may also make use of [state outsourcing](/guide/state-management#custom-state), [custom actor implementations](/guide/custom-actor-implementations) and [custom commands](/guide/custom-commands) in the process.
+Sure, you can "inject" any custom logic to the default Naninovel flow. In many cases, however, this will require using the engine's C# API (via either writing custom C# scripts or using a [visual scripting](/guide/visual-scripting) solution). Check the [engine services guide](/guide/engine-services) for the list of available open APIs, which allows interaction with the engine; you may also make use of [state outsourcing](/guide/state-management#custom-state), [custom actor implementations](/guide/custom-actor-implementations) and [custom commands](/guide/custom-commands) in the process.
 
 ## Does it support a specific language?
 
