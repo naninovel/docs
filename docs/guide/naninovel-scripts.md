@@ -157,7 +157,7 @@ Lorem ipsum[char Felix.Happy pos:75 wait!] dolor sit amet.
 ```nani
 @print "Lorem ipsum" !waitInput
 @char Felix.Happy pos:75 wait!
-@print " dolor sit amet."
+@print " dolor sit amet." !reset
 ```
 
 To actually print square brackets within generic text line, escape them with backslashes, eg:
