@@ -832,7 +832,7 @@ Check out this [video guide](https://youtu.be/F9meuMzvGJw) on usage example. <br
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">variableName</span> | string | Name of a custom variable to which the entered text will be assigned. |
-| type | string | Type of the variable value; defaults to string when not specified. |
+| type | string | Type of the input content; defaults to the specified variable type. |
 | summary | string | An optional summary text to show along with input field. When the text contain spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
 | value | string | A predefined value to set for the input field. |
 | play | boolean | Whether to automatically resume script playback when user submits the input form. |
@@ -1930,7 +1930,7 @@ Executes nested lines in a loop, as long as specified conditional expression res
 ; Guess the number game.
 @set number=random(1,100);answer=0
 @while answer!=number
-    @input answer type:numeric summary:"Guess a number between 1 and 100"
+    @input answer summary:"Guess a number between 1 and 100"
     @stop
     @if answer<number
         Wrong, too low.
