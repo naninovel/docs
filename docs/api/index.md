@@ -20,14 +20,14 @@ The following parameters are supported by all the script commands:
 Animate properties of the actors with the specified IDs via key frames. Key frames for the animated parameters are delimited with commas.
 
 ::: info NOTE
-It's not recommended to use this command for complex animations. Naniscript is a scenario scripting DSL and not suited for complex automation or specification such as animation. Consider using dedicated animation tools instead, such as Unity's [Animator](https://docs.unity3d.com/Manual/AnimationSection.html). <br /><br /> Be aware, that this command searches for actors with the provided IDs over all the actor managers, and in case multiple actors with the same ID exist (eg, a character and a text printer), this will affect only the first found one. <br /><br /> When running the animate commands in parallel (`wait` is set to false) the affected actors state can mutate unpredictably. This could cause unexpected results when rolling back or performing other commands that affect state of the actor. Make sure to reset affected properties of the animated actors (position, tint, appearance, etc) after the command finishes or use `@animate CharacterId` (without any args) to stop the animation prematurely.
+It's not recommended to use this command for complex animations. Naniscript is a scenario scripting DSL and not suited for complex automation or specification such as animation. Consider using dedicated animation tools instead, such as Unity's [Animator](https://docs.unity3d.com/Manual/AnimationSection.html). <br /><br /> Be aware, that this command searches for actors with the specified IDs over all the actor managers, and in case multiple actors with the same ID exist (eg, a character and a text printer), this will affect only the first found one. <br /><br /> When running the animate commands in parallel (`wait` is set to false) the affected actors state can mutate unpredictably. This could cause unexpected results when rolling back or performing other commands that affect state of the actor. Make sure to reset affected properties of the animated actors (position, tint, appearance, etc) after the command finishes or use `@animate CharacterId` (without any args) to stop the animation prematurely.
 :::
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">actorIds</span> | string list | IDs of the actors to animate. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">actorIds</span> | string list | IDs of the actors to animate. |
 | loop | boolean | Whether to loop the animation; make sure to set `wait` to false when loop is enabled, otherwise script playback will loop indefinitely. |
 | appearance | string | Appearances to set for the animated actors. |
 | transition | string | Type of the [transition effect](/guide/transition-effects) to use when animating appearance change (crossfade is used by default). |
@@ -68,7 +68,7 @@ It's not recommended to use this command for complex animations. Naniscript is a
 
 ## append
 
-Appends provided text to a text printer.
+Appends specified text to a text printer.
 
 ::: info NOTE
 The entire text will be appended immediately, without triggering reveal effect or any other side-effects.
@@ -78,8 +78,8 @@ The entire text will be appended immediately, without triggering reveal effect o
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">text</span> | string | The text to append. |
-| printer | string | ID of the printer actor to use. Will use a default one when not provided. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">text</span> | string | The text to append. |
+| printer | string | ID of the printer actor to use. Will use a default one when not specified. |
 | author | string | ID of the actor, which should be associated with the appended text. |
 
 </div>
@@ -93,13 +93,13 @@ Lorem ipsum
 
 ## arrange
 
-Arranges specified characters by X-axis. When no parameters provided, will execute an auto-arrange evenly distributing visible characters by X-axis.
+Arranges specified characters by X-axis. When no parameters specified, will execute an auto-arrange evenly distributing visible characters by X-axis.
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">characterPositions</span> | named decimal list | A collection of character ID to scene X-axis position (relative to the left scene border, in percents) named values. Position 0 relates to the left border and 100 to the right border of the scene; 50 is the center. |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">characterPositions</span> | named decimal list | A collection of character ID to scene X-axis position (relative to the left scene border, in percents) named values. Position 0 relates to the left border and 100 to the right border of the scene; 50 is the center. |
 | look | boolean | When performing auto-arrange, controls whether to also make the characters look at the scene origin (enabled by default). |
 | time | decimal | Duration (in seconds) of the arrangement animation. |
 
@@ -138,14 +138,14 @@ The nested block is expected to always finish; don't nest any commands that coul
 Modifies a [background actor](/guide/backgrounds).
 
 ::: info NOTE
-Backgrounds are handled a bit differently from characters to better accommodate traditional VN game flow. Most of the time you'll probably have a single background actor on scene, which will constantly transition to different appearances. To remove the hassle of repeating same actor ID in scripts, it's possible to provide only the background appearance and transition type (optional) as a nameless parameter assuming `MainBackground` actor should be affected. When this is not the case, ID of the background actor can be explicitly provided via the `id` parameter.
+Backgrounds are handled a bit differently from characters to better accommodate traditional VN game flow. Most of the time you'll probably have a single background actor on scene, which will constantly transition to different appearances. To remove the hassle of repeating same actor ID in scripts, it's possible to provide only the background appearance and transition type (optional) as a nameless parameter assuming `MainBackground` actor should be affected. When this is not the case, ID of the background actor can be explicitly specified via the `id` parameter.
 :::
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">appearanceAndTransition</span> | named string | Appearance (or [pose](/guide/backgrounds#poses)) to set for the modified background and type of a [transition effect](/guide/transition-effects) to use. When transition is not provided, a cross-fade effect will be used by default. |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">appearanceAndTransition</span> | named string | Appearance (or [pose](/guide/backgrounds#poses)) to set for the modified background and type of a [transition effect](/guide/transition-effects) to use. When transition is not specified, a cross-fade effect will be used by default. |
 | pos | decimal list | Position (relative to the scene borders, in percents) to set for the modified actor. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
 | id | string | ID of the actor to modify; specify `*` to affect all visible actors. |
 | appearance | string | Appearance to set for the modified actor. |
@@ -180,7 +180,7 @@ Backgrounds are handled a bit differently from characters to better accommodate 
 
 ## bgm
 
-Plays or modifies currently played [BGM (background music)](/guide/audio#background-music) track with the provided name.
+Plays or modifies currently played [BGM (background music)](/guide/audio#background-music) track with the specified name.
 
 ::: info NOTE
 Music tracks are looped by default. When music track name (BgmPath) is not specified, will affect all the currently played tracks. When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start), but the specified parameters (volume and whether the track is looped) will be applied.
@@ -190,7 +190,7 @@ Music tracks are looped by default. When music track name (BgmPath) is not speci
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">bgmPath</span> | string | Path to the music track to play. |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">bgmPath</span> | string | Path to the music track to play. |
 | intro | string | Path to the intro music track to play once before the main track (not affected by the loop parameter). |
 | volume | decimal | Volume of the music track. |
 | loop | boolean | Whether to play the track from beginning when it finishes. |
@@ -227,7 +227,7 @@ The actor should have `IBlurable` interface implemented in order to support the 
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">actorId</span> | string | ID of the actor to apply the effect for; in case multiple actors with the same ID found (eg, a character and a printer), will affect only the first found one. When not specified, applies to the main background. |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">actorId</span> | string | ID of the actor to apply the effect for; in case multiple actors with the same ID found (eg, a character and a printer), will affect only the first found one. When not specified, applies to the main background. |
 | power | decimal | Intensity of the effect, in 0.0 to 1.0 range. Defaults to 0.5. Set to 0 to disable (de-spawn) the effect. |
 | time | decimal | How long it will take the parameters to reach the target values, in seconds. Defaults to 1.0. |
 
@@ -282,8 +282,8 @@ Consider using `<br>` tag instead with [TMPro printers](/guide/text-printers#tex
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">count</span> | integer | Number of line breaks to add. |
-| printer | string | ID of the printer actor to use. Will use a default one when not provided. |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">count</span> | integer | Number of line breaks to add. |
+| printer | string | ID of the printer actor to use. Will use a default one when not specified. |
 | author | string | ID of the actor, which should be associated with the appended line break. |
 
 </div>
@@ -350,7 +350,7 @@ Modifies a [character actor](/guide/characters).
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">idAndAppearance</span> | named string | ID of the character to modify (specify `*` to affect all visible characters) and an appearance (or [pose](/guide/characters#poses)) to set. When appearance is not provided, will use either a `Default` (is exists) or a random one. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">idAndAppearance</span> | named string | ID of the character to modify (specify `*` to affect all visible characters) and an appearance (or [pose](/guide/characters#poses)) to set. When appearance is not specified, will use either a `Default` (is exists) or a random one. |
 | look | string | Look direction of the actor; supported values: left, right, center. |
 | avatar | string | Name (path) of the [avatar texture](/guide/characters#avatar-textures) to assign for the character. Use `none` to remove (un-assign) avatar texture from the character. |
 | pos | decimal list | Position (relative to the scene borders, in percents) to set for the modified actor. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
@@ -402,11 +402,11 @@ When `goto`, `gosub` and `do` parameters are not specified, will continue script
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">choiceSummary</span> | string | Text to show for the choice. When the text contain spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">choiceSummary</span> | string | Text to show for the choice. When the text contain spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
 | lock | boolean | Whether the choice should be disabled or otherwise not accessible for player to pick; see [choice docs](/guide/choices#locked-choice) for more info. Disabled by default. |
-| button | string | Path (relative to a `Resources` folder) to a [button prefab](/guide/choices#choice-button) representing the choice. The prefab should have a `ChoiceHandlerButton` component attached to the root object. Will use a default button when not provided. |
+| button | string | Path (relative to a `Resources` folder) to a [button prefab](/guide/choices#choice-button) representing the choice. The prefab should have a `ChoiceHandlerButton` component attached to the root object. Will use a default button when not specified. |
 | pos | decimal list | Local position of the choice button inside the choice handler (if supported by the handler implementation). |
-| handler | string | ID of the choice handler to add choice for. Will use a default handler if not provided. |
+| handler | string | ID of the choice handler to add choice for. Will use a default handler if not specified. |
 | goto | named string | Path to go when the choice is selected by user; see [@goto] command for the path format. |
 | gosub | named string | Path to a subroutine to go when the choice is selected by user; see [@gosub] command for the path format. When `goto` is assigned this parameter will be ignored. |
 | set | string | Set expression to execute when the choice is selected by user; see [@set] command for syntax reference. |
@@ -460,13 +460,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 ## clearChoice
 
-Removes all the choice options in the choice handler with the provided ID (or in default one, when ID is not specified; or in all the existing handlers, when `*` is specified as ID) and (optionally) hides it (them).
+Removes all the choice options in the choice handler with the specified ID (or in default one, when ID is not specified; or in all the existing handlers, when `*` is specified as ID) and (optionally) hides it (them).
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">handlerId</span> | string | ID of the choice handler to clear. Will use a default handler if not provided. Specify `*` to clear all the existing handlers. |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">handlerId</span> | string | ID of the choice handler to clear. Will use a default handler if not specified. Specify `*` to clear all the existing handlers. |
 | hide | boolean | Whether to also hide the affected choice handlers. |
 
 </div>
@@ -497,7 +497,7 @@ Be aware, that the delayed execution won't happen if game gets saved/loaded or r
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">seconds</span> | decimal | Delay time, in seconds. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">seconds</span> | decimal | Delay time, in seconds. |
 
 </div>
 
@@ -522,7 +522,7 @@ If prefab has a `MonoBehaviour` component attached the root object, and the comp
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">path</span> | string | Name (path) of the prefab resource to destroy. A [@spawn] command with the same parameter is expected to be executed before. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">path</span> | string | Name (path) of the prefab resource to destroy. A [@spawn] command with the same parameter is expected to be executed before. |
 | params | string list | Parameters to set before destroying the prefab. Requires the prefab to have a `IParameterized` component attached the root object. |
 
 </div>
@@ -573,7 +573,7 @@ Applies [digital glitch](/guide/special-effects#digital-glitch) post-processing 
 
 ## gosub
 
-Navigates naninovel script playback to the provided path and saves that path to global state; [@return] commands use this info to redirect to command after the last invoked gosub command.
+Navigates naninovel script playback to the specified path and saves that path to global state; [@return] commands use this info to redirect to command after the last invoked gosub command.
 
 ::: info NOTE
 While this command can be used as a function (subroutine) to invoke a common set of script lines, remember that NaniScript is a scenario scripting DSL and is not suited for general programming. It's strongly recommended to use [custom commands](/guide/custom-commands) instead.
@@ -583,7 +583,7 @@ While this command can be used as a function (subroutine) to invoke a common set
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">path</span> | named string | Path to navigate into in the following format: `ScriptName.LabelName`. When label name is omitted, will play provided script from the start. When script name is omitted, will attempt to find a label in the currently played script. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">path</span> | named string | Path to navigate into in the following format: `ScriptPath.Label`. When label is omitted, will play specified script from the start. When script path is omitted, will attempt to find a label in the currently played script. |
 | reset | string list | When specified, will reset the engine services state before loading a script (in case the path is leading to another script). Specify `*` to reset all the services, or specify service names to exclude from reset. By default, the state does not reset. |
 
 </div>
@@ -618,13 +618,13 @@ You are victorious!
 
 ## goto
 
-Navigates naninovel script playback to the provided path.
+Navigates naninovel script playback to the specified path.
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">path</span> | named string | Path to navigate into in the following format: `ScriptName.LabelName`. When label name is omitted, will play provided script from the start. When script name is omitted, will attempt to find a label in the currently played script. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">path</span> | named string | Path to navigate into in the following format: `ScriptPath.Label`. When label is omitted, will play specified script from the start. When script path is omitted, will attempt to find a label in the currently played script. |
 | reset | string list | When specified, will control whether to reset the engine services state before loading a script (in case the path is leading to another script):<br /> - Specify `*` to reset all the services, except the ones with `Goto.DontReset` attribute.<br /> - Specify service type names (separated by comma) to exclude from reset; all the other services will be reset, including the ones with `Goto.DontReset` attribute.<br /> - Specify `-` to force no reset (even if it's enabled by default in the configuration).<br /><br /> Notice, that while some services have `Goto.DontReset` attribute applied and are not reset by default, they should still be specified when excluding specific services from reset. |
 | hold | boolean | Whether to hold resources in the target script, which make them preload together with the script this command specified in. Has no effect outside `Conservative` resource policy. Refer to [memory management](/guide/memory-management) guide for more info. |
 | release | boolean | Whether to release resources before navigating to the target script to free the memory. Has no effect outside `Optimistic` resource policy. Refer to [memory management](/guide/memory-management) guide for more info. |
@@ -670,7 +670,7 @@ Hides actors (character, background, text printer, choice handler) with the spec
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">actorIds</span> | string list | IDs of the actors to hide. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">actorIds</span> | string list | IDs of the actors to hide. |
 | time | decimal | Duration (in seconds) of the fade animation. |
 
 </div>
@@ -725,7 +725,7 @@ Hides a text printer.
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">printerId</span> | string | ID of the printer actor to use. Will use a default one when not provided. |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">printerId</span> | string | ID of the printer actor to use. Will use a default one when not specified. |
 | time | decimal | Duration (in seconds) of the hide animation. Default value for each printer is set in the actor configuration. |
 
 </div>
@@ -750,7 +750,7 @@ When hiding the entire UI with this command and `allowToggle` parameter is false
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">uINames</span> | string list | Name of the UI elements to hide. |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">uINames</span> | string list | Name of the UI elements to hide. |
 | allowToggle | boolean | When hiding the entire UI, controls whether to allow the user to re-show the UI with hotkeys or by clicking anywhere on the screen (false by default). Has no effect when hiding a particular UI. |
 | time | decimal | Duration (in seconds) of the hide animation. When not specified, will use UI-specific duration. |
 
@@ -791,7 +791,7 @@ Marks the beginning of a conditional execution block. Nested lines are considere
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [script expression](/guide/script-expressions), which should return a boolean value determining whether the associated nested block will be executed. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [script expression](/guide/script-expressions), which should return a boolean value determining whether the associated nested block will be executed. |
 
 </div>
 
@@ -831,7 +831,7 @@ Check out this [video guide](https://youtu.be/F9meuMzvGJw) on usage example. <br
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">variableName</span> | string | Name of a custom variable to which the entered text will be assigned. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">variableName</span> | string | Name of a custom variable to which the entered text will be assigned. |
 | type | string | Type of the input content; defaults to the specified variable type. |
 | summary | string | An optional summary text to show along with input field. When the text contain spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
 | value | string | A predefined value to set for the input field. |
@@ -854,13 +854,13 @@ Archibald: Greetings, {name}!
 
 ## lipSync
 
-Allows to force-stop the lip sync mouth animation for a character with the provided ID; when stopped, the animation won't start again, until this command is used again to allow it. The character should be able to receive the lip sync events (currently generic, layered and Live2D implementations only). See [characters guide](/guide/characters#lip-sync) for more information on lip sync feature.
+Allows to force-stop the lip sync mouth animation for a character with the specified ID; when stopped, the animation won't start again, until this command is used again to allow it. The character should be able to receive the lip sync events (currently generic, layered and Live2D implementations only). See [characters guide](/guide/characters#lip-sync) for more information on lip sync feature.
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">charIdAndAllow</span> | named boolean | Character ID followed by a boolean (true or false) on whether to halt or allow the lip sync animation. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">charIdAndAllow</span> | named boolean | Character ID followed by a boolean (true or false) on whether to halt or allow the lip sync animation. |
 
 </div>
 
@@ -872,13 +872,13 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 
 ## loadScene
 
-Loads a [Unity scene](https://docs.unity3d.com/Manual/CreatingScenes.html) with the provided name. Don't forget to add the required scenes to the [build settings](https://docs.unity3d.com/Manual/BuildSettings.html) to make them available for loading.
+Loads a [Unity scene](https://docs.unity3d.com/Manual/CreatingScenes.html) with the specified name. Don't forget to add the required scenes to the [build settings](https://docs.unity3d.com/Manual/BuildSettings.html) to make them available for loading.
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">sceneName</span> | string | Name of the scene to load. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">sceneName</span> | string | Name of the scene to load. |
 | additive | boolean | Whether to load the scene additively, or unload any currently loaded scenes before loading the new one (default). See the [load scene documentation](https://docs.unity3d.com/ScriptReference/SceneManagement.SceneManager.LoadScene.html) for more information. |
 
 </div>
@@ -893,17 +893,17 @@ Loads a [Unity scene](https://docs.unity3d.com/Manual/CreatingScenes.html) with 
 
 ## lock
 
-Sets an [unlockable item](/guide/unlockable-items) with the provided ID to `locked` state.
+Sets an [unlockable item](/guide/unlockable-items) with the specified ID to `locked` state.
 
 ::: info NOTE
-The unlocked state of the items is stored in [global scope](/guide/state-management#global-state).<br /> In case item with the provided ID is not registered in the global state map, the corresponding record will automatically be added.
+The unlocked state of the items is stored in [global scope](/guide/state-management#global-state).<br /> In case item with the specified ID is not registered in the global state map, the corresponding record will automatically be added.
 :::
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">id</span> | string | ID of the unlockable item. Use `*` to lock all the registered unlockable items. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">id</span> | string | ID of the unlockable item. Use `*` to lock all the registered unlockable items. |
 
 </div>
 
@@ -924,7 +924,7 @@ It's also possible to control the look by rotating a mobile device (in case it h
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">enable</span> | boolean | Whether to enable or disable the camera look mode. Default: true. |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">enable</span> | boolean | Whether to enable or disable the camera look mode. Default: true. |
 | zone | decimal list | A bound box with X,Y sizes in units from the initial camera position, describing how far the camera can be moved. Default: 5,3. |
 | speed | decimal list | Camera movement speed (sensitivity) by X,Y axes. Default: 1.5,1. |
 | gravity | boolean | Whether to automatically move camera to the initial position when the look input is not active (eg, mouse is not moving or analog stick is in default position). Default: false. |
@@ -947,7 +947,7 @@ It's also possible to control the look by rotating a mobile device (in case it h
 
 ## movie
 
-Plays a movie with the provided name (path).
+Plays a movie with the specified name (path).
 
 ::: info NOTE
 Will fade-out the screen before playing the movie and fade back in after the play. Playback can be canceled by activating a `cancel` input (`Esc` key by default).
@@ -957,7 +957,7 @@ Will fade-out the screen before playing the movie and fade back in after the pla
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">movieName</span> | string | Name of the movie resource to play. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">movieName</span> | string | Name of the movie resource to play. |
 | time | decimal | Duration (in seconds) of the fade animation. When not specified, will use fade duration set in the movie configuration. |
 | block | boolean | Whether to block interaction with the game while the movie is playing, preventing the player from skipping it. |
 
@@ -980,7 +980,7 @@ When outside of WebGL or in editor, Unity's `Application.OpenURL` method is used
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">uRL</span> | string | URL to open. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">uRL</span> | string | URL to open. |
 | target | string | Browsing context: _self (current tab), _blank (new tab), _parent, _top. |
 
 </div>
@@ -1005,8 +1005,8 @@ This command is used under the hood when processing generic text lines, eg gener
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">text</span> | string | Text of the message to print. When the text contain spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
-| printer | string | ID of the printer actor to use. Will use a default one when not provided. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">text</span> | string | Text of the message to print. When the text contain spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
+| printer | string | ID of the printer actor to use. Will use a default one when not specified. |
 | author | string | ID of the actor, which should be associated with the printed message. Specify `*` or use `,` to delimit multiple actor IDs to make all/selected characters authors of the text; useful when coupled with `as` parameter to represent multiple characters speaking at the same time. |
 | as | string | When specified, will use the label instead of author ID (or associated display name) to represent author name in the text printer while printing the message. Useful to override default name for a few messages or represent multiple authors speaking at the same time without triggering author-specific behaviour of the text printer, such as message color or avatar. |
 | speed | decimal | Text reveal speed multiplier; should be positive or zero. Setting to one will yield the default speed. |
@@ -1045,7 +1045,7 @@ Modifies a [text printer actor](/guide/text-printers).
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">idAndAppearance</span> | named string | ID of the printer to modify and the appearance to set. When ID or appearance are not provided, will use default ones. |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">idAndAppearance</span> | named string | ID of the printer to modify and the appearance to set. When ID or appearance are not specified, will use default ones. |
 | default | boolean | Whether to make the printer the default one. Default printer will be subject of all the printer-related commands when `printer` parameter is not specified. |
 | hideOther | boolean | Whether to hide all the other printers. |
 | pos | decimal list | Position (relative to the scene borders, in percents) to set for the modified actor. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
@@ -1082,7 +1082,7 @@ Allows halting and resuming user input processing (eg, reacting to pressing keyb
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">inputEnabled</span> | boolean | Whether to enable input processing of all the samplers. |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">inputEnabled</span> | boolean | Whether to enable input processing of all the samplers. |
 | set | named boolean list | Allows muting and un-muting individual input samplers. |
 
 </div>
@@ -1198,7 +1198,7 @@ This command should only be used with actor implementations, which don't support
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">actorIds</span> | string list | IDs of the actors to remove or `*` to remove all actors. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">actorIds</span> | string list | IDs of the actors to remove or `*` to remove all actors. |
 
 </div>
 
@@ -1224,7 +1224,7 @@ Be aware, that this command can not be undone (rewound back).
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">exclude</span> | string list | Names of the [engine services](/guide/engine-services) (interfaces) to exclude from reset. Consider adding `ICustomVariableManager` to preserve the local variables. |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">exclude</span> | string list | Names of the [engine services](/guide/engine-services) (interfaces) to exclude from reset. Consider adding `ICustomVariableManager` to preserve the local variables. |
 | only | string list | Names of the [engine services](/guide/engine-services) (interfaces) to reset; other services won't be affected. Doesn't have effect when the nameless (exclude) parameter is assigned. |
 
 </div>
@@ -1252,7 +1252,7 @@ Resets (clears) the contents of a text printer and optionally resets author ID.
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">printerId</span> | string | ID of the printer actor to use. Will use a default one when not provided. |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">printerId</span> | string | ID of the printer actor to use. Will use a default one when not specified. |
 | resetAuthor | boolean | Whether to also reset author of the currently printed text message. |
 
 </div>
@@ -1288,14 +1288,14 @@ Automatically save the game to a quick save slot.
 Assigns result of a [script expression](/guide/script-expressions) to a [custom variable](/guide/custom-variables).
 
 ::: info NOTE
-If a variable with the provided name doesn't exist, it will be automatically created. <br /><br /> Specify multiple set expressions by separating them with `;`. The expressions will be executed in sequence in the order of declaration. <br /><br /> In case variable name starts with `t_` it's considered a reference to a value stored in 'Script' [managed text](/guide/managed-text) document. Such variables can't be assigned and are intended for referencing localizable text values.
+If a variable with the specified name doesn't exist, it will be automatically created. <br /><br /> Specify multiple set expressions by separating them with `;`. The expressions will be executed in sequence in the order of declaration. <br /><br /> In case variable name starts with `t_` it's considered a reference to a value stored in 'Script' [managed text](/guide/managed-text) document. Such variables can't be assigned and are intended for referencing localizable text values.
 :::
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | Assignment expression. <br /><br /> The expression should be in the following format: `var=expression`, where `var` is the name of the custom variable to assign and `expression` is a [script expression](/guide/script-expressions), the result of which should be assigned to the variable. <br /><br /> It's possible to use increment and decrement unary operators (`@set foo++`, `@set foo--`) and compound assignment (`@set foo+=10`, `@set foo-=3`, `@set foo*=0.1`, `@set foo/=2`). |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | Assignment expression. <br /><br /> The expression should be in the following format: `var=expression`, where `var` is the name of the custom variable to assign and `expression` is a [script expression](/guide/script-expressions), the result of which should be assigned to the variable. <br /><br /> It's possible to use increment and decrement unary operators (`@set foo++`, `@set foo--`) and compound assignment (`@set foo+=10`, `@set foo-=3`, `@set foo*=0.1`, `@set foo/=2`). |
 
 </div>
 
@@ -1359,7 +1359,7 @@ My favourite drink is {drink}!
 
 ## sfx
 
-Plays or modifies currently played [SFX (sound effect)](/guide/audio#sound-effects) track with the provided name.
+Plays or modifies currently played [SFX (sound effect)](/guide/audio#sound-effects) track with the specified name.
 
 ::: info NOTE
 Sound effect tracks are not looped by default. When sfx track name (SfxPath) is not specified, will affect all the currently played tracks. When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start), but the specified parameters (volume and whether the track is looped) will be applied.
@@ -1369,7 +1369,7 @@ Sound effect tracks are not looped by default. When sfx track name (SfxPath) is 
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">sfxPath</span> | string | Path to the sound effect asset to play. |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">sfxPath</span> | string | Path to the sound effect asset to play. |
 | volume | decimal | Volume of the sound effect. |
 | loop | boolean | Whether to play the sound effect in a loop. |
 | fade | decimal | Duration of the volume fade-in when starting playback, in seconds (0.0 by default); doesn't have effect when modifying a playing track. |
@@ -1392,13 +1392,13 @@ Sound effect tracks are not looped by default. When sfx track name (SfxPath) is 
 
 ## sfxFast
 
-Plays an [SFX (sound effect)](/guide/audio#sound-effects) track with the provided name. Unlike [@sfx] command, the clip is played with minimum delay and is not serialized with the game state (won't be played after loading a game, even if it was played when saved). The command can be used to play various transient audio clips, such as UI-related sounds (eg, on button click with [`Play Script` component](/guide/user-interface#play-script-on-unity-event)).
+Plays an [SFX (sound effect)](/guide/audio#sound-effects) track with the specified name. Unlike [@sfx] command, the clip is played with minimum delay and is not serialized with the game state (won't be played after loading a game, even if it was played when saved). The command can be used to play various transient audio clips, such as UI-related sounds (eg, on button click with [`Play Script` component](/guide/user-interface#play-script-on-unity-event)).
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">sfxPath</span> | string | Path to the sound effect asset to play. |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">sfxPath</span> | string | Path to the sound effect asset to play. |
 | volume | decimal | Volume of the sound effect. |
 | restart | boolean | Whether to start playing the audio from start in case it's already playing. |
 | additive | boolean | Whether to allow playing multiple instances of the same clip; has no effect when `restart` is enabled. |
@@ -1422,7 +1422,7 @@ Applies [shake effect](/guide/special-effects#shake) for the actor with the spec
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">actorId</span> | string | ID of the actor to shake. In case multiple actors with the same ID found (eg, a character and a printer), will affect only the first found one. To shake main camera, use "Camera" keyword. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">actorId</span> | string | ID of the actor to shake. In case multiple actors with the same ID found (eg, a character and a printer), will affect only the first found one. To shake main camera, use "Camera" keyword. |
 | count | integer | The number of shake iterations. When set to 0, will loop until stopped with -1. |
 | time | decimal | The base duration of each shake iteration, in seconds. |
 | deltaTime | decimal | The randomizer modifier applied to the base duration of the effect. |
@@ -1459,7 +1459,7 @@ Shows (makes visible) actors (character, background, text printer, choice handle
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">actorIds</span> | string list | IDs of the actors to show. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">actorIds</span> | string list | IDs of the actors to show. |
 | time | decimal | Duration (in seconds) of the fade animation. |
 
 </div>
@@ -1480,7 +1480,7 @@ Shows a text printer.
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">printerId</span> | string | ID of the printer actor to use. Will use a default one when not provided. |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">printerId</span> | string | ID of the printer actor to use. Will use a default one when not specified. |
 | time | decimal | Duration (in seconds) of the show animation. Default value for each printer is set in the actor configuration. |
 
 </div>
@@ -1501,7 +1501,7 @@ Makes [UI elements](/guide/user-interface) with the specified resource names vis
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">uINames</span> | string list | Name of the UI resource to make visible. |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">uINames</span> | string list | Name of the UI resource to make visible. |
 | time | decimal | Duration (in seconds) of the show animation. When not specified, will use UI-specific duration. |
 
 </div>
@@ -1526,7 +1526,7 @@ Allows to enable or disable script player "skip" mode.
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">enable</span> | boolean | Whether to enable (default) or disable the skip mode. |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">enable</span> | boolean | Whether to enable (default) or disable the skip mode. |
 
 </div>
 
@@ -1540,18 +1540,18 @@ Allows to enable or disable script player "skip" mode.
 
 ## slide
 
-Slides (moves between two positions) an actor (character, background, text printer or choice handler) with the provided ID and optionally changes actor visibility and appearance. Can be used instead of multiple [@char] or [@back] commands to reveal or hide an actor with a slide animation.
+Slides (moves between two positions) an actor (character, background, text printer or choice handler) with the specified ID and optionally changes actor visibility and appearance. Can be used instead of multiple [@char] or [@back] commands to reveal or hide an actor with a slide animation.
 
 ::: info NOTE
-Be aware, that this command searches for an existing actor with the provided ID over all the actor managers, and in case multiple actors with the same ID exist (eg, a character and a text printer), this will affect only the first found one. Make sure the actor exist on scene before referencing it with this command; eg, if it's a character, you can add it on scene imperceptibly to player with `@char CharID visible:false time:0`.
+Be aware, that this command searches for an existing actor with the specified ID over all the actor managers, and in case multiple actors with the same ID exist (eg, a character and a text printer), this will affect only the first found one. Make sure the actor exist on scene before referencing it with this command; eg, if it's a character, you can add it on scene imperceptibly to player with `@char CharID visible:false time:0`.
 :::
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">idAndAppearance</span> | named string | ID of the actor to slide and (optionally) appearance to set. |
-| from | decimal list | Position in scene space to slide the actor from (slide start position). Described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene; Z-component (depth) is in world space. When not provided, will use current actor position in case it's visible and a random off-scene position otherwise (could slide-in from left or right borders). |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">idAndAppearance</span> | named string | ID of the actor to slide and (optionally) appearance to set. |
+| from | decimal list | Position in scene space to slide the actor from (slide start position). Described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene; Z-component (depth) is in world space. When not specified, will use current actor position in case it's visible and a random off-scene position otherwise (could slide-in from left or right borders). |
 | <span class="command-param-required" title="Required parameter: parameter should always be specified">to</span> | decimal list | Position in scene space to slide the actor to (slide finish position). |
 | visible | boolean | Change visibility status of the actor (show or hide). When not set and target actor is hidden, will still automatically show it. |
 | easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to use for the modifications.<br /> When not specified, will use a default easing function set in the actor's manager configuration settings. |
@@ -1610,7 +1610,7 @@ If prefab has a `MonoBehaviour` component attached the root object, and the comp
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">path</span> | string | Name (path) of the prefab resource to spawn. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">path</span> | string | Name (path) of the prefab resource to spawn. |
 | params | string list | Parameters to set when spawning the prefab. Requires the prefab to have a `IParameterized` component attached the root object. |
 | pos | decimal list | Position (relative to the scene borders, in percents) to set for the spawned object. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
 | position | decimal list | Position (in world space) to set for the spawned object. |
@@ -1638,7 +1638,7 @@ We'll get here after player will make a choice.
 
 ## stopBgm
 
-Stops playing a BGM (background music) track with the provided name.
+Stops playing a BGM (background music) track with the specified name.
 
 ::: info NOTE
 When music track name (BgmPath) is not specified, will stop all the currently played tracks.
@@ -1648,7 +1648,7 @@ When music track name (BgmPath) is not specified, will stop all the currently pl
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">bgmPath</span> | string | Path to the music track to stop. |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">bgmPath</span> | string | Path to the music track to stop. |
 | fade | decimal | Duration of the volume fade-out before stopping playback, in seconds (0.35 by default). |
 
 </div>
@@ -1663,7 +1663,7 @@ When music track name (BgmPath) is not specified, will stop all the currently pl
 
 ## stopSfx
 
-Stops playing an SFX (sound effect) track with the provided name.
+Stops playing an SFX (sound effect) track with the specified name.
 
 ::: info NOTE
 When sound effect track name (SfxPath) is not specified, will stop all the currently played tracks.
@@ -1673,7 +1673,7 @@ When sound effect track name (SfxPath) is not specified, will stop all the curre
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">sfxPath</span> | string | Path to the sound effect to stop. |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">sfxPath</span> | string | Path to the sound effect to stop. |
 | fade | decimal | Duration of the volume fade-out before stopping playback, in seconds (0.35 by default). |
 
 </div>
@@ -1707,8 +1707,8 @@ You can also use rich text tags inside text messages to apply the styles selecti
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">textStyles</span> | string list | Text formatting tags to apply. Angle brackets should be omitted, eg use `b` for `<b>` and `size=100` for `<size=100>`. Use `default` keyword to reset the style. |
-| printer | string | ID of the printer actor to use. Will use a default one when not provided. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">textStyles</span> | string list | Text formatting tags to apply. Angle brackets should be omitted, eg use `b` for `<b>` and `size=100` for `<size=100>`. Use `default` keyword to reset the style. |
+| printer | string | ID of the printer actor to use. Will use a default one when not specified. |
 
 </div>
 
@@ -1760,7 +1760,7 @@ Resets engine state and shows `ITitleUI` UI (main menu).
 
 ## toast
 
-Shows a UI for general-purpose self-hiding popup notification (aka "toast") with the provided text and (optionally) appearance and duration. The UI is automatically hidden after the specified (or default) duration.
+Shows a UI for general-purpose self-hiding popup notification (aka "toast") with the specified text and (optionally) appearance and duration. The UI is automatically hidden after the specified (or default) duration.
 
 ::: info NOTE
 Appearance name is the name of a game object with `Toast Appearance` component inside the `ToastUI` UI prefab (case-insensitive).
@@ -1770,7 +1770,7 @@ Appearance name is the name of a game object with `Toast Appearance` component i
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">text</span> | string | The text content to set for the toast. |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">text</span> | string | The text content to set for the toast. |
 | appearance | string | Appearance variant (game object name) of the toast. When not specified, will use default appearance set in Toast UI prefab. |
 | time | decimal | Seconds to wait before hiding the toast. When not specified, will use duration set by default in Toast UI prefab. |
 
@@ -1799,7 +1799,7 @@ The UI will be hidden and user input blocked while the transition is in progress
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID">transition</span> | string | Type of the [transition effect](/guide/transition-effects) to use (crossfade is used by default). |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">transition</span> | string | Type of the [transition effect](/guide/transition-effects) to use (crossfade is used by default). |
 | params | decimal list | Parameters of the transition effect. |
 | dissolve | string | Path to the [custom dissolve](/guide/transition-effects#custom-transition-effects) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
 | easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to use for the transition. |
@@ -1827,13 +1827,13 @@ Jenna: When will the damn rain stop?
 
 ## unloadScene
 
-Unloads a [Unity scene](https://docs.unity3d.com/Manual/CreatingScenes.html) with the provided name. Don't forget to add the required scenes to the [build settings](https://docs.unity3d.com/Manual/BuildSettings.html) to make them available for loading. Be aware, that only scenes loaded additively can be then unloaded (at least one scene should always remain loaded).
+Unloads a [Unity scene](https://docs.unity3d.com/Manual/CreatingScenes.html) with the specified name. Don't forget to add the required scenes to the [build settings](https://docs.unity3d.com/Manual/BuildSettings.html) to make them available for loading. Be aware, that only scenes loaded additively can be then unloaded (at least one scene should always remain loaded).
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">sceneName</span> | string | Name of the scene to unload. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">sceneName</span> | string | Name of the scene to unload. |
 
 </div>
 
@@ -1845,17 +1845,17 @@ Unloads a [Unity scene](https://docs.unity3d.com/Manual/CreatingScenes.html) wit
 
 ## unlock
 
-Sets an [unlockable item](/guide/unlockable-items) with the provided ID to `unlocked` state.
+Sets an [unlockable item](/guide/unlockable-items) with the specified ID to `unlocked` state.
 
 ::: info NOTE
-The unlocked state of the items is stored in [global scope](/guide/state-management#global-state).<br /> In case item with the provided ID is not registered in the global state map, the corresponding record will automatically be added.
+The unlocked state of the items is stored in [global scope](/guide/state-management#global-state).<br /> In case item with the specified ID is not registered in the global state map, the corresponding record will automatically be added.
 :::
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">id</span> | string | ID of the unlockable item. Use `*` to unlock all the registered unlockable items. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">id</span> | string | ID of the unlockable item. Use `*` to unlock all the registered unlockable items. |
 
 </div>
 
@@ -1866,16 +1866,16 @@ The unlocked state of the items is stored in [global scope](/guide/state-managem
 
 ## voice
 
-Plays a voice clip at the provided path.
+Plays a voice clip at the specified path.
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">voicePath</span> | string | Path to the voice clip to play. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">voicePath</span> | string | Path to the voice clip to play. |
 | volume | decimal | Volume of the playback. |
 | group | string | Audio mixer [group path](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) that should be used when playing the audio. |
-| authorId | string | ID of the character actor this voice belongs to. When provided and [per-author volume](/guide/voicing#author-volume) is used, volume will be adjusted accordingly. |
+| authorId | string | ID of the character actor this voice belongs to. When specified and [per-author volume](/guide/voicing#author-volume) is used, volume will be adjusted accordingly. |
 
 </div>
 
@@ -1892,7 +1892,7 @@ Holds script execution until the specified wait condition.
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">waitMode</span> | string | Wait conditions:<br /> - `i` user press continue or skip input key;<br /> - `0.0` timer (seconds);<br /> - `i0.0` timer, that is skip-able by continue or skip input keys. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">waitMode</span> | string | Wait conditions:<br /> - `i` user press continue or skip input key;<br /> - `0.0` timer (seconds);<br /> - `i0.0` timer, that is skip-able by continue or skip input keys. |
 
 </div>
 
@@ -1922,7 +1922,7 @@ Executes nested lines in a loop, as long as specified conditional expression res
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be provided after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [script expression](/guide/script-expressions), which should return a boolean value determining whether the associated nested block should continue executing in loop. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [script expression](/guide/script-expressions), which should return a boolean value determining whether the associated nested block should continue executing in loop. |
 
 </div>
 
