@@ -23,12 +23,11 @@ Default Bgm Volume | 1 | BGM volume to set when the game is first started.
 Default Sfx Volume | 1 | SFX volume to set when the game is first started.
 Default Voice Volume | 1 | Voice volume to set when the game is first started.
 Enable Auto Voicing | False | When enabled, each [@print] command will attempt to play an associated voice clip.
-Auto Voice Mode | Text Id | When auto voicing is enabled, controls method to associate voice clips with @print commands:<br> • Text ID — Voice clips are associated by localizable text IDs. Removing, adding or re-ordering scenario script lines won't break the associations. Modifying printed text will break associations unless stable text identification is enabled.<br> • Playback Spot — Voice clips are associated by script name, line and inline indexes (playback spot). Removing, adding or re-ordering scenario script lines will break the associations. Modifying printed text will not break associations.
 Voice Overlap Policy | Prevent Overlap | Dictates how to handle concurrent voices playback:<br> • Allow Overlap — Concurrent voices will be played without limitation.<br> • Prevent Overlap — Prevent concurrent voices playback by stopping any played voice clip before playing a new one.<br> • Prevent Character Overlap — Prevent concurrent voices playback per character; voices of different characters (auto voicing) and any number of [@voice] command are allowed to be played concurrently.
 Voice Locales | Null | Assign localization tags to allow selecting voice language in the game settings independently of the main localization.
 Default Fade Duration | 0.35 | Default duration of the volume fade in/out when starting or stopping playing audio.
 Play Sfx While Skipping | True | Whether to play non-looped sound effects (SFX) while in skip mode. When disabled, will ignore [@sfx] commands without `loop!` while skipping.
-Custom Audio Mixer | Null | Audio mixer to control audio groups. When not provided, will use a default one.
+Custom Audio Mixer | Null | Audio mixer to control audio groups. When not specified, will use a default one.
 Master Group Path | Master | Path of the mixer's group to control master volume.
 Master Volume Handle Name | Master Volume | Name of the mixer's handle (exposed parameter) to control master volume.
 Bgm Group Path | Master/BGM | Path of the mixer's group to control volume of background music.
@@ -139,7 +138,7 @@ Type Assemblies | Object Ref | When looking for various types (eg, actor impleme
 Initialize On Application Load | True | Whether to automatically initialize the engine when application starts.
 Scene Independent | True | Whether to apply `DontDestroyOnLoad` to the engine objects, making their lifetime independent of any loaded scenes. When disabled, the objects will be part of the Unity scene where the engine was initialized and will be destroyed when the scene is unloaded.
 Show Initialization UI | True | Whether to show a loading UI while the engine is initializing.
-Custom Initialization UI | Null | UI to show while the engine is initializing (when enabled). Will use a default one when not provided.
+Custom Initialization UI | Null | UI to show while the engine is initializing (when enabled). Will use a default one when not specified.
 Enable Bridging | False | Whether to automatically start the bridging server to communicate with external Naninovel tools: IDE extension, web editor, etc.
 Server Port | 41016 | The network port for the server to listen. Change both here and in the external tools in case the default port is occupied by another application.
 Auto Generate Metadata | True | Whether to automatically generate project metadata when Unity editor is started.
@@ -190,7 +189,7 @@ Annotation Prefix | >  | Text character to insert before annotation lines to dis
 Property | Default Value | Description
 --- | --- | ---
 Loader | Text- (Addressable, Project) | Configuration of the resource loader used with the managed text documents.
-Multiline Categories | Object Ref | Document categories (local resource paths) for which to use multiline document format.
+Multiline Documents | Object Ref | Local resource paths of the managed text documents for which to use multiline format.
 
 </div>
 
@@ -204,7 +203,7 @@ Loader | Movies- (Addressable, Project) | Configuration of the resource loader u
 Skip On Input | True | Whether to skip movie playback when user activates `cancel` input keys.
 Skip Frames | True | Whether to skip frames to catch up with current time.
 Fade Duration | 1 | Time in seconds to fade in/out before starting/finishing playing the movie.
-Custom Fade Texture | Null | Texture to show while fading. Will use a simple black texture when not provided.
+Custom Fade Texture | Null | Texture to show while fading. Will use a simple black texture when not specified.
 Play Intro Movie | False | Whether to automatically play a movie after engine initialization and before showing the main menu.
 Intro Movie Name | Null | Path to the intro movie resource.
 
@@ -259,9 +258,9 @@ Loader | Scripts- (Addressable, Project) | Configuration of the resource loader 
 Script Parser | Naninovel.Script Asset Parser, Elringus.Naninovel.Runtime, Version=0.0.0.0, Culture=neutral, Public Key Token=null | IScriptParser implementation to use for creating script assets from text. Reimport script assets after modifying this setting for changes to take effect.
 Compiler Localization |  (Naninovel.Compiler Localization) | Locale-specific NaniScript compiler options. Will propagate to IDE extension on metadata sync. Restart Unity editor and reimport script assets for changes to take effect.
 Stable Identification | False | Whether to automatically write identifiers to all the localizable text parameters in imported scripts. Enable to persist associations (eg, localization and voiceover) while editing text content. Re-import the scripts for the change to take effect.
-Initialization Script | Null | Name of the script to play right after the engine initialization.
-Title Script | Null | Name of the script to play when showing the Title UI. Can be used to setup the title screen scene (background, music, etc).
-Start Game Script | Null | Name of the script to play when starting a new game. Will use first available when not provided.
+Initialization Script | Null | Local resource path of the script to play right after the engine initialization.
+Title Script | Null | Local resource path of the script to play when showing the Title UI. Can be used to setup the title screen scene (background, music, etc).
+Start Game Script | Null | Local resource path of the script to play when starting a new game. Will use first available when not specified.
 Auto Add Scripts | True | Whether to automatically add created naninovel scripts to the resources.
 Hot Reload Scripts | True | Whether to reload modified (both via visual and external editors) scripts and apply changes during playmode without restarting the playback.
 Watch Scripts | True | Whether to run a file system watcher over '.nani' files in the project. Required to register script changes when edited with an external application.
