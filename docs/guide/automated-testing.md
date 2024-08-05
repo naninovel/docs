@@ -67,9 +67,9 @@ You'll probably also would like to store test-specific data in memory, so that i
 public IEnumerator WhenTrueCompleteTitleBackChanges () => new E2E()
     .WithTransientState(GlobalStateMap.With(
         new CustomVariableManager.GlobalState {
-            GlobalVariableMap = new SerializableLiteralStringMap {
-                ["g_completedX"] = "true",
-                ["g_completedY"] = "true",
+            GlobalVariables = new[] {
+                new CustomVariable("g_completedX", CustomVariableScope.Global, new CustomVariableValue(true)),
+                new CustomVariable("g_completedY", CustomVariableScope.Global, new CustomVariableValue(true))
             }
         }))
 ```
