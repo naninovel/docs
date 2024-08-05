@@ -184,7 +184,7 @@ To auto-complete with values from an arbitrary [enumeration type](https://docs.m
 public StringParameter Platform;
 ```
 
-To auto-complete and analyze usage and correctness of navigation endpoints (script name and label) use `EndpointContext` attribute.
+To auto-complete and analyze usage and correctness of navigation endpoints (script path and label) use `EndpointContext` attribute.
 
 ```csharp
 [EndpointContext]
@@ -248,7 +248,7 @@ When using `ConstantContext` IDE Attribute, instead of enum it's possible to spe
 Expression syntax:
 
 - Evaluated parts should be wrapped in curly braces (`{}`)
-- To reference currently inspected script name, use `$Script`
+- To reference currently inspected script path, use `$Script`
 - To reference parameter value, use `:` followed by the parameter ID (field name as specified in C#, not alias)
 - Use `[0]` or `[1]` after parameter reference to specify named value (0 for name and 1 for index)
 - Use null coalescing (`??`) after parameter reference for fallback in case the value is not specified
@@ -261,7 +261,7 @@ For example, check the expression assigned to `Path` parameter of the built-in `
 public NamedStringParameter Path;
 ```
 
-— when name component of the parameter is assigned with `foo`, it will evaluate to `Labels/foo`, otherwise, given inspected script name is `bar` it will evaluate to `Labels/bar`.
+— when name component of the parameter is assigned with `foo`, it will evaluate to `Labels/foo`, otherwise, given inspected script path is `bar` it will evaluate to `Labels/bar`.
 
 Another example for character poses applied to `@char` command:
 

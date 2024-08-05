@@ -65,12 +65,12 @@ Don't store, modify or delete anything inside `Naninovel` folder. Any such chang
 
 ## Add Naninovel Script
 
-Use `Create -> Naninovel -> Naninovel Script` assets context menu to create a naninovel script asset.
+Use `Create -> Folder` assets context menu and create a "Scripts" folder, under which all the Naninovel scenario script assets will be stored. Then, under the created scripts folder, click `Create -> Naninovel -> Naninovel Script` to create your first scenario script.
 
 ![Create Naninovel Script](https://i.gyazo.com/be7677077abeb4f805979bd647d6d90e.png)
 
 ::: info NOTE
-You can create and store naninovel scripts (as well as all the other Naninovel resources) under any project folder and organize them in any way you like; the naming is also up to you. The above illustration is just an example.
+You can store naninovel scripts (and other Naninovel resources) under any project folder and organize them any way you like; the naming is also up to you. However, note that all the scenario scripts have to be stored under a single root folder, which has to be specified via `Script Root` option in scripts configuration menu (by default the root is set to `Assets/Scripts`). It's ok to create any level of nested folders for organization purposes, as long as the sub-folders eventually resolve to the script root.
 :::
 
 Naninovel scripts are text documents (`.nani` extension) where you control what happens on scenes. You can open and edit them with a text editor of your choice, like Microsoft Word, Google Docs or [VS Code](https://code.visualstudio.com).
@@ -83,7 +83,7 @@ You can also use visual script editor to edit the naninovel scripts. Select the 
 
 To add a new line to the script, either right-click the place, where you want to insert the line, or press `Ctrl+Space` (you can change the default key bindings in the input configuration menu) and select the desired line or command type. To re-order lines, drag them using their number labels. To remove a line, right-click it and choose "Remove".
 
-When you've changed the script using visual editor, you'll see an asterisk (`*`) over the script name in the inspector header. That means the asset is dirty and need to be saved; press `Ctrl+S` to save the asset. In case you'll attempt to select another asset while the script is dirty, a dialogue window will pop-up allowing to either save or revert the changes.
+When you've changed the script using visual editor, you'll see an asterisk (`*`) over the script path in the inspector header. That means the asset is dirty and need to be saved; press `Ctrl+S` to save the asset. In case you'll attempt to select another asset while the script is dirty, a dialogue window will pop up allowing to either save or revert the changes.
 
 The visual editor will automatically sync edited script if you update it externally, so you can seamlessly work with the scripts in both text and visual editors.
 
