@@ -109,7 +109,7 @@ To add custom generator, create a new C# class with a parameterless constructor 
 
 `GenerateVoiceoverDocument` method will be invoked by the utility for each script found in the project for the selected locale. `list` argument is the list of commands contained in the script. `locale` represents the locale (language) selected in the utility. `outDir` is the output path selected in the utility.
 
-Below is an example of a custom voiceover generator, which appends a header with script name and locale followed by `voice hash > author > text` line for each print text command found in the script.
+Below is an example of a custom voiceover generator, which appends a header with script path and locale followed by `auto-voice id > author > text` line for each print text command found in the script.
 
 ```csharp
 public class VoiceoverGenerator : IVoiceoverDocumentGenerator
@@ -117,13 +117,13 @@ public class VoiceoverGenerator : IVoiceoverDocumentGenerator
     public void GenerateVoiceoverDocument (ScriptPlaylist list, string locale, string outDir)
     {
         var builder = new StringBuilder();
-        builder.AppendLine($"Voiceover for '{list.ScriptName}' ({locale} locale)");
+        builder.AppendLine($"Voiceover for '{list.ScriptPath}' ({locale} locale)");
         foreach (var cmd in list.OfType<PrintText>())
         {
-            var voiceHash = AutoVoiceResolver.Resolve(cmd.Text);
-            builder.AppendLine($"#{voiceHash} > {cmd.AuthorId} > {cmd.Text}");
+            var voiceId = AutoVoiceResolver.Resolve(cmd.Text);
+            builder.AppendLine($"{voiceId} > {cmd.AuthorId} > {cmd.Text}");
         }
-        File.WriteAllText($"{outDir}/{list.ScriptName}.txt", builder.ToString());
+        File.WriteAllText($"{outDir}/{list.ScriptPath}.txt", builder.ToString());
     }
 }
 ```
