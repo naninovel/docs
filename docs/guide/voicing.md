@@ -49,9 +49,9 @@ Hello.|#uniqueid|
 Enable `Stable Identification` under scripts configuration menu to make Naninovel automatically generate unique IDs for all localizable script text, including voiced lines. This way you won't have to manually assign IDs for duplicate lines and editing already mapped lines won't break the associations. See [text identification](/guide/naninovel-scripts#text-identification) for more info.
 :::
 
-To associate the clips without using voice map utility, expose the assets to a resource provider using text ID as the resource name prefixed by the script ID and voice loader prefix (`Voice` by default). To find the script/text IDs of a specific voiced line, use [voiceover documents](/guide/voicing#voiceover-documents); the IDs are displayed after voice's playback location and are prefixed by `#`. For example, to associate a voiced line with `2670eb4` text ID contained in script with `59841354` ID exposed via addressable resource provider, use the following address: `Naninovel/Voice/598413548/2670eb4`.
+To associate the clips without using voice map utility, expose the assets to a resource provider using text ID as the resource name prefixed by the script path and voice loader prefix (`Voice` by default). To find the script path and text ID of a specific voiced line, use [voiceover documents](/guide/voicing#voiceover-documents). For example, to associate a voiced line with `2670eb4` text ID inside script with `Script01` path exposed via addressable resource provider, use the following address: `Naninovel/Voice/Script01/2670eb4`.
 
-To find text and script IDs associated with the currently printed text while the game is running use debug window:
+To find auto-voice IDs associated with the currently printed text while the game is running use debug window:
 
 ![auto voicing](https://i.gyazo.com/12772ecc7c14011bcde4a74c81e997b8.png)
 
@@ -85,18 +85,19 @@ For more information on how to localize game resources, see the [localization gu
 
 The voiceover documents are intended to be used by the voice recording engineers and actors when producing the voiceover audio.
 
-Use voiceover documents generator utility accessible via `Naninovel -> Tools -> Voiceover Documents` to generate the documents, containing printed text from the [@print] commands and generic text lines. Each printed text message will be associated with the auto voice clip name and hash to be used with the auto voicing feature.
+Use voiceover documents generator utility accessible via `Naninovel -> Tools -> Voiceover Documents` to generate the documents, containing printed text from the [@print] commands and generic text lines. Each printed text message will be associated with the auto-voice ID.
 
 ![](https://i.gyazo.com/d1e40ff118daebd83b55e0433431b2a8.png)
 
 `Locale` property allows to select a specific locale for which to generate the documents (the localized naninovel scripts for the selected locale should exist in your project).
 
 `Format` property controls type of file and formatting of the voiceover documents to produce:
+
 - Plaintext — Plaintext file without any formatting.
 - Markdown — [Markdown](https://en.wikipedia.org/wiki/Markdown) file with additional formatting for better readability.
 - CSV — [Comma-separated values](https://en.wikipedia.org/wiki/Comma-separated_values) file to be used with table processors, such as Google Sheets or Microsoft Excel.
 
-Below is an example of a voiceover document generated with Markdown format.
+Below is an example of a voiceover document generated in Markdown format.
 
 ![](https://i.gyazo.com/a85d5885b11e99bfe24665a1162e148d.png)
 

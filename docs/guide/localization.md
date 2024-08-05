@@ -75,16 +75,6 @@ You're expected to put the actual translation right after the comment line with 
 Противостояние есть метеорный дождь.
 ```
 
-::: warning
-Each script localization document will have a `SCRIPT_ID` record similar to the following one:
-```nani
-# SCRIPT_ID
-; DO NOT REMOVE OR MODIFY THIS RECORD
-43dfd2436fcd8f743a1580064fda8329
-```
-— do not remove or modify such records, as they are used by the engine to resolve script assets associated with the localization.
-:::
-
 ### Joined Lines
 
 When translated generic line contains inlined commands or expressions, it'll be split into multiple text fragments, each mapped to unique text ID. When **Join Lines** option is enabled, such fragments will be joined into single line with pipe symbol `|`.
