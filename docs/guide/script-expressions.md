@@ -72,7 +72,7 @@ random(args) | Return a string chosen from one of the specified strings. | `rand
 calculateProgress() | Returns scenario completion ratio, in 0.0 to 1.0 range, where 1.0 means all the script lines were executed at least once. | `calculateProgress()`
 isUnlocked(id) | Checks whether an unlockable item with the specified ID is currently unlocked. | `isUnlocked("Tips/MyTip")`
 hasPlayed() | Checks whether currently played command has ever been played before. | `hasPlayed()`
-hasPlayed(scriptId) | Checks whether script with the specified path has ever been played before. | `hasPlayed("MyScript")`
+hasPlayed(scriptPath) | Checks whether script with the specified path has ever been played before. | `hasPlayed("MyScript")`
 getName(characterId) | Returns author name of a character actor with the specified ID. | `getName("Kohaku")`
 pow(num, pow) | Returns num raised to power. | `pow(2, 3)`
 sqrt(num) | Returns square root of num. | `sqrt(2)`
