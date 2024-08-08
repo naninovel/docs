@@ -26,10 +26,6 @@ public ActorImplementationType (string id, ActorMetadata metadata) { }
 
 — where `id` is the ID of the actor and `metadata` — either actor's (when actor record exists in the resources) or a default metadata. When implementing a specific actor interface, it's possible to request corresponding specific metadata (eg, "CharacterMetadata" for "ICharacterActor" implementation).
 
-::: warning
-When adding custom implementation types under a non-predefined assembly (via [assembly definitions](https://docs.unity3d.com/Manual/ScriptCompilationAssemblyDefinitionFiles.html)), add the assembly name to the `Type Assemblies` list found in the engine configuration menu. Otherwise, the engine won't be able to locate your custom types.
-:::
-
 ::: tip EXAMPLE
 For a complete example on adding custom actor implementation see [Live2D extension project on GitHub](https://github.com/naninovel/samples/tree/main/unity/live2d). Specifically, the custom "Live2DCharacter" actor is implemented in [Live2DCharacter.cs](https://github.com/naninovel/samples/blob/main/unity/live2d/Assets/NaninovelLive2D/Runtime/Live2DCharacter.cs) script.
 :::
