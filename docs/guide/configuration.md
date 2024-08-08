@@ -48,7 +48,7 @@ Property | Default Value | Description
 Default Metadata | Object Ref | Metadata to use by default when creating background actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating background actors with specific IDs.
 Shared Poses | Object Ref | Named states (poses) shared between the backgrounds; pose name can be used as appearance in [@back] commands to set enabled properties of the associated state.
-Scene Origin | (0.5, 0.0) | Reference point on scene to be considered as origin for the managed actors. Doesn't affect positioning.
+Scene Origin | (0.50, 0.00) | Reference point on scene to be considered as origin for the managed actors. Doesn't affect positioning.
 Z Offset | 100 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
 Z Step | 0.1 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
 Default Duration | 0.35 | Default duration (in seconds) for all the actor modifications (changing appearance, position, tint, etc).
@@ -66,7 +66,7 @@ Property | Default Value | Description
 Reference Resolution | (1920, 1080) | The reference resolution is used to evaluate proper rendering dimensions, so that actors are correctly positioned on scene. As a rule of thumb, set this equal to the resolution of the background textures you make for the game.
 Reference PPU | 100 | How many pixels correspond to a scene unit. Reducing this will make all the actors appear smaller and vice-versa. Default value of 100 is recommended for most cases.
 Match Screen Width | False | Whether reference scene rectangle width should be matched against screen width. When enabled, relative (scene) position evaluation will use screen border as the origin; otherwise reference resolution is used.
-Initial Position | (0.0, 0.0, -10.0) | Initial world position of the managed cameras.
+Initial Position | (0.00, 0.00, -10.00) | Initial world position of the managed cameras.
 Custom Camera Prefab | Null | A prefab with a camera component to use for rendering. Will use a default one when not specified. In case you wish to set some camera properties (background color, FOV, HDR, etc) or add post-processing scripts, create a prefab with the desired camera setup and assign the prefab to this field.
 Use UI Camera | True | Whether to render the UI with a dedicated camera. This option is for backward-compatibility and should not be disabled in new projects. Expect issues when disabled (eg, constant uGUI layout rebuilds on camera animations).
 Custom UI Camera Prefab | Null | A prefab with a camera component to use for UI rendering. Will use a default one when not specified. Has no effect when `Use UI Camera` is disabled
@@ -84,12 +84,12 @@ Hide UI In Thumbnails | False | Whether to ignore UI layer when capturing thumbn
 Property | Default Value | Description
 --- | --- | ---
 Auto Arrange On Add | True | Whether to evenly distribute characters by X-axis when adding a new character without a specified position.
-Arrange Range | (0.0, 1.0) | Start (x) and end (y) positions (in 0.0 to 1.0 range) relative to scene width representing the range over which the characters are arranged.
+Arrange Range | (0.00, 1.00) | Start (x) and end (y) positions (in 0.0 to 1.0 range) relative to scene width representing the range over which the characters are arranged.
 Default Metadata | Object Ref | Metadata to use by default when creating character actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating character actors with specific IDs.
 Avatar Loader | Character Avatars- (Addressable, Project) | Configuration of the resource loader used with character avatar texture resources.
 Shared Poses | Object Ref | Named states (poses) shared between the characters; pose name can be used as appearance in [@char] commands to set enabled properties of the associated state.
-Scene Origin | (0.5, 0.0) | Reference point on scene to be considered as origin for the managed actors. Doesn't affect positioning.
+Scene Origin | (0.50, 0.00) | Reference point on scene to be considered as origin for the managed actors. Doesn't affect positioning.
 Z Offset | 50 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
 Z Step | 0.1 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
 Default Duration | 0.35 | Default duration (in seconds) for all the actor modifications (changing appearance, position, tint, etc).
@@ -134,7 +134,6 @@ Generated Data Path | Naninovel Data | Relative (to the application data directo
 Override Objects Layer | False | Whether to assign a specific layer to all the engine objects. Engine's camera will use the layer for the culling mask. Use this to isolate Naninovel objects from being rendered by other cameras.
 Objects Layer | 0 | When `Override Objects Layer` is enabled, the specified layer will be assigned to all the engine objects.
 Async Exception Log Type | Error | Log type to use for UniTask-related exceptions.
-Type Assemblies | Object Ref | When looking for various types (eg, actor implementations, serialization handlers, managed text, etc) the engine will only scan the exported types of the specified assemblies for better performance. In case you're keeping your Naninovel-related types outside of Unity's predefined assemblies (using assembly definitions), add the assembly names here.<br><br>Warning: Recompile the solution or restart Unity editor after modifying the list in order for changes to take effect.
 Initialize On Application Load | True | Whether to automatically initialize the engine when application starts.
 Scene Independent | True | Whether to apply `DontDestroyOnLoad` to the engine objects, making their lifetime independent of any loaded scenes. When disabled, the objects will be part of the Unity scene where the engine was initialized and will be destroyed when the scene is unloaded.
 Show Initialization UI | True | Whether to show a loading UI while the engine is initializing.
@@ -284,7 +283,7 @@ Rewind Modifier | Shift | Modifier for 'Rewind Mouse Button'. Set to 'None' to d
 Editor Page Length | 300 | How many script lines should be rendered per visual editor page.
 Editor Custom Style Sheet | Null | Allows modifying default style of the visual editor.
 Graph Orientation | Horizontal | Whether to build the graph vertically or horizontally.
-Graph Auto Align Padding | (10.0, 0.0) | Padding to add for each node when performing auto align.
+Graph Auto Align Padding | (10.00, 0.00) | Padding to add for each node when performing auto align.
 Show Synopsis | True | Whether to show fist comment lines of the script inside the graph node.
 Graph Custom Style Sheet | Null | Allows modifying default style of the script graph.
 Enable Community Modding | False | Whether to allow adding external naninovel scripts to the build.
@@ -340,7 +339,7 @@ Max Auto Wait Delay | 0.02 | Delay limit (in seconds) per each printed character
 Scale Auto Wait | True | Whether to scale the wait time in auto play mode by the reveal speed set in the print commands.
 Default Metadata | Object Ref | Metadata to use by default when creating text printer actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating text printer actors with specific IDs.
-Scene Origin | (0.5, 0.0) | Reference point on scene to be considered as origin for the managed actors. Doesn't affect positioning.
+Scene Origin | (0.50, 0.00) | Reference point on scene to be considered as origin for the managed actors. Doesn't affect positioning.
 Z Offset | 0 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
 Z Step | 0 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
 Default Duration | 0.35 | Default duration (in seconds) for all the actor modifications (changing appearance, position, tint, etc).
