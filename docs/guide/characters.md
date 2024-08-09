@@ -150,6 +150,7 @@ While display names discussed above are recommended in most cases, sometimes you
 ; Similar, but make only "Kohaku" and "Yuko" the authors.
 @print "Lorem ipsum?" author:Kohaku,Yuko as:"Kohaku and Yuko"
 ```
+
 — `as` parameters are localizable and will be exposed in the script localization documents for translation. Additionally, [speaker highlighting](/guide/characters.html#speaker-highlight) feature will recognize `*` and `,` specified in author ID and highlight all/selected characters as speakers.
 
 ## Message Colors
@@ -253,9 +254,11 @@ Built with an open source [SpriteDicing](https://github.com/elringus/sprite-dici
 ![Sprite Dicing](https://i.gyazo.com/af08d141e7a08b6a8e2ef60c07332bbf.png)
 
 Install the package via [Unity package manager](https://docs.unity3d.com/Manual/upm-ui.html): open package manager window (Window -> Package Manager), click "+" button, choose "Add package from git URL", enter following URL:
+
 ```
 https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteDicing`
 ```
+
 — to the input field and click "Add".
 
 ![](/assets/img/docs/upm.mp4)
@@ -469,7 +472,11 @@ Live2D character implementation uses assets created with [Live2D Cubism](https:/
 
 ![](https://i.gyazo.com/b81df72fc7afaed569520496cbee09f0.mp4)
 
-In order to be able to use this implementation you have to first install [Live2D Cubism SDK for Unity](https://live2d.github.io/#unity). Consult official Live2D docs for the installation and usage instructions. Then download and import Naninovel's sample [Live2D extension package](https://github.com/naninovel/samples/raw/main/unity/live2d/NaninovelLive2D.unitypackage).
+In order to be able to use this implementation you have to first install [Live2D Cubism SDK for Unity](https://live2d.github.io/#unity). Consult official Live2D docs for the installation and usage instructions.
+
+After Live2D SDK for Unity is installed, add `NANINOVEL_ENABLE_LIVE2D` define in player settings to activate Naninovel module which provides integration between Spine and the engine.
+
+![](https://i.gyazo.com/8a457a704923d1aaebf30363088dade3.png)
 
 ::: info NOTE
 This integration with third-party commercial product serve mostly as an example on how you can make Naninovel work with another tool. While we're committed to keep the sample integration compatible with Live2D updates and changes, please be aware that the functionality will remain bare minimum and we won't be able to provide any support or help on using another product with Naninovel beyond the scope of the sample.
@@ -515,7 +522,11 @@ Spine character implementation uses assets created with [Spine](http://esoterics
 
 ![](https://i.gyazo.com/08b04de115d97427d152cb5f37065d2d.mp4)
 
-In order to be able to use this implementation you have to first install [Spine runtime for Unity](http://esotericsoftware.com/spine-unity-download). Consult [the official docs](http://esotericsoftware.com/spine-unity) for the installation and usage instructions. Then download and import Naninovel's sample [Spine extension package](https://github.com/naninovel/samples/raw/main/unity/spine/NaninovelSpine.unitypackage).
+In order to be able to use this implementation you have to first install [Spine runtime for Unity](http://esotericsoftware.com/spine-unity-download). Consult [the official docs](http://esotericsoftware.com/spine-unity) for the installation and usage instructions.
+
+After Spine runtime for Unity is installed, add `NANINOVEL_ENABLE_SPINE` define in player settings to activate Naninovel module which provides integration between Spine and the engine.
+
+![](https://i.gyazo.com/3447a402b86b86b479ac5c85a29ad4b2.png)
 
 ::: info NOTE
 This integration with third-party commercial product serve mostly as an example on how you can make Naninovel work with another tool. While we're committed to keep the sample integration compatible with Spine updates and changes, please be aware that the functionality will remain bare minimum and we won't be able to provide any support or help on using another product with Naninovel beyond the scope of the sample.
