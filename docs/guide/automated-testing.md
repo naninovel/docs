@@ -12,6 +12,20 @@ Open "Test Runner" tab via `Window -> General -> Test Runner` editor menu and fo
 
 ![](https://i.gyazo.com/8b8cb5c916987d941cce8abf6daf131b.png)
 
+In case Naninovel is installed as a UPM package, you may also have to [make it testable](https://docs.unity3d.com/Manual/cus-tests.html#tests) via the project's `Packages/manifest.json`, eg:
+
+```json
+{
+    "dependencies": {
+        "com.elringus.naninovel": "...",
+        "other-packages": "..."
+    },
+    "testables": [
+        "com.elringus.naninovel"
+    ]
+}
+```
+
 The tests will run asynchronously, so you'll need to use `[UnityTest]` attribute and return `IEnumerator` from the test methods; for example, here is a simple method that ensures player can start new game:
 
 ```csharp
