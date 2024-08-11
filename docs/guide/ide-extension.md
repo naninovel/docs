@@ -19,11 +19,19 @@ Newtonsoft Json package is only used in editor for serializing bridging communic
 
 1. Open extensions window in VS Code via `View -> Extensions` menu
 2. Search for "Naninovel" and click "Install" button
-3. When a .nani file is opened, the extension will activate automatically
+3. When a `.nani` file is opened, the extension will activate automatically
 
 ::: info NOTE
 Extension in the VS Code registry is compatible with the current stable Naninovel release. When using legacy (unsupported) Naninovel version, disable auto-update in VS Code and install associated legacy version of the extension. When using preview release of the engine, download associated preview extension via `#download` channel on our Discord server.
 :::
+
+### Script Root
+
+When opening (in VS Code) not just script root (directory where all the `.nani` files are stored), but a directory above the root (eg, Unity project root), make sure `Script Root Uri` setting points to the script root directory.
+
+![](https://i.gyazo.com/39413f89e8a41b5a65eb9d7c1b2f61ce.png)
+
+— by default, the root is set to `Scripts`. In case you use other directory name to store the scripts, change the setting and restart VS Code; otherwise script paths won't be correctly resolved, resulting in navigation warnings and wrong paths shown in auto-completions.
 
 ## Spell Check
 
