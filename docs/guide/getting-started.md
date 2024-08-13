@@ -71,6 +71,9 @@ Use `Create -> Folder` assets context menu and create a "Scripts" folder, under 
 
 ::: info NOTE
 You can store naninovel scripts (and other Naninovel resources) under any project folder and organize them any way you like; the naming is also up to you. However, note that all the scenario scripts have to be stored under a single root folder, which has to be specified via `Script Root` option in scripts configuration menu (by default the root is set to `Assets/Scripts`). It's ok to create any level of nested folders for organization purposes, as long as the sub-folders eventually resolve to the script root.
+
+::: warning
+Unity treats folders named `Resources` in a special manner: assets stored under such folders are force-included to the build, which may cause [performance issues](https://docs.unity3d.com/Manual/UnderstandingPerformanceResourcesFolder.html). Most importantly, never store anything under `Resources/Naninovel` folder, unless specifically required in the guide, as this may cause all sorts of conflicts and undefined behaviour.
 :::
 
 Naninovel scripts are text documents (`.nani` extension) where you control what happens on scenes. You can open and edit them with a text editor of your choice, like Microsoft Word, Google Docs or [VS Code](https://code.visualstudio.com).
