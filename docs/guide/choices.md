@@ -16,7 +16,7 @@ Continue executing this script or load another?[< skip!]
 @stop
 ```
 
-Value of the `goto` parameter is the path to re-route (jump) into when users selects the corresponding choice. It's specified in the following format: *ScriptName*.*LabelName*. When label name is omitted, provided script will be played from the start; when script path is omitted, a label in the currently played script will be referenced:
+Value of the `goto` parameter is the path to re-route (jump) into when users selects the corresponding choice. It's specified in the following format: *ScriptPath*.*LabelName*. When label name is omitted, provided script will be played from the start; when script path is omitted, a label in the currently played script will be referenced:
 
 ```nani
 ; Starts playing naninovel `Script001` script from the start.

@@ -66,11 +66,11 @@ public class MyScript : MonoBehaviour
 
 ## Playing Naninovel Scripts
 
-To preload and play a naninovel script with a given name, use `PreloadAndPlay(ScriptName)` method of `IScriptPlayer` service. To get an engine service, use `Engine.GetService<TService>()` static method, where `TService` is the type (interface) of the service to retrieve. For example, the following will get a script player service, then preload and play a script with name "Script001":
+To preload and play a naninovel script with a given path, use `LoadAndPlay(ScriptPath)` method of `IScriptPlayer` service. To get an engine service, use `Engine.GetService<TService>()` static method, where `TService` is the type (interface) of the service to retrieve. For example, the following will get a script player service, then preload and play a script with name "Script001":
 
 ```csharp
 var player = Engine.GetService<IScriptPlayer>();
-await player.PreloadAndPlay("Script001");
+await player.LoadAndPlay("Script001");
 ```
 
 When exiting the novel mode and returning to the main game mode, you probably would like to unload all the resources currently used by Naninovel and stop all the engine services. For this, use `ResetState()` method of a `IStateManager` service:
@@ -111,7 +111,7 @@ While it heavily depends on the project, following is an abstract example (based
 [CommandAlias("novel")]
 public class SwitchToNovelMode : Command
 {
-    public StringParameter ScriptName;
+    public StringParameter ScriptPath;
     public StringParameter Label;
 
     public override async UniTask Execute (AsyncToken asyncToken)
@@ -127,10 +127,10 @@ public class SwitchToNovelMode : Command
         naniCamera.enabled = true;
 
         // 3. Load and play specified script (if assigned).
-        if (Assigned(ScriptName))
+        if (Assigned(ScriptPath))
         {
             var scriptPlayer = Engine.GetService<IScriptPlayer>();
-            await scriptPlayer.PreloadAndPlay(ScriptName, label);
+            await scriptPlayer.LoadAndPlay(ScriptPath, label);
         }
 
         // 4. Enable Naninovel input.
@@ -185,7 +185,7 @@ The commands can then be used in naninovel scripts:
 ```csharp
 private void OnTriggerEnter (Collider other)
 {
-	var switchCommand = new SwitchToNovelMode { ScriptName = "Script001" };
+	var switchCommand = new SwitchToNovelMode { ScriptPath = "Script001" };
 	switchCommand.Execute().Forget();
 }
 ```

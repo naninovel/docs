@@ -17,11 +17,11 @@ Below is an example of a custom parser, which automatically inserts wait command
 ```csharp
 public class CustomParser : ScriptParser
 {
-    public override Script ParseText (string scriptName, string scriptText,
+    public override Script ParseText (string scriptPath, string scriptText,
         ParseOptions options = default)
     {
         scriptText = scriptText.Replace("...", "...[wait 1]");
-        return base.ParseText(scriptName, scriptText, options);
+        return base.ParseText(scriptPath, scriptText, options);
     }
 }
 ```
