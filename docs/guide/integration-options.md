@@ -16,7 +16,7 @@ When `Initialize On Application Load` option in the engine configuration menu is
 
 ![](https://i.gyazo.com/6349692c2e2036e908e41c3d89509102.png)
 
-Unless you want to begin your game in novel mode, you would rather manually initialize the engine when it's actually needed by either invoking a static `RuntimeInitializer.InitializeAsync()` method from C# or adding a `Runtime Initializer` component to a game object on scene; the latter will make the engine initialize when the scene is loaded in Unity.
+Unless you want to begin your game in novel mode, you would rather manually initialize the engine when it's actually needed by either invoking a static `RuntimeInitializer.Initialize()` method from C# or adding a `Runtime Initializer` component to a game object on scene; the latter will make the engine initialize when the scene is loaded in Unity.
 
 Below is an example of manual initialization from a [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html) script:
 
@@ -28,14 +28,14 @@ public class MyScript : MonoBehaviour
 {
     private async void Start ()
     {
-        await RuntimeInitializer.InitializeAsync();
+        await RuntimeInitializer.Initialize();
     }
 }
 ```
 
 Disabling `Scene Independent` option will make all the Naninovel-related objects part of the Unity scene where the engine was initialized; the engine will be destroyed when the scene is unloaded.
 
-To reset the engine services (and dispose most of the occupied resources), use `ResetStateAsync()` method of `IStateManager` service; this is useful, when you're going to temporary switch to some other gameplay mode, but be able to return to novel mode without re-initializing the engine.
+To reset the engine services (and dispose most of the occupied resources), use `ResetState()` method of `IStateManager` service; this is useful, when you're going to temporary switch to some other gameplay mode, but be able to return to novel mode without re-initializing the engine.
 
 To destroy all the engine services and completely remove Naninovel from memory, use `Engine.Destroy()` static method.
 
@@ -66,18 +66,18 @@ public class MyScript : MonoBehaviour
 
 ## Playing Naninovel Scripts
 
-To preload and play a naninovel script with a given name, use `PreloadAndPlayAsync(ScriptName)` method of `IScriptPlayer` service. To get an engine service, use `Engine.GetService<TService>()` static method, where `TService` is the type (interface) of the service to retrieve. For example, the following will get a script player service, then preload and play a script with name "Script001":
+To preload and play a naninovel script with a given name, use `PreloadAndPlay(ScriptName)` method of `IScriptPlayer` service. To get an engine service, use `Engine.GetService<TService>()` static method, where `TService` is the type (interface) of the service to retrieve. For example, the following will get a script player service, then preload and play a script with name "Script001":
 
 ```csharp
 var player = Engine.GetService<IScriptPlayer>();
-await player.PreloadAndPlayAsync("Script001");
+await player.PreloadAndPlay("Script001");
 ```
 
-When exiting the novel mode and returning to the main game mode, you probably would like to unload all the resources currently used by Naninovel and stop all the engine services. For this, use `ResetStateAsync()` method of a `IStateManager` service:
+When exiting the novel mode and returning to the main game mode, you probably would like to unload all the resources currently used by Naninovel and stop all the engine services. For this, use `ResetState()` method of a `IStateManager` service:
 
 ```csharp
 var stateManager = Engine.GetService<IStateManager>();
-await stateManager.ResetStateAsync();
+await stateManager.ResetState();
 ```
 
 ## Disable Title Menu
@@ -114,7 +114,7 @@ public class SwitchToNovelMode : Command
     public StringParameter ScriptName;
     public StringParameter Label;
 
-    public override async UniTask ExecuteAsync (AsyncToken asyncToken)
+    public override async UniTask Execute (AsyncToken asyncToken)
     {
         // 1. Disable character control.
         var controller = Object.FindObjectOfType<CharacterController3D>();
@@ -130,7 +130,7 @@ public class SwitchToNovelMode : Command
         if (Assigned(ScriptName))
         {
             var scriptPlayer = Engine.GetService<IScriptPlayer>();
-            await scriptPlayer.PreloadAndPlayAsync(ScriptName, label);
+            await scriptPlayer.PreloadAndPlay(ScriptName, label);
         }
 
         // 4. Enable Naninovel input.
@@ -144,7 +144,7 @@ public class SwitchToNovelMode : Command
 [CommandAlias("adventure")]
 public class SwitchToAdventureMode : Command
 {
-    public override async UniTask ExecuteAsync (AsyncToken asyncToken)
+    public override async UniTask Execute (AsyncToken asyncToken)
     {
         // 1. Disable Naninovel input.
         var inputManager = Engine.GetService<IInputManager>();
@@ -156,7 +156,7 @@ public class SwitchToAdventureMode : Command
 
         // 3. Reset state.
         var stateManager = Engine.GetService<IStateManager>();
-        await stateManager.ResetStateAsync();
+        await stateManager.ResetState();
 
         // 4. Switch cameras.
         var advCamera = GameObject.Find("AdvCamera").GetComponent<Camera>();
@@ -186,7 +186,7 @@ The commands can then be used in naninovel scripts:
 private void OnTriggerEnter (Collider other)
 {
 	var switchCommand = new SwitchToNovelMode { ScriptName = "Script001" };
-	switchCommand.ExecuteAsync().Forget();
+	switchCommand.Execute().Forget();
 }
 ```
 

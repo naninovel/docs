@@ -216,9 +216,9 @@ public class PlayMusic : Command, Command.IPreloadable
 
     private IAudioManager audio => Engine.GetService<IAudioManager>();
 
-    public async UniTask PreloadResourcesAsync ()
+    public async UniTask PreloadResources ()
     {
-        await audio.AudioLoader.LoadAndHoldAsync(MusicName, this);
+        await audio.AudioLoader.LoadAndHold(MusicName, this);
     }
 
     public void ReleasePreloadedResources ()
@@ -226,9 +226,9 @@ public class PlayMusic : Command, Command.IPreloadable
         audio.AudioLoader.Release(MusicName, this);
     }
 
-    public override async UniTask ExecuteAsync (AsyncToken asyncToken = default)
+    public override async UniTask Execute (AsyncToken asyncToken = default)
     {
-        await audio.PlayBgmAsync(MusicName, asyncToken: asyncToken);
+        await audio.PlayBgm(MusicName, asyncToken: asyncToken);
     }
 }
 ```

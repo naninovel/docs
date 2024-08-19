@@ -192,7 +192,7 @@ public class CustomResourceProvider : IResourceProvider
         return default;
     }
 
-    public UniTask<IEnumerable<Folder>> LocateFoldersAsync (string path)
+    public UniTask<IEnumerable<Folder>> LocateFolders (string path)
     {
         OnMessage?.Invoke($"LocateFoldersAsync: {path}");
         return default;

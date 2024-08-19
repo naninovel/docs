@@ -74,7 +74,7 @@ public class CustomService : IEngineService
         this.scriptPlayer = scriptPlayer;
     }
 
-    public UniTask InitializeServiceAsync ()
+    public UniTask InitializeService ()
     {
     	// Initialize the service here.
         // It's now safe to use services requested in the constructor.
@@ -131,9 +131,9 @@ public class CustomInputManager : IInputManager
         Configuration = config;
     }
 
-    public UniTask InitializeServiceAsync ()
+    public UniTask InitializeService ()
     {
-        Debug.Log("CustomInputManager::InitializeServiceAsync()");
+        Debug.Log("CustomInputManager::InitializeService()");
         return UniTask.CompletedTask;
     }
 

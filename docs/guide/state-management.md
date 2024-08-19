@@ -25,13 +25,13 @@ To save or load current game state to specific save slot, use `IStateManager` en
 var stateManager = Engine.GetService<IStateManager>();
 
 // Save current game session to `mySaveSlot` slot.
-await stateManager.SaveGameAsync("mySaveSlot");
+await stateManager.SaveGame("mySaveSlot");
 // Load game session from `mySaveSlot` slot.
-await stateManager.LoadGameAsync("mySaveSlot");
+await stateManager.LoadGame("mySaveSlot");
 
 // You can also use quick save-load methods without specifying the slot names.
-await stateManager.QuickSaveAsync();
-await stateManager.QuickLoadAsync();
+await stateManager.QuickSave();
+await stateManager.QuickLoad();
 ```
 Notice, that the save-load API is [asynchronous](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/). In case you're invoking the API from synchronous methods, use `IStateManager.OnGameSaveFinished` and `IStateManager.OnGameLoadFinished` for subscribing to the completion events.
 
@@ -42,7 +42,7 @@ Some data, however, should be persistent across the game sessions. For example, 
 The global state is loaded automatically on engine initialization. You can save the global state at any time using `IStateManager` as follows:
 
 ```csharp
-await stateManager.SaveGlobalStateAsync();
+await stateManager.SaveGlobalState();
 ```
 
 ## User Settings
@@ -52,7 +52,7 @@ Similar to the global state, user settings data (display resolution, language, s
 The user settings are loaded automatically on engine initialization. You can save the settings at any time using `IStateManager` as follows:
 
 ```csharp
-await stateManager.SaveSettingsAsync();
+await stateManager.SaveSettings();
 ```
 
 ## Custom State
@@ -209,21 +209,21 @@ public class CustomSettingsSlotManager : ISaveSlotManager<SettingsStateMap>
         Debug.Log($"RenameSaveSlot({sourceSlotId},{destSlotId})");
     }
 
-    public UniTask SaveAsync (string slotId, SettingsStateMap data)
+    public UniTask Save (string slotId, SettingsStateMap data)
     {
-        Debug.Log($"SaveAsync({slotId})");
+        Debug.Log($"Save({slotId})");
         return UniTask.CompletedTask;
     }
 
-    public UniTask<SettingsStateMap> LoadAsync (string slotId)
+    public UniTask<SettingsStateMap> Load (string slotId)
     {
-        Debug.Log($"LoadAsync({slotId})");
+        Debug.Log($"Load({slotId})");
         return UniTask.FromResult(new SettingsStateMap());
     }
 
-    public UniTask<SettingsStateMap> LoadOrDefaultAsync (string slotId)
+    public UniTask<SettingsStateMap> LoadOrDefault (string slotId)
     {
-        return LoadAsync(slotId);
+        return Load(slotId);
     }
 }
 ```
