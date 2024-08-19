@@ -18,7 +18,7 @@ public class HelloWorld : Command
 {
     public StringParameter Name;
 
-    public override UniTask ExecuteAsync (AsyncToken asyncToken = default)
+    public override UniTask Execute (AsyncToken asyncToken = default)
     {
         if (Assigned(Name)) Debug.Log($"Hello, {Name}!");
         else Debug.Log("Hello World!");
@@ -39,9 +39,9 @@ Notice the optional `AsyncToken` argument provided for the `ExecuteAsync` method
 - `AsyncToken.Completed` means the command is expected to complete all the activities as fast as possible; eg, if you're running animations, finish them instantly, no matter the expected duration. This usually happens when player activates continue input or a save game operation is started.
 
 ```csharp
-public override async UniTask ExecuteAsync (AsyncToken asyncToken = default)
+public override async UniTask Execute (AsyncToken asyncToken = default)
 {
-    await PerformSomethingAsync();
+    await PerformSomething();
     // Engine may have been destroyed while the above method was running;
     // below will check and throw the exception if that's the case.
     asyncToken.ThrowIfCanceled();
@@ -49,7 +49,7 @@ public override async UniTask ExecuteAsync (AsyncToken asyncToken = default)
     var someUI = Engine.GetService<IUIManager>().GetUI<SomeUI>();
     // In case completion is requested, fade the UI instantly.
     var fadeDuration = asyncToken.Completed ? 0 : 5;
-    await someUI.ChangeVisibilityAsync(false, fadeDuration, asyncToken);
+    await someUI.ChangeVisibility(false, fadeDuration, asyncToken);
     // Notice method above accepted the token; such methods will handle
     // cancellations internally, so you don't have to check after them.
 }
@@ -134,7 +134,7 @@ public class PlayAudioClip : Command, Command.IPreloadable
 {
     public StringParameter ClipPath;
 
-    public async UniTask PreloadResourcesAsync ()
+    public async UniTask PreloadResources ()
     {
         if (!Assigned(ClipPath) || ClipPath.DynamicValue) return;
         await ... (load the audio clip here)
@@ -172,10 +172,10 @@ Below is an example of overriding built-in [@print] command, so that the printed
 [CommandAlias("print")]
 public class MyCustomPrintCommand : PrintText
 {
-    public override UniTask ExecuteAsync (AsyncToken asyncToken = default)
+    public override UniTask Execute (AsyncToken asyncToken = default)
     {
         Debug.Log(Text);
-        return base.ExecuteAsync(asyncToken);
+        return base.Execute(asyncToken);
     }
 }
 ```

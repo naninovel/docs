@@ -13,14 +13,14 @@ using UnityEngine;
 public class UniTaskCommand : Command
 {
     // This method uses embedded UniTask v1.
-    public override async Naninovel.UniTask ExecuteAsync (AsyncToken token = default)
+    public override async Naninovel.UniTask Execute (AsyncToken token = default)
     {
-        var message = await WaitAndReturnMessageAsync();
+        var message = await WaitAndReturnMessage();
         Debug.Log(message);
     }
 
     // This method uses standalone UniTask v2.
-    private async Cysharp.Threading.Tasks.UniTask<string> WaitAndReturnMessageAsync ()
+    private async Cysharp.Threading.Tasks.UniTask<string> WaitAndReturnMessage ()
     {
         await Cysharp.Threading.Tasks.UniTask.DelayFrame(100);
         return "Hello from UniTask v2!";

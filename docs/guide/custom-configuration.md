@@ -195,7 +195,7 @@ public class CustomConfigurationProvider : ProjectConfigurationProvider
 
 Once the custom configuration provider is ready, you have to make the engine use it instead of the built-in one by creating a custom engine initialization script. By default, the engine is initialized via `Naninovel/Runtime/Engine/RuntimeInitializer.cs`; feel free to use it as a reference when creating your own initialization script.
 
-Alternatively, if your goal is just to use a custom configuration provider, but keep the default engine initialization routine, consider using `RuntimeInitializer.InitializeAsync(IConfigurationProvider)` static method, which accepts an optional argument for configuration provider:
+Alternatively, if your goal is just to use a custom configuration provider, but keep the default engine initialization routine, consider using `RuntimeInitializer.Initialize(IConfigurationProvider)` static method, which accepts an optional argument for configuration provider:
 
 ```csharp
 public class CustomInitializer
@@ -204,7 +204,7 @@ public class CustomInitializer
     private static void InitializeWithCustomProvider ()
     {
         var customProvider = new CustomConfigurationProvider();
-        RuntimeInitializer.InitializeAsync(customProvider).Forget();
+        RuntimeInitializer.Initialize(customProvider).Forget();
     }
 }
 ```

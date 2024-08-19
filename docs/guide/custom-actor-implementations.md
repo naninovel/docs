@@ -35,7 +35,7 @@ For a complete example on adding custom actor implementation see [Live2D extensi
 Apply `ActorResources` attribute to the implementation type to specify which assets can be used as resources for you custom actor and whether it's allowed to assign multiple resources in the editor menus. When multiple resources are not allowed (default), you can load the single available resource by specifying just the actor ID, eg:
 
 ```csharp
-var resource = await resourceLoader.LoadAsync(actorId);
+var resource = await resourceLoader.Load(actorId);
 ```
 
 When multiple resources are allowed, specify full path; eg, given you've assigned a resource with "CubeBackground" name:
@@ -45,7 +45,7 @@ When multiple resources are allowed, specify full path; eg, given you've assigne
 — to load the resource, use:
 
 ```csharp
-var resource = await resourceLoader.LoadAsync($"{actorId}/CubeBackground");
+var resource = await resourceLoader.Load($"{actorId}/CubeBackground");
 ```
 
 ## Custom Metadata
@@ -190,11 +190,11 @@ public class MyCustomChoiceHandler : UIChoiceHandler
         LastChoiceTime = DateTime.Now.ToShortTimeString();
     }
 
-    public override UniTask ChangeVisibilityAsync (bool visible, float duration,
+    public override UniTask ChangeVisibility (bool visible, float duration,
         EasingType easingType = default, AsyncToken token = default)
     {
         Debug.Log($"Last choice time: {LastChoiceTime}");
-        return base.ChangeVisibilityAsync(visible, duration, easingType, token);
+        return base.ChangeVisibility(visible, duration, easingType, token);
     }
 }
 
@@ -209,10 +209,10 @@ public class MyChoiceHandlerManager : ActorManager<IChoiceHandlerActor,
     public MyChoiceHandlerManager (ChoiceHandlersConfiguration config)
         : base(config) { }
 
-    public UniTask<IChoiceHandlerActor> AddActorAsync (string actorId,
+    public UniTask<IChoiceHandlerActor> AddActor (string actorId,
         ChoiceHandlerState state)
     {
-        return base.AddActorAsync(actorId, state as MyChoiceHandlerState);
+        return base.AddActor(actorId, state as MyChoiceHandlerState);
     }
 
     ChoiceHandlerState IActorManager<IChoiceHandlerActor,
