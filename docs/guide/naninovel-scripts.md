@@ -220,7 +220,7 @@ Labels are used as "anchors" when navigating naninovel scripts with [@goto] comm
 You can then use [@goto] command to "jump" to that line:
 
 ```nani
-@goto ScriptName.Epilogue
+@goto ScriptPath.Epilogue
 ```
 
 When both [@goto] and target label are in the same script, you can omit script path:
