@@ -32,27 +32,25 @@ The [Addressable Asset system](https://docs.unity3d.com/Packages/com.unity.addre
 
 Naninovel will automatically use addressables when the package is installed in the project and `Use Addressables` property is enabled in resource provider configuration. No additional setup is required. All the assets assigned in the Naninovel's configuration menus (eg, scenario scripts, character sprites, audio clips, etc) will be registered with the system (assigned an address) when building the player.
 
-::: warning
-Due to a [Unity bug](https://github.com/naninovel/docs/issues/159), addressable can't unload individual assets packed into a common bundle; for a temporary workaround, either distribute the assets between bundles or set `Bundle Mode` addressable group settings to `Pack Separately`.
-
-![](https://i.gyazo.com/60a42ec15609d8dbc5258687d9045797.png)
-:::
-
-In case you wish to configure how the Naninovel addressable assets are served (eg, specify a remote web host), edit Naninovel groups via `Window -> Asset Management -> Addressables -> Groups` menu. The groups are automatically created when first building the game; in case they're missing, you can create them manually.
+In case you wish to configure how the Naninovel assets are served (eg, specify a remote web host), edit Naninovel groups via `Window -> Asset Management -> Addressables -> Groups` menu. The groups are automatically created when first building the game; in case they're missing, you can create them manually.
 
 ![](https://i.gyazo.com/c93fbd9e232ec94468c685c4d6003916.png)
 
 ::: info NOTE
-Asset records under Naninovel addressable groups are automatically generated on each build. Don't edit the records manually, as any changes will be lost on build.
+Asset records under Naninovel addressable groups are automatically generated on each build. Don't edit the records manually, as any changes will be lost on build. However, all the group settings are preserved.
 :::
 
-By default, `Group By Category` option in resource provider configuration is disabled, making all the Naninovel resources be added under a single "Naninovel" addressable group. In case you wish to group the resources by category (eg, to specify individual packing or serving options), enable the property and re-build. When enabled, each resource category (eg, scripts, audio, characters, etc) will be added under their own addressable group named "Naninovel-*Category*", where *Category* is the category of the resource.
+### Category Groups
+
+By default, `Group By Category` option in resource provider configuration is disabled, which results in all the Naninovel assets end up under a single "Naninovel" group. In case you wish to group the resources by category (eg, to specify individual packing or serving options), enable the property and re-build. When enabled, each resource category (eg, scripts, audio, characters, etc) will be added under their own addressable group named "Naninovel-*Category*", where *Category* is the category of the resource.
 
 ![](https://i.gyazo.com/80938ca5ca1021e8a71f783eef516d15.png)
 
+### Manual Assignment
+
 To expose an addressable asset to Naninovel without using editor menus, use a custom addressable group; group can have any name, except it can't start with the reserved "Naninovel" (otherwise, it'll be recognized as an auto-generated and will be cleared on build). Address of the exposed assets should start with "Naninovel/" and they should have a "Naninovel" label assigned. You can specify additional labels to filter the assets used by Naninovel via `Extra Labels` property in resource provider configuration menu.
 
-Addressable provider is only used in runtime builds and is disabled in editor by default. In case you're manually exposing resources via addressable address instead of assigning them with Naninovel's resource managers, you can enable it with `Allow Addressable In Editor` property in resource provider configuration menu.
+Addressable provider is only used in runtime builds and is disabled in editor by default. In case you're manually exposing resources via addressable address instead of assigning them with Naninovel's resource managers, enable it with `Allow Addressable In Editor` property in resource provider configuration menu.
 
 ::: tip EXAMPLE
 Check the [example project](https://github.com/naninovel/samples/tree/main/unity/addressable) on how to manually expose Naninovel resources to addressable provider (without using resource editor menus) and serve specific assets from a remote host.
@@ -60,9 +58,31 @@ Check the [example project](https://github.com/naninovel/samples/tree/main/unity
 You may also find official Unity learning materials for addressable useful: https://learn.unity.com/course/get-started-with-addressables.
 :::
 
+### Script Labels
+
+Due to an [unfortunate Unity design decision](https://github.com/naninovel/docs/issues/159), addressable assets are not unloaded from the memory until the entire asset bundle is unloaded. This means, unless you properly organize the bundles, all the assets may end up in a single bundle and will never unload once loaded, potentially causing out of memory exceptions.
+
+Easiest solution would be setting `Bundle Mode` in the [group settings](https://docs.unity3d.com/Packages/com.unity.addressables@1.22/manual/GroupSchemas.html) to `Pack Separately`:
+
+![](https://i.gyazo.com/651a292ca6f1f4e26593074e25c66cea.png)
+
+— this will make each asset have its own bundle, allowing to unload it as soon as it's released. While optimal from the RAM usage perspective, this will result in a CPU overhead and increase load times, as it's much faster to load one large continuous binary blob compared to seeking and constantly loading/unloading many small ones, especially on slower hard drives.
+
+When `Label By Scripts` is enabled in resource provider configuration (the default), Naninovel will utilize a compromise solution: when building the player, it will scan all the scenario scripts and attempt to figure which assets are required by the script; it'll then assign labels to the addressable assets by the scripts they're used in:
+
+![](https://i.gyazo.com/9013a1264a55aa95d22ecfc6b3283ac3.png)
+
+— if you then set `Bundle Mode` to `Pack Together By Label` (the default), the assets will be split between bundles based on the affinity to the scenario scripts, which will optimize the bundles structure to the Naninovel's [memory management policy](/guide/memory-management).
+
 ::: info NOTE
-We're not providing any tutorials or support for Unity's addressable asset system itself, like setting up a remote web hosting for your assets or other deploy/serving scenarios; consult the [support page](/support/#unity-support) for more information.
+All the Naninovel assets are subject to the labeling, including the assets [assigned manually](/guide/resource-providers#manual-assignment), without using the resource editor menus. As long as asset has `Naninovel` label, it'll will be labeled with the associated script.
 :::
+
+The labeling process requires a degree of guessing however and is not always possible. To make sure most assets are labeled correctly, follow the guidelines:
+
+- Don't use [expressions](/guide/script-expressions) in parameters of resource context, such as actor IDs, appearances, audio paths, etc. Expressions are evaluated just before the command is executed, which makes it impossible to resolve the final path when building the player. Naninovel will warn you when it detects such cases when building the player.
+- Always specify actor IDs and appearances in commands like [@char] and [@back]; while such commands may not require these parameters and will fallback to default values, it's not always possible to resolve the defaults when building.
+- When creating [custom commands](/guide/custom-commands), apply [resource context attributes](/guide/ide-extension#ide-attributes) to the parameters which reference the resources. For example, if your custom command has a parameter that accepts an actor ID, apply `[ActorContext]` to the parameter's field. While such attributes are mostly used by the IDE extension to provide auto-complete, labeling tool uses them as well to resolve the asset address.
 
 ## Project
 
@@ -82,9 +102,9 @@ Local provider loads raw files from the file system and converts them at runtime
 
 Supported file formats:
 
- - `.nani` plain text files for scenario scripts
- - `.png` and `.jpg` for images/textures
- - `.wav` (PCM16 44100Hz stereo only) for audio
+- `.nani` plain text files for scenario scripts
+- `.png` and `.jpg` for images/textures
+- `.wav` (PCM16 44100Hz stereo only) for audio
 
 ::: tip
 Add more supported file formats by overriding `IResourceProviderManager` [engine service](/guide/engine-services#overriding-built-in-services) and adding a custom converter for the local provider ([example](https://github.com/naninovel/samples/blob/main/unity/sandbox/Assets/Runtime/WebResourceProvider.cs#L12)).
@@ -94,10 +114,10 @@ Add more supported file formats by overriding `IResourceProviderManager` [engine
 
 `Local Path Root` property in the resource provider configuration should point to a folder, where the local resources are stored. You can either use an absolute (eg, `C:\Resources`) or a relative path, starting with one of the following origins:
 
- - `%DATA%` — Game data folder on the target device ([Application.dataPath](https://docs.unity3d.com/ScriptReference/Application-dataPath));
- - `%PDATA%` — Persistent data directory on the target device ([Application.persistentDataPath](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath));
- - `%STREAM%` — "StreamingAssets" folder ([Application.streamingAssetsPath](https://docs.unity3d.com/ScriptReference/Application-streamingAssetsPath));
- - `%SPECIAL{F}%` — An OS special folder, where `F` is the name of a [special folders enum](https://docs.microsoft.com/en-us/dotnet/api/system.environment.specialfolder) value.
+- `%DATA%` — Game data folder on the target device ([Application.dataPath](https://docs.unity3d.com/ScriptReference/Application-dataPath));
+- `%PDATA%` — Persistent data directory on the target device ([Application.persistentDataPath](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath));
+- `%STREAM%` — "StreamingAssets" folder ([Application.streamingAssetsPath](https://docs.unity3d.com/ScriptReference/Application-streamingAssetsPath));
+- `%SPECIAL{F}%` — An OS special folder, where `F` is the name of a [special folders enum](https://docs.microsoft.com/en-us/dotnet/api/system.environment.specialfolder) value.
 
 Default `%DATA%/Resources` value points to a "Resources" folder inside game's data directory (which is different depending on the target platform).
 
