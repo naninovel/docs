@@ -36,10 +36,6 @@ After performing required modifications, click "Import" button to import the dat
 Project's localization documents will be overwritten when importing from spreadsheet, so refrain from modifying them while the spreadsheet is being edited to prevent conflicts.
 :::
 
-::: info NOTE
-The sheets `.csv` format is expected to be compliant with [RFC-4180](https://datatracker.ietf.org/doc/html/rfc4180) standard. However, some sheet processors, such as Microsoft Excel don't wrap cells with trailing whitespace in double quotes on save, which may lead to missing spaces in some cases (eg, spaces between text and inlined commands or expressions). Consult following thread for various workarounds: [techcommunity.microsoft.com/excel/223484](https://techcommunity.microsoft.com/t5/excel/save-as-csv-file-utf-8-with-double-quotes-how/m-p/223484).
-:::
-
 ## Custom Processor
 
 It's possible to inject custom spreadsheet processor to customize the way sheets are generated as well as the import and export processes.
