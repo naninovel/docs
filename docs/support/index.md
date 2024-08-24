@@ -22,7 +22,7 @@ Unity is a standalone product with an enormous set of features; it has its own d
 
 ## Naninovel Support
 
-To receive direct support from the Naninovel staff, join Naninovel Discord server ([discord.gg/BfkNqem](https://discord.gg/BfkNqem)) and register your copy of the asset using the following registration form: [naninovel.com/register](https://naninovel.com/register/).
+To receive direct support from the Naninovel staff, join [Naninovel Discord](https://discord.gg/BfkNqem) and register your copy of the asset using the following registration form: [naninovel.com/register](https://naninovel.com/register/).
 
 After the registration you'll automatically get a "Verified User" role on the server and access to the `#support` and `#download` channels. You can also send a message to a member with support role to discuss the issue in private.
 
