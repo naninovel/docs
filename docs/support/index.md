@@ -18,7 +18,7 @@ Consider joining dedicated [Naninovel forum](https://forum.naninovel.com), where
 
 While we have several video tutorials and example projects showing how to use Unity to achieve some Naninovel-specific goals, please be aware that we are not able to provide any additional guidance or direct support for Unity's built-in tools.
 
-Unity is a standalone product with an enormous set of features; it has its own documentation, support services and vast community, which produced numerous learning materials over the engine's 20+ years lifespan. Usually, you'll be able to easily find a video tutorial, guide or forum thread for any question or issue you may have; and in the rare cases it's not available, you can always ask on the [Unity forum](https://forum.unity.com), [Q&A service](https://discussions.unity.com) or use one of the official [support options](https://unity.com/support-services).
+Unity is a standalone product with an enormous set of features; it has its own documentation, support services and vast community, which produced numerous learning materials over the engine's 20+ years lifespan. Usually, you'll be able to easily find a video tutorial, guide or forum thread for any question or issue you may have; and in the rare cases it's not available, you can always ask on the [Unity forum](https://discussions.unity.com) or use one of the official [support options](https://unity.com/support-services).
 
 ## Naninovel Support
 
