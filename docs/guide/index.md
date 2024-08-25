@@ -1,6 +1,6 @@
 # Introduction
 
-Naninovel is an extension for [Unity game engine](https://unity3d.com). It consists of a C# framework and editor utilities to support development of [visual novel games](https://en.wikipedia.org/wiki/Visual_novel).
+Naninovel is an extension for the [Unity game engine](https://unity3d.com). It consists of a C# framework and editor utilities to support the development of [visual novel games](https://en.wikipedia.org/wiki/Visual_novel).
 
 ![](https://www.youtube.com/watch?v=lRxIKDU9z4k)
 
