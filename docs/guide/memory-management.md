@@ -145,15 +145,10 @@ which navigates to the gosub and are not unloaded until the script unloads.
 
 :::
 
-## Lazy Policy
-
-Minimal memory usage at the expense of high CPU utilization during playback. Only the resources required for the next `Lazy Policy Steps` commands are preloaded and kept in memory, while other resources are unloaded immediately. This mode is not recommended, unless targeting platforms with strict memory limitations and it's impossible to properly organize scenario scripts. Expect unstable FPS and hiccups during playback caused by resources being un-/loaded in the background.
-
 Below is a summary of the policies:
 
 | Policy       |             Memory Usage             |             CPU Usage             | Loading Screens                                   | Rollback                                         |
 |--------------|:------------------------------------:|:---------------------------------:|---------------------------------------------------|--------------------------------------------------|
-| Lazy         |   <span class="txt-ok">Low</span>    | <span class="txt-err">High</span> | <span class="txt-ok">None</span>                  | <span class="txt-err">Always slow</span>         |
 | Conservative | <span class="txt-warn">Medium</span> |  <span class="txt-ok">Low</span>  | <span class="txt-err">On goto, unless held</span> | <span class="txt-warn">Fast inside script</span> |
 | Optimistic   |  <span class="txt-err">High</span>   |  <span class="txt-ok">Low</span>  | <span class="txt-warn">None until released</span> | <span class="txt-ok">Fast until released</span>  |
 
