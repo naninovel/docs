@@ -6,7 +6,7 @@ Some script commands require loading resources in order to work: audio clips for
 
 ## Conservative Policy
 
-The default mode with balanced memory and CPU utilization. All the resources required for script execution are preloaded when starting the playback and unloaded when the script has finished playing. Scripts referenced in [@gosub] commands are preloaded as well. Additional scripts can be preloaded by using `hold` parameter of [@goto] command.
+The default mode with balanced memory utilization. All the resources required for script execution are preloaded when starting the playback and unloaded when the script has finished playing. Scripts referenced in [@gosub] commands are preloaded as well. Additional scripts can be preloaded by using `hold` parameter of [@goto] command.
 
 Below is a demo on how resources will un-/load under Conservative policy:
 
@@ -79,7 +79,7 @@ which navigates to the gosub and are not unloaded until the script unloads.
 
 ## Optimistic Policy
 
-All the resources required by the played script, as well all resources of all the scripts specified in [@goto] and [@gosub] commands are preloaded and not unloaded unless `release` parameter is specified in [@goto] command. This minimizes loading screens and allows smooth rollback, but requires manually specifying when the resources have to be unloaded, increasing risk of out of memory exceptions.
+All the resources required by the played script, as well all resources of all the scripts specified in [@goto] and [@gosub] commands are preloaded and not unloaded unless `release` parameter is specified in [@goto] command. This minimizes loading screens and allows smooth rollback, but requires manually specifying when to unload resources, increasing risk of out of memory exceptions on platforms with strict memory limits, such as mobile devices and web browsers.
 
 Below is a demo of similar set of scripts, but now we're using Optimistic policy:
 
@@ -145,12 +145,20 @@ which navigates to the gosub and are not unloaded until the script unloads.
 
 :::
 
+## Choosing Policy
+
+Generally, it's recommended to stick with the default "Conservative" policy, as it yields balanced memory usage suitable for all the target platforms, while providing flexibility in "merging" the scripts via `hold!` flags, when necessary.
+
+However, if you exclusively target the more powerful platforms with lots of RAM, like standalone and game consoles, you may choose the "Optimistic" policy to keep large chunks for the resources in memory and minimize loading screens.
+
+Another scenario for the alternative policy is when Naninovel is used as a dialogue system inside a custom game loop. You'll likely have your own resource management system in such cases, and "Optimistic" won't stand in its way, as it'd basically do nothing, outside of keeping all the required resources loaded before playing a script, unless you explicitly use `release!` flags.
+
 Below is a summary of the policies:
 
-| Policy       |             Memory Usage             |             CPU Usage             | Loading Screens                                   | Rollback                                         |
-|--------------|:------------------------------------:|:---------------------------------:|---------------------------------------------------|--------------------------------------------------|
-| Conservative | <span class="txt-warn">Medium</span> |  <span class="txt-ok">Low</span>  | <span class="txt-err">On goto, unless held</span> | <span class="txt-warn">Fast inside script</span> |
-| Optimistic   |  <span class="txt-err">High</span>   |  <span class="txt-ok">Low</span>  | <span class="txt-warn">None until released</span> | <span class="txt-ok">Fast until released</span>  |
+| Policy       |             Memory Usage             | Loading Screens                                    | Rollback                                               |
+|--------------|:------------------------------------:|----------------------------------------------------|--------------------------------------------------------|
+| Conservative | <span class="txt-ok">Balanced</span> | <span class="txt-warn">On goto, unless held</span> | <span class="txt-warn">Fast inside held scripts</span> |
+| Optimistic   |  <span class="txt-err">High</span>   | <span class="txt-ok">None, until released</span>   | <span class="txt-ok">Fast until released</span>        |
 
 ## Actor Resources
 
