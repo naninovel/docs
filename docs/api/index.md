@@ -1191,7 +1191,7 @@ Executes one of the nested commands, picked randomly.
 Removes (disposes) actors (character, background, text printer, choice handler) with the specified IDs. In case multiple actors with the same ID found (eg, a character and a printer), will affect only the first found one.
 
 ::: info NOTE
-This command should only be used with actor implementations, which don't support per-appearance resource mapping and only when experiencing issues with memory usage. Consult [memory management](https://pre.naninovel.com/guide/memory-management#actor-resources) guide for more info.
+By default, Naninovel automatically removes unused actors when unloading script resources; only use this command when `Remove Actors` is disabled in resource provider configuration or when you need to force-dispose an actor at specific moment. Consult [memory management](https://pre.naninovel.com/guide/memory-management#actor-resources) guide for more info.
 :::
 
 <div class="config-table">

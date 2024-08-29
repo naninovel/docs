@@ -2,7 +2,7 @@
 
 Some script commands require loading resources in order to work: audio clips for [@bgm], character prefab and/or appearance textures for [@char], video clip for [@movie] and so on. Naninovel takes care of pre-/loading and unloading most of the resources. Default behaviour is based on `Resource Policy` setting found in resource provider configuration.
 
-![](https://i.gyazo.com/731327625e0bb0d326740f036d026a6a.png)
+![](https://i.gyazo.com/18330a4aa47a1a2f222ad13e4a3fc85b.png)
 
 ## Conservative Policy
 
@@ -170,30 +170,22 @@ Some actor implementations have their appearance mapped 1:1 to a resource: sprit
 
 However, layered, diced sprite, generic, Live2D and Spine actors all require monolith prefab in order to represent any of the associated appearances making it impossible to independently load resources. In such cases, Naninovel will preload the whole prefab with all its dependencies and only unload it when the actor is not referenced in any of the commands, no matter which appearances are used.
 
-### Scene Objects
+### Removing Actors
 
-Built-in implementations use the bare minimum [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html) infrastructure to represent the actors on Unity scenes, hence the underlying scene (game) objects are lightweight and don't use much memory. To prevent unnecessary CPU overhead, once instantiated, actor objects won't be automatically destroyed, until associated engine service is reset or the engine is de-initialized.
-
-In case you'd still like to destroy actor objects, use of one of the ways described below.
-
-### Remove Individual Actors
-
-Use [@remove] command to dispose specific actors. Applicable when some actor objects should persist across scripts.
+Naninovel will, by default, automatically remove unused actors and destroy associated game objects when unloading script resources. If you'd like to manually dispose the actors, disable `Remove Actors` option in resource provider configuration menu and use [@remove] commands:
 
 ```nani
 @back id:LayeredBackground
 @char GenericCharacter
 @char DicedCharacter
-; "LayeredBackground" won't be destroyed when "NextScript" is loaded,
-; but both characters will.
+; Given 'Remove Actors' is disabled, "LayeredBackground" won't be
+; destroyed when "NextScript" is loaded, but both characters will.
 @hide GenericCharacter,DicedCharacter wait!
 @remove GenericCharacter,DicedCharacter
 @goto NextScript
 ```
 
-### Remove All Actors
-
-Use [@remove] with `*` parameter to dispose all the existing actors (including text printers and choice handlers) or [@resetState] with `only` parameter to immediately dispose actors of specific type: `ICharacterManager` for character and `IBackgroundManager` for backgrounds. Applicable when all actors or actors of specific type should be disposed.
+— alternatively, use [@remove] with `*` parameter to dispose all the existing actors (including text printers and choice handlers) or [@resetState] with `only` parameter to immediately dispose actors of specific type: `ICharacterManager` for character and `IBackgroundManager` for backgrounds:
 
 ```nani
 ...
@@ -201,10 +193,6 @@ Use [@remove] with `*` parameter to dispose all the existing actors (including t
 ; Dispose all the existing backgrounds.
 @resetState only:IBackgroundManager
 ```
-
-### Reset On Goto
-
-In case you don't need any [engine service](/guide/engine-services) state to persist between scripts (including currently played music, special effects, etc), enable `Reset On Goto` in state configuration. This way all the services will automatically dispose associated resources when navigating between naninovel scripts and you won't have to use any special commands to destroy the actor objects.
 
 ## Lifetime Management
 
