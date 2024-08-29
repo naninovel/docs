@@ -4,7 +4,7 @@
 
 Naninovel is an extension for the [Unity game engine](https://unity.com), so it's strongly recommended to at least [learn the basics](https://learn.unity.com) of using the engine before starting with Naninovel.
 
-In case you're not going to build any custom gameplay outside of Naninovel, feel free to ignore the scene-related information altogether, as Naninovel will take care of that.
+In case you're not going to build any custom gameplay outside Naninovel, feel free to ignore the scene-related information altogether, as Naninovel will take care of that.
 
 ## Core Concepts
 
