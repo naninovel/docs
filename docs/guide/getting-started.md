@@ -81,7 +81,7 @@ Once you have access to the repository, go to `Window -> Package Manager` in Uni
 
 ![](https://i.gyazo.com/91d056eb5b6278e5c9a28f59c8ff8732.png)
 
-If you get an error when installing the package, make sure you're authenticated (on the local machine) as the GitHub user, which was assigned in the account dashboard. Refer to the Unity guide for more info on authentication: [docs.unity3d.com/Manual/upm-config-https-git.html](https://docs.unity3d.com/Manual/upm-config-https-git.html).
+If you get an error when installing the package, make sure you're authenticated (on the local machine) as the GitHub user, which was assigned in the account dashboard. Usually, installing [GitHub Desktop](https://github.com/apps/desktop) and logging in with your user account is sufficient. Refer to the Unity guide for more info on authentication: [docs.unity3d.com/Manual/upm-config-https-git.html](https://docs.unity3d.com/Manual/upm-config-https-git.html).
 
 ::: tip
 Over the course of using Naninovel a number of assets (configuration, settings, saves, etc) will be automatically generated inside `Assets/NaninovelData` folder. Don't modify the contents of the folder or move it (it'll be automatically regenerated). If you wish to change the location of the data folder, use `Generated Data Path` property in the engine configuration menu.
