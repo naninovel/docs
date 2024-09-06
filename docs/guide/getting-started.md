@@ -51,16 +51,40 @@ Disable `Reload Domain` and `Reload Scene` options under "Enter Play Mode" proje
 
 ## Install Naninovel
 
-Drag and drop `Naninovel.package` to the project pane of the Unity editor (or import the package via [Asset Store menu](https://docs.unity3d.com/Manual/AssetStore.html) in case you've purchased it on the store) and wait for the initial scripts compilation and assets import process. You are free to move `Naninovel` package folder anywhere inside your project assets directory, if you wish.
+Naninovel is distributed across 3 release streams: **preview**, **stable** and **final**.
 
-::: tip
-Naninovel package hosted on Asset Store (and delivered via Unity's package manager) is usually outdated. Get latest version on our [Discord server](https://discord.gg/BfkNqem).
-:::
+Preview is the bleeding edge: it's updated most often and has all the latest features. However, it's subject to occasional breaking changes and bugs. Pick this stream when you're early in development or need a specific feature not available in the other releases.
 
-Over the course of using Naninovel a number of assets (configuration, settings, saves, etc) will be automatically generated inside `Assets/NaninovelData` folder. In contrast to the package folder, you shouldn't manually move the data folder (it'll be automatically regenerated). If you wish to change the location of the data folder, edit `Generated Data Path` property in the engine configuration menu.
+Stable is the middle-ground: it only receives bug fixes, doesn't have the latest features, but is also free from any breaking changes. It's recommended in most cases.
+
+Final is the most tested and stable release: it's been receiving bug fixes over a year and battle-tested by the most users. However, it's also the most outdated one and is not covered by the [tech support](/support/#naninovel-support). Only stay on the final release in case the project is already released and it's not possible to upgrade.
+
+![](https://i.gyazo.com/fcf0bbd4bbd47141e30efabea6ad0f86.png)
+
+See the guides below on how to access the release of your choice.
+
+### Final Release on Asset Store
+
+Naninovel on the Unity's Asset Store is updated once per year with final releases only. To access stable and preview releases, see the [guide below](/guide/getting-started#preview-and-stable-releases-on-github).
+
+Import the package via [Asset Store menu](https://docs.unity3d.com/Manual/AssetStore.html) and wait for the initial scripts compilation and assets import process. You are free to move `Naninovel` package folder anywhere inside your project assets directory, if you wish.
 
 ::: warning
 Don't store, modify or delete anything inside `Naninovel` folder. Any such change will be lost when the package is updated and we won't provide any support for the modified versions of the package.
+:::
+
+### Preview and Stable Releases on GitHub
+
+Preview and stable releases are distributed as UPM packages via a private GitHub repository. To access the repository, [register your Naninovel license](https://naninovel.com/register) and follow the instructions on the dashboard.
+
+Once you have access to the repository, go to `Window -> Package Manager` in Unity editor and add `https://github.com/naninovel/upm.git#X.X` as a Git package, where `X.X` is the Naninovel release version you'd like to install, for example `1.20`. You can find all the available releases and their versions on GitHub: [github.com/naninovel/docs/releases](https://github.com/naninovel/docs/releases).
+
+![](https://i.gyazo.com/91d056eb5b6278e5c9a28f59c8ff8732.png)
+
+If you get an error when installing the package, make sure you're authenticated (on the local machine) as the GitHub user, which was assigned in the account dashboard. Refer to the Unity guide for more info on authentication: [docs.unity3d.com/Manual/upm-config-https-git.html](https://docs.unity3d.com/Manual/upm-config-https-git.html).
+
+::: tip
+Over the course of using Naninovel a number of assets (configuration, settings, saves, etc) will be automatically generated inside `Assets/NaninovelData` folder. Don't modify the contents of the folder or move it (it'll be automatically regenerated). If you wish to change the location of the data folder, use `Generated Data Path` property in the engine configuration menu.
 :::
 
 ## Add Naninovel Script
@@ -189,7 +213,7 @@ When switching between backgrounds a cross-fade [transition effect](/guide/trans
 
 This will transition "City" to "School" using "RadialBlur" transition effect.
 
-To reference a background other then the main one (eg, in case you wish to compose multiple backgrounds on top of each other), specify ID of the actor. For example, given a background actor with ID `Flower` exists beside the main one, following commands will change its appearance to "Bloomed" and then to "Withered":
+To reference a background other than the main one (eg, in case you wish to compose multiple backgrounds on top of each other), specify ID of the actor. For example, given a background actor with ID `Flower` exists beside the main one, following commands will change its appearance to "Bloomed" and then to "Withered":
 
 ```nani
 @back Bloomed id:Flower
