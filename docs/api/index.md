@@ -4,14 +4,14 @@ Script commands API reference. Use the side bar to quickly navigate between avai
 
 ~~Strikethrough~~ indicates a nameless parameter, and **bold** stands for required parameter; other parameters should be considered optional. Consult [naninovel scripts guide](/guide/naninovel-scripts) in case you have no idea what's this all about.
 
-The following parameters are supported by all the script commands:
+The following parameters are supported by most script commands:
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
 | if | string |  A boolean [script expression](/guide/script-expressions), controlling whether the command should execute. |
-| wait | boolean | Whether the script player should wait for the async command to finish execution before executing the next one. Has no effect when the command is executed instantly. |
+| wait | boolean | Whether the script player should wait for the async command to finish execution before executing the next one. |
 
 </div>
 
@@ -40,6 +40,7 @@ It's not recommended to use this command for complex animations. Naniscript is a
 | tint | string | Tint colors to set for the animated actors. <br /><br /> Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF. <br /><br /> Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
 | easing | string | Names of the [easing functions](/guide/transition-effects#animation-easing) to use for the animations.<br /> When not specified, will use a default easing function set in the actor's manager configuration settings. |
 | time | string | Duration of the animations per key, in seconds. When a key value is missing, will use one from a previous key. When not assigned, will use 0.35 seconds duration for all keys. |
+| wait | boolean | Whether to wait for the animation(s) to finish before playing next command. |
 
 </div>
 
@@ -102,6 +103,7 @@ Arranges specified characters by X-axis. When no parameters specified, will exec
 | <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">characterPositions</span> | named decimal list | A collection of character ID to scene X-axis position (relative to the left scene border, in percents) named values. Position 0 relates to the left border and 100 to the right border of the scene; 50 is the center. |
 | look | boolean | When performing auto-arrange, controls whether to also make the characters look at the scene origin (enabled by default). |
 | time | decimal | Duration (in seconds) of the arrangement animation. |
+| wait | boolean | Whether to wait for the arrangement to finish before playing next command. |
 
 </div>
 
@@ -160,6 +162,7 @@ Backgrounds are handled a bit differently from characters to better accommodate 
 | tint | string | Tint color to set for the modified actor. <br /><br /> Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF. <br /><br /> Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
 | easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to use for the modification.<br /> When not specified, will use a default easing function set in the actor's manager configuration settings. |
 | time | decimal | Duration (in seconds) of the modification. |
+| wait | boolean | Whether to wait while the modifications are being applied over time. |
 
 </div>
 
@@ -197,6 +200,7 @@ Music tracks are looped by default. When music track name (BgmPath) is not speci
 | fade | decimal | Duration of the volume fade-in when starting playback, in seconds (0.0 by default); doesn't have effect when modifying a playing track. |
 | group | string | Audio mixer [group path](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) that should be used when playing the audio. |
 | time | decimal | Duration (in seconds) of the modification. |
+| wait | boolean | Whether to wait for the BGM fade animation to finish before playing next command. |
 
 </div>
 
@@ -230,6 +234,7 @@ The actor should have `IBlurable` interface implemented in order to support the 
 | <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">actorId</span> | string | ID of the actor to apply the effect for; in case multiple actors with the same ID found (eg, a character and a printer), will affect only the first found one. When not specified, applies to the main background. |
 | power | decimal | Intensity of the effect, in 0.0 to 1.0 range. Defaults to 0.5. Set to 0 to disable (de-spawn) the effect. |
 | time | decimal | How long it will take the parameters to reach the target values, in seconds. Defaults to 1.0. |
+| wait | boolean | Whether to wait for the effect warm-up animation before playing next command. |
 
 </div>
 
@@ -257,6 +262,7 @@ Simulates [depth of field](/guide/special-effects#depth-of-field-bokeh) (aka DOF
 | dist | decimal | Distance (in units) from Naninovel camera to the focus point. Ignored when `focus` parameter is specified. Defaults to 10. |
 | power | decimal | Amount of blur to apply for the de-focused areas; also determines focus sensitivity. Defaults to 3.75. Set to 0 to disable (de-spawn) the effect. |
 | time | decimal | How long it will take the parameters to reach the target values, in seconds. Defaults to 1.0. |
+| wait | boolean | Whether to wait for the effect warm-up animation before playing next command. |
 
 </div>
 
@@ -313,6 +319,7 @@ Modifies the main camera, changing offset, zoom level and rotation over time. Ch
 | set | named boolean list | Names of the components to enable or disable. The components should be attached to the same game object as the camera. This can be used to explicitly enable or disable [custom post-processing effects](/guide/special-effects#camera-effects). Specified components enabled state will override effect of `toggle` parameter. Use `*` to affect all the components attached to the camera object. |
 | easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to use for the modification.<br /> When not specified, will use a default easing function set in the camera configuration settings. |
 | time | decimal | Duration (in seconds) of the modification. |
+| wait | boolean | Whether to wait for the camera modification animations to finish before playing next command. |
 
 </div>
 
@@ -367,6 +374,7 @@ Modifies a [character actor](/guide/characters).
 | tint | string | Tint color to set for the modified actor. <br /><br /> Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF. <br /><br /> Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
 | easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to use for the modification.<br /> When not specified, will use a default easing function set in the actor's manager configuration settings. |
 | time | decimal | Duration (in seconds) of the modification. |
+| wait | boolean | Whether to wait while the modifications are being applied over time. |
 
 </div>
 
@@ -524,6 +532,7 @@ If prefab has a `MonoBehaviour` component attached the root object, and the comp
 | --- | --- | --- |
 | <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">path</span> | string | Name (path) of the prefab resource to destroy. A [@spawn] command with the same parameter is expected to be executed before. |
 | params | string list | Parameters to set before destroying the prefab. Requires the prefab to have a `IParameterized` component attached the root object. |
+| wait | boolean | Whether to wait while the spawn is destroying over time in case it implements `IAwaitable` interface. |
 
 </div>
 
@@ -535,6 +544,14 @@ If prefab has a `MonoBehaviour` component attached the root object, and the comp
 ## despawnAll
 
 Destroys all the objects spawned with [@spawn] command. Equal to invoking [@despawn] for all the currently spawned objects.
+
+<div class="config-table">
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| wait | boolean | Whether to wait while the spawns are destroying over time in case they implements `IAwaitable` interface. |
+
+</div>
 
 ```nani
 @spawn Rainbow
@@ -561,6 +578,7 @@ Applies [digital glitch](/guide/special-effects#digital-glitch) post-processing 
 | --- | --- | --- |
 | time | decimal | The duration of the effect, in seconds; default is 1. |
 | power | decimal | The intensity of the effect, in 0.0 to 10.0 range; default is 1. |
+| wait | boolean | Whether to wait for the effect warm-up animation before playing next command. |
 
 </div>
 
@@ -672,6 +690,7 @@ Hides actors (character, background, text printer, choice handler) with the spec
 | --- | --- | --- |
 | <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">actorIds</span> | string list | IDs of the actors to hide. |
 | time | decimal | Duration (in seconds) of the fade animation. |
+| wait | boolean | Whether to wait for the UI fade-out animation to finish before playing next command. |
 
 </div>
 
@@ -692,6 +711,7 @@ Hides all the actors (characters, backgrounds, text printers, choice handlers) o
 | Parameter | Type | Description |
 | --- | --- | --- |
 | time | decimal | Duration (in seconds) of the fade animation. |
+| wait | boolean | Whether to wait for the actor hide animations to finish before playing next command. |
 
 </div>
 
@@ -709,6 +729,7 @@ Hides all the visible characters on scene.
 | Parameter | Type | Description |
 | --- | --- | --- |
 | time | decimal | Duration (in seconds) of the fade animation. |
+| wait | boolean | Whether to wait for the character fade-out animations to finish before playing next command. |
 
 </div>
 
@@ -727,6 +748,7 @@ Hides a text printer.
 | --- | --- | --- |
 | <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">printerId</span> | string | ID of the printer actor to use. Will use a default one when not specified. |
 | time | decimal | Duration (in seconds) of the hide animation. Default value for each printer is set in the actor configuration. |
+| wait | boolean | Whether to wait for the printer fade-out animation to finish before playing next command. |
 
 </div>
 
@@ -753,6 +775,7 @@ When hiding the entire UI with this command and `allowToggle` parameter is false
 | <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">uINames</span> | string list | Name of the UI elements to hide. |
 | allowToggle | boolean | When hiding the entire UI, controls whether to allow the user to re-show the UI with hotkeys or by clicking anywhere on the screen (false by default). Has no effect when hiding a particular UI. |
 | time | decimal | Duration (in seconds) of the hide animation. When not specified, will use UI-specific duration. |
+| wait | boolean | Whether to wait for the UI fade-out animation before playing next command. |
 
 </div>
 
@@ -960,6 +983,7 @@ Will fade-out the screen before playing the movie and fade back in after the pla
 | <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">movieName</span> | string | Name of the movie resource to play. |
 | time | decimal | Duration (in seconds) of the fade animation. When not specified, will use fade duration set in the movie configuration. |
 | block | boolean | Whether to block interaction with the game while the movie is playing, preventing the player from skipping it. |
+| wait | boolean | Whether to wait for the movie fade animation to finish before playing next command. |
 
 </div>
 
@@ -1015,6 +1039,7 @@ This command is used under the hood when processing generic text lines, eg gener
 | waitInput | boolean | Whether to wait for user input after finishing the printing task. Default value is controlled via `Auto Wait` property in the printer actor configuration menu. |
 | br | integer | Number of line breaks to prepend before the printed text. Default value is controlled via `Auto Line Break` property in the printer actor configuration menu. |
 | fadeTime | decimal | Controls duration (in seconds) of the printers show and hide animations associated with this command. Default value for each printer is set in the actor configuration. |
+| wait | boolean | Whether to await the text reveal and prompt for completion (wait for input) before playing next command. |
 
 </div>
 
@@ -1062,6 +1087,7 @@ Modifies a [text printer actor](/guide/text-printers).
 | tint | string | Tint color to set for the modified actor. <br /><br /> Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF. <br /><br /> Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
 | easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to use for the modification.<br /> When not specified, will use a default easing function set in the actor's manager configuration settings. |
 | time | decimal | Duration (in seconds) of the modification. |
+| wait | boolean | Whether to wait while the modifications are being applied over time. |
 
 </div>
 
@@ -1137,6 +1163,7 @@ Spawns particle system simulating [rain](/guide/special-effects#rain).
 | position | decimal list | Position (in world space) to set for the spawned effect game object. |
 | rotation | decimal list | Rotation to set for the spawned effect game object. |
 | scale | decimal list | Scale to set for the spawned effect game object. |
+| wait | boolean | Whether to wait for the effect warm-up animation before playing next command. |
 
 </div>
 
@@ -1375,6 +1402,7 @@ Sound effect tracks are not looped by default. When sfx track name (SfxPath) is 
 | fade | decimal | Duration of the volume fade-in when starting playback, in seconds (0.0 by default); doesn't have effect when modifying a playing track. |
 | group | string | Audio mixer [group path](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) that should be used when playing the audio. |
 | time | decimal | Duration (in seconds) of the modification. |
+| wait | boolean | Whether to wait for the SFX fade animation to finish before playing next command. |
 
 </div>
 
@@ -1403,6 +1431,7 @@ Plays an [SFX (sound effect)](/guide/audio#sound-effects) track with the specifi
 | restart | boolean | Whether to start playing the audio from start in case it's already playing. |
 | additive | boolean | Whether to allow playing multiple instances of the same clip; has no effect when `restart` is enabled. |
 | group | string | Audio mixer [group path](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) that should be used when playing the audio. |
+| wait | boolean | Whether to wait for the SFX to finish playing. |
 
 </div>
 
@@ -1430,6 +1459,7 @@ Applies [shake effect](/guide/special-effects#shake) for the actor with the spec
 | deltaPower | decimal | The randomized modifier applied to the base displacement amplitude. |
 | hor | boolean | Whether to displace the actor horizontally (by x-axis). |
 | ver | boolean | Whether to displace the actor vertically (by y-axis). |
+| wait | boolean | Whether to wait for the effect warm-up animation before playing next command. |
 
 </div>
 
@@ -1461,6 +1491,7 @@ Shows (makes visible) actors (character, background, text printer, choice handle
 | --- | --- | --- |
 | <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">actorIds</span> | string list | IDs of the actors to show. |
 | time | decimal | Duration (in seconds) of the fade animation. |
+| wait | boolean | Whether to wait for the actor show animations to finish before playing next command. |
 
 </div>
 
@@ -1482,6 +1513,7 @@ Shows a text printer.
 | --- | --- | --- |
 | <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">printerId</span> | string | ID of the printer actor to use. Will use a default one when not specified. |
 | time | decimal | Duration (in seconds) of the show animation. Default value for each printer is set in the actor configuration. |
+| wait | boolean | Whether to wait for the printer fade-in animation to finish before playing next command. |
 
 </div>
 
@@ -1503,6 +1535,7 @@ Makes [UI elements](/guide/user-interface) with the specified resource names vis
 | --- | --- | --- |
 | <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">uINames</span> | string list | Name of the UI resource to make visible. |
 | time | decimal | Duration (in seconds) of the show animation. When not specified, will use UI-specific duration. |
+| wait | boolean | Whether to wait for the UI fade-in animation before playing next command. |
 
 </div>
 
@@ -1556,6 +1589,7 @@ Be aware, that this command searches for an existing actor with the specified ID
 | visible | boolean | Change visibility status of the actor (show or hide). When not set and target actor is hidden, will still automatically show it. |
 | easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to use for the modifications.<br /> When not specified, will use a default easing function set in the actor's manager configuration settings. |
 | time | decimal | Duration (in seconds) of the slide animation. |
+| wait | boolean | Whether to wait for the slide animation to finish before playing next command. |
 
 </div>
 
@@ -1588,6 +1622,7 @@ Spawns particle system simulating [snow](/guide/special-effects#snow).
 | position | decimal list | Position (in world space) to set for the spawned effect game object. |
 | rotation | decimal list | Rotation to set for the spawned effect game object. |
 | scale | decimal list | Scale to set for the spawned effect game object. |
+| wait | boolean | Whether to wait for the effect warm-up animation before playing next command. |
 
 </div>
 
@@ -1603,7 +1638,7 @@ Spawns particle system simulating [snow](/guide/special-effects#snow).
 Instantiates a prefab or a [special effect](/guide/special-effects); when performed over an already spawned object, will update the spawn parameters instead.
 
 ::: info NOTE
-If prefab has a `MonoBehaviour` component attached the root object, and the component implements a `IParameterized` interface, will pass the specified `params` values after the spawn; if the component implements `IAwaitable` interface, command execution will wait for the async completion task returned by the implementation.
+If prefab has a `MonoBehaviour` component attached the root object, and the component implements a `IParameterized` interface, will pass the specified `params` values after the spawn; if the component implements `IAwaitable` interface, command execution will be able to wait for the async completion task returned by the implementation.
 :::
 
 <div class="config-table">
@@ -1616,6 +1651,7 @@ If prefab has a `MonoBehaviour` component attached the root object, and the comp
 | position | decimal list | Position (in world space) to set for the spawned object. |
 | rotation | decimal list | Rotation to set for the spawned object. |
 | scale | decimal list | Scale to set for the spawned object. |
+| wait | boolean | Whether to wait for the spawn to warm-up in case it implements `IAwaitable` interface. |
 
 </div>
 
@@ -1650,6 +1686,7 @@ When music track name (BgmPath) is not specified, will stop all the currently pl
 | --- | --- | --- |
 | <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">bgmPath</span> | string | Path to the music track to stop. |
 | fade | decimal | Duration of the volume fade-out before stopping playback, in seconds (0.35 by default). |
+| wait | boolean | Whether to wait for the BGM fade-out animation to finish before playing next command. |
 
 </div>
 
@@ -1675,6 +1712,7 @@ When sound effect track name (SfxPath) is not specified, will stop all the curre
 | --- | --- | --- |
 | <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">sfxPath</span> | string | Path to the sound effect to stop. |
 | fade | decimal | Duration of the volume fade-out before stopping playback, in seconds (0.35 by default). |
+| wait | boolean | Whether to wait for the SFX fade-out animation to finish before playing next command. |
 
 </div>
 
@@ -1739,6 +1777,7 @@ Spawns particle system simulating [sun shafts](/guide/special-effects#sun-shafts
 | position | decimal list | Position (in world space) to set for the spawned effect game object. |
 | rotation | decimal list | Rotation to set for the spawned effect game object. |
 | scale | decimal list | Scale to set for the spawned effect game object. |
+| wait | boolean | Whether to wait for the effect warm-up animation before playing next command. |
 
 </div>
 
