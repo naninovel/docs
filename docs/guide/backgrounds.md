@@ -239,27 +239,29 @@ Find [example project on GitHub](https://github.com/naninovel/samples/tree/main/
 
 You can use a [Unity scene](https://docs.unity3d.com/Manual/CreatingScenes) as a background with scene backgrounds implementation.
 
-Create a new (or move an existing) scene inside `Assets/Scenes` folder and make sure it has at least one [camera](https://docs.unity3d.com/ScriptReference/Camera.html) component attached to a root game object inside the scene. Upon loading scene background, Naninovel will assign a render texture to the first found camera in the scene. The render texture will then be assigned to a background sprite, representing the scene background inside Naninovel scene space. This way, the scene background will be able to co-exist with other background and character actors, support all the background transition effects and scale to handle various display aspect ratios.
+The scene background configuration has a `Scene Root Path` option set to `Assets/Scenes` by default — this is the directory, where the actor's scene assets are expected to be located. You can change it (for example to specify individual folder for each actor) or leave as-is.
+
+![](https://i.gyazo.com/0f3c0be40941ad739f2c873c5fbf6e51.png)
+
+::: info NOTE
+Resource (appearance) names of the scene backgrounds are expected to be equal to the paths of the scene assets relative to the root; for example, if the scene root is `Assets/Scenes` and you have `Assets/Scenes/Sphere.unity` and `Assets/Scenes/Sub/Cylinder.unity` scene assets, the associated appearances would be `Sphere` and `Sub/Cylinder` respectively.
+:::
+
+Create a new (or move an existing) scene under the specified root folder and make sure it has at least one [camera](https://docs.unity3d.com/ScriptReference/Camera.html) component attached to a root game object inside the scene. Upon loading scene background, Naninovel will assign a render texture to the first found camera in the scene. The render texture will then be assigned to a background sprite, representing the scene background inside Naninovel scene space. This way, the scene background will be able to co-exist with other background and character actors, support all the background transition effects and scale to handle various display aspect ratios.
 
 Make sure to position the scene objects in world space so that they don't overlap with objects from other scenes, that could potentially be loaded at the same time (eg, when referenced in a single naninovel script). Additionally, be aware, that in case a scene background object is positioned near the global space origin (`x0 y0 z0`), it could be rendered by Naninovel's main camera; to prevent this, either offset all the scene objects from the global origin, or use `Configuration -> Engine -> Override Objects Layer` to isolate Naninovel-related objects using [layers](https://docs.unity3d.com/Manual/Layers.html).
 
 After scene setup is complete, create a new background actor via `Naninovel -> Configuration -> Backgrounds` menu, select `SceneBackground` implementation and add the scene asset to the actor resources.
 
-![](https://i.gyazo.com/d69159ab4d93793022018fa8d244f1aa.png)
-
-::: warning
-Resource name is expected to be equal to the assigned scene asset name; otherwise, Naninovel wouldn't be able to locate and load the scene at runtime.
-:::
-
-When assigning resources for a scene background actor, corresponding scene assets should automatically be added to the [build settings](https://docs.unity3d.com/Manual/BuildSettings.html); in case you're getting an error that a scene asset wasn't added to the build, try adding it manually.
+When assigning resources for a scene background actor, corresponding scene assets should automatically be added to the [build settings](https://docs.unity3d.com/Manual/BuildSettings.html); in case you're getting an error that a scene asset is not added to the build, try adding it manually.
 
 You can now use [@back] command to control the created scene background actor, eg:
 
 ```nani
-; Show `Scene` background actor with content from `TestScene1` Unity scene.
-@back TestScene1 id:Scene
-; Transition the actor to `TestScene2` with `RandomCircleReveal` effect.
-@back TestScene2.RandomCircleReveal id:Scene
+; Show "Scene" background actor with content from "Sphere" Unity scene.
+@back Sphere id:Scene
+; Transition the actor to "Sub/Cylinder" with "RandomCircleReveal" effect.
+@back Sub/Cylinder.RandomCircleReveal id:Scene
 ```
 
 ::: tip
