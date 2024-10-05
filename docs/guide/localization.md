@@ -109,6 +109,10 @@ It's also possible to re-arrange localized text between fragments, if required b
 ```
 — this will print `{MC}` (main character name) before the rest of the sentence.
 
+::: tip
+To give translators more control over the inlined content, for example allow re-writing the actual commands or changing order of the expressions, check out [reveal events](/guide/text-printers#reveal-events) and [reveal expressions](/guide/text-printers#reveal-expressions).
+:::
+
 ### Annotations
 
 When **Include Annotations** option is enabled, generated localization documents will contain source script content being localized (command or generic line), as well as any comments placed before that. For example, given following source script text:
