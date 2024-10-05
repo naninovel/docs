@@ -89,12 +89,12 @@ Over the course of using Naninovel a number of assets (configuration, settings, 
 
 ## Add Naninovel Script
 
-Use `Create -> Folder` assets context menu and create a "Scripts" folder, under which all the Naninovel scenario script assets will be stored. Then, under the created scripts folder, click `Create -> Naninovel -> Naninovel Script` to create your first scenario script.
+Use `Create -> Folder` assets context menu and create a "Scenario" folder, under which all the Naninovel scenario script assets will be stored. Then, under the created folder, click `Create -> Naninovel -> Naninovel Script` to create your first scenario script.
 
 ![Create Naninovel Script](https://i.gyazo.com/be7677077abeb4f805979bd647d6d90e.png)
 
 ::: info NOTE
-You can store naninovel scripts (and other Naninovel resources) under any project folder and organize them any way you like; the naming is also up to you. However, note that all the scenario scripts have to be stored under a single root folder, which has to be specified via `Script Root` option in scripts configuration menu (by default the root is set to `Assets/Scripts`). It's ok to create any level of nested folders for organization purposes, as long as the sub-folders eventually resolve to the script root.
+You can store naninovel scripts (and other Naninovel resources) under any project folder and organize them any way you like; the naming is also up to you. However, note that all the scenario scripts have to be stored under a single root folder, which has to be specified via `Scenario Root` option in scripts configuration menu (by default the root is set to `Assets/Scenario`). It's ok to create any level of nested folders for organization purposes, as long as the sub-folders eventually resolve to the script root.
 
 ::: warning
 Unity treats folders named `Resources` in a special manner: assets stored under such folders are force-included to the build, which may cause [performance issues](https://docs.unity3d.com/Manual/UnderstandingPerformanceResourcesFolder.html). Most importantly, never store anything under `Resources/Naninovel` folder, unless specifically required in the guide, as this may cause all sorts of conflicts and undefined behaviour.
@@ -144,7 +144,7 @@ In case "NEW GAME" button of the title menu is not active, make sure `Start Game
 
 Characters in Naninovel can be based on regular and diced sprites, animated Live2D or Spine models and 3D meshes; you can add your own implementations as well. For the purpose of this tutorial, we’ll use a sprite implementation.
 
-Each character is represented by ID and a set of appearances. To add a character, use character manager GUI accessible via `Naninovel -> Resources -> Characters` menu, add a new character actor record specifying its ID, then double-click the record (or press button at the and of the record) and add all the appearance sprites to the `Resources` list. Just like with naninovel scripts, you can drag-drop multiple assets and folders to the list.
+Each character is represented by ID and a set of appearances. To add a character, use character manager GUI accessible via `Naninovel -> Resources -> Characters` menu, add a new character actor record specifying its ID, then double-click the record (or press button at the end of the record) and add all the appearance sprites to the `Resources` list. Just like with naninovel scripts, you can drag-drop multiple assets and folders to the list.
 
 ![Add Character](https://i.gyazo.com/0c1e81ea1a20165c1bf88854df177b7f.png)
 

@@ -40,7 +40,7 @@ The resources localization scheme described above works with all the resource ty
 
 ![](https://i.gyazo.com/1b47d70dcbbb45a3ab955b44c9b50942.png)
 
-First, pick `Scripts Folder (input)` — project directory where Naninovel scenario scripts (`.nani`) are stored (eg, `Assets/Scripts`). Optionally, to generate localization documents for [managed text](/guide/managed-text) as well, pick `Text Folder (input)` — directory where the managed text documents are stored (`Assets/Resources/Naninovel/Text` by default).
+First, pick `Scripts Folder (input)` — project directory where Naninovel scenario scripts (`.nani`) are stored (eg, `Assets/Scenario`). Optionally, to generate localization documents for [managed text](/guide/managed-text) as well, pick `Text Folder (input)` — directory where the managed text documents are stored (`Assets/Resources/Naninovel/Text` by default).
 
 Alternatively, in case you wish to generate localization documents not on the source locale, but on a previously generated documents for another locale, instead of source scenario scripts folder pick text folder with existing localization documents for another locale, eg `Assets/Resources/Naninovel/Localization/ja-JP/Text`.
 
@@ -54,7 +54,7 @@ It's possible to generate resources for all the available locales in the project
 
 Press "Generate" button to create (update) the localization resources. On consequent runs the tool will respect previously generated localization documents and preserve localized statements in case the source material has not changed.
 
-Script localization documents are grouped under `Scripts` folder and consist of statements in the following format:
+Script localization documents are grouped under `Scenario` folder and consist of statements in the following format:
 
 ```nani
 # ID
