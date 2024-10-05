@@ -255,7 +255,7 @@ Resolve Mode | Nearest | The mode in which script player handles missing playbac
 Property | Default Value | Description
 --- | --- | ---
 Loader | Scripts- (Addressable, Project) | Configuration of the resource loader used with naninovel script resources.
-Script Root | Assets/Scripts | Directory path relative to the Unity project root, where all the scenario script assets are stored.
+Scenario Root | Assets/Scenario | Directory path relative to the Unity project root, where all the scenario script assets (.nani files) are stored.
 Script Parser | Naninovel.Script Asset Parser, Elringus.Naninovel.Runtime, Version=0.0.0.0, Culture=neutral, Public Key Token=null | IScriptParser implementation to use for creating script assets from text. Reimport script assets after modifying this setting for changes to take effect.
 Compiler Localization |  (Naninovel.Compiler Localization) | Locale-specific NaniScript compiler options. Will propagate to IDE extension on metadata sync. Restart Unity editor and reimport script assets for changes to take effect.
 Stable Identification | False | Whether to automatically write identifiers to all the localizable text parameters in imported scripts. Enable to persist associations (eg, localization and voiceover) while editing text content. Re-import the scripts for the change to take effect.
@@ -265,7 +265,7 @@ Start Game Script | Null | Local resource path of the script to play when starti
 Auto Add Scripts | True | Whether to automatically add created naninovel scripts to the resources.
 Auto Resolve Path | True | Whether to automatically resolve and update resource paths whenever scripts are created, renamed or moved.
 Hot Reload Scripts | True | Whether to reload modified (both via visual and external editors) scripts and apply changes during play mode without restarting the playback.
-Watch Scripts | True | Whether to run a file system watcher over '.nani' files in the specified 'Script Root'. Required to register script changes when edited with an external application.
+Watch Scripts | True | Whether to run a file system watcher over '.nani' files in the specified 'Scenario Root'. Required to register script changes when edited with an external application.
 Show Script Navigator | False | Whether to auto-show script navigator UI after engine is initialized (requires 'IScriptNavigatorUI' available in UI resources).
 Enable Visual Editor | True | Whether to show visual script editor when a script is selected.
 Hide Unused Parameters | True | Whether to hide un-assigned parameters of the command lines when the line is not hovered or focused.
