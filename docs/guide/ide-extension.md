@@ -29,9 +29,9 @@ Extension in the VS Code registry is compatible with the current stable Naninove
 
 When opening (in VS Code) not just the scenario root (directory where all the `.nani` files are stored), but a directory above the root (eg, Unity project root), make sure `Scenario Root` setting points to the actual root directory.
 
-![](https://i.gyazo.com/4856ba493f2515ad0a662fd8459a8a97.png)
+![](https://i.gyazo.com/3ecbb9440a8e53d4b3d654b15c5ea557.png)
 
-— by default, the root is set to `Scenario`. In case you use other directory name to store the scenario scripts, change the setting and restart VS Code; otherwise script paths won't be correctly resolved, resulting in navigation warnings and wrong paths shown in auto-completions.
+— by default, the root is set to `Assets/Scenario`, which is also the default on the Unity side. In case you use other directory name to store the scenario scripts, change the setting and restart VS Code; otherwise script paths won't be correctly resolved, resulting in navigation warnings and wrong paths shown in auto-completions.
 
 ## Spell Check
 
