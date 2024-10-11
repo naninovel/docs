@@ -162,6 +162,7 @@ Backgrounds are handled a bit differently from characters to better accommodate 
 | tint | string | Tint color to set for the modified actor. <br /><br /> Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF. <br /><br /> Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
 | easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to use for the modification.<br /> When not specified, will use a default easing function set in the actor's manager configuration settings. |
 | time | decimal | Duration (in seconds) of the modification. |
+| lazy | boolean | Whether to not complete the modifications tween animation before starting next one.<br /> When enabled and next animation is applied while the current one is still running, the actor won't instantly "jump" to the target values of the current animation, but instead continue animating to the new target from the current state. |
 | wait | boolean | Whether to wait while the modifications are being applied over time. |
 
 </div>
@@ -319,6 +320,7 @@ Modifies the main camera, changing offset, zoom level and rotation over time. Ch
 | set | named boolean list | Names of the components to enable or disable. The components should be attached to the same game object as the camera. This can be used to explicitly enable or disable [custom post-processing effects](/guide/special-effects#camera-effects). Specified components enabled state will override effect of `toggle` parameter. Use `*` to affect all the components attached to the camera object. |
 | easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to use for the modification.<br /> When not specified, will use a default easing function set in the camera configuration settings. |
 | time | decimal | Duration (in seconds) of the modification. |
+| lazy | boolean | Whether to not complete the current camera animation before starting next animations.<br /> When enabled and next animation is applied while the current one is still running, the camera won't instantly "jump" to the target values of the current animation, but instead continue animating to the new target from the current position. |
 | wait | boolean | Whether to wait for the camera modification animations to finish before playing next command. |
 
 </div>
@@ -374,6 +376,7 @@ Modifies a [character actor](/guide/characters).
 | tint | string | Tint color to set for the modified actor. <br /><br /> Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF. <br /><br /> Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
 | easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to use for the modification.<br /> When not specified, will use a default easing function set in the actor's manager configuration settings. |
 | time | decimal | Duration (in seconds) of the modification. |
+| lazy | boolean | Whether to not complete the modifications tween animation before starting next one.<br /> When enabled and next animation is applied while the current one is still running, the actor won't instantly "jump" to the target values of the current animation, but instead continue animating to the new target from the current state. |
 | wait | boolean | Whether to wait while the modifications are being applied over time. |
 
 </div>
@@ -690,6 +693,7 @@ Hides actors (character, background, text printer, choice handler) with the spec
 | --- | --- | --- |
 | <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">actorIds</span> | string list | IDs of the actors to hide. |
 | time | decimal | Duration (in seconds) of the fade animation. |
+| lazy | boolean | Whether to not complete the current hide animation before starting next animations.<br /> When enabled and next animation is applied while the current one is still running, the actors won't instantly "jump" to the target values of the current animation, but instead continue animating to the new target from the current position. |
 | wait | boolean | Whether to wait for the UI fade-out animation to finish before playing next command. |
 
 </div>
@@ -711,6 +715,7 @@ Hides all the actors (characters, backgrounds, text printers, choice handlers) o
 | Parameter | Type | Description |
 | --- | --- | --- |
 | time | decimal | Duration (in seconds) of the fade animation. |
+| lazy | boolean | Whether to not complete the current hide animation before starting next animations.<br /> When enabled and next animation is applied while the current one is still running, the actors won't instantly "jump" to the target values of the current animation, but instead continue animating to the new target from the current position. |
 | wait | boolean | Whether to wait for the actor hide animations to finish before playing next command. |
 
 </div>
@@ -729,6 +734,7 @@ Hides all the visible characters on scene.
 | Parameter | Type | Description |
 | --- | --- | --- |
 | time | decimal | Duration (in seconds) of the fade animation. |
+| lazy | boolean | Whether to not complete the current hide animation before starting next animations.<br /> When enabled and next animation is applied while the current one is still running, the characters won't instantly "jump" to the target values of the current animation, but instead continue animating to the new target from the current position. |
 | wait | boolean | Whether to wait for the character fade-out animations to finish before playing next command. |
 
 </div>
@@ -1087,6 +1093,7 @@ Modifies a [text printer actor](/guide/text-printers).
 | tint | string | Tint color to set for the modified actor. <br /><br /> Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF. <br /><br /> Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
 | easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to use for the modification.<br /> When not specified, will use a default easing function set in the actor's manager configuration settings. |
 | time | decimal | Duration (in seconds) of the modification. |
+| lazy | boolean | Whether to not complete the modifications tween animation before starting next one.<br /> When enabled and next animation is applied while the current one is still running, the actor won't instantly "jump" to the target values of the current animation, but instead continue animating to the new target from the current state. |
 | wait | boolean | Whether to wait while the modifications are being applied over time. |
 
 </div>
@@ -1466,7 +1473,7 @@ Applies [shake effect](/guide/special-effects#shake) for the actor with the spec
 ```nani
 ; Shake 'Dialogue' text printer with default params.
 @shake Dialogue
-;
+
 ; Start shaking 'Kohaku' character, show choice to stop and act accordingly.
 @shake Kohaku count:0
 @choice "Continue shaking" goto:.Continue
@@ -1491,6 +1498,7 @@ Shows (makes visible) actors (character, background, text printer, choice handle
 | --- | --- | --- |
 | <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">actorIds</span> | string list | IDs of the actors to show. |
 | time | decimal | Duration (in seconds) of the fade animation. |
+| lazy | boolean | Whether to not complete the current show animation before starting next animations.<br /> When enabled and next animation is applied while the current one is still running, the actors won't instantly "jump" to the target values of the current animation, but instead continue animating to the new target from the current position. |
 | wait | boolean | Whether to wait for the actor show animations to finish before playing next command. |
 
 </div>
@@ -1589,6 +1597,7 @@ Be aware, that this command searches for an existing actor with the specified ID
 | visible | boolean | Change visibility status of the actor (show or hide). When not set and target actor is hidden, will still automatically show it. |
 | easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to use for the modifications.<br /> When not specified, will use a default easing function set in the actor's manager configuration settings. |
 | time | decimal | Duration (in seconds) of the slide animation. |
+| lazy | boolean | Whether to not complete the current slide animation before starting next animations.<br /> When enabled and next animation is applied while the current one is still running, the actors won't instantly "jump" to the target values of the current animation, but instead continue animating to the new target from the current position. |
 | wait | boolean | Whether to wait for the slide animation to finish before playing next command. |
 
 </div>
