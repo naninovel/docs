@@ -42,6 +42,11 @@ u {
     text-underline-position: under;
 }
 
+/* [doc] superscript in release notes */
+a:has(> sup) {
+    text-decoration: none !important;
+}
+
 /**
  * Brand
  * -------------------------------------------------------------------------- */
