@@ -30,7 +30,7 @@ export default defineConfig({
         socialLinks: [
             { icon: "github", link: "https://github.com/naninovel" },
             { icon: "discord", link: "https://discord.gg/BfkNqem" },
-            { icon: "twitter", link: "https://twitter.com/naniengine" }
+            { icon: "x", link: "https://x.com/naniengine" }
         ]
     },
     sitemap: { hostname: "https://naninovel.com" },

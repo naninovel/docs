@@ -1,5 +1,6 @@
 import { DefaultTheme, LocaleConfig } from "vitepress";
-import * as sidebars from "./sidebars";
+import * as guide from "./sidebars-guide";
+import * as releases from "./sidebars-releases";
 
 export const config: LocaleConfig<DefaultTheme.Config> = {
     root: {
@@ -13,7 +14,7 @@ export const config: LocaleConfig<DefaultTheme.Config> = {
             darkModeSwitchLabel: "Appearance",
             returnToTopLabel: "Return to top",
             outline: { label: "On this page", level: "deep" },
-            sidebar: { "/guide/": sidebars.en },
+            sidebar: { "/guide/": guide.en, "/releases/": releases.en },
             docFooter: { prev: "Previous page", next: "Next page" },
             nav: buildNav(["FAQ", "Guide", "Commands", "Support"]),
             editLink: buildEditLink("Edit this page on GitHub")
@@ -30,7 +31,7 @@ export const config: LocaleConfig<DefaultTheme.Config> = {
             darkModeSwitchLabel: "外観",
             returnToTopLabel: "トップに戻る",
             outline: { label: "このページでは", level: "deep" },
-            sidebar: { "/ja/guide/": sidebars.js },
+            sidebar: { "/ja/guide/": guide.js },
             docFooter: { prev: "前のページ", next: "次のページ" },
             nav: buildNav(["FAQ", "ガイド", "コマンド", "サポート"], "ja"),
             editLink: buildEditLink("GitHub でこのページを編集する")
@@ -47,7 +48,7 @@ export const config: LocaleConfig<DefaultTheme.Config> = {
             darkModeSwitchLabel: "外貌",
             returnToTopLabel: "返回顶部",
             outline: { label: "在本页", level: "deep" },
-            sidebar: { "/zh/guide/": sidebars.zn },
+            sidebar: { "/zh/guide/": guide.zn },
             docFooter: { prev: "上一页", next: "下一页" },
             nav: buildNav(["常见问题", "指南", "指令", "技术支持"], "zh"),
             editLink: buildEditLink("在 GitHub 上编辑此页面")
@@ -64,7 +65,7 @@ export const config: LocaleConfig<DefaultTheme.Config> = {
             darkModeSwitchLabel: "Оформление",
             returnToTopLabel: "Вернуться наверх",
             outline: { label: "На этой странице", level: "deep" },
-            sidebar: { "/ru/guide/": sidebars.ru },
+            sidebar: { "/ru/guide/": guide.ru },
             docFooter: { prev: "Предыдущая страница", next: "Следующая страница" },
             nav: buildNav(["FAQ", "Руководство", "Команды", "Поддержка"], "ru"),
             editLink: buildEditLink("Редактировать эту страницу на GitHub")
@@ -204,7 +205,7 @@ function buildNav(text: string[], lang?: string): DefaultTheme.NavItem[] {
         { text: text[3], link: buildLink("support") },
         {
             text: "v1.20-preview", items: [
-                { text: "Changelog", link: "https://github.com/naninovel/docs/releases/tag/v1.20" },
+                { text: "Changelog", link: "/releases/1.20" },
                 { text: "Contributing", link: "https://github.com/naninovel/docs/blob/main/CONTRIBUTING.md" },
                 { text: "v1.19-stable", link: "https://naninovel.com/guide" }
             ]
