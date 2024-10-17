@@ -2,13 +2,9 @@
 
 ## Unity Version
 
-Supported Unity version range: `2022.3.45 - 6`. Only latest patches of the associated [LTS streams](https://unity.com/releases/lts-vs-tech-stream) in the range are supported. Alpha, beta and non-LTS releases (eg `2022.1` or `2023.2`) are not supported. They may work, but we won't be able to provide any support for using Naninovel with them. Recommended Unity version is [2022.3.45](https://docs.unity3d.com/2022.3/Documentation/Manual/WhatsNew2022LTS.html).
+Supported Unity versions range: `2022.3.45 - 6`.
 
-::: tip
-It's not uncommon for Unity to introduce regressions even in LTS patches (let alone major releases), hence we recommend 2022.3.45, which is in its final state and doesn't have any known bugs associated with typical VN development.
-:::
-
-Compatibility issues with future Unity releases (once they reach LTS status) will be addressed in the next Naninovel releases. Compatible Unity versions for past Naninovel releases are specified in the [change logs](https://github.com/naninovel/docs/releases).
+Compatibility issues with the next major Unity releases (once they reach LTS status) will be addressed in the next Naninovel releases. Compatible Unity versions for past Naninovel releases are specified in the [changelog](https://pre.naninovel.com/releases).
 
 ## UPM Packages
 
