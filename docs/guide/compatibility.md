@@ -2,9 +2,9 @@
 
 ## Unity Version
 
-Supported Unity versions range: `2022.3.45 - 6`.
+Supported Unity versions range: `2022.3.45 - 6`
 
-Compatibility issues with the next major Unity releases (once they reach LTS status) will be addressed in the next Naninovel releases. Compatible Unity versions for past Naninovel releases are specified in the [changelog](https://pre.naninovel.com/releases).
+Any issues with the future Unity releases will be addressed in the next Naninovel releases. Compatible Unity versions for past Naninovel releases are specified in the [release notes](https://pre.naninovel.com/releases).
 
 ## UPM Packages
 
@@ -23,7 +23,7 @@ The following platforms were tested for compatibility and are officially support
 * Consoles: Nintendo Switch
 
 ::: info NOTE
-While Unity allows building for numerous other platforms (PlayStation, Xbox, Stadia, etc), some features (eg, save system) may not work out of the box, as access to the platform-specific SDKs is restricted for registered developers only. We don't have the access to such SDKs and are not able to provide support for platforms outside of the list above. Find more information about developing for game consoles in [the article](https://unity.com/how-to/develop-console-video-games-unity).
+While Unity allows building for many other platforms (PlayStation, Xbox, Stadia, etc), some features (eg, save system) may not work out of the box, as access to the platform-specific SDKs is restricted for registered developers only. We don't have the access to such SDKs and are not able to provide support for platforms outside the list above. Find more information in [the article](https://unity.com/how-to/develop-console-video-games-unity).
 :::
 
 ## Enter Play Mode
