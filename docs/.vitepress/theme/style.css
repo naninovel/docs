@@ -30,10 +30,6 @@
     --vp-layout-max-width: 1450px; /** Default is 1440px **/
 }
 
-.VPDoc.has-aside .content-container {
-    max-width: 720px !important; /** 80 chars in code. Default is 688px **/
-}
-
 pre {
     font-variant-ligatures: none;
 }
@@ -42,9 +38,21 @@ u {
     text-underline-position: under;
 }
 
-/* [doc] superscript in release notes */
-a:has(> sup) {
-    text-decoration: none !important;
+/**
+ * Layout
+ * -------------------------------------------------------------------------- */
+
+/* The content width when left side-bar is present (pages under /guide). */
+/* 720px is ~80 chars in code blocks. VitePress's default is 688px. */
+.VPDoc.has-sidebar .content-container {
+    max-width: 720px !important;
+}
+
+/* The content width when left side-bar is not present (pages outside of /guide). */
+.VPDoc:not(.has-sidebar) {
+    .container { max-width: var(--vp-layout-max-width) !important; }
+    .content { max-width: 950px !important; }
+    .content-container { max-width: 830px !important; }
 }
 
 /**
@@ -104,11 +112,17 @@ a:has(> sup) {
 }
 
 .external-link-icon {
-    /*display: inline-block;*/
-    /*width: 15px;*/
-    /*height: 15px;*/
     margin-left: -2px;
     margin-right: 2px;
+}
+
+/* [doc] superscript in release notes */
+a:has(> sup) { text-decoration: none !important; }
+a:has(> sup):not(:hover) { opacity: 0.65; }
+
+sup + .external-link-icon {
+    position: relative;
+    top: -5px;
 }
 
 /**

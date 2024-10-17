@@ -1,6 +1,5 @@
 import { DefaultTheme, LocaleConfig } from "vitepress";
-import * as guide from "./sidebars-guide";
-import * as releases from "./sidebars-releases";
+import * as guide from "./sidebar";
 
 export const config: LocaleConfig<DefaultTheme.Config> = {
     root: {
@@ -14,7 +13,7 @@ export const config: LocaleConfig<DefaultTheme.Config> = {
             darkModeSwitchLabel: "Appearance",
             returnToTopLabel: "Return to top",
             outline: { label: "On this page", level: "deep" },
-            sidebar: { "/guide/": guide.en, "/releases/": releases.en },
+            sidebar: { "/guide/": guide.en },
             docFooter: { prev: "Previous page", next: "Next page" },
             nav: buildNav(["FAQ", "Guide", "Commands", "Support"]),
             editLink: buildEditLink("Edit this page on GitHub")
@@ -205,7 +204,7 @@ function buildNav(text: string[], lang?: string): DefaultTheme.NavItem[] {
         { text: text[3], link: buildLink("support") },
         {
             text: "v1.20-preview", items: [
-                { text: "Changelog", link: "/releases/1.20" },
+                { text: "Changelog", link: "/releases" },
                 { text: "Contributing", link: "https://github.com/naninovel/docs/blob/main/CONTRIBUTING.md" },
                 { text: "v1.19-stable", link: "https://naninovel.com/guide" }
             ]
