@@ -202,6 +202,10 @@ table > tfoot:not(:last-child) {
     --vp-code-color: #c9def1;
 }
 
+.vp-doc :not(pre) > code {
+    padding: 2px 6px;
+}
+
 .vp-doc a:hover > code {
     color: inherit !important;
 }
