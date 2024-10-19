@@ -72,124 +72,72 @@ export const config: LocaleConfig<DefaultTheme.Config> = {
     }
 };
 
-export const search: Record<string, Partial<DefaultTheme.AlgoliaSearchOptions>> = {
+export const search: Record<string, Partial<DefaultTheme.LocalSearchOptions>> = {
     ja: {
-        placeholder: "文書を検索する",
         translations: {
             button: {
                 buttonText: "文書を検索する",
                 buttonAriaLabel: "文書を検索する"
             },
             modal: {
-                searchBox: {
-                    resetButtonTitle: "明確なクエリ基準",
-                    resetButtonAriaLabel: "明確なクエリ基準",
-                    cancelButtonText: "キャンセル",
-                    cancelButtonAriaLabel: "キャンセル"
-                },
-                startScreen: {
-                    recentSearchesTitle: "検索履歴",
-                    noRecentSearchesText: "検索履歴がありません",
-                    saveRecentSearchButtonTitle: "検索履歴に保存",
-                    removeRecentSearchButtonTitle: "検索履歴から削除する",
-                    favoriteSearchesTitle: "収集",
-                    removeFavoriteSearchButtonTitle: "お気に入りから削除"
-                },
-                errorScreen: {
-                    titleText: "結果が得られない",
-                    helpText: "インターネット接続を確認する必要がある場合があります"
-                },
+                displayDetails: "显示详细列表",
+                resetButtonTitle: "重置搜索",
+                backButtonTitle: "关闭搜索",
+                noResultsText: "没有结果",
                 footer: {
-                    selectText: "選ぶ",
-                    navigateText: "切り替える",
-                    closeText: "閉鎖",
-                    searchByText: "で検索"
-                },
-                noResultsScreen: {
-                    noResultsText: "結果がありません",
-                    suggestedQueryText: "クエリを試すことができます",
-                    reportMissingResultsText: "クエリには結果が必要だと考えている？",
-                    reportMissingResultsLinkText: "クリックフィードバック"
+                    selectText: "选择",
+                    selectKeyAriaLabel: "输入",
+                    navigateText: "导航",
+                    navigateUpKeyAriaLabel: "上箭头",
+                    navigateDownKeyAriaLabel: "下箭头",
+                    closeText: "关闭",
+                    closeKeyAriaLabel: "esc"
                 }
             }
         }
     },
     zh: {
-        placeholder: "搜索文档",
         translations: {
             button: {
-                buttonText: "搜索文档",
-                buttonAriaLabel: "搜索文档"
+                buttonText: "搜索",
+                buttonAriaLabel: "搜索"
             },
             modal: {
-                searchBox: {
-                    resetButtonTitle: "清除查询条件",
-                    resetButtonAriaLabel: "清除查询条件",
-                    cancelButtonText: "取消",
-                    cancelButtonAriaLabel: "取消"
-                },
-                startScreen: {
-                    recentSearchesTitle: "搜索历史",
-                    noRecentSearchesText: "没有搜索历史",
-                    saveRecentSearchButtonTitle: "保存至搜索历史",
-                    removeRecentSearchButtonTitle: "从搜索历史中移除",
-                    favoriteSearchesTitle: "收藏",
-                    removeFavoriteSearchButtonTitle: "从收藏中移除"
-                },
-                errorScreen: {
-                    titleText: "无法获取结果",
-                    helpText: "你可能需要检查你的网络连接"
-                },
+                displayDetails: "显示详细列表",
+                resetButtonTitle: "重置搜索",
+                backButtonTitle: "关闭搜索",
+                noResultsText: "没有结果",
                 footer: {
                     selectText: "选择",
-                    navigateText: "切换",
+                    selectKeyAriaLabel: "输入",
+                    navigateText: "导航",
+                    navigateUpKeyAriaLabel: "上箭头",
+                    navigateDownKeyAriaLabel: "下箭头",
                     closeText: "关闭",
-                    searchByText: "搜索依据"
-                },
-                noResultsScreen: {
-                    noResultsText: "无法找到相关结果",
-                    suggestedQueryText: "你可以尝试查询",
-                    reportMissingResultsText: "你认为该查询应该有结果？",
-                    reportMissingResultsLinkText: "点击反馈"
+                    closeKeyAriaLabel: "esc"
                 }
             }
         }
     },
     ru: {
-        placeholder: "Искать документы",
         translations: {
             button: {
                 buttonText: "Поиск",
                 buttonAriaLabel: "Поиск"
             },
             modal: {
-                searchBox: {
-                    resetButtonTitle: "Сброс",
-                    resetButtonAriaLabel: "Сброс",
-                    cancelButtonText: "Отмена",
-                    cancelButtonAriaLabel: "Отмена"
-                },
-                startScreen: {
-                    recentSearchesTitle: "Последние запросы",
-                    noRecentSearchesText: "Нет последних запросов",
-                    saveRecentSearchButtonTitle: "Сохранить",
-                    removeRecentSearchButtonTitle: "Удалить",
-                    favoriteSearchesTitle: "Сохранённые запросы",
-                    removeFavoriteSearchButtonTitle: "Удалить"
-                },
-                errorScreen: {
-                    titleText: "Невозможно выполнить поиск",
-                    helpText: "Проверьте соединение с сетью"
-                },
+                displayDetails: "Показать детали",
+                resetButtonTitle: "Сбросить поиск",
+                backButtonTitle: "Назад",
+                noResultsText: "Не найдено",
                 footer: {
                     selectText: "Выбрать",
+                    selectKeyAriaLabel: "Выбрать",
                     navigateText: "Навигация",
+                    navigateUpKeyAriaLabel: "Веерх",
+                    navigateDownKeyAriaLabel: "Вниз",
                     closeText: "Закрыть",
-                    searchByText: "Поиск предоставлен"
-                },
-                noResultsScreen: {
-                    noResultsText: "Ничего не найдено",
-                    suggestedQueryText: "Возможно вы искали"
+                    closeKeyAriaLabel: "esc"
                 }
             }
         }

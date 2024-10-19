@@ -13,7 +13,8 @@ export const vite: UserConfig = {
         encode: { root: "./docs/public/imgit/encoded" },
         plugins: [svg(), youtube()]
     })],
-    resolve: { alias: [override("NotFound", "not-found")] }
+    resolve: { alias: [override("NotFound", "not-found")] },
+    build: { chunkSizeWarningLimit: 1024 } // local search index is ~600KB per locale
 };
 
 // https://vitepress.dev/guide/extending-default-theme#overriding-internal-components
