@@ -87,7 +87,7 @@ u {
 
     /*!* Background of main bg. *!*/
     /*--vp-c-bg: #1b1d1f;*/
-    /*!* Background of some lighter bgs (eg, algolia search). *!*/
+    /*!* Background of some lighter bgs (eg, search). *!*/
     /*--vp-c-bg-soft: #1f2426;*/
     /*!* Background of menus (eg, lang selection) *!*/
     /*--vp-c-bg-elv: #1f2426;*/
@@ -211,51 +211,58 @@ table > tfoot:not(:last-child) {
 }
 
 /**
- * Algolia Search
+ * Local Search
  * -------------------------------------------------------------------------- */
 
-.DocSearch {
-    --docsearch-primary-color: var(--vp-c-brand) !important;
-    --docsearch-bg-color: rgba(255, 255, 255, 0.5);
-    --docsearch-modal-shadow: 0 0 15px 0 var(--vp-c-border);
-}
-
-.dark .DocSearch {
-    --docsearch-modal-shadow: none;
-    --docsearch-bg-color: rgba(30, 30, 32, 0.5);
-}
-
-.dark .DocSearch-Modal {
-    border: solid 1px var(--vp-c-divider);
-}
-
+/* By default VP hides the page scrollbar when search is active; disable that. */
 @media (min-width: 769px) {
-    .DocSearch--active {
+    body {
         overflow: unset !important;
     }
 }
 
-.DocSearch-Container {
-    background-color: transparent !important;
-    transition: background-color .2s ease;
+@keyframes backdrop-fade-in {
+    from { background-color: transparent; }
+    to { background-color: rgba(255, 255, 255, 0.5); }
 }
 
-.DocSearch--active .DocSearch-Container {
-    background-color: var(--docsearch-bg-color) !important;
+.VPLocalSearchBox .backdrop {
+    animation: backdrop-fade-in .2s ease forwards;
 }
 
-.DocSearch-Modal {
-    opacity: 0;
-    transform: translateY(-15%) scale(0.95);
-    transition: opacity, transform .2s ease;
+@keyframes backdrop-fade-in-dark {
+    from { background-color: transparent; }
+    to { background-color: rgba(30, 30, 32, 0.5); }
 }
 
-.DocSearch--active .DocSearch-Modal {
-    opacity: 1;
-    transform: scale(1);
+.dark .VPLocalSearchBox .backdrop {
+    animation: backdrop-fade-in-dark .2s ease forwards;
 }
 
-.DocSearch-Container::after {
+.VPLocalSearchBox .shell {
+    box-shadow: 0 0 15px 0 var(--vp-c-border);
+}
+
+.dark .VPLocalSearchBox .shell {
+    border: solid 1px var(--vp-c-divider);
+    box-shadow: none;
+}
+
+@keyframes modal-slide-in {
+    from { opacity: 0; transform: translateY(-15%) scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.VPLocalSearchBox .shell {
+    animation: modal-slide-in .2s ease forwards;
+}
+
+@keyframes backdrop-blur-in {
+    from { backdrop-filter: blur(5px) opacity(0); }
+    to { backdrop-filter: blur(5px) opacity(1); }
+}
+
+.VPLocalSearchBox .backdrop::after {
     content: "";
     position: absolute;
     top: 0;
@@ -263,12 +270,7 @@ table > tfoot:not(:last-child) {
     right: 0;
     bottom: 0;
     z-index: -1;
-    transition: backdrop-filter .2s ease;
-    backdrop-filter: blur(5px) opacity(0);
-}
-
-.DocSearch--active .DocSearch-Container::after {
-    backdrop-filter: blur(5px) opacity(1);
+    animation: backdrop-blur-in .2s ease forwards;
 }
 
 /**

@@ -18,15 +18,7 @@ export default defineConfig({
     themeConfig: {
         logo: { src: "/favicon.svg" },
         logoLink: { link: "/", target: "_self" },
-        search: {
-            provider: "algolia",
-            options: {
-                appId: "4PDIF5MCBA",
-                apiKey: "61d68d300d7651efc10f2ff65fbbc047",
-                indexName: "naninovel",
-                locales: l10n.search
-            }
-        },
+        search: { provider: "local", options: { detailedView: true, locales: l10n.search } },
         socialLinks: [
             { icon: "github", link: "https://github.com/naninovel" },
             { icon: "discord", link: "https://discord.gg/BfkNqem" },
@@ -37,5 +29,5 @@ export default defineConfig({
     sitemap: { hostname: "https://naninovel.com" },
     locales: l10n.config,
     markdown: md,
-    vite: vite
+    vite: vite,
 });
