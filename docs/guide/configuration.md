@@ -17,7 +17,7 @@ Property | Default Value | Description
 --- | --- | ---
 Audio Loader | Audio- (Addressable, Project) | Configuration of the resource loader used with audio (BGM and SFX) resources.
 Voice Loader | Voice- (Addressable, Project) | Configuration of the resource loader used with voice resources.
-Audio Player | Naninovel.Audio Player, Elringus.Naninovel.Runtime, Version=0.0.0.0, Culture=neutral, Public Key Token=null | IAudioPlayer implementation responsible for playing audio clips.
+Audio Player | Naninovel Audio Player | IAudioPlayer implementation responsible for playing audio clips.
 Default Master Volume | 1 | Master volume to set when the game is first started.
 Default Bgm Volume | 1 | BGM volume to set when the game is first started.
 Default Sfx Volume | 1 | SFX volume to set when the game is first started.
@@ -256,7 +256,7 @@ Property | Default Value | Description
 --- | --- | ---
 Loader | Scripts- (Addressable, Project) | Configuration of the resource loader used with naninovel script resources.
 Scenario Root | Assets/Scenario | Directory path relative to the Unity project root, where all the scenario script assets (.nani files) are stored.
-Script Parser | Naninovel.Script Asset Parser, Elringus.Naninovel.Runtime, Version=0.0.0.0, Culture=neutral, Public Key Token=null | IScriptParser implementation to use for creating script assets from text. Reimport script assets after modifying this setting for changes to take effect.
+Script Parser | Naninovel Script Asset Parser | IScriptParser implementation to use for creating script assets from text. Reimport script assets after modifying this setting for changes to take effect.
 Compiler Localization |  (Naninovel.Compiler Localization) | Locale-specific NaniScript compiler options. Will propagate to IDE extension on metadata sync. Restart Unity editor and reimport script assets for changes to take effect.
 Stable Identification | False | Whether to automatically write identifiers to all the localizable text parameters in imported scripts. Enable to persist associations (eg, localization and voiceover) while editing text content. Re-import the scripts for the change to take effect.
 Initialization Script | Null | Local resource path of the script to play right after the engine initialization.
@@ -319,9 +319,9 @@ Reset On Goto | False | Whether to reset state of the engine services when loadi
 Enable State Rollback | True | Whether to enable state rollback feature allowing player to rewind the script backwards.
 State Rollback Steps | 1024 | The number of state snapshots to keep at runtime; determines how far back the rollback (rewind) can be performed. Increasing this value will consume more memory.
 Saved Rollback Steps | 128 | The number of state snapshots to serialize (save) under the save game slots; determines how far back the rollback can be performed after loading a saved game. Increasing this value will enlarge save game files.
-Game State Handler | Naninovel.Universal Game State Serializer, Elringus.Naninovel.Runtime, Version=0.0.0.0, Culture=neutral, Public Key Token=null | Implementation responsible for de-/serializing local (session-specific) game state; see `State Management` guide on how to add custom serialization handlers.
-Global State Handler | Naninovel.Universal Global State Serializer, Elringus.Naninovel.Runtime, Version=0.0.0.0, Culture=neutral, Public Key Token=null | Implementation responsible for de-/serializing global game state; see `State Management` guide on how to add custom serialization handlers.
-Settings State Handler | Naninovel.Universal Settings State Serializer, Elringus.Naninovel.Runtime, Version=0.0.0.0, Culture=neutral, Public Key Token=null | Implementation responsible for de-/serializing game settings; see `State Management` guide on how to add custom serialization handlers.
+Game State Handler | Naninovel Universal Game State Serializer | Implementation responsible for de-/serializing local (session-specific) game state; see `State Management` guide on how to add custom serialization handlers.
+Global State Handler | Naninovel Universal Global State Serializer | Implementation responsible for de-/serializing global game state; see `State Management` guide on how to add custom serialization handlers.
+Settings State Handler | Naninovel Universal Settings State Serializer | Implementation responsible for de-/serializing game settings; see `State Management` guide on how to add custom serialization handlers.
 
 </div>
 
