@@ -6,23 +6,13 @@ IDE features, like syntax highlighting, error checking, auto-completion and inte
 
 ## Setup
 
-### Unity
-
-1. Install [Newtonsoft Json](https://docs.unity3d.com/Packages/com.unity.nuget.newtonsoft-json@3.2/manual/index.html) via [Unity's package manager](https://docs.unity3d.com/Manual/upm-ui.html): click `+` button in the top-left corner of the package manager window, select "Add package by name.." and enter `com.unity.nuget.newtonsoft-json`.
-2. Make sure `Enable Bridging` option is enabled in engine configuration.
-
-::: info NOTE
-Newtonsoft Json package is only used in editor for serializing bridging communication messages and is not referenced by Naninovel's runtime assembly; the package won't be included to the builds and won't affect compatibility or build size.
-:::
-
-### VS Code
-
 1. Open extensions window in VS Code via `View -> Extensions` menu
 2. Search for "Naninovel" and click "Install" button
-3. When a `.nani` file is opened, the extension will activate automatically
+3. Open a folder where the scenario scripts are stored (usually `Assets/Scenario`)
+4. When a `.nani` file is opened, the extension will activate automatically
 
 ::: info NOTE
-Extension in the VS Code registry is compatible with the current stable Naninovel release. When using legacy (unsupported) Naninovel version, disable auto-update in VS Code and install associated legacy version of the extension. When using preview release of the engine, download associated preview extension via `#download` channel on our Discord server.
+Extension in the VS Code registry is compatible with the current stable Naninovel release. When using a preview release of Naninovel, switch to the pre-release extension stream. When using a final Naninovel release, disable auto-update in VS Code and install associated legacy version of the extension.
 :::
 
 ### Scenario Root
@@ -31,7 +21,11 @@ When opening (in VS Code) not just the scenario root (directory where all the `.
 
 ![](https://i.gyazo.com/3ecbb9440a8e53d4b3d654b15c5ea557.png)
 
-— by default, the root is set to `Assets/Scenario`, which is also the default on the Unity side. In case you use other directory name to store the scenario scripts, change the setting and restart VS Code; otherwise script paths won't be correctly resolved, resulting in navigation warnings and wrong paths shown in auto-completions.
+— by default, the root is set to `Assets/Scenario`, which is also the default on the Unity side. When using other directory to store scenario scripts, change the setting and restart VS Code; otherwise script paths won't be correctly resolved, resulting in navigation warnings and wrong paths shown in auto-completions.
+
+Below is a video tutorial on how to install, configure and use the VS Code extension.
+
+![](https://www.youtube.com/watch?v=TA-kx6B9uD8)
 
 ## Spell Check
 
@@ -116,12 +110,6 @@ The metadata is automatically synced with the IDE each time it's updated. To dis
 ::: info NOTE
 When typing generic text lines, author ID auto-completion won't trigger automatically, as it's impossible to guess whether you want to specify author ID or just typing text to print. Use the hotkey (`Ctrl+Space` by default) to trigger auto-complete manually.
 :::
-
-## Video Tutorial
-
-Below is a video tutorial on how to install, configure and use the VS Code extension.
-
-![](https://www.youtube.com/watch?v=TA-kx6B9uD8)
 
 ## Metadata Providers
 
