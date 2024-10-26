@@ -77,7 +77,7 @@ Don't store, modify or delete anything inside `Naninovel` folder. Any such chang
 
 Preview and stable releases are distributed as UPM packages via a private GitHub repository. To access the repository, [register your Naninovel license](https://naninovel.com/register) and follow the instructions on the dashboard.
 
-Once you have access to the repository, go to `Window -> Package Manager` in Unity editor and add `https://github.com/naninovel/upm.git#X.X` as a Git package, where `X.X` is the Naninovel release version you'd like to install, for example `1.20`. You can find all the available releases and their versions on GitHub: [github.com/naninovel/docs/releases](https://github.com/naninovel/docs/releases).
+Once you have access to the repository, go to `Window -> Package Manager` in Unity editor and add `https://github.com/naninovel/upm.git#X.X` as a Git package, where `X.X` is the Naninovel release version you'd like to install, for example `1.20`. You can find all the available releases and their versions on the [releases page](https://pre.naninovel.com/releases).
 
 ![](https://i.gyazo.com/91d056eb5b6278e5c9a28f59c8ff8732.png)
 
