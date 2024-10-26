@@ -3,11 +3,7 @@
 It's possible to use Unity's [scriptable render pipelines](https://docs.unity3d.com/Manual/render-pipelines.html) (SRP) — both URP and HDRP — with Naninovel, but it will require additional setup and some features may not work out of the box (see limitations below).
 
 ::: info NOTE
-The SRPs are still [hardly production-ready](https://forum.unity.com/threads/915275) and lack features compared to default rendering system. It's **not recommended to use the render pipelines**, unless you're an advanced user and ready to solve potential issues and limitations yourself.
-:::
-
-::: warning
-**We won't be able to provide any support or guidance** for the engine features that are not working with the SRPs out of the box. If you choose to use render pipelines, expect that some features may not work as expected or not work at all, and we won't be able to provide any support for such cases.
+The SRPs are still [hardly production-ready](https://forum.unity.com/threads/915275) and lack features compared to default rendering system. It's **not recommended to use the render pipelines**, unless you're an advanced user and ready to solve potential issues and limitations yourself. **We won't be able to provide any support or guidance** for the engine features that are not working with the SRPs out of the box.
 :::
 
 ## Setup
