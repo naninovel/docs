@@ -1,14 +1,14 @@
 # Custom Actor Shader
 
-When rendering most of the actors (characters and backgrounds, except generic ones) a special shader is used to handle semi-transparency overdraw and support various transition effects.
+When rendering most of the characters and background actors (generic excluded) a special shader is used to handle semi-transparency overdraw and support various transition effects.
 
-You can override the default shader by assigning a custom one to `Custom Texture Shader` property available in the actor configuration menu.
+You can override the default shader by assigning a material to `Custom Texture Material` property available in the actor configuration menu.
 
-![](https://i.gyazo.com/40eef3177d43afe223e91c59c2032543.png)
+![](https://i.gyazo.com/8b6c06d2a7ed276f17cb25ecf7bcc4b0.png)
 
-Be aware, that the shader is expected to have specific properties; check default shader `Naninovel/Resources/Naninovel/Shaders/TransitionalTexture` for a reference.
+Be aware, that the shader used by the assigned material is expected to have specific properties; check the default shader at `Naninovel/Resources/Naninovel/Shaders/TransitionalTexture` for a reference.
 
-When actor is represented as a sprite on a scene, `Custom Sprite Shader` property is available (the case for non-generic implementations when they're not rendered to texture). By default, a simple unlit transparent shader is used; in case you want to implement lighting or surface effects, assign a custom shader to the property.
+When actor is represented as a sprite on a scene, `Custom Sprite Material` property is available (the case for non-generic implementations when they're not rendered to texture). By default, a simple unlit transparent shader is used; in case you want to implement lighting or surface effects, assign a material with a custom shader to the property.
 
 ::: tip EXAMPLE
 Check the sample on GitHub for an example on how to create and use [texture shader](https://github.com/naninovel/samples/blob/main/unity/shader/Assets/Shaders/CustomTexture.shader) for adding custom transition effects and [sprite shader](https://github.com/naninovel/samples/blob/main/unity/shader/Assets/Shaders/CustomSprite.shader) with lighting and self-illumination support to simulate time of day for a background actor.
