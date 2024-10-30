@@ -406,7 +406,7 @@ Modifies a [character actor](/guide/characters).
 Adds a [choice](/guide/choices) option to a choice handler with the specified ID (or default one).
 
 ::: info NOTE
-When `goto`, `gosub` and `do` parameters are not specified, will continue script execution from the next script line.
+When nesting commands under the choice, `goto`, `gosub`, `set` and `play` parameters are ignored.
 :::
 
 <div class="config-table">
@@ -418,10 +418,10 @@ When `goto`, `gosub` and `do` parameters are not specified, will continue script
 | button | string | Path (relative to a `Resources` folder) to a [button prefab](/guide/choices#choice-button) representing the choice. The prefab should have a `ChoiceHandlerButton` component attached to the root object. Will use a default button when not specified. |
 | pos | decimal list | Local position of the choice button inside the choice handler (if supported by the handler implementation). |
 | handler | string | ID of the choice handler to add choice for. Will use a default handler if not specified. |
-| goto | named string | Path to go when the choice is selected by user; see [@goto] command for the path format. |
-| gosub | named string | Path to a subroutine to go when the choice is selected by user; see [@gosub] command for the path format. When `goto` is assigned this parameter will be ignored. |
-| set | string | Set expression to execute when the choice is selected by user; see [@set] command for syntax reference. |
-| play | boolean | Whether to automatically continue playing script from the next line, when neither `goto` nor `gosub` parameters are specified. Has no effect in case the script is already playing when the choice is processed. |
+| goto | named string | Path to go when the choice is selected by user; see [@goto] command for the path format. Ignored when nesting commands under the choice. |
+| gosub | named string | Path to a subroutine to go when the choice is selected by user; see [@gosub] command for the path format. When `goto` is assigned this parameter will be ignored. Ignored when nesting commands under the choice. |
+| set | string | Set expression to execute when the choice is selected by user; see [@set] command for syntax reference. Ignored when nesting commands under the choice. |
+| play | boolean | Whether to automatically continue playing script from the next line, when neither `goto` nor `gosub` parameters are specified. Has no effect in case the script is already playing when the choice is processed. Ignored when nesting commands under the choice. |
 | show | boolean | Whether to also show choice handler the choice is added for; enabled by default. |
 | time | decimal | Duration (in seconds) of the fade-in (reveal) animation. |
 
