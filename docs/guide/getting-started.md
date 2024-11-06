@@ -39,7 +39,7 @@ Now, open and inspect `manifest.json` file at the "Packages" folder stored under
         "com.unity.modules.uielements": "1.0.0",
         "com.unity.modules.particlesystem": "1.0.0",
         "com.unity.modules.imageconversion": "1.0.0",
-        "com.unity.ugui": "1.0.0"
+        "com.unity.ugui": "2.0.0"
     }
 }
 ```
