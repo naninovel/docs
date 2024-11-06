@@ -111,7 +111,7 @@ In case you're familiar with programming, take a look at the [engine architectur
 
 Use `Create -> Folder` assets context menu and create a "Scenario" folder, under which all the Naninovel scenario script assets will be stored. Then, under the created folder, click `Create -> Naninovel -> Naninovel Script` to create your first scenario script.
 
-![Create Naninovel Script](https://i.gyazo.com/be7677077abeb4f805979bd647d6d90e.png)
+![](https://i.gyazo.com/30f96fd3c8bb275478361c51f1a00e86.png)
 
 ::: info NOTE
 You can store naninovel scripts (and other Naninovel resources) under any project folder and organize them any way you like; the naming is also up to you. However, note that all the scenario scripts have to be stored under a single root folder, which has to be specified via `Scenario Root` option in scripts configuration menu (by default the root is set to `Assets/Scenario`). It's ok to create any level of nested folders for organization purposes, as long as the sub-folders eventually resolve to the script root.
