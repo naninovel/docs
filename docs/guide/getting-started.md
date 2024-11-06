@@ -6,6 +6,78 @@ Naninovel is an extension for the [Unity game engine](https://unity.com), so it'
 
 In case you're not going to build any custom gameplay outside Naninovel, feel free to ignore the scene-related information altogether, as Naninovel will take care of that.
 
+## Create New Unity Project
+
+When creating a project we recommend choosing **Built-in Render Pipeline** (BiRP) template. While Universal (URP) and High Definition (HDRP) will generally work as well, they have limitations compared to the built-in renderer, require additional setup and support for them is limited; fine more info in the [render pipelines guide](/guide/render-pipelines).
+
+Choosing 2D or 3D depends on the style of the game you're building. For most standard visual novels we recommend choosing 2D, so that images will be imported as sprite assets by default and you won't have to manually change the import settings. You can change the editor behaviour mode later using the [project settings](https://docs.unity3d.com/Manual/2DAnd3DModeSettings.html).
+
+![](https://i.gyazo.com/7abffe64675880f6d1c7afe6424b91be.png)
+
+When creating new project, Unity automatically includes a sample scene with "Main Camera" and (in some templates) "Directional Light" game objects inside it.
+
+![](https://i.gyazo.com/0691599c7586100d2467499a252b6194.png)
+
+Naninovel is scene-independent, hence we recommend removing those objects from the scene to prevent unnecessary performance overhead or conflicts with Naninovel systems. You can also remove the sample scene itself, though it's recommended to keep at least one scene in a project for some editor features to work correctly.
+
+### Optimizing Editor Performance
+
+This step is optional but recommended to significantly improve editor startup, reload and enter play mode times.
+
+First, go to `Edit -> Project Settings -> Editor` menu and select `Do not reload Domain or Scene` under "Enter Play Mode Settings" option to reduce the time it takes to enter play mode.
+
+![](https://i.gyazo.com/8432d5dfb28a0f63d0f2fedfa00be91c.png)
+
+Now, open and inspect `manifest.json` file at the "Packages" folder stored under the Unity project root. It lists all the installed packages and modules. Depending on the template, Unity includes many modules by default, while you'll most likely never need most of those, while each of them increases the time of the editor startup and code reload. Below are the modules required by Naninovel; consider removing all the other entries, in case they are not needed:
+
+```json
+{
+    "dependencies": {
+        "com.unity.modules.audio": "1.0.0",
+        "com.unity.modules.video": "1.0.0",
+        "com.unity.modules.imgui": "1.0.0",
+        "com.unity.modules.uielements": "1.0.0",
+        "com.unity.modules.particlesystem": "1.0.0",
+        "com.unity.modules.imageconversion": "1.0.0",
+        "com.unity.ugui": "1.0.0"
+    }
+}
+```
+
+## Install Naninovel
+
+### Release Streams
+
+Naninovel is distributed across 3 release streams: **preview**, **stable** and **final**.
+
+Preview is the bleeding edge: it's updated most often and has all the latest features. However, it's subject to occasional breaking changes and bugs. Pick this stream when you're early in development or need a specific feature not available in the other releases.
+
+Stable is the middle-ground: it only receives bug fixes, doesn't have the latest features, but is also free from any breaking changes. It's recommended in most cases.
+
+Final, while being the most tested and stable one, is also the most outdated and is not covered by the [tech support](/support/#naninovel-support). Only stay on the final release in case the project is already released and it's not possible to upgrade.
+
+![](https://i.gyazo.com/fcf0bbd4bbd47141e30efabea6ad0f86.png)
+
+Stable stream is published on both GitHub and Unity's Asset Store (though not as often as on GitHub), while preview and final streams are only available on GitHub.
+
+### Install from Asset Store
+
+In case you've purchased Naninovel on the Unity's Asset Store, you can install and update stable releases via "My Assets" tab of the [package manager](https://docs.unity3d.com/Manual/upm-ui-import.html).
+
+::: info NOTE
+Only releases from the stable stream are published to the Unity's Asset Store. Moreover, they're published with a 2-3 months delay, so we recommend installing Naninovel from GitHub to access the latest updates.
+:::
+
+### Install from GitHub
+
+All the release streams starting with v1.20 are distributed via a UPM registry hosted on a private GitHub repository. To access the repository, [register your Naninovel license](https://naninovel.com/register) and follow the instructions on the dashboard.
+
+Once you have access to the repository, go to `Window -> Package Manager` in Unity editor and add `https://github.com/naninovel/upm.git#X.X` as a Git package, where `X.X` is the Naninovel release version you'd like to install, for example `1.20`. You can find all the available releases and their versions on the [releases page](https://pre.naninovel.com/releases).
+
+![](https://i.gyazo.com/91d056eb5b6278e5c9a28f59c8ff8732.png)
+
+If you get an error when installing the package, make sure you're authenticated (on the local machine) as the GitHub user, which was assigned in the account dashboard; refer to the Unity guide for [more info on authentication](https://docs.unity3d.com/Manual/upm-config-https-git.html).
+
 ## Core Concepts
 
 Before setting up and using Naninovel, let's skim through some of the core concepts.
@@ -33,59 +105,7 @@ Another widely used concept is [user interface](/guide/user-interface) (UI). UIs
 
 Text printers and choice handlers are considered both actors and UI elements, meaning they share actor qualities and can be controlled via naninovel scripts, while, at the same time, used by players to interact with the game.
 
-In case you're familiar with programming, take a look at the [engine architecture](/guide/engine-architecture) to get a grasp on how it's designed from a software perspective.
-
-## Create New Unity Project
-
-With the core concepts in mind, let's start the initial setup. The first thing you'd need is a Unity project. Consult [Unity manual](https://learn.unity.com/tutorial/creating-new-projects) on how to create one.
-
-When creating a project you'd probably like to use `2D Template` to set the editor in 2D behaviour mode, so that images will be imported as sprite assets by default and you won't have to manually change the import settings. You can change the editor behaviour mode later using the [project settings](https://docs.unity3d.com/Manual/2DAnd3DModeSettings.html).
-
-When you create a new project, Unity will automatically add a sample scene with two game objects inside it: a "Main Camera" and "Directional Light". Naninovel is completely scene-independent, so you can remove those two objects from the scene so they don't produce any unnecessary performance overhead. You can also remove the sample scene itself, though it's recommended to have at least one scene in a project for some editor features to work correctly.
-
-::: tip
-Disable `Reload Domain` and `Reload Scene` options under "Enter Play Mode" project settings to enter play mode faster.
-
-![](https://i.gyazo.com/dd0a3037a0bca8b73608ecc7b71c3982.png)
-:::
-
-## Install Naninovel
-
-Naninovel is distributed across 3 release streams: **preview**, **stable** and **final**.
-
-Preview is the bleeding edge: it's updated most often and has all the latest features. However, it's subject to occasional breaking changes and bugs. Pick this stream when you're early in development or need a specific feature not available in the other releases.
-
-Stable is the middle-ground: it only receives bug fixes, doesn't have the latest features, but is also free from any breaking changes. It's recommended in most cases.
-
-Final is the most tested and stable release: it's been receiving bug fixes over a year and battle-tested by the most users. However, it's also the most outdated one and is not covered by the [tech support](/support/#naninovel-support). Only stay on the final release in case the project is already released and it's not possible to upgrade.
-
-![](https://i.gyazo.com/fcf0bbd4bbd47141e30efabea6ad0f86.png)
-
-See the guides below on how to access the release of your choice.
-
-### Final Release on Asset Store
-
-Naninovel on the Unity's Asset Store is updated once per year with final releases only. To access stable and preview releases, see the [guide below](/guide/getting-started#preview-and-stable-releases-on-github).
-
-Import the package via [Asset Store menu](https://docs.unity3d.com/Manual/AssetStore.html) and wait for the initial scripts compilation and assets import process. You are free to move `Naninovel` package folder anywhere inside your project assets directory, if you wish.
-
-::: warning
-Don't store, modify or delete anything inside `Naninovel` folder. Any such change will be lost when the package is updated and we won't provide any support for the modified versions of the package.
-:::
-
-### Preview and Stable Releases on GitHub
-
-Preview and stable releases are distributed as UPM packages via a private GitHub repository. To access the repository, [register your Naninovel license](https://naninovel.com/register) and follow the instructions on the dashboard.
-
-Once you have access to the repository, go to `Window -> Package Manager` in Unity editor and add `https://github.com/naninovel/upm.git#X.X` as a Git package, where `X.X` is the Naninovel release version you'd like to install, for example `1.20`. You can find all the available releases and their versions on the [releases page](https://pre.naninovel.com/releases).
-
-![](https://i.gyazo.com/91d056eb5b6278e5c9a28f59c8ff8732.png)
-
-If you get an error when installing the package, make sure you're authenticated (on the local machine) as the GitHub user, which was assigned in the account dashboard. Usually, installing [GitHub Desktop](https://github.com/apps/desktop) and logging in with your user account is sufficient. Refer to the Unity guide for more info on authentication: [docs.unity3d.com/Manual/upm-config-https-git.html](https://docs.unity3d.com/Manual/upm-config-https-git.html).
-
-::: tip
-Over the course of using Naninovel a number of assets (configuration, settings, saves, etc) will be automatically generated inside `Assets/NaninovelData` folder. Don't modify the contents of the folder or move it (it'll be automatically regenerated). If you wish to change the location of the data folder, use `Generated Data Path` property in the engine configuration menu.
-:::
+In case you're familiar with programming, take a look at the [engine architecture](/guide/engine-architecture) to get a grasp on how it's designed from the software engineering perspective.
 
 ## Add Naninovel Script
 
@@ -235,6 +255,12 @@ On the contrary, sound effects won't loop by default. Assuming you've added an "
 ```nani
 @sfx Explosion
 ```
+
+::: tip
+Over the course of using Naninovel a number of assets (configuration, settings, saves, etc) will be automatically generated under `Assets/NaninovelData` folder. Don't modify the contents of the folder or move it (it'll be automatically regenerated). If you wish to change the location or name of the data folder, use `Generated Data Path` property in the engine configuration menu.
+
+![](https://i.gyazo.com/1d94b80b9f37a29b0885742b72eebacb.png)
+:::
 
 ## Video Guide
 
