@@ -571,6 +571,37 @@ Marks a branch of a conditional execution block, which is executed in case condi
 
 Alternative to using indentation in conditional blocks: marks end of the block opened with previous [@if] command, no matter the indentation. For usage examples see [conditional execution](/guide/naninovel-scripts#conditional-execution) guide.
 
+## format
+
+Assigns [formatting templates](/guide/text-printers#message-templates) to be applied for printed messages.
+
+::: info NOTE
+You can also format printed text with [style tags](/guide/text-printers#text-styles).
+:::
+
+<div class="config-table">
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">templates</span> | named string list | The templates to apply, in `Template.AuthorFilter` format; see the [formatting templates](/guide/text-printers#message-templates) guide for more info. |
+| printer | string | ID of the printer actor to assign templates for. Will use a default one when not specified. |
+
+</div>
+
+```nani
+; Print first two sentences in bold red text with 45px size,
+; then reset the style and print the last sentence using default style.
+@format <color=#ff0000><b><size=45>%TEXT%</size></b></color>
+Lorem ipsum dolor sit amet.
+Cras ut nisi eget ex viverra egestas in nec magna.
+@format default
+Consectetur adipiscing elit.
+
+; Instead of using the @format command, it's possible to apply the styles
+; to the printed text directly.
+Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
+```
+
 ## glitch
 
 Applies [digital glitch](/guide/special-effects#digital-glitch) post-processing effect to the main camera simulating digital video distortion and artifacts.
@@ -1033,13 +1064,13 @@ This command is used under the hood when processing generic text lines, eg gener
 | --- | --- | --- |
 | <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">text</span> | string | Text of the message to print. When the text contain spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
 | printer | string | ID of the printer actor to use. Will use a default one when not specified. |
-| author | string | ID of the actor, which should be associated with the printed message. Specify `*` or use `,` to delimit multiple actor IDs to make all/selected characters authors of the text; useful when coupled with `as` parameter to represent multiple characters speaking at the same time. |
+| author | string | ID of the actor, which should be associated with the printed message. Ignored when appending. Specify `*` or use `,` to delimit multiple actor IDs to make all/selected characters authors of the text; useful when coupled with `as` parameter to represent multiple characters speaking at the same time. |
 | as | string | When specified, will use the label instead of author ID (or associated display name) to represent author name in the text printer while printing the message. Useful to override default name for a few messages or represent multiple authors speaking at the same time without triggering author-specific behaviour of the text printer, such as message color or avatar. |
 | speed | decimal | Text reveal speed multiplier; should be positive or zero. Setting to one will yield the default speed. |
 | reset | boolean | Whether to reset text of the printer before executing the printing task. Default value is controlled via `Auto Reset` property in the printer actor configuration menu. |
 | default | boolean | Whether to make the printer default and hide other printers before executing the printing task. Default value is controlled via `Auto Default` property in the printer actor configuration menu. |
 | waitInput | boolean | Whether to wait for user input after finishing the printing task. Default value is controlled via `Auto Wait` property in the printer actor configuration menu. |
-| br | integer | Number of line breaks to prepend before the printed text. Default value is controlled via `Auto Line Break` property in the printer actor configuration menu. |
+| append | boolean | Whether to append the printed text to the last printer message. |
 | fadeTime | decimal | Controls duration (in seconds) of the printers show and hide animations associated with this command. Default value for each printer is set in the actor configuration. |
 | wait | boolean | Whether to await the text reveal and prompt for completion (wait for input) before playing next command. |
 
@@ -1276,14 +1307,13 @@ Be aware, that this command can not be undone (rewound back).
 
 ## resetText
 
-Resets (clears) the contents of a text printer and optionally resets author ID.
+Resets (clears) the contents of a text printer.
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">printerId</span> | string | ID of the printer actor to use. Will use a default one when not specified. |
-| resetAuthor | boolean | Whether to also reset author of the currently printed text message. |
 
 </div>
 
@@ -1736,36 +1766,6 @@ Stops playback of the currently played voice clip.
 ```nani
 ; Given a voice is being played, stop it.
 @stopVoice
-```
-
-## style
-
-Permanently applies [text styles](/guide/text-printers#text-styles) to the contents of a text printer.
-
-::: info NOTE
-You can also use rich text tags inside text messages to apply the styles selectively.
-:::
-
-<div class="config-table">
-
-| Parameter | Type | Description |
-| --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">textStyles</span> | string list | Text formatting tags to apply. Angle brackets should be omitted, eg use `b` for `<b>` and `size=100` for `<size=100>`. Use `default` keyword to reset the style. |
-| printer | string | ID of the printer actor to use. Will use a default one when not specified. |
-
-</div>
-
-```nani
-; Print first two sentences in bold red text with 45px size,
-; then reset the style and print the last sentence using default style.
-@style color=#ff0000,b,size=45
-Lorem ipsum dolor sit amet.
-Cras ut nisi eget ex viverra egestas in nec magna.
-@style default
-Consectetur adipiscing elit.
-
-; Print starting part of the sentence normally, but the last one in bold.
-Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 ```
 
 ## sun
