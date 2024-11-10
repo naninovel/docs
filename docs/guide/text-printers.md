@@ -63,35 +63,17 @@ It's possible to prevent specific text printers from adding messages to the back
 
 ![](https://i.gyazo.com/9f0155dff068dbe1fd821e9007cf4a5a.png)
 
-## Authored Template
+## Message Templates
 
-It's possible to automate additional processing for text messages with an associated author (aka direct speech). The processing is configured individually for each text printer actor via `Authored Template` property.
+It's possible to automate additional processing for text messages with message templates. The processing is configured individually for each text printer at runtime with [@format] commands or in editor via `Default Templates` property of the printer panel UI. For example, below is the default formatting template of the built-in `Fullscreen` printer:
 
-![](https://i.gyazo.com/55e68990067ade056d69f73470e0f23c.png)
+![](https://i.gyazo.com/24774230ec66a5eb783fbe148b5c96d4.png)
 
-You can specify any text formatting tags or characters and use `%TEXT%` to be replaced with the message text and `%AUTHOR%` with the author name (character display name). For example, consider the following template: `“%TEXT%” — <i>%AUTHOR%</i>` — it will wrap the printed message in quotes followed by a dash and author name in italics; for example, `Kohaku: Lorem ipsum.` processed with such template will result in:
+You can specify any text formatting tags or characters and use `%TEXT%` to be replaced with the message text and `%AUTHOR%` with the author display name. For example, consider the following template: `“%TEXT%” — <i>%AUTHOR%</i>` — it will wrap the printed message in quotes followed by a dash and author name in italics; for example, `Kohaku: Lorem ipsum.` processed with such template will result in:
 
 ![](https://i.gyazo.com/53b5ba0f426afc847e51d843ffd6e808.png)
 
-Alternatively, if you just want to print author name followed by colon at the beginning of generic line, consider following:
-
-```nani
-; Prints "John: Hello!" without any actor-specific options.
-John\: Hello!
-
-; Given there is a character actor with ID "john", prints "John: Hello!"
-; with all the actor-specific options (eg, message color).
-john: John: Hello!
-
-; Given john's display name is "John Doe", prints "John Doe: Hello!"
-; with all the actor-specific options.
-john: {GetName(john)}: Hello!
-
-; GetName function can be replaced with managed text variable.
-john: {t_johnName}: Hello!
-```
-
-— "Authored Template" option should be disabled for the above to work.
+The assigned templates are applied in order and `Author` property allows filtering applied templates based on the author of the printed messages. Specify an author (character actor) ID to make the template applicable only for the specific author, `+` to make it applicable for any authored messages, `-` — for un-authored messages or `*` to apply it for any messages.
 
 ## Dialogue Printer
 
