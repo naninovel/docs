@@ -6,12 +6,6 @@ Supported Unity versions range: `2022.3.45 - 6000.0`
 
 Only LTS releases in the range are supported. Any issues with the future Unity releases will be addressed in the next Naninovel releases. Compatible Unity versions for past releases are specified in the [release notes](https://pre.naninovel.com/releases).
 
-## UPM Packages
-
-Only verified package versions are supported. When installing or updating a package via Unity's package manager, make sure it has a "verified" label for the Unity version you're currently using.
-
-![](https://i.gyazo.com/a06f8b0cefff2fc5e578c60cae4ed33f.png)
-
 ## Platforms
 
 All the engine features are implemented using cross-platform APIs and are expected to be compatible with all the platforms Unity can target.
