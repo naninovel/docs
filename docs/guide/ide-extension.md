@@ -155,13 +155,13 @@ Starting with v1.20 label auto-completion no longer requires metadata sync, henc
 
 ## IDE Attributes
 
-Naninovel has a number of [C# attributes](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes) to provide various IDE-related functionality to custom commands and expression functions. For example, to add on-hover documentation to the custom commands and/or parameters, apply `Documentation` attribute to command type and parameter fields respectively:
+Naninovel has a number of [C# attributes](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes) to provide various IDE-related functionality to custom commands and expression functions. For example, to add on-hover documentation to the custom commands and/or parameters, apply `Doc` attribute to command type and parameter fields respectively:
 
 ```csharp
-[Documentation("Summary of the custom command.")]
+[Doc("Summary of the custom command.")]
 public class CustomCommand : Command
 {
-    [Documentation("Summary of the custom parameter.")]
+    [Doc("Summary of the custom parameter.")]
     public StringParameter CustomParameter;
 }
 ```
