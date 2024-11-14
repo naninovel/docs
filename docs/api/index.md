@@ -20,7 +20,7 @@ The following parameters are supported by most script commands:
 Animate properties of the actors with the specified IDs via key frames. Key frames for the animated parameters are delimited with commas.
 
 ::: info NOTE
-It's not recommended to use this command for complex animations. Naniscript is a scenario scripting DSL and not suited for complex automation or specification such as animation. Consider using dedicated animation tools instead, such as Unity's [Animator](https://docs.unity3d.com/Manual/AnimationSection.html). <br /><br /> Be aware, that this command searches for actors with the specified IDs over all the actor managers, and in case multiple actors with the same ID exist (eg, a character and a text printer), this will affect only the first found one. <br /><br /> When running the animate commands in parallel (`wait` is set to false) the affected actors state can mutate unpredictably. This could cause unexpected results when rolling back or performing other commands that affect state of the actor. Make sure to reset affected properties of the animated actors (position, tint, appearance, etc) after the command finishes or use `@animate CharacterId` (without any args) to stop the animation prematurely.
+It's not recommended to use this command for complex animations. Naniscript is a scenario scripting DSL and not suited for complex automation or specification such as animation. Consider using dedicated animation tools instead, such as Unity's [Animator](https://docs.unity3d.com/Manual/AnimationSection.html).<br><br>Be aware, that this command searches for actors with the specified IDs over all the actor managers, and in case multiple actors with the same ID exist (eg, a character and a text printer), this will affect only the first found one.<br><br>When running the animate commands in parallel (`wait` is set to false) the affected actors state can mutate unpredictably. This could cause unexpected results when rolling back or performing other commands that affect state of the actor. Make sure to reset affected properties of the animated actors (position, tint, appearance, etc) after the command finishes or use `@animate CharacterId` (without any args) to stop the animation prematurely.
 :::
 
 <div class="config-table">
@@ -37,10 +37,10 @@ It's not recommended to use this command for complex animations. Naniscript is a
 | posZ | string | Position values over Z-axis (in world space) to set for the animated actors; while in ortho mode, can only be used for sorting. |
 | rotation | string | Rotation values (over Z-axis) to set for the animated actors. |
 | scale | string | Scale (`x,y,z` or a single uniform value) to set for the animated actors. |
-| tint | string | Tint colors to set for the animated actors. <br /><br /> Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF. <br /><br /> Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
-| easing | string | Names of the [easing functions](/guide/transition-effects#animation-easing) to use for the animations.<br /> When not specified, will use a default easing function set in the actor's manager configuration settings. |
-| time | string | Duration of the animations per key, in seconds. When a key value is missing, will use one from a previous key. When not assigned, will use 0.35 seconds duration for all keys. |
-| wait | boolean | Whether to wait for the animation(s) to finish before playing next command. |
+| tint | string | The tint color to apply.<br><br>Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes `RRGGBB`), `#RRGGBB`, `#RGBA` (becomes `RRGGBBAA`), `#RRGGBBAA`; when alpha is not specified will default to `FF`.<br><br>Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
+| easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
+| time | string | Duration of the animations per key, in seconds. When a key value is missing, will use one from a previous key. Default is 0.35s for all keys. |
+| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -72,7 +72,7 @@ It's not recommended to use this command for complex animations. Naniscript is a
 Appends specified text to a text printer.
 
 ::: info NOTE
-The entire text will be appended immediately, without triggering reveal effect or any other side-effects.
+The entire text is appended instantly, without triggering the reveal effect.
 :::
 
 <div class="config-table">
@@ -102,8 +102,8 @@ Arranges specified characters by X-axis. When no parameters specified, will exec
 | --- | --- | --- |
 | <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">characterPositions</span> | named decimal list | A collection of character ID to scene X-axis position (relative to the left scene border, in percents) named values. Position 0 relates to the left border and 100 to the right border of the scene; 50 is the center. |
 | look | boolean | When performing auto-arrange, controls whether to also make the characters look at the scene origin (enabled by default). |
-| time | decimal | Duration (in seconds) of the arrangement animation. |
-| wait | boolean | Whether to wait for the arrangement to finish before playing next command. |
+| time | decimal | Duration of the animation initiated by the command, in seconds. |
+| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -140,7 +140,7 @@ The nested block is expected to always finish; don't nest any commands that coul
 Modifies a [background actor](/guide/backgrounds).
 
 ::: info NOTE
-Backgrounds are handled a bit differently from characters to better accommodate traditional VN game flow. Most of the time you'll probably have a single background actor on scene, which will constantly transition to different appearances. To remove the hassle of repeating same actor ID in scripts, it's possible to provide only the background appearance and transition type (optional) as a nameless parameter assuming `MainBackground` actor should be affected. When this is not the case, ID of the background actor can be explicitly specified via the `id` parameter.
+Backgrounds are handled a bit differently from characters to better accommodate traditional VN game flow.  Most of the time you'll probably have a single background actor on scene, which will constantly transition to different appearances. To remove the hassle of repeating same actor ID in scripts, it's possible to provide only  the background appearance and transition type (optional) as a nameless parameter assuming `MainBackground`  actor should be affected. When this is not the case, ID of the background actor can be explicitly specified via the `id` parameter.
 :::
 
 <div class="config-table">
@@ -159,11 +159,11 @@ Backgrounds are handled a bit differently from characters to better accommodate 
 | position | decimal list | Position (in world space) to set for the modified actor. Use Z-component (third member) to move (sort) by depth while in ortho mode. |
 | rotation | decimal list | Rotation to set for the modified actor. |
 | scale | decimal list | Scale to set for the modified actor. |
-| tint | string | Tint color to set for the modified actor. <br /><br /> Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF. <br /><br /> Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
-| easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to use for the modification.<br /> When not specified, will use a default easing function set in the actor's manager configuration settings. |
-| time | decimal | Duration (in seconds) of the modification. |
-| lazy | boolean | Whether to not complete the modifications tween animation before starting next one.<br /> When enabled and next animation is applied while the current one is still running, the actor won't instantly "jump" to the target values of the current animation, but instead continue animating to the new target from the current state. |
-| wait | boolean | Whether to wait while the modifications are being applied over time. |
+| tint | string | The tint color to apply.<br><br>Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes `RRGGBB`), `#RRGGBB`, `#RGBA` (becomes `RRGGBBAA`), `#RRGGBBAA`; when alpha is not specified will default to `FF`.<br><br>Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
+| easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
+| time | decimal | Duration of the animation initiated by the command, in seconds. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
+| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -277,32 +277,6 @@ Simulates [depth of field](/guide/special-effects#depth-of-field-bokeh) (aka DOF
 @bokeh dist:10 power:0.95 time:3
 ```
 
-## br
-
-Adds a line break to a text printer.
-
-::: info NOTE
-Consider using `<br>` tag instead with [TMPro printers](/guide/text-printers#textmesh-pro).
-:::
-
-<div class="config-table">
-
-| Parameter | Type | Description |
-| --- | --- | --- |
-| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">count</span> | integer | Number of line breaks to add. |
-| printer | string | ID of the printer actor to use. Will use a default one when not specified. |
-| author | string | ID of the actor, which should be associated with the appended line break. |
-
-</div>
-
-```nani
-; Second sentence will be printed on a new line.
-Lorem ipsum dolor sit amet.[br]Consectetur adipiscing elit.
-
-; Second sentence will be printer two lines under the first one.
-Lorem ipsum dolor sit amet.[br 2]Consectetur adipiscing elit.
-```
-
 ## camera
 
 Modifies the main camera, changing offset, zoom level and rotation over time. Check [this video](https://youtu.be/zy28jaMss8w) for a quick demonstration of the command effect.
@@ -318,10 +292,10 @@ Modifies the main camera, changing offset, zoom level and rotation over time. Ch
 | ortho | boolean | Whether the camera should render in orthographic (true) or perspective (false) mode. |
 | toggle | string list | Names of the components to toggle (enable if disabled and vice-versa). The components should be attached to the same game object as the camera. This can be used to toggle [custom post-processing effects](/guide/special-effects#camera-effects). Use `*` to affect all the components attached to the camera object. |
 | set | named boolean list | Names of the components to enable or disable. The components should be attached to the same game object as the camera. This can be used to explicitly enable or disable [custom post-processing effects](/guide/special-effects#camera-effects). Specified components enabled state will override effect of `toggle` parameter. Use `*` to affect all the components attached to the camera object. |
-| easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to use for the modification.<br /> When not specified, will use a default easing function set in the camera configuration settings. |
-| time | decimal | Duration (in seconds) of the modification. |
-| lazy | boolean | Whether to not complete the current camera animation before starting next animations.<br /> When enabled and next animation is applied while the current one is still running, the camera won't instantly "jump" to the target values of the current animation, but instead continue animating to the new target from the current position. |
-| wait | boolean | Whether to wait for the camera modification animations to finish before playing next command. |
+| easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
+| time | decimal | Duration of the animation initiated by the command, in seconds. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
+| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -373,11 +347,11 @@ Modifies a [character actor](/guide/characters).
 | position | decimal list | Position (in world space) to set for the modified actor. Use Z-component (third member) to move (sort) by depth while in ortho mode. |
 | rotation | decimal list | Rotation to set for the modified actor. |
 | scale | decimal list | Scale to set for the modified actor. |
-| tint | string | Tint color to set for the modified actor. <br /><br /> Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF. <br /><br /> Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
-| easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to use for the modification.<br /> When not specified, will use a default easing function set in the actor's manager configuration settings. |
-| time | decimal | Duration (in seconds) of the modification. |
-| lazy | boolean | Whether to not complete the modifications tween animation before starting next one.<br /> When enabled and next animation is applied while the current one is still running, the actor won't instantly "jump" to the target values of the current animation, but instead continue animating to the new target from the current state. |
-| wait | boolean | Whether to wait while the modifications are being applied over time. |
+| tint | string | The tint color to apply.<br><br>Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes `RRGGBB`), `#RRGGBB`, `#RGBA` (becomes `RRGGBBAA`), `#RRGGBBAA`; when alpha is not specified will default to `FF`.<br><br>Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
+| easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
+| time | decimal | Duration of the animation initiated by the command, in seconds. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
+| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -677,7 +651,7 @@ Navigates naninovel script playback to the specified path.
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">path</span> | named string | Path to navigate into in the following format: `ScriptPath.Label`. When label is omitted, will play specified script from the start. When script path is omitted, will attempt to find a label in the currently played script. |
-| reset | string list | When specified, will control whether to reset the engine services state before loading a script (in case the path is leading to another script):<br /> - Specify `*` to reset all the services, except the ones with `Goto.DontReset` attribute.<br /> - Specify service type names (separated by comma) to exclude from reset; all the other services will be reset, including the ones with `Goto.DontReset` attribute.<br /> - Specify `-` to force no reset (even if it's enabled by default in the configuration).<br /><br /> Notice, that while some services have `Goto.DontReset` attribute applied and are not reset by default, they should still be specified when excluding specific services from reset. |
+| reset | string list | When specified, will control whether to reset the engine services state before loading a script (in case the path is leading to another script):<br/> - Specify `*` to reset all the services, except the ones with `Goto.DontReset` attribute.<br/> - Specify service type names (separated by comma) to exclude from reset; all the other services will be reset, including the ones with `Goto.DontReset` attribute.<br/> - Specify `-` to force no reset (even if it's enabled by default in the configuration).<br/><br/>Notice, that while some services have `Goto.DontReset` attribute applied and are not reset by default, they should still be specified when excluding specific services from reset. |
 | hold | boolean | Whether to hold resources in the target script, which make them preload together with the script this command specified in. Has no effect outside `Conservative` resource policy. Refer to [memory management](/guide/memory-management) guide for more info. |
 | release | boolean | Whether to release resources before navigating to the target script to free the memory. Has no effect outside `Optimistic` resource policy. Refer to [memory management](/guide/memory-management) guide for more info. |
 
@@ -723,9 +697,9 @@ Hides actors (character, background, text printer, choice handler) with the spec
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">actorIds</span> | string list | IDs of the actors to hide. |
-| time | decimal | Duration (in seconds) of the fade animation. |
-| lazy | boolean | Whether to not complete the current hide animation before starting next animations.<br /> When enabled and next animation is applied while the current one is still running, the actors won't instantly "jump" to the target values of the current animation, but instead continue animating to the new target from the current position. |
-| wait | boolean | Whether to wait for the UI fade-out animation to finish before playing next command. |
+| time | decimal | Duration of the animation initiated by the command, in seconds. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
+| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -745,9 +719,9 @@ Hides all the actors (characters, backgrounds, text printers, choice handlers) o
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| time | decimal | Duration (in seconds) of the fade animation. |
-| lazy | boolean | Whether to not complete the current hide animation before starting next animations.<br /> When enabled and next animation is applied while the current one is still running, the actors won't instantly "jump" to the target values of the current animation, but instead continue animating to the new target from the current position. |
-| wait | boolean | Whether to wait for the actor hide animations to finish before playing next command. |
+| time | decimal | Duration of the animation initiated by the command, in seconds. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
+| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -764,9 +738,9 @@ Hides all the visible characters on scene.
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| time | decimal | Duration (in seconds) of the fade animation. |
-| lazy | boolean | Whether to not complete the current hide animation before starting next animations.<br /> When enabled and next animation is applied while the current one is still running, the characters won't instantly "jump" to the target values of the current animation, but instead continue animating to the new target from the current position. |
-| wait | boolean | Whether to wait for the character fade-out animations to finish before playing next command. |
+| time | decimal | Duration of the animation initiated by the command, in seconds. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
+| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -784,8 +758,8 @@ Hides a text printer.
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">printerId</span> | string | ID of the printer actor to use. Will use a default one when not specified. |
-| time | decimal | Duration (in seconds) of the hide animation. Default value for each printer is set in the actor configuration. |
-| wait | boolean | Whether to wait for the printer fade-out animation to finish before playing next command. |
+| time | decimal | Duration of the animation initiated by the command, in seconds. |
+| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -884,7 +858,7 @@ Test result:[if score>8] Perfect![else if:score>6] Passed.[else] Failed.[endif]
 Shows an input field UI where user can enter an arbitrary text. Upon submit the entered text will be assigned to the specified custom variable.
 
 ::: info NOTE
-Check out this [video guide](https://youtu.be/F9meuMzvGJw) on usage example. <br /><br /> To assign a display name for a character using this command consider [binding the name to a custom variable](/guide/characters#display-names).
+To assign a display name for a character using this command consider [binding the name to a custom variable](/guide/characters#display-names).
 :::
 
 <div class="config-table">
@@ -893,7 +867,7 @@ Check out this [video guide](https://youtu.be/F9meuMzvGJw) on usage example. <br
 | --- | --- | --- |
 | <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">variableName</span> | string | Name of a custom variable to which the entered text will be assigned. |
 | type | string | Type of the input content; defaults to the specified variable type. |
-| summary | string | An optional summary text to show along with input field. When the text contain spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
+| summary | string | An optional summary text to show along with input field.When the text contain spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
 | value | string | A predefined value to set for the input field. |
 | play | boolean | Whether to automatically resume script playback when user submits the input form. |
 
@@ -956,7 +930,7 @@ Loads a [Unity scene](https://docs.unity3d.com/Manual/CreatingScenes.html) with 
 Sets an [unlockable item](/guide/unlockable-items) with the specified ID to `locked` state.
 
 ::: info NOTE
-The unlocked state of the items is stored in [global scope](/guide/state-management#global-state).<br /> In case item with the specified ID is not registered in the global state map, the corresponding record will automatically be added.
+The unlocked state of the items is stored in [global scope](/guide/state-management#global-state).<br/> In case item with the specified ID is not registered in the global state map, the corresponding record will automatically be added.
 :::
 
 <div class="config-table">
@@ -1016,7 +990,7 @@ Will fade-out the screen before playing the movie and fade back in after the pla
 | <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">movieName</span> | string | Name of the movie resource to play. |
 | time | decimal | Duration (in seconds) of the fade animation. When not specified, will use fade duration set in the movie configuration. |
 | block | boolean | Whether to block interaction with the game while the movie is playing, preventing the player from skipping it. |
-| wait | boolean | Whether to wait for the movie fade animation to finish before playing next command. |
+| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -1055,7 +1029,7 @@ When outside of WebGL or in editor, Unity's `Application.OpenURL` method is used
 Prints (reveals over time) specified text message using a text printer actor.
 
 ::: info NOTE
-This command is used under the hood when processing generic text lines, eg generic line `Kohaku: Hello World!` will be automatically transformed into `@print "Hello World!" author:Kohaku` when parsing the naninovel scripts.<br /> Will reset (clear) the printer before printing the new message by default; set `reset` parameter to *false* or disable `Auto Reset` in the printer actor configuration to prevent that and append the text instead.<br /> Will make the printer default and hide other printers by default; set `default` parameter to *false* or disable `Auto Default` in the printer actor configuration to prevent that.<br /> Will wait for user input before finishing the task by default; set `waitInput` parameter to *false* or disable `Auto Wait` in the printer actor configuration to return as soon as the text is fully revealed.<br />
+This command is used under the hood when processing generic text lines, eg generic line `Kohaku: Hello World!` will be  automatically transformed into `@print "Hello World!" author:Kohaku` when parsing the naninovel scripts.<br/> Will reset (clear) the printer before printing the new message by default; set `reset` parameter to *false* or disable `Auto Reset` in the printer actor configuration to prevent that and append the text instead.<br/> Will make the printer default and hide other printers by default; set `default` parameter to *false* or disable `Auto Default` in the printer actor configuration to prevent that.<br/> Will wait for user input before finishing the task by default; set `waitInput` parameter to *false* or disable `Auto Wait` in the printer actor configuration to return as soon as the text is fully revealed.
 :::
 
 <div class="config-table">
@@ -1117,11 +1091,11 @@ Modifies a [text printer actor](/guide/text-printers).
 | position | decimal list | Position (in world space) to set for the modified actor. Use Z-component (third member) to move (sort) by depth while in ortho mode. |
 | rotation | decimal list | Rotation to set for the modified actor. |
 | scale | decimal list | Scale to set for the modified actor. |
-| tint | string | Tint color to set for the modified actor. <br /><br /> Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes RRGGBB), `#RRGGBB`, `#RGBA` (becomes RRGGBBAA), `#RRGGBBAA`; when alpha is not specified will default to FF. <br /><br /> Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
-| easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to use for the modification.<br /> When not specified, will use a default easing function set in the actor's manager configuration settings. |
-| time | decimal | Duration (in seconds) of the modification. |
-| lazy | boolean | Whether to not complete the modifications tween animation before starting next one.<br /> When enabled and next animation is applied while the current one is still running, the actor won't instantly "jump" to the target values of the current animation, but instead continue animating to the new target from the current state. |
-| wait | boolean | Whether to wait while the modifications are being applied over time. |
+| tint | string | The tint color to apply.<br><br>Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes `RRGGBB`), `#RRGGBB`, `#RGBA` (becomes `RRGGBBAA`), `#RRGGBBAA`; when alpha is not specified will default to `FF`.<br><br>Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
+| easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
+| time | decimal | Duration of the animation initiated by the command, in seconds. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
+| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -1348,14 +1322,14 @@ Automatically save the game to a quick save slot.
 Assigns result of a [script expression](/guide/script-expressions) to a [custom variable](/guide/custom-variables).
 
 ::: info NOTE
-If a variable with the specified name doesn't exist, it will be automatically created. <br /><br /> Specify multiple set expressions by separating them with `;`. The expressions will be executed in sequence in the order of declaration. <br /><br /> In case variable name starts with `t_` it's considered a reference to a value stored in 'Script' [managed text](/guide/managed-text) document. Such variables can't be assigned and are intended for referencing localizable text values.
+If a variable with the specified name doesn't exist, it will be automatically created.<br/><br/> Specify multiple set expressions by separating them with `;`. The expressions will be executed in sequence in the order of declaration.<br/><br/> In case variable name starts with `t_` it's considered a reference to a value stored in 'Script' [managed text](/guide/managed-text) document. Such variables can't be assigned and are intended for referencing localizable text values.
 :::
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | Assignment expression. <br /><br /> The expression should be in the following format: `var=expression`, where `var` is the name of the custom variable to assign and `expression` is a [script expression](/guide/script-expressions), the result of which should be assigned to the variable. <br /><br /> It's possible to use increment and decrement unary operators (`@set foo++`, `@set foo--`) and compound assignment (`@set foo+=10`, `@set foo-=3`, `@set foo*=0.1`, `@set foo/=2`). |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | Assignment expression.<br/><br/>The expression should be in the following format: `var=expression`, where `var` is the name of the custom variable to assign and `expression` is a [script expression](/guide/script-expressions), the result of which should be assigned to the variable.<br/><br/>It's possible to use increment and decrement unary operators (`@set foo++`, `@set foo--`) and compound assignment (`@set foo+=10`, `@set foo-=3`, `@set foo*=0.1`, `@set foo/=2`). |
 
 </div>
 
@@ -1464,7 +1438,7 @@ Plays an [SFX (sound effect)](/guide/audio#sound-effects) track with the specifi
 | restart | boolean | Whether to start playing the audio from start in case it's already playing. |
 | additive | boolean | Whether to allow playing multiple instances of the same clip; has no effect when `restart` is enabled. |
 | group | string | Audio mixer [group path](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) that should be used when playing the audio. |
-| wait | boolean | Whether to wait for the SFX to finish playing. |
+| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -1484,7 +1458,7 @@ Applies [shake effect](/guide/special-effects#shake) for the actor with the spec
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">actorId</span> | string | ID of the actor to shake. In case multiple actors with the same ID found (eg, a character and a printer), will affect only the first found one. To shake main camera, use "Camera" keyword. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">actorId</span> | string | ID of the actor to shake. In case multiple actors with the same ID found (eg, a character and a printer), will affect only the first found one. To shake main camera, use `Camera` keyword. |
 | count | integer | The number of shake iterations. When set to 0, will loop until stopped with -1. |
 | time | decimal | The base duration of each shake iteration, in seconds. |
 | deltaTime | decimal | The randomizer modifier applied to the base duration of the effect. |
@@ -1523,9 +1497,9 @@ Shows (makes visible) actors (character, background, text printer, choice handle
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">actorIds</span> | string list | IDs of the actors to show. |
-| time | decimal | Duration (in seconds) of the fade animation. |
-| lazy | boolean | Whether to not complete the current show animation before starting next animations.<br /> When enabled and next animation is applied while the current one is still running, the actors won't instantly "jump" to the target values of the current animation, but instead continue animating to the new target from the current position. |
-| wait | boolean | Whether to wait for the actor show animations to finish before playing next command. |
+| time | decimal | Duration of the animation initiated by the command, in seconds. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
+| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -1546,8 +1520,8 @@ Shows a text printer.
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">printerId</span> | string | ID of the printer actor to use. Will use a default one when not specified. |
-| time | decimal | Duration (in seconds) of the show animation. Default value for each printer is set in the actor configuration. |
-| wait | boolean | Whether to wait for the printer fade-in animation to finish before playing next command. |
+| time | decimal | Duration of the animation initiated by the command, in seconds. |
+| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -1621,10 +1595,10 @@ Be aware, that this command searches for an existing actor with the specified ID
 | from | decimal list | Position in scene space to slide the actor from (slide start position). Described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene; Z-component (depth) is in world space. When not specified, will use current actor position in case it's visible and a random off-scene position otherwise (could slide-in from left or right borders). |
 | <span class="command-param-required" title="Required parameter: parameter should always be specified">to</span> | decimal list | Position in scene space to slide the actor to (slide finish position). |
 | visible | boolean | Change visibility status of the actor (show or hide). When not set and target actor is hidden, will still automatically show it. |
-| easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to use for the modifications.<br /> When not specified, will use a default easing function set in the actor's manager configuration settings. |
-| time | decimal | Duration (in seconds) of the slide animation. |
-| lazy | boolean | Whether to not complete the current slide animation before starting next animations.<br /> When enabled and next animation is applied while the current one is still running, the actors won't instantly "jump" to the target values of the current animation, but instead continue animating to the new target from the current position. |
-| wait | boolean | Whether to wait for the slide animation to finish before playing next command. |
+| easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
+| time | decimal | Duration of the animation initiated by the command, in seconds. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
+| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -1636,7 +1610,6 @@ Be aware, that this command searches for an existing actor with the specified ID
 ; Given 'Sheba' actor is currently visible,
 ; hide and slide it out of the scene over the left border.
 @slide Sheba to:-10 !visible
-
 
 ; Slide 'Mia' actor from left-center side of the scene to the right-bottom
 ; over 5 seconds using 'EaseOutBounce' animation easing.
@@ -1833,10 +1806,10 @@ Appearance name is the name of a game object with `Toast Appearance` component i
 
 ## trans
 
-Performs scene transition masking the real scene content with anything that is visible at the moment the command starts execution (except the UI), executing nested commands to change the scene and finishing with specified [transition effect](/guide/transition-effects).<br /><br /> The command works similar to actor appearance transitions, but covers the whole scene. Use it to change multiple actors and other visible entities to a new state in a single batch with a transition effect.
+Performs scene transition masking the real scene content with anything that is visible at the moment the command starts execution (except the UI), executing nested commands to change the scene and finishing with specified [transition effect](/guide/transition-effects).<br/><br/> The command works similar to actor appearance transitions, but covers the whole scene. Use it to change multiple actors and other visible entities to a new state in a single batch with a transition effect.
 
 ::: info NOTE
-The UI will be hidden and user input blocked while the transition is in progress (nested commands are running). You can change that by overriding the `ISceneTransitionUI`, which handles the transition process.<br /><br /> Async nested commands will execute immediately, w/o the need to specify `time:0` for each.<br /><br /> The nested block is expected to always finish; don't nest any commands that could navigate outside the nested block, as this may cause undefined behaviour.
+The UI will be hidden and user input blocked while the transition is in progress (nested commands are running). You can change that by overriding the `ISceneTransitionUI`, which handles the transition process.<br/><br/> Async nested commands will execute immediately, w/o the need to specify `time:0` for each.<br/><br/> The nested block is expected to always finish; don't nest any commands that could navigate outside the nested block, as this may cause undefined behaviour.
 :::
 
 <div class="config-table">
@@ -1892,7 +1865,7 @@ Unloads a [Unity scene](https://docs.unity3d.com/Manual/CreatingScenes.html) wit
 Sets an [unlockable item](/guide/unlockable-items) with the specified ID to `unlocked` state.
 
 ::: info NOTE
-The unlocked state of the items is stored in [global scope](/guide/state-management#global-state).<br /> In case item with the specified ID is not registered in the global state map, the corresponding record will automatically be added.
+The unlocked state of the items is stored in [global scope](/guide/state-management#global-state).<br/> In case item with the specified ID is not registered in the global state map, the corresponding record will automatically be added.
 :::
 
 <div class="config-table">
@@ -1936,7 +1909,7 @@ Holds script execution until the specified wait condition.
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">waitMode</span> | string | Wait conditions:<br /> - `i` user press continue or skip input key;<br /> - `0.0` timer (seconds);<br /> - `i0.0` timer, that is skip-able by continue or skip input keys. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">waitMode</span> | string | Wait conditions:<br/> - `i` user press continue or skip input key;<br/> - `0.0` timer (seconds);<br/> - `i0.0` timer, that is skip-able by continue or skip input keys. |
 
 </div>
 
