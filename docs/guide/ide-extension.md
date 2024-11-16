@@ -26,6 +26,16 @@ When the extension detects a `.nani` file in the current workspace, it'll activa
 
 ![](https://i.gyazo.com/e8b2c0689d75bed8f9a6dbf2d09d8eb0.png)
 
+### Project Root
+
+By default, Naninovel will generate a `.nani` folder under the Unity project root, where it'll store the project metadata and bridging files required for communication with the authoring tools, such as the VS Code extension. This means, that when opening Naninovel projects with the VS Code, you have to select the folder containing the entire Unity project.
+
+In case you'd like to open just the folder with the scenario scripts or another folder under the Unity project directory, select that folder via `Naninovel Project Root` option in the engine configuration menu.
+
+![](https://i.gyazo.com/0395ca7947559630a025f1c740852d04.png)
+
+When selected, Naninovel will generate the metadata and bridging files under the custom folder, which you can then open with the VS Code as well.
+
 ### Scenario Root
 
 The VS Code extension has to be aware where the Naninovel scenario scripts (`.nani` files) are stored, relative to the workspace root. By default, it expects them under `Assets/Scenario` directory:
