@@ -6,32 +6,33 @@ IDE features, like syntax highlighting, error checking, auto-completion and inte
 
 ## Setup
 
+### Install VS Code Extension
+
 1. Open extensions window in VS Code via `View -> Extensions` menu
 2. Search for "Naninovel" and click "Install" button
-3. Open a folder where the scenario scripts are stored (usually `Assets/Scenario`)
-4. When a `.nani` file is opened, the extension will activate automatically
+
+![](https://i.gyazo.com/b85f1478acde3cad440d1f29f915f395.png)
 
 ::: info NOTE
 Extension in the VS Code registry is compatible with the current stable Naninovel release. When using a preview release of Naninovel, switch to the pre-release extension stream. When using a final Naninovel release, disable auto-update in VS Code and install associated legacy version of the extension.
 :::
 
+### Activate the Extension
+
+1. Make sure [Naninovel is installed](/guide/getting-started#install-naninovel) in the Unity project
+2. Open the Unity project folder in VS Code
+
+When the extension detects a `.nani` file in the current workspace, it'll activate the bridging service, which handles the useful tasks, such as diagnosing the scripts, providing auto-completion, indicating which script line is currently played, etc.
+
+![](https://i.gyazo.com/e8b2c0689d75bed8f9a6dbf2d09d8eb0.png)
+
 ### Scenario Root
 
-When opening (in VS Code) not just the scenario root (directory where all the `.nani` files are stored), but a directory above the root (eg, Unity project root), make sure `Scenario Root` setting points to the actual root directory.
+The VS Code extension has to be aware where the Naninovel scenario scripts (`.nani` files) are stored, relative to the workspace root. By default, it expects them under `Assets/Scenario` directory:
 
 ![](https://i.gyazo.com/3ecbb9440a8e53d4b3d654b15c5ea557.png)
 
-— by default, the root is set to `Assets/Scenario`, which is also the default on the Unity side. When using other directory to store scenario scripts, change the setting and restart VS Code; otherwise script paths won't be correctly resolved, resulting in navigation warnings and wrong paths shown in auto-completions.
-
-Below is a video tutorial on how to install, configure and use the VS Code extension.
-
-![](https://www.youtube.com/watch?v=TA-kx6B9uD8)
-
-## Spell Check
-
-To enable spell checking in the naninovel scripts, install a spell checker extension, eg. [Code Spell Check](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) and turn on the checking for `naniscript` language; see the [settings section](/guide/ide-extension#vs-code-settings) below for an example on how to enable naniscript language for the Code Spell Check extension.
-
-![](https://i.gyazo.com/f66f7adcae6b366dfced8ec08f24cff9.png)
+— in case you've changed the default in the Unity project configuration and using another directory to store the scrips, change the setting and restart VS Code; otherwise script paths won't be correctly resolved, resulting in navigation warnings and wrong paths shown in auto-completions.
 
 ## VS Code Settings
 
@@ -84,6 +85,12 @@ You can access the settings JSON file via `File -> Preference -> Settings` menu 
 
 Feel free to customize the settings as you see fit.
 
+## Spell Check
+
+To enable spell checking in the naninovel scripts, install a spell checker extension, eg. [Code Spell Check](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) and turn on the checking for `naniscript` language; see the [settings section](/guide/ide-extension#vs-code-settings) below for an example on how to enable naniscript language for the Code Spell Check extension.
+
+![](https://i.gyazo.com/f66f7adcae6b366dfced8ec08f24cff9.png)
+
 ## Folding
 
 Following artifacts get folding support by default:
@@ -99,19 +106,13 @@ It's also possible to specify custom folding regions via comments with special s
 
 ![?width=450px](https://i.gyazo.com/1e84951c9d5c34e0295e58bb4e1ebe28.mp4)
 
-## IDE Metadata
+## Project Metadata
 
-The project metadata (actors, scripts, custom commands, etc) is stored as `NaninovelData/Metadata.json` file. It's automatically generated when Unity editor is started. To update the metadata while the project is opened, either use `Naninovel -> Update Metadata` editor menu or `Ctrl + Shift + U` hotkey.
+The Naninovel metadata is a JSON file, which contains various information associated with the authored project: available characters, backgrounds, resources, commands, etc. This information is used by the authoring tools, such as the IDE extension and web editor to provide the helpful functions, such as auto-completion and diagnostics.
 
-The metadata is automatically synced with the IDE each time it's updated. To disable automatic metadata sync in the IDE and other related features, use extension settings under "Naninovel" category. Restart the IDE after changing the settings (or press Ctrl+Shift+P and select "Developer: Reload Window") for changes to take effect.
+The metadata file is stored at `.nani/Metadata.json`, under the Unity project root. When `Auto Generate Metadata` is enabled under engine configuration, the metadata is re-generated automatically when editor starts. To update the metadata manually (for example, after adding resources or custom commands), either use `Naninovel -> Update Metadata` editor menu or `Ctrl + Shift + U` hotkey.
 
-![](https://i.gyazo.com/becbd3b30d94938e9ae526e60e15a5bb.png)
-
-::: info NOTE
-When typing generic text lines, author ID auto-completion won't trigger automatically, as it's impossible to guess whether you want to specify author ID or just typing text to print. Use the hotkey (`Ctrl+Space` by default) to trigger auto-complete manually.
-:::
-
-## Metadata Providers
+### Metadata Providers
 
 To fill generated metadata with additional custom values, implement `IMetadataProvider` interface. The implementations are expected to have a parameterless constructor and will be instantiated and used each time project metadata is generated (eg, when syncing with an IDE extension). The results of each implementation will be merged with each other; this way you can have multiple providers that generate specific metadata.
 
