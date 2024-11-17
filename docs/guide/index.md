@@ -79,5 +79,3 @@ Following are some of the features Naninovel provide out of the box:
 * [Script rewinding and debug](/guide/naninovel-scripts#scripts-debug)
 * [Custom commands](/guide/custom-commands)
 * [Custom actor implementations](/guide/custom-actor-implementations)
-* [Google Drive integration](/guide/resource-providers#google-drive)
-* [Visual scripting](/guide/visual-scripting)
