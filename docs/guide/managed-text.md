@@ -36,7 +36,7 @@ When `ManagedTextProvider` component is used in a custom UI, text printer or cho
 
 ## Managed Text Variables
 
-It's also possible to bind managed text records with variables in the source code. For this, add `ManagedText` attribute to a static string field and declaring class. Field's value will be overwritten with the value specified in the managed text document on engine initialization.
+It's also possible to bind managed text records with variables in the source code. For this, add `ManagedText` attribute to a static string field. Field's value will be overwritten with the value specified in the managed text document on engine initialization.
 
 Below is an example on using a managed text variable to localize a text label in a C# script.
 
@@ -45,7 +45,6 @@ using Naninovel;
 using UnityEngine.UI;
 
 // Inheriting from Unity's text component, so we can use it as one.
-[ManagedText]
 public class CustomLabel : Text
 {
     // Value of the "CustomLabel.LabelText" managed text record will be assigned
