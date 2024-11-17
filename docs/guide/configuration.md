@@ -141,6 +141,7 @@ Show Initialization UI | True | Whether to show a loading UI while the engine is
 Custom Initialization UI | Null | UI to show while the engine is initializing (when enabled). Will use a default one when not specified.
 Enable Bridging | False | Whether to automatically start the bridging server to communicate with external Naninovel tools: IDE extension, web editor, etc.
 Auto Generate Metadata | True | Whether to automatically generate project metadata when Unity editor is started.
+Naninovel Project Root |  | Root directory of the Naninovel project, relative to the Unity project root. By default, equals the Unity project root (empty value).<br><br>Naninovel will generate a `.nani` folder under the selected root, where it'll store generated project metadata and communicate with the authoring tools via file-based IPC.
 Enable Development Console | True | Whether to enable development console.
 Debug Only Console | False | When enabled, development console will only be available in development (debug) builds.
 
