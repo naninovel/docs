@@ -124,45 +124,39 @@ The metadata file is stored at `.nani/Metadata.json`, under the Unity project ro
 
 ### Metadata Providers
 
-To fill generated metadata with additional custom values, implement `IMetadataProvider` interface. The implementations are expected to have a parameterless constructor and will be instantiated and used each time project metadata is generated (eg, when syncing with an IDE extension). The results of each implementation will be merged with each other; this way you can have multiple providers that generate specific metadata.
+To fill generated metadata with additional custom values, create a C# class and implement `IMetadataProvider` interface; the implementation is expected to have a parameterless constructor. When found, custom provider will be used instead of the default one each time project metadata is generated (eg, when syncing with an IDE extension).
 
-Below is an example of a built-in metadata provider, that generates script label constants to be used in autocompletion.
+Below is the default metadata provider, which you can use as reference when implementing your own:
 
 ```csharp
-public class LabelMetadataProvider : IMetadataProvider
+public class DefaultMetadataProvider : IMetadataProvider
 {
-    public Project GetMetadata (MetadataOptions options)
+    public Project GetMetadata ()
     {
-        var scripts = LoadScripts();
-        var constants = scripts.Select(CreateLabelConstant);
-        return new Project { Constants = constants.ToArray() };
+        var meta = new Project();
+        Notify("Processing commands...", 0);
+        meta.Commands = MetadataGenerator.GenerateCommandsMetadata();
+        Notify("Processing resources...", .25f);
+        meta.Resources = MetadataGenerator.GenerateResourcesMetadata();
+        Notify("Processing actors...", .50f);
+        meta.Actors = MetadataGenerator.GenerateActorsMetadata();
+        Notify("Processing variables...", .75f);
+        meta.Variables = MetadataGenerator.GenerateVariablesMetadata();
+        Notify("Processing functions...", .95f);
+        meta.Functions = MetadataGenerator.GenerateFunctionsMetadata();
+        Notify("Processing constants...", .99f);
+        meta.Constants = MetadataGenerator.GenerateConstantsMetadata();
+        meta.Syntax = Compiler.Syntax;
+        return meta;
     }
 
-    private Script[] LoadScripts ()
+    private static void Notify (string info, float progress)
     {
-        return EditorResources.LoadOrDefault()
-            .GetAllRecords(ScriptsConfiguration.DefaultPathPrefix)
-            .Select(kv => AssetDatabase.GUIDToAssetPath(kv.Value))
-            .Where(path => !string.IsNullOrEmpty(path))
-            .Select(AssetDatabase.LoadAssetAtPath<Script>)
-            .ToArray();
-    }
-
-    private Constant CreateLabelConstant (Script script)
-    {
-        var name = $"Labels/{script.Name}";
-        var values = script.Lines
-            .OfType<LabelScriptLine>()
-            .Where(l => !string.IsNullOrWhiteSpace(l.LabelText))
-            .Select(l => l.LabelText.Trim());
-        return new Constant { Name = name, Values = values.ToArray() };
+        if (EditorUtility.DisplayCancelableProgressBar("Generating Metadata", info, progress))
+            throw new OperationCanceledException("Metadata generation cancelled by the user.");
     }
 }
 ```
-
-::: info NOTE
-Starting with v1.20 label auto-completion no longer requires metadata sync, hence the above code has been removed from the Naninovel sources, but it's still a valid example on implementing custom metadata providers.
-:::
 
 ## IDE Attributes
 
