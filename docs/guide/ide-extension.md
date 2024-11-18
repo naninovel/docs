@@ -120,7 +120,7 @@ It's also possible to specify custom folding regions via comments with special s
 
 The Naninovel metadata is a JSON file, which contains various information associated with the authored project: available characters, backgrounds, resources, commands, etc. This information is used by the authoring tools, such as the IDE extension and web editor to provide the helpful functions, such as auto-completion and diagnostics.
 
-The metadata file is stored at `.nani/Metadata.json`, under the Unity project root. When `Auto Generate Metadata` is enabled under engine configuration, the metadata is re-generated automatically when editor starts. To update the metadata manually (for example, after adding resources or custom commands), either use `Naninovel -> Update Metadata` editor menu or `Ctrl + Shift + U` hotkey.
+The metadata file is stored at `.nani/Metadata.json`, under the Unity project root. When `Auto Generate Metadata` is enabled under engine configuration, the metadata is re-generated automatically when editor starts and after compiling C# scripts. To manually initiate metadata update, either use `Naninovel -> Update Metadata` editor menu or `Ctrl + Shift + U` hotkey.
 
 ### Metadata Providers
 
