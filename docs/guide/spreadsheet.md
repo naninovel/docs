@@ -68,14 +68,6 @@ public class CustomProcessor : Processor
 }
 ```
 
-## Example
-
-Find an example on how to set up and use the tool in the following project [hosted on GitHub](https://github.com/naninovel/samples/tree/main/unity/localization).
-
-You can [clone the project with a Git client](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) or [download it as a zip archive](https://github.com/naninovel/samples/archive/main.zip).
-
-::: warning
-Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; importing the package will resolve the issues.
+::: tip EXAMPLE
+Find an example on how to set up and use the tool in the [sample GitHub project](https://github.com/naninovel/samples/tree/main/unity/localization).
 :::
-
-The project has a couple of test scripts stored in `Assets/Scenario` folder, managed text documents at `Assets/Resources/Naninovel/Text` and a sheets at the root directory.
