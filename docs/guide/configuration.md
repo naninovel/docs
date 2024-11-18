@@ -139,7 +139,7 @@ Initialize On Application Load | True | Whether to automatically initialize the 
 Scene Independent | True | Whether to apply `DontDestroyOnLoad` to the engine objects, making their lifetime independent of any loaded scenes. When disabled, the objects will be part of the Unity scene where the engine was initialized and will be destroyed when the scene is unloaded.
 Show Initialization UI | True | Whether to show a loading UI while the engine is initializing.
 Custom Initialization UI | Null | UI to show while the engine is initializing (when enabled). Will use a default one when not specified.
-Enable Bridging | False | Whether to automatically start the bridging server to communicate with external Naninovel tools: IDE extension, web editor, etc.
+Enable Bridging | True | Whether to automatically start the bridging server to communicate with external Naninovel tools: IDE extension, web editor, etc.
 Auto Generate Metadata | True | Whether to automatically generate project metadata when Unity editor is started.
 Naninovel Project Root |  | Root directory of the Naninovel project, relative to the Unity project root. By default, equals the Unity project root (empty value).<br><br>Naninovel will generate a `.nani` folder under the selected root, where it'll store generated project metadata and communicate with the authoring tools via file-based IPC.
 Enable Development Console | True | Whether to enable development console.
