@@ -85,6 +85,7 @@ await stateManager.ResetState();
 A built-in title menu implementation will be automatically shown when the engine is initialized, while you'll most likely have your own title menu. You can either modify, replace or completely remove the built-in title menu using [UI customization feature](/guide/user-interface#ui-customization). The menu goes under `Title UI` in the UI resources list.
 
 ## Engine Objects Layer
+
 You can make the engine assign a specific [layer](https://docs.unity3d.com/Manual/Layers.html) for all the objects (except UI-related) it creates via configuration menu.
 
 ![](https://i.gyazo.com/8642fe37ddc45b8514b9f01d70277fbd.png)
@@ -196,20 +197,6 @@ There are multiple other features (state outsourcing, services overriding, custo
 
 If you feel some engine API or system is lacking in extendability and requiring source code modification in order to integrate, please [contact the support](/support/#naninovel-support) — we'll consider improving it.
 
-## Example Project
-
-An example project with Naninovel used as both drop-in dialogue for a 3D adventure game and a switchable standalone novel mode is [available on GitHub](https://github.com/naninovel/samples/tree/main/unity/integration). You can [clone the repository](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) with a Git client or [download it as a zip archive](https://github.com/naninovel/samples/archive/main.zip).
-
-::: warning
-Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; importing the package will resolve the issues.
+::: tip EXAMPLE
+An example project with Naninovel used as both drop-in dialogue for a 3D adventure game and a switchable standalone novel mode is [available on GitHub](https://github.com/naninovel/samples/tree/main/unity/integration).
 :::
-
-All the project-specific (example) scripts are stored at `Assets/Runtime` folder.
-
-Naninovel is initialized manually (auto initialization is disabled in the engine configuration menu) via `Runtime/SetupGame.cs` script attached to `SetupGame` game object located on `MainScene` scene.
-
-`Runtime/DialogueTrigger.cs` script used as component on triggers perform switch to dialogue mode when player is hitting the trigger colliders.
-
-`Runtime/SwitchToNovelMode.cs` custom command is used to switch to novel mode from both C# and naninovel scripts.
-
-`Runtime/SwitchToAdventureMode.cs` custom command is used to switch to adventure from novel mode.

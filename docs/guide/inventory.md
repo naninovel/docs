@@ -13,7 +13,7 @@ Example project shows how to make custom inventory UI with grid layout, paginati
 You can [clone the project repository with a Git client](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) or [download it as a zip archive](https://github.com/naninovel/samples/archive/main.zip).
 
 ::: warning
-Naninovel package is not distributed with the project, hence compilation errors will be produced after opening it for the first time; importing the package will resolve the issues.
+Naninovel is referenced as a Git UPM package, which is hosted on a private GitHub repository. Refer to the [installation guide](/guide/getting-started#install-from-github) for instructions on accessing the repository. Alternatively, remove the Git package and install Naninovel from the Asset Store.
 :::
 
 ## Installation
