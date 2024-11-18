@@ -122,9 +122,9 @@ The Naninovel metadata is a JSON file, which contains various information associ
 
 The metadata file is stored at `.nani/Metadata.json`, under the Unity project root. When `Auto Generate Metadata` is enabled under engine configuration, the metadata is re-generated automatically when editor starts and after compiling C# scripts. To manually initiate metadata update, either use `Naninovel -> Update Metadata` editor menu or `Ctrl + Shift + U` hotkey.
 
-### Metadata Providers
+### Metadata Provider
 
-To fill generated metadata with additional custom values, create a C# class and implement `IMetadataProvider` interface; the implementation is expected to have a parameterless constructor. When found, custom provider will be used instead of the default one each time project metadata is generated (eg, when syncing with an IDE extension).
+To fill generated metadata with additional custom values or override defaults, create a C# class and implement `IMetadataProvider` interface; the implementation is expected to have a parameterless constructor. When found, custom provider will be used instead of the default one each time project metadata is generated (eg, when syncing with an IDE extension).
 
 Below is the default metadata provider, which you can use as reference when implementing your own:
 
