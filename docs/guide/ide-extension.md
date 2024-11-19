@@ -134,6 +134,9 @@ public class DefaultMetadataProvider : IMetadataProvider
     public Project GetMetadata ()
     {
         var meta = new Project();
+        var cfg = ProjectConfigurationProvider.LoadOrDefault<ScriptsConfiguration>();
+        meta.EntryScript = cfg.StartGameScript;
+        meta.TitleScript = cfg.TitleScript;
         Notify("Processing commands...", 0);
         meta.Commands = MetadataGenerator.GenerateCommandsMetadata();
         Notify("Processing resources...", .25f);
