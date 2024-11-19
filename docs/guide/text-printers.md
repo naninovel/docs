@@ -190,7 +190,18 @@ When text printer has constant dimensions and can't accommodate varying message 
 
 ## Text Styles
 
-Various text styles can be applied via rich text tags placed right inside the text or using [@style] command. See the [official documentation](http://digitalnativestudios.com/textmeshpro/docs/rich-text/) for more info.
+Various text styles can be applied via rich text tags placed inside the text or using [@format] command:
+
+```nani
+; Print "Lorem" in bold and "sit" in blue and italic.
+Kohaku: <b>Lorem</b> ipsum <color=#0000FF><i>sit</i></color> amet.
+```
+
+Consult the [TMPro rich text documentation](https://docs.unity3d.com/Packages/com.unity.textmeshpro@4.0/manual/RichText) for the available tags.
+
+::: tip
+In case you'd like to apply specific text formatting or style to all the messages authored by a specific character or printer, check out [message templates](/guide/text-printers#message-templates) feature.
+:::
 
 ## Ruby (Furigana)
 
