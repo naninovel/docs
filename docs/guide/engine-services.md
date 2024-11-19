@@ -50,7 +50,7 @@ In order to be automatically instantiated, service implementation should have a 
 - Any number of configuration objects (`Configuration`-derived)
 - A Unity's "MonoBehavior" proxy object (`IEngineBehaviour`-derived)
 
-Be aware, that it's not safe to use other services in the constructor. Instead, perform any initialization activities that require using other services at `InitializeServiceAsync` method; to make sure required services are initialized when you're accessing them, list them in the service constructor (initialization queue is topologically sorted based on the constructor arguments).
+Be aware, that it's not safe to use other services in the constructor. Instead, perform any initialization activities that require using other services at `InitializeService` method; to make sure required services are initialized when you're accessing them, list them in the service constructor (initialization queue is topologically sorted based on the constructor arguments).
 
 In case your custom service has a persistent state, which you wish to de-/serialize with other engine services, implement `IStatefulService<TState>` interface, where `TState` is either `GameStateMap`, `GlobalStateMap` or `SettingsStateMap` depending if you want to store the state with the game sessions-specific, global state or settings. It's allowed to implement all three interfaces for a single service if required. For more information on different types of engine state see [state management guide](/guide/state-management).
 

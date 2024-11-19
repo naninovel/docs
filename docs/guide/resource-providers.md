@@ -196,39 +196,39 @@ public class CustomResourceProvider : IResourceProvider
         return default;
     }
 
-    public UniTask<Resource<T>> LoadResourceAsync<T> (string path)
+    public UniTask<Resource<T>> LoadResource<T> (string path)
         where T : UnityEngine.Object
     {
-        OnMessage?.Invoke($"LoadResourceAsync: {path}");
+        OnMessage?.Invoke($"LoadResource: {path}");
         OnLoadProgress?.Invoke(1f);
         return default;
     }
 
-    public UniTask<IEnumerable<Resource<T>>> LoadResourcesAsync<T> (string path)
+    public UniTask<IEnumerable<Resource<T>>> LoadResources<T> (string path)
         where T : UnityEngine.Object
     {
-        OnMessage?.Invoke($"LoadResourcesAsync: {path}");
+        OnMessage?.Invoke($"LoadResources: {path}");
         OnLoadProgress?.Invoke(1f);
         return default;
     }
 
     public UniTask<IEnumerable<Folder>> LocateFolders (string path)
     {
-        OnMessage?.Invoke($"LocateFoldersAsync: {path}");
+        OnMessage?.Invoke($"LocateFolders: {path}");
         return default;
     }
 
-    public UniTask<IEnumerable<string>> LocateResourcesAsync<T> (string path)
+    public UniTask<IEnumerable<string>> LocateResources<T> (string path)
         where T : UnityEngine.Object
     {
-        OnMessage?.Invoke($"LocateResourcesAsync: {path}");
+        OnMessage?.Invoke($"LocateResources: {path}");
         return default;
     }
 
-    public UniTask<bool> ResourceExistsAsync<T> (string path)
+    public UniTask<bool> ResourceExists<T> (string path)
         where T : UnityEngine.Object
     {
-        OnMessage?.Invoke($"ResourceExistsAsync: {path}");
+        OnMessage?.Invoke($"ResourceExists: {path}");
         return default;
     }
 

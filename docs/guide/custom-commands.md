@@ -4,7 +4,7 @@ Command represents a single operation, that controls what happens on the scene; 
 
 ## Adding Custom Command
 
-To add your own custom script command, create a new C# class derived from `Command` and implement `ExecuteAsync` abstract method. The created class will automatically be picked up by the engine and you'll be able to invoke the command from the naninovel scripts by either the class name or an alias (if assigned). To assign an alias to the naninovel command, apply `CommandAlias` attribute to the class.
+To add your own custom script command, create a new C# class derived from `Command` and implement `Execute` abstract method. The created class will automatically be picked up by the engine and you'll be able to invoke the command from the naninovel scripts by either the class name or an alias (if assigned). To assign an alias to the naninovel command, apply `CommandAlias` attribute to the class.
 
 Below is an example of a custom command, that can be invoked from naninovel scripts as `@HelloWorld` or `@hello` to print "Hello World!" to the console and can also take an optional `name` parameter (eg, `@hello name:Felix`) to greet the provided name instead of the world.
 
@@ -29,11 +29,11 @@ public class HelloWorld : Command
 
 ### Execute Method
 
-`ExecuteAsync` is an async method invoked when the command is executed by the scripts player; put the command logic there. Use [engine services](/guide/engine-services) to access the engine built-in systems. Naninovel script execution will halt until this method returns a completed task in case `Wait` parameter is `true`.
+`Execute` is an async method invoked when the command is executed by the scripts player; put the command logic there. Use [engine services](/guide/engine-services) to access the engine built-in systems. Naninovel script execution will halt until this method returns a completed task in case `Wait` parameter is `true`.
 
 ### AsyncToken
 
-Notice the optional `AsyncToken` argument provided for the `ExecuteAsync` method. When performing [async operations](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/), make sure to check the token for cancellation and completion requests after each async operation and react accordingly:
+Notice the optional `AsyncToken` argument provided for the `Execute` method. When performing [async operations](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/), make sure to check the token for cancellation and completion requests after each async operation and react accordingly:
 
 - `AsyncToken.Canceled` means the engine has been destroyed or reset; in both cases it's no longer safe to use the engine APIs and any state mutations will lead to an undefined behaviour. When canceled, the command implementation is expected to throw `AsyncOperationCanceledException` immediately, discarding any currently performed activities.
 - `AsyncToken.Completed` means the command is expected to complete all the activities as fast as possible; eg, if you're running animations, finish them instantly, no matter the expected duration. This usually happens when player activates continue input or a save game operation is started.
@@ -148,7 +148,7 @@ public class PlayAudioClip : Command, Command.IPreloadable
 }
 ```
 
-Notice `ClipPath.DynamicValue` check: we wouldn't be able to preload the resource in case the name is only known when the command is executed (ie parameter contain [script expressions](/guide/script-expressions)); in this case the resource should be loaded inside `ExecuteAsync` method.
+Notice `ClipPath.DynamicValue` check: we wouldn't be able to preload the resource in case the name is only known when the command is executed (ie parameter contain [script expressions](/guide/script-expressions)); in this case the resource should be loaded inside `Execute` method.
 
 ### Command Examples
 
