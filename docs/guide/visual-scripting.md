@@ -14,9 +14,9 @@ Add `Elringus.Naninovel.Runtime` library to the `Node Library` list found in "Vi
 
 ![](https://i.gyazo.com/38afd2ea477fcf0921114e3847de6c85.png)
 
-The Visual Scripting doesn't automatically expose all the available types in the libraries, so we additionally need to add the required Naninovel types to the `Type Options` list found in the same settings menu. In the example below we added `Engine` and `Script Player Interface`, but you'll probably need more types, like the other [engine service interfaces](/guide/engine-services), configurations, etc.
+The Visual Scripting doesn't automatically expose all the available types in the libraries, so we additionally need to add the required Naninovel types to the `Type Options` list found in the same settings menu. In the example below we added `Engine`, `Script Player Interface` and `Script Player Extensions`, but you'll probably need more types, like the other [engine service interfaces](/guide/engine-services), configurations, etc.
 
-![](https://i.gyazo.com/2e416a015d980cbedfa49d1589505e17.png)
+![](https://i.gyazo.com/9afdeb12c0ff63ce942d04b21f737217.png)
 
 Don't forget to regenerate units after adding the libraries and types to apply the changes.
 
@@ -24,15 +24,14 @@ Don't forget to regenerate units after adding the libraries and types to apply t
 
 ## Usage
 
-When Naninovel library and types are added in the visual scripting settings, the engine APIs will become available in the fuzzy finder under graph view and can be used in the same way as the other Unity or third-party APIs. Below is an example on initializing the engine and playing a script. Make sure to disable `Initialize On Application Load` and `Show Title UI`, before trying this example.
+When Naninovel library and types are added in the visual scripting settings, the engine APIs will become available in the fuzzy finder under graph view and can be used in the same way as the other Unity or third-party APIs. Below is an example on initializing the engine and playing a script. Make sure to disable `Initialize On Application Load` and remove `Title UI`, before trying this example.
 
-![](https://i.gyazo.com/a890edf4425ba94d934c31ced6ca0f53.png)
+![](https://i.gyazo.com/63a832f10fa3f5e4429e98da50ae8dd0.png)
 
 In case you wish to send an event from a scenario script to a visual scripting graph or state machine, below is example of a [custom command](/guide/custom-commands), which will attempt to find a game object with the provided name and send an event with the specified name and arguments:
 
 ```csharp
 using Naninovel;
-using Naninovel.Commands;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -46,12 +45,12 @@ public class BroadcastBoltEvent : Command
     [ParameterAlias("args")]
     public StringListParameter Arguments;
 
-    public override UniTask Execute (AsyncToken asyncToken = default)
+    public override UniTask Execute (AsyncToken token = default)
     {
         var gameObject = GameObject.Find(GameObjectName);
-        if (gameObject == null)
+        if (!gameObject)
         {
-            Debug.LogError($"Failed to find `{GameObjectName}` game object.");
+            Debug.LogError($"Failed to broadcast '{EventName}' bolt event: '{GameObjectName}' game object is not found.");
             return UniTask.CompletedTask;
         }
 
@@ -65,13 +64,13 @@ public class BroadcastBoltEvent : Command
 Just copy-paste the contents to a new C# script stored anywhere inside the project Assets directory and the command will automatically become available and can be used as follows:
 
 ```nani
-; Send `MyEvent` to `ExampleEvent` game object with the provided args
+; Send "MyEvent" to "ExampleEvent" game object with the provided args
 @bolt object:ExampleEvent name:MyEvent args:ExampleMessage,Script002
 ```
 
 Below is an example graph, that, when attached to a `ExampleEvent` game object, will print the message and start playing the specified script.
 
-![](https://i.gyazo.com/fa613006433d43cd8e25b4c9aed33d78.png)
+![](https://i.gyazo.com/e2aef7f19cf013f4d476d32aac036f54.png)
 
 ::: tip EXAMPLE
 An example project containing all the aforementioned graphs and test scripts is [available on GitHub](https://github.com/naninovel/samples/tree/main/unity/visual-scripting).
