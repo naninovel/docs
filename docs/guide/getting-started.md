@@ -257,9 +257,7 @@ On the contrary, sound effects won't loop by default. Assuming you've added an "
 ```
 
 ::: tip
-Over the course of using Naninovel a number of assets (configuration, settings, saves, etc) will be automatically generated under `Assets/NaninovelData` folder. Don't modify the contents of the folder or move it (it'll be automatically regenerated). If you wish to change the location or name of the data folder, use `Generated Data Path` property in the engine configuration menu.
-
-![](https://i.gyazo.com/1d94b80b9f37a29b0885742b72eebacb.png)
+Over the course of using Naninovel a number of assets (settings, resources, various caches, etc) will be automatically generated under `Assets/NaninovelData` folder. You're free to move or rename the folder, just make sure to not store it under a "Resources" folder, as it'll cause conflicts.
 :::
 
 ## Video Guide
