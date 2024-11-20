@@ -130,7 +130,6 @@ Predefined Variables | Object Ref | The list of variables to initialize by defau
 
 Property | Default Value | Description
 --- | --- | ---
-Generated Data Path | Naninovel Data | Relative (to the application data directory) path to store the automatically generated assets.
 Override Objects Layer | False | Whether to assign a specific layer to all the engine objects. Engine's camera will use the layer for the culling mask. Use this to isolate Naninovel objects from being rendered by other cameras.
 Objects Layer | 0 | When `Override Objects Layer` is enabled, the specified layer will be assigned to all the engine objects.
 Async Exception Log Type | Error | Log type to use for UniTask-related exceptions.
@@ -140,7 +139,7 @@ Scene Independent | True | Whether to apply `DontDestroyOnLoad` to the engine ob
 Show Initialization UI | True | Whether to show a loading UI while the engine is initializing.
 Custom Initialization UI | Null | UI to show while the engine is initializing (when enabled). Will use a default one when not specified.
 Enable Bridging | True | Whether to automatically start the bridging server to communicate with external Naninovel tools: IDE extension, web editor, etc.
-Auto Generate Metadata | True | Whether to automatically generate project metadata when Unity editor is started.
+Auto Generate Metadata | True | Whether to automatically generate project metadata when Unity editor is started and after compiling C# scripts.
 Naninovel Project Root |  | Root directory of the Naninovel project, relative to the Unity project root. By default, equals the Unity project root (empty value).<br><br>Naninovel will generate a `.nani` folder under the selected root, where it'll store generated project metadata and communicate with the authoring tools via file-based IPC.
 Enable Development Console | True | Whether to enable development console.
 Debug Only Console | False | When enabled, development console will only be available in development (debug) builds.
@@ -307,7 +306,7 @@ Loader | Spawn- (Addressable, Project) | Configuration of the resource loader us
 
 Property | Default Value | Description
 --- | --- | ---
-Save Folder Name | Saves | The folder will be created in the game data folder.
+Save Folder Name | Naninovel Data/Saves | The folder will be created in the game data folder.
 Default Settings Slot Id | Settings | The name of the settings save file.
 Default Global Slot Id | Global Save | The name of the global save file.
 Save Slot Mask | Game Save{0:000} | Mask used to name save slots.
