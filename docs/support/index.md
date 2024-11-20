@@ -4,7 +4,7 @@ If you have issues with the engine, first make sure to read the [guide](/guide/)
 
 In case you're sure the engine is not working as intended, check if you're running the latest available version. Most recent patches are published on our Discord server; always use them instead of importing the package from Unity's package manager, as the latter is usually outdated.
 
-If upgrading didn't help, try to re-install the package by deleting `Naninovel` folder from the project and re-importing it. Make sure to follow the upgrade instructions specified in the [release notes](/releases) when upgrading from on older version.
+If upgrading didn't help, try to re-install the package by deleting `Naninovel` folder from the project and re-importing it. Make sure to follow the upgrade instructions specified in the [release notes](/releases/) when upgrading from on older version.
 
 ## Issue Tracker
 
