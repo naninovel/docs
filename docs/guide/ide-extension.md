@@ -26,23 +26,15 @@ When the extension detects a `.nani` file in the current workspace, it'll activa
 
 ![](https://i.gyazo.com/e8b2c0689d75bed8f9a6dbf2d09d8eb0.png)
 
-### Project Root
+### Workspace Root
 
-By default, Naninovel will generate a `.nani` folder under the Unity project root, where it'll store the project metadata and bridging files required for communication with the authoring tools, such as the VS Code extension. This means, that when opening Naninovel projects with the VS Code, you have to select the folder containing the entire Unity project.
+Naninovel generates project metadata and bridging files required for communication with the VS Code extension under the generated data directory (`Assets/NaninovelData` by default). This means that when opening Naninovel projects in VS Code (selecting the [workspace root](https://code.visualstudio.com/docs/editor/workspaces)), you need to select a folder that includes the generated data directory at some level.
 
-In case you'd like to open just the folder with the scenario scripts or another folder under the Unity project directory, select that folder via `Naninovel Project Root` option in the engine configuration menu.
+Some users, however, prefer to open only the folder containing the scenario scripts, which doesn’t include the generated data directory. In such cases, move the `NaninovelData` folder into the scenario scripts folder to make it "visible" to VS Code.
 
-![](https://i.gyazo.com/0395ca7947559630a025f1c740852d04.png)
+![](https://i.gyazo.com/1bd8f72bcd4ad30f55ff78592c1093aa.mp4)
 
-When selected, Naninovel will generate the metadata and bridging files under the custom folder, which you can then open with the VS Code as well.
-
-### Scenario Root
-
-The VS Code extension has to be aware where the Naninovel scenario scripts (`.nani` files) are stored, relative to the workspace root. By default, it expects them under `Assets/Scenario` directory:
-
-![](https://i.gyazo.com/3ecbb9440a8e53d4b3d654b15c5ea557.png)
-
-— in case you've changed the default in the Unity project configuration and using another directory to store the scrips, change the setting and restart VS Code; otherwise script paths won't be correctly resolved, resulting in navigation warnings and wrong paths shown in auto-completions.
+Restart VS Code after moving the folder for the changes to take effect.
 
 ## VS Code Settings
 

@@ -114,7 +114,7 @@ Use `Create -> Folder` assets context menu and create a "Scenario" folder, under
 ![](https://i.gyazo.com/30f96fd3c8bb275478361c51f1a00e86.png)
 
 ::: info NOTE
-You can store naninovel scripts (and other Naninovel resources) under any project folder and organize them any way you like; the naming is also up to you. However, note that all the scenario scripts have to be stored under a single root folder, which has to be specified via `Scenario Root` option in scripts configuration menu (by default the root is set to `Assets/Scenario`). It's ok to create any level of nested folders for organization purposes, as long as the sub-folders eventually resolve to the script root.
+You can store Naninovel scripts (and other resources) in any project folder and organize them however you like; naming is also entirely up to you. However, note that all scenario scripts must be stored within a single root directory. You can create as many nested folders as needed for organizational purposes, as long as all sub-folders eventually resolve to a common root within the Unity project.
 
 ::: warning
 Unity treats folders named `Resources` in a special manner: assets stored under such folders are force-included to the build, which may cause [performance issues](https://docs.unity3d.com/Manual/UnderstandingPerformanceResourcesFolder.html). Most importantly, never store anything under `Resources/Naninovel` folder, unless specifically required in the guide, as this may cause all sorts of conflicts and undefined behaviour.
