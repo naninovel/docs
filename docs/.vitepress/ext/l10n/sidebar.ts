@@ -32,7 +32,8 @@ export const en: DefaultTheme.SidebarItem[] = [
             { text: "Memory Management", link: "/guide/memory-management" },
             { text: "Resource Providers", link: "/guide/resource-providers" },
             { text: "Community Modding", link: "/guide/community-modding" },
-            { text: "Development Console", link: "/guide/development-console" }
+            { text: "Development Console", link: "/guide/development-console" },
+            { text: "Samples", link: "/guide/samples" }
         ]
     },
     {
