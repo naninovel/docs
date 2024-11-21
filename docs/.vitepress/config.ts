@@ -23,7 +23,7 @@ export default defineConfig({
             { icon: "github", link: "https://github.com/naninovel" },
             { icon: "discord", link: "https://discord.gg/BfkNqem" },
             { icon: "x", link: "https://x.com/naniengine" },
-            { icon: "bluesky", link: "https://x.com/naniengine" }
+            { icon: "bluesky", link: "https://bsky.app/profile/naninovel.com" }
         ]
     },
     scrollOffset: 85,
