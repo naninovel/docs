@@ -140,7 +140,6 @@ Show Initialization UI | True | Whether to show a loading UI while the engine is
 Custom Initialization UI | Null | UI to show while the engine is initializing (when enabled). Will use a default one when not specified.
 Enable Bridging | True | Whether to automatically start the bridging server to communicate with external Naninovel tools: IDE extension, web editor, etc.
 Auto Generate Metadata | True | Whether to automatically generate project metadata when Unity editor is started and after compiling C# scripts.
-Naninovel Project Root |  | Root directory of the Naninovel project, relative to the Unity project root. By default, equals the Unity project root (empty value).<br><br>Naninovel will generate a `.nani` folder under the selected root, where it'll store generated project metadata and communicate with the authoring tools via file-based IPC.
 Enable Development Console | True | Whether to enable development console.
 Debug Only Console | False | When enabled, development console will only be available in development (debug) builds.
 
@@ -254,7 +253,6 @@ Resolve Mode | Nearest | The mode in which script player handles missing playbac
 Property | Default Value | Description
 --- | --- | ---
 Loader | Scripts- (Addressable, Project) | Configuration of the resource loader used with naninovel script resources.
-Scenario Root | Assets/Scenario | Directory path relative to the Unity project root, where all the scenario script assets (.nani files) are stored.
 Script Parser | Naninovel Script Asset Parser | IScriptParser implementation to use for creating script assets from text. Reimport script assets after modifying this setting for changes to take effect.
 Compiler Localization |  (Naninovel.Compiler Localization) | Locale-specific NaniScript compiler options. Will propagate to IDE extension on metadata sync. Restart Unity editor and reimport script assets for changes to take effect.
 Stable Identification | False | Whether to automatically write identifiers to all the localizable text parameters in imported scripts. Enable to persist associations (eg, localization and voiceover) while editing text content. Re-import the scripts for the change to take effect.
@@ -264,7 +262,7 @@ Start Game Script | Null | Local resource path of the script to play when starti
 Auto Add Scripts | True | Whether to automatically add created naninovel scripts to the resources.
 Auto Resolve Path | True | Whether to automatically resolve and update resource paths whenever scripts are created, renamed or moved.
 Hot Reload Scripts | True | Whether to reload modified (both via visual and external editors) scripts and apply changes during play mode without restarting the playback.
-Watch Scripts | True | Whether to run a file system watcher over '.nani' files in the specified 'Scenario Root'. Required to register script changes when edited with an external application.
+Watch Scripts | True | Whether to run a file system watcher over '.nani' files. Required to register script changes when edited with an external application.
 Show Script Navigator | False | Whether to auto-show script navigator UI after engine is initialized (requires 'IScriptNavigatorUI' available in UI resources).
 Enable Visual Editor | True | Whether to show visual script editor when a script is selected.
 Hide Unused Parameters | True | Whether to hide un-assigned parameters of the command lines when the line is not hovered or focused.
