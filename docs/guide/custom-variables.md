@@ -77,7 +77,7 @@ You can inject the custom variables to any parameter values as long as the type 
 
 ## Variable Triggers
 
-When building a [custom UI](/guide/user-interface#ui-customization) or other systems, you may want to listen (react) for events when a variable value is changed. For example, when building a character stats screen, you want make the text to change with the variables. While the conventional way to implement such behavior would be using a C# script, you can also make use of `Custom Variable Trigger` component. The component will invoke Unity events when a variable with specified name is changed. You can bind compatible commands with those events, such as updating the text values.
+When building a [custom UI](/guide/user-interface#ui-customization) or other systems, you may want to listen for (react to) events when a variable's value changes. For example, when creating a character stats screen, you might want the text to update with the variables. While the conventional way to implement such behavior is by using a C# script, you can also use the `Custom Variable Trigger` component. This component will invoke Unity events when a variable with a specified name changes.
 
 ![](https://i.gyazo.com/22eddd109e76d4e63c461e9d75b20ceb.png)
 
