@@ -418,19 +418,6 @@ It's common to specify multiple async commands to set up a scene and then wait u
 ...
 ```
 
-In case you find yourself using `wait!` parameters more often than not, it's possible to change the default behaviour by enabling `Wait By Default` in script player configuration. When enabled, all the commands will be awaited by default and you'll be able to prevent specific commands from being awaited by negating the `wait` flag:
-
-```nani
-; Given 'Wait By Default' is enabled, Yuko will start
-; fading-in only after Kohaku is faded-out.
-@hide Kohaku
-@show Yuko
-
-; Fade-in and fade-out will happen simultaneously.
-@hide Kohaku !wait
-@show Yuko
-```
-
 ## Title Script
 
 Title script is a special naninovel script assigned in script configuration menu. When assigned, it's automatically played when the title UI (main menu) is shown. Title script can be used to set up the title screen scene: background, music, effects, etc.
