@@ -1458,7 +1458,7 @@ Applies [shake effect](/guide/special-effects#shake) for the actor with the spec
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">actorId</span> | string | ID of the actor to shake. In case multiple actors with the same ID found (eg, a character and a printer), will affect only the first found one. To shake main camera, use `Camera` keyword. |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">actorId</span> | string | ID of the actor to shake. In case multiple actors with the same ID found (eg, a character and a printer), will affect only the first found one. When not specified, will shake the default text printer. To shake main camera, use `Camera` keyword. |
 | count | integer | The number of shake iterations. When set to 0, will loop until stopped with -1. |
 | time | decimal | The base duration of each shake iteration, in seconds. |
 | deltaTime | decimal | The randomizer modifier applied to the base duration of the effect. |
