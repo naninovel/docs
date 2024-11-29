@@ -281,7 +281,7 @@ Following video guide covers creating and configuring diced sprite atlas, adding
 
 ![](https://www.youtube.com/watch?v=6PdOAOsnhio)
 
-For more information on available dicing options and usage examples, refer to the extension docs: https://dicing.elringus.me/guide/unity.
+For more information on available dicing options and usage examples, refer to the extension docs: https://dicing.elringus.com/guide/unity.
 
 ## Layered Characters
 
