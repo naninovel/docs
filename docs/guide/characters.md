@@ -429,7 +429,7 @@ Make sure `Render Canvas` component is attached to the layer actor prefab root, 
 In case extra layers are required for rendering the actor (for example, a layer dedicated for Unity's Lights 2D), add them via `Camera Mask` property found on the layered behaviour component. Naninovel will preserve specified layers in the camera culling mask when rendering the actor.
 
 ::: tip EXAMPLE
-Find example on setting up layered background containing particle systems in the [URP project on GitHub](https://github.com/naninovel/samples/tree/main/unity/urp). (URP is not required for this feature, it'll work the same with the default render backend)
+Find example on setting up layered actors in the [layered actor sample](/guide/samples#layered-actor).
 :::
 
 ## Generic Characters
@@ -453,7 +453,7 @@ Unity's `Animator` component could fail to register `SetTrigger` when the game o
 :::
 
 ::: tip EXAMPLE
-Find [example project on GitHub](https://github.com/naninovel/samples/tree/main/unity/generic-actor), where generic character implementation is used to host a 3D animated model.
+Check [generic actor sample](/guide/samples#generic-actor), where generic character implementation is used to host a 3D animated model.
 :::
 
 ## Video Characters
@@ -513,7 +513,7 @@ Following video guide covers exporting a Live2D character from Cubism Editor, co
 ![](https://www.youtube.com/watch?v=rw_Z69z0pAg)
 
 ::: tip EXAMPLE
-Check out an [example project on GitHub](https://github.com/naninovel/samples/tree/main/unity/live2d), where a Live2D character is used with Naninovel.
+Check the [Live2D sample](/guide/samples#live2d), where a Live2D character is used with Naninovel.
 :::
 
 ## Spine Characters
@@ -547,7 +547,7 @@ Spine's [Skeleton Render Separator](https://github.com/pharan/spine-unity-docs/b
 :::
 
 ::: tip EXAMPLE
-Check out an [example project on GitHub](https://github.com/naninovel/samples/tree/main/unity/spine), where a Spine character is used with Naninovel.
+Check the [spine sample](/guide/samples#spine), where a Spine character is used with Naninovel.
 :::
 
 ## Narrator Characters
@@ -575,10 +575,6 @@ When an actor is rendered to a texture, transformations (position, rotation, sca
 The video below demonstrates how to render a Live2D character to a texture, which is assigned to custom text printer. The printer is linked to the character, so the character will automatically show and hide with the printer when the associated text messages are processed.
 
 ![](https://www.youtube.com/watch?v=81OTbSAnWbw)
-
-::: tip EXAMPLE
-Find a complete example on setting up Live2D character render to texture and binding it with a text printer in the [Naninovel Live2D project on GitHub](https://github.com/naninovel/samples/tree/main/unity/live2d).
-:::
 
 All the other character and background implementation types (except generic) can be set up to render to texture similar to Live2D example.
 

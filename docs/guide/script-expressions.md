@@ -130,9 +130,7 @@ The `ExpressionFunction` attribute has following optional parameters:
 - **Example** Usage examples shown in IDE extension and visual editor.
 
 ::: tip EXAMPLE
-Another example of adding custom expression functions to check whether an item exists in an inventory can be found in the [inventory example project on GitHub](https://github.com/naninovel/samples/tree/main/unity/inventory).
-
-Specifically, the custom functions are implemented via [InventoryFunctions.cs](https://github.com/naninovel/samples/blob/main/unity/inventory/Assets/NaninovelInventory/Runtime/InventoryFunctions.cs) runtime script.
+Another example of adding custom expression functions to check whether an item exists in an inventory can be found in the [inventory sample](/guide/samples#inventory). Specifically, the custom functions are implemented via `Scripts/Runtime/Inventory/InventoryFunctions.cs` runtime script.
 :::
 
 ## Parameter Context
