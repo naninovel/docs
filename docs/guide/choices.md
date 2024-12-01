@@ -30,7 +30,7 @@ goto:.Epilogue
 ```
 
 ::: info NOTE
-Find more about labels in the [scrips guide](/guide/naninovel-scripts#label-lines).
+Find more about labels in the [scripts guide](/guide/naninovel-scripts#label-lines).
 :::
 
 When `goto` parameter is not specified, current script will continue executing from the next line.
