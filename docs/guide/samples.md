@@ -32,6 +32,12 @@ That works, because the assets are assigned a Naninovel resource address and lab
 `Allow Addressable In Editor` has to be enabled in the resource provider configuration in order for the manually registered resources to work in Unity editor.
 :::
 
+## Perspective Scene
+
+This sample shows a generic background filled with multiple animated environment sprites, camera rendering in perspective mode and bokeh (depth of field) effect. The background is stored at `Content/Backgrounds/Perspective` directory.
+
+![](https://i.gyazo.com/610d2cafe5fbe42aba7adb9ac71720d1.mp4)
+
 ## Compiler Localization
 
 To activate the compiler localization in the sample project, assign `Profiles/Naninovel/CompilerRU` asset to the `Compiler Localization` field in the scripts configuration. Then restart the Unity editor and VS Code extension. Now you can open the project with VS Code and run `Compiler Localization` sample scenario.
