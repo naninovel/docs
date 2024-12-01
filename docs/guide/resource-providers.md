@@ -53,9 +53,7 @@ To expose an addressable asset to Naninovel without using editor menus, use a cu
 Addressable provider is only used in runtime builds and is disabled in editor by default. In case you're manually exposing resources via addressable address instead of assigning them with Naninovel's resource managers, enable it with `Allow Addressable In Editor` property in resource provider configuration menu.
 
 ::: tip EXAMPLE
-Check the [example project](https://github.com/naninovel/samples/tree/main/unity/addressable) on how to manually expose Naninovel resources to addressable provider (without using resource editor menus) and serve specific assets from a remote host.
-
-You may also find official Unity learning materials for addressable useful: https://learn.unity.com/course/get-started-with-addressables.
+Check the [addressable sample](/guide/samples#addressable) on how to manually register Naninovel resources via addressable provider (without using resource editor menus) and serve the assets from a remote host. You may also find the Unity [learning materials](https://learn.unity.com/course/get-started-with-addressables) useful.
 :::
 
 ### Script Labels
@@ -158,10 +156,6 @@ With `Google Drive Request Limit` property you can set maximum allowed concurren
 Don't forget to add Google Drive to the list of providers for the resources you wish to retrieve with it. Eg, following will make the script manager to look for scripts in the Google Drive in addition to addressable and project sources:
 
 ![](https://i.gyazo.com/0ad07f73fe12be7ae6d421c5f4f33384.png)
-
-::: tip EXAMPLE
-Check [NaninovelSandbox](https://github.com/naninovel/samples/tree/main/unity/sandbox) project for an example on how to set up and use Google Drive provider. In the project, scripts, characters, backgrounds and audio resources are served from corresponding files stored on authorized user drive.
-:::
 
 ## Custom Providers
 

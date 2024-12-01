@@ -27,7 +27,7 @@ public ActorImplementationType (string id, ActorMetadata metadata) { }
 — where `id` is the ID of the actor and `metadata` — either actor's (when actor record exists in the resources) or a default metadata. When implementing a specific actor interface, it's possible to request corresponding specific metadata (eg, "CharacterMetadata" for "ICharacterActor" implementation).
 
 ::: tip EXAMPLE
-For a complete example on adding custom actor implementation see [Live2D extension project on GitHub](https://github.com/naninovel/samples/tree/main/unity/live2d). Specifically, the custom "Live2DCharacter" actor is implemented in [Live2DCharacter.cs](https://github.com/naninovel/samples/blob/main/unity/live2d/Assets/NaninovelLive2D/Runtime/Live2DCharacter.cs) script.
+All the built-in actor implementations are authored on top of the same actor APIs, so you can use them as a reference when adding your own. Find the sources at `Runtime/Actor` directory of the Naninovel package.
 :::
 
 ## Actor Resources

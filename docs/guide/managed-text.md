@@ -98,5 +98,5 @@ To update the managed text documents and their corresponding localization counte
  See [Localization](/guide/localization) for more info on how to use the localization utility.
 
 ::: tip EXAMPLE
-You can find an example localization setup (including managed text) in the [demo](https://github.com/naninovel/samples/tree/main/unity/demo) and [localization](https://github.com/naninovel/samples/tree/main/unity/localization) sample projects. Use them as a reference in case having issues setting up localization in your own project.
+Find an example localization setup (including managed text) in the [localization sample](/guide/samples#localization). Use it as a reference in case having issues setting up localization in your own project.
 :::

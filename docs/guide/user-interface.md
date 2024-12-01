@@ -55,11 +55,11 @@ Following video tutorial shows how to add a custom calendar UI with special reve
 ![](https://www.youtube.com/watch?v=wrAm-cwPXy4)
 
 ::: tip EXAMPLE
-Unity project showed in the above video tutorial is [available on GitHub](https://github.com/naninovel/samples/tree/main/unity/ui). It also contains examples for adding credits screen with scroll view and web links, choice buttons with particle effect, using emojis in text printer, adding timestamps to chat printer and others.
+Unity project showed in the above video tutorial can be found in the [UI sample](/guide/samples#ui). It also contains examples for adding credits screen with scroll view and web links, choice buttons with particle effect, using emojis in text printer, adding timestamps to chat printer and others.
 :::
 
 ::: tip EXAMPLE
-Another, more advanced example of adding a custom inventory UI with a grid layout, pagination and drag-drop window can be found in the [inventory example project on GitHub](https://github.com/naninovel/samples/tree/main/unity/inventory). Specifically, the UI-related scripts are stored at [Runtime/UI](https://github.com/naninovel/samples/tree/main/unity/inventory/Assets/NaninovelInventory/Runtime/UI) and prefabs at [Prefabs](https://github.com/naninovel/samples/tree/main/unity/inventory/Assets/NaninovelInventory/Prefabs) directories.
+Another, more advanced example of adding a custom inventory UI with a grid layout, pagination and drag-drop window can be found in the [inventory sample](/guide/samples#inventory). Specifically, the UI-related scripts are stored at `Scripts/Runtime/Inventory/UI` and prefabs at `Content/UI/Inventory` directories.
 :::
 
 When you create a new custom UI prefab via the context menu, the prefab will have a `Custom UI` component attached to the root object. This component (or rather the fact that the component is implementing `IManagedUI` interface) is essential to make the prefab accepted as a UI by the engine.
@@ -134,7 +134,7 @@ In the following video tutorial you can learn how to override built-in title (ma
 ![](https://www.youtube.com/watch?v=hqhfhXzQkdk)
 
 ::: tip EXAMPLE
-Unity project showed in the above video tutorial is [available on GitHub](https://github.com/naninovel/samples/tree/main/unity/ui).
+Unity project showed in the above video tutorial is available in the [UI sample](/guide/samples#ui).
 :::
 
 When creating a new prefab from scratch, make sure to attach a component that implements interface of the UI you're going to override. This component should be attached to the root object of the prefab.
@@ -191,12 +191,12 @@ Conditional block commands (if, else, elseif, endif) are not supported in the sc
 When an existing naninovel script is selected via dropdown list, the script text area will be ignored and selected naninovel script will be played **instead** of the currently played one; in case you wish to additively execute some commands without interrupting the currently played script, use the script text area.
 
 ::: tip EXAMPLE
-Find an example on using `Play Script` component in the [UI example project](https://github.com/naninovel/samples/tree/main/unity/ui); the component is used on "CloseButton" game object placed inside "Prefabs/Calendar" custom UI prefab.
+Find an example on using `Play Script` component in the [UI sample](/guide/samples#ui); the component is used on "CloseButton" game object placed inside "Content/UI/Calendar" custom UI prefab.
 :::
 
 ## UI Toolkit
 
-Unity's new UI authoring solution — [UI Toolkit](https://docs.unity3d.com/Packages/com.unity.ui@latest) — is not supported out of the box, but can be used with Naninovel with an adapter, which implements `IManagedUI` interface. Find an example of such adapter in the UI Toolkit example [project on GitHub](https://github.com/naninovel/samples/tree/main/unity/ui-toolkit).
+Unity's new UI authoring solution — [UI Toolkit](https://docs.unity3d.com/Packages/com.unity.ui@latest) — is not supported out of the box, but can be used with Naninovel with an adapter, which implements `IManagedUI` interface. Find an example of such adapter in the [UI sample](/guide/samples#ui).
 
 ::: warning
 UI Toolkit is still in early development and miss lots of features compared to the default UI solution (uGUI). Do not use it, unless you're an advanced developer and ready to solve all the related issues. Be aware, that we won't be able to provide any support or guidance on using the toolkit with Naninovel.

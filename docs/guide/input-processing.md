@@ -15,9 +15,7 @@ For specific values see Unity's input guide: [docs.unity3d.com/Manual/Convention
 You can configure the built-in input bindings and add new listeners using `Naninovel -> Configuration -> Input` context menu; for available options see [configuration guide](/guide/configuration#input).
 
 ::: tip EXAMPLE
-An example of adding custom input binding to toggle inventory UI can be found in the [inventory project on GitHub](https://github.com/naninovel/samples/tree/main/unity/inventory).
-
-Specifically, the custom "ToggleInventory" binding is used in [UI/InventoryUI.cs](https://github.com/naninovel/samples/blob/main/unity/inventory/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L215) runtime script. A binding with the same name is added via input configuration menu, under Control Scheme.
+An example of adding custom input binding to toggle inventory UI can be found in the [inventory sample](/guide/samples#inventory). Specifically, the custom "ToggleInventory" binding is used in `Scripts/Runtime/Inventory/UI/InventoryUI.cs` runtime script. A binding with the same name is added via input configuration menu, under Control Scheme.
 :::
 
 It's possible to halt and resume input processing with [@processInput] command.
@@ -78,7 +76,7 @@ When `Process Legacy Bindings` is left enabled, some bindings may trigger twice 
 For more information on using the input system, consult the [official manual](https://docs.unity3d.com/Packages/com.unity.inputsystem@latest).
 
 ::: tip EXAMPLE
-Find an example project on using the new input system and implementing a rebind UI to allow player change default controls on [GitHub](https://github.com/naninovel/samples/tree/main/unity/input-rebind).
+Check [input rebind sample](/guide/samples#input-rebind) on using the new input system and implementing a rebind UI to allow player change default controls.
 :::
 
 ## Adapt to Input Mode

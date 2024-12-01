@@ -198,5 +198,5 @@ There are multiple other features (state outsourcing, services overriding, custo
 If you feel some engine API or system is lacking in extendability and requiring source code modification in order to integrate, please [contact the support](/support/#naninovel-support) — we'll consider improving it.
 
 ::: tip EXAMPLE
-An example project with Naninovel used as both drop-in dialogue for a 3D adventure game and a switchable standalone novel mode is [available on GitHub](https://github.com/naninovel/samples/tree/main/unity/integration).
+Check [integration sample](/guide/samples#integration) where Naninovel is used as both drop-in dialogue for a 3D adventure game and a switchable standalone novel mode.
 :::

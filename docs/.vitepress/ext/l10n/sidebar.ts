@@ -53,17 +53,6 @@ export const en: DefaultTheme.SidebarItem[] = [
             { text: "Automated Testing", link: "/guide/automated-testing" },
             { text: "Custom Build Environment", link: "/guide/custom-build-environment" }
         ]
-    },
-    {
-        text: "Extensions",
-        collapsed: true,
-        items: [
-            { text: "Spreadsheet", link: "/guide/spreadsheet" },
-            { text: "Fountain", link: "/guide/fountain" },
-            { text: "Visual Scripting", link: "/guide/visual-scripting" },
-            { text: "Inventory", link: "/guide/inventory" },
-            { text: "UniTask", link: "/guide/unitask" }
-        ]
     }
 ];
 
@@ -116,17 +105,6 @@ export const js: DefaultTheme.SidebarItem[] = [
             { text: "インテグレーションの方法", link: "/ja/guide/integration-options" },
             { text: "レンダーパイプライン", link: "/ja/guide/render-pipelines" },
             { text: "カスタムビルド環境", link: "/ja/guide/custom-build-environment" }
-        ]
-    },
-    {
-        text: "エクステンション",
-        collapsed: true,
-        items: [
-            { text: "Spreadsheet", link: "/ja/guide/spreadsheet" },
-            { text: "Fountain", link: "/ja/guide/fountain" },
-            { text: "Visual Scripting", link: "/ja/guide/visual-scripting" },
-            { text: "インベントリ", link: "/ja/guide/inventory" },
-            { text: "UniTask", link: "/ja/guide/unitask" }
         ]
     }
 ];
@@ -181,17 +159,6 @@ export const zn: DefaultTheme.SidebarItem[] = [
             { text: "渲染管线", link: "/zh/guide/render-pipelines" },
             { text: "自定义构建环境", link: "/zh/guide/custom-build-environment" }
         ]
-    },
-    {
-        text: "扩展",
-        collapsed: true,
-        items: [
-            { text: "Spreadsheet", link: "/zh/guide/spreadsheet" },
-            { text: "Fountain", link: "/zh/guide/fountain" },
-            { text: "Visual Scripting", link: "/zh/guide/visual-scripting" },
-            { text: "背包", link: "/zh/guide/inventory" },
-            { text: "UniTask", link: "/zh/guide/unitask" }
-        ]
     }
 ];
 
@@ -244,17 +211,6 @@ export const ru: DefaultTheme.SidebarItem[] = [
             { text: "Варианты интеграции", link: "/ru/guide/integration-options" },
             { text: "Каналы рендеринга", link: "/ru/guide/render-pipelines" },
             { text: "Пользовательская cреда cборки", link: "/ru/guide/custom-build-environment" }
-        ]
-    },
-    {
-        text: "Расширения",
-        collapsed: true,
-        items: [
-            { text: "Таблицы", link: "/ru/guide/spreadsheet" },
-            { text: "Fountain", link: "/ru/guide/fountain" },
-            { text: "Visual Scripting", link: "/ru/guide/visual-scripting" },
-            { text: "Инвентарь", link: "/ru/guide/inventory" },
-            { text: "UniTask", link: "/ru/guide/unitask" }
         ]
     }
 ];

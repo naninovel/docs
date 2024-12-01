@@ -268,10 +268,4 @@ In case you prefer following video guides, here is one illustrating the above in
 
 ## Demo Project
 
-Complete sources of the demo project (the same one showcased on the store) are [available on GitHub](https://github.com/naninovel/samples/tree/main/unity/demo).
-
-You can [clone the repository with a Git client](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository) or [download it as a zip archive](https://github.com/naninovel/samples/archive/main.zip). Be aware, that assets distributed with the demo project may be subject to custom licenses and are provided solely for learning purposes.
-
-::: warning
-Naninovel is referenced in the project as a Git UPM package, which is hosted on a private GitHub repository. Refer to the [installation guide](/guide/getting-started#install-from-github) for instructions on accessing the repository. Alternatively, remove the Git package and install Naninovel from the Asset Store.
-:::
+In case your prefer to learn from a complete solution, check the [sample project](/guide/samples), which contains the complete sources of the demo showed on the website.

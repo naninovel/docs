@@ -117,7 +117,7 @@ public class MyCustomBehaviour : MonoBehaviour
 ```
 
 ::: tip EXAMPLE
-A more advanced example of using custom state with a list of custom structs to save-load game state of an inventory UI can be found in the [inventory example project on GitHub](https://github.com/naninovel/samples/tree/main/unity/inventory). Specifically, de-/serialization of the custom state is implemented in [InventoryUI.cs](https://github.com/naninovel/samples/blob/main/unity/inventory/Assets/NaninovelInventory/Runtime/UI/InventoryUI.cs#L246) custom UI.
+A more advanced example of using custom state with a list of custom structs to save-load game state of an inventory UI can be found in the [inventory sample](/guide/samples#inventory). Specifically, de-/serialization of the custom state is implemented in `Scripts/Runtime/Inventory/UI/InventoryUI.cs` custom UI.
 :::
 
 It's also possible to access global and settings state of the engine to store custom data with them. Unlike game state, which is specific to game sessions and require subscribing to save/load events, global and settings state objects are singletons and can be directly accessed via properties of the state manager.
