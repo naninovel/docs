@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <title>Naninovel Demo</title>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes"/>
+    <link rel="preload" href="loader.webp" as="image">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: #222;
+        }
+
+        #unity-canvas {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+        }
+
+        #loading-content {
+            display: none;
+        }
+
+        #loading-box {
+            width: 100%;
+            height: 0;
+            position: absolute;
+            top: 50%;
+            margin-top: 137px;
+            text-align: center;
+        }
+
+        #icon {
+            width: 300px;
+            height: 310px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -185px;
+            margin-left: -150px;
+            background: url("loader.webp") no-repeat;
+            box-shadow: 1px 1px 5px #141414;
+        }
+
+        #box {
+            width: 328px;
+            height: 367px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-top: -199px;
+            margin-left: -164px;
+            background: #222;
+            box-shadow: 1px 1px 5px #000;
+        }
+
+        #bg-bar {
+            display: none;
+            position: absolute;
+            width: 300px;
+            margin-left: -150px;
+            left: 50%;
+            height: 18px;
+            background-color: #215e88;
+            box-shadow: 1px 1px 5px #111;
+        }
+
+        #progress-bar {
+            display: none;
+            left: 50%;
+            position: absolute;
+            margin-left: -150px;
+            width: 0;
+            height: 18px;
+            background-color: #46bae2;
+        }
+
+        #loading-info {
+            color: #fff;
+            letter-spacing: 1px;
+            position: absolute;
+            width: 100%;
+            font-family: sans-serif;
+            text-align: center;
+            top: 50%;
+            font-size: 11px;
+            font-weight: 500;
+            margin-top: 140px;
+            text-shadow: 0 0 5px #000;
+        }
+
+        #spinner {
+            height: 18px;
+            left: 50%;
+            margin-left: -150px;
+            width: 300px;
+            position: relative;
+            overflow: hidden;
+            background-color: #215e88;
+            box-shadow: 1px 1px 5px #111;
+        }
+
+        #spinner:before {
+            display: block;
+            position: absolute;
+            content: "";
+            width: 150%;
+            margin-left: -10px;
+            height: 10px;
+            background-color: #46bae2;
+            transform: rotate(-5deg);
+            animation: loading 1s linear infinite;
+        }
+
+        @keyframes loading {
+            from { top: -185% }
+            to { top: 225% }
+        }
+    </style>
+</head>
+<body>
+<canvas id="unity-canvas" tabindex="-1"></canvas>
+<div id="loading-content">
+    <div id="box"></div>
+    <div id="loading-box">
+        <div id="spinner"></div>
+        <div id="bg-bar"></div>
+        <div id="progress-bar"></div>
+    </div>
+    <div id="icon"></div>
+    <p id="loading-info"></p>
+</div>
+<script src="Build/demo.loader.js"></script>
+<script>
+    /* @formatter:off */
+    createUnityInstance(document.querySelector("#unity-canvas"), {
+        dataUrl: "Build/demo.data.unityweb",
+        frameworkUrl: "Build/demo.framework.js.unityweb",
+        codeUrl: "Build/demo.wasm.unityweb",
+        streamingAssetsUrl: "StreamingAssets",
+        companyName: "Elringus",
+        productName: "Naninovel Samples",
+        productVersion: "1.20"
+    }, handleProgress);
+    /* @formatter:on */
+
+    function handleProgress(progress) {
+        if (progress === 1) {
+            document.getElementById("loading-box").style.display = "none";
+            document.getElementById("icon").style.display = "none";
+            document.getElementById("loading-info").style.display = "none";
+            document.getElementById("box").style.display = "none";
+        } else if (progress >= .9) {
+            document.getElementById("loading-info").innerHTML = "INITIALIZING...";
+            document.getElementById("spinner").style.display = "inherit";
+            document.getElementById("bg-bar").style.display = "none";
+            document.getElementById("progress-bar").style.display = "none";
+        } else if (progress > 0) {
+            document.getElementById("loading-content").style.display = "inherit";
+            document.getElementById("progress-bar").style.width = 300 * progress + "px";
+            document.getElementById("loading-info").innerHTML = Math.round(progress * 100) + "%";
+            document.getElementById("spinner").style.display = "none";
+            document.getElementById("bg-bar").style.display = "block";
+            document.getElementById("progress-bar").style.display = "inherit";
+        }
+    }
+</script>
+</body>
+</html>
