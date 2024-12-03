@@ -1,8 +1,6 @@
 # Backgrounds
 
-Opposed to [characters](/guide/characters), backgrounds are actors used to represent a *back* layer of the scene: locations, sceneries, landscapes or anything that should always appear *behind* the characters. Check following video tutorial for a brief overview of the background actors.
-
-![](https://www.youtube.com/watch?v=X2iyGSCpnJs)
+Opposed to [characters](/guide/characters), backgrounds are actors used to represent a *back* layer of the scene: locations, sceneries, landscapes or anything that should always appear *behind* the characters.
 
 A background actor is defined with a name, appearance, visibility and transform (position, rotation, scale). It can change appearance, visibility and transform over time.
 
@@ -42,6 +40,10 @@ Backgrounds are handled a bit differently from characters to better accommodate 
 ```
 
 Main background actor record is created by default in the background resources manager and can't be renamed or deleted; however, parameters of the main background (implementation, pivot, PPU, etc) can be freely changed.
+
+Check the following video tutorial for an overview of the background actors.
+
+![](https://www.youtube.com/watch?v=X2iyGSCpnJs)
 
 ## Z-order
 

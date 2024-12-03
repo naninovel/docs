@@ -39,6 +39,10 @@ Choice handler actors are used to process the [@choice] commands. You can add, e
 
 Choice handlers behavior can be configured using `Naninovel -> Configuration -> Choice Handlers` context menu; for available options see [configuration guide](/guide/configuration#choice-handlers).
 
+Check the following video tutorial for an overview of the choice handlers.
+
+![](https://www.youtube.com/watch?v=cOREgtJak3A)
+
 ## Nested Callback
 
 When the consequence of picking a choice is small (eg, you may just want to print a couple of sentences), it's impractical to designate a label and use `goto` or `gosub` parameters. Instead, [nest](/guide/naninovel-scripts#nesting) commands to execute when the choice is picked:
