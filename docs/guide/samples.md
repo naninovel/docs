@@ -4,7 +4,7 @@ A collection of example projects are provided to help you get started with commo
 
 ## Accessing Samples
 
-The samples are hosted on a private GitHub repository: [github.com/naninovel/samples](https://github.com/naninovel/samples). To access the repository, [register your Naninovel license](https://naninovel.com/register) and follow the dashboard instructions to assign a GitHub user. Once you have access, either [clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) or [download](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) the repository.
+The samples are hosted on a private GitHub repository: [github.com/naninovel/samples](https://github.com/naninovel/samples/tree/stable). To access the repository, [register your Naninovel license](https://naninovel.com/register) and follow the dashboard instructions to assign a GitHub user. Once you have access, either [clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) or [download](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) the repository.
 
 Open the repository directory with the Unity editor. Notice that Naninovel is referenced as a Git package in the package manager, so ensure a Git client is installed on your machine. Without it, Unity won't be able to pull the packages; refer to the UPM guide for [more info on Git packages](https://docs.unity3d.com/Manual/upm-ui-giturl.html).
 
