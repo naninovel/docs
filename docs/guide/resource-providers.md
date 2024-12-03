@@ -105,7 +105,7 @@ Supported file formats:
 - `.wav` (PCM16 44100Hz stereo only) for audio
 
 ::: tip
-Add more supported file formats by overriding `IResourceProviderManager` [engine service](/guide/engine-services#overriding-built-in-services) and adding a custom converter for the local provider ([example](https://github.com/naninovel/samples/blob/main/unity/sandbox/Assets/Runtime/WebResourceProvider.cs#L12)).
+Add more supported file formats by overriding `IResourceProviderManager` [engine service](/guide/engine-services#overriding-built-in-services) and adding a custom converter for the local provider.
 
 ![](https://i.gyazo.com/d4e63726c2d1d75e2677cab7f2503546.png)
 :::
