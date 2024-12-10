@@ -22,10 +22,6 @@
             position: fixed;
         }
 
-        #loading-content {
-            display: none;
-        }
-
         #loading-box {
             width: 100%;
             height: 0;
@@ -151,10 +147,7 @@
 
     function handleProgress(progress) {
         if (progress === 1) {
-            document.getElementById("loading-box").style.display = "none";
-            document.getElementById("icon").style.display = "none";
-            document.getElementById("loading-info").style.display = "none";
-            document.getElementById("box").style.display = "none";
+            document.getElementById("loading-content").style.display = "none";
         } else if (progress >= .9) {
             document.getElementById("loading-info").innerHTML = "INITIALIZING...";
             document.getElementById("spinner").style.display = "inherit";
