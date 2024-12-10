@@ -129,21 +129,23 @@
         <div id="progress-bar"></div>
     </div>
     <div id="icon"></div>
-    <p id="loading-info"></p>
+    <p id="loading-info">LOADING...</p>
 </div>
 <script src="Build/demo.loader.js"></script>
 <script>
-    /* @formatter:off */
-    createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/demo.data.unityweb",
-        frameworkUrl: "Build/demo.framework.js.unityweb",
-        codeUrl: "Build/demo.wasm.unityweb",
-        streamingAssetsUrl: "StreamingAssets",
-        companyName: "Elringus",
-        productName: "Naninovel Samples",
-        productVersion: "1.20"
-    }, handleProgress);
-    /* @formatter:on */
+    window.addEventListener("load", () => {
+        /* @formatter:off */
+        createUnityInstance(document.querySelector("#unity-canvas"), {
+            dataUrl: "Build/demo.data.unityweb",
+            frameworkUrl: "Build/demo.framework.js.unityweb",
+            codeUrl: "Build/demo.wasm.unityweb",
+            streamingAssetsUrl: "StreamingAssets",
+            companyName: "Elringus",
+            productName: "Naninovel Samples",
+            productVersion: "1.20"
+        }, handleProgress);
+        /* @formatter:on */
+    });
 
     function handleProgress(progress) {
         if (progress === 1) {
@@ -154,12 +156,11 @@
             document.getElementById("bg-bar").style.display = "none";
             document.getElementById("progress-bar").style.display = "none";
         } else if (progress > 0) {
-            document.getElementById("loading-content").style.display = "inherit";
+            document.getElementById("bg-bar").style.display = "block";
+            document.getElementById("spinner").style.display = "none";
+            document.getElementById("progress-bar").style.display = "inherit";
             document.getElementById("progress-bar").style.width = 300 * progress + "px";
             document.getElementById("loading-info").innerHTML = Math.round(progress * 100) + "%";
-            document.getElementById("spinner").style.display = "none";
-            document.getElementById("bg-bar").style.display = "block";
-            document.getElementById("progress-bar").style.display = "inherit";
         }
     }
 </script>
