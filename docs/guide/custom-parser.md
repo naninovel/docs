@@ -15,7 +15,7 @@ After switching script parser in the configuration, it's required to re-import s
 Below is an example of a custom parser, which automatically inserts wait commands after each `...` found in the source script text.
 
 ```csharp
-public class CustomParser : ScriptParser
+public class CustomParser : ScriptAssetParser
 {
     public override Script ParseText (string scriptPath, string scriptText,
         ParseOptions options = default)
@@ -33,7 +33,7 @@ Notice, that instead of implementing `IScriptParser` interface from scratch, the
 ```csharp
 using Naninovel;
 
-public class CustomParser : ScriptParser
+public class CustomParser : ScriptAssetParser
 {
     protected override GenericTextLineParser GenericTextLineParser { get; }
         = new CustomGenericLineParser();
