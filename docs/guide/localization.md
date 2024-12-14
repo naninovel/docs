@@ -54,7 +54,7 @@ It's possible to generate resources for all the available locales in the project
 
 Press "Generate" button to create (update) the localization resources. On consequent runs the tool will respect previously generated localization documents and preserve localized statements in case the source material has not changed.
 
-Script localization documents are grouped under `Scenario` folder and consist of statements in the following format:
+Script localization documents are grouped under `Scripts` folder and consist of statements in the following format:
 
 ```nani
 # ID
@@ -165,9 +165,9 @@ When the localization data is up-to-date, open spreadsheet tool with `Naninovel 
 ![](https://i.gyazo.com/16cd076ebcc43b2d1a058c10e9dea43d.png)
 
 Specify the required folders:
-- Input Script Folder — folder where you store source naninovel scenario scripts (`.nani`); usually in our example projects we store them under `Assets/Scenario` folder.
-- Input Text Folder — folder where [managed text documents](/guide/managed-text) are generated to; it's `Assets/Resources/Naninovel/Text` by default. Make sure to generate managed text documents via associated tool in case the folder is missing.
-- Input Localization Folder — localization root where resources for all the different locales are stored; `Assets/Resources/Naninovel/Localization` by default.
+- Input Script Folder — folder where source naninovel scenario scripts (`.nani`) are stored, for example `Assets/Scenario`.
+- Input Text Folder — folder where [managed text documents](/guide/managed-text) are generated to, for example `Assets/Resources/Naninovel/Text`. Make sure to generate managed text documents via associated tool in case the folder is missing.
+- Input Localization Folder — localization root where resources for all the different locales are stored, for example `Assets/Resources/Naninovel/Localization`.
 - Output Folder — folder where to store generated or import edited sheets from.
 
 Click "Export" button to export sheets to the selected destination.
