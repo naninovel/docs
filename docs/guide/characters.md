@@ -256,7 +256,7 @@ Built with an open source [SpriteDicing](https://github.com/elringus/sprite-dici
 Install the package via [Unity package manager](https://docs.unity3d.com/Manual/upm-ui.html): open package manager window (Window -> Package Manager), click "+" button, choose "Add package from git URL", enter following URL:
 
 ```
-https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteDicing`
+https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteDicing
 ```
 
 — to the input field and click "Add".
