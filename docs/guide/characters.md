@@ -283,6 +283,10 @@ Following video guide covers creating and configuring diced sprite atlas, adding
 
 For more information on available dicing options and usage examples, refer to the extension docs: https://dicing.elringus.com/guide/unity.
 
+::: tip EXAMPLE
+Find example on setting up diced actors in the [diced actor sample](/guide/samples#diced-actor).
+:::
+
 ## Layered Characters
 
 The layered implementation allows composing characters from multiple layers and then toggle them individually or in groups via naninovel scripts at runtime.
