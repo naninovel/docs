@@ -57,6 +57,10 @@ To find auto-voice IDs associated with the currently printed text while the game
 
 To show the window, make sure `Enable Development Console` is turned on in the engine configuration, then press `~` key while in play mode, type `debug` and press `Enter`.
 
+::: tip EXAMPLE
+Find example on setting up auto voicing for multiple locales in the [auto voicing sample](/guide/samples#auto-voicing).
+:::
+
 ## Author Volume
 
 When using auto voicing, you may want to let players control voice volume for specific [characters](/guide/characters) or, more correctly, authors of the printed text messages. For example, a player may decide to mute voice of the main protagonist or make a specific character voice lower.

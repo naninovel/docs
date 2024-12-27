@@ -270,6 +270,10 @@ You can now use [@back] command to control the created scene background actor, e
 When composing backgrounds with Unity scenes, consider adding [custom commands](/guide/custom-commands) to control scene state (eg, modify light color to change time of day or move camera to change the view) instead of creating multiple scenes for each appearance. This way you won't have to track objects position to prevent overlap when multiple scenes are loaded.
 :::
 
+::: tip EXAMPLE
+Find example on setting up scene background in the [scene background sample](/guide/samples#scene-background).
+:::
+
 ## Render to Texture
 
 It's possible to render character and background actors of all the implementations (except generic) to a texture asset, which can then can be assigned to a custom UI, printer, material or any other compatible source. Setting up background actor render to texture is very similar to that of a character; [check the guide](/guide/characters#render-to-texture) for more info and examples.
