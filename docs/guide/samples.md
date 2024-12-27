@@ -4,11 +4,15 @@ A collection of example projects are provided to help you get started with commo
 
 ## Accessing Samples
 
-The samples are hosted on a private GitHub repository: [github.com/naninovel/samples](https://github.com/naninovel/samples/tree/stable). To access the repository, [register your Naninovel license](https://naninovel.com/register) and follow the dashboard instructions to assign a GitHub user. Once you have access, either [clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) or [download](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) the repository.
+The samples are hosted under the [engine's monorepo](https://github.com/naninovel/engine/tree/stable/unity/samples). To access the repository, [register your Naninovel license](https://naninovel.com/register) and follow the dashboard instructions to assign a GitHub user. Once you have access, either [clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) or [download](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) the repository.
 
-Open the repository directory with the Unity editor. Notice that Naninovel is referenced as a Git package in the package manager, so ensure a Git client is installed on your machine. Without it, Unity won't be able to pull the packages; refer to the UPM guide for [more info on Git packages](https://docs.unity3d.com/Manual/upm-ui-giturl.html).
+Unzip the downloaded repository and open `unity/samples` directory with the Unity editor. Notice Naninovel is referenced as a local package in the package manager. The source of the local package leads to `unity/client`, which contains the source code of the Unity extension. Other 3rd-party packages used in the samples are embedded to the project for convenience.
 
-To use the referenced Naninovel package, you must be authenticated as the GitHub user assigned in the account dashboard. Refer to the Unity guide for [more info on authentication](https://docs.unity3d.com/Manual/upm-config-https-git.html). Alternatively, you can remove the Git package reference and install Naninovel from the Asset Store instead.
+![](https://i.gyazo.com/aa784d89f6a55576b745824c2f6fd537.png)
+
+Once in Unity editor, open `Assets/Scenes/Main.unity` scene and enter play mode. You'll see the title screen of our demo project. You can either start the demo or click "SAMPLES" button to navigate the available samples, which are outlined below.
+
+![](https://i.gyazo.com/f7304c828ff616f2d9a979d2452413a4.png)
 
 ## Addressable
 
@@ -243,9 +247,35 @@ The sample contains following examples of new custom and modified built-in UIs:
 
 Find the layered character at `Content/Charecters/Miho` directory and layered background set up in camera rendering mode at `Content/Backgrounds/Particles` directory.
 
+## Diced Actor
+
+Find the diced character and atlas at `Content/Charecters/Kohaku/Diced` directory.
+
 ## Video Actor
 
 Video backgrounds are stored `Content/Backgrounds/Video` directory, while a video actor can be found at `Content/Characters/Ball` directory.
+
+## Scene Background
+
+Find the scene background at `Content/Backgrounds/Scene` directory.
+
+## Transition Effects
+
+Find a demo with all the available transition effects applied in sequence in `Scripts/Scenario/Transitions` scenario script.
+
+## Auto Voicing
+
+The voice clips for EN and JA locales are stored under `Content/Audio/Voice`.
+
+Enter "AUTO VOICING" sample and try switching the voice language in game settings.
+
+## Music Intro
+
+Shows how to use `intro` parameter of [@bgm] command, so that the intro part is played once before looping the base part of the track.
+
+## Background Matching
+
+A demo of the background matching feature, showing how backgrounds with different aspect ratios can be matched to the display viewport.
 
 ## Visual Scripting
 
