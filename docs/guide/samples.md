@@ -10,7 +10,7 @@ Unzip the downloaded repository and open `unity/samples` directory with the Unit
 
 ![](https://i.gyazo.com/aa784d89f6a55576b745824c2f6fd537.png)
 
-Once in Unity editor, open `Assets/Scenes/Main.unity` scene and enter play mode. You'll see the title screen of our demo project. You can either start the demo or click "SAMPLES" button to navigate the available samples, which are outlined below.
+Once in Unity editor, open `Assets/Scenes/Main.unity` scene and enter play mode. You'll see the title screen of our [demo project](https://naninovel.com/demo). You can either start the demo or click "SAMPLES" button to navigate the available samples, which are outlined below.
 
 ![](https://i.gyazo.com/f7304c828ff616f2d9a979d2452413a4.png)
 
