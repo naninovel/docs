@@ -22,11 +22,24 @@ Unity is a standalone product with an enormous set of features; it has its own d
 
 ## Naninovel Support
 
-To receive direct support from the Naninovel staff, join [Naninovel Discord](https://discord.gg/BfkNqem) and register your copy of the asset using the following registration form: [naninovel.com/register](https://naninovel.com/register/).
+Our community is primarily based on the Naninovel Discord server: [discord.gg/BfkNqem](https://discord.gg/BfkNqem). Most channels require `Verified User` role for sending messages to prevent spam. Get the role by registering your Naninovel license: [naninovel.com/register](https://naninovel.com/register/).
 
-After the registration you'll automatically get a "Verified User" role on the server and access to the `#support` and `#download` channels. You can also send a message to a member with support role to discuss the issue in private.
+Feel free to discuss any Naninovel-related topics or ask for help in the `#devtalk` channel. Our support staff may assist in some cases, but if you need dedicated support or a direct communication channel with the developer, subscribe to the [Support Plan](/support/#support-plan).
 
-Be aware, that the support is only available on business days and the **response may be delayed by up to 24 hours** (in some cases more), so make sure to:
+### Support Plan
+
+Subscribe to Support Plan to receive priority support and access direct communication channel with the engine developers: [account.naninovel.com/support](https://account.naninovel.com/support).
+
+Subscription grants access to the `#support` channel, where requests are typically addressed within 24 hours on business days. Users are also allowed to create private threads for direct communication with our team, including the lead developer.
+
+::: info NOTE
+The support is limited to Naninovel-specific topics only. For anything Unity-related (eg, build UIs with uGUI, set up addressable system, write C# scripts, etc) see the [information above](/support/#unity-support).
+:::
+
+### Reporting Bugs
+
+If you believe something is not working as intended:
+
 - Provide a clear and concise description of the issue and step-by-step instructions on how to reproduce it.
 - Specify Naninovel and Unity versions you're using, target platform (Android, iOS, WebGL, etc) and operating system you're running the editor under (Windows, Mac or Linux).
 - Attach a [log file](https://docs.unity3d.com/Manual/LogFiles.html) containing error or warning messages related to the issue.
@@ -35,22 +48,12 @@ Attaching a [reproduction project](/support/#reproduction-project) greatly incre
 
 ### Moderation
 
-Support capability is limited; to ensure all users receive equal attention, please note the following:
+Basic communication etiquette is expected from all users; any of the following may result in a temporary or even **permanent ban**:
 
-- The support is limited to Naninovel-specific topics only. For anything Unity-related (eg, build UIs with uGUI, set up addressable system, write C# scripts, etc) see the [information above](/support/#unity-support);
-- Don't expect the support to provide samples for your specific needs. We may suggest how to achieve a custom feature, but providing reference implementations is not something we can help with; consider hiring professional developers for that;
-- Don't excessively ping/mention (via `@`) or send private messages to the support or developers; this won't expedite the answer, but will instead make us temporary mute you;
-- Feel free to discuss any Naninovel-related topics in `#general` and `#devtalk` channels, but please only use `#support` when you seek attention from the support stuff; use [threads](https://support.discord.com/hc/en-us/articles/4403205878423-Threads-FAQ) if you find the channel too noisy.
-
-Violating any of the above guidelines may result in 24-hours mute on the server; in the extreme cases the mute can be extended.
-
-::: danger
-Of course, basic communication etiquette is expected from all users; any of the following will result in a temporary or even **permanent ban**:
 - Threatening, abusive, vulgar, disrespectful or otherwise offensive behaviour;
 - Asset Store reviews manipulation (using negative reviews to extort special attention);
 - Spam or advertising of products and services not related to Naninovel;
 - Illegally sharing copyrighted, personal or sensitive information and assets.
-:::
 
 ## Reproduction Project
 
