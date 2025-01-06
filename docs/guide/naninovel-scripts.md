@@ -330,6 +330,22 @@ It's also possible to use conditional blocks inside generic text lines. Instead 
 Test result:[if score>8] Perfect![else if:score>6] Passed.[else] Failed.[endif]
 ```
 
+To specify an inverse condition, use [@unless] command:
+
+```nani
+; Prints "You're still alive!" in case "dead" variable is false,
+; otherwise prints "You're done.".
+@unless dead
+    You're still alive!
+@else
+    You're done.
+
+; Print text line depending on "score" variable:
+;   "Test result: Passed." - when score is 10 or above.
+;   "Test result: Failed." - when score is below 10.
+Test result:[unless score<10] Passed.[else] Failed.[endif]
+```
+
 ::: info
 Find more about conditional expressions and available operators in [script expressions](/guide/script-expressions) guide.
 :::
@@ -608,6 +624,7 @@ If you'd like to split the screenplay into multiple `.nani` scripts, use Fountai
 ```
 
 It'll be converted in the following naninovel scripts, organized with folders:
+
 - `Episode 1/Scene 1.nani`
 - `Episode 1/Scene 2.nani`
 - `Episode 2/Scene 1.nani`
