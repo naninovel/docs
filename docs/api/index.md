@@ -819,7 +819,11 @@ Lorem ipsum dolor sit amet.[i] Consectetur adipiscing elit.
 
 ## if
 
-Marks the beginning of a conditional execution block. Nested lines are considered body of the block and will be executed only in case the conditional nameless parameter is evaluated to true. See [conditional execution](/guide/naninovel-scripts#conditional-execution) guide for more info.
+Marks the beginning of a conditional execution block. Nested lines are considered body of the block and will be executed only in case the conditional nameless parameter is evaluated to `true`. See [conditional execution](/guide/naninovel-scripts#conditional-execution) guide for more info.
+
+::: info NOTE
+This command is inverse and complementary to [@unless].
+:::
 
 <div class="config-table">
 
@@ -1840,6 +1844,36 @@ Felix: What a nice day!
     @sun power:0
     @rain power:1
 Jenna: When will the damn rain stop?
+```
+
+## unless
+
+Marks the beginning of an inverted conditional execution block. Nested lines are considered body of the block and will be executed only in case the conditional nameless parameter is evaluated to `false`. See [conditional execution](/guide/naninovel-scripts#conditional-execution) guide for more info.
+
+::: info NOTE
+This command is inverse and complementary to [@if].
+:::
+
+<div class="config-table">
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [script expression](/guide/script-expressions), which should return a boolean value determining whether the associated nested block will be executed. |
+
+</div>
+
+```nani
+; Prints "You're still alive!" in case "dead" variable is false,
+; otherwise prints "You're done.".
+@unless dead
+    You're still alive!
+@else
+    You're done.
+
+; Print text line depending on "score" variable:
+;   "Test result: Passed." - when score is 10 or above.
+;   "Test result: Failed." - when score is below 10.
+Test result:[unless score<10] Passed.[else] Failed.[endif]
 ```
 
 ## unloadScene
