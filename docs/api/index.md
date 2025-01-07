@@ -539,7 +539,7 @@ Destroys all the objects spawned with [@spawn] command. Equal to invoking [@desp
 
 ## else
 
-Marks a branch of a conditional execution block, which is executed in case condition of the opening [@if] and preceding [@else] (if any) commands are not met. For usage examples see [conditional execution](/guide/naninovel-scripts#conditional-execution) guide.
+Marks a branch of a conditional execution block, which is executed in case condition of the opening [@if] or [@unless] and preceding [@else] (if any) commands are not met. For usage examples see [conditional execution](/guide/naninovel-scripts#conditional-execution) guide.
 
 ## endIf
 
