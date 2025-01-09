@@ -272,6 +272,8 @@ Constant expressions combined with [custom metadata providers](/guide/ide-extens
 
 ## Other IDEs and Editors
 
-While we don't maintain extensions for other editors, we have an open-sourced language server for Naninovel: [github.com/naninovel/language](https://github.com/naninovel/language). It's written in C#, but has JavaScript bindings and can be used in most modern IDEs. The implementation covers syntax highlighting, autocompletion, errors checking, etc. VS Code extension (which is built upon the language server) is open-sourced as well: [github.com/naninovel/vscode](https://github.com/naninovel/vscode).
+While we don't maintain extensions for other editors, we have an [LSP-compliant](https://microsoft.github.io/language-server-protocol) language server available in the [engine monorepo](https://github.com/naninovel/engine/tree/main/core/packages/language). The server is implemented in C#, can be compiled to WASM and has built-in JavaScript bindings making it usable in most modern IDEs.
 
-Alternatively, in case you're using an editor with TextMate grammar support (eg, [Sublime](https://www.sublimetext.com) or [Visual Studio](https://visualstudio.microsoft.com)), we have one ready: [textmate.json](https://github.com/naninovel/docs/blob/main/docs/.vitepress/ext/lang/textmate.json).
+Our VS Code extension is built on top of the same language server. The extension sources are [available](https://github.com/naninovel/engine/tree/main/vscode) under the monorepo as well—feel free to use them as a reference when integrating the server into your IDE of choice. To access the repository, [register your license](https://naninovel.com/register).
+
+Alternatively, in case you're using an editor with TextMate grammar support (for example, [Sublime](https://www.sublimetext.com) or [Visual Studio](https://visualstudio.microsoft.com)), we have one ready: [textmate.json](https://github.com/naninovel/docs/blob/main/docs/.vitepress/ext/lang/textmate.json). Be aware, that the grammar is only usable for syntax highlighting. Language server is still required for other IDE features.
