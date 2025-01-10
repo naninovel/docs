@@ -24,7 +24,7 @@ Unity is a standalone product with an enormous set of features; it has its own d
 
 Our community is primarily based on the Naninovel Discord server: [discord.gg/BfkNqem](https://discord.gg/BfkNqem). Most channels require `Verified User` role for sending messages to prevent spam. Get the role by registering your Naninovel license: [naninovel.com/register](https://naninovel.com/register/).
 
-Feel free to discuss any Naninovel-related topics or ask for help in the `#devtalk` channel. Our support staff may assist in some cases, but if you need dedicated support or a direct communication channel with the developer, subscribe to the [Support Plan](/support/#support-plan).
+Feel free to discuss any Naninovel-related topics or ask for help in the `#general` and `#devtalk` channels. Our support staff may assist in some cases, but if you need dedicated support or a direct communication channel with the developers, subscribe to the [Support Plan](/support/#support-plan).
 
 ### Support Plan
 
@@ -32,8 +32,8 @@ Subscribe to Support Plan to receive priority support and access direct communic
 
 Subscription grants access to the `#support` channel, where requests are typically addressed within 24 hours on business days. Users are also allowed to create private threads for direct communication with our team, including the lead developer.
 
-::: info NOTE
-The support is limited to Naninovel-specific topics only. For anything Unity-related (eg, build UIs with uGUI, set up addressable system, write C# scripts, etc) see the [information above](/support/#unity-support).
+::: tip
+Even if your business doesn't currently require dedicated support, subscribing to the Support Plan is a meaningful way to contribute to Naninovel's sustainability. Your support ensures we can continue developing the engine, providing resources, and fostering a thriving community. By subscribing, you're not just securing your own access to premium support—you're investing in the future of Naninovel for everyone. Read more in the [blog post](https://forum.naninovel.com/viewtopic.php?t=663).
 :::
 
 ### Reporting Bugs
