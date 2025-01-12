@@ -6,7 +6,11 @@ Resources originally used to author the project are associated with *source loca
 
 The *source locale* can be changed via `Naninovel -> Configuration -> Localization` menu with `Source Locale` property. `Source Locale` property only determines the name (ID) of the locale associated with source project assets and is used in the "Language" drop-down settings menu and related engine APIs to distinguish the locale.
 
-![](https://i.gyazo.com/2edec18fab84cc750e8bd9d3634d3856.png)
+![](https://i.gyazo.com/84eea85d3c3deddd187af1ed843f1bd5.png)
+
+::: tip
+In case you'd like to share the source localizable text with a third-party (eg, for proofreading), but don't want to share the source scenario scripts, disable `Expose Source Locale` and add a dedicated locale for the source material, which can then be exported to the localization [documents](/guide/localization#scripts-localization) or [spreadsheets](/guide/localization#spreadsheet).
+:::
 
 To add a locale create sub-folder inside `Resources/Naninovel/Localization` (the so-called *localization resources root*) with a name equal to one of the [RFC5646](https://gist.github.com/Elringus/db90d9c74f13c00fa35131e61d1b73cb) language tags you wish to add localization for. For example, to add German locale, create `Resources/Naninovel/Localization/de` folder. The "Language" drop-down list in the game settings built-in UI will automatically incorporate all the added locales.
 
