@@ -59,7 +59,6 @@ Following are some of the features Naninovel provide out of the box:
 * [In-game variable input](/api/#input)
 * [Conditional script flow](/api/#if)
 * [Save-load system](/guide/save-load-system)
-* [Dynamic resources (memory) management](https://youtu.be/cFikLjfeKyc)
 * [Game settings](/guide/game-settings)
 * [CG gallery](/guide/unlockable-items#cg-gallery)
 * [Unlockable Tips](/guide/unlockable-items#tips)
