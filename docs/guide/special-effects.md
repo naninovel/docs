@@ -1,191 +1,51 @@
 # Special Effects
 
-Special effects are activated via [@spawn] command followed by the effect name. E.g.:
+A number of built-in script commands are dedicated for various special effects. For example, [@shake] command shakes an actor:
 
 ```nani
-@spawn ShakeBackground
+; Shake 'Kohaku' actor
+@shake Kohaku
 ```
-— will shake the main background.
 
-You can control parameters of the effect with `params` parameter. E.g.:
+Most effects can be parametrized:
 
 ```nani
-@spawn ShakeCharacter params:Kohaku,1
+; Shake 'Kohaku' once (instead of the default 3)
+@shake Kohaku count:1
 ```
-— will shake character with ID "Kohaku" once, instead of the default 3.
 
-It's possible to selectively specify a subset of the parameters, leaving the rest at the default values:
-
-```nani
-@spawn ShakePrinter params:,,0.5
-```
-— notice the first two parameters (printer ID and shake count) are skipped and will have their default values, but the third parameter (shake duration) is set to 0.5 seconds.
-
-You can update the effect parameters without re-starting it with the consequent [@spawn]  commands, eg:
+You can update the effect parameters without re-starting them:
 
 ```nani
-; Start slowly shaking `Kohaku` character in a loop,
-; don't wait for completion (it's an infinite loop, anyway)
-@spawn ShakeCharacter params:Kohaku,0,,,0.1
+; Start slowly shaking `Kohaku` actor in a loop
+@shake Kohaku count:0 power:0.1
 Kohaku: It's rumbling!
 ; Shake 3 more times with an increased amplitude
-@spawn ShakeCharacter params:Kohaku,3,,,0.8
+@shake Kohaku count:3 power:0.8
 ```
 
-Some effects are persistent by default and should be manually stopped with [@despawn] command. E.g.:
+Some effects are persistent by default and have to be explicitly stopped:
 
 ```nani
 ; Start the rain
-@spawn Rain
+@rain
 ; Stop the rain
-@despawn Rain
+@rain power:0
 ```
 
-The [@despawn] commands of some effects can also receive parameters (eg, to control the fade-out duration), eg:
+Read on for descriptions of the built-in effects and the ways to [add custom effects](/guide/special-effects#adding-custom-effects).
 
-```nani
-; Stops the rain gradually over 10 seconds
-@despawn Rain params:10
-```
+## Shake
 
-When no `params` is specified, default parameters will be used. You can find both "start" (accepted by the [@spawn] command) and "stop" (accepted by the [@despawn] command) parameters available for each effect and their default values in the docs below.
-
-It's possible to start multiple effects of the same type by appending an ID delimited by `#` after the effect name, eg:
-
-```nani
-; Shake both `Kohaku` and `Yuko` in a loop
-@spawn ShakeCharacter#1 params:Kohaku,0
-@spawn ShakeCharacter#2 params:Yuko,0
-```
-
-When stopping or updating instanced effects, don't forget to specify the ID:
-
-```nani
-; Stop shaking `Yuko`, increase `Kohaku` amplitude
-@despawn ShakeCharacter#2
-@spawn ShakeCharacter#1 params:Kohaku,0,,,1
-```
-
-You can use any string for ID (it can be a number like above, or something more meaningful, eg `@spawn ShakeCharacter#Kohaku`), just make sure it's unique among other IDs you're using with a given effect name.
-
-::: tip
-Starting with Naninovel v1.19 all the built-in effects have dedicated commands with support for autocompletion in the IDE extension. For example, instead of:
-
-```nani
-@spawn Blur params:,1,2.5
-@despawn Blur params:1
-```
-
-You can use the following:
-
-```nani
-@blur power:1 time:2.5
-@blur power:0 time:1
-```
-:::
-
-## Shake Printer
-Shakes printer with the specified ID or the default one. Dedicated command: [@shake]
-
-![](https://i.gyazo.com/f61fc35e318cce1949b00e5fe2448a80.mp4)
-
-**Start Parameters**
-Name | Type | Default | Description
---- | --- | --- | ---
-Printer ID | String | null | ID of the printer to shake. Will shake a default printer when not specified.
-Shake count | Integer | 2 | The number of shake iterations. When set to 0, will loop the effect until stopped with [@despawn].
-Shake duration | Decimal | 0.15 | The base duration of each shake iteration, in seconds.
-Duration variation | Decimal | 0.25 | The randomized delta modifier applied to the base duration of the effect.
-Shake amplitude | Decimal | 0.5 | The base displacement amplitude of each shake iteration, in units.
-Amplitude variation | Decimal | 0.1 | The randomized delta modifier applied to the base displacement amplitude of the effect.
-Shake horizontally | Boolean | false | Whether to displace the actor horizontally (by x-axis).
-Shake vertically | Boolean | true | Whether to displace the actor vertically (by y-axis).
-
-Be aware, that when UI is set to "Screen Space Overlay" mode, shake amplitude needs to be about x100 times the default one for a noticeable effect.
-
-**Examples**
-```nani
-; Shake a default printer with default params
-@spawn ShakePrinter
-
-; Shake a default printer horizontally 10 times
-@spawn ShakePrinter params:,10,,,,,true,false
-
-; Start shaking a default printer in loop, print some text, stop the shaking
-@spawn ShakePrinter params:,0
-What a shaky situation!
-@despawn ShakePrinter
-```
-
-## Shake Background
-Shakes background with the specified ID or the main one. Dedicated command: [@shake]
-
-![](https://i.gyazo.com/fcf1153a0ad3d9a153908206211f5f5f.mp4)
-
-**Start Parameters**
-Name | Type | Default | Description
---- | --- | --- | ---
-Background ID | String | null | ID of the background to shake. Will shake main background when not specified.
-Shake count | Integer | 3 | The number of shake iterations. When set to 0, will loop the effect until stopped with [@despawn].
-Shake duration | Decimal | 0.15 | The base duration of each shake iteration, in seconds.
-Duration variation | Decimal | 0.25 | The randomized delta modifier applied to the base duration of the effect.
-Shake amplitude | Decimal | 0.5 | The base displacement amplitude of each shake iteration, in units.
-Amplitude variation | Decimal | 0.5 | The randomized delta modifier applied to the base displacement amplitude of the effect.
-Shake horizontally | Boolean | false | Whether to displace the actor horizontally (by x-axis).
-Shake vertically | Boolean | true | Whether to displace the actor vertically (by y-axis).
-
-**Examples**
-```nani
-; Shake main background with default params
-@spawn ShakeBackground
-
-; Shake `Video` background twice
-@spawn ShakeBackground params:Video,2
-```
-
-## Shake Character
-Shakes character with the specified ID or a random visible one. Dedicated command: [@shake]
-
-![](https://i.gyazo.com/6001d3cfbee855c8a783d10e4a784042.mp4)
-
-**Start Parameters**
-Name | Type | Default | Description
---- | --- | --- | ---
-Character ID | String | null | ID of the character to shake. Will shake a random visible one when not specified.
-Shake count | Integer | 3 | The number of shake iterations. When set to 0, will loop the effect until stopped with [@despawn].
-Shake duration | Decimal | 0.15 | The base duration of each shake iteration, in seconds.
-Duration variation | Decimal | 0.25 | The randomized delta modifier applied to the base duration of the effect.
-Shake amplitude | Decimal | 0.5 | The base displacement amplitude of each shake iteration, in units.
-Amplitude variation | Decimal | 0.5 | The randomized delta modifier applied to the base displacement amplitude of the effect.
-Shake horizontally | Boolean | false | Whether to displace the actor horizontally (by x-axis).
-Shake vertically | Boolean | true | Whether to displace the actor vertically (by y-axis).
-
-**Examples**
-```nani
-; Shake `Kohaku` character with default parameters
-@spawn ShakeCharacter params:Kohaku
-
-; Start shaking a random character, show a choice to stop and act accordingly
-@spawn ShakeCharacter params:,0
-@choice "Continue shaking" goto:.Continue
-@choice "Stop shaking" goto:.Stop
-@stop
-# Stop
-@despawn ShakeCharacter
-# Continue
-...
-```
-
-## Shake Camera
-Shakes the main Naninovel render camera. Dedicated command: [@shake]
+Shakes specified actor or main camera. Dedicated command: [@shake]
 
 ![](https://i.gyazo.com/f9521fbcf959d0b72e449ae6e2191f9f.mp4)
 
 **Start Parameters**
 Name | Type | Default | Description
 --- | --- | --- | ---
-Camera Name | String | null | Name of the camera object to shake. Will shake the main Naninovel camera when not provided.
-Shake count | Integer | 3 | The number of shake iterations. When set to 0, will loop the effect until stopped with [@despawn].
+ID | String | null | ID of the actor to shake. Specify `Camera` to shake main camera.
+Shake count | Integer | 3 | The number of shake iterations. Set to 0 to loop, -1 to stop the loop.
 Shake duration | Decimal | 0.15 | The base duration of each shake iteration, in seconds.
 Duration variation | Decimal | 0.25 | The randomized delta modifier applied to the base duration of the effect.
 Shake amplitude | Decimal | 0.5 | The base displacement amplitude of each shake iteration, in units.
@@ -194,12 +54,17 @@ Shake horizontally | Boolean | false | Whether to displace the actor horizontall
 Shake vertically | Boolean | true | Whether to displace the actor vertically (by y-axis).
 
 **Examples**
+
 ```nani
-; Shake the main Naninovel camera with default params
-@spawn ShakeCamera
+; Shake 'Kohaku' actor with default params
+@spawn ShakeCharacter params:Kohaku
+; Same with the dedicated command
+@shake Kohaku
 
 ; Shake the main Naninovel camera horizontally 5 times
-@spawn ShakeCamera params:,5,,,,,true,false
+@spawn ShakeCamera params:,5,,,,true,false
+; Same with the dedicated command
+@shake Camera count:5 hor! !ver
 ```
 
 ## Animate Actor
@@ -213,6 +78,7 @@ Scenario scripts are not designed for any kind of animation specifications. When
 :::
 
 ## Digital Glitch
+
 Applies a post-processing effect to the main camera simulating digital video distortion and artifacts. Dedicated command: [@glitch]
 
 ![](https://i.gyazo.com/94cb6db25c17956473db4de149281df5.mp4)
@@ -224,14 +90,21 @@ Duration | Decimal | 1 | The duration of the effect, in seconds.
 Intensity | Decimal | 1 | The intensity of the effect, in 0.0 to 10.0 range.
 
 **Examples**
+
 ```nani
 ; Apply the glitch effect with default parameters
 @spawn DigitalGlitch
+; Same with the dedicated command
+@glitch
+
 ; Apply the effect over 3.33 seconds with a low intensity
 @spawn DigitalGlitch params:3.33,0.1
+; Same with the dedicated command
+@glitch power:0.1 time:3.33
 ```
 
 ## Rain
+
 Spawns a particle system simulating a rain. Dedicated command: [@rain]
 
 ![](https://i.gyazo.com/74af9eec30f6517ea5b8453a9c86d33c.mp4)
@@ -250,14 +123,21 @@ Name | Type | Default | Description
 Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn rate from the target level to 0 over the specified time, in seconds.
 
 **Examples**
+
 ```nani
 ; Start intensive rain over 10 seconds
 @spawn Rain params:1,10
+; Same with the dedicated command
+@rain power:1 time:10
+
 ; Stop the rain over 30 seconds
 @despawn Rain params:30
+; Same with the dedicated command
+@rain power:0 time:30
 ```
 
 ## Snow
+
 Spawns a particle system simulating a snow. Dedicated command: [@snow]
 
 ![](https://i.gyazo.com/25a052444c561e40c8318272f51edf47.mp4)
@@ -274,14 +154,21 @@ Name | Type | Default | Description
 Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn rate from the target level to 0 over the specified time, in seconds.
 
 **Examples**
+
 ```nani
 ; Start intensive snow over 10 seconds
 @spawn Snow params:1,10
+; Same with the dedicated command
+@snow power:1 time:10
+
 ; Stop the snow over 30 seconds
 @despawn Snow params:30
+; Same with the dedicated command
+@snow power:0 time:30
 ```
 
 ## Sun Shafts
+
 Spawns a particle system simulating sun shafts (rays). Dedicated command: [@sun]
 
 ![](https://i.gyazo.com/7edc4777699229abc508f2bdb404522e.mp4)
@@ -298,14 +185,20 @@ Name | Type | Default | Description
 Fade-out time | Decimal | 3 | The particle system will gradually lower the opacity from the target level to 0 over the specified time, in seconds.
 
 **Examples**
+
 ```nani
 ; Start intensive sunshine over 10 seconds
 @spawn SunShafts params:1,10
+; Same with the dedicated command
+@sun power:1 time:10
+
 ; Stop the sunshine over 30 seconds
 @despawn SunShafts params:30
+@sun power:0 time30
 ```
 
 ## Depth of Field (Bokeh)
+
 Simulates depth of field (aka DOF, bokeh) effect, when only the object in focus stays sharp, while the other image is blurred. Dedicated command: [@bokeh]
 
 ::: tip
@@ -328,17 +221,27 @@ Name | Type | Default | Description
 Stop Duration | Decimal | 1 | Fade-off (disable) duration for the effect parameters to reach default values where the effect is not visible.
 
 **Examples**
+
 ```nani
 ; Enable the effect with default params and lock focus to `Kohaku` game object
 @spawn DepthOfField params:Kohaku
+; Same with the dedicated command
+@bokeh Kohaku
+
 ; Fade-off (disable) the effect over 10 seconds
 @despawn DepthOfField params:10
+; Same with the dedicated command
+@boken power:0
+
 ; Set focus point 10 units away from the camera,
-; focal distance to 0.95 and apply it over 3 seconds
+; focal length to 0.95 and apply it over 3 seconds
 @spawn DepthOfField params:,10,0.95,3
+; Same with the dedicated command
+@boken dist:10 power:0.95 time:3
 ```
 
 ## Blur
+
 Applies a blur filter to a supported actor: backgrounds and characters of sprite, layered, diced, Live2D, Spine, video and scene implementations. By default (when first parameter is not specified), the effect is applied to `MainBackground` actor. Dedicated command: [@blur]
 
 ![](https://i.gyazo.com/067614d77783683e74ca79652099b58d.mp4)
@@ -356,20 +259,29 @@ Name | Type | Default | Description
 Stop Duration | Decimal | 1 | Fade-off (disable) duration for the effect, in seconds.
 
 **Examples**
+
 ```nani
 ; Apply the blur to the current main background
 @spawn Blur
+; Same with the dedicated command
+@blur
+
 ; Apply the blur to `Sky` background with full intensity over 2.5 seconds
 @spawn Blur params:Sky,1,2.5
+; Same with the dedicated command
+@blur Sky power:1 time:2.5
+
 ; Fade-off and disable the blur
 @despawn Blur
+; Same with the dedicated command
+@blur power:0
 ```
 
 ## Adding Custom Effects
 
 ### Standalone Effects
 
-You can add a custom standalone effect (implemented via a prefab, like the "Rain" and "Snow" built-in effects) by adding the effect prefab via spawn resources manager (`Naninovel -> Resources -> Spawn`) and using [@spawn] and [@despawn] commands in the same way as with the built-in effects.
+You can add a custom standalone effect (implemented via a prefab, like the "Rain" and "Snow" built-in effects) by adding the effect prefab via spawn resources manager (`Naninovel -> Resources -> Spawn`) and using [@spawn] and [@despawn] commands:
 
 ![](https://i.gyazo.com/45b9d8fb51ffb368ff9f792221f10ca6.png)
 
@@ -380,7 +292,21 @@ For example, given there is a `Explosion.prefab` prefab assigned via the spawn m
 @despawn Explosion
 ```
 
-The command supports transform parameters, allowing to spawn the object at a specific scene or world positions and with a specific rotation or scale, eg:
+Additional effect parameters can be specified with `params`:
+
+```nani
+@spawn Explosion params:Kohaku,3,true
+```
+
+::: tip
+When building custom effects with multiple parameters, consider creating a [custom command](/guide/custom-commands) and inheriting it from `SpawnEffect`. This way you won't have to remember parameter positions in the `params` array and get auto-completion and type-checking when using [IDE extension](/guide/ide-extension):
+
+```nani
+@explode Kohaku power:3 smoke!
+```
+:::
+
+The [@spawn] command also has transform parameters, allowing to spawn the object at a specific scene or world positions and with a specific rotation or scale, eg:
 
 ```nani
 ; Spawn Explosion 15% from the left border of the screen
