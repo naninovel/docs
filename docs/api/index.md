@@ -1463,7 +1463,8 @@ Applies [shake effect](/guide/special-effects#shake) for the actor with the spec
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">actorId</span> | string | ID of the actor to shake. In case multiple actors with the same ID found (eg, a character and a printer), will affect only the first found one. When not specified, will shake the default text printer. To shake main camera, use `Camera` keyword. |
-| count | integer | The number of shake iterations. When set to 0, will loop until stopped with -1. |
+| count | integer | The number of shake iterations. Ignored when `loop` is enabled. |
+| loop | boolean | Whether to continue shaking until disabled. |
 | time | decimal | The base duration of each shake iteration, in seconds. |
 | deltaTime | decimal | The randomizer modifier applied to the base duration of the effect. |
 | power | decimal | The base displacement amplitude of each shake iteration, in units. |
@@ -1479,13 +1480,10 @@ Applies [shake effect](/guide/special-effects#shake) for the actor with the spec
 @shake Dialogue
 
 ; Start shaking 'Kohaku' character, show choice to stop and act accordingly.
-@shake Kohaku count:0
-@choice "Continue shaking" goto:.Continue
-@choice "Stop shaking" goto:.Stop
+@shake Kohaku loop!
+@choice "Stop shaking"
+    @shake Kohaku !loop
 @stop
-# Stop
-@shake Kohaku count:-1
-# Continue
 ...
 
 ; Shake main Naninovel camera horizontally 5 times.

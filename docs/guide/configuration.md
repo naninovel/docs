@@ -173,6 +173,7 @@ Property | Default Value | Description
 Loader | Localization- (Addressable, Project) | Configuration of the resource loader used with the localization resources.
 Languages | Object Ref | RFC5646 language tags mapped to default language display names. Restart Unity editor for changes to take effect.
 Source Locale | En | Locale of the source project resources (language in which the project assets are being authored).
+Expose Source Locale | True | Whether to make the source locale available to the end-users (players), ie included to the language selection.<br><br>Disabling this option can be useful in case you'd like to share the source localizable text with a third-party (eg, for proofreading), but don't want to share the scenario scripts. In which case, disable this option and add a dedicated locale for the source material, which can then be exported to the localization documents or spreadsheets.
 Default Locale | Null | Locale selected by default when running the game for the first time. Will select `Source Locale` when not specified.
 Auto Detect Locale | True | When enabled and the game is running for the first time, attempts to automatically detect locale based on system language. When succeeds and the locale is supported by the game, selects it; otherwise falls back to 'Default Locale'.
 Record Separator | | | Text character to join common localized script records, such as parts of generic text lines and localizable parameter values.
