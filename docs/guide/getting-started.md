@@ -60,23 +60,23 @@ Final, while being the most tested and stable one, is also the most outdated and
 
 Stable stream is published on both GitHub and Unity's Asset Store (though not as often as on GitHub), while preview and final streams are only available on GitHub.
 
-### Install from Asset Store
-
-In case you've purchased Naninovel on the Unity's Asset Store, you can install and update stable releases via "My Assets" tab of the [package manager](https://docs.unity3d.com/Manual/upm-ui-import.html).
-
-::: info NOTE
-Only releases from the stable stream are published to the Unity's Asset Store. Moreover, they're published with a 2-3 months delay, so we recommend installing Naninovel from GitHub to access the latest updates.
-:::
-
 ### Install from GitHub
 
-All the release streams starting with v1.20 are distributed via a UPM registry hosted on a private GitHub repository. To access the repository, [register your Naninovel license](https://naninovel.com/register) and follow the instructions on the dashboard.
+All the release streams are distributed via a UPM registry hosted on a private GitHub repository. To access the repository, [register your Naninovel license](https://naninovel.com/register) and follow the instructions on the dashboard.
 
 Once you have access to the repository, go to `Window -> Package Manager` in Unity editor and add `https://github.com/naninovel/upm.git#X.X` as a Git package, where `X.X` is the Naninovel release version you'd like to install, for example `1.20`. You can find all the available releases and their versions on the [releases page](https://pre.naninovel.com/releases).
 
 ![](https://i.gyazo.com/91d056eb5b6278e5c9a28f59c8ff8732.png)
 
 If you get an error when installing the package, make sure you're authenticated (on the local machine) as the GitHub user, which was assigned in the account dashboard; refer to the Unity guide for [more info on authentication](https://docs.unity3d.com/Manual/upm-config-https-git.html).
+
+### Install from Package
+
+It's also possible to install Naninovel from a `.unitypackage` file. In case you've purchased Naninovel on the Unity's Asset Store, use "My Assets" tab of the [package manager](https://docs.unity3d.com/Manual/upm-ui-import.html). Otherwise, you can get the package from our [download archive](https://account.naninovel.com/download).
+
+::: info NOTE
+Asset Store packages and the download archive are updated 2-3 months later than the UPM repository and don't include preview releases, so we recommend installing Naninovel directly from GitHub for the latest updates.
+:::
 
 ## Core Concepts
 
