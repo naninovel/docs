@@ -22,19 +22,13 @@ Unity is a standalone product with an enormous set of features; it has its own d
 
 ## Naninovel Support
 
-Our community is primarily based on the Naninovel Discord server: [discord.gg/BfkNqem](https://discord.gg/BfkNqem). Most channels require `Verified User` role for sending messages to prevent spam. Get the role by registering your Naninovel license: [naninovel.com/register](https://naninovel.com/register/).
-
-Feel free to discuss any Naninovel-related topics or ask for help in the `#general` and `#devtalk` channels. Our support staff may assist in some cases, but if you need dedicated support or a direct communication channel with the developers, subscribe to the [Support Plan](/support/#support-plan).
+Our community is primarily based on the Naninovel Discord server: [discord.gg/BfkNqem](https://discord.gg/BfkNqem). Feel free to discuss any Naninovel-related topics or ask for help in the `#general` and `#devtalk` channels. Our support staff may assist in some cases, but if you need dedicated support or a direct communication channel with the developer, subscribe to the [Support Plan](/support/#support-plan).
 
 ### Support Plan
 
-Subscribe to Support Plan to receive priority support and access direct communication channel with the engine developers: [account.naninovel.com/support](https://account.naninovel.com/support).
+Subscribe to Support Plan to receive dedicated support and other extra services: [account.naninovel.com/support](https://account.naninovel.com/support). A free one-year subscription is included when you register your Naninovel license for the first time.
 
 Subscription grants access to the `#support` channel, where requests are typically addressed within 24 hours on business days. Users are also allowed to create private threads for direct communication with our team, including the lead developer.
-
-::: tip
-Even if your business doesn't currently require dedicated support, subscribing to the Support Plan is a meaningful way to contribute to Naninovel's sustainability. Your support ensures we can continue developing the engine, providing resources, and fostering a thriving community. By subscribing, you're not just securing your own access to premium support—you're investing in the future of Naninovel for everyone. Read more in the [blog post](https://forum.naninovel.com/viewtopic.php?t=663).
-:::
 
 ### Reporting Bugs
 
