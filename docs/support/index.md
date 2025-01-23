@@ -26,9 +26,9 @@ Our community is primarily based on the Naninovel Discord server: [discord.gg/Bf
 
 ### Support Plan
 
-Subscribe to Support Plan to receive dedicated support and other extra services: [account.naninovel.com/support](https://account.naninovel.com/support). A free one-year subscription is included when you register your Naninovel license for the first time.
+Support Plan subscription provides access to the `#support` channel on our Discord server, where we directly addresses the requests. Additionally, it grants access to the engine sources, samples project and UPM repository allowing to install latest stable and preview releases directly from GitHub.
 
-Subscription grants access to the `#support` channel, where requests are typically addressed within 24 hours on business days. Users are also allowed to create private threads for direct communication with our team, including the lead developer.
+A free one-year subscription is included when you register your Naninovel license for the first time, after which it has to be renewed. Manage your subscription on the account dashboard: [account.naninovel.com/support](https://account.naninovel.com/support).
 
 ### Reporting Bugs
 
