@@ -80,6 +80,34 @@ var stateManager = Engine.GetService<IStateManager>();
 await stateManager.ResetState();
 ```
 
+### Script Asset Reference
+
+In case you'd like to reference scenario script assets in your custom systems (for example, to play dialogues or cutscenes), be aware that storing script path directly is fragile, as it depends on the script file location and name.
+
+Instead, use the asset reference (GUID). The reference won't change when the associated file is moved or renamed. To resolve script path from GUID use `ScriptAssets.GetPath` method. We also have a built-in `ScriptAssetRef` property drawer, which allows assigning script assets directly to the serialized fields for convenience.
+
+Below is a component from our [integration sample](/guide/samples#integration), which, when applied to a game object on scene, will start playing specified script when player collides with the trigger:
+
+```cs
+public class DialogueTrigger : MonoBehaviour
+{
+    [ScriptAssetRef]
+    public string ScriptRef;
+    public string Label;
+
+    private void OnTriggerEnter (Collider other)
+    {
+        var player = Engine.GetService<IScriptPlayer>();
+        var path = ScriptAssets.GetPath(ScriptRef);
+        player.LoadAndPlayAtLabel(path, Label).Forget();
+    }
+}
+```
+
+In the editor, you can drag-drop script assets to the `Script Ref` field, and the reference will remain intact, even when the script file is moved or renamed.
+
+![](https://i.gyazo.com/cd634c628a0a116397f6ecef837a10b0.png)
+
 ## Disable Title Menu
 
 A built-in title menu implementation will be automatically shown when the engine is initialized, while you'll most likely have your own title menu. You can either modify, replace or completely remove the built-in title menu using [UI customization feature](/guide/user-interface#ui-customization). The menu goes under `Title UI` in the UI resources list.
