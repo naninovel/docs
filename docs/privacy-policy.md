@@ -4,8 +4,6 @@ editLink: false
 
 # Privacy Policy
 
-Effective date: July 17, 2021
-
 Naninovel ("us", "we", or "our") operates the [naninovel.com](https://naninovel.com) website (the "Service").
 
 This page informs you of our policies regarding the collection, use, and disclosure of personal data when you use our Service and the choices you have associated with that data.
@@ -108,6 +106,6 @@ We have no control over and assume no responsibility for the content, privacy po
 
 ## Changes To This Privacy Policy
 
-We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "effective date" at the top of this Privacy Policy.
+We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Updated" date at the bottom of this Privacy Policy.
 
 You are advised to review this Privacy Policy periodically for any changes. Changes to this Privacy Policy are effective when they are posted on this page.
