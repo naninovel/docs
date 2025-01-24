@@ -2,9 +2,9 @@
 
 If you have issues with the engine, first make sure to read the [guide](/guide/) and [command reference](/api/) topics related to the feature you're having issues with; also check the [FAQ](/faq/) for some frequently asked questions.
 
-In case you're sure the engine is not working as intended, check if you're running the latest available version. Most recent patches are published on our Discord server; always use them instead of importing the package from Unity's package manager, as the latter is usually outdated.
+In case you're sure the engine is not working as intended, check if you're running the latest available version. Most recent patches are published to our [GitHub UPM registry](/guide/getting-started#install-from-github) — use it instead of importing the package from Unity's package manager, as the latter is usually outdated. Make sure to follow the upgrade instructions specified in the [release notes](/releases/) when upgrading from on older version.
 
-If upgrading didn't help, try to re-install the package by deleting `Naninovel` folder from the project and re-importing it. Make sure to follow the upgrade instructions specified in the [release notes](/releases/) when upgrading from on older version.
+If upgrading didn't help, try clearing the asset database cache by deleting `Library` folder located at the root of the Unity project and restart the editor.
 
 ## Issue Tracker
 
@@ -26,7 +26,7 @@ Our community is primarily based on the Naninovel Discord server: [discord.gg/Bf
 
 ### Support Plan
 
-Support Plan subscription provides access to the `#support` channel on our Discord server, where we directly addresses the requests. Additionally, it grants access to the engine sources, samples project and UPM repository allowing to install latest stable and preview releases directly from GitHub.
+Support Plan subscription provides access to the `#support` channel on our Discord server, where we directly address the requests. Additionally, it grants access to the engine sources, samples project and UPM repository allowing to install latest stable and preview releases directly from GitHub.
 
 A free one-year subscription is included when you register your Naninovel license for the first time, after which it has to be renewed. Manage your subscription on the account dashboard: [account.naninovel.com/support](https://account.naninovel.com/support).
 
