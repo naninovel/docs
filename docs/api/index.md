@@ -870,8 +870,8 @@ To assign a display name for a character using this command consider [binding th
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">variableName</span> | string | Name of a custom variable to which the entered text will be assigned. |
-| type | string | Type of the input content; defaults to the specified variable type. |
-| summary | string | An optional summary text to show along with input field.When the text contain spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
+| type | string | Type of the input content; defaults to the specified variable type.Use to change assigned variable type or when assigning to a new variable. Supported types: `String`, `Numeric`, `Boolean`. |
+| summary | string | An optional summary text to show along with input field. When the text contain spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
 | value | string | A predefined value to set for the input field. |
 | play | boolean | Whether to automatically resume script playback when user submits the input form. |
 
