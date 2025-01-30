@@ -361,7 +361,6 @@ table > tfoot:not(:last-child) {
     color: var(--vp-c-red-2);
 }
 
-
 .made-with-table table {
     display: table;
     width: 100%;
@@ -373,7 +372,7 @@ table > tfoot:not(:last-child) {
 .made-with-table th,
 .made-with-table td {
     padding: 0 10px;
-    font-size: 70%;
+    font-size: 0.7rem;
 }
 a.made-with-store {
     display: inline-block;
