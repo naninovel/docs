@@ -156,7 +156,7 @@ table {
     border-spacing: 0;
     border-collapse: separate !important;
     border: var(--border) !important;
-    overflow: hidden;
+    overflow: hidden !important;
 }
 
 table th:not(:last-child),
