@@ -361,6 +361,39 @@ table > tfoot:not(:last-child) {
     color: var(--vp-c-red-2);
 }
 
+
+.made-with-table table {
+    display: table;
+    width: 100%;
+}
+.made-with-table th {
+    text-align: center;
+    color: var(--base-font-color);
+}
+.made-with-table th,
+.made-with-table td {
+    padding: 0 10px;
+    font-size: 70%;
+}
+a.made-with-store {
+    display: inline-block;
+    margin-right: 4px;
+    width: 14px;
+    height: 14px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position-y: center;
+    vertical-align: middle;
+}
+a.store-apple { background-image: url(/assets/img/made-with-db/apple.svg); }
+a.store-google { background-image: url(/assets/img/made-with-db/google.svg); }
+a.store-itch { background-image: url(/assets/img/made-with-db/itch.svg); }
+a.store-ms { background-image: url(/assets/img/made-with-db/ms.svg); }
+a.store-ps { background-image: url(/assets/img/made-with-db/ps.svg); }
+a.store-steam { background-image: url(/assets/img/made-with-db/steam.svg); }
+a.store-switch { background-image: url(/assets/img/made-with-db/switch.svg); }
+a.store-xbox { background-image: url(/assets/img/made-with-db/xbox.svg); }
+
 /* UPM package links on the /releases page. */
 .upm {
     border: 1px solid var(--vp-code-copy-code-border-color);
