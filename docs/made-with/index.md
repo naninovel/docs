@@ -61,7 +61,6 @@ Below is a list of games (in alphabetical order) known to use Naninovel. If you'
 |Luminous Threads|[Bit Quirky]()|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/1355790"/>|
 |Make It Last: While You Can|[Strawberry Dagger Studio](https://twitter.com/SBDaggerStudio)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://sbds.itch.io/make-it-last-while-you-can"/>|
 |Märchen Line|[Nth Circle](https://nthcircle.itch.io)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://nthcircle.itch.io/marchenline"/>|
-|Mark of Mona|[NSIPStudio](https://twitter.com/NSIPStudio)||
 |Melting Point|[Astro Kaen](https://linktr.ee/astrokaen)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://astrokaen.itch.io/melting-point"/>|
 |Meme Detective|[El.Seth](https://twitter.com/ElSeth6)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://elseth.itch.io/meme-detective"/>|
 |Memories of Rachel|[SANDWICH KITCHEN](https://sandwich-kitchen.com)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/3031930"/>|
