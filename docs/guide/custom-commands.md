@@ -177,10 +177,3 @@ public class MyCustomPrintCommand : PrintText
     }
 }
 ```
-
-::: tip EXAMPLE
-Find a more useful example of overriding built-in commands [on the forum](https://forum.naninovel.com/viewtopic.php?f=8&t=53). An overridden and custom commands will allow changing reveal speed right inside generic text lines, eg:
-```nani
-Yuko: [s 0.1] Print text 10 times slower than usual. [s 2] Print 2 times faster.
-```
-:::

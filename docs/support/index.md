@@ -10,10 +10,6 @@ If upgrading didn't help, try clearing the asset database cache by deleting `Lib
 
 In case the above steps didn't help to resolve the issue, check the [issue tracker](https://github.com/naninovel/docs/issues?q=is%3Aissue+label%3Abug) — chances are the problem is already being worked on.
 
-## Community Forum
-
-Consider joining dedicated [Naninovel forum](https://forum.naninovel.com), where users help each other solve development issues, share best practices and showcase their projects. The issue you're facing could potentially be already solved by other users there; and you can always ask for help, if it's not.
-
 ## Unity Support
 
 While we have several video tutorials and example projects showing how to use Unity to achieve some Naninovel-specific goals, please be aware that we are not able to provide any additional guidance or direct support for Unity's built-in tools.
