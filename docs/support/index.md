@@ -2,7 +2,7 @@
 
 If you have issues with the engine, first make sure to read the [guide](/guide/) and [command reference](/api/) topics related to the feature you're having issues with; also check the [FAQ](/faq/) for some frequently asked questions.
 
-In case you're sure the engine is not working as intended, check if you're running the latest available version. Most recent patches are published to our [GitHub UPM registry](/guide/getting-started#install-from-github) — use it instead of importing the package from Unity's package manager, as the latter is usually outdated. Make sure to follow the upgrade instructions specified in the [release notes](/releases/) when upgrading from an older version.
+In case you're sure the engine is not working as intended, check if you're running the latest available version. Most recent patches are published to our [GitHub UPM registry](/guide/getting-started#install-from-github) — use it instead of importing the package from the Asset Store, as the latter is usually outdated. Make sure to follow the upgrade instructions specified in the [release notes](/releases/) when upgrading from an older version.
 
 If upgrading didn't help, try clearing the asset database cache by deleting `Library` folder located at the root of the Unity project and restart the editor.
 
