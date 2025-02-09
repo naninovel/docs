@@ -236,9 +236,13 @@ When publishing for CJK languages (Chinese, Japanese and Korean), consider using
 
 To associate a font with a specific locale, use `Apply On Locale` property of font options found in UI configuration. When a locale is selected, the font will be automatically applied when that locale is selected in the game settings.
 
-![](https://i.gyazo.com/52e1a5eaaf99f5b4415083d1c86e9c10.png)
+![](https://i.gyazo.com/e44d120c983f3d6c1d15e910829fc344.png)
 
-In order for the feature to work, make sure `Font Change Configuration` component is set up properly on the text printer. ([guide](/guide/user-interface#changing-font))
+In order for the feature to work, make sure `Font Change Configuration` component is set up properly on the text printer. Find the instructions on setting up fonts in the [UI guide](/guide/user-interface#changing-font).
+
+::: tip EXAMPLE
+Find an example on how to set up localization-specific fonts in the [localization sample](/guide/samples#localization).
+:::
 
 ## Community Localization
 
