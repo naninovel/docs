@@ -268,7 +268,7 @@ public class ModifyCharacter { ... }
 
 — will merge shared character poses with poses for characters with ID assigned to "ID" parameter or (when not assigned) name component of "IdAndAppearance" parameter.
 
-Constant expressions combined with [custom metadata providers](/guide/ide-extension#metadata-providers) allow creating arbitrary autocompletion scenarios for the IDE extension.
+Constant expressions combined with [custom metadata providers](/guide/ide-extension#metadata-provider) allow creating arbitrary autocompletion scenarios for the IDE extension.
 
 ## Other IDEs and Editors
 
