@@ -30,7 +30,8 @@ First, go to `Edit -> Project Settings -> Editor` menu and select `Do not reload
 
 Now, open and inspect `manifest.json` file at the "Packages" folder stored under the Unity project root. It lists all the installed packages and modules. Depending on the template, Unity includes many modules by default, while you'll most likely never need most of those, while each of them increases the time of the editor startup and code reload. Below are the modules required by Naninovel; consider removing all the other entries, in case they are not needed:
 
-```json
+::: code-group
+```json [Packages/manifest.json]
 {
     "dependencies": {
         "com.unity.modules.audio": "1.0.0",
@@ -43,6 +44,30 @@ Now, open and inspect `manifest.json` file at the "Packages" folder stored under
     }
 }
 ```
+:::
+
+### VCS Setup
+
+In case you're using a version control system, such as Git, consider ignoring following auto-generated files to prevent unnecessary churn:
+
+::: code-group
+```asm [.gitignore]
+# Used for IPC with the external tools, such as the IDE extension.
+/Assets/NaninovelData/.nani/Bridging*
+# Used to feed project-specific data to the external tools.
+/Assets/NaninovelData/.nani/Metadata*
+# Save files produced while playing in Unity editor.
+/Assets/NaninovelData/Saves*
+# Cached project metadata consumed at runtime.
+/Assets/NaninovelData/Resources/Naninovel/ProjectStats*
+```
+:::
+
+— note that `Assets/NaninovelData` is an auto-generated folder. After it's initially generated, you can rename or move it to any folder under `Assets`, in which case the above ignore paths have to be updated accordingly.
+
+::: tip EXAMPLE
+Check out [.gitignore](https://github.com/naninovel/engine/blob/main/unity/samples/.gitignore) in our sample project for an example Git ignore profile. Be aware that the project repository is private; find more info on accessing it in the [samples guide](/guide/samples).
+:::
 
 ## Install Naninovel
 
@@ -86,12 +111,12 @@ An essential one, which you will constantly encounter in the rest of the guide, 
 
 Actor is an abstract entity and can't exist directly; instead, specialized versions with various additional parameters are used:
 
-Actor Type | Additional Parameters | Description
---- | --- | ---
-[Character](/guide/characters) | Look Direction | Represents a character on scene.
-[Background](/guide/backgrounds) | None | Represents a background on scene; placed behind character actors by default.
-[Text Printer](/guide/text-printers) | Text, Author ID, Reveal Progress | Gradually reveals (prints) text messages over time.
-[Choice Handler](/guide/choices) | Choices | Allows player to pick one of the available choices.
+ Actor Type                           | Additional Parameters            | Description
+--------------------------------------|----------------------------------|------------------------------------------------------------------------------
+ [Character](/guide/characters)       | Look Direction                   | Represents a character on scene.
+ [Background](/guide/backgrounds)     | None                             | Represents a background on scene; placed behind character actors by default.
+ [Text Printer](/guide/text-printers) | Text, Author ID, Reveal Progress | Gradually reveals (prints) text messages over time.
+ [Choice Handler](/guide/choices)     | Choices                          | Allows player to pick one of the available choices.
 
 Consider a typical visual novel setup, with a character portrayed on top of a background. In Naninovel terms, it will be represented in the following way.
 
@@ -148,6 +173,7 @@ Open the created script in a text editor and add the following text:
 Hello World!
 @stop
 ```
+
 The first line will print the text "Hello World!" when the game is run and the second is required to gracefully stop script execution.
 
 Enter play mode and start a new game to see the result.
@@ -202,6 +228,7 @@ Kohaku.Happy: Hello World!
 ```
 
 To hide a character (or any other actor, like background, text printer, etc), use [@hide] command followed by actor ID:
+
 ```nani
 Kohaku.Happy: Hello World!
 @hide Kohaku
@@ -241,17 +268,21 @@ To reference a background other than the main one (eg, in case you wish to compo
 ```
 
 ## Add Music and Sound Effects
+
 To add a BGM (background music) or SFX (sound effect) asset, use `Naninovel -> Resources -> Audio` editor menu. You can use any audio formats [supported by Unity](https://docs.unity3d.com/Manual/AudioFiles.html).
 
 ![Managing Audio](https://i.gyazo.com/cacdec36623dbbfcf9f49c594de53c0f.png)
 
 Let’s assume the added BGM file name is "ThePromenade". To play this track as a background music use [@bgm] command followed by the name of the track:
+
 ```nani
 @bgm ThePromenade
 ```
+
 A cross-fade effect will be automatically applied when switching the music tracks. The music will loop by default, though you can change this, as well as volume and fade duration using command parameters.
 
 On the contrary, sound effects won't loop by default. Assuming you've added an "Explosion" SFX, use an [@sfx] command to play it back:
+
 ```nani
 @sfx Explosion
 ```
