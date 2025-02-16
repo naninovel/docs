@@ -48,25 +48,21 @@ Now, open and inspect `manifest.json` file at the "Packages" folder stored under
 
 ### VCS Setup
 
-In case you're using a version control system, such as Git, consider ignoring following auto-generated files to prevent unnecessary churn:
+In case you're using a version control system, such as Git, consider ignoring following paths to prevent unnecessary churn:
 
 ::: code-group
 ```asm [.gitignore]
-# Used for IPC with the external tools, such as the IDE extension.
-/Assets/NaninovelData/.nani/Bridging*
-# Used to feed project-specific data to the external tools.
-/Assets/NaninovelData/.nani/Metadata*
-# Save files produced while playing in Unity editor.
-/Assets/NaninovelData/Saves*
-# Cached project metadata consumed at runtime.
-/Assets/NaninovelData/Resources/Naninovel/ProjectStats*
+# Auto-generated Unity assets of transient nature.
+/Assets/NaninovelData/Transient*
+# Generated artifacts hidden from the asset pipeline.
+/Assets/NaninovelData/.nani/Transient*
 ```
 :::
 
-— note that `Assets/NaninovelData` is an auto-generated folder. After it's initially generated, you can rename or move it to any folder under `Assets`, in which case the above ignore paths have to be updated accordingly.
+— note that `Assets/NaninovelData` is an auto-generated folder. After it's initially generated, you can rename or move it to any folder under `Assets` (Naninovel will still be able to locate it), in which case the above ignore paths have to be updated accordingly.
 
 ::: tip EXAMPLE
-Check out [.gitignore](https://github.com/naninovel/engine/blob/main/unity/samples/.gitignore) in our sample project for an example Git ignore profile. Be aware that the project repository is private; find more info on accessing it in the [samples guide](/guide/samples).
+Find [.gitignore](https://github.com/naninovel/engine/blob/main/unity/samples/.gitignore) in our [samples project](/guide/samples) for an example Git ignore profile. Notice how `NaninovelData` folder in the project is renamed to just `Naninovel` and moved under `Assets/Profiles` for organization purposes — you're free to move the folder in a similar fashion in your own project.
 :::
 
 ## Install Naninovel
