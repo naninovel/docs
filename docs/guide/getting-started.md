@@ -54,7 +54,7 @@ In case you're using a version control system, such as Git, consider ignoring fo
 ```asm [.gitignore]
 # Auto-generated Unity assets of transient nature.
 /Assets/NaninovelData/Transient*
-# Generated artifacts hidden from the asset pipeline.
+# Transient artifacts of the external tools.
 /Assets/NaninovelData/.nani/Transient*
 ```
 :::
