@@ -97,7 +97,7 @@ public class MyCustomBehaviour : MonoBehaviour
 
     private void SerializeState (GameStateMap stateMap)
     {
-        var state = new GameState() {
+        var state = new GameState {
             MyCustomBool = myCustomBool,
             MyCustomString = myCustomString
         };
@@ -113,6 +113,16 @@ public class MyCustomBehaviour : MonoBehaviour
         myCustomString = state.MyCustomString;
         return UniTask.CompletedTask;
     }
+}
+```
+
+In case your custom object is created after the game state is loaded, use `LastGameState` to access the last loaded state and manually invoke the deserialize method:
+
+```csharp
+private async void Start ()
+{
+    if (stateManager.LastGameState is { } state)
+        await DeserializeState(state);
 }
 ```
 
