@@ -8,16 +8,10 @@ Only LTS releases in the range are supported. Any issues with the future Unity r
 
 ## Platforms
 
-All the engine features are implemented using cross-platform APIs and are expected to be compatible with all the platforms Unity can target.
-
-The following platforms were tested for compatibility and are officially supported by us:
-* Standalone: Windows, Mac, Linux
-* Mobiles: iOS, Android
-* Web: WebGL
-* Consoles: Nintendo Switch
+Naninovel doesn't use any platform-specific APIs, precompiled native libraries, or third-party dependencies. As a result, the engine is expected to be compatible with all platforms Unity can target. However, this also means we don't utilize any native platform capabilities, so you may need to adapt some features for an optimal user experience on exotic platforms, such as VR/XR.
 
 ::: info NOTE
-While Unity allows building for many other platforms (PlayStation, Xbox, Stadia, etc), some features (eg, save system) may not work out of the box, as access to the platform-specific SDKs is restricted for registered developers only. We don't have the access to such SDKs and are not able to provide support for platforms outside the list above. Find more information in [the article](https://unity.com/how-to/develop-console-video-games-unity).
+While Unity [supports game consoles](https://unity.com/how-to/develop-console-video-games-unity) (PlayStation, Xbox, Switch), the process can be challenging for smaller developers. If you're looking for a publishing partner, we recommend [Sometimes You](https://www.sometimesyou.com), which has a strong track record of bringing Naninovel projects to a wide range of platforms.
 :::
 
 ## Enter Play Mode
