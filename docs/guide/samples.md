@@ -156,6 +156,23 @@ The sample demonstrates using Live2D characters with Naninovel. Find them at `Co
  - The generated sheets are stored at `Sheets` directory under the samples project root.
  - The localization-specific font is stored at `Profiles/Naninovel/Resources/Naninovel/Fonts`.
 
+Folders selected for localization tool:
+
+| Folder                 | Path                                                       |
+|------------------------|------------------------------------------------------------|
+| Script Folder (input)  | Assets/Scripts/Scenario                                    |
+| Text Folder (input)    | Assets/Profiles/Naninovel/Resources/Naninovel/Text         |
+| Locale Folder (output) | Assets/Profiles/Naninovel/Resources/Naninovel/Localization |
+
+Folders selected for spreadsheet tool:
+
+| Folder                    | Path                                                       |
+|---------------------------|------------------------------------------------------------|
+| Input Scripts Folder      | Assets/Scripts/Scenario                                    |
+| Input Text Folder         | Assets/Profiles/Naninovel/Resources/Naninovel/Text         |
+| Input Localization Folder | Assets/Profiles/Naninovel/Resources/Naninovel/Localization |
+| Output Folder             | Sheets                                                     |
+
 ![](https://i.gyazo.com/97d232751dd7e97bc828f3521f1d2066.mp4)
 
 ## Map
