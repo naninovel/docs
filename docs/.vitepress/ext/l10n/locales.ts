@@ -19,57 +19,57 @@ export const config: LocaleConfig<DefaultTheme.Config> = {
             editLink: buildEditLink("Edit this page on GitHub")
         }
     },
-    ja: {
-        lang: "ja-JP",
-        label: "日本語",
-        description: "Unityゲームエンジン用のフル機能を備えた、ライター向けで完全にカスタマイズ可能なビジュアルノベル拡張。",
-        themeConfig: {
-            langMenuLabel: "言語",
-            lastUpdated: { text: "最終更新 日", formatOptions: { dateStyle: "medium" } },
-            sidebarMenuLabel: "メニュー",
-            darkModeSwitchLabel: "外観",
-            returnToTopLabel: "トップに戻る",
-            outline: { label: "このページでは", level: "deep" },
-            sidebar: { "/ja/guide/": guide.js },
-            docFooter: { prev: "前のページ", next: "次のページ" },
-            nav: buildNav(["FAQ", "ガイド", "コマンド", "サポート"], "ja"),
-            editLink: buildEditLink("GitHub でこのページを編集する")
-        }
-    },
-    zh: {
-        lang: "zh-CN",
-        label: "中文",
-        description: "功能齐全、易于编写且完全可自定义的Unity游戏引擎视觉小说插件。",
-        themeConfig: {
-            langMenuLabel: "语言",
-            lastUpdated: { text: "最近更新时间", formatOptions: { dateStyle: "medium" } },
-            sidebarMenuLabel: "菜单",
-            darkModeSwitchLabel: "外貌",
-            returnToTopLabel: "返回顶部",
-            outline: { label: "在本页", level: "deep" },
-            sidebar: { "/zh/guide/": guide.zn },
-            docFooter: { prev: "上一页", next: "下一页" },
-            nav: buildNav(["常见问题", "指南", "指令", "技术支持"], "zh"),
-            editLink: buildEditLink("在 GitHub 上编辑此页面")
-        }
-    },
-    ru: {
-        lang: "ru-RU",
-        label: "Русский",
-        description: "Расширение игрового движка Unity для создания визуальных новелл.",
-        themeConfig: {
-            langMenuLabel: "Язык",
-            lastUpdated: { text: "Обновлено", formatOptions: { dateStyle: "medium" } },
-            sidebarMenuLabel: "Меню",
-            darkModeSwitchLabel: "Оформление",
-            returnToTopLabel: "Вернуться наверх",
-            outline: { label: "На этой странице", level: "deep" },
-            sidebar: { "/ru/guide/": guide.ru },
-            docFooter: { prev: "Предыдущая страница", next: "Следующая страница" },
-            nav: buildNav(["FAQ", "Руководство", "Команды", "Поддержка"], "ru"),
-            editLink: buildEditLink("Редактировать эту страницу на GitHub")
-        }
-    }
+    // ja: {
+    //     lang: "ja-JP",
+    //     label: "日本語",
+    //     description: "Unityゲームエンジン用のフル機能を備えた、ライター向けで完全にカスタマイズ可能なビジュアルノベル拡張。",
+    //     themeConfig: {
+    //         langMenuLabel: "言語",
+    //         lastUpdated: { text: "最終更新 日", formatOptions: { dateStyle: "medium" } },
+    //         sidebarMenuLabel: "メニュー",
+    //         darkModeSwitchLabel: "外観",
+    //         returnToTopLabel: "トップに戻る",
+    //         outline: { label: "このページでは", level: "deep" },
+    //         sidebar: { "/ja/guide/": guide.js },
+    //         docFooter: { prev: "前のページ", next: "次のページ" },
+    //         nav: buildNav(["FAQ", "ガイド", "コマンド", "サポート"], "ja"),
+    //         editLink: buildEditLink("GitHub でこのページを編集する")
+    //     }
+    // },
+    // zh: {
+    //     lang: "zh-CN",
+    //     label: "中文",
+    //     description: "功能齐全、易于编写且完全可自定义的Unity游戏引擎视觉小说插件。",
+    //     themeConfig: {
+    //         langMenuLabel: "语言",
+    //         lastUpdated: { text: "最近更新时间", formatOptions: { dateStyle: "medium" } },
+    //         sidebarMenuLabel: "菜单",
+    //         darkModeSwitchLabel: "外貌",
+    //         returnToTopLabel: "返回顶部",
+    //         outline: { label: "在本页", level: "deep" },
+    //         sidebar: { "/zh/guide/": guide.zn },
+    //         docFooter: { prev: "上一页", next: "下一页" },
+    //         nav: buildNav(["常见问题", "指南", "指令", "技术支持"], "zh"),
+    //         editLink: buildEditLink("在 GitHub 上编辑此页面")
+    //     }
+    // },
+    // ru: {
+    //     lang: "ru-RU",
+    //     label: "Русский",
+    //     description: "Расширение игрового движка Unity для создания визуальных новелл.",
+    //     themeConfig: {
+    //         langMenuLabel: "Язык",
+    //         lastUpdated: { text: "Обновлено", formatOptions: { dateStyle: "medium" } },
+    //         sidebarMenuLabel: "Меню",
+    //         darkModeSwitchLabel: "Оформление",
+    //         returnToTopLabel: "Вернуться наверх",
+    //         outline: { label: "На этой странице", level: "deep" },
+    //         sidebar: { "/ru/guide/": guide.ru },
+    //         docFooter: { prev: "Предыдущая страница", next: "Следующая страница" },
+    //         nav: buildNav(["FAQ", "Руководство", "Команды", "Поддержка"], "ru"),
+    //         editLink: buildEditLink("Редактировать эту страницу на GitHub")
+    //     }
+    // }
 };
 
 export const search: Record<string, Partial<DefaultTheme.LocalSearchOptions>> = {
