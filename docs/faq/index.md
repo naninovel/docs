@@ -50,14 +50,6 @@ Make sure aspect ratio of the background texture resolution is equal to the refe
 
 When screen aspect ratio is different from the reference resolution ratio, background actor will attempt to match by default, which could cause cropping; see [match mode guide](/guide/backgrounds#match-mode) for more information.
 
-## How to add a line break to the message?
-
-Check out [`[br]` command](/api/#br). Alternatively, `<br>` tag will work with [TMPro printers](/guide/text-printers#textmesh-pro), eg:
-
-```nani
-First line.<br>Second line.
-```
-
 ## How to inject a command in the midst of a printed text message?
 
 Use [command inlining](/guide/naninovel-scripts#command-inlining).
