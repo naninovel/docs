@@ -272,6 +272,10 @@ Constant expressions combined with [custom metadata providers](/guide/ide-extens
 
 ## Other IDEs and Editors
 
+If you're using a VS Code compatible editor such as [VSCodium](https://vscodium.com), [Cursor](https://www.cursor.com) or [Trae](https://www.trae.ai/), install our extension from the Open VSX registry: [open-vsx.org/extension/elringus/naninovel](https://open-vsx.org/extension/elringus/naninovel).
+
+![](https://i.gyazo.com/57590a6871aec7ae41097d7d0ae9bf63.png)
+
 While we don't maintain extensions for other editors, we have an [LSP-compliant](https://microsoft.github.io/language-server-protocol) language server available in the [engine monorepo](https://github.com/naninovel/engine/tree/main/core/packages/language). The server is implemented in C#, can be compiled to WASM and has built-in JavaScript bindings making it usable in most modern IDEs.
 
 Our VS Code extension is built on top of the same language server. The extension sources are [available](https://github.com/naninovel/engine/tree/main/vscode) under the monorepo as well—feel free to use them as a reference when integrating the server into your IDE of choice. To access the repository, [register your license](https://naninovel.com/register).
