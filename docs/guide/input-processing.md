@@ -88,25 +88,31 @@ When Unity's new input system is installed and enabled, all the built-in UIs wil
 Default input mode activated after engine initialization is evaluated by input manager based on the target platform:
 - Consoles -> Gamepad
 - Mobiles -> Touch
-- Others -> Mouse and Keyboard
+- Others -> Mouse
 
-### Mouse and Keyboard
+### Mouse
 
 In this mode the UI will disable navigation on all the underlying [Selectable](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-Selectable.html) objects. This is to prevent buttons from transitioning into "selected" state when clicked by mouse.
 
-Additionally, in case `Button Controls` object is assigned in `Custom UI` (or derived) component, it will be enabled, while `Controls Legend` disabled. This allows keeping buttons specific to mouse input mode (eg, "close" button) and controls legend (eg, gamepad button labels) visible only when associated input mode is active.
+Additionally, in case `Button Controls` object is assigned in `Custom UI` (or derived) component, it will be enabled, while `Keyboard Controls` and `Gamepad Conrols` disabled. This allows keeping buttons specific to mouse input mode (eg, "close" button) and controls legend (eg, gamepad button labels) visible only when associated input mode is active.
 
 ### Gamepad
 
 Gamepad mode will keep navigation (change it back when switched from mouse mode), so that player is able to navigate selectables with dpad.
 
-When assigned, `Button Controls` will be disabled and `Controls Legend` — enabled.
+When assigned, `Gamepad Controls` legend will be enabled, while others (buttons and keyboard) — disabled.
 
 ::: tip
 If you'd like to customize gamepad legend icons, check out [Xelu's free controller prompts](https://thoseawesomeguys.com/prompts/).
 :::
 
 Additionally, while in gamepad mode and a modal UI is shown, first active selectable inside will be focused to prevent focus from getting stuck with previously selected object. This behaviour can be changed by explicitly assigning `Focus Object` of custom UI or derived component, in which case the UI won't attempt to find focus object automatically.
+
+### Keyboard
+
+Activated when keyboard navigation (arrow) keys are pressed. Other keys won't activate this mode, because they are used in Mouse mode as hotkeys.
+
+Otherwise, it works same as Gamepad mode, just with the different controls legend shown.
 
 ### Touch
 
