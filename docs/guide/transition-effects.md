@@ -16,14 +16,14 @@ You can also specify duration of the transition (in seconds) with the `time` par
 
 The above statement will transition to "River" background using "DropFade" transition over 1.5 seconds. Default `time` for all transitions is 0.35 seconds.
 
-In case you wish to skip to the next command immediately after executing the transition (and not wait for the duration of the effect), you can set `wait` parameter to `false`. E.g.:
+In case you wish to wait for the transition to complete before playing next command, add `wait!`:
 
 ```nani
-@back River.Ripple time:1.5
+@back River.Ripple time:1.5 wait!
 @bgm PianoTheme
 ```
 
-— "PianoTheme" background music will start playing right away and won't be delayed for 1.5 seconds, while the transition is in progress.
+— "PianoTheme" background music will start playing only after the transition is complete.
 
 Some of the transition effects also support additional parameters, which you can control with `params` parameter:
 
