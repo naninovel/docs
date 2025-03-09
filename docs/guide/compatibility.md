@@ -11,7 +11,7 @@ Only LTS releases in the range are supported. Any issues with the future Unity r
 Naninovel doesn't use any platform-specific APIs, precompiled native libraries, or third-party dependencies. As a result, the engine is expected to be compatible with all platforms Unity can target. However, this also means we don't utilize any native platform capabilities, so you may need to adapt some features for an optimal user experience on exotic platforms, such as VR/XR.
 
 ::: info NOTE
-While Unity [supports game consoles](https://unity.com/how-to/develop-console-video-games-unity) (PlayStation, Xbox, Switch), the process can be challenging for smaller developers. If you're looking for a publishing partner, we recommend [Sometimes You](https://www.sometimesyou.com), which has a strong track record of bringing Naninovel projects to a wide range of platforms.
+While Unity [supports game consoles](https://unity.com/how-to/develop-console-video-games-unity) (PlayStation, Xbox, Switch), the process can be challenging for smaller developers. If you're looking for a publishing partner, we recommend [Sometimes You](https://porting.games), which has a strong track record of bringing Naninovel projects to a wide range of platforms.
 :::
 
 ## Enter Play Mode
