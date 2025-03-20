@@ -77,7 +77,7 @@ Stable is the middle-ground: it only receives bug fixes, doesn't have the latest
 
 Final, while being the most tested and stable one, is also the most outdated and is not covered by the [tech support](/support/#naninovel-support). Only stay on the final release in case the project is already released and it's not possible to upgrade.
 
-![](https://i.gyazo.com/fcf0bbd4bbd47141e30efabea6ad0f86.png)
+![](https://i.gyazo.com/2462242c14c96a0eae9ca99212c340c4.png)
 
 Stable stream is published on both GitHub and Unity's Asset Store (though not as often as on GitHub), while preview and final streams are only available on GitHub.
 
