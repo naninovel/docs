@@ -4,7 +4,7 @@ Command represents a single operation, that controls what happens on the scene; 
 
 ## Adding Custom Command
 
-To add your own custom script command, create a new C# class derived from `Command` and implement `Execute` abstract method. The created class will automatically be picked up by the engine and you'll be able to invoke the command from the naninovel scripts by either the class name or an alias (if assigned). To assign an alias to the naninovel command, apply `CommandAlias` attribute to the class.
+To add your own custom script command, create a new C# class derived from `Command` and implement `Execute` abstract method. The created class will automatically be picked up by the engine and you'll be able to invoke the command from the naninovel scripts by either the class name or an alias (if assigned). To assign an alias to the naninovel command, apply `Alias` attribute to the class.
 
 Below is an example of a custom command, that can be invoked from naninovel scripts as `@HelloWorld` or `@hello` to print "Hello World!" to the console and can also take an optional `name` parameter (eg, `@hello name:Felix`) to greet the provided name instead of the world.
 
@@ -13,7 +13,7 @@ using Naninovel;
 using Naninovel.Commands;
 using UnityEngine;
 
-[CommandAlias("hello")]
+[Alias("hello")]
 public class HelloWorld : Command
 {
     public StringParameter Name;
@@ -81,12 +81,12 @@ To expose a command parameter to naninovel scripts, add a public field to the co
 
 ### Parameter Alias
 
-Optionally, you can apply `[ParameterAlias]` attribute to the field to assign an alias name to the parameter allowing it to be used instead of the field name when referencing the parameter in naninovel scripts. If you wish to make the parameter nameless, set `NamelessParameterAlias` constant (empty string) as the alias; please note, that only one nameless parameter is allowed per command.
+Optionally, you can apply `[Alias]` attribute to the field to assign an alias name to the parameter allowing it to be used instead of the field name when referencing the parameter in naninovel scripts. If you wish to make the parameter nameless, set `NamelessParameterAlias` constant (empty string) as the alias; please note, that only one nameless parameter is allowed per command.
 
 ```csharp
-[ParameterAlias(NamelessParameterAlias)]
+[Alias(NamelessParameterAlias)]
 public StringParameter MyNamelesParameter;
-[ParameterAlias("myParam")]
+[Alias("myParam")]
 public StringParameter MyParameter;
 ```
 
@@ -167,7 +167,7 @@ To override a built-in command, add a custom one and apply the same alias built-
 Below is an example of overriding built-in [@print] command, so that the printed text will be logged into the console before being revealed to the player.
 
 ```csharp
-[CommandAlias("print")]
+[Alias("print")]
 public class MyCustomPrintCommand : PrintText
 {
     public override UniTask Execute (AsyncToken asyncToken = default)
