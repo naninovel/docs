@@ -329,14 +329,14 @@ using Naninovel;
 using Unity.VisualScripting;
 using UnityEngine;
 
-[CommandAlias("bolt")]
+[Alias("bolt")]
 public class BroadcastBoltEvent : Command
 {
-    [ParameterAlias("object"), RequiredParameter]
+    [Alias("object"), RequiredParameter]
     public StringParameter GameObjectName;
-    [ParameterAlias("name"), RequiredParameter]
+    [Alias("name"), RequiredParameter]
     public StringParameter EventName;
-    [ParameterAlias("args")]
+    [Alias("args")]
     public StringListParameter Arguments;
 
     public override UniTask Execute (AsyncToken token = default)

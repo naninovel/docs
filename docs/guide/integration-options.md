@@ -137,7 +137,7 @@ While it heavily depends on the project, following is an abstract example (based
 ::: code-group
 
 ```csharp [SwitchToNovelMode.cs]
-[CommandAlias("novel")]
+[Alias("novel")]
 public class SwitchToNovelMode : Command
 {
     public StringParameter ScriptPath;
@@ -170,7 +170,7 @@ public class SwitchToNovelMode : Command
 ```
 
 ```csharp [SwitchToAdventureMode.cs]
-[CommandAlias("adventure")]
+[Alias("adventure")]
 public class SwitchToAdventureMode : Command
 {
     public override async UniTask Execute (AsyncToken asyncToken)
