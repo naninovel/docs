@@ -41,14 +41,14 @@ Script expressions used in [@set] and [@if] commands (as well as `set` and `if` 
 
 ```nani
 @set randomScore=random(-100,100)
-@goto EpicLabel if:abs(randomScore)>=50
+@goto #EpicLabel if:abs(randomScore)>=50
 ```
 
 Though, just like with all the other parameter values, in case you wish to use spaces inside the expressions, you should wrap them in double quotes:
 
 ```nani
 @set "randomScore = random(-100, 100)"
-@goto EpicLabel if:"abs(randomScore) >= 50"
+@goto #EpicLabel if:"abs(randomScore) >= 50"
 ```
 
 To print curly braces inside a generic text line and prevent them from being recognized as an expression start and end literals, escape the braces with backslashes, eg:

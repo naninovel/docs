@@ -211,22 +211,106 @@ Use `[]` (empty inlined command) as the delimiter of generic text line boundarie
 
 ## Label Lines
 
-Labels are used as "anchors" when navigating naninovel scripts with [@goto] commands. To define a label, use `#` literal at the start of the line followed with label name:
+Labels are used as "anchors" when navigating Naninovel scripts with [@goto] commands. To define a label, use the `#` literal at the start of the line followed by the label name:
 
 ```nani
 # Epilogue
 ```
 
-You can then use [@goto] command to "jump" to that line:
+You can then use the [@goto] command to "jump" to that line:
 
 ```nani
-@goto ScriptPath.Epilogue
+@goto ScriptPath#Epilogue
 ```
 
-When both [@goto] and target label are in the same script, you can omit script path:
+When both the [@goto] command and the target label are in the same script, you can omit the script path:
 
 ```nani
-@goto .Epilogue
+@goto #Epilogue
+```
+
+### Scenario Root
+
+The "anchors" you specify with navigation commands are called *endpoints*. An endpoint consists of two parts: *script path* and *label*. The label is optional, and when omitted, the endpoint is assumed to point to the start of the script. The script path refers to the Naninovel scenario file's path (without the `.nani` extension), relative to the *scenario root*.
+
+The scenario root is the root ancestor directory where all the scenario files are stored in the project. For example, consider the following directory structure of a Unity project:
+
+```
+Assets
+└── Scenario/
+    ├── Prologue.nani
+    ├── CommonRoute/
+    │   ├── Day1/
+    │   │   ├── Scene1.nani
+    │   │   └── Scene2.nani
+    │   └── Day2/
+    │       └── Scene1.nani
+    └── RouteX/
+        └── SceneX.nani
+```
+
+In this case, the scenario root is the `Assets/Scenario` directory. To navigate to the "Assets/Scenario/RouteX/SceneX.nani" script file, you'd use the following endpoint: `RouteX/SceneX`.
+
+::: tip
+If you don't like the idea of including directories when specifying endpoints—you don't have to! Check the [relative](/guide/naninovel-scripts#relative-endpoints) and [wildcard](/guide/naninovel-scripts#wildcard-endpoints) endpoint syntaxes explained below.
+:::
+
+The scenario root is detected automatically when you create or move scenario files. You can check the current root in Naninovel's script configuration menu.
+
+![](https://i.gyazo.com/57515d699182ed09033e7284d1b58c46.png)
+
+### Endpoint Syntax
+
+Naninovel supports 4 flavors of endpoint syntax, allowing you to build more concise paths in some cases.
+
+#### Canonical Endpoints
+
+This is the default syntax, containing the full path to the script starting from the [scenario root](/guide/naninovel-scripts#scenario-root). It's always available and doesn't depend on the location of the current script, but it requires including all the directories up to the target script:
+
+```nani
+; Navigate to the start of the 'Assets/Scenario/Prologue.nani' script.
+@goto Prologue
+; Navigate to the 'Action' label in
+; 'Assets/Scenario/CommonRoute/Day1/Scene1.nani' script.
+@goto CommonRoute/Day1/Scene1#Action
+```
+
+#### Local Endpoints
+
+This special syntax is available only when you're navigating to a label inside the current script. It doesn't contain the path to the scenario script, only the label:
+
+```nani
+; Navigate to 'Action' in the current script.
+@goto #Action
+```
+
+#### Relative Endpoints
+
+Relative paths are useful for simplifying the endpoint syntax by mapping paths relative to the current script:
+
+```nani
+; Given we're inside 'Assets/Scenario/CommonRoute/Day1/Scene1.nani',
+; navigate to the 'Scene2.nani' file in the same directory.
+@goto ./Scene2
+; Navigate to the 'Scene1.nani' file inside a directory above the current one.
+@goto ../Day2/Scene1
+; Navigate to the 'SceneX.nani' file inside the 'RouteX' directory two
+; levels above the current one.
+@goto ../../RouteX/SceneX
+```
+
+#### Wildcard Endpoints
+
+If you don't want to include directories in the paths at all, you can use wildcard paths where you specify just the script name. Be aware that this only works as long as the specified script name is unique—meaning there are no other script files with the same name in the project, regardless of their parent directories:
+
+```nani
+; Navigate to the 'Prologue.nani' script, no matter where it's located.
+@goto */Prologue
+; This will result in an error, because we have multiple 'Scene1.nani' files.
+@goto */Scene1
+; This will work, because there's only one 'Scene1.nani' file
+; under the 'Day1' directory.
+@goto */Day1/Scene1
 ```
 
 ## Boolean Flags
@@ -375,13 +459,13 @@ Each host command has its own behaviour when executing the nested commands. For 
     You're hopeless... Need help?
     @choice "Yeah, please!"
         @set score+=10
-        @goto .BeginTest
+        @goto #BeginTest
     @choice "I'll keep trying."
-        @goto .BeginTest
+        @goto #BeginTest
     @stop
 @else
     You've failed. Try again!
-    @goto .BeginTest
+    @goto #BeginTest
 ```
 
 Notice how nested blocks are indented: each indent level is exactly **4 spaces**. Tabs and indents with other space length will be ignored. Nested blocks of any level are possible: just indent deeper with the same 4 spaces.

@@ -392,8 +392,8 @@ When nesting commands under the choice, `goto`, `gosub`, `set` and `play` parame
 | button | string | Path (relative to a `Resources` folder) to a [button prefab](/guide/choices#choice-button) representing the choice. The prefab should have a `ChoiceHandlerButton` component attached to the root object. Will use a default button when not specified. |
 | pos | decimal list | Local position of the choice button inside the choice handler (if supported by the handler implementation). |
 | handler | string | ID of the choice handler to add choice for. Will use a default handler if not specified. |
-| goto | named string | Path to go when the choice is selected by user; see [@goto] command for the path format. Ignored when nesting commands under the choice. |
-| gosub | named string | Path to a subroutine to go when the choice is selected by user; see [@gosub] command for the path format. When `goto` is assigned this parameter will be ignored. Ignored when nesting commands under the choice. |
+| goto | string | Path to go when the choice is selected by user; see [@goto] command for the path format. Ignored when nesting commands under the choice. |
+| gosub | string | Path to a subroutine to go when the choice is selected by user; see [@gosub] command for the path format. When `goto` is assigned this parameter will be ignored. Ignored when nesting commands under the choice. |
 | set | string | Set expression to execute when the choice is selected by user; see [@set] command for syntax reference. Ignored when nesting commands under the choice. |
 | play | boolean | Whether to automatically continue playing script from the next line, when neither `goto` nor `gosub` parameters are specified. Has no effect in case the script is already playing when the choice is processed. Ignored when nesting commands under the choice. |
 | show | boolean | Whether to also show choice handler the choice is added for; enabled by default. |
@@ -406,8 +406,8 @@ When nesting commands under the choice, `goto`, `gosub`, `set` and `play` parame
 Continue executing this script or ...?[< skip!]
 @choice "Continue"
 @choice "Load another script from start" goto:Another
-@choice "Load another script from \"Label\" label" goto:Another.Label
-@choice "Goto to \"Sub\" subroutine in another script" gosub:Another.Sub
+@choice "Load another script from \"Label\" label" goto:Another#Label
+@choice "Goto to \"Sub\" subroutine in another script" gosub:Another#Sub
 @stop
 
 ; You can also set custom variables based on choices.
@@ -460,8 +460,8 @@ Removes all the choice options in the choice handler with the specified ID (or i
 ; Give the player 2 seconds to pick a choice.
 # Start
 You have 2 seconds to respond![< skip!]
-@choice Cats goto:.PickedChoice
-@choice Dogs goto:.PickedChoice
+@choice Cats goto:#PickedChoice
+@choice Dogs goto:#PickedChoice
 @wait 2
 @clearChoice
 Too late!
@@ -609,7 +609,7 @@ While this command can be used as a function (subroutine) to invoke a common set
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">path</span> | named string | Path to navigate into in the following format: `ScriptPath.Label`. When label is omitted, will play specified script from the start. When script path is omitted, will attempt to find a label in the currently played script. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">path</span> | string | Path to navigate into in the following format: `ScriptPath#Label`. When label is omitted, will play specified script from the start. When script path is omitted, will attempt to find a label in the currently played script. |
 | reset | string list | When specified, will reset the engine services state before loading a script (in case the path is leading to another script). Specify `*` to reset all the services, or specify service names to exclude from reset. By default, the state does not reset. |
 
 </div>
@@ -617,7 +617,7 @@ While this command can be used as a function (subroutine) to invoke a common set
 ```nani
 ; Navigate to 'VictoryScene' label in the currently played script, then
 ; execute the commands and navigate back to the command after the 'gosub'.
-@gosub .VictoryScene
+@gosub #VictoryScene
 ...
 @stop
 # VictoryScene
@@ -630,11 +630,11 @@ You are victorious!
 ; Another example with some branching inside the subroutine.
 @set time=10
 ; Here we get one result.
-@gosub .Room
+@gosub #Room
 ...
 @set time=3
 ; And here we get another.
-@gosub .Room
+@gosub #Room
 @stop
 # Room
 @print "It's too early, I should visit after sunset." if:time<21&time>6
@@ -650,7 +650,7 @@ Navigates naninovel script playback to the specified path.
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">path</span> | named string | Path to navigate into in the following format: `ScriptPath.Label`. When label is omitted, will play specified script from the start. When script path is omitted, will attempt to find a label in the currently played script. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">path</span> | string | Path to navigate into in the following format: `ScriptPath#Label`. When label is omitted, will play specified script from the start. When script path is omitted, will attempt to find a label in the currently played script. |
 | reset | string list | When specified, will control whether to reset the engine services state before loading a script (in case the path is leading to another script):<br/> - Specify `*` to reset all the services, except the ones with `Goto.DontReset` attribute.<br/> - Specify service type names (separated by comma) to exclude from reset; all the other services will be reset, including the ones with `Goto.DontReset` attribute.<br/> - Specify `-` to force no reset (even if it's enabled by default in the configuration).<br/><br/>Notice, that while some services have `Goto.DontReset` attribute applied and are not reset by default, they should still be specified when excluding specific services from reset. |
 | hold | boolean | Whether to hold resources in the target script, which make them preload together with the script this command specified in. Has no effect outside `Conservative` resource policy. Refer to [memory management](/guide/memory-management) guide for more info. |
 | release | boolean | Whether to release resources before navigating to the target script to free the memory. Has no effect outside `Optimistic` resource policy. Refer to [memory management](/guide/memory-management) guide for more info. |
@@ -662,10 +662,10 @@ Navigates naninovel script playback to the specified path.
 @goto Script001
 
 ; Save as above, but start playing from the label 'AfterStorm'.
-@goto Script001.AfterStorm
+@goto Script001#AfterStorm
 
 ; Navigates to 'Epilogue' label in the currently played script.
-@goto .Epilogue
+@goto #Epilogue
 ...
 # Epilogue
 ...
@@ -1144,8 +1144,8 @@ Prevents player from rolling back to the previous state snapshots.
 ; Prevent player from rolling back to try picking another choice.
 
 Pick a choice. You won't be able to rollback.
-@choice One goto:.One
-@choice Two goto:.Two
+@choice One goto:#One
+@choice Two goto:#Two
 @stop
 
 # One
@@ -1378,7 +1378,7 @@ If a variable with the specified name doesn't exist, it will be automatically cr
 # EnlargeLoop
 @char Kohaku.Default scale:{scale}
 @set scale+=0.1
-@goto .EnlargeLoop if:scale<1
+@goto #EnlargeLoop if:scale<1
 
 ; ...and generic text lines.
 @set drink="Dr. Pepper"
