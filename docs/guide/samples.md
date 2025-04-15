@@ -138,10 +138,10 @@ Select an action.[< skip!]
 	@set monstersSlayed={ itemExist("Armor") ? random(3,5) : 2 }
 	@addItem Food amount:{monstersSlayed}
 	You've encountered and slayed {monstersSlayed} monsters with your sword.
-	@goto .Start
+	@goto #Start
 @else
 	But you don't have a weapon! You've been beaten by the monsters.
-	@goto .Start
+	@goto #Start
 ```
 
 ## Live2D

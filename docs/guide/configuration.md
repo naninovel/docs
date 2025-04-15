@@ -305,7 +305,7 @@ Loader | Spawn- (Addressable, Project) | Configuration of the resource loader us
 
 Property | Default Value | Description
 --- | --- | ---
-Save Folder Name | Naninovel Data/Saves | The folder will be created in the game data folder.
+Save Folder Name | Saves | The folder will be created in the game data folder.
 Default Settings Slot Id | Settings | The name of the settings save file.
 Default Global Slot Id | Global Save | The name of the global save file.
 Save Slot Mask | Game Save{0:000} | Mask used to name save slots.

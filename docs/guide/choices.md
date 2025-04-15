@@ -10,9 +10,9 @@ Use [@choice] commands followed by the choice summary and (optional) `goto` path
 ; Print the text, then immediately show choices and stop script execution.
 Continue executing this script or load another?[< skip!]
 @choice "Continue from the next line"
-@choice "Continue from the specified label" goto:.Labelname
+@choice "Continue from the specified label" goto:#Labelname
 @choice "Load another from start" goto:AnotherScript
-@choice "Load another from label" goto:AnotherScript.LabelName
+@choice "Load another from label" goto:AnotherScript#LabelName
 @stop
 ```
 
@@ -23,10 +23,10 @@ Value of the `goto` parameter is the path to re-route (jump) into when users sel
 goto:Script001
 
 ; Save as above, but start playing from the label `AfterStorm`.
-goto:Script001.AfterStorm
+goto:Script001#AfterStorm
 
 ; Jumps the playback to the label `Epilogue` in the currently played script.
-goto:.Epilogue
+goto:#Epilogue
 ```
 
 ::: info NOTE
@@ -89,7 +89,7 @@ Nested choice callback is not compatible with `goto`, `gosub`, `set` and `play` 
 The [@choice] command accepts an optional `button` parameter specifying a path (relative to a "Resources" folder) to custom prefab representing the choice option object.
 
 ```nani
-@choice handler:ButtonArea button:MapButtons/Home pos:-300,-300 goto:.HomeScene
+@choice handler:ButtonArea button:MapButtons/Home pos:-300,-300 goto:#HomeScene
 ```
 
 — here we use a choice handler supporting positioning to represent a point of interest on an improvised map, where the `button` parameter is pointing to a prefab consisting of a button wrapped over an image. The prefab is stored at `Assets/Resources/MapButtons/Home.prefab`.
@@ -139,19 +139,19 @@ In contrast to button list, button area doesn't enforce any specific layout and 
 # Map
 @back Map
 @hidePrinter
-@choice handler:ButtonArea button:MapButtons/Home pos:-300,-300 goto:.HomeScene
-@choice handler:ButtonArea button:MapButtons/Shop pos:300,200 goto:.ShopScene
+@choice handler:ButtonArea button:MapButtons/Home pos:-300,-300 goto:#HomeScene
+@choice handler:ButtonArea button:MapButtons/Shop pos:300,200 goto:#ShopScene
 @stop
 
 # HomeScene
 @back Home
 Home, sweet home!
-@goto .Map
+@goto #Map
 
 # ShopScene
 @back Shop
 Don't forget about cucumbers!
-@goto .Map
+@goto #Map
 ```
 
 ::: tip EXAMPLE
