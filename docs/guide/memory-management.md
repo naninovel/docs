@@ -1,63 +1,63 @@
 ﻿# Memory Management
 
-Some script commands require loading resources in order to work: audio clips for [@bgm], character prefab and/or appearance textures for [@char], video clip for [@movie] and so on. Naninovel takes care of pre-/loading and unloading most of the resources. Default behaviour is based on `Resource Policy` setting found in resource provider configuration.
+Some script commands require loading resources in order to work: audio clips for [@bgm], character appearance textures for [@char], video clips for [@movie], and so on. Naninovel takes care of loading and unloading these resources in an optimized way. The default behavior is determined by the `Resource Policy` setting found in the resource provider configuration.
 
-![](https://i.gyazo.com/18330a4aa47a1a2f222ad13e4a3fc85b.png)
+![](https://i.gyazo.com/ee96274f01f2f355d14190aabf5f2070.png)
 
 ## Conservative Policy
 
-The default mode with balanced memory utilization. All the resources required for script execution are preloaded when starting the playback and unloaded when the script has finished playing. Scripts referenced in [@gosub] commands are preloaded as well. Additional scripts can be preloaded by using `hold` parameter of [@goto] command.
+The default mode offers balanced memory utilization. All the resources required for script execution are preloaded when starting playback and unloaded when the script finishes playing. Scripts referenced in [@gosub] commands are also preloaded. Additional scripts can be preloaded by using the `hold` parameter of the [@goto] command.
 
-Below is a demo on how resources will un-/load under Conservative policy:
+Below is a demo showing how resources are managed under the Conservative policy:
 
 ::: code-group
 
 ```nani [Script1.nani]
-Resources from Script1, Script2 and ScriptGosub are loaded here.
-Script2 is loaded, because it's navigated to with "@goto hold!".
-ScriptGosub is loaded, because "@gosub" are always pre-loaded.
+Resources from Script1, Script2, and ScriptGosub are loaded here.
+Script2 is loaded because it's navigated to with "@goto hold!".
+ScriptGosub is loaded because "@gosub" scripts are always preloaded.
 
 ...
 
-Loading screen won't show, because gosub is always pre-loaded.
+Loading screen won't show because gosubs are always preloaded.
 @gosub ScriptGosub
 
 ...
 
-Loading screen won't show, because we're using "hold!".
+Loading screen won't show because we're using "hold!".
 @goto Script2 hold!
 ```
 
 ```nani [Script2.nani]
-Resources from Script1, Script2 and ScriptGosub are all still loaded,
+Resources from Script1, Script2, and ScriptGosub are all still loaded,
 because this script was navigated to with "@goto hold!",
 hence it's considered a dependency of Script1.
 
 ...
 
-Loading screen will show, because we're not using "hold!".
+Loading screen will show because we're not using "hold!".
 @goto Script3
 ```
 
 ```nani [Script3.nani]
-Resources from Script1, Script2 are now unloaded, while resources
-form Script3 (this script) are loaded.
-Resources from ScriptGosub are still loaded, because we're using it here.
+Resources from Script1 and Script2 are now unloaded, while resources
+from Script3 (this script) are loaded.
+Resources from ScriptGosub are still loaded because we're using it here.
 
 ...
 
-Loading screen won't show, because gosub is always pre-loaded.
+Loading screen won't show because gosubs are always preloaded.
 @gosub ScriptGosub
 
 ...
 
-Loading screen will show, because we're not using "hold!".
+Loading screen will show because we're not using "hold!".
 @goto Script4
 ```
 
 ```nani [Script4.nani]
-All the resources are now unloaded (including ScriptGosub) and only
-resources form Script4 (this script) are loaded.
+All previous resources are now unloaded (including ScriptGosub), and only
+resources from Script4 (this script) are loaded.
 
 ...
 
@@ -65,13 +65,13 @@ resources form Script4 (this script) are loaded.
 ```
 
 ```nani [ScriptGosub.nani]
-Various resources may be loaded here, depending from which script
-we navigated here.
+Various resources may be loaded here, depending on which script
+navigated to this one.
 
 ...
 
 Loading screen won't show, as gosubs are always loaded with the script
-which navigates to the gosub and are not unloaded until the script unloads.
+that navigates to the gosub and are not unloaded until that script unloads.
 @return
 ```
 
@@ -79,52 +79,52 @@ which navigates to the gosub and are not unloaded until the script unloads.
 
 ## Optimistic Policy
 
-All the resources required by the played script, as well all resources of all the scripts specified in [@goto] and [@gosub] commands are preloaded and not unloaded unless `release` parameter is specified in [@goto] command. This minimizes loading screens and allows smooth rollback, but requires manually specifying when to unload resources, increasing risk of out of memory exceptions on platforms with strict memory limits, such as mobile devices and web browsers.
+All the resources required by the currently played script, as well as all resources of all the scripts specified in [@goto] and [@gosub] commands, are preloaded and not unloaded unless the `release` parameter is specified in the [@goto] command. This minimizes loading screens and allows smooth rollback, but requires manually specifying when to unload resources. It increases the risk of out-of-memory exceptions on platforms with strict memory limits, such as mobile devices and web browsers.
 
-Below is a demo of similar set of scripts, but now we're using Optimistic policy:
+Below is a demo of a similar set of scripts, now using the Optimistic policy:
 
 ::: code-group
 
 ```nani [Script1.nani]
-Resources from Script1, Script2, Script3 and ScriptGosub are all loaded here.
-Script4 is not loaded, because it's navigated to with "@goto release!".
+Resources from Script1, Script2, Script3, and ScriptGosub are all loaded here.
+Script4 is not loaded because it's navigated to with "@goto release!".
 
 ...
 
-Loading screen won't show, because gosub is always pre-loaded.
+Loading screen won't show because gosubs are always preloaded.
 @gosub ScriptGosub
 
 ...
 
-Loading screen won't show by default, unless "release!" is specified.
+Loading screen won't show by default unless "release!" is specified.
 @goto Script2
 ```
 
 ```nani [Script2.nani]
-Everyting except Script4 is still loaded.
+Everything except Script4 is still loaded.
 
 ...
 
-Loading screen won't show by default, unless "release!" is specified.
+Loading screen won't show by default unless "release!" is specified.
 @goto Script3
 ```
 
 ```nani [Script3.nani]
-Everyting except Script4 is still loaded.
+Everything except Script4 is still loaded.
 
 ...
 
-Loading screen won't show, because gosub is always pre-loaded.
+Loading screen won't show because gosubs are always preloaded.
 @gosub ScriptGosub
 
 ...
 
-Loading screen will now show, because of "release!".
+Loading screen will now show because of "release!".
 @goto Script4 release!
 ```
 
 ```nani [Script4.nani]
-All the resources except Script4 are now unloaded, because we navigated here
+All resources except Script4 are now unloaded, because we navigated here
 with "@goto release!".
 
 ...
@@ -133,32 +133,69 @@ with "@goto release!".
 ```
 
 ```nani [ScriptGosub.nani]
-Various resources may be loaded here, depending from which script
-we navigated here.
+Various resources may be loaded here, depending on which script
+navigated here.
 
 ...
 
 Loading screen won't show, as gosubs are always loaded with the script
-which navigates to the gosub and are not unloaded until the script unloads.
+that navigates to the gosub and are not unloaded until that script unloads.
 @return
 ```
 
 :::
 
-## Choosing Policy
+## Lazy Policy
 
-Generally, it's recommended to stick with the default "Conservative" policy, as it yields balanced memory usage suitable for all the target platforms, while providing flexibility in "merging" the scripts via `hold!` flags, when necessary.
+Other policies assume the game is designed with some kind of loading screens in mind—masked as scene, act, or day changes—where Naninovel has a chance to perform CPU-intensive resource loading operations in bulk, ensuring actual gameplay remains smooth.
 
-However, if you exclusively target the more powerful platforms with lots of RAM, like standalone and game consoles, you may choose the "Optimistic" policy to keep large chunks for the resources in memory and minimize loading screens.
+However, some games may not have a compatible structure or may not require that kind of optimization. When "Lazy" mode is selected, Naninovel will never show loading screens or attempt to preload resources before playing a script. Instead, it loads the required resources "on the fly" as the script plays. It also preloads a set number of commands ahead of the currently played one to minimize delays during gameplay. The number of preloaded commands can be adjusted with `Lazy Buffer` setting found in the resource provider configuration.
 
-Another scenario for the alternative policy is when Naninovel is used as a dialogue system inside a custom game loop. You'll likely have your own resource management system in such cases, and "Optimistic" won't stand in its way, as it'd basically do nothing, outside of keeping all the required resources loaded before playing a script, unless you explicitly use `release!` flags.
+::: code-group
+
+```nani [Script1.nani]
+Let's assume "Lazy Buffer" is set to 3 (the default is higher).
+Only the "Snow" background is preloaded now, as it's within the buffer reach.
+@back Snow
+The "Ambient" audio is now preloaded.
+The "Town" background is now preloaded.
+@bgm Ambient
+@back Town
+The "Snow" background is now unloaded, as it's no longer visible.
+...
+
+No loading screen is shown. All resources are released.
+The "Snow" background from Script2 is preloaded, being in the buffer reach.
+@goto Script2
+```
+
+```nani [Script2.nani]
+...
+@back Snow
+The "Town" background is now unloaded, as it's no longer visible.
+```
+
+:::
+
+Lazy mode has an important caveat: loading assets—especially "heavy" ones like large background textures, HD character models, or video files—may cause noticeable stutters during gameplay. While Naninovel attempts to perform these operations off the main thread whenever possible, some low-power devices or platforms (notably, web) may still experience noticeable stutter, especially during skip (fast-forward) and rollback. Be sure to test the game on your minimum supported hardware specifications before deciding whether the Lazy policy is acceptable.
+
+## Choosing a Policy
+
+In general, it's recommended to stick with the default "Conservative" policy, as it offers balanced memory usage suitable for all target platforms while allowing flexible script merging via `hold!` flags when necessary.
+
+However, if you're exclusively targeting powerful platforms with ample RAM, such as standalone builds and game consoles, you may prefer the "Optimistic" policy to keep large portions of resources in memory and minimize loading screens.
+
+Another scenario for using the "Optimistic" policy is when Naninovel is employed as a dialogue system inside a custom game loop. In such cases, you'll likely have your own resource management system, and "Optimistic" won't interfere—it will simply keep all the required resources loaded before playing a script, unless you explicitly use `release!` flags.
+
+Choose the "Lazy" policy when you need to minimize memory usage and can tolerate potential stutters during gameplay, or when it's not feasible to design the game around loading screens.
 
 Below is a summary of the policies:
 
-| Policy       |             Memory Usage             | Loading Screens                                    | Rollback                                               |
-|--------------|:------------------------------------:|----------------------------------------------------|--------------------------------------------------------|
-| Conservative | <span class="txt-ok">Balanced</span> | <span class="txt-warn">On goto, unless held</span> | <span class="txt-warn">Fast inside held scripts</span> |
-| Optimistic   |  <span class="txt-err">High</span>   | <span class="txt-ok">None, until released</span>   | <span class="txt-ok">Fast until released</span>        |
+| Policy       |              Memory Usage              | CPU Usage                             | Loading Screens                                    | Skip and Rollback                                  |
+|--------------|:--------------------------------------:|---------------------------------------|----------------------------------------------------|----------------------------------------------------|
+| Conservative | <span class="txt-warn">Balanced</span> | <span class="txt-ok">Stable</span>    | <span class="txt-err">On goto, unless held</span>  | <span class="txt-warn">Fast in held scripts</span> |
+| Optimistic   |   <span class="txt-err">High</span>    | <span class="txt-ok">Stable</span>    | <span class="txt-warn">None, until released</span> | <span class="txt-ok">Fast until released</span>    |
+| Lazy         |    <span class="txt-ok">Low</span>     | <span class="txt-err">Volatile</span> | <span class="txt-ok">Never</span>                  | <span class="txt-err">Always Slow</span>           |
 
 ## Actor Resources
 
