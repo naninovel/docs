@@ -2,7 +2,7 @@
 
 ## Unity Version
 
-Supported Unity versions range: `2022.3.45 - 6000.0`
+Supported Unity versions range: `2022.3.60 - 6000.0`
 
 Only LTS releases in the range are supported. Any issues with the future Unity releases will be addressed in the next Naninovel releases. Compatible Unity versions for past releases are specified in the [release notes](https://pre.naninovel.com/releases).
 
