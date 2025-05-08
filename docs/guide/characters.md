@@ -425,7 +425,7 @@ While in camera rendering mode, game objects of the layered actor prefab are con
 Layer active state is also reflected differently in camera mode: instead of renderer component enabled state, game object's active state is used. To set up default appearance of the actor, enable/disable game objects.
 
 ::: tip
-When layer contains lots of children, it would be tedious to set the layer held/release events for each of them individually. In this case use custom event handler to apply the changes in batch. Check [the example](https://forum.naninovel.com/viewtopic.php?t=606) on applying the changes to all the children renderers of a layer.
+When layer contains lots of children, it would be tedious to set the layer held/release events for each of them individually. In this case use custom event handler to apply the changes in batch. Check [the example](https://discord.com/channels/545676116871086080/1369982706393284700) on applying the changes to all the children renderers of a layer.
 :::
 
 Make sure `Render Canvas` component is attached to the layer actor prefab root, as it's required for the camera mode. It works similar to normal render mode, restricting render texture size, so keep it compact.

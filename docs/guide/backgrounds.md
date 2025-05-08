@@ -91,7 +91,7 @@ Following match modes can be set for each background actor (except of generic im
  Disable | Don't perform any matching.
 
 ::: tip
-In case you wish to implement a similar matching feature for a generic or custom background see the [scale to screen example](https://forum.naninovel.com/viewtopic.php?f=8&t=107&p=335#p335) on the forum.
+In case you wish to implement a similar matching feature for a generic or custom background see the [scale to screen example](https://discord.com/channels/545676116871086080/1369983634236379240) on the forum.
 :::
 
 ## Poses
