@@ -16,6 +16,7 @@ Below is a list of games (in alphabetical order) known to use Naninovel. If you'
 |Across Kiloparsecs|[Dragon Dropper](https://dragondropper.com)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/2505080"/>|
 |Agent Voir|[witchstudios](https://witchstudios.itch.io)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://witchstudios.itch.io/agent-voir-unforgotten-love"/>|
 |Alexandria IV|[Time Galleon](https://www.timegalleon.com)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/1699900"/>|
+|An Ordeal of Frost -Ecpyrosis-|[realmsofophir](https://realmsofophir.itch.io)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://realmsofophir.itch.io/anordealoffrost"/>|
 |Ashes of War|[CAT'S TOOTH STUDIO]()|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/2265610"/>|
 |Bitter Silver|[Lookout Drive Games](https://www.lookoutdrivegames.com)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://lookout-drive-games.itch.io/bitter-silver"/><a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/1906930"/>|
 |Blades of Jianghu: Ballad of Wind and Dust|[永恆艾莉絲工坊](https://twitter.com/EternityAlice)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/2179300"/>|
@@ -26,6 +27,7 @@ Below is a list of games (in alphabetical order) known to use Naninovel. If you'
 |Breeding Farm|[team_bieno](https://team-bieno.itch.io)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://team-bieno.itch.io/breeding-farm"/>|
 |Bride for the Princess|[Tuomo Laine](https://twitter.com/GamesTuomo)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/1144550"/>|
 |casting hearts|[npckc](https://twitter.com/npckc)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://npckc.itch.io/casting-hearts"/>|
+|Choose Your Own Valentine!|[AlternativeWonders](https://alternativewonders.itch.io/)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://alternativewonders.itch.io/choose-your-own-valentine"/>|
 |Color of Love|[mirage1607](https://mirage1607.itch.io)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://mirage1607.itch.io/coloroflove"/>|
 |CORPSE FACTORY|[RIVER CROW STUDIO](https://www.rivercrow.studio)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/1414250"/><a class="made-with-store store-switch" title="Nintendo Switch" target="_blank" href="https://www.nintendo.com/store/products/corpse-factory-switch"/>|
 |Culloden|[Laura Laureus]()|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://lauralaureus.itch.io/culloden"/>|
@@ -123,5 +125,6 @@ Below is a list of games (in alphabetical order) known to use Naninovel. If you'
 |彗星战团 - 悲情城市|[星火工造]()|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/2804640"/>|
 |桃の華は鮮血に染まる|[株式会社ワンコネクト](https://one-c.info)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/2274610"/><a class="made-with-store store-switch" title="Nintendo Switch" target="_blank" href="https://store-jp.nintendo.com/list/software/70010000070481.html"/>|
 |铁道少女:梦想轨迹|[39Soft](https://weibo.com/moerail)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/1294060"/>|
+|魔法少女ノ魔女裁判|[Re,AER](https://manosaba.com)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/3101040"/>|
 
 </div>
