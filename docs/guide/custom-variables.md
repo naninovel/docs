@@ -56,7 +56,7 @@ The following script will show an input field UI where user can enter an arbitra
 Archibald: Greetings, {name}!
 
 ; ...or use it inside set and conditional expressions.
-@set score+=3 if:name=="Felix"
+@set score+=3 if:name="Felix"
 ```
 
 ::: tip
@@ -89,49 +89,97 @@ Find example on using variable triggers to drive availability of map locations i
 
 ## Variables Debug
 
-While the game is running it's possible to view all the existing variables and change their values for debugging purposes.
+While the game is running, it's possible to view all the existing variables and change their values for debugging purposes.
 
 Open [development console](/guide/development-console) and enter `var` command to open the variables editor window.
 
 ![](https://i.gyazo.com/d1812668c0776b01f3a82c5ddcba0145.png)
 
-When changing value of a variable in the list, a "SET" button will appear, which you can press to apply the changes.
+When changing the value of a variable in the list, a "SET" button will appear, which you can press to apply the changes.
 
-The variables list is automatically updated when the custom variables are changed while running the game.
+The variable list is automatically updated when the custom variables are changed while running the game.
 
 ## Using Custom Variables in C#
 
-The custom variables can be accessed in C# via `ICustomVariableManager` [engine service](/guide/engine-services).
+Custom variables can be accessed in C# via the `ICustomVariableManager` [engine service](/guide/engine-services).
 
-To get a variable value use `GetVariableValue(name)` method and `SetVariableValue(name, value)` to set variable value; eg, given a "MyVarName" custom string variable exists, the below code will retrieve it, append "Hello!" string to the value and set it back.
+To get and set variable values, use the `GetVariableValue` and `SetVariableValue` methods respectively. For example, given that a custom string variable named "MyVarName" exists, the code below retrieves its value, appends the string "Hello!" to it and sets the modified value back:
 
 ```csharp
-var varManager = Engine.GetService<ICustomVariableManager>();
-var myValue = varManager.GetVariableValue("MyVarName");
-myValue += "Hello!";
-varManager.SetVariableValue("MyVarName", myValue);
+var vars = Engine.GetService<ICustomVariableManager>();
+var value = vars.GetVariableValue("MyVarName").String;
+value += "Hello!";
+vars.SetVariableValue("MyVarName", new(value));
 ```
 
-Be aware, that all the custom variable values are stored as strings. If you want to use them as other types (eg, integer, boolean, etc), you have to parse the returned string values to the desired type and cast them back to strings when setting the values. For most common data types extension methods are available, eg:
+Notice the use of `.String` property when retrieving the actual value of the variable. This is because a variable can be one of three types: `String`, `Numeric`, or `Boolean`. The type is determined when the variable is initially assigned in the scenario scripts:
+
+```nani
+; Assign 'foo' variable with a 'Hello World!' string value
+@set foo="Hello World!"
+; Use the string value in expression
+@if foo="Hello World!"
+
+; Assign 'bar' variable with a numeric value of 42
+@set bar=42
+; Use the numeric value in expression
+@if bar>12
+
+; Assign 'baz' variable with a boolean value of true
+@set baz=true
+; Use the boolean value in expression
+@if baz
+```
+
+—or in C#:
 
 ```csharp
-var varManager = Engine.GetService<ICustomVariableManager>();
+var vars = Engine.GetService<ICustomVariableManager>();
 
-varManager.TryGetVariableValue<float>("MyFloatVarName", out var floatValue);
+// Assign 'foo' variable with a 'Hello World!' string value
+vars.SetVariableValue("foo", new("Hello World!"));
+// Access the assigned string value
+if (vars.GetVariableValue("foo").String == "Hello World!")
+
+// Assign 'bar' variable with a numeric value of 42
+vars.SetVariableValue("bar", new(42));
+// Access the assigned numeric value
+if (vars.GetVariableValue("bar").Number > 12)
+
+// Assign 'baz' variable with a boolean value of true
+vars.SetVariableValue("baz", new(true));
+// Access the assigned boolean value
+if (vars.GetVariableValue("baz").Boolean)
+```
+
+To check the type of variable in C#, use `.Type` property on the value:
+
+```csharp
+var value = vars.GetVariableValue("bar");
+if (value.Type == CustomVariableValueType.Numeric)
+    if (value.Number > 12) // it's now safe to access '.Number' value
+```
+
+Alternatively, use one of the "Try..." overloads:
+
+```csharp
+var vars = Engine.GetService<ICustomVariableManager>();
+
+vars.TryGetVariableValue<float>("MyFloatVarName", out var floatValue);
 Debug.Log($"My float variable value: {floatValue}");
 
-varManager.TryGetVariableValue<int>("MyIntVarName", out var intValue);
+vars.TryGetVariableValue<int>("MyIntVarName", out var intValue);
 Debug.Log($"My integer variable value: {intValue}");
 
-varManager.TryGetVariableValue<bool>("MyBoolVarName", out var boolValue);
+vars.TryGetVariableValue<bool>("MyBoolVarName", out var boolValue);
 Debug.Log($"My boolean variable value: {boolValue}");
 
 floatValue += 10.5f;
-varManager.TrySetVariableValue("MyFloatVarName", floatValue);
+vars.TrySetVariableValue("MyFloatVarName", floatValue);
 
 intValue = -55;
-varManager.TrySetVariableValue("MyIntVarName", intValue);
+vars.TrySetVariableValue("MyIntVarName", intValue);
 
 boolValue = !boolValue;
-varManager.TrySetVariableValue("MyBoolVarName", boolValue);
+vars.TrySetVariableValue("MyBoolVarName", boolValue);
 ```
