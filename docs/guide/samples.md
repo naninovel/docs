@@ -4,7 +4,7 @@ A collection of example projects are provided to help you get started with commo
 
 ## Accessing Samples
 
-The samples are hosted under the [engine's monorepo](https://github.com/naninovel/engine/tree/stable/unity/samples). To access the repository, [register your Naninovel license](https://naninovel.com/register) and follow the dashboard instructions to assign a GitHub user. Once you have access, either [clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) or [download](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) the repository.
+The samples are hosted under the [engine's monorepo](https://github.com/naninovel/engine/tree/stable/unity/samples). To access the repository, [register your Naninovel license](https://naninovel.com/register) and follow the dashboard instructions to assign a GitHub user. Once you have access, either [clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) or [download](https://github.com/naninovel/engine/archive/refs/heads/stable.zip) the repository.
 
 Unzip the downloaded repository and open `unity/samples` directory with the Unity editor. Notice Naninovel is referenced as a local package in the package manager. The source of the local package leads to `unity/client`, which contains the source code of the Unity extension. Other 3rd-party packages used in the samples are embedded to the project for convenience.
 
