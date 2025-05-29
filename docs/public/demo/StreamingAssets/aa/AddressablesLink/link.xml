@@ -210,9 +210,11 @@
     <type fullname="Naninovel.Commands.StopBgm" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.StopSfx" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.TransitionScene" preserve="nothing" serialized="true" />
+    <type fullname="Naninovel.Commands.Unless" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.Unlock" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.Wait" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.WaitForInput" preserve="nothing" serialized="true" />
+    <type fullname="Naninovel.Commands.While" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.CommentScriptLine" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.EmptyScriptLine" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.FloatUnityEvent" preserve="nothing" serialized="true" />
@@ -283,7 +285,7 @@
   <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
     <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
   </assembly>
-  <assembly fullname="Unity.InputSystem, Version=1.11.2.0, Culture=neutral, PublicKeyToken=null">
+  <assembly fullname="Unity.InputSystem, Version=1.14.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.InputSystem.InputActionAsset" preserve="all" />
     <type fullname="UnityEngine.InputSystem.InputActionReference" preserve="all" />
     <type fullname="UnityEngine.InputSystem.InputAction" preserve="nothing" serialized="true" />
