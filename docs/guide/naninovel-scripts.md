@@ -284,11 +284,11 @@ While the script are executed in a linear fashion by default, you can introduce 
 
 ; If `glitch` is a true boolean or random function in 1 to 10 range
 ; returns 5 or more, execute `@spawn` command.
-@spawn GlitchCamera if:"glitch || Random(1, 10) >= 5"
+@spawn GlitchCamera if:{ glitch || Random(1, 10) >= 5 }
 
 ; If `score` value is in 7 to 13 range or `lucky` variable
 ; is a true boolean, load `LuckyEnd` script.
-@goto LuckyEnd if:"(score >= 7 && score <= 13) || lucky"
+@goto LuckyEnd if:{ (score >= 7 && score <= 13) || lucky }
 
 ; You can also use conditionals in the inlined commands.
 Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]

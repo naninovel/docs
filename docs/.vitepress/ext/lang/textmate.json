@@ -31,6 +31,18 @@
                         "1": {
                             "patterns": [
                                 {
+                                    "comment": "Well-known commands with expression context - @if/unless/set/while",
+                                    "name": "naniscript.command",
+                                    "match": "@(?:if|unless|while|set) ([^\\s].*?)(?=\\s+\\w+:|\\s*$)",
+                                    "captures": { "1": { "name": "naniscript.expression" } }
+                                },
+                                {
+                                    "comment": "Well-known commands with navigation context - @goto, @gosub",
+                                    "name": "naniscript.command",
+                                    "match": "@(?:goto|gosub) (\\S+)",
+                                    "captures": { "1": { "name": "naniscript.label" } }
+                                },
+                                {
                                     "comment": "@Command",
                                     "name": "naniscript.command",
                                     "match": "@\\w+"
@@ -44,6 +56,18 @@
         },
         "inline-command": {
             "patterns": [
+                {
+                    "comment": "Well-known inline commands with expression context - [if/unless/set ...]",
+                    "name": "naniscript.command.parameter.value",
+                    "match": "(\\[)(if|unless|set)\\s+([^\\s].*?)(?=\\s+\\w+:|\\]|$)(.*?)(\\]|$)",
+                    "captures": {
+                        "1": { "name": "naniscript.command.inline" },
+                        "2": { "name": "naniscript.command" },
+                        "3": { "name": "naniscript.expression" },
+                        "4": { "patterns": [{ "include": "#params" }] },
+                        "5": { "name": "naniscript.command.inline" }
+                    }
+                },
                 {
                     "comment": "Inline command - [command parameters]",
                     "name": "naniscript.command.parameter.value",
@@ -87,6 +111,24 @@
             "patterns": [
                 { "include": "#expression" },
                 { "include": "#text-identifier" },
+                {
+                    "comment": "Expression context of well-known params - if/set:",
+                    "name": "naniscript.command.parameter.id",
+                    "match": "\\s(?:if|set):([^\\s].*?)(?=\\s+\\w+:|\\s*$)",
+                    "captures": { "1": { "name": "naniscript.expression" } }
+                },
+                {
+                    "comment": "Navigation context of well-known params - goto/gosub:",
+                    "name": "naniscript.command.parameter.id",
+                    "match": "\\s(?:goto|gosub):(\\S+)",
+                    "captures": { "1": { "name": "naniscript.label" } }
+                },
+                {
+                    "comment": "Quoted parameter value - \"foo\"",
+                    "name": "naniscript.generic-text",
+                    "match": "(\"(?:[^\"\\\\]|\\\\.)*\")",
+                    "captures": { "1": { "patterns": [{ "include": "#text-identifier" }] } }
+                },
                 {
                     "comment": "Parameter ID - id:",
                     "name": "naniscript.command.parameter.id",
