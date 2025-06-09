@@ -280,7 +280,7 @@ While the script are executed in a linear fashion by default, you can introduce 
 @choice "It's over 9000!" if:level>9000
 
 ; If `dead` variable is a false boolean, execute the print command.
-@print text:"I'm still alive." if:!dead
+@print "I'm still alive." if:!dead
 
 ; If `glitch` is a true boolean or random function in 1 to 10 range
 ; returns 5 or more, execute `@spawn` command.
