@@ -416,7 +416,7 @@ Continue executing this script or ...?[< skip!]
 @choice "I'll take the entire stock!" set:karma--;score=999
 
 ; Play a sound effect and arrange characters when choice is picked.
-@choice Arrange
+@choice "Arrange"
     @sfx Click
     @arrange k.10,y.55
 
