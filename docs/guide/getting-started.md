@@ -143,7 +143,8 @@ Unity treats folders named `Resources` in a special manner: assets stored under 
 
 Naninovel scripts are text documents (`.nani` extension) where you control what happens on scenes. You can open and edit them with a text editor of your choice, like Microsoft Word, Google Docs or [VS Code](https://code.visualstudio.com).
 
-![Open Naninovel Script](https://i.gyazo.com/f552c2ef323f9ec1171eba72e0c55432.png)
+![?class=when-dark](https://i.gyazo.com/0051c3b96de4854d665e6bf9aba6bbd1.png)
+![?class=when-light](https://i.gyazo.com/4172fee457fb4c1f473ffeb0516b83ca.png)
 
 You can also use visual script editor to edit the naninovel scripts. Select the created script asset and you'll see the visual editor automatically open in the inspector window.
 
