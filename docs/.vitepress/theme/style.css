@@ -38,6 +38,16 @@ u {
     text-underline-position: under;
 }
 
+.dark .when-dark,
+.when-light {
+    display: flex !important;
+}
+
+.dark .when-light,
+.when-dark {
+    display: none !important;
+}
+
 /**
  * Layout
  * -------------------------------------------------------------------------- */
