@@ -1393,6 +1393,9 @@ My favourite drink is {drink}!
 
 ; Increment the global variable only once, even when re-played.
 @set g_GlobalCounter++ if:!hasPlayed()
+
+; Declare and assign the variable only in case it's not already assigned.
+@set g_CompletedRouteX?=false
 ```
 
 ## sfx
