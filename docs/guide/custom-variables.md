@@ -75,6 +75,29 @@ You can inject the custom variables to any parameter values as long as the type 
 @char {PlayerName} pos:50,{PlayerYPosition} tint:{PlayerTint}
 ```
 
+## Default Assignment
+
+Default assignment allows assigning a value to a custom variable only if the variable doesn't already have one. This is useful when you want to ensure a variable has an initial value, but don't want to overwrite it if it's already set.
+
+To perform a default assignment, use the `?=` operator with the [@set] command:
+
+```nani
+; Declare and assign an initial value to the 'name' variable.
+@set name?="Alex"
+; The variable won't be re-assigned here, because it's already set.
+@set name?="John"
+```
+
+This is particularly useful for declaring global variables in entry or initialization scripts instead of using the editor configuration menu:
+
+```nani
+; Declare and assign 'false' to both variables tracking route completion.
+; When the same script is played again (e.g., on a subsequent game start),
+; the variables won't be re-assigned.
+@set g_ClearedRouteX?=false
+@set g_ClearedRouteY?=false
+```
+
 ## Variable Triggers
 
 When building a [custom UI](/guide/user-interface#ui-customization) or other systems, you may want to listen for (react to) events when a variable's value changes. For example, when creating a character stats screen, you might want the text to update with the variables. While the conventional way to implement such behavior is by using a C# script, you can also use the `Custom Variable Trigger` component. This component will invoke Unity events when a variable with a specified name changes.
