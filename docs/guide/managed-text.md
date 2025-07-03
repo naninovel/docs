@@ -95,8 +95,24 @@ Managed text localization process resemble the one for naninovel scripts:
 
 To update the managed text documents and their corresponding localization counterparts, first run the generate managed text utility in a `Resources/Naninovel/Text` folder, and then the localization utility in a `Resources/Naninovel/Localization/{Locale}` folder. Both utilities will attempt to preserve any existing modifications (managed text records and their translations) by default, so you won't have to re-write everything from scratch on each update.
 
- See [Localization](/guide/localization) for more info on how to use the localization utility.
+See [Localization](/guide/localization) for more info on how to use the localization utility.
 
 ::: tip EXAMPLE
 Find an example localization setup (including managed text) in the [localization sample](/guide/samples#localization). Use it as a reference in case having issues setting up localization in your own project.
 :::
+
+## Custom Documents
+
+You can create any number of managed text documents for your custom needs and use them in C# while the engine is initialized. These custom documents will function the same way as the built-in types discussed above: you'll be able to access them in both C# and scenario scripts, retrieve records via the `Managed Text Provider` component, auto-generate localization documents, and more.
+
+Create a new custom managed text document via the `Create -> Naninovel -> Managed Text` asset context menu under a `Resources/Naninovel/Text` folder (or expose it via the resource provider of your choice). The document will then be accessible via the `ITextManager` engine service in C#. Below is an example of accessing a record from a custom document named `Custom` with the content `Foo: Bar`.
+
+```cs
+var manager = Engine.GetService<ITextManager>();
+// The document must be loaded before it can be accessed;
+// typically done once during initialization of your custom system.
+await manager.DocumentLoader.Load("Custom");
+var document = manager.GetDocument("Custom");
+var record = document.Get("Foo");
+Debug.Log($"Key: {record.Key} Value: {record.Value}");
+```
