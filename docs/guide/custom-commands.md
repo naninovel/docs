@@ -27,6 +27,10 @@ public class HelloWorld : Command
 }
 ```
 
+::: info NOTE
+Whenever you change C# command implementations—such as renaming the class, adding or removing parameters, changing their types or attributes—remember to re-import the scenario script assets (right-click on the folder where the scripts are stored and click "Reimport"). This is necessary because scenario scripts are parsed and compiled on import (not at runtime) and must be kept in sync with the C# implementations.
+:::
+
 ### Execute Method
 
 `Execute` is an async method invoked when the command is executed by the scripts player; put the command logic there. Use [engine services](/guide/engine-services) to access the engine built-in systems. Naninovel script execution will halt until this method returns a completed task in case `Wait` parameter is `true`.
