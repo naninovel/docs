@@ -99,7 +99,6 @@ It's also possible to use the name binding feature to allow player pick their di
 
 ```nani
 @input PlayerName summary:"Choose your name."
-@stop
 Player: You can call me {PlayerName}.
 ```
 
@@ -121,15 +120,12 @@ Char1: Now, we'll make the player input a custom name.
 ; Notice the default input value assigned via `value` parameter:
 ; it's retrieved from managed text and is localizable as well.
 @input name summary:"Choose your name." value:{T_DefaultName}
-@stop
 
 ; Here we set the variable, that is used in the expression
 ; for display name to decide where to get the value from.
 @set nameSet=true
 
 Char1: My display name is now bound to `name` custom variable.
-
-@stop
 ```
 
 When `Has Name` is disabled, neither display name, nor character ID will be displayed in the printer UI. This is useful for [narrator characters](/guide/characters#narrator-characters), which could have a [linked printer](/guide/characters#linked-printer), but their ID shouldn't be displayed.

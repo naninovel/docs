@@ -49,8 +49,6 @@ The following script will show an input field UI where user can enter an arbitra
 ```nani
 ; Allow user to enter an arbitrary text and assign it to `name` variable.
 @input name summary:"Choose your name."
-; Stop is required to halt script execution until user submits the input.
-@stop
 
 ; You can then inject the assigned `name` variable in naninovel scripts.
 Archibald: Greetings, {name}!

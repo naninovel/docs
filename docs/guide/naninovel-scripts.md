@@ -463,7 +463,6 @@ Each host command has its own behaviour when executing the nested commands. For 
         @goto #BeginTest
     @choice "I'll keep trying."
         @goto #BeginTest
-    @stop
 @else
     You've failed. Try again!
     @goto #BeginTest
@@ -675,7 +674,6 @@ To reference an existing localized text inside scenario script, append `&` to th
 ```nani
 ; Show choice with "Some Text" and then print the same text.
 @choice "Some Text|#SOMEID|"
-@stop
 @print |#&SOMEID|
 ```
 
