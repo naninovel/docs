@@ -125,7 +125,6 @@ When **Include Annotations** option is enabled, generated localization documents
 ; Player has to pick route.
 @choice "Go left" set:route="left"
 @choice "Go right" set:route="right"
-@stop
 Narrator: You've decided to go {route}. Wise choice!
 ```
 

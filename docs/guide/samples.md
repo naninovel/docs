@@ -130,7 +130,6 @@ Select an action.[< skip!]
 @choice "Pick up armor" if:!itemExist("Armor")
     @addItem Armor
 @choice "Adventure awaits, venture forth!"
-@stop
 
 # Adventure
 

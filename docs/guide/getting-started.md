@@ -168,10 +168,9 @@ Open the created script in a text editor and add the following text:
 
 ```nani
 Hello World!
-@stop
 ```
 
-The first line will print the text "Hello World!" when the game is run and the second is required to gracefully stop script execution.
+The line will print the text "Hello World!" when the game is run.
 
 Enter play mode and start a new game to see the result.
 
@@ -196,7 +195,6 @@ Let’s assume the added character ID is "Kohaku". Edit naninovel script to show
 ```nani
 @char Kohaku
 Hello World!
-@stop
 ```
 
 Run the game and you’ll see one of the character appearance sprites at the center of the screen. When you don’t specify an appearance, either the one named equal to character's ID or "Default" will be chosen by default. To select a specific appearance, add its name after the character ID separated by a dot like this:
@@ -204,7 +202,6 @@ Run the game and you’ll see one of the character appearance sprites at the cen
 ```nani
 @char Kohaku.Happy
 Hello World!
-@stop
 ```
 
 Given there is an appearance with the name "Happy" added for the character "Kohaku", the corresponding sprite will now be shown instead of the default one.
@@ -214,14 +211,12 @@ You can now associate the printed text with the character by adding its ID follo
 ```nani
 @char Kohaku.Happy
 Kohaku: Hello World!
-@stop
 ```
 
 It's also possible to join character's appearance with the printed text to save some typing:
 
 ```nani
 Kohaku.Happy: Hello World!
-@stop
 ```
 
 To hide a character (or any other actor, like background, text printer, etc), use [@hide] command followed by actor ID:
@@ -229,7 +224,6 @@ To hide a character (or any other actor, like background, text printer, etc), us
 ```nani
 Kohaku.Happy: Hello World!
 @hide Kohaku
-@stop
 ```
 
 ## Add Background

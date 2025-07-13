@@ -19,7 +19,6 @@ The expression is evaluated at the moment the command is executed, which allows 
 
 ```nani
 @input color summary:"What's your favorite color?"
-@stop
 {color}, huh? { color == "orange" ? "Mine too!" : (color == "black" ? "That's depressing." : "I see...") }
 ```
 

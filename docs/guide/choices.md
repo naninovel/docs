@@ -7,13 +7,12 @@ The feature allows to present a number of choices to the user and re-route scrip
 Use [@choice] commands followed by the choice summary and (optional) `goto` path to add choices from the naninovel scripts:
 
 ```nani
-; Print the text, then immediately show choices and stop script execution.
+; Print the text, then immediately show choices.
 Continue executing this script or load another?[< skip!]
 @choice "Continue from the next line"
 @choice "Continue from the specified label" goto:#Labelname
 @choice "Load another from start" goto:AnotherScript
 @choice "Load another from label" goto:AnotherScript#LabelName
-@stop
 ```
 
 Value of the `goto` parameter is the path to re-route (jump) into when users selects the corresponding choice. It's specified in the following format: *ScriptPath*.*LabelName*. When label name is omitted, provided script will be played from the start; when script path is omitted, a label in the currently played script will be referenced:
@@ -58,7 +57,6 @@ When the consequence of picking a choice is small (eg, you may just want to prin
 @choice "Keep silent"
     Kohaku: ...
     Awkward silence fell.
-@stop
 ```
 
 Any level of nesting is supported:
@@ -74,10 +72,8 @@ Any level of nesting is supported:
     @choice "Give up"
         Kohaku: Never mind, forget about that.
         @char Yuko.Relieved
-    @stop
 @choice "Keep silent"
     ...
-@stop
 ```
 
 ::: info NOTE
@@ -141,7 +137,6 @@ In contrast to button list, button area doesn't enforce any specific layout and 
 @hidePrinter
 @choice handler:ButtonArea button:MapButtons/Home pos:-300,-300 goto:#HomeScene
 @choice handler:ButtonArea button:MapButtons/Shop pos:300,200 goto:#ShopScene
-@stop
 
 # HomeScene
 @back Home
@@ -171,7 +166,6 @@ Kohaku: Where're you right now?
     Yuko: ¯\_(ツ)_/¯
 @choice "Answer" handler:ChatReply
     Yuko: school. preping for the festival
-@stop
 ```
 
 ![](https://i.gyazo.com/338f8519b3a1656059a407fe0232b376.mp4)

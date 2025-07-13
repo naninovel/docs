@@ -380,7 +380,7 @@ Modifies a [character actor](/guide/characters).
 Adds a [choice](/guide/choices) option to a choice handler with the specified ID (or default one).
 
 ::: info NOTE
-When nesting commands under the choice, `goto`, `gosub`, `set` and `play` parameters are ignored.
+When nesting commands under the choice, `goto`, `gosub` and `set` parameters are ignored.
 :::
 
 <div class="config-table">
@@ -395,7 +395,7 @@ When nesting commands under the choice, `goto`, `gosub`, `set` and `play` parame
 | goto | string | Path to go when the choice is selected by user; see [@goto] command for the path format. Ignored when nesting commands under the choice. |
 | gosub | string | Path to a subroutine to go when the choice is selected by user; see [@gosub] command for the path format. When `goto` is assigned this parameter will be ignored. Ignored when nesting commands under the choice. |
 | set | string | Set expression to execute when the choice is selected by user; see [@set] command for syntax reference. Ignored when nesting commands under the choice. |
-| play | boolean | Whether to automatically continue playing script from the next line, when neither `goto` nor `gosub` parameters are specified. Has no effect in case the script is already playing when the choice is processed. Ignored when nesting commands under the choice. |
+| skip | boolean | Whether to not halt script playback until a choice is picked by the player. |
 | show | boolean | Whether to also show choice handler the choice is added for; enabled by default. |
 | time | decimal | Duration (in seconds) of the fade-in (reveal) animation. |
 
@@ -408,7 +408,6 @@ Continue executing this script or ...?[< skip!]
 @choice "Load another script from start" goto:Another
 @choice "Load another script from \"Label\" label" goto:Another#Label
 @choice "Goto to \"Sub\" subroutine in another script" gosub:Another#Sub
-@stop
 
 ; You can also set custom variables based on choices.
 @choice "I'm humble, one is enough..." set:score++
@@ -427,10 +426,19 @@ Continue executing this script or ...?[< skip!]
     How old are you?
 @choice "Keep silent"
     ...
-@stop
 
 ; Make choice disabled/locked when 'score' variable is below 10.
 @choice "Secret option" lock:{score<10}
+
+; A quick-time event: game over unless player picks a choice in 3 seconds.
+; Notice 'script!' at the last choice–this allows playback to proceed without
+; waiting for the player to pick a choice.
+Decide now![< skip!]
+@choice "Turn left" goto:Left
+@choice "Turn Right" goto:Right skip!
+@wait 3
+@clearChoice
+You crashed!
 ```
 
 ## clearBacklog
@@ -458,14 +466,17 @@ Removes all the choice options in the choice handler with the specified ID (or i
 
 ```nani
 ; Give the player 2 seconds to pick a choice.
+; Notice 'skip!' at the last choice–this disables playback halt allowing 
+; next lines to be executed without waiting for player to pick a choice.
 # Start
 You have 2 seconds to respond![< skip!]
 @choice Cats goto:#PickedChoice
-@choice Dogs goto:#PickedChoice
+@choice Dogs goto:#PickedChoice skip!
 @wait 2
 @clearChoice
 Too late!
 @stop
+
 # PickedChoice
 Good!
 ```
@@ -872,22 +883,20 @@ To assign a display name for a character using this command consider [binding th
 | <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">variableName</span> | string | Name of a custom variable to which the entered text will be assigned. |
 | type | string | Type of the input content; defaults to the specified variable type.Use to change assigned variable type or when assigning to a new variable. Supported types: `String`, `Numeric`, `Boolean`. |
 | summary | string | An optional summary text to show along with input field. When the text contain spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
-| value | string | A predefined value to set for the input field. |
-| play | boolean | Whether to automatically resume script playback when user submits the input form. |
+| value | string | A predefined value to set for the input field. When not assigned will pull existing value of the assigned variable (if any). |
+| skip | boolean | Whether to not halt script playback until the input is submitted by the player. |
 
 </div>
 
 ```nani
 ; Prompt to enter an arbitrary text and assign it to 'name' custom variable.
 @input name summary:"Choose your name."
-; Halt the playback until player submits the input.
-@stop
 
 ; You can then inject the assigned 'name' variable in naninovel scripts.
 Archibald: Greetings, {name}!
 
 ; ...or use it inside set and conditional expressions.
-@set score=score+1 if:name=="Felix"
+@set score++ if:name="Felix"
 ```
 
 ## lipSync
@@ -1146,7 +1155,6 @@ Prevents player from rolling back to the previous state snapshots.
 Pick a choice. You won't be able to rollback.
 @choice One goto:#One
 @choice Two goto:#Two
-@stop
 
 # One
 @purgeRollback
@@ -1222,7 +1230,6 @@ Executes one of the nested commands, picked randomly.
         Going to tint Kohaku!
         @char Kohaku tint:red
     @sfx SoundX if:score>10
-@stop
 ```
 
 ## remove
@@ -1486,7 +1493,6 @@ Applies [shake effect](/guide/special-effects#shake) for the actor with the spec
 @shake Kohaku loop!
 @choice "Stop shaking"
     @shake Kohaku !loop
-@stop
 ...
 
 ; Shake main Naninovel camera horizontally 5 times.
@@ -1678,11 +1684,15 @@ If prefab has a `MonoBehaviour` component attached the root object, and the comp
 Stops the naninovel script execution.
 
 ```nani
-Show the choices and halt script execution until the player picks one.
-@choice "Choice 1"
-@choice "Choice 2"
+@gosub #Label
+...
 @stop
-We'll get here after player will make a choice.
+
+; Stop command above prevents script playback from proceeding
+; under the label below.
+# Label
+This line is only executed when navigated directly with a @gosub.
+@return
 ```
 
 ## stopBgm
@@ -1983,7 +1993,6 @@ Executes nested lines in a loop, as long as specified conditional expression res
 @set number=random(1,100);answer=0
 @while answer!=number
     @input answer summary:"Guess a number between 1 and 100"
-    @stop
     @if answer<number
         Wrong, too low.
     @else if:answer>number
