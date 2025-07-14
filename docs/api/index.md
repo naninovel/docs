@@ -431,7 +431,7 @@ Continue executing this script or ...?[< skip!]
 @choice "Secret option" lock:score<10
 
 ; A quick-time event: game over unless player picks a choice in 3 seconds.
-; Notice 'script!' at the last choice–this allows playback to proceed without
+; Notice 'skip!' at the last choice–this allows playback to proceed without
 ; waiting for the player to pick a choice.
 Decide now![< skip!]
 @choice "Turn left" goto:Left
