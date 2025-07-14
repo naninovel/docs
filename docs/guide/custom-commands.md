@@ -181,3 +181,7 @@ public class MyCustomPrintCommand : PrintText
     }
 }
 ```
+
+::: tip
+Commands and parameters may have various context attributes applied to provide documentation, auto-completion and advanced diagnostics in the IDE and web editor. Find the available attributes in the [IDE extension](/guide/ide-extension#ide-attributes) guide.
+:::
