@@ -125,9 +125,9 @@ Below is a script from the example project:
 
 Select an action.[< skip!]
 
-@choice "Pick up sword" if:!itemExist("Sword")
+@choice "Pick up sword" lock:itemExist("Sword")
     @addItem Sword
-@choice "Pick up armor" if:!itemExist("Armor")
+@choice "Pick up armor" lock:itemExist("Armor")
     @addItem Armor
 @choice "Adventure awaits, venture forth!"
 
