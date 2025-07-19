@@ -11,6 +11,7 @@ export const en: DefaultTheme.SidebarItem[] = [
             { text: "Configuration", link: "/guide/configuration" },
             { text: "Naninovel Scripts", link: "/guide/naninovel-scripts" },
             { text: "IDE Extension", link: "/guide/ide-extension" },
+            { text: "Editor", link: "/guide/editor" },
             { text: "Text Printers", link: "/guide/text-printers" },
             { text: "Characters", link: "/guide/characters" },
             { text: "Backgrounds", link: "/guide/backgrounds" },
