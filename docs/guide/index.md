@@ -14,7 +14,7 @@ If you're looking for a specific topic, try using search bar located at the webs
 
 ## Features
 
-Following are some of the features Naninovel provide out of the box:
+The following are some of the features Naninovel provides out of the box:
 
 * [Document-based scripts](/guide/naninovel-scripts)
   * [Generic text lines](/guide/naninovel-scripts#generic-text-lines)
@@ -22,7 +22,8 @@ Following are some of the features Naninovel provide out of the box:
   * [Commands inlining](/guide/naninovel-scripts#command-inlining)
   * [Visual editor](/guide/naninovel-scripts#visual-editor)
   * [Hot reload](/guide/naninovel-scripts#hot-reload)
-  * [IDE support (syntax highlighting, auto-completion, etc)](/guide/ide-extension)
+* [VS Code extension](/guide/ide-extension)
+* [Standalone web editor](/guide/editor)
 * [Text printers](/guide/text-printers)
   * [Dialogue](/guide/text-printers#dialogue-printer)
   * [Fullscreen](/guide/text-printers#fullscreen-printer)
