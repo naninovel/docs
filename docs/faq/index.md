@@ -97,13 +97,3 @@ Alternatively, check out [render actor to texture](/guide/characters#render-to-t
 ## How to run a custom C# code from naninovel scripts?
 
 To invoke a C# behaviour (eg, access a game object on scene), use [custom commands](/guide/custom-commands); to get value from a C# method and use it in naninovel script, use [expression functions](/guide/script-expressions#adding-custom-functions).
-
-## Can you make an internal method or property virtual, so I can override it?
-
-We've used to make most of the class members virtual, allowing users to override them in custom [engine services](/guide/engine-services), [actors](/guide/custom-actor-implementations), [commands](/guide/custom-commands), components, etc.
-
-While it didn't affect Naninovel's own code quality (we are not overriding those members internally), the inherit->override option was promoting bad practice among users, where, instead of taking ownership of  custom implementation of an interface or component, it's coupled to internal class.
-
-The internal classes (opposed to public interfaces) are subject to frequent changes both in API and behaviour; such changes will inevitably break user's implementation derived from them. Additionally, in some cases you may not even notice something has changed and leak the issues to production (published game).
-
-Instead of inheriting built-in class when authoring interface implementation or swapping component on a game object, copy-paste the class sources and perform the required changes. This will make your custom implementations less fragile when upgrading Naninovel package.
