@@ -9,7 +9,7 @@ The *source locale* can be changed via `Naninovel -> Configuration -> Localizati
 ![](https://i.gyazo.com/84eea85d3c3deddd187af1ed843f1bd5.png)
 
 ::: tip
-In case you'd like to share the source localizable text with a third-party (eg, for proofreading), but don't want to share the source scenario scripts, disable `Expose Source Locale` and add a dedicated locale for the source material, which can then be exported to the localization [documents](/guide/localization#scripts-localization) or [spreadsheets](/guide/localization#spreadsheet).
+In case you'd like to share the source localizable text with a third-party (eg, for proofreading), but don't want to share the source scenario scripts, change `Source Locale` to some unrelated language you won't actually need, then disable `Expose Source Locale` and add a dedicated locale for the source material, which can then be exported to the localization [documents](/guide/localization#scripts-localization) or [spreadsheets](/guide/localization#spreadsheet).
 :::
 
 To add a locale create sub-folder inside `Resources/Naninovel/Localization` (the so-called *localization resources root*) with a name equal to one of the [RFC5646](https://gist.github.com/Elringus/db90d9c74f13c00fa35131e61d1b73cb) language tags you wish to add localization for. For example, to add German locale, create `Resources/Naninovel/Localization/de` folder. The "Language" drop-down list in the game settings built-in UI will automatically incorporate all the added locales.
