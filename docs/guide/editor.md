@@ -4,12 +4,6 @@ Naninovel has its own standalone web app, which you can use to author scenario s
 
 ![](https://i.gyazo.com/fa644485a2eeffd9ab67605176fa873e.png)
 
-## Video Guide
-
-Below is a video introducing the editor and explaining how to install and use it in both sandbox and Unity-attached modes. It covers most of the topics in this article, so feel free to watch it instead.
-
-[yt video]
-
 ## Installation
 
 Navigate to [naninovel.com/editor](https://naninovel.com/editor) and start using the app right inside your web browser.
