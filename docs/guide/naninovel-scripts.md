@@ -358,7 +358,7 @@ Though in the latter case you can specify ID of the nameless parameter and still
 
 ## Conditional Execution
 
-While the script are executed in a linear fashion by default, you can introduce branching using `if` parameters supported by all the commands.
+While the scripts are executed in a linear fashion by default, you can introduce branching using `if` or `unless` parameters supported by all the commands.
 
 ```nani
 ; If `level` value is a number and is greater than 9000, add the choice.
@@ -366,6 +366,9 @@ While the script are executed in a linear fashion by default, you can introduce 
 
 ; If `dead` variable is a false boolean, execute the print command.
 @print "I'm still alive." if:!dead
+
+; ...same but more concise.
+@print "I'm still alive." unless:dead
 
 ; If `glitch` is a true boolean or random function in 1 to 10 range
 ; returns 5 or more, execute `@spawn` command.
