@@ -11,6 +11,7 @@ The following parameters are supported by most script commands:
 | Parameter | Type | Description |
 | --- | --- | --- |
 | if | string |  A boolean [script expression](/guide/script-expressions), controlling whether the command should execute. |
+| unless | string |  A boolean [script expression](/guide/script-expressions), controlling whether the command should NOT execute (inverse of 'if'). |
 | wait | boolean | Whether the script player should wait for the async command to finish execution before executing the next one. |
 
 </div>
