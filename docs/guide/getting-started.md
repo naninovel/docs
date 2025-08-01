@@ -152,15 +152,19 @@ You can also use visual script editor to edit the naninovel scripts. Select the 
 
 To add a new line to the script, either right-click the place, where you want to insert the line, or press `Ctrl+Space` (you can change the default key bindings in the input configuration menu) and select the desired line or command type. To re-order lines, drag them using their number labels. To remove a line, right-click it and choose "Remove".
 
-When you've changed the script using visual editor, you'll see an asterisk (`*`) over the script path in the inspector header. That means the asset is dirty and need to be saved; press `Ctrl+S` to save the asset. In case you'll attempt to select another asset while the script is dirty, a dialogue window will pop up allowing to either save or revert the changes.
+When you've changed the script using visual editor, you'll see an asterisk (`*`) over the script path in the inspector header. That means the asset is dirty and need to be saved; press `Ctrl+S` to save the asset. In case you attempt to select another asset while the script is dirty, a dialogue window will pop up allowing to either save or revert the changes.
 
-The visual editor will automatically sync edited script if you update it externally, so you can seamlessly work with the scripts in both text and visual editors.
+The visual editor will automatically sync the edited script if you update it externally, so you can seamlessly work with the scripts in both text and visual editors.
 
-::: info NOTE
-In the rest of this guide we will use a text editor, but you can repeat all the same steps with the visual editor, if you wish.
+::: tip
+We're currently working on a new standalone editor app that's more powerful than the built-in visual editor and can be used without Unity, directly in a web browser. Learn more in the [editor guide](/guide/editor).
+
+![](https://i.gyazo.com/d54f0b35b4d89bdbece096c7b78c8c72.mp4)
 :::
 
-In order for a Naninovel-related asset (like our created script) to become "visible" for the engine, it should be assigned as a project resource. When creating the scripts via the create assets menu, they're assigned automatically. To assign (or edit/remove) a script resource manually use script resources window accessible with `Naninovel -> Resources -> Scripts` editor context menu. To add a script, press `+` (plus sign) button in the list to add a new record and drag-drop script asset to the list. It's also possible to drag-drop multiple assets or even whole folders to the list to add them in batch.
+In the rest of this guide we will use a text editor, but you can repeat all the same steps with the visual or standalone editors if you wish.
+
+In order for a Naninovel-related asset (like our created script) to become "visible" for the engine, it should be assigned as a project resource. When creating the scripts via the asset menu, they're assigned automatically. To assign (or edit/remove) a script resource manually, use the script resources window accessible with `Naninovel -> Resources -> Scripts` editor context menu. To add a script, press `+` (plus sign) button in the list to add a new record and drag-drop script asset to the list. It's also possible to drag-drop multiple assets or even whole folders to the list to add them in batch.
 
 ![Add Naninovel Script](https://i.gyazo.com/b3281a145ba54e6cb6cbdaa478ea894d.png)
 
