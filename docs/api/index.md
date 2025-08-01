@@ -1327,7 +1327,44 @@ Attempts to navigate naninovel script playback to a command after the last used 
 
 ## save
 
-Automatically save the game to a quick save slot.
+Automatically save the game to the first auto save slot.
+
+<div class="config-table">
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| at | string | Playback position of the save in the following format: `ScriptPath#Label`. When omitted, uses the current player position. Can be used to redirect the player to a specific label or script after the game is loaded. |
+
+</div>
+
+```nani
+; Auto-save at the current position.
+@save
+
+; Player can choose to either 'rest', which will auto-save the game and
+; exit to title or continue to 'NextDay'. When player loads the saved game
+; after resting, they're moved to the line after '# Camp' label, with
+; 'rested' set to 'true', which forces them to continue to the 'NextDay'.
+
+# Camp
+
+; Notice the variable is set with '?=' – this will only assign the value
+; in case it's not already assigned, which won't be the case after player
+; loads auto-saved game after the rest.
+@set rested?=false
+
+@if rested
+    Good morning! We have to go now.
+    @goto NextDay
+
+@choice "No time to rest!" goto:NextDay
+@choice "Let's rest a bit"
+    @set rested=true
+    ; Notice the 'at' parameter – it'll redirect the player to the
+    ; specified label when the game is loaded.
+    @save at:#Camp
+    @title
+```
 
 ## set
 
