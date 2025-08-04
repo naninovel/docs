@@ -93,7 +93,7 @@ If you get an error when installing the package, make sure you're authenticated 
 
 ### Install from Package
 
-As an alternative for installing from GitHub, it's possible to install Naninovel from a `.unitypackage` file. You can get the package with the current stable release (as well as all previous releases) from our [download archive](https://account.naninovel.com/download).
+Alternatively, you can install Naninovel using a `.unitypackage` file. The current stable release and all previous versions are available in our [download archive](https://account.naninovel.com/download).
 
 ::: info NOTE
 Asset Store packages and the download archive are updated 2–3 months later than the UPM repository and don't include preview releases, so we recommend installing Naninovel directly from GitHub for the latest updates.
