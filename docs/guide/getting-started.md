@@ -85,7 +85,7 @@ Stable stream is published on both GitHub and Unity's Asset Store (though not as
 
 All the release streams are distributed via a UPM registry hosted on a private GitHub repository. To access the repository, [register your Naninovel license](https://naninovel.com/register) and follow the instructions on the dashboard.
 
-Once you have access to the repository, go to `Window -> Package Manager` in Unity editor and add `https://github.com/naninovel/upm.git#X.X` as a Git package, where `X.X` is the Naninovel release version you'd like to install, for example `1.20`. You can find all the available releases and their versions on the [releases page](https://pre.naninovel.com/releases).
+Once you have access to the repository, go to `Window -> Package Manager` in Unity editor and add `https://github.com/naninovel/upm.git#X.X` as a Git package, where `X.X` is the Naninovel release version you'd like to install, for example `1.21`. You can find all the available releases and their versions on the [releases page](https://pre.naninovel.com/releases).
 
 ![](https://i.gyazo.com/91d056eb5b6278e5c9a28f59c8ff8732.png)
 
