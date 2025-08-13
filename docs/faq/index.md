@@ -6,9 +6,17 @@ Naninovel is designed to be friendly for non-programmers and doesn't require any
 
 ## Can I use Naninovel as a drop-in dialogue system for an existing game?
 
-While Naninovel is focused around traditional visual novel games and works best as a template for one, it's possible to integrate the engine with existing projects. If you're making a 3D adventure game, RPG or game of any other genre — you can still use Naninovel as a drop-in dialogue system.
+While Naninovel is focused on traditional visual novel games and works best as a template for one, it's possible to integrate the engine into existing projects. If you're making a 3D adventure game, an RPG, or a game of any other genre, you can still use Naninovel as a drop-in dialogue system.
 
-Be aware, that in most cases such integration will require C# (or [visual](/guide/samples#visual-scripting)) scripting in varying extent. See the [engine architecture overview](/guide/engine-architecture) to get a grasp of how Naninovel works and [integration guide](/guide/integration-options) for more information on the integration options.
+Be aware that, in most cases, such integration will require C# (or [visual](/guide/samples#visual-scripting)) scripting to varying extents. See the [engine architecture overview](/guide/engine-architecture) to get a grasp of how Naninovel works, and the [integration guide](/guide/integration-options) for more information on the available integration options.
+
+## Why not use node graphs for scenario authoring?
+
+At first glance, you might think node graphs are convenient for creating dialogues. In reality, once enough content is added, they quickly turn into an unmanageable mess. Complex conversations are far better handled in text format, as it scales more cleanly and keeps the workflow efficient.
+
+For example, compare [the screenshots](https://i.gyazo.com/94fc39b918d2acdf9437a96c4f3cce10.png): on the left is one of the popular Unity assets for authoring dialogues with a node graph, and on the right is the exact same script written in Naninovel. As you can see, the script is far more straightforward and easier to manage in text format — no clunky UIs, no hunting through Unity assets just to make edits. And if you still prefer a visual editor, we have a [specialized one](/guide/editor#scenario-editor) that handles the process much better than a node graph would.
+
+That said, node graphs can still be useful for tracking and organizing the branching flow of a story. That's why Naninovel includes a [story graph](/guide/editor#story-graph), which provides a clear, high-level view of your narrative.
 
 ## Is it possible to embed a mini-game to Naninovel?
 
