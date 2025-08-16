@@ -312,8 +312,11 @@ Default Settings Slot Id | Settings | The name of the settings save file.
 Default Global Slot Id | Global Save | The name of the global save file.
 Save Slot Mask | Game Save{0:000} | Mask used to name save slots.
 Quick Save Slot Mask | Game Quick Save{0:000} | Mask used to name quick save slots.
+Auto Save Slot Mask | Game Auto Save{0:000} | Mask used to name auto save slots.
 Save Slot Limit | 99 | Maximum number of save slots.
 Quick Save Slot Limit | 18 | Maximum number of quick save slots.
+Auto Save Slot Limit | 18 | Maximum number of auto save slots.
+Auto Save On Quit | True | Whether to auto-save the game before exiting to title or when the application is closed while not in title menu (doesn't work in editor).
 Binary Save Files | True | Whether to compress and store the saves as binary files (.nson) instead of text files (.json). This will significantly reduce the files size and make them harder to edit (to prevent cheating), but will consume more memory and CPU time when saving and loading.
 Reset On Goto | False | Whether to reset state of the engine services when loading another script via [@goto] command. Can be used instead of [@resetState] command to automatically unload all the resources on each goto.
 Enable State Rollback | True | Whether to enable state rollback feature allowing player to rewind the script backwards.

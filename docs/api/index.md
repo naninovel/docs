@@ -131,7 +131,7 @@ The nested block is expected to always finish; don't nest any commands that coul
     @back RainyScene
     @bgm RainAmbient
     @camera zoom:0.5 time:3
-    @print "It starts Raining..." !waitInput
+    It starts Raining...[< skip!]
 ; Following line will execute after all the above is finished.
 ...
 ```
