@@ -15,7 +15,7 @@ export const config: LocaleConfig<DefaultTheme.Config> = {
             outline: { label: "On this page", level: "deep" },
             sidebar: { "/guide/": guide.en },
             docFooter: { prev: "Previous page", next: "Next page" },
-            nav: buildNav(["FAQ", "Guide", "Commands", "Support"]),
+            nav: buildNav(["FAQ", "Guide", "API", "Support"]),
             editLink: buildEditLink("Edit this page on GitHub")
         }
     },
@@ -32,7 +32,7 @@ export const config: LocaleConfig<DefaultTheme.Config> = {
     //         outline: { label: "このページでは", level: "deep" },
     //         sidebar: { "/ja/guide/": guide.js },
     //         docFooter: { prev: "前のページ", next: "次のページ" },
-    //         nav: buildNav(["FAQ", "ガイド", "コマンド", "サポート"], "ja"),
+    //         nav: buildNav(["FAQ", "ガイド", "API", "サポート"], "ja"),
     //         editLink: buildEditLink("GitHub でこのページを編集する")
     //     }
     // },
@@ -49,7 +49,7 @@ export const config: LocaleConfig<DefaultTheme.Config> = {
     //         outline: { label: "在本页", level: "deep" },
     //         sidebar: { "/zh/guide/": guide.zn },
     //         docFooter: { prev: "上一页", next: "下一页" },
-    //         nav: buildNav(["常见问题", "指南", "指令", "技术支持"], "zh"),
+    //         nav: buildNav(["常见问题", "指南", "API", "技术支持"], "zh"),
     //         editLink: buildEditLink("在 GitHub 上编辑此页面")
     //     }
     // },
@@ -66,7 +66,7 @@ export const config: LocaleConfig<DefaultTheme.Config> = {
     //         outline: { label: "На этой странице", level: "deep" },
     //         sidebar: { "/ru/guide/": guide.ru },
     //         docFooter: { prev: "Предыдущая страница", next: "Следующая страница" },
-    //         nav: buildNav(["FAQ", "Руководство", "Команды", "Поддержка"], "ru"),
+    //         nav: buildNav(["FAQ", "Руководство", "API", "Поддержка"], "ru"),
     //         editLink: buildEditLink("Редактировать эту страницу на GitHub")
     //     }
     // }
