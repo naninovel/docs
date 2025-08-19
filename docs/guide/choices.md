@@ -85,10 +85,10 @@ Nested choice callback is not compatible with `goto`, `gosub`, `set` and `play` 
 The [@choice] command accepts an optional `button` parameter specifying a path (relative to a "Resources" folder) to custom prefab representing the choice option object.
 
 ```nani
-@choice handler:ButtonArea button:MapButtons/Home pos:-300,-300 goto:#HomeScene
+@choice handler:ButtonArea button:Home pos:-300,-300 goto:#HomeScene
 ```
 
-— here we use a choice handler supporting positioning to represent a point of interest on an improvised map, where the `button` parameter is pointing to a prefab consisting of a button wrapped over an image. The prefab is stored at `Assets/Resources/MapButtons/Home.prefab`.
+— here we use a choice handler supporting positioning to represent a point of interest on an improvised map, where the `button` parameter is pointing to a prefab consisting of a button wrapped over an image. The prefab is stored at `Assets/Resources/Naninovel/ChoiceButtons/Home.prefab`.
 
 To create a choice button prefab from template, use `Create -> Naninovel -> Choice Button` asset context menu.
 
