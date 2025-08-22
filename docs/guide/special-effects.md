@@ -231,13 +231,13 @@ Stop Duration | Decimal | 1 | Fade-off (disable) duration for the effect paramet
 ; Fade-off (disable) the effect over 10 seconds
 @despawn DepthOfField params:10
 ; Same with the dedicated command
-@boken power:0
+@bokeh power:0
 
 ; Set focus point 10 units away from the camera,
 ; focal length to 0.95 and apply it over 3 seconds
 @spawn DepthOfField params:,10,0.95,3
 ; Same with the dedicated command
-@boken dist:10 power:0.95 time:3
+@bokeh dist:10 power:0.95 time:3
 ```
 
 ## Blur

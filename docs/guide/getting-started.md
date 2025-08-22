@@ -89,7 +89,7 @@ Once you have access to the repository, go to `Window -> Package Manager` in Uni
 
 ![](https://i.gyazo.com/91d056eb5b6278e5c9a28f59c8ff8732.png)
 
-If you get an error when installing the package, make sure you're authenticated (on the local machine) as the GitHub user, which was assigned in the account dashboard; refer to the Unity guide for [more info on authentication](https://docs.unity3d.com/Manual/upm-config-https-git.html).
+If you encounter an error while installing the package, make sure you're authenticated (on your local machine) as the GitHub user assigned in the account dashboard. The simplest way to authenticate is by logging in with [GitHub Desktop](https://github.com/apps/desktop) or the [CLI tool](https://cli.github.com). Refer to the Unity guide for [more info on authentication](https://docs.unity3d.com/Manual/upm-config-https-git.html).
 
 ### Install from Package
 
