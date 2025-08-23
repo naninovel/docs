@@ -26,6 +26,10 @@ Support Plan subscription provides access to the `#support` channel on our Disco
 
 A free one-year subscription is included when you register your Naninovel license for the first time, after which it has to be renewed. Manage your subscription on the account dashboard: [account.naninovel.com/support](https://account.naninovel.com/support).
 
+::: info NOTE
+The support plan is an optional service and not required to access Naninovel updates. After registering your license, you retain unlimited access to all future stable releases in the [download archive](https://account.naninovel.com/download).
+:::
+
 ### Reporting Bugs
 
 If you believe something is not working as intended:
