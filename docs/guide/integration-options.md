@@ -7,7 +7,7 @@ While Naninovel is focused around traditional visual novel games and works best 
 There are multiple ways you can integrate Naninovel with a custom project and specific implementation will depend on the type of the project and what exactly you want to achieve with Naninovel. In the following documentation we'll list various configuration options and API that could be useful for "pairing" Naninovel with a standalone game. Before you continue, take a look at the [engine architecture](/guide/engine-architecture) to better understand how it behaves on a conceptual level.
 
 ::: tip EXAMPLE
-Check out an [example project](/guide/integration-options#example-project), where Naninovel is used as both drop-in dialogue for a 3D adventure game and a switchable standalone novel mode.
+Check out the [integration sample](/guide/samples#integration) where Naninovel is used both as drop-in dialogue system for a 3D adventure game and as a standalone novel mode.
 :::
 
 ## Manual Initialization
