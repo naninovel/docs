@@ -16,58 +16,6 @@ The following parameters are supported by most script commands:
 
 </div>
 
-## animate
-
-Animate properties of the actors with the specified IDs via key frames. Key frames for the animated parameters are delimited with commas.
-
-::: info NOTE
-It's not recommended to use this command for complex animations. Naniscript is a scenario scripting DSL and not suited for complex automation or specification such as animation. Consider using dedicated animation tools instead, such as Unity's [Animator](https://docs.unity3d.com/Manual/AnimationSection.html).<br><br>Be aware, that this command searches for actors with the specified IDs over all the actor managers, and in case multiple actors with the same ID exist (eg, a character and a text printer), this will affect only the first found one.<br><br>When running the animate commands in parallel (`wait` is set to false) the affected actors state can mutate unpredictably. This could cause unexpected results when rolling back or performing other commands that affect state of the actor. Make sure to reset affected properties of the animated actors (position, tint, appearance, etc) after the command finishes or use `@animate CharacterId` (without any args) to stop the animation prematurely.
-:::
-
-<div class="config-table">
-
-| Parameter | Type | Description |
-| --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">actorIds</span> | string list | IDs of the actors to animate. |
-| loop | boolean | Whether to loop the animation; make sure to set `wait` to false when loop is enabled, otherwise script playback will loop indefinitely. |
-| appearance | string | Appearances to set for the animated actors. |
-| transition | string | Type of the [transition effect](/guide/transition-effects) to use when animating appearance change (crossfade is used by default). |
-| visibility | string | Visibility status to set for the animated actors. |
-| posX | string | Position values over X-axis (in 0 to 100 range, in percents from the left border of the scene) to set for the animated actors. |
-| posY | string | Position values over Y-axis (in 0 to 100 range, in percents from the bottom border of the scene) to set for the animated actors. |
-| posZ | string | Position values over Z-axis (in world space) to set for the animated actors; while in ortho mode, can only be used for sorting. |
-| rotation | string | Rotation values (over Z-axis) to set for the animated actors. |
-| scale | string | Scale (`x,y,z` or a single uniform value) to set for the animated actors. |
-| tint | string | The tint color to apply.<br><br>Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes `RRGGBB`), `#RRGGBB`, `#RGBA` (becomes `RRGGBBAA`), `#RRGGBBAA`; when alpha is not specified will default to `FF`.<br><br>Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
-| easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
-| time | string | Duration of the animations per key, in seconds. When a key value is missing, will use one from a previous key. Default is 0.35s for all keys. |
-| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
-
-</div>
-
-```nani
-; Animate 'Kohaku' actor over three animation steps (key frames),
-; changing positions: first step will take 1, second — 0.5 and third — 3 seconds.
-@animate Kohaku posX:50,0,85 time:1,0.5,3 wait!
-
-; Start loop animations of 'Yuko' and 'Kohaku' actors; notice, that you can skip
-; key values indicating that the parameter shouldn't change during the animation step.
-@animate Kohaku,Yuko loop! appearance:Surprise,Sad,Default,Angry transition:DropFade,Ripple,Pixelate posX:15,85,50 posY:0,-25,-85 scale:1,1.25,1.85 tint:#25f1f8,lightblue,#ffffff,olive easing:EaseInBounce,EaseInQuad time:3,2,1,0.5
-...
-; Stop the animations.
-@animate Yuko,Kohaku !loop
-
-; Start a long background animation for 'Kohaku'.
-@animate Kohaku posX:90,0,90 scale:1,2,1 time:10
-; Do something else while the animation is running.
-...
-; Here we're going to set a specific position for the character,
-; but the animation could still be running in background, so reset it first.
-@animate Kohaku
-; Now it's safe to modify previously animated properties.
-@char Kohaku pos:50 scale:1
-```
-
 ## append
 
 Appends specified text to a text printer.
@@ -390,7 +338,7 @@ When nesting commands under the choice, `goto`, `gosub` and `set` parameters are
 | --- | --- | --- |
 | <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">choiceSummary</span> | string | Text to show for the choice. When the text contain spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
 | lock | string | Whether the choice should be disabled or otherwise not accessible for player to pick; see [choice docs](/guide/choices#locked-choice) for more info. Disabled by default. |
-| button | string | Path (relative to a `Resources` folder) to a [button prefab](/guide/choices#choice-button) representing the choice. The prefab should have a `ChoiceHandlerButton` component attached to the root object. Will use a default button when not specified. |
+| button | string | Local resource path of the [button prefab](/guide/choices#choice-button) representing the choice. The prefab should have a `ChoiceHandlerButton` component attached to the root object. Will use a default button when not specified. |
 | pos | decimal list | Local position of the choice button inside the choice handler (if supported by the handler implementation). |
 | handler | string | ID of the choice handler to add choice for. Will use a default handler if not specified. |
 | goto | string | Path to go when the choice is selected by user; see [@goto] command for the path format. Ignored when nesting commands under the choice. |
@@ -480,31 +428,6 @@ Too late!
 
 # PickedChoice
 Good!
-```
-
-## delay
-
-Delays execution of the nested commands for specified time interval.
-
-::: info NOTE
-Be aware, that the delayed execution won't happen if game gets saved/loaded or rolled-back. It's fine to use delayed execution for "cosmetic" events, such as one-shot visual or audio effects, but don't delay commands, which could affect persistent game state, as this could lead to undefined behaviour.
-:::
-
-<div class="config-table">
-
-| Parameter | Type | Description |
-| --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">seconds</span> | decimal | Delay time, in seconds. |
-
-</div>
-
-```nani
-; The text is printed without delay, as the '@delay' command is not awaited.
-; The Thunder effects are played after a random delay of 3 to 8 seconds.
-@delay {random(3,8)}
-    @sfx Thunder
-    @shake Camera
-The Thunder might go off any second...
 ```
 
 ## despawn

@@ -105,7 +105,7 @@ Auto Show On Modify | True | Whether to automatically reveal (show) an actor whe
 Property | Default Value | Description
 --- | --- | ---
 Default Handler Id | Button List | ID of the choice handler to use by default.
-Choice Button Loader | - (Addressable, Project) | Configuration of the resource loader used for loading custom choice buttons.
+Choice Button Loader | Choice Buttons- (Addressable, Project) | Configuration of the resource loader used for loading custom choice buttons.
 Default Metadata | Object Ref | Metadata to use by default when creating choice handler actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating choice handler actors with specific IDs.
 Default Duration | 0.35 | Default duration (in seconds) for all the actor modifications (changing appearance, position, tint, etc).
@@ -239,7 +239,7 @@ Project Root Path | Naninovel | Path relative to `Resources` folders, under whic
 Property | Default Value | Description
 --- | --- | ---
 Default Skip Mode | Read Only | Default skip mode to set when the game is first started.
-Skip Time Scale | 10 | Time scale to use when in skip (fast-forward) mode.
+Skip Time Scale | 10 | Time scale to use when in skip (fast-forward) mode. Set to 1 to disable changing the time scale on skip.
 Min Auto Play Delay | 1 | Minimum seconds to wait before executing next command while in auto play mode.
 Complete On Continue | True | Whether to instantly complete blocking (`wait!`) commands performed over time (eg, animations, hide/reveal, tint changes, etc) when `Continue` input is activated.
 Show Debug On Init | False | Whether to show player debug window on engine initialization.
@@ -256,7 +256,7 @@ Resolve Mode | Nearest | The mode in which script player handles missing playbac
 Property | Default Value | Description
 --- | --- | ---
 Loader | Scripts- (Addressable, Project) | Configuration of the resource loader used with naninovel script resources.
-Script Parser | Naninovel Script Asset Parser | IScriptParser implementation to use for creating script assets from text. Reimport script assets after modifying this setting for changes to take effect.
+Script Compiler | Naninovel Script Compiler | IScriptCompiler implementation to use for transforming source scenario text into script assets. Reimport script assets after modifying this setting for changes to take effect.
 Compiler Localization |  (Naninovel.Compiler Localization) | Locale-specific NaniScript compiler options. Will propagate to IDE extension on metadata sync. Restart Unity editor and reimport script assets for changes to take effect.
 Stable Identification | False | Whether to automatically write identifiers to all the localizable text parameters in imported scripts. Enable to persist associations (eg, localization and voiceover) while editing text content. Re-import the scripts for the change to take effect.
 Initialization Script | Null | Local resource path of the script to play right after the engine initialization.
