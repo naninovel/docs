@@ -17,11 +17,11 @@ Below is an example of a custom compiler that automatically inserts wait command
 ```cs
 public class CustomCompiler : ScriptCompiler
 {
-    public override Script Compile (string path, string text,
+    public override Script CompileScript (string path, string text,
         CompileOptions options = default)
     {
         text = text.Replace("...", "...[wait 1]");
-        return base.Compile(path, text, options);
+        return base.CompileScript(path, text, options);
     }
 }
 ```
