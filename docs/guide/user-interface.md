@@ -161,7 +161,7 @@ IToastUI | A general-purpose UI for self-hiding popup notifications aka "toasts"
 
 In order for the UI to support visibility (visible on awake, fade time) and interaction options (disable interaction), also attach a `Canvas Group` component to the same object.
 
-If you're OK with C# scripting and want to override default logic of the UI, [create a new component](https://docs.unity3d.com/Manual/CreatingAndUsingScripts), implement `IManagedUI` interface (feel free to inherit the component from `CustomUI` to fulfill all the interface requirements) and attach the created custom component instead. Check `Naninovel/Runtime/UI` folder for reference implementations of the built-in UIs. Here is an example of minimal implementation of a custom UI component:
+If you're OK with C# scripting and want to override default logic of the UI, [create a new component](https://docs.unity3d.com/Manual/CreatingAndUsingScripts), implement `IManagedUI` interface (feel free to inherit the component from `CustomUI` to fulfill all the interface requirements) and attach the created custom component instead. Check `Naninovel/Runtime/UI` folder for reference implementations of the built-in UIs. Here is a minimal implementation example of a custom UI component:
 
 ```csharp
 using Naninovel.UI;
@@ -172,26 +172,20 @@ public class MyCustomUI : CustomUI
 }
 ```
 
-## Play Script On Unity Event
+## Play Script on Unity Event
 
-When creating custom UIs, you may want to execute some commands or start playing a specific naninovel script in reaction to some events (eg, a [button click](https://docs.unity3d.com/Manual/script-Button.html)).
+When creating custom UIs, you may want to execute commands or start playing a specific Naninovel script in response to certain events (eg, a [button click](https://docs.unity3d.com/Manual/script-Button.html)).
 
-Add `Play Script` component to a game object and either select an existing naninovel script or write the commands right inside the text area field; then route [Unity event](https://docs.unity3d.com/Manual/UnityEvents.html) of some other component to invoke `Play()` method on the `Play Script` component. The script will be executed when the event is triggered at play mode. The example below hides a custom UI when the button is clicked.
+Add the `Play Script` component to a game object and either select an existing Naninovel script or write commands directly in the text area field. Then, route a [Unity event](https://docs.unity3d.com/Manual/UnityEvents.html) from another component to invoke the `Play()` method on the `Play Script` component. The script will be executed when the event is triggered in play mode. The example below hides a custom UI when the button is clicked.
 
 ![](https://i.gyazo.com/5f56fbddc090919cc71f68e82bb1713f.png)
 
-It's also possible to reference Unity event arguments in the script text with `{arg}` expression; supported arguments types are: string, integer, float and boolean. Below example demonstrates executing camera shake and playing a sound effect when a boolean Unity event is positive and playing a background musing when it's negative.
+You can also reference Unity event arguments in the script text using the `{arg}` expression. Supported argument types are: `string`, `int`, `float`, and `bool`. The example below demonstrates executing a camera shake and playing a sound effect when a boolean Unity event is `true`, and playing background music when it's `false`.
 
 ![](https://i.gyazo.com/78e9fa27d6561f8f8aced76bbeb4b542.png)
 
-::: warning
-Conditional block commands (if, else, elseif, endif) are not supported in the script text.
-:::
-
-When an existing naninovel script is selected via dropdown list, the script text area will be ignored and selected naninovel script will be played **instead** of the currently played one; in case you wish to additively execute some commands without interrupting the currently played script, use the script text area.
-
 ::: tip EXAMPLE
-Find an example on using `Play Script` component in the [UI sample](/guide/samples#ui); the component is used on "CloseButton" game object placed inside "Content/UI/Calendar" custom UI prefab.
+You can find an example of using the `Play Script` component in the [UI sample](/guide/samples#ui). The component is used on the "CloseButton" game object inside the "Content/UI/Calendar" custom UI prefab.
 :::
 
 ## UI Toolkit
