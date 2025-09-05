@@ -490,7 +490,7 @@ Sometimes, you may need to group several commands under single host. For example
 
 ## Async Execution
 
-Some commands may execute over time. For example, [@hide] command will fade-out specified actor over the course of set time, which can be changed with `time` parameter. Consider following scenario:
+Some commands may execute over time. For example, [@hide] command will fade-out specified actor over the course of set time, which can be changed with `time` parameter. Consider the following scenario:
 
 ```nani
 @hide Kohaku
@@ -508,18 +508,127 @@ If you'd like to wait for an async command to complete before proceeding with th
 
 — now Yuko will start fading-in only after Kohaku is completely faded-out.
 
-It's common to specify multiple async commands to set up a scene and then wait until they all finish. To make the process simpler, use [@await] command:
+It's common to use multiple async commands to set up a scene and then wait until they all finish. To simplify the process, use the [@await] command:
 
 ```nani
-; Run nested lines in parallel and wait until they all are finished.
+; Run the nested lines concurrently and wait until they all finish.
 @await
     @back RainyScene
     @bgm RainAmbient
     @camera zoom:0.5 time:3
-    @print "It starts raining..." !waitInput
 ; Following line will execute after all the above is finished.
+It starts raining...
+```
+
+### Concurrent Playback
+
+While individual commands are executed asynchronously by default, in some cases you may want to orchestrate a chain of commands to run in parallel with the main scenario, with an independent control flow and playback state.
+
+Use the [@async] command to make the nested lines execute on a dedicated script track, concurrently with the main playback routine. Common use cases include running composite animations in the background while the scenario progresses as usual:
+
+```nani
+; Pan the camera slowly across three points while fading the music.
+@async
+    @bgm volume:0.7 fade:10
+    @camera pos:50,10 zoom:0.5 time:10 wait!
+    @bgm volume:0.3 fade:5
+    @camera pos:40 zoom:0.75 time:5 wait!
+    @stopBgm fade:10
+    @camera pos:0,0 zoom:1 time:10 wait!
+
+; The text below prints while the animation above runs independently.
 ...
 ```
+
+— or run a chain of commands in a loop:
+
+```nani
+@async loop!
+    @spawn Pebbles
+    @shake Camera
+    @wait random(3,10)
+
+; The animation above runs in a loop while the text below is printing.
+Watch out!
+```
+
+Even if the game is saved and loaded while the animation is in progress, it will restore the current playback state and continue the animation from the point where it was at the time of saving. Rollback will work as well.
+
+### Async Tasks
+
+In the loop example above, you may wonder: how are we supposed to stop the loop? Or what if we'd like to await a non-looped async scenario block to finish before proceeding? Async tasks to the rescue! Use the optional nameless parameter of the [@async] command to specify a name for the async task executed by the command, which you can use later with the [@stop] or [@await] commands to either stop (cancel) or await the task:
+
+```nani
+; Start the 'Quake' async task.
+@async Quake loop!
+    @spawn Pebbles
+    @shake Camera
+    @wait random(3,10)
+
+...
+
+; At some point stop the task.
+@stop Quake
+```
+
+Similarly, you can await async tasks:
+
+```nani
+@async CameraPan
+    @camera pos:50,10 zoom:0.5 time:10 wait!
+    @camera pos:40 zoom:0.75 time:5 wait!
+
+...
+
+; Before resetting the camera, make sure the pan animation is finished.
+@await CameraPan
+@camera pos:0,0 zoom:1
+```
+
+You can also force a task to complete instantly with the `complete!` flag if you don't want to wait for the remaining duration of the task:
+
+```nani
+; Complete the camera animation and reset it instantly.
+@await CameraPan complete!
+@camera pos:0,0 zoom:1 time:0
+```
+
+::: tip
+
+Consider encapsulating common animations or other async tasks in a separate script, which you can then reuse from other scripts with the [@gosub] command:
+
+::: code-group
+
+```nani [SomeScript.nani]
+@gosub FX#Quake
+...
+@stop Quake
+
+@gosub FX#CameraPan
+...
+@await CameraPan
+```
+
+```nani [FX.nani]
+# Quake
+@async Quake loop!
+    @spawn Pebbles
+    @shake Camera
+    @wait random(3,10)
+@return
+
+# CameraPan
+@async CameraPan
+    @bgm volume:0.7 fade:10
+    @camera pos:50,10 zoom:0.5 time:10 wait!
+    @bgm volume:0.3 fade:5
+    @camera pos:40 zoom:0.75 time:5 wait!
+    @stopBgm fade:10
+    @camera pos:0,0 zoom:1 time:10 wait!
+@return
+```
+
+:::
 
 ## Title Script
 
