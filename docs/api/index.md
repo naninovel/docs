@@ -75,10 +75,8 @@ Executes the nested lines asynchronously on a dedicated script track in parallel
     @camera pos:50,10 zoom:0.5 time:10 wait!
     @camera pos:40 zoom:0.75 time:5 wait!
     @camera pos:0,0 zoom:1 time:10 wait!
-
 ; The text below prints while the animation above runs independently.
 ...
-
 ; Before modifying the camera again, make sure the pan animation is finished.
 @await CameraPan
 @camera zoom:0.7
@@ -88,9 +86,7 @@ Executes the nested lines asynchronously on a dedicated script track in parallel
     @spawn Pebbles
     @shake Camera
     @wait random(3,10)
-
 ...
-
 ; Stop the task.
 @stop Quake
 ```
