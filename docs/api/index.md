@@ -72,9 +72,9 @@ Executes the nested lines asynchronously on a dedicated script track in parallel
 ```nani
 ; Pan the camera slowly across three points.
 @async CameraPan
-    @camera pos:50,10 zoom:0.5 time:10 wait!
-    @camera pos:40 zoom:0.75 time:5 wait!
-    @camera pos:0,0 zoom:1 time:10 wait!
+    @camera offset:50,10 zoom:0.5 time:10 wait!
+    @camera offset:40 zoom:0.75 time:5 wait!
+    @camera offset:0,0 zoom:1 time:10 wait!
 ; The text below prints while the animation above runs independently.
 ...
 ; Before modifying the camera again, make sure the pan animation is finished.
