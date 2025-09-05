@@ -65,6 +65,36 @@ Arranges specified characters by X-axis. When no parameters specified, will exec
 @arrange Jenna.15,Felix.50,Mia.85
 ```
 
+## async
+
+Executes the nested lines asynchronously on a dedicated script track in parallel with the main scenario playback routine. Use to run composite animations or arbitrary command chains concurrently with the consequent scenario. Consult the [concurrent playback](/guide/naninovel-scripts#concurrent-playback) guide for more info.
+
+```nani
+; Pan the camera slowly across three points.
+@async CameraPan
+    @camera pos:50,10 zoom:0.5 time:10 wait!
+    @camera pos:40 zoom:0.75 time:5 wait!
+    @camera pos:0,0 zoom:1 time:10 wait!
+
+; The text below prints while the animation above runs independently.
+...
+
+; Before modifying the camera again, make sure the pan animation is finished.
+@await CameraPan
+@camera zoom:0.7
+
+; Run the 'Quake' async task in a loop.
+@async Quake loop!
+    @spawn Pebbles
+    @shake Camera
+    @wait random(3,10)
+
+...
+
+; Stop the task.
+@stop Quake
+```
+
 ## await
 
 Holds script execution until all the nested async commands finished execution. Useful for grouping multiple async commands to wait until they all finish before proceeding with the script playback.
