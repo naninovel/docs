@@ -73,8 +73,8 @@ Executes the nested lines asynchronously on a dedicated script track in parallel
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">asyncId</span> | string | Unique identifier of the player track and associated async task responsible for executing the nested lines. When specified, the ID can be used to [@await] or [@stop] the async task execution. |
-| loop | boolean | Whether to execute the nested lines in a loop, until stopped with [@stop]. |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">asyncId</span> | string | Unique identifier of the player track and associated async task responsible for executing the nested lines. When specified, the ID can be used to [@await] or [@stop] the async track playback. |
+| loop | boolean | Whether to play the nested lines in a loop, until stopped with [@stop]. |
 
 </div>
 
@@ -86,7 +86,7 @@ Executes the nested lines asynchronously on a dedicated script track in parallel
     @camera offset:0,0 zoom:0 time:3 wait!
 ; The text below prints while the animation above runs independently.
 ...
-; Before modifying the camera again, make sure the pan animation is finished.
+; Before modifying the camera again, make sure the pan animation has finished.
 @await CameraPan
 @camera zoom:0.7
 
@@ -102,11 +102,20 @@ Executes the nested lines asynchronously on a dedicated script track in parallel
 
 ## await
 
-Holds script execution until all the nested async commands finished execution. Useful for grouping multiple async commands to wait until they all finish before proceeding with the script playback.
+Holds scenario playback until either the specified async task or all nested lines have finished executing.
 
 ::: info NOTE
-The nested block is expected to always finish; don't nest any commands that could navigate outside the nested block, as this may cause undefined behaviour.
+The nested block is expected to always finish; don't nest any commands that could navigate outside the block, as this may cause undefined behaviour.
 :::
+
+<div class="config-table">
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">trackId</span> | string | The identifier of an async script track to await. Can be used to await the completion of a track spawned with the [@async] command. |
+| complete | boolean | Whether to force-complete the awaited track as soon as possible. Has no effect when awaiting nested lines. |
+
+</div>
 
 ```nani
 ; Run nested lines in parallel and wait until they all are finished.
@@ -117,6 +126,15 @@ The nested block is expected to always finish; don't nest any commands that coul
     It starts Raining...[< skip!]
 ; Following line will execute after all the above is finished.
 ...
+
+; Pan the camera slowly across the two points.
+@async CameraPan
+    @camera offset:4,1 zoom:0.5 time:3 wait!
+    @camera offset:,-2 zoom:0.4 time:2 wait!
+...
+; Before modifying the camera again, make sure the animation has finished.
+@await CameraPan complete!
+@camera zoom:0
 ```
 
 ## back
@@ -1677,7 +1695,15 @@ If prefab has a `MonoBehaviour` component attached the root object, and the comp
 
 ## stop
 
-Stops the naninovel script execution.
+Stops the scenario script playback.
+
+<div class="config-table">
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">trackId</span> | string | The identifier of the script track to stop; stops the main track when not specified. Can be used to stop the playback of an async track spawned with the [@async] command. |
+
+</div>
 
 ```nani
 @gosub #Label
@@ -1689,6 +1715,15 @@ Stops the naninovel script execution.
 # Label
 This line is only executed when navigated directly with a @gosub.
 @return
+
+; Loop the 'Quake' async task until stopped.
+@async Quake loop!
+    @spawn Pebbles
+    @shake Camera
+    @wait random(3,10)
+...
+; Stop the 'Quake' async task.
+@stop Quake
 ```
 
 ## stopBgm
