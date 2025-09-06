@@ -546,7 +546,7 @@ Use the [@async] command to make the nested lines execute on a dedicated script 
 @async loop!
     @spawn Pebbles
     @shake Camera
-    @wait random(3,10)
+    @wait { random(3,10) }
 
 ; The animation above runs in a loop while the text below is printing.
 Watch out!
@@ -563,7 +563,7 @@ In the loop example above, you may wonder: how are we supposed to stop the loop?
 @async Quake loop!
     @spawn Pebbles
     @shake Camera
-    @wait random(3,10)
+    @wait { random(3,10) }
 
 ...
 
@@ -614,7 +614,7 @@ Consider encapsulating common animations or other async tasks in a separate scri
 @async Quake loop!
     @spawn Pebbles
     @shake Camera
-    @wait random(3,10)
+    @wait { random(3,10) }
 @return
 
 # CameraPan

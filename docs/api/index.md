@@ -94,7 +94,7 @@ Executes the nested lines asynchronously on a dedicated script track in parallel
 @async Quake loop!
     @spawn Pebbles
     @shake Camera
-    @wait random(3,10)
+    @wait { random(3,10) }
 ...
 ; Stop the task.
 @stop Quake
@@ -1720,7 +1720,7 @@ This line is only executed when navigated directly with a @gosub.
 @async Quake loop!
     @spawn Pebbles
     @shake Camera
-    @wait random(3,10)
+    @wait { random(3,10) }
 ...
 ; Stop the 'Quake' async task.
 @stop Quake
