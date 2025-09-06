@@ -69,12 +69,21 @@ Arranges specified characters by X-axis. When no parameters specified, will exec
 
 Executes the nested lines asynchronously on a dedicated script track in parallel with the main scenario playback routine. Use to run composite animations or arbitrary command chains concurrently with the consequent scenario. Consult the [concurrent playback](/guide/naninovel-scripts#concurrent-playback) guide for more info.
 
+<div class="config-table">
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">asyncId</span> | string | Unique identifier of the player track and associated async task responsible for executing the nested lines. When specified, the ID can be used to [@await] or [@stop] the async task execution. |
+| loop | boolean | Whether to execute the nested lines in a loop, until stopped with [@stop]. |
+
+</div>
+
 ```nani
 ; Pan the camera slowly across three points.
 @async CameraPan
-    @camera offset:50,10 zoom:0.5 time:10 wait!
-    @camera offset:40 zoom:0.75 time:5 wait!
-    @camera offset:0,0 zoom:1 time:10 wait!
+    @camera offset:4,1 zoom:0.5 time:3 wait!
+    @camera offset:,-2 zoom:0.4 time:2 wait!
+    @camera offset:0,0 zoom:0 time:3 wait!
 ; The text below prints while the animation above runs independently.
 ...
 ; Before modifying the camera again, make sure the pan animation is finished.

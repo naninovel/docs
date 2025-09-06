@@ -530,11 +530,11 @@ Use the [@async] command to make the nested lines execute on a dedicated script 
 ; Pan the camera slowly across three points while fading the music.
 @async
     @bgm volume:0.7 fade:10
-    @camera offset:50,10 zoom:0.5 time:10 wait!
+    @camera offset:4,1 zoom:0.5 time:3 wait!
     @bgm volume:0.3 fade:5
-    @camera offset:40 zoom:0.75 time:5 wait!
+    @camera offset:,-2 zoom:0.4 time:2 wait!
     @stopBgm fade:10
-    @camera offset:0,0 zoom:1 time:10 wait!
+    @camera offset:0,0 zoom:0 time:3 wait!
 
 ; The text below prints while the animation above runs independently.
 ...
@@ -575,14 +575,14 @@ Similarly, you can await async tasks:
 
 ```nani
 @async CameraPan
-    @camera offset:50,10 zoom:0.5 time:10 wait!
-    @camera offset:40 zoom:0.75 time:5 wait!
+    @camera offset:4,1 zoom:0.5 time:3 wait!
+    @camera offset:,-2 zoom:0.4 time:2 wait!
 
 ...
 
 ; Before resetting the camera, make sure the pan animation is finished.
 @await CameraPan
-@camera offset:0,0 zoom:1
+@camera offset:0,0 zoom:0
 ```
 
 You can also force a task to complete instantly with the `complete!` flag if you don't want to wait for the remaining duration of the task:
@@ -590,7 +590,7 @@ You can also force a task to complete instantly with the `complete!` flag if you
 ```nani
 ; Complete the camera animation and reset it instantly.
 @await CameraPan complete!
-@camera offset:0,0 zoom:1 time:0
+@camera offset:0,0 zoom:0 time:0
 ```
 
 ::: tip
@@ -620,11 +620,11 @@ Consider encapsulating common animations or other async tasks in a separate scri
 # CameraPan
 @async CameraPan
     @bgm volume:0.7 fade:10
-    @camera offset:50,10 zoom:0.5 time:10 wait!
+    @camera offset:4,1 zoom:0.5 time:3 wait!
     @bgm volume:0.3 fade:5
-    @camera offset:40 zoom:0.75 time:5 wait!
+    @camera offset:,-2 zoom:0.4 time:2 wait!
     @stopBgm fade:10
-    @camera offset:0,0 zoom:1 time:10 wait!
+    @camera offset:0,0 zoom:0 time:3 wait!
 @return
 ```
 
