@@ -123,7 +123,7 @@ The nested block is expected to always finish; don't nest any commands that coul
     @back RainyScene
     @bgm RainAmbient
     @camera zoom:0.5 time:3
-    It starts Raining...[< skip!]
+    It starts Raining...[< noi!]
 ; Following line will execute after all the above is finished.
 ...
 
@@ -397,7 +397,7 @@ When nesting commands under the choice, `goto`, `gosub` and `set` parameters are
 | goto | string | Path to go when the choice is selected by user; see [@goto] command for the path format. Ignored when nesting commands under the choice. |
 | gosub | string | Path to a subroutine to go when the choice is selected by user; see [@gosub] command for the path format. When `goto` is assigned this parameter will be ignored. Ignored when nesting commands under the choice. |
 | set | string | Set expression to execute when the choice is selected by user; see [@set] command for syntax reference. Ignored when nesting commands under the choice. |
-| skip | boolean | Whether to not halt script playback until a choice is picked by the player. |
+| nostop | boolean | Whether to not halt script playback until a choice is picked by the player. |
 | show | boolean | Whether to also show choice handler the choice is added for; enabled by default. |
 | time | decimal | Duration (in seconds) of the fade-in (reveal) animation. |
 
@@ -405,7 +405,7 @@ When nesting commands under the choice, `goto`, `gosub` and `set` parameters are
 
 ```nani
 ; Print the text, then immediately show choices and stop script execution.
-Continue executing this script or ...?[< skip!]
+Continue executing this script or ...?[< noi!]
 @choice "Continue"
 @choice "Load another script from start" goto:Another
 @choice "Load another script from \"Label\" label" goto:Another#Label
@@ -433,11 +433,11 @@ Continue executing this script or ...?[< skip!]
 @choice "Secret option" lock:score<10
 
 ; A quick-time event: game over unless player picks a choice in 3 seconds.
-; Notice 'skip!' at the last choice–this allows playback to proceed without
+; Notice 'nostop!' at the last choice–this allows playback to proceed without
 ; waiting for the player to pick a choice.
-Decide now![< skip!]
+Decide now![< noi!]
 @choice "Turn left" goto:Left
-@choice "Turn Right" goto:Right skip!
+@choice "Turn Right" goto:Right nostop!
 @wait 3
 @clearChoice
 You crashed!
@@ -468,12 +468,12 @@ Removes all the choice options in the choice handler with the specified ID (or i
 
 ```nani
 ; Give the player 2 seconds to pick a choice.
-; Notice 'skip!' at the last choice–this disables playback halt allowing 
+; Notice 'nostop!' at the last choice–this disables playback halt allowing 
 ; next lines to be executed without waiting for player to pick a choice.
 # Start
-You have 2 seconds to respond![< skip!]
+You have 2 seconds to respond![< noi!]
 @choice Cats goto:#PickedChoice
-@choice Dogs goto:#PickedChoice skip!
+@choice Dogs goto:#PickedChoice nostop!
 @wait 2
 @clearChoice
 Too late!
@@ -861,7 +861,7 @@ To assign a display name for a character using this command consider [binding th
 | type | string | Type of the input content; defaults to the specified variable type.Use to change assigned variable type or when assigning to a new variable. Supported types: `String`, `Numeric`, `Boolean`. |
 | summary | string | An optional summary text to show along with input field. When the text contain spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
 | value | string | A predefined value to set for the input field. When not assigned will pull existing value of the assigned variable (if any). |
-| skip | boolean | Whether to not halt script playback until the input is submitted by the player. |
+| nostop | boolean | Whether to not halt script playback until the input is submitted by the player. |
 
 </div>
 
@@ -2003,7 +2003,7 @@ Lorem ipsum[i] dolor sit amet.
 ; Start looped SFX, print message and wait for a skippable 5 seconds delay,
 ; then stop the SFX.
 @sfx Noise loop!
-Jeez, what a disgusting Noise. Shut it down![wait i5][< skip!]
+Jeez, what a disgusting Noise. Shut it down![wait i5][< noi!]
 @stopSfx Noise
 ```
 
