@@ -71,7 +71,7 @@
                 {
                     "comment": "Inline command - [command parameters]",
                     "name": "naniscript.command.parameter.value",
-                    "match": "(\\[[<\\w]*)([^\\r\\n\\[\\]]*)(\\]|$)",
+                    "match": "(\\[[<>\\-\\w]*)([^\\r\\n\\[\\]]*)(\\]|$)",
                     "captures": {
                         "1": { "name": "naniscript.command.inline" },
                         "2": { "patterns": [{ "include": "#params" }] },
