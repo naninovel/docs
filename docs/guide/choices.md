@@ -8,7 +8,7 @@ Use [@choice] commands followed by the choice summary and (optional) `goto` path
 
 ```nani
 ; Print the text, then immediately show choices.
-Continue executing this script or load another?[< noi!]
+Continue executing this script or load another?[>]
 @choice "Continue from the next line"
 @choice "Continue from the specified label" goto:#Labelname
 @choice "Load another from start" goto:AnotherScript
@@ -178,7 +178,7 @@ Use `Create -> Naninovel -> Choice Handler -> ButtonArea` asset context menu to 
 
 Edit the handler: change font, textures, add animations, etc. For more information on the available UI building tools, check the [Unity documentation](https://docs.unity3d.com/Packages/com.unity.ugui@latest).
 
-Expose the handler to engine resources using choice handler manager GUI, which can be accessed with `Naninovel -> Resources -> Choice Handlers` editor context menu. Add a new record using `+` (plus) button, enter actor ID (can differ from the prefab name) and double click the record to open actor settings. Drag-drop handler prefab to the `Resource` field.
+Expose the handler to engine resources using choice handler manager GUI, which can be accessed with `Naninovel -> Resources -> Choice Handlers` editor context menu. Add a new record using `+` (plus) button, enter actor ID (can differ from the prefab name) and double-click the record to open actor settings. Drag-drop handler prefab to the `Resource` field.
 
 ![](https://i.gyazo.com/cb3a0ff7f22b22cec6546acb388719fc.mp4)
 

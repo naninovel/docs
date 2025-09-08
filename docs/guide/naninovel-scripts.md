@@ -142,7 +142,7 @@ Sometimes, you may want to execute a command while revealing (printing) text mes
 All the commands (both [built-in](/api/) and [custom ones](/guide/custom-commands)) can be inlined (injected) to generic text lines using square brackets (`[ ]`):
 
 ```nani
-Felix: Lorem ipsum[char Felix.Happy pos:0.75] dolor sit amet, consectetur adipiscing elit.[i] Aenean tempus eleifend ante, ac molestie metus condimentum quis.[i][br 2] Morbi nunc magna, consequat posuere consectetur in, dapibus consectetur lorem. Duis consectetur semper augue nec pharetra.
+Felix: Lorem ipsum[char Felix.Happy pos:0.75] dolor sit amet, consectetur adipiscing elit.[-] Aenean tempus eleifend ante, ac molestie metus condimentum quis.[-][br 2] Morbi nunc magna, consequat posuere consectetur in, dapibus consectetur lorem. Duis consectetur semper augue nec pharetra.
 ```
 
 Notice, that the inlined command syntax is exactly the same, except `@` literal is omitted and command body is wrapped in square brackets. Basically, you can take any command line, inline it to a generic text and it will have the exact same effect, but at a different moment, depending on the position inside text message.
@@ -169,30 +169,34 @@ Some text \[ text inside brackets \]
 
 — will print "Some text [ text inside brackets ]" in-game.
 
+To skip waiting for input after a text line is revealed, append `[>]`:
+
+```nani
+; After printing following line waiting for input won't activate
+; (player won't have to confirm prompt to continue reading).
+Lorem ipsum dolor sit amet.[>]
+```
+
 ### Generic Parameters
 
 In some cases you may look to modify or assign [@print] parameters for specific parts or the whole generic text line. Use special command `<`, available only in generic lines, which will do just that:
 
 ```nani
-; After printing following line waiting for input won't activate
-; (player won't have to confirm prompt to continue reading).
-Lorem ipsum dolor sit amet.[< noi!]
-
 ; Following line will be authored by Kohaku and Yuko actors, while
 ; the display name label on the printer will show 'All Together'.
 Kohaku,Yuko: How low hello![< as:"All Together"]
 
 ; First part of the sentence will be printed with 50% speed,
-; while the second one with 250% speed and wait for input won't activate.
-Lorem ipsum[< speed:0.5] dolor sit amet.[< speed:2.5 noi!]
+; while the second one with 250% speed and it won't be awaited.
+Lorem ipsum[< speed:0.5] dolor sit amet.[< speed:2.5 nowait!]
 ```
 
 The command will apply specified parameters to the last text line placed before the command, no matter if other commands are inlined between the `<` and text:
 
 ```nani
 ; The speed will still be applied to "Lorem ipsum" part, even
-; though the parameters are placed after [i] inlined command.
-Lorem ipsum[i][< speed:0.5] dolor sit amet.
+; though the parameters are placed after [-] inlined command.
+Lorem ipsum[-][< speed:0.5] dolor sit amet.
 ```
 
 ### White Space Delimiters
@@ -761,7 +765,7 @@ By default, Naninovel will automatically identify all the localizable text by it
 To prevent associations from breaking when editing text, enable `Stable Identification` under scripts configuration menu. When enabled, Naninovel will explicitly write unique IDs to each localizable text in imported scripts. The downside is that the script text will now have IDs appended to each localizable parameter, eg:
 
 ```nani
-Kohaku: Hey!|#1|[i] What's up?|#2|
+Kohaku: Hey!|#1|[-] What's up?|#2|
 @choice "Option 1|#3|"
 @choice "Option 2|#4|"
 ```

@@ -16,6 +16,52 @@ The following parameters are supported by most script commands:
 
 </div>
 
+## addChoice
+
+Adds a [choice](/guide/choices) option to a choice handler with the specified ID (or the default one).   Use instead of [@choice] to dynamically add choices and have more control over when (or whether) to halt the playback.
+
+::: info NOTE
+When nesting commands under the choice, `goto`, `gosub` and `set` parameters are ignored.
+:::
+
+<div class="config-table">
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">choiceSummary</span> | string | Text to show for the choice. When the text contain spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
+| id | string | Unique identifier of the choice. Can be used to remove the choice later with [@clearChoice]. |
+| lock | string | Whether the choice should be disabled or otherwise not accessible for player to select; see [choice docs](/guide/choices#locked-choice) for more info. Disabled by default. |
+| button | string | Local resource path of the [button prefab](/guide/choices#choice-button) representing the choice. The prefab should have a `ChoiceHandlerButton` component attached to the root object. Will use a default button when not specified. |
+| pos | decimal list | Local position of the choice button inside the choice handler (if supported by the handler implementation). |
+| handler | string | ID of the choice handler to add choice for. Will use a default handler if not specified. |
+| goto | string | Path to go when the choice is selected by user; see [@goto] command for the path format. Ignored when nesting commands under the choice. |
+| gosub | string | Path to a subroutine to go when the choice is selected by user; see [@gosub] command for the path format. When `goto` is assigned this parameter will be ignored. Ignored when nesting commands under the choice. |
+| set | string | Set expression to execute when the choice is selected by user; see [@set] command for syntax reference. Ignored when nesting commands under the choice. |
+| show | boolean | Whether to also show choice handler the choice is added for; enabled by default. |
+| time | decimal | Duration (in seconds) of the fade-in (reveal) animation. |
+
+</div>
+
+```nani
+; A quick-time event: game over unless player picks a choice in 3 seconds.
+Decide now![>]
+@addChoice "Turn left" goto:Left
+@addChoice "Turn Right" goto:Right
+@wait 3
+@clearChoice
+You crashed!
+
+; Add a random choice, then halt the playback until player picks it.
+@random
+    @addChoice "Top choice"
+        You've selected the top choice!
+    @addChoice "Mediocre choice"
+        You've selected a mediocre choice.
+    @addChoice "The worst choice"
+        You've selected the worst possible choice...
+@stop
+```
+
 ## append
 
 Appends specified text to a text printer.
@@ -123,7 +169,7 @@ The nested block is expected to always finish; don't nest any commands that coul
     @back RainyScene
     @bgm RainAmbient
     @camera zoom:0.5 time:3
-    It starts Raining...[< noi!]
+    It starts Raining...[>]
 ; Following line will execute after all the above is finished.
 ...
 
@@ -379,7 +425,7 @@ Modifies a [character actor](/guide/characters).
 
 ## choice
 
-Adds a [choice](/guide/choices) option to a choice handler with the specified ID (or default one).
+Adds a required [choice](/guide/choices) option, which halts further scenario playback until the player makes a selection.   Subsequent choice commands are merged, allowing multiple options to be presented at once. Use [@addChoice] instead of this command to simply add a choice, without requiring a selection before proceeding with the playback.
 
 ::: info NOTE
 When nesting commands under the choice, `goto`, `gosub` and `set` parameters are ignored.
@@ -390,38 +436,39 @@ When nesting commands under the choice, `goto`, `gosub` and `set` parameters are
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">choiceSummary</span> | string | Text to show for the choice. When the text contain spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
-| lock | string | Whether the choice should be disabled or otherwise not accessible for player to pick; see [choice docs](/guide/choices#locked-choice) for more info. Disabled by default. |
+| id | string | Unique identifier of the choice. Can be used to remove the choice later with [@clearChoice]. |
+| lock | string | Whether the choice should be disabled or otherwise not accessible for player to select; see [choice docs](/guide/choices#locked-choice) for more info. Disabled by default. |
 | button | string | Local resource path of the [button prefab](/guide/choices#choice-button) representing the choice. The prefab should have a `ChoiceHandlerButton` component attached to the root object. Will use a default button when not specified. |
 | pos | decimal list | Local position of the choice button inside the choice handler (if supported by the handler implementation). |
 | handler | string | ID of the choice handler to add choice for. Will use a default handler if not specified. |
 | goto | string | Path to go when the choice is selected by user; see [@goto] command for the path format. Ignored when nesting commands under the choice. |
 | gosub | string | Path to a subroutine to go when the choice is selected by user; see [@gosub] command for the path format. When `goto` is assigned this parameter will be ignored. Ignored when nesting commands under the choice. |
 | set | string | Set expression to execute when the choice is selected by user; see [@set] command for syntax reference. Ignored when nesting commands under the choice. |
-| nostop | boolean | Whether to not halt script playback until a choice is picked by the player. |
 | show | boolean | Whether to also show choice handler the choice is added for; enabled by default. |
 | time | decimal | Duration (in seconds) of the fade-in (reveal) animation. |
 
 </div>
 
 ```nani
-; Print the text, then immediately show choices and stop script execution.
-Continue executing this script or ...?[< noi!]
+; Print the text, then immediately show choices and halt the playback
+; until one of the choices is selected.
+Continue executing this script or ...?[>]
 @choice "Continue"
 @choice "Load another script from start" goto:Another
 @choice "Load another script from \"Label\" label" goto:Another#Label
 @choice "Goto to \"Sub\" subroutine in another script" gosub:Another#Sub
 
-; You can also set custom variables based on choices.
+; Set custom variables based on choices.
 @choice "I'm humble, one is enough..." set:score++
 @choice "Two, please." set:score=score+2
 @choice "I'll take the entire stock!" set:karma--;score=999
 
-; Play a sound effect and arrange characters when choice is picked.
+; Play a sound effect and arrange characters when the choice is selected.
 @choice "Arrange"
     @sfx Click
     @arrange k.10,y.55
 
-; Print a text line corresponding to the picked choice.
+; Print a text line corresponding to the selected choice.
 @choice "Ask about color"
     What's your favorite color?
 @choice "Ask about age"
@@ -429,18 +476,11 @@ Continue executing this script or ...?[< noi!]
 @choice "Keep silent"
     ...
 
-; Make choice disabled/locked when 'score' variable is below 10.
-@choice "Secret option" lock:score<10
+; Make the choice disabled/locked when 'score' variable is below 10.
+@choice "Extra option" lock:score<10
 
-; A quick-time event: game over unless player picks a choice in 3 seconds.
-; Notice 'nostop!' at the last choice–this allows playback to proceed without
-; waiting for the player to pick a choice.
-Decide now![< noi!]
-@choice "Turn left" goto:Left
-@choice "Turn Right" goto:Right nostop!
-@wait 3
-@clearChoice
-You crashed!
+; Only show the choice when 'score' variable is 10 or more.
+@choice "Secret option" if:score>=10
 ```
 
 ## clearBacklog
@@ -455,32 +495,30 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 ## clearChoice
 
-Removes all the choice options in the choice handler with the specified ID (or in default one, when ID is not specified; or in all the existing handlers, when `*` is specified as ID) and (optionally) hides it (them).
+Removes current choices in the choice handler with the specified ID (or in default one, when ID is not specified; or in all the existing handlers, when `*` is specified as ID) and (optionally) hides it (them).
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">handlerId</span> | string | ID of the choice handler to clear. Will use a default handler if not specified. Specify `*` to clear all the existing handlers. |
+| id | string | Identifier of a specific choice to remove. Will remove all choices when not specified. |
 | hide | boolean | Whether to also hide the affected choice handlers. |
 
 </div>
 
 ```nani
-; Give the player 2 seconds to pick a choice.
-; Notice 'nostop!' at the last choice–this disables playback halt allowing 
-; next lines to be executed without waiting for player to pick a choice.
-# Start
-You have 2 seconds to respond![< noi!]
-@choice Cats goto:#PickedChoice
-@choice Dogs goto:#PickedChoice nostop!
+; Give the player 2 seconds to select a choice.
+You have 2 seconds to respond![>]
+@addChoice "Cats" set:response="Cats"
+@addChoice "Dogs" set:response="Dogs"
+@set response="None"
 @wait 2
 @clearChoice
-Too late!
-@stop
-
-# PickedChoice
-Good!
+@unless response="None"
+    {response}, huh?
+@else
+    Time's out!
 ```
 
 ## despawn
@@ -793,16 +831,6 @@ When hiding the entire UI with this command and `allowToggle` parameter is false
 
 ; Simultaneously hide built-in 'TipsUI' and custom 'Calendar' UIs.
 @hideUI TipsUI,Calendar
-```
-
-## i
-
-Holds script execution until user activates a `continue` input. Shortcut for `@wait i`.
-
-```nani
-; User will have to activate a 'continue' input after the first sentence
-; for the printer to continue printing out the following text.
-Lorem ipsum dolor sit amet.[i] Consectetur adipiscing elit.
 ```
 
 ## if
@@ -1127,9 +1155,9 @@ Allows halting and resuming user input processing (eg, reacting to pressing keyb
 Prevents player from rolling back to the previous state snapshots.
 
 ```nani
-; Prevent player from rolling back to try picking another choice.
+; Prevent player from rolling back to try selecting another choice.
 
-Pick a choice. You won't be able to rollback.
+Select a choice. You won't be able to rollback.
 @choice One goto:#One
 @choice Two goto:#Two
 
@@ -1997,13 +2025,13 @@ Holds script execution until the specified wait condition.
 
 ; Print first 2 words, then wait for input before printing the rest.
 Lorem ipsum[wait i] dolor sit amet.
-; You can also use the following shortcut (@i command) for this wait mode.
-Lorem ipsum[i] dolor sit amet.
+; You can also use the following shortcut for this wait mode.
+Lorem ipsum[-] dolor sit amet.
 
 ; Start looped SFX, print message and wait for a skippable 5 seconds delay,
 ; then stop the SFX.
 @sfx Noise loop!
-Jeez, what a disgusting Noise. Shut it down![wait i5][< noi!]
+Jeez, what a disgusting Noise. Shut it down![wait i5][>]
 @stopSfx Noise
 ```
 
