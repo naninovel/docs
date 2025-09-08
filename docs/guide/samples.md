@@ -123,7 +123,7 @@ Below is a script from the example project:
 ```nani
 # Start
 
-Select an action.[< noi!]
+Select an action.[>]
 
 @choice "Pick up sword" lock:itemExist("Sword")
     @addItem Sword
