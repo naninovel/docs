@@ -43,7 +43,7 @@ When nesting commands under the choice, `goto`, `gosub` and `set` parameters are
 </div>
 
 ```nani
-; A quick-time event: game over unless player picks a choice in 3 seconds.
+; A quick-time event: game over unless player selects a choice in 3 seconds.
 Decide now![>]
 @addChoice "Turn left" goto:Left
 @addChoice "Turn Right" goto:Right
@@ -51,7 +51,7 @@ Decide now![>]
 @clearChoice
 You crashed!
 
-; Add a random choice, then halt the playback until player picks it.
+; Add a random choice, then halt the playback until player selects it.
 @random
     @addChoice "Top choice"
         You've selected the top choice!
