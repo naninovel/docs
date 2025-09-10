@@ -474,9 +474,9 @@ Live2D character implementation uses assets created with [Live2D Cubism](https:/
 
 In order to be able to use this implementation you have to first install [Live2D Cubism SDK for Unity](https://live2d.github.io/#unity). Consult official Live2D docs for the installation and usage instructions.
 
-After Live2D SDK for Unity is installed, add `NANINOVEL_ENABLE_LIVE2D` define in player settings to activate Naninovel module which provides integration between Spine and the engine.
+After Live2D SDK for Unity is installed, click `Naninovel/Extensions/Enable Live2D` editor menu item to activate Naninovel module which provides integration between Live2D and the engine.
 
-![](https://i.gyazo.com/8a457a704923d1aaebf30363088dade3.png)
+![](https://i.gyazo.com/e27ee50e8107147e20503a955ddcc548.png)
 
 ::: info NOTE
 This integration with third-party commercial product serve mostly as an example on how you can make Naninovel work with another tool. While we're committed to keep the sample integration compatible with Live2D updates and changes, please be aware that the functionality will remain bare minimum and we won't be able to provide any support or help on using another product with Naninovel beyond the scope of the sample.
@@ -524,9 +524,9 @@ Spine character implementation uses assets created with [Spine](http://esoterics
 
 In order to be able to use this implementation you have to first install [Spine runtime for Unity](http://esotericsoftware.com/spine-unity-download). Consult [the official docs](http://esotericsoftware.com/spine-unity) for the installation and usage instructions.
 
-After Spine runtime for Unity is installed, add `NANINOVEL_ENABLE_SPINE` define in player settings to activate Naninovel module which provides integration between Spine and the engine.
+After Spine runtime for Unity is installed, click `Naninovel/Extensions/Enable Spine` editor menu item to activate Naninovel module which provides integration between Spine and the engine.
 
-![](https://i.gyazo.com/3447a402b86b86b479ac5c85a29ad4b2.png)
+![](https://i.gyazo.com/2fb6c27f6e2149b501c0025dd6bd67f0.png)
 
 ::: info NOTE
 This integration with third-party commercial product serve mostly as an example on how you can make Naninovel work with another tool. While we're committed to keep the sample integration compatible with Spine updates and changes, please be aware that the functionality will remain bare minimum and we won't be able to provide any support or help on using another product with Naninovel beyond the scope of the sample.
