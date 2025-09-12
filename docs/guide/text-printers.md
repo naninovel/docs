@@ -317,9 +317,9 @@ Lorem ipsum dolor<@back tint:blue> sit amet.
 
 You can use event tags instead of [inlined commands](/guide/naninovel-scripts#command-inlining) to expose them to [localization documents](/guide/localization#scripts-localization) allowing translators override executed commands based on selected locale.
 
-## Wait Tag
+## Wait Input Tag
 
-If you often use `<@wait i>` instead of `[-]` wait input commands just to expose them to localization documents, consider using the `<->` wait tag instead — it works the same way but is shorter to type.
+If you often use `<@wait i>` instead of `[-]` wait input commands just to expose them to localization documents, consider using the `<->` wait input tag instead — it works the same way but is shorter to type.
 
 ```nani
 ; Same as 'Lorem[-] ipsum', but the wait input
