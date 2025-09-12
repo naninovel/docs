@@ -317,6 +317,16 @@ Lorem ipsum dolor<@back tint:blue> sit amet.
 
 You can use event tags instead of [inlined commands](/guide/naninovel-scripts#command-inlining) to expose them to [localization documents](/guide/localization#scripts-localization) allowing translators override executed commands based on selected locale.
 
+## Wait Tag
+
+If you often use `<@wait i>` instead of `[-]` wait input commands just to expose them to localization documents, consider using the `<->` wait tag instead — it works the same way but is shorter to type.
+
+```nani
+; Same as 'Lorem[-] ipsum', but the wait input
+; command will be exposed to the localization docs.
+Lorem<-> ipsum
+```
+
 ## Reveal Expressions
 
 In some cases, it may be required to include [script expressions](/guide/script-expressions) to the generated localization documents or force expression re-evaluation when language (locale) is changed.
@@ -340,3 +350,55 @@ Hello, <:MC>! How's <:AC> doing?
 ::: warning
 Refrain from using this feature with expressions that mutate or depend on game state, as it may cause undefined behaviour. For example, consider an expression, which result depends on a local variable `foo`, while a message with this expression was printed at some point and is kept in backlog. Should player change locale, the expression will be re-evaluated using whatever value `foo` has at the time locale is changed, which may be different from the time when it was initially printed.
 :::
+
+## Select Tag
+
+A common use case for [reveal expressions](/guide/text-printers#reveal-expressions) is to use them as selectors. For example, you may want to include a random text from a pool or something that depends on the player's choice, such as a pronoun-dependent wording.
+
+If this is widespread in your scenario, it may become tedious to repeat the full expression syntax each time. In such cases, consider using the select tag:
+
+```nani
+; Selects a random color.
+My favourite color is </red/blue/green>.
+
+; Selects based on user choice.
+Select your pronouns.
+@choice "He/Him" set:selector=0
+@choice "She/Her" set:selector=1
+@choice "They/Them" set:selector=2
+...
+</He/She/They> </was/was/were> magnificent.
+```
+
+Notice the `</x/y>` tags — these are selector tags. The text between `/` characters are called options. By default, a random option will be returned. However, if you set the `selector` variable to an index, the tag will instead return the option with that index (zero-based).
+
+If you need more flexible selection logic, create a custom [expression function](/guide/script-expressions#adding-custom-functions) with the `select` alias, and make it accept a `params string[]` and return a `string`. Whenever a selector tag is compiled, it will then use your function to evaluate the result. Below is an example of a custom select function, where the first option specifies the selection kind, falling back to random selection if the first option is empty:
+
+```cs
+[ExpressionFunction("select")]
+public static string Select (params string[] args)
+{
+    var kind = args[0];
+    var options = args[1..];
+    return kind switch {
+        "p" => SelectPronoun(options),
+        "t" => SelectTemper(options),
+        _ => options[Random.Range(0, options.Length)]
+    };
+}
+```
+
+You can then use it in a scenario as follows:
+
+```nani
+; Select based on pronoun.
+</p/his/her/their>
+
+; Select based on temper.
+</t/smiling/frowning/poker face>
+
+; Select random.
+<//green/red>
+```
+
+The selector tags are also exposed to the localization docs, allowing translators to adapt the constructs to the target culture as needed.
