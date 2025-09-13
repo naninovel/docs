@@ -12,7 +12,7 @@ In case you have a lot of backgrounds and/or appearances per background and it's
 
 ![](https://www.youtube.com/watch?v=2YP-36THHvk)
 
-It's possible to use [addressable asset system](/guide/resource-providers#addressable) to associate resources with actor records without using editor menus. Eg, to associate a "Beach" appearance with "MainBackground" background, assign the texture asset following address: `Naninovel/Backgrounds/MainBackground/Beach` and assign `Naninovel` label to the asset in addressable group configuration. Be aware, that addressable provider is not used in editor by default; you can allow it by enabling `Allow Addressable In Editor` property in resource provider configuration menu. Find more info on using addressable provider in the [resource providers documentation](/guide/resource-providers#addressable).
+It's possible to use [addressable asset system](/guide/resource-providers#addressable) to associate resources with actor records without using editor menus. For example, to associate a "Beach" appearance with "MainBackground" background, assign the texture asset following address: `Naninovel/Backgrounds/MainBackground/Beach` and assign `Naninovel` label to the asset in addressable group configuration. Find more info on using the addressable provider in the [resource providers documentation](/guide/resource-providers#addressable).
 
 In naninovel scripts, backgrounds are mostly controlled with [@back] command:
 
