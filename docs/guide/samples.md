@@ -1,16 +1,16 @@
 ﻿# Samples
 
-A collection of example projects are provided to help you get started with common development scenarios. Read on for instructions to access the samples and brief descriptions of each.
+A collection of example projects is provided to help you get started with common development scenarios. Read on for instructions to access the samples and brief descriptions of each.
 
 ## Accessing Samples
 
 The samples are hosted under the [engine's monorepo](https://github.com/naninovel/engine/tree/stable/unity/samples). To access the repository, [register your Naninovel license](https://naninovel.com/register) and follow the dashboard instructions to assign a GitHub user. Once you have access, either [clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) or [download](https://github.com/naninovel/engine/archive/refs/heads/stable.zip) the repository.
 
-Unzip the downloaded repository and open `unity/samples` directory with the Unity editor. Notice Naninovel is referenced as a local package in the package manager. The source of the local package leads to `unity/client`, which contains the source code of the Unity extension. Other 3rd-party packages used in the samples are embedded to the project for convenience.
+Unzip the downloaded repository and open `unity/samples` directory with the Unity editor. Notice Naninovel is referenced as a local package in the package manager. The source of the local package leads to `unity/client`, which contains the source code of the Unity extension. Other third-party packages used in the samples are embedded in the project for convenience.
 
 ![](https://i.gyazo.com/aa784d89f6a55576b745824c2f6fd537.png)
 
-Once in Unity editor, open `Assets/Scenes/Main.unity` scene and enter play mode. You'll see the title screen of our [demo project](https://naninovel.com/demo). You can either start the demo or click "SAMPLES" button to navigate the available samples, which are outlined below.
+Once in Unity editor, open `Assets/Scenes/Main.unity` scene and enter play mode. You'll see the title screen of our [demo project](https://naninovel.com/demo). You can either start the demo or click the "SAMPLES" button to navigate the available samples, which are outlined below.
 
 ![](https://i.gyazo.com/f7304c828ff616f2d9a979d2452413a4.png)
 
@@ -18,7 +18,7 @@ Once in Unity editor, open `Assets/Scenes/Main.unity` scene and enter play mode.
 
 This sample shows how to manually register Naninovel resources with [addressable provider](/guide/resource-providers.html#addressable) (without using resource editor menus) and serve the assets from a remote host.
 
-Notice, that while most of the resources in the sample project are not assigned in resource manager menus:
+Notice that while most of the resources in the sample project are not assigned in resource manager menus:
 
 ![](https://i.gyazo.com/8c1b37362bf58d26f18e4e61ffe2957c.png)
 
@@ -28,13 +28,9 @@ Notice, that while most of the resources in the sample project are not assigned 
 @back Snow
 ```
 
-That works, because the assets are assigned a Naninovel resource address and label:
+That works because the assets are assigned a Naninovel resource address and label:
 
 ![](https://i.gyazo.com/81e59da9ba85c90f3d59b84573f7facf.png)
-
-::: info NOTE
-`Allow Addressable In Editor` has to be enabled in the resource provider configuration in order for the manually registered resources to work in Unity editor.
-:::
 
 ## Perspective Scene
 
@@ -44,7 +40,7 @@ This sample shows a generic background filled with multiple animated environment
 
 ## Compiler Localization
 
-To activate the compiler localization in the sample project, assign `Profiles/Naninovel/CompilerRU` asset to the `Compiler Localization` field in the scripts configuration. Then restart the Unity editor and VS Code extension. Now you can open the project with VS Code and run `Compiler Localization` sample scenario.
+To activate the compiler localization in the sample project, assign `Profiles/Naninovel/CompilerRU` asset to the `Compiler Localization` field in scripts configuration. Then restart the Unity editor and VS Code extension. Now you can open the project with VS Code and run `Compiler Localization` sample scenario.
 
 ![](https://i.gyazo.com/fde9998597ffedb8a025401bb2f71ce9.png)
 
@@ -52,7 +48,7 @@ To activate the compiler localization in the sample project, assign `Profiles/Na
 
 The `E2E Tests` sample shows how to set up an [automated end-to-end tests](/guide/automated-testing) suite and use most of the available APIs.
 
-The test scripts are stored under `Scripts/E2E` folder. Notice the `.asmdef` file placed in the folder: it's required to compile the test sources under Unity-specific test environment. Also note the `testables` entry in the `Packages/manifest.json` file, which exposes the tests assembly to the Unity's test runner.
+The test scripts are stored under `Scripts/E2E` folder. Notice the `.asmdef` file placed in the folder: it's required to compile the test sources under Unity-specific test environment. Also note the `testables` entry in the `Packages/manifest.json` file, which exposes tests assembly to the Unity's test runner.
 
 ![](https://i.gyazo.com/92e7eaf5725f098d6d12c83a2b7eb219.png)
 
@@ -80,7 +76,7 @@ All the project-specific (example) scripts are stored at `Scripts/Runtime/Integr
 
 Naninovel is initialized manually (auto initialization is disabled in the engine configuration menu) via `SetupGame.cs` script attached to `SetupGame` game object located on `Integration` scene.
 
-`DialogueTrigger.cs` script used as component on triggers perform switch to dialogue mode when player is hitting the trigger colliders.
+`DialogueTrigger.cs` script used as a component on triggers perform switch to dialogue mode when player is hitting the trigger colliders.
 
 `SwitchToNovelMode.cs` custom command is used to switch to novel mode from both C# and naninovel scripts.
 
@@ -91,10 +87,10 @@ Naninovel is initialized manually (auto initialization is disabled in the engine
 While an inventory system is out of scope for visual novels, we had a lot of requests and questions on how to integrate one with Naninovel. The inventory sample serves as an example for creating and integrating an inventory extension, which you can set up on top of Naninovel installation without modifying the engine source code.
 
 ::: info NOTE
-The inventory is not a standalone product and/or part of Naninovel. Use it to learn how to extend and customize the engine, but don't expect it to be production-ready solution for inventory systems. If you're looking for one, [check the Asset Store](https://assetstore.unity.com/?q=inventory) or create a custom one from scratch.
+The inventory is not a standalone product and/or part of Naninovel. Use it to learn how to extend and customize the engine, but don't expect it to be a production-ready solution for inventory systems. If you're looking for one, [check the Asset Store](https://assetstore.unity.com/?q=inventory) or create a custom one from scratch.
 :::
 
-Example project shows how to make custom inventory UI with grid layout, pagination and drag-drop window, add custom engine service and related configuration menu, add input bindings, use state outsourcing, author custom scenario commands and expression functions.
+This example project shows how to make a custom inventory UI with grid layout, pagination and drag-drop window, add custom engine service and related configuration menu, add input bindings, use state outsourcing, author custom scenario commands and expression functions.
 
 ![](https://i.gyazo.com/86c577f007daf4ec5d79c0e91db7bc10.mp4)
 
@@ -106,9 +102,9 @@ Inventory item prefabs can be created with `Create -> Naninovel -> Inventory -> 
 
 ![](https://i.gyazo.com/6062f8a433a47306f582a849c7bbf57e.png)
 
-In case you have a lot of items and it's inconvenient to assign them via editor menu, it's possible to just drop them at `Resources/Naninovel/Inventory` folder and they'll automatically be exposed to the engine. You can additionally organize them with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in naninovel scripts. Eg, item stored as `Resources/Naninovel/Inventory/Armor/FullPlate.prefab` can be referenced in scripts as `Armor/FullPlate`.
+In case you have a lot of items and it's inconvenient to assign them via editor menu, it's possible to just drop them at `Resources/Naninovel/Inventory` folder and they'll automatically be exposed to the engine. You can additionally organize them with subfolders, if you wish; in this case use forward slashes (`/`) when referencing them in naninovel scripts. Eg, item stored as `Resources/Naninovel/Inventory/Armor/FullPlate.prefab` can be referenced in scripts as `Armor/FullPlate`.
 
-It's also possible to use [addressable asset system](/guide/resource-providers#addressable) to manually expose the resources. To expose an asset, assign address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "FullPlate.prefab" item, assign the prefab asset following address: `Naninovel/Inventory/FullPlate`. Be aware, that addressable provider is not used in editor by default; you can allow it by enabling `Enable Addressable In Editor` property in resource provider configuration menu.
+It's also possible to use [addressable asset system](/guide/resource-providers#addressable) to manually expose the resources. To expose an asset, assign an address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "FullPlate.prefab" item, assign the prefab asset following address: `Naninovel/Inventory/FullPlate`. Be aware that addressable provider is not used in editor by default; you can allow it by enabling `Enable Addressable In Editor` property in resource provider configuration menu.
 
 Each item has a `Stack Count Limit` property to limit how much items of this type can be stacked in a single inventory slot and a `On Item Used` Unity event, which is invoked when the item is used (either via `@useItem` command or when user clicks on the item in the inventory). Below is an example on how you can set up the event with `Play Script` component to remove the item once it used, spawn a glitch special effect and print a text message.
 
