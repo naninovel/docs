@@ -197,6 +197,8 @@
         { "scope": ["naniscript.author"], "settings": { "foreground": "#e2be7f" } },
         { "scope": ["naniscript.expression"], "settings": { "foreground": "#62b8c1" } },
         { "scope": ["naniscript.text-identifier"], "settings": { "foreground": "#5d6470" } },
+        { "scope": ["naniscript.tag"], "settings": { "foreground": "#5d6470" } },
+        { "scope": ["naniscript.select-option"], "settings": { "foreground": "#acb2be" } },
         {
             "scope": ["comment", "punctuation.definition.comment", "string.comment"],
             "settings": {
