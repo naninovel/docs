@@ -8,12 +8,6 @@ Backgrounds' behavior can be configured using `Naninovel -> Configuration -> Bac
 
 ![](https://i.gyazo.com/cccd08280dac72d199ea3465bc167a22.gif)
 
-In case you have a lot of backgrounds and/or appearances per background and it's inconvenient to assign them all via editor menu, use actor record assets (`Create -> Naninovel -> Actor Record -> Background`) which support multi-editing and organizing the records with folders; check the video below for an example.
-
-![](https://www.youtube.com/watch?v=2YP-36THHvk)
-
-It's possible to use [addressable asset system](/guide/resource-providers#addressable) to associate resources with actor records without using editor menus. For example, to associate a "Beach" appearance with "MainBackground" background, assign the texture asset following address: `Naninovel/Backgrounds/MainBackground/Beach` and assign `Naninovel` label to the asset in addressable group configuration. Find more info on using the addressable provider in the [resource providers documentation](/guide/resource-providers#addressable).
-
 In naninovel scripts, backgrounds are mostly controlled with [@back] command:
 
 ```nani
@@ -44,6 +38,14 @@ Main background actor record is created by default in the background resources m
 Check the following video tutorial for an overview of the background actors.
 
 ![](https://www.youtube.com/watch?v=X2iyGSCpnJs)
+
+## Actor Records
+
+If you have many backgrounds or background appearances and it's inconvenient to assign them all via the editor menu, use actor record assets (`Create -> Naninovel -> Actor Record -> Background`). They support multi-editing and allow you to organize records with folders. Check the video below for an example.
+
+![](https://www.youtube.com/watch?v=2YP-36THHvk)
+
+To associate appearance resources with actor records, use the [addressable asset system](/guide/resource-providers#addressable). For example, to associate a "Beach" appearance with the "MainBackground" background, assign the texture asset the address `Naninovel/Backgrounds/MainBackground/Beach` and add the `Naninovel` label. For more details on using the addressable provider, see the [resource providers documentation](/guide/resource-providers#addressable).
 
 ## Z-order
 
