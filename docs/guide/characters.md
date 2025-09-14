@@ -8,13 +8,7 @@ Characters' behavior can be configured using `Naninovel -> Configuration -> Char
 
 ![Add Character](https://i.gyazo.com/c8a4f7f987621831b4a2ecb3145a4a07.png)
 
-In case you have a lot of characters and/or appearances per character and it's inconvenient to assign them all via editor menu, use actor record assets (`Create -> Naninovel -> Actor Record -> Character`) which support multi-editing and organizing the records with folders; check the video below for an example.
-
-![](https://www.youtube.com/watch?v=2YP-36THHvk)
-
-It's possible to use [addressable asset system](/guide/resource-providers#addressable) to associate resources with actor records without using editor menus. Eg, to associate a "Happy" appearance with "Kohaku" character, assign the texture asset following address: `Naninovel/Characters/Kohaku/Happy` and assign `Naninovel` label to the asset in addressable group configuration. Be aware, that addressable provider is not used in editor by default; you can allow it by enabling `Allow Addressable In Editor` property in resource provider configuration menu. Find more info on using addressable provider in the [resource providers documentation](/guide/resource-providers#addressable).
-
-In naninovel scripts, characters are mostly controlled with [@char] command:
+In naninovel scripts, characters are controlled with [@char] command:
 
 ```nani
 ; Shows character with name `Sora` with a default appearance.
@@ -32,6 +26,14 @@ In naninovel scripts, characters are mostly controlled with [@char] command:
 ::: tip
 Consider using [Scene Assistant](https://github.com/idaocracy/NaninovelSceneAssistant) extension to help with positioning the actors on scene.
 :::
+
+## Actor Records
+
+If you have many characters and it's inconvenient to assign them all via the editor menu, use actor record assets (`Create -> Naninovel -> Actor Record -> Character`). They support multi-editing and allow you to organize records with folders. Check the video below for an example.
+
+![](https://www.youtube.com/watch?v=2YP-36THHvk)
+
+To associate appearance resources with actor records, you can use the [addressable asset system](/guide/resource-providers#addressable). For example, to associate a "Happy" appearance with the "Kohaku" character, assign the texture asset to the `Naninovel/Characters/Kohaku/Happy` address and add the `Naninovel` label. You can find more information on using the addressable provider in the [resource providers documentation](/guide/resource-providers#addressable).
 
 ## Poses
 
