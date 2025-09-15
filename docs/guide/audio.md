@@ -93,7 +93,7 @@ It's possible to assign a custom mixer asset, change groups used for each audio 
 
 ![](https://i.gyazo.com/ef2db68edb871608d1718117a37e9486.png)
 
-To play an audio via a custom mixer group, specify group path with `group` parameter available in [@bgm], [@sfx] and [@voice] commands.
+To play an audio via a custom mixer group, specify a group path with `group` parameter available in [@bgm], [@sfx] and [@voice] commands.
 
 ```nani
 ; Play `Noise` audio resource in loop via `Master/Ambient` mixer group.
@@ -105,9 +105,34 @@ To play an audio via a custom mixer group, specify group path with `group` param
 
 Groups are retrieved with `FindMatchingGroups(groupPath)` method of the currently assigned audio mixer asset; see [Unity documentation](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) for more information on the expected path format. In case multiple groups are associated with the provided path, the first one will be used to play the audio.
 
-In C# scripts, currently used audio mixer can be retrieved via `IAudioManager` [engine service](/guide/engine-services).
+## Custom Audio Backend
 
-```csharp
-var audioManager = Engine.GetService<IAudioManager>();
-var audioMixer = audioManager.AudioMixer;
+Unity allows replacing its built-in audio backend with custom solutions, such as [FMOD](https://www.fmod.com) and [Wwise](https://www.audiokinetic.com/en/wwise/). To support this, we've ensured that Naninovel's `IAudioManager` interface doesn't depend on the default audio backend (for example, it doesn't reference `AudioClip`, `AudioSource`, etc.). This allows you to [override the service](/guide/engine-services#overriding-built-in-services) and use a custom audio backend without modifying the engine's source code.
+
+Below is a minimal example of such an override for FMOD.
+
+```cs
+[InitializeAtRuntime(@override: typeof(AudioManager))]
+public class FMODAudioManager : IAudioManager
+{
+    // Assuming FMOD resource loading is managed externally.
+    public IResourceLoader AudioLoader { get; } = new NullResourceLoader();
+
+    // Assuming FMOD's lifecycle is managed externally.
+    public UniTask InitializeService () => UniTask.CompletedTask;
+    public void DestroyService () { }
+
+    public UniTask PlaySfx (string path, ...)
+    {
+        // Resolve the FMOD's event reference from the path and play it.
+    }
+
+    public AudioMixerGroup GetGroup (string groupPath)
+    {
+        // It's OK to return null or otherwise ignore unsupported features.
+        return null;
+    }
+
+    // Other APIs...
+}
 ```
