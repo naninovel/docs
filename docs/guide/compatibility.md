@@ -28,6 +28,11 @@ While it's possible to use Nanionvel with Unity's [scriptable render pipelines](
 
 Legacy (uGUI) text component is not supported by any of the built-in UIs or associated APIs; [TextMesh Pro](https://docs.unity3d.com/Manual/com.unity.textmeshpro.html) is used by default.
 
+
+## Input System
+
+Unity's [Input System](https://docs.unity3d.com/Packages/com.unity.inputsystem@latest) is supported by default. The legacy Input Manager is not supported. Custom input systems can be implemented by [overriding](/guide/engine-services#overriding-built-in-services) the `IInputManager` engine service.
+
 ## Managed Stripping
 
 "Medium" and "High" [managed bytecode stripping](https://docs.unity3d.com/Manual/ManagedCodeStripping.html) profiles are not supported. Either disable the stripping or use the "Low" profile (selected by default).
