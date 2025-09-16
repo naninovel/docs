@@ -151,16 +151,9 @@ Debug Only Console | False | When enabled, development console will only be avai
 
 Property | Default Value | Description
 --- | --- | ---
-Spawn Event System | True | Whether to spawn an event system when initializing.
-Custom Event System | Null | A prefab with an `EventSystem` component to spawn for input processing. Will spawn a default one when not specified.
-Spawn Input Module | True | Whether to spawn an input module when initializing.
-Custom Input Module | Null | A prefab with an `InputModule` component to spawn for input processing. Will spawn a default one when not specified.
-Input Actions | Null | When Unity's new input system is installed, assign input actions asset here.<br><br>To map input actions to Naninovel's input bindings, create `Naninovel` action map and add actions with names equal to the binding names (found below under `Control Scheme` -> Bindings list).<br><br>Be aware, that 2-dimensional (Vector2) axes are not supported.
-Process Legacy Bindings | True | Whether to process legacy input bindings. Disable in case you're using Unity's new input system and don't want the legacy bindings to work in addition to input actions.
-Touch Frequency Limit | 0.1 | Limits frequency of the registered touch inputs, in seconds. For legacy input only.
-Touch Distance Limit | 25 | Limits distance of the registered touch inputs, in pixels. For legacy input only.
-Detect Input Mode | True | Whether to change input mode when associated device is activated. Eg, switch to gamepad when any gamepad button is pressed and switch back to mouse when mouse button clicked. Requires new input system.
-Bindings | Object Ref | Bindings to process input for; find descriptions for each default input in the 'Input Processing' guide.
+Event System | Null | A prefab with `EventSystem` component to spawn on engine init and use for input processing. Will use the default event system when not assigned.
+Input Actions | Null | When Unity's input system is installed, assign input actions asset here.<br><br>To map input actions to Naninovel's input samplers, create `Naninovel` action map and add actions with names equal to the input names.<br><br>Will use the default input actions when not assigned.
+Detect Input Mode | True | Whether to change input mode when associated device is activated. Eg, switch to gamepad when any gamepad button is pressed and switch back to mouse when mouse button clicked.
 
 </div>
 
