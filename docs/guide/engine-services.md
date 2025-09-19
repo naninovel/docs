@@ -115,51 +115,29 @@ Below is an example of a dummy `IInputManager` implementation, that does nothing
 
 ```csharp
 using Naninovel;
-using Naninovel.UI;
 using UnityEngine;
 
 [InitializeAtRuntime(@override: typeof(InputManager))]
 public class CustomInputManager : IInputManager
 {
     public InputConfiguration Configuration { get; }
-    public bool ProcessInput { get; set; }
 
     public CustomInputManager (InputConfiguration config)
     {
         Configuration = config;
     }
 
-    public UniTask InitializeService ()
+    public void AddMuter (object muter, IEnumerable<string> allowedIds = null)
     {
-        Debug.Log("CustomInputManager::InitializeService()");
-        return UniTask.CompletedTask;
+        Debug.Log("CustomInputManager::AddMuter()");
     }
 
-    public void ResetService ()
+    public void RemoveMuter (object muter)
     {
-        Debug.Log("CustomInputManager::ResetService()");
+        Debug.Log("CustomInputManager::RemoveMuter()");
     }
 
-    public void DestroyService ()
-    {
-        Debug.Log("CustomInputManager::DestroyService()");
-    }
-
-    public IInputSampler GetSampler (string bindingName)
-    {
-        Debug.Log($"CustomInputManager::GetSampler({bindingName})");
-        return default;
-    }
-
-    public void AddBlockingUI (IManagedUI ui, params string[] allowedSamplers)
-    {
-        Debug.Log($"CustomInputManager::AddBlockingUI({ui.GetType().Name})");
-    }
-
-    public void RemoveBlockingUI (IManagedUI ui)
-    {
-        Debug.Log($"CustomInputManager::RemoveBlockingUI({ui.GetType().Name})");
-    }
+    // Etc...
 }
 ```
-Now, when an input manager is requested via `Engine.GetService<IInputManager>()`, your custom implementation will be provided instead of the built-in `Naninovel.InputManager`.
+Now, when an input manager is requested via `Engine.GetService<IInputManager>()`, your custom implementation will be used instead of the built-in `Naninovel.InputManager`.
