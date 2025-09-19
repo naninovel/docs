@@ -33,7 +33,7 @@ You can configure the default actions and add new ones by assigning a custom `In
 An example of adding custom input binding to toggle inventory UI can be found in the [inventory sample](/guide/samples#inventory). Specifically, the custom "ToggleInventory" action is used in `Scripts/Runtime/Inventory/UI/InventoryUI.cs` runtime script. Another example — [input rebind sample](/guide/samples#input-rebind) — implements a rebind UI to allow player to change default controls.
 :::
 
-When using custom input actions, it's recommended to also use a custom input system assigned in the same configuration menu, and then assign the custom input actions asset to the `Actions Asset` property of the Input System UI Input Module component attached to the event system prefab. This is required for various UI-related functionality to work correctly. You can create a default event system prefab that works with Naninovel via `Create -> Naninovel -> Input -> Event System`.
+When using custom input actions, it's recommended to also use a custom `Event System` assigned in the same configuration menu, and then assign the custom input actions asset to the `Actions Asset` property of the Input System UI Input Module component attached to the event system prefab. This is required for various UI-related functionality to work correctly. You can create a default event system prefab that works with Naninovel via `Create -> Naninovel -> Input -> Event System`.
 
 ![](https://i.gyazo.com/b1f99bb8e2cea14ec9f97c78b91d313a.png)
 
