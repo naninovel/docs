@@ -636,7 +636,6 @@ While this command can be used as a function (subroutine) to invoke a common set
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">path</span> | string | Path to navigate into in the following format: `ScriptPath#Label`. When label is omitted, will play specified script from the start. When script path is omitted, will attempt to find a label in the currently played script. |
-| reset | string list | When specified, will reset the engine services state before loading a script (in case the path is leading to another script). Specify `*` to reset all the services, or specify service names to exclude from reset. By default, the state does not reset. |
 
 </div>
 
@@ -973,8 +972,8 @@ Activates/disables camera look mode, when player can offset the main camera with
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">enable</span> | boolean | Whether to enable or disable the camera look mode. Default: true. |
-| zone | decimal list | A bound box with X,Y sizes in units from the initial camera position, describing how far the camera can be moved. Default: 5,3. |
-| speed | decimal list | Camera movement speed (sensitivity) by X,Y axes. Default: 1.5,1. |
+| zone | decimal list | A bound box with X,Y sizes in units from the initial camera position, describing how far the camera can be moved. Default: 5.0,3.0 |
+| speed | decimal list | Camera movement speed (sensitivity) by X,Y axes. Default: 1.5,1.0 |
 | gravity | boolean | Whether to automatically move camera to the initial position when the look input is not active (eg, mouse is not moving or analog stick is in default position). Default: false. |
 
 </div>
