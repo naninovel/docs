@@ -162,9 +162,9 @@ public class SwitchToNovelMode : Command
             await scriptPlayer.LoadAndPlay(ScriptPath, label);
         }
 
-        // 4. Enable Naninovel input.
+        // 4. Umute Naninovel input.
         var inputManager = Engine.GetService<IInputManager>();
-        inputManager.ProcessInput = true;
+        inputManager.Mute = false;
     }
 }
 ```
@@ -175,9 +175,9 @@ public class SwitchToAdventureMode : Command
 {
     public override async UniTask Execute (AsyncToken asyncToken)
     {
-        // 1. Disable Naninovel input.
+        // 1. Mute Naninovel input.
         var inputManager = Engine.GetService<IInputManager>();
-        inputManager.ProcessInput = false;
+        inputManager.Mute = true;
 
         // 2. Stop script player.
         var scriptPlayer = Engine.GetService<IScriptPlayer>();
