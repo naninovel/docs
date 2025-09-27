@@ -146,7 +146,7 @@ public class SwitchToNovelMode : Command
     public override async UniTask Execute (AsyncToken asyncToken)
     {
         // 1. Disable character control.
-        var controller = Object.FindObjectOfType<CharacterController3D>();
+        var controller = Object.FindAnyObjectByType<CharacterController3D>();
         controller.IsInputBlocked = true;
 
         // 2. Switch cameras.
@@ -194,7 +194,7 @@ public class SwitchToAdventureMode : Command
         naniCamera.enabled = false;
 
         // 5. Enable character control.
-        var controller = Object.FindObjectOfType<CharacterController3D>();
+        var controller = Object.FindAnyObjectByType<CharacterController3D>();
         controller.IsInputBlocked = false;
     }
 }
