@@ -233,6 +233,16 @@ Be aware, that [@print] commands (that are also used under the hood when printin
 Link a printer with [narrator character](/guide/characters#narrator-characters) and disable `Has Name` to make narrated text linked with a printer, so that you won't have to use [@printer] to switch back to non-character (default) printer all the time.
 :::
 
+## Placeholder Characters
+
+The placeholder implementation is the default one and is intended for scenario drafting when you do not yet have any visual assets to represent a character. It uses actor metadata such as the identifier, display name and colors to procedurally generate the character placeholder.
+
+![](https://i.gyazo.com/a94fdcc2cd645738d71baa42c424ed65.png)
+
+Below is an example of a [placeholder background](/guide/backgrounds#placeholder-backgrounds) with a couple of placeholder characters on top. Notice the currently speaking character is highlighted by an increased scale and opacity.
+
+![](https://i.gyazo.com/cebb0506d3743e2e1b20b1d3c214239a.png)
+
 ## Sprite Characters
 
 Sprite implementation of the character actors is the most common and simple one; it uses a set of [texture](https://docs.unity3d.com/Manual/Textures.html) assets wrapped over a quad mesh (sprite) to represent appearances of the character. The textures can be based on `.jpg`, `.png`, `.tiff`, `.psd` or any other image file format [supported by Unity](https://docs.unity3d.com/Manual/ImportingTextures).
