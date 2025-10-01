@@ -121,6 +121,16 @@ Notice, that when a pose is used as appearance, you can still override individua
 @back Day tint:#ff45cb
 ```
 
+## Placeholder Backgrounds
+
+The placeholder implementation is the default one and is intended for scenario drafting when you do not yet have any visual assets to represent a background. It procedurally generates background appearances at runtime so you can keep track of which one is currently displayed while working on the scenario. Below is an example of a placeholder "EveningScene" background with a couple of [placeholder characters](/guide/characters#placeholder-characters) on top.
+
+![](https://i.gyazo.com/cebb0506d3743e2e1b20b1d3c214239a.png)
+
+While Naninovel automatically generates background placeholders, you can define the looks for specific appearances via the `Placeholder Appearances` list in the background editor.
+
+![](https://i.gyazo.com/183dcc86fbf0d01de49d85d45686571f.png)
+
 ## Sprite Backgrounds
 
 Sprite implementation of the background actors is the most common and simple one; it uses a set of [texture](https://docs.unity3d.com/Manual/Textures.html) assets wrapped over a quad mesh (sprite) to represent appearances of the background. The textures can be based on `.jpg`, `.png`, `.tiff`, `.psd` or any other image file format [supported by Unity](https://docs.unity3d.com/Manual/ImportingTextures).

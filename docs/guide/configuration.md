@@ -151,8 +151,10 @@ Debug Only Console | False | When enabled, development console will only be avai
 
 Property | Default Value | Description
 --- | --- | ---
+Spawn Event System | True | Whether to spawn a Naninovel-specific event system; required for uGUI interactions. Disable, if you'd like to initialize the event system yourself.
 Event System | Null | A prefab with `EventSystem` component to spawn on engine init and use for input processing. Will use the default event system when not assigned.
 Input Actions | Null | When Unity's input system is installed, assign input actions asset here.<br><br>To map input actions to Naninovel's input samplers, create `Naninovel` action map and add actions with names equal to the input names.<br><br>Will use the default input actions when not assigned.
+Action Maps | Object Ref | Input action map names in the specified 'Input Actions' asset to register with the Naninovel input.
 Detect Input Mode | True | Whether to change input mode when associated device is activated. Eg, switch to gamepad when any gamepad button is pressed and switch back to mouse when mouse button clicked.
 
 </div>
@@ -216,7 +218,6 @@ Enable Build Processing | True | Whether to register a custom build player handl
 Use Addressables | True | When the Addressable Asset System is installed, enabling this property will optimize asset processing step improving the build time.
 Auto Build Bundles | True | Whether to automatically build the addressable asset bundles when building the player. Has no effect when `Use Addressables` is disabled.
 Label By Scripts | True | Whether to label all the Naninovel addressable assets by the scenario script path they're used in. When `Bundle Mode` is set to `Pack Together By Label` in the addressable group settings, will result in a more efficient bundle packing.<br><br>Note that script labels will be assigned to all the assets with 'Naninovel' label, which includes assets manually exposed to the addressable resource provider (w/o using the resource editor menus).
-Group By Category | False | Whether to create an addressable group per Naninovel resource category: scripts, characters, audio, etc. When disabled, will use single `Naninovel` group for all the resources.
 Extra Labels | Null | Addressable provider will only work with assets, that have the assigned labels in addition to `Naninovel` label. Can be used to filter assets used by the engine based on custom criteria (eg, HD vs SD textures).
 Local Root Path | %DATA%/Resources | Path root to use for the local resource provider. Can be an absolute path to the folder where the resources are located, or a relative path with one of the available origins:<br> • %DATA% — Game data folder on the target device (UnityEngine.Application.dataPath).<br> • %PDATA% — Persistent data directory on the target device (UnityEngine.Application.persistentDataPath).<br> • %STREAM% — `StreamingAssets` folder (UnityEngine.Application.streamingAssetsPath).<br> • %SPECIAL{F}% — An OS special folder (where F is value from System.Environment.SpecialFolder).
 Video Stream Extension | .mp 4 | When streaming videos under WebGL (movies, video backgrounds), specify the extension of the video files.
