@@ -246,17 +246,17 @@ public class PlayMusic : Command, Command.IPreloadable
 
     public async UniTask PreloadResources ()
     {
-        await audio.AudioLoader.LoadAndHold(MusicName, this);
+        await audio.AudioLoader.Load(MusicName, this);
     }
 
-    public void ReleasePreloadedResources ()
+    public void ReleaseResources ()
     {
         audio.AudioLoader.Release(MusicName, this);
     }
 
-    public override async UniTask Execute (AsyncToken asyncToken = default)
+    public override async UniTask Execute (ExecutionContext ctx)
     {
-        await audio.PlayBgm(MusicName, asyncToken: asyncToken);
+        await audio.PlayBgm(MusicName, token: ctx.Token);
     }
 }
 ```

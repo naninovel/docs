@@ -18,7 +18,7 @@ public class HelloWorld : Command
 {
     public StringParameter Name;
 
-    public override UniTask Execute (AsyncToken asyncToken = default)
+    public override UniTask Execute (ExecutionContext ctx)
     {
         if (Assigned(Name)) Debug.Log($"Hello, {Name}!");
         else Debug.Log("Hello World!");
@@ -33,29 +33,38 @@ Whenever you change C# command implementations—such as renaming the class, add
 
 ### Execute Method
 
-`Execute` is an async method invoked when the command is executed by the scripts player; put the command logic there. Use [engine services](/guide/engine-services) to access the engine built-in systems. Naninovel script execution will halt until this method returns a completed task in case `Wait` parameter is `true`.
+`Execute` is an async method invoked when the command is executed by the script player; keep your command logic there. Use [engine services](/guide/engine-services) to access the engine's built-in systems. Naninovel script execution will halt until this method returns a completed task if the `Wait` parameter is set to `true`.
 
-### AsyncToken
+### Execution Context
 
-Notice the optional `AsyncToken` argument provided for the `Execute` method. When performing [async operations](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/), make sure to check the token for cancellation and completion requests after each async operation and react accordingly:
+Notice the `ExecutionContext ctx` argument provided to the `Execute` method. When performing [async operations](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/), make sure to check the `ctx.Token` async token for cancellation and completion requests after each async operation, and react accordingly:
 
-- `AsyncToken.Canceled` means the engine has been destroyed or reset; in both cases it's no longer safe to use the engine APIs and any state mutations will lead to an undefined behaviour. When canceled, the command implementation is expected to throw `AsyncOperationCanceledException` immediately, discarding any currently performed activities.
-- `AsyncToken.Completed` means the command is expected to complete all the activities as fast as possible; eg, if you're running animations, finish them instantly, no matter the expected duration. This usually happens when player activates continue input or a save game operation is started.
+- `AsyncToken.Canceled` means the engine has been destroyed or reset. In both cases, it's no longer safe to use engine APIs, and any state mutations will lead to undefined behavior. When canceled, the command implementation is expected to throw `AsyncOperationCanceledException` immediately, discarding any currently performed activities.
+- `AsyncToken.Completed` means the command is expected to complete all activities as fast as possible. For example, if you're running animations, finish them instantly, regardless of their expected duration. This usually happens when the player activates continue input or when a save game operation starts.
 
 ```csharp
-public override async UniTask Execute (AsyncToken asyncToken = default)
+public override async UniTask Execute (ExecutionContext ctx)
 {
     await PerformSomething();
-    // Engine may have been destroyed while the above method was running;
-    // below will check and throw the exception if that's the case.
-    asyncToken.ThrowIfCanceled();
+    // The engine may have been destroyed while the above method was running;
+    // the following check will throw an exception if that's the case.
+    ctx.Token.ThrowIfCanceled();
     // It's safe to continue using engine APIs after the check.
     var someUI = Engine.GetService<IUIManager>().GetUI<SomeUI>();
-    // In case completion is requested, fade the UI instantly.
-    var fadeDuration = asyncToken.Completed ? 0 : 5;
-    await someUI.ChangeVisibility(false, fadeDuration, asyncToken);
-    // Notice method above accepted the token; such methods will handle
-    // cancellations internally, so you don't have to check after them.
+    // If completion is requested, fade the UI instantly.
+    var fadeDuration = ctx.Token.Completed ? 0 : 5;
+    await someUI.ChangeVisibility(false, fadeDuration, ctx.Token);
+    // The method above accepts the async token; such methods handle
+    // cancellations internally, so you don't need to check again afterwards.
+}
+```
+
+Another member of the execution context is the script track instance executing the command, accessible via `ctx.Track`. Use the track instance whenever you need to control playback or when calling other engine APIs that require a track. For example, stop playback like this:
+
+```csharp
+public override async UniTask Execute (ExecutionContext ctx)
+{
+    ctx.Track.Stop();
 }
 ```
 
@@ -174,10 +183,10 @@ Below is an example of overriding built-in [@print] command, so that the printed
 [Alias("print")]
 public class MyCustomPrintCommand : PrintText
 {
-    public override UniTask Execute (AsyncToken asyncToken = default)
+    public override UniTask Execute (ExecutionContext ctx)
     {
         Debug.Log(Text);
-        return base.Execute(asyncToken);
+        return base.Execute(ctx);
     }
 }
 ```
