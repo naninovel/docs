@@ -143,7 +143,7 @@ public class SwitchToNovelMode : Command
     public StringParameter ScriptPath;
     public StringParameter Label;
 
-    public override async UniTask Execute (AsyncToken asyncToken)
+    public override async UniTask Execute (ExecutionContext ctx)
     {
         // 1. Disable character control.
         var controller = Object.FindAnyObjectByType<CharacterController3D>();
@@ -159,12 +159,12 @@ public class SwitchToNovelMode : Command
         if (Assigned(ScriptPath))
         {
             var scriptPlayer = Engine.GetService<IScriptPlayer>();
-            await scriptPlayer.LoadAndPlay(ScriptPath, label);
+            await scriptPlayer.MainTrack.LoadAndPlayAtLabel(ScriptPath, Label);
         }
 
-        // 4. Umute Naninovel input.
+        // 4. Unmute Naninovel input.
         var inputManager = Engine.GetService<IInputManager>();
-        inputManager.Mute = false;
+        inputManager.Muted = false;
     }
 }
 ```
@@ -173,15 +173,15 @@ public class SwitchToNovelMode : Command
 [Alias("adventure")]
 public class SwitchToAdventureMode : Command
 {
-    public override async UniTask Execute (AsyncToken asyncToken)
+    public override async UniTask Execute (ExecutionContext ctx)
     {
         // 1. Mute Naninovel input.
         var inputManager = Engine.GetService<IInputManager>();
-        inputManager.Mute = true;
+        inputManager.Muted = true;
 
         // 2. Stop script player.
         var scriptPlayer = Engine.GetService<IScriptPlayer>();
-        scriptPlayer.Stop();
+        scriptPlayer.MainTrack.Stop();
 
         // 3. Reset state.
         var stateManager = Engine.GetService<IStateManager>();

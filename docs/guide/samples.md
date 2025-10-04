@@ -320,10 +320,6 @@ When Naninovel library and types are added in the visual scripting settings, the
 In case you wish to send an event from a scenario script to a visual scripting graph or state machine, below is example of a [custom command](/guide/custom-commands), which will attempt to find a game object with the provided name and send an event with the specified name and arguments:
 
 ```csharp
-using Naninovel;
-using Unity.VisualScripting;
-using UnityEngine;
-
 [Alias("bolt")]
 public class BroadcastBoltEvent : Command
 {
@@ -334,7 +330,7 @@ public class BroadcastBoltEvent : Command
     [Alias("args")]
     public StringListParameter Arguments;
 
-    public override UniTask Execute (AsyncToken token = default)
+    public override UniTask Execute (ExecutionContext ctx)
     {
         var gameObject = GameObject.Find(GameObjectName);
         if (!gameObject)
@@ -360,33 +356,3 @@ Just copy-paste the contents to a new C# script stored anywhere inside the proje
 Below is an example graph, that, when attached to a `ExampleEvent` game object, will print the message and start playing the specified script.
 
 ![](https://i.gyazo.com/e2aef7f19cf013f4d476d32aac036f54.png)
-
-## UniTask
-
-[UniTask](https://github.com/Cysharp/UniTask) is an open-sourced (MIT license) library providing a more efficient [Task-based asynchronous programming](https://docs.microsoft.com/en-us/dotnet/standard/parallel-programming/task-based-asynchronous-programming) implementation for Unity. You can find more details regarding the nature of optimizations and usage examples in the [article by the author of the library](https://medium.com/@neuecc/a1ff0766029).
-
-Naninovel uses a stripped and modified version of UniTask v1, which is embedded inside the engine runtime assembly; most of the asynchronous methods return `UniTask` objects, which you can await in the same way as default `Task` objects from the "System.Threading" namespace.
-
-In case you want to use full standalone UniTask library, install UniTask v2 from the official repository: [github.com/Cysharp/UniTask](https://github.com/Cysharp/UniTask#install-via-git-url) and specify "Naninovel.UniTask" for the Naninovel APIs when required, eg:
-
-```csharp
-using Naninovel;
-using UnityEngine;
-
-public class UniTaskCommand : Command
-{
-    // This method uses embedded UniTask v1.
-    public override async Naninovel.UniTask Execute (AsyncToken token = default)
-    {
-        var message = await WaitAndReturnMessage();
-        Debug.Log(message);
-    }
-
-    // This method uses standalone UniTask v2.
-    private async Cysharp.Threading.Tasks.UniTask<string> WaitAndReturnMessage ()
-    {
-        await Cysharp.Threading.Tasks.UniTask.DelayFrame(100);
-        return "Hello from UniTask v2!";
-    }
-}
-```
