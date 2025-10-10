@@ -46,7 +46,7 @@ Hello.|#uniqueid|
 ```
 
 ::: tip
-Enable `Stable Identification` under scripts configuration menu to make Naninovel automatically generate unique IDs for all localizable script text, including voiced lines. This way you won't have to manually assign IDs for duplicate lines and editing already mapped lines won't break the associations. See [text identification](/guide/naninovel-scripts#text-identification) for more info.
+Use `Naninovel/Tools/Text Identifer` under the editor menu to make Naninovel automatically generate unique IDs for all localizable script text, including voiced lines. This way you won't have to manually assign IDs for duplicate lines, and editing already mapped lines won't break the associations. See [text identification](/guide/naninovel-scripts#text-identification) for more info.
 :::
 
 To associate the clips without using voice map utility, expose the assets to a resource provider using text ID as the resource name prefixed by the script path and voice loader prefix (`Voice` by default). To find the script path and text ID of a specific voiced line, use [voiceover documents](/guide/voicing#voiceover-documents). For example, to associate a voiced line with `2670eb4` text ID inside script with `Script01` path exposed via addressable resource provider, use the following address: `Naninovel/Voice/Script01/2670eb4`.
