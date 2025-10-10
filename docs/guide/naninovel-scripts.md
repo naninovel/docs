@@ -758,11 +758,11 @@ Debug window is available in both editor and player builds.
 
 ## Text Identification
 
-Features like [script localization](/guide/localization#scripts-localization) and [auto voicing](/guide/voicing#auto-voicing) require associating text written in Naninovel scenario scripts with other resources; for example translated text to show instead of the associated one or voice clip to play when associated text is printed. For this to work we have to assign each such text a unique identifier.
+Features like [script localization](/guide/localization#scripts-localization) and [auto voicing](/guide/voicing#auto-voicing) require associating text written in Naninovel scenario scripts with other resources; for example, translated text to show instead of the associated one or voice clip to play when the associated text is printed. For this to work, we have to assign each such text a unique identifier.
 
 By default, Naninovel will automatically identify all the localizable text by its content hash when importing script assets. This works fine as long as you don't modify the text; but after you do, all the associations will break: you'll have to re-map auto voice clips or re-translate changed text statements.
 
-To prevent associations from breaking when editing text, enable `Stable Identification` under scripts configuration menu. When enabled, Naninovel will explicitly write unique IDs to each localizable text in imported scripts. The downside is that the script text will now have IDs appended to each localizable parameter, eg:
+To prevent associations from breaking when editing text, use `Naninovel/Tools/Text Identifer` utility under the editor menu, which will auto-generate and write unique IDs to each localizable text in the scenario scripts. The scenario text will have identifiers appended to each localizable parameter, eg:
 
 ```nani
 Kohaku: Hey!|#1|[-] What's up?|#2|
@@ -770,13 +770,13 @@ Kohaku: Hey!|#1|[-] What's up?|#2|
 @choice "Option 2|#4|"
 ```
 
-— but in return, as long as you don't remove or change the IDs, the associations won't break. To make text IDs less distracting, they are colored dim by the IDE extension and visual editor.
+— as long as you don't remove or change the IDs, the associations won't break. To make text IDs less distracting, they are colored dim by the IDE extension and visual editor.
 
-When stable identification is enabled, the system will also make sure all the generated text IDs are unique and were never used before inside the script document; for this, it'll store latest revision numbers in `NaninovelData/ScriptRevisions` editor asset. Whenever you remove a line with an assigned text ID, you can be sure that this ID won't suddenly appear in some other place (unless you specify it manually).
+The text identifier will make sure all the generated text IDs are unique and were never used before inside the script document; for this, it'll store latest revision numbers in `NaninovelData/ScriptRevisions` editor asset. Whenever you remove a line with an assigned text ID, you can be sure that this ID won't suddenly appear in some other place (unless you specify it manually).
 
 ### Identified Text References
 
-In some rare cases you may look to intentionally duplicate localizable text identifier. For example, when creating an instance of command in C#, which should re-use localized parameter specified in script.
+In some rare cases you may look to intentionally duplicate localizable text identifier. For example, when creating an instance of command in C#, which should re-use localized parameter specified in a script.
 
 Should you just assign `LocalizableTextParameter` parameter value, Naninovel will warn about duplicate text IDs. Instead, use `Ref()` instance method of the parameter:
 
@@ -785,7 +785,7 @@ var myPrintCommand = new PrintText();
 myPrintCommand.AuthorLabel = printFromScript.AuthorLabel.Ref();
 ```
 
-To reference an existing localized text inside scenario script, append `&` to the identifier:
+To reference an existing localized text inside the scenario script, append `&` to the identifier:
 
 ```nani
 ; Show choice with "Some Text" and then print the same text.
