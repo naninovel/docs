@@ -753,7 +753,7 @@ In case hot reload is not working, make sure `Auto Refresh` is enabled and `Scri
 
 ![](https://i.gyazo.com/5d433783e1a12531c79fe6be80c92da7.png)
 
-To manually initiate hot reload of the currently played naninovel script (eg, when editing script file outside of Unity project), use `reload` [console command](/guide/development-console). The command is editor-only (won't work in builds).
+To manually initiate hot reload of the currently played naninovel script (eg, when editing script file outside of Unity project or in builds), use `reload` [console command](/guide/development-console).
 
 ## IDE Support
 
