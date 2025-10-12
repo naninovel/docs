@@ -634,6 +634,33 @@ Consider encapsulating common animations or other async tasks in a separate scri
 
 :::
 
+### Synchronizing Tracks
+
+In some advanced cases, you may want to join (synchronize) concurrently running tracks with each other or with the main track. The [@sync] command can do just that:
+
+```nani
+You'll have 60 seconds to defuse the bomb!
+
+@async Boom
+    @wait 60
+    ; After 60 seconds, if the 'Boom' task is not stopped,
+    ; the @sync command below will forcefully move the main
+    ; track here, which will then navigate to the 'BadEnd' script.
+    @sync
+    @goto BadEnd
+
+; Simulating a series of bomb-defuse puzzles.
+The defuse puzzle 1.
+The defuse puzzle 2.
+The defuse puzzle 3.
+
+; The 'Boom' async task is stopped, so the main track
+; will continue executing without interruption.
+@stop Boom
+The bomb is defused!
+```
+— if we didn't use the [@sync] command in our "Boom" async thread, the [@goto] command would be executed on the async track, while the main track would continue executing further, so we'd end up with both 'BadEnd' and the main scenario running concurrently. What [@sync] does is forcefully move the target track (the main one by default) to the line where it's used and dispose of the host track, essentially swapping the host track with the target one.
+
 ## Title Script
 
 Title script is a special naninovel script assigned in script configuration menu. When assigned, it's automatically played when the title UI (main menu) is shown. Title script can be used to set up the title screen scene: background, music, effects, etc.

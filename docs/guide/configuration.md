@@ -251,7 +251,6 @@ Property | Default Value | Description
 Loader | Scripts- (Addressable, Project) | Configuration of the resource loader used with naninovel script resources.
 Script Compiler | Naninovel Script Compiler | IScriptCompiler implementation to use for transforming source scenario text into script assets. Reimport script assets after modifying this setting for changes to take effect.
 Compiler Localization |  (Naninovel.Compiler Localization) | Locale-specific NaniScript compiler options. Will propagate to IDE extension on metadata sync. Restart Unity editor and reimport script assets for changes to take effect.
-Stable Identification | False | Whether to automatically write identifiers to all the localizable text parameters in imported scripts. Enable to persist associations (eg, localization and voiceover) while editing text content. Re-import the scripts for the change to take effect.
 Initialization Script | Null | Local resource path of the script to play right after the engine initialization.
 Title Script | Null | Local resource path of the script to play when showing the Title UI. Can be used to setup the title screen scene (background, music, etc).
 Start Game Script | Null | Local resource path of the script to play when starting a new game. Will use first available when not specified.

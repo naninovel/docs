@@ -119,7 +119,7 @@ Executes the nested lines asynchronously on a dedicated script track in parallel
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">asyncId</span> | string | Unique identifier of the player track and associated async task responsible for executing the nested lines. When specified, the ID can be used to [@await] or [@stop] the async track playback. |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">trackId</span> | string | Unique identifier of the player track responsible for executing the nested lines. When specified, the ID can be used to [@await] or [@stop] the async track playback. |
 | loop | boolean | Whether to play the nested lines in a loop, until stopped with [@stop]. |
 
 </div>
@@ -1836,6 +1836,40 @@ Spawns particle system simulating [sun shafts](/guide/special-effects#sun-shafts
 @sun power:1 time:10
 ; Stop the sunshine over 30 seconds.
 @sun power:0 time:30
+```
+
+## sync
+
+Navigates the player track with the specified identifier to the current line and disposes the host track. Use to join (synchronize) the asynchronously executed tracks with each other or the main track. Consult the [concurrent playback](/guide/naninovel-scripts#concurrent-playback) guide for more info.
+
+<div class="config-table">
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">trackId</span> | string | Unique identifier of the player track to join with. Uses main track when not specified. |
+
+</div>
+
+```nani
+You'll have 60 seconds to defuse the bomb!
+
+@async Boom
+    @wait 60
+    ; After 60 seconds, if the 'Boom' task is not stopped,
+    ; the @sync command below will forcefully move the main
+    ; track here, which will then navigate to the 'BadEnd' script.
+    @sync
+    @goto BadEnd
+
+; Simulating a series of bomb-defuse puzzles.
+The defuse puzzle 1.
+The defuse puzzle 2.
+The defuse puzzle 3.
+
+; The 'Boom' async task is stopped, so the main track
+; will continue executing without interruption.
+@stop Boom
+The bomb is defused!
 ```
 
 ## title
