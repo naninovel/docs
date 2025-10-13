@@ -78,11 +78,11 @@ When `Focus Object` is assigned, `Focus Mode` property allows choosing when to f
 
 `On Show` and `On Hide` Unity events allow hooking custom handlers to react to the UI visibility changes. For example, you can hook an `Animator` triggers to fire some custom animations when the UI becomes visible and vice-versa.
 
-When `Hide On Load` is enabled, the UI will automatically be hidden when the engine is starting a load operation. This usually happens when loading another naninovel script or exiting to title menu.
+When `Hide On Load` is enabled, the UI will automatically be hidden when the engine is starting a load operation. This usually happens when loading another naninovel script or exiting to the title menu.
 
 Enabling `Save Visibility State` will make the visibility state of the UI persistent, so that when player loads a saved game, the UI will be in the same state (visible or hidden) as it was when the game was saved.
 
-`Block Input When Visible` allows disabling [input processing](/guide/input-processing) when the UI is visible. This is useful to prevent the player from using various hotkeys (hiding the UI, continue reading, etc) while he's interacting with the UI. `Allowed Samplers` allows adding exceptions to the blocked inputs; eg, you can add `ToggleUI` input name to the list, allowing player to toggle the UI while still preventing activation of any other inputs.
+`Block Input When Visible` allows disabling [input processing](/guide/input-processing) when the UI is visible. This is useful to prevent the player from using various hotkeys (hiding the UI, continue reading, etc.) while they're interacting with the UI. `Allowed Samplers` allows adding exceptions to the blocked inputs; eg, you can add `ToggleUI` input name to the list, allowing player to toggle the UI while still preventing activation of any other inputs.
 
 Enabling `Modal UI` makes all other UIs ignore interaction while the UI is visible. This is similar to `Block Input When Visible`, but affects event-based interaction (mouse clicks, touches, UI navigation) instead of direct input processing.
 
@@ -99,7 +99,7 @@ To specify, which text elements should be affected by font and text size changes
 
 ![](https://i.gyazo.com/f8e8b03580940cce72de9e9970512902.png)
 
-Each element in the configuration list has following properties:
+Each element in the configuration list has the following properties:
 
 Property | Description
 --- | ---
@@ -121,7 +121,7 @@ To change the font outside of `Custom UI` objects (eg, on choice handler button 
 
 ### Disabling Built-In UI
 
-To disable a built-in UI remove corresponding record from the UI resources list and the prefab won't be instantiated on engine initialization.
+To disable a built-in UI, remove the corresponding record from the UI resources list, and the prefab won't be instantiated on engine initialization.
 
 ### Modifying Built-In UI
 
@@ -190,8 +190,8 @@ You can find an example of using the `Play Script` component in the [UI sample](
 
 ## UI Toolkit
 
-Unity's new UI authoring solution — [UI Toolkit](https://docs.unity3d.com/Packages/com.unity.ui@latest) — is not supported out of the box, but can be used with Naninovel with an adapter, which implements `IManagedUI` interface. Find an example of such adapter in the [UI sample](/guide/samples#ui).
+Unity's new UI authoring solution — [UI Toolkit](https://docs.unity3d.com/Packages/com.unity.ui@latest) — is not supported out of the box, but can be used with Naninovel with an adapter, which implements `IManagedUI` interface. Find an example of such an adapter in the [UI sample](/guide/samples#ui).
 
 ::: warning
-UI Toolkit is still in early development and miss lots of features compared to the default UI solution (uGUI). Do not use it, unless you're an advanced developer and ready to solve all the related issues. Be aware, that we won't be able to provide any support or guidance on using the toolkit with Naninovel.
+UI Toolkit is still in early development and lacks some features compared to the default UI solution (uGUI). We do not recommend using it unless you're an advanced developer and ready to solve all the related issues. Be aware that we won't be able to provide any support or guidance on using UI Toolkit with Naninovel.
 :::
