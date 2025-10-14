@@ -184,7 +184,7 @@ The button's click and hover events are handled with Naninovel's [Play Script](h
 
 ![](https://i.gyazo.com/a64ee9beee378c687d0d8093334f4ef7.png)
 
-The availability of the locations is controlled with [Variable Trigger](https://naninovel.com/guide/custom-variables.html#variable-triggers) components attached to the buttons.
+The availability of the locations is controlled with [Variable Events](https://naninovel.com/guide/custom-variables.html#variable-events) components attached to the buttons.
 
 ## RTL
 
