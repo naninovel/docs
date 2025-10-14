@@ -96,9 +96,9 @@ This is particularly useful for declaring global variables in entry or initializ
 @set g_ClearedRouteY?=false
 ```
 
-## Variable Triggers
+## Variable Events
 
-When building a [custom UI](/guide/user-interface#ui-customization) or other systems, you may want to listen for (react to) events when a variable's value changes. For example, when creating a character stats screen, you might want the text to update with the variables. While the conventional way to implement such behavior is by using a C# script, you can also use the `Custom Variable Trigger` component. This component will invoke Unity events when a variable with a specified name changes.
+When building a [custom UI](/guide/user-interface#ui-customization) or other systems, you may want to listen for (react to) events when a variable's value changes. For example, when creating a character stats screen, you might want the text to update with the variables. While the conventional way to implement such behavior is by using a C# script, you can also use the `Variable Events` component. This component will invoke Unity events when a variable with a specified name changes.
 
 ![](https://i.gyazo.com/22eddd109e76d4e63c461e9d75b20ceb.png)
 
