@@ -4,7 +4,7 @@ The best place to start when you need help is our official Discord server: [disc
 
 You're welcome to ask for help or advice in the `#devtalk` channel, explore tutorials and guides in `#wiki`, or just hang out and chat with fellow Naninovel users in `#general`.
 
-If you have an active [Support Plan](/support#support-plan), you'll also gain access to the `#support` channel, where the Naninovel team provides direct assistance. The first year of the Support Plan is free when you [register your license](https://account.naninovel.com).
+If you have an active [Support Plan](/support/#support-plan), you'll also gain access to the `#support` channel, where the Naninovel team provides direct assistance. The first year of the Support Plan is free when you [register your license](https://account.naninovel.com).
 
 ## Support Plan
 
@@ -23,7 +23,7 @@ The Support Plan is completely optional — you'll continue to have lifetime acc
 
 ## Reporting Bugs
 
-If you believe something is not working as intended, let us know on [Discord](https://discord.gg/BfkNqem) in the `#support` channel (if you have an active [Support Plan](/support#support-plan)) or the `#devtalk` channel.
+If you believe something is not working as intended, let us know on [Discord](https://discord.gg/BfkNqem) in the `#support` channel (if you have an active [Support Plan](/support/#support-plan)) or the `#devtalk` channel.
 
 Before submitting a report, please:
 
