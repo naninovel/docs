@@ -121,8 +121,9 @@ export const zn: DefaultTheme.SidebarItem[] = [
             { text: "属性配置", link: "/zh/guide/configuration" },
             { text: "Naninovel 脚本", link: "/zh/guide/naninovel-scripts" },
             { text: "IDE支持", link: "/zh/guide/ide-extension" },
+            { text: "网页版编辑器", link: "/guide/editor" },
             { text: "文本打字机", link: "/zh/guide/text-printers" },
-            { text: "人物", link: "/zh/guide/characters" },
+            { text: "角色", link: "/zh/guide/characters" },
             { text: "背景", link: "/zh/guide/backgrounds" },
             { text: "过渡效果", link: "/zh/guide/transition-effects" },
             { text: "特殊效果", link: "/zh/guide/special-effects" },
@@ -139,9 +140,11 @@ export const zn: DefaultTheme.SidebarItem[] = [
             { text: "脚本表达式", link: "/zh/guide/script-expressions" },
             { text: "托管文本", link: "/zh/guide/managed-text" },
             { text: "本地化", link: "/zh/guide/localization" },
+            { text: "内存管理", link: "/zh/guide/memory-management" },
             { text: "资源加载器", link: "/zh/guide/resource-providers" },
             { text: "社区模组", link: "/zh/guide/community-modding" },
-            { text: "开发控制台", link: "/zh/guide/development-console" }
+            { text: "开发控制台", link: "/zh/guide/development-console" },
+            { text: "示例资源", link: "/zh/guide/samples" }
         ]
     },
     {
@@ -158,6 +161,7 @@ export const zn: DefaultTheme.SidebarItem[] = [
             { text: "状态管理", link: "/zh/guide/state-management" },
             { text: "整合设置", link: "/zh/guide/integration-options" },
             { text: "渲染管线", link: "/zh/guide/render-pipelines" },
+            { text: "自动化测试", link: "/zh/guide/automated-testing" },
             { text: "自定义构建环境", link: "/zh/guide/custom-build-environment" }
         ]
     }

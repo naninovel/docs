@@ -36,23 +36,23 @@ export const config: LocaleConfig<DefaultTheme.Config> = {
     //         editLink: buildEditLink("GitHub でこのページを編集する")
     //     }
     // },
-    // zh: {
-    //     lang: "zh-CN",
-    //     label: "中文",
-    //     description: "功能齐全、易于编写且完全可自定义的Unity游戏引擎视觉小说插件。",
-    //     themeConfig: {
-    //         langMenuLabel: "语言",
-    //         lastUpdated: { text: "最近更新时间", formatOptions: { dateStyle: "medium" } },
-    //         sidebarMenuLabel: "菜单",
-    //         darkModeSwitchLabel: "外貌",
-    //         returnToTopLabel: "返回顶部",
-    //         outline: { label: "在本页", level: "deep" },
-    //         sidebar: { "/zh/guide/": guide.zn },
-    //         docFooter: { prev: "上一页", next: "下一页" },
-    //         nav: buildNav(["常见问题", "指南", "API", "技术支持"], "zh"),
-    //         editLink: buildEditLink("在 GitHub 上编辑此页面")
-    //     }
-    // },
+    zh: {
+        lang: "zh-CN",
+        label: "中文",
+        description: "功能齐全、易于编写且完全可自定义的Unity游戏引擎视觉小说插件。",
+        themeConfig: {
+            langMenuLabel: "语言",
+            lastUpdated: { text: "最近更新时间", formatOptions: { dateStyle: "medium" } },
+            sidebarMenuLabel: "菜单",
+            darkModeSwitchLabel: "外貌",
+            returnToTopLabel: "返回顶部",
+            outline: { label: "在本页", level: "deep" },
+            sidebar: { "/zh/guide/": guide.zn },
+            docFooter: { prev: "上一页", next: "下一页" },
+            nav: buildNav(["常见问题", "指南", "API", "技术支持"], "zh"),
+            editLink: buildEditLink("在 GitHub 上编辑此页面")
+        }
+    },
     // ru: {
     //     lang: "ru-RU",
     //     label: "Русский",
