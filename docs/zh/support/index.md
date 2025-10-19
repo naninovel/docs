@@ -1,7 +1,7 @@
 # 支持
 
 ::: info 注意
-以下的信息均为英文版帮助支持的直译，寻求Naninovel团队帮助时，请提交英文版信息。具体请阅读 [英文版支持页](/support/)。呐呐呐制作组亦向开发者们提供 [有偿Naninovel支持服务](https://nanana.cn/article/support)，该服务不在Naninovel官方 “支持计划” 范围内。
+以下的信息均为对[英文版支持信息](/support/)的直译，当您寻求Naninovel团队帮助时，请**务必使用英文**。呐呐呐制作组亦向国内 Naninovel 用户提供额外的 [有偿Naninovel技术支持](https://nanana.cn/article/support)。
 :::
 
 当你需要帮助时，最好的起点是我们的官方 Discord 服务器：[discord.gg/BfkNqem](https://discord.gg/BfkNqem)。

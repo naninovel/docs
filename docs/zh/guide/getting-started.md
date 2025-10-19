@@ -13,7 +13,7 @@ Naninovel 是 [Unity 游戏引擎](https://unity.com) 的一个扩展插件。
 
 虽然 Universal（URP）和 High Definition（HDRP）渲染管线通常也能正常工作，但相比内置渲染器，它们有一定的限制、需要额外设置，并且 Naninovel 对它们的支持有限。 
 
-更多信息请参阅 [渲染管线指南](/guide/render-pipelines)。
+更多信息请参阅 [渲染管线指南](/zh/guide/render-pipelines)。
 
 选择 2D 或 3D 模式取决于你所制作的游戏类型。对于大多数标准视觉小说，我们推荐选择 **2D 模式**，这样图像会默认导入为精灵（Sprite）资源，你无需手动修改导入设置。  
 
@@ -74,7 +74,7 @@ Unity 在不同模板中会默认包含许多模块，但其中大部分你可�
 — 请注意，`Assets/NaninovelData` 文件夹是自动生成的。在首次生成后，你可以将其重命名或移动到 `Assets` 目录下的任意位置，Naninovel 仍然能够正确定位到它。但如果你进行了移动或重命名，请相应更新上述忽略路径。
 
 ::: tip 示例
-请参阅我们的 [示例项目](/guide/samples) 中的 [.gitignore](https://github.com/naninovel/engine/blob/main/unity/samples/.gitignore) 文件，以了解一个示例的 Git 忽略配置。
+请参阅我们的 [示例项目](/zh/guide/samples) 中的 [.gitignore](https://github.com/naninovel/engine/blob/main/unity/samples/.gitignore) 文件，以了解一个示例的 Git 忽略配置。
 请注意，在该项目中，`NaninovelData` 文件夹已被重命名为 `Naninovel`，并出于组织结构的考虑移动到了 `Assets/Profiles` 目录下。你也可以在自己的项目中以类似方式移动该文件夹。
 :::
 
@@ -88,7 +88,7 @@ Naninovel 提供三种版本发布通道：**preview（预览版）**、**stable
 
 **Stable（稳定版）** 是折中选择，仅包含 bug 修复，不会加入新功能，但也不会引入任何破坏性更改。在大多数情况下，推荐使用稳定版。
 
-**Final（最终版）** 是经过最多测试、最稳定的版本，但同时也最为过时，并且不再享受 [技术支持](/support/#naninovel-support)。仅当你的项目已发布且无法升级时，才建议继续使用最终版。
+**Final（最终版）** 是经过最多测试、最稳定的版本，但同时也最为过时，并且不再享受 [技术支持](/zh/support/#naninovel-support)。仅当你的项目已发布且无法升级时，才建议继续使用最终版。
 
 ![](https://i.gyazo.com/2462242c14c96a0eae9ca99212c340c4.png)
 
@@ -122,24 +122,24 @@ Asset Store 的安装包与下载存档的更新通常比 UPM 仓库 **滞后 2�
 
 | 演员类型                              | 附加参数                   | 描述                                                       |
 |---------------------------------------|----------------------------|------------------------------------------------------------|
-| [角色](/guide/characters)             | 朝向                       | 表示场景中的一个角色。                                     |
-| [背景](/guide/backgrounds)            | 无                         | 表示场景中的背景；默认位于角色演员的后方。                 |
-| [文本输出框](/guide/text-printers)    | 文本、作者ID、文字显示进度 | 用于逐步显示（打印）文本消息。                             |
-| [对话选项](/guide/choices)            | 选项                       | 允许玩家从可用的选项中进行选择。                           |
+| [角色](/zh/guide/characters)             | 朝向                       | 表示场景中的一个角色。                                     |
+| [背景](/zh/guide/backgrounds)            | 无                         | 表示场景中的背景；默认位于角色演员的后方。                 |
+| [文本输出框](/zh/guide/text-printers)    | 文本、作者ID、文字显示进度 | 用于逐步显示（打印）文本消息。                             |
+| [对话选项](/zh/guide/choices)            | 选项                       | 允许玩家从可用的选项中进行选择。                           |
 
 想象一个典型的视觉小说场景：角色立绘显示在背景之上。在 Naninovel 的术语中，它的结构可以用如下方式表示。
 
-![](/assets/img/docs/actor-concept.mp4)
+![](/zh/assets/img/docs/actor-concept.mp4)
 
 假设我们想让角色 “Kohaku” 露出开心的表情。你可能拥有该角色的多张贴图（图像），每张表现不同的情绪。在 Naninovel 中，这些贴图被称为 **Actor 的 “外观”**。因此，要让 “Kohaku” 看起来开心，我们只需更改角色 Actor 的外观。同样地，如果要让 “MainBackground” 显示其他画面，也需要更改对应背景 Actor 的外观。
 
-所有 Actor 及其参数都通过 [Naninovel 脚本](/guide/naninovel-scripts) 中的命令来控制（或称“指挥”）。
+所有 Actor 及其参数都通过 [Naninovel 脚本](/zh/guide/naninovel-scripts) 中的命令来控制（或称“指挥”）。
 
-另一个常用的概念是 [用户界面](/guide/user-interface)。UI 让玩家能够与 Actor 以及游戏的其他部分交互。这包括各种菜单（标题界面、存档/读档、设置等）和控制面板（自动阅读、跳过文本等）。UI 元素默认位于 Actor 图层之上。
+另一个常用的概念是 [用户界面](/zh/guide/user-interface)。UI 让玩家能够与 Actor 以及游戏的其他部分交互。这包括各种菜单（标题界面、存档/读档、设置等）和控制面板（自动阅读、跳过文本等）。UI 元素默认位于 Actor 图层之上。
 
 **文本输出窗** 和 **选项处理器** 既被视为 Actor，也被视为 UI 元素。这意味着它们既拥有 Actor 的特性、可通过 Naninovel 脚本控制，同时也能被玩家直接操作以与游戏交互。
 
-如果你熟悉编程，建议阅读 [引擎架构（Engine Architecture）](/guide/engine-architecture) 一节，以了解 Naninovel 从软件工程角度的设计思路。
+如果你熟悉编程，建议阅读 [引擎架构（Engine Architecture）](/zh/guide/engine-architecture) 一节，以了解 Naninovel 从软件工程角度的设计思路。
 
 ## 添加 Naninovel 脚本
 
@@ -148,14 +148,11 @@ Asset Store 的安装包与下载存档的更新通常比 UPM 仓库 **滞后 2�
 ![](https://i.gyazo.com/30f96fd3c8bb275478361c51f1a00e86.png)
 
 ::: info 注意
-你可以将 Naninovel 脚本（以及其他资源）存放在项目中的任意文件夹，并按照自己的喜好进行组织，命名方式也完全由你决定。  
-不过请注意，**所有剧情脚本必须存放在同一个根目录下**。  
-你可以根据需要创建任意多层子文件夹，只要这些子文件夹最终都属于同一个根目录即可。
+你可以将 Naninovel 脚本（以及其他资源）存放在项目中的任意文件夹，并按照自己的喜好进行组织，命名方式也完全由你决定。不过请注意，**所有剧情脚本必须存放在同一个根目录下**。你可以根据需要创建任意多层子文件夹，只要这些子文件夹最终都属于同一个根目录即可。
 :::
 
 ::: warning
-Unity 对名为 `Resources` 的文件夹有特殊处理：其中的资源会被强制包含到构建中，这可能会导致[性能问题](https://docs.unity3d.com/Manual/UnderstandingPerformanceResourcesFolder.html)。  
-最重要的是，**不要将任何内容存放在 `Resources/Naninovel` 文件夹下**，除非指南中特别要求，否则可能会引发各种冲突和未定义行为。
+Unity 对名为 `Resources` 的文件夹有特殊处理：其中的资源会被强制包含到构建中，这可能会导致[性能问题](https://docs.unity3d.com/Manual/UnderstandingPerformanceResourcesFolder.html)。最重要的是，**不要将任何内容存放在 `Resources/Naninovel` 文件夹下**，除非指南中特别要求，否则可能会引发各种冲突和未定义行为。
 :::
 
 Naninovel 脚本是扩展名为 `.nani` 的文本文件，用于控制场景中发生的事件。  
@@ -178,7 +175,7 @@ Naninovel 脚本是扩展名为 `.nani` 的文本文件，用于控制场景中�
 
 ::: tip
 我们正在开发一个比内置可视化编辑器更强大的独立编辑器应用程序，它可以在不依赖 Unity 的情况下直接在浏览器中使用。  
-详细信息请参阅 [编辑器指南](/guide/editor)。
+详细信息请参阅 [编辑器指南](/zh/guide/editor)。
 
 ![](https://i.gyazo.com/d54f0b35b4d89bdbece096c7b78c8c72.mp4)
 :::
@@ -200,8 +197,8 @@ Naninovel 脚本是扩展名为 `.nani` 的文本文件，用于控制场景中�
 当游戏运行时，这行代码会在屏幕上显示 “你好，世界！”。进入播放模式并开始新游戏即可查看效果。
 
 ::: info 注意
-所有可用的内置脚本命令、支持的参数以及使用示例均可在 [API 参考](/api/) 中查阅。  
-你也可以添加自定义命令，详情请参考 [自定义命令指南](/guide/custom-commands)。
+所有可用的内置脚本命令、支持的参数以及使用示例均可在 [API 参考](/zh/api/) 中查阅。  
+你也可以添加自定义命令，详情请参考 [自定义命令指南](/zh/guide/custom-commands)。
 :::
 
 如果标题菜单中的 “NEW GAME” 按钮处于不可用状态，请确认脚本配置（`Naninovel -> Configuration -> Scripts`）中的 `Start Game Script` 属性是否与所创建脚本的名称一致。
@@ -252,7 +249,7 @@ Kohaku.Happy: 你好，世界！
 @hide Kohaku
 ```
 
-## 添加背景（Add Background）
+## 添加背景
 
 与角色类似，Naninovel 中的背景也可以用多种方式表示：精灵（Sprite）、通用对象（Generic Object）、视频（Video）或场景（Scene）；当然，你也可以实现自定义的背景类型。
 
@@ -268,7 +265,7 @@ Kohaku.Happy: 你好，世界！
 @back City
 ```
 
-在切换背景时，系统默认会使用交叉淡入淡出（cross-fade）[过渡效果](/guide/transition-effects)。若要更改效果，请在外观名称后指定过渡类型，例如：
+在切换背景时，系统默认会使用交叉淡入淡出（cross-fade）[过渡效果](/zh/guide/transition-effects)。若要更改效果，请在外观名称后指定过渡类型，例如：
 
 ```nani
 @back City
@@ -308,12 +305,12 @@ Kohaku.Happy: 你好，世界！
 在使用 Naninovel 的过程中，会自动在 `Assets/NaninovelData` 文件夹下生成许多资源（如设置、资源引用、缓存等）。你可以自由移动或重命名该文件夹，但请务必 **不要** 将其放在 `Resources` 文件夹下，否则会导致冲突。
 :::
 
-## 视频教程（Video Guide）
+## 视频教程
 
 如果你更喜欢通过视频学习，这里有一个演示上述步骤的视频：
 
 ![](https://www.bilibili.com/video/BV1CTsPzhEiB/)
 
-## 示例项目（Demo Project）
+## 示例项目
 
-如果你更倾向于通过完整项目进行学习，请查看 [示例项目](/guide/samples)，其中包含网站演示中展示的完整源代码。
+如果你更倾向于通过完整项目进行学习，请查看 [示例项目](/zh/guide/samples)，其中包含网站演示中展示的完整源代码。

@@ -121,7 +121,7 @@ export const zn: DefaultTheme.SidebarItem[] = [
             { text: "属性配置", link: "/zh/guide/configuration" },
             { text: "Naninovel 脚本", link: "/zh/guide/naninovel-scripts" },
             { text: "IDE支持", link: "/zh/guide/ide-extension" },
-            { text: "网页版编辑器", link: "/guide/editor" },
+            { text: "网页版编辑器", link: "/zh/guide/editor" },
             { text: "文本输出窗", link: "/zh/guide/text-printers" },
             { text: "角色", link: "/zh/guide/characters" },
             { text: "背景", link: "/zh/guide/backgrounds" },
