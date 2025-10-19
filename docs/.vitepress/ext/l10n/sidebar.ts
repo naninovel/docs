@@ -112,7 +112,7 @@ export const js: DefaultTheme.SidebarItem[] = [
 
 export const zn: DefaultTheme.SidebarItem[] = [
     {
-        text: "指南",
+        text: "使用手册",
         collapsed: true,
         items: [
             { text: "介绍", link: "/zh/guide/" },

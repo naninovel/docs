@@ -49,7 +49,7 @@ export const config: LocaleConfig<DefaultTheme.Config> = {
             outline: { label: "在本页", level: "deep" },
             sidebar: { "/zh/guide/": guide.zn },
             docFooter: { prev: "上一页", next: "下一页" },
-            nav: buildNav(["常见问题", "指南", "API", "技术支持"], "zh"),
+            nav: buildNav(["常见问题", "使用手册", "API", "技术支持"], "zh"),
             editLink: buildEditLink("在 GitHub 上编辑此页面")
         }
     },
