@@ -129,7 +129,7 @@ Asset Store 的安装包与下载存档的更新通常比 UPM 仓库 **滞后 2�
 
 想象一个典型的视觉小说场景：角色立绘显示在背景之上。在 Naninovel 的术语中，它的结构可以用如下方式表示。
 
-![](/zh/assets/img/docs/actor-concept.mp4)
+![](/assets/img/docs/actor-concept.mp4)
 
 假设我们想让角色 “Kohaku” 露出开心的表情。你可能拥有该角色的多张贴图（图像），每张表现不同的情绪。在 Naninovel 中，这些贴图被称为 **Actor 的 “外观”**。因此，要让 “Kohaku” 看起来开心，我们只需更改角色 Actor 的外观。同样地，如果要让 “MainBackground” 显示其他画面，也需要更改对应背景 Actor 的外观。
 

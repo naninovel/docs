@@ -3,13 +3,17 @@ editLink: false
 aside: false
 ---
 
-# Games Made with Naninovel
+# 使用 Naninovel 制作的作品
 
-Below is a list of games (in alphabetical order) known to use Naninovel. If you'd like to add your game to the list or notice any incorrect information, please let us know: [discord.gg/BfkNqem](https://discord.gg/BfkNqem).
+以下是已知使用 Naninovel 的游戏列表（按字母顺序排列）。如果你希望将自己的游戏添加到列表中，或发现其中有任何错误信息，请告知我们：[discord.gg/BfkNqem](https://discord.gg/BfkNqem)
+
+::: tip
+对于国内中文视觉小说创作者，如您希望自己的作品列在下方，但不方便使用Discord。也可以发邮件给[nanana_games@outlook.com](mailto:nanana_games@outlook.com)推荐您的项目，我们会帮您投稿至官方Discord。
+:::
 
 <div class="made-with-table">
 
-|Title|Developer|Stores|
+|游戏名|开发者|商店链接|
 |-|-|-|
 |2ECONDS TO STΔRLIVHT|[SKY HOUR WORKS](https://www.patreon.com/teamskyhour)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/1329110"/>|
 |About an Elf|[Meringue Interactive](http://www.meringueinteractive.com)|<a class="made-with-store store-switch" title="Nintendo Switch" target="_blank" href="https://www.nintendo.com/games/detail/about-an-elf-switch"/>|
@@ -114,7 +118,6 @@ Below is a list of games (in alphabetical order) known to use Naninovel. If you'
 |The Last Act|[Snowhaven Studios](https://snowhavenstudios.com)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/1412180"/>|
 |The Last Petal of Fall|[Riene](https://twitter.com/Raienelline)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://raienelline.itch.io/the-last-petal-of-fall"/>|
 |The Reaper's Dead Smile|[The Forgotten Workshop](https://twitter.com/firgofumbra)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://firgof.itch.io/the-reapers-dead-smile"/>|
-|The Street of Adrift|[Caramel-Mocha Studio](https://thestreetofadrift.com)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/1672670"/>|
 |The Widow's Boutique|[Tidvis Games](https://www.tidvis.no)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://tidvis.itch.io/the-widows-boutique"/><a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/2184880"/><a class="made-with-store store-google" title="Google Play" target="_blank" href="https://play.google.com/store/apps/details?id=com.TidvisGames.TheWidowsBoutique"/><a class="made-with-store store-apple" title="Apple Store" target="_blank" href="https://apps.apple.com/app/id6447751841"/>|
 |There's Always a Madman|[Sunny Demeanor Games](https://sunnydemeanorgames.com)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/2390500"/>|
 |TOUCHSTARVED|[Red Spring Studio](https://www.redspring.studio)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/2185510"/>|
@@ -127,6 +130,7 @@ Below is a list of games (in alphabetical order) known to use Naninovel. If you'
 |Your Love Story|[Mingyu Information Technology]()|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/2010830"/>|
 |Yrsa Major|[shibalist](https://twitter.com/ShibaList)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://shibalist.itch.io/yrsa-major"/>|
 |Yukar From The Abyss|[LocaGames](https://www.loca.games)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/2070220"/>|
+|彷徨之街|[Caramel-Mocha Studio](https://thestreetofadrift.com)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/1672670"/>|
 |彗星战团 - 悲情城市|[星火工造]()|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/2804640"/>|
 |桃の華は鮮血に染まる|[株式会社ワンコネクト](https://one-c.info)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/2274610"/><a class="made-with-store store-switch" title="Nintendo Switch" target="_blank" href="https://store-jp.nintendo.com/list/software/70010000070481.html"/>|
 |铁道少女:梦想轨迹|[39Soft](https://weibo.com/moerail)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/1294060"/>|

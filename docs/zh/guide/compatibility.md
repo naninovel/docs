@@ -1,11 +1,14 @@
 # 兼容性
 
-## Unity Version
+## 支持的 Unity 版本 
 
-支持的 Unity 版本范围: `2022.3.61 - 6000.0`
+支持的 Unity 版本范围: `2022.3.61 - 6000.0`，此范围内只有LTS版本收到支持。未来 Unity 版本中出现的任何问题都会在下一次 Naninovel 发布中得到修复。
 
-此范围内只有LTS版本收到支持。未来 Unity 版本中出现的任何问题都会在下一次 Naninovel 发布中得到修复。
 过去版本所兼容的 Unity 版本请参阅 [更新日志](https://pre.naninovel.com/releases)。
+
+::: tip 示例
+如果您是团结引擎用户，如需相关技术支持可寻找[呐呐呐制作组](https://nanana.cn/)。
+:::
 
 ## 平台支持
 
