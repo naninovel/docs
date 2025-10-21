@@ -1,4 +1,4 @@
-# 配置
+# 属性配置
 
 引擎的配置信息存储在位于 `Assets/NaninovelData/Resources/Naninovel/Configuration` 文件夹中的多个 ScriptableObject 资源中。当你第一次在 Unity 编辑器中打开对应的配置菜单时，这些配置文件会被自动生成。
 
@@ -217,7 +217,7 @@ Intro Movie Name | Null | 开场影片资源的路径。
 Resource Policy | Conservative | 定义脚本执行过程中资源加载与卸载的策略：<br><br> • **Conservative（保守模式）** — 默认模式，兼顾内存占用与加载效率。在开始播放脚本时，会预加载执行所需的所有资源，并在脚本播放完毕后卸载。通过 [@gosub] 指令引用的脚本资源也会一并预加载。可使用 [@goto] 指令的 `hold` 参数来额外预加载其他脚本。<br><br> • **Optimistic（乐观模式）** — 会预加载当前脚本以及 [@goto]、[@gosub] 指令所引用的所有脚本资源，且不会自动卸载，除非在 [@goto] 指令中显式指定 `release` 参数。该模式能显著减少加载界面并保证流畅回滚，但需要手动管理资源卸载，稍有不慎可能导致内存不足。<br><br> • **Lazy（惰性模式）** — 启动播放时不会预加载任何资源，也不会自动显示加载界面。仅在脚本播放时“即时”加载后续指令所需资源，并在使用后立即释放。此策略无需规划和手动管理，内存占用最低，但可能因后台加载导致卡顿，尤其在快进或回滚时更明显。  
 Lazy Buffer | 25 | 启用惰性加载策略时，用于控制预加载缓冲区大小（即预加载的最大脚本指令数）。  
 Lazy Priority | Below Normal | 启用惰性加载策略时，控制后台加载资源线程的优先级。降低优先级可减少卡顿，但会延长加载时间。  
-Remove Actors | True | 卸载脚本资源时是否自动移除未使用的演员（角色、背景、文本输出窗和选项处理器）。即使启用此项，仍可随时通过 `@remove` 指令手动移除演员。  
+Remove Actors | True | 卸载脚本资源时是否自动移除未使用的演出元素（角色、背景、文本输出窗和选项处理器）。即使启用此项，仍可随时通过 `@remove` 指令手动移除演出元素。  
 Log Resource Loading | False | 是否在日志中记录资源加载与卸载操作。  
 Enable Build Processing | True | 是否注册自定义构建处理器以在打包过程中处理 Naninovel 资源。<br><br>⚠️ **注意**：修改该设置后需重启 Unity 编辑器方可生效。  
 Use Addressables | True | 当已安装 Addressable Asset System 时，启用此项可优化资源处理流程并缩短构建时间。  
@@ -340,7 +340,7 @@ Scale Auto Wait | True | 是否根据显示速度调整自动播放模式下的�
 Skip Print Delay | 0 | 当值大于 0 时，在快进模式下每条打印指令将等待指定秒数（未缩放），可用于减缓跳过速度。  
 Default Metadata | Object Ref | 创建文本输出窗时默认使用的元数据。  
 Metadata | Object Ref | 为特定 ID 的文本输出窗指定的元数据。  
-Scene Origin | (0.50, 0.00) | 管理的演员参考原点位置（不影响实际定位）。  
+Scene Origin | (0.50, 0.00) | 管理的演出元素参考原点位置（不影响实际定位）。  
 Z Offset | 0 | 文本输出窗创建时与摄像机的初始 Z 轴偏移。  
 Z Step | 0 | 创建多个打印机时的 Z 轴间距，用于防止深度冲突。  
 Default Duration | 0.35 | 所有打印机变换（外观、位置、颜色等）的默认动画时长（秒）。  

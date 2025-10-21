@@ -24,7 +24,7 @@ Naninovel 的设计目标是让非程序员也能轻松上手，不需要任何�
 
 可以。你可以在 Naninovel 的默认流程中“注入”自定义逻辑。不过，这通常需要通过引擎的 C# API 实现（可以直接编写脚本，也可以使用 [可视化脚本](/guide/samples#visual-scripting) 方案）。  
 
-请参考 [引擎服务指南](/guide/engine-services)，了解可以调用的开放 API。你还可以利用 [状态托管机制](/guide/state-management#custom-state)、[自定义演员实现](/guide/custom-actor-implementations) 以及 [自定义指令](/guide/custom-commands) 来实现更复杂的功能。
+请参考 [引擎服务指南](/guide/engine-services)，了解可以调用的开放 API。你还可以利用 [状态托管机制](/guide/state-management#custom-state)、[自定义演出元素实现](/guide/custom-actor-implementations) 以及 [自定义指令](/guide/custom-commands) 来实现更复杂的功能。
 
 ## 它支持特定语言吗？
 
@@ -67,7 +67,7 @@ UI 部分（如修改按钮、布局或样式）请参考 [修改内置 Title UI
 
 请确保背景贴图的宽高比与相机配置中设置的参考分辨率一致。同时检查贴图导入设置（例如 `Max Size` 是否足够大）。  
 
-当屏幕宽高比与参考分辨率不一致时，背景演员会尝试自动匹配，可能因此导致裁切。详情可参阅 [匹配模式说明](/guide/backgrounds#match-mode)。
+当屏幕宽高比与参考分辨率不一致时，背景演出元素会尝试自动匹配，可能因此导致裁切。详情可参阅 [匹配模式说明](/guide/backgrounds#match-mode)。
 
 ## 如何在文本中间插入指令？
 

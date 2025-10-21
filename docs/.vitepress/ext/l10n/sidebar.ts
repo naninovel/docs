@@ -156,7 +156,7 @@ export const zn: DefaultTheme.SidebarItem[] = [
             { text: "自定义指令", link: "/zh/guide/custom-commands" },
             { text: "自定义配置", link: "/zh/guide/custom-configuration" },
             { text: "自定义演出元素实现", link: "/zh/guide/custom-actor-implementations" },
-            { text: "自定义演出元素shader着色器", link: "/zh/guide/custom-actor-shader" },
+            { text: "自定义演出元素着色器", link: "/zh/guide/custom-actor-shader" },
             { text: "自定义演出脚本编译器", link: "/zh/guide/custom-compiler" },
             { text: "状态管理", link: "/zh/guide/state-management" },
             { text: "整合设置", link: "/zh/guide/integration-options" },

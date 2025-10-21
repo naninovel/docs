@@ -1,10 +1,10 @@
 # 引擎架构
 
-Naninovel 引擎的设计核心基于以下两大原则：**场景无关性（Scene Independence）** 与 **服务导向（Service-Orientation）**。
+Naninovel 引擎的设计核心基于以下两大原则：**场景无关性** 与 **服务导向**。
 
 ## 场景无关性
 
-虽然 Unity 的设计理念鼓励通过场景（Scene）与预制体（Prefab）进行组合开发，但在开发视觉小说（Visual Novel）时，这种方式并不高效。Naninovel 的系统要么**不直接绑定到 [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html)**，要么绑定到一个 **持久化根对象**上，即使用 [Object.DontDestroyOnLoad](https://docs.unity3d.com/ScriptReference/Object.DontDestroyOnLoad.html) 机制。
+虽然 Unity 的设计理念鼓励通过场景与预制体进行组合开发，但在开发视觉小说时，这种方式并不高效。Naninovel 的系统要么**不直接绑定到 [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html)**，要么绑定到一个 **持久化根对象**上，即使用 [Object.DontDestroyOnLoad](https://docs.unity3d.com/ScriptReference/Object.DontDestroyOnLoad.html) 机制。
 
 ![](https://i.gyazo.com/6802b8c4bce20ca158bb757d12ef6c1a.png)
 
@@ -26,7 +26,7 @@ Naninovel 引擎的设计核心基于以下两大原则：**场景无关性（Sc
 引擎的大多数功能都通过 **引擎服务** 实现。每个服务都是 `IEngineService` 接口的实现，用于处理特定的职责，例如：
 
 - 执行 Naninovel 脚本；
-- 管理角色（Actor）；
+- 管理角色；
 - 管理游戏状态的保存与加载等。
 
 当你需要与某个引擎系统交互时，最常见的方式就是使用相应的 **引擎服务**。
@@ -46,10 +46,7 @@ player.Stop();
 
 下方的 UML 图展示了 Naninovel 引擎架构的高层概念。
 
-请注意：  
-图中所有的类（Class）与接口（Interface）名称都位于 `Naninovel` 命名空间下。  
-例如，要引用 `Engine` 类，应使用完整限定名 `Naninovel.Engine`，  
-或通过 C# 的 [`using`](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/namespaces/using-namespaces) 语句引入命名空间。
+请注意：图中所有的类与接口名称都位于 `Naninovel` 命名空间下。例如，要引用 `Engine` 类，应使用完整限定名 `Naninovel.Engine`，或通过 C# 的 [`using`](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/namespaces/using-namespaces) 语句引入命名空间。
 
 <object class="engine-design-dark" data="/assets/img/engine-design-dark.svg" type="image/svg+xml"></object>
 <object class="engine-design-light" data="/assets/img/engine-design-light.svg" type="image/svg+xml"></object>
