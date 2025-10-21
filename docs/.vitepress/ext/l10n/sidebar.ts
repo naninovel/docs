@@ -112,7 +112,7 @@ export const js: DefaultTheme.SidebarItem[] = [
 
 export const zn: DefaultTheme.SidebarItem[] = [
     {
-        text: "指南",
+        text: "使用手册",
         collapsed: true,
         items: [
             { text: "介绍", link: "/zh/guide/" },
@@ -121,15 +121,16 @@ export const zn: DefaultTheme.SidebarItem[] = [
             { text: "属性配置", link: "/zh/guide/configuration" },
             { text: "Naninovel 脚本", link: "/zh/guide/naninovel-scripts" },
             { text: "IDE支持", link: "/zh/guide/ide-extension" },
-            { text: "文本打字机", link: "/zh/guide/text-printers" },
-            { text: "人物", link: "/zh/guide/characters" },
+            { text: "网页版编辑器", link: "/zh/guide/editor" },
+            { text: "文本输出窗", link: "/zh/guide/text-printers" },
+            { text: "角色", link: "/zh/guide/characters" },
             { text: "背景", link: "/zh/guide/backgrounds" },
             { text: "过渡效果", link: "/zh/guide/transition-effects" },
             { text: "特殊效果", link: "/zh/guide/special-effects" },
             { text: "音频", link: "/zh/guide/audio" },
-            { text: "语音", link: "/zh/guide/voicing" },
-            { text: "影片", link: "/zh/guide/movies" },
-            { text: "选择", link: "/zh/guide/choices" },
+            { text: "配音", link: "/zh/guide/voicing" },
+            { text: "视频", link: "/zh/guide/movies" },
+            { text: "选项", link: "/zh/guide/choices" },
             { text: "用户界面UI", link: "/zh/guide/user-interface" },
             { text: "读取保存系统", link: "/zh/guide/save-load-system" },
             { text: "游戏设置", link: "/zh/guide/game-settings" },
@@ -139,9 +140,11 @@ export const zn: DefaultTheme.SidebarItem[] = [
             { text: "脚本表达式", link: "/zh/guide/script-expressions" },
             { text: "托管文本", link: "/zh/guide/managed-text" },
             { text: "本地化", link: "/zh/guide/localization" },
+            { text: "内存管理", link: "/zh/guide/memory-management" },
             { text: "资源加载器", link: "/zh/guide/resource-providers" },
             { text: "社区模组", link: "/zh/guide/community-modding" },
-            { text: "开发控制台", link: "/zh/guide/development-console" }
+            { text: "开发控制台", link: "/zh/guide/development-console" },
+            { text: "示例资源", link: "/zh/guide/samples" }
         ]
     },
     {
@@ -150,14 +153,15 @@ export const zn: DefaultTheme.SidebarItem[] = [
         items: [
             { text: "引擎架构", link: "/zh/guide/engine-architecture" },
             { text: "引擎服务", link: "/zh/guide/engine-services" },
-            { text: "自定义命令", link: "/zh/guide/custom-commands" },
+            { text: "自定义指令", link: "/zh/guide/custom-commands" },
             { text: "自定义配置", link: "/zh/guide/custom-configuration" },
             { text: "自定义演出元素实现", link: "/zh/guide/custom-actor-implementations" },
-            { text: "自定义演出元素shader着色器", link: "/zh/guide/custom-actor-shader" },
-            { text: "Custom Script Compiler", link: "/zh/guide/custom-compiler" },
+            { text: "自定义演出元素着色器", link: "/zh/guide/custom-actor-shader" },
+            { text: "自定义演出脚本编译器", link: "/zh/guide/custom-compiler" },
             { text: "状态管理", link: "/zh/guide/state-management" },
             { text: "整合设置", link: "/zh/guide/integration-options" },
             { text: "渲染管线", link: "/zh/guide/render-pipelines" },
+            { text: "自动化测试", link: "/zh/guide/automated-testing" },
             { text: "自定义构建环境", link: "/zh/guide/custom-build-environment" }
         ]
     }
