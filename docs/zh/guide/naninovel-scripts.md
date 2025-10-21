@@ -343,7 +343,7 @@ Lorem ipsum[shake Camera ver:true wait:false] dolor sit amet.
 @char Kohaku visible:{score>10}
 ```
 
-—— 或当布尔参数是无名参数时，例如：
+或当布尔参数是无名参数时，例如：
 
 ```nani
 ; 使用无名参数关闭摄像机观察模式。
@@ -727,8 +727,8 @@ The bomb is defused!
 该工具会自动构建所有通过编辑器资源菜单（`Naninovel -> Resources -> Scripts`）注册的 Naninovel 脚本的图形表示（节点），并展示它们之间的连接关系。
 
 连接线是根据以下指令生成的：  
-- [@goto]  
-- [@gosub]  
+- [@goto]
+- [@gosub]
 - [@choice]（当带有 `goto` 参数时）
 
 若指令中包含条件表达式（`if` 参数），节点上对应的端口会以黄色高亮显示，当鼠标悬停在端口上时，可查看具体的条件表达式。

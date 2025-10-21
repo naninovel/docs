@@ -309,7 +309,9 @@ Kohaku.Happy: 你好，世界！
 
 如果你更喜欢通过视频学习，这里有一个演示上述步骤的视频：
 
-![](https://www.bilibili.com/video/BV1CTsPzhEiB/)
+![](https://www.youtube.com/watch?v=wFil5vje3NE)
+
+上哔哩哔哩观看 👉 [视频教程](https://www.bilibili.com/video/BV1CTsPzhEiB/)。
 
 ## 示例项目
 
