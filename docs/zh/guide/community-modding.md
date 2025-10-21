@@ -1,15 +1,19 @@
-# Community Modding
+# 社区模组（Community Modding）
 
-Community modding feature allows players to modify the build, adding their own scenarios and resources, while also having access to the game built-in resources.
+**社区模组功能**允许玩家在不修改源码的前提下，向游戏中添加自己的剧情脚本与资源文件，并可同时访问游戏内置资源。
 
-To activate the feature, enable `Enable Community Modding` property in the script's configuration UI accessible with `Naninovel -> Configuration -> Scripts` context menu and [setup local provider](/guide/resource-providers#local) for the resources, that should be exposed for modding; make sure local provider's root path is set to default value (`%DATA%/Resources`), so it will look for the additional resources under the build directory.
+## 启用模组功能
+
+在 Unity 菜单中打开：`Naninovel -> Configuration -> Scripts` 勾选 `Enable Community Modding`（启用社区模组）选项。  
+
+然后为要开放的资源类型配置一个 [本地资源提供器（Local Provider）](/zh/guide/resource-providers#local)，并确保其根路径为默认值：`%DATA%/Resources`，这样游戏会在构建目录下查找玩家添加的额外资源。
 
 ![](https://i.gyazo.com/e32f40aa3faa648774908a0a937c5fcb.png)
 
-When the feature is enabled, an "EXTERNAL SCRIPTS" button will appear in the title menu; it will open external scripts browser. While in editor the browser will also list naninovel scripts from the project assets.
+当启用此功能时，标题菜单中会出现一个“EXTERNAL SCRIPTS（外部脚本）”按钮；点击后将打开外部脚本浏览器。在编辑器中，该浏览器还会列出项目资源中的 Naninovel 脚本。
 
-Notice, that `External Loader` configuration controls which scripts to show under the external scripts browser, while `Loader` configures loading of the actual script resources. External loader has Local provider set by default, so it will only look for the scripts under the game build directory; for other resource types (backgrounds, characters, etc) you have to manually setup local providers in the corresponding configuration menus to allow players adding them. Find more about how the resource providers work and how to set up them in the [resource providers guide](/guide/resource-providers).
+请注意，`External Loader`（外部加载器）配置控制在外部脚本浏览器中显示哪些脚本，而 `Loader` 则配置实际脚本资源的加载方式。外部加载器默认使用 Local（本地）提供程序，因此它只会在游戏构建目录下查找脚本；对于其他资源类型（背景、角色等），你需要在相应的配置菜单中手动设置本地提供程序，以允许玩家添加它们。有关资源提供程序的工作方式及其设置方法，请参阅 [资源提供程序指南](/zh/guide/resource-providers)。
 
-To add external resources to the build, drop them to sub-folders under game's `Resources` directory corresponding to the resource's `Path Prefix` property configured under `Loader` foldout. For example, to add an external naninovel script, drop it to `GameFolder/GameName_Data/Resources/Scripts` folder; backgrounds will go to `GameFolder/GameName_Data/Resources/Backgrounds` and so on. *GameFolder* and *GameName* will depend on the name of your Unity project.
+要向构建中添加外部资源，请将它们放入游戏 `Resources` 目录下对应资源类型的子文件夹中，该子文件夹名称应与在 `Loader` 折叠面板下配置的资源 `Path Prefix` 属性一致。例如，要添加一个外部 Naninovel 脚本，请将其放入 `GameFolder/GameName_Data/Resources/Scripts` 文件夹中；背景资源则应放入 `GameFolder/GameName_Data/Resources/Backgrounds`，依此类推。*GameFolder* 和 *GameName* 将取决于你的 Unity 项目名称。
 
-External scripts browser UI can be customized or completely replaced using [UI Customization](/guide/user-interface#ui-customization) feature.
+外部脚本浏览器的 UI 可以使用 [UI 自定义](/zh/guide/user-interface#ui-customization) 功能进行自定义或完全替换。

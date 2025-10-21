@@ -15,7 +15,7 @@ Naninovel 引擎的设计核心基于以下两大原则：**场景无关性** �
 
 所有运行所需的游戏对象都会在**引擎初始化时自动创建**。初始化通过 [RuntimeInitializeOnLoadMethod](https://docs.unity3d.com/ScriptReference/RuntimeInitializeOnLoadMethodAttribute.html) 自动执行，即应用程序启动时（进入播放模式或运行构建后）异步完成。
 
-若需要自定义初始化流程，可参考 👉 [手动初始化指南](/guide/integration-options#manual-initialization)。
+若需要自定义初始化流程，可参考 👉 [手动初始化指南](/zh/guide/integration-options#manual-initialization)。
 
 ::: info 提示
 如果你不希望使用“场景无关”设计，可在 **引擎配置菜单** 中关闭 `Scene Independent` 选项。关闭后，所有 Naninovel 相关对象都会成为当前 Unity 场景的一部分，并在场景卸载时一并销毁。
@@ -40,7 +40,7 @@ var player = Engine.GetService<IScriptPlayer>();
 player.Stop();
 ```
 
-你可以在 [引擎服务指南](/guide/engine-services) 中找到当前可用的所有引擎服务列表，以及如何**重写或添加自定义服务**的详细说明。
+你可以在 [引擎服务指南](/zh/guide/engine-services) 中找到当前可用的所有引擎服务列表，以及如何**重写或添加自定义服务**的详细说明。
 
 ## 高层架构概念
 

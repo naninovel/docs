@@ -31,8 +31,8 @@
 
 提交报告前请先：
 
-- 查阅[使用手册](/guide/)、[指令参考](/api/)和 [FAQ](/faq/)，确保不是使用方法问题。  
-- 确认你正在使用 Naninovel 的最新版本。最新版可通过 [UPM 注册表](/guide/getting-started#install-from-github) 获取；Asset Store 或下载存档版本可能较旧。  
+- 查阅[使用手册](/zh/guide/)、[指令参考](/api/)和 [FAQ](/faq/)，确保不是使用方法问题。  
+- 确认你正在使用 Naninovel 的最新版本。最新版可通过 [UPM 注册表](/zh/guide/getting-started#install-from-github) 获取；Asset Store 或下载存档版本可能较旧。  
 - 如果你刚从旧版本升级，请务必阅读[更新日志](/releases/)中的升级说明。  
 - 尝试清空 Unity 缓存（删除项目根目录下的 `Library` 文件夹后重启编辑器）。  
 - 确认问题确实源自 Naninovel，而非第三方插件或 Unity 自身；若为后者，请[联系 Unity 支持](https://unity.com/support-services)。
@@ -50,7 +50,7 @@
 
 操作步骤：
 
-1. 新建一个 Unity 项目，确保使用[受支持的 Unity 版本](/guide/compatibility#unity-version)。  
+1. 新建一个 Unity 项目，确保使用[受支持的 Unity 版本](/zh/guide/compatibility#unity-version)。  
 2. 安装最新版本的 Naninovel。不要修改或添加包目录下的任何文件 —— 我们无法支持被更改的版本。  
 3. 添加重现问题所需的资源与脚本。不要复制整个现有项目，从零开始以隔离方式复现问题；避免使用第三方插件或多余内容。  
 4. 在项目根目录创建 `repro.txt` 文件，写明重现步骤与预期行为。例如：  
