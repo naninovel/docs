@@ -1,107 +1,119 @@
-# FAQ
+# 常见问题
 
-## Do I need to know programming to use Naninovel?
+## 我需要会编程才能使用 Naninovel 吗？
 
-Naninovel is designed to be friendly for non-programmers and doesn't require any programming knowledge in order to create basic visual novels. For example, our [WebGL demo](https://naninovel.com/demo) is created without any custom C# scripts. Check the [getting started guide](/guide/getting-started) and [video tutorial](https://youtu.be/wFil5vje3NE) for an example of the basic workflow. However, adding custom features (gameplay) or integrating with other third-party packages will require C# (or [visual](/guide/samples#visual-scripting)) scripting in most cases. Specific features (eg, [UI customization](/guide/user-interface.html#ui-customization)) could also require some experience with the Unity editor.
+Naninovel 的设计目标是让非程序员也能轻松上手，不需要任何编程知识就能制作基础的视觉小说。例如，我们的 [WebGL 演示](https://naninovel.com/demo) 就完全没有使用任何自定义 C# 脚本。请参阅 [入门指南](/guide/getting-started) 和 [视频教程](https://youtu.be/wFil5vje3NE) 了解基本工作流程。
 
-## Can I use Naninovel as a drop-in dialogue system for an existing game?
+不过，如果要添加自定义功能（例如特殊玩法）或整合第三方插件，则通常需要编写 C# 脚本（或使用 [可视化脚本](/guide/samples#visual-scripting)）。部分功能（例如 [UI 自定义](/guide/user-interface.html#ui-customization)）也可能需要具备一定的 Unity 编辑器经验。
 
-While Naninovel is focused on traditional visual novel games and works best as a template for one, it's possible to integrate the engine into existing projects. If you're making a 3D adventure game, an RPG, or a game of any other genre, you can still use Naninovel as a drop-in dialogue system.
+## 我可以将 Naninovel 用作已有游戏的对话系统吗？
 
-Be aware that, in most cases, such integration will require C# (or [visual](/guide/samples#visual-scripting)) scripting to varying extents. See the [engine architecture overview](/guide/engine-architecture) to get a grasp of how Naninovel works, and the [integration guide](/guide/integration-options) for more information on the available integration options.
+可以。虽然 Naninovel 主要面向传统视觉小说，并且最适合作为这类游戏的模板，但它同样可以整合到其他类型的项目中。无论你正在制作 3D 冒险游戏、RPG，还是其他类型的游戏，都可以将 Naninovel 当作即插即用的对话系统。
 
-## Why not use node graphs for scenario authoring?
+请注意，这类整合通常需要一定程度的 C#（或 [可视化脚本](/guide/samples#visual-scripting)）开发。建议先阅读 [引擎架构概览](/guide/engine-architecture) 了解 Naninovel 的运行机制，并查阅 [整合指南](/guide/integration-options) 获取详细的整合方式。
 
-At first glance, you might think node graphs are convenient for creating dialogues. In reality, once enough content is added, they quickly turn into an unmanageable mess. Complex conversations are far better handled in text format, as it scales more cleanly and keeps the workflow efficient.
+## 为什么不使用节点图来编写脚本？
 
-For example, compare [the screenshots](https://i.gyazo.com/94fc39b918d2acdf9437a96c4f3cce10.png): on the left is one of the popular Unity assets for authoring dialogues with a node graph, and on the right is the exact same script written in Naninovel. As you can see, the script is far more straightforward and easier to manage in text format — no clunky UIs, no hunting through Unity assets just to make edits. And if you still prefer a visual editor, we have a [specialized one](/guide/editor#scenario-editor) that handles the process much better than a node graph would.
+乍一看，节点图似乎很适合编写对话，但当内容量增加时，它会迅速变得杂乱且难以维护。复杂的对话逻辑在纯文本格式中反而更易管理、扩展性更好、效率更高。  
 
-That said, node graphs can still be useful for tracking and organizing the branching flow of a story. That's why Naninovel includes a [story graph](/guide/editor#story-graph), which provides a clear, high-level view of your narrative.
+可以查看 [示例对比图](https://i.gyazo.com/94fc39b918d2acdf9437a96c4f3cce10.png)：左侧是某个常见的节点式对话编辑器，右侧是同样内容的 Naninovel 脚本。可以看到，文本形式更加直观、易于维护，没有复杂的界面操作，也不必在 Unity 资源中四处查找。
 
-## Is it possible to embed a mini-game to Naninovel?
+当然，如果只是为了观察剧情分支的整体结构，节点图仍然有其价值。因此，Naninovel 也提供了 [演出脚本图](/guide/editor#story-graph)，可用于查看与整理故事流程。
 
-Sure, you can "inject" any custom logic to the default Naninovel flow. In many cases, however, this will require using the engine's C# API (via either writing custom C# scripts or using a [visual scripting](/guide/samples#visual-scripting) solution). Check the [engine services guide](/guide/engine-services) for the list of available open APIs, which allows interaction with the engine; you may also make use of [state outsourcing](/guide/state-management#custom-state), [custom actor implementations](/guide/custom-actor-implementations) and [custom commands](/guide/custom-commands) in the process.
+## 能在 Naninovel 中嵌入小游戏吗？
 
-## Does it support a specific language?
+可以。你可以在 Naninovel 的默认流程中“注入”自定义逻辑。不过，这通常需要通过引擎的 C# API 实现（可以直接编写脚本，也可以使用 [可视化脚本](/guide/samples#visual-scripting) 方案）。  
 
-Naninovel can work with any language, but to display text in some languages, you'll need a compatible font. Consult "Fonts" section of the [localization guide](/guide/localization.html#fonts) for more info.
+请参考 [引擎服务指南](/guide/engine-services)，了解可以调用的开放 API。你还可以利用 [状态托管机制](/guide/state-management#custom-state)、[自定义演员实现](/guide/custom-actor-implementations) 以及 [自定义指令](/guide/custom-commands) 来实现更复杂的功能。
 
-## Will I get access to the source code when I buy Naninovel?
+## 它支持特定语言吗？
 
-All the Unity-related sources are available in the distributed package. Common Naninovel modules are precompiled into dynamic assembly with sources hosted on a [private GitHub repository](https://github.com/naninovel/engine) which you can access after [registering your license](https://naninovel.com/register).
+Naninovel 可以显示任何语言的文本，但部分语言需要使用兼容的字体。请参阅 [本地化指南的字体部分](/guide/localization.html#fonts) 获取相关信息。
 
-## What are the legal usage terms and conditions?
+## 购买 Naninovel 后能获得源码吗？
 
-Naninovel is governed by the following End User License Agreement (EULA): [naninovel.com/eula](https://naninovel.com/eula). Please read the document carefully before downloading or using the application.
+可以。所有 Unity 相关源码都包含在发行包中。通用的 Naninovel 模块以动态程序集的形式分发，其源码托管在 [私有 GitHub 仓库](https://github.com/naninovel/engine)，你可以在 [注册许可证](https://naninovel.com/register) 后获取访问权限。
 
-## Why am I getting "asset wasn't downloaded" error when attempting to register Asset Store license?
+## 使用条款和授权协议是什么？
 
-The asset download verification is required when Naninovel is purchased via Unity's Asset Store. In order for the verification to succeed, Naninovel has to be downloaded at least once via Unity's [package manager](https://docs.unity3d.com/Manual/Packages.html) by the user, which purchased the asset. In case multiple copies of the asset have been purchased, each copy has to be downloaded by the associated organization user. In case you've completed all the steps, but still have issues, please [contact Unity support](https://support.unity.com).
+Naninovel 的使用受以下《最终用户许可协议》（EULA）约束：👉 [naninovel.com/eula](https://naninovel.com/eula) 请在下载或使用之前仔细阅读该文档。
 
-::: warning
-When asset is purchased from an organization account, the organization owner have to download the asset to satisfy the check (assigned members won't count). This is an Asset Store limitation and we won't be able to provide any workarounds in such cases; please contact Unity support for more information and assistance.
+## 为什么注册 Asset Store 许可证时提示 “asset wasn’t downloaded”？
+
+当你通过 Unity Asset Store 购买 Naninovel 时，注册过程会验证下载记录。因此，你必须先使用购买该资产的账户通过 Unity 的 [Package Manager](https://docs.unity3d.com/Manual/Packages.html) 至少下载一次 Naninovel。  
+
+如果是多个副本（例如团队许可证），每个副本都需要由对应组织用户下载。若确认已完成步骤但仍出现问题，请 [联系 Unity 客服](https://support.unity.com)。
+
+::: warning  
+如果资产是以组织账号购买的，**必须由组织所有者本人** 下载才能通过验证（被分配的成员账户不计入）。  
+这是 Unity Asset Store 的限制，我们无法提供绕过方法；如有问题，请联系 Unity 支持团队。
 :::
 
-## Why the package doesn't contain any demo scenes?
+## 为什么安装包里没有 Demo 场景？
 
-Naninovel is designed to be [scene-independent](/guide/engine-architecture#scene-independent) and doesn't use [Unity scenes](https://docs.unity3d.com/Manual/CreatingScenes.html) in any way, hence it's not possible to make any kind of example or demo scenes. The engine is automatically initialized when the game is started (can be switched to manual initialization in the engine configuration window) and scenarios are scripted via text documents called [naninovel scripts](/guide/naninovel-scripts).
+Naninovel 设计为 [场景无关](/guide/engine-architecture#scene-independent)，不会使用任何 [Unity 场景](https://docs.unity3d.com/Manual/CreatingScenes.html)。因此，无法提供传统意义上的示例或 Demo 场景。  
 
-Please read through the [getting started](/guide/getting-started) guide to get a grasp on how to use the engine. You can find additional examples on using various engine features and script commands in the rest of the [guide](/guide/index) and [API command reference](/api/index). In case you'd like a complete working project, which can be used as a reference, take a look at the [demo project](/guide/getting-started.html#demo-project).
+引擎会在游戏启动时自动初始化（可在配置中改为手动初始化），并通过称为 [Nani脚本](/guide/naninovel-scripts) 的文本文件来编写剧情。  
 
-## How to customize the title (main) menu: add background, music, effects, change buttons, etc?
+建议先阅读 [入门指南](/guide/getting-started)，了解如何使用引擎。更多使用示例可在 [功能指南](/guide/index) 和 [指令 API 参考](/api/index) 中找到。如果你需要一个完整的示例项目，可以查看 [Demo 项目](/guide/getting-started.html#demo-project)。
 
-For the UI part (changing/adding buttons or panel layout and style) [modify the built-in Title UI prefab](/guide/user-interface#modifying-built-in-ui); for everything else set `Title Script` at the scripts configuration menu (`Naninovel -> Configuration -> Scripts`) and use script commands to set up the scene just like when writing a scenario. The title script will be automatically played when entering the title menu. An example of the entire customization process is shown in the following video tutorial: [youtu.be/hqhfhXzQkdk](https://youtu.be/hqhfhXzQkdk).
+## 如何自定义标题（主）菜单，例如添加背景、音乐、特效、修改按钮等？
 
-## Why a background is cropped?
+UI 部分（如修改按钮、布局或样式）请参考 [修改内置 Title UI 预制体](/guide/user-interface#modifying-built-in-ui)。其他内容可在脚本配置菜单中设置 `Title Script`（路径：`Naninovel -> Configuration -> Scripts`），并使用脚本指令来布置场景，就像编写普通剧本一样。  
 
-Make sure aspect ratio of the background texture resolution is equal to the reference resolution set in the camera configuration. Also, ensure the texture is imported with the [correct settings](https://docs.unity3d.com/Manual/class-TextureImporter) (eg, `Max Size` is high enough).
+该标题脚本会在进入主菜单时自动播放。完整示例可参考视频教程：🎬 [youtu.be/hqhfhXzQkdk](https://youtu.be/hqhfhXzQkdk)
 
-When screen aspect ratio is different from the reference resolution ratio, background actor will attempt to match by default, which could cause cropping; see [match mode guide](/guide/backgrounds#match-mode) for more information.
+## 为什么背景图被裁切了？
 
-## How to inject a command in the midst of a printed text message?
+请确保背景贴图的宽高比与相机配置中设置的参考分辨率一致。同时检查贴图导入设置（例如 `Max Size` 是否足够大）。  
 
-Use [command inlining](/guide/naninovel-scripts#command-inlining).
+当屏幕宽高比与参考分辨率不一致时，背景演员会尝试自动匹配，可能因此导致裁切。详情可参阅 [匹配模式说明](/guide/backgrounds#match-mode)。
 
-## How to prevent commands from running concurrently?
+## 如何在文本中间插入指令？
 
-Specify `wait` parameter, which is available in all async commands, eg:
+请使用 [指令内联](/guide/naninovel-scripts#command-inlining) 功能。
+
+## 如何防止指令并行执行？
+
+在所有异步指令中，都可以使用 `wait` 参数来实现此目的，例如：
 
 ```nani
-; Printer will start fading out after the characters are hidden.
+; 在角色被隐藏之后，文本输出窗才会开始淡出。
 @hideChars wait!
 @hidePrinter
 ```
 
-Alternatively, enable `Wait By Default` option in script player configuration; this way all commands will be awaited by default, unless `wait` is negated (set to false).
+或者，可以在脚本播放器配置中启用 `Wait By Default` 选项；这样所有指令都会默认等待执行完毕，除非显式地将 `wait` 取反（设为 false）。
 
 ::: info
-Find more about async (parallel) command execution in the [dedicated article](/guide/naninovel-scripts#async-execution).
+有关异步（并行）指令执行的更多信息，请参阅[专门章节](/guide/naninovel-scripts#async-execution)。
 :::
 
-## How to make actors appear in front of each other (z-sorting)?
+## 如何让角色（Actor）在彼此前后显示（Z 轴排序）？
 
-Use positioning over z-axis, eg:
+可以通过调整 Z 轴位置来实现，例如：
 
 ```nani
-; Make Sora appear at the bottom-center and in front of Felix
+; 让 Sora 出现在底部中央位置，并位于 Felix 前方。
 @char Sora pos:50,0,-1
 @char Felix pos:,,0
 ```
 
-In case you have sorting issues in perspective camera mode, try changing `Transparency Sort Mode` found in "Edit > Projecting Settings > Graphics" editor menu to `Orthographic`. Find more information on how objects are sorted in Unity in the [2D sorting manual](https://docs.unity3d.com/Manual/2DSorting.html).
+如果在透视相机模式下遇到排序问题，请尝试将编辑器菜单中 “Edit > Project Settings > Graphics” 下的 `Transparency Sort Mode` 设置为 `Orthographic`。有关 Unity 中对象排序方式的更多信息，请参阅 [2D 排序手册](https://docs.unity3d.com/Manual/2DSorting.html)。
 
-## Is it possible to show only the avatar of a character inside a text printer, but hide the character itself?
+## 是否可以只在文本打印机中显示角色头像，而隐藏角色本体？
 
-Specify `!visible` for the character you wish to hide; the avatar will remain visible, eg:
+可以。为想要隐藏的角色指定 `!visible` 参数即可，此时头像仍会保持可见，例如：
 
 ```nani
 @char CharId !visible
 ```
 
-In case you're constantly changing avatars while the character itself should remain hidden, consider disabling `Auto Show On Modify` in the characters configuration menu; when disabled, you won't have to specify `!visible` to change any parameters of the character while it's hidden.
+如果你在隐藏角色本体的同时需要频繁切换头像，建议在角色配置菜单中禁用 `Auto Show On Modify` 选项；禁用后，即使角色处于隐藏状态，也可以直接修改其参数，而无需每次都指定 `!visible`。
 
-Alternatively, check out [render actor to texture](/guide/characters#render-to-texture) feature.
+另外，也可以参考 [角色渲染到纹理](/guide/characters#render-to-texture) 功能。
 
-## How to run a custom C# code from naninovel scripts?
+## 如何在 Naninovel 脚本中执行自定义 C# 代码？
 
-To invoke a C# behaviour (eg, access a game object on scene), use [custom commands](/guide/custom-commands); to get value from a C# method and use it in naninovel script, use [expression functions](/guide/script-expressions#adding-custom-functions).
+若要调用 C# 行为（例如访问场景中的游戏对象），请使用 [自定义指令](/guide/custom-commands)；  
+若要从 C# 方法中获取返回值并在 Naninovel 脚本中使用，请参考 [表达式函数扩展](/guide/script-expressions#adding-custom-functions)。

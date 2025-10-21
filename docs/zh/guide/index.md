@@ -10,9 +10,13 @@ Naninovel 是一个用于 [Unity 游戏引擎](https://unity3d.com) 的扩展插
 
 首次使用该引擎时，请务必阅读 [入门指南](/zh/guide/getting-started)。
 
-如果你在寻找特定主题，可以使用网站顶部的搜索栏；同时，你也可以查看 [常见问题](/zh/faq/)，我们在其中整理了常见问题的答案。所有可用的脚本命令、支持的参数及使用示例都列在 [API 参考](/zh/api/) 中。  
+如果你在寻找特定主题，可以使用网站顶部的搜索栏；同时，你也可以查看 [常见问题](/zh/faq/)，我们在其中整理了常见问题的答案。所有可用的脚本指令、支持的参数及使用示例都列在 [API 参考](/zh/api/) 中。  
 
 若仍未找到所需信息，请随时 [联系售后支持](/zh/support/#naninovel-support)。
+
+:::tip
+译注：Naninovel 中的一些惯用语可参考[中英用语对照表](/zh/guide/zh-terms-dict)。
+:::
 
 ## 功能
 
@@ -21,7 +25,7 @@ Naninovel 是一个用于 [Unity 游戏引擎](https://unity3d.com) 的扩展插
 * [基于文档的脚本系统](/zh/guide/naninovel-scripts)
   * [通用文本行](/zh/guide/naninovel-scripts#generic-text-lines)
   * [标签行](/zh/guide/naninovel-scripts#label-lines)
-  * [内联命令](/zh/guide/naninovel-scripts#command-inlining)
+  * [内联指令](/zh/guide/naninovel-scripts#command-inlining)
   * [可视化编辑器](/zh/guide/naninovel-scripts#visual-editor)
   * [热重载](/zh/guide/naninovel-scripts#hot-reload)
 * [VS Code 扩展](/zh/guide/ide-extension)
@@ -79,5 +83,6 @@ Naninovel 是一个用于 [Unity 游戏引擎](https://unity3d.com) 的扩展插
 * [社区模组](/zh/guide/community-modding)
 * [开发控制台](/zh/guide/development-console)
 * [脚本回溯与调试](/zh/guide/naninovel-scripts#scripts-debug)
-* [自定义命令](/zh/guide/custom-commands)
+* [自定义指令](/zh/guide/custom-commands)
 * [自定义角色实现](/zh/guide/custom-actor-implementations)
+* [中英用语对照表](/zh/guide/zh-terms-dict)

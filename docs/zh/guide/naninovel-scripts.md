@@ -1,6 +1,6 @@
-# Naninovel Scripts
+# Naninovel 脚本
 
-Naninovel 脚本是扩展名为 `.nani` 的文本文件，用于控制场景中发生的事件。脚本资源可通过 `Create -> Naninovel -> Naninovel Script` 菜单创建。你可以使用内置的 [可视化编辑器](#visual-editor)，或使用任意外部文本编辑器（如 Microsoft Word、Google Docs 或 [VS Code](https://code.visualstudio.com)）打开并编辑它们。
+Naninovel 脚本是扩展名为 `.nani` 的文本文件，用于控制场景中发生的事件。脚本资源可通过 `Create -> Naninovel -> Naninovel Script` 菜单创建。你可以使用内置的 [可视化编辑器](#可视化编辑器)，或使用任意外部文本编辑器（如 Microsoft Word、Google Docs 或 [VS Code](https://code.visualstudio.com)）打开并编辑它们。
 
 ![?class=when-dark](https://i.gyazo.com/0051c3b96de4854d665e6bf9aba6bbd1.png)
 ![?class=when-light](https://i.gyazo.com/4172fee457fb4c1f473ffeb0516b83ca.png)
@@ -9,11 +9,11 @@ Naninovel 脚本中的每一行都代表一个语句，它可以是指令、普�
 
 | 字符标识 | 语句类型                  |
 |:--------:|---------------------------|
-|    @     | [指令](#command-lines)    |
-|    #     | [标签l](#label-lines)     |
-|    ;     | [注释](#comment-lines)    |
+|    @     | [指令](#指令行)           |
+|    #     | [标签](#标签行)           |
+|    ;     | [注释](#注释行)           |
 
-当行首未出现上述任意标识符时，该行将被视为 [普通文本](#generic-text-lines) 语句。
+当行首未出现上述任意标识符时，该行将被视为 [普通文本行](#普通文本行) 语句。
 
 ::: tip
 你可以通过 [编译器本地化](/guide/localization#compiler-localization) 功能，修改所有预定义的编译器元素，如控制字符、指令标识符、常量等。换言之，几乎所有在编写脚本时需要输入的内容都可以自定义。
@@ -38,7 +38,7 @@ Naninovel 脚本中的每一行都代表一个语句，它可以是指令、普�
 @autosave
 ```
 
-### 指令参数（Command Parameters）
+### 指令参数
 
 大多数指令都带有若干参数，用于定义该指令的具体效果。参数是一个键值对表达式，位于指令标识符之后，并以冒号（`:`）分隔。参数标识符（键）可以是指令实现类中对应字段的名称，或通过 `CommandParameter` 特性（Attribute）的 `alias` 属性定义的别名。
 
@@ -89,7 +89,7 @@ Naninovel 脚本中的每一行都代表一个语句，它可以是指令、普�
 
 ### 可选与必选参数
 
-大多数指令参数是 *可选的*。这意味着它们要么有预定义的默认值，要么在指令执行时并非必需。例如，当 [@resetText] 指令在未指定任何参数的情况下使用时，它会重置默认文本打印机的内容；但你也可以指定特定的打印机 ID，例如：`@resetText printer:Dialogue`。
+大多数指令参数是 *可选的*。这意味着它们要么有预定义的默认值，要么在指令执行时并非必需。例如，当 [@resetText] 指令在未指定任何参数的情况下使用时，它会重置默认文本输出窗的内容；但你也可以指定特定的打印机 ID，例如：`@resetText printer:Dialogue`。
 
 不过，有些参数是 *必需的*，必须显式指定，否则指令将无法执行。
 
@@ -135,7 +135,7 @@ Felix.Happy: Lorem ipsum dolor sit amet.
 Felix: Lorem ipsum dolor sit amet.
 ```
 
-### 指令内联（Command Inlining）
+### 指令内联
 
 有时你可能希望在文本逐字显示（打印）过程中，在特定字符之前或之后执行某个指令。例如：当某个单词被打印出来时，角色更换表情；或在描述某个事件的同时播放特定音效。指令内联功能正是为此设计的。
 
@@ -183,7 +183,7 @@ Lorem ipsum dolor sit amet.[>]
 
 ```nani
 ; 以下这行文本将由 Kohaku 和 Yuko 两位角色共同发表，
-; 同时文本打印机上的显示名称将显示为 “All Together”。
+; 同时文本输出窗上的显示名称将显示为 “All Together”。
 Kohaku,Yuko: How low hello![< as:"All Together"]
 
 ; 句子的前半部分将以 50% 的速度打印，
@@ -214,7 +214,7 @@ Lorem ipsum[-][< speed:0.5] dolor sit amet.
     [] continuation.[< join!]
 ```
 
-## 标签行（Label Lines）
+## 标签行
 
 标签用于在 Naninovel 脚本中通过 [@goto] 指令进行跳转时作为“锚点”。要定义一个标签，请在行首使用 `#` 符号并紧跟标签名称：
 
@@ -234,11 +234,11 @@ Lorem ipsum[-][< speed:0.5] dolor sit amet.
 @goto #Epilogue
 ```
 
-### 剧本根目录
+### 演出脚本根目录
 
-使用导航指令时指定的“锚点”被称为 *端点（Endpoint）*。端点由两部分组成：**脚本路径** 和 **标签**。标签是可选的；当省略时，端点将被视为指向脚本的起始位置。脚本路径指的是 Naninovel 剧本文件的路径（不含 `.nani` 扩展名），其位置是相对于 *剧本根目录* 的。
+使用导航指令时指定的“锚点”被称为 *端点（Endpoint）*。端点由两部分组成：**脚本路径** 和 **标签**。标签是可选的；当省略时，端点将被视为指向脚本的起始位置。脚本路径指的是 Naninovel 演出脚本的路径（不含 `.nani` 扩展名），其位置是相对于 *演出脚本根目录* 的。
 
-剧本根目录是项目中存放所有剧本文件的顶级目录。例如，以下是一个 Unity 项目的目录结构示例：
+演出脚本根目录是项目中存放所有演出脚本文件的顶级目录。例如，以下是一个 Unity 项目的目录结构示例：
 
 ```
 Assets
@@ -254,13 +254,13 @@ Assets
         └── SceneX.nani
 ```
 
-在此示例中，剧本根目录为 `Assets/Scenario`。若要跳转到脚本文件 `Assets/Scenario/RouteX/SceneX.nani`，应使用以下端点：`RouteX/SceneX`。
+在此示例中，演出脚本根目录为 `Assets/Scenario`。若要跳转到脚本文件 `Assets/Scenario/RouteX/SceneX.nani`，应使用以下端点：`RouteX/SceneX`。
 
 ::: tip
 如果你不想在指定端点时包含目录路径——完全没问题！请参阅下文介绍的 [相对端点语法](/guide/naninovel-scripts#relative-endpoints) 和 [通配符端点语法](/guide/naninovel-scripts#wildcard-endpoints)。
 :::
 
-当你创建或移动剧本文件时，Naninovel 会自动检测剧本根目录。你可以在 Naninovel 的脚本配置菜单中查看当前的根目录设置。
+当你创建或移动演出脚本时，Naninovel 会自动检测演出脚本根目录。你可以在 Naninovel 的脚本配置菜单中查看当前的根目录设置。
 
 ![](https://i.gyazo.com/57515d699182ed09033e7284d1b58c46.png)
 
@@ -270,7 +270,7 @@ Naninovel 支持四种端点语法格式，在某些情况下可以让路径表�
 
 #### 标准端点
 
-这是默认的语法格式，包含从 [剧本根目录](/guide/naninovel-scripts#scenario-root) 开始到目标脚本的完整路径。该语法始终可用，并且不依赖当前脚本的位置，但需要包含指向目标脚本的所有目录路径：
+这是默认的语法格式，包含从 [演出脚本根目录](/guide/naninovel-scripts#scenario-root) 开始到目标脚本的完整路径。该语法始终可用，并且不依赖当前脚本的位置，但需要包含指向目标脚本的所有目录路径：
 
 ```nani
 ; 跳转到脚本 'Assets/Scenario/Prologue.nani' 的起始位置。
@@ -281,7 +281,7 @@ Naninovel 支持四种端点语法格式，在某些情况下可以让路径表�
 
 #### 本地端点
 
-此语法仅在跳转到当前脚本内的标签时可用。它不包含剧本路径，仅指定标签名称：
+此语法仅在跳转到当前脚本内的标签时可用。它不包含演出脚本路径，仅指定标签名称：
 
 ```nani
 ; 跳转到当前脚本中的标签 'Action'。
@@ -631,7 +631,7 @@ Watch out!
 
 :::
 
-### 同步轨道（Synchronizing Tracks）
+### 同步轨道
 
 在某些高级用例中，你可能希望将多个并行运行的轨道与主轨道或彼此进行同步。这时可以使用 [@sync] 指令来实现：
 
@@ -642,7 +642,7 @@ You'll have 60 seconds to defuse the bomb!
     @wait 60
     ; 60 秒后，如果 “Boom” 异步任务未被停止，
     ; 下方的 @sync 指令将强制将主轨道同步至此处，
-    ; 随后跳转至 “BadEnd” 剧本。
+    ; 随后跳转至 “BadEnd” 演出脚本。
     @sync
     @goto BadEnd
 
@@ -656,7 +656,7 @@ The defuse puzzle 3.
 The bomb is defused!
 ```
 
-—— 如果我们没有在 “Boom” 异步线程中使用 [@sync] 指令，那么 [@goto] 指令会在异步轨道上执行，而主轨道仍会继续向下执行，结果就是 “BadEnd” 剧本与主剧情会同时运行。[@sync] 指令的作用是强制将目标轨道（默认是主轨道）移动到其所在的行，并销毁当前宿主轨道，从而实质上实现“用目标轨道替换宿主轨道”的效果。
+—— 如果我们没有在 “Boom” 异步线程中使用 [@sync] 指令，那么 [@goto] 指令会在异步轨道上执行，而主轨道仍会继续向下执行，结果就是 “BadEnd” 演出脚本与主剧情会同时运行。[@sync] 指令的作用是强制将目标轨道（默认是主轨道）移动到其所在的行，并销毁当前宿主轨道，从而实质上实现“用目标轨道替换宿主轨道”的效果。
 
 ## 标题脚本
 
@@ -743,7 +743,7 @@ The bomb is defused!
 
 ![](https://i.gyazo.com/15682b202d37ad8f12b0f839063a530f.png)
 
-## 热重载（Hot Reload）
+## 热重载
 
 在播放模式下，你可以直接编辑脚本（无论是通过可视化编辑器还是外部文本编辑器），并让修改立即生效，而无需重新启动游戏。该功能由脚本配置中的 `Hot Reload Scripts` 属性控制，默认已启用。
 
@@ -801,11 +801,11 @@ rewind 12
 
 ## 文本标识
 
-某些功能（如 [脚本本地化](/guide/localization#scripts-localization) 和 [自动语音](/guide/voicing#auto-voicing)）需要将 Naninovel 剧本中的文本与其他资源（如翻译文本或语音文件）进行关联。例如：在显示文本时播放对应语音，或在多语言版本中显示翻译后的文本。要实现这种关联，必须为每段文本分配一个唯一标识符（ID）。
+某些功能（如 [脚本本地化](/guide/localization#scripts-localization) 和 [自动语音](/guide/voicing#auto-voicing)）需要将 Naninovel 演出脚本中的文本与其他资源（如翻译文本或语音文件）进行关联。例如：在显示文本时播放对应语音，或在多语言版本中显示翻译后的文本。要实现这种关联，必须为每段文本分配一个唯一标识符（ID）。
 
 默认情况下，Naninovel 会在导入脚本资源时，根据文本内容的哈希值自动生成标识符。这在文本未被修改时工作良好；但一旦修改了文本，其哈希值会发生变化，所有关联（如自动语音或翻译）将会失效，需要重新映射语音文件或重新翻译已更改的文本。
 
-为防止在编辑文本时导致关联丢失，可以使用编辑器菜单中的 `Naninovel/Tools/Text Identifier` 工具。该工具会自动为剧本中每个可本地化文本生成并写入唯一 ID。生成后的文本会在每个可本地化参数后附加标识符，例如：
+为防止在编辑文本时导致关联丢失，可以使用编辑器菜单中的 `Naninovel/Tools/Text Identifier` 工具。该工具会自动为演出脚本中每个可本地化文本生成并写入唯一 ID。生成后的文本会在每个可本地化参数后附加标识符，例如：
 
 ```nani
 Kohaku: Hey!|#1|[-] What's up?|#2|
@@ -831,7 +831,7 @@ var myPrintCommand = new PrintText();
 myPrintCommand.AuthorLabel = printFromScript.AuthorLabel.Ref();
 ```
 
-要在剧本中引用现有的本地化文本，请在标识符后添加 `&` 符号：
+要在演出脚本中引用现有的本地化文本，请在标识符后添加 `&` 符号：
 
 ```nani
 ; 显示一个包含 “Some Text” 的选项，然后打印相同的文本。

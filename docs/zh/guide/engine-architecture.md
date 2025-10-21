@@ -1,38 +1,55 @@
-# Engine Architecture
+# 引擎架构
 
-The engine is designed with the following principles in mind: **scene independence** and **service-orientation**.
+Naninovel 引擎的设计核心基于以下两大原则：**场景无关性（Scene Independence）** 与 **服务导向（Service-Orientation）**。
 
-## Scene Independent
+## 场景无关性
 
-While Unity design promotes using scenes and prefabs composition, it's not very practical when developing visual novels. Naninovel systems either not directly bound to a [MonoBehaviour]( https://docs.unity3d.com/ScriptReference/MonoBehaviour.html) or attached to a [persistent](https://docs.unity3d.com/ScriptReference/Object.DontDestroyOnLoad.html) root [GameObject]( https://docs.unity3d.com/ScriptReference/GameObject.html).
+虽然 Unity 的设计理念鼓励通过场景（Scene）与预制体（Prefab）进行组合开发，但在开发视觉小说（Visual Novel）时，这种方式并不高效。Naninovel 的系统要么**不直接绑定到 [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html)**，要么绑定到一个 **持久化根对象**上，即使用 [Object.DontDestroyOnLoad](https://docs.unity3d.com/ScriptReference/Object.DontDestroyOnLoad.html) 机制。
 
 ![](https://i.gyazo.com/6802b8c4bce20ca158bb757d12ef6c1a.png)
 
-The following root objects are used, depending on the environment:
-- `Naninovel<Runtime>` for runtime (builds and editor play mode);
-- `Naninovel<Editor>` for editor (outside of play mode).
+根据运行环境不同，Naninovel 使用以下根对象之一：
 
-All the required game objects are created on engine initialization, which is executed automatically and asynchronously when the application starts (right after entering play mode or running a build) via a [RuntimeInitializeOnLoadMethod]( https://docs.unity3d.com/ScriptReference/RuntimeInitializeOnLoadMethodAttribute.html) method. To customize the initialization scenario, see [manual initialization guide](/guide/integration-options#manual-initialization).
+- `Naninovel<Runtime>`：用于运行时（构建版本与编辑器播放模式中）；
+- `Naninovel<Editor>`：用于编辑器环境（非播放模式下）。
 
-::: info NOTE
-In case the scene independent design is not working for you, just disable `Scene Independent` option in the engine configuration menu and all the Naninovel-related objects will become part of the Unity scene where the engine was initialized and will be destroyed when the scene is unloaded.
+所有运行所需的游戏对象都会在**引擎初始化时自动创建**。初始化通过 [RuntimeInitializeOnLoadMethod](https://docs.unity3d.com/ScriptReference/RuntimeInitializeOnLoadMethodAttribute.html) 自动执行，即应用程序启动时（进入播放模式或运行构建后）异步完成。
+
+若需要自定义初始化流程，可参考 👉 [手动初始化指南](/guide/integration-options#manual-initialization)。
+
+::: info 提示
+如果你不希望使用“场景无关”设计，可在 **引擎配置菜单** 中关闭 `Scene Independent` 选项。关闭后，所有 Naninovel 相关对象都会成为当前 Unity 场景的一部分，并在场景卸载时一并销毁。
 :::
 
-## Service-Oriented
+## 基于服务
 
-Most of the engine features are implemented via engine services. Engine service is an implementation of an `IEngineService` interface, which handles a specific job, like executing naninovel scripts, managing actors or saving-loading the game state.
+引擎的大多数功能都通过 **引擎服务** 实现。每个服务都是 `IEngineService` 接口的实现，用于处理特定的职责，例如：
 
-In case you wish to interact with an engine system, you'll most likely want to use an engine service. You can get a reference to an engine service using `Engine.GetService<TService>()` static method, where `TService` is the type (interface) of service you wish to reference; e.g., to get a `IScriptPlayer` service:
+- 执行 Naninovel 脚本；
+- 管理角色（Actor）；
+- 管理游戏状态的保存与加载等。
+
+当你需要与某个引擎系统交互时，最常见的方式就是使用相应的 **引擎服务**。
+
+可通过静态方法 `Engine.GetService<TService>()` 获取服务引用：其中 `TService` 是你想要访问的服务接口类型。
+
+例如，获取脚本播放器服务：
 
 ```csharp
 var player = Engine.GetService<IScriptPlayer>();
 player.Stop();
 ```
-You can find list of all the currently available engine services and information on how to override/add custom ones in the [engine services guide](/guide/engine-services).
 
-## High-Level Concept
+你可以在 [引擎服务指南](/guide/engine-services) 中找到当前可用的所有引擎服务列表，以及如何**重写或添加自定义服务**的详细说明。
 
-The following UML diagram illustrates a high-level concept of the engine architecture. Note that all the class and interface names in the diagram are organized under `Naninovel` namespace. Eg, to reference `Engine` class, use `Naninovel.Engine` or [include the namespace](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/namespaces/using-namespaces).
+## 高层架构概念
+
+下方的 UML 图展示了 Naninovel 引擎架构的高层概念。
+
+请注意：  
+图中所有的类（Class）与接口（Interface）名称都位于 `Naninovel` 命名空间下。  
+例如，要引用 `Engine` 类，应使用完整限定名 `Naninovel.Engine`，  
+或通过 C# 的 [`using`](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/namespaces/using-namespaces) 语句引入命名空间。
 
 <object class="engine-design-dark" data="/assets/img/engine-design-dark.svg" type="image/svg+xml"></object>
 <object class="engine-design-light" data="/assets/img/engine-design-light.svg" type="image/svg+xml"></object>

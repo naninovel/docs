@@ -1,10 +1,13 @@
-# Custom Build Environment
+# 自定义构建环境
 
-When building the project using editor's [build menu](https://docs.unity3d.com/Manual/BuildSettings.html), Naninovel automatically executes additional pre- and post-processing procedures. Those procedures, among other things, include ensuring that all the resources assigned via Naninovel's configuration menus (eg, script documents, character appearances, BGM and SFX clips, etc) are included to the build.
+当你通过编辑器的 [Build 菜单](https://docs.unity3d.com/Manual/BuildSettings.html) 构建项目时，Naninovel 会自动执行额外的构建前与构建后处理流程。这些流程会确保所有在 Naninovel 配置菜单中分配的资源（例如脚本文档、角色立绘、BGM、SFX 音频等）都被正确包含到最终构建中。
 
-In case you're using a custom build environment (eg, [Cloud Build](https://unity3d.com/unity/features/cloud-build) or starting the build via custom scripts or from the command line) you have to manually invoke `Naninovel.BuildProcessor.PreprocessBuild(BuildPlayerOptions)` and `Naninovel.BuildProcessor.PostprocessBuild()` static methods before and after the build respectively.
+如果你使用的是自定义构建环境（例如 [Unity Cloud Build](https://unity3d.com/unity/features/cloud-build)）或通过自定义脚本、指令行执行构建，则需要在构建前后手动调用以下静态方法：
 
-Below is an example of Cloud Build custom build processing script, which invokes the required Naninovel processing methods. Consult the [official service docs](https://docs.unity3d.com/Manual/UnityCloudBuildPreAndPostExportMethods.html) on how to setup the processing scripts.
+- 构建前调用：`Naninovel.BuildProcessor.PreprocessBuild(BuildPlayerOptions)`  
+- 构建后调用：`Naninovel.BuildProcessor.PostprocessBuild()`
+
+以下是一个 Cloud Build 自定义构建处理脚本示例，展示了如何在构建流程中调用所需的 Naninovel 处理方法。关于如何设置这些处理脚本，请参考 [Unity 官方文档](https://docs.unity3d.com/Manual/UnityCloudBuildPreAndPostExportMethods.html)。
 
 ```csharp
 public static class CustomBuildProcessor
@@ -36,7 +39,7 @@ public static class CustomBuildProcessor
 }
 ```
 
-When using assembly definitions for custom commands, Unity editor may start importing assets before compiling all the assemblies leading to build errors when using Cloud Build. This can be solved by reimporting the script assets before starting the build, eg:
+当为自定义指令使用程序集定义（Assembly Definition）时，Unity 编辑器可能会在所有程序集尚未完全编译完成前就开始导入资源，这会在使用 Cloud Build 时导致构建错误。可以通过在构建开始前重新导入脚本资源来解决该问题，例如：
 
 ```csharp
 var scriptGuids = AssetDatabase.FindAssets("t:Naninovel.script");
@@ -47,4 +50,4 @@ foreach (var scriptGuid in scriptGuids)
 }
 ```
 
-In case you're using you own custom build handler, which supposed to be triggered with the editor's build menu, it's possible to disable the Naninovel's handler by disabling `Enable Build Processing` property in the "Resource Provider" configuration menu. When enabling or disabling the property, restart Unity editor in order for the change to take effect.
+如果你使用自定义的构建处理器（Build Handler），并希望通过 Unity 编辑器的 Build 菜单触发构建，可以在 “Resource Provider” 配置菜单中关闭 `Enable Build Processing` 属性以禁用 Naninovel 自带的构建处理逻辑。启用或禁用该属性后，请重新启动 Unity 编辑器以使更改生效。

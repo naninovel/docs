@@ -31,7 +31,7 @@
 
 提交报告前请先：
 
-- 查阅[使用手册](/guide/)、[命令参考](/api/)和 [FAQ](/faq/)，确保不是使用方法问题。  
+- 查阅[使用手册](/guide/)、[指令参考](/api/)和 [FAQ](/faq/)，确保不是使用方法问题。  
 - 确认你正在使用 Naninovel 的最新版本。最新版可通过 [UPM 注册表](/guide/getting-started#install-from-github) 获取；Asset Store 或下载存档版本可能较旧。  
 - 如果你刚从旧版本升级，请务必阅读[更新日志](/releases/)中的升级说明。  
 - 尝试清空 Unity 缓存（删除项目根目录下的 `Library` 文件夹后重启编辑器）。  
