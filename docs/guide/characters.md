@@ -199,9 +199,11 @@ The **avatars are not directly connected with character appearances** and should
 
 ## Speaker Highlight
 
-When enabled in the character configuration, will set specified [poses](/guide/characters#poses) to the character based on whether the last printed message is associated with it. The video below demonstrates the feature with a previous version of Naninovel, where it was possible to apply only tint color for speakers; setup with the current version is similar, but instead tint color, specify a pose name.
+When enabled in the character configuration, will set specified [poses](/guide/characters#poses) to the character based on whether the last printed message is associated with it. This allows automatically highlighting the "speaking" characters, usually by tinting or scaling.
 
-![](https://www.youtube.com/watch?v=gobowgagdyE)
+![](https://i.gyazo.com/3817adb43d6e14f9854e5d558792c2f6.png)
+
+When applying the same highlight poses for multiple characters, it's recommended to use Shared Poses found in the root of the character's configuration.
 
 ## Lip Sync
 
