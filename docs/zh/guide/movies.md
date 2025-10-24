@@ -12,7 +12,7 @@
 
 你可以使用任何 [Unity 支持的视频格式](https://docs.unity3d.com/Manual/VideoSources-FileCompatibility)。
 
-:::TIP
+::: TIP
 译注：Unity 打包 Windows 应用时，推荐使用 webm 格式，对 Windows 支持度会更好。
 :::
 
