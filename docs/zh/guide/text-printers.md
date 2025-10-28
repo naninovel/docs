@@ -236,7 +236,7 @@ Lorem <ruby="VERY"><tip="TipID">ipsum</tip></ruby> dolor sit amet.
 
 ![](https://www.youtube.com/watch?v=aWdq7YxIxkE)
 
-## 从右到左文本（Right to Left / Arabic Text）
+## 从右到左文本
 
 所有内置输出窗均支持从右到左（RTL）文本的显现效果。
 
@@ -286,7 +286,7 @@ Unity 原生并不支持阿拉伯语文本。对于需要支持阿拉伯语显�
 请参阅 [本地化示例](/guide/samples#localization)，了解如何为日语语言环境使用自定义 TMPro 字体图集。当选择日语时会自动切换至日语字体图集，切换回其他语言时则恢复默认字体图集。
 :::
 
-## 文本显现音效（Text Reveal Sounds）
+## 文本显现音效
 
 对于支持文字显现效果的内置输出窗（目前包括 `Dialogue`、`Fullscreen` 与 `Wide`），你可以为文字显现过程设置音效（SFX）。
 
@@ -322,7 +322,7 @@ Lorem ipsum dolor<@back tint:blue> sit amet.
 
 你可以使用事件标签来替代 [内联指令](/guide/naninovel-scripts#command-inlining)，以便将它们暴露给 [本地化文档](/guide/localization#scripts-localization)，从而允许翻译人员根据所选语言修改需要执行的指令。
 
-## 等待输入标签（Wait Input Tag）
+## 等待输入标签
 
 如果你经常使用 `<@wait i>` 而非 `[-]` 等待输入指令，只是为了让它能被本地化文档识别，可以考虑使用 `<->` 等待输入标签 —— 它具有相同功能，但书写更简短。
 
