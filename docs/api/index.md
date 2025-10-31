@@ -483,6 +483,39 @@ Continue executing this script or ...?[>]
 @choice "Secret option" if:score>=10
 ```
 
+## choiceHandler
+
+Modifies a [choice handler actor](/guide/choices).
+
+<div class="config-table">
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">handlerId</span> | string | ID of the choice handler actor to modify. When not specified, will use the default ones. |
+| default | boolean | Whether to make the choice handler default. Default handler will be subject of all the choice-related commands when `handler` parameter is not specified. |
+| id | string | ID of the actor to modify; specify `*` to affect all visible actors. |
+| appearance | string | Appearance to set for the modified actor. |
+| pose | string | Pose to set for the modified actor. |
+| transition | string | Type of the [transition effect](/guide/transition-effects) to use (crossfade is used by default). |
+| params | decimal list | Parameters of the transition effect. |
+| dissolve | string | Path to the [custom dissolve](/guide/transition-effects#custom-transition-effects) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
+| visible | boolean | Visibility status to set for the modified actor. |
+| position | decimal list | Position (in world space) to set for the modified actor. Use Z-component (third member) to move (sort) by depth while in ortho mode. |
+| rotation | decimal list | Rotation to set for the modified actor. |
+| scale | decimal list | Scale to set for the modified actor. |
+| tint | string | The tint color to apply.<br><br>Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes `RRGGBB`), `#RRGGBB`, `#RGBA` (becomes `RRGGBBAA`), `#RRGGBBAA`; when alpha is not specified will default to `FF`.<br><br>Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
+| easing | string | Name of the [easing function](/guide/transition-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
+| time | decimal | Duration of the animation initiated by the command, in seconds. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
+| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
+
+</div>
+
+```nani
+; Will make the 'ButtonArea' choice handler default.
+@choiceHandler ButtonArea default!
+```
+
 ## clearBacklog
 
 Removes all the messages from [printer backlog](/guide/text-printers#printer-backlog).
@@ -570,6 +603,22 @@ Marks a branch of a conditional execution block, which is executed in case condi
 ## endIf
 
 Alternative to using indentation in conditional blocks: marks end of the block opened with previous [@if] command, no matter the indentation. For usage examples see [conditional execution](/guide/naninovel-scripts#conditional-execution) guide.
+
+## enterDialogue
+
+Enters the dialogue mode by enabling Naninovel activities, such as rendering and input processing. Intended to switch into the dialogue or visual novel mode when Naninovel is used as a drop-in dialogue/cutscene system.
+
+## exitDialogue
+
+Exits the dialogue mode by resetting the engine state and disabling most Naninovel activities, such as rendering and input processing. Intended to switch out of the dialogue or visual novel mode when Naninovel is used as a drop-in dialogue/cutscene system.
+
+<div class="config-table">
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| destroy | boolean | Whether to also destroy (deinitialize) the engine after exiting the dialogue mode. |
+
+</div>
 
 ## format
 
@@ -1096,6 +1145,7 @@ Modifies a [text printer actor](/guide/text-printers).
 | <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">idAndAppearance</span> | named string | ID of the printer to modify and the appearance to set. When ID or appearance are not specified, will use default ones. |
 | default | boolean | Whether to make the printer the default one. Default printer will be subject of all the printer-related commands when `printer` parameter is not specified. |
 | hideOther | boolean | Whether to hide all the other printers. |
+| anchor | boolean | Whether to allow auto printer positioning via actor anchors. Enable for supported printers after manually positioning a printer to resume automatic positioning. Note that anchoring is disabled automatically when an explicit position is assigned with this command. |
 | pos | decimal list | Position (relative to the scene borders, in percents) to set for the modified actor. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
 | id | string | ID of the actor to modify; specify `*` to affect all visible actors. |
 | appearance | string | Appearance to set for the modified actor. |
