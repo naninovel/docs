@@ -1,55 +1,55 @@
-# Backgrounds
+# 背景
 
-Opposed to [characters](/guide/characters), backgrounds are actors used to represent a *back* layer of the scene: locations, sceneries, landscapes or anything that should always appear *behind* the characters.
+与 [角色](/guide/characters) 不同，背景是用于表示场景“后层”的演出元素：例如地点、风景、景观或任何应始终出现在角色“后方”的元素。
 
-A background actor is defined with a name, appearance, visibility and transform (position, rotation, scale). It can change appearance, visibility and transform over time.
+一个背景演出元素由名称、外观、可见性以及变换属性（位置、旋转、缩放）定义。背景可以随时间改变其外观、可见性与变换。
 
-Backgrounds' behavior can be configured using `Naninovel -> Configuration -> Backgrounds` context menu; for available options see [configuration guide](/guide/configuration#backgrounds). The backgrounds' resources manager can be accessed using `Naninovel -> Resources -> Backgrounds` context menu.
+背景的行为可通过 `Naninovel -> Configuration -> Backgrounds` 上下文菜单进行配置；有关可用选项，请参阅 [配置指南](/guide/configuration#backgrounds)。背景资源管理器可通过 `Naninovel -> Resources -> Backgrounds` 上下文菜单访问。
 
 ![](https://i.gyazo.com/cccd08280dac72d199ea3465bc167a22.gif)
 
-In naninovel scripts, backgrounds are mostly controlled with [@back] command:
+在 Naninovel 脚本中，背景主要通过 [@back] 指令进行控制：
 
 ```nani
-; Set `River` as the appearance of the main background
+; 将ID为 MainBackground 的主背景外观设置为 `River`。
 @back River
 
-; Same as above, but also use a `RadialBlur` transition effect
+; 与上相同，但同时使用 `RadialBlur` 过渡效果。
 @back River.RadialBlur
 ```
 
-Backgrounds are handled a bit differently from characters to better accommodate traditional VN game flow. Most of the time you'll probably have a single background actor on scene, which will constantly transition to different appearances. To remove the hassle of repeating same actor ID in scripts, it's possible to provide only the background appearance and transition type (optional) as a nameless parameter assuming `MainBackground` actor should be affected. When this is not the case, ID of the background actor can be explicitly provided via the `id` parameter:
+背景的处理方式与角色略有不同，以更好地适应传统视觉小说的游戏流程。在大多数情况下，场景中通常只有一个背景演出元素，并不断切换不同外观。为避免在脚本中重复输入相同的演出元素 ID，可以只提供背景外观和可选的过渡类型参数，系统会默认作用于 `MainBackground` 演出元素。若需要控制其他背景演出元素，可通过 `id` 参数显式指定：
 
 ```nani
-; Given a `CityVideo` actor with `Night` and `Day` video clips.
+; 假设存在一个 `CityVideo` 演出元素，包含 `Night` 和 `Day` 两个视频片段。
 
-; Show the video background playing day clip.
+; 播放白天片段的视频背景。
 @back Day id:CityVideo
 
-; Transition to night clip with ripple effect.
+; 使用波纹（ripple）效果切换到夜晚片段。 
 @back Night.Ripple id:CityVideo
 
-; Hide the video background.
+; 隐藏视频背景。
 @hide CityVideo
 ```
 
-Main background actor record is created by default in the background resources manager and can't be renamed or deleted; however, parameters of the main background (implementation, pivot, PPU, etc) can be freely changed.
+主背景（MainBackground）会在背景资源管理器中默认创建，且无法重命名或删除；但你可以自由修改其参数（实现方式、中心点、PPU 等）。
 
-Check the following video tutorial for an overview of the background actors.
+以下视频教程概述了背景演出元素的用法：
 
 ![](https://www.youtube.com/watch?v=X2iyGSCpnJs)
 
-## Actor Records
+## 演出元素记录
 
-If you have many backgrounds or background appearances and it's inconvenient to assign them all via the editor menu, use actor record assets (`Create -> Naninovel -> Actor Record -> Background`). They support multi-editing and allow you to organize records with folders. Check the video below for an example.
+如果你拥有大量背景或外观，通过编辑器菜单逐一分配会比较麻烦，可以使用演出元素记录资源（`Create -> Naninovel -> Actor Record -> Background`）。演出元素记录支持多选编辑，并可通过文件夹组织。下方视频展示了一个示例：
 
 ![](https://www.youtube.com/watch?v=2YP-36THHvk)
 
-To associate appearance resources with actor records, use the [addressable asset system](/guide/resource-providers#addressable). For example, to associate a "Beach" appearance with the "MainBackground" background, assign the texture asset the address `Naninovel/Backgrounds/MainBackground/Beach` and add the `Naninovel` label. For more details on using the addressable provider, see the [resource providers documentation](/guide/resource-providers#addressable).
+要将外观资源与演出元素记录关联，请使用 [可寻址资源系统](/guide/resource-providers#addressable)。例如，要将 “Beach” 外观与 “MainBackground” 背景关联，请将纹理资源地址设为 `Naninovel/Backgrounds/MainBackground/Beach`，并添加 `Naninovel` 标签。有关使用可寻址资源提供程序的详细信息，请参阅 [资源提供程序文档](/guide/resource-providers#addressable)。
 
-## Z-order
+## Z 轴顺序（Z-order）
 
-When showing multiple backgrounds simultaneously, they tend to cover each other:
+当同时显示多个背景时，它们往往会互相遮挡：
 
 ```nani
 @back id:1

@@ -1,115 +1,113 @@
-# Audio
+# 音频
 
-Background music (BGM) and sound effects (SFX) are covered in this article; for the voices see [voicing guide](/guide/voicing).
+本篇文章将介绍背景音乐（BGM）和音效（SFX）；关于语音的内容请参阅 [语音指南](/guide/voicing)。
 
-To add, edit or remove BGM and SFX resources use audio resources manager accessible via `Naninovel -> Resources -> Audio`. You can use any audio formats [supported by Unity](https://docs.unity3d.com/Manual/AudioFiles.html).
+要添加、编辑或删除 BGM 和 SFX 资源，请使用通过 `Naninovel -> Resources -> Audio` 访问的音频资源管理器。你可以使用任何 [Unity 支持的音频格式](https://docs.unity3d.com/Manual/AudioFiles.html)。
 
 ![](https://i.gyazo.com/cacdec36623dbbfcf9f49c594de53c0f.png)
 
 ::: tip
-Choose file formats that are most comfortable for your development workflow. When building the project, Unity will automatically convert all the source resources (textures, audio, video, etc) to the formats most suitable for the target platform, so it won't make difference in which format you originally store the resources in the project. Find more information on how Unity manage project assets in the [official documentation](https://docs.unity3d.com/Manual/AssetWorkflow).
+选择最适合你开发流程的文件格式。在构建项目时，Unity 会自动将所有源资源（纹理、音频、视频等）转换为最适合目标平台的格式，因此在项目中以哪种格式存储资源并不会产生差别。有关 Unity 如何管理项目资源的更多信息，请参阅 [官方文档](https://docs.unity3d.com/Manual/AssetWorkflow)。
 :::
 
-In case you have a lot of audio files and it's inconvenient to assign them via editor menu, it's possible to just drop them at `Resources/Naninovel/Audio` folder, and they'll automatically be available in the scripts. You can additionally organize them with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in naninovel scripts. Eg, audio clip stored as `Resources/Naninovel/Audio/Music/Ambient/Noise002.wav` can be referenced in scripts as `Music/Ambient/Noise002`.
+如果你有大量音频文件，通过编辑器菜单逐一分配会比较麻烦，也可以直接将它们放入 `Resources/Naninovel/Audio` 文件夹中，它们会自动在脚本中可用。你还可以根据需要使用子文件夹进行整理；在这种情况下，在 Naninovel 脚本中引用它们时请使用正斜杠（`/`）。例如，存储在 `Resources/Naninovel/Audio/Music/Ambient/Noise002.wav` 的音频文件，可以在脚本中通过 `Music/Ambient/Noise002` 来引用。
 
-It's also possible to use [addressable asset system](/guide/resource-providers#addressable) to manually expose the resources. To expose an asset, assign address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "MainTheme.wav" BGM, assign the clip asset following address: `Naninovel/Audio/MainTheme`. Be aware, that addressable provider is not used in editor by default; you can allow it by enabling `Enable Addressable In Editor` property in resource provider configuration menu.
+你也可以使用 [可寻址资源系统](/guide/resource-providers#addressable) 手动公开资源。要公开一个资源，请为其分配与上面方法中相同的路径作为地址，但省略 “Resources/” 部分。例如，要公开一个名为 “MainTheme.wav” 的 BGM，请为该音频剪辑资源分配以下地址：`Naninovel/Audio/MainTheme`。请注意，默认情况下编辑器中不会使用可寻址资源提供程序；你可以在资源提供程序配置菜单中启用 `Enable Addressable In Editor` 属性以允许其在编辑器中使用。
 
 ::: warning
-Audio assets not assigned via resources manager won't be available in various editor dropdowns, such as the one used to select `Message Sound` for a character actor.
+未通过资源管理器分配的音频资源将无法在编辑器中的各种下拉菜单中使用，例如用于为角色演员选择 `Message Sound`（消息音效）的菜单。
 :::
 
-Audio playback behavior can be configured using `Naninovel -> Configuration -> Audio` context menu; for available options see [configuration guide](/guide/configuration#audio).
+可以通过 `Naninovel -> Configuration -> Audio` 上下文菜单配置音频播放行为；可用选项请参阅 [配置指南](/guide/configuration#audio)。
 
-## Background Music
+## 背景音乐
 
-Use [@bgm] command followed by the clip name to control the music playback in naninovel scripts:
+在 Naninovel 脚本中使用 [@bgm] 指令并跟随音频剪辑名称来控制音乐播放：
 
 ```nani
-; Starts playing a music track with the name `Sanctuary` in a loop.
+; 循环播放名为 `Sanctuary` 的音乐曲目。  
 @bgm Sanctuary
 
-; Same as above, but fades-in the volume over 10 seconds and plays only once.
+; 与上面相同，但在 10 秒内淡入音量，仅播放一次。  
 @bgm Sanctuary fade:10 !loop
 
-; Changes volume of all the played music tracks to 50% over 2.5 seconds
-; and makes them play in a loop.
+; 将所有正在播放的音乐音量在 2.5 秒内调整为 50%，并使其循环播放。
 @bgm volume:0.5 loop! time:2.5
 ```
 
-Music tracks are looped by default. When music track name is not specified in [@bgm] command, all the currently played tracks will be affected. When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start), but the specified parameters (volume and whether the track is looped) will be applied.
+音乐曲目默认是循环播放的。当 [@bgm] 指令中未指定音乐名称时，所有当前播放的曲目都会受到影响。当对一个正在播放的曲目再次调用该指令时，播放不会被重置（不会从头开始播放），但会应用指定的参数（音量以及是否循环）。
 
-It's possible to play an intro followed by a loop with `intro` parameter, eg:
+可以使用 `intro` 参数播放一个前奏（Intro）后接主循环，例如：
 
 ```nani
-; Playes `BattleThemeIntro` once and then `BattleThemeMain` in a loop.
+; 播放一次 `BattleThemeIntro`，然后循环播放 `BattleThemeMain`。
 @bgm BattleThemeMain intro:BattleThemeIntro
 ```
 
-To stop a playing music track, use [@stopBgm] command followed by clip name. When clip name is not specified, the command will stop all the currently played tracks.
+要停止正在播放的音乐曲目，请使用 [@stopBgm] 指令并跟随音频名称。当未指定音频名称时，该指令会停止所有当前正在播放的音乐。
 
 ```nani
-; Fades-out the `Promenade` music track over 10 seconds and stops the playback.
+; 在 10 秒内淡出并停止播放 `Promenade` 音乐曲目。
 @stopBgm Promenade fade:10
 
-; Stops all the currently played music tracks.
+; 停止所有当前正在播放的音乐曲目。
 @stopBgm
 ```
 
-## Sound Effects
+## 音效
 
-Use [@sfx] and [@stopSfx] commands followed by the clip name to control playback of the sound effects in naninovel scripts:
+在 Naninovel 脚本中使用 [@sfx] 和 [@stopSfx] 指令并跟随音频名称来控制音效的播放：
 
 ```nani
-; Plays an SFX with the name `Explosion` once.
+; 播放名为 `Explosion` 的音效一次。 
 @sfx Explosion
 
-; Plays an SFX with the name `Rain` in a loop.
+; 循环播放名为 `Rain` 的音效。  
 @sfx Rain loop!
 
-; Changes volume of all the played SFX tracks to 75% over 2.5
-; seconds and disables looping for all of them.
+; 将所有正在播放的音效音量在 2.5 秒内调整为 75%，并禁用它们的循环播放。
 @sfx volume:0.75 !loop time:2.5
 ```
 
-Sound effect tracks are not looped by default. When sfx track name is not specified in [@sfx] command, all the currently played tracks will be affected. When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start), but the specified parameters (volume and whether the track is looped) will be applied.
+音效轨道默认不循环播放。当 [@sfx] 指令中未指定音效名称时，所有当前正在播放的音效都会受到影响。当对一个正在播放的音效再次调用该指令时，播放不会被重置（不会从头开始播放），但会应用指定的参数（音量以及是否循环）。
 
-To stop a playing sound effect (no matter looped or not), use [@stopSfx] command followed by clip name. When clip name is not specified, the command will stop all the currently played SFX tracks.
+要停止正在播放的音效（无论是否循环），请使用 [@stopSfx] 指令并跟随音效名称。当未指定音效名称时，该指令会停止所有当前正在播放的音效轨道。
 
 ```nani
-; Stop playing an SFX with the name `Rain`, fading-out for 15 seconds.
+; 在 15 秒内淡出并停止播放名为 `Rain` 的音效。  
 @stopSfx Rain fade:15
 
-; Stops all the currently played sound effect tracks.
+; 停止所有当前正在播放的音效轨道。
 @stopSfx
 ```
 
-## Audio Mixer
+## 音频混音器
 
-Naninovel uses an [audio mixer](https://docs.unity3d.com/Manual/AudioMixer.html) asset when playing the audio to separate BGM, SFX and voice channels.
+Naninovel 在播放音频时会使用一个 [音频混音器（Audio Mixer）](https://docs.unity3d.com/Manual/AudioMixer.html) 资源，用于将 BGM、SFX 和语音通道分离。
 
 ![](https://i.gyazo.com/6271d59ee9ac63a0a218316bd3bc78a8.png)
 
-It's possible to assign a custom mixer asset, change groups used for each audio channel and volume control handlers (exposed parameter names) in the audio configuration menu. When no custom mixer assets assigned, a default one will be used.
+你可以在音频配置菜单中分配自定义混音器资源，修改每个音频通道所使用的分组，以及音量控制参数（暴露的参数名称）。当未分配自定义混音器资源时，将使用默认混音器。
 
 ![](https://i.gyazo.com/ef2db68edb871608d1718117a37e9486.png)
 
-To play an audio via a custom mixer group, specify a group path with `group` parameter available in [@bgm], [@sfx] and [@voice] commands.
+要通过自定义混音器分组播放音频，请在 [@bgm]、[@sfx] 和 [@voice] 指令中使用 `group` 参数指定分组路径。
 
 ```nani
-; Play `Noise` audio resource in loop via `Master/Ambient` mixer group.
+; 通过 `Master/Ambient` 混音器分组循环播放音频资源 `Noise`。
 @sfx Noise loop! group:Master/Ambient
 
-; Play `ScaryVoice` voice resource via `Master/Reverb` mixer group.
+; 通过 `Master/Reverb` 混音器分组播放语音资源 `ScaryVoice`。
 @voice ScaryVoice group:Master/Reverb
 ```
 
-Groups are retrieved with `FindMatchingGroups(groupPath)` method of the currently assigned audio mixer asset; see [Unity documentation](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) for more information on the expected path format. In case multiple groups are associated with the provided path, the first one will be used to play the audio.
+分组是通过当前分配的音频混音器资源的 `FindMatchingGroups(groupPath)` 方法获取的；有关路径格式的更多信息，请参阅 [Unity 文档](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。如果提供的路径对应多个分组，将使用第一个分组来播放音频。
 
-## Custom Audio Backend
+## 自定义音频后端
 
-Unity allows replacing its built-in audio backend with custom solutions, such as [FMOD](https://www.fmod.com) and [Wwise](https://www.audiokinetic.com/en/wwise/). To support this, we've ensured that Naninovel's `IAudioManager` interface doesn't depend on the default audio backend (for example, it doesn't reference `AudioClip`, `AudioSource`, etc.). This allows you to [override the service](/guide/engine-services#overriding-built-in-services) and use a custom audio backend without modifying the engine's source code.
+Unity 允许将其内置音频后端替换为自定义解决方案，例如 [FMOD](https://www.fmod.com) 和 [Wwise](https://www.audiokinetic.com/en/wwise/)。为支持这一点，我们确保 Naninovel 的 `IAudioManager` 接口不依赖于默认音频后端（例如，它不会引用 `AudioClip`、`AudioSource` 等）。这使你可以在无需修改引擎源代码的情况下，[重写该服务](/guide/engine-services#overriding-built-in-services)，从而使用自定义音频后端。
 
-Below is a minimal example of such an override for FMOD.
+以下是一个为 FMOD 实现此类重写的最小示例。
 
 ```cs
 [InitializeAtRuntime(@override: typeof(AudioManager))]
