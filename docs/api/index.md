@@ -1922,6 +1922,31 @@ The defuse puzzle 3.
 The bomb is defused!
 ```
 
+## timeline
+
+Controls a [Timeline](https://docs.unity3d.com/Manual/com.unity.timeline.html) via a [Director](https://docs.unity3d.com/ScriptReference/Playables.PlayableDirector.html) component on a scene game object with the specified name. By default the command will make the director start playing, unless 'stop', 'pause' or 'resume' flags are specified.
+
+<div class="config-table">
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">name</span> | string | Name of an active scene game object with a 'Playable Director' component attached. |
+| stop | boolean | Whether to stop the director. |
+| pause | boolean | Whether to pause the director. |
+| resume | boolean | Whether to resume the director. |
+| wait | boolean | Whether to wait until the director stops playing before proceeding with the script execution. |
+
+</div>
+
+```nani
+; Makes a director component attached to a 'Cutscene001' game object on the scene
+; start playing the associated timeline and waits for completion.
+@timeline Cutscene001 wait!
+
+; Stops a director attached to a 'The Other Cutscene' game object.
+@timeline "The Other Cutscene" stop!
+```
+
 ## title
 
 Resets engine state and shows `ITitleUI` UI (main menu).
