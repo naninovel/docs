@@ -72,6 +72,7 @@ Use UI Camera | True | Whether to render the UI with a dedicated camera. This op
 Custom UI Camera Prefab | Null | A prefab with a camera component to use for UI rendering. Will use a default one when not specified. Has no effect when `Use UI Camera` is disabled
 Default Duration | 0.35 | Default duration (in seconds) for all the camera modifications (changing zoom, position, rotation, etc).
 Default Easing | Linear | Easing function to use by default for all the camera modifications (changing zoom, position, rotation, etc).
+Disable Rendering | False | Whether to disable Naninovel cameras by default when the engine is initialized. Useful when Naninovel is integrated as a drop-in dialogue system and shouldn't render after initialization.
 Thumbnail Resolution | (240, 140) | The resolution in which thumbnails to preview game save slots will be captured.
 Hide UI In Thumbnails | False | Whether to ignore UI layer when capturing thumbnails.
 
@@ -110,7 +111,7 @@ Default Metadata | Object Ref | Metadata to use by default when creating choice 
 Metadata | Object Ref | Metadata to use when creating choice handler actors with specific IDs.
 Default Duration | 0.35 | Default duration (in seconds) for all the actor modifications (changing appearance, position, tint, etc).
 Default Easing | Linear | Easing function to use by default for all the actor modification animations (changing appearance, position, tint, etc).
-Auto Show On Modify | True | Whether to automatically reveal (show) an actor when executing modification commands.
+Auto Show On Modify | False | Whether to automatically reveal (show) an actor when executing modification commands.
 
 </div>
 
@@ -120,6 +121,7 @@ Auto Show On Modify | True | Whether to automatically reveal (show) an actor whe
 
 Property | Default Value | Description
 --- | --- | ---
+Default Scope | Local | When set to 'Global' all variables will be treated as globals, even when their name doesn't start with the 'g_' prefix. Global variables are not reset when starting a new game and are auto-saved on change. Useful for the dialogue mode when the engine is reset constantly and game state is handled externally.
 Predefined Variables | Object Ref | The list of variables to initialize by default. Global variables (names starting with `g_`) are initialized on first application start, and others on each state reset.
 
 </div>
@@ -156,6 +158,7 @@ Event System | Null | A prefab with `EventSystem` component to spawn on engine i
 Input Actions | Null | When Unity's input system is installed, assign input actions asset here.<br><br>To map input actions to Naninovel's input samplers, create `Naninovel` action map and add actions with names equal to the input names.<br><br>Will use the default input actions when not assigned.
 Action Maps | Object Ref | Input action map names in the specified 'Input Actions' asset to register with the Naninovel input.
 Detect Input Mode | True | Whether to change input mode when associated device is activated. Eg, switch to gamepad when any gamepad button is pressed and switch back to mouse when mouse button clicked.
+Disable Input | False | Whether to disable input processing by default when the engine is initialized. Useful when Naninovel is integrated as a drop-in dialogue system and shouldn't react to user input after initialization.
 
 </div>
 
@@ -221,6 +224,7 @@ Label By Scripts | True | Whether to label all the Naninovel addressable assets 
 Extra Labels | Null | Addressable provider will only work with assets, that have the assigned labels in addition to `Naninovel` label. Can be used to filter assets used by the engine based on custom criteria (eg, HD vs SD textures).
 Local Root Path | %DATA%/Resources | Path root to use for the local resource provider. Can be an absolute path to the folder where the resources are located, or a relative path with one of the available origins:<br> • %DATA% — Game data folder on the target device (UnityEngine.Application.dataPath).<br> • %PDATA% — Persistent data directory on the target device (UnityEngine.Application.persistentDataPath).<br> • %STREAM% — `StreamingAssets` folder (UnityEngine.Application.streamingAssetsPath).<br> • %SPECIAL{F}% — An OS special folder (where F is value from System.Environment.SpecialFolder).
 Video Stream Extension | .mp 4 | When streaming videos under WebGL (movies, video backgrounds), specify the extension of the video files.
+Reload Scripts | True | Whether to watch and hot reload modified scenario scripts stored under the local provider directory.
 Project Root Path | Naninovel | Path relative to `Resources` folders, under which the naninovel-specific assets are located.
 
 </div>
@@ -311,7 +315,7 @@ Auto Save Slot Limit | 18 | Maximum number of auto save slots.
 Auto Save On Quit | True | Whether to auto-save the game before exiting to title or when the application is closed while not in title menu (doesn't work in editor).
 Binary Save Files | True | Whether to compress and store the saves as binary files (.nson) instead of text files (.json). This will significantly reduce the files size and make them harder to edit (to prevent cheating), but will consume more memory and CPU time when saving and loading.
 Reset On Goto | False | Whether to reset state of the engine services when loading another script via [@goto] command. Can be used instead of [@resetState] command to automatically unload all the resources on each goto.
-Enable State Rollback | True | Whether to enable state rollback feature allowing player to rewind the script backwards.
+Enable State Rollback | True | Whether to enable the state rollback feature that allows the player to rewind the script backwards.<br><br>Note that the rollback feature has a performance cost, as it effectively serializes the entire game state on each player interaction, resulting in many heap allocations. If your game does not require the rollback feature, disable it here instead of simply removing the rollback input.<br><br>Be aware that even when disabled here, rollback remains enabled in the Unity Editor, as it is required for the hot reload feature; the configuration is respected in player builds.
 State Rollback Steps | 1024 | The number of state snapshots to keep at runtime; determines how far back the rollback (rewind) can be performed. Increasing this value will consume more memory.
 Saved Rollback Steps | 128 | The number of state snapshots to serialize (save) under the save game slots; determines how far back the rollback can be performed after loading a saved game. Increasing this value will enlarge save game files.
 Game State Handler | Naninovel Universal Game State Serializer | Implementation responsible for de-/serializing local (session-specific) game state; see `State Management` guide on how to add custom serialization handlers.
