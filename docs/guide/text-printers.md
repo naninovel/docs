@@ -128,7 +128,7 @@ To embed choices inside the chat printer, see [ChatReply](/guide/choices#chatrep
 
 ## Bubble Printer
 
-Bubble printers can be used for a manga/comic style of text presentation.
+Bubble printers can be used for a manga/comic style of text presentation, also known as "speech bubbles".
 
 ![](https://i.gyazo.com/900ee728505a0d7ce2eb597f3aa2249a.png)
 
@@ -146,9 +146,51 @@ Nanikun: Integer nec maximus elit, eget posuere risus.
 
 To display more than one bubble (or any other) printer at a time, add custom printers.
 
-::: tip
-It could be tedious to manually specify positions for aligning bubble printers with the associated actors. Check [the tutorial on our wiki](https://discord.com/channels/545676116871086080/1369981077958955079) for an example on automating the ordeal.
+### Bubble Anchors
+
+When bubble printers are used extensively, it can be tedious to manually specify their positions every time. Instead, use actor anchors to make Naninovel automatically align the bubbles with their respective characters.
+
+To enable this feature, specify anchor positions inside the [character actors](/guide/characters). You have two options:
+
+1. In the character metadata, use the `Anchors` list and add a record with the `Bubble` ID and a local position inside the actor's game object.
+2. If the character is a prefab (for example, layered, generic or Live2D), create an empty game object inside the prefab, attach the `Actor Anchor` component and assign `Bubble` as the anchor ID.
+
+When configured correctly, Naninovel will not only position the printers over the anchors but also flip them when otherwise they'd overflow the screen. You can specify multiple anchors for each character for more precise alignment depending on whether the printer is flipped. Below are the supported anchor IDs:
+
+| Anchor ID            | Description                                              |
+|----------------------|----------------------------------------------------------|
+| `Bubble`             | Default or fallback anchor when none of the others fit.  |
+| `Bubble/TopLeft`     | Used when the bubble is aligned at the top-left corner.  |
+| `Bubble/Top`         | Used when the bubble is aligned at the top edge.         |
+| `Bubble/TopRight`    | Used when the bubble is aligned at the top-right corner. |
+| `Bubble/Left`        | Used when the bubble is aligned at the left edge.        |
+| `Bubble/Right`       | Used when the bubble is aligned at the right edge.       |
+| `Bubble/BottomLeft`  | Used when the bubble is aligned at the bottom-left.      |
+| `Bubble/Bottom`      | Used when the bubble is aligned at the bottom edge.      |
+| `Bubble/BottomRight` | Used when the bubble is aligned at the bottom-right.     |
+
+You don't have to specify all of them: Naninovel will pick the one that fits best even when a precise match is missing. For example, if aligned top-left but `Bubble/TopLeft` is missing, it'll check for `Bubble/Left`, then `Bubble/Top`, and finally fall back to `Bubble`.
+Below is an example that specifies four anchors — one per corner:
+
+![](https://i.gyazo.com/4bebc7823d44f2c02d0521d17de806e4.png)
+
+::: tip EXAMPLE
+Check `Hiyori` and `Senko` Live2D characters under `Content/Characters` in our [samples project](/guide/samples) for an example of setting up bubble anchors via both the character metadata and inside the prefab.
 :::
+
+When building a custom bubble printer, the flip and alignment behavior can be configured under `Floating Printer` properties. Consult the tooltips for more information on how each property affects the behavior.
+
+![](https://i.gyazo.com/f37ff4c135cb29c68122881ec02b45a6.png)
+
+When using auto-alignment with anchors, you might sometimes prefer to manually position a bubble. You can do this with the [@printer] command — when the command specifies an explicit position, auto-alignment will temporarily disable. To re-enable it, use the `anchor!` flag:
+
+```nani
+; Disable auto-alignment and manually position the bubble
+@printer Bubble pos:50,50
+...
+; Re-enable auto-alignment
+@printer Bubble anchor!
+```
 
 ## Adding Custom Printers
 
