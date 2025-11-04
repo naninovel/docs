@@ -51,7 +51,7 @@
 
 ## BandedSwirl（带状漩涡）
 
-![](https://i.gyazo.com/37432ac584ef04d94d4e4f9535fdffc4.mp4)
+![](https://i.gyazo.com/37432ac584ef04d94d3e4f9535fdffc4.mp4)
 
 **参数说明**
 
