@@ -1,66 +1,62 @@
-# Unlockable Items
+# 可解锁物品
 
-The unlockables feature allows managing items, which have a persistent state of being either locked or unlocked. You can use it in a variety of ways, for example to represent slots in a CG or movie gallery, achievements, tips and other systems where some entity should be able to become unlocked or activated when player satisfies a condition.
+可解锁系统用于管理具有“锁定 / 解锁”状态的物品。该功能可广泛应用于 CG / 视频图库、成就系统、提示条目或其他需在满足条件后激活的系统中。
 
-Each unlockable item is represented by a string identifier and boolean value, indicating whether the item is unlocked. In naninovel scripts, use [@unlock] and [@lock] commands to respectively unlock and lock an item with a specific ID, eg:
+每个可解锁物品由一个字符串 ID 和一个布尔值组成，表示该物品是否已解锁。在 Naninovel 脚本中，使用 [@unlock] 与 [@lock] 指令分别解锁与锁定指定 ID 的物品，例如：
 
 ```nani
 @unlock SecretAchievement
 ```
-— will unlock item `SecretAchievement` and
+— 将解锁 `SecretAchievement` 项
 ```nani
 @lock SecretAchievement
 ```
-— will lock it back.
+— 再次执行则会将其重新锁定。
 
-The unlockable state of the items is stored under [global scope](/guide/state-management#global-state) and doesn't depend on local game sessions; eg, if you unlock some item, it won't become locked again when player starts a new game or loads another saved game.
+物品的解锁状态存储在 [全局作用域](/guide/state-management#global-state) 中，不会因重新开始游戏或读取其他存档而重置。
 
-To bind an actual [GameObject](https://docs.unity3d.com/Manual/class-GameObject.html) with the unlockable item, use `Unlockable Events` component:
+要将实际的 [GameObject](https://docs.unity3d.com/Manual/class-GameObject.html) 与可解锁项绑定，可使用 `Unlockable Events` 组件：
 
 ![](https://i.gyazo.com/9e92d5296e5f07d68ce6122ccb1da34a.png)
 
-Set the item's ID to the `Unlockable Item Id` field and bind a command that should be performed when the item is unlocked. The illustration above, for example, makes the GameObject active when `SecretAchievement` is unlocked and vice versa.
+在 `Unlockable Item Id` 字段中填写物品 ID，并在解锁时绑定要执行的指令。例如上图在 `SecretAchievement` 解锁后激活对象，反之禁用。
 
-In C# you can access the unlockable items using `UnlockableManager` [engine service](/guide/engine-services).
+在 C# 中，可通过 `UnlockableManager` [引擎服务](/guide/engine-services) 访问可解锁项。
 
-::: tip EXAMPLE
-Find example on using the unlockable system to implement music gallery without any C# scripting in the [UI sample](/guide/samples#ui). Other types of unlockable galleries (movies, achievements, etc.) can be implemented in a similar fashion.
+::: tip 示例
+在 [UI 示例](/guide/samples#ui) 中可查看无须编写 C# 脚本的音乐图库实现。其他类型（视频、成就等）也可采用类似方式实现。
 :::
 
-## Unlockable Resources
+## 可解锁资源
 
-Under the unlockables configuration menu (`Naninovel -> Configuration -> Unlockables`), you can find resources manager, that allows storing arbitrary assets to be used with the unlockables feature.
+在解锁系统配置菜单中（`Naninovel -> Configuration -> Unlockables`）可找到资源管理器，用于存储与可解锁功能关联的任意资源。
 
 ![](https://i.gyazo.com/17fa198861ed72de3ab1f9dc6b02b3d8.png)
 
-The unlockable resources are used by the built-in unlockable systems, such as [CG Gallery](/guide/unlockable-items#cg-gallery). You can also utilize the manager for you own custom systems.
+这些资源供内置解锁系统（如 [CG 图鉴](/guide/unlockable-items#cg-gallery)）使用，也可用于自定义系统。
 
-## CG Gallery
+## CG 图鉴
 
-Using the CG gallery feature, you can specify texture resources (images), that can be unlocked throughout the game and then browsed via the `ICGGalleryUI` UI accessible from the title menu.
+CG 图鉴功能允许定义可在游戏中解锁的图片资源，并可在主菜单中的 `ICGGalleryUI` 界面中浏览。
 
 ![](https://www.youtube.com/watch?v=wkZeszk6gm0)
 
-By default, all the unlockable texture resources with `CG` prefix added via [unlockable resources manager](/guide/unlockable-items#unlockable-resources) and [background](/guide/backgrounds) sprite resources of the `MainBackground` actor with the same prefix will be considered unlockable CG items.
+默认情况下，在 [可解锁资源管理器](/guide/unlockable-items#unlockable-resources) 中添加的带 `CG` 前缀的纹理资源，以及具有相同前缀的主背景（`MainBackground`）也会被视为可解锁 CG 项。
 
-To add an unlockable CG item to the gallery, you can either use one of the existing main background resources, by prepending `CG` to its path:
+若要将背景添加为 CG，只需在背景路径前加 `CG`：
 
 ![](https://i.gyazo.com/83a6eff3f91c05027ba1fbc5098e03c2.png)
 
-— or add a "standalone" texture using the unlockable resources manager, accessible with `Naninovel -> Resources -> Unlockables`:
+也可通过菜单 `Naninovel -> Resources -> Unlockables` 直接添加独立 CG 纹理：
 
 ![](https://i.gyazo.com/236bddfd0a02c18b94153cfb7189a877.png)
 
-To group multiple CGs into one gallery slot (eg, variations of a single scene), add `_` followed by a number to the unlockable ID. For instance, if you add CGs with the following IDs:
+若要将多个 CG 归为同一图库槽（如同一场景的不同版本），在 ID 末尾加 `_` 与编号，例如：
 
-- `CG/EpicScene_1`
-- `CG/EpicScene_2`
-- `CG/EpicScene_3`
+— 这些 CG 会被分组为一个槽位，点击后以淡入淡出方式顺序播放。
 
-— they all will be grouped under a single CG slot and shown in sequence with crossfade effect when player clicks the screen.
-
-::: info NOTE
-CG slots in the UI grid are arranged left to right, top to bottom and ordered by the unlockable path name. Position in the resources editor menu is ignored. In case you want to arrange the slots in a specific order, name the resources accordingly, eg:
+::: info 注意
+CG 槽位在 UI 网格中按路径名排序（从左到右，从上到下）。若需自定义顺序，请通过命名控制，如：
 - `CG/01`
 - `CG/02_1`
 - `CG/02_2`
@@ -69,33 +65,35 @@ CG slots in the UI grid are arranged left to right, top to bottom and ordered by
 - `CG/36`
 :::
 
-To unlock and lock CG items use [@unlock] and [@lock] commands respectively. For example, to unlock `CG/Map` item added in the illustrations above, use the following script command:
+要解锁或锁定 CG 项，使用 [@unlock] 或 [@lock] 指令。例如，要解锁上图的 `CG/Map`，可写：
 
 ```nani
 @unlock CG/Map
 ```
 
-In case you'll use both unlockable and background resources to add the CG items, the resources specified in the unlockables manager will be displayed in the CG gallery first. You can change this behavior as well as the actual sources from where the available CG resources are retrieved using `Cg Sources` property of `CG Gallery Panel` script, attached to the root of UI prefab representing the CG Gallery (built-in implementation stored at `Naninovel/Prefabs/DefaultUI/ICGGalleryUI.CGGalleryPanel`).
+如果你同时使用“可解锁资源”和“背景资源”来添加 CG 项目，那么在 CG 图鉴中会优先显示在“可解锁资源管理器”中指定的资源。你可以通过 `CG Gallery Panel` 脚本的 `Cg Sources` 属性来更改这一行为，以及更改用于检索可用 CG 资源的实际来源。该脚本挂载在代表 CG 图鉴的 UI 预制体根对象上（内置实现位于 `Naninovel/Prefabs/DefaultUI/ICGGalleryUI.CGGalleryPanel`）。
 
 ![](https://i.gyazo.com/c62c69eea8d6b1147aacb178dcaa9347.png)
 
-When there is at least one CG item added to any of the sources (no matter the unlocked state), `CG GALLERY` button will appear in the title menu allowing to access the CG Gallery browser.
+当任意来源中至少添加了一个 CG 项（无论其是否解锁）时，标题菜单中将出现 `CG GALLERY` 按钮，以便进入 CG 图鉴浏览器。
 
-You can modify or completely replace the built-in `ICGGalleryUI` implementation using the [UI customization feature](/guide/user-interface#ui-customization).
+你可以使用 [UI 自定义功能](/guide/user-interface#ui-customization) 修改或完全替换内置的 `ICGGalleryUI` 实现。
 
-## Tips
+## 提示
 
-Unlockable tips system allows to specify a set of text records using localizable [managed text](/guide/managed-text) documents; the records can then be unlocked throughout the game and be browsed via the `ITipsUI` UI accessible from the title menu and text printer control panels.
+可解锁提示系统允许通过可本地化的 [管理文本](/guide/managed-text) 文档定义一组文本记录；这些记录可在游戏过程中逐步解锁，并可通过主菜单或文本打印面板中的 `ITipsUI` 界面浏览。
 
-The system can be used to build an in-game vocabulary/encyclopedia or achievements tracker.
+该系统可用于构建游戏内词汇表、百科全书或成就追踪系统。
 
 ![](https://www.youtube.com/watch?v=CRZuS1u_J4c)
 
-::: info NOTE
-Video above is demonstrating inline managed text document format, which is not the default for tips in modern Naninovel versions; see below on the current default (multiline) format and how to switch to inline.
+::: info 注意
+上方视频展示的是“内联格式”的管理文本文档，而现代版本的 Naninovel 默认使用“多行格式”。下文将介绍当前默认格式及如何切换回内联格式。
 :::
 
-To define the available tips, create a `Tips.txt` text document inside the [managed text](/guide/managed-text) resources directory (`Resources/Naninovel/Text` by default). Format is similar to script localization documents (multiline): lines starting with `#` stores tip ID (key); lines below correspond to the tip record value, which can contain title (required), category and description (optional) seperated by `|`, eg:
+要定义可用的提示，请在 [管理文本](/guide/managed-text) 资源目录（默认路径为 `Resources/Naninovel/Text`）中创建一个 `Tips.txt` 文件。
+
+其格式与脚本本地化文档类似（多行格式）：以 `#` 开头的行为提示 ID（键），其下的行为提示记录的值，可包含标题（必填）、分类与描述（可选），字段之间以 `|` 分隔，例如：
 
 ```
 # Tip1ID
@@ -108,7 +106,7 @@ Tip 3 Title
 Tip 4 Title | Tip 4 Category |
 ```
 
-When tip value is too long, you can break it into multiple lines for readability:
+当提示内容过长时，可以将其分成多行以提高可读性：
 
 ```
 # Tip1
@@ -122,7 +120,7 @@ Long description line 1.<br>
 ...
 ```
 
-In case you prefer inline format, remove `Tips` from `Multiline Categories` list in managed text configuration; the tips can then be authored similar to other managed text documents:
+如果你更喜欢 **内联格式**，请在“管理文本配置”中从 `Multiline Categories` 列表中移除 `Tips` 项，此时可像其他管理文本文档一样编写提示内容：
 
 ```
 Tip1ID: Title
@@ -130,30 +128,30 @@ Tip2ID: Title | Category | Description
 Tip3ID: Title || Description
 ```
 
-Apart from `<br>` tag, you can use other rich text tags supported by the text rendering system of your choice (TMPro is used in built-in tips UI).
+除了 `<br>` 标签外，你还可以使用所选文本渲染系统支持的其他富文本标签（内置提示 UI 使用的是 TMPro 系统）。
 
-When there is at least one tip record in the `Tips.txt` managed text document, "TIPS" button will appear in the main menu and control panels, leading to the tips browser.
+当 `Tips.txt` 管理文本文档中至少存在一条提示记录时，主菜单和文本打印面板中将会出现 **“TIPS”** 按钮，点击即可进入提示浏览界面。
 
-To unlock a tip record, use [@unlock] and [@lock] to lock the record back followed by the tip ID (should always be preceded by `Tips/` prefix) in the naninovel scripts. Eg, to unlock a `Tip1ID` tip record use:
+若要在脚本中解锁提示记录，请使用 [@unlock] 指令；若要重新锁定则使用 [@lock] 指令，后跟提示的 ID（始终应以 `Tips/` 为前缀）。例如，要解锁名为 `Tip1ID` 的提示记录：
 ```nani
 @unlock Tips/Tip1ID
 ```
 
-### Tips in Printers
+### 文本窗中的提示
 
-It's possible to automatically unlock tips when associated text is printed via a [TMPro printer](/guide/text-printers#textmesh-pro); additionally, when such text is clicked by player `ITipsUI` UI will be automatically shown with the associated tip record selected.
+当使用 [TMPro 文本窗](/zh/guide/text-printers#textmesh-pro) 输出文本时，可以在打印相关文本的同时自动解锁对应的提示；此外，当玩家点击该文本时，系统会自动打开 `ITipsUI` 界面并选中相应的提示记录。
 
 ![](https://i.gyazo.com/3c0d761576c351066022be32b8595e6d.mp4)
 
-To associate printed text with a tip, use `<tip>` tags, eg:
+要将打印的文本与提示关联，请使用 `<tip>` 标签，例如：
 
 ```nani
 Lorem ipsum <tip="VN">visual novel</tip> pharetra nec.
 ```
-— given a tip record with "VN" ID exist, the associated "visual novel" text (when printed by a TMPro printer) will be underlined, the tip record unlocked and when player clicks the text, tips UI will open and show the related record.
+— 当存在一个 ID 为 "VN" 的提示记录时，与之关联的 “visual novel” 文本在通过 TMPro 文本窗输出时会被加上下划线，对应的提示记录会自动解锁，并且当玩家点击该文本时，系统会自动打开提示界面（Tips UI）并显示对应记录。
 
-To change printer-related tips handling behaviour (eg, modifying formatting of the associated text or adding custom behaviour when the tips are clicked) use the properties under "Tips" section found in `Revealable TMPro Text` component attached to the text game object of all the built-in TMPro text printer prefabs; see the [guide](/guide/text-printers#adding-custom-printers) on how to create custom printers to tweak them.
+若要修改与提示相关的输出行为（例如调整文本格式，或为点击提示时添加自定义行为），可以在所有内置 TMPro 文本文本窗预制体的文本对象上，找到 `Revealable TMPro Text` 组件中的 **“Tips”** 部分属性进行设置。有关如何创建自定义文本窗以进一步调整行为，请参阅 [添加自定义文本窗指南](/zh/guide/text-printers#添加自定义输出窗)。
 
 ![](https://i.gyazo.com/ec20da3f00b507428540d60f354bdeed.png)
 
-Be aware, that when a custom handler is assigned to `On Tip Clicked` event, default behaviour (showing tips UI) will be disabled.
+请注意：如果为 `On Tip Clicked` 事件分配了自定义处理函数，则默认行为（显示提示界面）将会被禁用。
