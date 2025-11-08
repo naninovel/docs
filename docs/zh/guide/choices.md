@@ -29,14 +29,14 @@ goto:#Epilogue
 ```
 
 ::: info 注意
-有关标签的更多信息，请参阅 [脚本指南](/guide/naninovel-scripts#label-lines)。
+有关标签的更多信息，请参阅 [脚本指南](/zh/guide/naninovel-scripts#label-lines)。
 :::
 
 当未指定 `goto` 参数时，当前脚本将从下一行继续执行。
 
 **选项处理器** 用于处理 [@choice] 指令。可通过编辑器菜单 `Naninovel -> Resources -> Choice Handlers` 打开选项管理器来添加、编辑或删除选项处理器。
 
-选项处理器的行为可通过 `Naninovel -> Configuration -> Choice Handlers` 菜单进行配置。有关可用选项，请参阅 [配置指南](/guide/configuration#choice-handlers)。
+选项处理器的行为可通过 `Naninovel -> Configuration -> Choice Handlers` 菜单进行配置。有关可用选项，请参阅 [配置指南](/zh/guide/configuration#choice-handlers)。
 
 以下视频教程展示了选项处理器的整体使用概览。
 
@@ -44,7 +44,7 @@ goto:#Epilogue
 
 ## 嵌套回调
 
-当选项的后果较轻（例如仅需输出几句话）时，为其单独设置标签并使用 `goto` 或 `gosub` 参数会显得不便。此时可以使用 [嵌套指令](/guide/naninovel-scripts#nesting)，在选项被选择后直接执行嵌套块中的指令：
+当选项的后果较轻（例如仅需输出几句话）时，为其单独设置标签并使用 `goto` 或 `gosub` 参数会显得不便。此时可以使用 [嵌套指令](/zh/guide/naninovel-scripts#nesting)，在选项被选择后直接执行嵌套块中的指令：
 
 ```nani
 @choice "Ask about color"
@@ -94,13 +94,13 @@ goto:#Epilogue
 
 ![](https://i.gyazo.com/c2bd4abaa0275f7cdd37c56fd2ff0dec.png)
 
-若不想将预制体放在 `Resources` 文件夹内，或需要对选项按钮进行本地化，可在选项处理器的配置菜单中设置自定义加载器，并使用任意可用的 [资源提供器](/guide/resource-providers)。
+若不想将预制体放在 `Resources` 文件夹内，或需要对选项按钮进行本地化，可在选项处理器的配置菜单中设置自定义加载器，并使用任意可用的 [资源提供器](/zh/guide/resource-providers)。
 
 ![](https://i.gyazo.com/9b50d543b5a6843b13b415c3c2ae9641.png)
 
 当未在 [@choice] 指令中指定 `button` 参数时，系统将使用默认按钮预制体。
 
-要更改默认按钮，可创建一个 [自定义选项处理器](/guide/choices#adding-custom-choice-handlers)，并在 `Choice Handler Panel` 组件中将预制体分配给 `Default Button Prefab` 属性，或使用自定义组件。
+要更改默认按钮，可创建一个 [自定义选项处理器](/zh/guide/choices#adding-custom-choice-handlers)，并在 `Choice Handler Panel` 组件中将预制体分配给 `Default Button Prefab` 属性，或使用自定义组件。
 
 ![](https://i.gyazo.com/0972b2725ed043d050804d3833a83b73.png)
 
@@ -152,14 +152,14 @@ Don't forget about cucumbers!
 ```
 
 ::: tip 示例
-在 [地图示例](/guide/samples#map) 中可以找到更高级的基于 Naninovel 实现的交互式地图案例。
+在 [地图示例](/zh/guide/samples#map) 中可以找到更高级的基于 Naninovel 实现的交互式地图案例。
 
 ![](https://i.gyazo.com/4987b1c53cd275f3fa56b533f53f3d8c.mp4)
 :::
 
 ## 聊天回复选项处理器
 
-**ChatReply Choice Handler** 用于与 [聊天文本打印机](/guide/text-printers#chat-printer) 配合，以“聊天回复”的形式展示可选项。
+**ChatReply Choice Handler** 用于与 [聊天文本打印机](/zh/guide/text-printers#chat-printer) 配合，以“聊天回复”的形式展示可选项。
 
 ```nani
 @printer Chat
@@ -191,7 +191,7 @@ Kohaku: Where're you right now?
 ```
 
 ::: tip 示例
-在 [UI 示例](/guide/samples#ui) 中可以找到一个结合粒子系统制作自定义选项处理器的案例。
+在 [UI 示例](/zh/guide/samples#ui) 中可以找到一个结合粒子系统制作自定义选项处理器的案例。
 :::
 
-你也可以完全从零开始创建一个新的选项处理器，只需手动实现 `IChoiceHandlerActor` 接口即可。更多信息请参阅 [自定义 Actor 实现](/guide/custom-actor-implementations) 指南。
+你也可以完全从零开始创建一个新的选项处理器，只需手动实现 `IChoiceHandlerActor` 接口即可。更多信息请参阅 [自定义 Actor 实现](/zh/guide/custom-actor-implementations) 指南。

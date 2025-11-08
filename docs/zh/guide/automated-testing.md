@@ -39,7 +39,7 @@ public IEnumerator CanStartGame () => new E2E()
 脚本编译完成后，前往 Test Runner 选项卡，找到新添加的测试。运行后，它会等待直到 `ITitleUI` 出现，然后尝试找到并点击附加在 “NewGameButton” 对象上的按钮，并确认脚本已开始播放。如果任意步骤失败，测试将立即停止，并在 Unity 的 Test Runner 中以红叉标记相应记录。
 
 ::: warning
-在运行测试之前，请在引擎配置中禁用 “Initialize On Application Load”（启动时自动初始化）。若希望在正常使用时保留自动初始化功能，可在主场景中的游戏对象上添加 `Runtime Initializer` 组件。关于引擎初始化的更多信息，请参阅 [相关指南](/guide/integration-options#manual-initialization)。
+在运行测试之前，请在引擎配置中禁用 “Initialize On Application Load”（启动时自动初始化）。若希望在正常使用时保留自动初始化功能，可在主场景中的游戏对象上添加 `Runtime Initializer` 组件。关于引擎初始化的更多信息，请参阅 [相关指南](/zh/guide/integration-options#manual-initialization)。
 :::
 
 ## 快捷方式
@@ -127,7 +127,7 @@ ISequence RouteY => On(Choosing, Choose(), Var("g_completedY", false));
 
 ## 引用选项
 
-如上所示，在测试中可以通过类似 `d1-qte-x` 这样的字符串引用选项。这些字符串是场景脚本中自定义的 [文本标识符](/guide/naninovel-scripts#text-identification)。即使在启用了稳定文本标识（stable text identification）的情况下，你仍然可以在脚本中定义自定义文本 ID，并且系统会保留它们。例如，考虑以下场景脚本：
+如上所示，在测试中可以通过类似 `d1-qte-x` 这样的字符串引用选项。这些字符串是场景脚本中自定义的 [文本标识符](/zh/guide/naninovel-scripts#text-identification)。即使在启用了稳定文本标识（stable text identification）的情况下，你仍然可以在脚本中定义自定义文本 ID，并且系统会保留它们。例如，考虑以下场景脚本：
 
 ```nani
 @choice "Choice 1|#my-id-for-choice-1|"
@@ -141,7 +141,7 @@ Once(Choosing).Choose("my-id-for-choice-2")
 ```
 
 ::: tip 示例
-[E2E 示例](/guide/samples#e2e) 展示了大部分可用的快捷方式、扩展方法以及测试场景。
+[E2E 示例](/zh/guide/samples#e2e) 展示了大部分可用的快捷方式、扩展方法以及测试场景。
 :::
 
 ## 覆盖率

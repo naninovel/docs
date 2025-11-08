@@ -2,7 +2,7 @@
 
 Naninovel 自带多个内置 UI：标题（主）菜单、游戏设置界面、存档与读档菜单、回顾（backlog）面板、CG 画廊、提示（tips）等。
 
-每个内置 UI 都可以被禁用或自定义；更多信息请参阅 [UI 自定义指南](/guide/user-interface#ui-customization)。
+每个内置 UI 都可以被禁用或自定义；更多信息请参阅 [UI 自定义指南](/zh/guide/user-interface#ui-customization)。
 
 ## 自适应 UI 布局
 
@@ -30,7 +30,7 @@ UI 显示切换功能允许玩家整体隐藏或显示游戏内界面。
 
 UI 自定义功能允许你添加自定义界面，或修改、完全替换任何内置界面（如标题菜单、设置菜单、文本打印器、回顾面板等）。
 
-请注意，文本打印器与选项处理器是通过 Actor 接口实现的，它们的自定义方式不同；详情请参阅相应文档：[文本打印器](/guide/text-printers)、[选项处理器](/guide/choices)。
+请注意，文本打印器与选项处理器是通过 Actor 接口实现的，它们的自定义方式不同；详情请参阅相应文档：[文本打印器](/zh/guide/text-printers)、[选项处理器](/zh/guide/choices)。
 
 ::: warning
 在尝试创建自定义 UI 或修改现有 UI 之前，请先熟悉 Unity 的 [UI 系统（uGUI）](https://docs.unity3d.com/Packages/com.unity.ugui@latest)。虽然下文提供了视频教程与示例项目，但请注意我们无法提供有关 Unity 内置 UI 工具的额外支持；详情请参阅 [支持页面](/support/#unity-support)。
@@ -43,7 +43,7 @@ UI 自定义功能允许你添加自定义界面，或修改、完全替换任�
 引擎初始化时，会实例化资源管理器中分配的所有 UI 预制体。
 
 ::: info 注意
-某些功能（例如 [UI 显示切换](/guide/user-interface#ui-toggling)）要求 UI 使用 `Screen Space - Camera` 渲染模式。为确保兼容性，请确认自定义 UI 的渲染模式设置正确，且 `Render Camera` 字段为空（UI 管理器会自动分配摄像机）。
+某些功能（例如 [UI 显示切换](/zh/guide/user-interface#ui-toggling)）要求 UI 使用 `Screen Space - Camera` 渲染模式。为确保兼容性，请确认自定义 UI 的渲染模式设置正确，且 `Render Camera` 字段为空（UI 管理器会自动分配摄像机）。
 
 ![](https://i.gyazo.com/d62bed3ba0c85972b12e759cc7b44c91.png)
 :::
@@ -54,16 +54,16 @@ UI 自定义功能允许你添加自定义界面，或修改、完全替换任�
 
 要添加新的自定义 UI，请通过 `Create -> Naninovel -> Custom UI` 资源菜单创建一个预制体，然后将其添加到 UI 资源列表中。该预制体会在引擎初始化时，与其他 UI 一起被实例化。
 
-以下视频教程演示了如何添加一个带有特殊显示与隐藏动画的自定义日历界面。该日历会根据一个 [自定义变量](/guide/custom-variables) 显示日期，该变量可在 Naninovel 脚本中修改，并会与游戏存档一起保存。当变量值发生变化时，日历会自动更新，整个过程无需编写任何 C# 脚本。
+以下视频教程演示了如何添加一个带有特殊显示与隐藏动画的自定义日历界面。该日历会根据一个 [自定义变量](/zh/guide/custom-variables) 显示日期，该变量可在 Naninovel 脚本中修改，并会与游戏存档一起保存。当变量值发生变化时，日历会自动更新，整个过程无需编写任何 C# 脚本。
 
 ![](https://www.youtube.com/watch?v=wrAm-cwPXy4)
 
 ::: tip 示例
-上方视频教程所示的 Unity 项目可在 [UI 示例](/guide/samples#ui) 中找到。其中还包括以下示例：带滚动与网页链接的制作人员名单界面、带粒子特效的选项按钮、在文本打印机中使用表情符号、在聊天打印机中添加时间戳等。
+上方视频教程所示的 Unity 项目可在 [UI 示例](/zh/guide/samples#ui) 中找到。其中还包括以下示例：带滚动与网页链接的制作人员名单界面、带粒子特效的选项按钮、在文本打印机中使用表情符号、在聊天打印机中添加时间戳等。
 :::
 
 ::: tip 示例
-另一个更高级的示例是在 [物品栏示例](/guide/samples#inventory) 中，展示了如何添加一个带网格布局、分页与拖拽窗口的自定义物品栏 UI。其中与 UI 相关的脚本位于 `Scripts/Runtime/Inventory/UI` 目录，对应的预制体位于 `Content/UI/Inventory` 目录。
+另一个更高级的示例是在 [物品栏示例](/zh/guide/samples#inventory) 中，展示了如何添加一个带网格布局、分页与拖拽窗口的自定义物品栏 UI。其中与 UI 相关的脚本位于 `Scripts/Runtime/Inventory/UI` 目录，对应的预制体位于 `Content/UI/Inventory` 目录。
 :::
 
 当你通过菜单创建新的自定义 UI 预制体时，其根对象上会自动附加一个 `Custom UI` 组件。该组件（更准确地说，是其实现的 `IManagedUI` 接口）是使预制体被引擎识别为 UI 的关键。
@@ -88,7 +88,7 @@ UI 自定义功能允许你添加自定义界面，或修改、完全替换任�
 
 启用 `Save Visibility State` 可使 UI 的显示状态持久化；当玩家读取存档时，UI 将恢复为存档时的可见/隐藏状态。
 
-启用 `Block Input When Visible` 可在 UI 可见时暂停 [输入处理](/guide/input-processing)，以防止玩家在交互过程中触发快捷键（例如继续阅读、隐藏 UI 等）。`Allowed Samplers` 字段可添加例外输入，如将 `ToggleUI` 添加进去，以允许玩家在交互时仍能切换 UI 显示状态。
+启用 `Block Input When Visible` 可在 UI 可见时暂停 [输入处理](/zh/guide/input-processing)，以防止玩家在交互过程中触发快捷键（例如继续阅读、隐藏 UI 等）。`Allowed Samplers` 字段可添加例外输入，如将 `ToggleUI` 添加进去，以允许玩家在交互时仍能切换 UI 显示状态。
 
 启用 `Modal UI` 时，UI 可见期间将阻止其他 UI 接收任何交互。此功能与 `Block Input When Visible` 类似，但针对事件驱动交互（鼠标点击、触摸、导航）而非直接输入。
 
@@ -101,7 +101,7 @@ UI 自定义功能允许你添加自定义界面，或修改、完全替换任�
 
 ### 更改字体
 
-若希望使 [游戏设置](/guide/game-settings) 中的字体与文字大小变更影响到指定的文本元素，可在 `Custom UI` 及其派生组件中使用 `Font Change Configuration` 属性进行设置。
+若希望使 [游戏设置](/zh/guide/game-settings) 中的字体与文字大小变更影响到指定的文本元素，可在 `Custom UI` 及其派生组件中使用 `Font Change Configuration` 属性进行设置。
 
 ![](https://i.gyazo.com/f8e8b03580940cce72de9e9970512902.png)
 
@@ -121,7 +121,7 @@ Font Sizes | 实际应用于文本组件的字体大小。列表中各项对应�
 
 ![](https://i.gyazo.com/31a9b81dae56fb114a75e25211d26126.png)
 
-`Font Resource` 应指定到 `TMPro Font` 资源的 [资源路径](/guide/resource-providers)。默认情况下，Naninovel 将通过 Addressable 与项目资源提供器加载字体资源；如需更改加载方式，请使用 `Font Loader`。在默认配置下，最简单的做法是将字体文件放入 `Resources/Naninovel/Fonts` 文件夹中，然后直接使用字体资源名作为路径。更多关于字体创建与配置的信息，请参阅 Unity 的 TextMesh Pro 文档。
+`Font Resource` 应指定到 `TMPro Font` 资源的 [资源路径](/zh/guide/resource-providers)。默认情况下，Naninovel 将通过 Addressable 与项目资源提供器加载字体资源；如需更改加载方式，请使用 `Font Loader`。在默认配置下，最简单的做法是将字体文件放入 `Resources/Naninovel/Fonts` 文件夹中，然后直接使用字体资源名作为路径。更多关于字体创建与配置的信息，请参阅 Unity 的 TextMesh Pro 文档。
 
 若要在 `Custom UI` 之外的对象上（例如选项按钮预制体）更改字体，请使用 `Font Changer` 组件。它提供与 `Font Change Configuration` 相同的配置选项，可应用于任意游戏对象。
 
@@ -142,7 +142,7 @@ Font Sizes | 实际应用于文本组件的字体大小。列表中各项对应�
 ![](https://www.youtube.com/watch?v=hqhfhXzQkdk)
 
 ::: tip 示例
-上方视频教程所示的 Unity 项目可在 [UI 示例](/guide/samples#ui) 中找到。
+上方视频教程所示的 Unity 项目可在 [UI 示例](/zh/guide/samples#ui) 中找到。
 :::
 
 当你从零创建新的 UI 预制体时，请确保在其根对象上附加一个实现所要覆盖 UI 接口的组件。所有 UI 接口均定义在 `Naninovel.UI` 命名空间下。
@@ -159,8 +159,8 @@ ITitleUI | 游戏标题（主）菜单。
 IExternalScriptsUI | 外部脚本浏览界面（社区模组功能）。
 IVariableInputUI | 用于给自定义状态变量赋值的输入表单（由 [@input] 指令调用）。
 IConfirmationUI | 用于确认关键指令的确认对话框（例如退出主菜单或删除存档）。
-ICGGalleryUI | 可解锁 [CG 图鉴](/guide/unlockable-items#cg-gallery) 浏览界面。
-ITipsUI | 可解锁 [提示条目](/guide/unlockable-items#tips) 浏览界面。
+ICGGalleryUI | 可解锁 [CG 图鉴](/zh/guide/unlockable-items#cg-gallery) 浏览界面。
+ITipsUI | 可解锁 [提示条目](/zh/guide/unlockable-items#tips) 浏览界面。
 IRollbackUI | 状态回滚功能的指示界面。
 IContinueInputUI | 位于 UI 堆栈底部的全屏透明界面，用于接收点击或触摸并触发“继续”输入。
 IToastUI | 用于自我隐藏的通用弹出提示（toast）界面，可在脚本中通过 [@toast] 指令调用。
@@ -197,12 +197,12 @@ public class MyCustomUI : CustomUI
 ![](https://i.gyazo.com/78e9fa27d6561f8f8aced76bbeb4b542.png)
 
 ::: tip 示例
-可在 [UI 示例](/guide/samples#ui) 中找到 `Play Script` 组件的使用例。该组件应用于自定义 UI 预制体 “Content/UI/Calendar” 内的 “CloseButton” 对象。
+可在 [UI 示例](/zh/guide/samples#ui) 中找到 `Play Script` 组件的使用例。该组件应用于自定义 UI 预制体 “Content/UI/Calendar” 内的 “CloseButton” 对象。
 :::
 
 ## UI Toolkit
 
-Unity 新的 UI 方案 —— [UI Toolkit](https://docs.unity3d.com/Packages/com.unity.ui@latest)，并未被 Naninovel 直接支持。但可通过实现 `IManagedUI` 接口的适配器进行集成。可在 [UI 示例](/guide/samples#ui) 中找到此类适配器的示例。
+Unity 新的 UI 方案 —— [UI Toolkit](https://docs.unity3d.com/Packages/com.unity.ui@latest)，并未被 Naninovel 直接支持。但可通过实现 `IManagedUI` 接口的适配器进行集成。可在 [UI 示例](/zh/guide/samples#ui) 中找到此类适配器的示例。
 
 ::: warning
 UI Toolkit 仍处于早期开发阶段，与默认 UI 系统（uGUI）相比功能尚不完善。除非你是经验丰富的开发者，并准备自行解决可能出现的问题，否则不建议在项目中使用 UI Toolkit。请注意，我们无法为 UI Toolkit 与 Naninovel 的集成提供任何支持或指导。

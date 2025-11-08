@@ -6,7 +6,7 @@
 
 文本输出窗是用于显示文本消息的演出元素，可以逐字显现（打印）文本内容。
 
-输出窗的行为可通过 `Naninovel -> Configuration -> Printers` 上下文菜单进行配置；有关可用选项，请参阅 [配置指南](/guide/configuration#printers)。输出窗资源管理器可通过 `Naninovel -> Resources -> Printers` 上下文菜单访问。
+输出窗的行为可通过 `Naninovel -> Configuration -> Printers` 上下文菜单进行配置；有关可用选项，请参阅 [配置指南](/zh/guide/configuration#printers)。输出窗资源管理器可通过 `Naninovel -> Resources -> Printers` 上下文菜单访问。
 
 在 Naninovel 脚本中，文本输出窗主要通过 [@print] 和 [@printer] 指令控制：
 
@@ -61,7 +61,7 @@ Felix: Lorem ipsum dolor sit amet.
 
 ![](https://i.gyazo.com/40e44a4ed69f75fa5fb9c36cdae6226a.png)
 
-更多关于自定义与配置 UI 的内容，请参阅 [内置 UI 自定义指南](/guide/user-interface#modifying-built-in-ui)。
+更多关于自定义与配置 UI 的内容，请参阅 [内置 UI 自定义指南](/zh/guide/user-interface#modifying-built-in-ui)。
 
 可通过在输出窗元素配置中禁用 `Add To Backlog` 属性，防止特定输出窗将消息添加至历史回看。启用 `Split Backlog Messages` 属性后，所有日志中的消息将被分割（分别显示为独立记录）。
 
@@ -87,7 +87,7 @@ Felix: Lorem ipsum dolor sit amet.
 
 ## 宽屏输出窗
 
-宽屏输出窗与对话输出窗类似，但在布局上针对宽屏幕进行了优化。此外，它们还支持 [角色头像](/guide/characters#avatar-textures) 功能。
+宽屏输出窗与对话输出窗类似，但在布局上针对宽屏幕进行了优化。此外，它们还支持 [角色头像](/zh/guide/characters#avatar-textures) 功能。
 
 ![Wide Printer](https://i.gyazo.com/83c091c08846fa1cab8764a8d4dddeda.png)
 
@@ -124,11 +124,11 @@ Morbi ultrices dictum diam, in gravida neque vulputate in.
 
 ## 聊天输出窗
 
-聊天输出窗在带有可垂直滚动内容的窗口中，以消息气泡的形式显示文本，风格类似于手机聊天应用。与逐字显现文本不同，它会先显示“作者正在输入”的动画（持续时间取决于输出速度），然后立即显示完整消息。聊天输出窗支持 [角色头像](/guide/characters#avatar-textures) 功能。
+聊天输出窗在带有可垂直滚动内容的窗口中，以消息气泡的形式显示文本，风格类似于手机聊天应用。与逐字显现文本不同，它会先显示“作者正在输入”的动画（持续时间取决于输出速度），然后立即显示完整消息。聊天输出窗支持 [角色头像](/zh/guide/characters#avatar-textures) 功能。
 
 ![Chat Printer](https://i.gyazo.com/3c04aecabe7f754ffc9ce5452eeba270.png)
 
-若要在聊天输出窗中嵌入选项，请参阅 [ChatReply](/guide/choices#chatreply-choice-handler) 选项处理器。你也可以通过 `Chat Printer Panel` 组件中的 `Choice Handler Id` 属性指定自定义的选项处理器。
+若要在聊天输出窗中嵌入选项，请参阅 [ChatReply](/zh/guide/choices#chatreply-choice-handler) 选项处理器。你也可以通过 `Chat Printer Panel` 组件中的 `Choice Handler Id` 属性指定自定义的选项处理器。
 
 ## 气泡输出窗
 
@@ -160,7 +160,7 @@ Nanikun: Integer nec maximus elit, eget posuere risus.
 
 通过 `Create -> Naninovel -> Text Printers -> Dialogue` 资源菜单创建一个对话输出窗预制体，建议将其放置在 Naninovel 包之外的文件夹中，例如 `Assets/TextPrinters`。
 
-然后编辑该预制体：修改字体、贴图、添加动画等。有关可用的 UI 构建工具，请参考 [Unity uGUI 官方文档](https://docs.unity3d.com/Packages/com.unity.ugui@latest)。在 [UI 自定义指南](/guide/user-interface#ui-customization) 中还提供了若干视频教程与示例项目，可作为参考。
+然后编辑该预制体：修改字体、贴图、添加动画等。有关可用的 UI 构建工具，请参考 [Unity uGUI 官方文档](https://docs.unity3d.com/Packages/com.unity.ugui@latest)。在 [UI 自定义指南](/zh/guide/user-interface#ui-customization) 中还提供了若干视频教程与示例项目，可作为参考。
 
 使用输出窗资源管理器 GUI 将该预制体暴露给引擎资源。可通过 `Naninovel -> Resources -> Printers` 菜单打开输出窗资源管理器。点击 `+`（加号）按钮添加新记录，输入元素 ID（可与预制体名称不同），双击该记录以打开输出窗元素设置，并将输出窗预制体拖放到 `Resource` 字段中。
 
@@ -172,11 +172,11 @@ Nanikun: Integer nec maximus elit, eget posuere risus.
 @printer MyNewPrinter
 ```
 ::: tip 示例
-可参考 [演示项目](/guide/getting-started#demo-project)，了解如何添加自定义输出窗。  
+可参考 [演示项目](/zh/guide/getting-started#demo-project)，了解如何添加自定义输出窗。  
 示例预制体存储于 `Assets/Prefabs/CustomPrinter.prefab`。
 :::
 
-你也可以通过手动实现 `ITextPrinterActor` 接口从零开始创建输出窗。更多信息请参阅 [自定义演员实现指南](/guide/custom-actor-implementations)。
+你也可以通过手动实现 `ITextPrinterActor` 接口从零开始创建输出窗。更多信息请参阅 [自定义演员实现指南](/zh/guide/custom-actor-implementations)。
 
 ## 文本显现效果
 
@@ -204,7 +204,7 @@ Kohaku: <b>Lorem</b> ipsum <color=#0000FF><i>sit</i></color> amet.
 有关可用的富文本标签，请参阅 [TMPro 富文本文档](https://docs.unity3d.com/Packages/com.unity.textmeshpro@4.0/manual/RichText)。
 
 ::: tip
-如果希望为某个特定角色或输出窗的所有文本消息统一应用特定的格式或样式，请参考 [消息模板](/guide/text-printers#message-templates) 功能。
+如果希望为某个特定角色或输出窗的所有文本消息统一应用特定的格式或样式，请参考 [消息模板](/zh/guide/text-printers#message-templates) 功能。
 :::
 
 ## 注音文本
@@ -263,7 +263,7 @@ Font Render Mode: Distance Field 16
 ```
 
 ::: tip 示例
-若要查看完整的自定义 TextMeshPro 输出窗并支持从右到左（阿拉伯语）文本的设置示例，请参阅 [RTL 示例](/guide/samples#rtl)。
+若要查看完整的自定义 TextMeshPro 输出窗并支持从右到左（阿拉伯语）文本的设置示例，请参阅 [RTL 示例](/zh/guide/samples#rtl)。
 :::
 
 ::: info 注意
@@ -283,7 +283,7 @@ Unity 原生并不支持阿拉伯语文本。对于需要支持阿拉伯语显�
 该工具会扫描指定文件夹中的所有场景脚本与文本资源（包括子文件夹），从而提取出游戏中玩家可能看到的所有字符，包括输出文本、UI 标签、可解锁提示等。
 
 ::: tip 示例
-请参阅 [本地化示例](/guide/samples#localization)，了解如何为日语语言环境使用自定义 TMPro 字体图集。当选择日语时会自动切换至日语字体图集，切换回其他语言时则恢复默认字体图集。
+请参阅 [本地化示例](/zh/guide/samples#localization)，了解如何为日语语言环境使用自定义 TMPro 字体图集。当选择日语时会自动切换至日语字体图集，切换回其他语言时则恢复默认字体图集。
 :::
 
 ## 文本显现音效
@@ -300,7 +300,7 @@ Unity 原生并不支持阿拉伯语文本。对于需要支持阿拉伯语显�
 
 文字显现音效播放频率极高（取决于文字显现速度），当同一音效连续播放时会被裁剪，因此应确保音频片段短促、清晰（开头无静音）。
 
-若文字显现音效未按预期播放（例如音效太长无法在每个字符播放一次），可考虑使用 `TextPrinterManager` [引擎服务](/guide/engine-services) 的 `OnPrintTextStarted` 与 `OnPrintTextFinished` 事件，在文本输出窗开始与结束时手动启动或停止循环播放音效。
+若文字显现音效未按预期播放（例如音效太长无法在每个字符播放一次），可考虑使用 `TextPrinterManager` [引擎服务](/zh/guide/engine-services) 的 `OnPrintTextStarted` 与 `OnPrintTextFinished` 事件，在文本输出窗开始与结束时手动启动或停止循环播放音效。
 
 ## 显现事件
 
@@ -320,7 +320,7 @@ Lorem ipsum dolor<@foo> sit amet.
 Lorem ipsum dolor<@back tint:blue> sit amet.
 ```
 
-你可以使用事件标签来替代 [内联指令](/guide/naninovel-scripts#command-inlining)，以便将它们暴露给 [本地化文档](/guide/localization#scripts-localization)，从而允许翻译人员根据所选语言修改需要执行的指令。
+你可以使用事件标签来替代 [内联指令](/zh/guide/naninovel-scripts#command-inlining)，以便将它们暴露给 [本地化文档](/zh/guide/localization#scripts-localization)，从而允许翻译人员根据所选语言修改需要执行的指令。
 
 ## 等待输入标签
 
@@ -334,15 +334,15 @@ Lorem<-> ipsum
 
 ## 显现表达式
 
-在某些情况下，可能需要将 [脚本表达式](/guide/script-expressions) 包含到生成的本地化文档中，或在语言（区域设置）更改时强制重新计算表达式。
+在某些情况下，可能需要将 [脚本表达式](/zh/guide/script-expressions) 包含到生成的本地化文档中，或在语言（区域设置）更改时强制重新计算表达式。
 
-其用法与 [显现事件](/guide/text-printers#reveal-events) 类似，但使用 `:` 标签而非 `@` 标签：
+其用法与 [显现事件](/zh/guide/text-printers#reveal-events) 类似，但使用 `:` 标签而非 `@` 标签：
 
 ```nani
 Lorem ipsum <:random(t_text1, t_text2)> sit amet.
 ```
 
-—— `random(t_text1, t_text2)` 表达式将在每次文本被分配到输出窗时重新计算，包括语言（区域设置）更改时。这会使 `t_text1` 与 `t_text2` 这类 [脚本文本变量](/guide/managed-text#script-text) 与当前激活的语言环境保持同步。此外，该表达式也会被包含在本地化文档中，从而允许为不同语言单独调整。
+—— `random(t_text1, t_text2)` 表达式将在每次文本被分配到输出窗时重新计算，包括语言（区域设置）更改时。这会使 `t_text1` 与 `t_text2` 这类 [脚本文本变量](/zh/guide/managed-text#script-text) 与当前激活的语言环境保持同步。此外，该表达式也会被包含在本地化文档中，从而允许为不同语言单独调整。
 
 显现表达式还可帮助译者改变插值变量的顺序，因为不同语言在语法结构和表达顺序上往往存在差异：
 
@@ -354,7 +354,7 @@ Lorem ipsum <:random(t_text1, t_text2)> sit amet.
 
 ## 选择标签
 
-[显现表达式](/guide/text-printers#reveal-expressions) 的常见用法之一是将其用作选择器。例如，你可能希望从多个文本中随机选择一个，或根据玩家的选择（如人称代词）显示不同的措辞。
+[显现表达式](/zh/guide/text-printers#reveal-expressions) 的常见用法之一是将其用作选择器。例如，你可能希望从多个文本中随机选择一个，或根据玩家的选择（如人称代词）显示不同的措辞。
 
 如果这种模式在剧本中频繁使用，每次都编写完整的表达式语法会显得繁琐。此时可考虑使用 **选择标签（select tag）**：
 
@@ -373,7 +373,7 @@ Select your pronouns.
 
 请注意 `</x/y>` 标签 —— 它们即为选择器标签。位于 `/` 之间的文本称为选项。默认情况下，系统会随机返回一个选项。但如果你将变量 `selector` 设置为某个索引值，则标签会返回对应索引（从零开始）的选项。
 
-若需更灵活的选择逻辑，可创建一个自定义的 [表达式函数](/guide/script-expressions#adding-custom-functions)，并为其设置别名 `select`。该函数应接受 `params string[]` 参数并返回一个 `string`。当选择器标签被解析时，将自动调用该函数以计算结果。
+若需更灵活的选择逻辑，可创建一个自定义的 [表达式函数](/zh/guide/script-expressions#adding-custom-functions)，并为其设置别名 `select`。该函数应接受 `params string[]` 参数并返回一个 `string`。当选择器标签被解析时，将自动调用该函数以计算结果。
 
 以下是一个自定义选择函数示例：第一个选项用于指定选择方式；若第一个选项为空，则默认执行随机选择。
 

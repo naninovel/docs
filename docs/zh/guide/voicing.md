@@ -2,11 +2,11 @@
 
 要让引擎识别语音文件，请将语音片段存放在 `Resources/Naninovel/Voice` 文件夹下（可在音频配置中 `Loader` 下拉菜单修改路径）。如果你希望进一步组织文件，可以使用子文件夹；在脚本中引用时使用正斜杠 `/`。例如，语音文件存放路径为 `Resources/Naninovel/Voice/Intro/Day/25.wav`，则在 Naninovel 脚本中引用时为 `Intro/Day/25`。
 
-你也可以使用 [Addressable 资源系统](/guide/resource-providers#manual-assignment) 手动公开语音资源，具体请参阅相关指南。
+你也可以使用 [Addressable 资源系统](/zh/guide/resource-providers#manual-assignment) 手动公开语音资源，具体请参阅相关指南。
 
 语音文件可使用 Unity [支持的任意音频格式](https://docs.unity3d.com/Manual/AudioFiles.html)。
 
-语音播放行为可通过 `Naninovel -> Configuration -> Audio` 菜单进行配置；具体可用选项见 [音频配置指南](/guide/configuration#audio)。
+语音播放行为可通过 `Naninovel -> Configuration -> Audio` 菜单进行配置；具体可用选项见 [音频配置指南](/zh/guide/configuration#audio)。
 
 使用 [@voice] 指令并跟随语音文件名（路径）即可在 Naninovel 脚本中播放语音，例如：
 
@@ -24,7 +24,7 @@
 
 在全语音游戏中，为每一行文本单独编写 [@voice] 指令会十分繁琐。自动语音功能可根据文本行的唯一标识符，自动播放关联的语音片段。要启用自动语音，请在音频配置菜单中勾选 `Enable Auto Voicing` 选项。
 
-语音音频与文本行之间的关联可以通过语音映射工具（Voice Map Utility）完成，也可以通过 Unity 的 Addressable 资源系统为音频资源指定地址，或使用其他 [资源提供器](/guide/resource-providers) 暴露音频资源。
+语音音频与文本行之间的关联可以通过语音映射工具（Voice Map Utility）完成，也可以通过 Unity 的 Addressable 资源系统为音频资源指定地址，或使用其他 [资源提供器](/zh/guide/resource-providers) 暴露音频资源。
 
 启用自动语音后，音频配置菜单中会出现 “Open Voice Map Utility” 按钮；也可通过编辑器菜单 `Naninovel -> Tools -> Voice Map` 打开语音映射工具。
 
@@ -38,7 +38,7 @@
 通过语音映射窗口分配语音文件时，请确保这些语音文件**不存放在任何 “Resources” 文件夹内**，以避免资源冲突。
 :::
 
-若要为**非源语言版本**配置语音，请在 `Localization Document` 字段中选择对应的 [脚本本地化文档](/guide/localization#scripts-localization)。当选择有效的本地化文档后，分配的语音文件会自动加上当前语言前缀，并在对应的 [语音语言](/guide/voicing#voice-language) 被选中时使用。
+若要为**非源语言版本**配置语音，请在 `Localization Document` 字段中选择对应的 [脚本本地化文档](/zh/guide/localization#scripts-localization)。当选择有效的本地化文档后，分配的语音文件会自动加上当前语言前缀，并在对应的 [语音语言](/zh/guide/voicing#voice-language) 被选中时使用。
 
 若同一角色在同一脚本中存在**完全相同的台词**，系统会自动将它们映射到同一个语音文件。若希望它们使用不同的语音文件，可为其中一行文本添加唯一标识符，例如：
 
@@ -48,10 +48,10 @@ Hello.|#uniqueid|
 ```
 
 ::: tip
-可在编辑器菜单中使用 `Naninovel/Tools/Text Identifier` 工具，让 Naninovel 自动为所有可本地化文本（包括语音台词）生成唯一的文本 ID。这样就无需手动为重复台词指定 ID，同时在修改已映射台词时也不会破坏语音关联。详见 [文本标识符机制](/guide/naninovel-scripts#text-identification)。
+可在编辑器菜单中使用 `Naninovel/Tools/Text Identifier` 工具，让 Naninovel 自动为所有可本地化文本（包括语音台词）生成唯一的文本 ID。这样就无需手动为重复台词指定 ID，同时在修改已映射台词时也不会破坏语音关联。详见 [文本标识符机制](/zh/guide/naninovel-scripts#text-identification)。
 :::
 
-若不使用语音映射工具，你也可以手动将语音文件暴露给资源提供器，并使用以下命名规则：以“脚本路径 + 文本 ID”为资源名，并在前方加上语音加载前缀（默认 `Voice`）。要查找特定语音行对应的脚本路径与文本 ID，可参考 [语音文档](/guide/voicing#voiceover-documents)。例如，若脚本路径为 `Script01`，语音行的文本 ID 为 `2670eb4`，并使用 Addressable 资源提供器进行暴露，则资源地址应为：`Naninovel/Voice/Script01/2670eb4`
+若不使用语音映射工具，你也可以手动将语音文件暴露给资源提供器，并使用以下命名规则：以“脚本路径 + 文本 ID”为资源名，并在前方加上语音加载前缀（默认 `Voice`）。要查找特定语音行对应的脚本路径与文本 ID，可参考 [语音文档](/zh/guide/voicing#voiceover-documents)。例如，若脚本路径为 `Script01`，语音行的文本 ID 为 `2670eb4`，并使用 Addressable 资源提供器进行暴露，则资源地址应为：`Naninovel/Voice/Script01/2670eb4`
 
 若要在游戏运行时查看当前播放语音对应的自动语音 ID，可使用调试窗口：
 
@@ -60,14 +60,14 @@ Hello.|#uniqueid|
 想要打开窗口，首先确保在引擎配置中启用了 `Enable Development Console`。进入播放模式后，按下 `~` 键打开控制台，最后输入 `debug` 并按下回车键。
 
 ::: tip 示例
-查看 [自动语音示例](/guide/samples#auto-voicing)，了解如何为多语言版本设置自动语音。
+查看 [自动语音示例](/zh/guide/samples#auto-voicing)，了解如何为多语言版本设置自动语音。
 :::
 
 ## 作者音量
 
 在使用自动语音功能时，你可能希望让玩家能单独调整特定角色（或更准确地说，文本作者）的语音音量。例如，玩家可能想静音主角的语音，或让某个角色的声音更轻。
 
-要设置每个作者独立的语音控制，请先 [创建自定义设置界面](/guide/user-interface#modifying-built-in-ui)，添加一个新的滑块（可以复制现有的 “VoiceVolumeSlider” 元素），然后在 `Author ID` 字段中填写角色的 ID。
+要设置每个作者独立的语音控制，请先 [创建自定义设置界面](/zh/guide/user-interface#modifying-built-in-ui)，添加一个新的滑块（可以复制现有的 “VoiceVolumeSlider” 元素），然后在 `Author ID` 字段中填写角色的 ID。
 
 ![](https://i.gyazo.com/5a8db32ca5d971f2876f71d35f1a020c.png)
 
@@ -85,7 +85,7 @@ Hello.|#uniqueid|
 
 ![](https://i.gyazo.com/70382bb24637a4d8846c3b65f1ea01d9.png)
 
-有关如何本地化游戏资源的更多信息，请参阅 [本地化指南](/guide/localization)。
+有关如何本地化游戏资源的更多信息，请参阅 [本地化指南](/zh/guide/localization)。
 
 ## 配音文档
 

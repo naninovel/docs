@@ -26,5 +26,5 @@ Naninovel 支持使用 Unity 的 [可编程渲染管线](https://docs.unity3d.co
 
 不过，大多数缺失的效果与功能都可以通过一些 **自定义扩展或替代方案** 实现，无需修改 Naninovel 源码或包内容。你可以参考以下文档来扩展引擎功能：
 
-- [自定义特效（Special Effects）](/guide/special-effects#adding-custom-effects)  
-- [自定义指令（Custom Commands）](/guide/custom-commands)
+- [自定义特效（Special Effects）](/zh/guide/special-effects#adding-custom-effects)  
+- [自定义指令（Custom Commands）](/zh/guide/custom-commands)

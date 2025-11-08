@@ -13,7 +13,7 @@
 ```
 — 再次执行则会将其重新锁定。
 
-物品的解锁状态存储在 [全局作用域](/guide/state-management#global-state) 中，不会因重新开始游戏或读取其他存档而重置。
+物品的解锁状态存储在 [全局作用域](/zh/guide/state-management#global-state) 中，不会因重新开始游戏或读取其他存档而重置。
 
 要将实际的 [GameObject](https://docs.unity3d.com/Manual/class-GameObject.html) 与可解锁项绑定，可使用 `Unlockable Events` 组件：
 
@@ -21,10 +21,10 @@
 
 在 `Unlockable Item Id` 字段中填写物品 ID，并在解锁时绑定要执行的指令。例如上图在 `SecretAchievement` 解锁后激活对象，反之禁用。
 
-在 C# 中，可通过 `UnlockableManager` [引擎服务](/guide/engine-services) 访问可解锁项。
+在 C# 中，可通过 `UnlockableManager` [引擎服务](/zh/guide/engine-services) 访问可解锁项。
 
 ::: tip 示例
-在 [UI 示例](/guide/samples#ui) 中可查看无须编写 C# 脚本的音乐图库实现。其他类型（视频、成就等）也可采用类似方式实现。
+在 [UI 示例](/zh/guide/samples#ui) 中可查看无须编写 C# 脚本的音乐图库实现。其他类型（视频、成就等）也可采用类似方式实现。
 :::
 
 ## 可解锁资源
@@ -33,7 +33,7 @@
 
 ![](https://i.gyazo.com/17fa198861ed72de3ab1f9dc6b02b3d8.png)
 
-这些资源供内置解锁系统（如 [CG 图鉴](/guide/unlockable-items#cg-gallery)）使用，也可用于自定义系统。
+这些资源供内置解锁系统（如 [CG 图鉴](/zh/guide/unlockable-items#cg-gallery)）使用，也可用于自定义系统。
 
 ## CG 图鉴
 
@@ -41,7 +41,7 @@ CG 图鉴功能允许定义可在游戏中解锁的图片资源，并可在主�
 
 ![](https://www.youtube.com/watch?v=wkZeszk6gm0)
 
-默认情况下，在 [可解锁资源管理器](/guide/unlockable-items#unlockable-resources) 中添加的带 `CG` 前缀的纹理资源，以及具有相同前缀的主背景（`MainBackground`）也会被视为可解锁 CG 项。
+默认情况下，在 [可解锁资源管理器](/zh/guide/unlockable-items#unlockable-resources) 中添加的带 `CG` 前缀的纹理资源，以及具有相同前缀的主背景（`MainBackground`）也会被视为可解锁 CG 项。
 
 若要将背景添加为 CG，只需在背景路径前加 `CG`：
 
@@ -77,11 +77,11 @@ CG 槽位在 UI 网格中按路径名排序（从左到右，从上到下）。�
 
 当任意来源中至少添加了一个 CG 项（无论其是否解锁）时，标题菜单中将出现 `CG GALLERY` 按钮，以便进入 CG 图鉴浏览器。
 
-你可以使用 [UI 自定义功能](/guide/user-interface#ui-customization) 修改或完全替换内置的 `ICGGalleryUI` 实现。
+你可以使用 [UI 自定义功能](/zh/guide/user-interface#ui-customization) 修改或完全替换内置的 `ICGGalleryUI` 实现。
 
 ## 提示
 
-可解锁提示系统允许通过可本地化的 [管理文本](/guide/managed-text) 文档定义一组文本记录；这些记录可在游戏过程中逐步解锁，并可通过主菜单或文本打印面板中的 `ITipsUI` 界面浏览。
+可解锁提示系统允许通过可本地化的 [管理文本](/zh/guide/managed-text) 文档定义一组文本记录；这些记录可在游戏过程中逐步解锁，并可通过主菜单或文本打印面板中的 `ITipsUI` 界面浏览。
 
 该系统可用于构建游戏内词汇表、百科全书或成就追踪系统。
 
@@ -91,7 +91,7 @@ CG 槽位在 UI 网格中按路径名排序（从左到右，从上到下）。�
 上方视频展示的是“内联格式”的管理文本文档，而现代版本的 Naninovel 默认使用“多行格式”。下文将介绍当前默认格式及如何切换回内联格式。
 :::
 
-要定义可用的提示，请在 [管理文本](/guide/managed-text) 资源目录（默认路径为 `Resources/Naninovel/Text`）中创建一个 `Tips.txt` 文件。
+要定义可用的提示，请在 [管理文本](/zh/guide/managed-text) 资源目录（默认路径为 `Resources/Naninovel/Text`）中创建一个 `Tips.txt` 文件。
 
 其格式与脚本本地化文档类似（多行格式）：以 `#` 开头的行为提示 ID（键），其下的行为提示记录的值，可包含标题（必填）、分类与描述（可选），字段之间以 `|` 分隔，例如：
 

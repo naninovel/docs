@@ -34,11 +34,11 @@ Naninovel 拥有独立的网页版编辑器，你可以通过可视化界面编�
 
 ## 编辑器模式
 
-设置完成后，你可以选择一个空目录以创建新的项目（[沙盒模式](/guide/editor#sandbox-mode)），或选择一个现有的 Unity 项目以进入 [Unity 附加模式](/guide/editor#unity-attached-mode)。
+设置完成后，你可以选择一个空目录以创建新的项目（[沙盒模式](/zh/guide/editor#sandbox-mode)），或选择一个现有的 Unity 项目以进入 [Unity 附加模式](/zh/guide/editor#unity-attached-mode)。
 
 ### 沙盒模式
 
-沙盒模式完全独立于 Unity 编辑器。它提供工具用于在浏览器中编写场景脚本并预览游戏，支持最新的引擎规范、命令和运行时功能。底层生成标准的 `.nani` 文本文件，可直接在 Unity 中复用，或用 [IDE 扩展](/guide/ide-extension) 进行编辑。
+沙盒模式完全独立于 Unity 编辑器。它提供工具用于在浏览器中编写场景脚本并预览游戏，支持最新的引擎规范、命令和运行时功能。底层生成标准的 `.nani` 文本文件，可直接在 Unity 中复用，或用 [IDE 扩展](/zh/guide/ide-extension) 进行编辑。
 
 沙盒模式的主要用途包括：
 
@@ -47,7 +47,7 @@ Naninovel 拥有独立的网页版编辑器，你可以通过可视化界面编�
 
 在项目设置界面选择 “Create Project” 即可进入沙盒模式。
 
-项目创建后，编辑器会自动生成一个模板，包含若干预制的场景脚本与资源，帮助你快速上手。如有需要，你可以通过 [文件浏览器](/guide/editor#file-browser) 删除它们并从零开始。
+项目创建后，编辑器会自动生成一个模板，包含若干预制的场景脚本与资源，帮助你快速上手。如有需要，你可以通过 [文件浏览器](/zh/guide/editor#file-browser) 删除它们并从零开始。
 
 #### 游戏窗口
 
@@ -69,13 +69,13 @@ Naninovel 拥有独立的网页版编辑器，你可以通过可视化界面编�
 
 ![](https://i.gyazo.com/fd6765bfc35024769871e4d9b1372b62.png)
 
-要创建资源元数据，请在 [文件浏览器](/guide/editor#file-browser) 中右键点击 `Backgrounds`、`Characters` 或 `Audio` 目录下的空白处，然后选择添加对应的资源类型。
+要创建资源元数据，请在 [文件浏览器](/zh/guide/editor#file-browser) 中右键点击 `Backgrounds`、`Characters` 或 `Audio` 目录下的空白处，然后选择添加对应的资源类型。
 
 创建完成后，可选中该资源以查看和编辑其属性。
 
 ![?width=604](https://i.gyazo.com/b876cb9f3305899a8fc880cac89b3702.png)
 
-创建的资源会自动出现在 [场景编辑器](/guide/editor#scenario-editor) 的下拉菜单中。
+创建的资源会自动出现在 [场景编辑器](/zh/guide/editor#scenario-editor) 的下拉菜单中。
 
 ![?width=453](https://i.gyazo.com/01cc5ad5e5edb81b9b26a81b454f411f.png)
 
@@ -105,11 +105,11 @@ Naninovel 编辑器可以附加到安装了 Naninovel 包的 Unity 项目，提�
 
 ## 文件浏览器
 
-文件浏览器选项卡允许你管理当前项目根目录下的文件与文件夹。你可以创建新的场景脚本或资源元数据（仅限 [沙盒模式](/guide/editor#sandbox-mode)），并组织文件结构。
+文件浏览器选项卡允许你管理当前项目根目录下的文件与文件夹。你可以创建新的场景脚本或资源元数据（仅限 [沙盒模式](/zh/guide/editor#sandbox-mode)），并组织文件结构。
 
 ![?width=280](https://i.gyazo.com/ada798d90c52c3f24d88001258e794a1.png)
 
-请注意，在 [附加模式](/guide/editor#unity-attached-mode) 下，即使选择了 “Assets” 目录，文件浏览器也会跳过无关文件夹，仅显示场景根目录。
+请注意，在 [附加模式](/zh/guide/editor#unity-attached-mode) 下，即使选择了 “Assets” 目录，文件浏览器也会跳过无关文件夹，仅显示场景根目录。
 
 当你通过文件浏览器重命名或移动场景脚本时，编辑器会自动更新导航命令（如 [@goto] 和 [@gosub]），以保持路径有效。
 
@@ -127,11 +127,11 @@ Naninovel 编辑器的交互模式类似 Unity 编辑器：你可以选择一个
 
 ![](https://i.gyazo.com/1e38f673835584033e4a5142f9989981.png)
 
-每个场景编辑器选项卡对应一个 `.nani` 脚本，脚本行以表格行形式显示。可使用底部的 `+` 按钮、右键菜单或快捷键 `Ctrl+Space`（可在 [设置](/guide/editor#keymap) 中修改）添加新行。
+每个场景编辑器选项卡对应一个 `.nani` 脚本，脚本行以表格行形式显示。可使用底部的 `+` 按钮、右键菜单或快捷键 `Ctrl+Space`（可在 [设置](/zh/guide/editor#keymap) 中修改）添加新行。
 
 你可以通过拖放调整行顺序，或使用右键菜单、`Delete` 与 `Ctrl+D` 删除或复制行。
 
-在 [沙盒模式](/guide/editor#sandbox-mode) 下，修改会立即生效并反映到游戏视图中。在 [附加模式](/guide/editor#unity-attached-mode) 下，你需要 [保存](/guide/editor#dirty-save) 文件后更改才会同步至 Unity。
+在 [沙盒模式](/zh/guide/editor#sandbox-mode) 下，修改会立即生效并反映到游戏视图中。在 [附加模式](/zh/guide/editor#unity-attached-mode) 下，你需要 [保存](/zh/guide/editor#dirty-save) 文件后更改才会同步至 Unity。
 
 游戏运行时，当前播放的脚本行会以绿色或黄色高亮，具体取决于该行是否在等待输入。要自动打开当前播放的脚本并选中活跃行，可点击控制面板上的专用按钮或按 `Ctrl+X`。
 
@@ -147,7 +147,7 @@ Naninovel 编辑器的交互模式类似 Unity 编辑器：你可以选择一个
 
 你可以在图面上右键创建新的脚本或目录节点，并通过节点的上下文菜单移动或重命名它们。双击目录节点或在上下文菜单中选择 “Enter Folder” 即可进入目录。
 
-你也可以进入脚本节点，此时剧情图将作为可视化场景编辑器使用。此时图中的节点将变为标签节点（Label Nodes），包含可编辑的剧本行，与 [场景编辑器](/guide/editor#scenario-editor) 的操作方式相同。
+你也可以进入脚本节点，此时剧情图将作为可视化场景编辑器使用。此时图中的节点将变为标签节点（Label Nodes），包含可编辑的剧本行，与 [场景编辑器](/zh/guide/editor#scenario-editor) 的操作方式相同。
 
 ![](https://i.gyazo.com/890d2edc13a971407620a3bd38d50573.png)
 
@@ -173,7 +173,7 @@ Naninovel 编辑器的交互模式类似 Unity 编辑器：你可以选择一个
 
 ![?width=452](https://i.gyazo.com/bda71c03e4911f12a3dbbc8ce8214380.mp4)
 
-搜索结果会在输入时实时更新，涵盖脚本名称与内容。选择结果后会自动打开对应脚本，并在 [场景编辑器](/guide/editor#scenario-editor) 中高亮显示相关行。
+搜索结果会在输入时实时更新，涵盖脚本名称与内容。选择结果后会自动打开对应脚本，并在 [场景编辑器](/zh/guide/editor#scenario-editor) 中高亮显示相关行。
 
 ## 设置
 
@@ -183,7 +183,7 @@ Naninovel 编辑器的交互模式类似 Unity 编辑器：你可以选择一个
 
 ### 用户设置
 
-用户设置存储在你在 [首次设置](/guide/editor#first-time-setup) 时选择的目录中，不会与项目共享，适用于该设备上的所有项目。包括编辑器配色方案、快捷键映射（Keymap）以及 UI 元素可见性等偏好。
+用户设置存储在你在 [首次设置](/zh/guide/editor#first-time-setup) 时选择的目录中，不会与项目共享，适用于该设备上的所有项目。包括编辑器配色方案、快捷键映射（Keymap）以及 UI 元素可见性等偏好。
 
 ### 项目设置
 

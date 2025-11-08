@@ -1,6 +1,6 @@
 # 音频
 
-本篇文章将介绍背景音乐（BGM）和音效（SFX）；关于语音的内容请参阅 [语音指南](/guide/voicing)。
+本篇文章将介绍背景音乐（BGM）和音效（SFX）；关于语音的内容请参阅 [语音指南](/zh/guide/voicing)。
 
 要添加、编辑或删除 BGM 和 SFX 资源，请使用通过 `Naninovel -> Resources -> Audio` 访问的音频资源管理器。你可以使用任何 [Unity 支持的音频格式](https://docs.unity3d.com/Manual/AudioFiles.html)。
 
@@ -12,13 +12,13 @@
 
 如果你有大量音频文件，通过编辑器菜单逐一分配会比较麻烦，也可以直接将它们放入 `Resources/Naninovel/Audio` 文件夹中，它们会自动在脚本中可用。你还可以根据需要使用子文件夹进行整理；在这种情况下，在 Naninovel 脚本中引用它们时请使用正斜杠（`/`）。例如，存储在 `Resources/Naninovel/Audio/Music/Ambient/Noise002.wav` 的音频文件，可以在脚本中通过 `Music/Ambient/Noise002` 来引用。
 
-你也可以使用 [可寻址资源系统](/guide/resource-providers#addressable) 手动公开资源。要公开一个资源，请为其分配与上面方法中相同的路径作为地址，但省略 “Resources/” 部分。例如，要公开一个名为 “MainTheme.wav” 的 BGM，请为该音频剪辑资源分配以下地址：`Naninovel/Audio/MainTheme`。请注意，默认情况下编辑器中不会使用可寻址资源提供程序；你可以在资源提供程序配置菜单中启用 `Enable Addressable In Editor` 属性以允许其在编辑器中使用。
+你也可以使用 [可寻址资源系统](/zh/guide/resource-providers#addressable) 手动公开资源。要公开一个资源，请为其分配与上面方法中相同的路径作为地址，但省略 “Resources/” 部分。例如，要公开一个名为 “MainTheme.wav” 的 BGM，请为该音频剪辑资源分配以下地址：`Naninovel/Audio/MainTheme`。请注意，默认情况下编辑器中不会使用可寻址资源提供程序；你可以在资源提供程序配置菜单中启用 `Enable Addressable In Editor` 属性以允许其在编辑器中使用。
 
 ::: warning
 未通过资源管理器分配的音频资源将无法在编辑器中的各种下拉菜单中使用，例如用于为角色演员选择 `Message Sound`（消息音效）的菜单。
 :::
 
-可以通过 `Naninovel -> Configuration -> Audio` 上下文菜单配置音频播放行为；可用选项请参阅 [配置指南](/guide/configuration#audio)。
+可以通过 `Naninovel -> Configuration -> Audio` 上下文菜单配置音频播放行为；可用选项请参阅 [配置指南](/zh/guide/configuration#audio)。
 
 ## 背景音乐
 
@@ -105,7 +105,7 @@ Naninovel 在播放音频时会使用一个 [音频混音器（Audio Mixer）](h
 
 ## 自定义音频后端
 
-Unity 允许将其内置音频后端替换为自定义解决方案，例如 [FMOD](https://www.fmod.com) 和 [Wwise](https://www.audiokinetic.com/en/wwise/)。为支持这一点，我们确保 Naninovel 的 `IAudioManager` 接口不依赖于默认音频后端（例如，它不会引用 `AudioClip`、`AudioSource` 等）。这使你可以在无需修改引擎源代码的情况下，[重写该服务](/guide/engine-services#overriding-built-in-services)，从而使用自定义音频后端。
+Unity 允许将其内置音频后端替换为自定义解决方案，例如 [FMOD](https://www.fmod.com) 和 [Wwise](https://www.audiokinetic.com/en/wwise/)。为支持这一点，我们确保 Naninovel 的 `IAudioManager` 接口不依赖于默认音频后端（例如，它不会引用 `AudioClip`、`AudioSource` 等）。这使你可以在无需修改引擎源代码的情况下，[重写该服务](/zh/guide/engine-services#overriding-built-in-services)，从而使用自定义音频后端。
 
 以下是一个为 FMOD 实现此类重写的最小示例。
 

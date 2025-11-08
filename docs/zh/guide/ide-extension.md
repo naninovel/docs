@@ -1,6 +1,6 @@
 # IDE支持
 
-IDE 功能（如语法高亮、错误检查、自动补全和交互式文档）可以显著提升编写 [Naninovel 脚本](/guide/naninovel-scripts) 的效率。我们为免费开源的 [Visual Studio Code](https://code.visualstudio.com)（支持 Windows、macOS 和 Linux）制作了扩展插件，为 NaniScript 语法提供完整的 IDE 支持。
+IDE 功能（如语法高亮、错误检查、自动补全和交互式文档）可以显著提升编写 [Naninovel 脚本](/zh/guide/naninovel-scripts) 的效率。我们为免费开源的 [Visual Studio Code](https://code.visualstudio.com)（支持 Windows、macOS 和 Linux）制作了扩展插件，为 NaniScript 语法提供完整的 IDE 支持。
 
 ![](https://i.gyazo.com/c07e4a512dec21b2dfdf582e73cc3b10.mp4)
 
@@ -19,7 +19,7 @@ VS Code 插件商店中的扩展与当前稳定版 Naninovel 兼容。若使用 
 
 ### 激活扩展
 
-1. 确保 Unity 项目中已[安装 Naninovel](/guide/getting-started#install-naninovel)  
+1. 确保 Unity 项目中已[安装 Naninovel](/zh/guide/getting-started#install-naninovel)  
 2. 使用 VS Code 打开该 Unity 项目文件夹  
 
 当扩展检测到工作区中存在 `.nani` 文件时，会自动启用桥接服务，用于执行脚本诊断、提供自动补全、显示当前正在播放的脚本行等功能。
@@ -154,7 +154,7 @@ Naninovel 会在生成的数据目录（默认 `Assets/NaninovelData`）下创�
 
 ## 拼写检查
 
-要在 Naninovel 脚本中启用拼写检查，请安装如 [Code Spell Check](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) 的扩展，并为 `naniscript` 语言启用检测。示例请参见下方 [设置章节](/guide/ide-extension#vs-code-settings)。
+要在 Naninovel 脚本中启用拼写检查，请安装如 [Code Spell Check](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) 的扩展，并为 `naniscript` 语言启用检测。示例请参见下方 [设置章节](/zh/guide/ide-extension#vs-code-settings)。
 
 ![](https://i.gyazo.com/f66f7adcae6b366dfced8ec08f24cff9.png)
 
@@ -299,7 +299,7 @@ public class ModifyBackground : ModifyActor { }
 当你从内置命令派生自定义命令时，也可使用相同方法。如果将特性应用于类而非字段，别忘了提供可选的 `paramId` 参数。
 
 ::: tip
-大多数参数上下文特性同样可用于表达式函数参数，使其在 IDE 扩展中获得自动补全与诊断功能。示例可参考 [函数指南](/guide/script-expressions#parameter-context)。
+大多数参数上下文特性同样可用于表达式函数参数，使其在 IDE 扩展中获得自动补全与诊断功能。示例可参考 [函数指南](/zh/guide/script-expressions#parameter-context)。
 :::
 
 ## 常量表达式
@@ -333,7 +333,7 @@ public class ModifyCharacter { ... }
 
 —— 会将共享的人物姿势与由 “ID” 参数指定的角色（或当未指定时由 “IdAndAppearance” 参数的名称部分指定的角色）姿势合并。
 
-将常量表达式与 [自定义元数据提供者](/guide/ide-extension#metadata-provider) 结合使用，可为 IDE 扩展创建任意形式的自动补全场景。
+将常量表达式与 [自定义元数据提供者](/zh/guide/ide-extension#metadata-provider) 结合使用，可为 IDE 扩展创建任意形式的自动补全场景。
 
 ## 其他 IDE 与编辑器
 

@@ -462,7 +462,7 @@
 此主题需要 Unity 图形编程技能。我们不提供编写自定义 Shader 的支持或教程。请参考 [支持页面](/support/#unity-support) 了解更多。
 :::
 
-创建一个新的 Shader，并将其分配到需要使用自定义过渡的演出元素的 `Custom Texture Shader` 属性中。参阅 [自定义演出元素着色器](/guide/custom-actor-shader) 以了解如何创建并应用。
+创建一个新的 Shader，并将其分配到需要使用自定义过渡的演出元素的 `Custom Texture Shader` 属性中。参阅 [自定义演出元素着色器](/zh/guide/custom-actor-shader) 以了解如何创建并应用。
 
 当脚本指令中指定了过渡名称时，将会在演出元素使用的材质上启用与过渡名称相同的 [Shader 关键字](https://docs.unity3d.com/ScriptReference/Shader.EnableKeyword.html)，其前缀为 `NANINOVEL_TRANSITION_`。
 
@@ -506,7 +506,7 @@ fixed4 ApplyTransitionEffect(sampler2D mainTex, float2 mainUV,
 @back River.Custom2
 ```
 
-完整示例可参阅 [自定义演出元素着色器](/guide/custom-actor-shader) 指南。
+完整示例可参阅 [自定义演出元素着色器](/zh/guide/custom-actor-shader) 指南。
 
 ## 动画缓动
 

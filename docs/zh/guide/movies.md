@@ -16,7 +16,7 @@
 译注：Unity 打包 Windows 应用时，推荐使用 webm 格式，对 Windows 支持度会更好。
 :::
 
-影片播放行为可通过 `Naninovel -> Configuration -> Movies` 编辑器菜单进行配置；可用选项请参阅 [配置指南](/guide/configuration#movies)。
+影片播放行为可通过 `Naninovel -> Configuration -> Movies` 编辑器菜单进行配置；可用选项请参阅 [配置指南](/zh/guide/configuration#movies)。
 
 使用 [@movie] 命令并跟上视频剪辑名称，即可在 Naninovel 脚本中播放影片：
 
@@ -25,7 +25,7 @@
 @movie Opening
 ```
 
-默认情况下，播放的视频会被适配为 16:9 的宽高比以防止拉伸。你可以通过 [重写](/guide/user-interface.html#ui-customization) `IMovieUI` 界面来更改此行为。附加在 `MovieImage` 游戏对象上的 `Aspect Ratio Fitter` 组件用于控制适配行为。
+默认情况下，播放的视频会被适配为 16:9 的宽高比以防止拉伸。你可以通过 [重写](/zh/guide/user-interface.html#ui-customization) `IMovieUI` 界面来更改此行为。附加在 `MovieImage` 游戏对象上的 `Aspect Ratio Fitter` 组件用于控制适配行为。
 
 ![](https://i.gyazo.com/38e8b1fc220d5fedd50f62ab855b2e92.png)
 

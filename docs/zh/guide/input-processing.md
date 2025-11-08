@@ -1,92 +1,96 @@
-# Input Processing
+# 输入处理
 
-Naninovel uses Unity's [Input System](https://docs.unity3d.com/Packages/com.unity.inputsystem@latest) to listen for the following actions.
+Naninovel 使用 Unity 的 [输入系统](https://docs.unity3d.com/Packages/com.unity.inputsystem@latest) 来监听以下操作。
 
-| Name          | Keyboard+Mouse             | Gamepad                        | Description                                                                                                                             |
-|---------------|----------------------------|--------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
-| Submit        | Enter                      | Button South                   | Generic confirm intent, such as accepting a prompt or submitting an input form.                                                         |
-| Cancel        | Escape                     | Button East                    | Generic decline intent, such as declining a prompt or exiting a menu.                                                                   |
-| Delete        | Delete                     | Button North                   | Generic delete intent, such as deleting selected save slot.                                                                             |
-| Navigate      | Arrow Keys                 | D-Pad, Left Stick              | Generic navigation intent, such as selecting save slots in a row.                                                                       |
-| Scroll        | Scroll Wheel, Page Up/Down | Right Stick                    | Generic scroll intent, such as scrolling backlog.                                                                                       |
-| Page          |                            | Left Trigger <-> Right Trigger | Generic paginate intent, such as changing pages in save-load menu.                                                                      |
-| Tab           |                            | Left Bumper <-> Right Bumper   | Generic change tab intent, such as changing tabs in settings menu.                                                                      |
-| Continue      | Enter, Scroll Wheel (Y+)   | Button South                   | Disable wait for input mode (activated when a message is printed) to continue script playback.                                          |
-| Pause         | Backspace                  | Start                          | Show Pause UI.                                                                                                                          |
-| Skip          | Ctrl                       | Button West                    | Engage [skip mode](/guide/text-printers#text-skipping) (fast-forward) while the action is activated (button held).                      |
-| ToggleSkip    | Tab                        | Right Stick Press              | Toggle (permanently enable if disabled and vice-versa) skip mode.                                                                       |
-| SkipMovie     | Escape                     | Button East                    | Skip (cancel) currently playing [movie](/guide/movies).                                                                                 |
-| AutoPlay      | A                          | Button East                    | Toggle [auto-play mode](/guide/text-printers#auto-advance-text), where wait for input mode is disabled automatically after a set delay. |
-| ToggleUI      | Space                      | Button North                   | Toggle [visibility](/guide/user-interface#ui-toggling) (hide/show) of the entire UI layer.                                              |
-| ShowBacklog   | L                          | Right Bumper                   | Toggle [Backlog UI](/guide/text-printers#printer-backlog) visibility.                                                                   |
-| Rollback      | B, Scroll Wheel (Y-)       | Left Bumper                    | Rewind script backwards.                                                                                                                |
-| CameraLook    | Mouse Delta                | Right Stick                    | Move camera while in [@look] mode.                                                                                                      |
-| ToggleConsole | `                          |                                | Toggle [development console](/guide/development-console).                                                                               |
+| 名称            | 键盘+鼠标                    | 手柄                             | 描述                                                                                                                            |
+|-----------------|-----------------------------|----------------------------------|---------------------------------------------------------------------------------------------------------------------------------|
+| Submit          | Enter                       | 南键                             | 通用确认操作，例如确认提示或提交输入表单。                                                                                      |
+| Cancel          | Escape                      | 东键                             | 通用取消操作，例如拒绝提示或退出菜单。                                                                                          |
+| Delete          | Delete                      | 北键                             | 通用删除操作，例如删除选中的存档槽位。                                                                                          |
+| Navigate        | 方向键                      | 十字键、左摇杆                   | 通用导航操作，例如在一行存档槽位中移动选择。                                                                                    |
+| Scroll          | 滚轮、Page Up/Down          | 右摇杆                           | 通用滚动操作，例如滚动查看回顾记录。                                                                                            |
+| Page            |                             | 左扳机 <-> 右扳机                | 通用翻页操作，例如在存档加载菜单中切换页面。                                                                                    |
+| Tab             |                             | 左肩键 <-> 右肩键                | 通用切换标签操作，例如在设置菜单中切换选项卡。                                                                                  |
+| Continue        | Enter、滚轮上（Y+）         | 南键                             | 关闭“等待输入模式”（打印文本时激活）以继续脚本播放。                                                                          |
+| Pause           | Backspace                   | Start                            | 显示暂停菜单。                                                                                                                  |
+| Skip            | Ctrl                        | 西键                             | 启动 [跳过模式](/zh/guide/text-printers#text-skipping)（快进），在按住按键时启用。                                                 |
+| ToggleSkip      | Tab                         | 右摇杆按压                       | 切换跳过模式（永久开启或关闭）。                                                                                                |
+| SkipMovie       | Escape                      | 东键                             | 跳过（取消）当前播放的 [视频](/zh/guide/movies)。                                                                                  |
+| AutoPlay        | A                           | 东键                             | 切换 [自动播放模式](/zh/guide/text-printers#auto-advance-text)，在设定延迟后自动关闭“等待输入模式”。                             |
+| ToggleUI        | 空格键                      | 北键                             | 切换整个 UI 层的 [可见性](/zh/guide/user-interface#ui-toggling)（隐藏/显示）。                                                    |
+| ShowBacklog     | L                           | 右肩键                           | 切换 [回顾日志界面](/zh/guide/text-printers#printer-backlog) 的可见性。                                                            |
+| Rollback        | B、滚轮下（Y-）             | 左肩键                           | 倒回脚本播放进度。                                                                                                              |
+| CameraLook      | 鼠标移动                    | 右摇杆                           | 在 [@look] 模式下移动相机。                                                                                                     |
+| ToggleConsole   | `（反引号）                 |                                  | 切换 [开发者控制台](/zh/guide/development-console)。                                          |
 
-## Customizing Inputs
+## 自定义输入
 
-You can configure the default actions and add new ones by assigning a custom `Input Actions` asset in the `Naninovel -> Configuration -> Input` context menu. Keep the associated actions under a `Naninovel` map to allow the engine to detect them. Default input action asset can be created with `Create -> Naninovel -> Input -> Controls` asset menu — feel free to use it as a reference when creating your own.
+你可以通过在 `Naninovel -> Configuration -> Input` 菜单中分配自定义的 `Input Actions`（输入动作）资源，来配置默认的输入操作或添加新的输入动作。  
+请将相关动作保存在名为 `Naninovel` 的映射（map）中，以便引擎能够检测到它们。  
+默认输入动作资源可以通过 `Create -> Naninovel -> Input -> Controls` 菜单创建 —— 在自定义时可以将其作为参考。
 
 ![](https://i.gyazo.com/8ef1cc7eccac5cbc9e88016e2b1271f6.png)
 
-::: tip EXAMPLE
-An example of adding custom input binding to toggle inventory UI can be found in the [inventory sample](/guide/samples#inventory). Specifically, the custom "ToggleInventory" action is used in `Scripts/Runtime/Inventory/UI/InventoryUI.cs` runtime script. Another example — [input rebind sample](/guide/samples#input-rebind) — implements a rebind UI to allow player to change default controls.
+::: tip 示例
+在 [inventory 示例](/zh/guide/samples#inventory) 中展示了如何添加用于切换背包 UI 的自定义输入绑定。其中的自定义动作 “ToggleInventory” 在 `Scripts/Runtime/Inventory/UI/InventoryUI.cs` 运行时代码中被使用。另一个示例 —— [input rebind 示例](/zh/guide/samples#input-rebind) —— 展示了如何实现一个“按键重绑定 UI”，允许玩家更改默认按键。
 :::
 
-When using custom input actions, it's recommended to also use a custom `Event System` assigned in the same configuration menu, and then assign the custom input actions asset to the `Actions Asset` property of the Input System UI Input Module component attached to the event system prefab. This is required for various UI-related functionality to work correctly. You can create a default event system prefab that works with Naninovel via `Create -> Naninovel -> Input -> Event System`.
+当使用自定义输入动作时，建议同时使用在相同配置菜单中分配的自定义 `Event System`（事件系统），并将自定义输入动作资源分配给附加在事件系统预制体上的 Input System UI Input Module 组件的 `Actions Asset` 属性。这对于确保各类 UI 功能正常工作是必要的。可以通过 `Create -> Naninovel -> Input -> Event System` 菜单创建一个与 Naninovel 兼容的默认事件系统预制体。
 
 ![](https://i.gyazo.com/b1f99bb8e2cea14ec9f97c78b91d313a.png)
 
 ::: tip
-To prevent actions with modifiers (such as `Tab` and `Page`) from triggering other actions that use the same bindings without modifiers (for example, `Navigate`), enable the `Enable Input Consumption` option in the project settings under the Input System Package category.
+若要防止带有修饰键的动作（例如 `Tab` 或 `Page`）触发没有修饰键的同绑定动作（例如 `Navigate`），请在项目设置中 **Input System Package** 分类下启用 `Enable Input Consumption` 选项。
 :::
 
-## Adapt to Input Mode
+## 自适应输入模式
 
-By default, all the built-in UIs will adapt to the current input mode (mouse and keyboard, gamepad or touch) based on the last active input device. For example, if the player is using a mouse to interact with the game, but at some point presses a button on a gamepad, the UIs will switch to gamepad input mode.
+默认情况下，所有内置的 UI 都会根据最后一次使用的输入设备自动适应当前输入模式（鼠标键盘、手柄或触摸）。例如，当玩家使用鼠标操作游戏时，如果此时按下了手柄上的任意按键，UI 将自动切换到手柄输入模式。
 
 ![](https://i.gyazo.com/a2f38246d7eee8d75d7f3f6660a092ed.mp4)
 
-You can disable the feature by unchecking the `Detect Input Mode` option in the input configuration menu.
+你可以在输入配置菜单中取消勾选 `Detect Input Mode`（检测输入模式）选项来禁用此功能。
 
-Default input mode activated after engine initialization is evaluated by the input manager based on the target platform:
+引擎初始化后默认激活的输入模式将由输入管理器根据目标平台自动判断：
 
-- Consoles -> Gamepad
-- Mobiles -> Touch
-- Others -> Mouse
+- **主机平台** → 手柄模式
+- **移动平台** → 触摸模式
+- **其他平台（如 PC）** → 鼠标键盘模式
 
-### Mouse
+### 鼠标模式
 
-In this mode the UI will disable navigation on all the underlying [Selectable](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-Selectable.html) objects. This is to prevent buttons from transitioning into "selected" state when clicked by mouse.
+在该模式下，UI 会禁用所有底层 [Selectable](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-Selectable.html) 对象的导航功能，以防止按钮在鼠标点击时切换为“已选中（selected）”状态。
 
-Additionally, in case `Button Controls` object is assigned in `Custom UI` (or derived) component, it will be enabled, while `Keyboard Controls` and `Gamepad Conrols` disabled. This allows keeping buttons specific to mouse input mode (eg, "close" button) and controls legend (eg, gamepad button labels) visible only when associated input mode is active.
+此外，如果在 `Custom UI`（或其派生组件）中分配了 `Button Controls` 对象，则该对象会被启用，而 `Keyboard Controls` 与 `Gamepad Controls` 会被禁用。这使得可以仅在对应的输入模式激活时，显示与鼠标模式相关的按钮（例如“关闭”按钮）或控制提示（例如手柄按钮图标）。
 
-### Gamepad
+### 手柄模式（Gamepad）
 
-Gamepad mode will keep navigation (change it back when switched from mouse mode), so that player is able to navigate selectables with dpad.
+在手柄模式下，UI 会重新启用导航功能（从鼠标模式切换时恢复），以便玩家能够通过十字键（D-pad）在可选项之间导航。
 
-When assigned, `Gamepad Controls` legend will be enabled, while others (buttons and keyboard) — disabled.
+如果分配了 `Gamepad Controls` 控件提示对象，则该对象会被启用，而其他（鼠标按钮与键盘控件）会被禁用。
 
 ::: tip
-If you'd like to customize gamepad legend icons, check out [Xelu's free controller prompts](https://thoseawesomeguys.com/prompts/).
+若想自定义手柄图标样式，可参考 [Xelu 的免费手柄提示素材包](https://thoseawesomeguys.com/prompts/)。
 :::
 
-Additionally, while in gamepad mode and a modal UI is shown, first active selectable inside will be focused to prevent focus from getting stuck with previously selected object. This behaviour can be changed by explicitly assigning `Focus Object` of custom UI or derived component, in which case the UI won't attempt to find focus object automatically.
+此外，当处于手柄模式并显示模态 UI 时，第一个处于激活状态的可选项会自动获得焦点，以防止焦点停留在之前选中的对象上。若希望修改此行为，可在自定义 UI 或其派生组件中显式指定 `Focus Object`，此时 UI 将不会再自动寻找焦点对象。
 
-### Keyboard
+### 键盘模式
 
-Activated when keyboard navigation (arrow) keys are pressed. Other keys won't activate this mode, because they are used in Mouse mode as hotkeys.
+当玩家按下键盘导航键（方向键）时会激活该模式。其他按键不会触发此模式，因为它们在鼠标模式中被用作快捷键。
 
-Otherwise, it works same as Gamepad mode, just with the different controls legend shown.
+除此之外，键盘模式与手柄模式的行为相同，只是显示的控件提示（legend）不同。
 
-### Touch
+### 触摸模式
 
-When in touch mode, Naninovel won't perform any special changes on the managed UIs by default. However, you can add touch-specific behaviour by overriding `HandleInputModeChanged` method of `CustomUI` component.
+在触摸模式下，Naninovel 默认不会对受管 UI 执行任何特殊调整。不过，你可以通过重写 `CustomUI` 组件的 `HandleInputModeChanged` 方法，来自定义触摸模式下的特殊行为。
 
-To disable the adapt to input mode feature for a specific UI, uncheck `Adapt To Input Mode` option of `Custom UI` (or derived) component. To disable the feature globally, use `Detect Input Mode` option in input configuration.
+如果想仅对某个特定 UI 禁用输入模式自适应功能，可在 `Custom UI`（或其派生组件）中取消勾选 `Adapt To Input Mode` 选项。若希望全局禁用该功能，请在输入配置菜单中关闭 `Detect Input Mode` 选项。
 
-## Custom Input Backend
+## 自定义输入后端
 
-Naninovel allows using custom input solutions, such as [Rewired](https://guavaman.com/projects/rewired/), instead of Unity's built-in input system. The engine uses the default input system APIs only in a couple of virtual methods inside the `InputManager` class, and the references are conditionally compiled, ensuring that no compilation errors occur even if you remove the default input module.
+Naninovel 支持使用自定义输入系统（例如 [Rewired](https://guavaman.com/projects/rewired/)），以替代 Unity 内置的输入系统。
 
-To make the engine use a custom input solution, [override](/guide/engine-services#overriding-built-in-services) the `InputManager` engine service and override the required virtual methods.
+引擎仅在 `InputManager` 类的少数几个虚方法中调用了默认输入系统 API，这些引用都采用条件编译，因此即使完全移除默认输入模块也不会产生编译错误。
+
+若希望让引擎使用自定义输入方案，可通过 [覆盖内置服务](/zh/guide/engine-services#overriding-built-in-services) 的方式继承并重写 `InputManager` 引擎服务中的相关虚方法。
