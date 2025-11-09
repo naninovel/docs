@@ -63,26 +63,27 @@ Some text \{ text inside braces \}
 以下函数也可在脚本表达式中使用。
 
 <div class="config-table">
-函数签名 | 描述 | 示例  
-----|-----|----  
-random(min, max) | 返回介于最小值（含）与最大值（含）之间的随机整数。 | `random(0, 100)`  
-random(min, max) | 返回介于最小值（含）与最大值（含）之间的随机浮点数。 | `random(0.5, 1.5)`  
-random(args) | 从指定字符串中随机返回一个。 | `random("foo", "bar", "baz")`  
-calculateProgress() | 返回剧情完成进度比例，范围为 0.0 到 1.0，1.0 表示所有脚本行至少被执行过一次。 | `calculateProgress()`  
-isUnlocked(id) | 检查指定 ID 的可解锁项目当前是否已解锁。 | `isUnlocked("Tips/MyTip")`  
-hasPlayed() | 检查当前执行的指令是否曾被执行过。 | `hasPlayed()`  
-hasPlayed(scriptPath) | 检查指定路径的脚本是否曾被执行过。 | `hasPlayed("MyScript")`  
-getName(characterId) | 返回指定 ID 角色的显示名称。 | `getName("Kohaku")`  
-pow(num, pow) | 返回 num 的 pow 次方。 | `pow(2, 3)`  
-sqrt(num) | 返回 num 的平方根。 | `sqrt(2)`  
-cos(num) | 返回角度的余弦值。 | `cos(180)`  
-sin(num) | 返回角度的正弦值。 | `sin(90)`  
-log(num) | 返回指定数字的自然对数（以 e 为底）。 | `log(0.5)`  
-abs(num) | 返回 f 的绝对值。 | `abs(0.5)`  
-max(nums) | 返回两个或多个值中的最大值。 | `max(1, 10, -9)`  
-min(nums) | 返回两个或多个值中的最小值。 | `min(1, 10, -9)`  
-round(num) | 返回四舍五入后的整数值。 | `round(0.9)`  
-approx(a, b) | 比较两个浮点数，若相近则返回 true。 | `approx(0.15, 0.15)`  
+
+| 函数签名              | 描述                                                                          | 示例                           |
+|-----------------------|-------------------------------------------------------------------------------|--------------------------------|
+| random(min, max)      | 返回介于最小值（含）与最大值（含）之间的随机整数。                            | `random(0, 100)`               |
+| random(min, max)      | 返回介于最小值（含）与最大值（含）之间的随机浮点数。                          | `random(0.5, 1.5)`             |
+| random(args)          | 从指定字符串中随机返回一个。                                                  | `random("foo", "bar", "baz")`  |
+| calculateProgress()   | 返回剧情完成进度比例，范围为 0.0 到 1.0，1.0 表示所有脚本行至少被执行过一次。 | `calculateProgress()`          |
+| isUnlocked(id)        | 检查指定 ID 的可解锁项目当前是否已解锁。                                      | `isUnlocked("Tips/MyTip")`     |
+| hasPlayed()           | 检查当前执行的指令是否曾被执行过。                                            | `hasPlayed()`                  |
+| hasPlayed(scriptPath) | 检查指定路径的脚本是否曾被执行过。                                            | `hasPlayed("MyScript")`        |
+| getName(characterId)  | 返回指定 ID 角色的显示名称。                                                  | `getName("Kohaku")`            |
+| pow(num, pow)         | 返回 num 的 pow 次方。                                                        | `pow(2, 3)`                    |
+| sqrt(num)             | 返回 num 的平方根。                                                           | `sqrt(2)`                      |
+| cos(num)              | 返回角度的余弦值。                                                            | `cos(180)`                     |
+| sin(num)              | 返回角度的正弦值。                                                            | `sin(90)`                      |
+| log(num)              | 返回指定数字的自然对数（以 e 为底）。                                          | `log(0.5)`                     |
+| abs(num)              | 返回 f 的绝对值。                                                             | `abs(0.5)`                     |
+| max(nums)             | 返回两个或多个值中的最大值。                                                  | `max(1, 10, -9)`               |
+| min(nums)             | 返回两个或多个值中的最小值。                                                  | `min(1, 10, -9)`               |
+| round(num)            | 返回四舍五入后的整数值。                                                      | `round(0.9)`                   |
+| approx(a, b)          | 比较两个浮点数，若相近则返回 true。                                           | `approx(0.15, 0.15)`           |
 
 </div>
 
