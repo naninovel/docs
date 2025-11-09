@@ -84,6 +84,7 @@ max(nums) | Returns largest of two or more values. | `max(1, 10, -9)`
 min(nums) | Returns the smallest of two or more values. | `min(1, 10, -9)`
 round(num) | Returns num rounded to the nearest integer. | `round(0.9)`
 approx(a, b) | Compares two floating point values and returns true if they are similar. | `approx(0.15, 0.15)`
+approx(a, b) | Compares two strings ignoring case. | `approx("abc", "ABC")`
 
 </div>
 
