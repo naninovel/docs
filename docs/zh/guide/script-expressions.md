@@ -64,7 +64,7 @@ Some text \{ text inside braces \}
 
 <div class="config-table">
 函数签名 | 描述 | 示例  
---- | --- | ---  
+----|-----|----  
 random(min, max) | 返回介于最小值（含）与最大值（含）之间的随机整数。 | `random(0, 100)`  
 random(min, max) | 返回介于最小值（含）与最大值（含）之间的随机浮点数。 | `random(0.5, 1.5)`  
 random(args) | 从指定字符串中随机返回一个。 | `random("foo", "bar", "baz")`  

@@ -15,7 +15,7 @@ Naninovel 是一个用于 [Unity 游戏引擎](https://unity3d.com) 的扩展插
 若仍未找到所需信息，请随时 [联系售后支持](/zh/support/#naninovel-support)。
 
 :::tip
-译注：Naninovel 中的一些惯用语可参考[中英用语对照表](/zh/guide/zh-terms-dict)。
+译注：中文版文档由 [呐呐呐制作组](https://nanana.cn/) 协助翻译，关于翻译错误等问题可以在 GitHub [提交 Issues](https://github.com/naninovel/docs/issues) 或 [Pull Request](https://github.com/naninovel/docs/pulls)。Naninovel 中的一些惯用语可参考[中英用语对照表](/zh/guide/zh-terms-dict)。
 :::
 
 ## 功能
