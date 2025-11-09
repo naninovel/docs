@@ -1,141 +1,143 @@
-# Resource Providers
+# 资源提供器
 
-Resource providers are used to retrieve Naninovel-related assets (appearance textures, BGM clips, etc.) at runtime, in accordance with the [memory management](/guide/memory-management) needs. Each provider specializes in retrieving the assets from a specific source: project's "Resources" folders, Unity's addressable asset system, local file storage, etc.
+资源提供器用于在运行时根据 [内存管理](/zh/guide/memory-management) 需求获取 Naninovel 相关资源（如角色立绘、BGM 音频等）。每种提供器都专门负责从特定来源加载资源，例如项目的 “Resources” 文件夹、Unity 的 Addressables 系统、本地文件存储等。
 
-Providers' general behavior can be configured via `Naninovel -> Configuration -> Resource Provider` menu.
+可以通过 `Naninovel -> Configuration -> Resource Provider` 菜单配置资源提供器的通用行为。
 
 ![](https://i.gyazo.com/b895b71462d39352931609bcf2115711.png)
 
-`Resource Policy` property dictates when the resources are loaded and unloaded during script execution. Refer to [memory management](/guide/memory-management) guide for more info.
+`Resource Policy`（资源策略）属性决定了脚本执行过程中资源的加载与卸载时机。详细说明请参阅 [内存管理指南](/zh/guide/memory-management)。
 
-When `Log Resources Loading` is enabled, various provider-related log messages will be mirrored to the default loading screen UI.
+启用 `Log Resources Loading` 选项后，资源加载的相关日志信息将显示在默认的加载界面 UI 上。
 
-`Enable Build Processing` enables a build pre-processing procedure required to ensure assets assigned via editor menus are available in the builds. Disabling the processing may be required if you're using a [custom build environment](/guide/custom-build-environment) or attaching your own build hooks. When enabling or disabling the property, restart Unity editor in order for the change to take effect.
+启用 `Enable Build Processing` 后，会在构建时执行预处理步骤，以确保通过编辑器菜单分配的资源在构建版本中可用。如果你使用了 [自定义构建环境](/zh/guide/custom-build-environment) 或自行注册了构建钩子，可禁用此项。当修改此选项后，请重新启动 Unity 编辑器以使更改生效。
 
-When [addressable system](https://docs.unity3d.com/Packages/com.unity.addressables@latest) is installed, enabling `Use Addressables` will optimize the asset processing step improving the build time; enabling `Auto Build Bundles` at the same time will cause asset bundles to automatically compile when building the player.
+当项目中安装了 [可寻址系统](https://docs.unity3d.com/Packages/com.unity.addressables@latest) 时，启用 `Use Addressables` 可优化资源处理流程、缩短构建时间；同时启用 `Auto Build Bundles` 会在打包游戏时自动编译资源包。
 
-Other properties in the configuration menu are provider-specific and described below.
+配置菜单中的其他属性为各提供器专有属性，具体说明如下。
 
-Resource-specific providers behavior is configured via `Loader` properties, available in the corresponding configuration menus. For example, here is the default loader configuration used to retrieve audio resources (BGM and SFX):
+资源类型相关的提供器行为可通过各自配置菜单中的 `Loader`（加载器）属性设置。例如，以下是用于加载音频资源（BGM 和 SFX）的默认加载器配置：
 
 ![](https://i.gyazo.com/e9b59f738c93d0cdee6f0999b797a461.png)
 
-`Path Prefix` property allows specifying an additional path over provider's root path for the specific type of resources. E.g., given we're going to retrieve an "Explosion" audio file from a project's "Resources" folder, setting path prefix to "Audio" will result in the following resource request: `Resources.Load("Audio/Explosion")`.
+`Path Prefix`（路径前缀）属性允许为特定资源类型指定附加路径。例如，当从项目的 “Resources” 文件夹加载名为 “Explosion” 的音频文件时，若将路径前缀设为 “Audio”，最终的加载请求路径将为：`Resources.Load("Audio/Explosion")`。
 
-`Providers List` allows specifying which provider types to use and in which order. E.g., in the above example, when requesting an audio resource, first an "Addressable" provider will be used, and in case the provider won't be able to find the requested resource, the "Project" provider will be used.
+`Providers List`（提供器列表）属性用于指定资源提供器的使用顺序。例如，在上图中，请求音频资源时将首先尝试 “Addressable” 提供器，若未找到资源，则回退使用 “Project” 提供器。
 
-Be aware that **while in editor a special "Editor" resource provider is always used first** (no matter the loader configuration). The provider has access to all the resources assigned via Naninovel's configuration and resource manager menus (`Naninovel -> Resources -> ...`). When the game is built, all such resources are automatically copied to a temporary "Resources" folder or (when [addressable system](https://docs.unity3d.com/Packages/com.unity.addressables@latest) is installed and enabled) registered in the addressables configuration and compiled to asset bundles. Remember to **always perform any provider-related tests in builds**, not in the Unity editor.
+请注意，**在 Unity 编辑器中始终会优先使用特殊的 “Editor” 资源提供器**（无论加载器配置如何）。该提供器可以访问所有通过 Naninovel 配置或资源管理器菜单（`Naninovel -> Resources -> ...`）分配的资源。当游戏构建后，这些资源会自动复制到临时的 “Resources” 文件夹，或（若启用了 [Addressables 系统](https://docs.unity3d.com/Packages/com.unity.addressables@latest)）注册到 Addressables 配置中并编译为资源包。
 
-## Addressable
+**请务必在构建版本中测试与资源提供器相关的功能**，而不是仅在 Unity 编辑器中进行测试。
 
-The [Addressable Asset system](https://docs.unity3d.com/Packages/com.unity.addressables@latest) is a Unity package allowing to load assets by "address". It uses asynchronous loading to support loading from any location (local storage, remote web hosting, etc.) with any collection of dependencies. Consult Unity's documentation on how to set up, configure and use the system.
+## 可寻址化
 
-Naninovel will automatically use addressables when the package is installed in the project and `Use Addressables` property is enabled in resource provider configuration. No additional setup is required. All the assets assigned in the Naninovel's configuration menus (eg, scenario scripts, character sprites, audio clips, etc) will be registered with the system (assigned an address) when building the player.
+[可寻址化资产系统](https://docs.unity3d.com/Packages/com.unity.addressables@latest) 是一个 Unity 包，允许通过“地址”来加载资源。它使用异步加载机制，以支持从任意位置（本地存储、远程网络托管等）加载资源，并处理任意依赖项集合。请参阅 Unity 官方文档了解如何设置、配置和使用该系统。
 
-In case you wish to configure how the Naninovel assets are served (eg, specify a remote web host), edit Naninovel groups via `Window -> Asset Management -> Addressables -> Groups` menu. The groups are automatically created when first building the game; in case they're missing, you can create them manually.
+当项目中安装了 Addressables 包，并在资源提供器配置中启用了 `Use Addressables` 属性时，Naninovel 将自动使用 Addressables 系统，无需额外配置。所有在 Naninovel 配置菜单中分配的资源（例如剧情脚本、角色立绘、音频剪辑等）都会在构建播放器时自动注册到该系统中（即被分配地址）。
+
+如果你希望自定义 Naninovel 资源的加载方式（例如指定远程服务器托管地址），可以通过 `Window -> Asset Management -> Addressables -> Groups` 菜单编辑 Naninovel 相关的资源组。这些资源组会在首次构建游戏时自动创建；如果缺失，也可以手动创建。
 
 ![](https://i.gyazo.com/c93fbd9e232ec94468c685c4d6003916.png)
 
 ::: info NOTE
-Asset records under Naninovel addressable groups are automatically generated on each build. Don't edit the records manually, as any changes will be lost on build. However, all the group settings are preserved.
+Naninovel Addressable 资源组中的资源记录会在每次构建时自动生成。不要手动修改这些记录，否则更改会在下次构建时被覆盖。不过，所有资源组的设置将会被保留。
 :::
 
-### Category Groups
+### 分类分组
 
-By default, `Group By Category` option in resource provider configuration is disabled, which results in all the Naninovel assets end up under a single "Naninovel" group. In case you wish to group the resources by category (eg, to specify individual packing or serving options), enable the property and re-build. When enabled, each resource category (eg, scripts, audio, characters, etc) will be added under their own addressable group named "Naninovel-*Category*", where *Category* is the category of the resource.
+默认情况下，资源提供器配置中的 `Group By Category` 选项是禁用的，这会导致所有 Naninovel 资源都被归入单个名为 “Naninovel” 的组中。若希望按照资源类别进行分组（例如为每种资源类型设置独立的打包或加载方式），请启用此选项并重新构建项目。启用后，每个资源类别（如脚本、音频、角色等）都会被添加到各自的 Addressable 资源组中，命名格式为 “Naninovel-*Category*”，其中 *Category* 表示资源类别名称。
 
 ![](https://i.gyazo.com/80938ca5ca1021e8a71f783eef516d15.png)
 
-### Manual Assignment
+### 手动分配
 
-To expose an addressable asset to Naninovel without using editor menus, use a custom addressable group; group can have any name, except it can't start with the reserved "Naninovel" (otherwise, it'll be recognized as an auto-generated and will be cleared on build). Address of the exposed assets should start with "Naninovel/" and they should have a "Naninovel" label assigned. You can specify additional labels to filter the assets used by Naninovel via `Extra Labels` property in resource provider configuration menu.
+若希望在不使用编辑器菜单的情况下手动将 Addressable 资源暴露给 Naninovel，可使用自定义的 Addressable 资源组；该组可以使用任意名称，但**不能以保留前缀 “Naninovel” 开头**，否则会被识别为自动生成组并在构建时被清空。被暴露的资源地址应以 “Naninovel/” 开头，并且必须分配 “Naninovel” 标签。你还可以通过资源提供器配置菜单中的 `Extra Labels` 属性，为 Naninovel 指定额外的标签来过滤使用的资源。
 
 ::: tip EXAMPLE
-Check the [addressable sample](/guide/samples#addressable) on how to manually register Naninovel resources via addressable provider (without using resource editor menus) and serve the assets from a remote host. You may also find the Unity [learning materials](https://learn.unity.com/course/get-started-with-addressables) useful.
+请参考 [可寻址话示例](/zh/guide/samples#addressable)，了解如何通过 Addressable 提供器手动注册 Naninovel 资源（无需使用资源编辑器菜单）并从远程服务器加载资源。你也可以查阅 Unity 官方的 [Addressables 学习资料](https://learn.unity.com/course/get-started-with-addressables) 以获取更多帮助。
 :::
 
-### Script Labels
+### 脚本标签
 
-Due to an [unfortunate Unity design decision](https://github.com/naninovel/docs/issues/159), addressable assets are not unloaded from the memory until the entire asset bundle is unloaded. This means, unless you properly organize the bundles, all the assets may end up in a single bundle and will never unload once loaded, potentially causing out of memory exceptions.
+由于 [Unity 的一个设计缺陷](https://github.com/naninovel/docs/issues/159)，Addressable 资源在整个资源包卸载之前不会从内存中释放。也就是说，如果你没有正确地组织资源包，所有资源可能最终被打包到一个单独的 bundle 中，并且一旦加载将永远不会卸载，从而可能导致内存溢出错误。
 
-Easiest solution would be setting `Bundle Mode` in the [group settings](https://docs.unity3d.com/Packages/com.unity.addressables@1.22/manual/GroupSchemas.html) to `Pack Separately`:
+最简单的解决方案是在 [资源组设置](https://docs.unity3d.com/Packages/com.unity.addressables@1.22/manual/GroupSchemas.html) 中将 `Bundle Mode` 设置为 `Pack Separately`：
 
 ![](https://i.gyazo.com/651a292ca6f1f4e26593074e25c66cea.png)
 
-— this will make each asset have its own bundle, allowing to unload it as soon as it's released. While optimal from the RAM usage perspective, this will result in a CPU overhead and increase load times, as it's much faster to load one large continuous binary blob compared to seeking and constantly loading/unloading many small ones, especially on slower hard drives.
+— 这样每个资源都会拥有独立的 bundle，从而在释放后可以立即卸载。虽然这在内存占用方面最为高效，但会带来额外的 CPU 开销并增加加载时间，因为加载一个大型连续的二进制文件远比不断查找、加载和卸载多个小文件要快，尤其是在较慢的硬盘上。
 
-When `Label By Scripts` is enabled in resource provider configuration (the default), Naninovel will utilize a compromise solution: when building the player, it will scan all the scenario scripts and attempt to figure which assets are required by the script; it'll then assign labels to the addressable assets by the scripts they're used in:
+当资源提供器配置中启用了 `Label By Scripts`（默认启用）时，Naninovel 会采用折中方案：在构建玩家时，它会扫描所有的剧情脚本，并尝试判断每个脚本需要使用哪些资源；随后，它会根据资源被使用的脚本为对应的 Addressable 资源分配标签：
 
 ![](https://i.gyazo.com/9013a1264a55aa95d22ecfc6b3283ac3.png)
 
-— if you then set `Bundle Mode` to `Pack Together By Label` (the default), the assets will be split between bundles based on the affinity to the scenario scripts, which will optimize the bundle's structure to the Naninovel's [memory management policy](/guide/memory-management).
+— 如果随后将 `Bundle Mode` 设置为 `Pack Together By Label`（默认值），这些资源将根据它们所属的剧情脚本分配到不同的 bundle 中，从而使 bundle 结构与 Naninovel 的 [内存管理策略](/zh/guide/memory-management) 相匹配，实现加载与释放的优化。
 
 ::: info NOTE
-All the Naninovel assets are subject to the labeling, including the assets [assigned manually](/guide/resource-providers#manual-assignment), without using the resource editor menus. As long as asset has `Naninovel` label, it'll be labeled with the associated script.
+所有 Naninovel 资源都会参与标签分配，包括那些 [手动注册](/zh/guide/resource-providers#manual-assignment) 而非通过资源编辑器菜单添加的资源。只要资源具有 `Naninovel` 标签，它就会被标记为与对应脚本关联。
 :::
 
-The labeling process requires a degree of guessing, however, and is not always possible. To make sure most assets are labeled correctly, follow the guidelines:
+然而，这种标签分配过程带有一定的推断成分，并非总能准确完成。为了确保大多数资源能被正确标记，请遵循以下准则：
 
-- Don't use [expressions](/guide/script-expressions) in parameters of the resource context, such as actor IDs, appearances, audio paths, etc. Expressions are evaluated just before the command is executed, which makes it impossible to resolve the final path when building the player. Naninovel will warn you when it detects such cases when building the player.
-- Always specify actor IDs and appearances in commands like [@char] and [@back]; while such commands may not require these parameters and will fall back to default values, it's not always possible to resolve the defaults when building.
-- When creating [custom commands](/guide/custom-commands), apply [resource context attributes](/guide/ide-extension#ide-attributes) to the parameters which reference the resources. For example, if your custom command has a parameter that accepts an actor ID, apply `[ActorContext]` to the parameter's field. While such attributes are mostly used by the IDE extension to provide auto-complete, labeling tool uses them as well to resolve the asset address.
+- 不要在资源上下文参数（例如角色 ID、立绘、音频路径等）中使用 [表达式](/zh/guide/script-expressions)。表达式会在指令执行前才被解析，因此在构建时无法确定资源的最终路径。Naninovel 会在构建期间检测并警告此类情况。
+- 在使用 [@char] 和 [@back] 等指令时，务必显式指定角色 ID 和立绘。虽然这些指令在省略参数时会使用默认值，但在构建阶段并不总能正确解析默认资源。
+- 当创建 [自定义指令](/zh/guide/custom-commands) 时，请为引用资源的参数应用 [资源上下文属性](/zh/guide/ide-extension#ide-attributes)。例如，如果你的自定义指令包含一个接受角色 ID 的参数，请为该字段添加 `[ActorContext]` 属性。虽然这些属性主要用于 IDE 自动补全，但标记工具同样会利用它们来解析资源地址。
 
 ## Project
 
-Project provider serves the assets located in "Resources" folders of your Unity project. Consult Unity's guide for more information regarding the project [resources loading API](https://docs.unity3d.com/Manual/LoadingResourcesatRuntime).
+Project 提供器用于加载 Unity 项目中 “Resources” 文件夹下的资源。有关 Unity [资源加载 API](https://docs.unity3d.com/Manual/LoadingResourcesatRuntime) 的更多信息，请查阅官方文档。
 
 ::: warning
-In most cases [using "Resources" folders is discouraged](https://docs.unity3d.com/Manual/UnderstandingPerformanceResourcesFolder.html). Consider assigning the resources via a Naninovel resource manager menu when possible or use an addressable system instead; remember to move the asset out of a "Resources" folder after that.
+在大多数情况下，[不推荐使用 “Resources” 文件夹](https://docs.unity3d.com/Manual/UnderstandingPerformanceResourcesFolder.html)。建议通过 Naninovel 的资源管理器菜单分配资源，或改用 Addressable 系统；完成后请将资源移出 “Resources” 文件夹。
 :::
 
-## Local
+## 本地资源提供器
 
-Local provider allows serving simple (scenario scripts and managed text, sprite characters and backgrounds, audio) assets from an arbitrary location in the local file system.
+本地资源提供器允许从本地文件系统中的任意位置加载简单资源（如剧情脚本、托管文本、角色立绘、背景图片、音频等）。
 
 ::: info NOTE
-Local provider loads raw files from the file system and converts them at runtime, which is slow and limits the supported file types compared to other providers. Only use it in development or for specific features (eg, [community modding](/guide/community-modding)).
+本地提供器会直接从文件系统加载原始文件并在运行时进行转换，这种方式较慢，且相比其他提供器支持的文件类型更少。仅建议在开发阶段或用于特定功能（例如 [社区模组功能](/zh/guide/community-modding)）时使用。
 :::
 
-Supported file formats:
+支持的文件格式：
 
-- `.nani` plain text files for scenario scripts
-- `.png` and `.jpg` for images/textures
-- `.wav` (PCM16 44100Hz stereo only) for audio
+- `.nani`：剧情脚本文本文件  
+- `.png` 与 `.jpg`：图像或纹理文件  
+- `.wav`：音频文件（仅支持 PCM16 44100Hz 立体声格式）
 
 ::: tip
-Add more supported file formats by overriding `IResourceProviderManager` [engine service](/guide/engine-services#overriding-built-in-services) and adding a custom converter for the local provider.
+若要添加更多支持的文件格式，可通过重写 `IResourceProviderManager` [引擎服务](/zh/guide/engine-services#overriding-built-in-services)，为本地提供器添加自定义转换器。
 
 ![](https://i.gyazo.com/d4e63726c2d1d75e2677cab7f2503546.png)
 :::
 
-`Local Path Root` property in the resource provider configuration should point to a folder, where the local resources are stored. You can either use an absolute (eg, `C:\Resources`) or a relative path, starting with one of the following origins:
+在资源提供器配置中，`Local Path Root` 属性应指向存放本地资源的文件夹。该路径可以是绝对路径（如 `C:\Resources`），也可以是以下任意起始符号的相对路径：
 
-- `%DATA%` — Game data folder on the target device ([Application.dataPath](https://docs.unity3d.com/ScriptReference/Application-dataPath));
-- `%PDATA%` — Persistent data directory on the target device ([Application.persistentDataPath](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath));
-- `%STREAM%` — "StreamingAssets" folder ([Application.streamingAssetsPath](https://docs.unity3d.com/ScriptReference/Application-streamingAssetsPath));
-- `%SPECIAL{F}%` — An OS special folder, where `F` is the name of a [special folders enum](https://docs.microsoft.com/en-us/dotnet/api/system.environment.specialfolder) value.
+- `%DATA%` — 游戏数据目录（[Application.dataPath](https://docs.unity3d.com/ScriptReference/Application-dataPath)）  
+- `%PDATA%` — 游戏持久化数据目录（[Application.persistentDataPath](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath)）  
+- `%STREAM%` — “StreamingAssets” 目录（[Application.streamingAssetsPath](https://docs.unity3d.com/ScriptReference/Application-streamingAssetsPath)）  
+- `%SPECIAL{F}%` — 操作系统的特殊文件夹，其中 `F` 是 [.NET SpecialFolder 枚举](https://docs.microsoft.com/en-us/dotnet/api/system.environment.specialfolder) 的名称。
 
-Default `%DATA%/Resources` value points to a "Resources" folder inside game's data directory (which is different depending on the target platform).
+默认路径 `%DATA%/Resources` 指向游戏数据目录下的 “Resources” 文件夹（该路径会因平台不同而有所变化）。
 
-As one of the usage examples, let's say you want to load naninovel scripts from a `C:/Users/Admin/Dropbox/MyGame/Scripts` folder, which you share with collaborators to author the scenario. While it's possible to just specify an absolute path to the root folder (`C:/Users/Admin/Dropbox/MyGame`), that will require all your collaborators to also store the folder by the exact same path (under the same drive label and username). Instead, use the following relative path over a "UserProfile" special folder origin: `%SPECIAL{UserProfile}%/Dropbox/MyGame`.
+例如，假设你希望从 `C:/Users/Admin/Dropbox/MyGame/Scripts` 文件夹加载 Naninovel 剧本，并通过 Dropbox 与协作者共享这些脚本。虽然可以直接使用绝对路径（如 `C:/Users/Admin/Dropbox/MyGame`），但这样会要求所有协作者在相同驱动器和用户名下保持完全一致的路径结构。更灵活的做法是使用以下相对路径：`%SPECIAL{UserProfile}%/Dropbox/MyGame`，该路径会基于用户的系统配置自动解析到正确位置。
 
 ![](https://i.gyazo.com/eb435b782cfb9df6c403702e8f6124df.png)
 
-Given path prefix under scripts configuration is set to `Scripts` and local provider is added to the list, script navigator (accessible with `nav` [console command](/guide/development-console)) should now pick up any ".nani" text files stored under the folder.
+如果脚本配置中的路径前缀（Path Prefix）设置为 `Scripts`，且本地提供器已添加至加载器列表中，那么使用 `nav` [控制台指令](/zh/guide/development-console) 打开的脚本导航器将自动识别指定文件夹下的所有 `.nani` 剧本文本文件。
 
 ![](https://i.gyazo.com/df8ad31d30b5c10c9a918e69a4543567.png)
 
-## Custom Providers
+## 自定义资源提供器
 
-It's possible to add a custom implementation of a resource provider and make Naninovel use it with (or instead of) built-in providers.
+你可以添加自定义的资源提供器实现，以替换或补充 Naninovel 内置的提供器。
 
-To add a custom provider, create a C# class with a parameterless constructor and implement `IResourceProvider` interface. Once created, a custom provider type will appear in all the loader configuration menus along with the built-in types.
+创建一个带无参构造函数的 C# 类，并实现 `IResourceProvider` 接口。完成后，该自定义提供器类型将会出现在所有加载器配置菜单中，与内置提供器并列。
 
 ![](https://i.gyazo.com/7176a9d4a4ea2d9414c5495e2e465baf.png)
 
-You can find built-in resource provider implementations at `Naninovel/Runtime/Common/ResourceProvider` package directory; feel free to use them as a reference when implementing your own versions.
+内置资源提供器的实现可在 `Naninovel/Runtime/Common/ResourceProvider` 目录中找到，可作为自定义实现的参考。
 
-Below is an example of a custom provider that does nothing but logs messages when used.
+以下示例展示了一个仅用于记录调用日志的自定义资源提供器：
 
 ```csharp
 using Naninovel;

@@ -175,7 +175,7 @@ Naninovel 会在生成的数据目录（默认 `Assets/NaninovelData`）下创�
 
 ## 项目元数据
 
-Naninovel 的项目元数据是一个 JSON 文件，包含项目中可用的角色、背景、资源、命令等信息。这些信息被编辑工具（如 IDE 扩展与 Web 编辑器）使用，以提供自动补全与诊断功能。
+Naninovel 的项目元数据是一个 JSON 文件，包含项目中可用的角色、背景、资源、指令等信息。这些信息被编辑工具（如 IDE 扩展与 Web 编辑器）使用，以提供自动补全与诊断功能。
 
 元数据文件存储在 Unity 项目根目录的 `.nani/Metadata.json`。当在引擎配置中启用 “Auto Generate Metadata” 时，编辑器启动或 C# 脚本编译后会自动重新生成元数据。也可通过 `Naninovel -> Update Metadata` 菜单或快捷键 `Ctrl + Shift + U` 手动更新。
 
@@ -220,7 +220,7 @@ public class DefaultMetadataProvider : IMetadataProvider
 
 ## IDE 属性
 
-Naninovel 提供若干 [C# 特性（Attributes）](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes)，用于为自定义命令与表达式函数提供 IDE 相关功能。例如，为自定义命令及其参数添加悬停说明文档，可分别在命令类型和字段上使用 `Doc` 特性。
+Naninovel 提供若干 [C# 特性（Attributes）](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes)，用于为自定义指令与表达式函数提供 IDE 相关功能。例如，为自定义指令及其参数添加悬停说明文档，可分别在指令类型和字段上使用 `Doc` 特性。
 
 ```csharp
 [Doc("Summary of the custom command.")]
@@ -273,7 +273,7 @@ public StringParameter ActorId;
 public StringParameter PrinterId;
 ```
 
-若需自动补全演员外观（Appearance），且该演员 ID 来自当前命令的同名或其他参数，请使用 `AppearanceContext` 特性。请注意，此功能要求当前命令中同时声明了 `ActorContext` 特性。
+若需自动补全演员外观（Appearance），且该演员 ID 来自当前指令的同名或其他参数，请使用 `AppearanceContext` 特性。请注意，此功能要求当前指令中同时声明了 `ActorContext` 特性。
 
 ```csharp
 [ActorContext(CharactersConfiguration.DefaultPathPrefix)]
@@ -282,7 +282,7 @@ public StringParameter CharacterId;
 public StringParameter CharacterAppearance;
 ```
 
-上述特性均可选传入 `namedIndex` 参数，用于指定在命名参数中该特性应用于参数值的哪一部分。例如，以下示例中，命名参数的 “名称部分” 自动补全角色 ID，而 “值部分” 自动补全对应角色的外观（类似 [@char] 命令的无名参数）：
+上述特性均可选传入 `namedIndex` 参数，用于指定在命名参数中该特性应用于参数值的哪一部分。例如，以下示例中，命名参数的 “名称部分” 自动补全角色 ID，而 “值部分” 自动补全对应角色的外观（类似 [@char] 指令的无名参数）：
 
 ```csharp
 [ActorContext(CharactersConfiguration.DefaultPathPrefix, 0), AppearanceContext(1)]
@@ -296,7 +296,7 @@ public NamedStringParameter IdAndAppearance;
 public class ModifyBackground : ModifyActor { }
 ```
 
-当你从内置命令派生自定义命令时，也可使用相同方法。如果将特性应用于类而非字段，别忘了提供可选的 `paramId` 参数。
+当你从内置指令派生自定义指令时，也可使用相同方法。如果将特性应用于类而非字段，别忘了提供可选的 `paramId` 参数。
 
 ::: tip
 大多数参数上下文特性同样可用于表达式函数参数，使其在 IDE 扩展中获得自动补全与诊断功能。示例可参考 [函数指南](/zh/guide/script-expressions#parameter-context)。
@@ -304,7 +304,7 @@ public class ModifyBackground : ModifyActor { }
 
 ## 常量表达式
 
-在使用 `ConstantContext` IDE 特性时，除了枚举类型外，还可以指定一个表达式（Expression），由 IDE 在运行时计算，以根据命令参数值或其他变量（如当前检查的脚本）生成常量名称。
+在使用 `ConstantContext` IDE 特性时，除了枚举类型外，还可以指定一个表达式（Expression），由 IDE 在运行时计算，以根据指令参数值或其他变量（如当前检查的脚本）生成常量名称。
 
 表达式语法说明：
 
@@ -315,7 +315,7 @@ public class ModifyBackground : ModifyActor { }
 - 使用空合并运算符（`??`）可在值未指定时提供后备值  
 - 使用连接运算符（`+`）可将多个常量的值拼接  
 
-例如，可查看内置 `[@goto]` 命令中 `Path` 参数所使用的表达式：
+例如，可查看内置 `[@goto]` 指令中 `Path` 参数所使用的表达式：
 
 ```csharp
 [ConstantContext("Labels/{:Path[0]??$Script}", 1)]
@@ -324,7 +324,7 @@ public NamedStringParameter Path;
 
 —— 当参数的名称部分被赋值为 `foo` 时，表达式会计算为 `Labels/foo`；否则，如果当前检查的脚本路径为 `bar`，则会计算为 `Labels/bar`。
 
-另一个示例是应用于 `@char` 命令的人物姿势（character poses）：
+另一个示例是应用于 `@char` 指令的人物姿势（character poses）：
 
 ```csharp
 [ConstantContext("Poses/Characters/{:Id??:IdAndAppearance[0]}+Poses/Characters/*", paramId: nameof(Pose))]

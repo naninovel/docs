@@ -1,65 +1,70 @@
-# State Management
+# 状态管理
 
-All the persistent data generated and used by Naninovel at runtime is divided intro three categories:
+Naninovel 在运行时生成和使用的所有持久化数据分为以下三类：
 
-- Game state
-- Global state
-- User settings
+- 游戏状态
+- 全局状态
+- 用户设置
 
-The data is serialized to JSON format and stored as either binary `.nson` (default) or text `.json` save slot files under a platform-specific [persistent data directory](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html). Under WebGL platform, due to LFS security policy in modern web-browsers, the serialized data is stored over the [Indexed DB](https://en.wikipedia.org/wiki/Indexed_Database_API) instead.
+这些数据会被序列化为 JSON 格式，并以二进制 `.nson`（默认）或文本 `.json` 存档文件的形式存储在特定平台的 [持久化数据目录](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html) 下。  
+在 WebGL 平台上，由于现代浏览器的本地文件系统安全策略（LFS），序列化数据会存储在 [Indexed DB](https://en.wikipedia.org/wiki/Indexed_Database_API) 中。
 
-The serialization behaviour is controlled by serialization handlers independently for game saves, global state and user settings. By default, universal serialization handlers are used. In most cases, they will use asynchronous [System.IO](https://docs.microsoft.com/en-us/dotnet/api/system.io) to read and write the slot files to the local file system. However, on some platforms (eg, consoles) the .NET IO APIs are not available, in which case the universal handlers will fallback to Unity's cross-platform [PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html).
+序列化行为由序列化处理器（serialization handlers）独立控制，分别用于游戏存档、全局状态和用户设置。默认情况下，系统使用通用的序列化处理器。  
+在大多数情况下，这些处理器会使用异步的 [System.IO](https://docs.microsoft.com/en-us/dotnet/api/system.io) API 来读取和写入本地文件系统中的存档文件。  
+但在某些平台（如主机平台）上，.NET 的 IO API 可能不可用，此时通用处理器将回退使用 Unity 的跨平台 [PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html) 机制。
 
-Serialization handlers, path to the save folder, maximum allowed amount of the save slots and other related parameters can be modified via the state configuration menu.
+你可以在状态配置菜单中修改序列化处理器、存档文件夹路径、允许的最大存档数量以及其他相关参数。
 
 ![](https://i.gyazo.com/d1e5cfd136544f2c1b74966e3fd1bb45.png)
 
-## Game State
+## 游戏状态
 
-Game state is the data that varies per game save slot, describing state of the engine services and other objects in relation to the player progress with the game. The examples of the game state data are: currently played naninovel script and index of the played script command within the script, currently visible characters and their positions on scene, currently played background music track name and its volume and so on.
+游戏状态是每个存档槽独立保存的数据，用于描述引擎服务及其他对象在玩家游戏进度中的状态。例如：当前正在播放的 Naninovel 剧本及其脚本指令索引、当前显示的角色及其在场景中的位置、正在播放的背景音乐名称及音量等。
 
-To save or load current game state to specific save slot, use `IStateManager` engine service as follows:
+若要将当前游戏状态保存或加载到指定的存档槽中，可使用 `IStateManager` 引擎服务，如下所示：
 
 ```csharp
-// Get instance of a state manager.
+// 获取状态管理器实例。
 var stateManager = Engine.GetService<IStateManager>();
 
-// Save current game session to `mySaveSlot` slot.
+// 将当前游戏会话保存到名为 `mySaveSlot` 的存档槽中。
 await stateManager.SaveGame("mySaveSlot");
-// Load game session from `mySaveSlot` slot.
+
+// 从名为 `mySaveSlot` 的存档槽加载游戏会话。
 await stateManager.LoadGame("mySaveSlot");
 
-// You can also use quick save-load methods without specifying the slot names.
+// 也可以使用快速存档和读取方法，而无需指定存档槽名称。
 await stateManager.QuickSave();
 await stateManager.QuickLoad();
 ```
-Notice, that the save-load API is [asynchronous](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/). In case you're invoking the API from synchronous methods, use `IStateManager.OnGameSaveFinished` and `IStateManager.OnGameLoadFinished` for subscribing to the completion events.
 
-## Global State
+请注意，存档与加载的 API 是 [异步的](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/)。如果在同步方法中调用这些 API，可使用 `IStateManager.OnGameSaveFinished` 和 `IStateManager.OnGameLoadFinished` 事件来监听操作完成的回调。
 
-Some data, however, should be persistent across the game sessions. For example, "Skip Read Text" feature requires the engine to store data describing which naninovel script commands were executed at least once (meaning the player has already "seen" them). The data like this is stored in a single "global" save slot and doesn't depend on the game save-load operations.
+## 全局状态
 
-The global state is loaded automatically on engine initialization. You can save the global state at any time using `IStateManager` as follows:
+某些数据需要在多个游戏会话之间保持一致。例如，“跳过已读文本”功能要求引擎记录哪些 Naninovel 剧本指令已被执行过（即玩家已“看过”这些内容）。此类数据会被存储在一个全局存档槽中，与游戏的存档与读档操作无关。
+
+全局状态会在引擎初始化时自动加载。你可以随时通过 `IStateManager` 保存全局状态，如下所示：
 
 ```csharp
 await stateManager.SaveGlobalState();
 ```
 
-## User Settings
+## 用户设置
 
-Similar to the global state, user settings data (display resolution, language, sound volume, etc) is stored in a single save slot, but treated a bit differently by default: the generated save file is placed outside of the "Saves" folder and formatted in a readable fashion, so that user can modify the values if they wish.
+与全局状态类似，用户设置数据（显示分辨率、语言、音量等）也存储在单一的存档槽中，但默认情况下会有一些不同的处理方式：生成的存档文件会被放置在 “Saves” 文件夹之外，并以可读格式保存，以便用户在需要时自行修改。
 
-The user settings are loaded automatically on engine initialization. You can save the settings at any time using `IStateManager` as follows:
+用户设置会在引擎初始化时自动加载。你可以在任意时刻通过 `IStateManager` 保存设置，如下所示：
 
 ```csharp
 await stateManager.SaveSettings();
 ```
 
-## Custom State
+## 自定义状态
 
-It's possible to delegate state handling of your custom objects to `IStateManager`, so that they will serialize to the save slots with all the engine's data when player saves the game and deserialize back when the game is loaded. All the built-in state-related features (eg, rollback) will also work out of the box with the custom state.
+你可以将自定义对象的状态处理委托给 `IStateManager`，这样它们就能与引擎的其他数据一起被序列化到存档槽中，并在玩家加载游戏时自动反序列化恢复。所有内置的状态相关功能（如回滚）同样能无缝适配这些自定义状态。
 
-Following example demonstrates delegating state handling of "MyCustomBehaviour" component.
+以下示例展示了如何将 “MyCustomBehaviour” 组件的状态管理交由 `IStateManager` 处理。
 
 ```csharp
 using UnityEngine;
@@ -116,7 +121,7 @@ public class MyCustomBehaviour : MonoBehaviour
 }
 ```
 
-In case your custom object is created after the game state is loaded, use `LastGameState` to access the last loaded state and manually invoke the deserialize method:
+若你的自定义对象是在游戏状态加载后才创建的，可以通过 `LastGameState` 获取最近加载的游戏状态，并手动调用反序列化方法：
 
 ```csharp
 private async void Start ()
@@ -127,10 +132,11 @@ private async void Start ()
 ```
 
 ::: tip EXAMPLE
-A more advanced example of using custom state with a list of custom structs to save-load game state of an inventory UI can be found in the [inventory sample](/guide/samples#inventory). Specifically, de-/serialization of the custom state is implemented in `Scripts/Runtime/Inventory/UI/InventoryUI.cs` custom UI.
+一个更高级的示例展示了如何使用自定义结构体列表保存和加载背包 UI 的游戏状态，可参考 [inventory 示例](/zh/guide/samples#inventory)。  
+具体实现可见 `Scripts/Runtime/Inventory/UI/InventoryUI.cs`，其中包含自定义状态的序列化与反序列化逻辑。
 :::
 
-It's also possible to access global and settings state of the engine to store custom data with them. Unlike game state, which is specific to game sessions and require subscribing to save/load events, global and settings state objects are singletons and can be directly accessed via properties of the state manager.
+此外，你也可以访问引擎的全局状态和设置状态来存储自定义数据。与游戏状态不同，这两者是全局单例（singleton）对象，可以通过状态管理器的属性直接访问，而无需订阅保存或加载事件。
 
 ```csharp
 [System.Serializable]
@@ -158,7 +164,7 @@ MyGlobal MyGlobal
 }
 ```
 
-The state objects are indexed by type, while in some cases you may have multiple object instances of the same type each with their own individual state. Both `GetState` and `SetState` methods allows providing an optional `instanceId` argument to discriminate such objects, eg:
+状态对象是根据类型进行索引的，但在某些情况下，你可能会有多个相同类型的对象实例，每个实例都有自己独立的状态。`GetState` 和 `SetState` 方法都允许提供一个可选的 `instanceId` 参数，以区分这些对象，例如：
 
 ```csharp
 [System.Serializable]
@@ -171,15 +177,15 @@ var monster1 = stateMap.GetState<MonsterState>("1");
 var monster2 = stateMap.GetState<MonsterState>("2");
 ```
 
-## Custom Serialization Handlers
+## 自定义序列化处理器
 
-By default, when universal serialization handlers are selected, the engine state (game saves, global state, settings) is serialized either via asynchronous [System.IO](https://docs.microsoft.com/en-us/dotnet/api/system.io) or with Unity's cross-platform [PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html) as a fallback for some platforms. To customize the serialization scenario, use custom handlers.
+默认情况下，当选择通用序列化处理器时，引擎状态（游戏存档、全局状态、设置）会通过异步的 [System.IO](https://docs.microsoft.com/en-us/dotnet/api/system.io) 进行序列化，或者在某些平台上使用 Unity 的跨平台 [PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html) 作为后备方案。若要自定义序列化逻辑，可使用自定义处理器。
 
-To add a custom handler, implement `ISaveSlotManager<GameStateMap>`, `ISaveSlotManager<GlobalStateMap>`, `ISaveSlotManager<SettingsStateMap>` interfaces for the game save slots, global state and settings respectively (each should have its own implementing class).
+要添加自定义处理器，请分别为游戏存档、全局状态和设置实现以下接口：`ISaveSlotManager<GameStateMap>`、`ISaveSlotManager<GlobalStateMap>`、`ISaveSlotManager<SettingsStateMap>`。每个接口都应由独立的类实现。
 
-Implementation is expected to have a public constructor with `StateConfiguration` and `string` arguments, where the first one is an instance of state configuration object and second is the path to saves folder; you're free to ignore the arguments in your custom implementation.
+实现类需具备一个公共构造函数，包含 `StateConfiguration` 和 `string` 两个参数，前者为状态配置对象实例，后者为存档文件夹路径；你可以在自定义实现中选择忽略这些参数。
 
-Below is an example of a custom settings serialization handler, which is doing nothing but logs when any of its methods are invoked.
+下面是一个自定义设置序列化处理器的示例，它不会实际执行任何操作，仅在方法被调用时输出日志。
 
 ```csharp
 using Naninovel;
@@ -239,9 +245,9 @@ public class CustomSettingsSlotManager : ISaveSlotManager<SettingsStateMap>
 ```
 
 ::: info NOTE
-You can pick any name for your custom serialization handler, `CustomSettingsSlotManager` is just an example.
+你可以为自定义序列化处理器选择任意名称，`CustomSettingsSlotManager` 只是示例。
 :::
 
-When a custom handler is implemented, it'll appear in the state configuration menu, where you can set it instead of the built-in one.
+当自定义处理器实现完成后，它会出现在状态配置菜单中，你可以在其中选择使用它来替代内置处理器。
 
 ![](https://i.gyazo.com/213bc2bb8c7cc0e62ae98a579579f313.png)

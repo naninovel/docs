@@ -1,6 +1,6 @@
 # 脚本表达式
 
-在编写 naninovel 脚本时，你可以使用花括号 `{}` 将表达式插入到命令参数值或通用文本行中：
+在编写 naninovel 脚本时，你可以使用花括号 `{}` 将表达式插入到指令参数值或通用文本行中：
 
 ```nani
 One plus two equals {1 + 2}.
@@ -15,7 +15,7 @@ One plus two equals {1 + 2}.
 ```
 — 将把 ID 为 “Kohaku” 的角色缩放至角度 33.5 的余弦值的三次方再除以 0.5 的自然对数所得的余数。
 
-表达式会在命令执行的那一刻被求值，因此可以在表达式中使用[自定义变量](/zh/guide/custom-variables)：
+表达式会在指令执行的那一刻被求值，因此可以在表达式中使用[自定义变量](/zh/guide/custom-variables)：
 
 ```nani
 @input color summary:"What's your favorite color?"
@@ -36,7 +36,7 @@ And this is the value of "score" variable: { score }.
 Saying { \"Stop the car\" } was a mistake.
 ```
 
-在 [@set] 和 [@if] 命令中使用的脚本表达式（以及其他命令中的 `set` 和 `if` 参数）不需要使用花括号：
+在 [@set] 和 [@if] 指令中使用的脚本表达式（以及其他指令中的 `set` 和 `if` 参数）不需要使用花括号：
 
 ```nani
 @set randomScore=random(-100,100)
@@ -70,7 +70,7 @@ random(min, max) | 返回介于最小值（含）与最大值（含）之间的�
 random(args) | 从指定字符串中随机返回一个。 | `random("foo", "bar", "baz")`  
 calculateProgress() | 返回剧情完成进度比例，范围为 0.0 到 1.0，1.0 表示所有脚本行至少被执行过一次。 | `calculateProgress()`  
 isUnlocked(id) | 检查指定 ID 的可解锁项目当前是否已解锁。 | `isUnlocked("Tips/MyTip")`  
-hasPlayed() | 检查当前执行的命令是否曾被执行过。 | `hasPlayed()`  
+hasPlayed() | 检查当前执行的指令是否曾被执行过。 | `hasPlayed()`  
 hasPlayed(scriptPath) | 检查指定路径的脚本是否曾被执行过。 | `hasPlayed("MyScript")`  
 getName(characterId) | 返回指定 ID 角色的显示名称。 | `getName("Kohaku")`  
 pow(num, pow) | 返回 num 的 pow 次方。 | `pow(2, 3)`  
@@ -133,7 +133,7 @@ public static class CustomFunctions
 
 ## 参数上下文
 
-与命令参数类似，函数参数也可以应用上下文属性，以便在 [IDE 扩展](/zh/guide/ide-extension) 中获得自动补全和诊断支持。
+与指令参数类似，函数参数也可以应用上下文属性，以便在 [IDE 扩展](/zh/guide/ide-extension) 中获得自动补全和诊断支持。
 
 例如，可以将函数参数与枚举类型关联：
 

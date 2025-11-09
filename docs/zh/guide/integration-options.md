@@ -1,24 +1,27 @@
-# Integration Options
+# 集成选项
 
-While Naninovel is focused around traditional visual novel games and works best as a template for one, it's possible to integrate the engine with existing projects. If you're making a 3D adventure game, RPG or game of any other genre — you can still use Naninovel as a drop-in dialogue system.
+虽然 Naninovel 主要面向传统视觉小说游戏并在这类项目中表现最佳，但它同样可以与现有项目进行集成。如果你正在制作 3D 冒险游戏、RPG 或其他类型的游戏，也可以将 Naninovel 作为即插即用的对话系统使用。
 
 ![](https://i.gyazo.com/b1b6042db4a91b3a8cee74236b33c17c.mp4)
 
-There are multiple ways you can integrate Naninovel with a custom project and specific implementation will depend on the type of the project and what exactly you want to achieve with Naninovel. In the following documentation we'll list various configuration options and API that could be useful for "pairing" Naninovel with a standalone game. Before you continue, take a look at the [engine architecture](/guide/engine-architecture) to better understand how it behaves on a conceptual level.
+你可以通过多种方式将 Naninovel 集成到自定义项目中，具体实现方式取决于项目类型以及你希望 Naninovel 实现的功能。以下文档列出了多种配置选项与 API，可帮助你将 Naninovel 与独立游戏进行“配合”或“对接”。在继续之前，建议先阅读 [引擎架构](/zh/guide/engine-architecture) 以更好地理解其工作原理。
 
 ::: tip EXAMPLE
-Check out the [integration sample](/guide/samples#integration) where Naninovel is used both as drop-in dialogue system for a 3D adventure game and as a standalone novel mode.
+请查看 [integration 示例](/zh/guide/samples#integration)，该示例展示了 Naninovel 既作为 3D 冒险游戏中的对话系统使用，也作为独立小说模式运行的案例。
 :::
 
-## Manual Initialization
+## 手动初始化
 
-When `Initialize On Application Load` option in the engine configuration menu is enabled, the engine services will automatically initialize on application start.
+当在引擎配置菜单中启用 `Initialize On Application Load` 选项时，引擎服务会在应用程序启动时自动初始化。
 
 ![](https://i.gyazo.com/6349692c2e2036e908e41c3d89509102.png)
 
-Unless you want to begin your game in novel mode, you would rather manually initialize the engine when it's actually needed by either invoking a static `RuntimeInitializer.Initialize()` method from C# or adding a `Runtime Initializer` component to a game object on scene; the latter will make the engine initialize when the scene is loaded in Unity.
+除非你希望游戏从小说模式开始，否则应当在真正需要时再手动初始化引擎。可以通过两种方式实现：
 
-Below is an example of manual initialization from a [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html) script:
+- 在 C# 脚本中调用静态方法 `RuntimeInitializer.Initialize()`；
+- 或在场景中的某个 GameObject 上添加 `Runtime Initializer` 组件，使引擎在场景加载时自动初始化。
+
+以下示例展示了如何在一个 [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html) 脚本中手动初始化引擎：
 
 ```csharp
 using Naninovel;
@@ -33,60 +36,60 @@ public class MyScript : MonoBehaviour
 }
 ```
 
-Disabling `Scene Independent` option will make all the Naninovel-related objects part of the Unity scene where the engine was initialized; the engine will be destroyed when the scene is unloaded.
+禁用 `Scene Independent` 选项将使所有与 Naninovel 相关的对象成为引擎初始化所在 Unity 场景的一部分；当该场景被卸载时，引擎也会随之销毁。
 
-To reset the engine services (and dispose most of the occupied resources), use `ResetState()` method of `IStateManager` service; this is useful, when you're going to temporary switch to some other gameplay mode, but be able to return to novel mode without re-initializing the engine.
+若要重置引擎服务（并释放大部分已占用的资源），可使用 `IStateManager` 服务的 `ResetState()` 方法；当你需要临时切换到其他游戏模式，但又希望能够在不重新初始化引擎的情况下返回小说模式时，这个方法非常有用。
 
-To destroy all the engine services and completely remove Naninovel from memory, use `Engine.Destroy()` static method.
+若要销毁所有引擎服务并将 Naninovel 完全从内存中移除，请使用静态方法 `Engine.Destroy()`。
 
-## Accessing Engine API
+## 访问引擎 API
 
-The engine initialization procedure is asynchronous, so even when automatic initialization is enabled, engine APIs may not be available right after Unity loads a scene (eg, in `Awake`, `Start` and `OnEnable` [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html) methods).
+引擎初始化过程是异步的，因此即使启用了自动初始化功能，Unity 在加载场景后（例如在 `Awake`、`Start` 和 `OnEnable` [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html) 方法中）引擎 API 也可能暂时不可用。
 
-To check whether the engine is currently available, use `Engine.Initialized` property; `Engine.OnInitializationFinished` event allows executing actions after the initialization procedure is finished, eg:
+若要检查引擎当前是否可用，请使用 `Engine.Initialized` 属性；`Engine.OnInitializationFinished` 事件可用于在初始化完成后执行操作，例如：
 
 ```csharp
 public class MyScript : MonoBehaviour
 {
     private void Awake ()
     {
-        // Engine may not be initialized here, so check first.
+        // 此时引擎可能尚未初始化，因此需先进行检查。
         if (Engine.Initialized) DoMyCustomWork();
         else Engine.OnInitializationFinished += DoMyCustomWork;
     }
 
     private void DoMyCustomWork ()
     {
-        // Engine is initialized here, it's safe to use the APIs.
+        // 此时引擎已初始化，可以安全地使用其 API。
         var scriptPlayer = Engine.GetService<IScriptPlayer>();
         ...
     }
 }
 ```
 
-## Playing Naninovel Scripts
+## 播放 Naninovel 脚本
 
-To preload and play a naninovel script with a given path, use `LoadAndPlay(ScriptPath)` method of `IScriptPlayer` service. To get an engine service, use `Engine.GetService<TService>()` static method, where `TService` is the type (interface) of the service to retrieve. For example, the following will get a script player service, then preload and play a script with name "Script001":
+若要预加载并播放指定路径的 Naninovel 剧本，可使用 `IScriptPlayer` 服务的 `LoadAndPlay(ScriptPath)` 方法。要获取引擎服务，请使用静态方法 `Engine.GetService<TService>()`，其中 `TService` 是要获取的服务接口类型。例如，以下示例展示了如何获取脚本播放器服务并播放名为 “Script001” 的剧本：
 
 ```csharp
 var player = Engine.GetService<IScriptPlayer>();
 await player.LoadAndPlay("Script001");
 ```
 
-When exiting the novel mode and returning to the main game mode, you probably would like to unload all the resources currently used by Naninovel and stop all the engine services. For this, use `ResetState()` method of a `IStateManager` service:
+当你退出小说模式并返回主游戏模式时，通常希望卸载 Naninovel 当前使用的所有资源并停止所有引擎服务。可通过调用 `IStateManager` 服务的 `ResetState()` 方法实现：
 
 ```csharp
 var stateManager = Engine.GetService<IStateManager>();
 await stateManager.ResetState();
 ```
 
-### Script Asset Reference
+### 剧本资源引用
 
-In case you'd like to reference scenario script assets in your custom systems (for example, to play dialogues or cutscenes), be aware that storing script path directly is fragile, as it depends on the script file location and name.
+如果你希望在自定义系统中引用 Naninovel 剧本资源（例如用于播放对白或过场动画），请注意不要直接存储剧本路径，因为路径依赖于文件位置和名称，容易失效。
 
-Instead, use the asset reference (GUID). The reference won't change when the associated file is moved or renamed. To resolve script path from GUID use `ScriptAssets.GetPath` method. We also have a built-in `ScriptAssetRef` property drawer, which allows assigning script assets directly to the serialized fields for convenience.
+推荐使用资源引用（GUID）。GUID 在文件移动或重命名后仍保持不变。可通过 `ScriptAssets.GetPath` 方法根据 GUID 解析剧本路径。Naninovel 还提供了内置的 `ScriptAssetRef` 属性绘制器，可直接在编辑器中将剧本资源分配给序列化字段，使用更方便。
 
-Below is a component from our [integration sample](/guide/samples#integration), which, when applied to a game object on scene, will start playing specified script when player collides with the trigger:
+以下示例来自 [integration 示例](/zh/guide/samples#integration)，该组件挂载于场景中的游戏对象上，当玩家与触发器碰撞时，将自动播放指定剧本：
 
 ```cs
 public class DialogueTrigger : MonoBehaviour
@@ -104,35 +107,35 @@ public class DialogueTrigger : MonoBehaviour
 }
 ```
 
-In the editor, you can drag-drop script assets to the `Script Ref` field, and the reference will remain intact, even when the script file is moved or renamed.
+在编辑器中，你可以直接将剧本资源拖放到 `Script Ref` 字段中，即使剧本文件被移动或重命名，引用仍将保持有效。
 
 ![](https://i.gyazo.com/cd634c628a0a116397f6ecef837a10b0.png)
 
-## Disable Title Menu
+## 禁用标题菜单
 
-A built-in title menu implementation will be automatically shown when the engine is initialized, while you'll most likely have your own title menu. You can either modify, replace or completely remove the built-in title menu using [UI customization feature](/guide/user-interface#ui-customization). The menu goes under `Title UI` in the UI resources list.
+引擎初始化后，会自动显示内置的标题菜单，而你的项目中可能已拥有自定义标题界面。你可以通过 [UI 自定义功能](/zh/guide/user-interface#ui-customization) 修改、替换或完全移除内置标题菜单。该菜单在 UI 资源列表中对应 `Title UI` 项。
 
-## Engine Objects Layer
+## 引擎对象层
 
-You can make the engine assign a specific [layer](https://docs.unity3d.com/Manual/Layers.html) for all the objects (except UI-related) it creates via configuration menu.
+你可以通过配置菜单指定引擎在创建所有对象（UI 相关除外）时使用的特定 [Layer](https://docs.unity3d.com/Manual/Layers.html)。
 
 ![](https://i.gyazo.com/8642fe37ddc45b8514b9f01d70277fbd.png)
 
-This will also make the engine's camera to use [culling mask](https://docs.unity3d.com/ScriptReference/Camera-cullingMask.html) and render only the objects with the specified layer.
+此设置还会让引擎的摄像机应用相应的 [Culling Mask](https://docs.unity3d.com/ScriptReference/Camera-cullingMask.html)，仅渲染指定层上的对象。
 
-To change layer of the UI objects managed by the engine, use `Objects Layer` option in the UI configuration menu.
+若要更改引擎管理的 UI 对象的层，请在 UI 配置菜单中使用 `Objects Layer` 选项。
 
 ![](https://i.gyazo.com/56d863bef96bf72c1fed9ae646db4746.png)
 
-## Render to Texture
+## 渲染到纹理
 
-You can make the engine's camera render to a custom [render texture](https://docs.unity3d.com/ScriptReference/RenderTexture.html) instead of the screen (and change other camera-related settings) by assigning a custom camera prefab in camera configuration menu.
+你可以让引擎的摄像机渲染到自定义的 [Render Texture](https://docs.unity3d.com/ScriptReference/RenderTexture.html)，而不是直接渲染到屏幕上。只需在摄像机配置菜单中指定自定义摄像机预制体，即可修改包括渲染目标在内的摄像机相关设置。
 
 ![](https://i.gyazo.com/1b7116fa1bd170d3753b4cdbd27afcf3.png)
 
-## Switching Modes
+## 模式切换
 
-While it heavily depends on the project, following is an abstract example (based on the integration project mentioned previously) on how you can implement switching between "adventure" and "novel" modes via custom commands.
+根据项目需求不同，以下为一个抽象示例（基于前面提到的集成项目），演示如何通过自定义指令在“冒险模式”和“小说模式”之间进行切换。
 
 ::: code-group
 
@@ -145,24 +148,24 @@ public class SwitchToNovelMode : Command
 
     public override async UniTask Execute (ExecutionContext ctx)
     {
-        // 1. Disable character control.
+        // 1. 禁用角色控制。
         var controller = Object.FindAnyObjectByType<CharacterController3D>();
         controller.IsInputBlocked = true;
 
-        // 2. Switch cameras.
+        // 2. 切换摄像机。
         var advCamera = GameObject.Find("AdvCamera").GetComponent<Camera>();
         advCamera.enabled = false;
         var naniCamera = Engine.GetService<ICameraManager>().Camera;
         naniCamera.enabled = true;
 
-        // 3. Load and play specified script (if assigned).
+        // 3. 加载并播放指定剧本（如果已分配）。
         if (Assigned(ScriptPath))
         {
             var scriptPlayer = Engine.GetService<IScriptPlayer>();
             await scriptPlayer.MainTrack.LoadAndPlayAtLabel(ScriptPath, Label);
         }
 
-        // 4. Unmute Naninovel input.
+        // 4. 恢复 Naninovel 输入。
         var inputManager = Engine.GetService<IInputManager>();
         inputManager.Muted = false;
     }
@@ -175,25 +178,25 @@ public class SwitchToAdventureMode : Command
 {
     public override async UniTask Execute (ExecutionContext ctx)
     {
-        // 1. Mute Naninovel input.
+        // 1. 屏蔽 Naninovel 输入。
         var inputManager = Engine.GetService<IInputManager>();
         inputManager.Muted = true;
 
-        // 2. Stop script player.
+        // 2. 停止脚本播放器。
         var scriptPlayer = Engine.GetService<IScriptPlayer>();
         scriptPlayer.MainTrack.Stop();
 
-        // 3. Reset state.
+        // 3. 重置状态。
         var stateManager = Engine.GetService<IStateManager>();
         await stateManager.ResetState();
 
-        // 4. Switch cameras.
+        // 4. 切换摄像机。
         var advCamera = GameObject.Find("AdvCamera").GetComponent<Camera>();
         advCamera.enabled = true;
         var naniCamera = Engine.GetService<ICameraManager>().Camera;
         naniCamera.enabled = false;
 
-        // 5. Enable character control.
+        // 5. 启用角色控制。
         var controller = Object.FindAnyObjectByType<CharacterController3D>();
         controller.IsInputBlocked = false;
     }
@@ -202,14 +205,14 @@ public class SwitchToAdventureMode : Command
 
 :::
 
-The commands can then be used in naninovel scripts:
+这些指令随后可在 Naninovel 剧本中使用：
 
 ```nani
-; Switch to adventure mode.
+; 切换到冒险模式。
 @adventure
 ```
 
-— or directly in C# (eg, in `OnTrigger` Unity events):
+— 或直接在 C# 中调用（例如在 Unity 的 `OnTrigger` 事件中）：
 
 ```csharp
 private void OnTriggerEnter (Collider other)
@@ -219,12 +222,12 @@ private void OnTriggerEnter (Collider other)
 }
 ```
 
-## Other Options
+## 其他选项
 
-There are multiple other features (state outsourcing, services overriding, custom serialization, resource and configuration providers, etc), which could be situationally helpful when integrating the engine with another systems; check out rest of the guide for more information. Consider investigating the available [configuration options](/guide/configuration) as well; some feature may not be described in the guide, but still be handy for integration purposes.
+Naninovel 还包含许多其他可用于系统集成的特性（如状态外部化、服务重写、自定义序列化、资源与配置提供器等），可根据需要选择使用。建议查阅本指南的其他章节以了解详细信息。同时，你也可以查看 [配置选项](/zh/guide/configuration)，其中某些功能虽然未在文档中详细说明，但在集成时可能非常有用。
 
-If you feel some engine API or system is lacking in extendability and requiring source code modification in order to integrate, please [contact the support](/support/#naninovel-support) — we'll consider improving it.
+如果你发现某些引擎 API 或系统在可扩展性方面不足，必须修改源代码才能集成，请 [联系支持](/support/#naninovel-support)，我们会考虑进行改进。
 
 ::: tip EXAMPLE
-Check [integration sample](/guide/samples#integration) where Naninovel is used as both drop-in dialogue for a 3D adventure game and a switchable standalone novel mode.
+请参考 [integration 示例](/zh/guide/samples#integration)，该示例展示了 Naninovel 既作为 3D 冒险游戏中的对话系统使用，也可切换为独立小说模式。
 :::

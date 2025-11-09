@@ -33,7 +33,7 @@ IResourceProviderManager | 管理 `IResourceProvider` 对象。
 IStateManager | 处理与 `IEngineService` 相关的持久化数据序列化与反序列化；提供用于[保存与加载](/zh/guide/save-load-system)游戏状态的 API。  
 IUIManager | 管理 `IManagedUI` 对象，并负责 [UI 自定义](/zh/guide/user-interface#ui-customization) 功能。  
 ICustomVariableManager | 提供访问并允许修改[自定义变量](/zh/guide/custom-variables)的接口。  
-ISpawnManager | 管理通过 [@spawn] 命令生成的对象。  
+ISpawnManager | 管理通过 [@spawn] 指令生成的对象。  
 IUnlockableManager | 管理[可解锁物品](/zh/guide/unlockable-items)（如 CG 与影片画廊项目、词条提示等）。
 
 你可以在 `Naninovel/Runtime` 目录中找到这些服务的内置实现。

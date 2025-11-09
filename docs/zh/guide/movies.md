@@ -18,7 +18,7 @@
 
 影片播放行为可通过 `Naninovel -> Configuration -> Movies` 编辑器菜单进行配置；可用选项请参阅 [配置指南](/zh/guide/configuration#movies)。
 
-使用 [@movie] 命令并跟上视频剪辑名称，即可在 Naninovel 脚本中播放影片：
+使用 [@movie] 指令并跟上视频剪辑名称，即可在 Naninovel 脚本中播放影片：
 
 ```nani
 ; 假设一个名为 “Opening” 的视频剪辑已添加到影片资源中，播放它。
