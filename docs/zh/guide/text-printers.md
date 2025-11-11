@@ -176,7 +176,7 @@ Nanikun: Integer nec maximus elit, eget posuere risus.
 示例预制体存储于 `Assets/Prefabs/CustomPrinter.prefab`。
 :::
 
-你也可以通过手动实现 `ITextPrinterActor` 接口从零开始创建输出窗。更多信息请参阅 [自定义演员实现指南](/zh/guide/custom-actor-implementations)。
+你也可以通过手动实现 `ITextPrinterActor` 接口从零开始创建输出窗。更多信息请参阅 [自定义演出元素实现指南](/zh/guide/custom-actor-implementations)。
 
 ## 文本显现效果
 

@@ -1,58 +1,58 @@
-# Custom Actor Implementations
+# 自定义演出元素实现
 
-Actor is a scene entity defined by a name, appearance, visibility and transform (position, rotation and scale). It can asynchronously change appearance, visibility and transform over time. Examples of actors are characters, backgrounds, text printers and choice handlers.
+演出元素（Actor）是场景中的一个实体，由名称、外观、可见性以及变换（位置、旋转和缩放）定义。它可以异步地随时间改变外观、可见性和变换。演出元素的示例包括角色、背景、文本打印机和选项处理器。
 
-Actors are represented by `IActor` interface and its derivatives:
+演出元素由 `IActor` 接口及其派生接口表示：
 
 * `ICharacterActor`
 * `IBackgroundActor`
 * `ITextPrinterActor`
 * `IChoiceHandlerActor`
 
-Each actor interface can have multiple implementations; e.g. character actors currently have seven built-in implementations: sprite, diced sprite, generic, layered, narrator, Spine and Live2D.
+每个演出元素接口都可以有多个实现；例如角色演出元素目前有七种内置实现：精灵、切片精灵、通用、分层、旁白、Spine 和 Live2D。
 
-Actor implementation can be selected in the configuration managers accessible via `Naninovel -> Configuration` context menu. You can both change default implementation used for all the actors or set specific implementation per actor. To change default implementation, use `Default Metadata` property and to set specific ones, use an `Implementation` drop-down list in actor's configuration.
+可以在通过 `Naninovel -> Configuration` 上下文菜单访问的配置管理器中选择演出元素的实现。你既可以更改所有演出元素使用的默认实现，也可以为特定演出元素设置专属实现。要更改默认实现，请使用 `Default Metadata` 属性；要为特定演出元素设置实现，请使用演出元素配置中的 `Implementation` 下拉列表。
 
 ![](https://i.gyazo.com/74625fa24b58362de15bb8e07753824d.png)
 ![](https://i.gyazo.com/eeb42043eb9a841de003f8db848f1427.png)
 
-Implementation drop-down list contains all the types that implements specific actor interface. You can add your own custom implementations, and they'll also appear in the list. See `Naninovel/Runtime/Actor` scripts for a reference when creating your own actor implementation. Consider using `MonoBehaviourActor` built-in abstract actor implementation to fulfill most of the base interface requirements in case the actor is supposed to be spawned on scene.
+实现下拉列表包含所有实现了特定演出元素接口的类型。你可以添加自己的自定义实现，它们也会出现在列表中。创建自定义演出元素实现时，可参考 `Naninovel/Runtime/Actor` 脚本。若演出元素需要在场景中生成，建议使用内置的抽象类 `MonoBehaviourActor` 来实现大部分基础接口需求。
 
-When creating custom actor implementations, make sure they have a compatible public constructor:
+在创建自定义演出元素实现时，请确保其具有兼容的公共构造函数：
 
 ```csharp
 public ActorImplementationType (string id, ActorMetadata metadata) { }
 ```
 
-— where `id` is the ID of the actor and `metadata` — either actor's (when actor record exists in the resources) or a default metadata. When implementing a specific actor interface, it's possible to request corresponding specific metadata (eg, "CharacterMetadata" for "ICharacterActor" implementation).
+— 其中 `id` 是演出元素的 ID，`metadata` 是演出元素的元数据（当演出元素记录存在于资源中时）或默认元数据。在实现特定演出元素接口时，可以请求对应的特定元数据（例如对 “ICharacterActor” 实现请求 “CharacterMetadata”）。
 
-::: tip EXAMPLE
-All the built-in actor implementations are authored on top of the same actor APIs, so you can use them as a reference when adding your own. Find the sources at `Runtime/Actor` directory of the Naninovel package.
+::: tip 示例
+所有内置的演出元素实现都是基于相同的演出元素 API 构建的，因此在编写自定义实现时可以将它们作为参考。可在 Naninovel 包的 `Runtime/Actor` 目录中找到源码。
 :::
 
-## Actor Resources
+## 演出元素资源
 
-Apply `ActorResources` attribute to the implementation type to specify which assets can be used as resources for you custom actor and whether it's allowed to assign multiple resources in the editor menus. When multiple resources are not allowed (default), you can load the single available resource by specifying just the actor ID, eg:
+对实现类型应用 `ActorResources` 特性，以指定哪些资源可作为自定义演出元素的资源使用，以及是否允许在编辑器菜单中分配多个资源。当不允许多个资源（默认）时，可以通过指定演出元素 ID 来加载单个可用资源，例如：
 
 ```csharp
 var resource = await resourceLoader.Load(actorId);
 ```
 
-When multiple resources are allowed, specify full path; eg, given you've assigned a resource with "CubeBackground" name:
+当允许多个资源时，请指定完整路径；例如，若你分配了名为 “CubeBackground” 的资源：
 
 ![](https://i.gyazo.com/64ff6d6dede1cc8c2c3be83cfe6a6d74.png)
 
-— to load the resource, use:
+— 要加载该资源，请使用：
 
 ```csharp
 var resource = await resourceLoader.Load($"{actorId}/CubeBackground");
 ```
 
-## Custom Metadata
+## 自定义元数据
 
-It's possible to add custom additional data to the actors metadata (of both built-in and custom implementations).
+可以为演出元素的元数据（无论是内置还是自定义实现）添加额外的自定义数据。
 
-To inject custom data, create a new C# class and inherit it from `CustomMetadata<TActor>` type, where `TActor` is the type of the actor implementation the data should be associated with. Below is an example of adding custom data to the characters of "CustomCharacterImplementation" implementation:
+要注入自定义数据，请创建一个新的 C# 类并继承自 `CustomMetadata<TActor>` 类型，其中 `TActor` 是应与该数据关联的演出元素实现类型。以下示例展示了如何为 “CustomCharacterImplementation” 实现的角色添加自定义数据：
 
 ```csharp
 using Naninovel;
@@ -68,11 +68,11 @@ public class MyCharacterData : CustomMetadata<CustomCharacterImplementation>
 }
 ```
 
-Serializable fields of the created custom data class will be automatically exposed in the Naninovel editor menus, when actor with the associated implementation is selected.
+创建的自定义数据类中的可序列化字段将在 Naninovel 编辑器菜单中自动显示，当选中与之关联的演出元素实现时即可编辑。
 
 ![](https://i.gyazo.com/72f46feb74b6de568b299329500bd7d5.png)
 
-To access the custom data at runtime, use `GetCustomData<TData>()` method of `ActorMetadata` instance, where `TData` is the type of the custom data class, eg:
+在运行时访问自定义数据时，使用 `ActorMetadata` 实例的 `GetCustomData<TData>()` 方法，其中 `TData` 是自定义数据类的类型，例如：
 
 ```csharp
 var charsConfig = Engine.GetConfiguration<CharactersConfiguration>();
@@ -81,9 +81,9 @@ var myCharData = myCharMeta.GetCustomData<MyCharacterData>();
 Debug.Log(myCharData.MyCustomInt);
 ```
 
-### Custom Metadata Editor
+### 自定义元数据编辑器
 
-It's possible to customize the custom metadata editor via [property drawers](https://docs.unity3d.com/Manual/editor-PropertyDrawers.html). Below is an example on adding a property drawer, which will insert an extra label above the edited field.
+可以通过 [Property Drawer（属性绘制器）](https://docs.unity3d.com/Manual/editor-PropertyDrawers.html) 自定义元数据编辑器。以下示例展示了如何添加一个属性绘制器，它会在被编辑字段上方插入一个额外的标签。
 
 ```csharp
 // Create an attribute to apply to the serialized fields;
@@ -130,35 +130,34 @@ public class MyCharacterData : CustomMetadata<CustomCharacterImplementation>
 }
 ```
 
-Given the above implementation, our custom character data will now draw as following:
+根据上述实现，我们的自定义角色数据将在编辑器中显示如下：
 
 ![](https://i.gyazo.com/294a9e2812d33ea3c863f9f53906b327.png)
 
 ::: tip
-It's also possible to override built-in configuration editors as a whole; see [custom configuration](/guide/custom-configuration#overriding-built-in-editors) guide for more information and examples.
+也可以整体覆盖内置的配置编辑器；更多信息和示例请参阅 [自定义配置](/guide/custom-configuration#overriding-built-in-editors) 指南。
 :::
 
-## Custom State
+## 自定义状态
 
-To override or extend state type for your custom actor, you'll have to also [override the actor's manager](/guide/engine-services#overriding-built-in-services), as the state is serialized and applied to the managed actors there.
+要为自定义演出元素覆盖或扩展状态类型，你还需要 [覆盖演出元素管理器](/guide/engine-services#overriding-built-in-services)，因为状态的序列化和应用都是在管理器中完成的。
 
-::: info NOTE
-This applies for custom actor implementations of one of the built-in `IActor` interface derivatives (characters, backgrounds, text printers and choice handlers); if you've inherited your custom actor directly from `IActor`, there's no need to override the built-in managers to use a custom state — just create your own.
+::: info 注意
+此规则适用于基于内置 `IActor` 接口派生类（如角色、背景、文本打印机和选项处理器）的自定义演出元素实现；如果你的自定义演出元素是直接继承自 `IActor`，则无需覆盖内置管理器即可使用自定义状态 —— 只需自行创建即可。
 
-In case you're looking to add a custom state for other systems (eg, UIs, game objects or components for various game mechanics outside of Naninovel), see [state management guide](/guide/state-management#custom-state).
+若你希望为其他系统（如 UI、游戏对象或 Naninovel 之外的各种游戏机制组件）添加自定义状态，请参阅 [状态管理指南](/guide/state-management#custom-state)。
 :::
 
-Below is an example on extending choice handler state by adding a `LastChoiceTime` field, which stores time of the last added choice. The time is printed to the console when the custom choice handler is shown.
+以下示例展示了如何通过添加一个 `LastChoiceTime` 字段扩展选项处理器状态，该字段用于存储上一次添加选项的时间。当显示自定义选项处理器时，该时间会打印到控制台。
 
 ```csharp
-// Our extended state, that serializes the last choice time.
+// 我们扩展的状态，用于序列化上次选择的时间。
 public class MyChoiceHandlerState : ChoiceHandlerState
 {
-    // This field is serializable and persist through game save-loads.
+    // 该字段是可序列化的，并会在游戏存档加载中持久化。
     public string LastChoiceTime;
 
-    // This method is invoked when saving the game; get the required data
-    // from the actor and store it with serializable fields.
+    // 此方法在保存游戏时调用；从演出元素中获取所需数据并存入可序列化字段。
     public override void OverwriteFromActor (IChoiceHandlerActor actor)
     {
         base.OverwriteFromActor(actor);
@@ -166,8 +165,7 @@ public class MyChoiceHandlerState : ChoiceHandlerState
             LastChoiceTime = myCustomChoiceHandler.LastChoiceTime;
     }
 
-    // This method is invoked when loading the game;
-    // get the serialized data back and apply it to the actor.
+    // 此方法在加载游戏时调用；取回已序列化的数据并将其应用到演出元素上。
     public override void ApplyToActor (IChoiceHandlerActor actor)
     {
         base.ApplyToActor(actor);
@@ -176,7 +174,7 @@ public class MyChoiceHandlerState : ChoiceHandlerState
     }
 }
 
-// Our custom choice handler implementation, that uses the last choice time.
+// 我们自定义的选项处理器实现，使用上次选择时间。
 public class MyCustomChoiceHandler : UIChoiceHandler
 {
     public string LastChoiceTime { get; set; }
@@ -198,9 +196,9 @@ public class MyCustomChoiceHandler : UIChoiceHandler
     }
 }
 
-// Overriding built-in choice handler manager to make it use our extended state.
-// The important step is to specify `MyChoiceHandlerState` in the generic types;
-// other modifications are just to fulfill the interface requirements.
+// 重写内置的选项处理器管理器，使其使用我们扩展的状态。
+// 关键步骤是指定泛型类型中的 `MyChoiceHandlerState`；
+// 其他修改仅用于满足接口要求。
 [InitializeAtRuntime(@override: typeof(ChoiceHandlerManager))]
 public class MyChoiceHandlerManager : ActorManager<IChoiceHandlerActor,
     MyChoiceHandlerState, ChoiceHandlerMetadata,
@@ -224,4 +222,4 @@ public class MyChoiceHandlerManager : ActorManager<IChoiceHandlerActor,
 }
 ```
 
-Our custom choice handler will now keep the last added choice time and log it in the console, even if the last choice was added in a previous game session loaded from a save slot. You can store any amount of custom data in addition to the built-in actor state this way. For the supported serializable data types see [Unity's serialization guide](https://docs.unity3d.com/Manual/script-Serialization.html).
+我们的自定义选项处理器现在将保留上次添加选项的时间，并在控制台中输出，即使该选项是在加载的上一个存档中添加的也会如此。通过这种方式，你可以在内置演出元素状态之外存储任意数量的自定义数据。有关支持的可序列化数据类型，请参阅 [Unity 序列化指南](https://docs.unity3d.com/Manual/script-Serialization.html)。

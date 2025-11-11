@@ -259,21 +259,21 @@ public NamedStringParameter Goto;
 public StringParameter Audio;
 ```
 
-若需自动补全任意类型的演员 ID，请使用 `ActorContext` 特性。
+若需自动补全任意类型的演出元素 ID，请使用 `ActorContext` 特性。
 
 ```csharp
 [ActorContext]
 public StringParameter ActorId;
 ```
 
-若仅补全特定类型的演员 ID，请为 `ActorContext` 特性传入第一个参数指定演员资源路径前缀，例如以下代码将补全打印机（Printer）ID：
+若仅补全特定类型的演出元素 ID，请为 `ActorContext` 特性传入第一个参数指定演出元素资源路径前缀，例如以下代码将补全打印机（Printer）ID：
 
 ```csharp
 [ActorContext(TextPrintersConfiguration.DefaultPathPrefix)]
 public StringParameter PrinterId;
 ```
 
-若需自动补全演员外观（Appearance），且该演员 ID 来自当前指令的同名或其他参数，请使用 `AppearanceContext` 特性。请注意，此功能要求当前指令中同时声明了 `ActorContext` 特性。
+若需自动补全演出元素外观（Appearance），且该演出元素 ID 来自当前指令的同名或其他参数，请使用 `AppearanceContext` 特性。请注意，此功能要求当前指令中同时声明了 `ActorContext` 特性。
 
 ```csharp
 [ActorContext(CharactersConfiguration.DefaultPathPrefix)]

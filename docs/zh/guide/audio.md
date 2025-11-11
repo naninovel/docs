@@ -15,7 +15,7 @@
 你也可以使用 [可寻址资源系统](/zh/guide/resource-providers#addressable) 手动公开资源。要公开一个资源，请为其分配与上面方法中相同的路径作为地址，但省略 “Resources/” 部分。例如，要公开一个名为 “MainTheme.wav” 的 BGM，请为该音频剪辑资源分配以下地址：`Naninovel/Audio/MainTheme`。请注意，默认情况下编辑器中不会使用可寻址资源提供程序；你可以在资源提供程序配置菜单中启用 `Enable Addressable In Editor` 属性以允许其在编辑器中使用。
 
 ::: warning
-未通过资源管理器分配的音频资源将无法在编辑器中的各种下拉菜单中使用，例如用于为角色演员选择 `Message Sound`（消息音效）的菜单。
+未通过资源管理器分配的音频资源将无法在编辑器中的各种下拉菜单中使用，例如用于为角色演出元素选择 `Message Sound`（消息音效）的菜单。
 :::
 
 可以通过 `Naninovel -> Configuration -> Audio` 上下文菜单配置音频播放行为；可用选项请参阅 [配置指南](/zh/guide/configuration#audio)。

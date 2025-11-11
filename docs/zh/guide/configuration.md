@@ -177,18 +177,18 @@ Annotation Prefix | > | 插入在注释行前的字符，用于将其与本地�
 
 </div>
 
-## 托管文本（Managed Text）
+## 受管文本（Managed Text）
 
 :::tip
-译注：托管文本即UI中用于多语言的文本内容，基于键值（ID/Key-Value）对应关系。
+译注：受管文本即UI中用于多语言的文本内容，基于键值（ID/Key-Value）对应关系。
 :::
 
 <div class="config-table">
 
 属性 | 默认值 | 说明  
 --- | --- | ---  
-Loader | Text- (Addressable, Project) | 用于加载托管文本文档的资源加载器配置。  
-Multiline Documents | Object Ref | 使用多行格式的托管文本文档的本地资源路径。  
+Loader | Text- (Addressable, Project) | 用于加载受管文本文档的资源加载器配置。  
+Multiline Documents | Object Ref | 使用多行格式的受管文本文档的本地资源路径。  
 
 </div>
 

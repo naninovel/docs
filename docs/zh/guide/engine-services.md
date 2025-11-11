@@ -1,6 +1,6 @@
 # 引擎服务
 
-大多数引擎功能都是通过引擎服务实现的。引擎服务是一个实现了 `IEngineService` 接口的模块，用于处理特定的任务，例如执行 Naninovel 脚本、管理演员（Actors）或保存与加载游戏状态。
+大多数引擎功能都是通过引擎服务实现的。引擎服务是一个实现了 `IEngineService` 接口的模块，用于处理特定的任务，例如执行 Naninovel 脚本、管理演出元素（Actors）或保存与加载游戏状态。
 
 当你希望与引擎系统交互时，通常需要使用引擎服务。你可以通过 `Engine.GetService<TService>()` 静态方法获取服务引用，其中 `TService` 是你想获取的服务接口。例如，要获取 `IScriptPlayer` 服务：
 
@@ -24,7 +24,7 @@ ITextPrinterManager | 管理 [文本展示窗](/zh/guide/text-printers) 演出�
 IAudioManager | 管理音频: [音效](/zh/guide/audio#sound-effects), [背景音乐](/zh/guide/audio#background-music) 以及 [语音](/zh/guide/voicing)。
 IInputManager | 管理玩家的 [输入处理](/zh/guide/input-processing)。
 ILocalizationManager| 管理 [本地化](/zh/guide/localization) 活动。
-ITextManager | 处理 [托管文本](/zh/guide/managed-text) 功能。
+ITextManager | 处理 [受管文本](/zh/guide/managed-text) 功能。
 IMoviePlayer | 处理 [视频](/zh/guide/movies) 播放。
 IScriptManager | 管理 [naninovel 脚本](/zh/guide/naninovel-scripts) 资源。
 IScriptPlayer | 处理 [naninovel 脚本](/zh/guide/naninovel-scripts) 执行。
