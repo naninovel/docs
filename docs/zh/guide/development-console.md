@@ -35,6 +35,6 @@ reload | 对当前正在播放的场景脚本执行 [热重载](/zh/guide/nanino
 @print {VariableName}
 ```
 
-— 将使用默认打印机输出 `VariableName` 的值。
+— 将使用默认输出窗输出 `VariableName` 的值。
 
 ![](https://www.youtube.com/watch?v=wcgTGro0_SE)

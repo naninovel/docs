@@ -99,7 +99,7 @@ T_Greeting3: Hi!
 有关如何使用本地化工具的更多信息，请参阅 [Localization](/zh/guide/localization)。
 
 ::: tip 示例
-在 [本地化示例](/zh/guide/samples#localization) 中可以找到一个包含受管文本的本地化设置示例，可在你自己的项目中遇到问题时作为参考。
+在 [本地化示例](/zh/guide/samples#本地化) 中可以找到一个包含受管文本的本地化设置示例，可在你自己的项目中遇到问题时作为参考。
 :::
 
 ## 自定义文档

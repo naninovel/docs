@@ -103,7 +103,7 @@ Archibald: Greetings, {name}!
 ![](https://i.gyazo.com/22eddd109e76d4e63c461e9d75b20ceb.png)
 
 ::: tip 示例
-参见 [地图示例](/zh/guide/samples#map)，其中展示了如何使用变量触发器来控制地图位置的可访问性。
+参见 [地图示例](/zh/guide/samples#地图)，其中展示了如何使用变量触发器来控制地图位置的可访问性。
 
 ![](https://i.gyazo.com/4987b1c53cd275f3fa56b533f53f3d8c.mp4)
 :::

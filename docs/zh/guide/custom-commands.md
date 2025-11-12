@@ -168,7 +168,7 @@ public class PlayAudioClip : Command, Command.IPreloadable
 你可以在 `Naninovel/Runtime/Commands` 包目录中找到所有内置指令的实现脚本；在编写自定义指令时可以参考这些实现。
 
 ::: tip 示例
-另一个添加自定义指令的示例可在 [库存系统示例](/zh/guide/samples#inventory) 中找到。具体来说，指令实现存储在 `Scripts/Runtime/Inventory/Commands` 目录下。
+另一个添加自定义指令的示例可在 [物品系统示例](/zh/guide/samples#物品系统) 中找到。具体来说，指令实现存储在 `Scripts/Runtime/Inventory/Commands` 目录下。
 :::
 
 ## 覆盖内置指令

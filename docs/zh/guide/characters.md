@@ -81,7 +81,7 @@
 
 ## 显示名称
 
-在角色配置中，当启用了 `Has Name` 选项后，你可以为特定角色设置 `Display Name`（显示名称）。设置后，显示名称将会在打印机的姓名标签 UI 中显示，替代角色的 ID。这使你能够使用包含空格和特殊字符的复合角色名（这些字符在 ID 中是不允许的）。
+在角色配置中，当启用了 `Has Name` 选项后，你可以为特定角色设置 `Display Name`（显示名称）。设置后，显示名称将会在输出窗的姓名标签 UI 中显示，替代角色的 ID。这使你能够使用包含空格和特殊字符的复合角色名（这些字符在 ID 中是不允许的）。
 
 此外，还可以通过 “CharacterNames” [受管文本](/zh/guide/managed-text) 文档来指定名称。该文档会在运行生成受管文本资源任务时自动创建。使用这种方式可在 Unity 编辑器外编辑或本地化角色显示名称。受管文本文档中的记录优先级高于演出元素配置中设置的显示名称，因此会覆盖后者。
 
@@ -132,7 +132,7 @@ Char1: Now, we'll make the player input a custom name.
 Char1: My display name is now bound to `name` custom variable.
 ```
 
-当 `Has Name` 被禁用时，打印机 UI 中既不会显示角色显示名称，也不会显示角色 ID。这对于 [旁白角色](/zh/guide/characters#narrator-characters) 非常有用 —— 它们可以拥有 [关联打印机](/zh/guide/characters#linked-printer)，但其 ID 不应在界面上显示。
+当 `Has Name` 被禁用时，输出窗 UI 中既不会显示角色显示名称，也不会显示角色 ID。这对于 [旁白角色](/zh/guide/characters#narrator-characters) 非常有用 —— 它们可以拥有 [关联输出窗](/zh/guide/characters#linked-printer)，但其 ID 不应在界面上显示。
 
 ## 名称标签
 
@@ -155,7 +155,7 @@ Char1: My display name is now bound to `name` custom variable.
 
 ## 消息颜色
 
-当在角色配置中启用了 `Use Character Color` 选项时，只要在 [@print] 指令或普通文本行中指定了相应的角色 ID，打印机中的文本消息与角色名称标签都会被染上该角色所设置的颜色。
+当在角色配置中启用了 `Use Character Color` 选项时，只要在 [@print] 指令或普通文本行中指定了相应的角色 ID，输出窗中的文本消息与角色名称标签都会被染上该角色所设置的颜色。
 
 以下视频演示了如何使用显示名称与角色颜色功能：
 
@@ -163,11 +163,11 @@ Char1: My display name is now bound to `name` custom variable.
 
 ## 头像贴图
 
-你可以通过 [@char] 指令的 `avatar` 参数为角色指定头像贴图。当文本消息与该角色相关联时，兼容的文本打印机会显示相应的头像。
+你可以通过 [@char] 指令的 `avatar` 参数为角色指定头像贴图。当文本消息与该角色相关联时，兼容的文本输出窗会显示相应的头像。
 
 ![](https://i.gyazo.com/83c091c08846fa1cab8764a8d4dddeda.png)
 
-目前，仅内置的 `Wide` 与 `Chat` 打印机（及其 TMPro 版本）支持头像功能。若希望在自定义打印机中启用此功能，请将带有 `Author Image` 组件的游戏对象指定给 `Revealable Text Printer Panel` 组件的 `Author Avatar Image` 属性。
+目前，仅内置的 `Wide` 与 `Chat` 输出窗（及其 TMPro 版本）支持头像功能。若希望在自定义输出窗中启用此功能，请将带有 `Author Image` 组件的游戏对象指定给 `Revealable Text Printer Panel` 组件的 `Author Avatar Image` 属性。
 
 要使用头像，首先需在角色配置菜单中通过 `Avatar Resources` 属性添加头像资源并为其命名。
 
@@ -187,7 +187,7 @@ Char1: My display name is now bound to `name` custom variable.
 
 你还可以将头像与特定的角色外观关联，这样当角色更换外观时，头像也会自动切换。为此，请按以下格式命名头像资源：`CharacterID/CharacterAppearance`，其中 `CharacterAppearance` 是要与头像资源对应的外观名称。
 
-若只想在文本打印机中显示角色头像而隐藏角色本体，可在 [@char] 指令中将 `visible` 参数设置为 `false`，例如：
+若只想在文本输出窗中显示角色头像而隐藏角色本体，可在 [@char] 指令中将 `visible` 参数设置为 `false`，例如：
 
 ```nani
 @char CharacaterId !visible
@@ -196,7 +196,7 @@ Char1: My display name is now bound to `name` custom variable.
 如果你需要频繁切换头像而角色始终保持隐藏，建议在角色配置菜单中禁用 `Auto Show On Modify` 选项；禁用后，你在修改隐藏角色的参数时无需再指定 `!visible`。
 
 ::: info NOTE
-**头像与角色外观并没有直接关联**，因此不应将头像视为角色在场景中的呈现方式。头像是一种独立功能，用于将任意图像“注入”至兼容的文本打印机中。如果你希望让角色实体真正出现在文本打印机或自定义 UI 中，请参考 [将角色渲染至贴图](/zh/guide/characters.html#render-to-texture) 功能。
+**头像与角色外观并没有直接关联**，因此不应将头像视为角色在场景中的呈现方式。头像是一种独立功能，用于将任意图像“注入”至兼容的文本输出窗中。如果你希望让角色实体真正出现在文本输出窗或自定义 UI 中，请参考 [将角色渲染至贴图](/zh/guide/characters.html#render-to-texture) 功能。
 :::
 
 ## 发言者高亮
@@ -223,18 +223,18 @@ Char1: My display name is now bound to `name` custom variable.
 
 借助这个专用的角色语音音频源组件，你可以接入自定义方案分析播放中的音频波形，从而据此驱动嘴部动画。市面上有多种第三方方案可以实现这一点，例如 Live2D 的 `Cubism Audio Mouth Input` 组件或 [SALSA](https://assetstore.unity.com/packages/tools/animation/salsa-lipsync-suite-148442) 插件。
 
-## 链接打印机
+## 链接输出窗
 
-你可以通过 `Linked Printer` 属性将一个 [文本打印机](/zh/guide/text-printers) 与角色关联。
+你可以通过 `Linked Printer` 属性将一个 [文本输出窗](/zh/guide/text-printers) 与角色关联。
 
 ![](https://i.gyazo.com/50ca6b39cd7f708158678339244b1dc4.png)
 
-当角色与打印机关联后，该打印机将自动用于处理该角色所说的文本消息。
+当角色与输出窗关联后，该输出窗将自动用于处理该角色所说的文本消息。
 
-请注意，[ @print ] 指令（打印普通文本行时也会在底层使用）默认会将关联的打印机设为默认打印机，并隐藏其他可见的打印机。当打印机与角色相连时，打印指令会在输出该角色文本时自动切换当前可见与默认的文本打印机。若希望禁止此行为，可在打印机角色配置菜单中禁用 `Auto Default` 属性；禁用后，你需要使用 [@printer] 指令手动显示、隐藏或切换默认打印机。
+请注意，[ @print ] 指令（打印普通文本行时也会在底层使用）默认会将关联的输出窗设为默认输出窗，并隐藏其他可见的输出窗。当输出窗与角色相连时，打印指令会在输出该角色文本时自动切换当前可见与默认的文本输出窗。若希望禁止此行为，可在输出窗角色配置菜单中禁用 `Auto Default` 属性；禁用后，你需要使用 [@printer] 指令手动显示、隐藏或切换默认输出窗。
 
 ::: tip
-将打印机链接到 [旁白角色](/zh/guide/characters#narrator-characters)，并禁用 `Has Name`，即可让旁白文本自动使用该打印机，无需每次都用 [@printer] 指令切换回非角色（默认）打印机。
+将输出窗链接到 [旁白角色](/zh/guide/characters#narrator-characters)，并禁用 `Has Name`，即可让旁白文本自动使用该输出窗，无需每次都用 [@printer] 指令切换回非角色（默认）输出窗。
 :::
 
 ## 占位角色
@@ -569,7 +569,7 @@ Spine 的 [Skeleton Render Separator](https://github.com/pharan/spine-unity-docs
 
 ## 旁白角色
 
-旁白角色在场景中没有任何实体存在（无外观、位置、朝向、色调等），但仍可以作为文本的作者，并拥有相关的配置选项（显示名称、文本颜色、关联打印机等）。
+旁白角色在场景中没有任何实体存在（无外观、位置、朝向、色调等），但仍可以作为文本的作者，并拥有相关的配置选项（显示名称、文本颜色、关联输出窗等）。
 
 ![](https://i.gyazo.com/f1ee43da312b29f3236cf772d9ea9fa7.png)
 
@@ -577,7 +577,7 @@ Spine 的 [Skeleton Render Separator](https://github.com/pharan/spine-unity-docs
 
 ## 渲染到纹理
 
-除通用角色外，所有角色与背景实现都可以渲染到一个纹理资源中，该纹理可被用于自定义 UI、打印机、材质或其他兼容的纹理输入源。
+除通用角色外，所有角色与背景实现都可以渲染到一个纹理资源中，该纹理可被用于自定义 UI、输出窗、材质或其他兼容的纹理输入源。
 
 可在角色配置中通过 `Render Texture` 属性指定目标渲染纹理。当指定后，该角色将不会以游戏对象形式出现在场景中，而是直接渲染至该纹理。`Render Rectangle` 属性可用于指定要渲染进纹理的区域。
 
@@ -591,7 +591,7 @@ Spine 的 [Skeleton Render Separator](https://github.com/pharan/spine-unity-docs
 
 当角色被渲染到纹理后，其在场景中的变换（位置、旋转、缩放）及部分修改将不再生效。此时应直接变换纹理宿主对象（例如绑定在 UI Raw Image 上的图像）。
 
-下方视频演示了如何将 Live2D 角色渲染到纹理中，并将该纹理绑定到自定义文本打印机上。该打印机与角色相互关联，因此当打印与角色相关的文本时，角色会自动随打印机一起显隐。
+下方视频演示了如何将 Live2D 角色渲染到纹理中，并将该纹理绑定到自定义文本输出窗上。该输出窗与角色相互关联，因此当打印与角色相关的文本时，角色会自动随输出窗一起显隐。
 
 ![](https://www.youtube.com/watch?v=81OTbSAnWbw)
 

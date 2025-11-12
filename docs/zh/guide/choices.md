@@ -152,14 +152,14 @@ Don't forget about cucumbers!
 ```
 
 ::: tip 示例
-在 [地图示例](/zh/guide/samples#map) 中可以找到更高级的基于 Naninovel 实现的交互式地图案例。
+在 [地图示例](/zh/guide/samples#地图) 中可以找到更高级的基于 Naninovel 实现的交互式地图案例。
 
 ![](https://i.gyazo.com/4987b1c53cd275f3fa56b533f53f3d8c.mp4)
 :::
 
 ## 聊天回复选项处理器
 
-**ChatReply Choice Handler** 用于与 [聊天文本打印机](/zh/guide/text-printers#chat-printer) 配合，以“聊天回复”的形式展示可选项。
+**ChatReply Choice Handler** 用于与 [聊天文本输出窗](/zh/guide/text-printers#chat-printer) 配合，以“聊天回复”的形式展示可选项。
 
 ```nani
 @printer Chat

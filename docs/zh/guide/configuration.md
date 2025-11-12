@@ -342,10 +342,10 @@ Default Metadata | Object Ref | 创建文本输出窗时默认使用的元数据
 Metadata | Object Ref | 为特定 ID 的文本输出窗指定的元数据。  
 Scene Origin | (0.50, 0.00) | 管理的演出元素参考原点位置（不影响实际定位）。  
 Z Offset | 0 | 文本输出窗创建时与摄像机的初始 Z 轴偏移。  
-Z Step | 0 | 创建多个打印机时的 Z 轴间距，用于防止深度冲突。  
-Default Duration | 0.35 | 所有打印机变换（外观、位置、颜色等）的默认动画时长（秒）。  
-Default Easing | Linear | 打印机动画的默认缓动函数。  
-Auto Show On Modify | False | 执行修改指令时是否自动显示打印机。  
+Z Step | 0 | 创建多个输出窗时的 Z 轴间距，用于防止深度冲突。  
+Default Duration | 0.35 | 所有输出窗变换（外观、位置、颜色等）的默认动画时长（秒）。  
+Default Easing | Linear | 输出窗动画的默认缓动函数。  
+Auto Show On Modify | False | 执行修改指令时是否自动显示输出窗。  
 
 </div>
 

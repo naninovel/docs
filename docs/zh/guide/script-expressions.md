@@ -129,7 +129,7 @@ public static class CustomFunctions
 - **Example（示例）** 在 IDE 扩展与可视化编辑器中显示的使用示例。
 
 ::: tip 示例
-另一个关于添加自定义表达式函数（用于检测物品是否存在于物品栏中）的例子，可在 [inventory 示例](/zh/guide/samples#inventory) 中找到。具体实现位于运行时代码 `Scripts/Runtime/Inventory/InventoryFunctions.cs` 中。
+另一个关于添加自定义表达式函数（用于检测物品是否存在于物品栏中）的例子，可在 [物品系统示例](/zh/guide/samples#物品系统) 中找到。具体实现位于运行时代码 `Scripts/Runtime/Inventory/InventoryFunctions.cs` 中。
 :::
 
 ## 参数上下文

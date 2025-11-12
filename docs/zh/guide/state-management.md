@@ -132,7 +132,7 @@ private async void Start ()
 ```
 
 ::: tip EXAMPLE
-一个更高级的示例展示了如何使用自定义结构体列表保存和加载背包 UI 的游戏状态，可参考 [inventory 示例](/zh/guide/samples#inventory)。  
+一个更高级的示例展示了如何使用自定义结构体列表保存和加载背包 UI 的游戏状态，可参考 [物品系统示例](/zh/guide/samples#物品系统)。  
 具体实现可见 `Scripts/Runtime/Inventory/UI/InventoryUI.cs`，其中包含自定义状态的序列化与反序列化逻辑。
 :::
 

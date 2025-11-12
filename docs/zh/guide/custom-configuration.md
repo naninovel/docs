@@ -81,7 +81,7 @@ var myConfig = Engine.GetConfiguration<MyCustomConfiguration>();
 ```
 
 ::: tip 示例
-另一个为库存系统添加自定义配置菜单的示例可以在 [inventory 示例](/zh/guide/samples#inventory) 中找到。具体实现位于 `Scripts/Runtime/Inventory/InventoryConfiguration.cs`。
+另一个为库存系统添加自定义配置菜单的示例可以在 [物品系统示例](/zh/guide/samples#物品系统) 中找到。具体实现位于 `Scripts/Runtime/Inventory/InventoryConfiguration.cs`。
 :::
 
 若要自定义自定义配置在 Naninovel 项目设置中的编辑器行为，可在编辑器脚本中创建一个类并继承自 `ConfigurationSettings<T>`，其中 `T` 为自定义配置的类型。你可以参考位于 `Naninovel/Editor/Settings` 包目录下的内置设置编辑器脚本来构建自己的编辑器。

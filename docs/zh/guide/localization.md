@@ -19,7 +19,7 @@
 可通过本地化配置菜单中的 `Loader > Path Prefix` 属性更改 *本地化资源根目录* 的具体路径。注意，配置的路径是相对于“Resources”文件夹的（而不是“Assets”）。Unity 会以[特殊方式处理](https://docs.unity3d.com/Manual/LoadingResourcesatRuntime.html)这些 Resources 文件夹；你可以在项目中的任意位置创建多个 Resources 文件夹以便更好地组织资源。
 
 ::: tip
-与其他类型的资源一样，你也可以选择使用不同的资源提供器而非 `Resources` 文件夹。例如，使用 [可寻址化](/zh/guide/resource-providers#addressable) 提供器时，你可以将特定语言的本地化资源与主游戏包独立打包，并在需要时按需下载。
+与其他类型的资源一样，你也可以选择使用不同的资源提供器而非 `Resources` 文件夹。例如，使用 [可寻址资源](/zh/guide/resource-providers#可寻址资源) 提供器时，你可以将特定语言的本地化资源与主游戏包独立打包，并在需要时按需下载。
 :::
 
 ## 默认语言区域
@@ -153,7 +153,7 @@ Narrator: You've decided to go {route}. Wise choice!
 这对于为翻译人员提供更多上下文信息非常有用。请务必**不要**将注释（以 `; >` 开头的行）包含在翻译文本中。只有以单个 `;` 开头的文本行才需要翻译。
 
 ::: tip 示例
-可在 [本地化示例](/zh/guide/samples#localization) 中找到本地化配置示例。若你在项目中配置本地化时遇到问题，可将其作为参考。
+可在 [本地化示例](/zh/guide/samples#本地化) 中找到本地化配置示例。若你在项目中配置本地化时遇到问题，可将其作为参考。
 :::
 
 ## 电子表格
@@ -225,7 +225,7 @@ public class CustomProcessor : Processor
 ```
 
 ::: tip 示例
-在[本地化示例](/zh/guide/samples#localization)中可以找到如何设置和使用该工具的示例。
+在[本地化示例](/zh/guide/samples#本地化)中可以找到如何设置和使用该工具的示例。
 :::
 
 ## UI 本地化
@@ -251,7 +251,7 @@ public class CustomProcessor : Processor
 为使该功能生效，请确保已在文本打印器上正确设置 `Font Change Configuration` 组件。有关字体设置的说明，请参阅 [UI 指南](/zh/guide/user-interface#changing-font)。
 
 ::: tip 示例
-在[本地化示例](/zh/guide/samples#localization)中可以找到如何设置与本地化相关字体的示例。
+在[本地化示例](/zh/guide/samples#本地化)中可以找到如何设置与本地化相关字体的示例。
 :::
 
 ## 社区本地化

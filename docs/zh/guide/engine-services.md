@@ -106,7 +106,7 @@ var customService = Engine.GetService<CustomService>();
 ```
 
 ::: tip 示例
-另一个关于添加自定义引擎服务的示例，可参考 [物品栏示例](/zh/guide/samples#inventory)。该示例展示了如何创建一个自定义引擎服务来管理物品资源和库存 UI 配置。具体实现位于运行时脚本 `Scripts/Runtime/Inventory/InventoryManager.cs`。
+另一个关于添加自定义引擎服务的示例，可参考 [物品系统示例](/zh/guide/samples#物品系统)。该示例展示了如何创建一个自定义引擎服务来管理物品资源和库存 UI 配置。具体实现位于运行时脚本 `Scripts/Runtime/Inventory/InventoryManager.cs`。
 :::
 
 ## 覆盖内置服务

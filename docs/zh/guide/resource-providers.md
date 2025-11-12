@@ -28,9 +28,9 @@
 
 **请务必在构建版本中测试与资源提供器相关的功能**，而不是仅在 Unity 编辑器中进行测试。
 
-## 可寻址化
+## 可寻址资源
 
-[可寻址化资产系统](https://docs.unity3d.com/Packages/com.unity.addressables@latest) 是一个 Unity 包，允许通过“地址”来加载资源。它使用异步加载机制，以支持从任意位置（本地存储、远程网络托管等）加载资源，并处理任意依赖项集合。请参阅 Unity 官方文档了解如何设置、配置和使用该系统。
+[可寻址资源系统](https://docs.unity3d.com/Packages/com.unity.addressables@latest) 是一个 Unity 包，允许通过“地址”来加载资源。它使用异步加载机制，以支持从任意位置（本地存储、远程网络托管等）加载资源，并处理任意依赖项集合。请参阅 Unity 官方文档了解如何设置、配置和使用该系统。
 
 当项目中安装了 Addressables 包，并在资源提供器配置中启用了 `Use Addressables` 属性时，Naninovel 将自动使用 Addressables 系统，无需额外配置。所有在 Naninovel 配置菜单中分配的资源（例如剧情脚本、角色立绘、音频剪辑等）都会在构建播放器时自动注册到该系统中（即被分配地址）。
 

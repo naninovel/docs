@@ -59,11 +59,11 @@ UI 自定义功能允许你添加自定义界面，或修改、完全替换任�
 ![](https://www.youtube.com/watch?v=wrAm-cwPXy4)
 
 ::: tip 示例
-上方视频教程所示的 Unity 项目可在 [UI 示例](/zh/guide/samples#ui) 中找到。其中还包括以下示例：带滚动与网页链接的制作人员名单界面、带粒子特效的选项按钮、在文本打印机中使用表情符号、在聊天打印机中添加时间戳等。
+上方视频教程所示的 Unity 项目可在 [UI 示例](/zh/guide/samples#ui) 中找到。其中还包括以下示例：带滚动与网页链接的制作人员名单界面、带粒子特效的选项按钮、在文本输出窗中使用表情符号、在聊天输出窗中添加时间戳等。
 :::
 
 ::: tip 示例
-另一个更高级的示例是在 [物品栏示例](/zh/guide/samples#inventory) 中，展示了如何添加一个带网格布局、分页与拖拽窗口的自定义物品栏 UI。其中与 UI 相关的脚本位于 `Scripts/Runtime/Inventory/UI` 目录，对应的预制体位于 `Content/UI/Inventory` 目录。
+另一个更高级的示例是在 [物品系统示例](/zh/guide/samples#物品系统) 中，展示了如何添加一个带网格布局、分页与拖拽窗口的自定义物品栏 UI。其中与 UI 相关的脚本位于 `Scripts/Runtime/Inventory/UI` 目录，对应的预制体位于 `Content/UI/Inventory` 目录。
 :::
 
 当你通过菜单创建新的自定义 UI 预制体时，其根对象上会自动附加一个 `Custom UI` 组件。该组件（更准确地说，是其实现的 `IManagedUI` 接口）是使预制体被引擎识别为 UI 的关键。

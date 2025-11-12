@@ -266,7 +266,7 @@ public StringParameter Audio;
 public StringParameter ActorId;
 ```
 
-若仅补全特定类型的演出元素 ID，请为 `ActorContext` 特性传入第一个参数指定演出元素资源路径前缀，例如以下代码将补全打印机（Printer）ID：
+若仅补全特定类型的演出元素 ID，请为 `ActorContext` 特性传入第一个参数指定演出元素资源路径前缀，例如以下代码将补全输出窗（Printer）ID：
 
 ```csharp
 [ActorContext(TextPrintersConfiguration.DefaultPathPrefix)]

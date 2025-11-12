@@ -32,7 +32,7 @@ Naninovel 使用 Unity 的 [输入系统](https://docs.unity3d.com/Packages/com.
 ![](https://i.gyazo.com/8ef1cc7eccac5cbc9e88016e2b1271f6.png)
 
 ::: tip 示例
-在 [inventory 示例](/zh/guide/samples#inventory) 中展示了如何添加用于切换背包 UI 的自定义输入绑定。其中的自定义动作 “ToggleInventory” 在 `Scripts/Runtime/Inventory/UI/InventoryUI.cs` 运行时代码中被使用。另一个示例 —— [input rebind 示例](/zh/guide/samples#input-rebind) —— 展示了如何实现一个“按键重绑定 UI”，允许玩家更改默认按键。
+在 [物品系统示例](/zh/guide/samples#物品系统) 中展示了如何添加用于切换背包 UI 的自定义输入绑定。其中的自定义动作 “ToggleInventory” 在 `Scripts/Runtime/Inventory/UI/InventoryUI.cs` 运行时代码中被使用。另一个示例 —— [输入重绑定示例](/zh/guide/samples#输入重绑定) —— 展示了如何实现一个“按键重绑定 UI”，允许玩家更改默认按键。
 :::
 
 当使用自定义输入动作时，建议同时使用在相同配置菜单中分配的自定义 `Event System`（事件系统），并将自定义输入动作资源分配给附加在事件系统预制体上的 Input System UI Input Module 组件的 `Actions Asset` 属性。这对于确保各类 UI 功能正常工作是必要的。可以通过 `Create -> Naninovel -> Input -> Event System` 菜单创建一个与 Naninovel 兼容的默认事件系统预制体。

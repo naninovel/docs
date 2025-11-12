@@ -7,7 +7,7 @@
 你可以通过多种方式将 Naninovel 集成到自定义项目中，具体实现方式取决于项目类型以及你希望 Naninovel 实现的功能。以下文档列出了多种配置选项与 API，可帮助你将 Naninovel 与独立游戏进行“配合”或“对接”。在继续之前，建议先阅读 [引擎架构](/zh/guide/engine-architecture) 以更好地理解其工作原理。
 
 ::: tip EXAMPLE
-请查看 [integration 示例](/zh/guide/samples#integration)，该示例展示了 Naninovel 既作为 3D 冒险游戏中的对话系统使用，也作为独立小说模式运行的案例。
+请查看 [集成示例](/zh/guide/samples#集成示例)，该示例展示了 Naninovel 既作为 3D 冒险游戏中的对话系统使用，也作为独立小说模式运行的案例。
 :::
 
 ## 手动初始化
@@ -89,7 +89,7 @@ await stateManager.ResetState();
 
 推荐使用资源引用（GUID）。GUID 在文件移动或重命名后仍保持不变。可通过 `ScriptAssets.GetPath` 方法根据 GUID 解析剧本路径。Naninovel 还提供了内置的 `ScriptAssetRef` 属性绘制器，可直接在编辑器中将剧本资源分配给序列化字段，使用更方便。
 
-以下示例来自 [integration 示例](/zh/guide/samples#integration)，该组件挂载于场景中的游戏对象上，当玩家与触发器碰撞时，将自动播放指定剧本：
+以下示例来自 [集成示例](/zh/guide/samples#集成示例)，该组件挂载于场景中的游戏对象上，当玩家与触发器碰撞时，将自动播放指定剧本：
 
 ```cs
 public class DialogueTrigger : MonoBehaviour
@@ -229,5 +229,5 @@ Naninovel 还包含许多其他可用于系统集成的特性（如状态外部�
 如果你发现某些引擎 API 或系统在可扩展性方面不足，必须修改源代码才能集成，请 [联系支持](/support/#naninovel-support)，我们会考虑进行改进。
 
 ::: tip EXAMPLE
-请参考 [integration 示例](/zh/guide/samples#integration)，该示例展示了 Naninovel 既作为 3D 冒险游戏中的对话系统使用，也可切换为独立小说模式。
+请参考 [集成示例](/zh/guide/samples#集成示例)，该示例展示了 Naninovel 既作为 3D 冒险游戏中的对话系统使用，也可切换为独立小说模式。
 :::

@@ -199,7 +199,7 @@ The "Town" background is now unloaded, as it's no longer visible.
 
 ## 角色资源
 
-角色（包括角色立绘、背景、文本打印机和选项处理器）是 Naninovel 的核心实体。角色使用的大部分内存都与其外观（Appearances）资源相关。
+角色（包括角色立绘、背景、文本输出窗和选项处理器）是 Naninovel 的核心实体。角色使用的大部分内存都与其外观（Appearances）资源相关。
 
 ### 外观
 
@@ -222,7 +222,7 @@ The "Town" background is now unloaded, as it's no longer visible.
 @goto NextScript
 ```
 
-—— 另外，也可以使用带有 `*` 参数的 [@remove] 指令一次性清除所有现有角色（包括文本打印机和选项处理器），或使用带有 `only` 参数的 [@resetState] 指令来立即移除特定类型的角色，例如：`ICharacterManager` 对应角色，`IBackgroundManager` 对应背景。
+—— 另外，也可以使用带有 `*` 参数的 [@remove] 指令一次性清除所有现有角色（包括文本输出窗和选项处理器），或使用带有 `only` 参数的 [@resetState] 指令来立即移除特定类型的角色，例如：`ICharacterManager` 对应角色，`IBackgroundManager` 对应背景。
 
 ```nani
 ...
