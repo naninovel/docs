@@ -330,7 +330,7 @@ Stop Duration | Decimal | 1 | 效果淡出的持续时间（以秒为单位）�
 
 如果你有大量需要生成的预制体，通过编辑器菜单手动分配会很不方便，可以直接将它们放在 `Resources/Naninovel/Spawn` 文件夹中，它们将自动在脚本中可用。你也可以使用子文件夹来组织这些预制体；这种情况下，在 naninovel 脚本中引用时使用正斜杠（`/`）。例如，若预制体资源存放路径为 `Resources/Naninovel/Spawn/Explosions/Boom01`，则可在脚本中通过 `Explosions/Boom01` 进行引用。
 
-也可以使用 [Addressable 资源系统](/guide/resource-providers#addressable) 手动公开资源。要公开某个资源，请为其分配一个与上面方法中使用的路径相同的地址，但省略 “Resources/” 部分。例如，要公开一个名为 “Boom01” 的预制体资源，请将其地址设为：`Naninovel/Spawn/Boom01`。请注意，Addressable 提供器在编辑器中默认未启用；你可以在资源提供器配置菜单中启用 `Enable Addressable In Editor` 选项以允许其在编辑器中使用。
+也可以使用 [可寻址资源系统](/zh/guide/resource-providers#addressable) 手动公开资源。要公开某个资源，请为其分配一个与上面方法中使用的路径相同的地址，但省略 “Resources/” 部分。例如，要公开一个名为 “Boom01” 的预制体资源，请将其地址设为：`Naninovel/Spawn/Boom01`。请注意，Addressable 提供器在编辑器中默认未启用；你可以在资源提供器配置菜单中启用 `Enable Addressable In Editor` 选项以允许其在编辑器中使用。
 
 可参考 `Naninovel/Prefabs/FX` 中的内置特效预制体了解示例实现。
 

@@ -135,17 +135,17 @@ public class MyCharacterData : CustomMetadata<CustomCharacterImplementation>
 ![](https://i.gyazo.com/294a9e2812d33ea3c863f9f53906b327.png)
 
 ::: tip
-也可以整体覆盖内置的配置编辑器；更多信息和示例请参阅 [自定义配置](/guide/custom-configuration#overriding-built-in-editors) 指南。
+也可以整体覆盖内置的配置编辑器；更多信息和示例请参阅 [自定义配置](/zh/guide/custom-configuration#overriding-built-in-editors) 指南。
 :::
 
 ## 自定义状态
 
-要为自定义演出元素覆盖或扩展状态类型，你还需要 [覆盖演出元素管理器](/guide/engine-services#overriding-built-in-services)，因为状态的序列化和应用都是在管理器中完成的。
+要为自定义演出元素覆盖或扩展状态类型，你还需要 [覆盖演出元素管理器](/zh/guide/engine-services#overriding-built-in-services)，因为状态的序列化和应用都是在管理器中完成的。
 
 ::: info 注意
 此规则适用于基于内置 `IActor` 接口派生类（如角色、背景、文本输出窗和选项处理器）的自定义演出元素实现；如果你的自定义演出元素是直接继承自 `IActor`，则无需覆盖内置管理器即可使用自定义状态 —— 只需自行创建即可。
 
-若你希望为其他系统（如 UI、游戏对象或 Naninovel 之外的各种游戏机制组件）添加自定义状态，请参阅 [状态管理指南](/guide/state-management#custom-state)。
+若你希望为其他系统（如 UI、游戏对象或 Naninovel 之外的各种游戏机制组件）添加自定义状态，请参阅 [状态管理指南](/zh/guide/state-management#custom-state)。
 :::
 
 以下示例展示了如何通过添加一个 `LastChoiceTime` 字段扩展选项处理器状态，该字段用于存储上一次添加选项的时间。当显示自定义选项处理器时，该时间会打印到控制台。
