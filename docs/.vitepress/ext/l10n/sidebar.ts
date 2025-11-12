@@ -138,7 +138,7 @@ export const zn: DefaultTheme.SidebarItem[] = [
             { text: "可解锁物件", link: "/zh/guide/unlockable-items" },
             { text: "自定义变量", link: "/zh/guide/custom-variables" },
             { text: "脚本表达式", link: "/zh/guide/script-expressions" },
-            { text: "托管文本", link: "/zh/guide/managed-text" },
+            { text: "受管文本", link: "/zh/guide/managed-text" },
             { text: "本地化", link: "/zh/guide/localization" },
             { text: "内存管理", link: "/zh/guide/memory-management" },
             { text: "资源加载器", link: "/zh/guide/resource-providers" },

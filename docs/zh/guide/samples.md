@@ -1,120 +1,120 @@
-﻿# Samples
+﻿# 示例项目
 
-A collection of example projects is provided to help you get started with common development scenarios. Read on for instructions to access the samples and brief descriptions of each.
+提供了一系列示例项目，帮助你快速上手常见的开发场景。以下是访问示例项目的说明及各示例的简要介绍。
 
-## Accessing Samples
+## 访问示例项目
 
-The samples are hosted under the [engine's monorepo](https://github.com/naninovel/engine/tree/stable/unity/samples). To access the repository, [register your Naninovel license](https://naninovel.com/register) and follow the dashboard instructions to assign a GitHub user. Once you have access, either [clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) or [download](https://github.com/naninovel/engine/archive/refs/heads/stable.zip) the repository.
+这些示例托管在 [Naninovel 引擎的 monorepo 仓库](https://github.com/naninovel/engine/tree/stable/unity/samples) 下。要访问该仓库，请先[注册你的 Naninovel 许可证](https://naninovel.com/register)，并按照控制面板的说明将其分配给一个 GitHub 用户。获得访问权限后，可以选择[克隆仓库](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)或[直接下载](https://github.com/naninovel/engine/archive/refs/heads/stable.zip)。
 
-Unzip the downloaded repository and open `unity/samples` directory with the Unity editor. Notice Naninovel is referenced as a local package in the package manager. The source of the local package leads to `unity/client`, which contains the source code of the Unity extension. Other third-party packages used in the samples are embedded in the project for convenience.
+解压下载的仓库后，用 Unity 编辑器打开 `unity/samples` 目录。注意，Naninovel 作为本地包在包管理器中被引用，其本地包的源路径指向 `unity/client`，其中包含 Unity 扩展的源代码。示例项目中使用的其他第三方包也已嵌入到项目中以便使用。
 
 ![](https://i.gyazo.com/aa784d89f6a55576b745824c2f6fd537.png)
 
-Once in Unity editor, open `Assets/Scenes/Main.unity` scene and enter play mode. You'll see the title screen of our [demo project](https://naninovel.com/demo). You can either start the demo or click the "SAMPLES" button to navigate the available samples, which are outlined below.
+进入 Unity 编辑器后，打开 `Assets/Scenes/Main.unity` 场景并进入播放模式。你将看到我们的[演示项目](https://naninovel.com/demo)的标题界面。你可以直接开始演示，或者点击“SAMPLES”按钮浏览可用示例，具体如下所述。
 
 ![](https://i.gyazo.com/f7304c828ff616f2d9a979d2452413a4.png)
 
-## Addressable
+## 可寻址资源
 
-This sample shows how to manually register Naninovel resources with [addressable provider](/guide/resource-providers.html#addressable) (without using resource editor menus) and serve the assets from a remote host.
+此示例展示了如何手动为 [Addressable Provider](/zh/guide/resource-providers.html#addressable) 注册 Naninovel 资源（无需使用资源编辑器菜单），并从远程主机加载这些资源。
 
-Notice that while most of the resources in the sample project are not assigned in resource manager menus:
+请注意，虽然示例项目中的大多数资源并未在资源管理器菜单中分配：
 
 ![](https://i.gyazo.com/8c1b37362bf58d26f18e4e61ffe2957c.png)
 
-— they are still accessible in Naninovel scripts in the same way:
+— 它们仍然可以像往常一样在 Naninovel 脚本中访问：
 
 ```nani
 @back Snow
 ```
 
-That works because the assets are assigned a Naninovel resource address and label:
+之所以能正常运行，是因为这些资源被分配了 Naninovel 的资源地址和标签：
 
 ![](https://i.gyazo.com/81e59da9ba85c90f3d59b84573f7facf.png)
 
-## Perspective Scene
+## 透视场景
 
-This sample shows a generic background filled with multiple animated environment sprites, camera rendering in perspective mode and bokeh (depth of field) effect. The background is stored at `Content/Backgrounds/Perspective` directory.
+此示例展示了一个包含多个动画环境精灵的通用背景、透视模式下的相机渲染以及景深（虚化）效果。背景存储在 `Content/Backgrounds/Perspective` 目录下。
 
 ![](https://i.gyazo.com/610d2cafe5fbe42aba7adb9ac71720d1.mp4)
 
-## Compiler Localization
+## 编译器本地化
 
-To activate the compiler localization in the sample project, assign `Profiles/Naninovel/CompilerRU` asset to the `Compiler Localization` field in scripts configuration. Then restart the Unity editor and VS Code extension. Now you can open the project with VS Code and run `Compiler Localization` sample scenario.
+要在示例项目中启用编译器本地化，请将 `Profiles/Naninovel/CompilerRU` 资源分配到脚本配置中的 `Compiler Localization` 字段。然后重新启动 Unity 编辑器和 VS Code 扩展。此后，你可以在 VS Code 中打开项目并运行 `Compiler Localization` 示例场景。
 
 ![](https://i.gyazo.com/fde9998597ffedb8a025401bb2f71ce9.png)
 
 ## E2E
 
-The `E2E Tests` sample shows how to set up an [automated end-to-end tests](/guide/automated-testing) suite and use most of the available APIs.
+`E2E Tests` 示例展示了如何设置[自动化端到端测试](/zh/guide/automated-testing)套件，并使用大部分可用的 API。
 
-The test scripts are stored under `Scripts/E2E` folder. Notice the `.asmdef` file placed in the folder: it's required to compile the test sources under Unity-specific test environment. Also note the `testables` entry in the `Packages/manifest.json` file, which exposes tests assembly to the Unity's test runner.
+测试脚本存放在 `Scripts/E2E` 文件夹下。注意该文件夹中放置了一个 `.asmdef` 文件：这是在 Unity 特定测试环境下编译测试源代码所必需的。同时请注意 `Packages/manifest.json` 文件中的 `testables` 条目，它将测试程序集暴露给 Unity 的测试运行器。
 
 ![](https://i.gyazo.com/92e7eaf5725f098d6d12c83a2b7eb219.png)
 
-## Generic Actor
+## 通用演出元素
 
-Find `Content/Backgrounds/Beach`, `Content/Backgrounds/Perspective` [generic backgrounds](/guide/backgrounds#generic-backgrounds) and `Content/Characters/Kohaku/K3D` [generic character](/guide/characters#generic-characters) showing how to set up and use the generic actor implementation with 3D models and animations authored with Unity's Animator.
+请查看 `Content/Backgrounds/Beach`、`Content/Backgrounds/Perspective` [通用背景](/zh/guide/backgrounds#通用背景) 以及 `Content/Characters/Kohaku/K3D` [通用角色](/zh/guide/characters#通用角色)，这些示例展示了如何使用 Unity 的 Animator 创建并使用带有 3D 模型和动画的通用角色实现。
 
 ![](https://i.gyazo.com/009900b179f3130f45824e22094e7884.gif)
 
-## Input Rebind
+## 输入重绑定
 
-Documentation: https://naninovel.com/guide/input-processing.html#input-system
+文档地址：https://naninovel.com/guide/input-processing.html#input-system
 
-An example of input rebinding UI which allows player to change default controls can be found at `Content/UI/InputRebind` folder. It's based on the "Rebind UI" sample bundled with the input system package; find more info in the [Unity documentation](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.1/manual/ActionBindings.html#interactive-rebinding).
+在 `Content/UI/InputRebind` 文件夹中可以找到输入重绑定 UI 示例，它允许玩家更改默认控制。该示例基于输入系统包自带的 “Rebind UI” 示例；更多信息请参阅 [Unity 官方文档](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.1/manual/ActionBindings.html#interactive-rebinding)。
 
 ![](https://i.gyazo.com/eba8d2ce2dabfbe41cc0df238ad8ad99.png)
 
-## Integration
+## 集成示例
 
-An example project with Naninovel used as both drop-in dialogue for a 3D adventure game and a switchable standalone novel mode.
+这是一个将 Naninovel 同时用作 3D 冒险游戏中的对话系统以及可切换独立小说模式的示例项目。
 
 ![](https://i.gyazo.com/b1b6042db4a91b3a8cee74236b33c17c.mp4)
 
-All the project-specific (example) scripts are stored at `Scripts/Runtime/Integration` folder.
+所有与项目相关（示例）的脚本都存储在 `Scripts/Runtime/Integration` 文件夹中。
 
-Naninovel is initialized manually (auto initialization is disabled in the engine configuration menu) via `SetupGame.cs` script attached to `SetupGame` game object located on `Integration` scene.
+在此项目中，Naninovel 通过附加在 `Integration` 场景中的 `SetupGame` 游戏对象上的 `SetupGame.cs` 脚本手动初始化（引擎配置菜单中已禁用自动初始化）。
 
-`DialogueTrigger.cs` script used as a component on triggers perform switch to dialogue mode when player is hitting the trigger colliders.
+`DialogueTrigger.cs` 脚本作为触发器组件使用，当玩家与触发碰撞体接触时切换至对话模式。
 
-`SwitchToNovelMode.cs` custom command is used to switch to novel mode from both C# and naninovel scripts.
+`SwitchToNovelMode.cs` 自定义指令可用于从 C# 或 Naninovel 脚本中切换至小说模式。
 
-`SwitchToAdventureMode.cs` custom command is used to switch to adventure from novel mode.
+`SwitchToAdventureMode.cs` 自定义指令则用于从小说模式切换回冒险模式。
 
-## Inventory
+## 物品系统
 
-While an inventory system is out of scope for visual novels, we had a lot of requests and questions on how to integrate one with Naninovel. The inventory sample serves as an example for creating and integrating an inventory extension, which you can set up on top of Naninovel installation without modifying the engine source code.
+虽然物品系统并非视觉小说的核心功能，但我们收到了许多关于如何与 Naninovel 集成的请求和问题。该示例展示了如何创建并集成一个物品系统扩展模块，可在不修改引擎源代码的情况下叠加到 Naninovel 上运行。
 
-::: info NOTE
-The inventory is not a standalone product and/or part of Naninovel. Use it to learn how to extend and customize the engine, but don't expect it to be a production-ready solution for inventory systems. If you're looking for one, [check the Asset Store](https://assetstore.unity.com/?q=inventory) or create a custom one from scratch.
+::: info 注意
+此物品系统并不是一个独立产品，也不是 Naninovel 的组成部分。你可以通过它学习如何扩展和自定义引擎，但请不要将其视为可直接投入生产的解决方案。如果你需要现成的方案，请前往 [Unity 资产商店](https://assetstore.unity.com/?q=inventory) 或自行开发。
 :::
 
-This example project shows how to make a custom inventory UI with grid layout, pagination and drag-drop window, add custom engine service and related configuration menu, add input bindings, use state outsourcing, author custom scenario commands and expression functions.
+该示例项目展示了如何创建具有网格布局、分页与拖拽功能的自定义物品 UI，添加自定义引擎服务和配置菜单、输入绑定、状态外包、自定义场景指令与表达式函数。
 
 ![](https://i.gyazo.com/86c577f007daf4ec5d79c0e91db7bc10.mp4)
 
-To create a pre-made inventory UI from template, use `Create -> Naninovel -> Inventory -> Inventory UI` asset context menu. Then add the prefab to the Naninovel UI resources via `Naninovel -> Resources -> UI` editor menu. Once added, the UI can be shown/hidden like all the other UIs with [@showUI] and [@hideUI] commands.
+要从模板创建一个预制的物品 UI，可通过 `Create -> Naninovel -> Inventory -> Inventory UI` 菜单生成，然后在 `Naninovel -> Resources -> UI` 编辑器菜单中将该预制体添加为 UI 资源。添加后，你可以像其他 UI 一样使用 [@showUI] 与 [@hideUI] 指令来显示或隐藏它。
 
-The Inventory UI component has `Capacity` property, where you can change number of slots in the inventory. Slot grid is configured (slot number and layout, slots per page, etc) via `Content/InventoryGrid` game object. Window drag-drop behavior can be configured (disabled) via `Drag Drop` component attached to `Content` game object.
+Inventory UI 组件包含 `Capacity` 属性，用于设置物品栏的槽位数量。槽位网格（数量、布局、分页等）由 `Content/InventoryGrid` 游戏对象配置。窗口的拖拽行为可通过附加在 `Content` 游戏对象上的 `Drag Drop` 组件进行启用或禁用。
 
-Inventory item prefabs can be created with `Create -> Naninovel -> Inventory -> Inventory Item` asset context menu. The item prefabs will then need to be assigned as inventory resources via `Naninovel -> Resources -> Inventory` editor menu.
+物品预制体可通过 `Create -> Naninovel -> Inventory -> Inventory Item` 菜单创建。然后在 `Naninovel -> Resources -> Inventory` 菜单中将这些预制体指定为物品资源。
 
 ![](https://i.gyazo.com/6062f8a433a47306f582a849c7bbf57e.png)
 
-In case you have a lot of items and it's inconvenient to assign them via editor menu, it's possible to just drop them at `Resources/Naninovel/Inventory` folder and they'll automatically be exposed to the engine. You can additionally organize them with subfolders, if you wish; in this case use forward slashes (`/`) when referencing them in naninovel scripts. Eg, item stored as `Resources/Naninovel/Inventory/Armor/FullPlate.prefab` can be referenced in scripts as `Armor/FullPlate`.
+如果物品数量很多，通过编辑器菜单分配不方便，也可以直接将它们放入 `Resources/Naninovel/Inventory` 文件夹中，系统会自动识别。你还可以通过子文件夹分类管理；此时在脚本中引用时使用斜杠（`/`）。例如，存放于 `Resources/Naninovel/Inventory/Armor/FullPlate.prefab` 的物品可在脚本中以 `Armor/FullPlate` 引用。
 
-It's also possible to use [addressable asset system](/guide/resource-providers#addressable) to manually expose the resources. To expose an asset, assign an address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "FullPlate.prefab" item, assign the prefab asset following address: `Naninovel/Inventory/FullPlate`. Be aware that addressable provider is not used in editor by default; you can allow it by enabling `Enable Addressable In Editor` property in resource provider configuration menu.
+你还可以使用 [Addressable 资源系统](/zh/guide/resource-providers#addressable) 手动暴露这些资源。只需将资源地址设置为对应路径（省略 “Resources/” 部分）。例如，要暴露 `FullPlate.prefab`，可将其地址设置为 `Naninovel/Inventory/FullPlate`。注意，默认情况下 Addressable 提供器不会在编辑器中启用；可在资源提供器配置菜单中启用 `Enable Addressable In Editor` 属性。
 
-Each item has a `Stack Count Limit` property to limit how much items of this type can be stacked in a single inventory slot and a `On Item Used` Unity event, which is invoked when the item is used (either via `@useItem` command or when user clicks on the item in the inventory). Below is an example on how you can set up the event with `Play Script` component to remove the item once it used, spawn a glitch special effect and print a text message.
+每个物品都有一个 `Stack Count Limit` 属性，用于限制同类物品在单个槽位中的最大堆叠数量；还有一个 `On Item Used` Unity 事件，会在物品被使用时触发（通过 `@useItem` 指令或玩家在 UI 中点击物品）。下方示例展示了如何利用 `Play Script` 组件配置事件，以在物品被使用后移除该物品、生成特效并显示文本消息。
 
 ![](https://i.gyazo.com/010a9ba35db607ba46d78eda3513f678.png)
 
-You can add items to the inventory with `@addItem` command and remove with `@removeItem` (or `@removeItemAt`, `@removeAllItems`). Item IDs are equal to the item prefab names. Inventory slot IDs are equal to the grid slot indexes (eg, first slot is 0, second is 1, etc).
+你可以使用 `@addItem` 指令添加物品，使用 `@removeItem`（或 `@removeItemAt`、`@removeAllItems`）移除物品。物品 ID 与预制体名称一致。物品槽位 ID 则从 0 开始递增（如第一个槽位为 0，第二个为 1，以此类推）。
 
-`itemExist()` and `itemCount()` custom [expression functions](/guide/script-expressions#expression-functions) to check wither an items exist in inventory and number of existing items are also available for convenience.
+自定义的 [表达式函数](/zh/guide/script-expressions#expression-functions) `itemExist()` 和 `itemCount()` 也可用于检测物品是否存在以及物品数量。
 
-Below is a script from the example project:
+以下是示例项目中的脚本：
 
 ```nani
 # Start
@@ -141,72 +141,72 @@ Select an action.[>]
 
 ## Live2D
 
-The sample demonstrates using Live2D characters with Naninovel. Find them at `Content/Characters/Hiyori` and `Content/Characters/Senko` directories.
+此示例展示了如何在 Naninovel 中使用 Live2D 角色。相关资源位于 `Content/Characters/Hiyori` 和 `Content/Characters/Senko` 目录下。
 
 ![](https://i.gyazo.com/b81df72fc7afaed569520496cbee09f0.mp4)
 
-## Localization
+## 本地化
 
- - The generated localization documents are stored at `Profiles/Naninovel/Resources/Naninovel/Localization` directory.
- - The generated sheets are stored at `Sheets` directory under the samples project root.
- - The localization-specific font is stored at `Profiles/Naninovel/Resources/Naninovel/Fonts`.
+- 生成的本地化文档存储在 `Profiles/Naninovel/Resources/Naninovel/Localization` 目录中。  
+- 生成的表格文件存储在示例项目根目录下的 `Sheets` 文件夹中。  
+- 与特定语言相关的字体文件存储在 `Profiles/Naninovel/Resources/Naninovel/Fonts` 目录中。
 
-Folders selected for localization tool:
+以下是为本地化工具选择的文件夹：
 
-| Folder                 | Path                                                       |
-|------------------------|------------------------------------------------------------|
-| Script Folder (input)  | Assets/Scripts/Scenario                                    |
-| Text Folder (input)    | Assets/Profiles/Naninovel/Resources/Naninovel/Text         |
-| Locale Folder (output) | Assets/Profiles/Naninovel/Resources/Naninovel/Localization |
+| 文件夹名称               | 路径                                                         |
+|--------------------------|--------------------------------------------------------------|
+| Script Folder (输入)     | Assets/Scripts/Scenario                                      |
+| Text Folder (输入)       | Assets/Profiles/Naninovel/Resources/Naninovel/Text           |
+| Locale Folder (输出)     | Assets/Profiles/Naninovel/Resources/Naninovel/Localization   |
 
-Folders selected for spreadsheet tool:
+用于电子表格工具的文件夹：
 
-| Folder                    | Path                                                       |
-|---------------------------|------------------------------------------------------------|
-| Input Scripts Folder      | Assets/Scripts/Scenario                                    |
-| Input Text Folder         | Assets/Profiles/Naninovel/Resources/Naninovel/Text         |
-| Input Localization Folder | Assets/Profiles/Naninovel/Resources/Naninovel/Localization |
-| Output Folder             | Sheets                                                     |
+| 文件夹名称                   | 路径                                                         |
+|------------------------------|--------------------------------------------------------------|
+| Input Scripts Folder         | Assets/Scripts/Scenario                                      |
+| Input Text Folder            | Assets/Profiles/Naninovel/Resources/Naninovel/Text           |
+| Input Localization Folder    | Assets/Profiles/Naninovel/Resources/Naninovel/Localization   |
+| Output Folder                | Sheets                                                       |
 
 ![](https://i.gyazo.com/97d232751dd7e97bc828f3521f1d2066.mp4)
 
-## Map
+## 地图
 
-The sample shows how you can implement an interactive map without any C# scripting.
+该示例展示了如何在不编写任何 C# 脚本的情况下实现一个交互式地图。
 
 ![](https://i.gyazo.com/f93f0e73389934bf25226f4000e437eb.gif)
 
-The map is implemented as a custom UI, which is stored at `Content/UI/Map`. The locations are regular Unity buttons placed in the UI.
+地图以自定义 UI 形式实现，存放于 `Content/UI/Map` 目录下。各个地点是普通的 Unity 按钮，放置在该 UI 中。
 
 ![](https://i.gyazo.com/f421eaf666c9d84b04d23a72d1259f47.png)
 
-The button's click and hover events are handled with Naninovel's [Play Script](https://naninovel.com/guide/user-interface.html#play-script-on-unity-event) component.
+按钮的点击与悬停事件由 Naninovel 的 [Play Script](https://naninovel.com/guide/user-interface.html#play-script-on-unity-event) 组件处理。
 
 ![](https://i.gyazo.com/a64ee9beee378c687d0d8093334f4ef7.png)
 
-The availability of the locations is controlled with [Variable Events](https://naninovel.com/guide/custom-variables.html#variable-events) components attached to the buttons.
+地点的可用性由附加在按钮上的 [Variable Events](https://naninovel.com/guide/custom-variables.html#variable-events) 组件控制。
 
-## RTL
+## 右到左文字
 
-The RTL printer is stored at `Content/Printers/RTL`.
+右到左文字输出窗存放在 `Content/Printers/RTL` 目录下。
 
 ![](https://i.gyazo.com/7b582e4ae76c6fd62170e00dd3874ff7.png)
 
-## Actor Shader
+## 演出元素着色器
 
-The example shows how to create and use texture shader for adding custom transition effects and sprite shader with lighting and self-illumination support; the latter is used to simulate time of day for a background actor.
+该示例展示了如何创建并使用纹理着色器来实现自定义转场效果，以及带有光照与自发光支持的精灵着色器；后者用于模拟背景角色的昼夜变化效果。
 
 ![](https://i.gyazo.com/a9d7fb29d5e076245ac515d673cc155e.mp4)
 
-The custom shaders are stored at `Scripts/Shaders` directory.
+自定义着色器存储在 `Scripts/Shaders` 目录中。
 
-Background texture has self-illumination mask stored in the alpha layer, which is used by the custom shader to evaluate which areas should emit light, while ignoring the global light.
+背景纹理的 Alpha 通道中存有自发光遮罩，着色器会根据该遮罩判断哪些区域应发光，而不受全局光照影响。
 
-Time of day is controlled with `Scripts/Runtime/Shader/TimeOfDay.cs`, which allows configuring light color and emission intensity at any given point of a 24-hour day.
+昼夜变化由 `Scripts/Runtime/Shader/TimeOfDay.cs` 控制，它允许在 24 小时周期内配置光照颜色与发光强度。
 
 ![](https://i.gyazo.com/b58cb70a522b9085cedb796249557df5.png)
 
-The component API is exposed to naninovel scripts via a `Scripts/Runtime/Shader/SetHour.cs` custom command, which allows setting the hour with `@hour` command, eg:
+组件 API 通过自定义指令 `Scripts/Runtime/Shader/SetHour.cs` 暴露给 Naninovel 脚本，可通过 `@hour` 指令设置时间，例如：
 
 ```nani
 ; Set current hour to 18:00 (6:00 PM) over 3 seconds.
@@ -215,109 +215,112 @@ The component API is exposed to naninovel scripts via a `Scripts/Runtime/Shader/
 
 ## Spine
 
-The sample demonstrates using Spine character with Naninovel. Find it a`Content/Characters/Spine` directory.
+此示例展示了如何在 Naninovel 中使用 Spine 角色。资源位于 `Content/Characters/Spine` 目录。
 
 ![](https://i.gyazo.com/08b04de115d97427d152cb5f37065d2d.mp4)
 
-## UI
+## 用户界面
 
-The sample contains following examples of new custom and modified built-in UIs:
+该示例包含以下自定义与修改后的内置 UI 示例：
 
-- Title Screen
+- 标题界面（Title Screen）
 
 ![](https://i.gyazo.com/e76a9a339535da4e34dfcc376ebfbf41.png)
 
-- Music Gallery
+- 音乐图库（Music Gallery）
 
 ![](https://i.gyazo.com/68eabcbd6538d166c0e6eca58dd8f87b.png)
 
-- Credits
+- 制作人员表（Credits）
 
 ![](https://i.gyazo.com/40bb59cf450fc129f80830aa411c3b14.png)
 
-- Timestamps in Chat Printer
+- 聊天文本输出窗中的时间戳（Timestamps in Chat Printer）
 
 ![](https://i.gyazo.com/770a7e9d9d021f8013f7ce139c80992b.png)
 
-- Custom Choice Handler
+- 自定义选项处理器（Custom Choice Handler）
 
 ![](https://i.gyazo.com/aab6a99a12a3e31f775a4f121cdc213a.png)
 
-- Emoji in Revealed Messages
+- 已显示消息中的表情符号（Emoji in Revealed Messages）
 
 ![](https://i.gyazo.com/e3bc62957204c0fba91e879470d0e181.png)
 
-- Font Variants in Revealed Messages
+- 已显示消息中的字体变体（Font Variants in Revealed Messages）
 
 ![](https://i.gyazo.com/fd203a98efc513e6bf1020f1978d57eb.png)
 
-- Calendar
+- 日历（Calendar）
 
 ![](https://i.gyazo.com/1666b02675d34dcd5ea4e42dae81b416.png)
 
-— all the sample UIs are stored at `Content/UI`.
+以上所有示例 UI 均存储在 `Content/UI` 目录中。
 
-## Layered Actor
+## 分层角色
 
-Find the layered character at `Content/Charecters/Miho` directory and layered background set up in camera rendering mode at `Content/Backgrounds/Particles` directory.
+分层角色位于 `Content/Charecters/Miho` 目录，分层背景（使用摄像机渲染模式）位于 `Content/Backgrounds/Particles` 目录。
 
-## Diced Actor
+## 切片角色
 
-Find the diced character and atlas at `Content/Charecters/Kohaku/Diced` directory.
+切片角色与图集位于 `Content/Charecters/Kohaku/Diced` 目录。
 
-## Video Actor
+## 视频角色
 
-Video backgrounds are stored `Content/Backgrounds/Video` directory, while a video actor can be found at `Content/Characters/Ball` directory.
+视频背景位于 `Content/Backgrounds/Video` 目录，视频角色位于 `Content/Characters/Ball` 目录。
 
-## Scene Background
+## 场景背景
 
-Find the scene background at `Content/Backgrounds/Scene` directory.
+场景背景位于 `Content/Backgrounds/Scene` 目录。
 
-## Transition Effects
+## 转场效果
 
-Find a demo with all the available transition effects applied in sequence in `Scripts/Scenario/Transitions` scenario script.
+展示所有可用转场效果的示例脚本存储在 `Scripts/Scenario/Transitions` 中。
 
-## Auto Voicing
+## 自动语音
 
-The voice clips for EN and JA locales are stored under `Content/Audio/Voice`.
+英语（EN）与日语（JA）语音文件存放于 `Content/Audio/Voice` 目录。  
+进入 “AUTO VOICING” 示例后，可在游戏设置中切换语音语言。
 
-Enter "AUTO VOICING" sample and try switching the voice language in game settings.
+## 音乐前奏
 
-## Music Intro
+演示如何使用 [@bgm] 指令的 `intro` 参数，使曲目的前奏部分只播放一次，然后循环播放主体部分。
 
-Shows how to use `intro` parameter of [@bgm] command, so that the intro part is played once before looping the base part of the track.
+## 背景匹配
 
-## Background Matching
+此示例展示了背景匹配功能，即如何使不同宽高比的背景适配显示视口。
 
-A demo of the background matching feature, showing how backgrounds with different aspect ratios can be matched to the display viewport.
+## 可视化脚本
 
-## Visual Scripting
-
-[Visual scripting](https://docs.unity3d.com/Packages/com.unity.visualscripting@latest) (previously known as Bolt) is a built-in package bundled by default with Unity 2021 and newer version. It enables you to create logic for games or applications with unit-based graphs that both programmers and non-programmers can use without writing code.
+[Visual Scripting](https://docs.unity3d.com/Packages/com.unity.visualscripting@latest)（先前称为 Bolt）是 Unity 2021 及更高版本中默认包含的内置包。  
+它允许开发者使用基于单元（unit-based）的图形逻辑系统，在无需编写代码的情况下创建游戏或应用逻辑，程序员与非程序员皆可使用。
 
 ![](https://i.gyazo.com/ab7c9d92b32810b030aba24b4bd95405.jpg)
 
-First, make sure you're using a compatible Unity version (2021.2 or newer) and `Visual Scripting` package is installed in the package manager.
+首先，确保使用 Unity 2021.2 或更新版本，并在包管理器中安装了 `Visual Scripting` 包。
 
 ![](https://i.gyazo.com/885ebb9808b369c30dfcaab19b0cee2f.png)
 
-Add `Elringus.Naninovel.Runtime` library to the `Node Library` list found in "Visual Scripting" project settings menu. This is required to expose engine types and APIs to the visual scripting graphs.
+在项目设置的 “Visual Scripting” 菜单中，将 `Elringus.Naninovel.Runtime` 库添加至 `Node Library` 列表中。  
+这样才能在可视化脚本图表中使用 Naninovel 引擎类型与 API。
 
 ![](https://i.gyazo.com/38afd2ea477fcf0921114e3847de6c85.png)
 
-The Visual Scripting doesn't automatically expose all the available types in the libraries, so we additionally need to add the required Naninovel types to the `Type Options` list found in the same settings menu. In the example below we added `Engine`, `Script Player Interface` and `Script Player Extensions`, but you'll probably need more types, like the other [engine service interfaces](/guide/engine-services), configurations, etc.
+Visual Scripting 并不会自动暴露库中的所有类型，因此还需将所需的 Naninovel 类型添加到同一设置菜单下的 `Type Options` 列表中。  
+在示例中，我们添加了 `Engine`、`Script Player Interface` 与 `Script Player Extensions`，但你可能还需要更多类型，如其他 [引擎服务接口](/zh/guide/engine-services)、配置等。
 
 ![](https://i.gyazo.com/9afdeb12c0ff63ce942d04b21f737217.png)
 
-Don't forget to regenerate units after adding the libraries and types to apply the changes.
+添加完库与类型后，别忘了重新生成单元（Regenerate Units）以应用更改。
 
 ![](https://i.gyazo.com/26c7bee4798b690c4eb362ec39746dc7.png)
 
-When Naninovel library and types are added in the visual scripting settings, the engine APIs will become available in the fuzzy finder under graph view and can be used in the same way as the other Unity or third-party APIs. Below is an example on initializing the engine and playing a script. Make sure to disable `Initialize On Application Load` and remove `Title UI`, before trying this example.
+当 Naninovel 库与类型已添加至可视化脚本设置后，引擎 API 将在图形视图的模糊查找器（Fuzzy Finder）中可用，可与 Unity 或其他第三方 API 一样使用。  
+以下示例演示如何初始化引擎并播放脚本。在尝试此示例前，请禁用 “Initialize On Application Load” 并移除 “Title UI”。
 
 ![](https://i.gyazo.com/63a832f10fa3f5e4429e98da50ae8dd0.png)
 
-In case you wish to send an event from a scenario script to a visual scripting graph or state machine, below is example of a [custom command](/guide/custom-commands), which will attempt to find a game object with the provided name and send an event with the specified name and arguments:
+如果希望从 Naninovel 场景脚本向可视化脚本图或状态机发送事件，可使用如下 [自定义指令](/zh/guide/custom-commands) 示例：它会尝试查找具有指定名称的游戏对象并发送带参数的事件。
 
 ```csharp
 [Alias("bolt")]
@@ -346,13 +349,13 @@ public class BroadcastBoltEvent : Command
 }
 ```
 
-Just copy-paste the contents to a new C# script stored anywhere inside the project Assets directory and the command will automatically become available and can be used as follows:
+只需将以下内容复制粘贴到项目 Assets 目录中的任意位置，保存为新的 C# 脚本，该指令便会自动生效，可按如下方式使用：
 
 ```nani
 ; Send "MyEvent" to "ExampleEvent" game object with the provided args
 @bolt object:ExampleEvent name:MyEvent args:ExampleMessage,Script002
 ```
 
-Below is an example graph, that, when attached to a `ExampleEvent` game object, will print the message and start playing the specified script.
+以下是一个示例图表，将其附加到 `ExampleEvent` 游戏对象后，会输出消息并开始播放指定的脚本。
 
 ![](https://i.gyazo.com/e2aef7f19cf013f4d476d32aac036f54.png)

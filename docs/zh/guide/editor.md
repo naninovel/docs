@@ -1,203 +1,203 @@
-# Editor
+# 编辑器
 
-Naninovel has its own standalone web app, which you can use to author scenario scripts with a visual editor and manage the story structure via a node graph — or just work on a scenario draft for the game and preview it using procedurally generated assets — all without even opening the Unity editor, right inside your web browser.
+Naninovel 拥有独立的网页版编辑器，你可以通过可视化界面编写场景脚本，并使用节点图管理剧情结构 —— 或者仅在浏览器中为游戏编写剧本草稿并使用程序化生成的资源进行预览，无需打开 Unity 编辑器，就能在浏览器中直接工作。
 
 ![](https://i.gyazo.com/fa644485a2eeffd9ab67605176fa873e.png)
 
-## Installation
+## 安装
 
-Navigate to [naninovel.com/editor](https://naninovel.com/editor) and start using the app right inside your web browser.
+前往 [naninovel.com/editor](https://naninovel.com/editor)，即可直接在浏览器中使用该应用。
 
-Optionally, you can accept the browser prompt to install the app as a standalone [PWA](https://en.wikipedia.org/wiki/Progressive_web_app), so that it has its own dedicated icon on the taskbar and runs in a native OS window, just like a regular desktop app.
+可选地，你也可以接受浏览器提示，将其安装为独立的 [PWA 应用](https://en.wikipedia.org/wiki/Progressive_web_app)，这样它会在任务栏上拥有专属图标，并在原生系统窗口中运行，就像普通桌面应用一样。
 
 ![?width=500](https://i.gyazo.com/71a9d721eb851db02feca366c0810bdb.png)
 
-When installed as a PWA, you can collapse the window title bar to increase the application's vertical real estate.
+安装为 PWA 后，你可以折叠窗口标题栏以增加编辑器的垂直空间。
 
 ![](https://i.gyazo.com/44d5e200adbdebbf3cafd768f8055de3.png)
 
-## First-Time Setup
+## 首次设置
 
-Upon first launch, the app will ask you to pick a directory to store user data, such as custom layouts and settings. This is required to persist your preferences even if the browser is uninstalled or switched; it's also useful for backing up or migrating user data between devices. You can pick any directory, for example `<USER>/.nani`, where `<USER>` is the [home directory](https://en.wikipedia.org/wiki/Home_directory).
+首次启动应用时，会提示你选择一个目录来存储用户数据，例如自定义布局和设置。这一步是必须的，用于在浏览器卸载或切换时保留偏好设置；同时也方便你在不同设备之间备份或迁移用户数据。你可以选择任意目录，例如 `<USER>/.nani`，其中 `<USER>` 是[用户主目录](https://en.wikipedia.org/wiki/Home_directory)。
 
-### File System Access
+### 文件系统访问
 
-When picking a directory, the browser will ask for permission to allow the app to read and write files in that directory. This is a part of the browser's security model: it ensures the app can't access anything outside the allowed directories.
+选择目录时，浏览器会请求权限，允许应用读取和写入该目录下的文件。这是浏览器安全模型的一部分，用于确保应用无法访问授权目录以外的内容。
 
 ::: info NOTE
-Browser security won't allow you to pick the root of any system directory, such as the desktop or home directories themselves. Instead, create a subdirectory under such locations. For example, you can create a `.nani` directory under the system's home directory.
+浏览器的安全机制不允许你直接选择系统目录（如桌面或主目录）的根路径。请在这些位置下创建一个子目录，例如在主目录下创建 `.nani` 文件夹。
 :::
 
-On subsequent access, the browser will prompt you to allow permanent access to the selected directories. Confirm this so you won't have to grant access each time you open the app, and to allow the editor to auto-open the last project on startup.
+下次访问时，浏览器会提示是否允许应用永久访问所选目录。确认后，你将无需每次重新授权，同时编辑器可以在启动时自动打开上次使用的项目。
 
 ![?width=336](https://i.gyazo.com/7f8102700e44ec4505977e6e3d84c91f.png)
 
-## Editor Modes
+## 编辑器模式
 
-Once setup is complete, you can either pick an empty directory to create a new project for [sandbox mode](/guide/editor#sandbox-mode), or choose an existing Unity project to work in [Unity-attached mode](/guide/editor#unity-attached-mode).
+设置完成后，你可以选择一个空目录以创建新的项目（[沙盒模式](/zh/guide/editor#sandbox-mode)），或选择一个现有的 Unity 项目以进入 [Unity 附加模式](/zh/guide/editor#unity-attached-mode)。
 
-### Sandbox Mode
+### 沙盒模式
 
-Sandbox mode is completely independent of the Unity editor. It provides tools to author the scenario and preview (play) the game right in the browser, using the latest engine specs, available commands, and runtime features. Under the hood, it produces standard `.nani` text files, which you can seamlessly reuse in Unity or edit directly with the [IDE extension](/guide/ide-extension).
+沙盒模式完全独立于 Unity 编辑器。它提供工具用于在浏览器中编写场景脚本并预览游戏，支持最新的引擎规范、指令和运行时功能。底层生成标准的 `.nani` 文本文件，可直接在 Unity 中复用，或用 [IDE 扩展](/zh/guide/ide-extension) 进行编辑。
 
-Main use cases for sandbox mode:
+沙盒模式的主要用途包括：
 
-- Try Naninovel's scripting system and runtime features before purchasing;
-- Draft the scenario using generated assets before starting development in Unity.
+- 在购买前体验 Naninovel 的脚本系统与运行特性；  
+- 在正式进入 Unity 开发前，使用自动生成的资源编写剧本草稿。
 
-To work in sandbox mode, choose "Create Project" on the project setup screen.
+在项目设置界面选择 “Create Project” 即可进入沙盒模式。
 
-When the project is created, the editor will scaffold a template with several premade scenario scripts and assets to help you get started. You're free to delete them all via the [file browser](/guide/editor#file-browser) and start from scratch if you prefer.
+项目创建后，编辑器会自动生成一个模板，包含若干预制的场景脚本与资源，帮助你快速上手。如有需要，你可以通过 [文件浏览器](/zh/guide/editor#file-browser) 删除它们并从零开始。
 
-#### Game Window
+#### 游戏窗口
 
-Game preview inside the web editor is available only in sandbox mode via the "Game" tab.
+网页编辑器中的游戏预览功能仅在沙盒模式下的 “Game” 选项卡中可用。
 
 ![](https://i.gyazo.com/c164c428fc42b2d394b0a68c8de84f01.png)
 
-You can control the preview via the playback buttons in the control panel. Each button serves as both a control and an indicator of the associated preview status:
+你可以通过控制面板上的播放按钮控制预览。每个按钮既是控制器，也是播放状态的指示器：
 
-- **Play/Stop** – Whether the player instance is initialized and running. Can be used to reset the game instance to quickly restart the game;
-- **Pause/Resume** – Whether the script player is waiting for input before proceeding. Use this to halt or resume playback without activating continue input in the game view;
-- **Fast-Forward** – Whether skip (fast-forward) mode is enabled. Use this to quickly run through the game.
+- **Play/Stop** – 控制游戏实例是否初始化与运行，可用于快速重置游戏实例；  
+- **Pause/Resume** – 控制脚本播放器是否等待输入，可在不激活继续输入的情况下暂停或恢复播放；  
+- **Fast-Forward** – 是否启用跳过（快进）模式，可快速浏览游戏内容。
 
-#### Generated Assets
+#### 生成资源
 
-When drafting the story, it may be useful to "stub" media assets, such as audio clips, backgrounds, and character textures. At the same time, it's helpful to keep track of which asset is currently active while previewing the scenario.
+在撰写剧情时，可能需要使用占位媒体资源（如音频、背景、角色贴图）。同时，在预览剧本时，能清楚地看到当前激活的资源也很有帮助。
 
-Sandbox mode allows creating asset meta, where you describe the asset traits, and the editor generates distinguishable previews to be displayed when the asset is used.
+沙盒模式允许创建资源元数据（Asset Meta），在其中描述资源特征，编辑器会生成可区分的预览图以显示被引用的资源。
 
 ![](https://i.gyazo.com/fd6765bfc35024769871e4d9b1372b62.png)
 
-To create an asset meta, right-click under either the `Backgrounds`, `Characters`, or `Audio` directories in the [file browser](/guide/editor#file-browser) and select the option to add the associated asset.
+要创建资源元数据，请在 [文件浏览器](/zh/guide/editor#file-browser) 中右键点击 `Backgrounds`、`Characters` 或 `Audio` 目录下的空白处，然后选择添加对应的资源类型。
 
-You can then select the created asset to inspect and edit available traits.
+创建完成后，可选中该资源以查看和编辑其属性。
 
 ![?width=604](https://i.gyazo.com/b876cb9f3305899a8fc880cac89b3702.png)
 
-The created assets are automatically added to the dropdown lists in the [scenario editor](/guide/editor#scenario-editor).
+创建的资源会自动出现在 [场景编辑器](/zh/guide/editor#scenario-editor) 的下拉菜单中。
 
 ![?width=453](https://i.gyazo.com/01cc5ad5e5edb81b9b26a81b454f411f.png)
 
-The assets are instantly displayed in the game preview when selected.
+选中资源时，它们会即时显示在游戏预览中。
 
-### Unity-attached Mode
+### Unity 附加模式
 
-The Naninovel editor can attach to a Unity project with the Naninovel package installed, providing extra tools, such as the visual scenario editor and story graph.
+Naninovel 编辑器可以附加到安装了 Naninovel 包的 Unity 项目，提供额外功能，如可视化场景编辑器和剧情节点图。
 
 ![](https://i.gyazo.com/d54f0b35b4d89bdbece096c7b78c8c72.mp4)
 
-Choose "Open Project" on the setup screen, pick the `Assets` directory of an existing Unity project, and the editor will initialize in attached mode.
+在设置界面选择 “Open Project”，然后选取现有 Unity 项目的 `Assets` 目录，编辑器将以附加模式启动。
 
-Note that while the playback buttons are active, the game preview tab is disabled in attached mode — that's because playback is controlled in Unity. You can hide the game tab when working in this mode.
+需要注意的是，虽然播放控制按钮仍然可用，但在附加模式下游戏预览选项卡是禁用的，因为播放控制由 Unity 管理。在这种模式下可以隐藏游戏预览选项卡。
 
-Otherwise, the editor works similarly in attached mode: the scenario editor, story graph, global search, and other features are available. It will also pick up custom commands, resources, and metadata from the Unity editor, similar to the IDE extension. You can also use it alongside the IDE extension — for example, writing scripts in VS Code while fine-tuning them in the visual editor or tracking the structure in the story graph.
+除此之外，编辑器在附加模式下的工作方式与沙盒模式相似：场景编辑器、剧情图、全局搜索等功能均可使用。它还会自动从 Unity 编辑器中读取自定义指令、资源与元数据，类似于 IDE 扩展。你也可以同时使用这两者 —— 例如，在 VS Code 中编写脚本的同时，在可视化编辑器中微调或在剧情图中跟踪结构。
 
-## Workspace
+## 工作区
 
-The editor workspace has a flexible and customizable layout. You can resize or reposition any tab by drag-dropping dividers between tabs, tab sets, or the tabs themselves. You can also maximize any tab by clicking the button at the end of the associated tab set.
+编辑器工作区支持灵活可定制的布局。你可以通过拖动分隔线或选项卡来自由调整大小或位置，也可以点击选项卡右侧的按钮最大化显示。
 
 ![?width=469](https://i.gyazo.com/4317e0bd0d87b270feb756c55ebace62.mp4)
 
-There are default layout templates to choose from, and you can add custom layouts via the dropdown on the control panel.
+编辑器提供多种默认布局模板，你也可以通过控制面板的下拉菜单添加自定义布局。
 
 ![?width=310](https://i.gyazo.com/8cab94936284761b432dc0f271cb1d12.png)
 
-## File Browser
+## 文件浏览器
 
-The file browser tab allows you to interact with the files and directories under the current project root. You can create new scenario scripts or asset meta (in [sandbox mode](/guide/editor#sandbox-mode)), manage, and organize files.
+文件浏览器选项卡允许你管理当前项目根目录下的文件与文件夹。你可以创建新的场景脚本或资源元数据（仅限 [沙盒模式](/zh/guide/editor#sandbox-mode)），并组织文件结构。
 
 ![?width=280](https://i.gyazo.com/ada798d90c52c3f24d88001258e794a1.png)
 
-Note that while in [attached mode](/guide/editor#unity-attached-mode), even when the "Assets" directory is picked, the file browser will skip unrelated directories and only show the scenario root directory.
+请注意，在 [附加模式](/zh/guide/editor#unity-attached-mode) 下，即使选择了 “Assets” 目录，文件浏览器也会跳过无关文件夹，仅显示场景根目录。
 
-When you rename or move scenario script files via the file browser, the editor will automatically update navigation commands (such as [@goto] and [@gosub]) to keep the paths relevant.
+当你通过文件浏览器重命名或移动场景脚本时，编辑器会自动更新导航指令（如 [@goto] 和 [@gosub]），以保持路径有效。
 
-## Inspector
+## 检视器
 
-The interaction model of the Naninovel editor is similar to the Unity editor: you select an asset, such as a file in the file browser or a node in the story graph, and the associated editors are displayed in the inspector tab. This allows for a clean separation between structural and direct editing contexts, resulting in a more productive UX.
+Naninovel 编辑器的交互模式类似 Unity 编辑器：你可以选择一个资源（如文件浏览器中的文件或剧情图中的节点），其对应的编辑器界面会显示在检视器选项卡中。这种结构化与直接编辑分离的设计，让工作流程更高效。
 
 ![?width=606](https://i.gyazo.com/1bf3dae6c1bb254c05580e61300d064b.png)
 
-The inspector employs a focus trap — you can use Tab and Shift+Tab to switch between the input fields and controls efficiently, without using the mouse.
+检视器支持键盘焦点切换 —— 你可以使用 Tab 和 Shift+Tab 快速在输入字段和控件之间切换，无需鼠标操作。
 
-## Scenario Editor
+## 场景编辑器
 
-The scenario editor is the app's main authoring tool. It's an alternative to writing `.nani` files in text or code editors such as VS Code.
+场景编辑器是该应用的主要创作工具。它是编写 `.nani` 文件的可视化替代方案，可取代 VS Code 等文本或代码编辑器。
 
 ![](https://i.gyazo.com/1e38f673835584033e4a5142f9989981.png)
 
-Each scenario editor tab represents a `.nani` script, with text lines visualized as rows. You can add lines using the `+` button at the bottom of the tab, via the context menu (right-click existing content), or with the `Ctrl+Space` hotkey (configurable in [settings](/guide/editor#keymap)).
+每个场景编辑器选项卡对应一个 `.nani` 脚本，脚本行以表格行形式显示。可使用底部的 `+` 按钮、右键菜单或快捷键 `Ctrl+Space`（可在 [设置](/zh/guide/editor#keymap) 中修改）添加新行。
 
-You can reorder lines by drag-dropping, delete or duplicate lines via the context menu or with the `Delete` and `Ctrl+D` keys.
+你可以通过拖放调整行顺序，或使用右键菜单、`Delete` 与 `Ctrl+D` 删除或复制行。
 
-In [sandbox mode](/guide/editor#sandbox-mode), changes are applied immediately and reflected in the game view. In [attached mode](/guide/editor#unity-attached-mode), you need to [save](/guide/editor#dirty-save) the modified file for changes to reflect in Unity.
+在 [沙盒模式](/zh/guide/editor#sandbox-mode) 下，修改会立即生效并反映到游戏视图中。在 [附加模式](/zh/guide/editor#unity-attached-mode) 下，你需要 [保存](/zh/guide/editor#dirty-save) 文件后更改才会同步至 Unity。
 
-While the game is running, the currently played line is highlighted with a green or yellow outline depending on whether it's waiting for input. To automatically open the currently played script and select the active line, click the dedicated button on the control panel or press `Ctrl+X`.
+游戏运行时，当前播放的脚本行会以绿色或黄色高亮，具体取决于该行是否在等待输入。要自动打开当前播放的脚本并选中活跃行，可点击控制面板上的专用按钮或按 `Ctrl+X`。
 
 ![?width=293](https://i.gyazo.com/4e2503fde65d327b2388ec5289814aae.png)
 
-## Story Graph
+## 剧情图
 
-The story graph helps visualize, track, and organize the scenario structure, and also allows editing the scripts themselves.
+剧情图用于可视化、追踪和组织场景结构，同时也允许直接编辑脚本。
 
-By default, each node represents either a scenario script or a directory. Edges represent navigation between scripts. Conditional navigations (e.g., [@goto] under [@choice] or [@if]) appear as dashed edges, with conditions listed on the associated ports.
+默认情况下，每个节点代表一个场景脚本或目录，节点之间的连线表示脚本间的跳转。条件跳转（例如 [@choice] 或 [@if] 下的 [@goto]）会显示为虚线，并在连接端口上列出条件。
 
 ![](https://i.gyazo.com/046b9f276e63914d4cdd8663f649d1e0.png)
 
-You can create scripts and directories by right-clicking the graph pane, and move or rename them via the node context menu. To navigate directory nodes, double-click or choose "Enter Folder" from the context menu.
+你可以在图面上右键创建新的脚本或目录节点，并通过节点的上下文菜单移动或重命名它们。双击目录节点或在上下文菜单中选择 “Enter Folder” 即可进入目录。
 
-You can also enter script nodes, in which case the graph works as a visual scenario editor. Instead of script and directory nodes, you'll see label nodes, which host scenario lines that can be edited just as in the [scenario editor](/guide/editor#scenario-editor).
+你也可以进入脚本节点，此时剧情图将作为可视化场景编辑器使用。此时图中的节点将变为标签节点（Label Nodes），包含可编辑的剧本行，与 [场景编辑器](/zh/guide/editor#scenario-editor) 的操作方式相同。
 
 ![](https://i.gyazo.com/890d2edc13a971407620a3bd38d50573.png)
 
-## Dirty-Save
+## 脏保存
 
-When you modify an asset, such as a scenario script or the graph, it becomes "dirty" — meaning the changes are in memory but not yet saved to disk. To persist the changes, you need to save the asset.
+当你修改了某个资源（如场景脚本或剧情图）后，该资源会变为 “dirty” 状态 —— 即更改仅存在于内存中，尚未保存到磁盘。要将更改永久保存，需要执行保存操作。
 
 ![?width=323](https://i.gyazo.com/f8f63d99a51616da0fcf454def5fe667.png)
 
-When at least one asset is dirty, the save button becomes active. Click it to see which assets are modified, and save them all or individually. You can also save all dirty assets by pressing `Ctrl+S`.
+当至少有一个资源处于 dirty 状态时，保存按钮会被激活。点击它可以查看哪些资源已被修改，并选择全部或单独保存。你也可以按 `Ctrl+S` 一键保存所有未保存的资源。
 
-## Undo-Redo
+## 撤销与重做
 
-Most modifications in the editor are tracked and can be reverted using the undo-redo system. When a change is made, the undo button becomes active — click it to view a list of changes and undo/redo them individually.
+编辑器中的大多数修改操作都会被记录，可通过撤销/重做系统恢复。当有改动发生时，撤销按钮会被激活 —— 点击后可查看修改历史，并单独撤销或重做各项操作。
 
 ![?width=357](https://i.gyazo.com/7a2f120c4ce517eef9a804627d89c185.png)
 
-You can also undo and redo with `Ctrl+Z` and `Ctrl+Y`, respectively.
+也可以使用快捷键 `Ctrl+Z` 撤销、`Ctrl+Y` 重做。
 
-## Global Search
+## 全局搜索
 
-As your project grows, it may be useful to search across all scenario scripts. Double-press the `Shift` key or click the "Search" button on the control panel to open the global search.
+随着项目规模增大，你可能需要在所有场景脚本中进行全局搜索。双击 `Shift` 键或点击控制面板上的 “Search” 按钮，即可打开全局搜索界面。
 
 ![?width=452](https://i.gyazo.com/bda71c03e4911f12a3dbbc8ce8214380.mp4)
 
-Results update as you type and include both scenario script names and content. Selecting a result opens it and highlights the associated line in the [scenario editor](/guide/editor#scenario-editor).
+搜索结果会在输入时实时更新，涵盖脚本名称与内容。选择结果后会自动打开对应脚本，并在 [场景编辑器](/zh/guide/editor#scenario-editor) 中高亮显示相关行。
 
-## Settings
+## 设置
 
-You can customize both the editor and project via the settings tab, which has two main categories: user and project. Open the tab via the menu on the control panel or by pressing `Ctrl+Alt+S`.
+你可以通过设置选项卡自定义编辑器与项目。设置分为两类：**用户设置** 与 **项目设置**。可通过控制面板菜单或快捷键 `Ctrl+Alt+S` 打开。
 
 ![?width=470](https://i.gyazo.com/5bc5768a9b8f80fa42be00200bc06159.png)
 
-### User Settings
+### 用户设置
 
-User settings are stored in the directory you picked during [first-time setup](/guide/editor#first-time-setup). They're not shared with the project and apply to all projects on the device. This includes preferences like the editor color scheme, keymap, and UI element visibility.
+用户设置存储在你在 [首次设置](/zh/guide/editor#first-time-setup) 时选择的目录中，不会与项目共享，适用于该设备上的所有项目。包括编辑器配色方案、快捷键映射（Keymap）以及 UI 元素可见性等偏好。
 
-### Project Settings
+### 项目设置
 
-Project settings are user-agnostic, stored under the project directory, and shared with all users working on the project. These include project-specific properties like the project title.
+项目设置独立于用户，存储在项目目录下，会在所有参与该项目的用户之间共享。包括项目标题等项目特定的属性。
 
-### Keymap
+### 快捷键映射
 
-The keymap is part of the user settings and lets you configure key bindings for various editor features, such as appending lines, duplicating nodes, entering play mode, etc.
+快捷键映射属于用户设置的一部分，用于配置编辑器中各种功能的按键绑定，例如添加行、复制节点、进入播放模式等。
 
-To bind a key, find the desired action and enter the key code. Modifiers can be prepended using `+`. Refer to the [MDN reference](https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values) for valid key codes and modifiers.
+要绑定按键，找到对应操作并输入按键代码，可使用 `+` 添加修饰键。可参考 [MDN 文档](https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values) 查看有效按键与修饰键。
 
-On macOS, modifiers map as follows:
+在 macOS 上，修饰键映射如下：
 
-| Code    | macOS |
+| 按键    | macOS |
 |---------|-------|
 | `Ctrl`  | `⌘`   |
 | `Alt`   | `⌥`   |
