@@ -1,12 +1,12 @@
-# Custom Commands
+# 自定义指令
 
-Command represents a single operation, that controls what happens on the scene; e.g., it can be used to change a background, move a character or load another naninovel script. Parametrized command sequences defined in [naninovel scripts](/guide/naninovel-scripts) effectively controls the game flow. You can find available built-in commands in the [API reference](/api/). In code, all the built-in script command implementations are defined under `Naninovel.Commands` namespace.
+指令代表一个单独的操作，用于控制场景中发生的事情；例如，它可以用于更换背景、移动角色或加载另一份 naninovel 脚本。定义在 [naninovel 脚本](/zh/guide/naninovel-scripts) 中的参数化指令序列实际上控制了游戏流程。你可以在 [API 参考](/api/) 中找到可用的内置指令。在代码中，所有内置脚本指令的实现都定义在 `Naninovel.Commands` 命名空间下。
 
-## Adding Custom Command
+## 添加自定义指令
 
-To add your own custom script command, create a new C# class derived from `Command` and implement `Execute` abstract method. The created class will automatically be picked up by the engine and you'll be able to invoke the command from the naninovel scripts by either the class name or an alias (if assigned). To assign an alias to the naninovel command, apply `Alias` attribute to the class.
+要添加你自己的自定义脚本指令，创建一个继承自 `Command` 的新 C# 类，并实现 `Execute` 抽象方法。创建的类会被引擎自动识别，你就可以在 naninovel 脚本中通过类名或别名（如果已指定）来调用该指令。要为 naninovel 指令指定别名，可在类上添加 `Alias` 属性。
 
-Below is an example of a custom command, that can be invoked from naninovel scripts as `@HelloWorld` or `@hello` to print "Hello World!" to the console and can also take an optional `name` parameter (eg, `@hello name:Felix`) to greet the provided name instead of the world.
+下面是一个自定义指令示例，可以在 naninovel 脚本中通过 `@HelloWorld` 或 `@hello` 调用，以在控制台中输出 “Hello World!”，并且可以接收一个可选的 `name` 参数（例如 `@hello name:Felix`），用来替代 “World” 输出指定的名字。
 
 ```csharp
 using Naninovel;
@@ -27,39 +27,39 @@ public class HelloWorld : Command
 }
 ```
 
-::: info NOTE
-Whenever you change C# command implementations—such as renaming the class, adding or removing parameters, changing their types or attributes—remember to re-import the scenario script assets (right-click on the folder where the scripts are stored and click "Reimport"). This is necessary because scenario scripts are parsed and compiled on import (not at runtime) and must be kept in sync with the C# implementations.
+::: info 注意
+每当你修改 C# 指令的实现——例如重命名类、添加或删除参数、更改参数类型或属性时——记得重新导入场景脚本资源（右键点击存放脚本的文件夹并选择 “Reimport”）。这是必要的，因为场景脚本在导入时会被解析和编译（而非运行时），必须与 C# 实现保持同步。
 :::
 
-### Execute Method
+### Execute 方法
 
-`Execute` is an async method invoked when the command is executed by the script player; keep your command logic there. Use [engine services](/guide/engine-services) to access the engine's built-in systems. Naninovel script execution will halt until this method returns a completed task if the `Wait` parameter is set to `true`.
+`Execute` 是一个异步方法，在脚本播放器执行指令时调用；将指令的主要逻辑写在这里。使用 [引擎服务](/zh/guide/engine-services) 访问引擎的内置系统。当 `Wait` 参数设置为 `true` 时，Naninovel 脚本的执行将暂停，直到该方法返回一个已完成的任务。
 
-### Execution Context
+### 执行上下文
 
-Notice the `ExecutionContext ctx` argument provided to the `Execute` method. When performing [async operations](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/), make sure to check the `ctx.Token` async token for cancellation and completion requests after each async operation, and react accordingly:
+请注意 `Execute` 方法中提供的 `ExecutionContext ctx` 参数。当执行 [异步操作](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/) 时，请务必在每次异步操作后检查 `ctx.Token` 的取消或完成状态，并做出相应响应：
 
-- `AsyncToken.Canceled` means the engine has been destroyed or reset. In both cases, it's no longer safe to use engine APIs, and any state mutations will lead to undefined behavior. When canceled, the command implementation is expected to throw `AsyncOperationCanceledException` immediately, discarding any currently performed activities.
-- `AsyncToken.Completed` means the command is expected to complete all activities as fast as possible. For example, if you're running animations, finish them instantly, regardless of their expected duration. This usually happens when the player activates continue input or when a save game operation starts.
+- `AsyncToken.Canceled` 表示引擎已被销毁或重置。在这两种情况下，使用引擎 API 都不再安全，任何状态更改都可能导致未定义行为。当被取消时，指令实现应立即抛出 `AsyncOperationCanceledException`，终止当前正在进行的操作。
+- `AsyncToken.Completed` 表示指令应尽快完成所有操作。例如，如果正在播放动画，应立即完成播放，而不考虑其预期持续时间。这通常发生在玩家触发继续输入或开始保存游戏操作时。
 
 ```csharp
 public override async UniTask Execute (ExecutionContext ctx)
 {
     await PerformSomething();
-    // The engine may have been destroyed while the above method was running;
-    // the following check will throw an exception if that's the case.
+    // 在上面的方法运行期间，引擎可能已被销毁；
+    // 如果发生这种情况，以下检查将抛出异常。
     ctx.Token.ThrowIfCanceled();
-    // It's safe to continue using engine APIs after the check.
+    // 通过检查后，继续使用引擎 API 是安全的。
     var someUI = Engine.GetService<IUIManager>().GetUI<SomeUI>();
-    // If completion is requested, fade the UI instantly.
+    // 如果请求了完成操作，则立即淡出 UI。
     var fadeDuration = ctx.Token.Completed ? 0 : 5;
     await someUI.ChangeVisibility(false, fadeDuration, ctx.Token);
-    // The method above accepts the async token; such methods handle
-    // cancellations internally, so you don't need to check again afterwards.
+    // 上面的方法接受异步令牌；此类方法会在内部处理取消，
+    // 因此之后无需再次检查。
 }
 ```
 
-Another member of the execution context is the script track instance executing the command, accessible via `ctx.Track`. Use the track instance whenever you need to control playback or when calling other engine APIs that require a track. For example, stop playback like this:
+执行上下文的另一个成员是正在执行该指令的脚本轨道实例，可通过 `ctx.Track` 访问。当你需要控制播放或调用其他需要轨道引用的引擎 API 时，请使用该轨道实例。例如，像这样停止播放：
 
 ```csharp
 public override async UniTask Execute (ExecutionContext ctx)
@@ -68,33 +68,33 @@ public override async UniTask Execute (ExecutionContext ctx)
 }
 ```
 
-### Parameter Types
+### 参数类型
 
-To expose a command parameter to naninovel scripts, add a public field to the command class with one of the supported types:
+要在 naninovel 脚本中公开指令参数，只需在指令类中添加一个公共字段，并使用以下支持的类型之一：
 
-| Field Type                | Value Type            | Script Example                      |
-|---------------------------|-----------------------|-------------------------------------|
-| StringParameter           | String                | `LoremIpsum`, `"Lorem ipsum"`       |
-| LocalizableTextParameter  | LocalizableText       | `"Lorem ipsum\|#id\|"`              |
-| IntegerParameter          | Int32                 | `10`, `0`, `-1`                     |
-| DecimalParameter          | Single                | `0.525`, `-55.1`                    |
-| BooleanParameter          | Boolean               | `true`, `false`                     |
-| NamedStringParameter      | NamedString           | `Script001.LabelName`, `.LabelName` |
-| NamedIntegerParameter     | NamedInteger          | `Yuko.5`                            |
-| NamedDecimalParameter     | NamedFloat            | `Kohaku.-10.25`                     |
-| NamedBooleanParameter     | NamedBoolean          | `Misaki.false`                      |
-| StringListParameter       | List&lt;String>       | `Lorem,ipsum,"doler sit amet"`      |
-| IntegerListParameter      | List&lt;Int32>        | `10,-1,0`                           |
-| DecimalListParameter      | List&lt;Single>       | `0.2,10.5,-88.99`                   |
-| BooleanListParameter      | List&lt;Boolean>      | `true,false,true`                   |
-| NamedStringListParameter  | List&lt;NamedString>  | `Felix.Happy,Jenna.Confidence`      |
-| NamedIntegerListParameter | List&lt;NamedInteger> | `Yuko.5,Misaki.-8`                  |
-| NamedDecimalListParameter | List&lt;NamedFloat>   | `Nanikun.88.99,Yuko.-5.1`           |
-| NamedBooleanListParameter | List&lt;NamedBoolean> | `Misaki.false,Kohaku.true`          |
+| 字段类型                   | 值类型                 | 脚本示例                             |
+|----------------------------|------------------------|--------------------------------------|
+| StringParameter            | String                 | `LoremIpsum`, `"Lorem ipsum"`        |
+| LocalizableTextParameter   | LocalizableText        | `"Lorem ipsum\|#id\|"`               |
+| IntegerParameter           | Int32                  | `10`, `0`, `-1`                      |
+| DecimalParameter           | Single                 | `0.525`, `-55.1`                     |
+| BooleanParameter           | Boolean                | `true`, `false`                      |
+| NamedStringParameter       | NamedString            | `Script001.LabelName`, `.LabelName`  |
+| NamedIntegerParameter      | NamedInteger           | `Yuko.5`                             |
+| NamedDecimalParameter      | NamedFloat             | `Kohaku.-10.25`                      |
+| NamedBooleanParameter      | NamedBoolean           | `Misaki.false`                       |
+| StringListParameter        | List&lt;String&gt;     | `Lorem,ipsum,"doler sit amet"`       |
+| IntegerListParameter       | List&lt;Int32&gt;      | `10,-1,0`                            |
+| DecimalListParameter       | List&lt;Single&gt;     | `0.2,10.5,-88.99`                    |
+| BooleanListParameter       | List&lt;Boolean&gt;    | `true,false,true`                    |
+| NamedStringListParameter   | List&lt;NamedString&gt;| `Felix.Happy,Jenna.Confidence`       |
+| NamedIntegerListParameter  | List&lt;NamedInteger&gt;| `Yuko.5,Misaki.-8`                  |
+| NamedDecimalListParameter  | List&lt;NamedFloat&gt; | `Nanikun.88.99,Yuko.-5.1`            |
+| NamedBooleanListParameter  | List&lt;NamedBoolean&gt;| `Misaki.false,Kohaku.true`          |
 
-### Parameter Alias
+### 参数别名
 
-Optionally, you can apply `[Alias]` attribute to the field to assign an alias name to the parameter allowing it to be used instead of the field name when referencing the parameter in naninovel scripts. If you wish to make the parameter nameless, set `NamelessParameterAlias` constant (empty string) as the alias; please note, that only one nameless parameter is allowed per command.
+你可以为字段添加 `[Alias]` 属性，以为该参数指定别名，使其在 naninovel 脚本中引用时可以使用该别名来替代字段名。如果希望将参数设为无名参数，可将别名设置为常量 `NamelessParameterAlias`（空字符串）；请注意，每个指令最多只能有一个无名参数。
 
 ```csharp
 [Alias(NamelessParameterAlias)]
@@ -107,18 +107,18 @@ public StringParameter MyParameter;
 @cmd "value of the nameless param" myParam:"value of 'MyParameter' param"
 ```
 
-### Required Parameter
+### 必填参数
 
-To make parameter required (causing an error to be logged when it's not specified in naninovel script), apply `[RequiredParameter]` attribute to the field. When the attribute is not applied, parameter is considered optional.
+要使参数成为必填项（当在 naninovel 脚本中未指定该参数时会记录错误），请在字段上应用 `[RequiredParameter]` 属性。若未应用该属性，则该参数被视为可选。
 
 ```csharp
 [RequiredParameter]
 public StringParameter MyRequiredParameter;
 ```
 
-### Optional Parameter
+### 可选参数
 
-When parameter is not required, it may or may not have value assigned in the scenario script; use `HasValue` property to test whether that's the case. Optionally, you can use `Assigned()` static method, which takes parameter instance and returns true when the provided parameter is not null and has a value assigned.
+当参数不是必填时，它在场景脚本中可能被赋值，也可能未被赋值；可使用 `HasValue` 属性来检查是否已赋值。也可以使用静态方法 `Assigned()`，该方法接收一个参数实例，当该参数不为 null 且已赋值时返回 true。
 
 ```csharp
 public StringParameter MyOptionalParameter;
@@ -127,9 +127,9 @@ if (MyOptionalParameter.HasValue) { }
 if (Assigned(MyOptionalParameter)) { }
 ```
 
-### Localizable Command
+### 可本地化指令
 
-In case the command has parameters that can be localized (text directly presented to the user, usually), implement `Command.ILocalizable` interface to add the command to the generated [script localization](/guide/localization#scripts-localization) documents and use `LocalizableTextParameter` parameter type.
+若指令中包含可本地化的参数（通常为直接显示给用户的文本），请实现 `Command.ILocalizable` 接口，以便将该指令添加到生成的 [脚本本地化](/zh/guide/localization#scripts-localization) 文档中，并使用 `LocalizableTextParameter` 参数类型。
 
 ```csharp
 public class PrintText : Command, Command.ILocalizable
@@ -138,9 +138,9 @@ public class PrintText : Command, Command.ILocalizable
 }
 ```
 
-### Preloadable Command
+### 可预加载指令
 
-In case execution of the command requires loading some resources, implement `Command.IPreloadable` interface to preload the required resources when the game is loading. Refer to [memory management](/guide/memory-management) guide for more info.
+若指令的执行需要加载某些资源，请实现 `Command.IPreloadable` 接口，以便在游戏加载时预加载所需资源。更多信息请参阅 [内存管理](/zh/guide/memory-management) 指南。
 
 ```csharp
 public class PlayAudioClip : Command, Command.IPreloadable
@@ -161,23 +161,23 @@ public class PlayAudioClip : Command, Command.IPreloadable
 }
 ```
 
-Notice `ClipPath.DynamicValue` check: we wouldn't be able to preload the resource in case the name is only known when the command is executed (ie parameter contain [script expressions](/guide/script-expressions)); in this case the resource should be loaded inside `Execute` method.
+注意 `ClipPath.DynamicValue` 检查：当资源名称只有在指令执行时才确定（例如参数包含 [脚本表达式](/zh/guide/script-expressions)）时，将无法在预加载阶段加载该资源，此时应在 `Execute` 方法中加载资源。
 
-### Command Examples
+### 指令示例
 
-You can find scripts with all the built-in command implementations at `Naninovel/Runtime/Commands` package folder; feel free to use them as a reference when implementing your own custom commands.
+你可以在 `Naninovel/Runtime/Commands` 包目录中找到所有内置指令的实现脚本；在编写自定义指令时可以参考这些实现。
 
-::: tip EXAMPLE
-Another example of adding custom commands to add/remove items of an inventory system can be found in the [inventory sample](/guide/samples#inventory). Specifically, the command implementations are stored at `Scripts/Runtime/Inventory/Commands` directory.
+::: tip 示例
+另一个添加自定义指令的示例可在 [物品系统示例](/zh/guide/samples#物品系统) 中找到。具体来说，指令实现存储在 `Scripts/Runtime/Inventory/Commands` 目录下。
 :::
 
-## Overriding Built-In Command
+## 覆盖内置指令
 
-In some cases it could be useful to override built-in Naninovel commands. For example, you may want to change how [@print] commands work without adding a custom one, so that the change will also affect [generic text lines](/guide/naninovel-scripts#generic-text-lines) (text from the generic lines is parsed into the print commands under the hood).
+在某些情况下，覆盖 Naninovel 的内置指令是有用的。例如，你可能希望修改 [@print] 指令的工作方式，而不必添加新的自定义指令，以便该更改也能影响 [通用文本行](/zh/guide/naninovel-scripts#generic-text-lines)（通用文本行在底层会被解析为 print 指令）。
 
-To override a built-in command, add a custom one and apply the same alias built-in command has. Reimport the naninovel scripts (right-click over a folder they're stored at, then click "Reimport") after overriding a command in order for the changes to take effect. The custom command will then automatically be used instead of the built-in one when playing a naninovel script.
+要覆盖内置指令，添加一个自定义指令并应用与内置指令相同的别名。在覆盖指令后，重新导入 naninovel 脚本（右键单击存放脚本的文件夹并点击 “Reimport”），以使更改生效。之后，播放 naninovel 脚本时，自定义指令将自动替代内置指令。
 
-Below is an example of overriding built-in [@print] command, so that the printed text will be logged into the console before being revealed to the player.
+下面是一个覆盖内置 [@print] 指令的示例，该指令会在文本显示给玩家之前将打印的文本输出到控制台。
 
 ```csharp
 [Alias("print")]
@@ -192,5 +192,5 @@ public class MyCustomPrintCommand : PrintText
 ```
 
 ::: tip
-Commands and parameters may have various context attributes applied to provide documentation, auto-completion and advanced diagnostics in the IDE and web editor. Find the available attributes in the [IDE extension](/guide/ide-extension#ide-attributes) guide.
+指令及其参数可以应用各种上下文属性，以在 IDE 和 Web 编辑器中提供文档、自动补全及高级诊断功能。有关可用属性的信息，请参阅 [IDE 扩展](/zh/guide/ide-extension#ide-attributes) 指南。
 :::

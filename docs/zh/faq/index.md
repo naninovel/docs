@@ -101,7 +101,7 @@ UI 部分（如修改按钮、布局或样式）请参考 [修改内置 Title UI
 
 如果在透视相机模式下遇到排序问题，请尝试将编辑器菜单中 “Edit > Project Settings > Graphics” 下的 `Transparency Sort Mode` 设置为 `Orthographic`。有关 Unity 中对象排序方式的更多信息，请参阅 [2D 排序手册](https://docs.unity3d.com/Manual/2DSorting.html)。
 
-## 是否可以只在文本打印机中显示角色头像，而隐藏角色本体？
+## 是否可以只在文本输出窗中显示角色头像，而隐藏角色本体？
 
 可以。为想要隐藏的角色指定 `!visible` 参数即可，此时头像仍会保持可见，例如：
 

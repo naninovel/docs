@@ -1,17 +1,17 @@
-# Custom Actor Shader
+# 自定义演出元素着色器
 
-When rendering most of the characters and background actors (generic excluded) a special shader is used to handle semi-transparency overdraw and support various transition effects.
+在渲染大多数角色、背景演出元素（不包括通用类型）时，会使用一个特殊的着色器来处理半透明叠加并支持各种过渡效果。
 
-You can override the default shader by assigning a material to `Custom Texture Material` property available in the actor configuration menu.
+你可以在角色配置菜单中通过 `Custom Texture Material` 属性分配一个材质，以覆盖默认着色器。
 
 ![](https://i.gyazo.com/8b6c06d2a7ed276f17cb25ecf7bcc4b0.png)
 
-Be aware, that the shader used by the assigned material is expected to have specific properties; check the default shader at `Naninovel/Resources/Naninovel/Shaders/TransitionalTexture` for a reference.
+请注意，所分配材质中使用的着色器应包含特定的属性；可参考默认着色器 `Naninovel/Resources/Naninovel/Shaders/TransitionalTexture` 了解其结构。
 
-When actor is represented as a sprite on a scene, `Custom Sprite Material` property is available (the case for non-generic implementations when they're not rendered to texture). By default, a simple unlit transparent shader is used; in case you want to implement lighting or surface effects, assign a material with a custom shader to the property.
+当角色在场景中以精灵图形式呈现时，可使用 `Custom Sprite Material` 属性（适用于非通用实现且未渲染到纹理的情况）。默认情况下使用简单的无光照透明着色器；如果你希望实现光照或表面特效，可以在该属性中分配带有自定义着色器的材质。
 
-::: tip EXAMPLE
-Check [actor shader sample](/guide/samples#actor-shader) for an example on how to create and use texture shader for adding custom transition effects and sprite shader with lighting and self-illumination support to simulate time of day for a background actor.
+::: tip 示例
+参阅 [演出元素着色器示例](/zh/guide/samples#演出元素着色器)，了解如何创建并使用纹理着色器以添加自定义过渡效果，以及带有光照与自发光支持的精灵着色器，用于模拟背景角色的昼夜变化。
 :::
 
 ![](https://i.gyazo.com/a9d7fb29d5e076245ac515d673cc155e.mp4)

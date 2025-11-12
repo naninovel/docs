@@ -1,20 +1,20 @@
-# Special Effects
+# 特效
 
-A number of built-in script commands are dedicated for various special effects. For example, [@shake] command shakes an actor:
+Naninovel 提供了多种内置脚本指令用于实现各种特效。例如，[@shake] 指令可以让一个角色或摄像机产生震动效果：
 
 ```nani
 ; Shake 'Kohaku' actor
 @shake Kohaku
 ```
 
-Most effects can be parametrized:
+大多数特效都支持参数化设置：
 
 ```nani
 ; Shake 'Kohaku' once (instead of the default 3)
 @shake Kohaku count:1
 ```
 
-You can update the effect parameters without re-starting them:
+你可以在不重新启动特效的情况下更新其参数：
 
 ```nani
 ; Start slowly shaking `Kohaku` actor in a loop
@@ -24,7 +24,7 @@ Kohaku: It's rumbling!
 @shake Kohaku count:3 power:0.8
 ```
 
-Some effects are persistent by default and have to be explicitly stopped:
+某些特效默认是持续性的，必须通过显式指令停止：
 
 ```nani
 ; Start the rain
@@ -33,28 +33,29 @@ Some effects are persistent by default and have to be explicitly stopped:
 @rain power:0
 ```
 
-Read on for descriptions of the built-in effects and the ways to [add custom effects](/guide/special-effects#adding-custom-effects).
+以下将介绍内置特效的详细说明以及如何[添加自定义特效](/zh/guide/special-effects#adding-custom-effects)。
 
-## Shake
+## 震动 Shake
 
-Shakes specified actor or main camera. Dedicated command: [@shake]
+对指定的角色或主摄像机进行震动。专用指令：[@shake]
 
 ![](https://i.gyazo.com/f9521fbcf959d0b72e449ae6e2191f9f.mp4)
 
-**Start Parameters**
-Name | Type | Default | Description
---- | --- | --- | ---
-ID | String | null | ID of the actor to shake. Specify `Camera` to shake main camera.
-Shake count | Integer | 3 | The number of shake iterations.
-Loop | Boolean | false | When enabled, will loop the effect until stopped with [@despawn].
-Shake duration | Decimal | 0.15 | The base duration of each shake iteration, in seconds.
-Duration variation | Decimal | 0.25 | The randomized delta modifier applied to the base duration of the effect.
-Shake amplitude | Decimal | 0.5 | The base displacement amplitude of each shake iteration, in units.
-Amplitude variation | Decimal | 0.5 | The randomized delta modifier applied to the base displacement amplitude of the effect.
-Shake horizontally | Boolean | false | Whether to displace the actor horizontally (by x-axis).
-Shake vertically | Boolean | true | Whether to displace the actor vertically (by y-axis).
+**启动参数**
 
-**Examples**
+名称 | 类型 | 默认值 | 描述
+--- | --- | --- | ---
+ID | String | null | 要震动的角色 ID。指定 `Camera` 可震动主摄像机。
+Shake count | Integer | 3 | 震动的迭代次数。
+Loop | Boolean | false | 启用后，效果会持续循环，直到使用 [@despawn] 停止。
+Shake duration | Decimal | 0.15 | 每次震动的基础持续时间（秒）。
+Duration variation | Decimal | 0.25 | 应用于基础持续时间的随机变化系数。
+Shake amplitude | Decimal | 0.5 | 每次震动的基础位移幅度（单位）。
+Amplitude variation | Decimal | 0.5 | 应用于基础位移幅度的随机变化系数。
+Shake horizontally | Boolean | false | 是否在水平方向（X 轴）震动。
+Shake vertically | Boolean | true | 是否在垂直方向（Y 轴）震动。
+
+**示例**
 
 ```nani
 ; Shake 'Kohaku' actor with default params
@@ -68,29 +69,31 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 @shake Camera count:5 hor! !ver
 ```
 
-## Animate Actor
+## 动画化演出元素
 
-To animate (interpolate) specific actor parameters over a range of key frames, consider using [@animate] command as a "quick and dirty" solution.
+要在一系列关键帧间平滑地改变（插值）演出元素的特定参数，可以使用 [@animate] 指令作为一种“快捷简易”的方案。
 
 ![](https://i.gyazo.com/a0494329c713c4309a52d57d0b297bee.mp4)
 
-::: info NOTE
-Scenario scripts are not designed for any kind of animation specifications. Whenever possible, use dedicated solutions instead, like Unity's [Animator](https://docs.unity3d.com/Manual/class-Animator.html) or third-party animation tools. You can incorporate any kind of animation solution with [layered](https://naninovel.com/guide/characters#layered-characters) and [generic](https://naninovel.com/guide/characters#generic-characters) actors; we also have built-in support for [Live2D](https://naninovel.com/guide/characters#live2d-characters) and [Spine](https://naninovel.com/guide/characters#spine-characters) actors.
+::: info 注意
+场景脚本并非为动画编排而设计。若有可能，请优先使用更专业的动画系统，例如 Unity 的 [Animator](https://docs.unity3d.com/Manual/class-Animator.html) 或第三方动画工具。  
+你可以通过 [分层角色](https://naninovel.com/guide/characters#layered-characters) 和 [通用角色](https://naninovel.com/guide/characters#generic-characters) 集成任何动画方案；此外，Naninovel 还内置支持 [Live2D](https://naninovel.com/guide/characters#live2d-characters) 与 [Spine](https://naninovel.com/guide/characters#spine-characters) 角色。
 :::
 
-## Digital Glitch
+## 数码干扰 Digital Glitch
 
-Applies a post-processing effect to the main camera simulating digital video distortion and artifacts. Dedicated command: [@glitch]
+对主摄像机应用一种后处理效果，用以模拟数码视频信号的失真与杂波。专用指令：[@glitch]
 
 ![](https://i.gyazo.com/94cb6db25c17956473db4de149281df5.mp4)
 
-**Start Parameters**
-Name | Type | Default | Description
---- | --- | --- | ---
-Duration | Decimal | 1 | The duration of the effect, in seconds.
-Intensity | Decimal | 1 | The intensity of the effect, in 0.0 to 10.0 range.
+**启动参数**
 
-**Examples**
+名称 | 类型 | 默认值 | 描述
+--- | --- | --- | ---
+Duration | Decimal | 1 | 效果持续时间（秒）。
+Intensity | Decimal | 1 | 效果强度，范围为 0.0 到 10.0。
+
+**示例**
 
 ```nani
 ; Apply the glitch effect with default parameters
@@ -104,26 +107,28 @@ Intensity | Decimal | 1 | The intensity of the effect, in 0.0 to 10.0 range.
 @glitch power:0.1 time:3.33
 ```
 
-## Rain
+## 雨效 Rain
 
-Spawns a particle system simulating a rain. Dedicated command: [@rain]
+生成一个模拟降雨的粒子系统。专用指令：[@rain]
 
 ![](https://i.gyazo.com/74af9eec30f6517ea5b8453a9c86d33c.mp4)
 
-**Start Parameters**
-Name | Type | Default | Description
---- | --- | --- | ---
-Intensity | Decimal | 0.5 | The intensity of the rain (particles spawn rate per second).
-Fade-in time | Decimal | 5 | The particle system will gradually grow the spawn rate from 0 to the target level over the specified time, in seconds.
-X velocity | Decimal | 1 | Multiplier to the horizontal speed of the particles. Use to change angle of the rain drops.
-Y velocity | Decimal | 1 | Multiplier to the vertical speed of the particles.
+**启动参数**
 
-**Stop Parameters**
-Name | Type | Default | Description
+名称 | 类型 | 默认值 | 描述
 --- | --- | --- | ---
-Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn rate from the target level to 0 over the specified time, in seconds.
+Intensity | Decimal | 0.5 | 雨势强度（每秒生成的粒子数量）。
+Fade-in time | Decimal | 5 | 粒子系统将在指定的秒数内逐渐将生成速率从 0 提升至目标值。
+X velocity | Decimal | 1 | 粒子的水平速度倍率。可用于调整雨滴的倾斜角度。
+Y velocity | Decimal | 1 | 粒子的垂直速度倍率。
 
-**Examples**
+**停止参数**
+
+名称 | 类型 | 默认值 | 描述
+--- | --- | --- | ---
+Fade-out time | Decimal | 5 | 粒子系统将在指定的秒数内逐渐将生成速率从目标值降低至 0。
+
+**示例**
 
 ```nani
 ; Start intensive rain over 10 seconds
@@ -137,24 +142,26 @@ Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn
 @rain power:0 time:30
 ```
 
-## Snow
+## 雪效 Snow
 
-Spawns a particle system simulating a snow. Dedicated command: [@snow]
+生成一个模拟下雪的粒子系统。专用指令：[@snow]
 
 ![](https://i.gyazo.com/25a052444c561e40c8318272f51edf47.mp4)
 
-**Start Parameters**
-Name | Type | Default | Description
---- | --- | --- | ---
-Intensity | Decimal | 0.5 | The intensity of the snow (particles spawn rate per second).
-Fade-in time | Decimal | 5 | The particle system will gradually grow the spawn rate from 0 to the target level over the specified time, in seconds.
+**启动参数**
 
-**Stop Parameters**
-Name | Type | Default | Description
+名称 | 类型 | 默认值 | 描述
 --- | --- | --- | ---
-Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn rate from the target level to 0 over the specified time, in seconds.
+Intensity | Decimal | 0.5 | 雪势强度（每秒生成的粒子数量）。
+Fade-in time | Decimal | 5 | 粒子系统将在指定的秒数内逐渐将生成速率从 0 提升至目标值。
 
-**Examples**
+**停止参数**
+
+名称 | 类型 | 默认值 | 描述
+--- | --- | --- | ---
+Fade-out time | Decimal | 5 | 粒子系统将在指定的秒数内逐渐将生成速率从目标值降低至 0。
+
+**示例**
 
 ```nani
 ; Start intensive snow over 10 seconds
@@ -168,24 +175,26 @@ Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn
 @snow power:0 time:30
 ```
 
-## Sun Shafts
+## 光束 Sun Shafts
 
-Spawns a particle system simulating sun shafts (rays). Dedicated command: [@sun]
+生成一个模拟阳光光束（光线散射）的粒子系统。专用指令：[@sun]
 
 ![](https://i.gyazo.com/7edc4777699229abc508f2bdb404522e.mp4)
 
-**Start Parameters**
-Name | Type | Default | Description
---- | --- | --- | ---
-Intensity | Decimal | 0.85 | The intensity of the rays (opacity).
-Fade-in time | Decimal | 3 | The particle system will gradually grow the intensity from 0 to the target level over the specified time, in seconds.
+**启动参数**
 
-**Stop Parameters**
-Name | Type | Default | Description
+名称 | 类型 | 默认值 | 描述
 --- | --- | --- | ---
-Fade-out time | Decimal | 3 | The particle system will gradually lower the opacity from the target level to 0 over the specified time, in seconds.
+Intensity | Decimal | 0.85 | 光线强度（不透明度）。
+Fade-in time | Decimal | 3 | 粒子系统将在指定秒数内逐渐将光线强度从 0 增加到目标值。
 
-**Examples**
+**停止参数**
+
+名称 | 类型 | 默认值 | 描述
+--- | --- | --- | ---
+Fade-out time | Decimal | 3 | 粒子系统将在指定秒数内逐渐将光线强度（不透明度）从目标值降低至 0。
+
+**示例**
 
 ```nani
 ; Start intensive sunshine over 10 seconds
@@ -198,30 +207,32 @@ Fade-out time | Decimal | 3 | The particle system will gradually lower the opaci
 @sun power:0 time30
 ```
 
-## Depth of Field (Bokeh)
+## 景深 Bokeh / Depth of Field
 
-Simulates depth of field (aka DOF, bokeh) effect, when only the object in focus stays sharp, while the other image is blurred. Dedicated command: [@bokeh]
+模拟景深（又称 DOF、虚化）效果，使焦点对象保持清晰，而其他区域产生模糊。专用指令：[@bokeh]
 
 ::: tip
-In case you want to blur just one object (actor), consider using [Blur effect](/guide/special-effects#blur) instead.
+如果你只想模糊单个对象（演员），请考虑使用 [模糊效果](/zh/guide/special-effects#blur)。
 :::
 
 ![](https://i.gyazo.com/616a023c46f207b4a3a33d3d3fd9fbc9.mp4)
 
-**Start Parameters**
-Name | Type | Default | Description
---- | --- | --- | ---
-Focus Object Name | String | null | Name of the game object to set focus for (optional). When set, the focus will always stay on the game object and `Focus Distance` parameter will be ignored.
-Focus Distance | Decimal | 10 | Distance from the Naninovel camera to the focus point. Ignored when `Focus Object Name` is specified.
-Focal Length | Decimal | 3.75 | Amount of blur to apply for the de-focused areas; also determines focus sensitivity.
-Duration | Decimal | 1 | Interpolation time (how fast the parameters will reach the target values).
+**启动参数**
 
-**Stop Parameters**
-Name | Type | Default | Description
+名称 | 类型 | 默认值 | 描述
 --- | --- | --- | ---
-Stop Duration | Decimal | 1 | Fade-off (disable) duration for the effect parameters to reach default values where the effect is not visible.
+Focus Object Name | String | null | 要对焦的游戏对象名称（可选）。如果设置，该对象将始终保持对焦，`Focus Distance` 参数将被忽略。
+Focus Distance | Decimal | 10 | 从 Naninovel 摄像机到焦点的距离。当设置了 `Focus Object Name` 时将被忽略。
+Focal Length | Decimal | 3.75 | 对失焦区域应用的模糊强度；同时决定焦点敏感度。
+Duration | Decimal | 1 | 插值时间（参数到达目标值的速度）。
 
-**Examples**
+**停止参数**
+
+名称 | 类型 | 默认值 | 描述
+--- | --- | --- | ---
+Stop Duration | Decimal | 1 | 效果淡出的持续时间，用于让参数回归默认值，从而使效果消失。
+
+**示例**
 
 ```nani
 ; Enable the effect with default params and lock focus to `Kohaku` game object
@@ -241,25 +252,27 @@ Stop Duration | Decimal | 1 | Fade-off (disable) duration for the effect paramet
 @bokeh dist:10 power:0.95 time:3
 ```
 
-## Blur
+## 模糊 Blur
 
-Applies a blur filter to a supported actor: backgrounds and characters of sprite, layered, diced, Live2D, Spine, video and scene implementations. By default (when first parameter is not specified), the effect is applied to `MainBackground` actor. Dedicated command: [@blur]
+为支持的演员应用模糊滤镜：背景和角色（包括精灵、分层、切片、Live2D、Spine、视频及场景实现）。默认情况下（当未指定第一个参数时），效果将应用于 `MainBackground` 演员。专用指令：[@blur]
 
 ![](https://i.gyazo.com/067614d77783683e74ca79652099b58d.mp4)
 
-**Start Parameters**
-Name | Type | Default | Description
---- | --- | --- | ---
-Actor ID | String | MainBackground | ID of the actor to apply the effect for. The actor should have `IBlurable` interface implemented in order to support the effect.
-Intensity | Decimal | 0.5 | Intensity of the effect, in 0.0 to 1.0 range.
-Duration | Decimal | 1 | Interpolation time, in seconds (how fast the intensity will reach the target value).
+**启动参数**
 
-**Stop Parameters**
-Name | Type | Default | Description
+名称 | 类型 | 默认值 | 描述
 --- | --- | --- | ---
-Stop Duration | Decimal | 1 | Fade-off (disable) duration for the effect, in seconds.
+Actor ID | String | MainBackground | 要应用模糊效果的演员 ID。演员必须实现 `IBlurable` 接口才能支持该效果。
+Intensity | Decimal | 0.5 | 效果强度，范围为 0.0 到 1.0。
+Duration | Decimal | 1 | 插值时间（以秒为单位），即强度达到目标值的速度。
 
-**Examples**
+**停止参数**
+
+名称 | 类型 | 默认值 | 描述
+--- | --- | --- | ---
+Stop Duration | Decimal | 1 | 效果淡出的持续时间（以秒为单位）。
+
+**示例**
 
 ```nani
 ; Apply the blur to the current main background
@@ -278,36 +291,36 @@ Stop Duration | Decimal | 1 | Fade-off (disable) duration for the effect, in sec
 @blur power:0
 ```
 
-## Adding Custom Effects
+## 添加自定义特效
 
-### Standalone Effects
+### 独立特效
 
-You can add a custom standalone effect (implemented via a prefab, like the "Rain" and "Snow" built-in effects) by adding the effect prefab via spawn resources manager (`Naninovel -> Resources -> Spawn`) and using [@spawn] and [@despawn] commands:
+你可以通过在生成资源管理器（`Naninovel -> Resources -> Spawn`）中添加特效预制体（如内置的 “Rain” 和 “Snow” 特效）来添加自定义独立特效，并使用 [@spawn] 和 [@despawn] 指令进行控制：
 
 ![](https://i.gyazo.com/45b9d8fb51ffb368ff9f792221f10ca6.png)
 
-For example, given there is a `Explosion.prefab` prefab assigned via the spawn manager, following commands will spawn and de-spawn (destroy) the prefab on scene:
+例如，假设通过生成管理器分配了一个名为 `Explosion.prefab` 的预制体，以下指令将在场景中生成并销毁该预制体：
 
 ```nani
 @spawn Explosion
 @despawn Explosion
 ```
 
-Additional effect parameters can be specified with `params`:
+可以使用 `params` 来指定额外的特效参数：
 
 ```nani
 @spawn Explosion params:Kohaku,3,true
 ```
 
 ::: tip
-When building custom effects with multiple parameters, consider creating a [custom command](/guide/custom-commands) and inheriting it from `SpawnEffect`. This way you won't have to remember parameter positions in the `params` array and get auto-completion and type-checking when using [IDE extension](/guide/ide-extension):
+当创建具有多个参数的自定义特效时，建议编写一个 [自定义指令](/zh/guide/custom-commands)，并继承自 `SpawnEffect`。这样一来，你就不必记住 `params` 数组中的参数位置，同时在使用 [IDE 扩展](/zh/guide/ide-extension) 时还能获得自动补全和类型检查功能。
 
 ```nani
 @explode Kohaku power:3 smoke!
 ```
 :::
 
-The [@spawn] command also has transform parameters, allowing to spawn the object at a specific scene or world positions and with a specific rotation or scale, eg:
+[@spawn] 指令还支持变换参数，可用于在特定场景或世界位置生成对象，并指定其旋转或缩放，例如：
 
 ```nani
 ; Spawn Explosion 15% from the left border of the screen
@@ -315,43 +328,43 @@ The [@spawn] command also has transform parameters, allowing to spawn the object
 @spawn Explosion pos:15 scale:10 rotation:,,15
 ```
 
-In case you have a lot of prefabs to spawn and it's inconvenient to assign them via editor menu, it's possible to just drop them at `Resources/Naninovel/Spawn` folder and they'll automatically be available in the scripts. You can additionally organize them with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in naninovel scripts. Eg, prefab asset stored as `Resources/Naninovel/Spawn/Explosions/Boom01` can be referenced in scripts as `Explosions/Boom01`.
+如果你有大量需要生成的预制体，通过编辑器菜单手动分配会很不方便，可以直接将它们放在 `Resources/Naninovel/Spawn` 文件夹中，它们将自动在脚本中可用。你也可以使用子文件夹来组织这些预制体；这种情况下，在 naninovel 脚本中引用时使用正斜杠（`/`）。例如，若预制体资源存放路径为 `Resources/Naninovel/Spawn/Explosions/Boom01`，则可在脚本中通过 `Explosions/Boom01` 进行引用。
 
-It's also possible to use [addressable asset system](/guide/resource-providers#addressable) to manually expose the resources. To expose an asset, assign address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "Boom01" prefab asset, assign the asset following address: `Naninovel/Spawn/Boom01`. Be aware, that addressable provider is not used in editor by default; you can allow it by enabling `Enable Addressable In Editor` property in resource provider configuration menu.
+也可以使用 [可寻址资源系统](/zh/guide/resource-providers#addressable) 手动公开资源。要公开某个资源，请为其分配一个与上面方法中使用的路径相同的地址，但省略 “Resources/” 部分。例如，要公开一个名为 “Boom01” 的预制体资源，请将其地址设为：`Naninovel/Spawn/Boom01`。请注意，Addressable 提供器在编辑器中默认未启用；你可以在资源提供器配置菜单中启用 `Enable Addressable In Editor` 选项以允许其在编辑器中使用。
 
-Check the built-in effect prefabs stored at `Naninovel/Prefabs/FX` for reference implementations.
+可参考 `Naninovel/Prefabs/FX` 中的内置特效预制体了解示例实现。
 
-### Camera Effects
+### 摄像机特效
 
-If you wish to apply a custom [post-processing effect](https://assetstore.unity.com/?q=post%20processing&orderBy=1) (aka image effect or camera filter, like the "Digital Glitch" built-in effect) to the Naninovel camera, [create a camera prefab](https://docs.unity3d.com/Manual/CreatingPrefabs.html), [add the required effect components](https://docs.unity3d.com/Manual/UsingComponents.html) to the camera's object and assign the prefab to `Custom Camera Prefab` field in the camera configuration menu (`Naninovel -> Configuration -> Camera`).
+如果你希望在 Naninovel 摄像机上应用自定义的 [后期处理特效](https://assetstore.unity.com/?q=post%20processing&orderBy=1)（又称图像特效或摄像机滤镜，例如内置的 “Digital Glitch” 特效），可以 [创建一个摄像机预制体](https://docs.unity3d.com/Manual/CreatingPrefabs.html)，在摄像机对象上 [添加所需的特效组件](https://docs.unity3d.com/Manual/UsingComponents.html)，然后在摄像机配置菜单（`Naninovel -> Configuration -> Camera`）中将其分配到 `Custom Camera Prefab` 字段。
 
 ![](https://i.gyazo.com/6024aac1d2665dd96915758cd5c09fde.png)
 
-You can toggle (enable if disabled and vice-versa) the added components via naninovel scripts using `toggle` parameter and explicitly set the enabled state with `set` parameter of the [@camera] command. For example, let's assume you've added a "Bloom Image Effect" component to the camera object. First, find out what is the type name of the component; it's usually specified in the `Script` field of the component.
+你可以在 naninovel 脚本中使用 [@camera] 指令的 `toggle` 参数来切换（启用或禁用）所添加的组件，或使用 `set` 参数显式设置组件的启用状态。例如，假设你在摄像机对象上添加了一个 “Bloom Image Effect” 组件。首先，查看组件的类型名称；通常在组件的 `Script` 字段中显示。
 
 ![](https://i.gyazo.com/73b7eabfe97ed84796cbe715b7dafc14.png)
 
-In our case the component's type name is `BloomImageEffect`. Use the type name to toggle this component at runtime like follows:
+在本例中，组件的类型名称为 `BloomImageEffect`。你可以使用该类型名称在运行时切换此组件，如下所示：
 
 ```nani
 @camera toggle:BloomImageEffect
 ```
 
-You can toggle multiple components at once by delimiting the type names with commas:
+你可以通过用逗号分隔类型名称来同时切换多个组件：
 
 ```nani
 @camera toggle:BloomImageEffect,Sepia,CameraNoise
 ```
 
-And in case you want to explicitly enable or disable a component:
+如果你想显式启用或禁用某个组件，可以这样做：
 
 ```nani
 @camera set:BloomImageEffect.true,Sepia.false,CameraNoise.true
 ```
 
-— will enabled `BloomImageEffect` and `CameraNoise` components, while disabling `Sepia`.
+— 这将启用 `BloomImageEffect` 和 `CameraNoise` 组件，同时禁用 `Sepia`。
 
-To toggle, disable or enable all the components attached to the camera object, use `*` symbol.
+要切换、禁用或启用摄像机对象上附加的所有组件，可使用 `*` 符号。
 
 ```nani
 ; Toggle all components
@@ -364,8 +377,8 @@ To toggle, disable or enable all the components attached to the camera object, u
 @camera set:*.true
 ```
 
-The state of the currently enabled (and disabled) camera components will be automatically saved and restored on game save-loading operations.
+当前启用（或禁用）的摄像机组件状态会在游戏的保存与加载操作中自动保存并恢复。
 
-Check out the following video for example on adding a custom camera filter effect.
+可查看以下视频了解如何为摄像机添加自定义滤镜特效的示例：
 
 ![](https://www.youtube.com/watch?v=IbT6MTecO-k)

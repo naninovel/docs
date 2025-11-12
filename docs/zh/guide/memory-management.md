@@ -1,14 +1,14 @@
-﻿# Memory Management
+﻿# 内存管理
 
-Some script commands require loading resources in order to work: audio clips for [@bgm], character appearance textures for [@char], video clips for [@movie], and so on. Naninovel takes care of loading and unloading these resources in an optimized way. The default behavior is determined by the `Resource Policy` setting found in the resource provider configuration.
+某些脚本指令在运行时需要加载资源才能正常工作：例如 [@bgm] 指令需要加载音频剪辑、[@char] 指令需要加载角色立绘贴图、[@movie] 指令需要加载视频文件等。Naninovel 会自动以优化的方式处理这些资源的加载与卸载。其默认行为由资源提供程序配置中的 `Resource Policy`（资源策略）设置决定。
 
 ![](https://i.gyazo.com/ee96274f01f2f355d14190aabf5f2070.png)
 
-## Conservative Policy
+## 保守策略（Conservative）
 
-The default mode offers balanced memory utilization. All the resources required for script execution are preloaded when starting playback and unloaded when the script finishes playing. Scripts referenced in [@gosub] commands are also preloaded. Additional scripts can be preloaded by using the `hold` parameter of the [@goto] command.
+默认模式在性能与内存使用之间提供了平衡。当开始播放剧本时，会预加载所有该剧本执行所需的资源，并在剧本播放结束后卸载它们。通过 [@gosub] 指令引用的剧本也会被预加载。还可以通过 [@goto] 指令的 `hold` 参数预加载其他剧本。
 
-Below is a demo showing how resources are managed under the Conservative policy:
+下面的演示展示了在“保守策略”下资源是如何被管理的：
 
 ::: code-group
 
@@ -77,11 +77,11 @@ that navigates to the gosub and are not unloaded until that script unloads.
 
 :::
 
-## Optimistic Policy
+## 乐观策略（Optimistic）
 
-All the resources required by the currently played script, as well as all resources of all the scripts specified in [@goto] and [@gosub] commands, are preloaded and not unloaded unless the `release` parameter is specified in the [@goto] command. This minimizes loading screens and allows smooth rollback, but requires manually specifying when to unload resources. It increases the risk of out-of-memory exceptions on platforms with strict memory limits, such as mobile devices and web browsers.
+在此模式下，当前正在播放的脚本所需的所有资源，以及所有通过 [@goto] 和 [@gosub] 指令引用的脚本资源，都会被预加载，并且不会被卸载，除非在 [@goto] 指令中显式指定 `release` 参数。这种方式能最大限度地减少加载画面的出现，并使回滚过程更加流畅，但需要手动指定何时卸载资源。在具有严格内存限制的平台（例如移动设备和网页浏览器）上，这种策略会增加发生内存溢出异常的风险。
 
-Below is a demo of a similar set of scripts, now using the Optimistic policy:
+以下演示展示了一组相似的脚本在“乐观策略”下的运行情况：
 
 ::: code-group
 
@@ -145,11 +145,11 @@ that navigates to the gosub and are not unloaded until that script unloads.
 
 :::
 
-## Lazy Policy
+## 惰性策略（Lazy）
 
-Other policies assume the game is designed with some kind of loading screens in mind—masked as scene, act, or day changes—where Naninovel has a chance to perform CPU-intensive resource loading operations in bulk, ensuring actual gameplay remains smooth.
+与其他策略不同，惰性模式假设游戏并未设计任何加载画面（例如通过场景、章节或天数切换来掩饰加载过程），因此 Naninovel 不会在这些时机执行批量、耗费 CPU 的资源加载操作，而是尽量保证游戏过程始终顺畅。
 
-However, some games may not have a compatible structure or may not require that kind of optimization. When "Lazy" mode is selected, Naninovel will never show loading screens or attempt to preload resources before playing a script. Instead, it loads the required resources "on the fly" as the script plays. It also preloads a set number of commands ahead of the currently played one to minimize delays during gameplay. The number of preloaded commands can be adjusted with `Lazy Buffer` setting found in the resource provider configuration.
+当选择“惰性模式”时，Naninovel 不会显示加载画面，也不会在脚本播放前尝试预加载资源。相反，它会在脚本运行过程中“即时”加载所需资源。为了减少游戏过程中的延迟，它还会提前预加载当前播放指令之后的一定数量的指令；可在资源提供程序配置中的 `Lazy Buffer` 设置中调整该预加载指令数量。
 
 ::: code-group
 
@@ -177,39 +177,39 @@ The "Town" background is now unloaded, as it's no longer visible.
 
 :::
 
-Lazy mode has an important caveat: loading assets—especially "heavy" ones like large background textures, HD character models, or video files—may cause noticeable stutters during gameplay. While Naninovel attempts to perform these operations off the main thread whenever possible, some low-power devices or platforms (notably, web) may still experience noticeable stutter, especially during skip (fast-forward) and rollback. Be sure to test the game on your minimum supported hardware specifications before deciding whether the Lazy policy is acceptable.
+惰性模式有一个重要的注意事项：加载资源——尤其是大型背景贴图、高清角色模型或视频文件等“重型”资源——可能会在游戏过程中造成明显的卡顿。虽然 Naninovel 会尽可能在主线程之外执行这些操作，但在某些低性能设备或平台（尤其是 Web 平台）上，仍可能在快进（Skip）或回滚（Rollback）时出现明显的卡顿现象。在决定是否采用惰性策略前，请务必在最低支持配置的硬件上充分测试游戏表现。
 
-## Choosing a Policy
+## 策略选择
 
-In general, it's recommended to stick with the default "Conservative" policy, as it offers balanced memory usage suitable for all target platforms while allowing flexible script merging via `hold!` flags when necessary.
+总体而言，建议使用默认的“保守（Conservative）”策略，因为它在所有目标平台上都能实现内存使用的平衡，并且在需要时可以通过使用 `hold!` 标志灵活地合并脚本加载。
 
-However, if you're exclusively targeting powerful platforms with ample RAM, such as standalone builds and game consoles, you may prefer the "Optimistic" policy to keep large portions of resources in memory and minimize loading screens.
+然而，如果你的游戏仅面向具有充足内存的高性能平台（例如 PC 端或主机），你可能会更倾向于使用“乐观（Optimistic）”策略，以便让更多资源常驻内存，从而最大程度地减少加载画面的出现。
 
-Another scenario for using the "Optimistic" policy is when Naninovel is employed as a dialogue system inside a custom game loop. In such cases, you'll likely have your own resource management system, and "Optimistic" won't interfere—it will simply keep all the required resources loaded before playing a script, unless you explicitly use `release!` flags.
+另一种适合使用“乐观”策略的场景是：当 Naninovel 被用作自定义游戏循环中的对话系统时。在这种情况下，你很可能已经拥有自己的资源管理系统，而“乐观”策略不会干扰这一点——它只会在脚本播放前保持所有需要的资源处于加载状态，除非你显式使用了 `release!` 标志。
 
-Choose the "Lazy" policy when you need to minimize memory usage and can tolerate potential stutters during gameplay, or when it's not feasible to design the game around loading screens.
+当你需要尽可能减少内存占用，并且可以接受游戏过程中可能出现的卡顿，或无法围绕加载画面来设计游戏时，请选择“惰性（Lazy）”策略。
 
-Below is a summary of the policies:
+以下是三种策略的简要对比总结：
 
-| Policy       |              Memory Usage              | CPU Usage                             | Loading Screens                                    | Skip and Rollback                                  |
-|--------------|:--------------------------------------:|---------------------------------------|----------------------------------------------------|----------------------------------------------------|
-| Conservative | <span class="txt-warn">Balanced</span> | <span class="txt-ok">Stable</span>    | <span class="txt-err">On goto, unless held</span>  | <span class="txt-warn">Fast in held scripts</span> |
-| Optimistic   |   <span class="txt-err">High</span>    | <span class="txt-ok">Stable</span>    | <span class="txt-warn">None, until released</span> | <span class="txt-ok">Fast until released</span>    |
-| Lazy         |    <span class="txt-ok">Low</span>     | <span class="txt-err">Volatile</span> | <span class="txt-ok">Never</span>                  | <span class="txt-err">Always Slow</span>           |
+| 策略类型 |             内存占用              | CPU 占用情况                   | 加载画面出现时机                      | 快进与回滚表现                     |
+|-----------|:--------------------------------:|--------------------------------|--------------------------------------|------------------------------------|
+| 保守（Conservative） | <span class="txt-warn">平衡</span> | <span class="txt-ok">稳定</span> | <span class="txt-err">在使用 goto 时出现，除非使用 hold</span> | <span class="txt-warn">在持有脚本中速度较快</span> |
+| 乐观（Optimistic） | <span class="txt-err">高</span> | <span class="txt-ok">稳定</span> | <span class="txt-warn">无，直到使用 release</span> | <span class="txt-ok">快速，直到释放</span> |
+| 惰性（Lazy） | <span class="txt-ok">低</span> | <span class="txt-err">波动</span> | <span class="txt-ok">从不出现</span> | <span class="txt-err">始终较慢</span> |
 
-## Actor Resources
+## 角色资源
 
-Actors (characters, backgrounds, text printers and choice handlers) are the key entities in Naninovel. Most memory used by actors is associated with their appearances.
+角色（包括角色立绘、背景、文本输出窗和选项处理器）是 Naninovel 的核心实体。角色使用的大部分内存都与其外观（Appearances）资源相关。
 
-### Appearances
+### 外观
 
-Some actor implementations have their appearance mapped 1:1 to a resource: sprite actor appearance is associated with a single texture asset, video actor appearance is a single video clip and so on. This allows Naninovel manage their resources based on specific appearances referenced in scenario scripts. For example, in case only `Happy` and `Sad` appearances of sprite character are used in a given script, only `Happy.png` and `Sad.png` textures will preload before the script is played, no matter how many other appearances character has.
+某些角色实现的外观与资源是一一对应的：例如，精灵（Sprite）角色的每个外观对应一个独立的纹理文件，而视频（Video）角色的外观则对应单个视频剪辑。这使 Naninovel 能够基于脚本中引用的特定外观来管理资源。例如，如果脚本中仅使用了某个角色的 “Happy” 和 “Sad” 两种外观，则只会在脚本播放前预加载 `Happy.png` 和 `Sad.png` 这两个纹理，而不会加载该角色的其他外观。
 
-However, layered, diced sprite, generic, Live2D and Spine actors all require monolith prefab in order to represent any of the associated appearances making it impossible to independently load resources. In such cases, Naninovel will preload the whole prefab with all its dependencies and only unload it when the actor is not referenced in any of the commands, no matter which appearances are used.
+然而，分层精灵（Layered Sprite）、切片精灵（Diced Sprite）、通用角色（Generic Actor）、Live2D 和 Spine 类型的角色都依赖一个整体 Prefab 来展示所有外观，因此无法单独加载不同外观对应的资源。在这种情况下，Naninovel 会加载整个 Prefab 及其所有依赖，并且只有当该角色不再被脚本指令引用时，才会卸载。
 
-### Removing Actors
+### 移除角色
 
-Naninovel will, by default, automatically remove unused actors and destroy associated game objects when unloading script resources. If you'd like to manually dispose the actors, disable `Remove Actors` option in resource provider configuration menu and use [@remove] commands:
+默认情况下，Naninovel 会在卸载脚本资源时自动移除未使用的角色并销毁关联的游戏对象。如果你希望手动释放角色，请在资源提供者配置菜单中禁用 `Remove Actors` 选项，并使用 [@remove] 指令进行清理：
 
 ```nani
 @back id:LayeredBackground
@@ -222,7 +222,7 @@ Naninovel will, by default, automatically remove unused actors and destroy assoc
 @goto NextScript
 ```
 
-— alternatively, use [@remove] with `*` parameter to dispose all the existing actors (including text printers and choice handlers) or [@resetState] with `only` parameter to immediately dispose actors of specific type: `ICharacterManager` for character and `IBackgroundManager` for backgrounds:
+—— 另外，也可以使用带有 `*` 参数的 [@remove] 指令一次性清除所有现有角色（包括文本输出窗和选项处理器），或使用带有 `only` 参数的 [@resetState] 指令来立即移除特定类型的角色，例如：`ICharacterManager` 对应角色，`IBackgroundManager` 对应背景。
 
 ```nani
 ...
@@ -231,11 +231,11 @@ Naninovel will, by default, automatically remove unused actors and destroy assoc
 @resetState only:IBackgroundManager
 ```
 
-## Lifetime Management
+## 生命周期管理
 
-Resource provider manager keeps track of the references to the loaded resources and dispose (unload) the resources when they're not used ("held") by any users ("holders").
+资源提供者管理器会跟踪已加载资源的引用，并在资源不再被任何用户（“持有者”）使用时自动释放（卸载）它们。
 
-The mechanism is most prominent in script commands. For example, let's assume you want to play a background music with a custom command. The audio player will require an audio clip asset (resource) to play, so we need to preload and "hold" the asset before the command is executed and release it after:
+这一机制在脚本指令中表现得最为明显。例如，假设你希望通过自定义指令播放背景音乐。音频播放器需要一个音频剪辑资源，因此必须在指令执行前预加载并“持有”该资源，在播放结束后再释放：
 
 ```csharp
 public class PlayMusic : Command, Command.IPreloadable
@@ -261,32 +261,32 @@ public class PlayMusic : Command, Command.IPreloadable
 }
 ```
 
-Notice the command implements `Command.IPreloadable` interface. Script player will detect such commands and invoke the preload and unload methods to ensure the assets are ready before the command is executed and released after.
+请注意，指令实现了 `Command.IPreloadable` 接口。脚本播放器会自动检测此类指令，并调用其中的预加载与卸载方法，以确保资源在指令执行前已准备好，并在使用后及时释放。
 
-## Sharing Resources
+## 共享资源
 
-In some cases you may want to share resources between Naninovel and a custom gameplay mode. In case the custom gameplay is implemented independently of Naninovel (the engine is disabled when the custom mode is active), there shouldn't be any issues. However, if both the custom mode and Naninovel are used at the same time, you have to pay attention to how the resources are used.
+有时你可能希望在 Naninovel 与自定义游戏模式之间共享资源。如果自定义游戏逻辑独立于 Naninovel（即引擎在该模式下处于禁用状态），则不会出现任何冲突。但如果 Naninovel 与自定义逻辑同时运行，则需要特别注意资源的使用方式。
 
-For example, let's assume you have a Naninovel's sprite background with an appearance texture that is also used as a source for some UI element. At some point Naninovel will attempt to release the texture and it will also disappear in the UI element. That happens, because the engine is not aware, that you're using the texture and it shouldn't be unloaded.
+例如，假设你在 Naninovel 中有一个精灵背景，其纹理同时被 UI 元素引用。当 Naninovel 尝试卸载该纹理时，它也会在 UI 中消失。出现这种情况，是因为引擎并不知道你在其他地方也使用了该资源。
 
-To notify Naninovel, that you're using an asset, use `Hold` method of resource provider service:
+为此，你可以调用资源提供者服务的 `Hold` 方法来告知 Naninovel 该资源正在被使用：
 
 ```csharp
 var resourceManager = Engine.GetService<IResourceProviderManager>();
 resourceManager.Hold(asset, holder);
 ```
 
-Be aware, that while you're holding an asset, it won't be unloaded by Naninovel, so it's up to you to dispose it to prevent memory leaks:
+请注意，只要你“持有”了某个资源，Naninovel 就不会卸载它，因此需要由你自行在合适的时机释放该资源以防止内存泄漏：
 
 ```csharp
 var holdersCount = resourceManager.Release(asset, holder);
-// In case no one else is holding the asset, we should unload it.
+// 如果没有其他对象持有该资源，我们应当卸载它。
 if (holdersCount == 0) Resources.UnloadAsset(asset);
 ```
 
-"Holder" can be a reference to any object; usually it's the same class that is using the asset. It's used to distinguish the holders and prevent same holder from accidentally holding a resource multiple times.
+“持有者”（Holder）可以是任何对象的引用；通常是使用该资源的同一个类。它用于区分不同的持有者，并防止同一个持有者重复持有同一资源。
 
-Below is an example of Unity component, which will prevent Naninovel from ever unloading an asset:
+下面是一个 Unity 组件的示例，它将永久阻止 Naninovel 卸载某个资源：
 
 ```csharp
 using Naninovel;
