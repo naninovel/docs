@@ -50,7 +50,6 @@ export const en: DefaultTheme.SidebarItem[] = [
             { text: "Custom Script Compiler", link: "/guide/custom-compiler" },
             { text: "State Management", link: "/guide/state-management" },
             { text: "Integration Options", link: "/guide/integration-options" },
-            { text: "Render Pipelines", link: "/guide/render-pipelines" },
             { text: "Automated Testing", link: "/guide/automated-testing" },
             { text: "Custom Build Environment", link: "/guide/custom-build-environment" }
         ]
@@ -104,7 +103,6 @@ export const js: DefaultTheme.SidebarItem[] = [
             { text: "Custom Script Compiler", link: "/ja/guide/custom-compiler" },
             { text: "ステート管理", link: "/ja/guide/state-management" },
             { text: "インテグレーションの方法", link: "/ja/guide/integration-options" },
-            { text: "レンダーパイプライン", link: "/ja/guide/render-pipelines" },
             { text: "カスタムビルド環境", link: "/ja/guide/custom-build-environment" }
         ]
     }
@@ -160,7 +158,6 @@ export const zn: DefaultTheme.SidebarItem[] = [
             { text: "自定义演出脚本编译器", link: "/zh/guide/custom-compiler" },
             { text: "状态管理", link: "/zh/guide/state-management" },
             { text: "整合设置", link: "/zh/guide/integration-options" },
-            { text: "渲染管线", link: "/zh/guide/render-pipelines" },
             { text: "自动化测试", link: "/zh/guide/automated-testing" },
             { text: "自定义构建环境", link: "/zh/guide/custom-build-environment" }
         ]
@@ -214,7 +211,6 @@ export const ru: DefaultTheme.SidebarItem[] = [
             { text: "Custom Script Compiler", link: "/ru/guide/custom-compiler" },
             { text: "Управление состоянием", link: "/ru/guide/state-management" },
             { text: "Варианты интеграции", link: "/ru/guide/integration-options" },
-            { text: "Каналы рендеринга", link: "/ru/guide/render-pipelines" },
             { text: "Пользовательская cреда cборки", link: "/ru/guide/custom-build-environment" }
         ]
     }

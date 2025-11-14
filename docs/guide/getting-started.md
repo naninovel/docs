@@ -8,7 +8,7 @@ In case you're not going to build any custom gameplay outside Naninovel, feel fr
 
 ## Create New Unity Project
 
-When creating a project we recommend choosing **Built-in Render Pipeline** (BiRP) template. While Universal (URP) and High Definition (HDRP) will generally work as well, they have limitations compared to the built-in renderer, require additional setup and support for them is limited; fine more info in the [render pipelines guide](/guide/render-pipelines).
+When creating a project, we recommend choosing the **Universal Render Pipeline** (URP) template. The legacy built-in render pipeline (BiRP) will work as well, but it's no longer actively maintained by Unity and is expected to be deprecated. The High Definition Render Pipeline (HDRP) is not recommended — it will generally work as well, but some rendering features may not be compatible out of the box.
 
 Choosing 2D or 3D depends on the style of the game you're building. For most standard visual novels we recommend choosing 2D, so that images will be imported as sprite assets by default and you won't have to manually change the import settings. You can change the editor behaviour mode later using the [project settings](https://docs.unity3d.com/Manual/2DAnd3DModeSettings.html).
 

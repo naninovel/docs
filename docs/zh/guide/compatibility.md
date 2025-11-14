@@ -22,15 +22,14 @@ Naninovel 不使用任何特定平台的 API、预编译的本地库或第三方
 
 ## 进入播放模式
 
-Naninovel 支持在项目设置中的 “Enter Play Mode Settings” 分类下关闭 `Reload Domain` 和 `Reload Scene` 选项。  
+Naninovel 支持在项目设置中的 “Enter Play Mode Settings” 分类下关闭 `Reload Domain` 和 `Reload Scene` 选项。
 关闭这些选项可以显著缩短进入播放模式所需的时间，特别是在大型项目中。
 
 ![](https://i.gyazo.com/dd0a3037a0bca8b73608ecc7b71c3982.png)
 
 ## 渲染管线
 
-虽然 Naninovel 可以与 Unity 的 [可编程渲染管线（SRP）](https://docs.unity3d.com/Manual/render-pipelines.html)（包括 URP 与 HDRP）一起使用，  
-但部分内置功能可能无法直接正常运行。在这种情况下，我们无法提供官方支持。有关更多信息，请参阅 [渲染管线指南](/zh/guide/render-pipelines)。
+Both the Universal Render Pipeline (URP) and the legacy built-in render pipeline (BiRP) are fully supported. The High-Definition Render Pipeline (HDRP) is not actively tested and is not recommended; while most Naninovel features will work with HDRP, expect some rendering-specific features — such as the [@trans], [@glitch], and [@bokeh] commands — to not work under HDRP out of the box.
 
 ## 文本
 

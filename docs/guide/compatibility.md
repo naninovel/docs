@@ -22,12 +22,11 @@ Naninovel supports disabling both `Reload Domain` and `Reload Scene` options und
 
 ## Render Pipelines
 
-While it's possible to use Nanionvel with Unity's [scriptable render pipelines](https://docs.unity3d.com/Manual/render-pipelines.html) (both URP and HDRP), some built-in features may not work out of the box and we won't be able to provide any support in such cases; see [render pipelines guide](/guide/render-pipelines) for more information.
+Both the Universal Render Pipeline (URP) and the legacy built-in render pipeline (BiRP) are fully supported. The High-Definition Render Pipeline (HDRP) is not actively tested and is not recommended; while most Naninovel features will work with HDRP, expect some rendering-specific features — such as the [@trans], [@glitch], and [@bokeh] commands — to not work under HDRP out of the box.
 
 ## Text
 
 Legacy (uGUI) text component is not supported by any of the built-in UIs or associated APIs; [TextMesh Pro](https://docs.unity3d.com/Manual/com.unity.textmeshpro.html) is used by default.
-
 
 ## Input System
 
