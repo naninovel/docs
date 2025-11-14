@@ -73,6 +73,7 @@ Custom UI Camera Prefab | Null | A prefab with a camera component to use for UI 
 Default Duration | 0.35 | Default duration (in seconds) for all the camera modifications (changing zoom, position, rotation, etc).
 Default Easing | Linear | Easing function to use by default for all the camera modifications (changing zoom, position, rotation, etc).
 Disable Rendering | False | Whether to disable Naninovel cameras by default when the engine is initialized. Useful when Naninovel is integrated as a drop-in dialogue system and shouldn't render after initialization.
+Capture Thumbnails | True | Whether to capture small screen previews when saving the game; these previews are then used in the save slots.
 Thumbnail Resolution | (240, 140) | The resolution in which thumbnails to preview game save slots will be captured.
 Hide UI In Thumbnails | False | Whether to ignore UI layer when capturing thumbnails.
 

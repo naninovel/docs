@@ -2,20 +2,18 @@
 
 ## 前置要求
 
-Naninovel 是 [Unity 游戏引擎](https://unity.com) 的一个扩展插件。  
+Naninovel 是 [Unity 游戏引擎](https://unity.com) 的一个扩展插件。
 因此，强烈建议在使用 Naninovel 之前，先 [学习 Unity 的基础知识](https://learn.unity.com)。
 
 如果你不打算在 Naninovel 之外开发自定义的游戏玩法，那么可以完全忽略与场景（Scene）相关的信息，因为 Naninovel 会自动处理这些部分。
 
 ## 创建新的 Unity 项目
 
-在创建项目时，建议选择 **Built-in Render Pipeline（内置渲染管线，BiRP）** 模板。 
+在创建项目时，建议选择 **Built-in Render Pipeline（内置渲染管线，BiRP）** 模板。
 
-虽然 Universal（URP）和 High Definition（HDRP）渲染管线通常也能正常工作，但相比内置渲染器，它们有一定的限制、需要额外设置，并且 Naninovel 对它们的支持有限。 
+虽然 Universal（URP）和 High Definition（HDRP）渲染管线通常也能正常工作，但相比内置渲染器，它们有一定的限制、需要额外设置，并且 Naninovel 对它们的支持有限。
 
-更多信息请参阅 [渲染管线指南](/zh/guide/render-pipelines)。
-
-选择 2D 或 3D 模式取决于你所制作的游戏类型。对于大多数标准视觉小说，我们推荐选择 **2D 模式**，这样图像会默认导入为精灵（Sprite）资源，你无需手动修改导入设置。  
+选择 2D 或 3D 模式取决于你所制作的游戏类型。对于大多数标准视觉小说，我们推荐选择 **2D 模式**，这样图像会默认导入为精灵（Sprite）资源，你无需手动修改导入设置。
 
 你也可以稍后在 [项目设置](https://docs.unity3d.com/Manual/2DAnd3DModeSettings.html) 中更改编辑器模式。
 
@@ -35,10 +33,10 @@ Naninovel 是与场景无关的系统，因此建议删除这些对象，以避�
 
 ![](https://i.gyazo.com/8432d5dfb28a0f63d0f2fedfa00be91c.png)
 
-接着，打开并检查项目根目录下 “Packages” 文件夹中的 `manifest.json` 文件。  
+接着，打开并检查项目根目录下 “Packages” 文件夹中的 `manifest.json` 文件。
 该文件列出了所有已安装的包与模块。
-Unity 在不同模板中会默认包含许多模块，但其中大部分你可能永远不会用到，  
-而每一个模块都会增加编辑器启动与代码重载的时间。  
+Unity 在不同模板中会默认包含许多模块，但其中大部分你可能永远不会用到，
+而每一个模块都会增加编辑器启动与代码重载的时间。
 
 以下是 Naninovel 所需的必要模块；  若其他模块并非必需，建议将其从文件中移除：
 
@@ -155,26 +153,26 @@ Asset Store 的安装包与下载存档的更新通常比 UPM 仓库 **滞后 2�
 Unity 对名为 `Resources` 的文件夹有特殊处理：其中的资源会被强制包含到构建中，这可能会导致[性能问题](https://docs.unity3d.com/Manual/UnderstandingPerformanceResourcesFolder.html)。最重要的是，**不要将任何内容存放在 `Resources/Naninovel` 文件夹下**，除非指南中特别要求，否则可能会引发各种冲突和未定义行为。
 :::
 
-Naninovel 脚本是扩展名为 `.nani` 的文本文件，用于控制场景中发生的事件。  
+Naninovel 脚本是扩展名为 `.nani` 的文本文件，用于控制场景中发生的事件。
 你可以使用任意文本编辑器（如 Microsoft Word、Google Docs 或 [VS Code](https://code.visualstudio.com)）打开和编辑它们。
 
-![?class=when-dark](https://i.gyazo.com/0051c3b96de4854d665e6bf9aba6bbd1.png)  
+![?class=when-dark](https://i.gyazo.com/0051c3b96de4854d665e6bf9aba6bbd1.png)
 ![?class=when-light](https://i.gyazo.com/4172fee457fb4c1f473ffeb0516b83ca.png)
 
 你也可以使用可视化脚本编辑器来编辑 Naninovel 脚本。选中刚创建的脚本资源后，可视化编辑器会在 Inspector 面板中自动打开。
 
 ![](https://i.gyazo.com/ba57b9f78116e57408125325bdf66be9.mp4)
 
-要在脚本中添加新行，可在目标位置右键点击，或按下 `Ctrl+Space`（可在输入配置中更改快捷键），然后选择要插入的行或指令类型。  
+要在脚本中添加新行，可在目标位置右键点击，或按下 `Ctrl+Space`（可在输入配置中更改快捷键），然后选择要插入的行或指令类型。
 拖动行号可调整顺序，右键点击行并选择 “Remove” 可删除该行。
 
-当你使用可视化编辑器修改脚本后，脚本路径上方会显示一个星号（`*`），表示该资源已修改但尚未保存。按 `Ctrl+S` 保存更改。  
+当你使用可视化编辑器修改脚本后，脚本路径上方会显示一个星号（`*`），表示该资源已修改但尚未保存。按 `Ctrl+S` 保存更改。
 若在未保存时切换到其他资源，会弹出提示窗口，允许你选择保存或放弃更改。
 
 可视化编辑器在检测到脚本被外部更新时会自动同步，使你可以在文本编辑器和可视化编辑器之间无缝切换。
 
 ::: tip
-我们正在开发一个比内置可视化编辑器更强大的独立编辑器应用程序，它可以在不依赖 Unity 的情况下直接在浏览器中使用。  
+我们正在开发一个比内置可视化编辑器更强大的独立编辑器应用程序，它可以在不依赖 Unity 的情况下直接在浏览器中使用。
 详细信息请参阅 [编辑器指南](/zh/guide/editor)。
 
 ![](https://i.gyazo.com/d54f0b35b4d89bdbece096c7b78c8c72.mp4)
@@ -182,8 +180,8 @@ Naninovel 脚本是扩展名为 `.nani` 的文本文件，用于控制场景中�
 
 在本指南的后续部分中，我们将使用文本编辑器进行演示，但你也可以选择使用可视化或独立编辑器完成相同操作。
 
-为了让 Naninovel 相关资源（如刚创建的脚本）对引擎“可见”，必须将其注册为项目资源。  
-通过资源菜单创建的脚本会自动注册。若需手动添加、编辑或移除脚本资源，可通过编辑器菜单 `Naninovel -> Resources -> Scripts` 打开脚本资源窗口。  
+为了让 Naninovel 相关资源（如刚创建的脚本）对引擎“可见”，必须将其注册为项目资源。
+通过资源菜单创建的脚本会自动注册。若需手动添加、编辑或移除脚本资源，可通过编辑器菜单 `Naninovel -> Resources -> Scripts` 打开脚本资源窗口。
 点击列表中的 `+`（加号）按钮即可新增条目，并将脚本文件拖放进列表中。你还可以批量拖入多个文件或整个文件夹进行导入。
 
 ![Add Naninovel Script](https://i.gyazo.com/b3281a145ba54e6cb6cbdaa478ea894d.png)
@@ -197,7 +195,7 @@ Naninovel 脚本是扩展名为 `.nani` 的文本文件，用于控制场景中�
 当游戏运行时，这行代码会在屏幕上显示 “你好，世界！”。进入播放模式并开始新游戏即可查看效果。
 
 ::: info 注意
-所有可用的内置脚本指令、支持的参数以及使用示例均可在 [API 参考](/zh/api/) 中查阅。  
+所有可用的内置脚本指令、支持的参数以及使用示例均可在 [API 参考](/zh/api/) 中查阅。
 你也可以添加自定义指令，详情请参考 [自定义指令指南](/zh/guide/custom-commands)。
 :::
 

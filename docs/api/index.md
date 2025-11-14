@@ -307,7 +307,7 @@ Simulates [depth of field](/guide/special-effects#depth-of-field-bokeh) (aka DOF
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| focus | string | Name of the game object to set focus for (optional). When set, the focus will always stay on the game object, while `dist` parameter will be ignored. |
+| <span class="command-param-nameless" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID">focus</span> | string | Name of the game object to set focus for (optional). When set, the focus will always stay on the game object, while the `dist` parameter will be ignored. |
 | dist | decimal | Distance (in units) from Naninovel camera to the focus point. Ignored when `focus` parameter is specified. Defaults to 10. |
 | power | decimal | Amount of blur to apply for the de-focused areas; also determines focus sensitivity. Defaults to 3.75. Set to 0 to disable (de-spawn) the effect. |
 | time | decimal | How long it will take the parameters to reach the target values, in seconds. Defaults to 1.0. |
