@@ -134,19 +134,19 @@ When `Has Name` is disabled, neither display name, nor character ID will be disp
 
 ## Name Labels
 
-While display names discussed above are recommended in most cases, sometimes you may want to change name of the actor for a few lines or make multiple actors authors of the same line. Setting up a dedicated actor or variable display name for each such occurrence would be impractical. Instead, consider using `as` parameter of the [@print] command:
+While display names discussed above are recommended in most cases, sometimes you may want to change name of the actor for a few lines or make multiple actors authors of the same line. Setting up a dedicated actor or variable display name for each such occurrence would be impractical. Instead, consider using `as` [generic parameter](/guide/naninovel-scripts#generic-parameters):
 
 ```nani
 ; Even though "Kohaku" character may have custom display name
 ; set in configuration, print this line with "Someone" as name.
-@print "Lorem ipsum." author:Kohaku as:"Someone"
+Kohaku: Lorem ipsum.[< as:"Someone"]
 
 ; Print the line with "All Together" displayed as author name
 ; and make all visible characters author of the printed text.
-@print "Lorem ipsum!" author:* as:"All Together"
+*: Lorem ipsum![< as:"All Together"]
 
 ; Similar, but make only "Kohaku" and "Yuko" the authors.
-@print "Lorem ipsum?" author:Kohaku,Yuko as:"Kohaku and Yuko"
+Kohaku,Yuko: Lorem ipsum?[< as:"Kohaku and Yuko"]
 ```
 
 — `as` parameters are localizable and will be exposed in the script localization documents for translation. Additionally, [speaker highlighting](/guide/characters.html#speaker-highlight) feature will recognize `*` and `,` specified in author ID and highlight all/selected characters as speakers.
