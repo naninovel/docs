@@ -49,7 +49,7 @@ Pose name can be used as appearance in [@char] command to apply all the selected
 @char Kohaku.SuperAngry
 
 ; Same as above, but using `DropFade` transition over 3 seconds.
-@char Kohaku.SuperAngry transition:DropFade time:3
+@char Kohaku.SuperAngry via:DropFade time:3
 ```
 
 Notice, that when a pose is used as appearance, you can still override individual parameters, eg:

@@ -200,7 +200,7 @@ Backgrounds are handled a bit differently from characters to better accommodate 
 | id | string | ID of the actor to modify; specify `*` to affect all visible actors. |
 | appearance | string | Appearance to set for the modified actor. |
 | pose | string | Pose to set for the modified actor. |
-| transition | string | Type of the [transition effect](/guide/transition-effects) to use (crossfade is used by default). |
+| via | string | Type of the [transition effect](/guide/transition-effects) to use (crossfade is used by default). |
 | params | decimal list | Parameters of the transition effect. |
 | dissolve | string | Path to the [custom dissolve](/guide/transition-effects#custom-transition-effects) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
 | visible | boolean | Visibility status to set for the modified actor. |
@@ -388,7 +388,7 @@ Modifies a [character actor](/guide/characters).
 | id | string | ID of the actor to modify; specify `*` to affect all visible actors. |
 | appearance | string | Appearance to set for the modified actor. |
 | pose | string | Pose to set for the modified actor. |
-| transition | string | Type of the [transition effect](/guide/transition-effects) to use (crossfade is used by default). |
+| via | string | Type of the [transition effect](/guide/transition-effects) to use (crossfade is used by default). |
 | params | decimal list | Parameters of the transition effect. |
 | dissolve | string | Path to the [custom dissolve](/guide/transition-effects#custom-transition-effects) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
 | visible | boolean | Visibility status to set for the modified actor. |
@@ -496,7 +496,7 @@ Modifies a [choice handler actor](/guide/choices).
 | id | string | ID of the actor to modify; specify `*` to affect all visible actors. |
 | appearance | string | Appearance to set for the modified actor. |
 | pose | string | Pose to set for the modified actor. |
-| transition | string | Type of the [transition effect](/guide/transition-effects) to use (crossfade is used by default). |
+| via | string | Type of the [transition effect](/guide/transition-effects) to use (crossfade is used by default). |
 | params | decimal list | Parameters of the transition effect. |
 | dissolve | string | Path to the [custom dissolve](/guide/transition-effects#custom-transition-effects) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
 | visible | boolean | Visibility status to set for the modified actor. |
@@ -1150,7 +1150,7 @@ Modifies a [text printer actor](/guide/text-printers).
 | id | string | ID of the actor to modify; specify `*` to affect all visible actors. |
 | appearance | string | Appearance to set for the modified actor. |
 | pose | string | Pose to set for the modified actor. |
-| transition | string | Type of the [transition effect](/guide/transition-effects) to use (crossfade is used by default). |
+| via | string | Type of the [transition effect](/guide/transition-effects) to use (crossfade is used by default). |
 | params | decimal list | Parameters of the transition effect. |
 | dissolve | string | Path to the [custom dissolve](/guide/transition-effects#custom-transition-effects) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
 | visible | boolean | Visibility status to set for the modified actor. |
