@@ -41,10 +41,10 @@ If you wish to modify selected parameters, you can skip others and they'll have 
 
 All the transition parameters are of decimal type.
 
-The above examples work for characters as well, just provide the transition via a standalone `transition` parameter:
+The above examples work for characters as well, just assign the transition with `via` parameter:
 
 ```nani
-@char CharID.Appearance transition:TransitionType params:...
+@char CharID.Appearance via:TransitionType params:...
 ```
 
 You can find available transition effects with their parameters and default values in the docs below.

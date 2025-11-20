@@ -103,13 +103,13 @@ Each background has `Poses` property allowing to specify named states (poses).
 Pose name can be used as appearance in [@back] command to apply all the selected parameters specified in the pose at once, instead of specifying them individually via the command parameters.
 
 ```nani
-; Given `Day` pose is defined for main background,
+; Given 'Day' pose is defined for main background,
 ; applies all the selected parameters specified in the pose.
 @back Day
 
 ; Same as above, but for a background actor with `City` ID
 ; and using `DropFade` transition over 3 seconds.
-@back Day id:City transition:DropFade time:3
+@back Day.DropFade id:City time:3
 ```
 
 Notice, that when a pose is used as appearance, you can still override individual parameters, eg:
