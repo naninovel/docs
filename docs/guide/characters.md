@@ -235,6 +235,14 @@ Be aware, that [@print] commands (that are also used under the hood when printin
 Link a printer with [narrator character](/guide/characters#narrator-characters) and disable `Has Name` to make narrated text linked with a printer, so that you won't have to use [@printer] to switch back to non-character (default) printer all the time.
 :::
 
+## Default Author
+
+You may have noticed the `DefaultAuthor` record in characters configuration created by default in a new project — it's a [narrator character](/guide/characters#narrator-characters), whose metadata is used when you don't explicitly specify the author in [@print] commands and [generic text](/guide/naninovel-scripts#generic-text-lines).
+
+This is useful when you have [linked printers](/guide/characters#linked-printer) assigned to the "actual" characters and want to fall back to a default printer for un-authored text lines without having to specify an explicit "Narrator" ID for all such lines or switch the default printer with the [@printer] command.
+
+If you don't need this feature, the default author record can be safely removed.
+
 ## Placeholder Characters
 
 The placeholder implementation is the default one and is intended for scenario drafting when you do not yet have any visual assets to represent a character. It uses actor metadata such as the identifier, display name and colors to procedurally generate the character placeholder.
