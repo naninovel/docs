@@ -241,7 +241,7 @@ You may have noticed the `DefaultAuthor` record in characters configuration crea
 
 This is useful when you have [linked printers](/guide/characters#linked-printer) assigned to the "actual" characters and want to fall back to a default printer for un-authored text lines without having to specify an explicit "Narrator" ID for all such lines or switch the default printer with the [@printer] command.
 
-If you don't need this feature, the default author record can be safely removed.
+If you don't need this feature, the default author record can be safely removed. To re-enable the feature, simply add the `DefaultAuthor` record back.
 
 ## Placeholder Characters
 
