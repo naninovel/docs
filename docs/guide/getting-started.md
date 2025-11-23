@@ -193,6 +193,10 @@ Each character is represented by ID and a set of appearances. To add a character
 
 ![Add Character](https://i.gyazo.com/0c1e81ea1a20165c1bf88854df177b7f.png)
 
+::: tip
+You'll find many options in our configuration menus. As with the other Unity menus, most of the controls have associated tooltips that explain what they do. To view a tooltip, hover over it with the mouse and wait a moment — the explanation will appear under the cursor.
+:::
+
 Let’s assume the added character ID is "Kohaku". Edit naninovel script to show the added character:
 
 ```nani
