@@ -237,11 +237,9 @@ Link a printer with [narrator character](/guide/characters#narrator-characters) 
 
 ## Default Author
 
-You may have noticed the `DefaultAuthor` record in characters configuration created by default in a new project — it's a [narrator character](/guide/characters#narrator-characters), whose metadata is used when you don't explicitly specify the author in [@print] commands and [generic text](/guide/naninovel-scripts#generic-text-lines).
+When using [linked printers](/guide/characters#linked-printer) for your regular characters, you may want [generic text lines](/guide/naninovel-scripts#generic-text-lines) and [@print] commands without an explicit author to fall back to a dedicated printer. This avoids having to specify a narrator ID for every such line or switching printers manually with the [@printer] command.
 
-This is useful when you have [linked printers](/guide/characters#linked-printer) assigned to the "actual" characters and want to fall back to a default printer for un-authored text lines without having to specify an explicit "Narrator" ID for all such lines or switch the default printer with the [@printer] command.
-
-If you don't need this feature, the default author record can be safely removed. To re-enable the feature, simply add the `DefaultAuthor` record back.
+To enable this behavior, create a character record with `DefaultAuthor` ID, set its implementation to `NarratorCharacter` and disable `HasName` option. This character will then serve as the fallback author for any un-authored text and apply its linked printer automatically.
 
 ## Placeholder Characters
 
