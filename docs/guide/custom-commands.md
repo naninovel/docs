@@ -9,11 +9,12 @@ To add your own custom script command, create a new C# class derived from `Comma
 Below is an example of a custom command, that can be invoked from naninovel scripts as `@HelloWorld` or `@hello` to print "Hello World!" to the console and can also take an optional `name` parameter (eg, `@hello name:Felix`) to greet the provided name instead of the world.
 
 ```csharp
+using System;
 using Naninovel;
 using Naninovel.Commands;
 using UnityEngine;
 
-[Alias("hello")]
+[Serializable, Alias("hello")]
 public class HelloWorld : Command
 {
     public StringParameter Name;
@@ -180,7 +181,7 @@ To override a built-in command, add a custom one and apply the same alias built-
 Below is an example of overriding built-in [@print] command, so that the printed text will be logged into the console before being revealed to the player.
 
 ```csharp
-[Alias("print")]
+[Serializable, Alias("print")]
 public class MyCustomPrintCommand : PrintText
 {
     public override UniTask Execute (ExecutionContext ctx)

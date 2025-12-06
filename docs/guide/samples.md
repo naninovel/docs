@@ -320,7 +320,7 @@ When Naninovel library and types are added in the visual scripting settings, the
 In case you wish to send an event from a scenario script to a visual scripting graph or state machine, below is example of a [custom command](/guide/custom-commands), which will attempt to find a game object with the provided name and send an event with the specified name and arguments:
 
 ```csharp
-[Alias("bolt")]
+[Serializable, Alias("bolt")]
 public class BroadcastBoltEvent : Command
 {
     [Alias("object"), RequiredParameter]
