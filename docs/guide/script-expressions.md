@@ -67,7 +67,7 @@ The following functions can also be used inside the script expressions.
 Signature | Description | Example
 --- | --- | ---
 random(min, max) | Return a random integer number between min [inclusive] and max [inclusive]. | `random(0, 100)`
-random(min, max) | Return a random double number between min [inclusive] and max [inclusive]. | `random(0.5, 1.5)`
+random(min, max) | Return a random decimal number between min [inclusive] and max [inclusive]. | `random(0.5, 1.5)`
 random(args) | Return a string chosen from one of the specified strings. | `random("foo", "bar", "baz")`
 calculateProgress() | Returns scenario completion ratio, in 0.0 to 1.0 range, where 1.0 means all the script lines were executed at least once. | `calculateProgress()`
 isUnlocked(id) | Checks whether an unlockable item with the specified ID is currently unlocked. | `isUnlocked("Tips/MyTip")`
