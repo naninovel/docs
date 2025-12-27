@@ -158,7 +158,7 @@ public class CustomResourceProvider : IResourceProvider
         return default;
     }
 
-    public UniTask<Resource<T>> LoadResource<T> (string path)
+    public Awaitable<Resource<T>> LoadResource<T> (string path)
         where T : UnityEngine.Object
     {
         OnMessage?.Invoke($"LoadResource: {path}");
@@ -166,7 +166,7 @@ public class CustomResourceProvider : IResourceProvider
         return default;
     }
 
-    public UniTask<IEnumerable<Resource<T>>> LoadResources<T> (string path)
+    public Awaitable<IEnumerable<Resource<T>>> LoadResources<T> (string path)
         where T : UnityEngine.Object
     {
         OnMessage?.Invoke($"LoadResources: {path}");
@@ -174,20 +174,20 @@ public class CustomResourceProvider : IResourceProvider
         return default;
     }
 
-    public UniTask<IEnumerable<Folder>> LocateFolders (string path)
+    public Awaitable<IEnumerable<Folder>> LocateFolders (string path)
     {
         OnMessage?.Invoke($"LocateFolders: {path}");
         return default;
     }
 
-    public UniTask<IEnumerable<string>> LocateResources<T> (string path)
+    public Awaitable<IEnumerable<string>> LocateResources<T> (string path)
         where T : UnityEngine.Object
     {
         OnMessage?.Invoke($"LocateResources: {path}");
         return default;
     }
 
-    public UniTask<bool> ResourceExists<T> (string path)
+    public Awaitable<bool> ResourceExists<T> (string path)
         where T : UnityEngine.Object
     {
         OnMessage?.Invoke($"ResourceExists: {path}");

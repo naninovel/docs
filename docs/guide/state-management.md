@@ -104,14 +104,14 @@ public class MyCustomBehaviour : MonoBehaviour
         stateMap.SetState(state);
     }
 
-    private UniTask DeserializeState (GameStateMap stateMap)
+    private Awaitable DeserializeState (GameStateMap stateMap)
     {
         var state = stateMap.GetState<GameState>();
-        if (state is null) return UniTask.CompletedTask;
+        if (state is null) return Async.Completed;
 
         myCustomBool = state.MyCustomBool;
         myCustomString = state.MyCustomString;
-        return UniTask.CompletedTask;
+        return Async.Completed;
     }
 }
 ```
@@ -219,19 +219,19 @@ public class CustomSettingsSlotManager : ISaveSlotManager<SettingsStateMap>
         Debug.Log($"RenameSaveSlot({sourceSlotId},{destSlotId})");
     }
 
-    public UniTask Save (string slotId, SettingsStateMap data)
+    public Awaitable Save (string slotId, SettingsStateMap data)
     {
         Debug.Log($"Save({slotId})");
-        return UniTask.CompletedTask;
+        return Async.Completed;
     }
 
-    public UniTask<SettingsStateMap> Load (string slotId)
+    public Awaitable<SettingsStateMap> Load (string slotId)
     {
         Debug.Log($"Load({slotId})");
-        return UniTask.FromResult(new SettingsStateMap());
+        return Async.Result(new SettingsStateMap());
     }
 
-    public UniTask<SettingsStateMap> LoadOrDefault (string slotId)
+    public Awaitable<SettingsStateMap> LoadOrDefault (string slotId)
     {
         return Load(slotId);
     }

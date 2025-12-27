@@ -330,18 +330,18 @@ public class BroadcastBoltEvent : Command
     [Alias("args")]
     public StringListParameter Arguments;
 
-    public override UniTask Execute (ExecutionContext ctx)
+    public override Awaitable Execute (ExecutionContext ctx)
     {
         var gameObject = GameObject.Find(GameObjectName);
         if (!gameObject)
         {
             Debug.LogError($"Failed to broadcast '{EventName}' bolt event: '{GameObjectName}' game object is not found.");
-            return UniTask.CompletedTask;
+            return Async.Completed;
         }
 
         CustomEvent.Trigger(gameObject, EventName, Arguments);
 
-        return UniTask.CompletedTask;
+        return Async.Completed;
     }
 }
 ```

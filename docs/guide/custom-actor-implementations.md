@@ -190,7 +190,7 @@ public class MyCustomChoiceHandler : UIChoiceHandler
         LastChoiceTime = DateTime.Now.ToShortTimeString();
     }
 
-    public override UniTask ChangeVisibility (bool visible, float duration,
+    public override Awaitable ChangeVisibility (bool visible, float duration,
         EasingType easingType = default, AsyncToken token = default)
     {
         Debug.Log($"Last choice time: {LastChoiceTime}");
@@ -209,7 +209,7 @@ public class MyChoiceHandlerManager : ActorManager<IChoiceHandlerActor,
     public MyChoiceHandlerManager (ChoiceHandlersConfiguration config)
         : base(config) { }
 
-    public UniTask<IChoiceHandlerActor> AddActor (string actorId,
+    public Awaitable<IChoiceHandlerActor> AddActor (string actorId,
         ChoiceHandlerState state)
     {
         return base.AddActor(actorId, state as MyChoiceHandlerState);
