@@ -244,7 +244,7 @@ public class PlayMusic : Command, Command.IPreloadable
 
     private IAudioManager audio => Engine.GetService<IAudioManager>();
 
-    public async UniTask PreloadResources ()
+    public async Awaitable PreloadResources ()
     {
         await audio.AudioLoader.Load(MusicName, this);
     }
@@ -254,7 +254,7 @@ public class PlayMusic : Command, Command.IPreloadable
         audio.AudioLoader.Release(MusicName, this);
     }
 
-    public override async UniTask Execute (ExecutionContext ctx)
+    public override async Awaitable Execute (ExecutionContext ctx)
     {
         await audio.PlayBgm(MusicName, token: ctx.Token);
     }
@@ -298,7 +298,7 @@ public class HoldObject : MonoBehaviour
 
     private async void Start()
     {
-        while (!Engine.Initialized) await UniTask.DelayFrame(1);
+        while (!Engine.Initialized) await Async.NextFrame();
         Engine.GetService<IResourceProviderManager>().Hold(ObjectToHold, this);
     }
 }

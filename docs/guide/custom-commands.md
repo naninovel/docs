@@ -19,11 +19,11 @@ public class HelloWorld : Command
 {
     public StringParameter Name;
 
-    public override UniTask Execute (ExecutionContext ctx)
+    public override Awaitable Execute (ExecutionContext ctx)
     {
         if (Assigned(Name)) Debug.Log($"Hello, {Name}!");
         else Debug.Log("Hello World!");
-        return UniTask.CompletedTask;
+        return Async.Completed;
     }
 }
 ```
@@ -44,7 +44,7 @@ Notice the `ExecutionContext ctx` argument provided to the `Execute` method. Whe
 - `AsyncToken.Completed` means the command is expected to complete all activities as fast as possible. For example, if you're running animations, finish them instantly, regardless of their expected duration. This usually happens when the player activates continue input or when a save game operation starts.
 
 ```csharp
-public override async UniTask Execute (ExecutionContext ctx)
+public override async Awaitable Execute (ExecutionContext ctx)
 {
     await PerformSomething();
     // The engine may have been destroyed while the above method was running;
@@ -63,7 +63,7 @@ public override async UniTask Execute (ExecutionContext ctx)
 Another member of the execution context is the script track instance executing the command, accessible via `ctx.Track`. Use the track instance whenever you need to control playback or when calling other engine APIs that require a track. For example, stop playback like this:
 
 ```csharp
-public override async UniTask Execute (ExecutionContext ctx)
+public override async Awaitable Execute (ExecutionContext ctx)
 {
     ctx.Track.Stop();
 }
@@ -148,7 +148,7 @@ public class PlayAudioClip : Command, Command.IPreloadable
 {
     public StringParameter ClipPath;
 
-    public async UniTask PreloadResources ()
+    public async Awaitable PreloadResources ()
     {
         if (!Assigned(ClipPath) || ClipPath.DynamicValue) return;
         await ... (load the audio clip here)
@@ -184,7 +184,7 @@ Below is an example of overriding built-in [@print] command, so that the printed
 [Serializable, Alias("print")]
 public class MyCustomPrintCommand : PrintText
 {
-    public override UniTask Execute (ExecutionContext ctx)
+    public override Awaitable Execute (ExecutionContext ctx)
     {
         Debug.Log(Text);
         return base.Execute(ctx);

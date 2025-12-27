@@ -74,13 +74,13 @@ public class CustomService : IEngineService
         this.scriptPlayer = scriptPlayer;
     }
 
-    public UniTask InitializeService ()
+    public Awaitable InitializeService ()
     {
     	// Initialize the service here.
         // It's now safe to use services requested in the constructor.
         Debug.Log(inputManager.ProcessInput);
         Debug.Log(scriptPlayer.PlayedScript);
-        return UniTask.CompletedTask;
+        return Async.Completed;
     }
 
     public void ResetService ()

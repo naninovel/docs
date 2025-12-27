@@ -143,7 +143,7 @@ public class SwitchToNovelMode : Command
     public StringParameter ScriptPath;
     public StringParameter Label;
 
-    public override async UniTask Execute (ExecutionContext ctx)
+    public override async Awaitable Execute (ExecutionContext ctx)
     {
         // 1. Disable character control.
         var controller = Object.FindAnyObjectByType<CharacterController3D>();
@@ -173,7 +173,7 @@ public class SwitchToNovelMode : Command
 [Alias("adventure")]
 public class SwitchToAdventureMode : Command
 {
-    public override async UniTask Execute (ExecutionContext ctx)
+    public override async Awaitable Execute (ExecutionContext ctx)
     {
         // 1. Mute Naninovel input.
         var inputManager = Engine.GetService<IInputManager>();

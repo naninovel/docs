@@ -119,10 +119,10 @@ public class FMODAudioManager : IAudioManager
     public IResourceLoader AudioLoader { get; } = new NullResourceLoader();
 
     // Assuming FMOD's lifecycle is managed externally.
-    public UniTask InitializeService () => UniTask.CompletedTask;
+    public Awaitable InitializeService () => Async.Completed;
     public void DestroyService () { }
 
-    public UniTask PlaySfx (string path, ...)
+    public Awaitable PlaySfx (string path, ...)
     {
         // Resolve the FMOD's event reference from the path and play it.
     }
