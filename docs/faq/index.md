@@ -42,12 +42,6 @@ The asset download verification is required when Naninovel is purchased via Unit
 When asset is purchased from an organization account, the organization owner have to download the asset to satisfy the check (assigned members won't count). This is an Asset Store limitation and we won't be able to provide any workarounds in such cases; please contact Unity support for more information and assistance.
 :::
 
-## Why the package doesn't contain any demo scenes?
-
-Naninovel is designed to be [scene-independent](/guide/engine-architecture#scene-independent) and doesn't use [Unity scenes](https://docs.unity3d.com/Manual/CreatingScenes.html) in any way, hence it's not possible to make any kind of example or demo scenes. The engine is automatically initialized when the game is started (can be switched to manual initialization in the engine configuration window) and scenarios are scripted via text documents called [naninovel scripts](/guide/naninovel-scripts).
-
-Please read through the [getting started](/guide/getting-started) guide to get a grasp on how to use the engine. You can find additional examples on using various engine features and script commands in the rest of the [guide](/guide/index) and [API command reference](/api/index). In case you'd like a complete working project, which can be used as a reference, take a look at the [demo project](/guide/getting-started.html#demo-project).
-
 ## How to customize the title (main) menu: add background, music, effects, change buttons, etc?
 
 For the UI part (changing/adding buttons or panel layout and style) [modify the built-in Title UI prefab](/guide/user-interface#modifying-built-in-ui); for everything else set `Title Script` at the scripts configuration menu (`Naninovel -> Configuration -> Scripts`) and use script commands to set up the scene just like when writing a scenario. The title script will be automatically played when entering the title menu. An example of the entire customization process is shown in the following video tutorial: [youtu.be/hqhfhXzQkdk](https://youtu.be/hqhfhXzQkdk).
