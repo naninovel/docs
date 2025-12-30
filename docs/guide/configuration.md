@@ -135,9 +135,9 @@ Property | Default Value | Description
 --- | --- | ---
 Override Objects Layer | False | Whether to assign a specific layer to all the engine objects. Engine's camera will use the layer for the culling mask. Use this to isolate Naninovel objects from being rendered by other cameras.
 Objects Layer | 0 | When `Override Objects Layer` is enabled, the specified layer will be assigned to all the engine objects.
-Async Exception Log Type | Error | Log type to use for UniTask-related exceptions.
 Async Instantiation | True | Whether to use `Object.InstantiateAsync` for instantiating engine objects, which moves most associated work off the main thread. Keep enabled unless experiencing issues.
 Initialize On Application Load | True | Whether to automatically initialize the engine when application starts.
+Check Unity Version | True | Whether to warn when Unity version is not supported.
 Scene Independent | True | Whether to apply `DontDestroyOnLoad` to the engine objects, making their lifetime independent of any loaded scenes. When disabled, the objects will be part of the Unity scene where the engine was initialized and will be destroyed when the scene is unloaded.
 Show Initialization UI | True | Whether to show a loading UI while the engine is initializing.
 Custom Initialization UI | Null | UI to show while the engine is initializing (when enabled). Will use a default one when not specified.
@@ -264,7 +264,9 @@ Auto Resolve Path | True | Whether to automatically resolve and update resource 
 Hot Reload Scripts | True | Whether to reload modified (both via visual and external editors) scripts and apply changes during play mode without restarting the playback.
 Watch Scripts | True | Whether to run a file system watcher over '.nani' files. Required to register script changes when edited with an external application.
 Show Script Navigator | False | Whether to auto-show script navigator UI after engine is initialized (requires 'IScriptNavigatorUI' available in UI resources).
-Enable Visual Editor | True | Whether to show visual script editor when a script is selected.
+Enable Story Editor | True | Whether to use the new Story Editor instead of the legacy Visual Editor and Script Graph.
+Show Selected Script | True | Whether to open selected scenario script assets inside the Story Editor.
+Enable Visual Editor | True | Whether to show the legacy visual script editor when a script is selected. Has no effect when Story Editor is enabled.
 Hide Unused Parameters | True | Whether to hide un-assigned parameters of the command lines when the line is not hovered or focused.
 Select Played Script | True | Whether to automatically select currently played script when visual editor is open.
 Insert Line Key | Space | Hot key used to show 'Insert Line' window when the visual editor is in focus. Set to 'None' to disable.
