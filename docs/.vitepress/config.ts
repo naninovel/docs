@@ -7,6 +7,7 @@ export default defineConfig({
     titleTemplate: ":title • Naninovel",
     appearance: "dark",
     cleanUrls: true,
+    rewrites: { "en/:rest*": ":rest*" },
     lastUpdated: true,
     head: [
         ["link", { rel: "icon", href: "/favicon.svg" }],
