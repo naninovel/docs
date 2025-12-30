@@ -2,7 +2,7 @@
 
 The best place to start when you need help is our official Discord server: [discord.gg/BfkNqem](https://discord.gg/BfkNqem).
 
-You're welcome to ask for help or advice in the `#devtalk` channel, explore tutorials and guides in `#wiki`, or just hang out and chat with fellow Naninovel users in `#general`.
+You're welcome to ask for help or advice in the `#forum` channel, explore tutorials and guides in `#wiki`, or just hang out and chat with fellow Naninovel users in `#chat`.
 
 If you have an active [Support Plan](/support/#support-plan), you'll also gain access to the `#support` channel, where the Naninovel team provides direct assistance. The first year of the Support Plan is free when you [register your license](https://account.naninovel.com).
 
@@ -18,12 +18,12 @@ The Support Plan provides access to dedicated support on our Discord server and 
 A free one-year Support Plan is included when you [register your license](https://account.naninovel.com). After that, you can renew your subscription anytime through your [account dashboard](https://account.naninovel.com/support).
 
 ::: info NOTE
-The Support Plan is completely optional — you'll continue to have lifetime access to all future stable Naninovel releases via the [download archive](https://account.naninovel.com/download) even without it, and community support remains available in the `#devtalk` channel, where you can always ask questions and get help.
+The Support Plan is completely optional — you'll continue to have lifetime access to all future stable Naninovel releases via the [download archive](https://account.naninovel.com/download) even without it, and community support remains available in the `#forum` channel, where you can always ask questions and get help.
 :::
 
 ## Reporting Bugs
 
-If you believe something is not working as intended, let us know on [Discord](https://discord.gg/BfkNqem) in the `#support` channel (if you have an active [Support Plan](/support/#support-plan)) or the `#devtalk` channel.
+If you believe something is not working as intended, let us know on [Discord](https://discord.gg/BfkNqem) in the `#support` channel (if you have an active [Support Plan](/support/#support-plan)) or the `#forum` channel.
 
 Before submitting a report, please:
 
