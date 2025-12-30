@@ -257,8 +257,8 @@ Loader | Scripts- (Addressable, Project) | Configuration of the resource loader 
 Script Compiler | Naninovel Script Compiler | IScriptCompiler implementation to use for transforming source scenario text into script assets. Reimport script assets after modifying this setting for changes to take effect.
 Compiler Localization |  (Naninovel.Compiler Localization) | Locale-specific NaniScript compiler options. Will propagate to IDE extension on metadata sync. Restart Unity editor and reimport script assets for changes to take effect.
 Initialization Script | Null | Local resource path of the script to play right after the engine initialization.
-Title Script | Null | Local resource path of the script to play when showing the Title UI. Can be used to setup the title screen scene (background, music, etc).
-Start Game Script | Null | Local resource path of the script to play when starting a new game. Will use first available when not specified.
+Title Script | Title | Local resource path of the script to play when showing the Title UI. Can be used to setup the title screen scene (background, music, etc).
+Start Game Script | Entry | Local resource path of the script to play when starting a new game. Will use first available when not specified.
 Auto Add Scripts | True | Whether to automatically add created naninovel scripts to the resources.
 Auto Resolve Path | True | Whether to automatically resolve and update resource paths whenever scripts are created, renamed or moved.
 Hot Reload Scripts | True | Whether to reload modified (both via visual and external editors) scripts and apply changes during play mode without restarting the playback.
