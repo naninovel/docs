@@ -39,3 +39,7 @@ Unity's [Input System](https://docs.unity3d.com/Packages/com.unity.inputsystem@l
 ## Exceptions
 
 At least "Explicitly Thrown Exceptions Only" level is required for `Enable Exceptions` option in "Publishing Settings" (selected by default). The setting is only applicable for [WebGl builds](https://docs.unity3d.com/Manual/webgl-building). "None" level is not supported.
+
+## Story Editor
+
+The embedded Story Editor requires at least Windows 10 build 1809 with an x86-64 CPU, or macOS 11 (Big Sur) with an Apple Silicon (ARM64) CPU. Linux, as well as ARM-based Windows and x86-based Apple devices, are not supported; however, you can still use the [web version](https://naninovel.com/editor) of the Story Editor on those platforms.
