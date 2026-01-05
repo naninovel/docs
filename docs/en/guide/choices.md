@@ -29,7 +29,7 @@ goto:#Epilogue
 ```
 
 ::: info NOTE
-Find more about labels in the [scripts guide](/guide/naninovel-scripts#label-lines).
+Find more about labels in the [scripts guide](/guide/scenario-scripting#label-lines).
 :::
 
 When `goto` parameter is not specified, current script will continue executing from the next line.
@@ -44,7 +44,7 @@ Check the following video tutorial for an overview of the choice handlers.
 
 ## Nested Callback
 
-When the consequence of picking a choice is small (eg, you may just want to print a couple of sentences), it's impractical to designate a label and use `goto` or `gosub` parameters. Instead, [nest](/guide/naninovel-scripts#nesting) commands to execute when the choice is picked:
+When the consequence of picking a choice is small (eg, you may just want to print a couple of sentences), it's impractical to designate a label and use `goto` or `gosub` parameters. Instead, [nest](/guide/scenario-scripting#nesting) commands to execute when the choice is picked:
 
 ```nani
 @choice "Ask about color"

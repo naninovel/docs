@@ -134,7 +134,7 @@ When `Has Name` is disabled, neither display name, nor character ID will be disp
 
 ## Name Labels
 
-While display names discussed above are recommended in most cases, sometimes you may want to change name of the actor for a few lines or make multiple actors authors of the same line. Setting up a dedicated actor or variable display name for each such occurrence would be impractical. Instead, consider using `as` [generic parameter](/guide/naninovel-scripts#generic-parameters):
+While display names discussed above are recommended in most cases, sometimes you may want to change name of the actor for a few lines or make multiple actors authors of the same line. Setting up a dedicated actor or variable display name for each such occurrence would be impractical. Instead, consider using `as` [generic parameter](/guide/scenario-scripting#generic-parameters):
 
 ```nani
 ; Even though "Kohaku" character may have custom display name
@@ -237,7 +237,7 @@ Link a printer with [narrator character](/guide/characters#narrator-characters) 
 
 ## Default Author
 
-When using [linked printers](/guide/characters#linked-printer) for your regular characters, you may want [generic text lines](/guide/naninovel-scripts#generic-text-lines) and [@print] commands without an explicit author to fall back to a dedicated printer. This avoids having to specify a narrator ID for every such line or switching printers manually with the [@printer] command.
+When using [linked printers](/guide/characters#linked-printer) for your regular characters, you may want [generic text lines](/guide/scenario-scripting#generic-text-lines) and [@print] commands without an explicit author to fall back to a dedicated printer. This avoids having to specify a narrator ID for every such line or switching printers manually with the [@printer] command.
 
 To enable this behavior, create a character record with `DefaultAuthor` ID, set its implementation to `NarratorCharacter` and disable `HasName` option. This character will then serve as the fallback author for any un-authored text and apply its linked printer automatically.
 

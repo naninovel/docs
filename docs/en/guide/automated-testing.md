@@ -127,7 +127,7 @@ ISequence RouteY => On(Choosing, Choose(), Var("g_completedY", false));
 
 ## Referencing Choices
 
-As you've noticed above, choices can be referenced in the tests via strings like `d1-qte-x`. Those are custom [text identifiers](/guide/naninovel-scripts#text-identification) assigned in scenario scripts. Even when stable text identification is enabled, you can still define custom text IDs in the scripts and they will be preserved by the system. For example, consider following scenario script:
+As you've noticed above, choices can be referenced in the tests via strings like `d1-qte-x`. Those are custom [text identifiers](/guide/scenario-scripting#text-identification) assigned in scenario scripts. Even when stable text identification is enabled, you can still define custom text IDs in the scripts and they will be preserved by the system. For example, consider following scenario script:
 
 ```nani
 @choice "Choice 1|#my-id-for-choice-1|"

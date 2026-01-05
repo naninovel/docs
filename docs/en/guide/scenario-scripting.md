@@ -1,4 +1,4 @@
-# Naninovel Scripts
+# Scenario Scripting
 
 Naninovel scripts are text documents (`.nani` extension) where you control what happens on scenes. Script assets are created with `Create -> Naninovel -> Naninovel Script` asset context menu. You can open and edit them with the built-in [visual editor](#visual-editor) or with an external text editor of your choice, like Microsoft Word, Google Docs or [VS Code](https://code.visualstudio.com).
 
@@ -69,7 +69,7 @@ Depending on the command parameter, it can expect one of the following value typ
 | string  | A simple string value, eg: `LoremIpsum`. Don't forget to wrap the string in double quotes in case it contain spaces, eg: `"Lorem ipsum dolor sit amet."`.                                                                                              |
 | integer | A number which is not a fraction; a whole number, eg: `1`, `150`, `-25`.                                                                                                                                                                               |
 | decimal | A decimal number with fraction delimited by a dot, eg: `1.0`, `12.08`, `-0.005`.                                                                                                                                                                       |
-| boolean | Can have one of two possible values: `true` or `false`. In most cases you can use [boolean flags](/guide/naninovel-scripts#boolean-flags) instead of typing "true" and "false", eg: `@camera ortho! !wait` instead of `@camera ortho:true wait:false`. |
+| boolean | Can have one of two possible values: `true` or `false`. In most cases you can use [boolean flags](/guide/scenario-scripting#boolean-flags) instead of typing "true" and "false", eg: `@camera ortho! !wait` instead of `@camera ortho:true wait:false`. |
 | named   | A name string associated with a value of one of the above types. The name part is delimited by a dot. Eg for named integer: `foo.8`, `bar.-20`.                                                                                                        |
 | list    | A comma-separated list of values of one of the above types. Eg for string list: `foo,bar,"Lorem ipsum."`, for decimal list: `12,-8,0.105,2`                                                                                                            |
 
@@ -257,7 +257,7 @@ Assets
 In this case, the scenario root is the `Assets/Scenario` directory. To navigate to the "Assets/Scenario/RouteX/SceneX.nani" script file, you'd use the following endpoint: `RouteX/SceneX`.
 
 ::: tip
-If you don't like the idea of including directories when specifying endpoints—you don't have to! Check the [relative](/guide/naninovel-scripts#relative-endpoints) and [wildcard](/guide/naninovel-scripts#wildcard-endpoints) endpoint syntaxes explained below.
+If you don't like the idea of including directories when specifying endpoints—you don't have to! Check the [relative](/guide/scenario-scripting#relative-endpoints) and [wildcard](/guide/scenario-scripting#wildcard-endpoints) endpoint syntaxes explained below.
 :::
 
 The scenario root is detected automatically when you create or move scenario files. You can check the current root in Naninovel's script configuration menu.
@@ -270,7 +270,7 @@ Naninovel supports 4 flavors of endpoint syntax, allowing you to build more conc
 
 #### Canonical Endpoints
 
-This is the default syntax, containing the full path to the script starting from the [scenario root](/guide/naninovel-scripts#scenario-root). It's always available and doesn't depend on the location of the current script, but it requires including all the directories up to the target script:
+This is the default syntax, containing the full path to the script starting from the [scenario root](/guide/scenario-scripting#scenario-root). It's always available and doesn't depend on the location of the current script, but it requires including all the directories up to the target script:
 
 ```nani
 ; Navigate to the start of the 'Assets/Scenario/Prologue.nani' script.
@@ -392,7 +392,7 @@ Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
 
 ### Conditional Blocks
 
-It's possible to [nest](/guide/naninovel-scripts#nesting) multiline conditional blocks under [@if] and [@else] commands:
+It's possible to [nest](/guide/scenario-scripting#nesting) multiline conditional blocks under [@if] and [@else] commands:
 
 ```nani
 ; Print text line(s) depending on "score" variable:
@@ -739,7 +739,7 @@ You can re-position the nodes as you like and their positions will be automatica
 
 When changing scripts or adding new ones, click "Rebuild Graph" button to sync it.
 
-When [comment lines](/guide/naninovel-scripts#comment-lines) are present at the top of a script, associated graph node will show those as a synopsis. To disable that, uncheck `Show Synopsis` in the scripts configuration menu.
+When [comment lines](/guide/scenario-scripting#comment-lines) are present at the top of a script, associated graph node will show those as a synopsis. To disable that, uncheck `Show Synopsis` in the scripts configuration menu.
 
 ![](https://i.gyazo.com/15682b202d37ad8f12b0f839063a530f.png)
 
@@ -832,7 +832,7 @@ Open the tool via `Naninovel -> Tools -> Fountain Screenplay` editor menu, selec
 
 ![](https://i.gyazo.com/2cf71e3a5b2713ba14838f1e28bb498d.png)
 
-Fountain's [Action](https://fountain.io/syntax#section-action) and [Dialogue](https://fountain.io/syntax#section-dialogue) paragraphs will be converted to [generic text lines](/guide/naninovel-scripts.html#generic-text-lines); other syntax constructs will be represented as [comment lines](/guide/naninovel-scripts.html#comment-lines).
+Fountain's [Action](https://fountain.io/syntax#section-action) and [Dialogue](https://fountain.io/syntax#section-dialogue) paragraphs will be converted to [generic text lines](/guide/scenario-scripting.html#generic-text-lines); other syntax constructs will be represented as [comment lines](/guide/scenario-scripting.html#comment-lines).
 
 ![](https://i.gyazo.com/e6d3231993fc11eb664d2c9a70c8a87a.png)
 
