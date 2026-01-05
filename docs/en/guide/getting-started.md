@@ -14,21 +14,21 @@ Choosing 2D or 3D depends on the style of game you're building. For most standar
 
 ![](https://i.gyazo.com/b1b89ad23fbeffff3d03cf7dcf25cab1.png)
 
-When creating a new project, Unity automatically includes a sample scene with a "Main Camera" and, depending on the template, various other game objects.
+After creating a new project, Unity automatically includes a sample scene with a "Main Camera" and, depending on the template, various other game objects.
 
-![](https://i.gyazo.com/0691599c7586100d2467499a252b6194.png)
+![?width=271](https://i.gyazo.com/5bd6471a53ffbf106099373395484ef6.png)
 
 Naninovel is scene-independent; therefore, we recommend removing these objects from the scene to prevent unnecessary performance overhead or conflicts with Naninovel systems. You can also remove the sample scene itself, though it is recommended to keep at least one scene in the project for certain editor features to function correctly.
 
 ### Optimizing Editor
 
-This step is optional but recommended to significantly improve editor startup, reload and enter play mode times.
+This step is optional but recommended, as it can significantly improve Unity editor startup, reload, and play mode entry times.
 
-First, go to `Edit -> Project Settings -> Editor` menu and select `Do not reload Domain or Scene` under "Enter Play Mode Settings" option to reduce the time it takes to enter play mode.
+First, go to `Edit -> Project Settings -> Editor` and select `Do not reload Domain or Scene` under the "Enter Play Mode Settings" option to reduce the time it takes to enter play mode.
 
-![](https://i.gyazo.com/8432d5dfb28a0f63d0f2fedfa00be91c.png)
+![](https://i.gyazo.com/bf1a91f7ad04f0823e72c9feb4f67f0a.png)
 
-Now, open and inspect `manifest.json` file at the "Packages" folder stored under the Unity project root. It lists all the installed packages and modules. Depending on the template, Unity includes many modules by default, while you'll most likely never need most of those, while each of them increases the time of the editor startup and code reload. Below are the modules required by Naninovel; consider removing all the other entries, in case they are not needed:
+Now, open and inspect the `manifest.json` file in the "Packages" folder located under the Unity project root. This file lists all installed packages and modules. Depending on the template, Unity includes many modules by default, most of which you will likely never need, while each additional module can increase editor startup and code reload times. Below are the modules required by Naninovel — consider removing any other entries if they are not needed:
 
 ::: code-group
 ```json [Packages/manifest.json]
@@ -47,7 +47,7 @@ Now, open and inspect `manifest.json` file at the "Packages" folder stored under
 
 ### VCS Setup
 
-In case you're using a version control system, such as Git, consider ignoring following paths to prevent unnecessary churn:
+If you're using a version control system, such as Git, consider ignoring the following paths to prevent unnecessary churn:
 
 ::: code-group
 ```asm [.gitignore]
@@ -58,10 +58,10 @@ In case you're using a version control system, such as Git, consider ignoring fo
 ```
 :::
 
-— note that `Assets/NaninovelData` is an auto-generated folder. After it's initially generated, you can rename or move it to any folder under `Assets` (Naninovel will still be able to locate it), in which case the above ignore paths have to be updated accordingly.
+Note that `Assets/NaninovelData` is an auto-generated folder. After it is initially created, you can rename or move it to any folder under `Assets` (Naninovel will still be able to locate it). If you do so, the ignore paths above must be updated accordingly.
 
 ::: tip EXAMPLE
-Find [.gitignore](https://github.com/naninovel/engine/blob/main/unity/samples/.gitignore) in our [samples project](/guide/samples) for an example Git ignore profile. Notice how `NaninovelData` folder in the project is renamed to just `Naninovel` and moved under `Assets/Profiles` for organization purposes — you're free to move the folder in a similar fashion in your own project.
+See the [.gitignore](https://github.com/naninovel/engine/blob/main/unity/samples/.gitignore) in our [samples project](/guide/samples) for an example Git ignore profile. In that example, the `NaninovelData` folder is renamed to `Naninovel` and moved under `Assets/Profiles` for better organization — you can move the folder similarly in your own project.
 :::
 
 ## Install Naninovel
