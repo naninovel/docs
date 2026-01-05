@@ -2,11 +2,11 @@
 
 ## Prerequisites
 
-Naninovel is an extension for the [Unity game engine](https://unity.com), so it's strongly recommended to at least [learn the basics](https://learn.unity.com) of using the engine before starting with Naninovel.
+Naninovel is an extension for the [Unity game engine](https://unity.com), so it is strongly recommended to at least [learn the basics](https://learn.unity.com) of using Unity before starting with Naninovel.
 
-In case you're not going to build any custom gameplay outside Naninovel, feel free to ignore the scene-related information altogether, as Naninovel will take care of that.
+If you do not plan to implement any custom gameplay outside Naninovel, you can ignore the scene-related information, as Naninovel will handle it automatically.
 
-## Create New Unity Project
+## Create Unity Project
 
 When creating a project, we recommend choosing the **Universal Render Pipeline** (URP) template. The legacy built-in render pipeline (BiRP) will work as well, but it's no longer actively maintained by Unity and is expected to be deprecated. The High Definition Render Pipeline (HDRP) is not recommended — it will generally work as well, but some rendering features may not be compatible out of the box.
 
@@ -20,7 +20,7 @@ When creating new project, Unity automatically includes a sample scene with "Mai
 
 Naninovel is scene-independent, hence we recommend removing those objects from the scene to prevent unnecessary performance overhead or conflicts with Naninovel systems. You can also remove the sample scene itself, though it's recommended to keep at least one scene in a project for some editor features to work correctly.
 
-### Optimizing Editor Performance
+### Optimizing Editor
 
 This step is optional but recommended to significantly improve editor startup, reload and enter play mode times.
 
