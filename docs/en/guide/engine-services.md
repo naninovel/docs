@@ -26,8 +26,8 @@ IInputManager | Manages the user [input processing](/guide/input-processing).
 ILocalizationManager| Manages the [localization](/guide/localization) activities.
 ITextManager | Handles [managed text](/guide/managed-text) feature.
 IMoviePlayer | Handles [movie](/guide/movies) playing.
-IScriptManager | Manages [naninovel script](/guide/naninovel-scripts) resources.
-IScriptPlayer | Handles [naninovel scripts](/guide/naninovel-scripts) execution.
+IScriptManager | Manages [naninovel script](/guide/scenario-scripting) resources.
+IScriptPlayer | Handles [naninovel scripts](/guide/scenario-scripting) execution.
 ICameraManager | Manages cameras and other systems required for scene rendering.
 IResourceProviderManager | Manages `IResourceProvider` objects.
 IStateManager | Handles `IEngineService`-related persistent data de-/serialization; provides API to [save and load](/guide/save-load-system) game state.

@@ -20,12 +20,12 @@ Following commands are currently available:
 Command | Description
 --- | ---
 nav | Toggles naninovel script navigator UI.
-debug | Toggles [naninovel script debug](/guide/naninovel-scripts#scripts-debug) window.
+debug | Toggles [naninovel script debug](/guide/scenario-scripting#scripts-debug) window.
 var | Toggles [custom variable editor](/guide/custom-variables#variables-debug) window.
 play | Starts executing currently loaded naninovel script.
 stop | Halts execution of the currently loaded naninovel script.
 rewind (int) | Rewinds currently loaded naninovel script to the provided line index. The line should be either a command or a generic text. When rewinding back, the line should exist in the rollback stack.
-reload | Performs [hot reload](/guide/naninovel-scripts#hot-reload) of the currently played scenario script.
+reload | Performs [hot reload](/guide/scenario-scripting#hot-reload) of the currently played scenario script.
 
 ## Executing Commands
 

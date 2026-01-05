@@ -1,8 +1,8 @@
 # Commands
 
-Script commands API reference. Use the side bar to quickly navigate between available commands. 
+Standard script commands API reference. Use the side bar to quickly navigate between available commands. 
 
-~~Strikethrough~~ indicates a nameless parameter, and **bold** stands for required parameter; other parameters should be considered optional. Consult [naninovel scripts guide](/guide/naninovel-scripts) in case you have no idea what's this all about.
+~~Strikethrough~~ indicates nameless parameter, and **bold** stands for required parameter; other parameters should be considered optional. Consult the [scenario scripting guide](/guide/scenario-scripting) if you're unsure what this is all about.
 
 The following parameters are supported by most script commands:
 
@@ -113,7 +113,7 @@ Arranges specified characters by X-axis. When no parameters specified, will exec
 
 ## async
 
-Executes the nested lines asynchronously on a dedicated script track in parallel with the main scenario playback routine. Use to run composite animations or arbitrary command chains concurrently with the consequent scenario. Consult the [concurrent playback](/guide/naninovel-scripts#concurrent-playback) guide for more info.
+Executes the nested lines asynchronously on a dedicated script track in parallel with the main scenario playback routine. Use to run composite animations or arbitrary command chains concurrently with the consequent scenario. Consult the [concurrent playback](/guide/scenario-scripting#concurrent-playback) guide for more info.
 
 <div class="config-table">
 
@@ -598,11 +598,11 @@ Destroys all the objects spawned with [@spawn] command. Equal to invoking [@desp
 
 ## else
 
-Marks a branch of a conditional execution block, which is executed in case condition of the opening [@if] or [@unless] and preceding [@else] (if any) commands are not met. For usage examples see [conditional execution](/guide/naninovel-scripts#conditional-execution) guide.
+Marks a branch of a conditional execution block, which is executed in case condition of the opening [@if] or [@unless] and preceding [@else] (if any) commands are not met. For usage examples see [conditional execution](/guide/scenario-scripting#conditional-execution) guide.
 
 ## endIf
 
-Alternative to using indentation in conditional blocks: marks end of the block opened with previous [@if] command, no matter the indentation. For usage examples see [conditional execution](/guide/naninovel-scripts#conditional-execution) guide.
+Alternative to using indentation in conditional blocks: marks end of the block opened with previous [@if] command, no matter the indentation. For usage examples see [conditional execution](/guide/scenario-scripting#conditional-execution) guide.
 
 ## enterDialogue
 
@@ -883,7 +883,7 @@ When hiding the entire UI with this command and `allowToggle` parameter is false
 
 ## if
 
-Marks the beginning of a conditional execution block. Nested lines are considered body of the block and will be executed only in case the conditional nameless parameter is evaluated to `true`. See [conditional execution](/guide/naninovel-scripts#conditional-execution) guide for more info.
+Marks the beginning of a conditional execution block. Nested lines are considered body of the block and will be executed only in case the conditional nameless parameter is evaluated to `true`. See [conditional execution](/guide/scenario-scripting#conditional-execution) guide for more info.
 
 ::: info NOTE
 This command is inverse and complementary to [@unless].
@@ -1890,7 +1890,7 @@ Spawns particle system simulating [sun shafts](/guide/special-effects#sun-shafts
 
 ## sync
 
-Navigates the player track with the specified identifier to the current line and disposes the host track. Use to join (synchronize) the asynchronously executed tracks with each other or the main track. Consult the [concurrent playback](/guide/naninovel-scripts#concurrent-playback) guide for more info.
+Navigates the player track with the specified identifier to the current line and disposes the host track. Use to join (synchronize) the asynchronously executed tracks with each other or the main track. Consult the [concurrent playback](/guide/scenario-scripting#concurrent-playback) guide for more info.
 
 <div class="config-table">
 
@@ -2025,7 +2025,7 @@ Jenna: When will the damn rain stop?
 
 ## unless
 
-Marks the beginning of an inverted conditional execution block. Nested lines are considered body of the block and will be executed only in case the conditional nameless parameter is evaluated to `false`. See [conditional execution](/guide/naninovel-scripts#conditional-execution) guide for more info.
+Marks the beginning of an inverted conditional execution block. Nested lines are considered body of the block and will be executed only in case the conditional nameless parameter is evaluated to `false`. See [conditional execution](/guide/scenario-scripting#conditional-execution) guide for more info.
 
 ::: info NOTE
 This command is inverse and complementary to [@if].

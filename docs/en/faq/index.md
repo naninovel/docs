@@ -54,7 +54,7 @@ When screen aspect ratio is different from the reference resolution ratio, backg
 
 ## How to inject a command in the midst of a printed text message?
 
-Use [command inlining](/guide/naninovel-scripts#command-inlining).
+Use [command inlining](/guide/scenario-scripting#command-inlining).
 
 ## How to prevent commands from running concurrently?
 
@@ -69,7 +69,7 @@ Specify `wait` parameter, which is available in all async commands, eg:
 Alternatively, enable `Wait By Default` option in script player configuration; this way all commands will be awaited by default, unless `wait` is negated (set to false).
 
 ::: info
-Find more about async (parallel) command execution in the [dedicated article](/guide/naninovel-scripts#async-execution).
+Find more about async (parallel) command execution in the [dedicated article](/guide/scenario-scripting#async-execution).
 :::
 
 ## How to make actors appear in front of each other (z-sorting)?

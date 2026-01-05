@@ -357,7 +357,7 @@ Built-in printers also have **Play Command** option enabled. This will make the 
 Lorem ipsum dolor<@back tint:blue> sit amet.
 ```
 
-You can use event tags instead of [inlined commands](/guide/naninovel-scripts#command-inlining) to expose them to [localization documents](/guide/localization#scripts-localization) allowing translators override executed commands based on selected locale.
+You can use event tags instead of [inlined commands](/guide/scenario-scripting#command-inlining) to expose them to [localization documents](/guide/localization#scripts-localization) allowing translators override executed commands based on selected locale.
 
 ## Wait Input Tag
 

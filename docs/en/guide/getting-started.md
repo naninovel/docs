@@ -125,7 +125,7 @@ Consider a typical visual novel setup, with a character portrayed on top of a ba
 
 Now, let's say you want to make "Kohaku" character look happy. You have several textures (images) of that character, each portraying different emotion. In Naninovel such textures are called *appearances* of an actor. To achieve the goal, we have to change appearance of the character actor. Similarly, to make "MainBackground" display something else, we have to change appearance of that background actor.
 
-Actors and their parameters are controlled (directed) via commands specified in [naninovel scripts](/guide/naninovel-scripts).
+Actors and their parameters are controlled (directed) via commands specified in [naninovel scripts](/guide/scenario-scripting).
 
 Another widely used concept is [user interface](/guide/user-interface) (UI). UIs are used by player to interact with actors and the rest of the game. This includes various menus (title, save-load, settings, etc) and control panels (toggle auto read mode, skip text, etc). UI elements are positioned on top of actors by default.
 
