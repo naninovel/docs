@@ -26,8 +26,8 @@ IInputManager | 管理玩家的 [输入处理](/zh/guide/input-processing)。
 ILocalizationManager| 管理 [本地化](/zh/guide/localization) 活动。
 ITextManager | 处理 [受管文本](/zh/guide/managed-text) 功能。
 IMoviePlayer | 处理 [视频](/zh/guide/movies) 播放。
-IScriptManager | 管理 [naninovel 脚本](/zh/guide/naninovel-scripts) 资源。
-IScriptPlayer | 处理 [naninovel 脚本](/zh/guide/naninovel-scripts) 执行。
+IScriptManager | 管理 [naninovel 脚本](/zh/guide/scenario-scripting) 资源。
+IScriptPlayer | 处理 [naninovel 脚本](/zh/guide/scenario-scripting) 执行。
 ICameraManager | 管理场景渲染所需的摄像机及其他相关系统。
 IResourceProviderManager | 管理 `IResourceProvider` 对象。
 IStateManager | 处理与 `IEngineService` 相关的持久化数据序列化与反序列化；提供用于[保存与加载](/zh/guide/save-load-system)游戏状态的 API。

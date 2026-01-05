@@ -127,7 +127,7 @@ ISequence RouteY => On(Choosing, Choose(), Var("g_completedY", false));
 
 ## 引用选项
 
-如上所示，在测试中可以通过类似 `d1-qte-x` 这样的字符串引用选项。这些字符串是场景脚本中自定义的 [文本标识符](/zh/guide/naninovel-scripts#text-identification)。即使在启用了稳定文本标识（stable text identification）的情况下，你仍然可以在脚本中定义自定义文本 ID，并且系统会保留它们。例如，考虑以下场景脚本：
+如上所示，在测试中可以通过类似 `d1-qte-x` 这样的字符串引用选项。这些字符串是场景脚本中自定义的 [文本标识符](/zh/guide/scenario-scripting#text-identification)。即使在启用了稳定文本标识（stable text identification）的情况下，你仍然可以在脚本中定义自定义文本 ID，并且系统会保留它们。例如，考虑以下场景脚本：
 
 ```nani
 @choice "Choice 1|#my-id-for-choice-1|"

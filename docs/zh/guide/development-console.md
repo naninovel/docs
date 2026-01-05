@@ -20,12 +20,12 @@ public static void ToggleDebugInfo () => UI.DebugInfoGUI.Toggle();
 指令 | 说明
 --- | ---
 nav | 切换 Naninovel 脚本导航器 UI。
-debug | 切换 [Naninovel 脚本调试](/zh/guide/naninovel-scripts#scripts-debug) 窗口。
+debug | 切换 [Naninovel 脚本调试](/zh/guide/scenario-scripting#scripts-debug) 窗口。
 var | 切换 [自定义变量编辑器](/zh/guide/custom-variables#variables-debug) 窗口。
 play | 开始执行当前加载的 Naninovel 脚本。
 stop | 停止执行当前加载的 Naninovel 脚本。
 rewind (int) | 将当前加载的 Naninovel 脚本回退到指定的行索引。该行必须是指令或普通文本。在回退时，该行应存在于回滚堆栈中。
-reload | 对当前正在播放的场景脚本执行 [热重载](/zh/guide/naninovel-scripts#hot-reload)。
+reload | 对当前正在播放的场景脚本执行 [热重载](/zh/guide/scenario-scripting#hot-reload)。
 
 ## 执行指令
 

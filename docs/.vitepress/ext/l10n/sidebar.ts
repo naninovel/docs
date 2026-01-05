@@ -2,15 +2,21 @@ import { DefaultTheme } from "vitepress";
 
 export const en: DefaultTheme.SidebarItem[] = [
     {
-        text: "Guide",
+        text: "Essential",
         collapsed: true,
         items: [
             { text: "Introduction", link: "/guide/" },
             { text: "Compatibility", link: "/guide/compatibility" },
             { text: "Getting Started", link: "/guide/getting-started" },
             { text: "Scenario Scripting", link: "/guide/scenario-scripting" },
-            { text: "Story Editor", link: "/guide/editor" },
-            { text: "IDE Extension", link: "/guide/ide-extension" },
+            { text: "VS Code Extension", link: "/guide/ide-extension" },
+            { text: "Story Editor", link: "/guide/editor" }
+        ]
+    },
+    {
+        text: "Developer",
+        collapsed: true,
+        items: [
             { text: "Configuration", link: "/guide/configuration" },
             { text: "Text Printers", link: "/guide/text-printers" },
             { text: "Characters", link: "/guide/characters" },

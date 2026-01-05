@@ -1,6 +1,6 @@
 # 自定义指令
 
-指令代表一个单独的操作，用于控制场景中发生的事情；例如，它可以用于更换背景、移动角色或加载另一份 naninovel 脚本。定义在 [naninovel 脚本](/zh/guide/naninovel-scripts) 中的参数化指令序列实际上控制了游戏流程。你可以在 [API 参考](/api/) 中找到可用的内置指令。在代码中，所有内置脚本指令的实现都定义在 `Naninovel.Commands` 命名空间下。
+指令代表一个单独的操作，用于控制场景中发生的事情；例如，它可以用于更换背景、移动角色或加载另一份 naninovel 脚本。定义在 [naninovel 脚本](/zh/guide/scenario-scripting) 中的参数化指令序列实际上控制了游戏流程。你可以在 [API 参考](/api/) 中找到可用的内置指令。在代码中，所有内置脚本指令的实现都定义在 `Naninovel.Commands` 命名空间下。
 
 ## 添加自定义指令
 
@@ -173,7 +173,7 @@ public class PlayAudioClip : Command, Command.IPreloadable
 
 ## 覆盖内置指令
 
-在某些情况下，覆盖 Naninovel 的内置指令是有用的。例如，你可能希望修改 [@print] 指令的工作方式，而不必添加新的自定义指令，以便该更改也能影响 [通用文本行](/zh/guide/naninovel-scripts#generic-text-lines)（通用文本行在底层会被解析为 print 指令）。
+在某些情况下，覆盖 Naninovel 的内置指令是有用的。例如，你可能希望修改 [@print] 指令的工作方式，而不必添加新的自定义指令，以便该更改也能影响 [通用文本行](/zh/guide/scenario-scripting#generic-text-lines)（通用文本行在底层会被解析为 print 指令）。
 
 要覆盖内置指令，添加一个自定义指令并应用与内置指令相同的别名。在覆盖指令后，重新导入 naninovel 脚本（右键单击存放脚本的文件夹并点击 “Reimport”），以使更改生效。之后，播放 naninovel 脚本时，自定义指令将自动替代内置指令。
 

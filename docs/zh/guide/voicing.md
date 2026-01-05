@@ -48,7 +48,7 @@ Hello.|#uniqueid|
 ```
 
 ::: tip
-可在编辑器菜单中使用 `Naninovel/Tools/Text Identifier` 工具，让 Naninovel 自动为所有可本地化文本（包括语音台词）生成唯一的文本 ID。这样就无需手动为重复台词指定 ID，同时在修改已映射台词时也不会破坏语音关联。详见 [文本标识符机制](/zh/guide/naninovel-scripts#text-identification)。
+可在编辑器菜单中使用 `Naninovel/Tools/Text Identifier` 工具，让 Naninovel 自动为所有可本地化文本（包括语音台词）生成唯一的文本 ID。这样就无需手动为重复台词指定 ID，同时在修改已映射台词时也不会破坏语音关联。详见 [文本标识符机制](/zh/guide/scenario-scripting#text-identification)。
 :::
 
 若不使用语音映射工具，你也可以手动将语音文件暴露给资源提供器，并使用以下命名规则：以“脚本路径 + 文本 ID”为资源名，并在前方加上语音加载前缀（默认 `Voice`）。要查找特定语音行对应的脚本路径与文本 ID，可参考 [语音文档](/zh/guide/voicing#voiceover-documents)。例如，若脚本路径为 `Script01`，语音行的文本 ID 为 `2670eb4`，并使用 Addressable 资源提供器进行暴露，则资源地址应为：`Naninovel/Voice/Script01/2670eb4`

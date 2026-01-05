@@ -22,12 +22,12 @@ Naninovel 是一个用于 [Unity 游戏引擎](https://unity3d.com) 的扩展插
 
 以下是 Naninovel 开箱即用的一些功能：
 
-* [基于文档的脚本系统](/zh/guide/naninovel-scripts)
-  * [通用文本行](/zh/guide/naninovel-scripts#generic-text-lines)
-  * [标签行](/zh/guide/naninovel-scripts#label-lines)
-  * [内联指令](/zh/guide/naninovel-scripts#command-inlining)
-  * [可视化编辑器](/zh/guide/naninovel-scripts#visual-editor)
-  * [热重载](/zh/guide/naninovel-scripts#hot-reload)
+* [基于文档的脚本系统](/zh/guide/scenario-scripting)
+  * [通用文本行](/zh/guide/scenario-scripting#generic-text-lines)
+  * [标签行](/zh/guide/scenario-scripting#label-lines)
+  * [内联指令](/zh/guide/scenario-scripting#command-inlining)
+  * [可视化编辑器](/zh/guide/scenario-scripting#visual-editor)
+  * [热重载](/zh/guide/scenario-scripting#hot-reload)
 * [VS Code 扩展](/zh/guide/ide-extension)
 * [网页版编辑器](/zh/guide/editor)
 * [文本输出窗](/zh/guide/text-printers)
@@ -82,7 +82,7 @@ Naninovel 是一个用于 [Unity 游戏引擎](https://unity3d.com) 的扩展插
   * [资源本地化](/zh/guide/localization#resources-localization)
 * [社区模组](/zh/guide/community-modding)
 * [开发控制台](/zh/guide/development-console)
-* [脚本回溯与调试](/zh/guide/naninovel-scripts#scripts-debug)
+* [脚本回溯与调试](/zh/guide/scenario-scripting#scripts-debug)
 * [自定义指令](/zh/guide/custom-commands)
 * [自定义角色实现](/zh/guide/custom-actor-implementations)
 * [中英用语对照表](/zh/guide/zh-terms-dict)

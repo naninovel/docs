@@ -29,7 +29,7 @@ goto:#Epilogue
 ```
 
 ::: info 注意
-有关标签的更多信息，请参阅 [脚本指南](/zh/guide/naninovel-scripts#label-lines)。
+有关标签的更多信息，请参阅 [脚本指南](/zh/guide/scenario-scripting#label-lines)。
 :::
 
 当未指定 `goto` 参数时，当前脚本将从下一行继续执行。
@@ -44,7 +44,7 @@ goto:#Epilogue
 
 ## 嵌套回调
 
-当选项的后果较轻（例如仅需输出几句话）时，为其单独设置标签并使用 `goto` 或 `gosub` 参数会显得不便。此时可以使用 [嵌套指令](/zh/guide/naninovel-scripts#nesting)，在选项被选择后直接执行嵌套块中的指令：
+当选项的后果较轻（例如仅需输出几句话）时，为其单独设置标签并使用 `goto` 或 `gosub` 参数会显得不便。此时可以使用 [嵌套指令](/zh/guide/scenario-scripting#nesting)，在选项被选择后直接执行嵌套块中的指令：
 
 ```nani
 @choice "Ask about color"
@@ -129,7 +129,7 @@ goto:#Epilogue
 
 ## 按钮区域选项处理器
 
-与按钮列表不同，**Button Area Handler** 不会强制使用任何特定布局，允许通过 `pos` 参数手动设置各个选项按钮的位置。  
+与按钮列表不同，**Button Area Handler** 不会强制使用任何特定布局，允许通过 `pos` 参数手动设置各个选项按钮的位置。
 
 例如，下方演示了如何使用 `@choice` 指令与 Button Area 处理器制作一个可交互的地图界面：
 

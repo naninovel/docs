@@ -320,7 +320,7 @@ Lorem ipsum dolor<@foo> sit amet.
 Lorem ipsum dolor<@back tint:blue> sit amet.
 ```
 
-你可以使用事件标签来替代 [内联指令](/zh/guide/naninovel-scripts#command-inlining)，以便将它们暴露给 [本地化文档](/zh/guide/localization#scripts-localization)，从而允许翻译人员根据所选语言修改需要执行的指令。
+你可以使用事件标签来替代 [内联指令](/zh/guide/scenario-scripting#command-inlining)，以便将它们暴露给 [本地化文档](/zh/guide/localization#scripts-localization)，从而允许翻译人员根据所选语言修改需要执行的指令。
 
 ## 等待输入标签
 
