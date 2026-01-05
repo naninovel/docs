@@ -131,7 +131,7 @@ Asset Store 的安装包与下载存档的更新通常比 UPM 仓库 **滞后 2�
 
 假设我们想让角色 “Kohaku” 露出开心的表情。你可能拥有该角色的多张贴图（图像），每张表现不同的情绪。在 Naninovel 中，这些贴图被称为 **Actor 的 “外观”**。因此，要让 “Kohaku” 看起来开心，我们只需更改角色 Actor 的外观。同样地，如果要让 “MainBackground” 显示其他画面，也需要更改对应背景 Actor 的外观。
 
-所有 Actor 及其参数都通过 [Naninovel 脚本](/zh/guide/naninovel-scripts) 中的指令来控制（或称“指挥”）。
+所有 Actor 及其参数都通过 [Naninovel 脚本](/zh/guide/scenario-scripting) 中的指令来控制（或称“指挥”）。
 
 另一个常用的概念是 [用户界面](/zh/guide/gui)。UI 让玩家能够与 Actor 以及游戏的其他部分交互。这包括各种菜单（标题界面、存档/读档、设置等）和控制面板（自动阅读、跳过文本等）。UI 元素默认位于 Actor 图层之上。
 

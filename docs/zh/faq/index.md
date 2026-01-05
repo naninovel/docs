@@ -53,7 +53,7 @@ Naninovel 的使用受以下《最终用户许可协议》（EULA）约束：�
 
 Naninovel 设计为 [场景无关](/zh/guide/engine-architecture#scene-independent)，不会使用任何 [Unity 场景](https://docs.unity3d.com/Manual/CreatingScenes.html)。因此，无法提供传统意义上的示例或 Demo 场景。
 
-引擎会在游戏启动时自动初始化（可在配置中改为手动初始化），并通过称为 [Nani脚本](/zh/guide/naninovel-scripts) 的文本文件来编写剧情。
+引擎会在游戏启动时自动初始化（可在配置中改为手动初始化），并通过称为 [Nani脚本](/zh/guide/scenario-scripting) 的文本文件来编写剧情。
 
 建议先阅读 [入门指南](/zh/guide/getting-started)，了解如何使用引擎。更多使用示例可在 [功能指南](/zh/guide/index) 和 [指令 API 参考](/api/index) 中找到。如果你需要一个完整的示例项目，可以查看 [Demo 项目](/zh/guide/getting-started.html#demo-project)。
 
@@ -71,7 +71,7 @@ UI 部分（如修改按钮、布局或样式）请参考 [修改内置 Title UI
 
 ## 如何在文本中间插入指令？
 
-请使用 [指令内联](/zh/guide/naninovel-scripts#command-inlining) 功能。
+请使用 [指令内联](/zh/guide/scenario-scripting#command-inlining) 功能。
 
 ## 如何防止指令并行执行？
 
@@ -86,7 +86,7 @@ UI 部分（如修改按钮、布局或样式）请参考 [修改内置 Title UI
 或者，可以在脚本播放器配置中启用 `Wait By Default` 选项；这样所有指令都会默认等待执行完毕，除非显式地将 `wait` 取反（设为 false）。
 
 ::: info
-有关异步（并行）指令执行的更多信息，请参阅[专门章节](/zh/guide/naninovel-scripts#async-execution)。
+有关异步（并行）指令执行的更多信息，请参阅[专门章节](/zh/guide/scenario-scripting#async-execution)。
 :::
 
 ## 如何让角色（Actor）在彼此前后显示（Z 轴排序）？

@@ -1,6 +1,6 @@
 # IDE支持
 
-IDE 功能（如语法高亮、错误检查、自动补全和交互式文档）可以显著提升编写 [Naninovel 脚本](/zh/guide/naninovel-scripts) 的效率。我们为免费开源的 [Visual Studio Code](https://code.visualstudio.com)（支持 Windows、macOS 和 Linux）制作了扩展插件，为 NaniScript 语法提供完整的 IDE 支持。
+IDE 功能（如语法高亮、错误检查、自动补全和交互式文档）可以显著提升编写 [Naninovel 脚本](/zh/guide/scenario-scripting) 的效率。我们为免费开源的 [Visual Studio Code](https://code.visualstudio.com)（支持 Windows、macOS 和 Linux）制作了扩展插件，为 NaniScript 语法提供完整的 IDE 支持。
 
 ![](https://i.gyazo.com/c07e4a512dec21b2dfdf582e73cc3b10.mp4)
 
@@ -8,8 +8,8 @@ IDE 功能（如语法高亮、错误检查、自动补全和交互式文档）�
 
 ### 安装 VS Code 扩展
 
-1. 通过 `View -> Extensions` 菜单打开 VS Code 的扩展窗口  
-2. 搜索 “Naninovel” 并点击 “Install” 按钮  
+1. 通过 `View -> Extensions` 菜单打开 VS Code 的扩展窗口
+2. 搜索 “Naninovel” 并点击 “Install” 按钮
 
 ![](https://i.gyazo.com/b85f1478acde3cad440d1f29f915f395.png)
 
@@ -19,8 +19,8 @@ VS Code 插件商店中的扩展与当前稳定版 Naninovel 兼容。若使用 
 
 ### 激活扩展
 
-1. 确保 Unity 项目中已[安装 Naninovel](/zh/guide/getting-started#install-naninovel)  
-2. 使用 VS Code 打开该 Unity 项目文件夹  
+1. 确保 Unity 项目中已[安装 Naninovel](/zh/guide/getting-started#install-naninovel)
+2. 使用 VS Code 打开该 Unity 项目文件夹
 
 当扩展检测到工作区中存在 `.nani` 文件时，会自动启用桥接服务，用于执行脚本诊断、提供自动补全、显示当前正在播放的脚本行等功能。
 
@@ -162,13 +162,13 @@ Naninovel 会在生成的数据目录（默认 `Assets/NaninovelData`）下创�
 
 以下内容默认支持代码折叠：
 
-- 标签（Label）间的代码段  
-- 连续的注释行  
-- 缩进（嵌套）块  
+- 标签（Label）间的代码段
+- 连续的注释行
+- 缩进（嵌套）块
 
 此外，可通过特殊注释语法定义自定义折叠区域：
 
-1. 使用 `; > region name` 开启区域，其中 “region name” 可为任意名称；  
+1. 使用 `; > region name` 开启区域，其中 “region name” 可为任意名称；
 2. 使用 `; < region name` 关闭区域，名称需与开启时一致。
 
 ![?width=450px](https://i.gyazo.com/1e84951c9d5c34e0295e58bb4e1ebe28.mp4)
@@ -308,12 +308,12 @@ public class ModifyBackground : ModifyActor { }
 
 表达式语法说明：
 
-- 需要计算的部分应使用大括号（`{}`）包裹  
-- 若要引用当前正在检查的脚本路径，请使用 `$Script`  
-- 若要引用参数值，请使用 `:` 后跟参数 ID（即 C# 中的字段名，而非别名）  
-- 在参数引用后使用 `[0]` 或 `[1]` 可指定命名参数的部分（0 表示名称部分，1 表示索引部分）  
-- 使用空合并运算符（`??`）可在值未指定时提供后备值  
-- 使用连接运算符（`+`）可将多个常量的值拼接  
+- 需要计算的部分应使用大括号（`{}`）包裹
+- 若要引用当前正在检查的脚本路径，请使用 `$Script`
+- 若要引用参数值，请使用 `:` 后跟参数 ID（即 C# 中的字段名，而非别名）
+- 在参数引用后使用 `[0]` 或 `[1]` 可指定命名参数的部分（0 表示名称部分，1 表示索引部分）
+- 使用空合并运算符（`??`）可在值未指定时提供后备值
+- 使用连接运算符（`+`）可将多个常量的值拼接
 
 例如，可查看内置 `[@goto]` 指令中 `Path` 参数所使用的表达式：
 

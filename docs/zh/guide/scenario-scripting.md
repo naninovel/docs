@@ -69,7 +69,7 @@ Naninovel 脚本中的每一行都代表一个语句，它可以是指令、普�
 | **string**  | 简单字符串值，例如：`LoremIpsum`。若字符串中包含空格，请务必使用双引号包裹，例如：`"Lorem ipsum dolor sit amet."`。                                                                                                     |
 | **integer** | 整数值（不包含小数部分），例如：`1`、`150`、`-25`。                                                                                                                                                                      |
 | **decimal** | 带小数点的数值，例如：`1.0`、`12.08`、`-0.005`。                                                                                                                                                                        |
-| **boolean** | 逻辑值，可为 `true` 或 `false`。多数情况下可以使用 [布尔标志（Boolean Flags）](/zh/guide/naninovel-scripts#boolean-flags) 代替输入 `true` 或 `false`，例如：`@camera ortho! !wait` 等价于 `@camera ortho:true wait:false`。 |
+| **boolean** | 逻辑值，可为 `true` 或 `false`。多数情况下可以使用 [布尔标志（Boolean Flags）](/zh/guide/scenario-scripting#boolean-flags) 代替输入 `true` 或 `false`，例如：`@camera ortho! !wait` 等价于 `@camera ortho:true wait:false`。 |
 | **named**   | 由名称和上述任一类型的值组成的命名值，名称与值之间用句点分隔。例如命名整数：`foo.8`、`bar.-20`。                                                                                                                        |
 | **list**    | 由逗号分隔的多个同类型值组成的列表。例如字符串列表：`foo,bar,"Lorem ipsum."`；或小数列表：`12,-8,0.105,2`。                                                                                                             |
 
@@ -257,7 +257,7 @@ Assets
 在此示例中，演出脚本根目录为 `Assets/Scenario`。若要跳转到脚本文件 `Assets/Scenario/RouteX/SceneX.nani`，应使用以下端点：`RouteX/SceneX`。
 
 ::: tip
-如果你不想在指定端点时包含目录路径——完全没问题！请参阅下文介绍的 [相对端点语法](/zh/guide/naninovel-scripts#relative-endpoints) 和 [通配符端点语法](/zh/guide/naninovel-scripts#wildcard-endpoints)。
+如果你不想在指定端点时包含目录路径——完全没问题！请参阅下文介绍的 [相对端点语法](/zh/guide/scenario-scripting#relative-endpoints) 和 [通配符端点语法](/zh/guide/scenario-scripting#wildcard-endpoints)。
 :::
 
 当你创建或移动演出脚本时，Naninovel 会自动检测演出脚本根目录。你可以在 Naninovel 的脚本配置菜单中查看当前的根目录设置。
@@ -270,7 +270,7 @@ Naninovel 支持四种端点语法格式，在某些情况下可以让路径表�
 
 #### 标准端点
 
-这是默认的语法格式，包含从 [演出脚本根目录](/zh/guide/naninovel-scripts#scenario-root) 开始到目标脚本的完整路径。该语法始终可用，并且不依赖当前脚本的位置，但需要包含指向目标脚本的所有目录路径：
+这是默认的语法格式，包含从 [演出脚本根目录](/zh/guide/scenario-scripting#scenario-root) 开始到目标脚本的完整路径。该语法始终可用，并且不依赖当前脚本的位置，但需要包含指向目标脚本的所有目录路径：
 
 ```nani
 ; 跳转到脚本 'Assets/Scenario/Prologue.nani' 的起始位置。
@@ -388,7 +388,7 @@ Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
 
 ### 条件块
 
-可以使用 [@if] 和 [@else] 指令定义多行的条件代码块（可[嵌套](/zh/guide/naninovel-scripts#nesting)使用）：
+可以使用 [@if] 和 [@else] 指令定义多行的条件代码块（可[嵌套](/zh/guide/scenario-scripting#nesting)使用）：
 
 ```nani
 ; 根据变量 "score" 的值打印不同的文本：
@@ -726,7 +726,7 @@ The bomb is defused!
 
 该工具会自动构建所有通过编辑器资源菜单（`Naninovel -> Resources -> Scripts`）注册的 Naninovel 脚本的图形表示（节点），并展示它们之间的连接关系。
 
-连接线是根据以下指令生成的：  
+连接线是根据以下指令生成的：
 - [@goto]
 - [@gosub]
 - [@choice]（当带有 `goto` 参数时）
@@ -739,7 +739,7 @@ The bomb is defused!
 
 当你修改脚本或新增脚本后，点击 “Rebuild Graph” 按钮以同步更新。
 
-若脚本顶部包含 [注释行](/zh/guide/naninovel-scripts#comment-lines)，对应的图形节点将显示这些注释作为摘要（Synopsis）。若不希望显示摘要，可在脚本配置菜单中取消勾选 “Show Synopsis” 选项。
+若脚本顶部包含 [注释行](/zh/guide/scenario-scripting#comment-lines)，对应的图形节点将显示这些注释作为摘要（Synopsis）。若不希望显示摘要，可在脚本配置菜单中取消勾选 “Show Synopsis” 选项。
 
 ![](https://i.gyazo.com/15682b202d37ad8f12b0f839063a530f.png)
 
@@ -749,9 +749,9 @@ The bomb is defused!
 
 当你在当前播放行之前修改、添加或删除行时，系统会自动回滚到被修改的行，以防止状态不一致。
 
-如果热重载功能未生效，请确保以下设置已正确配置：  
-- `Auto Refresh` 已启用。  
-- `Script Changes While Playing` 设置为 `Recompile And Continue Playing`。  
+如果热重载功能未生效，请确保以下设置已正确配置：
+- `Auto Refresh` 已启用。
+- `Script Changes While Playing` 设置为 `Recompile And Continue Playing`。
 
 这两个选项可在 Unity 编辑器菜单 `Edit -> Preferences -> General` 中找到。
 
@@ -765,7 +765,7 @@ The bomb is defused!
 译注：IDE即集成开发环境的缩写，常用于软件开发，比如Visual Studio、WebStorm、Rider、Xcode这些都算是IDE。这里其实主要指的是由微软开发的轻量化且更贴近 “文本编辑器” 的免费开发工具 Visual Studio Code。强烈建议开发中使用VSC + Naninovel扩展，语法高亮等诸多特性可极大提高演出录入、制作效率。
 :::
 
-借助语法高亮、错误检查、自动补全和交互式文档等 IDE 功能，你可以在编写脚本时显著提升效率。  
+借助语法高亮、错误检查、自动补全和交互式文档等 IDE 功能，你可以在编写脚本时显著提升效率。
 
 我们为免费且开源的 [VS Code 编辑器](https://code.visualstudio.com)（支持 Windows、macOS 与 Linux）开发了一个扩展插件，该插件为 NaniScript 语法提供了必要的 IDE 支持。
 
@@ -783,7 +783,7 @@ The bomb is defused!
 rewind 12
 ```
 
-—— 这条指令会从当前脚本的第 12 行开始播放；你也可以用同样的方式向前或向后回退。  
+—— 这条指令会从当前脚本的第 12 行开始播放；你也可以用同样的方式向前或向后回退。
 
 在游戏运行时打开控制台，请先确保已在引擎配置中启用控制台，然后按下 `~` 键（可在配置中修改），若在触摸设备上运行，则可通过多点触控（同时触摸 3 个或更多点）来打开控制台。
 
@@ -791,7 +791,7 @@ rewind 12
 
 ![Scripts Debug](https://i.gyazo.com/12772ecc7c14011bcde4a74c81e997b8.png)
 
-当前播放的脚本路径、行号及指令（或内联指令）索引会显示在窗口标题栏中。当启用 [自动语音](/zh/guide/voicing#auto-voicing) 功能时，对应语音文件的名称也会显示在窗口中。  
+当前播放的脚本路径、行号及指令（或内联指令）索引会显示在窗口标题栏中。当启用 [自动语音](/zh/guide/voicing#auto-voicing) 功能时，对应语音文件的名称也会显示在窗口中。
 
 你可以通过拖动标题栏来移动调试窗口的位置。点击 “Stop” 按钮可暂停脚本执行；当脚本暂停后，点击 “Play” 按钮可继续执行。点击 “Close” 按钮即可关闭调试窗口。
 
@@ -815,13 +815,13 @@ Kohaku: Hey!|#1|[-] What's up?|#2|
 
 —— 只要你不删除或修改这些 ID，文本与资源之间的关联就不会被破坏。为减少干扰，IDE 扩展与可视化编辑器会将这些文本 ID 以较暗的颜色显示。
 
-文本标识工具会确保生成的所有文本 ID 在当前脚本文档中唯一，并且不会与历史版本中使用过的 ID 重复。为此，工具会在 `NaninovelData/ScriptRevisions` 编辑器资源中保存最新的修订版本号信息。  
+文本标识工具会确保生成的所有文本 ID 在当前脚本文档中唯一，并且不会与历史版本中使用过的 ID 重复。为此，工具会在 `NaninovelData/ScriptRevisions` 编辑器资源中保存最新的修订版本号信息。
 
 每当你删除带有文本 ID 的行时，可以放心该 ID 不会被自动分配给其他位置（除非你手动指定它）。
 
 ### 已识别文本引用
 
-在某些特殊情况下，你可能希望**有意重复使用**某个可本地化文本的标识符。  
+在某些特殊情况下，你可能希望**有意重复使用**某个可本地化文本的标识符。
 例如，当你在 C# 中创建一个指令实例，并希望复用脚本中已定义的本地化参数时。
 
 如果你直接为 `LocalizableTextParameter` 参数赋值，Naninovel 会警告存在重复的文本 ID。此时应改用参数的 `Ref()` 实例方法来引用原有文本：
@@ -851,7 +851,7 @@ Naninovel 提供了一个工具，可将 `.fountain` 文档转换为 `.nani` 脚
 
 ![](https://i.gyazo.com/2cf71e3a5b2713ba14838f1e28bb498d.png)
 
-Fountain 中的 [Action](https://fountain.io/syntax#section-action) 与 [Dialogue](https://fountain.io/syntax#section-dialogue) 段落会被转换为 [普通文本行](/zh/guide/naninovel-scripts.html#generic-text-lines)，而其他语法结构则会被转换为 [注释行](/zh/guide/naninovel-scripts.html#comment-lines)。
+Fountain 中的 [Action](https://fountain.io/syntax#section-action) 与 [Dialogue](https://fountain.io/syntax#section-dialogue) 段落会被转换为 [普通文本行](/zh/guide/scenario-scripting.html#generic-text-lines)，而其他语法结构则会被转换为 [注释行](/zh/guide/scenario-scripting.html#comment-lines)。
 
 ![](https://i.gyazo.com/e6d3231993fc11eb664d2c9a70c8a87a.png)
 
