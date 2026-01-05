@@ -25,7 +25,7 @@
 @movie Opening
 ```
 
-默认情况下，播放的视频会被适配为 16:9 的宽高比以防止拉伸。你可以通过 [重写](/zh/guide/user-interface.html#ui-customization) `IMovieUI` 界面来更改此行为。附加在 `MovieImage` 游戏对象上的 `Aspect Ratio Fitter` 组件用于控制适配行为。
+默认情况下，播放的视频会被适配为 16:9 的宽高比以防止拉伸。你可以通过 [重写](/zh/guide/gui.html#ui-customization) `IMovieUI` 界面来更改此行为。附加在 `MovieImage` 游戏对象上的 `Aspect Ratio Fitter` 组件用于控制适配行为。
 
 ![](https://i.gyazo.com/38e8b1fc220d5fedd50f62ab855b2e92.png)
 

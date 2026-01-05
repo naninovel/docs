@@ -4,7 +4,7 @@ Game can be saved and loaded at any time by using save and load menus. User can 
 
 ![](https://i.gyazo.com/a7109097f6abbeea16d6fe773bfffb3f.mp4)
 
-Menu UIs can be customized or completely replaced using [UI Customization](/guide/user-interface#ui-customization) feature.
+Menu UIs can be customized or completely replaced using [UI Customization](/guide/gui#ui-customization) feature.
 
 Save slots are serialized to either `.json` or binary files (depending on the configuration). File names, slot limit and directory name can be configured using `Naninovel -> Configuration -> State` context menu; for available options see [configuration guide](/guide/configuration#state).
 

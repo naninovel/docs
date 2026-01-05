@@ -36,20 +36,20 @@
 
 在 *本地化资源根目录* 中存放将在对应语言选中时替代源资源的文件。
 
-例如，若你希望在选择 `ja-JP` 语言时，将主背景（ID 为 “MainBackground” 的背景角色）的 “City” 外观图片替换为另一张图片，请将本地化版本放在以下路径：  
+例如，若你希望在选择 `ja-JP` 语言时，将主背景（ID 为 “MainBackground” 的背景角色）的 “City” 外观图片替换为另一张图片，请将本地化版本放在以下路径：
 `Resources/Naninovel/Localization/ja-JP/Backgrounds/MainBackground/City`
 
 ## 脚本本地化
 
-上述资源本地化机制适用于所有类型的资源，但 **不包括 Naninovel 脚本和受管文本（Managed Text）文档**。对于这两类资源，请使用 Naninovel 编辑器菜单中的本地化工具：  
+上述资源本地化机制适用于所有类型的资源，但 **不包括 Naninovel 脚本和受管文本（Managed Text）文档**。对于这两类资源，请使用 Naninovel 编辑器菜单中的本地化工具：
 `Naninovel -> Tools -> Localization`
 
 ![](https://i.gyazo.com/1b47d70dcbbb45a3ab955b44c9b50942.png)
 
-首先，选择 `Scripts Folder (input)` —— 即项目中存放 Naninovel 场景脚本（`.nani` 文件）的目录（例如 `Assets/Scenario`）。  
+首先，选择 `Scripts Folder (input)` —— 即项目中存放 Naninovel 场景脚本（`.nani` 文件）的目录（例如 `Assets/Scenario`）。
 若希望同时为 [Managed Text](/zh/guide/managed-text) 生成本地化文档，可选填 `Text Folder (input)` —— 即存放受管文本文档的目录（默认为 `Assets/Resources/Naninovel/Text`）。
 
-另外，如果你希望基于已有的其他语言本地化文档（而不是源语言）生成新的本地化文档，可以选择该语言的文本目录作为输入。例如：  
+另外，如果你希望基于已有的其他语言本地化文档（而不是源语言）生成新的本地化文档，可以选择该语言的文本目录作为输入。例如：
 `Assets/Resources/Naninovel/Localization/ja-JP/Text`
 
 接着，选择用于存放生成的本地化资源的语言区域文件夹路径。请确保选择的是实际的语言区域文件夹（例如 `Resources/Naninovel/Localization/ja-JP`）。当选择有效的输出目录时，属性栏下方会显示目标语言的名称以作确认。
@@ -181,7 +181,7 @@ Narrator: You've decided to go {route}. Wise choice!
 
 点击 “Export” 按钮将表格导出至指定位置。
 
-每个脚本与受管文本文档都会被导出为独立表格。每个表格包含一个存放可本地化文本 ID 的 “ID” 列，以及对应每个语言区域的附加列。  
+每个脚本与受管文本文档都会被导出为独立表格。每个表格包含一个存放可本地化文本 ID 的 “ID” 列，以及对应每个语言区域的附加列。
 你可以自由修改除 “ID” 之外的所有列；但修改与源语言关联的列不会在导入时生效。
 
 启用 **Include Annotations（包含注释）** 选项后，生成的表格还会包含一个额外列，用于显示源脚本内容（如作者名、内嵌指令或翻译行前的注释）。该列在导入时会被忽略。
@@ -248,7 +248,7 @@ public class CustomProcessor : Processor
 
 ![](https://i.gyazo.com/e44d120c983f3d6c1d15e910829fc344.png)
 
-为使该功能生效，请确保已在文本打印器上正确设置 `Font Change Configuration` 组件。有关字体设置的说明，请参阅 [UI 指南](/zh/guide/user-interface#changing-font)。
+为使该功能生效，请确保已在文本打印器上正确设置 `Font Change Configuration` 组件。有关字体设置的说明，请参阅 [UI 指南](/zh/guide/gui#changing-font)。
 
 ::: tip 示例
 在[本地化示例](/zh/guide/samples#本地化)中可以找到如何设置与本地化相关字体的示例。
@@ -266,14 +266,14 @@ public class CustomProcessor : Processor
 ./game.exe -nani-eject
 ```
 
-— 这将像平常一样启动游戏，但在 Naninovel 初始化后，它会将本地化资源导出（Eject）到 Unity 的 [persistent data folder（持久化数据目录）](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html) 下的 `Localization` 文件夹中。例如，如果应用程序的公司名为 `Foo`，游戏标题为 `Bar`，则在 Windows 上导出的路径如下：  
+— 这将像平常一样启动游戏，但在 Naninovel 初始化后，它会将本地化资源导出（Eject）到 Unity 的 [persistent data folder（持久化数据目录）](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html) 下的 `Localization` 文件夹中。例如，如果应用程序的公司名为 `Foo`，游戏标题为 `Bar`，则在 Windows 上导出的路径如下：
 `C:/Users/User/AppData/LocalLow/Foo/Bar/Localization`
 
-如果希望基于某个内置本地化生成资源，请在导出参数中附加语言标识。例如，若游戏内含有 `ja-JP`（日语）本地化，可使用以下参数导出日语本地化文档：  
-`-nani-eject-ja-JP`  
+如果希望基于某个内置本地化生成资源，请在导出参数中附加语言标识。例如，若游戏内含有 `ja-JP`（日语）本地化，可使用以下参数导出日语本地化文档：
+`-nani-eject-ja-JP`
 当未指定语言标识时，将导出源语言（source locale）的文档。
 
-接着，为本地化提供要使用的字体。将字体文件放入 `Localization` 目录下，例如：  
+接着，为本地化提供要使用的字体。将字体文件放入 `Localization` 目录下，例如：
 `Localization/Noto.ttf`
 
 注意 `Localization/Info.txt` 文件。你需要通过替换默认内容，在其中指定本地化作者（第一行）与提供的字体名称（第二行）。以下为示例：

@@ -10,7 +10,7 @@ Naninovel 是一个用于 [Unity 游戏引擎](https://unity3d.com) 的扩展插
 
 首次使用该引擎时，请务必阅读 [入门指南](/zh/guide/getting-started)。
 
-如果你在寻找特定主题，可以使用网站顶部的搜索栏；同时，你也可以查看 [常见问题](/zh/faq/)，我们在其中整理了常见问题的答案。所有可用的脚本指令、支持的参数及使用示例都列在 [API 参考](/zh/api/) 中。  
+如果你在寻找特定主题，可以使用网站顶部的搜索栏；同时，你也可以查看 [常见问题](/zh/faq/)，我们在其中整理了常见问题的答案。所有可用的脚本指令、支持的参数及使用示例都列在 [API 参考](/zh/api/) 中。
 
 若仍未找到所需信息，请随时 [联系售后支持](/zh/support/#naninovel-support)。
 
@@ -73,9 +73,9 @@ Naninovel 是一个用于 [Unity 游戏引擎](https://unity3d.com) 的扩展插
 * [文本回顾记录](/zh/guide/text-printers#printer-backlog)
 * [文本跳过](/zh/guide/text-printers#text-skipping)
 * [自动文本推进](/zh/guide/text-printers#auto-advance-text)
-* [UI 显示切换](/zh/guide/user-interface#ui-toggling)
-* [自适应 UI 布局](/zh/guide/user-interface#adaptive-ui-layout)
-* [UI 自定义](/zh/guide/user-interface#ui-customization)
+* [UI 显示切换](/zh/guide/gui#ui-toggling)
+* [自适应 UI 布局](/zh/guide/gui#adaptive-ui-layout)
+* [UI 自定义](/zh/guide/gui#ui-customization)
 * [文本管理系统](/zh/guide/managed-text)
 * [本地化](/zh/guide/localization)
   * [脚本本地化](/zh/guide/localization#scripts-localization)

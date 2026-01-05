@@ -180,7 +180,7 @@ The map is implemented as a custom UI, which is stored at `Content/UI/Map`. The 
 
 ![](https://i.gyazo.com/f421eaf666c9d84b04d23a72d1259f47.png)
 
-The button's click and hover events are handled with Naninovel's [Play Script](https://naninovel.com/guide/user-interface.html#play-script-on-unity-event) component.
+The button's click and hover events are handled with Naninovel's [Play Script](https://naninovel.com/guide/gui.html#play-script-on-unity-event) component.
 
 ![](https://i.gyazo.com/a64ee9beee378c687d0d8093334f4ef7.png)
 

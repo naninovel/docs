@@ -11,16 +11,16 @@
 在 Naninovel 脚本中，文本输出窗主要通过 [@print] 和 [@printer] 指令控制：
 
 ```nani
-; 将 `Dialogue` 输出窗设为默认  
+; 将 `Dialogue` 输出窗设为默认
 @printer Dialogue
 
-; 将 `Fullscreen` 输出窗设为默认  
+; 将 `Fullscreen` 输出窗设为默认
 @printer Fullscreen
 
 ; 使用默认输出窗显示文本
 @print text:"Lorem ipsum dolor sit amet."
 
-; 与上相同，但使用通用文本语句  
+; 与上相同，但使用通用文本语句
 Lorem ipsum dolor sit amet.
 
 ; 与上相同，但关联角色 “Felix”
@@ -61,7 +61,7 @@ Felix: Lorem ipsum dolor sit amet.
 
 ![](https://i.gyazo.com/40e44a4ed69f75fa5fb9c36cdae6226a.png)
 
-更多关于自定义与配置 UI 的内容，请参阅 [内置 UI 自定义指南](/zh/guide/user-interface#modifying-built-in-ui)。
+更多关于自定义与配置 UI 的内容，请参阅 [内置 UI 自定义指南](/zh/guide/gui#modifying-built-in-ui)。
 
 可通过在输出窗元素配置中禁用 `Add To Backlog` 属性，防止特定输出窗将消息添加至历史回看。启用 `Split Backlog Messages` 属性后，所有日志中的消息将被分割（分别显示为独立记录）。
 
@@ -160,7 +160,7 @@ Nanikun: Integer nec maximus elit, eget posuere risus.
 
 通过 `Create -> Naninovel -> Text Printers -> Dialogue` 资源菜单创建一个对话输出窗预制体，建议将其放置在 Naninovel 包之外的文件夹中，例如 `Assets/TextPrinters`。
 
-然后编辑该预制体：修改字体、贴图、添加动画等。有关可用的 UI 构建工具，请参考 [Unity uGUI 官方文档](https://docs.unity3d.com/Packages/com.unity.ugui@latest)。在 [UI 自定义指南](/zh/guide/user-interface#ui-customization) 中还提供了若干视频教程与示例项目，可作为参考。
+然后编辑该预制体：修改字体、贴图、添加动画等。有关可用的 UI 构建工具，请参考 [Unity uGUI 官方文档](https://docs.unity3d.com/Packages/com.unity.ugui@latest)。在 [UI 自定义指南](/zh/guide/gui#ui-customization) 中还提供了若干视频教程与示例项目，可作为参考。
 
 使用输出窗资源管理器 GUI 将该预制体暴露给引擎资源。可通过 `Naninovel -> Resources -> Printers` 菜单打开输出窗资源管理器。点击 `+`（加号）按钮添加新记录，输入元素 ID（可与预制体名称不同），双击该记录以打开输出窗元素设置，并将输出窗预制体拖放到 `Resource` 字段中。
 
@@ -172,7 +172,7 @@ Nanikun: Integer nec maximus elit, eget posuere risus.
 @printer MyNewPrinter
 ```
 ::: tip 示例
-可参考 [演示项目](/zh/guide/getting-started#demo-project)，了解如何添加自定义输出窗。  
+可参考 [演示项目](/zh/guide/getting-started#demo-project)，了解如何添加自定义输出窗。
 示例预制体存储于 `Assets/Prefabs/CustomPrinter.prefab`。
 :::
 
@@ -197,7 +197,7 @@ Nanikun: Integer nec maximus elit, eget posuere risus.
 可以通过在文本中嵌入富文本标签（Rich Text Tags）或使用 [@format] 指令来应用各种文本样式：
 
 ```nani
-; 输出文本，其中 “Lorem” 为加粗样式，“sit” 为蓝色斜体。  
+; 输出文本，其中 “Lorem” 为加粗样式，“sit” 为蓝色斜体。
 Kohaku: <b>Lorem</b> ipsum <color=#0000FF><i>sit</i></color> amet.
 ```
 
@@ -244,8 +244,8 @@ Lorem <ruby="VERY"><tip="TipID">ipsum</tip></ruby> dolor sit amet.
 
 要在输出窗中使用 RTL 文本，请按以下步骤操作：
 
-1. 基于任意内置模板创建一个自定义文本输出窗。  
-2. 在输出窗内部的 `Revealable Text` 组件中启用 `Enable RTL Editor` 属性。  
+1. 基于任意内置模板创建一个自定义文本输出窗。
+2. 在输出窗内部的 `Revealable Text` 组件中启用 `Enable RTL Editor` 属性。
 3. 在同一组件的 “Naninovel Settings” 下拉菜单中启用 `Fix Arabic Text` 属性。
 
 ![](https://i.gyazo.com/3eec751d0c85da8f9cfb20a6fe6902bb.png)
@@ -327,8 +327,8 @@ Lorem ipsum dolor<@back tint:blue> sit amet.
 如果你经常使用 `<@wait i>` 而非 `[-]` 等待输入指令，只是为了让它能被本地化文档识别，可以考虑使用 `<->` 等待输入标签 —— 它具有相同功能，但书写更简短。
 
 ```nani
-; 与 “Lorem[-] ipsum” 效果相同，  
-; 但该等待输入指令将会暴露给本地化文档。  
+; 与 “Lorem[-] ipsum” 效果相同，
+; 但该等待输入指令将会暴露给本地化文档。
 Lorem<-> ipsum
 ```
 
@@ -394,13 +394,13 @@ public static string Select (params string[] args)
 你可以在场景脚本中如下使用该功能：
 
 ```nani
-; 基于代词进行选择。  
+; 基于代词进行选择。
 </p/his/her/their>
 
-; 基于性格（脾气）进行选择。  
+; 基于性格（脾气）进行选择。
 </t/smiling/frowning/poker face>
 
-; 随机选择。  
+; 随机选择。
 <//green/red>
 ```
 

@@ -98,7 +98,7 @@ Archibald: Greetings, {name}!
 
 ## 变量事件
 
-在构建 [自定义 UI](/zh/guide/user-interface#ui-customization) 或其他系统时，你可能希望在变量值发生变化时监听并响应事件。例如，在创建角色状态界面时，希望文本能自动更新以反映变量的最新值。通常这类行为需要通过 C# 脚本实现，但也可以使用 `Variable Events` 组件。该组件会在指定变量的值发生变化时触发 Unity 事件。
+在构建 [自定义 UI](/zh/guide/gui#ui-customization) 或其他系统时，你可能希望在变量值发生变化时监听并响应事件。例如，在创建角色状态界面时，希望文本能自动更新以反映变量的最新值。通常这类行为需要通过 C# 脚本实现，但也可以使用 `Variable Events` 组件。该组件会在指定变量的值发生变化时触发 Unity 事件。
 
 ![](https://i.gyazo.com/22eddd109e76d4e63c461e9d75b20ceb.png)
 
@@ -116,7 +116,7 @@ Archibald: Greetings, {name}!
 
 ![](https://i.gyazo.com/d1812668c0776b01f3a82c5ddcba0145.png)
 
-当修改变量值时，会出现一个 “SET” 按钮；点击它即可应用修改。  
+当修改变量值时，会出现一个 “SET” 按钮；点击它即可应用修改。
 
 当游戏运行过程中变量被改变时，变量列表会自动更新。
 

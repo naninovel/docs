@@ -847,7 +847,7 @@ Hides a text printer.
 
 ## hideUI
 
-Makes [UI elements](/guide/user-interface#ui-customization) with the specified names invisible. When no names are specified, will stop rendering (hide) the entire UI (including all the built-in UIs).
+Makes [UI elements](/guide/gui#ui-customization) with the specified names invisible. When no names are specified, will stop rendering (hide) the entire UI (including all the built-in UIs).
 
 ::: info NOTE
 When hiding the entire UI with this command and `allowToggle` parameter is false (default), user won't be able to re-show the UI back with hotkeys or by clicking anywhere on the screen; use [@showUI] command to make the UI visible again.
@@ -1531,7 +1531,7 @@ Sound effect tracks are not looped by default. When sfx track name (SfxPath) is 
 
 ## sfxFast
 
-Plays an [SFX (sound effect)](/guide/audio#sound-effects) track with the specified name. Unlike [@sfx] command, the clip is played with minimum delay and is not serialized with the game state (won't be played after loading a game, even if it was played when saved). The command can be used to play various transient audio clips, such as UI-related sounds (eg, on button click with [`Play Script` component](/guide/user-interface#play-script-on-unity-event)).
+Plays an [SFX (sound effect)](/guide/audio#sound-effects) track with the specified name. Unlike [@sfx] command, the clip is played with minimum delay and is not serialized with the game state (won't be played after loading a game, even if it was played when saved). The command can be used to play various transient audio clips, such as UI-related sounds (eg, on button click with [`Play Script` component](/guide/gui#play-script-on-unity-event)).
 
 <div class="config-table">
 
@@ -1636,7 +1636,7 @@ Shows a text printer.
 
 ## showUI
 
-Makes [UI elements](/guide/user-interface) with the specified resource names visible. When no names are specified, will reveal the entire UI (in case it was hidden with [@hideUI]).
+Makes [UI elements](/guide/gui) with the specified resource names visible. When no names are specified, will reveal the entire UI (in case it was hidden with [@hideUI]).
 
 <div class="config-table">
 

@@ -57,7 +57,7 @@ Various backlog UI properties are customizable via component attached to the roo
 
 ![](https://i.gyazo.com/40e44a4ed69f75fa5fb9c36cdae6226a.png)
 
-Consult [built-in UI customization guide](/guide/user-interface#modifying-built-in-ui) for more info now how to customize and configure the UI.
+Consult [built-in UI customization guide](/guide/gui#modifying-built-in-ui) for more info now how to customize and configure the UI.
 
 It's possible to prevent specific text printers from adding messages to the backlog by disabling `Add To Backlog` property in the printer actor configuration. When `Split Backlog Messages` property is enabled, all the messages added to the backlog will be split (displayed as separate records).
 
@@ -198,7 +198,7 @@ You can add custom text printers based on the built-in templates or create new p
 
 Use `Create -> Naninovel -> Text Printers -> Dialogue` asset context menu to create a dialogue prefab somewhere outside the Naninovel package, e.g. at the `Assets/TextPrinters` folder.
 
-Edit the prefab: change font, textures, add animations, etc. For more information on the available UI building tools consult [Unity documentation for uGUI](https://docs.unity3d.com/Packages/com.unity.ugui@latest). There are also a couple of tutorial videos and an example project on working with uGUI in the [UI customization guide](/guide/user-interface#ui-customization).
+Edit the prefab: change font, textures, add animations, etc. For more information on the available UI building tools consult [Unity documentation for uGUI](https://docs.unity3d.com/Packages/com.unity.ugui@latest). There are also a couple of tutorial videos and an example project on working with uGUI in the [UI customization guide](/guide/gui#ui-customization).
 
 Expose the prefab to engine resources using the printer's manager GUI, which can be accessed with `Naninovel -> Resources -> Printers` context menu. Add a new record using `+` (plus) button, enter actor ID (can differ from the prefab name) and double-click the record to open actor settings. Drag-drop printer prefab to the `Resource` field.
 

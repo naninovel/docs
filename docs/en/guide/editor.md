@@ -1,4 +1,4 @@
-# Editor
+# Story Editor
 
 Naninovel has its own standalone web app, which you can use to author scenario scripts with a visual editor and manage the story structure via a node graph — or just work on a scenario draft for the game and preview it using procedurally generated assets — all without even opening the Unity editor, right inside your web browser.
 

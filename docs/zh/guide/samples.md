@@ -147,8 +147,8 @@ Select an action.[>]
 
 ## 本地化
 
-- 生成的本地化文档存储在 `Profiles/Naninovel/Resources/Naninovel/Localization` 目录中。  
-- 生成的表格文件存储在示例项目根目录下的 `Sheets` 文件夹中。  
+- 生成的本地化文档存储在 `Profiles/Naninovel/Resources/Naninovel/Localization` 目录中。
+- 生成的表格文件存储在示例项目根目录下的 `Sheets` 文件夹中。
 - 与特定语言相关的字体文件存储在 `Profiles/Naninovel/Resources/Naninovel/Fonts` 目录中。
 
 以下是为本地化工具选择的文件夹：
@@ -180,7 +180,7 @@ Select an action.[>]
 
 ![](https://i.gyazo.com/f421eaf666c9d84b04d23a72d1259f47.png)
 
-按钮的点击与悬停事件由 Naninovel 的 [Play Script](https://naninovel.com/guide/user-interface.html#play-script-on-unity-event) 组件处理。
+按钮的点击与悬停事件由 Naninovel 的 [Play Script](https://naninovel.com/guide/gui.html#play-script-on-unity-event) 组件处理。
 
 ![](https://i.gyazo.com/a64ee9beee378c687d0d8093334f4ef7.png)
 
@@ -279,7 +279,7 @@ Select an action.[>]
 
 ## 自动语音
 
-英语（EN）与日语（JA）语音文件存放于 `Content/Audio/Voice` 目录。  
+英语（EN）与日语（JA）语音文件存放于 `Content/Audio/Voice` 目录。
 进入 “AUTO VOICING” 示例后，可在游戏设置中切换语音语言。
 
 ## 音乐前奏
@@ -292,7 +292,7 @@ Select an action.[>]
 
 ## 可视化脚本
 
-[Visual Scripting](https://docs.unity3d.com/Packages/com.unity.visualscripting@latest)（先前称为 Bolt）是 Unity 2021 及更高版本中默认包含的内置包。  
+[Visual Scripting](https://docs.unity3d.com/Packages/com.unity.visualscripting@latest)（先前称为 Bolt）是 Unity 2021 及更高版本中默认包含的内置包。
 它允许开发者使用基于单元（unit-based）的图形逻辑系统，在无需编写代码的情况下创建游戏或应用逻辑，程序员与非程序员皆可使用。
 
 ![](https://i.gyazo.com/ab7c9d92b32810b030aba24b4bd95405.jpg)
@@ -301,12 +301,12 @@ Select an action.[>]
 
 ![](https://i.gyazo.com/885ebb9808b369c30dfcaab19b0cee2f.png)
 
-在项目设置的 “Visual Scripting” 菜单中，将 `Elringus.Naninovel.Runtime` 库添加至 `Node Library` 列表中。  
+在项目设置的 “Visual Scripting” 菜单中，将 `Elringus.Naninovel.Runtime` 库添加至 `Node Library` 列表中。
 这样才能在可视化脚本图表中使用 Naninovel 引擎类型与 API。
 
 ![](https://i.gyazo.com/38afd2ea477fcf0921114e3847de6c85.png)
 
-Visual Scripting 并不会自动暴露库中的所有类型，因此还需将所需的 Naninovel 类型添加到同一设置菜单下的 `Type Options` 列表中。  
+Visual Scripting 并不会自动暴露库中的所有类型，因此还需将所需的 Naninovel 类型添加到同一设置菜单下的 `Type Options` 列表中。
 在示例中，我们添加了 `Engine`、`Script Player Interface` 与 `Script Player Extensions`，但你可能还需要更多类型，如其他 [引擎服务接口](/zh/guide/engine-services)、配置等。
 
 ![](https://i.gyazo.com/9afdeb12c0ff63ce942d04b21f737217.png)
@@ -315,7 +315,7 @@ Visual Scripting 并不会自动暴露库中的所有类型，因此还需将所
 
 ![](https://i.gyazo.com/26c7bee4798b690c4eb362ec39746dc7.png)
 
-当 Naninovel 库与类型已添加至可视化脚本设置后，引擎 API 将在图形视图的模糊查找器（Fuzzy Finder）中可用，可与 Unity 或其他第三方 API 一样使用。  
+当 Naninovel 库与类型已添加至可视化脚本设置后，引擎 API 将在图形视图的模糊查找器（Fuzzy Finder）中可用，可与 Unity 或其他第三方 API 一样使用。
 以下示例演示如何初始化引擎并播放脚本。在尝试此示例前，请禁用 “Initialize On Application Load” 并移除 “Title UI”。
 
 ![](https://i.gyazo.com/63a832f10fa3f5e4429e98da50ae8dd0.png)

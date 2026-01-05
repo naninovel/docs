@@ -12,4 +12,4 @@ Notice, that `External Loader` configuration controls which scripts to show unde
 
 To add external resources to the build, drop them to sub-folders under game's `Resources` directory corresponding to the resource's `Path Prefix` property configured under `Loader` foldout. For example, to add an external naninovel script, drop it to `GameFolder/GameName_Data/Resources/Scripts` folder; backgrounds will go to `GameFolder/GameName_Data/Resources/Backgrounds` and so on. *GameFolder* and *GameName* will depend on the name of your Unity project.
 
-External scripts browser UI can be customized or completely replaced using [UI Customization](/guide/user-interface#ui-customization) feature.
+External scripts browser UI can be customized or completely replaced using [UI Customization](/guide/gui#ui-customization) feature.
