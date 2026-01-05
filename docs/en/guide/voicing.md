@@ -65,7 +65,7 @@ Find example on setting up auto voicing for multiple locales in the [auto voicin
 
 When using auto voicing, you may want to let players control voice volume for specific [characters](/guide/characters) or, more correctly, authors of the printed text messages. For example, a player may decide to mute voice of the main protagonist or make a specific character voice lower.
 
-To set up per-author voice control, [create a custom settings UI](/guide/user-interface#modifying-built-in-ui), add a new slider (you can duplicate "VoiceVolumeSlider" already present in the prefab) and specify author (character) ID in the `Author ID` field.
+To set up per-author voice control, [create a custom settings UI](/guide/gui#modifying-built-in-ui), add a new slider (you can duplicate "VoiceVolumeSlider" already present in the prefab) and specify author (character) ID in the `Author ID` field.
 
 ![](https://i.gyazo.com/5a8db32ca5d971f2876f71d35f1a020c.png)
 

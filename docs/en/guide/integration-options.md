@@ -110,7 +110,7 @@ In the editor, you can drag-drop script assets to the `Script Ref` field, and th
 
 ## Disable Title Menu
 
-A built-in title menu implementation will be automatically shown when the engine is initialized, while you'll most likely have your own title menu. You can either modify, replace or completely remove the built-in title menu using [UI customization feature](/guide/user-interface#ui-customization). The menu goes under `Title UI` in the UI resources list.
+A built-in title menu implementation will be automatically shown when the engine is initialized, while you'll most likely have your own title menu. You can either modify, replace or completely remove the built-in title menu using [UI customization feature](/guide/gui#ui-customization). The menu goes under `Title UI` in the UI resources list.
 
 ## Engine Objects Layer
 

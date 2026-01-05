@@ -17,7 +17,7 @@ Naninovel 使用 Unity 的 [输入系统](https://docs.unity3d.com/Packages/com.
 | ToggleSkip      | Tab                         | 右摇杆按压                       | 切换跳过模式（永久开启或关闭）。                                                                                                |
 | SkipMovie       | Escape                      | 东键                             | 跳过（取消）当前播放的 [视频](/zh/guide/movies)。                                                                                  |
 | AutoPlay        | A                           | 东键                             | 切换 [自动播放模式](/zh/guide/text-printers#auto-advance-text)，在设定延迟后自动关闭“等待输入模式”。                             |
-| ToggleUI        | 空格键                      | 北键                             | 切换整个 UI 层的 [可见性](/zh/guide/user-interface#ui-toggling)（隐藏/显示）。                                                    |
+| ToggleUI        | 空格键                      | 北键                             | 切换整个 UI 层的 [可见性](/zh/guide/gui#ui-toggling)（隐藏/显示）。                                                    |
 | ShowBacklog     | L                           | 右肩键                           | 切换 [回顾日志界面](/zh/guide/text-printers#printer-backlog) 的可见性。                                                            |
 | Rollback        | B、滚轮下（Y-）             | 左肩键                           | 倒回脚本播放进度。                                                                                                              |
 | CameraLook      | 鼠标移动                    | 右摇杆                           | 在 [@look] 模式下移动相机。                                                                                                     |
@@ -25,8 +25,8 @@ Naninovel 使用 Unity 的 [输入系统](https://docs.unity3d.com/Packages/com.
 
 ## 自定义输入
 
-你可以通过在 `Naninovel -> Configuration -> Input` 菜单中分配自定义的 `Input Actions`（输入动作）资源，来配置默认的输入操作或添加新的输入动作。  
-请将相关动作保存在名为 `Naninovel` 的映射（map）中，以便引擎能够检测到它们。  
+你可以通过在 `Naninovel -> Configuration -> Input` 菜单中分配自定义的 `Input Actions`（输入动作）资源，来配置默认的输入操作或添加新的输入动作。
+请将相关动作保存在名为 `Naninovel` 的映射（map）中，以便引擎能够检测到它们。
 默认输入动作资源可以通过 `Create -> Naninovel -> Input -> Controls` 菜单创建 —— 在自定义时可以将其作为参考。
 
 ![](https://i.gyazo.com/8ef1cc7eccac5cbc9e88016e2b1271f6.png)

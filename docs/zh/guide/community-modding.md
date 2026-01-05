@@ -4,7 +4,7 @@
 
 ## 启用模组功能
 
-在 Unity 菜单中打开：`Naninovel -> Configuration -> Scripts` 勾选 `Enable Community Modding`（启用社区模组）选项。  
+在 Unity 菜单中打开：`Naninovel -> Configuration -> Scripts` 勾选 `Enable Community Modding`（启用社区模组）选项。
 
 然后为要开放的资源类型配置一个 [本地资源提供器（Local Provider）](/zh/guide/resource-providers#local)，并确保其根路径为默认值：`%DATA%/Resources`，这样游戏会在构建目录下查找玩家添加的额外资源。
 
@@ -16,4 +16,4 @@
 
 要向构建中添加外部资源，请将它们放入游戏 `Resources` 目录下对应资源类型的子文件夹中，该子文件夹名称应与在 `Loader` 折叠面板下配置的资源 `Path Prefix` 属性一致。例如，要添加一个外部 Naninovel 脚本，请将其放入 `GameFolder/GameName_Data/Resources/Scripts` 文件夹中；背景资源则应放入 `GameFolder/GameName_Data/Resources/Backgrounds`，依此类推。*GameFolder* 和 *GameName* 将取决于你的 Unity 项目名称。
 
-外部脚本浏览器的 UI 可以使用 [UI 自定义](/zh/guide/user-interface#ui-customization) 功能进行自定义或完全替换。
+外部脚本浏览器的 UI 可以使用 [UI 自定义](/zh/guide/gui#ui-customization) 功能进行自定义或完全替换。

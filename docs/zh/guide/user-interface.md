@@ -2,7 +2,7 @@
 
 Naninovel 自带多个内置 UI：标题（主）菜单、游戏设置界面、存档与读档菜单、回顾（backlog）面板、CG 画廊、提示（tips）等。
 
-每个内置 UI 都可以被禁用或自定义；更多信息请参阅 [UI 自定义指南](/zh/guide/user-interface#ui-customization)。
+每个内置 UI 都可以被禁用或自定义；更多信息请参阅 [UI 自定义指南](/zh/guide/gui#ui-customization)。
 
 ## 自适应 UI 布局
 
@@ -18,10 +18,10 @@ UI 显示切换功能允许玩家整体隐藏或显示游戏内界面。
 
 ![](https://i.gyazo.com/e267c4ab3654efbfaf611011502de79f.mp4)
 
-触发 `ToggleUI` 输入（默认独立输入模块下为 `Space` 键），  
+触发 `ToggleUI` 输入（默认独立输入模块下为 `Space` 键），
 或点击控制面板上的 `HIDE` 按钮，即可隐藏/显示整个 UI。
 
-当 UI 被隐藏时，按下 `Continue` 输入键或点击（触摸）屏幕  
+当 UI 被隐藏时，按下 `Continue` 输入键或点击（触摸）屏幕
 也会自动重新显示 UI。
 
 ---
@@ -43,7 +43,7 @@ UI 自定义功能允许你添加自定义界面，或修改、完全替换任�
 引擎初始化时，会实例化资源管理器中分配的所有 UI 预制体。
 
 ::: info 注意
-某些功能（例如 [UI 显示切换](/zh/guide/user-interface#ui-toggling)）要求 UI 使用 `Screen Space - Camera` 渲染模式。为确保兼容性，请确认自定义 UI 的渲染模式设置正确，且 `Render Camera` 字段为空（UI 管理器会自动分配摄像机）。
+某些功能（例如 [UI 显示切换](/zh/guide/gui#ui-toggling)）要求 UI 使用 `Screen Space - Camera` 渲染模式。为确保兼容性，请确认自定义 UI 的渲染模式设置正确，且 `Render Camera` 字段为空（UI 管理器会自动分配摄像机）。
 
 ![](https://i.gyazo.com/d62bed3ba0c85972b12e759cc7b44c91.png)
 :::
@@ -78,8 +78,8 @@ UI 自定义功能允许你添加自定义界面，或修改、完全替换任�
 
 若希望支持手柄或键盘在 UI 上的导航，可在 `Focus Object` 字段中指定一个具有交互组件（如 `Button`）的对象。当 UI 变为可见时，该对象将自动获得焦点，从而允许通过手柄或键盘（方向键、摇杆等）进行导航。有关导航行为的设置，请参考 Unity 官方文档 [UI 导航指南](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-SelectableNavigation.html)。
 
-当指定了 `Focus Object` 后，`Focus Mode` 属性可控制何时聚焦该对象：  
-- **Visibility**：UI 显示后立即聚焦。  
+当指定了 `Focus Object` 后，`Focus Mode` 属性可控制何时聚焦该对象：
+- **Visibility**：UI 显示后立即聚焦。
 - **Navigation**：在玩家激活导航输入（方向键或摇杆）后再聚焦。
 
 `On Show` 与 `On Hide` Unity 事件可挂接自定义处理逻辑以响应 UI 显隐状态变化。例如，可触发 `Animator` 参数来播放自定义动画。
@@ -133,7 +133,7 @@ Font Sizes | 实际应用于文本组件的字体大小。列表中各项对应�
 
 若希望修改现有的内置（默认）UI 预制体，可在包目录 `Naninovel/Prefabs/DefaultUI` 中找到这些资源。
 
-虽然可以直接编辑这些预制体，**但强烈建议不要直接修改内置资源**，以免在更新 Naninovel 包时发生覆盖或兼容性问题。  
+虽然可以直接编辑这些预制体，**但强烈建议不要直接修改内置资源**，以免在更新 Naninovel 包时发生覆盖或兼容性问题。
 
 正确的做法是：通过 `Create -> Naninovel -> Default UI -> ...` 菜单从模板创建新的预制体，或手动复制要修改的预制体（Ctrl/Cmd + D），并将副本移动到项目目录中（包外）。然后在 UI 资源管理器中，将该新建或修改后的预制体分配到相应记录的 `Object` 字段中。
 
@@ -184,13 +184,13 @@ public class MyCustomUI : CustomUI
 
 在创建自定义 UI 时，你可能希望在某些事件（例如 [按钮点击](https://docs.unity3d.com/Manual/script-Button.html)）触发时执行指令或播放特定的 Naninovel 脚本。
 
-为此，可在任意游戏对象上添加 `Play Script` 组件，然后选择一个已有的 Naninovel 脚本，或直接在文本区域中编写指令。接着，从其他组件的 [Unity 事件](https://docs.unity3d.com/Manual/UnityEvents.html) 路由调用该组件的 `Play()` 方法。当事件在播放模式下被触发时，该脚本就会执行。  
+为此，可在任意游戏对象上添加 `Play Script` 组件，然后选择一个已有的 Naninovel 脚本，或直接在文本区域中编写指令。接着，从其他组件的 [Unity 事件](https://docs.unity3d.com/Manual/UnityEvents.html) 路由调用该组件的 `Play()` 方法。当事件在播放模式下被触发时，该脚本就会执行。
 
 下图示例展示了当按钮被点击时隐藏自定义 UI：
 
 ![](https://i.gyazo.com/5f56fbddc090919cc71f68e82bb1713f.png)
 
-你还可以在脚本文本中使用 `{arg}` 表达式引用 Unity 事件参数。支持的参数类型包括：`string`、`int`、`float` 和 `bool`。  
+你还可以在脚本文本中使用 `{arg}` 表达式引用 Unity 事件参数。支持的参数类型包括：`string`、`int`、`float` 和 `bool`。
 
 下图示例演示了当布尔型 Unity 事件为 `true` 时执行相机震动并播放音效，当为 `false` 时播放背景音乐：
 

@@ -113,7 +113,7 @@ public class DialogueTrigger : MonoBehaviour
 
 ## 禁用标题菜单
 
-引擎初始化后，会自动显示内置的标题菜单，而你的项目中可能已拥有自定义标题界面。你可以通过 [UI 自定义功能](/zh/guide/user-interface#ui-customization) 修改、替换或完全移除内置标题菜单。该菜单在 UI 资源列表中对应 `Title UI` 项。
+引擎初始化后，会自动显示内置的标题菜单，而你的项目中可能已拥有自定义标题界面。你可以通过 [UI 自定义功能](/zh/guide/gui#ui-customization) 修改、替换或完全移除内置标题菜单。该菜单在 UI 资源列表中对应 `Title UI` 项。
 
 ## 引擎对象层
 

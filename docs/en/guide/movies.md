@@ -21,7 +21,7 @@ Use [@movie] command followed by video clip name to play a movie from the nanino
 @movie Opening
 ```
 
-By default, played video is fitted to 16:9 aspect ratio to prevent stretching. You can change this behavior by [overriding](/guide/user-interface.html#ui-customization) `IMovieUI` UI. `Aspect Ratio Fitter` component attached to `MovieImage` game object controls the fitting behavior.
+By default, played video is fitted to 16:9 aspect ratio to prevent stretching. You can change this behavior by [overriding](/guide/gui.html#ui-customization) `IMovieUI` UI. `Aspect Ratio Fitter` component attached to `MovieImage` game object controls the fitting behavior.
 
 ![](https://i.gyazo.com/38e8b1fc220d5fedd50f62ab855b2e92.png)
 

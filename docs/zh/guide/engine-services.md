@@ -29,11 +29,11 @@ IMoviePlayer | 处理 [视频](/zh/guide/movies) 播放。
 IScriptManager | 管理 [naninovel 脚本](/zh/guide/naninovel-scripts) 资源。
 IScriptPlayer | 处理 [naninovel 脚本](/zh/guide/naninovel-scripts) 执行。
 ICameraManager | 管理场景渲染所需的摄像机及其他相关系统。
-IResourceProviderManager | 管理 `IResourceProvider` 对象。  
-IStateManager | 处理与 `IEngineService` 相关的持久化数据序列化与反序列化；提供用于[保存与加载](/zh/guide/save-load-system)游戏状态的 API。  
-IUIManager | 管理 `IManagedUI` 对象，并负责 [UI 自定义](/zh/guide/user-interface#ui-customization) 功能。  
-ICustomVariableManager | 提供访问并允许修改[自定义变量](/zh/guide/custom-variables)的接口。  
-ISpawnManager | 管理通过 [@spawn] 指令生成的对象。  
+IResourceProviderManager | 管理 `IResourceProvider` 对象。
+IStateManager | 处理与 `IEngineService` 相关的持久化数据序列化与反序列化；提供用于[保存与加载](/zh/guide/save-load-system)游戏状态的 API。
+IUIManager | 管理 `IManagedUI` 对象，并负责 [UI 自定义](/zh/guide/gui#ui-customization) 功能。
+ICustomVariableManager | 提供访问并允许修改[自定义变量](/zh/guide/custom-variables)的接口。
+ISpawnManager | 管理通过 [@spawn] 指令生成的对象。
 IUnlockableManager | 管理[可解锁物品](/zh/guide/unlockable-items)（如 CG 与影片画廊项目、词条提示等）。
 
 你可以在 `Naninovel/Runtime` 目录中找到这些服务的内置实现。
@@ -47,17 +47,17 @@ IUnlockableManager | 管理[可解锁物品](/zh/guide/unlockable-items)（如 C
 
 要使服务能被自动实例化，实现类的构造函数必须兼容。构造函数可包含以下任意参数（顺序不限）：
 
-- 任意数量的其他服务（继承自 `IEngineService`）  
-- 任意数量的配置对象（继承自 `Configuration`）  
+- 任意数量的其他服务（继承自 `IEngineService`）
+- 任意数量的配置对象（继承自 `Configuration`）
 - 一个 Unity 的 “MonoBehaviour” 代理对象（继承自 `IEngineBehaviour`）
 
 请注意：**不要在构造函数中直接调用其他服务。** 如果需要在初始化时使用其他服务，请在 `InitializeService` 方法中执行。为确保依赖服务已初始化，请将它们列入服务构造函数参数中，引擎会根据依赖关系自动进行拓扑排序，按顺序初始化。
 
 如果你的自定义服务具有持久化状态，并希望它与其他引擎服务一起序列化或反序列化，请实现 `IStatefulService<TState>` 接口，其中 `TState` 可以是以下之一：
 
-- `GameStateMap` —— 用于与游戏会话绑定的状态  
-- `GlobalStateMap` —— 用于全局状态  
-- `SettingsStateMap` —— 用于设置数据  
+- `GameStateMap` —— 用于与游戏会话绑定的状态
+- `GlobalStateMap` —— 用于全局状态
+- `SettingsStateMap` —— 用于设置数据
 
 如有需要，单个服务可以同时实现多个状态接口。关于不同类型的引擎状态的详细信息，请参阅 [状态管理指南](/zh/guide/state-management)。
 

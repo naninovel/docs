@@ -2,7 +2,7 @@
 
 ## Do I need to know programming to use Naninovel?
 
-Naninovel is designed to be friendly for non-programmers and doesn't require any programming knowledge in order to create basic visual novels. For example, our [WebGL demo](https://naninovel.com/demo) is created without any custom C# scripts. Check the [getting started guide](/guide/getting-started) and [video tutorial](https://youtu.be/wFil5vje3NE) for an example of the basic workflow. However, adding custom features (gameplay) or integrating with other third-party packages will require C# (or [visual](/guide/samples#visual-scripting)) scripting in most cases. Specific features (eg, [UI customization](/guide/user-interface.html#ui-customization)) could also require some experience with the Unity editor.
+Naninovel is designed to be friendly for non-programmers and doesn't require any programming knowledge in order to create basic visual novels. For example, our [WebGL demo](https://naninovel.com/demo) is created without any custom C# scripts. Check the [getting started guide](/guide/getting-started) and [video tutorial](https://youtu.be/wFil5vje3NE) for an example of the basic workflow. However, adding custom features (gameplay) or integrating with other third-party packages will require C# (or [visual](/guide/samples#visual-scripting)) scripting in most cases. Specific features (eg, [UI customization](/guide/gui.html#ui-customization)) could also require some experience with the Unity editor.
 
 ## Can I use Naninovel as a drop-in dialogue system for an existing game?
 
@@ -44,7 +44,7 @@ When asset is purchased from an organization account, the organization owner hav
 
 ## How to customize the title (main) menu: add background, music, effects, change buttons, etc?
 
-For the UI part (changing/adding buttons or panel layout and style) [modify the built-in Title UI prefab](/guide/user-interface#modifying-built-in-ui); for everything else set `Title Script` at the scripts configuration menu (`Naninovel -> Configuration -> Scripts`) and use script commands to set up the scene just like when writing a scenario. The title script will be automatically played when entering the title menu. An example of the entire customization process is shown in the following video tutorial: [youtu.be/hqhfhXzQkdk](https://youtu.be/hqhfhXzQkdk).
+For the UI part (changing/adding buttons or panel layout and style) [modify the built-in Title UI prefab](/guide/gui#modifying-built-in-ui); for everything else set `Title Script` at the scripts configuration menu (`Naninovel -> Configuration -> Scripts`) and use script commands to set up the scene just like when writing a scenario. The title script will be automatically played when entering the title menu. An example of the entire customization process is shown in the following video tutorial: [youtu.be/hqhfhXzQkdk](https://youtu.be/hqhfhXzQkdk).
 
 ## Why a background is cropped?
 

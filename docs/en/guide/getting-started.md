@@ -127,7 +127,7 @@ Now, let's say you want to make "Kohaku" character look happy. You have several 
 
 Actors and their parameters are controlled (directed) via commands specified in [naninovel scripts](/guide/scenario-scripting).
 
-Another widely used concept is [user interface](/guide/user-interface) (UI). UIs are used by player to interact with actors and the rest of the game. This includes various menus (title, save-load, settings, etc) and control panels (toggle auto read mode, skip text, etc). UI elements are positioned on top of actors by default.
+Another widely used concept is [user interface](/guide/gui) (UI). UIs are used by player to interact with actors and the rest of the game. This includes various menus (title, save-load, settings, etc) and control panels (toggle auto read mode, skip text, etc). UI elements are positioned on top of actors by default.
 
 Text printers and choice handlers are considered both actors and UI elements, meaning they share actor qualities and can be controlled via naninovel scripts, while, at the same time, used by players to interact with the game.
 

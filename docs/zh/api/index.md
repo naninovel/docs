@@ -1,6 +1,6 @@
 # Commands
 
-Script commands API reference. Use the side bar to quickly navigate between available commands. 
+Script commands API reference. Use the side bar to quickly navigate between available commands.
 
 ~~Strikethrough~~ indicates a nameless parameter, and **bold** stands for required parameter; other parameters should be considered optional. Consult [naninovel scripts guide](/guide/naninovel-scripts) in case you have no idea what's this all about.
 
@@ -410,8 +410,8 @@ Modifies a [character actor](/guide/characters).
 ; Same as above, but sets appearance to 'Happy'.
 @char Sora.Happy
 
-; Same as above, but additionally positions the character 45% away 
-; from the left border of the scene and 10% away from the bottom border; 
+; Same as above, but additionally positions the character 45% away
+; from the left border of the scene and 10% away from the bottom border;
 ; also makes it look to the left.
 @char Sora.Happy look:left pos:45,10
 
@@ -798,7 +798,7 @@ Hides a text printer.
 
 ## hideUI
 
-Makes [UI elements](/guide/user-interface#ui-customization) with the specified names invisible. When no names are specified, will stop rendering (hide) the entire UI (including all the built-in UIs).
+Makes [UI elements](/guide/gui#ui-customization) with the specified names invisible. When no names are specified, will stop rendering (hide) the entire UI (including all the built-in UIs).
 
 ::: info NOTE
 When hiding the entire UI with this command and `allowToggle` parameter is false (default), user won't be able to re-show the UI back with hotkeys or by clicking anywhere on the screen; use [@showUI] command to make the UI visible again.
@@ -1400,8 +1400,8 @@ If a variable with the specified name doesn't exist, it will be automatically cr
 ; If 'angle' is a number, assign its cosine to 'foo' variable.
 @set foo=cos(angle)
 
-; Get random number between -100 and 100, then raise to power of 4 
-; and assign to 'foo' variable. Quotes are required when whitespace 
+; Get random number between -100 and 100, then raise to power of 4
+; and assign to 'foo' variable. Quotes are required when whitespace
 ; is present inside the expression.
 @set "foo = pow(random(-100, 100), 4)"
 
@@ -1411,12 +1411,12 @@ If a variable with the specified name doesn't exist, it will be automatically cr
 ; If 'foo' is a number, subtract 1 from its value (decrement).
 @set foo--
 
-; Assign 'foo' variable value of the 'bar' variable, 
+; Assign 'foo' variable value of the 'bar' variable,
 ; which is 'Hello World!' string.
 @set bar="Hello World!"
 @set foo=bar
 
-; Defining multiple set expressions in one line; 
+; Defining multiple set expressions in one line;
 ; the result will be the same as above.
 @set bar="Hello World!";foo=bar
 
@@ -1481,7 +1481,7 @@ Sound effect tracks are not looped by default. When sfx track name (SfxPath) is 
 
 ## sfxFast
 
-Plays an [SFX (sound effect)](/guide/audio#sound-effects) track with the specified name. Unlike [@sfx] command, the clip is played with minimum delay and is not serialized with the game state (won't be played after loading a game, even if it was played when saved). The command can be used to play various transient audio clips, such as UI-related sounds (eg, on button click with [`Play Script` component](/guide/user-interface#play-script-on-unity-event)).
+Plays an [SFX (sound effect)](/guide/audio#sound-effects) track with the specified name. Unlike [@sfx] command, the clip is played with minimum delay and is not serialized with the game state (won't be played after loading a game, even if it was played when saved). The command can be used to play various transient audio clips, such as UI-related sounds (eg, on button click with [`Play Script` component](/guide/gui#play-script-on-unity-event)).
 
 <div class="config-table">
 
@@ -1586,7 +1586,7 @@ Shows a text printer.
 
 ## showUI
 
-Makes [UI elements](/guide/user-interface) with the specified resource names visible. When no names are specified, will reveal the entire UI (in case it was hidden with [@hideUI]).
+Makes [UI elements](/guide/gui) with the specified resource names visible. When no names are specified, will reveal the entire UI (in case it was hidden with [@hideUI]).
 
 <div class="config-table">
 
@@ -2091,4 +2091,3 @@ Executes nested lines in a loop, as long as specified conditional expression res
     @else
         Correct!
 ```
-

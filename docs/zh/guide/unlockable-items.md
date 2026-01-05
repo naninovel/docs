@@ -77,7 +77,7 @@ CG 槽位在 UI 网格中按路径名排序（从左到右，从上到下）。�
 
 当任意来源中至少添加了一个 CG 项（无论其是否解锁）时，标题菜单中将出现 `CG GALLERY` 按钮，以便进入 CG 图鉴浏览器。
 
-你可以使用 [UI 自定义功能](/zh/guide/user-interface#ui-customization) 修改或完全替换内置的 `ICGGalleryUI` 实现。
+你可以使用 [UI 自定义功能](/zh/guide/gui#ui-customization) 修改或完全替换内置的 `ICGGalleryUI` 实现。
 
 ## 提示
 
