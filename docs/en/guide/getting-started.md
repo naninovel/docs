@@ -8,17 +8,17 @@ If you do not plan to implement any custom gameplay outside Naninovel, you can i
 
 ## Create Unity Project
 
-When creating a project, we recommend choosing the **Universal Render Pipeline** (URP) template. The legacy built-in render pipeline (BiRP) will work as well, but it's no longer actively maintained by Unity and is expected to be deprecated. The High Definition Render Pipeline (HDRP) is not recommended — it will generally work as well, but some rendering features may not be compatible out of the box.
+When creating a project, we recommend selecting either the Universal 2D or Universal 3D templates, which are based on the **Universal Render Pipeline** (URP). The legacy built-in render pipeline (BiRP) will also work, but it is no longer actively maintained by Unity and is expected to be deprecated. The High Definition Render Pipeline (HDRP) is not recommended — it will generally work, but some rendering features may not be compatible out of the box.
 
-Choosing 2D or 3D depends on the style of the game you're building. For most standard visual novels we recommend choosing 2D, so that images will be imported as sprite assets by default and you won't have to manually change the import settings. You can change the editor behaviour mode later using the [project settings](https://docs.unity3d.com/Manual/2DAnd3DModeSettings.html).
+Choosing 2D or 3D depends on the style of game you're building. For most standard visual novels, we recommend selecting 2D, so images will be imported as sprite assets by default and you won't have to manually adjust the import settings. You can change the editor behavior mode later in the [project settings](https://docs.unity3d.com/Manual/2DAnd3DModeSettings.html).
 
-![](https://i.gyazo.com/7abffe64675880f6d1c7afe6424b91be.png)
+![](https://i.gyazo.com/b1b89ad23fbeffff3d03cf7dcf25cab1.png)
 
-When creating new project, Unity automatically includes a sample scene with "Main Camera" and (in some templates) "Directional Light" game objects inside it.
+When creating a new project, Unity automatically includes a sample scene with a "Main Camera" and, depending on the template, various other game objects.
 
 ![](https://i.gyazo.com/0691599c7586100d2467499a252b6194.png)
 
-Naninovel is scene-independent, hence we recommend removing those objects from the scene to prevent unnecessary performance overhead or conflicts with Naninovel systems. You can also remove the sample scene itself, though it's recommended to keep at least one scene in a project for some editor features to work correctly.
+Naninovel is scene-independent; therefore, we recommend removing these objects from the scene to prevent unnecessary performance overhead or conflicts with Naninovel systems. You can also remove the sample scene itself, though it is recommended to keep at least one scene in the project for certain editor features to function correctly.
 
 ### Optimizing Editor
 

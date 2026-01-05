@@ -22,7 +22,7 @@ Naninovel supports disabling both the `Reload Domain` and `Reload Scene` options
 
 ## Render Pipelines
 
-Both the Universal Render Pipeline (URP) and the legacy built-in render pipeline (BiRP) are fully supported. The High-Definition Render Pipeline (HDRP) is not actively tested and is not recommended. While most Naninovel features will work with HDRP, some rendering-specific features—such as the [@trans], [@glitch], and [@bokeh] commands—may not work under HDRP out of the box.
+Both the Universal Render Pipeline (URP) and the legacy built-in render pipeline (BiRP) are fully supported. The High-Definition Render Pipeline (HDRP) is not actively tested and is not recommended. While most Naninovel features will work with HDRP, some rendering-specific features — such as the [@trans], [@glitch], and [@bokeh] commands — may not work under HDRP out of the box.
 
 ## GUI
 
