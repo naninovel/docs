@@ -97,7 +97,7 @@ You can find all the available releases and their versions on the [releases page
 
 ![?width=300](https://i.gyazo.com/c7c453b8b34c94809303a9dc42e5330d.png)
 
-If you encounter an error while installing the package, make sure you're authenticated (on your local machine) as the GitHub user assigned in the account dashboard. The simplest way to authenticate is by logging in with [GitHub Desktop](https://github.com/apps/desktop) or the [CLI tool](https://cli.github.com). Refer to the Unity guide for [more info on authentication](https://docs.unity3d.com/Manual/upm-config-https-git.html).
+If you encounter an error while installing the package, make sure you're authenticated as the GitHub user assigned in the account dashboard. The simplest way to authenticate is by logging in with [GitHub Desktop](https://github.com/apps/desktop). On macOS and Linux you may also need to install [GCM](https://github.com/git-ecosystem/git-credential-manager/releases/latest). Refer to the Unity guide for [more info on authentication](https://docs.unity3d.com/Manual/upm-config-https-git.html).
 
 ### Install from Package
 
