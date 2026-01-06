@@ -92,7 +92,7 @@ https://github.com/naninovel/upm.git#1.21
 
 You can find all the available releases and their versions on the [releases page](https://pre.naninovel.com/releases).
 
-![](https://i.gyazo.com/91d056eb5b6278e5c9a28f59c8ff8732.png)
+![?width=300](https://i.gyazo.com/c7c453b8b34c94809303a9dc42e5330d.png)
 
 If you encounter an error while installing the package, make sure you're authenticated (on your local machine) as the GitHub user assigned in the account dashboard. The simplest way to authenticate is by logging in with [GitHub Desktop](https://github.com/apps/desktop) or the [CLI tool](https://cli.github.com). Refer to the Unity guide for [more info on authentication](https://docs.unity3d.com/Manual/upm-config-https-git.html).
 
@@ -101,7 +101,7 @@ If you encounter an error while installing the package, make sure you're authent
 Alternatively, you can install Naninovel using a `.unitypackage` file. The current stable release and all previous versions are available in our [download archive](https://account.naninovel.com/download).
 
 ::: info NOTE
-Asset Store packages and the download archive are updated 2–3 months later than the UPM repository and don't include preview releases, so we recommend installing Naninovel directly from GitHub for the latest updates.
+Asset Store packages and the download archive are updated several months later than the UPM repository and don't include preview releases, so we recommend installing Naninovel directly from GitHub for the latest updates.
 :::
 
 ## Core Concepts
