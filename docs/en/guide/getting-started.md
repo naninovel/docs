@@ -39,6 +39,8 @@ Now, open and inspect the `manifest.json` file in the "Packages" folder located 
         "com.unity.modules.imgui": "1.0.0",
         "com.unity.modules.uielements": "1.0.0",
         "com.unity.modules.particlesystem": "1.0.0",
+        "com.unity.render-pipelines.universal": "17.3.0",
+        "com.unity.inputsystem": "1.17.0",
         "com.unity.ugui": "2.0.0"
     }
 }
