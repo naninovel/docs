@@ -37,6 +37,7 @@ Now, open and inspect the `manifest.json` file in the "Packages" folder located 
         "com.unity.modules.audio": "1.0.0",
         "com.unity.modules.video": "1.0.0",
         "com.unity.modules.imgui": "1.0.0",
+        "com.unity.modules.imageconversion": "1.0.0",
         "com.unity.modules.uielements": "1.0.0",
         "com.unity.modules.particlesystem": "1.0.0",
         "com.unity.render-pipelines.universal": "17.3.0",
