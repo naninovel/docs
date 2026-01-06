@@ -132,6 +132,8 @@ Another widely used concept is the [user interface](/guide/gui) (UI). UIs are us
 
 Text printers and choice handlers are considered both actors and UI elements, meaning they share actor qualities and can be controlled via Naninovel scripts, while at the same time being used by players to interact with the game.
 
+![](https://i.gyazo.com/0c8bd29820c6f2165af6adc5736713bd.png)
+
 If you're familiar with programming, take a look at the [engine architecture](/guide/engine-architecture) to understand how it is designed from a software engineering perspective.
 
 ## Add Naninovel Script
