@@ -141,7 +141,7 @@ If you're familiar with programming, take a look at the [engine architecture](/g
 
 ## First Steps
 
-A few sample scripts are scaffolded into the `Assets/Scenario` folder, and the [Story Editor](/guide/editor) tab is automatically opened on the initial Naninovel install. Click the "Play" button at the top of the scenario editor to enter play mode.
+A few sample scripts are scaffolded into the `Assets/Scenario` folder, and the [Story Editor](/guide/editor) tab is automatically opened on the initial Naninovel install. Click the "Play" button at the top of the story editor to enter play mode.
 
 ![?width=400](https://i.gyazo.com/664efe9237b14ee091fded317a2cab4a.png)
 
