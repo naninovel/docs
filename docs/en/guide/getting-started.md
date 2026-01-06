@@ -139,7 +139,19 @@ Text printers and choice handlers are considered both actors and UI elements, me
 
 If you're familiar with programming, take a look at the [engine architecture](/guide/engine-architecture) to understand how it is designed from a software engineering perspective.
 
-## Add Naninovel Script
+## First Steps
+
+A few sample scripts are scaffolded into the `Assets/Scenario` folder, and the [Story Editor](/guide/editor) tab is automatically opened on the initial Naninovel install. Click the "Play" button at the top of the scenario editor to enter play mode.
+
+![?width=400](https://i.gyazo.com/664efe9237b14ee091fded317a2cab4a.png)
+
+The Unity editor will enter play mode and display the default title UI. At the same time, the `Title` scenario script will open in the story editor, indicating that it is currently being played.
+
+![](https://i.gyazo.com/84c64bf7fb4217dd149260fd0008b7f4.png)
+
+Feel free to explore the story editor and edit the scripts — changes are applied live. Read through the comments in the sample scripts for brief explanations of the nearby commands. Click "NEW GAME" on the title UI to proceed to the `Entry` script, which contains some additional examples.
+
+## Add Scenario Script
 
 Use `Create -> Folder` assets context menu and create a "Scenario" folder, under which all the Naninovel scenario script assets will be stored. Then, under the created folder, click `Create -> Naninovel -> Naninovel Script` to create your first scenario script.
 
