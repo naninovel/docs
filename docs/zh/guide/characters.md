@@ -11,13 +11,13 @@
 在 Naninovel 脚本中，角色通过 [@char] 指令进行控制：
 
 ```nani
-; 显示名为 `Sora` 的角色，使用默认外观。  
+; 显示名为 `Sora` 的角色，使用默认外观。
 @char Sora
 
-; 与上相同，但将外观设置为 `Happy`。  
+; 与上相同，但将外观设置为 `Happy`。
 @char Sora.Happy
 
-; 与上相同，但将角色位置设置为距离场景左边界 45%、底部边界 10%，并使其朝向左侧。  
+; 与上相同，但将角色位置设置为距离场景左边界 45%、底部边界 10%，并使其朝向左侧。
 @char Sora.Happy look:left pos:45,10
 ```
 
@@ -46,20 +46,20 @@
 姿势名称可以作为 [@char] 指令中的外观（appearance）使用，以一次性应用姿势中预设的所有参数，而无需在指令参数中逐项单独指定。
 
 ```nani
-; 当 `Kohaku` 角色定义了名为 `SuperAngry` 的姿势时，  
-; 将应用该姿势中指定的所有参数。  
+; 当 `Kohaku` 角色定义了名为 `SuperAngry` 的姿势时，
+; 将应用该姿势中指定的所有参数。
 @char Kohaku.SuperAngry
 
-; 与上相同，但使用 `DropFade` 过渡效果，持续 3 秒。  
+; 与上相同，但使用 `DropFade` 过渡效果，持续 3 秒。
 @char Kohaku.SuperAngry transition:DropFade time:3
 ```
 
-请注意，当使用姿势作为外观时，你仍然可以在指令中单独覆盖某些参数，例如：  
+请注意，当使用姿势作为外观时，你仍然可以在指令中单独覆盖某些参数，例如：
 
 ```nani
-; 当 `Kohaku` 角色定义了名为 `SuperAngry` 的姿势时，  
-; 将应用该姿势状态中的所有参数，  
-; 但会在指令中重写 `tint`（色调）属性。  
+; 当 `Kohaku` 角色定义了名为 `SuperAngry` 的姿势时，
+; 将应用该姿势状态中的所有参数，
+; 但会在指令中重写 `tint`（色调）属性。
 @char Kohaku.SuperAngry tint:#ff45cb
 ```
 
@@ -121,12 +121,12 @@ Char1: My name is now pre-defined by `T_PredefinedName` managed text record.
 Char1: It's localizable; try changing the locale and it will update accordingly.
 Char1: Now, we'll make the player input a custom name.
 
-; 注意 `value` 参数中指定的默认输入值：  
-; 它从受管文本中获取，因此也支持本地化。  
+; 注意 `value` 参数中指定的默认输入值：
+; 它从受管文本中获取，因此也支持本地化。
 @input name summary:"Choose your name." value:{T_DefaultName}
 
-; 此处我们设置用于显示名称表达式的变量，  
-; 以决定显示名称取值来源。  
+; 此处我们设置用于显示名称表达式的变量，
+; 以决定显示名称取值来源。
 @set nameSet=true
 
 Char1: My display name is now bound to `name` custom variable.
@@ -139,15 +139,15 @@ Char1: My display name is now bound to `name` custom variable.
 虽然上文所述的显示名称系统在大多数情况下都推荐使用，但有时你可能希望仅在几行文本中临时更改角色名，或让多名角色共同成为某段文本的发言者。为每种情况单独设置一个演出元素或变量显示名称是不切实际的。此时可以使用 [@print] 指令的 `as` 参数：
 
 ```nani
-; 即使角色 “Kohaku” 在配置中设置了自定义显示名称，  
-; 仍可使用 “Someone” 作为该行文本的显示名称进行打印。  
+; 即使角色 “Kohaku” 在配置中设置了自定义显示名称，
+; 仍可使用 “Someone” 作为该行文本的显示名称进行打印。
 @print "Lorem ipsum." author:Kohaku as:"Someone"
 
-; 以 “All Together” 作为作者名打印该行文本，  
-; 并让所有可见角色成为这条文本的发言者。  
+; 以 “All Together” 作为作者名打印该行文本，
+; 并让所有可见角色成为这条文本的发言者。
 @print "Lorem ipsum!" author:* as:"All Together"
 
-; 类似，但仅让 “Kohaku” 与 “Yuko” 成为发言者。  
+; 类似，但仅让 “Kohaku” 与 “Yuko” 成为发言者。
 @print "Lorem ipsum?" author:Kohaku,Yuko as:"Kohaku and Yuko"
 ```
 
@@ -273,8 +273,6 @@ https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteD
 
 — 在输入框中粘贴上述 URL 并点击 “Add”。
 
-![](/assets/img/docs/upm.mp4)
-
 ::: info 注意
 在从 Git 仓库安装包之前，请确保你的电脑上已安装 [Git 客户端](https://git-scm.com/downloads)，并且 Git 可执行文件路径已加入 [PATH 系统环境变量](https://en.wikipedia.org/wiki/PATH_(variable))。（通常在安装 Git 时会自动完成此操作。）
 :::
@@ -309,7 +307,7 @@ https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteD
 
 要创建一个分层角色预制体，可通过菜单 `Create -> Naninovel -> Character -> Layered` 新建资源。进入 [Prefab 编辑模式](https://docs.unity3d.com/Manual/EditingInPrefabMode.html) 以组合图层。默认情况下会生成多个图层和分组，你可以直接使用，也可以删除并添加自己的。
 
-预制体根对象的每个子对象，若挂载了继承自 [Renderer](https://docs.unity3d.com/ScriptReference/Renderer.html) 的组件  
+预制体根对象的每个子对象，若挂载了继承自 [Renderer](https://docs.unity3d.com/ScriptReference/Renderer.html) 的组件
 （如 `SpriteRenderer`、`MeshRenderer` 等），都将被视为一个 **图层（Layer）**；其他子对象则被视为 **分组（Group）**。除了组织结构和变换用途外，将图层置于分组中还允许你在 Naninovel 脚本中用一个表达式选择或启用 / 禁用整个分组内的图层（稍后详述）。
 
 ::: info 注意
@@ -336,8 +334,8 @@ https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteD
 
 要在 Naninovel 脚本中控制分层角色，可像控制其他角色实现那样使用 [@char] 指令。唯一的区别是外观设置方式：分层角色使用 **图层组合表达式（Layer Composition Expression）**，而非单一外观 ID。表达式有三种类型：
 
-- 启用组内单个图层：`group>layer`  
-- 启用图层（不影响同组其他图层）：`group+layer`  
+- 启用组内单个图层：`group>layer`
+- 启用图层（不影响同组其他图层）：`group+layer`
 - 禁用图层：`group-layer`
 
 例如，假设角色 “Miho” 拥有一个 “Body” 分组，其中包含三个图层：“Uniform”（制服）、“SportSuit”（运动服）和 “Pajama”（睡衣）。要启用 “Uniform” 图层并禁用其他图层，可使用以下指令：
@@ -369,7 +367,7 @@ https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteD
 ; 启用所有现有图层。
 @char CharId.+
 
-; 若存在 `Poses/Light` 与 `Poses/Dark` 分组，  
+; 若存在 `Poses/Light` 与 `Poses/Dark` 分组，
 ; 则启用 `Light` 分组内的所有图层，禁用 `Dark` 分组内的图层。
 @char CharId.Poses/Light>
 ```

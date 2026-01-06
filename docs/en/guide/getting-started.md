@@ -108,9 +108,10 @@ Asset Store packages and the download archive are updated several months later t
 
 Before setting up and using Naninovel, let's skim through some of the core concepts.
 
-An essential one, which you will constantly encounter in the rest of the guide, is *actor*. Actor is an entity described by an identifier (ID), appearance, position in space (scene) and some other parameters.
+An essential one, which you will constantly encounter throughout the rest of the guide, is the *actor*. An actor is an entity described by an identifier (ID), appearance, position in space (scene), and some other parameters.
 
-Actor is an abstract entity and can't exist directly; instead, specialized versions with various additional parameters are used:
+An actor is an abstract entity and can't exist directly; instead, specialized versions with various additional parameters are used:
+
 
  Actor Type                           | Additional Parameters            | Description
 --------------------------------------|----------------------------------|------------------------------------------------------------------------------
@@ -119,19 +120,19 @@ Actor is an abstract entity and can't exist directly; instead, specialized versi
  [Text Printer](/guide/text-printers) | Text, Author ID, Reveal Progress | Gradually reveals (prints) text messages over time.
  [Choice Handler](/guide/choices)     | Choices                          | Allows player to pick one of the available choices.
 
-Consider a typical visual novel setup, with a character portrayed on top of a background. In Naninovel terms, it will be represented in the following way.
+Consider a typical visual novel setup, with a character portrayed on top of a background. In Naninovel terms, it is represented as follows:
 
-![](/assets/img/docs/actor-concept.mp4)
+![](https://i.gyazo.com/ede8072c68393e915286d18811a8dd4f.png)
 
-Now, let's say you want to make "Kohaku" character look happy. You have several textures (images) of that character, each portraying different emotion. In Naninovel such textures are called *appearances* of an actor. To achieve the goal, we have to change appearance of the character actor. Similarly, to make "MainBackground" display something else, we have to change appearance of that background actor.
+Now, let's say you want the character "Kohaku" to display a different emotion or pose. You have several textures (images) of that character, each portraying a different state. In Naninovel, such textures are called *appearances* of an actor. To achieve this, we have to change the appearance of the character actor. Similarly, to make "MainBackground" display something else, we need to change the appearance of that background actor.
 
-Actors and their parameters are controlled (directed) via commands specified in [naninovel scripts](/guide/scenario-scripting).
+Actors and their parameters are directed via commands specified in [scenario scripts](/guide/scenario-scripting).
 
-Another widely used concept is [user interface](/guide/gui) (UI). UIs are used by player to interact with actors and the rest of the game. This includes various menus (title, save-load, settings, etc) and control panels (toggle auto read mode, skip text, etc). UI elements are positioned on top of actors by default.
+Another widely used concept is the [user interface](/guide/gui) (UI). UIs are used by the player to interact with actors and the rest of the game. This includes various menus (title, save-load, settings, etc.) and control panels (toggle auto-read mode, skip text, etc.). UI elements are positioned on top of actors by default.
 
-Text printers and choice handlers are considered both actors and UI elements, meaning they share actor qualities and can be controlled via naninovel scripts, while, at the same time, used by players to interact with the game.
+Text printers and choice handlers are considered both actors and UI elements, meaning they share actor qualities and can be controlled via Naninovel scripts, while at the same time being used by players to interact with the game.
 
-In case you're familiar with programming, take a look at the [engine architecture](/guide/engine-architecture) to get a grasp on how it's designed from the software engineering perspective.
+If you're familiar with programming, take a look at the [engine architecture](/guide/engine-architecture) to understand how it is designed from a software engineering perspective.
 
 ## Add Naninovel Script
 
