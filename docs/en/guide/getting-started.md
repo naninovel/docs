@@ -48,6 +48,10 @@ Now, open and inspect the `manifest.json` file in the "Packages" folder located 
 ```
 :::
 
+::: info NOTE
+Disabling domain reload and modifying the `manifest.json` file is **not required to use Naninovel**; it is only intended to improve Unity Editor performance. If you are unsure about the effects of these changes or which modules you will need for your game — skip these steps.
+:::
+
 ### VCS Setup
 
 If you're using a version control system, such as Git, consider ignoring the following paths to prevent unnecessary churn:
@@ -97,7 +101,9 @@ You can find all the available releases and their versions on the [releases page
 
 ![?width=300](https://i.gyazo.com/c7c453b8b34c94809303a9dc42e5330d.png)
 
-If you encounter an error while installing the package, make sure you're authenticated as the GitHub user assigned in the account dashboard. The simplest way to authenticate is by logging in with [GitHub Desktop](https://github.com/apps/desktop). On macOS and Linux you may also need to install [GCM](https://github.com/git-ecosystem/git-credential-manager/releases/latest). Refer to the Unity guide for [more info on authentication](https://docs.unity3d.com/Manual/upm-config-https-git.html).
+::: tip
+If you encounter an error installing the package, make sure you are authenticated as the GitHub user assigned in the account dashboard. The simplest way to authenticate on Windows is by signing in with [GitHub Desktop](https://github.com/apps/desktop). On macOS and Linux, use [GCM](https://github.com/git-ecosystem/git-credential-manager/releases/latest) instead. Refer to the Unity guide for [more info](https://docs.unity3d.com/Manual/upm-config-https-git.html).
+:::
 
 ### Install from Package
 
