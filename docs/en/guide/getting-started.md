@@ -107,7 +107,7 @@ If you encounter an error installing the package, make sure you are authenticate
 
 ### Install from Package
 
-Alternatively, you can install Naninovel using a `.unitypackage` file. The current stable release and all previous versions are available in our [download archive](https://account.naninovel.com/download).
+Alternatively, you can install Naninovel [from the Asset Store](https://docs.unity3d.com/Manual/upm-ui-import) or by downloading the package file from our [download archive](https://account.naninovel.com/download).
 
 ::: info NOTE
 Asset Store packages and the download archive are updated several months later than the UPM repository and don't include preview releases, so we recommend installing Naninovel directly from GitHub for the latest updates.
@@ -147,73 +147,67 @@ If you're familiar with programming, take a look at the [engine architecture](/g
 
 ## First Steps
 
-A few sample scripts are scaffolded into the `Assets/Scenario` folder, and the [Story Editor](/guide/editor) tab is automatically opened on the initial Naninovel install. Click the "Play" button at the top of the story editor to enter play mode.
+A few sample scripts are scaffolded into the `Assets/Scenario` folder, and the [Story Editor](/guide/editor) tab is automatically opened on the initial Naninovel install. Click the "Play" button at the top of the Story Editor to enter play mode.
 
 ![?width=400](https://i.gyazo.com/664efe9237b14ee091fded317a2cab4a.png)
 
-The Unity editor will enter play mode and display the default title UI. At the same time, the `Title` scenario script will open in the story editor, indicating that it is currently being played.
+The Unity editor will enter play mode and display the default title UI. At the same time, the `Title` scenario script will open in the Story Editor, indicating that it is currently being played.
 
 ![](https://i.gyazo.com/84c64bf7fb4217dd149260fd0008b7f4.png)
 
-Feel free to explore the story editor and edit the scripts — changes are applied live. Read through the comments in the sample scripts for brief explanations of the nearby commands. Click "NEW GAME" on the title UI to proceed to the `Entry` script, which contains some additional examples.
+Feel free to explore the Story Editor and edit the scripts — changes are applied live. Read through the comments in the sample scripts for brief explanations of the nearby commands. Click "NEW GAME" on the title UI to proceed to the `Entry` script, which contains some additional examples.
 
 ## Add Scenario Script
 
-Use `Create -> Folder` assets context menu and create a "Scenario" folder, under which all the Naninovel scenario script assets will be stored. Then, under the created folder, click `Create -> Naninovel -> Naninovel Script` to create your first scenario script.
+Now that you are familiar with the general flow, let's dive into adding actual content to the game. The essential assets that drive the story in Naninovel are called *scenario scripts*.
 
-![](https://i.gyazo.com/30f96fd3c8bb275478361c51f1a00e86.png)
+We already have two scripts scaffolded automatically, but let's learn how to add new ones. While you can use the [Story Editor](/guide/editor) to manage scripts, let's focus on the standard Unity workflow while getting started; you can learn the Story Editor-specific workflows in its dedicated guide.
+
+First, exit Play Mode by clicking the "Stop" button. As a rule of thumb, any project-level modifications — such as adding or removing assets, as well as tweaking project settings — should be performed outside of Play Mode in Unity.
+
+Find the `Assets/Scenario` folder that was automatically scaffolded together with the sample scripts — this is *scenario root* — the folder where all Naninovel scenario scripts will be stored. Under the scenario folder, right-click and select `Create -> Naninovel -> Scenario Script` to create a new `Test.nani` scenario script.
+
+![](https://i.gyazo.com/52ac23ba6b66c176bcbe67ef852310fb.png)
 
 ::: info NOTE
-You can store Naninovel scripts (and other resources) in any project folder and organize them however you like; naming is also entirely up to you. However, note that all scenario scripts must be stored within a single root directory. You can create as many nested folders as needed for organizational purposes, as long as all sub-folders eventually resolve to a common root within the Unity project.
+You can store scenario scripts (and other assets) in any project folder and organize them however you like; naming is also entirely up to you. However, note that all scenario scripts must be stored within a single root directory. You can create as many nested folders as needed for organizational purposes, as long as all subfolders ultimately resolve to a common root within the Unity project.
 
 ::: warning
-Unity treats folders named `Resources` in a special manner: assets stored under such folders are force-included to the build, which may cause [performance issues](https://docs.unity3d.com/Manual/UnderstandingPerformanceResourcesFolder.html). Most importantly, never store anything under `Resources/Naninovel` folder, unless specifically required in the guide, as this may cause all sorts of conflicts and undefined behaviour.
+Unity treats folders named `Resources` in a special manner: assets stored under such folders are force-included in the build, which may cause [performance issues](https://docs.unity3d.com/Manual/LoadingResourcesatRuntime). Most importantly, never store anything under the `Resources/Naninovel` folder unless specifically required by the guide, as this may cause all sorts of conflicts and undefined behavior.
 :::
 
-Naninovel scripts are text documents (`.nani` extension) where you control what happens on scenes. You can open and edit them with a text editor of your choice, like Microsoft Word, Google Docs or [VS Code](https://code.visualstudio.com).
+Scenario scripts are text documents with a `.nani` extension where you control what happens in scenes using [NaniScript](/guide/scenario-scripting) — Naninovel's screenwriting language. You can open and edit the script files with any text or code editor of your choice, such as Microsoft Word or [VS Code](/guide/ide-extension).
 
-![?class=when-dark](https://i.gyazo.com/0051c3b96de4854d665e6bf9aba6bbd1.png)
-![?class=when-light](https://i.gyazo.com/4172fee457fb4c1f473ffeb0516b83ca.png)
+![?class=when-dark](https://i.gyazo.com/8ccfe73f2b0d39dfe8479a02a218a011.png)
+![?class=when-light](https://i.gyazo.com/110a7ca29df4d19f9a019732e1a68019.png)
 
-You can also use visual script editor to edit the naninovel scripts. Select the created script asset and you'll see the visual editor automatically open in the inspector window.
+When you use the [Story Editor](/guide/editor), it outputs the same NaniScript to the scenario files, so you can use it interchangeably with text editors.
 
-![](https://i.gyazo.com/ba57b9f78116e57408125325bdf66be9.mp4)
+![?width=403](https://i.gyazo.com/18f5cc0e910bf95e7d933b06b878b589.png)
 
-To add a new line to the script, either right-click the place, where you want to insert the line, or press `Ctrl+Space` (you can change the default key bindings in the input configuration menu) and select the desired line or command type. To re-order lines, drag them using their number labels. To remove a line, right-click it and choose "Remove".
+In the rest of this guide, we will show script snippets that you can copy and paste when using a text or code editor, but you can follow the same steps inside the Story Editor if you prefer.
 
-When you've changed the script using visual editor, you'll see an asterisk (`*`) over the script path in the inspector header. That means the asset is dirty and need to be saved; press `Ctrl+S` to save the asset. In case you attempt to select another asset while the script is dirty, a dialogue window will pop up allowing to either save or revert the changes.
-
-The visual editor will automatically sync the edited script if you update it externally, so you can seamlessly work with the scripts in both text and visual editors.
-
-::: tip
-We're currently working on a new standalone editor app that's more powerful than the built-in visual editor and can be used without Unity, directly in a web browser. Learn more in the [editor guide](/guide/editor).
-
-![](https://i.gyazo.com/d54f0b35b4d89bdbece096c7b78c8c72.mp4)
-:::
-
-In the rest of this guide we will use a text editor, but you can repeat all the same steps with the visual or standalone editors if you wish.
-
-In order for a Naninovel-related asset (like our created script) to become "visible" for the engine, it should be assigned as a project resource. When creating the scripts via the asset menu, they're assigned automatically. To assign (or edit/remove) a script resource manually, use the script resources window accessible with `Naninovel -> Resources -> Scripts` editor context menu. To add a script, press `+` (plus sign) button in the list to add a new record and drag-drop script asset to the list. It's also possible to drag-drop multiple assets or even whole folders to the list to add them in batch.
-
-![Add Naninovel Script](https://i.gyazo.com/b3281a145ba54e6cb6cbdaa478ea894d.png)
-
-Open the created script in a text editor and add the following text:
+Open the created `Test.nani` script in a text editor and add the following line:
 
 ```nani
 Hello World!
 ```
 
-The line will print the text "Hello World!" when the game is run.
+— this line will print "Hello World!" when executed.
 
-Enter play mode and start a new game to see the result.
+Next, open the `Entry.nani` script and replace the last `@title` command with:
 
-::: info NOTE
-All the available built-in script commands, supported parameters and usage examples are listed in the [API reference](/api/). It's also possible to add custom commands; see [the guide](/guide/custom-commands) for more information.
+```nani
+@goto Test
+```
+
+— this command will navigate the playback to our new `Test.nani` script instead of exiting to the title menu.
+
+Enter Play Mode, start a new game, and play through until "Hello World!" is printed. Try editing the script while the game is playing — changes will be applied immediately, without re-entering Play Mode.
+
+::: tip
+The standard NaniScript commands and their usage examples are listed in the [API reference](/api/). It is also possible to add custom commands; see [the guide](/guide/custom-commands) for more information.
 :::
-
-In case "NEW GAME" button of the title menu is not active, make sure `Start Game Script` property in the script configuration (`Naninovel -> Configuration -> Scripts`) is equal to the name of the created script.
-
-![](https://i.gyazo.com/47e34c913994a5b3e88d8f30d5127b7b.png)
 
 ## Add Character
 

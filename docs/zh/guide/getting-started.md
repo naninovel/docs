@@ -156,8 +156,8 @@ Unity 对名为 `Resources` 的文件夹有特殊处理：其中的资源会被�
 Naninovel 脚本是扩展名为 `.nani` 的文本文件，用于控制场景中发生的事件。
 你可以使用任意文本编辑器（如 Microsoft Word、Google Docs 或 [VS Code](https://code.visualstudio.com)）打开和编辑它们。
 
-![?class=when-dark](https://i.gyazo.com/0051c3b96de4854d665e6bf9aba6bbd1.png)
-![?class=when-light](https://i.gyazo.com/4172fee457fb4c1f473ffeb0516b83ca.png)
+![?class=when-dark](https://i.gyazo.com/8ccfe73f2b0d39dfe8479a02a218a011.png)
+![?class=when-light](https://i.gyazo.com/110a7ca29df4d19f9a019732e1a68019.png)
 
 你也可以使用可视化脚本编辑器来编辑 Naninovel 脚本。选中刚创建的脚本资源后，可视化编辑器会在 Inspector 面板中自动打开。
 

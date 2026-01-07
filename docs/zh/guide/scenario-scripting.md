@@ -2,8 +2,8 @@
 
 Naninovel 脚本是扩展名为 `.nani` 的文本文件，用于控制场景中发生的事件。脚本资源可通过 `Create -> Naninovel -> Naninovel Script` 菜单创建。你可以使用内置的 [可视化编辑器](#可视化编辑器)，或使用任意外部文本编辑器（如 Microsoft Word、Google Docs 或 [VS Code](https://code.visualstudio.com)）打开并编辑它们。
 
-![?class=when-dark](https://i.gyazo.com/0051c3b96de4854d665e6bf9aba6bbd1.png)
-![?class=when-light](https://i.gyazo.com/4172fee457fb4c1f473ffeb0516b83ca.png)
+![?class=when-dark](https://i.gyazo.com/8ccfe73f2b0d39dfe8479a02a218a011.png)
+![?class=when-light](https://i.gyazo.com/110a7ca29df4d19f9a019732e1a68019.png)
 
 Naninovel 脚本中的每一行都代表一个语句，它可以是指令、普通文本、标签或注释。语句的类型由行首的字符标识决定：
 
