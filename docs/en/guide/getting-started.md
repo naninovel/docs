@@ -87,35 +87,45 @@ Final, while being the most tested and stable one, is also the most outdated and
 
 Stable stream is published on both GitHub and Unity's Asset Store (though not as often as on GitHub), while preview and final streams are only available on GitHub.
 
+### Install from Asset Store
+
+The simplest way to install Naninovel is through the "My Assets" tab of the Unity Package Manager (UPM). Open the Package Manager window, find Naninovel, and click Install.
+
+![?width=674](https://i.gyazo.com/3e056854efc95a4adfb485557497e134.png)
+
+Find more information on using the UPM in the [Unity documentation](https://docs.unity3d.com/Manual/upm-ui-import).
+
 ### Install from GitHub
 
-All the release streams are distributed via a UPM registry hosted on a private GitHub repository. To access the repository, [register your Naninovel license](https://naninovel.com/register) and follow the instructions on the dashboard.
+The most recent Naninovel releases across the preview and stable streams are distributed via the Naninovel GitHub repository. To access the repository, [register your Naninovel license](https://naninovel.com/register) and follow the instructions on the dashboard to assign your GitHub user.
 
-Once you have access to the repository, go to `Window -> Package Manager` in Unity editor and add `https://github.com/naninovel/upm.git#X.X` as a Git package, where `X.X` is the Naninovel release version you'd like to install, for example:
+Once you have access to the repository, add `https://github.com/naninovel/upm.git#X.X` as a Git package via Unity's Package Manager, where `X.X` is the release version you would like to install, for example:
 
 ```
 https://github.com/naninovel/upm.git#1.21
 ```
 
-You can find all the available releases and their versions on the [releases page](https://pre.naninovel.com/releases).
+You can find all the available releases and their Git URIs on the [releases page](https://pre.naninovel.com/releases).
 
 ![?width=300](https://i.gyazo.com/c7c453b8b34c94809303a9dc42e5330d.png)
+
+This installation method is especially convenient when you want to stay on the bleeding edge with the preview stream or get the patches on the stable stream as soon as they are pushed to the GitHub repository. Simply click "Update" in the Package Manager window to upgrade your installation to the latest commit.
+
+![?width=368](https://i.gyazo.com/c1b86f88105a76e33cba961a9b71c8fb.png)
 
 ::: tip
 If you encounter an error installing the package, make sure you are authenticated as the GitHub user assigned in the account dashboard. The simplest way to authenticate on Windows is by signing in with [GitHub Desktop](https://github.com/apps/desktop). On macOS and Linux, use [GCM](https://github.com/git-ecosystem/git-credential-manager/releases/latest) instead. Refer to the Unity guide for [more info](https://docs.unity3d.com/Manual/upm-config-https-git.html).
 :::
 
-### Install from Package
+### Install from Archive
 
-Alternatively, you can install Naninovel [from the Asset Store](https://docs.unity3d.com/Manual/upm-ui-import) or by downloading the package file from our [download archive](https://account.naninovel.com/download).
+Another way to install Naninovel is by downloading the package from our [download archive](https://account.naninovel.com/download). This method is useful when you need a specific final release that is no longer distributed on the Asset Store. The archive contains final releases of all legacy versions, starting from version 1.14 up to the current stable release.
 
-::: info NOTE
-Asset Store packages and the download archive are updated several months later than the UPM repository and don't include preview releases, so we recommend installing Naninovel directly from GitHub for the latest updates.
-:::
+Simply drop the downloaded `.unitypackage` file into the Unity Editor window and click "Import" to install the package. Find more info on installing local packages in the [Unity documentation](https://docs.unity3d.com/Manual/AssetPackagesImport.html).
 
 ## Core Concepts
 
-Before setting up and using Naninovel, let's skim through some of the core concepts.
+Before diving into Naninovel, let's take a quick look at some of its core concepts.
 
 An essential one, which you will constantly encounter throughout the rest of the guide, is the *actor*. An actor is an entity described by an identifier (ID), appearance, position in space (scene), and some other parameters.
 
