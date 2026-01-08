@@ -6,6 +6,12 @@ Naninovel is an extension for the [Unity game engine](https://unity.com), so it 
 
 If you do not plan to implement any custom gameplay outside Naninovel, you can ignore the scene-related information, as Naninovel will handle it automatically.
 
+## Video Guide
+
+If you prefer video guides, here is one covering this Getting Started guide for both the Visual Novel and Dialogue modes.
+
+![](https://www.youtube.com/watch?v=wFil5vje3NE)
+
 ## Create Unity Project
 
 When creating a project, we recommend selecting either the Universal 2D or Universal 3D templates, which are based on the **Universal Render Pipeline** (URP). The legacy built-in render pipeline (BiRP) will also work, but it is no longer actively maintained by Unity and is expected to be deprecated. The High Definition Render Pipeline (HDRP) is not recommended — it will generally work, but some rendering features may not be compatible out of the box.
@@ -167,6 +173,10 @@ The Unity editor will enter play mode and display the default title UI. At the s
 
 Feel free to explore the Story Editor and edit the scripts — changes are applied live. Read through the comments in the sample scripts for brief explanations of the nearby commands. Click "NEW GAME" on the title UI to proceed to the `Entry` script, which contains some additional examples.
 
+::: info NOTE
+The following sections, while essential, mostly apply when building visual novels. If you plan to use Naninovel as a drop-in dialogue or cutscene system, you can skip straight to the [Dialogue Mode](/guide/getting-started#dialogue-mode).
+:::
+
 ## Add Scenario Script
 
 Now that you are familiar with the general flow, let's dive into adding actual content to the game. The essential assets that drive the story in Naninovel are called *scenario scripts*.
@@ -221,50 +231,63 @@ The standard NaniScript commands and their usage examples are listed in the [API
 
 ## Add Character
 
-Characters in Naninovel can be based on regular and diced sprites, animated Live2D or Spine models and 3D meshes; you can add your own implementations as well. For the purpose of this tutorial, we’ll use a sprite implementation.
+Use the same menu you used to add the scenario script, but now select `Create -> Naninovel -> Actor Record -> Character`. This will create a *character record* asset, which contains the actor configuration for the new character. Let's give the record asset a name — `K`. Why just `K`? Because the identifier will be used throughout the scenario scripts, and you would not want to type the full name repeatedly. The actual display name that players will see can be set under `Display Name` in the record asset.
 
-Each character is represented by ID and a set of appearances. To add a character, use character manager GUI accessible via `Naninovel -> Resources -> Characters` menu, add a new character actor record specifying its ID, then double-click the record (or press button at the end of the record) and add all the appearance sprites to the `Resources` list. Just like with naninovel scripts, you can drag-drop multiple assets and folders to the list.
+![?width=574](https://i.gyazo.com/f9da79b98e2cd3acf9151945330f961e.png)
 
-![Add Character](https://i.gyazo.com/0c1e81ea1a20165c1bf88854df177b7f.png)
+Of course, you can use any identifier for characters; just make sure it does not contain whitespace or special characters. The display name, on the other hand, can contain whitespace and any special characters.
 
 ::: tip
-You'll find many options in our configuration menus. As with the other Unity menus, most of the controls have associated tooltips that explain what they do. To view a tooltip, hover over it with the mouse and wait a moment — the explanation will appear under the cursor.
+You'll find many options in our configuration menus. As with other Unity menus, most controls have associated tooltips that explain what they do. To view a tooltip, hover over it with the mouse and wait a moment — the explanation will appear under the cursor.
 :::
 
-Let’s assume the added character ID is "Kohaku". Edit naninovel script to show the added character:
+Now, let's select the implementation for our actor. Characters in Naninovel can be based on regular or diced sprites, animated Live2D or Spine models, 3D meshes, and many other types of assets; you can also add your own implementations. For the purpose of this tutorial, we'll use a sprite implementation, which is based on 2D texture assets (images).
+
+![?width=575](https://i.gyazo.com/8ffc45f0266741dcb31782c9f236985c.png)
+
+Finally, assign appearances by dropping the textures into the folder with our character, select them, click the Naninovel icon under the Inspector header, and select `Characters -> K`.
+
+![?width=623](https://i.gyazo.com/25cf89584f50f72b5e0f34d71742ed23.png)
+
+Alternatively, you can drag and drop the entire folder with the textures to the "Resources" list at the bottom of the character record — this will add them all in a batch.
+
+![](https://i.gyazo.com/79b5f485038cc78376810efdbac72fa8.mp4)
+
+Modify the scenario script to show the added character with the [@char] command:
 
 ```nani
-@char Kohaku
+@char K
 Hello World!
 ```
 
-Run the game and you’ll see one of the character appearance sprites at the center of the screen. When you don’t specify an appearance, either the one named equal to character's ID or "Default" will be chosen by default. To select a specific appearance, add its name after the character ID separated by a dot like this:
+You'll see the character at the center of the screen. When you don't specify an appearance, the one named "Default" is chosen automatically. To select a specific appearance, add its name after the character ID, separated by a dot, like this:
 
 ```nani
-@char Kohaku.Happy
+@char K.Happy
 Hello World!
 ```
 
-Given there is an appearance with the name "Happy" added for the character "Kohaku", the corresponding sprite will now be shown instead of the default one.
+Given that there is an appearance named "Happy" added for the character "K", the corresponding sprite will now be shown instead of the default one.
 
-You can now associate the printed text with the character by adding its ID followed by a colon before the text:
+You can now associate the displayed text with the character by adding its ID followed by a colon before the text:
 
 ```nani
-@char Kohaku.Happy
-Kohaku: Hello World!
+@char K.Happy
+K: Hello World!
 ```
 
-It's also possible to join character's appearance with the printed text to save some typing:
+![?width=588](https://i.gyazo.com/48ad8d4c512b67df02d7ace15d5eaca5.png)
+
+It's possible to combine a character's appearance with the displayed text to save some typing:
 
 ```nani
-Kohaku.Happy: Hello World!
+K.Happy: Hello World!
 ```
 
-To hide a character (or any other actor, like background, text printer, etc), use [@hide] command followed by actor ID:
+To hide a character, use the [@hide] command followed by the actor ID:
 
 ```nani
-Kohaku.Happy: Hello World!
-@hide Kohaku
+@hide K
 ```
 
 ## Add Background
@@ -323,12 +346,10 @@ On the contrary, sound effects won't loop by default. Assuming you've added an "
 Over the course of using Naninovel a number of assets (settings, resources, various caches, etc) will be automatically generated under `Assets/NaninovelData` folder. You're free to move or rename the folder, just make sure to not store it under a "Resources" folder, as it'll cause conflicts.
 :::
 
-## Video Guide
+## Dialogue Mode
 
-In case you prefer following video guides, here is one illustrating the above instructions.
+...
 
-![](https://www.youtube.com/watch?v=wFil5vje3NE)
-
-## Demo Project
+## Demo Samples
 
 In case your prefer to learn from a complete solution, check the [sample project](/guide/samples), which contains the complete sources of the demo showed on the website.
