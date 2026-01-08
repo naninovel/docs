@@ -249,10 +249,6 @@ Finally, assign appearances by dropping the textures into the folder with our ch
 
 ![?width=623](https://i.gyazo.com/25cf89584f50f72b5e0f34d71742ed23.png)
 
-Alternatively, you can drag and drop the entire folder with the textures to the "Resources" list at the bottom of the character record — this will add them all in a batch.
-
-![](https://i.gyazo.com/79b5f485038cc78376810efdbac72fa8.mp4)
-
 Modify the scenario script to show the added character with the [@char] command:
 
 ```nani
