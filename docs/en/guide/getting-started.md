@@ -231,11 +231,11 @@ The standard NaniScript commands and their usage examples are listed in the [API
 
 ## Add Character
 
-Use the same menu you used to add the scenario script, but now select `Create -> Naninovel -> Actor Record -> Character`. This will create a *character record* asset, which contains the actor configuration for the new character. Let's give the record asset a name — `K`. Why just `K`? Because the identifier will be used throughout the scenario scripts, and you would not want to type the full name repeatedly. The actual display name that players will see can be set under `Display Name` in the record asset.
+Use the same menu you used to add the scenario script, but now select `Create -> Naninovel -> Actor Record -> Character`. This will create a *character record* asset, which contains the actor configuration for the new character. Let's give the record asset a name — `K`. Why `K`? Because the identifier will be used throughout the scenario scripts, and you would not want to type the full name repeatedly. The actual name — "Kohaku" — can be set under `Display Name` in the record asset; this is the name that will be displayed to players in the game.
 
 ![?width=574](https://i.gyazo.com/f9da79b98e2cd3acf9151945330f961e.png)
 
-Of course, you can use any identifier for characters; just make sure it does not contain whitespace or special characters. The display name, on the other hand, can contain whitespace and any special characters.
+Of course, you can use any identifier and display name for your characters; just make sure the ID does not contain whitespace or special characters. The display name, on the other hand, can contain whitespace and any special characters.
 
 ::: tip
 You'll find many options in our configuration menus. As with other Unity menus, most controls have associated tooltips that explain what they do. To view a tooltip, hover over it with the mouse and wait a moment — the explanation will appear under the cursor.
