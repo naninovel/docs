@@ -14,6 +14,7 @@ Below is a list of games (in alphabetical order) known to use Naninovel. If you'
 |2ECONDS TO STΔRLIVHT|[SKY HOUR WORKS](https://www.patreon.com/teamskyhour)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/1329110"/>|
 |About an Elf|[Meringue Interactive](http://www.meringueinteractive.com)|<a class="made-with-store store-switch" title="Nintendo Switch" target="_blank" href="https://www.nintendo.com/games/detail/about-an-elf-switch"/>|
 |Across Kiloparsecs|[Dragon Dropper](https://dragondropper.com)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/2505080"/>|
+|Agebringer|[Space Base Games](https://x.com/agebringergame)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/4029510"/>|
 |Agent Voir|[witchstudios](https://witchstudios.itch.io)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://witchstudios.itch.io/agent-voir-unforgotten-love"/>|
 |Alexandria IV|[Time Galleon](https://www.timegalleon.com)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/1699900"/>|
 |An Ordeal of Frost -Ecpyrosis-|[realmsofophir](https://realmsofophir.itch.io)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://realmsofophir.itch.io/anordealoffrost"/>|
@@ -27,12 +28,14 @@ Below is a list of games (in alphabetical order) known to use Naninovel. If you'
 |Breeding Farm|[team_bieno](https://team-bieno.itch.io)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://team-bieno.itch.io/breeding-farm"/>|
 |Bride for the Princess|[Tuomo Laine](https://twitter.com/GamesTuomo)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/1144550"/>|
 |casting hearts|[npckc](https://twitter.com/npckc)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://npckc.itch.io/casting-hearts"/>|
+|Caustic Murmurs|[pachipoi]()|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/3979560"/>|
 |Choose Your Own Valentine!|[AlternativeWonders](https://alternativewonders.itch.io/)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://alternativewonders.itch.io/choose-your-own-valentine"/>|
 |CLOSETED|[Aichoo](https://paichoo.itch.io)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://paichoo.itch.io/closeted"/>|
 |Color of Love|[mirage1607](https://mirage1607.itch.io)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://mirage1607.itch.io/coloroflove"/>|
 |CORPSE FACTORY|[RIVER CROW STUDIO](https://www.rivercrow.studio)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/1414250"/><a class="made-with-store store-switch" title="Nintendo Switch" target="_blank" href="https://www.nintendo.com/store/products/corpse-factory-switch"/>|
 |Culloden|[Laura Laureus]()|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://lauralaureus.itch.io/culloden"/>|
 |Cut to the Core|[Plasma Press]()|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/1777000"/>|
+|Cyber Paranoia|[囚生症制作组](https://x.com/ParanoiaCy81004)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/3126170"/>|
 |Death Trick: Double Blind|[Misty Mountain Studio](https://dtdoubleblind.com)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/2254710"/>|
 |Demon Kiss|[Foleso](https://twitter.com/folesodev)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://foleso.itch.io/demonkiss"/>|
 |Destino Indomable|[Megalixir Games](https://x.com/megalixirgames)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/3221830"/>|
@@ -53,6 +56,7 @@ Below is a list of games (in alphabetical order) known to use Naninovel. If you'
 |Getting Canceled|[Lingonris]()|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/2582380"/>|
 |GraveKeeper Academy|[The Forgotten Workshop](https://twitter.com/firgofumbra)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://firgof.itch.io/gravekeeper-academy"/>|
 |Happiness Double Room|[Connection](https://twitter.com/Connection2022)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/1897120"/>|
+|Herbals Tycoon|[Orange Paper Studio]()|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/3014680"/>|
 |Hook, Line and Love|[Mythikiwi and Sparkywor](https://mythikiwi.carrd.co)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://mythikiwi.itch.io/hook-line-and-love"/>|
 |I Did Not Buy This Ticket|[Time Galleon](https://www.timegalleon.com)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/2158650"/>|
 |In Ashes|[Studio Ephua](https://ephua.uk)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/3434420"/>|
@@ -80,6 +84,7 @@ Below is a list of games (in alphabetical order) known to use Naninovel. If you'
 |Nameless - The Departed Cycle|[Fiendish Fiction](https://www.fiendishfiction.com)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://fiendishfiction.itch.io/nameless"/><a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/2142810"/>|
 |NecroNomNomNom: Eldritch Horror Dating|[Pixel After Pixel](http://www.pixelafterpixel.com)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/2057360"/>|
 |Neighbors|[Amateur Studio](https://twitter.com/neighborsvn)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/1857200"/>|
+|Neko Diary|[呐呐呐制作组](https://nanana.games)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/3865000"/>|
 |NIGHT/SHADE: You're The Drug|[Thrill Switch Games](https://thrillswitchgames.com)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://thrillswitch.itch.io/nightshade"/><a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/1474120"/>|
 |Nightbird Society|[Epizodic Entertainment](https://epizodic.com)|<a class="made-with-store store-google" title="Google Play" target="_blank" href="https://play.google.com/store/apps/details?id=com.Epizodic.NBS"/><a class="made-with-store store-apple" title="Apple Store" target="_blank" href="https://apps.apple.com/app/id1505280085"/>|
 |Ninja Specialist|[Killer Bees Games](http://www.killerbeesgames.com)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/1646440"/>|
@@ -87,7 +92,7 @@ Below is a list of games (in alphabetical order) known to use Naninovel. If you'
 |Not It|[Snowhaven Studios](https://snowhavenstudios.com)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://snowhavenstudios.itch.io/not-it"/><a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/1719770"/>|
 |Nowhere Manor|[Time Galleon](https://www.timegalleon.com)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/2017120"/>|
 |Oathbreaker: Season 2|[RinmaruGames](http://www.rinmarugames.com)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://rinmarugames.itch.io/oathbreaker-season-2"/>|
-|of the Devil|[ofthedevilgame](https://otdgame.carrd.co)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://ofthedevilgame.itch.io/of-the-devil"/>|
+|of the Devil|[ofthedevilgame](https://otdgame.carrd.co)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://ofthedevilgame.itch.io/of-the-devil"/><a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/2739630"/>|
 |Olympus Love|[Megalixir Games](http://megalixirgames.com)|<a class="made-with-store store-google" title="Google Play" target="_blank" href="https://play.google.com/store/apps/details?id=com.MegalixirGames.OlympusLove"/>|
 |Once Upon an Electric Dream|[Snowhaven Studios](https://snowhavenstudios.com)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://snowhavenstudios.itch.io/once-upon-an-electric-dream"/><a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/1264090"/>|
 |One Final Moment of Clarity|[Dandy Knight Games](https://dandyknightgames.com/)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://dandyknightgames.itch.io/moment-of-clarity"/>|
@@ -110,6 +115,7 @@ Below is a list of games (in alphabetical order) known to use Naninovel. If you'
 |StafferCase: a psychic mystery adventure|[Team Tetrapod](https://twitter.com/Team_Tetrapod)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/2128480"/>|
 |Stream or Die!|[Taming Dragons](https://www.tamingdragons.com)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/2530160"/>|
 |Teleny|[Selfmaiden]()|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://selfmaiden.itch.io/teleny"/>|
+|The Curse of Womanland|[FuliGames]()|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/3995110"/>|
 |The Days Without Gods|[季森造纸工坊]()|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/1983270"/>|
 |The Last Act|[Snowhaven Studios](https://snowhavenstudios.com)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/1412180"/>|
 |The Last Petal of Fall|[Riene](https://twitter.com/Raienelline)|<a class="made-with-store store-itch" title="itch.io" target="_blank" href="https://raienelline.itch.io/the-last-petal-of-fall"/>|
@@ -129,6 +135,7 @@ Below is a list of games (in alphabetical order) known to use Naninovel. If you'
 |Yukar From The Abyss|[LocaGames](https://www.loca.games)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/2070220"/>|
 |彗星战团 - 悲情城市|[星火工造]()|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/2804640"/>|
 |桃の華は鮮血に染まる|[株式会社ワンコネクト](https://one-c.info)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/2274610"/><a class="made-with-store store-switch" title="Nintendo Switch" target="_blank" href="https://store-jp.nintendo.com/list/software/70010000070481.html"/>|
+|白线|[PlanC](https://nanana.games/article/20251015-hakusen-making-story)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/3814510"/>|
 |铁道少女:梦想轨迹|[39Soft](https://weibo.com/moerail)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/1294060"/>|
 |魔法少女ノ魔女裁判|[Re,AER](https://manosaba.com)|<a class="made-with-store store-steam" title="Steam" target="_blank" href="https://store.steampowered.com/app/3101040"/>|
 
