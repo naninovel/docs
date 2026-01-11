@@ -42,9 +42,9 @@ The asset download verification is required when Naninovel is purchased via Unit
 When asset is purchased from an organization account, the organization owner have to download the asset to satisfy the check (assigned members won't count). This is an Asset Store limitation and we won't be able to provide any workarounds in such cases; please contact Unity support for more information and assistance.
 :::
 
-## How to customize the title (main) menu: add background, music, effects, change buttons, etc?
+## How to customize the title (main) menu?
 
-For the UI part (changing/adding buttons or panel layout and style) [modify the built-in Title UI prefab](/guide/gui#modifying-built-in-ui); for everything else set `Title Script` at the scripts configuration menu (`Naninovel -> Configuration -> Scripts`) and use script commands to set up the scene just like when writing a scenario. The title script will be automatically played when entering the title menu. An example of the entire customization process is shown in the following video tutorial: [youtu.be/hqhfhXzQkdk](https://youtu.be/hqhfhXzQkdk).
+For the UI part (changing/adding buttons or panel layout and style) [modify the built-in Title UI prefab](/guide/gui#modifying-built-in-ui); for everything else set `Title Script` at the scripts configuration menu (`Naninovel -> Configuration -> Scripts`) and use script commands to set up the scene just like when writing a scenario. The title script will be automatically played after the engine initialization and when using the [@title] command.
 
 ## Why a background is cropped?
 

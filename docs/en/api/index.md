@@ -1949,10 +1949,10 @@ Controls a [Timeline](https://docs.unity3d.com/Manual/com.unity.timeline.html) v
 
 ## title
 
-Resets engine state and shows `ITitleUI` UI (main menu).
+Resets the engine state and starts playing 'Title' script (if assigned in the scripts configuration).
 
 ```nani
-; Exit to title UI, no matter which script is playing.
+; Exit to title.
 @title
 ```
 
