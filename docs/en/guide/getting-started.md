@@ -372,9 +372,9 @@ Consider installing the Unity's [Addressables package](https://docs.unity3d.com/
 
 ## Dialogue Mode
 
-While Naninovel is primarily designed as a foundation for building visual novels, it can also be used as a drop-in dialogue or cutscene system for games of any genre.
+Even though Naninovel is primarily designed as a foundation for building visual novels, it can also be used as a drop-in dialogue or cutscene system for games of any genre.
 
-While it's possible to manually configure the engine for the "drop-in" use case, there is a dedicated "Minimal Mode" switch, which automatically modifies the configurations, removes most built-in UIs, and disables features to reduce the engine to its bare minimum.
+While it is possible to manually configure the engine for the "drop-in" use case, there is a dedicated "Minimal Mode" switch that automatically modifies the configuration, removes most built-in UI, and disables features to reduce the engine to its bare minimum.
 
 Enable Minimal Mode via the `Naninovel -> Set Up Minimal Mode` Unity Editor menu.
 
