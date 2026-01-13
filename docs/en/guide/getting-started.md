@@ -197,13 +197,11 @@ Scenario scripts are text documents with a `.nani` extension where you control w
 ![?class=when-dark](https://i.gyazo.com/8ccfe73f2b0d39dfe8479a02a218a011.png)
 ![?class=when-light](https://i.gyazo.com/110a7ca29df4d19f9a019732e1a68019.png)
 
-When you use the [Story Editor](/guide/editor), it outputs the same NaniScript to the scenario files, so you can use it interchangeably with text editors.
+When you use the [Story Editor](/guide/editor), it outputs the same NaniScript to the scenario files, so you can use it interchangeably with code editors. In the rest of this guide, we will show script snippets assuming you're using a code editor, but you can follow the same steps inside the Story Editor: start typing `@` in the line type dropdown list, and it will show the matching commands.
 
-![?width=403](https://i.gyazo.com/18f5cc0e910bf95e7d933b06b878b589.png)
+![?width=399](https://i.gyazo.com/0f5ee5d28de74570bdf25197e1f5444e.png)
 
-In the rest of this guide, we will show script snippets that you can copy and paste when using a text or code editor, but you can follow the same steps inside the Story Editor if you prefer.
-
-Open the created `Test.nani` script in a text editor and add the following line:
+Open the created `Test.nani` script and add the following line:
 
 ```nani
 Hello World!
@@ -219,7 +217,7 @@ Next, open the `Entry.nani` script and replace the last `@title` command with:
 
 — this command will navigate the playback to our new `Test.nani` script instead of exiting to the title menu.
 
-Enter Play Mode, start a new game, and play through until "Hello World!" is printed. Try editing the script while the game is playing — changes will be applied immediately, without re-entering Play Mode.
+Enter Play Mode, start a new game, and play through until "Hello World!" is printed. Try editing the script while the game is playing — changes will be applied immediately.
 
 ::: tip
 The standard NaniScript commands and their usage examples are listed in the [API reference](/api/). It is also possible to add custom commands; see [the guide](/guide/custom-commands) for more information.
