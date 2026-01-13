@@ -1,4 +1,7 @@
+// noinspection JSUnusedGlobalSymbols
+
 import DefaultTheme from "vitepress/theme-without-fonts";
+import * as prefetch from "./prefetch";
 import "./style.css";
 
 // Have to import client assets manually due to vitepress
@@ -8,5 +11,7 @@ import "imgit/styles/youtube";
 import "imgit/client";
 import "imgit/client/youtube";
 
-// https://vitepress.dev/guide/extending-default-theme
-export default { extends: { Layout: DefaultTheme.Layout } };
+export default {
+    extends: { Layout: DefaultTheme.Layout },
+    enhanceApp: () => prefetch.init()
+};
