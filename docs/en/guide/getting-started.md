@@ -43,9 +43,9 @@ Now, open and inspect the `manifest.json` file in the "Packages" folder located 
         "com.unity.modules.audio": "1.0.0",
         "com.unity.modules.video": "1.0.0",
         "com.unity.modules.imgui": "1.0.0",
-        "com.unity.modules.imageconversion": "1.0.0",
-        "com.unity.modules.uielements": "1.0.0",
+        "com.unity.modules.animation": "1.0.0",
         "com.unity.modules.particlesystem": "1.0.0",
+        "com.unity.modules.imageconversion": "1.0.0",
         "com.unity.render-pipelines.universal": "17.3.0",
         "com.unity.inputsystem": "1.17.0",
         "com.unity.ugui": "2.0.0"
@@ -138,12 +138,12 @@ An essential one, which you will constantly encounter throughout the rest of the
 An actor is an abstract entity and can't exist directly; instead, specialized versions with various additional parameters are used:
 
 
- Actor Type                           | Additional Parameters            | Description
---------------------------------------|----------------------------------|------------------------------------------------------------------------------
- [Character](/guide/characters)       | Look Direction                   | Represents a character on scene.
- [Background](/guide/backgrounds)     | None                             | Represents a background on scene; placed behind character actors by default.
- [Text Printer](/guide/text-printers) | Text, Author ID, Reveal Progress | Gradually reveals (prints) text messages over time.
- [Choice Handler](/guide/choices)     | Choices                          | Allows player to pick one of the available choices.
+| Actor Type                           | Additional Parameters            | Description                                                                  |
+|--------------------------------------|----------------------------------|------------------------------------------------------------------------------|
+| [Character](/guide/characters)       | Look Direction                   | Represents a character on scene.                                             |
+| [Background](/guide/backgrounds)     | None                             | Represents a background on scene; placed behind character actors by default. |
+| [Text Printer](/guide/text-printers) | Text, Author ID, Reveal Progress | Gradually reveals (prints) text messages over time.                          |
+| [Choice Handler](/guide/choices)     | Choices                          | Allows player to pick one of the available choices.                          |
 
 Consider a typical visual novel setup, with a character portrayed on top of a background. In Naninovel terms, it is represented as follows:
 
@@ -172,10 +172,6 @@ The Unity editor will enter play mode and display the default title UI. At the s
 ![](https://i.gyazo.com/84c64bf7fb4217dd149260fd0008b7f4.png)
 
 Feel free to explore the Story Editor and edit the scripts — changes are applied live. Read through the comments in the sample scripts for brief explanations of the nearby commands. Click "NEW GAME" on the title UI to proceed to the `Entry` script, which contains some additional examples.
-
-::: info NOTE
-The following sections, while essential, mostly apply when building visual novels. If you plan to use Naninovel as a drop-in dialogue or cutscene system, you can skip straight to the [Dialogue Mode](/guide/getting-started#dialogue-mode).
-:::
 
 ## Add Scenario Script
 
@@ -288,64 +284,141 @@ To hide a character, use the [@hide] command followed by the actor ID:
 
 ## Add Background
 
-Similar to characters, a background can be represented in multiple ways in Naninovel: sprite, generic object, video and scene; custom user implementations are also possible.
+Similar to characters, a background can be represented in multiple ways in Naninovel: sprite, video, scene, and others; custom implementations are also possible.
 
-While you can create multiple independent background actors, in a typical VN game you'll usually use just one and transition it to different appearances. To simplify the routine, a `MainBackground` actor is added to the background actors list by default and you don't have to specify the ID every time to change its appearance in naninovel scripts.
-
-Add background sprites via `Naninovel -> Resources -> Backgrounds` menu. `MainBackground` record will open automatically, but you can still return to the actors list and create others, if you wish.
-
-![Add Background](https://i.gyazo.com/98e88780625c7f2e1ef88db7ef10d1f4.png)
-
-Let’s assume the added background appearance sprite is named "City". To show a background, use a [@back] command followed by the background appearance name:
+While you can create multiple independent background actors, in a typical visual novel you'll usually use just one and transition it between different appearances. To simplify the routine, a background actor with the `MainBackground` ID is assumed by default when you use the [@back] command to control background actors:
 
 ```nani
-@back City
+@back Road
 ```
 
-When switching between backgrounds a cross-fade [transition effect](/guide/transition-effects) will be used by default. To change the effect, specify transition type after the appearance name:
+— the command will transition the `MainBackground` actor to the `Road` appearance.
+
+You create the background actor record and assign the appearance sprites similarly to characters:
+
+- Create a folder to store the backgrounds, for example `Assets/Backgrounds`
+- Right-click the folder and select `Create -> Naninovel -> Actor Record -> Background` to create the `MainBackground` record
+- Inspect the record and select the implementation, for example `SpriteBackground`
+- Assign the appearance resources
+
+![](https://i.gyazo.com/1017667cd15b374839127fa5e1e5c2e5.png)
+
+When switching between background appearances, a cross-fade [transition effect](/guide/transition-effects) is used by default. To change the effect, specify the transition type after the appearance name:
 
 ```nani
-@back City
-@back School.RadialBlur
+@back Road
+@back Ruins.RadialBlur
 ```
 
-This will transition "City" to "School" using "RadialBlur" transition effect.
+This will transition "Road" to "Ruins" using the "RadialBlur" transition effect.
 
-To reference a background other than the main one (eg, in case you wish to compose multiple backgrounds on top of each other), specify ID of the actor. For example, given a background actor with ID `Flower` exists beside the main one, following commands will change its appearance to "Bloomed" and then to "Withered":
+To reference a background other than the main one (e.g., if you wish to compose multiple backgrounds on top of each other), specify the ID of the actor. For example, given that a background actor with the ID `Flower` exists alongside the main one, the following commands will change its appearance to "Bloomed" and then to "Withered":
 
 ```nani
 @back Bloomed id:Flower
 @back Withered id:Flower
 ```
 
-## Add Music and Sound Effects
-
-To add a BGM (background music) or SFX (sound effect) asset, use `Naninovel -> Resources -> Audio` editor menu. You can use any audio formats [supported by Unity](https://docs.unity3d.com/Manual/AudioFiles.html).
-
-![Managing Audio](https://i.gyazo.com/cacdec36623dbbfcf9f49c594de53c0f.png)
-
-Let’s assume the added BGM file name is "ThePromenade". To play this track as a background music use [@bgm] command followed by the name of the track:
+Hide backgrounds with the same [@hide] command:
 
 ```nani
-@bgm ThePromenade
+@hide Flower
 ```
 
-A cross-fade effect will be automatically applied when switching the music tracks. The music will loop by default, though you can change this, as well as volume and fade duration using command parameters.
+## Add Audio
 
-On the contrary, sound effects won't loop by default. Assuming you've added an "Explosion" SFX, use an [@sfx] command to play it back:
+To register a BGM (background music) or SFX (sound effect) audio resource with Naninovel, select the audio clip asset and use the same inspector menu you've used to register the character and background resources, but select "Audio" instead.
+
+![?width=655](https://i.gyazo.com/b49d3a7f865c8dde7322ef497ee9bcf6.png)
+
+To play a registered audio resource as background music, use the [@bgm] command:
+
+```nani
+@bgm CloudNine
+```
+
+A cross-fade effect is automatically applied when switching music tracks. The music will loop by default, though you can change this, as well as the volume and fade duration, using the command parameters.
+
+In contrast, sound effects won't loop by default. Play them with the [@sfx] command:
 
 ```nani
 @sfx Explosion
 ```
 
+To stop a playing BGM or SFX, use the [@stopBgm] and [@stopSfx] commands respectively:
+
+```nani
+@stopBgm CloudNine
+@stopSfx Explosion
+```
+
+## Manage Resources
+
+You can review all the registered resources, as well as actors and other engine options, in the Project Settings window under the Naninovel tab; use the `Naninovel -> Configuration` editor menu to quickly access the configuration.
+
+![?width=641](https://i.gyazo.com/0716a001d7bc1695ae0cac655b55f017.png)
+
+You're free to change the resource paths (they equal the asset names by default), which may be useful for organisational purposes. The registered paths are what are actually used when you reference resources in the scenario scripts. For example, in the screenshot above we changed `Explosion` to `SFX/Explosion`. We can now use the new path to play the sound effect:
+
+```nani
+@sfx SFX/Explosion
+```
+
+When you add or modify resources, both the Story Editor and the VS Code extension are automatically synchronised with the changes and update the associated lists.
+
+![](https://i.gyazo.com/c353c7cfa398315d926f365634786467.png)
+
 ::: tip
-Over the course of using Naninovel a number of assets (settings, resources, various caches, etc) will be automatically generated under `Assets/NaninovelData` folder. You're free to move or rename the folder, just make sure to not store it under a "Resources" folder, as it'll cause conflicts.
+Consider installing the Unity's [Addressables package](https://docs.unity3d.com/Packages/com.unity.addressables@latest) for ultimate control over how assets are organised and bundled in the final build — Naninovel will automatically integrate with the package.
 :::
 
 ## Dialogue Mode
 
-...
+While Naninovel is primarily designed as a foundation for building visual novels, it can also be used as a drop-in dialogue or cutscene system for games of any genre.
+
+While it's possible to manually configure the engine for the "drop-in" use case, there is a dedicated "Minimal Mode" switch, which automatically modifies the configurations, removes most built-in UIs, and disables features to reduce the engine to its bare minimum.
+
+Enable Minimal Mode via the `Naninovel -> Set Up Minimal Mode` Unity Editor menu.
+
+![?width=234](https://i.gyazo.com/6d92cd0d7e0c63c1010123a0f61e78e0.png)
+
+::: warning
+The Minimal Mode setup procedure will modify the engine's default configuration and resources, and the **changes cannot be automatically undone**. Only enable the mode when starting a new project where Naninovel is going to be used as a drop-in dialogue system, not as a visual novel engine.
+:::
+
+Wait until the setup is complete and scripts are recompiled. Notice that the "Naninovel" editor menu is now under "Tools" — indicating that it has demoted itself to a tool status, rather than a foundational part of the project.
+
+You can read more about the C# part of the engine integration into existing codebases under the "Advanced" section of the guide. Here, we'll show a simple no-code dialogue interaction scenario: the player hovers over an interactable object and clicks it to start the dialogue. On an empty scene, add:
+
+- An object with an `UI / Event System` component
+    - Assign `Naninovel/Resources/Input/DefaultControls` as the `Actions Asset`
+- A camera object with an `Event / Physics Raycaster` component
+- A cube that will serve as our dialogue trigger
+    - Remove the default collider component attached to the cube
+
+Now, right-click the cube and select `Naninovel -> Dialogue` — this automatically sets up the dialogue trigger on the selected object. Inspect the created `Dialogue` object under the cube and assign a scenario script asset to play.
+
+Next, set up the trigger conditions on the `Dialogue/Trigger` object:
+
+- Set `Collide With` and `Raycast From` to "None"
+- Set `Perform Input` to the `UI/Click` action from the Naninovel input actions asset
+- Enable `Hover With Pointer`
+
+![?width=689](https://i.gyazo.com/97b63b1cb1692966fef8dc0b98b0fced.png)
+
+Enter Play mode and hover over the cube — the prompt will react when the mouse cursor is over it. Left-click to start the dialogue. To exit the dialogue, use the [@exitDialogue] command.
+
+Note the many options on the `Trigger Events` component — you can set up most common interaction scenarios by simply tweaking them, such as first-person look at a certain distance, side-scroller view collision, third-person pointer hover followed by a key press, and more. Read the tooltips on each option to understand how they work.
 
 ## Demo Samples
 
-In case your prefer to learn from a complete solution, check the [sample project](/guide/samples), which contains the complete sources of the demo showed on the website.
+The Naninovel package contains two basic samples:
+
+- **Visual Novel** — a basic visual novel template with multiple routes, demonstrating the use of placeholder actors, various commands, local and global variables, customizable character names, and other traditional VN mechanics.
+- **Dialogue System** — a 3D side-scroller scene where Naninovel is used as a drop-in dialogue system, showing the use of transient printers, bubble choice handlers, integration with Cinemachine, and other common usage scenarios.
+
+You can import both samples via the Unity Package Manager by selecting the Naninovel package, navigating to the "Samples" tab, and clicking the "Import" button for a sample.
+
+![?width=711](https://i.gyazo.com/a33a679037089bab1bce41684818b158.png)
+
+For a collection of more advanced examples, check the [samples project](/guide/samples) — it contains many specialized samples, such as Live2D and Spine characters, custom actor shaders, an interactive map, video actors, calendar and inventory custom UIs, and more.
