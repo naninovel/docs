@@ -114,7 +114,7 @@
                 {
                     "comment": "Expression context of well-known params - if/set:",
                     "name": "naniscript.command.parameter.id",
-                    "match": "\\s(?:if|set):([^\\s].*?)(?=\\s+\\w+:|\\s*$)",
+                    "match": "\\s(?:if|unless|set):([^\\s].*?)(?=\\s+\\w+:|\\s*$)",
                     "captures": { "1": { "name": "naniscript.expression" } }
                 },
                 {
