@@ -19,17 +19,17 @@ Following commands are currently available:
 
 Command | Description
 --- | ---
-nav | Toggles naninovel script navigator UI.
+nav | Toggles scenario script navigator UI.
 debug | Toggles script debug window.
 var | Toggles [custom variable editor](/guide/custom-variables#variables-debug) window.
-play | Starts executing currently loaded naninovel script.
-stop | Halts execution of the currently loaded naninovel script.
-rewind (int) | Rewinds currently loaded naninovel script to the provided line index. The line should be either a command or a generic text. When rewinding back, the line should exist in the rollback stack.
+play | Starts executing currently loaded scenario script.
+stop | Halts execution of the currently loaded scenario script.
+rewind (int) | Rewinds currently loaded scenario script to the provided line index. The line should be either a command or a generic text. When rewinding back, the line should exist in the rollback stack.
 reload | Performs hot reload of the currently played scenario script.
 
 ## Executing Commands
 
-You can invoke the script commands via development console. Input the command string just like you do in naninovel scripts and it will be immediately executed. Among other cases, this could be useful to debug custom state variables. Eg, you can print the current value of any custom variable with:
+You can invoke the script commands via development console. Input the command string just like you do in scenario scripts and it will be immediately executed. Among other cases, this could be useful to debug custom state variables. Eg, you can print the current value of any custom variable with:
 
 ```nani
 @print {VariableName}

@@ -1,12 +1,12 @@
 # Custom Variables
 
-Custom variables feature allows creating user-specified variables, modify and use them to drive conditional execution of naninovel scripts or other systems. For example, custom variables can be used to select one of the multiple naninovel scripts to play (scenario routes), based on the decisions player has made in the past. Another frequently used scenario is player stats screen (eg, scores, money, resources etc), based on the choices the player makes throughout the game.
+Custom variables feature allows creating user-specified variables, modify and use them to drive conditional execution of scenario scripts or other systems. For example, custom variables can be used to select one of the multiple scenario scripts to play (scenario routes), based on the decisions player has made in the past. Another frequently used scenario is player stats screen (eg, scores, money, resources etc), based on the choices the player makes throughout the game.
 
 ::: info NOTE
 Variable name should start with a letter and can contain only latin characters, numbers and underscores, eg: `name`, `Char1Score`, `my_score`; the names are case-insensitive, eg: `myscore` is equal to `MyScore`.
 :::
 
-Custom variables can be created, modified and used both in naninovel scripts via [@set] and [@if] commands and in the C# scripts using `ICustomVariableManager` [engine service](/guide/engine-services).
+Custom variables can be created, modified and used both in scenario scripts via [@set] and [@if] commands and in the C# scripts using `ICustomVariableManager` [engine service](/guide/engine-services).
 
 For example, the following script command will assign a different value to `score` custom variable, based on the choice:
 
@@ -42,7 +42,7 @@ In case you want to make a kind of global counter, that will only increment once
 
 ## Injecting Variables
 
-It's possible to inject (inline) custom variable to naninovel script parameter values using the curly braces.
+It's possible to inject (inline) custom variable to scenario script parameter values using the curly braces.
 
 The following script will show an input field UI where user can enter an arbitrary text. Upon submit the entered text will be assigned to the specified custom variable.
 
@@ -50,7 +50,7 @@ The following script will show an input field UI where user can enter an arbitra
 ; Allow user to enter an arbitrary text and assign it to `name` variable.
 @input name summary:"Choose your name."
 
-; You can then inject the assigned `name` variable in naninovel scripts.
+; You can then inject the assigned `name` variable in scenario scripts.
 Archibald: Greetings, {name}!
 
 ; ...or use it inside set and conditional expressions.

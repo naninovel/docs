@@ -67,7 +67,7 @@ public class CustomLabel : Text
 
 ## Script Text
 
-It's possible to get managed text values directly from naninovel scripts. This could be handy, when it's required to use some text in the script expressions and the text should be localizable.
+It's possible to get managed text values directly from scenario scripts. This could be handy, when it's required to use some text in the script expressions and the text should be localizable.
 
 Create a managed text document named "Script" and add records using keys with `T_` or `t_` prefix. It's now possible to reference the values in script expressions; eg given the following records in the "Script" managed text document:
 
@@ -87,7 +87,7 @@ T_Greeting3: Hi!
 
 ## Localization
 
-Managed text localization process resemble the one for naninovel scripts:
+Managed text localization process resemble the one for scenario scripts:
 
 1. Generate (create, edit) the required managed text documents in a `Resources/Naninovel/Text` folder.
 2. Run the localization utility in a locale folder (`Resources/Naninovel/Localization/{Locale}`, where `{Locale}` is the tag of the target locale).

@@ -16,7 +16,7 @@ Serialization handlers, path to the save folder, maximum allowed amount of the s
 
 ## Game State
 
-Game state is the data that varies per game save slot, describing state of the engine services and other objects in relation to the player progress with the game. The examples of the game state data are: currently played naninovel script and index of the played script command within the script, currently visible characters and their positions on scene, currently played background music track name and its volume and so on.
+Game state is the data that varies per game save slot, describing state of the engine services and other objects in relation to the player progress with the game. The examples of the game state data are: currently played scenario script and index of the played script command within the script, currently visible characters and their positions on scene, currently played background music track name and its volume and so on.
 
 To save or load current game state to specific save slot, use `IStateManager` engine service as follows:
 
@@ -37,7 +37,7 @@ Notice, that the save-load API is [asynchronous](https://docs.microsoft.com/en-u
 
 ## Global State
 
-Some data, however, should be persistent across the game sessions. For example, "Skip Read Text" feature requires the engine to store data describing which naninovel script commands were executed at least once (meaning the player has already "seen" them). The data like this is stored in a single "global" save slot and doesn't depend on the game save-load operations.
+Some data, however, should be persistent across the game sessions. For example, "Skip Read Text" feature requires the engine to store data describing which scenario script commands were executed at least once (meaning the player has already "seen" them). The data like this is stored in a single "global" save slot and doesn't depend on the game save-load operations.
 
 The global state is loaded automatically on engine initialization. You can save the global state at any time using `IStateManager` as follows:
 

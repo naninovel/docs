@@ -22,7 +22,7 @@ Notice that while most of the resources in the sample project are not assigned i
 
 ![](https://i.gyazo.com/8c1b37362bf58d26f18e4e61ffe2957c.png)
 
-— they are still accessible in Naninovel scripts in the same way:
+— they are still accessible in scenario scripts in the same way:
 
 ```nani
 @back Snow
@@ -78,7 +78,7 @@ Naninovel is initialized manually (auto initialization is disabled in the engine
 
 `DialogueTrigger.cs` script used as a component on triggers perform switch to dialogue mode when player is hitting the trigger colliders.
 
-`SwitchToNovelMode.cs` custom command is used to switch to novel mode from both C# and naninovel scripts.
+`SwitchToNovelMode.cs` custom command is used to switch to novel mode from both C# and scenario scripts.
 
 `SwitchToAdventureMode.cs` custom command is used to switch to adventure from novel mode.
 
@@ -102,7 +102,7 @@ Inventory item prefabs can be created with `Create -> Naninovel -> Inventory -> 
 
 ![](https://i.gyazo.com/6062f8a433a47306f582a849c7bbf57e.png)
 
-In case you have a lot of items and it's inconvenient to assign them via editor menu, it's possible to just drop them at `Resources/Naninovel/Inventory` folder and they'll automatically be exposed to the engine. You can additionally organize them with subfolders, if you wish; in this case use forward slashes (`/`) when referencing them in naninovel scripts. Eg, item stored as `Resources/Naninovel/Inventory/Armor/FullPlate.prefab` can be referenced in scripts as `Armor/FullPlate`.
+In case you have a lot of items and it's inconvenient to assign them via editor menu, it's possible to just drop them at `Resources/Naninovel/Inventory` folder and they'll automatically be exposed to the engine. You can additionally organize them with subfolders, if you wish; in this case use forward slashes (`/`) when referencing them in scenario scripts. Eg, item stored as `Resources/Naninovel/Inventory/Armor/FullPlate.prefab` can be referenced in scripts as `Armor/FullPlate`.
 
 It's also possible to use [addressable asset system](/guide/resource-providers#addressable) to manually expose the resources. To expose an asset, assign an address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "FullPlate.prefab" item, assign the prefab asset following address: `Naninovel/Inventory/FullPlate`. Be aware that addressable provider is not used in editor by default; you can allow it by enabling `Enable Addressable In Editor` property in resource provider configuration menu.
 
@@ -206,7 +206,7 @@ Time of day is controlled with `Scripts/Runtime/Shader/TimeOfDay.cs`, which allo
 
 ![](https://i.gyazo.com/b58cb70a522b9085cedb796249557df5.png)
 
-The component API is exposed to naninovel scripts via a `Scripts/Runtime/Shader/SetHour.cs` custom command, which allows setting the hour with `@hour` command, eg:
+The component API is exposed to scenario scripts via a `Scripts/Runtime/Shader/SetHour.cs` custom command, which allows setting the hour with `@hour` command, eg:
 
 ```nani
 ; Set current hour to 18:00 (6:00 PM) over 3 seconds.

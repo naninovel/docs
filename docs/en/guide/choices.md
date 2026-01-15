@@ -4,7 +4,7 @@ The feature allows to present a number of choices to the user and re-route scrip
 
 ![Choices](https://i.gyazo.com/023502e43b35caa706c88fd9ab32003d.png)
 
-Use [@choice] commands followed by the choice summary and (optional) `goto` path to add choices from the naninovel scripts:
+Use [@choice] commands followed by the choice summary and (optional) `goto` path to add choices from the scenario scripts:
 
 ```nani
 ; Print the text, then immediately show choices.

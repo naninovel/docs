@@ -10,7 +10,7 @@ To add, edit or remove BGM and SFX resources use audio resources manager accessi
 Choose file formats that are most comfortable for your development workflow. When building the project, Unity will automatically convert all the source resources (textures, audio, video, etc) to the formats most suitable for the target platform, so it won't make difference in which format you originally store the resources in the project. Find more information on how Unity manage project assets in the [official documentation](https://docs.unity3d.com/Manual/AssetWorkflow).
 :::
 
-In case you have a lot of audio files and it's inconvenient to assign them via editor menu, it's possible to just drop them at `Resources/Naninovel/Audio` folder, and they'll automatically be available in the scripts. You can additionally organize them with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in naninovel scripts. Eg, audio clip stored as `Resources/Naninovel/Audio/Music/Ambient/Noise002.wav` can be referenced in scripts as `Music/Ambient/Noise002`.
+In case you have a lot of audio files and it's inconvenient to assign them via editor menu, it's possible to just drop them at `Resources/Naninovel/Audio` folder, and they'll automatically be available in the scripts. You can additionally organize them with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in scenario scripts. Eg, audio clip stored as `Resources/Naninovel/Audio/Music/Ambient/Noise002.wav` can be referenced in scripts as `Music/Ambient/Noise002`.
 
 It's also possible to use [addressable asset system](/guide/resource-providers#addressable) to manually expose the resources. To expose an asset, assign address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "MainTheme.wav" BGM, assign the clip asset following address: `Naninovel/Audio/MainTheme`. Be aware, that addressable provider is not used in editor by default; you can allow it by enabling `Enable Addressable In Editor` property in resource provider configuration menu.
 
@@ -22,7 +22,7 @@ Audio playback behavior can be configured using `Naninovel -> Configuration -> A
 
 ## Background Music
 
-Use [@bgm] command followed by the clip name to control the music playback in naninovel scripts:
+Use [@bgm] command followed by the clip name to control the music playback in scenario scripts:
 
 ```nani
 ; Starts playing a music track with the name `Sanctuary` in a loop.
@@ -57,7 +57,7 @@ To stop a playing music track, use [@stopBgm] command followed by clip name. Whe
 
 ## Sound Effects
 
-Use [@sfx] and [@stopSfx] commands followed by the clip name to control playback of the sound effects in naninovel scripts:
+Use [@sfx] and [@stopSfx] commands followed by the clip name to control playback of the sound effects in scenario scripts:
 
 ```nani
 ; Plays an SFX with the name `Explosion` once.

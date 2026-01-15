@@ -50,7 +50,7 @@ To show or hide any of the UIs listed in the resources manager use [@showUI] and
 
 To add a new custom UI, create a prefab via `Create -> Naninovel -> Custom UI` asset context menu and add it to the UI resources list. It'll then be instantiated along with the other UI prefabs on the engine initialization.
 
-Following video tutorial shows how to add a custom calendar UI with special reveal and hide animations. The calendar will display a date based on a [custom variable](/guide/custom-variables), which can be changed via naninovel scripts and is saved with the game. The calendar will automatically update when the variable is changed. All this is achieved without any C# scripting.
+Following video tutorial shows how to add a custom calendar UI with special reveal and hide animations. The calendar will display a date based on a [custom variable](/guide/custom-variables), which can be changed via scenario scripts and is saved with the game. The calendar will automatically update when the variable is changed. All this is achieved without any C# scripting.
 
 ![](https://www.youtube.com/watch?v=wrAm-cwPXy4)
 
@@ -78,7 +78,7 @@ When `Focus Object` is assigned, `Focus Mode` property allows choosing when to f
 
 `On Show` and `On Hide` Unity events allow hooking custom handlers to react to the UI visibility changes. For example, you can hook an `Animator` triggers to fire some custom animations when the UI becomes visible and vice-versa.
 
-When `Hide On Load` is enabled, the UI will automatically be hidden when the engine is starting a load operation. This usually happens when loading another naninovel script or exiting to the title menu.
+When `Hide On Load` is enabled, the UI will automatically be hidden when the engine is starting a load operation. This usually happens when loading another scenario script or exiting to the title menu.
 
 Enabling `Save Visibility State` will make the visibility state of the UI persistent, so that when player loads a saved game, the UI will be in the same state (visible or hidden) as it was when the game was saved.
 
@@ -157,7 +157,7 @@ ICGGalleryUI | Unlockable [CG gallery](/guide/unlockable-items#cg-gallery) items
 ITipsUI | Unlockable [tips](/guide/unlockable-items#tips) browser.
 IRollbackUI | Indicator for state rollback feature.
 IContinueInputUI | A fullscreen invisible UI layer positioned at the bottom of the UI stack and used to activate a `continue input` trigger when clicked or touched.
-IToastUI | A general-purpose UI for self-hiding popup notifications aka "toasts"; can be used from naninovel scripts with [@toast] command.
+IToastUI | A general-purpose UI for self-hiding popup notifications aka "toasts"; can be used from scenario scripts with [@toast] command.
 
 In order for the UI to support visibility (visible on awake, fade time) and interaction options (disable interaction), also attach a `Canvas Group` component to the same object.
 
@@ -174,9 +174,9 @@ public class MyCustomUI : CustomUI
 
 ## Play Script on Unity Event
 
-When creating custom UIs, you may want to execute commands or start playing a specific Naninovel script in response to certain events (eg, a [button click](https://docs.unity3d.com/Manual/script-Button.html)).
+When creating custom UIs, you may want to execute commands or start playing a specific scenario script in response to certain events (eg, a [button click](https://docs.unity3d.com/Manual/script-Button.html)).
 
-Add the `Play Script` component to a game object and either select an existing Naninovel script or write commands directly in the text area field. Then, route a [Unity event](https://docs.unity3d.com/Manual/UnityEvents.html) from another component to invoke the `Play()` method on the `Play Script` component. The script will be executed when the event is triggered in play mode. The example below hides a custom UI when the button is clicked.
+Add the `Play Script` component to a game object and either select an existing scenario script or write commands directly in the text area field. Then, route a [Unity event](https://docs.unity3d.com/Manual/UnityEvents.html) from another component to invoke the `Play()` method on the `Play Script` component. The script will be executed when the event is triggered in play mode. The example below hides a custom UI when the button is clicked.
 
 ![](https://i.gyazo.com/5f56fbddc090919cc71f68e82bb1713f.png)
 
