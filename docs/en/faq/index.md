@@ -6,9 +6,7 @@ Naninovel is designed to be friendly for non-programmers and doesn't require pro
 
 ## Can I use Naninovel as a drop-in dialogue system for an existing game?
 
-While Naninovel is focused on traditional visual novel games and works best as a template for one, it's possible to integrate the engine into existing projects. If you're making a 3D adventure game, an RPG, or a game of any other genre, you can still use Naninovel as a drop-in dialogue system.
-
-Be aware that, in most cases, such integration will require C# (or [visual](/guide/samples#visual-scripting)) scripting to varying extents. See the [engine architecture overview](/guide/engine-architecture) to get a grasp of how Naninovel works, and the [integration guide](/guide/integration-options) for more information on the available integration options.
+While Naninovel is primarily designed as a foundation for building visual novels, it can also be used as a drop-in dialogue or cutscene system for games of any genre. It even includes a [dedicated mode](/guide/getting-started#dialogue-mode) specifically for that use case.
 
 ## Why not use node graphs for scenario authoring?
 
