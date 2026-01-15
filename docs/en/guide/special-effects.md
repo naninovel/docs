@@ -187,7 +187,7 @@ Fade-out time | Decimal | 3 | The particle system will gradually lower the opaci
 Simulates depth of field (aka DOF, bokeh) effect, where only the object in focus stays sharp while the rest of the image is blurred. Dedicated command: [@bokeh]
 
 ::: tip
-In case you want to blur just one object (actor), consider using [Blur effect](/guide/special-effects#blur) instead.
+In case you want to blur just one object (actor), consider using [Blur effect](/guide/special-effects#✨-blur) instead.
 :::
 
 ![](https://i.gyazo.com/610d2cafe5fbe42aba7adb9ac71720d1.mp4)
