@@ -2,7 +2,7 @@
 
 The unlockables feature allows managing items, which have a persistent state of being either locked or unlocked. You can use it in a variety of ways, for example to represent slots in a CG or movie gallery, achievements, tips and other systems where some entity should be able to become unlocked or activated when player satisfies a condition.
 
-Each unlockable item is represented by a string identifier and boolean value, indicating whether the item is unlocked. In naninovel scripts, use [@unlock] and [@lock] commands to respectively unlock and lock an item with a specific ID, eg:
+Each unlockable item is represented by a string identifier and boolean value, indicating whether the item is unlocked. In scenario scripts, use [@unlock] and [@lock] commands to respectively unlock and lock an item with a specific ID, eg:
 
 ```nani
 @unlock SecretAchievement
@@ -134,7 +134,7 @@ Apart from `<br>` tag, you can use other rich text tags supported by the text re
 
 When there is at least one tip record in the `Tips.txt` managed text document, "TIPS" button will appear in the main menu and control panels, leading to the tips browser.
 
-To unlock a tip record, use [@unlock] and [@lock] to lock the record back followed by the tip ID (should always be preceded by `Tips/` prefix) in the naninovel scripts. Eg, to unlock a `Tip1ID` tip record use:
+To unlock a tip record, use [@unlock] and [@lock] to lock the record back followed by the tip ID (should always be preceded by `Tips/` prefix) in the scenario scripts. Eg, to unlock a `Tip1ID` tip record use:
 ```nani
 @unlock Tips/Tip1ID
 ```

@@ -1,12 +1,12 @@
 # Custom Commands
 
-Command represents a single operation, that controls what happens on the scene; e.g., it can be used to change a background, move a character or load another naninovel script. Parametrized command sequences defined in [naninovel scripts](/guide/scenario-scripting) effectively controls the game flow. You can find available built-in commands in the [API reference](/api/). In code, all the built-in script command implementations are defined under `Naninovel.Commands` namespace.
+Command represents a single operation, that controls what happens on the scene; e.g., it can be used to change a background, move a character or load another scenario script. Parametrized command sequences defined in [scenario scripts](/guide/scenario-scripting) effectively controls the game flow. You can find available built-in commands in the [API reference](/api/). In code, all the built-in script command implementations are defined under `Naninovel.Commands` namespace.
 
 ## Adding Custom Command
 
-To add your own custom script command, create a new C# class derived from `Command` and implement `Execute` abstract method. The created class will automatically be picked up by the engine and you'll be able to invoke the command from the naninovel scripts by either the class name or an alias (if assigned). To assign an alias to the naninovel command, apply `Alias` attribute to the class.
+To add your own custom script command, create a new C# class derived from `Command` and implement `Execute` abstract method. The created class will automatically be picked up by the engine and you'll be able to invoke the command from the scenario scripts by either the class name or an alias (if assigned). To assign an alias to the naninovel command, apply `Alias` attribute to the class.
 
-Below is an example of a custom command, that can be invoked from naninovel scripts as `@HelloWorld` or `@hello` to print "Hello World!" to the console and can also take an optional `name` parameter (eg, `@hello name:Felix`) to greet the provided name instead of the world.
+Below is an example of a custom command, that can be invoked from scenario scripts as `@HelloWorld` or `@hello` to print "Hello World!" to the console and can also take an optional `name` parameter (eg, `@hello name:Felix`) to greet the provided name instead of the world.
 
 ```csharp
 using System;
@@ -34,7 +34,7 @@ Whenever you change C# command implementations—such as renaming the class, add
 
 ### Execute Method
 
-`Execute` is an async method invoked when the command is executed by the script player; keep your command logic there. Use [engine services](/guide/engine-services) to access the engine's built-in systems. Naninovel script execution will halt until this method returns a completed task if the `Wait` parameter is set to `true`.
+`Execute` is an async method invoked when the command is executed by the script player; keep your command logic there. Use [engine services](/guide/engine-services) to access the engine's built-in systems. scenario script execution will halt until this method returns a completed task if the `Wait` parameter is set to `true`.
 
 ### Execution Context
 
@@ -71,7 +71,7 @@ public override async Awaitable Execute (ExecutionContext ctx)
 
 ### Parameter Types
 
-To expose a command parameter to naninovel scripts, add a public field to the command class with one of the supported types:
+To expose a command parameter to scenario scripts, add a public field to the command class with one of the supported types:
 
 | Field Type                | Value Type            | Script Example                      |
 |---------------------------|-----------------------|-------------------------------------|
@@ -95,7 +95,7 @@ To expose a command parameter to naninovel scripts, add a public field to the co
 
 ### Parameter Alias
 
-Optionally, you can apply `[Alias]` attribute to the field to assign an alias name to the parameter allowing it to be used instead of the field name when referencing the parameter in naninovel scripts. If you wish to make the parameter nameless, set `NamelessParameterAlias` constant (empty string) as the alias; please note, that only one nameless parameter is allowed per command.
+Optionally, you can apply `[Alias]` attribute to the field to assign an alias name to the parameter allowing it to be used instead of the field name when referencing the parameter in scenario scripts. If you wish to make the parameter nameless, set `NamelessParameterAlias` constant (empty string) as the alias; please note, that only one nameless parameter is allowed per command.
 
 ```csharp
 [Alias(NamelessParameterAlias)]
@@ -110,7 +110,7 @@ public StringParameter MyParameter;
 
 ### Required Parameter
 
-To make parameter required (causing an error to be logged when it's not specified in naninovel script), apply `[RequiredParameter]` attribute to the field. When the attribute is not applied, parameter is considered optional.
+To make parameter required (causing an error to be logged when it's not specified in scenario script), apply `[RequiredParameter]` attribute to the field. When the attribute is not applied, parameter is considered optional.
 
 ```csharp
 [RequiredParameter]
@@ -176,7 +176,7 @@ Another example of adding custom commands to add/remove items of an inventory sy
 
 In some cases it could be useful to override built-in Naninovel commands. For example, you may want to change how [@print] commands work without adding a custom one, so that the change will also affect [generic text lines](/guide/scenario-scripting#generic-text-lines) (text from the generic lines is parsed into the print commands under the hood).
 
-To override a built-in command, add a custom one and apply the same alias built-in command has. Reimport the naninovel scripts (right-click over a folder they're stored at, then click "Reimport") after overriding a command in order for the changes to take effect. The custom command will then automatically be used instead of the built-in one when playing a naninovel script.
+To override a built-in command, add a custom one and apply the same alias built-in command has. Reimport the scenario scripts (right-click over a folder they're stored at, then click "Reimport") after overriding a command in order for the changes to take effect. The custom command will then automatically be used instead of the built-in one when playing a scenario script.
 
 Below is an example of overriding built-in [@print] command, so that the printed text will be logged into the console before being revealed to the player.
 

@@ -64,9 +64,9 @@ public class MyScript : MonoBehaviour
 }
 ```
 
-## Playing Naninovel Scripts
+## Playing scenario scripts
 
-To preload and play a naninovel script with a given path, use `LoadAndPlay(ScriptPath)` method of `IScriptPlayer` service. To get an engine service, use `Engine.GetService<TService>()` static method, where `TService` is the type (interface) of the service to retrieve. For example, the following will get a script player service, then preload and play a script with name "Script001":
+To preload and play a scenario script with a given path, use `LoadAndPlay(ScriptPath)` method of `IScriptPlayer` service. To get an engine service, use `Engine.GetService<TService>()` static method, where `TService` is the type (interface) of the service to retrieve. For example, the following will get a script player service, then preload and play a script with name "Script001":
 
 ```csharp
 var player = Engine.GetService<IScriptPlayer>();
@@ -202,7 +202,7 @@ public class SwitchToAdventureMode : Command
 
 :::
 
-The commands can then be used in naninovel scripts:
+The commands can then be used in scenario scripts:
 
 ```nani
 ; Switch to adventure mode.

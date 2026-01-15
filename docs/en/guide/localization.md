@@ -2,7 +2,7 @@
 
 All the game resources (scripts, audio, voice, backgrounds, etc) can be localized to multiple languages/cultures.
 
-Resources originally used to author the project are associated with *source locale* by default. For example, given the game is initially authored in English, all the original (source) naninovel scripts, UIs, signs on backgrounds, etc are in English; this means the *source locale* is `en` (or `en-GB` / `en-US` / etc in case you wish to use separate locales for specific regions).
+Resources originally used to author the project are associated with *source locale* by default. For example, given the game is initially authored in English, all the original (source) scenario scripts, UIs, signs on backgrounds, etc are in English; this means the *source locale* is `en` (or `en-GB` / `en-US` / etc in case you wish to use separate locales for specific regions).
 
 The *source locale* can be changed via `Naninovel -> Configuration -> Localization` menu with `Source Locale` property. `Source Locale` property only determines the name (ID) of the locale associated with source project assets and is used in the "Language" drop-down settings menu and related engine APIs to distinguish the locale.
 
@@ -40,7 +40,7 @@ For example, if you wish to replace a "City" appearance sprite of a main backgro
 
 ## Scripts Localization
 
-The resources localization scheme described above works with all the resource types, except naninovel scripts and managed text documents. For these type of resources, use localization tool accessible via `Naninovel -> Tools -> Localization`:
+The resources localization scheme described above works with all the resource types, except scenario scripts and managed text documents. For these type of resources, use localization tool accessible via `Naninovel -> Tools -> Localization`:
 
 ![](https://i.gyazo.com/1b47d70dcbbb45a3ab955b44c9b50942.png)
 

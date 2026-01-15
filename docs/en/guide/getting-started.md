@@ -155,7 +155,7 @@ Actors and their parameters are directed via commands specified in [scenario scr
 
 Another widely used concept is the [user interface](/guide/gui) (UI). UIs are used by the player to interact with actors and the rest of the game. This includes various menus (title, save-load, settings, etc.) and control panels (toggle auto-read mode, skip text, etc.). UI elements are positioned on top of actors by default.
 
-Text printers and choice handlers are considered both actors and UI elements, meaning they share actor qualities and can be controlled via Naninovel scripts, while at the same time being used by players to interact with the game.
+Text printers and choice handlers are considered both actors and UI elements, meaning they share actor qualities and can be controlled via scenario scripts, while at the same time being used by players to interact with the game.
 
 ![](https://i.gyazo.com/0c8bd29820c6f2165af6adc5736713bd.png)
 

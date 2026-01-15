@@ -1,6 +1,6 @@
 # Voicing
 
-To expose voice clips to the engine, store them under `Resources/Naninovel/Voice` folder (can be changed in audio configuration under `Loader` foldout). You can additionally organize them with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in naninovel scripts. Eg, voice audio clip stored as `Resources/Naninovel/Voice/Intro/Day/25.wav` can be referenced in scripts as `Intro/Day/25`.
+To expose voice clips to the engine, store them under `Resources/Naninovel/Voice` folder (can be changed in audio configuration under `Loader` foldout). You can additionally organize them with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in scenario scripts. Eg, voice audio clip stored as `Resources/Naninovel/Voice/Intro/Day/25.wav` can be referenced in scripts as `Intro/Day/25`.
 
 It's also possible to use [addressable asset system](/guide/resource-providers#manual-assignment) to manually expose the resources; consult the guide for more info.
 
@@ -8,7 +8,7 @@ You can use any audio formats [supported by Unity](https://docs.unity3d.com/Manu
 
 Voice playback behavior can be configured using `Naninovel -> Configuration -> Audio` context menu; for available options see [configuration guide](/guide/configuration#audio).
 
-Use [@voice] command followed by the clip name (path) to play the voice in naninovel scripts, eg:
+Use [@voice] command followed by the clip name (path) to play the voice in scenario scripts, eg:
 
 ```nani
 @voice Hello
@@ -93,7 +93,7 @@ Use voiceover documents generator utility accessible via `Naninovel -> Tools -> 
 
 ![](https://i.gyazo.com/d1e40ff118daebd83b55e0433431b2a8.png)
 
-`Locale` property allows to select a specific locale for which to generate the documents (the localized naninovel scripts for the selected locale should exist in your project).
+`Locale` property allows to select a specific locale for which to generate the documents (the localized scenario scripts for the selected locale should exist in your project).
 
 `Format` property controls type of file and formatting of the voiceover documents to produce:
 

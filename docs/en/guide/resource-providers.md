@@ -117,7 +117,7 @@ Add more supported file formats by overriding `IResourceProviderManager` [engine
 
 Default `%DATA%/Resources` value points to a "Resources" folder inside game's data directory (which is different depending on the target platform).
 
-As one of the usage examples, let's say you want to load naninovel scripts from a `C:/Users/Admin/Dropbox/MyGame/Scripts` folder, which you share with collaborators to author the scenario. While it's possible to just specify an absolute path to the root folder (`C:/Users/Admin/Dropbox/MyGame`), that will require all your collaborators to also store the folder by the exact same path (under the same drive label and username). Instead, use the following relative path over a "UserProfile" special folder origin: `%SPECIAL{UserProfile}%/Dropbox/MyGame`.
+As one of the usage examples, let's say you want to load scenario scripts from a `C:/Users/Admin/Dropbox/MyGame/Scripts` folder, which you share with collaborators to author the scenario. While it's possible to just specify an absolute path to the root folder (`C:/Users/Admin/Dropbox/MyGame`), that will require all your collaborators to also store the folder by the exact same path (under the same drive label and username). Instead, use the following relative path over a "UserProfile" special folder origin: `%SPECIAL{UserProfile}%/Dropbox/MyGame`.
 
 ![](https://i.gyazo.com/eb435b782cfb9df6c403702e8f6124df.png)
 

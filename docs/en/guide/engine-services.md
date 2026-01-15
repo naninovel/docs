@@ -1,6 +1,6 @@
 # Engine Services
 
-Most of the engine features are implemented via engine services. Engine service is an implementation of an `IEngineService` interface, which handles a specific job, like executing naninovel scripts, managing actors or saving-loading the game state.
+Most of the engine features are implemented via engine services. Engine service is an implementation of an `IEngineService` interface, which handles a specific job, like executing scenario scripts, managing actors or saving-loading the game state.
 
 In case you wish to interact with an engine system, you'll most likely want to use an engine service. You can get a reference to an engine service using `Engine.GetService<TService>()` static method, where `TService` is the interface of the service you wish to get; e.g., to get a `IScriptPlayer` service:
 
@@ -26,8 +26,8 @@ IInputManager | Manages the user [input processing](/guide/input-processing).
 ILocalizationManager| Manages the [localization](/guide/localization) activities.
 ITextManager | Handles [managed text](/guide/managed-text) feature.
 IMoviePlayer | Handles [movie](/guide/movies) playing.
-IScriptManager | Manages [naninovel script](/guide/scenario-scripting) resources.
-IScriptPlayer | Handles [naninovel scripts](/guide/scenario-scripting) execution.
+IScriptManager | Manages [scenario script](/guide/scenario-scripting) resources.
+IScriptPlayer | Handles [scenario scripts](/guide/scenario-scripting) execution.
 ICameraManager | Manages cameras and other systems required for scene rendering.
 IResourceProviderManager | Manages `IResourceProvider` objects.
 IStateManager | Handles `IEngineService`-related persistent data de-/serialization; provides API to [save and load](/guide/save-load-system) game state.
