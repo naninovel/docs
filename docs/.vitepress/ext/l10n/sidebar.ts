@@ -10,7 +10,8 @@ export const en: DefaultTheme.SidebarItem[] = [
             { text: "Getting Started", link: "/guide/getting-started" },
             { text: "Scenario Scripting", link: "/guide/scenario-scripting" },
             { text: "VS Code Extension", link: "/guide/ide-extension" },
-            { text: "Story Editor", link: "/guide/editor" }
+            { text: "Story Editor", link: "/guide/editor" },
+            { text: "Samples", link: "/guide/samples" }
         ]
     },
     {
@@ -33,10 +34,7 @@ export const en: DefaultTheme.SidebarItem[] = [
             { text: "Managed Text", link: "/guide/managed-text" },
             { text: "Localization", link: "/guide/localization" },
             { text: "Memory Management", link: "/guide/memory-management" },
-            { text: "Resource Providers", link: "/guide/resource-providers" },
-            { text: "Community Modding", link: "/guide/community-modding" },
-            { text: "Development Console", link: "/guide/development-console" },
-            { text: "Samples", link: "/guide/samples" }
+            { text: "Resource Providers", link: "/guide/resource-providers" }
         ]
     },
     {

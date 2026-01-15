@@ -112,7 +112,7 @@ Find example on using variable triggers to drive availability of map locations i
 
 While the game is running, it's possible to view all the existing variables and change their values for debugging purposes.
 
-Open [development console](/guide/development-console) and enter `var` command to open the variables editor window.
+Open development console with `~` key and enter `var` command to open the variables editor window.
 
 ![](https://i.gyazo.com/d1812668c0776b01f3a82c5ddcba0145.png)
 

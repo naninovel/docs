@@ -40,7 +40,7 @@ Read on for descriptions of the built-in effects and the ways to [add custom eff
 Spawned effects are based on the [@spawn] command or are derived from it. They can be one-off (like [@glitch]) or continuous (like [@show] or [@blur]). Read on for the list of the standard effects and the ways to add custom ones.
 
 ---
-<h3>✨ Shake</h3>
+### ✨ Shake
 
 Shakes the specified actor or the main camera. Dedicated command: [@shake]
 
@@ -73,7 +73,7 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 ```
 
 ---
-<h3>✨ Glitch</h3>
+### ✨ Glitch
 
 Applies a post-processing effect to the main camera simulating digital video distortion and artifacts. Dedicated command: [@glitch]
 
@@ -96,7 +96,7 @@ Intensity | Decimal | 1 | The intensity of the effect, in 0.0 to 10.0 range.
 ```
 
 ---
-<h3>✨ Rain</h3>
+### ✨ Rain
 
 Spawns a particle system simulating rain. Dedicated command: [@rain]
 
@@ -126,7 +126,7 @@ Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn
 ```
 
 ---
-<h3>✨ Snow</h3>
+### ✨ Snow
 
 Spawns a particle system simulating snow. Dedicated command: [@snow]
 
@@ -154,7 +154,7 @@ Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn
 ```
 
 ---
-<h3>✨ Sun</h3>
+### ✨ Sun
 
 Spawns a particle system simulating sun shafts (rays). Dedicated command: [@sun]
 
@@ -182,7 +182,7 @@ Fade-out time | Decimal | 3 | The particle system will gradually lower the opaci
 ```
 
 ---
-<h3>✨ Bokeh</h3>
+### ✨ Bokeh
 
 Simulates depth of field (aka DOF, bokeh) effect, where only the object in focus stays sharp while the rest of the image is blurred. Dedicated command: [@bokeh]
 
@@ -190,7 +190,7 @@ Simulates depth of field (aka DOF, bokeh) effect, where only the object in focus
 In case you want to blur just one object (actor), consider using [Blur effect](/guide/special-effects#blur) instead.
 :::
 
-![](https://i.gyazo.com/616a023c46f207b4a3a33d3d3fd9fbc9.mp4)
+![](https://i.gyazo.com/610d2cafe5fbe42aba7adb9ac71720d1.mp4)
 
 **Start Parameters**
 Name | Type | Default | Description
@@ -220,7 +220,7 @@ Stop Duration | Decimal | 1 | Fade-off (disable) duration for the effect paramet
 ```
 
 ---
-<h3>✨ Blur</h3>
+### ✨ Blur
 
 Applies a blur filter to a supported actor: backgrounds and characters of sprite, layered, diced, Live2D, Spine, video and scene implementations. By default (when the first parameter is not specified), the effect is applied to the `MainBackground` actor. Dedicated command: [@blur]
 
@@ -304,7 +304,7 @@ You can find available transition effects with their parameters and default valu
 
 
 ---
-<h3>💫 BandedSwirl</h3>
+### 💫 BandedSwirl
 
 ![](https://i.gyazo.com/37432ac584ef04d94d3e4f9535fdffc4.mp4)
 
@@ -326,7 +326,7 @@ Frequency | 10
 
 
 ---
-<h3>💫 Blinds</h3>
+### 💫 Blinds
 
 ![](https://i.gyazo.com/73a259f2a513a92ef893ebd6a25e9013.mp4)
 
@@ -346,7 +346,7 @@ Count | 6
 ```
 
 ---
-<h3>💫 CircleReveal</h3>
+### 💫 CircleReveal
 
 ![](https://i.gyazo.com/4f914c6741a5e48a22cafe2ab242a426.mp4)
 
@@ -367,7 +367,7 @@ Fuzzy amount | 0.25
 
 
 ---
-<h3>💫 CircleStretch</h3>
+### 💫 CircleStretch
 
 ![](https://i.gyazo.com/f09bb69a3c045eeb1f6c8ec0b9dcd790.mp4)
 
@@ -380,7 +380,7 @@ Fuzzy amount | 0.25
 
 
 ---
-<h3>💫 CloudReveal</h3>
+### 💫 CloudReveal
 
 ![](https://i.gyazo.com/618ec451a9e10f70486db0bb4badbb71.mp4)
 
@@ -393,7 +393,7 @@ Fuzzy amount | 0.25
 
 
 ---
-<h3>💫 Crossfade</h3>
+### 💫 Crossfade
 
 ![](https://i.gyazo.com/dc4781a577ec891065af1858f5fe2ed1.mp4)
 
@@ -406,7 +406,7 @@ Fuzzy amount | 0.25
 
 
 ---
-<h3>💫 Crumble</h3>
+### 💫 Crumble
 
 ![](https://i.gyazo.com/e27c8477842a2092728ea0cc1ae76bda.mp4)
 
@@ -419,7 +419,7 @@ Fuzzy amount | 0.25
 
 
 ---
-<h3>💫 Dissolve</h3>
+### 💫 Dissolve
 
 ![](https://i.gyazo.com/b2993be8de032a65c7d813c6d749e758.mp4)
 
@@ -440,7 +440,7 @@ Step | 99999
 
 
 ---
-<h3>💫 DropFade</h3>
+### 💫 DropFade
 
 ![](https://i.gyazo.com/3c3840bb311ccb9fe223960f2e46f800.mp4)
 
@@ -453,7 +453,7 @@ Step | 99999
 
 
 ---
-<h3>💫 LineReveal</h3>
+### 💫 LineReveal
 
 ![](https://i.gyazo.com/c0e5259cd3d4ed2016ab74a65a7eec63.mp4)
 
@@ -480,7 +480,7 @@ Reverse | 0
 
 
 ---
-<h3>💫 Pixelate</h3>
+### 💫 Pixelate
 
 ![](https://i.gyazo.com/0ac9339b21303e20c524aaf6b6ca95f4.mp4)
 
@@ -493,7 +493,7 @@ Reverse | 0
 
 
 ---
-<h3>💫 RadialBlur</h3>
+### 💫 RadialBlur
 
 ![](https://i.gyazo.com/f8269fb68519c57c99643948a027a2a1.mp4)
 
@@ -506,7 +506,7 @@ Reverse | 0
 
 
 ---
-<h3>💫 RadialWiggle</h3>
+### 💫 RadialWiggle
 
 ![](https://i.gyazo.com/a401b3b93a61276ed68ededa2e75e9ae.mp4)
 
@@ -519,7 +519,7 @@ Reverse | 0
 
 
 ---
-<h3>💫 RandomCircleReveal</h3>
+### 💫 RandomCircleReveal
 
 ![](https://i.gyazo.com/f6e685b13fe2d76733fd43878602eabc.mp4)
 
@@ -532,7 +532,7 @@ Reverse | 0
 
 
 ---
-<h3>💫 Ripple</h3>
+### 💫 Ripple
 
 ![](https://i.gyazo.com/ff1bd285dc675ca5ac04f7ae4500f1c4.mp4)
 
@@ -555,7 +555,7 @@ Amplitude | 0.5
 
 
 ---
-<h3>💫 RotateCrumble</h3>
+### 💫 RotateCrumble
 
 ![](https://i.gyazo.com/8d476f466858e4788e5ad6014d6db314.mp4)
 
@@ -568,7 +568,7 @@ Amplitude | 0.5
 
 
 ---
-<h3>💫 Saturate</h3>
+### 💫 Saturate
 
 ![](https://i.gyazo.com/ad6eb77b7065387b9cb9afd77adbc784.mp4)
 
@@ -581,7 +581,7 @@ Amplitude | 0.5
 
 
 ---
-<h3>💫 Shrink</h3>
+### 💫 Shrink
 
 ![](https://i.gyazo.com/8c8bf00348df28ab89813c21f8655c07.mp4)
 
@@ -602,7 +602,7 @@ Speed | 200
 
 
 ---
-<h3>💫 SlideIn</h3>
+### 💫 SlideIn
 
 ![](https://i.gyazo.com/800ee6f5fba39ab8d46f5eb09f2126cf.mp4)
 
@@ -620,7 +620,7 @@ Slide amount | 1
 
 
 ---
-<h3>💫 SwirlGrid</h3>
+### 💫 SwirlGrid
 
 ![](https://i.gyazo.com/5a21293d979323a112ffd07f1fffd28d.mp4)
 
@@ -642,7 +642,7 @@ Cell count | 10
 
 
 ---
-<h3>💫 Swirl</h3>
+### 💫 Swirl
 
 ![](https://i.gyazo.com/6ac9a2fe1bb9dfaf6a8292ae5d03960e.mp4)
 
@@ -663,7 +663,7 @@ Twist amount | 15
 
 
 ---
-<h3>💫 Water</h3>
+### 💫 Water
 
 ![](https://i.gyazo.com/7c684f9a122006f38a0be2725895b76f.mp4)
 
@@ -676,7 +676,7 @@ Twist amount | 15
 
 
 ---
-<h3>💫 Waterfall</h3>
+### 💫 Waterfall
 
 ![](https://i.gyazo.com/b6eebcb68002064ababe4d7476139a7c.mp4)
 
@@ -689,7 +689,7 @@ Twist amount | 15
 
 
 ---
-<h3>💫 Wave</h3>
+### 💫 Wave
 
 ![](https://i.gyazo.com/e189ca12868d7ae4c9d8f0ca3d9dd298.mp4)
 
