@@ -1,40 +1,38 @@
 # 自定义变量
 
-自定义变量功能允许你创建用户定义的变量，用来控制 Naninovel 脚本的条件执行或驱动其他系统。例如，可以根据玩家过去做出的选择来决定接下来播放哪个 Naninovel 脚本（剧情分支）；另一个常见的场景是制作玩家状态界面（如分数、金钱、资源等），这些数值会随着玩家在游戏中的选择动态变化。
+自定义变量功能允许创建用户指定的变量，修改它们，并使用它们来驱动剧本脚本或其他系统的条件执行。例如，可以使用自定义变量根据玩家做出的决定选择要播放的多个剧本脚本之一（剧本路线）。另一个常见用途是根据整个游戏中做出的选择来跟踪玩家统计数据（例如，分数、金钱、资源）。
 
-::: info 注意
-变量名必须以字母开头，只能包含拉丁字母、数字和下划线。示例：`name`、`Char1Score`、`my_score`。变量名 **不区分大小写**，例如 `myscore` 与 `MyScore` 被视为相同变量。
+::: info NOTE
+变量名称应以字母开头，并且只能包含拉丁字符、数字和下划线，例如 `name`、`Char1Score`、`my_score`。名称不区分大小写，例如 `myscore` 等于 `MyScore`。
 :::
 
-自定义变量可以通过 Naninovel 脚本中的 [@set] 与 [@if] 指令创建、修改和使用，也可以在 C# 代码中通过 `ICustomVariableManager` [引擎服务](/zh/guide/engine-services) 操作。
+可以通过 [@set] 和 [@if] 命令在剧本脚本中创建、修改和使用自定义变量，也可以在 C# 中使用 `ICustomVariableManager` [引擎服务](/zh/guide/engine-services) 进行这些操作。
 
-例如，以下脚本指令会根据玩家的选择为 `score` 自定义变量赋予不同的值：
+例如，以下脚本命令根据玩家的选择为 `score` 自定义变量分配不同的值：
 
 ```nani
-@choice "I'm humble, one is enough..." set:score=1
-@choice "Two, please." set:score=2
-@choice "I'll take your entire stock!" set:score=999
+@choice "我很谦虚，一个就够了..." set:score=1
+@choice "请来两个。" set:score=2
+@choice "我要拿走你所有的存货！" set:score=999
 ```
 
-而下面这个示例则会根据 `score` 变量的值重新分支执行脚本：
+以下是根据 `score` 的值重新路由脚本执行：
 
 ```nani
 @goto MainRoute if:"score > 1 && score <= 900"
 @goto BadEnd if:score>900
 ```
 
-请参阅 [@set] 与 [@if] 指令的 API 参考以查看更多示例。
+所有自定义变量都会随游戏自动保存。默认情况下，变量存储在本地范围内。这意味着如果您在游戏过程中分配了一个变量，而玩家开始了一个新游戏或加载了未分配该变量的另一个保存槽，则该值将丢失。此行为对于大多数变量类型很有用。如果您希望将变量存储在全局范围内，请在其名称前加上 `G_` 或 `g_`，例如 `G_FinishedMainRoute` 或 `g_total_score`。全局变量可以指示元信息或累积信息，例如玩家完成路线的次数或多次游戏的总分。
 
-所有自定义变量都会随游戏自动保存。默认情况下，变量存储在 **本地作用域**。这意味着当玩家在一次游玩过程中为变量赋值后，如果希望变量能在多次游戏中保持（即存储在 **全局作用域**），请在变量名前添加 `G_` 或 `g_` 前缀，例如：`G_FinishedMainRoute` 或 `g_total_score`。全局变量通常用于记录元信息或累计数据，例如玩家完成特定路线的次数或所有通关的总得分。
-
-你可以在 “Custom Variables” 配置菜单中预定义全局或本地变量并指定其初始值。
+您可以在 "Custom Variables" 配置菜单中使用初始值设置预定义的自定义变量（全局和本地）。
 
 ![](https://i.gyazo.com/21701f17403921e34ba4da33b0261ad0.png)
 
-全局预定义变量会在游戏首次启动时初始化，而本地变量会在每次重置游戏状态时重新初始化。请注意：配置菜单中的值字段应填写有效的脚本表达式（而不是纯文本字符串）。
+全局预定义变量在首次应用程序启动时初始化，而本地变量在每次状态重置时初始化。请注意，菜单中的值字段需要有效的脚本表达式，而不是原始值字符串。
 
 ::: tip
-若想创建一个“只增加一次”的全局计数器（例如在回滚或重开游戏后不再重复递增），可以使用 `HasPlayed()` [表达式函数](/zh/guide/script-expressions#expression-functions)。
+如果您想要一个仅递增一次的全局计数器（即使在重玩时，例如回滚或重新启动游戏后），请使用 `HasPlayed()` [表达式函数](/zh/guide/script-expressions#表达式函数)：
 ```nani
 @set g_GlobalCounter++ if:!HasPlayed()
 ```
@@ -42,89 +40,89 @@
 
 ## 注入变量
 
-可以通过花括号 `{}` 在 Naninovel 脚本参数中内联（注入）自定义变量。
+您可以使用大括号将自定义变量注入（内联）到剧本脚本参数值中。
 
-下面这个脚本示例会显示一个输入字段界面，让玩家输入任意文本；提交后，该文本会被赋值到指定的自定义变量中：
+以下脚本显示了一个输入字段 UI，用户可以在其中输入任意文本。提交后，输入的文本将分配给指定的自定义变量。
 
 ```nani
-; 允许玩家输入任意文本并将其赋值给 `name` 变量。
-@input name summary:"Choose your name."
+; 允许用户输入任意文本并将其分配给 `name` 变量。
+@input name summary:"选择您的名字。"
 
-; 然后你可以在 Naninovel 脚本中注入该 `name` 变量。
-Archibald: Greetings, {name}!
+; 然后，您可以在剧本脚本中注入分配的 `name` 变量。
+Archibald: 问候，{name}！
 
-; ……或在 set 与条件表达式中使用它。
+; ...或在 set 和条件表达式中使用它。
 @set score+=3 if:name="Felix"
 ```
 
 ::: tip
-若要让角色名称动态变化，请使用 [显示名称](/zh/guide/characters#显示名称) 功能。
+要使角色名称动态化，请使用 [显示名称](/zh/guide/characters#显示名称) 功能。
 :::
 
-你可以在任何参数值中注入自定义变量，只要该类型兼容即可。例如，无法将字符串（文本）赋值给整数（数字）参数。
+只要类型允许，您就可以将自定义变量注入到任何参数值中。例如，您不能将字符串（文本）分配给数字参数。
 
 ```nani
 @set PlayerName="Felix";PlayerYPosition=0.1;PlayerTint="lightblue"
 
-; The following will produce an error, as `PlayerTint` is not a number.
+; 以下将产生错误，因为 `PlayerTint` 不是数字。
 @char {PlayerName} pos:50,{PlayerTint}
 
-; ...and this will execute just fine.
+; ...这将执行得很好。
 @char {PlayerName} pos:50,{PlayerYPosition} tint:{PlayerTint}
 ```
 
-## 默认赋值
+## 默认分配
 
-默认赋值允许仅在变量尚未被赋值的情况下为其指定一个值。这在你希望确保变量拥有初始值、但又不想覆盖已存在值时非常有用。
+默认分配仅在变量尚未具有值时才将值分配给自定义变量。当您希望确保变量具有初始值但不想在其已设置时覆盖它时，这很有用。
 
-若要执行默认赋值，请在 [@set] 指令中使用 `?=` 运算符：
+要执行默认分配，请在 [@set] 命令中使用 `?=` 运算符：
 
 ```nani
-; 声明并为 `name` 变量赋初始值。
+; 声明并为 'name' 变量分配初始值。
 @set name?="Alex"
-; 此处不会重新赋值，因为变量已经存在。
+; 变量不会在此处重新分配，因为它已设置。
 @set name?="John"
 ```
 
-这在入口或初始化脚本中声明全局变量时尤其方便，无需通过编辑器配置菜单：
+这对于在入口或初始化脚本中声明全局变量而不是使用编辑器配置菜单特别有用：
 
 ```nani
-; 声明并将两个用于追踪路线完成状态的变量设为 false。
-; 当同一脚本再次执行（例如游戏再次启动时），
-; 这些变量不会被重新赋值。
+; 声明并将 'false' 分配给跟踪路线完成情况的两个变量。
+; 当再次播放同一脚本时（例如，在随后的游戏开始时），
+; 变量不会被重新分配。
 @set g_ClearedRouteX?=false
 @set g_ClearedRouteY?=false
 ```
 
 ## 变量事件
 
-在构建 [自定义 UI](/zh/guide/gui#ui-customization) 或其他系统时，你可能希望在变量值发生变化时监听并响应事件。例如，在创建角色状态界面时，希望文本能自动更新以反映变量的最新值。通常这类行为需要通过 C# 脚本实现，但也可以使用 `Variable Events` 组件。该组件会在指定变量的值发生变化时触发 Unity 事件。
+构建 [自定义 UI](/zh/guide/gui#ui-自定义) 或其他系统时，您可能希望在变量值更改时对事件做出反应。例如，在创建角色统计屏幕时，您可能希望文本随变量更新。虽然传统方法使用 C# 脚本，但您也可以使用 `Variable Events` 组件。当具有指定名称的变量更改时，此组件会调用 Unity 事件。
 
 ![](https://i.gyazo.com/22eddd109e76d4e63c461e9d75b20ceb.png)
 
-::: tip 示例
-参见 [地图示例](/zh/guide/samples#地图)，其中展示了如何使用变量触发器来控制地图位置的可访问性。
+::: tip EXAMPLE
+在 [地图示例](/zh/guide/samples#地图) 中查找使用变量触发器来驱动地图位置可用性的示例。
 
 ![](https://i.gyazo.com/4987b1c53cd275f3fa56b533f53f3d8c.mp4)
 :::
 
-## 变量调试（Variables Debug）
+## 变量调试
 
-在游戏运行时，可以查看并修改所有现有变量的值，以便调试。
+在游戏运行时，您可以查看和更改所有现有变量以进行调试。
 
-打开 开发控制台，输入 `var` 指令即可打开变量编辑窗口。
+使用 `~` 键打开开发控制台，然后输入 `var` 命令以打开变量编辑器窗口。
 
 ![](https://i.gyazo.com/d1812668c0776b01f3a82c5ddcba0145.png)
 
-当修改变量值时，会出现一个 “SET” 按钮；点击它即可应用修改。
+当更改列表中变量的值时，会出现一个 "SET" 按钮；按下它以应用更改。
 
-当游戏运行过程中变量被改变时，变量列表会自动更新。
+当自定义变量在游戏运行时更改时，变量列表会自动更新。
 
 ## 在 C# 中使用自定义变量
 
 可以通过 `ICustomVariableManager` [引擎服务](/zh/guide/engine-services) 在 C# 中访问自定义变量。
 
-要获取或设置变量值，请分别使用 `GetVariableValue` 与 `SetVariableValue` 方法。例如，假设存在一个名为 “MyVarName” 的字符串变量，以下代码将读取其值，拼接 “Hello!” 并将结果重新写回：
+要获取和设置变量值，请分别使用 `GetVariableValue` 和 `SetVariableValue` 方法。例如，假设存在名为 `MyVarName` 的自定义字符串变量，下面的代码检索其值，向其追加 "Hello!"，并将修改后的值设置回去：
 
 ```csharp
 var vars = Engine.GetService<ICustomVariableManager>();
@@ -133,67 +131,67 @@ value += "Hello!";
 vars.SetVariableValue("MyVarName", new(value));
 ```
 
-请注意使用 `.String` 属性来获取变量的实际值。这是因为变量类型可能是三种之一：`String`、`Numeric` 或 `Boolean`。类型在变量首次被赋值时确定：
+请注意在检索变量的实际值时使用 `.String` 属性。变量可以是三种类型之一：`String`、`Numeric` 或 `Boolean`。类型是在剧本脚本中最初分配变量时确定的：
 
 ```nani
-; 为变量 `foo` 赋字符串值 “Hello World!”
+; 为 'foo' 变量分配 'Hello World!' 字符串值
 @set foo="Hello World!"
-; 在表达式中使用该字符串值
+; 在表达式中使用字符串值
 @if foo="Hello World!"
 
-; 为变量 `bar` 赋数值 42
+; 为 'bar' 变量分配数值 42
 @set bar=42
-; 在表达式中使用该数值
+; 在表达式中使用数值
 @if bar>12
 
-; 为变量 `baz` 赋布尔值 true
+; 为 'baz' 变量分配布尔值 true
 @set baz=true
-; 在表达式中使用该布尔值
+; 在表达式中使用布尔值
 @if baz
 ```
 
-—or in C#:
+—或在 C# 中：
 
 ```csharp
 var vars = Engine.GetService<ICustomVariableManager>();
 
-// 为变量 `foo` 赋字符串 “Hello World!”
+// 为 'foo' 变量分配 'Hello World!' 字符串值
 vars.SetVariableValue("foo", new("Hello World!"));
-// 访问该字符串值
+// 访问分配的字符串值
 if (vars.GetVariableValue("foo").String == "Hello World!")
 
-// 为变量 `bar` 赋数值 42
+// 为 'bar' 变量分配数值 42
 vars.SetVariableValue("bar", new(42));
-// 访问该数值
+// 访问分配的数值
 if (vars.GetVariableValue("bar").Number > 12)
 
-// 为变量 `baz` 赋布尔值 true
+// 为 'baz' 变量分配布尔值 true
 vars.SetVariableValue("baz", new(true));
-// 访问该布尔值
+// 访问分配的布尔值
 if (vars.GetVariableValue("baz").Boolean)
 ```
 
-若要在 C# 中检查变量类型，请使用 `.Type` 属性：
+要在 C# 中检查变量的类型，请使用值上的 `.Type` 属性：
 
 ```csharp
 var value = vars.GetVariableValue("bar");
 if (value.Type == CustomVariableValueType.Numeric)
-    if (value.Number > 12) // 现在可以安全地访问 `.Number` 值
+    if (value.Number > 12) // 现在可以安全地访问 '.Number' 值
 ```
 
-或者使用相应的 “Try...” 重载方法：
+或者，使用 `Try...` 重载之一：
 
 ```csharp
 var vars = Engine.GetService<ICustomVariableManager>();
 
 vars.TryGetVariableValue<float>("MyFloatVarName", out var floatValue);
-Debug.Log($"我的浮点数变量值: {floatValue}");
+Debug.Log($"My float variable value: {floatValue}");
 
 vars.TryGetVariableValue<int>("MyIntVarName", out var intValue);
-Debug.Log($"我的整数变量值: {intValue}");
+Debug.Log($"My integer variable value: {intValue}");
 
 vars.TryGetVariableValue<bool>("MyBoolVarName", out var boolValue);
-Debug.Log($"我的布尔变量值: {boolValue}");
+Debug.Log($"My boolean variable value: {boolValue}");
 
 floatValue += 10.5f;
 vars.TrySetVariableValue("MyFloatVarName", floatValue);
