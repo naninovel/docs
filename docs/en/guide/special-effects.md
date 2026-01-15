@@ -62,15 +62,14 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 **Examples**
 
 ```nani
-; Shake 'Kohaku' actor with default params
-@spawn ShakeCharacter params:Kohaku
-; Same with the dedicated command
+; Shake the current default text printer
+@shake
+
+; Shake "Kohaku" actor with default params
 @shake Kohaku
 
-; Shake the main Naninovel camera horizontally 5 times
-@spawn ShakeCamera params:,5,,,,,true,false
-; Same with the dedicated command
-@shake Camera count:5 hor! !ver
+; Shake the main camera horizontally 5 times
+@shake Camera count:5 hor!
 ```
 
 ---
@@ -90,13 +89,9 @@ Intensity | Decimal | 1 | The intensity of the effect, in 0.0 to 10.0 range.
 
 ```nani
 ; Apply the glitch effect with default parameters
-@spawn DigitalGlitch
-; Same with the dedicated command
 @glitch
 
 ; Apply the effect over 3.33 seconds with a low intensity
-@spawn DigitalGlitch params:3.33,0.1
-; Same with the dedicated command
 @glitch power:0.1 time:3.33
 ```
 
@@ -124,13 +119,9 @@ Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn
 
 ```nani
 ; Start intensive rain over 10 seconds
-@spawn Rain params:1,10
-; Same with the dedicated command
 @rain power:1 time:10
 
 ; Stop the rain over 30 seconds
-@despawn Rain params:30
-; Same with the dedicated command
 @rain power:0 time:30
 ```
 
@@ -156,13 +147,9 @@ Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn
 
 ```nani
 ; Start intensive snow over 10 seconds
-@spawn Snow params:1,10
-; Same with the dedicated command
 @snow power:1 time:10
 
-; Stop the snow over 30 seconds
-@despawn Snow params:30
-; Same with the dedicated command
+;Stop the snow over 30 seconds
 @snow power:0 time:30
 ```
 
@@ -188,12 +175,9 @@ Fade-out time | Decimal | 3 | The particle system will gradually lower the opaci
 
 ```nani
 ; Start intensive sunshine over 10 seconds
-@spawn SunShafts params:1,10
-; Same with the dedicated command
 @sun power:1 time:10
 
 ; Stop the sunshine over 30 seconds
-@despawn SunShafts params:30
 @sun power:0 time:30
 ```
 
@@ -224,20 +208,14 @@ Stop Duration | Decimal | 1 | Fade-off (disable) duration for the effect paramet
 **Examples**
 
 ```nani
-; Enable the effect with default params and lock focus to `Kohaku` game object
-@spawn DepthOfField params:Kohaku
-; Same with the dedicated command
+; Enable bokeh with default params and lock focus on "Kohaku" game object
 @bokeh Kohaku
 
 ; Fade-off (disable) the effect over 10 seconds
-@despawn DepthOfField params:10
-; Same with the dedicated command
 @bokeh power:0
 
 ; Set focus point 10 units away from the camera,
 ; focal length to 0.95 and apply it over 3 seconds
-@spawn DepthOfField params:,10,0.95,3
-; Same with the dedicated command
 @bokeh dist:10 power:0.95 time:3
 ```
 
@@ -264,18 +242,12 @@ Stop Duration | Decimal | 1 | Fade-off (disable) duration for the effect, in sec
 
 ```nani
 ; Apply the blur to the current main background
-@spawn Blur
-; Same with the dedicated command
 @blur
 
-; Apply the blur to `Sky` background with full intensity over 2.5 seconds
-@spawn Blur params:Sky,1,2.5
-; Same with the dedicated command
+; Apply the blur to "Sky" background with full intensity over 2.5 seconds
 @blur Sky power:1 time:2.5
 
 ; Fade-off and disable the blur
-@despawn Blur
-; Same with the dedicated command
 @blur power:0
 ```
 
