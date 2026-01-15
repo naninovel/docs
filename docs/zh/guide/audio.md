@@ -1,136 +1,134 @@
 # 音频
 
-本篇文章将介绍背景音乐（BGM）和音效（SFX）；关于语音的内容请参阅 [语音指南](/zh/guide/voicing)。
-
-要添加、编辑或删除 BGM 和 SFX 资源，请使用通过 `Naninovel -> Resources -> Audio` 访问的音频资源管理器。你可以使用任何 [Unity 支持的音频格式](https://docs.unity3d.com/Manual/AudioFiles.html)。
-
-![](https://i.gyazo.com/cacdec36623dbbfcf9f49c594de53c0f.png)
+要添加、编辑或删除背景音乐 (BGM) 和声音效果 (SFX) 资源，请使用可通过 `Naninovel -> Resources -> Audio` 访问的音频资源管理器。您可以使用 [Unity 支持](https://docs.unity3d.com/Manual/AudioFiles.html) 的任何音频格式。
 
 ::: tip
-选择最适合你开发流程的文件格式。在构建项目时，Unity 会自动将所有源资源（纹理、音频、视频等）转换为最适合目标平台的格式，因此在项目中以哪种格式存储资源并不会产生差别。有关 Unity 如何管理项目资源的更多信息，请参阅 [官方文档](https://docs.unity3d.com/Manual/AssetWorkflow)。
+选择最适合您的开发工作流程的文件格式。构建项目时，Unity 会自动将所有源资源（纹理、音频、视频等）转换为最适合目标平台的格式，因此您最初在项目中存储资源的格式不会产生影响。在 [官方文档](https://docs.unity3d.com/Manual/AssetWorkflow) 中查找有关 Unity 如何管理项目资产的更多信息。
 :::
 
-如果你有大量音频文件，通过编辑器菜单逐一分配会比较麻烦，也可以直接将它们放入 `Resources/Naninovel/Audio` 文件夹中，它们会自动在脚本中可用。你还可以根据需要使用子文件夹进行整理；在这种情况下，在 Naninovel 脚本中引用它们时请使用正斜杠（`/`）。例如，存储在 `Resources/Naninovel/Audio/Music/Ambient/Noise002.wav` 的音频文件，可以在脚本中通过 `Music/Ambient/Noise002` 来引用。
+如果您有很多音频文件，并且通过编辑器菜单分配它们不方便，您可以将它们放在 `Resources/Naninovel/Audio` 文件夹中，它们将自动在脚本中可用。如果您愿意，您还可以使用子文件夹组织它们；在这种情况下，在剧本脚本中引用它们时使用正斜杠 (`/`)。例如，存储为 `Resources/Naninovel/Audio/Music/Ambient/Noise002.wav` 的音频剪辑可以在脚本中引用为 `Music/Ambient/Noise002`。
 
-你也可以使用 [可寻址资源系统](/zh/guide/resource-providers#addressable) 手动公开资源。要公开一个资源，请为其分配与上面方法中相同的路径作为地址，但省略 “Resources/” 部分。例如，要公开一个名为 “MainTheme.wav” 的 BGM，请为该音频剪辑资源分配以下地址：`Naninovel/Audio/MainTheme`。请注意，默认情况下编辑器中不会使用可寻址资源提供程序；你可以在资源提供程序配置菜单中启用 `Enable Addressable In Editor` 属性以允许其在编辑器中使用。
+也可以使用 [Addressable 资产系统](/zh/guide/resource-providers#addressable) 手动公开资源。要公开资产，请分配一个等于您通过上述方法公开它时使用的路径的地址，但省略 "Resources/" 部分。例如，要公开 "MainTheme.wav" BGM，请为剪辑资产分配以下地址：`Naninovel/Audio/MainTheme`。请注意，Addressable 提供者默认情况下不在编辑器中使用；您可以通过打开资源提供者配置菜单中的 `Enable Addressable In Editor` 属性来启用它。
 
 ::: warning
-未通过资源管理器分配的音频资源将无法在编辑器中的各种下拉菜单中使用，例如用于为角色演出元素选择 `Message Sound`（消息音效）的菜单。
+未通过资源管理器分配的音频资产将在各种编辑器下拉列表中不可用，例如用于为角色 actor 选择 `Message Sound` 的下拉列表。
 :::
 
-可以通过 `Naninovel -> Configuration -> Audio` 上下文菜单配置音频播放行为；可用选项请参阅 [配置指南](/zh/guide/configuration#audio)。
+可以使用 `Naninovel -> Configuration -> Audio` 上下文菜单配置音频播放行为；有关可用选项，请参阅 [配置指南](/zh/guide/configuration#音频)。
 
 ## 背景音乐
 
-在 Naninovel 脚本中使用 [@bgm] 指令并跟随音频剪辑名称来控制音乐播放：
+使用 [@bgm] 命令后跟剪辑名称来控制剧本脚本中的音乐播放：
 
 ```nani
-; 循环播放名为 `Sanctuary` 的音乐曲目。  
+; 开始循环播放名为 "Sanctuary" 的音乐曲目。
 @bgm Sanctuary
 
-; 与上面相同，但在 10 秒内淡入音量，仅播放一次。  
+; 与上面相同，但在 10 秒内淡入音量并且只播放一次。
 @bgm Sanctuary fade:10 !loop
 
-; 将所有正在播放的音乐音量在 2.5 秒内调整为 50%，并使其循环播放。
+; 在 2.5 秒内将所有正在播放的音乐曲目的音量更改为 50%
+; 并使它们循环播放。
 @bgm volume:0.5 loop! time:2.5
 ```
 
-音乐曲目默认是循环播放的。当 [@bgm] 指令中未指定音乐名称时，所有当前播放的曲目都会受到影响。当对一个正在播放的曲目再次调用该指令时，播放不会被重置（不会从头开始播放），但会应用指定的参数（音量以及是否循环）。
+默认情况下，音乐曲目是循环播放的。当 [@bgm] 命令中未指定音乐曲目名称时，将影响所有当前正在播放的曲目。当为已在播放的曲目调用时，曲目不会重新开始，但会应用指定的参数（音量和曲目是否循环）。
 
-可以使用 `intro` 参数播放一个前奏（Intro）后接主循环，例如：
+可以使用 `intro` 参数播放前奏，然后循环播放，例如：
 
 ```nani
-; 播放一次 `BattleThemeIntro`，然后循环播放 `BattleThemeMain`。
+; 播放 "BattleThemeIntro" 一次，然后循环播放 "BattleThemeMain"。
 @bgm BattleThemeMain intro:BattleThemeIntro
 ```
 
-要停止正在播放的音乐曲目，请使用 [@stopBgm] 指令并跟随音频名称。当未指定音频名称时，该指令会停止所有当前正在播放的音乐。
+要停止播放音乐曲目，请使用 [@stopBgm] 命令，后跟剪辑名称。当未指定剪辑名称时，该命令将停止所有当前正在播放的曲目。
 
 ```nani
-; 在 10 秒内淡出并停止播放 `Promenade` 音乐曲目。
+; 在 10 秒内淡出 "Promenade" 音乐曲目并停止播放。
 @stopBgm Promenade fade:10
 
 ; 停止所有当前正在播放的音乐曲目。
 @stopBgm
 ```
 
-## 音效
+## 声音效果
 
-在 Naninovel 脚本中使用 [@sfx] 和 [@stopSfx] 指令并跟随音频名称来控制音效的播放：
+使用 [@sfx] 和 [@stopSfx] 命令后跟剪辑名称来控制剧本脚本中声音效果的播放：
 
 ```nani
-; 播放名为 `Explosion` 的音效一次。 
+; 播放名为 "Explosion" 的 SFX 一次。
 @sfx Explosion
 
-; 循环播放名为 `Rain` 的音效。  
+; 循环播放名为 "Rain" 的 SFX。
 @sfx Rain loop!
 
-; 将所有正在播放的音效音量在 2.5 秒内调整为 75%，并禁用它们的循环播放。
+; 在 2.5 秒内将所有正在播放的 SFX 曲目的音量更改为 75%
+; 并禁用所有它们的循环。
 @sfx volume:0.75 !loop time:2.5
 ```
 
-音效轨道默认不循环播放。当 [@sfx] 指令中未指定音效名称时，所有当前正在播放的音效都会受到影响。当对一个正在播放的音效再次调用该指令时，播放不会被重置（不会从头开始播放），但会应用指定的参数（音量以及是否循环）。
+声音效果曲目默认不循环。当 [@sfx] 命令中未指定 SFX 曲目名称时，将影响所有当前正在播放的曲目。当为已在播放的曲目调用时，曲目不会重新开始，但会应用指定的参数（音量和曲目是否循环）。
 
-要停止正在播放的音效（无论是否循环），请使用 [@stopSfx] 指令并跟随音效名称。当未指定音效名称时，该指令会停止所有当前正在播放的音效轨道。
+要停止播放声音效果（无论是否循环），请使用 [@stopSfx] 命令，后跟剪辑名称。当未指定剪辑名称时，该命令将停止所有当前正在播放的 SFX 曲目。
 
 ```nani
-; 在 15 秒内淡出并停止播放名为 `Rain` 的音效。  
+; 停止播放名为 "Rain" 的 SFX，淡出 15 秒。
 @stopSfx Rain fade:15
 
-; 停止所有当前正在播放的音效轨道。
+; 停止所有当前正在播放的声音效果曲目。
 @stopSfx
 ```
 
 ## 音频混音器
 
-Naninovel 在播放音频时会使用一个 [音频混音器（Audio Mixer）](https://docs.unity3d.com/Manual/AudioMixer.html) 资源，用于将 BGM、SFX 和语音通道分离。
+Naninovel 在播放音频时使用 [音频混音器](https://docs.unity3d.com/Manual/AudioMixer.html) 资产来分离 BGM、SFX 和语音通道。
 
 ![](https://i.gyazo.com/6271d59ee9ac63a0a218316bd3bc78a8.png)
 
-你可以在音频配置菜单中分配自定义混音器资源，修改每个音频通道所使用的分组，以及音量控制参数（暴露的参数名称）。当未分配自定义混音器资源时，将使用默认混音器。
+可以分配自定义混音器资产，更改每个音频通道使用的组，并在音频配置菜单中更改音量控制处理程序（公开的参数名称）。当未分配自定义混音器资产时，将使用默认资产。
 
 ![](https://i.gyazo.com/ef2db68edb871608d1718117a37e9486.png)
 
-要通过自定义混音器分组播放音频，请在 [@bgm]、[@sfx] 和 [@voice] 指令中使用 `group` 参数指定分组路径。
+要通过自定义混音器组播放音频，请使用 [@bgm]、[@sfx] 和 [@voice] 命令中可用的 `group` 参数指定组路径。
 
 ```nani
-; 通过 `Master/Ambient` 混音器分组循环播放音频资源 `Noise`。
+; 通过 "Master/Ambient" 混音器组循环播放 "Noise" 音频资源。
 @sfx Noise loop! group:Master/Ambient
 
-; 通过 `Master/Reverb` 混音器分组播放语音资源 `ScaryVoice`。
+; 通过 "Master/Reverb" 混音器组播放 "ScaryVoice" 语音资源。
 @voice ScaryVoice group:Master/Reverb
 ```
 
-分组是通过当前分配的音频混音器资源的 `FindMatchingGroups(groupPath)` 方法获取的；有关路径格式的更多信息，请参阅 [Unity 文档](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。如果提供的路径对应多个分组，将使用第一个分组来播放音频。
+使用当前分配的音频混音器资产的 `FindMatchingGroups(groupPath)` 方法检索组；有关预期路径格式的更多信息，请参阅 [Unity 文档](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。如果多个组与提供的路径关联，则将使用第一个组来播放音频。
 
 ## 自定义音频后端
 
-Unity 允许将其内置音频后端替换为自定义解决方案，例如 [FMOD](https://www.fmod.com) 和 [Wwise](https://www.audiokinetic.com/en/wwise/)。为支持这一点，我们确保 Naninovel 的 `IAudioManager` 接口不依赖于默认音频后端（例如，它不会引用 `AudioClip`、`AudioSource` 等）。这使你可以在无需修改引擎源代码的情况下，[重写该服务](/zh/guide/engine-services#overriding-built-in-services)，从而使用自定义音频后端。
+Unity 允许使用自定义解决方案（例如 [FMOD](https://www.fmod.com) 和 [Wwise](https://www.audiokinetic.com/en/wwise/)）替换其内置音频后端。为了支持这一点，我们确保 Naninovel 的 `IAudioManager` 接口不依赖于默认音频后端（例如，它不引用 `AudioClip`、`AudioSource` 等）。这允许您 [覆盖服务](/zh/guide/engine-services#覆盖内置服务) 并使用自定义音频后端，而无需修改引擎的源代码。
 
-以下是一个为 FMOD 实现此类重写的最小示例。
+下面是 FMOD 的此类覆盖的最小示例。
 
 ```cs
 [InitializeAtRuntime(@override: typeof(AudioManager))]
 public class FMODAudioManager : IAudioManager
 {
-    // Assuming FMOD resource loading is managed externally.
+    // 假设 FMOD 资源加载是在外部管理的。
     public IResourceLoader AudioLoader { get; } = new NullResourceLoader();
 
-    // Assuming FMOD's lifecycle is managed externally.
-    public UniTask InitializeService () => UniTask.CompletedTask;
+    // 假设 FMOD 的生命周期是在外部管理的。
+    public Awaitable InitializeService () => Async.Completed;
     public void DestroyService () { }
 
-    public UniTask PlaySfx (string path, ...)
+    public Awaitable PlaySfx (string path, ...)
     {
-        // Resolve the FMOD's event reference from the path and play it.
+        // 从路径解析 FMOD 的事件引用并播放它。
     }
 
     public AudioMixerGroup GetGroup (string groupPath)
     {
-        // It's OK to return null or otherwise ignore unsupported features.
+        // 返回 null 或以其他方式忽略不支持的功能是可以的。
         return null;
     }
 
-    // Other APIs...
+    // 其他 API...
 }
 ```

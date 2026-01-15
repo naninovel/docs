@@ -19,23 +19,23 @@ export const config: LocaleConfig<DefaultTheme.Config> = {
             editLink: buildEditLink("Edit this page on GitHub")
         }
     },
-    // ja: {
-    //     lang: "ja-JP",
-    //     label: "日本語",
-    //     description: "Unityゲームエンジン用のフル機能を備えた、ライター向けで完全にカスタマイズ可能なビジュアルノベル拡張。",
-    //     themeConfig: {
-    //         langMenuLabel: "言語",
-    //         lastUpdated: { text: "最終更新 日", formatOptions: { dateStyle: "medium" } },
-    //         sidebarMenuLabel: "メニュー",
-    //         darkModeSwitchLabel: "外観",
-    //         returnToTopLabel: "トップに戻る",
-    //         outline: { label: "このページでは", level: "deep" },
-    //         sidebar: { "/ja/guide/": guide.js },
-    //         docFooter: { prev: "前のページ", next: "次のページ" },
-    //         nav: buildNav(["FAQ", "ガイド", "API", "サポート"], "ja"),
-    //         editLink: buildEditLink("GitHub でこのページを編集する")
-    //     }
-    // },
+    ja: {
+        lang: "ja-JP",
+        label: "日本語",
+        description: "Unityゲームエンジン用のフル機能を備えた、ライター向けで完全にカスタマイズ可能なビジュアルノベル拡張。",
+        themeConfig: {
+            langMenuLabel: "言語",
+            lastUpdated: { text: "最終更新 日", formatOptions: { dateStyle: "medium" } },
+            sidebarMenuLabel: "メニュー",
+            darkModeSwitchLabel: "外観",
+            returnToTopLabel: "トップに戻る",
+            outline: { label: "このページでは", level: "deep" },
+            sidebar: { "/ja/guide/": guide.ja },
+            docFooter: { prev: "前のページ", next: "次のページ" },
+            nav: buildNav(["FAQ", "ガイド", "API", "サポート"], "ja"),
+            editLink: buildEditLink("GitHub でこのページを編集する")
+        }
+    },
     zh: {
         lang: "zh-CN",
         label: "中文",
@@ -47,29 +47,12 @@ export const config: LocaleConfig<DefaultTheme.Config> = {
             darkModeSwitchLabel: "外貌",
             returnToTopLabel: "返回顶部",
             outline: { label: "在本页", level: "deep" },
-            sidebar: { "/zh/guide/": guide.zn },
+            sidebar: { "/zh/guide/": guide.zh },
             docFooter: { prev: "上一页", next: "下一页" },
             nav: buildNav(["常见问题", "使用手册", "API", "技术支持"], "zh"),
             editLink: buildEditLink("在 GitHub 上编辑此页面")
         }
-    },
-    // ru: {
-    //     lang: "ru-RU",
-    //     label: "Русский",
-    //     description: "Расширение игрового движка Unity для создания визуальных новелл.",
-    //     themeConfig: {
-    //         langMenuLabel: "Язык",
-    //         lastUpdated: { text: "Обновлено", formatOptions: { dateStyle: "medium" } },
-    //         sidebarMenuLabel: "Меню",
-    //         darkModeSwitchLabel: "Оформление",
-    //         returnToTopLabel: "Вернуться наверх",
-    //         outline: { label: "На этой странице", level: "deep" },
-    //         sidebar: { "/ru/guide/": guide.ru },
-    //         docFooter: { prev: "Предыдущая страница", next: "Следующая страница" },
-    //         nav: buildNav(["FAQ", "Руководство", "API", "Поддержка"], "ru"),
-    //         editLink: buildEditLink("Редактировать эту страницу на GitHub")
-    //     }
-    // }
+    }
 };
 
 export const search: Record<string, Partial<DefaultTheme.LocalSearchOptions>> = {
@@ -114,29 +97,6 @@ export const search: Record<string, Partial<DefaultTheme.LocalSearchOptions>> = 
                     navigateUpKeyAriaLabel: "上箭头",
                     navigateDownKeyAriaLabel: "下箭头",
                     closeText: "关闭",
-                    closeKeyAriaLabel: "esc"
-                }
-            }
-        }
-    },
-    ru: {
-        translations: {
-            button: {
-                buttonText: "Поиск",
-                buttonAriaLabel: "Поиск"
-            },
-            modal: {
-                displayDetails: "Показать детали",
-                resetButtonTitle: "Сбросить поиск",
-                backButtonTitle: "Назад",
-                noResultsText: "Не найдено",
-                footer: {
-                    selectText: "Выбрать",
-                    selectKeyAriaLabel: "Выбрать",
-                    navigateText: "Навигация",
-                    navigateUpKeyAriaLabel: "Веерх",
-                    navigateDownKeyAriaLabel: "Вниз",
-                    closeText: "Закрыть",
                     closeKeyAriaLabel: "esc"
                 }
             }

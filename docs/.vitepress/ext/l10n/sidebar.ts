@@ -56,38 +56,41 @@ export const en: DefaultTheme.SidebarItem[] = [
     }
 ];
 
-export const js: DefaultTheme.SidebarItem[] = [
+export const ja: DefaultTheme.SidebarItem[] = [
     {
-        text: "ガイド",
+        text: "基本",
         collapsed: true,
         items: [
             { text: "紹介", link: "/ja/guide/" },
             { text: "互換性", link: "/ja/guide/compatibility" },
             { text: "スタートガイド", link: "/ja/guide/getting-started" },
+            { text: "シナリオスクリプト", link: "/ja/guide/scenario-scripting" },
+            { text: "VS Code 拡張機能", link: "/ja/guide/ide-extension" },
+            { text: "ストーリーエディタ", link: "/ja/guide/editor" },
+            { text: "サンプル", link: "/ja/guide/samples" }
+        ]
+    },
+    {
+        text: "開発者",
+        collapsed: true,
+        items: [
             { text: "コンフィグレーション", link: "/ja/guide/configuration" },
-            { text: "Naninovel スクリプト", link: "/ja/guide/scenario-scripting" },
-            { text: "IDE サポート", link: "/ja/guide/ide-extension" },
             { text: "テキストプリンター", link: "/ja/guide/text-printers" },
             { text: "キャラクター", link: "/ja/guide/characters" },
             { text: "背景", link: "/ja/guide/backgrounds" },
-            { text: "トランジションエフェクト", link: "/ja/guide/transition-effects" },
             { text: "特殊エフェクト", link: "/ja/guide/special-effects" },
             { text: "オーディオ", link: "/ja/guide/audio" },
             { text: "ボイス", link: "/ja/guide/voicing" },
-            { text: "ムービー", link: "/ja/guide/movies" },
             { text: "選択肢", link: "/ja/guide/choices" },
-            { text: "ユーザーインターフェイス", link: "/ja/guide/gui" },
-            { text: "セーブロードシステム", link: "/ja/guide/save-load-system" },
-            { text: "ゲーム設定", link: "/ja/guide/game-settings" },
+            { text: "GUI", link: "/ja/guide/gui" },
             { text: "入力処理", link: "/ja/guide/input-processing" },
             { text: "収集アイテム", link: "/ja/guide/unlockable-items" },
             { text: "カスタム変数", link: "/ja/guide/custom-variables" },
             { text: "スクリプト表記", link: "/ja/guide/script-expressions" },
-            { text: "テキスト管理", link: "/ja/guide/managed-text" },
+            { text: "管理テキスト", link: "/ja/guide/managed-text" },
             { text: "ローカライズ", link: "/ja/guide/localization" },
-            { text: "リソースプロバイダー", link: "/ja/guide/resource-providers" },
-            { text: "コミュニティMod", link: "/ja/guide/community-modding" },
-            { text: "開発コンソール", link: "/ja/guide/development-console" }
+            { text: "メモリ管理", link: "/ja/guide/memory-management" },
+            { text: "リソースプロバイダー", link: "/ja/guide/resource-providers" }
         ]
     },
     {
@@ -100,37 +103,42 @@ export const js: DefaultTheme.SidebarItem[] = [
             { text: "カスタムコンフィグレーション", link: "/ja/guide/custom-configuration" },
             { text: "カスタムアクターの実装", link: "/ja/guide/custom-actor-implementations" },
             { text: "カスタムアクターシェーダー", link: "/ja/guide/custom-actor-shader" },
-            { text: "Custom Script Compiler", link: "/ja/guide/custom-compiler" },
+            { text: "カスタムスクリプトコンパイラ", link: "/ja/guide/custom-compiler" },
             { text: "ステート管理", link: "/ja/guide/state-management" },
             { text: "インテグレーションの方法", link: "/ja/guide/integration-options" },
+            { text: "自動テスト", link: "/ja/guide/automated-testing" },
             { text: "カスタムビルド環境", link: "/ja/guide/custom-build-environment" }
         ]
     }
 ];
 
-export const zn: DefaultTheme.SidebarItem[] = [
+export const zh: DefaultTheme.SidebarItem[] = [
     {
-        text: "使用手册",
+        text: "基础",
         collapsed: true,
         items: [
             { text: "介绍", link: "/zh/guide/" },
             { text: "兼容性", link: "/zh/guide/compatibility" },
             { text: "快速上手", link: "/zh/guide/getting-started" },
-            { text: "属性配置", link: "/zh/guide/configuration" },
             { text: "Naninovel 脚本", link: "/zh/guide/scenario-scripting" },
-            { text: "IDE支持", link: "/zh/guide/ide-extension" },
-            { text: "网页版编辑器", link: "/zh/guide/editor" },
+            { text: "VS Code 扩展", link: "/zh/guide/ide-extension" },
+            { text: "故事编辑器", link: "/zh/guide/editor" },
+            { text: "示例资源", link: "/zh/guide/samples" }
+        ]
+    },
+    {
+        text: "开发",
+        collapsed: true,
+        items: [
+            { text: "属性配置", link: "/zh/guide/configuration" },
             { text: "文本输出窗", link: "/zh/guide/text-printers" },
             { text: "角色", link: "/zh/guide/characters" },
             { text: "背景", link: "/zh/guide/backgrounds" },
             { text: "特殊效果", link: "/zh/guide/special-effects" },
             { text: "音频", link: "/zh/guide/audio" },
             { text: "配音", link: "/zh/guide/voicing" },
-            { text: "视频", link: "/zh/guide/movies" },
             { text: "选项", link: "/zh/guide/choices" },
             { text: "用户界面UI", link: "/zh/guide/gui" },
-            { text: "读取保存系统", link: "/zh/guide/save-load-system" },
-            { text: "游戏设置", link: "/zh/guide/game-settings" },
             { text: "输入处理", link: "/zh/guide/input-processing" },
             { text: "可解锁物件", link: "/zh/guide/unlockable-items" },
             { text: "自定义变量", link: "/zh/guide/custom-variables" },
@@ -138,10 +146,7 @@ export const zn: DefaultTheme.SidebarItem[] = [
             { text: "受管文本", link: "/zh/guide/managed-text" },
             { text: "本地化", link: "/zh/guide/localization" },
             { text: "内存管理", link: "/zh/guide/memory-management" },
-            { text: "资源加载器", link: "/zh/guide/resource-providers" },
-            { text: "社区模组", link: "/zh/guide/community-modding" },
-            { text: "开发控制台", link: "/zh/guide/development-console" },
-            { text: "示例资源", link: "/zh/guide/samples" }
+            { text: "资源加载器", link: "/zh/guide/resource-providers" }
         ]
     },
     {

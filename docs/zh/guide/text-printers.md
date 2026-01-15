@@ -1,142 +1,138 @@
-# 文本输出窗
+# 文本打印机
 
-::: tip
-译注：原文为 Text Printer（文本打印机），虽然符合程序设计上的抽象思维，但不太便于团队制作时通过词面意义理解交流。故这里翻译成文本输出窗，下文 “文本输出窗” 与Text Printer（文本打印机）、“输出窗” 与Printer（打印机）等效。
-:::
+文本打印机是用于呈现可以随时间显示（打印）的文本消息的 actor。
 
-文本输出窗是用于显示文本消息的演出元素，可以逐字显现（打印）文本内容。
+可以使用 `Naninovel -> Configuration -> Printers` 上下文菜单配置打印机的行为；有关可用选项，请参阅 [配置指南](/zh/guide/configuration#printers)。可以使用 `Naninovel -> Resources -> Printers` 上下文菜单访问打印机的资源管理器。
 
-输出窗的行为可通过 `Naninovel -> Configuration -> Printers` 上下文菜单进行配置；有关可用选项，请参阅 [配置指南](/zh/guide/configuration#printers)。输出窗资源管理器可通过 `Naninovel -> Resources -> Printers` 上下文菜单访问。
-
-在 Naninovel 脚本中，文本输出窗主要通过 [@print] 和 [@printer] 指令控制：
+在剧本脚本中，文本打印机主要通过 [@print] 和 [@printer] 命令控制：
 
 ```nani
-; 将 `Dialogue` 输出窗设为默认
+; 将使 "Dialogue" 打印机成为默认打印机
 @printer Dialogue
 
-; 将 `Fullscreen` 输出窗设为默认
+; 将使 "Fullscreen" 打印机成为默认打印机
 @printer Fullscreen
 
-; 使用默认输出窗显示文本
+; 将使用默认打印机打印该短语
 @print text:"Lorem ipsum dolor sit amet."
 
-; 与上相同，但使用通用文本语句
+; 与上面相同，但使用通用文本语句
 Lorem ipsum dolor sit amet.
 
-; 与上相同，但关联角色 “Felix”
+; 与上面相同，但与角色 "Felix" 关联
 Felix: Lorem ipsum dolor sit amet.
 ```
 
-请注意，尽管内置输出窗是以 UI 实现的，但它们依然是演出元素（Actor），所有与可见性相关的动画（显示/隐藏）都遵循指令或演出元素配置中指定的持续时间。例如，[@showPrinter] 指令的 `time` 参数控制显示动画的持续时间，若未指定，则使用输出窗元素配置中的 `Change Visibility Duration` 属性作为默认持续时间；此时输出窗 UI 预制体根节点上的 `Fade Time` 属性将被忽略。
+请注意，即使内置打印机是作为 UI 实现的，它们仍然是 actor，并且所有与 actor 相关的可见性更改（显示/隐藏动画）都使用相应命令或 actor 配置中设置的持续时间；例如，[@showPrinter] 命令的 `time` 参数控制显示动画的持续时间，如果未指定，则使用打印机 actor 配置属性 `Change Visibility Duration` 作为默认持续时间；在这种情况下，忽略打印机 UI 预制件根目录下的 `Fade Time` 属性。
 
 ## 自动前进文本
 
-自动前进功能可在执行 [`i`](/api/#i) 指令时自动继续脚本执行。
+自动前进功能允许脚本在等待输入（单击以继续）事件时自动继续执行。
 
 ![](https://i.gyazo.com/e6f58f861fa18bd62591db9794e7641b.mp4)
 
-等待用户输入或 “i” 指令通常会暂停脚本执行，直到用户触发 `Continue` 输入，常用于显示文本消息后暂停。在自动前进模式下，“i” 指令会根据文本长度暂停一段时间后自动继续执行。暂停时长由上一条输出文本的长度决定，并受游戏设置中的“文字显示速度”影响。
+等待用户输入或 `[-]` 命令会停止脚本执行，直到用户激活 `Continue` 输入；它们通常用于打印文本消息之后。在自动前进模式下，`[-]` 命令将改为停止脚本执行一段时间，然后完成，允许执行下一个命令。停止时间取决于最后打印的文本消息的长度，并由 "Print speed" 游戏设置进一步修改。
 
-可使用 `AutoPlay` 输入（默认按键为 `A`）或控制面板中的 “AUTO” 按钮切换自动前进模式。
+可以使用 `AutoPlay` 输入（独立输入模块默认为 `A` 键）或控制面板中的 "AUTO" 按钮切换自动前进模式。
 
-## 跳过文本
+## 文本跳过
 
-文本跳过功能可加速执行 [@print] 指令，从而跳过文字逐字显现过程。
+文本跳过功能允许快进执行 [@print] 命令，从而有效地跳过文本显示（打印）过程。
 
 ![](https://i.gyazo.com/9605a5c8cd1911217350d77712f47e7d.mp4)
 
-可使用 `Skip` 输入（默认按键为 `Ctrl`）或控制面板中的 “SKIP” 按钮启用或关闭跳过模式。
+可以使用 `Skip` 输入（独立输入模块默认为 `Ctrl` 键）或控制面板中的 "SKIP" 按钮切换跳过模式。
 
-默认情况下，仅当执行已读过的指令时才可启用跳过模式；例如，当用户尚未阅读即将显示的文本时，跳过模式将不可用。可在游戏设置中通过 “Skip mode” 选项修改此行为。
+默认情况下，跳过模式仅在执行过去已经执行过的命令时可用；例如，如果用户尚未阅读将要打印的文本，则跳过模式将不可用。这可以在游戏设置中使用 "Skip mode" 设置进行更改。
 
-## 输出窗历史回看
+## 打印机积压日志
 
-输出窗历史回看允许用户重新查看已输出的文本、复查选项、重听语音，甚至（可选地）回滚至已记录的消息。
+打印机积压日志是一项功能，允许用户重新阅读以前打印的文本、查看选定的选项、重播语音行以及（可选）回滚到记录的消息。
 
 ![](https://i.gyazo.com/cf9c11c242907e0eae7f5f1b4e2b9f38.mp4)
 
-在游戏主循环期间，可随时通过 `ShowBacklog` 输入（默认按键为 `L`）或控制面板中的 “LOG” 按钮打开历史回看。
+可以通过激活 `ShowBacklog` 输入（独立输入模块默认为 `L` 键）或按控制面板中的 "LOG" 按钮在主游戏循环期间随时显示积压日志。
 
-历史回看 UI 的多项属性可通过预制体根节点上的组件自定义，具体控制内容请参考属性提示信息。
+可以通过附加到预制件根目录的组件自定义各种积压日志 UI 属性；有关每个属性控制内容的详细信息，请参阅属性的工具提示。
 
 ![](https://i.gyazo.com/40e44a4ed69f75fa5fb9c36cdae6226a.png)
 
-更多关于自定义与配置 UI 的内容，请参阅 [内置 UI 自定义指南](/zh/guide/gui#modifying-built-in-ui)。
+有关如何自定义和配置 UI 的更多信息，请参阅 [内置 UI 自定义指南](/zh/guide/gui#修改内置-ui)。
 
-可通过在输出窗元素配置中禁用 `Add To Backlog` 属性，防止特定输出窗将消息添加至历史回看。启用 `Split Backlog Messages` 属性后，所有日志中的消息将被分割（分别显示为独立记录）。
+可以通过在打印机 actor 配置中禁用 `Add To Backlog` 属性来防止特定文本打印机将消息添加到积压日志中。启用 `Split Backlog Messages` 属性时，添加到积压日志的消息将拆分为单独的记录。
 
 ![](https://i.gyazo.com/9f0155dff068dbe1fd821e9007cf4a5a.png)
 
 ## 消息模板
 
-可使用消息模板自动化文本消息的额外处理。每个文本输出窗可通过 [@format] 指令在运行时单独配置，或在编辑器的输出窗面板 UI 中设置 `Default Templates` 属性。以下为内置 `Fullscreen` 输出窗的默认格式模板：
+您可以使用消息模板自动化文本消息的附加处理。处理是在运行时使用 [@format] 命令或在编辑器中通过打印机面板 UI 的 `Default Templates` 属性为每个文本打印机单独配置的。例如，下面是内置 `Fullscreen` 打印机的默认格式模板：
 
 ![](https://i.gyazo.com/24774230ec66a5eb783fbe148b5c96d4.png)
 
-你可以在模板中使用任意文本格式化标签或字符，并用 `%TEXT%` 代表消息文本，`%AUTHOR%` 代表作者显示名。例如模板：`“%TEXT%” — <i>%AUTHOR%</i>` 会将文本消息包裹在引号中，并在后方以斜体显示作者名。例如 `Kohaku: Lorem ipsum.` 经过此模板处理后将呈现如下效果：
+您可以指定任何文本格式标签或字符，并使用 `%TEXT%` 替换为消息文本，使用 `%AUTHOR%` 替换为作者显示名称。例如，考虑以下模板：`“%TEXT%” — <i>%AUTHOR%</i>` — 它将打印的消息用引号括起来，后面跟着一个破折号和斜体作者姓名；例如，使用此类模板处理的 `Kohaku: Lorem ipsum.` 将导致：
 
 ![](https://i.gyazo.com/53b5ba0f426afc847e51d843ffd6e808.png)
 
-模板按顺序应用，且可通过 `Author` 属性基于作者过滤：指定作者（角色演出元素）ID 可使模板仅作用于该角色，`+` 表示作用于所有带作者的消息，`-` 表示作用于无作者的消息，`*` 表示作用于所有消息。
+分配的模板按顺序应用，`Author` 属性允许根据打印消息的作者过滤应用的模板。指定作者（角色 actor）ID 以使模板仅适用于该特定作者，指定 `+` 以使其适用于任何有作者的消息，指定 `-` 以使其适用于无作者的消息，或指定 `*` 以将其应用于任何消息。
 
-## 对话输出窗
+## Dialogue 打印机
 
-对话输出窗在具有可变高度的窗口中显示文本。其初始高度约占屏幕三分之一，当内容增加时会自动扩展。对话输出窗还会在文本窗口上方显示角色姓名。
+Dialogue 打印机在具有灵活高度的窗口内呈现文本。它们最初占据屏幕大小的三分之一左右，并在内容需要更多空间时增加高度。Dialogue 打印机还在文本窗口上方的标签中显示关联的角色名称。
 
 ![Dialogue Printer](https://i.gyazo.com/73abe9eabc7b285109b08e77dbf75430.png)
 
-## 宽屏输出窗
+## Wide 打印机
 
-宽屏输出窗与对话输出窗类似，但在布局上针对宽屏幕进行了优化。此外，它们还支持 [角色头像](/zh/guide/characters#avatar-textures) 功能。
+Wide 打印机与 Dialogue 打印机非常相似，只是面板布局针对宽显示屏进行了一些更改。Wide 打印机还支持 [角色头像](/zh/guide/characters#头像纹理) 功能。
 
 ![Wide Printer](https://i.gyazo.com/83c091c08846fa1cab8764a8d4dddeda.png)
 
-## 全屏输出窗
+## Fullscreen 打印机
 
-全屏输出窗在固定大小的窗口中显示文本，占据大部分屏幕空间，适合显示大量文本，也称 “NVL 模式”（或 “小说模式”）。
+Fullscreen 打印机在具有静态大小的窗口内呈现文本。它们占据大部分屏幕大小，旨在呈现大量文本，又名 "NVL" 模式。
 
 ![Fullscreen Printer](https://i.gyazo.com/c7861949717f9b600b664365af53abbc.png)
 
-全屏输出窗默认不会在每条连续的输出指令后自动清空文本；如需清除内容，请使用 [@resetText] 指令。可在输出窗演出元素配置中启用 `Auto Reset` 选项以改变此行为。
+默认情况下，Fullscreen 打印机不会在每个连续的打印命令上重置文本；相反，根据需要使用 [@resetText] 命令清除打印机的内容。可以通过在打印机 actor 配置菜单中启用 `Auto Reset` 来更改此设置。
 
-每条输出指令默认会在文本前自动添加两个换行符（除非输出窗当前内容为空）。可在演出元素配置中将 `Auto Line Break` 设置为 0 以禁用该功能。
+默认情况下，由 Fullscreen 打印机处理的每个打印命令都会在打印的文本之前添加两个换行符（除非打印机的当前内容为空）。可以通过在打印机 actor 配置菜单中将 `Auto Line Break` 设置为零来禁用此功能。
 
 ![](https://i.gyazo.com/978c2eb05215aac2d62177cfb58bfbef.png)
 
-以下是使用全屏输出窗的示例：
+下面是使用 Fullscreen 打印机的示例。
 
 ```nani
-; 激活全屏输出窗。
+; 激活 Fullscreen 打印机。
 @printer Fullscreen
 
-; 以下文本行将在同一个窗口中显示，之间以两个换行符分隔。
+; 以下行将打印在同一窗口中，由 2 个换行符分隔。
 Lorem ipsum dolor sit amet. Proin ultricies in leo id scelerisque.
 Praesent vel orci luctus, tincidunt nisi et, fringilla arcu. In a metus orci.
 Maecenas congue nunc quis lectus porttitor, eget commodo massa congue.
 
-; 清空输出窗内容。
+; 清除打印机的内容。
 @resetText
 
-; 继续输出更多文本。
+; 打印更多行。
 Morbi ultrices dictum diam, in gravida neque vulputate in.
 ...
 ```
 
-## 聊天输出窗
+## Chat 打印机
 
-聊天输出窗在带有可垂直滚动内容的窗口中，以消息气泡的形式显示文本，风格类似于手机聊天应用。与逐字显现文本不同，它会先显示“作者正在输入”的动画（持续时间取决于输出速度），然后立即显示完整消息。聊天输出窗支持 [角色头像](/zh/guide/characters#avatar-textures) 功能。
+Chat 打印机在窗口中以气泡形式呈现文本，内容可垂直滚动，类似于移动通讯应用。它不逐个字符地显示打印的消息，而是在显示效果期间显示“作者正在输入”动画，然后立即显示打印的消息。Chat 打印机支持 [角色头像](/zh/guide/characters#头像纹理) 功能。
 
 ![Chat Printer](https://i.gyazo.com/3c04aecabe7f754ffc9ce5452eeba270.png)
 
-若要在聊天输出窗中嵌入选项，请参阅 [ChatReply](/zh/guide/choices#chatreply-choice-handler) 选项处理器。你也可以通过 `Chat Printer Panel` 组件中的 `Choice Handler Id` 属性指定自定义的选项处理器。
+要在 Chat 打印机内嵌入选项，请参阅 [ChatReply](/zh/guide/choices#chatreply-选项处理程序) 选项处理程序。您还可以通过 `Chat Printer Panel` 组件上的 `Choice Handler Id` 属性指定自定义处理程序。
 
-## 气泡输出窗
+## Bubble 打印机
 
-气泡输出窗可用于漫画/连环画风格的文本展示。
+Bubble 打印机可用于漫画/连环画风格的文本呈现，也称为“语音气泡”。
 
 ![](https://i.gyazo.com/900ee728505a0d7ce2eb597f3aa2249a.png)
 
-内置的气泡输出窗提供两种外观：“Left” 与 “Right”，可根据角色所在位置的左右方向来对齐输出窗的显示位置。
+内置的 Bubble 打印机支持两种外观："Left" 和 "Right"，可根据其相对于角色的位置对齐打印机的方向。
 
 ```nani
 @printer Bubble.Left pos:42,80 !visible time:0
@@ -148,109 +144,150 @@ Misaki: Aliquam lobortis!
 Nanikun: Integer nec maximus elit, eget posuere risus.
 ```
 
-要同时显示多个气泡输出窗（或其他类型输出窗），可以添加自定义输出窗。
+要一次显示多个 Bubble（或任何其他）打印机，请添加自定义打印机。
 
-::: tip
-手动为气泡输出窗对齐关联角色的位置可能比较繁琐。可参考 [Wiki 教程](https://discord.com/channels/545676116871086080/1369981077958955079) 了解如何自动化该过程。
+### 气泡锚点
+
+广泛使用 Bubble 打印机时，每次都手动指定其位置可能会很乏味。相反，使用 actor 锚点让 Naninovel 自动将气泡与其各自的角色对齐。
+
+要启用此功能，请在 [角色 actor](/zh/guide/characters) 内指定锚点位置。您有两个选择：
+
+1. 在角色元数据中，使用 `Anchors` 列表并添加带有 `Bubble` ID 和 actor 游戏对象内的本地位置的记录。
+2. 如果角色是预制件（例如，分层、通用或 Live2D），请在预制件内创建一个空游戏对象，附加 `Actor Anchor` 组件并将 `Bubble` 分配为锚点 ID。
+
+正确配置后，Naninovel 不仅会将打印机定位在锚点上方，而且当它们溢出屏幕时还会翻转它们。您可以为每个角色指定多个锚点，以便根据打印机是否翻转进行更精确的对齐。以下是支持的锚点 ID：
+
+| 锚点 ID | 描述 |
+|----------------------|----------------------------------------------------------|
+| `Bubble` | 当没有其他锚点适合时的默认或后备锚点。 |
+| `Bubble/TopLeft` | 当气泡在左上角对齐时使用。 |
+| `Bubble/Top` | 当气泡在顶部边缘对齐时使用。 |
+| `Bubble/TopRight` | 当气泡在右上角对齐时使用。 |
+| `Bubble/Left` | 当气泡在左边缘对齐时使用。 |
+| `Bubble/Right` | 当气泡在右边缘对齐时使用。 |
+| `Bubble/BottomLeft` | 当气泡在左下角对齐时使用。 |
+| `Bubble/Bottom` | 当气泡在底部边缘对齐时使用。 |
+| `Bubble/BottomRight` | 当气泡在右下角对齐时使用。 |
+
+您不必指定所有这些：Naninovel 会选择最合适的那个，即使缺少精确匹配。例如，如果左上对齐但缺少 `Bubble/TopLeft`，它将检查 `Bubble/Left`，然后检查 `Bubble/Top`，最后回退到 `Bubble`。
+下面是一个指定四个锚点的示例 — 每个角落一个：
+
+![](https://i.gyazo.com/4bebc7823d44f2c02d0521d17de806e4.png)
+
+::: tip EXAMPLE
+在我们的 [示例项目](/zh/guide/samples) 中的 `Content/Characters` 下查看 `Hiyori` 和 `Senko` Live2D 角色，了解通过角色元数据和预制件内部设置气泡锚点的示例。
 :::
 
-## 添加自定义输出窗
+构建自定义 Bubble 打印机时，可以在 `Floating Printer` 属性下配置翻转和对齐行为。有关每个属性如何影响行为的更多信息，请参阅工具提示。
 
-你可以基于内置模板添加自定义文本输出窗，或从零开始创建新的输出窗。例如，下面演示如何自定义内置的 `Dialogue` 模板。
+![](https://i.gyazo.com/f37ff4c135cb29c68122881ec02b45a6.png)
 
-通过 `Create -> Naninovel -> Text Printers -> Dialogue` 资源菜单创建一个对话输出窗预制体，建议将其放置在 Naninovel 包之外的文件夹中，例如 `Assets/TextPrinters`。
+使用带锚点的自动对齐时，有时您可能希望手动定位气泡。您可以使用 [@printer] 命令来执行此操作 — 当命令指定显式位置时，自动对齐将暂时禁用。要重新启用它，请使用 `anchor!` 标志：
 
-然后编辑该预制体：修改字体、贴图、添加动画等。有关可用的 UI 构建工具，请参考 [Unity uGUI 官方文档](https://docs.unity3d.com/Packages/com.unity.ugui@latest)。在 [UI 自定义指南](/zh/guide/gui#ui-customization) 中还提供了若干视频教程与示例项目，可作为参考。
+```nani
+; 禁用自动对齐并手动定位气泡
+@printer Bubble pos:50,50
+...
+; 重新启用自动对齐
+@printer Bubble anchor!
+```
 
-使用输出窗资源管理器 GUI 将该预制体暴露给引擎资源。可通过 `Naninovel -> Resources -> Printers` 菜单打开输出窗资源管理器。点击 `+`（加号）按钮添加新记录，输入元素 ID（可与预制体名称不同），双击该记录以打开输出窗元素设置，并将输出窗预制体拖放到 `Resource` 字段中。
+## 添加自定义打印机
+
+您可以基于内置模板添加自定义文本打印机，也可以从头开始创建新打印机。例如，让我们自定义内置的 `Dialogue` 模板。
+
+使用 `Create -> Naninovel -> Text Printers -> Dialogue` 资产上下文菜单在 Naninovel 包之外的某处创建对话预制件，例如在 `Assets/TextPrinters` 文件夹中。
+
+编辑预制件：更改字体、纹理、添加动画等。有关可用 UI 构建工具的更多信息，请参阅 [uGUI 的 Unity 文档](https://docs.unity3d.com/Packages/com.unity.ugui@latest)。在 [UI 自定义指南](/zh/guide/gui#ui-自定义) 中还有一些关于使用 uGUI 的教程视频和示例项目。
+
+使用打印机的管理器 GUI 将预制件公开给引擎资源，可以使用 `Naninovel -> Resources -> Printers` 上下文菜单访问该 GUI。使用 `+`（加号）按钮添加新记录，输入 actor ID（可以与预制件名称不同），然后双击记录以打开 actor 设置。将打印机预制件拖放到 `Resource` 字段。
 
 ![](https://i.gyazo.com/3f51881fa554720b7a4092dca42fd15e.mp4)
 
-现在，你可以在脚本中通过 [@printer] 指令激活该新输出窗，并指定在资源管理器中设置的元素 ID 以使用它。
+您现在可以通过 [@printer] 命令激活新文本打印机并指定您在管理器中设置的 actor ID 来使用它。
 
 ```nani
 @printer MyNewPrinter
 ```
-::: tip 示例
-可参考 [演示项目](/zh/guide/getting-started#demo-project)，了解如何添加自定义输出窗。
-示例预制体存储于 `Assets/Prefabs/CustomPrinter.prefab`。
+
+::: tip EXAMPLE
+查看 [演示项目](/zh/guide/getting-started#demo-project) 以获取有关添加自定义打印机的示例。预制件存储为 `Assets/Prefabs/CustomPrinter.prefab`。
 :::
 
-你也可以通过手动实现 `ITextPrinterActor` 接口从零开始创建输出窗。更多信息请参阅 [自定义演出元素实现指南](/zh/guide/custom-actor-implementations)。
+也可以通过手动实现 `ITextPrinterActor` 接口从头开始创建打印机。有关更多信息，请参阅 [自定义 actor 实现](/zh/guide/custom-actor-implementations) 指南。
 
-## 文本显现效果
+## 文本显示效果
 
-输出文本的显现进度由 `Revealable Text` 组件控制。该组件封装了 Unity 的 TMPro 文本对象，并支持其所有特性。但 `Revealable Text` 本身不会应用显现效果，通常需结合其他独立组件使用，例如 `Reveal Clipped`，它会根据当前显现进度限制可见字符的最大数量。多数内置输出窗还应用了 `Reveal Fader` 组件，用于为显现的文字添加渐变透明度淡入效果。
+打印文本消息的显示进度由 `Revealable Text` 组件维护，该组件包装了 Unity 的 TMPro Text 并支持所有相同的功能。为此，使用了独立组件，例如 `Reveal Clipped`，它根据当前的显示进度限制最大可见字符。大多数内置打印机还应用了 `Reveal Fader` 组件，该组件为显示的字符添加渐变不透明度淡入淡出。
 
 ![](https://i.gyazo.com/cb76ab871fe4691646e968b2c49d0a13.png)
 
-若要调整显现效果的强度（即渐变淡入范围），请修改 `Length` 属性。
+要更改显示效果强度（淡入淡出延伸多远），请更改 `Length` 属性。
 
-当 `Slack Opacity` 低于 1 时，在追加新文本后，之前输出的文字会在 `Slack Duration` 秒内逐渐淡出至指定透明度。该功能在内置的 `Fullscreen` 输出窗中默认启用。
+当 `Slack Opacity` 小于 1 时，最后一次追加之前打印的文本的不透明度将在 `Slack Duration` 秒内淡入到指定值（这在内置 `Fullscreen` 打印机中默认启用）。
 
 ![](https://i.gyazo.com/29017ea20e8b7b95c3f7f25658b645f9.mp4)
 
-当文本输出窗尺寸固定，无法适应变化的消息长度或字体大小时，请将 TMPro 文本的溢出模式（Overflow Mode）设置为 “page”，并添加 `Reveal Paginator` 组件，使当前显示页与显现进度同步。可在内置 `Fullscreen` 输出窗中查看示例设置。
+当文本打印机具有恒定尺寸并且无法适应不同的消息长度或字体大小时，请将 TMPro 的文本溢出模式设置为 "page" 并添加 `Reveal Paginator` 组件，该组件会将当前显示的页面与显示进度同步。在内置 `Fullscreen` 打印机中查找示例设置。
 
 ## 文本样式
 
-可以通过在文本中嵌入富文本标签（Rich Text Tags）或使用 [@format] 指令来应用各种文本样式：
+可以通过放置在文本内的富文本标签或使用 [@format] 命令应用各种文本样式：
 
 ```nani
-; 输出文本，其中 “Lorem” 为加粗样式，“sit” 为蓝色斜体。
+; 以粗体打印 "Lorem"，以蓝色和斜体打印 "sit"。
 Kohaku: <b>Lorem</b> ipsum <color=#0000FF><i>sit</i></color> amet.
 ```
 
-有关可用的富文本标签，请参阅 [TMPro 富文本文档](https://docs.unity3d.com/Packages/com.unity.textmeshpro@4.0/manual/RichText)。
+有关可用标签，请参阅 [TMPro 富文本文档](https://docs.unity3d.com/Packages/com.unity.textmeshpro@4.0/manual/RichText)。
 
 ::: tip
-如果希望为某个特定角色或输出窗的所有文本消息统一应用特定的格式或样式，请参考 [消息模板](/zh/guide/text-printers#message-templates) 功能。
+如果您想对特定角色或打印机创作的所有消息应用特定的文本格式或样式，请查看 [消息模板](/zh/guide/text-printers#消息模板) 功能。
 :::
 
-## 注音文本
+## 注音 (Furigana)
 
-Naninovel 的 `Naninovel TMPro Text` 组件（`Revealable Text` 基于该组件）通过自定义 `<ruby>` 标签支持 [注音（ruby characters）](https://en.wikipedia.org/wiki/Ruby_character)。将需要显示注音的文字放入 `<ruby>` 标签中，并在标签内指定注音文本，例如：
+Naninovel 的 `Naninovel TMPro Text` 组件（`Revealable Text` 基于它）通过自定义 `<ruby>` 标签提供对 [注音](https://en.wikipedia.org/wiki/Ruby_character) 字符的支持。将应在其上方放置注音字符的文本用注音标签括起来，并在标签内指定注音文本，例如：
 
 ```nani
 Lorem <ruby="VERY">ipsum</ruby> dolor sit amet.
 ```
-—— 当消息在运行时输出时，注音文本 “VERY” 将显示在单词 “ipsum” 的正上方。
+— 在运行时打印消息时，"VERY" 注音文本将出现在 "ipsum" 单词的正上方。
 
 ![](https://i.gyazo.com/ec5eb47c3cf0951ccb589fe49c144418.png)
 
-::: info 注意
-当 `<ruby>` 标签与其他富文本标签组合使用时，请优先编写 `<ruby>` 标签，以避免格式冲突，例如：
+::: info NOTE
+当将 `<ruby>` 与其他标签结合使用时，请最后指定注音标签以防止格式问题，例如：
 
 ```nani
-Lorem <ruby="VERY"><tip="TipID">ipsum</tip></ruby> dolor sit amet.
+Lorem <tip="TipID"><ruby="VERY">ipsum</ruby></tip> dolor sit amet.
 ```
 :::
 
-你还可以通过修改输出窗预制体中 `Naninovel TMPro Text` 组件的属性，来自定义注音文字的大小与垂直偏移量。
+您可以通过更改打印机预制件中使用的 `Naninovel TMPro Text` 组件的属性来额外控制注音文本的大小和垂直行偏移。
 
-默认情况下，当在文本中插入注音内容时，文本行高会自动增加以容纳新内容。若希望所有行（无论是否包含注音）保持相同高度，请禁用 `Add Ruby Line Height` 属性，并适当增加默认行高。
+默认情况下，当注音文本插入打印消息时，行高会增加以补偿新内容。为确保所有行（无论是否有注音文本）的高度相等，请禁用 `Add Ruby Line Height` 属性并增加默认行高。
 
 ![](https://i.gyazo.com/6b4d9d41438dfc36309a6dc04682dbf5.png)
 
-以下视频展示了 `<ruby>` 标签的实际效果：
+以下是注音标签的视频演示。
 
 ![](https://www.youtube.com/watch?v=aWdq7YxIxkE)
 
-## 从右到左文本
+## 从右到左 (阿拉伯语) 文本
 
-所有内置输出窗均支持从右到左（RTL）文本的显现效果。
+可以在所有内置打印机中启用对 RTL 文本显示效果的支持。
 
 ![](https://i.gyazo.com/38b9ec2bbf18dc6ee469c3fb452eae29.mp4)
 
-要在输出窗中使用 RTL 文本，请按以下步骤操作：
-
-1. 基于任意内置模板创建一个自定义文本输出窗。
-2. 在输出窗内部的 `Revealable Text` 组件中启用 `Enable RTL Editor` 属性。
-3. 在同一组件的 “Naninovel Settings” 下拉菜单中启用 `Fix Arabic Text` 属性。
+要在打印机中使用 RTL 文本，请执行以下操作：
+1. 从任何内置模板创建自定义文本打印机。
+2. 设置打印机内部 `Revealable Text` 组件中的 `Enable RTL Editor` 属性。
+3. 在同一组件上（在 "Naninovel Settings" 下拉列表下）启用 `Fix Arabic Text` 属性。
 
 ![](https://i.gyazo.com/3eec751d0c85da8f9cfb20a6fe6902bb.png)
 
-别忘了使用 [兼容的字体](https://fonts.google.com/?subset=arabic&sort=popularity) 并正确配置字体图集；以下为示例：
+不要忘记使用 [兼容的字体](https://fonts.google.com/?subset=arabic&sort=popularity) 和图集配置；这是一个例子：
 
 ```
 Font Size: Auto Sizing
@@ -262,108 +299,112 @@ Character Set: Unicode Range (Hex) with this Sequence:
 Font Render Mode: Distance Field 16
 ```
 
-::: tip 示例
-若要查看完整的自定义 TextMeshPro 输出窗并支持从右到左（阿拉伯语）文本的设置示例，请参阅 [RTL 示例](/zh/guide/samples#rtl)。
+::: tip EXAMPLE
+有关设置支持从右到左（阿拉伯语）文本的自定义 text mesh pro 打印机的完整示例，请参阅 [RTL 示例](/zh/guide/samples#rtl)。
 :::
 
-::: info 注意
-Unity 原生并不支持阿拉伯语文本。对于需要支持阿拉伯语显示的文本标签（非输出窗部分），建议使用 `Naninovel TMPro Text` 组件。
+::: info NOTE
+Unity 原生不支持阿拉伯语文本。考虑对应该支持阿拉伯语的文本标签（打印机除外）使用 `Naninovel TMPro Text` 组件。
 :::
 
-## 中日韩（CJK）语言支持
+## CJK 语言
 
-中文、日文与韩文拥有大量独特字符，而游戏中通常只会用到其中一小部分。为优化生成的字体图集（Font Atlas）大小，TMPro 提供了自定义字符集以构建 SDF 纹理的功能。
+中文、日语和韩语有许多独特的符号，而游戏中通常只需要一小部分。为了优化生成的字体图集大小，TMPro 有一个选项可以指定为其构建 SDF 纹理的字符集。
 
 ![](https://i.gyazo.com/cdd1dc10d872d6bcb4d44c14c61df588.png)
 
-若想获取 Naninovel 游戏中实际使用的字符集，可通过 `Naninovel -> Tools -> Character Extractor` 打开字符提取工具（Character Utility）。
+要查找 Naninovel 将显示哪些字符，请使用可通过 `Naninovel -> Tools -> Character Extractor` 编辑器菜单访问的 Character Utility。
 
 ![](https://i.gyazo.com/706613a08aa2519964ccd98bd12a288f.png)
 
-该工具会扫描指定文件夹中的所有场景脚本与文本资源（包括子文件夹），从而提取出游戏中玩家可能看到的所有字符，包括输出文本、UI 标签、可解锁提示等。
+该工具将检查指定文件夹（包括所有子文件夹）中的剧本脚本和管理文本文档，因此您将获得 Naninovel 向玩家显示的所有文本的字符，包括所有打印文本、UI 标签、可解锁提示等。
 
-::: tip 示例
-请参阅 [本地化示例](/zh/guide/samples#本地化)，了解如何为日语语言环境使用自定义 TMPro 字体图集。当选择日语时会自动切换至日语字体图集，切换回其他语言时则恢复默认字体图集。
+::: tip EXAMPLE
+查看 [本地化示例](/zh/guide/samples#本地化)，了解如何为日语区域设置使用自定义 TMPro 字体图集。选择日语时字体会自动切换，选择其他语言时会切换回默认图集。
 :::
 
-## 文本显现音效
+## 文本显示声音
 
-对于支持文字显现效果的内置输出窗（目前包括 `Dialogue`、`Fullscreen` 与 `Wide`），你可以为文字显现过程设置音效（SFX）。
+对于支持显示效果的内置打印机（目前为 `Dialogue`、`Fullscreen` 和 `Wide`），您可以选择设置显示字符时播放的 SFX。
 
-按照上文“添加自定义输出窗”的步骤，基于任意内置输出窗创建一个自定义输出窗，然后在预制体根对象上找到 `Revealable Text Printer Panel` 组件，使用 `Chars SFX` 属性设置文字显现时播放的音效。音效选项来源于你通过 `Naninovel -> Resources -> Audio` 菜单添加的音频资源。
+按照上面的“添加自定义打印机”指南创建基于任何内置打印机的自定义打印机，然后找到附加到预制件根对象的 `Revealable Text Printer Panel` 组件，并使用 `Chars SFX` 属性设置显示字符时要播放的 SFX。可用选项的实际列表基于您通过 `Naninovel -> Resources -> Audio` 菜单添加的音频资源。
 
-下图展示了一个示例配置：空格字符播放 “Keystroke2”，字符 `D`、`d`、`F`、`1`、`4`、`9` 与 `*` 播放 “Explosion”，字符 `%` 不播放音效，其余所有字符播放 “Keystroke1”。
+下图表示一种设置，其中 "Keystroke2" SFX 将用于空格，"Explosion" 用于字符 `D`、`d`、`F`、`1`、`4`、`9` 和 `*`，`%` 字符不播放 SFX，所有其他字符播放 "Keystroke1"。
 
 ![](https://i.gyazo.com/c51247254e262dca35267b3689460ad2.png)
 
-此外，你还可以在角色配置菜单中设置 `Message Sound`，当该角色为消息作者时，不论使用哪种输出窗，其文字显现时都会播放角色专属的音效。
+或者，您可以在角色配置中设置 `Message Sound`，以便在显示该角色为消息作者的文本时播放特定于角色的声音（无论哪个文本打印机正在打印消息）。
 
-文字显现音效播放频率极高（取决于文字显现速度），当同一音效连续播放时会被裁剪，因此应确保音频片段短促、清晰（开头无静音）。
+文本显示声音播放非常频繁（取决于消息显示速度），并且在连续播放相同声音时会被裁剪，因此请确保相应的音频剪辑非常短且清晰（开头没有任何暂停或静音）。
 
-若文字显现音效未按预期播放（例如音效太长无法在每个字符播放一次），可考虑使用 `TextPrinterManager` [引擎服务](/zh/guide/engine-services) 的 `OnPrintTextStarted` 与 `OnPrintTextFinished` 事件，在文本输出窗开始与结束时手动启动或停止循环播放音效。
+如果显示声音不适合您（例如，声音不够短，无法在每个字符显示时播放），请考虑使用 `TextPrinterManager` [引擎服务](/zh/guide/engine-services) 的 `OnPrintTextStarted` 和 `OnPrintTextFinished` 事件来相应地开始/停止循环声音。
 
-## 显现事件
+## 显示事件
 
-你可以在特定字符显现时挂钩事件，以执行任意自定义操作。可在输出文本中使用 `<@...>` 标签指定事件触发位置。例如，在单词 “dolor” 显现后触发携带 “foo” 载荷的显现事件：
+可以挂钩显示特定字符时的事件以执行任意操作。使用 `<@...>` 标签在打印文本中指定应调用事件的位置。例如，要在显示 "dolor" 后触发带有 "foo" 有效负载的显示事件：
 
 ```nani
 Lorem ipsum dolor<@foo> sit amet.
 ```
 
-可通过附加在输出窗预制体中可显现文本对象上的 `Event Broadcaster` 组件来监听事件。所有内置输出窗均已预装该组件，因此你只需绑定相应的监听器即可。
+使用附加到打印机预制件的可显示文本对象的 `Event Broadcaster` 组件来侦听事件。所有内置打印机均已附加该组件，因此您只需连接侦听器即可。
 
 ![](https://i.gyazo.com/b0fad2439f2b2136a3b3c13f84f365d2.png)
 
-内置输出窗还启用了 **Play Command** （执行指令）选项。启用后，组件会尝试将事件体（即 `@` 之后的部分）解析并执行为指令。例如，以下示例会在 “dolor” 显现时为背景着色：
+内置打印机还启用了 **Play Command** 选项。这将使组件尝试解析并执行事件主体（`@` 之后的部分）作为命令。例如，以下将在显示 "dolor" 时着色背景：
 
 ```nani
 Lorem ipsum dolor<@back tint:blue> sit amet.
 ```
 
-你可以使用事件标签来替代 [内联指令](/zh/guide/scenario-scripting#command-inlining)，以便将它们暴露给 [本地化文档](/zh/guide/localization#scripts-localization)，从而允许翻译人员根据所选语言修改需要执行的指令。
+您可以使用事件标签代替 [内联命令](/zh/guide/scenario-scripting#命令内联) 将它们公开给 [本地化文档](/zh/guide/localization#脚本本地化)，允许翻译人员根据所选区域设置覆盖执行的命令。
 
 ## 等待输入标签
 
-如果你经常使用 `<@wait i>` 而非 `[-]` 等待输入指令，只是为了让它能被本地化文档识别，可以考虑使用 `<->` 等待输入标签 —— 它具有相同功能，但书写更简短。
+如果您经常使用 `<@wait i>` 而不是 `[-]` 等待输入命令只是为了将它们公开给本地化文档，请考虑改用 `<->` 等待输入标签 — 它的工作方式相同，但键入更短。
 
 ```nani
-; 与 “Lorem[-] ipsum” 效果相同，
-; 但该等待输入指令将会暴露给本地化文档。
+; 与 'Lorem[-] ipsum' 相同，但等待输入
+; 命令将公开给本地化文档。
 Lorem<-> ipsum
 ```
 
-## 显现表达式
+## 显示表达式
 
-在某些情况下，可能需要将 [脚本表达式](/zh/guide/script-expressions) 包含到生成的本地化文档中，或在语言（区域设置）更改时强制重新计算表达式。
+在某些情况下，可能需要在生成的本地化文档中包含 [脚本表达式](/zh/guide/script-expressions) 或在语言（区域设置）更改时强制重新评估表达式。
 
-其用法与 [显现事件](/zh/guide/text-printers#reveal-events) 类似，但使用 `:` 标签而非 `@` 标签：
+该过程类似于 [显示事件](/zh/guide/text-printers#显示事件)，但使用 `:` 标签代替 `@`：
 
 ```nani
 Lorem ipsum <:random(t_text1, t_text2)> sit amet.
 ```
 
-—— `random(t_text1, t_text2)` 表达式将在每次文本被分配到输出窗时重新计算，包括语言（区域设置）更改时。这会使 `t_text1` 与 `t_text2` 这类 [脚本文本变量](/zh/guide/managed-text#script-text) 与当前激活的语言环境保持同步。此外，该表达式也会被包含在本地化文档中，从而允许为不同语言单独调整。
+— 每次将文本分配给打印机时（包括语言更改时），都会重新评估 `random(t_text1, t_text2)` 表达式，从而使 `t_text1` 和 `t_text2` [脚本文本变量](/zh/guide/managed-text#脚本文本) 与当前活动区域设置同步。表达式也将包含在本地化文档中，允许为每种特定语言更改它。
 
-显现表达式还可帮助译者改变插值变量的顺序，因为不同语言在语法结构和表达顺序上往往存在差异：
+显示表达式对于允许翻译人员更改注入值的顺序也很有用，因为语言对各种词性的顺序/优先级有不同的规则是很常见的：
 
-—— 在此示例中，`MC` 与 `AC` 两个变量（通常为玩家自定义的角色姓名）都将暴露在生成的本地化文档中，从而使翻译者在需要时可调整它们的顺序。
+```nani
+Hello, <:MC>! How's <:AC> doing?
+```
+
+— 在这里，`MC` 和 `AC` 变量（可能包含玩家指定的角色名称）都将暴露在生成的本地化文档中，以便翻译人员在必要时能够更改它们的顺序。
 
 ::: warning
-请避免在依赖或修改游戏状态的表达式中使用此功能，否则可能导致未定义行为。例如，若某个表达式的结果依赖于本地变量 `foo`，而带有该表达式的文本消息曾被输出并保存在日志中，当玩家切换语言时，该表达式将基于当时 `foo` 的当前值重新计算，这可能与最初输出时的值不同，从而导致显示不一致。
+避免在改变或依赖游戏状态的表达式中使用此功能，因为它可能会导致未定义的行为。例如，考虑一个表达式，其结果取决于局部变量 `foo`，而包含此表达式的消息在某个时刻被打印并保留在积压日志中。如果玩家更改区域设置，表达式将使用 `foo` 在更改区域设置时的任何值重新评估，这可能与最初打印时不同。
 :::
 
 ## 选择标签
 
-[显现表达式](/zh/guide/text-printers#reveal-expressions) 的常见用法之一是将其用作选择器。例如，你可能希望从多个文本中随机选择一个，或根据玩家的选择（如人称代词）显示不同的措辞。
+[显示表达式](/zh/guide/text-printers#显示表达式) 的一个常见用例是将它们用作选择器。例如，您可能希望包含池中的随机文本或取决于玩家选择的内容，例如依赖于代词的措辞。
 
-如果这种模式在剧本中频繁使用，每次都编写完整的表达式语法会显得繁琐。此时可考虑使用 **选择标签（select tag）**：
+如果这在您的场景中很普遍，那么每次重复完整的表达式语法可能会变得乏味。在这种情况下，请考虑使用选择标签：
 
 ```nani
-; 选择随机颜色。
-My favourite color is </red/blue/green>.
+; 选择一种随机颜色。
+我最喜欢的颜色是 </red/blue/green>。
 
-; 基于玩家选择。
-Select your pronouns.
+; 基于用户选择进行选择。
+选择您的代词。
 @choice "He/Him" set:selector=0
 @choice "She/Her" set:selector=1
 @choice "They/Them" set:selector=2
@@ -371,11 +412,9 @@ Select your pronouns.
 </He/She/They> </was/was/were> magnificent.
 ```
 
-请注意 `</x/y>` 标签 —— 它们即为选择器标签。位于 `/` 之间的文本称为选项。默认情况下，系统会随机返回一个选项。但如果你将变量 `selector` 设置为某个索引值，则标签会返回对应索引（从零开始）的选项。
+注意 `</x/y>` 标签 — 这些是选择器标签。`/` 字符之间的文本称为选项。默认情况下，将返回随机选项。但是，如果您将 `selector` 变量设置为索引，标签将改为返回具有该索引（从零开始）的选项。
 
-若需更灵活的选择逻辑，可创建一个自定义的 [表达式函数](/zh/guide/script-expressions#adding-custom-functions)，并为其设置别名 `select`。该函数应接受 `params string[]` 参数并返回一个 `string`。当选择器标签被解析时，将自动调用该函数以计算结果。
-
-以下是一个自定义选择函数示例：第一个选项用于指定选择方式；若第一个选项为空，则默认执行随机选择。
+如果您需要更灵活的选择逻辑，请创建一个带有 `select` 别名的自定义 [表达式函数](/zh/guide/script-expressions#添加自定义函数)，并使其接受 `params string[]` 并返回 `string`。每当编译选择器标签时，它都会使用您的函数来评估结果。下面是自定义选择函数的示例，其中第一个选项指定选择类型，如果第一个选项为空，则回退到随机选择：
 
 ```cs
 [ExpressionFunction("select")]
@@ -391,17 +430,17 @@ public static string Select (params string[] args)
 }
 ```
 
-你可以在场景脚本中如下使用该功能：
+然后您可以在场景中如下使用它：
 
 ```nani
-; 基于代词进行选择。
+; 基于代词选择。
 </p/his/her/their>
 
-; 基于性格（脾气）进行选择。
+; 基于脾气选择。
 </t/smiling/frowning/poker face>
 
 ; 随机选择。
 <//green/red>
 ```
 
-选择器标签同样会暴露给本地化文档，从而允许译者根据目标语言与文化进行相应调整。
+选择器标签也暴露给本地化文档，允许翻译人员根据需要调整结构以适应目标文化。
