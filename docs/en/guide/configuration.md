@@ -1,5 +1,5 @@
 # Configuration
-The engine configuration is stored in multiple scriptable object assets located at `Assets/NaninovelData/Resources/Naninovel/Configuration` folder. They are automatically generated when opening the corresponding configuration menus in the Unity editor for the first time.
+The engine configuration is stored in multiple scriptable object assets located at `Assets/NaninovelData/Resources/Naninovel/Configuration` folder. They are automatically generated when opening the corresponding configuration menus in the Unity editor for the first time. 
 
 Use `Naninovel -> Configuration` or `Edit -> Project Settings -> Naninovel` to access the configuration menu.
 
@@ -252,13 +252,13 @@ Show Loading UI | False | Whether to automatically show `ILoadingUI` during the 
 
 Property | Default Value | Description
 --- | --- | ---
-Loader | Scripts- (Addressable, Project) | Configuration of the resource loader used with scenario script resources.
-Script Compiler | scenario script Compiler | IScriptCompiler implementation to use for transforming source scenario text into script assets. Reimport script assets after modifying this setting for changes to take effect.
+Loader | Scripts- (Addressable, Project) | Configuration of the resource loader used with naninovel script resources.
+Script Compiler | Naninovel Script Compiler | IScriptCompiler implementation to use for transforming source scenario text into script assets. Reimport script assets after modifying this setting for changes to take effect.
 Compiler Localization |  (Naninovel.Compiler Localization) | Locale-specific NaniScript compiler options. Will propagate to IDE extension on metadata sync. Restart Unity editor and reimport script assets for changes to take effect.
 Initialization Script | Null | Local resource path of the script to play right after the engine initialization.
 Title Script | Title | Local resource path of the script to play when showing the Title UI. Can be used to setup the title screen scene (background, music, etc).
 Start Game Script | Entry | Local resource path of the script to play when starting a new game. Will use first available when not specified.
-Auto Add Scripts | True | Whether to automatically add created scenario scripts to the resources.
+Auto Add Scripts | True | Whether to automatically add created naninovel scripts to the resources.
 Auto Resolve Path | True | Whether to automatically resolve and update resource paths whenever scripts are created, renamed or moved.
 Hot Reload Scripts | True | Whether to reload modified (both via visual and external editors) scripts and apply changes during play mode without restarting the playback.
 Watch Scripts | True | Whether to run a file system watcher over '.nani' files. Required to register script changes when edited with an external application.
@@ -284,8 +284,8 @@ Graph Orientation | Horizontal | Whether to build the graph vertically or horizo
 Graph Auto Align Padding | (10.00, 0.00) | Padding to add for each node when performing auto align.
 Show Synopsis | True | Whether to show fist comment lines of the script inside the graph node.
 Graph Custom Style Sheet | Null | Allows modifying default style of the script graph.
-Enable Community Modding | False | Whether to allow adding external scenario scripts to the build.
-External Loader | Scripts- (Local) | Configuration of the resource loader used with external scenario script resources.
+Enable Community Modding | False | Whether to allow adding external naninovel scripts to the build.
+External Loader | Scripts- (Local) | Configuration of the resource loader used with external naninovel script resources.
 
 </div>
 
@@ -376,3 +376,4 @@ Property | Default Value | Description
 Loader | Unlockables- (Addressable, Project) | Configuration of the resource loader used with unlockable resources.
 
 </div>
+

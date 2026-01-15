@@ -301,7 +301,7 @@ You create the background actor record and assign the appearance sprites similar
 
 ![](https://i.gyazo.com/1017667cd15b374839127fa5e1e5c2e5.png)
 
-When switching between background appearances, a cross-fade [transition effect](/guide/transition-effects) is used by default. To change the effect, specify the transition type after the appearance name:
+When switching between background appearances, a cross-fade [transition effect](/guide/special-effects#transition-effects) is used by default. To change the effect, specify the transition type after the appearance name:
 
 ```nani
 @back Road

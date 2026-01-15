@@ -439,6 +439,10 @@ abbr {
     width: 100% !important;
 }
 
+[data-imgit-container]:not([data-imgit-container] [data-imgit-container]) {
+    margin: 16px 0;
+}
+
 [data-imgit-container] + .custom-block,
 .custom-block + [data-imgit-container] {
     /* While all the similar margins are 16px, the text line height also contributes to a bit
