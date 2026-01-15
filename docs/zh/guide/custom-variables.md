@@ -112,7 +112,7 @@ Archibald: Greetings, {name}!
 
 在游戏运行时，可以查看并修改所有现有变量的值，以便调试。
 
-打开 [开发控制台](/zh/guide/development-console)，输入 `var` 指令即可打开变量编辑窗口。
+打开 开发控制台，输入 `var` 指令即可打开变量编辑窗口。
 
 ![](https://i.gyazo.com/d1812668c0776b01f3a82c5ddcba0145.png)
 

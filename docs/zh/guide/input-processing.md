@@ -2,26 +2,26 @@
 
 Naninovel 使用 Unity 的 [输入系统](https://docs.unity3d.com/Packages/com.unity.inputsystem@latest) 来监听以下操作。
 
-| 名称            | 键盘+鼠标                    | 手柄                             | 描述                                                                                                                            |
-|-----------------|-----------------------------|----------------------------------|---------------------------------------------------------------------------------------------------------------------------------|
-| Submit          | Enter                       | 南键                             | 通用确认操作，例如确认提示或提交输入表单。                                                                                      |
-| Cancel          | Escape                      | 东键                             | 通用取消操作，例如拒绝提示或退出菜单。                                                                                          |
-| Delete          | Delete                      | 北键                             | 通用删除操作，例如删除选中的存档槽位。                                                                                          |
-| Navigate        | 方向键                      | 十字键、左摇杆                   | 通用导航操作，例如在一行存档槽位中移动选择。                                                                                    |
-| Scroll          | 滚轮、Page Up/Down          | 右摇杆                           | 通用滚动操作，例如滚动查看回顾记录。                                                                                            |
-| Page            |                             | 左扳机 <-> 右扳机                | 通用翻页操作，例如在存档加载菜单中切换页面。                                                                                    |
-| Tab             |                             | 左肩键 <-> 右肩键                | 通用切换标签操作，例如在设置菜单中切换选项卡。                                                                                  |
-| Continue        | Enter、滚轮上（Y+）         | 南键                             | 关闭“等待输入模式”（打印文本时激活）以继续脚本播放。                                                                          |
-| Pause           | Backspace                   | Start                            | 显示暂停菜单。                                                                                                                  |
-| Skip            | Ctrl                        | 西键                             | 启动 [跳过模式](/zh/guide/text-printers#text-skipping)（快进），在按住按键时启用。                                                 |
-| ToggleSkip      | Tab                         | 右摇杆按压                       | 切换跳过模式（永久开启或关闭）。                                                                                                |
-| SkipMovie       | Escape                      | 东键                             | 跳过（取消）当前播放的 [视频](/zh/api/#movie)。                                                                                  |
-| AutoPlay        | A                           | 东键                             | 切换 [自动播放模式](/zh/guide/text-printers#auto-advance-text)，在设定延迟后自动关闭“等待输入模式”。                             |
-| ToggleUI        | 空格键                      | 北键                             | 切换整个 UI 层的 [可见性](/zh/guide/gui#ui-toggling)（隐藏/显示）。                                                    |
-| ShowBacklog     | L                           | 右肩键                           | 切换 [回顾日志界面](/zh/guide/text-printers#printer-backlog) 的可见性。                                                            |
-| Rollback        | B、滚轮下（Y-）             | 左肩键                           | 倒回脚本播放进度。                                                                                                              |
-| CameraLook      | 鼠标移动                    | 右摇杆                           | 在 [@look] 模式下移动相机。                                                                                                     |
-| ToggleConsole   | `（反引号）                 |                                  | 切换 [开发者控制台](/zh/guide/development-console)。                                          |
+| 名称            | 键盘+鼠标                    | 手柄                             | 描述                                                                                                                           |
+|-----------------|-----------------------------|----------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| Submit          | Enter                       | 南键                             | 通用确认操作，例如确认提示或提交输入表单。                                                                                     |
+| Cancel          | Escape                      | 东键                             | 通用取消操作，例如拒绝提示或退出菜单。                                                                                         |
+| Delete          | Delete                      | 北键                             | 通用删除操作，例如删除选中的存档槽位。                                                                                         |
+| Navigate        | 方向键                      | 十字键、左摇杆                   | 通用导航操作，例如在一行存档槽位中移动选择。                                                                                   |
+| Scroll          | 滚轮、Page Up/Down          | 右摇杆                           | 通用滚动操作，例如滚动查看回顾记录。                                                                                           |
+| Page            |                             | 左扳机 <-> 右扳机                | 通用翻页操作，例如在存档加载菜单中切换页面。                                                                                   |
+| Tab             |                             | 左肩键 <-> 右肩键                | 通用切换标签操作，例如在设置菜单中切换选项卡。                                                                                 |
+| Continue        | Enter、滚轮上（Y+）         | 南键                             | 关闭“等待输入模式”（打印文本时激活）以继续脚本播放。                                                                         |
+| Pause           | Backspace                   | Start                            | 显示暂停菜单。                                                                                                                 |
+| Skip            | Ctrl                        | 西键                             | 启动 [跳过模式](/zh/guide/text-printers#text-skipping)（快进），在按住按键时启用。                                                |
+| ToggleSkip      | Tab                         | 右摇杆按压                       | 切换跳过模式（永久开启或关闭）。                                                                                               |
+| SkipMovie       | Escape                      | 东键                             | 跳过（取消）当前播放的 [视频](/zh/api/#movie)。                                                                                 |
+| AutoPlay        | A                           | 东键                             | 切换 [自动播放模式](/zh/guide/text-printers#auto-advance-text)，在设定延迟后自动关闭“等待输入模式”。                            |
+| ToggleUI        | 空格键                      | 北键                             | 切换整个 UI 层的 [可见性](/zh/guide/gui#ui-toggling)（隐藏/显示）。                                                   |
+| ShowBacklog     | L                           | 右肩键                           | 切换 [回顾日志界面](/zh/guide/text-printers#printer-backlog) 的可见性。                                                           |
+| Rollback        | B、滚轮下（Y-）             | 左肩键                           | 倒回脚本播放进度。                                                                                                             |
+| CameraLook      | 鼠标移动                    | 右摇杆                           | 在 [@look] 模式下移动相机。                                                                                                    |
+| ToggleConsole   | `（反引号）                 |                                  | 切换 开发者控制台。                                          |
 
 ## 自定义输入
 

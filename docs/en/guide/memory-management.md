@@ -203,13 +203,13 @@ Actors (characters, backgrounds, text printers and choice handlers) are the key 
 
 ### Appearances
 
-Some actor implementations have their appearance mapped 1:1 to a resource: sprite actor appearance is associated with a single texture asset, video actor appearance is a single video clip and so on. This allows Naninovel manage their resources based on specific appearances referenced in scenario scripts. For example, in case only `Happy` and `Sad` appearances of sprite character are used in a given script, only `Happy.png` and `Sad.png` textures will preload before the script is played, no matter how many other appearances character has.
+Some actor implementations have their appearance mapped 1:1 to a resource: sprite actor appearance is associated with a single texture asset, video actor appearance is a single video clip and so on. This allows Naninovel to manage resources based on specific appearances referenced in scenario scripts. For example, in case only `Happy` and `Sad` appearances of a sprite character are used in a given script, only `Happy.png` and `Sad.png` textures will be preloaded before the script is played, no matter how many other appearances the character has.
 
-However, layered, diced sprite, generic, Live2D and Spine actors all require monolith prefab in order to represent any of the associated appearances making it impossible to independently load resources. In such cases, Naninovel will preload the whole prefab with all its dependencies and only unload it when the actor is not referenced in any of the commands, no matter which appearances are used.
+However, layered, diced sprite, generic, Live2D and Spine actors all require a monolith prefab in order to represent any of the associated appearances, making it impossible to independently load resources. In such cases, Naninovel will preload the whole prefab with all its dependencies and only unload it when the actor is not referenced in any of the commands, no matter which appearances are used.
 
 ### Removing Actors
 
-Naninovel will, by default, automatically remove unused actors and destroy associated game objects when unloading script resources. If you'd like to manually dispose the actors, disable `Remove Actors` option in resource provider configuration menu and use [@remove] commands:
+Naninovel will, by default, automatically remove unused actors and destroy associated game objects when unloading script resources. If you'd like to manually dispose the actors, disable the `Remove Actors` option in the resource provider configuration menu and use [@remove] commands:
 
 ```nani
 @back id:LayeredBackground
@@ -233,9 +233,9 @@ Naninovel will, by default, automatically remove unused actors and destroy assoc
 
 ## Lifetime Management
 
-Resource provider manager keeps track of the references to the loaded resources and dispose (unload) the resources when they're not used ("held") by any users ("holders").
+The resource provider manager keeps track of references to loaded resources and disposes (unloads) them when they're not used ("held") by any users ("holders").
 
-The mechanism is most prominent in script commands. For example, let's assume you want to play a background music with a custom command. The audio player will require an audio clip asset (resource) to play, so we need to preload and "hold" the asset before the command is executed and release it after:
+The mechanism is most prominent in script commands. For example, let's assume you want to play a background music with a custom command. The audio player will require an audio clip asset (resource) to play, so we need to preload and "hold" the asset before the command is executed and release it afterward:
 
 ```csharp
 public class PlayMusic : Command, Command.IPreloadable
@@ -261,22 +261,22 @@ public class PlayMusic : Command, Command.IPreloadable
 }
 ```
 
-Notice the command implements `Command.IPreloadable` interface. Script player will detect such commands and invoke the preload and unload methods to ensure the assets are ready before the command is executed and released after.
+Notice the command implements `Command.IPreloadable` interface. The script player will detect such commands and invoke the preload and unload methods to ensure the assets are ready before the command is executed and released after.
 
 ## Sharing Resources
 
-In some cases you may want to share resources between Naninovel and a custom gameplay mode. In case the custom gameplay is implemented independently of Naninovel (the engine is disabled when the custom mode is active), there shouldn't be any issues. However, if both the custom mode and Naninovel are used at the same time, you have to pay attention to how the resources are used.
+In some cases you may want to share resources between Naninovel and a custom gameplay mode. If the custom gameplay is implemented independently of Naninovel (the engine is disabled when the custom mode is active), there shouldn't be any issues. However, if both the custom mode and Naninovel are used at the same time, you have to pay attention to how the resources are used.
 
-For example, let's assume you have a Naninovel's sprite background with an appearance texture that is also used as a source for some UI element. At some point Naninovel will attempt to release the texture and it will also disappear in the UI element. That happens, because the engine is not aware, that you're using the texture and it shouldn't be unloaded.
+For example, let's assume you have a Naninovel sprite background with an appearance texture that is also used as a source for some UI element. At some point Naninovel will attempt to release the texture and it will also disappear in the UI element. That happens because the engine is not aware that you're using the texture and it shouldn't be unloaded.
 
-To notify Naninovel, that you're using an asset, use `Hold` method of resource provider service:
+To notify Naninovel that you're using an asset, use the `Hold` method of the resource provider service:
 
 ```csharp
 var resourceManager = Engine.GetService<IResourceProviderManager>();
 resourceManager.Hold(asset, holder);
 ```
 
-Be aware, that while you're holding an asset, it won't be unloaded by Naninovel, so it's up to you to dispose it to prevent memory leaks:
+Be aware that while you're holding an asset, it won't be unloaded by Naninovel, so it's up to you to release it to prevent memory leaks:
 
 ```csharp
 var holdersCount = resourceManager.Release(asset, holder);
@@ -284,9 +284,9 @@ var holdersCount = resourceManager.Release(asset, holder);
 if (holdersCount == 0) Resources.UnloadAsset(asset);
 ```
 
-"Holder" can be a reference to any object; usually it's the same class that is using the asset. It's used to distinguish the holders and prevent same holder from accidentally holding a resource multiple times.
+"Holder" can be a reference to any object; usually it's the same class that is using the asset. It's used to distinguish the holders and prevent the same holder from accidentally holding a resource multiple times.
 
-Below is an example of Unity component, which will prevent Naninovel from ever unloading an asset:
+Below is an example of Unity component which will prevent Naninovel from ever unloading an asset:
 
 ```csharp
 using Naninovel;

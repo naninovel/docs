@@ -757,7 +757,7 @@ The bomb is defused!
 
 ![](https://i.gyazo.com/5d433783e1a12531c79fe6be80c92da7.png)
 
-若希望手动触发当前正在播放的 Naninovel 脚本的热重载（例如在 Unity 外部编辑脚本或在构建版本中运行时），可使用 `reload` [控制台指令](/zh/guide/development-console)。
+若希望手动触发当前正在播放的 Naninovel 脚本的热重载（例如在 Unity 外部编辑脚本或在构建版本中运行时），可使用 `reload` 控制台指令。
 
 ## IDE 支持
 
@@ -777,7 +777,7 @@ The bomb is defused!
 
 在处理大型 Naninovel 脚本时，每次都从头开始播放来测试脚本的特定部分会非常麻烦。
 
-你可以使用 [开发者控制台](/zh/guide/development-console)，即时将当前播放的脚本“回退”到任意一行：
+你可以使用 开发者控制台，即时将当前播放的脚本“回退”到任意一行：
 
 ```
 rewind 12

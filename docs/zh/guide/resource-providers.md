@@ -95,13 +95,13 @@ Project 提供器用于加载 Unity 项目中 “Resources” 文件夹下的资
 本地资源提供器允许从本地文件系统中的任意位置加载简单资源（如剧情脚本、受管文本、角色立绘、背景图片、音频等）。
 
 ::: info NOTE
-本地提供器会直接从文件系统加载原始文件并在运行时进行转换，这种方式较慢，且相比其他提供器支持的文件类型更少。仅建议在开发阶段或用于特定功能（例如 [社区模组功能](/zh/guide/community-modding)）时使用。
+本地提供器会直接从文件系统加载原始文件并在运行时进行转换，这种方式较慢，且相比其他提供器支持的文件类型更少。仅建议在开发阶段或用于特定功能（例如 [社区模组功能](/zh/guide/resource-providers#community-modding)）时使用。
 :::
 
 支持的文件格式：
 
-- `.nani`：剧情脚本文本文件  
-- `.png` 与 `.jpg`：图像或纹理文件  
+- `.nani`：剧情脚本文本文件
+- `.png` 与 `.jpg`：图像或纹理文件
 - `.wav`：音频文件（仅支持 PCM16 44100Hz 立体声格式）
 
 ::: tip
@@ -112,9 +112,9 @@ Project 提供器用于加载 Unity 项目中 “Resources” 文件夹下的资
 
 在资源提供器配置中，`Local Path Root` 属性应指向存放本地资源的文件夹。该路径可以是绝对路径（如 `C:\Resources`），也可以是以下任意起始符号的相对路径：
 
-- `%DATA%` — 游戏数据目录（[Application.dataPath](https://docs.unity3d.com/ScriptReference/Application-dataPath)）  
-- `%PDATA%` — 游戏持久化数据目录（[Application.persistentDataPath](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath)）  
-- `%STREAM%` — “StreamingAssets” 目录（[Application.streamingAssetsPath](https://docs.unity3d.com/ScriptReference/Application-streamingAssetsPath)）  
+- `%DATA%` — 游戏数据目录（[Application.dataPath](https://docs.unity3d.com/ScriptReference/Application-dataPath)）
+- `%PDATA%` — 游戏持久化数据目录（[Application.persistentDataPath](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath)）
+- `%STREAM%` — “StreamingAssets” 目录（[Application.streamingAssetsPath](https://docs.unity3d.com/ScriptReference/Application-streamingAssetsPath)）
 - `%SPECIAL{F}%` — 操作系统的特殊文件夹，其中 `F` 是 [.NET SpecialFolder 枚举](https://docs.microsoft.com/en-us/dotnet/api/system.environment.specialfolder) 的名称。
 
 默认路径 `%DATA%/Resources` 指向游戏数据目录下的 “Resources” 文件夹（该路径会因平台不同而有所变化）。
@@ -123,7 +123,7 @@ Project 提供器用于加载 Unity 项目中 “Resources” 文件夹下的资
 
 ![](https://i.gyazo.com/eb435b782cfb9df6c403702e8f6124df.png)
 
-如果脚本配置中的路径前缀（Path Prefix）设置为 `Scripts`，且本地提供器已添加至加载器列表中，那么使用 `nav` [控制台指令](/zh/guide/development-console) 打开的脚本导航器将自动识别指定文件夹下的所有 `.nani` 剧本文本文件。
+如果脚本配置中的路径前缀（Path Prefix）设置为 `Scripts`，且本地提供器已添加至加载器列表中，那么使用 `nav` 控制台指令 打开的脚本导航器将自动识别指定文件夹下的所有 `.nani` 剧本文本文件。
 
 ![](https://i.gyazo.com/df8ad31d30b5c10c9a918e69a4543567.png)
 
