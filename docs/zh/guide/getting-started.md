@@ -263,7 +263,7 @@ Kohaku.Happy: 你好，世界！
 @back City
 ```
 
-在切换背景时，系统默认会使用交叉淡入淡出（cross-fade）[过渡效果](/zh/guide/transition-effects)。若要更改效果，请在外观名称后指定过渡类型，例如：
+在切换背景时，系统默认会使用交叉淡入淡出（cross-fade）[过渡效果](/zh/guide/special-effects#transition-effects)。若要更改效果，请在外观名称后指定过渡类型，例如：
 
 ```nani
 @back City

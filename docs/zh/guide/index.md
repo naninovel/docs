@@ -51,7 +51,7 @@ Naninovel 是一个用于 [Unity 游戏引擎](https://unity3d.com) 的扩展插
   * [分层背景](/zh/guide/backgrounds#layered-backgrounds)
   * [通用背景](/zh/guide/backgrounds#generic-backgrounds)
   * [场景背景](/zh/guide/backgrounds#scene-backgrounds)
-* [过渡特效](/zh/guide/transition-effects)
+* [过渡特效](/zh/guide/special-effects#transition-effects)
 * [透视相机与环视模式](https://youtu.be/rC6C9mA7Szw)
 * [特效系统（FX System）](/zh/guide/special-effects)
 * [背景音乐（BGM）](/zh/guide/audio#background-music)
