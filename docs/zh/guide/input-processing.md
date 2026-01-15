@@ -15,7 +15,7 @@ Naninovel 使用 Unity 的 [输入系统](https://docs.unity3d.com/Packages/com.
 | Pause           | Backspace                   | Start                            | 显示暂停菜单。                                                                                                                  |
 | Skip            | Ctrl                        | 西键                             | 启动 [跳过模式](/zh/guide/text-printers#text-skipping)（快进），在按住按键时启用。                                                 |
 | ToggleSkip      | Tab                         | 右摇杆按压                       | 切换跳过模式（永久开启或关闭）。                                                                                                |
-| SkipMovie       | Escape                      | 东键                             | 跳过（取消）当前播放的 [视频](/zh/guide/movies)。                                                                                  |
+| SkipMovie       | Escape                      | 东键                             | 跳过（取消）当前播放的 [视频](/zh/api/#movie)。                                                                                  |
 | AutoPlay        | A                           | 东键                             | 切换 [自动播放模式](/zh/guide/text-printers#auto-advance-text)，在设定延迟后自动关闭“等待输入模式”。                             |
 | ToggleUI        | 空格键                      | 北键                             | 切换整个 UI 层的 [可见性](/zh/guide/gui#ui-toggling)（隐藏/显示）。                                                    |
 | ShowBacklog     | L                           | 右肩键                           | 切换 [回顾日志界面](/zh/guide/text-printers#printer-backlog) 的可见性。                                                            |

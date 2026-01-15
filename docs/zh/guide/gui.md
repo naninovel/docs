@@ -101,7 +101,7 @@ UI 自定义功能允许你添加自定义界面，或修改、完全替换任�
 
 ### 更改字体
 
-若希望使 [游戏设置](/zh/guide/game-settings) 中的字体与文字大小变更影响到指定的文本元素，可在 `Custom UI` 及其派生组件中使用 `Font Change Configuration` 属性进行设置。
+若希望使 游戏设置 中的字体与文字大小变更影响到指定的文本元素，可在 `Custom UI` 及其派生组件中使用 `Font Change Configuration` 属性进行设置。
 
 ![](https://i.gyazo.com/f8e8b03580940cce72de9e9970512902.png)
 

@@ -15,26 +15,26 @@ The engine initialization procedure is asynchronous, so even when automatic init
 
 The following services are currently available:
 
-Service Interface | Description
---- | ---
-IBackgroundManager | Manages [background](/guide/backgrounds) actors.
-ICharacterManager | Manages [character](/guide/characters) actors.
-IChoiceHandlerManager | Manages [choice handler](/guide/choices) actors.
-ITextPrinterManager | Manages [text printer](/guide/text-printers) actors.
-IAudioManager | Manages the audio: [SFX](/guide/audio#sound-effects), [BGM](/guide/audio#background-music) and [voicing](/guide/voicing).
-IInputManager | Manages the user [input processing](/guide/input-processing).
-ILocalizationManager| Manages the [localization](/guide/localization) activities.
-ITextManager | Handles [managed text](/guide/managed-text) feature.
-IMoviePlayer | Handles [movie](/guide/movies) playing.
-IScriptManager | Manages [scenario script](/guide/scenario-scripting) resources.
-IScriptPlayer | Handles [scenario scripts](/guide/scenario-scripting) execution.
-ICameraManager | Manages cameras and other systems required for scene rendering.
-IResourceProviderManager | Manages `IResourceProvider` objects.
-IStateManager | Handles `IEngineService`-related persistent data de-/serialization; provides API to [save and load](/guide/save-load-system) game state.
-IUIManager | Manages `IManagedUI` objects and handles [UI customization](/guide/gui#ui-customization) feature.
-ICustomVariableManager | Provides access and allows modifying [custom variables](/guide/custom-variables).
-ISpawnManager | Manages objects spawned with [@spawn] commands.
-IUnlockableManager | Manages [unlockable items](/guide/unlockable-items) (CG and movie gallery items, tips, etc).
+| Service Interface        | Description                                                                                                                              |
+|--------------------------|------------------------------------------------------------------------------------------------------------------------------------------|
+| IBackgroundManager       | Manages [background](/guide/backgrounds) actors.                                                                                         |
+| ICharacterManager        | Manages [character](/guide/characters) actors.                                                                                           |
+| IChoiceHandlerManager    | Manages [choice handler](/guide/choices) actors.                                                                                         |
+| ITextPrinterManager      | Manages [text printer](/guide/text-printers) actors.                                                                                     |
+| IAudioManager            | Manages the audio: [SFX](/guide/audio#sound-effects), [BGM](/guide/audio#background-music) and [voicing](/guide/voicing).                |
+| IInputManager            | Manages the user [input processing](/guide/input-processing).                                                                            |
+| ILocalizationManager     | Manages the [localization](/guide/localization) activities.                                                                              |
+| ITextManager             | Handles [managed text](/guide/managed-text) feature.                                                                                     |
+| IMoviePlayer             | Handles [movie](/api/#movie) playing.                                                                                                    |
+| IScriptManager           | Manages [scenario script](/guide/scenario-scripting) resources.                                                                          |
+| IScriptPlayer            | Handles [scenario scripts](/guide/scenario-scripting) execution.                                                                         |
+| ICameraManager           | Manages cameras and other systems required for scene rendering.                                                                          |
+| IResourceProviderManager | Manages `IResourceProvider` objects.                                                                                                     |
+| IStateManager            | Handles `IEngineService`-related persistent data de-/serialization; provides API to [save and load](/api/#save) game state. |
+| IUIManager               | Manages `IManagedUI` objects and handles [UI customization](/guide/gui#ui-customization) feature.                                        |
+| ICustomVariableManager   | Provides access and allows modifying [custom variables](/guide/custom-variables).                                                        |
+| ISpawnManager            | Manages objects spawned with [@spawn] commands.                                                                                          |
+| IUnlockableManager       | Manages [unlockable items](/guide/unlockable-items) (CG and movie gallery items, tips, etc).                                             |
 
 You can find built-in implementations of the services in the runtime source code stored at `Naninovel/Runtime`.
 
