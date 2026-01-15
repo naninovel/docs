@@ -1,10 +1,10 @@
 # Custom Build Environment
 
-When building the project using editor's [build menu](https://docs.unity3d.com/Manual/BuildSettings.html), Naninovel automatically executes additional pre- and post-processing procedures. Those procedures, among other things, include ensuring that all the resources assigned via Naninovel's configuration menus (eg, script documents, character appearances, BGM and SFX clips, etc) are included to the build.
+When building the project using the Editor's [build menu](https://docs.unity3d.com/Manual/BuildSettings.html), Naninovel automatically executes additional pre- and post-processing procedures. Those procedures, among other things, ensure that all resources assigned via Naninovel's configuration menus (e.g., script documents, character appearances, BGM and SFX clips, etc.) are included in the build.
 
-In case you're using a custom build environment (eg, [Cloud Build](https://unity3d.com/unity/features/cloud-build) or starting the build via custom scripts or from the command line) you have to manually invoke `Naninovel.BuildProcessor.PreprocessBuild(BuildPlayerOptions)` and `Naninovel.BuildProcessor.PostprocessBuild()` static methods before and after the build respectively.
+If you're using a custom build environment (e.g., [Cloud Build](https://unity3d.com/unity/features/cloud-build)) or starting the build via custom scripts or from the command line, you have to manually invoke `Naninovel.BuildProcessor.PreprocessBuild(BuildPlayerOptions)` and `Naninovel.BuildProcessor.PostprocessBuild()` static methods before and after the build respectively.
 
-Below is an example of Cloud Build custom build processing script, which invokes the required Naninovel processing methods. Consult the [official service docs](https://docs.unity3d.com/Manual/UnityCloudBuildPreAndPostExportMethods.html) on how to setup the processing scripts.
+Below is an example of a Cloud Build custom build processing script that invokes the required Naninovel processing methods. Consult the [official service docs](https://docs.unity3d.com/Manual/UnityCloudBuildPreAndPostExportMethods.html) on how to set up the processing scripts.
 
 ```csharp
 public static class CustomBuildProcessor
@@ -36,7 +36,7 @@ public static class CustomBuildProcessor
 }
 ```
 
-When using assembly definitions for custom commands, Unity editor may start importing assets before compiling all the assemblies leading to build errors when using Cloud Build. This can be solved by reimporting the script assets before starting the build, eg:
+When using assembly definitions for custom commands, the Unity Editor may start importing assets before compiling all the assemblies, leading to build errors when using Cloud Build. This can be solved by reimporting the script assets before starting the build, e.g.:
 
 ```csharp
 var scriptGuids = AssetDatabase.FindAssets("t:Naninovel.script");
@@ -47,4 +47,4 @@ foreach (var scriptGuid in scriptGuids)
 }
 ```
 
-In case you're using you own custom build handler, which supposed to be triggered with the editor's build menu, it's possible to disable the Naninovel's handler by disabling `Enable Build Processing` property in the "Resource Provider" configuration menu. When enabling or disabling the property, restart Unity editor in order for the change to take effect.
+If you're using your own custom build handler that is supposed to be triggered with the Editor's build menu, you can disable Naninovel's handler by turning off the `Enable Build Processing` property in the Resource Provider configuration menu. After enabling or disabling the property, restart the Unity Editor for the change to take effect.

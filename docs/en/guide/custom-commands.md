@@ -1,12 +1,12 @@
 # Custom Commands
 
-Command represents a single operation, that controls what happens on the scene; e.g., it can be used to change a background, move a character or load another scenario script. Parametrized command sequences defined in [scenario scripts](/guide/scenario-scripting) effectively controls the game flow. You can find available built-in commands in the [API reference](/api/). In code, all the built-in script command implementations are defined under `Naninovel.Commands` namespace.
+A command represents a single operation that controls what happens in a scene; e.g., it can change a background, move a character, or load another scenario script. Parameterized command sequences defined in [scenario scripts](/guide/scenario-scripting) effectively control the game flow. You can find available built-in commands in the [API reference](/api/). In code, all the built-in script command implementations are defined under the `Naninovel.Commands` namespace.
 
 ## Adding Custom Command
 
-To add your own custom script command, create a new C# class derived from `Command` and implement `Execute` abstract method. The created class will automatically be picked up by the engine and you'll be able to invoke the command from the scenario scripts by either the class name or an alias (if assigned). To assign an alias to the naninovel command, apply `Alias` attribute to the class.
+To add your own custom script command, create a new C# class derived from `Command` and implement the `Execute` abstract method. The created class will automatically be picked up by the engine and you'll be able to invoke the command from scenario scripts by either the class name or an alias (if assigned). To assign an alias to the Naninovel command, apply the `Alias` attribute to the class.
 
-Below is an example of a custom command, that can be invoked from scenario scripts as `@HelloWorld` or `@hello` to print "Hello World!" to the console and can also take an optional `name` parameter (eg, `@hello name:Felix`) to greet the provided name instead of the world.
+Below is an example of a custom command that can be invoked from scenario scripts as `@HelloWorld` or `@hello` to print "Hello World!" to the console and that can also take an optional `name` parameter (e.g., `@hello name:Felix`) to greet the provided name instead of the world.
 
 ```csharp
 using System;
@@ -29,12 +29,12 @@ public class HelloWorld : Command
 ```
 
 ::: info NOTE
-Whenever you change C# command implementations—such as renaming the class, adding or removing parameters, changing their types or attributes—remember to re-import the scenario script assets (right-click on the folder where the scripts are stored and click "Reimport"). This is necessary because scenario scripts are parsed and compiled on import (not at runtime) and must be kept in sync with the C# implementations.
+Whenever you change C# command implementations—such as renaming the class, adding or removing parameters, changing their types or attributes—remember to re-import the scenario script assets (right-click the folder where the scripts are stored and click "Reimport"). This is necessary because scenario scripts are parsed and compiled on import (not at runtime) and must be kept in sync with the C# implementations.
 :::
 
 ### Execute Method
 
-`Execute` is an async method invoked when the command is executed by the script player; keep your command logic there. Use [engine services](/guide/engine-services) to access the engine's built-in systems. scenario script execution will halt until this method returns a completed task if the `Wait` parameter is set to `true`.
+`Execute` is an async method invoked when the command is executed by the script player; keep your command logic there. Use [engine services](/guide/engine-services) to access the engine's built-in systems. Scenario script execution will halt until this method returns a completed task if the `Wait` parameter is set to `true`.
 
 ### Execution Context
 
@@ -84,22 +84,22 @@ To expose a command parameter to scenario scripts, add a public field to the com
 | NamedIntegerParameter     | NamedInteger          | `Yuko.5`                            |
 | NamedDecimalParameter     | NamedFloat            | `Kohaku.-10.25`                     |
 | NamedBooleanParameter     | NamedBoolean          | `Misaki.false`                      |
-| StringListParameter       | List&lt;String>       | `Lorem,ipsum,"doler sit amet"`      |
-| IntegerListParameter      | List&lt;Int32>        | `10,-1,0`                           |
-| DecimalListParameter      | List&lt;Single>       | `0.2,10.5,-88.99`                   |
-| BooleanListParameter      | List&lt;Boolean>      | `true,false,true`                   |
-| NamedStringListParameter  | List&lt;NamedString>  | `Felix.Happy,Jenna.Confidence`      |
-| NamedIntegerListParameter | List&lt;NamedInteger> | `Yuko.5,Misaki.-8`                  |
-| NamedDecimalListParameter | List&lt;NamedFloat>   | `Nanikun.88.99,Yuko.-5.1`           |
-| NamedBooleanListParameter | List&lt;NamedBoolean> | `Misaki.false,Kohaku.true`          |
+| StringListParameter       | List&lt;String&gt;       | `Lorem,ipsum,"doler sit amet"`      |
+| IntegerListParameter      | List&lt;Int32&gt;       | `10,-1,0`                           |
+| DecimalListParameter      | List&lt;Single&gt;      | `0.2,10.5,-88.99`                   |
+| BooleanListParameter      | List&lt;Boolean&gt;      | `true,false,true`                   |
+| NamedStringListParameter  | List&lt;NamedString&gt;  | `Felix.Happy,Jenna.Confidence`      |
+| NamedIntegerListParameter | List&lt;NamedInteger&gt; | `Yuko.5,Misaki.-8`                  |
+| NamedDecimalListParameter | List&lt;NamedFloat&gt;   | `Nanikun.88.99,Yuko.-5.1`           |
+| NamedBooleanListParameter | List&lt;NamedBoolean&gt; | `Misaki.false,Kohaku.true`          |
 
 ### Parameter Alias
 
-Optionally, you can apply `[Alias]` attribute to the field to assign an alias name to the parameter allowing it to be used instead of the field name when referencing the parameter in scenario scripts. If you wish to make the parameter nameless, set `NamelessParameterAlias` constant (empty string) as the alias; please note, that only one nameless parameter is allowed per command.
+Optionally, you can apply the `[Alias]` attribute to the field to assign an alias name to the parameter, allowing it to be used instead of the field name when referencing the parameter in scenario scripts. If you wish to make the parameter nameless, set `NamelessParameterAlias` constant (empty string) as the alias; please note that only one nameless parameter is allowed per command.
 
 ```csharp
 [Alias(NamelessParameterAlias)]
-public StringParameter MyNamelesParameter;
+public StringParameter MyNamelessParameter;
 [Alias("myParam")]
 public StringParameter MyParameter;
 ```
@@ -110,7 +110,7 @@ public StringParameter MyParameter;
 
 ### Required Parameter
 
-To make parameter required (causing an error to be logged when it's not specified in scenario script), apply `[RequiredParameter]` attribute to the field. When the attribute is not applied, parameter is considered optional.
+To make a parameter required (causing an error to be logged when it's not specified in scenario script), apply the `[RequiredParameter]` attribute to the field. When the attribute is not applied, the parameter is considered optional.
 
 ```csharp
 [RequiredParameter]
@@ -119,7 +119,7 @@ public StringParameter MyRequiredParameter;
 
 ### Optional Parameter
 
-When parameter is not required, it may or may not have value assigned in the scenario script; use `HasValue` property to test whether that's the case. Optionally, you can use `Assigned()` static method, which takes parameter instance and returns true when the provided parameter is not null and has a value assigned.
+When a parameter is not required, it may or may not have a value assigned in the scenario script; use the `HasValue` property to test whether that's the case. Optionally, you can use the `Assigned()` static method, which takes a parameter instance and returns true when the provided parameter is not null and has a value assigned.
 
 ```csharp
 public StringParameter MyOptionalParameter;
@@ -130,7 +130,7 @@ if (Assigned(MyOptionalParameter)) { }
 
 ### Localizable Command
 
-In case the command has parameters that can be localized (text directly presented to the user, usually), implement `Command.ILocalizable` interface to add the command to the generated [script localization](/guide/localization#scripts-localization) documents and use `LocalizableTextParameter` parameter type.
+If the command has parameters that can be localized (text directly presented to the user), implement the `Command.ILocalizable` interface to add the command to the generated [script localization](/guide/localization#scripts-localization) documents and use the `LocalizableTextParameter` parameter type.
 
 ```csharp
 public class PrintText : Command, Command.ILocalizable
@@ -141,7 +141,7 @@ public class PrintText : Command, Command.ILocalizable
 
 ### Preloadable Command
 
-In case execution of the command requires loading some resources, implement `Command.IPreloadable` interface to preload the required resources when the game is loading. Refer to [memory management](/guide/memory-management) guide for more info.
+If command execution requires loading some resources, implement the `Command.IPreloadable` interface to preload the required resources when the game is loading. Refer to [memory management](/guide/memory-management) guide for more info.
 
 ```csharp
 public class PlayAudioClip : Command, Command.IPreloadable
@@ -162,11 +162,11 @@ public class PlayAudioClip : Command, Command.IPreloadable
 }
 ```
 
-Notice `ClipPath.DynamicValue` check: we wouldn't be able to preload the resource in case the name is only known when the command is executed (ie parameter contain [script expressions](/guide/script-expressions)); in this case the resource should be loaded inside `Execute` method.
+Notice the `ClipPath.DynamicValue` check: we wouldn't be able to preload the resource in case the name is only known when the command is executed (i.e., the parameter contains [script expressions](/guide/script-expressions)); in this case the resource should be loaded inside the `Execute` method.
 
 ### Command Examples
 
-You can find scripts with all the built-in command implementations at `Naninovel/Runtime/Commands` package folder; feel free to use them as a reference when implementing your own custom commands.
+You can find scripts with all the built-in command implementations at the `Naninovel/Runtime/Commands` package folder; feel free to use them as a reference when implementing your own custom commands.
 
 ::: tip EXAMPLE
 Another example of adding custom commands to add/remove items of an inventory system can be found in the [inventory sample](/guide/samples#inventory). Specifically, the command implementations are stored at `Scripts/Runtime/Inventory/Commands` directory.
@@ -174,11 +174,11 @@ Another example of adding custom commands to add/remove items of an inventory sy
 
 ## Overriding Built-In Command
 
-In some cases it could be useful to override built-in Naninovel commands. For example, you may want to change how [@print] commands work without adding a custom one, so that the change will also affect [generic text lines](/guide/scenario-scripting#generic-text-lines) (text from the generic lines is parsed into the print commands under the hood).
+In some cases it can be useful to override built-in Naninovel commands. For example, you may want to change how the [@print] command works without adding a custom one, so that the change will also affect [generic text lines](/guide/scenario-scripting#generic-text-lines) (text from generic lines is parsed into print commands under the hood).
 
-To override a built-in command, add a custom one and apply the same alias built-in command has. Reimport the scenario scripts (right-click over a folder they're stored at, then click "Reimport") after overriding a command in order for the changes to take effect. The custom command will then automatically be used instead of the built-in one when playing a scenario script.
+To override a built-in command, add a custom one and apply the same alias the built-in command has. Reimport the scenario scripts (right-click the folder they're stored at, then click "Reimport") after overriding a command in order for the changes to take effect. The custom command will then automatically be used instead of the built-in one when playing a scenario script.
 
-Below is an example of overriding built-in [@print] command, so that the printed text will be logged into the console before being revealed to the player.
+Below is an example of overriding the built-in [@print] command so that the printed text will be logged into the console before being revealed to the player.
 
 ```csharp
 [Serializable, Alias("print")]
