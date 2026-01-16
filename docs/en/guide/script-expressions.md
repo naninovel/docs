@@ -61,27 +61,27 @@ Some text \{ text inside braces \}
 
 ## Expression Functions
 
-The following functions can also be used inside script expressions.
+The following functions can also be used inside the script expressions.
 
 <div class="config-table">
 
 Signature | Description | Example
 --- | --- | ---
-random(min, max) | Returns a random integer between min (inclusive) and max (inclusive). | `random(0, 100)`
-random(min, max) | Returns a random decimal number between min (inclusive) and max (inclusive). | `random(0.5, 1.5)`
-random(args) | Returns a string chosen from one of the specified strings. | `random("foo", "bar", "baz")`
-calculateProgress() | Returns scenario completion ratio in 0.0 to 1.0 range, where 1.0 means all the script lines were executed at least once. | `calculateProgress()`
+random(min, max) | Return a random integer number between min [inclusive] and max [inclusive]. | `random(0, 100)`
+random(min, max) | Return a random decimal number between min [inclusive] and max [inclusive]. | `random(0.5, 1.5)`
+random(args) | Return a string chosen from one of the specified strings. | `random("foo", "bar", "baz")`
+calculateProgress() | Returns scenario completion ratio, in 0.0 to 1.0 range, where 1.0 means all the script lines were executed at least once. | `calculateProgress()`
 isUnlocked(id) | Checks whether an unlockable item with the specified ID is currently unlocked. | `isUnlocked("Tips/MyTip")`
-hasPlayed() | Checks whether the currently played command has ever been played before. | `hasPlayed()`
-hasPlayed(scriptPath) | Checks whether the script with the specified path has ever been played before. | `hasPlayed("MyScript")`
-getName(characterId) | Returns the display/author name of a character actor with the specified ID. | `getName("Kohaku")`
-pow(num, pow) | Returns num raised to the given power. | `pow(2, 3)`
-sqrt(num) | Returns the square root of num. | `sqrt(2)`
-cos(num) | Returns the cosine of the angle (degrees). | `cos(180)`
-sin(num) | Returns the sine of the angle (degrees). | `sin(90)`
+hasPlayed() | Checks whether currently played command has ever been played before. | `hasPlayed()`
+hasPlayed(scriptPath) | Checks whether script with the specified path has ever been played before. | `hasPlayed("MyScript")`
+getName(characterId) | Returns author name of a character actor with the specified ID. | `getName("Kohaku")`
+pow(num, pow) | Returns num raised to power. | `pow(2, 3)`
+sqrt(num) | Returns square root of num. | `sqrt(2)`
+cos(num) | Returns the cosine of angle. | `cos(180)`
+sin(num) | Returns the sine of angle. | `sin(90)`
 log(num) | Returns the natural (base e) logarithm of a specified number. | `log(0.5)`
-abs(num) | Returns the absolute value of num. | `abs(-0.5)`
-max(nums) | Returns the largest of two or more values. | `max(1, 10, -9)`
+abs(num) | Returns the absolute value of f. | `abs(0.5)`
+max(nums) | Returns largest of two or more values. | `max(1, 10, -9)`
 min(nums) | Returns the smallest of two or more values. | `min(1, 10, -9)`
 round(num) | Returns num rounded to the nearest integer. | `round(0.9)`
 approx(a, b) | Compares two floating point values and returns true if they are similar. | `approx(0.15, 0.15)`
