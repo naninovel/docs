@@ -257,10 +257,10 @@ Lorem <ruby="VERY">ipsum</ruby> dolor sit amet.
 ![](https://i.gyazo.com/ec5eb47c3cf0951ccb589fe49c144418.png)
 
 ::: info NOTE
-当将 `<ruby>` 与其他标签结合使用时，请最后指定注音标签以防止格式问题，例如：
+当`<ruby>`与其他标签一起使用时，请先指定 ruby 标签，以避免格式问题。例如:
 
 ```nani
-Lorem <tip="TipID"><ruby="VERY">ipsum</ruby></tip> dolor sit amet.
+Lorem <ruby="VERY"><tip="TipID">ipsum</tip></ruby> dolor sit amet.
 ```
 :::
 

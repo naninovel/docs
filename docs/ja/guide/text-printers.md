@@ -257,10 +257,10 @@ Lorem <ruby="VERY">ipsum</ruby> dolor sit amet.
 ![](https://i.gyazo.com/ec5eb47c3cf0951ccb589fe49c144418.png)
 
 ::: info NOTE
-`<ruby>` を他のタグと組み合わせる場合は、フォーマットの問題を防ぐためにルビタグを最後に指定してください。例：
+他のタグと`<ruby>`を組み合わせる場合は、書式崩れを防ぐために、先に ruby タグを指定してください。例:
 
 ```nani
-Lorem <tip="TipID"><ruby="VERY">ipsum</ruby></tip> dolor sit amet.
+Lorem <ruby="VERY"><tip="TipID">ipsum</tip></ruby> dolor sit amet.
 ```
 :::
 
