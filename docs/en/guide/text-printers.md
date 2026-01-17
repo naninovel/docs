@@ -257,10 +257,10 @@ Lorem <ruby="VERY">ipsum</ruby> dolor sit amet.
 ![](https://i.gyazo.com/ec5eb47c3cf0951ccb589fe49c144418.png)
 
 ::: info NOTE
-When combining `<ruby>` with other tags, specify the ruby tag last to prevent formatting issues, e.g.:
+When combining `<ruby>` with other tags, specify the ruby tag first to prevent formatting issues, e.g.:
 
 ```nani
-Lorem <tip="TipID"><ruby="VERY">ipsum</ruby></tip> dolor sit amet.
+Lorem <ruby="VERY"><tip="TipID">ipsum</tip></ruby> dolor sit amet.
 ```
 :::
 
