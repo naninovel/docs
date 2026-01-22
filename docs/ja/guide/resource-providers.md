@@ -48,7 +48,7 @@ Naninovel Addressableグループの下のアセットレコードは、ビル�
 
 ### 手動割り当て
 
-エディタメニューを使用せずにAddressableアセットをNaninovelに公開するには、カスタムAddressableグループを使用します。グループには任意の名前を付けることができますが、予約された `Naninovel` プレフィックスで開始してはなりません（そうでない場合、自動生成されたものとして認識され、ビルド時にクリアされます）。公開されたアセットのアドレスは `Naninovel/` で始まり、`Naninovel` ラベルが割り当てられている必要があります。リソースプロバイダー構成メニューの `Extra Labels` プロパティを使用して、Naninovelで使用されるアセットをフィルタリングするための追加のラベルを指定できます。
+エディタメニューを使用せずにAddressableアセットをNaninovelに公開するには、カスタムAddressableグループを使用します。グループには任意の名前を付けることができますが、予約された `Naninovel` プレフィックスで開始してはなりません（そうでない場合、自動生成されたものとして認識され、ビルド時にクリアされます）。公開されたアセットのアドレスは `Naninovel/` で始まり。
 
 ::: tip EXAMPLE
 Addressableプロバイダーを介して（リソースエディタメニューを使用せずに）Naninovelリソースを手動で登録し、リモートホストからアセットを提供する方法の例については、[Addressableサンプル](/ja/guide/samples#addressable) を確認してください。Unityの [学習教材](https://learn.unity.com/course/get-started-with-addressables) も役立つ場合があります。

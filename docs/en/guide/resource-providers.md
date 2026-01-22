@@ -48,7 +48,7 @@ By default, the `Group By Category` option in the resource provider configuratio
 
 ### Manual Assignment
 
-To expose an addressable asset to Naninovel without using editor menus, use a custom addressable group. The group can have any name, except it must not start with the reserved `Naninovel` prefix (otherwise it will be recognized as auto-generated and cleared on build). Addresses of exposed assets should start with `Naninovel/` and they should have a `Naninovel` label assigned. You can specify additional labels to filter the assets used by Naninovel via the `Extra Labels` property in the resource provider configuration menu.
+To expose an addressable asset to Naninovel without using editor menus, use a custom addressable group. The group can have any name, but it must not start with the reserved `Naninovel` prefix; otherwise, it will be recognized as auto-generated and cleared on build. Addresses of exposed assets should start with `Naninovel/` — this is the only requirement to register the asset with Naninovel.
 
 ::: tip EXAMPLE
 Check the [addressable sample](/guide/samples#addressable) for an example of manually registering Naninovel resources via the Addressable provider (without using the resource editor menus) and serving the assets from a remote host. You may also find Unity's [learning materials](https://learn.unity.com/course/get-started-with-addressables) useful.

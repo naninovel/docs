@@ -217,16 +217,13 @@ Resource Policy | Conservative | Dictates when the resources are loaded and unlo
 Lazy Buffer | 25 | When lazy resource policy is enabled, controls the size of the preload buffer, that is the maximum number of script commands to preload.
 Lazy Priority | Below Normal | When lazy resource policy is enabled, controls the background thread priority where the resources are loaded. Decrease to minimize stutters at the cost of longer load times.
 Remove Actors | True | Whether to automatically remove unused actors (characters, backgrounds, text printers and choice handlers) when unloading script resources. Note, that even when enabled, it's still possible to remove actors manually with `@remove` commands at any time.
-Log Resource Loading | False | Whether to log resource un-/loading operations.
 Enable Build Processing | True | Whether to register a custom build player handle to process the assets assigned as Naninovel resources.<br><br>Warning: In order for this setting to take effect, it's required to restart the Unity editor.
 Use Addressables | True | When the Addressable Asset System is installed, enabling this property will optimize asset processing step improving the build time.
 Auto Build Bundles | True | Whether to automatically build the addressable asset bundles when building the player. Has no effect when `Use Addressables` is disabled.
 Label By Scripts | True | Whether to label all the Naninovel addressable assets by the scenario script path they're used in. When `Bundle Mode` is set to `Pack Together By Label` in the addressable group settings, will result in a more efficient bundle packing.<br><br>Note that script labels will be assigned to all the assets with 'Naninovel' label, which includes assets manually exposed to the addressable resource provider (w/o using the resource editor menus).
-Extra Labels | Null | Addressable provider will only work with assets, that have the assigned labels in addition to `Naninovel` label. Can be used to filter assets used by the engine based on custom criteria (eg, HD vs SD textures).
 Local Root Path | %DATA%/Resources | Path root to use for the local resource provider. Can be an absolute path to the folder where the resources are located, or a relative path with one of the available origins:<br> • %DATA% — Game data folder on the target device (UnityEngine.Application.dataPath).<br> • %PDATA% — Persistent data directory on the target device (UnityEngine.Application.persistentDataPath).<br> • %STREAM% — `StreamingAssets` folder (UnityEngine.Application.streamingAssetsPath).<br> • %SPECIAL{F}% — An OS special folder (where F is value from System.Environment.SpecialFolder).
 Video Stream Extension | .mp 4 | When streaming videos under WebGL (movies, video backgrounds), specify the extension of the video files.
 Reload Scripts | True | Whether to watch and hot reload modified scenario scripts stored under the local provider directory.
-Project Root Path | Naninovel | Path relative to `Resources` folders, under which the naninovel-specific assets are located.
 
 </div>
 
