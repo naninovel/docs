@@ -48,7 +48,7 @@ Naninovel addressable 组下的资产记录会在每次构建时自动生成。�
 
 ### 手动分配
 
-要在不使用编辑器菜单的情况下将 addressable 资产公开给 Naninovel，请使用自定义 addressable 组。该组可以具有任何名称，除了它不能以保留的 `Naninovel` 前缀开头（否则它将被识别为自动生成的并在构建时清除）。公开资产的地址应以 `Naninovel/` 开头，并且它们应该分配有 `Naninovel` 标签。您可以通过资源提供者配置菜单中的 `Extra Labels` 属性指定其他标签来过滤 Naninovel 使用的资产。
+要在不使用编辑器菜单的情况下将 addressable 资产公开给 Naninovel，请使用自定义 addressable 组。该组可以具有任何名称，除了它不能以保留的 `Naninovel` 前缀开头（否则它将被识别为自动生成的并在构建时清除）。公开资产的地址应以 `Naninovel/` 开头。
 
 ::: tip EXAMPLE
 查看 [addressable 示例](/zh/guide/samples#addressable)，了解通过 Addressable 提供者手动注册 Naninovel 资源（不使用资源编辑器菜单）并从远程主机提供资产的示例。您可能还会发现 Unity 的 [学习材料](https://learn.unity.com/course/get-started-with-addressables) 很有用。

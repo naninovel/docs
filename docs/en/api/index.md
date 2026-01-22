@@ -1053,7 +1053,7 @@ Will fade-out the screen before playing the movie and fade back in after the pla
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">movieName</span> | string | Name of the movie resource to play. |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">moviePath</span> | string | Local path of the movie resource to play. |
 | time | decimal | Duration (in seconds) of the fade animation. When not specified, will use fade duration set in the movie configuration. |
 | block | boolean | Whether to block interaction with the game while the movie is playing, preventing the player from skipping it. |
 
