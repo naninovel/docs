@@ -70,7 +70,7 @@ public class MyScript : MonoBehaviour
 
 ```csharp
 var player = Engine.GetService<IScriptPlayer>();
-await player.LoadAndPlay("Script001");
+await player.MainTrack.LoadAndPlay("Script001");
 ```
 
 退出小说模式并返回主游戏模式时，你可能希望卸载 Naninovel 当前使用的所有资源并停止引擎服务。为此，请使用 `IStateManager` 服务的 `ResetState()` 方法：
@@ -99,7 +99,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         var player = Engine.GetService<IScriptPlayer>();
         var path = ScriptAssets.GetPath(ScriptRef);
-        player.LoadAndPlayAtLabel(path, Label).Forget();
+        player.MainTrack.LoadAndPlayAtLabel(path, Label).Forget();
     }
 }
 ```
