@@ -70,7 +70,7 @@ public class MyScript : MonoBehaviour
 
 ```csharp
 var player = Engine.GetService<IScriptPlayer>();
-await player.LoadAndPlay("Script001");
+await player.MainTrack.LoadAndPlay("Script001");
 ```
 
 ノベルモードを終了してメインゲームモードに戻るときは、現在Naninovelによって使用されているすべてのリソースをアンロードし、エンジンサービスを停止することをお勧めします。これには、`IStateManager` サービスの `ResetState()` メソッドを使用します。
@@ -99,7 +99,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         var player = Engine.GetService<IScriptPlayer>();
         var path = ScriptAssets.GetPath(ScriptRef);
-        player.LoadAndPlayAtLabel(path, Label).Forget();
+        player.MainTrack.LoadAndPlayAtLabel(path, Label).Forget();
     }
 }
 ```

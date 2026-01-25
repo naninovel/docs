@@ -70,7 +70,7 @@ To preload and play a scenario script with a given path, use `LoadAndPlay(Script
 
 ```csharp
 var player = Engine.GetService<IScriptPlayer>();
-await player.LoadAndPlay("Script001");
+await player.MainTrack.LoadAndPlay("Script001");
 ```
 
 When exiting the novel mode and returning to the main game mode, you probably want to unload all resources currently used by Naninovel and stop engine services. For this, use `ResetState()` method of the `IStateManager` service:
@@ -99,7 +99,7 @@ public class DialogueTrigger : MonoBehaviour
     {
         var player = Engine.GetService<IScriptPlayer>();
         var path = ScriptAssets.GetPath(ScriptRef);
-        player.LoadAndPlayAtLabel(path, Label).Forget();
+        player.MainTrack.LoadAndPlayAtLabel(path, Label).Forget();
     }
 }
 ```
