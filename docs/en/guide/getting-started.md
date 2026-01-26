@@ -8,7 +8,7 @@ If you do not plan to implement any custom gameplay outside Naninovel, you can i
 
 ## Video Guide
 
-If you prefer video guides, here is one covering this Getting Started guide for both the Visual Novel and Dialogue modes.
+If you prefer video tutorials, here is one covering this Getting Started guide.
 
 ![](https://www.youtube.com/watch?v=wFil5vje3NE)
 
