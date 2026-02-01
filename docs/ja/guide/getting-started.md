@@ -10,7 +10,7 @@ Naninovel以外でカスタムゲームプレイを実装する予定がない�
 
 ビデオガイドがお好みの場合は、このスタートガイドの内容をビジュアルノベルモードとダイアログモードの両方について説明している動画をご覧ください。
 
-![](https://www.youtube.com/watch?v=wFil5vje3NE)
+![](https://www.youtube.com/watch?v=N1_CwR5xblU)
 
 ## Unityプロジェクトの作成
 
