@@ -10,7 +10,7 @@ If you do not plan to implement any custom gameplay outside Naninovel, you can i
 
 If you prefer video tutorials, here is one covering this Getting Started guide.
 
-![](https://www.youtube.com/watch?v=wFil5vje3NE)
+![](https://www.youtube.com/watch?v=N1_CwR5xblU)
 
 ## Create Unity Project
 

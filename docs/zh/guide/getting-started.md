@@ -10,7 +10,7 @@ Naninovel 是 [Unity 游戏引擎](https://unity.com) 的扩展，因此强烈�
 
 如果您更喜欢视频指南，这里有一个涵盖了视觉小说和对话模式的快速上手指南。
 
-![](https://www.youtube.com/watch?v=wFil5vje3NE)
+![](https://www.youtube.com/watch?v=N1_CwR5xblU)
 
 ## 创建 Unity 项目
 
