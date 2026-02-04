@@ -98,7 +98,7 @@ This is particularly useful for declaring global variables in entry or initializ
 
 When building a [custom UI](/guide/gui#ui-customization) or other systems, you may want to react to events when a variable's value changes. For example, when creating a character stats screen, you might want the text to update with the variables. While a conventional approach uses a C# script, you can also use the `Variable Events` component. This component invokes Unity events when a variable with a specified name changes.
 
-![](https://i.gyazo.com/22eddd109e76d4e63c461e9d75b20ceb.png)
+![](https://i.gyazo.com/a8ad226b7a50110584551ae81179c709.png)
 
 ::: tip EXAMPLE
 Find an example of using variable triggers to drive availability of map locations in the [map sample](/guide/samples#map).
