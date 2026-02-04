@@ -98,7 +98,7 @@ Archibald: 问候，{name}！
 
 构建 [自定义 UI](/zh/guide/gui#ui-自定义) 或其他系统时，您可能希望在变量值更改时对事件做出反应。例如，在创建角色统计屏幕时，您可能希望文本随变量更新。虽然传统方法使用 C# 脚本，但您也可以使用 `Variable Events` 组件。当具有指定名称的变量更改时，此组件会调用 Unity 事件。
 
-![](https://i.gyazo.com/22eddd109e76d4e63c461e9d75b20ceb.png)
+![](https://i.gyazo.com/a8ad226b7a50110584551ae81179c709.png)
 
 ::: tip EXAMPLE
 在 [地图示例](/zh/guide/samples#地图) 中查找使用变量触发器来驱动地图位置可用性的示例。
