@@ -2,7 +2,7 @@
 
 ## Do I need to know programming to use Naninovel?
 
-Naninovel is designed to be friendly for non-programmers and doesn't require programming knowledge to create basic visual novels. For example, our [WebGL demo](https://naninovel.com/demo) is created without any custom C# scripts. Check the [getting started guide](/guide/getting-started) and [video tutorial](https://youtu.be/wFil5vje3NE) for an example of the basic workflow. However, adding custom features (gameplay) or integrating with other third-party packages will require C# (or [visual](/guide/samples#visual-scripting)) scripting in most cases. Specific features (e.g., [UI customization](/guide/gui.html#ui-customization)) could also require some experience with the Unity editor.
+Naninovel is designed to be friendly for non-programmers and doesn't require programming knowledge to create basic visual novels. For example, our [WebGL demo](https://naninovel.com/demo) is created without any custom C# scripts. Check the [getting started guide](/guide/getting-started) and [video tutorial](https://youtu.be/N1_CwR5xblU) for an example of the basic workflow. However, adding custom features (gameplay) or integrating with other third-party packages will require C# (or [visual](/guide/samples#visual-scripting)) scripting in most cases. Specific features (e.g., [UI customization](/guide/gui.html#ui-customization)) could also require some experience with the Unity editor.
 
 ## Can I use Naninovel as a drop-in dialogue system for an existing game?
 
