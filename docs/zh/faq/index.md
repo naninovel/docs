@@ -2,7 +2,7 @@
 
 ## 我需要懂编程才能使用 Naninovel 吗？
 
-Naninovel 专为非程序员设计，不需要编程知识即可创建基本的视觉小说。例如，我们的 [WebGL 演示](https://naninovel.com/demo) 就是在没有任何自定义 C# 脚本的情况下创建的。请查看 [快速上手](/zh/guide/getting-started) 和 [视频教程](https://youtu.be/wFil5vje3NE) 以了解基本工作流程的示例。但是，添加自定义功能（游戏玩法）或与其他第三方包集成，在大多数情况下将需要 C#（或 [可视化脚本](/zh/guide/samples#可视化脚本)）。特定功能（例如 [UI 自定义](/zh/guide/gui#ui-自定义)）可能还需要一些 Unity 编辑器的经验。
+Naninovel 专为非程序员设计，不需要编程知识即可创建基本的视觉小说。例如，我们的 [WebGL 演示](https://naninovel.com/demo) 就是在没有任何自定义 C# 脚本的情况下创建的。请查看 [快速上手](/zh/guide/getting-started) 和 [视频教程](https://youtu.be/N1_CwR5xblU) 以了解基本工作流程的示例。但是，添加自定义功能（游戏玩法）或与其他第三方包集成，在大多数情况下将需要 C#（或 [可视化脚本](/zh/guide/samples#可视化脚本)）。特定功能（例如 [UI 自定义](/zh/guide/gui#ui-自定义)）可能还需要一些 Unity 编辑器的经验。
 
 ## 我可以将 Naninovel 用作现有游戏的对话系统吗？
 
