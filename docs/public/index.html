@@ -670,9 +670,25 @@
             text-align: center;
             transition: border-color .25s ease, box-shadow .25s ease;
         }
+        .final-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            opacity: .06;
+            pointer-events: none;
+            transition: opacity .25s ease;
+        }
+        .final-card > * {
+            position: relative;
+        }
+        #final-dive.final-card::before { background: url("assets/img/final-dive.jpg") center/cover no-repeat; }
+        #final-touch.final-card::before { background: url("assets/img/final-touch.jpg") center/cover no-repeat; }
         .final-card:hover {
             border-color: var(--border-hover);
             box-shadow: 0 0 32px rgba(27, 174, 234, .1);
+        }
+        .final-card:hover::before {
+            opacity: .12;
         }
         .final-card h3 {
             font-size: 1.2rem;
@@ -1057,16 +1073,16 @@
                 <p class="section-subtitle">Join thousands of developers shipping with Naninovel.</p>
             </div>
             <div class="final-grid">
-                <article class="final-card fade-in">
+                <article class="final-card fade-in" id="final-dive">
                     <h3>Dive In Now</h3>
-                    <p>Get Naninovel and start building your story today.</p>
+                    <p>Get Naninovel and start building today.</p>
                     <a href="https://assetstore.unity.com/packages/tools/game-toolkits/naninovel-visual-novel-engine-135453" target="_blank" class="btn btn-primary">PURCHASE NANINOVEL</a>
                     <br>
                     <a href="/guide" target="_blank" class="final-link">or see the guide for more info →</a>
                 </article>
-                <article class="final-card fade-in">
+                <article class="final-card fade-in" id="final-touch">
                     <h3>Get in Touch</h3>
-                    <p>Have a question? We are always here to help!</p>
+                    <p>Have a question? Feel free to reach out!</p>
                     <a href="/support" target="_blank" class="btn btn-outline">CONTACT SUPPORT</a>
                 </article>
             </div>
