@@ -67,11 +67,9 @@
             radial-gradient(ellipse 60% 60% at 50% 80%, rgba(140, 60, 80, .07), transparent),
             linear-gradient(170deg, var(--warm-a), var(--warm-b) 40%, var(--bg) 70%);
             pointer-events: none;
-            z-index: 0;
         }
         body > * {
             position: relative;
-            z-index: 1;
         }
 
         img {
@@ -249,7 +247,6 @@
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: 0;
         }
 
         /* Large radial glow behind logo */
@@ -291,14 +288,13 @@
         }
 
         .hero .wrap {
-            position: relative; z-index: 2;
+            position: relative;
         }
 
         .hero-logo {
             width: clamp(320px, 50vw, 560px);
             margin: 0 auto 24px;
             animation: hero-breathe 8s ease-in-out infinite;
-            filter: drop-shadow(0 0 60px rgba(27, 174, 234, .3));
             mix-blend-mode: lighten;
         }
         @keyframes hero-breathe {
@@ -331,7 +327,6 @@
             position: absolute;
             inset: 0;
             pointer-events: none;
-            z-index: 1;
             overflow: hidden;
         }
         .hero-shot {
@@ -362,7 +357,6 @@
         .hero-shot:nth-child(7) { width: clamp(160px, 15vw, 260px); top: 20%; left: 18%; transform: rotate(1deg); animation: shot-drift-2 28s ease-in-out infinite; }
         .hero-shot:nth-child(8) { width: clamp(170px, 15vw, 270px); top: 18%; right: 16%; transform: rotate(-2deg); animation: shot-drift-1 23s ease-in-out infinite; }
         .hero-shot:nth-child(9) { width: clamp(190px, 16vw, 300px); top: 75%; left: 20%; transform: rotate(3deg); animation: shot-drift-3 25s ease-in-out infinite; }
-
         @keyframes shot-drift-1 {
             0%, 100% { translate: 0 0; }
             50% { translate: 8px -12px; }
@@ -559,7 +553,6 @@
         #try-sandbox.try-card::before { background: url("assets/img/try-sandbox.jpg") center/cover no-repeat; }
         .try-card > * {
             position: relative;
-            z-index: 1;
         }
         .try-card:hover {
             border-color: var(--border-hover);
@@ -943,7 +936,7 @@
             <div class="section-header fade-in">
                 <p class="section-label">Try Before Buy</p>
                 <h2 class="section-title">Test drive for free</h2>
-                <p class="section-subtitle">Still in doubt whether Naninovel will work for you?<br>Check out the free demos!</p>
+                <p class="section-subtitle">Not sure whether Naninovel will work for you?<br>Check out the free demos!</p>
             </div>
             <div class="try-grid">
                 <article class="try-card fade-in" id="try-demo">
