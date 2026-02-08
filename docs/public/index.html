@@ -78,6 +78,11 @@
             height: auto;
         }
 
+        img, svg {
+            -webkit-user-drag: none;
+            user-select: none;
+        }
+
         a {
             color: var(--brand);
             text-decoration: none;
@@ -136,6 +141,8 @@
             cursor: pointer;
             border: none;
             text-decoration: none;
+            -webkit-user-drag: none;
+            user-select: none;
         }
         .btn-primary {
             background: linear-gradient(135deg, var(--brand), var(--brand-dark));
@@ -183,7 +190,7 @@
         .logo {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             font-weight: 800;
             font-size: 1.15rem;
             color: var(--text);
@@ -193,7 +200,7 @@
             width: 36px;
         }
         .logo:hover {
-            color: var(--brand);
+            color: unset;
         }
 
         nav {
@@ -496,6 +503,8 @@
             /* Staggered fade-in — each item gets a custom delay via JS */
             opacity: 0;
             transform: translateY(32px) scale(.97);
+            -webkit-user-drag: none;
+            user-select: none;
         }
         .showcase-item.visible {
             opacity: 1;
@@ -1062,7 +1071,10 @@
 <!-- ─────────── Footer ─────────── -->
 <footer>
     <div class="wrap footer-inner">
-        <p class="footer-copy">&copy; <script>document.currentScript.parentNode.insertBefore(document.createTextNode(new Date().getFullYear().toString()), document.currentScript);</script> ReWaffle LLC, All rights reserved.</p>
+        <p class="footer-copy">&copy;
+            <script>document.currentScript.parentNode.insertBefore(document.createTextNode(new Date().getFullYear().toString()), document.currentScript);</script>
+            ReWaffle LLC, All rights reserved.
+        </p>
         <div class="footer-socials">
             <a href="https://github.com/naninovel" target="_blank" rel="noopener" aria-label="GitHub">
                 <svg viewBox="0 0 24 24">
