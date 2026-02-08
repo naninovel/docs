@@ -12,6 +12,7 @@
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="assets/img/nani-logo-full.svg" as="image" type="image/svg+xml">
 
     <style>
         /* ───────────────────── Reset & Variables ───────────────────── */
@@ -300,9 +301,15 @@
 
         .hero-logo {
             width: clamp(320px, 50vw, 560px);
+            aspect-ratio: 1746.3 / 1157.1;
             margin: 0 auto 24px;
             animation: hero-breathe 8s ease-in-out infinite;
             mix-blend-mode: lighten;
+            opacity: 0;
+            transition: opacity .6s ease;
+        }
+        .hero-logo.loaded {
+            opacity: 1;
         }
         @keyframes hero-breathe {
             0%, 100% { transform: scale(1) translateY(0); filter: drop-shadow(0 0 60px rgba(27, 174, 234, .3)); }
@@ -830,7 +837,7 @@
             <div class="hero-shot"><img src="assets/img/preview/script-ide.jpg" alt=""></div>
         </div>
         <div class="wrap">
-            <img src="assets/img/nani-logo-full.svg" alt="Naninovel" class="hero-logo" width="440" height="120">
+            <img src="assets/img/nani-logo-full.svg" alt="Naninovel" class="hero-logo" width="440" height="292" onload="this.classList.add('loaded')">
             <h1><b>Naninovel</b> is an all-in-one suite of <b>writer-friendly</b> storytelling tools for creating <b>interactive fiction</b> and <b>visual novels</b></h1>
             <div class="hero-cta">
                 <a href="https://assetstore.unity.com/packages/tools/game-toolkits/naninovel-visual-novel-engine-135453" target="_blank" class="btn btn-primary">BUY NOW</a>
