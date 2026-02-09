@@ -111,10 +111,10 @@ function buildNav(text: string[], lang?: string): DefaultTheme.NavItem[] {
         { text: text[2], link: buildLink("api") },
         { text: text[3], link: buildLink("support") },
         {
-            text: "v1.21", items: [
+            text: "v1.22", items: [
                 { text: "Changelog", link: "/releases" },
                 { text: "Contributing", link: "https://github.com/naninovel/docs/blob/main/CONTRIBUTING.md" },
-                { text: "v1.20-stable", link: "https://naninovel.com/guide" }
+                { text: "v1.21-stable", link: "https://naninovel.com/guide" }
             ]
         }
     ];
