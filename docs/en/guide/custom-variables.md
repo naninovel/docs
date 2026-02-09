@@ -1,14 +1,14 @@
 # Custom Variables
 
-Custom variables feature allows creating user-specified variables, modify and use them to drive conditional execution of naninovel scripts or other systems. For example, custom variables can be used to select one of the multiple naninovel scripts to play (scenario routes), based on the decisions player has made in the past. Another frequently used scenario is player stats screen (eg, scores, money, resources etc), based on the choices the player makes throughout the game.
+The Custom Variables feature allows creating user-specified variables, modifying them, and using them to drive conditional execution of scenario scripts or other systems. For example, custom variables can be used to select one of multiple scenario scripts to play (scenario routes) based on decisions the player has made. Another common use is tracking player stats (e.g., scores, money, resources) based on choices made throughout the game.
 
 ::: info NOTE
-Variable name should start with a letter and can contain only latin characters, numbers and underscores, eg: `name`, `Char1Score`, `my_score`; the names are case-insensitive, eg: `myscore` is equal to `MyScore`.
+Variable names should start with a letter and may contain only Latin characters, numbers, and underscores, e.g., `name`, `Char1Score`, `my_score`. Names are case-insensitive, e.g., `myscore` is equal to `MyScore`.
 :::
 
-Custom variables can be created, modified and used both in naninovel scripts via [@set] and [@if] commands and in the C# scripts using `ICustomVariableManager` [engine service](/guide/engine-services).
+Custom variables can be created, modified, and used both in scenario scripts via [@set] and [@if] commands and in C# using the `ICustomVariableManager` [engine service](/guide/engine-services).
 
-For example, the following script command will assign a different value to `score` custom variable, based on the choice:
+For example, the following script command assigns different values to the `score` custom variable based on the player's choice:
 
 ```nani
 @choice "I'm humble, one is enough..." set:score=1
@@ -16,25 +16,23 @@ For example, the following script command will assign a different value to `scor
 @choice "I'll take your entire stock!" set:score=999
 ```
 
-And the following one will re-route the script execution based on the value of the `score` variable:
+And the following re-routes script execution based on the value of `score`:
 
 ```nani
 @goto MainRoute if:"score > 1 && score <= 900"
 @goto BadEnd if:score>900
 ```
 
-See the API reference on [@set] and [@if] commands for more examples.
+All custom variables are automatically saved with the game. By default, variables are stored in the local scope. This means that if you assign a variable during gameplay and the player starts a new game or loads another save slot where that variable wasn't assigned, the value will be lost. This behavior is useful for most variable types. If you wish to store a variable in the global scope, prepend `G_` or `g_` to its name, e.g., `G_FinishedMainRoute` or `g_total_score`. Global variables can indicate meta or cumulative information, such as the number of times the player has finished a route or a total score across playthroughs.
 
-All the custom variables are automatically saved with the game. By default, the variables are stored in **local scope**. This means, that if you assign some variable in the course of gameplay and player starts a new game or loads another saved game slot, where that variable wasn't assigned — the value will be lost. This is useful for the most type of variables. If, however, you wish to store the variable in **global scope**, prepend `G_` or `g_` to its name, eg: `G_FinishedMainRoute` or `g_total_score`. Global variables can be used to indicate some meta or total information, for example, the number of times player has finished some route or a total score based on all the playthroughs.
-
-You can set pre-defined custom variables (both global and local) with initial values in the "Custom Variables" configuration menu.
+You can set predefined custom variables (both global and local) with initial values in the "Custom Variables" configuration menu.
 
 ![](https://i.gyazo.com/21701f17403921e34ba4da33b0261ad0.png)
 
-Global pre-defined variables are initialized on first application start, while the locals do so on each state reset. Notice, that the value field in the menu expects a valid script expression and not a raw value string.
+Global predefined variables are initialized on the first application start, while local ones are initialized on each state reset. Note that the value field in the menu expects a valid script expression, not a raw value string.
 
 ::: tip
-In case you want to make a kind of global counter, that will only increment once, even when re-played (eg, with rollback or after restarting the game), use `HasPlayed()` [expression function](/guide/script-expressions#expression-functions):
+If you want a global counter that increments only once (even when re-played, e.g., with rollback or after restarting the game), use the `HasPlayed()` [expression function](/guide/script-expressions#expression-functions):
 ```nani
 @set g_GlobalCounter++ if:!HasPlayed()
 ```
@@ -42,17 +40,15 @@ In case you want to make a kind of global counter, that will only increment once
 
 ## Injecting Variables
 
-It's possible to inject (inline) custom variable to naninovel script parameter values using the curly braces.
+You can inject (inline) custom variables into scenario script parameter values using curly braces.
 
-The following script will show an input field UI where user can enter an arbitrary text. Upon submit the entered text will be assigned to the specified custom variable.
+The following script shows an input field UI where a user can enter arbitrary text. Upon submit, the entered text is assigned to the specified custom variable.
 
 ```nani
 ; Allow user to enter an arbitrary text and assign it to `name` variable.
 @input name summary:"Choose your name."
-; Stop is required to halt script execution until user submits the input.
-@stop
 
-; You can then inject the assigned `name` variable in naninovel scripts.
+; You can then inject the assigned `name` variable in scenario scripts.
 Archibald: Greetings, {name}!
 
 ; ...or use it inside set and conditional expressions.
@@ -60,10 +56,10 @@ Archibald: Greetings, {name}!
 ```
 
 ::: tip
-To make character names dynamic, use [display name](/guide/characters#display-names) feature.
+To make character names dynamic, use the [display name](/guide/characters#display-names) feature.
 :::
 
-You can inject the custom variables to any parameter values as long as the type allows. Eg, you can't assign a string (text) to an integer (number) parameter.
+You can inject custom variables into any parameter values as long as the type allows. For example, you can't assign a string (text) to a numeric parameter.
 
 ```nani
 @set PlayerName="Felix";PlayerYPosition=0.1;PlayerTint="lightblue"
@@ -75,35 +71,58 @@ You can inject the custom variables to any parameter values as long as the type 
 @char {PlayerName} pos:50,{PlayerYPosition} tint:{PlayerTint}
 ```
 
-## Variable Triggers
+## Default Assignment
 
-When building a [custom UI](/guide/user-interface#ui-customization) or other systems, you may want to listen for (react to) events when a variable's value changes. For example, when creating a character stats screen, you might want the text to update with the variables. While the conventional way to implement such behavior is by using a C# script, you can also use the `Custom Variable Trigger` component. This component will invoke Unity events when a variable with a specified name changes.
+Default assignment assigns a value to a custom variable only if the variable doesn't already have one. This is useful when you want to ensure a variable has an initial value but don't want to overwrite it if it's already set.
 
-![](https://i.gyazo.com/22eddd109e76d4e63c461e9d75b20ceb.png)
+To perform a default assignment, use the `?=` operator with the [@set] command:
+
+```nani
+; Declare and assign an initial value to the 'name' variable.
+@set name?="Alex"
+; The variable won't be re-assigned here, because it's already set.
+@set name?="John"
+```
+
+This is particularly useful for declaring global variables in entry or initialization scripts instead of using the editor configuration menu:
+
+```nani
+; Declare and assign 'false' to both variables tracking route completion.
+; When the same script is played again (e.g., on a subsequent game start),
+; the variables won't be re-assigned.
+@set g_ClearedRouteX?=false
+@set g_ClearedRouteY?=false
+```
+
+## Variable Events
+
+When building a [custom UI](/guide/gui#ui-customization) or other systems, you may want to react to events when a variable's value changes. For example, when creating a character stats screen, you might want the text to update with the variables. While a conventional approach uses a C# script, you can also use the `Variable Events` component. This component invokes Unity events when a variable with a specified name changes.
+
+![](https://i.gyazo.com/a8ad226b7a50110584551ae81179c709.png)
 
 ::: tip EXAMPLE
-Find example on using variable triggers to drive availability of map locations in the [map sample](/guide/samples#map).
+Find an example of using variable triggers to drive availability of map locations in the [map sample](/guide/samples#map).
 
 ![](https://i.gyazo.com/4987b1c53cd275f3fa56b533f53f3d8c.mp4)
 :::
 
 ## Variables Debug
 
-While the game is running, it's possible to view all the existing variables and change their values for debugging purposes.
+While the game is running, you can view and change all existing variables for debugging purposes.
 
-Open [development console](/guide/development-console) and enter `var` command to open the variables editor window.
+Open the development console with the `~` key and enter the `var` command to open the variables editor window.
 
 ![](https://i.gyazo.com/d1812668c0776b01f3a82c5ddcba0145.png)
 
-When changing the value of a variable in the list, a "SET" button will appear, which you can press to apply the changes.
+When changing the value of a variable in the list, a "SET" button appears; press it to apply the changes.
 
-The variable list is automatically updated when the custom variables are changed while running the game.
+The variable list updates automatically when custom variables change while the game is running.
 
 ## Using Custom Variables in C#
 
 Custom variables can be accessed in C# via the `ICustomVariableManager` [engine service](/guide/engine-services).
 
-To get and set variable values, use the `GetVariableValue` and `SetVariableValue` methods respectively. For example, given that a custom string variable named "MyVarName" exists, the code below retrieves its value, appends the string "Hello!" to it and sets the modified value back:
+To get and set variable values, use the `GetVariableValue` and `SetVariableValue` methods respectively. For example, given that a custom string variable named `MyVarName` exists, the code below retrieves its value, appends "Hello!" to it, and sets the modified value back:
 
 ```csharp
 var vars = Engine.GetService<ICustomVariableManager>();
@@ -112,7 +131,7 @@ value += "Hello!";
 vars.SetVariableValue("MyVarName", new(value));
 ```
 
-Notice the use of `.String` property when retrieving the actual value of the variable. This is because a variable can be one of three types: `String`, `Numeric`, or `Boolean`. The type is determined when the variable is initially assigned in the scenario scripts:
+Note the use of the `.String` property when retrieving the actual value of the variable. A variable can be one of three types: `String`, `Numeric`, or `Boolean`. The type is determined when the variable is initially assigned in scenario scripts:
 
 ```nani
 ; Assign 'foo' variable with a 'Hello World!' string value
@@ -152,7 +171,7 @@ vars.SetVariableValue("baz", new(true));
 if (vars.GetVariableValue("baz").Boolean)
 ```
 
-To check the type of variable in C#, use `.Type` property on the value:
+To check the type of a variable in C#, use the `.Type` property on the value:
 
 ```csharp
 var value = vars.GetVariableValue("bar");
@@ -160,7 +179,7 @@ if (value.Type == CustomVariableValueType.Numeric)
     if (value.Number > 12) // it's now safe to access '.Number' value
 ```
 
-Alternatively, use one of the "Try..." overloads:
+Alternatively, use one of the `Try...` overloads:
 
 ```csharp
 var vars = Engine.GetService<ICustomVariableManager>();

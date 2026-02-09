@@ -71,7 +71,7 @@
                 {
                     "comment": "Inline command - [command parameters]",
                     "name": "naniscript.command.parameter.value",
-                    "match": "(\\[[<\\w]*)([^\\r\\n\\[\\]]*)(\\]|$)",
+                    "match": "(\\[[<>\\-\\w]*)([^\\r\\n\\[\\]]*)(\\]|$)",
                     "captures": {
                         "1": { "name": "naniscript.command.inline" },
                         "2": { "patterns": [{ "include": "#params" }] },
@@ -114,7 +114,7 @@
                 {
                     "comment": "Expression context of well-known params - if/set:",
                     "name": "naniscript.command.parameter.id",
-                    "match": "\\s(?:if|set):([^\\s].*?)(?=\\s+\\w+:|\\s*$)",
+                    "match": "\\s(?:if|unless|set):([^\\s].*?)(?=\\s+\\w+:|\\s*$)",
                     "captures": { "1": { "name": "naniscript.expression" } }
                 },
                 {
@@ -162,10 +162,27 @@
                         },
                         { "include": "#expression" },
                         { "include": "#text-identifier" },
+                        { "include": "#tag" },
                         { "include": "#inline-command" }
                     ]
                 }
             }
+        },
+        "tag": {
+            "patterns": [
+                {
+                    "comment": "Select tag - </foo/bar/...>",
+                    "name": "naniscript.tag",
+                    "begin": "</(?=[^>\\r\\n]*/[^>\\r\\n]*>)",
+                    "end": ">",
+                    "patterns": [{ "name": "naniscript.select-option", "match": "[^>/]+" }]
+                },
+                {
+                    "comment": "Tag - <...>",
+                    "name": "naniscript.tag",
+                    "match": "<[^>\\r\\n]*>"
+                }
+            ]
         }
     }
 }
