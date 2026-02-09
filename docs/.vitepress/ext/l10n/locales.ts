@@ -5,7 +5,7 @@ export const config: LocaleConfig<DefaultTheme.Config> = {
     root: {
         lang: "en-US",
         label: "English",
-        description: "Writer-friendly visual novel engine.",
+        description: "Create visual novels, branching dialogues, and interactive cutscenes with an all-in-one suite of writer-friendly storytelling tools.",
         themeConfig: {
             langMenuLabel: "Language",
             lastUpdated: { text: "Updated", formatOptions: { dateStyle: "medium" } },
