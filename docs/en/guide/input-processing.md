@@ -1,115 +1,92 @@
 # Input Processing
 
-Engine processes user input using pre-configured listeners. Each input listener has the following properties:
+Naninovel uses Unity's [Input System](https://docs.unity3d.com/Packages/com.unity.inputsystem@latest) to listen for the following actions.
 
-| Property       | Description                                                                               |
-|----------------|-------------------------------------------------------------------------------------------|
-| Name           | Identifier of the input listener. Used to reference the listener by other engine systems. |
-| Always Process | Whether to process the input while in input blocking mode. E.g. when playing a movie.     |
-| Keys           | List of keys (buttons) which activate the input.                                          |
-| Axes           | List of axes (eg, a mouse or a gamepad analog stick) which activate the input.            |
-| Swipes         | List of swipes (touch screen) which activate the input.                                   |
+| Name          | Keyboard+Mouse             | Gamepad                        | Description                                                                                                                            |
+|---------------|----------------------------|--------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+| Submit        | Enter                      | Button South                   | Generic confirm intent, such as accepting a prompt or submitting an input form.                                                        |
+| Cancel        | Escape                     | Button East                    | Generic decline intent, such as declining a prompt or exiting a menu.                                                                  |
+| Delete        | Delete                     | Button North                   | Generic delete intent, such as deleting selected save slot.                                                                            |
+| Navigate      | Arrow Keys                 | D-Pad, Left Stick              | Generic navigation intent, such as selecting save slots in a row.                                                                      |
+| Scroll        | Scroll Wheel, Page Up/Down | Right Stick                    | Generic scroll intent, such as scrolling backlog.                                                                                      |
+| Page          |                            | Left Trigger <-> Right Trigger | Generic pagination intent, such as changing pages in save-load menu.                                                                   |
+| Tab           |                            | Left Bumper <-> Right Bumper   | Generic change-tab intent, such as changing tabs in settings menu.                                                                     |
+| Continue      | Enter, Scroll Wheel (Y+)   | Button South                   | Disable wait-for-input mode (activated when a message is printed) to continue script playback.                                         |
+| Pause         | Backspace                  | Start                          | Show the Pause UI.                                                                                                                     |
+| Skip          | Ctrl                       | Button West                    | Engage [skip mode](/guide/text-printers#text-skipping) (fast-forward) while the action is activated (button held).                     |
+| ToggleSkip    | Tab                        | Right Stick Press              | Toggle (permanently enable if disabled and vice-versa) skip mode.                                                                      |
+| SkipMovie     | Escape                     | Button East                    | Skip (cancel) currently playing [movie](/api/#movie).                                                                                  |
+| AutoPlay      | A                          | Button East                    | Toggle [auto-play mode](/guide/text-printers#auto-advance-text), where wait-for-input mode is disabled automatically after a set delay. |
+| ToggleUI      | Space                      | Button North                   | Toggle [visibility](/guide/gui#ui-toggling) (hide/show) of the entire UI layer.                                                        |
+| ShowBacklog   | L                          | Right Bumper                   | Toggle [Backlog UI](/guide/text-printers#printer-backlog) visibility.                                                                  |
+| Rollback      | B, Scroll Wheel (Y-)       | Left Bumper                    | Rewind script backwards.                                                                                                               |
+| CameraLook    | Mouse Delta                | Right Stick                    | Move camera while in [@look] mode.                                                                                                     |
+| ToggleConsole | `                          |                                | Toggle development console.                                                                               |
 
-For specific values see Unity's input guide: [docs.unity3d.com/Manual/ConventionalGameInput](https://docs.unity3d.com/Manual/ConventionalGameInput.html).
+## Customizing Inputs
 
-You can configure the built-in input bindings and add new listeners using `Naninovel -> Configuration -> Input` context menu; for available options see [configuration guide](/guide/configuration#input).
+You can configure the default actions and add new ones by assigning a custom `Input Actions` asset in the `Naninovel -> Configuration -> Input` context menu. Keep the associated actions under a `Naninovel` map to allow the engine to detect them. The default input actions asset can be created with `Create -> Naninovel -> Input -> Controls` asset menu — feel free to use it as a reference when creating your own.
+
+![](https://i.gyazo.com/8ef1cc7eccac5cbc9e88016e2b1271f6.png)
 
 ::: tip EXAMPLE
-An example of adding custom input binding to toggle inventory UI can be found in the [inventory sample](/guide/samples#inventory). Specifically, the custom "ToggleInventory" binding is used in `Scripts/Runtime/Inventory/UI/InventoryUI.cs` runtime script. A binding with the same name is added via input configuration menu, under Control Scheme.
+An example of adding a custom input binding to toggle the inventory UI can be found in the [inventory sample](/guide/samples#inventory). Specifically, the custom "ToggleInventory" action is used in `Scripts/Runtime/Inventory/UI/InventoryUI.cs` runtime script. Another example — [input rebind sample](/guide/samples#input-rebind) — implements a rebind UI to allow the player to change default controls.
 :::
 
-It's possible to halt and resume input processing with [@processInput] command.
+When using custom input actions, it's recommended to also use a custom `Event System` assigned in the same configuration menu, and then assign the custom input actions asset to the `Actions Asset` property of the Input System UI Input Module component attached to the event system prefab. This is required for various UI-related functionality to work correctly. You can create a default event system prefab that works with Naninovel via `Create -> Naninovel -> Input -> Event System`.
 
-## Default Listeners
-
-Below is the list of pre-configured input listeners with default key bindings for keyboard and gamepad, as well as associated descriptions.
-
-| Name          | Keyboard+Mouse           | Gamepad                        | Description                                                                                                                             |
-|---------------|--------------------------|--------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------|
-| Submit        | Enter                    | Button South                   | Generic confirm intent, such as accepting a prompt or submitting an input form.                                                         |
-| Cancel        | Escape                   | Button East                    | Generic decline intent, such as declining a prompt or exiting a menu.                                                                   |
-| Delete        | Delete                   | Button North                   | Generic delete intent, such as deleting selected save slot.                                                                             |
-| NavigateX     | Left <-> Right           | D-Pad (X), Left Stick (X)      | Generic navigation intent over horizontal axis, such as selecting save slots in a row.                                                  |
-| NavigateY     | Up <-> Down              | D-Pad (Y), Left Stick (Y)      | Generic navigation intent over vertical axis, such as selecting save slots in a column.                                                 |
-| ScrollY       | Scroll Wheel (Y)         | Right Stick (Y)                | Generic scroll intent over vertical axis, such as scrolling backlog.                                                                    |
-| Page          |                          | Left Trigger <-> Right Trigger | Generic paginate intent, such as changing pages in save-load menu.                                                                      |
-| Tab           |                          | Left Bumper <-> Right Bumper   | Generic change tab intent, such as changing tabs in settings menu.                                                                      |
-| Continue      | Enter, Scroll Wheel (Y+) | Button South                   | Disable wait for input mode (activated when a message is printed) to continue script playback.                                          |
-| Pause         | Backspace                | Start                          | Show Pause UI.                                                                                                                          |
-| Skip          | Ctrl                     | Button West                    | Engage [skip mode](/guide/text-printers#text-skipping) (fast-forward) while the action is activated (button held).                      |
-| ToggleSkip    | Tab                      | Right Stick Press              | Toggle (permanently enable if disabled and vice-versa) skip mode.                                                                       |
-| SkipMovie     | Escape                   | Button East                    | Skip (cancel) currently playing [movie](/guide/movies).                                                                                 |
-| AutoPlay      | A                        | Button East                    | Toggle [auto-play mode](/guide/text-printers#auto-advance-text), where wait for input mode is disabled automatically after a set delay. |
-| ToggleUI      | Space                    | Button North                   | Toggle [visibility](/guide/user-interface#ui-toggling) (hide/show) of the entire UI layer.                                              |
-| ShowBacklog   | L                        | Right Bumper                   | Toggle [Backlog UI](/guide/text-printers#printer-backlog) visibility.                                                                   |
-| Rollback      | B, Scroll Wheel (Y-)     | Left Bumper                    | Rewind script backwards.                                                                                                                |
-| CameraLookX   | Mouse X                  | Right Stick (X)                | Move camera over horizontal axis while in [@look] mode.                                                                                 |
-| CameraLookY   | Mouse Y                  | Right Stick (Y)                | Move camera over vertical axis while in [@look] mode.                                                                                   |
-| ToggleConsole | `                        |                                | Toggle [development console](/guide/development-console).                                                                               |
-
-## Input System
-
-Naninovel supports Unity's new [Input System](https://blogs.unity3d.com/2019/10/14/introducing-the-new-input-system/); see the [official docs](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.5/manual/Installation.html) on how to install and enable the input system package.
-
-After the package is installed, create an event system prefab; use `UI -> Event System` in the hierarchy window to create a default one. Make sure `Input System UI Input Module` is attached to the prefab. When creating a default event system, Unity will suggest to automatically convert legacy input module component to the new one.
-
-![](https://i.gyazo.com/965b87f8585cb31ae2452f19882bdab7.png)
-
-Assign the created event system prefab to `Custom Event System` property in the Naninovel UI configuration menu, then disable `Spawn Input Module` in the same menu.
-
-![](https://i.gyazo.com/b06177545022b8816e342b984afecaea.png)
-
-When the input system package is installed, an `Input Actions` property will appear in the input configuration menu. Assign [input actions asset](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.0/manual/ActionAssets.html?q=input%20actions%20asset) to the property, then create "Naninovel" action map and add input actions with names equal to the Naninovel's binding names. The list of the built-in binding names can be found in the "Bindings" list under "Control Scheme" in the same configuration window. Below is an example input actions configuration.
-
-![](https://i.gyazo.com/07fb5702badd3e698c3533f28585a15b.png)
+![](https://i.gyazo.com/b1f99bb8e2cea14ec9f97c78b91d313a.png)
 
 ::: tip
-Default event system and input action assets are stored at `Naninovel/Prefabs/Input` folder. Feel free to use them as a reference when creating your own.
-:::
-
-When properly configured, input actions will activate Naninovel's bindings. In case you wish to disable legacy input processing (which is set under the "Bindings" list), disable `Process Legacy Bindings` property under input configuration menu.
-
-::: warning
-When `Process Legacy Bindings` is left enabled, some bindings may trigger twice (one from new input and another from legacy). Either make sure each binding is only processed under its respective system or disable the option completely.
-:::
-
-For more information on using the input system, consult the [official manual](https://docs.unity3d.com/Packages/com.unity.inputsystem@latest).
-
-::: tip EXAMPLE
-Check [input rebind sample](/guide/samples#input-rebind) on using the new input system and implementing a rebind UI to allow player change default controls.
+To prevent actions with modifiers (such as `Tab` and `Page`) from triggering other actions that use the same bindings without modifiers (for example, `Navigate`), enable the `Enable Input Consumption` option in the project settings under the Input System Package category.
 :::
 
 ## Adapt to Input Mode
 
-When Unity's new input system is installed and enabled, all the built-in UIs will adapt to the current input mode (mouse and keyboard, gamepad or touch) based on last active input device. For example, if player is using mouse to interact with the game, but at some point presses a button on gamepad, the UIs will switch to gamepad input mode.
+By default, all the built-in UIs will adapt to the current input mode (mouse and keyboard, gamepad or touch) based on the last active input device. For example, if the player is using a mouse to interact with the game, but at some point presses a button on a gamepad, the UIs will switch to gamepad input mode.
 
 ![](https://i.gyazo.com/a2f38246d7eee8d75d7f3f6660a092ed.mp4)
 
-Default input mode activated after engine initialization is evaluated by input manager based on the target platform:
+You can disable the feature by unchecking the `Detect Input Mode` option in the input configuration menu.
+
+Default input mode activated after engine initialization is evaluated by the input manager based on the target platform:
+
 - Consoles -> Gamepad
 - Mobiles -> Touch
-- Others -> Mouse and Keyboard
+- Others -> Mouse
 
-### Mouse and Keyboard
+### Mouse
 
 In this mode the UI will disable navigation on all the underlying [Selectable](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-Selectable.html) objects. This is to prevent buttons from transitioning into "selected" state when clicked by mouse.
 
-Additionally, in case `Button Controls` object is assigned in `Custom UI` (or derived) component, it will be enabled, while `Controls Legend` disabled. This allows keeping buttons specific to mouse input mode (eg, "close" button) and controls legend (eg, gamepad button labels) visible only when associated input mode is active.
+Additionally, if a `Button Controls` object is assigned in `Custom UI` (or derived) component, it will be enabled, while `Keyboard Controls` and `Gamepad Controls` will be disabled. This allows keeping buttons specific to mouse input mode (e.g., "close" button) and controls legend (e.g., gamepad button labels) visible only when the associated input mode is active.
 
 ### Gamepad
 
-Gamepad mode will keep navigation (change it back when switched from mouse mode), so that player is able to navigate selectables with dpad.
+Gamepad mode will re-enable navigation (if it was disabled when in mouse mode), so that the player is able to navigate selectables with D-Pad or left stick.
 
-When assigned, `Button Controls` will be disabled and `Controls Legend` — enabled.
+When assigned, the `Gamepad Controls` legend will be enabled, while others (buttons and keyboard) will be disabled.
 
 ::: tip
 If you'd like to customize gamepad legend icons, check out [Xelu's free controller prompts](https://thoseawesomeguys.com/prompts/).
 :::
 
-Additionally, while in gamepad mode and a modal UI is shown, first active selectable inside will be focused to prevent focus from getting stuck with previously selected object. This behaviour can be changed by explicitly assigning `Focus Object` of custom UI or derived component, in which case the UI won't attempt to find focus object automatically.
+Additionally, while in gamepad mode and a modal UI is shown, the first active selectable inside will be focused to prevent focus from getting stuck on a previously selected object. This behaviour can be changed by explicitly assigning `Focus Object` of a custom UI or derived component, in which case the UI won't attempt to find a focus object automatically.
+
+### Keyboard
+
+Activated when keyboard navigation (arrow) keys are pressed. Other keys won't activate this mode, because they are used in Mouse mode as hotkeys.
+
+Otherwise, it works the same as Gamepad mode, just with the different controls legend shown.
 
 ### Touch
 
 When in touch mode, Naninovel won't perform any special changes on the managed UIs by default. However, you can add touch-specific behaviour by overriding `HandleInputModeChanged` method of `CustomUI` component.
 
-To disable the adapt to input mode feature for a specific UI, uncheck `Adapt To Input Mode` option of `Custom UI` (or derived) component. To disable the feature globally, use `Detect Input Mode` option in input configuration.
+To disable the adapt to input mode feature for a specific UI, uncheck the `Adapt To Input Mode` option of `Custom UI` (or derived) component. To disable the feature globally, use `Detect Input Mode` option in input configuration.
+
+## Custom Input Backend
+
+Naninovel allows using custom input solutions, such as [Rewired](https://guavaman.com/projects/rewired/), instead of Unity's built-in input system. The engine uses the default input system APIs only in a couple of virtual methods inside the `InputManager` class, and the references are conditionally compiled, ensuring that no compilation errors occur even if you remove the default input module.
+
+To make the engine use a custom input solution, [override](/guide/engine-services#overriding-built-in-services) the `InputManager` engine service and override the required virtual methods.

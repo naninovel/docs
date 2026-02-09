@@ -1,27 +1,25 @@
 # Backgrounds
 
-Opposed to [characters](/guide/characters), backgrounds are actors used to represent a *back* layer of the scene: locations, sceneries, landscapes or anything that should always appear *behind* the characters.
+As opposed to [characters](/guide/characters), backgrounds are actors used to represent a *back* layer of the scene: locations, scenery, landscapes or anything that should always appear *behind* the characters.
 
 A background actor is defined with a name, appearance, visibility and transform (position, rotation, scale). It can change appearance, visibility and transform over time.
 
 Backgrounds' behavior can be configured using `Naninovel -> Configuration -> Backgrounds` context menu; for available options see [configuration guide](/guide/configuration#backgrounds). The backgrounds' resources manager can be accessed using `Naninovel -> Resources -> Backgrounds` context menu.
 
-![](https://i.gyazo.com/cccd08280dac72d199ea3465bc167a22.gif)
-
-In naninovel scripts, backgrounds are mostly controlled with [@back] command:
+In scenario scripts, backgrounds are mostly controlled with [@back] command:
 
 ```nani
-; Set `River` as the appearance of the main background
+; Set "River" as the appearance of the main background
 @back River
 
-; Same as above, but also use a `RadialBlur` transition effect
+; Same as above, but also use a "RadialBlur" transition effect
 @back River.RadialBlur
 ```
 
-Backgrounds are handled a bit differently from characters to better accommodate traditional VN game flow. Most of the time you'll probably have a single background actor on scene, which will constantly transition to different appearances. To remove the hassle of repeating same actor ID in scripts, it's possible to provide only the background appearance and transition type (optional) as a nameless parameter assuming `MainBackground` actor should be affected. When this is not the case, ID of the background actor can be explicitly provided via the `id` parameter:
+Backgrounds are handled a bit differently from characters to better accommodate traditional VN game flow. Most of the time you'll probably have a single background actor on scene, which will constantly transition to different appearances. To remove the hassle of repeating the same actor ID in scripts, it's possible to provide only the background appearance and transition type (optional) as a nameless parameter, assuming the `MainBackground` actor is the one to be affected. When this is not the case, the ID of the background actor can be explicitly provided via the `id` parameter:
 
 ```nani
-; Given a `CityVideo` actor with `Night` and `Day` video clips.
+; Given a "CityVideo" actor with "Night" and "Day" video clips.
 
 ; Show the video background playing day clip.
 @back Day id:CityVideo
@@ -33,7 +31,7 @@ Backgrounds are handled a bit differently from characters to better accommodate 
 @hide CityVideo
 ```
 
-Main background actor record is created by default in the background resources manager and can't be renamed or deleted; however, parameters of the main background (implementation, pivot, PPU, etc) can be freely changed.
+The main background actor record is created by default in the background resources manager and can't be renamed or deleted; however, parameters of the main background (implementation, pivot, PPU, etc.) can be freely changed.
 
 Check the following video tutorial for an overview of the background actors.
 
@@ -45,7 +43,7 @@ If you have many backgrounds or background appearances and it's inconvenient to 
 
 ![](https://www.youtube.com/watch?v=2YP-36THHvk)
 
-To associate appearance resources with actor records, use the [addressable asset system](/guide/resource-providers#addressable). For example, to associate a "Beach" appearance with the "MainBackground" background, assign the texture asset the address `Naninovel/Backgrounds/MainBackground/Beach` and add the `Naninovel` label. For more details on using the addressable provider, see the [resource providers documentation](/guide/resource-providers#addressable).
+To associate appearance resources with actor records, use the [addressable asset system](/guide/resource-providers#addressable). For example, to associate a "Beach" appearance with the `MainBackground`, assign the texture asset the address `Naninovel/Backgrounds/MainBackground/Beach` and add the `Naninovel` label. For more details on using the addressable provider, see the [resource providers documentation](/guide/resource-providers#addressable).
 
 ## Z-order
 
@@ -56,10 +54,10 @@ When showing multiple backgrounds simultaneously, they tend to cover each other:
 @back id:2
 ```
 
-— in case both background `1` and `2` are full-screen opaque textures, one added later will completely cover the other. To show first one back, either hide the other or change z-position (depth) to chane the draw order:
+— in case both background `1` and `2` are full-screen opaque textures, one added later will completely cover the other. To show the first background behind the other, either hide the other or change z-position (depth) to change the draw order:
 
 ```nani
-; Hide background 2 to reveal first one back
+; Hide background 2 to reveal the first one behind
 @back id:2 !visible
 ; There is also a dedicated command to hide actors
 @hide 2
@@ -69,28 +67,28 @@ When showing multiple backgrounds simultaneously, they tend to cover each other:
 @back id:2 pos:,,99
 ```
 
-Higher z-positions result in further distance from the camera, hence first actor being placed closer to the camera will render on top of the other.
+Higher z-positions result in further distance from the camera; hence an actor placed closer to the camera will render on top of another.
 
 Backgrounds are placed with a specific z-offset by default to make them appear behind other actor types. The offset value can be changed via `Z Offset` property in background settings.
 
-To prevent z-fighting issues, backgrounds are further offset apart from each other over z-axis when first added (shown). The offset is controlled with `Z Step` setting.
+To prevent z-fighting issues, backgrounds are further offset apart from each other over the z-axis when first added (shown). The offset is controlled with the `Z Step` setting.
 
 ## Match Mode
 
-When [camera](https://docs.unity3d.com/Manual/class-Camera.html) is rendering in orthographic mode and `Match Mode` in background actor configuration is not disabled, the actor will attempt to match its size against current screen size. This is performed to handle the cases when display [aspect ratio](https://en.wikipedia.org/wiki/Aspect_ratio_(image)) is different from the background's. When the matching is disabled and the aspect ratios are different, "black bars" will appear.
+When the [camera](https://docs.unity3d.com/Manual/class-Camera.html) is rendering in orthographic mode and `Match Mode` in background actor configuration is not disabled, the actor will attempt to match its size against the current screen size. This is performed to handle the cases when display [aspect ratio](https://en.wikipedia.org/wiki/Aspect_ratio_(image)) is different from the background's. When the matching is disabled and the aspect ratios are different, "black bars" will appear.
 
 ![](https://i.gyazo.com/46619a08e3b91441cf30800185932963.png)
 
 While for standalone (PC, Mac, Linux) builds you can limit the available aspect ratios in the [player settings](https://docs.unity3d.com/Manual/class-PlayerSettingsStandalone.html#Resolution), on web, consoles and mobiles it's not possible and the applications have to adapt for the target devices instead.
 
-Following match modes can be set for each background actor (except of generic implementation):
+Following match modes can be set for each background actor (except for generic implementation):
 
- Mode    | Description
- ---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
- Crop    | The background will always occupy the whole camera frustum, ensuring no black bars are visible to the player, no matter the display aspect ratio; however, some background areas could be cropped. Set by default for new background actors.
- Fit     | The whole background area will always remain visible, but black bars will appear when the aspect ratios are different.
- Custom  | Allows matching either width or height with a custom ratio. The ratio is controlled with `Custom Match Ratio` property: minimum (0) value will match width and ignore height, maximum (1) — vice-versa.
- Disable | Don't perform any matching.
+| Mode | Description |
+|------|-------------|
+| Crop | The background will always occupy the whole camera frustum, ensuring no black bars are visible to the player, no matter the display aspect ratio; however, some background areas could be cropped. Set by default for new background actors. |
+| Fit | The whole background area will always remain visible, but black bars will appear when the aspect ratios are different. |
+| Custom | Allows matching either width or height with a custom ratio. The ratio is controlled with `Custom Match Ratio` property: minimum (0) value will match width and ignore height, maximum (1) — vice-versa. |
+| Disable | Don't perform any matching. |
 
 ::: tip
 In case you wish to implement a similar matching feature for a generic or custom background see the [scale to screen example](https://discord.com/channels/545676116871086080/1369983634236379240) on the forum.
@@ -103,30 +101,40 @@ Each background has `Poses` property allowing to specify named states (poses).
 Pose name can be used as appearance in [@back] command to apply all the selected parameters specified in the pose at once, instead of specifying them individually via the command parameters.
 
 ```nani
-; Given `Day` pose is defined for main background,
+; Given "Day" pose is defined for main background,
 ; applies all the selected parameters specified in the pose.
 @back Day
 
-; Same as above, but for a background actor with `City` ID
-; and using `DropFade` transition over 3 seconds.
-@back Day id:City transition:DropFade time:3
+; Same as above, but for a background actor with "City" ID
+; and using "DropFade" transition over 3 seconds.
+@back Day.DropFade id:City time:3
 ```
 
-Notice, that when a pose is used as appearance, you can still override individual parameters, eg:
+Notice that when a pose is used as appearance, you can still override individual parameters, e.g.:
 
 ```nani
-; Given `Day` pose is defined for main background,
+; Given "Day" pose is defined for main background,
 ; applies all the parameters specified in the pose state,
 ; except tint, which is overridden in the command.
 @back Day tint:#ff45cb
 ```
+
+## Placeholder Backgrounds
+
+The placeholder implementation is the default one and is intended for scenario drafting when you do not yet have any visual assets to represent a background. It procedurally generates background appearances at runtime so you can keep track of which one is currently displayed while working on the scenario. Below is an example of a placeholder "EveningScene" background with a couple of [placeholder characters](/guide/characters#placeholder-characters) on top.
+
+![](https://i.gyazo.com/cebb0506d3743e2e1b20b1d3c214239a.png)
+
+While Naninovel automatically generates background placeholders, you can define the looks for specific appearances via the `Placeholder Appearances` list in the background editor.
+
+![](https://i.gyazo.com/183dcc86fbf0d01de49d85d45686571f.png)
 
 ## Sprite Backgrounds
 
 Sprite implementation of the background actors is the most common and simple one; it uses a set of [texture](https://docs.unity3d.com/Manual/Textures.html) assets wrapped over a quad mesh (sprite) to represent appearances of the background. The textures can be based on `.jpg`, `.png`, `.tiff`, `.psd` or any other image file format [supported by Unity](https://docs.unity3d.com/Manual/ImportingTextures).
 
 ::: tip
-Choose file formats that are most comfortable for your development workflow. When building the project, Unity will automatically convert all the source resources (textures, audio, video, etc) to the formats most suitable for the target platform, so it won't make difference in which format you originally store the resources in the project. Find more information on how Unity manage project assets in the [official documentation](https://docs.unity3d.com/Manual/AssetWorkflow).
+Choose file formats that are most comfortable for your development workflow. When building the project, Unity will automatically convert all the source resources (textures, audio, video, etc.) to the formats most suitable for the target platform, so it won't make difference in which format you originally store the resources in the project. Find more information on how Unity manage project assets in the [official documentation](https://docs.unity3d.com/Manual/AssetWorkflow).
 :::
 
 Initial (unscaled) size of the sprite background mesh on scene depends on the reference resolution (camera configuration), background's `Pixel Per Unit` property (set for each background actor in the configuration menu) and source texture resolution.
@@ -198,15 +206,15 @@ If you're using a video format other than mp4 (eg, webm), set the extension of t
 
 ## Layered Backgrounds
 
-The layered implementation allows composing backgrounds from multiple sprites (layers) and then toggle them individually via naninovel scripts at runtime.
+The layered implementation allows composing backgrounds from multiple sprites (layers) and then toggle them individually via scenario scripts at runtime.
 
 ::: tip
-Layered actor implementation has been evolving and is currently the most flexible with support for all the rendering features (in contrast to generic). Even if you don't want to use layer expressions, but instead control the appearance with Unity's Animator or other custom systems; or need to render non-trivial objects such as particle systems and/or utilize third-party renderers, check [render only](/guide/characters#outsourcing-appearance-management) and [camera rendering](/guide/characters#camera-rendering) options available for layered actors before reserving to generic or custom implementation.
+Layered actor implementation has been evolving and is currently the most flexible with support for all the rendering features (in contrast to generic). Even if you don't want to use layer expressions, but instead control the appearance with Unity's Animator or other custom systems; or need to render non-trivial objects such as particle systems and/or utilize third-party renderers, check [render only](/guide/characters#outsourcing-appearance-management) and [camera rendering](/guide/characters#camera-rendering) options available for layered actors before resorting to generic or custom implementation.
 :::
 
 To create a layered background prefab, use `Create -> Naninovel -> Background -> Layered` asset context menu. Enter [prefab editing mode](https://docs.unity3d.com/Manual/EditingInPrefabMode.html) to compose the layers. Several layers and groups will be created by default. You can use them or delete and add your own.
 
-The layered backgrounds are very similar to [layered characters](/guide/characters#layered-characters); consult the documentation for more info on how to set up and control them via naninovel scripts.
+The layered backgrounds are very similar to [layered characters](/guide/characters#layered-characters); consult the documentation for more info on how to set up and control them via scenario scripts.
 
 Don't forget that nameless parameter in [@back] command is expecting appearance and transition type (not ID and appearance as with [@char] command), so specify layer composition expressions in the following way:
 
@@ -222,12 +230,12 @@ Generic background is the most flexible background actor implementation. It's ba
 ![](https://i.gyazo.com/6483ef3e84549c1bbfbdffc6556308ea.png)
 
 ::: info NOTE
-Generic actor implementations just route events from the scenario scripts and it's up to user to implement the underlying behaviour, eg how the actor should react to the appearance or visibility change commands, whether and how it will adapt to aspect ratio changes, etc. Don't expect most of the actor-related features to work automatically with the generic implementations.
+Generic actor implementations just route events from the scenario scripts and it's up to user to implement the underlying behaviour, e.g., how the actor should react to the appearance or visibility change commands, whether and how it will adapt to aspect ratio changes, etc. Don't expect most of the actor-related features to work automatically with the generic implementations.
 :::
 
 To create generic background prefab from a template, use `Create -> Naninovel -> Background -> Generic` context asset menu.
 
-Generic backgrounds are very similar to generic characters; check out a tutorial video on setting an animated 3D model as a generic character for one of the possible usage examples. Be aware, that the video is captured with an old Naninovel version and some properties and component names are different now; see the above docs for the up-to-date information.
+Generic backgrounds are very similar to generic characters; check out a tutorial video on setting an animated 3D model as a generic character for one of the possible usage examples. Be aware that the video is captured with an old Naninovel version and some properties and component names are different now; see the above docs for the up-to-date information.
 
 ![](https://www.youtube.com/watch?v=HPxhR0I1u2Q)
 
@@ -243,7 +251,7 @@ Check [generic actor sample](/guide/samples#generic-actor), where generic backgr
 
 You can use a [Unity scene](https://docs.unity3d.com/Manual/CreatingScenes) as a background with scene backgrounds implementation.
 
-The scene background configuration has a `Scene Root Path` option set to `Assets/Scenes` by default — this is the directory, where the actor's scene assets are expected to be located. You can change it (for example to specify individual folder for each actor) or leave as-is.
+The scene background configuration has a `Scene Root Path` option set to `Assets/Scenes` by default — this is the directory where the actor's scene assets are expected to be located. You can change it (for example to specify individual folder for each actor) or leave as-is.
 
 ![](https://i.gyazo.com/0f3c0be40941ad739f2c873c5fbf6e51.png)
 
@@ -253,13 +261,13 @@ Resource (appearance) names of the scene backgrounds are expected to be equal to
 
 Create a new (or move an existing) scene under the specified root folder and make sure it has at least one [camera](https://docs.unity3d.com/ScriptReference/Camera.html) component attached to a root game object inside the scene. Upon loading scene background, Naninovel will assign a render texture to the first found camera in the scene. The render texture will then be assigned to a background sprite, representing the scene background inside Naninovel scene space. This way, the scene background will be able to co-exist with other background and character actors, support all the background transition effects and scale to handle various display aspect ratios.
 
-Make sure to position the scene objects in world space so that they don't overlap with objects from other scenes, that could potentially be loaded at the same time (eg, when referenced in a single naninovel script). Additionally, be aware, that in case a scene background object is positioned near the global space origin (`x0 y0 z0`), it could be rendered by Naninovel's main camera; to prevent this, either offset all the scene objects from the global origin, or use `Configuration -> Engine -> Override Objects Layer` to isolate Naninovel-related objects using [layers](https://docs.unity3d.com/Manual/Layers.html).
+Make sure to position the scene objects in world space so that they don't overlap with objects from other scenes that could potentially be loaded at the same time (e.g., when referenced in a single scenario script). Additionally, be aware that, in case a scene background object is positioned near the global space origin (`x0 y0 z0`), it could be rendered by Naninovel's main camera; to prevent this, either offset all the scene objects from the global origin, or use `Configuration -> Engine -> Override Objects Layer` to isolate Naninovel-related objects using [layers](https://docs.unity3d.com/Manual/Layers.html).
 
 After scene setup is complete, create a new background actor via `Naninovel -> Configuration -> Backgrounds` menu, select `SceneBackground` implementation and add the scene asset to the actor resources.
 
-When assigning resources for a scene background actor, corresponding scene assets should automatically be added to the [build settings](https://docs.unity3d.com/Manual/BuildSettings.html); in case you're getting an error that a scene asset is not added to the build, try adding it manually.
+When assigning resources for a scene background actor, the corresponding scene assets should automatically be added to the [build settings](https://docs.unity3d.com/Manual/BuildSettings.html); in case you're getting an error that a scene asset is not added to the build, try adding it manually.
 
-You can now use [@back] command to control the created scene background actor, eg:
+You can now use [@back] command to control the created scene background actor, e.g.:
 
 ```nani
 ; Show "Scene" background actor with content from "Sphere" Unity scene.
@@ -278,4 +286,4 @@ Find example on setting up scene background in the [scene background sample](/gu
 
 ## Render to Texture
 
-It's possible to render character and background actors of all the implementations (except generic) to a texture asset, which can then can be assigned to a custom UI, printer, material or any other compatible source. Setting up background actor render to texture is very similar to that of a character; [check the guide](/guide/characters#render-to-texture) for more info and examples.
+It's possible to render character and background actors of all the implementations (except generic) to a texture asset, which can then be assigned to a custom UI, printer, material or any other compatible source. Setting up background actor render to texture is very similar to that of a character; [check the guide](/guide/characters#render-to-texture) for more info and examples.
