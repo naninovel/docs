@@ -844,10 +844,6 @@ Kohaku: 隆隆作响！
 
 可以通过自定义 actor [着色器](https://docs.unity3d.com/Manual/ShadersOverview.html) 添加完全自定义的过渡效果。
 
-::: warning
-该主题需要 Unity 中的图形编程技能。我们不提供任何有关编写自定义着色器的支持或教程；有关更多信息，请参阅 [支持页面](/zh/support/#unity-support)。
-:::
-
 创建一个新着色器并将其分配给应该使用自定义过渡效果的 actor 的 `Custom Texture Shader` 属性；有关如何创建和分配自定义 actor 着色器的更多信息，请参阅 [自定义 actor 着色器](/zh/guide/custom-actor-shader) 指南。
 
 当在脚本命令中指定过渡名称时，将在 actor 使用的材质中启用具有相同名称（前缀为 `NANINOVEL_TRANSITION_`）的 [着色器关键字](https://docs.unity3d.com/ScriptReference/Shader.EnableKeyword.html)。

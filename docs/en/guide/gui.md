@@ -29,7 +29,7 @@ UI customization allows adding a custom UI and modifying or completely replacing
 Be aware that text printers and choice handlers are implemented via the actors interface and are customized in a different way; see the corresponding documentation ([text printers](/guide/text-printers), [choice handlers](/guide/choices)) for more info.
 
 ::: warning
-Before attempting to create custom UIs or modify existing ones, make sure you're familiar with [Unity's UI system](https://docs.unity3d.com/Packages/com.unity.ugui@latest) (uGUI). While there are video tutorials and example projects for UI customization available below, please be aware that we won't be able to provide additional guidance on Unity's built-in tools; consult the [support page](/support/#unity-support) for more information.
+Before attempting to create custom UIs or modify existing ones, make sure you're familiar with [Unity's UI system](https://docs.unity3d.com/Packages/com.unity.ugui@latest) (uGUI).
 :::
 
 To add a custom UI or modify (disable) a built-in one, use the UI resources manager accessible via `Naninovel -> Resources -> UI` editor menu.

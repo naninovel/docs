@@ -844,10 +844,6 @@ Naninovelカメラにカスタム [ポストプロセスエフェクト](https:/
 
 カスタムアクター [シェーダー](https://docs.unity3d.com/Manual/ShadersOverview.html) を介して完全にカスタムなトランジションエフェクトを追加することが可能です。
 
-::: warning
-このトピックには、Unityでのグラフィックプログラミングスキルが必要です。カスタムシェーダーの作成に関するサポートやチュートリアルは提供していません。詳細については、[サポートページ](/ja/support/#unity-support) を参照してください。
-:::
-
 新しいシェーダーを作成し、カスタムトランジションエフェクトを使用することになっているアクターの `Custom Texture Shader` プロパティに割り当てます。カスタムアクターシェーダーの作成と割り当て方法の詳細については、[カスタムアクターシェーダー](/ja/guide/custom-actor-shader) ガイドを参照してください。
 
 スクリプトコマンドでトランジション名が指定されると、アクターが使用するマテリアルで同じ名前（`NANINOVEL_TRANSITION_` 接頭辞付き）の [シェーダーキーワード](https://docs.unity3d.com/ScriptReference/Shader.EnableKeyword.html) が有効になります。
