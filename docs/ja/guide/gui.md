@@ -29,7 +29,7 @@ UIのカスタマイズにより、カスタムUIを追加したり、タイト�
 テキストプリンターと選択肢ハンドラーはアクターインターフェイスを介して実装されており、異なる方法でカスタマイズされることに注意してください。詳細については、対応するドキュメント（[テキストプリンター](/ja/guide/text-printers)、[選択肢ハンドラー](/ja/guide/choices)）を参照してください。
 
 ::: warning
-カスタムUIを作成したり、既存のものを変更したりする前に、[UnityのUIシステム](https://docs.unity3d.com/Packages/com.unity.ugui@latest)（uGUI）に精通していることを確認してください。以下にUIカスタマイズのビデオチュートリアルとサンプルプロジェクトがありますが、Unityの組み込みツールに関する追加のガイダンスは提供できません。詳細については、[サポートページ](/ja/support/#unity-support) を参照してください。
+カスタムUIを作成したり、既存のものを変更したりする前に、[UnityのUIシステム](https://docs.unity3d.com/Packages/com.unity.ugui@latest)（uGUI）に精通していることを確認してください。
 :::
 
 カスタムUIを追加したり、組み込みのUIを変更（無効化）したりするには、`Naninovel -> Resources -> UI` エディタメニューからアクセスできるUIリソースマネージャーを使用します。
