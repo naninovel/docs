@@ -29,7 +29,7 @@ UI 自定义允许添加自定义 UI 并修改或完全替换任何内置 UI 元
 请注意，文本打印机和选项处理程序是通过 actor 接口实现的，并以不同的方式进行自定义；有关更多信息，请参阅相应的文档（[文本打印机](/zh/guide/text-printers)、[选项处理程序](/zh/guide/choices)）。
 
 ::: warning
-在尝试创建自定义 UI 或修改现有 UI 之前，请确保您熟悉 [Unity 的 UI 系统](https://docs.unity3d.com/Packages/com.unity.ugui@latest) (uGUI)。虽然下面提供了用于 UI 自定义的视频教程和示例项目，但请注意，我们将无法就 Unity 的内置工具提供额外的指导；有关更多信息，请参阅 [支持页面](/zh/support/#unity-support)。
+在尝试创建自定义 UI 或修改现有 UI 之前，请确保您熟悉 [Unity 的 UI 系统](https://docs.unity3d.com/Packages/com.unity.ugui@latest) (uGUI)。
 :::
 
 要添加自定义 UI 或修改（禁用）内置 UI，请使用可通过 `Naninovel -> Resources -> UI` 编辑器菜单访问的 UI 资源管理器。
