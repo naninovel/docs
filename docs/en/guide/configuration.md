@@ -260,27 +260,8 @@ Auto Resolve Path | True | Whether to automatically resolve and update resource 
 Hot Reload Scripts | True | Whether to reload modified (both via visual and external editors) scripts and apply changes during play mode without restarting the playback.
 Watch Scripts | True | Whether to run a file system watcher over '.nani' files. Required to register script changes when edited with an external application.
 Show Script Navigator | False | Whether to auto-show script navigator UI after engine is initialized (requires 'IScriptNavigatorUI' available in UI resources).
-Enable Story Editor | True | Whether to use the new Story Editor instead of the legacy Visual Editor and Script Graph.
+Enable Story Editor | True | Whether to enable the Story Editor app.
 Show Selected Script | True | Whether to open selected scenario script assets inside the Story Editor.
-Enable Visual Editor | True | Whether to show the legacy visual script editor when a script is selected. Has no effect when Story Editor is enabled.
-Hide Unused Parameters | True | Whether to hide un-assigned parameters of the command lines when the line is not hovered or focused.
-Select Played Script | True | Whether to automatically select currently played script when visual editor is open.
-Insert Line Key | Space | Hot key used to show 'Insert Line' window when the visual editor is in focus. Set to 'None' to disable.
-Insert Line Modifier | Control | Modifier for the 'Insert Line Key'. Set to 'None' to disable.
-Indent Line Key | Right Arrow | Hot key used to indent lines. Set to 'None' to disable.
-Indent Line Modifier | Control | Modifier for the 'Indent Line Key'. Set to 'None' to disable.
-Unindent Line Key | Left Arrow | Hot key used to un-indent lines. Set to 'None' to disable.
-Unindent Line Modifier | Control | Modifier for the 'Unindent Line Key'. Set to 'None' to disable.
-Save Script Key | S | Hot key used to save (serialize) the edited script when the visual editor is in focus. Set to 'None' to disable.
-Save Script Modifier | Control | Modifier for the 'Save Script Key'. Set to 'None' to disable.
-Rewind Mouse Button | 0 | When clicked a line in visual editor, which mouse button should activate rewind: '0' is left, '1' right, '2' middle; set to '-1' to disable.
-Rewind Modifier | Shift | Modifier for 'Rewind Mouse Button'. Set to 'None' to disable.
-Editor Page Length | 300 | How many script lines should be rendered per visual editor page.
-Editor Custom Style Sheet | Null | Allows modifying default style of the visual editor.
-Graph Orientation | Horizontal | Whether to build the graph vertically or horizontally.
-Graph Auto Align Padding | (10.00, 0.00) | Padding to add for each node when performing auto align.
-Show Synopsis | True | Whether to show fist comment lines of the script inside the graph node.
-Graph Custom Style Sheet | Null | Allows modifying default style of the script graph.
 Enable Community Modding | False | Whether to allow adding external naninovel scripts to the build.
 External Loader | Scripts- (Local) | Configuration of the resource loader used with external naninovel script resources.
 

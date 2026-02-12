@@ -62,7 +62,7 @@ To make character names dynamic, use the [display name](/guide/characters#displa
 You can inject custom variables into any parameter values as long as the type allows. For example, you can't assign a string (text) to a numeric parameter.
 
 ```nani
-@set PlayerName="Felix";PlayerYPosition=0.1;PlayerTint="lightblue"
+@set PlayerName="Felix",PlayerYPosition=0.1,PlayerTint="lightblue"
 
 ; The following will produce an error, as `PlayerTint` is not a number.
 @char {PlayerName} pos:50,{PlayerTint}

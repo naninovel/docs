@@ -410,7 +410,7 @@ Actor 应实现 `IBlurable` 接口以支持该效果。
 ; 与上面相同，但将外观设置为 'Happy'。
 @char Sora.Happy
 
-; 与上面相同，但另外将角色放置在距离场景左边界 45% 
+; 与上面相同，但另外将角色放置在距离场景左边界 45%
 ; 和底部边界 10% 的位置；还使其向左看。
 @char Sora.Happy look:left pos:45,10
 
@@ -460,7 +460,7 @@ Continue executing this script or ...?[>]
 ; 根据选择设置自定义变量。
 @choice "I'm humble, one is enough..." set:score++
 @choice "Two, please." set:score=score+2
-@choice "I'll take the entire stock!" set:karma--;score=999
+@choice "I'll take the entire stock!" set:karma--,score=999
 
 ; 选择选择时播放音效并排列角色。
 @choice "Arrange"
@@ -1466,7 +1466,7 @@ This line will disappear.
 
 ; 在一行中定义多个设置表达式；
 ; 结果将与上面相同。
-@set bar="Hello World!";foo=bar
+@set bar="Hello World!",foo=bar
 
 ; 可以将变量注入到 naninovel 脚本命令参数中。
 @set scale=0
@@ -2153,7 +2153,7 @@ Jeez, what a disgusting Noise. Shut it down![wait i5][>]
 
 ```nani
 ; 猜数字游戏。
-@set number=random(1,100);answer=0
+@set number=random(1,100),answer=0
 @while answer!=number
     @input answer summary:"Guess a number between 1 and 100"
     @if answer<number
