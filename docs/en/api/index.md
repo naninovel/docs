@@ -461,7 +461,7 @@ Continue executing this script or ...?[>]
 ; Set custom variables based on choices.
 @choice "I'm humble, one is enough..." set:score++
 @choice "Two, please." set:score=score+2
-@choice "I'll take the entire stock!" set:karma--;score=999
+@choice "I'll take the entire stock!" set:karma--,score=999
 
 ; Play a sound effect and arrange characters when the choice is selected.
 @choice "Arrange"
@@ -1468,7 +1468,7 @@ If a variable with the specified name doesn't exist, it will be automatically cr
 
 ; Defining multiple set expressions in one line; 
 ; the result will be the same as above.
-@set bar="Hello World!";foo=bar
+@set bar="Hello World!",foo=bar
 
 ; It's possible to inject variables to naninovel script command parameters.
 @set scale=0
@@ -2156,7 +2156,7 @@ Executes nested lines in a loop, as long as specified conditional expression res
 
 ```nani
 ; Guess the number game.
-@set number=random(1,100);answer=0
+@set number=random(1,100),answer=0
 @while answer!=number
     @input answer summary:"Guess a number between 1 and 100"
     @if answer<number

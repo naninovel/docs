@@ -62,7 +62,7 @@ Archibald: 问候，{name}！
 只要类型允许，您就可以将自定义变量注入到任何参数值中。例如，您不能将字符串（文本）分配给数字参数。
 
 ```nani
-@set PlayerName="Felix";PlayerYPosition=0.1;PlayerTint="lightblue"
+@set PlayerName="Felix",PlayerYPosition=0.1,PlayerTint="lightblue"
 
 ; 以下将产生错误，因为 `PlayerTint` 不是数字。
 @char {PlayerName} pos:50,{PlayerTint}

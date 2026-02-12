@@ -460,7 +460,7 @@ Continue executing this script or ...?[>]
 ; 選択肢に基づいてカスタム変数を設定します。
 @choice "I'm humble, one is enough..." set:score++
 @choice "Two, please." set:score=score+2
-@choice "I'll take the entire stock!" set:karma--;score=999
+@choice "I'll take the entire stock!" set:karma--,score=999
 
 ; 選択肢が選択されたときに効果音を再生し、キャラクターを配置します。
 @choice "Arrange"
@@ -1465,7 +1465,7 @@ This line will disappear.
 
 ; 1行で複数のセット式を定義します。
 ; 結果は上記と同じになります。
-@set bar="Hello World!";foo=bar
+@set bar="Hello World!",foo=bar
 
 ; Naninovelスクリプトコマンドパラメータに変数を注入することが可能です。
 @set scale=0
@@ -2151,7 +2151,7 @@ Jeez, what a disgusting Noise. Shut it down![wait i5][>]
 
 ```nani
 ; 数字当てゲーム。
-@set number=random(1,100);answer=0
+@set number=random(1,100),answer=0
 @while answer!=number
     @input answer summary:"Guess a number between 1 and 100"
     @if answer<number

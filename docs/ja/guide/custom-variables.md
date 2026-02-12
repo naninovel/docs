@@ -62,7 +62,7 @@ Archibald: ごきげんよう、{name}！
 型が許可する限り、任意のパラメータ値にカスタム変数を注入できます。たとえば、文字列（テキスト）を数値パラメータに割り当てることはできません。
 
 ```nani
-@set PlayerName="Felix";PlayerYPosition=0.1;PlayerTint="lightblue"
+@set PlayerName="Felix",PlayerYPosition=0.1,PlayerTint="lightblue"
 
 ; 以下は、`PlayerTint` が数値ではないため、エラーが発生します。
 @char {PlayerName} pos:50,{PlayerTint}
