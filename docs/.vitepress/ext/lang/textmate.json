@@ -14,7 +14,10 @@
                 {
                     "comment": "Label - #...",
                     "name": "naniscript.label",
-                    "match": "^[\\t ]*(#[\\t ]*)(\\s[\\s\\w|]*)[\\t ]*$"
+                    "match": "^[\\t ]*(#[\\t ]*)(\\s[\\s\\w|]*)([\\t ]*;.*)?[\\t ]*$",
+                    "captures": {
+                        "3": { "name": "naniscript.comment" }
+                    }
                 }
             ]
         },
@@ -25,7 +28,7 @@
             "patterns": [
                 {
                     "comment": "Command - @...",
-                    "match": "^[\\t ]*(@.+)[\\t ]*$",
+                    "match": "^[\\t ]*(@.+?)(\\s+;.*)?[\\t ]*$",
                     "name": "naniscript.command.parameter.value",
                     "captures": {
                         "1": {
@@ -49,7 +52,8 @@
                                 },
                                 { "include": "#params" }
                             ]
-                        }
+                        },
+                        "2": { "name": "naniscript.comment" }
                     }
                 }
             ]
@@ -57,25 +61,39 @@
         "inline-command": {
             "patterns": [
                 {
+                    "comment": "Empty inline comment - [; comment]",
+                    "name": "naniscript.command.parameter.value",
+                    "match": "(\\[)(;[^\\]]*)(\\]|$)",
+                    "captures": {
+                        "1": { "name": "naniscript.command.inline" },
+                        "2": { "name": "naniscript.comment" },
+                        "3": { "name": "naniscript.command.inline" }
+                    }
+                },
+                {
                     "comment": "Well-known inline commands with expression context - [if/unless/set ...]",
                     "name": "naniscript.command.parameter.value",
-                    "match": "(\\[)(if|unless|set)\\s+([^\\s].*?)(?=\\s+\\w+:|\\]|$)(.*?)(\\]|$)",
+                    "match": "(\\[)(if|unless|set)\\s+([^\\s].*?)(?=\\s+\\w+:|\\s*;[^\\]]*\\]|\\]|$)(.*?)(?:(\\s+;[^\\]]*)(\\]|$)|(\\]|$))",
                     "captures": {
                         "1": { "name": "naniscript.command.inline" },
                         "2": { "name": "naniscript.command" },
                         "3": { "name": "naniscript.expression" },
                         "4": { "patterns": [{ "include": "#params" }] },
-                        "5": { "name": "naniscript.command.inline" }
+                        "5": { "name": "naniscript.comment" },
+                        "6": { "name": "naniscript.command.inline" },
+                        "7": { "name": "naniscript.command.inline" }
                     }
                 },
                 {
                     "comment": "Inline command - [command parameters]",
                     "name": "naniscript.command.parameter.value",
-                    "match": "(\\[[<>\\-\\w]*)([^\\r\\n\\[\\]]*)(\\]|$)",
+                    "match": "(\\[[<>\\-\\w]*)([^\\r\\n\\[\\]]*?)(?:(\\s+;[^\\]]*)(\\]|$)|(\\]|$))",
                     "captures": {
                         "1": { "name": "naniscript.command.inline" },
                         "2": { "patterns": [{ "include": "#params" }] },
-                        "3": { "name": "naniscript.command.inline" }
+                        "3": { "name": "naniscript.comment" },
+                        "4": { "name": "naniscript.command.inline" },
+                        "5": { "name": "naniscript.command.inline" }
                     }
                 }
             ]
