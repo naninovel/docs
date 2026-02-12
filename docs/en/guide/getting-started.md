@@ -384,8 +384,6 @@ Enable Minimal Mode via the `Naninovel -> Set Up Minimal Mode` Unity Editor menu
 The Minimal Mode setup procedure will modify the engine's default configuration and resources, and the **changes cannot be automatically undone**. Only enable the mode when starting a new project where Naninovel is going to be used as a drop-in dialogue system, not as a visual novel engine.
 :::
 
-Wait until the setup is complete and scripts are recompiled. Notice that the "Naninovel" editor menu is now under "Tools" — indicating that it has demoted itself to a tool status, rather than a foundational part of the project.
-
 You can read more about the C# part of the engine integration into existing codebases under the "Advanced" section of the guide. Here, we'll show a simple no-code dialogue interaction scenario: the player hovers over an interactable object and clicks it to start the dialogue. On an empty scene, add:
 
 - An object with an `UI / Event System` component
