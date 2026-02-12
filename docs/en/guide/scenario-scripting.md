@@ -105,7 +105,11 @@ When a line starts with the semicolon symbol (`;`), it is considered a *comment*
 ; The following command will auto-save the game.
 @save
 
-@save ; You can also place comments inline.
+@save ; You can also place comments inside command lines.
+
+# Label ; And inside label lines.
+
+Lorem [shake ; And inside inlined commands] ipsum. [; ...including empty ones.]
 ```
 
 We will use comments throughout the rest of the guide to annotate sample NaniScript snippets.
