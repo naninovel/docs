@@ -1,14 +1,21 @@
 {
     "type": "module",
     "scripts": {
+        "update": "ncu --interactive",
+        "test": "vitest run",
+        "test:update": "vitest run --update",
         "dev": "vitepress dev docs",
         "build": "vitepress build docs",
         "preview": "vitepress preview docs"
     },
     "devDependencies": {
-        "typescript": "5.8.3",
-        "@types/node": "22.13.14",
-        "vitepress": "1.6.3",
-        "imgit": "0.2.1"
+        "typescript": "5.9.3",
+        "@types/node": "24.1.0",
+        "vitepress": "1.6.4",
+        "vitest": "4.0.18",
+        "vscode-textmate": "9.3.2",
+        "vscode-oniguruma": "2.0.1",
+        "imgit": "0.2.1",
+        "npm-check-updates": "19.3.2"
     }
 }
