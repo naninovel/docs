@@ -3,204 +3,223 @@
     "scopeName": "source.naniscript",
     "fileTypes": ["nani"],
     "patterns": [
-        { "include": "#command" },
-        {
-            "patterns": [
-                {
-                    "comment": "Comment - ;...",
-                    "name": "naniscript.comment",
-                    "match": "^[\\t ]*(;.*)$"
-                },
-                {
-                    "comment": "Label - #...",
-                    "name": "naniscript.label",
-                    "match": "^[\\t ]*(#[\\t ]*)(\\s[\\s\\w|]*)([\\t ]*;.*)?[\\t ]*$",
-                    "captures": {
-                        "3": { "name": "naniscript.comment" }
-                    }
-                }
-            ]
-        },
-        { "include": "#generic-text" }
+        { "include": "#comment-line" },
+        { "include": "#label-line" },
+        { "include": "#command-line" },
+        { "include": "#generic-text-line" }
     ],
     "repository": {
-        "command": {
+        "comment-line": {
+            "match": "^\\s*;.*$",
+            "name": "naniscript.comment"
+        },
+        "label-line": {
+            "begin": "^\\s*(?=#)",
+            "end": "$",
+            "name": "naniscript.label",
             "patterns": [
-                {
-                    "comment": "Command - @...",
-                    "match": "^[\\t ]*(@.+?)(\\s+;.*)?[\\t ]*$",
-                    "name": "naniscript.command.parameter.value",
-                    "captures": {
-                        "1": {
-                            "patterns": [
-                                {
-                                    "comment": "Well-known commands with expression context - @if/unless/set/while",
-                                    "name": "naniscript.command",
-                                    "match": "@(?:if|unless|while|set) ([^\\s].*?)(?=\\s+\\w+:|\\s*$)",
-                                    "captures": { "1": { "name": "naniscript.expression" } }
-                                },
-                                {
-                                    "comment": "Well-known commands with navigation context - @goto, @gosub",
-                                    "name": "naniscript.command",
-                                    "match": "@(?:goto|gosub) (\\S+)",
-                                    "captures": { "1": { "name": "naniscript.label" } }
-                                },
-                                {
-                                    "comment": "@Command",
-                                    "name": "naniscript.command",
-                                    "match": "@\\w+"
-                                },
-                                { "include": "#params" }
-                            ]
-                        },
-                        "2": { "name": "naniscript.comment" }
-                    }
-                }
+                { "match": ";.*$", "name": "naniscript.comment" }
             ]
         },
-        "inline-command": {
+        "command-line": {
+            "begin": "^\\s*(?=@)",
+            "end": "$",
+            "name": "naniscript.command.parameter.value",
             "patterns": [
-                {
-                    "comment": "Empty inline comment - [; comment]",
-                    "name": "naniscript.command.parameter.value",
-                    "match": "(\\[)(;[^\\]]*)(\\]|$)",
-                    "captures": {
-                        "1": { "name": "naniscript.command.inline" },
-                        "2": { "name": "naniscript.comment" },
-                        "3": { "name": "naniscript.command.inline" }
-                    }
-                },
-                {
-                    "comment": "Well-known inline commands with expression context - [if/unless/set ...]",
-                    "name": "naniscript.command.parameter.value",
-                    "match": "(\\[)(if|unless|set)\\s+([^\\s].*?)(?=\\s+\\w+:|\\s*;[^\\]]*\\]|\\]|$)(.*?)(?:(\\s+;[^\\]]*)(\\]|$)|(\\]|$))",
-                    "captures": {
-                        "1": { "name": "naniscript.command.inline" },
-                        "2": { "name": "naniscript.command" },
-                        "3": { "name": "naniscript.expression" },
-                        "4": { "patterns": [{ "include": "#params" }] },
-                        "5": { "name": "naniscript.comment" },
-                        "6": { "name": "naniscript.command.inline" },
-                        "7": { "name": "naniscript.command.inline" }
-                    }
-                },
-                {
-                    "comment": "Inline command - [command parameters]",
-                    "name": "naniscript.command.parameter.value",
-                    "match": "(\\[[<>\\-\\w]*)([^\\r\\n\\[\\]]*?)(?:(\\s+;[^\\]]*)(\\]|$)|(\\]|$))",
-                    "captures": {
-                        "1": { "name": "naniscript.command.inline" },
-                        "2": { "patterns": [{ "include": "#params" }] },
-                        "3": { "name": "naniscript.comment" },
-                        "4": { "name": "naniscript.command.inline" },
-                        "5": { "name": "naniscript.command.inline" }
-                    }
-                }
+                { "include": "#command-comment" },
+                { "include": "#expression-command-identifier" },
+                { "include": "#navigation-command-identifier" },
+                { "include": "#command-identifier" },
+                { "include": "#command-parameters" }
+            ]
+        },
+        "expression-command-identifier": {
+            "match": "\\G(@(?:if|unless|while|set))(?:\\s((?:\\{[^}]*\\}|\"(?:[^\"\\\\]|\\\\.)*\"|\\\\.|[^\\s\\]])+))?",
+            "captures": {
+                "1": { "name": "naniscript.command" },
+                "2": { "name": "naniscript.expression" }
+            }
+        },
+        "navigation-command-identifier": {
+            "match": "\\G(@(?:goto|gosub))(?:\\s((?:\\{[^}]*\\}|\"(?:[^\"\\\\]|\\\\.)*\"|\\\\.|[^\\s\\]])+))?",
+            "captures": {
+                "1": { "name": "naniscript.command" },
+                "2": { "name": "naniscript.label" }
+            }
+        },
+        "command-identifier": {
+            "match": "\\G@\\S+",
+            "name": "naniscript.command"
+        },
+        "command-comment": {
+            "match": "\\s;.*$",
+            "name": "naniscript.comment"
+        },
+        "command-parameters": {
+            "patterns": [
+                { "include": "#command-comment" },
+                { "include": "#expression-parameter" },
+                { "include": "#navigation-parameter" },
+                { "include": "#named-parameter" },
+                { "include": "#boolean-parameter" },
+                { "include": "#quoted-value" },
+                { "include": "#quoted-value-with-expressions" },
+                { "include": "#expression" },
+                { "include": "#text-identifier" }
+            ]
+        },
+        "expression-parameter": {
+            "begin": "(\\s(?:if|unless|set):)",
+            "beginCaptures": { "1": { "name": "naniscript.command.parameter.id" } },
+            "end": "(?=\\s|$|\\])",
+            "contentName": "naniscript.command.parameter.id",
+            "patterns": [
+                { "match": "(?:\\{[^}]*\\}|\"(?:[^\"\\\\]|\\\\.)*\"|\\\\.|[^\\s\\]])+", "name": "naniscript.expression" }
+            ]
+        },
+        "navigation-parameter": {
+            "begin": "(\\s(?:goto|gosub):)",
+            "beginCaptures": { "1": { "name": "naniscript.command.parameter.id" } },
+            "end": "(?=\\s|$|\\])",
+            "contentName": "naniscript.command.parameter.id",
+            "patterns": [
+                { "match": "(?:\\{[^}]*\\}|\"(?:[^\"\\\\]|\\\\.)*\"|\\\\.|[^\\s\\]])+", "name": "naniscript.label" }
+            ]
+        },
+        "named-parameter": {
+            "match": "\\s[A-Za-z_][A-Za-z0-9_]*:",
+            "name": "naniscript.command.parameter.id"
+        },
+        "boolean-parameter": {
+            "begin": "(\\s(?:[A-Za-z_][A-Za-z0-9_]*(?=!)|(?=!)))",
+            "beginCaptures": { "1": { "name": "naniscript.command.parameter.id" } },
+            "end": "(?=\\s|$|;|\\])",
+            "contentName": "naniscript.command.parameter.id",
+            "patterns": [
+                { "match": "!", "name": "naniscript.command.parameter.value" }
             ]
         },
         "expression": {
-            "patterns": [
-                {
-                    "comment": "Expression - {exp}",
-                    "name": "naniscript.expression",
-                    "match": "(?<!\\\\)\\{(?:[^\\[\\]\\{\\}]*|\\\\\\{|\\\\\\})*((?<!\\\\)\\}|$)"
-                }
-            ]
+            "match": "(?<!\\\\)\\{[^}]*\\}",
+            "name": "naniscript.expression"
         },
         "text-identifier": {
+            "match": "\\|#[^|]*\\|",
+            "name": "naniscript.text-identifier"
+        },
+        "quoted-value": {
+            "match": "(?<!\\\\)\"[^\"|]*(?<!\\\\)\"",
+            "name": "naniscript.generic-text"
+        },
+        "quoted-value-with-expressions": {
+            "begin": "(?<!\\\\)\"",
+            "end": "(?<!\\\\)\"",
+            "name": "naniscript.generic-text",
             "patterns": [
-                {
-                    "comment": "Text Identifier - |#ID|",
-                    "name": "naniscript.text-identifier",
-                    "match": "(?<!\\\\)\\|#&*[\\w-]+\\|"
-                }
+                { "include": "#text-identifier" },
+                { "include": "#expression" }
             ]
         },
-        "bool-flags": {
+        "generic-text-line": {
+            "begin": "^(?!\\s*[@#;])\\s*",
+            "end": "$",
+            "name": "naniscript.generic-text",
             "patterns": [
-                {
-                    "comment": "Boolean Flag - !",
-                    "name": "naniscript.command.parameter.value",
-                    "match": "!"
-                }
+                { "include": "#author-prefix" },
+                { "include": "#generic-text-content" }
             ]
         },
-        "params": {
+        "author-prefix": {
+            "begin": "\\G([A-Za-z_][A-Za-z0-9_.]*:)",
+            "beginCaptures": { "1": { "name": "naniscript.author" } },
+            "end": "(?=$)",
             "patterns": [
+                { "include": "#author-space" }
+            ]
+        },
+        "author-space": {
+            "begin": "\\G\\s",
+            "end": "(?=$)",
+            "patterns": [
+                { "include": "#generic-text-content" }
+            ]
+        },
+        "generic-text-content": {
+            "patterns": [
+                { "include": "#inline-command" },
                 { "include": "#expression" },
                 { "include": "#text-identifier" },
-                {
-                    "comment": "Expression context of well-known params - if/set:",
-                    "name": "naniscript.command.parameter.id",
-                    "match": "\\s(?:if|unless|set):([^\\s].*?)(?=\\s+\\w+:|\\s*$)",
-                    "captures": { "1": { "name": "naniscript.expression" } }
-                },
-                {
-                    "comment": "Navigation context of well-known params - goto/gosub:",
-                    "name": "naniscript.command.parameter.id",
-                    "match": "\\s(?:goto|gosub):(\\S+)",
-                    "captures": { "1": { "name": "naniscript.label" } }
-                },
-                {
-                    "comment": "Quoted parameter value - \"foo\"",
-                    "name": "naniscript.generic-text",
-                    "match": "(\"(?:[^\"\\\\]|\\\\.)*\")",
-                    "captures": { "1": { "patterns": [{ "include": "#text-identifier" }] } }
-                },
-                {
-                    "comment": "Parameter ID - id:",
-                    "name": "naniscript.command.parameter.id",
-                    "match": "\\s\\w+:"
-                },
-                {
-                    "comment": "Parameter ID With Positive Boolean Flag - id!",
-                    "name": "naniscript.command.parameter.id",
-                    "match": "\\s\\w+(!)(?=\\s|$)",
-                    "captures": { "1": { "patterns": [{ "include": "#bool-flags" }] } }
-                },
-                {
-                    "comment": "Parameter ID With Negative Boolean Flag - !id",
-                    "name": "naniscript.command.parameter.id",
-                    "match": "\\s(!)\\w+",
-                    "captures": { "1": { "patterns": [{ "include": "#bool-flags" }] } }
-                }
+                { "include": "#tag-close" },
+                { "include": "#tag-select" },
+                { "include": "#tag-special" },
+                { "include": "#tag" }
             ]
         },
-        "generic-text": {
-            "name": "naniscript.generic-text",
-            "match": "^\\s*(\\S+: ){0,1}(.+)",
+        "inline-command": {
+            "begin": "(?=(?<!\\\\)\\[)",
+            "end": "(\\])|$",
+            "endCaptures": { "1": { "name": "naniscript.command.inline" } },
+            "name": "naniscript.command.parameter.value",
+            "patterns": [
+                { "include": "#expression-inline-command-identifier" },
+                { "include": "#inline-command-identifier" },
+                { "include": "#inline-command-bracket" },
+                { "include": "#inline-command-comment" },
+                { "include": "#inline-command-parameters" }
+            ]
+        },
+        "expression-inline-command-identifier": {
+            "match": "\\G(\\[)((?:if|unless)(?=\\s|\\]))(?:\\s((?:\\{[^}]*\\}|\"(?:[^\"\\\\]|\\\\.)*\"|\\\\.|[^\\s\\]])+))?",
             "captures": {
-                "1": { "patterns": [{ "name": "naniscript.author", "match": "\\S+:" }] },
-                "2": {
-                    "patterns": [
-                        {
-                            "name": "naniscript.generic-text.escaped-char",
-                            "comment": "Escaped characters",
-                            "match": "\\\\[{}\\[\\]\"]"
-                        },
-                        { "include": "#expression" },
-                        { "include": "#text-identifier" },
-                        { "include": "#tag" },
-                        { "include": "#inline-command" }
-                    ]
-                }
+                "1": { "name": "naniscript.command.inline" },
+                "2": { "name": "naniscript.command" },
+                "3": { "name": "naniscript.expression" }
             }
         },
-        "tag": {
+        "inline-command-identifier": {
+            "match": "\\G\\[(?:[A-Za-z_][A-Za-z0-9_]*|[\\-><])",
+            "name": "naniscript.command.inline"
+        },
+        "inline-command-bracket": {
+            "match": "\\G\\[",
+            "name": "naniscript.command.inline"
+        },
+        "inline-command-comment": {
+            "match": "\\s?;[^\\]]*",
+            "name": "naniscript.comment"
+        },
+        "inline-command-parameters": {
             "patterns": [
-                {
-                    "comment": "Select tag - </foo/bar/...>",
-                    "name": "naniscript.tag",
-                    "begin": "</(?=[^>\\r\\n]*/[^>\\r\\n]*>)",
-                    "end": ">",
-                    "patterns": [{ "name": "naniscript.select-option", "match": "[^>/]+" }]
-                },
-                {
-                    "comment": "Tag - <...>",
-                    "name": "naniscript.tag",
-                    "match": "<[^>\\r\\n]*>"
-                }
+                { "include": "#inline-command-comment" },
+                { "include": "#expression-parameter" },
+                { "include": "#navigation-parameter" },
+                { "include": "#named-parameter" },
+                { "include": "#boolean-parameter" },
+                { "include": "#quoted-value" },
+                { "include": "#quoted-value-with-expressions" },
+                { "include": "#expression" },
+                { "include": "#text-identifier" }
             ]
+        },
+        "tag-close": {
+            "match": "</[A-Za-z][A-Za-z0-9]*>",
+            "name": "naniscript.tag"
+        },
+        "tag-select": {
+            "begin": "</",
+            "end": ">",
+            "name": "naniscript.tag",
+            "patterns": [
+                { "match": "[^/>]+", "name": "naniscript.select-option" }
+            ]
+        },
+        "tag-special": {
+            "match": "<[@:][^>]*>",
+            "name": "naniscript.tag"
+        },
+        "tag": {
+            "match": "<[A-Za-z][^>]*>|<->",
+            "name": "naniscript.tag"
         }
     }
 }
