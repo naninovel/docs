@@ -19,7 +19,7 @@ for (const line of lines) {
         currentGroup = [];
         continue;
     }
-    const snapMatch = line.match(/snap\(`([^`]*)`\)/);
+    const snapMatch = line.match(/s\(`([^`]*)`\)/);
     if (snapMatch) currentGroup.push(snapMatch[1].replace(/\\\\/g, "\\"));
 }
 if (currentGroup.length > 0) groups.push(currentGroup);

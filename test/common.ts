@@ -2,6 +2,7 @@
 import * as path from "node:path";
 import * as tm from "vscode-textmate";
 import * as oni from "vscode-oniguruma";
+import { test, expect } from "vitest";
 
 export interface TokenInfo {
     text: string;
@@ -23,18 +24,17 @@ const registry = new tm.Registry({
     }
 });
 
-export async function tokenize(lines: string[]): Promise<TokenInfo[][]> {
+// Validates specified NaniScript line produces TextMate tokens identical to the previous snapshot.
+export function snapshot(line: string) {
+    return test(line, async () => expect(await tokenize(line)).toMatchSnapshot());
+}
+
+export async function tokenize(line: string): Promise<TokenInfo[]> {
     const grammar = await registry.loadGrammar("source.naniscript");
     if (!grammar) throw new Error("Failed to load naniscript grammar.");
-    const result: TokenInfo[][] = [];
-    let ruleStack = tm.INITIAL;
-    for (const line of lines) {
-        const lineTokens = grammar.tokenizeLine(line, ruleStack);
-        const tokens: TokenInfo[] = [];
-        for (const token of lineTokens.tokens)
-            tokens.push({ text: line.substring(token.startIndex, token.endIndex), scopes: token.scopes });
-        result.push(tokens);
-        ruleStack = lineTokens.ruleStack;
-    }
-    return result;
+    const lineTokens = grammar.tokenizeLine(line, tm.INITIAL);
+    const tokens: TokenInfo[] = [];
+    for (const token of lineTokens.tokens)
+        tokens.push({ text: line.substring(token.startIndex, token.endIndex), scopes: token.scopes });
+    return tokens;
 }
