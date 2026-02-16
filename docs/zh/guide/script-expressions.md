@@ -40,15 +40,8 @@
 在 [@set] 和 [@if] 命令（以及其他命令中的 `set` 和 `if` 参数）中使用的脚本表达式不需要大括号：
 
 ```nani
-@set randomScore=random(-100,100)
-@goto #EpicLabel if:abs(randomScore)>=50
-```
-
-但是，与其他参数值一样，如果您想在表达式中使用空格，请将它们用双引号括起来：
-
-```nani
-@set "randomScore = random(-100, 100)"
-@goto #EpicLabel if:"abs(randomScore) >= 50"
+@set randomScore = random(-100, 100)
+@goto #EpicLabel if: abs(randomScore) >= 50
 ```
 
 要在通用文本行内打印大括号并防止它们被识别为表达式分隔符，请使用反斜杠转义大括号，例如：

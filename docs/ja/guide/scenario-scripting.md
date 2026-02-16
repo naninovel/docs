@@ -383,11 +383,11 @@ Lorem ipsum[shake Camera ver:true wait:false] dolor sit amet.
 
 ; "insane" がtrueの場合、または1〜10の範囲のrandom関数が
 ; 5以上を返す場合、"@glitch" コマンドを実行します。
-@glitch if:{ insane | random(1, 10) >= 5 }
+@glitch if: insane | random(1, 10) >= 5
 
 ; "score" が7〜13の間の場合、または "lucky" がtrueの場合、
 ; "LuckyEnd" スクリプトに移動します。
-@goto LuckyEnd if:{ (score >= 7 & score <= 13) | lucky }
+@goto LuckyEnd if: (score >= 7 & score <= 13) | lucky
 
 ; インラインコマンド内の条件。
 Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
@@ -406,11 +406,11 @@ Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
 ; "You've passed the test." と "Brilliant!" - scoreが8より大きい場合。
 ; "You've passed the test." と "Impressive!" - scoreが7より大きい場合。
 ; "You've passed the test." と "Good job!" - それ以外の場合。
-@if score>6
+@if score > 6
     You've passed the test.
-    @if score>8
+    @if score > 8
         Brilliant!
-    @else if:score>7
+    @else if: score > 7
         Impressive!
     @else
         Good job!

@@ -19,8 +19,8 @@
 そして、次は `score` の値に基づいてスクリプトの実行を再ルーティングします。
 
 ```nani
-@goto MainRoute if:"score > 1 && score <= 900"
-@goto BadEnd if:score>900
+@goto MainRoute if: score > 1 & score <= 900
+@goto BadEnd if: score > 900
 ```
 
 すべてのカスタム変数はゲームとともに自動的に保存されます。デフォルトでは、変数はローカルスコープに保存されます。つまり、ゲームプレイ中に変数を割り当て、プレイヤーが新しいゲームを開始するか、その変数が割り当てられていない別のセーブスロットをロードすると、値は失われます。この動作は、ほとんどの変数タイプに役立ちます。変数をグローバルスコープに保存したい場合は、名前の前に `G_` または `g_` を付けます（例：`G_FinishedMainRoute` または `g_total_score`）。グローバル変数は、プレイヤーがルートを終了した回数やプレイスルー全体の合計スコアなどのメタ情報または累積情報を示すことができます。
@@ -62,7 +62,7 @@ Archibald: ごきげんよう、{name}！
 型が許可する限り、任意のパラメータ値にカスタム変数を注入できます。たとえば、文字列（テキスト）を数値パラメータに割り当てることはできません。
 
 ```nani
-@set PlayerName="Felix",PlayerYPosition=0.1,PlayerTint="lightblue"
+@set PlayerName="Felix", PlayerYPosition=0.1, PlayerTint="lightblue"
 
 ; 以下は、`PlayerTint` が数値ではないため、エラーが発生します。
 @char {PlayerName} pos:50,{PlayerTint}

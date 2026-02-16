@@ -19,6 +19,123 @@ exports[`    # FooLabel 1`] = `
 ]
 `;
 
+exports[`    @cmd space with { expression } ! wow! id:possible in named { as well } !wow 1`] = `
+[
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+    ],
+    "text": "    ",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command",
+    ],
+    "text": "@cmd",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+    ],
+    "text": " space with ",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.expression",
+    ],
+    "text": "{ expression }",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+    ],
+    "text": " ",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+      "naniscript.command.parameter.value",
+    ],
+    "text": "!",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+    ],
+    "text": " wow",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+      "naniscript.command.parameter.value",
+    ],
+    "text": "!",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+    ],
+    "text": " id:",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+    ],
+    "text": "possible in named ",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.expression",
+    ],
+    "text": "{ as well }",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+    ],
+    "text": " ",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+      "naniscript.command.parameter.value",
+    ],
+    "text": "!",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+    ],
+    "text": "wow",
+  },
+]
+`;
+
 exports[`    @fooCommand 1`] = `
 [
   {
@@ -460,6 +577,58 @@ exports[`@cmd \\"x\\{y\\}\\:\\" x:\\"x\\{y\\}\\" 1`] = `
 ]
 `;
 
+exports[`@cmd escape \\" quotes \\", \\{ expr \\}, param\\:val and flag\\! id:val flag! 1`] = `
+[
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command",
+    ],
+    "text": "@cmd",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+    ],
+    "text": " escape \\" quotes \\", \\{ expr \\}, param\\:val and flag\\!",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+    ],
+    "text": " id:",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+    ],
+    "text": "val",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+    ],
+    "text": " flag",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+      "naniscript.command.parameter.value",
+    ],
+    "text": "!",
+  },
+]
+`;
+
 exports[`@cmd foo x:bar y:baz ; comment 1`] = `
 [
   {
@@ -667,7 +836,61 @@ exports[`@cmd goto:navigation 1`] = `
 ]
 `;
 
-exports[`@cmd if:{expression} 1`] = `
+exports[`@cmd if: x > y ? z : w x! 1`] = `
+[
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command",
+    ],
+    "text": "@cmd",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+    ],
+    "text": " if:",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+    ],
+    "text": " ",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+      "naniscript.expression",
+    ],
+    "text": "x > y ? z : w",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+    ],
+    "text": " x",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+      "naniscript.command.parameter.value",
+    ],
+    "text": "!",
+  },
+]
+`;
+
+exports[`@cmd if:{expression} x! 1`] = `
 [
   {
     "scopes": [
@@ -694,10 +917,27 @@ exports[`@cmd if:{expression} 1`] = `
     ],
     "text": "{expression}",
   },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+    ],
+    "text": " x",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+      "naniscript.command.parameter.value",
+    ],
+    "text": "!",
+  },
 ]
 `;
 
-exports[`@cmd if:expression 1`] = `
+exports[`@cmd if:expression x:y 1`] = `
 [
   {
     "scopes": [
@@ -723,6 +963,21 @@ exports[`@cmd if:expression 1`] = `
       "naniscript.expression",
     ],
     "text": "expression",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+    ],
+    "text": " x:",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+    ],
+    "text": "y",
   },
 ]
 `;
@@ -941,6 +1196,73 @@ exports[`@cmd unless:expression 1`] = `
       "naniscript.expression",
     ],
     "text": "expression",
+  },
+]
+`;
+
+exports[`@cmd value with space param: not : param otherParam:not : param wow! 1`] = `
+[
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command",
+    ],
+    "text": "@cmd",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+    ],
+    "text": " value with space",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+    ],
+    "text": " param:",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+    ],
+    "text": " not : param",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+    ],
+    "text": " otherParam:",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+    ],
+    "text": "not : param",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+    ],
+    "text": " wow",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+      "naniscript.command.parameter.value",
+    ],
+    "text": "!",
   },
 ]
 `;
@@ -1288,6 +1610,51 @@ exports[`@if expression x! 1`] = `
 ]
 `;
 
+exports[`@if x > y ? z : w x! 1`] = `
+[
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command",
+    ],
+    "text": "@if",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+    ],
+    "text": " ",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.expression",
+    ],
+    "text": "x > y ? z : w",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+    ],
+    "text": " x",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+      "naniscript.command.parameter.value",
+    ],
+    "text": "!",
+  },
+]
+`;
+
 exports[`@set expression x! 1`] = `
 [
   {
@@ -1423,6 +1790,75 @@ exports[`@while expression x! 1`] = `
 ]
 `;
 
+exports[`[cmd if: x > y ? z : w x!] 1`] = `
+[
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+      "naniscript.command.inline",
+    ],
+    "text": "[cmd",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+    ],
+    "text": " if:",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+    ],
+    "text": " ",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+      "naniscript.expression",
+    ],
+    "text": "x > y ? z : w",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+    ],
+    "text": " x",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+      "naniscript.command.parameter.value",
+    ],
+    "text": "!",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+      "naniscript.command.inline",
+    ],
+    "text": "]",
+  },
+]
+`;
+
 exports[`[cmd if:expression] 1`] = `
 [
   {
@@ -1543,6 +1979,74 @@ exports[`[if expression x!] 1`] = `
       "naniscript.expression",
     ],
     "text": "expression",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+    ],
+    "text": " x",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+      "naniscript.command.parameter.value",
+    ],
+    "text": "!",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+      "naniscript.command.inline",
+    ],
+    "text": "]",
+  },
+]
+`;
+
+exports[`[if x > y ? z : w x!] 1`] = `
+[
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+      "naniscript.command.inline",
+    ],
+    "text": "[",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+      "naniscript.command",
+    ],
+    "text": "if",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+    ],
+    "text": " ",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+      "naniscript.expression",
+    ],
+    "text": "x > y ? z : w",
   },
   {
     "scopes": [
@@ -2180,6 +2684,139 @@ exports[`x[; comment]y[cmd ; comment] 1`] = `
       "naniscript.comment",
     ],
     "text": " ; comment",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+      "naniscript.command.inline",
+    ],
+    "text": "]",
+  },
+]
+`;
+
+exports[`x[cmd space in value param!]y[cmd p1: not : param\\! p2:space {exp} not\\:param\\!] 1`] = `
+[
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+    ],
+    "text": "x",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+      "naniscript.command.inline",
+    ],
+    "text": "[cmd",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+    ],
+    "text": " space in value",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+    ],
+    "text": " param",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+      "naniscript.command.parameter.value",
+    ],
+    "text": "!",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+      "naniscript.command.inline",
+    ],
+    "text": "]",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+    ],
+    "text": "y",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+      "naniscript.command.inline",
+    ],
+    "text": "[cmd",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+    ],
+    "text": " p1:",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+    ],
+    "text": " not : param\\!",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+    ],
+    "text": " p2:",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+    ],
+    "text": "space ",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+      "naniscript.expression",
+    ],
+    "text": "{exp}",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+    ],
+    "text": " not\\:param\\!",
   },
   {
     "scopes": [

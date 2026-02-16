@@ -383,17 +383,17 @@ By default, scripts execute linearly, but you can introduce branching using `if`
 
 ; If "insane" is true or the random function in 1 to 10 range
 ; returns 5 or more, execute the "@glitch" command.
-@glitch if:{ insane | random(1, 10) >= 5 }
+@glitch if: insane | random(1, 10) >= 5
 
 ; If "score" is between 7 and 13 or "lucky" is true,
 ; navigate to the "LuckyEnd" script.
-@goto LuckyEnd if:{ (score >= 7 & score <= 13) | lucky }
+@goto LuckyEnd if: (score >= 7 & score <= 13) | lucky
 
 ; Conditionals in inlined commands.
 Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
 
 ; Escape double quotes in expressions.
-@print {remark} if:remark="Saying \"Stop the car\" was a mistake."
+@print {remark} if: remark = "Saying \"Stop the car\" was a mistake."
 ```
 
 ### Conditional Blocks
@@ -406,11 +406,11 @@ You can [nest](/guide/scenario-scripting#nesting) multiline conditional blocks u
 ; "You've passed the test." and "Brilliant!" - when score is above 8.
 ; "You've passed the test." and "Impressive!" - when score is above 7.
 ; "You've passed the test." and "Good job!" - otherwise.
-@if score>6
+@if score > 6
     You've passed the test.
-    @if score>8
+    @if score > 8
         Brilliant!
-    @else if:score>7
+    @else if: score > 7
         Impressive!
     @else
         Good job!
