@@ -902,11 +902,11 @@ Naninovelスクリプトの再生を指定されたパスに移動します。
 ;   "You've passed the test." と "Brilliant!" - スコアが8より大きい場合。
 ;   "You've passed the test." と "Impressive!" - スコアが7より大きい場合。
 ;   "You've passed the test." と "Good job!" - それ以外。
-@if score>6
+@if score > 6
     You've passed the test.
-    @if score>8
+    @if score > 8
         Brilliant!
-    @else if:score>7
+    @or score > 7
         Impressive!
     @else
         Good job!
@@ -917,7 +917,7 @@ Naninovelスクリプトの再生を指定されたパスに移動します。
 ;   "Test result: Failed." - スコアが6未満の場合。
 ;   "Test result: Perfect!" - スコアが8より大きい場合。
 ;   "Test result: Passed." - それ以外。
-Test result:[if score>8] Perfect![else if:score>6] Passed.[else] Failed.[endif]
+Test result:[if score>8] Perfect![or score>6] Passed.[else] Failed.[endif]
 ```
 
 ## input
@@ -1087,6 +1087,18 @@ WebGLの外部またはエディター内では、Unityの `Application.OpenURL`
 ; 新しいタブでNaninovelのWebサイトを開きます。
 @openURL "https://naninovel.com" target:_blank
 ```
+
+## or
+
+Marks a branch of a conditional execution block, which is executed in case condition of the opening [@if] or [@unless] and preceding [@else] or [@or] (if any) commands are not met while the own condition is met. Can be used as shortcut for `@else if:...`. For usage examples see [conditional execution](/ja/guide/scenario-scripting#conditional-execution) guide.
+
+<div class="config-table">
+
+| Parameter | Type | Description                                                                                                                                                |
+| --- | --- |------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [script expression](/ja/guide/script-expressions), which should return a boolean value determining whether the associated nested block will be executed. |
+
+</div>
 
 ## print
 

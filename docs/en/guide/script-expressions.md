@@ -13,6 +13,7 @@ You can use any math and logical operators, as well as some math functions from 
 ```nani
 @char Kohaku scale:{pow(cos(33.5), 3) % log(0.5)}
 ```
+
 — will scale character with ID "Kohaku" to the remainder of dividing cosine of 33.5 (raised to the power of 3) by the natural logarithm of 0.5.
 
 The expression is evaluated at the moment the command is executed, which allows using [custom variables](/guide/custom-variables) inside the expressions:
@@ -51,6 +52,35 @@ Some text \{ text inside braces \}
 ```
 
 — will print "Some text { text inside braces }" in-game.
+
+## Operator Aliases
+
+Instead of programming operators, you can use aliases in the expressions, for example:
+
+```nani
+@if a = "foo" | b != "bar" ? x : y
+```
+
+— can be written like this:
+
+```nani
+@if a is "foo" or b is not "bar" then x else y
+```
+
+Below is the map of the available aliases:
+
+| Operator | Alias         |
+|----------|---------------|
+| `=`      | `is`          |
+| `!`      | `not`         |
+| `!=`     | `is not`      |
+| `&`      | `and`         |
+| `?`      | `then`        |
+| `:`      | `else`        |
+| `>`      | `is above`    |
+| `<`      | `is below`    |
+| `>=`     | `is at least` |
+| `<=`     | `is at most`  |
 
 ## Expression Functions
 

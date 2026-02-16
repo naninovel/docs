@@ -903,11 +903,11 @@ This command is inverse and complementary to [@unless].
 ;   "You've passed the test." and "Brilliant!" - when score is above 8.
 ;   "You've passed the test." and "Impressive!" - when score is above 7.
 ;   "You've passed the test." and "Good job!" - otherwise.
-@if score>6
+@if score > 6
     You've passed the test.
-    @if score>8
+    @if score > 8
         Brilliant!
-    @else if:score>7
+    @or score > 7
         Impressive!
     @else
         Good job!
@@ -918,7 +918,7 @@ This command is inverse and complementary to [@unless].
 ;   "Test result: Failed." - when score is below 6.
 ;   "Test result: Perfect!" - when score is above above 8.
 ;   "Test result: Passed." - otherwise.
-Test result:[if score>8] Perfect![else if:score>6] Passed.[else] Failed.[endif]
+Test result:[if score>8] Perfect![or if:score>6] Passed.[else] Failed.[endif]
 ```
 
 ## input
@@ -1088,6 +1088,18 @@ When outside of WebGL or in editor, Unity's `Application.OpenURL` method is used
 ; Open Naninovel website in new tab.
 @openURL "https://naninovel.com" target:_blank
 ```
+
+## or
+
+Marks a branch of a conditional execution block, which is executed in case condition of the opening [@if] or [@unless] and preceding [@else] or [@or] (if any) commands are not met while the own condition is met. Can be used as shortcut for `@else if:...`. For usage examples see [conditional execution](/guide/scenario-scripting#conditional-execution) guide.
+
+<div class="config-table">
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [script expression](/guide/script-expressions), which should return a boolean value determining whether the associated nested block will be executed. |
+
+</div>
 
 ## print
 
