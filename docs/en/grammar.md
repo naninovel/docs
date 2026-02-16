@@ -45,6 +45,8 @@ x[cmd space in value param!]y[cmd p1: not : param\! p2:space {exp} not\:param\!]
 [if x > y ? z : w x!]
 @unless expression x!
 [unless x x!]
+@or expression x!
+[or x x!]
 @while expression x!
 @set expression x!
 @cmd if:expression x:y

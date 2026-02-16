@@ -49,6 +49,8 @@ s(`[if expression x!]`);
 s(`[if x > y ? z : w x!]`);
 s(`@unless expression x!`);
 s(`[unless x x!]`);
+s(`@or expression x!`);
+s(`[or x x!]`);
 s(`@while expression x!`);
 s(`@set expression x!`);
 s(`@cmd if:expression x:y`);
