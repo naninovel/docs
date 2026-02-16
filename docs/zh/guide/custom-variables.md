@@ -19,8 +19,8 @@
 以下是根据 `score` 的值重新路由脚本执行：
 
 ```nani
-@goto MainRoute if:"score > 1 && score <= 900"
-@goto BadEnd if:score>900
+@goto MainRoute if: score > 1 & score <= 900
+@goto BadEnd if: score > 900
 ```
 
 所有自定义变量都会随游戏自动保存。默认情况下，变量存储在本地范围内。这意味着如果您在游戏过程中分配了一个变量，而玩家开始了一个新游戏或加载了未分配该变量的另一个保存槽，则该值将丢失。此行为对于大多数变量类型很有用。如果您希望将变量存储在全局范围内，请在其名称前加上 `G_` 或 `g_`，例如 `G_FinishedMainRoute` 或 `g_total_score`。全局变量可以指示元信息或累积信息，例如玩家完成路线的次数或多次游戏的总分。
@@ -62,7 +62,7 @@ Archibald: 问候，{name}！
 只要类型允许，您就可以将自定义变量注入到任何参数值中。例如，您不能将字符串（文本）分配给数字参数。
 
 ```nani
-@set PlayerName="Felix",PlayerYPosition=0.1,PlayerTint="lightblue"
+@set PlayerName="Felix", PlayerYPosition=0.1, PlayerTint="lightblue"
 
 ; 以下将产生错误，因为 `PlayerTint` 不是数字。
 @char {PlayerName} pos:50,{PlayerTint}

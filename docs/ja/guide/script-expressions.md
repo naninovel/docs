@@ -40,15 +40,8 @@
 [@set] および [@if] コマンド（および他のコマンドの `set` および `if` パラメータ）で使用されるスクリプト式には、中括弧は必要ありません。
 
 ```nani
-@set randomScore=random(-100,100)
-@goto #EpicLabel if:abs(randomScore)>=50
-```
-
-ただし、他のパラメータ値と同様に、式内でスペースを使用する場合は、二重引用符で囲みます。
-
-```nani
-@set "randomScore = random(-100, 100)"
-@goto #EpicLabel if:"abs(randomScore) >= 50"
+@set randomScore = random(-100, 100)
+@goto #EpicLabel if: abs(randomScore) >= 50
 ```
 
 汎用テキスト行内に中括弧を表示し、式区切り文字として認識されないようにするには、バックスラッシュで中括弧をエスケープします。例：

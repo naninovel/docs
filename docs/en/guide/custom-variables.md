@@ -19,8 +19,8 @@ For example, the following script command assigns different values to the `score
 And the following re-routes script execution based on the value of `score`:
 
 ```nani
-@goto MainRoute if:"score > 1 && score <= 900"
-@goto BadEnd if:score>900
+@goto MainRoute if: score > 1 & score <= 900
+@goto BadEnd if: score > 900
 ```
 
 All custom variables are automatically saved with the game. By default, variables are stored in the local scope. This means that if you assign a variable during gameplay and the player starts a new game or loads another save slot where that variable wasn't assigned, the value will be lost. This behavior is useful for most variable types. If you wish to store a variable in the global scope, prepend `G_` or `g_` to its name, e.g., `G_FinishedMainRoute` or `g_total_score`. Global variables can indicate meta or cumulative information, such as the number of times the player has finished a route or a total score across playthroughs.
@@ -62,7 +62,7 @@ To make character names dynamic, use the [display name](/guide/characters#displa
 You can inject custom variables into any parameter values as long as the type allows. For example, you can't assign a string (text) to a numeric parameter.
 
 ```nani
-@set PlayerName="Felix",PlayerYPosition=0.1,PlayerTint="lightblue"
+@set PlayerName="Felix", PlayerYPosition=0.1, PlayerTint="lightblue"
 
 ; The following will produce an error, as `PlayerTint` is not a number.
 @char {PlayerName} pos:50,{PlayerTint}

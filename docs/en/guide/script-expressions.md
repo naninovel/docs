@@ -40,15 +40,8 @@ Saying { \"Stop the car\" } was a mistake.
 Script expressions used in [@set] and [@if] commands (as well as the `set` and `if` parameters in other commands) do not require curly braces:
 
 ```nani
-@set randomScore=random(-100,100)
-@goto #EpicLabel if:abs(randomScore)>=50
-```
-
-However, like other parameter values, if you want to use spaces inside the expressions, wrap them in double quotes:
-
-```nani
-@set "randomScore = random(-100, 100)"
-@goto #EpicLabel if:"abs(randomScore) >= 50"
+@set randomScore = random(-100, 100)
+@goto #EpicLabel if: abs(randomScore) >= 50
 ```
 
 To print curly braces inside a generic text line and prevent them from being recognized as expression delimiters, escape the braces with backslashes, e.g.:

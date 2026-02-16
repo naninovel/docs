@@ -383,11 +383,11 @@ Lorem ipsum[shake Camera ver:true wait:false] dolor sit amet.
 
 ; 如果 "insane" 为 true 或者 1 到 10 范围内的 random 函数
 ; 返回 5 或更多，则执行 "@glitch" 命令。
-@glitch if:{ insane | random(1, 10) >= 5 }
+@glitch if: insane | random(1, 10) >= 5
 
 ; 如果 "score" 在 7 到 13 之间或者 "lucky" 为 true，
 ; 则导航到 "LuckyEnd" 脚本。
-@goto LuckyEnd if:{ (score >= 7 & score <= 13) | lucky }
+@goto LuckyEnd if: (score >= 7 & score <= 13) | lucky
 
 ; 内联命令中的条件。
 Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
@@ -406,11 +406,11 @@ Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
 ; "You've passed the test." 和 "Brilliant!" - 当 score 高于 8 时。
 ; "You've passed the test." 和 "Impressive!" - 当 score 高于 7 时。
 ; "You've passed the test." 和 "Good job!" - 其他情况。
-@if score>6
+@if score > 6
     You've passed the test.
-    @if score>8
+    @if score > 8
         Brilliant!
-    @else if:score>7
+    @else if: score > 7
         Impressive!
     @else
         Good job!
