@@ -1655,6 +1655,51 @@ exports[`@if x > y ? z : w x! 1`] = `
 ]
 `;
 
+exports[`@or expression x! 1`] = `
+[
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command",
+    ],
+    "text": "@or",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+    ],
+    "text": " ",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.expression",
+    ],
+    "text": "expression",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+    ],
+    "text": " x",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+      "naniscript.command.parameter.value",
+    ],
+    "text": "!",
+  },
+]
+`;
+
 exports[`@set expression x! 1`] = `
 [
   {
@@ -2047,6 +2092,74 @@ exports[`[if x > y ? z : w x!] 1`] = `
       "naniscript.expression",
     ],
     "text": "x > y ? z : w",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+    ],
+    "text": " x",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+      "naniscript.command.parameter.value",
+    ],
+    "text": "!",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+      "naniscript.command.inline",
+    ],
+    "text": "]",
+  },
+]
+`;
+
+exports[`[or x x!] 1`] = `
+[
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+      "naniscript.command.inline",
+    ],
+    "text": "[",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+      "naniscript.command",
+    ],
+    "text": "or",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+    ],
+    "text": " ",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.command.parameter.value",
+      "naniscript.expression",
+    ],
+    "text": "x",
   },
   {
     "scopes": [
