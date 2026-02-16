@@ -902,11 +902,11 @@ You are victorious!
 ;   "You've passed the test." 和 "Brilliant!" - 当分数高于 8 时。
 ;   "You've passed the test." 和 "Impressive!" - 当分数高于 7 时。
 ;   "You've passed the test." 和 "Good job!" - 否则。
-@if score>6
+@if score > 6
     You've passed the test.
-    @if score>8
+    @if score > 8
         Brilliant!
-    @else if:score>7
+    @or score > 7
         Impressive!
     @else
         Good job!
@@ -917,7 +917,7 @@ You are victorious!
 ;   "Test result: Failed." - 当分数低于 6 时。
 ;   "Test result: Perfect!" - 当分数高于 8 时。
 ;   "Test result: Passed." - 否则。
-Test result:[if score>8] Perfect![else if:score>6] Passed.[else] Failed.[endif]
+Test result:[if score>8] Perfect![or score>6] Passed.[else] Failed.[endif]
 ```
 
 ## input
@@ -1087,6 +1087,18 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 ; 在新标签页中打开 Naninovel 网站。
 @openURL "https://naninovel.com" target:_blank
 ```
+
+## or
+
+Marks a branch of a conditional execution block, which is executed in case condition of the opening [@if] or [@unless] and preceding [@else] or [@or] (if any) commands are not met while the own condition is met. Can be used as shortcut for `@else if:...`. For usage examples see [conditional execution](/zh/guide/scenario-scripting#conditional-execution) guide.
+
+<div class="config-table">
+
+| Parameter | Type | Description                                                                                                                                               |
+| --- | --- |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [script expression](/zh/guide/script-expressions), which should return a boolean value determining whether the associated nested block will be executed. |
+
+</div>
 
 ## print
 

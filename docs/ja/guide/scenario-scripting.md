@@ -410,7 +410,7 @@ Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
     You've passed the test.
     @if score > 8
         Brilliant!
-    @else if: score > 7
+    @or score > 7
         Impressive!
     @else
         Good job!
@@ -425,7 +425,7 @@ Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
 ; "Test result: Failed." - scoreが6未満の場合。
 ; "Test result: Perfect!" - scoreが8より大きい場合。
 ; "Test result: Passed." - それ以外の場合。
-Test result:[if score>8] Perfect![else if:score>6] Passed.[else] Failed.[endif]
+Test result:[if score>8] Perfect![or score>6] Passed.[else] Failed.[endif]
 ```
 
 逆の条件を指定するには、[@unless] を使用します。
@@ -468,7 +468,7 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
     Good job, you've passed the test!
     @bgm Victory
     @spawn Fireworks
-@else if:attempts>100
+@or attempts>100
     You're hopeless... Need help?
     @choice "Yeah, please!"
         @set score+=10

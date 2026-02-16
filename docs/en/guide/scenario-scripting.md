@@ -373,20 +373,23 @@ By default, scripts execute linearly, but you can introduce branching using `if`
 
 ```nani
 ; If "level" is greater than 9000, add the choice.
-@choice "It's over 9000!" if:level>9000
+@choice "It's over 9000!" if: level above 9000
 
 ; If "dead" is false, execute the print command.
-@print "I'm still alive." if:!dead
+@print "I'm still alive." if: not dead
 
 ; Same but more concise.
 @print "I'm still alive." unless:dead
 
 ; If "insane" is true or the random function in 1 to 10 range
 ; returns 5 or more, execute the "@glitch" command.
-@glitch if: insane | random(1, 10) >= 5
+@glitch if: insane or random(1, 10) is at least 5
 
 ; If "score" is between 7 and 13 or "lucky" is true,
 ; navigate to the "LuckyEnd" script.
+@goto LuckyEnd if: (score is at least 7 and score is at most 13) or lucky
+
+; You can use boolean operators instead (result is the same as above).
 @goto LuckyEnd if: (score >= 7 & score <= 13) | lucky
 
 ; Conditionals in inlined commands.
@@ -406,11 +409,11 @@ You can [nest](/guide/scenario-scripting#nesting) multiline conditional blocks u
 ; "You've passed the test." and "Brilliant!" - when score is above 8.
 ; "You've passed the test." and "Impressive!" - when score is above 7.
 ; "You've passed the test." and "Good job!" - otherwise.
-@if score > 6
+@if score is above 6
     You've passed the test.
-    @if score > 8
+    @if score is above 8
         Brilliant!
-    @else if: score > 7
+    @or score is above 7
         Impressive!
     @else
         Good job!
@@ -425,7 +428,7 @@ Conditional blocks can also be used inline within text lines, marking the end wi
 ; "Test result: Failed." - when score is below 6.
 ; "Test result: Perfect!" - when score is above above 8.
 ; "Test result: Passed." - otherwise.
-Test result:[if score>8] Perfect![else if:score>6] Passed.[else] Failed.[endif]
+Test result:[if score>8] Perfect![or score>6] Passed.[else] Failed.[endif]
 ```
 
 To specify an inverse condition, use [@unless]:
@@ -452,7 +455,7 @@ Find more about conditional expressions and available operators in the [script e
 Commands such as [@if], [@choice], [@while], and several others support associating other commands and generic text lines with them via indentation:
 
 ```nani
-@if score>10
+@if score > 10
     @bgm Victory
     Good job, you've passed the test!
 ```
@@ -464,11 +467,11 @@ Commands that support this feature are known as *nested hosts*. In C#, these com
 Each host command has its own behavior when executing nested commands. For example, [@if] skips nested commands if the condition is not met, while [@choice] executes nested commands only when the player selects the associated choice:
 
 ```nani
-@if score>10
+@if score > 10
     Good job, you've passed the test!
     @bgm Victory
     @spawn Fireworks
-@else if:attempts>100
+@or attempts > 100
     You're hopeless... Need help?
     @choice "Yeah, please!"
         @set score+=10
