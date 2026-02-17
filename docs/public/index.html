@@ -189,6 +189,7 @@
             justify-content: space-between;
             height: 68px;
         }
+
         .logo {
             display: flex;
             align-items: center;
@@ -410,6 +411,7 @@
             line-height: 1.8;
             margin: 0 auto clamp(48px, 6vw, 72px);
         }
+
         .features-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -462,22 +464,79 @@
         .trailer {
             padding: var(--section-py) 0;
         }
-        .video-wrapper {
+        .trailer-video {
             position: relative;
             padding-bottom: 56.25%;
             border-radius: var(--radius-lg);
             overflow: hidden;
             box-shadow: 0 20px 60px rgba(0, 0, 0, .4);
-            max-width: 960px;
             margin: 0 auto;
             border: 1px solid var(--border);
         }
-        .video-wrapper iframe {
+
+        .youtube {
             position: absolute;
-            top: 0; left: 0;
+            user-select: none;
+            overflow: hidden;
+        }
+        .youtube iframe,
+        .youtube object,
+        .youtube embed {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             border: none;
+        }
+        .youtube-poster {
+            cursor: pointer;
+        }
+        .youtube-poster::before {
+            content: "";
+            position: absolute;
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAADGCAYAAAAT+OqFAAAAdklEQVQoz42QQQ7AIAgEF/T/D+kbq/RWAlnQyyazA4aoAB4FsBSA/bFjuF1EOL7VbrIrBuusmrt4ZZORfb6ehbWdnRHEIiITaEUKa5EJqUakRSaEYBJSCY2dEstQY7AuxahwXFrvZmWl2rh4JZ07z9dLtesfNj5q0FU3A5ObbwAAAABJRU5ErkJggg==);
+            height: 100px;
+            width: 100%;
+        }
+        .youtube-play {
+            width: 85px;
+            height: 60px;
+            position: absolute;
+            top: calc(50% - 30px);
+            left: calc(50% - 43px);
+            z-index: 1;
+            opacity: 0.75;
+            background: url("data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 68 48\"><path d=\"M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z\" fill=\"red\"/><path d=\"M45 24 27 14v20\" fill=\"white\"/></svg>") no-repeat center;
+            filter: grayscale(50%);
+            transition: filter .15s ease-out, opacity .15s ease-out;
+        }
+        .youtube-poster:hover .youtube-play {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+        .youtube-title {
+            position: absolute;
+            top: 10px;
+            left: 14px;
+            z-index: 1;
+            color: white;
+            font-size: 18px;
+            pointer-events: none;
+        }
+        .youtube-loading .youtube-poster {
+            cursor: default;
+            pointer-events: none;
+        }
+        .youtube-loading .youtube-play {
+            opacity: 0.2 !important;
+            transform: scale(10);
+            transition: opacity .5s ease-out, transform .4s;
+        }
+        .youtube-playing .youtube-poster,
+        .youtube-playing .youtube-title {
+            opacity: 0;
+            transition: opacity .25s ease-out;
         }
 
         /* ───────────────────── Made With ───────────────────── */
@@ -496,6 +555,7 @@
             background: radial-gradient(circle, rgba(100, 40, 120, .07), transparent 70%);
             pointer-events: none;
         }
+
         .showcase-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -534,6 +594,7 @@
             filter: grayscale(0%) brightness(100%);
             transform: scale(1.0215);
         }
+
         .made-with .cta-row {
             text-align: center;
         }
@@ -812,6 +873,7 @@
                 transform: translateY(0);
             }
         }
+
     </style>
 </head>
 <body>
@@ -920,8 +982,16 @@
                 <h2 class="section-title">See it in action</h2>
                 <p class="section-subtitle">Explore noticeable features in a 3-minute video trailer.</p>
             </div>
-            <div class="video-wrapper fade-in">
-                <iframe src="https://www.youtube.com/embed/lRxIKDU9z4k" title="Naninovel Trailer" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+            <div class="trailer-video fade-in">
+                <div class="youtube">
+                    <div class="youtube-poster" title="Play YouTube video">
+                        <div class="youtube-play" title="Play YouTube video"></div>
+                        <img src="/imgit/fetched/i.ytimg.com-vi_webp-lRxIKDU9z4k-maxresdefault.webp" loading="lazy" decoding="async">
+                    </div>
+                    <div class="youtube-player" hidden="">
+                        <iframe title="" data-src="https://www.youtube-nocookie.com/embed/lRxIKDU9z4k?autoplay=1&amp;playsinline=1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -1172,6 +1242,19 @@
     /* ─── Hero background screenshots staggered reveal ─── */
     document.querySelectorAll(".hero-shot").forEach((el, i) => {
         setTimeout(() => el.classList.add("visible"), 600 + i * 300);
+    });
+
+    /* ─── YouTube player ─── */
+    document.querySelector("div.youtube-poster").addEventListener("click", () => {
+        const container = document.querySelector("div.youtube");
+        const player = container.children[1];
+        const iframe = player.children[0];
+        container.classList.add("youtube-loading");
+        iframe.src = iframe.dataset.src;
+        iframe.addEventListener("load", () => {
+            container.classList.add("youtube-playing");
+            player.hidden = false;
+        });
     });
 
     /* ─── Hero particle canvas ─── */
