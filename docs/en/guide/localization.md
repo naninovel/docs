@@ -9,17 +9,17 @@ The *source locale* can be changed via `Naninovel -> Configuration -> Localizati
 ![](https://i.gyazo.com/84eea85d3c3deddd187af1ed843f1bd5.png)
 
 ::: tip
-If you'd like to share the source localizable text with a third party (e.g., for proofreading) but don't want to share the source scenario scripts, change `Source Locale` to some unrelated language you won't actually use, then disable `Expose Source Locale` and add a dedicated locale for the source material. That locale can then be exported to the localization [documents](/guide/localization#scripts-localization) or [spreadsheets](/guide/localization#spreadsheet).
+If you'd like to share the source-localizable text with a third party (e.g., for proofreading) but don't want to share the source scenario scripts, change `Source Locale` to some unrelated language you won't use, then disable `Expose Source Locale` and add a dedicated locale for the source material. That locale can then be exported to the localization [documents](/guide/localization#scripts-localization) or [spreadsheets](/guide/localization#spreadsheet).
 :::
 
-To add a locale, create a sub-folder inside `Resources/Naninovel/Localization` (the *localization resources root*) with a name equal to one of the [RFC5646](https://gist.github.com/Elringus/db90d9c74f13c00fa35131e61d1b73cb) language tags you wish to support. For example, to add German, create `Resources/Naninovel/Localization/de`. The "Language" drop-down in the built-in game settings UI will automatically include all added locales.
+To add a locale, create a subfolder inside `Resources/Naninovel/Localization` (the *localization resources root*) with a name equal to one of the [RFC5646](https://gist.github.com/Elringus/db90d9c74f13c00fa35131e61d1b73cb) language tags you wish to support. For example, to add German, create `Resources/Naninovel/Localization/de`. The "Language" drop-down in the built-in game settings UI will automatically include all added locales.
 
-Be aware that you do not have to create a sub-folder in the *localization resources root* for the *source locale*. All project resources stored outside the *localization resources root* belong to the *source locale* by default.
+Be aware that you do not have to create a subfolder in the *localization resources root* for the *source locale*. All project resources stored outside the *localization resources root* belong to the *source locale* by default.
 
 The *localization resources root* path can be changed in the localization configuration menu via the `Loader > Path Prefix` property. Note that the configured path is relative to a "Resources" folder (not "Assets"). Unity handles Resources folders in a special way; you can have multiple such folders anywhere inside the project to organize locale-specific assets.
 
 ::: tip
-Instead of using the `Resources` folder, you can opt for a different resource provider; for example, with [addressables](/guide/resource-providers#addressable) you can bundle locale-specific resources independently from the main game package and download them on demand.
+Instead of using the `Resources` folder, you can opt for a different resource provider; for example, with [addressables](/guide/resource-providers#addressable) you can bundle locale-specific resources independently of the main game package and download them on demand.
 :::
 
 ## Default Locale
@@ -55,7 +55,7 @@ Alternatively, if you wish to generate localization documents not from the sourc
 Then select the path to the locale folder where the generated localization resources should be stored. Make sure you've selected an actual locale folder (e.g., `Resources/Naninovel/Localization/ja-JP`). A label under the field will indicate when a valid output locale folder is selected and display the target locale name.
 
 ::: tip
-You can generate resources for all locales in the project at once by selecting the *localization resources root* directory instead of a specific locale folder; the tool will iterate the sub-folders and generate resources for each.
+You can generate resources for all locales in the project at once by selecting the *localization resources root* directory instead of a specific locale folder; the tool will iterate the subfolders and generate resources for each.
 
 ![](https://i.gyazo.com/4f0a6373755f0e122958f1f98de13013.png)
 :::
