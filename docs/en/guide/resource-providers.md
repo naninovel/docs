@@ -24,7 +24,7 @@ Resource-specific provider behavior is configured via `Loader` properties availa
 
 `Providers List` allows specifying which provider types to use and in which order. For example, in the configuration above, when requesting an audio resource, the Addressable provider will be tried first; if it can't find the requested resource, the Project provider will be used as a fallback.
 
-Be aware that while in the editor a special "Editor" resource provider is always used first (no matter the loader configuration). This provider has access to all the resources assigned via Naninovel's configuration and resource manager menus (`Naninovel -> Resources -> ...`). When the game is built, such resources are automatically copied to a temporary "Resources" folder or (when the [Addressables system](https://docs.unity3d.com/Packages/com.unity.addressables@latest) is installed and enabled) registered in the Addressables configuration and compiled to asset bundles. Remember to always perform any provider-related tests in builds, not in the Unity editor.
+Be aware that while in the editor, a special "Editor" resource provider is always used first (no matter the loader configuration). This provider has access to all the resources assigned via Naninovel's configuration and resource manager menus (`Naninovel -> Resources -> ...`). When the game is built, such resources are automatically copied to a temporary "Resources" folder or (when the [Addressables system](https://docs.unity3d.com/Packages/com.unity.addressables@latest) is installed and enabled) registered in the Addressables configuration and compiled to asset bundles. Remember to always perform any provider-related tests in builds, not in the Unity editor.
 
 ## Addressable
 
@@ -50,6 +50,17 @@ By default, the `Group By Category` option in the resource provider configuratio
 
 To expose an addressable asset to Naninovel without using editor menus, use a custom addressable group. The group can have any name, but it must not start with the reserved `Naninovel` prefix; otherwise, it will be recognized as auto-generated and cleared on build. Addresses of exposed assets should start with `Naninovel/` — this is the only requirement to register the asset with Naninovel.
 
+Below are examples of addresses you can use to manually assign common resource types:
+
+| Resource Type                | Address                                                        |
+|------------------------------|----------------------------------------------------------------|
+| Scenario Script              | `Naninovel/Scripts/{SCRIPT_PATH}`                              |
+| Sprite Character Appearance  | `Naninovel/Characters/{CHARACTER_ID}/{APPEARANCE_PATH}`        |
+| Generic Character            | `Naninovel/Characters/{CHARACTER_ID}`                          |
+| Audio                        | `Naninovel/Audio/{AUDIO_PATH}`                                 |
+| Managed Text Document        | `Naninovel/Text/{DOCUMENT_PATH}`                               |
+| Script Localication Document | `Naninovel/Localization/{L10N_TAG}/Text/Scripts/{SCRIPT_PATH}` |
+
 ::: tip EXAMPLE
 Check the [addressable sample](/guide/samples#addressable) for an example of manually registering Naninovel resources via the Addressable provider (without using the resource editor menus) and serving the assets from a remote host. You may also find Unity's [learning materials](https://learn.unity.com/course/get-started-with-addressables) useful.
 :::
@@ -62,7 +73,7 @@ The simplest solution is to set `Bundle Mode` to `Pack Separately` in the [group
 
 ![](https://i.gyazo.com/651a292ca6f1f4e26593074e25c66cea.png)
 
-This makes each asset its own bundle, allowing it to be unloaded as soon as it's released. While optimal for RAM usage, this approach increases CPU overhead and load times, because it's much faster to load one large continuous binary blob than to repeatedly seek and load many small ones, especially on slower drives.
+This makes each asset its own bundle, allowing it to be unloaded as soon as it's released. While optimal for RAM usage, this approach increases CPU overhead and load times because it's much faster to load one large continuous binary blob than to repeatedly seek and load many small ones, especially on slower drives.
 
 When `Label By Scripts` is enabled in the resource provider configuration (the default), Naninovel will use a compromise: during the build process it scans all scenario scripts, tries to determine which assets are required by each script, and assigns labels to addressable assets by the scripts that reference them:
 
