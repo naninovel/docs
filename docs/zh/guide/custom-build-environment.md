@@ -36,6 +36,18 @@ public static class CustomBuildProcessor
 }
 ```
 
+在使用 GitHub Actions（例如 [GameCI](https://game.ci/)）时，请确保在构建项目之前[已检出 LFS](https://github.com/actions/checkout/issues/270)。
+
+```yaml
+  - name: checkout
+    uses: actions/checkout@v4
+    with:
+        lfs: 'true'
+  - name: checkout LFS
+    uses: actions/checkout@v4
+  - run: git lfs pull
+```
+
 当为自定义命令使用程序集定义时，Unity 编辑器可能会在编译所有程序集之前开始导入资产，从而导致在使用 Cloud Build 时出现构建错误。这可以通过在开始构建之前重新导入脚本资产来解决，例如：
 
 ```csharp

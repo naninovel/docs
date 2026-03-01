@@ -36,6 +36,18 @@ public static class CustomBuildProcessor
 }
 ```
 
+GitHub Actionsを使用する場合（[GameCI](https://game.ci/)など）、プロジェクトをビルドする前に[LFSがチェックアウトされている](https://github.com/actions/checkout/issues/270)ことを確認してください。
+
+```yaml
+  - name: checkout
+    uses: actions/checkout@v4
+    with:
+        lfs: 'true'
+  - name: checkout LFS
+    uses: actions/checkout@v4
+  - run: git lfs pull
+```
+
 カスタムコマンドにアセンブリ定義を使用する場合、Unityエディタはすべてのアセンブリをコンパイルする前にアセットのインポートを開始し、Cloud Buildの使用時にビルドエラーが発生する可能性があります。これは、ビルドを開始する前にスクリプトアセットを再インポートすることで解決できます。例：
 
 ```csharp
