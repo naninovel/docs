@@ -47,4 +47,16 @@ foreach (var scriptGuid in scriptGuids)
 }
 ```
 
-If you're using your own custom build handler that is supposed to be triggered with the Editor's build menu, you can disable Naninovel's handler by turning off the `Enable Build Processing` property in the Resource Provider configuration menu. After enabling or disabling the property, restart the Unity Editor for the change to take effect.
+When using GitHub Actions, such as [GameCI](https://game.ci/), make sure the [LFS is checked out](https://github.com/actions/checkout/issues/270) before building the project:
+
+```yaml
+  - name: checkout
+    uses: actions/checkout@v4
+    with:
+        lfs: 'true'
+  - name: checkout LFS
+    uses: actions/checkout@v4
+  - run: git lfs pull
+```
+
+If you're using your own custom build handler supposed to be triggered with the Editor's build menu, you can disable Naninovel's handler by turning off the `Enable Build Processing` property in the Resource Provider configuration menu. After enabling or disabling the property, restart the Unity Editor for the change to take effect.
