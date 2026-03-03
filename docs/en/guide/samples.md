@@ -147,26 +147,26 @@ The sample demonstrates using Live2D characters with Naninovel. Find them in the
 
 ## Localization
 
- - The generated localization documents are stored in the `Profiles/Naninovel/Resources/Naninovel/Localization` directory.
+ - The generated localization documents are stored in the `Profiles/Naninovel/Localization` directory.
  - The generated sheets are stored in the `Sheets` directory under the samples project root.
- - The localization-specific font is stored in `Profiles/Naninovel/Resources/Naninovel/Fonts`.
+ - The localization-specific font is stored in `Profiles/Naninovel/Fonts`.
 
 Folders selected for localization tool:
 
-| Folder                 | Path                                                       |
-|------------------------|------------------------------------------------------------|
-| Script Folder (input)  | Assets/Scripts/Scenario                                    |
-| Text Folder (input)    | Assets/Profiles/Naninovel/Resources/Naninovel/Text         |
-| Locale Folder (output) | Assets/Profiles/Naninovel/Resources/Naninovel/Localization |
+| Folder                 | Path                                   |
+|------------------------|----------------------------------------|
+| Script Folder (input)  | Assets/Scripts/Scenario                |
+| Text Folder (input)    | Assets/Profiles/Naninovel/Text         |
+| Locale Folder (output) | Assets/Profiles/Naninovel/Localization |
 
-Folders selected for spreadsheet tool:
+Folders selected for the spreadsheet tool:
 
-| Folder                    | Path                                                       |
-|---------------------------|------------------------------------------------------------|
-| Input Scripts Folder      | Assets/Scripts/Scenario                                    |
-| Input Text Folder         | Assets/Profiles/Naninovel/Resources/Naninovel/Text         |
-| Input Localization Folder | Assets/Profiles/Naninovel/Resources/Naninovel/Localization |
-| Output Folder             | Sheets                                                     |
+| Folder                    | Path                                   |
+|---------------------------|----------------------------------------|
+| Input Scripts Folder      | Assets/Scripts/Scenario                |
+| Input Text Folder         | Assets/Profiles/Naninovel/Text         |
+| Input Localization Folder | Assets/Profiles/Naninovel/Localization |
+| Output Folder             | Sheets                                 |
 
 ![](https://i.gyazo.com/97d232751dd7e97bc828f3521f1d2066.mp4)
 
@@ -194,7 +194,7 @@ The RTL printer is stored at `Content/Printers/RTL`.
 
 ## Actor Shader
 
-The example shows how to create and use a texture shader for adding custom transition effects and a sprite shader with lighting and self-illumination support; the latter is used to simulate time of day for a background actor.
+The example shows how to create and use a texture shader for adding custom transition effects and a sprite shader with lighting and self-illumination support; the latter is used to simulate the time of day for a background actor.
 
 ![](https://i.gyazo.com/a9d7fb29d5e076245ac515d673cc155e.mp4)
 
@@ -309,7 +309,7 @@ Visual Scripting doesn't automatically expose all available types from libraries
 
 ![](https://i.gyazo.com/9afdeb12c0ff63ce942d04b21f737217.png)
 
-Don't forget to regenerate units after adding the libraries and types to apply the changes.
+Remember to regenerate units after adding the libraries and types to apply the changes.
 
 ![](https://i.gyazo.com/26c7bee4798b690c4eb362ec39746dc7.png)
 
@@ -346,7 +346,7 @@ public class BroadcastBoltEvent : Command
 }
 ```
 
-Just copy-paste the contents to a new C# script stored anywhere inside the project's Assets directory and the command will automatically become available and can be used as follows:
+Just copy-paste the contents to a new C# script stored anywhere inside the project's Assets directory, and the command will automatically become available and can be used as follows:
 
 ```nani
 ; Send "MyEvent" to "ExampleEvent" game object with the provided args
