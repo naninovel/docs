@@ -48,7 +48,7 @@ By default, the `Group By Category` option in the resource provider configuratio
 
 ### Manual Assignment
 
-To expose an addressable asset to Naninovel without using editor menus, use a custom addressable group. The group can have any name, but it must not start with the reserved `Naninovel` prefix; otherwise, it will be recognized as auto-generated and cleared on build. Addresses of exposed assets should start with `Naninovel/` — this is the only requirement to register the asset with Naninovel.
+To register an addressable asset as a Naninovel resource without using the editor menus, add the `Naninovel/` prefix to the address, followed by the resource type (path prefix) and the local resource path. Do not include the file extension in the address.
 
 Below are examples of addresses you can use to manually assign common resource types:
 
