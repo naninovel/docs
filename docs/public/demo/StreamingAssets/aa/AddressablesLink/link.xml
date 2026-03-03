@@ -16,18 +16,15 @@
     <type fullname="BroadcastBoltEvent" preserve="nothing" serialized="true" />
     <type fullname="InventoryItem/ItemUsedEvent" preserve="nothing" serialized="true" />
     <type fullname="SetHour" preserve="nothing" serialized="true" />
-    <type fullname="SwitchToAdventureMode" preserve="nothing" serialized="true" />
-    <type fullname="SwitchToNovelMode" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="Elringus.Naninovel.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="Naninovel.ActorAnchor" preserve="all" />
     <type fullname="Naninovel.AlphaThreshold" preserve="all" />
     <type fullname="Naninovel.BacklogMessageUI" preserve="all" />
     <type fullname="Naninovel.CGGalleryGrid" preserve="all" />
     <type fullname="Naninovel.CGGalleryGridSlot" preserve="all" />
-    <type fullname="Naninovel.CustomVariableTrigger" preserve="all" />
     <type fullname="Naninovel.DragDrop" preserve="all" />
     <type fullname="Naninovel.DragDropHandle" preserve="all" />
-    <type fullname="Naninovel.FX.Animate" preserve="all" />
     <type fullname="Naninovel.FX.Blur" preserve="all" />
     <type fullname="Naninovel.FX.DepthOfField" preserve="all" />
     <type fullname="Naninovel.FX.DigitalGlitch" preserve="all" />
@@ -42,6 +39,7 @@
     <type fullname="Naninovel.GenericBackgroundBehaviour" preserve="all" />
     <type fullname="Naninovel.GenericCharacterBehaviour" preserve="all" />
     <type fullname="Naninovel.GetActorRenderTexture" preserve="all" />
+    <type fullname="Naninovel.InputTrigger" preserve="all" />
     <type fullname="Naninovel.LabeledButton" preserve="all" />
     <type fullname="Naninovel.LayeredActorLayer" preserve="all" />
     <type fullname="Naninovel.LayeredBackgroundBehaviour" preserve="all" />
@@ -86,6 +84,7 @@
     <type fullname="Naninovel.UI.EngineVersionText" preserve="all" />
     <type fullname="Naninovel.UI.ExternalScriptsBrowserPanel" preserve="all" />
     <type fullname="Naninovel.UI.ExternalScriptsBrowserReturnButton" preserve="all" />
+    <type fullname="Naninovel.UI.FloatingTextPrinterPanel" preserve="all" />
     <type fullname="Naninovel.UI.FocusOnSubmit" preserve="all" />
     <type fullname="Naninovel.UI.FontChanger" preserve="all" />
     <type fullname="Naninovel.UI.FontSizes" preserve="all" />
@@ -109,7 +108,6 @@
     <type fullname="Naninovel.UI.GameStateSlotsGrid" preserve="all" />
     <type fullname="Naninovel.UI.LoadingIcon" preserve="all" />
     <type fullname="Naninovel.UI.LoadingPanel" preserve="all" />
-    <type fullname="Naninovel.UI.LoadLoggerScrollRect" preserve="all" />
     <type fullname="Naninovel.UI.MovieUI" preserve="all" />
     <type fullname="Naninovel.UI.NaninovelTMProText" preserve="all" />
     <type fullname="Naninovel.UI.NavigatorPlayButton" preserve="all" />
@@ -128,6 +126,7 @@
     <type fullname="Naninovel.UI.ScriptNavigatorPanel" preserve="all" />
     <type fullname="Naninovel.UI.ScrollController" preserve="all" />
     <type fullname="Naninovel.UI.ScrollOnFocus" preserve="all" />
+    <type fullname="Naninovel.UI.StateEvents" preserve="all" />
     <type fullname="Naninovel.UI.TipsPanel" preserve="all" />
     <type fullname="Naninovel.UI.TipsReturnButton" preserve="all" />
     <type fullname="Naninovel.UI.TitleContinueButton" preserve="all" />
@@ -137,41 +136,47 @@
     <type fullname="Naninovel.UI.ToastAppearance" preserve="all" />
     <type fullname="Naninovel.UI.ToastUI" preserve="all" />
     <type fullname="Naninovel.UI.TypingIndicator" preserve="all" />
+    <type fullname="Naninovel.UI.UIEvents" preserve="all" />
     <type fullname="Naninovel.UI.VariableInputPanel" preserve="all" />
-    <type fullname="Naninovel.UnlockableTrigger" preserve="all" />
+    <type fullname="Naninovel.UnlockableEvents" preserve="all" />
+    <type fullname="Naninovel.VariableEvents" preserve="all" />
+    <type fullname="Naninovel.BoolUnityEvent" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.LayeredActorBehaviour/CompositionMapItem" preserve="nothing" serialized="true" />
+    <type fullname="Naninovel.LayeredCharacterBehaviour/LookDirectionChangedEvent" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.StringUnityEvent" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.ColorUnityEvent" preserve="nothing" serialized="true" />
+    <type fullname="Naninovel.IntUnityEvent" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.ManagedTextProvider/ValueChangedEvent" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.ReactToAspectRatio/ThresholdReachedEvent" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.UI.CustomUI/FontChangeConfiguration" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.UI.NaninovelTMProText/LinkClickedEvent" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.UI.RevealableTextPrinterPanel/AuthorChangedEvent" preserve="nothing" serialized="true" />
-    <type fullname="Naninovel.BoolUnityEvent" preserve="nothing" serialized="true" />
-    <type fullname="Naninovel.IntUnityEvent" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.UI.ChatMessage/MessageTextChangedEvent" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.UI.ChoiceHandlerButton/OnLockEvent" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.UI.ChoiceHandlerButton/SummaryTextChangedEvent" preserve="nothing" serialized="true" />
+    <type fullname="Naninovel.GetActorRenderTexture/RenderTextureRetrievedEvent" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.GenericActorBehaviour/AppearanceChangedEvent" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.GenericActorBehaviour/TintColorChangedEvent" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.GenericActorBehaviour/VisibilityChangedEvent" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.GenericCharacterBehaviour/LookDirectionChangedEvent" preserve="nothing" serialized="true" />
-    <type fullname="Naninovel.GetActorRenderTexture/RenderTextureRetrievedEvent" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.BacklogMessageUI/OnAuthorChangedEvent" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.BacklogMessageUI/OnMessageChangedEvent" preserve="nothing" serialized="true" />
-    <type fullname="Naninovel.CommandScriptLine" preserve="nothing" serialized="true" />
+    <type fullname="Naninovel.CommandLine" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.AddChoice" preserve="nothing" serialized="true" />
-    <type fullname="Naninovel.Commands.AnimateActor" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.ArrangeCharacters" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.AutoSave" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.Await" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.BeginIf" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.CameraLook" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.ClearChoiceHandler" preserve="nothing" serialized="true" />
+    <type fullname="Naninovel.Commands.ControlTimeline" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.DestroyAllSpawned" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.DestroySpawned" preserve="nothing" serialized="true" />
+    <type fullname="Naninovel.Commands.DisableAwaitInput" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.Else" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.EndIf" preserve="nothing" serialized="true" />
+    <type fullname="Naninovel.Commands.ExecuteAsync" preserve="nothing" serialized="true" />
+    <type fullname="Naninovel.Commands.ExitDialogue" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.ExitToTitle" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.Gosub" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.Goto" preserve="nothing" serialized="true" />
@@ -180,6 +185,7 @@
     <type fullname="Naninovel.Commands.HideAllCharacters" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.HidePrinter" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.HideUI" preserve="nothing" serialized="true" />
+    <type fullname="Naninovel.Commands.I" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.InputCustomVariable" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.LipSync" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.LoadScene" preserve="nothing" serialized="true" />
@@ -191,6 +197,7 @@
     <type fullname="Naninovel.Commands.PlayBgm" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.PlaySfx" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.PrintText" preserve="nothing" serialized="true" />
+    <type fullname="Naninovel.Commands.RequireChoice" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.ResetText" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.Return" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.SetCustomVariable" preserve="nothing" serialized="true" />
@@ -209,17 +216,15 @@
     <type fullname="Naninovel.Commands.Stop" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.StopBgm" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.StopSfx" preserve="nothing" serialized="true" />
-    <type fullname="Naninovel.Commands.TransitionScene" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.Unless" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.Unlock" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.Wait" preserve="nothing" serialized="true" />
-    <type fullname="Naninovel.Commands.WaitForInput" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.Commands.While" preserve="nothing" serialized="true" />
-    <type fullname="Naninovel.CommentScriptLine" preserve="nothing" serialized="true" />
-    <type fullname="Naninovel.EmptyScriptLine" preserve="nothing" serialized="true" />
+    <type fullname="Naninovel.CommentLine" preserve="nothing" serialized="true" />
+    <type fullname="Naninovel.EmptyLine" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.FloatUnityEvent" preserve="nothing" serialized="true" />
-    <type fullname="Naninovel.GenericTextScriptLine" preserve="nothing" serialized="true" />
-    <type fullname="Naninovel.LabelScriptLine" preserve="nothing" serialized="true" />
+    <type fullname="Naninovel.GenericLine" preserve="nothing" serialized="true" />
+    <type fullname="Naninovel.LabelLine" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.OnGridPageChangedEvent" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.ResourceLoaderConfiguration" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.ScriptPlaylist" preserve="nothing" serialized="true" />
@@ -231,12 +236,12 @@
     <type fullname="Naninovel.UI.GameStateSlot/OnTitleTextChangedEvent" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.UI.NavigatorPlayButton/OnLabelChangedEvent" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.UI.ToastAppearance/TextChangedEvent" preserve="nothing" serialized="true" />
-    <type fullname="Naninovel.UnlockableTrigger/UnlockedStateChangedEvent" preserve="nothing" serialized="true" />
-    <type fullname="Naninovel.CustomVariableTrigger/BooleanChangedEvent" preserve="nothing" serialized="true" />
-    <type fullname="Naninovel.CustomVariableTrigger/IntegerChangedEvent" preserve="nothing" serialized="true" />
-    <type fullname="Naninovel.CustomVariableTrigger/NumericChangedEvent" preserve="nothing" serialized="true" />
-    <type fullname="Naninovel.CustomVariableTrigger/StringChangedEvent" preserve="nothing" serialized="true" />
-    <type fullname="Naninovel.CustomVariableTrigger/VariableRemovedEvent" preserve="nothing" serialized="true" />
+    <type fullname="Naninovel.UnlockableEvents/UnlockedStateChangedEvent" preserve="nothing" serialized="true" />
+    <type fullname="Naninovel.VariableEvents/BooleanChangedEvent" preserve="nothing" serialized="true" />
+    <type fullname="Naninovel.VariableEvents/IntegerChangedEvent" preserve="nothing" serialized="true" />
+    <type fullname="Naninovel.VariableEvents/NumericChangedEvent" preserve="nothing" serialized="true" />
+    <type fullname="Naninovel.VariableEvents/StringChangedEvent" preserve="nothing" serialized="true" />
+    <type fullname="Naninovel.VariableEvents/VariableRemovedEvent" preserve="nothing" serialized="true" />
     <type fullname="Naninovel.MessageTemplate" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="Elringus.SpriteDicing.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
@@ -285,31 +290,33 @@
   <assembly fullname="Unity.Addressables, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
     <type fullname="UnityEngine.AddressableAssets.Addressables" preserve="all" />
   </assembly>
-  <assembly fullname="Unity.InputSystem, Version=1.14.0.0, Culture=neutral, PublicKeyToken=null">
+  <assembly fullname="Unity.InputSystem, Version=1.18.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.InputSystem.InputActionAsset" preserve="all" />
     <type fullname="UnityEngine.InputSystem.InputActionReference" preserve="all" />
     <type fullname="UnityEngine.InputSystem.InputAction" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.InputSystem.InputActionMap" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.InputSystem.InputBinding" preserve="nothing" serialized="true" />
   </assembly>
-  <assembly fullname="Unity.Postprocessing.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-    <type fullname="UnityEngine.Rendering.PostProcessing.Bloom" preserve="all" />
-    <type fullname="UnityEngine.Rendering.PostProcessing.ChromaticAberration" preserve="all" />
-    <type fullname="UnityEngine.Rendering.PostProcessing.PostProcessProfile" preserve="all" />
-    <type fullname="UnityEngine.Rendering.PostProcessing.PostProcessVolume" preserve="all" />
-    <type fullname="UnityEngine.Rendering.PostProcessing.Vignette" preserve="all" />
-    <type fullname="UnityEngine.Rendering.PostProcessing.BoolParameter" preserve="nothing" serialized="true" />
-    <type fullname="UnityEngine.Rendering.PostProcessing.ColorParameter" preserve="nothing" serialized="true" />
-    <type fullname="UnityEngine.Rendering.PostProcessing.FloatParameter" preserve="nothing" serialized="true" />
-    <type fullname="UnityEngine.Rendering.PostProcessing.TextureParameter" preserve="nothing" serialized="true" />
-    <type fullname="UnityEngine.Rendering.PostProcessing.Vector2Parameter" preserve="nothing" serialized="true" />
-    <type fullname="UnityEngine.Rendering.PostProcessing.VignetteModeParameter" preserve="nothing" serialized="true" />
+  <assembly fullname="Unity.RenderPipelines.Core.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Rendering.Volume" preserve="all" />
+    <type fullname="UnityEngine.Rendering.VolumeProfile" preserve="all" />
+    <type fullname="UnityEngine.Rendering.BoolParameter" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Rendering.ClampedFloatParameter" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Rendering.ClampedIntParameter" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Rendering.ColorParameter" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Rendering.MinFloatParameter" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Rendering.TextureParameter" preserve="nothing" serialized="true" />
+  </assembly>
+  <assembly fullname="Unity.RenderPipelines.Universal.Runtime, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
+    <type fullname="UnityEngine.Rendering.Universal.Bloom" preserve="all" />
+    <type fullname="UnityEngine.Rendering.Universal.UniversalAdditionalLightData" preserve="all" />
+    <type fullname="UnityEngine.Rendering.Universal.BloomFilterModeParameter" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.Rendering.Universal.DownscaleParameter" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="Unity.ResourceManager, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" preserve="all">
     <type fullname="UnityEngine.ResourceManagement.ResourceProviders.AssetBundleProvider" preserve="all" />
     <type fullname="UnityEngine.ResourceManagement.ResourceProviders.BundledAssetProvider" preserve="all" />
     <type fullname="UnityEngine.ResourceManagement.ResourceProviders.InstanceProvider" preserve="all" />
-    <type fullname="UnityEngine.ResourceManagement.ResourceProviders.LegacyResourcesProvider" preserve="all" />
     <type fullname="UnityEngine.ResourceManagement.ResourceProviders.SceneProvider" preserve="all" />
   </assembly>
   <assembly fullname="Unity.TextMeshPro, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
@@ -324,9 +331,6 @@
     <type fullname="TMPro.TMP_FontFeatureTable" preserve="nothing" serialized="true" />
     <type fullname="TMPro.TMP_FontWeightPair" preserve="nothing" serialized="true" />
     <type fullname="TMPro.VertexGradient" preserve="nothing" serialized="true" />
-    <type fullname="TMPro.TMP_GlyphAdjustmentRecord" preserve="nothing" serialized="true" />
-    <type fullname="TMPro.TMP_GlyphPairAdjustmentRecord" preserve="nothing" serialized="true" />
-    <type fullname="TMPro.TMP_GlyphValueRecord" preserve="nothing" serialized="true" />
     <type fullname="TMPro.TMP_Dropdown/DropdownEvent" preserve="nothing" serialized="true" />
     <type fullname="TMPro.TMP_Dropdown/OptionDataList" preserve="nothing" serialized="true" />
     <type fullname="TMPro.TMP_InputField/OnChangeEvent" preserve="nothing" serialized="true" />
@@ -334,6 +338,7 @@
     <type fullname="TMPro.TMP_InputField/SubmitEvent" preserve="nothing" serialized="true" />
     <type fullname="TMPro.TMP_InputField/TextSelectionEvent" preserve="nothing" serialized="true" />
     <type fullname="TMPro.TMP_InputField/TouchScreenKeyboardEvent" preserve="nothing" serialized="true" />
+    <type fullname="TMPro.LigatureSubstitutionRecord" preserve="nothing" serialized="true" />
     <type fullname="TMPro.TMP_Dropdown/OptionData" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
@@ -353,6 +358,7 @@
     <type fullname="UnityEngine.Mesh" preserve="all" />
     <type fullname="UnityEngine.MeshFilter" preserve="all" />
     <type fullname="UnityEngine.MeshRenderer" preserve="all" />
+    <type fullname="UnityEngine.MonoBehaviour" preserve="all" />
     <type fullname="UnityEngine.Object" preserve="all" />
     <type fullname="UnityEngine.RectTransform" preserve="all" />
     <type fullname="UnityEngine.Shader" preserve="all" />
@@ -367,6 +373,7 @@
     <type fullname="UnityEngine.Events.ArgumentCache" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.Events.PersistentListenerMode" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.RectOffset" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.RenderingLayerMask" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="UnityEngine.ParticleSystemModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
     <type fullname="UnityEngine.ParticleSystem" preserve="all" />
@@ -417,9 +424,12 @@
     <type fullname="UnityEngine.UIElements.UIDocument" preserve="all" />
     <type fullname="UnityEngine.UIElements.VisualTreeAsset" preserve="all" />
     <type fullname="UnityEngine.UIElements.Button/UxmlFactory" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.Button/UxmlSerializedData" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.UIElements.DynamicAtlasSettings" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.UIElements.GroupBox/UxmlFactory" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.GroupBox/UxmlSerializedData" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.UIElements.Label/UxmlFactory" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.Label/UxmlSerializedData" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.UIElements.StyleComplexSelector" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.UIElements.StyleProperty" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.UIElements.StyleRule" preserve="nothing" serialized="true" />
@@ -431,6 +441,7 @@
     <type fullname="UnityEngine.UIElements.StyleValueHandle" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.UIElements.UxmlRootElementFactory" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.UIElements.VisualElement/UxmlFactory" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.UIElements.VisualElement/UxmlSerializedData" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.UIElements.VisualElementAsset" preserve="nothing" serialized="true" />
   </assembly>
   <assembly fullname="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
@@ -443,5 +454,8 @@
     <type fullname="UnityEngine.TextCore.Glyph" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.TextCore.GlyphMetrics" preserve="nothing" serialized="true" />
     <type fullname="UnityEngine.TextCore.GlyphRect" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.TextCore.LowLevel.GlyphAdjustmentRecord" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.TextCore.LowLevel.GlyphPairAdjustmentRecord" preserve="nothing" serialized="true" />
+    <type fullname="UnityEngine.TextCore.LowLevel.GlyphValueRecord" preserve="nothing" serialized="true" />
   </assembly>
 </linker>
