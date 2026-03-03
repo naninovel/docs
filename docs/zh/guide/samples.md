@@ -147,25 +147,25 @@ Select an action.[>]
 
 ## 本地化
 
- - 生成的本地化文档存储在 `Profiles/Naninovel/Resources/Naninovel/Localization` 目录中。
+ - 生成的本地化文档存储在 `Profiles/Naninovel/Localization` 目录中。
  - 生成的表格存储在示例项目根目录下的 `Sheets` 目录中。
- - 本地化特定字体存储在 `Profiles/Naninovel/Resources/Naninovel/Fonts` 中。
+ - 本地化特定字体存储在 `Profiles/Naninovel/Fonts` 中。
 
 为本地化工具选择的文件夹：
 
 | 文件夹 | 路径 |
 |------------------------|------------------------------------------------------------|
 | Script Folder (input) | Assets/Scripts/Scenario |
-| Text Folder (input) | Assets/Profiles/Naninovel/Resources/Naninovel/Text |
-| Locale Folder (output) | Assets/Profiles/Naninovel/Resources/Naninovel/Localization |
+| Text Folder (input) | Assets/Profiles/Naninovel/Text |
+| Locale Folder (output) | Assets/Profiles/Naninovel/Localization |
 
 为电子表格工具选择的文件夹：
 
 | 文件夹 | 路径 |
 |---------------------------|------------------------------------------------------------|
 | Input Scripts Folder | Assets/Scripts/Scenario |
-| Input Text Folder | Assets/Profiles/Naninovel/Resources/Naninovel/Text |
-| Input Localization Folder | Assets/Profiles/Naninovel/Resources/Naninovel/Localization |
+| Input Text Folder | Assets/Profiles/Naninovel/Text |
+| Input Localization Folder | Assets/Profiles/Naninovel/Localization |
 | Output Folder | Sheets |
 
 ![](https://i.gyazo.com/97d232751dd7e97bc828f3521f1d2066.mp4)

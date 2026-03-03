@@ -147,25 +147,25 @@ Select an action.[>]
 
 ## ローカライズ
 
- - 生成されたローカライズドキュメントは `Profiles/Naninovel/Resources/Naninovel/Localization` ディレクトリに保存されます。
+ - 生成されたローカライズドキュメントは `Profiles/Naninovel/Localization` ディレクトリに保存されます。
  - 生成されたシートは、サンプルプロジェクトルートの下の `Sheets` ディレクトリに保存されます。
- - ローカライズ固有のフォントは `Profiles/Naninovel/Resources/Naninovel/Fonts` に保存されます。
+ - ローカライズ固有のフォントは `Profiles/Naninovel/Fonts` に保存されます。
 
 ローカライズツール用に選択されたフォルダ：
 
 | フォルダ | パス |
 |------------------------|------------------------------------------------------------|
 | Script Folder (input) | Assets/Scripts/Scenario |
-| Text Folder (input) | Assets/Profiles/Naninovel/Resources/Naninovel/Text |
-| Locale Folder (output) | Assets/Profiles/Naninovel/Resources/Naninovel/Localization |
+| Text Folder (input) | Assets/Profiles/Naninovel/Text |
+| Locale Folder (output) | Assets/Profiles/Naninovel/Localization |
 
 スプレッドシートツール用に選択されたフォルダ：
 
 | フォルダ | パス |
 |---------------------------|------------------------------------------------------------|
 | Input Scripts Folder | Assets/Scripts/Scenario |
-| Input Text Folder | Assets/Profiles/Naninovel/Resources/Naninovel/Text |
-| Input Localization Folder | Assets/Profiles/Naninovel/Resources/Naninovel/Localization |
+| Input Text Folder | Assets/Profiles/Naninovel/Text |
+| Input Localization Folder | Assets/Profiles/Naninovel/Localization |
 | Output Folder | Sheets |
 
 ![](https://i.gyazo.com/97d232751dd7e97bc828f3521f1d2066.mp4)
