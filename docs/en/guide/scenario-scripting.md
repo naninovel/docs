@@ -483,9 +483,9 @@ Each host command has its own behavior when executing nested commands. For examp
     @goto #BeginTest
 ```
 
-Notice how nested blocks are indented: each level uses exactly **4 spaces**. Tabs or other space lengths will be ignored. Nested blocks of any depth are possible; just increase the indentation by 4 spaces per level.
+Notice how nested blocks are indented: each level uses exactly **4 spaces**. Alternatively, you can use a **single tab**; other space counts or space characters will be ignored. Nested blocks of any depth are possible — just increase the indentation by 4 spaces or a tab per level.
 
-To group several commands under a single host use [@group] command:
+To group several commands under a single host, use [@group] command:
 
 ```nani
 ; The random command chooses one of its nested lines, but ignores any children
