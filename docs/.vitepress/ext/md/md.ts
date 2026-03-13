@@ -1,5 +1,6 @@
 import { MarkdownOptions, MarkdownRenderer, MarkdownEnv } from "vitepress";
 import { AppendIconToExternalLinks } from "./md-link";
+import { GroupContainerPlugin } from "./md-group";
 import { Replacer } from "./md-replacer";
 import { lang, theme } from "../lang";
 
@@ -13,6 +14,7 @@ export const md: MarkdownOptions = {
 function installPlugins(md: MarkdownRenderer) {
     md.use(Replacer(/\[@(\w+?)]/m, buildCommandTags));
     md.use(AppendIconToExternalLinks);
+    md.use(GroupContainerPlugin);
 }
 
 function buildCommandTags(match: string[], env: MarkdownEnv) {

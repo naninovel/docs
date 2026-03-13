@@ -56,7 +56,9 @@ You can access the settings JSON file via `File -> Preferences -> Settings` and 
 
 Some of the above settings are applied by default when the package is installed, but you can override them if you wish. If you'd like to also customize syntax highlighting, add the following and tweak the colors:
 
-```json
+::: code-group
+
+```json [Dark Themes]
 "editor.semanticTokenColorCustomizations": {
     "[*Dark*][*Night*][*Abyss*][*Monokai*]": {
         "enabled": true,
@@ -81,9 +83,44 @@ Some of the above settings are applied by default when the package is installed,
             "Expression": "#62b8c1",
             "TextIdentifier": "#5d6470",
             "WaitFlag": "#6cb2ed",
-            "Error": "#d14e4e"
+            "Error": "#d14e4e",
+            "UnknownTag": "#5d6470",
+            "CommandTag": "#5d6470",
+            "ExpressionTag": "#5d6470",
+            "WaitInputTag": "#6cb2ed",
+            "SelectTag": "#5d6470",
+            "SelectOption": "#acb2be",
+            "ActorsCommandGroup": "#e2be7f",
+            "TextCommandGroup": "#93b6f8",
+            "PlaybackCommandGroup": "#a9e17e",
+            "BranchingCommandGroup": "#be93f3",
+            "VisualsCommandGroup": "#f88d84",
+            "AudioCommandGroup": "#9dd6de",
+            "UICommandGroup": "#f893b7"
         }
-    },
+    }
+},
+"editor.tokenColorCustomizations": {
+    "[*Dark*][*Night*][*Abyss*][*Monokai*]": {
+        "textMateRules": [
+            { "scope": ["naniscript.comment"], "settings": { "foreground": "#5d6470" } },
+            { "scope": ["naniscript.label"], "settings": { "foreground": "#9bc37c" } },
+            { "scope": ["naniscript.command"], "settings": { "foreground": "#6cb2ed" } },
+            { "scope": ["naniscript.command.parameter.id"], "settings": { "foreground": "#cd9769" } },
+            { "scope": ["naniscript.command.parameter.value"], "settings": { "foreground": "#e2be7f" } },
+            { "scope": ["naniscript.generic-text"], "settings": { "foreground": "#acb2be" } },
+            { "scope": ["naniscript.author"], "settings": { "foreground": "#e2be7f" } },
+            { "scope": ["naniscript.expression"], "settings": { "foreground": "#62b8c1" } },
+            { "scope": ["naniscript.text-identifier"], "settings": { "foreground": "#5d6470" } },
+            { "scope": ["naniscript.tag"], "settings": { "foreground": "#5d6470" } },
+            { "scope": ["naniscript.select-option"], "settings": { "foreground": "#acb2be" } }
+        ]
+    }
+},
+```
+
+```json [Light Themes]
+"editor.semanticTokenColorCustomizations": {
     "[*Light*][*Day*][*Bright*]": {
         "enabled": true,
         "rules": {
@@ -107,24 +144,24 @@ Some of the above settings are applied by default when the package is installed,
             "Expression": "#3abfb3",
             "TextIdentifier": "#acb5c6",
             "WaitFlag": "#257dc8",
-            "Error": "#be2222"
+            "Error": "#be2222",
+            "UnknownTag": "#acb5c6",
+            "CommandTag": "#acb5c6",
+            "ExpressionTag": "#acb5c6",
+            "WaitInputTag": "#257dc8",
+            "SelectTag": "#acb5c6",
+            "SelectOption": "#4b5871",
+            "ActorsCommandGroup": "#c79b4a",
+            "TextCommandGroup": "#6b95df",
+            "PlaybackCommandGroup": "#7fb857",
+            "BranchingCommandGroup": "#9d7ad4",
+            "VisualsCommandGroup": "#e07d74",
+            "AudioCommandGroup": "#6ab7c3",
+            "UICommandGroup": "#df79a5"
         }
     }
 },
 "editor.tokenColorCustomizations": {
-    "[*Dark*][*Night*][*Abyss*][*Monokai*]": {
-        "textMateRules": [
-            { "scope": ["naniscript.comment"], "settings": { "foreground": "#5d6470" } },
-            { "scope": ["naniscript.label"], "settings": { "foreground": "#9bc37c" } },
-            { "scope": ["naniscript.command"], "settings": { "foreground": "#6cb2ed" } },
-            { "scope": ["naniscript.command.parameter.id"], "settings": { "foreground": "#cd9769" } },
-            { "scope": ["naniscript.command.parameter.value"], "settings": { "foreground": "#e2be7f" } },
-            { "scope": ["naniscript.generic-text"], "settings": { "foreground": "#acb2be" } },
-            { "scope": ["naniscript.author"], "settings": { "foreground": "#e2be7f" } },
-            { "scope": ["naniscript.expression"], "settings": { "foreground": "#62b8c1" } },
-            { "scope": ["naniscript.text-identifier"], "settings": { "foreground": "#5d6470" } }
-        ]
-    },
     "[*Light*][*Day*][*Bright*]": {
         "textMateRules": [
             { "scope": ["naniscript.comment"], "settings": { "foreground": "#acb5c6" } },
@@ -135,17 +172,45 @@ Some of the above settings are applied by default when the package is installed,
             { "scope": ["naniscript.generic-text"], "settings": { "foreground": "#4b5871" } },
             { "scope": ["naniscript.author"], "settings": { "foreground": "#9250bf" } },
             { "scope": ["naniscript.expression"], "settings": { "foreground": "#3abfb3" } },
-            { "scope": ["naniscript.text-identifier"], "settings": { "foreground": "#acb5c6" } }
+            { "scope": ["naniscript.text-identifier"], "settings": { "foreground": "#acb5c6" } },
+            { "scope": ["naniscript.tag"], "settings": { "foreground": "#acb5c6" } },
+            { "scope": ["naniscript.select-option"], "settings": { "foreground": "#4b5871" } }
         ]
     }
-}
+},
 ```
+
+:::
 
 The `semanticTokenColorCustomizations` colors are applied to the LSP context (script content after the extension is activated), while `tokenColorCustomizations` are applied to the TextMate context (snippets in the tooltips and scripts before the extension is activated).
 
 ::: tip
 Find the full settings applied by default in the [package sources](https://github.com/naninovel/engine/blob/main/vscode/package.json) under `configurationDefaults`.
 :::
+
+## Decorations
+
+By default, semi-transparent icons are drawn instead of line identifiers to help distinguish between line and command types. You can tweak the behavior with the `Decoration Style` and `Decoration Opacity` settings. The individual colors of the command groups can be adjusted in the `semanticTokenColorCustomizations` setting.
+
+:::: group
+
+::: item Disabled
+![](https://i.gyazo.com/002c585bd448af30af78ebfb7dc98583.png)
+:::
+
+::: item Monochrome
+![](https://i.gyazo.com/0ea8a85d9845267b0d92187af716f902.png)
+:::
+
+::: item Colored (Default)
+![](https://i.gyazo.com/6a841742f4903d8515d996de9bcc1334.png)
+:::
+
+::: item Full Color
+![](https://i.gyazo.com/73a492b7c41274baf99cb2027b8016dd.png)
+:::
+
+::::
 
 ## Folding
 

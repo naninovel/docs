@@ -2,6 +2,7 @@
 
 import DefaultTheme from "vitepress/theme-without-fonts";
 import * as prefetch from "./prefetch";
+import * as group from "./group";
 import "./style.css";
 
 // Have to import client assets manually due to vitepress
@@ -13,5 +14,8 @@ import "imgit/client/youtube";
 
 export default {
     extends: { Layout: DefaultTheme.Layout },
-    enhanceApp: () => prefetch.init()
+    enhanceApp: () => {
+        prefetch.init();
+        group.init();
+    }
 };
