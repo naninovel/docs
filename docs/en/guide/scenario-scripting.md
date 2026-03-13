@@ -2,8 +2,8 @@
 
 Scenario scripts are text documents with a `.nani` extension that let you control what happens in scenes. Script assets are created via the `Create -> Naninovel -> Scenario Script` asset context menu. You can open and edit them using the built-in [Story Editor](/guide/editor) or an external text or code editor of your choice, such as Microsoft Word, Google Docs, or [VS Code](/guide/ide-extension).
 
-![?class=when-dark](https://i.gyazo.com/8ccfe73f2b0d39dfe8479a02a218a011.png)
-![?class=when-light](https://i.gyazo.com/110a7ca29df4d19f9a019732e1a68019.png)
+![?class=when-dark](https://i.gyazo.com/9ffce86c54b5bfc5497dd50fa59a637e.png)
+![?class=when-light](https://i.gyazo.com/6f5a92d83eb2071ac06cbb72c2d0579e.png)
 
 Each line in a scenario script represents a statement, which can be a command, generic text, navigation label, or comment. The type of statement is determined by the symbol placed at the start of the line:
 

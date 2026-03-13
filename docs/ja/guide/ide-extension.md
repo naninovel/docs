@@ -2,8 +2,8 @@
 
 シンタックスハイライト、エラーチェック、自動補完、インタラクティブドキュメントなどのコードエディタ機能は、生産性を大幅に向上させることができます。Naninovelには [VS Code](https://code.visualstudio.com) 用の公式拡張機能があり、[シナリオスクリプト](/ja/guide/scenario-scripting) を操作するための豊富なオーサリングツールを提供しています。
 
-![?class=when-dark](https://i.gyazo.com/8ccfe73f2b0d39dfe8479a02a218a011.png)
-![?class=when-light](https://i.gyazo.com/110a7ca29df4d19f9a019732e1a68019.png)
+![?class=when-dark](https://i.gyazo.com/9ffce86c54b5bfc5497dd50fa59a637e.png)
+![?class=when-light](https://i.gyazo.com/6f5a92d83eb2071ac06cbb72c2d0579e.png)
 
 ## セットアップ
 
