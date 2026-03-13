@@ -194,8 +194,8 @@ Unity treats folders named `Resources` in a special manner: assets stored under 
 
 Scenario scripts are text documents with a `.nani` extension where you control what happens in scenes using [NaniScript](/guide/scenario-scripting) — Naninovel's screenwriting language. You can open and edit the script files with any text or code editor of your choice, such as Microsoft Word or [VS Code](/guide/ide-extension).
 
-![?class=when-dark](https://i.gyazo.com/8ccfe73f2b0d39dfe8479a02a218a011.png)
-![?class=when-light](https://i.gyazo.com/110a7ca29df4d19f9a019732e1a68019.png)
+![?class=when-dark](https://i.gyazo.com/9ffce86c54b5bfc5497dd50fa59a637e.png)
+![?class=when-light](https://i.gyazo.com/6f5a92d83eb2071ac06cbb72c2d0579e.png)
 
 When you use the [Story Editor](/guide/editor), it outputs the same NaniScript to the scenario files, so you can use it interchangeably with code editors. In the rest of this guide, we will show script snippets assuming you're using a code editor, but you can follow the same steps inside the Story Editor: start typing `@` in the line type dropdown list, and it will show the matching commands.
 

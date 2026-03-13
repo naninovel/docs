@@ -2,8 +2,8 @@
 
 剧本脚本是扩展名为 `.nani` 的文本文档，可让您控制场景中发生的事情。脚本资产是通过 `Create -> Naninovel -> Scenario Script` 资产上下文菜单创建的。您可以使用内置的 [故事编辑器](/zh/guide/editor) 或您选择的外部文本或代码编辑器（例如 Microsoft Word、Google Docs 或 [VS Code](/zh/guide/ide-extension)）打开和编辑它们。
 
-![?class=when-dark](https://i.gyazo.com/8ccfe73f2b0d39dfe8479a02a218a011.png)
-![?class=when-light](https://i.gyazo.com/110a7ca29df4d19f9a019732e1a68019.png)
+![?class=when-dark](https://i.gyazo.com/9ffce86c54b5bfc5497dd50fa59a637e.png)
+![?class=when-light](https://i.gyazo.com/6f5a92d83eb2071ac06cbb72c2d0579e.png)
 
 剧本脚本中的每一行都代表一条语句，它可以是命令、通用文本、导航标签或注释。语句的类型由放在行首的符号决定：
 

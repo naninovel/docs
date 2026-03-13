@@ -2,8 +2,8 @@
 
 シナリオスクリプトは `.nani` 拡張子を持つテキストドキュメントで、シーンで何が起こるかを制御します。スクリプトアセットは `Create -> Naninovel -> Scenario Script` アセットコンテキストメニューから作成されます。組み込みの [ストーリーエディタ](/ja/guide/editor) または、Microsoft Word、Google Docs、[VS Code](/ja/guide/ide-extension) などの任意の外部テキストまたはコードエディタを使用して開いて編集できます。
 
-![?class=when-dark](https://i.gyazo.com/8ccfe73f2b0d39dfe8479a02a218a011.png)
-![?class=when-light](https://i.gyazo.com/110a7ca29df4d19f9a019732e1a68019.png)
+![?class=when-dark](https://i.gyazo.com/9ffce86c54b5bfc5497dd50fa59a637e.png)
+![?class=when-light](https://i.gyazo.com/6f5a92d83eb2071ac06cbb72c2d0579e.png)
 
 シナリオスクリプトの各行はステートメント（命令文）を表し、コマンド、汎用テキスト、ナビゲーションラベル、またはコメントのいずれかになります。ステートメントのタイプは、行の先頭に配置された記号によって決定されます。
 

@@ -2,8 +2,8 @@
 
 Code editor features such as syntax highlighting, error checking, auto-completion, and interactive documentation can significantly improve productivity. Naninovel has an official extension for [VS Code](https://code.visualstudio.com), offering rich authoring tools for working with [scenario scripts](/guide/scenario-scripting).
 
-![?class=when-dark](https://i.gyazo.com/8ccfe73f2b0d39dfe8479a02a218a011.png)
-![?class=when-light](https://i.gyazo.com/110a7ca29df4d19f9a019732e1a68019.png)
+![?class=when-dark](https://i.gyazo.com/9ffce86c54b5bfc5497dd50fa59a637e.png)
+![?class=when-light](https://i.gyazo.com/6f5a92d83eb2071ac06cbb72c2d0579e.png)
 
 ## Setup
 
