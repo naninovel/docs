@@ -10,13 +10,14 @@
         "preview": "vitepress preview docs"
     },
     "devDependencies": {
-        "typescript": "5.9.3",
         "@types/node": "24.1.0",
+        "imgit": "0.2.1",
+        "npm-check-updates": "19.3.2",
+        "typescript": "5.9.3",
         "vitepress": "1.6.4",
         "vitest": "4.0.18",
-        "vscode-textmate": "9.3.2",
         "vscode-oniguruma": "2.0.1",
-        "imgit": "0.2.1",
-        "npm-check-updates": "19.3.2"
+        "vscode-textmate": "9.3.2",
+        "markdown-it-container": "4.0.0"
     }
 }

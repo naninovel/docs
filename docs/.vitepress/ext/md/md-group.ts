@@ -1,4 +1,3 @@
-// @ts-ignore transitive dependency of vitepress
 import container from "markdown-it-container";
 import type { MarkdownRenderer } from "vitepress";
 
