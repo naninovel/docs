@@ -21,10 +21,6 @@
 @char Sora.Happy look:left pos:45,10
 ```
 
-::: tip
-考虑使用 [Scene Assistant](https://github.com/idaocracy/NaninovelSceneAssistant) 扩展来帮助在场景中定位 actor。
-:::
-
 ## Actor 记录
 
 如果您有很多角色，并且通过编辑器菜单分配它们不方便，请使用 actor 记录资产 (`Create -> Naninovel -> Actor Record -> Character`)。它们支持多重编辑，并允许您使用文件夹组织记录。查看下面的视频以获取示例。

@@ -21,10 +21,6 @@ In scenario scripts, characters are controlled with [@char] command:
 @char Sora.Happy look:left pos:45,10
 ```
 
-::: tip
-Consider using [Scene Assistant](https://github.com/idaocracy/NaninovelSceneAssistant) extension to help with positioning the actors on scene.
-:::
-
 ## Actor Records
 
 If you have many characters and it's inconvenient to assign them all via the editor menu, use actor record assets (`Create -> Naninovel -> Actor Record -> Character`). They support multi-editing and allow you to organize records with folders. Check the video below for an example.
