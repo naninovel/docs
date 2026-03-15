@@ -21,10 +21,6 @@
 @char Sora.Happy look:left pos:45,10
 ```
 
-::: tip
-シーン上でのアクターの配置を支援するために、[Scene Assistant](https://github.com/idaocracy/NaninovelSceneAssistant) 拡張機能の使用を検討してください。
-:::
-
 ## アクターレコード
 
 キャラクターが多く、エディタメニューですべてを割り当てるのが不便な場合は、アクターレコードアセット（`Create -> Naninovel -> Actor Record -> Character`）を使用してください。これらはマルチ編集をサポートしており、フォルダでレコードを整理できます。例については、以下のビデオを確認してください。
