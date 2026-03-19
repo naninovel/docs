@@ -31,7 +31,7 @@
             --brand-glow-strong: rgba(27, 174, 234, .25);
             --text: #eef2f7;
             --text-secondary: #a0aec0;
-            --text-light: #64748b;
+            --text-light: #8192ac;
             --bg: #0b0f1a;
             --bg-soft: #101624;
             --bg-card: rgba(255, 255, 255, .04);
@@ -92,6 +92,11 @@
         }
         a:hover {
             color: var(--brand-light);
+        }
+        p a {
+            text-decoration: underline;
+            text-decoration-color: color-mix(in srgb, currentColor 50%, transparent);
+            text-underline-position: under;
         }
 
         .wrap {
