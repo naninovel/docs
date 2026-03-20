@@ -359,16 +359,6 @@ Lorem ipsum dolor<@back tint:blue> sit amet.
 
 您可以使用事件标签代替 [内联命令](/zh/guide/scenario-scripting#命令内联) 将它们公开给 [本地化文档](/zh/guide/localization#脚本本地化)，允许翻译人员根据所选区域设置覆盖执行的命令。
 
-## 等待输入标签
-
-如果您经常使用 `<@wait i>` 而不是 `[-]` 等待输入命令只是为了将它们公开给本地化文档，请考虑改用 `<->` 等待输入标签 — 它的工作方式相同，但键入更短。
-
-```nani
-; 与 'Lorem[-] ipsum' 相同，但等待输入
-; 命令将公开给本地化文档。
-Lorem<-> ipsum
-```
-
 ## 显示表达式
 
 在某些情况下，可能需要在生成的本地化文档中包含 [脚本表达式](/zh/guide/script-expressions) 或在语言（区域设置）更改时强制重新评估表达式。

@@ -359,16 +359,6 @@ Lorem ipsum dolor<@back tint:blue> sit amet.
 
 You can use event tags instead of [inlined commands](/guide/scenario-scripting#command-inlining) to expose them to [localization documents](/guide/localization#scripts-localization), allowing translators to override executed commands based on the selected locale.
 
-## Wait Input Tag
-
-If you often use `<@wait i>` instead of `[-]` wait input commands just to expose them to localization documents, consider using the `<->` wait input tag instead — it works the same way but is shorter to type.
-
-```nani
-; Same as 'Lorem[-] ipsum', but the wait input
-; command will be exposed to the localization docs.
-Lorem<-> ipsum
-```
-
 ## Reveal Expressions
 
 In some cases, it may be required to include [script expressions](/guide/script-expressions) in the generated localization documents or force expression re-evaluation when language (locale) is changed.
