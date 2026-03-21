@@ -411,7 +411,7 @@ Hello, <:MC>! How's <:AC> doing?
 より柔軟な選択ロジックが必要な場合は、`select` エイリアスを使用してカスタム [式関数](/ja/guide/script-expressions#カスタム関数の追加) を作成し、`params string[]` を受け入れて `string` を返すようにします。セレクタータグがコンパイルされるたびに、関数を使用して結果を評価します。以下はカスタム選択関数の例です。最初のオプションで選択の種類を指定し、最初のオプションが空の場合はランダム選択にフォールバックします。
 
 ```cs
-[ExpressionFunction("select")]
+[ExpressionQuery("select")]
 public static string Select (params string[] args)
 {
     var kind = args[0];

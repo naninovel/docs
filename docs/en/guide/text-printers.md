@@ -408,10 +408,10 @@ Select your pronouns.
 
 Notice the `</x/y>` tags — these are selector tags. The text between `/` characters are called options. By default, a random option will be returned. However, if you set the `selector` variable to an index, the tag will instead return the option with that index (zero-based).
 
-If you need more flexible selection logic, create a custom [expression function](/guide/script-expressions#adding-custom-functions) with the `select` alias, and make it accept a `params string[]` and return a `string`. Whenever a selector tag is compiled, it will then use your function to evaluate the result. Below is an example of a custom select function, where the first option specifies the selection kind, falling back to random selection if the first option is empty:
+If you need more flexible selection logic, create a custom [expression query](/guide/script-expressions#adding-custom-queries) with the `select` alias, and make it accept a `params string[]` and return a `string`. Whenever a selector tag is compiled, it will then use your query to evaluate the result. Below is an example of a custom select query, where the first option specifies the selection kind, falling back to random selection if the first option is empty:
 
 ```cs
-[ExpressionFunction("select")]
+[ExpressionQuery("select")]
 public static string Select (params string[] args)
 {
     var kind = args[0];

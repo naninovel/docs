@@ -113,27 +113,27 @@
 
 ## カスタム関数の追加
 
-`ExpressionFunction` 属性を使用してパブリック静的C#メソッドに注釈を付けることで、カスタム式関数を追加できます。メソッドには互換性のある署名が必要であり、その後スクリプト式で自動的に使用可能になります。
+`ExpressionQuery` 属性を使用してパブリック静的C#メソッドに注釈を付けることで、カスタム式関数を追加できます。メソッドには互換性のある署名が必要であり、その後スクリプト式で自動的に使用可能になります。
 
 引数および戻り値の型としてサポートされているのは、[単純](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types#simple-types) 型と文字列型のみです。単一の可変長（`params` キーワード）引数を使用することもできます。可変長引数を他の引数と混在させることはサポートされていません。
 
 ```csharp
-public static class CustomFunctions
+public static class CustomQueries
 {
     // すべての文字を小文字に変換した指定文字列を返します。
-    [ExpressionFunction("toLower")]
+    [ExpressionQuery("toLower")]
     public static string ToLower (string content) => content.ToLower();
 
     // 指定された数値の合計を返します。
-    [ExpressionFunction("add")]
+    [ExpressionQuery("add")]
     public static int Add (int a, int b) => a + b;
 
     // 指定された数値を除算した結果の余りを返します。
-    [ExpressionFunction("mod")]
+    [ExpressionQuery("mod")]
     public static double Modulus (double a, double b) => a % b;
 
     // 指定された文字列からランダムに選択された文字列を返します。
-    [ExpressionFunction("random")]
+    [ExpressionQuery("random")]
     public static string Random (params string[] args)
     {
         if (args == null || args.Length == 0)
@@ -145,7 +145,7 @@ public static class CustomFunctions
 }
 ```
 
-`ExpressionFunction` 属性には、次のオプションパラメータがあります。
+`ExpressionQuery` 属性には、次のオプションパラメータがあります。
 
 - **Alias** デフォルトでは、メソッド名が関数識別子（スクリプトで関数を参照する方法）として使用されます。エイリアスを割り当てて識別子を変更します。
 - **Summary** IDE拡張機能とビジュアルエディタに表示されるドキュメント。
@@ -153,7 +153,7 @@ public static class CustomFunctions
 - **Example** IDE拡張機能とビジュアルエディタに表示される使用例。
 
 ::: tip EXAMPLE
-インベントリにアイテムが存在するかどうかを確認するためのカスタム式関数を追加する別の例は、[インベントリサンプル](/ja/guide/samples#インベントリ) にあります。具体的には、カスタム関数は `Scripts/Runtime/Inventory/InventoryFunctions.cs` ランタイムスクリプトを介して実装されています。
+インベントリにアイテムが存在するかどうかを確認するためのカスタム式関数を追加する別の例は、[インベントリサンプル](/ja/guide/samples#インベントリ) にあります。具体的には、カスタム関数は `Scripts/Runtime/Inventory/InventoryQueries.cs` ランタイムスクリプトを介して実装されています。
 :::
 
 ## パラメータコンテキスト
@@ -165,9 +165,9 @@ public static class CustomFunctions
 ```cs
 public enum Quest { Quest1, Quest2, Quest3, ... }
 
-public static class CustomFunctions
+public static class CustomQueries
 {
-    [ExpressionFunction]
+    [ExpressionQuery]
     public static bool IsComplete ([ConstantContext(typeof(Quest))] string name)
     {
         Enum.TryParse<Quest>(name, out var quest);
@@ -184,7 +184,7 @@ public static class CustomFunctions
 アクター、リソース、エンドポイントなどの他のコンテキストも使用できます。たとえば、以下はアクターIDを受け取り、その表示名を返す組み込みの `getName()` 関数です。`ActorContext` が適用されると、プロジェクトで使用可能なアクターIDで補完されます。
 
 ```cs
-[ExpressionFunction]
+[ExpressionQuery]
 static string GetName (
     [ActorContext(CharactersConfiguration.DefaultPathPrefix)] string id)
 {
@@ -195,7 +195,7 @@ static string GetName (
 別の例、これはアンロック可能IDで補完します。
 
 ```cs
-[ExpressionFunction]
+[ExpressionQuery]
 static bool IsUnlocked (
     [ResourceContext(UnlockablesConfiguration.DefaultPathPrefix)] string id)
 {

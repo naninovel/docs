@@ -82,9 +82,9 @@ Below is the map of the available aliases:
 | `>=`     | `is at least` |
 | `<=`     | `is at most`  |
 
-## Expression Functions
+## Expression Queries
 
-The following functions can also be used inside the script expressions.
+The following queries can also be used inside the script expressions.
 
 <div class="config-table">
 
@@ -112,29 +112,29 @@ approx(a, b) | Compares two strings ignoring case. | `approx("abc", "ABC")`
 
 </div>
 
-## Adding Custom Functions
+## Adding Custom Queries
 
-It's possible to add custom expression functions by annotating a public static C# method with the `ExpressionFunction` attribute; the method must have a compatible signature and will then automatically become available in script expressions.
+It's possible to add custom expression queries by annotating a public static C# method with the `ExpressionQuery` attribute; the method must have a compatible signature and will then automatically become available in script expressions.
 
 Only [simple](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types#simple-types) and string types are supported as argument and return types. It's also possible to use a single variadic (`params` keyword) argument; mixing a variadic with other arguments is not supported.
 
 ```csharp
-public static class CustomFunctions
+public static class CustomQueries
 {
     // Returns the provided string with all characters converted to lower-case.
-    [ExpressionFunction("toLower")]
+    [ExpressionQuery("toLower")]
     public static string ToLower (string content) => content.ToLower();
 
     // Returns the sum of the provided numbers.
-    [ExpressionFunction("add")]
+    [ExpressionQuery("add")]
     public static int Add (int a, int b) => a + b;
 
     // Returns the remainder resulting from dividing the provided numbers.
-    [ExpressionFunction("mod")]
+    [ExpressionQuery("mod")]
     public static double Modulus (double a, double b) => a % b;
 
     // Returns a string randomly chosen from one of the provided strings.
-    [ExpressionFunction("random")]
+    [ExpressionQuery("random")]
     public static string Random (params string[] args)
     {
         if (args == null || args.Length == 0)
@@ -146,29 +146,29 @@ public static class CustomFunctions
 }
 ```
 
-The `ExpressionFunction` attribute has the following optional parameters:
+The `ExpressionQuery` attribute has the following optional parameters:
 
-- **Alias** By default, the method name is used as function identifier (the way the function is referenced in scripts); assign an alias to change the identifier.
+- **Alias** By default, the method name is used as the query identifier (the way the query is referenced in scripts); assign an alias to change the identifier.
 - **Summary** Documentation shown in IDE extension and visual editor.
 - **Remarks** Additional information shown in IDE extension and visual editor.
 - **Example** Usage examples shown in IDE extension and visual editor.
 
 ::: tip EXAMPLE
-Another example of adding custom expression functions to check whether an item exists in an inventory can be found in the [inventory sample](/guide/samples#inventory). Specifically, the custom functions are implemented via `Scripts/Runtime/Inventory/InventoryFunctions.cs` runtime script.
+Another example of adding custom expression queries to check whether an item exists in an inventory can be found in the [inventory sample](/guide/samples#inventory). Specifically, the custom queries are implemented via `Scripts/Runtime/Inventory/InventoryQueries.cs` runtime script.
 :::
 
 ## Parameter Context
 
-Similar to command parameters, function parameters may have context attributes applied to make them auto-complete and be diagnosed by the [IDE extension](/guide/ide-extension).
+Similar to command parameters, query parameters may have context attributes applied to make them auto-complete and be diagnosed by the [IDE extension](/guide/ide-extension).
 
-For example, you can associate a function parameter with an enum:
+For example, you can associate a query parameter with an enum:
 
 ```cs
 public enum Quest { Quest1, Quest2, Quest3, ... }
 
-public static class CustomFunctions
+public static class CustomQueries
 {
-    [ExpressionFunction]
+    [ExpressionQuery]
     public static bool IsComplete ([ConstantContext(typeof(Quest))] string name)
     {
         Enum.TryParse<Quest>(name, out var quest);
@@ -182,10 +182,10 @@ public static class CustomFunctions
 
 ![](https://i.gyazo.com/0f1519347ac9b619444371922e0fd1f5.mp4)
 
-You can also use other contexts, such as actors, resources, endpoints and others. For example, below is the built-in `getName()` function, which takes an actor ID and returns its display name. With `ActorContext` applied, it'll complete over actor IDs available in the project:
+You can also use other contexts, such as actors, resources, endpoints and others. For example, below is the built-in `getName()` query, which takes an actor ID and returns its display name. With `ActorContext` applied, it'll complete over actor IDs available in the project:
 
 ```cs
-[ExpressionFunction]
+[ExpressionQuery]
 static string GetName (
     [ActorContext(CharactersConfiguration.DefaultPathPrefix)] string id)
 {
@@ -196,7 +196,7 @@ static string GetName (
 Another example, which will complete on unlockable IDs:
 
 ```cs
-[ExpressionFunction]
+[ExpressionQuery]
 static bool IsUnlocked (
     [ResourceContext(UnlockablesConfiguration.DefaultPathPrefix)] string id)
 {

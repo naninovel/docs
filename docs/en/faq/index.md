@@ -96,4 +96,4 @@ Alternatively, check out [render actor to texture](/guide/characters#render-to-t
 
 ## How to run a custom C# code from scenario scripts?
 
-To invoke a C# behaviour (e.g., access a game object on scene), use [custom commands](/guide/custom-commands); to get a value from a C# method and use it in a scenario script, use [expression functions](/guide/script-expressions#adding-custom-functions).
+To invoke a C# behaviour (e.g., access a game object on scene), use [custom commands](/guide/custom-commands); to get a value from a C# method and use it in a scenario script, use [expression queries](/guide/script-expressions#adding-custom-queries).
