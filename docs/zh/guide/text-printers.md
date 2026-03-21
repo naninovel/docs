@@ -359,6 +359,10 @@ Lorem ipsum dolor<@back tint:blue> sit amet.
 
 您可以使用事件标签代替 [内联命令](/zh/guide/scenario-scripting#命令内联) 将它们公开给 [本地化文档](/zh/guide/localization#脚本本地化)，允许翻译人员根据所选区域设置覆盖执行的命令。
 
+::: note
+显示事件会在临时轨道上执行命令，且无法影响主轨道，因此无法等待它们（`wait!` 标志会被忽略），也无法触发"等待输入"（CTC）。在这些情况下，请改用[内联命令](/zh/guide/scenario-scripting#命令内联)。
+:::
+
 ## 显示表达式
 
 在某些情况下，可能需要在生成的本地化文档中包含 [脚本表达式](/zh/guide/script-expressions) 或在语言（区域设置）更改时强制重新评估表达式。
