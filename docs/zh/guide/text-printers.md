@@ -411,7 +411,7 @@ Hello, <:MC>! How's <:AC> doing?
 如果您需要更灵活的选择逻辑，请创建一个带有 `select` 别名的自定义 [表达式函数](/zh/guide/script-expressions#添加自定义函数)，并使其接受 `params string[]` 并返回 `string`。每当编译选择器标签时，它都会使用您的函数来评估结果。下面是自定义选择函数的示例，其中第一个选项指定选择类型，如果第一个选项为空，则回退到随机选择：
 
 ```cs
-[ExpressionFunction("select")]
+[ExpressionQuery("select")]
 public static string Select (params string[] args)
 {
     var kind = args[0];

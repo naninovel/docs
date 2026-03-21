@@ -113,27 +113,27 @@
 
 ## 添加自定义函数
 
-可以通过使用 `ExpressionFunction` 属性注释公共静态 C# 方法来添加自定义表达式函数；该方法必须具有兼容的签名，然后将自动在脚本表达式中可用。
+可以通过使用 `ExpressionQuery` 属性注释公共静态 C# 方法来添加自定义表达式函数；该方法必须具有兼容的签名，然后将自动在脚本表达式中可用。
 
 仅支持 [简单](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types#simple-types) 和字符串类型作为参数和返回类型。也可以使用单个可变参数（`params` 关键字）参数；不支持将可变参数与其他参数混合使用。
 
 ```csharp
-public static class CustomFunctions
+public static class CustomQueries
 {
     // 返回所有字符转换为小写的提供字符串。
-    [ExpressionFunction("toLower")]
+    [ExpressionQuery("toLower")]
     public static string ToLower (string content) => content.ToLower();
 
     // 返回提供数字的总和。
-    [ExpressionFunction("add")]
+    [ExpressionQuery("add")]
     public static int Add (int a, int b) => a + b;
 
     // 返回除以提供数字产生的余数。
-    [ExpressionFunction("mod")]
+    [ExpressionQuery("mod")]
     public static double Modulus (double a, double b) => a % b;
 
     // 返回从提供的字符串中随机选择的字符串。
-    [ExpressionFunction("random")]
+    [ExpressionQuery("random")]
     public static string Random (params string[] args)
     {
         if (args == null || args.Length == 0)
@@ -145,7 +145,7 @@ public static class CustomFunctions
 }
 ```
 
-`ExpressionFunction` 属性具有以下可选参数：
+`ExpressionQuery` 属性具有以下可选参数：
 
 - **Alias** 默认情况下，方法名称用作函数标识符（在脚本中引用函数的方式）；分配别名以更改标识符。
 - **Summary** IDE 扩展和可视化编辑器中显示的文档。
@@ -153,7 +153,7 @@ public static class CustomFunctions
 - **Example** IDE 扩展和可视化编辑器中显示的使用示例。
 
 ::: tip EXAMPLE
-在 [库存示例](/zh/guide/samples#库存-inventory) 中可以找到添加自定义表达式函数以检查项目中是否存在项目的另一个示例。具体来说，自定义函数通过 `Scripts/Runtime/Inventory/InventoryFunctions.cs` 运行时脚本实现。
+在 [库存示例](/zh/guide/samples#库存-inventory) 中可以找到添加自定义表达式函数以检查项目中是否存在项目的另一个示例。具体来说，自定义函数通过 `Scripts/Runtime/Inventory/InventoryQueries.cs` 运行时脚本实现。
 :::
 
 ## 参数上下文
@@ -165,9 +165,9 @@ public static class CustomFunctions
 ```cs
 public enum Quest { Quest1, Quest2, Quest3, ... }
 
-public static class CustomFunctions
+public static class CustomQueries
 {
-    [ExpressionFunction]
+    [ExpressionQuery]
     public static bool IsComplete ([ConstantContext(typeof(Quest))] string name)
     {
         Enum.TryParse<Quest>(name, out var quest);
@@ -184,7 +184,7 @@ public static class CustomFunctions
 您还可以使用其他上下文，例如 actor、资源、端点等。例如，下面是内置的 `getName()` 函数，它接受 actor ID 并返回其显示名称。应用 `ActorContext` 后，它将补全项目中可用的 actor ID：
 
 ```cs
-[ExpressionFunction]
+[ExpressionQuery]
 static string GetName (
     [ActorContext(CharactersConfiguration.DefaultPathPrefix)] string id)
 {
@@ -195,7 +195,7 @@ static string GetName (
 另一个示例，它将补全可解锁 ID：
 
 ```cs
-[ExpressionFunction]
+[ExpressionQuery]
 static bool IsUnlocked (
     [ResourceContext(UnlockablesConfiguration.DefaultPathPrefix)] string id)
 {

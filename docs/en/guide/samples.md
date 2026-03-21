@@ -90,7 +90,7 @@ While an inventory system is out of scope for visual novels, we received many re
 The inventory is not a standalone product or part of Naninovel. Use it to learn how to extend and customize the engine, but don't expect it to be a production-ready solution for inventory systems. If you're looking for one, [check the Asset Store](https://assetstore.unity.com/?q=inventory) or create a custom one from scratch.
 :::
 
-This example project shows how to make a custom inventory UI with grid layout, pagination, and a drag-and-drop window; add a custom engine service and related configuration menu; add input bindings; use state outsourcing; and author custom scenario commands and expression functions.
+This example project shows how to make a custom inventory UI with grid layout, pagination, and a drag-and-drop window; add a custom engine service and related configuration menu; add input bindings; use state outsourcing; and author custom scenario commands and expression queries.
 
 ![](https://i.gyazo.com/86c577f007daf4ec5d79c0e91db7bc10.mp4)
 
@@ -112,7 +112,7 @@ Each item has a `Stack Count Limit` property to limit how many items of this typ
 
 You can add items to the inventory using the `@addItem` command and remove them with `@removeItem` (or `@removeItemAt`, `@removeAllItems`). Item IDs are equal to the item prefab names. Inventory slot IDs are equal to the grid slot indexes (e.g., the first slot is 0, the second is 1, etc.).
 
-`itemExist()` and `itemCount()` custom [expression functions](/guide/script-expressions#expression-functions) to check whether an item exists in inventory and to get the number of existing items are also available for convenience.
+`itemExist()` and `itemCount()` custom [expression queries](/guide/script-expressions#expression-queries) to check whether an item exists in inventory and to get the number of existing items are also available for convenience.
 
 Below is a script from the example project:
 

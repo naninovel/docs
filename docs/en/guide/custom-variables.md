@@ -32,7 +32,7 @@ You can set predefined custom variables (both global and local) with initial val
 Global predefined variables are initialized on the first application start, while local ones are initialized on each state reset. Note that the value field in the menu expects a valid script expression, not a raw value string.
 
 ::: tip
-If you want a global counter that increments only once (even when re-played, e.g., with rollback or after restarting the game), use the `HasPlayed()` [expression function](/guide/script-expressions#expression-functions):
+If you want a global counter that increments only once (even when re-played, e.g., with rollback or after restarting the game), use the `HasPlayed()` [expression query](/guide/script-expressions#expression-query):
 ```nani
 @set g_GlobalCounter++ if:!HasPlayed()
 ```

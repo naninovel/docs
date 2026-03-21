@@ -258,8 +258,8 @@ public class DefaultMetadataProvider : IMetadataProvider
         meta.Actors = MetadataGenerator.GenerateActorsMetadata();
         Notify("Processing variables...", .75f);
         meta.Variables = MetadataGenerator.GenerateVariablesMetadata();
-        Notify("Processing functions...", .95f);
-        meta.Functions = MetadataGenerator.GenerateFunctionsMetadata();
+        Notify("Processing queries...", .95f);
+        meta.Queries = MetadataGenerator.GenerateQueriesMetadata();
         Notify("Processing constants...", .99f);
         meta.Constants = MetadataGenerator.GenerateConstantsMetadata();
         meta.Syntax = Compiler.Syntax;
@@ -276,7 +276,7 @@ public class DefaultMetadataProvider : IMetadataProvider
 
 ## IDE Attributes
 
-Naninovel provides several [C# attributes](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes) to enable IDE-related functionality for custom commands and expression functions. For example, to add on-hover documentation to custom commands and/or parameters, apply the `Doc` attribute to the command type and to parameter fields, respectively:
+Naninovel provides several [C# attributes](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes) to enable IDE-related functionality for custom commands and expression queries. For example, to add on-hover documentation to custom commands and/or parameters, apply the `Doc` attribute to the command type and to parameter fields, respectively:
 
 ```csharp
 [Doc("Summary of the custom command.")]
@@ -287,7 +287,7 @@ public class CustomCommand : Command
 }
 ```
 
-To make a parameter support auto-completion with both built-in and custom expression functions and pre-defined custom variables, use the `ExpressionContext` attribute:
+To make a parameter support auto-completion with both built-in and custom expression queries and pre-defined custom variables, use the `ExpressionContext` attribute:
 
 ```csharp
 [ExpressionContext]
@@ -355,7 +355,7 @@ public class ModifyBackground : ModifyActor { }
 You can use the same approach when inheriting custom commands from built-in ones. Don't forget to provide the optional `paramId` argument when applying a parameter context attribute to a class instead of a field.
 
 ::: tip
-Most of the same parameter context attributes can be applied to expression function parameters to enable auto-completion and diagnostics in the IDE extension. See an example in the [functions guide](/guide/script-expressions#parameter-context).
+Most of the same parameter context attributes can be applied to expression query parameters to enable auto-completion and diagnostics in the IDE extension. See an example in the [queries guide](/guide/script-expressions#parameter-context).
 :::
 
 ## Constant Expressions

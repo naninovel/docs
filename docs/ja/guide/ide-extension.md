@@ -258,8 +258,8 @@ public class DefaultMetadataProvider : IMetadataProvider
         meta.Actors = MetadataGenerator.GenerateActorsMetadata();
         Notify("Processing variables...", .75f);
         meta.Variables = MetadataGenerator.GenerateVariablesMetadata();
-        Notify("Processing functions...", .95f);
-        meta.Functions = MetadataGenerator.GenerateFunctionsMetadata();
+        Notify("Processing queries...", .95f);
+        meta.Queries = MetadataGenerator.GenerateQueriesMetadata();
         Notify("Processing constants...", .99f);
         meta.Constants = MetadataGenerator.GenerateConstantsMetadata();
         meta.Syntax = Compiler.Syntax;

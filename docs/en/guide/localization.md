@@ -313,11 +313,11 @@ First, create a compiler localization asset via `Create -> Naninovel -> Compiler
 
 ![](https://i.gyazo.com/5ffcd8e06231616598cc8317f7854f9a.png)
 
-To override commands, parameters, functions and constants, use the dedicated lists. You can also localize documentation and usage examples associated with commands and parameters; these will be shown in the IDE extension.
+To override commands, parameters, queries and constants, use the dedicated lists. You can also localize documentation and usage examples associated with commands and parameters; these will be shown in the IDE extension.
 
 ![](https://i.gyazo.com/4fdcdcec7361a9ccbcc1012d842ef4ad.png)
 
-The lists are initially empty. To populate them with commands and functions available in the project, use the inspector context menu.
+The lists are initially empty. To populate them with commands and queries available in the project, use the inspector context menu.
 
 ![](https://i.gyazo.com/cddd1981c5aef5f16da2052898c7a530.png)
 
