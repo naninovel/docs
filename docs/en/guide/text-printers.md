@@ -359,8 +359,8 @@ Lorem ipsum dolor<@back tint:blue> sit amet.
 
 You can use event tags instead of [inlined commands](/guide/scenario-scripting#command-inlining) to expose them to [localization documents](/guide/localization#scripts-localization), allowing translators to override executed commands based on the selected locale.
 
-::: note
-Reveal events execute commands on a transient track and cannot affect the main track, so it is not possible to await them (`wait!` flags are ignored) or trigger "waiting for input" (CTC). Use [inlined commands](/guide/scenario-scripting#command-inlining) for those cases instead.
+::: info NOTE
+Reveal events execute commands on a transient track and cannot affect the main track, so it is not possible to await them (`wait!` flags are ignored) or trigger "waiting for input" (CTC).
 :::
 
 ## Reveal Expressions
