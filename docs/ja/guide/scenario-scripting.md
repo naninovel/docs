@@ -709,7 +709,7 @@ print.AuthorLabel = otherPrint.AuthorLabel.Ref();
 @back MainMenuBackground
 @bgm MainMenuMusic
 @spawn Rain
-@show TitleUI
+@showUI TitleUI
 @stop
 
 # OnNewGame
