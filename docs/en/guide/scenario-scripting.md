@@ -718,7 +718,7 @@ The script can also be used to invoke commands when the player clicks "NEW GAME"
 @back MainMenuBackground
 @bgm MainMenuMusic
 @spawn Rain
-@show TitleUI
+@showUI TitleUI
 @stop
 
 # OnNewGame
