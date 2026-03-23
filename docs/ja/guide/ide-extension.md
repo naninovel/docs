@@ -260,8 +260,8 @@ public class DefaultMetadataProvider : IMetadataProvider
         meta.Variables = MetadataGenerator.GenerateVariablesMetadata();
         Notify("Processing queries...", .95f);
         meta.Queries = MetadataGenerator.GenerateQueriesMetadata();
-        Notify("Processing constants...", .99f);
-        meta.Constants = MetadataGenerator.GenerateConstantsMetadata();
+        Notify("Processing enums...", .99f);
+        meta.Enums = MetadataGenerator.GenerateEnumsMetadata();
         meta.Syntax = Compiler.Syntax;
         return meta;
     }
@@ -294,10 +294,10 @@ public class CustomCommand : Command
 public StringParameter Expression;
 ```
 
-任意の [列挙型](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/enum) の値で自動補完するには、`ConstantContext` 属性を使用します。
+任意の [列挙型](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/enum) の値で自動補完するには、`EnumContext` 属性を使用します。
 
 ```csharp
-[ConstantContext(typeof(PlatformID))]
+[EnumContext(typeof(PlatformID))]
 public StringParameter Platform;
 ```
 
@@ -360,7 +360,7 @@ public class ModifyBackground : ModifyActor { }
 
 ## 定数式
 
-`ConstantContext` IDE属性を使用する場合、列挙型の代わりに、コマンドパラメータ値やその他の変数（現在検査中のスクリプトなど）に基づいて定数名を生成するためにIDEによって評価される式を指定できます。
+`EnumContext` IDE属性を使用する場合、列挙型の代わりに、コマンドパラメータ値やその他の変数（現在検査中のスクリプトなど）に基づいて定数名を生成するためにIDEによって評価される式を指定できます。
 
 式の構文：
 
@@ -374,7 +374,7 @@ public class ModifyBackground : ModifyActor { }
 たとえば、組み込みの `[@goto]` コマンドの `Path` パラメータに割り当てられた式を確認してください。
 
 ```csharp
-[ConstantContext("Labels/{:Path[0]??$Script}", 1)]
+[EnumContext("Labels/{:Path[0]??$Script}", 1)]
 public NamedStringParameter Path;
 ```
 
@@ -383,7 +383,7 @@ public NamedStringParameter Path;
 `@char` コマンドに適用されるキャラクターポーズの別の例：
 
 ```csharp
-[ConstantContext("Poses/Characters/{:Id??:IdAndAppearance[0]}+Poses/Characters/*", paramId: nameof(Pose))]
+[EnumContext("Poses/Characters/{:Id??:IdAndAppearance[0]}+Poses/Characters/*", paramId: nameof(Pose))]
 public class ModifyCharacter { ... }
 ```
 

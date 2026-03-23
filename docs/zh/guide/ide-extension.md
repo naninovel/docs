@@ -260,8 +260,8 @@ public class DefaultMetadataProvider : IMetadataProvider
         meta.Variables = MetadataGenerator.GenerateVariablesMetadata();
         Notify("Processing queries...", .95f);
         meta.Queries = MetadataGenerator.GenerateQueriesMetadata();
-        Notify("Processing constants...", .99f);
-        meta.Constants = MetadataGenerator.GenerateConstantsMetadata();
+        Notify("Processing enums...", .99f);
+        meta.Enums = MetadataGenerator.GenerateEnumsMetadata();
         meta.Syntax = Compiler.Syntax;
         return meta;
     }
@@ -294,10 +294,10 @@ public class CustomCommand : Command
 public StringParameter Expression;
 ```
 
-要使用任意 [枚举类型](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/enum) 的值进行自动补全，请使用 `ConstantContext` 属性：
+要使用任意 [枚举类型](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/enum) 的值进行自动补全，请使用 `EnumContext` 属性：
 
 ```csharp
-[ConstantContext(typeof(PlatformID))]
+[EnumContext(typeof(PlatformID))]
 public StringParameter Platform;
 ```
 
@@ -360,7 +360,7 @@ public class ModifyBackground : ModifyActor { }
 
 ## 常量表达式
 
-使用 `ConstantContext` IDE 属性时，除了枚举之外，还可以指定一个由 IDE 评估的表达式，以根据命令参数值或其他变量（例如当前检查的脚本）生成常量名称。
+使用 `EnumContext` IDE 属性时，除了枚举之外，还可以指定一个由 IDE 评估的表达式，以根据命令参数值或其他变量（例如当前检查的脚本）生成常量名称。
 
 表达式语法：
 
@@ -374,7 +374,7 @@ public class ModifyBackground : ModifyActor { }
 例如，检查分配给内置 `[@goto]` 命令的 `Path` 参数的表达式：
 
 ```csharp
-[ConstantContext("Labels/{:Path[0]??$Script}", 1)]
+[EnumContext("Labels/{:Path[0]??$Script}", 1)]
 public NamedStringParameter Path;
 ```
 
@@ -383,7 +383,7 @@ public NamedStringParameter Path;
 应用于 `@char` 命令的角色姿势的另一个示例：
 
 ```csharp
-[ConstantContext("Poses/Characters/{:Id??:IdAndAppearance[0]}+Poses/Characters/*", paramId: nameof(Pose))]
+[EnumContext("Poses/Characters/{:Id??:IdAndAppearance[0]}+Poses/Characters/*", paramId: nameof(Pose))]
 public class ModifyCharacter { ... }
 ```
 
