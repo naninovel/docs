@@ -260,8 +260,8 @@ public class DefaultMetadataProvider : IMetadataProvider
         meta.Variables = MetadataGenerator.GenerateVariablesMetadata();
         Notify("Processing queries...", .95f);
         meta.Queries = MetadataGenerator.GenerateQueriesMetadata();
-        Notify("Processing constants...", .99f);
-        meta.Constants = MetadataGenerator.GenerateConstantsMetadata();
+        Notify("Processing enums...", .99f);
+        meta.Enums = MetadataGenerator.GenerateEnumsMetadata();
         meta.Syntax = Compiler.Syntax;
         return meta;
     }
@@ -294,10 +294,10 @@ To make a parameter support auto-completion with both built-in and custom expres
 public StringParameter Expression;
 ```
 
-To auto-complete with values from an arbitrary [enumeration type](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/enum) use the `ConstantContext` attribute:
+To auto-complete with values from an arbitrary [enumeration type](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/enum) use the `EnumContext` attribute:
 
 ```csharp
-[ConstantContext(typeof(PlatformID))]
+[EnumContext(typeof(PlatformID))]
 public StringParameter Platform;
 ```
 
@@ -358,9 +358,9 @@ You can use the same approach when inheriting custom commands from built-in ones
 Most of the same parameter context attributes can be applied to expression query parameters to enable auto-completion and diagnostics in the IDE extension. See an example in the [queries guide](/guide/script-expressions#parameter-context).
 :::
 
-## Constant Expressions
+## Enum Expressions
 
-When using the `ConstantContext` IDE attribute, instead of an enum it's possible to specify an expression to be evaluated by the IDE to produce a constant name based on command parameter values or other variables, such as the currently inspected script.
+When using the `EnumContext` IDE attribute, instead of an enum it's possible to specify an expression to be evaluated by the IDE to produce an enum name based on command parameter values or other variables, such as the currently inspected script.
 
 Expression syntax:
 
@@ -369,12 +369,12 @@ Expression syntax:
 - To reference a parameter value, use `:` followed by the parameter ID (field name as specified in C#, not alias)
 - Use `[0]` or `[1]` after a parameter reference to specify the named value (0 for name and 1 for index)
 - Use null coalescing (`??`) after a parameter reference for a fallback if the value is not specified
-- Use the concatenation operator (`+`) to merge values from multiple constants
+- Use the concatenation operator (`+`) to merge values from multiple enums
 
 For example, check the expression assigned to the `Path` parameter of the built-in `[@goto]` command:
 
 ```csharp
-[ConstantContext("Labels/{:Path[0]??$Script}", 1)]
+[EnumContext("Labels/{:Path[0]??$Script}", 1)]
 public NamedStringParameter Path;
 ```
 
@@ -383,13 +383,13 @@ When the name component of the parameter is assigned `foo`, it will evaluate to 
 Another example for character poses applied to the `@char` command:
 
 ```csharp
-[ConstantContext("Poses/Characters/{:Id??:IdAndAppearance[0]}+Poses/Characters/*", paramId: nameof(Pose))]
+[EnumContext("Poses/Characters/{:Id??:IdAndAppearance[0]}+Poses/Characters/*", paramId: nameof(Pose))]
 public class ModifyCharacter { ... }
 ```
 
 This will merge shared character poses with poses for characters whose ID is assigned to the "Id" parameter or (when not assigned) the name component of the "IdAndAppearance" parameter.
 
-Constant expressions combined with [custom metadata providers](/guide/ide-extension#metadata-provider) allow creating flexible autocompletion scenarios for the IDE extension.
+Enum expressions combined with [custom metadata providers](/guide/ide-extension#metadata-provider) allow creating flexible autocompletion scenarios for the IDE extension.
 
 ## Other IDEs and Editors
 

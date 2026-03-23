@@ -169,7 +169,7 @@ public enum Quest { Quest1, Quest2, Quest3, ... }
 public static class CustomQueries
 {
     [ExpressionQuery]
-    public static bool IsComplete ([ConstantContext(typeof(Quest))] string name)
+    public static bool IsComplete ([EnumContext(typeof(Quest))] string name)
     {
         Enum.TryParse<Quest>(name, out var quest);
         // run custom logic to check if 'quest' is complete
