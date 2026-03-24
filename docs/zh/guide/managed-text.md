@@ -69,18 +69,18 @@ public class CustomLabel : Text
 
 您可以直接从剧本脚本引用管理文本值。当您希望脚本表达式使用可本地化文本时，这很有用。
 
-创建一个名为 `Script` 的管理文本文档，并使用带有 `T_` 或 `t_` 前缀的键添加记录。假设在 `Script` 管理文本文档中有以下记录：
+创建一个名为 `Script` 的托管文本文件，并添加记录。假设在 `Script` 管理文本文档中有以下记录：
 
 ```
-T_Greeting1: 嘿！
-T_Greeting2: 你好！
-T_Greeting3: 嗨！
+Greeting1: 嘿！
+Greeting2: 你好！
+Greeting3: 嗨！
 ```
 
 —您可以使用以下方式引用这些值：
 
 ```nani
-@print {Random(T_Greeting1,T_Greeting2,T_Greeting3)}
+@print { random(Greeting1, Greeting2, Greeting3) }
 ```
 
 `Script` 管理文本文档可以像其他文档一样进行本地化；当用户选择另一个区域设置时，文本将自动从相应的本地化文档中引用。

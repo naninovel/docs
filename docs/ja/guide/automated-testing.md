@@ -82,13 +82,13 @@ public IEnumerator WhenTrueCompleteTitleBackChanges () => new E2E()
     .WithTransientState(GlobalStateMap.With(
         new CustomVariableManager.GlobalState {
             GlobalVariables = new[] {
-                new CustomVariable("g_completedX", CustomVariableScope.Global, new CustomVariableValue(true)),
-                new CustomVariable("g_completedY", CustomVariableScope.Global, new CustomVariableValue(true))
+                new CustomVariable("completedX", new(true), CustomVariableScope.Meta),
+                new CustomVariable("completedY", new(true), CustomVariableScope.Meta)
             }
         }))
 ```
 
-— 上記は、最初のゲーム起動をシミュレートしてクリーンな状態でエンジンを初期化しますが、さらに `g_completedX` および `g_completedY` グローバル変数をtrueに設定します。
+— 上記は、最初のゲーム起動をシミュレートしてクリーンな状態でエンジンを初期化しますが、さらに `completedX` および `completedY` グローバル変数をtrueに設定します。
 
 ## シーケンスの作成
 
@@ -119,8 +119,8 @@ ISequence D3LooseX => Once(Choosing).Choose("d3-loose-x");
 ISequence D3LastY => Once(Choosing).Choose("d3-last-y");
 ISequence D3LastNah => Once(Choosing).Choose("d3-last-nah");
 
-ISequence RouteX => On(Choosing, Choose(), Var("g_completedX", false));
-ISequence RouteY => On(Choosing, Choose(), Var("g_completedY", false));
+ISequence RouteX => On(Choosing, Choose(), Var("completedX", false));
+ISequence RouteY => On(Choosing, Choose(), Var("completedY", false));
 ```
 
 — 「X」または「Y」ルートにつながる共通ルートの1〜3日目の選択肢シーケンスが `CommonX` および `CommonY` 変数にどのように構成され、それらが実際のテストメソッド内でどのように構成されているかに注目してください。

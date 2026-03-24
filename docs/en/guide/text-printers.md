@@ -370,10 +370,10 @@ In some cases, it may be required to include [script expressions](/guide/script-
 The process is similar to [reveal events](/guide/text-printers#reveal-events), but instead of `@` use the `:` tag:
 
 ```nani
-Lorem ipsum <:random(t_text1, t_text2)> sit amet.
+Lorem ipsum <:random(text1, text2)> sit amet.
 ```
 
-— `random(t_text1, t_text2)` expression will be re-evaluated each time the text is assigned to a printer, including instances when language is changed, making `t_text1` and `t_text2` [script text variables](/guide/managed-text#script-text) in sync with the currently active locale. The expression will as well be included to the localization documents allowing to change it for each specific language.
+— `random(text1, text2)` expression will be re-evaluated each time the text is assigned to a printer, including instances when language is changed, making `text1` and `text2` [script text variables](/guide/managed-text#script-text) in sync with the currently active locale. The expression will as well be included to the localization documents allowing to change it for each specific language.
 
 Reveal expressions are also useful to allow translators change order of the injected values, as it's common for languages to have different rules on the order/precedence of various speech parts:
 

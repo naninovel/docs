@@ -1433,7 +1433,7 @@ This line will disappear.
 将[脚本表达式](/zh/guide/script-expressions)的结果分配给[自定义变量](/zh/guide/custom-variables)。
 
 ::: info NOTE
-如果具有指定名称的变量不存在，将自动创建它。<br/><br/> 通过用 `;` 分隔来指定多个设置表达式。表达式将按声明顺序依次执行。<br/><br/> 如果变量名称以 `t_` 开头，则被视为引用存储在 'Script' [托管文本](/zh/guide/managed-text)文档中的值。此类变量无法分配，旨在引用可本地化的文本值。
+如果具有指定名称的变量不存在，将自动创建它。<br/><br/> 通过用 `,` 分隔来指定多个设置表达式。表达式将按声明顺序依次执行。
 :::
 
 <div class="config-table">
@@ -1441,6 +1441,10 @@ This line will disappear.
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">expression</span> | string | 分配表达式。<br/><br/>表达式应采用以下格式：`var=expression`，其中 `var` 是要分配的自定义变量的名称，`expression` 是一个[脚本表达式](/zh/guide/script-expressions)，其结果应分配给变量。<br/><br/>可以使用递增和递减一元运算符（`@set foo++`、`@set foo--`）和复合赋值（`@set foo+=10`、`@set foo-=3`、`@set foo*=0.1`、`@set foo/=2`）。 |
+| to | string | 不包含赋值表达式部分（不含 `= ...` 部分）时，将赋给所有指定变量的表达式结果。适用于将同一个值赋给多个变量，例如：`@set foo, bar, baz to:10`。 |
+| once | boolean | 该变量是否只应在尚未赋值时才进行赋值（即初始化意图）。不应与 'meta' 或 'const' 标志一起使用，因为它们都具有初始化意图。 |
+| meta | boolean | 该变量是否应初始化为元变量。元变量位于游戏会话之 "上"，也就是说，在开始新游戏时它们的值仍会保留。非常适合用于元游戏机制，例如追踪路线完成情况或成就。 |
+| const | boolean | 该变量是否应初始化为常量。常量只能初始化一次，之后不允许再更改。 |
 
 </div>
 
@@ -1478,14 +1482,15 @@ This line will disappear.
 
 ; 在一行中定义多个设置表达式；
 ; 结果将与上面相同。
-@set bar="Hello World!",foo=bar
+@set bar="Hello World!", foo=bar
+
+; 将同一个值赋给多个变量。
+@set foo, bar, baz to:10
 
 ; 可以将变量注入到 naninovel 脚本命令参数中。
-@set scale=0
-# EnlargeLoop
-@char Kohaku.Default scale:{scale}
-@set scale+=0.1
-@goto #EnlargeLoop if:scale<1
+@while scale is below 1
+    @set scale+=0.1
+    @char Kohaku scale:{scale}
 
 ; ...以及通用文本行。
 @set drink="Dr. Pepper"
@@ -1494,15 +1499,16 @@ My favourite drink is {drink}!
 ; 在文本表达式值内使用双引号时，请对其进行转义。
 @set remark="Shouting \"Stop the car!\" was a mistake."
 
-; 使用全局变量（'g_' 前缀）在会话之间保留值。
-; 即使游戏重新启动，变量也将保持为 true。
-@set g_Ending001Reached=true
+; 使用元变量在游戏会话之间保留该值。
+; 即使重新启动游戏，该变量也会保持其值。
+@set completeRouteX, completeRouteY to:false meta!
+... ; 在脚本后面的某处，当 'RouteX' 完成时
+@set completeRouteX=true ; 即使开始新游戏，它也会保持为 'true'
 
-; 即使在重玩时，也只增加全局变量一次。
-@set g_GlobalCounter++ if:!hasPlayed()
-
-; 仅在尚未分配的情况下声明并分配变量。
-@set g_CompletedRouteX?=false
+; 即使重复游玩，也只递增一次元变量。
+@set metaCounter=0 meta!
+...
+@set metaCounter++ if:!hasPlayed()
 ```
 
 ## sfx

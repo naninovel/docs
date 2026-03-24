@@ -124,8 +124,8 @@ Auto Show On Modify | False | Whether to automatically reveal (show) an actor wh
 
 Property | Default Value | Description
 --- | --- | ---
-Default Scope | Local | When set to 'Global' all variables will be treated as globals, even when their name doesn't start with the 'g_' prefix. Global variables are not reset when starting a new game and are auto-saved on change. Useful for the dialogue mode when the engine is reset constantly and game state is handled externally.
-Predefined Variables | Object Ref | The list of variables to initialize by default. Global variables (names starting with `g_`) are initialized on first application start, and others on each state reset.
+Meta By Default | False | Whether to treat all variables as meta by default. Meta variables are not reset when starting a new game and are auto-saved on change. Useful for the dialogue mode when the engine is reset constantly and game state is handled externally.
+Predefined Variables | Object Ref | The list of variables to initialize by default. Meta variables are initialized on first application start, and others on each state reset (except constants).
 
 </div>
 

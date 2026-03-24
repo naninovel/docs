@@ -69,18 +69,18 @@ public class CustomLabel : Text
 
 You can reference managed text values directly from scenario scripts. This is useful when you want script expressions to use localizable text.
 
-Create a managed text document named `Script` and add records using keys with `T_` or `t_` prefix. Given the following records in the `Script` managed text document:
+Create a managed text document named `Script` and add records. Given the following records in the `Script` managed text document:
 
 ```
-T_Greeting1: Hey!
-T_Greeting2: Hello!
-T_Greeting3: Hi!
+Greeting1: Hey!
+Greeting2: Hello!
+Greeting3: Hi!
 ```
 
 —you can reference the values with:
 
 ```nani
-@print {Random(T_Greeting1,T_Greeting2,T_Greeting3)}
+@print { random(Greeting1, Greeting2, Greeting3) }
 ```
 
 The `Script` managed text document can be localized in the same way as other documents; when the user selects another locale, the text will automatically be referenced from the corresponding localized document.
