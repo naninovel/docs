@@ -69,18 +69,18 @@ public class CustomLabel : Text
 
 シナリオスクリプトから直接管理テキスト値を参照できます。これは、スクリプト式でローカライズ可能なテキストを使用したい場合に役立ちます。
 
-`Script` という名前の管理テキストドキュメントを作成し、`T_` または `t_` 接頭辞を持つキーを使用してレコードを追加します。`Script` 管理テキストドキュメントに次のレコードがあるとします。
+`Script` という名前の管理されたテキストドキュメントを作成し、レコードを追加します。`Script` 管理テキストドキュメントに次のレコードがあるとします。
 
 ```
-T_Greeting1: Hey!
-T_Greeting2: Hello!
-T_Greeting3: Hi!
+Greeting1: Hey!
+Greeting2: Hello!
+Greeting3: Hi!
 ```
 
 —次のように値を参照できます。
 
 ```nani
-@print {Random(T_Greeting1,T_Greeting2,T_Greeting3)}
+@print { random(Greeting1, Greeting2, Greeting3) }
 ```
 
 `Script` 管理テキストドキュメントは、他のドキュメントと同じ方法でローカライズできます。ユーザーが別のロケールを選択すると、テキストは対応するローカライズされたドキュメントから自動的に参照されます。

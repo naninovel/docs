@@ -82,13 +82,13 @@ public IEnumerator WhenTrueCompleteTitleBackChanges () => new E2E()
     .WithTransientState(GlobalStateMap.With(
         new CustomVariableManager.GlobalState {
             GlobalVariables = new[] {
-                new CustomVariable("g_completedX", CustomVariableScope.Global, new CustomVariableValue(true)),
-                new CustomVariable("g_completedY", CustomVariableScope.Global, new CustomVariableValue(true))
+                new CustomVariable("completedX", new(true), CustomVariableScope.Meta),
+                new CustomVariable("completedY", new(true), CustomVariableScope.Meta)
             }
         }))
 ```
 
-— 上面将以干净的状态初始化引擎，模拟第一次游戏启动，但会额外将 `g_completedX` 和 `g_completedY` 全局变量设置为 true。
+— 上面将以干净的状态初始化引擎，模拟第一次游戏启动，但会额外将 `completedX` 和 `completedY` 全局变量设置为 true。
 
 ## 组合序列
 
@@ -119,8 +119,8 @@ ISequence D3LooseX => Once(Choosing).Choose("d3-loose-x");
 ISequence D3LastY => Once(Choosing).Choose("d3-last-y");
 ISequence D3LastNah => Once(Choosing).Choose("d3-last-nah");
 
-ISequence RouteX => On(Choosing, Choose(), Var("g_completedX", false));
-ISequence RouteY => On(Choosing, Choose(), Var("g_completedY", false));
+ISequence RouteX => On(Choosing, Choose(), Var("completedX", false));
+ISequence RouteY => On(Choosing, Choose(), Var("completedY", false));
 ```
 
 — 请注意导致 "X" 或 "Y" 路线的公共路线第 1-3 天的选择序列是如何组合成 `CommonX` 和 `CommonY` 变量的，而这些变量又是如何在实际测试方法中组合的。

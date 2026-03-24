@@ -1433,7 +1433,7 @@ This line will disappear.
 [スクリプト式](/ja/guide/script-expressions) の結果を [カスタム変数](/ja/guide/custom-variables) に割り当てます。
 
 ::: info NOTE
-指定された名前の変数が存在しない場合は、自動的に作成されます。<br/><br/> `;` で区切って複数のセット式を指定します。式は宣言の順序で順番に実行されます。<br/><br/> 変数名が `t_` で始まる場合、'Script' [管理テキスト](/ja/guide/managed-text) ドキュメントに保存されている値への参照と見なされます。このような変数は割り当てることができず、ローカライズ可能なテキスト値を参照することを目的としています。
+指定された名前の変数が存在しない場合は、自動的に作成されます。<br/><br/> `,` で区切って複数のセット式を指定します。式は宣言の順序で順番に実行されます。
 :::
 
 <div class="config-table">
@@ -1441,6 +1441,10 @@ This line will disappear.
 | パラメータ | 型 | 説明 |
 | --- | --- | --- |
 | <span class="command-param-nameless command-param-required" title="名前なしパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります 必須パラメータ: パラメータは常に指定する必要があります">expression</span> | string | 割り当て式。<br/><br/>式は `var=expression` の形式である必要があります。ここで、`var` は割り当てるカスタム変数の名前であり、`expression` は [スクリプト式](/ja/guide/script-expressions) であり、その結果が変数に割り当てられます。<br/><br/>インクリメントおよびデクリメント単項演算子（`@set foo++`、`@set foo--`）および複合代入（`@set foo+=10`、`@set foo-=3`、`@set foo*=0.1`、`@set foo/=2`）を使用できます。 |
+| to | string | `= ...` の代入式部分を含まない、指定されたすべての変数に代入される式の結果です。同じ値を複数の変数に代入する場合に便利です。例えば: `@set foo, bar, baz to:10`。 |
+| once | boolean | その変数がまだ代入されていない場合にのみ代入するかどうかを示します（初期化の意図）。'meta' または 'const' フラグとは併用しないでください。これらはいずれも初期化の意図を共有するためです。 |
+| meta | boolean | その変数をメタ変数として初期化するかどうかを示します。メタ変数はゲームセッションの "上位" にあり、つまり新しいゲームを開始しても値が保持されます。ルートのクリア状況や実績の追跡など、メタゲームの仕組みに最適です。 |
+| const | boolean | その変数を定数として初期化するかどうかを示します。定数は一度だけ初期化でき、その後に変更することはできません。 |
 
 </div>
 
@@ -1477,14 +1481,15 @@ This line will disappear.
 
 ; 1行で複数のセット式を定義します。
 ; 結果は上記と同じになります。
-@set bar="Hello World!",foo=bar
+@set bar="Hello World!", foo=bar
+
+; 複数の変数に同じ値を代入。
+@set foo, bar, baz to:10
 
 ; Naninovelスクリプトコマンドパラメータに変数を注入することが可能です。
-@set scale=0
-# EnlargeLoop
-@char Kohaku.Default scale:{scale}
-@set scale+=0.1
-@goto #EnlargeLoop if:scale<1
+@while scale is below 1
+    @set scale+=0.1
+    @char Kohaku scale:{scale}
 
 ; ...そして一般的なテキスト行にも。
 @set drink="Dr. Pepper"
@@ -1493,15 +1498,16 @@ My favourite drink is {drink}!
 ; テキスト式の値の中で二重引用符を使用する場合は、エスケープします。
 @set remark="Shouting \"Stop the car!\" was a mistake."
 
-; グローバル変数（'g_' 接頭辞）を使用して、セッション間で値を保持します。
-; ゲームを再起動しても変数は true のままです。
-@set g_Ending001Reached=true
+; メタ変数を使用して、ゲームセッションをまたいで値を保持します。
+; ゲームを再起動しても、変数はその値を維持します。
+@set completeRouteX, completeRouteY to:false meta!
+... ; スクリプト内の後のどこかで、'RouteX' を完了したとき
+@set completeRouteX=true ; 新しくゲームを開始しても、これは 'true' のままです
 
-; 再生された場合でも、グローバル変数を一度だけインクリメントします。
-@set g_GlobalCounter++ if:!hasPlayed()
-
-; まだ割り当てられていない場合にのみ変数を宣言して割り当てます。
-@set g_CompletedRouteX?=false
+; 再プレイ時でも、メタ変数は一度だけ増加。
+@set metaCounter=0 meta!
+...
+@set metaCounter++ if:!hasPlayed()
 ```
 
 ## sfx

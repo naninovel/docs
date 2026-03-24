@@ -82,13 +82,13 @@ public IEnumerator WhenTrueCompleteTitleBackChanges () => new E2E()
     .WithTransientState(GlobalStateMap.With(
         new CustomVariableManager.GlobalState {
             GlobalVariables = new[] {
-                new CustomVariable("g_completedX", CustomVariableScope.Global, new CustomVariableValue(true)),
-                new CustomVariable("g_completedY", CustomVariableScope.Global, new CustomVariableValue(true))
+                new CustomVariable("completedX", new(true), CustomVariableScope.Meta),
+                new CustomVariable("completedY", new(true), CustomVariableScope.Meta)
             }
         }))
 ```
 
-— above will initialize the engine with a clean state, simulating first game launch, but will additionally set `g_completedX` and `g_completedY` global variables to true.
+— above will initialize the engine with a clean state, simulating first game launch, but will additionally set `completedX` and `completedY` meta variables to true.
 
 ## Composing Sequences
 
@@ -119,8 +119,8 @@ ISequence D3LooseX => Once(Choosing).Choose("d3-loose-x");
 ISequence D3LastY => Once(Choosing).Choose("d3-last-y");
 ISequence D3LastNah => Once(Choosing).Choose("d3-last-nah");
 
-ISequence RouteX => On(Choosing, Choose(), Var("g_completedX", false));
-ISequence RouteY => On(Choosing, Choose(), Var("g_completedY", false));
+ISequence RouteX => On(Choosing, Choose(), Var("completedX", false));
+ISequence RouteY => On(Choosing, Choose(), Var("completedY", false));
 ```
 
 — notice how choice sequences for days 1-3 of the common route leading either to "X" or "Y" routes are composed to `CommonX` and `CommonY` variables, which are in turn composed inside the actual test method.

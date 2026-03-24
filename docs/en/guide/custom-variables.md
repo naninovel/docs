@@ -23,18 +23,20 @@ And the following re-routes script execution based on the value of `score`:
 @goto BadEnd if: score > 900
 ```
 
-All custom variables are automatically saved with the game. By default, variables are stored in the local scope. This means that if you assign a variable during gameplay and the player starts a new game or loads another save slot where that variable wasn't assigned, the value will be lost. This behavior is useful for most variable types. If you wish to store a variable in the global scope, prepend `G_` or `g_` to its name, e.g., `G_FinishedMainRoute` or `g_total_score`. Global variables can indicate meta or cumulative information, such as the number of times the player has finished a route or a total score across playthroughs.
+All custom variables are automatically saved with the game. By default, variables are local to the game session: when you assign a variable during gameplay and the player starts a new game or loads another save slot where that variable wasn't assigned, the value will be lost. This behavior is useful for most variable types. If you wish to "uncouple" a variable from the game sessions, use the `meta!` flag when initializing it with the [@set] command. Meta variables can indicate meta or cumulative information, such as the number of times the player has finished a route or a total score across playthroughs.
 
-You can set predefined custom variables (both global and local) with initial values in the "Custom Variables" configuration menu.
+You can set predefined custom variables (both meta and normal) with initial values in the "Custom Variables" configuration menu.
 
 ![](https://i.gyazo.com/21701f17403921e34ba4da33b0261ad0.png)
 
-Global predefined variables are initialized on the first application start, while local ones are initialized on each state reset. Note that the value field in the menu expects a valid script expression, not a raw value string.
+Meta predefined variables are initialized on the first application start, while normal ones are initialized on each state reset. Note that the value field in the menu expects a valid script expression, not a raw value string.
 
 ::: tip
-If you want a global counter that increments only once (even when re-played, e.g., with rollback or after restarting the game), use the `HasPlayed()` [expression query](/guide/script-expressions#expression-query):
+If you want a meta counter that increments only once (even when re-played, e.g., with rollback or after restarting the game), use the `hasPlayed()` [expression query](/guide/script-expressions#expression-query):
 ```nani
-@set g_GlobalCounter++ if:!HasPlayed()
+@set metaCounter=0
+...
+@set metaCounter++ if:!hasPlayed()
 ```
 :::
 
@@ -84,14 +86,13 @@ To perform a default assignment, use the `?=` operator with the [@set] command:
 @set name?="John"
 ```
 
-This is particularly useful for declaring global variables in entry or initialization scripts instead of using the editor configuration menu:
+When you use `meta!` or `const!` flags automatically imply the default assignment, you don't have to specify the `?=` operator with them:
 
 ```nani
 ; Declare and assign 'false' to both variables tracking route completion.
 ; When the same script is played again (e.g., on a subsequent game start),
 ; the variables won't be re-assigned.
-@set g_ClearedRouteX?=false
-@set g_ClearedRouteY?=false
+@set clearedRouteX, clearedRouteY to:false meta!
 ```
 
 ## Variable Events

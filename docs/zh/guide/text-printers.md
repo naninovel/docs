@@ -370,10 +370,10 @@ Lorem ipsum dolor<@back tint:blue> sit amet.
 该过程类似于 [显示事件](/zh/guide/text-printers#显示事件)，但使用 `:` 标签代替 `@`：
 
 ```nani
-Lorem ipsum <:random(t_text1, t_text2)> sit amet.
+Lorem ipsum <:random(text1, text2)> sit amet.
 ```
 
-— 每次将文本分配给打印机时（包括语言更改时），都会重新评估 `random(t_text1, t_text2)` 表达式，从而使 `t_text1` 和 `t_text2` [脚本文本变量](/zh/guide/managed-text#脚本文本) 与当前活动区域设置同步。表达式也将包含在本地化文档中，允许为每种特定语言更改它。
+— 每次将文本分配给打印机时（包括语言更改时），都会重新评估 `random(text1, text2)` 表达式，从而使 `text1` 和 `text2` [脚本文本变量](/zh/guide/managed-text#脚本文本) 与当前活动区域设置同步。表达式也将包含在本地化文档中，允许为每种特定语言更改它。
 
 显示表达式对于允许翻译人员更改注入值的顺序也很有用，因为语言对各种词性的顺序/优先级有不同的规则是很常见的：
 

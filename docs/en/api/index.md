@@ -1435,7 +1435,7 @@ Automatically save the game to the first auto save slot.
 Assigns result of a [script expression](/guide/script-expressions) to a [custom variable](/guide/custom-variables).
 
 ::: info NOTE
-If a variable with the specified name doesn't exist, it will be automatically created.<br/><br/> Specify multiple set expressions by separating them with `;`. The expressions will be executed in sequence in the order of declaration.<br/><br/> In case variable name starts with `t_` it's considered a reference to a value stored in 'Script' [managed text](/guide/managed-text) document. Such variables can't be assigned and are intended for referencing localizable text values.
+If a variable with the specified name doesn't exist, it will be automatically created.<br/><br/> Specify multiple set expressions by separating them with `,`. The expressions will be executed in sequence in the order of declaration.<br/><br/>
 :::
 
 <div class="config-table">
@@ -1443,6 +1443,10 @@ If a variable with the specified name doesn't exist, it will be automatically cr
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | Assignment expression.<br/><br/>The expression should be in the following format: `var=expression`, where `var` is the name of the custom variable to assign and `expression` is a [script expression](/guide/script-expressions), the result of which should be assigned to the variable.<br/><br/>It's possible to use increment and decrement unary operators (`@set foo++`, `@set foo--`) and compound assignment (`@set foo+=10`, `@set foo-=3`, `@set foo*=0.1`, `@set foo/=2`). |
+| to | string | The expression which result will be assigned to all the specified variables without assignment expressions (without the `= ...` part). Useful to assign multiple variables to the same value, for example: `@set foo, bar, baz to:10`. |
+| once | boolean | Whether the variable should only be assigned in case it's not already assigned (initialization intent). Should not be used with the 'meta' or 'const' flags, as they both share the initialization intent. |
+| meta | boolean | Whether the variable should be initialized as a meta variable. The meta-variables are 'above' the game sessions, ie they persist their values when starting a new game. Ideal for meta-game mechanics, such as tracking route completions or achievements. |
+| const | boolean | Whether the variable should be initialized as a constant. The constants can only be initialized once and are not allowed to change later. |
 
 </div>
 
@@ -1456,21 +1460,20 @@ If a variable with the specified name doesn't exist, it will be automatically cr
 ; Assign 'foo' variable a 'true' boolean value.
 @set foo=true
 
-; If 'foo' is a number, add 0.5 to its value.
+; Assuming 'foo' is a number, add 0.5 to its value.
 @set foo+=0.5
 
-; If 'angle' is a number, assign its cosine to 'foo' variable.
+; Assuming 'angle' is a number, assign its cosine to 'foo' variable.
 @set foo=cos(angle)
 
 ; Get random number between -100 and 100, then raise to power of 4 
-; and assign to 'foo' variable. Quotes are required when whitespace 
-; is present inside the expression.
-@set "foo = pow(random(-100, 100), 4)"
+; and assign to 'foo' variable.
+@set foo = pow(random(-100, 100), 4)
 
-; If 'foo' is a number, add 1 to its value (increment).
+; Assuming 'foo' is a number, add 1 to its value (increment).
 @set foo++
 
-; If 'foo' is a number, subtract 1 from its value (decrement).
+; Assuming 'foo' is a number, subtract 1 from its value (decrement).
 @set foo--
 
 ; Assign 'foo' variable value of the 'bar' variable, 
@@ -1480,14 +1483,16 @@ If a variable with the specified name doesn't exist, it will be automatically cr
 
 ; Defining multiple set expressions in one line; 
 ; the result will be the same as above.
-@set bar="Hello World!",foo=bar
+@set bar="Hello World!", foo=bar
+
+; Assigning multiple variables to the same value.
+@set foo, bar, baz to:10
 
 ; It's possible to inject variables to naninovel script command parameters.
 @set scale=0
-# EnlargeLoop
-@char Kohaku.Default scale:{scale}
-@set scale+=0.1
-@goto #EnlargeLoop if:scale<1
+@while scale is below 1
+    @set scale+=0.1
+    @char Kohaku scale:{scale}
 
 ; ...and generic text lines.
 @set drink="Dr. Pepper"
@@ -1496,15 +1501,16 @@ My favourite drink is {drink}!
 ; When using double quotes inside text expression value, escape them.
 @set remark="Shouting \"Stop the car!\" was a mistake."
 
-; Use global variable ('g_' prefix) to persist the value across sessions.
-; The variable will remain true even when the game is restarted.
-@set g_Ending001Reached=true
+; Use a meta variable to persist the value across the game sessions.
+; The variable will keep its value even when the game is restarted.
+@set completeRouteX, completeRouteY to:false meta!
+... ; somewhere later in the script, when 'RouteX' is completed
+@set completeRouteX=true ; this will stay 'true' even on new game
 
-; Increment the global variable only once, even when re-played.
-@set g_GlobalCounter++ if:!hasPlayed()
-
-; Declare and assign the variable only in case it's not already assigned.
-@set g_CompletedRouteX?=false
+; Increment the meta variable only once, even when re-played.
+@set metaCounter=0 meta!
+...
+@set metaCounter++ if:!hasPlayed()
 ```
 
 ## sfx

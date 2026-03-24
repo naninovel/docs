@@ -410,7 +410,7 @@ Note the many options on the `Trigger Events` component — you can set up most 
 
 The Naninovel package contains two basic samples:
 
-- **Visual Novel** — a basic visual novel template with multiple routes, demonstrating the use of placeholder actors, various commands, local and global variables, customizable character names, and other traditional VN mechanics.
+- **Visual Novel** — a basic visual novel template with multiple routes, demonstrating the use of placeholder actors, various commands, normal and meta variables, customizable character names, and other traditional VN mechanics.
 - **Dialogue System** — a 3D side-scroller scene where Naninovel is used as a drop-in dialogue system, showing the use of transient printers, bubble choice handlers, integration with Cinemachine, and other common usage scenarios.
 
 You can import both samples via the Unity Package Manager by selecting the Naninovel package, navigating to the "Samples" tab, and clicking the "Import" button for a sample.
