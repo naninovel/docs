@@ -1,92 +1,120 @@
 # Custom Variables
 
-The Custom Variables feature allows creating user-specified variables, modifying them, and using them to drive conditional execution of scenario scripts or other systems. For example, custom variables can be used to select one of multiple scenario scripts to play (scenario routes) based on decisions the player has made. Another common use is tracking player stats (e.g., scores, money, resources) based on choices made throughout the game.
+The Custom Variables feature allows you to create user-specified variables, modify them, and use them to drive conditional execution in scenario scripts and other systems. For example, custom variables can be used to select one of multiple scenario scripts to play (scenario routes) based on decisions the player has made. Another common use is tracking player stats (e.g., scores, money, resources) based on choices made throughout the game.
 
 ::: info NOTE
-Variable names should start with a letter and may contain only Latin characters, numbers, and underscores, e.g., `name`, `Char1Score`, `my_score`. Names are case-insensitive, e.g., `myscore` is equal to `MyScore`.
+Variable names should start with a letter and may contain only letters, numbers and underscores, for example: `score`, `Char1Score`, `my_score`. Names are case-insensitive, meaning you can create a variable named `myscore` and later refer to it as `MyScore` and vice versa.
 :::
 
-Custom variables can be created, modified, and used both in scenario scripts via [@set] and [@if] commands and in C# using the `ICustomVariableManager` [engine service](/guide/engine-services).
-
-For example, the following script command assigns different values to the `score` custom variable based on the player's choice:
+You can create and modify variables with the [@set] command (and some parameters of other commands) and use them in any parameter with an expression context, such as the nameless parameters of [@if] and [@while]. For example, the following script reroutes execution based on the value of `score`:
 
 ```nani
-@choice "I'm humble, one is enough..." set:score=1
-@choice "Two, please." set:score=2
-@choice "I'll take your entire stock!" set:score=999
+; Create a 'score' variable.
+@set score=0
+
+; At some point, modify the variable based on player choice.
+@choice "Good Decision" set:score++
+@choice "Bad Decision" set:score--
+...
+
+; Later, use the variable for conditional execution.
+@if score is above 10
+    @goto GoodEnd
+@else
+    @goto BadEnd
 ```
-
-And the following re-routes script execution based on the value of `score`:
-
-```nani
-@goto MainRoute if: score > 1 & score <= 900
-@goto BadEnd if: score > 900
-```
-
-All custom variables are automatically saved with the game. By default, variables are local to the game session: when you assign a variable during gameplay and the player starts a new game or loads another save slot where that variable wasn't assigned, the value will be lost. This behavior is useful for most variable types. If you wish to "uncouple" a variable from the game sessions, use the `meta!` flag when initializing it with the [@set] command. Meta variables can indicate meta or cumulative information, such as the number of times the player has finished a route or a total score across playthroughs.
-
-You can set predefined custom variables (both meta and normal) with initial values in the "Custom Variables" configuration menu.
-
-![](https://i.gyazo.com/21701f17403921e34ba4da33b0261ad0.png)
-
-Meta predefined variables are initialized on the first application start, while normal ones are initialized on each state reset. Note that the value field in the menu expects a valid script expression, not a raw value string.
+— find more examples of various ways to use the variables in the [@set] command reference.
 
 ::: tip
-If you want a meta counter that increments only once (even when re-played, e.g., with rollback or after restarting the game), use the `hasPlayed()` [expression query](/guide/script-expressions#expression-query):
-```nani
-@set metaCounter=0
-...
-@set metaCounter++ if:!hasPlayed()
-```
+The `score is above 10` expression is using the `is above` operator alias instead of the `>` boolean operator; if you prefer boolean operators, you can write the command as `@if score > 10`. Find more information about the supported syntax in the [script expressions guide](/guide/script-expressions#operator-aliases).
 :::
 
 ## Injecting Variables
 
-You can inject (inline) custom variables into scenario script parameter values using curly braces.
-
-The following script shows an input field UI where a user can enter arbitrary text. Upon submit, the entered text is assigned to the specified custom variable.
+Even if a command parameter is not of an expression context, you can still inject variables into it using curly braces:
 
 ```nani
-; Allow user to enter an arbitrary text and assign it to `name` variable.
+; Assign 3 custom variables.
+@set posX=0, posY=0.5, time=1.5
+
+; Inject them into the parameters of the 'char' command.
+@char Kohaku pos:{posX},{posY} time:{time}
+```
+
+This is possible inside generic text lines as well:
+
+```nani
+; Prompt the player to enter text and assign it to the `name` variable.
 @input name summary:"Choose your name."
 
-; You can then inject the assigned `name` variable in scenario scripts.
+; Inject the assigned `name` variable.
 Archibald: Greetings, {name}!
-
-; ...or use it inside set and conditional expressions.
-@set score+=3 if:name="Felix"
 ```
 
 ::: tip
 To make character names dynamic, use the [display name](/guide/characters#display-names) feature.
 :::
 
-You can inject custom variables into any parameter values as long as the type allows. For example, you can't assign a string (text) to a numeric parameter.
+You can inject custom variables into any parameter value as long as the parameter type allows it. For example, you can't assign a string (text) to a numeric parameter.
 
 ```nani
-@set PlayerName="Felix", PlayerYPosition=0.1, PlayerTint="lightblue"
+@set yPos=0.1, tint="lightblue"
 
-; The following will produce an error, as `PlayerTint` is not a number.
-@char {PlayerName} pos:50,{PlayerTint}
+; The following will produce an error, as `tint` is not a number.
+@char Kohaku pos:50,{tint}
 
 ; ...and this will execute just fine.
-@char {PlayerName} pos:50,{PlayerYPosition} tint:{PlayerTint}
+@char Kohaku pos:50,{yPos} tint:{tint}
 ```
+
+## Meta Variables
+
+By default, variables are local to the current game session: when you assign a variable during gameplay and the player starts a new game or loads another save slot where that variable wasn't assigned, the value will be lost. This behavior is useful for most variable types. If you wish to "uncouple" a variable from game sessions, use the `meta!` flag when initializing it with the [@set] command:
+
+```nani
+@set myMetaVariable=0 meta!
+```
+
+Meta variables are useful for tracking information that is "meta" to individual game sessions, such as route completion, cumulative game stats, or achievements:
+
+```nani
+; Define the variables to track 'X' and 'Y' routes completion.
+@set completeRouteX, completeRouteY to:false meta!
+...
+
+; Somewhere later in the scripts, when the 'X' route is complete.
+@set completeRouteX=true
+
+; Now you can show something special in the Title script.
+@if completeRouteX and completeRouteY
+    @showUI TrueRouteTitle
+@else
+    @showUI DefaultTitle
+```
+
+::: tip
+If you want a meta counter that increments only once (even when re-played, e.g., with rollback or after restarting the game), use the `hasPlayed()` [expression query](/guide/script-expressions#expression-query):
+```nani
+@set metaCounter=0 meta!
+...
+@set metaCounter++ unless:hasPlayed()
+```
+:::
 
 ## Default Assignment
 
 Default assignment assigns a value to a custom variable only if the variable doesn't already have one. This is useful when you want to ensure a variable has an initial value but don't want to overwrite it if it's already set.
 
-To perform a default assignment, use the `?=` operator with the [@set] command:
+To perform a default assignment, either use the `?=` operator or add the `once!` flag when using the [@set] command:
 
 ```nani
-; Declare and assign an initial value to the 'name' variable.
-@set name?="Alex"
-; The variable won't be re-assigned here, because it's already set.
-@set name?="John"
+; Initialize 'foo' with the default value of 0.
+@set foo?=0
+; Initialize the three variables with default values.
+@set foo=0, bar=false, baz="" once!
 ```
 
-When you use `meta!` or `const!` flags automatically imply the default assignment, you don't have to specify the `?=` operator with them:
+Using the `meta!` or `const!` flags automatically implies default assignment, so you don't have to specify the `?=` operator with them:
 
 ```nani
 ; Declare and assign 'false' to both variables tracking route completion.
@@ -97,7 +125,7 @@ When you use `meta!` or `const!` flags automatically imply the default assignmen
 
 ## Variable Events
 
-When building a [custom UI](/guide/gui#ui-customization) or other systems, you may want to react to events when a variable's value changes. For example, when creating a character stats screen, you might want the text to update with the variables. While a conventional approach uses a C# script, you can also use the `Variable Events` component. This component invokes Unity events when a variable with a specified name changes.
+When building a [custom UI](/guide/gui#ui-customization) or other systems, you may want to react when a variable's value changes. For example, when creating a character stats screen, you might want the text to update based on the variables. While the conventional approach is to use a C# script, you can also use the `Variable Events` component. This component invokes Unity events when a variable with a specified name changes.
 
 ![](https://i.gyazo.com/a8ad226b7a50110584551ae81179c709.png)
 
@@ -123,13 +151,27 @@ The variable list updates automatically when custom variables change while the g
 
 Custom variables can be accessed in C# via the `ICustomVariableManager` [engine service](/guide/engine-services).
 
-To get and set variable values, use the `GetVariableValue` and `SetVariableValue` methods respectively. For example, given that a custom string variable named `MyVarName` exists, the code below retrieves its value, appends "Hello!" to it, and sets the modified value back:
+To create a new variable, use the `AddVariable` method:
 
 ```csharp
 var vars = Engine.GetService<ICustomVariableManager>();
-var value = vars.GetVariableValue("MyVarName").String;
+// Create a 'myVar' string variable with 'Hello World!' value.
+vars.AddVariable(new("myVar", new("Hello World!")));
+```
+
+To create a meta or constant variable, specify the type:
+
+```csharp
+// Create a boolean meta variable to track route completion.
+vars.AddVariable(new("clearedRouteX", new(false), CustomVariableKind.Meta));
+```
+
+To get and set variable values, use the `GetValue` and `SetValue` methods, respectively. For example, given that a custom string variable named `myVar` exists, the code below retrieves its value, appends "Hello!" to it, and sets the modified value back:
+
+```csharp
+var value = vars.GetValue("myVar").String;
 value += "Hello!";
-vars.SetVariableValue("MyVarName", new(value));
+vars.SetValue("myVar", new(value));
 ```
 
 Note the use of the `.String` property when retrieving the actual value of the variable. A variable can be one of three types: `String`, `Numeric`, or `Boolean`. The type is determined when the variable is initially assigned in scenario scripts:
@@ -138,12 +180,12 @@ Note the use of the `.String` property when retrieving the actual value of the v
 ; Assign 'foo' variable with a 'Hello World!' string value
 @set foo="Hello World!"
 ; Use the string value in expression
-@if foo="Hello World!"
+@if foo is "Hello World!"
 
 ; Assign 'bar' variable with a numeric value of 42
 @set bar=42
 ; Use the numeric value in expression
-@if bar>12
+@if bar is above 12
 
 ; Assign 'baz' variable with a boolean value of true
 @set baz=true
@@ -157,49 +199,55 @@ Note the use of the `.String` property when retrieving the actual value of the v
 var vars = Engine.GetService<ICustomVariableManager>();
 
 // Assign 'foo' variable with a 'Hello World!' string value
-vars.SetVariableValue("foo", new("Hello World!"));
+vars.SetValue("foo", new("Hello World!"));
 // Access the assigned string value
-if (vars.GetVariableValue("foo").String == "Hello World!")
+if (vars.GetValue("foo").String == "Hello World!")
 
 // Assign 'bar' variable with a numeric value of 42
-vars.SetVariableValue("bar", new(42));
+vars.SetValue("bar", new(42));
 // Access the assigned numeric value
-if (vars.GetVariableValue("bar").Number > 12)
+if (vars.GetValue("bar").Number > 12)
 
 // Assign 'baz' variable with a boolean value of true
-vars.SetVariableValue("baz", new(true));
+vars.SetValue("baz", new(true));
 // Access the assigned boolean value
-if (vars.GetVariableValue("baz").Boolean)
+if (vars.GetValue("baz").Boolean)
 ```
 
 To check the type of a variable in C#, use the `.Type` property on the value:
 
 ```csharp
-var value = vars.GetVariableValue("bar");
+var value = vars.GetValue("bar");
 if (value.Type == CustomVariableValueType.Numeric)
-    if (value.Number > 12) // it's now safe to access '.Number' value
+    if (value.Number > 12) // it's now safe to access the '.Number' value
 ```
 
 Alternatively, use one of the `Try...` overloads:
 
 ```csharp
-var vars = Engine.GetService<ICustomVariableManager>();
-
-vars.TryGetVariableValue<float>("MyFloatVarName", out var floatValue);
+vars.TryGetValue<float>("MyFloatVarName", out var floatValue);
 Debug.Log($"My float variable value: {floatValue}");
 
-vars.TryGetVariableValue<int>("MyIntVarName", out var intValue);
+vars.TryGetValue<int>("MyIntVarName", out var intValue);
 Debug.Log($"My integer variable value: {intValue}");
 
-vars.TryGetVariableValue<bool>("MyBoolVarName", out var boolValue);
+vars.TryGetValue<bool>("MyBoolVarName", out var boolValue);
 Debug.Log($"My boolean variable value: {boolValue}");
 
 floatValue += 10.5f;
-vars.TrySetVariableValue("MyFloatVarName", floatValue);
+vars.TrySetValue("MyFloatVarName", floatValue);
 
 intValue = -55;
-vars.TrySetVariableValue("MyIntVarName", intValue);
+vars.TrySetValue("MyIntVarName", intValue);
 
 boolValue = !boolValue;
-vars.TrySetVariableValue("MyBoolVarName", boolValue);
+vars.TrySetValue("MyBoolVarName", boolValue);
+```
+
+Note that an exception will be thrown if you attempt to call `AddVariable` for a variable that already exists or call `SetValue` for a variable that doesn't exist. If you don't want to check `VariableExists` each time, use the `UpsertValue` helper method - it'll automatically create a new variable if it doesn't exist or just update the value if it does:
+
+```csharp
+// If 'foo' exists — set it to 42;
+// otherwise create 'foo' with the default value of 42.
+vars.UpsertValue("foo", new(42));
 ```
