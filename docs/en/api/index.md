@@ -1444,7 +1444,8 @@ If a variable with the specified name doesn't exist, it will be automatically cr
 | --- | --- | --- |
 | <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | Assignment expression.<br/><br/>The expression should be in the following format: `var=expression`, where `var` is the name of the custom variable to assign and `expression` is a [script expression](/guide/script-expressions), the result of which should be assigned to the variable.<br/><br/>It's possible to use increment and decrement unary operators (`@set foo++`, `@set foo--`) and compound assignment (`@set foo+=10`, `@set foo-=3`, `@set foo*=0.1`, `@set foo/=2`). |
 | to | string | The expression which result will be assigned to all the specified variables without assignment expressions (without the `= ...` part). Useful to assign multiple variables to the same value, for example: `@set foo, bar, baz to:10`. |
-| once | boolean | Whether the variable should only be assigned in case it's not already assigned (initialization intent). Should not be used with the 'meta' or 'const' flags, as they both share the initialization intent. |
+| scope | string | When specified, will add the the specified variables under the scope. Will not affect variables that already has scope specified in the assignment expression. |
+| init | boolean | Whether the variable should only be assigned in case it's not already assigned (initialization intent). Should not be used with the 'meta' or 'const' flags, as they both share the initialization intent. |
 | meta | boolean | Whether the variable should be initialized as a meta variable. The meta-variables are 'above' the game sessions, ie they persist their values when starting a new game. Ideal for meta-game mechanics, such as tracking route completions or achievements. |
 | const | boolean | Whether the variable should be initialized as a constant. The constants can only be initialized once and are not allowed to change later. |
 
@@ -1511,6 +1512,18 @@ My favourite drink is {drink}!
 @set metaCounter=0 meta!
 ...
 @set metaCounter++ if:!hasPlayed()
+
+; Define multiple variables under the 'stats' scope.
+@set strength, intellect, agility to:1 scope:stats
+...
+@set stats.agility++
+
+; Use a private variable (name starts with a dot) to prevent conflicts
+; with other variables that have the same name in other scripts.
+@set .count=0
+@while .count is below 10
+    @set .count++
+    Current count: {.count}
 ```
 
 ## sfx
