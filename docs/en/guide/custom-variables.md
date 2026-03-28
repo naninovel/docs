@@ -26,7 +26,7 @@ You can create and modify variables with the [@set] command (and some parameters
 — find more examples of various ways to use the variables in the [@set] command reference.
 
 ::: tip
-The `score is above 10` expression is using the `is above` operator alias instead of the `>` boolean operator; if you prefer boolean operators, you can write the command as `@if score > 10`. Find more information about the supported syntax in the [script expressions guide](/guide/script-expressions#operator-aliases).
+The `score is above 10` expression is using the `is above` alias instead of the `>` operator; if you prefer the operators, you can write the command as `@if score > 10`. Find more information about the supported syntax in the [script expressions guide](/guide/script-expressions#operator-aliases).
 :::
 
 ## Injecting Variables
