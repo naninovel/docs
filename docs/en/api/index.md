@@ -1511,7 +1511,7 @@ My favourite drink is {drink}!
 ; Increment the meta variable only once, even when re-played.
 @set metaCounter=0 meta!
 ...
-@set metaCounter++ if:!hasPlayed()
+@set metaCounter++ unless:hasPlayed()
 
 ; Define multiple variables under the 'stats' scope.
 @set strength, intellect, agility to:1 scope:stats
