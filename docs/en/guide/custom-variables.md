@@ -105,13 +105,13 @@ If you want a meta counter that increments only once (even when re-played, e.g.,
 
 Default assignment assigns a value to a custom variable only if the variable doesn't already have one. This is useful when you want to ensure a variable has an initial value but don't want to overwrite it if it's already set.
 
-To perform a default assignment, either use the `?=` operator or add the `once!` flag when using the [@set] command:
+To perform a default assignment, either use the `?=` operator or add the `init!` flag when using the [@set] command:
 
 ```nani
 ; Initialize 'foo' with the default value of 0.
 @set foo?=0
 ; Initialize the three variables with default values.
-@set foo=0, bar=false, baz="" once!
+@set foo=0, bar=false, baz="" init!
 ```
 
 Using the `meta!` or `const!` flags automatically implies default assignment, so you don't have to specify the `?=` operator with them:
