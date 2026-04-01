@@ -428,7 +428,7 @@ Modifies a [character actor](/guide/characters).
 Adds a required [choice](/guide/choices) option, which halts further scenario playback until the player makes a selection.   Subsequent choice commands are merged, allowing multiple options to be presented at once. Use [@addChoice] instead of this command to simply add a choice, without requiring a selection before proceeding with the playback.
 
 ::: info NOTE
-When nesting commands under the choice, `goto`, `gosub` and `set` parameters are ignored.<br><br>Using non-deterministic expressions in the if parameter is not supported, because the command must determine in advance which choice is the last in the chain in order to stop playback automatically. If you need something like `@choice ... if:random(0,10)>5`, use the [@addChoice] command instead.<br><br>Labels between the subsequent choice commands are ignored.
+When nesting commands under the choice, `goto`, `gosub` and `set` parameters are ignored.<br><br>Conditional execution of the `@choice` command is not possible, because the command must determine in advance which choice is the last in the chain in order to stop playback automatically. If you need something like `@choice ... if:...`, use the [@addChoice] command instead.<br><br>Labels between the subsequent choice commands are ignored.
 :::
 
 <div class="config-table">
@@ -478,9 +478,6 @@ Continue executing this script or ...?[>]
 
 ; Make the choice disabled/locked when 'score' variable is below 10.
 @choice "Extra option" lock:score<10
-
-; Only show the choice when 'score' variable is 10 or more.
-@choice "Secret option" if:score>=10
 ```
 
 ## choiceHandler
@@ -1444,8 +1441,7 @@ If a variable with the specified name doesn't exist, it will be automatically cr
 | --- | --- | --- |
 | <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | Assignment expression.<br/><br/>The expression should be in the following format: `var=expression`, where `var` is the name of the custom variable to assign and `expression` is a [script expression](/guide/script-expressions), the result of which should be assigned to the variable.<br/><br/>It's possible to use increment and decrement unary operators (`@set foo++`, `@set foo--`) and compound assignment (`@set foo+=10`, `@set foo-=3`, `@set foo*=0.1`, `@set foo/=2`). |
 | to | string | The expression which result will be assigned to all the specified variables without assignment expressions (without the `= ...` part). Useful to assign multiple variables to the same value, for example: `@set foo, bar, baz to:10`. |
-| scope | string | When specified, will add the the specified variables under the scope. Will not affect variables that already has scope specified in the assignment expression. |
-| init | boolean | Whether the variable should only be assigned in case it's not already assigned (initialization intent). Should not be used with the 'meta' or 'const' flags, as they both share the initialization intent. |
+| once | boolean | Whether the variable should only be assigned in case it's not already assigned (initialization intent). Should not be used with the 'meta' or 'const' flags, as they both share the initialization intent. |
 | meta | boolean | Whether the variable should be initialized as a meta variable. The meta-variables are 'above' the game sessions, ie they persist their values when starting a new game. Ideal for meta-game mechanics, such as tracking route completions or achievements. |
 | const | boolean | Whether the variable should be initialized as a constant. The constants can only be initialized once and are not allowed to change later. |
 
@@ -1511,19 +1507,7 @@ My favourite drink is {drink}!
 ; Increment the meta variable only once, even when re-played.
 @set metaCounter=0 meta!
 ...
-@set metaCounter++ unless:hasPlayed()
-
-; Define multiple variables under the 'stats' scope.
-@set strength, intellect, agility to:1 scope:stats
-...
-@set stats.agility++
-
-; Use a private variable (name starts with a dot) to prevent conflicts
-; with other variables that have the same name in other scripts.
-@set .count=0
-@while .count is below 10
-    @set .count++
-    Current count: {.count}
+@set metaCounter++ if:!hasPlayed()
 ```
 
 ## sfx
