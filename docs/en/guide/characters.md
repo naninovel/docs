@@ -27,8 +27,6 @@ If you have many characters and it's inconvenient to assign them all via the edi
 
 ![](https://www.youtube.com/watch?v=2YP-36THHvk)
 
-To associate appearance resources with actor records, you can use the [addressable asset system](/guide/resource-providers#addressable). For example, to associate a "Happy" appearance with the "Kohaku" character, assign the texture asset to the `Naninovel/Characters/Kohaku/Happy` address and add the `Naninovel` label. You can find more information on using the addressable provider in the [resource providers documentation](/guide/resource-providers#addressable).
-
 ## Poses
 
 Each character has `Poses` property allowing to specify named states (poses).

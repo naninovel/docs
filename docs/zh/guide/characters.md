@@ -27,8 +27,6 @@
 
 ![](https://www.youtube.com/watch?v=2YP-36THHvk)
 
-要将外观资源与 actor 记录相关联，可以使用 [Addressable 资产系统](/zh/guide/resource-providers#addressable)。例如，要将 "Happy" 外观与 "Kohaku" 角色相关联，请将纹理资产分配给 `Naninovel/Characters/Kohaku/Happy` 地址并添加 `Naninovel` 标签。您可以在 [资源提供者文档](/zh/guide/resource-providers#addressable) 中找到有关使用 Addressable 提供者的更多信息。
-
 ## 姿势 (Poses)
 
 每个角色都有 `Poses` 属性，允许指定命名状态（姿势）。

@@ -27,8 +27,6 @@
 
 ![](https://www.youtube.com/watch?v=2YP-36THHvk)
 
-外観リソースをアクターレコードに関連付けるには、[Addressable Asset System](/ja/guide/resource-providers#addressable) を使用できます。たとえば、"Happy" の外観を "Kohaku" キャラクターに関連付けるには、テクスチャアセットを `Naninovel/Characters/Kohaku/Happy` アドレスに割り当て、`Naninovel` ラベルを追加します。Addressableプロバイダーの使用の詳細については、[リソースプロバイダードキュメント](/ja/guide/resource-providers#addressable) を参照してください。
-
 ## ポーズ
 
 各キャラクターには、名前付きの状態（ポーズ）を指定できる `Poses` プロパティがあります。
