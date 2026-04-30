@@ -43,8 +43,6 @@
 
 ![](https://www.youtube.com/watch?v=2YP-36THHvk)
 
-外観リソースをアクターレコードに関連付けるには、[Addressable Asset System](/ja/guide/resource-providers#addressable) を使用します。たとえば、"Beach" の外観を `MainBackground` に関連付けるには、テクスチャアセットにアドレス `Naninovel/Backgrounds/MainBackground/Beach` を割り当て、`Naninovel` ラベルを追加します。Addressableプロバイダーの使用の詳細については、[リソースプロバイダードキュメント](/ja/guide/resource-providers#addressable) を参照してください。
-
 ## Zオーダー
 
 複数の背景を同時に表示する場合、互いに重なり合う傾向があります。
