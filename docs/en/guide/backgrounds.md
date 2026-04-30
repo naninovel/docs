@@ -43,8 +43,6 @@ If you have many backgrounds or background appearances and it's inconvenient to 
 
 ![](https://www.youtube.com/watch?v=2YP-36THHvk)
 
-To associate appearance resources with actor records, use the [addressable asset system](/guide/resource-providers#addressable). For example, to associate a "Beach" appearance with the `MainBackground`, assign the texture asset the address `Naninovel/Backgrounds/MainBackground/Beach` and add the `Naninovel` label. For more details on using the addressable provider, see the [resource providers documentation](/guide/resource-providers#addressable).
-
 ## Z-order
 
 When showing multiple backgrounds simultaneously, they tend to cover each other:
