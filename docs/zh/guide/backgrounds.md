@@ -43,8 +43,6 @@
 
 ![](https://www.youtube.com/watch?v=2YP-36THHvk)
 
-要将外观资源与 actor 记录相关联，请使用 [Addressable 资产系统](/zh/guide/resource-providers#addressable)。例如，要将 "Beach" 外观与 `MainBackground` 相关联，请为纹理资产分配地址 `Naninovel/Backgrounds/MainBackground/Beach` 并添加 `Naninovel` 标签。有关使用 Addressable 提供者的更多详细信息，请参阅 [资源提供者文档](/zh/guide/resource-providers#addressable)。
-
 ## Z 顺序
 
 同时显示多个背景时，它们往往会相互覆盖：
