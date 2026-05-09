@@ -72,15 +72,7 @@ Unityエディタに入ったら、`Assets/Scenes/Main.unity` シーンを開き
 
 ![](https://i.gyazo.com/b1b6042db4a91b3a8cee74236b33c17c.mp4)
 
-すべてのプロジェクト固有のサンプルスクリプトは `Scripts/Runtime/Integration` フォルダに保存されています。
-
-Naninovelは、`Integration` シーンにある `SetupGame` GameObjectにアタッチされた `SetupGame.cs` スクリプトを介して手動で初期化されます（エンジン構成メニューで自動初期化が無効になっています）。
-
-トリガーのコンポーネントとして使用される `DialogueTrigger.cs` スクリプトは、プレイヤーがトリガーコライダーに当たったときにダイアログモードに切り替えます。
-
-`SwitchToNovelMode.cs` カスタムコマンドは、C#とシナリオスクリプトの両方からノベルモードに切り替えるために使用されます。
-
-`SwitchToAdventureMode.cs` カスタムコマンドは、ノベルモードからアドベンチャーモードに戻すために使用されます。
+すべてのプロジェクト固有のサンプルスクリプトは `Scripts/Runtime/DialogueMode` フォルダに保存されています。
 
 ## インベントリ
 
