@@ -66,21 +66,13 @@ An example input-rebinding UI that allows the player to change default controls 
 
 ![](https://i.gyazo.com/eba8d2ce2dabfbe41cc0df238ad8ad99.png)
 
-## Integration
+## Dialogue Mode
 
 An example project demonstrating Naninovel used as both a drop-in dialogue system for a 3D adventure game and a switchable standalone novel mode.
 
 ![](https://i.gyazo.com/b1b6042db4a91b3a8cee74236b33c17c.mp4)
 
-All project-specific example scripts are stored in the `Scripts/Runtime/Integration` folder.
-
-Naninovel is initialized manually (auto initialization is disabled in the engine configuration menu) via the `SetupGame.cs` script attached to the `SetupGame` GameObject located in the `Integration` scene.
-
-The `DialogueTrigger.cs` script, used as a component on triggers, switches to dialogue mode when the player hits the trigger colliders.
-
-The `SwitchToNovelMode.cs` custom command is used to switch to novel mode from both C# and scenario scripts.
-
-The `SwitchToAdventureMode.cs` custom command is used to switch back to adventure mode from novel mode.
+All project-specific example scripts are stored in the `Scripts/Runtime/DialogueMode` folder.
 
 ## Inventory
 
