@@ -72,15 +72,8 @@
 
 ![](https://i.gyazo.com/b1b6042db4a91b3a8cee74236b33c17c.mp4)
 
-所有特定于项目的示例脚本都存储在 `Scripts/Runtime/Integration` 文件夹中。
+所有特定于项目的示例脚本都存储在 `Scripts/Runtime/DialogueMode` 文件夹中。
 
-Naninovel 通过附加到 `Integration` 场景中 `SetupGame` GameObject 的 `SetupGame.cs` 脚本手动初始化（引擎配置菜单中禁用了自动初始化）。
-
-用作触发器组件的 `DialogueTrigger.cs` 脚本在玩家击中触发器碰撞体时切换到对话模式。
-
-`SwitchToNovelMode.cs` 自定义命令用于从 C# 和剧本脚本切换到小说模式。
-
-`SwitchToAdventureMode.cs` 自定义命令用于从小说模式切换回冒险模式。
 
 ## 库存 (Inventory)
 
