@@ -493,7 +493,7 @@ abbr {
     width: 50%;
 }
 
-.command-param-nameless {
+.command-param-primary {
     text-decoration: line-through;
     border-bottom: 1px dotted #000;
     cursor: help;

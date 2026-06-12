@@ -2,7 +2,7 @@
 
 标准脚本命令 API 参考。使用侧边栏快速在可用命令之间导航。
 
-~~删除线~~ 表示无名参数，**粗体** 代表必需参数；其他参数应视为可选参数。如果不确定这是怎么回事，请查阅[场景脚本指南](/zh/guide/scenario-scripting)。
+~~删除线~~ 表示主参数，**粗体** 代表必需参数；其他参数应视为可选参数。如果不确定这是怎么回事，请查阅[场景脚本指南](/zh/guide/scenario-scripting)。
 
 大多数脚本命令都支持以下参数：
 
@@ -28,7 +28,7 @@
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">choiceSummary</span> | string | 选择显示的文本。当文本包含空格时，请用双引号 (`"`) 将其括起来。如果你希望在文本本身中包含双引号，请对其进行转义。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">choiceSummary</span> | string | 选择显示的文本。当文本包含空格时，请用双引号 (`"`) 将其括起来。如果你希望在文本本身中包含双引号，请对其进行转义。 |
 | id | string | 选择的唯一标识符。稍后可用于使用 [@clearChoice] 删除选择。 |
 | lock | string | 选择是否应被禁用或以其他方式让玩家无法选择；有关更多信息，请参阅[选择文档](/zh/guide/choices#锁定选项)。默认情况下禁用。 |
 | button | string | 代表选择的[按钮预制件](/zh/guide/choices#选项按钮)的本地资源路径。预制件的根对象上应附加 `ChoiceHandlerButton` 组件。未指定时将使用默认按钮。 |
@@ -74,7 +74,7 @@ You crashed!
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">text</span> | string | 要追加的文本。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">text</span> | string | 要追加的文本。 |
 | printer | string | 要使用的打印机 Actor 的 ID。未指定时将使用默认值。 |
 | author | string | 应与追加文本关联的 Actor 的 ID。 |
 
@@ -95,7 +95,7 @@ Lorem ipsum
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">characterPositions</span> | named decimal list | 角色 ID 到场景 X 轴位置（相对于左侧场景边界，以百分比表示）命名值的集合。位置 0 与左边界相关，100 与场景右边界相关；50 是中心。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">characterPositions</span> | named decimal list | 角色 ID 到场景 X 轴位置（相对于左侧场景边界，以百分比表示）命名值的集合。位置 0 与左边界相关，100 与场景右边界相关；50 是中心。 |
 | look | boolean | 执行自动排列时，控制是否也让角色看向场景原点（默认启用）。 |
 | time | decimal | 命令启动的动画持续时间，以秒为单位。 |
 | wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
@@ -119,7 +119,7 @@ Lorem ipsum
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">trackId</span> | string | 负责执行嵌套行的播放器轨道的唯一标识符。指定后，ID 可用于 [@await] 或 [@stop] 异步轨道播放。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">trackId</span> | string | 负责执行嵌套行的播放器轨道的唯一标识符。指定后，ID 可用于 [@await] 或 [@stop] 异步轨道播放。 |
 | loop | boolean | 是否循环播放嵌套行，直到使用 [@stop] 停止。 |
 
 </div>
@@ -158,7 +158,7 @@ Lorem ipsum
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">trackId</span> | string | 要等待的异步脚本轨道的标识符。可用于等待使用 [@async] 命令生成的轨道的完成。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">trackId</span> | string | 要等待的异步脚本轨道的标识符。可用于等待使用 [@async] 命令生成的轨道的完成。 |
 | complete | boolean | 是否尽快强制完成等待的轨道。等待嵌套行时无效。 |
 
 </div>
@@ -188,14 +188,14 @@ Lorem ipsum
 修改[背景 Actor](/zh/guide/backgrounds)。
 
 ::: info NOTE
-为了更好地适应传统的 VN 游戏流程，背景的处理方式与角色略有不同。大多数时候，场景中可能只有一个背景 Actor，它会不断过渡到不同的外观。为了消除在脚本中重复相同 Actor ID 的麻烦，可以仅提供背景外观和过渡类型（可选）作为无名参数，假设 `MainBackground` Actor 应该受到影响。如果情况并非如此，可以通过 `id` 参数显式指定背景 Actor 的 ID。
+为了更好地适应传统的 VN 游戏流程，背景的处理方式与角色略有不同。大多数时候，场景中可能只有一个背景 Actor，它会不断过渡到不同的外观。为了消除在脚本中重复相同 Actor ID 的麻烦，可以仅提供背景外观和过渡类型（可选）作为主参数，假设 `MainBackground` Actor 应该受到影响。如果情况并非如此，可以通过 `id` 参数显式指定背景 Actor 的 ID。
 :::
 
 <div class="config-table">
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">appearanceAndTransition</span> | named string | 要为修改后的背景设置的外观（或[姿势](/zh/guide/backgrounds#姿势-poses)）和要使用的[过渡效果](/zh/guide/special-effects#过渡效果)类型。未指定过渡时，默认使用交叉淡入淡出效果。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">appearanceAndTransition</span> | named string | 要为修改后的背景设置的外观（或[姿势](/zh/guide/backgrounds#姿势-poses)）和要使用的[过渡效果](/zh/guide/special-effects#过渡效果)类型。未指定过渡时，默认使用交叉淡入淡出效果。 |
 | pos | decimal list | 为修改后的 Actor 设置的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。在正交模式下，使用 Z 分量（第三个成员，例如 `,,10`）按深度移动（排序）。 |
 | id | string | 要修改的 Actor 的 ID；指定 `*` 以影响所有可见 Actor。 |
 | appearance | string | 为修改后的 Actor 设置的外观。 |
@@ -242,7 +242,7 @@ Lorem ipsum
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">bgmPath</span> | string | 要播放的音乐轨道的路径。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">bgmPath</span> | string | 要播放的音乐轨道的路径。 |
 | intro | string | 在主轨道之前播放一次的介绍音乐轨道的路径（不受循环参数影响）。 |
 | volume | decimal | 音乐轨道的音量。 |
 | loop | boolean | 轨道结束后是否从头开始播放。 |
@@ -280,7 +280,7 @@ Actor 应实现 `IBlurable` 接口以支持该效果。
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">actorId</span> | string | 要应用效果的 Actor 的 ID；如果发现多个具有相同 ID 的 Actor（例如，一个角色和一个打印机），将仅影响第一个发现的 Actor。未指定时，应用于主背景。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">actorId</span> | string | 要应用效果的 Actor 的 ID；如果发现多个具有相同 ID 的 Actor（例如，一个角色和一个打印机），将仅影响第一个发现的 Actor。未指定时，应用于主背景。 |
 | power | decimal | 效果的强度，范围为 0.0 到 1.0。默认为 0.5。设置为 0 以禁用（取消生成）效果。 |
 | time | decimal | 参数达到目标值所需的时间，以秒为单位。默认为 1.0。 |
 | wait | boolean | 在播放下一个命令之前是否等待效果预热动画。 |
@@ -307,7 +307,7 @@ Actor 应实现 `IBlurable` 接口以支持该效果。
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">focus</span> | string | 要设置焦点的游戏对象名称（可选）。设置后，焦点将始终停留在游戏对象上，而 `dist` 参数将被忽略。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">focus</span> | string | 要设置焦点的游戏对象名称（可选）。设置后，焦点将始终停留在游戏对象上，而 `dist` 参数将被忽略。 |
 | dist | decimal | 从 Naninovel 摄像机到焦点的距离（以单位为单位）。指定 `focus` 参数时忽略。默认为 10。 |
 | power | decimal | 应用于散焦区域的模糊量；也决定了焦点灵敏度。默认为 3.75。设置为 0 以禁用（取消生成）效果。 |
 | time | decimal | 参数达到目标值所需的时间，以秒为单位。默认为 1.0。 |
@@ -381,7 +381,7 @@ Actor 应实现 `IBlurable` 接口以支持该效果。
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">idAndAppearance</span> | named string | 要修改的角色的 ID（指定 `*` 以影响所有可见角色）和要设置的外观（或[姿势](/zh/guide/characters#姿势-poses)）。未指定外观时，将使用 `Default`（如果存在）或随机外观。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">idAndAppearance</span> | named string | 要修改的角色的 ID（指定 `*` 以影响所有可见角色）和要设置的外观（或[姿势](/zh/guide/characters#姿势-poses)）。未指定外观时，将使用 `Default`（如果存在）或随机外观。 |
 | look | string | Actor 的观看方向；支持的值：left, right, center。 |
 | avatar | string | 为角色分配的[头像纹理](/zh/guide/characters#头像纹理)的名称（路径）。使用 `none` 从角色中移除（取消分配）头像纹理。 |
 | pos | decimal list | 为修改后的 Actor 设置的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。在正交模式下，使用 Z 分量（第三个成员，例如 `,,10`）按深度移动（排序）。 |
@@ -434,7 +434,7 @@ Actor 应实现 `IBlurable` 接口以支持该效果。
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">choiceSummary</span> | string | 选择显示的文本。当文本包含空格时，请用双引号 (`"`) 将其括起来。如果你希望在文本本身中包含双引号，请对其进行转义。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">choiceSummary</span> | string | 选择显示的文本。当文本包含空格时，请用双引号 (`"`) 将其括起来。如果你希望在文本本身中包含双引号，请对其进行转义。 |
 | id | string | 选择的唯一标识符。稍后可用于使用 [@clearChoice] 删除选择。 |
 | lock | string | 选择是否应被禁用或以其他方式让玩家无法选择；有关更多信息，请参阅[选择文档](/zh/guide/choices#锁定选项)。默认情况下禁用。 |
 | button | string | 代表选择的[按钮预制件](/zh/guide/choices#选项按钮)的本地资源路径。预制件的根对象上应附加 `ChoiceHandlerButton` 组件。未指定时将使用默认按钮。 |
@@ -490,7 +490,7 @@ Continue executing this script or ...?[>]
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">handlerId</span> | string | 要修改的选择处理程序 Actor 的 ID。未指定时，将使用默认值。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">handlerId</span> | string | 要修改的选择处理程序 Actor 的 ID。未指定时，将使用默认值。 |
 | default | boolean | 是否将选择处理程序设为默认。未指定 `handler` 参数时，默认处理程序将受所有选择相关命令的影响。 |
 | id | string | 要修改的 Actor 的 ID；指定 `*` 以影响所有可见 Actor。 |
 | appearance | string | 为修改后的 Actor 设置的外观。 |
@@ -533,7 +533,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">handlerId</span> | string | 要清除的选择处理程序的 ID。未指定时将使用默认处理程序。指定 `*` 以清除所有现有处理程序。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">handlerId</span> | string | 要清除的选择处理程序的 ID。未指定时将使用默认处理程序。指定 `*` 以清除所有现有处理程序。 |
 | id | string | 要删除的特定选择的标识符。未指定时将删除所有选择。 |
 | hide | boolean | 是否也隐藏受影响的选择处理程序。 |
 
@@ -565,7 +565,7 @@ You have 2 seconds to respond![>]
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">path</span> | string | 要销毁的预制件资源的名称（路径）。预期之前已执行具有相同参数的 [@spawn] 命令。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">path</span> | string | 要销毁的预制件资源的名称（路径）。预期之前已执行具有相同参数的 [@spawn] 命令。 |
 | params | string list | 销毁预制件之前要设置的参数。需要预制件的根对象上附加 `IParameterized` 组件。 |
 | wait | boolean | 如果实现了 `IAwaitable` 接口，是否等待生成对象随时间销毁。 |
 
@@ -631,7 +631,7 @@ You have 2 seconds to respond![>]
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">templates</span> | named string list | 要应用的模板，格式为 `Template.AuthorFilter`；有关更多信息，请参阅[格式化模板](/zh/guide/text-printers#消息模板)指南。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">templates</span> | named string list | 要应用的模板，格式为 `Template.AuthorFilter`；有关更多信息，请参阅[格式化模板](/zh/guide/text-printers#消息模板)指南。 |
 | printer | string | 要为其分配模板的打印机 Actor 的 ID。未指定时将使用默认值。 |
 
 </div>
@@ -683,7 +683,7 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">path</span> | string | 导航到的路径，格式如下：`ScriptPath#Label`。省略标签时，将从头开始播放指定的脚本。省略脚本路径时，将尝试在当前播放的脚本中查找标签。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">path</span> | string | 导航到的路径，格式如下：`ScriptPath#Label`。省略标签时，将从头开始播放指定的脚本。省略脚本路径时，将尝试在当前播放的脚本中查找标签。 |
 
 </div>
 
@@ -723,7 +723,7 @@ You are victorious!
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">path</span> | string | 导航到的路径，格式如下：`ScriptPath#Label`。省略标签时，将从头开始播放指定的脚本。省略脚本路径时，将尝试在当前播放的脚本中查找标签。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">path</span> | string | 导航到的路径，格式如下：`ScriptPath#Label`。省略标签时，将从头开始播放指定的脚本。省略脚本路径时，将尝试在当前播放的脚本中查找标签。 |
 | reset | string list | 指定时，将控制在加载脚本之前是否重置引擎服务状态（如果路径指向另一个脚本）：<br/> - 指定 `*` 以重置所有服务，除了具有 `Goto.DontReset` 属性的服务。<br/> - 指定要从重置中排除的服务类型名称（以逗号分隔）；所有其他服务都将重置，包括具有 `Goto.DontReset` 属性的服务。<br/> - 指定 `-` 强制不重置（即使在配置中默认启用了重置）。<br/><br/>请注意，虽然某些服务应用了 `Goto.DontReset` 属性并且默认不重置，但在从重置中排除特定服务时仍应指定它们。 |
 | hold | boolean | 是否在目标脚本中保留资源，使其与此命令指定的脚本一起预加载。在 `Conservative` 资源策略之外无效。有关更多信息，请参阅[内存管理](/zh/guide/memory-management)指南。 |
 | release | boolean | 是否在导航到目标脚本之前释放资源以释放内存。在 `Optimistic` 资源策略之外无效。有关更多信息，请参阅[内存管理](/zh/guide/memory-management)指南。 |
@@ -769,7 +769,7 @@ You are victorious!
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">actorIds</span> | string list | 要隐藏的 Actor 的 ID。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">actorIds</span> | string list | 要隐藏的 Actor 的 ID。 |
 | time | decimal | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画将在开始动画到新目标之前立即完成。 |
 | wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
@@ -830,7 +830,7 @@ You are victorious!
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">printerId</span> | string | 要使用的打印机 Actor 的 ID。未指定时将使用默认值。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">printerId</span> | string | 要使用的打印机 Actor 的 ID。未指定时将使用默认值。 |
 | time | decimal | 命令启动的动画持续时间，以秒为单位。 |
 | wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
@@ -856,7 +856,7 @@ You are victorious!
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">uINames</span> | string list | 要隐藏的 UI 元素的名称。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">uINames</span> | string list | 要隐藏的 UI 元素的名称。 |
 | allowToggle | boolean | 隐藏整个 UI 时，控制是否允许用户使用热键或通过单击屏幕上的任意位置重新显示 UI（默认为 false）。隐藏特定 UI 时无效。 |
 | time | decimal | 隐藏动画的持续时间（以秒为单位）。未指定时，将使用特定于 UI 的持续时间。 |
 | wait | boolean | 在播放下一个命令之前是否等待 UI 淡出动画。 |
@@ -882,7 +882,7 @@ You are victorious!
 
 ## if
 
-标记条件执行块的开始。嵌套行被视为块的主体，仅在条件无名参数评估为 `true` 时才会执行。有关更多信息，请参阅[条件执行](/zh/guide/scenario-scripting#条件执行)指南。
+标记条件执行块的开始。嵌套行被视为块的主体，仅在条件主参数评估为 `true` 时才会执行。有关更多信息，请参阅[条件执行](/zh/guide/scenario-scripting#条件执行)指南。
 
 ::: info NOTE
 此命令与 [@unless] 相反且互补。
@@ -892,7 +892,7 @@ You are victorious!
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">expression</span> | string | 一个[脚本表达式](/zh/guide/script-expressions)，应返回一个布尔值，决定是否执行关联的嵌套块。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">expression</span> | string | 一个[脚本表达式](/zh/guide/script-expressions)，应返回一个布尔值，决定是否执行关联的嵌套块。 |
 
 </div>
 
@@ -932,7 +932,7 @@ Test result:[if score>8] Perfect![or score>6] Passed.[else] Failed.[endif]
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">variableName</span> | string | 输入文本将分配给的自定义变量的名称。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">variableName</span> | string | 输入文本将分配给的自定义变量的名称。 |
 | type | string | 输入内容的类型；默认为指定变量的类型。用于更改分配的变量类型或分配给新变量时。支持的类型：`String`、`Numeric`、`Boolean`。 |
 | summary | string | 与输入字段一起显示的可选摘要文本。当文本包含空格时，请用双引号 (`"`) 将其括起来。如果你希望在文本本身中包含双引号，请对其进行转义。 |
 | value | string | 为输入字段设置的预定义值。未分配时将提取分配变量的现有值（如果有）。 |
@@ -959,7 +959,7 @@ Archibald: Greetings, {name}!
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">charIdAndAllow</span> | named boolean | 角色 ID 后跟一个布尔值（true 或 false），表示是否停止或允许口型同步动画。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">charIdAndAllow</span> | named boolean | 角色 ID 后跟一个布尔值（true 或 false），表示是否停止或允许口型同步动画。 |
 
 </div>
 
@@ -977,7 +977,7 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">sceneName</span> | string | 要加载的场景名称。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">sceneName</span> | string | 要加载的场景名称。 |
 | additive | boolean | 是以附加方式加载场景，还是在加载新场景之前卸载任何当前加载的场景（默认）。有关更多信息，请参阅[加载场景文档](https://docs.unity3d.com/ScriptReference/SceneManagement.SceneManager.LoadScene.html)。 |
 
 </div>
@@ -1002,7 +1002,7 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">id</span> | string | 可解锁项的 ID。使用 `*` 锁定所有已注册的可解锁项。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">id</span> | string | 可解锁项的 ID。使用 `*` 锁定所有已注册的可解锁项。 |
 
 </div>
 
@@ -1019,7 +1019,7 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">enable</span> | boolean | 是否启用或禁用摄像机观看模式。默认值：true。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">enable</span> | boolean | 是否启用或禁用摄像机观看模式。默认值：true。 |
 | zone | decimal list | 距离初始摄像机位置的 X,Y 大小（以单位为单位）的边界框，描述摄像机可以移动多远。默认值：5.0,3.0 |
 | speed | decimal list | 按 X,Y 轴的摄像机移动速度（灵敏度）。默认值：1.5,1.0 |
 | gravity | boolean | 当观看输入不活动时（例如，鼠标未移动或模拟摇杆处于默认位置），是否自动将摄像机移动到初始位置。默认值：false。 |
@@ -1052,7 +1052,7 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">movieName</span> | string | 要播放的电影资源的名称。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">movieName</span> | string | 要播放的电影资源的名称。 |
 | time | decimal | 淡入淡出动画的持续时间（以秒为单位）。未指定时，将使用电影配置中设置的淡入淡出持续时间。 |
 | block | boolean | 是否在播放电影时阻止与游戏的交互，防止玩家跳过它。 |
 
@@ -1075,7 +1075,7 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">uRL</span> | string | 要打开的 URL。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">uRL</span> | string | 要打开的 URL。 |
 | target | string | 浏览上下文：_self（当前标签页）、_blank（新标签页）、_parent、_top。 |
 
 </div>
@@ -1096,7 +1096,7 @@ Marks a branch of a conditional execution block, which is executed in case condi
 
 | Parameter | Type | Description                                                                                                                                               |
 | --- | --- |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <span class="command-param-nameless command-param-required" title="Nameless parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [script expression](/zh/guide/script-expressions), which should return a boolean value determining whether the associated nested block will be executed. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [script expression](/zh/guide/script-expressions), which should return a boolean value determining whether the associated nested block will be executed. |
 
 </div>
 
@@ -1112,7 +1112,7 @@ Marks a branch of a conditional execution block, which is executed in case condi
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">text</span> | string | 要打印的消息文本。当文本包含空格时，请用双引号 (`"`) 将其括起来。如果你希望在文本本身中包含双引号，请对其进行转义。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">text</span> | string | 要打印的消息文本。当文本包含空格时，请用双引号 (`"`) 将其括起来。如果你希望在文本本身中包含双引号，请对其进行转义。 |
 | printer | string | 要使用的打印机 Actor 的 ID。未指定时将使用默认值。 |
 | author | string | 应与打印消息关联的 Actor 的 ID。追加时忽略。指定 `*` 或使用 `,` 分隔多个 Actor ID 以使所有/选定的角色成为文本的作者；当与 `as` 参数结合使用以表示多个角色同时说话时很有用。 |
 | as | string | 指定时，将使用标签代替作者 ID（或关联的显示名称）在打印消息时在文本打印机中表示作者姓名。用于覆盖几条消息的默认名称或表示多个作者同时说话，而不会触发文本打印机的作者特定行为，例如消息颜色或头像。 |
@@ -1153,7 +1153,7 @@ Marks a branch of a conditional execution block, which is executed in case condi
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">idAndAppearance</span> | named string | 要修改的打印机的 ID 和要设置的外观。未指定 ID 或外观时，将使用默认值。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">idAndAppearance</span> | named string | 要修改的打印机的 ID 和要设置的外观。未指定 ID 或外观时，将使用默认值。 |
 | default | boolean | 是否将打印机设为默认。未指定 `printer` 参数时，默认打印机将受所有打印机相关命令的影响。 |
 | hideOther | boolean | 是否隐藏所有其他打印机。 |
 | anchor | boolean | 是否允许通过 Actor 锚点自动定位打印机。在手动定位打印机后为支持的打印机启用以恢复自动定位。请注意，当使用此命令分配显式位置时，锚定将自动禁用。 |
@@ -1193,7 +1193,7 @@ Marks a branch of a conditional execution block, which is executed in case condi
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">inputEnabled</span> | boolean | 是否启用所有采样器的输入处理。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">inputEnabled</span> | boolean | 是否启用所有采样器的输入处理。 |
 | set | named boolean list | 允许静音和取消静音单个输入采样器。 |
 
 </div>
@@ -1307,7 +1307,7 @@ You've picked two.
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">actorIds</span> | string list | 要移除的 Actor 的 ID，或使用 `*` 移除所有 Actor。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">actorIds</span> | string list | 要移除的 Actor 的 ID，或使用 `*` 移除所有 Actor。 |
 
 </div>
 
@@ -1333,8 +1333,8 @@ You've picked two.
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">exclude</span> | string list | 要从重置中排除的[引擎服务](/zh/guide/engine-services)（接口）的名称。考虑添加 `ICustomVariableManager` 以保留局部变量。 |
-| only | string list | 要重置的[引擎服务](/zh/guide/engine-services)（接口）的名称；其他服务不会受到影响。分配无名（排除）参数时无效。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">exclude</span> | string list | 要从重置中排除的[引擎服务](/zh/guide/engine-services)（接口）的名称。考虑添加 `ICustomVariableManager` 以保留局部变量。 |
+| only | string list | 要重置的[引擎服务](/zh/guide/engine-services)（接口）的名称；其他服务不会受到影响。分配主（排除）参数时无效。 |
 
 </div>
 
@@ -1361,7 +1361,7 @@ You've picked two.
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">printerId</span> | string | 要使用的打印机 Actor 的 ID。未指定时将使用默认值。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">printerId</span> | string | 要使用的打印机 Actor 的 ID。未指定时将使用默认值。 |
 
 </div>
 
@@ -1440,7 +1440,7 @@ This line will disappear.
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">expression</span> | string | 分配表达式。<br/><br/>表达式应采用以下格式：`var=expression`，其中 `var` 是要分配的自定义变量的名称，`expression` 是一个[脚本表达式](/zh/guide/script-expressions)，其结果应分配给变量。<br/><br/>可以使用递增和递减一元运算符（`@set foo++`、`@set foo--`）和复合赋值（`@set foo+=10`、`@set foo-=3`、`@set foo*=0.1`、`@set foo/=2`）。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">expression</span> | string | 分配表达式。<br/><br/>表达式应采用以下格式：`var=expression`，其中 `var` 是要分配的自定义变量的名称，`expression` 是一个[脚本表达式](/zh/guide/script-expressions)，其结果应分配给变量。<br/><br/>可以使用递增和递减一元运算符（`@set foo++`、`@set foo--`）和复合赋值（`@set foo+=10`、`@set foo-=3`、`@set foo*=0.1`、`@set foo/=2`）。 |
 | to | string | 不包含赋值表达式部分（不含 `= ...` 部分）时，将赋给所有指定变量的表达式结果。适用于将同一个值赋给多个变量，例如：`@set foo, bar, baz to:10`。 |
 | once | boolean | 该变量是否只应在尚未赋值时才进行赋值（即初始化意图）。不应与 'meta' 或 'const' 标志一起使用，因为它们都具有初始化意图。 |
 | meta | boolean | 该变量是否应初始化为元变量。元变量位于游戏会话之 "上"，也就是说，在开始新游戏时它们的值仍会保留。非常适合用于元游戏机制，例如追踪路线完成情况或成就。 |
@@ -1523,7 +1523,7 @@ My favourite drink is {drink}!
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">sfxPath</span> | string | 要播放的音效资源的路径。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">sfxPath</span> | string | 要播放的音效资源的路径。 |
 | volume | decimal | 音效的音量。 |
 | loop | boolean | 是否循环播放音效。 |
 | fade | decimal | 开始播放时的音量淡入持续时间，以秒为单位（默认为 0.0）；修改正在播放的轨道时无效。 |
@@ -1553,7 +1553,7 @@ My favourite drink is {drink}!
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">sfxPath</span> | string | 要播放的音效资源的路径。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">sfxPath</span> | string | 要播放的音效资源的路径。 |
 | volume | decimal | 音效的音量。 |
 | restart | boolean | 如果已在播放，是否从头开始播放音频。 |
 | additive | boolean | 是否允许播放同一剪辑的多个实例；当启用 `restart` 时无效。 |
@@ -1578,7 +1578,7 @@ My favourite drink is {drink}!
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">actorId</span> | string | 要摇动的 Actor 的 ID。如果发现多个具有相同 ID 的 Actor（例如，一个角色和一个打印机），将仅影响第一个发现的 Actor。未指定时，将摇动默认文本打印机。要摇动主摄像机，请使用 `Camera` 关键字。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">actorId</span> | string | 要摇动的 Actor 的 ID。如果发现多个具有相同 ID 的 Actor（例如，一个角色和一个打印机），将仅影响第一个发现的 Actor。未指定时，将摇动默认文本打印机。要摇动主摄像机，请使用 `Camera` 关键字。 |
 | count | integer | 摇动迭代次数。启用 `loop` 时忽略。 |
 | loop | boolean | 是否继续摇动直到禁用。 |
 | time | decimal | 每次摇动迭代的基本持续时间，以秒为单位。 |
@@ -1613,7 +1613,7 @@ My favourite drink is {drink}!
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">actorIds</span> | string list | 要显示的 Actor 的 ID。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">actorIds</span> | string list | 要显示的 Actor 的 ID。 |
 | time | decimal | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画将在开始动画到新目标之前立即完成。 |
 | wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
@@ -1636,7 +1636,7 @@ My favourite drink is {drink}!
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">printerId</span> | string | 要使用的打印机 Actor 的 ID。未指定时将使用默认值。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">printerId</span> | string | 要使用的打印机 Actor 的 ID。未指定时将使用默认值。 |
 | time | decimal | 命令启动的动画持续时间，以秒为单位。 |
 | wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
@@ -1658,7 +1658,7 @@ My favourite drink is {drink}!
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">uINames</span> | string list | 要显示的 UI 资源的名称。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">uINames</span> | string list | 要显示的 UI 资源的名称。 |
 | time | decimal | 显示动画的持续时间（以秒为单位）。未指定时，将使用特定于 UI 的持续时间。 |
 | wait | boolean | 在播放下一个命令之前是否等待 UI 淡入动画。 |
 
@@ -1684,7 +1684,7 @@ My favourite drink is {drink}!
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">enable</span> | boolean | 是否启用（默认）或禁用跳过模式。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">enable</span> | boolean | 是否启用（默认）或禁用跳过模式。 |
 
 </div>
 
@@ -1708,7 +1708,7 @@ My favourite drink is {drink}!
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">idAndAppearance</span> | named string | 要滑动的 Actor 的 ID 和（可选）要设置的外观。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">idAndAppearance</span> | named string | 要滑动的 Actor 的 ID 和（可选）要设置的外观。 |
 | from | decimal list | 在场景空间中滑动 Actor 的起始位置（滑动开始位置）。描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角；Z 分量（深度）在世界空间中。未指定时，如果可见将使用当前 Actor 位置，否则使用随机场景外位置（可能从左侧或右侧边界滑入）。 |
 | <span class="command-param-required" title="必需参数：应始终指定参数">to</span> | decimal list | 在场景空间中滑动 Actor 的目标位置（滑动结束位置）。 |
 | visible | boolean | 更改 Actor 的可见性状态（显示或隐藏）。未设置且目标 Actor 被隐藏时，仍会自动显示它。 |
@@ -1769,7 +1769,7 @@ My favourite drink is {drink}!
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">path</span> | string | 要生成的预制件资源的名称（路径）。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">path</span> | string | 要生成的预制件资源的名称（路径）。 |
 | params | string list | 生成预制件时要设置的参数。需要预制件的根对象上附加 `IParameterized` 组件。 |
 | pos | decimal list | 为生成的对象设置的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。在正交模式下，使用 Z 分量（第三个成员，例如 `,,10`）按深度移动（排序）。 |
 | position | decimal list | 为生成的对象设置的位置（在世界空间中）。 |
@@ -1792,7 +1792,7 @@ My favourite drink is {drink}!
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">trackId</span> | string | 要停止的脚本轨道的标识符；未指定时停止主轨道。可用于停止使用 [@async] 命令生成的异步轨道的播放。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">trackId</span> | string | 要停止的脚本轨道的标识符；未指定时停止主轨道。可用于停止使用 [@async] 命令生成的异步轨道的播放。 |
 
 </div>
 
@@ -1829,7 +1829,7 @@ This line is only executed when navigated directly with a @gosub.
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">bgmPath</span> | string | 要停止的音乐轨道的路径。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">bgmPath</span> | string | 要停止的音乐轨道的路径。 |
 | fade | decimal | 停止播放前的音量淡出持续时间，以秒为单位（默认为 0.35）。 |
 | wait | boolean | 在播放下一个命令之前是否等待 BGM 淡出动画完成。 |
 
@@ -1855,7 +1855,7 @@ This line is only executed when navigated directly with a @gosub.
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">sfxPath</span> | string | 要停止的音效的路径。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">sfxPath</span> | string | 要停止的音效的路径。 |
 | fade | decimal | 停止播放前的音量淡出持续时间，以秒为单位（默认为 0.35）。 |
 | wait | boolean | 在播放下一个命令之前是否等待 SFX 淡出动画完成。 |
 
@@ -1911,7 +1911,7 @@ This line is only executed when navigated directly with a @gosub.
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">trackId</span> | string | 要连接的播放器轨道的唯一标识符。未指定时使用主轨道。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">trackId</span> | string | 要连接的播放器轨道的唯一标识符。未指定时使用主轨道。 |
 
 </div>
 
@@ -1945,7 +1945,7 @@ The bomb is defused!
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">name</span> | string | 附加了 'Playable Director' 组件的活动场景游戏对象的名称。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">name</span> | string | 附加了 'Playable Director' 组件的活动场景游戏对象的名称。 |
 | stop | boolean | 是否停止导演。 |
 | pause | boolean | 是否暂停导演。 |
 | resume | boolean | 是否恢复导演。 |
@@ -1983,7 +1983,7 @@ The bomb is defused!
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">text</span> | string | 为 toast 设置的文本内容。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">text</span> | string | 为 toast 设置的文本内容。 |
 | appearance | string | toast 的外观变体（游戏对象名称）。未指定时，将使用 Toast UI 预制件中设置的默认外观。 |
 | time | decimal | 隐藏 toast 之前等待的秒数。未指定时，将使用 Toast UI 预制件中默认设置的持续时间。 |
 
@@ -2012,7 +2012,7 @@ The bomb is defused!
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">transition</span> | string | 要使用的[过渡效果](/zh/guide/special-effects#过渡效果)类型（默认使用交叉淡入淡出）。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">transition</span> | string | 要使用的[过渡效果](/zh/guide/special-effects#过渡效果)类型（默认使用交叉淡入淡出）。 |
 | params | decimal list | 过渡效果的参数。 |
 | dissolve | string | [自定义溶解](/zh/guide/special-effects#过渡效果)纹理的路径（路径应相对于 `Resources` 文件夹）。仅当过渡设置为 `Custom` 模式时有效。 |
 | easing | string | 用于过渡的[缓动函数](/zh/guide/special-effects#过渡效果)名称。 |
@@ -2040,7 +2040,7 @@ Jenna: When will the damn rain stop?
 
 ## unless
 
-标记反向条件执行块的开始。嵌套行被视为块的主体，仅在条件无名参数评估为 `false` 时才会执行。有关更多信息，请参阅[条件执行](/zh/guide/scenario-scripting#条件执行)指南。
+标记反向条件执行块的开始。嵌套行被视为块的主体，仅在条件主参数评估为 `false` 时才会执行。有关更多信息，请参阅[条件执行](/zh/guide/scenario-scripting#条件执行)指南。
 
 ::: info NOTE
 此命令与 [@if] 相反且互补。
@@ -2050,7 +2050,7 @@ Jenna: When will the damn rain stop?
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">expression</span> | string | 一个[脚本表达式](/zh/guide/script-expressions)，应返回一个布尔值，决定是否执行关联的嵌套块。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">expression</span> | string | 一个[脚本表达式](/zh/guide/script-expressions)，应返回一个布尔值，决定是否执行关联的嵌套块。 |
 
 </div>
 
@@ -2076,7 +2076,7 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">sceneName</span> | string | 要卸载的场景名称。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">sceneName</span> | string | 要卸载的场景名称。 |
 
 </div>
 
@@ -2098,7 +2098,7 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">id</span> | string | 可解锁项的 ID。使用 `*` 解锁所有已注册的可解锁项。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">id</span> | string | 可解锁项的 ID。使用 `*` 解锁所有已注册的可解锁项。 |
 
 </div>
 
@@ -2115,7 +2115,7 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">voicePath</span> | string | 要播放的语音剪辑的路径。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">voicePath</span> | string | 要播放的语音剪辑的路径。 |
 | volume | decimal | 播放的音量。 |
 | group | string | 播放音频时应使用的混音器[组路径](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | authorId | string | 此语音所属的角色 Actor 的 ID。指定时且使用[按作者音量](/zh/guide/voicing#作者音量)，音量将相应调整。 |
@@ -2135,7 +2135,7 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">waitMode</span> | string | 等待条件：<br/> - `i` 用户按下继续或跳过输入键；<br/> - `0.0` 计时器（秒）；<br/> - `i0.0` 可通过继续或跳过输入键跳过的计时器。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">waitMode</span> | string | 等待条件：<br/> - `i` 用户按下继续或跳过输入键；<br/> - `0.0` 计时器（秒）；<br/> - `i0.0` 可通过继续或跳过输入键跳过的计时器。 |
 
 </div>
 
@@ -2165,7 +2165,7 @@ Jeez, what a disgusting Noise. Shut it down![wait i5][>]
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">expression</span> | string | 一个[脚本表达式](/zh/guide/script-expressions)，应返回一个布尔值，决定关联的嵌套块是否应继续循环执行。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">expression</span> | string | 一个[脚本表达式](/zh/guide/script-expressions)，应返回一个布尔值，决定关联的嵌套块是否应继续循环执行。 |
 
 </div>
 

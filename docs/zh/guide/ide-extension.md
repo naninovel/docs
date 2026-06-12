@@ -338,7 +338,7 @@ public StringParameter CharacterId;
 public StringParameter CharacterAppearance;
 ```
 
-上述每个属性都允许提供可选的 `namedIndex` 参数。将其与命名参数一起使用以指定属性应用于参数值的哪个部分。下面的示例将允许使用角色 ID 自动补全命名参数的名称部分，并使用当前键入角色的外观自动补全值部分（类似于 [@char] 命令的无名参数）：
+上述每个属性都允许提供可选的 `namedIndex` 参数。将其与命名参数一起使用以指定属性应用于参数值的哪个部分。下面的示例将允许使用角色 ID 自动补全命名参数的名称部分，并使用当前键入角色的外观自动补全值部分（类似于 [@char] 命令的主参数）：
 
 ```csharp
 [ActorContext(CharactersConfiguration.DefaultPathPrefix, 0), AppearanceContext(1)]

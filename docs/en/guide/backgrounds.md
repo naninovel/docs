@@ -16,7 +16,7 @@ In scenario scripts, backgrounds are mostly controlled with [@back] command:
 @back River.RadialBlur
 ```
 
-Backgrounds are handled a bit differently from characters to better accommodate traditional VN game flow. Most of the time you'll probably have a single background actor on scene, which will constantly transition to different appearances. To remove the hassle of repeating the same actor ID in scripts, it's possible to provide only the background appearance and transition type (optional) as a nameless parameter, assuming the `MainBackground` actor is the one to be affected. When this is not the case, the ID of the background actor can be explicitly provided via the `id` parameter:
+Backgrounds are handled a bit differently from characters to better accommodate traditional VN game flow. Most of the time you'll probably have a single background actor on scene, which will constantly transition to different appearances. To remove the hassle of repeating the same actor ID in scripts, it's possible to provide only the background appearance and transition type (optional) as a primary parameter, assuming the `MainBackground` actor is the one to be affected. When this is not the case, the ID of the background actor can be explicitly provided via the `id` parameter:
 
 ```nani
 ; Given a "CityVideo" actor with "Night" and "Day" video clips.
@@ -214,7 +214,7 @@ To create a layered background prefab, use `Create -> Naninovel -> Background ->
 
 The layered backgrounds are very similar to [layered characters](/guide/characters#layered-characters); consult the documentation for more info on how to set up and control them via scenario scripts.
 
-Don't forget that nameless parameter in [@back] command is expecting appearance and transition type (not ID and appearance as with [@char] command), so specify layer composition expressions in the following way:
+Don't forget that primary parameter in [@back] command is expecting appearance and transition type (not ID and appearance as with [@char] command), so specify layer composition expressions in the following way:
 
 ```nani
 ; Given "LayeredForest" background actor

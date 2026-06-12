@@ -338,7 +338,7 @@ public StringParameter CharacterId;
 public StringParameter CharacterAppearance;
 ```
 
-Each of the above attributes allows providing an optional `namedIndex` argument. Use it with named parameters to specify which part of the parameter value the attribute applies to. The example below will allow auto-completing the name part of the named parameter with character IDs and the value part with appearances for the currently typed character (similar to the nameless parameter of the [@char] command):
+Each of the above attributes allows providing an optional `namedIndex` argument. Use it with named parameters to specify which part of the parameter value the attribute applies to. The example below will allow auto-completing the name part of the named parameter with character IDs and the value part with appearances for the currently typed character (similar to the primary parameter of the [@char] command):
 
 ```csharp
 [ActorContext(CharactersConfiguration.DefaultPathPrefix, 0), AppearanceContext(1)]

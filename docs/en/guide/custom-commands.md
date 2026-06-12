@@ -95,17 +95,17 @@ To expose a command parameter to scenario scripts, add a public field to the com
 
 ### Parameter Alias
 
-Optionally, you can apply the `[Alias]` attribute to the field to assign an alias name to the parameter, allowing it to be used instead of the field name when referencing the parameter in scenario scripts. If you wish to make the parameter nameless, set `NamelessParameterAlias` constant (empty string) as the alias; please note that only one nameless parameter is allowed per command.
+Optionally, you can apply the `[Alias]` attribute to the field to assign an alias name to the parameter, allowing it to be used instead of the field name when referencing the parameter in scenario scripts. If you wish to make the parameter primary, set `PrimaryParameterAlias` constant (empty string) as the alias; please note that only one primary parameter is allowed per command.
 
 ```csharp
-[Alias(NamelessParameterAlias)]
-public StringParameter MyNamelessParameter;
+[Alias(PrimaryParameterAlias)]
+public StringParameter MyPrimaryParameter;
 [Alias("myParam")]
 public StringParameter MyParameter;
 ```
 
 ```nani
-@cmd "value of the nameless param" myParam:"value of 'MyParameter' param"
+@cmd "value of the primary param" myParam:"value of 'MyParameter' param"
 ```
 
 ### Required Parameter

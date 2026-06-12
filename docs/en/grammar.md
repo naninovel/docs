@@ -10,10 +10,10 @@
 @fooCommand
     @fooCommand
 @fooCommand ; Bar comment
-@fooCommand namelessParameterValue
+@fooCommand primaryParameterValue
 @cmd paramId:paramValue
-@cmd namelessParamValue paramId:paramValue
-@cmd namelessParamValue x:foo y:bar z:baz
+@cmd primaryParamValue paramId:paramValue
+@cmd primaryParamValue x:foo y:bar z:baz
 @cmd foo! !bar baz! far!
 @cmd x foo:true !bar baz:false far!
 @cmd foo x:bar y:baz ; comment
