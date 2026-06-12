@@ -95,17 +95,17 @@ public override async Awaitable Execute (ExecutionContext ctx)
 
 ### 参数别名
 
-或者，您可以将 `[Alias]` 属性应用于字段以为参数分配别名，允许在剧本脚本中引用参数时使用它代替字段名称。如果您希望使参数无名，请将 `NamelessParameterAlias` 常量（空字符串）设置为别名；请注意，每个命令只允许一个无名参数。
+或者，您可以将 `[Alias]` 属性应用于字段以为参数分配别名，允许在剧本脚本中引用参数时使用它代替字段名称。如果您希望使参数成为主参数，请将 `PrimaryParameterAlias` 常量（空字符串）设置为别名；请注意，每个命令只允许一个主参数。
 
 ```csharp
-[Alias(NamelessParameterAlias)]
-public StringParameter MyNamelessParameter;
+[Alias(PrimaryParameterAlias)]
+public StringParameter MyPrimaryParameter;
 [Alias("myParam")]
 public StringParameter MyParameter;
 ```
 
 ```nani
-@cmd "value of the nameless param" myParam:"value of 'MyParameter' param"
+@cmd "value of the primary param" myParam:"value of 'MyParameter' param"
 ```
 
 ### 必选参数

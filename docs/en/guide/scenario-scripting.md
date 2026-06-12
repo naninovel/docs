@@ -73,11 +73,11 @@ Depending on the command parameter, it can expect one of the following value typ
 | named   | A key-value pair delimited by a dot with a string key and value of one of the above types. Eg for a named integer: `foo.8`, `bar.-20`.                                                                                   |
 | list    | A comma-separated list of values of one of the above types. Eg for a string list: `foo,bar,"Lorem ipsum."`, for a decimal list: `12,-8,0.105,2`.                                                                         |
 
-### Nameless Parameters
+### Primary Parameter
 
-Some commands have a nameless parameter. A parameter is considered nameless when it can be used without specifying its identifier (name).
+Some commands have a primary parameter. A parameter is considered primary when it can be used without specifying its identifier (name).
 
-For example, the [@bgm] command expects a nameless parameter specifying the path of an audio resource to play:
+For example, the [@bgm] command expects a primary parameter specifying the path of an audio resource to play:
 
 ```nani
 @bgm PianoTheme
@@ -85,7 +85,7 @@ For example, the [@bgm] command expects a nameless parameter specifying the path
 
 "PianoTheme" here is the value of the `BgmPath` *string* parameter.
 
-There can be only one nameless parameter per command, and it should always be specified before any other parameters.
+There can be only one primary parameter per command, and it should always be specified before any other parameters.
 
 ### Optional and Required Parameters
 
@@ -353,14 +353,14 @@ The only reasons to use the full boolean form are when you want to evaluate the 
 @char Kohaku visible:{score>10}
 ```
 
-— or when a boolean parameter is nameless, e.g.:
+— or when a boolean parameter is primary, e.g.:
 
 ```nani
-; Disable camera look mode with a nameless parameter.
+; Disable camera look mode with a primary parameter.
 @look false
 ```
 
-In the latter case, you can also specify the ID of the nameless parameter and still use the flag:
+In the latter case, you can also specify the ID of the primary parameter and still use the flag:
 
 ```nani
 ; Disable camera look mode with a boolean flag.
@@ -568,7 +568,7 @@ Even if the game is saved and loaded while the animation is in progress, it will
 
 ### Async Tasks
 
-In the loop example above, you may wonder: how are we supposed to stop the loop? Or what if we'd like to await a non-looped async scenario block to finish before proceeding? Async tasks to the rescue! Use the optional nameless parameter of the [@async] command to specify a name for the async task executed by the command, which you can use later with the [@stop] or [@await] commands to either stop (cancel) or await the task:
+In the loop example above, you may wonder: how are we supposed to stop the loop? Or what if we'd like to await a non-looped async scenario block to finish before proceeding? Async tasks to the rescue! Use the optional primary parameter of the [@async] command to specify a name for the async task executed by the command, which you can use later with the [@stop] or [@await] commands to either stop (cancel) or await the task:
 
 ```nani
 ; Start the 'Quake' async task.

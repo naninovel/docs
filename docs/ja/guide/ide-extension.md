@@ -338,7 +338,7 @@ public StringParameter CharacterId;
 public StringParameter CharacterAppearance;
 ```
 
-上記の各属性では、オプションの `namedIndex` 引数を指定できます。名前付きパラメータと共に使用して、属性がパラメータ値のどの部分に適用されるかを指定します。以下の例では、名前付きパラメータの名前部分をキャラクターIDで、値部分を現在入力されているキャラクターのアピアランスで自動補完できるようにします（[@char] コマンドの名前なしパラメータと同様）。
+上記の各属性では、オプションの `namedIndex` 引数を指定できます。名前付きパラメータと共に使用して、属性がパラメータ値のどの部分に適用されるかを指定します。以下の例では、名前付きパラメータの名前部分をキャラクターIDで、値部分を現在入力されているキャラクターのアピアランスで自動補完できるようにします（[@char] コマンドのプライマリパラメータと同様）。
 
 ```csharp
 [ActorContext(CharactersConfiguration.DefaultPathPrefix, 0), AppearanceContext(1)]

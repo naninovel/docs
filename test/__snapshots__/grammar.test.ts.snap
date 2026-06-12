@@ -1012,7 +1012,7 @@ exports[`@cmd if:x="Saying \\"Stop the car\\" was a mistake." 1`] = `
 ]
 `;
 
-exports[`@cmd namelessParamValue paramId:paramValue 1`] = `
+exports[`@cmd paramId:paramValue 1`] = `
 [
   {
     "scopes": [
@@ -1021,13 +1021,6 @@ exports[`@cmd namelessParamValue paramId:paramValue 1`] = `
       "naniscript.command",
     ],
     "text": "@cmd",
-  },
-  {
-    "scopes": [
-      "source.naniscript",
-      "naniscript.command.parameter.value",
-    ],
-    "text": " namelessParamValue",
   },
   {
     "scopes": [
@@ -1047,7 +1040,7 @@ exports[`@cmd namelessParamValue paramId:paramValue 1`] = `
 ]
 `;
 
-exports[`@cmd namelessParamValue x:foo y:bar z:baz 1`] = `
+exports[`@cmd primaryParamValue paramId:paramValue 1`] = `
 [
   {
     "scopes": [
@@ -1062,7 +1055,42 @@ exports[`@cmd namelessParamValue x:foo y:bar z:baz 1`] = `
       "source.naniscript",
       "naniscript.command.parameter.value",
     ],
-    "text": " namelessParamValue",
+    "text": " primaryParamValue",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+    ],
+    "text": " paramId:",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+    ],
+    "text": "paramValue",
+  },
+]
+`;
+
+exports[`@cmd primaryParamValue x:foo y:bar z:baz 1`] = `
+[
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command",
+    ],
+    "text": "@cmd",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+    ],
+    "text": " primaryParamValue",
   },
   {
     "scopes": [
@@ -1108,34 +1136,6 @@ exports[`@cmd namelessParamValue x:foo y:bar z:baz 1`] = `
       "naniscript.command.parameter.value",
     ],
     "text": "baz",
-  },
-]
-`;
-
-exports[`@cmd paramId:paramValue 1`] = `
-[
-  {
-    "scopes": [
-      "source.naniscript",
-      "naniscript.command.parameter.value",
-      "naniscript.command",
-    ],
-    "text": "@cmd",
-  },
-  {
-    "scopes": [
-      "source.naniscript",
-      "naniscript.command.parameter.value",
-      "naniscript.command.parameter.id",
-    ],
-    "text": " paramId:",
-  },
-  {
-    "scopes": [
-      "source.naniscript",
-      "naniscript.command.parameter.value",
-    ],
-    "text": "paramValue",
   },
 ]
 `;
@@ -1444,7 +1444,7 @@ exports[`@fooCommand 1`] = `
 ]
 `;
 
-exports[`@fooCommand namelessParameterValue 1`] = `
+exports[`@fooCommand primaryParameterValue 1`] = `
 [
   {
     "scopes": [
@@ -1459,7 +1459,7 @@ exports[`@fooCommand namelessParameterValue 1`] = `
       "source.naniscript",
       "naniscript.command.parameter.value",
     ],
-    "text": " namelessParameterValue",
+    "text": " primaryParameterValue",
   },
 ]
 `;

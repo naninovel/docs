@@ -6,7 +6,7 @@ The Custom Variables feature allows you to create user-specified variables, modi
 Variable names should start with a letter and may contain only letters, numbers and underscores, for example: `score`, `Char1Score`, `my_score`. Names are case-insensitive, meaning you can create a variable named `myscore` and later refer to it as `MyScore` and vice versa.
 :::
 
-You can create and modify variables with the [@set] command (and some parameters of other commands) and use them in any parameter with an expression context, such as the nameless parameters of [@if] and [@while]. For example, the following script reroutes execution based on the value of `score`:
+You can create and modify variables with the [@set] command (and some parameters of other commands) and use them in any parameter with an expression context, such as the primary parameters of [@if] and [@while]. For example, the following script reroutes execution based on the value of `score`:
 
 ```nani
 ; Create a 'score' variable.
