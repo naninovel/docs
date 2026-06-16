@@ -52,7 +52,7 @@ Consider the [@hideAll] command, which is used to hide all visible actors in the
 @hideAll
 ```
 
-You can use the `time` *decimal* parameter to control how long the actors will fade out before becoming completely hidden:
+You can use the `time` *number* parameter to control how long the actors will fade out before becoming completely hidden:
 
 ```nani
 @hideAll time:5.5
@@ -67,11 +67,10 @@ Depending on the command parameter, it can expect one of the following value typ
 | Type    | Description                                                                                                                                                                                                              |
 |---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | string  | A simple string value, eg: `LoremIpsum`. Do not forget to wrap the string in double quotes when it contains spaces, eg: `"Lorem ipsum dolor sit amet."`.                                                                 |
-| integer | A number that is not a fraction; a whole number, eg: `1`, `150`, `-25`.                                                                                                                                                  |
-| decimal | A decimal number with a fraction delimited by a dot, eg: `1.0`, `12.08`, `-0.005`.                                                                                                                                       |
+| number  | A numeric value, either whole or fractional, eg: `1`, `-25`, `1.0`, `-0.005`.                                                                                                                           |
 | boolean | Can have one of two possible values: `true` or `false`. You can use [boolean flags](/guide/scenario-scripting#boolean-flags) instead of typing `true` and `false`, eg: `@hideAll wait!` instead of `@hideAll wait:true`. |
-| named   | A key-value pair delimited by a dot with a string key and value of one of the above types. Eg for a named integer: `foo.8`, `bar.-20`.                                                                                   |
-| list    | A comma-separated list of values of one of the above types. Eg for a string list: `foo,bar,"Lorem ipsum."`, for a decimal list: `12,-8,0.105,2`.                                                                         |
+| named   | A key-value pair delimited by a dot with a string key and value of one of the above types. Eg for a named number: `foo.8`, `bar.-20`.                                                                                    |
+| list    | A comma-separated list of values of one of the above types. Eg for a string list: `foo,bar,"Lorem ipsum."`, for a number list: `12,-8,0.105,2`.                                                                          |
 
 ### Primary Parameter
 

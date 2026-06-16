@@ -50,12 +50,12 @@ Shakes the specified actor or the main camera. Dedicated command: [@shake]
 Name | Type | Default | Description
 --- | --- | --- | ---
 ID | String | null | ID of the actor to shake. Specify `Camera` to shake main camera.
-Shake count | Integer | 3 | The number of shake iterations.
+Shake count | Number | 3 | The number of shake iterations.
 Loop | Boolean | false | When enabled, will loop the effect until stopped with [@despawn].
-Shake duration | Decimal | 0.15 | The base duration of each shake iteration, in seconds.
-Duration variation | Decimal | 0.25 | The randomized delta modifier applied to the base duration of the effect.
-Shake amplitude | Decimal | 0.5 | The base displacement amplitude of each shake iteration, in units.
-Amplitude variation | Decimal | 0.5 | The randomized delta modifier applied to the base displacement amplitude of the effect.
+Shake duration | Number | 0.15 | The base duration of each shake iteration, in seconds.
+Duration variation | Number | 0.25 | The randomized delta modifier applied to the base duration of the effect.
+Shake amplitude | Number | 0.5 | The base displacement amplitude of each shake iteration, in units.
+Amplitude variation | Number | 0.5 | The randomized delta modifier applied to the base displacement amplitude of the effect.
 Shake horizontally | Boolean | false | Whether to displace the actor horizontally (by x-axis).
 Shake vertically | Boolean | true | Whether to displace the actor vertically (by y-axis).
 
@@ -82,8 +82,8 @@ Applies a post-processing effect to the main camera simulating digital video dis
 **Start Parameters**
 Name | Type | Default | Description
 --- | --- | --- | ---
-Duration | Decimal | 1 | The duration of the effect, in seconds.
-Intensity | Decimal | 1 | The intensity of the effect, in 0.0 to 10.0 range.
+Duration | Number | 1 | The duration of the effect, in seconds.
+Intensity | Number | 1 | The intensity of the effect, in 0.0 to 10.0 range.
 
 **Examples**
 
@@ -105,15 +105,15 @@ Spawns a particle system simulating rain. Dedicated command: [@rain]
 **Start Parameters**
 Name | Type | Default | Description
 --- | --- | --- | ---
-Intensity | Decimal | 0.5 | The intensity of the rain (particles spawn rate per second).
-Fade-in time | Decimal | 5 | The particle system will gradually grow the spawn rate from 0 to the target level over the specified time, in seconds.
-X velocity | Decimal | 1 | Multiplier to the horizontal speed of the particles. Use to change angle of the rain drops.
-Y velocity | Decimal | 1 | Multiplier to the vertical speed of the particles.
+Intensity | Number | 0.5 | The intensity of the rain (particles spawn rate per second).
+Fade-in time | Number | 5 | The particle system will gradually grow the spawn rate from 0 to the target level over the specified time, in seconds.
+X velocity | Number | 1 | Multiplier to the horizontal speed of the particles. Use to change angle of the rain drops.
+Y velocity | Number | 1 | Multiplier to the vertical speed of the particles.
 
 **Stop Parameters**
 Name | Type | Default | Description
 --- | --- | --- | ---
-Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn rate from the target level to 0 over the specified time, in seconds.
+Fade-out time | Number | 5 | The particle system will gradually lower the spawn rate from the target level to 0 over the specified time, in seconds.
 
 **Examples**
 
@@ -135,13 +135,13 @@ Spawns a particle system simulating snow. Dedicated command: [@snow]
 **Start Parameters**
 Name | Type | Default | Description
 --- | --- | --- | ---
-Intensity | Decimal | 0.5 | The intensity of the snow (particles spawn rate per second).
-Fade-in time | Decimal | 5 | The particle system will gradually grow the spawn rate from 0 to the target level over the specified time, in seconds.
+Intensity | Number | 0.5 | The intensity of the snow (particles spawn rate per second).
+Fade-in time | Number | 5 | The particle system will gradually grow the spawn rate from 0 to the target level over the specified time, in seconds.
 
 **Stop Parameters**
 Name | Type | Default | Description
 --- | --- | --- | ---
-Fade-out time | Decimal | 5 | The particle system will gradually lower the spawn rate from the target level to 0 over the specified time, in seconds.
+Fade-out time | Number | 5 | The particle system will gradually lower the spawn rate from the target level to 0 over the specified time, in seconds.
 
 **Examples**
 
@@ -163,13 +163,13 @@ Spawns a particle system simulating sun shafts (rays). Dedicated command: [@sun]
 **Start Parameters**
 Name | Type | Default | Description
 --- | --- | --- | ---
-Intensity | Decimal | 0.85 | The intensity of the rays (opacity).
-Fade-in time | Decimal | 3 | The particle system will gradually grow the intensity from 0 to the target level over the specified time, in seconds.
+Intensity | Number | 0.85 | The intensity of the rays (opacity).
+Fade-in time | Number | 3 | The particle system will gradually grow the intensity from 0 to the target level over the specified time, in seconds.
 
 **Stop Parameters**
 Name | Type | Default | Description
 --- | --- | --- | ---
-Fade-out time | Decimal | 3 | The particle system will gradually lower the opacity from the target level to 0 over the specified time, in seconds.
+Fade-out time | Number | 3 | The particle system will gradually lower the opacity from the target level to 0 over the specified time, in seconds.
 
 **Examples**
 
@@ -196,14 +196,14 @@ In case you want to blur just one object (actor), consider using [Blur effect](/
 Name | Type | Default | Description
 --- | --- | --- | ---
 Focus Object Name | String | null | Name of the game object to set focus for (optional). When set, the focus will always stay on the game object and `Focus Distance` parameter will be ignored.
-Focus Distance | Decimal | 10 | Distance from the Naninovel camera to the focus point. Ignored when `Focus Object Name` is specified.
-Focal Length | Decimal | 3.75 | Amount of blur to apply for the de-focused areas; also determines focus sensitivity.
-Duration | Decimal | 1 | Interpolation time (how fast the parameters will reach the target values).
+Focus Distance | Number | 10 | Distance from the Naninovel camera to the focus point. Ignored when `Focus Object Name` is specified.
+Focal Length | Number | 3.75 | Amount of blur to apply for the de-focused areas; also determines focus sensitivity.
+Duration | Number | 1 | Interpolation time (how fast the parameters will reach the target values).
 
 **Stop Parameters**
 Name | Type | Default | Description
 --- | --- | --- | ---
-Stop Duration | Decimal | 1 | Fade-off (disable) duration for the effect parameters to reach default values where the effect is not visible.
+Stop Duration | Number | 1 | Fade-off (disable) duration for the effect parameters to reach default values where the effect is not visible.
 
 **Examples**
 
@@ -230,13 +230,13 @@ Applies a blur filter to a supported actor: backgrounds and characters of sprite
 Name | Type | Default | Description
 --- | --- | --- | ---
 Actor ID | String | MainBackground | ID of the actor to apply the effect for. The actor should have `IBlurable` interface implemented in order to support the effect.
-Intensity | Decimal | 0.5 | Intensity of the effect, in 0.0 to 1.0 range.
-Duration | Decimal | 1 | Interpolation time, in seconds (how fast the intensity will reach the target value).
+Intensity | Number | 0.5 | Intensity of the effect, in 0.0 to 1.0 range.
+Duration | Number | 1 | Interpolation time, in seconds (how fast the intensity will reach the target value).
 
 **Stop Parameters**
 Name | Type | Default | Description
 --- | --- | --- | ---
-Stop Duration | Decimal | 1 | Fade-off (disable) duration for the effect, in seconds.
+Stop Duration | Number | 1 | Fade-off (disable) duration for the effect, in seconds.
 
 **Examples**
 
@@ -292,7 +292,7 @@ If you wish to modify selected parameters, you can skip others and they'll have 
 @back River.Ripple params:,,0.02
 ```
 
-All the transition parameters are of decimal type.
+All the transition parameters are of number type.
 
 The above examples work for characters as well; just assign the transition with `via` parameter:
 
