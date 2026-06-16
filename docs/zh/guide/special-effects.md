@@ -50,12 +50,12 @@ Kohaku: 隆隆作响！
 | 名称 | 类型 | 默认 | 描述 |
 | --- | --- | --- | --- |
 | ID | String | null | 要震动的 actor 的 ID。指定 `Camera` 以震动主相机。 |
-| Shake count | Integer | 3 | 震动迭代次数。 |
+| Shake count | Number | 3 | 震动迭代次数。 |
 | Loop | Boolean | false | 启用后，将循环效果，直到使用 [@despawn] 停止。 |
-| Shake duration | Decimal | 0.15 | 每次震动迭代的基本持续时间（以秒为单位）。 |
-| Duration variation | Decimal | 0.25 | 应用于效果基本持续时间的随机增量修饰符。 |
-| Shake amplitude | Decimal | 0.5 | 每次震动迭代的基本位移幅度（以单位为单位）。 |
-| Amplitude variation | Decimal | 0.5 | 应用于效果基本位移幅度的随机增量修饰符。 |
+| Shake duration | Number | 0.15 | 每次震动迭代的基本持续时间（以秒为单位）。 |
+| Duration variation | Number | 0.25 | 应用于效果基本持续时间的随机增量修饰符。 |
+| Shake amplitude | Number | 0.5 | 每次震动迭代的基本位移幅度（以单位为单位）。 |
+| Amplitude variation | Number | 0.5 | 应用于效果基本位移幅度的随机增量修饰符。 |
 | Shake horizontally | Boolean | false | 是否水平位移 actor（按 x 轴）。 |
 | Shake vertically | Boolean | true | 是否垂直位移 actor（按 y 轴）。 |
 
@@ -82,8 +82,8 @@ Kohaku: 隆隆作响！
 **开始参数**
 | 名称 | 类型 | 默认 | 描述 |
 | --- | --- | --- | --- |
-| Duration | Decimal | 1 | 效果的持续时间（以秒为单位）。 |
-| Intensity | Decimal | 1 | 效果的强度，范围为 0.0 到 10.0。 |
+| Duration | Number | 1 | 效果的持续时间（以秒为单位）。 |
+| Intensity | Number | 1 | 效果的强度，范围为 0.0 到 10.0。 |
 
 **示例**
 
@@ -105,15 +105,15 @@ Kohaku: 隆隆作响！
 **开始参数**
 | 名称 | 类型 | 默认 | 描述 |
 | --- | --- | --- | --- |
-| Intensity | Decimal | 0.5 | 雨的强度（每秒粒子生成率）。 |
-| Fade-in time | Decimal | 5 | 粒子系统将在指定时间（以秒为单位）内逐渐将生成率从 0 增加到目标水平。 |
-| X velocity | Decimal | 1 | 粒子水平速度的乘数。用于改变雨滴的角度。 |
-| Y velocity | Decimal | 1 | 粒子垂直速度的乘数。 |
+| Intensity | Number | 0.5 | 雨的强度（每秒粒子生成率）。 |
+| Fade-in time | Number | 5 | 粒子系统将在指定时间（以秒为单位）内逐渐将生成率从 0 增加到目标水平。 |
+| X velocity | Number | 1 | 粒子水平速度的乘数。用于改变雨滴的角度。 |
+| Y velocity | Number | 1 | 粒子垂直速度的乘数。 |
 
 **停止参数**
 | 名称 | 类型 | 默认 | 描述 |
 | --- | --- | --- | --- |
-| Fade-out time | Decimal | 5 | 粒子系统将在指定时间（以秒为单位）内逐渐将生成率从目标水平降低到 0。 |
+| Fade-out time | Number | 5 | 粒子系统将在指定时间（以秒为单位）内逐渐将生成率从目标水平降低到 0。 |
 
 **示例**
 
@@ -135,13 +135,13 @@ Kohaku: 隆隆作响！
 **开始参数**
 | 名称 | 类型 | 默认 | 描述 |
 | --- | --- | --- | --- |
-| Intensity | Decimal | 0.5 | 雪的强度（每秒粒子生成率）。 |
-| Fade-in time | Decimal | 5 | 粒子系统将在指定时间（以秒为单位）内逐渐将生成率从 0 增加到目标水平。 |
+| Intensity | Number | 0.5 | 雪的强度（每秒粒子生成率）。 |
+| Fade-in time | Number | 5 | 粒子系统将在指定时间（以秒为单位）内逐渐将生成率从 0 增加到目标水平。 |
 
 **停止参数**
 | 名称 | 类型 | 默认 | 描述 |
 | --- | --- | --- | --- |
-| Fade-out time | Decimal | 5 | 粒子系统将在指定时间（以秒为单位）内逐渐将生成率从目标水平降低到 0。 |
+| Fade-out time | Number | 5 | 粒子系统将在指定时间（以秒为单位）内逐渐将生成率从目标水平降低到 0。 |
 
 **示例**
 
@@ -163,13 +163,13 @@ Kohaku: 隆隆作响！
 **开始参数**
 | 名称 | 类型 | 默认 | 描述 |
 | --- | --- | --- | --- |
-| Intensity | Decimal | 0.85 | 光线的强度（不透明度）。 |
-| Fade-in time | Decimal | 3 | 粒子系统将在指定时间（以秒为单位）内逐渐将强度从 0 增加到目标水平。 |
+| Intensity | Number | 0.85 | 光线的强度（不透明度）。 |
+| Fade-in time | Number | 3 | 粒子系统将在指定时间（以秒为单位）内逐渐将强度从 0 增加到目标水平。 |
 
 **停止参数**
 | 名称 | 类型 | 默认 | 描述 |
 | --- | --- | --- | --- |
-| Fade-out time | Decimal | 3 | 粒子系统将在指定时间（以秒为单位）内逐渐将不透明度从目标水平降低到 0。 |
+| Fade-out time | Number | 3 | 粒子系统将在指定时间（以秒为单位）内逐渐将不透明度从目标水平降低到 0。 |
 
 **示例**
 
@@ -196,14 +196,14 @@ Kohaku: 隆隆作响！
 | 名称 | 类型 | 默认 | 描述 |
 | --- | --- | --- | --- |
 | Focus Object Name | String | null | 要设置焦点的游戏对象的名称（可选）。设置后，焦点将始终停留在游戏对象上，并且 `Focus Distance` 参数将被忽略。 |
-| Focus Distance | Decimal | 10 | 从 Naninovel 相机到焦点的距离。指定 `Focus Object Name` 时忽略。 |
-| Focal Length | Decimal | 3.75 | 应用于散焦区域的模糊量；也决定焦点灵敏度。 |
-| Duration | Decimal | 1 | 插值时间（参数达到目标值的速度）。 |
+| Focus Distance | Number | 10 | 从 Naninovel 相机到焦点的距离。指定 `Focus Object Name` 时忽略。 |
+| Focal Length | Number | 3.75 | 应用于散焦区域的模糊量；也决定焦点灵敏度。 |
+| Duration | Number | 1 | 插值时间（参数达到目标值的速度）。 |
 
 **停止参数**
 | 名称 | 类型 | 默认 | 描述 |
 | --- | --- | --- | --- |
-| Stop Duration | Decimal | 1 | 效果参数达到默认值（效果不可见）的淡出（禁用）持续时间。 |
+| Stop Duration | Number | 1 | 效果参数达到默认值（效果不可见）的淡出（禁用）持续时间。 |
 
 **示例**
 
@@ -230,13 +230,13 @@ Kohaku: 隆隆作响！
 | 名称 | 类型 | 默认 | 描述 |
 | --- | --- | --- | --- |
 | Actor ID | String | MainBackground | 要应用效果的 actor 的 ID。actor 应实现 `IBlurable` 接口以支持该效果。 |
-| Intensity | Decimal | 0.5 | 效果的强度，范围为 0.0 到 1.0。 |
-| Duration | Decimal | 1 | 插值时间，以秒为单位（强度达到目标值的速度）。 |
+| Intensity | Number | 0.5 | 效果的强度，范围为 0.0 到 1.0。 |
+| Duration | Number | 1 | 插值时间，以秒为单位（强度达到目标值的速度）。 |
 
 **停止参数**
 | 名称 | 类型 | 默认 | 描述 |
 | --- | --- | --- | --- |
-| Stop Duration | Decimal | 1 | 效果的淡出（禁用）持续时间，以秒为单位。 |
+| Stop Duration | Number | 1 | 效果的淡出（禁用）持续时间，以秒为单位。 |
 
 **示例**
 
@@ -292,7 +292,7 @@ Kohaku: 隆隆作响！
 @back River.Ripple params:,,0.02
 ```
 
-所有过渡参数均为十进制类型。
+所有过渡参数均为 number 类型。
 
 上述示例也适用于角色；只需使用 `via` 参数分配过渡：
 

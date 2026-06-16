@@ -32,13 +32,13 @@
 | id | string | 选择的唯一标识符。稍后可用于使用 [@clearChoice] 删除选择。 |
 | lock | string | 选择是否应被禁用或以其他方式让玩家无法选择；有关更多信息，请参阅[选择文档](/zh/guide/choices#锁定选项)。默认情况下禁用。 |
 | button | string | 代表选择的[按钮预制件](/zh/guide/choices#选项按钮)的本地资源路径。预制件的根对象上应附加 `ChoiceHandlerButton` 组件。未指定时将使用默认按钮。 |
-| pos | decimal list | 选择按钮在选择处理程序内的本地位置（如果处理程序实现支持）。 |
+| pos | number list | 选择按钮在选择处理程序内的本地位置（如果处理程序实现支持）。 |
 | handler | string | 要为其添加选择的选择处理程序的 ID。未指定时将使用默认处理程序。 |
 | goto | string | 用户选择该选项时要跳转的路径；路径格式请参见 [@goto] 命令。当在选择下嵌套命令时忽略。 |
 | gosub | string | 用户选择该选项时要跳转的子程序路径；路径格式请参见 [@gosub] 命令。分配 `goto` 时，此参数将被忽略。当在选择下嵌套命令时忽略。 |
 | set | string | 用户选择该选项时要执行的设置表达式；语法参考请参见 [@set] 命令。当在选择下嵌套命令时忽略。 |
 | show | boolean | 是否也显示添加了选择的选择处理程序；默认启用。 |
-| time | decimal | 淡入（显示）动画的持续时间（以秒为单位）。 |
+| time | number | 淡入（显示）动画的持续时间（以秒为单位）。 |
 
 </div>
 
@@ -95,9 +95,9 @@ Lorem ipsum
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">characterPositions</span> | named decimal list | 角色 ID 到场景 X 轴位置（相对于左侧场景边界，以百分比表示）命名值的集合。位置 0 与左边界相关，100 与场景右边界相关；50 是中心。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">characterPositions</span> | named number list | 角色 ID 到场景 X 轴位置（相对于左侧场景边界，以百分比表示）命名值的集合。位置 0 与左边界相关，100 与场景右边界相关；50 是中心。 |
 | look | boolean | 执行自动排列时，控制是否也让角色看向场景原点（默认启用）。 |
-| time | decimal | 命令启动的动画持续时间，以秒为单位。 |
+| time | number | 命令启动的动画持续时间，以秒为单位。 |
 | wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
 </div>
@@ -196,20 +196,20 @@ Lorem ipsum
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">appearanceAndTransition</span> | named string | 要为修改后的背景设置的外观（或[姿势](/zh/guide/backgrounds#姿势-poses)）和要使用的[过渡效果](/zh/guide/special-effects#过渡效果)类型。未指定过渡时，默认使用交叉淡入淡出效果。 |
-| pos | decimal list | 为修改后的 Actor 设置的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。在正交模式下，使用 Z 分量（第三个成员，例如 `,,10`）按深度移动（排序）。 |
+| pos | number list | 为修改后的 Actor 设置的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。在正交模式下，使用 Z 分量（第三个成员，例如 `,,10`）按深度移动（排序）。 |
 | id | string | 要修改的 Actor 的 ID；指定 `*` 以影响所有可见 Actor。 |
 | appearance | string | 为修改后的 Actor 设置的外观。 |
 | pose | string | 为修改后的 Actor 设置的姿势。 |
 | via | string | 要使用的[过渡效果](/zh/guide/special-effects#过渡效果)类型（默认使用交叉淡入淡出）。 |
-| params | decimal list | 过渡效果的参数。 |
+| params | number list | 过渡效果的参数。 |
 | dissolve | string | [自定义溶解](/zh/guide/special-effects#过渡效果)纹理的路径（路径应相对于 `Resources` 文件夹）。仅当过渡设置为 `Custom` 模式时有效。 |
 | visible | boolean | 为修改后的 Actor 设置的可见性状态。 |
-| position | decimal list | 为修改后的 Actor 设置的位置（在世界空间中）。在正交模式下，使用 Z 分量（第三个成员）按深度移动（排序）。 |
-| rotation | decimal list | 为修改后的 Actor 设置的旋转。 |
-| scale | decimal list | 为修改后的 Actor 设置的缩放。 |
+| position | number list | 为修改后的 Actor 设置的位置（在世界空间中）。在正交模式下，使用 Z 分量（第三个成员）按深度移动（排序）。 |
+| rotation | number list | 为修改后的 Actor 设置的旋转。 |
+| scale | number list | 为修改后的 Actor 设置的缩放。 |
 | tint | string | 要应用的色调颜色。<br><br>以 `#` 开头的字符串将按以下方式解析为十六进制：`#RGB`（变为 `RRGGBB`）、`#RRGGBB`、`#RGBA`（变为 `RRGGBBAA`）、`#RRGGBBAA`；未指定 alpha 时将默认为 `FF`。<br><br>不以 `#` 开头的字符串将被解析为文字颜色，支持以下颜色：red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta。 |
 | easing | string | 要应用的[缓动函数](/zh/guide/special-effects#过渡效果)名称。未指定时，将使用配置中设置的默认函数。 |
-| time | decimal | 命令启动的动画持续时间，以秒为单位。 |
+| time | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画将在开始动画到新目标之前立即完成。 |
 | wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
@@ -244,11 +244,11 @@ Lorem ipsum
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">bgmPath</span> | string | 要播放的音乐轨道的路径。 |
 | intro | string | 在主轨道之前播放一次的介绍音乐轨道的路径（不受循环参数影响）。 |
-| volume | decimal | 音乐轨道的音量。 |
+| volume | number | 音乐轨道的音量。 |
 | loop | boolean | 轨道结束后是否从头开始播放。 |
-| fade | decimal | 开始播放时的音量淡入持续时间，以秒为单位（默认为 0.0）；修改正在播放的轨道时无效。 |
+| fade | number | 开始播放时的音量淡入持续时间，以秒为单位（默认为 0.0）；修改正在播放的轨道时无效。 |
 | group | string | 播放音频时应使用的混音器[组路径](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
-| time | decimal | 修改的持续时间（以秒为单位）。 |
+| time | number | 修改的持续时间（以秒为单位）。 |
 | wait | boolean | 在播放下一个命令之前是否等待 BGM 淡入淡出动画完成。 |
 
 </div>
@@ -281,8 +281,8 @@ Actor 应实现 `IBlurable` 接口以支持该效果。
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">actorId</span> | string | 要应用效果的 Actor 的 ID；如果发现多个具有相同 ID 的 Actor（例如，一个角色和一个打印机），将仅影响第一个发现的 Actor。未指定时，应用于主背景。 |
-| power | decimal | 效果的强度，范围为 0.0 到 1.0。默认为 0.5。设置为 0 以禁用（取消生成）效果。 |
-| time | decimal | 参数达到目标值所需的时间，以秒为单位。默认为 1.0。 |
+| power | number | 效果的强度，范围为 0.0 到 1.0。默认为 0.5。设置为 0 以禁用（取消生成）效果。 |
+| time | number | 参数达到目标值所需的时间，以秒为单位。默认为 1.0。 |
 | wait | boolean | 在播放下一个命令之前是否等待效果预热动画。 |
 
 </div>
@@ -308,9 +308,9 @@ Actor 应实现 `IBlurable` 接口以支持该效果。
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">focus</span> | string | 要设置焦点的游戏对象名称（可选）。设置后，焦点将始终停留在游戏对象上，而 `dist` 参数将被忽略。 |
-| dist | decimal | 从 Naninovel 摄像机到焦点的距离（以单位为单位）。指定 `focus` 参数时忽略。默认为 10。 |
-| power | decimal | 应用于散焦区域的模糊量；也决定了焦点灵敏度。默认为 3.75。设置为 0 以禁用（取消生成）效果。 |
-| time | decimal | 参数达到目标值所需的时间，以秒为单位。默认为 1.0。 |
+| dist | number | 从 Naninovel 摄像机到焦点的距离（以单位为单位）。指定 `focus` 参数时忽略。默认为 10。 |
+| power | number | 应用于散焦区域的模糊量；也决定了焦点灵敏度。默认为 3.75。设置为 0 以禁用（取消生成）效果。 |
+| time | number | 参数达到目标值所需的时间，以秒为单位。默认为 1.0。 |
 | wait | boolean | 在播放下一个命令之前是否等待效果预热动画。 |
 
 </div>
@@ -333,15 +333,15 @@ Actor 应实现 `IBlurable` 接口以支持该效果。
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| offset | decimal list | 本地摄像机位置按 X,Y,Z 轴偏移（以单位为单位）。 |
-| roll | decimal | 本地摄像机按 Z 轴旋转的角度（0.0 到 360.0 或 -180.0 到 180.0）。与 `rotation` 参数的第三个分量相同；指定 `rotation` 时忽略。 |
-| rotation | decimal list | 本地摄像机按 X,Y,Z 轴旋转的角度（0.0 到 360.0 或 -180.0 到 180.0）。 |
-| zoom | decimal | 相对摄像机缩放（正交大小或视野，取决于渲染模式），范围为 0.0（无缩放）到 1.0（全缩放）。 |
+| offset | number list | 本地摄像机位置按 X,Y,Z 轴偏移（以单位为单位）。 |
+| roll | number | 本地摄像机按 Z 轴旋转的角度（0.0 到 360.0 或 -180.0 到 180.0）。与 `rotation` 参数的第三个分量相同；指定 `rotation` 时忽略。 |
+| rotation | number list | 本地摄像机按 X,Y,Z 轴旋转的角度（0.0 到 360.0 或 -180.0 到 180.0）。 |
+| zoom | number | 相对摄像机缩放（正交大小或视野，取决于渲染模式），范围为 0.0（无缩放）到 1.0（全缩放）。 |
 | ortho | boolean | 摄像机应以正交 (true) 还是透视 (false) 模式渲染。 |
 | toggle | string list | 要切换（如果禁用则启用，反之亦然）的组件名称。组件应附加到与摄像机相同的游戏对象。这可用于切换[自定义后处理效果](/zh/guide/special-effects#自定义相机效果)。使用 `*` 影响附加到摄像机对象的所有组件。 |
 | set | named boolean list | 要启用或禁用的组件名称。组件应附加到与摄像机相同的游戏对象。这可用于显式启用或禁用[自定义后处理效果](/zh/guide/special-effects#自定义相机效果)。指定的组件启用状态将覆盖 `toggle` 参数的效果。使用 `*` 影响附加到摄像机对象的所有组件。 |
 | easing | string | 要应用的[缓动函数](/zh/guide/special-effects#过渡效果)名称。未指定时，将使用配置中设置的默认函数。 |
-| time | decimal | 命令启动的动画持续时间，以秒为单位。 |
+| time | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画将在开始动画到新目标之前立即完成。 |
 | wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
@@ -384,20 +384,20 @@ Actor 应实现 `IBlurable` 接口以支持该效果。
 | <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">idAndAppearance</span> | named string | 要修改的角色的 ID（指定 `*` 以影响所有可见角色）和要设置的外观（或[姿势](/zh/guide/characters#姿势-poses)）。未指定外观时，将使用 `Default`（如果存在）或随机外观。 |
 | look | string | Actor 的观看方向；支持的值：left, right, center。 |
 | avatar | string | 为角色分配的[头像纹理](/zh/guide/characters#头像纹理)的名称（路径）。使用 `none` 从角色中移除（取消分配）头像纹理。 |
-| pos | decimal list | 为修改后的 Actor 设置的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。在正交模式下，使用 Z 分量（第三个成员，例如 `,,10`）按深度移动（排序）。 |
+| pos | number list | 为修改后的 Actor 设置的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。在正交模式下，使用 Z 分量（第三个成员，例如 `,,10`）按深度移动（排序）。 |
 | id | string | 要修改的 Actor 的 ID；指定 `*` 以影响所有可见 Actor。 |
 | appearance | string | 为修改后的 Actor 设置的外观。 |
 | pose | string | 为修改后的 Actor 设置的姿势。 |
 | via | string | 要使用的[过渡效果](/zh/guide/special-effects#过渡效果)类型（默认使用交叉淡入淡出）。 |
-| params | decimal list | 过渡效果的参数。 |
+| params | number list | 过渡效果的参数。 |
 | dissolve | string | [自定义溶解](/zh/guide/special-effects#过渡效果)纹理的路径（路径应相对于 `Resources` 文件夹）。仅当过渡设置为 `Custom` 模式时有效。 |
 | visible | boolean | 为修改后的 Actor 设置的可见性状态。 |
-| position | decimal list | 为修改后的 Actor 设置的位置（在世界空间中）。在正交模式下，使用 Z 分量（第三个成员）按深度移动（排序）。 |
-| rotation | decimal list | 为修改后的 Actor 设置的旋转。 |
-| scale | decimal list | 为修改后的 Actor 设置的缩放。 |
+| position | number list | 为修改后的 Actor 设置的位置（在世界空间中）。在正交模式下，使用 Z 分量（第三个成员）按深度移动（排序）。 |
+| rotation | number list | 为修改后的 Actor 设置的旋转。 |
+| scale | number list | 为修改后的 Actor 设置的缩放。 |
 | tint | string | 要应用的色调颜色。<br><br>以 `#` 开头的字符串将按以下方式解析为十六进制：`#RGB`（变为 `RRGGBB`）、`#RRGGBB`、`#RGBA`（变为 `RRGGBBAA`）、`#RRGGBBAA`；未指定 alpha 时将默认为 `FF`。<br><br>不以 `#` 开头的字符串将被解析为文字颜色，支持以下颜色：red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta。 |
 | easing | string | 要应用的[缓动函数](/zh/guide/special-effects#过渡效果)名称。未指定时，将使用配置中设置的默认函数。 |
-| time | decimal | 命令启动的动画持续时间，以秒为单位。 |
+| time | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画将在开始动画到新目标之前立即完成。 |
 | wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
@@ -438,13 +438,13 @@ Actor 应实现 `IBlurable` 接口以支持该效果。
 | id | string | 选择的唯一标识符。稍后可用于使用 [@clearChoice] 删除选择。 |
 | lock | string | 选择是否应被禁用或以其他方式让玩家无法选择；有关更多信息，请参阅[选择文档](/zh/guide/choices#锁定选项)。默认情况下禁用。 |
 | button | string | 代表选择的[按钮预制件](/zh/guide/choices#选项按钮)的本地资源路径。预制件的根对象上应附加 `ChoiceHandlerButton` 组件。未指定时将使用默认按钮。 |
-| pos | decimal list | 选择按钮在选择处理程序内的本地位置（如果处理程序实现支持）。 |
+| pos | number list | 选择按钮在选择处理程序内的本地位置（如果处理程序实现支持）。 |
 | handler | string | 要为其添加选择的选择处理程序的 ID。未指定时将使用默认处理程序。 |
 | goto | string | 用户选择该选项时要跳转的路径；路径格式请参见 [@goto] 命令。当在选择下嵌套命令时忽略。 |
 | gosub | string | 用户选择该选项时要跳转的子程序路径；路径格式请参见 [@gosub] 命令。分配 `goto` 时，此参数将被忽略。当在选择下嵌套命令时忽略。 |
 | set | string | 用户选择该选项时要执行的设置表达式；语法参考请参见 [@set] 命令。当在选择下嵌套命令时忽略。 |
 | show | boolean | 是否也显示添加了选择的选择处理程序；默认启用。 |
-| time | decimal | 淡入（显示）动画的持续时间（以秒为单位）。 |
+| time | number | 淡入（显示）动画的持续时间（以秒为单位）。 |
 
 </div>
 
@@ -496,15 +496,15 @@ Continue executing this script or ...?[>]
 | appearance | string | 为修改后的 Actor 设置的外观。 |
 | pose | string | 为修改后的 Actor 设置的姿势。 |
 | via | string | 要使用的[过渡效果](/zh/guide/special-effects#过渡效果)类型（默认使用交叉淡入淡出）。 |
-| params | decimal list | 过渡效果的参数。 |
+| params | number list | 过渡效果的参数。 |
 | dissolve | string | [自定义溶解](/zh/guide/special-effects#过渡效果)纹理的路径（路径应相对于 `Resources` 文件夹）。仅当过渡设置为 `Custom` 模式时有效。 |
 | visible | boolean | 为修改后的 Actor 设置的可见性状态。 |
-| position | decimal list | 为修改后的 Actor 设置的位置（在世界空间中）。在正交模式下，使用 Z 分量（第三个成员）按深度移动（排序）。 |
-| rotation | decimal list | 为修改后的 Actor 设置的旋转。 |
-| scale | decimal list | 为修改后的 Actor 设置的缩放。 |
+| position | number list | 为修改后的 Actor 设置的位置（在世界空间中）。在正交模式下，使用 Z 分量（第三个成员）按深度移动（排序）。 |
+| rotation | number list | 为修改后的 Actor 设置的旋转。 |
+| scale | number list | 为修改后的 Actor 设置的缩放。 |
 | tint | string | 要应用的色调颜色。<br><br>以 `#` 开头的字符串将按以下方式解析为十六进制：`#RGB`（变为 `RRGGBB`）、`#RRGGBB`、`#RGBA`（变为 `RRGGBBAA`）、`#RRGGBBAA`；未指定 alpha 时将默认为 `FF`。<br><br>不以 `#` 开头的字符串将被解析为文字颜色，支持以下颜色：red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta。 |
 | easing | string | 要应用的[缓动函数](/zh/guide/special-effects#过渡效果)名称。未指定时，将使用配置中设置的默认函数。 |
-| time | decimal | 命令启动的动画持续时间，以秒为单位。 |
+| time | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画将在开始动画到新目标之前立即完成。 |
 | wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
@@ -658,8 +658,8 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| time | decimal | 效果的持续时间，以秒为单位；默认为 1。 |
-| power | decimal | 效果的强度，范围为 0.0 到 10.0；默认为 1。 |
+| time | number | 效果的持续时间，以秒为单位；默认为 1。 |
+| power | number | 效果的强度，范围为 0.0 到 10.0；默认为 1。 |
 | wait | boolean | 在播放下一个命令之前是否等待效果预热动画。 |
 
 </div>
@@ -770,7 +770,7 @@ You are victorious!
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">actorIds</span> | string list | 要隐藏的 Actor 的 ID。 |
-| time | decimal | 命令启动的动画持续时间，以秒为单位。 |
+| time | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画将在开始动画到新目标之前立即完成。 |
 | wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
@@ -792,7 +792,7 @@ You are victorious!
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| time | decimal | 命令启动的动画持续时间，以秒为单位。 |
+| time | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画将在开始动画到新目标之前立即完成。 |
 | wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
@@ -811,7 +811,7 @@ You are victorious!
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| time | decimal | 命令启动的动画持续时间，以秒为单位。 |
+| time | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画将在开始动画到新目标之前立即完成。 |
 | wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
@@ -831,7 +831,7 @@ You are victorious!
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">printerId</span> | string | 要使用的打印机 Actor 的 ID。未指定时将使用默认值。 |
-| time | decimal | 命令启动的动画持续时间，以秒为单位。 |
+| time | number | 命令启动的动画持续时间，以秒为单位。 |
 | wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
 </div>
@@ -858,7 +858,7 @@ You are victorious!
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">uINames</span> | string list | 要隐藏的 UI 元素的名称。 |
 | allowToggle | boolean | 隐藏整个 UI 时，控制是否允许用户使用热键或通过单击屏幕上的任意位置重新显示 UI（默认为 false）。隐藏特定 UI 时无效。 |
-| time | decimal | 隐藏动画的持续时间（以秒为单位）。未指定时，将使用特定于 UI 的持续时间。 |
+| time | number | 隐藏动画的持续时间（以秒为单位）。未指定时，将使用特定于 UI 的持续时间。 |
 | wait | boolean | 在播放下一个命令之前是否等待 UI 淡出动画。 |
 
 </div>
@@ -1020,8 +1020,8 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">enable</span> | boolean | 是否启用或禁用摄像机观看模式。默认值：true。 |
-| zone | decimal list | 距离初始摄像机位置的 X,Y 大小（以单位为单位）的边界框，描述摄像机可以移动多远。默认值：5.0,3.0 |
-| speed | decimal list | 按 X,Y 轴的摄像机移动速度（灵敏度）。默认值：1.5,1.0 |
+| zone | number list | 距离初始摄像机位置的 X,Y 大小（以单位为单位）的边界框，描述摄像机可以移动多远。默认值：5.0,3.0 |
+| speed | number list | 按 X,Y 轴的摄像机移动速度（灵敏度）。默认值：1.5,1.0 |
 | gravity | boolean | 当观看输入不活动时（例如，鼠标未移动或模拟摇杆处于默认位置），是否自动将摄像机移动到初始位置。默认值：false。 |
 
 </div>
@@ -1053,7 +1053,7 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">movieName</span> | string | 要播放的电影资源的名称。 |
-| time | decimal | 淡入淡出动画的持续时间（以秒为单位）。未指定时，将使用电影配置中设置的淡入淡出持续时间。 |
+| time | number | 淡入淡出动画的持续时间（以秒为单位）。未指定时，将使用电影配置中设置的淡入淡出持续时间。 |
 | block | boolean | 是否在播放电影时阻止与游戏的交互，防止玩家跳过它。 |
 
 </div>
@@ -1116,12 +1116,12 @@ Marks a branch of a conditional execution block, which is executed in case condi
 | printer | string | 要使用的打印机 Actor 的 ID。未指定时将使用默认值。 |
 | author | string | 应与打印消息关联的 Actor 的 ID。追加时忽略。指定 `*` 或使用 `,` 分隔多个 Actor ID 以使所有/选定的角色成为文本的作者；当与 `as` 参数结合使用以表示多个角色同时说话时很有用。 |
 | as | string | 指定时，将使用标签代替作者 ID（或关联的显示名称）在打印消息时在文本打印机中表示作者姓名。用于覆盖几条消息的默认名称或表示多个作者同时说话，而不会触发文本打印机的作者特定行为，例如消息颜色或头像。 |
-| speed | decimal | 文本显示速度倍增器；应为正数或零。设置为 1 将产生默认速度。 |
+| speed | number | 文本显示速度倍增器；应为正数或零。设置为 1 将产生默认速度。 |
 | reset | boolean | 是否在执行打印任务之前重置打印机的文本。默认值由打印机 Actor 配置菜单中的 `Auto Reset` 属性控制。 |
 | default | boolean | 是否在执行打印任务之前使打印机成为默认打印机并隐藏其他打印机。默认值由打印机 Actor 配置菜单中的 `Auto Default` 属性控制。 |
 | waitInput | boolean | 完成打印任务后是否等待用户输入。默认值由打印机 Actor 配置菜单中的 `Auto Wait` 属性控制。 |
 | append | boolean | 是否将打印的文本追加到最后一条打印机消息。 |
-| fadeTime | decimal | 控制与此命令关联的打印机显示和隐藏动画的持续时间（以秒为单位）。每个打印机的默认值在 Actor 配置中设置。 |
+| fadeTime | number | 控制与此命令关联的打印机显示和隐藏动画的持续时间（以秒为单位）。每个打印机的默认值在 Actor 配置中设置。 |
 | wait | boolean | 在播放下一个命令之前是否等待文本显示并提示完成（等待输入）。 |
 
 </div>
@@ -1157,20 +1157,20 @@ Marks a branch of a conditional execution block, which is executed in case condi
 | default | boolean | 是否将打印机设为默认。未指定 `printer` 参数时，默认打印机将受所有打印机相关命令的影响。 |
 | hideOther | boolean | 是否隐藏所有其他打印机。 |
 | anchor | boolean | 是否允许通过 Actor 锚点自动定位打印机。在手动定位打印机后为支持的打印机启用以恢复自动定位。请注意，当使用此命令分配显式位置时，锚定将自动禁用。 |
-| pos | decimal list | 为修改后的 Actor 设置的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。在正交模式下，使用 Z 分量（第三个成员，例如 `,,10`）按深度移动（排序）。 |
+| pos | number list | 为修改后的 Actor 设置的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。在正交模式下，使用 Z 分量（第三个成员，例如 `,,10`）按深度移动（排序）。 |
 | id | string | 要修改的 Actor 的 ID；指定 `*` 以影响所有可见 Actor。 |
 | appearance | string | 为修改后的 Actor 设置的外观。 |
 | pose | string | 为修改后的 Actor 设置的姿势。 |
 | via | string | 要使用的[过渡效果](/zh/guide/special-effects#过渡效果)类型（默认使用交叉淡入淡出）。 |
-| params | decimal list | 过渡效果的参数。 |
+| params | number list | 过渡效果的参数。 |
 | dissolve | string | [自定义溶解](/zh/guide/special-effects#过渡效果)纹理的路径（路径应相对于 `Resources` 文件夹）。仅当过渡设置为 `Custom` 模式时有效。 |
 | visible | boolean | 为修改后的 Actor 设置的可见性状态。 |
-| position | decimal list | 为修改后的 Actor 设置的位置（在世界空间中）。在正交模式下，使用 Z 分量（第三个成员）按深度移动（排序）。 |
-| rotation | decimal list | 为修改后的 Actor 设置的旋转。 |
-| scale | decimal list | 为修改后的 Actor 设置的缩放。 |
+| position | number list | 为修改后的 Actor 设置的位置（在世界空间中）。在正交模式下，使用 Z 分量（第三个成员）按深度移动（排序）。 |
+| rotation | number list | 为修改后的 Actor 设置的旋转。 |
+| scale | number list | 为修改后的 Actor 设置的缩放。 |
 | tint | string | 要应用的色调颜色。<br><br>以 `#` 开头的字符串将按以下方式解析为十六进制：`#RGB`（变为 `RRGGBB`）、`#RRGGBB`、`#RGBA`（变为 `RRGGBBAA`）、`#RRGGBBAA`；未指定 alpha 时将默认为 `FF`。<br><br>不以 `#` 开头的字符串将被解析为文字颜色，支持以下颜色：red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta。 |
 | easing | string | 要应用的[缓动函数](/zh/guide/special-effects#过渡效果)名称。未指定时，将使用配置中设置的默认函数。 |
-| time | decimal | 命令启动的动画持续时间，以秒为单位。 |
+| time | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画将在开始动画到新目标之前立即完成。 |
 | wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
@@ -1238,14 +1238,14 @@ You've picked two.
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| power | decimal | 雨的强度（每秒粒子生成率）；默认为 500。设置为 0 以禁用（取消生成）效果。 |
-| time | decimal | 粒子系统将在指定时间内（以秒为单位）逐渐将生成率增加到目标水平。 |
-| xSpeed | decimal | 粒子水平速度的倍增器。用于改变雨滴的角度。 |
-| ySpeed | decimal | 粒子垂直速度的倍增器。 |
-| pos | decimal list | 为生成的效果游戏对象设置的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。在正交模式下，使用 Z 分量（第三个成员，例如 `,,10`）按深度移动（排序）。 |
-| position | decimal list | 为生成的效果游戏对象设置的位置（在世界空间中）。 |
-| rotation | decimal list | 为生成的效果游戏对象设置的旋转。 |
-| scale | decimal list | 为生成的效果游戏对象设置的缩放。 |
+| power | number | 雨的强度（每秒粒子生成率）；默认为 500。设置为 0 以禁用（取消生成）效果。 |
+| time | number | 粒子系统将在指定时间内（以秒为单位）逐渐将生成率增加到目标水平。 |
+| xSpeed | number | 粒子水平速度的倍增器。用于改变雨滴的角度。 |
+| ySpeed | number | 粒子垂直速度的倍增器。 |
+| pos | number list | 为生成的效果游戏对象设置的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。在正交模式下，使用 Z 分量（第三个成员，例如 `,,10`）按深度移动（排序）。 |
+| position | number list | 为生成的效果游戏对象设置的位置（在世界空间中）。 |
+| rotation | number list | 为生成的效果游戏对象设置的旋转。 |
+| scale | number list | 为生成的效果游戏对象设置的缩放。 |
 | wait | boolean | 在播放下一个命令之前是否等待效果预热动画。 |
 
 </div>
@@ -1265,7 +1265,7 @@ You've picked two.
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| weight | decimal list | 嵌套命令的自定义概率，范围为 0.0 到 1.0。默认情况下，选择所有命令的概率相等。 |
+| weight | number list | 嵌套命令的自定义概率，范围为 0.0 到 1.0。默认情况下，选择所有命令的概率相等。 |
 
 </div>
 
@@ -1524,11 +1524,11 @@ My favourite drink is {drink}!
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">sfxPath</span> | string | 要播放的音效资源的路径。 |
-| volume | decimal | 音效的音量。 |
+| volume | number | 音效的音量。 |
 | loop | boolean | 是否循环播放音效。 |
-| fade | decimal | 开始播放时的音量淡入持续时间，以秒为单位（默认为 0.0）；修改正在播放的轨道时无效。 |
+| fade | number | 开始播放时的音量淡入持续时间，以秒为单位（默认为 0.0）；修改正在播放的轨道时无效。 |
 | group | string | 播放音频时应使用的混音器[组路径](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
-| time | decimal | 修改的持续时间（以秒为单位）。 |
+| time | number | 修改的持续时间（以秒为单位）。 |
 | wait | boolean | 在播放下一个命令之前是否等待 SFX 淡入动画完成。 |
 
 </div>
@@ -1554,7 +1554,7 @@ My favourite drink is {drink}!
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">sfxPath</span> | string | 要播放的音效资源的路径。 |
-| volume | decimal | 音效的音量。 |
+| volume | number | 音效的音量。 |
 | restart | boolean | 如果已在播放，是否从头开始播放音频。 |
 | additive | boolean | 是否允许播放同一剪辑的多个实例；当启用 `restart` 时无效。 |
 | group | string | 播放音频时应使用的混音器[组路径](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
@@ -1579,12 +1579,12 @@ My favourite drink is {drink}!
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">actorId</span> | string | 要摇动的 Actor 的 ID。如果发现多个具有相同 ID 的 Actor（例如，一个角色和一个打印机），将仅影响第一个发现的 Actor。未指定时，将摇动默认文本打印机。要摇动主摄像机，请使用 `Camera` 关键字。 |
-| count | integer | 摇动迭代次数。启用 `loop` 时忽略。 |
+| count | number | 摇动迭代次数。启用 `loop` 时忽略。 |
 | loop | boolean | 是否继续摇动直到禁用。 |
-| time | decimal | 每次摇动迭代的基本持续时间，以秒为单位。 |
-| deltaTime | decimal | 应用于效果基本持续时间的随机化修饰符。 |
-| power | decimal | 每次摇动迭代的基本位移幅度，以单位为单位。 |
-| deltaPower | decimal | 应用于基本位移幅度的随机化修饰符。 |
+| time | number | 每次摇动迭代的基本持续时间，以秒为单位。 |
+| deltaTime | number | 应用于效果基本持续时间的随机化修饰符。 |
+| power | number | 每次摇动迭代的基本位移幅度，以单位为单位。 |
+| deltaPower | number | 应用于基本位移幅度的随机化修饰符。 |
 | hor | boolean | 是否水平（按 x 轴）置换 Actor。 |
 | ver | boolean | 是否垂直（按 y 轴）置换 Actor。 |
 | wait | boolean | 在播放下一个命令之前是否等待效果预热动画。 |
@@ -1614,7 +1614,7 @@ My favourite drink is {drink}!
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">actorIds</span> | string list | 要显示的 Actor 的 ID。 |
-| time | decimal | 命令启动的动画持续时间，以秒为单位。 |
+| time | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画将在开始动画到新目标之前立即完成。 |
 | wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
@@ -1637,7 +1637,7 @@ My favourite drink is {drink}!
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">printerId</span> | string | 要使用的打印机 Actor 的 ID。未指定时将使用默认值。 |
-| time | decimal | 命令启动的动画持续时间，以秒为单位。 |
+| time | number | 命令启动的动画持续时间，以秒为单位。 |
 | wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
 </div>
@@ -1659,7 +1659,7 @@ My favourite drink is {drink}!
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">uINames</span> | string list | 要显示的 UI 资源的名称。 |
-| time | decimal | 显示动画的持续时间（以秒为单位）。未指定时，将使用特定于 UI 的持续时间。 |
+| time | number | 显示动画的持续时间（以秒为单位）。未指定时，将使用特定于 UI 的持续时间。 |
 | wait | boolean | 在播放下一个命令之前是否等待 UI 淡入动画。 |
 
 </div>
@@ -1709,11 +1709,11 @@ My favourite drink is {drink}!
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">idAndAppearance</span> | named string | 要滑动的 Actor 的 ID 和（可选）要设置的外观。 |
-| from | decimal list | 在场景空间中滑动 Actor 的起始位置（滑动开始位置）。描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角；Z 分量（深度）在世界空间中。未指定时，如果可见将使用当前 Actor 位置，否则使用随机场景外位置（可能从左侧或右侧边界滑入）。 |
-| <span class="command-param-required" title="必需参数：应始终指定参数">to</span> | decimal list | 在场景空间中滑动 Actor 的目标位置（滑动结束位置）。 |
+| from | number list | 在场景空间中滑动 Actor 的起始位置（滑动开始位置）。描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角；Z 分量（深度）在世界空间中。未指定时，如果可见将使用当前 Actor 位置，否则使用随机场景外位置（可能从左侧或右侧边界滑入）。 |
+| <span class="command-param-required" title="必需参数：应始终指定参数">to</span> | number list | 在场景空间中滑动 Actor 的目标位置（滑动结束位置）。 |
 | visible | boolean | 更改 Actor 的可见性状态（显示或隐藏）。未设置且目标 Actor 被隐藏时，仍会自动显示它。 |
 | easing | string | 要应用的[缓动函数](/zh/guide/special-effects#过渡效果)名称。未指定时，将使用配置中设置的默认函数。 |
-| time | decimal | 命令启动的动画持续时间，以秒为单位。 |
+| time | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画将在开始动画到新目标之前立即完成。 |
 | wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
@@ -1740,12 +1740,12 @@ My favourite drink is {drink}!
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| power | decimal | 雪的强度（每秒粒子生成率）；默认为 100。设置为 0 以禁用（取消生成）效果。 |
-| time | decimal | 粒子系统将在指定时间内（以秒为单位）逐渐将生成率增加到目标水平。 |
-| pos | decimal list | 为生成的效果游戏对象设置的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。在正交模式下，使用 Z 分量（第三个成员，例如 `,,10`）按深度移动（排序）。 |
-| position | decimal list | 为生成的效果游戏对象设置的位置（在世界空间中）。 |
-| rotation | decimal list | 为生成的效果游戏对象设置的旋转。 |
-| scale | decimal list | 为生成的效果游戏对象设置的缩放。 |
+| power | number | 雪的强度（每秒粒子生成率）；默认为 100。设置为 0 以禁用（取消生成）效果。 |
+| time | number | 粒子系统将在指定时间内（以秒为单位）逐渐将生成率增加到目标水平。 |
+| pos | number list | 为生成的效果游戏对象设置的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。在正交模式下，使用 Z 分量（第三个成员，例如 `,,10`）按深度移动（排序）。 |
+| position | number list | 为生成的效果游戏对象设置的位置（在世界空间中）。 |
+| rotation | number list | 为生成的效果游戏对象设置的旋转。 |
+| scale | number list | 为生成的效果游戏对象设置的缩放。 |
 | wait | boolean | 在播放下一个命令之前是否等待效果预热动画。 |
 
 </div>
@@ -1771,10 +1771,10 @@ My favourite drink is {drink}!
 | --- | --- | --- |
 | <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">path</span> | string | 要生成的预制件资源的名称（路径）。 |
 | params | string list | 生成预制件时要设置的参数。需要预制件的根对象上附加 `IParameterized` 组件。 |
-| pos | decimal list | 为生成的对象设置的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。在正交模式下，使用 Z 分量（第三个成员，例如 `,,10`）按深度移动（排序）。 |
-| position | decimal list | 为生成的对象设置的位置（在世界空间中）。 |
-| rotation | decimal list | 为生成的对象设置的旋转。 |
-| scale | decimal list | 为生成的对象设置的缩放。 |
+| pos | number list | 为生成的对象设置的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。在正交模式下，使用 Z 分量（第三个成员，例如 `,,10`）按深度移动（排序）。 |
+| position | number list | 为生成的对象设置的位置（在世界空间中）。 |
+| rotation | number list | 为生成的对象设置的旋转。 |
+| scale | number list | 为生成的对象设置的缩放。 |
 | wait | boolean | 如果实现了 `IAwaitable` 接口，是否等待生成预热。 |
 
 </div>
@@ -1830,7 +1830,7 @@ This line is only executed when navigated directly with a @gosub.
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">bgmPath</span> | string | 要停止的音乐轨道的路径。 |
-| fade | decimal | 停止播放前的音量淡出持续时间，以秒为单位（默认为 0.35）。 |
+| fade | number | 停止播放前的音量淡出持续时间，以秒为单位（默认为 0.35）。 |
 | wait | boolean | 在播放下一个命令之前是否等待 BGM 淡出动画完成。 |
 
 </div>
@@ -1856,7 +1856,7 @@ This line is only executed when navigated directly with a @gosub.
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">sfxPath</span> | string | 要停止的音效的路径。 |
-| fade | decimal | 停止播放前的音量淡出持续时间，以秒为单位（默认为 0.35）。 |
+| fade | number | 停止播放前的音量淡出持续时间，以秒为单位（默认为 0.35）。 |
 | wait | boolean | 在播放下一个命令之前是否等待 SFX 淡出动画完成。 |
 
 </div>
@@ -1886,12 +1886,12 @@ This line is only executed when navigated directly with a @gosub.
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| power | decimal | 光线的强度（不透明度），范围为 0.0 到 1.0；默认为 0.85。设置为 0 以禁用（取消生成）效果。 |
-| time | decimal | 粒子系统将在指定时间内（以秒为单位）逐渐将生成率增加到目标水平。 |
-| pos | decimal list | 为生成的效果游戏对象设置的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。在正交模式下，使用 Z 分量（第三个成员，例如 `,,10`）按深度移动（排序）。 |
-| position | decimal list | 为生成的效果游戏对象设置的位置（在世界空间中）。 |
-| rotation | decimal list | 为生成的效果游戏对象设置的旋转。 |
-| scale | decimal list | 为生成的效果游戏对象设置的缩放。 |
+| power | number | 光线的强度（不透明度），范围为 0.0 到 1.0；默认为 0.85。设置为 0 以禁用（取消生成）效果。 |
+| time | number | 粒子系统将在指定时间内（以秒为单位）逐渐将生成率增加到目标水平。 |
+| pos | number list | 为生成的效果游戏对象设置的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。在正交模式下，使用 Z 分量（第三个成员，例如 `,,10`）按深度移动（排序）。 |
+| position | number list | 为生成的效果游戏对象设置的位置（在世界空间中）。 |
+| rotation | number list | 为生成的效果游戏对象设置的旋转。 |
+| scale | number list | 为生成的效果游戏对象设置的缩放。 |
 | wait | boolean | 在播放下一个命令之前是否等待效果预热动画。 |
 
 </div>
@@ -1985,7 +1985,7 @@ The bomb is defused!
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">text</span> | string | 为 toast 设置的文本内容。 |
 | appearance | string | toast 的外观变体（游戏对象名称）。未指定时，将使用 Toast UI 预制件中设置的默认外观。 |
-| time | decimal | 隐藏 toast 之前等待的秒数。未指定时，将使用 Toast UI 预制件中默认设置的持续时间。 |
+| time | number | 隐藏 toast 之前等待的秒数。未指定时，将使用 Toast UI 预制件中默认设置的持续时间。 |
 
 </div>
 
@@ -2013,10 +2013,10 @@ The bomb is defused!
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">transition</span> | string | 要使用的[过渡效果](/zh/guide/special-effects#过渡效果)类型（默认使用交叉淡入淡出）。 |
-| params | decimal list | 过渡效果的参数。 |
+| params | number list | 过渡效果的参数。 |
 | dissolve | string | [自定义溶解](/zh/guide/special-effects#过渡效果)纹理的路径（路径应相对于 `Resources` 文件夹）。仅当过渡设置为 `Custom` 模式时有效。 |
 | easing | string | 用于过渡的[缓动函数](/zh/guide/special-effects#过渡效果)名称。 |
-| time | decimal | 过渡的持续时间（以秒为单位）。 |
+| time | number | 过渡的持续时间（以秒为单位）。 |
 
 </div>
 
@@ -2116,7 +2116,7 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">voicePath</span> | string | 要播放的语音剪辑的路径。 |
-| volume | decimal | 播放的音量。 |
+| volume | number | 播放的音量。 |
 | group | string | 播放音频时应使用的混音器[组路径](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | authorId | string | 此语音所属的角色 Actor 的 ID。指定时且使用[按作者音量](/zh/guide/voicing#作者音量)，音量将相应调整。 |
 

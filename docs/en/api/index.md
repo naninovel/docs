@@ -32,13 +32,13 @@ When nesting commands under the choice, `goto`, `gosub` and `set` parameters are
 | id | string | Unique identifier of the choice. Can be used to remove the choice later with [@clearChoice]. |
 | lock | string | Whether the choice should be disabled or otherwise not accessible for player to select; see [choice docs](/guide/choices#locked-choice) for more info. Disabled by default. |
 | button | string | Local resource path of the [button prefab](/guide/choices#choice-button) representing the choice. The prefab should have a `ChoiceHandlerButton` component attached to the root object. Will use a default button when not specified. |
-| pos | decimal list | Local position of the choice button inside the choice handler (if supported by the handler implementation). |
+| pos | number list | Local position of the choice button inside the choice handler (if supported by the handler implementation). |
 | handler | string | ID of the choice handler to add choice for. Will use a default handler if not specified. |
 | goto | string | Path to go when the choice is selected by user; see [@goto] command for the path format. Ignored when nesting commands under the choice. |
 | gosub | string | Path to a subroutine to go when the choice is selected by user; see [@gosub] command for the path format. When `goto` is assigned this parameter will be ignored. Ignored when nesting commands under the choice. |
 | set | string | Set expression to execute when the choice is selected by user; see [@set] command for syntax reference. Ignored when nesting commands under the choice. |
 | show | boolean | Whether to also show choice handler the choice is added for; enabled by default. |
-| time | decimal | Duration (in seconds) of the fade-in (reveal) animation. |
+| time | number | Duration (in seconds) of the fade-in (reveal) animation. |
 
 </div>
 
@@ -95,9 +95,9 @@ Arranges specified characters by X-axis. When no parameters specified, will exec
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">characterPositions</span> | named decimal list | A collection of character ID to scene X-axis position (relative to the left scene border, in percents) named values. Position 0 relates to the left border and 100 to the right border of the scene; 50 is the center. |
+| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">characterPositions</span> | named number list | A collection of character ID to scene X-axis position (relative to the left scene border, in percents) named values. Position 0 relates to the left border and 100 to the right border of the scene; 50 is the center. |
 | look | boolean | When performing auto-arrange, controls whether to also make the characters look at the scene origin (enabled by default). |
-| time | decimal | Duration of the animation initiated by the command, in seconds. |
+| time | number | Duration of the animation initiated by the command, in seconds. |
 | wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
 </div>
@@ -196,20 +196,20 @@ Backgrounds are handled a bit differently from characters to better accommodate 
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">appearanceAndTransition</span> | named string | Appearance (or [pose](/guide/backgrounds#poses)) to set for the modified background and type of a [transition effect](/guide/special-effects#transition-effects) to use. When transition is not specified, a cross-fade effect will be used by default. |
-| pos | decimal list | Position (relative to the scene borders, in percents) to set for the modified actor. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
+| pos | number list | Position (relative to the scene borders, in percents) to set for the modified actor. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
 | id | string | ID of the actor to modify; specify `*` to affect all visible actors. |
 | appearance | string | Appearance to set for the modified actor. |
 | pose | string | Pose to set for the modified actor. |
 | via | string | Type of the [transition effect](/guide/special-effects#transition-effects) to use (crossfade is used by default). |
-| params | decimal list | Parameters of the transition effect. |
+| params | number list | Parameters of the transition effect. |
 | dissolve | string | Path to the [custom dissolve](/guide/special-effects#transition-effects#custom-transition-effects) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
 | visible | boolean | Visibility status to set for the modified actor. |
-| position | decimal list | Position (in world space) to set for the modified actor. Use Z-component (third member) to move (sort) by depth while in ortho mode. |
-| rotation | decimal list | Rotation to set for the modified actor. |
-| scale | decimal list | Scale to set for the modified actor. |
+| position | number list | Position (in world space) to set for the modified actor. Use Z-component (third member) to move (sort) by depth while in ortho mode. |
+| rotation | number list | Rotation to set for the modified actor. |
+| scale | number list | Scale to set for the modified actor. |
 | tint | string | The tint color to apply.<br><br>Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes `RRGGBB`), `#RRGGBB`, `#RGBA` (becomes `RRGGBBAA`), `#RRGGBBAA`; when alpha is not specified will default to `FF`.<br><br>Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
 | easing | string | Name of the [easing function](/guide/special-effects#transition-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
-| time | decimal | Duration of the animation initiated by the command, in seconds. |
+| time | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
 | wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
@@ -244,11 +244,11 @@ Music tracks are looped by default. When music track name (BgmPath) is not speci
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">bgmPath</span> | string | Path to the music track to play. |
 | intro | string | Path to the intro music track to play once before the main track (not affected by the loop parameter). |
-| volume | decimal | Volume of the music track. |
+| volume | number | Volume of the music track. |
 | loop | boolean | Whether to play the track from beginning when it finishes. |
-| fade | decimal | Duration of the volume fade-in when starting playback, in seconds (0.0 by default); doesn't have effect when modifying a playing track. |
+| fade | number | Duration of the volume fade-in when starting playback, in seconds (0.0 by default); doesn't have effect when modifying a playing track. |
 | group | string | Audio mixer [group path](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) that should be used when playing the audio. |
-| time | decimal | Duration (in seconds) of the modification. |
+| time | number | Duration (in seconds) of the modification. |
 | wait | boolean | Whether to wait for the BGM fade animation to finish before playing next command. |
 
 </div>
@@ -281,8 +281,8 @@ The actor should have `IBlurable` interface implemented in order to support the 
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">actorId</span> | string | ID of the actor to apply the effect for; in case multiple actors with the same ID found (eg, a character and a printer), will affect only the first found one. When not specified, applies to the main background. |
-| power | decimal | Intensity of the effect, in 0.0 to 1.0 range. Defaults to 0.5. Set to 0 to disable (de-spawn) the effect. |
-| time | decimal | How long it will take the parameters to reach the target values, in seconds. Defaults to 1.0. |
+| power | number | Intensity of the effect, in 0.0 to 1.0 range. Defaults to 0.5. Set to 0 to disable (de-spawn) the effect. |
+| time | number | How long it will take the parameters to reach the target values, in seconds. Defaults to 1.0. |
 | wait | boolean | Whether to wait for the effect warm-up animation before playing next command. |
 
 </div>
@@ -308,9 +308,9 @@ Simulates [depth of field](/guide/special-effects#bokeh) (aka Bokeh) effect, whe
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">focus</span> | string | Name of the game object to set focus for (optional). When set, the focus will always stay on the game object, while the `dist` parameter will be ignored. |
-| dist | decimal | Distance (in units) from Naninovel camera to the focus point. Ignored when `focus` parameter is specified. Defaults to 10. |
-| power | decimal | Amount of blur to apply for the de-focused areas; also determines focus sensitivity. Defaults to 3.75. Set to 0 to disable (de-spawn) the effect. |
-| time | decimal | How long it will take the parameters to reach the target values, in seconds. Defaults to 1.0. |
+| dist | number | Distance (in units) from Naninovel camera to the focus point. Ignored when `focus` parameter is specified. Defaults to 10. |
+| power | number | Amount of blur to apply for the de-focused areas; also determines focus sensitivity. Defaults to 3.75. Set to 0 to disable (de-spawn) the effect. |
+| time | number | How long it will take the parameters to reach the target values, in seconds. Defaults to 1.0. |
 | wait | boolean | Whether to wait for the effect warm-up animation before playing next command. |
 
 </div>
@@ -333,15 +333,15 @@ Modifies the main camera, changing offset, zoom level and rotation over time. Ch
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| offset | decimal list | Local camera position offset in units by X,Y,Z axes. |
-| roll | decimal | Local camera rotation by Z-axis in angle degrees (0.0 to 360.0 or -180.0 to 180.0). The same as third component of `rotation` parameter; ignored when `rotation` is specified. |
-| rotation | decimal list | Local camera rotation over X,Y,Z-axes in angle degrees (0.0 to 360.0 or -180.0 to 180.0). |
-| zoom | decimal | Relative camera zoom (orthographic size or field of view, depending on the render mode), in 0.0 (no zoom) to 1.0 (full zoom) range. |
+| offset | number list | Local camera position offset in units by X,Y,Z axes. |
+| roll | number | Local camera rotation by Z-axis in angle degrees (0.0 to 360.0 or -180.0 to 180.0). The same as third component of `rotation` parameter; ignored when `rotation` is specified. |
+| rotation | number list | Local camera rotation over X,Y,Z-axes in angle degrees (0.0 to 360.0 or -180.0 to 180.0). |
+| zoom | number | Relative camera zoom (orthographic size or field of view, depending on the render mode), in 0.0 (no zoom) to 1.0 (full zoom) range. |
 | ortho | boolean | Whether the camera should render in orthographic (true) or perspective (false) mode. |
 | toggle | string list | Names of the components to toggle (enable if disabled and vice-versa). The components should be attached to the same game object as the camera. This can be used to toggle [custom post-processing effects](/guide/special-effects#custom-camera-effects). Use `*` to affect all the components attached to the camera object. |
 | set | named boolean list | Names of the components to enable or disable. The components should be attached to the same game object as the camera. This can be used to explicitly enable or disable [custom post-processing effects](/guide/special-effects#custom-camera-effects). Specified components enabled state will override effect of `toggle` parameter. Use `*` to affect all the components attached to the camera object. |
 | easing | string | Name of the [easing function](/guide/special-effects#transition-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
-| time | decimal | Duration of the animation initiated by the command, in seconds. |
+| time | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
 | wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
@@ -384,20 +384,20 @@ Modifies a [character actor](/guide/characters).
 | <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">idAndAppearance</span> | named string | ID of the character to modify (specify `*` to affect all visible characters) and an appearance (or [pose](/guide/characters#poses)) to set. When appearance is not specified, will use either a `Default` (is exists) or a random one. |
 | look | string | Look direction of the actor; supported values: left, right, center. |
 | avatar | string | Name (path) of the [avatar texture](/guide/characters#avatar-textures) to assign for the character. Use `none` to remove (un-assign) avatar texture from the character. |
-| pos | decimal list | Position (relative to the scene borders, in percents) to set for the modified actor. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
+| pos | number list | Position (relative to the scene borders, in percents) to set for the modified actor. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
 | id | string | ID of the actor to modify; specify `*` to affect all visible actors. |
 | appearance | string | Appearance to set for the modified actor. |
 | pose | string | Pose to set for the modified actor. |
 | via | string | Type of the [transition effect](/guide/special-effects#transition-effects) to use (crossfade is used by default). |
-| params | decimal list | Parameters of the transition effect. |
+| params | number list | Parameters of the transition effect. |
 | dissolve | string | Path to the [custom dissolve](/guide/special-effects#transition-effects#custom-transition-effects) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
 | visible | boolean | Visibility status to set for the modified actor. |
-| position | decimal list | Position (in world space) to set for the modified actor. Use Z-component (third member) to move (sort) by depth while in ortho mode. |
-| rotation | decimal list | Rotation to set for the modified actor. |
-| scale | decimal list | Scale to set for the modified actor. |
+| position | number list | Position (in world space) to set for the modified actor. Use Z-component (third member) to move (sort) by depth while in ortho mode. |
+| rotation | number list | Rotation to set for the modified actor. |
+| scale | number list | Scale to set for the modified actor. |
 | tint | string | The tint color to apply.<br><br>Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes `RRGGBB`), `#RRGGBB`, `#RGBA` (becomes `RRGGBBAA`), `#RRGGBBAA`; when alpha is not specified will default to `FF`.<br><br>Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
 | easing | string | Name of the [easing function](/guide/special-effects#transition-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
-| time | decimal | Duration of the animation initiated by the command, in seconds. |
+| time | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
 | wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
@@ -439,13 +439,13 @@ When nesting commands under the choice, `goto`, `gosub` and `set` parameters are
 | id | string | Unique identifier of the choice. Can be used to remove the choice later with [@clearChoice]. |
 | lock | string | Whether the choice should be disabled or otherwise not accessible for player to select; see [choice docs](/guide/choices#locked-choice) for more info. Disabled by default. |
 | button | string | Local resource path of the [button prefab](/guide/choices#choice-button) representing the choice. The prefab should have a `ChoiceHandlerButton` component attached to the root object. Will use a default button when not specified. |
-| pos | decimal list | Local position of the choice button inside the choice handler (if supported by the handler implementation). |
+| pos | number list | Local position of the choice button inside the choice handler (if supported by the handler implementation). |
 | handler | string | ID of the choice handler to add choice for. Will use a default handler if not specified. |
 | goto | string | Path to go when the choice is selected by user; see [@goto] command for the path format. Ignored when nesting commands under the choice. |
 | gosub | string | Path to a subroutine to go when the choice is selected by user; see [@gosub] command for the path format. When `goto` is assigned this parameter will be ignored. Ignored when nesting commands under the choice. |
 | set | string | Set expression to execute when the choice is selected by user; see [@set] command for syntax reference. Ignored when nesting commands under the choice. |
 | show | boolean | Whether to also show choice handler the choice is added for; enabled by default. |
-| time | decimal | Duration (in seconds) of the fade-in (reveal) animation. |
+| time | number | Duration (in seconds) of the fade-in (reveal) animation. |
 
 </div>
 
@@ -494,15 +494,15 @@ Modifies a [choice handler actor](/guide/choices).
 | appearance | string | Appearance to set for the modified actor. |
 | pose | string | Pose to set for the modified actor. |
 | via | string | Type of the [transition effect](/guide/special-effects#transition-effects) to use (crossfade is used by default). |
-| params | decimal list | Parameters of the transition effect. |
+| params | number list | Parameters of the transition effect. |
 | dissolve | string | Path to the [custom dissolve](/guide/special-effects#transition-effects#custom-transition-effects) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
 | visible | boolean | Visibility status to set for the modified actor. |
-| position | decimal list | Position (in world space) to set for the modified actor. Use Z-component (third member) to move (sort) by depth while in ortho mode. |
-| rotation | decimal list | Rotation to set for the modified actor. |
-| scale | decimal list | Scale to set for the modified actor. |
+| position | number list | Position (in world space) to set for the modified actor. Use Z-component (third member) to move (sort) by depth while in ortho mode. |
+| rotation | number list | Rotation to set for the modified actor. |
+| scale | number list | Scale to set for the modified actor. |
 | tint | string | The tint color to apply.<br><br>Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes `RRGGBB`), `#RRGGBB`, `#RGBA` (becomes `RRGGBBAA`), `#RRGGBBAA`; when alpha is not specified will default to `FF`.<br><br>Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
 | easing | string | Name of the [easing function](/guide/special-effects#transition-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
-| time | decimal | Duration of the animation initiated by the command, in seconds. |
+| time | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
 | wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
@@ -656,8 +656,8 @@ Applies [digital glitch](/guide/special-effects#glitch) post-processing effect t
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| time | decimal | The duration of the effect, in seconds; default is 1. |
-| power | decimal | The intensity of the effect, in 0.0 to 10.0 range; default is 1. |
+| time | number | The duration of the effect, in seconds; default is 1. |
+| power | number | The intensity of the effect, in 0.0 to 10.0 range; default is 1. |
 | wait | boolean | Whether to wait for the effect warm-up animation before playing next command. |
 
 </div>
@@ -768,7 +768,7 @@ Hides actors (character, background, text printer, choice handler) with the spec
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">actorIds</span> | string list | IDs of the actors to hide. |
-| time | decimal | Duration of the animation initiated by the command, in seconds. |
+| time | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
 | wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
@@ -790,7 +790,7 @@ Hides all the actors (characters, backgrounds, text printers, choice handlers) o
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| time | decimal | Duration of the animation initiated by the command, in seconds. |
+| time | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
 | wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
@@ -809,7 +809,7 @@ Hides all the visible characters on scene.
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| time | decimal | Duration of the animation initiated by the command, in seconds. |
+| time | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
 | wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
@@ -829,7 +829,7 @@ Hides a text printer.
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">printerId</span> | string | ID of the printer actor to use. Will use a default one when not specified. |
-| time | decimal | Duration of the animation initiated by the command, in seconds. |
+| time | number | Duration of the animation initiated by the command, in seconds. |
 | wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
 </div>
@@ -856,7 +856,7 @@ When hiding the entire UI with this command and `allowToggle` parameter is false
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">uINames</span> | string list | Name of the UI elements to hide. |
 | allowToggle | boolean | When hiding the entire UI, controls whether to allow the user to re-show the UI with hotkeys or by clicking anywhere on the screen (false by default). Has no effect when hiding a particular UI. |
-| time | decimal | Duration (in seconds) of the hide animation. When not specified, will use UI-specific duration. |
+| time | number | Duration (in seconds) of the hide animation. When not specified, will use UI-specific duration. |
 | wait | boolean | Whether to wait for the UI fade-out animation before playing next command. |
 
 </div>
@@ -1018,8 +1018,8 @@ Activates/disables camera look mode, when player can offset the main camera with
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">enable</span> | boolean | Whether to enable or disable the camera look mode. Default: true. |
-| zone | decimal list | A bound box with X,Y sizes in units from the initial camera position, describing how far the camera can be moved. Default: 5.0,3.0 |
-| speed | decimal list | Camera movement speed (sensitivity) by X,Y axes. Default: 1.5,1.0 |
+| zone | number list | A bound box with X,Y sizes in units from the initial camera position, describing how far the camera can be moved. Default: 5.0,3.0 |
+| speed | number list | Camera movement speed (sensitivity) by X,Y axes. Default: 1.5,1.0 |
 | gravity | boolean | Whether to automatically move camera to the initial position when the look input is not active (eg, mouse is not moving or analog stick is in default position). Default: false. |
 
 </div>
@@ -1051,7 +1051,7 @@ Will fade-out the screen before playing the movie and fade back in after the pla
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">moviePath</span> | string | Local path of the movie resource to play. |
-| time | decimal | Duration (in seconds) of the fade animation. When not specified, will use fade duration set in the movie configuration. |
+| time | number | Duration (in seconds) of the fade animation. When not specified, will use fade duration set in the movie configuration. |
 | block | boolean | Whether to block interaction with the game while the movie is playing, preventing the player from skipping it. |
 
 </div>
@@ -1114,12 +1114,12 @@ This command is used under the hood when processing generic text lines, eg gener
 | printer | string | ID of the printer actor to use. Will use a default one when not specified. |
 | author | string | ID of the actor, which should be associated with the printed message. Ignored when appending. Specify `*` or use `,` to delimit multiple actor IDs to make all/selected characters authors of the text; useful when coupled with `as` parameter to represent multiple characters speaking at the same time. |
 | as | string | When specified, will use the label instead of author ID (or associated display name) to represent author name in the text printer while printing the message. Useful to override default name for a few messages or represent multiple authors speaking at the same time without triggering author-specific behaviour of the text printer, such as message color or avatar. |
-| speed | decimal | Text reveal speed multiplier; should be positive or zero. Setting to one will yield the default speed. |
+| speed | number | Text reveal speed multiplier; should be positive or zero. Setting to one will yield the default speed. |
 | reset | boolean | Whether to reset text of the printer before executing the printing task. Default value is controlled via `Auto Reset` property in the printer actor configuration menu. |
 | default | boolean | Whether to make the printer default and hide other printers before executing the printing task. Default value is controlled via `Auto Default` property in the printer actor configuration menu. |
 | waitInput | boolean | Whether to wait for user input after finishing the printing task. Default value is controlled via `Auto Wait` property in the printer actor configuration menu. |
 | append | boolean | Whether to append the printed text to the last printer message. |
-| fadeTime | decimal | Controls duration (in seconds) of the printers show and hide animations associated with this command. Default value for each printer is set in the actor configuration. |
+| fadeTime | number | Controls duration (in seconds) of the printers show and hide animations associated with this command. Default value for each printer is set in the actor configuration. |
 | wait | boolean | Whether to await the text reveal and prompt for completion (wait for input) before playing next command. |
 
 </div>
@@ -1155,20 +1155,20 @@ Modifies a [text printer actor](/guide/text-printers).
 | default | boolean | Whether to make the printer the default one. Default printer will be subject of all the printer-related commands when `printer` parameter is not specified. |
 | hideOther | boolean | Whether to hide all the other printers. |
 | anchor | boolean | Whether to allow auto printer positioning via actor anchors. Enable for supported printers after manually positioning a printer to resume automatic positioning. Note that anchoring is disabled automatically when an explicit position is assigned with this command. |
-| pos | decimal list | Position (relative to the scene borders, in percents) to set for the modified actor. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
+| pos | number list | Position (relative to the scene borders, in percents) to set for the modified actor. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
 | id | string | ID of the actor to modify; specify `*` to affect all visible actors. |
 | appearance | string | Appearance to set for the modified actor. |
 | pose | string | Pose to set for the modified actor. |
 | via | string | Type of the [transition effect](/guide/special-effects#transition-effects) to use (crossfade is used by default). |
-| params | decimal list | Parameters of the transition effect. |
+| params | number list | Parameters of the transition effect. |
 | dissolve | string | Path to the [custom dissolve](/guide/special-effects#transition-effects#custom-transition-effects) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
 | visible | boolean | Visibility status to set for the modified actor. |
-| position | decimal list | Position (in world space) to set for the modified actor. Use Z-component (third member) to move (sort) by depth while in ortho mode. |
-| rotation | decimal list | Rotation to set for the modified actor. |
-| scale | decimal list | Scale to set for the modified actor. |
+| position | number list | Position (in world space) to set for the modified actor. Use Z-component (third member) to move (sort) by depth while in ortho mode. |
+| rotation | number list | Rotation to set for the modified actor. |
+| scale | number list | Scale to set for the modified actor. |
 | tint | string | The tint color to apply.<br><br>Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes `RRGGBB`), `#RRGGBB`, `#RGBA` (becomes `RRGGBBAA`), `#RRGGBBAA`; when alpha is not specified will default to `FF`.<br><br>Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
 | easing | string | Name of the [easing function](/guide/special-effects#transition-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
-| time | decimal | Duration of the animation initiated by the command, in seconds. |
+| time | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
 | wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
@@ -1237,14 +1237,14 @@ Spawns particle system simulating [rain](/guide/special-effects#rain).
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| power | decimal | The intensity of the rain (particles spawn rate per second); defaults to 500. Set to 0 to disable (de-spawn) the effect. |
-| time | decimal | The particle system will gradually grow the spawn rate to the target level over the specified time, in seconds. |
-| xSpeed | decimal | Multiplier to the horizontal speed of the particles. Use to change angle of the rain drops. |
-| ySpeed | decimal | Multiplier to the vertical speed of the particles. |
-| pos | decimal list | Position (relative to the scene borders, in percents) to set for the spawned effect game object. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
-| position | decimal list | Position (in world space) to set for the spawned effect game object. |
-| rotation | decimal list | Rotation to set for the spawned effect game object. |
-| scale | decimal list | Scale to set for the spawned effect game object. |
+| power | number | The intensity of the rain (particles spawn rate per second); defaults to 500. Set to 0 to disable (de-spawn) the effect. |
+| time | number | The particle system will gradually grow the spawn rate to the target level over the specified time, in seconds. |
+| xSpeed | number | Multiplier to the horizontal speed of the particles. Use to change angle of the rain drops. |
+| ySpeed | number | Multiplier to the vertical speed of the particles. |
+| pos | number list | Position (relative to the scene borders, in percents) to set for the spawned effect game object. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
+| position | number list | Position (in world space) to set for the spawned effect game object. |
+| rotation | number list | Rotation to set for the spawned effect game object. |
+| scale | number list | Scale to set for the spawned effect game object. |
 | wait | boolean | Whether to wait for the effect warm-up animation before playing next command. |
 
 </div>
@@ -1264,7 +1264,7 @@ Executes one of the nested commands, picked randomly.
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| weight | decimal list | Customized probability for the nested commands, in 0.0 to 1.0 range. By default all the commands have equal probability of being picked. |
+| weight | number list | Customized probability for the nested commands, in 0.0 to 1.0 range. By default all the commands have equal probability of being picked. |
 
 </div>
 
@@ -1536,11 +1536,11 @@ Sound effect tracks are not looped by default. When sfx track name (SfxPath) is 
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">sfxPath</span> | string | Path to the sound effect asset to play. |
-| volume | decimal | Volume of the sound effect. |
+| volume | number | Volume of the sound effect. |
 | loop | boolean | Whether to play the sound effect in a loop. |
-| fade | decimal | Duration of the volume fade-in when starting playback, in seconds (0.0 by default); doesn't have effect when modifying a playing track. |
+| fade | number | Duration of the volume fade-in when starting playback, in seconds (0.0 by default); doesn't have effect when modifying a playing track. |
 | group | string | Audio mixer [group path](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) that should be used when playing the audio. |
-| time | decimal | Duration (in seconds) of the modification. |
+| time | number | Duration (in seconds) of the modification. |
 | wait | boolean | Whether to wait for the SFX fade animation to finish before playing next command. |
 
 </div>
@@ -1566,7 +1566,7 @@ Plays an [SFX (sound effect)](/guide/audio#sound-effects) track with the specifi
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">sfxPath</span> | string | Path to the sound effect asset to play. |
-| volume | decimal | Volume of the sound effect. |
+| volume | number | Volume of the sound effect. |
 | restart | boolean | Whether to start playing the audio from start in case it's already playing. |
 | additive | boolean | Whether to allow playing multiple instances of the same clip; has no effect when `restart` is enabled. |
 | group | string | Audio mixer [group path](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) that should be used when playing the audio. |
@@ -1591,12 +1591,12 @@ Applies [shake effect](/guide/special-effects#shake) for the actor with the spec
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">actorId</span> | string | ID of the actor to shake. In case multiple actors with the same ID found (eg, a character and a printer), will affect only the first found one. When not specified, will shake the default text printer. To shake main camera, use `Camera` keyword. |
-| count | integer | The number of shake iterations. Ignored when `loop` is enabled. |
+| count | number | The number of shake iterations. Ignored when `loop` is enabled. |
 | loop | boolean | Whether to continue shaking until disabled. |
-| time | decimal | The base duration of each shake iteration, in seconds. |
-| deltaTime | decimal | The randomizer modifier applied to the base duration of the effect. |
-| power | decimal | The base displacement amplitude of each shake iteration, in units. |
-| deltaPower | decimal | The randomized modifier applied to the base displacement amplitude. |
+| time | number | The base duration of each shake iteration, in seconds. |
+| deltaTime | number | The randomizer modifier applied to the base duration of the effect. |
+| power | number | The base displacement amplitude of each shake iteration, in units. |
+| deltaPower | number | The randomized modifier applied to the base displacement amplitude. |
 | hor | boolean | Whether to displace the actor horizontally (by x-axis). |
 | ver | boolean | Whether to displace the actor vertically (by y-axis). |
 | wait | boolean | Whether to wait for the effect warm-up animation before playing next command. |
@@ -1626,7 +1626,7 @@ Shows (makes visible) actors (character, background, text printer, choice handle
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">actorIds</span> | string list | IDs of the actors to show. |
-| time | decimal | Duration of the animation initiated by the command, in seconds. |
+| time | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
 | wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
@@ -1649,7 +1649,7 @@ Shows a text printer.
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">printerId</span> | string | ID of the printer actor to use. Will use a default one when not specified. |
-| time | decimal | Duration of the animation initiated by the command, in seconds. |
+| time | number | Duration of the animation initiated by the command, in seconds. |
 | wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
 </div>
@@ -1671,7 +1671,7 @@ Makes [UI elements](/guide/gui) with the specified resource names visible. When 
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">uINames</span> | string list | Name of the UI resource to make visible. |
-| time | decimal | Duration (in seconds) of the show animation. When not specified, will use UI-specific duration. |
+| time | number | Duration (in seconds) of the show animation. When not specified, will use UI-specific duration. |
 | wait | boolean | Whether to wait for the UI fade-in animation before playing next command. |
 
 </div>
@@ -1721,11 +1721,11 @@ Be aware, that this command searches for an existing actor with the specified ID
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">idAndAppearance</span> | named string | ID of the actor to slide and (optionally) appearance to set. |
-| from | decimal list | Position in scene space to slide the actor from (slide start position). Described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene; Z-component (depth) is in world space. When not specified, will use current actor position in case it's visible and a random off-scene position otherwise (could slide-in from left or right borders). |
-| <span class="command-param-required" title="Required parameter: parameter should always be specified">to</span> | decimal list | Position in scene space to slide the actor to (slide finish position). |
+| from | number list | Position in scene space to slide the actor from (slide start position). Described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene; Z-component (depth) is in world space. When not specified, will use current actor position in case it's visible and a random off-scene position otherwise (could slide-in from left or right borders). |
+| <span class="command-param-required" title="Required parameter: parameter should always be specified">to</span> | number list | Position in scene space to slide the actor to (slide finish position). |
 | visible | boolean | Change visibility status of the actor (show or hide). When not set and target actor is hidden, will still automatically show it. |
 | easing | string | Name of the [easing function](/guide/special-effects#transition-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
-| time | decimal | Duration of the animation initiated by the command, in seconds. |
+| time | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
 | wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
@@ -1753,12 +1753,12 @@ Spawns particle system simulating [snow](/guide/special-effects#snow).
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| power | decimal | The intensity of the snow (particles spawn rate per second); defaults to 100. Set to 0 to disable (de-spawn) the effect. |
-| time | decimal | The particle system will gradually grow the spawn rate to the target level over the specified time, in seconds. |
-| pos | decimal list | Position (relative to the scene borders, in percents) to set for the spawned effect game object. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
-| position | decimal list | Position (in world space) to set for the spawned effect game object. |
-| rotation | decimal list | Rotation to set for the spawned effect game object. |
-| scale | decimal list | Scale to set for the spawned effect game object. |
+| power | number | The intensity of the snow (particles spawn rate per second); defaults to 100. Set to 0 to disable (de-spawn) the effect. |
+| time | number | The particle system will gradually grow the spawn rate to the target level over the specified time, in seconds. |
+| pos | number list | Position (relative to the scene borders, in percents) to set for the spawned effect game object. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
+| position | number list | Position (in world space) to set for the spawned effect game object. |
+| rotation | number list | Rotation to set for the spawned effect game object. |
+| scale | number list | Scale to set for the spawned effect game object. |
 | wait | boolean | Whether to wait for the effect warm-up animation before playing next command. |
 
 </div>
@@ -1784,10 +1784,10 @@ If prefab has a `MonoBehaviour` component attached the root object, and the comp
 | --- | --- | --- |
 | <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">path</span> | string | Name (path) of the prefab resource to spawn. |
 | params | string list | Parameters to set when spawning the prefab. Requires the prefab to have a `IParameterized` component attached the root object. |
-| pos | decimal list | Position (relative to the scene borders, in percents) to set for the spawned object. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
-| position | decimal list | Position (in world space) to set for the spawned object. |
-| rotation | decimal list | Rotation to set for the spawned object. |
-| scale | decimal list | Scale to set for the spawned object. |
+| pos | number list | Position (relative to the scene borders, in percents) to set for the spawned object. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
+| position | number list | Position (in world space) to set for the spawned object. |
+| rotation | number list | Rotation to set for the spawned object. |
+| scale | number list | Scale to set for the spawned object. |
 | wait | boolean | Whether to wait for the spawn to warm-up in case it implements `IAwaitable` interface. |
 
 </div>
@@ -1843,7 +1843,7 @@ When music track name (BgmPath) is not specified, will stop all the currently pl
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">bgmPath</span> | string | Path to the music track to stop. |
-| fade | decimal | Duration of the volume fade-out before stopping playback, in seconds (0.35 by default). |
+| fade | number | Duration of the volume fade-out before stopping playback, in seconds (0.35 by default). |
 | wait | boolean | Whether to wait for the BGM fade-out animation to finish before playing next command. |
 
 </div>
@@ -1869,7 +1869,7 @@ When sound effect track name (SfxPath) is not specified, will stop all the curre
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">sfxPath</span> | string | Path to the sound effect to stop. |
-| fade | decimal | Duration of the volume fade-out before stopping playback, in seconds (0.35 by default). |
+| fade | number | Duration of the volume fade-out before stopping playback, in seconds (0.35 by default). |
 | wait | boolean | Whether to wait for the SFX fade-out animation to finish before playing next command. |
 
 </div>
@@ -1899,12 +1899,12 @@ Spawns particle system simulating [sun shafts](/guide/special-effects#sun) aka g
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| power | decimal | The intensity of the rays (opacity), in 0.0 to 1.0 range; default is 0.85. Set to 0 to disable (de-spawn) the effect. |
-| time | decimal | The particle system will gradually grow the spawn rate to the target level over the specified time, in seconds. |
-| pos | decimal list | Position (relative to the scene borders, in percents) to set for the spawned effect game object. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
-| position | decimal list | Position (in world space) to set for the spawned effect game object. |
-| rotation | decimal list | Rotation to set for the spawned effect game object. |
-| scale | decimal list | Scale to set for the spawned effect game object. |
+| power | number | The intensity of the rays (opacity), in 0.0 to 1.0 range; default is 0.85. Set to 0 to disable (de-spawn) the effect. |
+| time | number | The particle system will gradually grow the spawn rate to the target level over the specified time, in seconds. |
+| pos | number list | Position (relative to the scene borders, in percents) to set for the spawned effect game object. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
+| position | number list | Position (in world space) to set for the spawned effect game object. |
+| rotation | number list | Rotation to set for the spawned effect game object. |
+| scale | number list | Scale to set for the spawned effect game object. |
 | wait | boolean | Whether to wait for the effect warm-up animation before playing next command. |
 
 </div>
@@ -1998,7 +1998,7 @@ Appearance name is the name of a game object with `Toast Appearance` component i
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">text</span> | string | The text content to set for the toast. |
 | appearance | string | Appearance variant (game object name) of the toast. When not specified, will use default appearance set in Toast UI prefab. |
-| time | decimal | Seconds to wait before hiding the toast. When not specified, will use duration set by default in Toast UI prefab. |
+| time | number | Seconds to wait before hiding the toast. When not specified, will use duration set by default in Toast UI prefab. |
 
 </div>
 
@@ -2026,10 +2026,10 @@ The UI will be hidden and user input blocked while the transition is in progress
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">transition</span> | string | Type of the [transition effect](/guide/special-effects#transition-effects) to use (crossfade is used by default). |
-| params | decimal list | Parameters of the transition effect. |
+| params | number list | Parameters of the transition effect. |
 | dissolve | string | Path to the [custom dissolve](/guide/special-effects#transition-effects#custom-transition-effects) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
 | easing | string | Name of the [easing function](/guide/special-effects#transition-effects#animation-easing) to use for the transition. |
-| time | decimal | Duration (in seconds) of the transition. |
+| time | number | Duration (in seconds) of the transition. |
 
 </div>
 
@@ -2129,7 +2129,7 @@ Plays a voice clip at the specified path.
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">voicePath</span> | string | Path to the voice clip to play. |
-| volume | decimal | Volume of the playback. |
+| volume | number | Volume of the playback. |
 | group | string | Audio mixer [group path](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) that should be used when playing the audio. |
 | authorId | string | ID of the character actor this voice belongs to. When specified and [per-author volume](/guide/voicing#author-volume) is used, volume will be adjusted accordingly. |
 
