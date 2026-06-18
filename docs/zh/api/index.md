@@ -270,7 +270,7 @@ Lorem ipsum
 
 ## blur
 
-将[模糊效果](/zh/guide/special-effects#模糊-blur)应用于受支持的 Actor：精灵、分层、骰子、Live2D、Spine、视频和场景实现的背景和角色。
+将[模糊效果](/zh/guide/special-effects#blur)应用于受支持的 Actor：精灵、分层、骰子、Live2D、Spine、视频和场景实现的背景和角色。
 
 ::: info NOTE
 Actor 应实现 `IBlurable` 接口以支持该效果。
@@ -301,7 +301,7 @@ Actor 应实现 `IBlurable` 接口以支持该效果。
 
 ## bokeh
 
-模拟[景深](/zh/guide/special-effects#散景-bokeh)（又名 DOF、散景）效果，此时只有焦点中的对象保持清晰，而其他对象则模糊。
+模拟[景深](/zh/guide/special-effects#bokeh)（又名 DOF、散景）效果，此时只有焦点中的对象保持清晰，而其他对象则模糊。
 
 <div class="config-table">
 
@@ -652,7 +652,7 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 
 ## glitch
 
-将[数字故障](/zh/guide/special-effects#故障-glitch)后处理效果应用于主摄像机，模拟数字视频失真和伪影。
+将[数字故障](/zh/guide/special-effects#glitch)后处理效果应用于主摄像机，模拟数字视频失真和伪影。
 
 <div class="config-table">
 
@@ -1090,7 +1090,7 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 
 ## or
 
-Marks a branch of a conditional execution block, which is executed in case condition of the opening [@if] or [@unless] and preceding [@else] or [@or] (if any) commands are not met while the own condition is met. Can be used as shortcut for `@else if:...`. For usage examples see [conditional execution](/zh/guide/scenario-scripting#conditional-execution) guide.
+Marks a branch of a conditional execution block, which is executed in case condition of the opening [@if] or [@unless] and preceding [@else] or [@or] (if any) commands are not met while the own condition is met. Can be used as shortcut for `@else if:...`. For usage examples see [conditional execution](/zh/guide/scenario-scripting#条件执行) guide.
 
 <div class="config-table">
 
@@ -1232,7 +1232,7 @@ You've picked two.
 
 ## rain
 
-生成模拟[雨](/zh/guide/special-effects#雨-rain)的粒子系统。
+生成模拟[雨](/zh/guide/special-effects#rain)的粒子系统。
 
 <div class="config-table">
 
@@ -1586,7 +1586,7 @@ My favourite drink is {drink}!
 
 ## shake
 
-为具有指定 ID 的 Actor 或主摄像机应用[摇动效果](/zh/guide/special-effects#震动-shake)。
+为具有指定 ID 的 Actor 或主摄像机应用[摇动效果](/zh/guide/special-effects#shake)。
 
 <div class="config-table">
 
@@ -1748,7 +1748,7 @@ My favourite drink is {drink}!
 ```
 ## snow
 
-生成模拟[雪](/zh/guide/special-effects#雪-snow)的粒子系统。
+生成模拟[雪](/zh/guide/special-effects#snow)的粒子系统。
 
 <div class="config-table">
 
@@ -1894,7 +1894,7 @@ This line is only executed when navigated directly with a @gosub.
 
 ## sun
 
-生成模拟[太阳光](/zh/guide/special-effects#阳光-sun)（又名上帝之光）的粒子系统。
+生成模拟[太阳光](/zh/guide/special-effects#sun)（又名上帝之光）的粒子系统。
 
 <div class="config-table">
 
