@@ -162,7 +162,7 @@ public class PlayAudioClip : Command, Command.IPreloadable
 }
 ```
 
-Notice the `ClipPath.DynamicValue` check: we wouldn't be able to preload the resource in case the name is only known when the command is executed (i.e., the parameter contains [script expressions](/guide/script-expressions)); in this case the resource should be loaded inside the `Execute` method.
+Notice the `ClipPath.DynamicValue` check: we wouldn't be able to preload the resource in case the name is only known when the command is executed (i.e., the parameter contains [scenario expressions](/guide/expressions)); in this case the resource should be loaded inside the `Execute` method.
 
 ### Command Examples
 

@@ -96,7 +96,7 @@ It's also possible to use the name binding feature to allow the player to pick t
 Player: You can call me {PlayerName}.
 ```
 
-The content of the curly braces is actually treated as a full-fledged [script expression](/guide/script-expressions), allowing complex scenarios for evaluating the display name. For example, you may want to keep a pre-defined localizable display name for a character until some point and then let the player pick a custom name.
+The content of the curly braces is actually treated as a full-fledged [scenario expression](/guide/expressions), allowing complex scenarios for evaluating the display name. For example, you may want to keep a pre-defined localizable display name for a character until some point and then let the player pick a custom name.
 
 Let's say the character in question has "Char1" ID, pre-defined name is stored as `T_PredefinedName` [managed text record](/guide/managed-text#script-text), the value entered by the player will be stored as `name` [scenario variable](/guide/variables) and `nameSet` variable will be set to `true` when the player has set the name. Assign the following expression to the `Display Name` property: `{ nameSet ? name : T_PredefinedName }`.
 

@@ -87,7 +87,7 @@ All Naninovel assets are subject to labeling, including assets [assigned manuall
 
 The labeling process requires a degree of guessing and isn't always perfect. To help ensure assets are labeled correctly, follow these guidelines:
 
-- Don't use [expressions](/guide/script-expressions) in parameters of resource contexts, such as actor IDs, appearances, audio paths, etc. Expressions are evaluated just before the command is executed, which makes it impossible to resolve the final path at build time. Naninovel will warn you when it detects such cases during the build.
+- Don't use [expressions](/guide/expressions) in parameters of resource contexts, such as actor IDs, appearances, audio paths, etc. Expressions are evaluated just before the command is executed, which makes it impossible to resolve the final path at build time. Naninovel will warn you when it detects such cases during the build.
 - Always specify actor IDs and appearances in commands like [@char] and [@back]; while such commands may fall back to defaults, it's not always possible to resolve those defaults at build time.
 - When creating [custom commands](/guide/custom-commands), apply [resource context attributes](/guide/ide-extension#ide-attributes) to parameters that reference resources (for example, apply `[ActorContext]` to a parameter that accepts an actor ID). These attributes are primarily used by the IDE extension for autocomplete, but the labeling tool also uses them to resolve asset addresses.
 

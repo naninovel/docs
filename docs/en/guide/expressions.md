@@ -1,4 +1,4 @@
-# Script Expressions
+# Expressions
 
 When writing scenario scripts, you can inject expression constructs into command parameter values and generic text lines using curly braces `{}`:
 
@@ -84,7 +84,7 @@ Below is the map of the available aliases:
 
 ## Expression Queries
 
-The following queries can also be used inside the script expressions.
+The following queries can also be used inside scenario expressions.
 
 <div class="config-table">
 
@@ -114,7 +114,7 @@ approx(a, b) | Compares two strings ignoring case. | `approx("abc", "ABC")`
 
 ## Adding Custom Queries
 
-It's possible to add custom expression queries by annotating a public static C# method with the `ExpressionQuery` attribute; the method must have a compatible signature and will then automatically become available in script expressions.
+It's possible to add custom expression queries by annotating a public static C# method with the `ExpressionQuery` attribute; the method must have a compatible signature and will then automatically become available in scenario expressions.
 
 Only [simple](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types#simple-types) and string types are supported as argument and return types. It's also possible to use a single variadic (`params` keyword) argument; mixing a variadic with other arguments is not supported.
 

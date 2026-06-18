@@ -34,7 +34,7 @@ player.Stop();
 | IUIManager | `IManagedUI` オブジェクトを管理し、[UIのカスタマイズ](/ja/guide/gui#uiのカスタマイズ) 機能を処理します。 |
 | IVariableManager | [シナリオ変数](/ja/guide/variables) へのアクセスを提供し、変更を許可します。 |
 | ISpawnManager | [@spawn] コマンドでスポーンされたオブジェクトを管理します。 |
-| IUnlockableManager | [アンロック可能アイテム](/ja/guide/unlockable-items)（CGおよびムービーギャラリーアイテム、ヒントなど）を管理します。 |
+| IUnlockableManager | [アンロック可能アイテム](/ja/guide/unlockables)（CGおよびムービーギャラリーアイテム、ヒントなど）を管理します。 |
 
 サービスの組み込み実装は、`Naninovel/Runtime` に保存されているランタイムソースコードで見つけることができます。
 

@@ -34,7 +34,7 @@ player.Stop();
 | IUIManager | 管理 `IManagedUI` 对象并处理 [UI 自定义](/zh/guide/gui#ui-自定义) 功能。 |
 | IVariableManager | 提供访问并允许修改[剧本变量](/zh/guide/variables)。 |
 | ISpawnManager | 管理使用 [@spawn] 命令生成的对象。 |
-| IUnlockableManager | 管理 [可解锁项](/zh/guide/unlockable-items)（CG 和电影画廊项目、提示等）。 |
+| IUnlockableManager | 管理 [可解锁项](/zh/guide/unlockables)（CG 和电影画廊项目、提示等）。 |
 
 您可以在 `Naninovel/Runtime` 处存储的运行时源代码中找到服务的内置实现。
 

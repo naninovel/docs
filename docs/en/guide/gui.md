@@ -153,8 +153,8 @@ ITitleUI | Title (main) menu of the game.
 IExternalScriptsUI | External scripts browser UI (community modding feature).
 IVariableInputUI | Input form for assigning an arbitrary text to a scenario variable (used by [@input] command).
 IConfirmationUI | UI panel used to confirm important commands (eg, when exiting to the title menu or deleting saved game slot).
-ICGGalleryUI | Unlockable [CG gallery](/guide/unlockable-items#cg-gallery) items browser.
-ITipsUI | Unlockable [tips](/guide/unlockable-items#tips) browser.
+ICGGalleryUI | Unlockable [CG gallery](/guide/unlockables#cg-gallery) items browser.
+ITipsUI | Unlockable [tips](/guide/unlockables#tips) browser.
 IRollbackUI | Indicator for state rollback feature.
 IContinueInputUI | A fullscreen invisible UI layer positioned at the bottom of the UI stack and used to activate a `continue input` trigger when clicked or touched.
 IToastUI | A general-purpose UI for self-hiding popup notifications aka "toasts"; can be used from scenario scripts with [@toast] command.

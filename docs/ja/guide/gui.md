@@ -153,8 +153,8 @@ UIのゲームパッドまたはキーボードナビゲーションをサポー
 | IExternalScriptsUI | 外部スクリプトブラウザUI（コミュニティMod機能）。 |
 | IVariableInputUI | 任意のテキストをシナリオ変数に割り当てるための入力フォーム（[@input] コマンドで使用）。 |
 | IConfirmationUI | 重要なコマンドを確認するために使用されるUIパネル（例：タイトルメニューに終了する場合や、保存されたゲームスロットを削除する場合）。 |
-| ICGGalleryUI | アンロック可能な [CGギャラリー](/ja/guide/unlockable-items#cgギャラリー) アイテムブラウザ。 |
-| ITipsUI | アンロック可能な [ヒント](/ja/guide/unlockable-items#ヒント) ブラウザ。 |
+| ICGGalleryUI | アンロック可能な [CGギャラリー](/ja/guide/unlockables#cgギャラリー) アイテムブラウザ。 |
+| ITipsUI | アンロック可能な [ヒント](/ja/guide/unlockables#ヒント) ブラウザ。 |
 | IRollbackUI | 状態ロールバック機能のインジケーター。 |
 | IContinueInputUI | UIスタックの一番下に配置され、クリックまたはタッチされたときに `continue input` トリガーをアクティブにするために使用される全画面非表示UIレイヤー。 |
 | IToastUI | 自動非表示ポップアップ通知（別名「トースト」）用の汎用UI。[@toast] コマンドを使用してシナリオスクリプトから使用できます。 |

@@ -34,7 +34,7 @@ The following services are currently available:
 | IUIManager               | Manages `IManagedUI` objects and handles [UI customization](/guide/gui#ui-customization) feature.                                        |
 | IVariableManager         | Provides access and allows modifying [scenario variables](/guide/variables).                                                              |
 | ISpawnManager            | Manages objects spawned with [@spawn] commands.                                                                                          |
-| IUnlockableManager       | Manages [unlockable items](/guide/unlockable-items) (CG and movie gallery items, tips, etc.).                                             |
+| IUnlockableManager       | Manages [unlockable items](/guide/unlockables) (CG and movie gallery items, tips, etc.).                                             |
 
 You can find built-in implementations of the services in the runtime source code stored at `Naninovel/Runtime`.
 

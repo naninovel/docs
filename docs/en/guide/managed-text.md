@@ -67,7 +67,7 @@ public class CustomLabel : Text
 
 ## Script Text
 
-You can reference managed text values directly from scenario scripts. This is useful when you want script expressions to use localizable text.
+You can reference managed text values directly from scenario scripts. This is useful when you want scenario expressions to use localizable text.
 
 Create a managed text document named `Script` and add records. Given the following records in the `Script` managed text document:
 

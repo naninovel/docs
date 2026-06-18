@@ -26,7 +26,7 @@ You can create and modify variables with the [@set] command (and some parameters
 — find more examples of various ways to use variables in the [@set] command reference.
 
 ::: tip
-The `score is above 10` expression is using the `is above` alias instead of the `>` operator; if you prefer the operators, you can write the command as `@if score > 10`. Find more information about the supported syntax in the [script expressions guide](/guide/script-expressions#operator-aliases).
+The `score is above 10` expression is using the `is above` alias instead of the `>` operator; if you prefer the operators, you can write the command as `@if score > 10`. Find more information about the supported syntax in the [scenario expressions guide](/guide/expressions#operator-aliases).
 :::
 
 ## Injecting Variables
@@ -93,7 +93,7 @@ Meta variables are useful for tracking information that is "meta" to individual 
 ```
 
 ::: tip
-If you want a meta counter that increments only once (even when re-played, e.g., with rollback or after restarting the game), use the `hasPlayed()` [expression query](/guide/script-expressions#expression-query):
+If you want a meta counter that increments only once (even when re-played, e.g., with rollback or after restarting the game), use the `hasPlayed()` [expression query](/guide/expressions#expression-query):
 ```nani
 @set metaCounter=0 meta!
 ...

@@ -26,7 +26,7 @@
 — 可在 [@set] 命令参考中查看更多变量用法示例。
 
 ::: tip
-`score is above 10` 表达式使用的是 `is above` 别名，而不是 `>` 运算符；如果你更喜欢运算符，也可以写成 `@if score > 10`。有关支持语法的更多信息，请参阅[脚本表达式指南](/zh/guide/script-expressions#运算符别名)。
+`score is above 10` 表达式使用的是 `is above` 别名，而不是 `>` 运算符；如果你更喜欢运算符，也可以写成 `@if score > 10`。有关支持语法的更多信息，请参阅[剧本表达式指南](/zh/guide/expressions#运算符别名)。
 :::
 
 ## 注入变量
@@ -93,7 +93,7 @@ Archibald: Greetings, {name}!
 ```
 
 ::: tip
-如果你想要一个只递增一次的元计数器（即使重复游玩，例如回滚后或重启游戏后，也不会再次递增），请使用 `hasPlayed()` [表达式查询](/zh/guide/script-expressions#表达式函数)：
+如果你想要一个只递增一次的元计数器（即使重复游玩，例如回滚后或重启游戏后，也不会再次递增），请使用 `hasPlayed()` [表达式查询](/zh/guide/expressions#表达式函数)：
 ```nani
 @set metaCounter=0 meta!
 ...

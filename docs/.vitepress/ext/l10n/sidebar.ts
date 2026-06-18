@@ -28,9 +28,9 @@ export const en: DefaultTheme.SidebarItem[] = [
             { text: "Choices", link: "/guide/choices" },
             { text: "GUI", link: "/guide/gui" },
             { text: "Input Processing", link: "/guide/input-processing" },
-            { text: "Unlockable Items", link: "/guide/unlockable-items" },
+            { text: "Unlockables", link: "/guide/unlockables" },
             { text: "Variables", link: "/guide/variables" },
-            { text: "Script Expressions", link: "/guide/script-expressions" },
+            { text: "Expressions", link: "/guide/expressions" },
             { text: "Managed Text", link: "/guide/managed-text" },
             { text: "Localization", link: "/guide/localization" },
             { text: "Memory Management", link: "/guide/memory-management" },
@@ -84,9 +84,9 @@ export const ja: DefaultTheme.SidebarItem[] = [
             { text: "選択肢", link: "/ja/guide/choices" },
             { text: "GUI", link: "/ja/guide/gui" },
             { text: "入力処理", link: "/ja/guide/input-processing" },
-            { text: "収集アイテム", link: "/ja/guide/unlockable-items" },
+            { text: "アンロック要素", link: "/ja/guide/unlockables" },
             { text: "変数", link: "/ja/guide/variables" },
-            { text: "スクリプト表記", link: "/ja/guide/script-expressions" },
+            { text: "式", link: "/ja/guide/expressions" },
             { text: "管理テキスト", link: "/ja/guide/managed-text" },
             { text: "ローカライズ", link: "/ja/guide/localization" },
             { text: "メモリ管理", link: "/ja/guide/memory-management" },
@@ -140,9 +140,9 @@ export const zh: DefaultTheme.SidebarItem[] = [
             { text: "选项", link: "/zh/guide/choices" },
             { text: "用户界面UI", link: "/zh/guide/gui" },
             { text: "输入处理", link: "/zh/guide/input-processing" },
-            { text: "可解锁物件", link: "/zh/guide/unlockable-items" },
+            { text: "可解锁内容", link: "/zh/guide/unlockables" },
             { text: "变量", link: "/zh/guide/variables" },
-            { text: "脚本表达式", link: "/zh/guide/script-expressions" },
+            { text: "表达式", link: "/zh/guide/expressions" },
             { text: "受管文本", link: "/zh/guide/managed-text" },
             { text: "本地化", link: "/zh/guide/localization" },
             { text: "内存管理", link: "/zh/guide/memory-management" },
@@ -164,58 +164,6 @@ export const zh: DefaultTheme.SidebarItem[] = [
             { text: "整合设置", link: "/zh/guide/integration-options" },
             { text: "自动化测试", link: "/zh/guide/automated-testing" },
             { text: "自定义构建环境", link: "/zh/guide/custom-build-environment" }
-        ]
-    }
-];
-
-export const ru: DefaultTheme.SidebarItem[] = [
-    {
-        text: "Руководство",
-        collapsed: true,
-        items: [
-            { text: "Введение", link: "/ru/guide/" },
-            { text: "Совместимость", link: "/ru/guide/compatibility" },
-            { text: "Начало работы", link: "/ru/guide/getting-started" },
-            { text: "Конфигурация", link: "/ru/guide/configuration" },
-            { text: "Сценарии Naninovel", link: "/ru/guide/scenario-scripting" },
-            { text: "Расширение для IDE", link: "/ru/guide/ide-extension" },
-            { text: "Текстовые принтеры", link: "/ru/guide/text-printers" },
-            { text: "Персонажи", link: "/ru/guide/characters" },
-            { text: "Фоны", link: "/ru/guide/backgrounds" },
-            { text: "Эффекты переходов", link: "/ru/guide/transition-effects" },
-            { text: "Спецэффекты", link: "/ru/guide/special-effects" },
-            { text: "Аудио", link: "/ru/guide/audio" },
-            { text: "Озвучивание", link: "/ru/guide/voicing" },
-            { text: "Видеоролики", link: "/ru/guide/movies" },
-            { text: "Выборы", link: "/ru/guide/choices" },
-            { text: "Пользовательский интерфейс", link: "/ru/guide/gui" },
-            { text: "Система сохранений-загрузок", link: "/ru/guide/save-load-system" },
-            { text: "Настройки игры", link: "/ru/guide/game-settings" },
-            { text: "Обработка ввода", link: "/ru/guide/input-processing" },
-            { text: "Разблокируемые элементы", link: "/ru/guide/unlockable-items" },
-            { text: "Пользовательские переменные", link: "/ru/guide/custom-variables" },
-            { text: "Выражения сценария", link: "/ru/guide/script-expressions" },
-            { text: "Управляемый текст", link: "/ru/guide/managed-text" },
-            { text: "Локализация", link: "/ru/guide/localization" },
-            { text: "Провайдеры ресурсов", link: "/ru/guide/resource-providers" },
-            { text: "Моддинг сообщества", link: "/ru/guide/community-modding" },
-            { text: "Консоль разработчика", link: "/ru/guide/development-console" }
-        ]
-    },
-    {
-        text: "Программирование",
-        collapsed: true,
-        items: [
-            { text: "Архитектура движка", link: "/ru/guide/engine-architecture" },
-            { text: "Сервисы движка", link: "/ru/guide/engine-services" },
-            { text: "Пользовательские команды", link: "/ru/guide/custom-commands" },
-            { text: "Пользовательская конфигурация", link: "/ru/guide/custom-configuration" },
-            { text: "Пользовательские реализации акторов", link: "/ru/guide/custom-actor-implementations" },
-            { text: "Пользовательские шейдеры акторов", link: "/ru/guide/custom-actor-shader" },
-            { text: "Custom Script Compiler", link: "/ru/guide/custom-compiler" },
-            { text: "Управление состоянием", link: "/ru/guide/state-management" },
-            { text: "Варианты интеграции", link: "/ru/guide/integration-options" },
-            { text: "Пользовательская cреда cборки", link: "/ru/guide/custom-build-environment" }
         ]
     }
 ];

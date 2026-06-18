@@ -96,4 +96,4 @@ Naninovel 受以下最终用户许可协议 (EULA) 管辖：[naninovel.com/eula]
 
 ## 如何从剧本脚本运行自定义 C# 代码？
 
-要调用 C# 行为（例如，访问场景中的游戏对象），请使用 [自定义命令](/zh/guide/custom-commands)；要从 C# 方法获取值并在剧本脚本中使用它，请使用 [脚本表达式](/zh/guide/script-expressions#添加自定义函数)。
+要调用 C# 行为（例如，访问场景中的游戏对象），请使用 [自定义命令](/zh/guide/custom-commands)；要从 C# 方法获取值并在剧本脚本中使用它，请使用 [剧本表达式](/zh/guide/expressions#添加自定义函数)。

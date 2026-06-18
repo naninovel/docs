@@ -345,7 +345,7 @@ Lorem ipsum[shake Camera ver! !wait] dolor sit amet.
 Lorem ipsum[shake Camera ver:true wait:false] dolor sit amet.
 ```
 
-完全なブール形式を使用する唯一の理由は、[スクリプト式](/ja/guide/script-expressions) を介して値を動的に評価したい場合です。例：
+完全なブール形式を使用する唯一の理由は、[シナリオ式](/ja/guide/expressions) を介して値を動的に評価したい場合です。例：
 
 ```nani
 ; "score" 変数が10より大きい場合、Kohakuを表示します。
@@ -443,7 +443,7 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 ```
 
 ::: info
-条件式と使用可能な演算子の詳細については、[スクリプト式](/ja/guide/script-expressions) ガイドを参照してください。
+条件式と使用可能な演算子の詳細については、[シナリオ式](/ja/guide/expressions) ガイドを参照してください。
 :::
 
 ## ネスト

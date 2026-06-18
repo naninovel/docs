@@ -153,8 +153,8 @@ UI 自定义允许添加自定义 UI 并修改或完全替换任何内置 UI 元
 | IExternalScriptsUI | 外部脚本浏览器 UI（社区模组功能）。 |
 | IVariableInputUI | 用于将任意文本分配给剧本变量的输入表单（由 [@input] 命令使用）。 |
 | IConfirmationUI | 用于确认重要命令的 UI 面板（例如，退出到标题菜单或删除保存的游戏槽时）。 |
-| ICGGalleryUI | 可解锁的 [CG 画廊](/zh/guide/unlockable-items#cg-画廊) 项目浏览器。 |
-| ITipsUI | 可解锁的 [提示](/zh/guide/unlockable-items#提示) 浏览器。 |
+| ICGGalleryUI | 可解锁的 [CG 画廊](/zh/guide/unlockables#cg-画廊) 项目浏览器。 |
+| ITipsUI | 可解锁的 [提示](/zh/guide/unlockables#提示) 浏览器。 |
 | IRollbackUI | 状态回滚功能的指示器。 |
 | IContinueInputUI | 位于 UI 堆栈底部的全屏不可见 UI 层，用于在单击或触摸时激活 `continue input` 触发器。 |
 | IToastUI | 用于自动隐藏弹出通知（又名“toast”）的通用 UI；可以使用 [@toast] 命令从剧本脚本中使用。 |
