@@ -7,7 +7,7 @@ While Naninovel is focused around traditional visual novel games and works best 
 There are multiple ways you can integrate Naninovel with a custom project; the specific implementation depends on the project type and what you want to achieve. In the following documentation we'll list various configuration options and APIs that can be useful for "pairing" Naninovel with a standalone game. Before you continue, take a look at the [engine architecture](/guide/engine-architecture) to better understand its conceptual behavior.
 
 ::: tip EXAMPLE
-Check out the [integration sample](/guide/samples#integration) where Naninovel is used both as a drop-in dialogue system for a 3D adventure game and as a standalone novel mode.
+Check out the [integration sample](/guide/samples#dialogue-mode) where Naninovel is used both as a drop-in dialogue system for a 3D adventure game and as a standalone novel mode.
 :::
 
 ## Manual Initialization
@@ -86,7 +86,7 @@ If you'd like to reference scenario script assets in your custom systems (for ex
 
 Instead, use the asset reference (GUID). The reference won't change when the associated file is moved or renamed. To resolve a script path from a GUID use `ScriptAssets.GetPath` method. Naninovel also provides a `ScriptAssetRef` property drawer, allowing assigning script assets directly to serialized fields for convenience.
 
-Below is a component from the [integration sample](/guide/samples#integration) that starts playing a specified script when the player collides with a trigger:
+Below is a component from the [integration sample](/guide/samples#dialogue-mode) that starts playing a specified script when the player collides with a trigger:
 
 ```cs
 public class DialogueTrigger : MonoBehaviour
@@ -223,8 +223,8 @@ private void OnTriggerEnter (Collider other)
 
 There are multiple other features (state outsourcing, service overriding, custom serialization, resource and configuration providers, etc.) that can be useful when integrating the engine with other systems. Check the rest of the guide for more information. Consider investigating the available [configuration options](/guide/configuration) as well; some features may not be described in the guide but can still be handy for integration.
 
-If you feel some engine API or system lacks extendability and requires source code modification to integrate, please [contact the support](/support/#naninovel-support) — we'll consider improving it.
+If you feel some engine API or system lacks extendability and requires source code modification to integrate, please [contact the support](/support/) — we'll consider improving it.
 
 ::: tip EXAMPLE
-Check [integration sample](/guide/samples#integration) where Naninovel is used as both drop-in dialogue for a 3D adventure game and a switchable standalone novel mode.
+Check [integration sample](/guide/samples#dialogue-mode) where Naninovel is used as both drop-in dialogue for a 3D adventure game and a switchable standalone novel mode.
 :::

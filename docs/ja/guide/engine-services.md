@@ -21,7 +21,7 @@ player.Stop();
 | ICharacterManager | [キャラクター](/ja/guide/characters) アクターを管理します。 |
 | IChoiceHandlerManager | [選択肢ハンドラー](/ja/guide/choices) アクターを管理します。 |
 | ITextPrinterManager | [テキストプリンター](/ja/guide/text-printers) アクターを管理します。 |
-| IAudioManager | オーディオ（[SFX](/ja/guide/audio#sfx効果音)、[BGM](/ja/guide/audio#bgm背景音楽)、[ボイス](/ja/guide/voicing)）を管理します。 |
+| IAudioManager | オーディオ（[SFX](/ja/guide/audio#sfx-効果音)、[BGM](/ja/guide/audio#bgm-背景音楽)、[ボイス](/ja/guide/voicing)）を管理します。 |
 | IInputManager | ユーザー [入力処理](/ja/guide/input-processing) を管理します。 |
 | ILocalizationManager | [ローカライズ](/ja/guide/localization) アクティビティを管理します。 |
 | ITextManager | [管理テキスト](/ja/guide/managed-text) 機能を処理します。 |

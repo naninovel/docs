@@ -2,7 +2,7 @@
 
 テキストプリンターは、時間の経過とともに表示（印刷）できるテキストメッセージを提示するために使用されるアクターです。
 
-プリンターの動作は、`Naninovel -> Configuration -> Printers` コンテキストメニューを使用して構成できます。利用可能なオプションについては、[構成ガイド](/ja/guide/configuration#printers) を参照してください。プリンターのリソースマネージャーには、`Naninovel -> Resources -> Printers` コンテキストメニューを使用してアクセスできます。
+プリンターの動作は、`Naninovel -> Configuration -> Printers` コンテキストメニューを使用して構成できます。利用可能なオプションについては、[構成ガイド](/ja/guide/configuration#テキストプリンター) を参照してください。プリンターのリソースマネージャーには、`Naninovel -> Resources -> Printers` コンテキストメニューを使用してアクセスできます。
 
 シナリオスクリプトでは、テキストプリンターは主に [@print] および [@printer] コマンドで制御されます。
 
