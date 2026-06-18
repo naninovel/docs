@@ -2,7 +2,7 @@
 
 文本打印机是用于呈现可以随时间显示（打印）的文本消息的 actor。
 
-可以使用 `Naninovel -> Configuration -> Printers` 上下文菜单配置打印机的行为；有关可用选项，请参阅 [配置指南](/zh/guide/configuration#printers)。可以使用 `Naninovel -> Resources -> Printers` 上下文菜单访问打印机的资源管理器。
+可以使用 `Naninovel -> Configuration -> Printers` 上下文菜单配置打印机的行为；有关可用选项，请参阅 [配置指南](/zh/guide/configuration#文本输出窗)。可以使用 `Naninovel -> Resources -> Printers` 上下文菜单访问打印机的资源管理器。
 
 在剧本脚本中，文本打印机主要通过 [@print] 和 [@printer] 命令控制：
 
@@ -211,7 +211,7 @@ Nanikun: Integer nec maximus elit, eget posuere risus.
 ```
 
 ::: tip EXAMPLE
-查看 [演示项目](/zh/guide/getting-started#demo-project) 以获取有关添加自定义打印机的示例。预制件存储为 `Assets/Prefabs/CustomPrinter.prefab`。
+查看 [演示项目](/zh/guide/getting-started#演示示例) 以获取有关添加自定义打印机的示例。预制件存储为 `Assets/Prefabs/CustomPrinter.prefab`。
 :::
 
 也可以通过手动实现 `ITextPrinterActor` 接口从头开始创建打印机。有关更多信息，请参阅 [自定义 actor 实现](/zh/guide/custom-actor-implementations) 指南。

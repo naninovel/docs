@@ -87,7 +87,7 @@ Preview is the bleeding edge: it's updated most often and has all the latest fea
 
 Stable is the middle-ground: it only receives bug fixes, doesn't have the latest features, but is also free from any breaking changes. It's recommended in most cases.
 
-Final, while being the most tested and stable one, is also the most outdated and is not covered by the [tech support](/support/#naninovel-support). Only stay on the final release in case the project is already released and it's not possible to upgrade.
+Final, while being the most tested and stable one, is also the most outdated and is not covered by the [tech support](/support/). Only stay on the final release in case the project is already released and it's not possible to upgrade.
 
 ![](https://i.gyazo.com/2462242c14c96a0eae9ca99212c340c4.png)
 

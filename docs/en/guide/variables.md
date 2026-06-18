@@ -93,7 +93,7 @@ Meta variables are useful for tracking information that is "meta" to individual 
 ```
 
 ::: tip
-If you want a meta counter that increments only once (even when re-played, e.g., with rollback or after restarting the game), use the `hasPlayed()` [expression query](/guide/expressions#expression-query):
+If you want a meta counter that increments only once (even when re-played, e.g., with rollback or after restarting the game), use the `hasPlayed()` [expression query](/guide/expressions#expression-queries):
 ```nani
 @set metaCounter=0 meta!
 ...

@@ -223,7 +223,7 @@ private void OnTriggerEnter (Collider other)
 
 还有许多其他功能（状态外包、服务覆盖、自定义序列化、资源和配置提供者等）在将引擎与其他系统集成时可能很有用。查看其余指南以获取更多信息。还可以考虑研究可用的[配置选项](/zh/guide/configuration)；某些功能可能未在指南中描述，但在集成时仍然很有用。
 
-如果你觉得某些引擎 API 或系统缺乏可扩展性并且需要修改源代码才能集成，请[联系支持](/support/#naninovel-support)——我们将考虑改进它。
+如果你觉得某些引擎 API 或系统缺乏可扩展性并且需要修改源代码才能集成，请[联系支持](/zh/support/)——我们将考虑改进它。
 
 ::: tip 示例
 查看[集成示例](/zh/guide/samples#集成-integration)，其中 Naninovel 既用作 3D 冒险游戏的嵌入式对话，又用作可切换的独立小说模式。

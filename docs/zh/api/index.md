@@ -202,13 +202,13 @@ Lorem ipsum
 | pose | string | 为修改后的 Actor 设置的姿势。 |
 | via | string | 要使用的[过渡效果](/zh/guide/special-effects#过渡效果)类型（默认使用交叉淡入淡出）。 |
 | params | number list | 过渡效果的参数。 |
-| dissolve | string | [自定义溶解](/zh/guide/special-effects#过渡效果)纹理的路径（路径应相对于 `Resources` 文件夹）。仅当过渡设置为 `Custom` 模式时有效。 |
+| dissolve | string | [自定义溶解](/zh/guide/special-effects#溶解遮罩)纹理的路径（路径应相对于 `Resources` 文件夹）。仅当过渡设置为 `Custom` 模式时有效。 |
 | visible | boolean | 为修改后的 Actor 设置的可见性状态。 |
 | position | number list | 为修改后的 Actor 设置的位置（在世界空间中）。在正交模式下，使用 Z 分量（第三个成员）按深度移动（排序）。 |
 | rotation | number list | 为修改后的 Actor 设置的旋转。 |
 | scale | number list | 为修改后的 Actor 设置的缩放。 |
 | tint | string | 要应用的色调颜色。<br><br>以 `#` 开头的字符串将按以下方式解析为十六进制：`#RGB`（变为 `RRGGBB`）、`#RRGGBB`、`#RGBA`（变为 `RRGGBBAA`）、`#RRGGBBAA`；未指定 alpha 时将默认为 `FF`。<br><br>不以 `#` 开头的字符串将被解析为文字颜色，支持以下颜色：red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta。 |
-| easing | string | 要应用的[缓动函数](/zh/guide/special-effects#过渡效果)名称。未指定时，将使用配置中设置的默认函数。 |
+| easing | string | 要应用的[缓动函数](/zh/guide/special-effects#动画缓动)名称。未指定时，将使用配置中设置的默认函数。 |
 | time | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画将在开始动画到新目标之前立即完成。 |
 | wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
@@ -340,7 +340,7 @@ Actor 应实现 `IBlurable` 接口以支持该效果。
 | ortho | boolean | 摄像机应以正交 (true) 还是透视 (false) 模式渲染。 |
 | toggle | string list | 要切换（如果禁用则启用，反之亦然）的组件名称。组件应附加到与摄像机相同的游戏对象。这可用于切换[自定义后处理效果](/zh/guide/special-effects#自定义相机效果)。使用 `*` 影响附加到摄像机对象的所有组件。 |
 | set | named boolean list | 要启用或禁用的组件名称。组件应附加到与摄像机相同的游戏对象。这可用于显式启用或禁用[自定义后处理效果](/zh/guide/special-effects#自定义相机效果)。指定的组件启用状态将覆盖 `toggle` 参数的效果。使用 `*` 影响附加到摄像机对象的所有组件。 |
-| easing | string | 要应用的[缓动函数](/zh/guide/special-effects#过渡效果)名称。未指定时，将使用配置中设置的默认函数。 |
+| easing | string | 要应用的[缓动函数](/zh/guide/special-effects#动画缓动)名称。未指定时，将使用配置中设置的默认函数。 |
 | time | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画将在开始动画到新目标之前立即完成。 |
 | wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
@@ -390,13 +390,13 @@ Actor 应实现 `IBlurable` 接口以支持该效果。
 | pose | string | 为修改后的 Actor 设置的姿势。 |
 | via | string | 要使用的[过渡效果](/zh/guide/special-effects#过渡效果)类型（默认使用交叉淡入淡出）。 |
 | params | number list | 过渡效果的参数。 |
-| dissolve | string | [自定义溶解](/zh/guide/special-effects#过渡效果)纹理的路径（路径应相对于 `Resources` 文件夹）。仅当过渡设置为 `Custom` 模式时有效。 |
+| dissolve | string | [自定义溶解](/zh/guide/special-effects#溶解遮罩)纹理的路径（路径应相对于 `Resources` 文件夹）。仅当过渡设置为 `Custom` 模式时有效。 |
 | visible | boolean | 为修改后的 Actor 设置的可见性状态。 |
 | position | number list | 为修改后的 Actor 设置的位置（在世界空间中）。在正交模式下，使用 Z 分量（第三个成员）按深度移动（排序）。 |
 | rotation | number list | 为修改后的 Actor 设置的旋转。 |
 | scale | number list | 为修改后的 Actor 设置的缩放。 |
 | tint | string | 要应用的色调颜色。<br><br>以 `#` 开头的字符串将按以下方式解析为十六进制：`#RGB`（变为 `RRGGBB`）、`#RRGGBB`、`#RGBA`（变为 `RRGGBBAA`）、`#RRGGBBAA`；未指定 alpha 时将默认为 `FF`。<br><br>不以 `#` 开头的字符串将被解析为文字颜色，支持以下颜色：red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta。 |
-| easing | string | 要应用的[缓动函数](/zh/guide/special-effects#过渡效果)名称。未指定时，将使用配置中设置的默认函数。 |
+| easing | string | 要应用的[缓动函数](/zh/guide/special-effects#动画缓动)名称。未指定时，将使用配置中设置的默认函数。 |
 | time | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画将在开始动画到新目标之前立即完成。 |
 | wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
@@ -497,13 +497,13 @@ Continue executing this script or ...?[>]
 | pose | string | 为修改后的 Actor 设置的姿势。 |
 | via | string | 要使用的[过渡效果](/zh/guide/special-effects#过渡效果)类型（默认使用交叉淡入淡出）。 |
 | params | number list | 过渡效果的参数。 |
-| dissolve | string | [自定义溶解](/zh/guide/special-effects#过渡效果)纹理的路径（路径应相对于 `Resources` 文件夹）。仅当过渡设置为 `Custom` 模式时有效。 |
+| dissolve | string | [自定义溶解](/zh/guide/special-effects#溶解遮罩)纹理的路径（路径应相对于 `Resources` 文件夹）。仅当过渡设置为 `Custom` 模式时有效。 |
 | visible | boolean | 为修改后的 Actor 设置的可见性状态。 |
 | position | number list | 为修改后的 Actor 设置的位置（在世界空间中）。在正交模式下，使用 Z 分量（第三个成员）按深度移动（排序）。 |
 | rotation | number list | 为修改后的 Actor 设置的旋转。 |
 | scale | number list | 为修改后的 Actor 设置的缩放。 |
 | tint | string | 要应用的色调颜色。<br><br>以 `#` 开头的字符串将按以下方式解析为十六进制：`#RGB`（变为 `RRGGBB`）、`#RRGGBB`、`#RGBA`（变为 `RRGGBBAA`）、`#RRGGBBAA`；未指定 alpha 时将默认为 `FF`。<br><br>不以 `#` 开头的字符串将被解析为文字颜色，支持以下颜色：red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta。 |
-| easing | string | 要应用的[缓动函数](/zh/guide/special-effects#过渡效果)名称。未指定时，将使用配置中设置的默认函数。 |
+| easing | string | 要应用的[缓动函数](/zh/guide/special-effects#动画缓动)名称。未指定时，将使用配置中设置的默认函数。 |
 | time | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画将在开始动画到新目标之前立即完成。 |
 | wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
@@ -1163,13 +1163,13 @@ Marks a branch of a conditional execution block, which is executed in case condi
 | pose | string | 为修改后的 Actor 设置的姿势。 |
 | via | string | 要使用的[过渡效果](/zh/guide/special-effects#过渡效果)类型（默认使用交叉淡入淡出）。 |
 | params | number list | 过渡效果的参数。 |
-| dissolve | string | [自定义溶解](/zh/guide/special-effects#过渡效果)纹理的路径（路径应相对于 `Resources` 文件夹）。仅当过渡设置为 `Custom` 模式时有效。 |
+| dissolve | string | [自定义溶解](/zh/guide/special-effects#溶解遮罩)纹理的路径（路径应相对于 `Resources` 文件夹）。仅当过渡设置为 `Custom` 模式时有效。 |
 | visible | boolean | 为修改后的 Actor 设置的可见性状态。 |
 | position | number list | 为修改后的 Actor 设置的位置（在世界空间中）。在正交模式下，使用 Z 分量（第三个成员）按深度移动（排序）。 |
 | rotation | number list | 为修改后的 Actor 设置的旋转。 |
 | scale | number list | 为修改后的 Actor 设置的缩放。 |
 | tint | string | 要应用的色调颜色。<br><br>以 `#` 开头的字符串将按以下方式解析为十六进制：`#RGB`（变为 `RRGGBB`）、`#RRGGBB`、`#RGBA`（变为 `RRGGBBAA`）、`#RRGGBBAA`；未指定 alpha 时将默认为 `FF`。<br><br>不以 `#` 开头的字符串将被解析为文字颜色，支持以下颜色：red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta。 |
-| easing | string | 要应用的[缓动函数](/zh/guide/special-effects#过渡效果)名称。未指定时，将使用配置中设置的默认函数。 |
+| easing | string | 要应用的[缓动函数](/zh/guide/special-effects#动画缓动)名称。未指定时，将使用配置中设置的默认函数。 |
 | time | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画将在开始动画到新目标之前立即完成。 |
 | wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
@@ -1726,7 +1726,7 @@ My favourite drink is {drink}!
 | from | number list | 在场景空间中滑动 Actor 的起始位置（滑动开始位置）。描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角；Z 分量（深度）在世界空间中。未指定时，如果可见将使用当前 Actor 位置，否则使用随机场景外位置（可能从左侧或右侧边界滑入）。 |
 | <span class="command-param-required" title="必需参数：应始终指定参数">to</span> | number list | 在场景空间中滑动 Actor 的目标位置（滑动结束位置）。 |
 | visible | boolean | 更改 Actor 的可见性状态（显示或隐藏）。未设置且目标 Actor 被隐藏时，仍会自动显示它。 |
-| easing | string | 要应用的[缓动函数](/zh/guide/special-effects#过渡效果)名称。未指定时，将使用配置中设置的默认函数。 |
+| easing | string | 要应用的[缓动函数](/zh/guide/special-effects#动画缓动)名称。未指定时，将使用配置中设置的默认函数。 |
 | time | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画将在开始动画到新目标之前立即完成。 |
 | wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
@@ -2028,8 +2028,8 @@ The bomb is defused!
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">transition</span> | string | 要使用的[过渡效果](/zh/guide/special-effects#过渡效果)类型（默认使用交叉淡入淡出）。 |
 | params | number list | 过渡效果的参数。 |
-| dissolve | string | [自定义溶解](/zh/guide/special-effects#过渡效果)纹理的路径（路径应相对于 `Resources` 文件夹）。仅当过渡设置为 `Custom` 模式时有效。 |
-| easing | string | 用于过渡的[缓动函数](/zh/guide/special-effects#过渡效果)名称。 |
+| dissolve | string | [自定义溶解](/zh/guide/special-effects#溶解遮罩)纹理的路径（路径应相对于 `Resources` 文件夹）。仅当过渡设置为 `Custom` 模式时有效。 |
+| easing | string | 用于过渡的[缓动函数](/zh/guide/special-effects#动画缓动)名称。 |
 | time | number | 过渡的持续时间（以秒为单位）。 |
 
 </div>
