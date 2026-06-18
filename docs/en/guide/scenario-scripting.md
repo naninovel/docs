@@ -345,7 +345,7 @@ Lorem ipsum[shake Camera ver! !wait] dolor sit amet.
 Lorem ipsum[shake Camera ver:true wait:false] dolor sit amet.
 ```
 
-The only reasons to use the full boolean form are when you want to evaluate the value dynamically via a [script expression](/guide/script-expressions), e.g.:
+The only reasons to use the full boolean form are when you want to evaluate the value dynamically via a [scenario expression](/guide/expressions), e.g.:
 
 ```nani
 ; Make Kohaku visible if the "score" variable is above 10.
@@ -446,7 +446,7 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 ```
 
 ::: info
-Find more about conditional expressions and available operators in the [script expressions](/guide/script-expressions) guide.
+Find more about conditional expressions and available operators in the [scenario expressions](/guide/expressions) guide.
 :::
 
 ## Nesting

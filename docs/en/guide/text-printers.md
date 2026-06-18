@@ -365,7 +365,7 @@ Reveal events execute commands on a transient track and cannot affect the main t
 
 ## Reveal Expressions
 
-In some cases, it may be required to include [script expressions](/guide/script-expressions) in the generated localization documents or force expression re-evaluation when language (locale) is changed.
+In some cases, it may be required to include [scenario expressions](/guide/expressions) in the generated localization documents or force expression re-evaluation when language (locale) is changed.
 
 The process is similar to [reveal events](/guide/text-printers#reveal-events), but instead of `@` use the `:` tag:
 
@@ -408,7 +408,7 @@ Select your pronouns.
 
 Notice the `</x/y>` tags — these are selector tags. The text between `/` characters are called options. By default, a random option will be returned. However, if you set the `selector` variable to an index, the tag will instead return the option with that index (zero-based).
 
-If you need more flexible selection logic, create a custom [expression query](/guide/script-expressions#adding-custom-queries) with the `select` alias, and make it accept a `params string[]` and return a `string`. Whenever a selector tag is compiled, it will then use your query to evaluate the result. Below is an example of a custom select query, where the first option specifies the selection kind, falling back to random selection if the first option is empty:
+If you need more flexible selection logic, create a custom [expression query](/guide/expressions#adding-custom-queries) with the `select` alias, and make it accept a `params string[]` and return a `string`. Whenever a selector tag is compiled, it will then use your query to evaluate the result. Below is an example of a custom select query, where the first option specifies the selection kind, falling back to random selection if the first option is empty:
 
 ```cs
 [ExpressionQuery("select")]

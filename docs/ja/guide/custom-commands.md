@@ -162,7 +162,7 @@ public class PlayAudioClip : Command, Command.IPreloadable
 }
 ```
 
-`ClipPath.DynamicValue` チェックに注意してください。コマンドの実行時にのみ名前がわかる場合（つまり、パラメータに [スクリプト式](/ja/guide/script-expressions) が含まれている場合）はリソースをプリロードできません。この場合、リソースは `Execute` メソッド内でロードする必要があります。
+`ClipPath.DynamicValue` チェックに注意してください。コマンドの実行時にのみ名前がわかる場合（つまり、パラメータに [シナリオ式](/ja/guide/expressions) が含まれている場合）はリソースをプリロードできません。この場合、リソースは `Execute` メソッド内でロードする必要があります。
 
 ### コマンドの例
 

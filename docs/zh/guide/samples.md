@@ -105,7 +105,7 @@
 
 您可以使用 `@addItem` 命令向库存添加物品，并使用 `@removeItem`（或 `@removeItemAt`、`@removeAllItems`）将其删除。物品 ID 等于物品预制件名称。库存插槽 ID 等于网格插槽索引（例如，第一个插槽是 0，第二个是 1，依此类推）。
 
-为了方便起见，还提供了 `itemExist()` 和 `itemCount()` 自定义 [表达式函数](/zh/guide/script-expressions#表达式函数) 来检查物品是否存在于库存中以及获取现有物品的数量。
+为了方便起见，还提供了 `itemExist()` 和 `itemCount()` 自定义 [表达式函数](/zh/guide/expressions#表达式函数) 来检查物品是否存在于库存中以及获取现有物品的数量。
 
 以下是示例项目中的脚本：
 

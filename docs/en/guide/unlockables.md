@@ -1,4 +1,4 @@
-# Unlockable Items
+# Unlockables
 
 The unlockables feature allows managing items that have a persistent state of being either locked or unlocked. You can use it in a variety of ways, for example to represent slots in a CG or movie gallery, achievements, tips, and other systems where some entity should be able to become unlocked or activated when the player satisfies a condition.
 
@@ -33,7 +33,7 @@ Under the unlockables configuration menu (`Naninovel -> Configuration -> Unlocka
 
 ![](https://i.gyazo.com/17fa198861ed72de3ab1f9dc6b02b3d8.png)
 
-The unlockable resources are used by the built-in unlockable systems, such as the [CG Gallery](/guide/unlockable-items#cg-gallery). You can also utilize the manager for your own custom systems.
+The unlockable resources are used by the built-in unlockable systems, such as the [CG Gallery](/guide/unlockables#cg-gallery). You can also utilize the manager for your own custom systems.
 
 ## CG Gallery
 

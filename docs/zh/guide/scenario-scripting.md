@@ -345,7 +345,7 @@ Lorem ipsum[shake Camera ver! !wait] dolor sit amet.
 Lorem ipsum[shake Camera ver:true wait:false] dolor sit amet.
 ```
 
-使用完整布尔形式的唯一原因是当您想通过 [脚本表达式](/zh/guide/script-expressions) 动态评估值时，例如：
+使用完整布尔形式的唯一原因是当您想通过 [剧本表达式](/zh/guide/expressions) 动态评估值时，例如：
 
 ```nani
 ; 如果 "score" 变量高于 10，则使 Kohaku 可见。
@@ -443,7 +443,7 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 ```
 
 ::: info
-在 [脚本表达式](/zh/guide/script-expressions) 指南中查找有关条件表达式和可用运算符的更多信息。
+在 [剧本表达式](/zh/guide/expressions) 指南中查找有关条件表达式和可用运算符的更多信息。
 :::
 
 ## 嵌套

@@ -162,7 +162,7 @@ public class PlayAudioClip : Command, Command.IPreloadable
 }
 ```
 
-注意 `ClipPath.DynamicValue` 检查：如果仅在执行命令时才知道名称（即参数包含 [脚本表达式](/zh/guide/script-expressions)），我们将无法预加载资源；在这种情况下，应在 `Execute` 方法内加载资源。
+注意 `ClipPath.DynamicValue` 检查：如果仅在执行命令时才知道名称（即参数包含 [剧本表达式](/zh/guide/expressions)），我们将无法预加载资源；在这种情况下，应在 `Execute` 方法内加载资源。
 
 ### 命令示例
 

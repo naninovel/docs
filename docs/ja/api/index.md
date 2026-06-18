@@ -10,8 +10,8 @@
 
 | パラメータ | 型 | 説明 |
 | --- | --- | --- |
-| if | string | コマンドを実行するかどうかを制御するブール値の [スクリプト式](/ja/guide/script-expressions)。 |
-| unless | string | コマンドを実行しないかどうかを制御するブール値の [スクリプト式](/ja/guide/script-expressions)（'if' の逆）。 |
+| if | string | コマンドを実行するかどうかを制御するブール値の [シナリオ式](/ja/guide/expressions)。 |
+| unless | string | コマンドを実行しないかどうかを制御するブール値の [シナリオ式](/ja/guide/expressions)（'if' の逆）。 |
 | wait | boolean | 次のコマンドを実行する前に、スクリプトプレイヤーが非同期コマンドの実行完了を待機するかどうか。 |
 
 </div>
@@ -892,7 +892,7 @@ Naninovelスクリプトの再生を指定されたパスに移動します。
 
 | パラメータ | 型 | 説明 |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります 必須パラメータ: パラメータは常に指定する必要があります">expression</span> | string | 関連付けられたネストされたブロックが実行されるかどうかを決定するブール値を返す必要がある [スクリプト式](/ja/guide/script-expressions)。 |
+| <span class="command-param-primary command-param-required" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります 必須パラメータ: パラメータは常に指定する必要があります">expression</span> | string | 関連付けられたネストされたブロックが実行されるかどうかを決定するブール値を返す必要がある [シナリオ式](/ja/guide/expressions)。 |
 
 </div>
 
@@ -992,7 +992,7 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 
 ## lock
 
-指定されたIDの [アンロック可能アイテム](/ja/guide/unlockable-items) を `locked` 状態に設定します。
+指定されたIDの [アンロック可能アイテム](/ja/guide/unlockables) を `locked` 状態に設定します。
 
 ::: info NOTE
 アイテムのアンロック状態は [グローバルスコープ](/ja/guide/state-management#グローバル状態) に保存されます。<br/> 指定されたIDのアイテムがグローバル状態マップに登録されていない場合、対応するレコードが自動的に追加されます。
@@ -1096,7 +1096,7 @@ Marks a branch of a conditional execution block, which is executed in case condi
 
 | Parameter | Type | Description                                                                                                                                                |
 | --- | --- |------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [script expression](/ja/guide/script-expressions), which should return a boolean value determining whether the associated nested block will be executed. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [scenario expression](/ja/guide/expressions), which should return a boolean value determining whether the associated nested block will be executed. |
 
 </div>
 
@@ -1430,7 +1430,7 @@ This line will disappear.
 
 ## set
 
-[スクリプト式](/ja/guide/script-expressions) の結果を [シナリオ変数](/ja/guide/variables) に割り当てます。
+[シナリオ式](/ja/guide/expressions) の結果を [シナリオ変数](/ja/guide/variables) に割り当てます。
 
 ::: info NOTE
 指定された ID の変数が存在しない場合は、自動的に作成されます。<br/><br/> `,` で区切って複数のセット式を指定します。式は宣言の順序で順番に実行されます。
@@ -1440,7 +1440,7 @@ This line will disappear.
 
 | パラメータ | 型 | 説明 |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります 必須パラメータ: パラメータは常に指定する必要があります">expression</span> | string | 割り当て式。<br/><br/>式は `var=expression` の形式である必要があります。ここで、`var` は割り当てるシナリオ変数の ID であり、`expression` は [スクリプト式](/ja/guide/script-expressions) であり、その結果が変数に割り当てられます。<br/><br/>インクリメントおよびデクリメント単項演算子（`@set foo++`、`@set foo--`）および複合代入（`@set foo+=10`、`@set foo-=3`、`@set foo*=0.1`、`@set foo/=2`）を使用できます。 |
+| <span class="command-param-primary command-param-required" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります 必須パラメータ: パラメータは常に指定する必要があります">expression</span> | string | 割り当て式。<br/><br/>式は `var=expression` の形式である必要があります。ここで、`var` は割り当てるシナリオ変数の ID であり、`expression` は [シナリオ式](/ja/guide/expressions) であり、その結果が変数に割り当てられます。<br/><br/>インクリメントおよびデクリメント単項演算子（`@set foo++`、`@set foo--`）および複合代入（`@set foo+=10`、`@set foo-=3`、`@set foo*=0.1`、`@set foo/=2`）を使用できます。 |
 | to | string | `= ...` の代入式部分を含まない、指定されたすべての変数に代入される式の結果です。同じ値を複数の変数に代入する場合に便利です。例えば: `@set foo, bar, baz to:10`。 |
 | scope | string | 指定すると、明示的なスコープを持たない変数を指定したスコープの下に割り当てます。 |
 | init | boolean | その変数がまだ代入されていない場合にのみ代入するかどうかを示します（初期化の意図）。'meta' または 'const' フラグとは併用しないでください。これらはいずれも初期化の意図を共有するためです。 |
@@ -2062,7 +2062,7 @@ Jenna: When will the damn rain stop?
 
 | パラメータ | 型 | 説明 |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります 必須パラメータ: パラメータは常に指定する必要があります">expression</span> | string | 関連付けられたネストされたブロックが実行されるかどうかを決定するブール値を返す必要がある [スクリプト式](/ja/guide/script-expressions)。 |
+| <span class="command-param-primary command-param-required" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります 必須パラメータ: パラメータは常に指定する必要があります">expression</span> | string | 関連付けられたネストされたブロックが実行されるかどうかを決定するブール値を返す必要がある [シナリオ式](/ja/guide/expressions)。 |
 
 </div>
 
@@ -2100,7 +2100,7 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 
 ## unlock
 
-指定されたIDの [アンロック可能アイテム](/ja/guide/unlockable-items) を `unlocked` 状態に設定します。
+指定されたIDの [アンロック可能アイテム](/ja/guide/unlockables) を `unlocked` 状態に設定します。
 
 ::: info NOTE
 アイテムのアンロック状態は [グローバルスコープ](/ja/guide/state-management#グローバル状態) に保存されます。<br/> 指定されたIDのアイテムがグローバル状態マップに登録されていない場合、対応するレコードが自動的に追加されます。
@@ -2177,7 +2177,7 @@ Jeez, what a disgusting Noise. Shut it down![wait i5][>]
 
 | パラメータ | 型 | 説明 |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります 必須パラメータ: パラメータは常に指定する必要があります">expression</span> | string | 関連付けられたネストされたブロックがループで実行を継続するかどうかを決定するブール値を返す必要がある [スクリプト式](/ja/guide/script-expressions)。 |
+| <span class="command-param-primary command-param-required" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります 必須パラメータ: パラメータは常に指定する必要があります">expression</span> | string | 関連付けられたネストされたブロックがループで実行を継続するかどうかを決定するブール値を返す必要がある [シナリオ式](/ja/guide/expressions)。 |
 
 </div>
 

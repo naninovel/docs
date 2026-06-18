@@ -10,8 +10,8 @@ The following parameters are supported by most script commands:
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| if | string |  A boolean [script expression](/guide/script-expressions), controlling whether the command should execute. |
-| unless | string |  A boolean [script expression](/guide/script-expressions), controlling whether the command should NOT execute (inverse of 'if'). |
+| if | string |  A boolean [scenario expression](/guide/expressions), controlling whether the command should execute. |
+| unless | string |  A boolean [scenario expression](/guide/expressions), controlling whether the command should NOT execute (inverse of 'if'). |
 | wait | boolean | Whether the script player should wait for the async command to finish execution before executing the next one. |
 
 </div>
@@ -890,7 +890,7 @@ This command is inverse and complementary to [@unless].
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [script expression](/guide/script-expressions), which should return a boolean value determining whether the associated nested block will be executed. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [scenario expression](/guide/expressions), which should return a boolean value determining whether the associated nested block will be executed. |
 
 </div>
 
@@ -990,7 +990,7 @@ Loads a [Unity scene](https://docs.unity3d.com/Manual/CreatingScenes.html) with 
 
 ## lock
 
-Sets an [unlockable item](/guide/unlockable-items) with the specified ID to `locked` state.
+Sets an [unlockable item](/guide/unlockables) with the specified ID to `locked` state.
 
 ::: info NOTE
 The unlocked state of the items is stored in [global scope](/guide/state-management#global-state).<br/> In case item with the specified ID is not registered in the global state map, the corresponding record will automatically be added.
@@ -1094,7 +1094,7 @@ Marks a branch of a conditional execution block, which is executed in case condi
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [script expression](/guide/script-expressions), which should return a boolean value determining whether the associated nested block will be executed. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [scenario expression](/guide/expressions), which should return a boolean value determining whether the associated nested block will be executed. |
 
 </div>
 
@@ -1429,7 +1429,7 @@ Automatically save the game to the first auto save slot.
 
 ## set
 
-Assigns result of a [script expression](/guide/script-expressions) to a [scenario variable](/guide/variables).
+Assigns result of a [scenario expression](/guide/expressions) to a [scenario variable](/guide/variables).
 
 ::: info NOTE
 If a variable with the specified ID doesn't exist, it will be automatically created.<br/><br/> Specify multiple set expressions by separating them with `,`. The expressions will be executed in sequence in the order of declaration.<br/><br/>
@@ -1439,7 +1439,7 @@ If a variable with the specified ID doesn't exist, it will be automatically crea
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | Assignment expression.<br/><br/>The expression should be in the following format: `var=expression`, where `var` is the ID of the scenario variable to assign and `expression` is a [script expression](/guide/script-expressions), the result of which should be assigned to the variable.<br/><br/>It's possible to use increment and decrement unary operators (`@set foo++`, `@set foo--`) and compound assignment (`@set foo+=10`, `@set foo-=3`, `@set foo*=0.1`, `@set foo/=2`). |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | Assignment expression.<br/><br/>The expression should be in the following format: `var=expression`, where `var` is the ID of the scenario variable to assign and `expression` is a [scenario expression](/guide/expressions), the result of which should be assigned to the variable.<br/><br/>It's possible to use increment and decrement unary operators (`@set foo++`, `@set foo--`) and compound assignment (`@set foo+=10`, `@set foo-=3`, `@set foo*=0.1`, `@set foo/=2`). |
 | to | string | The expression which result will be assigned to all the specified variables without assignment expressions (without the `= ...` part). Useful to assign multiple variables to the same value, for example: `@set foo, bar, baz to:10`. |
 | scope | string | When specified, assigns variables without an explicit scope under the specified scope. |
 | init | boolean | Whether the variable should only be assigned in case it's not already assigned (initialization intent). Should not be used with the 'meta' or 'const' flags, as they both share the initialization intent. |
@@ -2063,7 +2063,7 @@ This command is inverse and complementary to [@if].
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [script expression](/guide/script-expressions), which should return a boolean value determining whether the associated nested block will be executed. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [scenario expression](/guide/expressions), which should return a boolean value determining whether the associated nested block will be executed. |
 
 </div>
 
@@ -2101,7 +2101,7 @@ Unloads a [Unity scene](https://docs.unity3d.com/Manual/CreatingScenes.html) wit
 
 ## unlock
 
-Sets an [unlockable item](/guide/unlockable-items) with the specified ID to `unlocked` state.
+Sets an [unlockable item](/guide/unlockables) with the specified ID to `unlocked` state.
 
 ::: info NOTE
 The unlocked state of the items is stored in [global scope](/guide/state-management#global-state).<br/> In case item with the specified ID is not registered in the global state map, the corresponding record will automatically be added.
@@ -2178,7 +2178,7 @@ Executes nested lines in a loop, as long as specified conditional expression res
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [script expression](/guide/script-expressions), which should return a boolean value determining whether the associated nested block should continue executing in loop. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [scenario expression](/guide/expressions), which should return a boolean value determining whether the associated nested block should continue executing in loop. |
 
 </div>
 

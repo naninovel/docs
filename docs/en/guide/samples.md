@@ -104,7 +104,7 @@ Each item has a `Stack Count Limit` property to limit how many items of this typ
 
 You can add items to the inventory using the `@addItem` command and remove them with `@removeItem` (or `@removeItemAt`, `@removeAllItems`). Item IDs are equal to the item prefab names. Inventory slot IDs are equal to the grid slot indexes (e.g., the first slot is 0, the second is 1, etc.).
 
-`itemExist()` and `itemCount()` custom [expression queries](/guide/script-expressions#expression-queries) to check whether an item exists in inventory and to get the number of existing items are also available for convenience.
+`itemExist()` and `itemCount()` custom [expression queries](/guide/expressions#expression-queries) to check whether an item exists in inventory and to get the number of existing items are also available for convenience.
 
 Below is a script from the example project:
 

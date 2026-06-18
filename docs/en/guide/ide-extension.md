@@ -355,7 +355,7 @@ public class ModifyBackground : ModifyActor { }
 You can use the same approach when inheriting custom commands from built-in ones. Don't forget to provide the optional `paramId` argument when applying a parameter context attribute to a class instead of a field.
 
 ::: tip
-Most of the same parameter context attributes can be applied to expression query parameters to enable auto-completion and diagnostics in the IDE extension. See an example in the [queries guide](/guide/script-expressions#parameter-context).
+Most of the same parameter context attributes can be applied to expression query parameters to enable auto-completion and diagnostics in the IDE extension. See an example in the [queries guide](/guide/expressions#parameter-context).
 :::
 
 ## Enum Expressions

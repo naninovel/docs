@@ -96,7 +96,7 @@ Player: You can call me Dr. Stein.
 Player: You can call me {PlayerName}.
 ```
 
-大括号的内容实际上被视为成熟的 [脚本表达式](/zh/guide/script-expressions)，允许复杂的场景来评估显示名称。例如，您可能希望保留角色的预定义可本地化显示名称直到某个时刻，然后让玩家选择自定义名称。
+大括号的内容实际上被视为成熟的 [剧本表达式](/zh/guide/expressions)，允许复杂的场景来评估显示名称。例如，您可能希望保留角色的预定义可本地化显示名称直到某个时刻，然后让玩家选择自定义名称。
 
 假设有问题的角色具有 "Char1" ID，预定义名称存储为 `T_PredefinedName` [管理文本记录](/zh/guide/managed-text#脚本文本)，玩家输入的值将存储为 `name` [剧本变量](/zh/guide/variables)，当玩家设置名称时，`nameSet` 变量将设置为 `true`。将以下表达式分配给 `Display Name` 属性：`{ nameSet ? name : T_PredefinedName }`。
 

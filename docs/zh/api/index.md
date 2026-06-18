@@ -10,8 +10,8 @@
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| if | string | 一个布尔[脚本表达式](/zh/guide/script-expressions)，控制命令是否应该执行。 |
-| unless | string | 一个布尔[脚本表达式](/zh/guide/script-expressions)，控制命令是否不应该执行（'if' 的反义）。 |
+| if | string | 一个布尔[剧本表达式](/zh/guide/expressions)，控制命令是否应该执行。 |
+| unless | string | 一个布尔[剧本表达式](/zh/guide/expressions)，控制命令是否不应该执行（'if' 的反义）。 |
 | wait | boolean | 脚本播放器是否应等待异步命令完成执行后再执行下一个命令。 |
 
 </div>
@@ -892,7 +892,7 @@ You are victorious!
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">expression</span> | string | 一个[脚本表达式](/zh/guide/script-expressions)，应返回一个布尔值，决定是否执行关联的嵌套块。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">expression</span> | string | 一个[剧本表达式](/zh/guide/expressions)，应返回一个布尔值，决定是否执行关联的嵌套块。 |
 
 </div>
 
@@ -992,7 +992,7 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 
 ## lock
 
-将具有指定 ID 的[可解锁项](/zh/guide/unlockable-items)设置为 `locked` 状态。
+将具有指定 ID 的[可解锁项](/zh/guide/unlockables)设置为 `locked` 状态。
 
 ::: info NOTE
 项目的解锁状态存储在[全局范围](/zh/guide/state-management#全局状态)中。<br/> 如果具有指定 ID 的项目未在全局状态映射中注册，则将自动添加相应的记录。
@@ -1096,7 +1096,7 @@ Marks a branch of a conditional execution block, which is executed in case condi
 
 | Parameter | Type | Description                                                                                                                                               |
 | --- | --- |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [script expression](/zh/guide/script-expressions), which should return a boolean value determining whether the associated nested block will be executed. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [scenario expression](/zh/guide/expressions), which should return a boolean value determining whether the associated nested block will be executed. |
 
 </div>
 
@@ -1430,7 +1430,7 @@ This line will disappear.
 
 ## set
 
-将[脚本表达式](/zh/guide/script-expressions)的结果分配给[剧本变量](/zh/guide/variables)。
+将[剧本表达式](/zh/guide/expressions)的结果分配给[剧本变量](/zh/guide/variables)。
 
 ::: info NOTE
 如果具有指定 ID 的变量不存在，将自动创建它。<br/><br/> 通过用 `,` 分隔来指定多个设置表达式。表达式将按声明顺序依次执行。
@@ -1440,7 +1440,7 @@ This line will disappear.
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">expression</span> | string | 分配表达式。<br/><br/>表达式应采用以下格式：`var=expression`，其中 `var` 是要分配的剧本变量 ID，`expression` 是一个[脚本表达式](/zh/guide/script-expressions)，其结果应分配给变量。<br/><br/>可以使用递增和递减一元运算符（`@set foo++`、`@set foo--`）和复合赋值（`@set foo+=10`、`@set foo-=3`、`@set foo*=0.1`、`@set foo/=2`）。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">expression</span> | string | 分配表达式。<br/><br/>表达式应采用以下格式：`var=expression`，其中 `var` 是要分配的剧本变量 ID，`expression` 是一个[剧本表达式](/zh/guide/expressions)，其结果应分配给变量。<br/><br/>可以使用递增和递减一元运算符（`@set foo++`、`@set foo--`）和复合赋值（`@set foo+=10`、`@set foo-=3`、`@set foo*=0.1`、`@set foo/=2`）。 |
 | to | string | 不包含赋值表达式部分（不含 `= ...` 部分）时，将赋给所有指定变量的表达式结果。适用于将同一个值赋给多个变量，例如：`@set foo, bar, baz to:10`。 |
 | scope | string | 指定后，会将没有显式作用域的变量分配到指定作用域下。 |
 | init | boolean | 该变量是否只应在尚未赋值时才进行赋值（即初始化意图）。不应与 'meta' 或 'const' 标志一起使用，因为它们都具有初始化意图。 |
@@ -2064,7 +2064,7 @@ Jenna: When will the damn rain stop?
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">expression</span> | string | 一个[脚本表达式](/zh/guide/script-expressions)，应返回一个布尔值，决定是否执行关联的嵌套块。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">expression</span> | string | 一个[剧本表达式](/zh/guide/expressions)，应返回一个布尔值，决定是否执行关联的嵌套块。 |
 
 </div>
 
@@ -2102,7 +2102,7 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 
 ## unlock
 
-将具有指定 ID 的[可解锁项](/zh/guide/unlockable-items)设置为 `unlocked` 状态。
+将具有指定 ID 的[可解锁项](/zh/guide/unlockables)设置为 `unlocked` 状态。
 
 ::: info NOTE
 项目的解锁状态存储在[全局范围](/zh/guide/state-management#全局状态)中。<br/> 如果具有指定 ID 的项目未在全局状态映射中注册，则将自动添加相应的记录。
@@ -2179,7 +2179,7 @@ Jeez, what a disgusting Noise. Shut it down![wait i5][>]
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">expression</span> | string | 一个[脚本表达式](/zh/guide/script-expressions)，应返回一个布尔值，决定关联的嵌套块是否应继续循环执行。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">expression</span> | string | 一个[剧本表达式](/zh/guide/expressions)，应返回一个布尔值，决定关联的嵌套块是否应继续循环执行。 |
 
 </div>
 
