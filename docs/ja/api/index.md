@@ -202,13 +202,13 @@ Lorem ipsum
 | pose | string | 変更されたアクターに設定するポーズ。 |
 | via | string | 使用する [遷移効果](/ja/guide/special-effects#トランジションエフェクト) のタイプ（デフォルトではクロスフェードが使用されます）。 |
 | params | number list | 遷移効果のパラメータ。 |
-| dissolve | string | [カスタムディゾルブ](/ja/guide/special-effects#トランジションエフェクト) テクスチャへのパス（パスは `Resources` フォルダに対する相対パスである必要があります）。遷移が `Custom` モードに設定されている場合にのみ効果があります。 |
+| dissolve | string | [カスタムディゾルブ](/ja/guide/special-effects#ディゾルブマスク) テクスチャへのパス（パスは `Resources` フォルダに対する相対パスである必要があります）。遷移が `Custom` モードに設定されている場合にのみ効果があります。 |
 | visible | boolean | 変更されたアクターに設定する可視性ステータス。 |
 | position | number list | 変更されたアクターに設定する位置（ワールド空間）。直交モードで深度によって移動（ソート）するには、Zコンポーネント（3番目のメンバー）を使用します。 |
 | rotation | number list | 変更されたアクターに設定する回転。 |
 | scale | number list | 変更されたアクターに設定するスケール。 |
 | tint | string | 適用する色合い。<br><br>`#` で始まる文字列は、次の方法で16進数として解析されます：`#RGB`（`RRGGBB` になります）、`#RRGGBB`、`#RGBA`（`RRGGBBAA` になります）、`#RRGGBBAA`。アルファが指定されていない場合、デフォルトは `FF` になります。<br><br>`#` で始まらない文字列は、リテラルカラーとして解析され、次の色がサポートされています：red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta。 |
-| easing | string | 適用する [イージング関数](/ja/guide/special-effects#トランジションエフェクト) の名前。指定しない場合、設定で設定されたデフォルトの関数を使用します。 |
+| easing | string | 適用する [イージング関数](/ja/guide/special-effects#アニメーションイージング) の名前。指定しない場合、設定で設定されたデフォルトの関数を使用します。 |
 | time | number | コマンドによって開始されるアニメーションの期間（秒単位）。 |
 | lazy | boolean | コマンドによって開始されたアニメーションがすでに実行されている場合、`lazy` を有効にすると、アニメーションは現在の状態から新しいターゲットへ継続します。`lazy` が有効になっていない場合（デフォルトの動作）、現在実行中のアニメーションは、新しいターゲットへのアニメーションを開始する前に即座に完了します。 |
 | wait | boolean | シナリオスクリプトで次のコマンドの実行を開始する前に、コマンドの完了を待機するかどうか。デフォルトの動作は、スクリプトプレイヤー設定の `Wait By Default` オプションによって制御されます。 |
@@ -232,7 +232,7 @@ Lorem ipsum
 
 ## bgm
 
-指定された名前の現在再生中の [BGM（背景音楽）](/ja/guide/audio#bgm背景音楽) トラックを再生または変更します。
+指定された名前の現在再生中の [BGM（背景音楽）](/ja/guide/audio#bgm-背景音楽) トラックを再生または変更します。
 
 ::: info NOTE
 音楽トラックはデフォルトでループされます。音楽トラック名 (BgmPath) が指定されていない場合、現在再生中のすべてのトラックに影響します。すでに再生中のトラックに対して呼び出された場合、再生は影響を受けません（トラックは最初から再生されません）が、指定されたパラメータ（音量とトラックをループするかどうか）が適用されます。
@@ -340,7 +340,7 @@ Lorem ipsum
 | ortho | boolean | カメラを正投影（true）モードでレンダリングするか、透視投影（false）モードでレンダリングするか。 |
 | toggle | string list | トグルする（無効な場合は有効にし、その逆も同様）コンポーネントの名前。コンポーネントは、カメラと同じゲームオブジェクトにアタッチされている必要があります。これは、[カスタムポストプロセス効果](/ja/guide/special-effects#カスタムカメラ効果) をトグルするために使用できます。カメラオブジェクトにアタッチされているすべてのコンポーネントに影響を与えるには `*` を使用します。 |
 | set | named boolean list | 有効または無効にするコンポーネントの名前。コンポーネントは、カメラと同じゲームオブジェクトにアタッチされている必要があります。これは、[カスタムポストプロセス効果](/ja/guide/special-effects#カスタムカメラ効果) を明示的に有効または無効にするために使用できます。指定されたコンポーネントの有効状態は、`toggle` パラメータの効果をオーバーライドします。カメラオブジェクトにアタッチされているすべてのコンポーネントに影響を与えるには `*` を使用します。 |
-| easing | string | 適用する [イージング関数](/ja/guide/special-effects#トランジションエフェクト) の名前。指定しない場合、設定で設定されたデフォルトの関数を使用します。 |
+| easing | string | 適用する [イージング関数](/ja/guide/special-effects#アニメーションイージング) の名前。指定しない場合、設定で設定されたデフォルトの関数を使用します。 |
 | time | number | コマンドによって開始されるアニメーションの期間（秒単位）。 |
 | lazy | boolean | コマンドによって開始されたアニメーションがすでに実行されている場合、`lazy` を有効にすると、アニメーションは現在の状態から新しいターゲットへ継続します。`lazy` が有効になっていない場合（デフォルトの動作）、現在実行中のアニメーションは、新しいターゲットへのアニメーションを開始する前に即座に完了します。 |
 | wait | boolean | シナリオスクリプトで次のコマンドの実行を開始する前に、コマンドの完了を待機するかどうか。デフォルトの動作は、スクリプトプレイヤー設定の `Wait By Default` オプションによって制御されます。 |
@@ -390,13 +390,13 @@ Lorem ipsum
 | pose | string | 変更されたアクターに設定するポーズ。 |
 | via | string | 使用する [遷移効果](/ja/guide/special-effects#トランジションエフェクト) のタイプ（デフォルトではクロスフェードが使用されます）。 |
 | params | number list | 遷移効果のパラメータ。 |
-| dissolve | string | [カスタムディゾルブ](/ja/guide/special-effects#トランジションエフェクト) テクスチャへのパス（パスは `Resources` フォルダに対する相対パスである必要があります）。遷移が `Custom` モードに設定されている場合にのみ効果があります。 |
+| dissolve | string | [カスタムディゾルブ](/ja/guide/special-effects#ディゾルブマスク) テクスチャへのパス（パスは `Resources` フォルダに対する相対パスである必要があります）。遷移が `Custom` モードに設定されている場合にのみ効果があります。 |
 | visible | boolean | 変更されたアクターに設定する可視性ステータス。 |
 | position | number list | 変更されたアクターに設定する位置（ワールド空間）。直交モードで深度によって移動（ソート）するには、Zコンポーネント（3番目のメンバー）を使用します。 |
 | rotation | number list | 変更されたアクターに設定する回転。 |
 | scale | number list | 変更されたアクターに設定するスケール。 |
 | tint | string | 適用する色合い。<br><br>`#` で始まる文字列は、次の方法で16進数として解析されます：`#RGB`（`RRGGBB` になります）、`#RRGGBB`、`#RGBA`（`RRGGBBAA` になります）、`#RRGGBBAA`。アルファが指定されていない場合、デフォルトは `FF` になります。<br><br>`#` で始まらない文字列は、リテラルカラーとして解析され、次の色がサポートされています：red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta。 |
-| easing | string | 適用する [イージング関数](/ja/guide/special-effects#トランジションエフェクト) の名前。指定しない場合、設定で設定されたデフォルトの関数を使用します。 |
+| easing | string | 適用する [イージング関数](/ja/guide/special-effects#アニメーションイージング) の名前。指定しない場合、設定で設定されたデフォルトの関数を使用します。 |
 | time | number | コマンドによって開始されるアニメーションの期間（秒単位）。 |
 | lazy | boolean | コマンドによって開始されたアニメーションがすでに実行されている場合、`lazy` を有効にすると、アニメーションは現在の状態から新しいターゲットへ継続します。`lazy` が有効になっていない場合（デフォルトの動作）、現在実行中のアニメーションは、新しいターゲットへのアニメーションを開始する前に即座に完了します。 |
 | wait | boolean | シナリオスクリプトで次のコマンドの実行を開始する前に、コマンドの完了を待機するかどうか。デフォルトの動作は、スクリプトプレイヤー設定の `Wait By Default` オプションによって制御されます。 |
@@ -497,13 +497,13 @@ Continue executing this script or ...?[>]
 | pose | string | 変更されたアクターに設定するポーズ。 |
 | via | string | 使用する [遷移効果](/ja/guide/special-effects#トランジションエフェクト) のタイプ（デフォルトではクロスフェードが使用されます）。 |
 | params | number list | 遷移効果のパラメータ。 |
-| dissolve | string | [カスタムディゾルブ](/ja/guide/special-effects#トランジションエフェクト) テクスチャへのパス（パスは `Resources` フォルダに対する相対パスである必要があります）。遷移が `Custom` モードに設定されている場合にのみ効果があります。 |
+| dissolve | string | [カスタムディゾルブ](/ja/guide/special-effects#ディゾルブマスク) テクスチャへのパス（パスは `Resources` フォルダに対する相対パスである必要があります）。遷移が `Custom` モードに設定されている場合にのみ効果があります。 |
 | visible | boolean | 変更されたアクターに設定する可視性ステータス。 |
 | position | number list | 変更されたアクターに設定する位置（ワールド空間）。直交モードで深度によって移動（ソート）するには、Zコンポーネント（3番目のメンバー）を使用します。 |
 | rotation | number list | 変更されたアクターに設定する回転。 |
 | scale | number list | 変更されたアクターに設定するスケール。 |
 | tint | string | 適用する色合い。<br><br>`#` で始まる文字列は、次の方法で16進数として解析されます：`#RGB`（`RRGGBB` になります）、`#RRGGBB`、`#RGBA`（`RRGGBBAA` になります）、`#RRGGBBAA`。アルファが指定されていない場合、デフォルトは `FF` になります。<br><br>`#` で始まらない文字列は、リテラルカラーとして解析され、次の色がサポートされています：red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta。 |
-| easing | string | 適用する [イージング関数](/ja/guide/special-effects#トランジションエフェクト) の名前。指定しない場合、設定で設定されたデフォルトの関数を使用します。 |
+| easing | string | 適用する [イージング関数](/ja/guide/special-effects#アニメーションイージング) の名前。指定しない場合、設定で設定されたデフォルトの関数を使用します。 |
 | time | number | コマンドによって開始されるアニメーションの期間（秒単位）。 |
 | lazy | boolean | コマンドによって開始されたアニメーションがすでに実行されている場合、`lazy` を有効にすると、アニメーションは現在の状態から新しいターゲットへ継続します。`lazy` が有効になっていない場合（デフォルトの動作）、現在実行中のアニメーションは、新しいターゲットへのアニメーションを開始する前に即座に完了します。 |
 | wait | boolean | シナリオスクリプトで次のコマンドの実行を開始する前に、コマンドの完了を待機するかどうか。デフォルトの動作は、スクリプトプレイヤー設定の `Wait By Default` オプションによって制御されます。 |
@@ -1090,7 +1090,7 @@ WebGLの外部またはエディター内では、Unityの `Application.OpenURL`
 
 ## or
 
-Marks a branch of a conditional execution block, which is executed in case condition of the opening [@if] or [@unless] and preceding [@else] or [@or] (if any) commands are not met while the own condition is met. Can be used as shortcut for `@else if:...`. For usage examples see [conditional execution](/ja/guide/scenario-scripting#conditional-execution) guide.
+Marks a branch of a conditional execution block, which is executed in case condition of the opening [@if] or [@unless] and preceding [@else] or [@or] (if any) commands are not met while the own condition is met. Can be used as shortcut for `@else if:...`. For usage examples see [conditional execution](/ja/guide/scenario-scripting#条件付き実行) guide.
 
 <div class="config-table">
 
@@ -1163,13 +1163,13 @@ Marks a branch of a conditional execution block, which is executed in case condi
 | pose | string | 変更されたアクターに設定するポーズ。 |
 | via | string | 使用する [遷移効果](/ja/guide/special-effects#トランジションエフェクト) のタイプ（デフォルトではクロスフェードが使用されます）。 |
 | params | number list | 遷移効果のパラメータ。 |
-| dissolve | string | [カスタムディゾルブ](/ja/guide/special-effects#トランジションエフェクト) テクスチャへのパス（パスは `Resources` フォルダに対する相対パスである必要があります）。遷移が `Custom` モードに設定されている場合にのみ効果があります。 |
+| dissolve | string | [カスタムディゾルブ](/ja/guide/special-effects#ディゾルブマスク) テクスチャへのパス（パスは `Resources` フォルダに対する相対パスである必要があります）。遷移が `Custom` モードに設定されている場合にのみ効果があります。 |
 | visible | boolean | 変更されたアクターに設定する可視性ステータス。 |
 | position | number list | 変更されたアクターに設定する位置（ワールド空間）。直交モードで深度によって移動（ソート）するには、Zコンポーネント（3番目のメンバー）を使用します。 |
 | rotation | number list | 変更されたアクターに設定する回転。 |
 | scale | number list | 変更されたアクターに設定するスケール。 |
 | tint | string | 適用する色合い。<br><br>`#` で始まる文字列は、次の方法で16進数として解析されます：`#RGB`（`RRGGBB` になります）、`#RRGGBB`、`#RGBA`（`RRGGBBAA` になります）、`#RRGGBBAA`。アルファが指定されていない場合、デフォルトは `FF` になります。<br><br>`#` で始まらない文字列は、リテラルカラーとして解析され、次の色がサポートされています：red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta。 |
-| easing | string | 適用する [イージング関数](/ja/guide/special-effects#トランジションエフェクト) の名前。指定しない場合、設定で設定されたデフォルトの関数を使用します。 |
+| easing | string | 適用する [イージング関数](/ja/guide/special-effects#アニメーションイージング) の名前。指定しない場合、設定で設定されたデフォルトの関数を使用します。 |
 | time | number | コマンドによって開始されるアニメーションの期間（秒単位）。 |
 | lazy | boolean | コマンドによって開始されたアニメーションがすでに実行されている場合、`lazy` を有効にすると、アニメーションは現在の状態から新しいターゲットへ継続します。`lazy` が有効になっていない場合（デフォルトの動作）、現在実行中のアニメーションは、新しいターゲットへのアニメーションを開始する前に即座に完了します。 |
 | wait | boolean | シナリオスクリプトで次のコマンドの実行を開始する前に、コマンドの完了を待機するかどうか。デフォルトの動作は、スクリプトプレイヤー設定の `Wait By Default` オプションによって制御されます。 |
@@ -1526,7 +1526,7 @@ My favourite drink is {drink}!
 
 ## sfx
 
-指定された名前の現在再生中の [SFX（効果音）](/ja/guide/audio#sfx効果音) トラックを再生または変更します。
+指定された名前の現在再生中の [SFX（効果音）](/ja/guide/audio#sfx-効果音) トラックを再生または変更します。
 
 ::: info NOTE
 効果音トラックはデフォルトではループされません。sfxトラック名 (SfxPath) が指定されていない場合、現在再生中のすべてのトラックに影響します。すでに再生中のトラックに対して呼び出された場合、再生は影響を受けません（トラックは最初から再生されません）が、指定されたパラメータ（音量とトラックをループするかどうか）が適用されます。
@@ -1560,7 +1560,7 @@ My favourite drink is {drink}!
 
 ## sfxFast
 
-指定された名前の [SFX（効果音）](/ja/guide/audio#sfx効果音) トラックを再生します。[@sfx] コマンドとは異なり、クリップは最小限の遅延で再生され、ゲーム状態でシリアル化されません（保存時に再生されていても、ゲームのロード後に再生されません）。このコマンドは、UI関連のサウンド（例：[`Play Script` コンポーネント](/ja/guide/gui#unityイベントでのスクリプト再生) でのボタンクリック時）など、さまざまな一時的なオーディオクリップを再生するために使用できます。
+指定された名前の [SFX（効果音）](/ja/guide/audio#sfx-効果音) トラックを再生します。[@sfx] コマンドとは異なり、クリップは最小限の遅延で再生され、ゲーム状態でシリアル化されません（保存時に再生されていても、ゲームのロード後に再生されません）。このコマンドは、UI関連のサウンド（例：[`Play Script` コンポーネント](/ja/guide/gui#unityイベントでのスクリプト再生) でのボタンクリック時）など、さまざまな一時的なオーディオクリップを再生するために使用できます。
 
 <div class="config-table">
 
@@ -1725,7 +1725,7 @@ My favourite drink is {drink}!
 | from | number list | アクターをスライドさせるシーン空間内の位置（スライド開始位置）。次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。Zコンポーネント（深度）はワールド空間です。指定しない場合、表示されている場合は現在のアクターの位置を使用し、そうでない場合はランダムなシーン外の位置を使用します（左または右の境界からスライドインする可能性があります）。 |
 | <span class="command-param-required" title="必須パラメータ: パラメータは常に指定する必要があります">to</span> | number list | アクターをスライドさせるシーン空間内の位置（スライド終了位置）。 |
 | visible | boolean | アクターの可視性ステータスを変更します（表示または非表示）。設定されておらず、ターゲットアクターが非表示の場合でも、自動的に表示されます。 |
-| easing | string | 適用する [イージング関数](/ja/guide/special-effects#トランジションエフェクト) の名前。指定しない場合、設定で設定されたデフォルトの関数を使用します。 |
+| easing | string | 適用する [イージング関数](/ja/guide/special-effects#アニメーションイージング) の名前。指定しない場合、設定で設定されたデフォルトの関数を使用します。 |
 | time | number | コマンドによって開始されるアニメーションの期間（秒単位）。 |
 | lazy | boolean | コマンドによって開始されたアニメーションがすでに実行されている場合、`lazy` を有効にすると、アニメーションは現在の状態から新しいターゲットへ継続します。`lazy` が有効になっていない場合（デフォルトの動作）、現在実行中のアニメーションは、新しいターゲットへのアニメーションを開始する前に即座に完了します。 |
 | wait | boolean | シナリオスクリプトで次のコマンドの実行を開始する前に、コマンドの完了を待機するかどうか。デフォルトの動作は、スクリプトプレイヤー設定の `Wait By Default` オプションによって制御されます。 |
@@ -2026,8 +2026,8 @@ The bomb is defused!
 | --- | --- | --- |
 | <span class="command-param-primary" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります">transition</span> | string | 使用する [遷移効果](/ja/guide/special-effects#トランジションエフェクト) のタイプ（デフォルトではクロスフェードが使用されます）。 |
 | params | number list | 遷移効果のパラメータ。 |
-| dissolve | string | [カスタムディゾルブ](/ja/guide/special-effects#トランジションエフェクト) テクスチャへのパス（パスは `Resources` フォルダに対する相対パスである必要があります）。遷移が `Custom` モードに設定されている場合にのみ効果があります。 |
-| easing | string | 遷移に使用する [イージング関数](/ja/guide/special-effects#トランジションエフェクト) の名前。 |
+| dissolve | string | [カスタムディゾルブ](/ja/guide/special-effects#ディゾルブマスク) テクスチャへのパス（パスは `Resources` フォルダに対する相対パスである必要があります）。遷移が `Custom` モードに設定されている場合にのみ効果があります。 |
+| easing | string | 遷移に使用する [イージング関数](/ja/guide/special-effects#アニメーションイージング) の名前。 |
 | time | number | 遷移の期間（秒単位）。 |
 
 </div>

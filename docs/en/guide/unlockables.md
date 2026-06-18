@@ -141,7 +141,7 @@ To unlock a tip record in a script, use [@unlock] (and [@lock] to re-lock it) fo
 
 ### Tips in Printers
 
-It's possible to automatically unlock tips when associated text is printed via a [TMPro printer](/guide/text-printers#textmesh-pro); additionally, when such text is clicked by the player the `ITipsUI` UI will be automatically shown with the associated tip record selected.
+It's possible to automatically unlock tips when associated text is revealed; additionally, when such text is clicked by the player the `ITipsUI` UI will be automatically shown with the associated tip record selected.
 
 ![](https://i.gyazo.com/3c0d761576c351066022be32b8595e6d.mp4)
 

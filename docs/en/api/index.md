@@ -202,13 +202,13 @@ Backgrounds are handled a bit differently from characters to better accommodate 
 | pose | string | Pose to set for the modified actor. |
 | via | string | Type of the [transition effect](/guide/special-effects#transition-effects) to use (crossfade is used by default). |
 | params | number list | Parameters of the transition effect. |
-| dissolve | string | Path to the [custom dissolve](/guide/special-effects#transition-effects#custom-transition-effects) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
+| dissolve | string | Path to the [custom dissolve](/guide/special-effects#dissolve-mask) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
 | visible | boolean | Visibility status to set for the modified actor. |
 | position | number list | Position (in world space) to set for the modified actor. Use Z-component (third member) to move (sort) by depth while in ortho mode. |
 | rotation | number list | Rotation to set for the modified actor. |
 | scale | number list | Scale to set for the modified actor. |
 | tint | string | The tint color to apply.<br><br>Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes `RRGGBB`), `#RRGGBB`, `#RGBA` (becomes `RRGGBBAA`), `#RRGGBBAA`; when alpha is not specified will default to `FF`.<br><br>Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
-| easing | string | Name of the [easing function](/guide/special-effects#transition-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
+| easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
 | time | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
 | wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
@@ -340,7 +340,7 @@ Modifies the main camera, changing offset, zoom level and rotation over time. Ch
 | ortho | boolean | Whether the camera should render in orthographic (true) or perspective (false) mode. |
 | toggle | string list | Names of the components to toggle (enable if disabled and vice-versa). The components should be attached to the same game object as the camera. This can be used to toggle [custom post-processing effects](/guide/special-effects#custom-camera-effects). Use `*` to affect all the components attached to the camera object. |
 | set | named boolean list | Names of the components to enable or disable. The components should be attached to the same game object as the camera. This can be used to explicitly enable or disable [custom post-processing effects](/guide/special-effects#custom-camera-effects). Specified components enabled state will override effect of `toggle` parameter. Use `*` to affect all the components attached to the camera object. |
-| easing | string | Name of the [easing function](/guide/special-effects#transition-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
+| easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
 | time | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
 | wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
@@ -390,13 +390,13 @@ Modifies a [character actor](/guide/characters).
 | pose | string | Pose to set for the modified actor. |
 | via | string | Type of the [transition effect](/guide/special-effects#transition-effects) to use (crossfade is used by default). |
 | params | number list | Parameters of the transition effect. |
-| dissolve | string | Path to the [custom dissolve](/guide/special-effects#transition-effects#custom-transition-effects) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
+| dissolve | string | Path to the [custom dissolve](/guide/special-effects#dissolve-mask) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
 | visible | boolean | Visibility status to set for the modified actor. |
 | position | number list | Position (in world space) to set for the modified actor. Use Z-component (third member) to move (sort) by depth while in ortho mode. |
 | rotation | number list | Rotation to set for the modified actor. |
 | scale | number list | Scale to set for the modified actor. |
 | tint | string | The tint color to apply.<br><br>Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes `RRGGBB`), `#RRGGBB`, `#RGBA` (becomes `RRGGBBAA`), `#RRGGBBAA`; when alpha is not specified will default to `FF`.<br><br>Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
-| easing | string | Name of the [easing function](/guide/special-effects#transition-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
+| easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
 | time | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
 | wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
@@ -495,13 +495,13 @@ Modifies a [choice handler actor](/guide/choices).
 | pose | string | Pose to set for the modified actor. |
 | via | string | Type of the [transition effect](/guide/special-effects#transition-effects) to use (crossfade is used by default). |
 | params | number list | Parameters of the transition effect. |
-| dissolve | string | Path to the [custom dissolve](/guide/special-effects#transition-effects#custom-transition-effects) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
+| dissolve | string | Path to the [custom dissolve](/guide/special-effects#dissolve-mask) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
 | visible | boolean | Visibility status to set for the modified actor. |
 | position | number list | Position (in world space) to set for the modified actor. Use Z-component (third member) to move (sort) by depth while in ortho mode. |
 | rotation | number list | Rotation to set for the modified actor. |
 | scale | number list | Scale to set for the modified actor. |
 | tint | string | The tint color to apply.<br><br>Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes `RRGGBB`), `#RRGGBB`, `#RGBA` (becomes `RRGGBBAA`), `#RRGGBBAA`; when alpha is not specified will default to `FF`.<br><br>Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
-| easing | string | Name of the [easing function](/guide/special-effects#transition-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
+| easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
 | time | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
 | wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
@@ -1161,13 +1161,13 @@ Modifies a [text printer actor](/guide/text-printers).
 | pose | string | Pose to set for the modified actor. |
 | via | string | Type of the [transition effect](/guide/special-effects#transition-effects) to use (crossfade is used by default). |
 | params | number list | Parameters of the transition effect. |
-| dissolve | string | Path to the [custom dissolve](/guide/special-effects#transition-effects#custom-transition-effects) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
+| dissolve | string | Path to the [custom dissolve](/guide/special-effects#dissolve-mask) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
 | visible | boolean | Visibility status to set for the modified actor. |
 | position | number list | Position (in world space) to set for the modified actor. Use Z-component (third member) to move (sort) by depth while in ortho mode. |
 | rotation | number list | Rotation to set for the modified actor. |
 | scale | number list | Scale to set for the modified actor. |
 | tint | string | The tint color to apply.<br><br>Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes `RRGGBB`), `#RRGGBB`, `#RGBA` (becomes `RRGGBBAA`), `#RRGGBBAA`; when alpha is not specified will default to `FF`.<br><br>Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
-| easing | string | Name of the [easing function](/guide/special-effects#transition-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
+| easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
 | time | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
 | wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
@@ -1724,7 +1724,7 @@ Be aware, that this command searches for an existing actor with the specified ID
 | from | number list | Position in scene space to slide the actor from (slide start position). Described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene; Z-component (depth) is in world space. When not specified, will use current actor position in case it's visible and a random off-scene position otherwise (could slide-in from left or right borders). |
 | <span class="command-param-required" title="Required parameter: parameter should always be specified">to</span> | number list | Position in scene space to slide the actor to (slide finish position). |
 | visible | boolean | Change visibility status of the actor (show or hide). When not set and target actor is hidden, will still automatically show it. |
-| easing | string | Name of the [easing function](/guide/special-effects#transition-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
+| easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
 | time | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
 | wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
@@ -2027,8 +2027,8 @@ The UI will be hidden and user input blocked while the transition is in progress
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">transition</span> | string | Type of the [transition effect](/guide/special-effects#transition-effects) to use (crossfade is used by default). |
 | params | number list | Parameters of the transition effect. |
-| dissolve | string | Path to the [custom dissolve](/guide/special-effects#transition-effects#custom-transition-effects) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
-| easing | string | Name of the [easing function](/guide/special-effects#transition-effects#animation-easing) to use for the transition. |
+| dissolve | string | Path to the [custom dissolve](/guide/special-effects#dissolve-mask) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
+| easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to use for the transition. |
 | time | number | Duration (in seconds) of the transition. |
 
 </div>

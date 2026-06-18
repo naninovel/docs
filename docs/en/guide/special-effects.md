@@ -710,6 +710,52 @@ Frequency | 20
 @back Appearance.Wave params:0.75,,5
 ```
 
+## Animation Easing
+
+Many commands that apply changes over time have an optional `easing` parameter, which controls how the modified value changes over time. Below is the list of supported options:
+
+```text
+Linear
+SmoothStep
+Spring
+EaseInQuad
+EaseOutQuad
+EaseInOutQuad
+EaseInCubic
+EaseOutCubic
+EaseInOutCubic
+EaseInQuart
+EaseOutQuart
+EaseInOutQuart
+EaseInQuint
+EaseOutQuint
+EaseInOutQuint
+EaseInSine
+EaseOutSine
+EaseInOutSine
+EaseInExpo
+EaseOutExpo
+EaseInOutExpo
+EaseInCirc
+EaseOutCirc
+EaseInOutCirc
+EaseInBounce
+EaseOutBounce
+EaseInOutBounce
+EaseInBack
+EaseOutBack
+EaseInOutBack
+EaseInElastic
+EaseOutElastic
+EaseInOutElastic
+```
+
+For example, the following command transitions to the `River` background with the `DropFade` transition effect over 1.5 seconds, using `EaseOutBounce` easing:
+
+```nani
+@back River.DropFade time:1.5 easing:EaseOutBounce
+```
+
 ## Adding Custom Effects
 
 ### Custom Spawned Effects

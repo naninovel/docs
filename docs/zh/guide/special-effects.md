@@ -710,6 +710,52 @@ Kohaku: 隆隆作响！
 @back Appearance.Wave params:0.75,,5
 ```
 
+## 动画缓动
+
+许多随时间应用更改的命令都有可选的 `easing` 参数，用于控制被修改的值如何随时间变化。支持的选项如下：
+
+```text
+Linear
+SmoothStep
+Spring
+EaseInQuad
+EaseOutQuad
+EaseInOutQuad
+EaseInCubic
+EaseOutCubic
+EaseInOutCubic
+EaseInQuart
+EaseOutQuart
+EaseInOutQuart
+EaseInQuint
+EaseOutQuint
+EaseInOutQuint
+EaseInSine
+EaseOutSine
+EaseInOutSine
+EaseInExpo
+EaseOutExpo
+EaseInOutExpo
+EaseInCirc
+EaseOutCirc
+EaseInOutCirc
+EaseInBounce
+EaseOutBounce
+EaseInOutBounce
+EaseInBack
+EaseOutBack
+EaseInOutBack
+EaseInElastic
+EaseOutElastic
+EaseInOutElastic
+```
+
+例如，以下命令使用 `EaseOutBounce` 缓动，在 1.5 秒内通过 `DropFade` 过渡效果切换到 `River` 背景：
+
+```nani
+@back River.DropFade time:1.5 easing:EaseOutBounce
+```
+
 ## 添加自定义效果
 
 ### 自定义生成效果

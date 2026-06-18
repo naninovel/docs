@@ -710,6 +710,52 @@ Kohaku: 鳴ってる！
 @back Appearance.Wave params:0.75,,5
 ```
 
+## アニメーションイージング
+
+時間をかけて変更を適用する多くのコマンドには、変更される値が時間経過でどのように変化するかを制御する任意の `easing` パラメーターがあります。サポートされているオプションは次のとおりです。
+
+```text
+Linear
+SmoothStep
+Spring
+EaseInQuad
+EaseOutQuad
+EaseInOutQuad
+EaseInCubic
+EaseOutCubic
+EaseInOutCubic
+EaseInQuart
+EaseOutQuart
+EaseInOutQuart
+EaseInQuint
+EaseOutQuint
+EaseInOutQuint
+EaseInSine
+EaseOutSine
+EaseInOutSine
+EaseInExpo
+EaseOutExpo
+EaseInOutExpo
+EaseInCirc
+EaseOutCirc
+EaseInOutCirc
+EaseInBounce
+EaseOutBounce
+EaseInOutBounce
+EaseInBack
+EaseOutBack
+EaseInOutBack
+EaseInElastic
+EaseOutElastic
+EaseInOutElastic
+```
+
+たとえば、次のコマンドは `EaseOutBounce` イージングを使用し、1.5秒かけて `DropFade` トランジション効果で `River` 背景へトランジションします。
+
+```nani
+@back River.DropFade time:1.5 easing:EaseOutBounce
+```
+
 ## カスタム効果の追加
 
 ### カスタムスポーン効果

@@ -1,136 +1,133 @@
+// Scans all headers mapping English anchors to their localized versions
+// handling NFD normalization and .html links; notifies when invalid link anchor is found.
+
 import { readdirSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { dirname, join, posix, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
-const root = join(__dirname, "..");
+const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const docsRoot = join(root, "docs");
 const sourceLang = "en";
-const langs = ["en", "ja", "zh"];
+const l10ns = ["en", "ja", "zh"];
 
-const markdownLinkPattern = /(!?\[[^\]\n]+\])\(([^)\n]+)\)/g;
+const linkPattern = /(!?\[[^\n]+?])\(([^)\n]+)\)/g;
 const controlCharacters = /[\u0000-\u001f]/g;
 const combiningMarks = /[\u0300-\u036f]/g;
 const specialCharacters = /[\s~`!@#$%^&*()\-_+=[\]{}|\\;:"'\u201c\u201d\u2018\u2019<>,.?/]+/g;
 
-const langRoots = Object.fromEntries(langs.map(lang => [lang, join(docsRoot, lang)]));
-const anchorIndexes = Object.fromEntries(langs.map(lang => [lang, buildAnchorIndex(lang)]));
-const anchorMaps = Object.fromEntries(langs.map(lang => [lang, buildAnchorMap(lang)]));
-const fixes = [];
+const langRoots = Object.fromEntries(l10ns.map(lang => [lang, join(docsRoot, lang)]));
+const files = l10ns.flatMap(lang => getMarkdownFiles(langRoots[lang]).map(path => ({
+    lang,
+    path,
+    relativePath: slash(relative(langRoots[lang], path)),
+    reportPath: slash(relative(root, path))
+})));
 
-for (const lang of langs) {
-    for (const filePath of getMarkdownFiles(langRoots[lang])) {
-        const relativePath = slash(relative(langRoots[lang], filePath));
-        const original = readFile(filePath);
-        const lineStarts = getLineStarts(original.content);
-        const fileFixes = [];
+const indexes = buildIndexes();
+const localizedSlugs = buildLocalizedSlugMaps(indexes);
+const fixed = [];
+const unresolved = [];
 
-        const fixed = original.content.replace(markdownLinkPattern, (match, textPart, rawDestination, offset) => {
-            if (textPart.startsWith("!")) return match;
+for (const file of files) {
+    const original = readFile(file.path);
+    const analyzed = analyzeFile(original.content, file);
+
+    if (analyzed.content !== original.content) {
+        writeFileSync(file.path, `${original.bom ? "\uFEFF" : ""}${analyzed.content}`, "utf8");
+    }
+}
+
+report();
+
+function analyzeFile(content, file) {
+    let inFence = null;
+    let lineNumber = 0;
+
+    const parts = content.split(/(\r?\n)/);
+    for (let i = 0; i < parts.length; i += 2) {
+        lineNumber++;
+        const line = parts[i];
+        const fence = updateFence(line, inFence);
+        inFence = fence.state;
+        if (fence.isFence) continue;
+
+        if (inFence) continue;
+
+        parts[i] = line.replace(linkPattern, (match, text, rawDestination) => {
+            if (text.startsWith("!")) return match;
 
             const parsed = parseLinkDestination(rawDestination);
             if (!parsed) return match;
 
-            const update = fixDestination(parsed.destination, lang, relativePath);
-            if (!update) return match;
+            const result = analyzeDestination(parsed.destination, file);
+            if (!result) return match;
 
-            fileFixes.push({
-                line: getLineNumber(lineStarts, offset),
+            const entry = {
+                file: file.reportPath,
+                line: lineNumber,
                 before: parsed.destination,
-                after: update.destination
-            });
+                ...result
+            };
 
-            return `${textPart}(${formatLinkDestination(parsed, update.destination)})`;
+            if (result.fixedDestination) {
+                fixed.push(entry);
+                return `${text}(${formatLinkDestination(parsed, result.fixedDestination)})`;
+            }
+
+            unresolved.push(entry);
+            return match;
         });
-
-        if (fixed !== original.content) {
-            writeFileSync(filePath, `${original.bom ? "\uFEFF" : ""}${fixed}`, "utf8");
-            fixes.push({ file: slash(relative(root, filePath)), fixes: fileFixes });
-        }
-    }
-}
-
-if (fixes.length === 0) {
-    console.log("No anchor links needed fixing.");
-}
-else {
-    const fixCount = fixes.reduce((count, file) => count + file.fixes.length, 0);
-    console.log(`Fixed ${fixCount} anchor link${fixCount === 1 ? "" : "s"} in ${fixes.length} file${fixes.length === 1 ? "" : "s"}:`);
-
-    for (const file of fixes) {
-        console.log(file.file);
-        for (const fix of file.fixes) {
-            console.log(`  line ${fix.line}: ${fix.before} -> ${fix.after}`);
-        }
-    }
-}
-
-function buildAnchorIndex(lang) {
-    const index = new Map();
-
-    for (const filePath of getMarkdownFiles(langRoots[lang])) {
-        const relativePath = slash(relative(langRoots[lang], filePath));
-        const anchors = extractAnchors(readFile(filePath).content);
-        const slugs = new Set(anchors.map(anchor => anchor.slug));
-        index.set(relativePath, { anchors, slugs, slugLookup: buildSlugLookup(slugs) });
     }
 
-    return index;
+    return { content: parts.join("") };
 }
 
-function buildAnchorMap(lang) {
-    const map = new Map();
-    const sourceIndex = anchorIndexes[sourceLang];
-    const targetIndex = anchorIndexes[lang];
-
-    for (const [relativePath, source] of sourceIndex) {
-        const target = targetIndex.get(relativePath);
-        if (!target) continue;
-
-        if (lang !== sourceLang && source.anchors.length !== target.anchors.length) {
-            console.warn(`[skip] ${lang}/${relativePath}: heading count differs from ${sourceLang}/${relativePath}`);
-            continue;
-        }
-
-        const anchors = new Map();
-        for (let i = 0; i < source.anchors.length; i++) {
-            anchors.set(source.anchors[i].slug, target.anchors[i].slug);
-        }
-        map.set(relativePath, anchors);
-    }
-
-    return map;
-}
-
-function fixDestination(destination, lang, currentRelativePath) {
+function analyzeDestination(destination, currentFile) {
     const hashIndex = destination.indexOf("#");
     if (hashIndex < 0) return null;
 
     const pathPart = destination.slice(0, hashIndex);
-    const anchorPart = destination.slice(hashIndex + 1);
-    if (!anchorPart || isExternal(pathPart)) return null;
+    const anchor = destination.slice(hashIndex + 1);
+    if (!anchor || isExternal(pathPart)) return null;
 
-    const resolved = resolveTarget(pathPart, currentRelativePath, lang);
-    if (!resolved) return null;
+    const target = resolveTarget(pathPart, currentFile);
+    if (!target) return null;
 
-    const targetMap = anchorMaps[lang].get(resolved.relativePath);
-    const targetIndex = anchorIndexes[lang].get(resolved.relativePath);
-    if (!targetMap || !targetIndex) return null;
-
-    const fixedAnchor = findAnchor(anchorPart, targetMap, targetIndex);
-    if (!fixedAnchor || fixedAnchor === anchorPart) return null;
-
-    return { destination: `${resolved.outputPath}#${fixedAnchor}` };
-}
-
-function findAnchor(anchor, targetMap, targetIndex) {
-    const candidates = getAnchorCandidates(anchor);
-
-    for (const candidate of candidates) {
-        if (targetMap.has(candidate)) return targetMap.get(candidate);
+    const targetIndex = indexes[target.lang].get(target.relativePath);
+    if (!targetIndex) {
+        return {
+            kind: "missing-target",
+            target: `${target.lang}/${target.relativePath}`
+        };
     }
 
-    for (const candidate of candidates) {
+    const existing = findExistingSlug(anchor, targetIndex);
+    if (existing) {
+        return existing === anchor ? null : {
+            kind: "normalized-anchor",
+            target: `${target.lang}/${target.relativePath}`,
+            fixedDestination: `${target.outputPath}#${existing}`
+        };
+    }
+
+    const localized = findLocalizedSlug(anchor, target);
+    if (localized) {
+        return {
+            kind: "localized-anchor",
+            target: `${target.lang}/${target.relativePath}`,
+            fixedDestination: `${target.outputPath}#${localized}`
+        };
+    }
+
+    return {
+        kind: "missing-anchor",
+        target: `${target.lang}/${target.relativePath}`,
+        anchor
+    };
+}
+
+function findExistingSlug(anchor, targetIndex) {
+    for (const candidate of anchorCandidates(anchor)) {
         const existing = targetIndex.slugLookup.get(candidate);
         if (existing) return existing;
     }
@@ -138,7 +135,157 @@ function findAnchor(anchor, targetMap, targetIndex) {
     return null;
 }
 
-function getAnchorCandidates(anchor) {
+function findLocalizedSlug(anchor, target) {
+    const map = localizedSlugs[target.lang].get(target.relativePath);
+    if (!map) return null;
+
+    for (const candidate of anchorCandidates(anchor)) {
+        const localized = map.get(candidate);
+        if (localized) return localized;
+    }
+
+    return null;
+}
+
+function buildIndexes() {
+    return Object.fromEntries(l10ns.map(lang => {
+        const filesForLang = files.filter(file => file.lang === lang);
+        const index = new Map();
+
+        for (const file of filesForLang) {
+            const anchors = extractAnchors(readFile(file.path).content);
+            const slugs = new Set(anchors.map(anchor => anchor.slug));
+            index.set(file.relativePath, {
+                anchors,
+                slugLookup: buildSlugLookup(slugs)
+            });
+        }
+
+        return [lang, index];
+    }));
+}
+
+function buildLocalizedSlugMaps(allIndexes) {
+    const maps = Object.fromEntries(l10ns.map(lang => [lang, new Map()]));
+    const sourceIndex = allIndexes[sourceLang];
+
+    for (const lang of l10ns) {
+        for (const [relativePath, source] of sourceIndex) {
+            const target = allIndexes[lang].get(relativePath);
+            if (!target) continue;
+
+            if (lang !== sourceLang && source.anchors.length !== target.anchors.length) {
+                console.warn(`[skip] ${lang}/${relativePath}: heading count differs from ${sourceLang}/${relativePath}`);
+                continue;
+            }
+
+            maps[lang].set(relativePath, new Map(source.anchors.map((anchor, index) => [
+                anchor.slug,
+                target.anchors[index].slug
+            ])));
+        }
+    }
+
+    return maps;
+}
+
+function resolveTarget(pathPart, currentFile) {
+    if (pathPart === "" || pathPart === ".") {
+        return {
+            lang: currentFile.lang,
+            relativePath: currentFile.relativePath,
+            outputPath: pathPart
+        };
+    }
+
+    let outputPath = stripHtmlExtension(pathPart);
+
+    if (!pathPart.startsWith("/")) {
+        return {
+            lang: currentFile.lang,
+            relativePath: toMarkdownPath(posix.normalize(posix.join(posix.dirname(currentFile.relativePath), outputPath))),
+            outputPath
+        };
+    }
+
+    let targetLang = currentFile.lang;
+    let cleanPath = outputPath.slice(1);
+
+    for (const lang of l10ns) {
+        if (cleanPath === lang || cleanPath.startsWith(`${lang}/`)) {
+            targetLang = lang;
+            cleanPath = cleanPath.slice(lang.length).replace(/^\//, "");
+            break;
+        }
+    }
+
+    return {
+        lang: targetLang,
+        relativePath: toMarkdownPath(cleanPath),
+        outputPath
+    };
+}
+
+function extractAnchors(content) {
+    const anchors = [];
+    const used = new Set();
+    let inFence = null;
+
+    for (const line of content.split(/\r?\n/)) {
+        const fence = updateFence(line, inFence);
+        inFence = fence.state;
+        if (fence.isFence) continue;
+
+        if (inFence) continue;
+
+        const heading = line.match(/^(#{1,6})\s+(.+?)\s*$/);
+        if (!heading) continue;
+
+        const title = stripHeadingMarkup(heading[2]);
+        anchors.push({ title, slug: uniqueSlug(slugify(title), used) });
+    }
+
+    return anchors;
+}
+
+function report() {
+    if (fixed.length === 0 && unresolved.length === 0) {
+        console.log("No anchor issues found.");
+        return;
+    }
+
+    if (fixed.length > 0) {
+        console.log(`Fixed ${fixed.length} anchor issue${fixed.length === 1 ? "" : "s"}:`);
+        printLines(fixed, item => `${item.file}:${item.line} ${item.before} -> ${item.fixedDestination}`);
+    }
+
+    if (unresolved.length > 0) {
+        console.error(`Could not auto-fix ${unresolved.length} anchor issue${unresolved.length === 1 ? "" : "s"}:`);
+        printLines(unresolved, item => `${item.file}:${item.line} ${formatError(item)}`, console.error);
+        process.exitCode = 1;
+    }
+}
+
+function printLines(items, format, write = console.log) {
+    for (const item of items) write(format(item));
+}
+
+function formatError(item) {
+    if (item.kind === "missing-target") return `missing target ${item.target}`;
+    return `missing #${item.anchor} in ${item.target}`;
+}
+
+function updateFence(line, state) {
+    const fence = line.match(/^ {0,3}(`{3,}|~{3,})/);
+    if (!fence) return { state, isFence: false };
+
+    const marker = fence[1];
+    if (!state) return { state: { char: marker[0], length: marker.length }, isFence: true };
+    if (marker[0] === state.char && marker.length >= state.length) return { state: null, isFence: true };
+    return { state, isFence: true };
+}
+
+function anchorCandidates(anchor) {
     const candidates = new Set([anchor]);
 
     try {
@@ -155,14 +302,14 @@ function getAnchorCandidates(anchor) {
         candidates.add(candidate.normalize("NFKD").toLowerCase());
     }
 
-    return [...candidates];
+    return candidates;
 }
 
 function buildSlugLookup(slugs) {
     const lookup = new Map();
 
     for (const slug of slugs) {
-        for (const candidate of getAnchorCandidates(slug)) {
+        for (const candidate of anchorCandidates(slug)) {
             if (!lookup.has(candidate)) lookup.set(candidate, slug);
         }
     }
@@ -170,105 +317,36 @@ function buildSlugLookup(slugs) {
     return lookup;
 }
 
-function resolveTarget(pathPart, currentRelativePath, lang) {
-    if (pathPart === "" || pathPart === ".") {
-        return { relativePath: currentRelativePath, outputPath: pathPart };
-    }
-
-    let outputPath = pathPart;
-    if (outputPath.endsWith(".html")) outputPath = outputPath.slice(0, -".html".length);
-
-    if (pathPart.startsWith("/")) {
-        let cleanPath = outputPath;
-        if (cleanPath.startsWith(`/${lang}/`)) cleanPath = cleanPath.slice(lang.length + 2);
-        else cleanPath = cleanPath.slice(1);
-
-        return { relativePath: toMarkdownPath(cleanPath), outputPath };
-    }
-
-    const currentDir = posix.dirname(currentRelativePath);
-    const cleanPath = posix.normalize(posix.join(currentDir, outputPath));
-    return { relativePath: toMarkdownPath(cleanPath), outputPath };
-}
-
-function toMarkdownPath(targetPath) {
-    if (targetPath.endsWith("/")) return `${targetPath}index.md`;
-    if (targetPath.endsWith(".md")) return targetPath;
-    return `${targetPath}.md`;
-}
-
-function extractAnchors(content) {
-    const anchors = [];
-    const used = new Set();
-    let fence = null;
-
-    for (const line of content.split(/\r?\n/)) {
-        const fenceMatch = line.match(/^ {0,3}(`{3,}|~{3,})/);
-        if (fenceMatch) {
-            const marker = fenceMatch[1];
-            if (!fence) fence = { char: marker[0], length: marker.length };
-            else if (marker[0] === fence.char && marker.length >= fence.length) fence = null;
-            continue;
-        }
-
-        if (fence) continue;
-
-        const headingMatch = line.match(/^(#{1,6})\s+(.+?)\s*$/);
-        if (!headingMatch) continue;
-
-        const title = stripHeadingMarkup(headingMatch[2]);
-        const slug = uniqueSlug(slugify(title), used);
-        anchors.push({ title, slug });
-    }
-
-    return anchors;
-}
-
 function stripHeadingMarkup(heading) {
-    return heading
-        .replace(/\s+#+\s*$/, "")
-        .replace(/!\[([^\]]*)\]\([^)]+\)/g, "$1")
-        .replace(/\[([^\]]+)\]\([^)]+\)/g, "$1")
-        .replace(/`([^`]+)`/g, "$1")
-        .replace(/(\*\*|__)(.*?)\1/g, "$2")
-        .replace(/(\*|_)(.*?)\1/g, "$2")
-        .replace(/<[^>]+>/g, "")
-        .trim();
+    return heading.replace(/\s+#+\s*$/, "").replace(/!\[([^\n]*?)]\([^)]+\)/g, "$1").replace(/\[([^\n]+?)]\([^)]+\)/g, "$1").replace(/`([^`]+)`/g, "$1").replace(/(\*\*|__)(.*?)\1/g, "$2").replace(/([*_])(.*?)\1/g, "$2").replace(/<[^>]+>/g, "").trim();
 }
 
 function slugify(value) {
-    return value
-        .normalize("NFKD")
-        .replace(combiningMarks, "")
-        .replace(controlCharacters, "")
-        .replace(specialCharacters, "-")
-        .replace(/-{2,}/g, "-")
-        .replace(/^-+|-+$/g, "")
-        .replace(/^(\d)/, "_$1")
-        .toLowerCase();
+    return value.normalize("NFKD").replace(combiningMarks, "").replace(controlCharacters, "").replace(specialCharacters, "-").replace(/-{2,}/g, "-").replace(/^-+|-+$/g, "").replace(/^(\d)/, "_$1").toLowerCase();
 }
 
 function uniqueSlug(slug, used) {
     let candidate = slug;
     let index = 1;
 
-    while (used.has(candidate)) {
-        candidate = `${slug}-${index++}`;
-    }
+    while (used.has(candidate)) candidate = `${slug}-${index++}`;
 
     used.add(candidate);
     return candidate;
 }
 
 function parseLinkDestination(rawDestination) {
-    const match = rawDestination.match(/^(\s*)(<[^>]*>|[^\s]+)([\s\S]*)$/);
+    const match = rawDestination.match(/^(\s*)(<[^>]*>|\S+)([\s\S]*)$/);
     if (!match) return null;
 
     const [, prefix, raw, suffix] = match;
     const angled = raw.startsWith("<") && raw.endsWith(">");
-    const destination = angled ? raw.slice(1, -1) : raw;
-
-    return { prefix, destination, suffix, angled };
+    return {
+        prefix,
+        suffix,
+        angled,
+        destination: angled ? raw.slice(1, -1) : raw
+    };
 }
 
 function formatLinkDestination(parsed, destination) {
@@ -278,6 +356,16 @@ function formatLinkDestination(parsed, destination) {
 
 function isExternal(pathPart) {
     return /^[a-z][a-z0-9+.-]*:/i.test(pathPart) || pathPart.startsWith("//");
+}
+
+function toMarkdownPath(targetPath) {
+    if (targetPath.endsWith("/")) return `${targetPath}index.md`;
+    if (targetPath.endsWith(".md")) return targetPath;
+    return `${targetPath}.md`;
+}
+
+function stripHtmlExtension(targetPath) {
+    return targetPath.endsWith(".html") ? targetPath.slice(0, -".html".length) : targetPath;
 }
 
 function getMarkdownFiles(dirPath, files = []) {
@@ -294,27 +382,6 @@ function readFile(filePath) {
     const text = readFileSync(filePath, "utf8");
     const bom = text.charCodeAt(0) === 0xFEFF;
     return { bom, content: bom ? text.slice(1) : text };
-}
-
-function getLineStarts(content) {
-    const starts = [0];
-    for (let i = 0; i < content.length; i++) {
-        if (content[i] === "\n") starts.push(i + 1);
-    }
-    return starts;
-}
-
-function getLineNumber(lineStarts, offset) {
-    let low = 0;
-    let high = lineStarts.length - 1;
-
-    while (low <= high) {
-        const mid = Math.floor((low + high) / 2);
-        if (lineStarts[mid] <= offset) low = mid + 1;
-        else high = mid - 1;
-    }
-
-    return high + 1;
 }
 
 function slash(value) {
