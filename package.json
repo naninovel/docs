@@ -5,6 +5,7 @@
         "test": "vitest run",
         "test:update": "vitest run --update",
         "test:scaffold": "node scripts/scaffold-grammar.js",
+        "fix:anchors": "node scripts/fix-anchors.js",
         "dev": "vitepress dev docs",
         "build": "vitepress build docs",
         "preview": "vitepress preview docs"
