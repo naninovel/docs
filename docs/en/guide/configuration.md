@@ -118,17 +118,6 @@ Auto Show On Modify | False | Whether to automatically reveal (show) an actor wh
 
 </div>
 
-## Custom Variables
-
-<div class="config-table">
-
-Property | Default Value | Description
---- | --- | ---
-Meta By Default | False | Whether to treat all variables as meta by default. Meta variables are not reset when starting a new game and are auto-saved on change. Useful for the dialogue mode when the engine is reset constantly and game state is handled externally.
-Predefined Variables | Object Ref | The list of variables to initialize by default. Meta variables are initialized on first application start, and others on each state reset (except constants).
-
-</div>
-
 ## Engine
 
 <div class="config-table">
@@ -354,6 +343,17 @@ Default Font | Null | Font name from `Font Options` to apply by default when the
 Property | Default Value | Description
 --- | --- | ---
 Loader | Unlockables- (Addressable, Project) | Configuration of the resource loader used with unlockable resources.
+
+</div>
+
+## Variables
+
+<div class="config-table">
+
+Property | Default Value | Description
+--- | --- | ---
+Meta By Default | False | Whether to treat all variables as meta by default. Meta variables are not reset when starting a new game and are auto-saved on change. Useful for the dialogue mode when the engine is reset constantly and game state is handled externally.
+Predefined Variables | Object Ref | The list of variables to initialize by default. Meta variables are initialized on first application start, and others on each state reset (except constants).
 
 </div>
 

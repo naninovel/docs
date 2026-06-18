@@ -287,7 +287,7 @@ public class CustomCommand : Command
 }
 ```
 
-要使参数支持内置和自定义表达式函数以及预定义自定义变量的自动补全，请使用 `ExpressionContext` 属性：
+要使参数支持内置和自定义表达式函数以及预定义变量的自动补全，请使用 `ExpressionContext` 属性：
 
 ```csharp
 [ExpressionContext]

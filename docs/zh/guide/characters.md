@@ -75,7 +75,7 @@
 
 或者，可以使用 "CharacterNames" [管理文本](/zh/guide/managed-text) 文档指定名称，该文档在运行生成管理文本资源任务时自动创建。使用它来本地化显示名称和/或在 Unity 编辑器之外编辑它们。管理文本文档中的记录优先于 actor 配置中设置的显示名称，并将覆盖它们。
 
-可以将显示名称绑定到自定义变量，以便通过剧本脚本在整个游戏中动态更改它。要绑定显示名称，请在角色配置菜单中指定用大括号括起来的自定义变量的名称。
+可以将显示名称绑定到剧本变量，以便通过剧本脚本在整个游戏中动态更改它。要绑定显示名称，请在角色配置菜单中指定用大括号括起来的剧本变量名称。
 
 ![](https://i.gyazo.com/931d0f6b09c77e13e7800d102c089d44.png)
 
@@ -98,7 +98,7 @@ Player: You can call me {PlayerName}.
 
 大括号的内容实际上被视为成熟的 [脚本表达式](/zh/guide/script-expressions)，允许复杂的场景来评估显示名称。例如，您可能希望保留角色的预定义可本地化显示名称直到某个时刻，然后让玩家选择自定义名称。
 
-假设有问题的角色具有 "Char1" ID，预定义名称存储为 `T_PredefinedName` [管理文本记录](/zh/guide/managed-text#脚本文本)，玩家输入的值将存储为 `name` [自定义变量](/zh/guide/custom-variables)，当玩家设置名称时，`nameSet` 变量将设置为 `true`。将以下表达式分配给 `Display Name` 属性：`{ nameSet ? name : T_PredefinedName }`。
+假设有问题的角色具有 "Char1" ID，预定义名称存储为 `T_PredefinedName` [管理文本记录](/zh/guide/managed-text#脚本文本)，玩家输入的值将存储为 `name` [剧本变量](/zh/guide/variables)，当玩家设置名称时，`nameSet` 变量将设置为 `true`。将以下表达式分配给 `Display Name` 属性：`{ nameSet ? name : T_PredefinedName }`。
 
 ![](https://i.gyazo.com/b4bed71310ae8d0f80aff11d910d6e5b.png)
 
@@ -119,7 +119,7 @@ Char1: Now, we'll make the player input a custom name.
 ; 以决定从哪里获取显示名称的值。
 @set nameSet=true
 
-Char1: My display name is now bound to `name` custom variable.
+Char1: My display name is now bound to `name` scenario variable.
 ```
 
 当 `Has Name` 被禁用时，打印机 UI 中既不会显示显示名称也不会显示角色 ID。这对于 [旁白角色](/zh/guide/characters#旁白角色) 很有用，它们可能有一个 [链接的打印机](/zh/guide/characters#链接的打印机)，但不应显示其 ID。

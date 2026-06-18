@@ -177,7 +177,7 @@ Select an action.[>]
 
 ![](https://i.gyazo.com/a64ee9beee378c687d0d8093334f4ef7.png)
 
-位置的可用性由附加到按钮的 [Variable Events](https://naninovel.com/guide/custom-variables.html#variable-events) 组件控制。
+位置的可用性由附加到按钮的 [Variable Events](/zh/guide/variables#变量事件) 组件控制。
 
 ## RTL
 

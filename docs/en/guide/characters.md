@@ -75,7 +75,7 @@ In the character configuration, when `Has Name` is enabled, you can set a `Displ
 
 Alternatively, the names can be specified with "CharacterNames" [managed text](/guide/managed-text) document, which is automatically created when running the generate managed text resources task. Use this to localize display names and/or edit them outside of Unity editor. Records in the managed text document have priority over display names set in actor configuration and will override them.
 
-It's possible to bind a display name to a custom variable to dynamically change it throughout the game via scenario scripts. To bind a display name, specify name of the custom variable wrapped in curly braces in the character configuration menu.
+It's possible to bind a display name to a scenario variable to dynamically change it throughout the game via scenario scripts. To bind a display name, specify the name of the scenario variable wrapped in curly braces in the character configuration menu.
 
 ![](https://i.gyazo.com/931d0f6b09c77e13e7800d102c089d44.png)
 
@@ -98,7 +98,7 @@ Player: You can call me {PlayerName}.
 
 The content of the curly braces is actually treated as a full-fledged [script expression](/guide/script-expressions), allowing complex scenarios for evaluating the display name. For example, you may want to keep a pre-defined localizable display name for a character until some point and then let the player pick a custom name.
 
-Let's say the character in question has "Char1" ID, pre-defined name is stored as `T_PredefinedName` [managed text record](/guide/managed-text#script-text), the value entered by the player will be stored as `name` [custom variable](/guide/custom-variables) and `nameSet` variable will be set to `true` when the player has set the name. Assign the following expression to the `Display Name` property: `{ nameSet ? name : T_PredefinedName }`.
+Let's say the character in question has "Char1" ID, pre-defined name is stored as `T_PredefinedName` [managed text record](/guide/managed-text#script-text), the value entered by the player will be stored as `name` [scenario variable](/guide/variables) and `nameSet` variable will be set to `true` when the player has set the name. Assign the following expression to the `Display Name` property: `{ nameSet ? name : T_PredefinedName }`.
 
 ![](https://i.gyazo.com/b4bed71310ae8d0f80aff11d910d6e5b.png)
 
@@ -119,7 +119,7 @@ Char1: Now, we'll make the player input a custom name.
 ; for display name to decide where to get the value from.
 @set nameSet=true
 
-Char1: My display name is now bound to `name` custom variable.
+Char1: My display name is now bound to `name` scenario variable.
 ```
 
 When `Has Name` is disabled, neither the display name nor the character ID will be displayed in the printer UI. This is useful for [narrator characters](/guide/characters#narrator-characters), which could have a [linked printer](/guide/characters#linked-printer) but whose ID shouldn't be displayed.

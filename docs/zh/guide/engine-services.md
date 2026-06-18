@@ -32,7 +32,7 @@ player.Stop();
 | IResourceProviderManager | 管理 `IResourceProvider` 对象。 |
 | IStateManager | 处理 `IEngineService` 相关的持久数据反序列化/序列化；提供 [保存和加载](/zh/api/#save) 游戏状态的 API。 |
 | IUIManager | 管理 `IManagedUI` 对象并处理 [UI 自定义](/zh/guide/gui#ui-自定义) 功能。 |
-| ICustomVariableManager | 提供访问并允许修改 [自定义变量](/zh/guide/custom-variables)。 |
+| IVariableManager | 提供访问并允许修改[剧本变量](/zh/guide/variables)。 |
 | ISpawnManager | 管理使用 [@spawn] 命令生成的对象。 |
 | IUnlockableManager | 管理 [可解锁项](/zh/guide/unlockable-items)（CG 和电影画廊项目、提示等）。 |
 

@@ -32,7 +32,7 @@ The following services are currently available:
 | IResourceProviderManager | Manages `IResourceProvider` objects.                                                                                                     |
 | IStateManager            | Handles `IEngineService`-related persistent data de-/serialization; provides API to [save and load](/api/#save) game state. |
 | IUIManager               | Manages `IManagedUI` objects and handles [UI customization](/guide/gui#ui-customization) feature.                                        |
-| ICustomVariableManager   | Provides access and allows modifying [custom variables](/guide/custom-variables).                                                        |
+| IVariableManager         | Provides access and allows modifying [scenario variables](/guide/variables).                                                              |
 | ISpawnManager            | Manages objects spawned with [@spawn] commands.                                                                                          |
 | IUnlockableManager       | Manages [unlockable items](/guide/unlockable-items) (CG and movie gallery items, tips, etc.).                                             |
 

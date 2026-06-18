@@ -287,7 +287,7 @@ public class CustomCommand : Command
 }
 ```
 
-組み込みおよびカスタムの式関数と事前定義されたカスタム変数の両方でパラメータの自動補完をサポートするには、`ExpressionContext` 属性を使用します。
+組み込みおよびカスタムの式関数と事前定義された変数の両方でパラメータの自動補完をサポートするには、`ExpressionContext` 属性を使用します。
 
 ```csharp
 [ExpressionContext]

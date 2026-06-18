@@ -287,7 +287,7 @@ public class CustomCommand : Command
 }
 ```
 
-To make a parameter support auto-completion with both built-in and custom expression queries and pre-defined custom variables, use the `ExpressionContext` attribute:
+To make a parameter support auto-completion with both built-in and custom expression queries and pre-defined variables, use the `ExpressionContext` attribute:
 
 ```csharp
 [ExpressionContext]
