@@ -2,7 +2,7 @@
 
 Text printers are actors used to present text messages that can be revealed (printed) over time.
 
-Printers' behavior can be configured using `Naninovel -> Configuration -> Printers` context menu; for available options see [configuration guide](/guide/configuration#printers). The printers' resources manager can be accessed using `Naninovel -> Resources -> Printers` context menu.
+Printers' behavior can be configured using `Naninovel -> Configuration -> Printers` context menu; for available options see [configuration guide](/guide/configuration#text-printers). The printers' resources manager can be accessed using `Naninovel -> Resources -> Printers` context menu.
 
 In scenario scripts, text printers are mostly controlled with [@print] and [@printer] commands:
 
@@ -211,7 +211,7 @@ You can now use the new text printer by activating it via the [@printer] command
 ```
 
 ::: tip EXAMPLE
-Check out [demo project](/guide/getting-started#demo-project) for an example on adding a custom printer. The prefab is stored as `Assets/Prefabs/CustomPrinter.prefab`.
+Check out [demo project](/guide/getting-started#demo-samples) for an example on adding a custom printer. The prefab is stored as `Assets/Prefabs/CustomPrinter.prefab`.
 :::
 
 It's also possible to create a printer from scratch by manually implementing `ITextPrinterActor` interface. See the guide on [custom actor implementations](/guide/custom-actor-implementations) for more information.

@@ -40,7 +40,7 @@ Kohaku: 隆隆作响！
 生成效果基于 [@spawn] 命令或派生自它。它们可以是一次性的（如 [@glitch]）或连续的（如 [@show] 或 [@blur]）。请继续阅读以了解标准效果列表以及添加自定义效果的方法。
 
 ---
-### ✨ 震动 (Shake)
+### Shake
 
 震动指定的 actor 或主相机。专用命令：[@shake]
 
@@ -73,7 +73,7 @@ Kohaku: 隆隆作响！
 ```
 
 ---
-### ✨ 故障 (Glitch)
+### Glitch
 
 对主相机应用后处理效果，模拟数字视频失真和伪影。专用命令：[@glitch]
 
@@ -96,7 +96,7 @@ Kohaku: 隆隆作响！
 ```
 
 ---
-### ✨ 雨 (Rain)
+### Rain
 
 生成模拟雨的粒子系统。专用命令：[@rain]
 
@@ -126,7 +126,7 @@ Kohaku: 隆隆作响！
 ```
 
 ---
-### ✨ 雪 (Snow)
+### Snow
 
 生成模拟雪的粒子系统。专用命令：[@snow]
 
@@ -154,7 +154,7 @@ Kohaku: 隆隆作响！
 ```
 
 ---
-### ✨ 阳光 (Sun)
+### Sun
 
 生成模拟太阳光束（光线）的粒子系统。专用命令：[@sun]
 
@@ -182,12 +182,12 @@ Kohaku: 隆隆作响！
 ```
 
 ---
-### ✨ 散景 (Bokeh)
+### Bokeh
 
 模拟景深（又名 DOF、散景）效果，其中只有焦点处的对象保持清晰，而图像的其余部分模糊。专用命令：[@bokeh]
 
 ::: tip
-如果您只想模糊一个对象 (actor)，请考虑改用 [模糊效果](/zh/guide/special-effects#✨-blur)。
+如果您只想模糊一个对象 (actor)，请考虑改用 [模糊效果](/zh/guide/special-effects#blur)。
 :::
 
 ![](https://i.gyazo.com/610d2cafe5fbe42aba7adb9ac71720d1.mp4)
@@ -220,7 +220,7 @@ Kohaku: 隆隆作响！
 ```
 
 ---
-### ✨ 模糊 (Blur)
+### Blur
 
 将模糊滤镜应用于支持的 actor：精灵、分层、切片、Live2D、Spine、视频和场景实现的背景和角色。默认情况下（未指定第一个参数时），效果应用于 `MainBackground` actor。专用命令：[@blur]
 
@@ -304,7 +304,7 @@ Kohaku: 隆隆作响！
 
 
 ---
-### 💫 BandedSwirl
+### BandedSwirl
 
 ![](https://i.gyazo.com/37432ac584ef04d94d3e4f9535fdffc4.mp4)
 
@@ -326,7 +326,7 @@ Kohaku: 隆隆作响！
 
 
 ---
-### 💫 Blinds
+### Blinds
 
 ![](https://i.gyazo.com/73a259f2a513a92ef893ebd6a25e9013.mp4)
 
@@ -346,7 +346,7 @@ Kohaku: 隆隆作响！
 ```
 
 ---
-### 💫 CircleReveal
+### CircleReveal
 
 ![](https://i.gyazo.com/4f914c6741a5e48a22cafe2ab242a426.mp4)
 
@@ -367,7 +367,7 @@ Kohaku: 隆隆作响！
 
 
 ---
-### 💫 CircleStretch
+### CircleStretch
 
 ![](https://i.gyazo.com/f09bb69a3c045eeb1f6c8ec0b9dcd790.mp4)
 
@@ -380,7 +380,7 @@ Kohaku: 隆隆作响！
 
 
 ---
-### 💫 CloudReveal
+### CloudReveal
 
 ![](https://i.gyazo.com/618ec451a9e10f70486db0bb4badbb71.mp4)
 
@@ -393,7 +393,7 @@ Kohaku: 隆隆作响！
 
 
 ---
-### 💫 Crossfade
+### Crossfade
 
 ![](https://i.gyazo.com/dc4781a577ec891065af1858f5fe2ed1.mp4)
 
@@ -406,7 +406,7 @@ Kohaku: 隆隆作响！
 
 
 ---
-### 💫 Crumble
+### Crumble
 
 ![](https://i.gyazo.com/e27c8477842a2092728ea0cc1ae76bda.mp4)
 
@@ -419,7 +419,7 @@ Kohaku: 隆隆作响！
 
 
 ---
-### 💫 Dissolve
+### Dissolve
 
 ![](https://i.gyazo.com/b2993be8de032a65c7d813c6d749e758.mp4)
 
@@ -440,7 +440,7 @@ Kohaku: 隆隆作响！
 
 
 ---
-### 💫 DropFade
+### DropFade
 
 ![](https://i.gyazo.com/3c3840bb311ccb9fe223960f2e46f800.mp4)
 
@@ -453,7 +453,7 @@ Kohaku: 隆隆作响！
 
 
 ---
-### 💫 LineReveal
+### LineReveal
 
 ![](https://i.gyazo.com/c0e5259cd3d4ed2016ab74a65a7eec63.mp4)
 
@@ -480,7 +480,7 @@ Kohaku: 隆隆作响！
 
 
 ---
-### 💫 Pixelate
+### Pixelate
 
 ![](https://i.gyazo.com/0ac9339b21303e20c524aaf6b6ca95f4.mp4)
 
@@ -493,7 +493,7 @@ Kohaku: 隆隆作响！
 
 
 ---
-### 💫 RadialBlur
+### RadialBlur
 
 ![](https://i.gyazo.com/f8269fb68519c57c99643948a027a2a1.mp4)
 
@@ -506,7 +506,7 @@ Kohaku: 隆隆作响！
 
 
 ---
-### 💫 RadialWiggle
+### RadialWiggle
 
 ![](https://i.gyazo.com/a401b3b93a61276ed68ededa2e75e9ae.mp4)
 
@@ -519,7 +519,7 @@ Kohaku: 隆隆作响！
 
 
 ---
-### 💫 RandomCircleReveal
+### RandomCircleReveal
 
 ![](https://i.gyazo.com/f6e685b13fe2d76733fd43878602eabc.mp4)
 
@@ -532,7 +532,7 @@ Kohaku: 隆隆作响！
 
 
 ---
-### 💫 Ripple
+### Ripple
 
 ![](https://i.gyazo.com/ff1bd285dc675ca5ac04f7ae4500f1c4.mp4)
 
@@ -555,7 +555,7 @@ Kohaku: 隆隆作响！
 
 
 ---
-### 💫 RotateCrumble
+### RotateCrumble
 
 ![](https://i.gyazo.com/8d476f466858e4788e5ad6014d6db314.mp4)
 
@@ -568,7 +568,7 @@ Kohaku: 隆隆作响！
 
 
 ---
-### 💫 Saturate
+### Saturate
 
 ![](https://i.gyazo.com/ad6eb77b7065387b9cb9afd77adbc784.mp4)
 
@@ -581,7 +581,7 @@ Kohaku: 隆隆作响！
 
 
 ---
-### 💫 Shrink
+### Shrink
 
 ![](https://i.gyazo.com/8c8bf00348df28ab89813c21f8655c07.mp4)
 
@@ -602,7 +602,7 @@ Kohaku: 隆隆作响！
 
 
 ---
-### 💫 SlideIn
+### SlideIn
 
 ![](https://i.gyazo.com/800ee6f5fba39ab8d46f5eb09f2126cf.mp4)
 
@@ -620,7 +620,7 @@ Kohaku: 隆隆作响！
 
 
 ---
-### 💫 SwirlGrid
+### SwirlGrid
 
 ![](https://i.gyazo.com/5a21293d979323a112ffd07f1fffd28d.mp4)
 
@@ -642,7 +642,7 @@ Kohaku: 隆隆作响！
 
 
 ---
-### 💫 Swirl
+### Swirl
 
 ![](https://i.gyazo.com/6ac9a2fe1bb9dfaf6a8292ae5d03960e.mp4)
 
@@ -663,7 +663,7 @@ Kohaku: 隆隆作响！
 
 
 ---
-### 💫 Water
+### Water
 
 ![](https://i.gyazo.com/7c684f9a122006f38a0be2725895b76f.mp4)
 
@@ -676,7 +676,7 @@ Kohaku: 隆隆作响！
 
 
 ---
-### 💫 Waterfall
+### Waterfall
 
 ![](https://i.gyazo.com/b6eebcb68002064ababe4d7476139a7c.mp4)
 
@@ -689,7 +689,7 @@ Kohaku: 隆隆作响！
 
 
 ---
-### 💫 Wave
+### Wave
 
 ![](https://i.gyazo.com/e189ca12868d7ae4c9d8f0ca3d9dd298.mp4)
 
@@ -708,6 +708,52 @@ Kohaku: 隆隆作响！
 
 ; 使用高幅度和低频率应用过渡
 @back Appearance.Wave params:0.75,,5
+```
+
+## 动画缓动
+
+许多随时间应用更改的命令都有可选的 `easing` 参数，用于控制被修改的值如何随时间变化。支持的选项如下：
+
+```text
+Linear
+SmoothStep
+Spring
+EaseInQuad
+EaseOutQuad
+EaseInOutQuad
+EaseInCubic
+EaseOutCubic
+EaseInOutCubic
+EaseInQuart
+EaseOutQuart
+EaseInOutQuart
+EaseInQuint
+EaseOutQuint
+EaseInOutQuint
+EaseInSine
+EaseOutSine
+EaseInOutSine
+EaseInExpo
+EaseOutExpo
+EaseInOutExpo
+EaseInCirc
+EaseOutCirc
+EaseInOutCirc
+EaseInBounce
+EaseOutBounce
+EaseInOutBounce
+EaseInBack
+EaseOutBack
+EaseInOutBack
+EaseInElastic
+EaseOutElastic
+EaseInOutElastic
+```
+
+例如，以下命令使用 `EaseOutBounce` 缓动，在 1.5 秒内通过 `DropFade` 过渡效果切换到 `River` 背景：
+
+```nani
+@back River.DropFade time:1.5 easing:EaseOutBounce
 ```
 
 ## 添加自定义效果

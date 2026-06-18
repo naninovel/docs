@@ -1,6 +1,7 @@
 {
     "type": "module",
     "scripts": {
+        "fix:anchors": "node scripts/fix-anchors.js",
         "dev": "vitepress dev docs",
         "build": "vitepress build docs",
         "preview": "vitepress preview docs"

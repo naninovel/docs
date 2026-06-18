@@ -141,7 +141,7 @@ Tip3ID: Title || Description
 
 ### 打印机中的提示
 
-可以通过 [TMPro 打印机](/zh/guide/text-printers#textmesh-pro) 打印相关文本时自动解锁提示；此外，当玩家单击此类文本时，将自动显示 `ITipsUI` UI 并选中关联的提示记录。
+当关联文本显示时，可以自动解锁提示；此外，当玩家单击此类文本时，将自动显示 `ITipsUI` UI 并选中关联的提示记录。
 
 ![](https://i.gyazo.com/3c0d761576c351066022be32b8595e6d.mp4)
 

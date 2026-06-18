@@ -238,7 +238,7 @@ public class CustomProcessor : Processor
 単一のフォントで多くの言語をサポートする予定の場合は、[Notoフォント](https://www.google.com/get/noto/) を検討してください。
 :::
 
-右から左（RTL）言語（アラビア語、ヘブライ語、ペルシア語など）はTMProプリンターでサポートされていますが、追加の設定が必要です。詳細については、[ガイド](/ja/guide/text-printers#右から左アラビア語テキスト) を参照してください。
+右から左（RTL）言語（アラビア語、ヘブライ語、ペルシア語など）はTMProプリンターでサポートされていますが、追加の設定が必要です。詳細については、[ガイド](/ja/guide/text-printers#右から左-アラビア語-テキスト) を参照してください。
 
 CJK言語（中国語、日本語、韓国語）向けに公開する場合は、Character Extractorユーティリティを使用してTMProフォントアトラスサイズを最適化することを検討してください。[ガイド](/ja/guide/text-printers#cjk言語) を参照してください。
 
