@@ -458,7 +458,7 @@ Continue executing this script or ...?[>]
 @choice "Load another script from \"Label\" label" goto:Another#Label
 @choice "Goto to \"Sub\" subroutine in another script" gosub:Another#Sub
 
-; Set custom variables based on choices.
+; Set scenario variables based on choices.
 @choice "I'm humble, one is enough..." set:score++
 @choice "Two, please." set:score=score+2
 @choice "I'll take the entire stock!" set:karma--,score=999
@@ -920,17 +920,17 @@ Test result:[if score>8] Perfect![or score>6] Passed.[else] Failed.[endif]
 
 ## input
 
-Shows an input field UI where user can enter an arbitrary text. Upon submit the entered text will be assigned to the specified custom variable.
+Shows an input field UI where user can enter an arbitrary text. Upon submit the entered text will be assigned to the specified scenario variable.
 
 ::: info NOTE
-To assign a display name for a character using this command consider [binding the name to a custom variable](/guide/characters#display-names).
+To assign a display name for a character using this command consider [binding the name to a scenario variable](/guide/characters#display-names).
 :::
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">variableName</span> | string | Name of a custom variable to which the entered text will be assigned. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">variableName</span> | string | Name of a scenario variable to which the entered text will be assigned. |
 | type | string | Type of the input content; defaults to the specified variable type.Use to change assigned variable type or when assigning to a new variable. Supported types: `String`, `Numeric`, `Boolean`. |
 | summary | string | An optional summary text to show along with input field. When the text contain spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
 | value | string | A predefined value to set for the input field. When not assigned will pull existing value of the assigned variable (if any). |
@@ -939,7 +939,7 @@ To assign a display name for a character using this command consider [binding th
 </div>
 
 ```nani
-; Prompt to enter an arbitrary text and assign it to 'name' custom variable.
+; Prompt to enter an arbitrary text and assign it to 'name' scenario variable.
 @input name summary:"Choose your name."
 
 ; You can then inject the assigned 'name' variable in naninovel scripts.
@@ -1332,7 +1332,7 @@ Be aware, that this command can not be undone (rewound back).
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">exclude</span> | string list | Names of the [engine services](/guide/engine-services) (interfaces) to exclude from reset. Consider adding `ICustomVariableManager` to preserve the local variables. |
+| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">exclude</span> | string list | Names of the [engine services](/guide/engine-services) (interfaces) to exclude from reset. Consider adding `IVariableManager` to preserve the local variables. |
 | only | string list | Names of the [engine services](/guide/engine-services) (interfaces) to reset; other services won't be affected. Doesn't have effect when the primary (exclude) parameter is assigned. |
 
 </div>
@@ -1341,10 +1341,10 @@ Be aware, that this command can not be undone (rewound back).
 ; Reset all the services (script will stop playing).
 @resetState
 
-; Reset all the services except script player, custom variable and
+; Reset all the services except script player, scenario variable and
 ; audio managers, allowing current script and audio tracks
-; continue playing and preserving values of the custom variables.
-@resetState IScriptPlayer,ICustomVariableManager,IAudioManager
+; continue playing and preserving values of the scenario variables.
+@resetState IScriptPlayer,IVariableManager,IAudioManager
 
 ; Reset only 'ICharacterManager' and 'IBackgroundManager' services
 ; removing all the character and background actors from scene
@@ -1429,7 +1429,7 @@ Automatically save the game to the first auto save slot.
 
 ## set
 
-Assigns result of a [script expression](/guide/script-expressions) to a [custom variable](/guide/custom-variables).
+Assigns result of a [script expression](/guide/script-expressions) to a [scenario variable](/guide/variables).
 
 ::: info NOTE
 If a variable with the specified ID doesn't exist, it will be automatically created.<br/><br/> Specify multiple set expressions by separating them with `,`. The expressions will be executed in sequence in the order of declaration.<br/><br/>
@@ -1439,9 +1439,9 @@ If a variable with the specified ID doesn't exist, it will be automatically crea
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | Assignment expression.<br/><br/>The expression should be in the following format: `var=expression`, where `var` is the ID of the custom variable to assign and `expression` is a [script expression](/guide/script-expressions), the result of which should be assigned to the variable.<br/><br/>It's possible to use increment and decrement unary operators (`@set foo++`, `@set foo--`) and compound assignment (`@set foo+=10`, `@set foo-=3`, `@set foo*=0.1`, `@set foo/=2`). |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | Assignment expression.<br/><br/>The expression should be in the following format: `var=expression`, where `var` is the ID of the scenario variable to assign and `expression` is a [script expression](/guide/script-expressions), the result of which should be assigned to the variable.<br/><br/>It's possible to use increment and decrement unary operators (`@set foo++`, `@set foo--`) and compound assignment (`@set foo+=10`, `@set foo-=3`, `@set foo*=0.1`, `@set foo/=2`). |
 | to | string | The expression which result will be assigned to all the specified variables without assignment expressions (without the `= ...` part). Useful to assign multiple variables to the same value, for example: `@set foo, bar, baz to:10`. |
-| scope | string | When specified, will add the the specified variables under the scope. Will not affect variables that already has scope specified in the assignment expression. |
+| scope | string | When specified, assigns variables without an explicit scope under the specified scope. |
 | init | boolean | Whether the variable should only be assigned in case it's not already assigned (initialization intent). Should not be used with the 'meta' or 'const' flags, as they both share the initialization intent. |
 | meta | boolean | Whether the variable should be initialized as a meta variable. The meta-variables are 'above' the game sessions, ie they persist their values when starting a new game. Ideal for meta-game mechanics, such as tracking route completions or achievements. |
 | const | boolean | Whether the variable should be initialized as a constant. The constants can only be initialized once and are not allowed to change later. |
@@ -1515,7 +1515,7 @@ My favourite drink is {drink}!
 ...
 @set stats.agility++
 
-; Use a private variable (ID starts with a dot) to prevent conflicts
+; Use a local variable (ID starts with a dot) to prevent conflicts
 ; with other variables that have the same ID in other scripts.
 @set .count=0
 @while .count is below 10

@@ -457,7 +457,7 @@ Continue executing this script or ...?[>]
 @choice "Load another script from \"Label\" label" goto:Another#Label
 @choice "Goto to \"Sub\" subroutine in another script" gosub:Another#Sub
 
-; 選択肢に基づいてカスタム変数を設定します。
+; 選択肢に基づいてシナリオ変数を設定します。
 @choice "I'm humble, one is enough..." set:score++
 @choice "Two, please." set:score=score+2
 @choice "I'll take the entire stock!" set:karma--,score=999
@@ -922,17 +922,17 @@ Test result:[if score>8] Perfect![or score>6] Passed.[else] Failed.[endif]
 
 ## input
 
-ユーザーが任意のテキストを入力できる入力フィールドUIを表示します。送信時に、入力されたテキストは指定されたカスタム変数に割り当てられます。
+ユーザーが任意のテキストを入力できる入力フィールドUIを表示します。送信時に、入力されたテキストは指定されたシナリオ変数に割り当てられます。
 
 ::: info NOTE
-このコマンドを使用してキャラクターの表示名を割り当てる場合は、[名前をカスタム変数にバインドする](/ja/guide/characters#表示名) ことを検討してください。
+このコマンドを使用してキャラクターの表示名を割り当てる場合は、[名前をシナリオ変数にバインドする](/ja/guide/characters#表示名) ことを検討してください。
 :::
 
 <div class="config-table">
 
 | パラメータ | 型 | 説明 |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります 必須パラメータ: パラメータは常に指定する必要があります">variableName</span> | string | 入力されたテキストが割り当てられるカスタム変数の名前。 |
+| <span class="command-param-primary command-param-required" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります 必須パラメータ: パラメータは常に指定する必要があります">variableName</span> | string | 入力されたテキストが割り当てられるシナリオ変数の名前。 |
 | type | string | 入力コンテンツのタイプ。デフォルトは指定された変数のタイプです。割り当てられた変数タイプを変更する場合や、新しい変数に割り当てる場合に使用します。サポートされているタイプ：`String`、`Numeric`、`Boolean`。 |
 | summary | string | 入力フィールドと一緒に表示するオプションの概要テキスト。テキストにスペースが含まれる場合は、二重引用符 (`"`) で囲んでください。テキスト自体に二重引用符を含める場合は、エスケープしてください。 |
 | value | string | 入力フィールドに設定する事前定義された値。割り当てられない場合、割り当てられた変数の既存の値（ある場合）を取得します。 |
@@ -941,7 +941,7 @@ Test result:[if score>8] Perfect![or score>6] Passed.[else] Failed.[endif]
 </div>
 
 ```nani
-; 任意のテキストを入力するように求め、それを 'name' カスタム変数に割り当てます。
+; 任意のテキストを入力するように求め、それを 'name' シナリオ変数に割り当てます。
 @input name summary:"Choose your name."
 
 ; その後、割り当てられた 'name' 変数をNaninovelスクリプトに注入できます。
@@ -1333,7 +1333,7 @@ You've picked two.
 
 | パラメータ | 型 | 説明 |
 | --- | --- | --- |
-| <span class="command-param-primary" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります">exclude</span> | string list | リセットから除外する [エンジンサービス](/ja/guide/engine-services)（インターフェース）の名前。ローカル変数を保持するには、`ICustomVariableManager` を追加することを検討してください。 |
+| <span class="command-param-primary" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります">exclude</span> | string list | リセットから除外する [エンジンサービス](/ja/guide/engine-services)（インターフェース）の名前。ローカル変数を保持するには、`IVariableManager` を追加することを検討してください。 |
 | only | string list | リセットする [エンジンサービス](/ja/guide/engine-services)（インターフェース）の名前。他のサービスは影響を受けません。プライマリ（除外）パラメータが割り当てられている場合は効果がありません。 |
 
 </div>
@@ -1342,10 +1342,10 @@ You've picked two.
 ; すべてのサービスをリセットします（スクリプトの再生は停止します）。
 @resetState
 
-; スクリプトプレイヤー、カスタム変数、オーディオマネージャーを除くすべてのサービスをリセットし、
+; スクリプトプレイヤー、シナリオ変数、オーディオマネージャーを除くすべてのサービスをリセットし、
 ; 現在のスクリプトとオーディオトラックの再生を継続し、
-; カスタム変数の値を保持します。
-@resetState IScriptPlayer,ICustomVariableManager,IAudioManager
+; シナリオ変数の値を保持します。
+@resetState IScriptPlayer,IVariableManager,IAudioManager
 
 ; 'ICharacterManager' と 'IBackgroundManager' サービスのみをリセットし、
 ; シーンからすべてのキャラクターと背景アクターを削除し、
@@ -1430,19 +1430,20 @@ This line will disappear.
 
 ## set
 
-[スクリプト式](/ja/guide/script-expressions) の結果を [カスタム変数](/ja/guide/custom-variables) に割り当てます。
+[スクリプト式](/ja/guide/script-expressions) の結果を [シナリオ変数](/ja/guide/variables) に割り当てます。
 
 ::: info NOTE
-指定された名前の変数が存在しない場合は、自動的に作成されます。<br/><br/> `,` で区切って複数のセット式を指定します。式は宣言の順序で順番に実行されます。
+指定された ID の変数が存在しない場合は、自動的に作成されます。<br/><br/> `,` で区切って複数のセット式を指定します。式は宣言の順序で順番に実行されます。
 :::
 
 <div class="config-table">
 
 | パラメータ | 型 | 説明 |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります 必須パラメータ: パラメータは常に指定する必要があります">expression</span> | string | 割り当て式。<br/><br/>式は `var=expression` の形式である必要があります。ここで、`var` は割り当てるカスタム変数の名前であり、`expression` は [スクリプト式](/ja/guide/script-expressions) であり、その結果が変数に割り当てられます。<br/><br/>インクリメントおよびデクリメント単項演算子（`@set foo++`、`@set foo--`）および複合代入（`@set foo+=10`、`@set foo-=3`、`@set foo*=0.1`、`@set foo/=2`）を使用できます。 |
+| <span class="command-param-primary command-param-required" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります 必須パラメータ: パラメータは常に指定する必要があります">expression</span> | string | 割り当て式。<br/><br/>式は `var=expression` の形式である必要があります。ここで、`var` は割り当てるシナリオ変数の ID であり、`expression` は [スクリプト式](/ja/guide/script-expressions) であり、その結果が変数に割り当てられます。<br/><br/>インクリメントおよびデクリメント単項演算子（`@set foo++`、`@set foo--`）および複合代入（`@set foo+=10`、`@set foo-=3`、`@set foo*=0.1`、`@set foo/=2`）を使用できます。 |
 | to | string | `= ...` の代入式部分を含まない、指定されたすべての変数に代入される式の結果です。同じ値を複数の変数に代入する場合に便利です。例えば: `@set foo, bar, baz to:10`。 |
-| once | boolean | その変数がまだ代入されていない場合にのみ代入するかどうかを示します（初期化の意図）。'meta' または 'const' フラグとは併用しないでください。これらはいずれも初期化の意図を共有するためです。 |
+| scope | string | 指定すると、明示的なスコープを持たない変数を指定したスコープの下に割り当てます。 |
+| init | boolean | その変数がまだ代入されていない場合にのみ代入するかどうかを示します（初期化の意図）。'meta' または 'const' フラグとは併用しないでください。これらはいずれも初期化の意図を共有するためです。 |
 | meta | boolean | その変数をメタ変数として初期化するかどうかを示します。メタ変数はゲームセッションの "上位" にあり、つまり新しいゲームを開始しても値が保持されます。ルートのクリア状況や実績の追跡など、メタゲームの仕組みに最適です。 |
 | const | boolean | その変数を定数として初期化するかどうかを示します。定数は一度だけ初期化でき、その後に変更することはできません。 |
 
@@ -1487,6 +1488,7 @@ This line will disappear.
 @set foo, bar, baz to:10
 
 ; Naninovelスクリプトコマンドパラメータに変数を注入することが可能です。
+@set scale=0
 @while scale is below 1
     @set scale+=0.1
     @char Kohaku scale:{scale}
@@ -1507,7 +1509,19 @@ My favourite drink is {drink}!
 ; 再プレイ時でも、メタ変数は一度だけ増加。
 @set metaCounter=0 meta!
 ...
-@set metaCounter++ if:!hasPlayed()
+@set metaCounter++ unless:hasPlayed()
+
+; 複数の変数を 'stats' スコープの下で定義します。
+@set strength, intellect, agility to:1 scope:stats
+...
+@set stats.agility++
+
+; ローカル変数（IDがドットで始まる）を使用して、
+; 他のスクリプト内に同じ ID の変数がある場合の競合を防ぎます。
+@set .count=0
+@while .count is below 10
+    @set .count++
+    Current count: {.count}
 ```
 
 ## sfx

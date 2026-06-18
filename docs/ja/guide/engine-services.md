@@ -32,7 +32,7 @@ player.Stop();
 | IResourceProviderManager | `IResourceProvider` オブジェクトを管理します。 |
 | IStateManager | `IEngineService` 関連の永続データの逆シリアル化/シリアル化を処理します。ゲーム状態の [保存とロード](/ja/api/#save) のAPIを提供します。 |
 | IUIManager | `IManagedUI` オブジェクトを管理し、[UIのカスタマイズ](/ja/guide/gui#uiのカスタマイズ) 機能を処理します。 |
-| ICustomVariableManager | [カスタム変数](/ja/guide/custom-variables) へのアクセスを提供し、変更を許可します。 |
+| IVariableManager | [シナリオ変数](/ja/guide/variables) へのアクセスを提供し、変更を許可します。 |
 | ISpawnManager | [@spawn] コマンドでスポーンされたオブジェクトを管理します。 |
 | IUnlockableManager | [アンロック可能アイテム](/ja/guide/unlockable-items)（CGおよびムービーギャラリーアイテム、ヒントなど）を管理します。 |
 

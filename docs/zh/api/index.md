@@ -457,7 +457,7 @@ Continue executing this script or ...?[>]
 @choice "Load another script from \"Label\" label" goto:Another#Label
 @choice "Goto to \"Sub\" subroutine in another script" gosub:Another#Sub
 
-; 根据选择设置自定义变量。
+; 根据选择设置剧本变量。
 @choice "I'm humble, one is enough..." set:score++
 @choice "Two, please." set:score=score+2
 @choice "I'll take the entire stock!" set:karma--,score=999
@@ -922,17 +922,17 @@ Test result:[if score>8] Perfect![or score>6] Passed.[else] Failed.[endif]
 
 ## input
 
-显示一个输入字段 UI，用户可以在其中输入任意文本。提交后，输入的文本将分配给指定的自定义变量。
+显示一个输入字段 UI，用户可以在其中输入任意文本。提交后，输入的文本将分配给指定的剧本变量。
 
 ::: info NOTE
-要使用此命令为角色分配显示名称，请考虑[将名称绑定到自定义变量](/zh/guide/characters#显示名称)。
+要使用此命令为角色分配显示名称，请考虑[将名称绑定到剧本变量](/zh/guide/characters#显示名称)。
 :::
 
 <div class="config-table">
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">variableName</span> | string | 输入文本将分配给的自定义变量的名称。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">variableName</span> | string | 输入文本将分配给的剧本变量名称。 |
 | type | string | 输入内容的类型；默认为指定变量的类型。用于更改分配的变量类型或分配给新变量时。支持的类型：`String`、`Numeric`、`Boolean`。 |
 | summary | string | 与输入字段一起显示的可选摘要文本。当文本包含空格时，请用双引号 (`"`) 将其括起来。如果你希望在文本本身中包含双引号，请对其进行转义。 |
 | value | string | 为输入字段设置的预定义值。未分配时将提取分配变量的现有值（如果有）。 |
@@ -941,7 +941,7 @@ Test result:[if score>8] Perfect![or score>6] Passed.[else] Failed.[endif]
 </div>
 
 ```nani
-; 提示输入任意文本并将其分配给 'name' 自定义变量。
+; 提示输入任意文本并将其分配给 'name' 剧本变量。
 @input name summary:"Choose your name."
 
 ; 然后可以在 naninovel 脚本中注入分配的 'name' 变量。
@@ -1333,7 +1333,7 @@ You've picked two.
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">exclude</span> | string list | 要从重置中排除的[引擎服务](/zh/guide/engine-services)（接口）的名称。考虑添加 `ICustomVariableManager` 以保留局部变量。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">exclude</span> | string list | 要从重置中排除的[引擎服务](/zh/guide/engine-services)（接口）的名称。考虑添加 `IVariableManager` 以保留局部变量。 |
 | only | string list | 要重置的[引擎服务](/zh/guide/engine-services)（接口）的名称；其他服务不会受到影响。分配主（排除）参数时无效。 |
 
 </div>
@@ -1342,10 +1342,10 @@ You've picked two.
 ; 重置所有服务（脚本将停止播放）。
 @resetState
 
-; 重置除脚本播放器、自定义变量和音频管理器之外的所有服务，
+; 重置除脚本播放器、剧本变量和音频管理器之外的所有服务，
 ; 允许当前脚本和音频轨道继续播放
-; 并保留自定义变量的值。
-@resetState IScriptPlayer,ICustomVariableManager,IAudioManager
+; 并保留剧本变量的值。
+@resetState IScriptPlayer,IVariableManager,IAudioManager
 
 ; 仅重置 'ICharacterManager' 和 'IBackgroundManager' 服务，
 ; 从场景中移除所有角色和背景 Actor
@@ -1430,19 +1430,20 @@ This line will disappear.
 
 ## set
 
-将[脚本表达式](/zh/guide/script-expressions)的结果分配给[自定义变量](/zh/guide/custom-variables)。
+将[脚本表达式](/zh/guide/script-expressions)的结果分配给[剧本变量](/zh/guide/variables)。
 
 ::: info NOTE
-如果具有指定名称的变量不存在，将自动创建它。<br/><br/> 通过用 `,` 分隔来指定多个设置表达式。表达式将按声明顺序依次执行。
+如果具有指定 ID 的变量不存在，将自动创建它。<br/><br/> 通过用 `,` 分隔来指定多个设置表达式。表达式将按声明顺序依次执行。
 :::
 
 <div class="config-table">
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">expression</span> | string | 分配表达式。<br/><br/>表达式应采用以下格式：`var=expression`，其中 `var` 是要分配的自定义变量的名称，`expression` 是一个[脚本表达式](/zh/guide/script-expressions)，其结果应分配给变量。<br/><br/>可以使用递增和递减一元运算符（`@set foo++`、`@set foo--`）和复合赋值（`@set foo+=10`、`@set foo-=3`、`@set foo*=0.1`、`@set foo/=2`）。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">expression</span> | string | 分配表达式。<br/><br/>表达式应采用以下格式：`var=expression`，其中 `var` 是要分配的剧本变量 ID，`expression` 是一个[脚本表达式](/zh/guide/script-expressions)，其结果应分配给变量。<br/><br/>可以使用递增和递减一元运算符（`@set foo++`、`@set foo--`）和复合赋值（`@set foo+=10`、`@set foo-=3`、`@set foo*=0.1`、`@set foo/=2`）。 |
 | to | string | 不包含赋值表达式部分（不含 `= ...` 部分）时，将赋给所有指定变量的表达式结果。适用于将同一个值赋给多个变量，例如：`@set foo, bar, baz to:10`。 |
-| once | boolean | 该变量是否只应在尚未赋值时才进行赋值（即初始化意图）。不应与 'meta' 或 'const' 标志一起使用，因为它们都具有初始化意图。 |
+| scope | string | 指定后，会将没有显式作用域的变量分配到指定作用域下。 |
+| init | boolean | 该变量是否只应在尚未赋值时才进行赋值（即初始化意图）。不应与 'meta' 或 'const' 标志一起使用，因为它们都具有初始化意图。 |
 | meta | boolean | 该变量是否应初始化为元变量。元变量位于游戏会话之 "上"，也就是说，在开始新游戏时它们的值仍会保留。非常适合用于元游戏机制，例如追踪路线完成情况或成就。 |
 | const | boolean | 该变量是否应初始化为常量。常量只能初始化一次，之后不允许再更改。 |
 
@@ -1488,6 +1489,7 @@ This line will disappear.
 @set foo, bar, baz to:10
 
 ; 可以将变量注入到 naninovel 脚本命令参数中。
+@set scale=0
 @while scale is below 1
     @set scale+=0.1
     @char Kohaku scale:{scale}
@@ -1508,7 +1510,19 @@ My favourite drink is {drink}!
 ; 即使重复游玩，也只递增一次元变量。
 @set metaCounter=0 meta!
 ...
-@set metaCounter++ if:!hasPlayed()
+@set metaCounter++ unless:hasPlayed()
+
+; 在 'stats' 作用域下定义多个变量。
+@set strength, intellect, agility to:1 scope:stats
+...
+@set stats.agility++
+
+; 使用局部变量（ID 以点开头）防止
+; 与其他脚本中具有相同 ID 的变量冲突。
+@set .count=0
+@while .count is below 10
+    @set .count++
+    Current count: {.count}
 ```
 
 ## sfx

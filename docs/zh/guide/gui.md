@@ -50,7 +50,7 @@ UI 自定义允许添加自定义 UI 并修改或完全替换任何内置 UI 元
 
 要添加新的自定义 UI，请通过 `Create -> Naninovel -> Custom UI` 资产上下文菜单创建一个预制件，并将其添加到 UI 资源列表中。然后，它将在引擎初始化时与其他 UI 预制件一起实例化。
 
-以下视频教程展示了如何添加带有特殊显示和隐藏动画的自定义日历 UI。日历根据 [自定义变量](/zh/guide/custom-variables) 显示日期，该变量可以通过剧本脚本进行更改并随游戏保存。当变量更改时，日历会自动更新 — 所有这些都无需任何 C# 脚本即可实现。
+以下视频教程展示了如何添加带有特殊显示和隐藏动画的自定义日历 UI。日历根据[剧本变量](/zh/guide/variables)显示日期，该变量可以通过剧本脚本进行更改并随游戏保存。当变量更改时，日历会自动更新 — 所有这些都无需任何 C# 脚本即可实现。
 
 ![](https://www.youtube.com/watch?v=wrAm-cwPXy4)
 
@@ -151,7 +151,7 @@ UI 自定义允许添加自定义 UI 并修改或完全替换任何内置 UI 元
 | ISettingsUI | 用于更改游戏设置的面板。 |
 | ITitleUI | 游戏的标题（主）菜单。 |
 | IExternalScriptsUI | 外部脚本浏览器 UI（社区模组功能）。 |
-| IVariableInputUI | 用于将任意文本分配给自定义状态变量的输入表单（由 [@input] 命令使用）。 |
+| IVariableInputUI | 用于将任意文本分配给剧本变量的输入表单（由 [@input] 命令使用）。 |
 | IConfirmationUI | 用于确认重要命令的 UI 面板（例如，退出到标题菜单或删除保存的游戏槽时）。 |
 | ICGGalleryUI | 可解锁的 [CG 画廊](/zh/guide/unlockable-items#cg-画廊) 项目浏览器。 |
 | ITipsUI | 可解锁的 [提示](/zh/guide/unlockable-items#提示) 浏览器。 |

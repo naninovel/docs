@@ -16,14 +16,14 @@ You can use any math and logical operators, as well as some math functions from 
 
 — will scale character with ID "Kohaku" to the remainder of dividing cosine of 33.5 (raised to the power of 3) by the natural logarithm of 0.5.
 
-The expression is evaluated at the moment the command is executed, which allows using [custom variables](/guide/custom-variables) inside the expressions:
+The expression is evaluated at the moment the command is executed, which allows using [scenario variables](/guide/variables) inside the expressions:
 
 ```nani
 @input color summary:"What's your favorite color?"
 {color}, huh? { color == "orange" ? "Mine too!" : (color == "black" ? "That's depressing." : "I see...") }
 ```
 
-— will show an input UI allowing the player to enter their favorite color, assigning it to the `color` custom variable, then print the entered color followed by either "Mine too!" if it's "orange", "That's depressing." if it's "black", or "I see..." otherwise.
+— will show an input UI allowing the player to enter their favorite color, assigning it to the `color` scenario variable, then print the entered color followed by either "Mine too!" if it's "orange", "That's depressing." if it's "black", or "I see..." otherwise.
 
 To distinguish a plain text value from a variable name, wrap the value in double quotes `"`:
 

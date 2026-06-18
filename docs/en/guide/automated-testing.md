@@ -80,10 +80,10 @@ You'll probably also want to store test-specific data in memory so it's not seri
 [UnityTest]
 public IEnumerator WhenTrueCompleteTitleBackChanges () => new E2E()
     .WithTransientState(GlobalStateMap.With(
-        new CustomVariableManager.GlobalState {
-            GlobalVariables = new[] {
-                new CustomVariable("completedX", new(true), CustomVariableScope.Meta),
-                new CustomVariable("completedY", new(true), CustomVariableScope.Meta)
+        new VariableManager.GlobalState {
+            Variables = new[] {
+                new Variable("completedX", new(true), VariableKind.Meta),
+                new Variable("completedY", new(true), VariableKind.Meta)
             }
         }))
 ```

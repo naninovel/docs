@@ -1,6 +1,6 @@
-# Custom Variables
+# Variables
 
-The Custom Variables feature allows you to create user-specified variables, modify them, and use them to drive conditional execution in scenario scripts and other systems. For example, custom variables can be used to select one of multiple scenario scripts to play (scenario routes) based on decisions the player has made. Another common use is tracking player stats (e.g., scores, money, resources) based on choices made throughout the game.
+Scenario variables allow you to create user-specified values, modify them, and use them to drive conditional execution in scenario scripts and other systems. For example, variables can be used to select one of multiple scenario scripts to play (scenario routes) based on decisions the player has made. Another common use is tracking player stats (e.g., scores, money, resources) based on choices made throughout the game.
 
 ::: info NOTE
 Variable names should start with a letter and may contain only letters, numbers and underscores, for example: `score`, `Char1Score`, `my_score`. Names are case-insensitive, meaning you can create a variable named `myscore` and later refer to it as `MyScore` and vice versa.
@@ -23,7 +23,7 @@ You can create and modify variables with the [@set] command (and some parameters
 @else
     @goto BadEnd
 ```
-— find more examples of various ways to use the variables in the [@set] command reference.
+— find more examples of various ways to use variables in the [@set] command reference.
 
 ::: tip
 The `score is above 10` expression is using the `is above` alias instead of the `>` operator; if you prefer the operators, you can write the command as `@if score > 10`. Find more information about the supported syntax in the [script expressions guide](/guide/script-expressions#operator-aliases).
@@ -34,7 +34,7 @@ The `score is above 10` expression is using the `is above` alias instead of the 
 Even if a command parameter is not of an expression context, you can still inject variables into it using curly braces:
 
 ```nani
-; Assign 3 custom variables.
+; Assign 3 variables.
 @set posX=0, posY=0.5, time=1.5
 
 ; Inject them into the parameters of the 'char' command.
@@ -55,7 +55,7 @@ Archibald: Greetings, {name}!
 To make character names dynamic, use the [display name](/guide/characters#display-names) feature.
 :::
 
-You can inject custom variables into any parameter value as long as the parameter type allows it. For example, you can't assign a string (text) to a numeric parameter.
+You can inject variables into any parameter value as long as the parameter type allows it. For example, you can't assign a string (text) to a numeric parameter.
 
 ```nani
 @set yPos=0.1, tint="lightblue"
@@ -69,7 +69,7 @@ You can inject custom variables into any parameter value as long as the paramete
 
 ## Meta Variables
 
-By default, variables are local to the current game session: when you assign a variable during gameplay and the player starts a new game or loads another save slot where that variable wasn't assigned, the value will be lost. This behavior is useful for most variable types. If you wish to "uncouple" a variable from game sessions, use the `meta!` flag when initializing it with the [@set] command:
+By default, scenario variables are local to the current game session: when you assign a variable during gameplay and the player starts a new game or loads another save slot where that variable wasn't assigned, the value will be lost. This behavior is useful for most variable types. If you wish to "uncouple" a variable from game sessions, use the `meta!` flag when initializing it with the [@set] command:
 
 ```nani
 @set myMetaVariable=0 meta!
@@ -101,9 +101,44 @@ If you want a meta counter that increments only once (even when re-played, e.g.,
 ```
 :::
 
+## Variable Scopes
+
+Scenario variables can be grouped under a scope by prefixing the variable name with the scope name and a dot:
+
+```nani
+@set stats.strength=1
+@set stats.agility=3
+
+@if stats.agility is above stats.strength
+    ...
+```
+
+Scoped variables are useful when several systems need variables with the same short name, such as `route.complete`, `stats.complete`, or `quest.complete`.
+
+When assigning several variables with the [@set](/api/#set) command, use the `scope` parameter to apply the same scope to each variable:
+
+```nani
+@set strength, intellect, agility to:0 scope:stats
+@set stats.agility++
+```
+
+## Local Variables
+
+A variable name that starts with a dot is local to the scenario script file where it's used:
+
+```nani
+@set .count=0
+@while .count is below 10
+    @set .count++
+    Current count: {.count}
+```
+
+Each scenario script has its own local scope, so `.count` in one script won't conflict with `.count` in another. Use local variables for script-internal counters, temporary route state, and helper values that don't need a project-wide name.
+
+
 ## Default Assignment
 
-Default assignment assigns a value to a custom variable only if the variable doesn't already have one. This is useful when you want to ensure a variable has an initial value but don't want to overwrite it if it's already set.
+Default assignment assigns a value to a scenario variable only if the variable doesn't already have one. This is useful when you want to ensure a variable has an initial value but don't want to overwrite it if it's already set.
 
 To perform a default assignment, either use the `?=` operator or add the `init!` flag when using the [@set] command:
 
@@ -145,16 +180,16 @@ Open the development console with the `~` key and enter the `var` command to ope
 
 When changing the value of a variable in the list, a "SET" button appears; press it to apply the changes.
 
-The variable list updates automatically when custom variables change while the game is running.
+The variable list updates automatically when scenario variables change while the game is running.
 
-## Using Custom Variables in C#
+## Using Scenario Variables in C#
 
-Custom variables can be accessed in C# via the `ICustomVariableManager` [engine service](/guide/engine-services).
+Scenario variables can be accessed in C# via the `IVariableManager` [engine service](/guide/engine-services).
 
 To create a new variable, use the `AddVariable` method:
 
 ```csharp
-var vars = Engine.GetService<ICustomVariableManager>();
+var vars = Engine.GetService<IVariableManager>();
 // Create a 'myVar' string variable with 'Hello World!' value.
 vars.AddVariable(new("myVar", new("Hello World!")));
 ```
@@ -163,10 +198,10 @@ To create a meta or constant variable, specify the type:
 
 ```csharp
 // Create a boolean meta variable to track route completion.
-vars.AddVariable(new("clearedRouteX", new(false), CustomVariableKind.Meta));
+vars.AddVariable(new("clearedRouteX", new(false), VariableKind.Meta));
 ```
 
-To get and set variable values, use the `GetValue` and `SetValue` methods, respectively. For example, given that a custom string variable named `myVar` exists, the code below retrieves its value, appends "Hello!" to it, and sets the modified value back:
+To get and set variable values, use the `GetValue` and `SetValue` methods, respectively. For example, given that a scenario string variable named `myVar` exists, the code below retrieves its value, appends "Hello!" to it, and sets the modified value back:
 
 ```csharp
 var value = vars.GetValue("myVar").String;
@@ -196,7 +231,7 @@ Note the use of the `.String` property when retrieving the actual value of the v
 —or in C#:
 
 ```csharp
-var vars = Engine.GetService<ICustomVariableManager>();
+var vars = Engine.GetService<IVariableManager>();
 
 // Assign 'foo' variable with a 'Hello World!' string value
 vars.SetValue("foo", new("Hello World!"));
@@ -214,11 +249,11 @@ vars.SetValue("baz", new(true));
 if (vars.GetValue("baz").Boolean)
 ```
 
-To check the type of a variable in C#, use the `.Type` property on the value:
+To check the type of scenario variable in C#, use the `.Type` property on the value:
 
 ```csharp
 var value = vars.GetValue("bar");
-if (value.Type == CustomVariableValueType.Numeric)
+if (value.Type == VariableValueType.Numeric)
     if (value.Number > 12) // it's now safe to access the '.Number' value
 ```
 

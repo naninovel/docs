@@ -176,7 +176,7 @@ Select an action.[>]
 
 ![](https://i.gyazo.com/a64ee9beee378c687d0d8093334f4ef7.png)
 
-場所の可用性は、ボタンにアタッチされた [Variable Events](https://naninovel.com/guide/custom-variables.html#variable-events) コンポーネントで制御されます。
+場所の可用性は、ボタンにアタッチされた [Variable Events](/ja/guide/variables#変数イベント) コンポーネントで制御されます。
 
 ## RTL
 

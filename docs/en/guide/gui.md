@@ -50,7 +50,7 @@ To show or hide any of the UIs listed in the resources manager, use [@showUI] an
 
 To add a new custom UI, create a prefab via `Create -> Naninovel -> Custom UI` asset context menu and add it to the UI resources list. It will then be instantiated along with the other UI prefabs on engine initialization.
 
-The following video tutorial shows how to add a custom calendar UI with special reveal and hide animations. The calendar displays a date based on a [custom variable](/guide/custom-variables), which can be changed via scenario scripts and is saved with the game. The calendar automatically updates when the variable is changed — all achieved without any C# scripting.
+The following video tutorial shows how to add a custom calendar UI with special reveal and hide animations. The calendar displays a date based on a [scenario variable](/guide/variables), which can be changed via scenario scripts and is saved with the game. The calendar automatically updates when the variable is changed — all achieved without any C# scripting.
 
 ![](https://www.youtube.com/watch?v=wrAm-cwPXy4)
 
@@ -151,7 +151,7 @@ ISceneTransitionUI | Handles scene transition ([@trans] command).
 ISettingsUI | Panel used for changing game settings.
 ITitleUI | Title (main) menu of the game.
 IExternalScriptsUI | External scripts browser UI (community modding feature).
-IVariableInputUI | Input form for assigning an arbitrary text to a custom state variable (used by [@input] command).
+IVariableInputUI | Input form for assigning an arbitrary text to a scenario variable (used by [@input] command).
 IConfirmationUI | UI panel used to confirm important commands (eg, when exiting to the title menu or deleting saved game slot).
 ICGGalleryUI | Unlockable [CG gallery](/guide/unlockable-items#cg-gallery) items browser.
 ITipsUI | Unlockable [tips](/guide/unlockable-items#tips) browser.
