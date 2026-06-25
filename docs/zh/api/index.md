@@ -250,6 +250,7 @@ Lorem ipsum
 | group | string | 播放音频时应使用的混音器[组路径](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | time | number | 修改的持续时间（以秒为单位）。 |
 | wait | boolean | 在播放下一个命令之前是否等待 BGM 淡入淡出动画完成。 |
+| pos | number list | 音频源的位置（在世界空间中）。未指定时，将禁用空间模式。 |
 
 </div>
 
@@ -1544,6 +1545,7 @@ My favourite drink is {drink}!
 | group | string | 播放音频时应使用的混音器[组路径](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | time | number | 修改的持续时间（以秒为单位）。 |
 | wait | boolean | 在播放下一个命令之前是否等待 SFX 淡入动画完成。 |
+| pos | number list | 音频源的位置（在世界空间中）。未指定时，将禁用空间模式。 |
 
 </div>
 
@@ -1557,6 +1559,13 @@ My favourite drink is {drink}!
 ; 在 2.5 秒内将所有播放的 SFX 轨道的音量更改为 75%
 ; 并禁用所有它们的循环。
 @sfx volume:0.75 !loop time:2.5
+
+; 在监听器稍上方且后方播放 'Explosion'。
+@sfx Explosion pos:0,1,-3
+
+; 在 10 秒内将 'Rain' 的位置从左侧动画到右侧。
+@sfx Rain pos:-1 loop!
+@sfx Rain pos:1 time:10
 ```
 
 ## sfxFast
@@ -1573,6 +1582,7 @@ My favourite drink is {drink}!
 | additive | boolean | 是否允许播放同一剪辑的多个实例；当启用 `restart` 时无效。 |
 | group | string | 播放音频时应使用的混音器[组路径](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
+| pos | number list | 音频源的位置（在世界空间中）。未指定时，将禁用空间模式。 |
 
 </div>
 
@@ -2133,6 +2143,7 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 | volume | number | 播放的音量。 |
 | group | string | 播放音频时应使用的混音器[组路径](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | authorId | string | 此语音所属的角色 Actor 的 ID。指定时且使用[按作者音量](/zh/guide/voicing#作者音量)，音量将相应调整。 |
+| pos | number list | 音频源的位置（在世界空间中）。未指定时，将禁用空间模式。 |
 
 </div>
 

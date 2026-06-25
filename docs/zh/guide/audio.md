@@ -79,6 +79,32 @@
 @stopSfx
 ```
 
+## 空间音频
+
+所有音频命令都支持 `pos` 参数；指定该参数时会启用空间模式，即“3D 音频”。关联的音频源将被配置为根据其相对于音频监听器的位置作出响应，并被放置在世界空间中的指定位置。
+
+```nani
+; 在监听器稍上方且后方播放 'Explosion'。
+@sfx Explosion pos:0,1,-3
+```
+
+可以像其他参数一样为位置设置动画：
+
+```nani
+; 循环将 'Rain' 的位置右-左-右平移，直到停止。
+@async Rainpan loop!
+    @sfx Rain pos:1.5 time:10
+    @wait 10
+    @sfx Rain pos:-1.5 time:10
+    @wait 10
+
+...
+
+@stop Rainpan
+```
+
+默认的音频监听器位置位于 `x0 y0 z-1`，也就是场景原点稍后方，因此不必总是沿 Z 轴偏移音频位置也能获得更自然的声音位置。
+
 ## 音频混音器
 
 Naninovel 在播放音频时使用 [音频混音器](https://docs.unity3d.com/Manual/AudioMixer.html) 资产来分离 BGM、SFX 和语音通道。

@@ -79,6 +79,32 @@ To stop a playing sound effect (looped or not), use the [@stopSfx] command follo
 @stopSfx
 ```
 
+## Spatial Audio
+
+All audio commands support a `pos` parameter, which, when specified, enables spatial mode — aka "3D audio" — where the associated audio source will be configured to respond to its position relative to the audio listener and assigned the specified position in world space.
+
+```nani
+; Plays 'Explosion' slightly above and behind the listener.
+@sfx Explosion pos:0,1,-3
+```
+
+It's possible to animate the position like any other parameter:
+
+```nani
+; Pans 'Rain' position right-left-right in a loop until stopped.
+@async Rainpan loop!
+    @sfx Rain pos:1.5 time:10
+    @wait 10
+    @sfx Rain pos:-1.5 time:10
+    @wait 10
+
+...
+
+@stop Rainpan
+```
+
+The default audio listener position is at `x0 y0 z-1`, which is slightly behind the scene origin, so you won't always have to offset the audio position along the Z-axis to achieve a more natural sound position.
+
 ## Audio Mixer
 
 Naninovel uses an [audio mixer](https://docs.unity3d.com/Manual/AudioMixer.html) asset when playing the audio to separate BGM, SFX and voice channels.
