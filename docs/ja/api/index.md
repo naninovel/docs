@@ -250,6 +250,7 @@ Lorem ipsum
 | group | string | オーディオを再生するときに使用するオーディオミキサー [グループパス](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | time | number | 変更の期間（秒単位）。 |
 | wait | boolean | 次のコマンドを再生する前に、BGMフェードアニメーションの完了を待機するかどうか。 |
+| pos | number list | オーディオソースの位置（ワールド空間）。指定しない場合、空間モードは無効になります。 |
 
 </div>
 
@@ -1543,6 +1544,7 @@ My favourite drink is {drink}!
 | group | string | オーディオを再生するときに使用するオーディオミキサー [グループパス](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | time | number | 変更の期間（秒単位）。 |
 | wait | boolean | 次のコマンドを再生する前に、SFXフェードアニメーションの完了を待機するかどうか。 |
+| pos | number list | オーディオソースの位置（ワールド空間）。指定しない場合、空間モードは無効になります。 |
 
 </div>
 
@@ -1556,6 +1558,13 @@ My favourite drink is {drink}!
 ; 再生中のすべてのSFXトラックの音量を2.5秒かけて75%に変更し、
 ; すべてのループを無効にします。
 @sfx volume:0.75 !loop time:2.5
+
+; 'Explosion' をリスナーの少し上、背後で再生します。
+@sfx Explosion pos:0,1,-3
+
+; 'Rain' の位置を10秒かけて左から右へアニメーションします。
+@sfx Rain pos:-1 loop!
+@sfx Rain pos:1 time:10
 ```
 
 ## sfxFast
@@ -1572,6 +1581,7 @@ My favourite drink is {drink}!
 | additive | boolean | 同じクリップの複数のインスタンスを再生できるようにするかどうか。`restart` が有効な場合は効果がありません。 |
 | group | string | オーディオを再生するときに使用するオーディオミキサー [グループパス](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | wait | boolean | シナリオスクリプトで次のコマンドの実行を開始する前に、コマンドの完了を待機するかどうか。デフォルトの動作は、スクリプトプレイヤー設定の `Wait By Default` オプションによって制御されます。 |
+| pos | number list | オーディオソースの位置（ワールド空間）。指定しない場合、空間モードは無効になります。 |
 
 </div>
 
@@ -2131,6 +2141,7 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 | volume | number | 再生の音量。 |
 | group | string | オーディオを再生するときに使用するオーディオミキサー [グループパス](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | authorId | string | このボイスが属するキャラクターアクターのID。指定され、[著者ごとの音量](/ja/guide/voicing#著者の音量) が使用されている場合、音量はそれに応じて調整されます。 |
+| pos | number list | オーディオソースの位置（ワールド空間）。指定しない場合、空間モードは無効になります。 |
 
 </div>
 

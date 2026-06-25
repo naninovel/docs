@@ -250,6 +250,7 @@ Music tracks are looped by default. When music track name (BgmPath) is not speci
 | group | string | Audio mixer [group path](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) that should be used when playing the audio. |
 | time | number | Duration (in seconds) of the modification. |
 | wait | boolean | Whether to wait for the BGM fade animation to finish before playing next command. |
+| pos | number list | Position (in world space) of the audio source. When not specified, the spatial mode is disabled. |
 
 </div>
 
@@ -1542,6 +1543,7 @@ Sound effect tracks are not looped by default. When sfx track name (SfxPath) is 
 | group | string | Audio mixer [group path](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) that should be used when playing the audio. |
 | time | number | Duration (in seconds) of the modification. |
 | wait | boolean | Whether to wait for the SFX fade animation to finish before playing next command. |
+| pos | number list | Position (in world space) of the audio source. When not specified, the spatial mode is disabled. |
 
 </div>
 
@@ -1555,6 +1557,13 @@ Sound effect tracks are not looped by default. When sfx track name (SfxPath) is 
 ; Changes volume of all the played SFX tracks to 75% over 2.5 seconds
 ; and disables looping for all of them.
 @sfx volume:0.75 !loop time:2.5
+
+; Plays 'Explosion' slightly above and behind the listener.
+@sfx Explosion pos:0,1,-3
+
+; Animates 'Rain' position from left to right over 10 seconds.
+@sfx Rain pos:-1 loop!
+@sfx Rain pos:1 time:10
 ```
 
 ## sfxFast
@@ -1571,6 +1580,7 @@ Plays an [SFX (sound effect)](/guide/audio#sound-effects) track with the specifi
 | additive | boolean | Whether to allow playing multiple instances of the same clip; has no effect when `restart` is enabled. |
 | group | string | Audio mixer [group path](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) that should be used when playing the audio. |
 | wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
+| pos | number list | Position (in world space) of the audio source. When not specified, the spatial mode is disabled. |
 
 </div>
 
@@ -2132,6 +2142,7 @@ Plays a voice clip at the specified path.
 | volume | number | Volume of the playback. |
 | group | string | Audio mixer [group path](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) that should be used when playing the audio. |
 | authorId | string | ID of the character actor this voice belongs to. When specified and [per-author volume](/guide/voicing#author-volume) is used, volume will be adjusted accordingly. |
+| pos | number list | Position (in world space) of the audio source. When not specified, the spatial mode is disabled. |
 
 </div>
 
