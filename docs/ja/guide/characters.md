@@ -478,7 +478,7 @@ Unityの `Animator` コンポーネントは、ゲームオブジェクトが同
 
 ## Live2Dキャラクター
 
-::: warn
+::: warning
 Live2D SDK for Unity R5の変更により、Naninovelとの適切な統合を維持できなくなりました。このバージョンのLive2Dを使用している場合、Naninovelの統合は動作しません。代わりに、[汎用](/ja/guide/characters#汎用キャラクター)、[レイヤー](/ja/guide/characters#カメラレンダリング)（カメラモード）、またはカスタムキャラクター実装の使用を検討してください。
 :::
 
