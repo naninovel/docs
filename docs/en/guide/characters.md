@@ -478,6 +478,10 @@ To prevent specific appearance from looping, append `NoLoop` (case-insensitive) 
 
 ## Live2D Characters
 
+::: warn
+Changes in the Live2D SDK for Unity R5 made it impossible for us to maintain a proper integration with Naninovel. If you're using this Live2D version, our integration won't work. Instead, consider [Generic](/guide/characters#generic-characters), [Layered](/guide/characters#camera-rendering) (in camera mode), or custom character implementations.
+:::
+
 Live2D character implementation uses assets created with [Live2D Cubism](https://www.live2d.com) 2D modeling and animation software.
 
 ![](https://i.gyazo.com/b81df72fc7afaed569520496cbee09f0.mp4)
