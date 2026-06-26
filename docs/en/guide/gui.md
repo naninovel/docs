@@ -12,6 +12,20 @@ All the built-in UIs are implemented with an adaptive layout. This allows the UI
 
 If you wish to change how the UIs adapt to screen resolution and/or aspect ratio — or are building custom UIs and want to configure the adaptive layout — see the Unity guides and tutorials on uGUI for the available options, e.g., [Designing UI for Multiple Resolutions](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/HOWTO-UIMultiResolution.html).
 
+## Enforcing Aspect Ratios
+
+It's possible to restrict the supported aspect ratios with the `Aspect Ratios` option in the camera configuration.
+
+![](https://i.gyazo.com/838cccc525d9d77f2d2951de7884ad72.png)
+
+When one or more aspect ratios are specified, Naninovel filters the available resolutions in the game settings UI to matching resolutions and enforces the closest configured aspect ratio on Naninovel-managed cameras. The aspect is enforced by changing the camera viewport rect, adding letterboxing or pillarboxing when needed.
+
+Aspect ratios are specified as width and height pairs. For example, use `16:9` for widescreen displays or `4:3` for classic fullscreen layouts. When the current screen aspect does not exactly match one of the configured ratios, Naninovel selects the closest configured ratio.
+
+::: info NOTE
+Unity does not clear screen outside a camera rect, so the pixels may keep previously rendered content. To avoid this, clear the screen behind Naninovel cameras. The simplest setup is to add a camera that renders before Naninovel: set `Clear Flags` to `Solid Color`, `Background` to the desired letterbox color, `Culling Mask` to `Nothing`, and set `Depth` lower than Naninovel cameras.
+:::
+
 ## UI Toggling
 
 UI toggling feature allows the user to hide or show the in-game UI as a whole.
