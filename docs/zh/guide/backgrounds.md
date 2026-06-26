@@ -77,7 +77,7 @@
 
 ![](https://i.gyazo.com/46619a08e3b91441cf30800185932963.png)
 
-虽然对于独立（PC、Mac、Linux）构建，您可以在 [播放器设置](https://docs.unity3d.com/Manual/class-PlayerSettingsStandalone.html#Resolution) 中限制可用的纵横比，但在 Web、控制台和移动设备上是不可能的，应用程序必须适应目标设备。
+虽然可以[强制支持的纵横比](/zh/guide/gui#强制纵横比)，但更具可访问性的替代方案是让游戏适应任意纵横比。内置 GUI 已经很灵活，可以适应任何屏幕大小；actor 的定位也相对于场景边界，而场景边界会与屏幕匹配。背景匹配模式允许配置背景 actor 如何填充屏幕。
 
 可以为每个背景 actor 设置以下匹配模式（通用实现除外）：
 

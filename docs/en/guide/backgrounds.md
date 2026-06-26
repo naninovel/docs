@@ -77,7 +77,7 @@ When the [camera](https://docs.unity3d.com/Manual/class-Camera.html) is renderin
 
 ![](https://i.gyazo.com/46619a08e3b91441cf30800185932963.png)
 
-While for standalone (PC, Mac, Linux) builds you can limit the available aspect ratios in the [player settings](https://docs.unity3d.com/Manual/class-PlayerSettingsStandalone.html#Resolution), on web, consoles and mobiles it's not possible and the applications have to adapt for the target devices instead.
+While you can [enforce supported aspect ratios](/guide/gui#enforcing-aspect-ratios), a more accessible alternative is to make the game adaptable to any aspect ratio. The built-in GUI is already flexible and will adapt to any screen size, and actor positioning is relative to the scene borders, which are matched against the screen. Background match mode allows configuring how the background actors fill the screen.
 
 Following match modes can be set for each background actor (except for generic implementation):
 
