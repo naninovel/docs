@@ -249,7 +249,8 @@ Lorem ipsum
 | fade | number | 开始播放时的音量淡入持续时间，以秒为单位（默认为 0.0）；修改正在播放的轨道时无效。 |
 | group | string | 播放音频时应使用的混音器[组路径](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | time | number | 修改的持续时间（以秒为单位）。 |
-| wait | boolean | 在播放下一个命令之前是否等待 BGM 淡入淡出动画完成。 |
+| waitFade | boolean | 在播放下一个命令之前是否等待 BGM 淡入淡出动画完成。 |
+| wait | boolean | 在播放下一个命令之前是否等待 BGM 播放结束。循环播放时无效。 |
 | pos | number list | 音频源的位置（在世界空间中）。未指定时，将禁用空间模式。 |
 
 </div>
@@ -1531,7 +1532,7 @@ My favourite drink is {drink}!
 播放或修改当前播放的具有指定名称的 [SFX（音效）](/zh/guide/audio#声音效果) 轨道。
 
 ::: info NOTE
-音效轨道默认不循环播放。未指定 sfx 轨道名称 (SfxPath) 时，将影响所有当前播放的轨道。当对已在播放的轨道调用时，播放不会受到影响（轨道不会从头开始播放），但将应用指定的参数（音量和轨道是否循环）。
+音效轨道默认不循环播放。未指定 SFX 轨道名称 (SfxPath) 时，将影响所有当前播放的轨道。当对已在播放的轨道调用时，播放不会受到影响（轨道不会从头开始播放），但将应用指定的参数（音量和轨道是否循环）。
 :::
 
 <div class="config-table">
@@ -1544,7 +1545,8 @@ My favourite drink is {drink}!
 | fade | number | 开始播放时的音量淡入持续时间，以秒为单位（默认为 0.0）；修改正在播放的轨道时无效。 |
 | group | string | 播放音频时应使用的混音器[组路径](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | time | number | 修改的持续时间（以秒为单位）。 |
-| wait | boolean | 在播放下一个命令之前是否等待 SFX 淡入动画完成。 |
+| waitFade | boolean | 在播放下一个命令之前是否等待 SFX 淡入淡出动画完成。指定 `wait` 时无效。 |
+| wait | boolean | 在播放下一个命令之前是否等待 SFX 播放结束。循环播放时无效。 |
 | pos | number list | 音频源的位置（在世界空间中）。未指定时，将禁用空间模式。 |
 
 </div>
@@ -2143,6 +2145,7 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 | volume | number | 播放的音量。 |
 | group | string | 播放音频时应使用的混音器[组路径](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | authorId | string | 此语音所属的角色 Actor 的 ID。指定时且使用[按作者音量](/zh/guide/voicing#作者音量)，音量将相应调整。 |
+| wait | boolean | 在播放下一个命令之前是否等待语音播放结束。 |
 | pos | number list | 音频源的位置（在世界空间中）。未指定时，将禁用空间模式。 |
 
 </div>

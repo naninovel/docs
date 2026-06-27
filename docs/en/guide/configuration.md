@@ -15,8 +15,9 @@ It's possible to modify configuration objects at runtime, add new custom configu
 
 Property | Default Value | Description
 --- | --- | ---
-Audio Loader | Audio- (Addressable, Project) | Configuration of the resource loader used with audio (BGM and SFX) resources.
-Voice Loader | Voice- (Addressable, Project) | Configuration of the resource loader used with voice resources.
+Bgm Loader | BGM- (Addressable, Project) | Configuration of the resource loader used with BGM audio resources.
+Sfx Loader | SFX- (Addressable, Project) | Configuration of the resource loader used with SFX audio resources.
+Voice Loader | Voice- (Addressable, Project) | Configuration of the resource loader used with voice audio resources.
 Audio Player | Naninovel Audio Player | IAudioPlayer implementation responsible for playing audio clips.
 Default Master Volume | 1 | Master volume to set when the game is first started.
 Default Bgm Volume | 1 | BGM volume to set when the game is first started.

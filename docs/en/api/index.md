@@ -249,7 +249,8 @@ Music tracks are looped by default. When music track name (BgmPath) is not speci
 | fade | number | Duration of the volume fade-in when starting playback, in seconds (0.0 by default); doesn't have effect when modifying a playing track. |
 | group | string | Audio mixer [group path](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) that should be used when playing the audio. |
 | time | number | Duration (in seconds) of the modification. |
-| wait | boolean | Whether to wait for the BGM fade animation to finish before playing next command. |
+| waitFade | boolean | Whether to wait for the BGM fade animation to finish before playing next command. |
+| wait | boolean | Whether to wait for the BGM to finish before playing next command. Has no effect when looped. |
 | pos | number list | Position (in world space) of the audio source. When not specified, the spatial mode is disabled. |
 
 </div>
@@ -1529,7 +1530,7 @@ My favourite drink is {drink}!
 Plays or modifies currently played [SFX (sound effect)](/guide/audio#sound-effects) track with the specified name.
 
 ::: info NOTE
-Sound effect tracks are not looped by default. When sfx track name (SfxPath) is not specified, will affect all the currently played tracks. When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start), but the specified parameters (volume and whether the track is looped) will be applied.
+Sound effect tracks are not looped by default. When SFX track name (SfxPath) is not specified, will affect all the currently played tracks. When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start), but the specified parameters (volume and whether the track is looped) will be applied.
 :::
 
 <div class="config-table">
@@ -1542,7 +1543,8 @@ Sound effect tracks are not looped by default. When sfx track name (SfxPath) is 
 | fade | number | Duration of the volume fade-in when starting playback, in seconds (0.0 by default); doesn't have effect when modifying a playing track. |
 | group | string | Audio mixer [group path](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) that should be used when playing the audio. |
 | time | number | Duration (in seconds) of the modification. |
-| wait | boolean | Whether to wait for the SFX fade animation to finish before playing next command. |
+| waitFade | boolean | Whether to wait for the SFX fade animation to finish before playing next command. Has no effect when 'wait' is assigned. |
+| wait | boolean | Whether to wait for the SFX to finish before playing next command. Has no effect when looped. |
 | pos | number list | Position (in world space) of the audio source. When not specified, the spatial mode is disabled. |
 
 </div>
@@ -2142,6 +2144,7 @@ Plays a voice clip at the specified path.
 | volume | number | Volume of the playback. |
 | group | string | Audio mixer [group path](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) that should be used when playing the audio. |
 | authorId | string | ID of the character actor this voice belongs to. When specified and [per-author volume](/guide/voicing#author-volume) is used, volume will be adjusted accordingly. |
+| wait | boolean | Whether to wait for the voice to finish before playing next command. |
 | pos | number list | Position (in world space) of the audio source. When not specified, the spatial mode is disabled. |
 
 </div>

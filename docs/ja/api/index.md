@@ -249,7 +249,8 @@ Lorem ipsum
 | fade | number | 再生開始時の音量フェードインの期間（秒単位、デフォルトは 0.0）。再生中のトラックを変更する場合は効果がありません。 |
 | group | string | オーディオを再生するときに使用するオーディオミキサー [グループパス](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | time | number | 変更の期間（秒単位）。 |
-| wait | boolean | 次のコマンドを再生する前に、BGMフェードアニメーションの完了を待機するかどうか。 |
+| waitFade | boolean | 次のコマンドを再生する前に、BGMフェードアニメーションの完了を待機するかどうか。 |
+| wait | boolean | 次のコマンドを再生する前に、BGMの再生終了を待機するかどうか。ループ再生中は効果がありません。 |
 | pos | number list | オーディオソースの位置（ワールド空間）。指定しない場合、空間モードは無効になります。 |
 
 </div>
@@ -1530,7 +1531,7 @@ My favourite drink is {drink}!
 指定された名前の現在再生中の [SFX（効果音）](/ja/guide/audio#sfx-効果音) トラックを再生または変更します。
 
 ::: info NOTE
-効果音トラックはデフォルトではループされません。sfxトラック名 (SfxPath) が指定されていない場合、現在再生中のすべてのトラックに影響します。すでに再生中のトラックに対して呼び出された場合、再生は影響を受けません（トラックは最初から再生されません）が、指定されたパラメータ（音量とトラックをループするかどうか）が適用されます。
+効果音トラックはデフォルトではループされません。SFXトラック名 (SfxPath) が指定されていない場合、現在再生中のすべてのトラックに影響します。すでに再生中のトラックに対して呼び出された場合、再生は影響を受けません（トラックは最初から再生されません）が、指定されたパラメータ（音量とトラックをループするかどうか）が適用されます。
 :::
 
 <div class="config-table">
@@ -1543,7 +1544,8 @@ My favourite drink is {drink}!
 | fade | number | 再生開始時の音量フェードインの期間（秒単位、デフォルトは 0.0）。再生中のトラックを変更する場合は効果がありません。 |
 | group | string | オーディオを再生するときに使用するオーディオミキサー [グループパス](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | time | number | 変更の期間（秒単位）。 |
-| wait | boolean | 次のコマンドを再生する前に、SFXフェードアニメーションの完了を待機するかどうか。 |
+| waitFade | boolean | 次のコマンドを再生する前に、SFXフェードアニメーションの完了を待機するかどうか。`wait` が指定されている場合は効果がありません。 |
+| wait | boolean | 次のコマンドを再生する前に、SFXの再生終了を待機するかどうか。ループ再生中は効果がありません。 |
 | pos | number list | オーディオソースの位置（ワールド空間）。指定しない場合、空間モードは無効になります。 |
 
 </div>
@@ -2141,6 +2143,7 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 | volume | number | 再生の音量。 |
 | group | string | オーディオを再生するときに使用するオーディオミキサー [グループパス](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | authorId | string | このボイスが属するキャラクターアクターのID。指定され、[著者ごとの音量](/ja/guide/voicing#著者の音量) が使用されている場合、音量はそれに応じて調整されます。 |
+| wait | boolean | 次のコマンドを再生する前に、ボイスの再生終了を待機するかどうか。 |
 | pos | number list | オーディオソースの位置（ワールド空間）。指定しない場合、空間モードは無効になります。 |
 
 </div>

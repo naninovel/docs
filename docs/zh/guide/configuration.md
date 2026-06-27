@@ -16,8 +16,9 @@
 
 | 属性 | 默认值 | 描述 |
 | --- | --- | --- |
-| Audio Loader | Audio- (Addressable, Project) | 与音频（BGM 和 SFX）资源一起使用的资源加载器的配置。 |
-| Voice Loader | Voice- (Addressable, Project) | 与语音资源一起使用的资源加载器的配置。 |
+| Bgm Loader | BGM- (Addressable, Project) | 与 BGM 音频资源一起使用的资源加载器的配置。 |
+| Sfx Loader | SFX- (Addressable, Project) | 与 SFX 音频资源一起使用的资源加载器的配置。 |
+| Voice Loader | Voice- (Addressable, Project) | 与语音音频资源一起使用的资源加载器的配置。 |
 | Audio Player | Naninovel Audio Player | 负责播放音频剪辑的 IAudioPlayer 实现。 |
 | Default Master Volume | 1 | 首次启动游戏时设置的主音量。 |
 | Default Bgm Volume | 1 | 首次启动游戏时设置的 BGM 音量。 |
