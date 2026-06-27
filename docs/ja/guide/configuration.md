@@ -16,8 +16,9 @@
 
 | プロパティ | デフォルト値 | 説明 |
 | --- | --- | --- |
-| Audio Loader | Audio- (Addressable, Project) | オーディオ（BGMおよびSFX）リソースで使用されるリソースローダーの構成。 |
-| Voice Loader | Voice- (Addressable, Project) | ボイスリソースで使用されるリソースローダーの構成。 |
+| Bgm Loader | BGM- (Addressable, Project) | BGMオーディオリソースで使用されるリソースローダーの構成。 |
+| Sfx Loader | SFX- (Addressable, Project) | SFXオーディオリソースで使用されるリソースローダーの構成。 |
+| Voice Loader | Voice- (Addressable, Project) | ボイスオーディオリソースで使用されるリソースローダーの構成。 |
 | Audio Player | Naninovel Audio Player | オーディオクリップの再生を担当するIAudioPlayerの実装。 |
 | Default Master Volume | 1 | ゲームの初回起動時に設定するマスターボリューム。 |
 | Default Bgm Volume | 1 | ゲームの初回起動時に設定するBGMボリューム。 |
