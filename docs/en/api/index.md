@@ -242,16 +242,18 @@ Music tracks are looped by default. When music track name (BgmPath) is not speci
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">bgmPath</span> | string | Path to the music track to play. |
 | intro | string | Path to the intro music track to play once before the main track (not affected by the loop parameter). |
-| volume | number | Volume of the music track. |
-| loop | boolean | Whether to play the track from beginning when it finishes. |
-| fade | number | Duration of the volume fade-in when starting playback, in seconds (0.0 by default); doesn't have effect when modifying a playing track. |
 | group | string | Audio mixer [group path](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) that should be used when playing the audio. |
-| time | number | Duration (in seconds) of the modification. |
-| waitFade | boolean | Whether to wait for the BGM fade animation to finish before playing next command. |
-| wait | boolean | Whether to wait for the BGM to finish before playing next command. Has no effect when looped. |
+| loop | boolean | Whether to repeat the playback from the beginning when it finishes, until stopped. |
+| volume | number | Loudness of the audio playback, in 0.0 to 1.0 range. Note that 1.0 is the default — you can't make digital audio play above the 0 dBFS baseline without clipping. |
+| pitch | number | The perceived frequency (speed) of the playback, in [-3.0 to 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) range, where 1.0 is the normal speed. Negative values will play the audio in reverse. |
 | pos | number list | Position (in world space) of the audio source. When not specified, the spatial mode is disabled. |
+| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">path</span> | string | Local path (name) of the audio resource. |
+| easing | string |  |
+| fade | number | Duration of the animation initiated by the command, in seconds. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
+| waitFade | boolean | Whether to wait for the fade to finish before playing next command. |
+| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -264,7 +266,7 @@ Music tracks are looped by default. When music track name (BgmPath) is not speci
 
 ; Changes volume of all the played music tracks to 50% over 2.5 seconds
 ; and makes them play in a loop.
-@bgm volume:0.5 loop! time:2.5
+@bgm volume:0.5 loop! fade:2.5
 
 ; Plays 'BattleThemeIntro' once, then loops 'BattleThemeMain'.
 @bgm BattleThemeMain intro:BattleThemeIntro
@@ -1537,15 +1539,17 @@ Sound effect tracks are not looped by default. When SFX track name (SfxPath) is 
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">sfxPath</span> | string | Path to the sound effect asset to play. |
-| volume | number | Volume of the sound effect. |
-| loop | boolean | Whether to play the sound effect in a loop. |
-| fade | number | Duration of the volume fade-in when starting playback, in seconds (0.0 by default); doesn't have effect when modifying a playing track. |
 | group | string | Audio mixer [group path](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) that should be used when playing the audio. |
-| time | number | Duration (in seconds) of the modification. |
-| waitFade | boolean | Whether to wait for the SFX fade animation to finish before playing next command. Has no effect when 'wait' is assigned. |
-| wait | boolean | Whether to wait for the SFX to finish before playing next command. Has no effect when looped. |
+| loop | boolean | Whether to repeat the playback from the beginning when it finishes, until stopped. |
+| volume | number | Loudness of the audio playback, in 0.0 to 1.0 range. Note that 1.0 is the default — you can't make digital audio play above the 0 dBFS baseline without clipping. |
+| pitch | number | The perceived frequency (speed) of the playback, in [-3.0 to 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) range, where 1.0 is the normal speed. Negative values will play the audio in reverse. |
 | pos | number list | Position (in world space) of the audio source. When not specified, the spatial mode is disabled. |
+| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">path</span> | string | Local path (name) of the audio resource. |
+| easing | string |  |
+| fade | number | Duration of the animation initiated by the command, in seconds. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
+| waitFade | boolean | Whether to wait for the fade to finish before playing next command. |
+| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -1558,14 +1562,14 @@ Sound effect tracks are not looped by default. When SFX track name (SfxPath) is 
 
 ; Changes volume of all the played SFX tracks to 75% over 2.5 seconds
 ; and disables looping for all of them.
-@sfx volume:0.75 !loop time:2.5
+@sfx volume:0.75 !loop fade:2.5
 
 ; Plays 'Explosion' slightly above and behind the listener.
 @sfx Explosion pos:0,1,-3
 
 ; Animates 'Rain' position from left to right over 10 seconds.
 @sfx Rain pos:-1 loop!
-@sfx Rain pos:1 time:10
+@sfx Rain pos:1 fade:10
 ```
 
 ## sfxFast
@@ -1576,13 +1580,19 @@ Plays an [SFX (sound effect)](/guide/audio#sound-effects) track with the specifi
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">sfxPath</span> | string | Path to the sound effect asset to play. |
-| volume | number | Volume of the sound effect. |
 | restart | boolean | Whether to start playing the audio from start in case it's already playing. |
 | additive | boolean | Whether to allow playing multiple instances of the same clip; has no effect when `restart` is enabled. |
 | group | string | Audio mixer [group path](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) that should be used when playing the audio. |
-| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
+| loop | boolean | Whether to repeat the playback from the beginning when it finishes, until stopped. |
+| volume | number | Loudness of the audio playback, in 0.0 to 1.0 range. Note that 1.0 is the default — you can't make digital audio play above the 0 dBFS baseline without clipping. |
+| pitch | number | The perceived frequency (speed) of the playback, in [-3.0 to 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) range, where 1.0 is the normal speed. Negative values will play the audio in reverse. |
 | pos | number list | Position (in world space) of the audio source. When not specified, the spatial mode is disabled. |
+| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">path</span> | string | Local path (name) of the audio resource. |
+| easing | string |  |
+| fade | number | Duration of the animation initiated by the command, in seconds. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
+| waitFade | boolean | Whether to wait for the fade to finish before playing next command. |
+| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -1854,9 +1864,12 @@ When music track name (BgmPath) is not specified, will stop all the currently pl
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">bgmPath</span> | string | Path to the music track to stop. |
-| fade | number | Duration of the volume fade-out before stopping playback, in seconds (0.35 by default). |
-| wait | boolean | Whether to wait for the BGM fade-out animation to finish before playing next command. |
+| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">path</span> | string | Local path (name) of the audio resource. |
+| easing | string |  |
+| fade | number | Duration of the animation initiated by the command, in seconds. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
+| waitFade | boolean | Whether to wait for the fade to finish before playing next command. |
+| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -1880,9 +1893,12 @@ When sound effect track name (SfxPath) is not specified, will stop all the curre
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">sfxPath</span> | string | Path to the sound effect to stop. |
-| fade | number | Duration of the volume fade-out before stopping playback, in seconds (0.35 by default). |
-| wait | boolean | Whether to wait for the SFX fade-out animation to finish before playing next command. |
+| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">path</span> | string | Local path (name) of the audio resource. |
+| easing | string |  |
+| fade | number | Duration of the animation initiated by the command, in seconds. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
+| waitFade | boolean | Whether to wait for the fade to finish before playing next command. |
+| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -1897,6 +1913,19 @@ When sound effect track name (SfxPath) is not specified, will stop all the curre
 ## stopVoice
 
 Stops playback of the currently played voice clip.
+
+<div class="config-table">
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">path</span> | string | Local path (name) of the audio resource. |
+| easing | string |  |
+| fade | number | Duration of the animation initiated by the command, in seconds. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
+| waitFade | boolean | Whether to wait for the fade to finish before playing next command. |
+| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
+
+</div>
 
 ```nani
 ; Given a voice is being played, stop it.
@@ -2140,18 +2169,24 @@ Plays a voice clip at the specified path.
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">voicePath</span> | string | Path to the voice clip to play. |
-| volume | number | Volume of the playback. |
-| group | string | Audio mixer [group path](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) that should be used when playing the audio. |
 | authorId | string | ID of the character actor this voice belongs to. When specified and [per-author volume](/guide/voicing#author-volume) is used, volume will be adjusted accordingly. |
-| wait | boolean | Whether to wait for the voice to finish before playing next command. |
+| group | string | Audio mixer [group path](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) that should be used when playing the audio. |
+| loop | boolean | Whether to repeat the playback from the beginning when it finishes, until stopped. |
+| volume | number | Loudness of the audio playback, in 0.0 to 1.0 range. Note that 1.0 is the default — you can't make digital audio play above the 0 dBFS baseline without clipping. |
+| pitch | number | The perceived frequency (speed) of the playback, in [-3.0 to 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) range, where 1.0 is the normal speed. Negative values will play the audio in reverse. |
 | pos | number list | Position (in world space) of the audio source. When not specified, the spatial mode is disabled. |
+| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">path</span> | string | Local path (name) of the audio resource. |
+| easing | string |  |
+| fade | number | Duration of the animation initiated by the command, in seconds. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
+| waitFade | boolean | Whether to wait for the fade to finish before playing next command. |
+| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
 </div>
 
 ```nani
-; Given a 'Rawr' voice resource is available, play it.
-@voice Rawr
+; Play a 'Rawr' voice resource in a low pitch.
+@voice Rawr pitch:-1.5
 ```
 
 ## wait

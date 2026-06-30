@@ -28,6 +28,7 @@
 | Voice Overlap Policy | Prevent Overlap | 指定如何处理并发语音播放：<br> • Allow Overlap — 将无限制地播放并发语音。<br> • Prevent Overlap — 通过在播放新语音剪辑之前停止任何播放的语音剪辑来防止并发语音播放。<br> • Prevent Character Overlap — 防止每个角色的并发语音播放；允许并发播放不同角色的语音（自动配音）和任意数量的 [@voice] 命令。 |
 | Voice Locales | Null | 分配本地化标签以允许在游戏设置中独立于主要本地化选择语音语言。 |
 | Default Fade Duration | 0.35 | 开始或停止播放音频时音量淡入/淡出的默认持续时间。 |
+| Default Fade Easing | Linear | 默认用于音频淡入淡出和修改的缓动函数。 |
 | Play Sfx While Skipping | True | 是否在跳过模式下播放非循环声音效果 (SFX)。禁用时，将在跳过时忽略没有 `loop!` 的 [@sfx] 命令。 |
 | Custom Audio Mixer | Null | 控制音频组的音频混音器。未指定时，将使用默认值。 |
 | Master Group Path | Master | 控制主音量的混音器组的路径。 |
@@ -277,7 +278,7 @@
 | Show Synopsis | True | 是否在图形节点内显示脚本的第一条注释行。 |
 | Graph Custom Style Sheet | Null | 允许修改脚本图的默认样式。 |
 | Enable Community Modding | False | 是否允许向构建添加外部 naninovel 脚本。 |
-| External Loader | Scripts- (Local) | 与外部 naninovel 脚本资源一起使用的资源加载器的配置。 |
+| External Loader | Scripts- (Local) | 用于定位外部 naninovel 脚本资源的资源加载器配置。<br><br>请注意，'External' 加载器仅用于定位脚本；仍需配置 'Loader' 才能实际加载它们；详情请参阅 'Community Modding' 指南。 |
 
 </div>
 

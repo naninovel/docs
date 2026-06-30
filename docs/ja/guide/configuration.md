@@ -28,6 +28,7 @@
 | Voice Overlap Policy | Prevent Overlap | 同時音声再生の処理方法を指定します:<br> • Allow Overlap — 同時音声は制限なく再生されます。<br> • Prevent Overlap — 新しいボイスクリップを再生する前に再生中のボイスクリップを停止することで、同時音声再生を防ぎます。<br> • Prevent Character Overlap — キャラクターごとの同時音声再生を防ぎます。異なるキャラクターの音声（オートボイス）と任意の数の [@voice] コマンドは同時に再生できます。 |
 | Voice Locales | Null | ローカライズタグを割り当てて、メインのローカライズとは独立してゲーム設定で音声言語を選択できるようにします。 |
 | Default Fade Duration | 0.35 | オーディオの再生を開始または停止するときのボリュームフェードイン/アウトのデフォルト期間。 |
+| Default Fade Easing | Linear | オーディオのフェードと変更でデフォルトで使用するイージング関数。 |
 | Play Sfx While Skipping | True | スキップモード中に非ループ効果音（SFX）を再生するかどうか。無効にすると、スキップ中に `loop!` なしの [@sfx] コマンドは無視されます。 |
 | Custom Audio Mixer | Null | オーディオグループを制御するオーディオミキサー。指定しない場合、デフォルトのものが使用されます。 |
 | Master Group Path | Master | マスターボリュームを制御するミキサーのグループのパス。 |
@@ -277,7 +278,7 @@
 | Show Synopsis | True | グラフノード内にスクリプトの最初のコメント行を表示するかどうか。 |
 | Graph Custom Style Sheet | Null | スクリプトグラフのデフォルトスタイルを変更できます。 |
 | Enable Community Modding | False | 外部のNaninovelスクリプトをビルドに追加することを許可するかどうか。 |
-| External Loader | Scripts- (Local) | 外部のNaninovelスクリプトリソースで使用されるリソースローダーの構成。 |
+| External Loader | Scripts- (Local) | 外部のNaninovelスクリプトリソースを検索するために使用されるリソースローダーの構成。<br><br>'External' ローダーはスクリプトの検索にのみ使用されることに注意してください。実際にロードするには 'Loader' も構成する必要があります。詳細は 'Community Modding' ガイドを参照してください。 |
 
 </div>
 

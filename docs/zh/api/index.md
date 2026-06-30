@@ -242,16 +242,18 @@ Lorem ipsum
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">bgmPath</span> | string | 要播放的音乐轨道的路径。 |
 | intro | string | 在主轨道之前播放一次的介绍音乐轨道的路径（不受循环参数影响）。 |
-| volume | number | 音乐轨道的音量。 |
-| loop | boolean | 轨道结束后是否从头开始播放。 |
-| fade | number | 开始播放时的音量淡入持续时间，以秒为单位（默认为 0.0）；修改正在播放的轨道时无效。 |
 | group | string | 播放音频时应使用的混音器[组路径](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
-| time | number | 修改的持续时间（以秒为单位）。 |
-| waitFade | boolean | 在播放下一个命令之前是否等待 BGM 淡入淡出动画完成。 |
-| wait | boolean | 在播放下一个命令之前是否等待 BGM 播放结束。循环播放时无效。 |
+| loop | boolean | 是否在播放结束时从头重复播放，直到停止。 |
+| volume | number | 音频播放的响度，范围为 0.0 到 1.0。请注意，1.0 是默认值；不产生削波时，无法让数字音频超过 0 dBFS 基线播放。 |
+| pitch | number | 播放的感知频率，范围为 [-3.0 到 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)。 |
 | pos | number list | 音频源的位置（在世界空间中）。未指定时，将禁用空间模式。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">path</span> | string | 音频资源的本地路径（名称）。 |
+| easing | string |  |
+| fade | number | 命令启动的动画持续时间，以秒为单位。 |
+| lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 会从当前状态继续动画到新的目标。未启用 `lazy`（默认行为）时，当前运行的动画会立即完成，然后开始动画到新的目标。 |
+| waitFade | boolean | 在播放下一个命令之前是否等待淡入淡出完成。 |
+| wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
 </div>
 
@@ -264,7 +266,7 @@ Lorem ipsum
 
 ; 在 2.5 秒内将所有播放的音乐轨道的音量更改为 50%
 ; 并让它们循环播放。
-@bgm volume:0.5 loop! time:2.5
+@bgm volume:0.5 loop! fade:2.5
 
 ; 播放 'BattleThemeIntro' 一次，然后循环播放 'BattleThemeMain'。
 @bgm BattleThemeMain intro:BattleThemeIntro
@@ -1539,15 +1541,17 @@ My favourite drink is {drink}!
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">sfxPath</span> | string | 要播放的音效资源的路径。 |
-| volume | number | 音效的音量。 |
-| loop | boolean | 是否循环播放音效。 |
-| fade | number | 开始播放时的音量淡入持续时间，以秒为单位（默认为 0.0）；修改正在播放的轨道时无效。 |
 | group | string | 播放音频时应使用的混音器[组路径](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
-| time | number | 修改的持续时间（以秒为单位）。 |
-| waitFade | boolean | 在播放下一个命令之前是否等待 SFX 淡入淡出动画完成。指定 `wait` 时无效。 |
-| wait | boolean | 在播放下一个命令之前是否等待 SFX 播放结束。循环播放时无效。 |
+| loop | boolean | 是否在播放结束时从头重复播放，直到停止。 |
+| volume | number | 音频播放的响度，范围为 0.0 到 1.0。请注意，1.0 是默认值；不产生削波时，无法让数字音频超过 0 dBFS 基线播放。 |
+| pitch | number | 播放的感知频率，范围为 [-3.0 到 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)。 |
 | pos | number list | 音频源的位置（在世界空间中）。未指定时，将禁用空间模式。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">path</span> | string | 音频资源的本地路径（名称）。 |
+| easing | string |  |
+| fade | number | 命令启动的动画持续时间，以秒为单位。 |
+| lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 会从当前状态继续动画到新的目标。未启用 `lazy`（默认行为）时，当前运行的动画会立即完成，然后开始动画到新的目标。 |
+| waitFade | boolean | 在播放下一个命令之前是否等待淡入淡出完成。 |
+| wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
 </div>
 
@@ -1560,14 +1564,14 @@ My favourite drink is {drink}!
 
 ; 在 2.5 秒内将所有播放的 SFX 轨道的音量更改为 75%
 ; 并禁用所有它们的循环。
-@sfx volume:0.75 !loop time:2.5
+@sfx volume:0.75 !loop fade:2.5
 
 ; 在监听器稍上方且后方播放 'Explosion'。
 @sfx Explosion pos:0,1,-3
 
 ; 在 10 秒内将 'Rain' 的位置从左侧动画到右侧。
 @sfx Rain pos:-1 loop!
-@sfx Rain pos:1 time:10
+@sfx Rain pos:1 fade:10
 ```
 
 ## sfxFast
@@ -1579,12 +1583,19 @@ My favourite drink is {drink}!
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">sfxPath</span> | string | 要播放的音效资源的路径。 |
-| volume | number | 音效的音量。 |
 | restart | boolean | 如果已在播放，是否从头开始播放音频。 |
 | additive | boolean | 是否允许播放同一剪辑的多个实例；当启用 `restart` 时无效。 |
 | group | string | 播放音频时应使用的混音器[组路径](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
-| wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
+| loop | boolean | 是否在播放结束时从头重复播放，直到停止。 |
+| volume | number | 音频播放的响度，范围为 0.0 到 1.0。请注意，1.0 是默认值；不产生削波时，无法让数字音频超过 0 dBFS 基线播放。 |
+| pitch | number | 播放的感知频率，范围为 [-3.0 到 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)。 |
 | pos | number list | 音频源的位置（在世界空间中）。未指定时，将禁用空间模式。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">path</span> | string | 音频资源的本地路径（名称）。 |
+| easing | string |  |
+| fade | number | 命令启动的动画持续时间，以秒为单位。 |
+| lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 会从当前状态继续动画到新的目标。未启用 `lazy`（默认行为）时，当前运行的动画会立即完成，然后开始动画到新的目标。 |
+| waitFade | boolean | 在播放下一个命令之前是否等待淡入淡出完成。 |
+| wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
 </div>
 
@@ -1855,9 +1866,12 @@ This line is only executed when navigated directly with a @gosub.
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">bgmPath</span> | string | 要停止的音乐轨道的路径。 |
-| fade | number | 停止播放前的音量淡出持续时间，以秒为单位（默认为 0.35）。 |
-| wait | boolean | 在播放下一个命令之前是否等待 BGM 淡出动画完成。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">path</span> | string | 音频资源的本地路径（名称）。 |
+| easing | string |  |
+| fade | number | 命令启动的动画持续时间，以秒为单位。 |
+| lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 会从当前状态继续动画到新的目标。未启用 `lazy`（默认行为）时，当前运行的动画会立即完成，然后开始动画到新的目标。 |
+| waitFade | boolean | 在播放下一个命令之前是否等待淡入淡出完成。 |
+| wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
 </div>
 
@@ -1881,9 +1895,12 @@ This line is only executed when navigated directly with a @gosub.
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">sfxPath</span> | string | 要停止的音效的路径。 |
-| fade | number | 停止播放前的音量淡出持续时间，以秒为单位（默认为 0.35）。 |
-| wait | boolean | 在播放下一个命令之前是否等待 SFX 淡出动画完成。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">path</span> | string | 音频资源的本地路径（名称）。 |
+| easing | string |  |
+| fade | number | 命令启动的动画持续时间，以秒为单位。 |
+| lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 会从当前状态继续动画到新的目标。未启用 `lazy`（默认行为）时，当前运行的动画会立即完成，然后开始动画到新的目标。 |
+| waitFade | boolean | 在播放下一个命令之前是否等待淡入淡出完成。 |
+| wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
 </div>
 
@@ -1898,6 +1915,19 @@ This line is only executed when navigated directly with a @gosub.
 ## stopVoice
 
 停止播放当前播放的语音剪辑。
+
+<div class="config-table">
+
+| 参数 | 类型 | 描述 |
+| --- | --- | --- |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">path</span> | string | 音频资源的本地路径（名称）。 |
+| easing | string |  |
+| fade | number | 命令启动的动画持续时间，以秒为单位。 |
+| lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 会从当前状态继续动画到新的目标。未启用 `lazy`（默认行为）时，当前运行的动画会立即完成，然后开始动画到新的目标。 |
+| waitFade | boolean | 在播放下一个命令之前是否等待淡入淡出完成。 |
+| wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
+
+</div>
 
 ```nani
 ; 假设正在播放语音，停止它。
@@ -2141,18 +2171,24 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">voicePath</span> | string | 要播放的语音剪辑的路径。 |
-| volume | number | 播放的音量。 |
-| group | string | 播放音频时应使用的混音器[组路径](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | authorId | string | 此语音所属的角色 Actor 的 ID。指定时且使用[按作者音量](/zh/guide/voicing#作者音量)，音量将相应调整。 |
-| wait | boolean | 在播放下一个命令之前是否等待语音播放结束。 |
+| group | string | 播放音频时应使用的混音器[组路径](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
+| loop | boolean | 是否在播放结束时从头重复播放，直到停止。 |
+| volume | number | 音频播放的响度，范围为 0.0 到 1.0。请注意，1.0 是默认值；不产生削波时，无法让数字音频超过 0 dBFS 基线播放。 |
+| pitch | number | 播放的感知频率，范围为 [-3.0 到 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)。 |
 | pos | number list | 音频源的位置（在世界空间中）。未指定时，将禁用空间模式。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">path</span> | string | 音频资源的本地路径（名称）。 |
+| easing | string |  |
+| fade | number | 命令启动的动画持续时间，以秒为单位。 |
+| lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 会从当前状态继续动画到新的目标。未启用 `lazy`（默认行为）时，当前运行的动画会立即完成，然后开始动画到新的目标。 |
+| waitFade | boolean | 在播放下一个命令之前是否等待淡入淡出完成。 |
+| wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
 </div>
 
 ```nani
-; 假设 'Rawr' 语音资源可用，播放它。
-@voice Rawr
+; 以低音调播放 'Rawr' 语音资源。
+@voice Rawr pitch:-1.5
 ```
 
 ## wait

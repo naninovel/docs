@@ -27,6 +27,7 @@ Enable Auto Voicing | False | When enabled, each [@print] command will attempt t
 Voice Overlap Policy | Prevent Overlap | Dictates how to handle concurrent voices playback:<br> • Allow Overlap — Concurrent voices will be played without limitation.<br> • Prevent Overlap — Prevent concurrent voices playback by stopping any played voice clip before playing a new one.<br> • Prevent Character Overlap — Prevent concurrent voices playback per character; voices of different characters (auto voicing) and any number of [@voice] command are allowed to be played concurrently.
 Voice Locales | Null | Assign localization tags to allow selecting voice language in the game settings independently of the main localization.
 Default Fade Duration | 0.35 | Default duration of the volume fade in/out when starting or stopping playing audio.
+Default Fade Easing | Linear | Easing function to use by default for the audio fades and modification.
 Play Sfx While Skipping | True | Whether to play non-looped sound effects (SFX) while in skip mode. When disabled, will ignore [@sfx] commands without `loop!` while skipping.
 Custom Audio Mixer | Null | Audio mixer to control audio groups. When not specified, will use a default one.
 Master Group Path | Master | Path of the mixer's group to control master volume.
@@ -256,7 +257,7 @@ Show Script Navigator | False | Whether to auto-show script navigator UI after e
 Enable Story Editor | True | Whether to enable the Story Editor app.
 Show Selected Script | True | Whether to open selected scenario script assets inside the Story Editor.
 Enable Community Modding | False | Whether to allow adding external naninovel scripts to the build.
-External Loader | Scripts- (Local) | Configuration of the resource loader used with external naninovel script resources.
+External Loader | Scripts- (Local) | Configuration of the resource loader used to locate external naninovel script resources.<br><br>Note that the 'External' loader is used only to locate the scripts; you still need to configure 'Loader' to actually load them; see the  'Community Modding' guide for more info.
 
 </div>
 
