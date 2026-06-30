@@ -242,16 +242,18 @@ Lorem ipsum
 
 | パラメータ | 型 | 説明 |
 | --- | --- | --- |
-| <span class="command-param-primary" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります">bgmPath</span> | string | 再生する音楽トラックへのパス。 |
 | intro | string | メイントラックの前に一度だけ再生するイントロ音楽トラックへのパス（ループパラメータの影響を受けません）。 |
-| volume | number | 音楽トラックの音量。 |
-| loop | boolean | トラックが終了したときに最初から再生するかどうか。 |
-| fade | number | 再生開始時の音量フェードインの期間（秒単位、デフォルトは 0.0）。再生中のトラックを変更する場合は効果がありません。 |
 | group | string | オーディオを再生するときに使用するオーディオミキサー [グループパス](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
-| time | number | 変更の期間（秒単位）。 |
-| waitFade | boolean | 次のコマンドを再生する前に、BGMフェードアニメーションの完了を待機するかどうか。 |
-| wait | boolean | 次のコマンドを再生する前に、BGMの再生終了を待機するかどうか。ループ再生中は効果がありません。 |
+| loop | boolean | 再生が終了したときに、停止されるまで最初から繰り返すかどうか。 |
+| volume | number | オーディオ再生の音量。範囲は 0.0 から 1.0。1.0 がデフォルトで、クリッピングなしにデジタルオーディオを 0 dBFS 基準より大きく再生することはできません。 |
+| pitch | number | 再生の知覚上の周波数。範囲は [-3.0 から 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)。 |
 | pos | number list | オーディオソースの位置（ワールド空間）。指定しない場合、空間モードは無効になります。 |
+| <span class="command-param-primary" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります">path</span> | string | オーディオリソースのローカルパス（名前）。 |
+| easing | string |  |
+| fade | number | コマンドによって開始されるアニメーションの期間（秒単位）。 |
+| lazy | boolean | コマンドによって開始されたアニメーションがすでに実行中の場合、`lazy` を有効にすると現在の状態から新しいターゲットまでアニメーションを継続します。`lazy` が有効でない場合（デフォルトの動作）、実行中のアニメーションは新しいターゲットへのアニメーションを開始する前に即座に完了します。 |
+| waitFade | boolean | 次のコマンドを再生する前に、フェードの完了を待機するかどうか。 |
+| wait | boolean | シナリオスクリプトで次のコマンドの実行を開始する前に、コマンドの完了を待機するかどうか。デフォルトの動作は、スクリプトプレイヤー設定の `Wait By Default` オプションによって制御されます。 |
 
 </div>
 
@@ -264,7 +266,7 @@ Lorem ipsum
 
 ; 再生中のすべての音楽トラックの音量を2.5秒かけて50%に変更し、
 ; ループ再生にします。
-@bgm volume:0.5 loop! time:2.5
+@bgm volume:0.5 loop! fade:2.5
 
 ; 'BattleThemeIntro' を一度再生し、その後 'BattleThemeMain' をループします。
 @bgm BattleThemeMain intro:BattleThemeIntro
@@ -1538,15 +1540,17 @@ My favourite drink is {drink}!
 
 | パラメータ | 型 | 説明 |
 | --- | --- | --- |
-| <span class="command-param-primary" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります">sfxPath</span> | string | 再生する効果音アセットへのパス。 |
-| volume | number | 効果音の音量。 |
-| loop | boolean | 効果音をループ再生するかどうか。 |
-| fade | number | 再生開始時の音量フェードインの期間（秒単位、デフォルトは 0.0）。再生中のトラックを変更する場合は効果がありません。 |
 | group | string | オーディオを再生するときに使用するオーディオミキサー [グループパス](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
-| time | number | 変更の期間（秒単位）。 |
-| waitFade | boolean | 次のコマンドを再生する前に、SFXフェードアニメーションの完了を待機するかどうか。`wait` が指定されている場合は効果がありません。 |
-| wait | boolean | 次のコマンドを再生する前に、SFXの再生終了を待機するかどうか。ループ再生中は効果がありません。 |
+| loop | boolean | 再生が終了したときに、停止されるまで最初から繰り返すかどうか。 |
+| volume | number | オーディオ再生の音量。範囲は 0.0 から 1.0。1.0 がデフォルトで、クリッピングなしにデジタルオーディオを 0 dBFS 基準より大きく再生することはできません。 |
+| pitch | number | 再生の知覚上の周波数。範囲は [-3.0 から 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)。 |
 | pos | number list | オーディオソースの位置（ワールド空間）。指定しない場合、空間モードは無効になります。 |
+| <span class="command-param-primary" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります">path</span> | string | オーディオリソースのローカルパス（名前）。 |
+| easing | string |  |
+| fade | number | コマンドによって開始されるアニメーションの期間（秒単位）。 |
+| lazy | boolean | コマンドによって開始されたアニメーションがすでに実行中の場合、`lazy` を有効にすると現在の状態から新しいターゲットまでアニメーションを継続します。`lazy` が有効でない場合（デフォルトの動作）、実行中のアニメーションは新しいターゲットへのアニメーションを開始する前に即座に完了します。 |
+| waitFade | boolean | 次のコマンドを再生する前に、フェードの完了を待機するかどうか。 |
+| wait | boolean | シナリオスクリプトで次のコマンドの実行を開始する前に、コマンドの完了を待機するかどうか。デフォルトの動作は、スクリプトプレイヤー設定の `Wait By Default` オプションによって制御されます。 |
 
 </div>
 
@@ -1559,14 +1563,14 @@ My favourite drink is {drink}!
 
 ; 再生中のすべてのSFXトラックの音量を2.5秒かけて75%に変更し、
 ; すべてのループを無効にします。
-@sfx volume:0.75 !loop time:2.5
+@sfx volume:0.75 !loop fade:2.5
 
 ; 'Explosion' をリスナーの少し上、背後で再生します。
 @sfx Explosion pos:0,1,-3
 
 ; 'Rain' の位置を10秒かけて左から右へアニメーションします。
 @sfx Rain pos:-1 loop!
-@sfx Rain pos:1 time:10
+@sfx Rain pos:1 fade:10
 ```
 
 ## sfxFast
@@ -1578,12 +1582,19 @@ My favourite drink is {drink}!
 | パラメータ | 型 | 説明 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります">sfxPath</span> | string | 再生する効果音アセットへのパス。 |
-| volume | number | 効果音の音量。 |
 | restart | boolean | すでに再生中の場合にオーディオを最初から再生するかどうか。 |
 | additive | boolean | 同じクリップの複数のインスタンスを再生できるようにするかどうか。`restart` が有効な場合は効果がありません。 |
 | group | string | オーディオを再生するときに使用するオーディオミキサー [グループパス](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
-| wait | boolean | シナリオスクリプトで次のコマンドの実行を開始する前に、コマンドの完了を待機するかどうか。デフォルトの動作は、スクリプトプレイヤー設定の `Wait By Default` オプションによって制御されます。 |
+| loop | boolean | 再生が終了したときに、停止されるまで最初から繰り返すかどうか。 |
+| volume | number | オーディオ再生の音量。範囲は 0.0 から 1.0。1.0 がデフォルトで、クリッピングなしにデジタルオーディオを 0 dBFS 基準より大きく再生することはできません。 |
+| pitch | number | 再生の知覚上の周波数。範囲は [-3.0 から 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)。 |
 | pos | number list | オーディオソースの位置（ワールド空間）。指定しない場合、空間モードは無効になります。 |
+| <span class="command-param-primary" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります">path</span> | string | オーディオリソースのローカルパス（名前）。 |
+| easing | string |  |
+| fade | number | コマンドによって開始されるアニメーションの期間（秒単位）。 |
+| lazy | boolean | コマンドによって開始されたアニメーションがすでに実行中の場合、`lazy` を有効にすると現在の状態から新しいターゲットまでアニメーションを継続します。`lazy` が有効でない場合（デフォルトの動作）、実行中のアニメーションは新しいターゲットへのアニメーションを開始する前に即座に完了します。 |
+| waitFade | boolean | 次のコマンドを再生する前に、フェードの完了を待機するかどうか。 |
+| wait | boolean | シナリオスクリプトで次のコマンドの実行を開始する前に、コマンドの完了を待機するかどうか。デフォルトの動作は、スクリプトプレイヤー設定の `Wait By Default` オプションによって制御されます。 |
 
 </div>
 
@@ -1853,9 +1864,12 @@ This line is only executed when navigated directly with a @gosub.
 
 | パラメータ | 型 | 説明 |
 | --- | --- | --- |
-| <span class="command-param-primary" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります">bgmPath</span> | string | 停止する音楽トラックへのパス。 |
-| fade | number | 再生を停止する前の音量フェードアウトの期間（秒単位、デフォルトは 0.35）。 |
-| wait | boolean | 次のコマンドを再生する前に、BGMフェードアウトアニメーションの完了を待機するかどうか。 |
+| <span class="command-param-primary" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります">path</span> | string | オーディオリソースのローカルパス（名前）。 |
+| easing | string |  |
+| fade | number | コマンドによって開始されるアニメーションの期間（秒単位）。 |
+| lazy | boolean | コマンドによって開始されたアニメーションがすでに実行中の場合、`lazy` を有効にすると現在の状態から新しいターゲットまでアニメーションを継続します。`lazy` が有効でない場合（デフォルトの動作）、実行中のアニメーションは新しいターゲットへのアニメーションを開始する前に即座に完了します。 |
+| waitFade | boolean | 次のコマンドを再生する前に、フェードの完了を待機するかどうか。 |
+| wait | boolean | シナリオスクリプトで次のコマンドの実行を開始する前に、コマンドの完了を待機するかどうか。デフォルトの動作は、スクリプトプレイヤー設定の `Wait By Default` オプションによって制御されます。 |
 
 </div>
 
@@ -1879,9 +1893,12 @@ This line is only executed when navigated directly with a @gosub.
 
 | パラメータ | 型 | 説明 |
 | --- | --- | --- |
-| <span class="command-param-primary" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります">sfxPath</span> | string | 停止する効果音へのパス。 |
-| fade | number | 再生を停止する前の音量フェードアウトの期間（秒単位、デフォルトは 0.35）。 |
-| wait | boolean | 次のコマンドを再生する前に、SFXフェードアウトアニメーションの完了を待機するかどうか。 |
+| <span class="command-param-primary" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります">path</span> | string | オーディオリソースのローカルパス（名前）。 |
+| easing | string |  |
+| fade | number | コマンドによって開始されるアニメーションの期間（秒単位）。 |
+| lazy | boolean | コマンドによって開始されたアニメーションがすでに実行中の場合、`lazy` を有効にすると現在の状態から新しいターゲットまでアニメーションを継続します。`lazy` が有効でない場合（デフォルトの動作）、実行中のアニメーションは新しいターゲットへのアニメーションを開始する前に即座に完了します。 |
+| waitFade | boolean | 次のコマンドを再生する前に、フェードの完了を待機するかどうか。 |
+| wait | boolean | シナリオスクリプトで次のコマンドの実行を開始する前に、コマンドの完了を待機するかどうか。デフォルトの動作は、スクリプトプレイヤー設定の `Wait By Default` オプションによって制御されます。 |
 
 </div>
 
@@ -1896,6 +1913,19 @@ This line is only executed when navigated directly with a @gosub.
 ## stopVoice
 
 現在再生中のボイスクリップの再生を停止します。
+
+<div class="config-table">
+
+| パラメータ | 型 | 説明 |
+| --- | --- | --- |
+| <span class="command-param-primary" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります">path</span> | string | オーディオリソースのローカルパス（名前）。 |
+| easing | string |  |
+| fade | number | コマンドによって開始されるアニメーションの期間（秒単位）。 |
+| lazy | boolean | コマンドによって開始されたアニメーションがすでに実行中の場合、`lazy` を有効にすると現在の状態から新しいターゲットまでアニメーションを継続します。`lazy` が有効でない場合（デフォルトの動作）、実行中のアニメーションは新しいターゲットへのアニメーションを開始する前に即座に完了します。 |
+| waitFade | boolean | 次のコマンドを再生する前に、フェードの完了を待機するかどうか。 |
+| wait | boolean | シナリオスクリプトで次のコマンドの実行を開始する前に、コマンドの完了を待機するかどうか。デフォルトの動作は、スクリプトプレイヤー設定の `Wait By Default` オプションによって制御されます。 |
+
+</div>
 
 ```nani
 ; ボイスが再生されていると仮定して、それを停止します。
@@ -2139,18 +2169,24 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 
 | パラメータ | 型 | 説明 |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります 必須パラメータ: パラメータは常に指定する必要があります">voicePath</span> | string | 再生するボイスクリップへのパス。 |
-| volume | number | 再生の音量。 |
-| group | string | オーディオを再生するときに使用するオーディオミキサー [グループパス](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | authorId | string | このボイスが属するキャラクターアクターのID。指定され、[著者ごとの音量](/ja/guide/voicing#著者の音量) が使用されている場合、音量はそれに応じて調整されます。 |
-| wait | boolean | 次のコマンドを再生する前に、ボイスの再生終了を待機するかどうか。 |
+| group | string | オーディオを再生するときに使用するオーディオミキサー [グループパス](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
+| loop | boolean | 再生が終了したときに、停止されるまで最初から繰り返すかどうか。 |
+| volume | number | オーディオ再生の音量。範囲は 0.0 から 1.0。1.0 がデフォルトで、クリッピングなしにデジタルオーディオを 0 dBFS 基準より大きく再生することはできません。 |
+| pitch | number | 再生の知覚上の周波数。範囲は [-3.0 から 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)。 |
 | pos | number list | オーディオソースの位置（ワールド空間）。指定しない場合、空間モードは無効になります。 |
+| <span class="command-param-primary" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります">path</span> | string | オーディオリソースのローカルパス（名前）。 |
+| easing | string |  |
+| fade | number | コマンドによって開始されるアニメーションの期間（秒単位）。 |
+| lazy | boolean | コマンドによって開始されたアニメーションがすでに実行中の場合、`lazy` を有効にすると現在の状態から新しいターゲットまでアニメーションを継続します。`lazy` が有効でない場合（デフォルトの動作）、実行中のアニメーションは新しいターゲットへのアニメーションを開始する前に即座に完了します。 |
+| waitFade | boolean | 次のコマンドを再生する前に、フェードの完了を待機するかどうか。 |
+| wait | boolean | シナリオスクリプトで次のコマンドの実行を開始する前に、コマンドの完了を待機するかどうか。デフォルトの動作は、スクリプトプレイヤー設定の `Wait By Default` オプションによって制御されます。 |
 
 </div>
 
 ```nani
-; 'Rawr' ボイスリソースが利用可能であると仮定して、それを再生します。
-@voice Rawr
+; 'Rawr' ボイスリソースを低いピッチで再生します。
+@voice Rawr pitch:-1.5
 ```
 
 ## wait
