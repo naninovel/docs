@@ -244,12 +244,12 @@ public class PlayMusic : Command, Command.IPreloadable
 
     private IAudioManager audio => Engine.GetService<IAudioManager>();
 
-    public async Awaitable PreloadResources ()
+    public async Awaitable PreloadResources (ScriptPlaylist playlist)
     {
         await audio.AudioLoader.Load(MusicName, this);
     }
 
-    public void ReleaseResources ()
+    public void ReleaseResources (ScriptPlaylist playlist)
     {
         audio.AudioLoader.Release(MusicName, this);
     }

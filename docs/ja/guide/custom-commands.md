@@ -148,7 +148,7 @@ public class PlayAudioClip : Command, Command.IPreloadable
 {
     public StringParameter ClipPath;
 
-    public async Awaitable PreloadResources ()
+    public async Awaitable PreloadResources (ScriptPlaylist playlist)
     {
         if (!Assigned(ClipPath) || ClipPath.DynamicValue) return;
         await ... (load the audio clip here)
