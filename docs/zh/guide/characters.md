@@ -227,6 +227,31 @@ Kohaku,Yuko: Lorem ipsum?[< as:"Kohaku and Yuko"]
 将打印机与 [旁白角色](/zh/guide/characters#旁白角色) 链接并禁用 `Has Name` 以使旁白文本与打印机链接，这样您就不必一直使用 [@printer] 切换回非角色（默认）打印机。
 :::
 
+要在运行时链接和取消链接打印机，请使用 [@linkPrinter] 和 [@unlinkPrinter] 命令。此外，也可以通过在 [@printer] 下嵌套命令，将所有作者临时链接到特定打印机。
+
+```nani
+; 无作者行默认使用 'Fullscreen'。
+@linkPrinter Fullscreen to:DefaultAuthor
+; 'Kohaku' 默认使用 'Wide' 打印机。
+@linkPrinter Wide to:Kohaku
+
+这会用 'Fullscreen' 打印。
+Kohaku: 我则用 'Wide' 打印！
+
+; 对嵌套命令强制使用 'Dialogue'。
+@printer Dialogue
+    这会用 'Dialogue' 打印。
+    Kohaku: 现在我必须使用 'Dialogue'。
+
+回到 'Fullscreen'。
+Kohaku: 我又可以使用自己的 'Wide' 了！
+
+; 取消链接到 'Kohaku' 的任意打印机。
+@unlinkPrinter from:Kohaku
+这不受影响，仍使用 'Fullscreen'。
+Kohaku: 谁拿走了我的 'Wide'？！正在用 'Fullscreen' 打印...
+```
+
 ## 默认作者
 
 当为常规角色使用 [链接的打印机](/zh/guide/characters#链接的打印机) 时，您可能希望没有显式作者的 [通用文本行](/zh/guide/scenario-scripting#通用文本行) 和 [@print] 命令回退到专用打印机。这就避免了必须为每一行指定旁白 ID 或使用 [@printer] 命令手动切换打印机。

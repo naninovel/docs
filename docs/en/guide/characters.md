@@ -227,6 +227,31 @@ Be aware that [@print] commands (that are also used under the hood when printing
 Link a printer with [narrator character](/guide/characters#narrator-characters) and disable `Has Name` to make narrated text linked with a printer, so that you won't have to use [@printer] to switch back to non-character (default) printer all the time.
 :::
 
+To link and unlink printers at runtime, use the [@linkPrinter] and [@unlinkPrinter] commands. Additionally, it's possible to temporarily link all authors to a specific printer by nesting commands under [@printer].
+
+```nani
+; Use 'Fullscreen' by default for unauthored lines.
+@linkPrinter Fullscreen to:DefaultAuthor
+; 'Kohaku' will use the 'Wide' printer by default.
+@linkPrinter Wide to:Kohaku
+
+This is printed with 'Fullscreen'.
+Kohaku: And I'm printing with 'Wide'!
+
+; Enforce 'Dialogue' for nested commands.
+@printer Dialogue
+    This is printed with 'Dialogue'.
+    Kohaku: I have to use 'Dialogue' now.
+
+Back to 'Fullscreen'.
+Kohaku: And I can use my 'Wide' again!
+
+; Unlink whatever printer is linked to 'Kohaku'.
+@unlinkPrinter from:Kohaku
+This is not affected and is still using 'Fullscreen'.
+Kohaku: Who took my 'Wide'?! Printing with 'Fullscreen'...
+```
+
 ## Default Author
 
 When using [linked printers](/guide/characters#linked-printer) for your regular characters, you may want [generic text lines](/guide/scenario-scripting#generic-text-lines) and [@print] commands without an explicit author to fall back to a dedicated printer. This avoids having to specify a narrator ID for every such line or switching printers manually with the [@printer] command.
