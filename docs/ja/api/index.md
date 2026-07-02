@@ -235,7 +235,7 @@ Lorem ipsum
 指定された名前の現在再生中の [BGM（背景音楽）](/ja/guide/audio#bgm-背景音楽) トラックを再生または変更します。
 
 ::: info NOTE
-音楽トラックはデフォルトでループされます。音楽トラック名 (BgmPath) が指定されていない場合、現在再生中のすべてのトラックに影響します。すでに再生中のトラックに対して呼び出された場合、再生は影響を受けません（トラックは最初から再生されません）が、指定されたパラメータ（音量とトラックをループするかどうか）が適用されます。
+音楽トラックはデフォルトでループされます。音楽トラック名 (Path) が指定されていない場合、現在再生中のすべてのトラックに影響します。すでに再生中のトラックに対して呼び出された場合、再生は影響を受けません（トラックは最初から再生されません）が、指定されたパラメータ（音量とトラックをループするかどうか）が適用されます。
 :::
 
 <div class="config-table">
@@ -248,12 +248,12 @@ Lorem ipsum
 | volume | number | オーディオ再生の音量。範囲は 0.0 から 1.0。1.0 がデフォルトで、クリッピングなしにデジタルオーディオを 0 dBFS 基準より大きく再生することはできません。 |
 | pitch | number | 再生の知覚上の周波数。範囲は [-3.0 から 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)。 |
 | pos | number list | オーディオソースの位置（ワールド空間）。指定しない場合、空間モードは無効になります。 |
+| wait | boolean | 音声の再生が終わるまで待ってから次のコマンドを実行するかどうか。ループ再生時は効果がありません。 |
 | <span class="command-param-primary" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります">path</span> | string | オーディオリソースのローカルパス（名前）。 |
 | easing | string |  |
 | fade | number | コマンドによって開始されるアニメーションの期間（秒単位）。 |
 | lazy | boolean | コマンドによって開始されたアニメーションがすでに実行中の場合、`lazy` を有効にすると現在の状態から新しいターゲットまでアニメーションを継続します。`lazy` が有効でない場合（デフォルトの動作）、実行中のアニメーションは新しいターゲットへのアニメーションを開始する前に即座に完了します。 |
 | waitFade | boolean | 次のコマンドを再生する前に、フェードの完了を待機するかどうか。 |
-| wait | boolean | シナリオスクリプトで次のコマンドの実行を開始する前に、コマンドの完了を待機するかどうか。デフォルトの動作は、スクリプトプレイヤー設定の `Wait By Default` オプションによって制御されます。 |
 
 </div>
 
@@ -955,6 +955,27 @@ Archibald: Greetings, {name}!
 @set score++ if:name="Felix"
 ```
 
+## linkPrinter
+
+テキストプリンターを著者（キャラクターアクター）にリンクし、その著者がデフォルトでそのプリンターを使用するようにします。詳しくは [リンクされたプリンターガイド](/ja/guide/characters#リンクされたプリンター) を参照してください。
+
+<div class="config-table">
+
+| パラメータ | 型 | 説明 |
+| --- | --- | --- |
+| <span class="command-param-primary command-param-required" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります 必須パラメータ: パラメータは常に指定する必要があります">printerId</span> | string | リンクするテキストプリンターの識別子。 |
+| to | string list | プリンターにリンクするキャラクターアクターの識別子。指定しない場合、すべての著者にリンクします。 |
+
+</div>
+
+```nani
+; 'Dialogue' プリンターを 'Kohaku' と 'Yuko' の著者にリンクします。
+@linkPrinter Dialogue to:Kohaku,Yuko
+
+; 'Wide' をすべての著者にリンクします。
+@linkPrinter Wide
+```
+
 ## lipSync
 
 指定されたIDを持つキャラクターのリップシンク口のアニメーションを強制停止できるようにします。停止すると、このコマンドが再度使用されて許可されるまで、アニメーションは再開されません。キャラクターはリップシンクイベントを受信できる必要があります（現在は汎用、レイヤー、およびLive2D実装のみ）。リップシンク機能の詳細については、[キャラクターガイド](/ja/guide/characters#リップシンク) を参照してください。
@@ -1151,14 +1172,14 @@ Marks a branch of a conditional execution block, which is executed in case condi
 
 ## printer
 
-[テキストプリンターアクター](/ja/guide/text-printers) を変更します。
+[テキストプリンターアクター](/ja/guide/text-printers) を変更し、ネストされたコマンドの実行中はそのプリンターをすべての著者にリンクします。
 
 <div class="config-table">
 
 | パラメータ | 型 | 説明 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります">idAndAppearance</span> | named string | 変更するプリンターのIDと設定する外観。IDまたは外観が指定されていない場合、デフォルトのものが使用されます。 |
-| default | boolean | プリンターをデフォルトにするかどうか。`printer` パラメータが指定されていない場合、デフォルトのプリンターがすべてのプリンター関連コマンドの対象になります。 |
+| default | boolean | プリンターをデフォルトにするかどうか。`printer` パラメータが指定されていない場合、デフォルトのプリンターがすべてのプリンター関連コマンドの対象になります。ネストされたコマンドを含む場合は効果がありません。 |
 | hideOther | boolean | 他のすべてのプリンターを非表示にするかどうか。 |
 | anchor | boolean | アクターアンカーによる自動プリンター配置を許可するかどうか。サポートされているプリンターで、プリンターを手動で配置した後に自動配置を再開する場合に有効にします。このコマンドで明示的な位置が割り当てられると、アンカーは自動的に無効になることに注意してください。 |
 | pos | number list | 変更されたアクターに設定する位置（シーン境界に対する相対的なパーセンテージ）。位置は次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。直交モードで深度によって移動（ソート）するには、Zコンポーネント（3番目のメンバー、例 `,,10`）を使用します。 |
@@ -1187,6 +1208,13 @@ Marks a branch of a conditional execution block, which is executed in case condi
 ; 'Bubble' プリンターに 'Right' 外観を割り当て、デフォルトにし、
 ; シーンの中央に配置し、他のプリンターを非表示にしません。
 @printer Bubble.Right pos:50,50 !hideOther
+
+; ネストされたコマンドの実行中は 'Wide' プリンターを強制的に使用します。
+@printer Wide
+    現在のデフォルトプリンターに関係なく 'Wide' に印刷されます。
+    Kohaku: リンクされたプリンターがあるかもしれませんが、ここでは 'Wide' を使用します。
+再びデフォルトプリンターに印刷されます。
+Kohaku: 再びリンクされたプリンターを使用します。
 ```
 
 ## processInput
@@ -1533,7 +1561,7 @@ My favourite drink is {drink}!
 指定された名前の現在再生中の [SFX（効果音）](/ja/guide/audio#sfx-効果音) トラックを再生または変更します。
 
 ::: info NOTE
-効果音トラックはデフォルトではループされません。SFXトラック名 (SfxPath) が指定されていない場合、現在再生中のすべてのトラックに影響します。すでに再生中のトラックに対して呼び出された場合、再生は影響を受けません（トラックは最初から再生されません）が、指定されたパラメータ（音量とトラックをループするかどうか）が適用されます。
+効果音トラックはデフォルトではループされません。SFXトラック名 (Path) が指定されていない場合、現在再生中のすべてのトラックに影響します。すでに再生中のトラックに対して呼び出された場合、再生は影響を受けません（トラックは最初から再生されません）が、指定されたパラメータ（音量とトラックをループするかどうか）が適用されます。
 :::
 
 <div class="config-table">
@@ -1545,12 +1573,12 @@ My favourite drink is {drink}!
 | volume | number | オーディオ再生の音量。範囲は 0.0 から 1.0。1.0 がデフォルトで、クリッピングなしにデジタルオーディオを 0 dBFS 基準より大きく再生することはできません。 |
 | pitch | number | 再生の知覚上の周波数。範囲は [-3.0 から 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)。 |
 | pos | number list | オーディオソースの位置（ワールド空間）。指定しない場合、空間モードは無効になります。 |
+| wait | boolean | 音声の再生が終わるまで待ってから次のコマンドを実行するかどうか。ループ再生時は効果がありません。 |
 | <span class="command-param-primary" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります">path</span> | string | オーディオリソースのローカルパス（名前）。 |
 | easing | string |  |
 | fade | number | コマンドによって開始されるアニメーションの期間（秒単位）。 |
 | lazy | boolean | コマンドによって開始されたアニメーションがすでに実行中の場合、`lazy` を有効にすると現在の状態から新しいターゲットまでアニメーションを継続します。`lazy` が有効でない場合（デフォルトの動作）、実行中のアニメーションは新しいターゲットへのアニメーションを開始する前に即座に完了します。 |
 | waitFade | boolean | 次のコマンドを再生する前に、フェードの完了を待機するかどうか。 |
-| wait | boolean | シナリオスクリプトで次のコマンドの実行を開始する前に、コマンドの完了を待機するかどうか。デフォルトの動作は、スクリプトプレイヤー設定の `Wait By Default` オプションによって制御されます。 |
 
 </div>
 
@@ -1589,12 +1617,12 @@ My favourite drink is {drink}!
 | volume | number | オーディオ再生の音量。範囲は 0.0 から 1.0。1.0 がデフォルトで、クリッピングなしにデジタルオーディオを 0 dBFS 基準より大きく再生することはできません。 |
 | pitch | number | 再生の知覚上の周波数。範囲は [-3.0 から 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)。 |
 | pos | number list | オーディオソースの位置（ワールド空間）。指定しない場合、空間モードは無効になります。 |
+| wait | boolean | 音声の再生が終わるまで待ってから次のコマンドを実行するかどうか。ループ再生時は効果がありません。 |
 | <span class="command-param-primary" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります">path</span> | string | オーディオリソースのローカルパス（名前）。 |
 | easing | string |  |
 | fade | number | コマンドによって開始されるアニメーションの期間（秒単位）。 |
 | lazy | boolean | コマンドによって開始されたアニメーションがすでに実行中の場合、`lazy` を有効にすると現在の状態から新しいターゲットまでアニメーションを継続します。`lazy` が有効でない場合（デフォルトの動作）、実行中のアニメーションは新しいターゲットへのアニメーションを開始する前に即座に完了します。 |
 | waitFade | boolean | 次のコマンドを再生する前に、フェードの完了を待機するかどうか。 |
-| wait | boolean | シナリオスクリプトで次のコマンドの実行を開始する前に、コマンドの完了を待機するかどうか。デフォルトの動作は、スクリプトプレイヤー設定の `Wait By Default` オプションによって制御されます。 |
 
 </div>
 
@@ -1857,7 +1885,7 @@ This line is only executed when navigated directly with a @gosub.
 指定された名前のBGM（背景音楽）トラックの再生を停止します。
 
 ::: info NOTE
-音楽トラック名 (BgmPath) が指定されていない場合、現在再生中のすべてのトラックを停止します。
+音楽トラック名 (Path) が指定されていない場合、現在再生中のすべてのトラックを停止します。
 :::
 
 <div class="config-table">
@@ -1869,7 +1897,6 @@ This line is only executed when navigated directly with a @gosub.
 | fade | number | コマンドによって開始されるアニメーションの期間（秒単位）。 |
 | lazy | boolean | コマンドによって開始されたアニメーションがすでに実行中の場合、`lazy` を有効にすると現在の状態から新しいターゲットまでアニメーションを継続します。`lazy` が有効でない場合（デフォルトの動作）、実行中のアニメーションは新しいターゲットへのアニメーションを開始する前に即座に完了します。 |
 | waitFade | boolean | 次のコマンドを再生する前に、フェードの完了を待機するかどうか。 |
-| wait | boolean | シナリオスクリプトで次のコマンドの実行を開始する前に、コマンドの完了を待機するかどうか。デフォルトの動作は、スクリプトプレイヤー設定の `Wait By Default` オプションによって制御されます。 |
 
 </div>
 
@@ -1886,7 +1913,7 @@ This line is only executed when navigated directly with a @gosub.
 指定された名前のSFX（効果音）トラックの再生を停止します。
 
 ::: info NOTE
-効果音トラック名 (SfxPath) が指定されていない場合、現在再生中のすべてのトラックを停止します。
+効果音トラック名 (Path) が指定されていない場合、現在再生中のすべてのトラックを停止します。
 :::
 
 <div class="config-table">
@@ -1898,7 +1925,6 @@ This line is only executed when navigated directly with a @gosub.
 | fade | number | コマンドによって開始されるアニメーションの期間（秒単位）。 |
 | lazy | boolean | コマンドによって開始されたアニメーションがすでに実行中の場合、`lazy` を有効にすると現在の状態から新しいターゲットまでアニメーションを継続します。`lazy` が有効でない場合（デフォルトの動作）、実行中のアニメーションは新しいターゲットへのアニメーションを開始する前に即座に完了します。 |
 | waitFade | boolean | 次のコマンドを再生する前に、フェードの完了を待機するかどうか。 |
-| wait | boolean | シナリオスクリプトで次のコマンドの実行を開始する前に、コマンドの完了を待機するかどうか。デフォルトの動作は、スクリプトプレイヤー設定の `Wait By Default` オプションによって制御されます。 |
 
 </div>
 
@@ -1923,7 +1949,6 @@ This line is only executed when navigated directly with a @gosub.
 | fade | number | コマンドによって開始されるアニメーションの期間（秒単位）。 |
 | lazy | boolean | コマンドによって開始されたアニメーションがすでに実行中の場合、`lazy` を有効にすると現在の状態から新しいターゲットまでアニメーションを継続します。`lazy` が有効でない場合（デフォルトの動作）、実行中のアニメーションは新しいターゲットへのアニメーションを開始する前に即座に完了します。 |
 | waitFade | boolean | 次のコマンドを再生する前に、フェードの完了を待機するかどうか。 |
-| wait | boolean | シナリオスクリプトで次のコマンドの実行を開始する前に、コマンドの完了を待機するかどうか。デフォルトの動作は、スクリプトプレイヤー設定の `Wait By Default` オプションによって制御されます。 |
 
 </div>
 
@@ -2122,6 +2147,33 @@ Jenna: When will the damn rain stop?
 Test result:[unless score<10] Passed.[else] Failed.[endif]
 ```
 
+## unlinkPrinter
+
+以前に [@linkPrinter] でリンクされたテキストプリンターを著者（キャラクターアクター）からリンク解除します。詳しくは [リンクされたプリンターガイド](/ja/guide/characters#リンクされたプリンター) を参照してください。
+
+<div class="config-table">
+
+| パラメータ | 型 | 説明 |
+| --- | --- | --- |
+| <span class="command-param-primary" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります">printerId</span> | string | リンク解除するテキストプリンターの識別子。指定しない場合は任意のプリンターをリンク解除します。 |
+| from | string list | リンク解除するキャラクターアクターの識別子。指定しない場合はすべての著者からリンク解除します。 |
+
+</div>
+
+```nani
+; 'Dialogue' プリンターを 'Kohaku' と 'Yuko' の著者からリンク解除します。
+@unlinkPrinter Dialogue from:Kohaku,Yuko
+
+; 'Kohaku' の著者から任意のプリンターをリンク解除します。
+@unlinkPrinter from:Kohaku
+
+; 'Dialogue' プリンターをすべての著者からリンク解除します。
+@unlinkPrinter Dialogue
+
+; すべてのプリンターをすべての著者からリンク解除します。
+@unlinkPrinter
+```
+
 ## unloadScene
 
 指定された名前の [Unityシーン](https://docs.unity3d.com/Manual/CreatingScenes.html) をアンロードします。ロードできるようにするには、必要なシーンを [ビルド設定](https://docs.unity3d.com/Manual/BuildSettings.html) に追加することを忘れないでください。加算的にロードされたシーンのみをアンロードできることに注意してください（少なくとも1つのシーンは常にロードされたままにする必要があります）。
@@ -2175,12 +2227,12 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 | volume | number | オーディオ再生の音量。範囲は 0.0 から 1.0。1.0 がデフォルトで、クリッピングなしにデジタルオーディオを 0 dBFS 基準より大きく再生することはできません。 |
 | pitch | number | 再生の知覚上の周波数。範囲は [-3.0 から 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)。 |
 | pos | number list | オーディオソースの位置（ワールド空間）。指定しない場合、空間モードは無効になります。 |
-| <span class="command-param-primary" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります">path</span> | string | オーディオリソースのローカルパス（名前）。 |
+| wait | boolean | 音声の再生が終わるまで待ってから次のコマンドを実行するかどうか。ループ再生時は効果がありません。 |
+| <span class="command-param-primary command-param-required" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります 必須パラメータ: パラメータは常に指定する必要があります">path</span> | string | オーディオリソースのローカルパス（名前）。 |
 | easing | string |  |
 | fade | number | コマンドによって開始されるアニメーションの期間（秒単位）。 |
 | lazy | boolean | コマンドによって開始されたアニメーションがすでに実行中の場合、`lazy` を有効にすると現在の状態から新しいターゲットまでアニメーションを継続します。`lazy` が有効でない場合（デフォルトの動作）、実行中のアニメーションは新しいターゲットへのアニメーションを開始する前に即座に完了します。 |
 | waitFade | boolean | 次のコマンドを再生する前に、フェードの完了を待機するかどうか。 |
-| wait | boolean | シナリオスクリプトで次のコマンドの実行を開始する前に、コマンドの完了を待機するかどうか。デフォルトの動作は、スクリプトプレイヤー設定の `Wait By Default` オプションによって制御されます。 |
 
 </div>
 

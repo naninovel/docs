@@ -235,7 +235,7 @@ Lorem ipsum
 播放或修改当前播放的具有指定名称的 [BGM（背景音乐）](/zh/guide/audio#背景音乐) 轨道。
 
 ::: info NOTE
-音乐轨道默认循环播放。未指定音乐轨道名称 (BgmPath) 时，将影响所有当前播放的轨道。当对已在播放的轨道调用时，播放不会受到影响（轨道不会从头开始播放），但将应用指定的参数（音量和轨道是否循环）。
+音乐轨道默认循环播放。未指定音乐轨道名称 (Path) 时，将影响所有当前播放的轨道。当对已在播放的轨道调用时，播放不会受到影响（轨道不会从头开始播放），但将应用指定的参数（音量和轨道是否循环）。
 :::
 
 <div class="config-table">
@@ -248,12 +248,12 @@ Lorem ipsum
 | volume | number | 音频播放的响度，范围为 0.0 到 1.0。请注意，1.0 是默认值；不产生削波时，无法让数字音频超过 0 dBFS 基线播放。 |
 | pitch | number | 播放的感知频率，范围为 [-3.0 到 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)。 |
 | pos | number list | 音频源的位置（在世界空间中）。未指定时，将禁用空间模式。 |
+| wait | boolean | 是否等待音频播放结束后再执行下一个命令。循环播放时无效。 |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">path</span> | string | 音频资源的本地路径（名称）。 |
 | easing | string |  |
 | fade | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 会从当前状态继续动画到新的目标。未启用 `lazy`（默认行为）时，当前运行的动画会立即完成，然后开始动画到新的目标。 |
 | waitFade | boolean | 在播放下一个命令之前是否等待淡入淡出完成。 |
-| wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
 </div>
 
@@ -955,6 +955,27 @@ Archibald: Greetings, {name}!
 @set score++ if:name="Felix"
 ```
 
+## linkPrinter
+
+将文本打印机链接到作者（角色 Actor），使该作者默认使用该打印机。更多信息请参阅[链接的打印机指南](/zh/guide/characters#链接的打印机)。
+
+<div class="config-table">
+
+| 参数 | 类型 | 描述 |
+| --- | --- | --- |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">printerId</span> | string | 要链接的文本打印机标识符。 |
+| to | string list | 要与打印机链接的角色 Actor 标识符。未指定时链接到所有作者。 |
+
+</div>
+
+```nani
+; 将 'Dialogue' 打印机链接到 'Kohaku' 和 'Yuko' 作者。
+@linkPrinter Dialogue to:Kohaku,Yuko
+
+; 将 'Wide' 链接到所有作者。
+@linkPrinter Wide
+```
+
 ## lipSync
 
 允许强制停止具有指定 ID 的角色的口型同步嘴部动画；停止后，在再次使用此命令允许之前，动画不会重新开始。角色应能够接收口型同步事件（目前仅限 generic、layered 和 Live2D 实现）。有关口型同步功能的更多信息，请参阅[角色指南](/zh/guide/characters#口型同步-lip-sync)。
@@ -1151,14 +1172,14 @@ Marks a branch of a conditional execution block, which is executed in case condi
 
 ## printer
 
-修改[文本打印机 Actor](/zh/guide/text-printers)。
+修改[文本打印机 Actor](/zh/guide/text-printers)，并在执行嵌套命令期间将该打印机链接到所有作者。
 
 <div class="config-table">
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">idAndAppearance</span> | named string | 要修改的打印机的 ID 和要设置的外观。未指定 ID 或外观时，将使用默认值。 |
-| default | boolean | 是否将打印机设为默认。未指定 `printer` 参数时，默认打印机将受所有打印机相关命令的影响。 |
+| default | boolean | 是否将打印机设为默认。未指定 `printer` 参数时，默认打印机将受所有打印机相关命令的影响。包含嵌套命令时无效。 |
 | hideOther | boolean | 是否隐藏所有其他打印机。 |
 | anchor | boolean | 是否允许通过 Actor 锚点自动定位打印机。在手动定位打印机后为支持的打印机启用以恢复自动定位。请注意，当使用此命令分配显式位置时，锚定将自动禁用。 |
 | pos | number list | 为修改后的 Actor 设置的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。在正交模式下，使用 Z 分量（第三个成员，例如 `,,10`）按深度移动（排序）。 |
@@ -1187,6 +1208,13 @@ Marks a branch of a conditional execution block, which is executed in case condi
 ; 将 'Right' 外观分配给 'Bubble' 打印机，使其成为默认打印机，
 ; 放置在场景中心且不隐藏其他打印机。
 @printer Bubble.Right pos:50,50 !hideOther
+
+; 执行嵌套命令时强制使用 'Wide' 打印机。
+@printer Wide
+    无论当前默认打印机是什么，都打印到 'Wide'。
+    Kohaku: 我可能有链接的打印机，但这里使用 'Wide'。
+再次打印到默认打印机。
+Kohaku: 再次使用我链接的打印机。
 ```
 
 ## processInput
@@ -1534,7 +1562,7 @@ My favourite drink is {drink}!
 播放或修改当前播放的具有指定名称的 [SFX（音效）](/zh/guide/audio#声音效果) 轨道。
 
 ::: info NOTE
-音效轨道默认不循环播放。未指定 SFX 轨道名称 (SfxPath) 时，将影响所有当前播放的轨道。当对已在播放的轨道调用时，播放不会受到影响（轨道不会从头开始播放），但将应用指定的参数（音量和轨道是否循环）。
+音效轨道默认不循环播放。未指定 SFX 轨道名称 (Path) 时，将影响所有当前播放的轨道。当对已在播放的轨道调用时，播放不会受到影响（轨道不会从头开始播放），但将应用指定的参数（音量和轨道是否循环）。
 :::
 
 <div class="config-table">
@@ -1546,12 +1574,12 @@ My favourite drink is {drink}!
 | volume | number | 音频播放的响度，范围为 0.0 到 1.0。请注意，1.0 是默认值；不产生削波时，无法让数字音频超过 0 dBFS 基线播放。 |
 | pitch | number | 播放的感知频率，范围为 [-3.0 到 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)。 |
 | pos | number list | 音频源的位置（在世界空间中）。未指定时，将禁用空间模式。 |
+| wait | boolean | 是否等待音频播放结束后再执行下一个命令。循环播放时无效。 |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">path</span> | string | 音频资源的本地路径（名称）。 |
 | easing | string |  |
 | fade | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 会从当前状态继续动画到新的目标。未启用 `lazy`（默认行为）时，当前运行的动画会立即完成，然后开始动画到新的目标。 |
 | waitFade | boolean | 在播放下一个命令之前是否等待淡入淡出完成。 |
-| wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
 </div>
 
@@ -1590,12 +1618,12 @@ My favourite drink is {drink}!
 | volume | number | 音频播放的响度，范围为 0.0 到 1.0。请注意，1.0 是默认值；不产生削波时，无法让数字音频超过 0 dBFS 基线播放。 |
 | pitch | number | 播放的感知频率，范围为 [-3.0 到 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)。 |
 | pos | number list | 音频源的位置（在世界空间中）。未指定时，将禁用空间模式。 |
+| wait | boolean | 是否等待音频播放结束后再执行下一个命令。循环播放时无效。 |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">path</span> | string | 音频资源的本地路径（名称）。 |
 | easing | string |  |
 | fade | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 会从当前状态继续动画到新的目标。未启用 `lazy`（默认行为）时，当前运行的动画会立即完成，然后开始动画到新的目标。 |
 | waitFade | boolean | 在播放下一个命令之前是否等待淡入淡出完成。 |
-| wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
 </div>
 
@@ -1859,7 +1887,7 @@ This line is only executed when navigated directly with a @gosub.
 停止播放具有指定名称的 BGM（背景音乐）轨道。
 
 ::: info NOTE
-未指定音乐轨道名称 (BgmPath) 时，将停止所有当前播放的轨道。
+未指定音乐轨道名称 (Path) 时，将停止所有当前播放的轨道。
 :::
 
 <div class="config-table">
@@ -1871,7 +1899,6 @@ This line is only executed when navigated directly with a @gosub.
 | fade | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 会从当前状态继续动画到新的目标。未启用 `lazy`（默认行为）时，当前运行的动画会立即完成，然后开始动画到新的目标。 |
 | waitFade | boolean | 在播放下一个命令之前是否等待淡入淡出完成。 |
-| wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
 </div>
 
@@ -1888,7 +1915,7 @@ This line is only executed when navigated directly with a @gosub.
 停止播放具有指定名称的 SFX（音效）轨道。
 
 ::: info NOTE
-未指定音效轨道名称 (SfxPath) 时，将停止所有当前播放的轨道。
+未指定音效轨道名称 (Path) 时，将停止所有当前播放的轨道。
 :::
 
 <div class="config-table">
@@ -1900,7 +1927,6 @@ This line is only executed when navigated directly with a @gosub.
 | fade | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 会从当前状态继续动画到新的目标。未启用 `lazy`（默认行为）时，当前运行的动画会立即完成，然后开始动画到新的目标。 |
 | waitFade | boolean | 在播放下一个命令之前是否等待淡入淡出完成。 |
-| wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
 </div>
 
@@ -1925,7 +1951,6 @@ This line is only executed when navigated directly with a @gosub.
 | fade | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 会从当前状态继续动画到新的目标。未启用 `lazy`（默认行为）时，当前运行的动画会立即完成，然后开始动画到新的目标。 |
 | waitFade | boolean | 在播放下一个命令之前是否等待淡入淡出完成。 |
-| wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
 </div>
 
@@ -2124,6 +2149,33 @@ Jenna: When will the damn rain stop?
 Test result:[unless score<10] Passed.[else] Failed.[endif]
 ```
 
+## unlinkPrinter
+
+取消文本打印机与作者（角色 Actor）的链接，该链接此前由 [@linkPrinter] 建立。更多信息请参阅[链接的打印机指南](/zh/guide/characters#链接的打印机)。
+
+<div class="config-table">
+
+| 参数 | 类型 | 描述 |
+| --- | --- | --- |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">printerId</span> | string | 要取消链接的文本打印机标识符。未指定时取消链接任意打印机。 |
+| from | string list | 要取消链接的角色 Actor 标识符。未指定时从所有作者取消链接。 |
+
+</div>
+
+```nani
+; 取消 'Dialogue' 打印机与 'Kohaku' 和 'Yuko' 作者的链接。
+@unlinkPrinter Dialogue from:Kohaku,Yuko
+
+; 取消 'Kohaku' 作者的任意打印机链接。
+@unlinkPrinter from:Kohaku
+
+; 取消 'Dialogue' 打印机与所有作者的链接。
+@unlinkPrinter Dialogue
+
+; 取消所有打印机与所有作者的链接。
+@unlinkPrinter
+```
+
 ## unloadScene
 
 卸载具有指定名称的 [Unity 场景](https://docs.unity3d.com/Manual/CreatingScenes.html)。不要忘记将所需的场景添加到[构建设置](https://docs.unity3d.com/Manual/BuildSettings.html)以使其可供加载。请注意，只能卸载以附加方式加载的场景（至少应始终保留一个场景加载）。
@@ -2177,12 +2229,12 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 | volume | number | 音频播放的响度，范围为 0.0 到 1.0。请注意，1.0 是默认值；不产生削波时，无法让数字音频超过 0 dBFS 基线播放。 |
 | pitch | number | 播放的感知频率，范围为 [-3.0 到 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)。 |
 | pos | number list | 音频源的位置（在世界空间中）。未指定时，将禁用空间模式。 |
-| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">path</span> | string | 音频资源的本地路径（名称）。 |
+| wait | boolean | 是否等待音频播放结束后再执行下一个命令。循环播放时无效。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">path</span> | string | 音频资源的本地路径（名称）。 |
 | easing | string |  |
 | fade | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 会从当前状态继续动画到新的目标。未启用 `lazy`（默认行为）时，当前运行的动画会立即完成，然后开始动画到新的目标。 |
 | waitFade | boolean | 在播放下一个命令之前是否等待淡入淡出完成。 |
-| wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
 </div>
 

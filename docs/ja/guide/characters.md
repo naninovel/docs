@@ -227,6 +227,31 @@ Kohaku,Yuko: Lorem ipsum?[< as:"Kohaku and Yuko"]
 プリンターを [ナレーターキャラクター](/ja/guide/characters#ナレーターキャラクター) にリンクし、`Has Name` を無効にして、ナレーションテキストをプリンターにリンクします。これにより、[@printer] を使用して非キャラクター（デフォルト）プリンターに常に戻す必要がなくなります。
 :::
 
+実行時にプリンターをリンクまたはリンク解除するには、[@linkPrinter] と [@unlinkPrinter] コマンドを使用します。また、[@printer] の下にコマンドをネストすることで、すべての著者を一時的に特定のプリンターにリンクできます。
+
+```nani
+; 著者のない行にはデフォルトで 'Fullscreen' を使用します。
+@linkPrinter Fullscreen to:DefaultAuthor
+; 'Kohaku' はデフォルトで 'Wide' プリンターを使用します。
+@linkPrinter Wide to:Kohaku
+
+これは 'Fullscreen' で印刷されます。
+Kohaku: そして私は 'Wide' で印刷します！
+
+; ネストされたコマンドでは 'Dialogue' を強制します。
+@printer Dialogue
+    これは 'Dialogue' で印刷されます。
+    Kohaku: 今は 'Dialogue' を使わざるを得ません。
+
+'Fullscreen' に戻ります。
+Kohaku: そして私はまた 'Wide' を使えます！
+
+; 'Kohaku' にリンクされている任意のプリンターを解除します。
+@unlinkPrinter from:Kohaku
+これは影響を受けず、引き続き 'Fullscreen' を使用します。
+Kohaku: 私の 'Wide' はどこへ？！ 'Fullscreen' で印刷中...
+```
+
 ## デフォルトの著者
 
 通常のキャラクターに [リンクされたプリンター](/ja/guide/characters#リンクされたプリンター) を使用する場合、明示的な著者のいない [汎用テキストライン](/ja/guide/scenario-scripting#汎用テキストライン) と [@print] コマンドを専用のプリンターにフォールバックさせたい場合があります。これにより、そのようなすべての行にナレーターIDを指定したり、[@printer] コマンドで手動でプリンターを切り替えたりする必要がなくなります。

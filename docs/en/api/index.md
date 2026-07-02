@@ -235,7 +235,7 @@ Backgrounds are handled a bit differently from characters to better accommodate 
 Plays or modifies currently played [BGM (background music)](/guide/audio#background-music) track with the specified name.
 
 ::: info NOTE
-Music tracks are looped by default. When music track name (BgmPath) is not specified, will affect all the currently played tracks. When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start), but the specified parameters (volume and whether the track is looped) will be applied.
+Music tracks are looped by default. When music track name (Path) is not specified, will affect all the currently played tracks. When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start), but the specified parameters (volume and whether the track is looped) will be applied.
 :::
 
 <div class="config-table">
@@ -248,12 +248,12 @@ Music tracks are looped by default. When music track name (BgmPath) is not speci
 | volume | number | Loudness of the audio playback, in 0.0 to 1.0 range. Note that 1.0 is the default — you can't make digital audio play above the 0 dBFS baseline without clipping. |
 | pitch | number | The perceived frequency (speed) of the playback, in [-3.0 to 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) range, where 1.0 is the normal speed. Negative values will play the audio in reverse. |
 | pos | number list | Position (in world space) of the audio source. When not specified, the spatial mode is disabled. |
+| wait | boolean | Whether to wait for the audio to finish playing before executing next command. Has no effect when looped. |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">path</span> | string | Local path (name) of the audio resource. |
 | easing | string |  |
 | fade | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
 | waitFade | boolean | Whether to wait for the fade to finish before playing next command. |
-| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -953,6 +953,27 @@ Archibald: Greetings, {name}!
 @set score++ if:name="Felix"
 ```
 
+## linkPrinter
+
+Links a text printer to an author (character actor) making the author use the printer by default. Read more in the [linked printer guide](/guide/characters#linked-printer).
+
+<div class="config-table">
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">printerId</span> | string | Identifier of the text printer to link. |
+| to | string list | Identifiers of the character actors to link with the printer. Links to all authors when not specified. |
+
+</div>
+
+```nani
+; Link 'Dialogue' printer to 'Kohaku' and 'Yuko' authors.
+@linkPrinter Dialogue to:Kohaku,Yuko
+
+; Links 'Wide' to all authors.
+@linkPrinter Wide
+```
+
 ## lipSync
 
 Allows to force-stop the lip sync mouth animation for a character with the specified ID; when stopped, the animation won't start again, until this command is used again to allow it. The character should be able to receive the lip sync events (currently generic, layered and Live2D implementations only). See [characters guide](/guide/characters#lip-sync) for more information on lip sync feature.
@@ -1149,14 +1170,14 @@ This command is used under the hood when processing generic text lines, eg gener
 
 ## printer
 
-Modifies a [text printer actor](/guide/text-printers).
+Modifies a [text printer actor](/guide/text-printers) and links the printer to all authors while executing nested commands.
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">idAndAppearance</span> | named string | ID of the printer to modify and the appearance to set. When ID or appearance are not specified, will use default ones. |
-| default | boolean | Whether to make the printer the default one. Default printer will be subject of all the printer-related commands when `printer` parameter is not specified. |
+| default | boolean | Whether to make the printer the default one. Default printer will be subject of all the printer-related commands when `printer` parameter is not specified. Has no effect when contains nested commands. |
 | hideOther | boolean | Whether to hide all the other printers. |
 | anchor | boolean | Whether to allow auto printer positioning via actor anchors. Enable for supported printers after manually positioning a printer to resume automatic positioning. Note that anchoring is disabled automatically when an explicit position is assigned with this command. |
 | pos | number list | Position (relative to the scene borders, in percents) to set for the modified actor. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
@@ -1185,6 +1206,13 @@ Modifies a [text printer actor](/guide/text-printers).
 ; Will assign 'Right' appearance to 'Bubble' printer, make is default,
 ; position at the center of the scene and won't hide other printers.
 @printer Bubble.Right pos:50,50 !hideOther
+
+; Enforce 'Wide' printer while executing nested commands.
+@printer Wide
+    Printing into 'Wide' no matter the current default printer.
+    Kohaku: I may have a linked printer, but using 'Wide' here.
+Printing into the default printer again.
+Kohaku: Using my linked printer again.
 ```
 
 ## processInput
@@ -1532,7 +1560,7 @@ My favourite drink is {drink}!
 Plays or modifies currently played [SFX (sound effect)](/guide/audio#sound-effects) track with the specified name.
 
 ::: info NOTE
-Sound effect tracks are not looped by default. When SFX track name (SfxPath) is not specified, will affect all the currently played tracks. When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start), but the specified parameters (volume and whether the track is looped) will be applied.
+Sound effect tracks are not looped by default. When SFX track name (Path) is not specified, will affect all the currently played tracks. When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start), but the specified parameters (volume and whether the track is looped) will be applied.
 :::
 
 <div class="config-table">
@@ -1544,12 +1572,12 @@ Sound effect tracks are not looped by default. When SFX track name (SfxPath) is 
 | volume | number | Loudness of the audio playback, in 0.0 to 1.0 range. Note that 1.0 is the default — you can't make digital audio play above the 0 dBFS baseline without clipping. |
 | pitch | number | The perceived frequency (speed) of the playback, in [-3.0 to 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) range, where 1.0 is the normal speed. Negative values will play the audio in reverse. |
 | pos | number list | Position (in world space) of the audio source. When not specified, the spatial mode is disabled. |
+| wait | boolean | Whether to wait for the audio to finish playing before executing next command. Has no effect when looped. |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">path</span> | string | Local path (name) of the audio resource. |
 | easing | string |  |
 | fade | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
 | waitFade | boolean | Whether to wait for the fade to finish before playing next command. |
-| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -1587,12 +1615,12 @@ Plays an [SFX (sound effect)](/guide/audio#sound-effects) track with the specifi
 | volume | number | Loudness of the audio playback, in 0.0 to 1.0 range. Note that 1.0 is the default — you can't make digital audio play above the 0 dBFS baseline without clipping. |
 | pitch | number | The perceived frequency (speed) of the playback, in [-3.0 to 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) range, where 1.0 is the normal speed. Negative values will play the audio in reverse. |
 | pos | number list | Position (in world space) of the audio source. When not specified, the spatial mode is disabled. |
+| wait | boolean | Whether to wait for the audio to finish playing before executing next command. Has no effect when looped. |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">path</span> | string | Local path (name) of the audio resource. |
 | easing | string |  |
 | fade | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
 | waitFade | boolean | Whether to wait for the fade to finish before playing next command. |
-| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -1857,7 +1885,7 @@ This line is only executed when navigated directly with a @gosub.
 Stops playing a BGM (background music) track with the specified name.
 
 ::: info NOTE
-When music track name (BgmPath) is not specified, will stop all the currently played tracks.
+When music track name (Path) is not specified, will stop all the currently played tracks.
 :::
 
 <div class="config-table">
@@ -1869,7 +1897,6 @@ When music track name (BgmPath) is not specified, will stop all the currently pl
 | fade | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
 | waitFade | boolean | Whether to wait for the fade to finish before playing next command. |
-| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -1886,7 +1913,7 @@ When music track name (BgmPath) is not specified, will stop all the currently pl
 Stops playing an SFX (sound effect) track with the specified name.
 
 ::: info NOTE
-When sound effect track name (SfxPath) is not specified, will stop all the currently played tracks.
+When sound effect track name (Path) is not specified, will stop all the currently played tracks.
 :::
 
 <div class="config-table">
@@ -1898,7 +1925,6 @@ When sound effect track name (SfxPath) is not specified, will stop all the curre
 | fade | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
 | waitFade | boolean | Whether to wait for the fade to finish before playing next command. |
-| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -1923,7 +1949,6 @@ Stops playback of the currently played voice clip.
 | fade | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
 | waitFade | boolean | Whether to wait for the fade to finish before playing next command. |
-| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -2122,6 +2147,33 @@ This command is inverse and complementary to [@if].
 Test result:[unless score<10] Passed.[else] Failed.[endif]
 ```
 
+## unlinkPrinter
+
+Unlinks a text printer from an author (character actor) that was previously linked with [@linkPrinter]. Read more in the [linked printer guide](/guide/characters#linked-printer).
+
+<div class="config-table">
+
+| Parameter | Type | Description |
+| --- | --- | --- |
+| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">printerId</span> | string | Identifier of the text printer to unlink. Unlinks any printers when not specified. |
+| from | string list | Identifiers of the character actors to unlink. Unlinks from all authors when not specified. |
+
+</div>
+
+```nani
+; Unlink 'Dialogue' printer from 'Kohaku' and 'Yuko' authors.
+@unlinkPrinter Dialogue from:Kohaku,Yuko
+
+; Unlinks any printers from 'Kohaku' author.
+@unlinkPrinter from:Kohaku
+
+; Unlinks 'Dialogue' printer from all authors.
+@unlinkPrinter Dialogue
+
+; Unlinks all printers from all authors.
+@unlinkPrinter
+```
+
 ## unloadScene
 
 Unloads a [Unity scene](https://docs.unity3d.com/Manual/CreatingScenes.html) with the specified name. Don't forget to add the required scenes to the [build settings](https://docs.unity3d.com/Manual/BuildSettings.html) to make them available for loading. Be aware, that only scenes loaded additively can be then unloaded (at least one scene should always remain loaded).
@@ -2175,12 +2227,12 @@ Plays a voice clip at the specified path.
 | volume | number | Loudness of the audio playback, in 0.0 to 1.0 range. Note that 1.0 is the default — you can't make digital audio play above the 0 dBFS baseline without clipping. |
 | pitch | number | The perceived frequency (speed) of the playback, in [-3.0 to 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) range, where 1.0 is the normal speed. Negative values will play the audio in reverse. |
 | pos | number list | Position (in world space) of the audio source. When not specified, the spatial mode is disabled. |
-| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">path</span> | string | Local path (name) of the audio resource. |
+| wait | boolean | Whether to wait for the audio to finish playing before executing next command. Has no effect when looped. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">path</span> | string | Local path (name) of the audio resource. |
 | easing | string |  |
 | fade | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
 | waitFade | boolean | Whether to wait for the fade to finish before playing next command. |
-| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
 
 </div>
 
