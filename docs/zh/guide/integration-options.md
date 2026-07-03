@@ -6,7 +6,7 @@
 
 有多种方法可以将 Naninovel 与自定义项目集成；具体的实现取决于项目类型和你想要实现的目标。在以下文档中，我们将列出各种配置选项和 API，它们可用于将 Naninovel 与独立游戏“配对”。在继续之前，请查看[引擎架构](/zh/guide/engine-architecture)以更好地了解其概念行为。
 
-::: tip 示例
+::: tip EXAMPLE
 查看[集成示例](/zh/guide/samples#集成-integration)，其中 Naninovel 既用作 3D 冒险游戏的嵌入式对话系统，又用作独立的小说模式。
 :::
 
@@ -64,9 +64,9 @@ public class MyScript : MonoBehaviour
 }
 ```
 
-## 播放场景脚本
+## 播放剧本脚本
 
-要预加载并播放具有给定路径的场景脚本，请使用 `IScriptPlayer` 服务的 `LoadAndPlay(ScriptPath)` 方法。要获取引擎服务，请使用 `Engine.GetService<TService>()` 静态方法，其中 `TService` 是要检索的服务类型（接口）。例如，以下代码获取脚本播放器服务，预加载并播放名为 `Script001` 的脚本：
+要预加载并播放具有给定路径的剧本脚本，请使用 `IScriptPlayer` 服务的 `LoadAndPlay(ScriptPath)` 方法。要获取引擎服务，请使用 `Engine.GetService<TService>()` 静态方法，其中 `TService` 是要检索的服务类型（接口）。例如，以下代码获取脚本播放器服务，预加载并播放名为 `Script001` 的脚本：
 
 ```csharp
 var player = Engine.GetService<IScriptPlayer>();
@@ -82,7 +82,7 @@ await stateManager.ResetState();
 
 ### 脚本资产引用
 
-如果你想在自定义系统中引用场景脚本资产（例如，播放对话或过场动画），请注意直接存储脚本路径是很脆弱的，因为它取决于文件位置和名称。
+如果你想在自定义系统中引用剧本脚本资产（例如，播放对话或过场动画），请注意直接存储脚本路径是很脆弱的，因为它取决于文件位置和名称。
 
 相反，使用资产引用 (GUID)。当关联文件移动或重命名时，引用不会更改。要从 GUID 解析脚本路径，请使用 `ScriptAssets.GetPath` 方法。Naninovel 还提供了一个 `ScriptAssetRef` 属性抽屉，为了方便起见，允许将脚本资产直接分配给序列化字段。
 
@@ -202,7 +202,7 @@ public class SwitchToAdventureMode : Command
 
 :::
 
-然后可以在场景脚本中使用这些命令：
+然后可以在剧本脚本中使用这些命令：
 
 ```nani
 ; 切换到冒险模式。
@@ -225,6 +225,6 @@ private void OnTriggerEnter (Collider other)
 
 如果你觉得某些引擎 API 或系统缺乏可扩展性并且需要修改源代码才能集成，请[联系支持](/zh/support/)——我们将考虑改进它。
 
-::: tip 示例
+::: tip EXAMPLE
 查看[集成示例](/zh/guide/samples#集成-integration)，其中 Naninovel 既用作 3D 冒险游戏的嵌入式对话，又用作可切换的独立小说模式。
 :::

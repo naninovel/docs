@@ -71,6 +71,8 @@
 | Aspect Ratios | Object Ref | サポートするアスペクト比。指定すると、ゲーム設定で利用可能な解像度が絞り込まれ、管理対象カメラでアスペクト比が強制されます。アスペクト比を制限または強制しない場合は空のままにします。<br><br>Unityはカメラ矩形の外側のピクセルをクリアしないため、自分でクリアする必要があります。最も簡単な設定は、Naninovelより前にレンダリングするカメラを追加し、`Culling Mask` を `Nothing` に設定することです。 |
 | Match Screen Width | False | 参照シーンの矩形の幅を画面の幅に合わせるかどうか。有効にすると、相対（シーン）位置の評価は画面の境界を原点として使用します。それ以外の場合は、参照解像度が使用されます。 |
 | Initial Position | (0.00, 0.00, -10.00) | 管理対象カメラの初期ワールド位置。 |
+| Stack Camera | True | 既存の「ベース」カメラを検索し、見つかった場合はNaninovelのメインカメラをベースカメラスタックに追加（オーバーレイ）するかどうか。このオプションが無効になっている場合でも、「Camera Events」コンポーネントの「Setup Base Camera」メソッドを使用して手動でカメラをスタックできます。 |
+| Stack Camera Tag | Null | 「Stack Camera」が有効な場合、検索するベースカメラのタグを指定します。指定しない場合、最初に見つかったベースカメラが使用されます。 |
 | Custom Camera Prefab | Null | レンダリングに使用するカメラコンポーネントを持つプレハブ。指定しない場合、デフォルトのものが使用されます。カメラのプロパティ（背景色、FOV、HDRなど）を設定したり、ポストプロセススクリプトを追加したりする場合は、目的のカメラ設定でプレハブを作成し、そのプレハブをこのフィールドに割り当てます。 |
 | Use UI Camera | True | 専用のカメラでUIをレンダリングするかどうか。このオプションは下位互換性のためであり、新しいプロジェクトでは無効にしないでください。無効にすると問題が発生することが予想されます（例：カメラアニメーションでのuGUIレイアウトの絶え間ない再構築）。 |
 | Custom UI Camera Prefab | Null | UIレンダリングに使用するカメラコンポーネントを持つプレハブ。指定しない場合、デフォルトのものが使用されます。`Use UI Camera` が無効になっている場合は効果がありません。 |
@@ -210,16 +212,13 @@
 | Lazy Buffer | 25 | Lazyリソースポリシーが有効な場合、プリロードバッファのサイズ、つまりプリロードするスクリプトコマンドの最大数を制御します。 |
 | Lazy Priority | Below Normal | Lazyリソースポリシーが有効な場合、リソースがロードされるバックグラウンドスレッドの優先度を制御します。スタッターを最小限に抑えるには減らしますが、ロード時間が長くなります。 |
 | Remove Actors | True | スクリプトリソースをアンロードするときに、未使用のアクター（キャラクター、背景、テキストプリンター、選択肢ハンドラー）を自動的に削除するかどうか。有効になっていても、`@remove` コマンドを使用して手動でいつでもアクターを削除できることに注意してください。 |
-| Log Resource Loading | False | リソースのアンロード/ロード操作をログに記録するかどうか。 |
 | Enable Build Processing | True | Naninovelリソースとして割り当てられたアセットを処理するために、カスタムビルドプレイヤーハンドルを登録するかどうか。<br><br>警告：この設定を有効にするには、Unityエディタを再起動する必要があります。 |
 | Use Addressables | True | Addressable Asset Systemがインストールされている場合、このプロパティを有効にすると、アセット処理ステップが最適化され、ビルド時間が短縮されます。 |
 | Auto Build Bundles | True | プレイヤーをビルドするときにAddressableアセットバンドルを自動的にビルドするかどうか。`Use Addressables` が無効になっている場合は効果がありません。 |
 | Label By Scripts | True | すべてのNaninovel Addressableアセットに、それらが使用されているシナリオスクリプトパスでラベルを付けるかどうか。Addressableグループ設定で `Bundle Mode` が `Pack Together By Label` に設定されている場合、より効率的なバンドルパッキングになります。<br><br>スクリプトラベルは、「Naninovel」ラベルを持つすべてのアセットに割り当てられることに注意してください。これには、リソースエディタメニューを使用せずにAddressableリソースプロバイダーに手動で公開されたアセットが含まれます。 |
-| Extra Labels | Null | Addressableプロバイダーは、`Naninovel` ラベルに加えて割り当てられたラベルを持つアセットでのみ機能します。カスタム基準（例：HDテクスチャとSDテクスチャ）に基づいてエンジンで使用されるアセットをフィルタリングするために使用できます。 |
 | Local Root Path | %DATA%/Resources | ローカルリソースプロバイダーに使用するパスルート。リソースが配置されているフォルダへの絶対パス、または使用可能なオリジンの1つを使用した相対パスにすることができます:<br> • %DATA% — ターゲットデバイス上のゲームデータフォルダ（UnityEngine.Application.dataPath）。<br> • %PDATA% — ターゲットデバイス上の永続データディレクトリ（UnityEngine.Application.persistentDataPath）。<br> • %STREAM% — `StreamingAssets` フォルダ（UnityEngine.Application.streamingAssetsPath）。<br> • %SPECIAL{F}% — OSの特別なフォルダ（FはSystem.Environment.SpecialFolderからの値）。 |
 | Video Stream Extension | .mp 4 | WebGLでビデオをストリーミングする場合（ムービー、ビデオ背景）、ビデオファイルの拡張子を指定します。 |
 | Reload Scripts | True | ローカルプロバイダーディレクトリの下に保存されている変更されたシナリオスクリプトを監視してホットリロードするかどうか。 |
-| Project Root Path | Naninovel | `Resources` フォルダに対する相対パス。Naninovel固有のアセットはこの下に配置されます。 |
 
 </div>
 
@@ -256,27 +255,8 @@
 | Hot Reload Scripts | True | 変更された（ビジュアルエディタと外部エディタの両方を介して）スクリプトをリロードし、再生を再開せずにプレイモード中に変更を適用するかどうか。 |
 | Watch Scripts | True | '.nani' ファイルに対してファイルシステムウォッチャーを実行するかどうか。外部アプリケーションで編集されたときにスクリプトの変更を登録するために必要です。 |
 | Show Script Navigator | False | エンジンが初期化された後にスクリプトナビゲーターUIを自動表示するかどうか（UIリソースで 'IScriptNavigatorUI' が利用可能である必要があります）。 |
-| Enable Story Editor | True | 従来のビジュアルエディタとスクリプトグラフの代わりに、新しいストーリーエディタを使用するかどうか。 |
+| Enable Story Editor | True | ストーリーエディタアプリを有効にするかどうか。 |
 | Show Selected Script | True | 選択したシナリオスクリプトアセットをストーリーエディタ内で開くかどうか。 |
-| Enable Visual Editor | True | スクリプトが選択されたときに従来のビジュアルスクリプトエディタを表示するかどうか。ストーリーエディタが有効な場合は効果がありません。 |
-| Hide Unused Parameters | True | 行がホバーまたはフォーカスされていないときに、コマンドラインの未割り当てパラメータを非表示にするかどうか。 |
-| Select Played Script | True | ビジュアルエディタが開いているときに、現在再生中のスクリプトを自動的に選択するかどうか。 |
-| Insert Line Key | Space | ビジュアルエディタがフォーカスされているときに「行の挿入」ウィンドウを表示するために使用されるホットキー。「None」に設定すると無効になります。 |
-| Insert Line Modifier | Control | 「行の挿入キー」の修飾子。「None」に設定すると無効になります。 |
-| Indent Line Key | Right Arrow | 行をインデントするために使用されるホットキー。「None」に設定すると無効になります。 |
-| Indent Line Modifier | Control | 「行のインデントキー」の修飾子。「None」に設定すると無効になります。 |
-| Unindent Line Key | Left Arrow | 行のインデントを解除するために使用されるホットキー。「None」に設定すると無効になります。 |
-| Unindent Line Modifier | Control | 「行のインデント解除キー」の修飾子。「None」に設定すると無効になります。 |
-| Save Script Key | S | ビジュアルエディタがフォーカスされているときに、編集されたスクリプトを保存（シリアル化）するために使用されるホットキー。「None」に設定すると無効になります。 |
-| Save Script Modifier | Control | 「スクリプトの保存キー」の修飾子。「None」に設定すると無効になります。 |
-| Rewind Mouse Button | 0 | ビジュアルエディタで行をクリックしたときに、どのマウスボタンで巻き戻しをアクティブにするか：'0' は左、'1' は右、'2' は中。'-1' に設定すると無効になります。 |
-| Rewind Modifier | Shift | 「巻き戻しマウスボタン」の修飾子。「None」に設定すると無効になります。 |
-| Editor Page Length | 300 | ビジュアルエディタページごとにレンダリングするスクリプト行の数。 |
-| Editor Custom Style Sheet | Null | ビジュアルエディタのデフォルトスタイルを変更できます。 |
-| Graph Orientation | Horizontal | グラフを垂直に構築するか水平に構築するか。 |
-| Graph Auto Align Padding | (10.00, 0.00) | 自動整列を実行するときに各ノードに追加するパディング。 |
-| Show Synopsis | True | グラフノード内にスクリプトの最初のコメント行を表示するかどうか。 |
-| Graph Custom Style Sheet | Null | スクリプトグラフのデフォルトスタイルを変更できます。 |
 | Enable Community Modding | False | 外部のNaninovelスクリプトをビルドに追加することを許可するかどうか。 |
 | External Loader | Scripts- (Local) | 外部のNaninovelスクリプトリソースを検索するために使用されるリソースローダーの構成。<br><br>'External' ローダーはスクリプトの検索にのみ使用されることに注意してください。実際にロードするには 'Loader' も構成する必要があります。詳細は 'Community Modding' ガイドを参照してください。 |
 
@@ -360,7 +340,7 @@
 
 </div>
 
-## アンロックアイテム
+## アンロック要素
 
 <div class="config-table">
 

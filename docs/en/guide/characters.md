@@ -141,7 +141,7 @@ Kohaku: Lorem ipsum.[< as:"Someone"]
 Kohaku,Yuko: Lorem ipsum?[< as:"Kohaku and Yuko"]
 ```
 
-— `as` parameters are localizable and will be exposed in the script localization documents for translation. Additionally, [speaker highlighting](/guide/characters.html#speaker-highlight) feature will recognize `*` and `,` specified in author ID and highlight all/selected characters as speakers.
+— `as` parameters are localizable and will be exposed in the script localization documents for translation. Additionally, [speaker highlighting](/guide/characters#speaker-highlight) feature will recognize `*` and `,` specified in author ID and highlight all/selected characters as speakers.
 
 ## Message Colors
 
@@ -186,7 +186,7 @@ To show only the avatar of a character inside a text printer, but hide the chara
 In case you're constantly changing avatars while the character itself should remain hidden, consider disabling `Auto Show On Modify` in the characters configuration menu; when disabled, you won't have to specify `!visible` to change any parameters of the character while it's hidden.
 
 ::: info NOTE
-The **avatars are not directly connected with character appearances** and shouldn't be considered as a way to represent a character on scene. Avatars is a standalone feature that "injects" an arbitrary image to a compatible text printer. In case you want an actual character appear inside a text printer (or a custom UI), check [render actor to texture](/guide/characters.html#render-to-texture) feature.
+The **avatars are not directly connected with character appearances** and shouldn't be considered as a way to represent a character on scene. Avatars is a standalone feature that "injects" an arbitrary image to a compatible text printer. In case you want an actual character appear inside a text printer (or a custom UI), check [render actor to texture](/guide/characters#render-to-texture) feature.
 :::
 
 ## Speaker Highlight

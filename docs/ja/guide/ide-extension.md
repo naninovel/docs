@@ -276,7 +276,7 @@ public class DefaultMetadataProvider : IMetadataProvider
 
 ## IDE属性
 
-Naninovelは、カスタムコマンドや式関数のIDE関連機能を有効にするためのいくつかの [C#属性](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes) を提供しています。たとえば、カスタムコマンドやパラメータにホバー時のドキュメントを追加するには、コマンドタイプとパラメータフィールドにそれぞれ `Doc` 属性を適用します。
+Naninovelは、カスタムコマンドや式クエリのIDE関連機能を有効にするためのいくつかの [C#属性](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes) を提供しています。たとえば、カスタムコマンドやパラメータにホバー時のドキュメントを追加するには、コマンドタイプとパラメータフィールドにそれぞれ `Doc` 属性を適用します。
 
 ```csharp
 [Doc("Summary of the custom command.")]
@@ -287,7 +287,7 @@ public class CustomCommand : Command
 }
 ```
 
-組み込みおよびカスタムの式関数と事前定義された変数の両方でパラメータの自動補完をサポートするには、`ExpressionContext` 属性を使用します。
+組み込みおよびカスタムの式クエリと事前定義された変数の両方でパラメータの自動補完をサポートするには、`ExpressionContext` 属性を使用します。
 
 ```csharp
 [ExpressionContext]
@@ -329,7 +329,7 @@ public StringParameter ActorId;
 public StringParameter PrinterId;
 ```
 
-現在のコマンドの同じまたは別のパラメータで指定されたIDを持つアクターのアピアランスを自動補完するには、`AppearanceContext` を使用します。これには、同じコマンドで `ActorContext` が指定されている必要があります。
+現在のコマンドの同じまたは別のパラメータで指定されたIDを持つアクターの外観を自動補完するには、`AppearanceContext` を使用します。これには、同じコマンドで `ActorContext` が指定されている必要があります。
 
 ```csharp
 [ActorContext(CharactersConfiguration.DefaultPathPrefix)]
@@ -338,7 +338,7 @@ public StringParameter CharacterId;
 public StringParameter CharacterAppearance;
 ```
 
-上記の各属性では、オプションの `namedIndex` 引数を指定できます。名前付きパラメータと共に使用して、属性がパラメータ値のどの部分に適用されるかを指定します。以下の例では、名前付きパラメータの名前部分をキャラクターIDで、値部分を現在入力されているキャラクターのアピアランスで自動補完できるようにします（[@char] コマンドのプライマリパラメータと同様）。
+上記の各属性では、オプションの `namedIndex` 引数を指定できます。名前付きパラメータと共に使用して、属性がパラメータ値のどの部分に適用されるかを指定します。以下の例では、名前付きパラメータの名前部分をキャラクターIDで、値部分を現在入力されているキャラクターの外観で自動補完できるようにします（[@char] コマンドのプライマリパラメータと同様）。
 
 ```csharp
 [ActorContext(CharactersConfiguration.DefaultPathPrefix, 0), AppearanceContext(1)]
@@ -355,7 +355,7 @@ public class ModifyBackground : ModifyActor { }
 組み込みコマンドからカスタムコマンドを継承する場合も、同じアプローチを使用できます。パラメータコンテキスト属性をフィールドではなくクラスに適用する場合は、オプションの `paramId` 引数を忘れずに指定してください。
 
 ::: tip
-式関数パラメータにも、同様のパラメータコンテキスト属性のほとんどを適用して、IDE拡張機能での自動補完と診断を有効にすることができます。[関数ガイド](/ja/guide/expressions#パラメータコンテキスト) の例を参照してください。
+式クエリパラメータにも、同様のパラメータコンテキスト属性のほとんどを適用して、IDE拡張機能での自動補完と診断を有効にすることができます。[関数ガイド](/ja/guide/expressions#パラメータコンテキスト) の例を参照してください。
 :::
 
 ## 定数式

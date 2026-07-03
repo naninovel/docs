@@ -238,9 +238,9 @@ To display text in some languages, you'll need a compatible font. `Inter` is use
 If you plan to support many languages with a single font, consider [Noto fonts](https://www.google.com/get/noto/).
 :::
 
-Right-to-left (RTL) languages (Arabic, Hebrew, Persian, etc.) are supported by the TMPro printers but require additional setup; see the [guide](/guide/text-printers.html#right-to-left-arabic-text) for details.
+Right-to-left (RTL) languages (Arabic, Hebrew, Persian, etc.) are supported by the TMPro printers but require additional setup; see the [guide](/guide/text-printers#right-to-left-arabic-text) for details.
 
-When publishing for CJK languages (Chinese, Japanese, and Korean), consider using the Character Extractor utility to optimize TMPro font atlas size. See [guide](/guide/text-printers.html#cjk-languages).
+When publishing for CJK languages (Chinese, Japanese, and Korean), consider using the Character Extractor utility to optimize TMPro font atlas size. See [guide](/guide/text-printers#cjk-languages).
 
 To associate a font with a specific locale, use the `Apply On Locale` property of font options found in the UI configuration. When assigned, the font will be applied automatically whenever that locale is selected in the game settings.
 

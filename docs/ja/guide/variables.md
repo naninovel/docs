@@ -93,7 +93,7 @@ Archibald: Greetings, {name}!
 ```
 
 ::: tip
-一度だけ増加するメタカウンターが必要な場合（ロールバックやゲーム再起動後の再プレイでも再度増加しないようにする場合）は、`hasPlayed()` [式クエリ](/ja/guide/expressions#式関数) を使用してください。
+一度だけ増加するメタカウンターが必要な場合（ロールバックやゲーム再起動後の再プレイでも再度増加しないようにする場合）は、`hasPlayed()` [式クエリ](/ja/guide/expressions#式クエリ) を使用してください。
 ```nani
 @set metaCounter=0 meta!
 ...

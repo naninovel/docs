@@ -276,7 +276,7 @@ public class DefaultMetadataProvider : IMetadataProvider
 
 ## IDE 属性
 
-Naninovel 提供了一些 [C# 属性](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes) 来为自定义命令和表达式函数启用 IDE 相关功能。例如，要向自定义命令和/或参数添加悬停文档，请分别将 `Doc` 属性应用于命令类型和参数字段：
+Naninovel 提供了一些 [C# 属性](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes) 来为自定义命令和表达式查询启用 IDE 相关功能。例如，要向自定义命令和/或参数添加悬停文档，请分别将 `Doc` 属性应用于命令类型和参数字段：
 
 ```csharp
 [Doc("Summary of the custom command.")]
@@ -287,7 +287,7 @@ public class CustomCommand : Command
 }
 ```
 
-要使参数支持内置和自定义表达式函数以及预定义变量的自动补全，请使用 `ExpressionContext` 属性：
+要使参数支持内置和自定义表达式查询以及预定义变量的自动补全，请使用 `ExpressionContext` 属性：
 
 ```csharp
 [ExpressionContext]
@@ -355,7 +355,7 @@ public class ModifyBackground : ModifyActor { }
 从内置命令继承自定义命令时，可以使用相同的方法。将参数上下文属性应用于类而不是字段时，请不要忘记提供可选的 `paramId` 参数。
 
 ::: tip
-大多数相同的参数上下文属性可以应用于表达式函数参数，以在 IDE 扩展中启用自动补全和诊断。请参阅 [函数指南](/zh/guide/expressions#参数上下文) 中的示例。
+大多数相同的参数上下文属性可以应用于表达式查询参数，以在 IDE 扩展中启用自动补全和诊断。请参阅 [查询指南](/zh/guide/expressions#参数上下文) 中的示例。
 :::
 
 ## 常量表达式

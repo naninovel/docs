@@ -13,6 +13,7 @@
 ```nani
 @char Kohaku scale:{pow(cos(33.5), 3) % log(0.5)}
 ```
+
 — 将 ID 为 "Kohaku" 的角色的缩放设置为 33.5 的余弦（3 次方）除以 0.5 的自然对数的余数。
 
 表达式在命令执行时进行评估，这允许在表达式内使用[剧本变量](/zh/guide/variables)：
@@ -81,9 +82,9 @@
 | `>=`   | `is at least`  |
 | `<=`   | `is at most`   |
 
-## 表达式函数
+## 表达式查询
 
-以下函数也可以在剧本表达式中使用。
+以下查询也可以在剧本表达式中使用。
 
 <div class="config-table">
 
@@ -96,13 +97,13 @@
 | isUnlocked(id) | 检查具有指定 ID 的可解锁项当前是否已解锁。 | `isUnlocked("Tips/MyTip")` |
 | hasPlayed() | 检查当前播放的命令以前是否播放过。 | `hasPlayed()` |
 | hasPlayed(scriptPath) | 检查具有指定路径的脚本以前是否播放过。 | `hasPlayed("MyScript")` |
-| getName(characterId) | 返回具有指定 ID 的角色 actor 的显示/作者名称。 | `getName("Kohaku")` |
+| getName(characterId) | 返回具有指定 ID 的角色 actor 的作者名称。 | `getName("Kohaku")` |
 | pow(num, pow) | 返回 num 的指定次幂。 | `pow(2, 3)` |
 | sqrt(num) | 返回 num 的平方根。 | `sqrt(2)` |
-| cos(num) | 返回角度（度）的余弦值。 | `cos(180)` |
-| sin(num) | 返回角度（度）的正弦值。 | `sin(90)` |
+| cos(num) | 返回角度的余弦值。 | `cos(180)` |
+| sin(num) | 返回角度的正弦值。 | `sin(90)` |
 | log(num) | 返回指定数字的自然（底数为 e）对数。 | `log(0.5)` |
-| abs(num) | 返回 num 的绝对值。 | `abs(-0.5)` |
+| abs(num) | 返回 num 的绝对值。 | `abs(0.5)` |
 | max(nums) | 返回两个或多个值中的最大值。 | `max(1, 10, -9)` |
 | min(nums) | 返回两个或多个值中的最小值。 | `min(1, 10, -9)` |
 | round(num) | 返回四舍五入到最接近整数的 num。 | `round(0.9)` |
@@ -111,9 +112,9 @@
 
 </div>
 
-## 添加自定义函数
+## 添加自定义查询
 
-可以通过使用 `ExpressionQuery` 属性注释公共静态 C# 方法来添加自定义表达式函数；该方法必须具有兼容的签名，然后将自动在剧本表达式中可用。
+可以通过使用 `ExpressionQuery` 属性注释公共静态 C# 方法来添加自定义表达式查询；该方法必须具有兼容的签名，然后将自动在剧本表达式中可用。
 
 仅支持 [简单](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types#simple-types) 和字符串类型作为参数和返回类型。也可以使用单个可变参数（`params` 关键字）参数；不支持将可变参数与其他参数混合使用。
 
@@ -147,20 +148,20 @@ public static class CustomQueries
 
 `ExpressionQuery` 属性具有以下可选参数：
 
-- **Alias** 默认情况下，方法名称用作函数标识符（在脚本中引用函数的方式）；分配别名以更改标识符。
+- **Alias** 默认情况下，方法名称用作查询标识符（在脚本中引用查询的方式）；分配别名以更改标识符。
 - **Summary** IDE 扩展和可视化编辑器中显示的文档。
 - **Remarks** IDE 扩展和可视化编辑器中显示的附加信息。
 - **Example** IDE 扩展和可视化编辑器中显示的使用示例。
 
 ::: tip EXAMPLE
-在 [库存示例](/zh/guide/samples#库存-inventory) 中可以找到添加自定义表达式函数以检查项目中是否存在项目的另一个示例。具体来说，自定义函数通过 `Scripts/Runtime/Inventory/InventoryQueries.cs` 运行时脚本实现。
+在 [库存示例](/zh/guide/samples#库存-inventory) 中可以找到添加自定义表达式查询以检查项目中是否存在项目的另一个示例。具体来说，自定义查询通过 `Scripts/Runtime/Inventory/InventoryQueries.cs` 运行时脚本实现。
 :::
 
 ## 参数上下文
 
-与命令参数类似，函数参数可以应用上下文属性，以使其自动补全并由 [IDE 扩展](/zh/guide/ide-extension) 进行诊断。
+与命令参数类似，查询参数可以应用上下文属性，以使其自动补全并由 [IDE 扩展](/zh/guide/ide-extension) 进行诊断。
 
-例如，您可以将函数参数与枚举关联：
+例如，您可以将查询参数与枚举关联：
 
 ```cs
 public enum Quest { Quest1, Quest2, Quest3, ... }
@@ -181,7 +182,7 @@ public static class CustomQueries
 
 ![](https://i.gyazo.com/0f1519347ac9b619444371922e0fd1f5.mp4)
 
-您还可以使用其他上下文，例如 actor、资源、端点等。例如，下面是内置的 `getName()` 函数，它接受 actor ID 并返回其显示名称。应用 `ActorContext` 后，它将补全项目中可用的 actor ID：
+您还可以使用其他上下文，例如 actor、资源、端点等。例如，下面是内置的 `getName()` 查询，它接受 actor ID 并返回其显示名称。应用 `ActorContext` 后，它将补全项目中可用的 actor ID：
 
 ```cs
 [ExpressionQuery]

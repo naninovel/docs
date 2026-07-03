@@ -9,7 +9,7 @@
 
 | 符号 | 语句 |
 |:------:|---------------------------|
-| @ | [命令](#命令行动) |
+| @ | [命令](#命令行) |
 | # | [标签](#标签行) |
 | ; | [注释](#注释行) |
 
@@ -19,7 +19,7 @@
 可以通过 [编译器本地化](/zh/guide/localization#编译器本地化) 功能更改所有预定义的编译器工件，例如符号、命令标识符、常量以及基本上您在编写脚本时必须输入的任何内容。
 :::
 
-## 命令行动
+## 命令行
 
 如果一行以 `@` 符号开头，则被视为命令语句。命令代表控制场景中发生的事情的单个操作；例如，它可用于更改背景、移动角色或加载另一个剧本脚本。
 
@@ -382,17 +382,20 @@ Lorem ipsum[shake Camera ver:true wait:false] dolor sit amet.
 
 ; 如果 "insane" 为 true 或者 1 到 10 范围内的 random 函数
 ; 返回 5 或更多，则执行 "@glitch" 命令。
-@glitch if: insane | random(1, 10) >= 5
+@glitch if: insane or random(1, 10) is at least 5
 
 ; 如果 "score" 在 7 到 13 之间或者 "lucky" 为 true，
 ; 则导航到 "LuckyEnd" 脚本。
+@goto LuckyEnd if: (score is at least 7 and score is at most 13) or lucky
+
+; 也可以改用布尔运算符（结果与上面相同）。
 @goto LuckyEnd if: (score >= 7 & score <= 13) | lucky
 
 ; 内联命令中的条件。
 Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
 
 ; 转义表达式中的双引号。
-@print {remark} if:remark="Saying \"Stop the car\" was a mistake."
+@print {remark} if: remark = "Saying \"Stop the car\" was a mistake."
 ```
 
 ### 条件块
@@ -405,11 +408,11 @@ Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
 ; "You've passed the test." 和 "Brilliant!" - 当 score 高于 8 时。
 ; "You've passed the test." 和 "Impressive!" - 当 score 高于 7 时。
 ; "You've passed the test." 和 "Good job!" - 其他情况。
-@if score > 6
+@if score is above 6
     You've passed the test.
-    @if score > 8
+    @if score is above 8
         Brilliant!
-    @or score > 7
+    @or score is above 7
         Impressive!
     @else
         Good job!
