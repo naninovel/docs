@@ -13,6 +13,7 @@
 ```nani
 @char Kohaku scale:{pow(cos(33.5), 3) % log(0.5)}
 ```
+
 — 将 ID 为 "Kohaku" 的角色的缩放设置为 33.5 的余弦（3 次方）除以 0.5 的自然对数的余数。
 
 表达式在命令执行时进行评估，这允许在表达式内使用 [自定义变量](/zh/guide/custom-variables)：
@@ -74,13 +75,13 @@
 | isUnlocked(id) | 检查具有指定 ID 的可解锁项当前是否已解锁。 | `isUnlocked("Tips/MyTip")` |
 | hasPlayed() | 检查当前播放的命令以前是否播放过。 | `hasPlayed()` |
 | hasPlayed(scriptPath) | 检查具有指定路径的脚本以前是否播放过。 | `hasPlayed("MyScript")` |
-| getName(characterId) | 返回具有指定 ID 的角色 actor 的显示/作者名称。 | `getName("Kohaku")` |
+| getName(characterId) | 返回具有指定 ID 的角色 actor 的作者名称。 | `getName("Kohaku")` |
 | pow(num, pow) | 返回 num 的指定次幂。 | `pow(2, 3)` |
 | sqrt(num) | 返回 num 的平方根。 | `sqrt(2)` |
-| cos(num) | 返回角度（度）的余弦值。 | `cos(180)` |
-| sin(num) | 返回角度（度）的正弦值。 | `sin(90)` |
+| cos(num) | 返回角度的余弦值。 | `cos(180)` |
+| sin(num) | 返回角度的正弦值。 | `sin(90)` |
 | log(num) | 返回指定数字的自然（底数为 e）对数。 | `log(0.5)` |
-| abs(num) | 返回 num 的绝对值。 | `abs(-0.5)` |
+| abs(num) | 返回 num 的绝对值。 | `abs(0.5)` |
 | max(nums) | 返回两个或多个值中的最大值。 | `max(1, 10, -9)` |
 | min(nums) | 返回两个或多个值中的最小值。 | `min(1, 10, -9)` |
 | round(num) | 返回四舍五入到最接近整数的 num。 | `round(0.9)` |

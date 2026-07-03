@@ -417,7 +417,7 @@ Conditional blocks can also be used inline within text lines, marking the end wi
 ```nani
 ; Print text line depending on "score" variable:
 ; "Test result: Failed." - when score is below 6.
-; "Test result: Perfect!" - when score is above above 8.
+; "Test result: Perfect!" - when score is above 8.
 ; "Test result: Passed." - otherwise.
 Test result:[if score>8] Perfect![else if:score>6] Passed.[else] Failed.[endif]
 ```
@@ -741,7 +741,7 @@ Naninovel provides a tool to convert `.fountain` documents to `.nani` scripts so
 
 Open the tool from the editor menu: `Naninovel -> Tools -> Fountain Screenplay`. Select the source `.fountain` document and an output folder for the generated `.nani` files, then click "Convert Screenplay".
 
-Fountain's [Action](https://fountain.io/syntax#section-action) and [Dialogue](https://fountain.io/syntax#section-dialogue) paragraphs are converted to [generic text lines](/guide/scenario-scripting.html#generic-text-lines); other syntax constructs are represented as [comment lines](/guide/scenario-scripting.html#comment-lines). If you'd like to split the screenplay into multiple `.nani` scripts, use Fountain's [Section](https://fountain.io/syntax#section-sections) markup. For example, consider the following screenplay:
+Fountain's [Action](https://fountain.io/syntax#section-action) and [Dialogue](https://fountain.io/syntax#section-dialogue) paragraphs are converted to [generic text lines](/guide/scenario-scripting#generic-text-lines); other syntax constructs are represented as [comment lines](/guide/scenario-scripting#comment-lines). If you'd like to split the screenplay into multiple `.nani` scripts, use Fountain's [Section](https://fountain.io/syntax#section-sections) markup. For example, consider the following screenplay:
 
 ```
 # Episode 1

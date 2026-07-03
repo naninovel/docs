@@ -411,7 +411,8 @@ Lorem ipsum
 @char Sora.Happy
 
 ; 上記と同じですが、さらにキャラクターをシーンの左端から45%、
-; 下端から10%離れた位置に配置し、左を向かせます。
+; 下端から10%離れた位置に配置し、
+; 左を向かせます。
 @char Sora.Happy look:left pos:45,10
 
 ; Soraを中央下、Felixの前に表示させます。
@@ -427,7 +428,7 @@ Lorem ipsum
 必須の [選択肢](/ja/guide/choices) オプションを追加します。これにより、プレイヤーが選択を行うまで、それ以降のシナリオ再生が停止します。後続の選択肢コマンドはマージされ、一度に複数のオプションを提示できます。選択を要求せずに単に選択肢を追加する場合は、このコマンドの代わりに [@addChoice] を使用してください。
 
 ::: info NOTE
-選択肢の下にコマンドをネストする場合、`goto`、`gosub`、および `set` パラメータは無視されます。<br><br>コマンドは、再生を自動的に停止するためにチェーン内の最後の選択肢を事前に決定する必要があるため、ifパラメータで非決定論的な式を使用することはサポートされていません。`@choice ... if:random(0,10)>5` のようなものが必要な場合は、代わりに [@addChoice] コマンドを使用してください。
+選択肢の下にコマンドをネストする場合、`goto`、`gosub`、および `set` パラメータは無視されます。<br><br>`@choice` コマンドの条件付き実行はできません。これは、再生を自動的に停止するために、コマンドがチェーン内のどの選択肢が最後であるかを事前に決定する必要があるためです。`@choice ... if:...` のようなものが必要な場合は、代わりに [@addChoice] コマンドを使用してください。<br><br>後続の選択肢コマンド間のラベルは無視されます。
 :::
 
 <div class="config-table">
@@ -477,9 +478,6 @@ Continue executing this script or ...?[>]
 
 ; 'score' 変数が10未満の場合、選択肢を無効/ロックします。
 @choice "Extra option" lock:score<10
-
-; 'score' 変数が10以上の場合にのみ選択肢を表示します。
-@choice "Secret option" if:score>=10
 ```
 
 ## choiceHandler
@@ -1196,6 +1194,7 @@ WebGLの外部またはエディター内では、Unityの `Application.OpenURL`
 ; 'Rollback' と 'Pause' 入力をミュートし、'Continue' 入力をミュート解除します。
 @processInput set:Rollback.false,Pause.false,Continue.true
 ```
+
 ## purgeRollback
 
 プレイヤーが以前の状態スナップショットにロールバックするのを防ぎます。
@@ -1459,7 +1458,8 @@ This line will disappear.
 ; 'foo' が数値の場合、その値から 1 を減算します（デクリメント）。
 @set foo--
 
-; 'foo' 変数に 'bar' 変数の値（'Hello World!' 文字列）を割り当てます。
+; 'foo' 変数に 'bar' 変数の値
+; （'Hello World!' 文字列）を割り当てます。
 @set bar="Hello World!"
 @set foo=bar
 
@@ -1710,9 +1710,10 @@ My favourite drink is {drink}!
 @slide Sheba to:-10 !visible
 
 ; 'EaseOutBounce' アニメーションイージングを使用して、
-; 5秒かけて 'Mia' アクターをシーンの左中央側から右下にスライドさせます。
+; 5秒かけて 'Sheba' アクターをシーンの左中央側から右下にスライドさせます。
 @slide Sheba from:15,50 to:85,0 time:5 easing:EaseOutBounce
 ```
+
 ## snow
 
 [雪](/ja/guide/special-effects#snow) をシミュレートするパーティクルシステムを生成します。
@@ -1782,7 +1783,8 @@ My favourite drink is {drink}!
 ...
 @stop
 
-; 上記のStopコマンドは、下のラベルの下でスクリプト再生が続行されるのを防ぎます。
+; 上記のStopコマンドは、下のラベルの下で
+; スクリプト再生が続行されるのを防ぎます。
 # Label
 This line is only executed when navigated directly with a @gosub.
 @return
@@ -2161,3 +2163,4 @@ Jeez, what a disgusting Noise. Shut it down![wait i5][>]
     @else
         Correct!
 ```
+

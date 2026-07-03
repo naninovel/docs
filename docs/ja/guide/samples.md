@@ -16,7 +16,7 @@ Unityエディタに入ったら、`Assets/Scenes/Main.unity` シーンを開き
 
 ## Addressable
 
-このサンプルは、[Addressableプロバイダー](/ja/guide/resource-providers.html#addressable) を使用して（リソースエディタメニューを使用せずに）Naninovelリソースを手動で登録し、リモートホストからアセットを提供する方法を示しています。
+このサンプルは、[Addressableプロバイダー](/ja/guide/resource-providers#addressable) を使用して（リソースエディタメニューを使用せずに）Naninovelリソースを手動で登録し、リモートホストからアセットを提供する方法を示しています。
 
 サンプルプロジェクトのリソースのほとんどは、リソースマネージャーメニューで割り当てられていないことに注意してください。
 

@@ -80,7 +80,7 @@ sqrt(num) | Returns square root of num. | `sqrt(2)`
 cos(num) | Returns the cosine of angle. | `cos(180)`
 sin(num) | Returns the sine of angle. | `sin(90)`
 log(num) | Returns the natural (base e) logarithm of a specified number. | `log(0.5)`
-abs(num) | Returns the absolute value of f. | `abs(0.5)`
+abs(num) | Returns the absolute value of num. | `abs(0.5)`
 max(nums) | Returns largest of two or more values. | `max(1, 10, -9)`
 min(nums) | Returns the smallest of two or more values. | `min(1, 10, -9)`
 round(num) | Returns num rounded to the nearest integer. | `round(0.9)`

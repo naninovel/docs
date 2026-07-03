@@ -913,7 +913,7 @@ This command is inverse and complementary to [@unless].
 
 ; Print text line depending on "score" variable:
 ;   "Test result: Failed." - when score is below 6.
-;   "Test result: Perfect!" - when score is above above 8.
+;   "Test result: Perfect!" - when score is above 8.
 ;   "Test result: Passed." - otherwise.
 Test result:[if score>8] Perfect![else if:score>6] Passed.[else] Failed.[endif]
 ```
@@ -1709,7 +1709,7 @@ Be aware, that this command searches for an existing actor with the specified ID
 ; hide and slide it out of the scene over the left border.
 @slide Sheba to:-10 !visible
 
-; Slide 'Mia' actor from left-center side of the scene to the right-bottom
+; Slide 'Sheba' actor from left-center side of the scene to the right-bottom
 ; over 5 seconds using 'EaseOutBounce' animation easing.
 @slide Sheba from:15,50 to:85,0 time:5 easing:EaseOutBounce
 ```
