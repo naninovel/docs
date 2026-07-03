@@ -22,10 +22,10 @@ export const config: LocaleConfig<DefaultTheme.Config> = {
     ja: {
         lang: "ja-JP",
         label: "日本語",
-        description: "Unityゲームエンジン用のフル機能を備えた、ライター向けで完全にカスタマイズ可能なビジュアルノベル拡張。",
+        description: "ライターフレンドリーなストーリーテリングツールを揃えたオールインワンスイートで、ビジュアルノベル、分岐ダイアログ、インタラクティブなカットシーンを制作。",
         themeConfig: {
             langMenuLabel: "言語",
-            lastUpdated: { text: "最終更新 日", formatOptions: { dateStyle: "medium" } },
+            lastUpdated: { text: "最終更新日", formatOptions: { dateStyle: "medium" } },
             sidebarMenuLabel: "メニュー",
             darkModeSwitchLabel: "外観",
             returnToTopLabel: "トップに戻る",
@@ -39,12 +39,12 @@ export const config: LocaleConfig<DefaultTheme.Config> = {
     zh: {
         lang: "zh-CN",
         label: "中文",
-        description: "功能齐全、易于编写且完全可自定义的Unity游戏引擎视觉小说插件。",
+        description: "使用集写作友好型叙事工具于一体的全能套件，创作视觉小说、分支对话和互动过场动画。",
         themeConfig: {
             langMenuLabel: "语言",
             lastUpdated: { text: "最近更新时间", formatOptions: { dateStyle: "medium" } },
             sidebarMenuLabel: "菜单",
-            darkModeSwitchLabel: "外貌",
+            darkModeSwitchLabel: "外观",
             returnToTopLabel: "返回顶部",
             outline: { label: "在本页", level: "deep" },
             sidebar: { "/zh/guide/": guide.zh },
@@ -63,18 +63,18 @@ export const search: Record<string, Partial<DefaultTheme.LocalSearchOptions>> = 
                 buttonAriaLabel: "文書を検索する"
             },
             modal: {
-                displayDetails: "显示详细列表",
-                resetButtonTitle: "重置搜索",
-                backButtonTitle: "关闭搜索",
-                noResultsText: "没有结果",
+                displayDetails: "詳細リストを表示",
+                resetButtonTitle: "検索をリセット",
+                backButtonTitle: "検索を閉じる",
+                noResultsText: "結果が見つかりません",
                 footer: {
-                    selectText: "选择",
-                    selectKeyAriaLabel: "输入",
-                    navigateText: "导航",
-                    navigateUpKeyAriaLabel: "上箭头",
-                    navigateDownKeyAriaLabel: "下箭头",
-                    closeText: "关闭",
-                    closeKeyAriaLabel: "esc"
+                    selectText: "選択",
+                    selectKeyAriaLabel: "Enter",
+                    navigateText: "移動",
+                    navigateUpKeyAriaLabel: "上矢印",
+                    navigateDownKeyAriaLabel: "下矢印",
+                    closeText: "閉じる",
+                    closeKeyAriaLabel: "Esc"
                 }
             }
         }

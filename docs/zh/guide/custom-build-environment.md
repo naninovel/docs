@@ -36,6 +36,17 @@ public static class CustomBuildProcessor
 }
 ```
 
+当为自定义命令使用程序集定义时，Unity 编辑器可能会在编译所有程序集之前开始导入资产，从而导致在使用 Cloud Build 时出现构建错误。这可以通过在开始构建之前重新导入脚本资产来解决，例如：
+
+```csharp
+var scriptGuids = AssetDatabase.FindAssets("t:Naninovel.script");
+foreach (var scriptGuid in scriptGuids)
+{
+    var scriptPath = AssetDatabase.GUIDToAssetPath(scriptGuid);
+    AssetDatabase.ImportAsset(scriptPath);
+}
+```
+
 在使用 GitHub Actions（例如 [GameCI](https://game.ci/)）时，请确保在构建项目之前[已检出 LFS](https://github.com/actions/checkout/issues/270)。
 
 ```yaml
@@ -46,17 +57,6 @@ public static class CustomBuildProcessor
   - name: checkout LFS
     uses: actions/checkout@v4
   - run: git lfs pull
-```
-
-当为自定义命令使用程序集定义时，Unity 编辑器可能会在编译所有程序集之前开始导入资产，从而导致在使用 Cloud Build 时出现构建错误。这可以通过在开始构建之前重新导入脚本资产来解决，例如：
-
-```csharp
-var scriptGuids = AssetDatabase.FindAssets("t:Naninovel.script");
-foreach (var scriptGuid in scriptGuids)
-{
-    var scriptPath = AssetDatabase.GUIDToAssetPath(scriptGuid);
-    AssetDatabase.ImportAsset(scriptPath);
-}
 ```
 
 如果您使用的自定义构建处理程序应该通过编辑器的构建菜单触发，您可以通过在 Resource Provider 配置菜单中关闭 `Enable Build Processing` 属性来禁用 Naninovel 的处理程序。启用或禁用该属性后，重新启动 Unity 编辑器以使更改生效。

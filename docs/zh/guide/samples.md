@@ -16,7 +16,7 @@
 
 ## Addressable
 
-此示例显示如何手动向 [Addressable 提供者](/zh/guide/resource-providers.html#addressable) 注册 Naninovel 资源（不使用资源编辑器菜单）并从远程主机提供资产。
+此示例显示如何手动向 [Addressable 提供者](/zh/guide/resource-providers#addressable) 注册 Naninovel 资源（不使用资源编辑器菜单）并从远程主机提供资产。
 
 请注意，虽然示例项目中的大多数资源未在资源管理器菜单中分配：
 
@@ -73,7 +73,6 @@
 ![](https://i.gyazo.com/b1b6042db4a91b3a8cee74236b33c17c.mp4)
 
 所有特定于项目的示例脚本都存储在 `Scripts/Runtime/DialogueMode` 文件夹中。
-
 
 ## 库存 (Inventory)
 

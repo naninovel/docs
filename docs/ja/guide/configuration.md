@@ -218,16 +218,13 @@
 | Lazy Buffer | 25 | Lazyリソースポリシーが有効な場合、プリロードバッファのサイズ、つまりプリロードするスクリプトコマンドの最大数を制御します。 |
 | Lazy Priority | Below Normal | Lazyリソースポリシーが有効な場合、リソースがロードされるバックグラウンドスレッドの優先度を制御します。スタッターを最小限に抑えるには減らしますが、ロード時間が長くなります。 |
 | Remove Actors | True | スクリプトリソースをアンロードするときに、未使用のアクター（キャラクター、背景、テキストプリンター、選択肢ハンドラー）を自動的に削除するかどうか。有効になっていても、`@remove` コマンドを使用して手動でいつでもアクターを削除できることに注意してください。 |
-| Log Resource Loading | False | リソースのアンロード/ロード操作をログに記録するかどうか。 |
 | Enable Build Processing | True | Naninovelリソースとして割り当てられたアセットを処理するために、カスタムビルドプレイヤーハンドルを登録するかどうか。<br><br>警告：この設定を有効にするには、Unityエディタを再起動する必要があります。 |
 | Use Addressables | True | Addressable Asset Systemがインストールされている場合、このプロパティを有効にすると、アセット処理ステップが最適化され、ビルド時間が短縮されます。 |
 | Auto Build Bundles | True | プレイヤーをビルドするときにAddressableアセットバンドルを自動的にビルドするかどうか。`Use Addressables` が無効になっている場合は効果がありません。 |
 | Label By Scripts | True | すべてのNaninovel Addressableアセットに、それらが使用されているシナリオスクリプトパスでラベルを付けるかどうか。Addressableグループ設定で `Bundle Mode` が `Pack Together By Label` に設定されている場合、より効率的なバンドルパッキングになります。<br><br>スクリプトラベルは、「Naninovel」ラベルを持つすべてのアセットに割り当てられることに注意してください。これには、リソースエディタメニューを使用せずにAddressableリソースプロバイダーに手動で公開されたアセットが含まれます。 |
-| Extra Labels | Null | Addressableプロバイダーは、`Naninovel` ラベルに加えて割り当てられたラベルを持つアセットでのみ機能します。カスタム基準（例：HDテクスチャとSDテクスチャ）に基づいてエンジンで使用されるアセットをフィルタリングするために使用できます。 |
 | Local Root Path | %DATA%/Resources | ローカルリソースプロバイダーに使用するパスルート。リソースが配置されているフォルダへの絶対パス、または使用可能なオリジンの1つを使用した相対パスにすることができます:<br> • %DATA% — ターゲットデバイス上のゲームデータフォルダ（UnityEngine.Application.dataPath）。<br> • %PDATA% — ターゲットデバイス上の永続データディレクトリ（UnityEngine.Application.persistentDataPath）。<br> • %STREAM% — `StreamingAssets` フォルダ（UnityEngine.Application.streamingAssetsPath）。<br> • %SPECIAL{F}% — OSの特別なフォルダ（FはSystem.Environment.SpecialFolderからの値）。 |
 | Video Stream Extension | .mp 4 | WebGLでビデオをストリーミングする場合（ムービー、ビデオ背景）、ビデオファイルの拡張子を指定します。 |
 | Reload Scripts | True | ローカルプロバイダーディレクトリの下に保存されている変更されたシナリオスクリプトを監視してホットリロードするかどうか。 |
-| Project Root Path | Naninovel | `Resources` フォルダに対する相対パス。Naninovel固有のアセットはこの下に配置されます。 |
 
 </div>
 

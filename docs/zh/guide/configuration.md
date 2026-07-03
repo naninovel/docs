@@ -172,10 +172,10 @@
 | --- | --- | --- |
 | Loader | Localization- (Addressable, Project) | 与本地化资源一起使用的资源加载器的配置。 |
 | Languages | Object Ref | 映射到默认语言显示名称的 RFC5646 语言标签。重新启动 Unity 编辑器以使更改生效。 |
-| Source Locale | En | 源项目资源的区域设置（创作项目资产的语言）。 |
-| Expose Source Locale | True | 是否使源区域设置对最终用户（玩家）可用，即包含在语言选择中。<br><br>如果您想与第三方共享源可本地化文本（例如，用于校对），但不想共享剧本脚本，则禁用此选项可能很有用。在这种情况下，禁用此选项并为源材料添加专用区域设置，然后可以将其导出到本地化文档或电子表格。 |
-| Default Locale | Null | 首次运行游戏时默认选择的区域设置。未指定时将选择 `Source Locale`。 |
-| Auto Detect Locale | True | 启用并在首次运行游戏时，尝试根据系统语言自动检测区域设置。成功且游戏支持该区域设置时，选择它；否则回退到 'Default Locale'。 |
+| Source Locale | En | 源项目资源的语言环境（创作项目资产的语言）。 |
+| Expose Source Locale | True | 是否使源语言环境对最终用户（玩家）可用，即包含在语言选择中。<br><br>如果您想与第三方共享源可本地化文本（例如，用于校对），但不想共享剧本脚本，则禁用此选项可能很有用。在这种情况下，禁用此选项并为源材料添加专用语言环境，然后可以将其导出到本地化文档或电子表格。 |
+| Default Locale | Null | 首次运行游戏时默认选择的语言环境。未指定时将选择 `Source Locale`。 |
+| Auto Detect Locale | True | 启用并在首次运行游戏时，尝试根据系统语言自动检测语言环境。成功且游戏支持该语言环境时，选择它；否则回退到 'Default Locale'。 |
 | Record Separator | | | 连接常见本地化脚本记录的文本字符，例如通用文本行的部分和可本地化参数值。 |
 | Annotation Prefix | > | 插入注释行之前的文本字符，以区分本地化文本。注释是可选添加到生成的本地化文档中的注释，以便为翻译人员提供额外的上下文，例如打印文本消息的作者、内联命令和包含本地化参数的命令行。存根字符用于替换此类注释的本地化部分，因为它们在包含要本地化文本的下一个注释行中重复。 |
 
@@ -218,16 +218,13 @@
 | Lazy Buffer | 25 | 启用 Lazy 资源策略时，控制预加载缓冲区的大小，即预加载的最大脚本命令数。 |
 | Lazy Priority | Below Normal | 启用 Lazy 资源策略时，控制加载资源的后台线程优先级。降低以最大限度地减少卡顿，但这会增加加载时间。 |
 | Remove Actors | True | 卸载脚本资源时是否自动删除未使用的 actor（角色、背景、文本打印机和选项处理程序）。请注意，即使启用，仍然可以随时使用 `@remove` 命令手动删除 actor。 |
-| Log Resource Loading | False | 是否记录资源卸载/加载操作。 |
 | Enable Build Processing | True | 是否注册自定义构建播放器句柄以处理分配为 Naninovel 资源的资产。<br><br>警告：要使此设置生效，需要重新启动 Unity 编辑器。 |
 | Use Addressables | True | 安装 Addressable 资产系统后，启用此属性将优化资产处理步骤，缩短构建时间。 |
 | Auto Build Bundles | True | 构建播放器时是否自动构建 Addressable 资产包。禁用 `Use Addressables` 时无效。 |
 | Label By Scripts | True | 是否通过它们使用的剧本脚本路径标记所有 Naninovel Addressable 资产。当 Addressable 组设置中的 `Bundle Mode` 设置为 `Pack Together By Label` 时，将产生更高效的包打包。<br><br>请注意，脚本标签将分配给所有带有 'Naninovel' 标签的资产，其中包括手动公开给 Addressable 资源提供者的资产（不使用资源编辑器菜单）。 |
-| Extra Labels | Null | Addressable 提供者仅适用于除 `Naninovel` 标签外还具有分配标签的资产。可用于根据自定义标准（例如，HD 与 SD 纹理）过滤引擎使用的资产。 |
 | Local Root Path | %DATA%/Resources | 用于本地资源提供者的路径根。可以是资源所在文件夹的绝对路径，也可以是具有以下可用原点之一的相对路径：<br> • %DATA% — 目标设备上的游戏数据文件夹 (UnityEngine.Application.dataPath)。<br> • %PDATA% — 目标设备上的持久数据目录 (UnityEngine.Application.persistentDataPath)。<br> • %STREAM% — `StreamingAssets` 文件夹 (UnityEngine.Application.streamingAssetsPath)。<br> • %SPECIAL{F}% — OS 特殊文件夹（其中 F 是来自 System.Environment.SpecialFolder 的值）。 |
 | Video Stream Extension | .mp 4 | 在 WebGL 下流式传输视频（电影、视频背景）时，指定视频文件的扩展名。 |
 | Reload Scripts | True | 是否监视和热重载存储在本地提供者目录下的修改后的剧本脚本。 |
-| Project Root Path | Naninovel | 相对于 `Resources` 文件夹的路径，naninovel 特定资产位于该路径下。 |
 
 </div>
 
@@ -255,7 +252,7 @@
 | --- | --- | --- |
 | Loader | Scripts- (Addressable, Project) | 与 naninovel 脚本资源一起使用的资源加载器的配置。 |
 | Script Compiler | Naninovel Script Compiler | 用于将源剧本文本转换为脚本资产的 IScriptCompiler 实现。修改此设置后重新导入脚本资产以使更改生效。 |
-| Compiler Localization | (Naninovel.Compiler Localization) | 特定于区域设置的 NaniScript 编译器选项。将在元数据同步时传播到 IDE 扩展。重新启动 Unity 编辑器并重新导入脚本资产以使更改生效。 |
+| Compiler Localization | (Naninovel.Compiler Localization) | 特定于语言环境的 NaniScript 编译器选项。将在元数据同步时传播到 IDE 扩展。重新启动 Unity 编辑器并重新导入脚本资产以使更改生效。 |
 | Initialization Script | Null | 引擎初始化后立即播放的脚本的本地资源路径。 |
 | Title Script | Title | 显示标题 UI 时播放的脚本的本地资源路径。可用于设置标题屏幕场景（背景、音乐等）。 |
 | Start Game Script | Entry | 开始新游戏时播放的脚本的本地资源路径。未指定时将使用第一个可用的。 |
@@ -329,7 +326,7 @@
 
 </div>
 
-## 文本输出窗
+## 文本打印机
 
 <div class="config-table">
 

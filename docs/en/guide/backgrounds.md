@@ -147,7 +147,7 @@ Define reference resolution with your team before starting the work on the art a
 
 Built with an open source [SpriteDicing](https://github.com/elringus/SpriteDicing) package, `DicedSpriteBackground` implementation allows to significantly reduce build size and texture memory by reusing texture areas of the background sprites when the associated textures contain mostly similar data.
 
-Diced background is very similar to diced character implementation; see the [diced characters guide](/guide/characters.html#diced-sprite-characters) for the setup and usage instructions.
+Diced background is very similar to diced character implementation; see the [diced characters guide](/guide/characters#diced-sprite-characters) for the setup and usage instructions.
 
 ## Video Backgrounds
 

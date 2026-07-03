@@ -16,7 +16,7 @@ Once in the Unity Editor, open the `Assets/Scenes/Main.unity` scene and enter Pl
 
 ## Addressable
 
-This sample shows how to manually register Naninovel resources with the [addressable provider](/guide/resource-providers.html#addressable) (without using resource editor menus) and serve the assets from a remote host.
+This sample shows how to manually register Naninovel resources with the [addressable provider](/guide/resource-providers#addressable) (without using resource editor menus) and serve the assets from a remote host.
 
 Notice that while most of the resources in the sample project are not assigned in the resource manager menus:
 

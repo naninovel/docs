@@ -264,7 +264,7 @@ public StringParameter ActorId;
 public StringParameter PrinterId;
 ```
 
-現在のコマンドの同じまたは別のパラメータで指定されたIDを持つアクターのアピアランスを自動補完するには、`AppearanceContext` を使用します。これには、同じコマンドで `ActorContext` が指定されている必要があります。
+現在のコマンドの同じまたは別のパラメータで指定されたIDを持つアクターの外観を自動補完するには、`AppearanceContext` を使用します。これには、同じコマンドで `ActorContext` が指定されている必要があります。
 
 ```csharp
 [ActorContext(CharactersConfiguration.DefaultPathPrefix)]
@@ -273,7 +273,7 @@ public StringParameter CharacterId;
 public StringParameter CharacterAppearance;
 ```
 
-上記の各属性では、オプションの `namedIndex` 引数を指定できます。名前付きパラメータと共に使用して、属性がパラメータ値のどの部分に適用されるかを指定します。以下の例では、名前付きパラメータの名前部分をキャラクターIDで、値部分を現在入力されているキャラクターのアピアランスで自動補完できるようにします（[@char] コマンドの名前なしパラメータと同様）。
+上記の各属性では、オプションの `namedIndex` 引数を指定できます。名前付きパラメータと共に使用して、属性がパラメータ値のどの部分に適用されるかを指定します。以下の例では、名前付きパラメータの名前部分をキャラクターIDで、値部分を現在入力されているキャラクターの外観で自動補完できるようにします（[@char] コマンドの名前なしパラメータと同様）。
 
 ```csharp
 [ActorContext(CharactersConfiguration.DefaultPathPrefix, 0), AppearanceContext(1)]

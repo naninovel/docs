@@ -13,6 +13,7 @@
 ```nani
 @char Kohaku scale:{pow(cos(33.5), 3) % log(0.5)}
 ```
+
 — ID "Kohaku" のキャラクターを、33.5の余弦（3乗）を0.5の自然対数で割った余りにスケーリングします。
 
 式はコマンドが実行される瞬間に評価されるため、式内で [カスタム変数](/ja/guide/custom-variables) を使用できます。
@@ -74,13 +75,13 @@
 | isUnlocked(id) | 指定されたIDを持つアンロック可能アイテムが現在アンロックされているかどうかを確認します。 | `isUnlocked("Tips/MyTip")` |
 | hasPlayed() | 現在再生中のコマンドが以前に再生されたことがあるかどうかを確認します。 | `hasPlayed()` |
 | hasPlayed(scriptPath) | 指定されたパスのスクリプトが以前に再生されたことがあるかどうかを確認します。 | `hasPlayed("MyScript")` |
-| getName(characterId) | 指定されたIDを持つキャラクターアクターの表示/著者名を返します。 | `getName("Kohaku")` |
+| getName(characterId) | 指定されたIDを持つキャラクターアクターの著者名を返します。 | `getName("Kohaku")` |
 | pow(num, pow) | numを指定された累乗にして返します。 | `pow(2, 3)` |
 | sqrt(num) | numの平方根を返します。 | `sqrt(2)` |
-| cos(num) | 角度（度）の余弦を返します。 | `cos(180)` |
-| sin(num) | 角度（度）の正弦を返します。 | `sin(90)` |
+| cos(num) | 角度の余弦を返します。 | `cos(180)` |
+| sin(num) | 角度の正弦を返します。 | `sin(90)` |
 | log(num) | 指定された数値の自然対数（底e）を返します。 | `log(0.5)` |
-| abs(num) | numの絶対値を返します。 | `abs(-0.5)` |
+| abs(num) | numの絶対値を返します。 | `abs(0.5)` |
 | max(nums) | 2つ以上の値のうち最大のものを返します。 | `max(1, 10, -9)` |
 | min(nums) | 2つ以上の値のうち最小のものを返します。 | `min(1, 10, -9)` |
 | round(num) | 最も近い整数に丸められたnumを返します。 | `round(0.9)` |

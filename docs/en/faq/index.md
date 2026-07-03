@@ -2,7 +2,7 @@
 
 ## Do I need to know programming to use Naninovel?
 
-Naninovel is designed to be friendly for non-programmers and doesn't require programming knowledge to create basic visual novels. For example, our [WebGL demo](https://naninovel.com/demo) is created without any custom C# scripts. Check the [getting started guide](/guide/getting-started) and [video tutorial](https://youtu.be/N1_CwR5xblU) for an example of the basic workflow. However, adding custom features (gameplay) or integrating with other third-party packages will require C# (or [visual](/guide/samples#visual-scripting)) scripting in most cases. Specific features (e.g., [UI customization](/guide/gui.html#ui-customization)) could also require some experience with the Unity editor.
+Naninovel is designed to be friendly for non-programmers and doesn't require programming knowledge to create basic visual novels. For example, our [WebGL demo](https://naninovel.com/demo) is created without any custom C# scripts. Check the [getting started guide](/guide/getting-started) and [video tutorial](https://youtu.be/N1_CwR5xblU) for an example of the basic workflow. However, adding custom features (gameplay) or integrating with other third-party packages will require C# (or [visual](/guide/samples#visual-scripting)) scripting in most cases. Specific features (e.g., [UI customization](/guide/gui#ui-customization)) could also require some experience with the Unity editor.
 
 ## Can I use Naninovel as a drop-in dialogue system for an existing game?
 
@@ -22,7 +22,7 @@ Sure, you can "inject" any custom logic into the default Naninovel flow. In many
 
 ## Does it support a specific language?
 
-Naninovel can work with any language, but to display text in some languages, you'll need a compatible font. Consult "Fonts" section of the [localization guide](/guide/localization.html#fonts) for more info.
+Naninovel can work with any language, but to display text in some languages, you'll need a compatible font. Consult "Fonts" section of the [localization guide](/guide/localization#fonts) for more info.
 
 ## Will I get access to the source code when I buy Naninovel?
 

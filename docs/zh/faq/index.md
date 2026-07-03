@@ -48,7 +48,7 @@ Naninovel 受以下最终用户许可协议 (EULA) 管辖：[naninovel.com/eula]
 
 确保背景纹理分辨率的宽高比与相机配置中设置的参考分辨率相匹配。此外，确保使用 [正确的设置](https://docs.unity3d.com/Manual/class-TextureImporter) 导入纹理（例如，`Max Size` 足够高）。
 
-当屏幕宽高比与参考分辨率比例不同时，背景演员将默认尝试匹配，这可能会导致裁剪；有关更多信息，请参阅 [匹配模式指南](/zh/guide/backgrounds#匹配模式)。
+当屏幕宽高比与参考分辨率比例不同时，背景 actor 将默认尝试匹配，这可能会导致裁剪；有关更多信息，请参阅 [匹配模式指南](/zh/guide/backgrounds#匹配模式)。
 
 ## 如何在打印文本中间插入命令？
 

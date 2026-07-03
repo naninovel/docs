@@ -29,7 +29,7 @@ Naninovel 使用 Unity 的 [Input System](https://docs.unity3d.com/Packages/com.
 
 ![](https://i.gyazo.com/8ef1cc7eccac5cbc9e88016e2b1271f6.png)
 
-::: tip 示例
+::: tip EXAMPLE
 在[库存示例](/zh/guide/samples#库存-inventory)中可以找到添加自定义输入绑定以切换库存 UI 的示例。具体来说，`Scripts/Runtime/Inventory/UI/InventoryUI.cs` 运行时脚本中使用了自定义 "ToggleInventory" 操作。另一个示例——[输入重新绑定示例](/zh/guide/samples#输入重绑定)——实现了重新绑定 UI，允许玩家更改默认控件。
 :::
 

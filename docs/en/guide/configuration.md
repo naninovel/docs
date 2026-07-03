@@ -69,7 +69,7 @@ Match Screen Width | False | Whether reference scene rectangle width should be m
 Initial Position | (0.00, 0.00, -10.00) | Initial world position of the managed cameras.
 Custom Camera Prefab | Null | A prefab with a camera component to use for rendering. Will use a default one when not specified. In case you wish to set some camera properties (background color, FOV, HDR, etc) or add post-processing scripts, create a prefab with the desired camera setup and assign the prefab to this field.
 Use UI Camera | True | Whether to render the UI with a dedicated camera. This option is for backward-compatibility and should not be disabled in new projects. Expect issues when disabled (eg, constant uGUI layout rebuilds on camera animations).
-Custom UI Camera Prefab | Null | A prefab with a camera component to use for UI rendering. Will use a default one when not specified. Has no effect when `Use UI Camera` is disabled
+Custom UI Camera Prefab | Null | A prefab with a camera component to use for UI rendering. Will use a default one when not specified. Has no effect when `Use UI Camera` is disabled.
 Default Duration | 0.35 | Default duration (in seconds) for all the camera modifications (changing zoom, position, rotation, etc).
 Default Easing | Linear | Easing function to use by default for all the camera modifications (changing zoom, position, rotation, etc).
 Disable Rendering | False | Whether to disable Naninovel cameras by default when the engine is initialized. Useful when Naninovel is integrated as a drop-in dialogue system and shouldn't render after initialization.
