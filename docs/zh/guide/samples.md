@@ -16,7 +16,7 @@
 
 ## Addressable
 
-此示例显示如何手动向 [Addressable 提供者](/zh/guide/resource-providers.html#addressable) 注册 Naninovel 资源（不使用资源编辑器菜单）并从远程主机提供资产。
+此示例显示如何手动向 [Addressable 提供者](/zh/guide/resource-providers#addressable) 注册 Naninovel 资源（不使用资源编辑器菜单）并从远程主机提供资产。
 
 请注意，虽然示例项目中的大多数资源未在资源管理器菜单中分配：
 
@@ -74,7 +74,6 @@
 
 所有特定于项目的示例脚本都存储在 `Scripts/Runtime/DialogueMode` 文件夹中。
 
-
 ## 库存 (Inventory)
 
 虽然库存系统超出了视觉小说的范围，但我们收到了许多关于如何将其与 Naninovel 集成的请求和问题。库存示例是在不修改引擎源代码的情况下创建和集成库存扩展的示例，您可以将其设置在 Naninovel 安装之上。
@@ -83,7 +82,7 @@
 库存不是独立产品，也不是 Naninovel 的一部分。使用它来学习如何扩展和自定义引擎，但不要指望它是库存系统的生产就绪解决方案。如果您正在寻找一个，请 [检查 Asset Store](https://assetstore.unity.com/?q=inventory) 或从头开始创建一个自定义的。
 :::
 
-此示例项目展示了如何制作具有网格布局、分页和拖放窗口的自定义库存 UI；添加自定义引擎服务和相关配置菜单；添加输入绑定；使用状态外包；以及编写自定义剧本命令和表达式函数。
+此示例项目展示了如何制作具有网格布局、分页和拖放窗口的自定义库存 UI；添加自定义引擎服务和相关配置菜单；添加输入绑定；使用状态外包；以及编写自定义剧本命令和表达式查询。
 
 ![](https://i.gyazo.com/86c577f007daf4ec5d79c0e91db7bc10.mp4)
 
@@ -105,7 +104,7 @@
 
 您可以使用 `@addItem` 命令向库存添加物品，并使用 `@removeItem`（或 `@removeItemAt`、`@removeAllItems`）将其删除。物品 ID 等于物品预制件名称。库存插槽 ID 等于网格插槽索引（例如，第一个插槽是 0，第二个是 1，依此类推）。
 
-为了方便起见，还提供了 `itemExist()` 和 `itemCount()` 自定义 [表达式函数](/zh/guide/expressions#表达式函数) 来检查物品是否存在于库存中以及获取现有物品的数量。
+为了方便起见，还提供了 `itemExist()` 和 `itemCount()` 自定义 [表达式查询](/zh/guide/expressions#表达式查询) 来检查物品是否存在于库存中以及获取现有物品的数量。
 
 以下是示例项目中的脚本：
 

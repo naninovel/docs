@@ -135,7 +135,6 @@ A variable name that starts with a dot is local to the scenario script file wher
 
 Each scenario script has its own local scope, so `.count` in one script won't conflict with `.count` in another. Use local variables for script-internal counters, temporary route state, and helper values that don't need a project-wide name.
 
-
 ## Default Assignment
 
 Default assignment assigns a value to a scenario variable only if the variable doesn't already have one. This is useful when you want to ensure a variable has an initial value but don't want to overwrite it if it's already set.

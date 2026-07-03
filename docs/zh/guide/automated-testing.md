@@ -88,7 +88,7 @@ public IEnumerator WhenTrueCompleteTitleBackChanges () => new E2E()
         }))
 ```
 
-— 上面将以干净的状态初始化引擎，模拟第一次游戏启动，但会额外将 `completedX` 和 `completedY` 全局变量设置为 true。
+— 上面将以干净的状态初始化引擎，模拟第一次游戏启动，但会额外将 `completedX` 和 `completedY` 元变量设置为 true。
 
 ## 组合序列
 
@@ -127,7 +127,7 @@ ISequence RouteY => On(Choosing, Choose(), Var("completedY", false));
 
 ## 引用选项
 
-如上所示，可以通过类似 `d1-qte-x` 的字符串在测试中引用选项。这些是在剧本脚本中分配的自定义 [文本标识符](/zh/guide/scenario-scripting#文本识别) です。即使启用了稳定的文本识别，您仍然可以在脚本中定义自定义文本 ID，系统将保留它们。例如，考虑以下剧本脚本：
+如上所示，可以通过类似 `d1-qte-x` 的字符串在测试中引用选项。这些是在剧本脚本中分配的自定义 [文本标识符](/zh/guide/scenario-scripting#文本识别)。即使启用了稳定的文本识别，您仍然可以在脚本中定义自定义文本 ID，系统将保留它们。例如，考虑以下剧本脚本：
 
 ```nani
 @choice "Choice 1|#my-id-for-choice-1|"

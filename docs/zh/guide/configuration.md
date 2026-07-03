@@ -71,6 +71,8 @@
 | Aspect Ratios | Object Ref | 支持的纵横比。指定后，将筛选游戏设置中可用的分辨率，并在托管相机上强制应用纵横比。留空则不限制或强制纵横比。<br><br>请注意，Unity 不会清除相机矩形之外的像素，因此需要自行清除它们。最简单的设置是添加一个先于 Naninovel 渲染的相机，并将 `Culling Mask` 设置为 `Nothing`。 |
 | Match Screen Width | False | 是否应将参考场景矩形宽度与屏幕宽度匹配。启用后，相对（场景）位置评估将使用屏幕边界作为原点；否则使用参考分辨率。 |
 | Initial Position | (0.00, 0.00, -10.00) | 受管相机的初始世界位置。 |
+| Stack Camera | True | 是否查找现有的“基础”相机，并在找到时将 Naninovel 的主相机添加（叠加）到基础相机堆栈中。即使禁用此选项，您也可以使用 'Camera Events' 组件的 'Setup Base Camera' 方法手动堆叠相机。 |
+| Stack Camera Tag | Null | 启用 'Stack Camera' 时，指定要查找的基础相机的标签。如果未指定，将使用第一个找到的基础相机。 |
 | Custom Camera Prefab | Null | 带有用于渲染的相机组件的预制件。未指定时将使用默认值。如果您希望设置一些相机属性（背景颜色、FOV、HDR 等）或添加后处理脚本，请使用所需的相机设置创建一个预制件并将该预制件分配给此字段。 |
 | Use UI Camera | True | 是否使用专用相机渲染 UI。此选项用于向后兼容，不应在新项目中禁用。禁用时可能会出现问题（例如，在相机动画上不断重建 uGUI 布局）。 |
 | Custom UI Camera Prefab | Null | 带有用于 UI 渲染的相机组件的预制件。未指定时将使用默认值。当禁用 `Use UI Camera` 时无效。 |
@@ -164,10 +166,10 @@
 | --- | --- | --- |
 | Loader | Localization- (Addressable, Project) | 与本地化资源一起使用的资源加载器的配置。 |
 | Languages | Object Ref | 映射到默认语言显示名称的 RFC5646 语言标签。重新启动 Unity 编辑器以使更改生效。 |
-| Source Locale | En | 源项目资源的区域设置（创作项目资产的语言）。 |
-| Expose Source Locale | True | 是否使源区域设置对最终用户（玩家）可用，即包含在语言选择中。<br><br>如果您想与第三方共享源可本地化文本（例如，用于校对），但不想共享剧本脚本，则禁用此选项可能很有用。在这种情况下，禁用此选项并为源材料添加专用区域设置，然后可以将其导出到本地化文档或电子表格。 |
-| Default Locale | Null | 首次运行游戏时默认选择的区域设置。未指定时将选择 `Source Locale`。 |
-| Auto Detect Locale | True | 启用并在首次运行游戏时，尝试根据系统语言自动检测区域设置。成功且游戏支持该区域设置时，选择它；否则回退到 'Default Locale'。 |
+| Source Locale | En | 源项目资源的语言环境（创作项目资产的语言）。 |
+| Expose Source Locale | True | 是否使源语言环境对最终用户（玩家）可用，即包含在语言选择中。<br><br>如果您想与第三方共享源可本地化文本（例如，用于校对），但不想共享剧本脚本，则禁用此选项可能很有用。在这种情况下，禁用此选项并为源材料添加专用语言环境，然后可以将其导出到本地化文档或电子表格。 |
+| Default Locale | Null | 首次运行游戏时默认选择的语言环境。未指定时将选择 `Source Locale`。 |
+| Auto Detect Locale | True | 启用并在首次运行游戏时，尝试根据系统语言自动检测语言环境。成功且游戏支持该语言环境时，选择它；否则回退到 'Default Locale'。 |
 | Record Separator | | | 连接常见本地化脚本记录的文本字符，例如通用文本行的部分和可本地化参数值。 |
 | Annotation Prefix | > | 插入注释行之前的文本字符，以区分本地化文本。注释是可选添加到生成的本地化文档中的注释，以便为翻译人员提供额外的上下文，例如打印文本消息的作者、内联命令和包含本地化参数的命令行。存根字符用于替换此类注释的本地化部分，因为它们在包含要本地化文本的下一个注释行中重复。 |
 
@@ -210,16 +212,13 @@
 | Lazy Buffer | 25 | 启用 Lazy 资源策略时，控制预加载缓冲区的大小，即预加载的最大脚本命令数。 |
 | Lazy Priority | Below Normal | 启用 Lazy 资源策略时，控制加载资源的后台线程优先级。降低以最大限度地减少卡顿，但这会增加加载时间。 |
 | Remove Actors | True | 卸载脚本资源时是否自动删除未使用的 actor（角色、背景、文本打印机和选项处理程序）。请注意，即使启用，仍然可以随时使用 `@remove` 命令手动删除 actor。 |
-| Log Resource Loading | False | 是否记录资源卸载/加载操作。 |
 | Enable Build Processing | True | 是否注册自定义构建播放器句柄以处理分配为 Naninovel 资源的资产。<br><br>警告：要使此设置生效，需要重新启动 Unity 编辑器。 |
 | Use Addressables | True | 安装 Addressable 资产系统后，启用此属性将优化资产处理步骤，缩短构建时间。 |
 | Auto Build Bundles | True | 构建播放器时是否自动构建 Addressable 资产包。禁用 `Use Addressables` 时无效。 |
 | Label By Scripts | True | 是否通过它们使用的剧本脚本路径标记所有 Naninovel Addressable 资产。当 Addressable 组设置中的 `Bundle Mode` 设置为 `Pack Together By Label` 时，将产生更高效的包打包。<br><br>请注意，脚本标签将分配给所有带有 'Naninovel' 标签的资产，其中包括手动公开给 Addressable 资源提供者的资产（不使用资源编辑器菜单）。 |
-| Extra Labels | Null | Addressable 提供者仅适用于除 `Naninovel` 标签外还具有分配标签的资产。可用于根据自定义标准（例如，HD 与 SD 纹理）过滤引擎使用的资产。 |
 | Local Root Path | %DATA%/Resources | 用于本地资源提供者的路径根。可以是资源所在文件夹的绝对路径，也可以是具有以下可用原点之一的相对路径：<br> • %DATA% — 目标设备上的游戏数据文件夹 (UnityEngine.Application.dataPath)。<br> • %PDATA% — 目标设备上的持久数据目录 (UnityEngine.Application.persistentDataPath)。<br> • %STREAM% — `StreamingAssets` 文件夹 (UnityEngine.Application.streamingAssetsPath)。<br> • %SPECIAL{F}% — OS 特殊文件夹（其中 F 是来自 System.Environment.SpecialFolder 的值）。 |
 | Video Stream Extension | .mp 4 | 在 WebGL 下流式传输视频（电影、视频背景）时，指定视频文件的扩展名。 |
 | Reload Scripts | True | 是否监视和热重载存储在本地提供者目录下的修改后的剧本脚本。 |
-| Project Root Path | Naninovel | 相对于 `Resources` 文件夹的路径，naninovel 特定资产位于该路径下。 |
 
 </div>
 
@@ -247,7 +246,7 @@
 | --- | --- | --- |
 | Loader | Scripts- (Addressable, Project) | 与 naninovel 脚本资源一起使用的资源加载器的配置。 |
 | Script Compiler | Naninovel Script Compiler | 用于将源剧本文本转换为脚本资产的 IScriptCompiler 实现。修改此设置后重新导入脚本资产以使更改生效。 |
-| Compiler Localization | (Naninovel.Compiler Localization) | 特定于区域设置的 NaniScript 编译器选项。将在元数据同步时传播到 IDE 扩展。重新启动 Unity 编辑器并重新导入脚本资产以使更改生效。 |
+| Compiler Localization | (Naninovel.Compiler Localization) | 特定于语言环境的 NaniScript 编译器选项。将在元数据同步时传播到 IDE 扩展。重新启动 Unity 编辑器并重新导入脚本资产以使更改生效。 |
 | Initialization Script | Null | 引擎初始化后立即播放的脚本的本地资源路径。 |
 | Title Script | Title | 显示标题 UI 时播放的脚本的本地资源路径。可用于设置标题屏幕场景（背景、音乐等）。 |
 | Start Game Script | Entry | 开始新游戏时播放的脚本的本地资源路径。未指定时将使用第一个可用的。 |
@@ -256,27 +255,8 @@
 | Hot Reload Scripts | True | 是否重新加载修改后的（通过可视化和外部编辑器）脚本并在播放模式期间应用更改而不重新启动播放。 |
 | Watch Scripts | True | 是否在 '.nani' 文件上运行文件系统监视程序。使用外部应用程序编辑时注册脚本更改所必需的。 |
 | Show Script Navigator | False | 引擎初始化后是否自动显示脚本导航器 UI（需要 UI 资源中可用的 'IScriptNavigatorUI'）。 |
-| Enable Story Editor | True | 是否使用新的故事编辑器代替旧版可视化编辑器和脚本图。 |
+| Enable Story Editor | True | 是否启用故事编辑器应用。 |
 | Show Selected Script | True | 是否在故事编辑器中打开选定的剧本脚本资产。 |
-| Enable Visual Editor | True | 选中脚本时是否显示旧版可视化脚本编辑器。启用故事编辑器时无效。 |
-| Hide Unused Parameters | True | 当未悬停或聚焦行时，是否隐藏命令行的未分配参数。 |
-| Select Played Script | True | 打开可视化编辑器时是否自动选择当前播放的脚本。 |
-| Insert Line Key | Space | 可视化编辑器处于焦点时用于显示“插入行”窗口的热键。设置为 'None' 以禁用。 |
-| Insert Line Modifier | Control | 'Insert Line Key' 的修饰符。设置为 'None' 以禁用。 |
-| Indent Line Key | Right Arrow | 用于缩进行的热键。设置为 'None' 以禁用。 |
-| Indent Line Modifier | Control | 'Indent Line Key' 的修饰符。设置为 'None' 以禁用。 |
-| Unindent Line Key | Left Arrow | 用于取消缩进行的缩进的热键。设置为 'None' 以禁用。 |
-| Unindent Line Modifier | Control | 'Unindent Line Key' 的修饰符。设置为 'None' 以禁用。 |
-| Save Script Key | S | 可视化编辑器处于焦点时用于保存（序列化）编辑脚本的热键。设置为 'None' 以禁用。 |
-| Save Script Modifier | Control | 'Save Script Key' 的修饰符。设置为 'None' 以禁用。 |
-| Rewind Mouse Button | 0 | 单击可视化编辑器中的行时，哪个鼠标按钮应激活倒带：'0' 是左键，'1' 是右键，'2' 是中键；设置为 '-1' 以禁用。 |
-| Rewind Modifier | Shift | 'Rewind Mouse Button' 的修饰符。设置为 'None' 以禁用。 |
-| Editor Page Length | 300 | 每个可视化编辑器页面应渲染多少脚本行。 |
-| Editor Custom Style Sheet | Null | 允许修改可视化编辑器的默认样式。 |
-| Graph Orientation | Horizontal | 垂直还是水平构建图形。 |
-| Graph Auto Align Padding | (10.00, 0.00) | 执行自动对齐时为每个节点添加的填充。 |
-| Show Synopsis | True | 是否在图形节点内显示脚本的第一条注释行。 |
-| Graph Custom Style Sheet | Null | 允许修改脚本图的默认样式。 |
 | Enable Community Modding | False | 是否允许向构建添加外部 naninovel 脚本。 |
 | External Loader | Scripts- (Local) | 用于定位外部 naninovel 脚本资源的资源加载器配置。<br><br>请注意，'External' 加载器仅用于定位脚本；仍需配置 'Loader' 才能实际加载它们；详情请参阅 'Community Modding' 指南。 |
 
@@ -321,7 +301,7 @@
 
 </div>
 
-## 文本输出窗
+## 文本打印机
 
 <div class="config-table">
 

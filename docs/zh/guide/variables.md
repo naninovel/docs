@@ -93,7 +93,7 @@ Archibald: Greetings, {name}!
 ```
 
 ::: tip
-如果你想要一个只递增一次的元计数器（即使重复游玩，例如回滚后或重启游戏后，也不会再次递增），请使用 `hasPlayed()` [表达式查询](/zh/guide/expressions#表达式函数)：
+如果你想要一个只递增一次的元计数器（即使重复游玩，例如回滚后或重启游戏后，也不会再次递增），请使用 `hasPlayed()` [表达式查询](/zh/guide/expressions#表达式查询)：
 ```nani
 @set metaCounter=0 meta!
 ...

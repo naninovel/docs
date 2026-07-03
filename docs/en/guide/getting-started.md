@@ -137,7 +137,6 @@ An essential one, which you will constantly encounter throughout the rest of the
 
 An actor is an abstract entity and can't exist directly; instead, specialized versions with various additional parameters are used:
 
-
 | Actor Type                           | Additional Parameters            | Description                                                                  |
 |--------------------------------------|----------------------------------|------------------------------------------------------------------------------|
 | [Character](/guide/characters)       | Look Direction                   | Represents a character on scene.                                             |

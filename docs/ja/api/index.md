@@ -246,7 +246,7 @@ Lorem ipsum
 | group | string | オーディオを再生するときに使用するオーディオミキサー [グループパス](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | loop | boolean | 再生が終了したときに、停止されるまで最初から繰り返すかどうか。 |
 | volume | number | オーディオ再生の音量。範囲は 0.0 から 1.0。1.0 がデフォルトで、クリッピングなしにデジタルオーディオを 0 dBFS 基準より大きく再生することはできません。 |
-| pitch | number | 再生の知覚上の周波数。範囲は [-3.0 から 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)。 |
+| pitch | number | 再生の知覚上の周波数（速度）。範囲は [-3.0 から 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) で、1.0 が通常の速度です。負の値はオーディオを逆再生します。 |
 | pos | number list | オーディオソースの位置（ワールド空間）。指定しない場合、空間モードは無効になります。 |
 | wait | boolean | 音声の再生が終わるまで待ってから次のコマンドを実行するかどうか。ループ再生時は効果がありません。 |
 | <span class="command-param-primary" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります">path</span> | string | オーディオリソースのローカルパス（名前）。 |
@@ -415,7 +415,8 @@ Lorem ipsum
 @char Sora.Happy
 
 ; 上記と同じですが、さらにキャラクターをシーンの左端から45%、
-; 下端から10%離れた位置に配置し、左を向かせます。
+; 下端から10%離れた位置に配置し、
+; 左を向かせます。
 @char Sora.Happy look:left pos:45,10
 
 ; Soraを中央下、Felixの前に表示させます。
@@ -431,7 +432,7 @@ Lorem ipsum
 必須の [選択肢](/ja/guide/choices) オプションを追加します。これにより、プレイヤーが選択を行うまで、それ以降のシナリオ再生が停止します。後続の選択肢コマンドはマージされ、一度に複数のオプションを提示できます。選択を要求せずに単に選択肢を追加する場合は、このコマンドの代わりに [@addChoice] を使用してください。
 
 ::: info NOTE
-選択肢の下にコマンドをネストする場合、`goto`、`gosub`、および `set` パラメータは無視されます。<br><br>コマンドは、再生を自動的に停止するためにチェーン内の最後の選択肢を事前に決定する必要があるため、ifパラメータで非決定論的な式を使用することはサポートされていません。`@choice ... if:random(0,10)>5` のようなものが必要な場合は、代わりに [@addChoice] コマンドを使用してください。
+選択肢の下にコマンドをネストする場合、`goto`、`gosub`、および `set` パラメータは無視されます。<br><br>`@choice` コマンドの条件付き実行はできません。これは、再生を自動的に停止するために、コマンドがチェーン内のどの選択肢が最後であるかを事前に決定する必要があるためです。`@choice ... if:...` のようなものが必要な場合は、代わりに [@addChoice] コマンドを使用してください。<br><br>後続の選択肢コマンド間のラベルは無視されます。
 :::
 
 <div class="config-table">
@@ -481,9 +482,6 @@ Continue executing this script or ...?[>]
 
 ; 'score' 変数が10未満の場合、選択肢を無効/ロックします。
 @choice "Extra option" lock:score<10
-
-; 'score' 変数が10以上の場合にのみ選択肢を表示します。
-@choice "Secret option" if:score>=10
 ```
 
 ## choiceHandler
@@ -1240,6 +1238,7 @@ Kohaku: 再びリンクされたプリンターを使用します。
 ; 'Rollback' と 'Pause' 入力をミュートし、'Continue' 入力をミュート解除します。
 @processInput set:Rollback.false,Pause.false,Continue.true
 ```
+
 ## purgeRollback
 
 プレイヤーが以前の状態スナップショットにロールバックするのを防ぎます。
@@ -1498,9 +1497,8 @@ This line will disappear.
 @set foo=cos(angle)
 
 ; -100 から 100 までの乱数を取得し、4乗して
-; 'foo' 変数に割り当てます。式の中に空白がある場合は、
-; 引用符が必要です。
-@set "foo = pow(random(-100, 100), 4)"
+; 'foo' 変数に割り当てます。
+@set foo = pow(random(-100, 100), 4)
 
 ; 'foo' が数値の場合、その値に 1 を加算します（インクリメント）。
 @set foo++
@@ -1508,7 +1506,8 @@ This line will disappear.
 ; 'foo' が数値の場合、その値から 1 を減算します（デクリメント）。
 @set foo--
 
-; 'foo' 変数に 'bar' 変数の値（'Hello World!' 文字列）を割り当てます。
+; 'foo' 変数に 'bar' 変数の値
+; （'Hello World!' 文字列）を割り当てます。
 @set bar="Hello World!"
 @set foo=bar
 
@@ -1571,7 +1570,7 @@ My favourite drink is {drink}!
 | group | string | オーディオを再生するときに使用するオーディオミキサー [グループパス](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | loop | boolean | 再生が終了したときに、停止されるまで最初から繰り返すかどうか。 |
 | volume | number | オーディオ再生の音量。範囲は 0.0 から 1.0。1.0 がデフォルトで、クリッピングなしにデジタルオーディオを 0 dBFS 基準より大きく再生することはできません。 |
-| pitch | number | 再生の知覚上の周波数。範囲は [-3.0 から 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)。 |
+| pitch | number | 再生の知覚上の周波数（速度）。範囲は [-3.0 から 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) で、1.0 が通常の速度です。負の値はオーディオを逆再生します。 |
 | pos | number list | オーディオソースの位置（ワールド空間）。指定しない場合、空間モードは無効になります。 |
 | wait | boolean | 音声の再生が終わるまで待ってから次のコマンドを実行するかどうか。ループ再生時は効果がありません。 |
 | <span class="command-param-primary" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります">path</span> | string | オーディオリソースのローカルパス（名前）。 |
@@ -1609,13 +1608,12 @@ My favourite drink is {drink}!
 
 | パラメータ | 型 | 説明 |
 | --- | --- | --- |
-| <span class="command-param-primary" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります">sfxPath</span> | string | 再生する効果音アセットへのパス。 |
 | restart | boolean | すでに再生中の場合にオーディオを最初から再生するかどうか。 |
 | additive | boolean | 同じクリップの複数のインスタンスを再生できるようにするかどうか。`restart` が有効な場合は効果がありません。 |
 | group | string | オーディオを再生するときに使用するオーディオミキサー [グループパス](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | loop | boolean | 再生が終了したときに、停止されるまで最初から繰り返すかどうか。 |
 | volume | number | オーディオ再生の音量。範囲は 0.0 から 1.0。1.0 がデフォルトで、クリッピングなしにデジタルオーディオを 0 dBFS 基準より大きく再生することはできません。 |
-| pitch | number | 再生の知覚上の周波数。範囲は [-3.0 から 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)。 |
+| pitch | number | 再生の知覚上の周波数（速度）。範囲は [-3.0 から 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) で、1.0 が通常の速度です。負の値はオーディオを逆再生します。 |
 | pos | number list | オーディオソースの位置（ワールド空間）。指定しない場合、空間モードは無効になります。 |
 | wait | boolean | 音声の再生が終わるまで待ってから次のコマンドを実行するかどうか。ループ再生時は効果がありません。 |
 | <span class="command-param-primary" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります">path</span> | string | オーディオリソースのローカルパス（名前）。 |
@@ -1794,8 +1792,9 @@ My favourite drink is {drink}!
 
 ; 'EaseOutBounce' アニメーションイージングを使用して、
 ; 5秒かけて 'Mia' アクターをシーンの左中央側から右下にスライドさせます。
-@slide Sheba from:15,50 to:85,0 time:5 easing:EaseOutBounce
+@slide Mia from:15,50 to:85,0 time:5 easing:EaseOutBounce
 ```
+
 ## snow
 
 [雪](/ja/guide/special-effects#snow) をシミュレートするパーティクルシステムを生成します。
@@ -1865,7 +1864,8 @@ My favourite drink is {drink}!
 ...
 @stop
 
-; 上記のStopコマンドは、下のラベルの下でスクリプト再生が続行されるのを防ぎます。
+; 上記のStopコマンドは、下のラベルの下で
+; スクリプト再生が続行されるのを防ぎます。
 # Label
 This line is only executed when navigated directly with a @gosub.
 @return
@@ -2225,7 +2225,7 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 | group | string | オーディオを再生するときに使用するオーディオミキサー [グループパス](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | loop | boolean | 再生が終了したときに、停止されるまで最初から繰り返すかどうか。 |
 | volume | number | オーディオ再生の音量。範囲は 0.0 から 1.0。1.0 がデフォルトで、クリッピングなしにデジタルオーディオを 0 dBFS 基準より大きく再生することはできません。 |
-| pitch | number | 再生の知覚上の周波数。範囲は [-3.0 から 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)。 |
+| pitch | number | 再生の知覚上の周波数（速度）。範囲は [-3.0 から 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) で、1.0 が通常の速度です。負の値はオーディオを逆再生します。 |
 | pos | number list | オーディオソースの位置（ワールド空間）。指定しない場合、空間モードは無効になります。 |
 | wait | boolean | 音声の再生が終わるまで待ってから次のコマンドを実行するかどうか。ループ再生時は効果がありません。 |
 | <span class="command-param-primary command-param-required" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります 必須パラメータ: パラメータは常に指定する必要があります">path</span> | string | オーディオリソースのローカルパス（名前）。 |
@@ -2295,3 +2295,4 @@ Jeez, what a disgusting Noise. Shut it down![wait i5][>]
     @else
         Correct!
 ```
+

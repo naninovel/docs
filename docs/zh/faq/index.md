@@ -48,7 +48,7 @@ Naninovel 受以下最终用户许可协议 (EULA) 管辖：[naninovel.com/eula]
 
 确保背景纹理分辨率的宽高比与相机配置中设置的参考分辨率相匹配。此外，确保使用 [正确的设置](https://docs.unity3d.com/Manual/class-TextureImporter) 导入纹理（例如，`Max Size` 足够高）。
 
-当屏幕宽高比与参考分辨率比例不同时，背景演员将默认尝试匹配，这可能会导致裁剪；有关更多信息，请参阅 [匹配模式指南](/zh/guide/backgrounds#匹配模式)。
+当屏幕宽高比与参考分辨率比例不同时，背景 actor 将默认尝试匹配，这可能会导致裁剪；有关更多信息，请参阅 [匹配模式指南](/zh/guide/backgrounds#匹配模式)。
 
 ## 如何在打印文本中间插入命令？
 
@@ -96,4 +96,4 @@ Naninovel 受以下最终用户许可协议 (EULA) 管辖：[naninovel.com/eula]
 
 ## 如何从剧本脚本运行自定义 C# 代码？
 
-要调用 C# 行为（例如，访问场景中的游戏对象），请使用 [自定义命令](/zh/guide/custom-commands)；要从 C# 方法获取值并在剧本脚本中使用它，请使用 [剧本表达式](/zh/guide/expressions#添加自定义函数)。
+要调用 C# 行为（例如，访问场景中的游戏对象），请使用 [自定义命令](/zh/guide/custom-commands)；要从 C# 方法获取值并在剧本脚本中使用它，请使用 [表达式查询](/zh/guide/expressions#添加自定义查询)。

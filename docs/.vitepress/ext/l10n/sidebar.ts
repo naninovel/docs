@@ -131,7 +131,7 @@ export const zh: DefaultTheme.SidebarItem[] = [
         collapsed: true,
         items: [
             { text: "属性配置", link: "/zh/guide/configuration" },
-            { text: "文本输出窗", link: "/zh/guide/text-printers" },
+            { text: "文本打印机", link: "/zh/guide/text-printers" },
             { text: "角色", link: "/zh/guide/characters" },
             { text: "背景", link: "/zh/guide/backgrounds" },
             { text: "特殊效果", link: "/zh/guide/special-effects" },

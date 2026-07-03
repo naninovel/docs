@@ -2,7 +2,7 @@
 
 标准脚本命令 API 参考。使用侧边栏快速在可用命令之间导航。
 
-~~删除线~~ 表示主参数，**粗体** 代表必需参数；其他参数应视为可选参数。如果不确定这是怎么回事，请查阅[场景脚本指南](/zh/guide/scenario-scripting)。
+~~删除线~~ 表示主参数，**粗体** 代表必需参数；其他参数应视为可选参数。如果不确定这是怎么回事，请查阅[剧本脚本指南](/zh/guide/scenario-scripting)。
 
 大多数脚本命令都支持以下参数：
 
@@ -18,7 +18,7 @@
 
 ## addChoice
 
-向具有指定 ID（或默认 ID）的选择处理程序添加一个[选择](/zh/guide/choices)选项。使用此命令代替 [@choice] 可以动态添加选择，并更好地控制何时（或是否）停止播放。
+向具有指定 ID（或默认 ID）的选项处理程序添加一个[选择](/zh/guide/choices)选项。使用此命令代替 [@choice] 可以动态添加选择，并更好地控制何时（或是否）停止播放。
 
 ::: info NOTE
 当在选择下嵌套命令时，`goto`、`gosub` 和 `set` 参数将被忽略。
@@ -32,12 +32,12 @@
 | id | string | 选择的唯一标识符。稍后可用于使用 [@clearChoice] 删除选择。 |
 | lock | string | 选择是否应被禁用或以其他方式让玩家无法选择；有关更多信息，请参阅[选择文档](/zh/guide/choices#锁定选项)。默认情况下禁用。 |
 | button | string | 代表选择的[按钮预制件](/zh/guide/choices#选项按钮)的本地资源路径。预制件的根对象上应附加 `ChoiceHandlerButton` 组件。未指定时将使用默认按钮。 |
-| pos | number list | 选择按钮在选择处理程序内的本地位置（如果处理程序实现支持）。 |
-| handler | string | 要为其添加选择的选择处理程序的 ID。未指定时将使用默认处理程序。 |
+| pos | number list | 选择按钮在选项处理程序内的本地位置（如果处理程序实现支持）。 |
+| handler | string | 要为其添加选择的选项处理程序的 ID。未指定时将使用默认处理程序。 |
 | goto | string | 用户选择该选项时要跳转的路径；路径格式请参见 [@goto] 命令。当在选择下嵌套命令时忽略。 |
 | gosub | string | 用户选择该选项时要跳转的子程序路径；路径格式请参见 [@gosub] 命令。分配 `goto` 时，此参数将被忽略。当在选择下嵌套命令时忽略。 |
 | set | string | 用户选择该选项时要执行的设置表达式；语法参考请参见 [@set] 命令。当在选择下嵌套命令时忽略。 |
-| show | boolean | 是否也显示添加了选择的选择处理程序；默认启用。 |
+| show | boolean | 是否也显示添加了选择的选项处理程序；默认启用。 |
 | time | number | 淡入（显示）动画的持续时间（以秒为单位）。 |
 
 </div>
@@ -98,7 +98,7 @@ Lorem ipsum
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">characterPositions</span> | named number list | 角色 ID 到场景 X 轴位置（相对于左侧场景边界，以百分比表示）命名值的集合。位置 0 与左边界相关，100 与场景右边界相关；50 是中心。 |
 | look | boolean | 执行自动排列时，控制是否也让角色看向场景原点（默认启用）。 |
 | time | number | 命令启动的动画持续时间，以秒为单位。 |
-| wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
+| wait | boolean | 是否在开始执行剧本脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
 </div>
 
@@ -211,7 +211,7 @@ Lorem ipsum
 | easing | string | 要应用的[缓动函数](/zh/guide/special-effects#动画缓动)名称。未指定时，将使用配置中设置的默认函数。 |
 | time | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画将在开始动画到新目标之前立即完成。 |
-| wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
+| wait | boolean | 是否在开始执行剧本脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
 </div>
 
@@ -246,7 +246,7 @@ Lorem ipsum
 | group | string | 播放音频时应使用的混音器[组路径](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | loop | boolean | 是否在播放结束时从头重复播放，直到停止。 |
 | volume | number | 音频播放的响度，范围为 0.0 到 1.0。请注意，1.0 是默认值；不产生削波时，无法让数字音频超过 0 dBFS 基线播放。 |
-| pitch | number | 播放的感知频率，范围为 [-3.0 到 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)。 |
+| pitch | number | 播放的感知频率（速度），范围为 [-3.0 到 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)，其中 1.0 为正常速度。负值将反向播放音频。 |
 | pos | number list | 音频源的位置（在世界空间中）。未指定时，将禁用空间模式。 |
 | wait | boolean | 是否等待音频播放结束后再执行下一个命令。循环播放时无效。 |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">path</span> | string | 音频资源的本地路径（名称）。 |
@@ -347,7 +347,7 @@ Actor 应实现 `IBlurable` 接口以支持该效果。
 | easing | string | 要应用的[缓动函数](/zh/guide/special-effects#动画缓动)名称。未指定时，将使用配置中设置的默认函数。 |
 | time | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画将在开始动画到新目标之前立即完成。 |
-| wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
+| wait | boolean | 是否在开始执行剧本脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
 </div>
 
@@ -403,7 +403,7 @@ Actor 应实现 `IBlurable` 接口以支持该效果。
 | easing | string | 要应用的[缓动函数](/zh/guide/special-effects#动画缓动)名称。未指定时，将使用配置中设置的默认函数。 |
 | time | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画将在开始动画到新目标之前立即完成。 |
-| wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
+| wait | boolean | 是否在开始执行剧本脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
 </div>
 
@@ -415,7 +415,8 @@ Actor 应实现 `IBlurable` 接口以支持该效果。
 @char Sora.Happy
 
 ; 与上面相同，但另外将角色放置在距离场景左边界 45%
-; 和底部边界 10% 的位置；还使其向左看。
+; 和底部边界 10% 的位置；
+; 还使其向左看。
 @char Sora.Happy look:left pos:45,10
 
 ; 使 Sora 出现在底部中心并位于 Felix 前面。
@@ -431,7 +432,7 @@ Actor 应实现 `IBlurable` 接口以支持该效果。
 添加一个必需的[选择](/zh/guide/choices)选项，该选项会停止进一步的场景播放，直到玩家做出选择。后续选择命令将合并，允许一次显示多个选项。使用 [@addChoice] 代替此命令可简单地添加选择，而不需要在继续播放之前进行选择。
 
 ::: info NOTE
-当在选择下嵌套命令时，`goto`、`gosub` 和 `set` 参数将被忽略。<br><br>if 参数中不支持使用非确定性表达式，因为命令必须提前确定哪个选择是链中的最后一个，以便自动停止播放。如果你需要像 `@choice ... if:random(0,10)>5` 这样的东西，请改用 [@addChoice] 命令。
+当在选择下嵌套命令时，`goto`、`gosub` 和 `set` 参数将被忽略。<br><br>`@choice` 命令无法条件执行，因为该命令必须提前确定链中哪个选择是最后一个，以便自动停止播放。如果您需要类似 `@choice ... if:...` 的功能，请改用 [@addChoice] 命令。<br><br>后续选择命令之间的标签将被忽略。
 :::
 
 <div class="config-table">
@@ -442,12 +443,12 @@ Actor 应实现 `IBlurable` 接口以支持该效果。
 | id | string | 选择的唯一标识符。稍后可用于使用 [@clearChoice] 删除选择。 |
 | lock | string | 选择是否应被禁用或以其他方式让玩家无法选择；有关更多信息，请参阅[选择文档](/zh/guide/choices#锁定选项)。默认情况下禁用。 |
 | button | string | 代表选择的[按钮预制件](/zh/guide/choices#选项按钮)的本地资源路径。预制件的根对象上应附加 `ChoiceHandlerButton` 组件。未指定时将使用默认按钮。 |
-| pos | number list | 选择按钮在选择处理程序内的本地位置（如果处理程序实现支持）。 |
-| handler | string | 要为其添加选择的选择处理程序的 ID。未指定时将使用默认处理程序。 |
+| pos | number list | 选择按钮在选项处理程序内的本地位置（如果处理程序实现支持）。 |
+| handler | string | 要为其添加选择的选项处理程序的 ID。未指定时将使用默认处理程序。 |
 | goto | string | 用户选择该选项时要跳转的路径；路径格式请参见 [@goto] 命令。当在选择下嵌套命令时忽略。 |
 | gosub | string | 用户选择该选项时要跳转的子程序路径；路径格式请参见 [@gosub] 命令。分配 `goto` 时，此参数将被忽略。当在选择下嵌套命令时忽略。 |
 | set | string | 用户选择该选项时要执行的设置表达式；语法参考请参见 [@set] 命令。当在选择下嵌套命令时忽略。 |
-| show | boolean | 是否也显示添加了选择的选择处理程序；默认启用。 |
+| show | boolean | 是否也显示添加了选择的选项处理程序；默认启用。 |
 | time | number | 淡入（显示）动画的持续时间（以秒为单位）。 |
 
 </div>
@@ -481,21 +482,18 @@ Continue executing this script or ...?[>]
 
 ; 当 'score' 变量低于 10 时，使选择禁用/锁定。
 @choice "Extra option" lock:score<10
-
-; 仅当 'score' 变量为 10 或更多时才显示选择。
-@choice "Secret option" if:score>=10
 ```
 
 ## choiceHandler
 
-修改[选择处理程序 Actor](/zh/guide/choices)。
+修改[选项处理程序 Actor](/zh/guide/choices)。
 
 <div class="config-table">
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">handlerId</span> | string | 要修改的选择处理程序 Actor 的 ID。未指定时，将使用默认值。 |
-| default | boolean | 是否将选择处理程序设为默认。未指定 `handler` 参数时，默认处理程序将受所有选择相关命令的影响。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">handlerId</span> | string | 要修改的选项处理程序 Actor 的 ID。未指定时，将使用默认值。 |
+| default | boolean | 是否将选项处理程序设为默认。未指定 `handler` 参数时，默认处理程序将受所有选择相关命令的影响。 |
 | id | string | 要修改的 Actor 的 ID；指定 `*` 以影响所有可见 Actor。 |
 | appearance | string | 为修改后的 Actor 设置的外观。 |
 | pose | string | 为修改后的 Actor 设置的姿势。 |
@@ -510,12 +508,12 @@ Continue executing this script or ...?[>]
 | easing | string | 要应用的[缓动函数](/zh/guide/special-effects#动画缓动)名称。未指定时，将使用配置中设置的默认函数。 |
 | time | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画将在开始动画到新目标之前立即完成。 |
-| wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
+| wait | boolean | 是否在开始执行剧本脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
 </div>
 
 ```nani
-; 将 'ButtonArea' 选择处理程序设为默认。
+; 将 'ButtonArea' 选项处理程序设为默认。
 @choiceHandler ButtonArea default!
 ```
 
@@ -531,15 +529,15 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 ## clearChoice
 
-删除具有指定 ID（未指定 ID 时为默认 ID；指定 `*` 为 ID 时为所有现有处理程序）的选择处理程序中的当前选择，并（可选）隐藏它（它们）。
+删除具有指定 ID（未指定 ID 时为默认 ID；指定 `*` 为 ID 时为所有现有处理程序）的选项处理程序中的当前选择，并（可选）隐藏它（它们）。
 
 <div class="config-table">
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">handlerId</span> | string | 要清除的选择处理程序的 ID。未指定时将使用默认处理程序。指定 `*` 以清除所有现有处理程序。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">handlerId</span> | string | 要清除的选项处理程序的 ID。未指定时将使用默认处理程序。指定 `*` 以清除所有现有处理程序。 |
 | id | string | 要删除的特定选择的标识符。未指定时将删除所有选择。 |
-| hide | boolean | 是否也隐藏受影响的选择处理程序。 |
+| hide | boolean | 是否也隐藏受影响的选项处理程序。 |
 
 </div>
 
@@ -680,7 +678,7 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 将 naninovel 脚本播放导航到指定路径并将该路径保存到全局状态；[@return] 命令使用此信息重定向到最后调用的 gosub 命令之后的命令。
 
 ::: info NOTE
-虽然此命令可以用作函数（子程序）来调用一组通用脚本行，但请记住 NaniScript 是一种场景脚本 DSL，不适合通用编程。强烈建议改用[自定义命令](/zh/guide/custom-commands)。
+虽然此命令可以用作函数（子程序）来调用一组通用脚本行，但请记住 NaniScript 是一种剧本脚本 DSL，不适合通用编程。强烈建议改用[自定义命令](/zh/guide/custom-commands)。
 :::
 
 <div class="config-table">
@@ -767,7 +765,7 @@ You are victorious!
 
 ## hide
 
-隐藏具有指定 ID 的 Actor（角色、背景、文本打印机、选择处理程序）。如果发现多个具有相同 ID 的 Actor（例如，一个角色和一个打印机），将仅影响第一个发现的 Actor。
+隐藏具有指定 ID 的 Actor（角色、背景、文本打印机、选项处理程序）。如果发现多个具有相同 ID 的 Actor（例如，一个角色和一个打印机），将仅影响第一个发现的 Actor。
 
 <div class="config-table">
 
@@ -776,7 +774,7 @@ You are victorious!
 | <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">actorIds</span> | string list | 要隐藏的 Actor 的 ID。 |
 | time | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画将在开始动画到新目标之前立即完成。 |
-| wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
+| wait | boolean | 是否在开始执行剧本脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
 </div>
 
@@ -790,7 +788,7 @@ You are victorious!
 
 ## hideAll
 
-隐藏场景中的所有 Actor（角色、背景、文本打印机、选择处理程序）。
+隐藏场景中的所有 Actor（角色、背景、文本打印机、选项处理程序）。
 
 <div class="config-table">
 
@@ -798,7 +796,7 @@ You are victorious!
 | --- | --- | --- |
 | time | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画将在开始动画到新目标之前立即完成。 |
-| wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
+| wait | boolean | 是否在开始执行剧本脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
 </div>
 
@@ -817,7 +815,7 @@ You are victorious!
 | --- | --- | --- |
 | time | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画将在开始动画到新目标之前立即完成。 |
-| wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
+| wait | boolean | 是否在开始执行剧本脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
 </div>
 
@@ -836,7 +834,7 @@ You are victorious!
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">printerId</span> | string | 要使用的打印机 Actor 的 ID。未指定时将使用默认值。 |
 | time | number | 命令启动的动画持续时间，以秒为单位。 |
-| wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
+| wait | boolean | 是否在开始执行剧本脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
 </div>
 
@@ -1197,7 +1195,7 @@ Marks a branch of a conditional execution block, which is executed in case condi
 | easing | string | 要应用的[缓动函数](/zh/guide/special-effects#动画缓动)名称。未指定时，将使用配置中设置的默认函数。 |
 | time | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画将在开始动画到新目标之前立即完成。 |
-| wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
+| wait | boolean | 是否在开始执行剧本脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
 </div>
 
@@ -1240,6 +1238,7 @@ Kohaku: 再次使用我链接的打印机。
 ; 静音 'Rollback' 和 'Pause' 输入并取消静音 'Continue' 输入。
 @processInput set:Rollback.false,Pause.false,Continue.true
 ```
+
 ## purgeRollback
 
 防止玩家回滚到以前的状态快照。
@@ -1329,7 +1328,7 @@ You've picked two.
 
 ## remove
 
-移除（处置）具有指定 ID 的 Actor（角色、背景、文本打印机、选择处理程序）。如果发现多个具有相同 ID 的 Actor（例如，一个角色和一个打印机），将仅影响第一个发现的 Actor。
+移除（处置）具有指定 ID 的 Actor（角色、背景、文本打印机、选项处理程序）。如果发现多个具有相同 ID 的 Actor（例如，一个角色和一个打印机），将仅影响第一个发现的 Actor。
 
 ::: info NOTE
 默认情况下，Naninovel 在卸载脚本资源时会自动移除未使用的 Actor；仅当资源提供者配置中的 `Remove Actors` 被禁用时，或者需要在特定时刻强制处置 Actor 时，才使用此命令。有关更多信息，请参阅[内存管理](/zh/guide/memory-management#actor-资源)指南。
@@ -1498,9 +1497,8 @@ This line will disappear.
 @set foo=cos(angle)
 
 ; 获取 -100 到 100 之间的随机数，然后取 4 次方
-; 并分配给 'foo' 变量。当表达式内部存在空格时，
-; 需要引号。
-@set "foo = pow(random(-100, 100), 4)"
+; 并分配给 'foo' 变量。
+@set foo = pow(random(-100, 100), 4)
 
 ; 如果 'foo' 是数字，则其值加 1（递增）。
 @set foo++
@@ -1572,7 +1570,7 @@ My favourite drink is {drink}!
 | group | string | 播放音频时应使用的混音器[组路径](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | loop | boolean | 是否在播放结束时从头重复播放，直到停止。 |
 | volume | number | 音频播放的响度，范围为 0.0 到 1.0。请注意，1.0 是默认值；不产生削波时，无法让数字音频超过 0 dBFS 基线播放。 |
-| pitch | number | 播放的感知频率，范围为 [-3.0 到 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)。 |
+| pitch | number | 播放的感知频率（速度），范围为 [-3.0 到 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)，其中 1.0 为正常速度。负值将反向播放音频。 |
 | pos | number list | 音频源的位置（在世界空间中）。未指定时，将禁用空间模式。 |
 | wait | boolean | 是否等待音频播放结束后再执行下一个命令。循环播放时无效。 |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">path</span> | string | 音频资源的本地路径（名称）。 |
@@ -1610,13 +1608,12 @@ My favourite drink is {drink}!
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">sfxPath</span> | string | 要播放的音效资源的路径。 |
 | restart | boolean | 如果已在播放，是否从头开始播放音频。 |
 | additive | boolean | 是否允许播放同一剪辑的多个实例；当启用 `restart` 时无效。 |
 | group | string | 播放音频时应使用的混音器[组路径](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | loop | boolean | 是否在播放结束时从头重复播放，直到停止。 |
 | volume | number | 音频播放的响度，范围为 0.0 到 1.0。请注意，1.0 是默认值；不产生削波时，无法让数字音频超过 0 dBFS 基线播放。 |
-| pitch | number | 播放的感知频率，范围为 [-3.0 到 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)。 |
+| pitch | number | 播放的感知频率（速度），范围为 [-3.0 到 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)，其中 1.0 为正常速度。负值将反向播放音频。 |
 | pos | number list | 音频源的位置（在世界空间中）。未指定时，将禁用空间模式。 |
 | wait | boolean | 是否等待音频播放结束后再执行下一个命令。循环播放时无效。 |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">path</span> | string | 音频资源的本地路径（名称）。 |
@@ -1672,7 +1669,7 @@ My favourite drink is {drink}!
 
 ## show
 
-显示（使其可见）具有指定 ID 的 Actor（角色、背景、文本打印机、选择处理程序等）。如果发现多个具有相同 ID 的 Actor（例如，一个角色和一个打印机），将仅影响第一个发现的 Actor。
+显示（使其可见）具有指定 ID 的 Actor（角色、背景、文本打印机、选项处理程序等）。如果发现多个具有相同 ID 的 Actor（例如，一个角色和一个打印机），将仅影响第一个发现的 Actor。
 
 <div class="config-table">
 
@@ -1681,7 +1678,7 @@ My favourite drink is {drink}!
 | <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">actorIds</span> | string list | 要显示的 Actor 的 ID。 |
 | time | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画将在开始动画到新目标之前立即完成。 |
-| wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
+| wait | boolean | 是否在开始执行剧本脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
 </div>
 
@@ -1703,7 +1700,7 @@ My favourite drink is {drink}!
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">printerId</span> | string | 要使用的打印机 Actor 的 ID。未指定时将使用默认值。 |
 | time | number | 命令启动的动画持续时间，以秒为单位。 |
-| wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
+| wait | boolean | 是否在开始执行剧本脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
 </div>
 
@@ -1763,7 +1760,7 @@ My favourite drink is {drink}!
 
 ## slide
 
-滑动（在两个位置之间移动）具有指定 ID 的 Actor（角色、背景、文本打印机或选择处理程序），并可选择更改 Actor 的可见性和外观。可用于代替多个 [@char] 或 [@back] 命令，通过滑动动画显示或隐藏 Actor。
+滑动（在两个位置之间移动）具有指定 ID 的 Actor（角色、背景、文本打印机或选项处理程序），并可选择更改 Actor 的可见性和外观。可用于代替多个 [@char] 或 [@back] 命令，通过滑动动画显示或隐藏 Actor。
 
 ::: info NOTE
 请注意，此命令将在所有 Actor 管理器中搜索具有指定 ID 的现有 Actor，如果存在多个具有相同 ID 的 Actor（例如，一个角色和一个文本打印机），这将仅影响第一个发现的 Actor。在使用此命令引用 Actor 之前，请确保该 Actor 存在于场景中；例如，如果是角色，你可以使用 `@char CharID visible:false time:0` 将其不被察觉地添加到场景中。
@@ -1780,7 +1777,7 @@ My favourite drink is {drink}!
 | easing | string | 要应用的[缓动函数](/zh/guide/special-effects#动画缓动)名称。未指定时，将使用配置中设置的默认函数。 |
 | time | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画将在开始动画到新目标之前立即完成。 |
-| wait | boolean | 是否在开始执行场景脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
+| wait | boolean | 是否在开始执行剧本脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
 
 </div>
 
@@ -1795,8 +1792,9 @@ My favourite drink is {drink}!
 
 ; 使用 'EaseOutBounce' 动画缓动，
 ; 在 5 秒内将 'Mia' Actor 从场景的左中心侧滑动到右下角。
-@slide Sheba from:15,50 to:85,0 time:5 easing:EaseOutBounce
+@slide Mia from:15,50 to:85,0 time:5 easing:EaseOutBounce
 ```
+
 ## snow
 
 生成模拟[雪](/zh/guide/special-effects#snow)的粒子系统。
@@ -1851,7 +1849,7 @@ My favourite drink is {drink}!
 
 ## stop
 
-停止场景脚本播放。
+停止剧本脚本播放。
 
 <div class="config-table">
 
@@ -2227,7 +2225,7 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 | group | string | 播放音频时应使用的混音器[组路径](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | loop | boolean | 是否在播放结束时从头重复播放，直到停止。 |
 | volume | number | 音频播放的响度，范围为 0.0 到 1.0。请注意，1.0 是默认值；不产生削波时，无法让数字音频超过 0 dBFS 基线播放。 |
-| pitch | number | 播放的感知频率，范围为 [-3.0 到 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)。 |
+| pitch | number | 播放的感知频率（速度），范围为 [-3.0 到 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)，其中 1.0 为正常速度。负值将反向播放音频。 |
 | pos | number list | 音频源的位置（在世界空间中）。未指定时，将禁用空间模式。 |
 | wait | boolean | 是否等待音频播放结束后再执行下一个命令。循环播放时无效。 |
 | <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">path</span> | string | 音频资源的本地路径（名称）。 |
@@ -2297,3 +2295,4 @@ Jeez, what a disgusting Noise. Shut it down![wait i5][>]
     @else
         Correct!
 ```
+

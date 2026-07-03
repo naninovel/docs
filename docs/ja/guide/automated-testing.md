@@ -88,7 +88,7 @@ public IEnumerator WhenTrueCompleteTitleBackChanges () => new E2E()
         }))
 ```
 
-— 上記は、最初のゲーム起動をシミュレートしてクリーンな状態でエンジンを初期化しますが、さらに `completedX` および `completedY` グローバル変数をtrueに設定します。
+— 上記は、最初のゲーム起動をシミュレートしてクリーンな状態でエンジンを初期化しますが、さらに `completedX` および `completedY` メタ変数をtrueに設定します。
 
 ## シーケンスの作成
 

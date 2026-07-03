@@ -48,7 +48,7 @@ using UnityEngine.UI;
 public class CustomLabel : Text
 {
     // "CustomLabel.LabelText" 管理文本记录的值将在引擎初始化时分配给
-    // 下面的变量，并在区域设置更改时更新。
+    // 下面的变量，并在语言环境更改时更新。
     [ManagedText("foo")] // "foo" 是记录的文档名称。
     public static string LabelText = "bar"; // "bar" 是默认值。
 
@@ -59,7 +59,7 @@ public class CustomLabel : Text
         text = LabelText; // 将当前记录值分配给标签。
 
         var l10n = Engine.GetService<ILocalizationManager>();
-        // 当用户在运行时更改区域设置时更新标签。
+        // 当用户在运行时更改语言环境时更新标签。
         l10n.OnLocaleChanged += _ => text = LabelText;
     }
 }
@@ -69,7 +69,7 @@ public class CustomLabel : Text
 
 您可以直接从剧本脚本引用管理文本值。当您希望剧本表达式使用可本地化文本时，这很有用。
 
-创建一个名为 `Script` 的托管文本文件，并添加记录。假设在 `Script` 管理文本文档中有以下记录：
+创建一个名为 `Script` 的管理文本文件，并添加记录。假设在 `Script` 管理文本文档中有以下记录：
 
 ```
 Greeting1: 嘿！
@@ -83,15 +83,15 @@ Greeting3: 嗨！
 @print { random(Greeting1, Greeting2, Greeting3) }
 ```
 
-`Script` 管理文本文档可以像其他文档一样进行本地化；当用户选择另一个区域设置时，文本将自动从相应的本地化文档中引用。
+`Script` 管理文本文档可以像其他文档一样进行本地化；当用户选择另一个语言环境时，文本将自动从相应的本地化文档中引用。
 
 ## 本地化
 
 管理文本本地化遵循与剧本脚本类似的工作流程：
 
 1. 在 `Resources/Naninovel/Text` 文件夹中生成（创建/编辑）所需的管理文本文档。
-2. 在区域设置文件夹（`Resources/Naninovel/Localization/{Locale}`，其中 `{Locale}` 是目标区域设置标签）中运行本地化实用程序。
-3. 源管理文本文档的本地化文档将出现在相应的区域设置文件夹中。使用它们来添加或编辑翻译。
+2. 在语言环境文件夹（`Resources/Naninovel/Localization/{Locale}`，其中 `{Locale}` 是目标语言环境标签）中运行本地化实用程序。
+3. 源管理文本文档的本地化文档将出现在相应的语言环境文件夹中。使用它们来添加或编辑翻译。
 
 要更新管理文本文档及其对应的本地化副本，请首先在 `Resources/Naninovel/Text` 文件夹中运行生成管理文本实用程序，然后在 `Resources/Naninovel/Localization/{Locale}` 中运行本地化实用程序。默认情况下，这两个实用程序都将尝试保留任何现有的修改（管理文本记录及其翻译），因此您不必在每次更新时重写所有内容。
 
