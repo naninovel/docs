@@ -214,8 +214,8 @@ public class SwitchToAdventureMode : Command
 ```csharp
 private void OnTriggerEnter (Collider other)
 {
-	var switchCommand = new SwitchToNovelMode { ScriptPath = "Script001" };
-	switchCommand.Execute().Forget();
+	var track = Engine.GetService<IScriptPlayer>().MainTrack;
+	track.ExecuteTransientCommand("novel scriptPath:Script001").Forget();
 }
 ```
 

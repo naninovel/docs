@@ -300,7 +300,7 @@ Font Render Mode: Distance Field 16
 ```
 
 ::: tip EXAMPLE
-右から左（アラビア語）テキストをサポートするカスタムtext mesh proプリンターの設定の完全な例については、[RTLサンプル](/ja/guide/samples#rtl) を参照してください。
+右から左（アラビア語）テキストをサポートするカスタムTextMesh Proプリンターの設定の完全な例については、[RTLサンプル](/ja/guide/samples#rtl) を参照してください。
 :::
 
 ::: info NOTE

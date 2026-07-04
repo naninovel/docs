@@ -43,7 +43,7 @@ Story Editor is fully integrated with the Unity Editor and can be started by eit
 
 ![?width=588](https://i.gyazo.com/48ad8d4c512b67df02d7ace15d5eaca5.png)
 
-Internet connection is required to download the editor application binaries when you launch the Story Editor for the first time; the binaries are cached, so network won't be required for the consequent runs in the same project.
+Internet connection is required to download the editor application binaries when you launch the Story Editor for the first time; the binaries are cached, so network won't be required for the subsequent runs in the same project.
 
 ## Workspace
 
@@ -133,7 +133,7 @@ You can customize both the editor and project via the settings tab, which has tw
 
 ### User Settings
 
-User settings are stored in the directory you picked during the first-time setup in sandbox mode or under the Unity's persistent directory in the embedded mode. They're not shared with the project and apply to all projects on the device. This includes preferences like the editor color scheme, keymap, and UI element visibility.
+User settings are stored in the directory you picked during the first-time setup in sandbox mode or under Unity's persistent directory in the embedded mode. They're not shared with the project and apply to all projects on the device. This includes preferences like the editor color scheme, keymap, and UI element visibility.
 
 ### Project Settings
 

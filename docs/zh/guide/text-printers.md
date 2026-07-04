@@ -300,7 +300,7 @@ Font Render Mode: Distance Field 16
 ```
 
 ::: tip EXAMPLE
-有关设置支持从右到左（阿拉伯语）文本的自定义 text mesh pro 打印机的完整示例，请参阅 [RTL 示例](/zh/guide/samples#rtl)。
+有关设置支持从右到左（阿拉伯语）文本的自定义 TextMesh Pro 打印机的完整示例，请参阅 [RTL 示例](/zh/guide/samples#rtl)。
 :::
 
 ::: info NOTE

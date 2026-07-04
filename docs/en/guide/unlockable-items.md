@@ -122,7 +122,7 @@ Long description line 1.<br>
 ...
 ```
 
-If you prefer the inline format, remove `Tips` from the `Multiline Categories` list in the managed text configuration; the tips can then be authored similar to other managed text documents:
+If you prefer the inline format, remove `Tips` from the `Multiline Documents` list in the managed text configuration; the tips can then be authored similar to other managed text documents:
 
 ```
 Tip1ID: Title

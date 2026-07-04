@@ -287,7 +287,7 @@ https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteD
 
 ![](https://www.youtube.com/watch?v=6PdOAOsnhio)
 
-有关可用切片选项和使用示例的更多信息，请参阅扩展文档：https://dicing.elringus.com/guide/unity。
+有关可用切片选项和使用示例的更多信息，请参阅 [扩展文档](https://dicing.elringus.com/guide/unity)。
 
 ::: tip EXAMPLE
 在 [切片 actor 示例](/zh/guide/samples#切片-actor) 中查找有关设置切片 actor 的示例。

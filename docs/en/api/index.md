@@ -1225,7 +1225,7 @@ Spawns particle system simulating [rain](/guide/special-effects#rain).
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| power | decimal | The intensity of the rain (particles spawn rate per second); defaults to 500. Set to 0 to disable (de-spawn) the effect. |
+| power | decimal | The intensity of the rain (particles spawn rate per second), in 0.0 to 1.0 range; defaults to 0.5. Set to 0 to disable (de-spawn) the effect. |
 | time | decimal | The particle system will gradually grow the spawn rate to the target level over the specified time, in seconds. |
 | xSpeed | decimal | Multiplier to the horizontal speed of the particles. Use to change angle of the rain drops. |
 | ySpeed | decimal | Multiplier to the vertical speed of the particles. |
@@ -1238,10 +1238,10 @@ Spawns particle system simulating [rain](/guide/special-effects#rain).
 </div>
 
 ```nani
-; Start intensive Rain over 10 seconds.
-@Rain power:1500 time:10
-; Stop the Rain over 30 seconds.
-@Rain power:0 time:30
+; Start intensive rain over 10 seconds.
+@rain power:1 time:10
+; Stop the rain over 30 seconds.
+@rain power:0 time:30
 ```
 
 ## random
@@ -1722,7 +1722,7 @@ Spawns particle system simulating [snow](/guide/special-effects#snow).
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| power | decimal | The intensity of the snow (particles spawn rate per second); defaults to 100. Set to 0 to disable (de-spawn) the effect. |
+| power | decimal | The intensity of the snow (particles spawn rate per second), in 0.0 to 1.0 range; defaults to 0.5. Set to 0 to disable (de-spawn) the effect. |
 | time | decimal | The particle system will gradually grow the spawn rate to the target level over the specified time, in seconds. |
 | pos | decimal list | Position (relative to the scene borders, in percents) to set for the spawned effect game object. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
 | position | decimal list | Position (in world space) to set for the spawned effect game object. |
@@ -1734,7 +1734,7 @@ Spawns particle system simulating [snow](/guide/special-effects#snow).
 
 ```nani
 ; Start intensive snow over 10 seconds.
-@snow power:300 time:10
+@snow power:1 time:10
 ; Stop the snow over 30 seconds.
 @snow power:0 time:30
 ```
