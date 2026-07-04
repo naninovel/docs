@@ -39,7 +39,7 @@ UI 自定义允许添加自定义 UI 并修改或完全替换任何内置 UI 元
 当引擎初始化时，它将实例化资源管理器中分配的所有 UI 预制件。
 
 ::: info NOTE
-某些功能（例如 [UI 切换](/zh/guide/gui#ui-切换)）要求 UI 在 `Screen Space - Camera` 模式下渲染。为了获得最佳兼容性，请确保您的自定义 UI 选择了正确的渲染模式，并且 Render Camera 字段为空（UI 管理器将自动分配相机）。
+某些功能（例如 [UI 切换](/zh/guide/gui#ui-切换)）要求 UI 在 `Screen Space - Camera` 模式下渲染。为了获得最佳兼容性，请确保您的自定义 UI 选择了正确的渲染模式，并且 Render Camera 字段为空（UI 管理器将自动分配摄像机）。
 
 ![](https://i.gyazo.com/d62bed3ba0c85972b12e759cc7b44c91.png)
 :::
@@ -180,7 +180,7 @@ public class MyCustomUI : CustomUI
 
 ![](https://i.gyazo.com/5f56fbddc090919cc71f68e82bb1713f.png)
 
-您还可以使用 `{arg}` 表达式在脚本中文本中引用 Unity 事件参数。支持的参数类型为：`string`、`int`、`float` 和 `bool`。下面的示例演示了当布尔 Unity 事件为 `true` 时执行相机抖动并播放声音效果，当为 `false` 时播放背景音乐。
+您还可以使用 `{arg}` 表达式在脚本中文本中引用 Unity 事件参数。支持的参数类型为：`string`、`int`、`float` 和 `bool`。下面的示例演示了当布尔 Unity 事件为 `true` 时执行摄像机抖动并播放声音效果，当为 `false` 时播放背景音乐。
 
 ![](https://i.gyazo.com/78e9fa27d6561f8f8aced76bbeb4b542.png)
 

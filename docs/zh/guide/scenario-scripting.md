@@ -1,4 +1,4 @@
-# Naninovel 脚本
+# 剧本脚本
 
 剧本脚本是扩展名为 `.nani` 的文本文档，可让您控制场景中发生的事情。脚本资产是通过 `Create -> Naninovel -> Scenario Script` 资产上下文菜单创建的。您可以使用内置的 [故事编辑器](/zh/guide/editor) 或您选择的外部文本或代码编辑器（例如 Microsoft Word、Google Docs 或 [VS Code](/zh/guide/ide-extension)）打开和编辑它们。
 
@@ -350,14 +350,14 @@ Lorem ipsum[shake Camera ver:true wait:false] dolor sit amet.
 — 或者当布尔参数无名时，例如：
 
 ```nani
-; 使用无名参数禁用相机观看模式。
+; 使用无名参数禁用摄像机观看模式。
 @look false
 ```
 
 在后一种情况下，您还可以指定无名参数的 ID 并仍然使用标志：
 
 ```nani
-; 使用布尔标志禁用相机观看模式。
+; 使用布尔标志禁用摄像机观看模式。
 @look !enable
 ```
 
@@ -530,7 +530,7 @@ It starts raining...
 使用 [@async] 命令使嵌套行在专用脚本轨道上执行，与主播放例程并发。常见用例包括在场景照常进行时在后台运行复合动画：
 
 ```nani
-; 在淡出音乐的同时将相机缓慢平移到三个点。
+; 在淡出音乐的同时将摄像机缓慢平移到三个点。
 @async
     @bgm volume:0.7 fade:10
     @camera offset:4,1 zoom:0.5 time:3 wait!
@@ -583,7 +583,7 @@ Watch out!
 
 ...
 
-; 在重置相机之前，确保平移动画已完成。
+; 在重置摄像机之前，确保平移动画已完成。
 @await CameraPan
 @camera offset:0,0 zoom:0
 ```
@@ -591,7 +591,7 @@ Watch out!
 如果您不想等待任务的剩余持续时间，您还可以使用 `complete!` 标志强制任务立即完成：
 
 ```nani
-; 完成相机动画并立即重置它。
+; 完成摄像机动画并立即重置它。
 @await CameraPan complete!
 @camera offset:0,0 zoom:0 time:0
 ```

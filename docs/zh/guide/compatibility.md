@@ -11,7 +11,7 @@
 运行时不使用任何特定于平台的 API、预编译的本机库或第三方依赖项。因此，预计 Naninovel 与 Unity 可以定位的所有平台兼容。然而，这也意味着它不利用任何本机平台功能，因此您可能需要调整某些功能以在 VR/XR 等特殊平台上获得最佳用户体验。
 
 ::: info NOTE
-虽然 Unity [支持主机平台](https://unity.com/how-to/develop-console-video-games-unity)（PlayStation、Xbox、Switch），但对于中小型开发者而言，这一过程可能会较为困难。如果你正在寻找发行合作伙伴，[呐呐呐制作组](https://nanana.cn/)亦向国内 Naninovel 用户提供安卓、iOS、Xbox 主机等平台的[游戏移植服务](https://nanana.cn/article/contact)。
+虽然 Unity [支持主机平台](https://unity.com/how-to/develop-console-video-games-unity)（PlayStation、Xbox、Switch），但对于中小型开发者而言，这一过程可能会较为困难。如果您正在寻找发行合作伙伴，[呐呐呐制作组](https://nanana.cn/)亦向国内 Naninovel 用户提供安卓、iOS、Xbox 主机等平台的[游戏移植服务](https://nanana.cn/article/contact)。
 :::
 
 ## 进入播放模式
