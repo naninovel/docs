@@ -355,18 +355,18 @@ You can review all the registered resources, as well as actors and other engine 
 
 ![?width=641](https://i.gyazo.com/0716a001d7bc1695ae0cac655b55f017.png)
 
-You're free to change the resource paths (they equal the asset names by default), which may be useful for organisational purposes. The registered paths are what are actually used when you reference resources in the scenario scripts. For example, in the screenshot above we changed `Explosion` to `SFX/Explosion`. We can now use the new path to play the sound effect:
+You're free to change the resource paths (they equal the asset names by default), which may be useful for organizational purposes. The registered paths are what are actually used when you reference resources in the scenario scripts. For example, in the screenshot above we changed `Explosion` to `SFX/Explosion`. We can now use the new path to play the sound effect:
 
 ```nani
 @sfx SFX/Explosion
 ```
 
-When you add or modify resources, both the Story Editor and the VS Code extension are automatically synchronised with the changes and update the associated lists.
+When you add or modify resources, both the Story Editor and the VS Code extension are automatically synchronized with the changes and update the associated lists.
 
 ![](https://i.gyazo.com/c353c7cfa398315d926f365634786467.png)
 
 ::: tip
-Consider installing the Unity's [Addressables package](https://docs.unity3d.com/Packages/com.unity.addressables@latest) for ultimate control over how assets are organised and bundled in the final build — Naninovel will automatically integrate with the package.
+Consider installing Unity's [Addressables package](https://docs.unity3d.com/Packages/com.unity.addressables@latest) for ultimate control over how assets are organized and bundled in the final build — Naninovel will automatically integrate with the package.
 :::
 
 ## Dialogue Mode

@@ -8,7 +8,7 @@ Choose file formats that are most comfortable for your development workflow. Whe
 
 In case you have a lot of audio files and it's inconvenient to assign them via editor menu, it's possible to just drop them at `Resources/Naninovel/Audio` folder, and they'll automatically be available in the scripts. You can additionally organize them with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in scenario scripts. Eg, audio clip stored as `Resources/Naninovel/Audio/Music/Ambient/Noise002.wav` can be referenced in scripts as `Music/Ambient/Noise002`.
 
-It's also possible to use [addressable asset system](/guide/resource-providers#addressable) to manually expose the resources. To expose an asset, assign address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "MainTheme.wav" BGM, assign the clip asset following address: `Naninovel/Audio/MainTheme`. Be aware that the addressable provider is not used in editor by default; you can allow it by enabling `Enable Addressable In Editor` property in resource provider configuration menu.
+It's also possible to use [addressable asset system](/guide/resource-providers#addressable) to manually expose the resources. To expose an asset, assign address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "MainTheme.wav" BGM, assign the clip asset the following address: `Naninovel/Audio/MainTheme`. Be aware that the addressable provider is not used in editor by default; you can allow it by enabling `Enable Addressable In Editor` property in resource provider configuration menu.
 
 ::: warning
 Audio assets not assigned via resources manager won't be available in various editor dropdowns, such as the one used to select `Message Sound` for a character actor.
@@ -29,7 +29,7 @@ Use the [@bgm] command followed by the clip name to control the music playback i
 
 ; Changes volume of all the played music tracks to 50% over 2.5 seconds
 ; and makes them play in a loop.
-@bgm volume:0.5 loop! time:2.5
+@bgm volume:0.5 loop! fade:2.5
 ```
 
 Music tracks are looped by default. When a music track name is not specified in the [@bgm] command, all currently played tracks will be affected. When invoked for a track that is already playing, the track won't restart, but the specified parameters (volume and whether the track is looped) will be applied.
@@ -64,7 +64,7 @@ Use the [@sfx] and [@stopSfx] commands followed by the clip name to control play
 
 ; Changes volume of all the played SFX tracks to 75% over 2.5
 ; seconds and disables looping for all of them.
-@sfx volume:0.75 !loop time:2.5
+@sfx volume:0.75 !loop fade:2.5
 ```
 
 Sound effect tracks are not looped by default. When an SFX track name is not specified in the [@sfx] command, all currently played tracks will be affected. When invoked for a track that is already playing, the track won't restart, but the specified parameters (volume and whether the track is looped) will be applied.
@@ -93,9 +93,9 @@ It's possible to animate the position like any other parameter:
 ```nani
 ; Pans 'Rain' position right-left-right in a loop until stopped.
 @async Rainpan loop!
-    @sfx Rain pos:1.5 time:10
+    @sfx Rain pos:1.5 fade:10
     @wait 10
-    @sfx Rain pos:-1.5 time:10
+    @sfx Rain pos:-1.5 fade:10
     @wait 10
 
 ...

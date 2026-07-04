@@ -250,7 +250,7 @@ Lorem ipsum
 | pos | number list | オーディオソースの位置（ワールド空間）。指定しない場合、空間モードは無効になります。 |
 | wait | boolean | 音声の再生が終わるまで待ってから次のコマンドを実行するかどうか。ループ再生時は効果がありません。 |
 | <span class="command-param-primary" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります">path</span> | string | オーディオリソースのローカルパス（名前）。 |
-| easing | string |  |
+| easing | string | 適用する [イージング関数](/ja/guide/special-effects#アニメーションイージング) の名前。指定しない場合、設定で設定されたデフォルトの関数を使用します。 |
 | fade | number | コマンドによって開始されるアニメーションの期間（秒単位）。 |
 | lazy | boolean | コマンドによって開始されたアニメーションがすでに実行中の場合、`lazy` を有効にすると現在の状態から新しいターゲットまでアニメーションを継続します。`lazy` が有効でない場合（デフォルトの動作）、実行中のアニメーションは新しいターゲットへのアニメーションを開始する前に即座に完了します。 |
 | waitFade | boolean | 次のコマンドを再生する前に、フェードの完了を待機するかどうか。 |
@@ -1075,7 +1075,7 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 
 | パラメータ | 型 | 説明 |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります 必須パラメータ: パラメータは常に指定する必要があります">movieName</span> | string | 再生するムービーリソースの名前。 |
+| <span class="command-param-primary command-param-required" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります 必須パラメータ: パラメータは常に指定する必要があります">moviePath</span> | string | 再生するムービーリソースのローカルパス。 |
 | time | number | フェードアニメーションの期間（秒単位）。指定しない場合、ムービー設定で設定されたフェード期間を使用します。 |
 | block | boolean | ムービーの再生中にゲームとの対話をブロックして、プレイヤーがスキップできないようにするかどうか。 |
 
@@ -1113,13 +1113,13 @@ WebGLの外部またはエディター内では、Unityの `Application.OpenURL`
 
 ## or
 
-Marks a branch of a conditional execution block, which is executed in case condition of the opening [@if] or [@unless] and preceding [@else] or [@or] (if any) commands are not met while the own condition is met. Can be used as shortcut for `@else if:...`. For usage examples see [conditional execution](/ja/guide/scenario-scripting#条件付き実行) guide.
+条件実行ブロックの分岐をマークします。これは、開いている [@if] または [@unless]、および先行する [@else] または [@or]（ある場合）コマンドの条件が満たされず、かつ自身の条件が満たされた場合に実行されます。`@else if:...` のショートカットとして使用できます。使用例については、[条件実行](/ja/guide/scenario-scripting#条件付き実行) ガイドを参照してください。
 
 <div class="config-table">
 
-| Parameter | Type | Description                                                                                                                                                |
-| --- | --- |------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [scenario expression](/ja/guide/expressions), which should return a boolean value determining whether the associated nested block will be executed. |
+| パラメータ | 型 | 説明 |
+| --- | --- | --- |
+| <span class="command-param-primary command-param-required" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります 必須パラメータ: パラメータは常に指定する必要があります">expression</span> | string | 関連付けられたネストされたブロックが実行されるかどうかを決定するブール値を返す必要がある [シナリオ式](/ja/guide/expressions)。 |
 
 </div>
 
@@ -1574,7 +1574,7 @@ My favourite drink is {drink}!
 | pos | number list | オーディオソースの位置（ワールド空間）。指定しない場合、空間モードは無効になります。 |
 | wait | boolean | 音声の再生が終わるまで待ってから次のコマンドを実行するかどうか。ループ再生時は効果がありません。 |
 | <span class="command-param-primary" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります">path</span> | string | オーディオリソースのローカルパス（名前）。 |
-| easing | string |  |
+| easing | string | 適用する [イージング関数](/ja/guide/special-effects#アニメーションイージング) の名前。指定しない場合、設定で設定されたデフォルトの関数を使用します。 |
 | fade | number | コマンドによって開始されるアニメーションの期間（秒単位）。 |
 | lazy | boolean | コマンドによって開始されたアニメーションがすでに実行中の場合、`lazy` を有効にすると現在の状態から新しいターゲットまでアニメーションを継続します。`lazy` が有効でない場合（デフォルトの動作）、実行中のアニメーションは新しいターゲットへのアニメーションを開始する前に即座に完了します。 |
 | waitFade | boolean | 次のコマンドを再生する前に、フェードの完了を待機するかどうか。 |
@@ -1617,7 +1617,7 @@ My favourite drink is {drink}!
 | pos | number list | オーディオソースの位置（ワールド空間）。指定しない場合、空間モードは無効になります。 |
 | wait | boolean | 音声の再生が終わるまで待ってから次のコマンドを実行するかどうか。ループ再生時は効果がありません。 |
 | <span class="command-param-primary" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります">path</span> | string | オーディオリソースのローカルパス（名前）。 |
-| easing | string |  |
+| easing | string | 適用する [イージング関数](/ja/guide/special-effects#アニメーションイージング) の名前。指定しない場合、設定で設定されたデフォルトの関数を使用します。 |
 | fade | number | コマンドによって開始されるアニメーションの期間（秒単位）。 |
 | lazy | boolean | コマンドによって開始されたアニメーションがすでに実行中の場合、`lazy` を有効にすると現在の状態から新しいターゲットまでアニメーションを継続します。`lazy` が有効でない場合（デフォルトの動作）、実行中のアニメーションは新しいターゲットへのアニメーションを開始する前に即座に完了します。 |
 | waitFade | boolean | 次のコマンドを再生する前に、フェードの完了を待機するかどうか。 |
@@ -1791,8 +1791,8 @@ My favourite drink is {drink}!
 @slide Sheba to:-10 !visible
 
 ; 'EaseOutBounce' アニメーションイージングを使用して、
-; 5秒かけて 'Mia' アクターをシーンの左中央側から右下にスライドさせます。
-@slide Mia from:15,50 to:85,0 time:5 easing:EaseOutBounce
+; 5秒かけて 'Sheba' アクターをシーンの左中央側から右下にスライドさせます。
+@slide Sheba from:15,50 to:85,0 time:5 easing:EaseOutBounce
 ```
 
 ## snow
@@ -1893,7 +1893,7 @@ This line is only executed when navigated directly with a @gosub.
 | パラメータ | 型 | 説明 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります">path</span> | string | オーディオリソースのローカルパス（名前）。 |
-| easing | string |  |
+| easing | string | 適用する [イージング関数](/ja/guide/special-effects#アニメーションイージング) の名前。指定しない場合、設定で設定されたデフォルトの関数を使用します。 |
 | fade | number | コマンドによって開始されるアニメーションの期間（秒単位）。 |
 | lazy | boolean | コマンドによって開始されたアニメーションがすでに実行中の場合、`lazy` を有効にすると現在の状態から新しいターゲットまでアニメーションを継続します。`lazy` が有効でない場合（デフォルトの動作）、実行中のアニメーションは新しいターゲットへのアニメーションを開始する前に即座に完了します。 |
 | waitFade | boolean | 次のコマンドを再生する前に、フェードの完了を待機するかどうか。 |
@@ -1921,7 +1921,7 @@ This line is only executed when navigated directly with a @gosub.
 | パラメータ | 型 | 説明 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります">path</span> | string | オーディオリソースのローカルパス（名前）。 |
-| easing | string |  |
+| easing | string | 適用する [イージング関数](/ja/guide/special-effects#アニメーションイージング) の名前。指定しない場合、設定で設定されたデフォルトの関数を使用します。 |
 | fade | number | コマンドによって開始されるアニメーションの期間（秒単位）。 |
 | lazy | boolean | コマンドによって開始されたアニメーションがすでに実行中の場合、`lazy` を有効にすると現在の状態から新しいターゲットまでアニメーションを継続します。`lazy` が有効でない場合（デフォルトの動作）、実行中のアニメーションは新しいターゲットへのアニメーションを開始する前に即座に完了します。 |
 | waitFade | boolean | 次のコマンドを再生する前に、フェードの完了を待機するかどうか。 |
@@ -1945,7 +1945,7 @@ This line is only executed when navigated directly with a @gosub.
 | パラメータ | 型 | 説明 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります">path</span> | string | オーディオリソースのローカルパス（名前）。 |
-| easing | string |  |
+| easing | string | 適用する [イージング関数](/ja/guide/special-effects#アニメーションイージング) の名前。指定しない場合、設定で設定されたデフォルトの関数を使用します。 |
 | fade | number | コマンドによって開始されるアニメーションの期間（秒単位）。 |
 | lazy | boolean | コマンドによって開始されたアニメーションがすでに実行中の場合、`lazy` を有効にすると現在の状態から新しいターゲットまでアニメーションを継続します。`lazy` が有効でない場合（デフォルトの動作）、実行中のアニメーションは新しいターゲットへのアニメーションを開始する前に即座に完了します。 |
 | waitFade | boolean | 次のコマンドを再生する前に、フェードの完了を待機するかどうか。 |
@@ -2229,7 +2229,7 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 | pos | number list | オーディオソースの位置（ワールド空間）。指定しない場合、空間モードは無効になります。 |
 | wait | boolean | 音声の再生が終わるまで待ってから次のコマンドを実行するかどうか。ループ再生時は効果がありません。 |
 | <span class="command-param-primary command-param-required" title="プライマリパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります 必須パラメータ: パラメータは常に指定する必要があります">path</span> | string | オーディオリソースのローカルパス（名前）。 |
-| easing | string |  |
+| easing | string | 適用する [イージング関数](/ja/guide/special-effects#アニメーションイージング) の名前。指定しない場合、設定で設定されたデフォルトの関数を使用します。 |
 | fade | number | コマンドによって開始されるアニメーションの期間（秒単位）。 |
 | lazy | boolean | コマンドによって開始されたアニメーションがすでに実行中の場合、`lazy` を有効にすると現在の状態から新しいターゲットまでアニメーションを継続します。`lazy` が有効でない場合（デフォルトの動作）、実行中のアニメーションは新しいターゲットへのアニメーションを開始する前に即座に完了します。 |
 | waitFade | boolean | 次のコマンドを再生する前に、フェードの完了を待機するかどうか。 |

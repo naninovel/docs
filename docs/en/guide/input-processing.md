@@ -71,7 +71,7 @@ When assigned, the `Gamepad Controls` legend will be enabled, while others (butt
 If you'd like to customize gamepad legend icons, check out [Xelu's free controller prompts](https://thoseawesomeguys.com/prompts/).
 :::
 
-Additionally, while in gamepad mode and a modal UI is shown, the first active selectable inside will be focused to prevent focus from getting stuck on a previously selected object. This behaviour can be changed by explicitly assigning `Focus Object` of a custom UI or derived component, in which case the UI won't attempt to find a focus object automatically.
+Additionally, while in gamepad mode and a modal UI is shown, the first active selectable inside will be focused to prevent focus from getting stuck on a previously selected object. This behavior can be changed by explicitly assigning `Focus Object` of a custom UI or derived component, in which case the UI won't attempt to find a focus object automatically.
 
 ### Keyboard
 
@@ -81,7 +81,7 @@ Otherwise, it works the same as Gamepad mode, just with the different controls l
 
 ### Touch
 
-When in touch mode, Naninovel won't perform any special changes on the managed UIs by default. However, you can add touch-specific behaviour by overriding `HandleInputModeChanged` method of `CustomUI` component.
+When in touch mode, Naninovel won't perform any special changes on the managed UIs by default. However, you can add touch-specific behavior by overriding `HandleInputModeChanged` method of `CustomUI` component.
 
 To disable the adapt to input mode feature for a specific UI, uncheck the `Adapt To Input Mode` option of `Custom UI` (or derived) component. To disable the feature globally, use `Detect Input Mode` option in input configuration.
 

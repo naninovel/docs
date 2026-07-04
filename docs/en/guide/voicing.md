@@ -73,7 +73,7 @@ The added slider will now control voice volume of the specified character. When 
 
 ## Voice Language
 
-When adding voice over for different localizations, it's possible to allow the player to select the voice language independently of the main localization (e.g., play the game with English text and UI, but with Japanese voice over).
+When adding voiceover for different localizations, it's possible to allow the player to select the voice language independently of the main localization (e.g., play the game with English text and UI, but with Japanese voiceover).
 
 To add a voice language dropdown to the game settings, assign the `Voice Locales` property in the audio configuration menu. Add the language tags of the locales for which you have the corresponding voice resources. E.g., the example below will allow the player to choose from English and Japanese voices:
 
@@ -93,9 +93,9 @@ Use the voiceover documents generator utility accessible via `Naninovel -> Tools
 
 ![](https://i.gyazo.com/d1e40ff118daebd83b55e0433431b2a8.png)
 
-`Locale` property allows to select a specific locale for which to generate the documents (the localized scenario scripts for the selected locale should exist in your project).
+`Locale` property allows you to select a specific locale for which to generate the documents (the localized scenario scripts for the selected locale should exist in your project).
 
-`Format` property controls type of file and formatting of the voiceover documents to produce:
+`Format` property controls the type of file and formatting of the voiceover documents to produce:
 
 - Plaintext — Plaintext file without any formatting.
 - Markdown — [Markdown](https://en.wikipedia.org/wiki/Markdown) file with additional formatting for better readability.
@@ -107,9 +107,9 @@ Below is an example of a voiceover document generated in Markdown format.
 
 ### Custom Generator
 
-It's possible to inject custom voiceover document generator in case you wish to format and/or serialize the documents in a special way.
+It's possible to inject a custom voiceover document generator in case you wish to format and/or serialize the documents in a special way.
 
-To add custom generator, create a new C# class with a parameterless constructor and implement `IVoiceoverDocumentGenerator` interface. The utility will automatically pick such class and use it instead of the built-in generators.
+To add a custom generator, create a new C# class with a parameterless constructor and implement `IVoiceoverDocumentGenerator` interface. The utility will automatically pick such a class and use it instead of the built-in generators.
 
 `GenerateVoiceoverDocument` method will be invoked by the utility for each script found in the project for the selected locale. `list` argument is the list of commands contained in the script. `locale` represents the locale (language) selected in the utility. `outDir` is the output path selected in the utility.
 

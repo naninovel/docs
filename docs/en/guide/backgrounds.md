@@ -79,7 +79,7 @@ When the [camera](https://docs.unity3d.com/Manual/class-Camera.html) is renderin
 
 While you can [enforce supported aspect ratios](/guide/gui#enforcing-aspect-ratios), a more accessible alternative is to make the game adaptable to any aspect ratio. The built-in GUI is already flexible and will adapt to any screen size, and actor positioning is relative to the scene borders, which are matched against the screen. Background match mode allows configuring how the background actors fill the screen.
 
-Following match modes can be set for each background actor (except for generic implementation):
+The following match modes can be set for each background actor (except for generic implementation):
 
 | Mode | Description |
 |------|-------------|
@@ -94,7 +94,7 @@ In case you wish to implement a similar matching feature for a generic or custom
 
 ## Poses
 
-Each background has `Poses` property allowing to specify named states (poses).
+Each background has a `Poses` property allowing you to specify named states (poses).
 
 Pose name can be used as appearance in [@back] command to apply all the selected parameters specified in the pose at once, instead of specifying them individually via the command parameters.
 
@@ -132,12 +132,12 @@ While Naninovel automatically generates background placeholders, you can define 
 Sprite implementation of the background actors is the most common and simple one; it uses a set of [texture](https://docs.unity3d.com/Manual/Textures.html) assets wrapped over a quad mesh (sprite) to represent appearances of the background. The textures can be based on `.jpg`, `.png`, `.tiff`, `.psd` or any other image file format [supported by Unity](https://docs.unity3d.com/Manual/ImportingTextures).
 
 ::: tip
-Choose file formats that are most comfortable for your development workflow. When building the project, Unity will automatically convert all the source resources (textures, audio, video, etc.) to the formats most suitable for the target platform, so it won't make difference in which format you originally store the resources in the project. Find more information on how Unity manage project assets in the [official documentation](https://docs.unity3d.com/Manual/AssetWorkflow).
+Choose file formats that are most comfortable for your development workflow. When building the project, Unity will automatically convert all the source resources (textures, audio, video, etc.) to the formats most suitable for the target platform, so it won't make a difference in which format you originally store the resources in the project. Find more information on how Unity manages project assets in the [official documentation](https://docs.unity3d.com/Manual/AssetWorkflow).
 :::
 
 Initial (unscaled) size of the sprite background mesh on scene depends on the reference resolution (camera configuration), background's `Pixel Per Unit` property (set for each background actor in the configuration menu) and source texture resolution.
 
-Naninovel will attempt to make the backgrounds cover the whole camera frustum by default, so make sure to size the source textures so that the aspect ratio is equal to the reference resolution; see [match mode guide](/guide/backgrounds#match-mode) for more information on how to change or disable this behaviour.
+Naninovel will attempt to make the backgrounds cover the whole camera frustum by default, so make sure to size the source textures so that the aspect ratio is equal to the reference resolution; see [match mode guide](/guide/backgrounds#match-mode) for more information on how to change or disable this behavior.
 
 ::: tip
 Define reference resolution with your team before starting the work on the art assets (both characters and backgrounds). This way the artists will be able to author the assets with the correct dimensions and you won't have to edit them later.
@@ -145,7 +145,7 @@ Define reference resolution with your team before starting the work on the art a
 
 ## Diced Sprite Backgrounds
 
-Built with an open source [SpriteDicing](https://github.com/elringus/SpriteDicing) package, `DicedSpriteBackground` implementation allows to significantly reduce build size and texture memory by reusing texture areas of the background sprites when the associated textures contain mostly similar data.
+Built with an open source [SpriteDicing](https://github.com/elringus/SpriteDicing) package, `DicedSpriteBackground` implementation allows you to significantly reduce build size and texture memory by reusing texture areas of the background sprites when the associated textures contain mostly similar data.
 
 Diced background is very similar to diced character implementation; see the [diced characters guide](/guide/characters#diced-sprite-characters) for the setup and usage instructions.
 
@@ -162,10 +162,10 @@ When `Transcode` is disabled in the video asset import settings, the clip may no
 :::
 
 ::: tip EXAMPLE
-In case having issues with achieving a seamless loop, make sure the video has exactly same starting and finishing frames and a compatible encoding setup; check our [video actor sample](/guide/samples#video-actor) for the reference.
+In case of issues with achieving a seamless loop, make sure the video has exactly the same starting and finishing frames and a compatible encoding setup; check our [video actor sample](/guide/samples#video-actor) for the reference.
 :::
 
-To prevent specific appearance from looping, append `NoLoop` (case-insensitive) to the appearance name.
+To prevent a specific appearance from looping, append `NoLoop` (case-insensitive) to the appearance name.
 
 ### WebGL Limitations
 
@@ -204,7 +204,7 @@ If you're using a video format other than mp4 (eg, webm), set the extension of t
 
 ## Layered Backgrounds
 
-The layered implementation allows composing backgrounds from multiple sprites (layers) and then toggle them individually via scenario scripts at runtime.
+The layered implementation allows composing backgrounds from multiple sprites (layers) and then toggling them individually via scenario scripts at runtime.
 
 ::: tip
 Layered actor implementation has been evolving and is currently the most flexible with support for all the rendering features (in contrast to generic). Even if you don't want to use layer expressions, but instead control the appearance with Unity's Animator or other custom systems; or need to render non-trivial objects such as particle systems and/or utilize third-party renderers, check [render only](/guide/characters#outsourcing-appearance-management) and [camera rendering](/guide/characters#camera-rendering) options available for layered actors before resorting to generic or custom implementation.
@@ -214,7 +214,7 @@ To create a layered background prefab, use `Create -> Naninovel -> Background ->
 
 The layered backgrounds are very similar to [layered characters](/guide/characters#layered-characters); consult the documentation for more info on how to set up and control them via scenario scripts.
 
-Don't forget that primary parameter in [@back] command is expecting appearance and transition type (not ID and appearance as with [@char] command), so specify layer composition expressions in the following way:
+Don't forget that the primary parameter in [@back] command is expecting appearance and transition type (not ID and appearance as with [@char] command), so specify layer composition expressions in the following way:
 
 ```nani
 ; Given "LayeredForest" background actor
@@ -223,12 +223,12 @@ Don't forget that primary parameter in [@back] command is expecting appearance a
 
 ## Generic Backgrounds
 
-Generic background is the most flexible background actor implementation. It's based on a prefab with a `Generic Background Behaviour` component attached to the root object. Appearance changes and all the other background parameters are routed as [Unity events](https://docs.unity3d.com/Manual/UnityEvents.html) allowing to implement the behavior of the underlying object in any way you wish.
+Generic background is the most flexible background actor implementation. It's based on a prefab with a `Generic Background Behaviour` component attached to the root object. Appearance changes and all the other background parameters are routed as [Unity events](https://docs.unity3d.com/Manual/UnityEvents.html) allowing you to implement the behavior of the underlying object in any way you wish.
 
 ![](https://i.gyazo.com/6483ef3e84549c1bbfbdffc6556308ea.png)
 
 ::: info NOTE
-Generic actor implementations just route events from the scenario scripts and it's up to user to implement the underlying behaviour, e.g., how the actor should react to the appearance or visibility change commands, whether and how it will adapt to aspect ratio changes, etc. Don't expect most of the actor-related features to work automatically with the generic implementations.
+Generic actor implementations just route events from the scenario scripts and it's up to the user to implement the underlying behavior, e.g., how the actor should react to the appearance or visibility change commands, whether and how it will adapt to aspect ratio changes, etc. Don't expect most of the actor-related features to work automatically with the generic implementations.
 :::
 
 To create generic background prefab from a template, use `Create -> Naninovel -> Background -> Generic` context asset menu.

@@ -59,7 +59,7 @@ Below are examples of addresses you can use to manually assign common resource t
 | Generic Character            | `Naninovel/Characters/{CHARACTER_ID}`                          |
 | Audio                        | `Naninovel/Audio/{AUDIO_PATH}`                                 |
 | Managed Text Document        | `Naninovel/Text/{DOCUMENT_PATH}`                               |
-| Script Localication Document | `Naninovel/Localization/{L10N_TAG}/Text/Scripts/{SCRIPT_PATH}` |
+| Script Localization Document | `Naninovel/Localization/{L10N_TAG}/Text/Scripts/{SCRIPT_PATH}` |
 
 ::: tip EXAMPLE
 Check the [addressable sample](/guide/samples#addressable) for an example of manually registering Naninovel resources via the Addressable provider (without using the resource editor menus) and serving the assets from a remote host. You may also find Unity's [learning materials](https://learn.unity.com/course/get-started-with-addressables) useful.

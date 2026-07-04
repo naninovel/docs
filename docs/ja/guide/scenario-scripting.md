@@ -67,7 +67,7 @@
 | タイプ | 説明 |
 |---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | string | 単純な文字列値。例: `LoremIpsum`。スペースが含まれる場合は、必ず二重引用符で囲んでください。例: `"Lorem ipsum dolor sit amet."`。 |
-| number | 整数または小数の数値。例: `1`, `150`, `-25`, `1.0`, `12.08`, `-0.005`。 |
+| number | 整数または小数の数値。例: `1`, `-25`, `1.0`, `-0.005`。 |
 | boolean | `true` または `false` の2つの値のいずれかを持つことができます。`true` や `false` と入力する代わりに [ブールフラグ](/ja/guide/scenario-scripting#ブールフラグ) を使用できます。例: `@hideAll wait:true` の代わりに `@hideAll wait!`。 |
 | named | ドットで区切られたキーと値のペア。キーは文字列で、値は上記のタイプのいずれかです。名前付き number の例: `foo.8`, `bar.-20`。 |
 | list | 上記のタイプのいずれかの値のカンマ区切りリスト。文字列リストの例: `foo,bar,"Lorem ipsum."`、number リストの例: `12,-8,0.105,2`。 |
@@ -352,7 +352,7 @@ Lorem ipsum[shake Camera ver:true wait:false] dolor sit amet.
 @char Kohaku visible:{score>10}
 ```
 
-— または、ブールパラメータに名前がない場合。例：
+— または、ブールパラメータがプライマリパラメータの場合。例：
 
 ```nani
 ; プライマリパラメータでカメラルックモードを無効にします。
@@ -372,10 +372,10 @@ Lorem ipsum[shake Camera ver:true wait:false] dolor sit amet.
 
 ```nani
 ; "level" が9000より大きい場合、選択肢を追加します。
-@choice "It's over 9000!" if:level>9000
+@choice "It's over 9000!" if: level above 9000
 
 ; "dead" がfalseの場合、printコマンドを実行します。
-@print "I'm still alive." if:!dead
+@print "I'm still alive." if: not dead
 
 ; 同じですが、より簡潔です。
 @print "I'm still alive." unless:dead
@@ -454,7 +454,7 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 [@if]、[@choice]、[@while] などのコマンド、およびその他のいくつかのコマンドは、インデントを介して他のコマンドや汎用テキストラインを関連付けることをサポートしています。
 
 ```nani
-@if score>10
+@if score > 10
     @bgm Victory
     Good job, you've passed the test!
 ```
@@ -466,11 +466,11 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 各ホストコマンドには、ネストされたコマンドを実行するときの独自の動作があります。たとえば、[@if] は条件が満たされない場合にネストされたコマンドをスキップしますが、[@choice] はプレイヤーが関連する選択肢を選択した場合にのみネストされたコマンドを実行します。
 
 ```nani
-@if score>10
+@if score > 10
     Good job, you've passed the test!
     @bgm Victory
     @spawn Fireworks
-@or attempts>100
+@or attempts > 100
     You're hopeless... Need help?
     @choice "Yeah, please!"
         @set score+=10

@@ -66,7 +66,7 @@ Unityエディタに入ったら、`Assets/Scenes/Main.unity` シーンを開き
 
 ![](https://i.gyazo.com/eba8d2ce2dabfbe41cc0df238ad8ad99.png)
 
-## インテグレーション
+## ダイアログモード
 
 3Dアドベンチャーゲームの組み込みダイアログシステムと、切り替え可能なスタンドアロンノベルモードの両方として使用されるNaninovelを示すサンプルプロジェクト。
 

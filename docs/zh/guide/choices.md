@@ -102,7 +102,7 @@
 @choice "秘密选项" lock:score<10
 ```
 
-内置选项按钮具有一个 `On Lock` 事件，每次添加选项时都会调用该事件，这将设置底层按钮的 `Interactible` 属性，使其在选项未锁定时可交互，反之亦然。您可以通过将自定义处理程序附加到 `On Lock` 事件或覆盖选项按钮类的 `HandleLockChanged` 方法来覆盖或扩展该行为。
+内置选项按钮具有一个 `On Lock` 事件，每次添加选项时都会调用该事件，这将设置底层按钮的 `Interactable` 属性，使其在选项未锁定时可交互，反之亦然。您可以通过将自定义处理程序附加到 `On Lock` 事件或覆盖选项按钮类的 `HandleLockChanged` 方法来覆盖或扩展该行为。
 
 ![](https://i.gyazo.com/ec5ef74ec9af1aa46a18d89bd34d866f.png)
 

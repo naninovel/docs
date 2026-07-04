@@ -112,7 +112,7 @@
 
 | 属性 | 默认值 | 描述 |
 | --- | --- | --- |
-| Default Handler Id | Button List | 默认使用的选项处理程序的 ID。 |
+| Default Handler Id | ButtonList | 默认使用的选项处理程序的 ID。 |
 | Choice Button Loader | Choice Buttons- (Addressable, Project) | 用于加载自定义选项按钮的资源加载器的配置。 |
 | Default Metadata | Object Ref | 创建选项处理程序 actor 时默认使用的元数据，并且创建的 actor ID 的自定义元数据不存在。 |
 | Metadata | Object Ref | 创建具有特定 ID 的选项处理程序 actor 时使用的元数据。 |
@@ -166,11 +166,11 @@
 | --- | --- | --- |
 | Loader | Localization- (Addressable, Project) | 与本地化资源一起使用的资源加载器的配置。 |
 | Languages | Object Ref | 映射到默认语言显示名称的 RFC5646 语言标签。重新启动 Unity 编辑器以使更改生效。 |
-| Source Locale | En | 源项目资源的语言环境（创作项目资产的语言）。 |
+| Source Locale | en | 源项目资源的语言环境（创作项目资产的语言）。 |
 | Expose Source Locale | True | 是否使源语言环境对最终用户（玩家）可用，即包含在语言选择中。<br><br>如果您想与第三方共享源可本地化文本（例如，用于校对），但不想共享剧本脚本，则禁用此选项可能很有用。在这种情况下，禁用此选项并为源材料添加专用语言环境，然后可以将其导出到本地化文档或电子表格。 |
 | Default Locale | Null | 首次运行游戏时默认选择的语言环境。未指定时将选择 `Source Locale`。 |
 | Auto Detect Locale | True | 启用并在首次运行游戏时，尝试根据系统语言自动检测语言环境。成功且游戏支持该语言环境时，选择它；否则回退到 'Default Locale'。 |
-| Record Separator | | | 连接常见本地化脚本记录的文本字符，例如通用文本行的部分和可本地化参数值。 |
+| Record Separator | \| | 连接常见本地化脚本记录的文本字符，例如通用文本行的部分和可本地化参数值。 |
 | Annotation Prefix | > | 插入注释行之前的文本字符，以区分本地化文本。注释是可选添加到生成的本地化文档中的注释，以便为翻译人员提供额外的上下文，例如打印文本消息的作者、内联命令和包含本地化参数的命令行。存根字符用于替换此类注释的本地化部分，因为它们在包含要本地化文本的下一个注释行中重复。 |
 
 </div>
@@ -217,7 +217,7 @@
 | Auto Build Bundles | True | 构建播放器时是否自动构建 Addressable 资产包。禁用 `Use Addressables` 时无效。 |
 | Label By Scripts | True | 是否通过它们使用的剧本脚本路径标记所有 Naninovel Addressable 资产。当 Addressable 组设置中的 `Bundle Mode` 设置为 `Pack Together By Label` 时，将产生更高效的包打包。<br><br>请注意，脚本标签将分配给所有带有 'Naninovel' 标签的资产，其中包括手动公开给 Addressable 资源提供者的资产（不使用资源编辑器菜单）。 |
 | Local Root Path | %DATA%/Resources | 用于本地资源提供者的路径根。可以是资源所在文件夹的绝对路径，也可以是具有以下可用原点之一的相对路径：<br> • %DATA% — 目标设备上的游戏数据文件夹 (UnityEngine.Application.dataPath)。<br> • %PDATA% — 目标设备上的持久数据目录 (UnityEngine.Application.persistentDataPath)。<br> • %STREAM% — `StreamingAssets` 文件夹 (UnityEngine.Application.streamingAssetsPath)。<br> • %SPECIAL{F}% — OS 特殊文件夹（其中 F 是来自 System.Environment.SpecialFolder 的值）。 |
-| Video Stream Extension | .mp 4 | 在 WebGL 下流式传输视频（电影、视频背景）时，指定视频文件的扩展名。 |
+| Video Stream Extension | .mp4 | 在 WebGL 下流式传输视频（电影、视频背景）时，指定视频文件的扩展名。 |
 | Reload Scripts | True | 是否监视和热重载存储在本地提供者目录下的修改后的剧本脚本。 |
 
 </div>
@@ -280,10 +280,10 @@
 | --- | --- | --- |
 | Save Folder Name | Saves | 该文件夹将在游戏数据文件夹中创建。 |
 | Default Settings Slot Id | Settings | 设置保存文件的名称。 |
-| Default Global Slot Id | Global Save | 全局保存文件的名称。 |
-| Save Slot Mask | Game Save{0:000} | 用于命名保存槽的掩码。 |
-| Quick Save Slot Mask | Game Quick Save{0:000} | 用于命名快速保存槽的掩码。 |
-| Auto Save Slot Mask | Game Auto Save{0:000} | 用于命名自动保存槽的掩码。 |
+| Default Global Slot Id | GlobalSave | 全局保存文件的名称。 |
+| Save Slot Mask | GameSave{0:000} | 用于命名保存槽的掩码。 |
+| Quick Save Slot Mask | GameQuickSave{0:000} | 用于命名快速保存槽的掩码。 |
+| Auto Save Slot Mask | GameAutoSave{0:000} | 用于命名自动保存槽的掩码。 |
 | Save Slot Limit | 99 | 保存槽的最大数量。 |
 | Quick Save Slot Limit | 18 | 快速保存槽的最大数量。 |
 | Auto Save Slot Limit | 18 | 自动保存槽的最大数量。 |

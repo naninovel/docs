@@ -1,4 +1,4 @@
-# VS Code 扩展
+# IDE 扩展
 
 代码编辑器的功能，如语法高亮、错误检查、自动补全和交互式文档，可以显著提高生产力。Naninovel 拥有官方的 [VS Code](https://code.visualstudio.com) 扩展，为使用 [Naninovel 脚本](/zh/guide/scenario-scripting) 提供了丰富的创作工具。
 
@@ -358,9 +358,9 @@ public class ModifyBackground : ModifyActor { }
 大多数相同的参数上下文属性可以应用于表达式查询参数，以在 IDE 扩展中启用自动补全和诊断。请参阅 [查询指南](/zh/guide/expressions#参数上下文) 中的示例。
 :::
 
-## 常量表达式
+## 枚举表达式
 
-使用 `EnumContext` IDE 属性时，除了枚举之外，还可以指定一个由 IDE 评估的表达式，以根据命令参数值或其他变量（例如当前检查的脚本）生成常量名称。
+使用 `EnumContext` IDE 属性时，除了枚举之外，还可以指定一个由 IDE 评估的表达式，以根据命令参数值或其他变量（例如当前检查的脚本）生成枚举名称。
 
 表达式语法：
 
@@ -369,7 +369,7 @@ public class ModifyBackground : ModifyActor { }
 - 要引用参数值，请使用 `:` 后跟参数 ID（C# 中指定的字段名称，而不是别名）
 - 在参数引用后使用 `[0]` 或 `[1]` 指定命名值（0 表示名称，1 表示索引）
 - 在参数引用后使用空合并 (`??`) 作为值未指定时的后备
-- 使用连接运算符 (`+`) 合并多个常量的值
+- 使用连接运算符 (`+`) 合并多个枚举的值
 
 例如，检查分配给内置 `[@goto]` 命令的 `Path` 参数的表达式：
 
@@ -389,7 +389,7 @@ public class ModifyCharacter { ... }
 
 这将把共享的角色姿势与 ID 分配给 "Id" 参数或（当未分配时）"IdAndAppearance" 参数的名称组件的角色的姿势合并。
 
-常量表达式与 [自定义元数据提供者](/zh/guide/ide-extension#元数据提供者) 相结合，允许为 IDE 扩展创建灵活的自动补全场景。
+枚举表达式与 [自定义元数据提供者](/zh/guide/ide-extension#元数据提供者) 相结合，允许为 IDE 扩展创建灵活的自动补全场景。
 
 ## 其他 IDE 和编辑器
 
