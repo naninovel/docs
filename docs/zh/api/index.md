@@ -28,7 +28,7 @@
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">choiceSummary</span> | string | 选择显示的文本。当文本包含空格时，请用双引号 (`"`) 将其括起来。如果你希望在文本本身中包含双引号，请对其进行转义。 |
+| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">choiceSummary</span> | string | 选择显示的文本。当文本包含空格时，请用双引号 (`"`) 将其括起来。如果您希望在文本本身中包含双引号，请对其进行转义。 |
 | id | string | 选择的唯一标识符。稍后可用于使用 [@clearChoice] 删除选择。 |
 | lock | string | 选择是否应被禁用或以其他方式让玩家无法选择；有关更多信息，请参阅[选择文档](/zh/guide/choices#锁定选项)。默认情况下禁用。 |
 | button | string | 代表选择的[按钮预制件](/zh/guide/choices#选项按钮)的本地资源路径。预制件的根对象上应附加 `ChoiceHandlerButton` 组件。未指定时将使用默认按钮。 |
@@ -113,7 +113,7 @@ Lorem ipsum
 
 ## async
 
-在专用脚本轨道上与主场景播放例程并行异步执行嵌套行。用于并发运行复合动画或任意命令链。有关更多信息，请参阅[并发播放](/zh/guide/scenario-scripting#并发播放)指南。
+在专用脚本轨道上与主场景播放例程并行异步执行嵌套行。用于与后续剧情并发运行复合动画或任意命令链。有关更多信息，请参阅[并发播放](/zh/guide/scenario-scripting#并发播放)指南。
 
 <div class="config-table">
 
@@ -338,8 +338,8 @@ Actor 应实现 `IBlurable` 接口以支持该效果。
 | rotation | decimal list | 本地摄像机按 X,Y,Z 轴旋转的角度（0.0 到 360.0 或 -180.0 到 180.0）。 |
 | zoom | decimal | 相对摄像机缩放（正交大小或视野，取决于渲染模式），范围为 0.0（无缩放）到 1.0（全缩放）。 |
 | ortho | boolean | 摄像机应以正交 (true) 还是透视 (false) 模式渲染。 |
-| toggle | string list | 要切换（如果禁用则启用，反之亦然）的组件名称。组件应附加到与摄像机相同的游戏对象。这可用于切换[自定义后处理效果](/zh/guide/special-effects#自定义相机效果)。使用 `*` 影响附加到摄像机对象的所有组件。 |
-| set | named boolean list | 要启用或禁用的组件名称。组件应附加到与摄像机相同的游戏对象。这可用于显式启用或禁用[自定义后处理效果](/zh/guide/special-effects#自定义相机效果)。指定的组件启用状态将覆盖 `toggle` 参数的效果。使用 `*` 影响附加到摄像机对象的所有组件。 |
+| toggle | string list | 要切换（如果禁用则启用，反之亦然）的组件名称。组件应附加到与摄像机相同的游戏对象。这可用于切换[自定义后处理效果](/zh/guide/special-effects#自定义摄像机效果)。使用 `*` 影响附加到摄像机对象的所有组件。 |
+| set | named boolean list | 要启用或禁用的组件名称。组件应附加到与摄像机相同的游戏对象。这可用于显式启用或禁用[自定义后处理效果](/zh/guide/special-effects#自定义摄像机效果)。指定的组件启用状态将覆盖 `toggle` 参数的效果。使用 `*` 影响附加到摄像机对象的所有组件。 |
 | easing | string | 要应用的[缓动函数](/zh/guide/special-effects#动画缓动)名称。未指定时，将使用配置中设置的默认函数。 |
 | time | decimal | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画将在开始动画到新目标之前立即完成。 |
@@ -435,7 +435,7 @@ Actor 应实现 `IBlurable` 接口以支持该效果。
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">choiceSummary</span> | string | 选择显示的文本。当文本包含空格时，请用双引号 (`"`) 将其括起来。如果你希望在文本本身中包含双引号，请对其进行转义。 |
+| <span class="command-param-nameless" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID">choiceSummary</span> | string | 选择显示的文本。当文本包含空格时，请用双引号 (`"`) 将其括起来。如果您希望在文本本身中包含双引号，请对其进行转义。 |
 | id | string | 选择的唯一标识符。稍后可用于使用 [@clearChoice] 删除选择。 |
 | lock | string | 选择是否应被禁用或以其他方式让玩家无法选择；有关更多信息，请参阅[选择文档](/zh/guide/choices#锁定选项)。默认情况下禁用。 |
 | button | string | 代表选择的[按钮预制件](/zh/guide/choices#选项按钮)的本地资源路径。预制件的根对象上应附加 `ChoiceHandlerButton` 组件。未指定时将使用默认按钮。 |
@@ -622,7 +622,7 @@ You have 2 seconds to respond![>]
 分配要应用于打印消息的[格式化模板](/zh/guide/text-printers#消息模板)。
 
 ::: info NOTE
-你也可以使用[样式标签](/zh/guide/text-printers#文本样式)格式化打印的文本。
+您也可以使用[样式标签](/zh/guide/text-printers#文本样式)格式化打印的文本。
 :::
 
 <div class="config-table">
@@ -723,7 +723,7 @@ You are victorious!
 | --- | --- | --- |
 | <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">path</span> | string | 导航到的路径，格式如下：`ScriptPath#Label`。省略标签时，将从头开始播放指定的脚本。省略脚本路径时，将尝试在当前播放的脚本中查找标签。 |
 | reset | string list | 指定时，将控制在加载脚本之前是否重置引擎服务状态（如果路径指向另一个脚本）：<br/> - 指定 `*` 以重置所有服务，除了具有 `Goto.DontReset` 属性的服务。<br/> - 指定要从重置中排除的服务类型名称（以逗号分隔）；所有其他服务都将重置，包括具有 `Goto.DontReset` 属性的服务。<br/> - 指定 `-` 强制不重置（即使在配置中默认启用了重置）。<br/><br/>请注意，虽然某些服务应用了 `Goto.DontReset` 属性并且默认不重置，但在从重置中排除特定服务时仍应指定它们。 |
-| hold | boolean | 是否在目标脚本中保留资源，使其与此命令指定的脚本一起预加载。在 `Conservative` 资源策略之外无效。有关更多信息，请参阅[内存管理](/zh/guide/memory-management)指南。 |
+| hold | boolean | 是否在目标脚本中保留资源，使其与包含此命令的脚本一起预加载。在 `Conservative` 资源策略之外无效。有关更多信息，请参阅[内存管理](/zh/guide/memory-management)指南。 |
 | release | boolean | 是否在导航到目标脚本之前释放资源以释放内存。在 `Optimistic` 资源策略之外无效。有关更多信息，请参阅[内存管理](/zh/guide/memory-management)指南。 |
 
 </div>
@@ -932,7 +932,7 @@ Test result:[if score>8] Perfect![else if:score>6] Passed.[else] Failed.[endif]
 | --- | --- | --- |
 | <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">variableName</span> | string | 输入文本将分配给的自定义变量的名称。 |
 | type | string | 输入内容的类型；默认为指定变量的类型。用于更改分配的变量类型或分配给新变量时。支持的类型：`String`、`Numeric`、`Boolean`。 |
-| summary | string | 与输入字段一起显示的可选摘要文本。当文本包含空格时，请用双引号 (`"`) 将其括起来。如果你希望在文本本身中包含双引号，请对其进行转义。 |
+| summary | string | 与输入字段一起显示的可选摘要文本。当文本包含空格时，请用双引号 (`"`) 将其括起来。如果您希望在文本本身中包含双引号，请对其进行转义。 |
 | value | string | 为输入字段设置的预定义值。未分配时将提取分配变量的现有值（如果有）。 |
 | nostop | boolean | 在玩家提交输入之前是否不停止脚本播放。 |
 
@@ -1098,7 +1098,7 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">text</span> | string | 要打印的消息文本。当文本包含空格时，请用双引号 (`"`) 将其括起来。如果你希望在文本本身中包含双引号，请对其进行转义。 |
+| <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">text</span> | string | 要打印的消息文本。当文本包含空格时，请用双引号 (`"`) 将其括起来。如果您希望在文本本身中包含双引号，请对其进行转义。 |
 | printer | string | 要使用的打印机 Actor 的 ID。未指定时将使用默认值。 |
 | author | string | 应与打印消息关联的 Actor 的 ID。追加时忽略。指定 `*` 或使用 `,` 分隔多个 Actor ID 以使所有/选定的角色成为文本的作者；当与 `as` 参数结合使用以表示多个角色同时说话时很有用。 |
 | as | string | 指定时，将使用标签代替作者 ID（或关联的显示名称）在打印消息时在文本打印机中表示作者姓名。用于覆盖几条消息的默认名称或表示多个作者同时说话，而不会触发文本打印机的作者特定行为，例如消息颜色或头像。 |
@@ -1682,7 +1682,7 @@ My favourite drink is {drink}!
 滑动（在两个位置之间移动）具有指定 ID 的 Actor（角色、背景、文本打印机或选项处理程序），并可选择更改 Actor 的可见性和外观。可用于代替多个 [@char] 或 [@back] 命令，通过滑动动画显示或隐藏 Actor。
 
 ::: info NOTE
-请注意，此命令将在所有 Actor 管理器中搜索具有指定 ID 的现有 Actor，如果存在多个具有相同 ID 的 Actor（例如，一个角色和一个文本打印机），这将仅影响第一个发现的 Actor。在使用此命令引用 Actor 之前，请确保该 Actor 存在于场景中；例如，如果是角色，你可以使用 `@char CharID visible:false time:0` 将其不被察觉地添加到场景中。
+请注意，此命令将在所有 Actor 管理器中搜索具有指定 ID 的现有 Actor，如果存在多个具有相同 ID 的 Actor（例如，一个角色和一个文本打印机），这将仅影响第一个发现的 Actor。在使用此命令引用 Actor 之前，请确保该 Actor 存在于场景中；例如，如果是角色，您可以使用 `@char CharID visible:false time:0` 将其不被察觉地添加到场景中。
 :::
 
 <div class="config-table">
@@ -1987,7 +1987,7 @@ The bomb is defused!
 执行场景过渡，用命令开始执行时可见的任何内容（UI 除外）掩盖真实的场景内容，执行嵌套命令以更改场景并以指定的[过渡效果](/zh/guide/special-effects#过渡效果)结束。<br/><br/> 该命令的工作原理类似于 Actor 外观过渡，但覆盖整个场景。使用它可以通过过渡效果在单个批次中将多个 Actor 和其他可见实体更改为新状态。
 
 ::: info NOTE
-在过渡进行期间（嵌套命令正在运行），UI 将被隐藏且用户输入被阻止。你可以通过覆盖处理过渡过程的 `ISceneTransitionUI` 来更改此设置。<br/><br/> 异步嵌套命令将立即执行，无需为每个命令指定 `time:0`。<br/><br/> 嵌套块应该总是能完成；不要嵌套任何可能导航到嵌套块外部的命令，因为这可能会导致未定义的行为。
+在过渡进行期间（嵌套命令正在运行），UI 将被隐藏且用户输入被阻止。您可以通过覆盖处理过渡过程的 `ISceneTransitionUI` 来更改此设置。<br/><br/> 异步嵌套命令将立即执行，无需为每个命令指定 `time:0`。<br/><br/> 嵌套块应该总是能完成；不要嵌套任何可能导航到嵌套块外部的命令，因为这可能会导致未定义的行为。
 :::
 
 <div class="config-table">

@@ -22,7 +22,7 @@ var config = ProjectConfigurationProvider.LoadOrDefault<AudioConfiguration>();
 
 配置对象旨在通过编辑器菜单进行更改，但仍然可以在运行时修改它们。请注意，默认项目提供者返回的对象是存储在项目中的实际资产；在播放模式下修改它们将保留对资产的更改。这与 `Engine.GetConfiguration` 返回的实例不同，后者是运行时实例，不会改变原始资产。
 
-下面是在引擎初始化后立即更改相机配置的 `ReferenceResolution` 属性的示例：
+下面是在引擎初始化后立即更改摄像机配置的 `ReferenceResolution` 属性的示例：
 
 ```csharp
 using Naninovel;

@@ -1,10 +1,10 @@
 # 集成选项
 
-虽然 Naninovel 专注于传统的视觉小说游戏，并且作为模板最适合，但也可以将引擎与现有项目集成。如果你正在制作 3D 冒险游戏、RPG 或任何其他类型的游戏——你仍然可以将 Naninovel 用作嵌入式对话系统。
+虽然 Naninovel 专注于传统的视觉小说游戏，并且作为模板最适合，但也可以将引擎与现有项目集成。如果您正在制作 3D 冒险游戏、RPG 或任何其他类型的游戏——您仍然可以将 Naninovel 用作嵌入式对话系统。
 
 ![](https://i.gyazo.com/b1b6042db4a91b3a8cee74236b33c17c.mp4)
 
-有多种方法可以将 Naninovel 与自定义项目集成；具体的实现取决于项目类型和你想要实现的目标。在以下文档中，我们将列出各种配置选项和 API，它们可用于将 Naninovel 与独立游戏“配对”。在继续之前，请查看[引擎架构](/zh/guide/engine-architecture)以更好地了解其概念行为。
+有多种方法可以将 Naninovel 与自定义项目集成；具体的实现取决于项目类型和您想要实现的目标。在以下文档中，我们将列出各种配置选项和 API，它们可用于将 Naninovel 与独立游戏“配对”。在继续之前，请查看[引擎架构](/zh/guide/engine-architecture)以更好地了解其概念行为。
 
 ::: tip EXAMPLE
 查看[集成示例](/zh/guide/samples#对话模式-dialogue-mode)，其中 Naninovel 既用作 3D 冒险游戏的嵌入式对话系统，又用作独立的小说模式。
@@ -16,7 +16,7 @@
 
 ![](https://i.gyazo.com/6349692c2e2036e908e41c3d89509102.png)
 
-除非你想在小说模式下开始游戏，否则你应该在需要时通过调用 C# 中的静态 `RuntimeInitializer.Initialize()` 方法或向场景中的 GameObject 添加 `Runtime Initializer` 组件来手动初始化引擎；后者将使引擎在 Unity 中加载场景时初始化。
+除非您想在小说模式下开始游戏，否则您应该在需要时通过调用 C# 中的静态 `RuntimeInitializer.Initialize()` 方法或向场景中的 GameObject 添加 `Runtime Initializer` 组件来手动初始化引擎；后者将使引擎在 Unity 中加载场景时初始化。
 
 下面是一个从 MonoBehaviour 脚本手动初始化的示例：
 
@@ -73,7 +73,7 @@ var player = Engine.GetService<IScriptPlayer>();
 await player.MainTrack.LoadAndPlay("Script001");
 ```
 
-退出小说模式并返回主游戏模式时，你可能希望卸载 Naninovel 当前使用的所有资源并停止引擎服务。为此，请使用 `IStateManager` 服务的 `ResetState()` 方法：
+退出小说模式并返回主游戏模式时，您可能希望卸载 Naninovel 当前使用的所有资源并停止引擎服务。为此，请使用 `IStateManager` 服务的 `ResetState()` 方法：
 
 ```csharp
 var stateManager = Engine.GetService<IStateManager>();
@@ -82,7 +82,7 @@ await stateManager.ResetState();
 
 ### 脚本资产引用
 
-如果你想在自定义系统中引用剧本脚本资产（例如，播放对话或过场动画），请注意直接存储脚本路径是很脆弱的，因为它取决于文件位置和名称。
+如果您想在自定义系统中引用剧本脚本资产（例如，播放对话或过场动画），请注意直接存储脚本路径是很脆弱的，因为它取决于文件位置和名称。
 
 相反，使用资产引用 (GUID)。当关联文件移动或重命名时，引用不会更改。要从 GUID 解析脚本路径，请使用 `ScriptAssets.GetPath` 方法。Naninovel 还提供了一个 `ScriptAssetRef` 属性抽屉，为了方便起见，允许将脚本资产直接分配给序列化字段。
 
@@ -104,17 +104,17 @@ public class DialogueTrigger : MonoBehaviour
 }
 ```
 
-在编辑器中，你可以将脚本资产拖放到 `Script Ref` 字段，当脚本文件移动或重命名时，引用将保持完整。
+在编辑器中，您可以将脚本资产拖放到 `Script Ref` 字段，当脚本文件移动或重命名时，引用将保持完整。
 
 ![](https://i.gyazo.com/cd634c628a0a116397f6ecef837a10b0.png)
 
 ## 禁用标题菜单
 
-引擎初始化时会自动显示内置标题菜单实现，而你可能拥有自己的标题菜单。你可以使用[UI 自定义功能](/zh/guide/gui#ui-自定义)修改、替换或完全移除内置标题菜单。菜单列在 UI 资源中的 `Title UI` 下。
+引擎初始化时会自动显示内置标题菜单实现，而您可能拥有自己的标题菜单。您可以使用[UI 自定义功能](/zh/guide/gui#ui-自定义)修改、替换或完全移除内置标题菜单。菜单列在 UI 资源中的 `Title UI` 下。
 
 ## 引擎对象层
 
-你可以通过配置菜单让引擎为其创建的所有对象（UI 相关除外）分配特定的[层](https://docs.unity3d.com/Manual/Layers.html)。
+您可以通过配置菜单让引擎为其创建的所有对象（UI 相关除外）分配特定的[层](https://docs.unity3d.com/Manual/Layers.html)。
 
 ![](https://i.gyazo.com/8642fe37ddc45b8514b9f01d70277fbd.png)
 
@@ -126,7 +126,7 @@ public class DialogueTrigger : MonoBehaviour
 
 ## 渲染到纹理
 
-你可以通过在摄像机配置菜单中分配自定义摄像机预制件，使引擎的摄像机渲染到自定义 [RenderTexture](https://docs.unity3d.com/ScriptReference/RenderTexture.html) 而不是屏幕（并更改其他与摄像机相关的设置）。
+您可以通过在摄像机配置菜单中分配自定义摄像机预制件，使引擎的摄像机渲染到自定义 [RenderTexture](https://docs.unity3d.com/ScriptReference/RenderTexture.html) 而不是屏幕（并更改其他与摄像机相关的设置）。
 
 ![](https://i.gyazo.com/1b7116fa1bd170d3753b4cdbd27afcf3.png)
 
@@ -223,7 +223,7 @@ private void OnTriggerEnter (Collider other)
 
 还有许多其他功能（状态外包、服务覆盖、自定义序列化、资源和配置提供者等）在将引擎与其他系统集成时可能很有用。查看其余指南以获取更多信息。还可以考虑研究可用的[配置选项](/zh/guide/configuration)；某些功能可能未在指南中描述，但在集成时仍然很有用。
 
-如果你觉得某些引擎 API 或系统缺乏可扩展性并且需要修改源代码才能集成，请[联系支持](/zh/support/)——我们将考虑改进它。
+如果您觉得某些引擎 API 或系统缺乏可扩展性并且需要修改源代码才能集成，请[联系支持](/zh/support/)——我们将考虑改进它。
 
 ::: tip EXAMPLE
 查看[集成示例](/zh/guide/samples#对话模式-dialogue-mode)，其中 Naninovel 既用作 3D 冒险游戏的嵌入式对话，又用作可切换的独立小说模式。

@@ -1,6 +1,6 @@
 # IDE 扩展
 
-代码编辑器的功能，如语法高亮、错误检查、自动补全和交互式文档，可以显著提高生产力。Naninovel 拥有官方的 [VS Code](https://code.visualstudio.com) 扩展，为使用 [Naninovel 脚本](/zh/guide/scenario-scripting) 提供了丰富的创作工具。
+代码编辑器的功能，如语法高亮、错误检查、自动补全和交互式文档，可以显著提高生产力。Naninovel 拥有官方的 [VS Code](https://code.visualstudio.com) 扩展，为使用 [剧本脚本](/zh/guide/scenario-scripting) 提供了丰富的创作工具。
 
 ![?class=when-dark](https://i.gyazo.com/8ccfe73f2b0d39dfe8479a02a218a011.png)
 ![?class=when-light](https://i.gyazo.com/110a7ca29df4d19f9a019732e1a68019.png)
@@ -10,7 +10,7 @@
 ### 安装 VS Code 扩展
 
 1. 通过 `View -> Extensions` 菜单打开 VS Code 中的扩展视图
-2. 搜索 "Naninovel" 并点击 "Install"
+2. 搜索 "Naninovel" 并单击 "Install"
 
 ![](https://i.gyazo.com/85999dd50f414c13de12b46e640bf531.png)
 

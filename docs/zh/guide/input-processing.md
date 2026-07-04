@@ -57,7 +57,7 @@ Naninovel 使用 Unity 的 [Input System](https://docs.unity3d.com/Packages/com.
 
 ### 鼠标
 
-在此模式下，UI 将禁用所有底层 [Selectable](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-Selectable.html) 对象的导航。这是为了防止按钮在被鼠标点击时转换为“选中”状态。
+在此模式下，UI 将禁用所有底层 [Selectable](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-Selectable.html) 对象的导航。这是为了防止按钮在被鼠标单击时转换为“选中”状态。
 
 此外，如果在 `Custom UI`（或派生）组件中分配了 `Button Controls` 对象，它将被启用，而 `Keyboard Controls` 和 `Gamepad Controls` 将被禁用。这允许仅在关联的输入模式处于活动状态时保持特定于鼠标输入模式的按钮（例如，“关闭”按钮）和控件图例（例如，手柄按钮标签）可见。
 
