@@ -1,4 +1,4 @@
-# VS Code 扩展
+# IDE 扩展
 
 代码编辑器的功能，如语法高亮、错误检查、自动补全和交互式文档，可以显著提高生产力。Naninovel 拥有官方的 [VS Code](https://code.visualstudio.com) 扩展，为使用 [Naninovel 脚本](/zh/guide/scenario-scripting) 提供了丰富的创作工具。
 

@@ -152,8 +152,8 @@ Lorem ipsum <tip="VN">visual novel</tip> pharetra nec.
 ```
 — given a tip record with the "VN" ID exists, the associated "visual novel" text (when printed by a TMPro printer) will be underlined, the tip record unlocked and when the player clicks the text, the tips UI will open and show the related record.
 
-To change printer-related tips handling behaviour (e.g., modifying formatting of the associated text or adding custom behaviour when the tips are clicked) use the properties under the "Tips" section found in the `Revealable TMPro Text` component attached to the text game object of all the built-in TMPro text printer prefabs; see the [guide](/guide/text-printers#adding-custom-printers) on how to create custom printers to tweak them.
+To change printer-related tips handling behavior (e.g., modifying formatting of the associated text or adding custom behavior when the tips are clicked) use the properties under the "Tips" section found in the `Revealable TMPro Text` component attached to the text game object of all the built-in TMPro text printer prefabs; see the [guide](/guide/text-printers#adding-custom-printers) on how to create custom printers to tweak them.
 
 ![](https://i.gyazo.com/ec20da3f00b507428540d60f354bdeed.png)
 
-Be aware that when a custom handler is assigned to the `On Tip Clicked` event, the default behaviour (showing tips UI) will be disabled.
+Be aware that when a custom handler is assigned to the `On Tip Clicked` event, the default behavior (showing tips UI) will be disabled.

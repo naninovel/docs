@@ -64,7 +64,7 @@ public class MyScript : MonoBehaviour
 }
 ```
 
-## Playing scenario scripts
+## Playing Scenario Scripts
 
 To preload and play a scenario script with a given path, use `LoadAndPlay(ScriptPath)` method of `IScriptPlayer` service. To get an engine service, use `Engine.GetService<TService>()` static method, where `TService` is the type (interface) of the service to retrieve. For example, the following gets a script player service, preloads, and plays a script named `Script001`:
 

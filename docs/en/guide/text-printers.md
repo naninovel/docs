@@ -320,7 +320,7 @@ To find which characters will be displayed by Naninovel, use the Character Utili
 The tool will inspect both scenario scripts and managed text documents in the specified folder (including all the sub-folders), so you'll get the chars for all the text ever displayed to the player by Naninovel, including all the printed text, UI labels, unlockable tips, etc.
 
 ::: tip EXAMPLE
-Check the [localization sample](/guide/samples#localization) for an example on using custom TMPro font atlas for Japanese locale. The font automatically switched when Japanese language is selected and switched back to the default atlas when other languages are selected.
+Check the [localization sample](/guide/samples#localization) for an example on using custom TMPro font atlas for Japanese locale. The font is automatically switched when the Japanese language is selected and switched back to the default atlas when other languages are selected.
 :::
 
 ## Text Reveal Sounds
@@ -373,9 +373,9 @@ The process is similar to [reveal events](/guide/text-printers#reveal-events), b
 Lorem ipsum <:random(t_text1, t_text2)> sit amet.
 ```
 
-— `random(t_text1, t_text2)` expression will be re-evaluated each time the text is assigned to a printer, including instances when language is changed, making `t_text1` and `t_text2` [script text variables](/guide/managed-text#script-text) in sync with the currently active locale. The expression will as well be included to the localization documents allowing to change it for each specific language.
+— `random(t_text1, t_text2)` expression will be re-evaluated each time the text is assigned to a printer, including instances when language is changed, making `t_text1` and `t_text2` [script text variables](/guide/managed-text#script-text) in sync with the currently active locale. The expression will also be included in the localization documents, allowing it to be changed for each specific language.
 
-Reveal expressions are also useful to allow translators change order of the injected values, as it's common for languages to have different rules on the order/precedence of various speech parts:
+Reveal expressions are also useful to allow translators to change the order of the injected values, as it's common for languages to have different rules on the order/precedence of various speech parts:
 
 ```nani
 Hello, <:MC>! How's <:AC> doing?
@@ -384,7 +384,7 @@ Hello, <:MC>! How's <:AC> doing?
 — here, both `MC` and `AC` variables (presumably containing player-specified character names) will be exposed in the generated localization document, so that translators would be able to change their order, when necessary.
 
 ::: warning
-Refrain from using this feature with expressions that mutate or depend on game state, as it may cause undefined behaviour. For example, consider an expression, which result depends on a local variable `foo`, while a message with this expression was printed at some point and is kept in backlog. Should player change locale, the expression will be re-evaluated using whatever value `foo` has at the time locale is changed, which may be different from the time when it was initially printed.
+Refrain from using this feature with expressions that mutate or depend on game state, as it may cause undefined behavior. For example, consider an expression whose result depends on a local variable `foo`, while a message with this expression was printed at some point and is kept in backlog. Should the player change the locale, the expression will be re-evaluated using whatever value `foo` has at the time the locale is changed, which may be different from the time when it was initially printed.
 :::
 
 ## Select Tag

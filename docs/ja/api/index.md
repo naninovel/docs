@@ -1050,7 +1050,7 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 
 | パラメータ | 型 | 説明 |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="名前なしパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります 必須パラメータ: パラメータは常に指定する必要があります">movieName</span> | string | 再生するムービーリソースの名前。 |
+| <span class="command-param-nameless command-param-required" title="名前なしパラメータ: パラメータIDを指定せずにコマンド識別子の後に値を指定する必要があります 必須パラメータ: パラメータは常に指定する必要があります">moviePath</span> | string | 再生するムービーリソースのローカルパス。 |
 | time | decimal | フェードアニメーションの期間（秒単位）。指定しない場合、ムービー設定で設定されたフェード期間を使用します。 |
 | block | boolean | ムービーの再生中にゲームとの対話をブロックして、プレイヤーがスキップできないようにするかどうか。 |
 

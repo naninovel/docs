@@ -132,7 +132,7 @@ public static class CustomFunctions
 - **Example** IDE 扩展和可视化编辑器中显示的使用示例。
 
 ::: tip EXAMPLE
-在 [库存示例](/zh/guide/samples#库存-inventory) 中可以找到添加自定义表达式函数以检查项目中是否存在项目的另一个示例。具体来说，自定义函数通过 `Scripts/Runtime/Inventory/InventoryFunctions.cs` 运行时脚本实现。
+在 [库存示例](/zh/guide/samples#库存-inventory) 中可以找到添加自定义表达式函数以检查库存中是否存在物品的另一个示例。具体来说，自定义函数通过 `Scripts/Runtime/Inventory/InventoryFunctions.cs` 运行时脚本实现。
 :::
 
 ## 参数上下文

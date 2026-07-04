@@ -66,7 +66,7 @@
 
 <div class="config-table">
 
-| 署名 | 説明 | 例 |
+| シグネチャ | 説明 | 例 |
 | --- | --- | --- |
 | random(min, max) | min（含む）とmax（含む）の間のランダムな整数を返します。 | `random(0, 100)` |
 | random(min, max) | min（含む）とmax（含む）の間のランダムな小数を返します。 | `random(0.5, 1.5)` |

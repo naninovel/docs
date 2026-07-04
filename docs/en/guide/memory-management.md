@@ -286,7 +286,7 @@ if (holdersCount == 0) Resources.UnloadAsset(asset);
 
 "Holder" can be a reference to any object; usually it's the same class that is using the asset. It's used to distinguish the holders and prevent the same holder from accidentally holding a resource multiple times.
 
-Below is an example of Unity component which will prevent Naninovel from ever unloading an asset:
+Below is an example of a Unity component which will prevent Naninovel from ever unloading an asset:
 
 ```csharp
 using Naninovel;

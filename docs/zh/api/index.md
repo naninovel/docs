@@ -1050,7 +1050,7 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">movieName</span> | string | 要播放的电影资源的名称。 |
+| <span class="command-param-nameless command-param-required" title="无名参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">moviePath</span> | string | 要播放的电影资源的本地路径。 |
 | time | decimal | 淡入淡出动画的持续时间（以秒为单位）。未指定时，将使用电影配置中设置的淡入淡出持续时间。 |
 | block | boolean | 是否在播放电影时阻止与游戏的交互，防止玩家跳过它。 |
 
