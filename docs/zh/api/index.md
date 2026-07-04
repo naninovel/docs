@@ -250,7 +250,7 @@ Lorem ipsum
 | pos | number list | 音频源的位置（在世界空间中）。未指定时，将禁用空间模式。 |
 | wait | boolean | 是否等待音频播放结束后再执行下一个命令。循环播放时无效。 |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">path</span> | string | 音频资源的本地路径（名称）。 |
-| easing | string |  |
+| easing | string | 要应用的[缓动函数](/zh/guide/special-effects#动画缓动)名称。未指定时，将使用配置中设置的默认函数。 |
 | fade | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 会从当前状态继续动画到新的目标。未启用 `lazy`（默认行为）时，当前运行的动画会立即完成，然后开始动画到新的目标。 |
 | waitFade | boolean | 在播放下一个命令之前是否等待淡入淡出完成。 |
@@ -1075,7 +1075,7 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">movieName</span> | string | 要播放的电影资源的名称。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">moviePath</span> | string | 要播放的电影资源的本地路径。 |
 | time | number | 淡入淡出动画的持续时间（以秒为单位）。未指定时，将使用电影配置中设置的淡入淡出持续时间。 |
 | block | boolean | 是否在播放电影时阻止与游戏的交互，防止玩家跳过它。 |
 
@@ -1113,13 +1113,13 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 
 ## or
 
-Marks a branch of a conditional execution block, which is executed in case condition of the opening [@if] or [@unless] and preceding [@else] or [@or] (if any) commands are not met while the own condition is met. Can be used as shortcut for `@else if:...`. For usage examples see [conditional execution](/zh/guide/scenario-scripting#条件执行) guide.
+标记条件执行块的一个分支，在开头的 [@if] 或 [@unless] 以及前面的 [@else] 或 [@or]（如果有）命令的条件不满足而自身条件满足时执行。可用作 `@else if:...` 的简写。有关用法示例，请参阅[条件执行](/zh/guide/scenario-scripting#条件执行)指南。
 
 <div class="config-table">
 
-| Parameter | Type | Description                                                                                                                                               |
-| --- | --- |-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [scenario expression](/zh/guide/expressions), which should return a boolean value determining whether the associated nested block will be executed. |
+| 参数 | 类型 | 描述 |
+| --- | --- | --- |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">expression</span> | string | 一个[剧本表达式](/zh/guide/expressions)，应返回一个布尔值，决定是否执行关联的嵌套块。 |
 
 </div>
 
@@ -1574,7 +1574,7 @@ My favourite drink is {drink}!
 | pos | number list | 音频源的位置（在世界空间中）。未指定时，将禁用空间模式。 |
 | wait | boolean | 是否等待音频播放结束后再执行下一个命令。循环播放时无效。 |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">path</span> | string | 音频资源的本地路径（名称）。 |
-| easing | string |  |
+| easing | string | 要应用的[缓动函数](/zh/guide/special-effects#动画缓动)名称。未指定时，将使用配置中设置的默认函数。 |
 | fade | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 会从当前状态继续动画到新的目标。未启用 `lazy`（默认行为）时，当前运行的动画会立即完成，然后开始动画到新的目标。 |
 | waitFade | boolean | 在播放下一个命令之前是否等待淡入淡出完成。 |
@@ -1617,7 +1617,7 @@ My favourite drink is {drink}!
 | pos | number list | 音频源的位置（在世界空间中）。未指定时，将禁用空间模式。 |
 | wait | boolean | 是否等待音频播放结束后再执行下一个命令。循环播放时无效。 |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">path</span> | string | 音频资源的本地路径（名称）。 |
-| easing | string |  |
+| easing | string | 要应用的[缓动函数](/zh/guide/special-effects#动画缓动)名称。未指定时，将使用配置中设置的默认函数。 |
 | fade | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 会从当前状态继续动画到新的目标。未启用 `lazy`（默认行为）时，当前运行的动画会立即完成，然后开始动画到新的目标。 |
 | waitFade | boolean | 在播放下一个命令之前是否等待淡入淡出完成。 |
@@ -1791,8 +1791,8 @@ My favourite drink is {drink}!
 @slide Sheba to:-10 !visible
 
 ; 使用 'EaseOutBounce' 动画缓动，
-; 在 5 秒内将 'Mia' Actor 从场景的左中心侧滑动到右下角。
-@slide Mia from:15,50 to:85,0 time:5 easing:EaseOutBounce
+; 在 5 秒内将 'Sheba' Actor 从场景的左中心侧滑动到右下角。
+@slide Sheba from:15,50 to:85,0 time:5 easing:EaseOutBounce
 ```
 
 ## snow
@@ -1893,7 +1893,7 @@ This line is only executed when navigated directly with a @gosub.
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">path</span> | string | 音频资源的本地路径（名称）。 |
-| easing | string |  |
+| easing | string | 要应用的[缓动函数](/zh/guide/special-effects#动画缓动)名称。未指定时，将使用配置中设置的默认函数。 |
 | fade | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 会从当前状态继续动画到新的目标。未启用 `lazy`（默认行为）时，当前运行的动画会立即完成，然后开始动画到新的目标。 |
 | waitFade | boolean | 在播放下一个命令之前是否等待淡入淡出完成。 |
@@ -1921,7 +1921,7 @@ This line is only executed when navigated directly with a @gosub.
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">path</span> | string | 音频资源的本地路径（名称）。 |
-| easing | string |  |
+| easing | string | 要应用的[缓动函数](/zh/guide/special-effects#动画缓动)名称。未指定时，将使用配置中设置的默认函数。 |
 | fade | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 会从当前状态继续动画到新的目标。未启用 `lazy`（默认行为）时，当前运行的动画会立即完成，然后开始动画到新的目标。 |
 | waitFade | boolean | 在播放下一个命令之前是否等待淡入淡出完成。 |
@@ -1945,7 +1945,7 @@ This line is only executed when navigated directly with a @gosub.
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">path</span> | string | 音频资源的本地路径（名称）。 |
-| easing | string |  |
+| easing | string | 要应用的[缓动函数](/zh/guide/special-effects#动画缓动)名称。未指定时，将使用配置中设置的默认函数。 |
 | fade | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 会从当前状态继续动画到新的目标。未启用 `lazy`（默认行为）时，当前运行的动画会立即完成，然后开始动画到新的目标。 |
 | waitFade | boolean | 在播放下一个命令之前是否等待淡入淡出完成。 |
@@ -2229,7 +2229,7 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 | pos | number list | 音频源的位置（在世界空间中）。未指定时，将禁用空间模式。 |
 | wait | boolean | 是否等待音频播放结束后再执行下一个命令。循环播放时无效。 |
 | <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">path</span> | string | 音频资源的本地路径（名称）。 |
-| easing | string |  |
+| easing | string | 要应用的[缓动函数](/zh/guide/special-effects#动画缓动)名称。未指定时，将使用配置中设置的默认函数。 |
 | fade | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 会从当前状态继续动画到新的目标。未启用 `lazy`（默认行为）时，当前运行的动画会立即完成，然后开始动画到新的目标。 |
 | waitFade | boolean | 在播放下一个命令之前是否等待淡入淡出完成。 |

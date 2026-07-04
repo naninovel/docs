@@ -66,7 +66,7 @@
 
 ![](https://i.gyazo.com/eba8d2ce2dabfbe41cc0df238ad8ad99.png)
 
-## 集成 (Integration)
+## 对话模式 (Dialogue Mode)
 
 一个示例项目，演示了 Naninovel 既用作 3D 冒险游戏的嵌入式对话系统，又用作可切换的独立小说模式。
 

@@ -1,6 +1,6 @@
 # Special Effects
 
-A number of built-in script commands are dedicated for various special effects. For example, [@shake] command shakes an actor:
+A number of built-in script commands are dedicated to various special effects. For example, [@shake] command shakes an actor:
 
 ```nani
 ; Shake 'Kohaku' actor
@@ -149,7 +149,7 @@ Fade-out time | Number | 5 | The particle system will gradually lower the spawn 
 ; Start intensive snow over 10 seconds
 @snow power:1 time:10
 
-;Stop the snow over 30 seconds
+; Stop the snow over 30 seconds
 @snow power:0 time:30
 ```
 
@@ -764,7 +764,7 @@ You can add a custom standalone effect (implemented via a prefab, like the "Rain
 
 ![](https://i.gyazo.com/45b9d8fb51ffb368ff9f792221f10ca6.png)
 
-For example, given there is a `Explosion.prefab` prefab assigned via the spawn manager, following commands will spawn and de-spawn (destroy) the prefab on scene:
+For example, given there is an `Explosion.prefab` prefab assigned via the spawn manager, the following commands will spawn and de-spawn (destroy) the prefab on scene:
 
 ```nani
 @spawn Explosion
@@ -785,7 +785,7 @@ When building custom effects with multiple parameters, consider creating a [cust
 ```
 :::
 
-The [@spawn] command also has transform parameters, allowing to spawn the object at a specific scene or world positions and with a specific rotation or scale, eg:
+The [@spawn] command also has transform parameters, allowing you to spawn the object at specific scene or world positions and with a specific rotation or scale, eg:
 
 ```nani
 ; Spawn Explosion 15% from the left border of the screen
@@ -795,7 +795,7 @@ The [@spawn] command also has transform parameters, allowing to spawn the object
 
 In case you have a lot of prefabs to spawn and it's inconvenient to assign them via editor menu, it's possible to just drop them at `Resources/Naninovel/Spawn` folder and they'll automatically be available in the scripts. You can additionally organize them with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in scenario scripts. Eg, prefab asset stored as `Resources/Naninovel/Spawn/Explosions/Boom01` can be referenced in scripts as `Explosions/Boom01`.
 
-It's also possible to use [addressable asset system](/guide/resource-providers#addressable) to manually expose the resources. To expose an asset, assign address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "Boom01" prefab asset, assign the asset following address: `Naninovel/Spawn/Boom01`. Be aware, that addressable provider is not used in editor by default; you can allow it by enabling `Enable Addressable In Editor` property in resource provider configuration menu.
+It's also possible to use [addressable asset system](/guide/resource-providers#addressable) to manually expose the resources. To expose an asset, assign address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "Boom01" prefab asset, assign the asset the following address: `Naninovel/Spawn/Boom01`. Be aware that the addressable provider is not used in editor by default; you can allow it by enabling `Enable Addressable In Editor` property in resource provider configuration menu.
 
 Check the built-in effect prefabs stored at `Naninovel/Prefabs/FX` for reference implementations.
 
@@ -809,7 +809,7 @@ You can toggle (enable if disabled and vice-versa) the added components via scen
 
 ![](https://i.gyazo.com/73b7eabfe97ed84796cbe715b7dafc14.png)
 
-In our case the component's type name is `BloomImageEffect`. Use the type name to toggle this component at runtime like follows:
+In our case the component's type name is `BloomImageEffect`. Use the type name to toggle this component at runtime as follows:
 
 ```nani
 @camera toggle:BloomImageEffect
@@ -870,13 +870,13 @@ To make a custom transition, use `Custom` transition mode and specify path (rela
 @back Appearance.Custom dissolve:Textures/Spiral
 ```
 
-To smooth (fuzz) borders of the transition, use first parameter in 0 (no smoothing) to 100 (max smoothing) range, eg:
+To smooth (fuzz) borders of the transition, use the first parameter in 0 (no smoothing) to 100 (max smoothing) range, eg:
 
 ```nani
 @back Appearance.Custom dissolve:Textures/Spiral params:90
 ```
 
-To invert the transition (brighter areas of the dissolve mask will be displayed first), set second parameter to 1, eg:
+To invert the transition (brighter areas of the dissolve mask will be displayed first), set the second parameter to 1, eg:
 
 ```nani
 @back Appearance.Custom dissolve:Textures/Spiral params:,1

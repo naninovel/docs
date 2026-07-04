@@ -67,7 +67,7 @@
 | 类型 | 描述 |
 |---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | string | 一个简单的字符串值，例如：`LoremIpsum`。当字符串包含空格时，不要忘记将其用双引号引起来，例如：`"Lorem ipsum dolor sit amet."`。 |
-| number | 数值，可以是整数或小数，例如：`1`、`150`、`-25`、`1.0`、`12.08`、`-0.005`。 |
+| number | 数值，可以是整数或小数，例如：`1`、`-25`、`1.0`、`-0.005`。 |
 | boolean | 可以有两个可能的值之一：`true` 或 `false`。您可以使用 [布尔标志](/zh/guide/scenario-scripting#布尔标志) 而不是键入 `true` 和 `false`，例如：`@hideAll wait!` 而不是 `@hideAll wait:true`。 |
 | named | 由点分隔的键值对，带有字符串键和上述类型之一的值。例如命名 number：`foo.8`、`bar.-20`。 |
 | list | 上述类型之一的值的逗号分隔列表。例如字符串列表：`foo,bar,"Lorem ipsum."`，对于 number 列表：`12,-8,0.105,2`。 |
@@ -372,10 +372,10 @@ Lorem ipsum[shake Camera ver:true wait:false] dolor sit amet.
 
 ```nani
 ; 如果 "level" 大于 9000，则添加该选项。
-@choice "It's over 9000!" if:level>9000
+@choice "It's over 9000!" if: level above 9000
 
 ; 如果 "dead" 为 false，则执行打印命令。
-@print "I'm still alive." if:!dead
+@print "I'm still alive." if: not dead
 
 ; 相同但更简洁。
 @print "I'm still alive." unless:dead
@@ -454,7 +454,7 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 诸如 [@if]、[@choice]、[@while] 等命令以及其他几个命令支持通过缩进将其他命令和通用文本行与它们相关联：
 
 ```nani
-@if score>10
+@if score > 10
     @bgm Victory
     Good job, you've passed the test!
 ```
@@ -466,11 +466,11 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 每个宿主命令在执行嵌套命令时都有自己的行为。例如，如果未满足条件，[@if] 会跳过嵌套命令，而 [@choice] 仅在玩家选择关联选项时才执行嵌套命令：
 
 ```nani
-@if score>10
+@if score > 10
     Good job, you've passed the test!
     @bgm Victory
     @spawn Fireworks
-@or attempts>100
+@or attempts > 100
     You're hopeless... Need help?
     @choice "Yeah, please!"
         @set score+=10

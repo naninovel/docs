@@ -44,7 +44,7 @@
 using Naninovel;
 using UnityEngine.UI;
 
-// 继承自 Unity 的 Text 组件，以便我们可以像使用它一样使用它。
+// 继承自 Unity 的 Text 组件，以便我们可以将其作为 Text 组件使用。
 public class CustomLabel : Text
 {
     // "CustomLabel.LabelText" 管理文本记录的值将在引擎初始化时分配给

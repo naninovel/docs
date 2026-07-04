@@ -84,7 +84,7 @@ public override async Awaitable Execute (ExecutionContext ctx)
 | NamedIntegerParameter | NamedInteger | `Yuko.5` |
 | NamedDecimalParameter | NamedFloat | `Kohaku.-10.25` |
 | NamedBooleanParameter | NamedBoolean | `Misaki.false` |
-| StringListParameter | List&lt;String&gt; | `Lorem,ipsum,"doler sit amet"` |
+| StringListParameter | List&lt;String&gt; | `Lorem,ipsum,"dolor sit amet"` |
 | IntegerListParameter | List&lt;Int32&gt; | `10,-1,0` |
 | DecimalListParameter | List&lt;Single&gt; | `0.2,10.5,-88.99` |
 | BooleanListParameter | List&lt;Boolean&gt; | `true,false,true` |

@@ -102,7 +102,7 @@ While it's possible to implement this with a choice button parameter (outlined a
 @choice "Secret option" lock:score<10
 ```
 
-The built-in choice button has an `On Lock` event invoked each time a choice is added, which will set the underlying button's `Interactible` property, making it interactable when the choice is not locked and vice-versa. You can override or extend the behavior by attaching a custom handler to the `On Lock` event or by overriding the `HandleLockChanged` method of the choice button class.
+The built-in choice button has an `On Lock` event invoked each time a choice is added, which will set the underlying button's `Interactable` property, making it interactable when the choice is not locked and vice-versa. You can override or extend the behavior by attaching a custom handler to the `On Lock` event or by overriding the `HandleLockChanged` method of the choice button class.
 
 ![](https://i.gyazo.com/ec5ef74ec9af1aa46a18d89bd34d866f.png)
 

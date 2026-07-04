@@ -111,7 +111,7 @@ Auto Show On Modify | True | Whether to automatically reveal (show) an actor whe
 
 Property | Default Value | Description
 --- | --- | ---
-Default Handler Id | Button List | ID of the choice handler to use by default.
+Default Handler Id | ButtonList | ID of the choice handler to use by default.
 Choice Button Loader | Choice Buttons- (Addressable, Project) | Configuration of the resource loader used for loading custom choice buttons.
 Default Metadata | Object Ref | Metadata to use by default when creating choice handler actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating choice handler actors with specific IDs.
@@ -165,11 +165,11 @@ Property | Default Value | Description
 --- | --- | ---
 Loader | Localization- (Addressable, Project) | Configuration of the resource loader used with the localization resources.
 Languages | Object Ref | RFC5646 language tags mapped to default language display names. Restart Unity editor for changes to take effect.
-Source Locale | En | Locale of the source project resources (language in which the project assets are being authored).
+Source Locale | en | Locale of the source project resources (language in which the project assets are being authored).
 Expose Source Locale | True | Whether to make the source locale available to the end-users (players), ie included to the language selection.<br><br>Disabling this option can be useful in case you'd like to share the source localizable text with a third-party (eg, for proofreading), but don't want to share the scenario scripts. In which case, disable this option and add a dedicated locale for the source material, which can then be exported to the localization documents or spreadsheets.
 Default Locale | Null | Locale selected by default when running the game for the first time. Will select `Source Locale` when not specified.
 Auto Detect Locale | True | When enabled and the game is running for the first time, attempts to automatically detect locale based on system language. When succeeds and the locale is supported by the game, selects it; otherwise falls back to 'Default Locale'.
-Record Separator | | | Text character to join common localized script records, such as parts of generic text lines and localizable parameter values.
+Record Separator | \| | Text character to join common localized script records, such as parts of generic text lines and localizable parameter values.
 Annotation Prefix | >  | Text character to insert before annotation lines to distinguish them for the localized text. Annotations are comments optionally added to the generated localization documents to provide additional context for the translators, such as author of the printed text messages, inlined commands and command lines containing localized parameters. Stub character is used to replace localized parts of such annotations, as they're duplicated on the next comment line containing the text to localize.
 
 </div>
@@ -216,7 +216,7 @@ Use Addressables | True | When the Addressable Asset System is installed, enabli
 Auto Build Bundles | True | Whether to automatically build the addressable asset bundles when building the player. Has no effect when `Use Addressables` is disabled.
 Label By Scripts | True | Whether to label all the Naninovel addressable assets by the scenario script path they're used in. When `Bundle Mode` is set to `Pack Together By Label` in the addressable group settings, will result in a more efficient bundle packing.<br><br>Note that script labels will be assigned to all the assets with 'Naninovel' label, which includes assets manually exposed to the addressable resource provider (w/o using the resource editor menus).
 Local Root Path | %DATA%/Resources | Path root to use for the local resource provider. Can be an absolute path to the folder where the resources are located, or a relative path with one of the available origins:<br> • %DATA% — Game data folder on the target device (UnityEngine.Application.dataPath).<br> • %PDATA% — Persistent data directory on the target device (UnityEngine.Application.persistentDataPath).<br> • %STREAM% — `StreamingAssets` folder (UnityEngine.Application.streamingAssetsPath).<br> • %SPECIAL{F}% — An OS special folder (where F is value from System.Environment.SpecialFolder).
-Video Stream Extension | .mp 4 | When streaming videos under WebGL (movies, video backgrounds), specify the extension of the video files.
+Video Stream Extension | .mp4 | When streaming videos under WebGL (movies, video backgrounds), specify the extension of the video files.
 Reload Scripts | True | Whether to watch and hot reload modified scenario scripts stored under the local provider directory.
 
 </div>
@@ -279,10 +279,10 @@ Property | Default Value | Description
 --- | --- | ---
 Save Folder Name | Saves | The folder will be created in the game data folder.
 Default Settings Slot Id | Settings | The name of the settings save file.
-Default Global Slot Id | Global Save | The name of the global save file.
-Save Slot Mask | Game Save{0:000} | Mask used to name save slots.
-Quick Save Slot Mask | Game Quick Save{0:000} | Mask used to name quick save slots.
-Auto Save Slot Mask | Game Auto Save{0:000} | Mask used to name auto save slots.
+Default Global Slot Id | GlobalSave | The name of the global save file.
+Save Slot Mask | GameSave{0:000} | Mask used to name save slots.
+Quick Save Slot Mask | GameQuickSave{0:000} | Mask used to name quick save slots.
+Auto Save Slot Mask | GameAutoSave{0:000} | Mask used to name auto save slots.
 Save Slot Limit | 99 | Maximum number of save slots.
 Quick Save Slot Limit | 18 | Maximum number of quick save slots.
 Auto Save Slot Limit | 18 | Maximum number of auto save slots.

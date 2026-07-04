@@ -28,7 +28,7 @@ When nesting commands under the choice, `goto`, `gosub` and `set` parameters are
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">choiceSummary</span> | string | Text to show for the choice. When the text contain spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
+| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">choiceSummary</span> | string | Text to show for the choice. When the text contains spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
 | id | string | Unique identifier of the choice. Can be used to remove the choice later with [@clearChoice]. |
 | lock | string | Whether the choice should be disabled or otherwise not accessible for player to select; see [choice docs](/guide/choices#locked-choice) for more info. Disabled by default. |
 | button | string | Local resource path of the [button prefab](/guide/choices#choice-button) representing the choice. The prefab should have a `ChoiceHandlerButton` component attached to the root object. Will use a default button when not specified. |
@@ -250,7 +250,7 @@ Music tracks are looped by default. When music track name (Path) is not specifie
 | pos | number list | Position (in world space) of the audio source. When not specified, the spatial mode is disabled. |
 | wait | boolean | Whether to wait for the audio to finish playing before executing next command. Has no effect when looped. |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">path</span> | string | Local path (name) of the audio resource. |
-| easing | string |  |
+| easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
 | fade | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
 | waitFade | boolean | Whether to wait for the fade to finish before playing next command. |
@@ -385,7 +385,7 @@ Modifies a [character actor](/guide/characters).
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">idAndAppearance</span> | named string | ID of the character to modify (specify `*` to affect all visible characters) and an appearance (or [pose](/guide/characters#poses)) to set. When appearance is not specified, will use either a `Default` (is exists) or a random one. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">idAndAppearance</span> | named string | ID of the character to modify (specify `*` to affect all visible characters) and an appearance (or [pose](/guide/characters#poses)) to set. When appearance is not specified, will use either a `Default` (if exists) or a random one. |
 | look | string | Look direction of the actor; supported values: left, right, center. |
 | avatar | string | Name (path) of the [avatar texture](/guide/characters#avatar-textures) to assign for the character. Use `none` to remove (un-assign) avatar texture from the character. |
 | pos | number list | Position (relative to the scene borders, in percents) to set for the modified actor. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
@@ -439,7 +439,7 @@ When nesting commands under the choice, `goto`, `gosub` and `set` parameters are
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">choiceSummary</span> | string | Text to show for the choice. When the text contain spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
+| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">choiceSummary</span> | string | Text to show for the choice. When the text contains spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
 | id | string | Unique identifier of the choice. Can be used to remove the choice later with [@clearChoice]. |
 | lock | string | Whether the choice should be disabled or otherwise not accessible for player to select; see [choice docs](/guide/choices#locked-choice) for more info. Disabled by default. |
 | button | string | Local resource path of the [button prefab](/guide/choices#choice-button) representing the choice. The prefab should have a `ChoiceHandlerButton` component attached to the root object. Will use a default button when not specified. |
@@ -560,7 +560,7 @@ You have 2 seconds to respond![>]
 Destroys an object spawned with [@spawn] command.
 
 ::: info NOTE
-If prefab has a `MonoBehaviour` component attached the root object, and the component implements a `IParameterized` interface, will pass the specified `params` values before destroying the object; if the component implements `IAwaitable` interface, command execution will wait for the async completion task returned by the implementation before destroying the object.
+If prefab has a `MonoBehaviour` component attached to the root object, and the component implements an `IParameterized` interface, will pass the specified `params` values before destroying the object; if the component implements `IAwaitable` interface, command execution will wait for the async completion task returned by the implementation before destroying the object.
 :::
 
 <div class="config-table">
@@ -568,7 +568,7 @@ If prefab has a `MonoBehaviour` component attached the root object, and the comp
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">path</span> | string | Name (path) of the prefab resource to destroy. A [@spawn] command with the same parameter is expected to be executed before. |
-| params | string list | Parameters to set before destroying the prefab. Requires the prefab to have a `IParameterized` component attached the root object. |
+| params | string list | Parameters to set before destroying the prefab. Requires the prefab to have an `IParameterized` component attached to the root object. |
 | wait | boolean | Whether to wait while the spawn is destroying over time in case it implements `IAwaitable` interface. |
 
 </div>
@@ -586,7 +586,7 @@ Destroys all the objects spawned with [@spawn] command. Equal to invoking [@desp
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| wait | boolean | Whether to wait while the spawns are destroying over time in case they implements `IAwaitable` interface. |
+| wait | boolean | Whether to wait while the spawns are destroying over time in case they implement `IAwaitable` interface. |
 
 </div>
 
@@ -736,7 +736,7 @@ Navigates naninovel script playback to the specified path.
 ; Loads and starts playing 'Script001' script from the start.
 @goto Script001
 
-; Save as above, but start playing from the label 'AfterStorm'.
+; Same as above, but start playing from the label 'AfterStorm'.
 @goto Script001#AfterStorm
 
 ; Navigates to 'Epilogue' label in the currently played script.
@@ -935,8 +935,8 @@ To assign a display name for a character using this command consider [binding th
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">variableName</span> | string | Name of a scenario variable to which the entered text will be assigned. |
-| type | string | Type of the input content; defaults to the specified variable type.Use to change assigned variable type or when assigning to a new variable. Supported types: `String`, `Numeric`, `Boolean`. |
-| summary | string | An optional summary text to show along with input field. When the text contain spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
+| type | string | Type of the input content; defaults to the specified variable type. Use to change assigned variable type or when assigning to a new variable. Supported types: `String`, `Numeric`, `Boolean`. |
+| summary | string | An optional summary text to show along with input field. When the text contains spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
 | value | string | A predefined value to set for the input field. When not assigned will pull existing value of the assigned variable (if any). |
 | nostop | boolean | Whether to not halt script playback until the input is submitted by the player. |
 
@@ -1135,7 +1135,7 @@ This command is used under the hood when processing generic text lines, eg gener
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">text</span> | string | Text of the message to print. When the text contain spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">text</span> | string | Text of the message to print. When the text contains spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
 | printer | string | ID of the printer actor to use. Will use a default one when not specified. |
 | author | string | ID of the actor, which should be associated with the printed message. Ignored when appending. Specify `*` or use `,` to delimit multiple actor IDs to make all/selected characters authors of the text; useful when coupled with `as` parameter to represent multiple characters speaking at the same time. |
 | as | string | When specified, will use the label instead of author ID (or associated display name) to represent author name in the text printer while printing the message. Useful to override default name for a few messages or represent multiple authors speaking at the same time without triggering author-specific behaviour of the text printer, such as message color or avatar. |
@@ -1203,7 +1203,7 @@ Modifies a [text printer actor](/guide/text-printers) and links the printer to a
 ; Will make 'Wide' printer default and hide any other visible printers.
 @printer Wide
 
-; Will assign 'Right' appearance to 'Bubble' printer, make is default,
+; Will assign 'Right' appearance to 'Bubble' printer, make it default,
 ; position at the center of the scene and won't hide other printers.
 @printer Bubble.Right pos:50,50 !hideOther
 
@@ -1574,7 +1574,7 @@ Sound effect tracks are not looped by default. When SFX track name (Path) is not
 | pos | number list | Position (in world space) of the audio source. When not specified, the spatial mode is disabled. |
 | wait | boolean | Whether to wait for the audio to finish playing before executing next command. Has no effect when looped. |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">path</span> | string | Local path (name) of the audio resource. |
-| easing | string |  |
+| easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
 | fade | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
 | waitFade | boolean | Whether to wait for the fade to finish before playing next command. |
@@ -1617,7 +1617,7 @@ Plays an [SFX (sound effect)](/guide/audio#sound-effects) track with the specifi
 | pos | number list | Position (in world space) of the audio source. When not specified, the spatial mode is disabled. |
 | wait | boolean | Whether to wait for the audio to finish playing before executing next command. Has no effect when looped. |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">path</span> | string | Local path (name) of the audio resource. |
-| easing | string |  |
+| easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
 | fade | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
 | waitFade | boolean | Whether to wait for the fade to finish before playing next command. |
@@ -1825,7 +1825,7 @@ Spawns particle system simulating [snow](/guide/special-effects#snow).
 Instantiates a prefab or a [special effect](/guide/special-effects); when performed over an already spawned object, will update the spawn parameters instead.
 
 ::: info NOTE
-If prefab has a `MonoBehaviour` component attached the root object, and the component implements a `IParameterized` interface, will pass the specified `params` values after the spawn; if the component implements `IAwaitable` interface, command execution will be able to wait for the async completion task returned by the implementation.
+If prefab has a `MonoBehaviour` component attached to the root object, and the component implements an `IParameterized` interface, will pass the specified `params` values after the spawn; if the component implements `IAwaitable` interface, command execution will be able to wait for the async completion task returned by the implementation.
 :::
 
 <div class="config-table">
@@ -1833,7 +1833,7 @@ If prefab has a `MonoBehaviour` component attached the root object, and the comp
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">path</span> | string | Name (path) of the prefab resource to spawn. |
-| params | string list | Parameters to set when spawning the prefab. Requires the prefab to have a `IParameterized` component attached the root object. |
+| params | string list | Parameters to set when spawning the prefab. Requires the prefab to have an `IParameterized` component attached to the root object. |
 | pos | number list | Position (relative to the scene borders, in percents) to set for the spawned object. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
 | position | number list | Position (in world space) to set for the spawned object. |
 | rotation | number list | Rotation to set for the spawned object. |
@@ -1893,7 +1893,7 @@ When music track name (Path) is not specified, will stop all the currently playe
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">path</span> | string | Local path (name) of the audio resource. |
-| easing | string |  |
+| easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
 | fade | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
 | waitFade | boolean | Whether to wait for the fade to finish before playing next command. |
@@ -1921,7 +1921,7 @@ When sound effect track name (Path) is not specified, will stop all the currentl
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">path</span> | string | Local path (name) of the audio resource. |
-| easing | string |  |
+| easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
 | fade | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
 | waitFade | boolean | Whether to wait for the fade to finish before playing next command. |
@@ -1945,7 +1945,7 @@ Stops playback of the currently played voice clip.
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">path</span> | string | Local path (name) of the audio resource. |
-| easing | string |  |
+| easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
 | fade | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
 | waitFade | boolean | Whether to wait for the fade to finish before playing next command. |
@@ -2229,7 +2229,7 @@ Plays a voice clip at the specified path.
 | pos | number list | Position (in world space) of the audio source. When not specified, the spatial mode is disabled. |
 | wait | boolean | Whether to wait for the audio to finish playing before executing next command. Has no effect when looped. |
 | <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">path</span> | string | Local path (name) of the audio resource. |
-| easing | string |  |
+| easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
 | fade | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
 | waitFade | boolean | Whether to wait for the fade to finish before playing next command. |

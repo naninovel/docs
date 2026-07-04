@@ -59,4 +59,4 @@ When using GitHub Actions, such as [GameCI](https://game.ci/), make sure the [LF
   - run: git lfs pull
 ```
 
-If you're using your own custom build handler supposed to be triggered with the Editor's build menu, you can disable Naninovel's handler by turning off the `Enable Build Processing` property in the Resource Provider configuration menu. After enabling or disabling the property, restart the Unity Editor for the change to take effect.
+If you're using your own custom build handler that is supposed to be triggered with the Editor's build menu, you can disable Naninovel's handler by turning off the `Enable Build Processing` property in the Resource Provider configuration menu. After enabling or disabling the property, restart the Unity Editor for the change to take effect.

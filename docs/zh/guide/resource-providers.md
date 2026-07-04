@@ -1,4 +1,4 @@
-# 资源加载器
+# 资源提供者
 
 资源提供者用于在运行时检索 Naninovel 相关资产（外观纹理、BGM 剪辑等），以满足 [内存管理](/zh/guide/memory-management) 需求。每个提供者都专注于从特定来源检索资产：项目的 "Resources" 文件夹、Unity 的 addressable 资产系统、本地文件存储等。
 
