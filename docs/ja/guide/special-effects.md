@@ -19,7 +19,7 @@
 ```nani
 ; `Kohaku` アクターをループでゆっくりと振り始めます
 @shake Kohaku loop! power:0.1
-Kohaku: 鳴ってる！
+Kohaku: 揺れてる！
 ; 振幅を増やしてあと3回振ります
 @shake Kohaku count:3 power:0.8
 ```

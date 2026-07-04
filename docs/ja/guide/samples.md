@@ -60,7 +60,7 @@ Unityエディタに入ったら、`Assets/Scenes/Main.unity` シーンを開き
 
 ## 入力リバインド
 
-ドキュメント: https://naninovel.com/guide/input-processing.html#input-system
+ドキュメント: [入力処理](/ja/guide/input-processing#入力のカスタマイズ)
 
 プレイヤーがデフォルトのコントロールを変更できるようにする入力リバインドUIの例は、`Content/UI/InputRebind` フォルダにあります。これは、Input Systemパッケージにバンドルされている「Rebind UI」サンプルに基づいています。詳細については、[Unityドキュメント](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.1/manual/ActionBindings.html#interactive-rebinding) を参照してください。
 
@@ -172,7 +172,7 @@ Select an action.[>]
 
 ![](https://i.gyazo.com/f421eaf666c9d84b04d23a72d1259f47.png)
 
-ボタンのクリックおよびホバーイベントは、Naninovelの [Play Script](https://naninovel.com/guide/gui.html#play-script-on-unity-event) コンポーネントによって処理されます。
+ボタンのクリックおよびホバーイベントは、Naninovelの [Play Script](/ja/guide/gui#unityイベントでのスクリプト再生) コンポーネントによって処理されます。
 
 ![](https://i.gyazo.com/a64ee9beee378c687d0d8093334f4ef7.png)
 

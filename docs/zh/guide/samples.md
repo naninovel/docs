@@ -60,7 +60,7 @@
 
 ## 输入重绑定
 
-文档：https://naninovel.com/guide/input-processing.html#input-system
+文档：[输入处理](/zh/guide/input-processing#自定义输入)
 
 允许玩家更改默认控件的输入重绑定 UI 示例位于 `Content/UI/InputRebind` 文件夹中。它基于输入系统包捆绑的 "Rebind UI" 示例；在 [Unity 文档](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.1/manual/ActionBindings.html#interactive-rebinding) 中查找更多信息。
 
@@ -172,7 +172,7 @@ Select an action.[>]
 
 ![](https://i.gyazo.com/f421eaf666c9d84b04d23a72d1259f47.png)
 
-按钮的单击和悬停事件由 Naninovel 的 [Play Script](https://naninovel.com/guide/gui.html#play-script-on-unity-event) 组件处理。
+按钮的单击和悬停事件由 Naninovel 的 [Play Script](/zh/guide/gui#unity-事件上的播放脚本) 组件处理。
 
 ![](https://i.gyazo.com/a64ee9beee378c687d0d8093334f4ef7.png)
 

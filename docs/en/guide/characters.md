@@ -287,10 +287,10 @@ The following video guide covers creating and configuring diced sprite atlas, ad
 
 ![](https://www.youtube.com/watch?v=6PdOAOsnhio)
 
-For more information on available dicing options and usage examples, refer to the extension docs: https://dicing.elringus.com/guide/unity.
+For more information on available dicing options and usage examples, refer to the [extension docs](https://dicing.elringus.com/guide/unity).
 
 ::: tip EXAMPLE
-Find example on setting up diced actors in the [diced actor sample](/guide/samples#diced-actor).
+Find an example of setting up diced actors in the [diced actor sample](/guide/samples#diced-actor).
 :::
 
 ## Layered Characters
@@ -439,7 +439,7 @@ Make sure `Render Canvas` component is attached to the layered actor prefab root
 In case extra layers are required for rendering the actor (for example, a layer dedicated for Unity's Lights 2D), add them via `Camera Mask` property found on the layered behaviour component. Naninovel will preserve specified layers in the camera culling mask when rendering the actor.
 
 ::: tip EXAMPLE
-Find example on setting up layered actors in the [layered actor sample](/guide/samples#layered-actor).
+Find an example of setting up layered actors in the [layered actor sample](/guide/samples#layered-actor).
 :::
 
 ## Generic Characters
@@ -454,7 +454,7 @@ Generic actor implementations just route events from the scenario scripts and it
 
 To create generic character prefab from a template, use `Create -> Naninovel -> Character -> Generic` context asset menu.
 
-Check the following video tutorial for example on setting up a 3D rigged model as a generic character and routing appearance changes to the rig animations via [Animator](https://docs.unity3d.com/Manual/class-AnimatorController.html) component. Be aware that the video is captured with an old Naninovel version and some properties and component names are different now; see the above docs for the up-to-date information.
+Check the following video tutorial for an example of setting up a 3D rigged model as a generic character and routing appearance changes to the rig animations via [Animator](https://docs.unity3d.com/Manual/class-AnimatorController.html) component. Be aware that the video is captured with an old Naninovel version and some properties and component names are different now; see the above docs for the up-to-date information.
 
 ![](https://www.youtube.com/watch?v=HPxhR0I1u2Q)
 
@@ -463,7 +463,7 @@ Unity's `Animator` component could fail to register `SetTrigger` when the game o
 :::
 
 ::: tip EXAMPLE
-Check [generic actor sample](/guide/samples#generic-actor), where generic character implementation is used to host a 3D animated model.
+Check the [generic actor sample](/guide/samples#generic-actor), where generic character implementation is used to host a 3D animated model.
 :::
 
 ## Video Characters
@@ -493,7 +493,7 @@ After Live2D SDK for Unity is installed, click `Naninovel/Extensions/Enable Live
 ![](https://i.gyazo.com/e27ee50e8107147e20503a955ddcc548.png)
 
 ::: info NOTE
-This integration with third-party commercial product serves mostly as an example on how you can make Naninovel work with another tool. While we're committed to keep the sample integration compatible with Live2D updates and changes, please be aware that the functionality will remain bare minimum and we won't be able to provide any support or help on using another product with Naninovel beyond the scope of the sample.
+This integration with a third-party commercial product serves mostly as an example of how you can make Naninovel work with another tool. While we're committed to keeping the sample integration compatible with Live2D updates and changes, please be aware that the functionality will remain bare minimum and we won't be able to provide any support or help on using another product with Naninovel beyond the scope of the sample.
 :::
 
 Live2D model prefab used as the resource for the implementation should have a `Live2DController` component attached to the root object. Appearance changes are routed to the animator component as [SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) commands, appearance being the trigger name. E.g., if you have a "Kaori" Live2D character prefab and want to invoke a trigger with name "Surprise", use the following command:
@@ -543,7 +543,7 @@ After Spine runtime for Unity is installed, click `Naninovel/Extensions/Enable S
 ![](https://i.gyazo.com/2fb6c27f6e2149b501c0025dd6bd67f0.png)
 
 ::: info NOTE
-This integration with third-party commercial product serves mostly as an example on how you can make Naninovel work with another tool. While we're committed to keep the sample integration compatible with Spine updates and changes, please be aware that the functionality will remain bare minimum and we won't be able to provide any support or help on using another product with Naninovel beyond the scope of the sample.
+This integration with a third-party commercial product serves mostly as an example of how you can make Naninovel work with another tool. While we're committed to keeping the sample integration compatible with Spine updates and changes, please be aware that the functionality will remain bare minimum and we won't be able to provide any support or help on using another product with Naninovel beyond the scope of the sample.
 :::
 
 Spine character prefab used as the resource for the implementation should have a `Spine Controller` component attached to the root object. Appearance changes from scenario script commands (such as `@char`) are routed to the controller's `On Appearance Changed` events similar to [generic implementation](/guide/characters#generic-characters). You can handle the events as you wish; for example, use Spine's `SetAnimation` method or invoke a trigger in Unity's animator controller.
