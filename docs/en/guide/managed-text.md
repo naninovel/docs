@@ -10,7 +10,7 @@ Using the "Select" button, choose the path to store the managed text documents (
 
 You can also create a custom managed text document using `Create -> Naninovel -> Managed Text` asset context menu.
 
-Each line in a managed text document is an entry in the following format: *Path*: *Value*, where *Path* is the path to the text variable and *Value* is the value of that variable. For example, here is the default contents of the "DefaultUI" document, which contains records for the built-in UI:
+Each line in a managed text document is an entry in the following format: *Path*: *Value*, where *Path* is the path to the text variable and *Value* is the value of that variable. For example, here are the default contents of the "DefaultUI" document, which contains records for the built-in UI:
 
 ![Managed Text Document](https://i.gyazo.com/ce57c700b77818f87aabb722f2f42b78.png)
 

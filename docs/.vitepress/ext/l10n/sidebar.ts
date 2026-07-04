@@ -44,7 +44,7 @@ export const en: DefaultTheme.SidebarItem[] = [
             { text: "Engine Architecture", link: "/guide/engine-architecture" },
             { text: "Engine Services", link: "/guide/engine-services" },
             { text: "Custom Commands", link: "/guide/custom-commands" },
-            { text: "Custom Configurations", link: "/guide/custom-configuration" },
+            { text: "Custom Configuration", link: "/guide/custom-configuration" },
             { text: "Custom Actor Implementations", link: "/guide/custom-actor-implementations" },
             { text: "Custom Actor Shader", link: "/guide/custom-actor-shader" },
             { text: "Custom Script Compiler", link: "/guide/custom-compiler" },
@@ -78,7 +78,7 @@ export const ja: DefaultTheme.SidebarItem[] = [
             { text: "テキストプリンター", link: "/ja/guide/text-printers" },
             { text: "キャラクター", link: "/ja/guide/characters" },
             { text: "背景", link: "/ja/guide/backgrounds" },
-            { text: "特殊エフェクト", link: "/ja/guide/special-effects" },
+            { text: "特殊効果", link: "/ja/guide/special-effects" },
             { text: "オーディオ", link: "/ja/guide/audio" },
             { text: "ボイス", link: "/ja/guide/voicing" },
             { text: "選択肢", link: "/ja/guide/choices" },
@@ -104,7 +104,7 @@ export const ja: DefaultTheme.SidebarItem[] = [
             { text: "カスタムアクターの実装", link: "/ja/guide/custom-actor-implementations" },
             { text: "カスタムアクターシェーダー", link: "/ja/guide/custom-actor-shader" },
             { text: "カスタムスクリプトコンパイラ", link: "/ja/guide/custom-compiler" },
-            { text: "ステート管理", link: "/ja/guide/state-management" },
+            { text: "状態管理", link: "/ja/guide/state-management" },
             { text: "インテグレーションの方法", link: "/ja/guide/integration-options" },
             { text: "自動テスト", link: "/ja/guide/automated-testing" },
             { text: "カスタムビルド環境", link: "/ja/guide/custom-build-environment" }
@@ -138,15 +138,15 @@ export const zh: DefaultTheme.SidebarItem[] = [
             { text: "音频", link: "/zh/guide/audio" },
             { text: "配音", link: "/zh/guide/voicing" },
             { text: "选项", link: "/zh/guide/choices" },
-            { text: "用户界面UI", link: "/zh/guide/gui" },
+            { text: "GUI", link: "/zh/guide/gui" },
             { text: "输入处理", link: "/zh/guide/input-processing" },
             { text: "可解锁物件", link: "/zh/guide/unlockable-items" },
             { text: "自定义变量", link: "/zh/guide/custom-variables" },
             { text: "脚本表达式", link: "/zh/guide/script-expressions" },
-            { text: "受管文本", link: "/zh/guide/managed-text" },
+            { text: "管理文本", link: "/zh/guide/managed-text" },
             { text: "本地化", link: "/zh/guide/localization" },
             { text: "内存管理", link: "/zh/guide/memory-management" },
-            { text: "资源加载器", link: "/zh/guide/resource-providers" }
+            { text: "资源提供者", link: "/zh/guide/resource-providers" }
         ]
     },
     {
@@ -161,7 +161,7 @@ export const zh: DefaultTheme.SidebarItem[] = [
             { text: "自定义演出元素着色器", link: "/zh/guide/custom-actor-shader" },
             { text: "自定义演出脚本编译器", link: "/zh/guide/custom-compiler" },
             { text: "状态管理", link: "/zh/guide/state-management" },
-            { text: "整合设置", link: "/zh/guide/integration-options" },
+            { text: "集成选项", link: "/zh/guide/integration-options" },
             { text: "自动化测试", link: "/zh/guide/automated-testing" },
             { text: "自定义构建环境", link: "/zh/guide/custom-build-environment" }
         ]

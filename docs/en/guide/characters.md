@@ -29,7 +29,7 @@ If you have many characters and it's inconvenient to assign them all via the edi
 
 ## Poses
 
-Each character has `Poses` property allowing to specify named states (poses).
+Each character has a `Poses` property allowing you to specify named states (poses).
 
 ![](https://i.gyazo.com/a049313d5c7cfa9897dd8c5f5ee00af3.png)
 
@@ -173,7 +173,7 @@ You can then show a specific avatar texture like this:
 @char CharacterId avatar:AvatarName
 ```
 
-To set a default avatar for a character, give the avatar texture resource name that equals to `CharacterID/Default`; e.g., to set a default avatar for character with ID `Kohaku` name the avatar resource `Kohaku/Default`. Default avatars will be shown automatically, even when `avatar` parameter is not specified in the [@char] commands.
+To set a default avatar for a character, give the avatar texture resource a name that equals `CharacterID/Default`; e.g., to set a default avatar for character with ID `Kohaku` name the avatar resource `Kohaku/Default`. Default avatars will be shown automatically, even when `avatar` parameter is not specified in the [@char] commands.
 
 It's also possible to associate avatars with specific character appearances, so that when character changes appearance, the avatar will also change automatically. For this, name the avatar resources using the following format: `CharacterID/CharacterAppearance`, where `CharacterAppearance` is the name of the appearance for which to map the avatar resource.
 
@@ -186,7 +186,7 @@ To show only the avatar of a character inside a text printer, but hide the chara
 In case you're constantly changing avatars while the character itself should remain hidden, consider disabling `Auto Show On Modify` in the characters configuration menu; when disabled, you won't have to specify `!visible` to change any parameters of the character while it's hidden.
 
 ::: info NOTE
-The **avatars are not directly connected with character appearances** and shouldn't be considered as a way to represent a character on scene. Avatars is a standalone feature that "injects" an arbitrary image to a compatible text printer. In case you want an actual character appear inside a text printer (or a custom UI), check [render actor to texture](/guide/characters#render-to-texture) feature.
+The **avatars are not directly connected with character appearances** and shouldn't be considered as a way to represent a character on scene. Avatars are a standalone feature that "injects" an arbitrary image into a compatible text printer. In case you want an actual character to appear inside a text printer (or a custom UI), check [render actor to texture](/guide/characters#render-to-texture) feature.
 :::
 
 ## Speaker Highlight
@@ -248,7 +248,7 @@ Below is an example of a [placeholder background](/guide/backgrounds#placeholder
 Sprite implementation of the character actors is the most common and simple one; it uses a set of [texture](https://docs.unity3d.com/Manual/Textures.html) assets wrapped over a quad mesh (sprite) to represent appearances of the character. The textures can be based on `.jpg`, `.png`, `.tiff`, `.psd` or any other image file format [supported by Unity](https://docs.unity3d.com/Manual/ImportingTextures).
 
 ::: tip
-Choose file formats that are most comfortable for your development workflow. When building the project, Unity will automatically convert all the source resources (textures, audio, video, etc.) to the formats most suitable for the target platform, so it won't make difference in which format you originally store the resources in the project. Find more information on how Unity manage project assets in the [official documentation](https://docs.unity3d.com/Manual/AssetWorkflow).
+Choose file formats that are most comfortable for your development workflow. When building the project, Unity will automatically convert all the source resources (textures, audio, video, etc.) to the formats most suitable for the target platform, so it won't make a difference in which format you originally store the resources in the project. Find more information on how Unity manages project assets in the [official documentation](https://docs.unity3d.com/Manual/AssetWorkflow).
 :::
 
 Initial (unscaled) size of the sprite character mesh on scene depends on the reference resolution (camera configuration), character's `Pixel Per Unit` property (set for each character actor in the configuration menu) and source texture resolution.
@@ -257,11 +257,11 @@ To achieve best render quality and optimal performance, it's generally advised t
 
 ## Diced Sprite Characters
 
-Built with an open source [SpriteDicing](https://github.com/elringus/sprite-dicing) package, `DicedSpriteCharacter` implementation allows to significantly reduce build size and texture memory by reusing texture areas of the character sprites.
+Built with an open source [SpriteDicing](https://github.com/elringus/sprite-dicing) package, `DicedSpriteCharacter` implementation allows you to significantly reduce build size and texture memory by reusing texture areas of the character sprites.
 
 ![Sprite Dicing](https://i.gyazo.com/af08d141e7a08b6a8e2ef60c07332bbf.png)
 
-Install the package via [Unity package manager](https://docs.unity3d.com/Manual/upm-ui.html): open package manager window (Window -> Package Manager), click "+" button, choose "Add package from git URL", enter following URL:
+Install the package via [Unity package manager](https://docs.unity3d.com/Manual/upm-ui.html): open package manager window (Window -> Package Manager), click "+" button, choose "Add package from git URL", enter the following URL:
 
 ```
 https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteDicing
@@ -283,7 +283,7 @@ When "SpriteDicing" extension is installed via UPM, a `Naninovel.DicedSpriteChar
 Character metadata properties (e.g., pixels per unit, pivot) are applied to render texture used to represent the character on scene, while similar diced atlas properties are applied to the generated diced sprites. When changing atlas properties, don't forget to rebuild it for changes to take effect.
 :::
 
-Following video guide covers creating and configuring diced sprite atlas, adding new diced character based on the created atlas and controlling the character from a scenario script.
+The following video guide covers creating and configuring diced sprite atlas, adding new diced character based on the created atlas and controlling the character from a scenario script.
 
 ![](https://www.youtube.com/watch?v=6PdOAOsnhio)
 
@@ -295,7 +295,7 @@ Find example on setting up diced actors in the [diced actor sample](/guide/sampl
 
 ## Layered Characters
 
-The layered implementation allows composing characters from multiple layers and then toggle them individually or in groups via scenario scripts at runtime.
+The layered implementation allows composing characters from multiple layers and then toggling them individually or in groups via scenario scripts at runtime.
 
 ::: tip
 Layered actor implementation has been evolving and is currently the most flexible with support for all the rendering features (in contrast to generic). Even if you don't want to use layer expressions, but instead control the appearance with Unity's Animator or other custom systems; or need to render non-trivial objects such as particle systems and/or utilize third-party renderers, check [render only](/guide/characters#outsourcing-appearance-management) and [camera rendering](/guide/characters#camera-rendering) options available for layered actors before resorting to generic or custom implementation.
@@ -400,13 +400,13 @@ While editing layered character prefab, it's possible to preview mapped composit
 
 Be aware that the layer objects are not directly rendered by Unity cameras at runtime; instead, they're rendered once upon each composition (appearance) change to a temporary render texture, which is then fed to a custom mesh visible to the Naninovel camera. This setup is required to prevent semi-transparency overdraw issues and to support transition animation effects.
 
-In case you wish to apply an animation or other dynamic behaviour to the layered character, enable `Animated` property found on `Layered Character Behaviour` component. When the property is enabled, the layers will be rendered each frame (instead once per appearance change).
+In case you wish to apply an animation or other dynamic behavior to the layered character, enable `Animated` property found on `Layered Character Behaviour` component. When the property is enabled, the layers will be rendered each frame (instead of once per appearance change).
 
 ### Outsourcing Appearance Management
 
 You may find layered implementation useful for supporting various built-in render features (semi-transparency overdraw handling, transition effects, blur and depth-of-field support, etc.), but would like to use external tools for managing appearance of the actor, such as Unity's [Animator](https://docs.unity3d.com/Manual/class-Animator.html). By default, layered behaviour will use layered expressions when notifying about appearance changes via `On Appearance Changed` event, which may not be desired in such case.
 
-Enabling `Render Only` option will disable layer-related behaviour and make the event report the appearance as it's specified in script commands. You will also have to specify `Default Appearance` on the behaviour component to prevent it from evaluating default appearance based on the initial prefab layer composition.
+Enabling `Render Only` option will disable layer-related behavior and make the event report the appearance as it's specified in script commands. You will also have to specify `Default Appearance` on the behaviour component to prevent it from evaluating default appearance based on the initial prefab layer composition.
 
 ### Camera Rendering
 
@@ -414,11 +414,11 @@ In case your character prefab contains non-trivial renderers like particle syste
 
 When assigned, instead of custom render procedure, the actor will use the camera to render contents, which lifts all the inherent limitations, such as lacking stencil support. The drawback is, in order to ensure the content is only rendered to the actor texture (and doesn't "leak" to the main camera), you'll have to reserve camera [layers](https://docs.unity3d.com/Manual/Layers.html) specifically for rendering this kind of actor.
 
-There are a total of 32 layers available in Unity, while 8 of them are reserved for engine internals. You can use remaining layers as you wish (they're unused by default). To allow Naninovel use a layer for rendering layered actors in camera mode, give the layer name starting with `Naninovel`; e.g., `Naninovel 1`, `Naninovel 2` and so on.
+There are a total of 32 layers available in Unity, while 8 of them are reserved for engine internals. You can use remaining layers as you wish (they're unused by default). To allow Naninovel to use a layer for rendering layered actors in camera mode, give the layer a name starting with `Naninovel`; e.g., `Naninovel 1`, `Naninovel 2` and so on.
 
 ![](https://i.gyazo.com/dfbb4306553c85a4683fffb0fef03de3.png)
 
-Total number of layers to add depends on the max amount of unique camera-rendered layered actors spawned at any given time, no matter visible or not. When layered actor is rendered, it holds a layer from the pool. When the actor is hidden, it releases the layer, allowing it to be re-used by other actors. However, the actors are also rendered on appearance change, which happen when they're initially added to scene (even if they're hidden) or when game is loaded or rolled-back, so **layer pool size has to accommodate total number of camera-rendered actors spawned at a time**, and not just amount of such actors visible at a time. To destroy (de-spawn) an actor after hiding it, use [@remove] command.
+Total number of layers to add depends on the max amount of unique camera-rendered layered actors spawned at any given time, whether visible or not. When layered actor is rendered, it holds a layer from the pool. When the actor is hidden, it releases the layer, allowing it to be re-used by other actors. However, the actors are also rendered on appearance change, which happens when they're initially added to scene (even if they're hidden) or when game is loaded or rolled-back, so **layer pool size has to accommodate total number of camera-rendered actors spawned at a time**, and not just amount of such actors visible at a time. To destroy (de-spawn) an actor after hiding it, use [@remove] command.
 
 After adding the layers, assign `Custom Camera Prefab` in Naninovel's camera configuration with a camera prefab, which has culling mask with the `Naninovel ...` layers disabled. This is required to prevent the "raw" layered actors from leaking into the main Naninovel camera. Note that the assigned camera should be a dedicated camera prefab, not the camera you've used inside layered actor prefabs.
 
@@ -431,10 +431,10 @@ While in camera rendering mode, game objects of the layered actor prefab are con
 Layer active state is also reflected differently in camera mode: instead of renderer component enabled state, game object's active state is used. To set up default appearance of the actor, enable/disable game objects.
 
 ::: tip
-When layer contains lots of children, it would be tedious to set the layer held/release events for each of them individually. In this case use custom event handler to apply the changes in batch. Check [the example](https://discord.com/channels/545676116871086080/1369982706393284700) on applying the changes to all the children renderers of a layer.
+When a layer contains lots of children, it would be tedious to set the layer held/release events for each of them individually. In this case use a custom event handler to apply the changes in batch. Check [the example](https://discord.com/channels/545676116871086080/1369982706393284700) on applying the changes to all the children renderers of a layer.
 :::
 
-Make sure `Render Canvas` component is attached to the layered actor prefab root, as it's required for the camera mode. It works similar to normal render mode, restricting render texture size, so keep it compact.
+Make sure `Render Canvas` component is attached to the layered actor prefab root, as it's required for the camera mode. It works similarly to normal render mode, restricting render texture size, so keep it compact.
 
 In case extra layers are required for rendering the actor (for example, a layer dedicated for Unity's Lights 2D), add them via `Camera Mask` property found on the layered behaviour component. Naninovel will preserve specified layers in the camera culling mask when rendering the actor.
 
@@ -444,12 +444,12 @@ Find example on setting up layered actors in the [layered actor sample](/guide/s
 
 ## Generic Characters
 
-Generic character is the most flexible character actor implementation. It's based on a prefab with a `Generic Character Behaviour` component attached to the root object. Appearance changes and all the other character parameters are routed as [Unity events](https://docs.unity3d.com/Manual/UnityEvents.html) allowing to implement the behavior of the underlying object in any way you wish.
+Generic character is the most flexible character actor implementation. It's based on a prefab with a `Generic Character Behaviour` component attached to the root object. Appearance changes and all the other character parameters are routed as [Unity events](https://docs.unity3d.com/Manual/UnityEvents.html) allowing you to implement the behavior of the underlying object in any way you wish.
 
 ![](https://i.gyazo.com/d0ea1bf7a5ed3b4bb7eb70c4ddbfeba2.png)
 
 ::: info NOTE
-Generic actor implementations just route events from the scenario scripts and it's up to user to implement the underlying behaviour, e.g., how the actor should react to the appearance or visibility change commands, whether and how it will support speaker highlight feature, etc. Don't expect most of the actor-related features to work automatically with the generic implementations.
+Generic actor implementations just route events from the scenario scripts and it's up to the user to implement the underlying behavior, e.g., how the actor should react to the appearance or visibility change commands, whether and how it will support speaker highlight feature, etc. Don't expect most of the actor-related features to work automatically with the generic implementations.
 :::
 
 To create generic character prefab from a template, use `Create -> Naninovel -> Character -> Generic` context asset menu.
@@ -474,7 +474,7 @@ For the supported video formats for each platform see [Unity docs for video sour
 
 When using video with an alpha channel (transparency), see the [guide on the supported formats](https://docs.unity3d.com/Manual/VideoTransparency.html).
 
-To prevent specific appearance from looping, append `NoLoop` (case-insensitive) to the appearance name.
+To prevent a specific appearance from looping, append `NoLoop` (case-insensitive) to the appearance name.
 
 ## Live2D Characters
 
@@ -505,7 +505,7 @@ Live2D model prefab used as the resource for the implementation should have a `L
 Note that the above command will only attempt to invoke a [SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) with "Surprise" argument on the animator controller attached to the prefab; you have to compose the underlying [animator](https://docs.unity3d.com/Manual/Animator) state machine yourself.
 
 ::: info NOTE
-Current actual version of Cubism SDK for Unity is working directly with `Animator` component; expressions and poses (exported as expression.json and pose.json), that were previously used in Cubism 2.x are now [deprecated](https://docs.live2d.com/cubism-sdk-tutorials/blendexpression) and not supported by Naninovel's extension for Live2D.
+The current version of Cubism SDK for Unity works directly with `Animator` component; expressions and poses (exported as expression.json and pose.json) that were previously used in Cubism 2.x are now [deprecated](https://docs.live2d.com/cubism-sdk-tutorials/blendexpression) and not supported by Naninovel's extension for Live2D.
 :::
 
 When Live2D's `CubismLookController` and `CubismMouthController` components are present and set up on the Live2D model prefab, `Live2DController` can optionally use them to control look direction and mouth animation (aka lip sync feature) of the character.
@@ -522,7 +522,7 @@ Internally, Live2D model is rendered to a texture, which is then projected to th
 
 Be aware that the larger the size, the more memory the texture will consume, so keep it as small as possible.
 
-Following video guide covers exporting a Live2D character from Cubism Editor, configuring the prefab, creating a simple animator state machine and controlling the character from a scenario script.
+The following video guide covers exporting a Live2D character from Cubism Editor, configuring the prefab, creating a simple animator state machine and controlling the character from a scenario script.
 
 ![](https://www.youtube.com/watch?v=rw_Z69z0pAg)
 
@@ -551,10 +551,10 @@ Spine character prefab used as the resource for the implementation should have a
 ![](https://i.gyazo.com/6a2772a3e4137413a7c1587788c54c41.png)
 
 ::: tip
-It's possible to use a custom component inherited from `Spine Controller`. This way you'll be able to override the virtual methods and associated behaviour (e.g., handle appearance change with a specific duration or transition parameters).
+It's possible to use a custom component inherited from `Spine Controller`. This way you'll be able to override the virtual methods and associated behavior (e.g., handle appearance change with a specific duration or transition parameters).
 :::
 
-Internally, Spine model is rendered to a texture, which is then projected to the screen. This is required to prevent semi-transparency overdraw artifacts when fading the character. To specify the texture size, use `Render Canvas` component (attached automatically when adding `Spine Controller`). Enable [gizmos](https://docs.unity3d.com/Manual/GizmosMenu.html) to preview current the size while in prefab mode. Be aware that the larger the size, the more memory the texture will consume, so keep it as small as possible.
+Internally, Spine model is rendered to a texture, which is then projected to the screen. This is required to prevent semi-transparency overdraw artifacts when fading the character. To specify the texture size, use `Render Canvas` component (attached automatically when adding `Spine Controller`). Enable [gizmos](https://docs.unity3d.com/Manual/GizmosMenu.html) to preview the current size while in prefab mode. Be aware that the larger the size, the more memory the texture will consume, so keep it as small as possible.
 
 ::: info NOTE
 Spine's [Skeleton Render Separator](https://github.com/pharan/spine-unity-docs/blob/master/spine-unity-skeletonrenderseparator) (multi-render) workflow is not supported; to integrate that workflow with Naninovel, create a custom character implementation.
@@ -600,6 +600,6 @@ Generic, Live2D and Spine actors support multiple appearances applied at once, e
 @char Kohaku.Body/Pose1,Face/Smile
 ```
 
-— will invoke `Body/Pose1` and `Face/Smile` appearance change events. Use this to trigger multiple animator triggers simultaneously to set up complex animation states. All the appearances will as well serialize with the actor state and restore on game load or rollback.
+— will invoke `Body/Pose1` and `Face/Smile` appearance change events. Use this to trigger multiple animator triggers simultaneously to set up complex animation states. All the appearances will also serialize with the actor state and restore on game load or rollback.
 
 ![](https://i.gyazo.com/f438703100ca8c695de814fe08ff2427.mp4)

@@ -2,7 +2,7 @@
 
 要将语音片段暴露给引擎，请将其存储在 `Resources/Naninovel/Voice` 文件夹下（可以在音频配置下的 `Loader` 折叠项中更改）。如果您愿意，还可以使用子文件夹组织它们；在这种情况下，在脚本中引用它们时请使用正斜杠（`/`）。例如，存储为 `Resources/Naninovel/Voice/Intro/Day/25.wav` 的语音音频剪辑可以在脚本中引用为 `Intro/Day/25`。
 
-也可以使用[寻址资产系统](/zh/guide/resource-providers#手动分配)手动暴露资源；有关更多信息，请参阅指南。
+也可以使用[Addressable 资产系统](/zh/guide/resource-providers#手动分配)手动暴露资源；有关更多信息，请参阅指南。
 
 您可以使用任何[Unity支持](https://docs.unity3d.com/Manual/AudioFiles.html)的音频格式作为语音剪辑。
 
@@ -24,7 +24,7 @@
 
 在全配音游戏中，为每个配音行指定 [@voice] 命令可能会变得繁琐。自动配音功能允许自动播放与配音文本行的唯一标识符关联的语音剪辑。要启用自动配音，请在音频配置菜单中启用 `Enable Auto Voicing` 开关。
 
-语音音频剪辑与配音文本行之间的关联可以通过配音映射实用程序执行，也可以通过使用 Unity 的寻址资产系统为音频剪辑资产分配地址（或以其他方式将资产暴露给另一个[资源提供者](/zh/guide/resource-providers)）来执行。
+语音音频剪辑与配音文本行之间的关联可以通过配音映射实用程序执行，也可以通过使用 Unity 的 Addressable 资产系统为音频剪辑资产分配地址（或以其他方式将资产暴露给另一个[资源提供者](/zh/guide/resource-providers)）来执行。
 
 启用自动配音后，音频配置菜单中将出现“Open Voice Map Utility”按钮；您也可以通过 `Naninovel -> Tools -> Voice Map` 编辑器菜单访问该实用程序。
 
@@ -49,7 +49,7 @@ Hello.|#uniqueid|
 使用编辑器菜单下的 `Naninovel/Tools/Text Identifier` 让 Naninovel 自动为所有可本地化的脚本文本（包括配音行）生成唯一 ID。这样您就不必手动为重复行分配 ID，并且编辑已映射的行也不会破坏关联。有关更多信息，请参阅[文本标识](/zh/guide/scenario-scripting#文本识别)。
 :::
 
-要在不使用配音映射实用程序的情况下关联剪辑，请使用以脚本路径和语音加载器前缀（默认为 `Voice`）为前缀的文本 ID 作为资源名称，将资产暴露给资源提供者。要查找特定配音行的脚本路径和文本 ID，请使用[配音文档](/zh/guide/voicing#配音文档)。例如，要关联通过寻址资源提供者暴露的 `Script01` 路径脚本内的 `2670eb4` 文本 ID 的配音行，请使用以下地址：`Naninovel/Voice/Script01/2670eb4`。
+要在不使用配音映射实用程序的情况下关联剪辑，请使用以脚本路径和语音加载器前缀（默认为 `Voice`）为前缀的文本 ID 作为资源名称，将资产暴露给资源提供者。要查找特定配音行的脚本路径和文本 ID，请使用[配音文档](/zh/guide/voicing#配音文档)。例如，要关联通过 Addressable 资源提供者暴露的 `Script01` 路径脚本内的 `2670eb4` 文本 ID 的配音行，请使用以下地址：`Naninovel/Voice/Script01/2670eb4`。
 
 要在游戏运行时查找与当前打印文本关联的自动配音 ID，请使用调试窗口：
 

@@ -115,7 +115,7 @@ Specific text font options available in the game settings menu are set up in the
 
 ![](https://i.gyazo.com/31a9b81dae56fb114a75e25211d26126.png)
 
-`Font Resource` should specify a [resources path](/guide/resource-providers) to a `TMPro Font` asset. By default, Naninovel will use addressable and project resource providers to look for font assets; use `Font Loader` to change the behaviour. The simplest way to expose a font asset while using default settings is to place the font inside `Resources/Naninovel/Fonts` folder; then you can use the font's asset name as the font resource path. Consult Unity's TextMesh Pro documentation for more info on how to create and configure fonts.
+`Font Resource` should specify a [resources path](/guide/resource-providers) to a `TMPro Font` asset. By default, Naninovel will use addressable and project resource providers to look for font assets; use `Font Loader` to change the behavior. The simplest way to expose a font asset while using default settings is to place the font inside `Resources/Naninovel/Fonts` folder; then you can use the font's asset name as the font resource path. Consult Unity's TextMesh Pro documentation for more info on how to create and configure fonts.
 
 To change the font outside of `Custom UI` objects (e.g., on a choice handler button prefab), use the `Font Changer` component. It has the same font configuration option and can be applied to any game object.
 
@@ -134,7 +134,7 @@ In the following video tutorial you can learn how to override built-in title (ma
 ![](https://www.youtube.com/watch?v=hqhfhXzQkdk)
 
 ::: tip EXAMPLE
-Unity project showed in the above video tutorial is available in the [UI sample](/guide/samples#ui).
+Unity project shown in the above video tutorial is available in the [UI sample](/guide/samples#ui).
 :::
 
 When creating a new prefab from scratch, make sure to attach a component that implements the interface of the UI you're going to override. This component should be attached to the root object of the prefab.

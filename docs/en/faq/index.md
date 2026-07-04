@@ -18,15 +18,15 @@ That said, node graphs can still be useful for tracking and organizing the branc
 
 ## Is it possible to embed a mini-game into Naninovel?
 
-Sure, you can "inject" any custom logic into the default Naninovel flow. In many cases, however, this will require using the engine's C# API (via either writing custom C# scripts or using a [visual scripting](/guide/samples#visual-scripting) solution). Check the [engine services guide](/guide/engine-services) for the list of available open APIs, which allows interaction with the engine; you may also make use of [state outsourcing](/guide/state-management#custom-state), [custom actor implementations](/guide/custom-actor-implementations) and [custom commands](/guide/custom-commands) in the process.
+Sure, you can "inject" any custom logic into the default Naninovel flow. In many cases, however, this will require using the engine's C# API (via either writing custom C# scripts or using a [visual scripting](/guide/samples#visual-scripting) solution). Check the [engine services guide](/guide/engine-services) for the list of available open APIs, which allow interaction with the engine; you may also make use of [state outsourcing](/guide/state-management#custom-state), [custom actor implementations](/guide/custom-actor-implementations) and [custom commands](/guide/custom-commands) in the process.
 
 ## Does it support a specific language?
 
-Naninovel can work with any language, but to display text in some languages, you'll need a compatible font. Consult "Fonts" section of the [localization guide](/guide/localization#fonts) for more info.
+Naninovel can work with any language, but to display text in some languages, you'll need a compatible font. Consult the "Fonts" section of the [localization guide](/guide/localization#fonts) for more info.
 
 ## Will I get access to the source code when I buy Naninovel?
 
-All the Unity-related sources are available in the distributed package. Common Naninovel modules are precompiled into dynamic assembly with sources hosted on a [private GitHub repository](https://github.com/naninovel/engine) which you can access after [registering your license](https://naninovel.com/register).
+All the Unity-related sources are available in the distributed package. Common Naninovel modules are precompiled into a dynamic assembly with sources hosted on a [private GitHub repository](https://github.com/naninovel/engine) which you can access after [registering your license](https://naninovel.com/register).
 
 ## What are the legal usage terms and conditions?
 
@@ -44,7 +44,7 @@ When the asset is purchased from an organization account, the organization owner
 
 For the UI part (changing/adding buttons or panel layout and style) [modify the built-in Title UI prefab](/guide/gui#modifying-built-in-ui); for everything else set `Title Script` in the scripts configuration menu (`Naninovel -> Configuration -> Scripts`) and use script commands to set up the scene just like when writing a scenario. The title script will be automatically played after engine initialization and when using the [@title] command.
 
-## Why a background is cropped?
+## Why is a background cropped?
 
 Make sure the aspect ratio of the background texture resolution matches the reference resolution set in the camera configuration. Also, ensure the texture is imported with the [correct settings](https://docs.unity3d.com/Manual/class-TextureImporter) (e.g., `Max Size` is high enough).
 
@@ -94,6 +94,6 @@ In case you're constantly changing avatars while the character itself should rem
 
 Alternatively, check out [render actor to texture](/guide/characters#render-to-texture) feature.
 
-## How to run a custom C# code from scenario scripts?
+## How to run custom C# code from scenario scripts?
 
-To invoke a C# behaviour (e.g., access a game object on scene), use [custom commands](/guide/custom-commands); to get a value from a C# method and use it in a scenario script, use [expression functions](/guide/script-expressions#adding-custom-functions).
+To invoke a C# behavior (e.g., access a game object on scene), use [custom commands](/guide/custom-commands); to get a value from a C# method and use it in a scenario script, use [expression functions](/guide/script-expressions#adding-custom-functions).

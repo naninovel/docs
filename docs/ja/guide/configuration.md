@@ -107,7 +107,7 @@
 
 | プロパティ | デフォルト値 | 説明 |
 | --- | --- | --- |
-| Default Handler Id | Button List | デフォルトで使用する選択肢ハンドラーのID。 |
+| Default Handler Id | ButtonList | デフォルトで使用する選択肢ハンドラーのID。 |
 | Choice Button Loader | Choice Buttons- (Addressable, Project) | カスタム選択肢ボタンのロードに使用されるリソースローダーの構成。 |
 | Default Metadata | Object Ref | 選択肢ハンドラーアクターを作成するときにデフォルトで使用するメタデータ。作成されたアクターIDのカスタムメタデータが存在しない場合に使用されます。 |
 | Metadata | Object Ref | 特定のIDで選択肢ハンドラーアクターを作成するときに使用するメタデータ。 |
@@ -172,11 +172,11 @@
 | --- | --- | --- |
 | Loader | Localization- (Addressable, Project) | ローカライズリソースで使用されるリソースローダーの構成。 |
 | Languages | Object Ref | デフォルトの言語表示名にマップされたRFC5646言語タグ。変更を有効にするには、Unityエディタを再起動してください。 |
-| Source Locale | En | ソースプロジェクトリソースのロケール（プロジェクトアセットが作成されている言語）。 |
+| Source Locale | en | ソースプロジェクトリソースのロケール（プロジェクトアセットが作成されている言語）。 |
 | Expose Source Locale | True | ソースロケールをエンドユーザー（プレイヤー）が利用できるようにするかどうか。つまり、言語選択に含めるかどうか。<br><br>このオプションを無効にすると、ソースのローカライズ可能なテキストをサードパーティ（校正用など）と共有したいが、シナリオスクリプトは共有したくない場合に役立ちます。その場合、このオプションを無効にし、ソースマテリアル専用のロケールを追加します。その後、ローカライズドキュメントまたはスプレッドシートにエクスポートできます。 |
 | Default Locale | Null | ゲームを初めて実行するときにデフォルトで選択されるロケール。指定しない場合、`Source Locale` が選択されます。 |
 | Auto Detect Locale | True | 有効で、ゲームが初めて実行されている場合、システム言語に基づいてロケールを自動的に検出しようとします。成功し、そのロケールがゲームでサポートされている場合は、それを選択します。それ以外の場合は、'Default Locale' にフォールバックします。 |
-| Record Separator | | | 汎用テキストラインの一部やローカライズ可能なパラメータ値など、一般的なローカライズされたスクリプトレコードを結合するためのテキスト文字。 |
+| Record Separator | \| | 汎用テキストラインの一部やローカライズ可能なパラメータ値など、一般的なローカライズされたスクリプトレコードを結合するためのテキスト文字。 |
 | Annotation Prefix | > | ローカライズされたテキストの注釈行を区別するために、注釈行の前に挿入するテキスト文字。注釈は、表示されたテキストメッセージの著者、インラインコマンド、ローカライズされたパラメータを含むコマンドラインなど、翻訳者に追加のコンテキストを提供するために、生成されたローカライズドキュメントにオプションで追加されるコメントです。スタブ文字は、ローカライズするテキストを含む次のコメント行で複製されるため、このような注釈のローカライズされた部分を置き換えるために使用されます。 |
 
 </div>
@@ -223,7 +223,7 @@
 | Auto Build Bundles | True | プレイヤーをビルドするときにAddressableアセットバンドルを自動的にビルドするかどうか。`Use Addressables` が無効になっている場合は効果がありません。 |
 | Label By Scripts | True | すべてのNaninovel Addressableアセットに、それらが使用されているシナリオスクリプトパスでラベルを付けるかどうか。Addressableグループ設定で `Bundle Mode` が `Pack Together By Label` に設定されている場合、より効率的なバンドルパッキングになります。<br><br>スクリプトラベルは、「Naninovel」ラベルを持つすべてのアセットに割り当てられることに注意してください。これには、リソースエディタメニューを使用せずにAddressableリソースプロバイダーに手動で公開されたアセットが含まれます。 |
 | Local Root Path | %DATA%/Resources | ローカルリソースプロバイダーに使用するパスルート。リソースが配置されているフォルダへの絶対パス、または使用可能なオリジンの1つを使用した相対パスにすることができます:<br> • %DATA% — ターゲットデバイス上のゲームデータフォルダ（UnityEngine.Application.dataPath）。<br> • %PDATA% — ターゲットデバイス上の永続データディレクトリ（UnityEngine.Application.persistentDataPath）。<br> • %STREAM% — `StreamingAssets` フォルダ（UnityEngine.Application.streamingAssetsPath）。<br> • %SPECIAL{F}% — OSの特別なフォルダ（FはSystem.Environment.SpecialFolderからの値）。 |
-| Video Stream Extension | .mp 4 | WebGLでビデオをストリーミングする場合（ムービー、ビデオ背景）、ビデオファイルの拡張子を指定します。 |
+| Video Stream Extension | .mp4 | WebGLでビデオをストリーミングする場合（ムービー、ビデオ背景）、ビデオファイルの拡張子を指定します。 |
 | Reload Scripts | True | ローカルプロバイダーディレクトリの下に保存されている変更されたシナリオスクリプトを監視してホットリロードするかどうか。 |
 
 </div>
@@ -305,10 +305,10 @@
 | --- | --- | --- |
 | Save Folder Name | Saves | フォルダはゲームデータフォルダに作成されます。 |
 | Default Settings Slot Id | Settings | 設定セーブファイルの名前。 |
-| Default Global Slot Id | Global Save | グローバルセーブファイルの名前。 |
-| Save Slot Mask | Game Save{0:000} | セーブスロットの名前付けに使用されるマスク。 |
-| Quick Save Slot Mask | Game Quick Save{0:000} | クイックセーブスロットの名前付けに使用されるマスク。 |
-| Auto Save Slot Mask | Game Auto Save{0:000} | オートセーブスロットの名前付けに使用されるマスク。 |
+| Default Global Slot Id | GlobalSave | グローバルセーブファイルの名前。 |
+| Save Slot Mask | GameSave{0:000} | セーブスロットの名前付けに使用されるマスク。 |
+| Quick Save Slot Mask | GameQuickSave{0:000} | クイックセーブスロットの名前付けに使用されるマスク。 |
+| Auto Save Slot Mask | GameAutoSave{0:000} | オートセーブスロットの名前付けに使用されるマスク。 |
 | Save Slot Limit | 99 | セーブスロットの最大数。 |
 | Quick Save Slot Limit | 18 | クイックセーブスロットの最大数。 |
 | Auto Save Slot Limit | 18 | オートセーブスロットの最大数。 |
