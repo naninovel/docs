@@ -122,7 +122,7 @@ Long description line 1.<br>
 ...
 ```
 
-如果您喜欢内联格式，请从管理文本配置中的 `Multiline Categories` 列表中删除 `Tips`；然后可以类似于其他管理文本文档来编写提示：
+如果您喜欢内联格式，请从管理文本配置中的 `Multiline Documents` 列表中删除 `Tips`；然后可以类似于其他管理文本文档来编写提示：
 
 ```
 Tip1ID: Title

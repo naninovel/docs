@@ -278,7 +278,7 @@ boolValue = !boolValue;
 vars.TrySetValue("MyBoolVarName", boolValue);
 ```
 
-Note that an exception will be thrown if you attempt to call `AddVariable` for a variable that already exists or call `SetValue` for a variable that doesn't exist. If you don't want to check `VariableExists` each time, use the `UpsertValue` helper method - it'll automatically create a new variable if it doesn't exist or just update the value if it does:
+Note that an exception will be thrown if you attempt to call `AddVariable` for a variable that already exists or call `SetValue` for a variable that doesn't exist. If you don't want to check `VariableExists` each time, use the `UpsertValue` helper method — it'll automatically create a new variable if it doesn't exist or just update the value if it does:
 
 ```csharp
 // If 'foo' exists — set it to 42;

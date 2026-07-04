@@ -132,7 +132,7 @@ public class CustomCharacterSettings : CharactersSettings
                 return property => {
                     EditorGUILayout.PropertyField(property);
                     EditorGUILayout.LabelField($"Message color of " +
-                        "'{Metadata.DisplayName}' is '{property.colorValue}'.");
+                        $"'{Metadata.DisplayName}' is '{property.colorValue}'.");
                 };
             return base.GetCustomDrawer(propertyName);
         }

@@ -77,20 +77,16 @@ To expose a command parameter to scenario scripts, add a public field to the com
 |---------------------------|-----------------------|-------------------------------------|
 | StringParameter           | String                | `LoremIpsum`, `"Lorem ipsum"`       |
 | LocalizableTextParameter  | LocalizableText       | `"Lorem ipsum\|#id\|"`              |
-| IntegerParameter          | Int32                 | `10`, `0`, `-1`                     |
-| DecimalParameter          | Single                | `0.525`, `-55.1`                    |
+| NumberParameter           | Single                | `10`, `0.525`, `-55.1`              |
 | BooleanParameter          | Boolean               | `true`, `false`                     |
 | NamedStringParameter      | NamedString           | `Script001.LabelName`, `.LabelName` |
-| NamedIntegerParameter     | NamedInteger          | `Yuko.5`                            |
-| NamedDecimalParameter     | NamedFloat            | `Kohaku.-10.25`                     |
+| NamedNumberParameter      | NamedNumber           | `Yuko.5`, `Kohaku.-10.25`           |
 | NamedBooleanParameter     | NamedBoolean          | `Misaki.false`                      |
 | StringListParameter       | List&lt;String&gt;       | `Lorem,ipsum,"dolor sit amet"`      |
-| IntegerListParameter      | List&lt;Int32&gt;       | `10,-1,0`                           |
-| DecimalListParameter      | List&lt;Single&gt;      | `0.2,10.5,-88.99`                   |
+| NumberListParameter       | List&lt;Single&gt;      | `10,-1,0.105`                       |
 | BooleanListParameter      | List&lt;Boolean&gt;      | `true,false,true`                   |
 | NamedStringListParameter  | List&lt;NamedString&gt;  | `Felix.Happy,Jenna.Confidence`      |
-| NamedIntegerListParameter | List&lt;NamedInteger&gt; | `Yuko.5,Misaki.-8`                  |
-| NamedDecimalListParameter | List&lt;NamedFloat&gt;   | `Nanikun.88.99,Yuko.-5.1`           |
+| NamedNumberListParameter  | List&lt;NamedNumber&gt;  | `Yuko.5,Misaki.-8`                  |
 | NamedBooleanListParameter | List&lt;NamedBoolean&gt; | `Misaki.false,Kohaku.true`          |
 
 ### Parameter Alias

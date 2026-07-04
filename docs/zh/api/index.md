@@ -1269,7 +1269,7 @@ You've picked two.
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| power | number | 雨的强度（每秒粒子生成率）；默认为 500。设置为 0 以禁用（取消生成）效果。 |
+| power | number | 雨的强度（每秒粒子生成率），范围为 0.0 到 1.0；默认为 0.5。设置为 0 以禁用（取消生成）效果。 |
 | time | number | 粒子系统将在指定时间内（以秒为单位）逐渐将生成率增加到目标水平。 |
 | xSpeed | number | 粒子水平速度的倍增器。用于改变雨滴的角度。 |
 | ySpeed | number | 粒子垂直速度的倍增器。 |
@@ -1283,9 +1283,9 @@ You've picked two.
 
 ```nani
 ; 在 10 秒内开始大雨。
-@Rain power:1500 time:10
+@rain power:1 time:10
 ; 在 30 秒内停止雨。
-@Rain power:0 time:30
+@rain power:0 time:30
 ```
 
 ## random
@@ -1803,7 +1803,7 @@ My favourite drink is {drink}!
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| power | number | 雪的强度（每秒粒子生成率）；默认为 100。设置为 0 以禁用（取消生成）效果。 |
+| power | number | 雪的强度（每秒粒子生成率），范围为 0.0 到 1.0；默认为 0.5。设置为 0 以禁用（取消生成）效果。 |
 | time | number | 粒子系统将在指定时间内（以秒为单位）逐渐将生成率增加到目标水平。 |
 | pos | number list | 为生成的效果游戏对象设置的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。在正交模式下，使用 Z 分量（第三个成员，例如 `,,10`）按深度移动（排序）。 |
 | position | number list | 为生成的效果游戏对象设置的位置（在世界空间中）。 |
@@ -1815,7 +1815,7 @@ My favourite drink is {drink}!
 
 ```nani
 ; 在 10 秒内开始大雪。
-@snow power:300 time:10
+@snow power:1 time:10
 ; 在 30 秒内停止雪。
 @snow power:0 time:30
 ```

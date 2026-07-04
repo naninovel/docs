@@ -844,7 +844,7 @@ To toggle, disable or enable all the components attached to the camera object, u
 
 The state of the currently enabled (and disabled) camera components will be automatically saved and restored on game save-loading operations.
 
-Check out the following video for example on adding a custom camera filter effect.
+Check out the following video for an example of adding a custom camera filter effect.
 
 ![](https://www.youtube.com/watch?v=IbT6MTecO-k)
 

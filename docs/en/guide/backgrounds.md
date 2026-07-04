@@ -145,7 +145,7 @@ Define reference resolution with your team before starting the work on the art a
 
 ## Diced Sprite Backgrounds
 
-Built with an open source [SpriteDicing](https://github.com/elringus/SpriteDicing) package, `DicedSpriteBackground` implementation allows you to significantly reduce build size and texture memory by reusing texture areas of the background sprites when the associated textures contain mostly similar data.
+Built with an open source [SpriteDicing](https://github.com/elringus/sprite-dicing) package, `DicedSpriteBackground` implementation allows you to significantly reduce build size and texture memory by reusing texture areas of the background sprites when the associated textures contain mostly similar data.
 
 Diced background is very similar to diced character implementation; see the [diced characters guide](/guide/characters#diced-sprite-characters) for the setup and usage instructions.
 
@@ -242,7 +242,7 @@ Unity's `Animator` component could fail to register `SetTrigger` when the game o
 :::
 
 ::: tip EXAMPLE
-Check [generic actor sample](/guide/samples#generic-actor), where generic background implementation is used to host animated sprites.
+Check the [generic actor sample](/guide/samples#generic-actor), where generic background implementation is used to host animated sprites.
 :::
 
 ## Scene Backgrounds
@@ -279,7 +279,7 @@ When composing backgrounds with Unity scenes, consider adding [custom commands](
 :::
 
 ::: tip EXAMPLE
-Find example on setting up scene background in the [scene background sample](/guide/samples#scene-background).
+Find an example of setting up a scene background in the [scene background sample](/guide/samples#scene-background).
 :::
 
 ## Render to Texture
