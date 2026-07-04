@@ -28,7 +28,7 @@ player.Stop();
 | IMoviePlayer | 处理 [电影](/zh/api/#movie) 播放。 |
 | IScriptManager | 管理 [剧本脚本](/zh/guide/scenario-scripting) 资源。 |
 | IScriptPlayer | 处理 [剧本脚本](/zh/guide/scenario-scripting) 执行。 |
-| ICameraManager | 管理场景渲染所需的相机和其他系统。 |
+| ICameraManager | 管理场景渲染所需的摄像机和其他系统。 |
 | IResourceProviderManager | 管理 `IResourceProvider` 对象。 |
 | IStateManager | 处理 `IEngineService` 相关的持久数据反序列化/序列化；提供 [保存和加载](/zh/api/#save) 游戏状态的 API。 |
 | IUIManager | 管理 `IManagedUI` 对象并处理 [UI 自定义](/zh/guide/gui#ui-自定义) 功能。 |

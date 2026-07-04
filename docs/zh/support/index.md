@@ -15,7 +15,7 @@
 - 访问包含最新预览版和稳定版本分支的 UPM 存储库，允许您直接从 GitHub 安装和更新 Naninovel
 - 访问包含高级示例和演示场景的项目
 
-当您 [注册许可证](https://account.naninovel.com) 时，将包含一年的免费支持计划。之后，您可以随时通过您的 [帐户仪表板](https://account.naninovel.com/support) 续订订阅。
+当您 [注册许可证](https://account.naninovel.com) 时，将包含一年的免费支持计划。之后，您可以随时通过您的 [账户仪表板](https://account.naninovel.com/support) 续订订阅。
 
 ::: info NOTE
 支持计划完全是可选的——即使没有它，您也将继续通过 [下载存档](https://account.naninovel.com/download) 终身访问所有未来的 Naninovel 稳定版本，并且社区支持仍然可以在 `#forum` 频道中获得，您可以在那里随时提问并获得帮助。

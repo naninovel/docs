@@ -66,7 +66,7 @@ public class MyScript : MonoBehaviour
 
 ## シナリオスクリプトの再生
 
-指定されたパスのシナリオスクリプトをプリロードして再生するには、`IScriptPlayer` サービスの `LoadAndPlay(ScriptPath)` メソッドを使用します。エンジンサービスを取得するには、`Engine.GetService<TService>()` 静的メソッドを使用します。ここで、`TService` は取得するサービスのタイプ（インターフェイス）です。たとえば、次はスクリプトプレイヤーサービスを取得し、`Script001` という名前のスクリプトをプリロードして再生します。
+指定されたパスのシナリオスクリプトをプリロードして再生するには、`IScriptPlayer` サービスの `LoadAndPlay(ScriptPath)` メソッドを使用します。エンジンサービスを取得するには、`Engine.GetService<TService>()` 静的メソッドを使用します。ここで、`TService` は取得するサービスのタイプ（インターフェース）です。たとえば、次はスクリプトプレイヤーサービスを取得し、`Script001` という名前のスクリプトをプリロードして再生します。
 
 ```csharp
 var player = Engine.GetService<IScriptPlayer>();
@@ -104,7 +104,7 @@ public class DialogueTrigger : MonoBehaviour
 }
 ```
 
-エディタでは、スクリプトアセットを `Script Ref` フィールドにドラッグアンドドロップでき、スクリプトファイルが移動または名前変更されても参照はそのまま残ります。
+エディターでは、スクリプトアセットを `Script Ref` フィールドにドラッグアンドドロップでき、スクリプトファイルが移動または名前変更されても参照はそのまま残ります。
 
 ![](https://i.gyazo.com/cd634c628a0a116397f6ecef837a10b0.png)
 

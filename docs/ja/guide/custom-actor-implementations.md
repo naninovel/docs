@@ -2,21 +2,21 @@
 
 アクターは、名前、外観、可視性、および変換（位置、回転、スケール）によって定義されるシーンエンティティです。外観、可視性、および変換を時間の経過とともに非同期に変更できます。アクターの例には、キャラクター、背景、テキストプリンター、選択肢ハンドラーなどがあります。
 
-アクターは `IActor` インターフェイスとその派生物によって表されます。
+アクターは `IActor` インターフェースとその派生物によって表されます。
 
 * `ICharacterActor`
 * `IBackgroundActor`
 * `ITextPrinterActor`
 * `IChoiceHandlerActor`
 
-各アクターインターフェイスには複数の実装を含めることができます。たとえば、キャラクターアクターには現在、スプライト、ダイススプライト、汎用、レイヤー、ナレーター、Spine、Live2Dの7つの組み込み実装があります。
+各アクターインターフェースには複数の実装を含めることができます。たとえば、キャラクターアクターには現在、スプライト、ダイススプライト、汎用、レイヤー、ナレーター、Spine、Live2Dの7つの組み込み実装があります。
 
 アクターの実装は、`Naninovel -> Configuration` コンテキストメニューからアクセスできる構成マネージャーで選択できます。すべてのアクターに使用されるデフォルトの実装を変更したり、アクターごとに特定の実装を設定したりできます。デフォルトの実装を変更するには `Default Metadata` プロパティを使用し、特定のものを設定するにはアクターの構成の `Implementation` ドロップダウンを使用します。
 
 ![](https://i.gyazo.com/74625fa24b58362de15bb8e07753824d.png)
 ![](https://i.gyazo.com/eeb42043eb9a841de003f8db848f1427.png)
 
-Implementationドロップダウンには、特定のアクターインターフェイスを実装するすべてのタイプが含まれています。独自のカスタム実装を追加することもでき、それらもリストに表示されます。独自のアクター実装を作成する際の参考として、`Naninovel/Runtime/Actor` スクリプトを参照してください。アクターがシーンにスポーンされることが想定されている場合は、組み込みの抽象 `MonoBehaviourActor` 実装を使用して、ほとんどの基本インターフェイス要件を満たすことを検討してください。
+Implementationドロップダウンには、特定のアクターインターフェースを実装するすべてのタイプが含まれています。独自のカスタム実装を追加することもでき、それらもリストに表示されます。独自のアクター実装を作成する際の参考として、`Naninovel/Runtime/Actor` スクリプトを参照してください。アクターがシーンにスポーンされることが想定されている場合は、組み込みの抽象 `MonoBehaviourActor` 実装を使用して、ほとんどの基本インターフェース要件を満たすことを検討してください。
 
 カスタムアクター実装を作成するときは、互換性のあるパブリックコンストラクタがあることを確認してください。
 
@@ -24,7 +24,7 @@ Implementationドロップダウンには、特定のアクターインターフ
 public ActorImplementationType (string id, ActorMetadata metadata) { }
 ```
 
-— ここで `id` はアクターのIDであり、`metadata` はアクターのメタデータ（リソースにアクターレコードが存在する場合）またはデフォルトのメタデータのいずれかです。特定のアクターインターフェイスを実装する場合、対応する特定のメタデータ（たとえば、`ICharacterActor` 実装の場合は `CharacterMetadata`）を要求することができます。
+— ここで `id` はアクターのIDであり、`metadata` はアクターのメタデータ（リソースにアクターレコードが存在する場合）またはデフォルトのメタデータのいずれかです。特定のアクターインターフェースを実装する場合、対応する特定のメタデータ（たとえば、`ICharacterActor` 実装の場合は `CharacterMetadata`）を要求することができます。
 
 ::: tip EXAMPLE
 すべての組み込みアクター実装は同じアクターAPIに基づいて作成されているため、独自の実装を追加する際の参考にすることができます。ソースはNaninovelパッケージの `Runtime/Actor` ディレクトリにあります。
@@ -32,7 +32,7 @@ public ActorImplementationType (string id, ActorMetadata metadata) { }
 
 ## アクターリソース
 
-実装タイプに `ActorResources` 属性を適用して、カスタムアクターのリソースとして使用できるアセットと、エディタメニューで複数のリソースを割り当てることができるかどうかを指定します。複数のリソースが許可されていない場合（デフォルト）、アクターIDのみを指定して単一の利用可能なリソースをロードできます。例：
+実装タイプに `ActorResources` 属性を適用して、カスタムアクターのリソースとして使用できるアセットと、エディターメニューで複数のリソースを割り当てることができるかどうかを指定します。複数のリソースが許可されていない場合（デフォルト）、アクターIDのみを指定して単一の利用可能なリソースをロードできます。例：
 
 ```csharp
 var resource = await resourceLoader.Load(actorId);
@@ -68,7 +68,7 @@ public class MyCharacterData : CustomMetadata<CustomCharacterImplementation>
 }
 ```
 
-作成されたカスタムデータクラスのシリアル化可能なフィールドは、関連する実装を持つアクターが選択されたときに、Naninovelエディタメニューで自動的に公開されます。
+作成されたカスタムデータクラスのシリアル化可能なフィールドは、関連する実装を持つアクターが選択されたときに、Naninovelエディターメニューで自動的に公開されます。
 
 ![](https://i.gyazo.com/72f46feb74b6de568b299329500bd7d5.png)
 
@@ -81,9 +81,9 @@ var myCharData = myCharMeta.GetCustomData<MyCharacterData>();
 Debug.Log(myCharData.MyCustomInt);
 ```
 
-### カスタムメタデータエディタ
+### カスタムメタデータエディター
 
-[プロパティドロワー](https://docs.unity3d.com/Manual/editor-PropertyDrawers.html) を介してカスタムメタデータエディタをカスタマイズすることが可能です。以下は、編集されたフィールドの上に余分なラベルを挿入するプロパティドロワーを追加する例です。
+[プロパティドロワー](https://docs.unity3d.com/Manual/editor-PropertyDrawers.html) を介してカスタムメタデータエディターをカスタマイズすることが可能です。以下は、編集されたフィールドの上に余分なラベルを挿入するプロパティドロワーを追加する例です。
 
 ```csharp
 // シリアル化されたフィールドに適用する属性を作成します。
@@ -98,8 +98,8 @@ public class ExtraLabelAttribute : PropertyAttribute
     }
 }
 
-// 影響を受けるフィールドを描画するときに使用されるカスタムエディタを作成します。
-// `UnityEditor` APIを使用するため、スクリプトは `Editor` フォルダ内にある必要があります。
+// 影響を受けるフィールドを描画するときに使用されるカスタムエディターを作成します。
+// `UnityEditor` APIを使用するため、スクリプトは `Editor` フォルダー内にある必要があります。
 [CustomPropertyDrawer(typeof(ExtraLabelAttribute))]
 public class ExtraLabelPropertyDrawer : PropertyDrawer
 {
@@ -135,7 +135,7 @@ public class MyCharacterData : CustomMetadata<CustomCharacterImplementation>
 ![](https://i.gyazo.com/294a9e2812d33ea3c863f9f53906b327.png)
 
 ::: tip
-組み込み構成エディタ全体をオーバーライドすることも可能です。詳細と例については、[カスタムコンフィグレーション](/ja/guide/custom-configuration#組み込みエディタのオーバーライド) ガイドを参照してください。
+組み込み構成エディター全体をオーバーライドすることも可能です。詳細と例については、[カスタムコンフィグレーション](/ja/guide/custom-configuration#組み込みエディターのオーバーライド) ガイドを参照してください。
 :::
 
 ## カスタムステート
@@ -143,7 +143,7 @@ public class MyCharacterData : CustomMetadata<CustomCharacterImplementation>
 カスタムアクターの状態タイプをオーバーライドまたは拡張するには、状態がそこでシリアル化され、管理対象のアクターに適用されるため、[アクターのマネージャーもオーバーライド](/ja/guide/engine-services#組み込みサービスのオーバーライド) する必要があります。
 
 ::: info NOTE
-これは、組み込みの `IActor` インターフェイス派生物（キャラクター、背景、テキストプリンター、および選択肢ハンドラー）の1つのカスタムアクター実装に適用されます。カスタムアクターを `IActor` から直接継承した場合は、カスタム状態を使用するために組み込みマネージャーをオーバーライドする必要はありません。独自のものを作成するだけです。
+これは、組み込みの `IActor` インターフェース派生物（キャラクター、背景、テキストプリンター、および選択肢ハンドラー）の1つのカスタムアクター実装に適用されます。カスタムアクターを `IActor` から直接継承した場合は、カスタム状態を使用するために組み込みマネージャーをオーバーライドする必要はありません。独自のものを作成するだけです。
 
 他のシステム（例：Naninovel外部のさまざまなゲームメカニクスのためのUI、ゲームオブジェクト、またはコンポーネント）にカスタム状態を追加する場合は、[状態管理ガイド](/ja/guide/state-management#カスタムステート) を参照してください。
 :::
@@ -200,7 +200,7 @@ public class MyCustomChoiceHandler : UIChoiceHandler
 
 // 拡張状態を使用するように組み込み選択肢ハンドラーマネージャーをオーバーライドします。
 // 重要なステップは、ジェネリックタイプで `MyChoiceHandlerState` を指定することです。
-// 他の変更は、インターフェイス要件を満たすためのものです。
+// 他の変更は、インターフェース要件を満たすためのものです。
 [InitializeAtRuntime(@override: typeof(ChoiceHandlerManager))]
 public class MyChoiceHandlerManager : ActorManager<IChoiceHandlerActor,
     MyChoiceHandlerState, ChoiceHandlerMetadata,
