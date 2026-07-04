@@ -432,7 +432,7 @@ Modifies a [character actor](/guide/characters).
 Adds a required [choice](/guide/choices) option, which halts further scenario playback until the player makes a selection.   Subsequent choice commands are merged, allowing multiple options to be presented at once. Use [@addChoice] instead of this command to simply add a choice, without requiring a selection before proceeding with the playback.
 
 ::: info NOTE
-When nesting commands under the choice, `goto`, `gosub` and `set` parameters are ignored.<br><br>Conditional execution of the `@choice` command is not possible, because the command must determine in advance which choice is the last in the chain in order to stop playback automatically. If you need something like `@choice ... if:...`, use the [@addChoice] command instead.<br><br>Labels between the subsequent choice commands are ignored.
+When nesting commands under the choice, `goto`, `gosub` and `set` parameters are ignored.<br><br>Conditional execution of the `@choice` command is not possible, because the command must determine in advance which choice is the last in the chain in order to stop playback automatically. If you need something like `@choice ... if:...`, use the [@addChoice] command instead.
 :::
 
 <div class="config-table">
