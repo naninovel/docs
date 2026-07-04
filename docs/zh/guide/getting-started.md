@@ -120,7 +120,7 @@ https://github.com/naninovel/upm.git#1.21
 ![?width=368](https://i.gyazo.com/c1b86f88105a76e33cba961a9b71c8fb.png)
 
 ::: tip
-如果在安装包时遇到错误，请确保您已通过帐户仪表板中分配的 GitHub 用户进行身份验证。在 Windows 上进行身份验证的最简单方法是使用 [GitHub Desktop](https://github.com/apps/desktop) 登录。在 macOS 和 Linux 上，请改用 [GCM](https://github.com/git-ecosystem/git-credential-manager/releases/latest)。有关 [更多信息](https://docs.unity3d.com/Manual/upm-config-https-git.html)，请参阅 Unity 指南。
+如果在安装包时遇到错误，请确保您已通过账户仪表板中分配的 GitHub 用户进行身份验证。在 Windows 上进行身份验证的最简单方法是使用 [GitHub Desktop](https://github.com/apps/desktop) 登录。在 macOS 和 Linux 上，请改用 [GCM](https://github.com/git-ecosystem/git-credential-manager/releases/latest)。有关 [更多信息](https://docs.unity3d.com/Manual/upm-config-https-git.html)，请参阅 Unity 指南。
 :::
 
 ### 从存档安装
@@ -387,7 +387,7 @@ K.Happy: Hello World!
 
 - 一个带有 `UI / Event System` 组件的对象
     - 将 `Naninovel/Resources/Input/DefaultControls` 分配为 `Actions Asset`
-- 一个带有 `Event / Physics Raycaster` 组件的相机对象
+- 一个带有 `Event / Physics Raycaster` 组件的摄像机对象
 - 一个将充当对话触发器的立方体
     - 删除附加到立方体的默认碰撞体组件
 

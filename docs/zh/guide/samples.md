@@ -34,7 +34,7 @@
 
 ## 透视场景 (Perspective Scene)
 
-此示例展示了一个充满多个动画环境精灵的通用背景、透视模式下的相机渲染以及散景（景深）效果。背景存储在 `Content/Backgrounds/Perspective` 目录下。
+此示例展示了一个充满多个动画环境精灵的通用背景、透视模式下的摄像机渲染以及散景（景深）效果。背景存储在 `Content/Backgrounds/Perspective` 目录下。
 
 ![](https://i.gyazo.com/610d2cafe5fbe42aba7adb9ac71720d1.mp4)
 
@@ -251,7 +251,7 @@ RTL 打印机存储在 `Content/Printers/RTL`。
 
 ## 分层 Actor
 
-在 `Content/Characters/Miho` 目录中找到分层角色，在 `Content/Backgrounds/Particles` 中找到在相机渲染模式下设置的分层背景。
+在 `Content/Characters/Miho` 目录中找到分层角色，在 `Content/Backgrounds/Particles` 中找到在摄像机渲染模式下设置的分层背景。
 
 ## 切片 Actor
 

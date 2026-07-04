@@ -42,14 +42,14 @@ Kohaku: 隆隆作响！
 ---
 ### Shake
 
-震动指定的 actor 或主相机。专用命令：[@shake]
+震动指定的 actor 或主摄像机。专用命令：[@shake]
 
 ![](https://i.gyazo.com/f9521fbcf959d0b72e449ae6e2191f9f.mp4)
 
 **开始参数**
 | 名称 | 类型 | 默认 | 描述 |
 | --- | --- | --- | --- |
-| ID | String | null | 要震动的 actor 的 ID。指定 `Camera` 以震动主相机。 |
+| ID | String | null | 要震动的 actor 的 ID。指定 `Camera` 以震动主摄像机。 |
 | Shake count | Number | 3 | 震动迭代次数。 |
 | Loop | Boolean | false | 启用后，将循环效果，直到使用 [@despawn] 停止。 |
 | Shake duration | Number | 0.15 | 每次震动迭代的基本持续时间（以秒为单位）。 |
@@ -68,14 +68,14 @@ Kohaku: 隆隆作响！
 ; 使用默认参数震动 "Kohaku" actor
 @shake Kohaku
 
-; 水平震动主相机 5 次
+; 水平震动主摄像机 5 次
 @shake Camera count:5 hor!
 ```
 
 ---
 ### Glitch
 
-对主相机应用后处理效果，模拟数字视频失真和伪影。专用命令：[@glitch]
+对主摄像机应用后处理效果，模拟数字视频失真和伪影。专用命令：[@glitch]
 
 ![](https://i.gyazo.com/94cb6db25c17956473db4de149281df5.mp4)
 
@@ -196,7 +196,7 @@ Kohaku: 隆隆作响！
 | 名称 | 类型 | 默认 | 描述 |
 | --- | --- | --- | --- |
 | Focus Object Name | String | null | 要设置焦点的游戏对象的名称（可选）。设置后，焦点将始终停留在游戏对象上，并且 `Focus Distance` 参数将被忽略。 |
-| Focus Distance | Number | 10 | 从 Naninovel 相机到焦点的距离。指定 `Focus Object Name` 时忽略。 |
+| Focus Distance | Number | 10 | 从 Naninovel 摄像机到焦点的距离。指定 `Focus Object Name` 时忽略。 |
 | Focal Length | Number | 3.75 | 应用于散焦区域的模糊量；也决定焦点灵敏度。 |
 | Duration | Number | 1 | 插值时间（参数达到目标值的速度）。 |
 
@@ -214,7 +214,7 @@ Kohaku: 隆隆作响！
 ; 在 10 秒内淡出（禁用）效果
 @bokeh power:0
 
-; 将焦点设置在距离相机 10 个单位的位置，
+; 将焦点设置在距离摄像机 10 个单位的位置，
 ; 焦距为 0.95 并在 3 秒内应用
 @bokeh dist:10 power:0.95 time:3
 ```
@@ -799,13 +799,13 @@ EaseInOutElastic
 
 检查存储在 `Naninovel/Prefabs/FX` 中的内置效果预制件以获取参考实现。
 
-### 自定义相机效果
+### 自定义摄像机效果
 
-如果您希望将自定义 [后处理效果](https://assetstore.unity.com/?q=post%20processing&orderBy=1)（又名图像效果或相机滤镜，如 "Digital Glitch" 内置效果）应用于 Naninovel 相机，请 [创建相机预制件](https://docs.unity3d.com/Manual/CreatingPrefabs.html)，[将所需的效果组件添加](https://docs.unity3d.com/Manual/UsingComponents.html) 到相机对象，并将预制件分配给相机配置菜单 (`Naninovel -> Configuration -> Camera`) 中的 `Custom Camera Prefab` 字段。
+如果您希望将自定义 [后处理效果](https://assetstore.unity.com/?q=post%20processing&orderBy=1)（又名图像效果或摄像机滤镜，如 "Digital Glitch" 内置效果）应用于 Naninovel 摄像机，请 [创建摄像机预制件](https://docs.unity3d.com/Manual/CreatingPrefabs.html)，[将所需的效果组件添加](https://docs.unity3d.com/Manual/UsingComponents.html) 到摄像机对象，并将预制件分配给摄像机配置菜单 (`Naninovel -> Configuration -> Camera`) 中的 `Custom Camera Prefab` 字段。
 
 ![](https://i.gyazo.com/6024aac1d2665dd96915758cd5c09fde.png)
 
-您可以通过剧本脚本使用 `toggle` 参数切换（启用（如果已禁用）和反之亦然）添加的组件，并使用 [@camera] 命令的 `set` 参数显式设置启用状态。例如，假设您已将 "Bloom Image Effect" 组件添加到相机对象。首先，找出组件的类型名称是什么；它通常在组件的 `Script` 字段中指定。
+您可以通过剧本脚本使用 `toggle` 参数切换（启用（如果已禁用）和反之亦然）添加的组件，并使用 [@camera] 命令的 `set` 参数显式设置启用状态。例如，假设您已将 "Bloom Image Effect" 组件添加到摄像机对象。首先，找出组件的类型名称是什么；它通常在组件的 `Script` 字段中指定。
 
 ![](https://i.gyazo.com/73b7eabfe97ed84796cbe715b7dafc14.png)
 
@@ -829,7 +829,7 @@ EaseInOutElastic
 
 — 将启用 `BloomImageEffect` 和 `CameraNoise` 组件，同时禁用 `Sepia`。
 
-要切换、禁用或启用附加到相机对象的所有组件，请使用 `*` 符号。
+要切换、禁用或启用附加到摄像机对象的所有组件，请使用 `*` 符号。
 
 ```nani
 ; 切换所有组件
@@ -842,9 +842,9 @@ EaseInOutElastic
 @camera set:*.true
 ```
 
-当前启用（和禁用）的相机组件的状态将在游戏保存加载操作时自动保存和恢复。
+当前启用（和禁用）的摄像机组件的状态将在游戏保存加载操作时自动保存和恢复。
 
-查看以下视频，了解有关添加自定义相机滤镜效果的示例。
+查看以下视频，了解有关添加自定义摄像机滤镜效果的示例。
 
 ![](https://www.youtube.com/watch?v=IbT6MTecO-k)
 

@@ -52,7 +52,7 @@
 | Metadata | Object Ref | 创建具有特定 ID 的背景 actor 时使用的元数据。 |
 | Shared Poses | Object Ref | 在背景之间共享的命名状态（姿势）；姿势名称可以用作 [@back] 命令中的外观，以设置关联状态的启用属性。 |
 | Scene Origin | (0.50, 0.00) | 场景上的参考点，被视为受管 actor 的原点。不影响定位。 |
-| Z Offset | 100 | 创建 actor 时设置的从 actor 到相机的初始 Z 轴偏移（深度）。 |
+| Z Offset | 100 | 创建 actor 时设置的从 actor 到摄像机的初始 Z 轴偏移（深度）。 |
 | Z Step | 0.1 | 创建 actor 时设置的 actor 之间的 Z 轴距离；用于防止 z-fighting 问题。 |
 | Default Duration | 0.35 | 所有 actor 修改（更改外观、位置、色调等）的默认持续时间（以秒为单位）。 |
 | Default Easing | Linear | 默认情况下用于所有 actor 修改动画（更改外观、位置、色调等）的缓动函数。 |
@@ -60,7 +60,7 @@
 
 </div>
 
-## 相机
+## 摄像机
 
 <div class="config-table">
 
@@ -68,17 +68,17 @@
 | --- | --- | --- |
 | Reference Resolution | (1920, 1080) | 参考分辨率用于评估适当的渲染尺寸，以便 actor 正确定位在场景中。根据经验，将其设置为等于您为游戏制作的背景纹理的分辨率。 |
 | Reference PPU | 100 | 多少像素对应于一个场景单位。减少此值将使所有 actor 显得更小，反之亦然。对于大多数情况，建议使用默认值 100。 |
-| Aspect Ratios | Object Ref | 支持的纵横比。指定后，将筛选游戏设置中可用的分辨率，并在托管相机上强制应用纵横比。留空则不限制或强制纵横比。<br><br>请注意，Unity 不会清除相机矩形之外的像素，因此需要自行清除它们。最简单的设置是添加一个先于 Naninovel 渲染的相机，并将 `Culling Mask` 设置为 `Nothing`。 |
+| Aspect Ratios | Object Ref | 支持的纵横比。指定后，将筛选游戏设置中可用的分辨率，并在托管摄像机上强制应用纵横比。留空则不限制或强制纵横比。<br><br>请注意，Unity 不会清除摄像机矩形之外的像素，因此需要自行清除它们。最简单的设置是添加一个先于 Naninovel 渲染的摄像机，并将 `Culling Mask` 设置为 `Nothing`。 |
 | Match Screen Width | False | 是否应将参考场景矩形宽度与屏幕宽度匹配。启用后，相对（场景）位置评估将使用屏幕边界作为原点；否则使用参考分辨率。 |
-| Initial Position | (0.00, 0.00, -10.00) | 受管相机的初始世界位置。 |
-| Stack Camera | True | 是否查找现有的“基础”相机，并在找到时将 Naninovel 的主相机添加（叠加）到基础相机堆栈中。即使禁用此选项，您也可以使用 'Camera Events' 组件的 'Setup Base Camera' 方法手动堆叠相机。 |
-| Stack Camera Tag | Null | 启用 'Stack Camera' 时，指定要查找的基础相机的标签。如果未指定，将使用第一个找到的基础相机。 |
-| Custom Camera Prefab | Null | 带有用于渲染的相机组件的预制件。未指定时将使用默认值。如果您希望设置一些相机属性（背景颜色、FOV、HDR 等）或添加后处理脚本，请使用所需的相机设置创建一个预制件并将该预制件分配给此字段。 |
-| Use UI Camera | True | 是否使用专用相机渲染 UI。此选项用于向后兼容，不应在新项目中禁用。禁用时可能会出现问题（例如，在相机动画上不断重建 uGUI 布局）。 |
-| Custom UI Camera Prefab | Null | 带有用于 UI 渲染的相机组件的预制件。未指定时将使用默认值。当禁用 `Use UI Camera` 时无效。 |
-| Default Duration | 0.35 | 所有相机修改（更改缩放、位置、旋转等）的默认持续时间（以秒为单位）。 |
-| Default Easing | Linear | 默认情况下用于所有相机修改（更改缩放、位置、旋转等）的缓动函数。 |
-| Disable Rendering | False | 初始化引擎时是否默认禁用 Naninovel 相机。当 Naninovel 作为嵌入式对话系统集成并且初始化后不应渲染时很有用。 |
+| Initial Position | (0.00, 0.00, -10.00) | 受管摄像机的初始世界位置。 |
+| Stack Camera | True | 是否查找现有的“基础”摄像机，并在找到时将 Naninovel 的主摄像机添加（叠加）到基础摄像机堆栈中。即使禁用此选项，您也可以使用 'Camera Events' 组件的 'Setup Base Camera' 方法手动堆叠摄像机。 |
+| Stack Camera Tag | Null | 启用 'Stack Camera' 时，指定要查找的基础摄像机的标签。如果未指定，将使用第一个找到的基础摄像机。 |
+| Custom Camera Prefab | Null | 带有用于渲染的摄像机组件的预制件。未指定时将使用默认值。如果您希望设置一些摄像机属性（背景颜色、FOV、HDR 等）或添加后处理脚本，请使用所需的摄像机设置创建一个预制件并将该预制件分配给此字段。 |
+| Use UI Camera | True | 是否使用专用摄像机渲染 UI。此选项用于向后兼容，不应在新项目中禁用。禁用时可能会出现问题（例如，在摄像机动画上不断重建 uGUI 布局）。 |
+| Custom UI Camera Prefab | Null | 带有用于 UI 渲染的摄像机组件的预制件。未指定时将使用默认值。当禁用 `Use UI Camera` 时无效。 |
+| Default Duration | 0.35 | 所有摄像机修改（更改缩放、位置、旋转等）的默认持续时间（以秒为单位）。 |
+| Default Easing | Linear | 默认情况下用于所有摄像机修改（更改缩放、位置、旋转等）的缓动函数。 |
+| Disable Rendering | False | 初始化引擎时是否默认禁用 Naninovel 摄像机。当 Naninovel 作为嵌入式对话系统集成并且初始化后不应渲染时很有用。 |
 | Capture Thumbnails | True | 保存游戏时是否捕获小屏幕预览；这些预览随后用于保存槽。 |
 | Thumbnail Resolution | (240, 140) | 将捕获用于预览游戏保存槽的缩略图的分辨率。 |
 | Hide UI In Thumbnails | False | 捕获缩略图时是否忽略 UI 层。 |
@@ -98,7 +98,7 @@
 | Avatar Loader | Character Avatars- (Addressable, Project) | 与角色头像纹理资源一起使用的资源加载器的配置。 |
 | Shared Poses | Object Ref | 在角色之间共享的命名状态（姿势）；姿势名称可以用作 [@char] 命令中的外观，以设置关联状态的启用属性。 |
 | Scene Origin | (0.50, 0.00) | 场景上的参考点，被视为受管 actor 的原点。不影响定位。 |
-| Z Offset | 50 | 创建 actor 时设置的从 actor 到相机的初始 Z 轴偏移（深度）。 |
+| Z Offset | 50 | 创建 actor 时设置的从 actor 到摄像机的初始 Z 轴偏移（深度）。 |
 | Z Step | 0.1 | 创建 actor 时设置的 actor 之间的 Z 轴距离；用于防止 z-fighting 问题。 |
 | Default Duration | 0.35 | 所有 actor 修改（更改外观、位置、色调等）的默认持续时间（以秒为单位）。 |
 | Default Easing | Smooth Step | 默认情况下用于所有 actor 修改动画（更改外观、位置、色调等）的缓动函数。 |
@@ -128,7 +128,7 @@
 
 | 属性 | 默认值 | 描述 |
 | --- | --- | --- |
-| Override Objects Layer | False | 是否为所有引擎对象分配特定层。引擎的相机将使用该层作为剔除掩码。使用此选项将 Naninovel 对象与其他相机渲染隔离。 |
+| Override Objects Layer | False | 是否为所有引擎对象分配特定层。引擎的摄像机将使用该层作为剔除掩码。使用此选项将 Naninovel 对象与其他摄像机渲染隔离。 |
 | Objects Layer | 0 | 启用 `Override Objects Layer` 时，指定的层将分配给所有引擎对象。 |
 | Async Instantiation | True | 是否使用 `Object.InstantiateAsync` 实例化引擎对象，这将大部分相关工作移出主线程。除非遇到问题，否则保持启用。 |
 | Initialize On Application Load | True | 应用程序启动时是否自动初始化引擎。 |
@@ -317,7 +317,7 @@
 | Default Metadata | Object Ref | 创建文本打印机 actor 时默认使用的元数据，并且创建的 actor ID 的自定义元数据不存在。 |
 | Metadata | Object Ref | 创建具有特定 ID 的文本打印机 actor 时使用的元数据。 |
 | Scene Origin | (0.50, 0.00) | 场景上的参考点，被视为受管 actor 的原点。不影响定位。 |
-| Z Offset | 0 | 创建 actor 时设置的从 actor 到相机的初始 Z 轴偏移（深度）。 |
+| Z Offset | 0 | 创建 actor 时设置的从 actor 到摄像机的初始 Z 轴偏移（深度）。 |
 | Z Step | 0 | 创建 actor 时设置的 actor 之间的 Z 轴距离；用于防止 z-fighting 问题。 |
 | Default Duration | 0.35 | 所有 actor 修改（更改外观、位置、色调等）的默认持续时间（以秒为单位）。 |
 | Default Easing | Linear | 默认情况下用于所有 actor 修改动画（更改外观、位置、色调等）的缓动函数。 |

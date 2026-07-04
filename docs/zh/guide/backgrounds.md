@@ -65,7 +65,7 @@
 @back id:2 pos:,,99
 ```
 
-较高的 z 位置会导致距相机的距离更远；因此，放置在离相机更近的 actor 将渲染在另一个之上。
+较高的 z 位置会导致距摄像机的距离更远；因此，放置在离摄像机更近的 actor 将渲染在另一个之上。
 
 背景默认放置有特定的 z 偏移，使其显示在其他 actor 类型后面。可以通过背景设置中的 `Z Offset` 属性更改偏移值。
 
@@ -73,7 +73,7 @@
 
 ## 匹配模式
 
-当 [相机](https://docs.unity3d.com/Manual/class-Camera.html) 在正交模式下渲染且背景 actor 配置中的 `Match Mode` 未禁用时，actor 将尝试将其大小与当前屏幕大小匹配。这样做是为了处理显示 [纵横比](https://en.wikipedia.org/wiki/Aspect_ratio_(image)) 与背景不同的情况。当匹配被禁用且纵横比不同时，会出现“黑边”。
+当 [摄像机](https://docs.unity3d.com/Manual/class-Camera.html) 在正交模式下渲染且背景 actor 配置中的 `Match Mode` 未禁用时，actor 将尝试将其大小与当前屏幕大小匹配。这样做是为了处理显示 [纵横比](https://en.wikipedia.org/wiki/Aspect_ratio_(image)) 与背景不同的情况。当匹配被禁用且纵横比不同时，会出现“黑边”。
 
 ![](https://i.gyazo.com/46619a08e3b91441cf30800185932963.png)
 
@@ -83,7 +83,7 @@
 
 | 模式 | 描述 |
 |------|-------------|
-| Crop | 背景将始终占据整个相机视锥体，确保无论显示纵横比如何，玩家都看不到黑边；但是，某些背景区域可能会被裁剪。默认为新背景 actor 设置。 |
+| Crop | 背景将始终占据整个摄像机视锥体，确保无论显示纵横比如何，玩家都看不到黑边；但是，某些背景区域可能会被裁剪。默认为新背景 actor 设置。 |
 | Fit | 整个背景区域将始终保持可见，但当纵横比不同时会出现黑边。 |
 | Custom | 允许使用自定义比率匹配宽度或高度。比率由 `Custom Match Ratio` 属性控制：最小值 (0) 将匹配宽度并忽略高度，最大值 (1) — 反之亦然。 |
 | Disable | 不执行任何匹配。 |
@@ -135,9 +135,9 @@
 选择最适合您的开发工作流程的文件格式。构建项目时，Unity 会自动将所有源资源（纹理、音频、视频等）转换为最适合目标平台的格式，因此您最初在项目中存储资源的格式不会产生影响。在 [官方文档](https://docs.unity3d.com/Manual/AssetWorkflow) 中查找有关 Unity 如何管理项目资产的更多信息。
 :::
 
-场景中精灵背景网格的初始（未缩放）大小取决于参考分辨率（相机配置）、背景的 `Pixel Per Unit` 属性（在配置菜单中为每个背景 actor 设置）和源纹理分辨率。
+场景中精灵背景网格的初始（未缩放）大小取决于参考分辨率（摄像机配置）、背景的 `Pixel Per Unit` 属性（在配置菜单中为每个背景 actor 设置）和源纹理分辨率。
 
-Naninovel 默认会尝试使背景覆盖整个相机视锥体，因此请确保调整源纹理的大小，使纵横比等于参考分辨率；有关如何更改或禁用此行为的更多信息，请参阅 [匹配模式指南](/zh/guide/backgrounds#匹配模式)。
+Naninovel 默认会尝试使背景覆盖整个摄像机视锥体，因此请确保调整源纹理的大小，使纵横比等于参考分辨率；有关如何更改或禁用此行为的更多信息，请参阅 [匹配模式指南](/zh/guide/backgrounds#匹配模式)。
 
 ::: tip
 在开始制作艺术资产（角色和背景）之前，请与您的团队定义参考分辨率。这样，艺术家就能够以正确的尺寸创作资产，您以后就不必编辑它们了。
@@ -207,7 +207,7 @@ Encoding settings : cabac=1 / ref=3 / deblock=1:0:0 / analyse=0x3:0x113 / me=hex
 分层实现允许从多个精灵（层）组合背景，然后在运行时通过剧本脚本单独切换它们。
 
 ::: tip
-分层 actor 实现一直在发展，目前是最灵活的，支持所有渲染功能（与通用相反）。即使您不想使用层表达式，而是使用 Unity 的 Animator 或其他自定义系统控制外观；或者需要渲染非平凡的对象，例如粒子系统和/或利用第三方渲染器，在诉诸通用或自定义实现之前，请检查分层 actor 可用的 [仅渲染](/zh/guide/characters#外包外观管理) 和 [相机渲染](/zh/guide/characters#相机渲染) 选项。
+分层 actor 实现一直在发展，目前是最灵活的，支持所有渲染功能（与通用相反）。即使您不想使用层表达式，而是使用 Unity 的 Animator 或其他自定义系统控制外观；或者需要渲染非平凡的对象，例如粒子系统和/或利用第三方渲染器，在诉诸通用或自定义实现之前，请检查分层 actor 可用的 [仅渲染](/zh/guide/characters#外包外观管理) 和 [摄像机渲染](/zh/guide/characters#摄像机渲染) 选项。
 :::
 
 要创建分层背景预制件，请使用 `Create -> Naninovel -> Background -> Layered` 资产上下文菜单。进入 [预制件编辑模式](https://docs.unity3d.com/Manual/EditingInPrefabMode.html) 以组合层。默认情况下将创建几个层和组。您可以使用它们或删除并添加您自己的。
@@ -257,9 +257,9 @@ Encoding settings : cabac=1 / ref=3 / deblock=1:0:0 / analyse=0x3:0x113 / me=hex
 场景背景的资源（外观）名称应等于场景资产相对于根目录的路径；例如，如果场景根目录是 `Assets/Scenes`，并且您有 `Assets/Scenes/Sphere.unity` 和 `Assets/Scenes/Sub/Cylinder.unity` 场景资产，则关联的外观将分别是 `Sphere` 和 `Sub/Cylinder`。
 :::
 
-在指定的根文件夹下创建一个新场景（或移动现有场景），并确保它至少有一个 [相机](https://docs.unity3d.com/ScriptReference/Camera.html) 组件附加到场景内的根游戏对象。加载场景背景时，Naninovel 会将渲染纹理分配给场景中找到的第一个相机。然后，渲染纹理将被分配给背景精灵，代表 Naninovel 场景空间内的场景背景。这样，场景背景将能够与其他背景和角色 actor 共存，支持所有背景过渡效果并缩放以处理各种显示纵横比。
+在指定的根文件夹下创建一个新场景（或移动现有场景），并确保它至少有一个 [摄像机](https://docs.unity3d.com/ScriptReference/Camera.html) 组件附加到场景内的根游戏对象。加载场景背景时，Naninovel 会将渲染纹理分配给场景中找到的第一个摄像机。然后，渲染纹理将被分配给背景精灵，代表 Naninovel 场景空间内的场景背景。这样，场景背景将能够与其他背景和角色 actor 共存，支持所有背景过渡效果并缩放以处理各种显示纵横比。
 
-确保在世界空间中定位场景对象，使它们不会与可能同时加载的其他场景中的对象重叠（例如，在单个剧本脚本中引用时）。此外，请注意，如果场景背景对象位于全局空间原点 (`x0 y0 z0`) 附近，它可能会被 Naninovel 的主相机渲染；为了防止这种情况，请将所有场景对象从全局原点偏移，或者使用 `Configuration -> Engine -> Override Objects Layer` 使用 [层](https://docs.unity3d.com/Manual/Layers.html) 隔离 Naninovel 相关对象。
+确保在世界空间中定位场景对象，使它们不会与可能同时加载的其他场景中的对象重叠（例如，在单个剧本脚本中引用时）。此外，请注意，如果场景背景对象位于全局空间原点 (`x0 y0 z0`) 附近，它可能会被 Naninovel 的主摄像机渲染；为了防止这种情况，请将所有场景对象从全局原点偏移，或者使用 `Configuration -> Engine -> Override Objects Layer` 使用 [层](https://docs.unity3d.com/Manual/Layers.html) 隔离 Naninovel 相关对象。
 
 场景设置完成后，通过 `Naninovel -> Configuration -> Backgrounds` 菜单创建一个新的背景 actor，选择 `SceneBackground` 实现并将场景资产添加到 actor 资源中。
 
@@ -275,7 +275,7 @@ Encoding settings : cabac=1 / ref=3 / deblock=1:0:0 / analyse=0x3:0x113 / me=hex
 ```
 
 ::: tip
-在使用 Unity 场景组合背景时，请考虑添加 [自定义命令](/zh/guide/custom-commands) 来控制场景状态（例如，修改灯光颜色以更改一天中的时间或移动相机以更改视图），而不是为每个外观创建多个场景。这样，您就不必在加载多个场景时跟踪对象位置以防止重叠。
+在使用 Unity 场景组合背景时，请考虑添加 [自定义命令](/zh/guide/custom-commands) 来控制场景状态（例如，修改灯光颜色以更改一天中的时间或移动摄像机以更改视图），而不是为每个外观创建多个场景。这样，您就不必在加载多个场景时跟踪对象位置以防止重叠。
 :::
 
 ::: tip EXAMPLE

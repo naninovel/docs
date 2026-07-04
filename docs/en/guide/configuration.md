@@ -67,7 +67,7 @@ Property | Default Value | Description
 --- | --- | ---
 Reference Resolution | (1920, 1080) | The reference resolution is used to evaluate proper rendering dimensions, so that actors are correctly positioned on scene. As a rule of thumb, set this equal to the resolution of the background textures you make for the game.
 Reference PPU | 100 | How many pixels correspond to a scene unit. Reducing this will make all the actors appear smaller and vice-versa. Default value of 100 is recommended for most cases.
-Aspect Ratios | Object Ref | The supported aspect ratios. When specified will filter the available resolutions in game settings and enforce the aspect ratio with the managed cameras. Keep empty to not restrict or enforce the aspect ratios.<br><br>Note, that Unity does not clear the pixels outside camera rects, so you would need to clear them yourself. The simplest setup is to add a camera that renders before Naninovel with 'Culling Mask' set to 'Nothing'.
+Aspect Ratios | Object Ref | The supported aspect ratios. When specified will filter the available resolutions in game settings and enforce the aspect ratio with the managed cameras. Keep empty to not restrict or enforce the aspect ratios.<br><br>Note that Unity does not clear the pixels outside camera rects, so you would need to clear them yourself. The simplest setup is to add a camera that renders before Naninovel with 'Culling Mask' set to 'Nothing'.
 Match Screen Width | False | Whether reference scene rectangle width should be matched against screen width. When enabled, relative (scene) position evaluation will use screen border as the origin; otherwise reference resolution is used.
 Initial Position | (0.00, 0.00, -10.00) | Initial world position of the managed cameras.
 Stack Camera | True | Whether to look for existing 'base' cameras and, when found, add (overlay) Naninovel's main camera to the base camera stack. You can also use the 'Setup Base Camera' method of the 'Camera Events' component to manually stack the camera, even when this option is disabled.
@@ -210,7 +210,7 @@ Property | Default Value | Description
 Resource Policy | Conservative | Dictates when the resources are loaded and unloaded during script execution:<br><br> • Conservative — The default mode with balanced memory utilization. All the resources required for script execution are preloaded when starting playback and unloaded when the script has finished playing. Scripts referenced in [@gosub] commands are preloaded as well. Additional scripts can be preloaded by using the `hold` parameter of the [@goto] command.<br><br> • Optimistic — All the resources required by the played script, as well as all resources of the scripts specified in [@goto] and [@gosub] commands, are preloaded and not unloaded unless the `release` parameter is specified in the [@goto] command. This minimizes loading screens and allows smooth rollback, but requires manually specifying when the resources should be unloaded, increasing the risk of out-of-memory exceptions.<br><br> • Lazy — No resources are preloaded for executed scripts when starting playback, and no loading screens are automatically shown. Instead, only the resources required for the next few commands are loaded "on the fly" while the script is playing, and resources used by executed commands are immediately released. This policy requires no scenario planning or manual control and consumes the least memory, but it may result in stutters during gameplay due to resources being loaded in the background—especially when fast-forwarding (skip mode) or performing rollback.
 Lazy Buffer | 25 | When lazy resource policy is enabled, controls the size of the preload buffer, that is the maximum number of script commands to preload.
 Lazy Priority | Below Normal | When lazy resource policy is enabled, controls the background thread priority where the resources are loaded. Decrease to minimize stutters at the cost of longer load times.
-Remove Actors | True | Whether to automatically remove unused actors (characters, backgrounds, text printers and choice handlers) when unloading script resources. Note, that even when enabled, it's still possible to remove actors manually with `@remove` commands at any time.
+Remove Actors | True | Whether to automatically remove unused actors (characters, backgrounds, text printers and choice handlers) when unloading script resources. Note that even when enabled, it's still possible to remove actors manually with `@remove` commands at any time.
 Enable Build Processing | True | Whether to register a custom build player handle to process the assets assigned as Naninovel resources.<br><br>Warning: In order for this setting to take effect, it's required to restart the Unity editor.
 Use Addressables | True | When the Addressable Asset System is installed, enabling this property will optimize asset processing step improving the build time.
 Auto Build Bundles | True | Whether to automatically build the addressable asset bundles when building the player. Has no effect when `Use Addressables` is disabled.
@@ -243,21 +243,21 @@ Show Loading UI | False | Whether to automatically show `ILoadingUI` during the 
 
 Property | Default Value | Description
 --- | --- | ---
-Loader | Scripts- (Addressable, Project) | Configuration of the resource loader used with naninovel script resources.
+Loader | Scripts- (Addressable, Project) | Configuration of the resource loader used with scenario script resources.
 Script Compiler | Naninovel Script Compiler | IScriptCompiler implementation to use for transforming source scenario text into script assets. Reimport script assets after modifying this setting for changes to take effect.
 Compiler Localization |  (Naninovel.Compiler Localization) | Locale-specific NaniScript compiler options. Will propagate to IDE extension on metadata sync. Restart Unity editor and reimport script assets for changes to take effect.
 Initialization Script | Null | Local resource path of the script to play right after the engine initialization.
 Title Script | Title | Local resource path of the script to play when showing the Title UI. Can be used to setup the title screen scene (background, music, etc).
 Start Game Script | Entry | Local resource path of the script to play when starting a new game. Will use first available when not specified.
-Auto Add Scripts | True | Whether to automatically add created naninovel scripts to the resources.
+Auto Add Scripts | True | Whether to automatically add created scenario scripts to the resources.
 Auto Resolve Path | True | Whether to automatically resolve and update resource paths whenever scripts are created, renamed or moved.
 Hot Reload Scripts | True | Whether to reload modified (both via visual and external editors) scripts and apply changes during play mode without restarting the playback.
 Watch Scripts | True | Whether to run a file system watcher over '.nani' files. Required to register script changes when edited with an external application.
 Show Script Navigator | False | Whether to auto-show script navigator UI after engine is initialized (requires 'IScriptNavigatorUI' available in UI resources).
 Enable Story Editor | True | Whether to enable the Story Editor app.
 Show Selected Script | True | Whether to open selected scenario script assets inside the Story Editor.
-Enable Community Modding | False | Whether to allow adding external naninovel scripts to the build.
-External Loader | Scripts- (Local) | Configuration of the resource loader used to locate external naninovel script resources.<br><br>Note that the 'External' loader is used only to locate the scripts; you still need to configure 'Loader' to actually load them; see the  'Community Modding' guide for more info.
+Enable Community Modding | False | Whether to allow adding external scenario scripts to the build.
+External Loader | Scripts- (Local) | Configuration of the resource loader used to locate external scenario script resources.<br><br>Note that the 'External' loader is used only to locate the scripts; you still need to configure 'Loader' to actually load them; see the  'Community Modding' guide for more info.
 
 </div>
 

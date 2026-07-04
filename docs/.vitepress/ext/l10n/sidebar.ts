@@ -66,7 +66,7 @@ export const ja: DefaultTheme.SidebarItem[] = [
             { text: "スタートガイド", link: "/ja/guide/getting-started" },
             { text: "シナリオスクリプト", link: "/ja/guide/scenario-scripting" },
             { text: "VS Code 拡張機能", link: "/ja/guide/ide-extension" },
-            { text: "ストーリーエディタ", link: "/ja/guide/editor" },
+            { text: "ストーリーエディター", link: "/ja/guide/editor" },
             { text: "サンプル", link: "/ja/guide/samples" }
         ]
     },
@@ -103,7 +103,7 @@ export const ja: DefaultTheme.SidebarItem[] = [
             { text: "カスタムコンフィグレーション", link: "/ja/guide/custom-configuration" },
             { text: "カスタムアクターの実装", link: "/ja/guide/custom-actor-implementations" },
             { text: "カスタムアクターシェーダー", link: "/ja/guide/custom-actor-shader" },
-            { text: "カスタムスクリプトコンパイラ", link: "/ja/guide/custom-compiler" },
+            { text: "カスタムスクリプトコンパイラー", link: "/ja/guide/custom-compiler" },
             { text: "状態管理", link: "/ja/guide/state-management" },
             { text: "インテグレーションの方法", link: "/ja/guide/integration-options" },
             { text: "自動テスト", link: "/ja/guide/automated-testing" },
@@ -120,7 +120,7 @@ export const zh: DefaultTheme.SidebarItem[] = [
             { text: "介绍", link: "/zh/guide/" },
             { text: "兼容性", link: "/zh/guide/compatibility" },
             { text: "快速上手", link: "/zh/guide/getting-started" },
-            { text: "Naninovel 脚本", link: "/zh/guide/scenario-scripting" },
+            { text: "剧本脚本", link: "/zh/guide/scenario-scripting" },
             { text: "VS Code 扩展", link: "/zh/guide/ide-extension" },
             { text: "故事编辑器", link: "/zh/guide/editor" },
             { text: "示例资源", link: "/zh/guide/samples" }
@@ -155,7 +155,7 @@ export const zh: DefaultTheme.SidebarItem[] = [
         items: [
             { text: "引擎架构", link: "/zh/guide/engine-architecture" },
             { text: "引擎服务", link: "/zh/guide/engine-services" },
-            { text: "自定义指令", link: "/zh/guide/custom-commands" },
+            { text: "自定义命令", link: "/zh/guide/custom-commands" },
             { text: "自定义配置", link: "/zh/guide/custom-configuration" },
             { text: "自定义演出元素实现", link: "/zh/guide/custom-actor-implementations" },
             { text: "自定义演出元素着色器", link: "/zh/guide/custom-actor-shader" },

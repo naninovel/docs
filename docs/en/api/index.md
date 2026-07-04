@@ -113,7 +113,7 @@ Arranges specified characters by X-axis. When no parameters specified, will exec
 
 ## async
 
-Executes the nested lines asynchronously on a dedicated script track in parallel with the main scenario playback routine. Use to run composite animations or arbitrary command chains concurrently with the consequent scenario. Consult the [concurrent playback](/guide/scenario-scripting#concurrent-playback) guide for more info.
+Executes the nested lines asynchronously on a dedicated script track in parallel with the main scenario playback routine. Use to run composite animations or arbitrary command chains concurrently with the subsequent scenario. Consult the [concurrent playback](/guide/scenario-scripting#concurrent-playback) guide for more info.
 
 <div class="config-table">
 
@@ -675,7 +675,7 @@ Applies [digital glitch](/guide/special-effects#glitch) post-processing effect t
 
 ## gosub
 
-Navigates naninovel script playback to the specified path and saves that path to global state; [@return] commands use this info to redirect to command after the last invoked gosub command.
+Navigates scenario script playback to the specified path and saves that path to global state; [@return] commands use this info to redirect to command after the last invoked gosub command.
 
 ::: info NOTE
 While this command can be used as a function (subroutine) to invoke a common set of script lines, remember that NaniScript is a scenario scripting DSL and is not suited for general programming. It's strongly recommended to use [custom commands](/guide/custom-commands) instead.
@@ -719,15 +719,15 @@ You are victorious!
 
 ## goto
 
-Navigates naninovel script playback to the specified path.
+Navigates scenario script playback to the specified path.
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">path</span> | string | Path to navigate into in the following format: `ScriptPath#Label`. When label is omitted, will play specified script from the start. When script path is omitted, will attempt to find a label in the currently played script. |
-| reset | string list | When specified, will control whether to reset the engine services state before loading a script (in case the path is leading to another script):<br/> - Specify `*` to reset all the services, except the ones with `Goto.DontReset` attribute.<br/> - Specify service type names (separated by comma) to exclude from reset; all the other services will be reset, including the ones with `Goto.DontReset` attribute.<br/> - Specify `-` to force no reset (even if it's enabled by default in the configuration).<br/><br/>Notice, that while some services have `Goto.DontReset` attribute applied and are not reset by default, they should still be specified when excluding specific services from reset. |
-| hold | boolean | Whether to hold resources in the target script, which make them preload together with the script this command specified in. Has no effect outside `Conservative` resource policy. Refer to [memory management](/guide/memory-management) guide for more info. |
+| reset | string list | When specified, will control whether to reset the engine services state before loading a script (in case the path is leading to another script):<br/> - Specify `*` to reset all the services, except the ones with `Goto.DontReset` attribute.<br/> - Specify service type names (separated by comma) to exclude from reset; all the other services will be reset, including the ones with `Goto.DontReset` attribute.<br/> - Specify `-` to force no reset (even if it's enabled by default in the configuration).<br/><br/>Notice that while some services have `Goto.DontReset` attribute applied and are not reset by default, they should still be specified when excluding specific services from reset. |
+| hold | boolean | Whether to hold resources in the target script, which makes them preload together with the script this command is specified in. Has no effect outside `Conservative` resource policy. Refer to [memory management](/guide/memory-management) guide for more info. |
 | release | boolean | Whether to release resources before navigating to the target script to free the memory. Has no effect outside `Optimistic` resource policy. Refer to [memory management](/guide/memory-management) guide for more info. |
 
 </div>
@@ -946,7 +946,7 @@ To assign a display name for a character using this command consider [binding th
 ; Prompt to enter an arbitrary text and assign it to 'name' scenario variable.
 @input name summary:"Choose your name."
 
-; You can then inject the assigned 'name' variable in naninovel scripts.
+; You can then inject the assigned 'name' variable in scenario scripts.
 Archibald: Greetings, {name}!
 
 ; ...or use it inside set and conditional expressions.
@@ -1128,7 +1128,7 @@ Marks a branch of a conditional execution block, which is executed in case condi
 Prints (reveals over time) specified text message using a text printer actor.
 
 ::: info NOTE
-This command is used under the hood when processing generic text lines, eg generic line `Kohaku: Hello World!` will be  automatically transformed into `@print "Hello World!" author:Kohaku` when parsing the naninovel scripts.<br/> Will reset (clear) the printer before printing the new message by default; set `reset` parameter to *false* or disable `Auto Reset` in the printer actor configuration to prevent that and append the text instead.<br/> Will make the printer default and hide other printers by default; set `default` parameter to *false* or disable `Auto Default` in the printer actor configuration to prevent that.<br/> Will wait for user input before finishing the task by default; set `waitInput` parameter to *false* or disable `Auto Wait` in the printer actor configuration to return as soon as the text is fully revealed.
+This command is used under the hood when processing generic text lines, eg generic line `Kohaku: Hello World!` will be  automatically transformed into `@print "Hello World!" author:Kohaku` when parsing the scenario scripts.<br/> Will reset (clear) the printer before printing the new message by default; set `reset` parameter to *false* or disable `Auto Reset` in the printer actor configuration to prevent that and append the text instead.<br/> Will make the printer default and hide other printers by default; set `default` parameter to *false* or disable `Auto Default` in the printer actor configuration to prevent that.<br/> Will wait for user input before finishing the task by default; set `waitInput` parameter to *false* or disable `Auto Wait` in the printer actor configuration to return as soon as the text is fully revealed.
 :::
 
 <div class="config-table">
@@ -1408,7 +1408,7 @@ This line will disappear.
 
 ## return
 
-Attempts to navigate naninovel script playback to a command after the last used [@gosub]. See [@gosub] command summary for more info and usage examples.
+Attempts to navigate scenario script playback to a command after the last used [@gosub]. See [@gosub] command summary for more info and usage examples.
 
 <div class="config-table">
 
@@ -1518,7 +1518,7 @@ If a variable with the specified ID doesn't exist, it will be automatically crea
 ; Assigning multiple variables to the same value.
 @set foo, bar, baz to:10
 
-; It's possible to inject variables to naninovel script command parameters.
+; It's possible to inject variables into scenario script command parameters.
 @set scale=0
 @while scale is below 1
     @set scale+=0.1

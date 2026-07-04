@@ -37,7 +37,7 @@ Naninovel 受以下最终用户许可协议 (EULA) 管辖：[naninovel.com/eula]
 当通过 Unity 的 Asset Store 购买 Naninovel 时，需要进行资产下载验证。为了使验证成功，购买资产的用户必须通过 Unity 的 [包管理器](https://docs.unity3d.com/Manual/Packages.html) 至少下载一次 Naninovel。如果购买了多个资产副本，则必须由关联的组织用户下载每个副本。如果您已完成所有步骤但仍然遇到问题，请 [联系 Unity 支持](https://support.unity.com)。
 
 ::: warning
-当从组织帐户购买资产时，组织所有者必须下载资产以满足检查（分配的成员不算数）。这是 Asset Store 的限制，我们在这种情况下无法提供任何解决方法；请联系 Unity 支持以获取更多信息和帮助。
+当从组织账户购买资产时，组织所有者必须下载资产以满足检查（分配的成员不算数）。这是 Asset Store 的限制，我们在这种情况下无法提供任何解决方法；请联系 Unity 支持以获取更多信息和帮助。
 :::
 
 ## 如何自定义标题（主）菜单？
@@ -46,7 +46,7 @@ Naninovel 受以下最终用户许可协议 (EULA) 管辖：[naninovel.com/eula]
 
 ## 为什么背景被裁剪了？
 
-确保背景纹理分辨率的宽高比与相机配置中设置的参考分辨率相匹配。此外，确保使用 [正确的设置](https://docs.unity3d.com/Manual/class-TextureImporter) 导入纹理（例如，`Max Size` 足够高）。
+确保背景纹理分辨率的宽高比与摄像机配置中设置的参考分辨率相匹配。此外，确保使用 [正确的设置](https://docs.unity3d.com/Manual/class-TextureImporter) 导入纹理（例如，`Max Size` 足够高）。
 
 当屏幕宽高比与参考分辨率比例不同时，背景 actor 将默认尝试匹配，这可能会导致裁剪；有关更多信息，请参阅 [匹配模式指南](/zh/guide/backgrounds#匹配模式)。
 
@@ -80,7 +80,7 @@ Naninovel 受以下最终用户许可协议 (EULA) 管辖：[naninovel.com/eula]
 @char Felix pos:,,0
 ```
 
-如果在透视相机模式下遇到排序问题，请尝试将“Edit > Project Settings > Graphics”编辑器菜单中的 `Transparency Sort Mode` 更改为 `Orthographic`。在 [2D 排序手册](https://docs.unity3d.com/Manual/2DSorting.html) 中查找有关 Unity 中对象排序的更多信息。
+如果在透视摄像机模式下遇到排序问题，请尝试将“Edit > Project Settings > Graphics”编辑器菜单中的 `Transparency Sort Mode` 更改为 `Orthographic`。在 [2D 排序手册](https://docs.unity3d.com/Manual/2DSorting.html) 中查找有关 Unity 中对象排序的更多信息。
 
 ## 是否可以只显示文本框中的头像，而隐藏角色本身？
 
