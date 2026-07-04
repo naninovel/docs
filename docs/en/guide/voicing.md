@@ -58,7 +58,7 @@ To find auto-voice IDs associated with the currently printed text while the game
 To show the window, make sure `Enable Development Console` is turned on in the engine configuration, then press the `~` key while in play mode, type `debug` and press `Enter`.
 
 ::: tip EXAMPLE
-Find example on setting up auto voicing for multiple locales in the [auto voicing sample](/guide/samples#auto-voicing).
+Find an example of setting up auto voicing for multiple locales in the [auto voicing sample](/guide/samples#auto-voicing).
 :::
 
 ## Author Volume

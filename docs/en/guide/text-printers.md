@@ -211,7 +211,7 @@ You can now use the new text printer by activating it via the [@printer] command
 ```
 
 ::: tip EXAMPLE
-Check out [demo project](/guide/getting-started#demo-samples) for an example on adding a custom printer. The prefab is stored as `Assets/Prefabs/CustomPrinter.prefab`.
+Check out the [demo project](/guide/getting-started#demo-samples) for an example of adding a custom printer. The prefab is stored as `Assets/Prefabs/CustomPrinter.prefab`.
 :::
 
 It's also possible to create a printer from scratch by manually implementing `ITextPrinterActor` interface. See the guide on [custom actor implementations](/guide/custom-actor-implementations) for more information.
@@ -300,7 +300,7 @@ Font Render Mode: Distance Field 16
 ```
 
 ::: tip EXAMPLE
-For a complete example on setting up custom text mesh pro printer with right-to-left (Arabic) text support, see [RTL sample](/guide/samples#rtl).
+For a complete example of setting up a custom TextMesh Pro printer with right-to-left (Arabic) text support, see the [RTL sample](/guide/samples#rtl).
 :::
 
 ::: info NOTE
@@ -320,7 +320,7 @@ To find which characters will be displayed by Naninovel, use the Character Utili
 The tool will inspect both scenario scripts and managed text documents in the specified folder (including all the sub-folders), so you'll get the chars for all the text ever displayed to the player by Naninovel, including all the printed text, UI labels, unlockable tips, etc.
 
 ::: tip EXAMPLE
-Check the [localization sample](/guide/samples#localization) for an example on using custom TMPro font atlas for Japanese locale. The font is automatically switched when the Japanese language is selected and switched back to the default atlas when other languages are selected.
+Check the [localization sample](/guide/samples#localization) for an example of using a custom TMPro font atlas for the Japanese locale. The font is automatically switched when the Japanese language is selected and switched back to the default atlas when other languages are selected.
 :::
 
 ## Text Reveal Sounds

@@ -168,7 +168,7 @@ You can now use the new choice handler by specifying its ID in the `handler` par
 ```
 
 ::: tip EXAMPLE
-Find an example on creating a custom choice handler with a particle system in the [UI sample](/guide/samples#ui).
+Find an example of creating a custom choice handler with a particle system in the [UI sample](/guide/samples#ui).
 :::
 
 It's also possible to create a choice handler from scratch by manually implementing `IChoiceHandlerActor` interface. See the guide on [custom actor implementations](/guide/custom-actor-implementations) for more information.

@@ -122,7 +122,7 @@ Long description line 1.<br>
 ...
 ```
 
-インライン形式を好む場合は、管理テキスト構成の `Multiline Categories` リストから `Tips` を削除します。ヒントは他の管理テキストドキュメントと同様に作成できます。
+インライン形式を好む場合は、管理テキスト構成の `Multiline Documents` リストから `Tips` を削除します。ヒントは他の管理テキストドキュメントと同様に作成できます。
 
 ```
 Tip1ID: Title

@@ -214,8 +214,8 @@ The commands can then be used in scenario scripts:
 ```csharp
 private void OnTriggerEnter (Collider other)
 {
-	var switchCommand = new SwitchToNovelMode { ScriptPath = "Script001" };
-	switchCommand.Execute().Forget();
+	var track = Engine.GetService<IScriptPlayer>().MainTrack;
+	track.ExecuteTransientCommand("novel scriptPath:Script001").Forget();
 }
 ```
 
@@ -226,5 +226,5 @@ There are multiple other features (state outsourcing, service overriding, custom
 If you feel some engine API or system lacks extendability and requires source code modification to integrate, please [contact the support](/support/) — we'll consider improving it.
 
 ::: tip EXAMPLE
-Check [integration sample](/guide/samples#dialogue-mode) where Naninovel is used as both drop-in dialogue for a 3D adventure game and a switchable standalone novel mode.
+Check the [integration sample](/guide/samples#dialogue-mode), where Naninovel is used both as a drop-in dialogue system for a 3D adventure game and as a switchable standalone novel mode.
 :::

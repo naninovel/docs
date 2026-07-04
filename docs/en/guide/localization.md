@@ -223,7 +223,7 @@ public class CustomProcessor : Processor
 ```
 
 ::: tip EXAMPLE
-Find an example on how to set up and use the tool in the [localization sample](/guide/samples#localization).
+Find an example of how to set up and use the tool in the [localization sample](/guide/samples#localization).
 :::
 
 ## UI Localization
@@ -249,7 +249,7 @@ To associate a font with a specific locale, use the `Apply On Locale` property o
 Ensure `Font Change Configuration` is set up properly on the text printer. See the [UI guide](/guide/gui#changing-font) for instructions on configuring fonts.
 
 ::: tip EXAMPLE
-Find an example on setting up localization-specific fonts in the [localization sample](/guide/samples#localization).
+Find an example of setting up localization-specific fonts in the [localization sample](/guide/samples#localization).
 :::
 
 ## Community Localization
@@ -328,5 +328,5 @@ Localized artifacts will propagate to the visual editor and [IDE extension](/gui
 ![](https://i.gyazo.com/fde9998597ffedb8a025401bb2f71ce9.png)
 
 ::: tip EXAMPLE
-Check the [compiler localization sample](/guide/samples#compiler-localization) where the compiler is localized to Russian language and keyboard layout.
+Check the [compiler localization sample](/guide/samples#compiler-localization) where the compiler is localized to the Russian language and keyboard layout.
 :::

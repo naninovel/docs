@@ -60,7 +60,7 @@ Find `Content/Backgrounds/Beach`, `Content/Backgrounds/Perspective` [generic bac
 
 ## Input Rebind
 
-Documentation: https://naninovel.com/guide/input-processing.html#input-system
+Documentation: [Input Processing](/guide/input-processing#customizing-inputs)
 
 An example input-rebinding UI that allows the player to change default controls can be found in the `Content/UI/InputRebind` folder. It's based on the "Rebind UI" sample bundled with the Input System package; find more info in the [Unity documentation](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.1/manual/ActionBindings.html#interactive-rebinding).
 
@@ -172,7 +172,7 @@ The map is implemented as a custom UI stored at `Content/UI/Map`. The locations 
 
 ![](https://i.gyazo.com/f421eaf666c9d84b04d23a72d1259f47.png)
 
-The buttons' click and hover events are handled by Naninovel's [Play Script](https://naninovel.com/guide/gui.html#play-script-on-unity-event) component.
+The buttons' click and hover events are handled by Naninovel's [Play Script](/guide/gui#play-script-on-unity-event) component.
 
 ![](https://i.gyazo.com/a64ee9beee378c687d0d8093334f4ef7.png)
 
