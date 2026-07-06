@@ -72,6 +72,7 @@ Match Screen Width | False | Whether reference scene rectangle width should be m
 Initial Position | (0.00, 0.00, -10.00) | Initial world position of the managed cameras.
 Stack Camera | True | Whether to look for existing 'base' cameras and, when found, add (overlay) Naninovel's main camera to the base camera stack. You can also use the 'Setup Base Camera' method of the 'Camera Events' component to manually stack the camera, even when this option is disabled.
 Stack Camera Tag | Null | When 'Stack Camera' is enabled, specifies the tag of the base camera to look for. If not specified, the first found base camera will be used.
+Clear Color | RGBA(0.098, 0.098, 0.098, 1.000) | The color used to clear the screen when rendering with the default camera.
 Custom Camera Prefab | Null | A prefab with a camera component to use for rendering. Will use a default one when not specified. In case you wish to set some camera properties (background color, FOV, HDR, etc) or add post-processing scripts, create a prefab with the desired camera setup and assign the prefab to this field.
 Use UI Camera | True | Whether to render the UI with a dedicated camera. This option is for backward-compatibility and should not be disabled in new projects. Expect issues when disabled (eg, constant uGUI layout rebuilds on camera animations).
 Custom UI Camera Prefab | Null | A prefab with a camera component to use for UI rendering. Will use a default one when not specified. Has no effect when `Use UI Camera` is disabled.

@@ -73,6 +73,7 @@
 | Initial Position | (0.00, 0.00, -10.00) | 受管摄像机的初始世界位置。 |
 | Stack Camera | True | 是否查找现有的“基础”摄像机，并在找到时将 Naninovel 的主摄像机添加（叠加）到基础摄像机堆栈中。即使禁用此选项，您也可以使用 'Camera Events' 组件的 'Setup Base Camera' 方法手动堆叠摄像机。 |
 | Stack Camera Tag | Null | 启用 'Stack Camera' 时，指定要查找的基础摄像机的标签。如果未指定，将使用第一个找到的基础摄像机。 |
+| Clear Color | RGBA(0.098, 0.098, 0.098, 1.000) | 使用默认摄像机渲染时用于清除屏幕的颜色。 |
 | Custom Camera Prefab | Null | 带有用于渲染的摄像机组件的预制件。未指定时将使用默认值。如果您希望设置一些摄像机属性（背景颜色、FOV、HDR 等）或添加后处理脚本，请使用所需的摄像机设置创建一个预制件并将该预制件分配给此字段。 |
 | Use UI Camera | True | 是否使用专用摄像机渲染 UI。此选项用于向后兼容，不应在新项目中禁用。禁用时可能会出现问题（例如，在摄像机动画上不断重建 uGUI 布局）。 |
 | Custom UI Camera Prefab | Null | 带有用于 UI 渲染的摄像机组件的预制件。未指定时将使用默认值。当禁用 `Use UI Camera` 时无效。 |
