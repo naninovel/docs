@@ -43,7 +43,17 @@ Naninovelには独自のスタンドアロンアプリがあり、Unityエディ
 
 ![?width=588](https://i.gyazo.com/48ad8d4c512b67df02d7ace15d5eaca5.png)
 
-ストーリーエディターを初めて起動するときは、エディターアプリケーションのバイナリをダウンロードするためにインターネット接続が必要です。バイナリはキャッシュされるため、同じプロジェクトでのその後の実行にはネットワークは必要ありません。
+組み込みモードでは、OSのネイティブWebViewを使用しており、初回起動時にエディターバイナリをダウンロードするためインターネット接続が必要です。バイナリはキャッシュされるため、同じプロジェクトでの以降の実行にはネットワーク接続は必要ありません。
+
+::: tip
+WebViewコンポーネントはOSによって管理されますが、まれに無効化されていたり更新に失敗したりして、ストーリーエディターが動作しなくなることがあります。WindowsでWebViewのバージョンを確認するには、PowerShellで次を実行してください：
+
+```powershell
+(Get-ItemProperty 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}','HKCU:\SOFTWARE\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}' -ErrorAction Ignore).pv
+```
+
+何も表示されない場合、またはバージョンが150未満の場合は、最新の [WebView2 Runtime](https://developer.microsoft.com/microsoft-edge/webview2/) をインストールしてUnityを再起動してください。macOSでは、`System Settings > General > Software Update` からシステムを更新してください。
+:::
 
 ## ワークスペース
 
