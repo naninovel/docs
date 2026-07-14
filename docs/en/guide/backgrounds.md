@@ -202,13 +202,19 @@ If you're using a video format other than mp4 (eg, webm), set the extension of t
 
 ![](https://i.gyazo.com/b3eb1ab2af513e6a131347d6e5e455e5.png)
 
+## Universal Backgrounds
+
+Whenever you want your background to be more than a simple sprite, the universal implementation is the first option worth considering. It supports all the default renderers available in Unity: meshes, particles, skinned sprites, tilemaps, etc. Additionally, universal actor content is affected by lights and volumes.
+
+Create a new universal background prefab from a template using the `Create -> Naninovel -> Background -> Universal` asset context menu, then enter prefab editing mode by double-clicking it. You will notice a `Universal Background Behaviour` component on the root object — it's the adapter between Naninovel and the prefab content.
+
+You can build the prefab as you would any other in Unity — Naninovel will capture all the compatible renderers under the prefab root and composite them into the background render texture at runtime. Note the `On Appearance Changed` event on the component — use it to set up callbacks for appearance changes; for example, you can use Unity's [Animator](https://docs.unity3d.com/Manual/class-Animator.html) system to drive the animation of your background.
+
+If an object you would like to include in the universal actor uses custom rendering features, such as 2D lights or procedural drawing, you can make it compatible by implementing the `Naninovel.IUniversalActorDrawable` interface in a component and attaching the component to the game object containing the custom content. For example, [Live2D actors](/guide/characters#live2d-characters) are implemented this way.
+
 ## Layered Backgrounds
 
-The layered implementation allows composing backgrounds from multiple sprites (layers) and then toggling them individually via scenario scripts at runtime.
-
-::: tip
-Layered actor implementation has been evolving and is currently the most flexible with support for all the rendering features (in contrast to generic). Even if you don't want to use layer expressions, but instead control the appearance with Unity's Animator or other custom systems; or need to render non-trivial objects such as particle systems and/or utilize third-party renderers, check [render only](/guide/characters#outsourcing-appearance-management) and [camera rendering](/guide/characters#camera-rendering) options available for layered actors before resorting to generic or custom implementation.
-:::
+The layered implementation is based on [universal](/guide/backgrounds#universal-backgrounds), but also has a `Layer Actor Controller` component, which allows composing backgrounds from multiple sprites (layers) and then toggling them individually via scenario scripts at runtime.
 
 To create a layered background prefab, use `Create -> Naninovel -> Background -> Layered` asset context menu. Enter [prefab editing mode](https://docs.unity3d.com/Manual/EditingInPrefabMode.html) to compose the layers. Several layers and groups will be created by default. You can use them or delete and add your own.
 

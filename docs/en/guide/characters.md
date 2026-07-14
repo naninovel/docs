@@ -318,39 +318,29 @@ For more information on available dicing options and usage examples, refer to th
 Find an example of setting up diced actors in the [diced actor sample](/guide/samples#diced-actor).
 :::
 
+## Universal Characters
+
+Whenever you want your character to be more than a simple sprite, the universal implementation is the first option worth considering. It supports all the default renderers available in Unity: meshes, particles, skinned sprites, tilemaps, etc. Additionally, universal actor content is affected by lights and volumes.
+
+Create a new universal character prefab from a template using the `Create -> Naninovel -> Character -> Universal` asset context menu, then enter prefab editing mode by double-clicking it. You will notice a `Universal Character Behaviour` component on the root object — it's the adapter between Naninovel and the prefab content.
+
+You can build the prefab as you would any other in Unity — Naninovel will capture all the compatible renderers under the prefab root and composite them into the character render texture at runtime. Note the `On Appearance Changed` event on the component — use it to set up callbacks for appearance changes; for example, you can use Unity's [Animator](https://docs.unity3d.com/Manual/class-Animator.html) system to drive the animation of your character.
+
+If an object you would like to include in the universal actor uses custom rendering features, such as 2D lights or procedural drawing, you can make it compatible by implementing the `Naninovel.IUniversalActorDrawable` interface in a component and attaching the component to the game object containing the custom content. For example, [Live2D actors](/guide/characters#live2d-characters) are implemented this way.
+
 ## Layered Characters
 
-The layered implementation allows composing characters from multiple layers and then toggling them individually or in groups via scenario scripts at runtime.
-
-::: tip
-Layered actor implementation has been evolving and is currently the most flexible with support for all the rendering features (in contrast to generic). Even if you don't want to use layer expressions, but instead control the appearance with Unity's Animator or other custom systems; or need to render non-trivial objects such as particle systems and/or utilize third-party renderers, check [render only](/guide/characters#outsourcing-appearance-management) and [camera rendering](/guide/characters#camera-rendering) options available for layered actors before resorting to generic or custom implementation.
-:::
+The layered implementation is based on [universal](/guide/characters#universal-characters), but also has a `Layer Actor Controller` component, which allows composing characters from multiple layers and then toggling them individually or in groups via scenario scripts at runtime.
 
 To create a layered character prefab, use `Create -> Naninovel -> Character -> Layered` asset context menu. Enter [prefab editing mode](https://docs.unity3d.com/Manual/EditingInPrefabMode.html) to compose the layers. Several layers and groups will be created by default. You can use them or delete and add your own.
 
-Each child game object of the root prefab object with a [renderer](https://docs.unity3d.com/ScriptReference/Renderer.html)-derived component (e.g., `SpriteRenderer`, `MeshRenderer`) is considered a *layer*; other objects are considered *groups*. Aside from organization and transformation purposes, placing layers inside groups will allow you to select a single layer or disable/enable all the layers inside a group with a single expression in scenario script (more on that later).
+Each child game object of the root prefab object with a `Layered Actor Layer` component is considered a *layer*; other objects are considered *groups*. Aside from organization and transformation purposes, placing layers inside groups will allow you to select a single layer or disable/enable all the layers inside a group with a single expression in scenario script (more on that later).
 
-::: info NOTE
-Only "simple" draw mode for `Sprite Renderer` is supported in default (non-camera) render mode; when choosing other modes they'll be rendered as if set to simple.
-:::
-
-To hide specific layers from being visible by default, disable renderer components (not the game objects).
-
-The white frame drawn over the prefab is used to describe the actor canvas, which will be rendered to a render texture at runtime. Make sure to minimize the empty areas inside the frame by moving the layers and groups to prevent wasting texture memory and for anchoring to work correctly. To set a custom canvas size (e.g., in case some layers are animated and can stretch out of the default canvas), add `Render Canvas` component to the root object and set `Size` property.
-
-![](https://i.gyazo.com/4ff103c27858ac9671ba3b94ab1ade20.png)
-
-You can scale the root game object to fine-tune the default size of the actor.
-
-When authoring layered character art in Photoshop, consider using Unity's [PSD Importer package](https://docs.unity3d.com/Packages/com.unity.2d.psdimporter@3.0/manual/index.html) to automatically generate character prefab preserving all the layers and their positions. To preserve the layers hierarchy, make sure to enable `Use Layer Grouping` option in the import settings.
+When a layer game object also has a [renderer](https://docs.unity3d.com/ScriptReference/Renderer.html), the renderer is automatically used to drive the layer state: it is disabled when the layer is disabled and vice versa. To hide specific layers by default, disable their renderer components (not the game objects). Alternatively, you can use the `On Layer Enabled` and `On Layer Disabled` events to drive the layer's enabled state.
 
 ::: tip
-When using sprites, set `Mesh Type` to `Full Rect` in the texture import settings to prevent rendering issues.
-
-![](https://i.gyazo.com/16ebf843081c826e0add1a6304c2608f.png)
+When authoring layered character art in Photoshop, consider using Unity's [PSD Importer package](https://docs.unity3d.com/Packages/com.unity.2d.psdimporter@3.0/manual/index.html) to automatically generate character prefab preserving all the layers and their positions. To preserve the layers hierarchy, make sure to enable `Use Layer Grouping` option in the import settings.
 :::
-
-Don't forget to add the created layered prefab to the character resources (`Naninovel -> Resources -> Characters`). Choose `Naninovel.LayeredCharacter` implementation and drop prefab to the `Resource` field when configuring the resource record.
 
 To control the layered characters in scenario scripts, use [@char] command in the same way as with the other character implementations. The only difference is how you set the appearance: instead of a single ID, use the *layer composition expression*. There are three expression types:
 
@@ -371,7 +361,7 @@ To enable or disable a layer without affecting any other layers in the group, us
 @char CharId.Head/Accessories+BlackGlasses,Head-Hat,Head/Emotions>Cool
 ```
 
-To select a layer outside of any groups (a child of the root prefab object), just skip the group part, e.g.:
+To select a layer outside any groups (a child of the root prefab object), just skip the group part, e.g.:
 
 ```nani
 ; Given "Halo" layer object is placed under the prefab root, disable it.
@@ -396,14 +386,6 @@ The above expressions will affect not only the direct descendants of the target 
 
 When an appearance is not specified (e.g., `@char CharId` without previously setting any appearance), a default appearance will be used; default appearance of the layered characters equals to how the layered prefab looks in the editor.
 
-The video below demonstrates how to set up a layered character and control it via Naninovel commands.
-
-![](https://www.youtube.com/watch?v=Bl3kXrg8tiI)
-
-::: info NOTE
-`@char Miho.Shoes>` command displayed in the video will actually select the "Shoes" group (disabling all the neighbor groups), not hide it. Correct command to hide a group is `@char Miho.Shoes-`.
-:::
-
 It's possible to map composition expressions to keys via `Composition Map` property of `Layered Character Behaviour` component:
 
 ![](https://i.gyazo.com/ede5cde3548a3187aa714d3e140750ba.png)
@@ -422,46 +404,6 @@ It's possible to map composition expressions to keys via `Composition Map` prope
 While editing layered character prefab, it's possible to preview mapped composition expressions by right-clicking a map record and selecting "Preview Composition". Another menu item — "Paste Current Composition" — will generate current composition expression string of the character (based on enabled/disabled sprite renderers in the hierarchy) and paste it to the inspected record; use it to quickly map current prefab state to a composition item.
 
 ![](https://i.gyazo.com/84a2f8e51997cdccbfb8321d58586d2a.mp4)
-
-Be aware that the layer objects are not directly rendered by Unity cameras at runtime; instead, they're rendered once upon each composition (appearance) change to a temporary render texture, which is then fed to a custom mesh visible to the Naninovel camera. This setup is required to prevent semi-transparency overdraw issues and to support transition animation effects.
-
-In case you wish to apply an animation or other dynamic behavior to the layered character, enable `Animated` property found on `Layered Character Behaviour` component. When the property is enabled, the layers will be rendered each frame (instead of once per appearance change).
-
-### Outsourcing Appearance Management
-
-You may find layered implementation useful for supporting various built-in render features (semi-transparency overdraw handling, transition effects, blur and depth-of-field support, etc.), but would like to use external tools for managing appearance of the actor, such as Unity's [Animator](https://docs.unity3d.com/Manual/class-Animator.html). By default, layered behaviour will use layered expressions when notifying about appearance changes via `On Appearance Changed` event, which may not be desired in such case.
-
-Enabling `Render Only` option will disable layer-related behavior and make the event report the appearance as it's specified in script commands. You will also have to specify `Default Appearance` on the behaviour component to prevent it from evaluating default appearance based on the initial prefab layer composition.
-
-### Camera Rendering
-
-In case your character prefab contains non-trivial renderers like particle systems, trails, sprite masks or custom/third-party renderers, you can still use them with layered implementation by assigning a camera to `Render Camera` field of `Layered Behaviour` component (the camera has to be inside character's prefab).
-
-When assigned, instead of custom render procedure, the actor will use the camera to render contents, which lifts all the inherent limitations, such as lacking stencil support. The drawback is, in order to ensure the content is only rendered to the actor texture (and doesn't "leak" to the main camera), you'll have to reserve camera [layers](https://docs.unity3d.com/Manual/Layers.html) specifically for rendering this kind of actor.
-
-There are a total of 32 layers available in Unity, while 8 of them are reserved for engine internals. You can use remaining layers as you wish (they're unused by default). To allow Naninovel to use a layer for rendering layered actors in camera mode, give the layer a name starting with `Naninovel`; e.g., `Naninovel 1`, `Naninovel 2` and so on.
-
-![](https://i.gyazo.com/dfbb4306553c85a4683fffb0fef03de3.png)
-
-Total number of layers to add depends on the max amount of unique camera-rendered layered actors spawned at any given time, whether visible or not. When layered actor is rendered, it holds a layer from the pool. When the actor is hidden, it releases the layer, allowing it to be re-used by other actors. However, the actors are also rendered on appearance change, which happens when they're initially added to scene (even if they're hidden) or when game is loaded or rolled-back, so **layer pool size has to accommodate total number of camera-rendered actors spawned at a time**, and not just amount of such actors visible at a time. To destroy (de-spawn) an actor after hiding it, use [@remove] command.
-
-After adding the layers, assign `Custom Camera Prefab` in Naninovel's camera configuration with a camera prefab, which has culling mask with the `Naninovel ...` layers disabled. This is required to prevent the "raw" layered actors from leaking into the main Naninovel camera. Note that the assigned camera should be a dedicated camera prefab, not the camera you've used inside layered actor prefabs.
-
-![](https://i.gyazo.com/e2f713e4e212718f50e028cdf546aaba.png)
-
-While in camera rendering mode, game objects of the layered actor prefab are considered layers when they have `Layered Actor Layer` component attached, other objects are considered groups. After attaching the component, configure what should happen when camera layer is held and released with `On Layer Held` and `On Layer Released` Unity events. Typically, you'd assign the held layer to the host game object and enable associated renderer and disable the renderer when released (to make sure the object is not picked by other cameras).
-
-![](https://i.gyazo.com/4dbfe57dbf6b7365e1e7db78f707f412.png)
-
-Layer active state is also reflected differently in camera mode: instead of renderer component enabled state, game object's active state is used. To set up default appearance of the actor, enable/disable game objects.
-
-::: tip
-When a layer contains lots of children, it would be tedious to set the layer held/release events for each of them individually. In this case use a custom event handler to apply the changes in batch. Check [the example](https://discord.com/channels/545676116871086080/1369982706393284700) on applying the changes to all the children renderers of a layer.
-:::
-
-Make sure `Render Canvas` component is attached to the layered actor prefab root, as it's required for the camera mode. It works similarly to normal render mode, restricting render texture size, so keep it compact.
-
-In case extra layers are required for rendering the actor (for example, a layer dedicated for Unity's Lights 2D), add them via `Camera Mask` property found on the layered behaviour component. Naninovel will preserve specified layers in the camera culling mask when rendering the actor.
 
 ::: tip EXAMPLE
 Find an example of setting up layered actors in the [layered actor sample](/guide/samples#layered-actor).
@@ -503,10 +445,6 @@ To prevent a specific appearance from looping, append `NoLoop` (case-insensitive
 
 ## Live2D Characters
 
-::: warning
-Changes in the Live2D SDK for Unity R5 made it impossible for us to maintain a proper integration with Naninovel. If you're using this Live2D version, our integration won't work. Instead, consider [Generic](/guide/characters#generic-characters), [Layered](/guide/characters#camera-rendering) (in camera mode), or custom character implementations.
-:::
-
 Live2D character implementation uses assets created with [Live2D Cubism](https://www.live2d.com) 2D modeling and animation software.
 
 ![](https://i.gyazo.com/b81df72fc7afaed569520496cbee09f0.mp4)
@@ -521,7 +459,7 @@ After Live2D SDK for Unity is installed, click `Naninovel/Extensions/Enable Live
 This integration with a third-party commercial product serves mostly as an example of how you can make Naninovel work with another tool. While we're committed to keeping the sample integration compatible with Live2D updates and changes, please be aware that the functionality will remain bare minimum and we won't be able to provide any support or help on using another product with Naninovel beyond the scope of the sample.
 :::
 
-Live2D model prefab used as the resource for the implementation should have a `Live2DController` component attached to the root object. Appearance changes are routed to the animator component as [SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) commands, appearance being the trigger name. E.g., if you have a "Kaori" Live2D character prefab and want to invoke a trigger with name "Surprise", use the following command:
+The actor's Live2D resource is expected to have a `Live2D Character Behaviour` component attached to the root object. Appearance changes are routed to the animator component as [SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) commands, appearance being the trigger name. E.g., if you have a "Kaori" Live2D character prefab and want to invoke a trigger with name "Surprise", use the following command:
 
 ```nani
 @char Kaori.Surprise
@@ -529,23 +467,7 @@ Live2D model prefab used as the resource for the implementation should have a `L
 
 Note that the above command will only attempt to invoke a [SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) with "Surprise" argument on the animator controller attached to the prefab; you have to compose the underlying [animator](https://docs.unity3d.com/Manual/Animator) state machine yourself.
 
-::: info NOTE
-The current version of Cubism SDK for Unity works directly with `Animator` component; expressions and poses (exported as expression.json and pose.json) that were previously used in Cubism 2.x are now [deprecated](https://docs.live2d.com/cubism-sdk-tutorials/blendexpression) and not supported by Naninovel's extension for Live2D.
-:::
-
-When Live2D's `CubismLookController` and `CubismMouthController` components are present and set up on the Live2D model prefab, `Live2DController` can optionally use them to control look direction and mouth animation (aka lip sync feature) of the character.
-
-![](https://i.gyazo.com/498fe948bc5cbdb4dfc5ebc5437ae6b4.png)
-
-Consult Live2D documentation on [eye tracking](https://docs.live2d.com/cubism-sdk-tutorials/lookat) and [lip sync](https://docs.live2d.com/cubism-sdk-tutorials/lipsync) for the setup details.
-
-In case the model appears too small or large, set an initial scale for the root Live2D prefab game object as [shown in the video guide](https://youtu.be/rw_Z69z0pAg?t=353).
-
-Internally, Live2D model is rendered to a texture, which is then projected to the screen. This is required to prevent semi-transparency overdraw artifacts when fading the character. Naninovel will attempt to evaluate size of the render canvas automatically, but in case the model contains animated parts that are moved outside of the initial bounds, the parts will be clipped. To prevent that, add `Render Canvas` component to the root game object of the Live2D prefab and set the desired size of the canvas manually. Enable [gizmos](https://docs.unity3d.com/Manual/GizmosMenu.html) to preview current render canvas size while in prefab mode.
-
-![](https://i.gyazo.com/23f916ae104f57828914221333e42dbf.mp4)
-
-Be aware that the larger the size, the more memory the texture will consume, so keep it as small as possible.
+When Live2D's `Cubism Look Controller` and `Cubism Mouth Controller` components are present and set up on the Live2D model prefab, `Live2D Character Behaviour` can optionally use them to control look direction and mouth animation (aka lip sync feature) of the character. Consult Live2D documentation on [eye tracking](https://docs.live2d.com/cubism-sdk-tutorials/lookat) and [lip sync](https://docs.live2d.com/cubism-sdk-tutorials/lipsync) for the setup details.
 
 The following video guide covers exporting a Live2D character from Cubism Editor, configuring the prefab, creating a simple animator state machine and controlling the character from a scenario script.
 
