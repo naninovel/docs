@@ -202,13 +202,19 @@ Encoding settings : cabac=1 / ref=3 / deblock=1:0:0 / analyse=0x3:0x113 / me=hex
 
 ![](https://i.gyazo.com/b3eb1ab2af513e6a131347d6e5e455e5.png)
 
+## Universal 背景
+
+当您希望背景不仅仅是简单的精灵时，首先值得考虑的便是 Universal 实现。它支持 Unity 提供的所有默认渲染器：网格、粒子、蒙皮精灵、瓦片地图等。此外，Universal actor 的内容会受到光源和 Volume 的影响。
+
+使用 `Create -> Naninovel -> Background -> Universal` 资产上下文菜单从模板创建新的 Universal 背景预制件，然后双击该预制件进入预制件编辑模式。您会在根对象上看到 `Universal Background Behaviour` 组件，它是 Naninovel 与预制件内容之间的适配器。
+
+您可以像构建 Unity 中的任何其他预制件一样构建此预制件。Naninovel 会捕获预制件根对象下所有兼容的渲染器，并在运行时将它们合成到背景渲染纹理中。请注意组件上的 `On Appearance Changed` 事件；您可以使用它为外观更改设置回调。例如，可以使用 Unity 的 [Animator](https://docs.unity3d.com/Manual/class-Animator.html) 系统驱动背景动画。
+
+如果要包含在 Universal actor 中的对象使用自定义渲染功能（例如 2D 光源或程序化绘制），可以在组件中实现 `Naninovel.IUniversalActorDrawable` 接口，并将该组件附加到包含自定义内容的游戏对象上，从而使其兼容。例如，[Live2D actor](/zh/guide/characters#live2d-角色) 就是以这种方式实现的。
+
 ## 分层背景
 
-分层实现允许从多个精灵（层）组合背景，然后在运行时通过剧本脚本单独切换它们。
-
-::: tip
-分层 actor 实现一直在发展，目前是最灵活的，支持所有渲染功能（与通用相反）。即使您不想使用层表达式，而是使用 Unity 的 Animator 或其他自定义系统控制外观；或者需要渲染非平凡的对象，例如粒子系统和/或利用第三方渲染器，在诉诸通用或自定义实现之前，请检查分层 actor 可用的 [仅渲染](/zh/guide/characters#外包外观管理) 和 [摄像机渲染](/zh/guide/characters#摄像机渲染) 选项。
-:::
+分层实现基于 [Universal](/zh/guide/backgrounds#universal-背景)，并额外提供 `Layer Actor Controller` 组件，允许从多个精灵（层）组合背景，然后在运行时通过剧本脚本单独切换它们。
 
 要创建分层背景预制件，请使用 `Create -> Naninovel -> Background -> Layered` 资产上下文菜单。进入 [预制件编辑模式](https://docs.unity3d.com/Manual/EditingInPrefabMode.html) 以组合层。默认情况下将创建几个层和组。您可以使用它们或删除并添加您自己的。
 
