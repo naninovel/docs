@@ -43,3 +43,5 @@ UI Toolkit 可以与 [适配器](/zh/guide/gui#ui-toolkit) 一起使用，但不
 ## 故事编辑器
 
 嵌入式 [故事编辑器](/zh/guide/editor) 至少需要带有 x86-64 CPU 的 Windows 10 build 1809，或带有 Apple Silicon (ARM64) CPU 的 macOS 11 (Big Sur)。不支持 Linux 以及基于 ARM 的 Windows 和基于 x86 的 Apple 设备；但是，您仍然可以在这些平台上使用 [Web 版本](https://naninovel.com/editor) 的故事编辑器。
+
+要使故事编辑器正常工作，必须禁用域重新加载。要将其禁用，请导航到 Unity Project Settings 的 "Editor" 选项卡，并将 `When Entering Play Mode` 设置为 `Do not reload Domain or Scene` 或 `Reload Scene only`。
