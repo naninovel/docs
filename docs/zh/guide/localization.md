@@ -19,7 +19,7 @@
 可以通过 `Loader > Path Prefix` 属性在本地化配置菜单中更改*本地化资源根目录*路径。请注意，配置的路径是相对于“Resources”文件夹（而不是“Assets”）的。Unity 以特殊方式处理 Resources 文件夹；您可以在项目内的任何位置拥有多个此类文件夹来组织特定于语言环境的资产。
 
 ::: tip
-您可以选择不同的资源提供者，而不是使用 `Resources` 文件夹；例如，使用 [Addressables](/zh/guide/resource-providers#addressable)，您可以独立于主游戏包捆绑特定于语言环境的资源，并按需下载它们。
+您可以选择不同的资源提供者，而不是使用 `Resources` 文件夹；例如，使用 [Addressables](/zh/guide/resource-providers#addressable)，您可以独立于主游戏包捆绑特定于语言环境的资源，并按需下载它们。安装 Addressables 后，Naninovel 会自动将生成的本地化文档注册到 Addressables。
 :::
 
 ## 默认语言环境
@@ -183,6 +183,8 @@ Spreadsheet 工具将可本地化文本提取到 `.csv` 表格中，并将编辑
 每个脚本和管理文本文档将导出到一个单独的表格。每个表格都有一个存储可本地化文本 ID 的 "ID" 列和每个语言环境的附加列。您可以修改除 "ID" 之外的任何列；但是，修改源语言环境列对导入没有任何影响。
 
 启用 **Include Annotations** 时，生成的表格还将包含带有源脚本内容（作者姓名、内联命令和注释）的列。该列在导入期间被忽略。
+
+启用 **Import Source** 时，电子表格中的源语言环境列将直接写入剧本脚本。这便于在校对源剧本内容时参照译文。请注意，仅会重写已识别的文本，以保持其与现有翻译的关联。
 
 编辑表格后，单击 "Import" 将数据带回项目。
 

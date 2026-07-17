@@ -19,7 +19,7 @@ Be aware that you do not have to create a subfolder in the *localization resourc
 The *localization resources root* path can be changed in the localization configuration menu via the `Loader > Path Prefix` property. Note that the configured path is relative to a "Resources" folder (not "Assets"). Unity handles Resources folders in a special way; you can have multiple such folders anywhere inside the project to organize locale-specific assets.
 
 ::: tip
-Instead of using the `Resources` folder, you can opt for a different resource provider; for example, with [addressables](/guide/resource-providers#addressable) you can bundle locale-specific resources independently of the main game package and download them on demand.
+Instead of using the `Resources` folder, you can opt for a different resource provider; for example, with [addressables](/guide/resource-providers#addressable) you can bundle locale-specific resources independently of the main game package and download them on demand. Naninovel will automatically register generated localization documents with the addressables when it's installed.
 :::
 
 ## Default Locale
@@ -183,6 +183,8 @@ Click "Export" to export sheets to the selected destination.
 Each script and managed text document will be exported to an individual sheet. Each sheet has an "ID" column storing localizable text IDs and an additional column for each locale. You can modify any column except "ID"; however, modifying the source-locale column won't have any effect on import.
 
 When **Include Annotations** is enabled, generated sheets will also contain a column with the source script content (author names, inlined commands and comments). That column is ignored during import.
+
+When **Import Source** is enabled, the source locale column in spreadsheets will be written directly to the scenario scripts. This is useful for proofreading the source scenario content alongside the translations. Note that only identified text will be rewritten to preserve its association with the existing translations.
 
 After editing the sheets, click "Import" to bring the data back into the project.
 
