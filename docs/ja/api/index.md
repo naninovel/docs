@@ -432,7 +432,7 @@ Lorem ipsum
 必須の [選択肢](/ja/guide/choices) オプションを追加します。これにより、プレイヤーが選択を行うまで、それ以降のシナリオ再生が停止します。後続の選択肢コマンドはマージされ、一度に複数のオプションを提示できます。選択を要求せずに単に選択肢を追加する場合は、このコマンドの代わりに [@addChoice] を使用してください。
 
 ::: info NOTE
-選択肢の下にコマンドをネストする場合、`goto`、`gosub`、および `set` パラメーターは無視されます。<br><br>`@choice` コマンドの条件付き実行はできません。これは、再生を自動的に停止するために、コマンドがチェーン内のどの選択肢が最後であるかを事前に決定する必要があるためです。`@choice ... if:...` のようなものが必要な場合は、代わりに [@addChoice] コマンドを使用してください。
+選択肢の下にコマンドをネストする場合、`goto`、`gosub`、および `set` パラメーターは無視されます。
 :::
 
 <div class="config-table">
@@ -482,6 +482,9 @@ Continue executing this script or ...?[>]
 
 ; 'score' 変数が10未満の場合、選択肢を無効/ロックします。
 @choice "Extra option" lock:score<10
+
+; 'score' 変数が10以上の場合にのみ、選択肢を表示します。
+@choice "Secret option" if:score>=10
 ```
 
 ## choiceHandler
