@@ -2,7 +2,7 @@
 
 ## Unity Version
 
-Supported Unity versions: `6.0` and `6.3` LTS releases (with the latest patches).
+Supported Unity versions: `6.7` LTS release (with the latest patches).
 
 Non-LTS (tech, beta, and alpha) releases are not supported. Any issues with future Unity releases will be addressed in the next Naninovel versions. Compatible Unity releases for past Naninovel versions are listed in the [release notes](https://pre.naninovel.com/releases).
 
