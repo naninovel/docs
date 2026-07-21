@@ -42,6 +42,6 @@ Unityの [Input System](https://docs.unity3d.com/Packages/com.unity.inputsystem@
 
 ## ストーリーエディター
 
-組み込みの [ストーリーエディター](/ja/guide/editor) には、少なくともWindows 10ビルド1809（x86-64 CPU）、またはmacOS 11 (Big Sur)（Apple Silicon (ARM64) CPU）が必要です。Linux、およびARMベースのWindowsやx86ベースのAppleデバイスはサポートされていません。ただし、これらのプラットフォームでは [Webバージョン](https://naninovel.com/editor) のストーリーエディターを使用できます。
+組み込みの [ストーリーエディター](/ja/guide/editor) には、少なくともWindows 10ビルド1809（x86-64 CPU）、またはmacOS 14 (Sonoma)（Apple Silicon (ARM64) CPU）が必要です。Linux、およびARMベースのWindowsやx86ベースのAppleデバイスはサポートされていません。ただし、これらのプラットフォームでは [Webバージョン](https://naninovel.com/editor) のストーリーエディターを使用できます。
 
 ストーリーエディターを正しく動作させるには、ドメインのリロードを無効にする必要があります。無効にするには、UnityのProject Settingsで「Editor」タブに移動し、`When Entering Play Mode` を `Do not reload Domain or Scene` または `Reload Scene only` に設定します。
