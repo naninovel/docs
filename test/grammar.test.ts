@@ -66,5 +66,7 @@ s(`@cmd set:expression`);
 // hardcoded navigation contexts of well-known commands and parameters
 s(`@goto navigation`);
 s(`@gosub navigation`);
+s(`@goto Multi Word Script # Multi Word Label hold!`);
 s(`@cmd goto:navigation`);
 s(`@cmd gosub:navigation`);
+s(`@cmd goto:Multi Word Script # Multi Word Label other:param`);

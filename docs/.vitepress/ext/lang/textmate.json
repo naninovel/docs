@@ -41,7 +41,7 @@
             }
         },
         "navigation-command-identifier": {
-            "match": "\\G(@(?:goto|gosub))(?:\\s((?:\\{[^}]*\\}|\"(?:[^\"\\\\]|\\\\.)*\"|\\\\.|[^\\s\\]])+))?",
+            "match": "\\G(@(?:goto|gosub))(?:\\s((?:\\{[^}]*\\}|\"(?:[^\"\\\\]|\\\\.)*\"|\\\\.|.)+?))?(?=\\s(?:[A-Za-z_][A-Za-z0-9_]*[!:]|![A-Za-z_]|;)|\\s*$)",
             "captures": {
                 "1": { "name": "naniscript.command" },
                 "2": { "name": "naniscript.label" }
@@ -78,13 +78,11 @@
             ]
         },
         "navigation-parameter": {
-            "begin": "(\\s(?:goto|gosub):)",
-            "beginCaptures": { "1": { "name": "naniscript.command.parameter.id" } },
-            "end": "(?=\\s|$|\\])",
-            "contentName": "naniscript.command.parameter.id",
-            "patterns": [
-                { "match": "(?:\\{[^}]*\\}|\"(?:[^\"\\\\]|\\\\.)*\"|\\\\.|[^\\s\\]])+", "name": "naniscript.label" }
-            ]
+            "match": "(\\s(?:goto|gosub):)((?:\\{[^}]*\\}|\"(?:[^\"\\\\]|\\\\.)*\"|\\\\.|.)+?)(?=\\s(?:[A-Za-z_][A-Za-z0-9_]*[!:]|![A-Za-z_]|;)|\\s*$|\\s*\\])",
+            "captures": {
+                "1": { "name": "naniscript.command.parameter.id" },
+                "2": { "name": "naniscript.label" }
+            }
         },
         "named-parameter": {
             "match": "\\s[A-Za-z_][A-Za-z0-9_]*:",
