@@ -241,6 +241,16 @@ Hello[-][< speed:0.5] world!
 @goto #Epilogue
 ```
 
+`#` 分隔符前后的空格是可选的，脚本名称和标签名称均可包含空格。以下端点格式均有效：
+
+```nani
+@goto Script#Label
+@goto Script #Label
+@goto Script# Label
+@goto Script # Label
+@goto Multi Word Script # Multi Word Label
+```
+
 ### 剧本根目录
 
 您使用导航命令指定的“锚点”称为 *endpoints（端点）*。端点由两部分组成：*script path（脚本路径）* 和 *label（标签）*。标签是可选的；省略时，假定端点指向脚本的开头。脚本路径是指相对于 *scenario root（剧本根目录）* 的剧本文件路径（不带 `.nani` 扩展名）。
