@@ -798,10 +798,53 @@ exports[`@cmd gosub:navigation 1`] = `
     "scopes": [
       "source.naniscript",
       "naniscript.command.parameter.value",
-      "naniscript.command.parameter.id",
       "naniscript.label",
     ],
     "text": "navigation",
+  },
+]
+`;
+
+exports[`@cmd goto:Multi Word Script # Multi Word Label other:param 1`] = `
+[
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command",
+    ],
+    "text": "@cmd",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+    ],
+    "text": " goto:",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.label",
+    ],
+    "text": "Multi Word Script # Multi Word Label",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+    ],
+    "text": " other:",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+    ],
+    "text": "param",
   },
 ]
 `;
@@ -828,7 +871,6 @@ exports[`@cmd goto:navigation 1`] = `
     "scopes": [
       "source.naniscript",
       "naniscript.command.parameter.value",
-      "naniscript.command.parameter.id",
       "naniscript.label",
     ],
     "text": "navigation",
@@ -1488,6 +1530,51 @@ exports[`@gosub navigation 1`] = `
       "naniscript.label",
     ],
     "text": "navigation",
+  },
+]
+`;
+
+exports[`@goto Multi Word Script # Multi Word Label hold! 1`] = `
+[
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command",
+    ],
+    "text": "@goto",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+    ],
+    "text": " ",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.label",
+    ],
+    "text": "Multi Word Script # Multi Word Label",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+    ],
+    "text": " hold",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.command.parameter.value",
+      "naniscript.command.parameter.id",
+      "naniscript.command.parameter.value",
+    ],
+    "text": "!",
   },
 ]
 `;
