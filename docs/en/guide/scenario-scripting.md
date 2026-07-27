@@ -241,6 +241,16 @@ When both the [@goto] command and the target label are in the same script, you c
 @goto #Epilogue
 ```
 
+Whitespace around the `#` delimiter is optional, and both script and label names may contain spaces. All the following endpoint formats are valid:
+
+```nani
+@goto Script#Label
+@goto Script #Label
+@goto Script# Label
+@goto Script # Label
+@goto Multi Word Script # Multi Word Label
+```
+
 ### Scenario Root
 
 The "anchors" you specify with navigation commands are called *endpoints*. An endpoint consists of two parts: *script path* and *label*. The label is optional; when omitted, the endpoint is assumed to point to the start of the script. The script path refers to the scenario file's path (without the `.nani` extension), relative to the *scenario root*.
