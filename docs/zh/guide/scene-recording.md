@@ -4,6 +4,8 @@
 
 场景录制省去了这一反复试错的过程。在剧本行上开始录制，使用 Unity 常规的场景视图和检查器工具安排支持的 actor 和摄像机，对应的剧本命令便会实时出现在 [故事编辑器](/zh/guide/editor) 或 [VS Code 扩展](/zh/guide/ide-extension) 中。您可以在编排新场景、微调现有构图，或捕获不便手动计算的变换时使用此功能。
 
+![](/assets/img/guide/scene-recording.mp4)
+
 ## 在故事编辑器中录制
 
 1. 进入 Play Mode 并开始播放剧本。

@@ -4,6 +4,8 @@ Scene composition is often easier visually: place characters, adjust their scale
 
 Scene Recording removes this trial-and-error loop. Start recording on a scenario line, arrange supported actors and the camera with Unity's regular Scene view and Inspector tools, and the corresponding scenario commands appear live in the [Story Editor](/guide/editor) or [VS Code extension](/guide/ide-extension). Use it when staging a new scene, fine-tuning an existing composition, or capturing transforms that would be inconvenient to calculate manually.
 
+![](/assets/img/guide/scene-recording.mp4)
+
 ## Recording in Story Editor
 
 1. Enter Play Mode and start scenario playback.
