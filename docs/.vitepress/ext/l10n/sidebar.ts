@@ -11,6 +11,7 @@ export const en: DefaultTheme.SidebarItem[] = [
             { text: "Scenario Scripting", link: "/guide/scenario-scripting" },
             { text: "VS Code Extension", link: "/guide/ide-extension" },
             { text: "Story Editor", link: "/guide/editor" },
+            { text: "Scene Recording", link: "/guide/scene-recording" },
             { text: "Samples", link: "/guide/samples" }
         ]
     },
@@ -67,6 +68,7 @@ export const ja: DefaultTheme.SidebarItem[] = [
             { text: "シナリオスクリプト", link: "/ja/guide/scenario-scripting" },
             { text: "VS Code 拡張機能", link: "/ja/guide/ide-extension" },
             { text: "ストーリーエディター", link: "/ja/guide/editor" },
+            { text: "シーンレコーディング", link: "/ja/guide/scene-recording" },
             { text: "サンプル", link: "/ja/guide/samples" }
         ]
     },
@@ -123,6 +125,7 @@ export const zh: DefaultTheme.SidebarItem[] = [
             { text: "剧本脚本", link: "/zh/guide/scenario-scripting" },
             { text: "VS Code 扩展", link: "/zh/guide/ide-extension" },
             { text: "故事编辑器", link: "/zh/guide/editor" },
+            { text: "场景录制", link: "/zh/guide/scene-recording" },
             { text: "示例资源", link: "/zh/guide/samples" }
         ]
     },
