@@ -21,6 +21,10 @@ In scenario scripts, characters are controlled with [@char] command:
 @char Sora.Happy look:left pos:45,10
 ```
 
+::: tip
+Rather than tuning numeric parameters by hand, use [Scene Recording](/guide/scene-recording) to arrange actors and the camera with Unity's scene gizmos and automatically generate the matching NaniScript commands.
+:::
+
 ## Actor Records
 
 If you have many characters and it's inconvenient to assign them all via the editor menu, use actor record assets (`Create -> Naninovel -> Actor Record -> Character`). They support multi-editing and allow you to organize records with folders. Check the video below for an example.

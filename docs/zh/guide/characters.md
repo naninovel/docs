@@ -21,6 +21,10 @@
 @char Sora.Happy look:left pos:45,10
 ```
 
+::: tip
+与其手动调整数值参数，不如使用 [场景录制](/zh/guide/scene-recording)，通过 Unity 场景视图中的变换工具安排 actor 和摄像机，并自动生成对应的 NaniScript 命令。
+:::
+
 ## Actor 记录
 
 如果您有很多角色，并且通过编辑器菜单分配它们不方便，请使用 actor 记录资产 (`Create -> Naninovel -> Actor Record -> Character`)。它们支持多重编辑，并允许您使用文件夹组织记录。查看下面的视频以获取示例。
