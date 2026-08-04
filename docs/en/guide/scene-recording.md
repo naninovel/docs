@@ -28,11 +28,13 @@ VS Code saves the document automatically when recording stops. Undoing or redoin
 
 The default recorder supports the following scene objects and serialized properties:
 
-| Object      | Recorded properties                 | Generated command                     |
-|-------------|-------------------------------------|---------------------------------------|
-| Main Camera | Position, rotation, ortho size, FOV | `@camera offset: rotation: zoom:`     |
-| Characters  | Position, rotation and scale        | `@char ID position: rotation: scale:` |
-| Backgrounds | Position, rotation and scale        | `@back ID position: rotation: scale:` |
+| Object      | Recorded properties                 | Generated command                           |
+|-------------|-------------------------------------|---------------------------------------------|
+| Backgrounds | Position, rotation and scale        | `@back position: rotation: scale:`          |
+| Characters  | Position, rotation and scale        | `@char position: rotation: scale:`          |
+| Printers    | Position, rotation and scale        | `@printer position: rotation: scale:`       |
+| Choices     | Position, rotation and scale        | `@choiceHandler position: rotation: scale:` |
+| Camera      | Position, rotation, ortho size, FOV | `@camera offset: rotation: zoom:`           |
 
 The default recorder does not capture actor appearance or visibility, project and prefab assets, or changes made by runtime scripts, animations, and Timeline. It observes serialized changes to scene objects made through Unity's editor modification system, such as moving an object with a Scene view gizmo or changing a value in the Inspector.
 

@@ -30,9 +30,11 @@
 
 | オブジェクト | 記録されるプロパティ | 生成されるコマンド |
 |---|---|---|
-| メインカメラ | 位置、回転、正投影サイズ、FOV | `@camera offset: rotation: zoom:` |
-| キャラクター | 位置、回転、スケール | `@char ID position: rotation: scale:` |
-| 背景 | 位置、回転、スケール | `@back ID position: rotation: scale:` |
+| 背景 | 位置、回転、スケール | `@back position: rotation: scale:` |
+| キャラクター | 位置、回転、スケール | `@char position: rotation: scale:` |
+| プリンター | 位置、回転、スケール | `@printer position: rotation: scale:` |
+| 選択肢 | 位置、回転、スケール | `@choiceHandler position: rotation: scale:` |
+| カメラ | 位置、回転、正投影サイズ、FOV | `@camera offset: rotation: zoom:` |
 
 デフォルトレコーダーは、アクターの外観や表示状態、プロジェクトアセットやプレハブアセット、ランタイムスクリプト、アニメーション、Timelineによる変更を記録しません。Unityエディターの変更システムを介して行われたシーンオブジェクトのシリアル化された変更を監視します。たとえば、シーンビューのギズモによるオブジェクトの移動や、インスペクターでの値の変更が対象になります。
 
