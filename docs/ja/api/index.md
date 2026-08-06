@@ -1264,6 +1264,15 @@ You've picked two.
 @stop
 ```
 
+## pushRollback
+
+プレイヤーがロールバックできる状態スナップショットを追加します。
+
+```nani
+; プレイヤーがこの地点までロールバックできるようにします。
+@pushRollback
+```
+
 ## rain
 
 [雨](/ja/guide/special-effects#rain) をシミュレートするパーティクルシステムを生成します。
