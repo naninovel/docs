@@ -1264,6 +1264,15 @@ You've picked two.
 @stop
 ```
 
+## pushRollback
+
+Pushes a state snapshot the player can roll back to.
+
+```nani
+; Allow the player to roll back to this point.
+@pushRollback
+```
+
 ## rain
 
 Spawns particle system simulating [rain](/guide/special-effects#rain).

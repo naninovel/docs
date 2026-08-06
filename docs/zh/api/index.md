@@ -1264,6 +1264,15 @@ You've picked two.
 @stop
 ```
 
+## pushRollback
+
+添加一个玩家可以回滚到的状态快照。
+
+```nani
+; 允许玩家回滚到此处。
+@pushRollback
+```
+
 ## rain
 
 生成模拟[雨](/zh/guide/special-effects#rain)的粒子系统。
