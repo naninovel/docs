@@ -487,7 +487,7 @@ Spine character implementation uses assets created with [Spine](http://esoterics
 
 ![](https://i.gyazo.com/08b04de115d97427d152cb5f37065d2d.mp4)
 
-In order to be able to use this implementation you have to first install [Spine runtime for Unity](http://esotericsoftware.com/spine-unity-download). Consult [the official docs](http://esotericsoftware.com/spine-unity) for the installation and usage instructions.
+In order to be able to use this implementation you have to first install [Spine runtime for Unity](http://esotericsoftware.com/spine-unity-download), version 4.3 or newer. Consult [the official docs](http://esotericsoftware.com/spine-unity) for the installation and usage instructions.
 
 After Spine runtime for Unity is installed, click `Naninovel/Extensions/Enable Spine` editor menu item to activate Naninovel module which provides integration between Spine and the engine.
 
@@ -500,6 +500,14 @@ This integration with a third-party commercial product serves mostly as an examp
 Spine character prefab used as the resource for the implementation should have a `Spine Controller` component attached to the root object. Appearance changes from scenario script commands (such as `@char`) are routed to the controller's `On Appearance Changed` events similar to [generic implementation](/guide/characters#generic-characters). You can handle the events as you wish; for example, use Spine's `SetAnimation` method or invoke a trigger in Unity's animator controller.
 
 ![](https://i.gyazo.com/6a2772a3e4137413a7c1587788c54c41.png)
+
+When `Control Animation` is enabled, appearances are mapped to looping Spine animations on the `Default Track`. Append `@` followed by a track index to play an animation on another track:
+
+```nani
+@char Hero.Idle,Shoot@1
+```
+
+This plays `Idle` on the default track and `Shoot` on track 1. Applying `@char Hero.Idle` afterwards keeps `Idle` playing and mixes out track 1. Disable `Control Animation` to handle appearances exclusively through `On Appearance Changed` callbacks.
 
 ::: tip
 It's possible to use a custom component inherited from `Spine Controller`. This way you'll be able to override the virtual methods and associated behavior (e.g., handle appearance change with a specific duration or transition parameters).

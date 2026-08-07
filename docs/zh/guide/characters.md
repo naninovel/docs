@@ -487,7 +487,7 @@ Spine 角色实现使用使用 [Spine](http://esotericsoftware.com) 2D 建模和
 
 ![](https://i.gyazo.com/08b04de115d97427d152cb5f37065d2d.mp4)
 
-为了能够使用此实现，您必须首先安装 [Spine runtime for Unity](http://esotericsoftware.com/spine-unity-download)。请参阅 [官方文档](http://esotericsoftware.com/spine-unity) 以获取安装和使用说明。
+为了能够使用此实现，您必须首先安装 4.3 或更高版本的 [Spine runtime for Unity](http://esotericsoftware.com/spine-unity-download)。请参阅 [官方文档](http://esotericsoftware.com/spine-unity) 以获取安装和使用说明。
 
 安装 Spine runtime for Unity 后，单击 `Naninovel/Extensions/Enable Spine` 编辑器菜单项以激活提供 Spine 与引擎之间集成的 Naninovel 模块。
 
@@ -500,6 +500,14 @@ Spine 角色实现使用使用 [Spine](http://esotericsoftware.com) 2D 建模和
 用作实现资源的 Spine 角色预制件应具有附加到根对象的 `Spine Controller` 组件。来自剧本脚本命令（例如 `@char`）的外观更改将路由到控制器的 `On Appearance Changed` 事件，类似于 [通用实现](/zh/guide/characters#通用角色)。您可以随心所欲地处理事件；例如，使用 Spine 的 `SetAnimation` 方法或在 Unity 的动画器控制器中调用触发器。
 
 ![](https://i.gyazo.com/6a2772a3e4137413a7c1587788c54c41.png)
+
+启用 `Control Animation` 时，外观会映射为在 `Default Track` 上循环播放的 Spine 动画。要在其他轨道上播放动画，请在外观名称后追加 `@` 和轨道索引：
+
+```nani
+@char Hero.Idle,Shoot@1
+```
+
+这会在默认轨道上播放 `Idle`，并在轨道 1 上播放 `Shoot`。随后应用 `@char Hero.Idle` 将保持 `Idle` 播放，并混出轨道 1。若要仅通过 `On Appearance Changed` 回调处理外观，请禁用 `Control Animation`。
 
 ::: tip
 可以使用继承自 `Spine Controller` 的自定义组件。这样您就可以覆盖虚方法和相关行为（例如，处理具有特定持续时间或过渡参数的外观更改）。

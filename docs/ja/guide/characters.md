@@ -487,7 +487,7 @@ Spineキャラクター実装は、[Spine](http://esotericsoftware.com) 2Dモデ
 
 ![](https://i.gyazo.com/08b04de115d97427d152cb5f37065d2d.mp4)
 
-この実装を使用するには、まず [Spine runtime for Unity](http://esotericsoftware.com/spine-unity-download) をインストールする必要があります。インストールと使用方法については、[公式ドキュメント](http://esotericsoftware.com/spine-unity) を参照してください。
+この実装を使用するには、まずバージョン4.3以降の [Spine runtime for Unity](http://esotericsoftware.com/spine-unity-download) をインストールする必要があります。インストールと使用方法については、[公式ドキュメント](http://esotericsoftware.com/spine-unity) を参照してください。
 
 Spine runtime for Unityをインストールした後、`Naninovel/Extensions/Enable Spine` エディターメニュー項目をクリックして、Spineとエンジンの統合を提供するNaninovelモジュールをアクティブにします。
 
@@ -500,6 +500,14 @@ Spine runtime for Unityをインストールした後、`Naninovel/Extensions/En
 実装のリソースとして使用されるSpineキャラクタープレハブには、ルートオブジェクトに `Spine Controller` コンポーネントがアタッチされている必要があります。シナリオスクリプトコマンド（`@char` など）からの外観の変更は、[汎用実装](/ja/guide/characters#汎用キャラクター) と同様に、コントローラーの `On Appearance Changed` イベントにルーティングされます。イベントは好きなように処理できます。たとえば、Spineの `SetAnimation` メソッドを使用したり、Unityのアニメーターコントローラーでトリガーを呼び出したりします。
 
 ![](https://i.gyazo.com/6a2772a3e4137413a7c1587788c54c41.png)
+
+`Control Animation` が有効な場合、外観は `Default Track` 上でループ再生されるSpineアニメーションにマッピングされます。別のトラックでアニメーションを再生するには、`@` に続けてトラックインデックスを外観名に追加します：
+
+```nani
+@char Hero.Idle,Shoot@1
+```
+
+これは、`Idle` をデフォルトトラックで、`Shoot` をトラック1で再生します。その後 `@char Hero.Idle` を適用すると、`Idle` の再生は継続され、トラック1はミックスアウトされます。外観を `On Appearance Changed` コールバックのみで処理するには、`Control Animation` を無効にします。
 
 ::: tip
 `Spine Controller` から継承されたカスタムコンポーネントを使用することが可能です。これにより、仮想メソッドと関連する動作をオーバーライドできます（たとえば、特定の期間またはトランジションパラメーターで外観の変更を処理する）。
