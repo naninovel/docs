@@ -128,7 +128,7 @@
             ]
         },
         "author-prefix": {
-            "begin": "\\G([A-Za-z_][A-Za-z0-9_.]*:)",
+            "begin": "\\G([^\\s\"\\\\{]+:)(?=\\s)",
             "beginCaptures": { "1": { "name": "naniscript.author" } },
             "end": "(?=$)",
             "patterns": [

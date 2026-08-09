@@ -2347,6 +2347,60 @@ exports[`[unless x x!] 1`] = `
 ]
 `;
 
+exports[`Author/Id: Lorem ipsum. 1`] = `
+[
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.author",
+    ],
+    "text": "Author/Id:",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+    ],
+    "text": " ",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+    ],
+    "text": "Lorem ipsum.",
+  },
+]
+`;
+
+exports[`AuthorId.Appearance/One,Appearance-Two+Three>Four: Lorem ipsum. 1`] = `
+[
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+      "naniscript.author",
+    ],
+    "text": "AuthorId.Appearance/One,Appearance-Two+Three>Four:",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+    ],
+    "text": " ",
+  },
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+    ],
+    "text": "Lorem ipsum.",
+  },
+]
+`;
+
 exports[`AuthorId.AppearanceId: Lorem ipsum. 1`] = `
 [
   {
@@ -2397,6 +2451,18 @@ exports[`AuthorId: Lorem ipsum. 1`] = `
       "naniscript.generic-text",
     ],
     "text": "Lorem ipsum.",
+  },
+]
+`;
+
+exports[`AuthorId:Lorem ipsum. 1`] = `
+[
+  {
+    "scopes": [
+      "source.naniscript",
+      "naniscript.generic-text",
+    ],
+    "text": "AuthorId:Lorem ipsum.",
   },
 ]
 `;
