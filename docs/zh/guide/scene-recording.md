@@ -30,10 +30,10 @@
 
 | 对象 | 录制的属性 | 生成的命令 |
 |---|---|---|
-| 背景 | 位置、旋转和缩放 | `@back position: rotation: scale:` |
-| 角色 | 位置、旋转和缩放 | `@char position: rotation: scale:` |
-| 打印机 | 位置、旋转和缩放 | `@printer position: rotation: scale:` |
-| 选项 | 位置、旋转和缩放 | `@choiceHandler position: rotation: scale:` |
+| 背景 | 位置、旋转和缩放 | `@back wpos: rotation: scale:` |
+| 角色 | 位置、旋转和缩放 | `@char wpos: rotation: scale:` |
+| 打印机 | 位置、旋转和缩放 | `@printer wpos: rotation: scale:` |
+| 选项 | 位置、旋转和缩放 | `@choiceHandler wpos: rotation: scale:` |
 | 摄像机 | 位置、旋转、正交大小、FOV | `@camera offset: rotation: zoom:` |
 
 默认录制器不会捕获 actor 的外观或可见性、项目和预制件资产，以及由运行时脚本、动画和 Timeline 产生的更改。它会观察通过 Unity 编辑器修改系统对场景对象所做的序列化更改，例如使用场景视图中的变换工具移动对象，或在检查器中更改值。
