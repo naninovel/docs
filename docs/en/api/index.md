@@ -247,7 +247,8 @@ Music tracks are looped by default. When music track name (Path) is not specifie
 | loop | boolean | Whether to repeat the playback from the beginning when it finishes, until stopped. |
 | volume | number | Loudness of the audio playback, in 0.0 to 1.0 range. Note that 1.0 is the default — you can't make digital audio play above the 0 dBFS baseline without clipping. |
 | pitch | number | The perceived frequency (speed) of the playback, in [-3.0 to 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) range, where 1.0 is the normal speed. Negative values will play the audio in reverse. |
-| pos | number list | Position (in world space) of the audio source. When not specified, the spatial mode is disabled. |
+| pos | number list | Position (relative to the scene borders, in percents) of the audio source. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move by depth. |
+| wpos | number list | Position (in world space) of the audio source. When neither `pos` nor `wpos` is specified, the spatial mode is disabled. |
 | wait | boolean | Whether to wait for the audio to finish playing before executing next command. Has no effect when looped. |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">path</span> | string | Local path (name) of the audio resource. |
 | easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
@@ -1583,7 +1584,8 @@ Sound effect tracks are not looped by default. When SFX track name (Path) is not
 | loop | boolean | Whether to repeat the playback from the beginning when it finishes, until stopped. |
 | volume | number | Loudness of the audio playback, in 0.0 to 1.0 range. Note that 1.0 is the default — you can't make digital audio play above the 0 dBFS baseline without clipping. |
 | pitch | number | The perceived frequency (speed) of the playback, in [-3.0 to 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) range, where 1.0 is the normal speed. Negative values will play the audio in reverse. |
-| pos | number list | Position (in world space) of the audio source. When not specified, the spatial mode is disabled. |
+| pos | number list | Position (relative to the scene borders, in percents) of the audio source. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move by depth. |
+| wpos | number list | Position (in world space) of the audio source. When neither `pos` nor `wpos` is specified, the spatial mode is disabled. |
 | wait | boolean | Whether to wait for the audio to finish playing before executing next command. Has no effect when looped. |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">path</span> | string | Local path (name) of the audio resource. |
 | easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
@@ -1604,12 +1606,12 @@ Sound effect tracks are not looped by default. When SFX track name (Path) is not
 ; and disables looping for all of them.
 @sfx volume:0.75 !loop fade:2.5
 
-; Plays 'Explosion' slightly above and behind the listener.
-@sfx Explosion pos:0,1,-3
+; Plays 'Explosion' slightly above and behind the listener in world-space.
+@sfx Explosion wpos:0,1,-3
 
-; Animates 'Rain' position from left to right over 10 seconds.
-@sfx Rain pos:-1 loop!
-@sfx Rain pos:1 fade:10
+; Animates 'Rain' position from left to right over 10 seconds in scene-space.
+@sfx Rain pos:0,50 loop!
+@sfx Rain pos:100,50 fade:10
 ```
 
 ## sfxFast
@@ -1626,7 +1628,8 @@ Plays an [SFX (sound effect)](/guide/audio#sound-effects) track with the specifi
 | loop | boolean | Whether to repeat the playback from the beginning when it finishes, until stopped. |
 | volume | number | Loudness of the audio playback, in 0.0 to 1.0 range. Note that 1.0 is the default — you can't make digital audio play above the 0 dBFS baseline without clipping. |
 | pitch | number | The perceived frequency (speed) of the playback, in [-3.0 to 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) range, where 1.0 is the normal speed. Negative values will play the audio in reverse. |
-| pos | number list | Position (in world space) of the audio source. When not specified, the spatial mode is disabled. |
+| pos | number list | Position (relative to the scene borders, in percents) of the audio source. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move by depth. |
+| wpos | number list | Position (in world space) of the audio source. When neither `pos` nor `wpos` is specified, the spatial mode is disabled. |
 | wait | boolean | Whether to wait for the audio to finish playing before executing next command. Has no effect when looped. |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">path</span> | string | Local path (name) of the audio resource. |
 | easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
@@ -2238,7 +2241,8 @@ Plays a voice clip at the specified path.
 | loop | boolean | Whether to repeat the playback from the beginning when it finishes, until stopped. |
 | volume | number | Loudness of the audio playback, in 0.0 to 1.0 range. Note that 1.0 is the default — you can't make digital audio play above the 0 dBFS baseline without clipping. |
 | pitch | number | The perceived frequency (speed) of the playback, in [-3.0 to 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) range, where 1.0 is the normal speed. Negative values will play the audio in reverse. |
-| pos | number list | Position (in world space) of the audio source. When not specified, the spatial mode is disabled. |
+| pos | number list | Position (relative to the scene borders, in percents) of the audio source. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move by depth. |
+| wpos | number list | Position (in world space) of the audio source. When neither `pos` nor `wpos` is specified, the spatial mode is disabled. |
 | wait | boolean | Whether to wait for the audio to finish playing before executing next command. Has no effect when looped. |
 | <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">path</span> | string | Local path (name) of the audio resource. |
 | easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |

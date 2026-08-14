@@ -81,21 +81,21 @@ To stop a playing sound effect (looped or not), use the [@stopSfx] command follo
 
 ## Spatial Audio
 
-All audio commands support a `pos` parameter, which, when specified, enables spatial mode — aka "3D audio" — where the associated audio source will be configured to respond to its position relative to the audio listener and assigned the specified position in world space.
+All audio commands support `pos` and `wpos` parameters, which, when specified, enable spatial mode — aka "3D audio" — where the associated audio source will be configured to respond to its position relative to the audio listener. Use `pos` to place the source relative to the scene borders in percents (`0,0` is the bottom left and `100,100` is the top right) or `wpos` to place it in world space.
 
 ```nani
-; Plays 'Explosion' slightly above and behind the listener.
-@sfx Explosion pos:0,1,-3
+; Plays 'Explosion' slightly above and behind the listener in world-space.
+@sfx Explosion wpos:0,1,-3
 ```
 
 It's possible to animate the position like any other parameter:
 
 ```nani
-; Pans 'Rain' position right-left-right in a loop until stopped.
+; Pans 'Rain' position right-left-right in scene-space until stopped.
 @async Rainpan loop!
-    @sfx Rain pos:1.5 fade:10
+    @sfx Rain pos:100,50 fade:10
     @wait 10
-    @sfx Rain pos:-1.5 fade:10
+    @sfx Rain pos:0,50 fade:10
     @wait 10
 
 ...

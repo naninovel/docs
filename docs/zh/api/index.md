@@ -247,7 +247,8 @@ Lorem ipsum
 | loop | boolean | 是否在播放结束时从头重复播放，直到停止。 |
 | volume | number | 音频播放的响度，范围为 0.0 到 1.0。请注意，1.0 是默认值；不产生削波时，无法让数字音频超过 0 dBFS 基线播放。 |
 | pitch | number | 播放的感知频率（速度），范围为 [-3.0 到 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)，其中 1.0 为正常速度。负值将反向播放音频。 |
-| pos | number list | 音频源的位置（在世界空间中）。未指定时，将禁用空间模式。 |
+| pos | number list | 音频源的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。使用 Z 分量（第三个成员，例如 `,,10`）更改深度。 |
+| wpos | number list | 音频源的位置（在世界空间中）。`pos` 和 `wpos` 均未指定时，将禁用空间模式。 |
 | wait | boolean | 是否等待音频播放结束后再执行下一个命令。循环播放时无效。 |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">path</span> | string | 音频资源的本地路径（名称）。 |
 | easing | string | 要应用的[缓动函数](/zh/guide/special-effects#动画缓动)名称。未指定时，将使用配置中设置的默认函数。 |
@@ -1583,7 +1584,8 @@ My favourite drink is {drink}!
 | loop | boolean | 是否在播放结束时从头重复播放，直到停止。 |
 | volume | number | 音频播放的响度，范围为 0.0 到 1.0。请注意，1.0 是默认值；不产生削波时，无法让数字音频超过 0 dBFS 基线播放。 |
 | pitch | number | 播放的感知频率（速度），范围为 [-3.0 到 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)，其中 1.0 为正常速度。负值将反向播放音频。 |
-| pos | number list | 音频源的位置（在世界空间中）。未指定时，将禁用空间模式。 |
+| pos | number list | 音频源的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。使用 Z 分量（第三个成员，例如 `,,10`）更改深度。 |
+| wpos | number list | 音频源的位置（在世界空间中）。`pos` 和 `wpos` 均未指定时，将禁用空间模式。 |
 | wait | boolean | 是否等待音频播放结束后再执行下一个命令。循环播放时无效。 |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">path</span> | string | 音频资源的本地路径（名称）。 |
 | easing | string | 要应用的[缓动函数](/zh/guide/special-effects#动画缓动)名称。未指定时，将使用配置中设置的默认函数。 |
@@ -1604,12 +1606,12 @@ My favourite drink is {drink}!
 ; 并禁用所有它们的循环。
 @sfx volume:0.75 !loop fade:2.5
 
-; 在监听器稍上方且后方播放 'Explosion'。
-@sfx Explosion pos:0,1,-3
+; 在世界空间中，于监听器稍上方且后方播放 'Explosion'。
+@sfx Explosion wpos:0,1,-3
 
-; 在 10 秒内将 'Rain' 的位置从左侧动画到右侧。
-@sfx Rain pos:-1 loop!
-@sfx Rain pos:1 fade:10
+; 在场景空间中，于 10 秒内将 'Rain' 的位置从左侧动画到右侧。
+@sfx Rain pos:0,50 loop!
+@sfx Rain pos:100,50 fade:10
 ```
 
 ## sfxFast
@@ -1626,7 +1628,8 @@ My favourite drink is {drink}!
 | loop | boolean | 是否在播放结束时从头重复播放，直到停止。 |
 | volume | number | 音频播放的响度，范围为 0.0 到 1.0。请注意，1.0 是默认值；不产生削波时，无法让数字音频超过 0 dBFS 基线播放。 |
 | pitch | number | 播放的感知频率（速度），范围为 [-3.0 到 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)，其中 1.0 为正常速度。负值将反向播放音频。 |
-| pos | number list | 音频源的位置（在世界空间中）。未指定时，将禁用空间模式。 |
+| pos | number list | 音频源的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。使用 Z 分量（第三个成员，例如 `,,10`）更改深度。 |
+| wpos | number list | 音频源的位置（在世界空间中）。`pos` 和 `wpos` 均未指定时，将禁用空间模式。 |
 | wait | boolean | 是否等待音频播放结束后再执行下一个命令。循环播放时无效。 |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">path</span> | string | 音频资源的本地路径（名称）。 |
 | easing | string | 要应用的[缓动函数](/zh/guide/special-effects#动画缓动)名称。未指定时，将使用配置中设置的默认函数。 |
@@ -2238,7 +2241,8 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 | loop | boolean | 是否在播放结束时从头重复播放，直到停止。 |
 | volume | number | 音频播放的响度，范围为 0.0 到 1.0。请注意，1.0 是默认值；不产生削波时，无法让数字音频超过 0 dBFS 基线播放。 |
 | pitch | number | 播放的感知频率（速度），范围为 [-3.0 到 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)，其中 1.0 为正常速度。负值将反向播放音频。 |
-| pos | number list | 音频源的位置（在世界空间中）。未指定时，将禁用空间模式。 |
+| pos | number list | 音频源的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。使用 Z 分量（第三个成员，例如 `,,10`）更改深度。 |
+| wpos | number list | 音频源的位置（在世界空间中）。`pos` 和 `wpos` 均未指定时，将禁用空间模式。 |
 | wait | boolean | 是否等待音频播放结束后再执行下一个命令。循环播放时无效。 |
 | <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID  必需参数：应始终指定参数">path</span> | string | 音频资源的本地路径（名称）。 |
 | easing | string | 要应用的[缓动函数](/zh/guide/special-effects#动画缓动)名称。未指定时，将使用配置中设置的默认函数。 |
