@@ -205,6 +205,7 @@ Lorem ipsum
 | dissolve | string | [自定义溶解](/zh/guide/special-effects#溶解遮罩)纹理的路径（路径应相对于 `Resources` 文件夹）。仅当过渡设置为 `Custom` 模式时有效。 |
 | visible | boolean | 为修改后的 Actor 设置的可见性状态。 |
 | wpos | number list | 为修改后的 Actor 设置的位置（在世界空间中）。在正交模式下，使用 Z 分量（第三个成员）按深度移动（排序）。 |
+| roll | number | 为修改后的 Actor 设置的 Z 轴旋转。与 `rotation` 参数的第三个分量相同；指定 `rotation` 时将忽略此参数。 |
 | rotation | number list | 为修改后的 Actor 设置的旋转。 |
 | scale | number list | 为修改后的 Actor 设置的缩放。 |
 | tint | string | 要应用的色调颜色。<br><br>以 `#` 开头的字符串将按以下方式解析为十六进制：`#RGB`（变为 `RRGGBB`）、`#RRGGBB`、`#RGBA`（变为 `RRGGBBAA`）、`#RRGGBBAA`；未指定 alpha 时将默认为 `FF`。<br><br>不以 `#` 开头的字符串将被解析为文字颜色，支持以下颜色：red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta。 |
@@ -398,6 +399,7 @@ Actor 应实现 `IBlurable` 接口以支持该效果。
 | dissolve | string | [自定义溶解](/zh/guide/special-effects#溶解遮罩)纹理的路径（路径应相对于 `Resources` 文件夹）。仅当过渡设置为 `Custom` 模式时有效。 |
 | visible | boolean | 为修改后的 Actor 设置的可见性状态。 |
 | wpos | number list | 为修改后的 Actor 设置的位置（在世界空间中）。在正交模式下，使用 Z 分量（第三个成员）按深度移动（排序）。 |
+| roll | number | 为修改后的 Actor 设置的 Z 轴旋转。与 `rotation` 参数的第三个分量相同；指定 `rotation` 时将忽略此参数。 |
 | rotation | number list | 为修改后的 Actor 设置的旋转。 |
 | scale | number list | 为修改后的 Actor 设置的缩放。 |
 | tint | string | 要应用的色调颜色。<br><br>以 `#` 开头的字符串将按以下方式解析为十六进制：`#RGB`（变为 `RRGGBB`）、`#RRGGBB`、`#RGBA`（变为 `RRGGBBAA`）、`#RRGGBBAA`；未指定 alpha 时将默认为 `FF`。<br><br>不以 `#` 开头的字符串将被解析为文字颜色，支持以下颜色：red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta。 |
@@ -506,6 +508,7 @@ Continue executing this script or ...?[>]
 | dissolve | string | [自定义溶解](/zh/guide/special-effects#溶解遮罩)纹理的路径（路径应相对于 `Resources` 文件夹）。仅当过渡设置为 `Custom` 模式时有效。 |
 | visible | boolean | 为修改后的 Actor 设置的可见性状态。 |
 | wpos | number list | 为修改后的 Actor 设置的位置（在世界空间中）。在正交模式下，使用 Z 分量（第三个成员）按深度移动（排序）。 |
+| roll | number | 为修改后的 Actor 设置的 Z 轴旋转。与 `rotation` 参数的第三个分量相同；指定 `rotation` 时将忽略此参数。 |
 | rotation | number list | 为修改后的 Actor 设置的旋转。 |
 | scale | number list | 为修改后的 Actor 设置的缩放。 |
 | tint | string | 要应用的色调颜色。<br><br>以 `#` 开头的字符串将按以下方式解析为十六进制：`#RGB`（变为 `RRGGBB`）、`#RRGGBB`、`#RGBA`（变为 `RRGGBBAA`）、`#RRGGBBAA`；未指定 alpha 时将默认为 `FF`。<br><br>不以 `#` 开头的字符串将被解析为文字颜色，支持以下颜色：red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta。 |
@@ -1193,6 +1196,7 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 | dissolve | string | [自定义溶解](/zh/guide/special-effects#溶解遮罩)纹理的路径（路径应相对于 `Resources` 文件夹）。仅当过渡设置为 `Custom` 模式时有效。 |
 | visible | boolean | 为修改后的 Actor 设置的可见性状态。 |
 | wpos | number list | 为修改后的 Actor 设置的位置（在世界空间中）。在正交模式下，使用 Z 分量（第三个成员）按深度移动（排序）。 |
+| roll | number | 为修改后的 Actor 设置的 Z 轴旋转。与 `rotation` 参数的第三个分量相同；指定 `rotation` 时将忽略此参数。 |
 | rotation | number list | 为修改后的 Actor 设置的旋转。 |
 | scale | number list | 为修改后的 Actor 设置的缩放。 |
 | tint | string | 要应用的色调颜色。<br><br>以 `#` 开头的字符串将按以下方式解析为十六进制：`#RGB`（变为 `RRGGBB`）、`#RRGGBB`、`#RGBA`（变为 `RRGGBBAA`）、`#RRGGBBAA`；未指定 alpha 时将默认为 `FF`。<br><br>不以 `#` 开头的字符串将被解析为文字颜色，支持以下颜色：red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta。 |
@@ -1288,6 +1292,7 @@ You've picked two.
 | ySpeed | number | 粒子垂直速度的倍增器。 |
 | pos | number list | 为生成的效果游戏对象设置的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。在正交模式下，使用 Z 分量（第三个成员，例如 `,,10`）按深度移动（排序）。 |
 | wpos | number list | 为生成的效果游戏对象设置的位置（在世界空间中）。 |
+| roll | number | 为生成的效果游戏对象设置的 Z 轴旋转。与 `rotation` 参数的第三个分量相同；指定 `rotation` 时将忽略此参数。 |
 | rotation | number list | 为生成的效果游戏对象设置的旋转。 |
 | scale | number list | 为生成的效果游戏对象设置的缩放。 |
 | wait | boolean | 在播放下一个命令之前是否等待效果预热动画。 |
@@ -1822,6 +1827,7 @@ My favourite drink is {drink}!
 | time | number | 粒子系统将在指定时间内（以秒为单位）逐渐将生成率增加到目标水平。 |
 | pos | number list | 为生成的效果游戏对象设置的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。在正交模式下，使用 Z 分量（第三个成员，例如 `,,10`）按深度移动（排序）。 |
 | wpos | number list | 为生成的效果游戏对象设置的位置（在世界空间中）。 |
+| roll | number | 为生成的效果游戏对象设置的 Z 轴旋转。与 `rotation` 参数的第三个分量相同；指定 `rotation` 时将忽略此参数。 |
 | rotation | number list | 为生成的效果游戏对象设置的旋转。 |
 | scale | number list | 为生成的效果游戏对象设置的缩放。 |
 | wait | boolean | 在播放下一个命令之前是否等待效果预热动画。 |
@@ -1851,6 +1857,7 @@ My favourite drink is {drink}!
 | params | string list | 生成预制件时要设置的参数。需要预制件的根对象上附加 `IParameterized` 组件。 |
 | pos | number list | 为生成的对象设置的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。在正交模式下，使用 Z 分量（第三个成员，例如 `,,10`）按深度移动（排序）。 |
 | wpos | number list | 为生成的对象设置的位置（在世界空间中）。 |
+| roll | number | 为生成的对象设置的 Z 轴旋转。与 `rotation` 参数的第三个分量相同；指定 `rotation` 时将忽略此参数。 |
 | rotation | number list | 为生成的对象设置的旋转。 |
 | scale | number list | 为生成的对象设置的缩放。 |
 | wait | boolean | 如果实现了 `IAwaitable` 接口，是否等待生成预热。 |
@@ -1984,6 +1991,7 @@ This line is only executed when navigated directly with a @gosub.
 | time | number | 粒子系统将在指定时间内（以秒为单位）逐渐将生成率增加到目标水平。 |
 | pos | number list | 为生成的效果游戏对象设置的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。在正交模式下，使用 Z 分量（第三个成员，例如 `,,10`）按深度移动（排序）。 |
 | wpos | number list | 为生成的效果游戏对象设置的位置（在世界空间中）。 |
+| roll | number | 为生成的效果游戏对象设置的 Z 轴旋转。与 `rotation` 参数的第三个分量相同；指定 `rotation` 时将忽略此参数。 |
 | rotation | number list | 为生成的效果游戏对象设置的旋转。 |
 | scale | number list | 为生成的效果游戏对象设置的缩放。 |
 | wait | boolean | 在播放下一个命令之前是否等待效果预热动画。 |

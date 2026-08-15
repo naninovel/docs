@@ -790,7 +790,7 @@ The [@spawn] command also has transform parameters, allowing you to spawn the ob
 ```nani
 ; Spawn Explosion 15% from the left border of the screen
 ; with x10 scale and rotated by 15 degrees over z-axis.
-@spawn Explosion pos:15 scale:10 rotation:,,15
+@spawn Explosion pos:15 scale:10 roll:15
 ```
 
 In case you have a lot of prefabs to spawn and it's inconvenient to assign them via editor menu, it's possible to just drop them at `Resources/Naninovel/Spawn` folder and they'll automatically be available in the scripts. You can additionally organize them with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in scenario scripts. Eg, prefab asset stored as `Resources/Naninovel/Spawn/Explosions/Boom01` can be referenced in scripts as `Explosions/Boom01`.

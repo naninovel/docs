@@ -205,6 +205,7 @@ Backgrounds are handled a bit differently from characters to better accommodate 
 | dissolve | string | Path to the [custom dissolve](/guide/special-effects#dissolve-mask) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
 | visible | boolean | Visibility status to set for the modified actor. |
 | wpos | number list | Position (in world space) to set for the modified actor. Use Z-component (third member) to move (sort) by depth while in ortho mode. |
+| roll | number | Rotation by Z-axis to set for the modified actor. The same as third component of `rotation` parameter; ignored when `rotation` is specified. |
 | rotation | number list | Rotation to set for the modified actor. |
 | scale | number list | Scale to set for the modified actor. |
 | tint | string | The tint color to apply.<br><br>Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes `RRGGBB`), `#RRGGBB`, `#RGBA` (becomes `RRGGBBAA`), `#RRGGBBAA`; when alpha is not specified will default to `FF`.<br><br>Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
@@ -398,6 +399,7 @@ Modifies a [character actor](/guide/characters).
 | dissolve | string | Path to the [custom dissolve](/guide/special-effects#dissolve-mask) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
 | visible | boolean | Visibility status to set for the modified actor. |
 | wpos | number list | Position (in world space) to set for the modified actor. Use Z-component (third member) to move (sort) by depth while in ortho mode. |
+| roll | number | Rotation by Z-axis to set for the modified actor. The same as third component of `rotation` parameter; ignored when `rotation` is specified. |
 | rotation | number list | Rotation to set for the modified actor. |
 | scale | number list | Scale to set for the modified actor. |
 | tint | string | The tint color to apply.<br><br>Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes `RRGGBB`), `#RRGGBB`, `#RGBA` (becomes `RRGGBBAA`), `#RRGGBBAA`; when alpha is not specified will default to `FF`.<br><br>Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
@@ -506,6 +508,7 @@ Modifies a [choice handler actor](/guide/choices).
 | dissolve | string | Path to the [custom dissolve](/guide/special-effects#dissolve-mask) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
 | visible | boolean | Visibility status to set for the modified actor. |
 | wpos | number list | Position (in world space) to set for the modified actor. Use Z-component (third member) to move (sort) by depth while in ortho mode. |
+| roll | number | Rotation by Z-axis to set for the modified actor. The same as third component of `rotation` parameter; ignored when `rotation` is specified. |
 | rotation | number list | Rotation to set for the modified actor. |
 | scale | number list | Scale to set for the modified actor. |
 | tint | string | The tint color to apply.<br><br>Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes `RRGGBB`), `#RRGGBB`, `#RGBA` (becomes `RRGGBBAA`), `#RRGGBBAA`; when alpha is not specified will default to `FF`.<br><br>Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
@@ -1193,6 +1196,7 @@ Modifies a [text printer actor](/guide/text-printers) and links the printer to a
 | dissolve | string | Path to the [custom dissolve](/guide/special-effects#dissolve-mask) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
 | visible | boolean | Visibility status to set for the modified actor. |
 | wpos | number list | Position (in world space) to set for the modified actor. Use Z-component (third member) to move (sort) by depth while in ortho mode. |
+| roll | number | Rotation by Z-axis to set for the modified actor. The same as third component of `rotation` parameter; ignored when `rotation` is specified. |
 | rotation | number list | Rotation to set for the modified actor. |
 | scale | number list | Scale to set for the modified actor. |
 | tint | string | The tint color to apply.<br><br>Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes `RRGGBB`), `#RRGGBB`, `#RGBA` (becomes `RRGGBBAA`), `#RRGGBBAA`; when alpha is not specified will default to `FF`.<br><br>Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
@@ -1288,6 +1292,7 @@ Spawns particle system simulating [rain](/guide/special-effects#rain).
 | ySpeed | number | Multiplier to the vertical speed of the particles. |
 | pos | number list | Position (relative to the scene borders, in percents) to set for the spawned effect game object. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
 | wpos | number list | Position (in world space) to set for the spawned effect game object. |
+| roll | number | Rotation by Z-axis to set for the spawned effect game object. The same as third component of `rotation` parameter; ignored when `rotation` is specified. |
 | rotation | number list | Rotation to set for the spawned effect game object. |
 | scale | number list | Scale to set for the spawned effect game object. |
 | wait | boolean | Whether to wait for the effect warm-up animation before playing next command. |
@@ -1822,6 +1827,7 @@ Spawns particle system simulating [snow](/guide/special-effects#snow).
 | time | number | The particle system will gradually grow the spawn rate to the target level over the specified time, in seconds. |
 | pos | number list | Position (relative to the scene borders, in percents) to set for the spawned effect game object. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
 | wpos | number list | Position (in world space) to set for the spawned effect game object. |
+| roll | number | Rotation by Z-axis to set for the spawned effect game object. The same as third component of `rotation` parameter; ignored when `rotation` is specified. |
 | rotation | number list | Rotation to set for the spawned effect game object. |
 | scale | number list | Scale to set for the spawned effect game object. |
 | wait | boolean | Whether to wait for the effect warm-up animation before playing next command. |
@@ -1851,6 +1857,7 @@ If prefab has a `MonoBehaviour` component attached to the root object, and the c
 | params | string list | Parameters to set when spawning the prefab. Requires the prefab to have an `IParameterized` component attached to the root object. |
 | pos | number list | Position (relative to the scene borders, in percents) to set for the spawned object. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
 | wpos | number list | Position (in world space) to set for the spawned object. |
+| roll | number | Rotation by Z-axis to set for the spawned object. The same as third component of `rotation` parameter; ignored when `rotation` is specified. |
 | rotation | number list | Rotation to set for the spawned object. |
 | scale | number list | Scale to set for the spawned object. |
 | wait | boolean | Whether to wait for the spawn to warm-up in case it implements `IAwaitable` interface. |
@@ -1984,6 +1991,7 @@ Spawns particle system simulating [sun shafts](/guide/special-effects#sun) aka g
 | time | number | The particle system will gradually grow the spawn rate to the target level over the specified time, in seconds. |
 | pos | number list | Position (relative to the scene borders, in percents) to set for the spawned effect game object. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
 | wpos | number list | Position (in world space) to set for the spawned effect game object. |
+| roll | number | Rotation by Z-axis to set for the spawned effect game object. The same as third component of `rotation` parameter; ignored when `rotation` is specified. |
 | rotation | number list | Rotation to set for the spawned effect game object. |
 | scale | number list | Scale to set for the spawned effect game object. |
 | wait | boolean | Whether to wait for the effect warm-up animation before playing next command. |

@@ -790,7 +790,7 @@ EaseInOutElastic
 ```nani
 ; 在距屏幕左边界 15% 处生成爆炸
 ; 缩放 x10 并在 z 轴上旋转 15 度。
-@spawn Explosion pos:15 scale:10 rotation:,,15
+@spawn Explosion pos:15 scale:10 roll:15
 ```
 
 如果您有很多预制件要生成，并且通过编辑器菜单分配它们不方便，可以将它们放在 `Resources/Naninovel/Spawn` 文件夹中，它们将自动在脚本中可用。如果您愿意，您还可以使用子文件夹组织它们；在这种情况下，在剧本脚本中引用它们时使用正斜杠 (`/`)。例如，存储为 `Resources/Naninovel/Spawn/Explosions/Boom01` 的预制件资产可以在脚本中引用为 `Explosions/Boom01`。

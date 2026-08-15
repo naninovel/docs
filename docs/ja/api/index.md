@@ -205,6 +205,7 @@ Lorem ipsum
 | dissolve | string | [カスタムディゾルブ](/ja/guide/special-effects#ディゾルブマスク) テクスチャへのパス（パスは `Resources` フォルダーに対する相対パスである必要があります）。遷移が `Custom` モードに設定されている場合にのみ効果があります。 |
 | visible | boolean | 変更されたアクターに設定する可視性ステータス。 |
 | wpos | number list | 変更されたアクターに設定する位置（ワールド空間）。直交モードで深度によって移動（ソート）するには、Zコンポーネント（3番目のメンバー）を使用します。 |
+| roll | number | 変更されたアクターに設定するZ軸回転。`rotation` パラメーターの3番目のコンポーネントと同じです。`rotation` が指定されている場合は無視されます。 |
 | rotation | number list | 変更されたアクターに設定する回転。 |
 | scale | number list | 変更されたアクターに設定するスケール。 |
 | tint | string | 適用する色合い。<br><br>`#` で始まる文字列は、次の方法で16進数として解析されます：`#RGB`（`RRGGBB` になります）、`#RRGGBB`、`#RGBA`（`RRGGBBAA` になります）、`#RRGGBBAA`。アルファが指定されていない場合、デフォルトは `FF` になります。<br><br>`#` で始まらない文字列は、リテラルカラーとして解析され、次の色がサポートされています：red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta。 |
@@ -398,6 +399,7 @@ Lorem ipsum
 | dissolve | string | [カスタムディゾルブ](/ja/guide/special-effects#ディゾルブマスク) テクスチャへのパス（パスは `Resources` フォルダーに対する相対パスである必要があります）。遷移が `Custom` モードに設定されている場合にのみ効果があります。 |
 | visible | boolean | 変更されたアクターに設定する可視性ステータス。 |
 | wpos | number list | 変更されたアクターに設定する位置（ワールド空間）。直交モードで深度によって移動（ソート）するには、Zコンポーネント（3番目のメンバー）を使用します。 |
+| roll | number | 変更されたアクターに設定するZ軸回転。`rotation` パラメーターの3番目のコンポーネントと同じです。`rotation` が指定されている場合は無視されます。 |
 | rotation | number list | 変更されたアクターに設定する回転。 |
 | scale | number list | 変更されたアクターに設定するスケール。 |
 | tint | string | 適用する色合い。<br><br>`#` で始まる文字列は、次の方法で16進数として解析されます：`#RGB`（`RRGGBB` になります）、`#RRGGBB`、`#RGBA`（`RRGGBBAA` になります）、`#RRGGBBAA`。アルファが指定されていない場合、デフォルトは `FF` になります。<br><br>`#` で始まらない文字列は、リテラルカラーとして解析され、次の色がサポートされています：red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta。 |
@@ -506,6 +508,7 @@ Continue executing this script or ...?[>]
 | dissolve | string | [カスタムディゾルブ](/ja/guide/special-effects#ディゾルブマスク) テクスチャへのパス（パスは `Resources` フォルダーに対する相対パスである必要があります）。遷移が `Custom` モードに設定されている場合にのみ効果があります。 |
 | visible | boolean | 変更されたアクターに設定する可視性ステータス。 |
 | wpos | number list | 変更されたアクターに設定する位置（ワールド空間）。直交モードで深度によって移動（ソート）するには、Zコンポーネント（3番目のメンバー）を使用します。 |
+| roll | number | 変更されたアクターに設定するZ軸回転。`rotation` パラメーターの3番目のコンポーネントと同じです。`rotation` が指定されている場合は無視されます。 |
 | rotation | number list | 変更されたアクターに設定する回転。 |
 | scale | number list | 変更されたアクターに設定するスケール。 |
 | tint | string | 適用する色合い。<br><br>`#` で始まる文字列は、次の方法で16進数として解析されます：`#RGB`（`RRGGBB` になります）、`#RRGGBB`、`#RGBA`（`RRGGBBAA` になります）、`#RRGGBBAA`。アルファが指定されていない場合、デフォルトは `FF` になります。<br><br>`#` で始まらない文字列は、リテラルカラーとして解析され、次の色がサポートされています：red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta。 |
@@ -1193,6 +1196,7 @@ WebGLの外部またはエディター内では、Unityの `Application.OpenURL`
 | dissolve | string | [カスタムディゾルブ](/ja/guide/special-effects#ディゾルブマスク) テクスチャへのパス（パスは `Resources` フォルダーに対する相対パスである必要があります）。遷移が `Custom` モードに設定されている場合にのみ効果があります。 |
 | visible | boolean | 変更されたアクターに設定する可視性ステータス。 |
 | wpos | number list | 変更されたアクターに設定する位置（ワールド空間）。直交モードで深度によって移動（ソート）するには、Zコンポーネント（3番目のメンバー）を使用します。 |
+| roll | number | 変更されたアクターに設定するZ軸回転。`rotation` パラメーターの3番目のコンポーネントと同じです。`rotation` が指定されている場合は無視されます。 |
 | rotation | number list | 変更されたアクターに設定する回転。 |
 | scale | number list | 変更されたアクターに設定するスケール。 |
 | tint | string | 適用する色合い。<br><br>`#` で始まる文字列は、次の方法で16進数として解析されます：`#RGB`（`RRGGBB` になります）、`#RRGGBB`、`#RGBA`（`RRGGBBAA` になります）、`#RRGGBBAA`。アルファが指定されていない場合、デフォルトは `FF` になります。<br><br>`#` で始まらない文字列は、リテラルカラーとして解析され、次の色がサポートされています：red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta。 |
@@ -1288,6 +1292,7 @@ You've picked two.
 | ySpeed | number | パーティクルの垂直速度の乗数。 |
 | pos | number list | 生成された効果ゲームオブジェクトに設定する位置（シーン境界に対する相対的なパーセンテージ）。位置は次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。直交モードで深度によって移動（ソート）するには、Zコンポーネント（3番目のメンバー、例 `,,10`）を使用します。 |
 | wpos | number list | 生成された効果ゲームオブジェクトに設定する位置（ワールド空間）。 |
+| roll | number | 生成された効果ゲームオブジェクトに設定するZ軸回転。`rotation` パラメーターの3番目のコンポーネントと同じです。`rotation` が指定されている場合は無視されます。 |
 | rotation | number list | 生成された効果ゲームオブジェクトに設定する回転。 |
 | scale | number list | 生成された効果ゲームオブジェクトに設定するスケール。 |
 | wait | boolean | 次のコマンドを再生する前に、効果のウォームアップアニメーションを待機するかどうか。 |
@@ -1822,6 +1827,7 @@ My favourite drink is {drink}!
 | time | number | パーティクルシステムは、指定された時間（秒単位）で生成率を目標レベルまで徐々に増加させます。 |
 | pos | number list | 生成された効果ゲームオブジェクトに設定する位置（シーン境界に対する相対的なパーセンテージ）。位置は次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。直交モードで深度によって移動（ソート）するには、Zコンポーネント（3番目のメンバー、例 `,,10`）を使用します。 |
 | wpos | number list | 生成された効果ゲームオブジェクトに設定する位置（ワールド空間）。 |
+| roll | number | 生成された効果ゲームオブジェクトに設定するZ軸回転。`rotation` パラメーターの3番目のコンポーネントと同じです。`rotation` が指定されている場合は無視されます。 |
 | rotation | number list | 生成された効果ゲームオブジェクトに設定する回転。 |
 | scale | number list | 生成された効果ゲームオブジェクトに設定するスケール。 |
 | wait | boolean | 次のコマンドを再生する前に、効果のウォームアップアニメーションを待機するかどうか。 |
@@ -1851,6 +1857,7 @@ My favourite drink is {drink}!
 | params | string list | プレハブを生成するときに設定するパラメーター。プレハブのルートオブジェクトに `IParameterized` コンポーネントがアタッチされている必要があります。 |
 | pos | number list | 生成されたオブジェクトに設定する位置（シーン境界に対する相対的なパーセンテージ）。位置は次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。直交モードで深度によって移動（ソート）するには、Zコンポーネント（3番目のメンバー、例 `,,10`）を使用します。 |
 | wpos | number list | 生成されたオブジェクトに設定する位置（ワールド空間）。 |
+| roll | number | 生成されたオブジェクトに設定するZ軸回転。`rotation` パラメーターの3番目のコンポーネントと同じです。`rotation` が指定されている場合は無視されます。 |
 | rotation | number list | 生成されたオブジェクトに設定する回転。 |
 | scale | number list | 生成されたオブジェクトに設定するスケール。 |
 | wait | boolean | `IAwaitable` インターフェースを実装している場合に、スポーンのウォームアップを待機するかどうか。 |
@@ -1984,6 +1991,7 @@ This line is only executed when navigated directly with a @gosub.
 | time | number | パーティクルシステムは、指定された時間（秒単位）で生成率を目標レベルまで徐々に増加させます。 |
 | pos | number list | 生成された効果ゲームオブジェクトに設定する位置（シーン境界に対する相対的なパーセンテージ）。位置は次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。直交モードで深度によって移動（ソート）するには、Zコンポーネント（3番目のメンバー、例 `,,10`）を使用します。 |
 | wpos | number list | 生成された効果ゲームオブジェクトに設定する位置（ワールド空間）。 |
+| roll | number | 生成された効果ゲームオブジェクトに設定するZ軸回転。`rotation` パラメーターの3番目のコンポーネントと同じです。`rotation` が指定されている場合は無視されます。 |
 | rotation | number list | 生成された効果ゲームオブジェクトに設定する回転。 |
 | scale | number list | 生成された効果ゲームオブジェクトに設定するスケール。 |
 | wait | boolean | 次のコマンドを再生する前に、効果のウォームアップアニメーションを待機するかどうか。 |

@@ -790,7 +790,7 @@ EaseInOutElastic
 ```nani
 ; 画面の左端から15%の位置にExplosionをスポーンします
 ; x10スケールで、Z軸を中心に15度回転します。
-@spawn Explosion pos:15 scale:10 rotation:,,15
+@spawn Explosion pos:15 scale:10 roll:15
 ```
 
 スポーンするプレハブが多く、エディターメニューから割り当てるのが不便な場合は、`Resources/Naninovel/Spawn` フォルダーにドロップするだけで、スクリプトで自動的に利用可能になります。必要に応じて、さらにサブフォルダーで整理することもできます。この場合、シナリオスクリプトで参照するときはスラッシュ（`/`）を使用します。たとえば、`Resources/Naninovel/Spawn/Explosions/Boom01` として保存されているプレハブアセットは、スクリプトで `Explosions/Boom01` として参照できます。
