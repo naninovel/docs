@@ -1,0 +1,15 @@
+{
+"companyName": "Elringus",
+"productName": "NaninovelSandbox",
+"productVersion": "1.0",
+"dataUrl": "sandbox.data.unityweb",
+"wasmCodeUrl": "sandbox.wasm.code.unityweb",
+"wasmFrameworkUrl": "sandbox.wasm.framework.unityweb",
+"graphicsAPI": ["WebGL 2.0","WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.4.40f1"
+}
