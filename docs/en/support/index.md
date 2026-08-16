@@ -10,10 +10,10 @@ If you have an active [Support Plan](/support/#support-plan), you'll also gain a
 
 The Support Plan provides access to dedicated support on our Discord server and includes:
 
-- Priority responses to technical issues and troubleshooting requests in the `#support` channel
-- Access to the engine source code repository on GitHub, where you can track the development process
+- Priority responses from the team to technical issues and troubleshooting requests in the `#support` channel
+- Immediate responses from Nani-kun — our support bot with deep expert knowledge of the entire Naninovel codebase
+- Access to the engine's source code repository on GitHub, where you can track the development process
 - Access to the UPM repository with the latest preview and stable release branches, allowing you to install and update Naninovel directly from GitHub
-- Access to a project with advanced samples and demo scenes
 
 A free one-year Support Plan is included when you [register your license](https://account.naninovel.com). After that, you can renew your subscription anytime through your [account dashboard](https://account.naninovel.com/support).
 

@@ -4,13 +4,9 @@ While the Naninovel package already includes a couple of [essential samples](/gu
 
 ## Accessing Samples
 
-The advanced samples are hosted under the [engine's monorepo](https://github.com/naninovel/engine/tree/stable/unity/samples). To access the repository, [register your Naninovel license](https://naninovel.com/register) and follow the dashboard instructions to assign a GitHub user. Once you have access, either [clone](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) or [download](https://github.com/naninovel/engine/archive/refs/heads/stable.zip) the repository.
+Download the advanced samples project from the [release archive](https://account.naninovel.com/download).
 
-Unzip the downloaded repository and open the `unity/samples` directory in the Unity Editor. Naninovel is referenced as a local package in the Package Manager. The local package source points to `unity/client`, which contains the source code of the Unity extension. Other third-party packages used in the samples are embedded in the project for convenience.
-
-![](https://i.gyazo.com/aa784d89f6a55576b745824c2f6fd537.png)
-
-Once in the Unity Editor, open the `Assets/Scenes/Main.unity` scene and enter Play mode. You'll see the title screen of our [demo project](https://naninovel.com/demo). You can either start the demo or click the "SAMPLES" button to navigate the available samples, which are outlined below.
+Unzip the downloaded directory and open it in the Unity Editor. Once the project is loaded, open the `Assets/Scenes/Main.unity` scene and enter Play mode. You'll see the title screen of our [demo project](https://naninovel.com/demo). You can either start the demo or click the "SAMPLES" button to navigate the available samples, which are outlined below.
 
 ![](https://i.gyazo.com/f7304c828ff616f2d9a979d2452413a4.png)
 
