@@ -10,10 +10,10 @@
 
 支持计划提供对我们 Discord 服务器上专用支持的访问权限，包括：
 
-- 在 `#support` 频道中对技术问题和故障排除请求的优先响应
+- 团队在 `#support` 频道中优先响应技术问题和故障排除请求
+- Nani-kun 的即时响应——我们的支持机器人，精通整个 Naninovel 代码库
 - 访问 GitHub 上的引擎源代码存储库，您可以在其中跟踪开发过程
 - 访问包含最新预览版和稳定版本分支的 UPM 存储库，允许您直接从 GitHub 安装和更新 Naninovel
-- 访问包含高级示例和演示场景的项目
 
 当您 [注册许可证](https://account.naninovel.com) 时，将包含一年的免费支持计划。之后，您可以随时通过您的 [账户仪表板](https://account.naninovel.com/support) 续订订阅。
 

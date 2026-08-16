@@ -4,13 +4,9 @@
 
 ## 访问示例
 
-高级示例托管在 [引擎的 monorepo](https://github.com/naninovel/engine/tree/stable/unity/samples) 下。要访问存储库，请 [注册您的 Naninovel 许可证](https://naninovel.com/register) 并按照仪表板说明分配 GitHub 用户。一旦您拥有访问权限，请 [克隆](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) 或 [下载](https://github.com/naninovel/engine/archive/refs/heads/stable.zip) 存储库。
+从 [下载存档](https://account.naninovel.com/download) 下载高级示例项目。
 
-解压缩下载的存储库并在 Unity 编辑器中打开 `unity/samples` 目录。Naninovel 在包管理器中被引用为本地包。本地包源指向 `unity/client`，其中包含 Unity 扩展的源代码。示例中使用的其他第三方包为了方便起见嵌入在项目中。
-
-![](https://i.gyazo.com/aa784d89f6a55576b745824c2f6fd537.png)
-
-进入 Unity 编辑器后，打开 `Assets/Scenes/Main.unity` 场景并进入播放模式。您将看到我们 [演示项目](https://naninovel.com/demo) 的标题屏幕。您可以开始演示或单击 "SAMPLES" 按钮导航到可用的示例，概述如下。
+解压下载的目录并在 Unity 编辑器中将其打开。项目加载后，打开 `Assets/Scenes/Main.unity` 场景并进入播放模式。您将看到我们 [演示项目](https://naninovel.com/demo) 的标题屏幕。您可以开始演示或单击 "SAMPLES" 按钮导航到可用的示例，概述如下。
 
 ![](https://i.gyazo.com/f7304c828ff616f2d9a979d2452413a4.png)
 

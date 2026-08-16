@@ -4,13 +4,9 @@ Naninovelパッケージには、ビジュアルノベルとダイアログモ�
 
 ## サンプルへのアクセス
 
-高度なサンプルは [エンジンのモノレポ](https://github.com/naninovel/engine/tree/stable/unity/samples) でホストされています。リポジトリにアクセスするには、[Naninovelライセンスを登録](https://naninovel.com/register) し、ダッシュボードの指示に従ってGitHubユーザーを割り当ててください。アクセス権を取得したら、リポジトリを [クローン](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) するか、[ダウンロード](https://github.com/naninovel/engine/archive/refs/heads/stable.zip) してください。
+高度なサンプルプロジェクトを [ダウンロードアーカイブ](https://account.naninovel.com/download) からダウンロードしてください。
 
-ダウンロードしたリポジトリを解凍し、Unityエディターで `unity/samples` ディレクトリを開きます。NaninovelはPackage Managerでローカルパッケージとして参照されます。ローカルパッケージソースは、Unity拡張機能のソースコードを含む `unity/client` を指しています。サンプルで使用される他のサードパーティパッケージは、便宜上プロジェクトに埋め込まれています。
-
-![](https://i.gyazo.com/aa784d89f6a55576b745824c2f6fd537.png)
-
-Unityエディターに入ったら、`Assets/Scenes/Main.unity` シーンを開き、プレイモードに入ります。[デモプロジェクト](https://naninovel.com/demo) のタイトル画面が表示されます。デモを開始するか、「SAMPLES」ボタンをクリックして、以下に概説する利用可能なサンプルに移動できます。
+ダウンロードしたディレクトリを解凍し、Unityエディターで開きます。プロジェクトが読み込まれたら、`Assets/Scenes/Main.unity` シーンを開き、プレイモードに入ります。[デモプロジェクト](https://naninovel.com/demo) のタイトル画面が表示されます。デモを開始するか、「SAMPLES」ボタンをクリックして、以下に概説する利用可能なサンプルに移動できます。
 
 ![](https://i.gyazo.com/f7304c828ff616f2d9a979d2452413a4.png)
 
