@@ -1860,6 +1860,7 @@ My favourite drink is {drink}!
 | roll | number | 生成されたオブジェクトに設定するZ軸回転。`rotation` パラメーターの3番目のコンポーネントと同じです。`rotation` が指定されている場合は無視されます。 |
 | rotation | number list | 生成されたオブジェクトに設定する回転。 |
 | scale | number list | 生成されたオブジェクトに設定するスケール。 |
+| transient | boolean | 生成されたオブジェクトをゲームステートから除外するかどうか。1回限りの短時間エフェクトに便利で、後で [@despawn] を呼び出す必要がなくなります。 |
 | wait | boolean | `IAwaitable` インターフェースを実装している場合に、スポーンのウォームアップを待機するかどうか。 |
 
 </div>
@@ -1867,6 +1868,9 @@ My favourite drink is {drink}!
 ```nani
 ; 'Rainbow' プレハブがスポーンリソースに割り当てられていると仮定して、それをインスタンス化します。
 @spawn Rainbow
+
+; 生成された 'Explosion' は1回限りのため、後で '@despawn' を呼び出す必要はありません。
+@spawn Explosion transient!
 ```
 
 ## stop

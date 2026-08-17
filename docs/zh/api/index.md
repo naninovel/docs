@@ -1860,6 +1860,7 @@ My favourite drink is {drink}!
 | roll | number | 为生成的对象设置的 Z 轴旋转。与 `rotation` 参数的第三个分量相同；指定 `rotation` 时将忽略此参数。 |
 | rotation | number list | 为生成的对象设置的旋转。 |
 | scale | number list | 为生成的对象设置的缩放。 |
+| transient | boolean | 是否从游戏状态中排除生成的对象。适用于一次性、短时效果，无需稍后再对其调用 [@despawn]。 |
 | wait | boolean | 如果实现了 `IAwaitable` 接口，是否等待生成预热。 |
 
 </div>
@@ -1867,6 +1868,9 @@ My favourite drink is {drink}!
 ```nani
 ; 假设 'Rainbow' 预制件已分配在生成资源中，实例化它。
 @spawn Rainbow
+
+; 生成的 'Explosion' 是一次性效果，之后无需调用 '@despawn'。
+@spawn Explosion transient!
 ```
 
 ## stop

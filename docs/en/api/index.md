@@ -1860,6 +1860,7 @@ If prefab has a `MonoBehaviour` component attached to the root object, and the c
 | roll | number | Rotation by Z-axis to set for the spawned object. The same as third component of `rotation` parameter; ignored when `rotation` is specified. |
 | rotation | number list | Rotation to set for the spawned object. |
 | scale | number list | Scale to set for the spawned object. |
+| transient | boolean | Whether to exclude the spawned object from the game state. Useful for one-shot, short-lived effects, freeing you from having to call [@despawn] on them later. |
 | wait | boolean | Whether to wait for the spawn to warm-up in case it implements `IAwaitable` interface. |
 
 </div>
@@ -1867,6 +1868,9 @@ If prefab has a `MonoBehaviour` component attached to the root object, and the c
 ```nani
 ; Given a 'Rainbow' prefab is assigned in spawn resources, instantiate it.
 @spawn Rainbow
+
+; Spawned 'Explosion' is one-shot and won't require '@despawn' later.
+@spawn Explosion transient!
 ```
 
 ## stop
