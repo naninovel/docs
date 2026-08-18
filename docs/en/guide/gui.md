@@ -22,10 +22,6 @@ When one or more aspect ratios are specified, Naninovel filters the available re
 
 Aspect ratios are specified as width and height pairs. For example, use `16:9` for widescreen displays or `4:3` for classic fullscreen layouts. When the current screen aspect does not exactly match one of the configured ratios, Naninovel selects the closest configured ratio.
 
-::: info NOTE
-Unity does not clear screen outside a camera rect, so the pixels may keep previously rendered content. To avoid this, clear the screen behind Naninovel cameras. The simplest setup is to add a camera that renders before Naninovel: set `Clear Flags` to `Solid Color`, `Background` to the desired letterbox color, `Culling Mask` to `Nothing`, and set `Depth` lower than Naninovel cameras.
-:::
-
 ## UI Toggling
 
 UI toggling feature allows the user to hide or show the in-game UI as a whole.

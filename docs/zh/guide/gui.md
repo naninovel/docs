@@ -22,10 +22,6 @@ Naninovel 附带多个内置 UI：标题（主）菜单、游戏设置、保存�
 
 纵横比以宽度和高度对的形式指定。例如，宽屏显示器使用 `16:9`，经典全屏布局使用 `4:3`。当当前屏幕纵横比未与任何已配置的比例完全匹配时，Naninovel 会选择最接近的已配置比例。
 
-::: info NOTE
-Unity 不会清除摄像机矩形之外的屏幕，因此这些像素可能会保留先前渲染的内容。为避免这种情况，请在 Naninovel 摄像机后方清除屏幕。最简单的设置是添加一个先于 Naninovel 渲染的摄像机：将 `Clear Flags` 设置为 `Solid Color`，将 `Background` 设置为所需的黑边颜色，将 `Culling Mask` 设置为 `Nothing`，并将 `Depth` 设置为低于 Naninovel 摄像机。
-:::
-
 ## UI 切换
 
 UI 切换功能允许用户隐藏或显示整个游戏内 UI。
