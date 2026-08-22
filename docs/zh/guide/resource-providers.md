@@ -32,23 +32,17 @@
 
 当项目中安装了包并且在资源提供者配置中启用了 `Use Addressables` 属性时，Naninovel 将自动使用 Addressables。无需额外设置：在 Naninovel 的配置菜单中分配的所有资产（例如，剧本脚本、角色精灵、音频剪辑）将在构建播放器时向系统注册（分配地址）。
 
-如果您希望配置 Naninovel 资产的提供方式（例如，指定远程 Web 主机），请通过 `Window -> Asset Management -> Addressables -> Groups` 编辑 Naninovel 组。Addressable 组在首次构建游戏时自动创建；如果它们丢失，您可以手动创建它们。
+通过 Naninovel 菜单分配的资产会添加到 `Naninovel` 组中。如果您希望配置这些资产的提供方式（例如，指定远程 Web 主机），请通过 `Window -> Asset Management -> Addressables -> Groups` 编辑该组。该组会在首次需要时自动创建；您也可以手动创建该组，以便在构建游戏前进行配置。
 
 ![](https://i.gyazo.com/c93fbd9e232ec94468c685c4d6003916.png)
 
 ::: info NOTE
-Naninovel addressable 组下的资产记录会在每次构建时自动生成。不要手动编辑记录，因为任何更改都会在下次构建时丢失。但是，组设置会被保留。
+通过 Naninovel 菜单分配的资产地址会在每次构建时自动生成或更新。请勿手动编辑这些地址，因为更改可能会在下次构建时丢失。不过，组设置会保留。
 :::
-
-### 类别组
-
-默认情况下，资源提供者配置中的 `Group By Category` 选项被禁用，导致所有 Naninovel 资产最终都在单个 "Naninovel" 组下。如果您希望按类别对资源进行分组（例如，指定单独的打包或服务选项），请启用该属性并重新构建。启用后，每个资源类别（脚本、音频、角色等）将添加在其名为 `Naninovel-*Category*` 的自己的 addressable 组下，其中 *Category* 是资源类别。
-
-![](https://i.gyazo.com/80938ca5ca1021e8a71f783eef516d15.png)
 
 ### 手动分配
 
-若要在不使用编辑器菜单的情况下将可寻址资产注册为 Naninovel 资源，请在地址中添加 `Naninovel/` 前缀，后跟资源类型（路径前缀）和本地资源路径。地址中不应包含文件扩展名。
+若要在不使用编辑器菜单的情况下将 Addressable 资产注册为 Naninovel 资源，请在地址中添加 `Naninovel/` 前缀，后跟资源类型（路径前缀）和本地资源路径。地址中不应包含文件扩展名。资产可以位于任意 Addressables 组中；Naninovel 通过地址识别资源。
 
 以下是可用于手动分配常见资源类型的地址示例：
 

@@ -32,23 +32,17 @@ The [Addressable Asset system](https://docs.unity3d.com/Packages/com.unity.addre
 
 Naninovel will automatically use Addressables when the package is installed in the project and the `Use Addressables` property is enabled in the resource provider configuration. No additional setup is required: all assets assigned in Naninovel's configuration menus (e.g., scenario scripts, character sprites, audio clips) will be registered with the system (assigned an address) when building the player.
 
-If you wish to configure how Naninovel assets are served (for example, to specify a remote web host), edit Naninovel groups via `Window -> Asset Management -> Addressables -> Groups`. Addressable groups are automatically created when first building the game; if they're missing, you can create them manually.
+Assets assigned via Naninovel menus are added to the `Naninovel` group. If you wish to configure how they're served (for example, to specify a remote web host), edit the group via `Window -> Asset Management -> Addressables -> Groups`. The group is created automatically when first needed; you can also create it manually to configure it before building the game.
 
 ![](https://i.gyazo.com/c93fbd9e232ec94468c685c4d6003916.png)
 
 ::: info NOTE
-Asset records under Naninovel addressable groups are automatically generated on each build. Don't edit the records manually, as any changes will be lost on the next build. Group settings, however, are preserved.
+Addresses of assets assigned via Naninovel menus are automatically generated or updated on each build. Don't edit them manually, as any changes may be lost on the next build. Group settings, however, are preserved.
 :::
-
-### Category Groups
-
-By default, the `Group By Category` option in the resource provider configuration is disabled, causing all Naninovel assets to end up under a single "Naninovel" group. If you wish to group resources by category (e.g., to specify individual packing or serving options), enable the property and rebuild. When enabled, each resource category (scripts, audio, characters, etc.) will be added under its own addressable group named `Naninovel-*Category*`, where *Category* is the resource category.
-
-![](https://i.gyazo.com/80938ca5ca1021e8a71f783eef516d15.png)
 
 ### Manual Assignment
 
-To register an addressable asset as a Naninovel resource without using the editor menus, add the `Naninovel/` prefix to the address, followed by the resource type (path prefix) and the local resource path. Do not include the file extension in the address.
+To register an addressable asset as a Naninovel resource without using the editor menus, add the `Naninovel/` prefix to the address, followed by the resource type (path prefix) and the local resource path. Do not include the file extension in the address. The asset may belong to any Addressables group; Naninovel identifies it by the address.
 
 Below are examples of addresses you can use to manually assign common resource types:
 
