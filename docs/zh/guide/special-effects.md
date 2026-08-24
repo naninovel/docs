@@ -801,7 +801,7 @@ EaseInOutElastic
 
 ### 自定义摄像机效果
 
-如果您希望将自定义 [后处理效果](https://assetstore.unity.com/?q=post%20processing&orderBy=1)（又名图像效果或摄像机滤镜，如 "Digital Glitch" 内置效果）应用于 Naninovel 摄像机，请 [创建摄像机预制件](https://docs.unity3d.com/Manual/CreatingPrefabs.html)，[将所需的效果组件添加](https://docs.unity3d.com/Manual/UsingComponents.html) 到摄像机对象，并将预制件分配给摄像机配置菜单 (`Naninovel -> Configuration -> Camera`) 中的 `Custom Camera Prefab` 字段。
+如果您希望将自定义 [后处理效果](https://assetstore.unity.com/?q=post%20processing&orderBy=1)（又名图像效果或摄像机滤镜，如 "Digital Glitch" 内置效果）应用于 Naninovel 摄像机，请 [创建摄像机预制件](https://docs.unity3d.com/Manual/CreatingPrefabs.html)，[将所需的效果组件添加](https://docs.unity3d.com/Manual/UsingComponents.html) 到摄像机对象，并将预制件分配给摄像机配置菜单 (`Naninovel -> Configuration -> Camera`) 中的 `Main Camera` 字段。
 
 ![](https://i.gyazo.com/6024aac1d2665dd96915758cd5c09fde.png)
 

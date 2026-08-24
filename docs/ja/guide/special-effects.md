@@ -801,7 +801,7 @@ EaseInOutElastic
 
 ### カスタムカメラ効果
 
-Naninovelカメラにカスタム [ポストプロセスエフェクト](https://assetstore.unity.com/?q=post%20processing&orderBy=1)（別名イメージエフェクトまたはカメラフィルター、「Digital Glitch」組み込み効果など）を適用したい場合は、[カメラプレハブを作成](https://docs.unity3d.com/Manual/CreatingPrefabs.html) し、[必要な効果コンポーネントを追加](https://docs.unity3d.com/Manual/UsingComponents.html) して、カメラ構成メニュー（`Naninovel -> Configuration -> Camera`）の `Custom Camera Prefab` フィールドにプレハブを割り当てます。
+Naninovelカメラにカスタム [ポストプロセスエフェクト](https://assetstore.unity.com/?q=post%20processing&orderBy=1)（別名イメージエフェクトまたはカメラフィルター、「Digital Glitch」組み込み効果など）を適用したい場合は、[カメラプレハブを作成](https://docs.unity3d.com/Manual/CreatingPrefabs.html) し、[必要な効果コンポーネントを追加](https://docs.unity3d.com/Manual/UsingComponents.html) して、カメラ構成メニュー（`Naninovel -> Configuration -> Camera`）の `Main Camera` フィールドにプレハブを割り当てます。
 
 ![](https://i.gyazo.com/6024aac1d2665dd96915758cd5c09fde.png)
 
