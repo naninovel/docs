@@ -14,12 +14,6 @@
 虽然 Unity [支持主机平台](https://unity.com/how-to/develop-console-video-games-unity)（PlayStation、Xbox、Switch），但对于中小型开发者而言，这一过程可能会较为困难。如果您正在寻找发行合作伙伴，[呐呐呐制作组](https://nanana.cn/)亦向国内 Naninovel 用户提供安卓、iOS、Xbox 主机等平台的[游戏移植服务](https://nanana.cn/article/contact)。
 :::
 
-## 进入播放模式
-
-Naninovel 支持禁用项目设置中 "Enter Play Mode Settings" 类别下的 `Reload Domain` 和 `Reload Scene` 选项。禁用这些选项将减少进入播放模式所需的时间，尤其是在大型项目中。
-
-![](https://i.gyazo.com/bf1a91f7ad04f0823e72c9feb4f67f0a.png)
-
 ## 渲染管线
 
 完全支持 Universal Render Pipeline (URP) 和旧版内置渲染管线 (BiRP)。High-Definition Render Pipeline (HDRP) 未经积极测试，不建议使用。虽然大多数 Naninovel 功能可以在 HDRP 下工作，但某些特定于渲染的功能 — 例如 [@trans]、[@glitch] 和 [@bokeh] 命令 — 可能无法在 HDRP 下开箱即用。

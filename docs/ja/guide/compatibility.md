@@ -14,12 +14,6 @@
 Unityは [ゲームコンソール](https://unity.com/how-to/develop-console-video-games-unity)（PlayStation、Xbox、Switch）をサポートしていますが、小規模な開発者にとってはプロセスが困難な場合があります。パブリッシングパートナーをお探しの場合は、Naninovelプロジェクトを幅広いプラットフォームに移植した実績のある [Sometimes You](https://porting.games) をお勧めします。
 :::
 
-## プレイモードに入る
-
-Naninovelは、プロジェクト設定の「Enter Play Mode Settings」カテゴリにある `Reload Domain` と `Reload Scene` の両方のオプションを無効にすることをサポートしています。これらのオプションを無効にすると、特に大規模なプロジェクトで、プレイモードに入るまでの時間が短縮されます。
-
-![](https://i.gyazo.com/bf1a91f7ad04f0823e72c9feb4f67f0a.png)
-
 ## レンダーパイプライン
 
 Universal Render Pipeline (URP) と従来の組み込みレンダーパイプライン (BiRP) の両方が完全にサポートされています。High-Definition Render Pipeline (HDRP) は積極的にテストされておらず、推奨されません。ほとんどのNaninovel機能はHDRPで動作しますが、[@trans]、[@glitch]、[@bokeh] コマンドなどの一部のレンダリング固有の機能は、HDRPではそのままでは動作しない場合があります。

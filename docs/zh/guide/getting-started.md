@@ -28,35 +28,23 @@ Naninovel 是场景无关的；因此，我们建议从场景中删除这些对�
 
 ### 优化编辑器
 
-此步骤是可选的，但建议执行，因为它可以显着缩短 Unity 编辑器的启动、重新加载和进入播放模式的时间。
-
-首先，转到 `Edit -> Project Settings -> Editor` 并在 "Enter Play Mode Settings" 选项下选择 `Do not reload Domain or Scene`，以减少进入播放模式所需的时间。
-
-![](https://i.gyazo.com/bf1a91f7ad04f0823e72c9feb4f67f0a.png)
-
-现在，打开并检查位于 Unity 项目根目录下的 "Packages" 文件夹中的 `manifest.json` 文件。此文件列出了所有已安装的包和模块。根据模板的不同，Unity 默认包含许多模块，其中大多数您可能永远不需要，而每个额外的模块都会增加编辑器启动和代码重新加载的时间。以下是 Naninovel 所需的模块 — 如果不需要，请考虑删除任何其他条目：
-
-::: code-group
-```json [Packages/manifest.json]
-{
-    "dependencies": {
-        "com.unity.modules.audio": "1.0.0",
-        "com.unity.modules.video": "1.0.0",
-        "com.unity.modules.imgui": "1.0.0",
-        "com.unity.modules.animation": "1.0.0",
-        "com.unity.modules.particlesystem": "1.0.0",
-        "com.unity.modules.imageconversion": "1.0.0",
-        "com.unity.render-pipelines.universal": "17.3.0",
-        "com.unity.inputsystem": "1.17.0",
-        "com.unity.ugui": "2.0.0"
-    }
-}
-```
-:::
-
 ::: info NOTE
-禁用域重新加载和修改 `manifest.json` 文件 **并不是使用 Naninovel 所必需的**；这仅旨在提高 Unity 编辑器的性能。如果您不确定这些更改的影响或您的游戏需要哪些模块 — 请跳过这些步骤。
+此步骤为可选项，**并非使用 Naninovel 的必要条件**。其目的仅在于提高 Unity 编辑器的性能。如果您不确定项目需要哪些包或模块，请跳过此步骤。
 :::
+
+打开并检查 Unity 项目根目录下 "Packages" 文件夹中的 `manifest.json` 文件，它列出了已安装的包和模块。您可能并不需要所有这些包和模块，但每一个都可能拖慢编辑器。以下是 Naninovel 所需的依赖项；请考虑删除不需要的其他项：
+
+```
+com.unity.modules.audio
+com.unity.modules.video
+com.unity.modules.imgui
+com.unity.modules.animation
+com.unity.modules.particlesystem
+com.unity.modules.imageconversion
+com.unity.render-pipelines.universal
+com.unity.inputsystem
+com.unity.ugui
+```
 
 ### VCS 设置
 
@@ -71,7 +59,7 @@ Naninovel 是场景无关的；因此，我们建议从场景中删除这些对�
 ```
 :::
 
-请注意，`Assets/NaninovelData` 是一个自动生成的文件夹。最初创建后，您可以将其重命名或移动到 `Assets` 下的任何文件夹（Naninovel 仍然能够找到它）。如果您这样做，上述忽略路径必须相应更新。
+请注意，`Assets/NaninovelData` 是一个自动生成的文件夹。最初创建后，您可以将其重命名或移动到 "Assets" 下的任何文件夹（Naninovel 仍然能够找到它）。如果您这样做，上述忽略路径必须相应更新。
 
 ::: tip EXAMPLE
 请参阅我们的 [示例项目](/zh/guide/samples) 中的 [.gitignore](https://github.com/naninovel/engine/blob/main/unity/samples/.gitignore) 以获取 Git 忽略配置文件的示例。在该示例中，`NaninovelData` 文件夹重命名为 `Naninovel` 并移动到 `Assets/Profiles` 下以便更好地组织 — 您可以在自己的项目中类似地移动文件夹。

@@ -219,13 +219,12 @@ table > tfoot:not(:last-child) {
 
 :root {
     --vp-code-color: #476582;
-    /*--vp-code-bg: var(--vp-c-gray-soft);*/
-    /*--vp-code-block-bg: #161618;*/
-    /*--vp-code-lang-color: rgba(235, 235, 245, 0.38);*/
+    --vp-code-block-color: #4b5871;
 }
 
 .dark body {
     --vp-code-color: #c9def1;
+    --vp-code-block-color: #acb2be;
 }
 
 .vp-doc :not(pre) > code {

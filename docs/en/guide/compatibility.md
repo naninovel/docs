@@ -14,12 +14,6 @@ The runtime doesn't use any platform-specific APIs, precompiled native libraries
 While Unity [supports game consoles](https://unity.com/how-to/develop-console-video-games-unity) (PlayStation, Xbox, Switch), the process can be challenging for smaller developers. If you're looking for a publishing partner, we recommend [Sometimes You](https://porting.games), which has a strong track record of bringing Naninovel projects to a wide range of platforms.
 :::
 
-## Enter Play Mode
-
-Naninovel supports disabling both the `Reload Domain` and `Reload Scene` options under the "Enter Play Mode Settings" category in the project settings. Disabling these options will reduce the time it takes to enter play mode, especially in large projects.
-
-![](https://i.gyazo.com/bf1a91f7ad04f0823e72c9feb4f67f0a.png)
-
 ## Render Pipelines
 
 Both the Universal Render Pipeline (URP) and the legacy built-in render pipeline (BiRP) are fully supported. The High-Definition Render Pipeline (HDRP) is not actively tested and is not recommended. While most Naninovel features will work with HDRP, some rendering-specific features — such as the [@trans], [@glitch], and [@bokeh] commands — may not work under HDRP out of the box.

@@ -28,35 +28,23 @@ Naninovelはシーンに依存しないため、不要なパフォーマンス�
 
 ### エディターの最適化
 
-この手順はオプションですが、Unityエディターの起動、リロード、およびプレイモードへの移行時間を大幅に改善できるため、推奨されます。
-
-まず、`Edit -> Project Settings -> Editor` に移動し、「Enter Play Mode Settings」オプションの下にある `Do not reload Domain or Scene` を選択して、プレイモードに入るまでの時間を短縮します。
-
-![](https://i.gyazo.com/bf1a91f7ad04f0823e72c9feb4f67f0a.png)
-
-次に、Unityプロジェクトルートの下にある「Packages」フォルダー内の `manifest.json` ファイルを開いて検査します。このファイルには、インストールされているすべてのパッケージとモジュールがリストされています。テンプレートに応じて、Unityにはデフォルトで多くのモジュールが含まれていますが、そのほとんどはおそらく必要ありません。追加のモジュールごとにエディターの起動時間とコードのリロード時間が増加する可能性があります。以下はNaninovelに必要なモジュールです。不要な他のエントリは削除することを検討してください。
-
-::: code-group
-```json [Packages/manifest.json]
-{
-    "dependencies": {
-        "com.unity.modules.audio": "1.0.0",
-        "com.unity.modules.video": "1.0.0",
-        "com.unity.modules.imgui": "1.0.0",
-        "com.unity.modules.animation": "1.0.0",
-        "com.unity.modules.particlesystem": "1.0.0",
-        "com.unity.modules.imageconversion": "1.0.0",
-        "com.unity.render-pipelines.universal": "17.3.0",
-        "com.unity.inputsystem": "1.17.0",
-        "com.unity.ugui": "2.0.0"
-    }
-}
-```
-:::
-
 ::: info NOTE
-ドメインのリロードを無効にしたり、`manifest.json` ファイルを変更したりすることは、**Naninovelを使用するために必須ではありません**。これらはUnityエディターのパフォーマンスを向上させることのみを目的としています。これらの変更の影響や、ゲームに必要なモジュールが不明な場合は、これらの手順をスキップしてください。
+この手順はオプションであり、**Naninovelを使用するために必須ではありません**。Unityエディターのパフォーマンスを向上させることのみを目的としています。プロジェクトに必要なパッケージやモジュールが不明な場合は、スキップしてください。
 :::
+
+Unityプロジェクトのルートにある「Packages」フォルダー内の `manifest.json` ファイルを開いて確認します。このファイルには、インストールされているパッケージとモジュールが一覧表示されています。すべてが必要とは限らず、それぞれがエディターの動作を遅くする可能性があります。以下はNaninovelが必要とする依存関係です。不要なものは削除することを検討してください。
+
+```
+com.unity.modules.audio
+com.unity.modules.video
+com.unity.modules.imgui
+com.unity.modules.animation
+com.unity.modules.particlesystem
+com.unity.modules.imageconversion
+com.unity.render-pipelines.universal
+com.unity.inputsystem
+com.unity.ugui
+```
 
 ### VCSのセットアップ
 
@@ -71,7 +59,7 @@ Gitなどのバージョン管理システムを使用している場合は、�
 ```
 :::
 
-`Assets/NaninovelData` は自動生成されるフォルダーであることに注意してください。最初に作成された後は、`Assets` 下の任意のフォルダーに名前を変更したり移動したりできます（Naninovelは引き続きそれを見つけることができます）。そうする場合、上記の無視パスをそれに応じて更新する必要があります。
+`Assets/NaninovelData` は自動生成されるフォルダーであることに注意してください。最初に作成された後は、「Assets」内の任意のフォルダーに名前を変更したり移動したりできます（Naninovelは引き続きそれを見つけることができます）。そうする場合、上記の無視パスをそれに応じて更新する必要があります。
 
 ::: tip EXAMPLE
 Gitの無視プロファイルの例については、[サンプルプロジェクト](/ja/guide/samples) の [.gitignore](https://github.com/naninovel/engine/blob/main/unity/samples/.gitignore) を参照してください。その例では、整理のために `NaninovelData` フォルダーの名前が `Naninovel` に変更され、`Assets/Profiles` の下に移動されています。自分のプロジェクトでも同様にフォルダーを移動できます。

@@ -28,35 +28,23 @@ Naninovel is scene-independent; therefore, we recommend removing these objects f
 
 ### Optimizing Editor
 
-This step is optional but recommended, as it can significantly improve Unity editor startup, reload, and play mode entry times.
-
-First, go to `Edit -> Project Settings -> Editor` and select `Do not reload Domain or Scene` under the "Enter Play Mode Settings" option to reduce the time it takes to enter play mode.
-
-![](https://i.gyazo.com/bf1a91f7ad04f0823e72c9feb4f67f0a.png)
-
-Now, open and inspect the `manifest.json` file in the "Packages" folder located under the Unity project root. This file lists all installed packages and modules. Depending on the template, Unity includes many modules by default, most of which you will likely never need, while each additional module can increase editor startup and code reload times. Below are the modules required by Naninovel — consider removing any other entries if they are not needed:
-
-::: code-group
-```json [Packages/manifest.json]
-{
-    "dependencies": {
-        "com.unity.modules.audio": "1.0.0",
-        "com.unity.modules.video": "1.0.0",
-        "com.unity.modules.imgui": "1.0.0",
-        "com.unity.modules.animation": "1.0.0",
-        "com.unity.modules.particlesystem": "1.0.0",
-        "com.unity.modules.imageconversion": "1.0.0",
-        "com.unity.render-pipelines.universal": "17.3.0",
-        "com.unity.inputsystem": "1.17.0",
-        "com.unity.ugui": "2.0.0"
-    }
-}
-```
-:::
-
 ::: info NOTE
-Disabling domain reload and modifying the `manifest.json` file is **not required to use Naninovel**; it is only intended to improve Unity Editor performance. If you are unsure about the effects of these changes or which modules you will need for your game — skip these steps.
+This step is optional and **not required to use Naninovel**. It is intended only to improve Unity Editor performance. If you are unsure which packages or modules your project needs, skip it.
 :::
+
+Open and inspect the `manifest.json` file in the "Packages" folder at the root of your Unity project — it lists the installed packages and modules. You may not need all of them, yet each can slow the editor. Below are the dependencies Naninovel requires; consider removing any others you don't need:
+
+```
+com.unity.modules.audio
+com.unity.modules.video
+com.unity.modules.imgui
+com.unity.modules.animation
+com.unity.modules.particlesystem
+com.unity.modules.imageconversion
+com.unity.render-pipelines.universal
+com.unity.inputsystem
+com.unity.ugui
+```
 
 ### VCS Setup
 
@@ -71,7 +59,7 @@ If you're using a version control system, such as Git, consider ignoring the fol
 ```
 :::
 
-Note that `Assets/NaninovelData` is an auto-generated folder. After it is initially created, you can rename or move it to any folder under `Assets` (Naninovel will still be able to locate it). If you do so, the ignore paths above must be updated accordingly.
+Note that `Assets/NaninovelData` is an auto-generated folder. After it is initially created, you can rename or move it to any folder under "Assets" (Naninovel will still be able to locate it). If you do so, the ignore paths above must be updated accordingly.
 
 ::: tip EXAMPLE
 See the [.gitignore](https://github.com/naninovel/engine/blob/main/unity/samples/.gitignore) in our [samples project](/guide/samples) for an example Git ignore profile. In that example, the `NaninovelData` folder is renamed to `Naninovel` and moved under `Assets/Profiles` for better organization — you can move the folder similarly in your own project.
