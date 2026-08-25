@@ -801,52 +801,25 @@ Check the built-in effect prefabs stored at `Naninovel/Prefabs/FX` for reference
 
 ### Custom Camera Effects
 
-If you wish to apply a custom [post-processing effect](https://assetstore.unity.com/?q=post%20processing&orderBy=1) (aka image effect or camera filter, like the "Digital Glitch" built-in effect) to the Naninovel camera, [create a camera prefab](https://docs.unity3d.com/Manual/CreatingPrefabs.html), [add the required effect components](https://docs.unity3d.com/Manual/UsingComponents.html) to the camera's object and assign the prefab to `Main Camera` field in the camera configuration menu (`Naninovel -> Configuration -> Camera`).
+Author camera effects with [Volume profiles](https://docs.unity3d.com/Manual/urp/Volumes), then add the profile assets to `Volumes` in the camera configuration menu (`Naninovel -> Configuration -> Camera`).
 
-![](https://i.gyazo.com/6024aac1d2665dd96915758cd5c09fde.png)
-
-You can toggle (enable if disabled and vice-versa) the added components via scenario scripts using `toggle` parameter and explicitly set the enabled state with `set` parameter of the [@camera] command. For example, let's assume you've added a "Bloom Image Effect" component to the camera object. First, find out what is the type name of the component; it's usually specified in the `Script` field of the component.
-
-![](https://i.gyazo.com/73b7eabfe97ed84796cbe715b7dafc14.png)
-
-In our case the component's type name is `BloomImageEffect`. Use the type name to toggle this component at runtime as follows:
+Use the `fx` parameter of [@camera] to set effect weights. Each entry is a profile name followed by a weight, where `0` has no influence and `1` is fully applied:
 
 ```nani
-@camera toggle:BloomImageEffect
+@camera fx:Dream.1
 ```
 
-You can toggle multiple components at once by delimiting the type names with commas:
+Multiple profiles can be blended in one command. The regular camera animation parameters control the blend:
 
 ```nani
-@camera toggle:BloomImageEffect,Sepia,CameraNoise
+@camera fx:Dream.0,Night.1 time:3 easing:EaseOutQuad
 ```
 
-And in case you want to explicitly enable or disable a component:
+To add custom camera (post-processing) effects and associated volume components, follow the [Unity guide](https://docs.unity3d.com/Manual/urp/post-processing/custom-post-processing-with-volume).
 
-```nani
-@camera set:BloomImageEffect.true,Sepia.false,CameraNoise.true
-```
-
-— will enable `BloomImageEffect` and `CameraNoise` components, while disabling `Sepia`.
-
-To toggle, disable or enable all the components attached to the camera object, use `*` symbol.
-
-```nani
-; Toggle all components
-@camera toggle:*
-
-; Disable all components
-@camera set:*.false
-
-; Enable all components
-@camera set:*.true
-```
-
-The state of the currently enabled (and disabled) camera components will be automatically saved and restored on game save-loading operations.
-
-Check out the following video for an example of adding a custom camera filter effect.
-
-![](https://www.youtube.com/watch?v=IbT6MTecO-k)
+::: tip EXAMPLE
+Find an example on using camera effects in the [samples project](/guide/samples). The volume profiles are stored at `Profiles/Render/Volumes`.
+:::
 
 ### Custom Transition Effects
 

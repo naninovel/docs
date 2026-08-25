@@ -333,7 +333,7 @@ Simulates [depth of field](/guide/special-effects#bokeh) (aka Bokeh) effect, whe
 
 ## camera
 
-Modifies the main camera, changing offset, zoom level and rotation over time. Check [this video](https://youtu.be/zy28jaMss8w) for a quick demonstration of the command effect.
+Modifies the main camera, changing offset, zoom level, rotation and camera effects over time. Check [this video](https://youtu.be/zy28jaMss8w) for a quick demonstration of the command effect.
 
 <div class="config-table">
 
@@ -344,8 +344,7 @@ Modifies the main camera, changing offset, zoom level and rotation over time. Ch
 | rotation | number list | Local camera rotation over X,Y,Z-axes in angle degrees (0.0 to 360.0 or -180.0 to 180.0). |
 | zoom | number | Relative camera zoom (orthographic size or field of view, depending on the render mode), in 0.0 (no zoom) to 1.0 (full zoom) range. |
 | ortho | boolean | Whether the camera should render in orthographic (true) or perspective (false) mode. |
-| toggle | string list | Names of the components to toggle (enable if disabled and vice-versa). The components should be attached to the same game object as the camera. This can be used to toggle [custom post-processing effects](/guide/special-effects#custom-camera-effects). Use `*` to affect all the components attached to the camera object. |
-| set | named boolean list | Names of the components to enable or disable. The components should be attached to the same game object as the camera. This can be used to explicitly enable or disable [custom post-processing effects](/guide/special-effects#custom-camera-effects). Specified components enabled state will override effect of `toggle` parameter. Use `*` to affect all the components attached to the camera object. |
+| fx | named number list | Camera effect Volume profile names mapped to their target weights, where 0 has no influence and 1 is fully applied. |
 | easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
 | time | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
@@ -369,14 +368,11 @@ Modifies the main camera, changing offset, zoom level and rotation over time. Ch
 ; Instantly reset camera to the default state.
 @camera offset:0,0 zoom:0 rotation:0,0,0 time:0
 
-; Toggle 'FancyCameraFilter' and 'Bloom' components attached to the camera.
-@camera toggle:FancyCameraFilter,Bloom
+; Fade-in 'Dream' camera effect volume to 1.0 weight.
+@camera fx:Dream.1
 
-; Set 'FancyCameraFilter' component enabled and 'Bloom' disabled.
-@camera set:FancyCameraFilter.true,Bloom.false
-
-; Disable all components attached to the camera object.
-@camera set:*.false
+; Crossfade 'Dream' -> 'Night' camera effect volumes over 3 seconds.
+@camera fx:Dream.0,Night.1 time:3
 ```
 
 ## char

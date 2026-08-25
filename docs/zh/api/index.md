@@ -333,7 +333,7 @@ Actor 应实现 `IBlurable` 接口以支持该效果。
 
 ## camera
 
-修改主摄像机，随时间更改偏移、缩放级别和旋转。查看[此视频](https://youtu.be/zy28jaMss8w)以快速演示命令效果。
+修改主摄像机，随时间更改偏移、缩放级别、旋转和摄像机效果。查看[此视频](https://youtu.be/zy28jaMss8w)以快速演示命令效果。
 
 <div class="config-table">
 
@@ -344,8 +344,7 @@ Actor 应实现 `IBlurable` 接口以支持该效果。
 | rotation | number list | 本地摄像机按 X,Y,Z 轴旋转的角度（0.0 到 360.0 或 -180.0 到 180.0）。 |
 | zoom | number | 相对摄像机缩放（正交大小或视野，取决于渲染模式），范围为 0.0（无缩放）到 1.0（全缩放）。 |
 | ortho | boolean | 摄像机应以正交 (true) 还是透视 (false) 模式渲染。 |
-| toggle | string list | 要切换（如果禁用则启用，反之亦然）的组件名称。组件应附加到与摄像机相同的游戏对象。这可用于切换[自定义后处理效果](/zh/guide/special-effects#自定义摄像机效果)。使用 `*` 影响附加到摄像机对象的所有组件。 |
-| set | named boolean list | 要启用或禁用的组件名称。组件应附加到与摄像机相同的游戏对象。这可用于显式启用或禁用[自定义后处理效果](/zh/guide/special-effects#自定义摄像机效果)。指定的组件启用状态将覆盖 `toggle` 参数的效果。使用 `*` 影响附加到摄像机对象的所有组件。 |
+| fx | named number list | 摄像机效果 Volume 配置文件名称及其目标权重，其中 0 表示无影响，1 表示完全应用。 |
 | easing | string | 要应用的[缓动函数](/zh/guide/special-effects#动画缓动)名称。未指定时，将使用配置中设置的默认函数。 |
 | time | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画将在开始动画到新目标之前立即完成。 |
@@ -369,14 +368,11 @@ Actor 应实现 `IBlurable` 接口以支持该效果。
 ; 立即将摄像机重置为默认状态。
 @camera offset:0,0 zoom:0 rotation:0,0,0 time:0
 
-; 切换附加到摄像机的 'FancyCameraFilter' 和 'Bloom' 组件。
-@camera toggle:FancyCameraFilter,Bloom
+; 将 'Dream' 摄像机效果 Volume 淡入至 1.0 权重。
+@camera fx:Dream.1
 
-; 设置 'FancyCameraFilter' 组件启用，'Bloom' 禁用。
-@camera set:FancyCameraFilter.true,Bloom.false
-
-; 禁用附加到摄像机对象的所有组件。
-@camera set:*.false
+; 在 3 秒内从 'Dream' 摄像机效果 Volume 交叉淡化到 'Night'。
+@camera fx:Dream.0,Night.1 time:3
 ```
 
 ## char

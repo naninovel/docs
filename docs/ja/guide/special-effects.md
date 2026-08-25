@@ -801,52 +801,25 @@ EaseInOutElastic
 
 ### カスタムカメラ効果
 
-Naninovelカメラにカスタム [ポストプロセスエフェクト](https://assetstore.unity.com/?q=post%20processing&orderBy=1)（別名イメージエフェクトまたはカメラフィルター、「Digital Glitch」組み込み効果など）を適用したい場合は、[カメラプレハブを作成](https://docs.unity3d.com/Manual/CreatingPrefabs.html) し、[必要な効果コンポーネントを追加](https://docs.unity3d.com/Manual/UsingComponents.html) して、カメラ構成メニュー（`Naninovel -> Configuration -> Camera`）の `Main Camera` フィールドにプレハブを割り当てます。
+カメラエフェクトを [Volume プロファイル](https://docs.unity3d.com/Manual/urp/Volumes) で作成し、プロファイルアセットをカメラ構成メニュー（`Naninovel -> Configuration -> Camera`）の `Volumes` に追加します。
 
-![](https://i.gyazo.com/6024aac1d2665dd96915758cd5c09fde.png)
-
-シナリオスクリプトを介して、`toggle` パラメーターを使用して追加されたコンポーネントを切り替え（無効の場合は有効にし、その逆も同様）、[@camera] コマンドの `set` パラメーターで有効状態を明示的に設定できます。たとえば、「Bloom Image Effect」コンポーネントをカメラオブジェクトに追加したとします。まず、コンポーネントのタイプ名を確認します。通常はコンポーネントの `Script` フィールドに指定されています。
-
-![](https://i.gyazo.com/73b7eabfe97ed84796cbe715b7dafc14.png)
-
-この場合、コンポーネントのタイプ名は `BloomImageEffect` です。タイプ名を使用して、次のように実行時にこのコンポーネントを切り替えます。
+[@camera] の `fx` パラメーターを使用してエフェクトのウェイトを設定します。各エントリはプロファイル名の後にウェイトを指定します。`0` では影響せず、`1` で完全に適用されます：
 
 ```nani
-@camera toggle:BloomImageEffect
+@camera fx:Dream.1
 ```
 
-コンマでタイプ名を区切ることで、複数のコンポーネントを一度に切り替えることができます。
+1つのコマンドで複数のプロファイルをブレンドできます。通常のカメラアニメーションパラメーターでブレンドを制御します：
 
 ```nani
-@camera toggle:BloomImageEffect,Sepia,CameraNoise
+@camera fx:Dream.0,Night.1 time:3 easing:EaseOutQuad
 ```
 
-コンポーネントを明示的に有効または無効にしたい場合：
+カスタムカメラ（ポストプロセス）エフェクトと関連する Volume コンポーネントを追加するには、[Unity ガイド](https://docs.unity3d.com/Manual/urp/post-processing/custom-post-processing-with-volume) に従ってください。
 
-```nani
-@camera set:BloomImageEffect.true,Sepia.false,CameraNoise.true
-```
-
-— `BloomImageEffect` と `CameraNoise` コンポーネントを有効にし、`Sepia` を無効にします。
-
-カメラオブジェクトにアタッチされているすべてのコンポーネントを切り替え、無効化、または有効化するには、`*` 記号を使用します。
-
-```nani
-; すべてのコンポーネントを切り替える
-@camera toggle:*
-
-; すべてのコンポーネントを無効にする
-@camera set:*.false
-
-; すべてのコンポーネントを有効にする
-@camera set:*.true
-```
-
-現在有効（および無効）になっているカメラコンポーネントの状態は、ゲームの保存ロード操作時に自動的に保存および復元されます。
-
-カスタムカメラフィルター効果を追加する例については、次のビデオを確認してください。
-
-![](https://www.youtube.com/watch?v=IbT6MTecO-k)
+::: tip EXAMPLE
+カメラエフェクトの使用例は [サンプルプロジェクト](/ja/guide/samples) にあります。Volume プロファイルは `Profiles/Render/Volumes` に保存されています。
+:::
 
 ### カスタムトランジションエフェクト
 

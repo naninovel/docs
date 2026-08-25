@@ -801,52 +801,25 @@ EaseInOutElastic
 
 ### 自定义摄像机效果
 
-如果您希望将自定义 [后处理效果](https://assetstore.unity.com/?q=post%20processing&orderBy=1)（又名图像效果或摄像机滤镜，如 "Digital Glitch" 内置效果）应用于 Naninovel 摄像机，请 [创建摄像机预制件](https://docs.unity3d.com/Manual/CreatingPrefabs.html)，[将所需的效果组件添加](https://docs.unity3d.com/Manual/UsingComponents.html) 到摄像机对象，并将预制件分配给摄像机配置菜单 (`Naninovel -> Configuration -> Camera`) 中的 `Main Camera` 字段。
+使用 [Volume 配置文件](https://docs.unity3d.com/Manual/urp/Volumes)创作摄像机效果，然后将配置文件资产添加到摄像机配置菜单（`Naninovel -> Configuration -> Camera`）的 `Volumes` 中。
 
-![](https://i.gyazo.com/6024aac1d2665dd96915758cd5c09fde.png)
-
-您可以通过剧本脚本使用 `toggle` 参数切换（启用（如果已禁用）和反之亦然）添加的组件，并使用 [@camera] 命令的 `set` 参数显式设置启用状态。例如，假设您已将 "Bloom Image Effect" 组件添加到摄像机对象。首先，找出组件的类型名称是什么；它通常在组件的 `Script` 字段中指定。
-
-![](https://i.gyazo.com/73b7eabfe97ed84796cbe715b7dafc14.png)
-
-在我们的例子中，组件的类型名称是 `BloomImageEffect`。使用类型名称在运行时切换此组件，如下所示：
+使用 [@camera] 的 `fx` 参数设置效果权重。每个条目由配置文件名称及其后的权重组成，其中 `0` 表示无影响，`1` 表示完全应用：
 
 ```nani
-@camera toggle:BloomImageEffect
+@camera fx:Dream.1
 ```
 
-您可以通过用逗号分隔类型名称来一次切换多个组件：
+一个命令可以混合多个配置文件。常规摄像机动画参数控制混合过程：
 
 ```nani
-@camera toggle:BloomImageEffect,Sepia,CameraNoise
+@camera fx:Dream.0,Night.1 time:3 easing:EaseOutQuad
 ```
 
-如果您想显式启用或禁用组件：
+要添加自定义摄像机（后处理）效果和相关 Volume 组件，请按照 [Unity 指南](https://docs.unity3d.com/Manual/urp/post-processing/custom-post-processing-with-volume)操作。
 
-```nani
-@camera set:BloomImageEffect.true,Sepia.false,CameraNoise.true
-```
-
-— 将启用 `BloomImageEffect` 和 `CameraNoise` 组件，同时禁用 `Sepia`。
-
-要切换、禁用或启用附加到摄像机对象的所有组件，请使用 `*` 符号。
-
-```nani
-; 切换所有组件
-@camera toggle:*
-
-; 禁用所有组件
-@camera set:*.false
-
-; 启用所有组件
-@camera set:*.true
-```
-
-当前启用（和禁用）的摄像机组件的状态将在游戏保存加载操作时自动保存和恢复。
-
-查看以下视频，了解有关添加自定义摄像机滤镜效果的示例。
-
-![](https://www.youtube.com/watch?v=IbT6MTecO-k)
+::: tip EXAMPLE
+在[示例项目](/zh/guide/samples)中可以找到使用摄像机效果的示例。Volume 配置文件存储在 `Profiles/Render/Volumes` 中。
+:::
 
 ### 自定义过渡效果
 
