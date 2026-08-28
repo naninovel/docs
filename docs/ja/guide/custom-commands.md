@@ -91,17 +91,28 @@ public override async Awaitable Execute (ExecutionContext ctx)
 
 ### パラメーターエイリアス
 
-オプションで、`[Alias]` 属性をフィールドに適用してパラメーターにエイリアス名を割り当てることができます。これにより、シナリオスクリプトでパラメーターを参照するときにフィールド名の代わりに使用できます。パラメーターをプライマリにする場合は、エイリアスとして `PrimaryParameterAlias` 定数（空の文字列）を設定します。コマンドごとに1つのプライマリパラメーターのみが許可されることに注意してください。
+オプションで、`[Alias]` 属性をフィールドに適用してパラメーターにエイリアス名を割り当てることができます。これにより、シナリオスクリプトでパラメーターを参照するときにフィールド名の代わりに使用できます。
 
 ```csharp
-[Alias(PrimaryParameterAlias)]
-public StringParameter MyPrimaryParameter;
 [Alias("myParam")]
 public StringParameter MyParameter;
 ```
 
 ```nani
-@cmd "value of the primary param" myParam:"value of 'MyParameter' param"
+@cmd myParam: value of 'MyParameter' param
+```
+
+### プライマリパラメーター
+
+パラメーターを識別子なしで指定できるようにするには、`[PrimaryParameter]` 属性を適用します。各コマンドに設定できるプライマリパラメーターは1つだけです。
+
+```csharp
+[PrimaryParameter]
+public StringParameter MyPrimaryParameter;
+```
+
+```nani
+@cmd value of the primary param
 ```
 
 ### 必須パラメーター

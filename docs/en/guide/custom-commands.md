@@ -73,17 +73,17 @@ public override async Awaitable Execute (ExecutionContext ctx)
 
 To expose a command parameter to scenario scripts, add a public field to the command class with one of the supported types:
 
-| Field Type                | Value Type            | Script Example                      |
-|---------------------------|-----------------------|-------------------------------------|
-| StringParameter           | String                | `LoremIpsum`, `"Lorem ipsum"`       |
-| LocalizableTextParameter  | LocalizableText       | `"Lorem ipsum\|#id\|"`              |
-| NumberParameter           | Single                | `10`, `0.525`, `-55.1`              |
-| BooleanParameter          | Boolean               | `true`, `false`                     |
-| NamedStringParameter      | NamedString           | `Script001.LabelName`, `.LabelName` |
-| NamedNumberParameter      | NamedNumber           | `Yuko.5`, `Kohaku.-10.25`           |
-| NamedBooleanParameter     | NamedBoolean          | `Misaki.false`                      |
+| Field Type                | Value Type               | Script Example                      |
+|---------------------------|--------------------------|-------------------------------------|
+| StringParameter           | String                   | `LoremIpsum`, `"Lorem ipsum"`       |
+| LocalizableTextParameter  | LocalizableText          | `"Lorem ipsum\|#id\|"`              |
+| NumberParameter           | Single                   | `10`, `0.525`, `-55.1`              |
+| BooleanParameter          | Boolean                  | `true`, `false`                     |
+| NamedStringParameter      | NamedString              | `Script001.LabelName`, `.LabelName` |
+| NamedNumberParameter      | NamedNumber              | `Yuko.5`, `Kohaku.-10.25`           |
+| NamedBooleanParameter     | NamedBoolean             | `Misaki.false`                      |
 | StringListParameter       | List&lt;String&gt;       | `Lorem,ipsum,"dolor sit amet"`      |
-| NumberListParameter       | List&lt;Single&gt;      | `10,-1,0.105`                       |
+| NumberListParameter       | List&lt;Single&gt;       | `10,-1,0.105`                       |
 | BooleanListParameter      | List&lt;Boolean&gt;      | `true,false,true`                   |
 | NamedStringListParameter  | List&lt;NamedString&gt;  | `Felix.Happy,Jenna.Confidence`      |
 | NamedNumberListParameter  | List&lt;NamedNumber&gt;  | `Yuko.5,Misaki.-8`                  |
@@ -91,17 +91,28 @@ To expose a command parameter to scenario scripts, add a public field to the com
 
 ### Parameter Alias
 
-Optionally, you can apply the `[Alias]` attribute to the field to assign an alias name to the parameter, allowing it to be used instead of the field name when referencing the parameter in scenario scripts. If you wish to make the parameter primary, set `PrimaryParameterAlias` constant (empty string) as the alias; please note that only one primary parameter is allowed per command.
+Optionally, you can apply the `[Alias]` attribute to the field to assign an alias name to the parameter, allowing it to be used instead of the field name when referencing the parameter in scenario scripts.
 
 ```csharp
-[Alias(PrimaryParameterAlias)]
-public StringParameter MyPrimaryParameter;
 [Alias("myParam")]
 public StringParameter MyParameter;
 ```
 
 ```nani
-@cmd "value of the primary param" myParam:"value of 'MyParameter' param"
+@cmd myParam: value of 'MyParameter' param
+```
+
+### Primary Parameter
+
+Apply the `[PrimaryParameter]` attribute to allow specifying the parameter without its identifier. Only one primary parameter is allowed per command.
+
+```csharp
+[PrimaryParameter]
+public StringParameter MyPrimaryParameter;
+```
+
+```nani
+@cmd value of the primary param
 ```
 
 ### Required Parameter
