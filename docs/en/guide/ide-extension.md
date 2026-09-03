@@ -212,6 +212,10 @@ By default, semi-transparent icons are drawn instead of line identifiers to help
 
 ::::
 
+## Auto-Completion
+
+Completion suggestions appear automatically when typing symbols such as `@`, `[` or `{`. To invoke them manually at any point, press `Ctrl + Space`; for example, on an empty line this lists the available characters to author a printed text line.
+
 ## Folding
 
 The following constructs get folding support by default:
