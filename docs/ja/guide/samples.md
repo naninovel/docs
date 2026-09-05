@@ -36,7 +36,7 @@ Naninovelパッケージには、ビジュアルノベルとダイアログモ�
 
 ## コンパイラーのローカライズ
 
-サンプルプロジェクトでコンパイラーのローカライズを有効にするには、`Scripts` 構成の `Compiler Localization` フィールドに `Profiles/Naninovel/CompilerRU` アセットを割り当てます。その後、UnityエディターとVS Code拡張機能を再起動します。これで、VS Codeでプロジェクトを開き、`Compiler Localization` サンプルシナリオを実行できます。
+サンプルプロジェクトでコンパイラーのローカライズを有効にするには、`Scripts` 構成の `Compiler Localization` フィールドに `Settings/Naninovel/CompilerRu` アセットを割り当てます。その後、UnityエディターとVS Code拡張機能を再起動します。これで、VS Codeでプロジェクトを開き、`Compiler Localization` サンプルシナリオを実行できます。
 
 ![](https://i.gyazo.com/fde9998597ffedb8a025401bb2f71ce9.png)
 
@@ -135,25 +135,25 @@ Select an action.[>]
 
 ## ローカライズ
 
- - 生成されたローカライズドキュメントは `Profiles/Naninovel/Localization` ディレクトリに保存されます。
+ - 生成されたローカライズドキュメントは `Content/Localization` ディレクトリに保存されます。
  - 生成されたシートは、サンプルプロジェクトルートの下の `Sheets` ディレクトリに保存されます。
- - ローカライズ固有のフォントは `Profiles/Naninovel/Fonts` に保存されます。
+ - ローカライズ固有のフォントは `Content/Fonts` に保存されます。
 
 ローカライズツール用に選択されたフォルダー：
 
 | フォルダー | パス |
 |------------------------|------------------------------------------------------------|
 | Script Folder (input) | Assets/Scripts/Scenario |
-| Text Folder (input) | Assets/Profiles/Naninovel/Text |
-| Locale Folder (output) | Assets/Profiles/Naninovel/Localization |
+| Text Folder (input) | Assets/Content/Text |
+| Locale Folder (output) | Assets/Content/Localization |
 
 スプレッドシートツール用に選択されたフォルダー：
 
 | フォルダー | パス |
 |---------------------------|------------------------------------------------------------|
 | Input Scripts Folder | Assets/Scripts/Scenario |
-| Input Text Folder | Assets/Profiles/Naninovel/Text |
-| Input Localization Folder | Assets/Profiles/Naninovel/Localization |
+| Input Text Folder | Assets/Content/Text |
+| Input Localization Folder | Assets/Content/Localization |
 | Output Folder | Sheets |
 
 ![](https://i.gyazo.com/97d232751dd7e97bc828f3521f1d2066.mp4)

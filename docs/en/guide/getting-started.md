@@ -62,7 +62,7 @@ If you're using a version control system, such as Git, consider ignoring the fol
 Note that `Assets/NaninovelData` is an auto-generated folder. After it is initially created, you can rename or move it to any folder under "Assets" (Naninovel will still be able to locate it). If you do so, the ignore paths above must be updated accordingly.
 
 ::: tip EXAMPLE
-See the [.gitignore](https://github.com/naninovel/engine/blob/main/unity/samples/.gitignore) in our [samples project](/guide/samples) for an example Git ignore profile. In that example, the `NaninovelData` folder is renamed to `Naninovel` and moved under `Assets/Profiles` for better organization — you can move the folder similarly in your own project.
+See the [.gitignore](https://github.com/naninovel/engine/blob/main/unity/samples/.gitignore) in our [samples project](/guide/samples) for an example Git ignore profile. In that example, the `NaninovelData` folder is renamed to `Naninovel` and moved under `Assets/Settings` for better organization — you can move the folder similarly in your own project.
 :::
 
 ## Install Naninovel

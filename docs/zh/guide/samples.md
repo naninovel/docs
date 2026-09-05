@@ -36,7 +36,7 @@
 
 ## 编译器本地化
 
-要在示例项目中激活编译器本地化，请将 `Profiles/Naninovel/CompilerRU` 资产分配给 Scripts 配置中的 `Compiler Localization` 字段。然后重新启动 Unity 编辑器和 VS Code 扩展。现在您可以使用 VS Code 打开项目并运行 `Compiler Localization` 示例剧本。
+要在示例项目中激活编译器本地化，请将 `Settings/Naninovel/CompilerRu` 资产分配给 Scripts 配置中的 `Compiler Localization` 字段。然后重新启动 Unity 编辑器和 VS Code 扩展。现在您可以使用 VS Code 打开项目并运行 `Compiler Localization` 示例剧本。
 
 ![](https://i.gyazo.com/fde9998597ffedb8a025401bb2f71ce9.png)
 
@@ -135,25 +135,25 @@ Select an action.[>]
 
 ## 本地化
 
- - 生成的本地化文档存储在 `Profiles/Naninovel/Localization` 目录中。
+ - 生成的本地化文档存储在 `Content/Localization` 目录中。
  - 生成的表格存储在示例项目根目录下的 `Sheets` 目录中。
- - 本地化特定字体存储在 `Profiles/Naninovel/Fonts` 中。
+ - 本地化特定字体存储在 `Content/Fonts` 中。
 
 为本地化工具选择的文件夹：
 
 | 文件夹 | 路径 |
 |------------------------|------------------------------------------------------------|
 | Script Folder (input) | Assets/Scripts/Scenario |
-| Text Folder (input) | Assets/Profiles/Naninovel/Text |
-| Locale Folder (output) | Assets/Profiles/Naninovel/Localization |
+| Text Folder (input) | Assets/Content/Text |
+| Locale Folder (output) | Assets/Content/Localization |
 
 为电子表格工具选择的文件夹：
 
 | 文件夹 | 路径 |
 |---------------------------|------------------------------------------------------------|
 | Input Scripts Folder | Assets/Scripts/Scenario |
-| Input Text Folder | Assets/Profiles/Naninovel/Text |
-| Input Localization Folder | Assets/Profiles/Naninovel/Localization |
+| Input Text Folder | Assets/Content/Text |
+| Input Localization Folder | Assets/Content/Localization |
 | Output Folder | Sheets |
 
 ![](https://i.gyazo.com/97d232751dd7e97bc828f3521f1d2066.mp4)

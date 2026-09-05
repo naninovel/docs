@@ -62,7 +62,7 @@ Gitなどのバージョン管理システムを使用している場合は、�
 `Assets/NaninovelData` は自動生成されるフォルダーであることに注意してください。最初に作成された後は、「Assets」内の任意のフォルダーに名前を変更したり移動したりできます（Naninovelは引き続きそれを見つけることができます）。そうする場合、上記の無視パスをそれに応じて更新する必要があります。
 
 ::: tip EXAMPLE
-Gitの無視プロファイルの例については、[サンプルプロジェクト](/ja/guide/samples) の [.gitignore](https://github.com/naninovel/engine/blob/main/unity/samples/.gitignore) を参照してください。その例では、整理のために `NaninovelData` フォルダーの名前が `Naninovel` に変更され、`Assets/Profiles` の下に移動されています。自分のプロジェクトでも同様にフォルダーを移動できます。
+Gitの無視プロファイルの例については、[サンプルプロジェクト](/ja/guide/samples) の [.gitignore](https://github.com/naninovel/engine/blob/main/unity/samples/.gitignore) を参照してください。その例では、整理のために `NaninovelData` フォルダーの名前が `Naninovel` に変更され、`Assets/Settings` の下に移動されています。自分のプロジェクトでも同様にフォルダーを移動できます。
 :::
 
 ## Naninovelのインストール

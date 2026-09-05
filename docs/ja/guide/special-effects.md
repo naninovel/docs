@@ -818,7 +818,7 @@ EaseInOutElastic
 カスタムカメラ（ポストプロセス）エフェクトと関連する Volume コンポーネントを追加するには、[Unity ガイド](https://docs.unity3d.com/Manual/urp/post-processing/custom-post-processing-with-volume) に従ってください。
 
 ::: tip EXAMPLE
-カメラエフェクトの使用例は [サンプルプロジェクト](/ja/guide/samples) にあります。Volume プロファイルは `Profiles/Render/Volumes` に保存されています。
+カメラエフェクトの使用例は [サンプルプロジェクト](/ja/guide/samples) にあります。Volume プロファイルは `Settings/Render/Volumes` に保存されています。
 :::
 
 ### カスタムトランジションエフェクト

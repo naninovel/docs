@@ -36,7 +36,7 @@ This sample shows a generic background filled with multiple animated environment
 
 ## Compiler Localization
 
-To activate compiler localization in the sample project, assign the `Profiles/Naninovel/CompilerRU` asset to the `Compiler Localization` field in the Scripts configuration. Then restart the Unity Editor and the VS Code extension. Now you can open the project with VS Code and run the `Compiler Localization` sample scenario.
+To activate compiler localization in the sample project, assign the `Settings/Naninovel/CompilerRu` asset to the `Compiler Localization` field in the Scripts configuration. Then restart the Unity Editor and the VS Code extension. Now you can open the project with VS Code and run the `Compiler Localization` sample scenario.
 
 ![](https://i.gyazo.com/fde9998597ffedb8a025401bb2f71ce9.png)
 
@@ -135,25 +135,25 @@ The sample demonstrates using Live2D characters with Naninovel. Find them in the
 
 ## Localization
 
- - The generated localization documents are stored in the `Profiles/Naninovel/Localization` directory.
+ - The generated localization documents are stored in the `Content/Localization` directory.
  - The generated sheets are stored in the `Sheets` directory under the samples project root.
- - The localization-specific font is stored in `Profiles/Naninovel/Fonts`.
+ - The localization-specific font is stored in `Content/Fonts`.
 
 Folders selected for localization tool:
 
 | Folder                 | Path                                   |
 |------------------------|----------------------------------------|
 | Script Folder (input)  | Assets/Scripts/Scenario                |
-| Text Folder (input)    | Assets/Profiles/Naninovel/Text         |
-| Locale Folder (output) | Assets/Profiles/Naninovel/Localization |
+| Text Folder (input)    | Assets/Content/Text                   |
+| Locale Folder (output) | Assets/Content/Localization           |
 
 Folders selected for the spreadsheet tool:
 
 | Folder                    | Path                                   |
 |---------------------------|----------------------------------------|
 | Input Scripts Folder      | Assets/Scripts/Scenario                |
-| Input Text Folder         | Assets/Profiles/Naninovel/Text         |
-| Input Localization Folder | Assets/Profiles/Naninovel/Localization |
+| Input Text Folder         | Assets/Content/Text                   |
+| Input Localization Folder | Assets/Content/Localization           |
 | Output Folder             | Sheets                                 |
 
 ![](https://i.gyazo.com/97d232751dd7e97bc828f3521f1d2066.mp4)

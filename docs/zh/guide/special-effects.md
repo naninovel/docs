@@ -818,7 +818,7 @@ EaseInOutElastic
 要添加自定义摄像机（后处理）效果和相关 Volume 组件，请按照 [Unity 指南](https://docs.unity3d.com/Manual/urp/post-processing/custom-post-processing-with-volume)操作。
 
 ::: tip EXAMPLE
-在[示例项目](/zh/guide/samples)中可以找到使用摄像机效果的示例。Volume 配置文件存储在 `Profiles/Render/Volumes` 中。
+在[示例项目](/zh/guide/samples)中可以找到使用摄像机效果的示例。Volume 配置文件存储在 `Settings/Render/Volumes` 中。
 :::
 
 ### 自定义过渡效果

@@ -62,7 +62,7 @@ com.unity.ugui
 请注意，`Assets/NaninovelData` 是一个自动生成的文件夹。最初创建后，您可以将其重命名或移动到 "Assets" 下的任何文件夹（Naninovel 仍然能够找到它）。如果您这样做，上述忽略路径必须相应更新。
 
 ::: tip EXAMPLE
-请参阅我们的 [示例项目](/zh/guide/samples) 中的 [.gitignore](https://github.com/naninovel/engine/blob/main/unity/samples/.gitignore) 以获取 Git 忽略配置文件的示例。在该示例中，`NaninovelData` 文件夹重命名为 `Naninovel` 并移动到 `Assets/Profiles` 下以便更好地组织 — 您可以在自己的项目中类似地移动文件夹。
+请参阅我们的 [示例项目](/zh/guide/samples) 中的 [.gitignore](https://github.com/naninovel/engine/blob/main/unity/samples/.gitignore) 以获取 Git 忽略配置文件的示例。在该示例中，`NaninovelData` 文件夹重命名为 `Naninovel` 并移动到 `Assets/Settings` 下以便更好地组织 — 您可以在自己的项目中类似地移动文件夹。
 :::
 
 ## 安装 Naninovel

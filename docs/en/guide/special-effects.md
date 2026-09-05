@@ -818,7 +818,7 @@ Multiple profiles can be blended in one command. The regular camera animation pa
 To add custom camera (post-processing) effects and associated volume components, follow the [Unity guide](https://docs.unity3d.com/Manual/urp/post-processing/custom-post-processing-with-volume).
 
 ::: tip EXAMPLE
-Find an example on using camera effects in the [samples project](/guide/samples). The volume profiles are stored at `Profiles/Render/Volumes`.
+Find an example on using camera effects in the [samples project](/guide/samples). The volume profiles are stored at `Settings/Render/Volumes`.
 :::
 
 ### Custom Transition Effects
