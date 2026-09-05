@@ -36,4 +36,4 @@ Unityの [Input System](https://docs.unity3d.com/Packages/com.unity.inputsystem@
 
 ## ストーリーエディター
 
-組み込みの [ストーリーエディター](/ja/guide/editor) には、少なくともWindows 10ビルド1809（x86-64 CPU）、またはmacOS 14 (Sonoma)（Apple Silicon (ARM64) CPU）が必要です。Linux、およびARMベースのWindowsやx86ベースのAppleデバイスはサポートされていません。ただし、これらのプラットフォームでは [Webバージョン](https://naninovel.com/editor) のストーリーエディターを使用できます。
+組み込みの [ストーリーエディター](/ja/guide/editor#組み込みモード) には、少なくともWindows 10（x86-64 CPU）、macOS 14（Apple Silicon CPU）、または新しいWebKitGTKランタイムを備えたx86-64のLinuxが必要です。サポートされていないプラットフォームでも、[Webバージョン](https://naninovel.com/editor) のストーリーエディターを使用できます。

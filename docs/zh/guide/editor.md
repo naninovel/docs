@@ -52,7 +52,7 @@ WebView 组件由 OS 维护，但在少数情况下，它可能被禁用或更�
 (Get-ItemProperty 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}','HKCU:\SOFTWARE\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}' -ErrorAction Ignore).pv
 ```
 
-如果没有任何输出，或版本低于 150，请安装最新的 [WebView2 Runtime](https://developer.microsoft.com/microsoft-edge/webview2/) 并重启 Unity。在 macOS 上，请通过 `System Settings > General > Software Update` 更新系统。
+如果没有任何输出，或版本低于 150，请安装最新的 [WebView2 Runtime](https://developer.microsoft.com/microsoft-edge/webview2/) 并重启 Unity。
 :::
 
 ## 工作区

@@ -52,7 +52,7 @@ The WebView component is maintained by the OS, but in rare cases it may be disab
 (Get-ItemProperty 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}','HKCU:\SOFTWARE\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}' -ErrorAction Ignore).pv
 ```
 
-If it prints nothing or the version is below 150, install the latest [WebView2 Runtime](https://developer.microsoft.com/microsoft-edge/webview2/) and restart Unity. On macOS, update the system via `System Settings > General > Software Update`.
+If it prints nothing or the version is below 150, install the latest [WebView2 Runtime](https://developer.microsoft.com/microsoft-edge/webview2/) and restart Unity.
 :::
 
 ## Workspace

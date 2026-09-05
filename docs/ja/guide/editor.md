@@ -52,7 +52,7 @@ WebViewコンポーネントはOSによって管理されますが、まれに�
 (Get-ItemProperty 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}','HKCU:\SOFTWARE\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}' -ErrorAction Ignore).pv
 ```
 
-何も表示されない場合、またはバージョンが150未満の場合は、最新の [WebView2 Runtime](https://developer.microsoft.com/microsoft-edge/webview2/) をインストールしてUnityを再起動してください。macOSでは、`System Settings > General > Software Update` からシステムを更新してください。
+何も表示されない場合、またはバージョンが150未満の場合は、最新の [WebView2 Runtime](https://developer.microsoft.com/microsoft-edge/webview2/) をインストールしてUnityを再起動してください。
 :::
 
 ## ワークスペース

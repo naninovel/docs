@@ -36,4 +36,4 @@ At least the "Explicitly Thrown Exceptions Only" level is required for the `Enab
 
 ## Story Editor
 
-The embedded [Story Editor](/guide/editor) requires at least Windows 10 build 1809 with an x86-64 CPU, or macOS 14 (Sonoma) with an Apple Silicon (ARM64) CPU. Linux, as well as ARM-based Windows and x86-based Apple devices, are not supported; however, you can still use the [web version](https://naninovel.com/editor) of the Story Editor on those platforms.
+The embedded [Story Editor](/guide/editor#embedded-mode) requires at least Windows 10 with an x86-64 CPU, macOS 14 with an Apple Silicon CPU, or an x86-64 Linux with a modern WebKitGTK runtime. You can still use the [web version](https://naninovel.com/editor) of the Story Editor on unsupported platforms.
