@@ -8,6 +8,15 @@
     };
 })();
 
+(function () {
+    const getInternalformatParameter = WebGL2RenderingContext.prototype.getInternalformatParameter;
+    const invalidFormats = new Set([36756, 36757, 36759, 36760, 36761, 36763]);
+    WebGL2RenderingContext.prototype.getInternalformatParameter = function (target, internalformat, pname) {
+        if (invalidFormats.has(internalformat)) return null;
+        return getInternalformatParameter.call(this, target, internalformat, pname);
+    };
+})();
+
 var unityFramework = (() => {
   var _scriptDir = typeof document !== 'undefined' && document.currentScript ? document.currentScript.src : undefined;
   

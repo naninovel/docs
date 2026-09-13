@@ -7,9 +7,106 @@
     <meta name="theme-color" content="#131313"/>
     <meta charset="utf-8"/>
     <link rel="icon" href="/editor/icons/logo.svg" sizes="any" type="image/svg+xml">
-    <style id="splash-style">html,body{height:100%}body{background:#1f1f1f;margin:0}#splash-screen{z-index:9999999;pointer-events:none;position:fixed;inset:0;overflow:hidden}#splash-screen.fade-out{opacity:0;transition:opacity .33s}#splash-logo{transform-origin:50%;width:50vh;animation:1s ease-in-out forwards appear,1.5s ease-in 3s infinite alternate pulse;position:absolute;top:25vh;left:50%;translate:-50%}@keyframes appear{0%{opacity:0;transform:scale(1)}to{opacity:1;transform:scale(.5)}}@keyframes pulse{0%{transform:scale(.5)}to{transform:scale(.53)}}#splash-progress{opacity:0;text-align:center;width:min(300px,75vw);animation:1.5s ease-in 3s forwards progress-appear;position:absolute;top:65vh;left:50%;transform:translate(-50%)}@keyframes progress-appear{0%{opacity:0}to{opacity:1}}#splash-progress-message{color:#cecece;font:500 14px/1.4 system-ui,sans-serif}#splash-progress-bar{background:#3a3a3a;border-radius:2px;height:2px;margin-top:10px;position:relative;overflow:hidden}#splash-progress-bar:before{content:"";background:linear-gradient(90deg,#244a7300,#3a79bb,#73b5fff2);width:40%;animation:1.2s ease-in-out infinite progress;position:absolute;top:0;bottom:0;left:-40%}#splash-progress-bar.measured:before{width:calc(var(--splash-progress,0) * 100%);background:linear-gradient(90deg,#3a79bb,#73b5fff2);transition:width .12s ease-out;animation:none;left:0}@keyframes progress{0%{transform:translate(0)}to{transform:translate(350%)}}</style>
-  <script type="module" crossorigin src="/editor/assets/index-DmqKJTi2.js"></script>
-  <link rel="stylesheet" crossorigin href="/editor/assets/index-BgxsP0ks.css">
+    <style id="splash-style">
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            background: #1f1f1f;
+        }
+
+        #splash-screen {
+            z-index: 9999999;
+            pointer-events: none;
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+        }
+
+        /* noinspection CssUnusedSymbol */
+        #splash-screen.fade-out {
+            opacity: 0;
+            transition: opacity 0.33s;
+        }
+
+        #splash-logo {
+            position: absolute;
+            top: 25vh;
+            left: 50%;
+            width: 50vh;
+            translate: -50% 0;
+            transform-origin: center;
+            animation: appear 1s ease-in-out forwards, pulse 1.5s 3s ease-in infinite alternate;
+        }
+
+        @keyframes appear {
+            from { opacity: 0; transform: scale(100%) }
+            to { opacity: 1; transform: scale(50%) }
+        }
+
+        @keyframes pulse {
+            from { transform: scale(50%) }
+            to { transform: scale(53%) }
+        }
+
+        #splash-progress {
+            position: absolute;
+            top: 65vh;
+            left: 50%;
+            opacity: 0;
+            width: min(300px, 75vw);
+            text-align: center;
+            transform: translate(-50%, 0);
+            animation: progress-appear 1.5s 3s ease-in forwards;
+        }
+
+        @keyframes progress-appear {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        #splash-progress-message {
+            color: #cecece;
+            font: 500 14px/1.4 system-ui, sans-serif;
+        }
+
+        #splash-progress-bar {
+            position: relative;
+            height: 2px;
+            margin-top: 10px;
+            border-radius: 2px;
+            overflow: hidden;
+            background: #3a3a3a;
+        }
+
+        #splash-progress-bar::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: -40%;
+            width: 40%;
+            background: linear-gradient(90deg, rgba(36, 74, 115, 0), rgb(58, 121, 187), rgba(115, 181, 255, 0.95));
+            animation: progress 1.2s ease-in-out infinite;
+        }
+
+        #splash-progress-bar.measured::before {
+            left: 0;
+            width: calc(var(--splash-progress, 0) * 100%);
+            background: linear-gradient(90deg, rgb(58, 121, 187), rgba(115, 181, 255, 0.95));
+            animation: none;
+            transition: width 0.12s ease-out;
+        }
+
+        @keyframes progress {
+            from { transform: translateX(0) }
+            to { transform: translateX(350%) }
+        }
+    </style>
+  <script type="module" crossorigin src="/editor/assets/index-B96tYkRX.js"></script>
+  <link rel="stylesheet" crossorigin href="/editor/assets/index-D7nVrDqu.css">
 <link rel="manifest" href="/editor/manifest.webmanifest"></head>
 <body>
 <div id="app"></div>
