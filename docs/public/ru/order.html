@@ -20,7 +20,7 @@
 
     <div class="bg-white rounded w-600 p-6">
         <h5 class="mb-4" style="font-family: sans-serif">Покупка лицензии Naninovel</h5>
-        <form name="TinkoffPayForm" onsubmit="window.pay(this); return false;">
+        <form name="TinkoffPayForm">
 
             <input type="hidden" name="terminalkey" value="1646832078054">
             <input type="hidden" name="frame" value="false">
@@ -39,12 +39,35 @@
                 </div>
             </div>
 
-            <input id="pay" class="form-group btn btn-block btn-primary" type="submit" value="Оплатить 3500 ₽">
+            <input id="pay-button" class="form-group btn btn-block btn-primary" type="submit" value="Оплатить 3500 ₽">
+            <div id="payment-error" class="alert alert-warning font-weight-normal" role="alert" hidden>
+                Не удалось открыть форму оплаты. Возможно, браузер не поддерживает сертификаты безопасности банка. Попробуйте открыть эту страницу в Яндекс Браузере.
+                <a href="https://www.tbank.ru/certificates/" target="_blank" rel="noopener noreferrer">Подробнее о проблеме.</a>
+            </div>
         </form>
     </div>
 
 </main>
 
+<script>
+    document.forms.TinkoffPayForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
+        const error = document.getElementById("payment-error");
+        error.hidden = true;
+
+        if (typeof window.pay !== "function") {
+            error.hidden = false;
+            return;
+        }
+
+        try {
+            await window.pay(this);
+        } catch (exception) {
+            console.error("Failed to open the payment form.", exception);
+            error.hidden = false;
+        }
+    });
+</script>
 <script src="../assets/js/page.min.js"></script>
 <script src="../assets/js/script.js"></script>
 <script src="https://securepay.tinkoff.ru/html/payForm/js/tinkoff_v2.js"></script>
