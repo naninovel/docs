@@ -54,14 +54,6 @@
 
 ![](https://i.gyazo.com/009900b179f3130f45824e22094e7884.gif)
 
-## 输入重绑定
-
-文档：[输入处理](/zh/guide/input-processing#自定义输入)
-
-允许玩家更改默认控件的输入重绑定 UI 示例位于 `Content/UI/InputRebind` 文件夹中。它基于输入系统包捆绑的 "Rebind UI" 示例；在 [Unity 文档](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.1/manual/ActionBindings.html#interactive-rebinding) 中查找更多信息。
-
-![](https://i.gyazo.com/eba8d2ce2dabfbe41cc0df238ad8ad99.png)
-
 ## 对话模式 (Dialogue Mode)
 
 一个示例项目，演示了 Naninovel 既用作 3D 冒险游戏的嵌入式对话系统，又用作可切换的独立小说模式。

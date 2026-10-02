@@ -54,14 +54,6 @@ Find `Content/Backgrounds/Beach`, `Content/Backgrounds/Perspective` [generic bac
 
 ![](https://i.gyazo.com/009900b179f3130f45824e22094e7884.gif)
 
-## Input Rebind
-
-Documentation: [Input Processing](/guide/input-processing#customizing-inputs)
-
-An example input-rebinding UI that allows the player to change default controls can be found in the `Content/UI/InputRebind` folder. It's based on the "Rebind UI" sample bundled with the Input System package; find more info in the [Unity documentation](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.1/manual/ActionBindings.html#interactive-rebinding).
-
-![](https://i.gyazo.com/eba8d2ce2dabfbe41cc0df238ad8ad99.png)
-
 ## Dialogue Mode
 
 An example project demonstrating Naninovel used as both a drop-in dialogue system for a 3D adventure game and a switchable standalone novel mode.

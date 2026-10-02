@@ -54,14 +54,6 @@ Naninovelパッケージには、ビジュアルノベルとダイアログモ�
 
 ![](https://i.gyazo.com/009900b179f3130f45824e22094e7884.gif)
 
-## 入力リバインド
-
-ドキュメント: [入力処理](/ja/guide/input-processing#入力のカスタマイズ)
-
-プレイヤーがデフォルトのコントロールを変更できるようにする入力リバインドUIの例は、`Content/UI/InputRebind` フォルダーにあります。これは、Input Systemパッケージにバンドルされている「Rebind UI」サンプルに基づいています。詳細については、[Unityドキュメント](https://docs.unity3d.com/Packages/com.unity.inputsystem@1.1/manual/ActionBindings.html#interactive-rebinding) を参照してください。
-
-![](https://i.gyazo.com/eba8d2ce2dabfbe41cc0df238ad8ad99.png)
-
 ## ダイアログモード
 
 3Dアドベンチャーゲームの組み込みダイアログシステムと、切り替え可能なスタンドアロンノベルモードの両方として使用されるNaninovelを示すサンプルプロジェクト。

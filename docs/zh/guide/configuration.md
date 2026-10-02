@@ -142,7 +142,7 @@
 | Enable Bridging | True | 是否自动启动桥接服务器以与外部 Naninovel 工具通信：IDE 扩展、Web 编辑器等。 |
 | Auto Generate Metadata | True | 启动 Unity 编辑器和编译 C# 脚本后是否自动生成项目元数据。 |
 | Enable Development Console | True | 是否启用开发控制台。 |
-| Debug Only Console | False | 启用后，开发控制台将仅在开发（调试）构建中可用。 |
+| Debug Only Console | True | 启用后，开发控制台将仅在开发（调试）构建中可用。 |
 
 </div>
 
@@ -156,6 +156,9 @@
 | Event System | Null | 带有 `EventSystem` 组件的预制件，用于在引擎初始化时生成并用于输入处理。未分配时将使用默认事件系统。 |
 | Input Actions | Null | 安装 Unity 的输入系统后，在此处分配输入操作资产。<br><br>要将输入操作映射到 Naninovel 的输入采样器，请创建 `Naninovel` 操作映射并添加名称等于输入名称的操作。<br><br>未分配时将使用默认输入操作。 |
 | Action Maps | Object Ref | 指定的 'Input Actions' 资产中的输入操作映射名称，以向 Naninovel 输入注册。 |
+| Rebind Timeout | 5 | 重新绑定输入时，在取消之前等待控件被激活的时间（以秒为单位）。零或更小的值将禁用超时。 |
+| Rebind Cancel Key | &lt;Keyboard&gt;/escape | 激活时取消重新绑定输入的控件路径。留空以禁用。 |
+| Enable Gyroscope | True | 是否启用陀螺仪设备（在 Unity 的输入系统中默认禁用）。通过旋转移动设备进行摄像机观察时需要。 |
 | Detect Input Mode | True | 激活关联设备时是否更改输入模式。例如，按下任何游戏手柄按钮时切换到游戏手柄，单击鼠标按钮时切换回鼠标。 |
 | Disable Input | False | 初始化引擎时是否默认禁用输入处理。当 Naninovel 作为嵌入式对话系统集成并且初始化后不应响应用户输入时很有用。 |
 

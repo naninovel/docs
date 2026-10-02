@@ -30,7 +30,7 @@ NaninovelはUnityの [Input System](https://docs.unity3d.com/Packages/com.unity.
 ![](https://i.gyazo.com/8ef1cc7eccac5cbc9e88016e2b1271f6.png)
 
 ::: tip EXAMPLE
-インベントリUIを切り替えるためのカスタム入力バインディングを追加する例は、[インベントリサンプル](/ja/guide/samples#インベントリ) にあります。具体的には、カスタム "ToggleInventory" アクションは `Scripts/Runtime/Inventory/UI/InventoryUI.cs` ランタイムスクリプトで使用されます。別の例 — [入力リバインドサンプル](/ja/guide/samples#入力リバインド) — は、プレイヤーがデフォルトのコントロールを変更できるようにするリバインドUIを実装しています。
+インベントリUIを切り替えるためのカスタム入力バインディングを追加する例は、[インベントリサンプル](/ja/guide/samples#インベントリ) にあります。具体的には、カスタム "ToggleInventory" アクションは `Scripts/Runtime/Inventory/UI/InventoryUI.cs` ランタイムスクリプトで使用されます。
 :::
 
 カスタム入力アクションを使用する場合、同じ構成メニューで割り当てられたカスタム `Event System` も使用し、イベントシステムプレハブにアタッチされたInput System UI Input Moduleコンポーネントの `Actions Asset` プロパティにカスタム入力アクションアセットを割り当てることをお勧めします。これは、さまざまなUI関連機能が正しく動作するために必要です。`Create -> Naninovel -> Input -> Event System` を介して、Naninovelで動作するデフォルトのイベントシステムプレハブを作成できます。

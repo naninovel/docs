@@ -141,7 +141,7 @@ Custom Initialization UI | Null | UI to show while the engine is initializing (w
 Enable Bridging | True | Whether to automatically start the bridging server to communicate with external Naninovel tools: IDE extension, web editor, etc.
 Auto Generate Metadata | True | Whether to automatically generate project metadata when Unity editor is started and after compiling C# scripts.
 Enable Development Console | True | Whether to enable development console.
-Debug Only Console | False | When enabled, development console will only be available in development (debug) builds.
+Debug Only Console | True | When enabled, development console will only be available in development (debug) builds.
 
 </div>
 
@@ -155,6 +155,9 @@ Spawn Event System | True | Whether to spawn a Naninovel-specific event system; 
 Event System | Null | A prefab with `EventSystem` component to spawn on engine init and use for input processing. Will use the default event system when not assigned.
 Input Actions | Null | When Unity's input system is installed, assign input actions asset here.<br><br>To map input actions to Naninovel's input samplers, create `Naninovel` action map and add actions with names equal to the input names.<br><br>Will use the default input actions when not assigned.
 Action Maps | Object Ref | Input action map names in the specified 'Input Actions' asset to register with the Naninovel input.
+Rebind Timeout | 5 | How long, in seconds, to wait for a control to be activated when rebinding an input before canceling. Zero or below disables the timeout.
+Rebind Cancel Key | &lt;Keyboard&gt;/escape | Path of the control which cancels rebinding an input when activated. Leave empty to disable.
+Enable Gyroscope | True | Whether to enable the gyroscope device, which is disabled by default in Unity's input system. Required for the camera look by rotating a mobile device.
 Detect Input Mode | True | Whether to change input mode when associated device is activated. Eg, switch to gamepad when any gamepad button is pressed and switch back to mouse when mouse button clicked.
 Disable Input | False | Whether to disable input processing by default when the engine is initialized. Useful when Naninovel is integrated as a drop-in dialogue system and shouldn't react to user input after initialization.
 
@@ -173,7 +176,7 @@ Expose Source Locale | True | Whether to make the source locale available to the
 Default Locale | Null | Locale selected by default when running the game for the first time. Will select `Source Locale` when not specified.
 Auto Detect Locale | True | When enabled and the game is running for the first time, attempts to automatically detect locale based on system language. When succeeds and the locale is supported by the game, selects it; otherwise falls back to 'Default Locale'.
 Record Separator | \| | Text character to join common localized script records, such as parts of generic text lines and localizable parameter values.
-Annotation Prefix | >  | Text character to insert before annotation lines to distinguish them for the localized text. Annotations are comments optionally added to the generated localization documents to provide additional context for the translators, such as author of the printed text messages, inlined commands and command lines containing localized parameters. Stub character is used to replace localized parts of such annotations, as they're duplicated on the next comment line containing the text to localize.
+Annotation Prefix | &gt;  | Text character to insert before annotation lines to distinguish them for the localized text. Annotations are comments optionally added to the generated localization documents to provide additional context for the translators, such as author of the printed text messages, inlined commands and command lines containing localized parameters. Stub character is used to replace localized parts of such annotations, as they're duplicated on the next comment line containing the text to localize.
 
 </div>
 
