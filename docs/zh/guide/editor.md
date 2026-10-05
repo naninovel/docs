@@ -39,7 +39,7 @@ Naninovel 拥有自己的独立应用程序，在 Unity 编辑器中开发游戏
 
 ## 嵌入模式
 
-故事编辑器与 Unity 编辑器完全集成，可以通过选中剧本脚本资产进行检查，或通过 `Naninovel -> Story Editor` Unity 编辑器菜单启动。
+故事编辑器与 Unity 编辑器完全集成，可以通过选中并检查剧本脚本资产，或通过 `Naninovel -> Story Editor` Unity 编辑器菜单启动。
 
 ![?width=588](https://i.gyazo.com/48ad8d4c512b67df02d7ace15d5eaca5.png)
 

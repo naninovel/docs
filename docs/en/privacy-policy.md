@@ -25,13 +25,13 @@ While using our Service, we may ask you to provide us with certain personally id
 
 #### Usage Data
 
-We may also collect information how the Service is accessed and used ("Usage Data"). This Usage Data may include information such as your computer's Internet Protocol address (e.g. IP address), browser type, browser version, the pages of our Service that you visit, the time and date of your visit, the time spent on those pages, unique device identifiers and other diagnostic data.
+We may also collect information on how the Service is accessed and used ("Usage Data"). This Usage Data may include information such as your computer's Internet Protocol address (eg, IP address), browser type, browser version, the pages of our Service that you visit, the time and date of your visit, the time spent on those pages, unique device identifiers and other diagnostic data.
 
 #### Tracking & Cookies Data
 
 We use cookies and similar tracking technologies to track the activity on our Service and hold certain information.
 
-Cookies are files with small amount of data which may include an anonymous unique identifier. Cookies are sent to your browser from a website and stored on your device. Tracking technologies also used are beacons, tags, and scripts to collect and track information and to improve and analyze our Service.
+Cookies are files with a small amount of data which may include an anonymous unique identifier. Cookies are sent to your browser from a website and stored on your device. Tracking technologies also used are beacons, tags, and scripts to collect and track information and to improve and analyze our Service.
 
 You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent. However, if you do not accept cookies, you may not be able to use some portions of our Service.
 
@@ -54,7 +54,7 @@ Naninovel uses the collected data for various purposes:
 
 ## Transfer Of Data
 
-Your information, including Personal Data, may be transferred to — and maintained on — computers located outside of your state, province, country or other governmental jurisdiction where the data protection laws may differ than those from your jurisdiction.
+Your information, including Personal Data, may be transferred to — and maintained on — computers located outside of your state, province, country or other governmental jurisdiction where the data protection laws may differ from those of your jurisdiction.
 
 Your consent to this Privacy Policy followed by your submission of such information represents your agreement to that transfer.
 
@@ -78,13 +78,13 @@ The security of your data is important to us, but remember that no method of tra
 
 ### Password
 
-Personal password is used to access your account at "Naninovel Account".
+A personal password is used to access your account at "Naninovel Account".
 
 Your password is ciphered (a one-way hash) so that it is secure. However, it is recommended that you do not reuse the same password across a number of different websites.
 
 Under no circumstance will anyone affiliated with Naninovel or another 3rd party legitimately ask you for your password.
 
-Should you forget your password for your account, you can use the "Forgot Password" feature provided by the "Naninovel Account" software. This process will ask you to submit your email, then the software will allow to change the password to restore access to your account.
+Should you forget your password for your account, you can use the "Forgot Password" feature provided by the "Naninovel Account" software. This process will ask you to submit your email, then the software will allow you to change the password to restore access to your account.
 
 ## Service Providers
 
@@ -96,7 +96,7 @@ These third parties have access to your Personal Data only to perform these task
 
 We may use third-party Service Providers to monitor and analyze the use of our Service:
 
-* **Google Analytics** Google Analytics is a web analytics service offered by Google that tracks and reports website traffic. Google uses the data collected to track and monitor the use of our Service. This data is shared with other Google services. Google may use the collected data to contextualize and personalize the ads of its own advertising network. You can opt-out of having made your activity on the Service available to Google Analytics by installing the Google Analytics opt-out browser add-on. The add-on prevents the Google Analytics JavaScript (ga.js, analytics.js, and dc.js) from sharing information with Google Analytics about visits activity. For more information on the privacy practices of Google, please visit the Google Privacy & Terms web page: [policies.google.com/privacy](https://policies.google.com/privacy).
+* **Google Analytics** Google Analytics is a web analytics service offered by Google that tracks and reports website traffic. Google uses the data collected to track and monitor the use of our Service. This data is shared with other Google services. Google may use the collected data to contextualize and personalize the ads of its own advertising network. You can opt out of having your activity on the Service made available to Google Analytics by installing the Google Analytics opt-out browser add-on. The add-on prevents the Google Analytics JavaScript (ga.js, analytics.js, and dc.js) from sharing information with Google Analytics about visits activity. For more information on the privacy practices of Google, please visit the Google Privacy & Terms web page: [policies.google.com/privacy](https://policies.google.com/privacy).
 
 ## Links To Other Sites
 

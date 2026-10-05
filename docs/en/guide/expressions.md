@@ -38,7 +38,7 @@ If you wish to include double quotes inside the expression, escape them:
 Saying { \"Stop the car\" } was a mistake.
 ```
 
-Script expressions used in [@set] and [@if] commands (as well as the `set` and `if` parameters in other commands) do not require curly braces:
+Scenario expressions used in [@set] and [@if] commands (as well as the `set` and `if` parameters in other commands) do not require curly braces:
 
 ```nani
 @set randomScore = random(-100, 100)
@@ -93,7 +93,7 @@ Signature | Description | Example
 --- | --- | ---
 random(min, max) | Returns a random integer number between min [inclusive] and max [inclusive]. | `random(0, 100)`
 random(min, max) | Returns a random decimal number between min [inclusive] and max [inclusive]. | `random(0.5, 1.5)`
-random(args) | Returns a string chosen from one of the specified strings. | `random("foo", "bar", "baz")`
+random(args) | Returns a string randomly chosen from the specified strings. | `random("foo", "bar", "baz")`
 calculateProgress() | Returns the scenario completion ratio, in 0.0 to 1.0 range, where 1.0 means all the script commands were executed at least once. | `calculateProgress()`
 isUnlocked(id) | Checks whether an unlockable item with the specified ID is currently unlocked. | `isUnlocked("Tips/MyTip")`
 hasPlayed() | Checks whether the currently played command has ever been played before. | `hasPlayed()`

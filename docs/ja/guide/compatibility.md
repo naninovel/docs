@@ -32,8 +32,8 @@ Unityの [Input System](https://docs.unity3d.com/Packages/com.unity.inputsystem@
 
 ## 例外
 
-「Publishing Settings」の `Enable Exceptions` オプション（デフォルトで選択）には、少なくとも「Explicitly Thrown Exceptions Only」レベルが必要です。「None」レベルはサポートされていません。この設定は [WebGLビルド](https://docs.unity3d.com/Manual/webgl-building) にのみ適用されます。
+「Publishing Settings」の `Enable Exceptions` オプションには、少なくとも「Explicitly Thrown Exceptions Only」レベル（デフォルトで選択）が必要です。「None」レベルはサポートされていません。この設定は [WebGLビルド](https://docs.unity3d.com/Manual/webgl-building) にのみ適用されます。
 
 ## ストーリーエディター
 
-組み込みの [ストーリーエディター](/ja/guide/editor#組み込みモード) には、少なくともWindows 10（x86-64 CPU）、macOS 14（Apple Silicon CPU）、または新しいWebKitGTKランタイムを備えたx86-64のLinuxが必要です。サポートされていないプラットフォームでも、[Webバージョン](https://naninovel.com/editor) のストーリーエディターを使用できます。
+埋め込みの [ストーリーエディター](/ja/guide/editor#埋め込みモード) には、少なくともWindows 10（x86-64 CPU）、macOS 14（Apple Silicon CPU）、または新しいWebKitGTKランタイムを備えたx86-64のLinuxが必要です。サポートされていないプラットフォームでも、[Webバージョン](https://naninovel.com/editor) のストーリーエディターを使用できます。

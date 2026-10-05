@@ -39,7 +39,7 @@ public IEnumerator CanStartGame () => new E2E()
 编译后，转到 Test Runner 选项卡并找到新添加的测试。运行时，它将等待 `ITitleUI` 显示，然后尝试查找并单击附加到 `NewGameButton` 对象的按钮，并确保脚本已开始播放。如果任何步骤失败，测试将停止，相关记录将在 Test Runner 中被标上红叉。
 
 ::: warning
-在运行测试之前，请在引擎配置中禁用“Initialize On Application Load”。要在正常使用期间保留自动初始化，请在主场景中的游戏对象上使用 `Runtime Initializer` 组件；有关引擎初始化的更多信息，请参阅 [指南](/zh/guide/integration-options#手动初始化)。
+在运行测试之前，请在引擎配置中禁用 `Initialize On Application Load`。要在正常使用期间保留自动初始化，请在主场景中的游戏对象上使用 `Runtime Initializer` 组件；有关引擎初始化的更多信息，请参阅 [指南](/zh/guide/integration-options#手动初始化)。
 :::
 
 ## 快捷方式
@@ -130,8 +130,8 @@ ISequence RouteY => On(Choosing, Choose(), Var("completedY", false));
 如上所示，可以通过类似 `d1-qte-x` 的字符串在测试中引用选项。这些是在剧本脚本中分配的自定义 [文本标识符](/zh/guide/scenario-scripting#文本标识)。即使使用文本标识实用程序，您仍然可以在脚本中定义自定义文本 ID，该实用程序会保留它们。例如，请看以下剧本脚本：
 
 ```nani
-@choice "Choice 1|#my-id-for-choice-1|"
-@choice "Choice 2|#my-id-for-choice-2|"
+@choice "选项 1|#my-id-for-choice-1|"
+@choice "选项 2|#my-id-for-choice-2|"
 ```
 
 — 在这里，我们为第一个选项分配了 `my-id-for-choice-1`，为第二个选项分配了 `my-id-for-choice-2`；实际 ID 可以是任意值——只需确保它们在脚本中是唯一的即可。您现在可以通过分配的 ID 在测试中引用选项：

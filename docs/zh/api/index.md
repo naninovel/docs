@@ -44,21 +44,21 @@
 
 ```nani
 ; 快速反应事件：除非玩家在 3 秒内做出选择，否则游戏结束。
-Decide now![>]
-@addChoice "Turn left" goto:Left
-@addChoice "Turn right" goto:Right
+快做决定！[>]
+@addChoice "左转" goto:Left
+@addChoice "右转" goto:Right
 @wait 3
 @clearChoice
-You crashed!
+你撞车了！
 
 ; 添加一个随机选项，然后停止播放，直到玩家选择它。
 @random
-    @addChoice "Top choice"
-        You've selected the top choice!
-    @addChoice "Mediocre choice"
-        You've selected a mediocre choice.
-    @addChoice "The worst choice"
-        You've selected the worst possible choice...
+    @addChoice "最佳选项"
+        你选择了最佳选项！
+    @addChoice "平庸的选项"
+        你选择了平庸的选项。
+    @addChoice "最差的选项"
+        你选择了最差的选项...
 @stop
 ```
 
@@ -169,7 +169,7 @@ Lorem ipsum
     @back RainyScene
     @bgm RainAmbient
     @camera zoom:0.5 time:3
-    It starts raining...[>]
+    开始下雨了...[>]
 ; 下面的行将在上述所有操作完成后执行。
 ...
 
@@ -455,35 +455,35 @@ Actor 应实现 `IBlurable` 接口以支持该效果。
 ```nani
 ; 打印文本，然后立即显示选项并停止播放，
 ; 直到其中一个选项被选中。
-Continue executing this script or ...?[>]
-@choice "Continue"
-@choice "Load another script from start" goto:Another
-@choice "Load another script from \"Label\" label" goto:Another#Label
-@choice "Go to \"Sub\" subroutine in another script" gosub:Another#Sub
+继续执行此脚本还是...？[>]
+@choice "继续"
+@choice "从头开始加载另一个脚本" goto:Another
+@choice "从 \"Label\" 标签加载另一个脚本" goto:Another#Label
+@choice "转到另一个脚本中的 \"Sub\" 子程序" gosub:Another#Sub
 
 ; 根据所选选项设置剧本变量。
-@choice "I'm humble, one is enough..." set:score++
-@choice "Two, please." set:score=score+2
-@choice "I'll take the entire stock!" set:karma--,score=999
+@choice "我很谦虚，一个就够了..." set:score++
+@choice "请给我两个。" set:score=score+2
+@choice "我全都要！" set:karma--,score=999
 
 ; 选中该选项时播放音效并排列角色。
-@choice "Arrange"
+@choice "排列"
     @sfx Click
     @arrange k.10,y.55
 
 ; 打印与所选选项对应的文本行。
-@choice "Ask about color"
-    What's your favorite color?
-@choice "Ask about age"
-    How old are you?
-@choice "Keep silent"
+@choice "询问颜色"
+    你最喜欢的颜色是什么？
+@choice "询问年龄"
+    你多大了？
+@choice "保持沉默"
     ...
 
 ; 当 'score' 变量低于 10 时，禁用/锁定该选项。
-@choice "Extra option" lock:score<10
+@choice "额外选项" lock:score<10
 
 ; 仅当 'score' 变量大于或等于 10 时显示该选项。
-@choice "Secret option" if:score>=10
+@choice "秘密选项" if:score>=10
 ```
 
 ## choiceHandler
@@ -546,16 +546,16 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 ```nani
 ; 给玩家 2 秒钟的时间选择一个选项。
-You have 2 seconds to respond![>]
-@addChoice "Cats" set:response="Cats"
-@addChoice "Dogs" set:response="Dogs"
+你有 2 秒钟的时间回答！[>]
+@addChoice "猫" set:response="猫"
+@addChoice "狗" set:response="狗"
 @set response="None"
 @wait 2
 @clearChoice
 @unless response="None"
-    {response}, huh?
+    {response}，是吗？
 @else
-    Time's out!
+    时间到了！
 ```
 
 ## despawn
@@ -702,7 +702,7 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 @back Victory
 @sfx Fireworks
 @bgm Fanfares
-You are victorious!
+你胜利了！
 @return
 
 ; 子程序内部有分支的另一个示例。
@@ -715,8 +715,8 @@ You are victorious!
 @gosub #Room
 @stop
 # Room
-@print "It's too early, I should visit after sunset." if:time<21&time>6
-@print "I can sense an ominous presence!" if:time>21|time<6
+@print "现在还太早，我应该日落后再来。" if:time<21&time>6
+@print "我能感觉到一股不祥的气息！" if:time>21|time<6
 @return
 ```
 
@@ -730,7 +730,7 @@ You are victorious!
 | --- | --- | --- |
 | <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID 必需参数：应始终指定该参数">path</span> | string | 要导航到的路径，格式如下：`ScriptPath#Label`。省略标签时，将从头开始播放指定的脚本。省略脚本路径时，将尝试在当前播放的脚本中查找标签。 |
 | reset | string list | 指定时，将控制在加载脚本之前是否重置引擎服务状态（如果路径指向另一个脚本）：<br/> - 指定 `*` 以重置所有服务，但带有 `Goto.DontReset` 特性的服务除外。<br/> - 指定要从重置中排除的服务类型名称（以逗号分隔）；所有其他服务都将重置，包括带有 `Goto.DontReset` 特性的服务。<br/> - 指定 `-` 强制不重置（即使在配置中默认启用了重置）。<br/><br/>请注意，虽然某些服务应用了 `Goto.DontReset` 特性并且默认不重置，但在从重置中排除特定服务时仍应指定它们。 |
-| hold | boolean | 是否保持目标脚本中的资源，使其与指定此命令的脚本一起预加载。在 `Conservative` 资源策略之外无效。有关更多信息，请参阅 [内存管理](/zh/guide/memory-management) 指南。 |
+| hold | boolean | 是否持有目标脚本中的资源，使其与指定此命令的脚本一起预加载。在 `Conservative` 资源策略之外无效。有关更多信息，请参阅 [内存管理](/zh/guide/memory-management) 指南。 |
 | release | boolean | 是否在导航到目标脚本之前释放资源以释放内存。在 `Optimistic` 资源策略之外无效。有关更多信息，请参阅 [内存管理](/zh/guide/memory-management) 指南。 |
 
 </div>
@@ -760,10 +760,10 @@ You are victorious!
 @random
     @group
         @back tint:red
-        Paint it red.
+        涂成红色。
     @group
         @back tint:black
-        Paint it black.
+        涂成黑色。
 ```
 
 ## hide
@@ -903,26 +903,26 @@ You are victorious!
 
 ```nani
 ; 根据 "score" 变量打印文本行：
-;   "You've failed. Try again!" - 当 score 为 6 或更低时。
-;   "You've passed the test." 和 "Brilliant!" - 当 score 高于 8 时。
-;   "You've passed the test." 和 "Impressive!" - 当 score 高于 7 时。
-;   "You've passed the test." 和 "Good job!" - 其他情况。
+;   "你失败了。再试一次！" - 当 score 为 6 或更低时。
+;   "你通过了测试。" 和 "太棒了！" - 当 score 高于 8 时。
+;   "你通过了测试。" 和 "令人印象深刻！" - 当 score 高于 7 时。
+;   "你通过了测试。" 和 "干得好！" - 其他情况。
 @if score > 6
-    You've passed the test.
+    你通过了测试。
     @if score > 8
-        Brilliant!
+        太棒了！
     @or score > 7
-        Impressive!
+        令人印象深刻！
     @else
-        Good job!
+        干得好！
 @else
-    You've failed. Try again!
+    你失败了。再试一次！
 
 ; 根据 "score" 变量打印文本行：
-;   "Test result: Failed." - 当 score 为 6 或更低时。
-;   "Test result: Perfect!" - 当 score 高于 8 时。
-;   "Test result: Passed." - 其他情况。
-Test result:[if score>8] Perfect![or score>6] Passed.[else] Failed.[endif]
+;   "测试结果：失败。" - 当 score 为 6 或更低时。
+;   "测试结果：完美！" - 当 score 高于 8 时。
+;   "测试结果：通过。" - 其他情况。
+测试结果：[if score>8]完美！[or score>6]通过。[else]失败。[endif]
 ```
 
 ## input
@@ -947,13 +947,13 @@ Test result:[if score>8] Perfect![or score>6] Passed.[else] Failed.[endif]
 
 ```nani
 ; 提示输入任意文本并将其赋给 'name' 剧本变量。
-@input name summary:"Choose your name."
+@input name summary:"请选择你的名字。"
 
 ; 然后可以在剧本脚本中注入已赋值的 'name' 变量。
-Archibald: Greetings, {name}!
+Archibald: 你好，{name}！
 
 ; ...或者在赋值表达式和条件表达式中使用它。
-@set score++ if:name="Felix"
+@set score++ if:name="菲利克斯"
 ```
 
 ## linkPrinter
@@ -1039,13 +1039,13 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 
 ## look
 
-激活/禁用摄像机观看模式，此时玩家可以使用输入设备（例如，通过移动鼠标或使用游戏手柄模拟摇杆）偏移主摄像机。观看 [此视频](https://youtu.be/rC6C9mA7Szw) 可快速了解该命令的效果。
+激活/禁用摄像机观看模式，在该模式下玩家可以使用输入设备（例如，通过移动鼠标或使用游戏手柄模拟摇杆）偏移主摄像机。观看 [此视频](https://youtu.be/rC6C9mA7Szw) 可快速了解该命令的效果。
 
 <div class="config-table">
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">enable</span> | boolean | 是否启用或禁用摄像机观看模式。默认值：true。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">enable</span> | boolean | 启用还是禁用摄像机观看模式。默认值：true。 |
 | zone | number list | 以摄像机初始位置为中心的边界框的尺寸（X、Y，以单位计），限制摄像机可以移动多远。默认值：5.0,3.0 |
 | speed | number list | 摄像机沿 X、Y 轴的移动速度（灵敏度）。默认值：1.5,1.0 |
 | gravity | boolean | 当观看输入不活动时（例如，鼠标未移动或模拟摇杆处于默认位置），是否自动将摄像机移动到初始位置。默认值：false。 |
@@ -1094,7 +1094,7 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 使用默认 Web 浏览器打开指定的 URL（网址）。
 
 ::: info NOTE
-在 WebGL 之外的平台或编辑器中，将使用 Unity 的 `Application.OpenURL` 方法来处理该命令；有关行为细节和限制，请参阅 [文档](https://docs.unity3d.com/ScriptReference/Application.OpenURL.html)。在 WebGL 下，将调用原生 `window.open()` JS 函数：https://developer.mozilla.org/en-US/docs/Web/API/Window/open。
+在 WebGL 之外的平台或编辑器中，将使用 Unity 的 `Application.OpenURL` 方法来处理该命令；有关行为细节和限制，请参阅 [文档](https://docs.unity3d.com/ScriptReference/Application.OpenURL.html)。在 WebGL 下，将调用原生 `window.open()` JS 函数：<https://developer.mozilla.org/en-US/docs/Web/API/Window/open>。
 :::
 
 <div class="config-table">
@@ -1157,18 +1157,18 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 @print "Lorem ipsum dolor sit amet."
 
 ; 要在文本本身中包含引号，请对其进行转义。
-@print "Shouting \"Stop the car!\" was a mistake."
+@print "大喊 \"停车！\" 是个错误。"
 
 ; 以正常速度的一半显示消息，
 ; 并且不等待用户输入就继续。
 @print "Lorem ipsum dolor sit amet." speed:0.5 !waitInput
 
-; 打印该行，将 "Together" 显示为作者名称，
+; 打印该行，将 "大家" 显示为作者名称，
 ; 并使所有可见角色成为打印文本的作者。
-@print "Hello World!" author:* as:"Together"
+@print "Hello World!" author:* as:"大家"
 
 ; 类似，但只让 "Kohaku" 和 "Yuko" 成为作者。
-@print "Hello World!" author:Kohaku,Yuko as:"Kohaku and Yuko"
+@print "Hello World!" author:Kohaku,Yuko as:"琥珀和优子"
 ```
 
 ## printer
@@ -1250,18 +1250,18 @@ Kohaku: 再次使用我链接的打印机。
 ```nani
 ; 防止玩家回滚以尝试选择另一个选项。
 
-Select a choice. You won't be able to roll back.
-@choice One goto:#One
-@choice Two goto:#Two
+请选择一个选项。之后将无法回滚。
+@choice 选项一 goto:#One
+@choice 选项二 goto:#Two
 
 # One
 @purgeRollback
-You've picked one.
+你选择了选项一。
 @stop
 
 # Two
 @purgeRollback
-You've picked two.
+你选择了选项二。
 @stop
 ```
 
@@ -1321,31 +1321,31 @@ You've picked two.
     @sfx Sound2
     @sfx Sound3
 
-; 以 80% 的概率播放第 2 种声音，或以各 10% 的概率播放第 1/3 种声音。
+; 以 80% 的概率播放第 2 种声音，或以各 10% 的概率播放第 1 或第 3 种声音。
 @random weight:0.1,0.8,0.1
     @sfx Sound1
     @sfx Sound2
     @sfx Sound3
 
 ; 添加一个震动摄像机的选项、为 Kohaku Actor 设置色调或播放 'SoundX' SFX，
-; 三者概率均为 33%。但是，仅当分数高于 10 时
+; 三者概率均为 33%。但是，仅当 score 高于 10 时
 ; 才会考虑播放 SFX。
 @random
-    @choice "Shake camera!"
-        You've asked for it!
+    @choice "震动摄像机！"
+        这可是你要求的！
         @shake Camera
     @group
-        Going to tint Kohaku!
+        要给琥珀着色了！
         @char Kohaku tint:red
     @sfx SoundX if:score>10
 ```
 
 ## remove
 
-移除（处置）具有指定 ID 的 Actor（角色、背景、文本打印机、选项处理程序）。如果找到多个具有相同 ID 的 Actor（例如，一个角色和一个打印机），将仅影响找到的第一个 Actor。
+移除（销毁）具有指定 ID 的 Actor（角色、背景、文本打印机、选项处理程序）。如果找到多个具有相同 ID 的 Actor（例如，一个角色和一个打印机），将仅影响找到的第一个 Actor。
 
 ::: info NOTE
-默认情况下，Naninovel 在卸载脚本资源时会自动移除未使用的 Actor；仅当资源提供者配置中的 `Remove Actors` 被禁用时，或者需要在特定时刻强制处置 Actor 时，才使用此命令。有关更多信息，请参阅 [内存管理](/zh/guide/memory-management#actor-资源) 指南。
+默认情况下，Naninovel 在卸载脚本资源时会自动移除未使用的 Actor；仅当资源提供者配置中的 `Remove Actors` 被禁用时，或者需要在特定时刻强制销毁 Actor 时，才使用此命令。有关更多信息，请参阅 [内存管理](/zh/guide/memory-management#actor-资源) 指南。
 :::
 
 <div class="config-table">
@@ -1357,7 +1357,7 @@ You've picked two.
 </div>
 
 ```nani
-; 淡出然后处置 Kohaku 和 Yuko Actor。
+; 淡出然后销毁 Kohaku 和 Yuko Actor。
 @hide Kohaku,Yuko wait!
 @remove Kohaku,Yuko
 
@@ -1412,11 +1412,11 @@ You've picked two.
 
 ```nani
 ; 打印然后清除默认打印机的内容。
-This line will disappear.
+这一行将会消失。
 @resetText
 
 ; 与上面相同，但使用 'Wide' 打印机。
-@print "This line will disappear." printer:Wide
+@print "这一行将会消失。" printer:Wide
 @resetText Wide
 ```
 
@@ -1461,11 +1461,11 @@ This line will disappear.
 @set rested?=false
 
 @if rested
-    Good morning! We have to go now.
+    早上好！我们得出发了。
     @goto NextDay
 
-@choice "No time to rest!" goto:NextDay
-@choice "Let's rest a bit"
+@choice "没时间休息了！" goto:NextDay
+@choice "休息一会儿吧"
     @set rested=true
     ; 注意 'at' 参数——当游戏加载时，
     ; 它将把玩家重定向到指定的标签。
@@ -1489,7 +1489,7 @@ This line will disappear.
 | to | string | 一个表达式，其结果将赋给所有未带赋值表达式（即没有 `= ...` 部分）的指定变量。适用于将同一个值赋给多个变量，例如：`@set foo, bar, baz to:10`。 |
 | scope | string | 指定后，会将没有显式作用域的变量归入指定的作用域。 |
 | init | boolean | 该变量是否只应在尚未赋值时才进行赋值（即初始化意图）。不应与 'meta' 或 'const' 标志一起使用，因为它们都具有初始化意图。 |
-| meta | boolean | 该变量是否应初始化为元变量。元变量位于游戏会话之“上”，也就是说，在开始新游戏时它们的值仍会保留。非常适合用于元游戏机制，例如追踪路线完成情况或成就。 |
+| meta | boolean | 该变量是否应初始化为元变量。元变量位于游戏会话之“上”，即在开始新游戏时它们的值仍会保留。非常适合用于元游戏机制，例如追踪路线完成情况或成就。 |
 | const | boolean | 该变量是否应初始化为常量。常量只能初始化一次，之后不允许再更改。 |
 
 </div>
@@ -1540,10 +1540,10 @@ This line will disappear.
 
 ; ...以及通用文本行。
 @set drink="Dr. Pepper"
-My favourite drink is {drink}!
+我最喜欢的饮料是 {drink}！
 
 ; 在文本表达式值内使用双引号时，请对其进行转义。
-@set remark="Shouting \"Stop the car!\" was a mistake."
+@set remark="大喊 \"停车！\" 是个错误。"
 
 ; 使用元变量在游戏会话之间保留该值。
 ; 即使重新启动游戏，该变量也会保持其值。
@@ -1566,7 +1566,7 @@ My favourite drink is {drink}!
 @set .count=0
 @while .count is below 10
     @set .count++
-    Current count: {.count}
+    当前计数：{.count}
 ```
 
 ## sfx
@@ -1617,7 +1617,7 @@ My favourite drink is {drink}!
 
 ## sfxFast
 
-播放具有指定名称的 [SFX（音效）](/zh/guide/audio#音效) 曲目。与 [@sfx] 命令不同，该剪辑以最小延迟播放，并且不随游戏状态序列化（即使保存时正在播放，加载游戏后也不会播放）。该命令可用于播放各种临时音频剪辑，例如与 UI 相关的声音（例如，通过 [`Play Script` 组件](/zh/guide/gui#unity-事件上的播放脚本) 在单击按钮时播放）。
+播放具有指定名称的 [SFX（音效）](/zh/guide/audio#音效) 曲目。与 [@sfx] 命令不同，该剪辑以最小延迟播放，并且不随游戏状态序列化（即使保存时正在播放，加载游戏后也不会播放）。该命令可用于播放各种临时音频剪辑，例如与 UI 相关的声音（例如，通过 [`Play Script` 组件](/zh/guide/gui#通过-unity-事件播放脚本) 在单击按钮时播放）。
 
 <div class="config-table">
 
@@ -1671,7 +1671,7 @@ My favourite drink is {drink}!
 
 ; 开始震动 'Kohaku' 角色，显示用于停止的选项并做出相应处理。
 @shake Kohaku loop!
-@choice "Stop shaking"
+@choice "停止震动"
     @shake Kohaku !loop
 ...
 
@@ -1885,7 +1885,7 @@ My favourite drink is {drink}!
 ; 上面的 stop 命令可防止脚本播放
 ; 继续进入下面的标签。
 # Label
-This line is only executed when navigated directly with a @gosub.
+只有通过 @gosub 直接导航时才会执行这一行。
 @return
 
 ; 循环执行 'Quake' 异步任务，直到被停止。
@@ -1991,7 +1991,7 @@ This line is only executed when navigated directly with a @gosub.
 
 ## sync
 
-将具有指定标识符的播放器轨道导航到当前行并处置宿主轨道。用于将异步执行的轨道相互连接（同步），或与主轨道连接。有关更多信息，请参阅 [并发播放](/zh/guide/scenario-scripting#并发播放) 指南。
+将具有指定标识符的播放器轨道导航到当前行并销毁宿主轨道。用于将异步执行的轨道相互连接（同步），或与主轨道连接。有关更多信息，请参阅 [并发播放](/zh/guide/scenario-scripting#并发播放) 指南。
 
 <div class="config-table">
 
@@ -2002,7 +2002,7 @@ This line is only executed when navigated directly with a @gosub.
 </div>
 
 ```nani
-You'll have 60 seconds to defuse the bomb!
+你有 60 秒的时间拆除炸弹！
 
 @async Boom
     @wait 60
@@ -2013,14 +2013,14 @@ You'll have 60 seconds to defuse the bomb!
     @goto BadEnd
 
 ; 模拟一系列拆弹谜题。
-The defuse puzzle 1.
-The defuse puzzle 2.
-The defuse puzzle 3.
+拆弹谜题 1。
+拆弹谜题 2。
+拆弹谜题 3。
 
 ; 'Boom' 异步任务已停止，因此主轨道
 ; 将继续执行而不中断。
 @stop Boom
-The bomb is defused!
+炸弹已拆除！
 ```
 
 ## timeline
@@ -2080,10 +2080,10 @@ The bomb is defused!
 @toast "Hello World!"
 
 ; 显示带有 'warning' 外观的 toast。
-@toast "You're in danger!" appearance:warning
+@toast "你有危险！" appearance:warning
 
 ; toast 将在 1 秒后消失。
-@toast "I'll disappear in 1 second." time:1
+@toast "我会在 1 秒后消失。" time:1
 ```
 
 ## trans
@@ -2111,7 +2111,7 @@ The bomb is defused!
 @char Felix
 @back SunnyDay
 @sun power:1
-Felix: What a nice day!
+Felix: 多好的天气啊！
 
 ; 过渡到带有 'Jenna' 角色和下雨氛围的新场景，
 ; 使用 'DropFade' 过渡效果，持续 3 秒。
@@ -2121,7 +2121,7 @@ Felix: What a nice day!
     @back RainyDay
     @sun power:0
     @rain power:1
-Jenna: When will the damn rain stop?
+Jenna: 这该死的雨什么时候才会停？
 ```
 
 ## unless
@@ -2141,17 +2141,17 @@ Jenna: When will the damn rain stop?
 </div>
 
 ```nani
-; 如果 "dead" 变量为 false，则打印 "You're still alive!"，
-; 否则打印 "You're done."。
+; 如果 "dead" 变量为 false，则打印 "你还活着！"，
+; 否则打印 "你完了。"。
 @unless dead
-    You're still alive!
+    你还活着！
 @else
-    You're done.
+    你完了。
 
 ; 根据 "score" 变量打印文本行：
-;   "Test result: Passed." - 当 score 为 10 或更高时。
-;   "Test result: Failed." - 当 score 低于 10 时。
-Test result:[unless score<10] Passed.[else] Failed.[endif]
+;   "测试结果：通过。" - 当 score 为 10 或更高时。
+;   "测试结果：失败。" - 当 score 低于 10 时。
+测试结果：[unless score<10]通过。[else]失败。[endif]
 ```
 
 ## unlinkPrinter
@@ -2275,7 +2275,7 @@ Lorem ipsum[-] dolor sit amet.
 ; 启动循环 SFX，打印消息并等待可跳过的 5 秒延迟，
 ; 然后停止 SFX。
 @sfx Noise loop!
-Jeez, what a disgusting Noise. Shut it down![wait i5][>]
+天哪，多么刺耳的噪音。快关掉它！[wait i5][>]
 @stopSfx Noise
 ```
 
@@ -2295,11 +2295,11 @@ Jeez, what a disgusting Noise. Shut it down![wait i5][>]
 ; 猜数字游戏。
 @set number=random(1,100),answer=0
 @while answer!=number
-    @input answer summary:"Guess a number between 1 and 100"
+    @input answer summary:"猜一个 1 到 100 之间的数字"
     @if answer<number
-        Wrong, too low.
+        错了，太小了。
     @else if:answer>number
-        Wrong, too high.
+        错了，太大了。
     @else
-        Correct!
+        正确！
 ```

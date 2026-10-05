@@ -86,11 +86,11 @@
 その後、スクリプトで変数の値を変更すると、表示名も変更されます。
 
 ```nani
-@set PlayerName="Mystery Man"
+@set PlayerName="謎の男"
 Player: ...
 
-@set PlayerName="Dr. Stein"
-Player: Dr. Steinと呼んでください。
+@set PlayerName="シュタイン博士"
+Player: シュタイン博士と呼んでください。
 ```
 
 名前バインディング機能を使用して、[@input] コマンドを使用してプレイヤーが表示名を選択できるようにすることも可能です。
@@ -134,15 +134,15 @@ Char1: 私の表示名は `name` シナリオ変数にバインドされまし�
 
 ```nani
 ; "Kohaku" キャラクターには構成で設定されたカスタム表示名があるかもしれませんが、
-; この行は名前として "Someone" を使用して表示します。
-Kohaku: Lorem ipsum.[< as:"Someone"]
+; この行は名前として "誰か" を使用して表示します。
+Kohaku: Lorem ipsum.[< as:"誰か"]
 
-; "All Together" を話者名としてこの行を表示し、
+; "全員" を話者名としてこの行を表示し、
 ; 表示されているすべてのキャラクターをそのテキストの話者にします。
-*: Lorem ipsum![< as:"All Together"]
+*: Lorem ipsum![< as:"全員"]
 
 ; 同様ですが、"Kohaku" と "Yuko" のみを話者にします。
-Kohaku,Yuko: Lorem ipsum?[< as:"Kohaku and Yuko"]
+Kohaku,Yuko: Lorem ipsum?[< as:"コハクとユウコ"]
 ```
 
 — `as` パラメーターはローカライズ可能であり、翻訳用にスクリプトローカライズドキュメントへ出力されます。さらに、[話者ハイライト](/ja/guide/characters#話者ハイライト) 機能は、話者IDで指定された `*` と `,` を認識し、すべての/選択されたキャラクターを話者としてハイライトします。

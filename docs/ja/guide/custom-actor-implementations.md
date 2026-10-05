@@ -18,7 +18,7 @@
 
 Implementationドロップダウンには、特定のアクターインターフェースを実装するすべての型が含まれています。独自のカスタム実装を追加することもでき、それらもリストに表示されます。独自のアクター実装を作成する際の参考として、`Naninovel/Runtime/Actor` スクリプトを参照してください。アクターをシーンにスポーンすることを想定している場合は、基本インターフェースの要件の大半を満たす組み込みの抽象実装 `MonoBehaviourActor` の使用を検討してください。
 
-カスタムアクター実装を作成するときは、互換性のあるパブリックコンストラクタがあることを確認してください。
+カスタムアクター実装を作成するときは、互換性のあるパブリックコンストラクターがあることを確認してください。
 
 ```csharp
 public ActorImplementationType (string id, ActorMetadata metadata) { }
@@ -154,7 +154,7 @@ public class MyCharacterData : CustomMetadata<CustomCharacterImplementation>
 // 最後の選択肢の時刻をシリアル化する拡張状態。
 public class MyChoiceHandlerState : ChoiceHandlerState
 {
-    // このフィールドはシリアル化可能であり、ゲームのセーブ／ロードをまたいで保持されます。
+    // このフィールドはシリアル化可能であり、ゲームのセーブ・ロードをまたいで保持されます。
     public string LastChoiceTime;
 
     // このメソッドはゲームをセーブするときに呼び出されます。

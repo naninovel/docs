@@ -9,7 +9,7 @@
 ```csharp
 public static class CustomBuildProcessor
 {
-	#if UNITY_CLOUD_BUILD
+    #if UNITY_CLOUD_BUILD
     public static void PreExport (BuildManifestObject manifest)
     {
         var options = new UnityEditor.BuildPlayerOptions();
@@ -27,7 +27,7 @@ public static class CustomBuildProcessor
 
         Naninovel.BuildProcessor.PreprocessBuild(options);
     }
-	#endif
+    #endif
 
     public static void PostExport(string exportPath)
     {

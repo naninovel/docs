@@ -62,7 +62,7 @@ export const ja: DefaultTheme.SidebarItem[] = [
         text: "基本",
         collapsed: true,
         items: [
-            { text: "紹介", link: "/ja/guide/" },
+            { text: "はじめに", link: "/ja/guide/" },
             { text: "互換性", link: "/ja/guide/compatibility" },
             { text: "スタートガイド", link: "/ja/guide/getting-started" },
             { text: "シナリオスクリプト", link: "/ja/guide/scenario-scripting" },

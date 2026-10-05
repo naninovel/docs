@@ -41,8 +41,8 @@
 如果同一作者有相同的文本消息（在同一脚本中），这两条消息将关联到同一个语音剪辑。如果不需要这样，请向其中一条消息添加唯一的文本标识符，例如：
 
 ```nani
-Hello.
-Hello.|#uniqueid|
+你好。
+你好。|#uniqueid|
 ```
 
 ::: tip
@@ -113,7 +113,7 @@ Hello.|#uniqueid|
 
 实用程序会针对项目中找到的所选语言环境的每个脚本调用 `GenerateVoiceoverDocument` 方法。`list` 参数是脚本中包含的命令列表。`locale` 表示实用程序中选择的语言环境（语言）。`outDir` 是实用程序中选择的输出路径。
 
-下面是一个自定义配音生成器的示例，它会先附加一个包含脚本路径和语言环境的标题，然后为脚本中找到的每个打印文本命令附加一行 `auto-voice id > author > text`。
+下面是一个自定义配音生成器的示例，它会先附加一个包含脚本路径和语言环境的标题，然后为脚本中找到的每个打印命令附加一行 `auto-voice id > author > text`。
 
 ```csharp
 public class VoiceoverGenerator : IVoiceoverDocumentGenerator

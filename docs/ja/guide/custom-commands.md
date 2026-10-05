@@ -63,9 +63,10 @@ public override async Awaitable Execute (ExecutionContext ctx)
 実行コンテキストのもう1つのメンバーは、コマンドを実行しているスクリプトトラックインスタンスであり、`ctx.Track` を介してアクセスできます。再生を制御する必要がある場合、またはトラックを必要とする他のエンジンAPIを呼び出す場合は常に、トラックインスタンスを使用してください。たとえば、次のように再生を停止します。
 
 ```csharp
-public override async Awaitable Execute (ExecutionContext ctx)
+public override Awaitable Execute (ExecutionContext ctx)
 {
     ctx.Track.Stop();
+    return Async.Completed;
 }
 ```
 

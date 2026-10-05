@@ -42,7 +42,7 @@
 
 要支持其他场景对象或更改命令的生成方式，请添加一个具有无参数构造函数并实现 `ISceneRecorder` 的 C# 类。将其放在仅限编辑器的程序集中，例如 `Assets/Editor` 目录下。Naninovel 会自动使用您的自定义实现替代默认实现。
 
-在自定义实现中，您可以继承默认的 `SceneRecorder` 类并修改其输出。下面的示例使用自定义命令记录灯光强度的更改：
+在自定义实现中，您可以继承默认的 `SceneRecorder` 类并修改其输出。下面的示例使用自定义命令录制灯光强度的更改：
 
 ```cs
 public class CustomRecorder : SceneRecorder
@@ -60,7 +60,7 @@ public class CustomRecorder : SceneRecorder
         foreach (var change in changes)
             // 查找目标对象和属性
             if (change is { Target: Light light, Property: "m_Intensity" })
-                // 将更改记录到剧本脚本中
+                // 将更改录制到剧本脚本中
                 lines.Add($"@light power:{light.intensity}");
     }
 }

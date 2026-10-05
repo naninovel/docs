@@ -144,7 +144,7 @@
 
 社区模组允许玩家通过添加自己的剧本和资源来修改构建，同时仍然可以访问游戏的内置资源。
 
-要激活该功能，请在脚本配置 UI（`Naninovel -> Configuration -> Scripts`）中启用 `Enable Community Modding` 属性，并为您希望开放给模组使用的任何资源设置 [本地](/zh/guide/resource-providers#local) 提供者。请确保本地提供者的根路径设置为默认值（`%DATA%/Resources`），以便它在构建目录下查找资源。
+要激活该功能，请在脚本配置 UI（`Naninovel -> Configuration -> Scripts`）中启用 `Enable Community Modding` 属性，并为您希望公开给模组使用的任何资源设置 [本地](/zh/guide/resource-providers#local) 提供者。请确保本地提供者的根路径设置为默认值（`%DATA%/Resources`），以便它在构建目录下查找资源。
 
 ![](https://i.gyazo.com/e32f40aa3faa648774908a0a937c5fcb.png)
 

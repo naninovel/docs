@@ -32,7 +32,7 @@ The "Medium" and "High" [managed bytecode stripping](https://docs.unity3d.com/Ma
 
 ## Exceptions
 
-At least the "Explicitly Thrown Exceptions Only" level is required for the `Enable Exceptions` option in "Publishing Settings" (selected by default); the "None" level is not supported. This setting applies only to [WebGL builds](https://docs.unity3d.com/Manual/webgl-building).
+At least the "Explicitly Thrown Exceptions Only" level (selected by default) is required for the `Enable Exceptions` option in "Publishing Settings"; the "None" level is not supported. This setting applies only to [WebGL builds](https://docs.unity3d.com/Manual/webgl-building).
 
 ## Story Editor
 

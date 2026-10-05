@@ -323,9 +323,9 @@ The lists are initially empty. To populate them with commands and queries availa
 
 ![](https://i.gyazo.com/cddd1981c5aef5f16da2052898c7a530.png)
 
-After making the required changes, restart the Unity Editor and re-import scenario script assets for changes to take effect.
+After making the required changes, restart the Unity Editor and reimport scenario script assets for changes to take effect.
 
-Localized artifacts will propagate to the Story Editor and [IDE extension](/guide/ide-extension), providing autocomplete and on-hover documentation after metadata sync.
+Localized artifacts will propagate to the Story Editor and [IDE extension](/guide/ide-extension), providing auto-completion and on-hover documentation after metadata sync.
 
 ![](https://i.gyazo.com/fde9998597ffedb8a025401bb2f71ce9.png)
 

@@ -17,7 +17,7 @@
 您可以更新效果参数而无需重新启动效果：
 
 ```nani
-; 开始循环缓慢震动 `Kohaku` Actor
+; 开始循环缓慢震动 'Kohaku' Actor
 @shake Kohaku loop! power:0.1
 Kohaku: 隆隆作响！
 ; 以更大的幅度再震动 3 次

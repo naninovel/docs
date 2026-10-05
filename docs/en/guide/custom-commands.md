@@ -29,7 +29,7 @@ public class HelloWorld : Command
 ```
 
 ::: info NOTE
-Whenever you change C# command implementations — such as renaming the class, adding or removing parameters, changing their types or attributes — remember to re-import the scenario script assets (right-click the folder where the scripts are stored and click "Reimport"). This is necessary because scenario scripts are parsed and compiled on import (not at runtime) and must be kept in sync with the C# implementations.
+Whenever you change C# command implementations — such as renaming the class, adding or removing parameters, changing their types or attributes — remember to reimport the scenario script assets (right-click the folder where the scripts are stored and click "Reimport"). This is necessary because scenario scripts are parsed and compiled on import (not at runtime) and must be kept in sync with the C# implementations.
 :::
 
 ### Execute Method
@@ -63,9 +63,10 @@ public override async Awaitable Execute (ExecutionContext ctx)
 Another member of the execution context is the script track instance executing the command, accessible via `ctx.Track`. Use the track instance whenever you need to control playback or when calling other engine APIs that require a track. For example, stop playback like this:
 
 ```csharp
-public override async Awaitable Execute (ExecutionContext ctx)
+public override Awaitable Execute (ExecutionContext ctx)
 {
     ctx.Track.Stop();
+    return Async.Completed;
 }
 ```
 

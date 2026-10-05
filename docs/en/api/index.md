@@ -98,7 +98,7 @@ Arranges the specified characters by X-axis. When no parameters are specified, w
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">characterPositions</span> | named number list | A collection of character ID to scene X-axis position (relative to the left scene border, in percents) named values. Position 0 relates to the left border and 100 to the right border of the scene; 50 is the center. |
 | look | boolean | When performing auto-arrange, controls whether to also make the characters look at the scene origin (enabled by default). |
 | time | number | Duration of the animation initiated by the command, in seconds. |
-| wait | boolean | Whether to wait for the command to finish before starting executing the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
+| wait | boolean | Whether to wait for the command to finish before starting to execute the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -212,7 +212,7 @@ Backgrounds are handled a bit differently from characters to better accommodate 
 | easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
 | time | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), the currently running animation will instantly complete before starting animating to the new target. |
-| wait | boolean | Whether to wait for the command to finish before starting executing the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
+| wait | boolean | Whether to wait for the command to finish before starting to execute the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -233,7 +233,7 @@ Backgrounds are handled a bit differently from characters to better accommodate 
 
 ## bgm
 
-Plays or modifies currently played [BGM (background music)](/guide/audio#background-music) track with the specified name.
+Plays or modifies a currently played [BGM (background music)](/guide/audio#background-music) track with the specified name.
 
 ::: info NOTE
 Music tracks are looped by default. When music track name (`path`) is not specified, will affect all the currently played tracks. When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start), but the specified parameters (volume and whether the track is looped) will be applied.
@@ -307,7 +307,7 @@ The actor should have the `IBlurable` interface implemented in order to support 
 
 ## bokeh
 
-Simulates [depth of field](/guide/special-effects#bokeh) (aka Bokeh) effect, when only the object in focus stays sharp, while others are blurred.
+Simulates a [depth of field](/guide/special-effects#bokeh) (aka bokeh) effect, where only the object in focus stays sharp, while others are blurred.
 
 <div class="config-table">
 
@@ -348,7 +348,7 @@ Modifies the main camera, changing offset, zoom level, rotation and camera effec
 | easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
 | time | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), the currently running animation will instantly complete before starting animating to the new target. |
-| wait | boolean | Whether to wait for the command to finish before starting executing the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
+| wait | boolean | Whether to wait for the command to finish before starting to execute the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -402,7 +402,7 @@ Modifies a [character actor](/guide/characters).
 | easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
 | time | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), the currently running animation will instantly complete before starting animating to the new target. |
-| wait | boolean | Whether to wait for the command to finish before starting executing the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
+| wait | boolean | Whether to wait for the command to finish before starting to execute the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -413,8 +413,8 @@ Modifies a [character actor](/guide/characters).
 ; Same as above, but sets appearance to 'Happy'.
 @char Sora.Happy
 
-; Same as above, but additionally positions the character 45% away 
-; from the left border of the scene and 10% away from the bottom border; 
+; Same as above, but additionally positions the character 45% away
+; from the left border of the scene and 10% away from the bottom border;
 ; also makes it look to the left.
 @char Sora.Happy look:left pos:45,10
 
@@ -511,7 +511,7 @@ Modifies a [choice handler actor](/guide/choices).
 | easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
 | time | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), the currently running animation will instantly complete before starting animating to the new target. |
-| wait | boolean | Whether to wait for the command to finish before starting executing the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
+| wait | boolean | Whether to wait for the command to finish before starting to execute the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -777,7 +777,7 @@ Hides actors (character, background, text printer, choice handler) with the spec
 | <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">actorIds</span> | string list | IDs of the actors to hide. |
 | time | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), the currently running animation will instantly complete before starting animating to the new target. |
-| wait | boolean | Whether to wait for the command to finish before starting executing the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
+| wait | boolean | Whether to wait for the command to finish before starting to execute the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -799,7 +799,7 @@ Hides all the actors (characters, backgrounds, text printers, choice handlers) o
 | --- | --- | --- |
 | time | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), the currently running animation will instantly complete before starting animating to the new target. |
-| wait | boolean | Whether to wait for the command to finish before starting executing the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
+| wait | boolean | Whether to wait for the command to finish before starting to execute the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -818,7 +818,7 @@ Hides all the visible characters on the scene.
 | --- | --- | --- |
 | time | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), the currently running animation will instantly complete before starting animating to the new target. |
-| wait | boolean | Whether to wait for the command to finish before starting executing the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
+| wait | boolean | Whether to wait for the command to finish before starting to execute the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -837,7 +837,7 @@ Hides a text printer.
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">printerId</span> | string | ID of the printer actor to use. Will use a default one when not specified. |
 | time | number | Duration of the animation initiated by the command, in seconds. |
-| wait | boolean | Whether to wait for the command to finish before starting executing the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
+| wait | boolean | Whether to wait for the command to finish before starting to execute the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -854,7 +854,7 @@ Hides a text printer.
 Makes [UI elements](/guide/gui#ui-customization) with the specified names invisible. When no names are specified, will stop rendering (hide) the entire UI (including all the built-in UIs).
 
 ::: info NOTE
-When hiding the entire UI with this command and the `allowToggle` parameter is false (default), the user won't be able to re-show the UI back with hotkeys or by clicking anywhere on the screen; use the [@showUI] command to make the UI visible again.
+When hiding the entire UI with this command and the `allowToggle` parameter is false (default), the user won't be able to re-show the UI with hotkeys or by clicking anywhere on the screen; use the [@showUI] command to make the UI visible again.
 :::
 
 <div class="config-table">
@@ -1039,7 +1039,7 @@ The unlocked state of the items is stored in the [global scope](/guide/state-man
 
 ## look
 
-Activates/disables camera look mode, when the player can offset the main camera with input devices (eg, by moving a mouse or using a gamepad analog stick). Check [this video](https://youtu.be/rC6C9mA7Szw) for a quick demonstration of the command.
+Activates/disables camera look mode, where the player can offset the main camera with input devices (eg, by moving a mouse or using a gamepad analog stick). Check [this video](https://youtu.be/rC6C9mA7Szw) for a quick demonstration of the command.
 
 <div class="config-table">
 
@@ -1199,7 +1199,7 @@ Modifies a [text printer actor](/guide/text-printers) and links the printer to a
 | easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
 | time | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), the currently running animation will instantly complete before starting animating to the new target. |
-| wait | boolean | Whether to wait for the command to finish before starting executing the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
+| wait | boolean | Whether to wait for the command to finish before starting to execute the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -1284,7 +1284,7 @@ Spawns a particle system simulating [rain](/guide/special-effects#rain).
 | --- | --- | --- |
 | power | number | The intensity of the rain (particles spawn rate per second), in 0.0 to 1.0 range; defaults to 0.5. Set to 0 to disable (de-spawn) the effect. |
 | time | number | The particle system will gradually grow the spawn rate to the target level over the specified time, in seconds. |
-| xSpeed | number | Multiplier to the horizontal speed of the particles. Use to change the angle of the rain drops. |
+| xSpeed | number | Multiplier to the horizontal speed of the particles. Use to change the angle of the raindrops. |
 | ySpeed | number | Multiplier to the vertical speed of the particles. |
 | pos | number list | Position (relative to the scene borders, in percents) to set for the spawned effect game object. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
 | wpos | number list | Position (in world space) to set for the spawned effect game object. |
@@ -1371,7 +1371,7 @@ By default, Naninovel automatically removes unused actors when unloading script 
 Resets the state of the [engine services](/guide/engine-services) and unloads (disposes) all the resources loaded by Naninovel (textures, audio, video, etc); will basically revert to an empty initial engine state.
 
 ::: info NOTE
-Be aware that this command cannot be undone (rewound back).
+Be aware that this command cannot be undone (rewound).
 :::
 
 <div class="config-table">
@@ -1379,7 +1379,7 @@ Be aware that this command cannot be undone (rewound back).
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">exclude</span> | string list | Names of the [engine services](/guide/engine-services) (interfaces) to exclude from reset. Consider adding `IVariableManager` to preserve the local variables. |
-| only | string list | Names of the [engine services](/guide/engine-services) (interfaces) to reset; other services won't be affected. Doesn't have effect when the primary (exclude) parameter is assigned. |
+| only | string list | Names of the [engine services](/guide/engine-services) (interfaces) to reset; other services won't be affected. Has no effect when the primary (exclude) parameter is assigned. |
 
 </div>
 
@@ -1510,7 +1510,7 @@ If a variable with the specified ID doesn't exist, it will be automatically crea
 ; Assuming 'angle' is a number, assign its cosine to 'foo' variable.
 @set foo=cos(angle)
 
-; Get random number between -100 and 100, then raise to power of 4 
+; Get random number between -100 and 100, then raise to power of 4
 ; and assign to 'foo' variable.
 @set foo = pow(random(-100, 100), 4)
 
@@ -1520,12 +1520,12 @@ If a variable with the specified ID doesn't exist, it will be automatically crea
 ; Assuming 'foo' is a number, subtract 1 from its value (decrement).
 @set foo--
 
-; Assign 'foo' variable value of the 'bar' variable, 
+; Assign 'foo' variable value of the 'bar' variable,
 ; which is 'Hello World!' string.
 @set bar="Hello World!"
 @set foo=bar
 
-; Defining multiple set expressions in one line; 
+; Defining multiple set expressions in one line;
 ; the result will be the same as above.
 @set bar="Hello World!", foo=bar
 
@@ -1540,7 +1540,7 @@ If a variable with the specified ID doesn't exist, it will be automatically crea
 
 ; ...and generic text lines.
 @set drink="Dr. Pepper"
-My favourite drink is {drink}!
+My favorite drink is {drink}!
 
 ; When using double quotes inside text expression value, escape them.
 @set remark="Shouting \"Stop the car!\" was a mistake."
@@ -1571,7 +1571,7 @@ My favourite drink is {drink}!
 
 ## sfx
 
-Plays or modifies currently played [SFX (sound effect)](/guide/audio#sound-effects) track with the specified name.
+Plays or modifies a currently played [SFX (sound effect)](/guide/audio#sound-effects) track with the specified name.
 
 ::: info NOTE
 Sound effect tracks are not looped by default. When SFX track name (`path`) is not specified, will affect all the currently played tracks. When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start), but the specified parameters (volume and whether the track is looped) will be applied.
@@ -1607,10 +1607,10 @@ Sound effect tracks are not looped by default. When SFX track name (`path`) is n
 ; and disables looping for all of them.
 @sfx volume:0.75 !loop fade:2.5
 
-; Plays 'Explosion' slightly above and behind the listener in world-space.
+; Plays 'Explosion' slightly above and behind the listener in world space.
 @sfx Explosion wpos:0,1,-3
 
-; Animates 'Rain' position from left to right over 10 seconds in scene-space.
+; Animates 'Rain' position from left to right over 10 seconds in scene space.
 @sfx Rain pos:0,50 loop!
 @sfx Rain pos:100,50 fade:10
 ```
@@ -1690,7 +1690,7 @@ Shows (makes visible) actors (character, background, text printer, choice handle
 | <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">actorIds</span> | string list | IDs of the actors to show. |
 | time | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), the currently running animation will instantly complete before starting animating to the new target. |
-| wait | boolean | Whether to wait for the command to finish before starting executing the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
+| wait | boolean | Whether to wait for the command to finish before starting to execute the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -1712,7 +1712,7 @@ Shows a text printer.
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">printerId</span> | string | ID of the printer actor to use. Will use a default one when not specified. |
 | time | number | Duration of the animation initiated by the command, in seconds. |
-| wait | boolean | Whether to wait for the command to finish before starting executing the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
+| wait | boolean | Whether to wait for the command to finish before starting to execute the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -1789,7 +1789,7 @@ Be aware that this command searches for an existing actor with the specified ID 
 | easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
 | time | number | Duration of the animation initiated by the command, in seconds. |
 | lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), the currently running animation will instantly complete before starting animating to the new target. |
-| wait | boolean | Whether to wait for the command to finish before starting executing the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
+| wait | boolean | Whether to wait for the command to finish before starting to execute the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
 
 </div>
 

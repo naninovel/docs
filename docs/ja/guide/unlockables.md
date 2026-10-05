@@ -99,35 +99,35 @@ CGアイテムをアンロックおよびロックするには、それぞれ [@
 
 ```
 # Tip1ID
-Tip 1 Title | Tip 1 Category | Tip 1 Description
+ヒント1のタイトル | ヒント1のカテゴリ | ヒント1の説明
 # Tip2ID
-Tip 2 Title || Tip 2 Description
+ヒント2のタイトル || ヒント2の説明
 # Tip3ID
-Tip 3 Title
+ヒント3のタイトル
 # Tip4ID
-Tip 4 Title | Tip 4 Category |
+ヒント4のタイトル | ヒント4のカテゴリ |
 ```
 
 ヒントの値が長すぎる場合は、読みやすくするために複数行に分割できます。
 
 ```
 # Tip1
-Title | Category |
-Long description line 1.<br>
-Long description line 2.<br>
+タイトル | カテゴリ |
+長い説明の1行目。<br>
+長い説明の2行目。<br>
 
 # Tip2
-Title | Category |
-Long description line 1.<br>
+タイトル | カテゴリ |
+長い説明の1行目。<br>
 ...
 ```
 
 インライン形式を好む場合は、管理テキスト構成の `Multiline Documents` リストから `Tips` を削除します。これにより、ヒントを他の管理テキストドキュメントと同様に記述できるようになります。
 
 ```
-Tip1ID: Title
-Tip2ID: Title | Category | Description
-Tip3ID: Title || Description
+Tip1ID: タイトル
+Tip2ID: タイトル | カテゴリ | 説明
+Tip3ID: タイトル || 説明
 ```
 
 `<br>` タグの他に、選択したテキストレンダリングシステム（組み込みヒントUIではTMProが使用されます）でサポートされている他のリッチテキストタグを使用できます。

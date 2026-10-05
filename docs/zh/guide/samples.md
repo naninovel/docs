@@ -4,7 +4,7 @@
 
 ## 访问示例
 
-从 [下载存档](https://account.naninovel.com/download) 下载高级示例项目。
+从 [下载归档](https://account.naninovel.com/download) 下载高级示例项目。
 
 解压下载的目录并在 Unity 编辑器中将其打开。项目加载后，打开 `Assets/Scenes/Main.unity` 场景并进入播放模式。您将看到我们 [演示项目](https://naninovel.com/demo) 的标题屏幕。您可以开始演示，或单击“SAMPLES”按钮浏览可用的示例，下文将逐一介绍这些示例。
 
@@ -99,23 +99,23 @@ Inventory UI 组件具有 `Capacity` 属性，您可以通过它更改库存中�
 ```nani
 # Start
 
-Select an action.[>]
+请选择一个行动。[>]
 
-@choice "Pick up sword" lock:itemExist("Sword")
+@choice "拾起剑" lock:itemExist("Sword")
     @addItem Sword
-@choice "Pick up armor" lock:itemExist("Armor")
+@choice "拾起盔甲" lock:itemExist("Armor")
     @addItem Armor
-@choice "Adventure awaits, venture forth!"
+@choice "冒险在等待，出发吧！"
 
 # Adventure
 
 @if itemExist("Sword")
 	@set monstersSlayed={ itemExist("Armor") ? random(3,5) : 2 }
 	@addItem Food amount:{monstersSlayed}
-	You've encountered and slayed {monstersSlayed} monsters with your sword.
+	你遇到了 {monstersSlayed} 只怪物，并用剑将它们全部斩杀。
 	@goto #Start
 @else
-	But you don't have a weapon! You've been beaten by the monsters.
+	但是你没有武器！你被怪物打败了。
 	@goto #Start
 ```
 
@@ -127,9 +127,9 @@ Select an action.[>]
 
 ## 本地化
 
- - 生成的本地化文档存储在 `Content/Localization` 目录中。
- - 生成的表格存储在示例项目根目录下的 `Sheets` 目录中。
- - 特定于本地化的字体存储在 `Content/Fonts` 中。
+- 生成的本地化文档存储在 `Content/Localization` 目录中。
+- 生成的表格存储在示例项目根目录下的 `Sheets` 目录中。
+- 特定于本地化的字体存储在 `Content/Fonts` 中。
 
 为本地化工具选择的文件夹：
 
@@ -160,7 +160,7 @@ Select an action.[>]
 
 ![](https://i.gyazo.com/f421eaf666c9d84b04d23a72d1259f47.png)
 
-按钮的单击和悬停事件由 Naninovel 的 [Play Script](/zh/guide/gui#unity-事件上的播放脚本) 组件处理。
+按钮的单击和悬停事件由 Naninovel 的 [Play Script](/zh/guide/gui#通过-unity-事件播放脚本) 组件处理。
 
 ![](https://i.gyazo.com/a64ee9beee378c687d0d8093334f4ef7.png)
 
@@ -189,7 +189,7 @@ RTL 打印机存储在 `Content/Printers/RTL`。
 组件 API 通过 `Scripts/Runtime/Shader/SetHour.cs` 自定义命令公开给剧本脚本，从而可以使用 `@hour` 命令设置小时，例如：
 
 ```nani
-; 在 3 秒内将当前时间设置为 18:00 (6:00 PM)。
+; 在 3 秒内将当前时间设置为 18:00（6:00 PM）。
 @hour 18 time:3
 ```
 

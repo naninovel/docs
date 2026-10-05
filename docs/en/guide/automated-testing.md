@@ -39,7 +39,7 @@ public IEnumerator CanStartGame () => new E2E()
 After compiling, go to the Test Runner tab and find the newly added test. When run, it will wait until `ITitleUI` is shown, then attempt to find and click the button attached to the `NewGameButton` object and ensure the script started playing. If any of the steps fail, the test stops and the associated record is marked with a red cross in the Test Runner.
 
 ::: warning
-Disable "Initialize On Application Load" in the engine configuration before running the tests. To retain auto initialization during normal usage, use the `Runtime Initializer` component applied to a game object in the main scene; find more info about engine initialization [in the guide](/guide/integration-options#manual-initialization).
+Disable `Initialize On Application Load` in the engine configuration before running the tests. To retain auto initialization during normal usage, use the `Runtime Initializer` component applied to a game object in the main scene; find more info about engine initialization [in the guide](/guide/integration-options#manual-initialization).
 :::
 
 ## Shortcuts
@@ -55,7 +55,7 @@ public IEnumerator CanStartGame () => new E2E().StartNew().Ensure(Playing);
 
 While end-to-end tests should be as close to real usage scenarios as possible, you'll still have to tweak various parameters to make testing practical. For example, you probably wouldn't want to specify click sequences each time the player is expected to click to continue reading; similarly, various effects such as UI fading or camera animations take time during playback, and waiting for them in tests is unnecessary.
 
-To configure the engine specifically when running tests, use various `With` methods available on the `E2E` instance. For example, the snippet below overrides timescale and reveal delay to make effects run very fast and activates continue input each time it's requested:
+To configure the engine specifically when running tests, use various `With` methods available on the `E2E` instance. For example, the snippet below overrides the time scale and reveal delay to make effects run very fast and activates continue input each time it's requested:
 
 ```csharp
 [UnityTest]

@@ -93,7 +93,7 @@ Managed text localization follows a similar workflow to scenario scripts:
 2. Run the localization utility in a locale folder (`Resources/Naninovel/Localization/{Locale}`, where `{Locale}` is the target locale tag).
 3. Localization documents for the source managed text documents will appear in the corresponding locale folder. Use them to add or edit translations.
 
-To update the managed text documents and their corresponding localization counterparts, first run the generate managed text utility in the `Resources/Naninovel/Text` folder, and then the localization utility in `Resources/Naninovel/Localization/{Locale}`. Both utilities will attempt to preserve any existing modifications (managed text records and their translations) by default, so you won't have to rewrite everything on each update.
+To update the managed text documents and their corresponding localization counterparts, first run the managed text generation utility in the `Resources/Naninovel/Text` folder, and then the localization utility in `Resources/Naninovel/Localization/{Locale}`. Both utilities will attempt to preserve any existing modifications (managed text records and their translations) by default, so you won't have to rewrite everything on each update.
 
 See [Localization](/guide/localization) for more info on how to use the localization utility.
 

@@ -18,7 +18,7 @@
 当您 [注册许可证](https://account.naninovel.com) 时，将获赠为期一年的免费支持计划。之后，您可以随时通过您的 [账户仪表板](https://account.naninovel.com/support) 续订订阅。
 
 ::: info NOTE
-支持计划完全是可选的——即使没有它，您也将继续通过 [下载存档](https://account.naninovel.com/download) 终身访问所有未来的 Naninovel 稳定版本，并且社区支持仍然可以在 `#forum` 频道中获得，您可以在那里随时提问并获得帮助。
+支持计划完全是可选的——即使没有它，您也将继续通过 [下载归档](https://account.naninovel.com/download) 终身访问所有未来的 Naninovel 稳定版本，并且社区支持仍然可以在 `#forum` 频道中获得，您可以在那里随时提问并获得帮助。
 :::
 
 ## 报告错误
@@ -28,7 +28,7 @@
 在提交报告之前，请：
 
 - 检查您遇到问题的功能或用例的 [指南](/zh/guide/)、[命令参考](/zh/api/) 和 [常见问题](/zh/faq/)——您很可能遗漏了一些东西。
-- 确保您运行的是最新的可用 Naninovel 版本。最新的补丁可以通过 [UPM 存储库](/zh/guide/getting-started#从-github-安装) 获得；在 Asset Store 和下载存档上分发的包通常已过时。
+- 确保您运行的是最新的可用 Naninovel 版本。最新的补丁可以通过 [UPM 存储库](/zh/guide/getting-started#从-github-安装) 获得；在 Asset Store 和下载归档上分发的包通常已过时。
 - 如果您最近从以前的 Naninovel 版本升级，请务必遵循 [发行说明](/releases/) 中的升级说明。
 - 尝试通过删除项目根目录中的 `Library` 文件夹并重新启动编辑器来清除 Unity 的缓存。
 - 确保问题确实源于 Naninovel，而不是其他第三方插件或 Unity 本身；如果是后一种情况，请 [联系 Unity 支持](https://unity.com/support-services)。

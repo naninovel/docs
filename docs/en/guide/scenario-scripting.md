@@ -179,7 +179,7 @@ Some text \[ text inside brackets \]
 To skip waiting for input after a text line is revealed, append `[>]`:
 
 ```nani
-; After printing following line waiting for input won't activate
+; After printing the following line, waiting for input won't activate
 ; (player won't have to confirm prompt to continue reading).
 Lorem ipsum dolor sit amet.[>]
 ```
@@ -537,7 +537,7 @@ It's common to use multiple async commands to set up a scene and then wait until
     @back RainyScene
     @bgm RainAmbient
     @camera zoom:0.5 time:3
-; Following line will execute after all the above is finished.
+; The following line will execute after all the above is finished.
 It starts raining...
 ```
 
@@ -731,7 +731,7 @@ The script can also be used to invoke commands when the player clicks "NEW GAME"
 @stop
 
 # OnNewGame
-; Following commands will be executed when player clicks "NEW GAME".
+; The following commands will be executed when the player clicks "NEW GAME".
 ; Notice that the "stopBgm" command is awaited, so that the music
 ; is fully stopped before the new game begins to load.
 @sfx NewGameSoundEffect
@@ -739,13 +739,13 @@ The script can also be used to invoke commands when the player clicks "NEW GAME"
 @stop
 
 # OnLoad
-; Below commands will be executed when player loads a saved game.
+; The commands below will be executed when the player loads a saved game.
 @sfx LoadGameEffect
 @wait 0.5
 @stop
 
 # OnExit
-; Below commands will be executed when player clicks "EXIT".
+; The commands below will be executed when the player clicks "EXIT".
 @sfx ExitGameEffect
 @wait 1.5
 @stop

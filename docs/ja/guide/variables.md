@@ -6,15 +6,15 @@
 変数名に使用できるのは文字、数字、アンダースコア、ドットのみで、数字で始めることはできません。例：`score`、`Char1Score`、`my_score`。ドットは [スコープ](#変数スコープ) と [ローカル変数](#ローカル変数) のために予約されています。名前は大文字と小文字を区別しません。つまり、`myscore` という名前の変数を作成したあとで `MyScore` として参照することも、その逆も可能です。
 :::
 
-変数は [@set] コマンド（および一部の他のコマンドのパラメーター）で作成・変更でき、[@if] や [@while] のプライマリパラメーターなど、式コンテキストを持つ任意のパラメーターで使用できます。たとえば、次のスクリプトは `score` の値に基づいて実行先を切り替えます。
+変数は [@set] コマンド（および他のコマンドの一部のパラメーター）で作成・変更でき、[@if] や [@while] のプライマリパラメーターなど、式コンテキストを持つ任意のパラメーターで使用できます。たとえば、次のスクリプトは `score` の値に基づいて実行先を切り替えます。
 
 ```nani
 ; 'score' 変数を作成します。
 @set score=0
 
 ; ある時点で、プレイヤーの選択に基づいて変数を変更します。
-@choice "Good Decision" set:score++
-@choice "Bad Decision" set:score--
+@choice "良い決断" set:score++
+@choice "悪い決断" set:score--
 ...
 
 ; 後で、条件付き実行に変数を使用します。
@@ -34,7 +34,7 @@
 コマンドパラメーターが式コンテキストでなくても、中括弧を使用して変数を注入できます。
 
 ```nani
-; 3つの変数を代入します。
+; 3つの変数に値を代入します。
 @set posX=0, posY=0.5, time=1.5
 
 ; それらを 'char' コマンドのパラメーターへ注入します。
@@ -45,10 +45,10 @@
 
 ```nani
 ; プレイヤーにテキスト入力を促し、`name` 変数に代入します。
-@input name summary:"Choose your name."
+@input name summary:"あなたの名前を選んでください。"
 
 ; 代入された `name` 変数を注入します。
-Archibald: Greetings, {name}!
+Archibald: ようこそ、{name}！
 ```
 
 ::: tip
@@ -115,7 +115,7 @@ Archibald: Greetings, {name}!
 
 スコープ付き変数は、`route.complete`、`stats.complete`、`quest.complete` のように、複数のシステムが同じ短い名前の変数を必要とする場合に便利です。
 
-[@set](/ja/api/#set) コマンドで複数の変数を代入するときは、`scope` パラメーターを使用して各変数に同じスコープを適用できます。
+[@set](/ja/api/#set) コマンドで複数の変数に値を代入するときは、`scope` パラメーターを使用して各変数に同じスコープを適用できます。
 
 ```nani
 @set strength, intellect, agility to:0 scope:stats
@@ -130,7 +130,7 @@ Archibald: Greetings, {name}!
 @set .count=0
 @while .count is below 10
     @set .count++
-    Current count: {.count}
+    現在のカウント：{.count}
 ```
 
 各シナリオスクリプトは独自のローカルスコープを持つため、あるスクリプトの `.count` が別のスクリプトの `.count` と競合することはありません。ローカル変数は、スクリプト内部のカウンター、一時的なルート状態、プロジェクト全体の名前を必要としない補助値に使用します。
@@ -142,7 +142,7 @@ Archibald: Greetings, {name}!
 デフォルト代入を行うには、`?=` 演算子を使用するか、[@set] コマンドで `init!` フラグを追加します。
 
 ```nani
-; 'foo' をデフォルト値 0 で初期化します。
+; 'foo' をデフォルト値0で初期化します。
 @set foo?=0
 ; 3つの変数をデフォルト値で初期化します。
 @set foo=0, bar=false, baz="" init!
@@ -215,12 +215,12 @@ if (vars.GetValue("myVar") is { String: var text })
 ; 式で文字列値を使用します
 @if foo is "Hello World!"
 
-; 'bar' 変数に数値 42 を代入します
+; 'bar' 変数に数値42を代入します
 @set bar=42
 ; 式で数値を使用します
 @if bar is above 12
 
-; 'baz' 変数にブール値 true を代入します
+; 'baz' 変数にブール値trueを代入します
 @set baz=true
 ; 式でブール値を使用します
 @if baz
@@ -236,12 +236,12 @@ vars.SetValue("foo", new("Hello World!"));
 // 代入された文字列値にアクセスします
 if (vars.GetValue("foo") is { String: "Hello World!" })
 
-// 'bar' 変数に数値 42 を代入します
+// 'bar' 変数に数値42を代入します
 vars.SetValue("bar", new(42));
 // 代入された数値にアクセスします
 if (vars.GetValue("bar") is { Number: > 12 })
 
-// 'baz' 変数にブール値 true を代入します
+// 'baz' 変数にブール値trueを代入します
 vars.SetValue("baz", new(true));
 // 代入されたブール値にアクセスします
 if (vars.GetValue("baz") is { Boolean: true })
@@ -279,7 +279,7 @@ vars.TrySetValue("MyBoolVarName", boolValue);
 すでに存在する変数に対して `AddVariable` を呼び出したり、存在しない変数に対して `SetValue` を呼び出したりすると例外がスローされます。毎回 `VariableExists` を確認したくない場合は、`UpsertValue` ヘルパーメソッドを使用してください。変数が存在しない場合は自動的に作成し、存在する場合は値だけを更新します。
 
 ```csharp
-// 'foo' が存在する場合は 42 を設定します。
-// 存在しない場合は、デフォルト値 42 の 'foo' を作成します。
+// 'foo' が存在する場合は42を設定します。
+// 存在しない場合は、デフォルト値42の 'foo' を作成します。
 vars.UpsertValue("foo", new(42));
 ```

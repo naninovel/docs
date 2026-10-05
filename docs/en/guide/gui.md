@@ -69,7 +69,7 @@ The Unity project shown in the above video tutorial can be found in the [UI samp
 :::
 
 ::: tip EXAMPLE
-Another, more advanced example of adding a custom inventory UI with a grid layout, pagination and drag-drop window can be found in the [inventory sample](/guide/samples#inventory). Specifically, the UI-related scripts are stored at `Scripts/Runtime/Inventory/UI` and prefabs at `Content/UI/Inventory` directories.
+Another, more advanced example of adding a custom inventory UI with a grid layout, pagination and drag-and-drop window can be found in the [inventory sample](/guide/samples#inventory). Specifically, the UI-related scripts are stored at `Scripts/Runtime/Inventory/UI` and prefabs at `Content/UI/Inventory` directories.
 :::
 
 When you create a new custom UI prefab via the context menu, the prefab will have a `Custom UI` component attached to the root object. This component (or rather the fact that it implements the `IManagedUI` interface) is essential to make the prefab recognized as a UI by the engine.
@@ -117,7 +117,7 @@ Object | The game object with a text component that should be affected by font c
 Include Children | Whether to affect container children game objects; when disabled, only the text component on the specified container object will be affected.
 Allow Font Change | Whether to allow changing the font of the text component.
 Allow Font Size Change | Whether to allow changing the font size of the text component.
-Font Sizes | Actual font sizes to apply for the text component. Each element in the list corresponds to a font size dropdown list index: Small -> 0, Default -> 1, Large -> 2, Extra Large -> 3 (can be changed via SettingsUI). Default value will be ignored and the font size initially set in the prefab will be used instead.
+Font Sizes | Actual font sizes to apply for the text component. Each element in the list corresponds to a font size dropdown list index: Small -> 0, Default -> 1, Large -> 2, Extra Large -> 3 (can be changed via SettingsUI). The value at the Default index is ignored; the font size initially set in the prefab is used instead.
 
 A `Font Sizes` asset can be created via the `Create -> Naninovel -> Font Sizes` asset context menu; use the asset to share common font sizes across multiple UIs.
 

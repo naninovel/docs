@@ -1,6 +1,6 @@
 # Voicing
 
-To expose voice clips to the engine, store them under the `Resources/Naninovel/Voice` folder (can be changed in the audio configuration under the `Voice Loader` foldout). You can additionally organize them with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in scenario scripts. For example, a voice audio clip stored as `Resources/Naninovel/Voice/Intro/Day/25.wav` can be referenced in scripts as `Intro/Day/25`.
+To expose voice clips to the engine, store them under the `Resources/Naninovel/Voice` folder (can be changed in the audio configuration under the `Voice Loader` foldout). You can additionally organize them with subfolders, if you wish; in this case use forward slashes (`/`) when referencing them in scenario scripts. For example, a voice audio clip stored as `Resources/Naninovel/Voice/Intro/Day/25.wav` can be referenced in scripts as `Intro/Day/25`.
 
 It's also possible to use the [Addressable Asset System](/guide/resource-providers#manual-assignment) to manually expose the resources; consult the guide for more info.
 

@@ -14,7 +14,7 @@ Naninovel 是 [Unity 游戏引擎](https://unity.com) 的扩展，因此强烈�
 
 ## 创建 Unity 项目
 
-创建项目时，我们建议选择基于 **Universal Render Pipeline**（URP）的 Universal 2D 或 Universal 3D 模板。旧版内置渲染管线（BiRP）也可以工作，但 Unity 不再积极维护它，并且预计将被弃用。不建议使用 High Definition Render Pipeline (HDRP)——它通常可以工作，但某些渲染功能可能无法开箱即用。
+创建项目时，我们建议选择基于 **Universal Render Pipeline**（URP）的 Universal 2D 或 Universal 3D 模板。旧版内置渲染管线（BiRP）也可以工作，但 Unity 不再积极维护它，并且预计将被弃用。不建议使用 High Definition Render Pipeline（HDRP）——它通常可以工作，但某些渲染功能可能无法开箱即用。
 
 选择 2D 还是 3D 取决于您正在构建的游戏风格。对于大多数标准视觉小说，我们建议选择 2D，这样图像将默认作为精灵资产导入，您无需手动调整导入设置。您可以稍后在 [项目设置](https://docs.unity3d.com/Manual/2DAnd3DModeSettings.html) 中更改编辑器行为模式。
 
@@ -75,7 +75,7 @@ Preview 是最前沿的：它更新最频繁，并拥有所有最新功能。但
 
 Stable 是折衷方案：它只接收错误修复，没有最新功能，但也没有任何重大更改。在大多数情况下建议使用。
 
-Final 虽然是经过最充分测试和稳定的，但也是最过时的，并且不在 [技术支持](/zh/support/) 范围内。仅当项目已经发布并且无法升级时，才停留在最终版本上。
+Final 虽然是经过最充分测试且最稳定的，但也是最过时的，并且不在 [技术支持](/zh/support/) 范围内。仅当项目已经发布并且无法升级时，才停留在最终版本上。
 
 ![](https://i.gyazo.com/2462242c14c96a0eae9ca99212c340c4.png)
 
@@ -111,9 +111,9 @@ https://github.com/naninovel/upm.git#1.22
 如果在安装包时遇到错误，请确保您已使用账户仪表板中指定的 GitHub 用户通过身份验证。在 Windows 上进行身份验证的最简单方法是使用 [GitHub Desktop](https://github.com/apps/desktop) 登录。在 macOS 和 Linux 上，请改用 [GCM](https://github.com/git-ecosystem/git-credential-manager/releases/latest)。有关 [更多信息](https://docs.unity3d.com/Manual/upm-config-https-git.html)，请参阅 Unity 指南。
 :::
 
-### 从存档安装
+### 从归档安装
 
-另一种安装 Naninovel 的方法是从我们的 [下载存档](https://account.naninovel.com/download) 下载包。当您需要不再在 Asset Store 上分发的特定最终版本时，此方法很有用。存档包含从版本 1.14 到当前稳定版本的所有旧版本的最终版本。
+另一种安装 Naninovel 的方法是从我们的 [下载归档](https://account.naninovel.com/download) 下载包。当您需要不再在 Asset Store 上分发的特定最终版本时，此方法很有用。归档包含从版本 1.14 到当前稳定版本的所有旧版本的最终版本。
 
 只需将下载的 `.unitypackage` 文件拖放到 Unity 编辑器窗口中，然后单击“Import”即可安装该包。在 [Unity 文档](https://docs.unity3d.com/Manual/AssetPackagesImport.html) 中查找有关安装本地包的更多信息。
 

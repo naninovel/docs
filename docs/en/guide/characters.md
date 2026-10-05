@@ -57,7 +57,7 @@ Notice that when a pose is used as an appearance, you can still override individ
 @char Kohaku.SuperAngry tint:#ff45cb
 ```
 
-In the character and background configurations you can also find `Shared Poses` — these poses are shared between all the respective actors. Example use cases for shared poses are re-using speaking/non-speaking templates or creating pre-defined stages relative to the camera.
+In the character and background configurations you can also find `Shared Poses` — these poses are shared between all the respective actors. Example use cases for shared poses are re-using speaking/non-speaking templates or creating predefined stages relative to the camera.
 
 ![](https://i.gyazo.com/c4c6d850d2a6efae269164af58da1ed3.png)
 
@@ -100,9 +100,9 @@ It's also possible to use the name binding feature to allow the player to pick t
 Player: You can call me {PlayerName}.
 ```
 
-The content of the curly braces is actually treated as a full-fledged [scenario expression](/guide/expressions), allowing complex scenarios for evaluating the display name. For example, you may want to keep a pre-defined localizable display name for a character until some point and then let the player pick a custom name.
+The content of the curly braces is actually treated as a full-fledged [scenario expression](/guide/expressions), allowing complex scenarios for evaluating the display name. For example, you may want to keep a predefined localizable display name for a character until some point and then let the player pick a custom name.
 
-Let's say the character in question has the "Char1" ID, the pre-defined name is stored as the `T_PredefinedName` [managed text record](/guide/managed-text#script-text), the value entered by the player will be stored as the `name` [scenario variable](/guide/variables) and the `nameSet` variable will be set to `true` when the player has set the name. Assign the following expression to the `Display Name` property: `{ nameSet ? name : T_PredefinedName }`.
+Let's say the character in question has the "Char1" ID, the predefined name is stored as the `T_PredefinedName` [managed text record](/guide/managed-text#script-text), the value entered by the player will be stored as the `name` [scenario variable](/guide/variables) and the `nameSet` variable will be set to `true` when the player has set the name. Assign the following expression to the `Display Name` property: `{ nameSet ? name : T_PredefinedName }`.
 
 ![](https://i.gyazo.com/b4bed71310ae8d0f80aff11d910d6e5b.png)
 
@@ -299,7 +299,7 @@ https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteD
 — to the input field and click "Add".
 
 ::: info NOTE
-Before installing a package from a Git repository, make sure a [Git client](https://git-scm.com/downloads) is installed on your machine and the Git executable path is set to the [PATH system environment variable](https://en.wikipedia.org/wiki/PATH_(variable)) (usually performed automatically during the installation).
+Before installing a package from a Git repository, make sure a [Git client](https://git-scm.com/downloads) is installed on your machine and the Git executable path is added to the [PATH system environment variable](https://en.wikipedia.org/wiki/PATH_(variable)) (usually performed automatically during the installation).
 :::
 
 When the "SpriteDicing" extension is installed via UPM, a `Naninovel.DicedSpriteCharacter` option will appear in the character implementations list.

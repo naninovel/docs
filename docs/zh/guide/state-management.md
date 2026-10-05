@@ -119,8 +119,8 @@ public class MyCustomBehaviour : MonoBehaviour
     [System.Serializable]
     private class GameState
     {
-    	public bool MyCustomBool;
-    	public string MyCustomString;
+        public bool MyCustomBool;
+        public string MyCustomString;
     }
 
     private bool myCustomBool;

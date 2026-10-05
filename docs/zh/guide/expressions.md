@@ -93,7 +93,7 @@
 | --- | --- | --- |
 | random(min, max) | 返回 min（含）和 max（含）之间的随机整数。 | `random(0, 100)` |
 | random(min, max) | 返回 min（含）和 max（含）之间的随机小数。 | `random(0.5, 1.5)` |
-| random(args) | 返回从指定字符串中选出的一个字符串。 | `random("foo", "bar", "baz")` |
+| random(args) | 返回从指定字符串中随机选出的一个字符串。 | `random("foo", "bar", "baz")` |
 | calculateProgress() | 返回 0.0 到 1.0 范围内的剧本完成率，其中 1.0 表示所有脚本命令至少执行了一次。 | `calculateProgress()` |
 | isUnlocked(id) | 检查具有指定 ID 的可解锁项当前是否已解锁。 | `isUnlocked("Tips/MyTip")` |
 | hasPlayed() | 检查当前播放的命令以前是否播放过。 | `hasPlayed()` |

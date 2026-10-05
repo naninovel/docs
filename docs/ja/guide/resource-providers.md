@@ -87,7 +87,7 @@ Addressablesを介して [手動で割り当てられた](/ja/guide/resource-pro
 
 ## Project
 
-プロジェクトプロバイダーは、Unityプロジェクト内の「Resources」フォルダーにあるアセットを提供します。プロジェクトの [リソース読み込みAPI](https://docs.unity3d.com/Manual/LoadingResourcesatRuntime) に関する詳細については、Unityのガイドを参照してください。
+プロジェクトプロバイダーは、Unityプロジェクト内の「Resources」フォルダーにあるアセットを提供します。プロジェクトの [リソースロードAPI](https://docs.unity3d.com/Manual/LoadingResourcesatRuntime) に関する詳細については、Unityのガイドを参照してください。
 
 ::: warning
 ほとんどの場合、[「Resources」フォルダーの使用は推奨されません](https://docs.unity3d.com/Manual/UnderstandingPerformanceResourcesFolder.html)。可能な場合はNaninovelリソースマネージャーメニューを介してリソースを割り当てるか、代わりにAddressablesシステムを使用することを検討してください。その後、アセットを「Resources」フォルダーの外に移動することを忘れないでください。
@@ -134,7 +134,7 @@ Addressablesを介して [手動で割り当てられた](/ja/guide/resource-pro
 
 リソースプロバイダーのカスタム実装を追加し、Naninovelに組み込みプロバイダーと一緒に（またはその代わりに）使用させることが可能です。
 
-カスタムプロバイダーを追加するには、パラメーターなしのコンストラクタを持つC#クラスを作成し、`IResourceProvider` インターフェースを実装します。作成すると、カスタムプロバイダータイプが組み込みタイプとともにすべてのローダー構成メニューに表示されます。
+カスタムプロバイダーを追加するには、パラメーターなしのコンストラクターを持つC#クラスを作成し、`IResourceProvider` インターフェースを実装します。作成すると、カスタムプロバイダータイプが組み込みタイプとともにすべてのローダー構成メニューに表示されます。
 
 ![](https://i.gyazo.com/7176a9d4a4ea2d9414c5495e2e465baf.png)
 

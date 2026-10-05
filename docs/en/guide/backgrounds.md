@@ -43,7 +43,7 @@ If you have many backgrounds or background appearances and it's inconvenient to 
 
 ![](https://www.youtube.com/watch?v=2YP-36THHvk)
 
-## Z-order
+## Z-Order
 
 When showing multiple backgrounds simultaneously, they tend to cover each other:
 
@@ -52,7 +52,7 @@ When showing multiple backgrounds simultaneously, they tend to cover each other:
 @back id:2
 ```
 
-— in case both backgrounds `1` and `2` are full-screen opaque textures, the one added later will completely cover the other. To show the first background behind the other, either hide the other or change the z-position (depth) to change the draw order:
+— in case both backgrounds `1` and `2` are fullscreen opaque textures, the one added later will completely cover the other. To show the first background behind the other, either hide the other or change the z-position (depth) to change the draw order:
 
 ```nani
 ; Hide background 2 to reveal the first one behind

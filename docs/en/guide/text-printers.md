@@ -253,6 +253,7 @@ Support for [ruby](https://en.wikipedia.org/wiki/Ruby_character) characters is p
 ```nani
 Lorem <ruby="VERY">ipsum</ruby> dolor sit amet.
 ```
+
 — the "VERY" ruby text will appear right above the "ipsum" word when the message is printed at runtime.
 
 ![](https://i.gyazo.com/ec5eb47c3cf0951ccb589fe49c144418.png)
@@ -318,7 +319,7 @@ To find which characters will be displayed by Naninovel, use the Character Extra
 
 ![](https://i.gyazo.com/706613a08aa2519964ccd98bd12a288f.png)
 
-The tool will inspect both scenario scripts and managed text documents in the specified folder (including all the sub-folders), so you'll get the chars for all the text ever displayed to the player by Naninovel, including all the printed text, UI labels, unlockable tips, etc.
+The tool will inspect both scenario scripts and managed text documents in the specified folder (including all the subfolders), so you'll get the chars for all the text ever displayed to the player by Naninovel, including all the printed text, UI labels, unlockable tips, etc.
 
 ::: tip EXAMPLE
 Check the [localization sample](/guide/samples#localization) for an example of using a custom TMPro font atlas for the Japanese locale. The font is automatically switched when the Japanese language is selected and switched back to the default atlas when other languages are selected.
@@ -407,9 +408,9 @@ Select your pronouns.
 </He/She/They> </was/was/were> magnificent.
 ```
 
-Notice the `</x/y>` tags — these are selector tags. The text parts between `/` characters are called options. By default, a random option will be returned. However, if you set the `selector` variable to an index, the tag will instead return the option with that index (zero-based).
+Notice the `</x/y>` tags — these are select tags. The text parts between `/` characters are called options. By default, a random option will be returned. However, if you set the `selector` variable to an index, the tag will instead return the option with that index (zero-based).
 
-If you need more flexible selection logic, create a custom [expression query](/guide/expressions#adding-custom-queries) with the `select` alias, and make it accept a `params string[]` and return a `string`. Whenever a selector tag is compiled, it will then use your query to evaluate the result. Below is an example of a custom select query, where the first option specifies the selection kind, falling back to random selection if the first option is empty:
+If you need more flexible selection logic, create a custom [expression query](/guide/expressions#adding-custom-queries) with the `select` alias, and make it accept a `params string[]` and return a `string`. Whenever a select tag is compiled, it will then use your query to evaluate the result. Below is an example of a custom select query, where the first option specifies the selection kind, falling back to random selection if the first option is empty:
 
 ```cs
 [ExpressionQuery("select")]
@@ -438,4 +439,4 @@ You can then use it in a scenario as follows:
 <//green/red>
 ```
 
-The selector tags are also exposed to the localization docs, allowing translators to adapt the constructs to the target culture as needed.
+The select tags are also exposed to the localization docs, allowing translators to adapt the constructs to the target culture as needed.

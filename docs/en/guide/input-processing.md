@@ -21,7 +21,7 @@ Naninovel uses Unity's [Input System](https://docs.unity3d.com/Packages/com.unit
 | ShowBacklog   | L                          | Right Bumper                   | Toggle [Backlog UI](/guide/text-printers#printer-backlog) visibility.                                                                  |
 | Rollback      | B, Scroll Wheel (Y+)       | Left Bumper                    | Rewind the script backwards.                                                                                                           |
 | CameraLook    | Mouse Delta                | Right Stick                    | Move the camera while in [@look] mode.                                                                                                 |
-| ToggleConsole | `                          |                                | Toggle the development console.                                                                           |
+| ToggleConsole | `                          |                                | Toggle the development console.                                                                                                        |
 | EnterDialogue | Enter, E                   | Button South, Button West      | Activate a dialogue trigger to enter [dialogue mode](/guide/getting-started#dialogue-mode).                                            |
 
 ## Customizing Inputs
@@ -64,7 +64,7 @@ Additionally, if a `Button Controls` object is assigned in the `Custom UI` (or d
 
 ### Gamepad
 
-Gamepad mode will re-enable navigation (if it was disabled when in mouse mode), so that the player is able to navigate selectables with the D-Pad or left stick.
+Gamepad mode will re-enable navigation (if it was disabled when in mouse mode), so that the player is able to navigate selectables with the D-pad or left stick.
 
 When assigned, the `Gamepad Controls` legend will be enabled, while others (buttons and keyboard) will be disabled.
 

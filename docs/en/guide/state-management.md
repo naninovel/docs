@@ -119,8 +119,8 @@ public class MyCustomBehaviour : MonoBehaviour
     [System.Serializable]
     private class GameState
     {
-    	public bool MyCustomBool;
-    	public string MyCustomString;
+        public bool MyCustomBool;
+        public string MyCustomString;
     }
 
     private bool myCustomBool;
@@ -179,7 +179,7 @@ private async void Start ()
 A more advanced example of using custom state with a list of custom structs to save-load game state of an inventory UI can be found in the [inventory sample](/guide/samples#inventory). Specifically, de-/serialization of the custom state is implemented in `Scripts/Runtime/Inventory/UI/InventoryUI.cs`.
 :::
 
-You can also access global and settings state of the engine to store custom data with them. Unlike game state, which is specific to game sessions and requires subscribing to save/load events, global and settings state objects are singletons and can be directly accessed via properties of the state manager.
+You can also access global and settings state of the engine to store custom data with them. Unlike game state, which is specific to game sessions and requires subscribing to save-load events, global and settings state objects are singletons and can be directly accessed via properties of the state manager.
 
 ```csharp
 [System.Serializable]

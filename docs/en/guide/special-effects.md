@@ -17,7 +17,7 @@ Most effects can be parameterized:
 You can update effect parameters without restarting the effect:
 
 ```nani
-; Start slowly shaking `Kohaku` actor in a loop
+; Start slowly shaking 'Kohaku' actor in a loop
 @shake Kohaku loop! power:0.1
 Kohaku: It's rumbling!
 ; Shake 3 more times with an increased amplitude
@@ -259,7 +259,7 @@ When changing background and character appearances with [@back] and [@char] or p
 @back River.DropFade
 ```
 
-When no transition effect is specified, a cross-fade is used by default.
+When no transition effect is specified, a crossfade is used by default.
 
 You can also specify the duration of the transition (in seconds) with the `time` parameter:
 
@@ -793,7 +793,7 @@ The [@spawn] command also has transform parameters, allowing you to spawn the ob
 @spawn Explosion pos:15 scale:10 roll:15
 ```
 
-In case you have a lot of prefabs to spawn and it's inconvenient to assign them via the editor menu, it's possible to just drop them in the `Resources/Naninovel/Spawn` folder and they'll automatically be available in the scripts. You can additionally organize them with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in scenario scripts. Eg, a prefab asset stored as `Resources/Naninovel/Spawn/Explosions/Boom01` can be referenced in scripts as `Explosions/Boom01`.
+In case you have a lot of prefabs to spawn and it's inconvenient to assign them via the editor menu, it's possible to just drop them in the `Resources/Naninovel/Spawn` folder and they'll automatically be available in the scripts. You can additionally organize them with subfolders, if you wish; in this case use forward slashes (`/`) when referencing them in scenario scripts. Eg, a prefab asset stored as `Resources/Naninovel/Spawn/Explosions/Boom01` can be referenced in scripts as `Explosions/Boom01`.
 
 It's also possible to use the [Addressable Asset System](/guide/resource-providers#addressable) to manually expose the resources. To expose an asset, assign an address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "Boom01" prefab asset, assign the asset the following address: `Naninovel/Spawn/Boom01`. Be aware that while in the editor, a special "Editor" resource provider is always used first; the addressable provider is only tried for the resources that are not assigned via the editor menus.
 

@@ -8,7 +8,7 @@
 
 如果您有很多音频文件，并且通过编辑器菜单分配它们不方便，只需将它们放入 `Resources/Naninovel/BGM`（音乐）和 `Resources/Naninovel/SFX`（音效）文件夹，它们就会自动在脚本中可用。如果您愿意，还可以使用子文件夹组织它们；在这种情况下，在剧本脚本中引用它们时请使用正斜杠（`/`）。例如，存储为 `Resources/Naninovel/BGM/Ambient/Noise002.wav` 的音频剪辑可以在脚本中引用为 `Ambient/Noise002`。
 
-也可以使用 [Addressable 资产系统](/zh/guide/resource-providers#addressable) 手动公开资源。要公开资产，请为其分配一个地址，该地址等于使用上述方法时的路径，但省略“Resources/”部分。例如，要公开“MainTheme.wav” BGM，请为剪辑资产分配以下地址：`Naninovel/BGM/MainTheme`。请注意，在编辑器中时，始终首先使用特殊的“Editor”资源提供者；只有未通过编辑器菜单分配的资源才会尝试使用 Addressable 提供者。
+也可以使用 [Addressable 资产系统](/zh/guide/resource-providers#addressable) 手动公开资源。要公开资产，请为其分配一个地址，该地址等于使用上述方法时的路径，但省略“Resources/”部分。例如，要公开“MainTheme.wav”BGM，请为剪辑资产分配以下地址：`Naninovel/BGM/MainTheme`。请注意，在编辑器中时，始终首先使用特殊的“Editor”资源提供者；只有未通过编辑器菜单分配的资源才会尝试使用 Addressable 提供者。
 
 ::: warning
 未通过资源管理器分配的音频资产不会出现在各种编辑器下拉菜单中，例如用于为角色 Actor 选择 `Message Sound` 的下拉菜单。

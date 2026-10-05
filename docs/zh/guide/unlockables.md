@@ -99,35 +99,35 @@ UI 网格中的 CG 栏位从左到右、从上到下排列，并按可解锁项�
 
 ```
 # Tip1ID
-Tip 1 Title | Tip 1 Category | Tip 1 Description
+提示 1 标题 | 提示 1 类别 | 提示 1 描述
 # Tip2ID
-Tip 2 Title || Tip 2 Description
+提示 2 标题 || 提示 2 描述
 # Tip3ID
-Tip 3 Title
+提示 3 标题
 # Tip4ID
-Tip 4 Title | Tip 4 Category |
+提示 4 标题 | 提示 4 类别 |
 ```
 
 如果提示值太长，为了便于阅读，您可以将其分成多行：
 
 ```
 # Tip1
-Title | Category |
-Long description line 1.<br>
-Long description line 2.<br>
+标题 | 类别 |
+长描述第 1 行。<br>
+长描述第 2 行。<br>
 
 # Tip2
-Title | Category |
-Long description line 1.<br>
+标题 | 类别 |
+长描述第 1 行。<br>
 ...
 ```
 
 如果您更喜欢内联格式，请从管理文本配置中的 `Multiline Documents` 列表中移除 `Tips`；之后即可像其他管理文本文档一样编写提示：
 
 ```
-Tip1ID: Title
-Tip2ID: Title | Category | Description
-Tip3ID: Title || Description
+Tip1ID: 标题
+Tip2ID: 标题 | 类别 | 描述
+Tip3ID: 标题 || 描述
 ```
 
 除了 `<br>` 标签外，您还可以使用您选择的文本渲染系统支持的其他富文本标签（内置提示 UI 中使用 TMPro）。

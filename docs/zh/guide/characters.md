@@ -86,18 +86,18 @@ Actor 自身的姿势优先于共享姿势，这意味着如果 Actor 姿势的�
 然后，您可以在脚本中更改变量值，显示名称也会随之更改：
 
 ```nani
-@set PlayerName="Mystery Man"
+@set PlayerName="神秘人"
 Player: ...
 
-@set PlayerName="Dr. Stein"
-Player: You can call me Dr. Stein.
+@set PlayerName="斯坦博士"
+Player: 你可以叫我斯坦博士。
 ```
 
 也可以利用名称绑定功能，让玩家通过 [@input] 命令选择自己的显示名称：
 
 ```nani
-@input PlayerName summary:"Choose your name."
-Player: You can call me {PlayerName}.
+@input PlayerName summary:"请选择你的名字。"
+Player: 你可以叫我 {PlayerName}。
 ```
 
 大括号中的内容实际上会被视为完整的 [剧本表达式](/zh/guide/expressions)，因此可以用更复杂的逻辑来计算显示名称。例如，您可能希望在某个时刻之前让角色使用预定义的可本地化显示名称，之后再让玩家选择自定义名称。
@@ -111,19 +111,19 @@ Player: You can call me {PlayerName}.
 ```nani
 @char Char1
 
-Char1: My name is now pre-defined by `T_PredefinedName` managed text record.
-Char1: It's localizable; try changing the locale and it will update accordingly.
-Char1: Now, we'll make the player input a custom name.
+Char1: 我的名字现在由 `T_PredefinedName` 管理文本记录预定义。
+Char1: 它是可本地化的；试着更改语言环境，它会相应更新。
+Char1: 现在，我们让玩家输入一个自定义名称。
 
 ; 注意通过 `value` 参数指定的默认输入值：
 ; 它是从管理文本中检索的，也是可本地化的。
-@input name summary:"Choose your name." value:{T_DefaultName}
+@input name summary:"请选择你的名字。" value:{T_DefaultName}
 
 ; 在这里我们设置变量，该变量用于表达式中
 ; 以决定从哪里获取显示名称的值。
 @set nameSet=true
 
-Char1: My display name is now bound to `name` scenario variable.
+Char1: 我的显示名称现在已绑定到 `name` 剧本变量。
 ```
 
 当 `Has Name` 被禁用时，打印机 UI 中既不会显示显示名称也不会显示角色 ID。这对于 [旁白角色](/zh/guide/characters#旁白角色) 很有用，它们可能有一个 [链接的打印机](/zh/guide/characters#链接的打印机)，但不应显示其 ID。
@@ -134,15 +134,15 @@ Char1: My display name is now bound to `name` scenario variable.
 
 ```nani
 ; 即使 "Kohaku" 角色可能在配置中设置了自定义显示名称，
-; 也使用 "Someone" 作为名称打印此行。
-Kohaku: Lorem ipsum.[< as:"Someone"]
+; 也使用 "某人" 作为名称打印此行。
+Kohaku: Lorem ipsum.[< as:"某人"]
 
-; 打印该行，将 "All Together" 显示为作者名称
+; 打印该行，将 "大家" 显示为作者名称
 ; 并使所有可见角色成为打印文本的作者。
-*: Lorem ipsum![< as:"All Together"]
+*: Lorem ipsum![< as:"大家"]
 
 ; 类似，但只让 "Kohaku" 和 "Yuko" 成为作者。
-Kohaku,Yuko: Lorem ipsum?[< as:"Kohaku and Yuko"]
+Kohaku,Yuko: Lorem ipsum?[< as:"琥珀和优子"]
 ```
 
 — `as` 参数是可本地化的，会出现在脚本本地化文档中以供翻译。此外，[说话者高亮](/zh/guide/characters#说话者高亮) 功能将识别作者 ID 中指定的 `*` 和 `,`，并将所有/选定的角色高亮显示为说话者。

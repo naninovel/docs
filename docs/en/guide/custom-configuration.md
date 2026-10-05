@@ -86,7 +86,7 @@ Another example of adding a custom configuration menu to set up an inventory sys
 
 To customize the editor behaviour of your custom configuration (when it's drawn in Naninovel's project settings), create a class under an Editor script and inherit from `ConfigurationSettings<T>`, where `T` is your custom configuration type. You can use the built-in settings editor scripts stored at `Naninovel/Editor/Editors/Settings` for reference when building your own editors.
 
-## Overriding Built-in Editors
+## Overriding Built-In Editors
 
 You can override built-in configuration editors (Naninovel's project settings menus) by applying the `OverrideSettings` attribute to an editor class inherited from `ConfigurationSettings<T>` (or any of its derivatives), where `T` is the configuration type. Store the custom editor scripts under an `Editor` folder so they are included in the editor assembly.
 

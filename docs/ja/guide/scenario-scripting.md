@@ -67,7 +67,7 @@
 | 型 | 説明 |
 |---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | string | 単純な文字列値。例：`LoremIpsum`。スペースが含まれる場合は、必ず二重引用符で囲んでください。例：`"Lorem ipsum dolor sit amet."`。 |
-| number | 整数または小数の数値。例：`1`, `-25`, `1.0`, `-0.005`。 |
+| number | 整数または小数の数値。例：`1`、`-25`、`1.0`、`-0.005`。 |
 | boolean | `true` または `false` の2つの値のいずれかを持つことができます。`true` や `false` と入力する代わりに [ブールフラグ](/ja/guide/scenario-scripting#ブールフラグ) を使用できます。例：`@hideAll wait:true` の代わりに `@hideAll wait!`。 |
 | named | ドットで区切られたキーと値のペア。キーは文字列で、値は上記の型のいずれかです。名前付き数値の例：`foo.8`、`bar.-20`。 |
 | list | 上記の型のいずれかの値のカンマ区切りリスト。文字列リストの例：`foo,bar,"Lorem ipsum."`、数値リストの例：`12,-8,0.105,2`。 |
@@ -171,10 +171,10 @@ Lorem ipsum[char Felix.Happy pos:75 wait!] dolor sit amet.
 汎用テキスト行内に実際に角括弧を表示するには、バックスラッシュでエスケープします。例：
 
 ```nani
-Some text \[ text inside brackets \]
+一部のテキスト \[ 角括弧内のテキスト \]
 ```
 
-— は、ゲーム内で `Some text [ text inside brackets ]` と表示されます。
+— は、ゲーム内で `一部のテキスト [ 角括弧内のテキスト ]` と表示されます。
 
 テキスト行が表示された後の入力待ちをスキップするには、`[>]` を追加します。
 
@@ -190,8 +190,8 @@ Lorem ipsum dolor sit amet.[>]
 
 ```nani
 ; この行の話者はKohakuとYukoアクターになりますが、
-; プリンターの表示名は「All Together」と表示されます。
-Kohaku,Yuko: Hello![< as:"All Together"]
+; プリンターの表示名は「全員」と表示されます。
+Kohaku,Yuko: こんにちは！[< as:"全員"]
 
 ; 最初の部分は50%の速度で表示され、
 ; 2番目の部分は250%の速度で待機なしで表示されます。
@@ -201,9 +201,9 @@ Lorem[< speed:0.5] world![< speed:2.5 nowait!]
 このコマンドは、`<` とテキストの間に他のコマンドがインライン化されていても、その前に配置された最後のテキスト行に指定されたパラメーターを適用します。
 
 ```nani
-; 速度は依然として「Hello」部分に適用されます。
+; 速度は依然として「こんにちは」部分に適用されます。
 ; パラメーターがインラインコマンドの後にある場合でも同様です。
-Hello[-][< speed:0.5] world!
+こんにちは[-][< speed:0.5]、世界！
 ```
 
 ### 空白区切り文字
@@ -341,17 +341,17 @@ Naninovelは4種類のエンドポイント構文をサポートしており、�
 ```nani
 ; Kohakuキャラクターを表示します。
 @char Kohaku visible!
-; 次と同等です:
+; 次と同等です：
 @char Kohaku visible:true
 
 ; Kohakuキャラクターを非表示にします。
 @char Kohaku !visible
-; 次と同等です:
+; 次と同等です：
 @char Kohaku visible:false
 
 ; インラインコマンドもフラグをサポートしています。
 Lorem ipsum[shake Camera ver! !wait] dolor sit amet.
-; 次と同等です:
+; 次と同等です：
 Lorem ipsum[shake Camera ver:true wait:false] dolor sit amet.
 ```
 
@@ -382,13 +382,13 @@ Lorem ipsum[shake Camera ver:true wait:false] dolor sit amet.
 
 ```nani
 ; "level" が9000より大きい場合、選択肢を追加します。
-@choice "It's over 9000!" if: level above 9000
+@choice "9000を超えている！" if: level above 9000
 
 ; "dead" がfalseの場合、printコマンドを実行します。
-@print "I'm still alive." if: not dead
+@print "まだ生きています。" if: not dead
 
 ; 同じですが、より簡潔です。
-@print "I'm still alive." unless:dead
+@print "まだ生きています。" unless:dead
 
 ; "insane" がtrueの場合、または1〜10の範囲のrandom関数が
 ; 5以上を返す場合、"@glitch" コマンドを実行します。
@@ -405,7 +405,7 @@ Lorem ipsum[shake Camera ver:true wait:false] dolor sit amet.
 Lorem sit amet. [sfx Applause if:score>=10]Consectetur elit.
 
 ; 式内の二重引用符をエスケープします。
-@print {remark} if: remark = "Saying \"Stop the car\" was a mistake."
+@print {remark} if: remark = "\"車を止めろ\" と言うのは間違いでした。"
 ```
 
 ### 条件ブロック
@@ -413,46 +413,46 @@ Lorem sit amet. [sfx Applause if:score>=10]Consectetur elit.
 [@if] と [@else] を使用して、複数行の条件ブロックを [ネスト](/ja/guide/scenario-scripting#ネスト) できます。
 
 ```nani
-; "score" 変数に応じてテキスト行を表示します。
-; "You've failed. Try again!" - scoreが6以下の場合。
-; "You've passed the test." と "Brilliant!" - scoreが8より大きい場合。
-; "You've passed the test." と "Impressive!" - scoreが7より大きい場合。
-; "You've passed the test." と "Good job!" - それ以外の場合。
+; "score" 変数に応じてテキスト行を表示します：
+; "不合格です。もう一度挑戦してください！" - scoreが6以下の場合。
+; "テストに合格しました。" と "素晴らしい！" - scoreが8より大きい場合。
+; "テストに合格しました。" と "お見事！" - scoreが7より大きい場合。
+; "テストに合格しました。" と "よくできました！" - それ以外の場合。
 @if score is above 6
-    You've passed the test.
+    テストに合格しました。
     @if score is above 8
-        Brilliant!
+        素晴らしい！
     @or score is above 7
-        Impressive!
+        お見事！
     @else
-        Good job!
+        よくできました！
 @else
-    You've failed. Try again!
+    不合格です。もう一度挑戦してください！
 ```
 
 条件ブロックはテキスト行内でインラインで使用することもでき、[@endif] で終了を示します。
 
 ```nani
-; "score" 変数に応じてテキスト行を表示します。
-; "Test result: Failed." - scoreが6以下の場合。
-; "Test result: Perfect!" - scoreが8より大きい場合。
-; "Test result: Passed." - それ以外の場合。
-Test result:[if score>8] Perfect![or score>6] Passed.[else] Failed.[endif]
+; "score" 変数に応じてテキスト行を表示します：
+; "テスト結果：不合格。" - scoreが6以下の場合。
+; "テスト結果：満点！" - scoreが8より大きい場合。
+; "テスト結果：合格。" - それ以外の場合。
+テスト結果：[if score>8]満点！[or score>6]合格。[else]不合格。[endif]
 ```
 
 逆の条件を指定するには、[@unless] を使用します。
 
 ```nani
-; deadがfalseの場合は "You're still alive!" を表示し、それ以外の場合は "You're done." を表示します。
+; deadがfalseの場合は "まだ生きています！" を表示し、それ以外の場合は "もうおしまいです。" を表示します。
 @unless dead
-    You're still alive!
+    まだ生きています！
 @else
-    You're done.
+    もうおしまいです。
 
-; "score" 変数に応じてテキスト行を表示します。
-; "Test result: Passed." - scoreが10以上の場合。
-; "Test result: Failed." - scoreが10未満の場合。
-Test result:[unless score<10] Passed.[else] Failed.[endif]
+; "score" 変数に応じてテキスト行を表示します：
+; "テスト結果：合格。" - scoreが10以上の場合。
+; "テスト結果：不合格。" - scoreが10未満の場合。
+テスト結果：[unless score<10]合格。[else]不合格。[endif]
 ```
 
 ::: info NOTE
@@ -466,7 +466,7 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 ```nani
 @if score > 10
     @bgm Victory
-    Good job, you've passed the test!
+    よくできました、テストに合格です！
 ```
 
 ここで、[@bgm] コマンドとそれに続く汎用テキスト行は、[@if] コマンドに関連付けられています。
@@ -477,18 +477,18 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 
 ```nani
 @if score > 10
-    Good job, you've passed the test!
+    よくできました、テストに合格です！
     @bgm Victory
     @spawn Fireworks
 @or attempts > 100
-    You're hopeless... Need help?
-    @choice "Yeah, please!"
+    どうしようもないですね... 助けが必要ですか？
+    @choice "はい、お願いします！"
         @set score+=10
         @goto #BeginTest
-    @choice "I'll keep trying."
+    @choice "もう少し頑張ってみます。"
         @goto #BeginTest
 @else
-    You've failed. Try again!
+    不合格です。もう一度挑戦してください！
     @goto #BeginTest
 ```
 
@@ -503,10 +503,10 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 @random
     @group
         @back tint:red
-        Paint it red.
+        赤く塗れ。
     @group
         @back tint:black
-        Paint it black.
+        黒く塗れ。
 ```
 
 ## 非同期実行
@@ -538,7 +538,7 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
     @bgm RainAmbient
     @camera zoom:0.5 time:3
 ; 次の行は、上記がすべて完了した後に実行されます。
-It starts raining...
+雨が降り始めた...
 ```
 
 ### 並行再生
@@ -570,7 +570,7 @@ It starts raining...
     @wait { random(3, 10) }
 
 ; 下のテキストが表示されている間、上記のアニメーションはループで実行されます。
-Watch out!
+気をつけて！
 ```
 
 アニメーションの進行中にゲームがセーブおよびロードされたとしても、現在の再生状態が復元され、セーブ時のポイントからアニメーションが続行されます。ロールバックも同様に機能します。
@@ -656,7 +656,7 @@ Watch out!
 高度なケースでは、並行して実行されているトラックを相互に、またはメイントラックと結合（同期）したい場合があります。[@sync] コマンドはまさにそれを実行できます。
 
 ```nani
-You'll have 60 seconds to defuse the bomb!
+60秒以内に爆弾を解除してください！
 
 @async Boom
     @wait 60
@@ -667,14 +667,14 @@ You'll have 60 seconds to defuse the bomb!
     @goto BadEnd
 
 ; 一連の爆弾解除パズルをシミュレートします。
-The defuse puzzle 1.
-The defuse puzzle 2.
-The defuse puzzle 3.
+解除パズル1。
+解除パズル2。
+解除パズル3。
 
 ; 'Boom' 非同期タスクが停止されたため、メイントラックは
 ; 中断することなく実行を継続します。
 @stop Boom
-The bomb is defused!
+爆弾は解除されました！
 ```
 
 — `Boom` 非同期タスクで [@sync] コマンドを使用しなかった場合、[@goto] コマンドは非同期トラックで実行され、メイントラックはさらに実行を続けるため、`BadEnd` とメインシナリオの両方が並行して実行されることになります。[@sync] が行うことは、ターゲットトラック（デフォルトではメイン）を強制的にそれが使用されている行に移動し、ホストトラックを破棄することです。基本的にはホストトラックをターゲットトラックと交換します。
@@ -688,9 +688,9 @@ The bomb is defused!
 テキストを編集するときに関連付けが壊れるのを防ぐために、`Naninovel -> Tools -> Text Identifier` エディターメニューからアクセスできるテキスト識別ユーティリティを使用してください。これにより、シナリオスクリプト内の各ローカライズ可能なテキストに一意のIDが自動生成され、書き込まれます。シナリオテキストには、各ローカライズ可能なパラメーターに識別子が追加されます。例：
 
 ```nani
-Kohaku: Hey!|#1|[-] What's up?|#2|
-@choice "Option 1|#3|"
-@choice "Option 2|#4|"
+Kohaku: やあ！|#1|[-]元気？|#2|
+@choice "選択肢1|#3|"
+@choice "選択肢2|#4|"
 ```
 
 IDを削除または変更しない限り、関連付けは壊れません。テキストIDが目障りにならないように、IDE拡張機能とストーリーエディターは薄い色でレンダリングします。
@@ -711,8 +711,8 @@ print.AuthorLabel = CommandParameter.Ref(otherPrint.AuthorLabel);
 シナリオスクリプト内の既存のローカライズされたテキストを参照するには、識別子の前に `&` を付けます。
 
 ```nani
-; "Some Text" を含む選択肢を表示し、その後同じテキストを表示します。
-@choice "Some Text|#SOMEID|"
+; "テキスト" を含む選択肢を表示し、その後同じテキストを表示します。
+@choice "テキスト|#SOMEID|"
 @print |#&SOMEID|
 ```
 
@@ -757,7 +757,7 @@ print.AuthorLabel = CommandParameter.Ref(otherPrint.AuthorLabel);
 
 Naninovelは、`.fountain` ドキュメントを `.nani` スクリプトに変換するツールを提供しているため、Fountain互換ソフトウェアでプロジェクトの初期シナリオを作成し、それをNaninovelに移行できます。
 
-エディターメニューからツールを開きます：`Naninovel -> Tools -> Fountain Screenplay`。ソース `.fountain` ドキュメントと生成された `.nani` ファイルの出力フォルダーを選択し、「Convert Screenplay」をクリックします。
+エディターメニューからツールを開きます：`Naninovel -> Tools -> Fountain Screenplay`。ソース `.fountain` ドキュメントと生成される `.nani` ファイルの出力フォルダーを選択し、「Convert Screenplay」をクリックします。
 
 Fountainの [Action](https://fountain.io/syntax#section-action) および [Dialogue](https://fountain.io/syntax#section-dialogue) 段落は [汎用テキスト行](/ja/guide/scenario-scripting#汎用テキスト行) に変換されます。その他の構文構造は [コメント行](/ja/guide/scenario-scripting#コメント行) として表されます。脚本を複数の `.nani` スクリプトに分割したい場合は、Fountainの [Section](https://fountain.io/syntax#section-sections) マークアップを使用します。たとえば、次の脚本を考えてみましょう。
 

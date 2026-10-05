@@ -44,21 +44,21 @@
 
 ```nani
 ; クイックタイムイベント：プレイヤーが3秒以内に選択しない限りゲームオーバー。
-Decide now![>]
-@addChoice "Turn left" goto:Left
-@addChoice "Turn right" goto:Right
+今すぐ決めて！[>]
+@addChoice "左に曲がる" goto:Left
+@addChoice "右に曲がる" goto:Right
 @wait 3
 @clearChoice
-You crashed!
+クラッシュしてしまった！
 
 ; ランダムな選択肢を追加し、プレイヤーが選択するまで再生を停止します。
 @random
-    @addChoice "Top choice"
-        You've selected the top choice!
-    @addChoice "Mediocre choice"
-        You've selected a mediocre choice.
-    @addChoice "The worst choice"
-        You've selected the worst possible choice...
+    @addChoice "最高の選択肢"
+        最高の選択肢を選びました！
+    @addChoice "平凡な選択肢"
+        平凡な選択肢を選びました。
+    @addChoice "最悪の選択肢"
+        最悪の選択肢を選びました...
 @stop
 ```
 
@@ -159,7 +159,7 @@ Lorem ipsum
 | パラメーター | 型 | 説明 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="プライマリパラメーター：パラメーターIDを指定せずに、コマンド識別子の後に値を指定します。">trackId</span> | string | 待機する非同期スクリプトトラックの識別子。[@async] コマンドで開始されたトラックの完了を待機するために使用できます。 |
-| complete | boolean | 待機中のトラックをできるだけ早く強制完了するかどうか。ネストされた行を待機している場合は効果がありません。 |
+| complete | boolean | 待機対象のトラックをできるだけ早く強制完了するかどうか。ネストされた行を待機している場合は効果がありません。 |
 
 </div>
 
@@ -169,7 +169,7 @@ Lorem ipsum
     @back RainyScene
     @bgm RainAmbient
     @camera zoom:0.5 time:3
-    It starts raining...[>]
+    雨が降り始めた...[>]
 ; 次の行は、上記がすべて完了した後に実行されます。
 ...
 
@@ -196,7 +196,7 @@ Lorem ipsum
 | パラメーター | 型 | 説明 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="プライマリパラメーター：パラメーターIDを指定せずに、コマンド識別子の後に値を指定します。">appearanceAndTransition</span> | named string | 変更対象の背景に設定する外観（または [ポーズ](/ja/guide/backgrounds#ポーズ)）と、使用する [トランジションエフェクト](/ja/guide/special-effects#トランジションエフェクト) のタイプ。トランジションが指定されていない場合、デフォルトでクロスフェード効果が使用されます。 |
-| pos | number list | 変更対象のアクターに設定する位置（シーン境界に対する相対的なパーセンテージ）。位置は次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。正投影モードで深度によって移動（ソート）するには、Z成分（3番目のメンバー、例 `,,10`）を使用します。 |
+| pos | number list | 変更対象のアクターに設定する位置（シーン境界に対する相対的なパーセンテージ）。位置は次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。正投影モードで深度によって移動（ソート）するには、Z成分（3番目のメンバー、例：`,,10`）を使用します。 |
 | id | string | 変更するアクターのID。表示されているすべてのアクターに影響を与えるには `*` を指定します。 |
 | appearance | string | 変更対象のアクターに設定する外観。 |
 | pose | string | 変更対象のアクターに設定するポーズ。 |
@@ -248,7 +248,7 @@ Lorem ipsum
 | loop | boolean | 再生が終了したときに、停止されるまで最初から繰り返すかどうか。 |
 | volume | number | オーディオ再生の音量。範囲は0.0から1.0。1.0がデフォルトで、クリッピングなしにデジタルオーディオを0 dBFS基準より大きく再生することはできません。 |
 | pitch | number | 再生の知覚上の周波数（速度）。範囲は [-3.0から3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) で、1.0が通常の速度です。負の値はオーディオを逆再生します。 |
-| pos | number list | オーディオソースの位置（シーン境界に対する相対的なパーセンテージ）。位置は次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。Z成分（3番目のメンバー、例 `,,10`）を使用して深度を変更します。 |
+| pos | number list | オーディオソースの位置（シーン境界に対する相対的なパーセンテージ）。位置は次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。Z成分（3番目のメンバー、例：`,,10`）を使用して深度を変更します。 |
 | wpos | number list | オーディオソースの位置（ワールド空間）。`pos` と `wpos` のどちらも指定しない場合、空間モードは無効になります。 |
 | wait | boolean | オーディオの再生が終わるまで待ってから次のコマンドを実行するかどうか。ループ再生時は効果がありません。 |
 | <span class="command-param-primary" title="プライマリパラメーター：パラメーターIDを指定せずに、コマンド識別子の後に値を指定します。">path</span> | string | オーディオリソースのローカルパス（名前）。 |
@@ -386,7 +386,7 @@ Lorem ipsum
 | <span class="command-param-primary command-param-required" title="プライマリパラメーター：パラメーターIDを指定せずに、コマンド識別子の後に値を指定します。必須パラメーター：このパラメーターは常に指定する必要があります。">idAndAppearance</span> | named string | 変更するキャラクターのID（表示されているすべてのキャラクターに影響を与えるには `*` を指定）と設定する外観（または [ポーズ](/ja/guide/characters#ポーズ)）。外観が指定されていない場合、`Default`（存在する場合）またはランダムなものが使用されます。 |
 | look | string | アクターの視線方向。サポートされている値：left, right, center。 |
 | avatar | string | キャラクターに割り当てる [アバターテクスチャ](/ja/guide/characters#アバターテクスチャ) の名前（パス）。キャラクターからアバターテクスチャを削除（割り当て解除）するには `none` を使用します。 |
-| pos | number list | 変更対象のアクターに設定する位置（シーン境界に対する相対的なパーセンテージ）。位置は次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。正投影モードで深度によって移動（ソート）するには、Z成分（3番目のメンバー、例 `,,10`）を使用します。 |
+| pos | number list | 変更対象のアクターに設定する位置（シーン境界に対する相対的なパーセンテージ）。位置は次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。正投影モードで深度によって移動（ソート）するには、Z成分（3番目のメンバー、例：`,,10`）を使用します。 |
 | id | string | 変更するアクターのID。表示されているすべてのアクターに影響を与えるには `*` を指定します。 |
 | appearance | string | 変更対象のアクターに設定する外観。 |
 | pose | string | 変更対象のアクターに設定するポーズ。 |
@@ -455,35 +455,35 @@ Lorem ipsum
 ```nani
 ; テキストを表示し、すぐに選択肢を表示して、
 ; いずれかの選択肢が選択されるまで再生を停止します。
-Continue executing this script or ...?[>]
-@choice "Continue"
-@choice "Load another script from start" goto:Another
-@choice "Load another script from \"Label\" label" goto:Another#Label
-@choice "Go to \"Sub\" subroutine in another script" gosub:Another#Sub
+このスクリプトの実行を続けますか、それとも...？[>]
+@choice "続ける"
+@choice "別のスクリプトを最初からロードする" goto:Another
+@choice "別のスクリプトを \"Label\" ラベルからロードする" goto:Another#Label
+@choice "別のスクリプトの \"Sub\" サブルーチンに移動する" gosub:Another#Sub
 
 ; 選択肢に基づいてシナリオ変数を設定します。
-@choice "I'm humble, one is enough..." set:score++
-@choice "Two, please." set:score=score+2
-@choice "I'll take the entire stock!" set:karma--,score=999
+@choice "控えめなので、1つで十分です..." set:score++
+@choice "2つください。" set:score=score+2
+@choice "在庫を全部もらいます！" set:karma--,score=999
 
 ; 選択肢が選択されたときに効果音を再生し、キャラクターを配置します。
-@choice "Arrange"
+@choice "整列させる"
     @sfx Click
     @arrange k.10,y.55
 
 ; 選択された選択肢に対応するテキスト行を表示します。
-@choice "Ask about color"
-    What's your favorite color?
-@choice "Ask about age"
-    How old are you?
-@choice "Keep silent"
+@choice "色について尋ねる"
+    好きな色は何？
+@choice "年齢について尋ねる"
+    何歳？
+@choice "黙っている"
     ...
 
 ; 'score' 変数が10未満の場合、選択肢を無効/ロックします。
-@choice "Extra option" lock:score<10
+@choice "追加のオプション" lock:score<10
 
 ; 'score' 変数が10以上の場合にのみ、選択肢を表示します。
-@choice "Secret option" if:score>=10
+@choice "秘密のオプション" if:score>=10
 ```
 
 ## choiceHandler
@@ -532,7 +532,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 ## clearChoice
 
-指定されたID（IDが指定されていない場合はデフォルト、IDとして `*` が指定されている場合は既存のすべてのハンドラー）の選択肢ハンドラー内の現在の選択肢を削除し、（オプションで）それを非表示にします。
+指定されたID（IDが指定されていない場合はデフォルト、IDとして `*` が指定されている場合は既存のすべてのハンドラー）の選択肢ハンドラー内の現在の選択肢を削除し、（オプションで）ハンドラーを非表示にします。
 
 <div class="config-table">
 
@@ -546,16 +546,16 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 ```nani
 ; プレイヤーに2秒間選択の時間を与えます。
-You have 2 seconds to respond![>]
-@addChoice "Cats" set:response="Cats"
-@addChoice "Dogs" set:response="Dogs"
+2秒以内に答えてください！[>]
+@addChoice "猫" set:response="猫"
+@addChoice "犬" set:response="犬"
 @set response="None"
 @wait 2
 @clearChoice
 @unless response="None"
-    {response}, huh?
+    {response}、ですか？
 @else
-    Time's out!
+    時間切れです！
 ```
 
 ## despawn
@@ -596,7 +596,7 @@ You have 2 seconds to respond![>]
 ```nani
 @spawn Rainbow
 @spawn SunShafts
-; Rainbow と SunShafts の両方をデスポーン（破棄）します。
+; RainbowとSunShaftsの両方をデスポーン（破棄）します。
 @despawnAll
 ```
 
@@ -702,7 +702,7 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 @back Victory
 @sfx Fireworks
 @bgm Fanfares
-You are victorious!
+あなたの勝利です！
 @return
 
 ; サブルーチン内に分岐がある別の例。
@@ -715,8 +715,8 @@ You are victorious!
 @gosub #Room
 @stop
 # Room
-@print "It's too early, I should visit after sunset." if:time<21&time>6
-@print "I can sense an ominous presence!" if:time>21|time<6
+@print "まだ早すぎる。日没後に訪ねよう。" if:time<21&time>6
+@print "不吉な気配を感じる！" if:time>21|time<6
 @return
 ```
 
@@ -760,10 +760,10 @@ You are victorious!
 @random
     @group
         @back tint:red
-        Paint it red.
+        赤く塗れ。
     @group
         @back tint:black
-        Paint it black.
+        黒く塗れ。
 ```
 
 ## hide
@@ -869,7 +869,7 @@ You are victorious!
 </div>
 
 ```nani
-; カスタム 'Calendar' UI があると仮定して、次のコマンドで非表示にします。
+; カスタム 'Calendar' UIがあると仮定して、次のコマンドで非表示にします。
 @hideUI Calendar
 
 ; UI全体を非表示にし、ユーザーが再表示できないようにします。
@@ -881,7 +881,7 @@ You are victorious!
 ; UI全体を非表示にしますが、ユーザーが再表示できるようにします。
 @hideUI allowToggle!
 
-; 組み込みの 'TipsUI' とカスタム 'Calendar' UI を同時に非表示にします。
+; 組み込みの 'TipsUI' とカスタム 'Calendar' UIを同時に非表示にします。
 @hideUI TipsUI,Calendar
 ```
 
@@ -903,26 +903,26 @@ You are victorious!
 
 ```nani
 ; "score" 変数に応じてテキスト行を表示します：
-;   "You've failed. Try again!" - scoreが6以下の場合。
-;   "You've passed the test." と "Brilliant!" - scoreが8より大きい場合。
-;   "You've passed the test." と "Impressive!" - scoreが7より大きい場合。
-;   "You've passed the test." と "Good job!" - それ以外の場合。
+;   "不合格です。もう一度挑戦してください！" - scoreが6以下の場合。
+;   "テストに合格しました。" と "素晴らしい！" - scoreが8より大きい場合。
+;   "テストに合格しました。" と "お見事！" - scoreが7より大きい場合。
+;   "テストに合格しました。" と "よくできました！" - それ以外の場合。
 @if score > 6
-    You've passed the test.
+    テストに合格しました。
     @if score > 8
-        Brilliant!
+        素晴らしい！
     @or score > 7
-        Impressive!
+        お見事！
     @else
-        Good job!
+        よくできました！
 @else
-    You've failed. Try again!
+    不合格です。もう一度挑戦してください！
 
 ; "score" 変数に応じてテキスト行を表示します：
-;   "Test result: Failed." - scoreが6以下の場合。
-;   "Test result: Perfect!" - scoreが8より大きい場合。
-;   "Test result: Passed." - それ以外。
-Test result:[if score>8] Perfect![or score>6] Passed.[else] Failed.[endif]
+;   "テスト結果：不合格。" - scoreが6以下の場合。
+;   "テスト結果：満点！" - scoreが8より大きい場合。
+;   "テスト結果：合格。" - それ以外の場合。
+テスト結果：[if score>8]満点！[or score>6]合格。[else]不合格。[endif]
 ```
 
 ## input
@@ -947,13 +947,13 @@ Test result:[if score>8] Perfect![or score>6] Passed.[else] Failed.[endif]
 
 ```nani
 ; 任意のテキストを入力するように求め、それを 'name' シナリオ変数に代入します。
-@input name summary:"Choose your name."
+@input name summary:"あなたの名前を選んでください。"
 
 ; その後、代入された 'name' 変数をシナリオスクリプトに注入できます。
-Archibald: Greetings, {name}!
+Archibald: ようこそ、{name}！
 
 ; ...または、セット式や条件式内で使用します。
-@set score++ if:name="Felix"
+@set score++ if:name="フェリックス"
 ```
 
 ## linkPrinter
@@ -1094,7 +1094,7 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 デフォルトのWebブラウザーで指定されたURL（Webアドレス）を開きます。
 
 ::: info NOTE
-WebGL以外のプラットフォームまたはエディターでは、Unityの `Application.OpenURL` メソッドを使用してコマンドを処理します。動作の詳細と制限については、[ドキュメント](https://docs.unity3d.com/ScriptReference/Application.OpenURL.html) を参照してください。WebGLでは、ネイティブの `window.open()` JS関数が呼び出されます：https://developer.mozilla.org/en-US/docs/Web/API/Window/open。
+WebGL以外のプラットフォームまたはエディターでは、Unityの `Application.OpenURL` メソッドを使用してコマンドを処理します。動作の詳細と制限については、[ドキュメント](https://docs.unity3d.com/ScriptReference/Application.OpenURL.html) を参照してください。WebGLでは、ネイティブの `window.open()` JS関数が呼び出されます：<https://developer.mozilla.org/en-US/docs/Web/API/Window/open>。
 :::
 
 <div class="config-table">
@@ -1157,18 +1157,18 @@ WebGL以外のプラットフォームまたはエディターでは、Unityの 
 @print "Lorem ipsum dolor sit amet."
 
 ; テキスト自体に引用符を含めるには、エスケープします。
-@print "Shouting \"Stop the car!\" was a mistake."
+@print "\"車を止めろ！\" と叫んだのは間違いでした。"
 
 ; 通常の半分の速度でメッセージを表示し、
 ; 続行するためにユーザー入力を待機しません。
 @print "Lorem ipsum dolor sit amet." speed:0.5 !waitInput
 
-; "Together" を話者名として行を表示し、
+; "全員" を話者名として行を表示し、
 ; 表示されているすべてのキャラクターをそのテキストの話者にします。
-@print "Hello World!" author:* as:"Together"
+@print "Hello World!" author:* as:"全員"
 
 ; 同様ですが、"Kohaku" と "Yuko" のみを話者にします。
-@print "Hello World!" author:Kohaku,Yuko as:"Kohaku and Yuko"
+@print "Hello World!" author:Kohaku,Yuko as:"コハクとユウコ"
 ```
 
 ## printer
@@ -1183,7 +1183,7 @@ WebGL以外のプラットフォームまたはエディターでは、Unityの 
 | default | boolean | プリンターをデフォルトにするかどうか。`printer` パラメーターが指定されていない場合、デフォルトのプリンターがすべてのプリンター関連コマンドの対象になります。ネストされたコマンドを含む場合は効果がありません。 |
 | hideOther | boolean | 他のすべてのプリンターを非表示にするかどうか。 |
 | anchor | boolean | アクターアンカーによる自動プリンター配置を許可するかどうか。サポートされているプリンターで、プリンターを手動で配置した後に自動配置を再開する場合に有効にします。このコマンドで明示的な位置が割り当てられると、アンカーは自動的に無効になることに注意してください。 |
-| pos | number list | 変更対象のアクターに設定する位置（シーン境界に対する相対的なパーセンテージ）。位置は次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。正投影モードで深度によって移動（ソート）するには、Z成分（3番目のメンバー、例 `,,10`）を使用します。 |
+| pos | number list | 変更対象のアクターに設定する位置（シーン境界に対する相対的なパーセンテージ）。位置は次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。正投影モードで深度によって移動（ソート）するには、Z成分（3番目のメンバー、例：`,,10`）を使用します。 |
 | id | string | 変更するアクターのID。表示されているすべてのアクターに影響を与えるには `*` を指定します。 |
 | appearance | string | 変更対象のアクターに設定する外観。 |
 | pose | string | 変更対象のアクターに設定するポーズ。 |
@@ -1250,18 +1250,18 @@ Kohaku: 再びリンクされたプリンターを使用します。
 ```nani
 ; プレイヤーが別の選択肢を選択しようとしてロールバックするのを防ぎます。
 
-Select a choice. You won't be able to roll back.
-@choice One goto:#One
-@choice Two goto:#Two
+選択肢を選んでください。ロールバックはできません。
+@choice 選択肢1 goto:#One
+@choice 選択肢2 goto:#Two
 
 # One
 @purgeRollback
-You've picked one.
+選択肢1を選びました。
 @stop
 
 # Two
 @purgeRollback
-You've picked two.
+選択肢2を選びました。
 @stop
 ```
 
@@ -1286,7 +1286,7 @@ You've picked two.
 | time | number | パーティクルシステムは、指定された時間（秒単位）でスポーン率を目標レベルまで徐々に増加させます。 |
 | xSpeed | number | パーティクルの水平速度の乗数。雨滴の角度を変更するために使用します。 |
 | ySpeed | number | パーティクルの垂直速度の乗数。 |
-| pos | number list | スポーン効果のゲームオブジェクトに設定する位置（シーン境界に対する相対的なパーセンテージ）。位置は次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。正投影モードで深度によって移動（ソート）するには、Z成分（3番目のメンバー、例 `,,10`）を使用します。 |
+| pos | number list | スポーン効果のゲームオブジェクトに設定する位置（シーン境界に対する相対的なパーセンテージ）。位置は次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。正投影モードで深度によって移動（ソート）するには、Z成分（3番目のメンバー、例：`,,10`）を使用します。 |
 | wpos | number list | スポーン効果のゲームオブジェクトに設定する位置（ワールド空間）。 |
 | roll | number | スポーン効果のゲームオブジェクトに設定するZ軸回転。`rotation` パラメーターの3番目の成分と同じです。`rotation` が指定されている場合は無視されます。 |
 | rotation | number list | スポーン効果のゲームオブジェクトに設定する回転。 |
@@ -1331,11 +1331,11 @@ You've picked two.
 ; いずれかを、それぞれ33%の確率で実行します。ただし、SFXの再生は、
 ; scoreが10を超えている場合にのみ考慮されます。
 @random
-    @choice "Shake camera!"
-        You've asked for it!
+    @choice "カメラをシェイク！"
+        お望みどおりに！
         @shake Camera
     @group
-        Going to tint Kohaku!
+        コハクに色を付けます！
         @char Kohaku tint:red
     @sfx SoundX if:score>10
 ```
@@ -1412,11 +1412,11 @@ You've picked two.
 
 ```nani
 ; テキストを表示してから、デフォルトのプリンターの内容をクリアします。
-This line will disappear.
+この行は消えます。
 @resetText
 
 ; 上記と同じですが、'Wide' プリンターを使用します。
-@print "This line will disappear." printer:Wide
+@print "この行は消えます。" printer:Wide
 @resetText Wide
 ```
 
@@ -1461,11 +1461,11 @@ This line will disappear.
 @set rested?=false
 
 @if rested
-    Good morning! We have to go now.
+    おはよう！もう出発しないと。
     @goto NextDay
 
-@choice "No time to rest!" goto:NextDay
-@choice "Let's rest a bit"
+@choice "休んでいる時間はない！" goto:NextDay
+@choice "少し休もう"
     @set rested=true
     ; 'at' パラメーターに注意してください。ゲームがロードされると、
     ; 指定されたラベルにプレイヤーをリダイレクトします。
@@ -1498,26 +1498,26 @@ This line will disappear.
 ; 'foo' 変数に 'bar' 文字列値を代入します。
 @set foo="bar"
 
-; 'foo' 変数に数値 1 を代入します。
+; 'foo' 変数に数値1を代入します。
 @set foo=1
 
 ; 'foo' 変数に 'true' ブール値を代入します。
 @set foo=true
 
-; 'foo' が数値の場合、その値に 0.5 を加算します。
+; 'foo' が数値の場合、その値に0.5を加算します。
 @set foo+=0.5
 
 ; 'angle' が数値の場合、そのコサインを 'foo' 変数に代入します。
 @set foo=cos(angle)
 
-; -100 から 100 までの乱数を取得し、4乗して
+; -100から100までの乱数を取得し、4乗して
 ; 'foo' 変数に代入します。
 @set foo = pow(random(-100, 100), 4)
 
-; 'foo' が数値の場合、その値に 1 を加算します（インクリメント）。
+; 'foo' が数値の場合、その値に1を加算します（インクリメント）。
 @set foo++
 
-; 'foo' が数値の場合、その値から 1 を減算します（デクリメント）。
+; 'foo' が数値の場合、その値から1を減算します（デクリメント）。
 @set foo--
 
 ; 'foo' 変数に 'bar' 変数の値
@@ -1540,10 +1540,10 @@ This line will disappear.
 
 ; ...そして汎用テキスト行にも。
 @set drink="Dr. Pepper"
-My favourite drink is {drink}!
+私の好きな飲み物は{drink}です！
 
 ; テキスト式の値の中で二重引用符を使用する場合は、エスケープします。
-@set remark="Shouting \"Stop the car!\" was a mistake."
+@set remark="\"車を止めろ！\" と叫んだのは間違いでした。"
 
 ; メタ変数を使用して、ゲームセッションをまたいで値を保持します。
 ; ゲームを再起動しても、変数はその値を維持します。
@@ -1566,7 +1566,7 @@ My favourite drink is {drink}!
 @set .count=0
 @while .count is below 10
     @set .count++
-    Current count: {.count}
+    現在のカウント：{.count}
 ```
 
 ## sfx
@@ -1585,7 +1585,7 @@ My favourite drink is {drink}!
 | loop | boolean | 再生が終了したときに、停止されるまで最初から繰り返すかどうか。 |
 | volume | number | オーディオ再生の音量。範囲は0.0から1.0。1.0がデフォルトで、クリッピングなしにデジタルオーディオを0 dBFS基準より大きく再生することはできません。 |
 | pitch | number | 再生の知覚上の周波数（速度）。範囲は [-3.0から3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) で、1.0が通常の速度です。負の値はオーディオを逆再生します。 |
-| pos | number list | オーディオソースの位置（シーン境界に対する相対的なパーセンテージ）。位置は次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。Z成分（3番目のメンバー、例 `,,10`）を使用して深度を変更します。 |
+| pos | number list | オーディオソースの位置（シーン境界に対する相対的なパーセンテージ）。位置は次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。Z成分（3番目のメンバー、例：`,,10`）を使用して深度を変更します。 |
 | wpos | number list | オーディオソースの位置（ワールド空間）。`pos` と `wpos` のどちらも指定しない場合、空間モードは無効になります。 |
 | wait | boolean | オーディオの再生が終わるまで待ってから次のコマンドを実行するかどうか。ループ再生時は効果がありません。 |
 | <span class="command-param-primary" title="プライマリパラメーター：パラメーターIDを指定せずに、コマンド識別子の後に値を指定します。">path</span> | string | オーディオリソースのローカルパス（名前）。 |
@@ -1629,7 +1629,7 @@ My favourite drink is {drink}!
 | loop | boolean | 再生が終了したときに、停止されるまで最初から繰り返すかどうか。 |
 | volume | number | オーディオ再生の音量。範囲は0.0から1.0。1.0がデフォルトで、クリッピングなしにデジタルオーディオを0 dBFS基準より大きく再生することはできません。 |
 | pitch | number | 再生の知覚上の周波数（速度）。範囲は [-3.0から3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) で、1.0が通常の速度です。負の値はオーディオを逆再生します。 |
-| pos | number list | オーディオソースの位置（シーン境界に対する相対的なパーセンテージ）。位置は次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。Z成分（3番目のメンバー、例 `,,10`）を使用して深度を変更します。 |
+| pos | number list | オーディオソースの位置（シーン境界に対する相対的なパーセンテージ）。位置は次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。Z成分（3番目のメンバー、例：`,,10`）を使用して深度を変更します。 |
 | wpos | number list | オーディオソースの位置（ワールド空間）。`pos` と `wpos` のどちらも指定しない場合、空間モードは無効になります。 |
 | wait | boolean | オーディオの再生が終わるまで待ってから次のコマンドを実行するかどうか。ループ再生時は効果がありません。 |
 | <span class="command-param-primary" title="プライマリパラメーター：パラメーターIDを指定せずに、コマンド識別子の後に値を指定します。">path</span> | string | オーディオリソースのローカルパス（名前）。 |
@@ -1671,7 +1671,7 @@ My favourite drink is {drink}!
 
 ; 'Kohaku' キャラクターのシェイクを開始し、停止する選択肢を表示して、それに応じて動作します。
 @shake Kohaku loop!
-@choice "Stop shaking"
+@choice "シェイクを止める"
     @shake Kohaku !loop
 ...
 
@@ -1746,7 +1746,7 @@ My favourite drink is {drink}!
 ; @hideUI でUI全体を非表示にしたと仮定して、再び表示します。
 @showUI
 
-; 組み込みの 'TipsUI' とカスタム 'Calendar' UI を同時に表示します。
+; 組み込みの 'TipsUI' とカスタム 'Calendar' UIを同時に表示します。
 @showUI TipsUI,Calendar
 ```
 
@@ -1817,7 +1817,7 @@ My favourite drink is {drink}!
 | --- | --- | --- |
 | power | number | 雪の強度（1秒あたりのパーティクルスポーン率）。0.0〜1.0の範囲で、デフォルトは0.5。0に設定すると、効果が無効（デスポーン）になります。 |
 | time | number | パーティクルシステムは、指定された時間（秒単位）でスポーン率を目標レベルまで徐々に増加させます。 |
-| pos | number list | スポーン効果のゲームオブジェクトに設定する位置（シーン境界に対する相対的なパーセンテージ）。位置は次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。正投影モードで深度によって移動（ソート）するには、Z成分（3番目のメンバー、例 `,,10`）を使用します。 |
+| pos | number list | スポーン効果のゲームオブジェクトに設定する位置（シーン境界に対する相対的なパーセンテージ）。位置は次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。正投影モードで深度によって移動（ソート）するには、Z成分（3番目のメンバー、例：`,,10`）を使用します。 |
 | wpos | number list | スポーン効果のゲームオブジェクトに設定する位置（ワールド空間）。 |
 | roll | number | スポーン効果のゲームオブジェクトに設定するZ軸回転。`rotation` パラメーターの3番目の成分と同じです。`rotation` が指定されている場合は無視されます。 |
 | rotation | number list | スポーン効果のゲームオブジェクトに設定する回転。 |
@@ -1847,7 +1847,7 @@ My favourite drink is {drink}!
 | --- | --- | --- |
 | <span class="command-param-primary command-param-required" title="プライマリパラメーター：パラメーターIDを指定せずに、コマンド識別子の後に値を指定します。必須パラメーター：このパラメーターは常に指定する必要があります。">path</span> | string | スポーンするプレハブリソースの名前（パス）。 |
 | params | string list | プレハブをスポーンするときに設定するパラメーター。プレハブのルートオブジェクトに `IParameterized` コンポーネントがアタッチされている必要があります。 |
-| pos | number list | スポーンされたオブジェクトに設定する位置（シーン境界に対する相対的なパーセンテージ）。位置は次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。正投影モードで深度によって移動（ソート）するには、Z成分（3番目のメンバー、例 `,,10`）を使用します。 |
+| pos | number list | スポーンされたオブジェクトに設定する位置（シーン境界に対する相対的なパーセンテージ）。位置は次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。正投影モードで深度によって移動（ソート）するには、Z成分（3番目のメンバー、例：`,,10`）を使用します。 |
 | wpos | number list | スポーンされたオブジェクトに設定する位置（ワールド空間）。 |
 | roll | number | スポーンされたオブジェクトに設定するZ軸回転。`rotation` パラメーターの3番目の成分と同じです。`rotation` が指定されている場合は無視されます。 |
 | rotation | number list | スポーンされたオブジェクトに設定する回転。 |
@@ -1885,7 +1885,7 @@ My favourite drink is {drink}!
 ; 上記の @stop コマンドは、スクリプトの再生が
 ; 下のラベル以降に進むのを防ぎます。
 # Label
-This line is only executed when navigated directly with a @gosub.
+この行は、@gosubで直接移動した場合にのみ実行されます。
 @return
 
 ; 'Quake' 非同期タスクを停止するまでループします。
@@ -1965,7 +1965,7 @@ This line is only executed when navigated directly with a @gosub.
 
 ## sun
 
-[太陽光](/ja/guide/special-effects#sun)（別名ゴッドレイ）をシミュレートするパーティクルシステムをスポーンします。
+[太陽光線](/ja/guide/special-effects#sun)（別名ゴッドレイ）をシミュレートするパーティクルシステムをスポーンします。
 
 <div class="config-table">
 
@@ -1973,7 +1973,7 @@ This line is only executed when navigated directly with a @gosub.
 | --- | --- | --- |
 | power | number | 光線の強度（不透明度）、0.0〜1.0の範囲。デフォルトは0.85。0に設定すると、効果が無効（デスポーン）になります。 |
 | time | number | パーティクルシステムは、指定された時間（秒単位）で光線の不透明度を目標レベルまで徐々に変化させます。 |
-| pos | number list | スポーン効果のゲームオブジェクトに設定する位置（シーン境界に対する相対的なパーセンテージ）。位置は次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。正投影モードで深度によって移動（ソート）するには、Z成分（3番目のメンバー、例 `,,10`）を使用します。 |
+| pos | number list | スポーン効果のゲームオブジェクトに設定する位置（シーン境界に対する相対的なパーセンテージ）。位置は次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。正投影モードで深度によって移動（ソート）するには、Z成分（3番目のメンバー、例：`,,10`）を使用します。 |
 | wpos | number list | スポーン効果のゲームオブジェクトに設定する位置（ワールド空間）。 |
 | roll | number | スポーン効果のゲームオブジェクトに設定するZ軸回転。`rotation` パラメーターの3番目の成分と同じです。`rotation` が指定されている場合は無視されます。 |
 | rotation | number list | スポーン効果のゲームオブジェクトに設定する回転。 |
@@ -2002,7 +2002,7 @@ This line is only executed when navigated directly with a @gosub.
 </div>
 
 ```nani
-You'll have 60 seconds to defuse the bomb!
+60秒以内に爆弾を解除してください！
 
 @async Boom
     @wait 60
@@ -2013,14 +2013,14 @@ You'll have 60 seconds to defuse the bomb!
     @goto BadEnd
 
 ; 一連の爆弾解除パズルをシミュレートします。
-The defuse puzzle 1.
-The defuse puzzle 2.
-The defuse puzzle 3.
+解除パズル1。
+解除パズル2。
+解除パズル3。
 
 ; 'Boom' 非同期タスクが停止されたため、メイントラックは
 ; 中断することなく実行を継続します。
 @stop Boom
-The bomb is defused!
+爆弾は解除されました！
 ```
 
 ## timeline
@@ -2080,10 +2080,10 @@ The bomb is defused!
 @toast "Hello World!"
 
 ; 'warning' 外観のトーストを表示します。
-@toast "You're in danger!" appearance:warning
+@toast "危険です！" appearance:warning
 
 ; トーストは1秒で消えます。
-@toast "I'll disappear in 1 second." time:1
+@toast "1秒後に消えます。" time:1
 ```
 
 ## trans
@@ -2111,7 +2111,7 @@ The bomb is defused!
 @char Felix
 @back SunnyDay
 @sun power:1
-Felix: What a nice day!
+Felix: なんていい天気だ！
 
 ; 'DropFade' トランジションエフェクトを使用して3秒かけて
 ; 'Jenna' キャラクターと雨の雰囲気の新しいシーンにトランジションします。
@@ -2121,7 +2121,7 @@ Felix: What a nice day!
     @back RainyDay
     @sun power:0
     @rain power:1
-Jenna: When will the damn rain stop?
+Jenna: このいまいましい雨はいつ止むの？
 ```
 
 ## unless
@@ -2141,17 +2141,17 @@ Jenna: When will the damn rain stop?
 </div>
 
 ```nani
-; "dead" 変数が false の場合に "You're still alive!" を表示し、
-; それ以外の場合は "You're done." を表示します。
+; "dead" 変数がfalseの場合に "まだ生きています！" を表示し、
+; それ以外の場合は "もうおしまいです。" を表示します。
 @unless dead
-    You're still alive!
+    まだ生きています！
 @else
-    You're done.
+    もうおしまいです。
 
 ; "score" 変数に応じてテキスト行を表示します：
-;   "Test result: Passed." - scoreが10以上の場合。
-;   "Test result: Failed." - scoreが10未満の場合。
-Test result:[unless score<10] Passed.[else] Failed.[endif]
+;   "テスト結果：合格。" - scoreが10以上の場合。
+;   "テスト結果：不合格。" - scoreが10未満の場合。
+テスト結果：[unless score<10]合格。[else]不合格。[endif]
 ```
 
 ## unlinkPrinter
@@ -2233,7 +2233,7 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 | loop | boolean | 再生が終了したときに、停止されるまで最初から繰り返すかどうか。 |
 | volume | number | オーディオ再生の音量。範囲は0.0から1.0。1.0がデフォルトで、クリッピングなしにデジタルオーディオを0 dBFS基準より大きく再生することはできません。 |
 | pitch | number | 再生の知覚上の周波数（速度）。範囲は [-3.0から3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) で、1.0が通常の速度です。負の値はオーディオを逆再生します。 |
-| pos | number list | オーディオソースの位置（シーン境界に対する相対的なパーセンテージ）。位置は次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。Z成分（3番目のメンバー、例 `,,10`）を使用して深度を変更します。 |
+| pos | number list | オーディオソースの位置（シーン境界に対する相対的なパーセンテージ）。位置は次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。Z成分（3番目のメンバー、例：`,,10`）を使用して深度を変更します。 |
 | wpos | number list | オーディオソースの位置（ワールド空間）。`pos` と `wpos` のどちらも指定しない場合、空間モードは無効になります。 |
 | wait | boolean | オーディオの再生が終わるまで待ってから次のコマンドを実行するかどうか。ループ再生時は効果がありません。 |
 | <span class="command-param-primary command-param-required" title="プライマリパラメーター：パラメーターIDを指定せずに、コマンド識別子の後に値を指定します。必須パラメーター：このパラメーターは常に指定する必要があります。">path</span> | string | オーディオリソースのローカルパス（名前）。 |
@@ -2257,7 +2257,7 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 
 | パラメーター | 型 | 説明 |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="プライマリパラメーター：パラメーターIDを指定せずに、コマンド識別子の後に値を指定します。必須パラメーター：このパラメーターは常に指定する必要があります。">waitMode</span> | string | 待機条件：<br/> - `i` ユーザーが続行またはスキップ入力キーを押す；<br/> - `0.0` タイマー（秒）；<br/> - `i0.0` 続行またはスキップ入力キーでスキップ可能なタイマー。 |
+| <span class="command-param-primary command-param-required" title="プライマリパラメーター：パラメーターIDを指定せずに、コマンド識別子の後に値を指定します。必須パラメーター：このパラメーターは常に指定する必要があります。">waitMode</span> | string | 待機条件：<br/> - `i` ユーザーが続行またはスキップ入力キーを押す。<br/> - `0.0` タイマー（秒）。<br/> - `i0.0` 続行またはスキップ入力キーでスキップ可能なタイマー。 |
 
 </div>
 
@@ -2275,7 +2275,7 @@ Lorem ipsum[-] dolor sit amet.
 ; ループSFXを開始し、メッセージを表示し、スキップ可能な5秒の遅延を待機してから、
 ; SFXを停止します。
 @sfx Noise loop!
-Jeez, what a disgusting Noise. Shut it down![wait i5][>]
+うわっ、なんてひどいノイズだ。止めてくれ！[wait i5][>]
 @stopSfx Noise
 ```
 
@@ -2295,11 +2295,11 @@ Jeez, what a disgusting Noise. Shut it down![wait i5][>]
 ; 数字当てゲーム。
 @set number=random(1,100),answer=0
 @while answer!=number
-    @input answer summary:"Guess a number between 1 and 100"
+    @input answer summary:"1から100までの数字を当ててください"
     @if answer<number
-        Wrong, too low.
+        不正解、小さすぎます。
     @else if:answer>number
-        Wrong, too high.
+        不正解、大きすぎます。
     @else
-        Correct!
+        正解！
 ```

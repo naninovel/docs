@@ -185,7 +185,7 @@ public class MyCustomUI : CustomUI
 }
 ```
 
-## Unity 事件上的播放脚本
+## 通过 Unity 事件播放脚本
 
 创建自定义 UI 时，您可能希望执行命令或开始播放特定的剧本脚本以响应某些事件（例如，[按钮单击](https://docs.unity3d.com/Manual/script-Button.html)）。
 

@@ -28,6 +28,7 @@
 var player = Engine.GetService<IScriptPlayer>();
 player.MainTrack.Stop();
 ```
+
 您可以在 [引擎服务指南](/zh/guide/engine-services) 中找到所有当前可用的引擎服务列表以及有关如何覆盖或添加自定义服务的信息。
 
 ## 高层概念

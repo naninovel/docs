@@ -6,7 +6,7 @@
 
 ![Managed Text Tool](https://i.gyazo.com/200680de85848f04a2eb51b063295c51.png)
 
-使用“Select”按钮，选择存储管理文本文档的路径（默认为 `Resources/Naninovel/Text`），然后按“Generate Managed Text Documents”创建文档。
+使用“Select”按钮，选择存储管理文本文档的路径（默认应为 `Resources/Naninovel/Text`），然后按“Generate Managed Text Documents”创建文档。
 
 您还可以使用 `Create -> Naninovel -> Managed Text` 资产上下文菜单创建自定义管理文本文档。
 

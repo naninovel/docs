@@ -28,6 +28,7 @@ Unityの設計ではシーンとプレハブを組み合わせた構成が推奨
 var player = Engine.GetService<IScriptPlayer>();
 player.MainTrack.Stop();
 ```
+
 現在利用可能なすべてのエンジンサービスのリストと、それらをオーバーライドしたりカスタムサービスを追加したりする方法については、[エンジンサービスガイド](/ja/guide/engine-services) を参照してください。
 
 ## ハイレベルコンセプト

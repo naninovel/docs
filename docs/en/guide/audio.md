@@ -6,7 +6,7 @@ To add, edit or remove background music (BGM) and sound effect (SFX) resources, 
 Choose file formats that are most comfortable for your development workflow. When building the project, Unity will automatically convert all the source resources (textures, audio, video, etc) to the formats most suitable for the target platform, so it won't make a difference in which format you originally store the resources in the project. Find more information on how Unity manages project assets in the [official documentation](https://docs.unity3d.com/Manual/AssetWorkflow).
 :::
 
-In case you have a lot of audio files and it's inconvenient to assign them via the editor menu, it's possible to just drop them in the `Resources/Naninovel/BGM` (music) and `Resources/Naninovel/SFX` (sound effects) folders, and they'll automatically be available in the scripts. You can additionally organize them with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in scenario scripts. Eg, an audio clip stored as `Resources/Naninovel/BGM/Ambient/Noise002.wav` can be referenced in scripts as `Ambient/Noise002`.
+In case you have a lot of audio files and it's inconvenient to assign them via the editor menu, it's possible to just drop them in the `Resources/Naninovel/BGM` (music) and `Resources/Naninovel/SFX` (sound effects) folders, and they'll automatically be available in the scripts. You can additionally organize them with subfolders, if you wish; in this case use forward slashes (`/`) when referencing them in scenario scripts. Eg, an audio clip stored as `Resources/Naninovel/BGM/Ambient/Noise002.wav` can be referenced in scripts as `Ambient/Noise002`.
 
 It's also possible to use the [Addressable Asset System](/guide/resource-providers#addressable) to manually expose the resources. To expose an asset, assign an address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "MainTheme.wav" BGM, assign the clip asset the following address: `Naninovel/BGM/MainTheme`. Be aware that while in the editor, a special "Editor" resource provider is always used first; the addressable provider is only tried for the resources that are not assigned via the editor menus.
 
@@ -24,7 +24,7 @@ Use the [@bgm] command followed by the clip name to control the music playback i
 ; Starts playing a music track with the name "Sanctuary" in a loop.
 @bgm Sanctuary
 
-; Same as above, but fades-in the volume over 10 seconds and plays only once.
+; Same as above, but fades in the volume over 10 seconds and plays only once.
 @bgm Sanctuary fade:10 !loop
 
 ; Changes volume of all the played music tracks to 50% over 2.5 seconds
@@ -44,7 +44,7 @@ It's possible to play an intro followed by a loop with the `intro` parameter, eg
 To stop a playing music track, use the [@stopBgm] command followed by the clip name. When a clip name is not specified, the command will stop all currently played tracks.
 
 ```nani
-; Fades-out the "Promenade" music track over 10 seconds and stops the playback.
+; Fades out the "Promenade" music track over 10 seconds and stops the playback.
 @stopBgm Promenade fade:10
 
 ; Stops all the currently played music tracks.
@@ -72,7 +72,7 @@ Sound effect tracks are not looped by default. When an SFX track name is not spe
 To stop a playing sound effect (looped or not), use the [@stopSfx] command followed by the clip name. When a clip name is not specified, the command will stop all currently played SFX tracks.
 
 ```nani
-; Stop playing an SFX with the name "Rain", fading-out for 15 seconds.
+; Stop playing an SFX with the name "Rain", fading out for 15 seconds.
 @stopSfx Rain fade:15
 
 ; Stops all the currently played sound effect tracks.
@@ -84,14 +84,14 @@ To stop a playing sound effect (looped or not), use the [@stopSfx] command follo
 All audio commands support `pos` and `wpos` parameters, which, when specified, enable spatial mode — aka "3D audio" — where the associated audio source will be configured to respond to its position relative to the audio listener. Use `pos` to place the source relative to the scene borders in percents (`0,0` is the bottom left and `100,100` is the top right) or `wpos` to place it in world space.
 
 ```nani
-; Plays 'Explosion' slightly above and behind the listener in world-space.
+; Plays 'Explosion' slightly above and behind the listener in world space.
 @sfx Explosion wpos:0,1,-3
 ```
 
 It's possible to animate the position like any other parameter:
 
 ```nani
-; Pans 'Rain' position right-left-right in scene-space until stopped.
+; Pans 'Rain' position right-left-right in scene space until stopped.
 @async Rainpan loop!
     @sfx Rain pos:100,50 fade:10
     @wait 10
@@ -111,7 +111,7 @@ Naninovel uses an [audio mixer](https://docs.unity3d.com/Manual/AudioMixer.html)
 
 ![](https://i.gyazo.com/6271d59ee9ac63a0a218316bd3bc78a8.png)
 
-It's possible to assign a custom mixer asset, change groups used for each audio channel, and change volume control handlers (exposed parameter names) in the audio configuration menu. When no custom mixer asset is assigned, a default one will be used.
+It's possible to assign a custom mixer asset, change groups used for each audio channel, and change volume control handles (exposed parameter names) in the audio configuration menu. When no custom mixer asset is assigned, a default one will be used.
 
 ![](https://i.gyazo.com/ef2db68edb871608d1718117a37e9486.png)
 

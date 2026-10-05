@@ -127,26 +127,26 @@ The sample demonstrates using Live2D characters with Naninovel. Find them in the
 
 ## Localization
 
- - The generated localization documents are stored in the `Content/Localization` directory.
- - The generated sheets are stored in the `Sheets` directory under the samples project root.
- - The localization-specific font is stored in `Content/Fonts`.
+- The generated localization documents are stored in the `Content/Localization` directory.
+- The generated sheets are stored in the `Sheets` directory under the samples project root.
+- The localization-specific font is stored in `Content/Fonts`.
 
 Folders selected for the localization tool:
 
-| Folder                 | Path                                   |
-|------------------------|----------------------------------------|
-| Script Folder (input)  | Assets/Scripts/Scenario                |
-| Text Folder (input)    | Assets/Content/Text                   |
-| Locale Folder (output) | Assets/Content/Localization           |
+| Folder                 | Path                        |
+|------------------------|-----------------------------|
+| Script Folder (input)  | Assets/Scripts/Scenario     |
+| Text Folder (input)    | Assets/Content/Text         |
+| Locale Folder (output) | Assets/Content/Localization |
 
 Folders selected for the spreadsheet tool:
 
-| Folder                    | Path                                   |
-|---------------------------|----------------------------------------|
-| Input Scripts Folder      | Assets/Scripts/Scenario                |
-| Input Text Folder         | Assets/Content/Text                   |
-| Input Localization Folder | Assets/Content/Localization           |
-| Output Folder             | Sheets                                 |
+| Folder                    | Path                        |
+|---------------------------|-----------------------------|
+| Input Scripts Folder      | Assets/Scripts/Scenario     |
+| Input Text Folder         | Assets/Content/Text         |
+| Input Localization Folder | Assets/Content/Localization |
+| Output Folder             | Sheets                      |
 
 ![](https://i.gyazo.com/97d232751dd7e97bc828f3521f1d2066.mp4)
 

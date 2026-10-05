@@ -171,10 +171,10 @@ Lorem ipsum[char Felix.Happy pos:75 wait!] dolor sit amet.
 要在通用文本行中实际打印方括号，请使用反斜杠转义它们，例如：
 
 ```nani
-Some text \[ text inside brackets \]
+一些文本 \[ 方括号内的文本 \]
 ```
 
-— 将在游戏中打印 `Some text [ text inside brackets ]`。
+— 将在游戏中打印 `一些文本 [ 方括号内的文本 ]`。
 
 要在显示文本行后跳过等待输入，请附加 `[>]`：
 
@@ -190,8 +190,8 @@ Lorem ipsum dolor sit amet.[>]
 
 ```nani
 ; 该行的作者将是 Kohaku 和 Yuko 两个 Actor，
-; 但打印机上的显示名称将显示 'All Together'。
-Kohaku,Yuko: Hello![< as:"All Together"]
+; 但打印机上的显示名称将显示 '大家'。
+Kohaku,Yuko: 你好！[< as:"大家"]
 
 ; 第一部分以 50% 的速度打印，
 ; 第二部分以 250% 的速度打印且不等待。
@@ -201,9 +201,9 @@ Lorem[< speed:0.5] world![< speed:2.5 nowait!]
 该命令将指定的参数应用于放置在它之前的最后一个文本行，即使其他命令内联在 `<` 和文本之间：
 
 ```nani
-; 速度仍然适用于 "Hello" 部分，
+; 速度仍然适用于 "你好" 部分，
 ; 即使参数位于内联命令之后。
-Hello[-][< speed:0.5] world!
+你好[-][< speed:0.5]，世界！
 ```
 
 ### 空白分隔符
@@ -241,7 +241,7 @@ Hello[-][< speed:0.5] world!
 @goto #Epilogue
 ```
 
-`#` 分隔符前后的空格是可选的，脚本名称和标签名称均可包含空格。以下端点格式均有效：
+`#` 分隔符前后的空白是可选的，脚本名称和标签名称均可包含空格。以下端点格式均有效：
 
 ```nani
 @goto Script#Label
@@ -382,13 +382,13 @@ Lorem ipsum[shake Camera ver:true wait:false] dolor sit amet.
 
 ```nani
 ; 如果 "level" 大于 9000，则添加该选项。
-@choice "It's over 9000!" if: level above 9000
+@choice "超过 9000 了！" if: level above 9000
 
 ; 如果 "dead" 为 false，则执行打印命令。
-@print "I'm still alive." if: not dead
+@print "我还活着。" if: not dead
 
 ; 相同但更简洁。
-@print "I'm still alive." unless:dead
+@print "我还活着。" unless:dead
 
 ; 如果 "insane" 为 true 或者 1 到 10 范围内的 random 函数
 ; 返回 5 或更多，则执行 "@glitch" 命令。
@@ -405,7 +405,7 @@ Lorem ipsum[shake Camera ver:true wait:false] dolor sit amet.
 Lorem sit amet. [sfx Applause if:score>=10]Consectetur elit.
 
 ; 转义表达式中的双引号。
-@print {remark} if: remark = "Saying \"Stop the car\" was a mistake."
+@print {remark} if: remark = "说 \"停车\" 是个错误。"
 ```
 
 ### 条件块
@@ -414,45 +414,45 @@ Lorem sit amet. [sfx Applause if:score>=10]Consectetur elit.
 
 ```nani
 ; 根据 "score" 变量打印文本行：
-; "You've failed. Try again!" - 当 score 为 6 或更低时。
-; "You've passed the test." 和 "Brilliant!" - 当 score 高于 8 时。
-; "You've passed the test." 和 "Impressive!" - 当 score 高于 7 时。
-; "You've passed the test." 和 "Good job!" - 其他情况。
+; "你失败了。再试一次！" - 当 score 为 6 或更低时。
+; "你通过了测试。" 和 "太棒了！" - 当 score 高于 8 时。
+; "你通过了测试。" 和 "令人印象深刻！" - 当 score 高于 7 时。
+; "你通过了测试。" 和 "干得好！" - 其他情况。
 @if score is above 6
-    You've passed the test.
+    你通过了测试。
     @if score is above 8
-        Brilliant!
+        太棒了！
     @or score is above 7
-        Impressive!
+        令人印象深刻！
     @else
-        Good job!
+        干得好！
 @else
-    You've failed. Try again!
+    你失败了。再试一次！
 ```
 
 条件块也可以在文本行内内联使用，并用 [@endif] 标记结束：
 
 ```nani
 ; 根据 "score" 变量打印文本行：
-; "Test result: Failed." - 当 score 为 6 或更低时。
-; "Test result: Perfect!" - 当 score 高于 8 时。
-; "Test result: Passed." - 其他情况。
-Test result:[if score>8] Perfect![or score>6] Passed.[else] Failed.[endif]
+; "测试结果：失败。" - 当 score 为 6 或更低时。
+; "测试结果：完美！" - 当 score 高于 8 时。
+; "测试结果：通过。" - 其他情况。
+测试结果：[if score>8]完美！[or score>6]通过。[else]失败。[endif]
 ```
 
 要指定反向条件，请使用 [@unless]：
 
 ```nani
-; 如果 dead 为 false，则打印 "You're still alive!"，否则打印 "You're done."
+; 如果 dead 为 false，则打印 "你还活着！"，否则打印 "你完了。"
 @unless dead
-    You're still alive!
+    你还活着！
 @else
-    You're done.
+    你完了。
 
 ; 根据 "score" 变量打印文本行：
-; "Test result: Passed." - 当 score 为 10 或更高时。
-; "Test result: Failed." - 当 score 低于 10 时。
-Test result:[unless score<10] Passed.[else] Failed.[endif]
+; "测试结果：通过。" - 当 score 为 10 或更高时。
+; "测试结果：失败。" - 当 score 低于 10 时。
+测试结果：[unless score<10]通过。[else]失败。[endif]
 ```
 
 ::: info NOTE
@@ -466,7 +466,7 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 ```nani
 @if score > 10
     @bgm Victory
-    Good job, you've passed the test!
+    干得好，你通过了测试！
 ```
 
 在这里，[@bgm] 命令和后面的通用文本行与 [@if] 命令相关联。
@@ -477,18 +477,18 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 
 ```nani
 @if score > 10
-    Good job, you've passed the test!
+    干得好，你通过了测试！
     @bgm Victory
     @spawn Fireworks
 @or attempts > 100
-    You're hopeless... Need help?
-    @choice "Yeah, please!"
+    你真是没救了... 需要帮助吗？
+    @choice "是的，拜托了！"
         @set score+=10
         @goto #BeginTest
-    @choice "I'll keep trying."
+    @choice "我会继续尝试。"
         @goto #BeginTest
 @else
-    You've failed. Try again!
+    你失败了。再试一次！
     @goto #BeginTest
 ```
 
@@ -503,10 +503,10 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 @random
     @group
         @back tint:red
-        Paint it red.
+        涂成红色。
     @group
         @back tint:black
-        Paint it black.
+        涂成黑色。
 ```
 
 ## 异步执行
@@ -538,7 +538,7 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
     @bgm RainAmbient
     @camera zoom:0.5 time:3
 ; 下面的行将在上述所有操作完成后执行。
-It starts raining...
+开始下雨了...
 ```
 
 ### 并发播放
@@ -570,7 +570,7 @@ It starts raining...
     @wait { random(3, 10) }
 
 ; 上面的动画循环运行，而下面的文本正在打印。
-Watch out!
+小心！
 ```
 
 即使在动画进行过程中保存并加载游戏，它也会恢复当前的播放状态，并从保存时的位置继续播放动画。回滚同样可以正常工作。
@@ -656,7 +656,7 @@ Watch out!
 在某些高级情况下，您可能希望将并发运行的轨道彼此连接（同步），或与主轨道连接。[@sync] 命令可以做到这一点：
 
 ```nani
-You'll have 60 seconds to defuse the bomb!
+你有 60 秒的时间拆除炸弹！
 
 @async Boom
     @wait 60
@@ -667,17 +667,17 @@ You'll have 60 seconds to defuse the bomb!
     @goto BadEnd
 
 ; 模拟一系列拆弹谜题。
-The defuse puzzle 1.
-The defuse puzzle 2.
-The defuse puzzle 3.
+拆弹谜题 1。
+拆弹谜题 2。
+拆弹谜题 3。
 
 ; 'Boom' 异步任务已停止，因此主轨道
 ; 将继续执行而不中断。
 @stop Boom
-The bomb is defused!
+炸弹已拆除！
 ```
 
-— 如果我们没有在 `Boom` 异步任务中使用 [@sync] 命令，则 [@goto] 命令将在异步轨道上执行，而主轨道将继续向下执行，因此最终 `BadEnd` 和主剧本会并发运行。[@sync] 所做的是强制将目标轨道（默认为主轨道）移动到使用它的行并处置宿主轨道，本质上是用目标轨道替换宿主轨道。
+— 如果我们没有在 `Boom` 异步任务中使用 [@sync] 命令，则 [@goto] 命令将在异步轨道上执行，而主轨道将继续向下执行，因此最终 `BadEnd` 和主剧本会并发运行。[@sync] 所做的是强制将目标轨道（默认为主轨道）移动到使用它的行并销毁宿主轨道，本质上是用目标轨道替换宿主轨道。
 
 ## 文本标识
 
@@ -688,9 +688,9 @@ The bomb is defused!
 为了防止在编辑文本时关联断开，请使用可通过 `Naninovel -> Tools -> Text Identifier` 编辑器菜单访问的文本标识实用程序；它将自动生成唯一 ID 并写入剧本脚本中的每个可本地化文本。剧本文本中的每个可本地化参数都会附加标识符，例如：
 
 ```nani
-Kohaku: Hey!|#1|[-] What's up?|#2|
-@choice "Option 1|#3|"
-@choice "Option 2|#4|"
+Kohaku: 嘿！|#1|[-]最近怎么样？|#2|
+@choice "选项 1|#3|"
+@choice "选项 2|#4|"
 ```
 
 只要您不删除或更改 ID，关联就不会断开。为了减少文本 ID 的干扰，IDE 扩展和故事编辑器以暗色渲染它们。
@@ -711,8 +711,8 @@ print.AuthorLabel = CommandParameter.Ref(otherPrint.AuthorLabel);
 要在剧本脚本中引用现有的本地化文本，请在标识符前加上 `&`：
 
 ```nani
-; 显示带有 "Some Text" 的选项，然后打印相同的文本。
-@choice "Some Text|#SOMEID|"
+; 显示带有 "一些文本" 的选项，然后打印相同的文本。
+@choice "一些文本|#SOMEID|"
 @print |#&SOMEID|
 ```
 

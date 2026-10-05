@@ -119,8 +119,8 @@ public class MyCustomBehaviour : MonoBehaviour
     [System.Serializable]
     private class GameState
     {
-    	public bool MyCustomBool;
-    	public string MyCustomString;
+        public bool MyCustomBool;
+        public string MyCustomString;
     }
 
     private bool myCustomBool;
@@ -179,7 +179,7 @@ private async void Start ()
 カスタム構造体のリストを使用してインベントリUIのゲーム状態をセーブ・ロードする、カスタム状態のより高度な使用例は、[インベントリサンプル](/ja/guide/samples#インベントリ) にあります。具体的には、カスタム状態のシリアル化/逆シリアル化は `Scripts/Runtime/Inventory/UI/InventoryUI.cs` に実装されています。
 :::
 
-エンジンのグローバル状態および設定状態にアクセスして、カスタムデータをそれらと一緒に保存することもできます。ゲームセッションに固有であり、セーブ/ロードイベントのサブスクライブが必要なゲーム状態とは異なり、グローバル状態および設定状態のオブジェクトはシングルトンであり、状態マネージャーのプロパティを介して直接アクセスできます。
+エンジンのグローバル状態および設定状態にアクセスして、カスタムデータをそれらと一緒に保存することもできます。ゲームセッションに固有であり、セーブ・ロードイベントのサブスクライブが必要なゲーム状態とは異なり、グローバル状態および設定状態のオブジェクトはシングルトンであり、状態マネージャーのプロパティを介して直接アクセスできます。
 
 ```csharp
 [System.Serializable]
@@ -226,7 +226,7 @@ var monster2 = stateMap.GetState<MonsterState>("2");
 
 カスタムハンドラーを追加するには、ゲームのセーブスロット、グローバル状態、および設定に対してそれぞれ `ISaveSlotManager<GameStateMap>`、`ISaveSlotManager<GlobalStateMap>`、および `ISaveSlotManager<SettingsStateMap>` インターフェースを実装します（それぞれに独自の実装クラスが必要です）。
 
-実装には、`StateConfiguration` と `string` 引数を持つパブリックコンストラクタが必要です。1つ目は状態構成オブジェクトで、2つ目はセーブフォルダーへのパスです。必要に応じて、カスタム実装で引数を無視できます。
+実装には、`StateConfiguration` と `string` 引数を持つパブリックコンストラクターが必要です。1つ目は状態構成オブジェクトで、2つ目はセーブフォルダーへのパスです。必要に応じて、カスタム実装で引数を無視できます。
 
 以下は、そのメソッドのいずれかが呼び出されたときにログを記録するだけのカスタム設定シリアル化ハンドラーの例です。
 

@@ -108,7 +108,7 @@ var customService = Engine.GetService<CustomService>();
 Another example of adding a custom engine service to manage item resources and configuration of an inventory UI can be found in the [inventory sample](/guide/samples#inventory). Specifically, the custom engine service is implemented via the `Scripts/Runtime/Inventory/InventoryManager.cs` runtime script.
 :::
 
-## Overriding Built-in Services
+## Overriding Built-In Services
 
 All the built-in services are referenced via interfaces in the engine source code, making it possible to swap any of them with a custom implementation.
 

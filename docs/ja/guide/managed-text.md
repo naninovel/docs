@@ -72,9 +72,9 @@ public class CustomLabel : Text
 `Script` という名前の管理テキストドキュメントを作成し、レコードを追加します。`Script` 管理テキストドキュメントに次のレコードがあるとします。
 
 ```
-Greeting1: Hey!
-Greeting2: Hello!
-Greeting3: Hi!
+Greeting1: やあ！
+Greeting2: こんにちは！
+Greeting3: どうも！
 ```
 
 — 次のように値を参照できます。

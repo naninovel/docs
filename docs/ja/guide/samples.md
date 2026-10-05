@@ -6,7 +6,7 @@ Naninovelパッケージには、ビジュアルノベルとダイアログモ�
 
 高度なサンプルプロジェクトを [ダウンロードアーカイブ](https://account.naninovel.com/download) からダウンロードしてください。
 
-ダウンロードしたディレクトリを解凍し、Unityエディターで開きます。プロジェクトが読み込まれたら、`Assets/Scenes/Main.unity` シーンを開き、プレイモードに入ります。[デモプロジェクト](https://naninovel.com/demo) のタイトル画面が表示されます。デモを開始するか、「SAMPLES」ボタンをクリックして、以下に概説する利用可能なサンプルに移動できます。
+ダウンロードしたディレクトリを解凍し、Unityエディターで開きます。プロジェクトがロードされたら、`Assets/Scenes/Main.unity` シーンを開き、プレイモードに入ります。[デモプロジェクト](https://naninovel.com/demo) のタイトル画面が表示されます。デモを開始するか、「SAMPLES」ボタンをクリックして、以下に概説する利用可能なサンプルに移動できます。
 
 ![](https://i.gyazo.com/f7304c828ff616f2d9a979d2452413a4.png)
 
@@ -67,7 +67,7 @@ Naninovelを、3Dアドベンチャーゲーム向けのドロップインのダ
 インベントリシステムはビジュアルノベルの範囲外ですが、Naninovelとの統合方法に関する多くのリクエストや質問が寄せられました。インベントリサンプルは、エンジンのソースコードを変更せずにNaninovelインストールの上にセットアップできるインベントリ拡張機能を作成および統合する例です。
 
 ::: info NOTE
-インベントリはスタンドアロン製品ではなく、Naninovelの一部でもありません。エンジンを拡張およびカスタマイズする方法を学ぶために使用してください。ただし、そのまま製品に使えるインベントリシステムのソリューションであるとは期待しないでください。そのようなものを探している場合は、[Asset Storeを確認する](https://assetstore.unity.com/?q=inventory) か、ゼロからカスタムのものを作成してください。
+インベントリはスタンドアロン製品ではなく、Naninovelの一部でもありません。エンジンを拡張およびカスタマイズする方法を学ぶために使用してください。ただし、そのまま製品に使えるインベントリシステムのソリューションであるとは期待しないでください。そのようなものを探している場合は、[アセットストアを確認する](https://assetstore.unity.com/?q=inventory) か、ゼロからカスタムのものを作成してください。
 :::
 
 このサンプルプロジェクトは、グリッドレイアウト、ページネーション、ドラッグアンドドロップウィンドウを備えたカスタムインベントリUIの作成方法、カスタムエンジンサービスと関連する構成メニューの追加、入力バインディングの追加、状態のアウトソーシングの使用、カスタムシナリオコマンドと式クエリの作成方法を示しています。
@@ -99,23 +99,23 @@ Inventory UIコンポーネントには `Capacity` プロパティがあり、�
 ```nani
 # Start
 
-Select an action.[>]
+行動を選んでください。[>]
 
-@choice "Pick up sword" lock:itemExist("Sword")
+@choice "剣を拾う" lock:itemExist("Sword")
     @addItem Sword
-@choice "Pick up armor" lock:itemExist("Armor")
+@choice "鎧を拾う" lock:itemExist("Armor")
     @addItem Armor
-@choice "Adventure awaits, venture forth!"
+@choice "冒険が待っている、いざ出発！"
 
 # Adventure
 
 @if itemExist("Sword")
 	@set monstersSlayed={ itemExist("Armor") ? random(3,5) : 2 }
 	@addItem Food amount:{monstersSlayed}
-	You've encountered and slayed {monstersSlayed} monsters with your sword.
+	{monstersSlayed}体のモンスターに遭遇し、剣で倒しました。
 	@goto #Start
 @else
-	But you don't have a weapon! You've been beaten by the monsters.
+	しかし武器がありません！モンスターにやられてしまいました。
 	@goto #Start
 ```
 
@@ -127,9 +127,9 @@ Select an action.[>]
 
 ## ローカライズ
 
- - 生成されたローカライズドキュメントは `Content/Localization` ディレクトリに保存されます。
- - 生成されたシートは、サンプルプロジェクトルートの下の `Sheets` ディレクトリに保存されます。
- - ローカライズ固有のフォントは `Content/Fonts` に保存されます。
+- 生成されたローカライズドキュメントは `Content/Localization` ディレクトリに保存されます。
+- 生成されたシートは、サンプルプロジェクトルートの下の `Sheets` ディレクトリに保存されます。
+- ローカライズ固有のフォントは `Content/Fonts` に保存されます。
 
 ローカライズツール用に選択されたフォルダー：
 
@@ -285,7 +285,7 @@ Visual Scriptingプロジェクト設定にある `Node Library` リストに `E
 
 ![](https://i.gyazo.com/38afd2ea477fcf0921114e3847de6c85.png)
 
-Visual Scriptingは、ライブラリから使用可能なすべての型を自動的に公開しないため、同じ設定メニューの `Type Options` リストに必要なNaninovel型を追加します。以下の例では、`Engine`、`Script Player Interface`、および `Script Player Extensions` を追加しましたが、他の [エンジンサービスインターフェース](/ja/guide/engine-services) や構成など、より多くの型が必要になるでしょう。
+Visual Scriptingは、ライブラリから使用可能なすべての型を自動的に公開するわけではないため、同じ設定メニューの `Type Options` リストに必要なNaninovel型を追加します。以下の例では、`Engine`、`Script Player Interface`、および `Script Player Extensions` を追加しましたが、他の [エンジンサービスインターフェース](/ja/guide/engine-services) や構成など、より多くの型が必要になるでしょう。
 
 ![](https://i.gyazo.com/9afdeb12c0ff63ce942d04b21f737217.png)
 

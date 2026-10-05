@@ -9,7 +9,7 @@ A script compiler can be selected in the Scripts configuration menu via the `Scr
 ![](https://i.gyazo.com/12a03e71e66d1fb0901317e380c9694e.png)
 
 ::: info NOTE
-After switching the script compiler in the configuration, re-import the script assets (right-click the folder containing the assets and choose `Reimport`) for the changes to take effect.
+After switching the script compiler in the configuration, reimport the script assets (right-click the folder containing the assets and choose "Reimport") for the changes to take effect.
 :::
 
 Below is an example of a custom compiler that automatically inserts wait commands after each `...` found in the source scenario text:

@@ -193,7 +193,7 @@ Lazy 模式有一个重要的注意事项：加载资产——尤其是大型背
 
 | 策略 | 内存使用 | CPU 使用 | 加载屏幕 | 跳过和回滚 |
 |--------------|:--------------------------------------:|---------------------------------------|----------------------------------------------------|----------------------------------------------------|
-| Conservative | <span class="txt-warn">平衡</span> | <span class="txt-ok">稳定</span> | <span class="txt-err">goto 时显示，除非已保持</span> | <span class="txt-warn">在已保持的脚本中快</span> |
+| Conservative | <span class="txt-warn">平衡</span> | <span class="txt-ok">稳定</span> | <span class="txt-err">goto 时显示，除非已持有</span> | <span class="txt-warn">在已持有的脚本中快</span> |
 | Optimistic | <span class="txt-err">高</span> | <span class="txt-ok">稳定</span> | <span class="txt-warn">无，直到释放</span> | <span class="txt-ok">释放前快</span> |
 | Lazy | <span class="txt-ok">低</span> | <span class="txt-err">不稳定</span> | <span class="txt-ok">从不</span> | <span class="txt-err">总是慢</span> |
 
@@ -209,7 +209,7 @@ Actor（角色、背景、文本打印机和选项处理程序）是 Naninovel �
 
 ### 移除 Actor
 
-默认情况下，Naninovel 会在卸载脚本资源时自动移除未使用的 Actor 并销毁关联的游戏对象。如果您想手动处置 Actor，请在资源提供者配置菜单中禁用 `Remove Actors` 选项并使用 [@remove] 命令：
+默认情况下，Naninovel 会在卸载脚本资源时自动移除未使用的 Actor 并销毁关联的游戏对象。如果您想手动销毁 Actor，请在资源提供者配置菜单中禁用 `Remove Actors` 选项并使用 [@remove] 命令：
 
 ```nani
 @back id:LayeredBackground
@@ -222,12 +222,12 @@ Actor（角色、背景、文本打印机和选项处理程序）是 Naninovel �
 @goto NextScript
 ```
 
-— 或者，使用带有 `*` 参数的 [@remove] 来处置所有现有的 Actor（包括文本打印机和选项处理程序），或使用带有 `only` 参数的 [@resetState] 来立即处置特定类型的 Actor：角色对应 `ICharacterManager`，背景对应 `IBackgroundManager`：
+— 或者，使用带有 `*` 参数的 [@remove] 来销毁所有现有的 Actor（包括文本打印机和选项处理程序），或使用带有 `only` 参数的 [@resetState] 来立即销毁特定类型的 Actor：角色对应 `ICharacterManager`，背景对应 `IBackgroundManager`：
 
 ```nani
 ...
 @goto NextScript
-; 处置所有现有的背景。
+; 销毁所有现有的背景。
 @resetState only:IBackgroundManager
 ```
 

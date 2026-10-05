@@ -13,8 +13,8 @@
 @set score=0
 
 ; 在某个时刻，根据玩家选择修改变量。
-@choice "Good Decision" set:score++
-@choice "Bad Decision" set:score--
+@choice "好的决定" set:score++
+@choice "坏的决定" set:score--
 ...
 
 ; 稍后，使用变量进行条件执行。
@@ -45,10 +45,10 @@
 
 ```nani
 ; 提示玩家输入文本并将其赋给 `name` 变量。
-@input name summary:"Choose your name."
+@input name summary:"请选择你的名字。"
 
 ; 注入已赋值的 `name` 变量。
-Archibald: Greetings, {name}!
+Archibald: 你好，{name}！
 ```
 
 ::: tip
@@ -75,7 +75,7 @@ Archibald: Greetings, {name}!
 @set myMetaVariable=0 meta!
 ```
 
-元变量适合追踪独立于单个游戏会话之上的“元”信息，例如路线完成情况、累计游戏统计数据或成就：
+元变量适合追踪独立于单个游戏会话的“元”信息，例如路线完成情况、累计游戏统计数据或成就：
 
 ```nani
 ; 定义用于追踪 'X' 和 'Y' 路线完成情况的变量。
@@ -85,7 +85,7 @@ Archibald: Greetings, {name}!
 ; 稍后在脚本中，当 'X' 路线完成时。
 @set completeRouteX=true
 
-; 现在您可以在 Title 脚本中显示特别内容。
+; 现在您可以在标题脚本中显示特别内容。
 @if completeRouteX and completeRouteY
     @showUI TrueRouteTitle
 @else
@@ -130,7 +130,7 @@ Archibald: Greetings, {name}!
 @set .count=0
 @while .count is below 10
     @set .count++
-    Current count: {.count}
+    当前计数：{.count}
 ```
 
 每个剧本脚本都有自己的局部作用域，因此一个脚本中的 `.count` 不会与另一个脚本中的 `.count` 冲突。局部变量适合用于脚本内部计数器、临时路线状态，以及不需要项目级名称的辅助值。

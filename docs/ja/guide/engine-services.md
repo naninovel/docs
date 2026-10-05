@@ -33,7 +33,7 @@ player.MainTrack.Stop();
 | IScriptPlayer | [シナリオスクリプト](/ja/guide/scenario-scripting) の実行を処理します。 |
 | ICameraManager | シーンレンダリングに必要なカメラやその他のシステムを管理します。 |
 | IResourceProviderManager | `IResourceProvider` オブジェクトを管理します。 |
-| IStateManager | `IEngineService` 関連の永続データのシリアル化／逆シリアル化を処理し、ゲーム状態を [セーブおよびロード](/ja/api/#save) するAPIを提供します。 |
+| IStateManager | `IEngineService` 関連の永続データのシリアル化/逆シリアル化を処理し、ゲーム状態を [セーブおよびロード](/ja/api/#save) するAPIを提供します。 |
 | IUIManager | `IManagedUI` オブジェクトを管理し、[UIのカスタマイズ](/ja/guide/gui#uiのカスタマイズ) 機能を処理します。 |
 | IVariableManager | [シナリオ変数](/ja/guide/variables) へのアクセスと変更の手段を提供します。 |
 | ISpawnManager | [@spawn] コマンドでスポーンされたオブジェクトを管理します。 |
@@ -47,15 +47,15 @@ player.MainTrack.Stop();
 
 `InitializeAtRuntime` 属性の `InitializationPriority` 引数を使用して、カスタムサービスが他のサービスより前または後に初期化されるよう強制できます。値が小さいほど初期化キュー内で他のサービスより前に配置され、大きいほど後ろに配置されます。
 
-自動的にインスタンス化されるには、サービス実装に互換性のあるコンストラクタ（またはデフォルトのコンストラクタ）が必要です。次のコンストラクタ引数（順序は問いません）が許可されています。
+自動的にインスタンス化されるには、サービス実装に互換性のあるコンストラクター（またはデフォルトのコンストラクター）が必要です。次のコンストラクター引数（順序は問いません）が許可されています。
 
 - 任意の数の他のサービス（`IEngineService` 派生）
 - 任意の数の構成オブジェクト（`Configuration` 派生）
 - Unityの `MonoBehaviour` プロキシオブジェクト（`IEngineBehaviour` 派生）
 
-コンストラクタで他のサービスを使用するのは安全ではないことに注意してください。代わりに、他のサービスを必要とする初期化処理は `InitializeService` メソッドで実行してください。アクセス時に必要なサービスが確実に初期化されているようにするには、それらをサービスのコンストラクタ引数に列挙します（初期化キューは、コンストラクタ引数に基づいてトポロジカルソートされます）。
+コンストラクターで他のサービスを使用するのは安全ではないことに注意してください。代わりに、他のサービスを必要とする初期化処理は `InitializeService` メソッドで実行してください。アクセス時に必要なサービスが確実に初期化されているようにするには、それらをサービスのコンストラクター引数に列挙します（初期化キューは、コンストラクター引数に基づいてトポロジカルソートされます）。
 
-他のエンジンサービスとともにシリアル化／逆シリアル化したい永続的な状態がカスタムサービスにある場合は、`IStatefulService<TState>` インターフェースを実装します。ここで、`TState` は、状態をゲームセッション固有のデータ、グローバルデータ、設定データのどれと一緒に保存するかに応じて、`GameStateMap`、`GlobalStateMap`、`SettingsStateMap` のいずれかになります。必要に応じて、単一のサービスに対して3つのインターフェースすべてを実装できます。さまざまな種類のエンジン状態の詳細については、[状態管理ガイド](/ja/guide/state-management) を参照してください。
+他のエンジンサービスとともにシリアル化/逆シリアル化したい永続的な状態がカスタムサービスにある場合は、`IStatefulService<TState>` インターフェースを実装します。ここで、`TState` は、状態をゲームセッション固有のデータ、グローバルデータ、設定データのどれと一緒に保存するかに応じて、`GameStateMap`、`GlobalStateMap`、`SettingsStateMap` のいずれかになります。必要に応じて、単一のサービスに対して3つのインターフェースすべてを実装できます。さまざまな種類のエンジン状態の詳細については、[状態管理ガイド](/ja/guide/state-management) を参照してください。
 
 以下は、いくつかの使用上の注意を含むカスタムエンジンサービス実装の例です。
 
@@ -80,7 +80,7 @@ public class CustomService : IEngineService
     public Awaitable InitializeService ()
     {
         // ここでサービスを初期化します。
-        // この時点で、コンストラクタで要求したサービスを安全に使用できます。
+        // この時点で、コンストラクターで要求したサービスを安全に使用できます。
         Debug.Log(inputManager.Enabled);
         Debug.Log(scriptPlayer.MainTrack.PlayedScript);
         return Async.Completed;

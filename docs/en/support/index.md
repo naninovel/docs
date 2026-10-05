@@ -52,7 +52,7 @@ Follow these steps:
 4. Create a `repro.txt` file in the project root with step-by-step instructions and a short description of what you expected versus what actually happens. For example:
     ```
     1. Open scene "Assets/Scenes/SampleScene".
-    2. Enter play mode in the editor.
+    2. Enter Play mode in the editor.
     3. Start a new game.
     4. Play through to line number 15.
     5. Save and load the game.
@@ -61,4 +61,4 @@ Follow these steps:
     Actual: No music is playing.
     ```
 5. Delete the `Library` folder to reduce project size, then zip the project folder.
-6. Share it privately via a Discord DM with the Naninovel team member that requested the reproduction project. Don't share the project via public channels, as it may contain personal or copyrighted assets.
+6. Share it privately via a Discord DM with the Naninovel team member who requested the reproduction project. Don't share the project via public channels, as it may contain personal or copyrighted assets.

@@ -120,7 +120,7 @@ Morbi ultrices dictum diam, in gravida neque vulputate in.
 
 ## Chat 打印机
 
-Chat 打印机在窗口中以气泡形式呈现文本，内容可垂直滚动，类似于移动通讯应用。它不逐个字符地显示打印的消息，而是在显示效果期间显示“作者正在输入”动画，然后立即显示打印的消息。Chat 打印机支持 [角色头像](/zh/guide/characters#头像纹理) 功能。
+Chat 打印机在窗口中以消息气泡形式呈现文本，内容可垂直滚动，类似于移动通讯应用。它不逐个字符地显示打印的消息，而是在显示效果期间显示“作者正在输入”动画，然后立即显示打印的消息。Chat 打印机支持 [角色头像](/zh/guide/characters#头像纹理) 功能。
 
 ![Chat Printer](https://i.gyazo.com/3c04aecabe7f754ffc9ce5452eeba270.png)
 
@@ -253,6 +253,7 @@ Naninovel 的 `Naninovel TMPro Text` 组件（`Revealable Text` 基于它）通�
 ```nani
 Lorem <ruby="VERY">ipsum</ruby> dolor sit amet.
 ```
+
 — 在运行时打印消息时，“VERY”注音文本将出现在“ipsum”单词的正上方。
 
 ![](https://i.gyazo.com/ec5eb47c3cf0951ccb589fe49c144418.png)
@@ -288,7 +289,7 @@ Lorem <ruby="VERY"><tip="TipID">ipsum</tip></ruby> dolor sit amet.
 
 ![](https://i.gyazo.com/3eec751d0c85da8f9cfb20a6fe6902bb.png)
 
-不要忘记使用 [兼容的字体](https://fonts.google.com/?subset=arabic&sort=popularity) 和图集配置；这是一个例子：
+不要忘记使用 [兼容的字体](https://fonts.google.com/?subset=arabic&sort=popularity) 和图集配置；这是一个示例：
 
 ```
 Font Size: Auto Sizing
@@ -330,7 +331,7 @@ Unity 原生不支持阿拉伯语文本。对于需要支持阿拉伯语的文�
 
 按照上面的“添加自定义打印机”指南创建基于任何内置打印机的自定义打印机，然后找到附加到预制件根对象的 `Revealable Text Printer Panel` 组件（Bubble 打印机中为 `Floating Text Printer Panel`），并使用 `Chars Sfx` 属性设置显示字符时要播放的 SFX。可用选项的实际列表基于您通过 `Naninovel -> Configuration -> Audio` 编辑器菜单中的“Manage SFX Resources”按钮添加的 SFX 资源。
 
-下图表示一种设置，其中“Keystroke1” SFX 将用于所有字符（其 `Characters` 字段留空），“Keystroke2”用于字符 `.`、`,`、`!` 和 `?`，“Explosion”用于字符 `*`。当一个字符匹配多个元素时，将播放它们的所有 SFX。
+下图表示一种设置，其中“Keystroke1”SFX 将用于所有字符（其 `Characters` 字段留空），“Keystroke2”用于字符 `.`、`,`、`!` 和 `?`，“Explosion”用于字符 `*`。当一个字符匹配多个元素时，将播放它们的所有 SFX。
 
 ![](https://i.gyazo.com/284a50b82ddd312bc23897889e43c2bd.png)
 
@@ -379,7 +380,7 @@ Lorem ipsum <:random(text1, text2)> sit amet.
 显示表达式对于允许翻译人员更改注入值的顺序也很有用，因为不同语言对各种词性的顺序/优先级通常有不同的规则：
 
 ```nani
-Hello, <:MC>! How's <:AC> doing?
+你好，<:MC>！<:AC> 最近怎么样？
 ```
 
 — 在这里，`MC` 和 `AC` 变量（可能包含玩家指定的角色名称）都将公开在生成的本地化文档中，以便翻译人员在必要时能够更改它们的顺序。
@@ -407,7 +408,7 @@ Select your pronouns.
 </He/She/They> </was/was/were> magnificent.
 ```
 
-注意 `</x/y>` 标签——这些是选择器标签。`/` 字符之间的文本部分称为选项。默认情况下，将返回随机选项。但是，如果您将 `selector` 变量设置为索引，标签将改为返回具有该索引（从零开始）的选项。
+注意 `</x/y>` 标签——这些是选择标签。`/` 字符之间的文本部分称为选项。默认情况下，将返回随机选项。但是，如果您将 `selector` 变量设置为索引，标签将改为返回具有该索引（从零开始）的选项。
 
 如果您需要更灵活的选择逻辑，请创建一个带有 `select` 别名的自定义 [表达式查询](/zh/guide/expressions#添加自定义查询)，并使其接受 `params string[]` 并返回 `string`。每当编译选择器标签时，它都会使用您的查询来计算结果。下面是自定义选择查询的示例，其中第一个选项指定选择类型，如果第一个选项为空，则回退到随机选择：
 
@@ -438,4 +439,4 @@ public static string Select (params string[] args)
 <//green/red>
 ```
 
-选择器标签也会公开给本地化文档，允许翻译人员根据需要调整结构以适应目标文化。
+选择标签也会公开给本地化文档，允许翻译人员根据需要调整结构以适应目标文化。

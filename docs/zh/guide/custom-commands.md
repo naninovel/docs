@@ -41,7 +41,7 @@ public class HelloWorld : Command
 请注意提供给 `Execute` 方法的 `ExecutionContext ctx` 参数。在执行 [异步操作](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/) 时，请务必在每个异步操作后检查 `ctx.Token` 异步令牌是否有取消和完成请求，并做出相应反应：
 
 - `AsyncToken.Canceled` 表示引擎已被销毁或重置。在这两种情况下，使用引擎 API 都不再安全，任何状态修改都会导致未定义的行为。取消时，命令实现应立即抛出 `AsyncOperationCanceledException`，并放弃当前正在执行的所有活动。
-- `AsyncToken.Completed` 表示命令应尽可能快地完成所有活动。例如，如果您正在运行动画，请立即完成它们，无论其预期持续时间如何。这通常发生在玩家激活继续输入或开始保存游戏操作时。
+- `AsyncToken.Completed` 表示命令应尽可能快地完成所有活动。例如，如果您正在运行动画，请立即完成它们，无论其预期持续时间如何。这通常发生在玩家激活继续输入或存档操作开始时。
 
 ```csharp
 public override async Awaitable Execute (ExecutionContext ctx)
@@ -52,7 +52,7 @@ public override async Awaitable Execute (ExecutionContext ctx)
     ctx.Token.ThrowIfCanceled();
     // 检查后继续使用引擎 API 是安全的。
     var someUI = Engine.GetService<IUIManager>().GetUI<SomeUI>();
-    // 如果请求完成，请立即淡出 UI。
+    // 如果收到完成请求，请立即淡出 UI。
     var fadeDuration = ctx.Token.Completed ? 0 : 5;
     await someUI.ChangeVisibility(false, fadeDuration, ctx.Token);
     // 上述方法接受异步令牌；此类方法在内部处理
@@ -63,9 +63,10 @@ public override async Awaitable Execute (ExecutionContext ctx)
 执行上下文的另一个成员是执行命令的脚本轨道实例，可通过 `ctx.Track` 访问。每当需要控制播放或调用其他需要轨道的引擎 API 时，请使用轨道实例。例如，像这样停止播放：
 
 ```csharp
-public override async Awaitable Execute (ExecutionContext ctx)
+public override Awaitable Execute (ExecutionContext ctx)
 {
     ctx.Track.Stop();
+    return Async.Completed;
 }
 ```
 
