@@ -2,7 +2,7 @@
 
 The engine is designed with the following principles in mind: **scene independence** and **service orientation**.
 
-## Scene Independent
+## Scene-Independent
 
 While Unity's design promotes using scenes and prefab composition, it's not very practical when developing visual novels. Naninovel systems are either not directly bound to a [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html) or attached to a [persistent](https://docs.unity3d.com/ScriptReference/Object.DontDestroyOnLoad.html) root [GameObject](https://docs.unity3d.com/ScriptReference/GameObject.html).
 

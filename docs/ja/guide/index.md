@@ -1,6 +1,6 @@
 # はじめに
 
-Naninovelは [Unityゲームエンジン](https://unity3d.com) の拡張機能であり、シナリオライター向けのオーサリングツールスイートと開発者向けのC#フレームワークを備えています。ゲーム内の会話やカットシーンから本格的な [ビジュアルノベル](https://en.wikipedia.org/wiki/Visual_novel) まで、物語主導のコンテンツ作成を効率化するように設計されています。
+Naninovelは [Unityゲームエンジン](https://unity.com) の拡張機能であり、シナリオライター向けのオーサリングツールスイートと開発者向けのC#フレームワークを備えています。ゲーム内の会話やカットシーンから本格的な [ビジュアルノベル](https://en.wikipedia.org/wiki/Visual_novel) まで、物語主導のコンテンツ作成を効率化するように設計されています。
 
 ![](https://www.youtube.com/watch?v=lRxIKDU9z4k)
 

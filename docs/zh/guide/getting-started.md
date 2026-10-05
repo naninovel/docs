@@ -404,4 +404,4 @@ Naninovel 包包含两个基本示例：
 
 ![?width=711](https://i.gyazo.com/a33a679037089bab1bce41684818b158.png)
 
-有关更多高级示例的集合，请查看 [示例项目](/zh/guide/samples)——它包含许多专用示例，例如 Live2D 和 Spine 角色、自定义 Actor 着色器、交互式地图、视频 Actor、日历和库存自定义 UI 等。
+有关更高级示例的集合，请查看 [示例项目](/zh/guide/samples)——它包含许多专用示例，例如 Live2D 和 Spine 角色、自定义 Actor 着色器、交互式地图、视频 Actor、日历和库存自定义 UI 等。

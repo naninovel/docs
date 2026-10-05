@@ -92,7 +92,7 @@ Each item has a `Stack Count Limit` property to limit how many items of this typ
 
 You can add items to the inventory using the `@addItem` command and remove them with `@removeItem` (or `@removeItemAt`, `@removeAllItems`). Item IDs are equal to the item prefab names. Inventory slot IDs are equal to the grid slot indexes (eg, the first slot is 0, the second is 1, etc).
 
-The `itemExist()` and `itemCount()` custom [expression queries](/guide/expressions#expression-queries) to check whether an item exists in the inventory and to get the number of existing items are also available for convenience.
+For convenience, the `itemExist()` and `itemCount()` custom [expression queries](/guide/expressions#expression-queries) are also available: the former checks whether an item exists in the inventory, while the latter returns the number of existing items.
 
 Below is a script from the example project:
 
@@ -329,7 +329,7 @@ public class BroadcastBoltEvent : Command
 Just copy-paste the contents to a new C# script stored anywhere inside the project's Assets directory, and the command will automatically become available and can be used as follows:
 
 ```nani
-; Send "MyEvent" to "ExampleEvent" game object with the provided args
+; Send "MyEvent" to the "ExampleEvent" game object with the provided args
 @bolt object:ExampleEvent name:MyEvent args:ExampleMessage,Script002
 ```
 

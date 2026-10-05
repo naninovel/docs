@@ -34,7 +34,7 @@ Naninovel 的使用受以下最终用户许可协议（EULA）约束：[naninove
 
 ## 为什么在注册 Asset Store 许可证时会出现“asset wasn't downloaded”错误？
 
-当通过 Unity 的 Asset Store 购买 Naninovel 时，需要进行资产下载验证。为了使验证成功，购买资产的用户必须通过 Unity 的 [包管理器](https://docs.unity3d.com/Manual/Packages.html) 至少下载一次 Naninovel。如果购买了多个资产副本，则必须由关联的组织用户下载每个副本。如果您已完成所有步骤但仍然遇到问题，请 [联系 Unity 支持](https://support.unity.com)。
+当通过 Unity 的 Asset Store 购买 Naninovel 时，需要进行资产下载验证。为了使验证成功，购买资产的用户必须通过 Unity 的 [Package Manager](https://docs.unity3d.com/Manual/Packages.html) 至少下载一次 Naninovel。如果购买了多个资产副本，则必须由关联的组织用户下载每个副本。如果您已完成所有步骤但仍然遇到问题，请 [联系 Unity 支持](https://support.unity.com)。
 
 ::: warning
 当从组织账户购买资产时，必须由组织所有者下载资产才能通过检查（被分配的成员不算数）。这是 Asset Store 的限制，我们在这种情况下无法提供任何解决方法；请联系 Unity 支持以获取更多信息和帮助。

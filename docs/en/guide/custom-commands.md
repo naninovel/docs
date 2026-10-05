@@ -56,7 +56,7 @@ public override async Awaitable Execute (ExecutionContext ctx)
     var fadeDuration = ctx.Token.Completed ? 0 : 5;
     await someUI.ChangeVisibility(false, fadeDuration, ctx.Token);
     // The method above accepts the async token; such methods handle
-    // cancellations internally, so you don't need to check again afterwards.
+    // cancellations internally, so you don't need to check again afterward.
 }
 ```
 

@@ -118,7 +118,7 @@ Fade-out time | Number | 5 | The particle system will gradually lower the spawn 
 **Examples**
 
 ```nani
-; Start intensive rain over 10 seconds
+; Start heavy rain over 10 seconds
 @rain power:1 time:10
 
 ; Stop the rain over 30 seconds
@@ -146,7 +146,7 @@ Fade-out time | Number | 5 | The particle system will gradually lower the spawn 
 **Examples**
 
 ```nani
-; Start intensive snow over 10 seconds
+; Start heavy snow over 10 seconds
 @snow power:1 time:10
 
 ; Stop the snow over 30 seconds
@@ -174,7 +174,7 @@ Fade-out time | Number | 3 | The particle system will gradually lower the opacit
 **Examples**
 
 ```nani
-; Start intensive sunshine over 10 seconds
+; Start intense sunshine over 10 seconds
 @sun power:1 time:10
 
 ; Stop the sunshine over 30 seconds
@@ -875,7 +875,7 @@ To add your own transitions to a custom actor shader, use the `multi_compile` di
 
 — will add `Custom1` and `Custom2` transitions.
 
-You can then use conditional directives to select a specific render method based on the enabled transition keyword. When re-using the built-in actor shader, it's possible to implement custom transitions via the `ApplyTransitionEffect` method, which is used in the fragment handler:
+You can then use conditional directives to select a specific render method based on the enabled transition keyword. When reusing the built-in actor shader, it's possible to implement custom transitions via the `ApplyTransitionEffect` method, which is used in the fragment handler:
 
 ```c
 fixed4 ApplyTransitionEffect(sampler2D mainTex, float2 mainUV,

@@ -11,7 +11,7 @@
 | パラメーター | 型 | 説明 |
 | --- | --- | --- |
 | if | string | コマンドを実行するかどうかを制御するブール値の [シナリオ式](/ja/guide/expressions)。 |
-| unless | string | コマンドを実行しないかどうかを制御するブール値の [シナリオ式](/ja/guide/expressions)（'if' の逆）。 |
+| unless | string | コマンドを実行しないかどうかを制御するブール値の [シナリオ式](/ja/guide/expressions)（「if」の逆）。 |
 | wait | boolean | 次のコマンドを実行する前に、スクリプトプレイヤーが非同期コマンドの実行完了を待機するかどうか。 |
 
 </div>
@@ -1455,7 +1455,7 @@ Kohaku: 再びリンクされたプリンターを使用します。
 
 # Camp
 
-; 変数は '?=' で設定されていることに注意してください。これは、
+; 変数は '?=' で設定されていることに注目してください。これは、
 ; まだ代入されていない場合にのみ値を代入します。休憩後にプレイヤーが
 ; オートセーブされたゲームをロードした場合は、すでに代入済みです。
 @set rested?=false
@@ -1467,7 +1467,7 @@ Kohaku: 再びリンクされたプリンターを使用します。
 @choice "休んでいる時間はない！" goto:NextDay
 @choice "少し休もう"
     @set rested=true
-    ; 'at' パラメーターに注意してください。ゲームがロードされると、
+    ; 'at' パラメーターに注目してください。ゲームがロードされると、
     ; 指定されたラベルにプレイヤーをリダイレクトします。
     @save at:#Camp
     @title
@@ -1488,7 +1488,7 @@ Kohaku: 再びリンクされたプリンターを使用します。
 | <span class="command-param-primary command-param-required" title="プライマリパラメーター：パラメーターIDを指定せずに、コマンド識別子の後に値を指定します。必須パラメーター：このパラメーターは常に指定する必要があります。">expression</span> | string | 代入式。<br/><br/>式は `var=expression` の形式である必要があります。ここで、`var` は代入先のシナリオ変数のIDであり、`expression` は [シナリオ式](/ja/guide/expressions) で、その結果が変数に代入されます。<br/><br/>インクリメントおよびデクリメントの単項演算子（`@set foo++`、`@set foo--`）および複合代入（`@set foo+=10`、`@set foo-=3`、`@set foo*=0.1`、`@set foo/=2`）を使用できます。 |
 | to | string | 代入式（`= ...` の部分）のない、指定されたすべての変数に結果が代入される式。複数の変数に同じ値を代入する場合に便利です。たとえば：`@set foo, bar, baz to:10`。 |
 | scope | string | 指定すると、明示的なスコープを持たない変数を指定したスコープの下に割り当てます。 |
-| init | boolean | その変数がまだ代入されていない場合にのみ代入するかどうか（初期化の意図）。'meta' または 'const' フラグとは併用しないでください。これらのフラグも同じ初期化の意図を持つためです。 |
+| init | boolean | その変数がまだ代入されていない場合にのみ代入するかどうか（初期化の意図）。「meta」または「const」フラグとは併用しないでください。これらのフラグも同じ初期化の意図を持つためです。 |
 | meta | boolean | その変数をメタ変数として初期化するかどうか。メタ変数はゲームセッションの「上位」にあり、つまり新しいゲームを開始しても値が保持されます。ルートのクリア状況や実績の追跡など、メタゲームの仕組みに最適です。 |
 | const | boolean | その変数を定数として初期化するかどうか。定数は一度だけ初期化でき、その後に変更することはできません。 |
 
@@ -2025,13 +2025,13 @@ Kohaku: 再びリンクされたプリンターを使用します。
 
 ## timeline
 
-指定された名前を持つシーン上のゲームオブジェクトの [Director](https://docs.unity3d.com/ScriptReference/Playables.PlayableDirector.html) コンポーネントを介して [Timeline](https://docs.unity3d.com/Manual/com.unity.timeline.html) を制御します。デフォルトでは、'stop'、'pause'、または 'resume' フラグが指定されていない限り、コマンドはディレクターの再生を開始します。
+指定された名前を持つシーン上のゲームオブジェクトの [Director](https://docs.unity3d.com/ScriptReference/Playables.PlayableDirector.html) コンポーネントを介して [Timeline](https://docs.unity3d.com/Manual/com.unity.timeline.html) を制御します。デフォルトでは、「stop」、「pause」、または「resume」フラグが指定されていない限り、コマンドはディレクターの再生を開始します。
 
 <div class="config-table">
 
 | パラメーター | 型 | 説明 |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="プライマリパラメーター：パラメーターIDを指定せずに、コマンド識別子の後に値を指定します。必須パラメーター：このパラメーターは常に指定する必要があります。">name</span> | string | 'Playable Director' コンポーネントがアタッチされている、シーン上のアクティブなゲームオブジェクトの名前。 |
+| <span class="command-param-primary command-param-required" title="プライマリパラメーター：パラメーターIDを指定せずに、コマンド識別子の後に値を指定します。必須パラメーター：このパラメーターは常に指定する必要があります。">name</span> | string | 「Playable Director」コンポーネントがアタッチされている、シーン上のアクティブなゲームオブジェクトの名前。 |
 | stop | boolean | ディレクターを停止するかどうか。 |
 | pause | boolean | ディレクターを一時停止するかどうか。 |
 | resume | boolean | ディレクターを再開するかどうか。 |
@@ -2050,7 +2050,7 @@ Kohaku: 再びリンクされたプリンターを使用します。
 
 ## title
 
-エンジンの状態をリセットし、'Title' スクリプト（スクリプト構成で割り当てられている場合）の再生を開始します。
+エンジンの状態をリセットし、「Title」スクリプト（スクリプト構成で割り当てられている場合）の再生を開始します。
 
 ```nani
 ; タイトルメニューに戻ります。
@@ -2281,7 +2281,7 @@ Lorem ipsum[-] dolor sit amet.
 
 ## while
 
-指定された条件式が `true` に解決される限り、ネストされた行をループで実行します。
+指定された条件式が `true` と評価される限り、ネストされた行をループで実行します。
 
 <div class="config-table">
 

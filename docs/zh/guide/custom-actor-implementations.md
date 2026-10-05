@@ -16,7 +16,7 @@ Actor 实现可以在配置管理器中选择，配置管理器可通过 `Nanino
 ![](https://i.gyazo.com/74625fa24b58362de15bb8e07753824d.png)
 ![](https://i.gyazo.com/eeb42043eb9a841de003f8db848f1427.png)
 
-Implementation 下拉菜单包含实现特定 Actor 接口的所有类型。您可以添加自己的自定义实现，它们也会出现在列表中。创建自己的 Actor 实现时，请参考 `Naninovel/Runtime/Actor` 脚本。当 Actor 需要在场景中生成时，请考虑使用内置的抽象 `MonoBehaviourActor` 实现来满足大多数基本接口要求。
+`Implementation` 下拉菜单包含实现特定 Actor 接口的所有类型。您可以添加自己的自定义实现，它们也会出现在列表中。创建自己的 Actor 实现时，请参考 `Naninovel/Runtime/Actor` 脚本。当 Actor 需要在场景中生成时，请考虑使用内置的抽象 `MonoBehaviourActor` 实现来满足大多数基本接口要求。
 
 创建自定义 Actor 实现时，请确保它们具有兼容的公共构造函数：
 

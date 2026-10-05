@@ -26,7 +26,7 @@
 | Default Voice Volume | 1 | 首次启动游戏时设置的语音音量。 |
 | Enable Auto Voicing | False | 启用后，每个 [@print] 命令都将尝试播放关联的语音剪辑。 |
 | Voice Overlap Policy | Prevent Overlap | 指定如何处理语音的同时播放：<br> • Allow Overlap — 不加限制地同时播放多条语音。<br> • Prevent Overlap — 在播放新的语音剪辑之前停止所有正在播放的语音剪辑，以防止语音同时播放。<br> • Prevent Character Overlap — 防止同一角色的语音同时播放；不同角色的语音（自动配音）以及任意数量的 [@voice] 命令可以同时播放。 |
-| Voice Locales | Null | 分配本地化标签，以允许在游戏设置中独立于主本地化选择语音语言。 |
+| Voice Locales | Null | 分配语言标签，以允许在游戏设置中独立于主本地化选择语音语言。 |
 | Default Fade Duration | 0.35 | 开始或停止播放音频时音量淡入/淡出的默认持续时间。 |
 | Default Fade Easing | Linear | 默认用于音频淡入淡出和修改的缓动函数。 |
 | Play Sfx While Skipping | True | 是否在跳过模式下播放非循环音效（SFX）。禁用时，将在跳过时忽略不带 `loop!` 的 [@sfx] 命令。 |

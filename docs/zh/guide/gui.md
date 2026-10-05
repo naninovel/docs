@@ -28,7 +28,7 @@ UI 切换功能允许用户隐藏或显示整个游戏内 UI。
 
 ![](https://i.gyazo.com/e267c4ab3654efbfaf611011502de79f.mp4)
 
-激活 `ToggleUI` 输入（默认为 `Space` 键）或使用控制面板上的 `HIDE` 按钮来隐藏/显示 UI。
+激活 `ToggleUI` 输入（默认为 `Space` 键）或使用控制面板上的“HIDE”按钮来隐藏/显示 UI。
 
 当 UI 隐藏时，`Continue` 输入或单击/触摸屏幕也会重新显示 UI。
 
@@ -135,7 +135,7 @@ UI 自定义允许添加自定义 UI 并修改或完全替换任何内置 UI 元
 
 ### 修改内置 UI
 
-如果您希望修改现有的内置（默认）UI 预制件，可以在 `Naninovel/Prefabs/DefaultUI` 包文件夹中找到它们。
+如果您希望修改内置（默认）UI 预制件，可以在 `Naninovel/Prefabs/DefaultUI` 包文件夹中找到它们。
 
 虽然可以，但 **请避免直接编辑内置预制件**，以防止在更新包时出现问题。请改为通过 `Create -> Naninovel -> Default UI -> ...` 资产上下文菜单从模板创建一个新预制件，或者手动复制您想要修改的预制件（Ctrl/Cmd+D）并将其移出包文件夹。然后将创建/修改的预制件分配给 UI 资源管理器中的现有记录（`Object` 字段）。
 
@@ -144,10 +144,10 @@ UI 自定义允许添加自定义 UI 并修改或完全替换任何内置 UI 元
 ![](https://www.youtube.com/watch?v=hqhfhXzQkdk)
 
 ::: tip EXAMPLE
-上面视频教程中显示的 Unity 项目在 [UI 示例](/zh/guide/samples#ui) 中可用。
+上面视频教程中显示的 Unity 项目可以在 [UI 示例](/zh/guide/samples#ui) 中找到。
 :::
 
-从头开始创建新预制件时，请确保附加实现您要覆盖的 UI 接口的组件。此组件应附加到预制件的根对象。
+从头开始创建新预制件时，请确保附加一个实现了待覆盖 UI 对应接口的组件。此组件应附加到预制件的根对象。
 
 所有 UI 接口都位于 `Naninovel.UI` 命名空间下：
 

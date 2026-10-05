@@ -26,7 +26,7 @@ Default Sfx Volume | 1 | SFX volume to set when the game is first started.
 Default Voice Volume | 1 | Voice volume to set when the game is first started.
 Enable Auto Voicing | False | When enabled, each [@print] command will attempt to play an associated voice clip.
 Voice Overlap Policy | Prevent Overlap | Dictates how to handle concurrent voice playback:<br> • Allow Overlap — Concurrent voices will be played without limitation.<br> • Prevent Overlap — Prevent concurrent voice playback by stopping any played voice clip before playing a new one.<br> • Prevent Character Overlap — Prevent concurrent voice playback per character; voices of different characters (auto voicing) and any number of [@voice] commands are allowed to be played concurrently.
-Voice Locales | Null | Assign localization tags to allow selecting voice language in the game settings independently of the main localization.
+Voice Locales | Null | Assign language tags to allow selecting the voice language in the game settings independently of the main localization.
 Default Fade Duration | 0.35 | Default duration of the volume fade in/out when starting or stopping playing audio.
 Default Fade Easing | Linear | Easing function to use by default for the audio fades and modification.
 Play Sfx While Skipping | True | Whether to play non-looped sound effects (SFX) while in skip mode. When disabled, will ignore [@sfx] commands without `loop!` while skipping.
@@ -158,7 +158,7 @@ Input Actions | Null | When Unity's input system is installed, assign an input a
 Action Maps | Object Ref | Input action map names in the specified `Input Actions` asset to register with the Naninovel input.
 Rebind Timeout | 5 | How long, in seconds, to wait for a control to be activated when rebinding an input before canceling. Zero or below disables the timeout.
 Rebind Cancel Key | &lt;Keyboard&gt;/escape | Path of the control which cancels rebinding an input when activated. Leave empty to disable.
-Enable Gyroscope | True | Whether to enable the gyroscope device, which is disabled by default in Unity's input system. Required for the camera look by rotating a mobile device.
+Enable Gyroscope | True | Whether to enable the gyroscope device, which is disabled by default in Unity's input system. Required to control the camera look by rotating a mobile device.
 Detect Input Mode | True | Whether to change input mode when the associated device is activated. Eg, switch to gamepad when any gamepad button is pressed and switch back to mouse when a mouse button is clicked.
 Disable Input | False | Whether to disable input processing by default when the engine is initialized. Useful when Naninovel is integrated as a drop-in dialogue system and shouldn't react to user input after initialization.
 

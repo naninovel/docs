@@ -48,7 +48,7 @@ public static class ModifyConfigAtRuntime
 ```
 
 ::: info NOTE
-Naninovelは、エンジンが初期化されている間に構成が変更されることを想定していないため、一部の変更を有効にするには、`ProjectConfigurationProvider` または [カスタムプロバイダー](/ja/guide/custom-configuration#構成プロバイダー) を使用して、エンジンを初期化する前に変更を適用する必要がある場合があります。
+Naninovelは、エンジンが初期化済みの状態で構成が変更されることを想定していないため、一部の変更を有効にするには、`ProjectConfigurationProvider` または [カスタムプロバイダー](/ja/guide/custom-configuration#構成プロバイダー) を使用して、エンジンを初期化する前に変更を適用する必要がある場合があります。
 :::
 
 ## 構成の追加
@@ -114,7 +114,7 @@ public class CustomCharacterSettings : CharactersSettings
 
 ![](https://i.gyazo.com/5555e8c3eb33c3783bef8ef852a7e765.png)
 
-組み込みのアクターメタデータエディターをオーバーライドすることもできます。以下のコードは、表示中のアクターの `Message Color` フィールドの下に、その色の名前を示すラベルを挿入します。
+組み込みのアクターメタデータエディターをオーバーライドすることもできます。以下のコードは、編集中のアクターの `Message Color` フィールドの下に、アクターの表示名と色の値を示すラベルを挿入します。
 
 ```csharp
 [OverrideSettings]

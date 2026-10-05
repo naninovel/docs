@@ -79,7 +79,7 @@ If you use both unlockable and background resources to supply CG items, the reso
 
 ![](https://i.gyazo.com/c62c69eea8d6b1147aacb178dcaa9347.png)
 
-When at least one CG item is added to any of the sources (regardless of unlocked state), the `CG GALLERY` button will appear in the title menu, allowing access to the CG gallery browser.
+When at least one CG item is added to any of the sources (regardless of unlocked state), the "CG GALLERY" button will appear in the title menu, allowing access to the CG gallery browser.
 
 You can modify or completely replace the built-in `ICGGalleryUI` implementation using the [UI customization feature](/guide/gui#ui-customization).
 

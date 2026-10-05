@@ -16,7 +16,7 @@ An actor implementation can be selected in the configuration managers accessible
 ![](https://i.gyazo.com/74625fa24b58362de15bb8e07753824d.png)
 ![](https://i.gyazo.com/eeb42043eb9a841de003f8db848f1427.png)
 
-The Implementation dropdown contains all the types that implement the specific actor interface. You can add your own custom implementations, and they'll also appear in the list. See the `Naninovel/Runtime/Actor` scripts for reference when creating your own actor implementation. Consider using the built-in abstract `MonoBehaviourActor` implementation to fulfill most base interface requirements when the actor is supposed to be spawned in the scene.
+The `Implementation` dropdown contains all the types that implement the specific actor interface. You can add your own custom implementations, and they'll also appear in the list. See the `Naninovel/Runtime/Actor` scripts for reference when creating your own actor implementation. Consider using the built-in abstract `MonoBehaviourActor` implementation to fulfill most base interface requirements when the actor is supposed to be spawned in the scene.
 
 When creating custom actor implementations, make sure they have a compatible public constructor:
 

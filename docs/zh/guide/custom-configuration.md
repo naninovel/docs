@@ -114,7 +114,7 @@ public class CustomCharacterSettings : CharactersSettings
 
 ![](https://i.gyazo.com/5555e8c3eb33c3783bef8ef852a7e765.png)
 
-您还可以覆盖内置 Actor 元数据编辑器。下面的代码将在被检查的 Actor 的 `Message Color` 字段下方插入一个标签，显示该颜色的名称。
+您还可以覆盖内置 Actor 元数据编辑器。下面的代码将在正在查看的 Actor 的 `Message Color` 字段下方插入一个标签，显示该 Actor 的显示名称和颜色值。
 
 ```csharp
 [OverrideSettings]

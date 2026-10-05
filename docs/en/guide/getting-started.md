@@ -154,11 +154,11 @@ A few sample scripts are scaffolded into the `Assets/Scenario` folder, and the [
 
 ![?width=400](https://i.gyazo.com/664efe9237b14ee091fded317a2cab4a.png)
 
-The Unity Editor will enter Play mode and display the default title UI. At the same time, the `Title` scenario script will open in the Story Editor, indicating that it is currently being played.
+The Unity Editor will enter Play mode and display the default Title UI. At the same time, the `Title` scenario script will open in the Story Editor, indicating that it is currently being played.
 
 ![](https://i.gyazo.com/84c64bf7fb4217dd149260fd0008b7f4.png)
 
-Feel free to explore the Story Editor and edit the scripts — changes are applied live. Read through the comments in the sample scripts for brief explanations of the nearby commands. Click "NEW GAME" on the title UI to proceed to the `Entry` script, which contains some additional examples.
+Feel free to explore the Story Editor and edit the scripts — changes are applied live. Read through the comments in the sample scripts for brief explanations of the nearby commands. Click "NEW GAME" on the Title UI to proceed to the `Entry` script, which contains some additional examples.
 
 ## Add Scenario Script
 

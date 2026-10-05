@@ -145,7 +145,7 @@ Naninovel 默认会尝试使背景覆盖整个摄像机视锥体，因此请确�
 
 ## 切片精灵背景
 
-`DicedSpriteBackground` 实现基于开源的 [SpriteDicing](https://github.com/elringus/sprite-dicing) 包构建，当关联的纹理包含大量相似数据时，允许通过重用背景精灵的纹理区域来显著减小构建大小和纹理内存占用。
+`DicedSpriteBackground` 实现基于开源的 [SpriteDicing](https://github.com/elringus/sprite-dicing) 包构建，当关联的纹理包含的数据大多相似时，允许通过重用背景精灵的纹理区域来显著减小构建大小和纹理内存占用。
 
 切片背景与切片角色实现非常相似；有关设置和使用说明，请参阅 [切片角色指南](/zh/guide/characters#切片精灵角色)。
 

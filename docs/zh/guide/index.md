@@ -1,6 +1,6 @@
 # 介绍
 
-Naninovel 是 [Unity 游戏引擎](https://unity3d.com) 的扩展，具有一套供剧本作家使用的创作工具和供开发人员使用的 C# 框架，旨在简化叙事驱动内容的创建，从游戏内对话和过场动画到完整的 [视觉小说](https://en.wikipedia.org/wiki/Visual_novel)。
+Naninovel 是 [Unity 游戏引擎](https://unity.com) 的扩展，具有一套供剧本作家使用的创作工具和供开发人员使用的 C# 框架，旨在简化叙事驱动内容的创建，从游戏内对话和过场动画到完整的 [视觉小说](https://en.wikipedia.org/wiki/Visual_novel)。
 
 ![](https://www.youtube.com/watch?v=lRxIKDU9z4k)
 

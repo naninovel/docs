@@ -153,7 +153,7 @@ In the [integration sample](/guide/samples#dialogue-mode), each NPC has such a `
 
 There are multiple other features (state outsourcing, service overriding, custom serialization, resource and configuration providers, etc) that can be useful when integrating the engine with other systems. Check the rest of the guide for more information. Consider investigating the available [configuration options](/guide/configuration) as well; some features may not be described in the guide but can still be handy for integration.
 
-If you feel some engine API or system lacks extendability and requires source code modification to integrate, please [contact support](/support/) — we'll consider improving it.
+If you feel some engine API or system lacks extensibility and requires source code modification to integrate, please [contact support](/support/) — we'll consider improving it.
 
 ::: tip EXAMPLE
 Check the [integration sample](/guide/samples#dialogue-mode), where Naninovel is used both as a drop-in dialogue system for a 3D adventure game and as a switchable standalone novel mode.

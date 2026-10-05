@@ -11,7 +11,7 @@
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | if | string | 一个布尔 [剧本表达式](/zh/guide/expressions)，控制命令是否应该执行。 |
-| unless | string | 一个布尔 [剧本表达式](/zh/guide/expressions)，控制命令是否不应该执行（与 'if' 相反）。 |
+| unless | string | 一个布尔 [剧本表达式](/zh/guide/expressions)，控制命令是否不应该执行（与“if”相反）。 |
 | wait | boolean | 脚本播放器是否应等待异步命令完成执行后再执行下一个命令。 |
 
 </div>
@@ -119,7 +119,7 @@ Lorem ipsum
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">trackId</span> | string | 负责执行嵌套行的播放器轨道的唯一标识符。指定后，可通过该 ID 使用 [@await] 等待或使用 [@stop] 停止异步轨道的播放。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">trackId</span> | string | 负责执行嵌套行的脚本轨道的唯一标识符。指定后，可通过该 ID 使用 [@await] 等待或使用 [@stop] 停止异步轨道的播放。 |
 | loop | boolean | 是否循环播放嵌套行，直到使用 [@stop] 停止。 |
 
 </div>
@@ -1488,7 +1488,7 @@ Kohaku: 再次使用我链接的打印机。
 | <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID 必需参数：应始终指定该参数">expression</span> | string | 赋值表达式。<br/><br/>表达式应采用以下格式：`var=expression`，其中 `var` 是要赋值的剧本变量的 ID，`expression` 是一个 [剧本表达式](/zh/guide/expressions)，其结果将赋给该变量。<br/><br/>可以使用递增和递减一元运算符（`@set foo++`、`@set foo--`）和复合赋值（`@set foo+=10`、`@set foo-=3`、`@set foo*=0.1`、`@set foo/=2`）。 |
 | to | string | 一个表达式，其结果将赋给所有未带赋值表达式（即没有 `= ...` 部分）的指定变量。适用于将同一个值赋给多个变量，例如：`@set foo, bar, baz to:10`。 |
 | scope | string | 指定后，会将没有显式作用域的变量归入指定的作用域。 |
-| init | boolean | 该变量是否只应在尚未赋值时才进行赋值（即初始化意图）。不应与 'meta' 或 'const' 标志一起使用，因为它们都具有初始化意图。 |
+| init | boolean | 该变量是否只应在尚未赋值时才进行赋值（即初始化意图）。不应与“meta”或“const”标志一起使用，因为它们都具有初始化意图。 |
 | meta | boolean | 该变量是否应初始化为元变量。元变量位于游戏会话之“上”，即在开始新游戏时它们的值仍会保留。非常适合用于元游戏机制，例如追踪路线完成情况或成就。 |
 | const | boolean | 该变量是否应初始化为常量。常量只能初始化一次，之后不允许再更改。 |
 
@@ -1991,13 +1991,13 @@ Kohaku: 再次使用我链接的打印机。
 
 ## sync
 
-将具有指定标识符的播放器轨道导航到当前行并销毁宿主轨道。用于将异步执行的轨道相互连接（同步），或与主轨道连接。有关更多信息，请参阅 [并发播放](/zh/guide/scenario-scripting#并发播放) 指南。
+将具有指定标识符的脚本轨道导航到当前行并销毁宿主轨道。用于将异步执行的轨道相互连接（同步），或与主轨道连接。有关更多信息，请参阅 [并发播放](/zh/guide/scenario-scripting#并发播放) 指南。
 
 <div class="config-table">
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">trackId</span> | string | 要连接的播放器轨道的唯一标识符。未指定时使用主轨道。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">trackId</span> | string | 要连接的脚本轨道的唯一标识符。未指定时使用主轨道。 |
 
 </div>
 
@@ -2025,13 +2025,13 @@ Kohaku: 再次使用我链接的打印机。
 
 ## timeline
 
-通过指定名称的场景游戏对象上的 [Director](https://docs.unity3d.com/ScriptReference/Playables.PlayableDirector.html) 组件控制 [Timeline](https://docs.unity3d.com/Manual/com.unity.timeline.html)。默认情况下，除非指定了 'stop'、'pause' 或 'resume' 标志，否则该命令将使 Director 开始播放。
+通过指定名称的场景游戏对象上的 [Director](https://docs.unity3d.com/ScriptReference/Playables.PlayableDirector.html) 组件控制 [Timeline](https://docs.unity3d.com/Manual/com.unity.timeline.html)。默认情况下，除非指定了“stop”、“pause”或“resume”标志，否则该命令将使 Director 开始播放。
 
 <div class="config-table">
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID 必需参数：应始终指定该参数">name</span> | string | 场景中附加了 'Playable Director' 组件且处于活动状态的游戏对象的名称。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID 必需参数：应始终指定该参数">name</span> | string | 场景中附加了“Playable Director”组件且处于活动状态的游戏对象的名称。 |
 | stop | boolean | 是否停止 Director。 |
 | pause | boolean | 是否暂停 Director。 |
 | resume | boolean | 是否恢复 Director。 |
@@ -2050,7 +2050,7 @@ Kohaku: 再次使用我链接的打印机。
 
 ## title
 
-重置引擎状态并开始播放 'Title' 脚本（如果已在脚本配置中分配）。
+重置引擎状态并开始播放“Title”脚本（如果已在脚本配置中分配）。
 
 ```nani
 ; 退出到标题。

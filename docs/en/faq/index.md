@@ -34,7 +34,7 @@ Naninovel is governed by the following End User License Agreement (EULA): [nanin
 
 ## Why am I getting "asset wasn't downloaded" error when attempting to register Asset Store license?
 
-The asset download verification is required when Naninovel is purchased via Unity's Asset Store. In order for the verification to succeed, Naninovel has to be downloaded at least once via Unity's [package manager](https://docs.unity3d.com/Manual/Packages.html) by the user who purchased the asset. In case multiple copies of the asset have been purchased, each copy has to be downloaded by the associated organization user. In case you've completed all the steps but still have issues, please [contact Unity support](https://support.unity.com).
+The asset download verification is required when Naninovel is purchased via Unity's Asset Store. In order for the verification to succeed, Naninovel has to be downloaded at least once via Unity's [Package Manager](https://docs.unity3d.com/Manual/Packages.html) by the user who purchased the asset. In case multiple copies of the asset have been purchased, each copy has to be downloaded by the associated organization user. In case you've completed all the steps but still have issues, please [contact Unity support](https://support.unity.com).
 
 ::: warning
 When the asset is purchased from an organization account, the organization owner has to download the asset to satisfy the check (assigned members won't count). This is an Asset Store limitation, and we won't be able to provide any workarounds in such cases; please contact Unity support for more information and assistance.

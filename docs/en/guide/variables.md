@@ -115,7 +115,7 @@ Scenario variables can be grouped under a scope by prefixing the variable name w
 
 Scoped variables are useful when several systems need variables with the same short name, such as `route.complete`, `stats.complete`, or `quest.complete`.
 
-When assigning several variables with the [@set](/api/#set) command, use the `scope` parameter to apply the same scope to each variable:
+When assigning several variables with the [@set] command, use the `scope` parameter to apply the same scope to each variable:
 
 ```nani
 @set strength, intellect, agility to:0 scope:stats

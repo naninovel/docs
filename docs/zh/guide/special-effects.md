@@ -146,7 +146,7 @@ Kohaku: 隆隆作响！
 **示例**
 
 ```nani
-; 在 10 秒内开始大雪
+; 在 10 秒内开始下大雪
 @snow power:1 time:10
 
 ; 在 30 秒内停止下雪
@@ -174,7 +174,7 @@ Kohaku: 隆隆作响！
 **示例**
 
 ```nani
-; 在 10 秒内开始强烈的阳光
+; 在 10 秒内让强烈的阳光出现
 @sun power:1 time:10
 
 ; 在 30 秒内让阳光消失
@@ -771,7 +771,7 @@ EaseInOutElastic
 @despawn Explosion
 ```
 
-可以使用 `params` 指定附加效果参数：
+可以使用 `params` 指定额外的效果参数：
 
 ```nani
 @spawn Explosion params:Kohaku,3,true

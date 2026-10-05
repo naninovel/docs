@@ -13,7 +13,7 @@
 - 团队在 `#support` 频道中优先响应技术问题和故障排除请求
 - 来自 Nani-kun 的即时响应——它是我们的支持机器人，精通整个 Naninovel 代码库
 - 访问 GitHub 上的引擎源代码存储库，您可以在其中跟踪开发过程
-- 访问包含最新预览版和稳定版发布分支的 UPM 存储库，让您可以直接从 GitHub 安装和更新 Naninovel
+- 访问包含最新 preview 和 stable 发布分支的 UPM 存储库，让您可以直接从 GitHub 安装和更新 Naninovel
 
 当您 [注册许可证](https://account.naninovel.com) 时，将获赠为期一年的免费支持计划。之后，您可以随时通过您的 [账户仪表板](https://account.naninovel.com/support) 续订订阅。
 

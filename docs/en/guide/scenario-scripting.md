@@ -206,7 +206,7 @@ The command applies the specified parameters to the last text part placed before
 Hello[-][< speed:0.5] world!
 ```
 
-### White Space Delimiters
+### Whitespace Delimiters
 
 In cases when a generic text line starts or ends with whitespace (eg, a space or tab), it can be useful to explicitly delimit where the content to be printed actually begins or ends. This is especially important when using nesting.
 
@@ -492,7 +492,7 @@ Each host command has its own behaviour when executing nested commands. For exam
     @goto #BeginTest
 ```
 
-Notice how nested blocks are indented: each level uses exactly **4 spaces**. Alternatively, you can use a **single tab**; other space counts or space characters will be ignored. Nested blocks of any depth are possible — just increase the indentation by 4 spaces or a tab per level.
+Notice how nested blocks are indented: each level uses exactly **4 spaces**. Alternatively, you can use a **single tab**; other space counts or whitespace characters are not recognized as indentation. Nested blocks of any depth are possible — just increase the indentation by 4 spaces or a tab per level.
 
 To group several commands under a single host, use the [@group] command:
 

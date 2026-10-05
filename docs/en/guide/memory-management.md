@@ -185,7 +185,7 @@ In general, it's recommended to stick with the default "Conservative" policy, as
 
 However, if you're exclusively targeting powerful platforms with ample RAM, such as standalone builds and game consoles, you may prefer the "Optimistic" policy to keep large portions of resources in memory and minimize loading screens.
 
-Another scenario for using the "Optimistic" policy is when Naninovel is employed as a dialogue system inside a custom game loop. In such cases, you'll likely have your own resource management system, and "Optimistic" won't interfere — it will simply keep all the required resources loaded before playing a script, unless you explicitly use `release!` flags.
+Another scenario for using the "Optimistic" policy is when Naninovel is employed as a dialogue system inside a custom game loop. In such cases, you'll likely have your own resource management system, and "Optimistic" won't interfere — it will simply load all the required resources before playing a script and keep them loaded unless you explicitly use `release!` flags.
 
 Choose the "Lazy" policy when you need to minimize memory usage and can tolerate potential stutters during gameplay, or when it's not feasible to design the game around loading screens.
 

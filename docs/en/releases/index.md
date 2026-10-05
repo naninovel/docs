@@ -13,7 +13,7 @@ const copy = evt => {
 
 # Releases
 
-| Version |  Date   |                Status                 | <abbr title="Compatible Unity versions.">Unity</abbr> | <abbr title="Git URL of the release package to install via Unity's package manager (UPM).">UPM</abbr> |                    Notes                    |
+| Version |  Date   |                Status                 | <abbr title="Compatible Unity versions.">Unity</abbr> | <abbr title="Git URL of the release package to install via Unity's Package Manager (UPM).">UPM</abbr> |                    Notes                    |
 |:-------:|:-------:|:-------------------------------------:|:-----------------------------------------------------:|:-----------------------------------------------------------------------------------------------------:|:-------------------------------------------:|
 | `1.22`  | Q4 2026 | <span class="txt-warn">Preview</span> |                         `6.7`                         |         <button @click="copy" class="upm" title="https://github.com/naninovel/upm.git#1.22"/>         | [](https://pre.naninovel.com/releases/1.22) |
 | `1.21`  | Q1 2026 |  <span class="txt-ok">Stable</span>   |                     `6.0`, `6.3`                      |         <button @click="copy" class="upm" title="https://github.com/naninovel/upm.git#1.21"/>         |             [↗](/releases/1.21)             |

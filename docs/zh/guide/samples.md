@@ -64,7 +64,7 @@
 
 ## 库存
 
-虽然库存系统超出了视觉小说的范围，但我们收到了许多关于如何将其与 Naninovel 集成的请求和问题。库存示例演示了如何创建和集成库存扩展：无需修改引擎源代码，即可在现有的 Naninovel 安装之上进行设置。
+虽然库存系统超出了视觉小说的范围，但我们收到了许多关于如何将其与 Naninovel 集成的请求和问题。库存示例演示了如何创建和集成库存扩展：无需修改引擎源代码，即可在 Naninovel 安装之上进行设置。
 
 ::: info NOTE
 该库存系统不是独立产品，也不是 Naninovel 的一部分。您可以用它来学习如何扩展和自定义引擎，但不要指望它是可直接用于生产的库存系统解决方案。如果您正在寻找这样的解决方案，请 [查看 Asset Store](https://assetstore.unity.com/?q=inventory) 或从头开始创建一个自定义的。
@@ -76,7 +76,7 @@
 
 要从模板创建预制的库存 UI，请使用 `Create -> Naninovel -> Inventory -> Inventory UI` 资产上下文菜单。然后在编辑器中通过 `Naninovel -> Resources -> UI` 将预制件添加到 Naninovel UI 资源中。添加后，可以像所有其他 UI 一样使用 [@showUI] 和 [@hideUI] 命令显示/隐藏该 UI。
 
-Inventory UI 组件具有 `Capacity` 属性，您可以通过它更改库存中的槽位数量。槽位网格通过 `Content/InventoryGrid` 游戏对象进行配置（槽位数量和布局、每页槽位数等）。窗口拖放行为可以通过附加到 `Content` 游戏对象的 `Drag Drop` 组件进行配置（或禁用）。
+Inventory UI 组件具有 `Capacity` 属性，您可以通过它更改库存中的栏位数量。栏位网格通过 `Content/InventoryGrid` 游戏对象进行配置（栏位数量和布局、每页栏位数等）。窗口拖放行为可以通过附加到 `Content` 游戏对象的 `Drag Drop` 组件进行配置（或禁用）。
 
 库存物品预制件可以使用 `Create -> Naninovel -> Inventory -> Inventory Item` 资产上下文菜单创建。然后需要通过编辑器中的 `Naninovel -> Resources -> Inventory` 将物品预制件分配为库存资源。
 
@@ -86,11 +86,11 @@ Inventory UI 组件具有 `Capacity` 属性，您可以通过它更改库存中�
 
 也可以使用 [Addressable 资产系统](/zh/guide/resource-providers#addressable) 手动公开资源。要公开资产，请为其分配一个地址，该地址等于使用上述方法时的路径，但省略 `Resources/` 部分。例如，要公开 `FullPlate.prefab` 物品，请为预制件分配地址 `Naninovel/Inventory/FullPlate`。请注意，在编辑器中时，始终首先使用特殊的“Editor”资源提供者；只有未通过编辑器菜单分配的资源才会尝试使用 Addressable 提供者。
 
-每个物品都有一个 `Stack Count Limit` 属性来限制这种类型的物品可以在单个库存槽位中堆叠多少个，以及一个 `On Item Used` Unity 事件，该事件在物品被使用时调用（通过 `@useItem` 命令或当用户单击库存中的物品时）。下面是一个示例，说明如何使用 `Play Script` 组件设置该事件，以便在使用物品后将其移除、生成故障特殊效果并打印文本消息。
+每个物品都有一个 `Stack Count Limit` 属性来限制这种类型的物品可以在单个库存栏位中堆叠多少个，以及一个 `On Item Used` Unity 事件，该事件在物品被使用时调用（通过 `@useItem` 命令或当用户单击库存中的物品时）。下面是一个示例，说明如何使用 `Play Script` 组件设置该事件，以便在使用物品后将其移除、生成故障特殊效果并打印文本消息。
 
 ![](https://i.gyazo.com/010a9ba35db607ba46d78eda3513f678.png)
 
-您可以使用 `@addItem` 命令向库存添加物品，并使用 `@removeItem`（或 `@removeItemAt`、`@removeAllItems`）将其移除。物品 ID 等于物品预制件名称。库存槽位 ID 等于网格槽位索引（例如，第一个槽位是 0，第二个是 1，依此类推）。
+您可以使用 `@addItem` 命令向库存添加物品，并使用 `@removeItem`（或 `@removeItemAt`、`@removeAllItems`）将其移除。物品 ID 等于物品预制件名称。库存栏位 ID 等于网格栏位索引（例如，第一个栏位是 0，第二个是 1，依此类推）。
 
 为了方便起见，还提供了 `itemExist()` 和 `itemCount()` 自定义 [表达式查询](/zh/guide/expressions#表达式查询) 来检查物品是否存在于库存中以及获取现有物品的数量。
 
@@ -293,7 +293,7 @@ Visual Scripting 不会自动公开库中的所有可用类型，因此请将所
 
 ![](https://i.gyazo.com/26c7bee4798b690c4eb362ec39746dc7.png)
 
-在 Visual Scripting 设置中添加 Naninovel 库和类型后，引擎 API 将在图视图下的模糊查找器中可用，并且可以像其他 Unity 或第三方 API 一样使用。下面是一个初始化引擎并播放脚本的示例。在尝试此示例之前，请确保禁用 `Initialize On Application Load` 并删除 `Title UI`。
+在 Visual Scripting 设置中添加 Naninovel 库和类型后，引擎 API 将出现在图视图下的模糊查找器中，并且可以像其他 Unity 或第三方 API 一样使用。下面是一个初始化引擎并播放脚本的示例。在尝试此示例之前，请确保禁用 `Initialize On Application Load` 并删除 `Title UI`。
 
 ![](https://i.gyazo.com/63a832f10fa3f5e4429e98da50ae8dd0.png)
 

@@ -865,7 +865,7 @@ EaseInOutElastic
 
 新しいシェーダーを作成し、それを使用するマテリアルを、カスタムトランジションエフェクトを使用するアクターの `Custom Texture Material` プロパティに割り当てます。カスタムアクターシェーダーの作成と割り当て方法の詳細については、[カスタムアクターシェーダー](/ja/guide/custom-actor-shader) ガイドを参照してください。
 
-スクリプトコマンドでトランジション名が指定されると、アクターが使用するマテリアルで同じ名前（`NANINOVEL_TRANSITION_` 接頭辞付き）の [シェーダーキーワード](https://docs.unity3d.com/ScriptReference/Shader.EnableKeyword.html) が有効になります。
+スクリプトコマンドでトランジション名が指定されると、アクターが使用するマテリアルで同じ名前（`NANINOVEL_TRANSITION_` プレフィックス付き）の [シェーダーキーワード](https://docs.unity3d.com/ScriptReference/Shader.EnableKeyword.html) が有効になります。
 
 独自のトランジションをカスタムアクターシェーダーに追加するには、`multi_compile` ディレクティブを使用します。例：
 

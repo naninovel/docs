@@ -57,7 +57,7 @@ Notice that when a pose is used as an appearance, you can still override individ
 @char Kohaku.SuperAngry tint:#ff45cb
 ```
 
-In the character and background configurations you can also find `Shared Poses` — these poses are shared between all the respective actors. Example use cases for shared poses are re-using speaking/non-speaking templates or creating predefined stages relative to the camera.
+In the character and background configurations you can also find `Shared Poses` — these poses are shared between all the respective actors. Example use cases for shared poses are reusing speaking/non-speaking templates or creating predefined stages relative to the camera.
 
 ![](https://i.gyazo.com/c4c6d850d2a6efae269164af58da1ed3.png)
 
@@ -290,7 +290,7 @@ Built with the open-source [SpriteDicing](https://github.com/elringus/sprite-dic
 
 ![Sprite Dicing](https://i.gyazo.com/af08d141e7a08b6a8e2ef60c07332bbf.png)
 
-Install the package via the [Unity package manager](https://docs.unity3d.com/Manual/upm-ui.html): open the package manager window (`Window -> Package Manager`), click the "+" button, choose "Add package from git URL", enter the following URL:
+Install the package via the [Unity Package Manager](https://docs.unity3d.com/Manual/upm-ui.html): open the Package Manager window (`Window -> Package Manager`), click the "+" button, choose "Add package from git URL", enter the following URL:
 
 ```
 https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteDicing
@@ -507,7 +507,7 @@ When `Control Animation` is enabled, appearances are mapped to looping Spine ani
 @char Hero.Idle,Shoot@1
 ```
 
-This plays `Idle` on the default track and `Shoot` on track 1. Applying `@char Hero.Idle` afterwards keeps `Idle` playing and mixes out track 1. Disable `Control Animation` to handle appearances exclusively through `On Appearance Changed` callbacks.
+This plays `Idle` on the default track and `Shoot` on track 1. Applying `@char Hero.Idle` afterward keeps `Idle` playing and mixes out track 1. Disable `Control Animation` to handle appearances exclusively through `On Appearance Changed` callbacks.
 
 ::: tip
 It's possible to use a custom component inherited from `Spine Controller`. This way you'll be able to override the virtual methods and associated behaviour (eg, handle appearance change with a specific duration or transition parameters).

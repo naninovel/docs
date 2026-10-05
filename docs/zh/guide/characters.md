@@ -290,7 +290,7 @@ Kohaku: 谁拿走了我的 'Wide'？！正在用 'Fullscreen' 打印...
 
 ![Sprite Dicing](https://i.gyazo.com/af08d141e7a08b6a8e2ef60c07332bbf.png)
 
-通过 [Unity 包管理器](https://docs.unity3d.com/Manual/upm-ui.html) 安装该包：打开包管理器窗口（`Window -> Package Manager`），单击“+”按钮，选择“Add package from git URL”，将以下 URL：
+通过 [Unity Package Manager](https://docs.unity3d.com/Manual/upm-ui.html) 安装该包：打开 Package Manager 窗口（`Window -> Package Manager`），单击“+”按钮，选择“Add package from git URL”，将以下 URL：
 
 ```
 https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteDicing
@@ -338,7 +338,7 @@ https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteD
 
 要创建分层角色预制件，请使用 `Create -> Naninovel -> Character -> Layered` 资产上下文菜单。进入 [预制件编辑模式](https://docs.unity3d.com/Manual/EditingInPrefabMode.html) 以组合层。默认情况下将创建几个层和组。您可以使用它们，也可以删除并添加自己的层和组。
 
-预制件根对象的每个子游戏对象中，带有 `Layered Actor Layer` 组件的对象被视为 *层*，其他对象则被视为 *组*。除了组织和变换用途外，将层放置在组内还允许您使用剧本脚本中的单个表达式选择单个层，或禁用或启用组内的所有层（稍后会详细介绍）。
+预制件根对象的子游戏对象中，带有 `Layered Actor Layer` 组件的对象被视为 *层*，其他对象则被视为 *组*。除了组织和变换用途外，将层放置在组内还允许您使用剧本脚本中的单个表达式选择单个层，或禁用或启用组内的所有层（稍后会详细介绍）。
 
 当层游戏对象还具有 [渲染器](https://docs.unity3d.com/ScriptReference/Renderer.html) 时，该渲染器会自动用于驱动层状态：层被禁用时，渲染器也会被禁用，反之亦然。要默认隐藏特定层，请禁用其渲染器组件（而不是游戏对象）。或者，可以使用 `On Layer Enabled` 和 `On Layer Disabled` 事件驱动层的启用状态。
 

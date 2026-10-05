@@ -157,17 +157,17 @@ To enable this feature, specify anchor positions inside the [character actors](/
 
 When configured correctly, Naninovel will not only position the printers over the anchors, but also flip them when they would otherwise overflow the screen. You can specify multiple anchors for each character for more precise alignment depending on whether the printer is flipped. Below are the supported anchor IDs:
 
-| Anchor ID            | Description                                              |
-|----------------------|----------------------------------------------------------|
-| `Bubble`             | Default or fallback anchor when none of the others fit.  |
-| `Bubble/TopLeft`     | Used when the bubble is aligned at the top-left corner.  |
-| `Bubble/Top`         | Used when the bubble is aligned at the top edge.         |
-| `Bubble/TopRight`    | Used when the bubble is aligned at the top-right corner. |
-| `Bubble/Left`        | Used when the bubble is aligned at the left edge.        |
-| `Bubble/Right`       | Used when the bubble is aligned at the right edge.       |
-| `Bubble/BottomLeft`  | Used when the bubble is aligned at the bottom-left.      |
-| `Bubble/Bottom`      | Used when the bubble is aligned at the bottom edge.      |
-| `Bubble/BottomRight` | Used when the bubble is aligned at the bottom-right.     |
+| Anchor ID            | Description                                                 |
+|----------------------|-------------------------------------------------------------|
+| `Bubble`             | Default or fallback anchor when none of the others fit.     |
+| `Bubble/TopLeft`     | Used when the bubble is aligned at the top-left corner.     |
+| `Bubble/Top`         | Used when the bubble is aligned at the top edge.            |
+| `Bubble/TopRight`    | Used when the bubble is aligned at the top-right corner.    |
+| `Bubble/Left`        | Used when the bubble is aligned at the left edge.           |
+| `Bubble/Right`       | Used when the bubble is aligned at the right edge.          |
+| `Bubble/BottomLeft`  | Used when the bubble is aligned at the bottom-left corner.  |
+| `Bubble/Bottom`      | Used when the bubble is aligned at the bottom edge.         |
+| `Bubble/BottomRight` | Used when the bubble is aligned at the bottom-right corner. |
 
 You don't have to specify all of them: Naninovel will pick the one that fits best even when a precise match is missing. For example, if aligned top-left but `Bubble/TopLeft` is missing, it'll check for `Bubble/Left`, then `Bubble/Top`, and finally fall back to `Bubble`.
 

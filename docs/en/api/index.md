@@ -119,7 +119,7 @@ Executes the nested lines asynchronously on a dedicated script track in parallel
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">trackId</span> | string | Unique identifier of the player track responsible for executing the nested lines. When specified, the ID can be used to [@await] or [@stop] the async track playback. |
+| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">trackId</span> | string | Unique identifier of the script track responsible for executing the nested lines. When specified, the ID can be used to [@await] or [@stop] the async track playback. |
 | loop | boolean | Whether to play the nested lines in a loop, until stopped with [@stop]. |
 
 </div>
@@ -1296,7 +1296,7 @@ Spawns a particle system simulating [rain](/guide/special-effects#rain).
 </div>
 
 ```nani
-; Start intensive rain over 10 seconds.
+; Start heavy rain over 10 seconds.
 @rain power:1 time:10
 ; Stop the rain over 30 seconds.
 @rain power:0 time:30
@@ -1827,7 +1827,7 @@ Spawns a particle system simulating [snow](/guide/special-effects#snow).
 </div>
 
 ```nani
-; Start intensive snow over 10 seconds.
+; Start heavy snow over 10 seconds.
 @snow power:1 time:10
 ; Stop the snow over 30 seconds.
 @snow power:0 time:30
@@ -1983,7 +1983,7 @@ Spawns a particle system simulating [sun shafts](/guide/special-effects#sun) aka
 </div>
 
 ```nani
-; Start intensive sunshine over 10 seconds.
+; Start intense sunshine over 10 seconds.
 @sun power:1 time:10
 ; Stop the sunshine over 30 seconds.
 @sun power:0 time:30
@@ -1991,13 +1991,13 @@ Spawns a particle system simulating [sun shafts](/guide/special-effects#sun) aka
 
 ## sync
 
-Navigates the player track with the specified identifier to the current line and disposes the host track. Use to join (synchronize) the asynchronously executed tracks with each other or the main track. Consult the [concurrent playback](/guide/scenario-scripting#concurrent-playback) guide for more info.
+Navigates the script track with the specified identifier to the current line and disposes the host track. Use to join (synchronize) the asynchronously executed tracks with each other or the main track. Consult the [concurrent playback](/guide/scenario-scripting#concurrent-playback) guide for more info.
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">trackId</span> | string | Unique identifier of the player track to join with. Uses main track when not specified. |
+| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">trackId</span> | string | Unique identifier of the script track to join with. Uses the main track when not specified. |
 
 </div>
 

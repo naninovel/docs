@@ -89,7 +89,7 @@
 
 配音文档供录音工程师和配音演员在制作配音音频时使用。
 
-使用通过 `Naninovel -> Tools -> Voiceover Documents` 访问的配音文档生成器实用程序来生成文档，其中包含来自 [@print] 命令和通用文本行的打印文本。每个打印文本消息都将与自动配音 ID 关联。
+使用通过 `Naninovel -> Tools -> Voiceover Documents` 访问的配音文档生成器实用程序来生成文档，其中包含来自 [@print] 命令和通用文本行的打印文本。每条打印的文本消息都将与自动配音 ID 关联。
 
 ![](https://i.gyazo.com/d1e40ff118daebd83b55e0433431b2a8.png)
 

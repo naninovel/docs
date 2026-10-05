@@ -155,7 +155,7 @@ Kohaku: Where're you right now?
 
 You can add custom choice handlers based on the built-in templates or create new handlers from scratch. For example, let's customize the built-in `ButtonArea` template.
 
-Use the `Create -> Naninovel -> Choice Handler -> Button Area` asset context menu to create a button area handler prefab somewhere outside the Naninovel package, eg at the `Assets/ChoiceHandlers` folder.
+Use the `Create -> Naninovel -> Choice Handler -> Button Area` asset context menu to create a button area handler prefab somewhere outside the Naninovel package, eg in the `Assets/ChoiceHandlers` folder.
 
 Edit the handler: change font, textures, add animations, etc. For more information on the available UI building tools, check the [Unity documentation](https://docs.unity3d.com/Packages/com.unity.ugui@latest).
 

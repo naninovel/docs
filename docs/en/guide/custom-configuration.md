@@ -114,7 +114,7 @@ Given the above editor, the characters configuration will now draw as follows:
 
 ![](https://i.gyazo.com/5555e8c3eb33c3783bef8ef852a7e765.png)
 
-You can also override built-in actor metadata editors. The code below will insert a label under the `Message Color` field of the inspected actor with the name of that color.
+You can also override built-in actor metadata editors. The code below will insert a label under the `Message Color` field of the inspected actor, showing the actor's display name and the color value.
 
 ```csharp
 [OverrideSettings]
