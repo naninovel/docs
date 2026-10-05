@@ -1434,7 +1434,7 @@ Attempts to navigate scenario script playback to a command after the last used [
 
 ## save
 
-Automatically saves the game to the first auto save slot.
+Automatically saves the game to the first autosave slot.
 
 <div class="config-table">
 
@@ -1445,10 +1445,10 @@ Automatically saves the game to the first auto save slot.
 </div>
 
 ```nani
-; Auto-save at the current position.
+; Autosave at the current position.
 @save
 
-; Player can choose to either 'rest', which will auto-save the game and
+; Player can choose to either 'rest', which will autosave the game and
 ; exit to title or continue to 'NextDay'. When player loads the saved game
 ; after resting, they're moved to the line after '# Camp' label, with
 ; 'rested' set to 'true', which forces them to continue to the 'NextDay'.
@@ -1457,7 +1457,7 @@ Automatically saves the game to the first auto save slot.
 
 ; Notice the variable is set with '?=' — this will only assign the value
 ; in case it's not already assigned, which won't be the case after player
-; loads auto-saved game after the rest.
+; loads the autosaved game after the rest.
 @set rested?=false
 
 @if rested

@@ -235,7 +235,7 @@ Property | Default Value | Description
 --- | --- | ---
 Default Skip Mode | Read Only | Default skip mode to set when the game is first started.
 Skip Time Scale | 10 | Time scale to use when in skip (fast-forward) mode. Set to 1 to disable changing the time scale on skip.
-Min Auto Play Delay | 1 | Minimum seconds to wait before executing the next command while in auto-advance mode.
+Min Auto Play Delay | 1 | Minimum seconds to wait before executing the next command while in autoplay mode.
 Complete On Continue | True | Whether to instantly complete blocking (`wait!`) commands performed over time (eg, animations, hide/reveal, tint changes, etc) when the `Continue` input is activated.
 Show Debug On Init | False | Whether to show the player debug window on engine initialization.
 Wait By Default | False | Whether to wait for the played commands when the `wait` parameter is not explicitly specified. Only applicable to the awaitable (asynchronous) commands.<br><br>WARNING: Don't enable in new projects, as this option is kept for backward compatibility and will be removed in the next release.
@@ -288,11 +288,11 @@ Default Settings Slot ID | Settings | The name of the settings save file.
 Default Global Slot ID | GlobalSave | The name of the global save file.
 Save Slot Mask | GameSave{0:000} | Mask used to name save slots.
 Quick Save Slot Mask | GameQuickSave{0:000} | Mask used to name quick save slots.
-Auto Save Slot Mask | GameAutoSave{0:000} | Mask used to name auto save slots.
+Auto Save Slot Mask | GameAutoSave{0:000} | Mask used to name autosave slots.
 Save Slot Limit | 99 | Maximum number of save slots.
 Quick Save Slot Limit | 18 | Maximum number of quick save slots.
-Auto Save Slot Limit | 18 | Maximum number of auto save slots.
-Auto Save On Quit | True | Whether to auto-save the game before exiting to title or when the application is closed while not in the title menu (doesn't work in the editor).
+Auto Save Slot Limit | 18 | Maximum number of autosave slots.
+Auto Save On Quit | True | Whether to autosave the game before exiting to title or when the application is closed while not in the title menu (doesn't work in the editor).
 Binary Save Files | True | Whether to compress and store the saves as binary files (.nson) instead of text files (.json). This will significantly reduce the file size and make them harder to edit (to prevent cheating), but will consume more memory and CPU time when saving and loading.
 Reset On Goto | False | Whether to reset the state of the engine services when loading another script via the [@goto] command. Can be used instead of the [@resetState] command to automatically unload all the resources on each goto.
 Show Loading UI | True | Whether to automatically show `ILoadingUI` while loading the game state.
@@ -316,8 +316,8 @@ Default Printer ID | Dialogue | ID of the text printer to use by default.
 Default Base Reveal Speed | 0.5 | Base reveal speed (game settings) to set when the game is first started.
 Default Base Auto Delay | 0.5 | Base auto delay (game settings) to set when the game is first started.
 Max Reveal Delay | 0.06 | Delay limit (in seconds) when revealing (printing) the text messages. Specific reveal speed is set via `message speed` in the game settings; this value defines the available range (the higher the value, the lower the reveal speed).
-Max Auto Wait Delay | 0.02 | Delay limit (in seconds) per each printed character while waiting to continue in auto-advance mode. Specific delay is set via `auto delay` in the game settings; this value defines the available range.
-Scale Auto Wait | True | Whether to scale the wait time in auto-advance mode by the reveal speed set in the print commands.
+Max Auto Wait Delay | 0.02 | Delay limit (in seconds) per each printed character while waiting to continue in autoplay mode. Specific delay is set via `auto delay` in the game settings; this value defines the available range.
+Scale Auto Wait | True | Whether to scale the wait time in autoplay mode by the reveal speed set in the print commands.
 Skip Print Delay | 0 | When above zero, each print command will wait for the specified time (in seconds, unscaled) while the skip playback mode (fast-forward) is enabled. Use to slow down the playback while skipping.
 Default Metadata | Object Ref | Metadata to use by default when creating text printer actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating text printer actors with specific IDs.
@@ -361,7 +361,7 @@ Loader | Unlockables- (Addressable, Project) | Configuration of the resource loa
 
 Property | Default Value | Description
 --- | --- | ---
-Meta By Default | False | Whether to treat all variables as meta by default. Meta variables are not reset when starting a new game and are auto-saved on change. Useful for the dialogue mode when the engine is reset constantly and game state is handled externally.
+Meta By Default | False | Whether to treat all variables as meta by default. Meta variables are not reset when starting a new game and are autosaved on change. Useful for the dialogue mode when the engine is reset constantly and game state is handled externally.
 Predefined Variables | Object Ref | The list of variables to initialize by default. Meta variables are initialized on first application start, and others on each state reset (except constants).
 
 </div>
