@@ -90,7 +90,7 @@ The folder contains the following files, where `###` is the slot number:
 |-------------------------|---------------|-------------------------------------|
 | `GameSave###.nson`      | 99            | Game state of the save slots.       |
 | `GameQuickSave###.nson` | 18            | Game state of the quick save slots. |
-| `GameAutoSave###.nson`  | 18            | Game state of the auto save slots.  |
+| `GameAutoSave###.nson`  | 18            | Game state of the autosave slots.   |
 | `GlobalSave.nson`       | 1             | Global state.                       |
 | `Settings.json`         | 1             | User settings.                      |
 

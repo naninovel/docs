@@ -140,7 +140,7 @@ Now, let's say you want the character "Kohaku" to display a different emotion or
 
 Actors and their parameters are directed via commands specified in [scenario scripts](/guide/scenario-scripting).
 
-Another widely used concept is the [user interface](/guide/gui) (UI). UIs are used by the player to interact with actors and the rest of the game. This includes various menus (title, save-load, settings, etc) and control panels (toggle auto-advance mode, skip text, etc). UI elements are positioned on top of actors by default.
+Another widely used concept is the [user interface](/guide/gui) (UI). UIs are used by the player to interact with actors and the rest of the game. This includes various menus (title, save-load, settings, etc) and control panels (toggle autoplay mode, skip text, etc). UI elements are positioned on top of actors by default.
 
 Text printers and choice handlers are considered both actors and UI elements, meaning they share actor qualities and can be controlled via scenario scripts, while at the same time being used by players to interact with the game.
 

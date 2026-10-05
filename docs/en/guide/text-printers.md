@@ -25,15 +25,15 @@ Felix: Lorem ipsum dolor sit amet.
 
 Be aware that even though the built-in printers are implemented as UIs, they're still actors and all the actor-related visibility changes (show/hide animations) use durations set either in the corresponding commands or actor configuration; eg the `time` parameter of the [@showPrinter] command controls the show animation duration and when it isn't specified, the `Change Visibility Duration` printer actor configuration property is used as a default duration; the `Fade Time` property found on the root of the printer UI prefab is ignored in this case.
 
-## Auto-Advance Text
+## Autoplay
 
-The auto-advance feature allows the script to automatically continue execution on await input (click-to-continue) events.
+The autoplay feature allows the script to automatically continue execution on await input (click-to-continue) events.
 
 ![](https://i.gyazo.com/e6f58f861fa18bd62591db9794e7641b.mp4)
 
-Wait-for-user-input or `[-]` commands halt script execution until the user activates a `Continue` input; they are typically used after printing a text message. When in auto-advance mode, `[-]` commands will instead halt script execution for a period of time and then finish, allowing execution of the following command. The halt period depends on the length of the last printed text message and is further modified by the "Auto delay" game setting.
+Wait-for-user-input or `[-]` commands halt script execution until the user activates a `Continue` input; they are typically used after printing a text message. When in autoplay mode, `[-]` commands will instead halt script execution for a period of time and then finish, allowing execution of the following command. The halt period depends on the length of the last printed text message and is further modified by the "Auto delay" game setting.
 
-Auto-advance mode can be toggled using the `AutoPlay` input (`A` key by default) or the "AUTO" button in the control panel.
+Autoplay mode can be toggled using the `AutoPlay` input (`A` key by default) or the "AUTO" button in the control panel.
 
 ## Text Skipping
 

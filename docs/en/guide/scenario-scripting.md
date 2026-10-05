@@ -27,7 +27,7 @@ A line is considered a command statement if it starts with the `@` symbol. A com
 
 Right after the command symbol, a command identifier is expected. This can be either the name of the C# class that implements the command or the command's alias (when applied to the class via the `Alias` attribute).
 
-For example, the [@save] command (used to auto-save the game) is implemented by the `AutoSave` C# class. The implementing class also has the `[Alias("save")]` attribute applied, so you can use both `@save` and `@AutoSave` statements in the script to invoke this command.
+For example, the [@save] command (used to autosave the game) is implemented by the `AutoSave` C# class. The implementing class also has the `[Alias("save")]` attribute applied, so you can use both `@save` and `@AutoSave` statements in the script to invoke this command.
 
 Command identifiers are case-insensitive; all the following statements are valid and will invoke the same `AutoSave` command:
 
@@ -101,7 +101,7 @@ For a list of all standard commands available out of the box, including their su
 When a line starts with the semicolon symbol (`;`), it is considered a *comment* statement. Comments are completely ignored by the engine at runtime. Use comments to add notes or annotations for yourself or other team members working with scenario scripts.
 
 ```nani
-; The following command will auto-save the game.
+; The following command will autosave the game.
 @save
 
 @save ; You can also place comments inside command lines.
