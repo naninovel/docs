@@ -314,7 +314,7 @@ Hide backgrounds with the same [@hide] command:
 
 To register a BGM (background music) or SFX (sound effect) audio resource with Naninovel, select the audio clip asset and use the same Inspector menu you've used to register the character and background resources, but select "BGM" or "SFX" instead.
 
-![?width=655](https://i.gyazo.com/b49d3a7f865c8dde7322ef497ee9bcf6.png)
+![?width=655](https://i.gyazo.com/e56b1d3f3a800751116ae4dcbb8896c0.png)
 
 To play a registered audio resource as background music, use the [@bgm] command:
 
@@ -341,7 +341,7 @@ To stop a playing BGM or SFX, use the [@stopBgm] and [@stopSfx] commands, respec
 
 You can review all the registered resources, as well as actors and other engine options, in the Project Settings window under the Naninovel tab; use the `Naninovel -> Configuration` editor menu to quickly access the configuration.
 
-![](https://i.gyazo.com/e600debbfedc0690c6b4ffc8cdd92c56.png)
+![?width=641](https://i.gyazo.com/4b9b748170ad1cd0073a73a5b0bf2f05.png)
 
 You're free to change the resource paths (they equal the asset names by default), which may be useful for organizational purposes. The registered paths are what are actually used when you reference resources in the scenario scripts. For example, after changing the path of an `Explosion` sound effect to `Battle/Explosion`, use the new path to play it:
 

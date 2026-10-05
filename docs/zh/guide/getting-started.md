@@ -314,7 +314,7 @@ K.Happy: Hello World!
 
 要向 Naninovel 注册 BGM（背景音乐）或 SFX（音效）音频资源，请选择音频剪辑资产，并使用注册角色和背景资源时所用的同一检查器菜单，但改为选择“BGM”或“SFX”。
 
-![?width=655](https://i.gyazo.com/b49d3a7f865c8dde7322ef497ee9bcf6.png)
+![?width=655](https://i.gyazo.com/e56b1d3f3a800751116ae4dcbb8896c0.png)
 
 要将注册的音频资源作为背景音乐播放，请使用 [@bgm] 命令：
 
@@ -341,7 +341,7 @@ K.Happy: Hello World!
 
 您可以在项目设置窗口的 Naninovel 选项卡下查看所有已注册的资源，以及 Actor 和其他引擎选项；使用 `Naninovel -> Configuration` 编辑器菜单可快速访问配置。
 
-![](https://i.gyazo.com/e600debbfedc0690c6b4ffc8cdd92c56.png)
+![?width=641](https://i.gyazo.com/4b9b748170ad1cd0073a73a5b0bf2f05.png)
 
 您可以自由更改资源路径（默认情况下它们与资产名称相同），这有助于组织资源。注册的路径是您在剧本脚本中引用资源时实际使用的路径。例如，将音效 `Explosion` 的路径更改为 `Battle/Explosion` 后，请使用新路径来播放它：
 
