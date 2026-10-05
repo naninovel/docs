@@ -1,1 +1,1 @@
-Copyright (C) 2023 ReWaffle LLC, All rights reserved.
+Copyright (C) 2018 Elringus, All rights reserved.
