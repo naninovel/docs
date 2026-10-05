@@ -1,6 +1,6 @@
 # Custom Script Compiler
 
-Script compilation is the process of transforming source scenario text (contained in `.nani` files) into data structures that are then used to control game flow. For example, the compiler transforms the `@hide Kohaku` line into a `HideActor` command with the `ActorId` parameter set to `Kohaku`.
+Script compilation is the process of transforming source scenario text (contained in `.nani` files) into data structures that are then used to control game flow. For example, the compiler transforms the `@hide Kohaku` line into a `HideActors` command with the `ActorIds` parameter set to `Kohaku`.
 
 You can tweak or completely change how the compiler behaves by providing a custom implementation. Like other custom implementations, this is done by creating a new C# class that implements the `IScriptCompiler` interface.
 

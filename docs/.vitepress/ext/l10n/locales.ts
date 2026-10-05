@@ -29,11 +29,11 @@ export const config: LocaleConfig<DefaultTheme.Config> = {
             sidebarMenuLabel: "メニュー",
             darkModeSwitchLabel: "外観",
             returnToTopLabel: "トップに戻る",
-            outline: { label: "このページでは", level: "deep" },
+            outline: { label: "このページの内容", level: "deep" },
             sidebar: { "/ja/guide/": guide.ja },
             docFooter: { prev: "前のページ", next: "次のページ" },
             nav: buildNav(["FAQ", "ガイド", "API", "サポート"], "ja"),
-            editLink: buildEditLink("GitHub でこのページを編集する")
+            editLink: buildEditLink("GitHubでこのページを編集する")
         }
     },
     zh: {
@@ -46,10 +46,10 @@ export const config: LocaleConfig<DefaultTheme.Config> = {
             sidebarMenuLabel: "菜单",
             darkModeSwitchLabel: "外观",
             returnToTopLabel: "返回顶部",
-            outline: { label: "在本页", level: "deep" },
+            outline: { label: "本页内容", level: "deep" },
             sidebar: { "/zh/guide/": guide.zh },
             docFooter: { prev: "上一页", next: "下一页" },
-            nav: buildNav(["常见问题", "使用手册", "API", "技术支持"], "zh"),
+            nav: buildNav(["常见问题", "指南", "API", "技术支持"], "zh"),
             editLink: buildEditLink("在 GitHub 上编辑此页面")
         }
     }
@@ -59,8 +59,8 @@ export const search: Record<string, Partial<DefaultTheme.LocalSearchOptions>> = 
     ja: {
         translations: {
             button: {
-                buttonText: "文書を検索する",
-                buttonAriaLabel: "文書を検索する"
+                buttonText: "ドキュメントを検索",
+                buttonAriaLabel: "ドキュメントを検索"
             },
             modal: {
                 displayDetails: "詳細リストを表示",
@@ -89,15 +89,15 @@ export const search: Record<string, Partial<DefaultTheme.LocalSearchOptions>> = 
                 displayDetails: "显示详细列表",
                 resetButtonTitle: "重置搜索",
                 backButtonTitle: "关闭搜索",
-                noResultsText: "没有结果",
+                noResultsText: "未找到相关结果",
                 footer: {
                     selectText: "选择",
-                    selectKeyAriaLabel: "输入",
-                    navigateText: "导航",
+                    selectKeyAriaLabel: "回车键",
+                    navigateText: "切换",
                     navigateUpKeyAriaLabel: "上箭头",
                     navigateDownKeyAriaLabel: "下箭头",
                     closeText: "关闭",
-                    closeKeyAriaLabel: "esc"
+                    closeKeyAriaLabel: "Esc 键"
                 }
             }
         }

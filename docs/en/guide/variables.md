@@ -1,9 +1,9 @@
 # Variables
 
-Scenario variables allow you to create user-specified values, modify them, and use them to drive conditional execution in scenario scripts and other systems. For example, variables can be used to select one of multiple scenario scripts to play (scenario routes) based on decisions the player has made. Another common use is tracking player stats (e.g., scores, money, resources) based on choices made throughout the game.
+Scenario variables allow you to create user-specified values, modify them, and use them to drive conditional execution in scenario scripts and other systems. For example, variables can be used to select one of multiple scenario scripts to play (scenario routes) based on decisions the player has made. Another common use is tracking player stats (eg, scores, money, resources) based on choices made throughout the game.
 
 ::: info NOTE
-Variable names should start with a letter and may contain only letters, numbers and underscores, for example: `score`, `Char1Score`, `my_score`. Names are case-insensitive, meaning you can create a variable named `myscore` and later refer to it as `MyScore` and vice versa.
+Variable names may contain only letters, numbers, underscores and dots and can't start with a number, for example: `score`, `Char1Score`, `my_score`. Dots are reserved for [scopes](#variable-scopes) and [local variables](#local-variables). Names are case-insensitive, meaning you can create a variable named `myscore` and later refer to it as `MyScore` and vice versa.
 :::
 
 You can create and modify variables with the [@set] command (and some parameters of other commands) and use them in any parameter with an expression context, such as the primary parameters of [@if] and [@while]. For example, the following script reroutes execution based on the value of `score`:
@@ -69,7 +69,7 @@ You can inject variables into any parameter value as long as the parameter type 
 
 ## Meta Variables
 
-By default, scenario variables are local to the current game session: when you assign a variable during gameplay and the player starts a new game or loads another save slot where that variable wasn't assigned, the value will be lost. This behavior is useful for most variable types. If you wish to "uncouple" a variable from game sessions, use the `meta!` flag when initializing it with the [@set] command:
+By default, scenario variables are local to the current game session: when you assign a variable during gameplay and the player starts a new game or loads another save slot where that variable wasn't assigned, the value will be lost. This behaviour is useful for most variable types. If you wish to "uncouple" a variable from game sessions, use the `meta!` flag when initializing it with the [@set] command:
 
 ```nani
 @set myMetaVariable=0 meta!
@@ -93,7 +93,7 @@ Meta variables are useful for tracking information that is "meta" to individual 
 ```
 
 ::: tip
-If you want a meta counter that increments only once (even when re-played, e.g., with rollback or after restarting the game), use the `hasPlayed()` [expression query](/guide/expressions#expression-queries):
+If you want a meta counter that increments only once (even when re-played, eg with rollback or after restarting the game), use the `hasPlayed()` [expression query](/guide/expressions#expression-queries):
 ```nani
 @set metaCounter=0 meta!
 ...
@@ -152,7 +152,7 @@ Using the `meta!` or `const!` flags automatically implies default assignment, so
 
 ```nani
 ; Declare and assign 'false' to both variables tracking route completion.
-; When the same script is played again (e.g., on a subsequent game start),
+; When the same script is played again (eg, on a subsequent game start),
 ; the variables won't be re-assigned.
 @set clearedRouteX, clearedRouteY to:false meta!
 ```
@@ -164,7 +164,7 @@ When building a [custom UI](/guide/gui#ui-customization) or other systems, you m
 ![](https://i.gyazo.com/a8ad226b7a50110584551ae81179c709.png)
 
 ::: tip EXAMPLE
-Find an example of using variable triggers to drive availability of map locations in the [map sample](/guide/samples#map).
+Find an example of using variable events to drive availability of map locations in the [map sample](/guide/samples#map).
 
 ![](https://i.gyazo.com/4987b1c53cd275f3fa56b533f53f3d8c.mp4)
 :::
@@ -193,7 +193,7 @@ var vars = Engine.GetService<IVariableManager>();
 vars.AddVariable(new("myVar", new("Hello World!")));
 ```
 
-To create a meta or constant variable, specify the type:
+To create a meta or constant variable, specify the kind:
 
 ```csharp
 // Create a boolean meta variable to track route completion.
@@ -203,9 +203,8 @@ vars.AddVariable(new("clearedRouteX", new(false), VariableKind.Meta));
 To get and set variable values, use the `GetValue` and `SetValue` methods, respectively. For example, given that a scenario string variable named `myVar` exists, the code below retrieves its value, appends "Hello!" to it, and sets the modified value back:
 
 ```csharp
-var value = vars.GetValue("myVar").String;
-value += "Hello!";
-vars.SetValue("myVar", new(value));
+if (vars.GetValue("myVar") is { String: var text })
+    vars.SetValue("myVar", new(text + "Hello!"));
 ```
 
 Note the use of the `.String` property when retrieving the actual value of the variable. A variable can be one of three types: `String`, `Numeric`, or `Boolean`. The type is determined when the variable is initially assigned in scenario scripts:
@@ -227,7 +226,7 @@ Note the use of the `.String` property when retrieving the actual value of the v
 @if baz
 ```
 
-—or in C#:
+— or in C#:
 
 ```csharp
 var vars = Engine.GetService<IVariableManager>();
@@ -235,24 +234,23 @@ var vars = Engine.GetService<IVariableManager>();
 // Assign 'foo' variable with a 'Hello World!' string value
 vars.SetValue("foo", new("Hello World!"));
 // Access the assigned string value
-if (vars.GetValue("foo").String == "Hello World!")
+if (vars.GetValue("foo") is { String: "Hello World!" })
 
 // Assign 'bar' variable with a numeric value of 42
 vars.SetValue("bar", new(42));
 // Access the assigned numeric value
-if (vars.GetValue("bar").Number > 12)
+if (vars.GetValue("bar") is { Number: > 12 })
 
 // Assign 'baz' variable with a boolean value of true
 vars.SetValue("baz", new(true));
 // Access the assigned boolean value
-if (vars.GetValue("baz").Boolean)
+if (vars.GetValue("baz") is { Boolean: true })
 ```
 
-To check the type of scenario variable in C#, use the `.Type` property on the value:
+To check the type of a scenario variable in C#, use the `.Type` property on the value:
 
 ```csharp
-var value = vars.GetValue("bar");
-if (value.Type == VariableValueType.Numeric)
+if (vars.GetValue("bar") is { Type: VariableValueType.Numeric } value)
     if (value.Number > 12) // it's now safe to access the '.Number' value
 ```
 

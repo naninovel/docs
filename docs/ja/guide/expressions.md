@@ -1,20 +1,20 @@
 # 式
 
-シナリオスクリプトを記述するときに、中括弧 `{}` を使用して、コマンドパラメーター値と汎用テキスト行に式構造を注入できます。
+シナリオスクリプトを記述するときに、中括弧 `{}` を使用して、コマンドパラメーターの値と汎用テキスト行に式を埋め込むことができます。
 
 ```nani
 1足す2は {1 + 2} です。
 ```
 
-— スクリプトを実行すると、「1足す2は 3 です。」と表示されます。
+— スクリプトを実行すると、「1足す2は3です。」と表示されます。
 
-任意の数学演算子と論理演算子、および [UnityEngine.Mathf](https://docs.unity3d.com/ScriptReference/Mathf.html) 名前空間の一部の数学関数を使用できます。
+任意の数学演算子と論理演算子、および [UnityEngine.Mathf](https://docs.unity3d.com/ScriptReference/Mathf.html) 構造体の一部の数学関数を使用できます。
 
 ```nani
 @char Kohaku scale:{pow(cos(33.5), 3) % log(0.5)}
 ```
 
-— ID "Kohaku" のキャラクターを、33.5の余弦（3乗）を0.5の自然対数で割った余りにスケーリングします。
+— IDが「Kohaku」のキャラクターを、33.5の余弦（の3乗）を0.5の自然対数で割った余りにスケーリングします。
 
 式はコマンドが実行される瞬間に評価されるため、式内で [シナリオ変数](/ja/guide/variables) を使用できます。
 
@@ -23,7 +23,7 @@
 {color}、ですか？ { color == "orange" ? "私もです！" : (color == "black" ? "それは憂鬱ですね。" : "なるほど...") }
 ```
 
-— プレイヤーが好きな色を入力できる入力UIを表示し、それを `color` シナリオ変数に割り当て、入力された色を表示し、それが "orange" の場合は「私もです！」、"black" の場合は「それは憂鬱ですね。」、それ以外の場合は「なるほど...」と続きます。
+— プレイヤーが好きな色を入力できる入力UIを表示して、入力された値を `color` シナリオ変数に代入します。その後、入力された色に続けて、それが「orange」の場合は「私もです！」、「black」の場合は「それは憂鬱ですね。」、それ以外の場合は「なるほど...」と表示します。
 
 プレーンテキスト値と変数名を区別するには、値を二重引用符 `"` で囲みます。
 
@@ -55,19 +55,19 @@
 
 ## 演算子エイリアス
 
-プログラミング用の演算子の代わりに、式内でエイリアスを使用できます。例えば:
+プログラミング用の演算子の代わりに、式内でエイリアスを使用できます。たとえば：
 
 ```nani
 @if a = "foo" | b != "bar" ? x : y
 ```
 
-— は、次のように書くこともできます:
+— は、次のように書くこともできます：
 
 ```nani
 @if a is "foo" or b is not "bar" then x else y
 ```
 
-以下は、利用可能なエイリアスの対応表です:
+以下は、利用可能なエイリアスの対応表です：
 
 | 演算子 | エイリアス     |
 |--------|----------------|
@@ -75,6 +75,7 @@
 | `!`    | `not`          |
 | `!=`   | `is not`       |
 | `&`    | `and`          |
+| `\|`   | `or`           |
 | `?`    | `then`         |
 | `:`    | `else`         |
 | `>`    | `is above`     |
@@ -92,50 +93,50 @@
 | --- | --- | --- |
 | random(min, max) | min（含む）とmax（含む）の間のランダムな整数を返します。 | `random(0, 100)` |
 | random(min, max) | min（含む）とmax（含む）の間のランダムな小数を返します。 | `random(0.5, 1.5)` |
-| random(args) | 指定された文字列の1つから選択された文字列を返します。 | `random("foo", "bar", "baz")` |
-| calculateProgress() | シナリオ完了率を0.0〜1.0の範囲で返します。1.0は、すべてのスクリプト行が少なくとも1回実行されたことを意味します。 | `calculateProgress()` |
+| random(args) | 指定された文字列の中から選択された文字列を返します。 | `random("foo", "bar", "baz")` |
+| calculateProgress() | シナリオ完了率を0.0〜1.0の範囲で返します。1.0は、すべてのスクリプトコマンドが少なくとも1回実行されたことを意味します。 | `calculateProgress()` |
 | isUnlocked(id) | 指定されたIDを持つアンロック可能アイテムが現在アンロックされているかどうかを確認します。 | `isUnlocked("Tips/MyTip")` |
 | hasPlayed() | 現在再生中のコマンドが以前に再生されたことがあるかどうかを確認します。 | `hasPlayed()` |
 | hasPlayed(scriptPath) | 指定されたパスのスクリプトが以前に再生されたことがあるかどうかを確認します。 | `hasPlayed("MyScript")` |
-| getName(characterId) | 指定されたIDを持つキャラクターアクターの著者名を返します。 | `getName("Kohaku")` |
-| pow(num, pow) | numを指定された累乗にして返します。 | `pow(2, 3)` |
+| getName(characterId) | 指定されたIDを持つキャラクターアクターの話者名を返します。 | `getName("Kohaku")` |
+| pow(num, pow) | numをpow乗した値を返します。 | `pow(2, 3)` |
 | sqrt(num) | numの平方根を返します。 | `sqrt(2)` |
-| cos(num) | 角度の余弦を返します。 | `cos(180)` |
-| sin(num) | 角度の正弦を返します。 | `sin(90)` |
+| cos(num) | num（ラジアン単位の角度）の余弦を返します。 | `cos(3.14)` |
+| sin(num) | num（ラジアン単位の角度）の正弦を返します。 | `sin(1.57)` |
 | log(num) | 指定された数値の自然対数（底e）を返します。 | `log(0.5)` |
 | abs(num) | numの絶対値を返します。 | `abs(0.5)` |
 | max(nums) | 2つ以上の値のうち最大のものを返します。 | `max(1, 10, -9)` |
 | min(nums) | 2つ以上の値のうち最小のものを返します。 | `min(1, 10, -9)` |
-| round(num) | 最も近い整数に丸められたnumを返します。 | `round(0.9)` |
-| approx(a, b) | 2つの浮動小数点値を比較し、類似している場合はtrueを返します。 | `approx(0.15, 0.15)` |
+| round(num) | numを最も近い整数に丸めた値を返します。 | `round(0.9)` |
+| approx(a, b) | 2つの浮動小数点値を比較し、ほぼ等しい場合はtrueを返します。 | `approx(0.15, 0.15)` |
 | approx(a, b) | 大文字と小文字を区別せずに2つの文字列を比較します。 | `approx("abc", "ABC")` |
 
 </div>
 
 ## カスタムクエリの追加
 
-`ExpressionQuery` 属性を使用してパブリック静的C#メソッドに注釈を付けることで、カスタム式クエリを追加できます。メソッドには互換性のある署名が必要であり、その後シナリオ式で自動的に使用可能になります。
+`ExpressionQuery` 属性を使用してパブリック静的C#メソッドに注釈を付けることで、カスタム式クエリを追加できます。メソッドには互換性のあるシグネチャが必要であり、条件を満たすとシナリオ式で自動的に使用可能になります。
 
 引数および戻り値の型としてサポートされているのは、[単純](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types#simple-types) 型と文字列型のみです。単一の可変長（`params` キーワード）引数を使用することもできます。可変長引数を他の引数と混在させることはサポートされていません。
 
 ```csharp
 public static class CustomQueries
 {
-    // すべての文字を小文字に変換した指定文字列を返します。
     [ExpressionQuery("toLower")]
+    [Doc("Returns the provided string with all characters converted to lower-case.")]
     public static string ToLower (string content) => content.ToLower();
 
-    // 指定された数値の合計を返します。
     [ExpressionQuery("add")]
+    [Doc("Returns the sum of the provided numbers.", examples: "add(1, 2)")]
     public static int Add (int a, int b) => a + b;
 
-    // 指定された数値を除算した結果の余りを返します。
     [ExpressionQuery("mod")]
+    [Doc("Returns the remainder resulting from dividing the provided numbers.")]
     public static double Modulus (double a, double b) => a % b;
 
-    // 指定された文字列からランダムに選択された文字列を返します。
-    [ExpressionQuery("random")]
-    public static string Random (params string[] args)
+    [ExpressionQuery("pick")]
+    [Doc("Returns a string randomly chosen from one of the provided strings.")]
+    public static string Pick (params string[] args)
     {
         if (args == null || args.Length == 0)
             return default;
@@ -146,12 +147,12 @@ public static class CustomQueries
 }
 ```
 
-`ExpressionQuery` 属性には、次のオプションパラメーターがあります。
+`ExpressionQuery` 属性はオプションのエイリアスを受け取り、クエリのドキュメントは `Doc` 属性で指定します。
 
-- **Alias** デフォルトでは、メソッド名がクエリ識別子（スクリプトでクエリを参照する方法）として使用されます。エイリアスを割り当てて識別子を変更します。
-- **Summary** IDE拡張機能とビジュアルエディターに表示されるドキュメント。
-- **Remarks** IDE拡張機能とビジュアルエディターに表示される追加情報。
-- **Example** IDE拡張機能とビジュアルエディターに表示される使用例。
+- **Alias** デフォルトでは、メソッド名がクエリ識別子（スクリプトでクエリを参照する方法）として使用されます。識別子を変更するには、エイリアスを割り当てます。
+- **Summary** IDE拡張機能とストーリーエディターに表示されるドキュメント。
+- **Remarks** IDE拡張機能とストーリーエディターに表示される追加情報（オプション）。
+- **Examples** IDE拡張機能とストーリーエディターに表示される使用例（オプション）。
 
 ::: tip EXAMPLE
 インベントリにアイテムが存在するかどうかを確認するためのカスタム式クエリを追加する別の例は、[インベントリサンプル](/ja/guide/samples#インベントリ) にあります。具体的には、カスタムクエリは `Scripts/Runtime/Inventory/InventoryQueries.cs` ランタイムスクリプトを介して実装されています。
@@ -159,7 +160,7 @@ public static class CustomQueries
 
 ## パラメーターコンテキスト
 
-コマンドパラメーターと同様に、クエリパラメーターにコンテキスト属性を適用して、自動補完を行い、[IDE拡張機能](/ja/guide/ide-extension) で診断することができます。
+コマンドパラメーターと同様に、クエリパラメーターにコンテキスト属性を適用して、[IDE拡張機能](/ja/guide/ide-extension) による自動補完と診断の対象にできます。
 
 たとえば、クエリパラメーターを列挙型に関連付けることができます。
 
@@ -185,19 +186,19 @@ public static class CustomQueries
 アクター、リソース、エンドポイントなどの他のコンテキストも使用できます。たとえば、以下はアクターIDを受け取り、その表示名を返す組み込みの `getName()` クエリです。`ActorContext` が適用されると、プロジェクトで使用可能なアクターIDで補完されます。
 
 ```cs
-[ExpressionQuery]
-static string GetName (
+[ExpressionQuery("getName")]
+public static string GetName (
     [ActorContext(CharactersConfiguration.DefaultPathPrefix)] string id)
 {
     return Engine.GetService<ICharacterManager>().GetAuthorName(id);
 }
 ```
 
-別の例、これはアンロック可能IDで補完します。
+別の例として、以下はアンロック可能アイテムのIDを補完します。
 
 ```cs
-[ExpressionQuery]
-static bool IsUnlocked (
+[ExpressionQuery("isUnlocked")]
+public static bool IsUnlocked (
     [ResourceContext(UnlockablesConfiguration.DefaultPathPrefix)] string id)
 {
     return Engine.GetService<IUnlockableManager>()?.ItemUnlocked(id) ?? false;

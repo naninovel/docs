@@ -1,20 +1,20 @@
 # 音频
 
-要添加、编辑或删除背景音乐 (BGM) 和声音效果 (SFX) 资源，请使用可通过 `Naninovel -> Resources -> Audio` 访问的音频资源管理器。您可以使用 [Unity 支持](https://docs.unity3d.com/Manual/AudioFiles.html) 的任何音频格式。
+要添加、编辑或删除背景音乐（BGM）和音效（SFX）资源，请打开 `Naninovel -> Configuration -> Audio` 编辑器菜单，然后单击“Manage BGM Resources”或“Manage SFX Resources”按钮以访问相应的资源管理器。您可以使用 [Unity 支持](https://docs.unity3d.com/Manual/AudioFiles.html) 的任何音频格式。
 
 ::: tip
 选择最适合您的开发工作流程的文件格式。构建项目时，Unity 会自动将所有源资源（纹理、音频、视频等）转换为最适合目标平台的格式，因此您最初在项目中存储资源的格式不会产生影响。在 [官方文档](https://docs.unity3d.com/Manual/AssetWorkflow) 中查找有关 Unity 如何管理项目资产的更多信息。
 :::
 
-如果您有很多音频文件，并且通过编辑器菜单分配它们不方便，您可以将它们放在 `Resources/Naninovel/Audio` 文件夹中，它们将自动在脚本中可用。如果您愿意，您还可以使用子文件夹组织它们；在这种情况下，在剧本脚本中引用它们时使用正斜杠 (`/`)。例如，存储为 `Resources/Naninovel/Audio/Music/Ambient/Noise002.wav` 的音频剪辑可以在脚本中引用为 `Music/Ambient/Noise002`。
+如果您有很多音频文件，并且通过编辑器菜单分配它们不方便，只需将它们放入 `Resources/Naninovel/BGM`（音乐）和 `Resources/Naninovel/SFX`（音效）文件夹，它们就会自动在脚本中可用。如果您愿意，还可以使用子文件夹组织它们；在这种情况下，在剧本脚本中引用它们时请使用正斜杠（`/`）。例如，存储为 `Resources/Naninovel/BGM/Ambient/Noise002.wav` 的音频剪辑可以在脚本中引用为 `Ambient/Noise002`。
 
-也可以使用 [Addressable 资产系统](/zh/guide/resource-providers#addressable) 手动公开资源。要公开资产，请分配一个等于您通过上述方法公开它时使用的路径的地址，但省略 "Resources/" 部分。例如，要公开 "MainTheme.wav" BGM，请为剪辑资产分配以下地址：`Naninovel/Audio/MainTheme`。请注意，Addressable 提供者默认情况下不在编辑器中使用；您可以通过打开资源提供者配置菜单中的 `Enable Addressable In Editor` 属性来启用它。
+也可以使用 [Addressable 资产系统](/zh/guide/resource-providers#addressable) 手动公开资源。要公开资产，请为其分配一个地址，该地址等于使用上述方法时的路径，但省略“Resources/”部分。例如，要公开“MainTheme.wav” BGM，请为剪辑资产分配以下地址：`Naninovel/BGM/MainTheme`。请注意，在编辑器中时，始终首先使用特殊的“Editor”资源提供者；只有未通过编辑器菜单分配的资源才会尝试使用 Addressable 提供者。
 
 ::: warning
-未通过资源管理器分配的音频资产将在各种编辑器下拉列表中不可用，例如用于为角色 actor 选择 `Message Sound` 的下拉列表。
+未通过资源管理器分配的音频资产不会出现在各种编辑器下拉菜单中，例如用于为角色 Actor 选择 `Message Sound` 的下拉菜单。
 :::
 
-可以使用 `Naninovel -> Configuration -> Audio` 上下文菜单配置音频播放行为；有关可用选项，请参阅 [配置指南](/zh/guide/configuration#音频)。
+可以使用 `Naninovel -> Configuration -> Audio` 编辑器菜单配置音频播放行为；有关可用选项，请参阅 [配置指南](/zh/guide/configuration#音频)。
 
 ## 背景音乐
 
@@ -28,20 +28,20 @@
 @bgm Sanctuary fade:10 !loop
 
 ; 在 2.5 秒内将所有正在播放的音乐曲目的音量更改为 50%
-; 并使它们循环播放。
+; 并让它们循环播放。
 @bgm volume:0.5 loop! fade:2.5
 ```
 
-默认情况下，音乐曲目是循环播放的。当 [@bgm] 命令中未指定音乐曲目名称时，将影响所有当前正在播放的曲目。当为已在播放的曲目调用时，曲目不会重新开始，但会应用指定的参数（音量和曲目是否循环）。
+音乐曲目默认循环播放。当 [@bgm] 命令中未指定音乐曲目名称时，将影响所有当前正在播放的曲目。当为已在播放的曲目调用时，曲目不会重新开始，但会应用指定的参数（音量和曲目是否循环）。
 
-可以使用 `intro` 参数播放前奏，然后循环播放，例如：
+可以使用 `intro` 参数先播放前奏，再播放循环部分，例如：
 
 ```nani
 ; 播放 "BattleThemeIntro" 一次，然后循环播放 "BattleThemeMain"。
 @bgm BattleThemeMain intro:BattleThemeIntro
 ```
 
-要停止播放音乐曲目，请使用 [@stopBgm] 命令，后跟剪辑名称。当未指定剪辑名称时，该命令将停止所有当前正在播放的曲目。
+要停止正在播放的音乐曲目，请使用 [@stopBgm] 命令，后跟剪辑名称。当未指定剪辑名称时，该命令将停止所有当前正在播放的曲目。
 
 ```nani
 ; 在 10 秒内淡出 "Promenade" 音乐曲目并停止播放。
@@ -51,40 +51,40 @@
 @stopBgm
 ```
 
-## 声音效果
+## 音效
 
-使用 [@sfx] 和 [@stopSfx] 命令后跟剪辑名称来控制剧本脚本中声音效果的播放：
+使用 [@sfx] 和 [@stopSfx] 命令后跟剪辑名称来控制剧本脚本中音效的播放：
 
 ```nani
-; 播放名为 "Explosion" 的 SFX 一次。
+; 播放一次名为 "Explosion" 的 SFX。
 @sfx Explosion
 
 ; 循环播放名为 "Rain" 的 SFX。
 @sfx Rain loop!
 
 ; 在 2.5 秒内将所有正在播放的 SFX 曲目的音量更改为 75%
-; 并禁用所有它们的循环。
+; 并禁用它们的循环。
 @sfx volume:0.75 !loop fade:2.5
 ```
 
-声音效果曲目默认不循环。当 [@sfx] 命令中未指定 SFX 曲目名称时，将影响所有当前正在播放的曲目。当为已在播放的曲目调用时，曲目不会重新开始，但会应用指定的参数（音量和曲目是否循环）。
+音效曲目默认不循环播放。当 [@sfx] 命令中未指定 SFX 曲目名称时，将影响所有当前正在播放的曲目。当为已在播放的曲目调用时，曲目不会重新开始，但会应用指定的参数（音量和曲目是否循环）。
 
-要停止播放声音效果（无论是否循环），请使用 [@stopSfx] 命令，后跟剪辑名称。当未指定剪辑名称时，该命令将停止所有当前正在播放的 SFX 曲目。
+要停止正在播放的音效（无论是否循环），请使用 [@stopSfx] 命令，后跟剪辑名称。当未指定剪辑名称时，该命令将停止所有当前正在播放的 SFX 曲目。
 
 ```nani
 ; 停止播放名为 "Rain" 的 SFX，淡出 15 秒。
 @stopSfx Rain fade:15
 
-; 停止所有当前正在播放的声音效果曲目。
+; 停止所有当前正在播放的音效曲目。
 @stopSfx
 ```
 
 ## 空间音频
 
-所有音频命令都支持 `pos` 和 `wpos` 参数；指定其中任一参数时会启用空间模式，即“3D 音频”。关联的音频源将被配置为根据其相对于音频监听器的位置作出响应。使用 `pos` 可按相对于场景边界的百分比放置音源（`0,0` 为左下角，`100,100` 为右上角），使用 `wpos` 则可在世界空间中放置音源。
+所有音频命令都支持 `pos` 和 `wpos` 参数；指定其中任一参数时会启用空间模式，即“3D 音频”。关联的音频源将被配置为根据其相对于音频监听器的位置作出响应。使用 `pos` 可按相对于场景边界的百分比放置音频源（`0,0` 为左下角，`100,100` 为右上角），使用 `wpos` 则可在世界空间中放置音频源。
 
 ```nani
-; 在世界空间中，于监听器稍上方且后方播放 'Explosion'。
+; 在世界空间中，于监听器稍上方偏后的位置播放 'Explosion'。
 @sfx Explosion wpos:0,1,-3
 ```
 
@@ -111,7 +111,7 @@ Naninovel 在播放音频时使用 [音频混音器](https://docs.unity3d.com/Ma
 
 ![](https://i.gyazo.com/6271d59ee9ac63a0a218316bd3bc78a8.png)
 
-可以分配自定义混音器资产，更改每个音频通道使用的组，并在音频配置菜单中更改音量控制处理程序（公开的参数名称）。当未分配自定义混音器资产时，将使用默认资产。
+可以在音频配置菜单中分配自定义混音器资产、更改每个音频通道使用的组，以及更改音量控制句柄（公开的参数名称）。当未分配自定义混音器资产时，将使用默认资产。
 
 ![](https://i.gyazo.com/ef2db68edb871608d1718117a37e9486.png)
 
@@ -138,7 +138,7 @@ Unity 允许使用自定义解决方案（例如 [FMOD](https://www.fmod.com) �
 public class FMODAudioManager : IAudioManager
 {
     // 假设 FMOD 资源加载是在外部管理的。
-    public IResourceLoader AudioLoader { get; } = new NullResourceLoader();
+    public IResourceLoader SfxLoader { get; } = new NullResourceLoader();
 
     // 假设 FMOD 的生命周期是在外部管理的。
     public Awaitable InitializeService () => Async.Completed;

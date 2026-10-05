@@ -1,10 +1,10 @@
-﻿# Samples
+# Samples
 
 While the Naninovel package already includes a couple of [essential samples](/guide/getting-started#demo-samples) to help you get started with Visual Novel and Dialogue Mode scenarios, an additional collection of specialized samples is provided to demonstrate common development use cases. Read on for instructions on how to access these samples and brief descriptions of each.
 
 ## Accessing Samples
 
-Download the advanced samples project from the [release archive](https://account.naninovel.com/download).
+Download the advanced samples project from the [download archive](https://account.naninovel.com/download).
 
 Unzip the downloaded directory and open it in the Unity Editor. Once the project is loaded, open the `Assets/Scenes/Main.unity` scene and enter Play mode. You'll see the title screen of our [demo project](https://naninovel.com/demo). You can either start the demo or click the "SAMPLES" button to navigate the available samples, which are outlined below.
 
@@ -18,13 +18,13 @@ Notice that while most of the resources in the sample project are not assigned i
 
 ![](https://i.gyazo.com/8c1b37362bf58d26f18e4e61ffe2957c.png)
 
-—they are still accessible in scenario scripts in the same way:
+— they are still accessible in scenario scripts in the same way:
 
 ```nani
 @back Snow
 ```
 
-That works because the assets are assigned a Naninovel resource address and label:
+That works because the assets are assigned a Naninovel resource address:
 
 ![](https://i.gyazo.com/81e59da9ba85c90f3d59b84573f7facf.png)
 
@@ -42,7 +42,7 @@ To activate compiler localization in the sample project, assign the `Settings/Na
 
 ## E2E
 
-The `E2E Tests` sample shows how to set up an [automated end-to-end tests](/guide/automated-testing) suite and use most of the available APIs.
+The `E2E Tests` sample shows how to set up an [automated end-to-end test](/guide/automated-testing) suite and use most of the available APIs.
 
 The test scripts are stored under the `Scripts/E2E` folder. Note the `.asmdef` file placed in the folder: it's required to compile the test sources under the Unity test environment. Also note the `testables` entry in the `Packages/manifest.json` file, which exposes the tests assembly to Unity's test runner.
 
@@ -50,7 +50,7 @@ The test scripts are stored under the `Scripts/E2E` folder. Note the `.asmdef` f
 
 ## Generic Actor
 
-Find `Content/Backgrounds/Beach`, `Content/Backgrounds/Perspective` [generic backgrounds](/guide/backgrounds#generic-backgrounds) and `Content/Characters/Kohaku/K3D` [generic character](/guide/characters#generic-characters) showing how to set up and use the generic actor implementation with 3D models and animations authored with Unity's Animator.
+Find the `Content/Backgrounds/Beach` and `Content/Backgrounds/Perspective` [generic backgrounds](/guide/backgrounds#generic-backgrounds) and the `Content/Characters/Kohaku/K3D` [generic character](/guide/characters#generic-characters) showing how to set up and use the generic actor implementation with 3D models and animations authored with Unity's Animator.
 
 ![](https://i.gyazo.com/009900b179f3130f45824e22094e7884.gif)
 
@@ -70,13 +70,13 @@ While an inventory system is out of scope for visual novels, we received many re
 The inventory is not a standalone product or part of Naninovel. Use it to learn how to extend and customize the engine, but don't expect it to be a production-ready solution for inventory systems. If you're looking for one, [check the Asset Store](https://assetstore.unity.com/?q=inventory) or create a custom one from scratch.
 :::
 
-This example project shows how to make a custom inventory UI with grid layout, pagination, and a drag-and-drop window; add a custom engine service and related configuration menu; add input bindings; use state outsourcing; and author custom scenario commands and expression queries.
+This example project shows how to make a custom inventory UI with a grid layout, pagination, and a drag-and-drop window; add a custom engine service and related configuration menu; add input bindings; use state outsourcing; and author custom scenario commands and expression queries.
 
 ![](https://i.gyazo.com/86c577f007daf4ec5d79c0e91db7bc10.mp4)
 
 To create a pre-made inventory UI from a template, use the `Create -> Naninovel -> Inventory -> Inventory UI` asset context menu. Then add the prefab to the Naninovel UI resources via `Naninovel -> Resources -> UI` in the editor. Once added, the UI can be shown/hidden like all other UIs with the [@showUI] and [@hideUI] commands.
 
-The Inventory UI component has a `Capacity` property where you can change the number of slots in the inventory. The slot grid is configured (slot number and layout, slots per page, etc.) via the `Content/InventoryGrid` GameObject. Window drag-and-drop behavior can be configured (or disabled) via the `Drag Drop` component attached to the `Content` GameObject.
+The Inventory UI component has a `Capacity` property where you can change the number of slots in the inventory. The slot grid is configured (slot number and layout, slots per page, etc) via the `Content/InventoryGrid` game object. Window drag-and-drop behaviour can be configured (or disabled) via the `Drag Drop` component attached to the `Content` game object.
 
 Inventory item prefabs can be created with the `Create -> Naninovel -> Inventory -> Inventory Item` asset context menu. The item prefabs will then need to be assigned as inventory resources via `Naninovel -> Resources -> Inventory` in the editor.
 
@@ -84,15 +84,15 @@ Inventory item prefabs can be created with the `Create -> Naninovel -> Inventory
 
 If you have many items and it's inconvenient to assign them via the editor menus, you can drop them in the `Resources/Naninovel/Inventory` folder and they'll automatically be exposed to the engine. You can additionally organize them with subfolders; in this case use forward slashes (`/`) when referencing them in scenario scripts. For example, an item stored as `Resources/Naninovel/Inventory/Armor/FullPlate.prefab` can be referenced in scripts as `Armor/FullPlate`.
 
-It's also possible to use the [Addressable Asset System](/guide/resource-providers#addressable) to manually expose the resources. To expose an asset, assign an address equal to the path you'd use via the method described above, but omit the `Resources/` part. For example, to expose a `FullPlate.prefab` item, assign the prefab the address `Naninovel/Inventory/FullPlate`. Be aware that the Addressable provider is not used in the Editor by default; you can enable it by turning on the `Enable Addressable In Editor` property in the resource provider configuration menu.
+It's also possible to use the [Addressable Asset System](/guide/resource-providers#addressable) to manually expose the resources. To expose an asset, assign an address equal to the path you'd use via the method described above, but omit the `Resources/` part. For example, to expose a `FullPlate.prefab` item, assign the prefab the address `Naninovel/Inventory/FullPlate`. Be aware that while in the editor, a special "Editor" resource provider is always used first; the addressable provider is only tried for the resources that are not assigned via the editor menus.
 
 Each item has a `Stack Count Limit` property to limit how many items of this type can be stacked in a single inventory slot, and an `On Item Used` Unity event, which is invoked when the item is used (either via the `@useItem` command or when the user clicks on the item in the inventory). Below is an example of how to set up the event with a `Play Script` component to remove the item once it is used, spawn a glitch special effect, and print a text message.
 
 ![](https://i.gyazo.com/010a9ba35db607ba46d78eda3513f678.png)
 
-You can add items to the inventory using the `@addItem` command and remove them with `@removeItem` (or `@removeItemAt`, `@removeAllItems`). Item IDs are equal to the item prefab names. Inventory slot IDs are equal to the grid slot indexes (e.g., the first slot is 0, the second is 1, etc.).
+You can add items to the inventory using the `@addItem` command and remove them with `@removeItem` (or `@removeItemAt`, `@removeAllItems`). Item IDs are equal to the item prefab names. Inventory slot IDs are equal to the grid slot indexes (eg, the first slot is 0, the second is 1, etc).
 
-`itemExist()` and `itemCount()` custom [expression queries](/guide/expressions#expression-queries) to check whether an item exists in inventory and to get the number of existing items are also available for convenience.
+The `itemExist()` and `itemCount()` custom [expression queries](/guide/expressions#expression-queries) to check whether an item exists in the inventory and to get the number of existing items are also available for convenience.
 
 Below is a script from the example project:
 
@@ -131,7 +131,7 @@ The sample demonstrates using Live2D characters with Naninovel. Find them in the
  - The generated sheets are stored in the `Sheets` directory under the samples project root.
  - The localization-specific font is stored in `Content/Fonts`.
 
-Folders selected for localization tool:
+Folders selected for the localization tool:
 
 | Folder                 | Path                                   |
 |------------------------|----------------------------------------|
@@ -186,11 +186,11 @@ Time of day is controlled with `Scripts/Runtime/Shader/TimeOfDay.cs`, which allo
 
 ![](https://i.gyazo.com/b58cb70a522b9085cedb796249557df5.png)
 
-The component API is exposed to scenario scripts via the `Scripts/Runtime/Shader/SetHour.cs` custom command, which allows setting the hour with the `@hour` command, e.g.:
+The component API is exposed to scenario scripts via the `Scripts/Runtime/Shader/SetHour.cs` custom command, which allows setting the hour with the `@hour` command, eg:
 
 ```nani
 ; Set current hour to 18:00 (6:00 PM) over 3 seconds.
-@hour 18 duration:3
+@hour 18 time:3
 ```
 
 ## Spine
@@ -239,7 +239,7 @@ All the sample UIs are stored in `Content/UI`.
 
 ## Layered Actor
 
-Find the layered character at the `Content/Characters/Miho` directory and the layered background set up in camera rendering mode at `Content/Backgrounds/Particles`.
+Find the layered character in the `Content/Characters/Miho` directory and the layered background set up in camera rendering mode at `Content/Backgrounds/Particles`.
 
 ## Diced Actor
 
@@ -261,7 +261,7 @@ Find a demo with all the available transition effects applied in sequence in the
 
 The voice clips for EN and JA locales are stored under `Content/Audio/Voice`.
 
-Enter the "AUTO VOICING" sample and try switching the voice language in game settings.
+Enter the "Auto Voicing" sample and try switching the voice language in the game settings.
 
 ## Music Intro
 
@@ -273,11 +273,11 @@ A demo of the background matching feature, showing how backgrounds with differen
 
 ## Visual Scripting
 
-[Visual Scripting](https://docs.unity3d.com/Packages/com.unity.visualscripting@latest) (previously known as Bolt) is a built-in package bundled by default with Unity 2021.2 and newer. It enables you to create logic for games or applications with unit-based graphs that both programmers and non-programmers can use without writing code.
+[Visual Scripting](https://docs.unity3d.com/Packages/com.unity.visualscripting@latest) (previously known as Bolt) is a built-in package bundled by default with Unity. It enables you to create logic for games or applications with unit-based graphs that both programmers and non-programmers can use without writing code.
 
 ![](https://i.gyazo.com/ab7c9d92b32810b030aba24b4bd95405.jpg)
 
-First, make sure you're using a compatible Unity version (2021.2 or newer) and that the `Visual Scripting` package is installed in the Package Manager.
+First, make sure the `Visual Scripting` package is installed in the Package Manager.
 
 ![](https://i.gyazo.com/885ebb9808b369c30dfcaab19b0cee2f.png)
 
@@ -297,7 +297,7 @@ When the Naninovel library and types are added in the Visual Scripting settings,
 
 ![](https://i.gyazo.com/63a832f10fa3f5e4429e98da50ae8dd0.png)
 
-If you wish to send an event from a scenario script to a visual scripting graph or state machine, below is an example of a [custom command](/guide/custom-commands) that will attempt to find a GameObject with the provided name and send an event with the specified name and arguments:
+If you wish to send an event from a scenario script to a visual scripting graph or state machine, below is an example of a [custom command](/guide/custom-commands) that will attempt to find a game object with the provided name and send an event with the specified name and arguments:
 
 ```csharp
 [Serializable, Alias("bolt")]
@@ -333,6 +333,6 @@ Just copy-paste the contents to a new C# script stored anywhere inside the proje
 @bolt object:ExampleEvent name:MyEvent args:ExampleMessage,Script002
 ```
 
-Below is an example graph that, when attached to an `ExampleEvent` GameObject, will print the message and start playing the specified script.
+Below is an example graph that, when attached to an `ExampleEvent` game object, will print the message and start playing the specified script.
 
 ![](https://i.gyazo.com/e2aef7f19cf013f4d476d32aac036f54.png)

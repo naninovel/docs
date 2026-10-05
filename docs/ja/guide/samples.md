@@ -1,6 +1,6 @@
 # サンプル
 
-Naninovelパッケージには、ビジュアルノベルとダイアログモードのシナリオを使い始めるのに役立ついくつかの [必須サンプル](/ja/guide/getting-started#デモサンプル) がすでに含まれていますが、一般的な開発ユースケースを示すための追加の専門的なサンプルコレクションも提供されています。これらのサンプルにアクセスする方法と、それぞれの簡単な説明については、以下をお読みください。
+Naninovelパッケージには、ビジュアルノベルとダイアログモードのそれぞれのケースで使い始めるのに役立ついくつかの [基本サンプル](/ja/guide/getting-started#デモサンプル) がすでに含まれていますが、一般的な開発ユースケースを示す、用途に特化した追加のサンプルコレクションも提供されています。これらのサンプルにアクセスする方法と、それぞれの簡単な説明については、以下をお読みください。
 
 ## サンプルへのアクセス
 
@@ -14,49 +14,49 @@ Naninovelパッケージには、ビジュアルノベルとダイアログモ�
 
 このサンプルは、[Addressableプロバイダー](/ja/guide/resource-providers#addressable) を使用して（リソースエディターメニューを使用せずに）Naninovelリソースを手動で登録し、リモートホストからアセットを提供する方法を示しています。
 
-サンプルプロジェクトのリソースのほとんどは、リソースマネージャーメニューで割り当てられていないことに注意してください。
+サンプルプロジェクトのリソースのほとんどは、リソースマネージャーメニューで割り当てられていない点に注目してください：
 
 ![](https://i.gyazo.com/8c1b37362bf58d26f18e4e61ffe2957c.png)
 
-—それでも、シナリオスクリプトでは同じ方法でアクセスできます。
+— それでも、シナリオスクリプトからは同じ方法でアクセスできます：
 
 ```nani
 @back Snow
 ```
 
-これは、アセットにNaninovelリソースアドレスとラベルが割り当てられているために機能します。
+これが機能するのは、アセットにNaninovelのリソースアドレスが割り当てられているためです：
 
 ![](https://i.gyazo.com/81e59da9ba85c90f3d59b84573f7facf.png)
 
-## Perspective Scene
+## パースペクティブシーン
 
-このサンプルは、複数のアニメーション環境スプライト、パースペクティブモードでのカメラレンダリング、およびボケ（被写界深度）効果で満たされた汎用背景を示しています。背景は `Content/Backgrounds/Perspective` ディレクトリに保存されています。
+このサンプルは、アニメーションする複数の環境スプライトを配置した汎用背景、パースペクティブモードでのカメラレンダリング、およびボケ（被写界深度）効果を示しています。背景は `Content/Backgrounds/Perspective` ディレクトリに保存されています。
 
 ![](https://i.gyazo.com/610d2cafe5fbe42aba7adb9ac71720d1.mp4)
 
-## コンパイラーのローカライズ
+## コンパイラーローカライズ
 
-サンプルプロジェクトでコンパイラーのローカライズを有効にするには、`Scripts` 構成の `Compiler Localization` フィールドに `Settings/Naninovel/CompilerRu` アセットを割り当てます。その後、UnityエディターとVS Code拡張機能を再起動します。これで、VS Codeでプロジェクトを開き、`Compiler Localization` サンプルシナリオを実行できます。
+サンプルプロジェクトでコンパイラーローカライズを有効にするには、スクリプト構成の `Compiler Localization` フィールドに `Settings/Naninovel/CompilerRu` アセットを割り当てます。その後、UnityエディターとVS Code拡張機能を再起動します。これで、VS Codeでプロジェクトを開き、`Compiler Localization` サンプルシナリオを実行できます。
 
 ![](https://i.gyazo.com/fde9998597ffedb8a025401bb2f71ce9.png)
 
 ## E2E
 
-`E2E Tests` サンプルは、[自動化されたエンドツーエンドテスト](/ja/guide/automated-testing) スイートをセットアップし、利用可能なAPIのほとんどを使用する方法を示しています。
+`E2E Tests` サンプルは、[自動エンドツーエンドテスト](/ja/guide/automated-testing) スイートをセットアップし、利用可能なAPIのほとんどを使用する方法を示しています。
 
 テストスクリプトは `Scripts/E2E` フォルダーの下に保存されています。フォルダーに配置された `.asmdef` ファイルに注意してください。これは、Unityテスト環境でテストソースをコンパイルするために必要です。また、`Packages/manifest.json` ファイルの `testables` エントリにも注意してください。これにより、テストアセンブリがUnityのテストランナーに公開されます。
 
 ![](https://i.gyazo.com/92e7eaf5725f098d6d12c83a2b7eb219.png)
 
-## ジェネリックアクター
+## 汎用アクター
 
-`Content/Backgrounds/Beach`、`Content/Backgrounds/Perspective` [汎用背景](/ja/guide/backgrounds#汎用背景) および `Content/Characters/Kohaku/K3D` [汎用キャラクター](/ja/guide/characters#汎用キャラクター) を見つけて、UnityのAnimatorで作成された3Dモデルとアニメーションを使用して汎用アクター実装をセットアップおよび使用する方法を確認してください。
+`Content/Backgrounds/Beach` と `Content/Backgrounds/Perspective` の [汎用背景](/ja/guide/backgrounds#汎用背景)、および `Content/Characters/Kohaku/K3D` の [汎用キャラクター](/ja/guide/characters#汎用キャラクター) では、UnityのAnimatorで作成された3Dモデルとアニメーションを使用して汎用アクター実装をセットアップおよび使用する方法を確認できます。
 
 ![](https://i.gyazo.com/009900b179f3130f45824e22094e7884.gif)
 
 ## ダイアログモード
 
-3Dアドベンチャーゲームの組み込みダイアログシステムと、切り替え可能なスタンドアロンノベルモードの両方として使用されるNaninovelを示すサンプルプロジェクト。
+Naninovelを、3Dアドベンチャーゲーム向けのドロップインのダイアログシステムとしても、切り替え可能なスタンドアロンのノベルモードとしても使用する例を示すサンプルプロジェクトです。
 
 ![](https://i.gyazo.com/b1b6042db4a91b3a8cee74236b33c17c.mp4)
 
@@ -64,10 +64,10 @@ Naninovelパッケージには、ビジュアルノベルとダイアログモ�
 
 ## インベントリ
 
-インベントリシステムはビジュアルノベルの範囲外ですが、統合方法に関する多くのリクエストや質問を受け取りました。インベントリサンプルは、エンジンのソースコードを変更せずにNaninovelインストールの上にセットアップできるインベントリ拡張機能を作成および統合する例です。
+インベントリシステムはビジュアルノベルの範囲外ですが、Naninovelとの統合方法に関する多くのリクエストや質問が寄せられました。インベントリサンプルは、エンジンのソースコードを変更せずにNaninovelインストールの上にセットアップできるインベントリ拡張機能を作成および統合する例です。
 
 ::: info NOTE
-インベントリはスタンドアロン製品ではなく、Naninovelの一部でもありません。エンジンを拡張およびカスタマイズする方法を学ぶために使用してください。ただし、インベントリシステムの実用的なソリューションであるとは期待しないでください。探している場合は、[Asset Storeを確認する](https://assetstore.unity.com/?q=inventory) か、ゼロからカスタムのものを作成してください。
+インベントリはスタンドアロン製品ではなく、Naninovelの一部でもありません。エンジンを拡張およびカスタマイズする方法を学ぶために使用してください。ただし、そのまま製品に使えるインベントリシステムのソリューションであるとは期待しないでください。そのようなものを探している場合は、[Asset Storeを確認する](https://assetstore.unity.com/?q=inventory) か、ゼロからカスタムのものを作成してください。
 :::
 
 このサンプルプロジェクトは、グリッドレイアウト、ページネーション、ドラッグアンドドロップウィンドウを備えたカスタムインベントリUIの作成方法、カスタムエンジンサービスと関連する構成メニューの追加、入力バインディングの追加、状態のアウトソーシングの使用、カスタムシナリオコマンドと式クエリの作成方法を示しています。
@@ -76,23 +76,23 @@ Naninovelパッケージには、ビジュアルノベルとダイアログモ�
 
 テンプレートから既製のインベントリUIを作成するには、`Create -> Naninovel -> Inventory -> Inventory UI` アセットコンテキストメニューを使用します。次に、エディターで `Naninovel -> Resources -> UI` を介してプレハブをNaninovel UIリソースに追加します。追加されると、UIは他のすべてのUIと同様に、[@showUI] および [@hideUI] コマンドで表示/非表示にできます。
 
-Inventory UIコンポーネントには `Capacity` プロパティがあり、インベントリのスロット数を変更できます。スロットグリッドは、`Content/InventoryGrid` GameObjectを介して構成されます（スロット数とレイアウト、ページごとのスロットなど）。ウィンドウのドラッグアンドドロップ動作は、`Content` GameObjectにアタッチされた `Drag Drop` コンポーネントを介して構成（または無効化）できます。
+Inventory UIコンポーネントには `Capacity` プロパティがあり、インベントリのスロット数を変更できます。スロットグリッドは、`Content/InventoryGrid` ゲームオブジェクトを介して構成されます（スロット数とレイアウト、ページあたりのスロット数など）。ウィンドウのドラッグアンドドロップ動作は、`Content` ゲームオブジェクトにアタッチされた `Drag Drop` コンポーネントを介して構成（または無効化）できます。
 
 インベントリアイテムプレハブは、`Create -> Naninovel -> Inventory -> Inventory Item` アセットコンテキストメニューを使用して作成できます。次に、アイテムプレハブをエディターで `Naninovel -> Resources -> Inventory` を介してインベントリリソースとして割り当てる必要があります。
 
 ![](https://i.gyazo.com/6062f8a433a47306f582a849c7bbf57e.png)
 
-アイテムが多く、エディターメニューから割り当てるのが不便な場合は、`Resources/Naninovel/Inventory` フォルダーにドロップすると、自動的にエンジンに公開されます。さらにサブフォルダーで整理することもできます。この場合、シナリオスクリプトで参照するときはスラッシュ（`/`）を使用します。たとえば、`Resources/Naninovel/Inventory/Armor/FullPlate.prefab` として保存されているアイテムは、スクリプトで `Armor/FullPlate` として参照できます。
+アイテムが多く、エディターメニューから割り当てるのが不便な場合は、`Resources/Naninovel/Inventory` フォルダーに入れると、自動的にエンジンに公開されます。さらにサブフォルダーで整理することもできます。この場合、シナリオスクリプトで参照するときはスラッシュ（`/`）を使用します。たとえば、`Resources/Naninovel/Inventory/Armor/FullPlate.prefab` として保存されているアイテムは、スクリプトで `Armor/FullPlate` として参照できます。
 
-[Addressable Asset System](/ja/guide/resource-providers#addressable) を使用してリソースを手動で公開することも可能です。アセットを公開するには、上記の方法で使用するパスと同じアドレスを割り当てますが、`Resources/` 部分は省略します。たとえば、`FullPlate.prefab` アイテムを公開するには、プレハブにアドレス `Naninovel/Inventory/FullPlate` を割り当てます。Addressableプロバイダーはデフォルトではエディターで使用されないことに注意してください。リソースプロバイダー構成メニューで `Enable Addressable In Editor` プロパティをオンにすることで有効にできます。
+[Addressable Asset System](/ja/guide/resource-providers#addressable) を使用してリソースを手動で公開することも可能です。アセットを公開するには、上記の方法で使用するパスと同じアドレスを割り当てますが、`Resources/` 部分は省略します。たとえば、`FullPlate.prefab` アイテムを公開するには、プレハブにアドレス `Naninovel/Inventory/FullPlate` を割り当てます。エディター内では、特別な「Editor」リソースプロバイダーが常に最初に使用されることに注意してください。Addressableプロバイダーは、エディターメニューを介して割り当てられていないリソースに対してのみ試行されます。
 
-各アイテムには、単一のインベントリスロットにスタックできるこのタイプのアイテムの数を制限する `Stack Count Limit` プロパティと、アイテムが使用されたとき（`@useItem` コマンドを介して、またはユーザーがインベントリ内のアイテムをクリックしたとき）に呼び出される `On Item Used` Unityイベントがあります。以下は、`Play Script` コンポーネントを使用してイベントを設定し、アイテムが使用されたら削除し、グリッチ特殊効果を生成し、テキストメッセージを表示する例です。
+各アイテムには、単一のインベントリスロットにスタックできるこのタイプのアイテムの数を制限する `Stack Count Limit` プロパティと、アイテムが使用されたとき（`@useItem` コマンドを介して、またはユーザーがインベントリ内のアイテムをクリックしたとき）に呼び出される `On Item Used` Unityイベントがあります。以下は、`Play Script` コンポーネントを使用してイベントを設定し、アイテムが使用されたら削除し、グリッチ特殊効果をスポーンし、テキストメッセージを表示する例です。
 
 ![](https://i.gyazo.com/010a9ba35db607ba46d78eda3513f678.png)
 
 `@addItem` コマンドを使用してインベントリにアイテムを追加し、`@removeItem`（または `@removeItemAt`、`@removeAllItems`）を使用して削除できます。アイテムIDはアイテムプレハブ名と同じです。インベントリスロットIDはグリッドスロットインデックスと同じです（例：最初のスロットは0、2番目は1など）。
 
-アイテムがインベントリに存在するかどうかを確認し、既存のアイテムの数を取得するための `itemExist()` および `itemCount()` カスタム [式クエリ](/ja/guide/expressions#式クエリ) も便利です。
+アイテムがインベントリに存在するかどうかを確認したり、既存のアイテム数を取得したりするための `itemExist()` および `itemCount()` カスタム [式クエリ](/ja/guide/expressions#式クエリ) も、利便性のために用意されています。
 
 以下はサンプルプロジェクトのスクリプトです。
 
@@ -121,7 +121,7 @@ Select an action.[>]
 
 ## Live2D
 
-サンプルは、NaninovelでLive2Dキャラクターを使用する方法を示しています。`Content/Characters/Hiyori` および `Content/Characters/Senko` ディレクトリで見つけてください。
+このサンプルは、NaninovelでLive2Dキャラクターを使用する方法を示しています。キャラクターは `Content/Characters/Hiyori` および `Content/Characters/Senko` ディレクトリにあります。
 
 ![](https://i.gyazo.com/b81df72fc7afaed569520496cbee09f0.mp4)
 
@@ -164,7 +164,7 @@ Select an action.[>]
 
 ![](https://i.gyazo.com/a64ee9beee378c687d0d8093334f4ef7.png)
 
-場所の可用性は、ボタンにアタッチされた [Variable Events](/ja/guide/variables#変数イベント) コンポーネントで制御されます。
+場所の利用可否は、ボタンにアタッチされた [Variable Events](/ja/guide/variables#変数イベント) コンポーネントで制御されます。
 
 ## RTL
 
@@ -174,34 +174,34 @@ RTLプリンターは `Content/Printers/RTL` に保存されています。
 
 ## アクターシェーダー
 
-この例は、カスタムトランジションエフェクトを追加するためのテクスチャシェーダーと、ライティングおよび自己照明をサポートするスプライトシェーダーを作成および使用する方法を示しています。後者は、背景アクターの時刻をシミュレートするために使用されます。
+この例は、カスタムトランジションエフェクトを追加するためのテクスチャシェーダーと、ライティングおよび自己照明をサポートするスプライトシェーダーを作成および使用する方法を示しています。後者は、背景アクターの時間帯をシミュレートするために使用されます。
 
 ![](https://i.gyazo.com/a9d7fb29d5e076245ac515d673cc155e.mp4)
 
 カスタムシェーダーは `Scripts/Shaders` ディレクトリに保存されています。
 
-背景テクスチャには、アルファレイヤーに保存された自己照明マスクがあり、カスタムシェーダーがグローバルライトを無視しながら発光すべき領域を評価するために使用されます。
+背景テクスチャには自己照明マスクがアルファレイヤーに格納されており、カスタムシェーダーはこれを使用して、グローバルライトを無視して発光すべき領域を判定します。
 
-時刻は `Scripts/Runtime/Shader/TimeOfDay.cs` で制御され、24時間の任意の時点でライトの色と放射強度を構成できます。
+時間帯は `Scripts/Runtime/Shader/TimeOfDay.cs` で制御され、1日24時間の任意の時点におけるライトの色と発光強度を構成できます。
 
 ![](https://i.gyazo.com/b58cb70a522b9085cedb796249557df5.png)
 
 コンポーネントAPIは `Scripts/Runtime/Shader/SetHour.cs` カスタムコマンドを介してシナリオスクリプトに公開されており、`@hour` コマンドで時間を設定できます。例：
 
 ```nani
-; 現在の時刻を3秒かけて18:00 (午後6時) に設定します。
-@hour 18 duration:3
+; 現在の時刻を3秒かけて18:00（午後6時）に設定します。
+@hour 18 time:3
 ```
 
 ## Spine
 
-サンプルは、NaninovelでSpineキャラクターを使用する方法を示しています。`Content/Characters/Spine` ディレクトリで見つけてください。
+このサンプルは、NaninovelでSpineキャラクターを使用する方法を示しています。キャラクターは `Content/Characters/Spine` ディレクトリにあります。
 
 ![](https://i.gyazo.com/08b04de115d97427d152cb5f37065d2d.mp4)
 
 ## UI
 
-サンプルには、新しいカスタムおよび変更された組み込みUIの次の例が含まれています。
+このサンプルには、新規のカスタムUIと変更を加えた組み込みUIの、次の例が含まれています。
 
 - タイトル画面
 
@@ -215,7 +215,7 @@ RTLプリンターは `Content/Printers/RTL` に保存されています。
 
 ![](https://i.gyazo.com/40bb59cf450fc129f80830aa411c3b14.png)
 
-- チャットプリンターのタイムスタンプ
+- Chatプリンターのタイムスタンプ
 
 ![](https://i.gyazo.com/770a7e9d9d021f8013f7ce139c80992b.png)
 
@@ -239,11 +239,11 @@ RTLプリンターは `Content/Printers/RTL` に保存されています。
 
 ## レイヤーアクター
 
-`Content/Characters/Miho` ディレクトリにあるレイヤーキャラクターと、`Content/Backgrounds/Particles` にあるカメラレンダリングモードで設定されたレイヤー背景を見つけてください。
+レイヤーキャラクターは `Content/Characters/Miho` ディレクトリに、カメラレンダリングモードで設定されたレイヤー背景は `Content/Backgrounds/Particles` にあります。
 
 ## ダイスアクター
 
-`Content/Characters/Kohaku/Diced` にあるダイスキャラクターとアトラスを見つけてください。
+ダイスキャラクターとアトラスは `Content/Characters/Kohaku/Diced` にあります。
 
 ## ビデオアクター
 
@@ -251,17 +251,17 @@ RTLプリンターは `Content/Printers/RTL` に保存されています。
 
 ## シーン背景
 
-`Content/Backgrounds/Scene` ディレクトリにあるシーン背景を見つけてください。
+シーン背景は `Content/Backgrounds/Scene` ディレクトリにあります。
 
 ## トランジションエフェクト
 
-`Scripts/Scenario/Transitions` シナリオスクリプトで、すべての利用可能なトランジションエフェクトが順番に適用されるデモを見つけてください。
+利用可能なすべてのトランジションエフェクトを順番に適用するデモは、`Scripts/Scenario/Transitions` シナリオスクリプトにあります。
 
 ## オートボイス
 
 ENおよびJAロケールのボイスクリップは `Content/Audio/Voice` の下に保存されています。
 
-"AUTO VOICING" サンプルに入り、ゲーム設定で音声言語を切り替えてみてください。
+「Auto Voicing」サンプルに入り、ゲーム設定でボイス言語を切り替えてみてください。
 
 ## ミュージックイントロ
 
@@ -269,15 +269,15 @@ ENおよびJAロケールのボイスクリップは `Content/Audio/Voice` の�
 
 ## 背景のマッチング
 
-背景マッチング機能のデモ。アスペクト比の異なる背景を表示ビューポートに一致させる方法を示しています。
+背景マッチング機能のデモです。アスペクト比の異なる背景を表示ビューポートに一致させる方法を示しています。
 
 ## ビジュアルスクリプティング
 
-[Visual Scripting](https://docs.unity3d.com/Packages/com.unity.visualscripting@latest)（以前はBoltと呼ばれていました）は、Unity 2021.2以降にデフォルトでバンドルされている組み込みパッケージです。プログラマーも非プログラマーもコードを書かずに使用できるユニットベースのグラフを使用して、ゲームやアプリケーションのロジックを作成できます。
+[Visual Scripting](https://docs.unity3d.com/Packages/com.unity.visualscripting@latest)（以前はBoltと呼ばれていました）は、Unityにデフォルトでバンドルされている組み込みパッケージです。プログラマーも非プログラマーもコードを書かずに使用できるユニットベースのグラフを使用して、ゲームやアプリケーションのロジックを作成できます。
 
 ![](https://i.gyazo.com/ab7c9d92b32810b030aba24b4bd95405.jpg)
 
-まず、互換性のあるUnityバージョン（2021.2以降）を使用していること、および `Visual Scripting` パッケージがPackage Managerにインストールされていることを確認してください。
+まず、`Visual Scripting` パッケージがPackage Managerにインストールされていることを確認してください。
 
 ![](https://i.gyazo.com/885ebb9808b369c30dfcaab19b0cee2f.png)
 
@@ -289,15 +289,15 @@ Visual Scriptingは、ライブラリから使用可能なすべての型を自�
 
 ![](https://i.gyazo.com/9afdeb12c0ff63ce942d04b21f737217.png)
 
-変更を適用するには、ライブラリとタイプを追加した後、ユニットを再生成することを忘れないでください。
+変更を適用するには、ライブラリと型を追加した後、ユニットを再生成することを忘れないでください。
 
 ![](https://i.gyazo.com/26c7bee4798b690c4eb362ec39746dc7.png)
 
-Visual Scripting設定でNaninovelライブラリとタイプが追加されると、エンジンAPIがグラフビューの下のファジーファインダーで使用できるようになり、他のUnityまたはサードパーティAPIと同様に使用できます。以下は、エンジンを初期化してスクリプトを再生する例です。この例を試す前に、必ず `Initialize On Application Load` を無効にし、`Title UI` を削除してください。
+Visual Scripting設定でNaninovelライブラリと型が追加されると、エンジンAPIがグラフビューの下のファジーファインダーで使用できるようになり、他のUnityまたはサードパーティAPIと同様に使用できます。以下は、エンジンを初期化してスクリプトを再生する例です。この例を試す前に、必ず `Initialize On Application Load` を無効にし、`Title UI` を削除してください。
 
 ![](https://i.gyazo.com/63a832f10fa3f5e4429e98da50ae8dd0.png)
 
-シナリオスクリプトからビジュアルスクリプティンググラフまたはステートマシンにイベントを送信する場合は、以下に示す [カスタムコマンド](/ja/guide/custom-commands) の例を使用します。これは、指定された名前のGameObjectを見つけ、指定された名前と引数でイベントを送信しようとします。
+シナリオスクリプトからビジュアルスクリプティンググラフまたはステートマシンにイベントを送信する場合は、以下に示す [カスタムコマンド](/ja/guide/custom-commands) の例を使用します。これは、指定された名前のゲームオブジェクトを検索し、指定された名前と引数でイベントを送信しようとします。
 
 ```csharp
 [Serializable, Alias("bolt")]
@@ -329,10 +329,10 @@ public class BroadcastBoltEvent : Command
 内容をプロジェクトのAssetsディレクトリ内の任意の場所に保存された新しいC#スクリプトにコピー＆ペーストするだけで、コマンドが自動的に使用可能になり、次のように使用できます。
 
 ```nani
-; 提供された引数を使用して "MyEvent" を "ExampleEvent" ゲームオブジェクトに送信します
+; 指定した引数とともに「MyEvent」を「ExampleEvent」ゲームオブジェクトに送信します
 @bolt object:ExampleEvent name:MyEvent args:ExampleMessage,Script002
 ```
 
-以下は、`ExampleEvent` GameObjectにアタッチされたときに、メッセージを表示して指定されたスクリプトの再生を開始するグラフの例です。
+以下は、`ExampleEvent` ゲームオブジェクトにアタッチされたときに、メッセージを表示して指定されたスクリプトの再生を開始するグラフの例です。
 
 ![](https://i.gyazo.com/e2aef7f19cf013f4d476d32aac036f54.png)

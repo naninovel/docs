@@ -1,10 +1,10 @@
-# カスタムコンフィグレーション
+# カスタム構成
 
 構成オブジェクトは、サービスやその他のエンジンシステムを初期化および構成するために使用されます。
 
 デフォルトでは、構成オブジェクトはScriptableObjectアセットとしてシリアル化され、プロジェクトの `NaninovelData/Resources/Naninovel/Configuration` に保存されます。Unityエディターで対応する構成メニュー（`Naninovel -> Configuration`）を初めて開いたときに、アセットが自動的に生成されます。
 
-C#を介して構成オブジェクトにアクセスするには、`Engine.GetConfiguration<T>()` を使用します。ここで `T` は、アクセスする構成オブジェクトのタイプです。たとえば、次は [オーディオ構成](/ja/guide/configuration#オーディオ) オブジェクトにアクセスする方法を示しています。
+C#を介して構成オブジェクトにアクセスするには、`Engine.GetConfiguration<T>()` を使用します。ここで `T` は、アクセスする構成オブジェクトの型です。たとえば、次の例は [オーディオ構成](/ja/guide/configuration#オーディオ) オブジェクトにアクセスする方法を示しています。
 
 ```csharp
 var audioConfig = Engine.GetConfiguration<AudioConfiguration>();
@@ -14,13 +14,13 @@ var audioConfig = Engine.GetConfiguration<AudioConfiguration>();
 エンジンの初期化手順は非同期であるため、自動初期化が有効になっている場合でも、Unityがシーンをロードした直後（たとえば、`Awake`、`Start`、`OnEnable` [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html) メソッド内）にエンジンAPI（`GetConfiguration` など）が利用できない場合があります。詳細については、[エンジンAPIへのアクセス](/ja/guide/integration-options#エンジンapiへのアクセス) を参照してください。
 :::
 
-`Engine.GetConfiguration` はエンジンが初期化されている必要がありますが（構成プロバイダーに依存します）、エンジンが初期化されていない場合でも、デフォルトのプロバイダーを介して直接構成アセットにアクセスできます。例：
+`Engine.GetConfiguration` を使用するにはエンジンが初期化されている必要がありますが（構成プロバイダーに依存するため）、エンジンが初期化されていない場合でも、デフォルトのプロバイダーを介して直接構成アセットにアクセスできます。例：
 
 ```csharp
 var config = ProjectConfigurationProvider.LoadOrDefault<AudioConfiguration>();
 ```
 
-構成オブジェクトはエディターメニューを介して変更することを意図していますが、実行時に変更することも可能です。デフォルトのプロジェクトプロバイダーによって返されるオブジェクトは、プロジェクトに保存されている実際のアセットであることに注意してください。プレイモードで変更すると、アセットへの変更が保持されます。これは、ランタイムインスタンスであり元のアセットを変更しない `Engine.GetConfiguration` によって返されるインスタンスとは異なります。
+構成オブジェクトはエディターメニューを介して変更することを意図していますが、実行時に変更することも可能です。デフォルトのプロジェクトプロバイダーによって返されるオブジェクトは、プロジェクトに保存されている実際のアセットであることに注意してください。プレイモードで変更すると、その変更はアセットに永続化されます。この点は、`Engine.GetConfiguration` によって返されるインスタンスとは異なります。こちらはランタイムインスタンスであり、元のアセットを変更しません。
 
 以下は、エンジンの初期化直後にカメラ構成の `ReferenceResolution` プロパティを変更する例です。
 
@@ -48,7 +48,7 @@ public static class ModifyConfigAtRuntime
 ```
 
 ::: info NOTE
-Naninovelは、エンジンの初期化中に構成が変更されることを想定していないため、一部の変更を有効にするには、`ProjectConfigurationProvider` または [カスタムプロバイダー](/ja/guide/custom-configuration#構成プロバイダー) を使用してエンジンを初期化する前に変更を適用する必要がある場合があります。
+Naninovelは、エンジンが初期化されている間に構成が変更されることを想定していないため、一部の変更を有効にするには、`ProjectConfigurationProvider` または [カスタムプロバイダー](/ja/guide/custom-configuration#構成プロバイダー) を使用して、エンジンを初期化する前に変更を適用する必要がある場合があります。
 :::
 
 ## 構成の追加
@@ -70,7 +70,7 @@ public class MyCustomConfiguration : Configuration
 }
 ```
 
-`EditInProjectSettings` 属性に注意してください。属性が適用されると、関連するエディターメニューがプロジェクト設定に自動的に追加され、組み込みメニューと同様にカスタム構成アセットのシリアル化可能なプロパティを変更できます。
+`EditInProjectSettings` 属性に注目してください。この属性を適用すると、対応するエディターメニューがプロジェクト設定に自動的に追加され、そこで組み込みメニューと同様にカスタム構成アセットのシリアル化可能なプロパティを変更できます。
 
 ![](https://i.gyazo.com/c1163bba83f5d2b6286b100e837bca40.png)
 
@@ -84,11 +84,11 @@ var myConfig = Engine.GetConfiguration<MyCustomConfiguration>();
 インベントリシステムをセットアップするためのカスタム構成メニューを追加する別の例は、[インベントリサンプル](/ja/guide/samples#インベントリ) にあります。具体的には、カスタム構成は `Scripts/Runtime/Inventory/InventoryConfiguration.cs` に実装されています。
 :::
 
-カスタム構成のエディター動作をカスタマイズするには（Naninovelのプロジェクト設定で描画される場合）、エディタースクリプトの下にクラスを作成し、`ConfigurationSettings<T>` を継承します。ここで `T` はカスタム構成タイプです。独自のエディターを作成する際の参考として、`Naninovel/Editor/Settings` に保存されている組み込み設定エディタースクリプトを使用できます。
+カスタム構成のエディター上の動作（Naninovelのプロジェクト設定で描画されるときの動作）をカスタマイズするには、エディタースクリプトとしてクラスを作成し、`ConfigurationSettings<T>` を継承します。ここで `T` はカスタム構成の型です。独自のエディターを作成する際の参考として、`Naninovel/Editor/Editors/Settings` に保存されている組み込みの設定エディタースクリプトを使用できます。
 
 ## 組み込みエディターのオーバーライド
 
-`OverrideSettings` 属性を `ConfigurationSettings<T>`（またはその派生クラス）から継承したエディタークラスに適用することで、組み込み構成エディター（Naninovelのプロジェクト設定メニュー）をオーバーライドできます。ここで `T` は構成タイプです。カスタムエディタースクリプトを `Editor` フォルダーの下に保存して、エディターアセンブリに含まれるようにします。
+`OverrideSettings` 属性を `ConfigurationSettings<T>`（またはその派生クラス）から継承したエディタークラスに適用することで、組み込み構成エディター（Naninovelのプロジェクト設定メニュー）をオーバーライドできます。ここで `T` は構成の型です。カスタムエディタースクリプトは、エディターアセンブリに含まれるように `Editor` フォルダーの下に保存します。
 
 以下は、組み込みのキャラクターマネージャー構成エディターをオーバーライドする例です。新しいエディターは、`Shared Poses` フィールドの下に共有ポーズの総数を示すラベルを追加します。
 
@@ -114,7 +114,7 @@ public class CustomCharacterSettings : CharactersSettings
 
 ![](https://i.gyazo.com/5555e8c3eb33c3783bef8ef852a7e765.png)
 
-組み込みのアクターメタデータエディターをオーバーライドすることもできます。以下は、検査されたアクターの `Message Color` フィールドの下に、その色の名前を含むラベルを挿入します。
+組み込みのアクターメタデータエディターをオーバーライドすることもできます。以下のコードは、インスペクターで開いているアクターの `Message Color` フィールドの下に、その色の名前を示すラベルを挿入します。
 
 ```csharp
 [OverrideSettings]
@@ -148,7 +148,7 @@ public class CustomCharacterSettings : CharactersSettings
 
 実行時に構成オブジェクトを提供する方法を変更できます。たとえば、静的なプロジェクトアセットの代わりに、リモートホストに保存されたJSONファイルから構成を読み取ることができます。
 
-カスタム構成提供シナリオを指定するには、`IConfigurationProvider` を実装するC#クラスを作成します。インターフェースには、`Type` 引数を予期し、`Configuration` オブジェクトを返すメソッドが1つあります。要求された構成オブジェクトをどのように構築して設定するかはあなた次第です。返されるオブジェクトのタイプが要求されたものと一致することを確認してください。
+構成の提供方法をカスタマイズするには、`IConfigurationProvider` を実装するC#クラスを作成します。このインターフェースには、`Type` 引数を受け取り、`Configuration` オブジェクトを返すメソッドが1つあります。要求された構成オブジェクトをどのように構築して値を設定するかは自由です。返すオブジェクトの型が要求された型と一致するようにしてください。
 
 以下は、デフォルトの構成オブジェクトを返すカスタムプロバイダー実装の例です。
 
@@ -193,7 +193,7 @@ public class CustomConfigurationProvider : ProjectConfigurationProvider
 
 カスタム構成プロバイダーの準備ができたら、カスタムエンジン初期化スクリプトを作成して、組み込みのものの代わりにそれを使用するようにエンジンに指示します。デフォルトでは、エンジンは `Naninovel/Runtime/Engine/RuntimeInitializer.cs` を介して初期化されます。参考として自由に使用してください。
 
-あるいは、カスタム構成プロバイダーを使用するだけで、デフォルトのエンジン初期化ルーチンを維持したい場合は、オプションの構成プロバイダー引数を受け入れる `RuntimeInitializer.Initialize(IConfigurationProvider)` を検討してください。
+あるいは、カスタム構成プロバイダーを使用したいだけで、デフォルトのエンジン初期化ルーチンはそのまま維持したい場合は、オプションの構成プロバイダー引数を受け取る `RuntimeInitializer.Initialize(IConfigurationProvider)` の使用を検討してください。
 
 ```csharp
 public class CustomInitializer
@@ -207,4 +207,4 @@ public class CustomInitializer
 }
 ```
 
-どちらの初期化方法を選択しても、デフォルトの初期化手順を防ぐために、エンジン構成メニューで `Initialize On Application Load` を無効にしてください。
+どちらの初期化方法を選択する場合でも、デフォルトの初期化手順が実行されないように、エンジン構成メニューで `Initialize On Application Load` を無効にしてください。

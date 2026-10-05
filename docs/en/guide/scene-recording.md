@@ -8,7 +8,7 @@ Scene Recording removes this trial-and-error loop. Start recording on a scenario
 
 ## Recording in Story Editor
 
-1. Enter Play Mode and start scenario playback.
+1. Enter Play mode and start scenario playback.
 2. In the Story Editor, right-click the destination line and select `Start Scene Recording`.
 3. Modify supported objects with the Unity Scene view gizmos or Inspector. Generated lines update in real time and are outlined in red.
 4. Right-click a line and select `Stop Scene Recording` or save the script to stop the recording.
@@ -17,7 +17,7 @@ The entire recording is registered as a single `Record Scene` undo step. Editing
 
 ## Recording in VS Code
 
-1. Enter Play Mode and start scenario playback.
+1. Enter Play mode and start scenario playback.
 2. Right-click the destination scenario line and select `Start Scene Recording`.
 3. Modify supported objects with the Unity Scene view gizmos or Inspector. A red circle in the gutter marks the recorded block while its commands update.
 4. Right-click a line and select `Stop Scene Recording` or save the script to stop the recording.
@@ -28,7 +28,7 @@ VS Code saves the document automatically when recording stops. Undoing or redoin
 
 The default recorder supports the following scene objects and serialized properties:
 
-| Object      | Recorded properties                 | Generated command                       |
+| Object      | Recorded Properties                 | Generated Command                       |
 |-------------|-------------------------------------|-----------------------------------------|
 | Backgrounds | Position, rotation and scale        | `@back wpos: rotation: scale:`          |
 | Characters  | Position, rotation and scale        | `@char wpos: rotation: scale:`          |

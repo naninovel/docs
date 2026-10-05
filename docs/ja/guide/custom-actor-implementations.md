@@ -1,22 +1,22 @@
 # カスタムアクターの実装
 
-アクターは、名前、外観、可視性、および変換（位置、回転、スケール）によって定義されるシーンエンティティです。外観、可視性、および変換を時間の経過とともに非同期に変更できます。アクターの例には、キャラクター、背景、テキストプリンター、選択肢ハンドラーなどがあります。
+アクターは、名前、外観、可視性、およびトランスフォーム（位置、回転、スケール）によって定義されるシーンエンティティです。外観、可視性、およびトランスフォームを時間の経過とともに非同期に変更できます。アクターの例には、キャラクター、背景、テキストプリンター、選択肢ハンドラーなどがあります。
 
-アクターは `IActor` インターフェースとその派生物によって表されます。
+アクターは `IActor` インターフェースとその派生インターフェースによって表されます。
 
 * `ICharacterActor`
 * `IBackgroundActor`
 * `ITextPrinterActor`
 * `IChoiceHandlerActor`
 
-各アクターインターフェースには複数の実装を含めることができます。たとえば、キャラクターアクターには現在、スプライト、ダイススプライト、汎用、レイヤー、ナレーター、Spine、Live2Dの7つの組み込み実装があります。
+各アクターインターフェースは複数の実装を持つことができます。たとえば、キャラクターアクターには現在、プレースホルダー、スプライト、ダイススプライト、ユニバーサル、レイヤー、汎用、ビデオ、Live2D、Spine、ナレーター、トランジェントの11個の組み込み実装があります。
 
-アクターの実装は、`Naninovel -> Configuration` コンテキストメニューからアクセスできる構成マネージャーで選択できます。すべてのアクターに使用されるデフォルトの実装を変更したり、アクターごとに特定の実装を設定したりできます。デフォルトの実装を変更するには `Default Metadata` プロパティを使用し、特定のものを設定するにはアクターの構成の `Implementation` ドロップダウンを使用します。
+アクターの実装は、`Naninovel -> Configuration` エディターメニューからアクセスできる構成マネージャーで選択できます。すべてのアクターに使用されるデフォルトの実装を変更したり、アクターごとに特定の実装を設定したりできます。デフォルトの実装を変更するには `Default Metadata` プロパティを使用し、個別の実装を設定するにはアクターの構成の `Implementation` ドロップダウンを使用します。
 
 ![](https://i.gyazo.com/74625fa24b58362de15bb8e07753824d.png)
 ![](https://i.gyazo.com/eeb42043eb9a841de003f8db848f1427.png)
 
-Implementationドロップダウンには、特定のアクターインターフェースを実装するすべてのタイプが含まれています。独自のカスタム実装を追加することもでき、それらもリストに表示されます。独自のアクター実装を作成する際の参考として、`Naninovel/Runtime/Actor` スクリプトを参照してください。アクターがシーンにスポーンされることが想定されている場合は、組み込みの抽象 `MonoBehaviourActor` 実装を使用して、ほとんどの基本インターフェース要件を満たすことを検討してください。
+Implementationドロップダウンには、特定のアクターインターフェースを実装するすべての型が含まれています。独自のカスタム実装を追加することもでき、それらもリストに表示されます。独自のアクター実装を作成する際の参考として、`Naninovel/Runtime/Actor` スクリプトを参照してください。アクターをシーンにスポーンすることを想定している場合は、基本インターフェースの要件の大半を満たす組み込みの抽象実装 `MonoBehaviourActor` の使用を検討してください。
 
 カスタムアクター実装を作成するときは、互換性のあるパブリックコンストラクタがあることを確認してください。
 
@@ -32,7 +32,7 @@ public ActorImplementationType (string id, ActorMetadata metadata) { }
 
 ## アクターリソース
 
-実装タイプに `ActorResources` 属性を適用して、カスタムアクターのリソースとして使用できるアセットと、エディターメニューで複数のリソースを割り当てることができるかどうかを指定します。複数のリソースが許可されていない場合（デフォルト）、アクターIDのみを指定して単一の利用可能なリソースをロードできます。例：
+実装の型に `ActorResources` 属性を適用して、カスタムアクターのリソースとして使用できるアセットと、エディターメニューで複数のリソースを割り当てることができるかどうかを指定します。複数のリソースが許可されていない場合（デフォルト）、アクターIDのみを指定して、利用可能な唯一のリソースをロードできます。例：
 
 ```csharp
 var resource = await resourceLoader.Load(actorId);
@@ -52,7 +52,7 @@ var resource = await resourceLoader.Load($"{actorId}/CubeBackground");
 
 （組み込みおよびカスタム実装の両方について）アクターメタデータにカスタムの追加データを追加することが可能です。
 
-カスタムデータを挿入するには、新しいC#クラスを作成し、`CustomMetadata<TActor>` から継承します。ここで `TActor` は、データが関連付けられるアクター実装のタイプです。以下は、`CustomCharacterImplementation` のキャラクターにカスタムデータを追加する例です。
+カスタムデータを注入するには、新しいC#クラスを作成し、`CustomMetadata<TActor>` を継承します。ここで `TActor` は、データを関連付けるアクター実装の型です。以下は、`CustomCharacterImplementation` のキャラクターにカスタムデータを追加する例です。
 
 ```csharp
 using Naninovel;
@@ -72,7 +72,7 @@ public class MyCharacterData : CustomMetadata<CustomCharacterImplementation>
 
 ![](https://i.gyazo.com/72f46feb74b6de568b299329500bd7d5.png)
 
-実行時にカスタムデータにアクセスするには、`ActorMetadata` インスタンスの `GetCustomData<TData>()` メソッドを使用します。ここで `TData` はカスタムデータクラスのタイプです。例：
+実行時にカスタムデータにアクセスするには、`ActorMetadata` インスタンスの `GetCustomData<TData>()` メソッドを使用します。ここで `TData` はカスタムデータクラスの型です。例：
 
 ```csharp
 var charsConfig = Engine.GetConfiguration<CharactersConfiguration>();
@@ -83,7 +83,7 @@ Debug.Log(myCharData.MyCustomInt);
 
 ### カスタムメタデータエディター
 
-[プロパティドロワー](https://docs.unity3d.com/Manual/editor-PropertyDrawers.html) を介してカスタムメタデータエディターをカスタマイズすることが可能です。以下は、編集されたフィールドの上に余分なラベルを挿入するプロパティドロワーを追加する例です。
+[プロパティドロワー](https://docs.unity3d.com/Manual/editor-PropertyDrawers.html) を介してカスタムメタデータエディターをカスタマイズすることが可能です。以下は、編集対象のフィールドの上に追加のラベルを挿入するプロパティドロワーを追加する例です。
 
 ```csharp
 // シリアル化されたフィールドに適用する属性を作成します。
@@ -98,7 +98,7 @@ public class ExtraLabelAttribute : PropertyAttribute
     }
 }
 
-// 影響を受けるフィールドを描画するときに使用されるカスタムエディターを作成します。
+// 対象のフィールドを描画するときに使用されるカスタムエディターを作成します。
 // `UnityEditor` APIを使用するため、スクリプトは `Editor` フォルダー内にある必要があります。
 [CustomPropertyDrawer(typeof(ExtraLabelAttribute))]
 public class ExtraLabelPropertyDrawer : PropertyDrawer
@@ -130,34 +130,34 @@ public class MyCharacterData : CustomMetadata<CustomCharacterImplementation>
 }
 ```
 
-上記の実装を前提として、カスタムキャラクターデータは次のように描画されます。
+上記の実装により、カスタムキャラクターデータは次のように描画されます。
 
 ![](https://i.gyazo.com/294a9e2812d33ea3c863f9f53906b327.png)
 
 ::: tip
-組み込み構成エディター全体をオーバーライドすることも可能です。詳細と例については、[カスタムコンフィグレーション](/ja/guide/custom-configuration#組み込みエディターのオーバーライド) ガイドを参照してください。
+組み込み構成エディター全体をオーバーライドすることも可能です。詳細と例については、[カスタム構成](/ja/guide/custom-configuration#組み込みエディターのオーバーライド) ガイドを参照してください。
 :::
 
-## カスタムステート
+## カスタム状態
 
-カスタムアクターの状態タイプをオーバーライドまたは拡張するには、状態がそこでシリアル化され、管理対象のアクターに適用されるため、[アクターのマネージャーもオーバーライド](/ja/guide/engine-services#組み込みサービスのオーバーライド) する必要があります。
+カスタムアクターの状態の型をオーバーライドまたは拡張するには、[アクターのマネージャーもオーバーライド](/ja/guide/engine-services#組み込みサービスのオーバーライド) する必要があります。状態のシリアル化と管理対象アクターへの適用は、マネージャーで行われるためです。
 
 ::: info NOTE
-これは、組み込みの `IActor` インターフェース派生物（キャラクター、背景、テキストプリンター、および選択肢ハンドラー）の1つのカスタムアクター実装に適用されます。カスタムアクターを `IActor` から直接継承した場合は、カスタム状態を使用するために組み込みマネージャーをオーバーライドする必要はありません。独自のものを作成するだけです。
+これは、組み込みの `IActor` 派生インターフェース（キャラクター、背景、テキストプリンター、選択肢ハンドラー）のいずれかを実装するカスタムアクターに当てはまります。カスタムアクターを `IActor` から直接継承した場合は、カスタム状態を使用するために組み込みマネージャーをオーバーライドする必要はありません。カスタム状態の型を指定した独自のマネージャーを作成するだけで済みます。
 
-他のシステム（例：Naninovel外部のさまざまなゲームメカニクスのためのUI、ゲームオブジェクト、またはコンポーネント）にカスタム状態を追加する場合は、[状態管理ガイド](/ja/guide/state-management#カスタムステート) を参照してください。
+他のシステム（例：Naninovel外部のさまざまなゲームメカニクスのためのUI、ゲームオブジェクト、またはコンポーネント）にカスタム状態を追加する場合は、[状態管理ガイド](/ja/guide/state-management#カスタム状態) を参照してください。
 :::
 
-以下は、最後に追加された選択肢の時間を格納する `LastChoiceTime` フィールドを追加して選択肢ハンドラーの状態を拡張する例です。時間は、カスタム選択肢ハンドラーが表示されたときにコンソールに出力されます。
+以下は、最後に選択肢が追加された時刻を格納する `LastChoiceTime` フィールドを追加して選択肢ハンドラーの状態を拡張する例です。この時刻は、カスタム選択肢ハンドラーが表示されたときにコンソールに出力されます。
 
 ```csharp
-// 最後の選択時間をシリアル化する拡張状態。
+// 最後の選択肢の時刻をシリアル化する拡張状態。
 public class MyChoiceHandlerState : ChoiceHandlerState
 {
-    // このフィールドはシリアル化可能であり、ゲームのセーブ/ロードを通じて持続します。
+    // このフィールドはシリアル化可能であり、ゲームのセーブ／ロードをまたいで保持されます。
     public string LastChoiceTime;
 
-    // このメソッドはゲームを保存するときに呼び出されます。
+    // このメソッドはゲームをセーブするときに呼び出されます。
     // アクターから必要なデータを取得し、シリアル化可能なフィールドに保存します。
     public override void OverwriteFromActor (IChoiceHandlerActor actor)
     {
@@ -167,40 +167,40 @@ public class MyChoiceHandlerState : ChoiceHandlerState
     }
 
     // このメソッドはゲームをロードするときに呼び出されます。
-    // シリアル化されたデータを取得し、アクターに適用します。
-    public override void ApplyToActor (IChoiceHandlerActor actor)
+    // シリアル化されたデータを取り出し、アクターに適用します。
+    public override async Awaitable ApplyToActor (IChoiceHandlerActor actor)
     {
-        base.ApplyToActor(actor);
+        await base.ApplyToActor(actor);
         if (actor is MyCustomChoiceHandler myCustomChoiceHandler)
             myCustomChoiceHandler.LastChoiceTime = LastChoiceTime;
     }
 }
 
-// 最後の選択時間を使用するカスタム選択肢ハンドラー実装。
+// 最後の選択肢の時刻を使用するカスタム選択肢ハンドラー実装。
 public class MyCustomChoiceHandler : UIChoiceHandler
 {
     public string LastChoiceTime { get; set; }
 
-    public MyCustomChoiceHandler (string id, ChoiceHandlerMetadata metadata)
-        : base(id, metadata) { }
+    public MyCustomChoiceHandler (string id, ChoiceHandlerMetadata meta,
+        EmbeddedAppearanceLoader<GameObject> loader) : base(id, meta, loader) { }
 
-    public override void AddChoice (ChoiceState choice)
+    public override void AddChoice (Choice choice)
     {
         base.AddChoice(choice);
         LastChoiceTime = DateTime.Now.ToShortTimeString();
     }
 
-    public override Awaitable ChangeVisibility (bool visible, float duration,
-        EasingType easingType = default, AsyncToken token = default)
+    public override Awaitable ChangeVisibility (bool visible, Tween tween,
+        AsyncToken token = default)
     {
         Debug.Log($"Last choice time: {LastChoiceTime}");
-        return base.ChangeVisibility(visible, duration, easingType, token);
+        return base.ChangeVisibility(visible, tween, token);
     }
 }
 
 // 拡張状態を使用するように組み込み選択肢ハンドラーマネージャーをオーバーライドします。
-// 重要なステップは、ジェネリックタイプで `MyChoiceHandlerState` を指定することです。
-// 他の変更は、インターフェース要件を満たすためのものです。
+// 重要なのは、ジェネリック型に `MyChoiceHandlerState` を指定することです。
+// 他の変更は、インターフェースの要件を満たすためだけのものです。
 [InitializeAtRuntime(@override: typeof(ChoiceHandlerManager))]
 public class MyChoiceHandlerManager : ActorManager<IChoiceHandlerActor,
     MyChoiceHandlerState, ChoiceHandlerMetadata,
@@ -224,4 +224,4 @@ public class MyChoiceHandlerManager : ActorManager<IChoiceHandlerActor,
 }
 ```
 
-カスタム選択肢ハンドラーは、最後に追加された選択肢の時間を保持し、最後の選択肢がセーブスロットからロードされた以前のゲームセッションで追加された場合でも、コンソールにログ出力します。この方法で、組み込みのアクター状態に加えて任意の量のカスタムデータを保存できます。サポートされているシリアル化可能なデータ型については、[Unityのシリアル化ガイド](https://docs.unity3d.com/Manual/script-Serialization.html) を参照してください。
+これで、カスタム選択肢ハンドラーは最後に選択肢が追加された時刻を保持し、その選択肢がセーブスロットからロードした以前のゲームセッションで追加されたものであっても、コンソールにログ出力するようになります。この方法で、組み込みのアクター状態に加えて任意の量のカスタムデータを保存できます。サポートされているシリアル化可能なデータ型については、[Unityのシリアル化ガイド](https://docs.unity3d.com/Manual/script-Serialization.html) を参照してください。

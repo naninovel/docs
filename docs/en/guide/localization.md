@@ -1,25 +1,25 @@
 # Localization
 
-All the game resources (scripts, audio, voice, backgrounds, etc.) can be localized to multiple languages/cultures.
+All the game resources (scripts, audio, voice, backgrounds, etc) can be localized to multiple languages/cultures.
 
-Resources originally used to author the project are associated with a *source locale* by default. For example, if the game is initially authored in English, all the original (source) scenario scripts, UIs, signs on backgrounds, etc. are in English; this means the *source locale* is `en` (or `en-GB` / `en-US` / etc. if you wish to use separate locales for specific regions).
+Resources originally used to author the project are associated with a *source locale* by default. For example, if the game is initially authored in English, all the original (source) scenario scripts, UIs, signs on backgrounds, etc are in English; this means the *source locale* is `en` (or `en-GB` / `en-US` / etc if you wish to use separate locales for specific regions).
 
-The *source locale* can be changed via `Naninovel -> Configuration -> Localization` menu with the `Source Locale` property. The `Source Locale` setting only determines the name (ID) of the locale associated with source project assets and is used in the "Language" drop-down in settings and related engine APIs to distinguish the locale.
+The *source locale* can be changed via the `Naninovel -> Configuration -> Localization` menu with the `Source Locale` property. The `Source Locale` setting only determines the name (ID) of the locale associated with source project assets and is used in the "Language" dropdown in settings and related engine APIs to distinguish the locale.
 
 ![](https://i.gyazo.com/84eea85d3c3deddd187af1ed843f1bd5.png)
 
 ::: tip
-If you'd like to share the source-localizable text with a third party (e.g., for proofreading) but don't want to share the source scenario scripts, change `Source Locale` to some unrelated language you won't use, then disable `Expose Source Locale` and add a dedicated locale for the source material. That locale can then be exported to the localization [documents](/guide/localization#scripts-localization) or [spreadsheets](/guide/localization#spreadsheet).
+If you'd like to share the source-localizable text with a third party (eg, for proofreading) but don't want to share the source scenario scripts, change `Source Locale` to some unrelated language you won't use, then disable `Expose Source Locale` and add a dedicated locale for the source material. That locale can then be exported to the localization [documents](/guide/localization#scripts-localization) or [spreadsheets](/guide/localization#spreadsheet).
 :::
 
-To add a locale, create a subfolder inside `Resources/Naninovel/Localization` (the *localization resources root*) with a name equal to one of the [RFC5646](https://gist.github.com/Elringus/db90d9c74f13c00fa35131e61d1b73cb) language tags you wish to support. For example, to add German, create `Resources/Naninovel/Localization/de`. The "Language" drop-down in the built-in game settings UI will automatically include all added locales.
+To add a locale, create a subfolder inside `Resources/Naninovel/Localization` (the *localization resources root*) with a name equal to one of the [RFC5646](https://gist.github.com/Elringus/db90d9c74f13c00fa35131e61d1b73cb) language tags you wish to support. For example, to add German, create `Resources/Naninovel/Localization/de`. The "Language" dropdown in the built-in game settings UI will automatically include all added locales.
 
 Be aware that you do not have to create a subfolder in the *localization resources root* for the *source locale*. All project resources stored outside the *localization resources root* belong to the *source locale* by default.
 
 The *localization resources root* path can be changed in the localization configuration menu via the `Loader > Path Prefix` property. Note that the configured path is relative to a "Resources" folder (not "Assets"). Unity handles Resources folders in a special way; you can have multiple such folders anywhere inside the project to organize locale-specific assets.
 
 ::: tip
-Instead of using the `Resources` folder, you can opt for a different resource provider; for example, with [addressables](/guide/resource-providers#addressable) you can bundle locale-specific resources independently of the main game package and download them on demand. Naninovel will automatically register generated localization documents with the addressables when it's installed.
+Instead of using the `Resources` folder, you can opt for a different resource provider; for example, with [Addressables](/guide/resource-providers#addressable) you can bundle locale-specific resources independently of the main game package and download them on demand. Naninovel will automatically register generated localization documents with Addressables when the package is installed.
 :::
 
 ## Default Locale
@@ -29,7 +29,7 @@ To specify which locale is selected by default when the player first runs the ga
 When the `Auto Detect Locale` option is enabled and the game runs for the first time, Naninovel will attempt to detect the locale based on the system language. If detection succeeds and the locale is supported by the game, it will be selected; otherwise the game falls back to `Default Locale`.
 
 ::: warning
-Automatically detected locale won't include a specifier; i.e., when system language is English, the detected locale will be `en`, never `en-US` or `en-GB`. This is a limitation of Unity's [system language detection](https://docs.unity3d.com/ScriptReference/Application-systemLanguage). When relying on auto-detection, avoid using specifiers in the added locales.
+An automatically detected locale won't include a specifier; ie when the system language is English, the detected locale will be `en`, never `en-US` or `en-GB`. This is a limitation of Unity's [system language detection](https://docs.unity3d.com/ScriptReference/Application-systemLanguage). When relying on auto-detection, avoid using specifiers in the added locales.
 :::
 
 ## Resources Localization
@@ -48,11 +48,11 @@ The resources localization scheme works for most resource types, except scenario
 
 ![](https://i.gyazo.com/1b47d70dcbbb45a3ab955b44c9b50942.png)
 
-First, pick `Scripts Folder (input)` — the project directory where Naninovel scenario scripts (`.nani`) are stored (e.g., `Assets/Scenario`). Optionally, to generate localization documents for [managed text](/guide/managed-text) as well, pick `Text Folder (input)` — the directory where managed text documents are stored (`Assets/Resources/Naninovel/Text` by default).
+First, pick `Script Folder (input)` — the project directory where Naninovel scenario scripts (`.nani`) are stored (eg, `Assets/Scenario`). Optionally, to generate localization documents for [managed text](/guide/managed-text) as well, pick `Text Folder (input)` — the directory where managed text documents are stored (`Assets/Resources/Naninovel/Text` by default).
 
-Alternatively, if you wish to generate localization documents not from the source scripts but from previously generated documents for another locale, pick the text folder with existing localization documents for that locale, e.g. `Assets/Resources/Naninovel/Localization/ja-JP/Text`.
+Alternatively, if you wish to generate localization documents not from the source scripts but from previously generated documents for another locale, pick the text folder with existing localization documents for that locale, eg `Assets/Resources/Naninovel/Localization/ja-JP/Text`.
 
-Then select the path to the locale folder where the generated localization resources should be stored. Make sure you've selected an actual locale folder (e.g., `Resources/Naninovel/Localization/ja-JP`). A label under the field will indicate when a valid output locale folder is selected and display the target locale name.
+Then select the path to the locale folder where the generated localization resources should be stored. Make sure you've selected an actual locale folder (eg, `Resources/Naninovel/Localization/ja-JP`). A label under the field will indicate when a valid output locale folder is selected and display the target locale name.
 
 ::: tip
 You can generate resources for all locales in the project at once by selecting the *localization resources root* directory instead of a specific locale folder; the tool will iterate the subfolders and generate resources for each.
@@ -60,7 +60,7 @@ You can generate resources for all locales in the project at once by selecting t
 ![](https://i.gyazo.com/4f0a6373755f0e122958f1f98de13013.png)
 :::
 
-Press "Generate" to create or update localization resources. On subsequent runs the tool will respect previously generated localization documents and preserve localized entries when the source material hasn't changed.
+Press "Generate Localization Documents" to create or update localization resources. On subsequent runs the tool will respect previously generated localization documents and preserve localized entries when the source material hasn't changed.
 
 Script localization documents are grouped under a `Scripts` folder and consist of statements in the following format:
 
@@ -85,7 +85,7 @@ Place the actual translation immediately after the comment line. You can use mul
 
 ### Joined Lines
 
-When a translated generic line contains inlined commands or expressions, it may be split into multiple text fragments, each mapped to a unique text ID. When **Join Lines** is enabled, such fragments will be joined into a single line using the pipe symbol `|`.
+When a translated generic line contains inlined commands or expressions, it may be split into multiple text fragments, each mapped to a unique text ID. In the generated localization documents, such fragments are joined into a single line using the pipe symbol `|`.
 
 For example, given the following source script text:
 
@@ -108,7 +108,7 @@ Notice inlined commands and expressions are replaced with `|`. Preserve them in 
 Похоже, дождь начинается|. Эй, |, поспеши!
 ```
 
-You can also rearrange localized fragments if required by the target language, e.g.:
+You can also rearrange localized fragments if required by the target language, eg:
 
 ```nani
 # id1|id2
@@ -133,7 +133,7 @@ When **Include Annotations** is enabled, generated localization documents includ
 Narrator: You've decided to go {route}. Wise choice!
 ```
 
-—the generated localization document will contain:
+— the generated localization document will contain:
 
 ```nani
 # id1
@@ -164,7 +164,7 @@ The Spreadsheet tool extracts localizable text to `.csv` sheets and can import e
 
 ![](https://i.gyazo.com/50767f3193ae5b3ed423ea7c213c786b.png)
 
-Before exporting, always generate localization data with the localization tool (`Naninovel -> Tools -> Localization`). You can generate resources for all locales at once by selecting the localization root directory (`Resources/Naninovel/Localization`) for the `Locale Folder` property.
+Before exporting, always generate localization data with the localization tool (`Naninovel -> Tools -> Localization`). You can generate resources for all locales at once by selecting the localization root directory (`Resources/Naninovel/Localization`) for the `Locale Folder (output)` property.
 
 ![](https://i.gyazo.com/047d43250a941b918de65205a19b2d78.png)
 
@@ -173,14 +173,14 @@ When the localization data is up to date, open the Spreadsheet tool via `Naninov
 ![](https://i.gyazo.com/16cd076ebcc43b2d1a058c10e9dea43d.png)
 
 Specify the required folders:
-- Input Script Folder — folder where source `.nani` scripts are stored (e.g., `Assets/Scenario`).
-- Input Text Folder — folder where [managed text documents](/guide/managed-text) are generated (e.g., `Assets/Resources/Naninovel/Text`). Make sure to generate managed text documents via the tool if the folder is missing.
-- Input Localization Folder — localization root where locale resources are stored (e.g., `Assets/Resources/Naninovel/Localization`).
+- Input Scripts Folder — folder where source `.nani` scripts are stored (eg, `Assets/Scenario`).
+- Input Text Folder — folder where [managed text documents](/guide/managed-text) are generated (eg, `Assets/Resources/Naninovel/Text`). Make sure to generate managed text documents via the tool if the folder is missing.
+- Input Localization Folder — localization root where locale resources are stored (eg, `Assets/Resources/Naninovel/Localization`).
 - Output Folder — destination for generated or edited sheets.
 
 Click "Export" to export sheets to the selected destination.
 
-Each script and managed text document will be exported to an individual sheet. Each sheet has an "ID" column storing localizable text IDs and an additional column for each locale. You can modify any column except "ID"; however, modifying the source-locale column won't have any effect on import.
+Each script and managed text document will be exported to an individual sheet. Each sheet has a "key" column storing localizable text IDs and an additional column for each locale. You can modify any column except "key"; however, modifying the source-locale column won't have any effect on import.
 
 When **Include Annotations** is enabled, generated sheets will also contain a column with the source script content (author names, inlined commands and comments). That column is ignored during import.
 
@@ -196,7 +196,7 @@ Project localization documents will be overwritten when importing from a spreads
 
 You can inject a custom spreadsheet processor to customize sheet generation and the import/export processes.
 
-Create a custom processor class by inheriting the built-in `Naninovel.Spreadsheet.Processor`. The utility will automatically pick your custom handler and use it instead of the built-in one.
+Create a custom processor class by inheriting the built-in `Naninovel.Spreadsheet.Processor`. The utility will automatically pick your custom processor and use it instead of the built-in one.
 
 Below is an example processor with key override points:
 
@@ -207,7 +207,7 @@ public class CustomProcessor : Processor
 {
     public CustomProcessor (ProcessorOptions options) : base(options)
     {
-        // Access export/import options, e.g.:
+        // Access export/import options, eg:
         // options.ScriptFolder
         // options.SourceLocale
         // ...
@@ -240,9 +240,9 @@ To display text in some languages, you'll need a compatible font. `Inter` is use
 If you plan to support many languages with a single font, consider [Noto fonts](https://www.google.com/get/noto/).
 :::
 
-Right-to-left (RTL) languages (Arabic, Hebrew, Persian, etc.) are supported by the TMPro printers but require additional setup; see the [guide](/guide/text-printers#right-to-left-arabic-text) for details.
+Right-to-left (RTL) languages (Arabic, Hebrew, Persian, etc) are supported by the TMPro printers but require additional setup; see the [guide](/guide/text-printers#right-to-left-arabic-text) for details.
 
-When publishing for CJK languages (Chinese, Japanese, and Korean), consider using the Character Extractor utility to optimize TMPro font atlas size. See [guide](/guide/text-printers#cjk-languages).
+When publishing for CJK languages (Chinese, Japanese, and Korean), consider using the Character Extractor utility to optimize TMPro font atlas size. See the [guide](/guide/text-printers#cjk-languages).
 
 To associate a font with a specific locale, use the `Apply On Locale` property of font options found in the UI configuration. When assigned, the font will be applied automatically whenever that locale is selected in the game settings.
 
@@ -260,7 +260,7 @@ When a released title gains enough popularity, the community may want to contrib
 
 ### Ejecting Localization Resources
 
-To generate localization resources (script and managed text docs), run the game executable with the `-nani-eject` argument, e.g.:
+To generate localization resources (script and managed text docs), run the game executable with the `-nani-eject` argument, eg:
 
 ```
 ./game.exe -nani-eject
@@ -272,7 +272,7 @@ This launches the game as usual, but after Naninovel initializes it will eject l
 C:/Users/User/AppData/LocalLow/Foo/Bar/Localization
 ```
 
-If you'd like to generate localization resources based on a built-in localization, append the locale tag to the eject arg. E.g., given the game has `ja-JP` localization, use:
+If you'd like to generate localization resources based on a built-in localization, append the locale tag to the eject arg. Eg, given the game has `ja-JP` localization, use:
 
 ```
 -nani-eject-ja-JP
@@ -280,7 +280,7 @@ If you'd like to generate localization resources based on a built-in localizatio
 
 When the locale tag is not specified, documents for the source locale are ejected.
 
-Now supply a font to use with the localization. Drop the font file under the Localization directory, e.g. `Localization/Noto.ttf`.
+Now supply a font to use with the localization. Drop the font file under the Localization directory, eg `Localization/Noto.ttf`.
 
 Note the `Localization/Info.txt` file. Specify the author of the localization (first line) and the supplied font name (second line) by replacing the default content. For example:
 
@@ -289,7 +289,7 @@ Awesome Author
 Noto.ttf
 ```
 
-— "Awesome Author" will be displayed in the language dropdown by default (developers can customize this). The font will be applied by default when the game starts.
+— "Awesome Author" will be displayed in the "Language" dropdown by default (developers can customize this). The font will be applied by default when the game starts.
 
 Don't delete or move the `Info.txt` file, as it's required to detect the presence of a community localization.
 
@@ -297,19 +297,19 @@ Don't delete or move the `Info.txt` file, as it's required to detect the presenc
 
 After documents are ejected you can start translating. The process is similar to "Scripts Localization" and "UI Localization" above. Script localization documents are stored in `Localization/Text/Scripts`, while managed text docs are in `Localization/Text`.
 
-Restart the game as usual (without the eject arg) and it will automatically use the localization resources in the persistent data folder. For script localization changes to take effect, the associated script has to be re-loaded (save-loading is usually enough), though a restart may be required in some cases.
+Restart the game as usual (without the eject arg) and it will automatically use the localization resources in the persistent data folder. For script localization changes to take effect, the associated script has to be reloaded (save-loading is usually enough), though a restart may be required in some cases.
 
 If the developer updates the game, you can eject again to update the existing localization; new lines and records will be inserted while existing translations for unchanged source material will be preserved.
 
-After translation is finished, share the `Localization` folder and instruct end-users to place it under the aforementioned persistent data directory to activate the localization. To disable the localization, delete the folder.
+After translation is finished, share the `Localization` folder and instruct end users to place it under the aforementioned persistent data directory to activate the localization. To disable the localization, delete the folder.
 
 ## Compiler Localization
 
-NaniScript is special among domain-specific languages in that it's heavily intertwined with natural languages, i.e., authors constantly switch between typing prose displayed to the player (printed text lines) and engine constructs (commands and labels).
+NaniScript is special among domain-specific languages in that it's heavily intertwined with natural languages, ie authors constantly switch between typing prose displayed to the player (printed text lines) and engine constructs (commands and labels).
 
 As long as you're authoring scenarios in English, it's not a problem, but authors working in other languages would have to switch keyboard layouts to input natural text and English-based commands. Worse, some layouts may not have required characters (such as `@`), requiring writers to input them via key codes.
 
-To help authoring scenarios in languages other than English, Naninovel has a compiler localization feature. It allows re-mapping control characters, as well as command and parameter names, constants and basically anything you need to type when authoring scenarios.
+To help with authoring scenarios in languages other than English, Naninovel has a compiler localization feature. It allows re-mapping control characters, as well as command and parameter names, constants and basically anything you need to type when authoring scenarios.
 
 First, create a compiler localization asset via `Create -> Naninovel -> Compiler Localization`. Select the asset and specify the desired localization for the compiler artifacts:
 
@@ -319,13 +319,13 @@ To override commands, parameters, queries and constants, use the dedicated lists
 
 ![](https://i.gyazo.com/4fdcdcec7361a9ccbcc1012d842ef4ad.png)
 
-The lists are initially empty. To populate them with commands and queries available in the project, use the inspector context menu.
+The lists are initially empty. To populate them with commands and queries available in the project, use the Inspector context menu.
 
 ![](https://i.gyazo.com/cddd1981c5aef5f16da2052898c7a530.png)
 
-After making the required changes, restart the Unity editor and re-import scenario script assets for changes to take effect.
+After making the required changes, restart the Unity Editor and re-import scenario script assets for changes to take effect.
 
-Localized artifacts will propagate to the visual editor and [IDE extension](/guide/ide-extension), providing autocomplete and on-hover documentation after metadata sync.
+Localized artifacts will propagate to the Story Editor and [IDE extension](/guide/ide-extension), providing autocomplete and on-hover documentation after metadata sync.
 
 ![](https://i.gyazo.com/fde9998597ffedb8a025401bb2f71ce9.png)
 

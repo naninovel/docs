@@ -1,6 +1,6 @@
 # Special Effects
 
-A number of built-in script commands are dedicated to various special effects. For example, [@shake] command shakes an actor:
+A number of built-in script commands are dedicated to various special effects. For example, the [@shake] command shakes an actor:
 
 ```nani
 ; Shake 'Kohaku' actor
@@ -37,7 +37,7 @@ Read on for descriptions of the built-in effects and the ways to [add custom eff
 
 ## Spawned Effects
 
-Spawned effects are based on the [@spawn] command or are derived from it. They can be one-off (like [@glitch]) or continuous (like [@show] or [@blur]). Read on for the list of the standard effects and the ways to add custom ones.
+Spawned effects are based on the [@spawn] command or are derived from it. They can be one-off (like [@glitch]) or continuous (like [@snow] or [@blur]). Read on for the list of the standard effects and the ways to add custom ones.
 
 ---
 ### Shake
@@ -49,15 +49,15 @@ Shakes the specified actor or the main camera. Dedicated command: [@shake]
 **Start Parameters**
 Name | Type | Default | Description
 --- | --- | --- | ---
-ID | String | null | ID of the actor to shake. Specify `Camera` to shake main camera.
+ID | String | null | ID of the actor to shake. Specify `Camera` to shake the main camera.
 Shake count | Number | 3 | The number of shake iterations.
 Loop | Boolean | false | When enabled, will loop the effect until stopped with [@despawn].
 Shake duration | Number | 0.15 | The base duration of each shake iteration, in seconds.
 Duration variation | Number | 0.25 | The randomized delta modifier applied to the base duration of the effect.
 Shake amplitude | Number | 0.5 | The base displacement amplitude of each shake iteration, in units.
 Amplitude variation | Number | 0.5 | The randomized delta modifier applied to the base displacement amplitude of the effect.
-Shake horizontally | Boolean | false | Whether to displace the actor horizontally (by x-axis).
-Shake vertically | Boolean | true | Whether to displace the actor vertically (by y-axis).
+Shake horizontally | Boolean | false | Whether to displace the actor horizontally (along the X-axis).
+Shake vertically | Boolean | true | Whether to displace the actor vertically (along the Y-axis).
 
 **Examples**
 
@@ -69,7 +69,7 @@ Shake vertically | Boolean | true | Whether to displace the actor vertically (by
 @shake Kohaku
 
 ; Shake the main camera horizontally 5 times
-@shake Camera count:5 hor!
+@shake Camera count:5 hor! !ver
 ```
 
 ---
@@ -83,7 +83,7 @@ Applies a post-processing effect to the main camera simulating digital video dis
 Name | Type | Default | Description
 --- | --- | --- | ---
 Duration | Number | 1 | The duration of the effect, in seconds.
-Intensity | Number | 1 | The intensity of the effect, in 0.0 to 10.0 range.
+Intensity | Number | 1 | The intensity of the effect, in the 0.0 to 10.0 range.
 
 **Examples**
 
@@ -107,7 +107,7 @@ Name | Type | Default | Description
 --- | --- | --- | ---
 Intensity | Number | 0.5 | The intensity of the rain (particles spawn rate per second).
 Fade-in time | Number | 5 | The particle system will gradually grow the spawn rate from 0 to the target level over the specified time, in seconds.
-X velocity | Number | 1 | Multiplier to the horizontal speed of the particles. Use to change angle of the rain drops.
+X velocity | Number | 1 | Multiplier to the horizontal speed of the particles. Use to change the angle of the raindrops.
 Y velocity | Number | 1 | Multiplier to the vertical speed of the particles.
 
 **Stop Parameters**
@@ -184,10 +184,10 @@ Fade-out time | Number | 3 | The particle system will gradually lower the opacit
 ---
 ### Bokeh
 
-Simulates depth of field (aka DOF, bokeh) effect, where only the object in focus stays sharp while the rest of the image is blurred. Dedicated command: [@bokeh]
+Simulates a depth of field (aka DOF, bokeh) effect, where only the object in focus stays sharp while the rest of the image is blurred. Dedicated command: [@bokeh]
 
 ::: tip
-In case you want to blur just one object (actor), consider using [Blur effect](/guide/special-effects#blur) instead.
+In case you want to blur just one object (actor), consider using the [Blur effect](/guide/special-effects#blur) instead.
 :::
 
 ![](https://i.gyazo.com/610d2cafe5fbe42aba7adb9ac71720d1.mp4)
@@ -195,7 +195,7 @@ In case you want to blur just one object (actor), consider using [Blur effect](/
 **Start Parameters**
 Name | Type | Default | Description
 --- | --- | --- | ---
-Focus Object Name | String | null | Name of the game object to set focus for (optional). When set, the focus will always stay on the game object and `Focus Distance` parameter will be ignored.
+Focus Object Name | String | null | Name of the game object to set focus for (optional). When set, the focus will always stay on the game object and the `Focus Distance` parameter will be ignored.
 Focus Distance | Number | 10 | Distance from the Naninovel camera to the focus point. Ignored when `Focus Object Name` is specified.
 Focal Length | Number | 3.75 | Amount of blur to apply for the de-focused areas; also determines focus sensitivity.
 Duration | Number | 1 | Interpolation time (how fast the parameters will reach the target values).
@@ -212,7 +212,7 @@ Stop Duration | Number | 1 | Fade-off (disable) duration for the effect paramete
 @bokeh Kohaku
 
 ; Fade-off (disable) the effect over 10 seconds
-@bokeh power:0
+@bokeh power:0 time:10
 
 ; Set focus point 10 units away from the camera,
 ; focal length to 0.95 and apply it over 3 seconds
@@ -222,15 +222,15 @@ Stop Duration | Number | 1 | Fade-off (disable) duration for the effect paramete
 ---
 ### Blur
 
-Applies a blur filter to a supported actor: backgrounds and characters of sprite, layered, diced, Live2D, Spine, video and scene implementations. By default (when the first parameter is not specified), the effect is applied to the `MainBackground` actor. Dedicated command: [@blur]
+Applies a blur filter to a supported actor: backgrounds and characters of sprite, layered, diced, universal, Live2D, Spine, video, placeholder and scene implementations. By default (when the first parameter is not specified), the effect is applied to the `MainBackground` actor. Dedicated command: [@blur]
 
 ![](https://i.gyazo.com/067614d77783683e74ca79652099b58d.mp4)
 
 **Start Parameters**
 Name | Type | Default | Description
 --- | --- | --- | ---
-Actor ID | String | MainBackground | ID of the actor to apply the effect for. The actor should have `IBlurable` interface implemented in order to support the effect.
-Intensity | Number | 0.5 | Intensity of the effect, in 0.0 to 1.0 range.
+Actor ID | String | MainBackground | ID of the actor to apply the effect for. The actor should have the `IBlurable` interface implemented in order to support the effect.
+Intensity | Number | 0.5 | Intensity of the effect, in the 0.0 to 1.0 range.
 Duration | Number | 1 | Interpolation time, in seconds (how fast the intensity will reach the target value).
 
 **Stop Parameters**
@@ -253,7 +253,7 @@ Stop Duration | Number | 1 | Fade-off (disable) duration for the effect, in seco
 
 ## Transition Effects
 
-When changing background and character appearances with [@back] and [@char] or performing scene transition with [@trans] command, you can additionally specify which transition effect to use. For example, the following command will transition to the "River" background using the "DropFade" transition effect:
+When changing background and character appearances with [@back] and [@char] or performing a scene transition with the [@trans] command, you can additionally specify which transition effect to use. For example, the following command will transition to the "River" background using the "DropFade" transition effect:
 
 ```nani
 @back River.DropFade
@@ -261,13 +261,13 @@ When changing background and character appearances with [@back] and [@char] or p
 
 When no transition effect is specified, a cross-fade is used by default.
 
-You can also specify duration of the transition (in seconds) with the `time` parameter:
+You can also specify the duration of the transition (in seconds) with the `time` parameter:
 
 ```nani
 @back River.DropFade time:1.5
 ```
 
-The above statement will transition to "River" background using "DropFade" transition over 1.5 seconds. Default `time` for all transitions is 0.35 seconds.
+The above statement will transition to the "River" background using the "DropFade" transition over 1.5 seconds. The default `time` for all transitions is 0.35 seconds.
 
 If you wish to wait for the transition to complete before playing the next command, add `wait!`:
 
@@ -278,7 +278,7 @@ If you wish to wait for the transition to complete before playing the next comma
 
 — "PianoTheme" background music will start playing only after the transition is complete.
 
-Some of the transition effects also support additional parameters, which you can control with `params` parameter:
+Some of the transition effects also support additional parameters, which you can control with the `params` parameter:
 
 ```nani
 @back River.Ripple params:10,5,0.02
@@ -294,7 +294,7 @@ If you wish to modify selected parameters, you can skip others and they'll have 
 
 All the transition parameters are of number type.
 
-The above examples work for characters as well; just assign the transition with `via` parameter:
+The above examples work for characters as well; just assign the transition with the `via` parameter:
 
 ```nani
 @char CharID.Appearance via:TransitionType params:...
@@ -760,11 +760,11 @@ For example, the following command transitions to the `River` background with th
 
 ### Custom Spawned Effects
 
-You can add a custom standalone effect (implemented via a prefab, like the "Rain" and "Snow" built-in effects) by adding the effect prefab via spawn resources manager (`Naninovel -> Resources -> Spawn`) and using [@spawn] and [@despawn] commands:
+You can add a custom standalone effect (implemented via a prefab, like the "Rain" and "Snow" built-in effects) by adding the effect prefab via the spawn resources manager (`Naninovel -> Resources -> Spawn`) and using the [@spawn] and [@despawn] commands:
 
 ![](https://i.gyazo.com/45b9d8fb51ffb368ff9f792221f10ca6.png)
 
-For example, given there is an `Explosion.prefab` prefab assigned via the spawn manager, the following commands will spawn and de-spawn (destroy) the prefab on scene:
+For example, given there is an `Explosion.prefab` prefab assigned via the spawn manager, the following commands will spawn and de-spawn (destroy) the prefab on the scene:
 
 ```nani
 @spawn Explosion
@@ -778,7 +778,7 @@ Additional effect parameters can be specified with `params`:
 ```
 
 ::: tip
-When building custom effects with multiple parameters, consider creating a [custom command](/guide/custom-commands) and inheriting it from `SpawnEffect`. This way you won't have to remember parameter positions in the `params` array and get auto-completion and type-checking when using [IDE extension](/guide/ide-extension):
+When building custom effects with multiple parameters, consider creating a [custom command](/guide/custom-commands) and inheriting it from `SpawnEffect`. This way you won't have to remember parameter positions in the `params` array and will get auto-completion and type-checking when using the [IDE extension](/guide/ide-extension):
 
 ```nani
 @explode Kohaku power:3 smoke!
@@ -789,13 +789,13 @@ The [@spawn] command also has transform parameters, allowing you to spawn the ob
 
 ```nani
 ; Spawn Explosion 15% from the left border of the screen
-; with x10 scale and rotated by 15 degrees over z-axis.
+; with x10 scale and rotated by 15 degrees around the Z-axis.
 @spawn Explosion pos:15 scale:10 roll:15
 ```
 
-In case you have a lot of prefabs to spawn and it's inconvenient to assign them via editor menu, it's possible to just drop them at `Resources/Naninovel/Spawn` folder and they'll automatically be available in the scripts. You can additionally organize them with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in scenario scripts. Eg, prefab asset stored as `Resources/Naninovel/Spawn/Explosions/Boom01` can be referenced in scripts as `Explosions/Boom01`.
+In case you have a lot of prefabs to spawn and it's inconvenient to assign them via the editor menu, it's possible to just drop them in the `Resources/Naninovel/Spawn` folder and they'll automatically be available in the scripts. You can additionally organize them with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in scenario scripts. Eg, a prefab asset stored as `Resources/Naninovel/Spawn/Explosions/Boom01` can be referenced in scripts as `Explosions/Boom01`.
 
-It's also possible to use [addressable asset system](/guide/resource-providers#addressable) to manually expose the resources. To expose an asset, assign address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "Boom01" prefab asset, assign the asset the following address: `Naninovel/Spawn/Boom01`. Be aware that the addressable provider is not used in editor by default; you can allow it by enabling `Enable Addressable In Editor` property in resource provider configuration menu.
+It's also possible to use the [Addressable Asset System](/guide/resource-providers#addressable) to manually expose the resources. To expose an asset, assign an address equal to the path you'd use to expose it via the method described above, except omit the "Resources/" part. Eg, to expose a "Boom01" prefab asset, assign the asset the following address: `Naninovel/Spawn/Boom01`. Be aware that while in the editor, a special "Editor" resource provider is always used first; the addressable provider is only tried for the resources that are not assigned via the editor menus.
 
 Check the built-in effect prefabs stored at `Naninovel/Prefabs/FX` for reference implementations.
 
@@ -818,32 +818,32 @@ Multiple profiles can be blended in one command. The regular camera animation pa
 To add custom camera (post-processing) effects and associated volume components, follow the [Unity guide](https://docs.unity3d.com/Manual/urp/post-processing/custom-post-processing-with-volume).
 
 ::: tip EXAMPLE
-Find an example on using camera effects in the [samples project](/guide/samples). The volume profiles are stored at `Settings/Render/Volumes`.
+Find an example of using camera effects in the [samples project](/guide/samples). The volume profiles are stored at `Settings/Render/Volumes`.
 :::
 
 ### Custom Transition Effects
 
 #### Dissolve Mask
 
-You can make custom transitions based on a dissolve mask texture. Dissolve mask is a greyscale texture, where the color defines when the pixel will transition to the target texture. For example, consider the following spiral dissolve mask:
+You can make custom transitions based on a dissolve mask texture. A dissolve mask is a grayscale texture, where the color defines when the pixel will transition to the target texture. For example, consider the following spiral dissolve mask:
 
 ![](https://i.gyazo.com/3c32e920efdf6cfb35214b6c9b617a6a.png)
 
-— the black square in the top-right corner indicates that the transition target should be displayed there at the start of the transition and the pure-white square in the center will transition in the very end.
+— the black square in the top-right corner indicates that the transition target should be displayed there at the start of the transition and the pure-white square in the center will transition at the very end.
 
 ::: tip
-For optimal memory usage, set "Single Channel" and "Red" in the dissolve texture import settings. Also, make sure `Non-Power of 2` and `Generate Mip Maps` options are disabled to prevent visual artifacts.
+For optimal memory usage, set "Single Channel" and "Red" in the dissolve texture import settings. Also, make sure the `Non-Power of 2` and `Generate Mipmap` options are disabled to prevent visual artifacts.
 
 ![](https://i.gyazo.com/7c38c89948b6d040c0b21ca573cf2968.png)
 :::
 
-To make a custom transition, use `Custom` transition mode and specify path (relative to project "Resources" folder) to the dissolve mask texture via the `dissolve` parameter, eg:
+To make a custom transition, use the `Custom` transition mode and specify the path (relative to the project "Resources" folder) to the dissolve mask texture via the `dissolve` parameter, eg:
 
 ```nani
 @back Appearance.Custom dissolve:Textures/Spiral
 ```
 
-To smooth (fuzz) borders of the transition, use the first parameter in 0 (no smoothing) to 100 (max smoothing) range, eg:
+To smooth (fuzz) borders of the transition, use the first parameter in the 0 (no smoothing) to 100 (max smoothing) range, eg:
 
 ```nani
 @back Appearance.Custom dissolve:Textures/Spiral params:90
@@ -863,11 +863,11 @@ Check out the following video for the usage examples.
 
 It's possible to add a completely custom transition effect via a custom actor [shader](https://docs.unity3d.com/Manual/ShadersOverview.html).
 
-Create a new shader and assign it to `Custom Texture Shader` property of the actors, which are supposed to use the custom transition effects; see [custom actor shader](/guide/custom-actor-shader) guide for more information on how to create and assign custom actor shaders.
+Create a new shader and assign a material using it to the `Custom Texture Material` property of the actors that are supposed to use the custom transition effects; see the [custom actor shader](/guide/custom-actor-shader) guide for more information on how to create and assign custom actor shaders.
 
-When a transition name is specified in a script command, [shader keyword](https://docs.unity3d.com/ScriptReference/Shader.EnableKeyword.html) with the same name (prefixed with `NANINOVEL_TRANSITION_`) is enabled in the material used by the actor.
+When a transition name is specified in a script command, a [shader keyword](https://docs.unity3d.com/ScriptReference/Shader.EnableKeyword.html) with the same name (prefixed with `NANINOVEL_TRANSITION_`) is enabled in the material used by the actor.
 
-To add your own transitions to a custom actor shader, use `multi_compile` directive, eg:
+To add your own transitions to a custom actor shader, use the `multi_compile` directive, eg:
 
 ```c
 #pragma multi_compile_local _ NANINOVEL_TRANSITION_CUSTOM1 NANINOVEL_TRANSITION_CUSTOM2
@@ -875,7 +875,7 @@ To add your own transitions to a custom actor shader, use `multi_compile` direct
 
 — will add `Custom1` and `Custom2` transitions.
 
-You can then use conditional directives to select a specific render method based on the enabled transition keyword. When re-using built-in actor shader, it's possible to implement custom transitions via `ApplyTransitionEffect` method, which is used in the fragment handler:
+You can then use conditional directives to select a specific render method based on the enabled transition keyword. When re-using the built-in actor shader, it's possible to implement custom transitions via the `ApplyTransitionEffect` method, which is used in the fragment handler:
 
 ```c
 fixed4 ApplyTransitionEffect(sampler2D mainTex, float2 mainUV,
@@ -907,4 +907,4 @@ You'll then be able to invoke the added transitions in the same way as the built
 @back River.Custom2
 ```
 
-For the complete shader example see [custom actor shader](/guide/custom-actor-shader) guide.
+For the complete shader example, see the [custom actor shader](/guide/custom-actor-shader) guide.

@@ -1,9 +1,9 @@
 # 特殊效果
 
-许多内置脚本命令专用于各种特殊效果。例如，[@shake] 命令会震动 actor：
+许多内置脚本命令专用于各种特殊效果。例如，[@shake] 命令会震动 Actor：
 
 ```nani
-; 震动 'Kohaku' actor
+; 震动 'Kohaku' Actor
 @shake Kohaku
 ```
 
@@ -17,10 +17,10 @@
 您可以更新效果参数而无需重新启动效果：
 
 ```nani
-; 开始循环缓慢震动 `Kohaku` actor
+; 开始循环缓慢震动 `Kohaku` Actor
 @shake Kohaku loop! power:0.1
 Kohaku: 隆隆作响！
-; 震动 3 次以上，幅度增加
+; 以更大的幅度再震动 3 次
 @shake Kohaku count:3 power:0.8
 ```
 
@@ -37,27 +37,27 @@ Kohaku: 隆隆作响！
 
 ## 生成效果
 
-生成效果基于 [@spawn] 命令或派生自它。它们可以是一次性的（如 [@glitch]）或连续的（如 [@show] 或 [@blur]）。请继续阅读以了解标准效果列表以及添加自定义效果的方法。
+生成效果基于 [@spawn] 命令或派生自它。它们可以是一次性的（如 [@glitch]）或持续的（如 [@snow] 或 [@blur]）。请继续阅读以了解标准效果列表以及添加自定义效果的方法。
 
 ---
 ### Shake
 
-震动指定的 actor 或主摄像机。专用命令：[@shake]
+震动指定的 Actor 或主摄像机。专用命令：[@shake]
 
 ![](https://i.gyazo.com/f9521fbcf959d0b72e449ae6e2191f9f.mp4)
 
 **开始参数**
 | 名称 | 类型 | 默认 | 描述 |
 | --- | --- | --- | --- |
-| ID | String | null | 要震动的 actor 的 ID。指定 `Camera` 以震动主摄像机。 |
+| ID | String | null | 要震动的 Actor 的 ID。指定 `Camera` 以震动主摄像机。 |
 | Shake count | Number | 3 | 震动迭代次数。 |
 | Loop | Boolean | false | 启用后，将循环效果，直到使用 [@despawn] 停止。 |
 | Shake duration | Number | 0.15 | 每次震动迭代的基本持续时间（以秒为单位）。 |
 | Duration variation | Number | 0.25 | 应用于效果基本持续时间的随机增量修饰符。 |
-| Shake amplitude | Number | 0.5 | 每次震动迭代的基本位移幅度（以单位为单位）。 |
+| Shake amplitude | Number | 0.5 | 每次震动迭代的基本位移幅度（以单位计）。 |
 | Amplitude variation | Number | 0.5 | 应用于效果基本位移幅度的随机增量修饰符。 |
-| Shake horizontally | Boolean | false | 是否水平位移 actor（按 x 轴）。 |
-| Shake vertically | Boolean | true | 是否垂直位移 actor（按 y 轴）。 |
+| Shake horizontally | Boolean | false | 是否水平位移 Actor（沿 X 轴）。 |
+| Shake vertically | Boolean | true | 是否垂直位移 Actor（沿 Y 轴）。 |
 
 **示例**
 
@@ -65,11 +65,11 @@ Kohaku: 隆隆作响！
 ; 震动当前默认文本打印机
 @shake
 
-; 使用默认参数震动 "Kohaku" actor
+; 使用默认参数震动 "Kohaku" Actor
 @shake Kohaku
 
 ; 水平震动主摄像机 5 次
-@shake Camera count:5 hor!
+@shake Camera count:5 hor! !ver
 ```
 
 ---
@@ -177,7 +177,7 @@ Kohaku: 隆隆作响！
 ; 在 10 秒内开始强烈的阳光
 @sun power:1 time:10
 
-; 在 30 秒内停止阳光
+; 在 30 秒内让阳光消失
 @sun power:0 time:30
 ```
 
@@ -187,7 +187,7 @@ Kohaku: 隆隆作响！
 模拟景深（又名 DOF、散景）效果，其中只有焦点处的对象保持清晰，而图像的其余部分模糊。专用命令：[@bokeh]
 
 ::: tip
-如果您只想模糊一个对象 (actor)，请考虑改用 [模糊效果](/zh/guide/special-effects#blur)。
+如果您只想模糊一个对象（Actor），请考虑改用 [Blur 效果](/zh/guide/special-effects#blur)。
 :::
 
 ![](https://i.gyazo.com/610d2cafe5fbe42aba7adb9ac71720d1.mp4)
@@ -212,7 +212,7 @@ Kohaku: 隆隆作响！
 @bokeh Kohaku
 
 ; 在 10 秒内淡出（禁用）效果
-@bokeh power:0
+@bokeh power:0 time:10
 
 ; 将焦点设置在距离摄像机 10 个单位的位置，
 ; 焦距为 0.95 并在 3 秒内应用
@@ -222,14 +222,14 @@ Kohaku: 隆隆作响！
 ---
 ### Blur
 
-将模糊滤镜应用于支持的 actor：精灵、分层、切片、Live2D、Spine、视频和场景实现的背景和角色。默认情况下（未指定第一个参数时），效果应用于 `MainBackground` actor。专用命令：[@blur]
+将模糊滤镜应用于支持的 Actor：精灵、分层、切片、Universal、Live2D、Spine、视频、占位符和场景实现的背景和角色。默认情况下（未指定第一个参数时），效果应用于 `MainBackground` Actor。专用命令：[@blur]
 
 ![](https://i.gyazo.com/067614d77783683e74ca79652099b58d.mp4)
 
 **开始参数**
 | 名称 | 类型 | 默认 | 描述 |
 | --- | --- | --- | --- |
-| Actor ID | String | MainBackground | 要应用效果的 actor 的 ID。actor 应实现 `IBlurable` 接口以支持该效果。 |
+| Actor ID | String | MainBackground | 要应用效果的 Actor 的 ID。该 Actor 应实现 `IBlurable` 接口以支持该效果。 |
 | Intensity | Number | 0.5 | 效果的强度，范围为 0.0 到 1.0。 |
 | Duration | Number | 1 | 插值时间，以秒为单位（强度达到目标值的速度）。 |
 
@@ -253,7 +253,7 @@ Kohaku: 隆隆作响！
 
 ## 过渡效果
 
-当使用 [@back] 和 [@char] 更改背景和角色外观或使用 [@trans] 命令执行场景过渡时，您可以额外指定要使用的过渡效果。例如，以下命令将使用 "DropFade" 过渡效果过渡到 "River" 背景：
+当使用 [@back] 和 [@char] 更改背景和角色外观或使用 [@trans] 命令执行场景过渡时，您可以额外指定要使用的过渡效果。例如，以下命令将使用“DropFade”过渡效果过渡到“River”背景：
 
 ```nani
 @back River.DropFade
@@ -267,7 +267,7 @@ Kohaku: 隆隆作响！
 @back River.DropFade time:1.5
 ```
 
-上述语句将在 1.5 秒内使用 "DropFade" 过渡过渡到 "River" 背景。所有过渡的默认 `time` 为 0.35 秒。
+上述语句将在 1.5 秒内使用“DropFade”过渡效果过渡到“River”背景。所有过渡的默认 `time` 为 0.35 秒。
 
 如果您希望在播放下一个命令之前等待过渡完成，请添加 `wait!`：
 
@@ -276,7 +276,7 @@ Kohaku: 隆隆作响！
 @bgm PianoTheme
 ```
 
-— "PianoTheme" 背景音乐只有在过渡完成后才会开始播放。
+— “PianoTheme”背景音乐只有在过渡完成后才会开始播放。
 
 一些过渡效果还支持其他参数，您可以使用 `params` 参数进行控制：
 
@@ -292,9 +292,9 @@ Kohaku: 隆隆作响！
 @back River.Ripple params:,,0.02
 ```
 
-所有过渡参数均为 number 类型。
+所有过渡参数均为数值类型。
 
-上述示例也适用于角色；只需使用 `via` 参数分配过渡：
+上述示例也适用于角色；只需使用 `via` 参数指定过渡：
 
 ```nani
 @char CharID.Appearance via:TransitionType params:...
@@ -320,7 +320,7 @@ Kohaku: 隆隆作响！
 ; 使用默认参数应用过渡
 @back Appearance.BandedSwirl
 
-; 使用默认扭曲量但低频应用过渡
+; 使用默认扭曲量但较低的频率应用过渡
 @back Appearance.BandedSwirl params:,2.5
 ```
 
@@ -760,7 +760,7 @@ EaseInOutElastic
 
 ### 自定义生成效果
 
-您可以通过生成资源管理器 (`Naninovel -> Resources -> Spawn`) 添加效果预制件并使用 [@spawn] 和 [@despawn] 命令来添加自定义独立效果（通过预制件实现，如 "Rain" 和 "Snow" 内置效果）：
+您可以通过生成资源管理器（`Naninovel -> Resources -> Spawn`）添加效果预制件并使用 [@spawn] 和 [@despawn] 命令来添加自定义独立效果（通过预制件实现，如“Rain”和“Snow”内置效果）：
 
 ![](https://i.gyazo.com/45b9d8fb51ffb368ff9f792221f10ca6.png)
 
@@ -785,23 +785,23 @@ EaseInOutElastic
 ```
 :::
 
-[@spawn] 命令还具有变换参数，允许在特定场景或世界位置以及特定旋转或缩放的情况下生成对象，例如：
+[@spawn] 命令还具有变换参数，允许在特定的场景或世界位置并以特定的旋转或缩放生成对象，例如：
 
 ```nani
-; 在距屏幕左边界 15% 处生成爆炸
-; 缩放 x10 并在 z 轴上旋转 15 度。
+; 在距屏幕左边界 15% 处生成 Explosion，
+; 缩放 10 倍并绕 Z 轴旋转 15 度。
 @spawn Explosion pos:15 scale:10 roll:15
 ```
 
-如果您有很多预制件要生成，并且通过编辑器菜单分配它们不方便，可以将它们放在 `Resources/Naninovel/Spawn` 文件夹中，它们将自动在脚本中可用。如果您愿意，您还可以使用子文件夹组织它们；在这种情况下，在剧本脚本中引用它们时使用正斜杠 (`/`)。例如，存储为 `Resources/Naninovel/Spawn/Explosions/Boom01` 的预制件资产可以在脚本中引用为 `Explosions/Boom01`。
+如果您有很多预制件要生成，并且通过编辑器菜单分配它们不方便，只需将它们放入 `Resources/Naninovel/Spawn` 文件夹，它们就会自动在脚本中可用。如果您愿意，还可以使用子文件夹组织它们；在这种情况下，在剧本脚本中引用它们时请使用正斜杠（`/`）。例如，存储为 `Resources/Naninovel/Spawn/Explosions/Boom01` 的预制件资产可以在脚本中引用为 `Explosions/Boom01`。
 
-也可以使用 [Addressable 资产系统](/zh/guide/resource-providers#addressable) 手动公开资源。要公开资产，请分配一个等于您通过上述方法公开它时使用的路径的地址，但省略 "Resources/" 部分。例如，要公开 "Boom01" 预制件资产，请为该资产分配以下地址：`Naninovel/Spawn/Boom01`。请注意，Addressable 提供者默认情况下不在编辑器中使用；您可以通过打开资源提供者配置菜单中的 `Enable Addressable In Editor` 属性来启用它。
+也可以使用 [Addressable 资产系统](/zh/guide/resource-providers#addressable) 手动公开资源。要公开资产，请为其分配一个地址，该地址等于使用上述方法时的路径，但省略“Resources/”部分。例如，要公开“Boom01”预制件资产，请为该资产分配以下地址：`Naninovel/Spawn/Boom01`。请注意，在编辑器中时，始终首先使用特殊的“Editor”资源提供者；只有未通过编辑器菜单分配的资源才会尝试使用 Addressable 提供者。
 
-检查存储在 `Naninovel/Prefabs/FX` 中的内置效果预制件以获取参考实现。
+可查看存储在 `Naninovel/Prefabs/FX` 中的内置效果预制件，作为参考实现。
 
 ### 自定义摄像机效果
 
-使用 [Volume 配置文件](https://docs.unity3d.com/Manual/urp/Volumes)创作摄像机效果，然后将配置文件资产添加到摄像机配置菜单（`Naninovel -> Configuration -> Camera`）的 `Volumes` 中。
+使用 [Volume 配置文件](https://docs.unity3d.com/Manual/urp/Volumes) 创作摄像机效果，然后将配置文件资产添加到摄像机配置菜单（`Naninovel -> Configuration -> Camera`）的 `Volumes` 中。
 
 使用 [@camera] 的 `fx` 参数设置效果权重。每个条目由配置文件名称及其后的权重组成，其中 `0` 表示无影响，`1` 表示完全应用：
 
@@ -815,29 +815,29 @@ EaseInOutElastic
 @camera fx:Dream.0,Night.1 time:3 easing:EaseOutQuad
 ```
 
-要添加自定义摄像机（后处理）效果和相关 Volume 组件，请按照 [Unity 指南](https://docs.unity3d.com/Manual/urp/post-processing/custom-post-processing-with-volume)操作。
+要添加自定义摄像机（后处理）效果和相关 Volume 组件，请按照 [Unity 指南](https://docs.unity3d.com/Manual/urp/post-processing/custom-post-processing-with-volume) 操作。
 
 ::: tip EXAMPLE
-在[示例项目](/zh/guide/samples)中可以找到使用摄像机效果的示例。Volume 配置文件存储在 `Settings/Render/Volumes` 中。
+在 [示例项目](/zh/guide/samples) 中可以找到使用摄像机效果的示例。Volume 配置文件存储在 `Settings/Render/Volumes` 中。
 :::
 
 ### 自定义过渡效果
 
 #### 溶解遮罩
 
-您可以根据溶解遮罩纹理进行自定义过渡。溶解遮罩是灰度纹理，其中颜色定义像素何时过渡到目标纹理。例如，考虑以下螺旋溶解遮罩：
+您可以基于溶解遮罩纹理制作自定义过渡。溶解遮罩是灰度纹理，其中颜色定义像素何时过渡到目标纹理。例如，请看以下螺旋形溶解遮罩：
 
 ![](https://i.gyazo.com/3c32e920efdf6cfb35214b6c9b617a6a.png)
 
 — 右上角的黑色方块表示过渡目标应在过渡开始时显示在那里，中心的纯白色方块将在最后过渡。
 
 ::: tip
-为了优化内存使用，请在溶解纹理导入设置中设置 "Single Channel" 和 "Red"。此外，确保禁用 `Non-Power of 2` 和 `Generate Mip Maps` 选项以防止视觉伪影。
+为了优化内存使用，请在溶解纹理导入设置中设置“Single Channel”和“Red”。此外，确保禁用 `Non-Power of 2` 和 `Generate Mipmap` 选项以防止视觉伪影。
 
 ![](https://i.gyazo.com/7c38c89948b6d040c0b21ca573cf2968.png)
 :::
 
-要进行自定义过渡，请使用 `Custom` 过渡模式并通过 `dissolve` 参数指定溶解遮罩纹理的路径（相对于项目 "Resources" 文件夹），例如：
+要制作自定义过渡，请使用 `Custom` 过渡模式并通过 `dissolve` 参数指定溶解遮罩纹理的路径（相对于项目“Resources”文件夹），例如：
 
 ```nani
 @back Appearance.Custom dissolve:Textures/Spiral
@@ -861,13 +861,13 @@ EaseInOutElastic
 
 #### 自定义着色器
 
-可以通过自定义 actor [着色器](https://docs.unity3d.com/Manual/ShadersOverview.html) 添加完全自定义的过渡效果。
+可以通过自定义 Actor [着色器](https://docs.unity3d.com/Manual/ShadersOverview.html) 添加完全自定义的过渡效果。
 
-创建一个新着色器并将其分配给应该使用自定义过渡效果的 actor 的 `Custom Texture Shader` 属性；有关如何创建和分配自定义 actor 着色器的更多信息，请参阅 [自定义 actor 着色器](/zh/guide/custom-actor-shader) 指南。
+创建一个新着色器，并将使用该着色器的材质分配给需要使用自定义过渡效果的 Actor 的 `Custom Texture Material` 属性；有关如何创建和分配自定义 Actor 着色器的更多信息，请参阅 [自定义 Actor 着色器](/zh/guide/custom-actor-shader) 指南。
 
-当在脚本命令中指定过渡名称时，将在 actor 使用的材质中启用具有相同名称（前缀为 `NANINOVEL_TRANSITION_`）的 [着色器关键字](https://docs.unity3d.com/ScriptReference/Shader.EnableKeyword.html)。
+当在脚本命令中指定过渡名称时，将在 Actor 使用的材质中启用具有相同名称（前缀为 `NANINOVEL_TRANSITION_`）的 [着色器关键字](https://docs.unity3d.com/ScriptReference/Shader.EnableKeyword.html)。
 
-要将您自己的过渡添加到自定义 actor 着色器，请使用 `multi_compile` 指令，例如：
+要将您自己的过渡添加到自定义 Actor 着色器，请使用 `multi_compile` 指令，例如：
 
 ```c
 #pragma multi_compile_local _ NANINOVEL_TRANSITION_CUSTOM1 NANINOVEL_TRANSITION_CUSTOM2
@@ -875,7 +875,7 @@ EaseInOutElastic
 
 — 将添加 `Custom1` 和 `Custom2` 过渡。
 
-然后，您可以使用条件指令根据启用的过渡关键字选择特定的渲染方法。当重用内置 actor 着色器时，可以通过片段处理程序中使用的 `ApplyTransitionEffect` 方法实现自定义过渡：
+然后，您可以使用条件指令根据启用的过渡关键字选择特定的渲染方法。当重用内置 Actor 着色器时，可以通过片段处理程序中使用的 `ApplyTransitionEffect` 方法实现自定义过渡：
 
 ```c
 fixed4 ApplyTransitionEffect(sampler2D mainTex, float2 mainUV,
@@ -886,12 +886,12 @@ fixed4 ApplyTransitionEffect(sampler2D mainTex, float2 mainUV,
     fixed4 mainColor = Tex2DClip01(mainTex, mainUV, CLIP_COLOR);
     fixed4 transColor = Tex2DClip01(transitionTex, transitionUV, CLIP_COLOR);
 
-    #ifdef NANINOVEL_TRANSITION_CUSTOM1 // Custom1 transition.
+    #ifdef NANINOVEL_TRANSITION_CUSTOM1 // Custom1 过渡。
     return transitionUV.x > progress ? mainColor
         : lerp(mainColor / progress * .1, transColor, progress);
     #endif
 
-    #ifdef NANINOVEL_TRANSITION_CUSTOM2 // Custom2 transition.
+    #ifdef NANINOVEL_TRANSITION_CUSTOM2 // Custom2 过渡。
     return lerp(mainColor * (1.0 - progress), transColor * progress, progress);
     #endif
 
@@ -907,4 +907,4 @@ fixed4 ApplyTransitionEffect(sampler2D mainTex, float2 mainUV,
 @back River.Custom2
 ```
 
-有关完整的着色器示例，请参阅 [自定义 actor 着色器](/zh/guide/custom-actor-shader) 指南。
+有关完整的着色器示例，请参阅 [自定义 Actor 着色器](/zh/guide/custom-actor-shader) 指南。

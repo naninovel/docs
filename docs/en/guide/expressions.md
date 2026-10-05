@@ -8,13 +8,13 @@ One plus two equals {1 + 2}.
 
 — will print "One plus two equals 3" when running the script.
 
-You can use any math and logical operators, as well as some math functions from the [UnityEngine.Mathf](https://docs.unity3d.com/ScriptReference/Mathf.html) namespace:
+You can use any math and logical operators, as well as some math functions from the [UnityEngine.Mathf](https://docs.unity3d.com/ScriptReference/Mathf.html) struct:
 
 ```nani
 @char Kohaku scale:{pow(cos(33.5), 3) % log(0.5)}
 ```
 
-— will scale character with ID "Kohaku" to the remainder of dividing cosine of 33.5 (raised to the power of 3) by the natural logarithm of 0.5.
+— will scale the character with ID "Kohaku" to the remainder of dividing the cosine of 33.5 (raised to the power of 3) by the natural logarithm of 0.5.
 
 The expression is evaluated at the moment the command is executed, which allows using [scenario variables](/guide/variables) inside the expressions:
 
@@ -45,7 +45,7 @@ Script expressions used in [@set] and [@if] commands (as well as the `set` and `
 @goto #EpicLabel if: abs(randomScore) >= 50
 ```
 
-To print curly braces inside a generic text line and prevent them from being recognized as expression delimiters, escape the braces with backslashes, e.g.:
+To print curly braces inside a generic text line and prevent them from being recognized as expression delimiters, escape the braces with backslashes, eg:
 
 ```nani
 Some text \{ text inside braces \}
@@ -75,6 +75,7 @@ Below is the map of the available aliases:
 | `!`      | `not`         |
 | `!=`     | `is not`      |
 | `&`      | `and`         |
+| `\|`     | `or`          |
 | `?`      | `then`        |
 | `:`      | `else`        |
 | `>`      | `is above`    |
@@ -90,21 +91,21 @@ The following queries can also be used inside scenario expressions.
 
 Signature | Description | Example
 --- | --- | ---
-random(min, max) | Return a random integer number between min [inclusive] and max [inclusive]. | `random(0, 100)`
-random(min, max) | Return a random decimal number between min [inclusive] and max [inclusive]. | `random(0.5, 1.5)`
-random(args) | Return a string chosen from one of the specified strings. | `random("foo", "bar", "baz")`
-calculateProgress() | Returns scenario completion ratio, in 0.0 to 1.0 range, where 1.0 means all the script lines were executed at least once. | `calculateProgress()`
+random(min, max) | Returns a random integer number between min [inclusive] and max [inclusive]. | `random(0, 100)`
+random(min, max) | Returns a random decimal number between min [inclusive] and max [inclusive]. | `random(0.5, 1.5)`
+random(args) | Returns a string chosen from one of the specified strings. | `random("foo", "bar", "baz")`
+calculateProgress() | Returns the scenario completion ratio, in 0.0 to 1.0 range, where 1.0 means all the script commands were executed at least once. | `calculateProgress()`
 isUnlocked(id) | Checks whether an unlockable item with the specified ID is currently unlocked. | `isUnlocked("Tips/MyTip")`
-hasPlayed() | Checks whether currently played command has ever been played before. | `hasPlayed()`
-hasPlayed(scriptPath) | Checks whether script with the specified path has ever been played before. | `hasPlayed("MyScript")`
-getName(characterId) | Returns author name of a character actor with the specified ID. | `getName("Kohaku")`
-pow(num, pow) | Returns num raised to power. | `pow(2, 3)`
-sqrt(num) | Returns square root of num. | `sqrt(2)`
-cos(num) | Returns the cosine of angle. | `cos(180)`
-sin(num) | Returns the sine of angle. | `sin(90)`
+hasPlayed() | Checks whether the currently played command has ever been played before. | `hasPlayed()`
+hasPlayed(scriptPath) | Checks whether a script with the specified path has ever been played before. | `hasPlayed("MyScript")`
+getName(characterId) | Returns the author name of a character actor with the specified ID. | `getName("Kohaku")`
+pow(num, pow) | Returns num raised to the power of pow. | `pow(2, 3)`
+sqrt(num) | Returns the square root of num. | `sqrt(2)`
+cos(num) | Returns the cosine of num (an angle in radians). | `cos(3.14)`
+sin(num) | Returns the sine of num (an angle in radians). | `sin(1.57)`
 log(num) | Returns the natural (base e) logarithm of a specified number. | `log(0.5)`
 abs(num) | Returns the absolute value of num. | `abs(0.5)`
-max(nums) | Returns largest of two or more values. | `max(1, 10, -9)`
+max(nums) | Returns the largest of two or more values. | `max(1, 10, -9)`
 min(nums) | Returns the smallest of two or more values. | `min(1, 10, -9)`
 round(num) | Returns num rounded to the nearest integer. | `round(0.9)`
 approx(a, b) | Compares two floating point values and returns true if they are similar. | `approx(0.15, 0.15)`
@@ -121,21 +122,21 @@ Only [simple](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/
 ```csharp
 public static class CustomQueries
 {
-    // Returns the provided string with all characters converted to lower-case.
     [ExpressionQuery("toLower")]
+    [Doc("Returns the provided string with all characters converted to lower-case.")]
     public static string ToLower (string content) => content.ToLower();
 
-    // Returns the sum of the provided numbers.
     [ExpressionQuery("add")]
+    [Doc("Returns the sum of the provided numbers.", examples: "add(1, 2)")]
     public static int Add (int a, int b) => a + b;
 
-    // Returns the remainder resulting from dividing the provided numbers.
     [ExpressionQuery("mod")]
+    [Doc("Returns the remainder resulting from dividing the provided numbers.")]
     public static double Modulus (double a, double b) => a % b;
 
-    // Returns a string randomly chosen from one of the provided strings.
-    [ExpressionQuery("random")]
-    public static string Random (params string[] args)
+    [ExpressionQuery("pick")]
+    [Doc("Returns a string randomly chosen from one of the provided strings.")]
+    public static string Pick (params string[] args)
     {
         if (args == null || args.Length == 0)
             return default;
@@ -146,15 +147,15 @@ public static class CustomQueries
 }
 ```
 
-The `ExpressionQuery` attribute has the following optional parameters:
+The `ExpressionQuery` attribute accepts an optional alias, while the documentation of the query is specified with the `Doc` attribute:
 
 - **Alias** By default, the method name is used as the query identifier (the way the query is referenced in scripts); assign an alias to change the identifier.
-- **Summary** Documentation shown in IDE extension and visual editor.
-- **Remarks** Additional information shown in IDE extension and visual editor.
-- **Example** Usage examples shown in IDE extension and visual editor.
+- **Summary** Documentation shown in the IDE extension and Story Editor.
+- **Remarks** Additional information shown in the IDE extension and Story Editor (optional).
+- **Examples** Usage examples shown in the IDE extension and Story Editor (optional).
 
 ::: tip EXAMPLE
-Another example of adding custom expression queries to check whether an item exists in an inventory can be found in the [inventory sample](/guide/samples#inventory). Specifically, the custom queries are implemented via `Scripts/Runtime/Inventory/InventoryQueries.cs` runtime script.
+Another example of adding custom expression queries to check whether an item exists in an inventory can be found in the [inventory sample](/guide/samples#inventory). Specifically, the custom queries are implemented via the `Scripts/Runtime/Inventory/InventoryQueries.cs` runtime script.
 :::
 
 ## Parameter Context
@@ -185,8 +186,8 @@ public static class CustomQueries
 You can also use other contexts, such as actors, resources, endpoints and others. For example, below is the built-in `getName()` query, which takes an actor ID and returns its display name. With `ActorContext` applied, it'll complete over actor IDs available in the project:
 
 ```cs
-[ExpressionQuery]
-static string GetName (
+[ExpressionQuery("getName")]
+public static string GetName (
     [ActorContext(CharactersConfiguration.DefaultPathPrefix)] string id)
 {
     return Engine.GetService<ICharacterManager>().GetAuthorName(id);
@@ -196,8 +197,8 @@ static string GetName (
 Another example, which will complete on unlockable IDs:
 
 ```cs
-[ExpressionQuery]
-static bool IsUnlocked (
+[ExpressionQuery("isUnlocked")]
+public static bool IsUnlocked (
     [ResourceContext(UnlockablesConfiguration.DefaultPathPrefix)] string id)
 {
     return Engine.GetService<IUnlockableManager>()?.ItemUnlocked(id) ?? false;

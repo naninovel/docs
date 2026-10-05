@@ -1,12 +1,12 @@
 # 自定义命令
 
-命令代表控制场景中发生的事情的单个操作；例如，它可以更改背景、移动角色或加载另一个剧本脚本。[剧本脚本](/zh/guide/scenario-scripting) 中定义的参数化命令序列有效地控制游戏流程。您可以在 [API 参考](/zh/api/) 中找到可用的内置命令。在代码中，所有内置脚本命令实现都在 `Naninovel.Commands` 命名空间下定义。
+命令代表控制场景中发生的事情的单个操作；例如，它可以更改背景、移动角色或加载另一个剧本脚本。[剧本脚本](/zh/guide/scenario-scripting) 中定义的参数化命令序列实际上控制着游戏流程。您可以在 [API 参考](/zh/api/) 中找到可用的内置命令。在代码中，所有内置脚本命令实现都在 `Naninovel.Commands` 命名空间下定义。
 
 ## 添加自定义命令
 
-要添加您自己的自定义脚本命令，请创建一个派生自 `Command` 的新 C# 类并实现 `Execute` 抽象方法。创建的类将自动被引擎拾取，您可以通过类名或别名（如果已分配）从剧本脚本调用该命令。要为 Naninovel 命令分配别名，请将 `Alias` 属性应用于类。
+要添加您自己的自定义脚本命令，请创建一个派生自 `Command` 的新 C# 类并重写 `Execute` 方法。创建的类将自动被引擎识别，您可以通过类名或别名（如果已分配）从剧本脚本调用该命令。要为 Naninovel 命令分配别名，请将 `Alias` 特性应用于类。
 
-下面是一个自定义命令的示例，可以从剧本脚本中作为 `@HelloWorld` 或 `@hello` 调用以将 "Hello World!" 打印到控制台，并且还可以采用可选的 `name` 参数（例如 `@hello name:Felix`）来问候提供的名称而不是世界。
+下面是一个自定义命令的示例，可以在剧本脚本中通过 `@HelloWorld` 或 `@hello` 调用，将“Hello World!”打印到控制台，并且还可以接受可选的 `name` 参数（例如 `@hello name:Felix`），以问候提供的名字而不是世界。
 
 ```csharp
 using System;
@@ -29,18 +29,18 @@ public class HelloWorld : Command
 ```
 
 ::: info NOTE
-每当您更改 C# 命令实现时（例如重命名类、添加或删除参数、更改其类型或属性），请记住重新导入剧本脚本资产（右键单击存储脚本的文件夹，然后单击 "Reimport"）。这是必要的，因为剧本脚本是在导入时（而不是在运行时）解析和编译的，并且必须与 C# 实现保持同步。
+每当您更改 C# 命令实现时（例如重命名类、添加或删除参数、更改其类型或特性），请记住重新导入剧本脚本资产（右键单击存储脚本的文件夹，然后单击“Reimport”）。这是必要的，因为剧本脚本是在导入时（而不是在运行时）解析和编译的，并且必须与 C# 实现保持同步。
 :::
 
 ### Execute 方法
 
-`Execute` 是脚本播放器执行命令时调用的异步方法；将您的命令逻辑保留在那里。使用 [引擎服务](/zh/guide/engine-services) 访问引擎的内置系统。如果 `Wait` 参数设置为 `true`，则剧本脚本执行将暂停，直到此方法返回完成的任务。
+`Execute` 是脚本播放器执行命令时调用的异步方法；请将您的命令逻辑放在其中。使用 [引擎服务](/zh/guide/engine-services) 访问引擎的内置系统。剧本脚本执行将暂停，直到此方法返回的 `Awaitable` 完成；要使等待成为可选，请像内置命令那样声明一个布尔类型的 `Wait` 参数，并使用 `WaitOrForget` 方法包装异步逻辑。
 
 ### 执行上下文
 
 请注意提供给 `Execute` 方法的 `ExecutionContext ctx` 参数。在执行 [异步操作](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/) 时，请务必在每个异步操作后检查 `ctx.Token` 异步令牌是否有取消和完成请求，并做出相应反应：
 
-- `AsyncToken.Canceled` 表示引擎已被销毁或重置。在这两种情况下，使用引擎 API 都不再安全，任何状态突变都会导致未定义的行为。当取消时，命令实现应立即抛出 `AsyncOperationCanceledException`，丢弃任何当前执行的活动。
+- `AsyncToken.Canceled` 表示引擎已被销毁或重置。在这两种情况下，使用引擎 API 都不再安全，任何状态修改都会导致未定义的行为。取消时，命令实现应立即抛出 `AsyncOperationCanceledException`，并放弃当前正在执行的所有活动。
 - `AsyncToken.Completed` 表示命令应尽可能快地完成所有活动。例如，如果您正在运行动画，请立即完成它们，无论其预期持续时间如何。这通常发生在玩家激活继续输入或开始保存游戏操作时。
 
 ```csharp
@@ -91,7 +91,7 @@ public override async Awaitable Execute (ExecutionContext ctx)
 
 ### 参数别名
 
-或者，您可以将 `[Alias]` 属性应用于字段以为参数分配别名，允许在剧本脚本中引用参数时使用它代替字段名称。
+您还可以将 `[Alias]` 特性应用于字段，为参数分配别名，以便在剧本脚本中引用该参数时用别名代替字段名称。
 
 ```csharp
 [Alias("myParam")]
@@ -104,7 +104,7 @@ public StringParameter MyParameter;
 
 ### 主参数
 
-应用 `[PrimaryParameter]` 属性后，可在不提供参数标识符的情况下指定该参数。每个命令只允许一个主参数。
+应用 `[PrimaryParameter]` 特性后，可在不提供参数标识符的情况下指定该参数。每个命令只允许一个主参数。
 
 ```csharp
 [PrimaryParameter]
@@ -115,9 +115,9 @@ public StringParameter MyPrimaryParameter;
 @cmd value of the primary param
 ```
 
-### 必选参数
+### 必需参数
 
-要使参数成为必选参数（当剧本脚本中未指定时会导致记录错误），请将 `[RequiredParameter]` 属性应用于字段。未应用该属性时，参数被视为可选参数。
+要使参数成为必需参数（当剧本脚本中未指定时会导致记录错误），请将 `[RequiredParameter]` 特性应用于字段。未应用该特性时，参数被视为可选参数。
 
 ```csharp
 [RequiredParameter]
@@ -126,7 +126,7 @@ public StringParameter MyRequiredParameter;
 
 ### 可选参数
 
-当参数不是必选时，它可能在剧本脚本中分配了值，也可能没有；使用 `HasValue` 属性来测试是否是这种情况。或者，您可以使用 `Assigned()` 静态方法，该方法接受参数实例，并在提供的参数不为空且已分配值时返回 true。
+当参数不是必需时，它在剧本脚本中可能已赋值，也可能没有；使用 `HasValue` 属性来测试是否是这种情况。或者，您可以使用 `Assigned()` 静态方法，该方法接受参数实例，并在提供的参数不为空且已赋值时返回 true。
 
 ```csharp
 public StringParameter MyOptionalParameter;
@@ -158,13 +158,13 @@ public class PlayAudioClip : Command, Command.IPreloadable
     public async Awaitable PreloadResources (ScriptPlaylist playlist)
     {
         if (!Assigned(ClipPath) || ClipPath.DynamicValue) return;
-        await ... (load the audio clip here)
+        await Audio.SfxLoader.Load(ClipPath, this);
     }
 
-    public void ReleasePreloadedResources ()
+    public void ReleaseResources (ScriptPlaylist playlist)
     {
         if (!Assigned(ClipPath) || ClipPath.DynamicValue) return;
-        ... (unload the clip here)
+        Audio.SfxLoader.Release(ClipPath, this);
     }
 }
 ```
@@ -173,17 +173,17 @@ public class PlayAudioClip : Command, Command.IPreloadable
 
 ### 命令示例
 
-您可以在 `Naninovel/Runtime/Commands` 包文件夹中找到包含所有内置命令实现的脚本；在实现您自己的自定义命令时，请随意将它们用作参考。
+您可以在 `Naninovel/Runtime/Commands` 包文件夹中找到包含所有内置命令实现的 C# 脚本；在实现您自己的自定义命令时，可以随意将它们用作参考。
 
 ::: tip EXAMPLE
-在 [库存示例](/zh/guide/samples#库存-inventory) 中可以找到添加自定义命令以添加/删除库存系统项目的另一个示例。具体来说，命令实现存储在 `Scripts/Runtime/Inventory/Commands` 目录下。
+在 [库存示例](/zh/guide/samples#库存) 中可以找到添加自定义命令以添加/移除库存系统物品的另一个示例。具体来说，命令实现存储在 `Scripts/Runtime/Inventory/Commands` 目录下。
 :::
 
 ## 覆盖内置命令
 
 在某些情况下，覆盖内置 Naninovel 命令可能很有用。例如，您可能希望更改 [@print] 命令的工作方式而不添加自定义命令，以便更改也会影响 [通用文本行](/zh/guide/scenario-scripting#通用文本行)（通用行的文本在底层被解析为打印命令）。
 
-要覆盖内置命令，请添加一个自定义命令并应用内置命令具有的相同别名。覆盖命令后重新导入剧本脚本（右键单击它们存储的文件夹，然后单击 "Reimport"）以使更改生效。然后，在播放剧本脚本时将自动使用自定义命令而不是内置命令。
+要覆盖内置命令，请添加一个自定义命令并应用内置命令具有的相同别名。覆盖命令后重新导入剧本脚本（右键单击存储它们的文件夹，然后单击“Reimport”）以使更改生效。然后，在播放剧本脚本时将自动使用自定义命令而不是内置命令。
 
 下面是覆盖内置 [@print] 命令的示例，以便在向玩家显示之前将打印的文本记录到控制台。
 
@@ -200,5 +200,5 @@ public class MyCustomPrintCommand : PrintText
 ```
 
 ::: tip
-命令和参数可以应用各种上下文属性，以便在 IDE 和 Web 编辑器中提供文档、自动补全和高级诊断。在 [IDE 扩展](/zh/guide/ide-extension#ide-属性) 指南中查找可用属性。
+命令和参数可以应用各种上下文特性，以便在 IDE 和故事编辑器中提供文档、自动补全和高级诊断。在 [IDE 扩展](/zh/guide/ide-extension#ide-特性) 指南中查找可用特性。
 :::

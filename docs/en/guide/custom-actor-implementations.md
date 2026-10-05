@@ -9,14 +9,14 @@ Actors are represented by the `IActor` interface and its derivatives:
 * `ITextPrinterActor`
 * `IChoiceHandlerActor`
 
-Each actor interface can have multiple implementations; e.g., character actors currently have seven built-in implementations: sprite, diced sprite, generic, layered, narrator, Spine, and Live2D.
+Each actor interface can have multiple implementations; eg character actors currently have eleven built-in implementations: placeholder, sprite, diced sprite, universal, layered, generic, video, Live2D, Spine, narrator, and transient.
 
-Actor implementation can be selected in the configuration managers accessible via `Naninovel -> Configuration` context menu. You can change the default implementation used for all actors or set a specific implementation per actor. To change the default implementation, use the `Default Metadata` property; to set specific ones, use the `Implementation` drop-down in the actor's configuration.
+An actor implementation can be selected in the configuration managers accessible via the `Naninovel -> Configuration` editor menu. You can change the default implementation used for all actors or set a specific implementation per actor. To change the default implementation, use the `Default Metadata` property; to set specific ones, use the `Implementation` dropdown in the actor's configuration.
 
 ![](https://i.gyazo.com/74625fa24b58362de15bb8e07753824d.png)
 ![](https://i.gyazo.com/eeb42043eb9a841de003f8db848f1427.png)
 
-The Implementation drop-down contains all the types that implement the specific actor interface. You can add your own custom implementations, and they'll also appear in the list. See the `Naninovel/Runtime/Actor` scripts for reference when creating your own actor implementation. Consider using the built-in abstract `MonoBehaviourActor` implementation to fulfill most base interface requirements when the actor is supposed to be spawned in the scene.
+The Implementation dropdown contains all the types that implement the specific actor interface. You can add your own custom implementations, and they'll also appear in the list. See the `Naninovel/Runtime/Actor` scripts for reference when creating your own actor implementation. Consider using the built-in abstract `MonoBehaviourActor` implementation to fulfill most base interface requirements when the actor is supposed to be spawned in the scene.
 
 When creating custom actor implementations, make sure they have a compatible public constructor:
 
@@ -24,25 +24,25 @@ When creating custom actor implementations, make sure they have a compatible pub
 public ActorImplementationType (string id, ActorMetadata metadata) { }
 ```
 
-— where `id` is the ID of the actor and `metadata` is either the actor's metadata (when an actor record exists in the resources) or a default metadata. When implementing a specific actor interface, it's possible to request corresponding specific metadata (e.g., `CharacterMetadata` for `ICharacterActor` implementations).
+— where `id` is the ID of the actor and `metadata` is either the actor's metadata (when an actor record exists in the resources) or the default metadata. When implementing a specific actor interface, it's possible to request corresponding specific metadata (eg, `CharacterMetadata` for `ICharacterActor` implementations).
 
 ::: tip EXAMPLE
-All the built-in actor implementations are authored on top of the same actor APIs, so you can use them as a reference when adding your own. Find the sources at the `Runtime/Actor` directory of the Naninovel package.
+All the built-in actor implementations are authored on top of the same actor APIs, so you can use them as a reference when adding your own. Find the sources in the `Runtime/Actor` directory of the Naninovel package.
 :::
 
 ## Actor Resources
 
-Apply the `ActorResources` attribute to the implementation type to specify which assets can be used as resources for your custom actor and whether it's allowed to assign multiple resources in the editor menus. When multiple resources are not allowed (the default), you can load the single available resource by specifying just the actor ID, e.g.:
+Apply the `ActorResources` attribute to the implementation type to specify which assets can be used as resources for your custom actor and whether it's allowed to assign multiple resources in the editor menus. When multiple resources are not allowed (the default), you can load the single available resource by specifying just the actor ID, eg:
 
 ```csharp
 var resource = await resourceLoader.Load(actorId);
 ```
 
-When multiple resources are allowed, specify the full path; e.g., given you've assigned a resource with the name `CubeBackground`:
+When multiple resources are allowed, specify the full path; eg given you've assigned a resource with the name `CubeBackground`:
 
 ![](https://i.gyazo.com/64ff6d6dede1cc8c2c3be83cfe6a6d74.png)
 
-—to load the resource, use:
+— to load the resource, use:
 
 ```csharp
 var resource = await resourceLoader.Load($"{actorId}/CubeBackground");
@@ -72,7 +72,7 @@ Serializable fields of the created custom data class will be automatically expos
 
 ![](https://i.gyazo.com/72f46feb74b6de568b299329500bd7d5.png)
 
-To access the custom data at runtime, use `GetCustomData<TData>()` method of an `ActorMetadata` instance, where `TData` is the type of the custom data class, e.g.:
+To access the custom data at runtime, use the `GetCustomData<TData>()` method of an `ActorMetadata` instance, where `TData` is the type of the custom data class, eg:
 
 ```csharp
 var charsConfig = Engine.GetConfiguration<CharactersConfiguration>();
@@ -122,7 +122,7 @@ public class ExtraLabelPropertyDrawer : PropertyDrawer
     }
 }
 
-// Now you can use the attribute to apply extra label to the serialized fields.
+// Now you can use the attribute to apply an extra label to the serialized fields.
 public class MyCharacterData : CustomMetadata<CustomCharacterImplementation>
 {
     [ExtraLabel("Text from my custom property drawer")]
@@ -135,7 +135,7 @@ Given the above implementation, the custom character data will now draw as follo
 ![](https://i.gyazo.com/294a9e2812d33ea3c863f9f53906b327.png)
 
 ::: tip
-It's also possible to override built-in configuration editors as a whole; see [custom configuration](/guide/custom-configuration#overriding-built-in-editors) guide for more information and examples.
+It's also possible to override built-in configuration editors as a whole; see the [custom configuration](/guide/custom-configuration#overriding-built-in-editors) guide for more information and examples.
 :::
 
 ## Custom State
@@ -143,9 +143,9 @@ It's also possible to override built-in configuration editors as a whole; see [c
 To override or extend the state type for your custom actor, you'll have to also [override the actor's manager](/guide/engine-services#overriding-built-in-services), as the state is serialized and applied to the managed actors there.
 
 ::: info NOTE
-This applies to custom actor implementations of one of the built-in `IActor` interface derivatives (characters, backgrounds, text printers, and choice handlers); if you've inherited your custom actor directly from `IActor`, there's no need to override the built-in managers to use a custom state — just create your own.
+This applies to custom actor implementations of one of the built-in `IActor` interface derivatives (characters, backgrounds, text printers, and choice handlers); if you've inherited your custom actor directly from `IActor`, there's no need to override the built-in managers to use a custom state — just create your own manager with the custom state type.
 
-If you're looking to add a custom state for other systems (e.g., UIs, game objects, or components for various game mechanics outside of Naninovel), see the [state management guide](/guide/state-management#custom-state).
+If you're looking to add a custom state for other systems (eg, UIs, game objects, or components for various game mechanics outside of Naninovel), see the [state management guide](/guide/state-management#custom-state).
 :::
 
 Below is an example of extending choice handler state by adding a `LastChoiceTime` field, which stores the time of the last added choice. The time is printed to the console when the custom choice handler is shown.
@@ -168,9 +168,9 @@ public class MyChoiceHandlerState : ChoiceHandlerState
 
     // This method is invoked when loading the game;
     // get the serialized data back and apply it to the actor.
-    public override void ApplyToActor (IChoiceHandlerActor actor)
+    public override async Awaitable ApplyToActor (IChoiceHandlerActor actor)
     {
-        base.ApplyToActor(actor);
+        await base.ApplyToActor(actor);
         if (actor is MyCustomChoiceHandler myCustomChoiceHandler)
             myCustomChoiceHandler.LastChoiceTime = LastChoiceTime;
     }
@@ -181,20 +181,20 @@ public class MyCustomChoiceHandler : UIChoiceHandler
 {
     public string LastChoiceTime { get; set; }
 
-    public MyCustomChoiceHandler (string id, ChoiceHandlerMetadata metadata)
-        : base(id, metadata) { }
+    public MyCustomChoiceHandler (string id, ChoiceHandlerMetadata meta,
+        EmbeddedAppearanceLoader<GameObject> loader) : base(id, meta, loader) { }
 
-    public override void AddChoice (ChoiceState choice)
+    public override void AddChoice (Choice choice)
     {
         base.AddChoice(choice);
         LastChoiceTime = DateTime.Now.ToShortTimeString();
     }
 
-    public override Awaitable ChangeVisibility (bool visible, float duration,
-        EasingType easingType = default, AsyncToken token = default)
+    public override Awaitable ChangeVisibility (bool visible, Tween tween,
+        AsyncToken token = default)
     {
         Debug.Log($"Last choice time: {LastChoiceTime}");
-        return base.ChangeVisibility(visible, duration, easingType, token);
+        return base.ChangeVisibility(visible, tween, token);
     }
 }
 

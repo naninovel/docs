@@ -20,19 +20,19 @@
 
 ## 面向服务
 
-大多数引擎功能都是通过引擎服务实现的。引擎服务是 `IEngineService` 接口的实现，用于处理特定工作，例如执行剧本脚本、管理 actor 或保存和加载游戏状态。
+大多数引擎功能都是通过引擎服务实现的。引擎服务是 `IEngineService` 接口的实现，用于处理特定工作，例如执行剧本脚本、管理 Actor 或保存和加载游戏状态。
 
-如果您需要与引擎系统交互，通常会使用引擎服务。您可以使用静态方法 `Engine.GetService<TService>()` 获取对服务的引用，其中 `TService` 是您想要服务的接口类型；例如，要获取 `IScriptPlayer` 服务：
+如果您需要与引擎系统交互，通常会使用引擎服务。您可以使用静态方法 `Engine.GetService<TService>()` 获取对服务的引用，其中 `TService` 是所需服务的接口类型；例如，要获取 `IScriptPlayer` 服务：
 
 ```csharp
 var player = Engine.GetService<IScriptPlayer>();
-player.Stop();
+player.MainTrack.Stop();
 ```
 您可以在 [引擎服务指南](/zh/guide/engine-services) 中找到所有当前可用的引擎服务列表以及有关如何覆盖或添加自定义服务的信息。
 
-## 高级概念
+## 高层概念
 
-以下 UML 图说明了引擎架构的高级概念。请注意，图中的所有类和接口名称都在 `Naninovel` 命名空间下组织。例如，要引用 `Engine` 类，请使用 `Naninovel.Engine` 或 [包含命名空间](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/namespaces/using-namespaces)。
+以下 UML 图展示了引擎架构的高层概念。请注意，图中的所有类和接口名称都位于 `Naninovel` 命名空间下。例如，要引用 `Engine` 类，请使用 `Naninovel.Engine` 或 [包含命名空间](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/namespaces/using-namespaces)。
 
 <object class="engine-design-dark" data="/assets/img/engine-design-dark.svg" type="image/svg+xml"></object>
 <object class="engine-design-light" data="/assets/img/engine-design-light.svg" type="image/svg+xml"></object>

@@ -1,6 +1,6 @@
-﻿# Memory Management
+# Memory Management
 
-Some script commands require loading resources in order to work: audio clips for [@bgm], character appearance textures for [@char], video clips for [@movie], and so on. Naninovel takes care of loading and unloading these resources in an optimized way. The default behavior is determined by the `Resource Policy` setting found in the resource provider configuration.
+Some script commands require loading resources in order to work: audio clips for [@bgm], character appearance textures for [@char], video clips for [@movie], and so on. Naninovel takes care of loading and unloading these resources in an optimized way. The default behaviour is determined by the `Resource Policy` setting found in the resource provider configuration.
 
 ![](https://i.gyazo.com/ee96274f01f2f355d14190aabf5f2070.png)
 
@@ -147,9 +147,9 @@ that navigates to the gosub and are not unloaded until that script unloads.
 
 ## Lazy Policy
 
-Other policies assume the game is designed with some kind of loading screens in mind—masked as scene, act, or day changes—where Naninovel has a chance to perform CPU-intensive resource loading operations in bulk, ensuring actual gameplay remains smooth.
+Other policies assume the game is designed with some kind of loading screens in mind — masked as scene, act, or day changes — where Naninovel has a chance to perform CPU-intensive resource loading operations in bulk, ensuring actual gameplay remains smooth.
 
-However, some games may not have a compatible structure or may not require that kind of optimization. When "Lazy" mode is selected, Naninovel will never show loading screens or attempt to preload resources before playing a script. Instead, it loads the required resources "on the fly" as the script plays. It also preloads a set number of commands ahead of the currently played one to minimize delays during gameplay. The number of preloaded commands can be adjusted with `Lazy Buffer` setting found in the resource provider configuration.
+However, some games may not have a compatible structure or may not require that kind of optimization. When "Lazy" mode is selected, Naninovel will never show loading screens or attempt to preload resources before playing a script. Instead, it loads the required resources "on the fly" as the script plays. It also preloads a set number of commands ahead of the currently played one to minimize delays during gameplay. The number of preloaded commands can be adjusted with the `Lazy Buffer` setting found in the resource provider configuration.
 
 ::: code-group
 
@@ -177,7 +177,7 @@ The "Town" background is now unloaded, as it's no longer visible.
 
 :::
 
-Lazy mode has an important caveat: loading assets—especially "heavy" ones like large background textures, HD character models, or video files—may cause noticeable stutters during gameplay. While Naninovel attempts to perform these operations off the main thread whenever possible, some low-power devices or platforms (notably, web) may still experience noticeable stutter, especially during skip (fast-forward) and rollback. Be sure to test the game on your minimum supported hardware specifications before deciding whether the Lazy policy is acceptable.
+Lazy mode has an important caveat: loading assets — especially "heavy" ones like large background textures, HD character models, or video files — may cause noticeable stutters during gameplay. While Naninovel attempts to perform these operations off the main thread whenever possible, some low-power devices or platforms (notably, web) may still experience noticeable stutter, especially during skip (fast-forward) and rollback. Be sure to test the game on your minimum supported hardware specifications before deciding whether the Lazy policy is acceptable.
 
 ## Choosing a Policy
 
@@ -185,7 +185,7 @@ In general, it's recommended to stick with the default "Conservative" policy, as
 
 However, if you're exclusively targeting powerful platforms with ample RAM, such as standalone builds and game consoles, you may prefer the "Optimistic" policy to keep large portions of resources in memory and minimize loading screens.
 
-Another scenario for using the "Optimistic" policy is when Naninovel is employed as a dialogue system inside a custom game loop. In such cases, you'll likely have your own resource management system, and "Optimistic" won't interfere—it will simply keep all the required resources loaded before playing a script, unless you explicitly use `release!` flags.
+Another scenario for using the "Optimistic" policy is when Naninovel is employed as a dialogue system inside a custom game loop. In such cases, you'll likely have your own resource management system, and "Optimistic" won't interfere — it will simply keep all the required resources loaded before playing a script, unless you explicitly use `release!` flags.
 
 Choose the "Lazy" policy when you need to minimize memory usage and can tolerate potential stutters during gameplay, or when it's not feasible to design the game around loading screens.
 
@@ -195,7 +195,7 @@ Below is a summary of the policies:
 |--------------|:--------------------------------------:|---------------------------------------|----------------------------------------------------|----------------------------------------------------|
 | Conservative | <span class="txt-warn">Balanced</span> | <span class="txt-ok">Stable</span>    | <span class="txt-err">On goto, unless held</span>  | <span class="txt-warn">Fast in held scripts</span> |
 | Optimistic   |   <span class="txt-err">High</span>    | <span class="txt-ok">Stable</span>    | <span class="txt-warn">None, until released</span> | <span class="txt-ok">Fast until released</span>    |
-| Lazy         |    <span class="txt-ok">Low</span>     | <span class="txt-err">Volatile</span> | <span class="txt-ok">Never</span>                  | <span class="txt-err">Always Slow</span>           |
+| Lazy         |    <span class="txt-ok">Low</span>     | <span class="txt-err">Volatile</span> | <span class="txt-ok">Never</span>                  | <span class="txt-err">Always slow</span>           |
 
 ## Actor Resources
 
@@ -203,7 +203,7 @@ Actors (characters, backgrounds, text printers and choice handlers) are the key 
 
 ### Appearances
 
-Some actor implementations have their appearance mapped 1:1 to a resource: sprite actor appearance is associated with a single texture asset, video actor appearance is a single video clip and so on. This allows Naninovel to manage resources based on specific appearances referenced in scenario scripts. For example, in case only `Happy` and `Sad` appearances of a sprite character are used in a given script, only `Happy.png` and `Sad.png` textures will be preloaded before the script is played, no matter how many other appearances the character has.
+Some actor implementations have their appearance mapped 1:1 to a resource: a sprite actor appearance is associated with a single texture asset, a video actor appearance is a single video clip, and so on. This allows Naninovel to manage resources based on specific appearances referenced in scenario scripts. For example, in case only the `Happy` and `Sad` appearances of a sprite character are used in a given script, only the `Happy.png` and `Sad.png` textures will be preloaded before the script is played, no matter how many other appearances the character has.
 
 However, layered, diced sprite, generic, Live2D and Spine actors all require a monolith prefab in order to represent any of the associated appearances, making it impossible to independently load resources. In such cases, Naninovel will preload the whole prefab with all its dependencies and only unload it when the actor is not referenced in any of the commands, no matter which appearances are used.
 
@@ -222,7 +222,7 @@ Naninovel will, by default, automatically remove unused actors and destroy assoc
 @goto NextScript
 ```
 
-— alternatively, use [@remove] with `*` parameter to dispose all the existing actors (including text printers and choice handlers) or [@resetState] with `only` parameter to immediately dispose actors of specific type: `ICharacterManager` for character and `IBackgroundManager` for backgrounds:
+— alternatively, use [@remove] with the `*` parameter to dispose all the existing actors (including text printers and choice handlers) or [@resetState] with the `only` parameter to immediately dispose actors of a specific type: `ICharacterManager` for characters and `IBackgroundManager` for backgrounds:
 
 ```nani
 ...
@@ -235,7 +235,7 @@ Naninovel will, by default, automatically remove unused actors and destroy assoc
 
 The resource provider manager keeps track of references to loaded resources and disposes (unloads) them when they're not used ("held") by any users ("holders").
 
-The mechanism is most prominent in script commands. For example, let's assume you want to play a background music with a custom command. The audio player will require an audio clip asset (resource) to play, so we need to preload and "hold" the asset before the command is executed and release it afterward:
+The mechanism is most prominent in script commands. For example, let's assume you want to play background music with a custom command. The audio player will require an audio clip asset (resource) to play, so we need to preload and "hold" the asset before the command is executed and release it afterward:
 
 ```csharp
 public class PlayMusic : Command, Command.IPreloadable
@@ -246,12 +246,12 @@ public class PlayMusic : Command, Command.IPreloadable
 
     public async Awaitable PreloadResources (ScriptPlaylist playlist)
     {
-        await audio.AudioLoader.Load(MusicName, this);
+        await audio.BgmLoader.Load(MusicName, this);
     }
 
     public void ReleaseResources (ScriptPlaylist playlist)
     {
-        audio.AudioLoader.Release(MusicName, this);
+        audio.BgmLoader.Release(MusicName, this);
     }
 
     public override async Awaitable Execute (ExecutionContext ctx)
@@ -261,7 +261,7 @@ public class PlayMusic : Command, Command.IPreloadable
 }
 ```
 
-Notice the command implements `Command.IPreloadable` interface. The script player will detect such commands and invoke the preload and unload methods to ensure the assets are ready before the command is executed and released after.
+Notice the command implements the `Command.IPreloadable` interface. The script player will detect such commands and invoke the preload and unload methods to ensure the assets are ready before the command is executed and released after.
 
 ## Sharing Resources
 

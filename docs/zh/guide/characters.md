@@ -1,43 +1,43 @@
 # 角色
 
-角色是用于表示放置在 [背景](/zh/guide/backgrounds) 之上的场景实体的 actor。
+角色是用于表示放置在 [背景](/zh/guide/backgrounds) 之上的场景实体的 Actor。
 
-角色 actor 由名称、外观、可见性、变换（位置、旋转、缩放）和朝向定义。
+角色 Actor 由名称、外观、可见性、变换（位置、旋转、缩放）和朝向定义。
 
-可以使用 `Naninovel -> Configuration -> Characters` 上下文菜单或使用 [actor 记录](/zh/guide/characters#actor-记录) 配置角色的行为；有关可用选项，请参阅 [配置指南](/zh/guide/configuration#角色)。可以使用 `Naninovel -> Resources -> Characters` 上下文菜单访问角色的资源管理器。
+可以使用 `Naninovel -> Configuration -> Characters` 编辑器菜单或使用 [Actor 记录](/zh/guide/characters#actor-记录) 配置角色的行为；有关可用选项，请参阅 [配置指南](/zh/guide/configuration#角色)。可以使用 `Naninovel -> Resources -> Characters` 编辑器菜单访问角色的资源管理器。
 
 在剧本脚本中，角色通过 [@char] 命令控制：
 
 ```nani
-; 显示名为 "Sora" 的角色，使用默认外观。
+; 以默认外观显示名为 "Sora" 的角色。
 @char Sora
 
 ; 与上面相同，但将外观设置为 "Happy"。
 @char Sora.Happy
 
-; 与上面相同，但也将角色定位在距离场景左边界 45%
+; 与上面相同，但另外将角色放置在距离场景左边界 45%
 ; 和底部边界 10% 的位置；
-; 并且让他向左看。
+; 还让他向左看。
 @char Sora.Happy look:left pos:45,10
 ```
 
 ::: tip
-与其手动调整数值参数，不如使用 [场景录制](/zh/guide/scene-recording)，通过 Unity 场景视图中的变换工具安排 actor 和摄像机，并自动生成对应的 NaniScript 命令。
+与其手动调整数值参数，不如使用 [场景录制](/zh/guide/scene-recording)，通过 Unity 场景视图中的变换工具布置 Actor 和摄像机，并自动生成对应的 NaniScript 命令。
 :::
 
 ## Actor 记录
 
-如果您有很多角色，并且通过编辑器菜单分配它们不方便，请使用 actor 记录资产 (`Create -> Naninovel -> Actor Record -> Character`)。它们支持多重编辑，并允许您使用文件夹组织记录。查看下面的视频以获取示例。
+如果您有很多角色，并且通过编辑器菜单逐一分配它们不方便，请使用 Actor 记录资产（`Create -> Naninovel -> Actor Record -> Character`）。它们支持多重编辑，并允许您使用文件夹组织记录。请观看下面的视频查看示例。
 
 ![](https://www.youtube.com/watch?v=2YP-36THHvk)
 
-## 姿势 (Poses)
+## 姿势
 
 每个角色都有 `Poses` 属性，允许指定命名状态（姿势）。
 
 ![](https://i.gyazo.com/a049313d5c7cfa9897dd8c5f5ee00af3.png)
 
-姿势名称可以用作 [@char] 命令中的外观，以一次应用姿势中指定的所有选定参数，而不是通过命令参数单独指定它们。
+姿势名称可以用作 [@char] 命令中的外观，以一次性应用姿势中指定的所有选定参数，而不必通过命令参数逐个指定它们。
 
 ```nani
 ; 假设为 "Kohaku" 定义了 "SuperAngry" 姿势，
@@ -53,15 +53,15 @@
 ```nani
 ; 假设为 "Kohaku" 定义了 "SuperAngry" 姿势，
 ; 应用姿势状态中指定的所有参数，
-; 除了 tint，它在命令中被覆盖。
+; 但色调除外，它在命令中被覆盖。
 @char Kohaku.SuperAngry tint:#ff45cb
 ```
 
-在角色和背景配置中，您还可以找到 `Shared Poses` — 这些姿势在所有相应的 actor 之间共享。共享姿势的示例用例是重用说话/不说话模板或创建相对于摄像机的预定义舞台。
+在角色和背景配置中，您还可以找到 `Shared Poses`——这些姿势在所有相应的 Actor 之间共享。共享姿势的典型用例是复用说话/非说话模板，或创建相对于摄像机的预定义舞台站位。
 
 ![](https://i.gyazo.com/c4c6d850d2a6efae269164af58da1ed3.png)
 
-每个 actor 的姿势和共享姿势也可以通过专用的 `pose` 参数应用：
+Actor 自身的姿势和共享姿势也都可以通过专用的 `pose` 参数应用：
 
 ```nani
 @char Kohaku.Happy pose:DownLeft
@@ -71,19 +71,19 @@
 
 ![](https://i.gyazo.com/7bdbad68dd08c97032af174875ac4978.png)
 
-每个 actor 的姿势优先于共享姿势，这意味着如果 actor 姿势名称等于共享姿势，则将使用 actor 的姿势。这允许在必要时为特定 actor 覆盖共享姿势。
+Actor 自身的姿势优先于共享姿势，这意味着如果 Actor 姿势的名称与共享姿势相同，则将使用 Actor 自身的姿势。这样就可以在必要时为特定 Actor 覆盖共享姿势。
 
 ## 显示名称
 
 在角色配置中，当启用 `Has Name` 时，您可以为特定角色设置 `Display Name`。设置后，显示名称将显示在打印机名称标签 UI 中，而不是角色的 ID。这允许使用包含空格和特殊字符（ID 不允许）的复合角色名称。
 
-或者，可以使用 "CharacterNames" [管理文本](/zh/guide/managed-text) 文档指定名称，该文档在运行生成管理文本资源任务时自动创建。使用它来本地化显示名称和/或在 Unity 编辑器之外编辑它们。管理文本文档中的记录优先于 actor 配置中设置的显示名称，并将覆盖它们。
+或者，可以使用“CharacterNames”[管理文本](/zh/guide/managed-text) 文档指定名称，该文档在运行生成管理文本资源的任务时自动创建。使用它来本地化显示名称和/或在 Unity 编辑器之外编辑它们。管理文本文档中的记录优先于 Actor 配置中设置的显示名称，并将覆盖它们。
 
 可以将显示名称绑定到剧本变量，以便通过剧本脚本在整个游戏中动态更改它。要绑定显示名称，请在角色配置菜单中指定用大括号括起来的剧本变量名称。
 
 ![](https://i.gyazo.com/931d0f6b09c77e13e7800d102c089d44.png)
 
-然后，您可以在脚本中更改变量值，它也会更改显示名称：
+然后，您可以在脚本中更改变量值，显示名称也会随之更改：
 
 ```nani
 @set PlayerName="Mystery Man"
@@ -93,16 +93,16 @@ Player: ...
 Player: You can call me Dr. Stein.
 ```
 
-也可以使用名称绑定功能允许玩家使用 [@input] 命令选择他们的显示名称：
+也可以利用名称绑定功能，让玩家通过 [@input] 命令选择自己的显示名称：
 
 ```nani
 @input PlayerName summary:"Choose your name."
 Player: You can call me {PlayerName}.
 ```
 
-大括号的内容实际上被视为成熟的 [剧本表达式](/zh/guide/expressions)，允许复杂的场景来评估显示名称。例如，您可能希望保留角色的预定义可本地化显示名称直到某个时刻，然后让玩家选择自定义名称。
+大括号中的内容实际上会被视为完整的 [剧本表达式](/zh/guide/expressions)，因此可以用更复杂的逻辑来计算显示名称。例如，您可能希望在某个时刻之前让角色使用预定义的可本地化显示名称，之后再让玩家选择自定义名称。
 
-假设有问题的角色具有 "Char1" ID，预定义名称存储为 `T_PredefinedName` [管理文本记录](/zh/guide/managed-text#脚本文本)，玩家输入的值将存储为 `name` [剧本变量](/zh/guide/variables)，当玩家设置名称时，`nameSet` 变量将设置为 `true`。将以下表达式分配给 `Display Name` 属性：`{ nameSet ? name : T_PredefinedName }`。
+假设该角色的 ID 为“Char1”，预定义名称存储为 `T_PredefinedName` [管理文本记录](/zh/guide/managed-text#脚本文本)，玩家输入的值将存储为 `name` [剧本变量](/zh/guide/variables)，并且在玩家设置名称后，`nameSet` 变量将设置为 `true`。将以下表达式分配给 `Display Name` 属性：`{ nameSet ? name : T_PredefinedName }`。
 
 ![](https://i.gyazo.com/b4bed71310ae8d0f80aff11d910d6e5b.png)
 
@@ -115,7 +115,7 @@ Char1: My name is now pre-defined by `T_PredefinedName` managed text record.
 Char1: It's localizable; try changing the locale and it will update accordingly.
 Char1: Now, we'll make the player input a custom name.
 
-; 注意通过 `value` 参数分配的默认输入值：
+; 注意通过 `value` 参数指定的默认输入值：
 ; 它是从管理文本中检索的，也是可本地化的。
 @input name summary:"Choose your name." value:{T_DefaultName}
 
@@ -130,14 +130,14 @@ Char1: My display name is now bound to `name` scenario variable.
 
 ## 名称标签
 
-虽然上面讨论的显示名称在大多数情况下是推荐的，但有时您可能希望在几行中更改 actor 的名称或使多个 actor 成为同一行的作者。为每个此类情况设置专用的 actor 或变量显示名称是不切实际的。相反，请考虑使用 `as` [通用参数](/zh/guide/scenario-scripting#通用参数)：
+虽然在大多数情况下推荐使用上面讨论的显示名称，但有时您可能希望仅在几行中更改 Actor 的名称，或使多个 Actor 成为同一行的作者。为每个此类情况设置专用的 Actor 或基于变量的显示名称是不切实际的。此时请考虑使用 `as` [通用参数](/zh/guide/scenario-scripting#通用参数)：
 
 ```nani
 ; 即使 "Kohaku" 角色可能在配置中设置了自定义显示名称，
 ; 也使用 "Someone" 作为名称打印此行。
 Kohaku: Lorem ipsum.[< as:"Someone"]
 
-; 打印该行，显示 "All Together" 作为作者名称
+; 打印该行，将 "All Together" 显示为作者名称
 ; 并使所有可见角色成为打印文本的作者。
 *: Lorem ipsum![< as:"All Together"]
 
@@ -145,11 +145,11 @@ Kohaku: Lorem ipsum.[< as:"Someone"]
 Kohaku,Yuko: Lorem ipsum?[< as:"Kohaku and Yuko"]
 ```
 
-— `as` 参数是可本地化的，并将暴露在脚本本地化文档中以进行翻译。此外，[说话者高亮](/zh/guide/characters#说话者高亮) 功能将识别作者 ID 中指定的 `*` 和 `,`，并将所有/选定的角色高亮显示为说话者。
+— `as` 参数是可本地化的，会出现在脚本本地化文档中以供翻译。此外，[说话者高亮](/zh/guide/characters#说话者高亮) 功能将识别作者 ID 中指定的 `*` 和 `,`，并将所有/选定的角色高亮显示为说话者。
 
 ## 消息颜色
 
-在角色配置中启用 `Use Character Color` 时，如果在 [@print] 命令或通用文本行中指定了相应的角色 ID，则打印机文本消息和名称标签将染上指定的颜色。
+在角色配置中启用 `Use Character Color` 时，如果在 [@print] 命令或通用文本行中指定了相应的角色 ID，则打印机文本消息和名称标签将使用指定的颜色设置色调。
 
 以下视频演示了如何使用显示名称和角色颜色。
 
@@ -161,9 +161,9 @@ Kohaku,Yuko: Lorem ipsum?[< as:"Kohaku and Yuko"]
 
 ![](https://i.gyazo.com/83c091c08846fa1cab8764a8d4dddeda.png)
 
-目前，只有 `Wide` 和 `Chat` 内置打印机（以及它们的 TMPro 对应物）支持头像功能。为了在自定义打印机中支持该功能，请将带有 `Author Image` 组件的游戏对象分配给 `Revealable Text Printer Panel` 组件的 `Author Avatar Image` 属性。
+目前，只有 `Wide` 和 `Chat` 内置打印机支持头像功能。要在自定义打印机中支持该功能，请将带有 `Author Image` 组件的游戏对象分配给 `Revealable Text Printer Panel` 组件的 `Author Avatar Image` 属性。
 
-要使用任何给定的头像，您必须首先将其添加到头像资源并为其命名。您可以通过角色配置菜单中的 `Avatar Resources` 属性执行此操作。
+要使用某个头像，您必须首先将其添加到头像资源并为其命名。您可以通过角色配置菜单中的 `Avatar Resources` 属性执行此操作。
 
 ![](https://i.gyazo.com/5a0f10d174aa75ed87da1b472567e40b.png)
 
@@ -177,7 +177,7 @@ Kohaku,Yuko: Lorem ipsum?[< as:"Kohaku and Yuko"]
 @char CharacterId avatar:AvatarName
 ```
 
-要为角色设置默认头像，请给头像纹理资源命名等于 `CharacterID/Default`；例如，要为 ID 为 `Kohaku` 的角色设置默认头像，请将头像资源命名为 `Kohaku/Default`。默认头像将自动显示，即使 [@char] 命令中未指定 `avatar` 参数。
+要为角色设置默认头像，请将头像纹理资源命名为 `CharacterID/Default`；例如，要为 ID 为 `Kohaku` 的角色设置默认头像，请将头像资源命名为 `Kohaku/Default`。默认头像将自动显示，即使 [@char] 命令中未指定 `avatar` 参数。
 
 也可以将头像与特定的角色外观关联，以便当角色更改外观时，头像也会自动更改。为此，请使用以下格式命名头像资源：`CharacterID/CharacterAppearance`，其中 `CharacterAppearance` 是要映射头像资源的外观名称。
 
@@ -187,35 +187,35 @@ Kohaku,Yuko: Lorem ipsum?[< as:"Kohaku and Yuko"]
 @char CharacterId !visible
 ```
 
-如果您在角色本身应保持隐藏的情况下不断更改头像，请考虑在角色配置菜单中禁用 `Auto Show On Modify`；禁用后，您无需在隐藏角色时指定 `!visible` 即可更改角色的任何参数。
+如果您在角色本身应保持隐藏的情况下不断更改头像，请考虑在角色配置菜单中禁用 `Auto Show On Modify`；禁用后，在角色处于隐藏状态时更改其任何参数都无需指定 `!visible`。
 
 ::: info NOTE
-**头像与角色外观没有直接联系**，不应被视为在场景中表示角色的方式。头像是将任意图像“注入”到兼容文本打印机的独立功能。如果您希望实际角色出现在文本打印机（或自定义 UI）内，请检查 [渲染 actor 到纹理](/zh/guide/characters#渲染到纹理) 功能。
+**头像与角色外观没有直接联系**，不应被视为在场景中表示角色的方式。头像是将任意图像“注入”到兼容文本打印机的独立功能。如果您希望实际角色出现在文本打印机（或自定义 UI）内，请参阅 [将 Actor 渲染到纹理](/zh/guide/characters#渲染到纹理) 功能。
 :::
 
 ## 说话者高亮
 
-在角色配置中启用时，说话者高亮将根据最后打印的消息是否与角色关联来为角色设置指定的 [姿势](/zh/guide/characters#姿势-poses)。这允许自动高亮显示“正在说话”的角色，通常通过着色或缩放。
+在角色配置中启用后，说话者高亮会根据最后打印的消息是否与角色关联，为角色应用指定的 [姿势](/zh/guide/characters#姿势)。这样可以自动高亮显示“正在说话”的角色，通常通过设置色调或缩放来实现。
 
 ![](https://i.gyazo.com/3817adb43d6e14f9854e5d558792c2f6.png)
 
-当为多个角色应用相同的高亮姿势时，建议使用角色配置根目录下的共享姿势。
+当为多个角色应用相同的高亮姿势时，建议使用位于角色配置根级的 `Shared Poses`。
 
-## 口型同步 (Lip Sync)
+## 口型同步
 
 ### 事件驱动
 
-可动画的角色实现（通用、分层、Live2D 等）提供 `On Started Speaking` 和 `On Finished Speaking` Unity 事件。当此类角色成为打印消息的作者或不再是作者（或者更确切地说是当消息完全显示时），将调用事件，允许您触发任何自定义逻辑，例如开始或停止受控角色的嘴部动画。
+支持动画的角色实现（通用、分层、Live2D 等）提供 `On Started Speaking` 和 `On Finished Speaking` Unity 事件。当此类角色成为打印消息的作者或不再是作者时（更确切地说，是当消息完全显示时），将调用这些事件，允许您触发任何自定义逻辑，例如开始或停止受控角色的嘴部动画。
 
 ![](https://www.youtube.com/watch?v=fx_YS2ZQGHI)
 
-启用 [自动配音](/zh/guide/voicing#自动配音) 功能时，事件将由画外音驱动；否则，打印的文本消息将激活事件。在后一种情况下，您可能希望手动静音事件（例如，为了防止在打印标点符号时出现嘴部动画）；对于此类情况，请使用 [@lipSync] 命令。
+启用 [自动配音](/zh/guide/voicing#自动配音) 功能时，事件将由配音驱动；否则，打印的文本消息将激活事件。在后一种情况下，您可能希望手动屏蔽这些事件（例如，为了防止在打印标点符号时出现嘴部动画）；对于此类情况，请使用 [@lipSync] 命令。
 
 ### 音频驱动
 
-如果您想通过语音音频剪辑的实际波形来驱动角色嘴部动画，请使用角色配置中的 `Voice Source` 选项。当分配带有 Unity `Audio Source` 组件的预制件时，Naninovel 将在角色对象下实例化该预制件，并通过音频源组件播放角色的声音。
+如果您想通过语音音频剪辑的实际波形来驱动角色嘴部动画，请使用角色配置中的 `Voice Source` 选项。当分配带有 Unity `Audio Source` 组件的预制件时，Naninovel 将在角色对象下实例化该预制件，并通过音频源组件播放角色的语音。
 
-通过访问用于角色声音的专用音频源组件，您可以挂钩自定义解决方案来分析播放音频的波形并相应地驱动嘴部动画。有多种第三方解决方案可以帮助实现这一点。例如，Live2D 的 `Cubism Audio Mouth Input` 组件或 [SALSA](https://assetstore.unity.com/packages/tools/animation/salsa-lipsync-suite-148442)。
+通过访问用于角色语音的专用音频源组件，您可以接入自定义解决方案来分析播放音频的波形并相应地驱动嘴部动画。有多种第三方解决方案可以帮助实现这一点。例如，Live2D 的 `Cubism Audio Mouth Input` 组件或 [SALSA](https://assetstore.unity.com/packages/tools/animation/salsa-lipsync-suite-148442)。
 
 ## 链接的打印机
 
@@ -223,9 +223,9 @@ Kohaku,Yuko: Lorem ipsum?[< as:"Kohaku and Yuko"]
 
 ![](https://i.gyazo.com/50ca6b39cd7f708158678339244b1dc4.png)
 
-链接后，打印机将自动用于处理该角色创作的消息。
+链接后，该打印机将自动用于处理以该角色为作者的消息。
 
-请注意，[@print] 命令（在打印通用文本行时也在底层使用）默认使关联的打印机成为默认打印机并隐藏其他可见打印机。当打印机链接到角色时，打印命令将在打印与相应角色关联的文本时自动更改当前可见和默认的文本打印机。可以通过在打印机 actor 配置菜单中禁用 `Auto Default` 属性来防止此行为；禁用后，您必须使用 [@printer] 命令手动显示/隐藏和切换默认打印机。
+请注意，[@print] 命令（在打印通用文本行时也在底层使用）默认会使关联的打印机成为默认打印机并隐藏其他可见打印机。当打印机链接到角色时，打印命令将在打印与相应角色关联的文本时自动更改当前可见和默认的文本打印机。可以通过在打印机 Actor 配置菜单中禁用 `Auto Default` 属性来防止此行为；禁用后，您必须使用 [@printer] 命令手动显示/隐藏和切换默认打印机。
 
 ::: tip
 将打印机与 [旁白角色](/zh/guide/characters#旁白角色) 链接并禁用 `Has Name` 以使旁白文本与打印机链接，这样您就不必一直使用 [@printer] 切换回非角色（默认）打印机。
@@ -250,7 +250,7 @@ Kohaku: 我则用 'Wide' 打印！
 回到 'Fullscreen'。
 Kohaku: 我又可以使用自己的 'Wide' 了！
 
-; 取消链接到 'Kohaku' 的任意打印机。
+; 无论 'Kohaku' 链接的是哪个打印机，都取消其链接。
 @unlinkPrinter from:Kohaku
 这不受影响，仍使用 'Fullscreen'。
 Kohaku: 谁拿走了我的 'Wide'？！正在用 'Fullscreen' 打印...
@@ -258,51 +258,51 @@ Kohaku: 谁拿走了我的 'Wide'？！正在用 'Fullscreen' 打印...
 
 ## 默认作者
 
-当为常规角色使用 [链接的打印机](/zh/guide/characters#链接的打印机) 时，您可能希望没有显式作者的 [通用文本行](/zh/guide/scenario-scripting#通用文本行) 和 [@print] 命令回退到专用打印机。这就避免了必须为每一行指定旁白 ID 或使用 [@printer] 命令手动切换打印机。
+当为常规角色使用 [链接的打印机](/zh/guide/characters#链接的打印机) 时，您可能希望没有显式作者的 [通用文本行](/zh/guide/scenario-scripting#通用文本行) 和 [@print] 命令回退到专用打印机。这就避免了必须为每个这样的行指定旁白 ID 或使用 [@printer] 命令手动切换打印机。
 
-要启用此行为，请创建一个 ID 为 `DefaultAuthor` 的角色记录，将其实现设置为 `NarratorCharacter` 并禁用 `HasName` 选项。该角色随后将充当任何无作者文本的回退作者，并自动应用其链接的打印机。
+要启用此行为，请创建一个 ID 为 `DefaultAuthor` 的角色记录，将其实现设置为 `NarratorCharacter` 并禁用 `Has Name` 选项。该角色随后将充当任何无作者文本的回退作者，并自动应用其链接的打印机。
 
 ## 占位符角色
 
-占位符实现是默认实现，用于在您还没有任何视觉资产来表示角色时起草剧本。它使用 actor 元数据（如标识符、显示名称和颜色）来程序生成角色占位符。
+占位符实现是默认实现，用于在您还没有任何视觉资产来表示角色时起草剧本。它使用 Actor 元数据（如标识符、显示名称和颜色）来程序化生成角色占位符。
 
 ![](https://i.gyazo.com/a94fdcc2cd645738d71baa42c424ed65.png)
 
-下面是一个 [占位符背景](/zh/guide/backgrounds#占位符背景) 的示例，上面有几个占位符角色。请注意，当前正在说话的角色通过增加比例和不透明度来高亮显示。
+下面是一个 [占位符背景](/zh/guide/backgrounds#占位符背景) 的示例，上面有几个占位符角色。请注意，当前正在说话的角色通过增大缩放和不透明度来高亮显示。
 
 ![](https://i.gyazo.com/cebb0506d3743e2e1b20b1d3c214239a.png)
 
 ## 精灵角色
 
-角色 actor 的精灵实现是最常见和最简单的；它使用一组包裹在四边形网格（精灵）上的 [纹理](https://docs.unity3d.com/Manual/Textures.html) 资产来表示角色的外观。纹理可以基于 `.jpg`、`.png`、`.tiff`、`.psd` 或任何其他 [Unity 支持](https://docs.unity3d.com/Manual/ImportingTextures) 的图像文件格式。
+角色 Actor 的精灵实现是最常见和最简单的；它使用一组包裹在四边形网格（精灵）上的 [纹理](https://docs.unity3d.com/Manual/Textures.html) 资产来表示角色的外观。纹理可以基于 `.jpg`、`.png`、`.tiff`、`.psd` 或任何其他 [Unity 支持](https://docs.unity3d.com/Manual/ImportingTextures) 的图像文件格式。
 
 ::: tip
 选择最适合您的开发工作流程的文件格式。构建项目时，Unity 会自动将所有源资源（纹理、音频、视频等）转换为最适合目标平台的格式，因此您最初在项目中存储资源的格式不会产生影响。在 [官方文档](https://docs.unity3d.com/Manual/AssetWorkflow) 中查找有关 Unity 如何管理项目资产的更多信息。
 :::
 
-场景中精灵角色网格的初始（未缩放）大小取决于参考分辨率（摄像机配置）、角色的 `Pixel Per Unit` 属性（在配置菜单中为每个角色 actor 设置）和源纹理分辨率。
+场景中精灵角色网格的初始（未缩放）大小取决于参考分辨率（摄像机配置）、角色的 `Pixels Per Unit` 属性（在配置菜单中为每个角色 Actor 设置）和源纹理分辨率。
 
-为了获得最佳渲染质量和最佳性能，通常建议对所有角色保持默认的 `Pixel Per Unit` 值 (100)，并通过纹理分辨率控制所需的初始角色大小。例如，假设游戏中的参考分辨率是默认的 `1920x1080` 像素，要使角色占据整个屏幕高度，请将角色纹理的高度设置为 `1080` 像素（例如，通过 Photoshop 或其他图像编辑器调整大小）；要使另一个角色占据屏幕高度的 2/3，请将高度设置为 `1080 * 2/3`，依此类推。
+为了获得最佳渲染质量和最佳性能，通常建议对所有角色保持默认的 `Pixels Per Unit` 值（100），并通过纹理分辨率控制所需的初始角色大小。例如，假设游戏中的参考分辨率是默认的 `1920x1080` 像素，要使角色占据整个屏幕高度，请将角色纹理的高度设置为 `1080` 像素（例如，通过 Photoshop 或其他图像编辑器调整大小）；要使另一个角色占据屏幕高度的 2/3，请将高度设置为 `1080 * 2/3`，依此类推。
 
 ## 切片精灵角色
 
-使用开源 [SpriteDicing](https://github.com/elringus/sprite-dicing) 包构建，`DicedSpriteCharacter` 实现允许通过重用角色精灵的纹理区域来显着减小构建大小和纹理内存。
+`DicedSpriteCharacter` 实现基于开源的 [SpriteDicing](https://github.com/elringus/sprite-dicing) 包构建，允许通过重用角色精灵的纹理区域来显著减小构建大小和纹理内存占用。
 
 ![Sprite Dicing](https://i.gyazo.com/af08d141e7a08b6a8e2ef60c07332bbf.png)
 
-通过 [Unity package manager](https://docs.unity3d.com/Manual/upm-ui.html) 安装包：打开包管理器窗口 (Window -> Package Manager)，单击 "+" 按钮，选择 "Add package from git URL"，输入以下 URL：
+通过 [Unity 包管理器](https://docs.unity3d.com/Manual/upm-ui.html) 安装该包：打开包管理器窗口（`Window -> Package Manager`），单击“+”按钮，选择“Add package from git URL”，将以下 URL：
 
 ```
 https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteDicing
 ```
 
-— 到输入字段并单击 "Add"。
+— 输入到输入框中，然后单击“Add”。
 
 ::: info NOTE
-在从 Git 存储库安装包之前，请确保您的机器上安装了 [Git 客户端](https://git-scm.com/downloads) 并且 Git 可执行文件路径已设置到 [PATH 系统环境变量](https://en.wikipedia.org/wiki/PATH_(variable))（通常在安装过程中自动执行）。
+在从 Git 存储库安装包之前，请确保您的机器上安装了 [Git 客户端](https://git-scm.com/downloads) 并且 Git 可执行文件路径已添加到 [PATH 系统环境变量](https://en.wikipedia.org/wiki/PATH_(variable))（通常会在安装过程中自动完成）。
 :::
 
-当通过 UPM 安装 "SpriteDicing" 扩展时，`Naninovel.DicedSpriteCharacter` 选项将出现在角色实现列表中。
+通过 UPM 安装“SpriteDicing”扩展后，`Naninovel.DicedSpriteCharacter` 选项将出现在角色实现列表中。
 
 ![](https://i.gyazo.com/25360c9287a7b5a6a7feaba987a2bbb4.png)
 
@@ -319,60 +319,60 @@ https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteD
 有关可用切片选项和使用示例的更多信息，请参阅 [扩展文档](https://dicing.elringus.com/guide/unity)。
 
 ::: tip EXAMPLE
-在 [切片 actor 示例](/zh/guide/samples#切片-actor) 中查找有关设置切片 actor 的示例。
+在 [切片 Actor 示例](/zh/guide/samples#切片-actor) 中查找有关设置切片 Actor 的示例。
 :::
 
 ## Universal 角色
 
-当您希望角色不仅仅是简单的精灵时，首先值得考虑的便是 Universal 实现。它支持 Unity 提供的所有默认渲染器：网格、粒子、蒙皮精灵、瓦片地图等。此外，Universal actor 的内容会受到光源和 Volume 的影响。
+当您希望角色不仅仅是简单的精灵时，首先值得考虑的便是 Universal 实现。它支持 Unity 提供的所有默认渲染器：网格、粒子、蒙皮精灵、瓦片地图等。此外，Universal Actor 的内容会受到光源和 Volume 的影响。
 
 使用 `Create -> Naninovel -> Character -> Universal` 资产上下文菜单从模板创建新的 Universal 角色预制件，然后双击该预制件进入预制件编辑模式。您会在根对象上看到 `Universal Character Behaviour` 组件，它是 Naninovel 与预制件内容之间的适配器。
 
 您可以像构建 Unity 中的任何其他预制件一样构建此预制件。Naninovel 会捕获预制件根对象下所有兼容的渲染器，并在运行时将它们合成到角色渲染纹理中。请注意组件上的 `On Appearance Changed` 事件；您可以使用它为外观更改设置回调。例如，可以使用 Unity 的 [Animator](https://docs.unity3d.com/Manual/class-Animator.html) 系统驱动角色动画。
 
-如果要包含在 Universal actor 中的对象使用自定义渲染功能（例如 2D 光源或程序化绘制），可以在组件中实现 `Naninovel.IUniversalActorDrawable` 接口，并将该组件附加到包含自定义内容的游戏对象上，从而使其兼容。例如，[Live2D actor](/zh/guide/characters#live2d-角色) 就是以这种方式实现的。
+如果要包含在 Universal Actor 中的对象使用自定义渲染功能（例如 2D 光源或程序化绘制），可以在组件中实现 `Naninovel.IUniversalActorDrawable` 接口，并将该组件附加到包含自定义内容的游戏对象上，从而使其兼容。例如，[Live2D Actor](/zh/guide/characters#live2d-角色) 就是以这种方式实现的。
 
 ## 分层角色
 
-分层实现基于 [Universal](/zh/guide/characters#universal-角色)，并额外提供 `Layer Actor Controller` 组件，允许从多个层组合角色，然后在运行时通过剧本脚本单独或成组地切换它们。
+分层实现基于 [Universal](/zh/guide/characters#universal-角色)，并额外提供 `Layered Actor Controller` 组件，允许从多个层组合角色，然后在运行时通过剧本脚本单独或成组地切换它们。
 
 要创建分层角色预制件，请使用 `Create -> Naninovel -> Character -> Layered` 资产上下文菜单。进入 [预制件编辑模式](https://docs.unity3d.com/Manual/EditingInPrefabMode.html) 以组合层。默认情况下将创建几个层和组。您可以使用它们，也可以删除并添加自己的层和组。
 
-根预制件对象的每个子游戏对象中，带有 `Layered Actor Layer` 组件的对象被视为 *层*，其他对象则被视为 *组*。除了组织和变换用途外，将层放置在组内还允许您使用剧本脚本中的单个表达式选择单个层，或禁用或启用组内的所有层（稍后会详细介绍）。
+预制件根对象的每个子游戏对象中，带有 `Layered Actor Layer` 组件的对象被视为 *层*，其他对象则被视为 *组*。除了组织和变换用途外，将层放置在组内还允许您使用剧本脚本中的单个表达式选择单个层，或禁用或启用组内的所有层（稍后会详细介绍）。
 
-当层游戏对象还具有 [Renderer](https://docs.unity3d.com/ScriptReference/Renderer.html) 时，该渲染器会自动用于驱动层状态：层被禁用时，渲染器也会被禁用，反之亦然。要默认隐藏特定层，请禁用其渲染器组件（而不是游戏对象）。或者，可以使用 `On Layer Enabled` 和 `On Layer Disabled` 事件驱动层的启用状态。
+当层游戏对象还具有 [渲染器](https://docs.unity3d.com/ScriptReference/Renderer.html) 时，该渲染器会自动用于驱动层状态：层被禁用时，渲染器也会被禁用，反之亦然。要默认隐藏特定层，请禁用其渲染器组件（而不是游戏对象）。或者，可以使用 `On Layer Enabled` 和 `On Layer Disabled` 事件驱动层的启用状态。
 
 ::: tip
-在 Photoshop 中创作分层角色艺术时，请考虑使用 Unity 的 [PSD Importer 包](https://docs.unity3d.com/Packages/com.unity.2d.psdimporter@3.0/manual/index.html) 自动生成保留所有层及其位置的角色预制件。为了保留层层次结构，请确保在导入设置中启用 `Use Layer Grouping` 选项。
+在 Photoshop 中制作分层角色美术素材时，请考虑使用 Unity 的 [PSD Importer 包](https://docs.unity3d.com/Packages/com.unity.2d.psdimporter@3.0/manual/index.html) 自动生成保留所有层及其位置的角色预制件。为了保留层的层次结构，请确保在导入设置中启用 `Use Layer Grouping` 选项。
 :::
 
-要在剧本脚本中控制分层角色，请以与其他角色实现相同的方式使用 [@char] 命令。唯一的区别是您如何设置外观：使用 *layer composition expression（层组合表达式）* 代替单个 ID。有三种表达式类型：
+要在剧本脚本中控制分层角色，请以与其他角色实现相同的方式使用 [@char] 命令。唯一的区别在于设置外观的方式：使用 *层组合表达式* 代替单个 ID。有三种表达式类型：
 
 - 启用组中的单个层：`group>layer`
 - 启用层：`group+layer`
 - 禁用层：`group-layer`
 
-例如，考虑一个 "Miho" 角色，它有一个 "Body" 组，其中包含三个层："Uniform"、"SportSuit" 和 "Pajama"。要启用 "Uniform" 层并禁用所有其他层，请使用以下命令：
+例如，考虑一个“Miho”角色，它有一个“Body”组，其中包含三个层：“Uniform”、“SportSuit”和“Pajama”。要启用“Uniform”层并禁用所有其他层，请使用以下命令：
 
 ```nani
 @char Miho.Body>Uniform
 ```
 
-要启用或禁用层而不影响组中的任何其他层，请分别使用 "+" 和 "-" 代替 ">"。您还可以指定多个组合表达式，用逗号分隔它们：
+要启用或禁用层而不影响组中的任何其他层，请分别使用“+”和“-”代替“>”。您还可以指定多个组合表达式，用逗号分隔它们：
 
 ```nani
 ; 启用眼镜，禁用帽子，选择 "Cool" 情绪。
 @char CharId.Head/Accessories+BlackGlasses,Head-Hat,Head/Emotions>Cool
 ```
 
-要选择任何组之外的层（根预制件对象的子对象），只需跳过组部分，例如：
+要选择任何组之外的层（预制件根对象的子对象），只需跳过组部分，例如：
 
 ```nani
-; 假设 "Halo" 层对象放置在预制件根目录下，禁用它。
+; 假设 "Halo" 层对象放置在预制件根对象下，禁用它。
 @char CharId.-Halo
 ```
 
-也可以通过省略组合表达式中的层名称来影响组内的所有层（以及在使用选择表达式时另外影响其邻居）：
+也可以通过省略组合表达式中的层名称来影响组内的所有层（使用选择表达式时还会影响其相邻的组）：
 
 ```nani
 ; 禁用 "Body/Decoration" 组中的所有层。
@@ -386,15 +386,15 @@ https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteD
 @char CharId.Poses/Light>
 ```
 
-上述表达式不仅会影响目标组的直接后代，还会递归影响基础组中包含的所有层。
+上述表达式不仅会影响目标组的直接子级，还会递归影响其下层各组中包含的所有层。
 
-当未指定外观时（例如，`@char CharId` 之前未设置任何外观），将使用默认外观；分层角色的默认外观等于分层预制件在编辑器中的外观。
+当未指定外观时（例如，在此前未设置任何外观的情况下使用 `@char CharId`），将使用默认外观；分层角色的默认外观就是分层预制件在编辑器中的样子。
 
-可以通过 `Layered Character Behaviour` 组件的 `Composition Map` 属性将组合表达式映射到键：
+可以通过 `Layered Actor Controller` 组件的 `Composition Map` 属性将组合表达式映射到键：
 
 ![](https://i.gyazo.com/ede5cde3548a3187aa714d3e140750ba.png)
 
-— 然后可以使用键指定分层 actor 外观：
+— 然后可以使用这些键指定分层 Actor 的外观：
 
 ```nani
 ; 等于 "Body>Uniform,Hair/Back>Straight,Hair/Front>Straight,Shoes>Grey"。
@@ -405,36 +405,36 @@ https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteD
 @char Miho.Uniform,Hair/Front>Short
 ```
 
-编辑分层角色预制件时，可以通过右键单击映射记录并选择 "Preview Composition" 来预览映射的组合表达式。另一个菜单项 — "Paste Current Composition" — 将生成角色的当前组合表达式字符串（基于层次结构中启用/禁用的精灵渲染器）并将其粘贴到检查的记录中；使用它快速将当前预制件状态映射到组合项。
+编辑分层角色预制件时，可以通过右键单击映射记录并选择“Preview Composition”来预览映射的组合表达式。另一个菜单项——“Paste Current Composition”——将生成角色的当前组合表达式字符串（基于层次结构中启用/禁用的精灵渲染器）并将其粘贴到所检查的记录中；可以用它快速将当前预制件状态映射到组合项。
 
 ![](https://i.gyazo.com/84a2f8e51997cdccbfb8321d58586d2a.mp4)
 
 ::: tip EXAMPLE
-在 [分层 actor 示例](/zh/guide/samples#分层-actor) 中查找有关设置分层 actor 的示例。
+在 [分层 Actor 示例](/zh/guide/samples#分层-actor) 中查找有关设置分层 Actor 的示例。
 :::
 
 ## 通用角色
 
-通用角色是最灵活的角色 actor 实现。它基于一个附加了 `Generic Character Behaviour` 组件到根对象的预制件。外观更改和所有其他角色参数都路由为 [Unity 事件](https://docs.unity3d.com/Manual/UnityEvents.html)，允许以任何您希望的方式实现底层对象的行为。
+通用角色是最灵活的角色 Actor 实现。它基于一个在根对象上附加了 `Generic Character Behaviour` 组件的预制件。外观更改和所有其他角色参数都会作为 [Unity 事件](https://docs.unity3d.com/Manual/UnityEvents.html) 转发，允许您以任何希望的方式实现底层对象的行为。
 
 ![](https://i.gyazo.com/d0ea1bf7a5ed3b4bb7eb70c4ddbfeba2.png)
 
 ::: info NOTE
-通用 actor 实现只是路由来自剧本脚本的事件，由用户来实现底层行为，例如，actor 应如何响应外观或可见性更改命令，是否以及如何支持说话者高亮功能等。不要指望大多数 actor 相关的功能会自动与通用实现一起工作。
+通用 Actor 实现只是转发来自剧本脚本的事件，底层行为需由用户自行实现，例如，Actor 应如何响应外观或可见性更改命令，是否以及如何支持说话者高亮功能等。不要指望大多数 Actor 相关功能能在通用实现中自动生效。
 :::
 
-要从模板创建通用角色预制件，请使用 `Create -> Naninovel -> Character -> Generic` 上下文资产菜单。
+要从模板创建通用角色预制件，请使用 `Create -> Naninovel -> Character -> Generic` 资产上下文菜单。
 
-查看以下视频教程，了解如何将 3D 绑定模型设置为通用角色，并通过 [Animator](https://docs.unity3d.com/Manual/class-AnimatorController.html) 组件将外观更改路由到绑定动画。请注意，该视频是使用旧版 Naninovel 录制的，一些属性和组件名称现在已不同；有关最新信息，请参阅上述文档。
+查看以下视频教程，了解如何将带骨骼绑定的 3D 模型设置为通用角色，并通过 [Animator](https://docs.unity3d.com/Manual/class-AnimatorController.html) 组件将外观更改转发到骨骼动画。请注意，该视频是使用旧版 Naninovel 录制的，一些属性和组件名称现在已不同；有关最新信息，请参阅上述文档。
 
 ![](https://www.youtube.com/watch?v=HPxhR0I1u2Q)
 
 ::: tip
-当游戏对象在同一帧中启用/禁用时，Unity 的 `Animator` 组件可能无法注册 `SetTrigger`；如果您使用 `GameObject.SetActive` 处理可见性更改（如上教程所示），请考虑改为启用/禁用带有渲染器的子对象。
+当游戏对象在同一帧中启用/禁用时，Unity 的 `Animator` 组件可能无法注册 `SetTrigger`；如果您使用 `GameObject.SetActive` 处理可见性更改（如上述教程所示），请考虑改为启用/禁用带有渲染器的子对象。
 :::
 
 ::: tip EXAMPLE
-查看 [通用 actor 示例](/zh/guide/samples#通用-actor-generic-actor)，其中使用通用角色实现来托管 3D 动画模型。
+查看 [通用 Actor 示例](/zh/guide/samples#通用-actor)，其中使用通用角色实现来承载 3D 动画模型。
 :::
 
 ## 视频角色
@@ -445,17 +445,17 @@ https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteD
 
 使用带有 alpha 通道（透明度）的视频时，请参阅 [支持格式指南](https://docs.unity3d.com/Manual/VideoTransparency.html)。
 
-为了防止特定外观循环，请将 `NoLoop`（不区分大小写）附加到外观名称。
+为了防止特定外观循环，请在外观名称后追加 `NoLoop`（不区分大小写）。
 
 ## Live2D 角色
 
-Live2D 角色实现使用使用 [Live2D Cubism](https://www.live2d.com) 2D 建模和动画软件创建的资产。
+Live2D 角色实现使用通过 [Live2D Cubism](https://www.live2d.com) 2D 建模和动画软件创建的资产。
 
 ![](https://i.gyazo.com/b81df72fc7afaed569520496cbee09f0.mp4)
 
 为了能够使用此实现，您必须首先安装 [Live2D Cubism SDK for Unity](https://live2d.github.io/#unity)。请参阅官方 Live2D 文档以获取安装和使用说明。
 
-安装 Live2D SDK for Unity 后，单击 `Naninovel/Extensions/Enable Live2D` 编辑器菜单项以激活提供 Live2D 与引擎之间集成的 Naninovel 模块。
+安装 Live2D SDK for Unity 后，单击 `Naninovel -> Extensions -> Enable Live2D` 编辑器菜单项以激活提供 Live2D 与引擎之间集成的 Naninovel 模块。
 
 ![](https://i.gyazo.com/e27ee50e8107147e20503a955ddcc548.png)
 
@@ -463,15 +463,15 @@ Live2D 角色实现使用使用 [Live2D Cubism](https://www.live2d.com) 2D 建�
 与第三方商业产品的这种集成主要作为如何使 Naninovel 与另一个工具一起工作的示例。虽然我们致力于保持示例集成与 Live2D 更新和更改兼容，但请注意，功能将保持在最低限度，我们无法在示例范围之外提供任何有关在 Naninovel 中使用其他产品的支持或帮助。
 :::
 
-actor 的 Live2D 资源应在根对象上附加 `Live2D Character Behaviour` 组件。外观更改作为 [SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) 命令路由到动画器组件，外观为触发器名称。例如，如果您有一个 "Kaori" Live2D 角色预制件并想调用名为 "Surprise" 的触发器，请使用以下命令：
+Actor 的 Live2D 资源应在根对象上附加 `Live2D Character Behaviour` 组件。外观更改作为 [SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) 命令转发到动画器组件，外观即触发器名称。例如，如果您有一个“Kaori”Live2D 角色预制件并想调用名为“Surprise”的触发器，请使用以下命令：
 
 ```nani
 @char Kaori.Surprise
 ```
 
-请注意，上述命令只会尝试在附加到预制件的动画器控制器上调用带有 "Surprise" 参数的 [SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html)；您必须自己组合底层的 [animator](https://docs.unity3d.com/Manual/Animator) 状态机。
+请注意，上述命令只会尝试在附加到预制件的动画器控制器上调用带有“Surprise”参数的 [SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html)；您必须自己搭建底层的 [动画器](https://docs.unity3d.com/Manual/Animator) 状态机。
 
-当 Live2D 模型预制件上存在并设置了 `Cubism Look Controller` 和 `Cubism Mouth Controller` 组件时，`Live2D Character Behaviour` 可以选择使用它们来控制角色的视线方向和嘴部动画（即口型同步功能）。有关设置详情，请参阅关于 [眼球追踪](https://docs.live2d.com/cubism-sdk-tutorials/lookat) 和 [口型同步](https://docs.live2d.com/cubism-sdk-tutorials/lipsync) 的 Live2D 文档。
+当 Live2D 模型预制件上存在并设置了 `Cubism Look Controller` 和 `Cubism Mouth Controller` 组件时，`Live2D Character Behaviour` 可以选择使用它们来控制角色的朝向和嘴部动画（即口型同步功能）。有关设置详情，请参阅关于 [眼球追踪](https://docs.live2d.com/cubism-sdk-tutorials/lookat) 和 [口型同步](https://docs.live2d.com/cubism-sdk-tutorials/lipsync) 的 Live2D 文档。
 
 以下视频指南涵盖了从 Cubism Editor 导出 Live2D 角色、配置预制件、创建简单的动画器状态机以及通过剧本脚本控制角色。
 
@@ -483,13 +483,13 @@ actor 的 Live2D 资源应在根对象上附加 `Live2D Character Behaviour` 组
 
 ## Spine 角色
 
-Spine 角色实现使用使用 [Spine](http://esotericsoftware.com) 2D 建模和动画软件创建的资产。
+Spine 角色实现使用通过 [Spine](http://esotericsoftware.com) 2D 建模和动画软件创建的资产。
 
 ![](https://i.gyazo.com/08b04de115d97427d152cb5f37065d2d.mp4)
 
 为了能够使用此实现，您必须首先安装 4.3 或更高版本的 [Spine runtime for Unity](http://esotericsoftware.com/spine-unity-download)。请参阅 [官方文档](http://esotericsoftware.com/spine-unity) 以获取安装和使用说明。
 
-安装 Spine runtime for Unity 后，单击 `Naninovel/Extensions/Enable Spine` 编辑器菜单项以激活提供 Spine 与引擎之间集成的 Naninovel 模块。
+安装 Spine runtime for Unity 后，单击 `Naninovel -> Extensions -> Enable Spine` 编辑器菜单项以激活提供 Spine 与引擎之间集成的 Naninovel 模块。
 
 ![](https://i.gyazo.com/2fb6c27f6e2149b501c0025dd6bd67f0.png)
 
@@ -497,7 +497,7 @@ Spine 角色实现使用使用 [Spine](http://esotericsoftware.com) 2D 建模和
 与第三方商业产品的这种集成主要作为如何使 Naninovel 与另一个工具一起工作的示例。虽然我们致力于保持示例集成与 Spine 更新和更改兼容，但请注意，功能将保持在最低限度，我们无法在示例范围之外提供任何有关在 Naninovel 中使用其他产品的支持或帮助。
 :::
 
-用作实现资源的 Spine 角色预制件应具有附加到根对象的 `Spine Controller` 组件。来自剧本脚本命令（例如 `@char`）的外观更改将路由到控制器的 `On Appearance Changed` 事件，类似于 [通用实现](/zh/guide/characters#通用角色)。您可以随心所欲地处理事件；例如，使用 Spine 的 `SetAnimation` 方法或在 Unity 的动画器控制器中调用触发器。
+用作实现资源的 Spine 角色预制件应具有附加到根对象的 `Spine Controller` 组件。来自剧本脚本命令（例如 `@char`）的外观更改将转发到控制器的 `On Appearance Changed` 事件，类似于 [通用实现](/zh/guide/characters#通用角色)。您可以随心所欲地处理事件；例如，使用 Spine 的 `SetAnimation` 方法或在 Unity 的动画器控制器中调用触发器。
 
 ![](https://i.gyazo.com/6a2772a3e4137413a7c1587788c54c41.png)
 
@@ -510,55 +510,55 @@ Spine 角色实现使用使用 [Spine](http://esotericsoftware.com) 2D 建模和
 这会在默认轨道上播放 `Idle`，并在轨道 1 上播放 `Shoot`。随后应用 `@char Hero.Idle` 将保持 `Idle` 播放，并混出轨道 1。若要仅通过 `On Appearance Changed` 回调处理外观，请禁用 `Control Animation`。
 
 ::: tip
-可以使用继承自 `Spine Controller` 的自定义组件。这样您就可以覆盖虚方法和相关行为（例如，处理具有特定持续时间或过渡参数的外观更改）。
+可以使用继承自 `Spine Controller` 的自定义组件。这样您就可以重写虚方法及相关行为（例如，以特定的持续时间或过渡参数处理外观更改）。
 :::
 
-在内部，Spine 模型被渲染到纹理，然后投影到屏幕上。这是防止在淡入淡出角色时出现半透明过度绘制伪影所必需的。要指定纹理大小，请使用 `Render Canvas` 组件（添加 `Spine Controller` 时自动附加）。在预制件模式下启用 [gizmos](https://docs.unity3d.com/Manual/GizmosMenu.html) 以预览当前大小。请注意，尺寸越大，纹理消耗的内存就越多，因此请使其尽可能小。
+在内部，Spine 模型被渲染到纹理，然后投影到屏幕上。这是防止在淡入淡出角色时出现半透明过度绘制伪影所必需的。要指定纹理大小，请使用 `Render Canvas` 组件（添加 `Spine Controller` 时自动附加）。在预制件模式下启用 [Gizmos](https://docs.unity3d.com/Manual/GizmosMenu.html) 以预览当前大小。请注意，尺寸越大，纹理消耗的内存就越多，因此请使其尽可能小。
 
 ::: info NOTE
 不支持 Spine 的 [Skeleton Render Separator](https://github.com/pharan/spine-unity-docs/blob/master/spine-unity-skeletonrenderseparator)（多重渲染）工作流程；要将该工作流程与 Naninovel 集成，请创建自定义角色实现。
 :::
 
 ::: tip EXAMPLE
-查看 [spine 示例](/zh/guide/samples#spine)，其中 Spine 角色与 Naninovel 一起使用。
+查看 [Spine 示例](/zh/guide/samples#spine)，其中 Spine 角色与 Naninovel 一起使用。
 :::
 
 ## 旁白角色
 
-旁白角色在场景中没有任何存在（外观、位置、视线方向、色调等），但仍能够创作打印的消息并具有相关的配置选项（显示名称、消息颜色、链接的打印机等）。
+旁白角色在场景中没有任何呈现（外观、位置、朝向、色调等），但仍可以作为打印消息的作者，并具有相关的配置选项（显示名称、消息颜色、链接的打印机等）。
 
 ![](https://i.gyazo.com/f1ee43da312b29f3236cf772d9ea9fa7.png)
 
 ## 渲染到纹理
 
-可以将所有实现（通用除外）的角色和背景 actor 渲染到纹理资产，然后可以将其分配给自定义 UI、打印机、材质或任何其他兼容源。
+可以将所有实现（通用除外）的角色和背景 Actor 渲染到纹理资产，然后可以将其分配给自定义 UI、打印机、材质或任何其他兼容源。
 
-使用 `Render Texture` 属性通过 actor 配置分配渲染纹理资产。分配纹理后，actor 将不会作为游戏对象出现在场景中，而是会渲染到纹理。`Render Rectangle` 属性允许指定要渲染到纹理中的 actor 区域。
+通过 Actor 配置中的 `Render Texture` 属性分配渲染纹理资产。分配纹理后，Actor 将不会作为游戏对象出现在场景中，而是会渲染到纹理。`Render Rectangle` 属性允许指定要渲染到纹理中的 Actor 区域。
 
 ![](https://i.gyazo.com/7224fa44695507b0ce0274940d630299.png)
 
 ::: info NOTE
-使用 [addressables 包](https://docs.unity3d.com/Manual/com.unity.addressables.html) 时，Unity [无法正确跟踪资产引用](https://issuetracker.unity3d.com/product/unity/issues/guid/1277169)，这可能会导致构建中渲染纹理重复，从而阻止该功能正常工作。手动处理引用（通过 `AssetReference` API）或使用 `Get Actor Render Texture` 组件，如下图所示。
+使用 [Addressables 包](https://docs.unity3d.com/Manual/com.unity.addressables.html) 时，Unity [无法正确跟踪资产引用](https://issuetracker.unity3d.com/product/unity/issues/guid/1277169)，这可能会导致构建中渲染纹理重复，从而使该功能无法正常工作。请手动处理引用（通过 `AssetReference` API），或如下图所示使用 `Get Actor Render Texture` 组件。
 
 ![](https://i.gyazo.com/92772b1fa51e6042efcd3de67d05fd79.png)
 :::
 
-当 actor 渲染到纹理时，变换（位置、旋转、缩放）和其他一些修改将没有任何效果。相反，变换渲染纹理的宿主对象（例如，如果纹理分配给 UI 原始图像组件，则为图像）。
+当 Actor 渲染到纹理时，变换（位置、旋转、缩放）和其他一些修改将没有任何效果。此时应改为变换渲染纹理的宿主对象（例如，如果纹理分配给了 UI 原始图像组件，则变换该图像）。
 
 下面的视频演示了如何将 Live2D 角色渲染到纹理，该纹理分配给自定义文本打印机。打印机链接到角色，因此当处理关联的文本消息时，角色将自动与打印机一起显示和隐藏。
 
 ![](https://www.youtube.com/watch?v=81OTbSAnWbw)
 
-所有其他角色和背景实现类型（通用除外）都可以设置为类似于 Live2D 示例的渲染到纹理。
+所有其他角色和背景实现类型（通用除外）都可以按照与 Live2D 示例类似的方式设置为渲染到纹理。
 
 ## 多种外观
 
-通用、Live2D 和 Spine actor 支持同时应用多种外观，例如：
+通用、Live2D 和 Spine Actor 支持同时应用多种外观，例如：
 
 ```nani
 @char Kohaku.Body/Pose1,Face/Smile
 ```
 
-— 将调用 `Body/Pose1` 和 `Face/Smile` 外观更改事件。使用此功能同时触发多个动画器触发器以设置复杂的动画状态。所有外观也将与 actor 状态一起序列化，并在游戏加载或回滚时恢复。
+— 将调用 `Body/Pose1` 和 `Face/Smile` 外观更改事件。使用此功能同时触发多个动画器触发器以设置复杂的动画状态。所有外观也将与 Actor 状态一起序列化，并在游戏加载或回滚时恢复。
 
 ![](https://i.gyazo.com/f438703100ca8c695de814fe08ff2427.mp4)

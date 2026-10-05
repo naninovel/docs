@@ -1,4 +1,4 @@
-# IDE 拡張機能
+# IDE拡張機能
 
 シンタックスハイライト、エラーチェック、自動補完、インタラクティブドキュメントなどのコードエディター機能は、生産性を大幅に向上させることができます。Naninovelには [VS Code](https://code.visualstudio.com) 用の公式拡張機能があり、[シナリオスクリプト](/ja/guide/scenario-scripting) を操作するための豊富なオーサリングツールを提供しています。
 
@@ -10,12 +10,12 @@
 ### VS Code拡張機能のインストール
 
 1. `View -> Extensions` メニューからVS CodeのExtensions（拡張機能）ビューを開きます
-2. "Naninovel" を検索し、"Install" をクリックします
+2. 「Naninovel」を検索し、「Install」をクリックします
 
 ![](https://i.gyazo.com/85999dd50f414c13de12b46e640bf531.png)
 
 ::: info NOTE
-VS Codeレジストリの拡張機能は、現在のNaninovel安定版リリースと互換性があります。Naninovelのプレビューリリースを使用する場合は、プレリリース拡張機能ストリームに切り替えてください。Naninovelの最終リリースを使用する場合は、VS Codeの自動更新を無効にし、関連するレガシーバージョンをインストールしてください。
+VS Codeレジストリの拡張機能は、現在のNaninovel安定リリースと互換性があります。Naninovelのプレビューリリースを使用する場合は、拡張機能のプレリリースストリームに切り替えてください。Naninovelの最終リリースを使用する場合は、VS Codeの自動更新を無効にし、対応するレガシーバージョンをインストールしてください。
 :::
 
 ### 拡張機能のアクティブ化
@@ -29,15 +29,15 @@ VS Codeレジストリの拡張機能は、現在のNaninovel安定版リリー�
 
 ### ワークスペースルート
 
-Naninovelは、VS Code拡張機能との通信に必要なプロジェクトメタデータとブリッジングファイルを、生成されたデータディレクトリ（デフォルトでは `Assets/NaninovelData`）の下に生成します。つまり、VS CodeでNaninovelプロジェクトを開く（[ワークスペースルート](https://code.visualstudio.com/docs/editor/workspaces) を選択する）場合、生成されたデータディレクトリをあるレベルに含むフォルダーを選択する必要があります。
+Naninovelは、VS Code拡張機能との通信に必要なプロジェクトメタデータとブリッジングファイルを、生成されたデータディレクトリ（デフォルトでは `Assets/NaninovelData`）の下に生成します。つまり、VS CodeでNaninovelプロジェクトを開く（[ワークスペースルート](https://code.visualstudio.com/docs/editor/workspaces) を選択する）場合、生成されたデータディレクトリをいずれかの階層に含むフォルダーを選択する必要があります。
 
-ただし、一部のユーザーは、生成されたデータディレクトリを含まない、シナリオスクリプトを含むフォルダーのみを開くことを好みます。そのような場合は、`NaninovelData` フォルダーをシナリオスクリプトフォルダーに移動して、VS Codeに表示されるようにします。
+ただし、一部のユーザーは、生成されたデータディレクトリを含まない、シナリオスクリプトを含むフォルダーのみを開くことを好みます。そのような場合は、`NaninovelData` フォルダーをシナリオスクリプトフォルダーに移動して、VS Codeから見えるようにします。
 
 変更を有効にするには、フォルダーを移動した後にVS Codeを再起動してください。
 
 ## VS Codeの設定
 
-以下は、Unityの自動生成されたメタファイルを無視し、ワードラップとスペルチェックを有効にし（[スペルチェック拡張機能](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) がインストールされている場合）、単語ベースの提案を無効にするためのVS Codeの推奨設定です。
+以下は、Unityの自動生成されたメタファイルを無視し、ワードラップを有効にし、単語ベースの候補、出現箇所のハイライト、ブラケットペアの色付けを無効にするためのVS Codeの推奨設定です。
 
 ```json
 {
@@ -52,7 +52,7 @@ Naninovelは、VS Code拡張機能との通信に必要なプロジェクトメ�
 }
 ```
 
-`File -> Preferences -> Settings` から設定JSONファイルにアクセスし、ウィンドウの右上隅にある "Open Settings (JSON)" ボタンをクリックします。すべてのプロジェクトの設定を編集するには "User" タブを、シナリオスクリプトを含む現在のプロジェクトにのみ影響を与えるには "Workspace" を選択します。
+設定JSONファイルには、`File -> Preferences -> Settings` を開き、ウィンドウの右上隅にある「Open Settings (JSON)」ボタンをクリックするとアクセスできます。すべてのプロジェクトの設定を編集するには「User」タブを、シナリオスクリプトを含む現在のプロジェクトにのみ影響を与えるには「Workspace」を選択します。
 
 上記の設定の一部はパッケージのインストール時にデフォルトで適用されますが、必要に応じてオーバーライドできます。シンタックスハイライトもカスタマイズしたい場合は、次を追加して色を微調整します。
 
@@ -214,11 +214,11 @@ Naninovelは、VS Code拡張機能との通信に必要なプロジェクトメ�
 
 ## 自動補完
 
-`@`、`[`、`{` などの記号を入力すると、補完候補が自動的に表示されます。任意の場所で手動で呼び出すには `Ctrl + Space` を押します。たとえば、空行で呼び出すと、テキスト行の話者として指定できるキャラクターの一覧が表示されます。
+`@`、`[`、`{` などの記号を入力すると、補完候補が自動的に表示されます。任意の場所で手動で呼び出すには `Ctrl+Space` を押します。たとえば、空行で呼び出すと、テキスト行の話者として指定できるキャラクターの一覧が表示されます。
 
 ## 折りたたみ
 
-次の構成要素は、デフォルトで折りたたみサポートを取得します。
+次の構文要素は、デフォルトで折りたたみに対応しています。
 
 - ラベル（別のラベルまで）
 - 連続するコメント行
@@ -226,14 +226,14 @@ Naninovelは、VS Code拡張機能との通信に必要なプロジェクトメ�
 
 次の構文でコメントを使用して、カスタム折りたたみ領域を指定することもできます。
 
-1. `; > region name` で開く（"region name" は何でもかまいません）
-2. `; < region name` で閉じる（"region name" は開くときの名前と同じです）
+1. `; > region name` で開きます（「region name」は任意の名前です）
+2. `; < region name` で閉じます（「region name」は開くときと同じ名前にします）
 
 ## プロジェクトメタデータ
 
-Naninovelメタデータは、作成されたプロジェクトに関連付けられたさまざまな情報（利用可能なキャラクター、背景、リソース、コマンドなど）を含むJSONファイルです。この情報は、IDE拡張機能やWebエディターなどのオーサリングツールで使用され、自動補完や診断などの便利な機能を提供します。
+Naninovelメタデータは、制作中のプロジェクトに関連付けられたさまざまな情報（利用可能なキャラクター、背景、リソース、コマンドなど）を含むJSONファイルです。この情報は、IDE拡張機能やストーリーエディターなどのオーサリングツールで使用され、自動補完や診断などの便利な機能を提供します。
 
-メタデータファイルは、`NaninovelData` 自動生成フォルダーの下の `.nani/Metadata.json` に保存されます。エンジン構成で `Auto Generate Metadata` が有効になっている場合、メタデータはドメインのリロード時やNaninovel構成またはリソースアセットの編集後に自動的に再生成されます。手動でメタデータを更新するには、`Naninovel -> Update Metadata` エディターメニューまたは `Ctrl + Shift + U` ホットキーを使用します。
+メタデータファイルは、`NaninovelData` 自動生成フォルダーの下の `.nani/Transient/Metadata.json` に保存されます。エンジン構成で `Auto Generate Metadata` が有効になっている場合、メタデータはドメインのリロード時やNaninovel構成またはリソースアセットの編集後に自動的に再生成されます。手動でメタデータを更新するには、`Naninovel -> Update Metadata` エディターメニューまたは `Ctrl+Shift+U` ホットキーを使用します。
 
 ::: tip
 メタデータが同期していない場合は、エンジン構成で `Enable Bridging` がオンになっていることを確認し、エンジン構成メニューの上部に表示される `Generated Data Root` の値がIDE拡張機能によって報告されるデータルートと等しいことを確認してください。
@@ -241,7 +241,7 @@ Naninovelメタデータは、作成されたプロジェクトに関連付け�
 
 ### メタデータプロバイダー
 
-生成されたメタデータを追加のカスタム値で埋めたり、デフォルトをオーバーライドしたりするには、`IMetadataProvider` インターフェースを実装するC#クラスを作成します。実装にはパラメーターなしのコンストラクタが必要です。見つかった場合、プロジェクトメタデータが生成されるたびに、デフォルトのプロバイダーの代わりにカスタムプロバイダーが使用されます。
+生成されるメタデータに追加のカスタム値を含めたり、デフォルトをオーバーライドしたりするには、`IMetadataProvider` インターフェースを実装するC#クラスを作成します。実装にはパラメーターなしのコンストラクタが必要です。見つかった場合、プロジェクトメタデータが生成されるたびに、デフォルトのプロバイダーの代わりにカスタムプロバイダーが使用されます。
 
 以下はデフォルトのメタデータプロバイダーです。独自の実装を行う際の参考にしてください。
 
@@ -255,6 +255,7 @@ public class DefaultMetadataProvider : IMetadataProvider
         meta.EntryScript = cfg.StartGameScript;
         meta.TitleScript = cfg.TitleScript;
         Notify("Processing commands...", 0);
+        meta.CommandGroups = MetadataGenerator.GenerateCommandGroupMetadata();
         meta.Commands = MetadataGenerator.GenerateCommandsMetadata();
         Notify("Processing resources...", .25f);
         meta.Resources = MetadataGenerator.GenerateResourcesMetadata();
@@ -263,14 +264,14 @@ public class DefaultMetadataProvider : IMetadataProvider
         Notify("Processing variables...", .75f);
         meta.Variables = MetadataGenerator.GenerateVariablesMetadata();
         Notify("Processing queries...", .95f);
-        meta.Queries = MetadataGenerator.GenerateQueriesMetadata();
+        meta.Queries = MetadataGenerator.GenerateQueryMetadata();
         Notify("Processing enums...", .99f);
         meta.Enums = MetadataGenerator.GenerateEnumsMetadata();
-        meta.Syntax = Compiler.Syntax;
+        meta.Symbols = new(Compiler.Symbols);
         return meta;
     }
 
-    private static void Notify (string info, float progress)
+    protected static void Notify (string info, float progress)
     {
         if (EditorUtility.DisplayCancelableProgressBar("Generating Metadata", info, progress))
             throw new OperationCanceledException("Metadata generation cancelled by the user.");
@@ -280,7 +281,7 @@ public class DefaultMetadataProvider : IMetadataProvider
 
 ## IDE属性
 
-Naninovelは、カスタムコマンドや式クエリのIDE関連機能を有効にするためのいくつかの [C#属性](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes) を提供しています。たとえば、カスタムコマンドやパラメーターにホバー時のドキュメントを追加するには、コマンドタイプとパラメーターフィールドにそれぞれ `Doc` 属性を適用します。
+Naninovelは、カスタムコマンドや式クエリのIDE関連機能を有効にするためのいくつかの [C#属性](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes) を提供しています。たとえば、カスタムコマンドやパラメーターにホバー時のドキュメントを追加するには、コマンドの型とパラメーターフィールドにそれぞれ `Doc` 属性を適用します。
 
 ```csharp
 [Doc("Summary of the custom command.")]
@@ -291,7 +292,7 @@ public class CustomCommand : Command
 }
 ```
 
-組み込みおよびカスタムの式クエリと事前定義された変数の両方でパラメーターの自動補完をサポートするには、`ExpressionContext` 属性を使用します。
+パラメーターで、組み込みとカスタム両方の式クエリおよび事前定義された変数の自動補完をサポートするには、`ExpressionContext` 属性を使用します。
 
 ```csharp
 [ExpressionContext]
@@ -305,17 +306,17 @@ public StringParameter Expression;
 public StringParameter Platform;
 ```
 
-ナビゲーションエンドポイント（スクリプトパスとラベル）の使用状況と正確さを自動補完および分析するには、`EndpointContext` 属性を使用します。
+ナビゲーションエンドポイント（スクリプトパスとラベル）を自動補完し、その使用状況と正しさを分析するには、`EndpointContext` 属性を使用します。
 
 ```csharp
 [EndpointContext]
-public NamedStringParameter Goto;
+public StringParameter Path;
 ```
 
-リソースで自動補完するには、`ResourceContext` を使用し、リソースのパスプレフィックスを指定します。以下の例はオーディオリソースで補完します。
+リソースで自動補完するには、`ResourceContext` を使用し、リソースのパスプレフィックスを指定します。以下の例は効果音リソースで補完します。
 
 ```csharp
-[ResourceContext(AudioConfiguration.DefaultAudioPathPrefix)]
+[ResourceContext(AudioConfiguration.DefaultSfxPathPrefix)]
 public StringParameter Audio;
 ```
 
@@ -342,7 +343,7 @@ public StringParameter CharacterId;
 public StringParameter CharacterAppearance;
 ```
 
-上記の各属性では、オプションの `namedIndex` 引数を指定できます。名前付きパラメーターと共に使用して、属性がパラメーター値のどの部分に適用されるかを指定します。以下の例では、名前付きパラメーターの名前部分をキャラクターIDで、値部分を現在入力されているキャラクターの外観で自動補完できるようにします（[@char] コマンドのプライマリパラメーターと同様）。
+`EndpointContext` を除き、上記の各コンテキスト属性では、オプションの `index` 引数を指定できます。名前付きパラメーターと共に使用して、属性がパラメーター値のどの部分に適用されるかを指定します。以下の例では、名前付きパラメーターの名前部分をキャラクターIDで、値部分を現在入力されているキャラクターの外観で自動補完できるようにします（[@char] コマンドのプライマリパラメーターと同様）。
 
 ```csharp
 [ActorContext(CharactersConfiguration.DefaultPathPrefix, 0), AppearanceContext(1)]
@@ -364,43 +365,44 @@ public class ModifyBackground : ModifyActor { }
 
 ## 列挙型式
 
-`EnumContext` IDE属性を使用する場合、列挙型の代わりに、コマンドパラメーター値やその他の変数（現在検査中のスクリプトなど）に基づいて列挙型名を生成するためにIDEによって評価される式を指定できます。
+`EnumContext` IDE属性を使用する場合、列挙型の代わりに、コマンドパラメーター値やその他の変数（タイトルスクリプトのパスなど）に基づいて列挙型名を生成するためにIDEによって評価される式を指定できます。
 
 式の構文：
 
 - 評価される部分は中括弧（`{}`）で囲む必要があります
-- 現在検査中のスクリプトパスを参照するには、`$Script` を使用します
+- スクリプト構成で割り当てられた `Start Game Script` または `Title Script` のパスを参照するには、それぞれ `$EntryScript` または `$TitleScript` を使用します
 - パラメーター値を参照するには、`:` の後にパラメーターID（エイリアスではなく、C#で指定されたフィールド名）を使用します
-- パラメーター参照の後に `[0]` または `[1]` を使用して、名前付き値（名前は0、インデックスは1）を指定します
+- パラメーター参照の後に `[0]` または `[1]` を使用して、名前付き値（名前は0、値は1）を指定します
 - パラメーター参照の後にnull合体演算子（`??`）を使用して、値が指定されていない場合のフォールバックを指定します
+- シングルクォートを使用して、フォールバック値などのリテラルテキストを指定します（例：`{:Id??'MainBackground'}`）
 - 連結演算子（`+`）を使用して、複数の列挙型の値をマージします
 
-たとえば、組み込みの `[@goto]` コマンドの `Path` パラメーターに割り当てられた式を確認してください。
+たとえば、カスタムコマンドの名前付きパラメーターに割り当てられた次の式を見てみましょう（`Quests/...` 列挙型はカスタムメタデータプロバイダーで追加されているものとします）。
 
 ```csharp
-[EnumContext("Labels/{:Path[0]??$Script}", 1)]
-public NamedStringParameter Path;
+[EnumContext("Quests/{:QuestId[0]??$EntryScript}", 1)]
+public NamedStringParameter QuestId;
 ```
 
-パラメーターの名前コンポーネントに `foo` が割り当てられている場合、それは `Labels/foo` に評価されます。それ以外の場合、検査中のスクリプトパスが `bar` であるとすると、`Labels/bar` に評価されます。
+パラメーターの名前部分に `foo` が割り当てられている場合は `Quests/foo` と評価されます。それ以外の場合、`Start Game Script` のパスが `bar` であれば `Quests/bar` と評価されます。
 
-`@char` コマンドに適用されるキャラクターポーズの別の例：
+[@char] コマンドに適用されるキャラクターポーズの別の例：
 
 ```csharp
 [EnumContext("Poses/Characters/{:Id??:IdAndAppearance[0]}+Poses/Characters/*", paramId: nameof(Pose))]
 public class ModifyCharacter { ... }
 ```
 
-これは、共有キャラクターポーズと、IDが "Id" パラメーターに割り当てられている（または割り当てられていない場合は "IdAndAppearance" パラメーターの名前コンポーネント）キャラクターのポーズをマージします。
+これは、共有キャラクターポーズと、「Id」パラメーター（未指定の場合は「IdAndAppearance」パラメーターの名前部分）にIDが割り当てられているキャラクターのポーズをマージします。
 
-列挙型式と [カスタムメタデータプロバイダー](/ja/guide/ide-extension#メタデータプロバイダー) を組み合わせることで、IDE拡張機能用の柔軟な自動補完シナリオを作成できます。
+列挙型式と [カスタムメタデータプロバイダー](/ja/guide/ide-extension#メタデータプロバイダー) を組み合わせることで、IDE拡張機能向けの柔軟な自動補完の仕組みを構築できます。
 
 ## その他のIDEとエディター
 
-[VSCodium](https://vscodium.com)、[Cursor](https://www.cursor.com)、[Trae](https://www.trae.ai/) などのVS Code互換エディターを使用している場合は、Open VSXレジストリから拡張機能をインストールしてください: [open-vsx.org/extension/elringus/naninovel](https://open-vsx.org/extension/elringus/naninovel)
+[VSCodium](https://vscodium.com)、[Cursor](https://www.cursor.com)、[Trae](https://www.trae.ai/) などのVS Code互換エディターを使用している場合は、Open VSXレジストリから拡張機能をインストールしてください：[open-vsx.org/extension/elringus/naninovel](https://open-vsx.org/extension/elringus/naninovel)。
 
 他のエディター用の拡張機能は保守していませんが、[LSP準拠](https://microsoft.github.io/language-server-protocol) の言語サーバーが [エンジンモノレポ](https://github.com/naninovel/engine/tree/main/core/packages/language) で利用可能です。サーバーはC#で実装されており、WASMにコンパイルでき、組み込みのJavaScriptバインディングを備えているため、最新のほとんどのIDEで使用できます。
 
 VS Code拡張機能は、同じ言語サーバー上に構築されています。拡張機能のソースもモノレポで利用可能です。サーバーをお好みのIDEに統合する際の参考にしてください。リポジトリにアクセスするには、[ライセンスを登録](https://naninovel.com/register) してください。
 
-あるいは、TextMate文法をサポートするエディター（[Sublime](https://www.sublimetext.com) や [Visual Studio](https://visualstudio.microsoft.com) など）を使用している場合は、ここで提供しています: [textmate.json](https://github.com/naninovel/docs/blob/main/docs/.vitepress/ext/lang/textmate.json)。文法はシンタックスハイライトにのみ使用できることに注意してください。その他のIDE機能には、引き続き言語サーバーが必要です。
+あるいは、TextMate文法をサポートするエディター（[Sublime](https://www.sublimetext.com) や [Visual Studio](https://visualstudio.microsoft.com) など）を使用している場合は、こちらで文法を提供しています：[textmate.json](https://github.com/naninovel/docs/blob/main/docs/.vitepress/ext/lang/textmate.json)。この文法はシンタックスハイライトにのみ使用できることに注意してください。その他のIDE機能には、引き続き言語サーバーが必要です。

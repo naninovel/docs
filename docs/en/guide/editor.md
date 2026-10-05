@@ -6,7 +6,7 @@ Naninovel has its own standalone app that you can use to author scenario scripts
 
 ## Sandbox Mode
 
-Sandbox mode is completely independent of the Unity editor. It provides tools to author the scenario and preview (play) the game right in the browser, using the latest engine specs, available commands, and runtime features. Under the hood, it produces standard `.nani` text files, which you can seamlessly reuse in Unity or edit directly with [VS Code](/guide/ide-extension).
+Sandbox mode is completely independent of the Unity Editor. It provides tools to author the scenario and preview (play) the game right in the browser, using the latest engine specs, available commands, and runtime features. Under the hood, it produces standard `.nani` text files, which you can seamlessly reuse in Unity or edit directly with [VS Code](/guide/ide-extension).
 
 Main use cases for sandbox mode:
 
@@ -39,7 +39,7 @@ The assets are instantly displayed in the game preview when selected.
 
 ## Embedded Mode
 
-Story Editor is fully integrated with the Unity Editor and can be started by either inspecting a scenario script asset or via the `Naninovel -> Story Editor` Unity Editor menu.
+The Story Editor is fully integrated with the Unity Editor and can be started either by inspecting a scenario script asset or via the `Naninovel -> Story Editor` Unity Editor menu.
 
 ![?width=588](https://i.gyazo.com/48ad8d4c512b67df02d7ace15d5eaca5.png)
 
@@ -67,7 +67,7 @@ There are default layout templates to choose from, and you can add custom layout
 
 ## File Browser
 
-The file browser tab allows you to interact with the files and directories under the current project root. You can create new scenario scripts or placeholder assets (in [sandbox mode](/guide/editor#sandbox-mode)), manage, and organize files.
+The file browser tab allows you to interact with the files and directories under the current project root. You can create new scenario scripts or placeholder assets (in [sandbox mode](/guide/editor#sandbox-mode)), and manage and organize files.
 
 ![?width=280](https://i.gyazo.com/ada798d90c52c3f24d88001258e794a1.png)
 
@@ -75,11 +75,11 @@ When you rename or move scenario script files via the file browser, the editor w
 
 ## Inspector
 
-The interaction model of the Naninovel editor is similar to the Unity editor: you select an asset, such as a file in the file browser or a node in the story graph, and the associated editors are displayed in the inspector tab. This allows for a clean separation between structural and direct editing contexts, resulting in a more productive UX.
+The interaction model of the Story Editor is similar to the Unity Editor: you select an asset, such as a file in the file browser or a node in the story graph, and the associated editors are displayed in the inspector tab. This allows for a clean separation between structural and direct editing contexts, resulting in a more productive UX.
 
 ![?width=606](https://i.gyazo.com/1bf3dae6c1bb254c05580e61300d064b.png)
 
-The inspector employs a focus trap — you can use Tab and Shift+Tab to switch between the input fields and controls efficiently, without using the mouse.
+The inspector employs a focus trap — you can use `Tab` and `Shift+Tab` to switch between the input fields and controls efficiently, without using the mouse.
 
 ## Scenario Editor
 
@@ -89,9 +89,9 @@ The scenario editor is the app's main authoring tool. It's an alternative to wri
 
 Each scenario editor tab represents a `.nani` script, with text lines visualized as rows. You can add lines using the `+` button at the bottom of the tab, via the context menu (right-click existing content), or with the `Enter` hotkey (configurable in [settings](/guide/editor#keymap)).
 
-You can reorder lines by drag-dropping, delete or duplicate lines via the context menu or with the `Backspace` and `Ctrl+D` keys.
+You can reorder lines by drag-dropping, and delete or duplicate lines via the context menu or with the `Backspace` and `Ctrl+D` keys.
 
-The changes are applied immediately and reflected in the game view in case the edited script is currently playing. To persist the changes, you need to [save](/guide/editor#dirty-save) the modified file.
+The changes are applied immediately and reflected in the game view if the edited script is currently playing. To persist the changes, you need to [save](/guide/editor#dirty-save) the modified file.
 
 While the game is running, the currently played line is highlighted with a green or yellow outline depending on whether it's waiting for input. To automatically open the currently played script and select the active line, click the dedicated button on the control panel or press `Ctrl+X`.
 
@@ -101,7 +101,7 @@ While the game is running, the currently played line is highlighted with a green
 
 The story graph helps visualize, track, and organize the scenario structure, and also allows editing the scripts themselves.
 
-By default, each node represents either a scenario script or a directory. Edges represent navigation between scripts. Conditional navigations (e.g., [@goto] under [@choice] or [@if]) appear as dashed edges, with conditions listed on the associated ports.
+By default, each node represents either a scenario script or a directory. Edges represent navigation between scripts. Conditional navigations (eg, [@goto] under [@choice] or [@if]) appear as dashed edges, with conditions listed on the associated ports.
 
 ![](https://i.gyazo.com/046b9f276e63914d4cdd8663f649d1e0.png)
 
@@ -143,7 +143,7 @@ You can customize both the editor and project via the settings tab, which has tw
 
 ### User Settings
 
-User settings are stored in the directory you picked during the first-time setup in sandbox mode or under Unity's persistent directory in the embedded mode. They're not shared with the project and apply to all projects on the device. This includes preferences like the editor color scheme, keymap, and UI element visibility.
+User settings are stored in the directory you picked during the first-time setup in sandbox mode or under Unity's persistent directory in embedded mode. They're not shared with the project and apply to all projects on the device. This includes preferences like the editor color scheme, keymap, and UI element visibility.
 
 ### Project Settings
 
@@ -151,7 +151,7 @@ Project settings are user-agnostic, stored under the project directory, and shar
 
 ### Keymap
 
-The keymap is part of the user settings and lets you configure key bindings for various editor features, such as appending lines, duplicating nodes, entering play mode, etc.
+The keymap is part of the user settings and lets you configure key bindings for various editor features, such as appending lines, duplicating nodes, entering Play mode, etc.
 
 To bind a key, find the desired action and enter the key code. Modifiers can be prepended using `+`. Refer to the [MDN reference](https://developer.mozilla.org/en-US/docs/Web/API/UI_Events/Keyboard_event_key_values) for valid key codes and modifiers.
 

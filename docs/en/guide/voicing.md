@@ -1,14 +1,14 @@
 # Voicing
 
-To expose voice clips to the engine, store them under `Resources/Naninovel/Voice` folder (can be changed in audio configuration under `Loader` foldout). You can additionally organize them with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in scenario scripts. For example, a voice audio clip stored as `Resources/Naninovel/Voice/Intro/Day/25.wav` can be referenced in scripts as `Intro/Day/25`.
+To expose voice clips to the engine, store them under the `Resources/Naninovel/Voice` folder (can be changed in the audio configuration under the `Voice Loader` foldout). You can additionally organize them with sub-folders, if you wish; in this case use forward slashes (`/`) when referencing them in scenario scripts. For example, a voice audio clip stored as `Resources/Naninovel/Voice/Intro/Day/25.wav` can be referenced in scripts as `Intro/Day/25`.
 
-It's also possible to use [addressable asset system](/guide/resource-providers#manual-assignment) to manually expose the resources; consult the guide for more info.
+It's also possible to use the [Addressable Asset System](/guide/resource-providers#manual-assignment) to manually expose the resources; consult the guide for more info.
 
 You can use any audio formats [supported by Unity](https://docs.unity3d.com/Manual/AudioFiles.html) for your voice clips.
 
-Voice playback behavior can be configured using `Naninovel -> Configuration -> Audio` context menu; for available options see [configuration guide](/guide/configuration#audio).
+Voice playback behaviour can be configured using the `Naninovel -> Configuration -> Audio` editor menu; for available options, see the [configuration guide](/guide/configuration#audio).
 
-Use [@voice] command followed by the clip name (path) to play the voice in scenario scripts, e.g.:
+Use the [@voice] command followed by the clip name (path) to play the voice in scenario scripts, eg:
 
 ```nani
 @voice Hello
@@ -17,16 +17,16 @@ Use [@voice] command followed by the clip name (path) to play the voice in scena
 — will play a voice clip asset stored at `Resources/Naninovel/Voice/Hello.wav`.
 
 ::: info NOTE
-The [@voice] commands are intended to occasionally play voice clips at specific moments and are not suited for implementing a complete voiceover; see the "Auto Voicing" section below for more information on how to handle voicing in projects where most of the text lines have an associated voice clip. Some built-in features (e.g., replay voice in backlog, voiceover documents, etc.) work only with the auto voice workflow.
+The [@voice] commands are intended to occasionally play voice clips at specific moments and are not suited for implementing a complete voiceover; see the "Auto Voicing" section below for more information on how to handle voicing in projects where most of the text lines have an associated voice clip. Some built-in features (eg, replay voice in backlog, voiceover documents, etc) work only with the auto-voicing workflow.
 :::
 
 ## Auto Voicing
 
-In fully-voiced games, it can become tedious to specify a [@voice] command for each voiced line. The Auto voicing feature allows automatically playing voice clips associated with unique identifiers of the voiced text lines. To enable auto voicing, enable the `Enable Auto Voicing` toggle in the Audio configuration menu.
+In fully voiced games, it can become tedious to specify a [@voice] command for each voiced line. The auto-voicing feature allows automatically playing voice clips associated with unique identifiers of the voiced text lines. To enable auto voicing, enable the `Enable Auto Voicing` toggle in the audio configuration menu.
 
-The association between voice audio clips and voiced text lines can be performed either via the voice map utility or by assigning addresses to audio clip assets with Unity's addressable asset system (or otherwise exposing the assets to another [resource provider](/guide/resource-providers)).
+The association between voice audio clips and voiced text lines can be performed either via the voice map utility or by assigning addresses to audio clip assets with Unity's Addressable Asset System (or otherwise exposing the assets to another [resource provider](/guide/resource-providers)).
 
-When auto voicing is enabled, an "Open Voice Map Utility" button will appear in the audio configuration menu; you can also access the utility via `Naninovel -> Tools -> Voice Map` editor menu.
+When auto voicing is enabled, an "Open Voice Map Utility" button will appear in the audio configuration menu; you can also access the utility via the `Naninovel -> Tools -> Voice Map` editor menu.
 
 ![](https://i.gyazo.com/3c8fad99f7a18e3f0eaf419c9be92277.mp4)
 
@@ -38,7 +38,7 @@ When assigning the clips via the voice map window, make sure to store the voice 
 
 To associate voice clips for a non-source locale, select a [script localization document](/guide/localization#scripts-localization) using the `Localization Document` field. When a valid document is picked, assigned voice clips will be automatically prefixed with the locale under which the document is stored and used when the corresponding [voice language](/guide/voicing#voice-language) is selected.
 
-If the same author has identical text messages (in the same script), both messages will be associated with the same voice clip. If that is not desired, add a unique text identifier to one of the messages, e.g.:
+If the same author has identical text messages (in the same script), both messages will be associated with the same voice clip. If that is not desired, add a unique text identifier to one of the messages, eg:
 
 ```nani
 Hello.
@@ -46,7 +46,7 @@ Hello.|#uniqueid|
 ```
 
 ::: tip
-Use `Naninovel/Tools/Text Identifier` under the editor menu to make Naninovel automatically generate unique IDs for all localizable script text, including voiced lines. This way you won't have to manually assign IDs for duplicate lines, and editing already mapped lines won't break the associations. See [text identification](/guide/scenario-scripting#text-identification) for more info.
+Use `Naninovel -> Tools -> Text Identifier` under the editor menu to make Naninovel automatically generate unique IDs for all localizable script text, including voiced lines. This way you won't have to manually assign IDs for duplicate lines, and editing already mapped lines won't break the associations. See [text identification](/guide/scenario-scripting#text-identification) for more info.
 :::
 
 To associate the clips without using the voice map utility, expose the assets to a resource provider using the text ID as the resource name prefixed by the script path and voice loader prefix (`Voice` by default). To find the script path and text ID of a specific voiced line, use [voiceover documents](/guide/voicing#voiceover-documents). For example, to associate a voiced line with `2670eb4` text ID inside a script with `Script01` path exposed via an addressable resource provider, use the following address: `Naninovel/Voice/Script01/2670eb4`.
@@ -55,10 +55,10 @@ To find auto-voice IDs associated with the currently printed text while the game
 
 ![auto voicing](https://i.gyazo.com/12772ecc7c14011bcde4a74c81e997b8.png)
 
-To show the window, make sure `Enable Development Console` is turned on in the engine configuration, then press the `~` key while in play mode, type `debug` and press `Enter`.
+To show the window, make sure `Enable Development Console` is turned on in the engine configuration, then press the `~` key while in Play mode, type `debug` and press `Enter`.
 
 ::: tip EXAMPLE
-Find an example of setting up auto voicing for multiple locales in the [auto voicing sample](/guide/samples#auto-voicing).
+Find an example of setting up auto voicing for multiple locales in the [auto-voicing sample](/guide/samples#auto-voicing).
 :::
 
 ## Author Volume
@@ -69,13 +69,13 @@ To set up per-author voice control, [create a custom settings UI](/guide/gui#mod
 
 ![](https://i.gyazo.com/5a8db32ca5d971f2876f71d35f1a020c.png)
 
-The added slider will now control voice volume of the specified character. When nothing is assigned to the author ID field, the slider will control volume of the audio mixer's voice group, affecting all the voices.
+The added slider will now control the voice volume of the specified character. When nothing is assigned to the author ID field, the slider will control the volume of the audio mixer's voice group, affecting all the voices.
 
 ## Voice Language
 
-When adding voiceover for different localizations, it's possible to allow the player to select the voice language independently of the main localization (e.g., play the game with English text and UI, but with Japanese voiceover).
+When adding voiceover for different localizations, it's possible to allow the player to select the voice language independently of the main localization (eg, play the game with English text and UI, but with Japanese voiceover).
 
-To add a voice language dropdown to the game settings, assign the `Voice Locales` property in the audio configuration menu. Add the language tags of the locales for which you have the corresponding voice resources. E.g., the example below will allow the player to choose from English and Japanese voices:
+To add a voice language dropdown to the game settings, assign the `Voice Locales` property in the audio configuration menu. Add the language tags of the locales for which you have the corresponding voice resources. Eg, the example below will allow the player to choose from English and Japanese voices:
 
 ![](https://i.gyazo.com/904a59d1a18510373da97bc9b26e8880.png)
 
@@ -93,9 +93,9 @@ Use the voiceover documents generator utility accessible via `Naninovel -> Tools
 
 ![](https://i.gyazo.com/d1e40ff118daebd83b55e0433431b2a8.png)
 
-`Locale` property allows you to select a specific locale for which to generate the documents (the localized scenario scripts for the selected locale should exist in your project).
+The `Locale` property allows you to select a specific locale for which to generate the documents (the localized scenario scripts for the selected locale should exist in your project).
 
-`Format` property controls the type of file and formatting of the voiceover documents to produce:
+The `Format` property controls the type of file and formatting of the voiceover documents to produce:
 
 - Plaintext — Plaintext file without any formatting.
 - Markdown — [Markdown](https://en.wikipedia.org/wiki/Markdown) file with additional formatting for better readability.
@@ -109,11 +109,11 @@ Below is an example of a voiceover document generated in Markdown format.
 
 It's possible to inject a custom voiceover document generator in case you wish to format and/or serialize the documents in a special way.
 
-To add a custom generator, create a new C# class with a parameterless constructor and implement `IVoiceoverDocumentGenerator` interface. The utility will automatically pick such a class and use it instead of the built-in generators.
+To add a custom generator, create a new C# class with a parameterless constructor and implement the `IVoiceoverDocumentGenerator` interface. The utility will automatically pick such a class and use it instead of the built-in generators.
 
-`GenerateVoiceoverDocument` method will be invoked by the utility for each script found in the project for the selected locale. `list` argument is the list of commands contained in the script. `locale` represents the locale (language) selected in the utility. `outDir` is the output path selected in the utility.
+The `GenerateVoiceoverDocument` method will be invoked by the utility for each script found in the project for the selected locale. The `list` argument is the list of commands contained in the script. `locale` represents the locale (language) selected in the utility. `outDir` is the output path selected in the utility.
 
-Below is an example of a custom voiceover generator, which appends a header with script path and locale followed by `auto-voice id > author > text` line for each print text command found in the script.
+Below is an example of a custom voiceover generator, which appends a header with the script path and locale followed by an `auto-voice id > author > text` line for each print command found in the script.
 
 ```csharp
 public class VoiceoverGenerator : IVoiceoverDocumentGenerator

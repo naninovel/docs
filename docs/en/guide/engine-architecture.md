@@ -1,10 +1,10 @@
 # Engine Architecture
 
-The engine is designed with the following principles in mind: **scene independence** and **service-orientation**.
+The engine is designed with the following principles in mind: **scene independence** and **service orientation**.
 
 ## Scene Independent
 
-While Unity design promotes using scenes and prefabs composition, it's not very practical when developing visual novels. Naninovel systems are either not directly bound to a [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html) or attached to a [persistent](https://docs.unity3d.com/ScriptReference/Object.DontDestroyOnLoad.html) root [GameObject](https://docs.unity3d.com/ScriptReference/GameObject.html).
+While Unity's design promotes using scenes and prefab composition, it's not very practical when developing visual novels. Naninovel systems are either not directly bound to a [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html) or attached to a [persistent](https://docs.unity3d.com/ScriptReference/Object.DontDestroyOnLoad.html) root [GameObject](https://docs.unity3d.com/ScriptReference/GameObject.html).
 
 ![](https://i.gyazo.com/6802b8c4bce20ca158bb757d12ef6c1a.png)
 
@@ -26,7 +26,7 @@ If you need to interact with an engine system, you will usually use an engine se
 
 ```csharp
 var player = Engine.GetService<IScriptPlayer>();
-player.Stop();
+player.MainTrack.Stop();
 ```
 You can find a list of all currently available engine services and information on how to override or add custom ones in the [engine services guide](/guide/engine-services).
 

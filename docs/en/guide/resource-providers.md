@@ -1,36 +1,34 @@
 # Resource Providers
 
-Resource providers are used to retrieve Naninovel-related assets (appearance textures, BGM clips, etc.) at runtime, in accordance with the [memory management](/guide/memory-management) needs. Each provider specializes in retrieving assets from a specific source: the project's "Resources" folders, Unity's addressable asset system, local file storage, etc.
+Resource providers are used to retrieve Naninovel-related assets (appearance textures, BGM clips, etc) at runtime, in accordance with the [memory management](/guide/memory-management) needs. Each provider specializes in retrieving assets from a specific source: the project's "Resources" folders, Unity's Addressable Asset System, local file storage, etc.
 
-Providers' general behavior can be configured via the `Naninovel -> Configuration -> Resource Provider` menu.
+Providers' general behaviour can be configured via the `Naninovel -> Configuration -> Resource Provider` menu.
 
-![](https://i.gyazo.com/b895b71462d39352931609bcf2115711.png)
+![](https://i.gyazo.com/623b6df78984851c79715378aae9b559.png)
 
-`Resource Policy` property dictates when the resources are loaded and unloaded during script execution. Refer to the [memory management](/guide/memory-management) guide for more info.
+The `Resource Policy` property dictates when the resources are loaded and unloaded during script execution. Refer to the [memory management](/guide/memory-management) guide for more info.
 
-When `Log Resources Loading` is enabled, various provider-related log messages will be mirrored to the default loading screen UI.
+`Enable Build Processing` turns on a build pre-processing step required to ensure assets assigned via editor menus are available in builds. You may need to disable this processing if you're using a [custom build environment](/guide/custom-build-environment) or attaching your own build hooks. After enabling or disabling the property, restart the Unity Editor for the change to take effect.
 
-`Enable Build Processing` turns on a build pre-processing step required to ensure assets assigned via editor menus are available in builds. You may need to disable this processing if you're using a [custom build environment](/guide/custom-build-environment) or attaching your own build hooks. After enabling or disabling the property, restart the Unity editor for the change to take effect.
-
-When the [Addressables system](https://docs.unity3d.com/Packages/com.unity.addressables@latest) is installed, enabling `Use Addressables` will optimize the asset processing step and improve build time; enabling `Auto Build Bundles` at the same time will cause asset bundles to be compiled automatically when building the player.
+When the [Addressables system](https://docs.unity3d.com/Packages/com.unity.addressables@latest) is installed, it is used to optimize the asset processing step and improve build time; enabling `Auto Build Bundles` will cause asset bundles to be compiled automatically when building the player.
 
 Other properties in the configuration menu are provider-specific and are described below.
 
-Resource-specific provider behavior is configured via `Loader` properties available in the corresponding configuration menus. For example, here is the default loader configuration used to retrieve audio resources (BGM and SFX):
+Resource-specific provider behaviour is configured via `Loader` properties available in the corresponding configuration menus. For example, here is the default loader configuration used to retrieve SFX resources:
 
-![](https://i.gyazo.com/e9b59f738c93d0cdee6f0999b797a461.png)
+![](https://i.gyazo.com/a51d5e5e6348ccc942cd3c96e5782b48.png)
 
-`Path Prefix` property allows specifying an additional path over the provider's root path for a specific type of resources. For example, if we're going to retrieve an "Explosion" audio file from a project's "Resources" folder and set the path prefix to `Audio`, the resulting resource request will be `Resources.Load("Audio/Explosion")`.
+The `Path Prefix` property allows specifying an additional path over the provider's root path for a specific type of resources. For example, if we're going to retrieve an "Explosion" audio file from a project's "Resources" folder and set the path prefix to `SFX`, the resulting resource request will be `Resources.LoadAsync("Naninovel/SFX/Explosion")`.
 
-`Providers List` allows specifying which provider types to use and in which order. For example, in the configuration above, when requesting an audio resource, the Addressable provider will be tried first; if it can't find the requested resource, the Project provider will be used as a fallback.
+`Providers List` allows specifying which provider types to use and in which order. For example, in the configuration above, when requesting an audio resource, the addressable provider will be tried first; if it can't find the requested resource, the project provider will be used as a fallback.
 
-Be aware that while in the editor, a special "Editor" resource provider is always used first (no matter the loader configuration). This provider has access to all the resources assigned via Naninovel's configuration and resource manager menus (`Naninovel -> Resources -> ...`). When the game is built, such resources are automatically copied to a temporary "Resources" folder or (when the [Addressables system](https://docs.unity3d.com/Packages/com.unity.addressables@latest) is installed and enabled) registered in the Addressables configuration and compiled to asset bundles. Remember to always perform any provider-related tests in builds, not in the Unity editor.
+Be aware that while in the editor, a special "Editor" resource provider is always used first (no matter the loader configuration). This provider has access to all the resources assigned via Naninovel's configuration and resource manager menus (`Naninovel -> Resources -> ...`). When the game is built, such resources are automatically copied to a temporary "Resources" folder or (when the [Addressables system](https://docs.unity3d.com/Packages/com.unity.addressables@latest) is installed) registered in the Addressables configuration and compiled to asset bundles. Remember to always perform any provider-related tests in builds, not in the Unity Editor.
 
 ## Addressable
 
-The [Addressable Asset system](https://docs.unity3d.com/Packages/com.unity.addressables@latest) is a Unity package that allows loading assets by "address." It uses asynchronous loading to support loading from any location (local storage, remote web hosting, etc.) with arbitrary collections of dependencies. Consult Unity's documentation on how to set up, configure, and use the system.
+The [Addressable Asset System](https://docs.unity3d.com/Packages/com.unity.addressables@latest) is a Unity package that allows loading assets by "address." It uses asynchronous loading to support loading from any location (local storage, remote web hosting, etc) with arbitrary collections of dependencies. Consult Unity's documentation on how to set up, configure, and use the system.
 
-Naninovel will automatically use Addressables when the package is installed in the project and the `Use Addressables` property is enabled in the resource provider configuration. No additional setup is required: all assets assigned in Naninovel's configuration menus (e.g., scenario scripts, character sprites, audio clips) will be registered with the system (assigned an address) when building the player.
+Naninovel will automatically use Addressables when the package is installed in the project. No additional setup is required: all assets assigned in Naninovel's configuration menus (eg, scenario scripts, character sprites, audio clips) will be registered with the system (assigned an address) when building the player.
 
 Assets assigned via Naninovel menus are added to the `Naninovel` group. If you wish to configure how they're served (for example, to specify a remote web host), edit the group via `Window -> Asset Management -> Addressables -> Groups`. The group is created automatically when first needed; you can also create it manually to configure it before building the game.
 
@@ -51,17 +49,19 @@ Below are examples of addresses you can use to manually assign common resource t
 | Scenario Script              | `Naninovel/Scripts/{SCRIPT_PATH}`                              |
 | Sprite Character Appearance  | `Naninovel/Characters/{CHARACTER_ID}/{APPEARANCE_PATH}`        |
 | Generic Character            | `Naninovel/Characters/{CHARACTER_ID}`                          |
-| Audio                        | `Naninovel/Audio/{AUDIO_PATH}`                                 |
+| Background Music             | `Naninovel/BGM/{AUDIO_PATH}`                                   |
+| Sound Effect                 | `Naninovel/SFX/{AUDIO_PATH}`                                   |
+| Voice                        | `Naninovel/Voice/{AUDIO_PATH}`                                 |
 | Managed Text Document        | `Naninovel/Text/{DOCUMENT_PATH}`                               |
 | Script Localization Document | `Naninovel/Localization/{L10N_TAG}/Text/Scripts/{SCRIPT_PATH}` |
 
 ::: tip EXAMPLE
-Check the [addressable sample](/guide/samples#addressable) for an example of manually registering Naninovel resources via the Addressable provider (without using the resource editor menus) and serving the assets from a remote host. You may also find Unity's [learning materials](https://learn.unity.com/course/get-started-with-addressables) useful.
+Check the [addressable sample](/guide/samples#addressable) for an example of manually registering Naninovel resources via the addressable provider (without using the resource editor menus) and serving the assets from a remote host. You may also find Unity's [learning materials](https://learn.unity.com/course/get-started-with-addressables) useful.
 :::
 
 ### Script Labels
 
-Due to an [unfortunate Unity design decision](https://github.com/naninovel/docs/issues/159), Addressable assets are not unloaded from memory until the entire asset bundle is unloaded. This means, unless you organize bundles properly, assets may end up in a single bundle and never unload once loaded, potentially causing out-of-memory exceptions.
+Due to an [unfortunate Unity design decision](https://github.com/naninovel/docs/issues/159), addressable assets are not unloaded from memory until the entire asset bundle is unloaded. This means, unless you organize bundles properly, assets may end up in a single bundle and never unload once loaded, potentially causing out-of-memory exceptions.
 
 The simplest solution is to set `Bundle Mode` to `Pack Separately` in the [group settings](https://docs.unity3d.com/Packages/com.unity.addressables@1.22/manual/GroupSchemas.html):
 
@@ -76,7 +76,7 @@ When `Label By Scripts` is enabled in the resource provider configuration (the d
 If you set `Bundle Mode` to `Pack Together By Label` (the default), assets will be split into bundles based on their affinity to scenario scripts, which optimizes bundle structure for Naninovel's [memory management policy](/guide/memory-management).
 
 ::: info NOTE
-All Naninovel assets are subject to labeling, including assets [assigned manually](/guide/resource-providers#manual-assignment) via addressables. As long as an asset has the `Naninovel` label, it will be labeled with the associated script.
+All Naninovel assets are subject to labeling, including assets [assigned manually](/guide/resource-providers#manual-assignment) via Addressables. As long as an asset's address starts with `Naninovel/`, it will be labeled with the associated script.
 :::
 
 The labeling process requires a degree of guessing and isn't always perfect. To help ensure assets are labeled correctly, follow these guidelines:
@@ -87,7 +87,7 @@ The labeling process requires a degree of guessing and isn't always perfect. To 
 
 ## Project
 
-The Project provider serves assets located in "Resources" folders inside your Unity project. Consult Unity's guide for more information regarding the project [resources loading API](https://docs.unity3d.com/Manual/LoadingResourcesatRuntime).
+The project provider serves assets located in "Resources" folders inside your Unity project. Consult Unity's guide for more information regarding the project [resources loading API](https://docs.unity3d.com/Manual/LoadingResourcesatRuntime).
 
 ::: warning
 In most cases, [using "Resources" folders is discouraged](https://docs.unity3d.com/Manual/UnderstandingPerformanceResourcesFolder.html). Consider assigning resources via a Naninovel resource manager menu when possible or using the Addressables system instead; remember to move the asset out of a "Resources" folder after that.
@@ -95,10 +95,10 @@ In most cases, [using "Resources" folders is discouraged](https://docs.unity3d.c
 
 ## Local
 
-The Local provider allows serving simple assets (scenario scripts and managed text, sprite characters and backgrounds, audio) from an arbitrary location in the local file system.
+The local provider allows serving simple assets (scenario scripts, sprite characters and backgrounds, audio) from an arbitrary location in the local file system.
 
 ::: info NOTE
-The Local provider loads raw files from the file system and converts them at runtime, which is slow and limits the supported file types compared to other providers. Only use it in development or for specific features (e.g., [community modding](/guide/resource-providers#community-modding)).
+The local provider loads raw files from the file system and converts them at runtime, which is slow and limits the supported file types compared to other providers. Only use it in development or for specific features (eg, [community modding](/guide/resource-providers#community-modding)).
 :::
 
 Supported file formats:
@@ -108,12 +108,12 @@ Supported file formats:
 - `.wav` (PCM16 44100Hz stereo only) for audio
 
 ::: tip
-Add more supported file formats by overriding the `IResourceProviderManager` [engine service](/guide/engine-services#overriding-built-in-services) and adding a custom converter for the Local provider.
+Add more supported file formats by overriding the `IResourceProviderManager` [engine service](/guide/engine-services#overriding-built-in-services) and adding a custom converter for the local provider.
 
 ![](https://i.gyazo.com/d4e63726c2d1d75e2677cab7f2503546.png)
 :::
 
-`Local Path Root` property in the resource provider configuration should point to the folder where local resources are stored. You can use either an absolute path (e.g., `C:\Resources`) or a relative path that starts with one of the following origins:
+The `Local Root Path` property in the resource provider configuration should point to the folder where local resources are stored. You can use either an absolute path (eg, `C:\Resources`) or a relative path that starts with one of the following origins:
 
 - `%DATA%` — Game data folder on the target device ([Application.dataPath](https://docs.unity3d.com/ScriptReference/Application-dataPath));
 - `%PDATA%` — Persistent data directory on the target device ([Application.persistentDataPath](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath));
@@ -126,7 +126,7 @@ As one usage example, suppose you want to load scenario scripts from `C:/Users/A
 
 ![](https://i.gyazo.com/eb435b782cfb9df6c403702e8f6124df.png)
 
-If the path prefix under scripts configuration is set to `Scripts` and the Local provider is added to the list, the script navigator (accessible with `nav` console command) should pick up any `.nani` text files stored under the folder.
+If the path prefix under the scripts configuration is set to `Scripts` and the local provider is added to the list, the script navigator (accessible with the `nav` console command) should pick up any `.nani` text files stored under the folder.
 
 ![](https://i.gyazo.com/df8ad31d30b5c10c9a918e69a4543567.png)
 
@@ -138,20 +138,20 @@ To add a custom provider, create a C# class with a parameterless constructor and
 
 ![](https://i.gyazo.com/7176a9d4a4ea2d9414c5495e2e465baf.png)
 
-You can find built-in resource provider implementations at the `Naninovel/Runtime/Common/ResourceProvider` package directory; feel free to use them as a reference when implementing your own providers.
+You can find built-in resource provider implementations at the `Naninovel/Runtime/Resource/Provider` package directory; feel free to use them as a reference when implementing your own providers.
 
 ## Community Modding
 
 Community modding allows players to modify the build by adding their own scenarios and resources while still having access to the game's built-in resources.
 
-To activate the feature, enable the `Enable Community Modding` property in the Scripts configuration UI (Naninovel -> Configuration -> Scripts) and set up a [Local](/guide/resource-providers#local) provider for any resources you want to expose for modding. Make sure the Local provider's root path is set to the default value (`%DATA%/Resources`) so it will look for resources under the build directory.
+To activate the feature, enable the `Enable Community Modding` property in the Scripts configuration UI (`Naninovel -> Configuration -> Scripts`) and set up a [local](/guide/resource-providers#local) provider for any resources you want to expose for modding. Make sure the local provider's root path is set to the default value (`%DATA%/Resources`) so it will look for resources under the build directory.
 
 ![](https://i.gyazo.com/e32f40aa3faa648774908a0a937c5fcb.png)
 
 When the feature is enabled, an "EXTERNAL SCRIPTS" button appears in the title menu and opens the external scripts browser. While in the editor, the browser will also list scenario scripts from the project assets.
 
-Note that the `External Loader` configuration controls which scripts are shown in the external scripts browser, while the `Loader` configuration controls loading of the actual script resources. The External Loader uses a Local provider by default, so it only looks for scripts in the game build directory. For other resource types (backgrounds, characters, etc.) you must manually set up Local providers in the corresponding configuration menus to allow players to add them.
+Note that the `External Loader` configuration controls which scripts are shown in the external scripts browser, while the `Loader` configuration controls loading of the actual script resources. The External Loader uses a local provider by default, so it only looks for scripts in the game build directory. For other resource types (backgrounds, characters, etc) you must manually set up local providers in the corresponding configuration menus to allow players to add them.
 
 To add external resources to the build, drop them into subfolders under the game's `Resources` directory that correspond to the resource's `Path Prefix` property configured in the `Loader` foldout. For example, to add an external scenario script, drop it into `GameFolder/GameName_Data/Resources/Scripts`; backgrounds go to `GameFolder/GameName_Data/Resources/Backgrounds`, and so on. *GameFolder* and *GameName* depend on the name of your Unity project.
 
-The external scripts browser UI can be customized or completely replaced using the [UI Customization](/guide/gui#ui-customization) feature.
+The external scripts browser UI can be customized or completely replaced using the [UI customization](/guide/gui#ui-customization) feature.

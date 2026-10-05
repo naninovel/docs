@@ -1,12 +1,12 @@
 # エンジンサービス
 
-エンジンの機能のほとんどは、エンジンサービスを介して実装されています。エンジンサービスは、シナリオスクリプトの実行、アクターの管理、ゲーム状態の保存とロードなどの特定のジョブを処理する `IEngineService` インターフェースの実装です。
+エンジンの機能のほとんどは、エンジンサービスを介して実装されています。エンジンサービスは、シナリオスクリプトの実行、アクターの管理、ゲーム状態のセーブとロードなどの特定の処理を担当する `IEngineService` インターフェースの実装です。
 
-エンジンシステムと対話したい場合は、エンジンサービスを使用する可能性が最も高いです。静的メソッド `Engine.GetService<TService>()` を使用してエンジンサービスへの参照を取得できます。ここで `TService` は取得したいサービスのインターフェースです。たとえば、`IScriptPlayer` サービスを取得するには：
+エンジンシステムとやり取りしたい場合は、ほとんどの場合エンジンサービスを使用することになります。静的メソッド `Engine.GetService<TService>()` を使用してエンジンサービスへの参照を取得できます。ここで `TService` は取得したいサービスのインターフェースです。たとえば、`IScriptPlayer` サービスを取得するには次のようにします。
 
 ```csharp
 var player = Engine.GetService<IScriptPlayer>();
-player.Stop();
+player.MainTrack.Stop();
 ```
 
 ::: info NOTE
@@ -22,37 +22,40 @@ player.Stop();
 | IChoiceHandlerManager | [選択肢ハンドラー](/ja/guide/choices) アクターを管理します。 |
 | ITextPrinterManager | [テキストプリンター](/ja/guide/text-printers) アクターを管理します。 |
 | IAudioManager | オーディオ（[SFX](/ja/guide/audio#sfx-効果音)、[BGM](/ja/guide/audio#bgm-背景音楽)、[ボイス](/ja/guide/voicing)）を管理します。 |
-| IInputManager | ユーザー [入力処理](/ja/guide/input-processing) を管理します。 |
-| ILocalizationManager | [ローカライズ](/ja/guide/localization) アクティビティを管理します。 |
+| IInputManager | ユーザーの [入力処理](/ja/guide/input-processing) を管理します。 |
+| ILocalizationManager | [ローカライズ](/ja/guide/localization) 関連の処理を管理します。 |
+| ICommunityLocalization | [コミュニティローカライズ](/ja/guide/localization#コミュニティローカライズ) のリソースへのアクセスを提供します。 |
+| ITextLocalizer | `LocalizableText` の値に対応するローカライズされた文字列を解決します。 |
 | ITextManager | [管理テキスト](/ja/guide/managed-text) 機能を処理します。 |
-| IMoviePlayer | [ムービー](/ja/api/#movie) 再生を処理します。 |
-| IScriptManager | [シナリオスクリプト](/ja/guide/scenario-scripting) リソースを管理します。 |
+| IMoviePlayer | [ムービー](/ja/api/#movie) の再生を処理します。 |
+| IScriptManager | [シナリオスクリプト](/ja/guide/scenario-scripting) のリソースを管理します。 |
+| IScriptLoader | シナリオスクリプトに関連付けられたリソースの [ロードとアンロード](/ja/guide/memory-management) を処理します。 |
 | IScriptPlayer | [シナリオスクリプト](/ja/guide/scenario-scripting) の実行を処理します。 |
 | ICameraManager | シーンレンダリングに必要なカメラやその他のシステムを管理します。 |
 | IResourceProviderManager | `IResourceProvider` オブジェクトを管理します。 |
-| IStateManager | `IEngineService` 関連の永続データの逆シリアル化/シリアル化を処理します。ゲーム状態の [保存とロード](/ja/api/#save) のAPIを提供します。 |
+| IStateManager | `IEngineService` 関連の永続データのシリアル化／逆シリアル化を処理し、ゲーム状態を [セーブおよびロード](/ja/api/#save) するAPIを提供します。 |
 | IUIManager | `IManagedUI` オブジェクトを管理し、[UIのカスタマイズ](/ja/guide/gui#uiのカスタマイズ) 機能を処理します。 |
-| IVariableManager | [シナリオ変数](/ja/guide/variables) へのアクセスを提供し、変更を許可します。 |
+| IVariableManager | [シナリオ変数](/ja/guide/variables) へのアクセスと変更の手段を提供します。 |
 | ISpawnManager | [@spawn] コマンドでスポーンされたオブジェクトを管理します。 |
-| IUnlockableManager | [アンロック可能アイテム](/ja/guide/unlockables)（CGおよびムービーギャラリーアイテム、ヒントなど）を管理します。 |
+| IUnlockableManager | [アンロック可能アイテム](/ja/guide/unlockables)（CGギャラリーやムービーギャラリーのアイテム、ヒントなど）を管理します。 |
 
-サービスの組み込み実装は、`Naninovel/Runtime` に保存されているランタイムソースコードで見つけることができます。
+サービスの組み込み実装は、`Naninovel/Runtime` に保存されているランタイムソースコードで確認できます。
 
 ## カスタムサービスの追加
 
 新しいカスタムエンジンサービスを追加するには、`IEngineService` インターフェースを実装し、実装クラスに `InitializeAtRuntime` 属性を追加します。エンジン初期化中に実装のインスタンスが自動的に作成され、`Engine.GetService<TService>()` APIを介して利用可能になります。
 
-`InitializeAtRuntime` 属性の `InitializationPriority` 引数を使用して、他のサービスの前後にカスタムサービスを強制的に初期化できます。値が低いほど、初期化キューの他のサービスよりも前にプッシュされ、逆も同様です。
+`InitializeAtRuntime` 属性の `InitializationPriority` 引数を使用して、カスタムサービスが他のサービスより前または後に初期化されるよう強制できます。値が小さいほど初期化キュー内で他のサービスより前に配置され、大きいほど後ろに配置されます。
 
 自動的にインスタンス化されるには、サービス実装に互換性のあるコンストラクタ（またはデフォルトのコンストラクタ）が必要です。次のコンストラクタ引数（順序は問いません）が許可されています。
 
 - 任意の数の他のサービス（`IEngineService` 派生）
 - 任意の数の構成オブジェクト（`Configuration` 派生）
-- Unity `MonoBehaviour` プロキシオブジェクト（`IEngineBehaviour` 派生）
+- Unityの `MonoBehaviour` プロキシオブジェクト（`IEngineBehaviour` 派生）
 
-コンストラクタで他のサービスを使用するのは安全ではないことに注意してください。代わりに、`InitializeService` メソッドで他のサービスを必要とする初期化アクティビティを実行します。アクセス時に必要なサービスが初期化されていることを確認するには、サービスコンストラクタにリストします（初期化キューは、コンストラクタ引数に基づいてトポロジカルソートされます）。
+コンストラクタで他のサービスを使用するのは安全ではないことに注意してください。代わりに、他のサービスを必要とする初期化処理は `InitializeService` メソッドで実行してください。アクセス時に必要なサービスが確実に初期化されているようにするには、それらをサービスのコンストラクタ引数に列挙します（初期化キューは、コンストラクタ引数に基づいてトポロジカルソートされます）。
 
-他のエンジンサービスで逆シリアル化/シリアル化したい永続的な状態がカスタムサービスにある場合は、`IStatefulService<TState>` インターフェースを実装します。ここで、`TState` は、状態をゲームセッション固有、グローバル、または設定データとともに保存するかどうかに応じて、`GameStateMap`、`GlobalStateMap`、または `SettingsStateMap` のいずれかです。必要に応じて、単一のサービスに対して3つのインターフェースすべてを実装できます。さまざまな種類のエンジン状態の詳細については、[状態管理ガイド](/ja/guide/state-management) を参照してください。
+他のエンジンサービスとともにシリアル化／逆シリアル化したい永続的な状態がカスタムサービスにある場合は、`IStatefulService<TState>` インターフェースを実装します。ここで、`TState` は、状態をゲームセッション固有のデータ、グローバルデータ、設定データのどれと一緒に保存するかに応じて、`GameStateMap`、`GlobalStateMap`、`SettingsStateMap` のいずれかになります。必要に応じて、単一のサービスに対して3つのインターフェースすべてを実装できます。さまざまな種類のエンジン状態の詳細については、[状態管理ガイド](/ja/guide/state-management) を参照してください。
 
 以下は、いくつかの使用上の注意を含むカスタムエンジンサービス実装の例です。
 
@@ -77,9 +80,9 @@ public class CustomService : IEngineService
     public Awaitable InitializeService ()
     {
         // ここでサービスを初期化します。
-        // コンストラクタで要求されたサービスを使用しても安全です。
-        Debug.Log(inputManager.ProcessInput);
-        Debug.Log(scriptPlayer.PlayedScript);
+        // この時点で、コンストラクタで要求したサービスを安全に使用できます。
+        Debug.Log(inputManager.Enabled);
+        Debug.Log(scriptPlayer.MainTrack.PlayedScript);
         return Async.Completed;
     }
 
@@ -90,7 +93,7 @@ public class CustomService : IEngineService
 
     public void DestroyService ()
     {
-        // ここでサービスを停止し、使用済みのリソースを解放します。
+        // ここでサービスを停止し、使用中のリソースを解放します。
     }
 }
 ```
@@ -107,11 +110,11 @@ var customService = Engine.GetService<CustomService>();
 
 ## 組み込みサービスのオーバーライド
 
-すべての組み込みサービスはエンジンソースコード内のインターフェースを介して参照されているため、それらのいずれかをカスタム実装と交換することが可能です。
+エンジンのソースコードでは、すべての組み込みサービスがインターフェースを介して参照されているため、いずれのサービスもカスタム実装に差し替えることができます。
 
-上記と同じ方法でカスタムサービスを追加しますが、`IEngineService` の代わりに具体的なエンジンインターフェースを実装し、`InitializeAtRuntime` 属性を介してオーバーライドされたタイプ（インターフェースではなく実装タイプ）を指定します。その後、組み込みのものの代わりにカスタム実装が初期化されます。
+上記と同じ方法でカスタムサービスを追加しますが、`IEngineService` の代わりに具体的なエンジンインターフェースを実装し、`InitializeAtRuntime` 属性を介してオーバーライドする型（インターフェースではなく実装の型）を指定します。これにより、組み込みのものの代わりにカスタム実装が初期化されます。
 
-以下は、そのメソッドのいずれかが呼び出されたときにログを記録するだけのダミーの `IInputManager` 実装の例です。
+以下は、いずれかのメソッドが呼び出されたときにログを出力するだけで他には何もしない、ダミーの `IInputManager` 実装の例です。
 
 ```csharp
 using Naninovel;
@@ -127,7 +130,7 @@ public class CustomInputManager : IInputManager
         Configuration = config;
     }
 
-    public void AddMuter (object muter, IEnumerable<string> allowedIds = null)
+    public void AddMuter (object muter, IReadOnlyCollection<string> allowedIds = null)
     {
         Debug.Log("CustomInputManager::AddMuter()");
     }

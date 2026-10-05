@@ -10,16 +10,16 @@ Use [@choice] commands followed by the choice summary and an optional `goto` pat
 ; Print the text, then immediately show choices.
 Continue executing this script or load another?[>]
 @choice "Continue from the next line"
-@choice "Continue from the specified label" goto:#Labelname
+@choice "Continue from the specified label" goto:#LabelName
 @choice "Load another from start" goto:AnotherScript
 @choice "Load another from label" goto:AnotherScript#LabelName
 ```
 
 When the `goto` parameter is not specified, the current script will continue executing from the next line.
 
-Choice handler actors are used to process the [@choice] commands. You can add, edit and remove choice handlers using the choice manager accessible via `Naninovel -> Resources -> Choice Handlers` context menu.
+Choice handler actors are used to process the [@choice] commands. You can add, edit and remove choice handlers using the choice manager accessible via the `Naninovel -> Resources -> Choice Handlers` editor menu.
 
-Choice handlers behavior can be configured using `Naninovel -> Configuration -> Choice Handlers` context menu; for available options see [configuration guide](/guide/configuration#choice-handlers).
+Choice handler behaviour can be configured using the `Naninovel -> Configuration -> Choice Handlers` editor menu; for available options see the [configuration guide](/guide/configuration#choice-handlers).
 
 Check the following video tutorial for an overview of the choice handlers.
 
@@ -27,7 +27,7 @@ Check the following video tutorial for an overview of the choice handlers.
 
 ## Nested Callback
 
-When the consequence of picking a choice is small (e.g., you may just want to print a couple of sentences), it's impractical to designate a label and use `goto` or `gosub` parameters. Instead, [nest](/guide/scenario-scripting#nesting) commands to execute when the choice is picked:
+When the consequence of picking a choice is small (eg, you may just want to print a couple of sentences), it's impractical to designate a label and use `goto` or `gosub` parameters. Instead, [nest](/guide/scenario-scripting#nesting) commands to execute when the choice is picked:
 
 ```nani
 @choice "Ask about color"
@@ -60,7 +60,7 @@ Any level of nesting is supported:
 ```
 
 ::: info NOTE
-Nested choice callback is not compatible with `goto`, `gosub`, `set`, and `play` parameters. Instead of specifying them as parameters, use the appropriate commands inside the nested block: [@goto] instead of the `goto` parameter, [@set] instead of the `set` parameter, and so on.
+A nested choice callback is not compatible with the `goto`, `gosub`, and `set` parameters. Instead of specifying them as parameters, use the appropriate commands inside the nested block: [@goto] instead of the `goto` parameter, [@set] instead of the `set` parameter, and so on.
 :::
 
 ## Choice Button
@@ -73,7 +73,7 @@ The [@choice] command accepts an optional `button` parameter specifying a path (
 
 — here we use a choice handler supporting positioning to represent a point of interest on an improvised map, where the `button` parameter points to a prefab consisting of a button wrapped over an image. The prefab is stored at `Assets/Resources/Naninovel/ChoiceButtons/Home.prefab`.
 
-To create a choice button prefab from the template, use `Create -> Naninovel -> Choice Button` asset context menu.
+To create a choice button prefab from the template, use the `Create -> Naninovel -> Choice Handler -> Choice Button -> Choice Button` asset context menu.
 
 ![](https://i.gyazo.com/c2bd4abaa0275f7cdd37c56fd2ff0dec.png)
 
@@ -83,7 +83,7 @@ If you don't want to store the choice button prefabs in a `Resources` folder or 
 
 When the `button` parameter of the [@choice] command is not specified, the default button prefab is used.
 
-To change the choice button used by default, create a [custom choice handler](/guide/choices#adding-custom-choice-handlers) and assign the prefab to the `Default Button Prefab` property of `Choice Handler Panel` component or use a custom component.
+To change the choice button used by default, create a [custom choice handler](/guide/choices#adding-custom-choice-handlers) and assign the prefab to the `Default Button Prefab` property of the `Choice Handler Panel` component or use a custom component.
 
 ![](https://i.gyazo.com/0972b2725ed043d050804d3833a83b73.png)
 
@@ -95,24 +95,24 @@ To use a different text component for the choice text, use the `On Summary Text 
 
 A common use case with choices is to make one option locked/disabled or otherwise unavailable to the player based on a condition. For example, you may wish to restrict player access to a particular story branch if a condition was not met prior to the choice.
 
-While it's possible to implement this with a choice button parameter (outlined above), the use case is common, so Naninovel has a dedicated way to make this work with the `lock` parameter of [@choice] command:
+While it's possible to implement this with a choice button parameter (outlined above), the use case is common, so Naninovel has a dedicated way to make this work with the `lock` parameter of the [@choice] command:
 
 ```nani
 ; Make choice disabled/locked when 'score' variable is below 10.
 @choice "Secret option" lock:score<10
 ```
 
-The built-in choice button has an `On Lock` event invoked each time a choice is added, which will set the underlying button's `Interactable` property, making it interactable when the choice is not locked and vice-versa. You can override or extend the behavior by attaching a custom handler to the `On Lock` event or by overriding the `HandleLockChanged` method of the choice button class.
+The built-in choice button has an `On Lock` event invoked each time a choice is added, which will set the underlying button's `Interactable` property, making it interactable when the choice is not locked and vice versa. You can override or extend the behaviour by attaching a custom handler to the `On Lock` event or by overriding the `HandleLockChanged` method of the choice button class.
 
 ![](https://i.gyazo.com/ec5ef74ec9af1aa46a18d89bd34d866f.png)
 
 ## ButtonList Choice Handler
 
-Button list handler is used by default. It stores the choice buttons inside a horizontal layout panel and ignores the `pos` parameter of the [@choice] command.
+The button list handler is used by default. It stores the choice buttons inside a vertical layout panel and ignores the `pos` parameter of the [@choice] command.
 
 ## ButtonArea Choice Handler
 
-In contrast to button list, button area doesn't enforce any specific layout and allows manually setting positions of the added choice buttons via the `pos` parameter. For example, here is one way to make an interactive map with choice commands and button area handler:
+In contrast to the button list, the button area doesn't enforce any specific layout and allows manually setting positions of the added choice buttons via the `pos` parameter. For example, here is one way to make an interactive map with choice commands and the button area handler:
 
 ```nani
 # Map
@@ -140,7 +140,7 @@ Find a more advanced implementation of an interactive map with Naninovel in the 
 
 ## ChatReply Choice Handler
 
-Used by [chat text printer](/guide/text-printers#chat-printer) to represent reply choices. Example:
+Used by the [chat text printer](/guide/text-printers#chat-printer) to represent reply choices. Example:
 
 ```nani
 @printer Chat
@@ -155,11 +155,11 @@ Kohaku: Where're you right now?
 
 You can add custom choice handlers based on the built-in templates or create new handlers from scratch. For example, let's customize the built-in `ButtonArea` template.
 
-Use `Create -> Naninovel -> Choice Handler -> ButtonArea` asset context menu to create a button area handler prefab somewhere outside the Naninovel package, e.g., at the `Assets/ChoiceHandlers` folder.
+Use the `Create -> Naninovel -> Choice Handler -> Button Area` asset context menu to create a button area handler prefab somewhere outside the Naninovel package, eg at the `Assets/ChoiceHandlers` folder.
 
 Edit the handler: change font, textures, add animations, etc. For more information on the available UI building tools, check the [Unity documentation](https://docs.unity3d.com/Packages/com.unity.ugui@latest).
 
-Expose the handler to engine resources using choice handler manager GUI, which can be accessed with `Naninovel -> Resources -> Choice Handlers` editor context menu. Add a new record using the `+` (plus) button, enter actor ID (can differ from the prefab name) and double-click the record to open actor settings. Drag-and-drop the handler prefab to the `Resource` field.
+Expose the handler to engine resources using the choice handler manager GUI, which can be accessed with the `Naninovel -> Resources -> Choice Handlers` editor menu. Add a new record using the `+` (plus) button, enter the actor ID (can differ from the prefab name) and double-click the record to open the actor settings. Drag and drop the handler prefab to the `Resource` field.
 
 You can now use the new choice handler by specifying its ID in the `handler` parameter of the [@choice] commands.
 
@@ -171,4 +171,4 @@ You can now use the new choice handler by specifying its ID in the `handler` par
 Find an example of creating a custom choice handler with a particle system in the [UI sample](/guide/samples#ui).
 :::
 
-It's also possible to create a choice handler from scratch by manually implementing `IChoiceHandlerActor` interface. See the guide on [custom actor implementations](/guide/custom-actor-implementations) for more information.
+It's also possible to create a choice handler from scratch by manually implementing the `IChoiceHandlerActor` interface. See the guide on [custom actor implementations](/guide/custom-actor-implementations) for more information.

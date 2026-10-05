@@ -16,7 +16,7 @@ Each line in a scenario script represents a statement, which can be a command, g
 When none of the above symbols is present at the start of the line, it is considered a [generic text](#generic-text-lines) statement.
 
 ::: tip
-It is possible to change all pre-defined compiler artifacts, such as symbols, command identifiers, constants, and essentially anything you have to type while authoring scripts, via the [compiler localization](/guide/localization#compiler-localization) feature.
+It is possible to change all predefined compiler artifacts, such as symbols, command identifiers, constants, and essentially anything you have to type while authoring scripts, via the [compiler localization](/guide/localization#compiler-localization) feature.
 :::
 
 ## Command Lines
@@ -40,7 +40,7 @@ Command identifiers are case-insensitive; all the following statements are valid
 
 ### Command Parameters
 
-Most commands have a number of parameters that define the effect of the command. A parameter is a key-value expression defined after the command identifier and separated by a colon (`:`). The parameter identifier (key) can be either the name of the corresponding parameter field of the command implementation class or the parameter's alias (when applied via the `alias` property of the `CommandParameter` attribute).
+Most commands have a number of parameters that define the effect of the command. A parameter is a key-value expression defined after the command identifier and separated by a colon (`:`). The parameter identifier (key) can be either the name of the corresponding parameter field of the command implementation class or the parameter's alias (when applied to the field via the `Alias` attribute).
 
 ```nani
 @commandId paramId:paramValue
@@ -64,13 +64,13 @@ This will make the actors fade out for 5.5 seconds before they are completely in
 
 Depending on the command parameter, it can expect one of the following value types:
 
-| Type    | Description                                                                                                                                                                                                              |
-|---------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| string  | A simple string value, eg: `LoremIpsum`. Do not forget to wrap the string in double quotes when it contains spaces, eg: `"Lorem ipsum dolor sit amet."`.                                                                 |
-| number  | A numeric value, either whole or fractional, eg: `1`, `-25`, `1.0`, `-0.005`.                                                                                                                           |
-| boolean | Can have one of two possible values: `true` or `false`. You can use [boolean flags](/guide/scenario-scripting#boolean-flags) instead of typing `true` and `false`, eg: `@hideAll wait!` instead of `@hideAll wait:true`. |
-| named   | A key-value pair delimited by a dot with a string key and value of one of the above types. Eg for a named number: `foo.8`, `bar.-20`.                                                                                    |
-| list    | A comma-separated list of values of one of the above types. Eg for a string list: `foo,bar,"Lorem ipsum."`, for a number list: `12,-8,0.105,2`.                                                                          |
+| Type    | Description                                                                                                                                                                                                                |
+|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| string  | A simple string value, eg `LoremIpsum`. Do not forget to wrap the string in double quotes when it contains spaces, eg `"Lorem ipsum dolor sit amet."`.                                                               |
+| number  | A numeric value, either whole or fractional, eg `1`, `-25`, `1.0`, `-0.005`.                                                                                                                                            |
+| boolean | Can have one of two possible values: `true` or `false`. You can use [boolean flags](/guide/scenario-scripting#boolean-flags) instead of typing `true` and `false`, eg `@hideAll wait!` instead of `@hideAll wait:true`. |
+| named   | A key-value pair delimited by a dot with a string key and value of one of the above types. Eg, for a named number: `foo.8`, `bar.-20`.                                                                                   |
+| list    | A comma-separated list of values of one of the above types. Eg, for a string list: `foo,bar,"Lorem ipsum."`, for a number list: `12,-8,0.105,2`.                                                                         |
 
 ### Primary Parameter
 
@@ -82,13 +82,13 @@ For example, the [@bgm] command expects a primary parameter specifying the path 
 @bgm PianoTheme
 ```
 
-"PianoTheme" here is the value of the `BgmPath` *string* parameter.
+"PianoTheme" here is the value of the `Path` *string* parameter.
 
 There can be only one primary parameter per command, and it should always be specified before any other parameters.
 
 ### Optional and Required Parameters
 
-Many command parameters are *optional*. This means they either have a predefined value or do not require any value for the command to be executed. For example, when the [@resetText] command is used without specifying any parameters, it will reset the text of the default printer, but you can also set a specific printer ID like this: `@resetText printer:Dialogue`.
+Many command parameters are *optional*. This means they either have a predefined value or do not require any value for the command to be executed. For example, when the [@resetText] command is used without specifying any parameters, it will reset the text of the default printer, but you can also set a specific printer ID like this: `@resetText Dialogue`.
 
 Some parameters, however, are *required* for the command to execute and should always be specified. Our [VS Code](/guide/ide-extension) extension will warn you if you forget to assign such a parameter.
 
@@ -168,7 +168,7 @@ Lorem ipsum[char Felix.Happy pos:75 wait!] dolor sit amet.
 @print " dolor sit amet." !reset
 ```
 
-To actually print square brackets within a generic text line, escape them with backslashes, e.g.:
+To actually print square brackets within a generic text line, escape them with backslashes, eg:
 
 ```nani
 Some text \[ text inside brackets \]
@@ -208,7 +208,7 @@ Hello[-][< speed:0.5] world!
 
 ### White Space Delimiters
 
-In cases when a generic text line starts or ends with whitespace (e.g., a space or tab), it can be useful to explicitly delimit where the content to be printed actually begins or ends. This is especially important when using nesting.
+In cases when a generic text line starts or ends with whitespace (eg, a space or tab), it can be useful to explicitly delimit where the content to be printed actually begins or ends. This is especially important when using nesting.
 
 Use `[]` (an empty inlined command) as a delimiter for generic text line boundaries:
 
@@ -274,7 +274,7 @@ Assets
 In this case, the scenario root is the `Assets/Scenario` directory. To navigate to the `Assets/Scenario/RouteX/SceneX.nani` script file, use the following endpoint: `RouteX/SceneX`.
 
 ::: tip
-If you prefer not to include directories when specifying endpoints, you don’t have to! Check the [relative](/guide/scenario-scripting#relative-endpoints) and [wildcard](/guide/scenario-scripting#wildcard-endpoints) endpoint syntaxes explained below.
+If you prefer not to include directories when specifying endpoints, you don't have to! Check the [relative](/guide/scenario-scripting#relative-endpoints) and [wildcard](/guide/scenario-scripting#wildcard-endpoints) endpoint syntaxes explained below.
 :::
 
 The scenario root is detected automatically when you create or move scenario files. You can check the current root in the script configuration menu.
@@ -314,7 +314,7 @@ Relative paths simplify endpoint syntax by mapping paths relative to the current
 ; Given we're inside 'Assets/Scenario/CommonRoute/Day1/Scene1.nani',
 ; navigate to the 'Scene2.nani' file in the same directory.
 @goto ./Scene2
-; Navigate to the 'Scene1.nani' file in the parent directory.
+; Navigate to the 'Scene1.nani' file in the 'Day2' directory one level above.
 @goto ../Day2/Scene1
 ; Navigate to the 'SceneX.nani' file inside the 'RouteX' directory
 ; two levels above the current one.
@@ -355,14 +355,14 @@ Lorem ipsum[shake Camera ver! !wait] dolor sit amet.
 Lorem ipsum[shake Camera ver:true wait:false] dolor sit amet.
 ```
 
-The only reasons to use the full boolean form are when you want to evaluate the value dynamically via a [scenario expression](/guide/expressions), e.g.:
+The only reasons to use the full boolean form are when you want to evaluate the value dynamically via a [scenario expression](/guide/expressions), eg:
 
 ```nani
 ; Make Kohaku visible if the "score" variable is above 10.
 @char Kohaku visible:{score>10}
 ```
 
-— or when a boolean parameter is primary, e.g.:
+— or when a boolean parameter is primary, eg:
 
 ```nani
 ; Disable camera look mode with a primary parameter.
@@ -402,7 +402,7 @@ By default, scripts execute linearly, but you can introduce branching using `if`
 @goto LuckyEnd if: (score >= 7 & score <= 13) | lucky
 
 ; Conditionals in inlined commands.
-Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
+Lorem sit amet. [sfx Applause if:score>=10]Consectetur elit.
 
 ; Escape double quotes in expressions.
 @print {remark} if: remark = "Saying \"Stop the car\" was a mistake."
@@ -414,7 +414,7 @@ You can [nest](/guide/scenario-scripting#nesting) multiline conditional blocks u
 
 ```nani
 ; Print text line(s) depending on "score" variable:
-; "You've failed. Try again!" - when score is below 6.
+; "You've failed. Try again!" - when score is 6 or below.
 ; "You've passed the test." and "Brilliant!" - when score is above 8.
 ; "You've passed the test." and "Impressive!" - when score is above 7.
 ; "You've passed the test." and "Good job!" - otherwise.
@@ -434,7 +434,7 @@ Conditional blocks can also be used inline within text lines, marking the end wi
 
 ```nani
 ; Print text line depending on "score" variable:
-; "Test result: Failed." - when score is below 6.
+; "Test result: Failed." - when score is 6 or below.
 ; "Test result: Perfect!" - when score is above 8.
 ; "Test result: Passed." - otherwise.
 Test result:[if score>8] Perfect![or score>6] Passed.[else] Failed.[endif]
@@ -455,7 +455,7 @@ To specify an inverse condition, use [@unless]:
 Test result:[unless score<10] Passed.[else] Failed.[endif]
 ```
 
-::: info
+::: info NOTE
 Find more about conditional expressions and available operators in the [scenario expressions](/guide/expressions) guide.
 :::
 
@@ -473,7 +473,7 @@ Here, the [@bgm] command and the following generic text line are associated with
 
 Commands that support this feature are known as *nested hosts*. In C#, these commands implement the `Command.INestedHost` interface. Host commands control which nested commands are executed, whether they are executed, and in what order.
 
-Each host command has its own behavior when executing nested commands. For example, [@if] skips nested commands if the condition is not met, while [@choice] executes nested commands only when the player selects the associated choice:
+Each host command has its own behaviour when executing nested commands. For example, [@if] skips nested commands if the condition is not met, while [@choice] executes nested commands only when the player selects the associated choice:
 
 ```nani
 @if score > 10
@@ -494,7 +494,7 @@ Each host command has its own behavior when executing nested commands. For examp
 
 Notice how nested blocks are indented: each level uses exactly **4 spaces**. Alternatively, you can use a **single tab**; other space counts or space characters will be ignored. Nested blocks of any depth are possible — just increase the indentation by 4 spaces or a tab per level.
 
-To group several commands under a single host, use [@group] command:
+To group several commands under a single host, use the [@group] command:
 
 ```nani
 ; The random command chooses one of its nested lines, but ignores any children
@@ -518,7 +518,7 @@ Some commands may execute over time. For example, the [@hide] command will fade 
 @show Yuko
 ```
 
-— when played, you'll notice that the Yuko actor would start fading in at the same time Kohaku is fading out.  This is because, by default, all async commands are not awaited: [@show] will start fading in Yuko right after [@hide] starts fading out Kohaku.
+— when played, you'll notice that the Yuko actor starts fading in at the same time Kohaku is fading out. This is because, by default, all async commands are not awaited: [@show] will start fading in Yuko right after [@hide] starts fading out Kohaku.
 
 If you'd like to wait for an async command to complete before proceeding with the playback, use the `wait` parameter:
 
@@ -529,7 +529,7 @@ If you'd like to wait for an async command to complete before proceeding with th
 
 — now Yuko will start fading in only after Kohaku is completely faded out.
 
-It's common to use multiple async commands to set up a scene and then wait until they all finish.  To simplify the process, use the [@await] command:
+It's common to use multiple async commands to set up a scene and then wait until they all finish. To simplify the process, use the [@await] command:
 
 ```nani
 ; Run the nested lines concurrently and wait until they all finish.
@@ -545,7 +545,7 @@ It starts raining...
 
 While individual commands are executed asynchronously by default, in some cases you may want to orchestrate a chain of commands to run in parallel with the main scenario, with an independent control flow and playback state.
 
-Use the [@async] command to make the nested lines execute on a dedicated script track, concurrently with the main playback routine.  Common use cases include running composite animations in the background while the scenario progresses as usual:
+Use the [@async] command to make the nested lines execute on a dedicated script track, concurrently with the main playback routine. Common use cases include running composite animations in the background while the scenario progresses as usual:
 
 ```nani
 ; Pan the camera slowly across three points while fading the music.
@@ -577,7 +577,7 @@ Even if the game is saved and loaded while the animation is in progress, it will
 
 ### Async Tasks
 
-In the loop example above, you may wonder: how are we supposed to stop the loop? Or what if we'd like to await a non-looped async scenario block to finish before proceeding? Async tasks to the rescue! Use the optional primary parameter of the [@async] command to specify a name for the async task executed by the command, which you can use later with the [@stop] or [@await] commands to either stop (cancel) or await the task:
+In the loop example above, you may wonder: how are we supposed to stop the loop? Or what if we'd like to wait for a non-looped async scenario block to finish before proceeding? Async tasks to the rescue! Use the optional primary parameter of the [@async] command to specify a name for the async task executed by the command, which you can use later with the [@stop] or [@await] commands to either stop (cancel) or await the task:
 
 ```nani
 ; Start the 'Quake' async task.
@@ -596,7 +596,7 @@ Similarly, you can await async tasks:
 
 ```nani
 @async CameraPan
-    @camera offset:4,1 zoom: 0.5 time:3 wait!
+    @camera offset:4,1 zoom:0.5 time:3 wait!
     @camera offset:,-2 zoom:0.4 time:2 wait!
 
 ...
@@ -618,7 +618,7 @@ You can also force a task to complete instantly with the `complete!` flag if you
 
 Consider encapsulating common animations or other async tasks in a separate script, which you can then reuse from other scripts with the [@gosub] command:
 
-:::  code-group
+::: code-group
 
 ```nani [SomeScript.nani]
 @gosub FX#Quake
@@ -677,7 +677,7 @@ The defuse puzzle 3.
 The bomb is defused!
 ```
 
-— if we didn't use the [@sync] command in our `Boom` async thread, the [@goto] command would be executed on the async track, while the main track would continue executing further, so we'd end up with both `BadEnd` and the main scenario running concurrently. What [@sync] does is forcefully move the target track (the main one by default) to the line where it's used and dispose of the host track, essentially swapping the host track with the target one.
+— if we didn't use the [@sync] command in our `Boom` async task, the [@goto] command would be executed on the async track, while the main track would continue executing further, so we'd end up with both `BadEnd` and the main scenario running concurrently. What [@sync] does is forcefully move the target track (the main one by default) to the line where it's used and dispose of the host track, essentially swapping the host track with the target one.
 
 ## Text Identification
 
@@ -685,7 +685,7 @@ Features like [script localization](/guide/localization#scripts-localization) an
 
 By default, Naninovel automatically identifies all localizable text by its content hash when importing script assets. This works fine as long as you don't modify the text. If you do modify it, associations will break: you'll need to re-map auto-voice clips or re-translate changed text statements.
 
-To prevent associations from breaking when editing text, use the text identification utility accessible via `Naninovel -> Tools -> Text Identifier` editor menu; it will auto-generate and write unique IDs to each localizable text in the scenario scripts. The scenario text will have identifiers appended to each localizable parameter, e.g.:
+To prevent associations from breaking when editing text, use the text identification utility accessible via the `Naninovel -> Tools -> Text Identifier` editor menu; it will auto-generate and write unique IDs to each localizable text in the scenario scripts. The scenario text will have identifiers appended to each localizable parameter, eg:
 
 ```nani
 Kohaku: Hey!|#1|[-] What's up?|#2|
@@ -699,16 +699,16 @@ The utility ensures that all generated text IDs are unique and have not been use
 
 ### Identified Text References
 
-In some rare cases you may want to intentionally duplicate a localizable text identifier — for example, when creating an instance of a command in C# that should reuse the localized parameter specified in a script.
+In some rare cases, you may want to intentionally duplicate a localizable text identifier — for example, when creating an instance of a command in C# that should reuse the localized parameter specified in a script.
 
-If you simply assign the `LocalizableTextParameter` value, Naninovel will warn about duplicate text IDs. Instead, use the parameter's `Ref()` instance method:
+If you simply assign the `LocalizableTextParameter` value, Naninovel will warn about duplicate text IDs. Instead, use the static `CommandParameter.Ref()` method:
 
 ```cs
 var print = new PrintText();
-print.AuthorLabel = otherPrint.AuthorLabel.Ref();
+print.AuthorLabel = CommandParameter.Ref(otherPrint.AuthorLabel);
 ```
 
-To reference an existing localized text inside a scenario script, append `&` to the identifier:
+To reference an existing localized text inside a scenario script, prepend `&` to the identifier:
 
 ```nani
 ; Show choice with "Some Text" and then print the same text.
@@ -718,7 +718,7 @@ To reference an existing localized text inside a scenario script, append `&` to 
 
 ## Title Script
 
-Title script is a special scenario script assigned in the script configuration menu. When assigned, it's automatically played after the engine is initialized or when exiting to the title menu with the [@title] command or with "Title" buttons inside various in-game menus. Title script can be used to set up the title screen scene: background, music, effects, show the Title UI, etc.
+The title script is a special scenario script assigned in the script configuration menu. When assigned, it's automatically played after the engine is initialized or when exiting to the title menu with the [@title] command or with "Title" buttons inside various in-game menus. The title script can be used to set up the title screen scene: background, music, effects, show the Title UI, etc.
 
 The script can also be used to invoke commands when the player clicks "NEW GAME", "EXIT", or any of the save slots to load a game inside the Title UI. Below is an example of a title script.
 

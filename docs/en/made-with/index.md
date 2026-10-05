@@ -1,4 +1,4 @@
-﻿---
+---
 editLink: false
 aside: false
 ---

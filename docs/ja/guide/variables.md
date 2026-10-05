@@ -3,7 +3,7 @@
 シナリオ変数を使用すると、ユーザー定義の値を作成・変更し、それらを使ってシナリオスクリプトやその他のシステムの条件付き実行を制御できます。たとえば、プレイヤーの選択に基づいて再生するシナリオスクリプト（シナリオルート）を切り替えるために変数を使用できます。もう1つの一般的な用途は、ゲーム中の選択に応じてプレイヤーのステータス（スコア、所持金、リソースなど）を追跡することです。
 
 ::: info NOTE
-変数名は文字で始める必要があり、文字、数字、アンダースコアのみを含めることができます。例：`score`、`Char1Score`、`my_score`。名前は大文字と小文字を区別しません。つまり、`myscore` という名前の変数を作成したあとで `MyScore` として参照することも、その逆も可能です。
+変数名に使用できるのは文字、数字、アンダースコア、ドットのみで、数字で始めることはできません。例：`score`、`Char1Score`、`my_score`。ドットは [スコープ](#変数スコープ) と [ローカル変数](#ローカル変数) のために予約されています。名前は大文字と小文字を区別しません。つまり、`myscore` という名前の変数を作成したあとで `MyScore` として参照することも、その逆も可能です。
 :::
 
 変数は [@set] コマンド（および一部の他のコマンドのパラメーター）で作成・変更でき、[@if] や [@while] のプライマリパラメーターなど、式コンテキストを持つ任意のパラメーターで使用できます。たとえば、次のスクリプトは `score` の値に基づいて実行先を切り替えます。
@@ -41,7 +41,7 @@
 @char Kohaku pos:{posX},{posY} time:{time}
 ```
 
-通常のテキスト行内でも同じことができます。
+汎用テキスト行内でも同じことができます。
 
 ```nani
 ; プレイヤーにテキスト入力を促し、`name` 変数に代入します。
@@ -151,7 +151,7 @@ Archibald: Greetings, {name}!
 `meta!` または `const!` フラグを使用すると、自動的にデフォルト代入の意味になるため、それらと一緒に `?=` 演算子を指定する必要はありません。
 
 ```nani
-; ルートクリア状況を追跡する両方の変数に 'false' を宣言して代入します。
+; ルートクリア状況を追跡する両方の変数を宣言し、'false' を代入します。
 ; 同じスクリプトが再度再生された場合（たとえば次回のゲーム開始時）でも、
 ; 変数は再代入されません。
 @set clearedRouteX, clearedRouteY to:false meta!
@@ -159,12 +159,12 @@ Archibald: Greetings, {name}!
 
 ## 変数イベント
 
-[カスタムUI](/ja/guide/gui#uiのカスタマイズ) やその他のシステムを構築するとき、変数の値が変わったタイミングで反応したい場合があります。たとえば、キャラクターのステータス画面を作成する場合、変数に応じてテキストを更新したいことがあります。通常は C# スクリプトを使いますが、`Variable Events` コンポーネントを使用することもできます。このコンポーネントは、指定された名前の変数が変更されたときに Unity イベントを呼び出します。
+[カスタムUI](/ja/guide/gui#uiのカスタマイズ) やその他のシステムを構築するとき、変数の値が変わったタイミングで反応したい場合があります。たとえば、キャラクターのステータス画面を作成する場合、変数に応じてテキストを更新したいことがあります。通常はC#スクリプトを使いますが、`Variable Events` コンポーネントを使用することもできます。このコンポーネントは、指定された名前の変数が変更されたときにUnityイベントを呼び出します。
 
 ![](https://i.gyazo.com/a8ad226b7a50110584551ae81179c709.png)
 
 ::: tip EXAMPLE
-[マップサンプル](/ja/guide/samples#マップ) では、変数トリガーでマップロケーションの可用性を制御する例を確認できます。
+[マップサンプル](/ja/guide/samples#マップ) では、変数イベントを使用してマップ上の場所の利用可否を制御する例を確認できます。
 
 ![](https://i.gyazo.com/4987b1c53cd275f3fa56b533f53f3d8c.mp4)
 :::
@@ -183,7 +183,7 @@ Archibald: Greetings, {name}!
 
 ## C#でのシナリオ変数の使用
 
-シナリオ変数は、`IVariableManager` [エンジンサービス](/ja/guide/engine-services) を介して C# からアクセスできます。
+シナリオ変数は、`IVariableManager` [エンジンサービス](/ja/guide/engine-services) を介してC#からアクセスできます。
 
 新しい変数を作成するには、`AddVariable` メソッドを使用します。
 
@@ -196,16 +196,15 @@ vars.AddVariable(new("myVar", new("Hello World!")));
 メタ変数または定数変数を作成するには、種類を指定します。
 
 ```csharp
-// ルートクリア状況を追跡する boolean 型のメタ変数を作成します。
+// ルートクリア状況を追跡するブール値のメタ変数を作成します。
 vars.AddVariable(new("clearedRouteX", new(false), VariableKind.Meta));
 ```
 
-変数値を取得・設定するには、それぞれ `GetValue` と `SetValue` メソッドを使用します。たとえば、`myVar` という名前のシナリオ文字列変数が存在する場合、以下のコードはその値を取得し、それに "Hello!" を追加して、変更した値を設定し直します。
+変数値を取得・設定するには、それぞれ `GetValue` と `SetValue` メソッドを使用します。たとえば、`myVar` という名前のシナリオ文字列変数が存在する場合、以下のコードはその値を取得し、それに「Hello!」を追加して、変更した値を設定し直します。
 
 ```csharp
-var value = vars.GetValue("myVar").String;
-value += "Hello!";
-vars.SetValue("myVar", new(value));
+if (vars.GetValue("myVar") is { String: var text })
+    vars.SetValue("myVar", new(text + "Hello!"));
 ```
 
 変数の実際の値を取得するときに `.String` プロパティを使用していることに注意してください。変数は `String`、`Numeric`、`Boolean` の3つの型のいずれかになります。型は、シナリオスクリプトで変数が最初に代入されたときに決定されます。
@@ -221,13 +220,13 @@ vars.SetValue("myVar", new(value));
 ; 式で数値を使用します
 @if bar is above 12
 
-; 'baz' 変数に boolean 値 true を代入します
+; 'baz' 変数にブール値 true を代入します
 @set baz=true
-; 式で boolean 値を使用します
+; 式でブール値を使用します
 @if baz
 ```
 
-または C# では次のようになります。
+— または、C#では次のようになります。
 
 ```csharp
 var vars = Engine.GetService<IVariableManager>();
@@ -235,24 +234,23 @@ var vars = Engine.GetService<IVariableManager>();
 // 'foo' 変数に 'Hello World!' 文字列値を代入します
 vars.SetValue("foo", new("Hello World!"));
 // 代入された文字列値にアクセスします
-if (vars.GetValue("foo").String == "Hello World!")
+if (vars.GetValue("foo") is { String: "Hello World!" })
 
 // 'bar' 変数に数値 42 を代入します
 vars.SetValue("bar", new(42));
 // 代入された数値にアクセスします
-if (vars.GetValue("bar").Number > 12)
+if (vars.GetValue("bar") is { Number: > 12 })
 
-// 'baz' 変数に boolean 値 true を代入します
+// 'baz' 変数にブール値 true を代入します
 vars.SetValue("baz", new(true));
-// 代入された boolean 値にアクセスします
-if (vars.GetValue("baz").Boolean)
+// 代入されたブール値にアクセスします
+if (vars.GetValue("baz") is { Boolean: true })
 ```
 
-C# でシナリオ変数の型を確認するには、値の `.Type` プロパティを使用します。
+C#でシナリオ変数の型を確認するには、値の `.Type` プロパティを使用します。
 
 ```csharp
-var value = vars.GetValue("bar");
-if (value.Type == VariableValueType.Numeric)
+if (vars.GetValue("bar") is { Type: VariableValueType.Numeric } value)
     if (value.Number > 12) // これで '.Number' 値に安全にアクセスできます
 ```
 

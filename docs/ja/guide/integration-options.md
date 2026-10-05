@@ -1,22 +1,22 @@
-# インテグレーションの方法
+# 統合オプション
 
-Naninovelは従来のビジュアルノベルゲームに重点を置いており、そのテンプレートとして最適に機能しますが、既存のプロジェクトとエンジンを統合することも可能です。3Dアドベンチャーゲーム、RPG、またはその他のジャンルのゲームを作成している場合でも、Naninovelを組み込みのダイアログシステムとして使用できます。
+Naninovelは従来のビジュアルノベルゲームに重点を置いており、そのテンプレートとして最適に機能しますが、既存のプロジェクトとエンジンを統合することも可能です。3Dアドベンチャーゲーム、RPG、またはその他のジャンルのゲームを作成している場合でも、Naninovelをドロップインのダイアログシステムとして使用できます。
 
 ![](https://i.gyazo.com/b1b6042db4a91b3a8cee74236b33c17c.mp4)
 
-Naninovelをカスタムプロジェクトと統合する方法は複数あります。特定の実装は、プロジェクトのタイプと達成したい内容によって異なります。以下のドキュメントでは、Naninovelをスタンドアロンゲームと「ペアリング」するのに役立つさまざまな構成オプションとAPIをリストします。続行する前に、[エンジンアーキテクチャ](/ja/guide/engine-architecture) を参照して、概念的な動作をよりよく理解してください。
+Naninovelをカスタムプロジェクトと統合する方法は複数あります。具体的な実装は、プロジェクトの種類と達成したい内容によって異なります。以下のドキュメントでは、Naninovelをスタンドアロンゲームと「ペアリング」するのに役立つさまざまな構成オプションとAPIを挙げます。先に進む前に、[エンジンアーキテクチャ](/ja/guide/engine-architecture) を参照して、概念的な動作をよりよく理解してください。
 
 ::: tip EXAMPLE
-Naninovelが3Dアドベンチャーゲームの組み込みダイアログシステムとしても、スタンドアロンのノベルモードとしても使用されている [インテグレーションサンプル](/ja/guide/samples#ダイアログモード) を確認してください。
+Naninovelが3Dアドベンチャーゲームのドロップインのダイアログシステムとしても、スタンドアロンのノベルモードとしても使用されている [統合サンプル](/ja/guide/samples#ダイアログモード) を確認してください。
 :::
 
 ## 手動初期化
 
 エンジン構成メニューの `Initialize On Application Load` オプションが有効になっている場合、エンジンサービスはアプリケーションの起動時に自動的に初期化されます。
 
-![](https://i.gyazo.com/6349692c2e2036e908e41c3d89509102.png)
+![](https://i.gyazo.com/5cb8ba25304f7c80d0af23859bc9286f.png)
 
-ノベルモードでゲームを開始したくない限り、C#から静的な `RuntimeInitializer.Initialize()` メソッドを呼び出すか、シーン内のGameObjectに `Runtime Initializer` コンポーネントを追加して、必要なときに手動でエンジンを初期化する必要があります。後者の場合、Unityでシーンがロードされたときにエンジンが初期化されます。
+ゲームをノベルモードで開始したい場合を除き、C#から静的な `RuntimeInitializer.Initialize()` メソッドを呼び出すか、シーン内のゲームオブジェクトに `Runtime Initializer` コンポーネントを追加して、必要なときに手動でエンジンを初期化する必要があります。後者の場合、Unityでシーンがロードされたときにエンジンが初期化されます。
 
 以下は、MonoBehaviourスクリプトからの手動初期化の例です。
 
@@ -35,7 +35,7 @@ public class MyScript : MonoBehaviour
 
 `Scene Independent` を無効にすると、すべてのNaninovel関連オブジェクトは、エンジンが初期化されたUnityシーンの一部になります。シーンがアンロードされると、エンジンは破棄されます。
 
-エンジンサービスをリセット（およびほとんどの占有リソースを破棄）するには、`IStateManager` サービスの `ResetState()` メソッドを使用します。これは、エンジンを再初期化せずにノベルモードに戻ることができる状態で、一時的に別のゲームプレイモードに切り替えるときに役立ちます。
+エンジンサービスをリセット（および占有しているリソースの大部分を破棄）するには、`IStateManager` サービスの `ResetState()` メソッドを使用します。これは、エンジンを再初期化せずにノベルモードに戻れるようにしたまま、一時的に別のゲームプレイモードに切り替える場合に役立ちます。
 
 すべてのエンジンサービスを破棄し、メモリからNaninovelを完全に削除するには、`Engine.Destroy()` 静的メソッドを使用します。
 
@@ -66,14 +66,14 @@ public class MyScript : MonoBehaviour
 
 ## シナリオスクリプトの再生
 
-指定されたパスのシナリオスクリプトをプリロードして再生するには、`IScriptPlayer` サービスの `LoadAndPlay(ScriptPath)` メソッドを使用します。エンジンサービスを取得するには、`Engine.GetService<TService>()` 静的メソッドを使用します。ここで、`TService` は取得するサービスのタイプ（インターフェース）です。たとえば、次はスクリプトプレイヤーサービスを取得し、`Script001` という名前のスクリプトをプリロードして再生します。
+指定されたパスのシナリオスクリプトをプリロードして再生するには、`IScriptPlayer` サービスの `MainTrack` に対して `LoadAndPlay(scriptPath)` メソッドを使用します。エンジンサービスを取得するには、`Engine.GetService<TService>()` 静的メソッドを使用します。ここで、`TService` は取得するサービスの型（インターフェース）です。たとえば、次のコードはスクリプトプレイヤーサービスを取得し、`Script001` という名前のスクリプトをプリロードして再生します。
 
 ```csharp
 var player = Engine.GetService<IScriptPlayer>();
 await player.MainTrack.LoadAndPlay("Script001");
 ```
 
-ノベルモードを終了してメインゲームモードに戻るときは、現在Naninovelによって使用されているすべてのリソースをアンロードし、エンジンサービスを停止することをお勧めします。これには、`IStateManager` サービスの `ResetState()` メソッドを使用します。
+ノベルモードを終了してメインゲームモードに戻るときは、現在Naninovelによって使用されているすべてのリソースをアンロードし、エンジンサービスを停止したい場合が多いでしょう。これには、`IStateManager` サービスの `ResetState()` メソッドを使用します。
 
 ```csharp
 var stateManager = Engine.GetService<IStateManager>();
@@ -82,41 +82,37 @@ await stateManager.ResetState();
 
 ### スクリプトアセットの参照
 
-カスタムシステムでシナリオスクリプトアセットを参照したい場合（たとえば、ダイアログやカットシーンを再生するため）、スクリプトパスを直接保存するのは、ファイルの場所と名前に依存するため脆弱であることに注意してください。
+カスタムシステムでシナリオスクリプトアセットを参照したい場合（たとえば、会話やカットシーンを再生するため）、スクリプトパスを直接保存する方法は、ファイルの場所と名前に依存するため壊れやすいことに注意してください。
 
-代わりに、アセット参照（GUID）を使用してください。関連するファイルが移動または名前変更されても、参照は変更されません。GUIDからスクリプトパスを解決するには、`ScriptAssets.GetPath` メソッドを使用します。Naninovelは `ScriptAssetRef` プロパティドロワーも提供しており、便宜上、スクリプトアセットをシリアル化されたフィールドに直接割り当てることができます。
+代わりに、アセット参照（GUID）を使用してください。関連するファイルが移動または名前変更されても、参照は変更されません。GUIDからスクリプトパスを解決するには、`ScriptAssets.GetPath` メソッドを使用します。Naninovelは `ScriptAssetRef` プロパティドロワーも提供しており、利便性のために、スクリプトアセットをシリアル化されたフィールドに直接割り当てることができます。
 
-以下は、プレイヤーがトリガーに衝突したときに指定されたスクリプトの再生を開始する [インテグレーションサンプル](/ja/guide/samples#ダイアログモード) のコンポーネントです。
+以下は、シリアル化されたスクリプト参照の例です。プレイヤーがトリガーに衝突すると、参照がスクリプトパスに解決され、そのスクリプトが再生されます。
 
 ```cs
-public class DialogueTrigger : MonoBehaviour
-{
-    [ScriptAssetRef]
-    public string ScriptRef;
-    public string Label;
+[ScriptAssetRef]
+public string ScriptRef;
 
-    private void OnTriggerEnter (Collider other)
-    {
-        var player = Engine.GetService<IScriptPlayer>();
-        var path = ScriptAssets.GetPath(ScriptRef);
-        player.MainTrack.LoadAndPlayAtLabel(path, Label).Forget();
-    }
+private void OnTriggerEnter (Collider other)
+{
+    var path = ScriptAssets.GetPath(ScriptRef);
+    var player = Engine.GetService<IScriptPlayer>();
+    player.MainTrack.LoadAndPlay(path).Forget();
 }
 ```
 
-エディターでは、スクリプトアセットを `Script Ref` フィールドにドラッグアンドドロップでき、スクリプトファイルが移動または名前変更されても参照はそのまま残ります。
+`Dialogue Events` などの組み込みコンポーネントも同じ属性を使用しています。スクリプトアセットを `Script` フィールドにドラッグアンドドロップすると、スクリプトファイルが移動または名前変更されても参照はそのまま残ります。
 
-![](https://i.gyazo.com/cd634c628a0a116397f6ecef837a10b0.png)
+![](https://i.gyazo.com/e6d96c7de99fabd16cf4a74d8a485469.png)
 
 ## タイトルメニューの無効化
 
-エンジンが初期化されると、組み込みのタイトルメニュー実装が自動的に表示されますが、独自のタイトルメニューがある可能性があります。[UIのカスタマイズ機能](/ja/guide/gui#uiのカスタマイズ) を使用して、組み込みのタイトルメニューを変更、置換、または完全に削除できます。メニューは、UIリソースの `Title UI` の下にリストされています。
+初期化後、エンジンはスクリプト構成メニューの `Title Script` に割り当てられたスクリプト（デフォルトでは `Title`）を再生し、デフォルトの [タイトルスクリプト](/ja/guide/scenario-scripting#タイトルスクリプト) は `@showUI TitleUI` コマンドで組み込みのタイトルメニューを表示します。独自のタイトルメニューがある場合は、タイトルスクリプトの割り当てを解除するか、スクリプトからこのコマンドを削除してください。また、[UIのカスタマイズ機能](/ja/guide/gui#uiのカスタマイズ) を使用して、組み込みのタイトルメニューを変更、置換、または完全に削除することもできます。このメニューは、UIリソースに `TitleUI` という名前で登録されています。
 
 ## エンジンオブジェクトレイヤー
 
 構成メニューを介して、エンジンが作成するすべてのオブジェクト（UI関連を除く）に特定の [レイヤー](https://docs.unity3d.com/Manual/Layers.html) を割り当てることができます。
 
-![](https://i.gyazo.com/8642fe37ddc45b8514b9f01d70277fbd.png)
+![](https://i.gyazo.com/b27cdf9e3f5d9e7b25bbc4cbb37afe04.png)
 
 これにより、エンジンのカメラは [カリングマスク](https://docs.unity3d.com/ScriptReference/Camera-cullingMask.html) を使用して、指定されたレイヤー上のオブジェクトのみをレンダリングするようになります。
 
@@ -126,98 +122,32 @@ public class DialogueTrigger : MonoBehaviour
 
 ## テクスチャへのレンダリング
 
-カメラ構成メニューでカスタムカメラプレハブを割り当てることにより、エンジンのカメラを画面ではなくカスタム [RenderTexture](https://docs.unity3d.com/ScriptReference/RenderTexture.html) にレンダリングさせることができます（およびその他のカメラ関連設定を変更できます）。
+カメラ構成メニューの `Main Camera` オプションにカスタムカメラプレハブを割り当てることにより、エンジンのカメラを画面ではなくカスタム [RenderTexture](https://docs.unity3d.com/ScriptReference/RenderTexture.html) にレンダリングさせることができます（その他のカメラ関連設定も変更できます）。
 
-![](https://i.gyazo.com/1b7116fa1bd170d3753b4cdbd27afcf3.png)
+![](https://i.gyazo.com/e302efafe6136a0d949defe17f6bc625.png)
 
 ## モードの切り替え
 
-プロジェクトに大きく依存しますが、以下はカスタムコマンドを介して「アドベンチャー」モードと「ノベル」モードの切り替えを実装する方法を示す（インテグレーションサンプルに基づく）抽象的な例です。
+ゲームとNaninovelを切り替える（たとえば、「アドベンチャー」モードと「ノベル」モードを切り替える）には、静的な `Dialogue` クラスを使用します。`Dialogue.Enter()` は、エンジンがまだ初期化されていない場合は初期化し、Naninovelのレンダリングと入力処理を有効にします。一方、`Dialogue.Exit()` はエンジンの状態をリセットし、それらを無効にします。`Dialogue.EnterAndPlay()` はダイアログモードに入り、指定されたパスのシナリオスクリプトを再生します。`Dialogue.EnterAndPlayAsset()` は、[スクリプトアセットの参照](/ja/guide/integration-options#スクリプトアセットの参照) を使用して同じことを行います。
 
-::: code-group
-
-```csharp [SwitchToNovelMode.cs]
-[Alias("novel")]
-public class SwitchToNovelMode : Command
-{
-    public StringParameter ScriptPath;
-    public StringParameter Label;
-
-    public override async Awaitable Execute (ExecutionContext ctx)
-    {
-        // 1. キャラクター制御を無効にします。
-        var controller = Object.FindAnyObjectByType<CharacterController3D>();
-        controller.IsInputBlocked = true;
-
-        // 2. カメラを切り替えます。
-        var advCamera = GameObject.Find("AdvCamera").GetComponent<Camera>();
-        advCamera.enabled = false;
-        var naniCamera = Engine.GetService<ICameraManager>().Camera;
-        naniCamera.enabled = true;
-
-        // 3. 指定されたスクリプトをロードして再生します（割り当てられている場合）。
-        if (Assigned(ScriptPath))
-        {
-            var scriptPlayer = Engine.GetService<IScriptPlayer>();
-            await scriptPlayer.MainTrack.LoadAndPlayAtLabel(ScriptPath, Label);
-        }
-
-        // 4. Naninovel入力のミュートを解除します。
-        var inputManager = Engine.GetService<IInputManager>();
-        inputManager.Muted = false;
-    }
-}
+```csharp
+await Dialogue.EnterAndPlay("Script001");
+...
+await Dialogue.Exit();
 ```
 
-```csharp [SwitchToAdventureMode.cs]
-[Alias("adventure")]
-public class SwitchToAdventureMode : Command
-{
-    public override async Awaitable Execute (ExecutionContext ctx)
-    {
-        // 1. Naninovel入力をミュートします。
-        var inputManager = Engine.GetService<IInputManager>();
-        inputManager.Muted = true;
+先にダイアログモードに入っていない場合、終了しても何も起こりません。現在の状態は `Dialogue.Active` プロパティで確認できます。切り替えに反応する（たとえば、ダイアログ中にゲームのキャラクター操作をブロックする）には、`Dialogue.OnEntered` および `Dialogue.OnExited` イベントを使用します。
 
-        // 2. スクリプトプレイヤーを停止します。
-        var scriptPlayer = Engine.GetService<IScriptPlayer>();
-        scriptPlayer.MainTrack.Stop();
-
-        // 3. 状態をリセットします。
-        var stateManager = Engine.GetService<IStateManager>();
-        await stateManager.ResetState();
-
-        // 4. カメラを切り替えます。
-        var advCamera = GameObject.Find("AdvCamera").GetComponent<Camera>();
-        advCamera.enabled = true;
-        var naniCamera = Engine.GetService<ICameraManager>().Camera;
-        naniCamera.enabled = false;
-
-        // 5. キャラクター制御を有効にします。
-        var controller = Object.FindAnyObjectByType<CharacterController3D>();
-        controller.IsInputBlocked = false;
-    }
-}
-```
-
-:::
-
-その後、コマンドはシナリオスクリプトで使用できます。
+シナリオスクリプトでは、[@enterDialogue] および [@exitDialogue] コマンドを使用します。
 
 ```nani
 ; アドベンチャーモードに切り替えます。
-@adventure
+@exitDialogue
 ```
 
-— またはC#で直接（例：`OnTrigger` Unityイベント内）：
+同じAPIは、`Dialogue Events` コンポーネントを介してC#なしでも利用できます。Unityイベントからその `EnterDialogue` および `ExitDialogue` メソッドを呼び出し、`Script` と `Label` を割り当ててモードに入るときにシナリオスクリプトを再生し、`Dialogue Entered` および `Dialogue Exited` イベントで切り替えに反応できます。設定済みのダイアログトリガーを追加するには、シーン内のゲームオブジェクトを右クリックし、`Naninovel -> Dialogue` を選択します。作成されたオブジェクトは `Dialogue Events` と `Trigger Events` コンポーネントを組み合わせたもので、後者は設定された制約（衝突、レイキャスト、ポインターホバー、入力）が満たされるとダイアログに入ります。例については、[スタートガイド](/ja/guide/getting-started#ダイアログモード) を参照してください。
 
-```csharp
-private void OnTriggerEnter (Collider other)
-{
-	var track = Engine.GetService<IScriptPlayer>().MainTrack;
-	track.ExecuteTransientCommand("novel scriptPath:Script001").Forget();
-}
-```
+[統合サンプル](/ja/guide/samples#ダイアログモード) では、各NPCにこのような `Dialogue` オブジェクトがあり、スクリプトとラベルが割り当てられています。トリガーは、プレイヤーキャラクターがそのコライダーに入り、割り当てられた入力を行うとアクティブになります。プレイヤーオブジェクトの下にある `Dialogue Events` コンポーネントは、ダイアログモードがアクティブな間、キャラクター操作をブロックし、`Camera Events` コンポーネントは `SetupBaseCamera` メソッドでNaninovelのカメラをシーンのカメラの上にスタックするため、カメラを切り替える必要はありません。会話のスクリプトは [@exitDialogue] で終了します。ノベルモードは [@goto] で移動する通常のシナリオスクリプトであり、同じコマンドで終了します。
 
 ## その他のオプション
 
@@ -226,5 +156,5 @@ private void OnTriggerEnter (Collider other)
 一部のエンジンAPIまたはシステムに拡張性が欠けており、統合のためにソースコードの変更が必要であると感じた場合は、[サポートにお問い合わせください](/ja/support/)。改善を検討します。
 
 ::: tip EXAMPLE
-Naninovelが3Dアドベンチャーゲームの組み込みダイアログと、切り替え可能なスタンドアロンノベルモードの両方として使用されている [インテグレーションサンプル](/ja/guide/samples#ダイアログモード) を確認してください。
+Naninovelが3Dアドベンチャーゲームのドロップインのダイアログシステムと、切り替え可能なスタンドアロンのノベルモードの両方として使用されている [統合サンプル](/ja/guide/samples#ダイアログモード) を確認してください。
 :::

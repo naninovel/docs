@@ -1,10 +1,10 @@
 # Integration Options
 
-While Naninovel is focused around traditional visual novel games and works best as a template for one, it's possible to integrate the engine with existing projects. If you're making a 3D adventure game, RPG, or a game of any other genre — you can still use Naninovel as a drop-in dialogue system.
+While Naninovel is focused on traditional visual novel games and works best as a template for one, it's possible to integrate the engine with existing projects. If you're making a 3D adventure game, RPG, or a game of any other genre, you can still use Naninovel as a drop-in dialogue system.
 
 ![](https://i.gyazo.com/b1b6042db4a91b3a8cee74236b33c17c.mp4)
 
-There are multiple ways you can integrate Naninovel with a custom project; the specific implementation depends on the project type and what you want to achieve. In the following documentation we'll list various configuration options and APIs that can be useful for "pairing" Naninovel with a standalone game. Before you continue, take a look at the [engine architecture](/guide/engine-architecture) to better understand its conceptual behavior.
+There are multiple ways you can integrate Naninovel with a custom project; the specific implementation depends on the project type and what you want to achieve. In the following documentation we'll list various configuration options and APIs that can be useful for "pairing" Naninovel with a standalone game. Before you continue, take a look at the [engine architecture](/guide/engine-architecture) to better understand its conceptual behaviour.
 
 ::: tip EXAMPLE
 Check out the [integration sample](/guide/samples#dialogue-mode) where Naninovel is used both as a drop-in dialogue system for a 3D adventure game and as a standalone novel mode.
@@ -14,9 +14,9 @@ Check out the [integration sample](/guide/samples#dialogue-mode) where Naninovel
 
 When the `Initialize On Application Load` option in the engine configuration menu is enabled, engine services automatically initialize on application start.
 
-![](https://i.gyazo.com/6349692c2e2036e908e41c3d89509102.png)
+![](https://i.gyazo.com/5cb8ba25304f7c80d0af23859bc9286f.png)
 
-Unless you want to begin your game in novel mode, you should manually initialize the engine when it's needed by invoking the static `RuntimeInitializer.Initialize()` method from C# or by adding a `Runtime Initializer` component to a GameObject in the scene; the latter will make the engine initialize when the scene is loaded in Unity.
+Unless you want to begin your game in novel mode, you should manually initialize the engine when it's needed by invoking the static `RuntimeInitializer.Initialize()` method from C# or by adding a `Runtime Initializer` component to a game object in the scene; the latter will make the engine initialize when the scene is loaded in Unity.
 
 Below is an example of manual initialization from a MonoBehaviour script:
 
@@ -35,15 +35,15 @@ public class MyScript : MonoBehaviour
 
 Disabling `Scene Independent` will make all Naninovel-related objects part of the Unity scene where the engine was initialized; the engine will be destroyed when the scene is unloaded.
 
-To reset the engine services (and dispose most occupied resources), use `ResetState()` method of `IStateManager` service; this is useful when temporarily switching to another gameplay mode while being able to return to novel mode without re-initializing the engine.
+To reset the engine services (and dispose most occupied resources), use the `ResetState()` method of the `IStateManager` service; this is useful when temporarily switching to another gameplay mode while being able to return to novel mode without re-initializing the engine.
 
-To destroy all the engine services and completely remove Naninovel from memory, use `Engine.Destroy()` static method.
+To destroy all the engine services and completely remove Naninovel from memory, use the `Engine.Destroy()` static method.
 
 ## Accessing Engine API
 
-The engine initialization procedure is asynchronous, so even when automatic initialization is enabled, engine APIs may not be available right after Unity loads a scene (e.g., in `Awake`, `Start`, and `OnEnable` MonoBehaviour methods).
+The engine initialization procedure is asynchronous, so even when automatic initialization is enabled, engine APIs may not be available right after Unity loads a scene (eg, in `Awake`, `Start`, and `OnEnable` MonoBehaviour methods).
 
-To check whether the engine is currently available, use `Engine.Initialized` property; `Engine.OnInitializationFinished` event allows executing actions after the initialization procedure is finished, e.g.:
+To check whether the engine is currently available, use the `Engine.Initialized` property; the `Engine.OnInitializationFinished` event allows executing actions after the initialization procedure is finished, eg:
 
 ```csharp
 public class MyScript : MonoBehaviour
@@ -57,7 +57,7 @@ public class MyScript : MonoBehaviour
 
     private void DoMyCustomWork ()
     {
-        // Engine is initialized here, it's safe to use the APIs.
+        // Engine is initialized here; it's safe to use the APIs.
         var scriptPlayer = Engine.GetService<IScriptPlayer>();
         ...
     }
@@ -66,14 +66,14 @@ public class MyScript : MonoBehaviour
 
 ## Playing Scenario Scripts
 
-To preload and play a scenario script with a given path, use `LoadAndPlay(ScriptPath)` method of `IScriptPlayer` service. To get an engine service, use `Engine.GetService<TService>()` static method, where `TService` is the type (interface) of the service to retrieve. For example, the following gets a script player service, preloads, and plays a script named `Script001`:
+To preload and play a scenario script with a given path, use the `LoadAndPlay(scriptPath)` method on the `MainTrack` of the `IScriptPlayer` service. To get an engine service, use the `Engine.GetService<TService>()` static method, where `TService` is the type (interface) of the service to retrieve. For example, the following gets a script player service, preloads, and plays a script named `Script001`:
 
 ```csharp
 var player = Engine.GetService<IScriptPlayer>();
 await player.MainTrack.LoadAndPlay("Script001");
 ```
 
-When exiting the novel mode and returning to the main game mode, you probably want to unload all resources currently used by Naninovel and stop engine services. For this, use `ResetState()` method of the `IStateManager` service:
+When exiting the novel mode and returning to the main game mode, you probably want to unload all resources currently used by Naninovel and stop engine services. For this, use the `ResetState()` method of the `IStateManager` service:
 
 ```csharp
 var stateManager = Engine.GetService<IStateManager>();
@@ -84,39 +84,35 @@ await stateManager.ResetState();
 
 If you'd like to reference scenario script assets in your custom systems (for example, to play dialogues or cutscenes), be aware that storing a script path directly is fragile as it depends on file location and name.
 
-Instead, use the asset reference (GUID). The reference won't change when the associated file is moved or renamed. To resolve a script path from a GUID use `ScriptAssets.GetPath` method. Naninovel also provides a `ScriptAssetRef` property drawer, allowing assigning script assets directly to serialized fields for convenience.
+Instead, use the asset reference (GUID). The reference won't change when the associated file is moved or renamed. To resolve a script path from a GUID, use the `ScriptAssets.GetPath` method. Naninovel also provides a `ScriptAssetRef` property drawer, allowing assigning script assets directly to serialized fields for convenience.
 
-Below is a component from the [integration sample](/guide/samples#dialogue-mode) that starts playing a specified script when the player collides with a trigger:
+Below is an example of a serialized script reference that is resolved to a script path and played when the player collides with a trigger:
 
 ```cs
-public class DialogueTrigger : MonoBehaviour
-{
-    [ScriptAssetRef]
-    public string ScriptRef;
-    public string Label;
+[ScriptAssetRef]
+public string ScriptRef;
 
-    private void OnTriggerEnter (Collider other)
-    {
-        var player = Engine.GetService<IScriptPlayer>();
-        var path = ScriptAssets.GetPath(ScriptRef);
-        player.MainTrack.LoadAndPlayAtLabel(path, Label).Forget();
-    }
+private void OnTriggerEnter (Collider other)
+{
+    var path = ScriptAssets.GetPath(ScriptRef);
+    var player = Engine.GetService<IScriptPlayer>();
+    player.MainTrack.LoadAndPlay(path).Forget();
 }
 ```
 
-In the Editor, you can drag-and-drop script assets to the `Script Ref` field, and the reference will remain intact when the script file is moved or renamed.
+Built-in components, such as `Dialogue Events`, use the same attribute: drag and drop a script asset to the `Script` field, and the reference will remain intact when the script file is moved or renamed.
 
-![](https://i.gyazo.com/cd634c628a0a116397f6ecef837a10b0.png)
+![](https://i.gyazo.com/e6d96c7de99fabd16cf4a74d8a485469.png)
 
 ## Disable Title Menu
 
-A built-in title menu implementation is automatically shown when the engine is initialized, while you likely have your own title menu. You can modify, replace, or completely remove the built-in title menu using the [UI customization feature](/guide/gui#ui-customization). The menu is listed under `Title UI` in the UI resources.
+After initialization, the engine plays the script assigned to `Title Script` in the scripts configuration menu (`Title` by default), and the default [title script](/guide/scenario-scripting#title-script) shows the built-in title menu with the `@showUI TitleUI` command. If you have your own title menu, unassign the title script or remove the command from it. You can also modify, replace, or completely remove the built-in title menu using the [UI customization feature](/guide/gui#ui-customization). The menu is listed under `TitleUI` in the UI resources.
 
 ## Engine Objects Layer
 
-You can make the engine assign a specific [layer](https://docs.unity3d.com/Manual/Layers.html) for all the objects (except UI-related) it creates via the configuration menu.
+You can make the engine assign a specific [layer](https://docs.unity3d.com/Manual/Layers.html) to all the objects (except UI-related) it creates via the configuration menu.
 
-![](https://i.gyazo.com/8642fe37ddc45b8514b9f01d70277fbd.png)
+![](https://i.gyazo.com/b27cdf9e3f5d9e7b25bbc4cbb37afe04.png)
 
 This will also make the engine's camera use a [culling mask](https://docs.unity3d.com/ScriptReference/Camera-cullingMask.html) to render only objects on the specified layer.
 
@@ -126,104 +122,38 @@ To change the layer of UI objects managed by the engine, use the `Objects Layer`
 
 ## Render to Texture
 
-You can make the engine's camera render to a custom [RenderTexture](https://docs.unity3d.com/ScriptReference/RenderTexture.html) instead of the screen (and change other camera-related settings) by assigning a custom camera prefab in the camera configuration menu.
+You can make the engine's camera render to a custom [RenderTexture](https://docs.unity3d.com/ScriptReference/RenderTexture.html) instead of the screen (and change other camera-related settings) by assigning a custom camera prefab to the `Main Camera` option in the camera configuration menu.
 
-![](https://i.gyazo.com/1b7116fa1bd170d3753b4cdbd27afcf3.png)
+![](https://i.gyazo.com/e302efafe6136a0d949defe17f6bc625.png)
 
 ## Switching Modes
 
-While it heavily depends on the project, the following is an abstract example (based on the integration sample) showing how to implement switching between "adventure" and "novel" modes via custom commands.
+To switch between your game and Naninovel (eg, between "adventure" and "novel" modes), use the static `Dialogue` class. `Dialogue.Enter()` initializes the engine when it's not initialized yet and enables Naninovel rendering and input processing, while `Dialogue.Exit()` resets the engine state and disables them. `Dialogue.EnterAndPlay()` enters the dialogue mode and plays a scenario script with the specified path; `Dialogue.EnterAndPlayAsset()` does the same with a [script asset reference](/guide/integration-options#script-asset-reference):
 
-::: code-group
-
-```csharp [SwitchToNovelMode.cs]
-[Alias("novel")]
-public class SwitchToNovelMode : Command
-{
-    public StringParameter ScriptPath;
-    public StringParameter Label;
-
-    public override async Awaitable Execute (ExecutionContext ctx)
-    {
-        // 1. Disable character control.
-        var controller = Object.FindAnyObjectByType<CharacterController3D>();
-        controller.IsInputBlocked = true;
-
-        // 2. Switch cameras.
-        var advCamera = GameObject.Find("AdvCamera").GetComponent<Camera>();
-        advCamera.enabled = false;
-        var naniCamera = Engine.GetService<ICameraManager>().Camera;
-        naniCamera.enabled = true;
-
-        // 3. Load and play specified script (if assigned).
-        if (Assigned(ScriptPath))
-        {
-            var scriptPlayer = Engine.GetService<IScriptPlayer>();
-            await scriptPlayer.MainTrack.LoadAndPlayAtLabel(ScriptPath, Label);
-        }
-
-        // 4. Unmute Naninovel input.
-        var inputManager = Engine.GetService<IInputManager>();
-        inputManager.Muted = false;
-    }
-}
+```csharp
+await Dialogue.EnterAndPlay("Script001");
+...
+await Dialogue.Exit();
 ```
 
-```csharp [SwitchToAdventureMode.cs]
-[Alias("adventure")]
-public class SwitchToAdventureMode : Command
-{
-    public override async Awaitable Execute (ExecutionContext ctx)
-    {
-        // 1. Mute Naninovel input.
-        var inputManager = Engine.GetService<IInputManager>();
-        inputManager.Muted = true;
+Exiting has no effect unless the dialogue mode was entered first; the current state is exposed via the `Dialogue.Active` property. To react to the switch (eg, to block the character controls of your game during a dialogue), use the `Dialogue.OnEntered` and `Dialogue.OnExited` events.
 
-        // 2. Stop script player.
-        var scriptPlayer = Engine.GetService<IScriptPlayer>();
-        scriptPlayer.MainTrack.Stop();
-
-        // 3. Reset state.
-        var stateManager = Engine.GetService<IStateManager>();
-        await stateManager.ResetState();
-
-        // 4. Switch cameras.
-        var advCamera = GameObject.Find("AdvCamera").GetComponent<Camera>();
-        advCamera.enabled = true;
-        var naniCamera = Engine.GetService<ICameraManager>().Camera;
-        naniCamera.enabled = false;
-
-        // 5. Enable character control.
-        var controller = Object.FindAnyObjectByType<CharacterController3D>();
-        controller.IsInputBlocked = false;
-    }
-}
-```
-
-:::
-
-The commands can then be used in scenario scripts:
+In scenario scripts, use the [@enterDialogue] and [@exitDialogue] commands:
 
 ```nani
 ; Switch to adventure mode.
-@adventure
+@exitDialogue
 ```
 
-—or directly in C# (e.g., in `OnTrigger` Unity events):
+The same API is available without C# via the `Dialogue Events` component: invoke its `EnterDialogue` and `ExitDialogue` methods from Unity events, assign `Script` and `Label` to play a scenario script on enter, and use the `Dialogue Entered` and `Dialogue Exited` events to react to the switch. To add a preconfigured dialogue trigger, right-click a game object in the scene and select `Naninovel -> Dialogue`; the created object pairs `Dialogue Events` with a `Trigger Events` component, which enters the dialogue when the configured constraints (collision, raycast, pointer hover, input) are met. See the [getting started guide](/guide/getting-started#dialogue-mode) for an example.
 
-```csharp
-private void OnTriggerEnter (Collider other)
-{
-	var track = Engine.GetService<IScriptPlayer>().MainTrack;
-	track.ExecuteTransientCommand("novel scriptPath:Script001").Forget();
-}
-```
+In the [integration sample](/guide/samples#dialogue-mode), each NPC has such a `Dialogue` object with a script and a label assigned; the trigger activates when the player character enters its collider and performs the assigned input. A `Dialogue Events` component under the player object blocks the character controls while the dialogue mode is active, and a `Camera Events` component stacks the Naninovel camera over the scene camera with the `SetupBaseCamera` method, so the cameras don't have to be switched. The dialogue scripts end with [@exitDialogue]; the novel mode is a regular scenario script navigated to with [@goto], which ends with the same command.
 
 ## Other Options
 
-There are multiple other features (state outsourcing, service overriding, custom serialization, resource and configuration providers, etc.) that can be useful when integrating the engine with other systems. Check the rest of the guide for more information. Consider investigating the available [configuration options](/guide/configuration) as well; some features may not be described in the guide but can still be handy for integration.
+There are multiple other features (state outsourcing, service overriding, custom serialization, resource and configuration providers, etc) that can be useful when integrating the engine with other systems. Check the rest of the guide for more information. Consider investigating the available [configuration options](/guide/configuration) as well; some features may not be described in the guide but can still be handy for integration.
 
-If you feel some engine API or system lacks extendability and requires source code modification to integrate, please [contact the support](/support/) — we'll consider improving it.
+If you feel some engine API or system lacks extendability and requires source code modification to integrate, please [contact support](/support/) — we'll consider improving it.
 
 ::: tip EXAMPLE
 Check the [integration sample](/guide/samples#dialogue-mode), where Naninovel is used both as a drop-in dialogue system for a 3D adventure game and as a switchable standalone novel mode.

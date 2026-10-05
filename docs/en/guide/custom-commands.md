@@ -1,12 +1,12 @@
 # Custom Commands
 
-A command represents a single operation that controls what happens in a scene; e.g., it can change a background, move a character, or load another scenario script. Parameterized command sequences defined in [scenario scripts](/guide/scenario-scripting) effectively control the game flow. You can find available built-in commands in the [API reference](/api/). In code, all the built-in script command implementations are defined under the `Naninovel.Commands` namespace.
+A command represents a single operation that controls what happens in a scene; eg it can change a background, move a character, or load another scenario script. Parameterized command sequences defined in [scenario scripts](/guide/scenario-scripting) effectively control the game flow. You can find available built-in commands in the [API reference](/api/). In code, all the built-in script command implementations are defined under the `Naninovel.Commands` namespace.
 
 ## Adding Custom Command
 
-To add your own custom script command, create a new C# class derived from `Command` and implement the `Execute` abstract method. The created class will automatically be picked up by the engine and you'll be able to invoke the command from scenario scripts by either the class name or an alias (if assigned). To assign an alias to the Naninovel command, apply the `Alias` attribute to the class.
+To add your own custom script command, create a new C# class derived from `Command` and override the `Execute` method. The created class will automatically be picked up by the engine and you'll be able to invoke the command from scenario scripts by either the class name or an alias (if assigned). To assign an alias to the Naninovel command, apply the `Alias` attribute to the class.
 
-Below is an example of a custom command that can be invoked from scenario scripts as `@HelloWorld` or `@hello` to print "Hello World!" to the console and that can also take an optional `name` parameter (e.g., `@hello name:Felix`) to greet the provided name instead of the world.
+Below is an example of a custom command that can be invoked from scenario scripts as `@HelloWorld` or `@hello` to print "Hello World!" to the console and that can also take an optional `name` parameter (eg, `@hello name:Felix`) to greet the provided name instead of the world.
 
 ```csharp
 using System;
@@ -29,18 +29,18 @@ public class HelloWorld : Command
 ```
 
 ::: info NOTE
-Whenever you change C# command implementations—such as renaming the class, adding or removing parameters, changing their types or attributes—remember to re-import the scenario script assets (right-click the folder where the scripts are stored and click "Reimport"). This is necessary because scenario scripts are parsed and compiled on import (not at runtime) and must be kept in sync with the C# implementations.
+Whenever you change C# command implementations — such as renaming the class, adding or removing parameters, changing their types or attributes — remember to re-import the scenario script assets (right-click the folder where the scripts are stored and click "Reimport"). This is necessary because scenario scripts are parsed and compiled on import (not at runtime) and must be kept in sync with the C# implementations.
 :::
 
 ### Execute Method
 
-`Execute` is an async method invoked when the command is executed by the script player; keep your command logic there. Use [engine services](/guide/engine-services) to access the engine's built-in systems. Scenario script execution will halt until this method returns a completed task if the `Wait` parameter is set to `true`.
+`Execute` is an async method invoked when the command is executed by the script player; keep your command logic there. Use [engine services](/guide/engine-services) to access the engine's built-in systems. Scenario script execution will halt until the `Awaitable` returned by this method completes; to make the waiting optional, declare a `Wait` boolean parameter and wrap the async logic with the `WaitOrForget` method, as the built-in commands do.
 
 ### Execution Context
 
 Notice the `ExecutionContext ctx` argument provided to the `Execute` method. When performing [async operations](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/), make sure to check the `ctx.Token` async token for cancellation and completion requests after each async operation, and react accordingly:
 
-- `AsyncToken.Canceled` means the engine has been destroyed or reset. In both cases, it's no longer safe to use engine APIs, and any state mutations will lead to undefined behavior. When canceled, the command implementation is expected to throw `AsyncOperationCanceledException` immediately, discarding any currently performed activities.
+- `AsyncToken.Canceled` means the engine has been destroyed or reset. In both cases, it's no longer safe to use engine APIs, and any state mutations will lead to undefined behaviour. When canceled, the command implementation is expected to throw `AsyncOperationCanceledException` immediately, discarding any currently performed activities.
 - `AsyncToken.Completed` means the command is expected to complete all activities as fast as possible. For example, if you're running animations, finish them instantly, regardless of their expected duration. This usually happens when the player activates continue input or when a save game operation starts.
 
 ```csharp
@@ -117,7 +117,7 @@ public StringParameter MyPrimaryParameter;
 
 ### Required Parameter
 
-To make a parameter required (causing an error to be logged when it's not specified in scenario script), apply the `[RequiredParameter]` attribute to the field. When the attribute is not applied, the parameter is considered optional.
+To make a parameter required (causing an error to be logged when it's not specified in the scenario script), apply the `[RequiredParameter]` attribute to the field. When the attribute is not applied, the parameter is considered optional.
 
 ```csharp
 [RequiredParameter]
@@ -148,7 +148,7 @@ public class PrintText : Command, Command.ILocalizable
 
 ### Preloadable Command
 
-If command execution requires loading some resources, implement the `Command.IPreloadable` interface to preload the required resources when the game is loading. Refer to [memory management](/guide/memory-management) guide for more info.
+If command execution requires loading some resources, implement the `Command.IPreloadable` interface to preload the required resources when the game is loading. Refer to the [memory management](/guide/memory-management) guide for more info.
 
 ```csharp
 public class PlayAudioClip : Command, Command.IPreloadable
@@ -158,25 +158,25 @@ public class PlayAudioClip : Command, Command.IPreloadable
     public async Awaitable PreloadResources (ScriptPlaylist playlist)
     {
         if (!Assigned(ClipPath) || ClipPath.DynamicValue) return;
-        await ... (load the audio clip here)
+        await Audio.SfxLoader.Load(ClipPath, this);
     }
 
-    public void ReleasePreloadedResources ()
+    public void ReleaseResources (ScriptPlaylist playlist)
     {
         if (!Assigned(ClipPath) || ClipPath.DynamicValue) return;
-        ... (unload the clip here)
+        Audio.SfxLoader.Release(ClipPath, this);
     }
 }
 ```
 
-Notice the `ClipPath.DynamicValue` check: we wouldn't be able to preload the resource in case the name is only known when the command is executed (i.e., the parameter contains [scenario expressions](/guide/expressions)); in this case the resource should be loaded inside the `Execute` method.
+Notice the `ClipPath.DynamicValue` check: we wouldn't be able to preload the resource in case the name is only known when the command is executed (ie, the parameter contains [scenario expressions](/guide/expressions)); in this case the resource should be loaded inside the `Execute` method.
 
 ### Command Examples
 
-You can find scripts with all the built-in command implementations at the `Naninovel/Runtime/Commands` package folder; feel free to use them as a reference when implementing your own custom commands.
+You can find C# scripts with all the built-in command implementations at the `Naninovel/Runtime/Commands` package folder; feel free to use them as a reference when implementing your own custom commands.
 
 ::: tip EXAMPLE
-Another example of adding custom commands to add/remove items of an inventory system can be found in the [inventory sample](/guide/samples#inventory). Specifically, the command implementations are stored at `Scripts/Runtime/Inventory/Commands` directory.
+Another example of adding custom commands to add/remove items of an inventory system can be found in the [inventory sample](/guide/samples#inventory). Specifically, the command implementations are stored at the `Scripts/Runtime/Inventory/Commands` directory.
 :::
 
 ## Overriding Built-In Command
@@ -200,5 +200,5 @@ public class MyCustomPrintCommand : PrintText
 ```
 
 ::: tip
-Commands and parameters may have various context attributes applied to provide documentation, auto-completion and advanced diagnostics in the IDE and web editor. Find the available attributes in the [IDE extension](/guide/ide-extension#ide-attributes) guide.
+Commands and parameters may have various context attributes applied to provide documentation, auto-completion and advanced diagnostics in the IDE and Story Editor. Find the available attributes in the [IDE extension](/guide/ide-extension#ide-attributes) guide.
 :::

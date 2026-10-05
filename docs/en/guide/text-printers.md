@@ -2,9 +2,9 @@
 
 Text printers are actors used to present text messages that can be revealed (printed) over time.
 
-Printers' behavior can be configured using `Naninovel -> Configuration -> Printers` context menu; for available options see [configuration guide](/guide/configuration#text-printers). The printers' resources manager can be accessed using `Naninovel -> Resources -> Printers` context menu.
+Printers' behaviour can be configured using the `Naninovel -> Configuration -> Text Printers` editor menu; for available options see the [configuration guide](/guide/configuration#text-printers). The printers' resources manager can be accessed using the `Naninovel -> Resources -> Text Printers` editor menu.
 
-In scenario scripts, text printers are mostly controlled with [@print] and [@printer] commands:
+In scenario scripts, text printers are mostly controlled with the [@print] and [@printer] commands:
 
 ```nani
 ; Will make the "Dialogue" printer default
@@ -16,34 +16,34 @@ In scenario scripts, text printers are mostly controlled with [@print] and [@pri
 ; Will print the phrase using a default printer
 @print text:"Lorem ipsum dolor sit amet."
 
-; The same as above, but using generic text statement
+; The same as above, but using a generic text line
 Lorem ipsum dolor sit amet.
 
 ; The same as above, but associated with character "Felix"
 Felix: Lorem ipsum dolor sit amet.
 ```
 
-Be aware that even though the built-in printers are implemented as UIs, they're still actors and all the actor-related visibility changes (show/hide animations) use durations set either in the corresponding commands or actor configuration; e.g., the `time` parameter of [@showPrinter] command controls show animation duration and when it isn't specified, the `Change Visibility Duration` printer actor configuration property is used as a default duration; the `Fade Time` property found on the root of the printer UI prefab is ignored in this case.
+Be aware that even though the built-in printers are implemented as UIs, they're still actors and all the actor-related visibility changes (show/hide animations) use durations set either in the corresponding commands or actor configuration; eg the `time` parameter of the [@showPrinter] command controls the show animation duration and when it isn't specified, the `Change Visibility Duration` printer actor configuration property is used as a default duration; the `Fade Time` property found on the root of the printer UI prefab is ignored in this case.
 
 ## Auto-Advance Text
 
-The Auto-advance feature allows the script to automatically continue execution on await input (click-to-continue) events.
+The auto-advance feature allows the script to automatically continue execution on await input (click-to-continue) events.
 
 ![](https://i.gyazo.com/e6f58f861fa18bd62591db9794e7641b.mp4)
 
-Wait-for-user-input or `[-]` commands halt script execution until the user activates a `Continue` input; they are typically used after printing a text message. When in auto-advance mode, `[-]` commands will instead halt script execution for a period of time and then finish, allowing execution of the following command. The halt period depends on the length of the last printed text message and is further modified by the "Print speed" game setting.
+Wait-for-user-input or `[-]` commands halt script execution until the user activates a `Continue` input; they are typically used after printing a text message. When in auto-advance mode, `[-]` commands will instead halt script execution for a period of time and then finish, allowing execution of the following command. The halt period depends on the length of the last printed text message and is further modified by the "Auto delay" game setting.
 
-Auto-advance mode can be toggled using `AutoPlay` input (`A` key by default for standalone input module) or the "AUTO" button in the control panel.
+Auto-advance mode can be toggled using the `AutoPlay` input (`A` key by default) or the "AUTO" button in the control panel.
 
 ## Text Skipping
 
-The Text skipping feature allows fast-forwarding execution of [@print] commands, effectively skipping the text reveal (printing) process.
+The text skipping feature allows fast-forwarding execution of [@print] commands, effectively skipping the text reveal (printing) process.
 
 ![](https://i.gyazo.com/9605a5c8cd1911217350d77712f47e7d.mp4)
 
-Skip mode can be toggled using `Skip` input (`Ctrl` key by default for standalone input module) or the "SKIP" button in the control panel.
+Skip mode can be toggled using the `Skip` input (`Ctrl` key by default) or the "SKIP" button in the control panel.
 
-By default, skip mode is only available while executing commands that have already been executed in the past; e.g., if the user hasn't already read the text that is going to be printed, skip mode won't be available. This can be changed in the game settings using the "Skip mode" setting.
+By default, skip mode is only available while executing commands that have already been executed in the past; eg if the user hasn't already read the text that is going to be printed, skip mode won't be available. This can be changed in the game settings using the "Skip mode" setting.
 
 ## Printer Backlog
 
@@ -51,17 +51,17 @@ Printer backlog is a feature allowing the user to re-read previously printed tex
 
 ![](https://i.gyazo.com/cf9c11c242907e0eae7f5f1b4e2b9f38.mp4)
 
-The backlog can be shown at any time during the main game loop by activating `ShowBacklog` input (`L` key by default for standalone input module) or pressing the "LOG" button in the control panel.
+The backlog can be shown at any time during the main game loop by activating the `ShowBacklog` input (`L` key by default) or pressing the "LOG" button in the control panel.
 
 Various backlog UI properties are customizable via the component attached to the root of the prefab; see the tooltips of the properties for details on what each of them controls.
 
 ![](https://i.gyazo.com/40e44a4ed69f75fa5fb9c36cdae6226a.png)
 
-Consult [built-in UI customization guide](/guide/gui#modifying-built-in-ui) for more info on how to customize and configure the UI.
+Consult the [built-in UI customization guide](/guide/gui#modifying-built-in-ui) for more info on how to customize and configure the UI.
 
-It's possible to prevent specific text printers from adding messages to the backlog by disabling the `Add To Backlog` property in the printer actor configuration. When the `Split Backlog Messages` property is enabled, messages added to the backlog will be split into separate records.
+It's possible to prevent specific text printers from adding messages to the backlog by disabling the `Add To Backlog` property in the printer actor configuration.
 
-![](https://i.gyazo.com/9f0155dff068dbe1fd821e9007cf4a5a.png)
+![](https://i.gyazo.com/3e3a4ae82fe7c4f729a9927930b0789b.png)
 
 ## Message Templates
 
@@ -83,7 +83,7 @@ Dialogue printers present text inside windows with a flexible height. They initi
 
 ## Wide Printer
 
-Wide printers are very similar to dialogue printers, except for some changes in the panel layout tailored for wide displays. Wide printers also support [character avatars](/guide/characters#avatar-textures) feature.
+Wide printers are very similar to dialogue printers, except for some changes in the panel layout tailored for wide displays. Wide printers also support the [character avatars](/guide/characters#avatar-textures) feature.
 
 ![Wide Printer](https://i.gyazo.com/83c091c08846fa1cab8764a8d4dddeda.png)
 
@@ -95,7 +95,7 @@ Fullscreen printers present text inside windows with a static size. They take mo
 
 Fullscreen printers won't reset text by default on each consecutive print command; instead, use the [@resetText] command to clear the contents of the printer when required. This can be changed by enabling `Auto Reset` in the printer actor configuration menu.
 
-Each print command handled by a fullscreen printer will prepend two line breaks before the printed text by default (except when the current content of the printer is empty). This can be disabled in the printer actor configuration menu by setting `Auto Line Break` to zero.
+Each print command handled by a fullscreen printer will prepend two line breaks before the printed text by default (except when the current content of the printer is empty). This can be disabled by setting `Auto Line Breaks` to zero on the `Revealable Text Printer Panel` component of the printer prefab.
 
 ![](https://i.gyazo.com/978c2eb05215aac2d62177cfb58bfbef.png)
 
@@ -120,11 +120,11 @@ Morbi ultrices dictum diam, in gravida neque vulputate in.
 
 ## Chat Printer
 
-Chat printer presents text inside message bubbles framed in a window with vertically-scrollable content, resembling a mobile messenger app. Instead of revealing the printed message character by character, it shows an "author is typing" animation for the duration of the reveal effect and then instantly shows the printed message. Chat printer supports [character avatars](/guide/characters#avatar-textures) feature.
+The chat printer presents text inside message bubbles framed in a window with vertically scrollable content, resembling a mobile messenger app. Instead of revealing the printed message character by character, it shows an "author is typing" animation for the duration of the reveal effect and then instantly shows the printed message. The chat printer supports the [character avatars](/guide/characters#avatar-textures) feature.
 
 ![Chat Printer](https://i.gyazo.com/3c04aecabe7f754ffc9ce5452eeba270.png)
 
-To embed choices inside the chat printer, see [ChatReply](/guide/choices#chatreply-choice-handler) choice handler. You can also specify a custom handler via the `Choice Handler Id` property found on the `Chat Printer Panel` component.
+To embed choices inside the chat printer, see the [ChatReply](/guide/choices#chatreply-choice-handler) choice handler. You can also specify a custom handler via the `Choice Handler Id` property found on the `Chat Printer Panel` component.
 
 ## Bubble Printer
 
@@ -170,15 +170,16 @@ When configured correctly, Naninovel will not only position the printers over th
 | `Bubble/BottomRight` | Used when the bubble is aligned at the bottom-right.     |
 
 You don't have to specify all of them: Naninovel will pick the one that fits best even when a precise match is missing. For example, if aligned top-left but `Bubble/TopLeft` is missing, it'll check for `Bubble/Left`, then `Bubble/Top`, and finally fall back to `Bubble`.
+
 Below is an example that specifies four anchors — one per corner:
 
 ![](https://i.gyazo.com/4bebc7823d44f2c02d0521d17de806e4.png)
 
 ::: tip EXAMPLE
-Check `Hiyori` and `Senko` Live2D characters under `Content/Characters` in our [samples project](/guide/samples) for an example of setting up bubble anchors via both the character metadata and inside the prefab.
+Check the `Hiyori` and `Senko` Live2D characters under `Content/Characters` in our [samples project](/guide/samples) for an example of setting up bubble anchors via both the character metadata and inside the prefab.
 :::
 
-When building a custom bubble printer, the flip and alignment behavior can be configured under the `Floating Printer` properties. Consult the tooltips for more information on how each property affects the behavior.
+When building a custom bubble printer, the flip and alignment behaviour can be configured under the `Floating Printer` properties. Consult the tooltips for more information on how each property affects the behaviour.
 
 ![](https://i.gyazo.com/f37ff4c135cb29c68122881ec02b45a6.png)
 
@@ -196,11 +197,11 @@ When using auto-alignment with anchors, you might sometimes prefer to manually p
 
 You can add custom text printers based on the built-in templates or create new printers from scratch. For example, let's customize the built-in `Dialogue` template.
 
-Use `Create -> Naninovel -> Text Printers -> Dialogue` asset context menu to create a dialogue prefab somewhere outside the Naninovel package, e.g. at the `Assets/TextPrinters` folder.
+Use the `Create -> Naninovel -> Text Printer -> Dialogue` asset context menu to create a dialogue prefab somewhere outside the Naninovel package, eg in the `Assets/TextPrinters` folder.
 
-Edit the prefab: change the font, textures, add animations, etc. For more information on the available UI building tools consult [Unity documentation for uGUI](https://docs.unity3d.com/Packages/com.unity.ugui@latest). There are also a couple of tutorial videos and an example project on working with uGUI in the [UI customization guide](/guide/gui#ui-customization).
+Edit the prefab: change the font, textures, add animations, etc. For more information on the available UI building tools, consult the [Unity documentation for uGUI](https://docs.unity3d.com/Packages/com.unity.ugui@latest). There are also a couple of tutorial videos and an example project on working with uGUI in the [UI customization guide](/guide/gui#ui-customization).
 
-Expose the prefab to engine resources using the printer's manager GUI, which can be accessed with `Naninovel -> Resources -> Printers` context menu. Add a new record using the `+` (plus) button, enter an actor ID (which can differ from the prefab name), and double-click the record to open actor settings. Drag-and-drop the printer prefab to the `Resource` field.
+Expose the prefab to engine resources using the printer's manager GUI, which can be accessed with the `Naninovel -> Resources -> Text Printers` editor menu. Add a new record using the `+` (plus) button, enter an actor ID (which can differ from the prefab name), and double-click the record to open actor settings. Drag and drop the printer prefab to the `Resource` field.
 
 ![](https://i.gyazo.com/3f51881fa554720b7a4092dca42fd15e.mp4)
 
@@ -211,14 +212,14 @@ You can now use the new text printer by activating it via the [@printer] command
 ```
 
 ::: tip EXAMPLE
-Check out the [demo project](/guide/getting-started#demo-samples) for an example of adding a custom printer. The prefab is stored as `Assets/Prefabs/CustomPrinter.prefab`.
+Check out our [samples project](/guide/samples) for an example of adding a custom printer. The prefab is stored as `Content/Printers/Demo/Prefabs/DemoPrinter.prefab`.
 :::
 
-It's also possible to create a printer from scratch by manually implementing `ITextPrinterActor` interface. See the guide on [custom actor implementations](/guide/custom-actor-implementations) for more information.
+It's also possible to create a printer from scratch by manually implementing the `ITextPrinterActor` interface. See the guide on [custom actor implementations](/guide/custom-actor-implementations) for more information.
 
 ## Text Reveal Effect
 
-Reveal progress of printed text messages is maintained by the `Revealable Text` component, which wraps Unity's TMPro Text and supports all the same features. To do this, standalone components are used, such as `Reveal Clipped`, which limits maximum visible characters in accordance with the current reveal progress. Most built-in printers also have the `Reveal Fader` component applied, which adds a gradient opacity fade to the revealed characters.
+The reveal progress of printed text messages is maintained by the `Revealable Text` component, which wraps Unity's TMPro Text and supports all the same features. To do this, standalone components are used, such as `Reveal Clipper`, which limits the maximum visible characters in accordance with the current reveal progress. Most built-in printers also have the `Reveal Fader` component applied, which adds a gradient opacity fade to the revealed characters.
 
 ![](https://i.gyazo.com/cb76ab871fe4691646e968b2c49d0a13.png)
 
@@ -232,7 +233,7 @@ When a text printer has constant dimensions and can't accommodate varying messag
 
 ## Text Styles
 
-Various text styles can be applied via rich text tags placed inside the text or using [@format] command:
+Various text styles can be applied via rich text tags placed inside the text or using the [@format] command:
 
 ```nani
 ; Print "Lorem" in bold and "sit" in blue and italic.
@@ -242,22 +243,22 @@ Kohaku: <b>Lorem</b> ipsum <color=#0000FF><i>sit</i></color> amet.
 Consult the [TMPro rich text documentation](https://docs.unity3d.com/Packages/com.unity.textmeshpro@4.0/manual/RichText) for the available tags.
 
 ::: tip
-In case you'd like to apply specific text formatting or style to all the messages authored by a specific character or printer, check out [message templates](/guide/text-printers#message-templates) feature.
+In case you'd like to apply specific text formatting or style to all the messages authored by a specific character or printer, check out the [message templates](/guide/text-printers#message-templates) feature.
 :::
 
 ## Ruby (Furigana)
 
-Support for [ruby](https://en.wikipedia.org/wiki/Ruby_character) characters is provided by Naninovel's `Naninovel TMPro Text` component (`Revealable Text` is based on it) via custom `<ruby>` tag. Wrap the text above which the ruby characters should be placed with the ruby tag and specify the ruby text inside the tag, e.g.:
+Support for [ruby](https://en.wikipedia.org/wiki/Ruby_character) characters is provided by Naninovel's `Naninovel TMPro Text` component (`Revealable Text` is based on it) via a custom `<ruby>` tag. Wrap the text above which the ruby characters should be placed with the ruby tag and specify the ruby text inside the tag, eg:
 
 ```nani
 Lorem <ruby="VERY">ipsum</ruby> dolor sit amet.
 ```
-— "VERY" ruby text will appear right above "ipsum" word when the message is printed at runtime.
+— the "VERY" ruby text will appear right above the "ipsum" word when the message is printed at runtime.
 
 ![](https://i.gyazo.com/ec5eb47c3cf0951ccb589fe49c144418.png)
 
 ::: info NOTE
-When combining `<ruby>` with other tags, specify the ruby tag first to prevent formatting issues, e.g.:
+When combining `<ruby>` with other tags, specify the ruby tag first to prevent formatting issues, eg:
 
 ```nani
 Lorem <ruby="VERY"><tip="TipID">ipsum</tip></ruby> dolor sit amet.
@@ -266,9 +267,9 @@ Lorem <ruby="VERY"><tip="TipID">ipsum</tip></ruby> dolor sit amet.
 
 You can additionally control the size and vertical line offset of the ruby text by changing properties of the `Naninovel TMPro Text` component used in the printer prefabs.
 
-By default, when ruby text is inserted into the printed message, line height is increased to compensate for the new content. To ensure equal height for all lines (both with and without ruby text), disable the `Add Ruby Line Height` property and increase the default line height.
+`Ruby Size Scale` sets the font size of the ruby text relative to the main text, and `Ruby Vertical Offset` sets its vertical line offset (supported units are `em`, `px` and `%`). The `Revealable Text` component additionally has the `Reveal Ruby Instantly` property (enabled by default), which makes the ruby text appear instantly instead of being revealed character by character.
 
-![](https://i.gyazo.com/6b4d9d41438dfc36309a6dc04682dbf5.png)
+![](https://i.gyazo.com/674adf659f0807d1ce3c3dfca0914886.png)
 
 Below is a video demonstration of the ruby tags in action.
 
@@ -283,7 +284,7 @@ Support for RTL text reveal effects can be enabled in all built-in printers.
 To use RTL text in a printer, do the following:
 1. Create a custom text printer from any built-in template.
 2. Set the `Enable RTL Editor` property in the `Revealable Text` component inside the printer.
-3. Enable the `Fix Arabic Text` property on the same component (under "Naninovel Settings" dropdown).
+3. Enable the `Fix Arabic Text` property on the same component (under the "Naninovel Settings" dropdown).
 
 ![](https://i.gyazo.com/3eec751d0c85da8f9cfb20a6fe6902bb.png)
 
@@ -309,11 +310,11 @@ Unity doesn't natively support Arabic text. Consider using the `Naninovel TMPro 
 
 ## CJK Languages
 
-Chinese, Japanese, and Korean languages have many unique symbols, while only a small subset is usually required in the game. To optimize generated font atlas size, TMPro has an option to specify the character set for which to build the SDF textures.
+Chinese, Japanese, and Korean languages have many unique symbols, while only a small subset is usually required in the game. To optimize the generated font atlas size, TMPro has an option to specify the character set for which to build the SDF textures.
 
 ![](https://i.gyazo.com/cdd1dc10d872d6bcb4d44c14c61df588.png)
 
-To find which characters will be displayed by Naninovel, use the Character Utility accessible via the `Naninovel -> Tools -> Character Extractor` editor menu.
+To find which characters will be displayed by Naninovel, use the Character Extractor utility accessible via the `Naninovel -> Tools -> Character Extractor` editor menu.
 
 ![](https://i.gyazo.com/706613a08aa2519964ccd98bd12a288f.png)
 
@@ -325,29 +326,29 @@ Check the [localization sample](/guide/samples#localization) for an example of u
 
 ## Text Reveal Sounds
 
-For built-in printers that support a reveal effect (currently `Dialogue`, `Fullscreen`, and `Wide`), you can optionally set SFX to play when characters are revealed.
+For built-in printers that support a reveal effect (all except `Chat`), you can optionally set SFX to play when characters are revealed.
 
-Follow the "Adding Custom Printers" guide above to create a custom printer based on any of the built-in ones, then find the `Revealable Text Printer Panel` component attached to the root object of the prefab and use the `Chars SFX` property to set the SFX to be played when a character is revealed. The actual list of the available options is based on the audio resources you've added via the `Naninovel -> Resources -> Audio` menu.
+Follow the "Adding Custom Printers" guide above to create a custom printer based on any of the built-in ones, then find the `Revealable Text Printer Panel` component (`Floating Text Printer Panel` in bubble printers) attached to the root object of the prefab and use the `Chars Sfx` property to set the SFX to be played when a character is revealed. The actual list of the available options is based on the SFX resources you've added via the "Manage SFX Resources" button in the `Naninovel -> Configuration -> Audio` editor menu.
 
-The following illustration represents a setup where "Keystroke2" SFX will be played for spaces, "Explosion" for characters `D`, `d`, `F`, `1`, `4`, `9`, and `*`, no SFX will be played for the `%` character, and "Keystroke1" will be played for all other characters.
+The following illustration represents a setup where "Keystroke1" SFX will be played for all characters (its `Characters` field is left empty), "Keystroke2" for characters `.`, `,`, `!`, and `?`, and "Explosion" for the `*` character. When a character matches several elements, all their SFX are played.
 
-![](https://i.gyazo.com/c51247254e262dca35267b3689460ad2.png)
+![](https://i.gyazo.com/284a50b82ddd312bc23897889e43c2bd.png)
 
 Alternatively, you can set `Message Sound` in the character configuration to play character-specific sounds when the text is revealed while that character is the author of the message (regardless of which text printer is printing the message).
 
 The text reveal sounds are played very often (depending on the message reveal speed) and are clipped when the same sound is played consecutively, so make sure the corresponding audio clips are very short and sharp (without any pause or silence at the beginning).
 
-In case the reveal sounds are not working for you (e.g., the sound is not short enough to play on each character reveal), consider using `OnPrintTextStarted` and `OnPrintTextFinished` events of the `TextPrinterManager` [engine service](/guide/engine-services) to start/stop looping the sound accordingly.
+In case the reveal sounds are not working for you (eg, the sound is not short enough to play on each character reveal), consider using the `OnPrintStarted` and `OnPrintFinished` events of the `ITextPrinterManager` [engine service](/guide/engine-services) to start/stop looping the sound accordingly.
 
 ## Reveal Events
 
-It's possible to hook into events when a specific character is revealed to perform arbitrary actions. Designate the place in the printed text where the event should be invoked with `<@...>` tags. For example, to trigger a reveal event with "foo" payload after "dolor" is revealed:
+It's possible to hook into events when a specific character is revealed to perform arbitrary actions. Designate the place in the printed text where the event should be invoked with `<@...>` tags. For example, to trigger a reveal event with the "foo" payload after "dolor" is revealed:
 
 ```nani
 Lorem ipsum dolor<@foo> sit amet.
 ```
 
-Use the `Event Broadcaster` component attached to the revealable text object of the printer prefab to listen for events. All built-in printers have the component already attached, so you just need to wire a listener.
+Use the `Reveal Broadcaster` component attached to the revealable text object of the printer prefab to listen for events. All built-in printers have the component already attached, so you just need to wire a listener.
 
 ![](https://i.gyazo.com/b0fad2439f2b2136a3b3c13f84f365d2.png)
 
@@ -365,7 +366,7 @@ Reveal events execute commands on a transient track and cannot affect the main t
 
 ## Reveal Expressions
 
-In some cases, it may be required to include [scenario expressions](/guide/expressions) in the generated localization documents or force expression re-evaluation when language (locale) is changed.
+In some cases, it may be required to include [scenario expressions](/guide/expressions) in the generated localization documents or force expression re-evaluation when the language (locale) is changed.
 
 The process is similar to [reveal events](/guide/text-printers#reveal-events), but instead of `@` use the `:` tag:
 
@@ -373,7 +374,7 @@ The process is similar to [reveal events](/guide/text-printers#reveal-events), b
 Lorem ipsum <:random(text1, text2)> sit amet.
 ```
 
-— `random(text1, text2)` expression will be re-evaluated each time the text is assigned to a printer, including instances when language is changed, making `text1` and `text2` [script text variables](/guide/managed-text#script-text) in sync with the currently active locale. The expression will also be included in the localization documents, allowing it to be changed for each specific language.
+— the `random(text1, text2)` expression will be re-evaluated each time the text is assigned to a printer, including instances when the language is changed, keeping `text1` and `text2` [script text variables](/guide/managed-text#script-text) in sync with the currently active locale. The expression will also be included in the localization documents, allowing it to be changed for each specific language.
 
 Reveal expressions are also useful to allow translators to change the order of the injected values, as it's common for languages to have different rules on the order/precedence of various speech parts:
 
@@ -381,21 +382,21 @@ Reveal expressions are also useful to allow translators to change the order of t
 Hello, <:MC>! How's <:AC> doing?
 ```
 
-— here, both `MC` and `AC` variables (presumably containing player-specified character names) will be exposed in the generated localization document, so that translators would be able to change their order, when necessary.
+— here, both the `MC` and `AC` variables (presumably containing player-specified character names) will be exposed in the generated localization document, so that translators would be able to change their order when necessary.
 
 ::: warning
-Refrain from using this feature with expressions that mutate or depend on game state, as it may cause undefined behavior. For example, consider an expression whose result depends on a local variable `foo`, while a message with this expression was printed at some point and is kept in backlog. Should the player change the locale, the expression will be re-evaluated using whatever value `foo` has at the time the locale is changed, which may be different from the time when it was initially printed.
+Refrain from using this feature with expressions that mutate or depend on game state, as it may cause undefined behaviour. For example, consider an expression whose result depends on a local variable `foo`, while a message with this expression was printed at some point and is kept in the backlog. Should the player change the locale, the expression will be re-evaluated using whatever value `foo` has at the time the locale is changed, which may be different from the time when it was initially printed.
 :::
 
 ## Select Tag
 
-A common use case for [reveal expressions](/guide/text-printers#reveal-expressions) is to use them as selectors. For example, you may want to include a random text from a pool or something that depends on the player's choice, such as a pronoun-dependent wording.
+A common use case for [reveal expressions](/guide/text-printers#reveal-expressions) is to use them as selectors. For example, you may want to include a random text from a pool or something that depends on the player's choice, such as pronoun-dependent wording.
 
 If this is widespread in your scenario, it may become tedious to repeat the full expression syntax each time. In such cases, consider using the select tag:
 
 ```nani
 ; Selects a random color.
-My favourite color is </red/blue/green>.
+My favorite color is </red/blue/green>.
 
 ; Selects based on user choice.
 Select your pronouns.
@@ -406,7 +407,7 @@ Select your pronouns.
 </He/She/They> </was/was/were> magnificent.
 ```
 
-Notice the `</x/y>` tags — these are selector tags. The text between `/` characters are called options. By default, a random option will be returned. However, if you set the `selector` variable to an index, the tag will instead return the option with that index (zero-based).
+Notice the `</x/y>` tags — these are selector tags. The text parts between `/` characters are called options. By default, a random option will be returned. However, if you set the `selector` variable to an index, the tag will instead return the option with that index (zero-based).
 
 If you need more flexible selection logic, create a custom [expression query](/guide/expressions#adding-custom-queries) with the `select` alias, and make it accept a `params string[]` and return a `string`. Whenever a selector tag is compiled, it will then use your query to evaluate the result. Below is an example of a custom select query, where the first option specifies the selection kind, falling back to random selection if the first option is empty:
 

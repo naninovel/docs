@@ -6,9 +6,9 @@ All persistent data generated and used by Naninovel at runtime is divided into t
 - Global state
 - User settings
 
-The data is serialized to JSON format and stored as either binary `.nson` (default) or text `.json` save slot files under a platform-specific [persistent data directory](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html). On WebGL, due to security policies in modern browsers, the serialized data is stored in the [IndexedDB](https://en.wikipedia.org/wiki/Indexed_Database_API) instead.
+The data is serialized to JSON format and stored as either binary `.nson` (default) or text `.json` save slot files under a platform-specific [persistent data directory](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html). On WebGL, due to security policies in modern browsers, the serialized data is stored in [IndexedDB](https://en.wikipedia.org/wiki/Indexed_Database_API) instead.
 
-The serialization behavior is controlled by serialization handlers independently for game saves, global state, and user settings. By default, universal serialization handlers are used. In most cases, they will use asynchronous [System.IO](https://docs.microsoft.com/en-us/dotnet/api/system.io) to read and write the slot files to the local file system. However, on some platforms (e.g., consoles) the .NET IO APIs are not available, in which case the universal handlers fallback to Unity's cross-platform [PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html).
+The serialization behaviour is controlled by serialization handlers independently for game saves, global state, and user settings. By default, universal serialization handlers are used. In most cases, they will use asynchronous [System.IO](https://docs.microsoft.com/en-us/dotnet/api/system.io) to read and write the slot files to the local file system. However, on some platforms (eg, consoles) the .NET IO APIs are not available, in which case the universal handlers fall back to Unity's cross-platform [PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html).
 
 Serialization handlers, path to the save folder, maximum allowed number of save slots, and other related parameters can be modified via the state configuration menu.
 
@@ -16,7 +16,7 @@ Serialization handlers, path to the save folder, maximum allowed number of save 
 
 ## Game State
 
-Game state is data that varies per game save slot, describing the state of engine services and other objects in relation to player progress. Examples include: the currently played scenario script and the index of the played script command within the script, currently visible characters and their positions on scene, currently played background music track name and its volume, and so on.
+Game state is data that varies per game save slot, describing the state of engine services and other objects in relation to player progress. Examples include: the currently played scenario script and the index of the played script command within the script, currently visible characters and their positions in the scene, currently played background music track name and its volume, and so on.
 
 To save or load current game state to a specific save slot, use the `IStateManager` engine service as follows:
 
@@ -43,7 +43,7 @@ Some data should be persistent across game sessions. For example, the "Skip Read
 The global state is loaded automatically on engine initialization. You can save the global state at any time using `IStateManager`:
 
 ```csharp
-await stateManager.SaveGlobalState();
+await stateManager.SaveGlobal();
 ```
 
 ## User Settings
@@ -98,7 +98,7 @@ With the default slot limits, the folder holds at most 137 files. The size of a 
 
 When `Binary Save Files` is disabled, the game and global state files have the `.json` extension instead of `.nson`. The folder name, file names, and slot limits can be changed in the state configuration.
 
-In the Unity editor, the files are stored under `.nani/Transient/Saves` of the Naninovel data folder (`Assets/NaninovelData` by default) instead.
+In the Unity Editor, the files are stored under `.nani/Transient/Saves` of the Naninovel data folder (`Assets/NaninovelData` by default) instead.
 
 ::: tip
 Cloud save services, such as [Steam Auto-Cloud](https://partner.steamgames.com/doc/features/cloud#steam_auto-cloud), should only sync the `Saves` folder; other files in the persistent data directory are local to the device. Consider limiting the sync to the `.nson` files, as `Settings.json` includes device-specific options, such as graphics quality and input bindings. Steamworks documentation has an [example](https://partner.steamgames.com/doc/features/cloud#example) of configuring the paths for a Unity game.
@@ -106,7 +106,7 @@ Cloud save services, such as [Steam Auto-Cloud](https://partner.steamgames.com/d
 
 ## Custom State
 
-You can delegate state handling of your custom objects to `IStateManager`, so they serialize to save slots with all the engine's data when the player saves and deserialize back when the game is loaded. Built-in state-related features (e.g., rollback) will also work out of the box with custom state.
+You can delegate state handling of your custom objects to `IStateManager`, so they serialize to save slots with all the engine's data when the player saves and deserialize back when the game is loaded. Built-in state-related features (eg, rollback) will also work out of the box with custom state.
 
 The following example demonstrates delegating state handling of a `MyCustomBehaviour` component.
 
@@ -165,12 +165,12 @@ public class MyCustomBehaviour : MonoBehaviour
 }
 ```
 
-If your custom object is created after the game state is loaded, use `LastGameState` to access the last loaded state and manually invoke the deserialize method:
+If your custom object is created after the game state is loaded, use `IStateManager.Game` to access the last loaded state and manually invoke the deserialize method:
 
 ```csharp
 private async void Start ()
 {
-    if (stateManager.LastGameState is { } state)
+    if (stateManager.Game is { } state)
         await DeserializeState(state);
 }
 ```
@@ -196,18 +196,18 @@ class MyGlobal
 
 MySettings MySettings
 {
-    get => stateManager.SettingsState.GetState<MySettings>();
-    set => stateManager.SettingsState.SetState<MySettings>(value);
+    get => stateManager.Settings.GetState<MySettings>();
+    set => stateManager.Settings.SetState<MySettings>(value);
 }
 
 MyGlobal MyGlobal
 {
-    get => stateManager.GlobalState.GetState<MyGlobal>();
-    set => stateManager.GlobalState.SetState<MyGlobal>(value);
+    get => stateManager.Global.GetState<MyGlobal>();
+    set => stateManager.Global.SetState<MyGlobal>(value);
 }
 ```
 
-State objects are indexed by type. In some cases you may have multiple object instances of the same type each with their own state. Both `GetState` and `SetState` methods allow providing an optional `instanceId` argument to discriminate such objects, e.g.:
+State objects are indexed by type. In some cases you may have multiple object instances of the same type, each with their own state. Both `GetState` and `SetState` methods allow providing an optional `instanceId` argument to discriminate such objects, eg:
 
 ```csharp
 [System.Serializable]
@@ -224,9 +224,9 @@ var monster2 = stateMap.GetState<MonsterState>("2");
 
 By default, when universal serialization handlers are selected, the engine state (game saves, global state, settings) is serialized via asynchronous [System.IO](https://docs.microsoft.com/en-us/dotnet/api/system.io) or with Unity's cross-platform [PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html) as a fallback for some platforms. To customize the serialization scenario, use custom handlers.
 
-To add a custom handler, implement `ISaveSlotManager<GameStateMap>`, `ISaveSlotManager<GlobalStateMap>`, and `ISaveSlotManager<SettingsStateMap>` interfaces for the game save slots, global state, and settings respectively (each should have its own implementing class).
+To add a custom handler, implement the `ISaveSlotManager<GameStateMap>`, `ISaveSlotManager<GlobalStateMap>`, and `ISaveSlotManager<SettingsStateMap>` interfaces for the game save slots, global state, and settings, respectively (each should have its own implementing class).
 
-Implementations are expected to have a public constructor with `StateConfiguration` and `string` arguments, where the first is the state configuration object and second is the path to the saves folder; you can ignore the arguments in your custom implementation if desired.
+Implementations are expected to have a public constructor with `StateConfiguration` and `string` arguments, where the first is the state configuration object and the second is the path to the saves folder; you can ignore the arguments in your custom implementation if desired.
 
 Below is an example of a custom settings serialization handler that only logs when any of its methods are invoked.
 

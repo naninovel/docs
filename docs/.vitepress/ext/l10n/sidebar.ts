@@ -66,7 +66,7 @@ export const ja: DefaultTheme.SidebarItem[] = [
             { text: "互換性", link: "/ja/guide/compatibility" },
             { text: "スタートガイド", link: "/ja/guide/getting-started" },
             { text: "シナリオスクリプト", link: "/ja/guide/scenario-scripting" },
-            { text: "VS Code 拡張機能", link: "/ja/guide/ide-extension" },
+            { text: "VS Code拡張機能", link: "/ja/guide/ide-extension" },
             { text: "ストーリーエディター", link: "/ja/guide/editor" },
             { text: "シーンレコーディング", link: "/ja/guide/scene-recording" },
             { text: "サンプル", link: "/ja/guide/samples" }
@@ -76,7 +76,7 @@ export const ja: DefaultTheme.SidebarItem[] = [
         text: "開発者",
         collapsed: true,
         items: [
-            { text: "コンフィグレーション", link: "/ja/guide/configuration" },
+            { text: "構成", link: "/ja/guide/configuration" },
             { text: "テキストプリンター", link: "/ja/guide/text-printers" },
             { text: "キャラクター", link: "/ja/guide/characters" },
             { text: "背景", link: "/ja/guide/backgrounds" },
@@ -99,15 +99,15 @@ export const ja: DefaultTheme.SidebarItem[] = [
         text: "アドバンスド",
         collapsed: true,
         items: [
-            { text: "エンジンアーキテクチャー", link: "/ja/guide/engine-architecture" },
+            { text: "エンジンアーキテクチャ", link: "/ja/guide/engine-architecture" },
             { text: "エンジンサービス", link: "/ja/guide/engine-services" },
             { text: "カスタムコマンド", link: "/ja/guide/custom-commands" },
-            { text: "カスタムコンフィグレーション", link: "/ja/guide/custom-configuration" },
+            { text: "カスタム構成", link: "/ja/guide/custom-configuration" },
             { text: "カスタムアクターの実装", link: "/ja/guide/custom-actor-implementations" },
             { text: "カスタムアクターシェーダー", link: "/ja/guide/custom-actor-shader" },
             { text: "カスタムスクリプトコンパイラー", link: "/ja/guide/custom-compiler" },
             { text: "状態管理", link: "/ja/guide/state-management" },
-            { text: "インテグレーションの方法", link: "/ja/guide/integration-options" },
+            { text: "統合オプション", link: "/ja/guide/integration-options" },
             { text: "自動テスト", link: "/ja/guide/automated-testing" },
             { text: "カスタムビルド環境", link: "/ja/guide/custom-build-environment" }
         ]
@@ -126,14 +126,14 @@ export const zh: DefaultTheme.SidebarItem[] = [
             { text: "VS Code 扩展", link: "/zh/guide/ide-extension" },
             { text: "故事编辑器", link: "/zh/guide/editor" },
             { text: "场景录制", link: "/zh/guide/scene-recording" },
-            { text: "示例资源", link: "/zh/guide/samples" }
+            { text: "示例", link: "/zh/guide/samples" }
         ]
     },
     {
         text: "开发",
         collapsed: true,
         items: [
-            { text: "属性配置", link: "/zh/guide/configuration" },
+            { text: "配置", link: "/zh/guide/configuration" },
             { text: "文本打印机", link: "/zh/guide/text-printers" },
             { text: "角色", link: "/zh/guide/characters" },
             { text: "背景", link: "/zh/guide/backgrounds" },
@@ -160,9 +160,9 @@ export const zh: DefaultTheme.SidebarItem[] = [
             { text: "引擎服务", link: "/zh/guide/engine-services" },
             { text: "自定义命令", link: "/zh/guide/custom-commands" },
             { text: "自定义配置", link: "/zh/guide/custom-configuration" },
-            { text: "自定义演出元素实现", link: "/zh/guide/custom-actor-implementations" },
-            { text: "自定义演出元素着色器", link: "/zh/guide/custom-actor-shader" },
-            { text: "自定义演出脚本编译器", link: "/zh/guide/custom-compiler" },
+            { text: "自定义 Actor 实现", link: "/zh/guide/custom-actor-implementations" },
+            { text: "自定义 Actor 着色器", link: "/zh/guide/custom-actor-shader" },
+            { text: "自定义脚本编译器", link: "/zh/guide/custom-compiler" },
             { text: "状态管理", link: "/zh/guide/state-management" },
             { text: "集成选项", link: "/zh/guide/integration-options" },
             { text: "自动化测试", link: "/zh/guide/automated-testing" },

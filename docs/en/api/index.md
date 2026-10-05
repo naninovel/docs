@@ -1,8 +1,8 @@
 # Commands
 
-Standard script commands API reference. Use the side bar to quickly navigate between available commands. 
+Standard script commands API reference. Use the sidebar to quickly navigate between available commands.
 
-~~Strikethrough~~ indicates primary parameter, and **bold** stands for required parameter; other parameters should be considered optional. Consult the [scenario scripting guide](/guide/scenario-scripting) if you're unsure what this is all about.
+~~Strikethrough~~ indicates a primary parameter, and **bold** stands for a required parameter; other parameters should be considered optional. Consult the [scenario scripting guide](/guide/scenario-scripting) if you're unsure what this is all about.
 
 The following parameters are supported by most script commands:
 
@@ -10,8 +10,8 @@ The following parameters are supported by most script commands:
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| if | string |  A boolean [scenario expression](/guide/expressions), controlling whether the command should execute. |
-| unless | string |  A boolean [scenario expression](/guide/expressions), controlling whether the command should NOT execute (inverse of 'if'). |
+| if | string | A boolean [scenario expression](/guide/expressions), controlling whether the command should execute. |
+| unless | string | A boolean [scenario expression](/guide/expressions), controlling whether the command should NOT execute (inverse of 'if'). |
 | wait | boolean | Whether the script player should wait for the async command to finish execution before executing the next one. |
 
 </div>
@@ -30,14 +30,14 @@ When nesting commands under the choice, `goto`, `gosub` and `set` parameters are
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">choiceSummary</span> | string | Text to show for the choice. When the text contains spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
 | id | string | Unique identifier of the choice. Can be used to remove the choice later with [@clearChoice]. |
-| lock | string | Whether the choice should be disabled or otherwise not accessible for player to select; see [choice docs](/guide/choices#locked-choice) for more info. Disabled by default. |
+| lock | string | Whether the choice should be disabled or otherwise not accessible for the player to select; see [choice docs](/guide/choices#locked-choice) for more info. Disabled by default. |
 | button | string | Local resource path of the [button prefab](/guide/choices#choice-button) representing the choice. The prefab should have a `ChoiceHandlerButton` component attached to the root object. Will use a default button when not specified. |
 | pos | number list | Local position of the choice button inside the choice handler (if supported by the handler implementation). |
-| handler | string | ID of the choice handler to add choice for. Will use a default handler if not specified. |
-| goto | string | Path to go when the choice is selected by user; see [@goto] command for the path format. Ignored when nesting commands under the choice. |
-| gosub | string | Path to a subroutine to go when the choice is selected by user; see [@gosub] command for the path format. When `goto` is assigned this parameter will be ignored. Ignored when nesting commands under the choice. |
-| set | string | Set expression to execute when the choice is selected by user; see [@set] command for syntax reference. Ignored when nesting commands under the choice. |
-| show | boolean | Whether to also show choice handler the choice is added for; enabled by default. |
+| handler | string | ID of the choice handler to add the choice for. Will use a default handler if not specified. |
+| goto | string | Path to go to when the choice is selected by the user; see the [@goto] command for the path format. Ignored when nesting commands under the choice. |
+| gosub | string | Path to a subroutine to go to when the choice is selected by the user; see the [@gosub] command for the path format. When `goto` is assigned, this parameter will be ignored. Ignored when nesting commands under the choice. |
+| set | string | Set expression to execute when the choice is selected by the user; see the [@set] command for syntax reference. Ignored when nesting commands under the choice. |
+| show | boolean | Whether to also show the choice handler the choice is added for; enabled by default. |
 | time | number | Duration (in seconds) of the fade-in (reveal) animation. |
 
 </div>
@@ -46,7 +46,7 @@ When nesting commands under the choice, `goto`, `gosub` and `set` parameters are
 ; A quick-time event: game over unless player selects a choice in 3 seconds.
 Decide now![>]
 @addChoice "Turn left" goto:Left
-@addChoice "Turn Right" goto:Right
+@addChoice "Turn right" goto:Right
 @wait 3
 @clearChoice
 You crashed!
@@ -64,7 +64,7 @@ You crashed!
 
 ## append
 
-Appends specified text to a text printer.
+Appends the specified text to a text printer.
 
 ::: info NOTE
 The entire text is appended instantly, without triggering the reveal effect.
@@ -74,9 +74,9 @@ The entire text is appended instantly, without triggering the reveal effect.
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">text</span> | string | The text to append. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">text</span> | string | The text to append. |
 | printer | string | ID of the printer actor to use. Will use a default one when not specified. |
-| author | string | ID of the actor, which should be associated with the appended text. |
+| author | string | ID of the actor which should be associated with the appended text. |
 
 </div>
 
@@ -89,7 +89,7 @@ Lorem ipsum
 
 ## arrange
 
-Arranges specified characters by X-axis. When no parameters specified, will execute an auto-arrange evenly distributing visible characters by X-axis.
+Arranges the specified characters by X-axis. When no parameters are specified, will execute an auto-arrange evenly distributing visible characters by X-axis.
 
 <div class="config-table">
 
@@ -98,7 +98,7 @@ Arranges specified characters by X-axis. When no parameters specified, will exec
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">characterPositions</span> | named number list | A collection of character ID to scene X-axis position (relative to the left scene border, in percents) named values. Position 0 relates to the left border and 100 to the right border of the scene; 50 is the center. |
 | look | boolean | When performing auto-arrange, controls whether to also make the characters look at the scene origin (enabled by default). |
 | time | number | Duration of the animation initiated by the command, in seconds. |
-| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
+| wait | boolean | Whether to wait for the command to finish before starting executing the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -169,7 +169,7 @@ The nested block is expected to always finish; don't nest any commands that coul
     @back RainyScene
     @bgm RainAmbient
     @camera zoom:0.5 time:3
-    It starts Raining...[>]
+    It starts raining...[>]
 ; Following line will execute after all the above is finished.
 ...
 
@@ -188,14 +188,14 @@ The nested block is expected to always finish; don't nest any commands that coul
 Modifies a [background actor](/guide/backgrounds).
 
 ::: info NOTE
-Backgrounds are handled a bit differently from characters to better accommodate traditional VN game flow.  Most of the time you'll probably have a single background actor on scene, which will constantly transition to different appearances. To remove the hassle of repeating same actor ID in scripts, it's possible to provide only  the background appearance and transition type (optional) as a primary parameter assuming `MainBackground`  actor should be affected. When this is not the case, ID of the background actor can be explicitly specified via the `id` parameter.
+Backgrounds are handled a bit differently from characters to better accommodate traditional VN game flow. Most of the time you'll probably have a single background actor on the scene, which will constantly transition to different appearances. To remove the hassle of repeating the same actor ID in scripts, it's possible to provide only the background appearance and transition type (optional) as a primary parameter assuming the `MainBackground` actor should be affected. When this is not the case, the ID of the background actor can be explicitly specified via the `id` parameter.
 :::
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">appearanceAndTransition</span> | named string | Appearance (or [pose](/guide/backgrounds#poses)) to set for the modified background and type of a [transition effect](/guide/special-effects#transition-effects) to use. When transition is not specified, a cross-fade effect will be used by default. |
+| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">appearanceAndTransition</span> | named string | Appearance (or [pose](/guide/backgrounds#poses)) to set for the modified background and type of a [transition effect](/guide/special-effects#transition-effects) to use. When transition is not specified, a crossfade effect will be used by default. |
 | pos | number list | Position (relative to the scene borders, in percents) to set for the modified actor. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
 | id | string | ID of the actor to modify; specify `*` to affect all visible actors. |
 | appearance | string | Appearance to set for the modified actor. |
@@ -205,14 +205,14 @@ Backgrounds are handled a bit differently from characters to better accommodate 
 | dissolve | string | Path to the [custom dissolve](/guide/special-effects#dissolve-mask) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
 | visible | boolean | Visibility status to set for the modified actor. |
 | wpos | number list | Position (in world space) to set for the modified actor. Use Z-component (third member) to move (sort) by depth while in ortho mode. |
-| roll | number | Rotation by Z-axis to set for the modified actor. The same as third component of `rotation` parameter; ignored when `rotation` is specified. |
+| roll | number | Rotation by Z-axis to set for the modified actor. The same as the third component of the `rotation` parameter; ignored when `rotation` is specified. |
 | rotation | number list | Rotation to set for the modified actor. |
 | scale | number list | Scale to set for the modified actor. |
 | tint | string | The tint color to apply.<br><br>Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes `RRGGBB`), `#RRGGBB`, `#RGBA` (becomes `RRGGBBAA`), `#RRGGBBAA`; when alpha is not specified will default to `FF`.<br><br>Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
 | easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
 | time | number | Duration of the animation initiated by the command, in seconds. |
-| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
-| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), the currently running animation will instantly complete before starting animating to the new target. |
+| wait | boolean | Whether to wait for the command to finish before starting executing the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -227,7 +227,7 @@ Backgrounds are handled a bit differently from characters to better accommodate 
 ; and scale it 50% of the original size.
 @back id:Smoke pos:50,50 scale:0.5
 
-; Tint all visible backgrounds on scene.
+; Tint all visible backgrounds on the scene.
 @back id:* tint:#ffdc22
 ```
 
@@ -236,7 +236,7 @@ Backgrounds are handled a bit differently from characters to better accommodate 
 Plays or modifies currently played [BGM (background music)](/guide/audio#background-music) track with the specified name.
 
 ::: info NOTE
-Music tracks are looped by default. When music track name (Path) is not specified, will affect all the currently played tracks. When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start), but the specified parameters (volume and whether the track is looped) will be applied.
+Music tracks are looped by default. When music track name (`path`) is not specified, will affect all the currently played tracks. When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start), but the specified parameters (volume and whether the track is looped) will be applied.
 :::
 
 <div class="config-table">
@@ -250,12 +250,12 @@ Music tracks are looped by default. When music track name (Path) is not specifie
 | pitch | number | The perceived frequency (speed) of the playback, in [-3.0 to 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) range, where 1.0 is the normal speed. Negative values will play the audio in reverse. |
 | pos | number list | Position (relative to the scene borders, in percents) of the audio source. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move by depth. |
 | wpos | number list | Position (in world space) of the audio source. When neither `pos` nor `wpos` is specified, the spatial mode is disabled. |
-| wait | boolean | Whether to wait for the audio to finish playing before executing next command. Has no effect when looped. |
+| wait | boolean | Whether to wait for the audio to finish playing before executing the next command. Has no effect when looped. |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">path</span> | string | Local path (name) of the audio resource. |
 | easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
 | fade | number | Duration of the animation initiated by the command, in seconds. |
-| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
-| waitFade | boolean | Whether to wait for the fade to finish before playing next command. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), the currently running animation will instantly complete before starting animating to the new target. |
+| waitFade | boolean | Whether to wait for the fade to finish before playing the next command. |
 
 </div>
 
@@ -263,7 +263,7 @@ Music tracks are looped by default. When music track name (Path) is not specifie
 ; Starts playing a music track with the name 'Sanctuary' in a loop.
 @bgm Sanctuary
 
-; Same as above, but fades-in the volume over 10 seconds and plays once.
+; Same as above, but fades in the volume over 10 seconds and plays once.
 @bgm Sanctuary fade:10 !loop
 
 ; Changes volume of all the played music tracks to 50% over 2.5 seconds
@@ -276,20 +276,20 @@ Music tracks are looped by default. When music track name (Path) is not specifie
 
 ## blur
 
-Applies [blur effect](/guide/special-effects#blur) to supported actor: backgrounds and characters of sprite, layered, diced, Live2D, Spine, video and scene implementations.
+Applies a [blur effect](/guide/special-effects#blur) to a supported actor: backgrounds and characters of sprite, layered, diced, universal, Live2D, Spine, video, placeholder and scene implementations.
 
 ::: info NOTE
-The actor should have `IBlurable` interface implemented in order to support the effect.
+The actor should have the `IBlurable` interface implemented in order to support the effect.
 :::
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">actorId</span> | string | ID of the actor to apply the effect for; in case multiple actors with the same ID found (eg, a character and a printer), will affect only the first found one. When not specified, applies to the main background. |
+| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">actorId</span> | string | ID of the actor to apply the effect for; in case multiple actors with the same ID are found (eg, a character and a printer), will affect only the first found one. When not specified, applies to the main background. |
 | power | number | Intensity of the effect, in 0.0 to 1.0 range. Defaults to 0.5. Set to 0 to disable (de-spawn) the effect. |
 | time | number | How long it will take the parameters to reach the target values, in seconds. Defaults to 1.0. |
-| wait | boolean | Whether to wait for the effect warm-up animation before playing next command. |
+| wait | boolean | Whether to wait for the effect warm-up animation before playing the next command. |
 
 </div>
 
@@ -314,20 +314,20 @@ Simulates [depth of field](/guide/special-effects#bokeh) (aka Bokeh) effect, whe
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">focus</span> | string | Name of the game object to set focus for (optional). When set, the focus will always stay on the game object, while the `dist` parameter will be ignored. |
-| dist | number | Distance (in units) from Naninovel camera to the focus point. Ignored when `focus` parameter is specified. Defaults to 10. |
+| dist | number | Distance (in units) from the Naninovel camera to the focus point. Ignored when the `focus` parameter is specified. Defaults to 10. |
 | power | number | Amount of blur to apply for the de-focused areas; also determines focus sensitivity. Defaults to 3.75. Set to 0 to disable (de-spawn) the effect. |
 | time | number | How long it will take the parameters to reach the target values, in seconds. Defaults to 1.0. |
-| wait | boolean | Whether to wait for the effect warm-up animation before playing next command. |
+| wait | boolean | Whether to wait for the effect warm-up animation before playing the next command. |
 
 </div>
 
 ```nani
 ; Enable the effect with defaults and lock focus on 'Kohaku' game object.
 @bokeh focus:Kohaku
-; Fade-off (disable) the effect over 10 seconds.
+; Fade off (disable) the effect over 10 seconds.
 @bokeh power:0 time:10
 ; Set focus point 10 units away from the camera,
-; focal distance to 0.95 and apply it over 3 seconds.
+; focal length to 0.95 and apply it over 3 seconds.
 @bokeh dist:10 power:0.95 time:3
 ```
 
@@ -340,26 +340,26 @@ Modifies the main camera, changing offset, zoom level, rotation and camera effec
 | Parameter | Type | Description |
 | --- | --- | --- |
 | offset | number list | Local camera position offset in units by X,Y,Z axes. |
-| roll | number | Local camera rotation by Z-axis in angle degrees (0.0 to 360.0 or -180.0 to 180.0). The same as third component of `rotation` parameter; ignored when `rotation` is specified. |
+| roll | number | Local camera rotation by Z-axis in angle degrees (0.0 to 360.0 or -180.0 to 180.0). The same as the third component of the `rotation` parameter; ignored when `rotation` is specified. |
 | rotation | number list | Local camera rotation over X,Y,Z-axes in angle degrees (0.0 to 360.0 or -180.0 to 180.0). |
 | zoom | number | Relative camera zoom (orthographic size or field of view, depending on the render mode), in 0.0 (no zoom) to 1.0 (full zoom) range. |
 | ortho | boolean | Whether the camera should render in orthographic (true) or perspective (false) mode. |
 | fx | named number list | Camera effect Volume profile names mapped to their target weights, where 0 has no influence and 1 is fully applied. |
 | easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
 | time | number | Duration of the animation initiated by the command, in seconds. |
-| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
-| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), the currently running animation will instantly complete before starting animating to the new target. |
+| wait | boolean | Whether to wait for the command to finish before starting executing the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
 
 </div>
 
 ```nani
-; Offset the camera by -3 units over X-axis and by 1.5 units Y-axis.
+; Offset the camera by -3 units over X-axis and by 1.5 units over Y-axis.
 @camera offset:-3,1.5
 
-; Set camera in perspective mode, zoom-in by 50% and move back by 5 units.
+; Set camera in perspective mode, zoom in by 50% and move back by 5 units.
 @camera !ortho offset:,,-5 zoom:0.5
 
-; Set camera in orthographic mode and roll by 10 degrees clock-wise.
+; Set camera in orthographic mode and roll by 10 degrees clockwise.
 @camera ortho! roll:10
 
 ; Offset, zoom and roll simultaneously animated over 5 seconds.
@@ -368,7 +368,7 @@ Modifies the main camera, changing offset, zoom level, rotation and camera effec
 ; Instantly reset camera to the default state.
 @camera offset:0,0 zoom:0 rotation:0,0,0 time:0
 
-; Fade-in 'Dream' camera effect volume to 1.0 weight.
+; Fade in 'Dream' camera effect volume to 1.0 weight.
 @camera fx:Dream.1
 
 ; Crossfade 'Dream' -> 'Night' camera effect volumes over 3 seconds.
@@ -383,9 +383,9 @@ Modifies a [character actor](/guide/characters).
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">idAndAppearance</span> | named string | ID of the character to modify (specify `*` to affect all visible characters) and an appearance (or [pose](/guide/characters#poses)) to set. When appearance is not specified, will use either a `Default` (if exists) or a random one. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">idAndAppearance</span> | named string | ID of the character to modify (specify `*` to affect all visible characters) and an appearance (or [pose](/guide/characters#poses)) to set. When appearance is not specified, will use either a `Default` (if it exists) or a random one. |
 | look | string | Look direction of the actor; supported values: left, right, center. |
-| avatar | string | Name (path) of the [avatar texture](/guide/characters#avatar-textures) to assign for the character. Use `none` to remove (un-assign) avatar texture from the character. |
+| avatar | string | Name (path) of the [avatar texture](/guide/characters#avatar-textures) to assign for the character. Use `none` to remove (un-assign) the avatar texture from the character. |
 | pos | number list | Position (relative to the scene borders, in percents) to set for the modified actor. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
 | id | string | ID of the actor to modify; specify `*` to affect all visible actors. |
 | appearance | string | Appearance to set for the modified actor. |
@@ -395,14 +395,14 @@ Modifies a [character actor](/guide/characters).
 | dissolve | string | Path to the [custom dissolve](/guide/special-effects#dissolve-mask) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
 | visible | boolean | Visibility status to set for the modified actor. |
 | wpos | number list | Position (in world space) to set for the modified actor. Use Z-component (third member) to move (sort) by depth while in ortho mode. |
-| roll | number | Rotation by Z-axis to set for the modified actor. The same as third component of `rotation` parameter; ignored when `rotation` is specified. |
+| roll | number | Rotation by Z-axis to set for the modified actor. The same as the third component of the `rotation` parameter; ignored when `rotation` is specified. |
 | rotation | number list | Rotation to set for the modified actor. |
 | scale | number list | Scale to set for the modified actor. |
 | tint | string | The tint color to apply.<br><br>Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes `RRGGBB`), `#RRGGBB`, `#RGBA` (becomes `RRGGBBAA`), `#RRGGBBAA`; when alpha is not specified will default to `FF`.<br><br>Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
 | easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
 | time | number | Duration of the animation initiated by the command, in seconds. |
-| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
-| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), the currently running animation will instantly complete before starting animating to the new target. |
+| wait | boolean | Whether to wait for the command to finish before starting executing the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -422,7 +422,7 @@ Modifies a [character actor](/guide/characters).
 @char Sora pos:50,0,-1
 @char Felix pos:,,0
 
-; Tint all visible characters on scene.
+; Tint all visible characters on the scene.
 @char * tint:#ffdc22
 ```
 
@@ -440,14 +440,14 @@ When nesting commands under the choice, `goto`, `gosub` and `set` parameters are
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">choiceSummary</span> | string | Text to show for the choice. When the text contains spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
 | id | string | Unique identifier of the choice. Can be used to remove the choice later with [@clearChoice]. |
-| lock | string | Whether the choice should be disabled or otherwise not accessible for player to select; see [choice docs](/guide/choices#locked-choice) for more info. Disabled by default. |
+| lock | string | Whether the choice should be disabled or otherwise not accessible for the player to select; see [choice docs](/guide/choices#locked-choice) for more info. Disabled by default. |
 | button | string | Local resource path of the [button prefab](/guide/choices#choice-button) representing the choice. The prefab should have a `ChoiceHandlerButton` component attached to the root object. Will use a default button when not specified. |
 | pos | number list | Local position of the choice button inside the choice handler (if supported by the handler implementation). |
-| handler | string | ID of the choice handler to add choice for. Will use a default handler if not specified. |
-| goto | string | Path to go when the choice is selected by user; see [@goto] command for the path format. Ignored when nesting commands under the choice. |
-| gosub | string | Path to a subroutine to go when the choice is selected by user; see [@gosub] command for the path format. When `goto` is assigned this parameter will be ignored. Ignored when nesting commands under the choice. |
-| set | string | Set expression to execute when the choice is selected by user; see [@set] command for syntax reference. Ignored when nesting commands under the choice. |
-| show | boolean | Whether to also show choice handler the choice is added for; enabled by default. |
+| handler | string | ID of the choice handler to add the choice for. Will use a default handler if not specified. |
+| goto | string | Path to go to when the choice is selected by the user; see the [@goto] command for the path format. Ignored when nesting commands under the choice. |
+| gosub | string | Path to a subroutine to go to when the choice is selected by the user; see the [@gosub] command for the path format. When `goto` is assigned, this parameter will be ignored. Ignored when nesting commands under the choice. |
+| set | string | Set expression to execute when the choice is selected by the user; see the [@set] command for syntax reference. Ignored when nesting commands under the choice. |
+| show | boolean | Whether to also show the choice handler the choice is added for; enabled by default. |
 | time | number | Duration (in seconds) of the fade-in (reveal) animation. |
 
 </div>
@@ -459,7 +459,7 @@ Continue executing this script or ...?[>]
 @choice "Continue"
 @choice "Load another script from start" goto:Another
 @choice "Load another script from \"Label\" label" goto:Another#Label
-@choice "Goto to \"Sub\" subroutine in another script" gosub:Another#Sub
+@choice "Go to \"Sub\" subroutine in another script" gosub:Another#Sub
 
 ; Set scenario variables based on choices.
 @choice "I'm humble, one is enough..." set:score++
@@ -494,8 +494,8 @@ Modifies a [choice handler actor](/guide/choices).
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">handlerId</span> | string | ID of the choice handler actor to modify. When not specified, will use the default ones. |
-| default | boolean | Whether to make the choice handler default. Default handler will be subject of all the choice-related commands when `handler` parameter is not specified. |
+| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">handlerId</span> | string | ID of the choice handler actor to modify. When not specified, will use the default one. |
+| default | boolean | Whether to make the choice handler default. The default handler will be the subject of all the choice-related commands when the `handler` parameter is not specified. |
 | id | string | ID of the actor to modify; specify `*` to affect all visible actors. |
 | appearance | string | Appearance to set for the modified actor. |
 | pose | string | Pose to set for the modified actor. |
@@ -504,14 +504,14 @@ Modifies a [choice handler actor](/guide/choices).
 | dissolve | string | Path to the [custom dissolve](/guide/special-effects#dissolve-mask) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
 | visible | boolean | Visibility status to set for the modified actor. |
 | wpos | number list | Position (in world space) to set for the modified actor. Use Z-component (third member) to move (sort) by depth while in ortho mode. |
-| roll | number | Rotation by Z-axis to set for the modified actor. The same as third component of `rotation` parameter; ignored when `rotation` is specified. |
+| roll | number | Rotation by Z-axis to set for the modified actor. The same as the third component of the `rotation` parameter; ignored when `rotation` is specified. |
 | rotation | number list | Rotation to set for the modified actor. |
 | scale | number list | Scale to set for the modified actor. |
 | tint | string | The tint color to apply.<br><br>Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes `RRGGBB`), `#RRGGBB`, `#RGBA` (becomes `RRGGBBAA`), `#RRGGBBAA`; when alpha is not specified will default to `FF`.<br><br>Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
 | easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
 | time | number | Duration of the animation initiated by the command, in seconds. |
-| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
-| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), the currently running animation will instantly complete before starting animating to the new target. |
+| wait | boolean | Whether to wait for the command to finish before starting executing the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -522,7 +522,7 @@ Modifies a [choice handler actor](/guide/choices).
 
 ## clearBacklog
 
-Removes all the messages from [printer backlog](/guide/text-printers#printer-backlog).
+Removes all the messages from the [printer backlog](/guide/text-printers#printer-backlog).
 
 ```nani
 ; Printed text will be removed from the backlog.
@@ -532,7 +532,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 ## clearChoice
 
-Removes current choices in the choice handler with the specified ID (or in default one, when ID is not specified; or in all the existing handlers, when `*` is specified as ID) and (optionally) hides it (them).
+Removes current choices in the choice handler with the specified ID (or in the default one, when ID is not specified; or in all the existing handlers, when `*` is specified as ID) and (optionally) hides it (them).
 
 <div class="config-table">
 
@@ -560,19 +560,19 @@ You have 2 seconds to respond![>]
 
 ## despawn
 
-Destroys an object spawned with [@spawn] command.
+Destroys an object spawned with the [@spawn] command.
 
 ::: info NOTE
-If prefab has a `MonoBehaviour` component attached to the root object, and the component implements an `IParameterized` interface, will pass the specified `params` values before destroying the object; if the component implements `IAwaitable` interface, command execution will wait for the async completion task returned by the implementation before destroying the object.
+If the prefab has a `MonoBehaviour` component attached to the root object, and the component implements an `IParameterized` interface, will pass the specified `params` values before destroying the object; if the component implements the `IAwaitable` interface, command execution will wait for the async completion task returned by the implementation before destroying the object.
 :::
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">path</span> | string | Name (path) of the prefab resource to destroy. A [@spawn] command with the same parameter is expected to be executed before. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">path</span> | string | Name (path) of the prefab resource to destroy. A [@spawn] command with the same parameter is expected to be executed before. |
 | params | string list | Parameters to set before destroying the prefab. Requires the prefab to have an `IParameterized` component attached to the root object. |
-| wait | boolean | Whether to wait while the spawn is destroying over time in case it implements `IAwaitable` interface. |
+| wait | boolean | Whether to wait while the spawn is being destroyed over time in case it implements the `IAwaitable` interface. |
 
 </div>
 
@@ -583,13 +583,13 @@ If prefab has a `MonoBehaviour` component attached to the root object, and the c
 
 ## despawnAll
 
-Destroys all the objects spawned with [@spawn] command. Equal to invoking [@despawn] for all the currently spawned objects.
+Destroys all the objects spawned with the [@spawn] command. Equal to invoking [@despawn] for all the currently spawned objects.
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| wait | boolean | Whether to wait while the spawns are destroying over time in case they implement `IAwaitable` interface. |
+| wait | boolean | Whether to wait while the spawns are being destroyed over time in case they implement the `IAwaitable` interface. |
 
 </div>
 
@@ -602,11 +602,11 @@ Destroys all the objects spawned with [@spawn] command. Equal to invoking [@desp
 
 ## else
 
-Marks a branch of a conditional execution block, which is executed in case condition of the opening [@if] or [@unless] and preceding [@else] (if any) commands are not met. For usage examples see [conditional execution](/guide/scenario-scripting#conditional-execution) guide.
+Marks a branch of a conditional execution block, which is executed in case the conditions of the opening [@if] or [@unless] and preceding [@else] (if any) commands are not met. For usage examples see the [conditional execution](/guide/scenario-scripting#conditional-execution) guide.
 
 ## endIf
 
-Alternative to using indentation in conditional blocks: marks end of the block opened with previous [@if] command, no matter the indentation. For usage examples see [conditional execution](/guide/scenario-scripting#conditional-execution) guide.
+Alternative to using indentation in conditional blocks: marks the end of the block opened with the previous [@if] command, no matter the indentation. For usage examples see the [conditional execution](/guide/scenario-scripting#conditional-execution) guide.
 
 ## enterDialogue
 
@@ -636,7 +636,7 @@ You can also format printed text with [style tags](/guide/text-printers#text-sty
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">templates</span> | named string list | The templates to apply, in `Template.AuthorFilter` format; see the [formatting templates](/guide/text-printers#message-templates) guide for more info. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">templates</span> | named string list | The templates to apply, in `Template.AuthorFilter` format; see the [formatting templates](/guide/text-printers#message-templates) guide for more info. |
 | printer | string | ID of the printer actor to assign templates for. Will use a default one when not specified. |
 
 </div>
@@ -657,7 +657,7 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 
 ## glitch
 
-Applies [digital glitch](/guide/special-effects#glitch) post-processing effect to the main camera simulating digital video distortion and artifacts.
+Applies a [digital glitch](/guide/special-effects#glitch) post-processing effect to the main camera simulating digital video distortion and artifacts.
 
 <div class="config-table">
 
@@ -665,7 +665,7 @@ Applies [digital glitch](/guide/special-effects#glitch) post-processing effect t
 | --- | --- | --- |
 | time | number | The duration of the effect, in seconds; default is 1. |
 | power | number | The intensity of the effect, in 0.0 to 10.0 range; default is 1. |
-| wait | boolean | Whether to wait for the effect warm-up animation before playing next command. |
+| wait | boolean | Whether to wait for the effect warm-up animation before playing the next command. |
 
 </div>
 
@@ -678,7 +678,7 @@ Applies [digital glitch](/guide/special-effects#glitch) post-processing effect t
 
 ## gosub
 
-Navigates scenario script playback to the specified path and saves that path to global state; [@return] commands use this info to redirect to command after the last invoked gosub command.
+Navigates scenario script playback to the specified path and saves that path to the global state; [@return] commands use this info to redirect to the command after the last invoked gosub command.
 
 ::: info NOTE
 While this command can be used as a function (subroutine) to invoke a common set of script lines, remember that NaniScript is a scenario scripting DSL and is not suited for general programming. It's strongly recommended to use [custom commands](/guide/custom-commands) instead.
@@ -688,7 +688,7 @@ While this command can be used as a function (subroutine) to invoke a common set
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">path</span> | string | Path to navigate into in the following format: `ScriptPath#Label`. When label is omitted, will play specified script from the start. When script path is omitted, will attempt to find a label in the currently played script. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">path</span> | string | Path to navigate into in the following format: `ScriptPath#Label`. When label is omitted, will play the specified script from the start. When script path is omitted, will attempt to find a label in the currently played script. |
 
 </div>
 
@@ -728,10 +728,10 @@ Navigates scenario script playback to the specified path.
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">path</span> | string | Path to navigate into in the following format: `ScriptPath#Label`. When label is omitted, will play specified script from the start. When script path is omitted, will attempt to find a label in the currently played script. |
-| reset | string list | When specified, will control whether to reset the engine services state before loading a script (in case the path is leading to another script):<br/> - Specify `*` to reset all the services, except the ones with `Goto.DontReset` attribute.<br/> - Specify service type names (separated by comma) to exclude from reset; all the other services will be reset, including the ones with `Goto.DontReset` attribute.<br/> - Specify `-` to force no reset (even if it's enabled by default in the configuration).<br/><br/>Notice that while some services have `Goto.DontReset` attribute applied and are not reset by default, they should still be specified when excluding specific services from reset. |
-| hold | boolean | Whether to hold resources in the target script, which makes them preload together with the script this command is specified in. Has no effect outside `Conservative` resource policy. Refer to [memory management](/guide/memory-management) guide for more info. |
-| release | boolean | Whether to release resources before navigating to the target script to free the memory. Has no effect outside `Optimistic` resource policy. Refer to [memory management](/guide/memory-management) guide for more info. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">path</span> | string | Path to navigate into in the following format: `ScriptPath#Label`. When label is omitted, will play the specified script from the start. When script path is omitted, will attempt to find a label in the currently played script. |
+| reset | string list | When specified, will control whether to reset the engine services state before loading a script (in case the path is leading to another script):<br/> - Specify `*` to reset all the services, except the ones with the `Goto.DontReset` attribute.<br/> - Specify service type names (separated by comma) to exclude from reset; all the other services will be reset, including the ones with the `Goto.DontReset` attribute.<br/> - Specify `-` to force no reset (even if it's enabled by default in the configuration).<br/><br/>Notice that while some services have the `Goto.DontReset` attribute applied and are not reset by default, they should still be specified when excluding specific services from reset. |
+| hold | boolean | Whether to hold resources in the target script, which makes them preload together with the script this command is specified in. Has no effect outside the `Conservative` resource policy. Refer to the [memory management](/guide/memory-management) guide for more info. |
+| release | boolean | Whether to release resources before navigating to the target script to free the memory. Has no effect outside the `Optimistic` resource policy. Refer to the [memory management](/guide/memory-management) guide for more info. |
 
 </div>
 
@@ -751,11 +751,11 @@ Navigates scenario script playback to the specified path.
 
 ## group
 
-Allows grouping commands inside nested block.
+Allows grouping commands inside a nested block.
 
 ```nani
 ; Random command chooses one of the nested lines, but ignores children
-; of its nested lines. Group command used here to group multiple lines,
+; of its nested lines. Group command is used here to group multiple lines,
 ; so that random command will actually execute multiple lines.
 @random
     @group
@@ -768,16 +768,16 @@ Allows grouping commands inside nested block.
 
 ## hide
 
-Hides actors (character, background, text printer, choice handler) with the specified IDs. In case multiple actors with the same ID found (eg, a character and a printer), will affect only the first found one.
+Hides actors (character, background, text printer, choice handler) with the specified IDs. In case multiple actors with the same ID are found (eg, a character and a printer), will affect only the first found one.
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">actorIds</span> | string list | IDs of the actors to hide. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">actorIds</span> | string list | IDs of the actors to hide. |
 | time | number | Duration of the animation initiated by the command, in seconds. |
-| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
-| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), the currently running animation will instantly complete before starting animating to the new target. |
+| wait | boolean | Whether to wait for the command to finish before starting executing the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -791,39 +791,39 @@ Hides actors (character, background, text printer, choice handler) with the spec
 
 ## hideAll
 
-Hides all the actors (characters, backgrounds, text printers, choice handlers) on scene.
+Hides all the actors (characters, backgrounds, text printers, choice handlers) on the scene.
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
 | time | number | Duration of the animation initiated by the command, in seconds. |
-| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
-| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), the currently running animation will instantly complete before starting animating to the new target. |
+| wait | boolean | Whether to wait for the command to finish before starting executing the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
 
 </div>
 
 ```nani
-; Hide all the visible actors (chars, backs, printers, etc) on scene.
+; Hide all the visible actors (chars, backs, printers, etc) on the scene.
 @hideAll
 ```
 
 ## hideChars
 
-Hides all the visible characters on scene.
+Hides all the visible characters on the scene.
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
 | time | number | Duration of the animation initiated by the command, in seconds. |
-| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
-| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), the currently running animation will instantly complete before starting animating to the new target. |
+| wait | boolean | Whether to wait for the command to finish before starting executing the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
 
 </div>
 
 ```nani
-; Hide all the visible character actors on scene.
+; Hide all the visible character actors on the scene.
 @hideChars
 ```
 
@@ -837,7 +837,7 @@ Hides a text printer.
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">printerId</span> | string | ID of the printer actor to use. Will use a default one when not specified. |
 | time | number | Duration of the animation initiated by the command, in seconds. |
-| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
+| wait | boolean | Whether to wait for the command to finish before starting executing the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -854,17 +854,17 @@ Hides a text printer.
 Makes [UI elements](/guide/gui#ui-customization) with the specified names invisible. When no names are specified, will stop rendering (hide) the entire UI (including all the built-in UIs).
 
 ::: info NOTE
-When hiding the entire UI with this command and `allowToggle` parameter is false (default), user won't be able to re-show the UI back with hotkeys or by clicking anywhere on the screen; use [@showUI] command to make the UI visible again.
+When hiding the entire UI with this command and the `allowToggle` parameter is false (default), the user won't be able to re-show the UI back with hotkeys or by clicking anywhere on the screen; use the [@showUI] command to make the UI visible again.
 :::
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">uINames</span> | string list | Name of the UI elements to hide. |
+| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">uiNames</span> | string list | Names of the UI elements to hide. |
 | allowToggle | boolean | When hiding the entire UI, controls whether to allow the user to re-show the UI with hotkeys or by clicking anywhere on the screen (false by default). Has no effect when hiding a particular UI. |
 | time | number | Duration (in seconds) of the hide animation. When not specified, will use UI-specific duration. |
-| wait | boolean | Whether to wait for the UI fade-out animation before playing next command. |
+| wait | boolean | Whether to wait for the UI fade-out animation before playing the next command. |
 
 </div>
 
@@ -887,7 +887,7 @@ When hiding the entire UI with this command and `allowToggle` parameter is false
 
 ## if
 
-Marks the beginning of a conditional execution block. Nested lines are considered body of the block and will be executed only in case the conditional primary parameter is evaluated to `true`. See [conditional execution](/guide/scenario-scripting#conditional-execution) guide for more info.
+Marks the beginning of a conditional execution block. Nested lines are considered the body of the block and will be executed only in case the conditional primary parameter is evaluated to `true`. See the [conditional execution](/guide/scenario-scripting#conditional-execution) guide for more info.
 
 ::: info NOTE
 This command is inverse and complementary to [@unless].
@@ -897,13 +897,13 @@ This command is inverse and complementary to [@unless].
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [scenario expression](/guide/expressions), which should return a boolean value determining whether the associated nested block will be executed. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">expression</span> | string | A [scenario expression](/guide/expressions), which should return a boolean value determining whether the associated nested block will be executed. |
 
 </div>
 
 ```nani
 ; Print text line(s) depending on "score" variable:
-;   "You've failed. Try again!" - when score is below 6.
+;   "You've failed. Try again!" - when score is 6 or below.
 ;   "You've passed the test." and "Brilliant!" - when score is above 8.
 ;   "You've passed the test." and "Impressive!" - when score is above 7.
 ;   "You've passed the test." and "Good job!" - otherwise.
@@ -919,7 +919,7 @@ This command is inverse and complementary to [@unless].
     You've failed. Try again!
 
 ; Print text line depending on "score" variable:
-;   "Test result: Failed." - when score is below 6.
+;   "Test result: Failed." - when score is 6 or below.
 ;   "Test result: Perfect!" - when score is above 8.
 ;   "Test result: Passed." - otherwise.
 Test result:[if score>8] Perfect![or score>6] Passed.[else] Failed.[endif]
@@ -927,26 +927,26 @@ Test result:[if score>8] Perfect![or score>6] Passed.[else] Failed.[endif]
 
 ## input
 
-Shows an input field UI where user can enter an arbitrary text. Upon submit the entered text will be assigned to the specified scenario variable.
+Shows an input field UI where the user can enter arbitrary text. Upon submit, the entered text will be assigned to the specified scenario variable.
 
 ::: info NOTE
-To assign a display name for a character using this command consider [binding the name to a scenario variable](/guide/characters#display-names).
+To assign a display name for a character using this command, consider [binding the name to a scenario variable](/guide/characters#display-names).
 :::
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">variableName</span> | string | Name of a scenario variable to which the entered text will be assigned. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">variableName</span> | string | Name of a scenario variable to which the entered text will be assigned. |
 | type | string | Type of the input content; defaults to the specified variable type. Use to change assigned variable type or when assigning to a new variable. Supported types: `String`, `Numeric`, `Boolean`. |
-| summary | string | An optional summary text to show along with input field. When the text contains spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
-| value | string | A predefined value to set for the input field. When not assigned will pull existing value of the assigned variable (if any). |
+| summary | string | An optional summary text to show along with the input field. When the text contains spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
+| value | string | A predefined value to set for the input field. When not assigned, will pull the existing value of the assigned variable (if any). |
 | nostop | boolean | Whether to not halt script playback until the input is submitted by the player. |
 
 </div>
 
 ```nani
-; Prompt to enter an arbitrary text and assign it to 'name' scenario variable.
+; Prompt to enter arbitrary text and assign it to 'name' scenario variable.
 @input name summary:"Choose your name."
 
 ; You can then inject the assigned 'name' variable in scenario scripts.
@@ -964,7 +964,7 @@ Links a text printer to an author (character actor) making the author use the pr
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">printerId</span> | string | Identifier of the text printer to link. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">printerId</span> | string | Identifier of the text printer to link. |
 | to | string list | Identifiers of the character actors to link with the printer. Links to all authors when not specified. |
 
 </div>
@@ -979,13 +979,13 @@ Links a text printer to an author (character actor) making the author use the pr
 
 ## lipSync
 
-Allows to force-stop the lip sync mouth animation for a character with the specified ID; when stopped, the animation won't start again, until this command is used again to allow it. The character should be able to receive the lip sync events (currently generic, layered and Live2D implementations only). See [characters guide](/guide/characters#lip-sync) for more information on lip sync feature.
+Allows force-stopping the lip sync mouth animation for a character with the specified ID; when stopped, the animation won't start again until this command is used again to allow it. The character should be able to receive the lip sync events (currently generic, layered, universal, Live2D and Spine implementations only). See the [characters guide](/guide/characters#lip-sync) for more information on the lip sync feature.
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">charIdAndAllow</span> | named boolean | Character ID followed by a boolean (true or false) on whether to halt or allow the lip sync animation. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">charIdAndAllow</span> | named boolean | Character ID followed by a boolean (true or false) on whether to halt or allow the lip sync animation. |
 
 </div>
 
@@ -1003,7 +1003,7 @@ Loads a [Unity scene](https://docs.unity3d.com/Manual/CreatingScenes.html) with 
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">sceneName</span> | string | Name of the scene to load. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">sceneName</span> | string | Name of the scene to load. |
 | additive | boolean | Whether to load the scene additively, or unload any currently loaded scenes before loading the new one (default). See the [load scene documentation](https://docs.unity3d.com/ScriptReference/SceneManagement.SceneManager.LoadScene.html) for more information. |
 
 </div>
@@ -1018,17 +1018,17 @@ Loads a [Unity scene](https://docs.unity3d.com/Manual/CreatingScenes.html) with 
 
 ## lock
 
-Sets an [unlockable item](/guide/unlockables) with the specified ID to `locked` state.
+Sets an [unlockable item](/guide/unlockables) with the specified ID to the `locked` state.
 
 ::: info NOTE
-The unlocked state of the items is stored in [global scope](/guide/state-management#global-state).<br/> In case item with the specified ID is not registered in the global state map, the corresponding record will automatically be added.
+The unlocked state of the items is stored in the [global scope](/guide/state-management#global-state).<br/> In case an item with the specified ID is not registered in the global state map, the corresponding record will automatically be added.
 :::
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">id</span> | string | ID of the unlockable item. Use `*` to lock all the registered unlockable items. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">id</span> | string | ID of the unlockable item. Use `*` to lock all the registered unlockable items. |
 
 </div>
 
@@ -1039,16 +1039,16 @@ The unlocked state of the items is stored in [global scope](/guide/state-managem
 
 ## look
 
-Activates/disables camera look mode, when player can offset the main camera with input devices (eg, by moving a mouse or using gamepad analog stick). Check [this video](https://youtu.be/rC6C9mA7Szw) for a quick demonstration of the command.
+Activates/disables camera look mode, when the player can offset the main camera with input devices (eg, by moving a mouse or using a gamepad analog stick). Check [this video](https://youtu.be/rC6C9mA7Szw) for a quick demonstration of the command.
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">enable</span> | boolean | Whether to enable or disable the camera look mode. Default: true. |
-| zone | number list | A bound box with X,Y sizes in units from the initial camera position, describing how far the camera can be moved. Default: 5.0,3.0 |
+| zone | number list | Size (X,Y in units) of a bounding box centered on the initial camera position, limiting how far the camera can be moved. Default: 5.0,3.0 |
 | speed | number list | Camera movement speed (sensitivity) by X,Y axes. Default: 1.5,1.0 |
-| gravity | boolean | Whether to automatically move camera to the initial position when the look input is not active (eg, mouse is not moving or analog stick is in default position). Default: false. |
+| gravity | boolean | Whether to automatically move the camera to the initial position when the look input is not active (eg, mouse is not moving or analog stick is in default position). Default: false. |
 
 </div>
 
@@ -1071,14 +1071,14 @@ Activates/disables camera look mode, when player can offset the main camera with
 Plays a movie with the specified name (path).
 
 ::: info NOTE
-Will fade-out the screen before playing the movie and fade back in after the play. Playback can be canceled by activating a `cancel` input (`Esc` key by default).
+Will fade out the screen before playing the movie and fade back in after the play. Playback can be canceled by activating the `SkipMovie` input (`Esc` key by default).
 :::
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">moviePath</span> | string | Local path of the movie resource to play. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">moviePath</span> | string | Local path of the movie resource to play. |
 | time | number | Duration (in seconds) of the fade animation. When not specified, will use fade duration set in the movie configuration. |
 | block | boolean | Whether to block interaction with the game while the movie is playing, preventing the player from skipping it. |
 
@@ -1091,17 +1091,17 @@ Will fade-out the screen before playing the movie and fade back in after the pla
 
 ## openURL
 
-Opens specified URL (web address) with default web browser.
+Opens the specified URL (web address) with the default web browser.
 
 ::: info NOTE
-When outside of WebGL or in editor, Unity's `Application.OpenURL` method is used to handle the command; consult the [documentation](https://docs.unity3d.com/ScriptReference/Application.OpenURL.html) for behaviour details and limitations. Under WebGL native `window.open()` JS function is invoked: https://developer.mozilla.org/en-US/docs/Web/API/Window/open.
+When outside of WebGL or in the editor, Unity's `Application.OpenURL` method is used to handle the command; consult the [documentation](https://docs.unity3d.com/ScriptReference/Application.OpenURL.html) for behaviour details and limitations. Under WebGL, the native `window.open()` JS function is invoked: https://developer.mozilla.org/en-US/docs/Web/API/Window/open.
 :::
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">uRL</span> | string | URL to open. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">url</span> | string | URL to open. |
 | target | string | Browsing context: _self (current tab), _blank (new tab), _parent, _top. |
 
 </div>
@@ -1116,39 +1116,39 @@ When outside of WebGL or in editor, Unity's `Application.OpenURL` method is used
 
 ## or
 
-Marks a branch of a conditional execution block, which is executed in case condition of the opening [@if] or [@unless] and preceding [@else] or [@or] (if any) commands are not met while the own condition is met. Can be used as shortcut for `@else if:...`. For usage examples see [conditional execution](/guide/scenario-scripting#conditional-execution) guide.
+Marks a branch of a conditional execution block, which is executed in case the conditions of the opening [@if] or [@unless] and preceding [@else] or [@or] (if any) commands are not met while its own condition is met. Can be used as a shortcut for `@else if:...`. For usage examples see the [conditional execution](/guide/scenario-scripting#conditional-execution) guide.
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [scenario expression](/guide/expressions), which should return a boolean value determining whether the associated nested block will be executed. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">expression</span> | string | A [scenario expression](/guide/expressions), which should return a boolean value determining whether the associated nested block will be executed. |
 
 </div>
 
 ## print
 
-Prints (reveals over time) specified text message using a text printer actor.
+Prints (reveals over time) the specified text message using a text printer actor.
 
 ::: info NOTE
-This command is used under the hood when processing generic text lines, eg generic line `Kohaku: Hello World!` will be  automatically transformed into `@print "Hello World!" author:Kohaku` when parsing the scenario scripts.<br/> Will reset (clear) the printer before printing the new message by default; set `reset` parameter to *false* or disable `Auto Reset` in the printer actor configuration to prevent that and append the text instead.<br/> Will make the printer default and hide other printers by default; set `default` parameter to *false* or disable `Auto Default` in the printer actor configuration to prevent that.<br/> Will wait for user input before finishing the task by default; set `waitInput` parameter to *false* or disable `Auto Wait` in the printer actor configuration to return as soon as the text is fully revealed.
+This command is used under the hood when processing generic text lines, eg generic line `Kohaku: Hello World!` will be automatically transformed into `@print "Hello World!" author:Kohaku` when parsing the scenario scripts.<br/> Will reset (clear) the printer before printing the new message by default; set the `reset` parameter to *false* or disable `Auto Reset` in the printer actor configuration to prevent that and append the text instead.<br/> Will make the printer default and hide other printers by default; set the `default` parameter to *false* or disable `Auto Default` in the printer actor configuration to prevent that.<br/> Will wait for user input before finishing the task by default; set the `waitInput` parameter to *false* or disable `Auto Wait` in the printer actor configuration to return as soon as the text is fully revealed.
 :::
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">text</span> | string | Text of the message to print. When the text contains spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">text</span> | string | Text of the message to print. When the text contains spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
 | printer | string | ID of the printer actor to use. Will use a default one when not specified. |
-| author | string | ID of the actor, which should be associated with the printed message. Ignored when appending. Specify `*` or use `,` to delimit multiple actor IDs to make all/selected characters authors of the text; useful when coupled with `as` parameter to represent multiple characters speaking at the same time. |
+| author | string | ID of the actor which should be associated with the printed message. Ignored when appending. Specify `*` or use `,` to delimit multiple actor IDs to make all/selected characters authors of the text; useful when coupled with the `as` parameter to represent multiple characters speaking at the same time. |
 | as | string | When specified, will use the label instead of author ID (or associated display name) to represent author name in the text printer while printing the message. Useful to override default name for a few messages or represent multiple authors speaking at the same time without triggering author-specific behaviour of the text printer, such as message color or avatar. |
 | speed | number | Text reveal speed multiplier; should be positive or zero. Setting to one will yield the default speed. |
-| reset | boolean | Whether to reset text of the printer before executing the printing task. Default value is controlled via `Auto Reset` property in the printer actor configuration menu. |
-| default | boolean | Whether to make the printer default and hide other printers before executing the printing task. Default value is controlled via `Auto Default` property in the printer actor configuration menu. |
-| waitInput | boolean | Whether to wait for user input after finishing the printing task. Default value is controlled via `Auto Wait` property in the printer actor configuration menu. |
+| reset | boolean | Whether to reset text of the printer before executing the printing task. Default value is controlled via the `Auto Reset` property in the printer actor configuration menu. |
+| default | boolean | Whether to make the printer default and hide other printers before executing the printing task. Default value is controlled via the `Auto Default` property in the printer actor configuration menu. |
+| waitInput | boolean | Whether to wait for user input after finishing the printing task. Default value is controlled via the `Auto Wait` property in the printer actor configuration menu. |
 | append | boolean | Whether to append the printed text to the last printer message. |
-| fadeTime | number | Controls duration (in seconds) of the printers show and hide animations associated with this command. Default value for each printer is set in the actor configuration. |
-| wait | boolean | Whether to await the text reveal and prompt for completion (wait for input) before playing next command. |
+| fadeTime | number | Controls duration (in seconds) of the printers' show and hide animations associated with this command. Default value for each printer is set in the actor configuration. |
+| wait | boolean | Whether to await the text reveal and prompt for completion (wait for input) before playing the next command. |
 
 </div>
 
@@ -1164,7 +1164,7 @@ This command is used under the hood when processing generic text lines, eg gener
 @print "Lorem ipsum dolor sit amet." speed:0.5 !waitInput
 
 ; Print the line with "Together" displayed as author name and
-; make all visible characters author of the printed text.
+; make all visible characters authors of the printed text.
 @print "Hello World!" author:* as:"Together"
 
 ; Similar, but make only "Kohaku" and "Yuko" the authors.
@@ -1180,7 +1180,7 @@ Modifies a [text printer actor](/guide/text-printers) and links the printer to a
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">idAndAppearance</span> | named string | ID of the printer to modify and the appearance to set. When ID or appearance are not specified, will use default ones. |
-| default | boolean | Whether to make the printer the default one. Default printer will be subject of all the printer-related commands when `printer` parameter is not specified. Has no effect when contains nested commands. |
+| default | boolean | Whether to make the printer the default one. The default printer will be the subject of all the printer-related commands when the `printer` parameter is not specified. Has no effect when the command contains nested commands. |
 | hideOther | boolean | Whether to hide all the other printers. |
 | anchor | boolean | Whether to allow auto printer positioning via actor anchors. Enable for supported printers after manually positioning a printer to resume automatic positioning. Note that anchoring is disabled automatically when an explicit position is assigned with this command. |
 | pos | number list | Position (relative to the scene borders, in percents) to set for the modified actor. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
@@ -1192,14 +1192,14 @@ Modifies a [text printer actor](/guide/text-printers) and links the printer to a
 | dissolve | string | Path to the [custom dissolve](/guide/special-effects#dissolve-mask) texture (path should be relative to a `Resources` folder). Has effect only when the transition is set to `Custom` mode. |
 | visible | boolean | Visibility status to set for the modified actor. |
 | wpos | number list | Position (in world space) to set for the modified actor. Use Z-component (third member) to move (sort) by depth while in ortho mode. |
-| roll | number | Rotation by Z-axis to set for the modified actor. The same as third component of `rotation` parameter; ignored when `rotation` is specified. |
+| roll | number | Rotation by Z-axis to set for the modified actor. The same as the third component of the `rotation` parameter; ignored when `rotation` is specified. |
 | rotation | number list | Rotation to set for the modified actor. |
 | scale | number list | Scale to set for the modified actor. |
 | tint | string | The tint color to apply.<br><br>Strings that begin with `#` will be parsed as hexadecimal in the following way: `#RGB` (becomes `RRGGBB`), `#RRGGBB`, `#RGBA` (becomes `RRGGBBAA`), `#RRGGBBAA`; when alpha is not specified will default to `FF`.<br><br>Strings that do not begin with `#` will be parsed as literal colors, with the following supported: red, cyan, blue, darkblue, lightblue, purple, yellow, lime, fuchsia, white, silver, grey, black, orange, brown, maroon, green, olive, navy, teal, aqua, magenta. |
 | easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
 | time | number | Duration of the animation initiated by the command, in seconds. |
-| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
-| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), the currently running animation will instantly complete before starting animating to the new target. |
+| wait | boolean | Whether to wait for the command to finish before starting executing the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -1227,16 +1227,16 @@ Allows halting and resuming user input processing (eg, reacting to pressing keyb
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">inputEnabled</span> | boolean | Whether to enable input processing of all the samplers. |
-| set | named boolean list | Allows muting and un-muting individual input samplers. |
+| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">inputEnabled</span> | boolean | Whether to enable processing of all the inputs. |
+| set | named boolean list | Allows muting and un-muting individual inputs. |
 
 </div>
 
 ```nani
-; Halt input processing of all the samplers.
+; Halt processing of all the inputs.
 @processInput false
 
-; Resume input processing of all the samplers.
+; Resume processing of all the inputs.
 @processInput true
 
 ; Mute 'Rollback' and 'Pause' inputs and un-mute 'Continue' input.
@@ -1245,12 +1245,12 @@ Allows halting and resuming user input processing (eg, reacting to pressing keyb
 
 ## purgeRollback
 
-Prevents player from rolling back to the previous state snapshots.
+Prevents the player from rolling back to the previous state snapshots.
 
 ```nani
 ; Prevent player from rolling back to try selecting another choice.
 
-Select a choice. You won't be able to rollback.
+Select a choice. You won't be able to roll back.
 @choice One goto:#One
 @choice Two goto:#Two
 
@@ -1276,7 +1276,7 @@ Pushes a state snapshot the player can roll back to.
 
 ## rain
 
-Spawns particle system simulating [rain](/guide/special-effects#rain).
+Spawns a particle system simulating [rain](/guide/special-effects#rain).
 
 <div class="config-table">
 
@@ -1284,14 +1284,14 @@ Spawns particle system simulating [rain](/guide/special-effects#rain).
 | --- | --- | --- |
 | power | number | The intensity of the rain (particles spawn rate per second), in 0.0 to 1.0 range; defaults to 0.5. Set to 0 to disable (de-spawn) the effect. |
 | time | number | The particle system will gradually grow the spawn rate to the target level over the specified time, in seconds. |
-| xSpeed | number | Multiplier to the horizontal speed of the particles. Use to change angle of the rain drops. |
+| xSpeed | number | Multiplier to the horizontal speed of the particles. Use to change the angle of the rain drops. |
 | ySpeed | number | Multiplier to the vertical speed of the particles. |
 | pos | number list | Position (relative to the scene borders, in percents) to set for the spawned effect game object. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
 | wpos | number list | Position (in world space) to set for the spawned effect game object. |
-| roll | number | Rotation by Z-axis to set for the spawned effect game object. The same as third component of `rotation` parameter; ignored when `rotation` is specified. |
+| roll | number | Rotation by Z-axis to set for the spawned effect game object. The same as the third component of the `rotation` parameter; ignored when `rotation` is specified. |
 | rotation | number list | Rotation to set for the spawned effect game object. |
 | scale | number list | Scale to set for the spawned effect game object. |
-| wait | boolean | Whether to wait for the effect warm-up animation before playing next command. |
+| wait | boolean | Whether to wait for the effect warm-up animation before playing the next command. |
 
 </div>
 
@@ -1342,36 +1342,36 @@ Executes one of the nested commands, picked randomly.
 
 ## remove
 
-Removes (disposes) actors (character, background, text printer, choice handler) with the specified IDs. In case multiple actors with the same ID found (eg, a character and a printer), will affect only the first found one.
+Removes (disposes) actors (character, background, text printer, choice handler) with the specified IDs. In case multiple actors with the same ID are found (eg, a character and a printer), will affect only the first found one.
 
 ::: info NOTE
-By default, Naninovel automatically removes unused actors when unloading script resources; only use this command when `Remove Actors` is disabled in resource provider configuration or when you need to force-dispose an actor at specific moment. Consult [memory management](/guide/memory-management#actor-resources) guide for more info.
+By default, Naninovel automatically removes unused actors when unloading script resources; only use this command when `Remove Actors` is disabled in the resource provider configuration or when you need to force-dispose an actor at a specific moment. Consult the [memory management](/guide/memory-management#actor-resources) guide for more info.
 :::
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">actorIds</span> | string list | IDs of the actors to remove or `*` to remove all actors. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">actorIds</span> | string list | IDs of the actors to remove or `*` to remove all actors. |
 
 </div>
 
 ```nani
-; Fade-off and then dispose Kohaku and Yuko actors.
+; Fade off and then dispose Kohaku and Yuko actors.
 @hide Kohaku,Yuko wait!
 @remove Kohaku,Yuko
 
-; Fade-off and remove all actors.
+; Fade off and remove all actors.
 @hideAll wait!
 @remove *
 ```
 
 ## resetState
 
-Resets state of the [engine services](/guide/engine-services) and unloads (disposes) all the resources loaded by Naninovel (textures, audio, video, etc); will basically revert to an empty initial engine state.
+Resets the state of the [engine services](/guide/engine-services) and unloads (disposes) all the resources loaded by Naninovel (textures, audio, video, etc); will basically revert to an empty initial engine state.
 
 ::: info NOTE
-Be aware, that this command can not be undone (rewound back).
+Be aware that this command cannot be undone (rewound back).
 :::
 
 <div class="config-table">
@@ -1389,11 +1389,11 @@ Be aware, that this command can not be undone (rewound back).
 
 ; Reset all the services except script player, scenario variable and
 ; audio managers, allowing current script and audio tracks
-; continue playing and preserving values of the scenario variables.
+; to continue playing and preserving values of the scenario variables.
 @resetState IScriptPlayer,IVariableManager,IAudioManager
 
 ; Reset only 'ICharacterManager' and 'IBackgroundManager' services
-; removing all the character and background actors from scene
+; removing all the character and background actors from the scene
 ; and unloading associated resources from memory.
 @resetState only:ICharacterManager,IBackgroundManager
 ```
@@ -1422,7 +1422,7 @@ This line will disappear.
 
 ## return
 
-Attempts to navigate scenario script playback to a command after the last used [@gosub]. See [@gosub] command summary for more info and usage examples.
+Attempts to navigate scenario script playback to a command after the last used [@gosub]. See the [@gosub] command summary for more info and usage examples.
 
 <div class="config-table">
 
@@ -1434,7 +1434,7 @@ Attempts to navigate scenario script playback to a command after the last used [
 
 ## save
 
-Automatically save the game to the first auto save slot.
+Automatically saves the game to the first auto save slot.
 
 <div class="config-table">
 
@@ -1455,7 +1455,7 @@ Automatically save the game to the first auto save slot.
 
 # Camp
 
-; Notice the variable is set with '?=' – this will only assign the value
+; Notice the variable is set with '?=' — this will only assign the value
 ; in case it's not already assigned, which won't be the case after player
 ; loads auto-saved game after the rest.
 @set rested?=false
@@ -1467,7 +1467,7 @@ Automatically save the game to the first auto save slot.
 @choice "No time to rest!" goto:NextDay
 @choice "Let's rest a bit"
     @set rested=true
-    ; Notice the 'at' parameter – it'll redirect the player to the
+    ; Notice the 'at' parameter — it'll redirect the player to the
     ; specified label when the game is loaded.
     @save at:#Camp
     @title
@@ -1475,21 +1475,21 @@ Automatically save the game to the first auto save slot.
 
 ## set
 
-Assigns result of a [scenario expression](/guide/expressions) to a [scenario variable](/guide/variables).
+Assigns the result of a [scenario expression](/guide/expressions) to a [scenario variable](/guide/variables).
 
 ::: info NOTE
-If a variable with the specified ID doesn't exist, it will be automatically created.<br/><br/> Specify multiple set expressions by separating them with `,`. The expressions will be executed in sequence in the order of declaration.<br/><br/>
+If a variable with the specified ID doesn't exist, it will be automatically created.<br/><br/> Specify multiple set expressions by separating them with `,`. The expressions will be executed in sequence in the order of declaration.
 :::
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | Assignment expression.<br/><br/>The expression should be in the following format: `var=expression`, where `var` is the ID of the scenario variable to assign and `expression` is a [scenario expression](/guide/expressions), the result of which should be assigned to the variable.<br/><br/>It's possible to use increment and decrement unary operators (`@set foo++`, `@set foo--`) and compound assignment (`@set foo+=10`, `@set foo-=3`, `@set foo*=0.1`, `@set foo/=2`). |
-| to | string | The expression which result will be assigned to all the specified variables without assignment expressions (without the `= ...` part). Useful to assign multiple variables to the same value, for example: `@set foo, bar, baz to:10`. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">expression</span> | string | Assignment expression.<br/><br/>The expression should be in the following format: `var=expression`, where `var` is the ID of the scenario variable to assign and `expression` is a [scenario expression](/guide/expressions), the result of which should be assigned to the variable.<br/><br/>It's possible to use increment and decrement unary operators (`@set foo++`, `@set foo--`) and compound assignment (`@set foo+=10`, `@set foo-=3`, `@set foo*=0.1`, `@set foo/=2`). |
+| to | string | The expression whose result will be assigned to all the specified variables without assignment expressions (without the `= ...` part). Useful to assign multiple variables to the same value, for example: `@set foo, bar, baz to:10`. |
 | scope | string | When specified, assigns variables without an explicit scope under the specified scope. |
 | init | boolean | Whether the variable should only be assigned in case it's not already assigned (initialization intent). Should not be used with the 'meta' or 'const' flags, as they both share the initialization intent. |
-| meta | boolean | Whether the variable should be initialized as a meta variable. The meta-variables are 'above' the game sessions, ie they persist their values when starting a new game. Ideal for meta-game mechanics, such as tracking route completions or achievements. |
+| meta | boolean | Whether the variable should be initialized as a meta variable. The meta variables are 'above' the game sessions, ie they persist their values when starting a new game. Ideal for meta-game mechanics, such as tracking route completions or achievements. |
 | const | boolean | Whether the variable should be initialized as a constant. The constants can only be initialized once and are not allowed to change later. |
 
 </div>
@@ -1574,7 +1574,7 @@ My favourite drink is {drink}!
 Plays or modifies currently played [SFX (sound effect)](/guide/audio#sound-effects) track with the specified name.
 
 ::: info NOTE
-Sound effect tracks are not looped by default. When SFX track name (Path) is not specified, will affect all the currently played tracks. When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start), but the specified parameters (volume and whether the track is looped) will be applied.
+Sound effect tracks are not looped by default. When SFX track name (`path`) is not specified, will affect all the currently played tracks. When invoked for a track that is already playing, the playback won't be affected (track won't start playing from the start), but the specified parameters (volume and whether the track is looped) will be applied.
 :::
 
 <div class="config-table">
@@ -1587,12 +1587,12 @@ Sound effect tracks are not looped by default. When SFX track name (Path) is not
 | pitch | number | The perceived frequency (speed) of the playback, in [-3.0 to 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) range, where 1.0 is the normal speed. Negative values will play the audio in reverse. |
 | pos | number list | Position (relative to the scene borders, in percents) of the audio source. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move by depth. |
 | wpos | number list | Position (in world space) of the audio source. When neither `pos` nor `wpos` is specified, the spatial mode is disabled. |
-| wait | boolean | Whether to wait for the audio to finish playing before executing next command. Has no effect when looped. |
+| wait | boolean | Whether to wait for the audio to finish playing before executing the next command. Has no effect when looped. |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">path</span> | string | Local path (name) of the audio resource. |
 | easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
 | fade | number | Duration of the animation initiated by the command, in seconds. |
-| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
-| waitFade | boolean | Whether to wait for the fade to finish before playing next command. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), the currently running animation will instantly complete before starting animating to the new target. |
+| waitFade | boolean | Whether to wait for the fade to finish before playing the next command. |
 
 </div>
 
@@ -1600,7 +1600,7 @@ Sound effect tracks are not looped by default. When SFX track name (Path) is not
 ; Plays an SFX with the name 'Explosion' once.
 @sfx Explosion
 
-; Plays an SFX with the name 'Rain' in a loop and fades-in over 30 seconds.
+; Plays an SFX with the name 'Rain' in a loop and fades in over 30 seconds.
 @sfx Rain loop! fade:30
 
 ; Changes volume of all the played SFX tracks to 75% over 2.5 seconds
@@ -1617,13 +1617,13 @@ Sound effect tracks are not looped by default. When SFX track name (Path) is not
 
 ## sfxFast
 
-Plays an [SFX (sound effect)](/guide/audio#sound-effects) track with the specified name. Unlike [@sfx] command, the clip is played with minimum delay and is not serialized with the game state (won't be played after loading a game, even if it was played when saved). The command can be used to play various transient audio clips, such as UI-related sounds (eg, on button click with [`Play Script` component](/guide/gui#play-script-on-unity-event)).
+Plays an [SFX (sound effect)](/guide/audio#sound-effects) track with the specified name. Unlike the [@sfx] command, the clip is played with minimum delay and is not serialized with the game state (won't be played after loading a game, even if it was played when saved). The command can be used to play various transient audio clips, such as UI-related sounds (eg, on button click with [`Play Script` component](/guide/gui#play-script-on-unity-event)).
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| restart | boolean | Whether to start playing the audio from start in case it's already playing. |
+| restart | boolean | Whether to start playing the audio from the start in case it's already playing. |
 | additive | boolean | Whether to allow playing multiple instances of the same clip; has no effect when `restart` is enabled. |
 | group | string | Audio mixer [group path](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups) that should be used when playing the audio. |
 | loop | boolean | Whether to repeat the playback from the beginning when it finishes, until stopped. |
@@ -1631,12 +1631,8 @@ Plays an [SFX (sound effect)](/guide/audio#sound-effects) track with the specifi
 | pitch | number | The perceived frequency (speed) of the playback, in [-3.0 to 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) range, where 1.0 is the normal speed. Negative values will play the audio in reverse. |
 | pos | number list | Position (relative to the scene borders, in percents) of the audio source. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move by depth. |
 | wpos | number list | Position (in world space) of the audio source. When neither `pos` nor `wpos` is specified, the spatial mode is disabled. |
-| wait | boolean | Whether to wait for the audio to finish playing before executing next command. Has no effect when looped. |
+| wait | boolean | Whether to wait for the audio to finish playing before executing the next command. Has no effect when looped. |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">path</span> | string | Local path (name) of the audio resource. |
-| easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
-| fade | number | Duration of the animation initiated by the command, in seconds. |
-| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
-| waitFade | boolean | Whether to wait for the fade to finish before playing next command. |
 
 </div>
 
@@ -1650,22 +1646,22 @@ Plays an [SFX (sound effect)](/guide/audio#sound-effects) track with the specifi
 
 ## shake
 
-Applies [shake effect](/guide/special-effects#shake) for the actor with the specified ID or main camera.
+Applies a [shake effect](/guide/special-effects#shake) for the actor with the specified ID or the main camera.
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">actorId</span> | string | ID of the actor to shake. In case multiple actors with the same ID found (eg, a character and a printer), will affect only the first found one. When not specified, will shake the default text printer. To shake main camera, use `Camera` keyword. |
+| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">actorId</span> | string | ID of the actor to shake. In case multiple actors with the same ID are found (eg, a character and a printer), will affect only the first found one. When not specified, will shake the default text printer. To shake the main camera, use the `Camera` keyword. |
 | count | number | The number of shake iterations. Ignored when `loop` is enabled. |
 | loop | boolean | Whether to continue shaking until disabled. |
 | time | number | The base duration of each shake iteration, in seconds. |
-| deltaTime | number | The randomizer modifier applied to the base duration of the effect. |
+| deltaTime | number | The randomized modifier applied to the base duration of the effect. |
 | power | number | The base displacement amplitude of each shake iteration, in units. |
 | deltaPower | number | The randomized modifier applied to the base displacement amplitude. |
-| hor | boolean | Whether to displace the actor horizontally (by x-axis). |
-| ver | boolean | Whether to displace the actor vertically (by y-axis). |
-| wait | boolean | Whether to wait for the effect warm-up animation before playing next command. |
+| hor | boolean | Whether to displace the actor horizontally (by X-axis). |
+| ver | boolean | Whether to displace the actor vertically (by Y-axis). |
+| wait | boolean | Whether to wait for the effect warm-up animation before playing the next command. |
 
 </div>
 
@@ -1685,16 +1681,16 @@ Applies [shake effect](/guide/special-effects#shake) for the actor with the spec
 
 ## show
 
-Shows (makes visible) actors (character, background, text printer, choice handler, etc) with the specified IDs. In case multiple actors with the same ID found (eg, a character and a printer), will affect only the first found one.
+Shows (makes visible) actors (character, background, text printer, choice handler, etc) with the specified IDs. In case multiple actors with the same ID are found (eg, a character and a printer), will affect only the first found one.
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">actorIds</span> | string list | IDs of the actors to show. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">actorIds</span> | string list | IDs of the actors to show. |
 | time | number | Duration of the animation initiated by the command, in seconds. |
-| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
-| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), the currently running animation will instantly complete before starting animating to the new target. |
+| wait | boolean | Whether to wait for the command to finish before starting executing the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -1716,7 +1712,7 @@ Shows a text printer.
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">printerId</span> | string | ID of the printer actor to use. Will use a default one when not specified. |
 | time | number | Duration of the animation initiated by the command, in seconds. |
-| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
+| wait | boolean | Whether to wait for the command to finish before starting executing the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -1736,9 +1732,9 @@ Makes [UI elements](/guide/gui) with the specified resource names visible. When 
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">uINames</span> | string list | Name of the UI resource to make visible. |
+| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">uiNames</span> | string list | Names of the UI resources to make visible. |
 | time | number | Duration (in seconds) of the show animation. When not specified, will use UI-specific duration. |
-| wait | boolean | Whether to wait for the UI fade-in animation before playing next command. |
+| wait | boolean | Whether to wait for the UI fade-in animation before playing the next command. |
 
 </div>
 
@@ -1756,7 +1752,7 @@ Makes [UI elements](/guide/gui) with the specified resource names visible. When 
 
 ## skip
 
-Allows to enable or disable script player "skip" mode.
+Allows enabling or disabling the script player "skip" mode.
 
 <div class="config-table">
 
@@ -1779,21 +1775,21 @@ Allows to enable or disable script player "skip" mode.
 Slides (moves between two positions) an actor (character, background, text printer or choice handler) with the specified ID and optionally changes actor visibility and appearance. Can be used instead of multiple [@char] or [@back] commands to reveal or hide an actor with a slide animation.
 
 ::: info NOTE
-Be aware, that this command searches for an existing actor with the specified ID over all the actor managers, and in case multiple actors with the same ID exist (eg, a character and a text printer), this will affect only the first found one. Make sure the actor exist on scene before referencing it with this command; eg, if it's a character, you can add it on scene imperceptibly to player with `@char CharID visible:false time:0`.
+Be aware that this command searches for an existing actor with the specified ID over all the actor managers, and in case multiple actors with the same ID exist (eg, a character and a text printer), this will affect only the first found one. Make sure the actor exists on the scene before referencing it with this command; eg if it's a character, you can add it to the scene imperceptibly to the player with `@char CharID visible:false time:0`.
 :::
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">idAndAppearance</span> | named string | ID of the actor to slide and (optionally) appearance to set. |
-| from | number list | Position in scene space to slide the actor from (slide start position). Described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene; Z-component (depth) is in world space. When not specified, will use current actor position in case it's visible and a random off-scene position otherwise (could slide-in from left or right borders). |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">idAndAppearance</span> | named string | ID of the actor to slide and (optionally) appearance to set. |
+| from | number list | Position in scene space to slide the actor from (slide start position). Described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene; Z-component (depth) is in world space. When not specified, will use current actor position in case it's visible and a random off-scene position otherwise (could slide in from left or right borders). |
 | <span class="command-param-required" title="Required parameter: parameter should always be specified">to</span> | number list | Position in scene space to slide the actor to (slide finish position). |
 | visible | boolean | Change visibility status of the actor (show or hide). When not set and target actor is hidden, will still automatically show it. |
 | easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
 | time | number | Duration of the animation initiated by the command, in seconds. |
-| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
-| wait | boolean | Whether to wait for the command to finish before starting executing next command in the scenario script. Default behaviour is controlled by `Wait By Default` option in the script player configuration. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), the currently running animation will instantly complete before starting animating to the new target. |
+| wait | boolean | Whether to wait for the command to finish before starting executing the next command in the scenario script. Default behaviour is controlled by the `Wait By Default` option in the script player configuration. |
 
 </div>
 
@@ -1813,7 +1809,7 @@ Be aware, that this command searches for an existing actor with the specified ID
 
 ## snow
 
-Spawns particle system simulating [snow](/guide/special-effects#snow).
+Spawns a particle system simulating [snow](/guide/special-effects#snow).
 
 <div class="config-table">
 
@@ -1823,10 +1819,10 @@ Spawns particle system simulating [snow](/guide/special-effects#snow).
 | time | number | The particle system will gradually grow the spawn rate to the target level over the specified time, in seconds. |
 | pos | number list | Position (relative to the scene borders, in percents) to set for the spawned effect game object. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
 | wpos | number list | Position (in world space) to set for the spawned effect game object. |
-| roll | number | Rotation by Z-axis to set for the spawned effect game object. The same as third component of `rotation` parameter; ignored when `rotation` is specified. |
+| roll | number | Rotation by Z-axis to set for the spawned effect game object. The same as the third component of the `rotation` parameter; ignored when `rotation` is specified. |
 | rotation | number list | Rotation to set for the spawned effect game object. |
 | scale | number list | Scale to set for the spawned effect game object. |
-| wait | boolean | Whether to wait for the effect warm-up animation before playing next command. |
+| wait | boolean | Whether to wait for the effect warm-up animation before playing the next command. |
 
 </div>
 
@@ -1842,22 +1838,22 @@ Spawns particle system simulating [snow](/guide/special-effects#snow).
 Instantiates a prefab or a [special effect](/guide/special-effects); when performed over an already spawned object, will update the spawn parameters instead.
 
 ::: info NOTE
-If prefab has a `MonoBehaviour` component attached to the root object, and the component implements an `IParameterized` interface, will pass the specified `params` values after the spawn; if the component implements `IAwaitable` interface, command execution will be able to wait for the async completion task returned by the implementation.
+If the prefab has a `MonoBehaviour` component attached to the root object, and the component implements an `IParameterized` interface, will pass the specified `params` values after the spawn; if the component implements the `IAwaitable` interface, command execution will be able to wait for the async completion task returned by the implementation.
 :::
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">path</span> | string | Name (path) of the prefab resource to spawn. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">path</span> | string | Name (path) of the prefab resource to spawn. |
 | params | string list | Parameters to set when spawning the prefab. Requires the prefab to have an `IParameterized` component attached to the root object. |
 | pos | number list | Position (relative to the scene borders, in percents) to set for the spawned object. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
 | wpos | number list | Position (in world space) to set for the spawned object. |
-| roll | number | Rotation by Z-axis to set for the spawned object. The same as third component of `rotation` parameter; ignored when `rotation` is specified. |
+| roll | number | Rotation by Z-axis to set for the spawned object. The same as the third component of the `rotation` parameter; ignored when `rotation` is specified. |
 | rotation | number list | Rotation to set for the spawned object. |
 | scale | number list | Scale to set for the spawned object. |
 | transient | boolean | Whether to exclude the spawned object from the game state. Useful for one-shot, short-lived effects, freeing you from having to call [@despawn] on them later. |
-| wait | boolean | Whether to wait for the spawn to warm-up in case it implements `IAwaitable` interface. |
+| wait | boolean | Whether to wait for the spawn to warm up in case it implements the `IAwaitable` interface. |
 
 </div>
 
@@ -1907,7 +1903,7 @@ This line is only executed when navigated directly with a @gosub.
 Stops playing a BGM (background music) track with the specified name.
 
 ::: info NOTE
-When music track name (Path) is not specified, will stop all the currently played tracks.
+When music track name (`path`) is not specified, will stop all the currently played tracks.
 :::
 
 <div class="config-table">
@@ -1917,13 +1913,13 @@ When music track name (Path) is not specified, will stop all the currently playe
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">path</span> | string | Local path (name) of the audio resource. |
 | easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
 | fade | number | Duration of the animation initiated by the command, in seconds. |
-| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
-| waitFade | boolean | Whether to wait for the fade to finish before playing next command. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), the currently running animation will instantly complete before starting animating to the new target. |
+| waitFade | boolean | Whether to wait for the fade to finish before playing the next command. |
 
 </div>
 
 ```nani
-; Fades-out 'Sanctuary' bgm track over 10 seconds and stops the playback.
+; Fades out 'Sanctuary' BGM track over 10 seconds and stops the playback.
 @stopBgm Sanctuary fade:10
 
 ; Stops all the currently played music tracks.
@@ -1935,7 +1931,7 @@ When music track name (Path) is not specified, will stop all the currently playe
 Stops playing an SFX (sound effect) track with the specified name.
 
 ::: info NOTE
-When sound effect track name (Path) is not specified, will stop all the currently played tracks.
+When sound effect track name (`path`) is not specified, will stop all the currently played tracks.
 :::
 
 <div class="config-table">
@@ -1945,13 +1941,13 @@ When sound effect track name (Path) is not specified, will stop all the currentl
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">path</span> | string | Local path (name) of the audio resource. |
 | easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
 | fade | number | Duration of the animation initiated by the command, in seconds. |
-| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
-| waitFade | boolean | Whether to wait for the fade to finish before playing next command. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), the currently running animation will instantly complete before starting animating to the new target. |
+| waitFade | boolean | Whether to wait for the fade to finish before playing the next command. |
 
 </div>
 
 ```nani
-; Stop playing an SFX with the name 'Rain', fading-out for 15 seconds.
+; Stop playing an SFX with the name 'Rain', fading out for 15 seconds.
 @stopSfx Rain fade:15
 
 ; Stops all the currently played sound effect tracks.
@@ -1962,18 +1958,6 @@ When sound effect track name (Path) is not specified, will stop all the currentl
 
 Stops playback of the currently played voice clip.
 
-<div class="config-table">
-
-| Parameter | Type | Description |
-| --- | --- | --- |
-| <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">path</span> | string | Local path (name) of the audio resource. |
-| easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
-| fade | number | Duration of the animation initiated by the command, in seconds. |
-| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
-| waitFade | boolean | Whether to wait for the fade to finish before playing next command. |
-
-</div>
-
 ```nani
 ; Given a voice is being played, stop it.
 @stopVoice
@@ -1981,20 +1965,20 @@ Stops playback of the currently played voice clip.
 
 ## sun
 
-Spawns particle system simulating [sun shafts](/guide/special-effects#sun) aka god rays.
+Spawns a particle system simulating [sun shafts](/guide/special-effects#sun) aka god rays.
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
 | power | number | The intensity of the rays (opacity), in 0.0 to 1.0 range; default is 0.85. Set to 0 to disable (de-spawn) the effect. |
-| time | number | The particle system will gradually grow the spawn rate to the target level over the specified time, in seconds. |
+| time | number | The particle system will gradually change the opacity of the rays to the target level over the specified time, in seconds. |
 | pos | number list | Position (relative to the scene borders, in percents) to set for the spawned effect game object. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move (sort) by depth while in ortho mode. |
 | wpos | number list | Position (in world space) to set for the spawned effect game object. |
-| roll | number | Rotation by Z-axis to set for the spawned effect game object. The same as third component of `rotation` parameter; ignored when `rotation` is specified. |
+| roll | number | Rotation by Z-axis to set for the spawned effect game object. The same as the third component of the `rotation` parameter; ignored when `rotation` is specified. |
 | rotation | number list | Rotation to set for the spawned effect game object. |
 | scale | number list | Scale to set for the spawned effect game object. |
-| wait | boolean | Whether to wait for the effect warm-up animation before playing next command. |
+| wait | boolean | Whether to wait for the effect warm-up animation before playing the next command. |
 
 </div>
 
@@ -2047,7 +2031,7 @@ Controls a [Timeline](https://docs.unity3d.com/Manual/com.unity.timeline.html) v
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">name</span> | string | Name of an active scene game object with a 'Playable Director' component attached. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">name</span> | string | Name of an active scene game object with a 'Playable Director' component attached. |
 | stop | boolean | Whether to stop the director. |
 | pause | boolean | Whether to pause the director. |
 | resume | boolean | Whether to resume the director. |
@@ -2066,7 +2050,7 @@ Controls a [Timeline](https://docs.unity3d.com/Manual/com.unity.timeline.html) v
 
 ## title
 
-Resets the engine state and starts playing 'Title' script (if assigned in the scripts configuration).
+Resets the engine state and starts playing the 'Title' script (if assigned in the scripts configuration).
 
 ```nani
 ; Exit to title.
@@ -2075,10 +2059,10 @@ Resets the engine state and starts playing 'Title' script (if assigned in the sc
 
 ## toast
 
-Shows a UI for general-purpose self-hiding popup notification (aka "toast") with the specified text and (optionally) appearance and duration. The UI is automatically hidden after the specified (or default) duration.
+Shows a UI for a general-purpose self-hiding popup notification (aka "toast") with the specified text and (optionally) appearance and duration. The UI is automatically hidden after the specified (or default) duration.
 
 ::: info NOTE
-Appearance name is the name of a game object with `Toast Appearance` component inside the `ToastUI` UI prefab (case-insensitive).
+Appearance name is the name of a game object with a `Toast Appearance` component inside the `ToastUI` UI prefab (case-insensitive).
 :::
 
 <div class="config-table">
@@ -2086,8 +2070,8 @@ Appearance name is the name of a game object with `Toast Appearance` component i
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">text</span> | string | The text content to set for the toast. |
-| appearance | string | Appearance variant (game object name) of the toast. When not specified, will use default appearance set in Toast UI prefab. |
-| time | number | Seconds to wait before hiding the toast. When not specified, will use duration set by default in Toast UI prefab. |
+| appearance | string | Appearance variant (game object name) of the toast. When not specified, will use the default appearance set in the Toast UI prefab. |
+| time | number | Seconds to wait before hiding the toast. When not specified, will use the duration set by default in the Toast UI prefab. |
 
 </div>
 
@@ -2104,10 +2088,10 @@ Appearance name is the name of a game object with `Toast Appearance` component i
 
 ## trans
 
-Performs scene transition masking the real scene content with anything that is visible at the moment the command starts execution (except the UI), executing nested commands to change the scene and finishing with specified [transition effect](/guide/special-effects#transition-effects).<br/><br/> The command works similar to actor appearance transitions, but covers the whole scene. Use it to change multiple actors and other visible entities to a new state in a single batch with a transition effect.
+Performs a scene transition masking the real scene content with anything that is visible at the moment the command starts execution (except the UI), executing nested commands to change the scene and finishing with the specified [transition effect](/guide/special-effects#transition-effects).<br/><br/> The command works similarly to actor appearance transitions, but covers the whole scene. Use it to change multiple actors and other visible entities to a new state in a single batch with a transition effect.
 
 ::: info NOTE
-The UI will be hidden and user input blocked while the transition is in progress (nested commands are running). You can change that by overriding the `ISceneTransitionUI`, which handles the transition process.<br/><br/> Async nested commands will execute immediately, w/o the need to specify `time:0` for each.<br/><br/> The nested block is expected to always finish; don't nest any commands that could navigate outside the nested block, as this may cause undefined behaviour.
+The UI will be hidden and user input blocked while the transition is in progress (nested commands are running). You can change that by overriding the `ISceneTransitionUI`, which handles the transition process.<br/><br/> Async nested commands will execute immediately, without the need to specify `time:0` for each.<br/><br/> The nested block is expected to always finish; don't nest any commands that could navigate outside the nested block, as this may cause undefined behaviour.
 :::
 
 <div class="config-table">
@@ -2142,7 +2126,7 @@ Jenna: When will the damn rain stop?
 
 ## unless
 
-Marks the beginning of an inverted conditional execution block. Nested lines are considered body of the block and will be executed only in case the conditional primary parameter is evaluated to `false`. See [conditional execution](/guide/scenario-scripting#conditional-execution) guide for more info.
+Marks the beginning of an inverted conditional execution block. Nested lines are considered the body of the block and will be executed only in case the conditional primary parameter is evaluated to `false`. See the [conditional execution](/guide/scenario-scripting#conditional-execution) guide for more info.
 
 ::: info NOTE
 This command is inverse and complementary to [@if].
@@ -2152,7 +2136,7 @@ This command is inverse and complementary to [@if].
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [scenario expression](/guide/expressions), which should return a boolean value determining whether the associated nested block will be executed. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">expression</span> | string | A [scenario expression](/guide/expressions), which should return a boolean value determining whether the associated nested block will be executed. |
 
 </div>
 
@@ -2199,13 +2183,13 @@ Unlinks a text printer from an author (character actor) that was previously link
 
 ## unloadScene
 
-Unloads a [Unity scene](https://docs.unity3d.com/Manual/CreatingScenes.html) with the specified name. Don't forget to add the required scenes to the [build settings](https://docs.unity3d.com/Manual/BuildSettings.html) to make them available for loading. Be aware, that only scenes loaded additively can be then unloaded (at least one scene should always remain loaded).
+Unloads a [Unity scene](https://docs.unity3d.com/Manual/CreatingScenes.html) with the specified name. Don't forget to add the required scenes to the [build settings](https://docs.unity3d.com/Manual/BuildSettings.html) to make them available for loading. Be aware that only scenes loaded additively can then be unloaded (at least one scene should always remain loaded).
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">sceneName</span> | string | Name of the scene to unload. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">sceneName</span> | string | Name of the scene to unload. |
 
 </div>
 
@@ -2217,17 +2201,17 @@ Unloads a [Unity scene](https://docs.unity3d.com/Manual/CreatingScenes.html) wit
 
 ## unlock
 
-Sets an [unlockable item](/guide/unlockables) with the specified ID to `unlocked` state.
+Sets an [unlockable item](/guide/unlockables) with the specified ID to the `unlocked` state.
 
 ::: info NOTE
-The unlocked state of the items is stored in [global scope](/guide/state-management#global-state).<br/> In case item with the specified ID is not registered in the global state map, the corresponding record will automatically be added.
+The unlocked state of the items is stored in the [global scope](/guide/state-management#global-state).<br/> In case an item with the specified ID is not registered in the global state map, the corresponding record will automatically be added.
 :::
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">id</span> | string | ID of the unlockable item. Use `*` to unlock all the registered unlockable items. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">id</span> | string | ID of the unlockable item. Use `*` to unlock all the registered unlockable items. |
 
 </div>
 
@@ -2251,18 +2235,18 @@ Plays a voice clip at the specified path.
 | pitch | number | The perceived frequency (speed) of the playback, in [-3.0 to 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) range, where 1.0 is the normal speed. Negative values will play the audio in reverse. |
 | pos | number list | Position (relative to the scene borders, in percents) of the audio source. Position is described as follows: `0,0` is the bottom left, `50,50` is the center and `100,100` is the top right corner of the scene. Use Z-component (third member, eg `,,10`) to move by depth. |
 | wpos | number list | Position (in world space) of the audio source. When neither `pos` nor `wpos` is specified, the spatial mode is disabled. |
-| wait | boolean | Whether to wait for the audio to finish playing before executing next command. Has no effect when looped. |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">path</span> | string | Local path (name) of the audio resource. |
+| wait | boolean | Whether to wait for the audio to finish playing before executing the next command. Has no effect when looped. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">path</span> | string | Local path (name) of the audio resource. |
 | easing | string | Name of the [easing function](/guide/special-effects#animation-easing) to apply. When not specified, will use a default function set in the configuration. |
 | fade | number | Duration of the animation initiated by the command, in seconds. |
-| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), currently running animation will instantly complete before starting animating to the new target. |
-| waitFade | boolean | Whether to wait for the fade to finish before playing next command. |
+| lazy | boolean | When the animation initiated by the command is already running, enabling `lazy` will continue the animation to the new target from the current state. When `lazy` is not enabled (default behaviour), the currently running animation will instantly complete before starting animating to the new target. |
+| waitFade | boolean | Whether to wait for the fade to finish before playing the next command. |
 
 </div>
 
 ```nani
 ; Play a 'Rawr' voice resource in a low pitch.
-@voice Rawr pitch:-1.5
+@voice Rawr pitch:0.5
 ```
 
 ## wait
@@ -2273,7 +2257,7 @@ Holds script execution until the specified wait condition.
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">waitMode</span> | string | Wait conditions:<br/> - `i` user press continue or skip input key;<br/> - `0.0` timer (seconds);<br/> - `i0.0` timer, that is skip-able by continue or skip input keys. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">waitMode</span> | string | Wait conditions:<br/> - `i` user presses continue or skip input key;<br/> - `0.0` timer (seconds);<br/> - `i0.0` timer that is skippable by continue or skip input keys. |
 
 </div>
 
@@ -2297,13 +2281,13 @@ Jeez, what a disgusting Noise. Shut it down![wait i5][>]
 
 ## while
 
-Executes nested lines in a loop, as long as specified conditional expression resolves to `true`.
+Executes nested lines in a loop, as long as the specified conditional expression resolves to `true`.
 
 <div class="config-table">
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID  Required parameter: parameter should always be specified">expression</span> | string | A [scenario expression](/guide/expressions), which should return a boolean value determining whether the associated nested block should continue executing in loop. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">expression</span> | string | A [scenario expression](/guide/expressions), which should return a boolean value determining whether the associated nested block should continue executing in a loop. |
 
 </div>
 

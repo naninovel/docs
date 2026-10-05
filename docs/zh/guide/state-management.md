@@ -6,49 +6,49 @@ Naninovel 在运行时生成和使用的所有持久数据分为三类：
 - 全局状态
 - 用户设置
 
-数据序列化为 JSON 格式，并作为二进制 `.nson`（默认）或文本 `.json` 保存槽文件存储在特定于平台的 [持久数据目录](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html) 下。在 WebGL 上，由于现代浏览器的安全策略，序列化数据存储在 [IndexedDB](https://en.wikipedia.org/wiki/Indexed_Database_API) 中。
+数据序列化为 JSON 格式，并作为二进制 `.nson`（默认）或文本 `.json` 存档槽文件存储在特定于平台的 [持久数据目录](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html) 下。在 WebGL 上，由于现代浏览器的安全策略，序列化数据改为存储在 [IndexedDB](https://en.wikipedia.org/wiki/Indexed_Database_API) 中。
 
-序列化行为由序列化处理程序针对游戏保存、全局状态和用户设置独立控制。默认情况下，使用通用序列化处理程序。在大多数情况下，它们将使用异步 [System.IO](https://docs.microsoft.com/en-us/dotnet/api/system.io) 将槽文件读取和写入本地文件系统。但是，在某些平台（例如控制台）上，.NET IO API 不可用，在这种情况下，通用处理程序会回退到 Unity 的跨平台 [PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html)。
+序列化行为由序列化处理程序针对游戏存档、全局状态和用户设置分别控制。默认情况下，使用通用序列化处理程序。在大多数情况下，它们将使用异步 [System.IO](https://docs.microsoft.com/en-us/dotnet/api/system.io) 在本地文件系统中读写存档槽文件。但是，在某些平台（例如游戏主机）上，.NET IO API 不可用，在这种情况下，通用处理程序会回退到 Unity 的跨平台 [PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html)。
 
-序列化处理程序、保存文件夹的路径、允许的最大保存槽数和其他相关参数可以通过状态配置菜单进行修改。
+序列化处理程序、存档文件夹的路径、允许的最大存档槽数量和其他相关参数可以通过状态配置菜单进行修改。
 
 ![](https://i.gyazo.com/d1e5cfd136544f2c1b74966e3fd1bb45.png)
 
 ## 游戏状态
 
-游戏状态是每个游戏保存槽不同的数据，描述与玩家进度相关的引擎服务和其他对象的状态。示例包括：当前播放的剧本脚本和脚本中播放的脚本命令的索引、当前可见的角色及其在场景中的位置、当前播放的背景音乐曲目名称及其音量等。
+游戏状态是因游戏存档槽而异的数据，描述与玩家进度相关的引擎服务和其他对象的状态。示例包括：当前播放的剧本脚本以及该脚本中所播放命令的索引、当前可见的角色及其在场景中的位置、当前播放的背景音乐曲目名称及其音量等。
 
-要将当前游戏状态保存或加载到特定保存槽，请按如下方式使用 `IStateManager` 引擎服务：
+要将当前游戏状态保存到特定存档槽或从中加载，请按如下方式使用 `IStateManager` 引擎服务：
 
 ```csharp
 // 获取状态管理器的实例。
 var stateManager = Engine.GetService<IStateManager>();
 
-// 将当前游戏会话保存到 `mySaveSlot` 槽。
+// 将当前游戏会话保存到 `mySaveSlot` 存档槽。
 await stateManager.SaveGame("mySaveSlot");
-// 从 `mySaveSlot` 槽加载游戏会话。
+// 从 `mySaveSlot` 存档槽加载游戏会话。
 await stateManager.LoadGame("mySaveSlot");
 
-// 您也可以使用快速保存加载方法而不指定槽名称。
+// 您也可以使用快速存档和快速加载方法，无需指定存档槽名称。
 await stateManager.QuickSave();
 await stateManager.QuickLoad();
 ```
 
-请注意，保存加载 API 是 [异步的](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/)。如果您从同步方法调用 API，请使用 `IStateManager.OnGameSaveFinished` 和 `IStateManager.OnGameLoadFinished` 订阅完成事件。
+请注意，保存和加载 API 是 [异步的](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/)。如果您从同步方法调用 API，请使用 `IStateManager.OnGameSaveFinished` 和 `IStateManager.OnGameLoadFinished` 订阅完成事件。
 
 ## 全局状态
 
-某些数据应在游戏会话之间保持持久性。例如，“跳过已读文本”功能要求引擎存储哪些剧本脚本命令至少执行了一次（意味着玩家已经“看到”它们）。此类数据存储在单个“全局”保存槽中，不依赖于游戏保存加载操作。
+某些数据需要跨游戏会话持久保存。例如，“跳过已读文本”功能要求引擎存储哪些剧本脚本命令至少执行过一次（即玩家已经“看过”它们）。此类数据存储在单个“全局”存档槽中，不依赖于游戏的保存和加载操作。
 
 全局状态在引擎初始化时自动加载。您可以随时使用 `IStateManager` 保存全局状态：
 
 ```csharp
-await stateManager.SaveGlobalState();
+await stateManager.SaveGlobal();
 ```
 
 ## 用户设置
 
-用户设置（例如语言、音量和文本速度）与全局状态类似，存储在单个保存槽中。即使启用了 `Binary Save Files`，设置文件也始终保存为文本 `.json`，以便用户可以根据需要修改值。
+用户设置（例如语言、音量和文本速度）与全局状态类似，存储在单个存档槽中。即使启用了 `Binary Save Files`，设置文件也始终保存为文本 `.json`，以便用户可以根据需要修改值。
 
 用户设置在引擎初始化时自动加载。您可以随时使用 `IStateManager` 保存设置：
 
@@ -56,7 +56,7 @@ await stateManager.SaveGlobalState();
 await stateManager.SaveSettings();
 ```
 
-## 保存文件
+## 存档文件
 
 在可访问文件系统的平台上使用通用序列化处理程序时，所有状态都会写入 Unity [持久数据目录](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html) 下的 `Saves` 文件夹。例如，如果公司名称是 `Foo` 且游戏标题是 `Bar`，路径将是：
 
@@ -84,19 +84,19 @@ C:/Users/User/AppData/LocalLow/Foo/Bar/Saves
 
 :::
 
-该文件夹包含以下文件，其中 `###` 是槽编号：
+该文件夹包含以下文件，其中 `###` 是存档槽编号：
 
 | 文件                    | 默认上限 | 内容                   |
 |-------------------------|----------|------------------------|
-| `GameSave###.nson`      | 99       | 保存槽的游戏状态。     |
-| `GameQuickSave###.nson` | 18       | 快速保存槽的游戏状态。 |
-| `GameAutoSave###.nson`  | 18       | 自动保存槽的游戏状态。 |
+| `GameSave###.nson`      | 99       | 存档槽的游戏状态。     |
+| `GameQuickSave###.nson` | 18       | 快速存档槽的游戏状态。 |
+| `GameAutoSave###.nson`  | 18       | 自动存档槽的游戏状态。 |
 | `GlobalSave.nson`       | 1        | 全局状态。             |
 | `Settings.json`         | 1        | 用户设置。             |
 
-使用默认的槽上限时，该文件夹最多包含 137 个文件。游戏状态文件的大小主要取决于摄像机配置中的 `Thumbnail Resolution` 和状态配置中的 `Saved Rollback Steps`。
+使用默认的存档槽上限时，该文件夹最多包含 137 个文件。游戏状态文件的大小主要取决于摄像机配置中的 `Thumbnail Resolution` 和状态配置中的 `Saved Rollback Steps`。
 
-禁用 `Binary Save Files` 时，游戏状态和全局状态文件的扩展名为 `.json` 而不是 `.nson`。文件夹名称、文件名称和槽上限可以在状态配置中更改。
+禁用 `Binary Save Files` 时，游戏状态和全局状态文件的扩展名为 `.json` 而不是 `.nson`。文件夹名称、文件名称和存档槽上限可以在状态配置中更改。
 
 在 Unity 编辑器中，文件改为存储在 Naninovel 数据文件夹（默认为 `Assets/NaninovelData`）的 `.nani/Transient/Saves` 下。
 
@@ -106,7 +106,7 @@ C:/Users/User/AppData/LocalLow/Foo/Bar/Saves
 
 ## 自定义状态
 
-您可以将自定义对象的状态处理委托给 `IStateManager`，以便它们在玩家保存时与所有引擎数据一起序列化到保存槽，并在加载游戏时反序列化回来。内置的状态相关功能（例如回滚）也将开箱即用地用于自定义状态。
+您可以将自定义对象的状态处理委托给 `IStateManager`，以便它们在玩家保存游戏时与引擎的所有数据一起序列化到存档槽，并在加载游戏时反序列化回来。内置的状态相关功能（例如回滚）也同样适用于自定义状态，开箱即用。
 
 以下示例演示了委托 `MyCustomBehaviour` 组件的状态处理。
 
@@ -165,21 +165,21 @@ public class MyCustomBehaviour : MonoBehaviour
 }
 ```
 
-如果您的自定义对象是在加载游戏状态后创建的，请使用 `LastGameState` 访问最后加载的状态并手动调用反序列化方法：
+如果您的自定义对象是在加载游戏状态后创建的，请使用 `IStateManager.Game` 访问最后加载的状态并手动调用反序列化方法：
 
 ```csharp
 private async void Start ()
 {
-    if (stateManager.LastGameState is { } state)
+    if (stateManager.Game is { } state)
         await DeserializeState(state);
 }
 ```
 
 ::: tip EXAMPLE
-在 [库存示例](/zh/guide/samples#库存-inventory) 中可以找到使用带有自定义结构列表的自定义状态来保存加载库存 UI 游戏状态的更高级示例。具体来说，自定义状态的反序列化/序列化在 `Scripts/Runtime/Inventory/UI/InventoryUI.cs` 中实现。
+在 [库存示例](/zh/guide/samples#库存) 中可以找到一个更高级的示例：使用包含自定义结构体列表的自定义状态来保存和加载库存 UI 的游戏状态。具体来说，自定义状态的序列化/反序列化在 `Scripts/Runtime/Inventory/UI/InventoryUI.cs` 中实现。
 :::
 
-您还可以访问引擎的全局和设置状态以与其一起存储自定义数据。与特定于游戏会话并需要订阅保存/加载事件的游戏状态不同，全局和设置状态对象是单例，可以直接通过状态管理器的属性访问。
+您还可以访问引擎的全局状态和设置状态，随其一起存储自定义数据。与特定于游戏会话并需要订阅保存/加载事件的游戏状态不同，全局状态和设置状态对象是单例，可以直接通过状态管理器的属性访问。
 
 ```csharp
 [System.Serializable]
@@ -196,14 +196,14 @@ class MyGlobal
 
 MySettings MySettings
 {
-    get => stateManager.SettingsState.GetState<MySettings>();
-    set => stateManager.SettingsState.SetState<MySettings>(value);
+    get => stateManager.Settings.GetState<MySettings>();
+    set => stateManager.Settings.SetState<MySettings>(value);
 }
 
 MyGlobal MyGlobal
 {
-    get => stateManager.GlobalState.GetState<MyGlobal>();
-    set => stateManager.GlobalState.SetState<MyGlobal>(value);
+    get => stateManager.Global.GetState<MyGlobal>();
+    set => stateManager.Global.SetState<MyGlobal>(value);
 }
 ```
 
@@ -222,11 +222,11 @@ var monster2 = stateMap.GetState<MonsterState>("2");
 
 ## 自定义序列化处理程序
 
-默认情况下，当选择通用序列化处理程序时，引擎状态（游戏保存、全局状态、设置）通过异步 [System.IO](https://docs.microsoft.com/en-us/dotnet/api/system.io) 序列化，或者使用 Unity 的跨平台 [PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html) 作为某些平台的后备。要自定义序列化方案，请使用自定义处理程序。
+默认情况下，当选择通用序列化处理程序时，引擎状态（游戏存档、全局状态、设置）通过异步 [System.IO](https://docs.microsoft.com/en-us/dotnet/api/system.io) 序列化，或者在某些平台上回退到 Unity 的跨平台 [PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html)。要自定义序列化方案，请使用自定义处理程序。
 
-要添加自定义处理程序，请分别为游戏保存槽、全局状态和设置实现 `ISaveSlotManager<GameStateMap>`、`ISaveSlotManager<GlobalStateMap>` 和 `ISaveSlotManager<SettingsStateMap>` 接口（每个都应该有自己的实现类）。
+要添加自定义处理程序，请分别为游戏存档槽、全局状态和设置实现 `ISaveSlotManager<GameStateMap>`、`ISaveSlotManager<GlobalStateMap>` 和 `ISaveSlotManager<SettingsStateMap>` 接口（每个都应该有自己的实现类）。
 
-实现应具有带有 `StateConfiguration` 和 `string` 参数的公共构造函数，其中第一个是状态配置对象，第二个是保存文件夹的路径；如果需要，您可以在自定义实现中忽略这些参数。
+实现应具有带有 `StateConfiguration` 和 `string` 参数的公共构造函数，其中第一个是状态配置对象，第二个是存档文件夹的路径；如果需要，您可以在自定义实现中忽略这些参数。
 
 下面是一个自定义设置序列化处理程序的示例，它仅在其任何方法被调用时记录日志。
 
@@ -291,6 +291,6 @@ public class CustomSettingsSlotManager : ISaveSlotManager<SettingsStateMap>
 您可以为自定义序列化处理程序选择任何名称；`CustomSettingsSlotManager` 只是一个示例。
 :::
 
-当实现自定义处理程序时，它会出现在状态配置菜单中，您可以在其中选择它而不是内置处理程序。
+实现自定义处理程序后，它会出现在状态配置菜单中，您可以在其中选择它来代替内置处理程序。
 
 ![](https://i.gyazo.com/213bc2bb8c7cc0e62ae98a579579f313.png)

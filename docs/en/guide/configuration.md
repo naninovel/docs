@@ -1,5 +1,6 @@
 # Configuration
-The engine configuration is stored in multiple scriptable object assets located at `Assets/NaninovelData/Resources/Naninovel/Configuration` folder. They are automatically generated when opening the corresponding configuration menus in the Unity editor for the first time. 
+
+The engine configuration is stored in multiple scriptable object assets located in the `Assets/NaninovelData/Resources/Naninovel/Configuration` folder. They are automatically generated when opening the corresponding configuration menus in the Unity Editor for the first time.
 
 Use `Naninovel -> Configuration` or `Edit -> Project Settings -> Naninovel` to access the configuration menu.
 
@@ -7,7 +8,7 @@ Notice that all the configuration menus support [Unity's presets feature](https:
 
 ![](https://i.gyazo.com/55f5c74bfc16e1af2455034647525df3.mp4)
 
-It's possible to modify configuration objects at runtime, add new custom configurations and change the way the objects are accessed at runtime (eg, read configuration from JSON files stored on a remote host); see [custom configuration](/guide/custom-configuration) guide for more information.
+It's possible to modify configuration objects at runtime, add new custom configurations and change the way the objects are accessed at runtime (eg, read configuration from JSON files stored on a remote host); see the [custom configuration](/guide/custom-configuration) guide for more information.
 
 ## Audio
 
@@ -24,7 +25,7 @@ Default Bgm Volume | 1 | BGM volume to set when the game is first started.
 Default Sfx Volume | 1 | SFX volume to set when the game is first started.
 Default Voice Volume | 1 | Voice volume to set when the game is first started.
 Enable Auto Voicing | False | When enabled, each [@print] command will attempt to play an associated voice clip.
-Voice Overlap Policy | Prevent Overlap | Dictates how to handle concurrent voices playback:<br> • Allow Overlap — Concurrent voices will be played without limitation.<br> • Prevent Overlap — Prevent concurrent voices playback by stopping any played voice clip before playing a new one.<br> • Prevent Character Overlap — Prevent concurrent voices playback per character; voices of different characters (auto voicing) and any number of [@voice] command are allowed to be played concurrently.
+Voice Overlap Policy | Prevent Overlap | Dictates how to handle concurrent voice playback:<br> • Allow Overlap — Concurrent voices will be played without limitation.<br> • Prevent Overlap — Prevent concurrent voice playback by stopping any played voice clip before playing a new one.<br> • Prevent Character Overlap — Prevent concurrent voice playback per character; voices of different characters (auto voicing) and any number of [@voice] commands are allowed to be played concurrently.
 Voice Locales | Null | Assign localization tags to allow selecting voice language in the game settings independently of the main localization.
 Default Fade Duration | 0.35 | Default duration of the volume fade in/out when starting or stopping playing audio.
 Default Fade Easing | Linear | Easing function to use by default for the audio fades and modification.
@@ -34,7 +35,7 @@ Master Group Path | Master | Path of the mixer's group to control master volume.
 Master Volume Handle Name | Master Volume | Name of the mixer's handle (exposed parameter) to control master volume.
 Bgm Group Path | Master/BGM | Path of the mixer's group to control volume of background music.
 Bgm Volume Handle Name | BGM Volume | Name of the mixer's handle (exposed parameter) to control background music volume.
-Sfx Group Path | Master/SFX | Path of the mixer's group to control sound effects music volume.
+Sfx Group Path | Master/SFX | Path of the mixer's group to control sound effects volume.
 Sfx Volume Handle Name | SFX Volume | Name of the mixer's handle (exposed parameter) to control sound effects volume.
 Voice Group Path | Master/Voice | Path of the mixer's group to control voice volume.
 Voice Volume Handle Name | Voice Volume | Name of the mixer's handle (exposed parameter) to control voice volume.
@@ -50,7 +51,7 @@ Property | Default Value | Description
 Default Metadata | Object Ref | Metadata to use by default when creating background actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating background actors with specific IDs.
 Shared Poses | Object Ref | Named states (poses) shared between the backgrounds; pose name can be used as appearance in [@back] commands to set enabled properties of the associated state.
-Scene Origin | (0.50, 0.00) | Reference point on scene to be considered as origin for the managed actors. Doesn't affect positioning.
+Scene Origin | (0.50, 0.00) | Reference point on the scene to be considered as origin for the managed actors.
 Z Offset | 100 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
 Z Step | 0.1 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
 Default Duration | 0.35 | Default duration (in seconds) for all the actor modifications (changing appearance, position, tint, etc).
@@ -65,17 +66,17 @@ Auto Show On Modify | True | Whether to automatically reveal (show) an actor whe
 
 Property | Default Value | Description
 --- | --- | ---
-Reference Resolution | (1920, 1080) | The reference resolution is used to evaluate proper rendering dimensions, so that actors are correctly positioned on scene. As a rule of thumb, set this equal to the resolution of the background textures you make for the game.
-Reference PPU | 100 | How many pixels correspond to a scene unit. Reducing this will make all the actors appear smaller and vice-versa. Default value of 100 is recommended for most cases.
-Aspect Ratios | Object Ref | The supported aspect ratios. When specified will filter the available resolutions in game settings and enforce the aspect ratio with the managed cameras. Keep empty to not restrict or enforce the aspect ratios.<br><br>Note that this feature requires Naninovel's main camera to be the base camera. When using multiple camera setup, make sure to disable 'Stack Camera' in the configuration.
-Match Screen Width | False | Whether reference scene rectangle width should be matched against screen width. When enabled, relative (scene) position evaluation will use screen border as the origin; otherwise reference resolution is used.
+Reference Resolution | (1920, 1080) | The reference resolution is used to evaluate proper rendering dimensions, so that actors are correctly positioned on the scene. As a rule of thumb, set this equal to the resolution of the background textures you make for the game.
+Reference PPU | 100 | How many pixels correspond to a scene unit. Reducing this will make all the actors appear smaller and vice versa. The default value of 100 is recommended for most cases.
+Aspect Ratios | Object Ref | The supported aspect ratios. When specified, will filter the available resolutions in game settings and enforce the aspect ratio with the managed cameras. Keep empty to not restrict or enforce the aspect ratios.<br><br>Note that this feature requires Naninovel's main camera to be the base camera. When using a multi-camera setup, make sure to disable `Stack Camera` in the configuration.
+Match Screen Width | False | Whether the reference scene rectangle width should be matched against the screen width. When enabled, relative (scene) position evaluation will use the screen border as the origin; otherwise, the reference resolution is used.
 Initial Position | (0.00, 0.00, -10.00) | Initial world position of the managed cameras.
-Stack Camera | True | Whether to look for existing 'base' cameras and, when found, add (overlay) Naninovel's main camera to the base camera stack. You can also use the 'Setup Base Camera' method of the 'Camera Events' component to manually stack the camera, even when this option is disabled.
-Stack Camera Tag | Null | When 'Stack Camera' is enabled, specifies the tag of the base camera to look for. If not specified, the first found base camera will be used.
+Stack Camera | True | Whether to look for existing 'base' cameras and, when found, add (overlay) Naninovel's main camera to the base camera stack. You can also use the `Setup Base Camera` method of the `Camera Events` component to manually stack the camera, even when this option is disabled.
+Stack Camera Tag | Null | When `Stack Camera` is enabled, specifies the tag of the base camera to look for. If not specified, the first found base camera will be used.
 Clear Color | RGBA(0.098, 0.098, 0.098, 1.000) | The color used to clear the screen when rendering with the default camera.
 Main Camera | Null | A prefab with a camera component to use for rendering. Will use a default one when not specified. In case you wish to set some camera properties (background color, FOV, HDR, etc) or add post-processing scripts, create a prefab with the desired camera setup and assign the prefab to this field.
 Main Renderer | -1 | URP renderer to use for the managed main camera. By default uses the renderer configured on the camera.
-Use UI Camera | True | Whether to render the UI with a dedicated camera. This option is for backward-compatibility and should not be disabled in new projects. Expect issues when disabled (eg, constant uGUI layout rebuilds on camera animations).
+Use UI Camera | True | Whether to render the UI with a dedicated camera. This option is for backward compatibility and should not be disabled in new projects. Expect issues when disabled (eg, constant uGUI layout rebuilds on camera animations).
 UI Camera | Null | A prefab with a camera component to use for UI rendering. Will use a default one when not specified. Has no effect when `Use UI Camera` is disabled.
 UI Renderer | -1 | URP renderer to use for the managed UI camera. By default uses the renderer configured on the camera. Has no effect when `Use UI Camera` is disabled.
 Default Duration | 0.35 | Default duration (in seconds) for all the camera modifications (changing zoom, position, rotation, etc).
@@ -83,7 +84,7 @@ Default Easing | Linear | Easing function to use by default for all the camera m
 Disable Rendering | False | Whether to disable Naninovel cameras by default when the engine is initialized. Useful when Naninovel is integrated as a drop-in dialogue system and shouldn't render after initialization.
 Capture Thumbnails | True | Whether to capture small screen previews when saving the game; these previews are then used in the save slots.
 Thumbnail Resolution | (240, 140) | The resolution in which thumbnails to preview game save slots will be captured.
-Hide UI In Thumbnails | False | Whether to ignore UI layer when capturing thumbnails.
+Hide UI In Thumbnails | False | Whether to ignore the UI layer when capturing thumbnails.
 
 </div>
 
@@ -99,7 +100,7 @@ Default Metadata | Object Ref | Metadata to use by default when creating charact
 Metadata | Object Ref | Metadata to use when creating character actors with specific IDs.
 Avatar Loader | Character Avatars- (Addressable, Project) | Configuration of the resource loader used with character avatar texture resources.
 Shared Poses | Object Ref | Named states (poses) shared between the characters; pose name can be used as appearance in [@char] commands to set enabled properties of the associated state.
-Scene Origin | (0.50, 0.00) | Reference point on scene to be considered as origin for the managed actors. Doesn't affect positioning.
+Scene Origin | (0.50, 0.00) | Reference point on the scene to be considered as origin for the managed actors.
 Z Offset | 50 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
 Z Step | 0.1 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
 Default Duration | 0.35 | Default duration (in seconds) for all the actor modifications (changing appearance, position, tint, etc).
@@ -114,7 +115,7 @@ Auto Show On Modify | True | Whether to automatically reveal (show) an actor whe
 
 Property | Default Value | Description
 --- | --- | ---
-Default Handler Id | ButtonList | ID of the choice handler to use by default.
+Default Handler ID | ButtonList | ID of the choice handler to use by default.
 Choice Button Loader | Choice Buttons- (Addressable, Project) | Configuration of the resource loader used for loading custom choice buttons.
 Default Metadata | Object Ref | Metadata to use by default when creating choice handler actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating choice handler actors with specific IDs.
@@ -130,18 +131,18 @@ Auto Show On Modify | False | Whether to automatically reveal (show) an actor wh
 
 Property | Default Value | Description
 --- | --- | ---
-Override Objects Layer | False | Whether to assign a specific layer to all the engine objects. Engine's camera will use the layer for the culling mask. Use this to isolate Naninovel objects from being rendered by other cameras.
+Override Objects Layer | False | Whether to assign a specific layer to all the engine objects. The engine's camera will use the layer for the culling mask. Use this to isolate Naninovel objects from being rendered by other cameras.
 Objects Layer | 0 | When `Override Objects Layer` is enabled, the specified layer will be assigned to all the engine objects.
 Async Instantiation | True | Whether to use `Object.InstantiateAsync` for instantiating engine objects, which moves most associated work off the main thread. Keep enabled unless experiencing issues.
-Initialize On Application Load | True | Whether to automatically initialize the engine when application starts.
-Check Unity Version | True | Whether to warn when Unity version is not supported.
+Initialize On Application Load | True | Whether to automatically initialize the engine when the application starts.
+Check Unity Version | True | Whether to warn when the Unity version is not supported.
 Scene Independent | True | Whether to apply `DontDestroyOnLoad` to the engine objects, making their lifetime independent of any loaded scenes. When disabled, the objects will be part of the Unity scene where the engine was initialized and will be destroyed when the scene is unloaded.
 Show Initialization UI | True | Whether to show a loading UI while the engine is initializing.
 Custom Initialization UI | Null | UI to show while the engine is initializing (when enabled). Will use a default one when not specified.
-Enable Bridging | True | Whether to automatically start the bridging server to communicate with external Naninovel tools: IDE extension, web editor, etc.
-Auto Generate Metadata | True | Whether to automatically generate project metadata when Unity editor is started and after compiling C# scripts.
-Enable Development Console | True | Whether to enable development console.
-Debug Only Console | True | When enabled, development console will only be available in development (debug) builds.
+Enable Bridging | True | Whether to automatically start the bridging server to communicate with external Naninovel tools: IDE extension, Story Editor, etc.
+Auto Generate Metadata | True | Whether to automatically generate project metadata when the Unity Editor is started and after compiling C# scripts.
+Enable Development Console | True | Whether to enable the development console.
+Debug Only Console | True | When enabled, the development console will only be available in development (debug) builds.
 
 </div>
 
@@ -151,14 +152,14 @@ Debug Only Console | True | When enabled, development console will only be avail
 
 Property | Default Value | Description
 --- | --- | ---
-Spawn Event System | True | Whether to spawn a Naninovel-specific event system; required for uGUI interactions. Disable, if you'd like to initialize the event system yourself.
-Event System | Null | A prefab with `EventSystem` component to spawn on engine init and use for input processing. Will use the default event system when not assigned.
-Input Actions | Null | When Unity's input system is installed, assign input actions asset here.<br><br>To map input actions to Naninovel's input samplers, create `Naninovel` action map and add actions with names equal to the input names.<br><br>Will use the default input actions when not assigned.
-Action Maps | Object Ref | Input action map names in the specified 'Input Actions' asset to register with the Naninovel input.
+Spawn Event System | True | Whether to spawn a Naninovel-specific event system; required for uGUI interactions. Disable if you'd like to initialize the event system yourself.
+Event System | Null | A prefab with an `EventSystem` component to spawn on engine init and use for input processing. Will use the default event system when not assigned.
+Input Actions | Null | When Unity's input system is installed, assign an input actions asset here.<br><br>To map input actions to Naninovel's inputs, add actions with names equal to the input names under an action map listed in `Action Maps` (`Naninovel` by default).<br><br>Will use the default input actions when not assigned.
+Action Maps | Object Ref | Input action map names in the specified `Input Actions` asset to register with the Naninovel input.
 Rebind Timeout | 5 | How long, in seconds, to wait for a control to be activated when rebinding an input before canceling. Zero or below disables the timeout.
 Rebind Cancel Key | &lt;Keyboard&gt;/escape | Path of the control which cancels rebinding an input when activated. Leave empty to disable.
 Enable Gyroscope | True | Whether to enable the gyroscope device, which is disabled by default in Unity's input system. Required for the camera look by rotating a mobile device.
-Detect Input Mode | True | Whether to change input mode when associated device is activated. Eg, switch to gamepad when any gamepad button is pressed and switch back to mouse when mouse button clicked.
+Detect Input Mode | True | Whether to change input mode when the associated device is activated. Eg, switch to gamepad when any gamepad button is pressed and switch back to mouse when a mouse button is clicked.
 Disable Input | False | Whether to disable input processing by default when the engine is initialized. Useful when Naninovel is integrated as a drop-in dialogue system and shouldn't react to user input after initialization.
 
 </div>
@@ -170,13 +171,13 @@ Disable Input | False | Whether to disable input processing by default when the 
 Property | Default Value | Description
 --- | --- | ---
 Loader | Localization- (Addressable, Project) | Configuration of the resource loader used with the localization resources.
-Languages | Object Ref | RFC5646 language tags mapped to default language display names. Restart Unity editor for changes to take effect.
+Languages | Object Ref | RFC5646 language tags mapped to default language display names. Restart the Unity Editor for changes to take effect.
 Source Locale | en | Locale of the source project resources (language in which the project assets are being authored).
-Expose Source Locale | True | Whether to make the source locale available to the end-users (players), ie included to the language selection.<br><br>Disabling this option can be useful in case you'd like to share the source localizable text with a third-party (eg, for proofreading), but don't want to share the scenario scripts. In which case, disable this option and add a dedicated locale for the source material, which can then be exported to the localization documents or spreadsheets.
+Expose Source Locale | True | Whether to make the source locale available to the end-users (players), ie included in the language selection.<br><br>Disabling this option can be useful in case you'd like to share the source localizable text with a third party (eg, for proofreading), but don't want to share the scenario scripts. In which case, disable this option and add a dedicated locale for the source material, which can then be exported to the localization documents or spreadsheets.
 Default Locale | Null | Locale selected by default when running the game for the first time. Will select `Source Locale` when not specified.
-Auto Detect Locale | True | When enabled and the game is running for the first time, attempts to automatically detect locale based on system language. When succeeds and the locale is supported by the game, selects it; otherwise falls back to 'Default Locale'.
-Record Separator | \| | Text character to join common localized script records, such as parts of generic text lines and localizable parameter values.
-Annotation Prefix | &gt;  | Text character to insert before annotation lines to distinguish them for the localized text. Annotations are comments optionally added to the generated localization documents to provide additional context for the translators, such as author of the printed text messages, inlined commands and command lines containing localized parameters. Stub character is used to replace localized parts of such annotations, as they're duplicated on the next comment line containing the text to localize.
+Auto Detect Locale | True | When enabled and the game is running for the first time, attempts to automatically detect the locale based on the system language. When successful and the locale is supported by the game, selects it; otherwise falls back to `Default Locale`.
+Record Separator | \| | Character used to join text fragments of a single localization record, such as the parts of a generic text line or multiple localizable parameter values of a command.
+Annotation Prefix | &gt;  | String to insert before annotation lines to distinguish them from the localized text. Annotations are comments optionally added to the generated localization documents to provide additional context for the translators, such as the author of the printed text messages, inlined commands and command lines containing localized parameters. The localized parts of such annotations are replaced with their text IDs, as the text itself is placed on the next comment line.
 
 </div>
 
@@ -198,11 +199,11 @@ Multiline Documents | Object Ref | Local resource paths of the managed text docu
 Property | Default Value | Description
 --- | --- | ---
 Loader | Movies- (Addressable, Project) | Configuration of the resource loader used with movie resources.
-Skip On Input | True | Whether to skip movie playback when user activates `cancel` input keys.
-Skip Frames | True | Whether to skip frames to catch up with current time.
+Skip On Input | True | Whether to skip movie playback when the user activates the `SkipMovie` input.
+Skip Frames | True | Whether to skip frames to catch up with the current time.
 Fade Duration | 1 | Time in seconds to fade in/out before starting/finishing playing the movie.
 Custom Fade Texture | Null | Texture to show while fading. Will use a simple black texture when not specified.
-Play Intro Movie | False | Whether to automatically play a movie after engine initialization and before showing the main menu.
+Play Intro Movie | False | Whether to automatically play a movie after engine initialization and before showing the title menu.
 Intro Movie Name | Null | Path to the intro movie resource.
 
 </div>
@@ -213,15 +214,14 @@ Intro Movie Name | Null | Path to the intro movie resource.
 
 Property | Default Value | Description
 --- | --- | ---
-Resource Policy | Conservative | Dictates when the resources are loaded and unloaded during script execution:<br><br> • Conservative — The default mode with balanced memory utilization. All the resources required for script execution are preloaded when starting playback and unloaded when the script has finished playing. Scripts referenced in [@gosub] commands are preloaded as well. Additional scripts can be preloaded by using the `hold` parameter of the [@goto] command.<br><br> • Optimistic — All the resources required by the played script, as well as all resources of the scripts specified in [@goto] and [@gosub] commands, are preloaded and not unloaded unless the `release` parameter is specified in the [@goto] command. This minimizes loading screens and allows smooth rollback, but requires manually specifying when the resources should be unloaded, increasing the risk of out-of-memory exceptions.<br><br> • Lazy — No resources are preloaded for executed scripts when starting playback, and no loading screens are automatically shown. Instead, only the resources required for the next few commands are loaded "on the fly" while the script is playing, and resources used by executed commands are immediately released. This policy requires no scenario planning or manual control and consumes the least memory, but it may result in stutters during gameplay due to resources being loaded in the background—especially when fast-forwarding (skip mode) or performing rollback.
-Lazy Buffer | 25 | When lazy resource policy is enabled, controls the size of the preload buffer, that is the maximum number of script commands to preload.
-Lazy Priority | Below Normal | When lazy resource policy is enabled, controls the background thread priority where the resources are loaded. Decrease to minimize stutters at the cost of longer load times.
-Remove Actors | True | Whether to automatically remove unused actors (characters, backgrounds, text printers and choice handlers) when unloading script resources. Note that even when enabled, it's still possible to remove actors manually with `@remove` commands at any time.
-Enable Build Processing | True | Whether to register a custom build player handle to process the assets assigned as Naninovel resources.<br><br>Warning: In order for this setting to take effect, it's required to restart the Unity editor.
-Use Addressables | True | When the Addressable Asset System is installed, enabling this property will optimize asset processing step improving the build time.
-Auto Build Bundles | True | Whether to automatically build the addressable asset bundles when building the player. Has no effect when `Use Addressables` is disabled.
-Label By Scripts | True | Whether to label all the Naninovel addressable assets by the scenario script path they're used in. When `Bundle Mode` is set to `Pack Together By Label` in the addressable group settings, will result in a more efficient bundle packing.<br><br>Note that script labels will be assigned to all the assets with 'Naninovel' label, which includes assets manually exposed to the addressable resource provider (w/o using the resource editor menus).
-Local Root Path | %DATA%/Resources | Path root to use for the local resource provider. Can be an absolute path to the folder where the resources are located, or a relative path with one of the available origins:<br> • %DATA% — Game data folder on the target device (UnityEngine.Application.dataPath).<br> • %PDATA% — Persistent data directory on the target device (UnityEngine.Application.persistentDataPath).<br> • %STREAM% — `StreamingAssets` folder (UnityEngine.Application.streamingAssetsPath).<br> • %SPECIAL{F}% — An OS special folder (where F is value from System.Environment.SpecialFolder).
+Resource Policy | Conservative | Dictates when the resources are loaded and unloaded during script execution:<br><br> • Conservative — The default mode with balanced memory utilization. All the resources required for script execution are preloaded when starting playback and unloaded when the script has finished playing. Scripts referenced in [@gosub] commands are preloaded as well. Additional scripts can be preloaded by using the `hold` parameter of the [@goto] command.<br><br> • Optimistic — All the resources required by the played script, as well as all resources of the scripts specified in [@goto] and [@gosub] commands, are preloaded and not unloaded unless the `release` parameter is specified in the [@goto] command. This minimizes loading screens and allows smooth rollback, but requires manually specifying when the resources should be unloaded, increasing the risk of out-of-memory exceptions.<br><br> • Lazy — No resources are preloaded for executed scripts when starting playback, and no loading screens are automatically shown. Instead, only the resources required for the next few commands are loaded "on the fly" while the script is playing, and resources used by executed commands are immediately released. This policy requires no scenario planning or manual control and consumes the least memory, but it may result in stutters during gameplay due to resources being loaded in the background — especially when fast-forwarding (skip mode) or performing rollback.
+Lazy Buffer | 25 | When the lazy resource policy is enabled, controls the size of the preload buffer, that is, the maximum number of script commands to preload.
+Lazy Priority | Below Normal | When the lazy resource policy is enabled, controls the background thread priority where the resources are loaded. Decrease to minimize stutters at the cost of longer load times.
+Remove Actors | True | Whether to automatically remove unused actors (characters, backgrounds, text printers and choice handlers) when unloading script resources. Note that even when enabled, it's still possible to remove actors manually with [@remove] commands at any time.
+Enable Build Processing | True | Whether to register a custom build player handler to process the assets assigned as Naninovel resources.<br><br>Warning: In order for this setting to take effect, it's required to restart the Unity Editor.
+Auto Build Bundles | True | Whether to automatically build the addressable asset bundles when building the player.
+Label By Scripts | True | Whether to label all the Naninovel addressable assets by the scenario script path they're used in. When `Bundle Mode` is set to `Pack Together By Label` in the addressable group settings, will result in more efficient bundle packing.<br><br>Note that script labels will be assigned to all the assets whose address starts with 'Naninovel/', which includes assets manually exposed to the addressable resource provider (without using the resource editor menus).
+Local Root Path | %DATA%/Resources | Path root to use for the local resource provider. Can be an absolute path to the folder where the resources are located, or a relative path with one of the available origins:<br> • %DATA% — Game data folder on the target device (UnityEngine.Application.dataPath).<br> • %PDATA% — Persistent data directory on the target device (UnityEngine.Application.persistentDataPath).<br> • %STREAM% — `StreamingAssets` folder (UnityEngine.Application.streamingAssetsPath).<br> • %SPECIAL{F}% — An OS special folder (where F is a value from System.Environment.SpecialFolder).
 Video Stream Extension | .mp4 | When streaming videos under WebGL (movies, video backgrounds), specify the extension of the video files.
 Reload Scripts | True | Whether to watch and hot reload modified scenario scripts stored under the local provider directory.
 
@@ -235,11 +235,11 @@ Property | Default Value | Description
 --- | --- | ---
 Default Skip Mode | Read Only | Default skip mode to set when the game is first started.
 Skip Time Scale | 10 | Time scale to use when in skip (fast-forward) mode. Set to 1 to disable changing the time scale on skip.
-Min Auto Play Delay | 1 | Minimum seconds to wait before executing next command while in auto play mode.
-Complete On Continue | True | Whether to instantly complete blocking (`wait!`) commands performed over time (eg, animations, hide/reveal, tint changes, etc) when `Continue` input is activated.
-Show Debug On Init | False | Whether to show player debug window on engine initialization.
-Wait By Default | False | Whether to wait the played commands when the `wait` parameter is not explicitly specified. Only applicable to the awaitable (asynchronous) commands.<br><br>WARNING: Don't enable in new projects, as this option is kept for backward compatibility and will be removed in the next release.
-Show Loading UI | False | Whether to automatically show `ILoadingUI` during the script pre-/loading and engine reset operations. Allows masking resource loading process with the loading screen.
+Min Auto Play Delay | 1 | Minimum seconds to wait before executing the next command while in auto-advance mode.
+Complete On Continue | True | Whether to instantly complete blocking (`wait!`) commands performed over time (eg, animations, hide/reveal, tint changes, etc) when the `Continue` input is activated.
+Show Debug On Init | False | Whether to show the player debug window on engine initialization.
+Wait By Default | False | Whether to wait for the played commands when the `wait` parameter is not explicitly specified. Only applicable to the awaitable (asynchronous) commands.<br><br>WARNING: Don't enable in new projects, as this option is kept for backward compatibility and will be removed in the next release.
+Show Loading UI | False | Whether to automatically show `ILoadingUI` during the script pre-/loading and engine reset operations. Allows masking the resource loading process with the loading screen.
 
 </div>
 
@@ -251,19 +251,19 @@ Property | Default Value | Description
 --- | --- | ---
 Loader | Scripts- (Addressable, Project) | Configuration of the resource loader used with scenario script resources.
 Script Compiler | Naninovel Script Compiler | IScriptCompiler implementation to use for transforming source scenario text into script assets. Reimport script assets after modifying this setting for changes to take effect.
-Compiler Localization |  (Naninovel.Compiler Localization) | Locale-specific NaniScript compiler options. Will propagate to IDE extension on metadata sync. Restart Unity editor and reimport script assets for changes to take effect.
+Compiler Localization | Object Ref | Locale-specific NaniScript compiler options. Will propagate to the IDE extension on metadata sync. Restart the Unity Editor and reimport script assets for changes to take effect.
 Initialization Script | Null | Local resource path of the script to play right after the engine initialization.
-Title Script | Title | Local resource path of the script to play when showing the Title UI. Can be used to setup the title screen scene (background, music, etc).
-Start Game Script | Entry | Local resource path of the script to play when starting a new game. Will use first available when not specified.
+Title Script | Title | Local resource path of the script to play when showing the Title UI. Can be used to set up the title screen scene (background, music, etc).
+Start Game Script | Entry | Local resource path of the script to play when starting a new game. Will use the first available when not specified.
 Auto Add Scripts | True | Whether to automatically add created scenario scripts to the resources.
 Auto Resolve Path | True | Whether to automatically resolve and update resource paths whenever scripts are created, renamed or moved.
-Hot Reload Scripts | True | Whether to reload modified (both via visual and external editors) scripts and apply changes during play mode without restarting the playback.
+Hot Reload Scripts | True | Whether to reload modified (both via the Story Editor and external editors) scripts and apply changes during Play mode without restarting the playback.
 Watch Scripts | True | Whether to run a file system watcher over '.nani' files. Required to register script changes when edited with an external application.
-Show Script Navigator | False | Whether to auto-show script navigator UI after engine is initialized (requires 'IScriptNavigatorUI' available in UI resources).
+Show Script Navigator | False | Whether to auto-show the script navigator UI after the engine is initialized (requires `IScriptNavigatorUI` available in UI resources).
 Enable Story Editor | True | Whether to enable the Story Editor app.
 Show Selected Script | True | Whether to open selected scenario script assets inside the Story Editor.
 Enable Community Modding | False | Whether to allow adding external scenario scripts to the build.
-External Loader | Scripts- (Local) | Configuration of the resource loader used to locate external scenario script resources.<br><br>Note that the 'External' loader is used only to locate the scripts; you still need to configure 'Loader' to actually load them; see the  'Community Modding' guide for more info.
+External Loader | Scripts- (Local) | Configuration of the resource loader used to locate external scenario script resources.<br><br>Note that the `External` loader is used only to locate the scripts; you still need to configure `Loader` to actually load them; see the community modding guide for more info.
 
 </div>
 
@@ -283,26 +283,26 @@ Loader | Spawn- (Addressable, Project) | Configuration of the resource loader us
 
 Property | Default Value | Description
 --- | --- | ---
-Save Folder Name | Saves | The folder will be created in the game data folder.
-Default Settings Slot Id | Settings | The name of the settings save file.
-Default Global Slot Id | GlobalSave | The name of the global save file.
+Save Folder Name | Saves | Name of the folder under the persistent data directory where the save files (game saves, global state and settings) are stored.
+Default Settings Slot ID | Settings | The name of the settings save file.
+Default Global Slot ID | GlobalSave | The name of the global save file.
 Save Slot Mask | GameSave{0:000} | Mask used to name save slots.
 Quick Save Slot Mask | GameQuickSave{0:000} | Mask used to name quick save slots.
 Auto Save Slot Mask | GameAutoSave{0:000} | Mask used to name auto save slots.
 Save Slot Limit | 99 | Maximum number of save slots.
 Quick Save Slot Limit | 18 | Maximum number of quick save slots.
 Auto Save Slot Limit | 18 | Maximum number of auto save slots.
-Auto Save On Quit | True | Whether to auto-save the game before exiting to title or when the application is closed while not in title menu (doesn't work in editor).
-Binary Save Files | True | Whether to compress and store the saves as binary files (.nson) instead of text files (.json). This will significantly reduce the files size and make them harder to edit (to prevent cheating), but will consume more memory and CPU time when saving and loading.
-Reset On Goto | False | Whether to reset state of the engine services when loading another script via [@goto] command. Can be used instead of [@resetState] command to automatically unload all the resources on each goto.
+Auto Save On Quit | True | Whether to auto-save the game before exiting to title or when the application is closed while not in the title menu (doesn't work in the editor).
+Binary Save Files | True | Whether to compress and store the saves as binary files (.nson) instead of text files (.json). This will significantly reduce the file size and make them harder to edit (to prevent cheating), but will consume more memory and CPU time when saving and loading.
+Reset On Goto | False | Whether to reset the state of the engine services when loading another script via the [@goto] command. Can be used instead of the [@resetState] command to automatically unload all the resources on each goto.
 Show Loading UI | True | Whether to automatically show `ILoadingUI` while loading the game state.
 Enable State Rollback | True | Whether to enable the state rollback feature that allows the player to rewind the script backwards.<br><br>Note that the rollback feature has a performance cost, as it effectively serializes the entire game state on each player interaction, resulting in many heap allocations. If your game does not require the rollback feature, disable it here instead of simply removing the rollback input.<br><br>Be aware that even when disabled here, rollback remains enabled in the Unity Editor, as it is required for the hot reload feature; the configuration is respected in player builds.
 State Rollback Steps | 1024 | The number of state snapshots to keep at runtime; determines how far back the rollback (rewind) can be performed. Increasing this value will consume more memory.
 Saved Rollback Steps | 128 | The number of state snapshots to serialize (save) under the save game slots; determines how far back the rollback can be performed after loading a saved game. Increasing this value will enlarge save game files.
-Recovery Rollback | True | Whether to rollback to the start of the played script when loading a game state where the script was modified after the save was made.
-Game State Handler | Naninovel Universal Game State Serializer | Implementation responsible for de-/serializing local (session-specific) game state; see `State Management` guide on how to add custom serialization handlers.
-Global State Handler | Naninovel Universal Global State Serializer | Implementation responsible for de-/serializing global game state; see `State Management` guide on how to add custom serialization handlers.
-Settings State Handler | Naninovel Universal Settings State Serializer | Implementation responsible for de-/serializing game settings; see `State Management` guide on how to add custom serialization handlers.
+Recovery Rollback | True | Whether to roll back to the start of the played script when loading a game state where the script was modified after the save was made.
+Game State Handler | Naninovel Universal Game State Serializer | Implementation responsible for de-/serializing local (session-specific) game state; see the state management guide on how to add custom serialization handlers.
+Global State Handler | Naninovel Universal Global State Serializer | Implementation responsible for de-/serializing global game state; see the state management guide on how to add custom serialization handlers.
+Settings State Handler | Naninovel Universal Settings State Serializer | Implementation responsible for de-/serializing game settings; see the state management guide on how to add custom serialization handlers.
 
 </div>
 
@@ -312,16 +312,16 @@ Settings State Handler | Naninovel Universal Settings State Serializer | Impleme
 
 Property | Default Value | Description
 --- | --- | ---
-Default Printer Id | Dialogue | ID of the text printer to use by default.
+Default Printer ID | Dialogue | ID of the text printer to use by default.
 Default Base Reveal Speed | 0.5 | Base reveal speed (game settings) to set when the game is first started.
 Default Base Auto Delay | 0.5 | Base auto delay (game settings) to set when the game is first started.
-Max Reveal Delay | 0.06 | Delay limit (in seconds) when revealing (printing) the text messages. Specific reveal speed is set via `message speed` in the game settings; this value defines the available range (higher the value, lower the reveal speed).
-Max Auto Wait Delay | 0.02 | Delay limit (in seconds) per each printed character while waiting to continue in auto play mode. Specific delay is set via `auto delay` in the game settings; this value defines the available range.
-Scale Auto Wait | True | Whether to scale the wait time in auto play mode by the reveal speed set in the print commands.
+Max Reveal Delay | 0.06 | Delay limit (in seconds) when revealing (printing) the text messages. Specific reveal speed is set via `message speed` in the game settings; this value defines the available range (the higher the value, the lower the reveal speed).
+Max Auto Wait Delay | 0.02 | Delay limit (in seconds) per each printed character while waiting to continue in auto-advance mode. Specific delay is set via `auto delay` in the game settings; this value defines the available range.
+Scale Auto Wait | True | Whether to scale the wait time in auto-advance mode by the reveal speed set in the print commands.
 Skip Print Delay | 0 | When above zero, each print command will wait for the specified time (in seconds, unscaled) while the skip playback mode (fast-forward) is enabled. Use to slow down the playback while skipping.
 Default Metadata | Object Ref | Metadata to use by default when creating text printer actors and custom metadata for the created actor ID doesn't exist.
 Metadata | Object Ref | Metadata to use when creating text printer actors with specific IDs.
-Scene Origin | (0.50, 0.00) | Reference point on scene to be considered as origin for the managed actors. Doesn't affect positioning.
+Scene Origin | (0.50, 0.00) | Reference point on the scene to be considered as origin for the managed actors.
 Z Offset | 0 | Initial Z-axis offset (depth) from actors to the camera to set when the actors are created.
 Z Step | 0 | Distance by Z-axis to set between the actors when they are created; used to prevent z-fighting issues.
 Default Duration | 0.35 | Default duration (in seconds) for all the actor modifications (changing appearance, position, tint, etc).
@@ -340,8 +340,8 @@ UI Loader | UI- (Addressable, Project) | Configuration of the resource loader us
 Font Loader | Fonts- (Addressable, Project) | Configuration of the resource loader used with font resources.
 Override Objects Layer | True | Whether to assign a specific layer to all the UI objects managed by the engine. Required for some of the built-in features, eg `Toggle UI`.
 Objects Layer | 5 | When `Override Objects Layer` is enabled, the specified layer will be assigned to all the managed UI objects.
-Font Options | Object Ref | Font options, that should be available in the game settings UI (in addition to `Default`) for the player to choose from.
-Default Font | Null | Font name from `Font Options` to apply by default when the game is first started. When not specified, `Default` font is applied.
+Font Options | Object Ref | Font options that should be available in the game settings UI (in addition to `Default`) for the player to choose from.
+Default Font | Null | Font name from `Font Options` to apply by default when the game is first started. When not specified, the `Default` font is applied.
 
 </div>
 

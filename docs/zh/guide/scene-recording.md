@@ -2,13 +2,13 @@
 
 场景构图通常更适合通过可视化方式完成：放置角色，调整其缩放和旋转，然后移动或缩放摄像机，直到画面达到预期效果。若在剧本脚本中重现这一结果，通常需要反复猜测数值参数、重新播放场景并进行细微调整。
 
-场景录制省去了这一反复试错的过程。在剧本行上开始录制，使用 Unity 常规的场景视图和检查器工具安排支持的 actor 和摄像机，对应的剧本命令便会实时出现在 [故事编辑器](/zh/guide/editor) 或 [VS Code 扩展](/zh/guide/ide-extension) 中。您可以在编排新场景、微调现有构图，或捕获不便手动计算的变换时使用此功能。
+场景录制省去了这一反复试错的过程。在剧本行上开始录制，使用 Unity 常规的场景视图和检查器工具摆放受支持的 Actor 和摄像机，对应的剧本命令便会实时出现在 [故事编辑器](/zh/guide/editor) 或 [VS Code 扩展](/zh/guide/ide-extension) 中。您可以在编排新场景、微调现有构图，或捕获不便手动计算的变换时使用此功能。
 
 ![](/assets/img/guide/scene-recording.mp4)
 
 ## 在故事编辑器中录制
 
-1. 进入 Play Mode 并开始播放剧本。
+1. 进入播放模式并开始播放剧本。
 2. 在故事编辑器中右键单击目标行，然后选择 `Start Scene Recording`。
 3. 使用 Unity 场景视图中的变换工具或检查器修改支持的对象。生成的行会实时更新并显示红色边框。
 4. 右键单击任意行并选择 `Stop Scene Recording`，或保存脚本以停止录制。
@@ -17,7 +17,7 @@
 
 ## 在 VS Code 中录制
 
-1. 进入 Play Mode 并开始播放剧本。
+1. 进入播放模式并开始播放剧本。
 2. 右键单击目标剧本行，然后选择 `Start Scene Recording`。
 3. 使用 Unity 场景视图中的变换工具或检查器修改支持的对象。命令更新时，编辑器边栏中的红色圆点会标记正在录制的区块。
 4. 右键单击任意行并选择 `Stop Scene Recording`，或保存脚本以停止录制。
@@ -36,7 +36,7 @@
 | 选项 | 位置、旋转和缩放 | `@choiceHandler wpos: rotation: scale:` |
 | 摄像机 | 位置、旋转、正交大小、FOV | `@camera offset: rotation: zoom:` |
 
-默认录制器不会捕获 actor 的外观或可见性、项目和预制件资产，以及由运行时脚本、动画和 Timeline 产生的更改。它会观察通过 Unity 编辑器修改系统对场景对象所做的序列化更改，例如使用场景视图中的变换工具移动对象，或在检查器中更改值。
+默认录制器不会捕获 Actor 的外观或可见性、项目和预制件资产，以及由运行时脚本、动画和 Timeline 产生的更改。它会观察通过 Unity 编辑器修改系统对场景对象所做的序列化更改，例如使用场景视图中的变换工具移动对象，或在检查器中更改值。
 
 ## 自定义录制器
 
@@ -56,7 +56,7 @@ public class CustomRecorder : SceneRecorder
     {
         // 保留默认行为（可选）
         base.Record(changes, lines);
-        // 扫描当前场景更改
+        // 扫描当前这批场景更改
         foreach (var change in changes)
             // 查找目标对象和属性
             if (change is { Target: Light light, Property: "m_Intensity" })

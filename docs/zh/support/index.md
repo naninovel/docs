@@ -13,9 +13,9 @@
 - 团队在 `#support` 频道中优先响应技术问题和故障排除请求
 - Nani-kun 的即时响应——我们的支持机器人，精通整个 Naninovel 代码库
 - 访问 GitHub 上的引擎源代码存储库，您可以在其中跟踪开发过程
-- 访问包含最新预览版和稳定版本分支的 UPM 存储库，允许您直接从 GitHub 安装和更新 Naninovel
+- 访问包含最新预览版和稳定版发布分支的 UPM 存储库，让您可以直接从 GitHub 安装和更新 Naninovel
 
-当您 [注册许可证](https://account.naninovel.com) 时，将包含一年的免费支持计划。之后，您可以随时通过您的 [账户仪表板](https://account.naninovel.com/support) 续订订阅。
+当您 [注册许可证](https://account.naninovel.com) 时，将获赠为期一年的免费支持计划。之后，您可以随时通过您的 [账户仪表板](https://account.naninovel.com/support) 续订订阅。
 
 ::: info NOTE
 支持计划完全是可选的——即使没有它，您也将继续通过 [下载存档](https://account.naninovel.com/download) 终身访问所有未来的 Naninovel 稳定版本，并且社区支持仍然可以在 `#forum` 频道中获得，您可以在那里随时提问并获得帮助。
@@ -27,28 +27,28 @@
 
 在提交报告之前，请：
 
-- 检查您遇到问题的功能或用例的 [指南](/zh/guide/)、[命令参考](/zh/api/) 和 [常见问题](/zh/faq/) —— 您很可能遗漏了一些东西。
-- 确保您运行的是最新的可用 Naninovel 版本。最新的补丁可以通过 [UPM 注册表](/zh/guide/getting-started#从-github-安装) 获得；在 Asset Store 和下载存档上分发的包通常已过时。
+- 检查您遇到问题的功能或用例的 [指南](/zh/guide/)、[命令参考](/zh/api/) 和 [常见问题](/zh/faq/)——您很可能遗漏了一些东西。
+- 确保您运行的是最新的可用 Naninovel 版本。最新的补丁可以通过 [UPM 存储库](/zh/guide/getting-started#从-github-安装) 获得；在 Asset Store 和下载存档上分发的包通常已过时。
 - 如果您最近从以前的 Naninovel 版本升级，请务必遵循 [发行说明](/releases/) 中的升级说明。
 - 尝试通过删除项目根目录中的 `Library` 文件夹并重新启动编辑器来清除 Unity 的缓存。
-- 确保问题实际上源于 Naninovel 而不是另一个第三方插件或 Unity 本身；在这种情况下，[请联系 Unity 支持](https://unity.com/support-services)。
+- 确保问题确实源于 Naninovel，而不是其他第三方插件或 Unity 本身；如果是后一种情况，请 [联系 Unity 支持](https://unity.com/support-services)。
 
 报告错误时：
 
-- 提供对问题以及如何逐步重现该问题的清晰、简洁的描述。
-- 包括您的 Naninovel 版本、Unity 版本、目标平台（Android、iOS、WebGL 等）和操作系统（Windows、macOS 或 Linux）。
+- 提供对问题以及如何逐步复现该问题的清晰、简洁的描述。
+- 注明您的 Naninovel 版本、Unity 版本、目标平台（Android、iOS、WebGL 等）和操作系统（Windows、macOS 或 Linux）。
 - 附上包含任何相关错误或警告的 [日志文件](https://docs.unity3d.com/Manual/LogFiles.html)。
 
 ## 复现项目
 
-报告问题时，可能会要求您提供一个重现该问题的小型 Unity 项目。
-复现项目应该是 **一个新的、干净的 Unity 项目**，仅包含显示问题所需的 **最低限度** 修改。
+报告问题时，可能会要求您提供一个能复现该问题的小型 Unity 项目。
+复现项目应该是 **一个新的、干净的 Unity 项目**，仅包含展示问题所需的 **最低限度** 修改。
 
 请按照以下步骤操作：
 
 1. 创建一个新的 Unity 项目。确保它使用的是 [支持的 Unity 版本](/zh/guide/compatibility#unity-版本)。
 2. 安装最新的可用 Naninovel 版本。不要修改或添加包文件夹内的任何内容——我们无法支持修改后的包版本。
-3. 添加重现问题所需的资产和脚本。确保不要复制整个现有项目——从头开始并在隔离环境中重现问题。避免使用第三方插件或不必要的内容。
+3. 添加复现问题所需的资产和脚本。确保不要复制整个现有项目——从头开始并在隔离环境中复现问题。避免使用第三方插件或不必要的内容。
 4. 在项目根目录中创建一个 `repro.txt` 文件，其中包含逐步说明以及您期望的结果与实际发生的情况的简短描述。例如：
     ```
     1. 打开场景 "Assets/Scenes/SampleScene"。

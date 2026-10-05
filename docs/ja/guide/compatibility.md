@@ -2,7 +2,7 @@
 
 ## Unityバージョン
 
-サポートされているUnityバージョン: `6.0` および `6.3` LTSリリース（最新のパッチを適用）。
+サポートされているUnityバージョン：`6.7` LTSリリース（最新のパッチを適用）。
 
 非LTS（テック、ベータ、およびアルファ）リリースはサポートされていません。将来のUnityリリースに関する問題は、次のNaninovelバージョンで対処されます。過去のNaninovelバージョンと互換性のあるUnityリリースは [リリースノート](https://pre.naninovel.com/releases) に記載されています。
 
@@ -16,7 +16,7 @@ Unityは [ゲームコンソール](https://unity.com/how-to/develop-console-vid
 
 ## レンダーパイプライン
 
-Universal Render Pipeline (URP) と従来の組み込みレンダーパイプライン (BiRP) の両方が完全にサポートされています。High-Definition Render Pipeline (HDRP) は積極的にテストされておらず、推奨されません。ほとんどのNaninovel機能はHDRPで動作しますが、[@trans]、[@glitch]、[@bokeh] コマンドなどの一部のレンダリング固有の機能は、HDRPではそのままでは動作しない場合があります。
+Universal Render Pipeline（URP）と従来の組み込みレンダーパイプライン（BiRP）の両方が完全にサポートされています。High Definition Render Pipeline（HDRP）は積極的にテストされておらず、推奨されません。ほとんどのNaninovel機能はHDRPで動作しますが、[@trans]、[@glitch]、[@bokeh] コマンドなどの一部のレンダリング固有の機能は、HDRPではそのままでは動作しない場合があります。
 
 ## GUI
 

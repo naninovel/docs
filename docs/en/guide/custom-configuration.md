@@ -2,7 +2,7 @@
 
 Configuration objects are used to initialize and configure services and other engine systems.
 
-By default, configuration objects are serialized as ScriptableObject assets and stored at `NaninovelData/Resources/Naninovel/Configuration` in the project. The assets are automatically generated when opening corresponding configuration menus (`Naninovel -> Configuration`) in the Unity Editor for the first time.
+By default, configuration objects are serialized as ScriptableObject assets and stored at `NaninovelData/Resources/Naninovel/Configuration` in the project. The assets are automatically generated when opening the corresponding configuration menus (`Naninovel -> Configuration`) in the Unity Editor for the first time.
 
 To access configuration objects via C#, use `Engine.GetConfiguration<T>()`, where `T` is the type of the configuration object you wish to access. For example, the following demonstrates how to access the [audio configuration](/guide/configuration#audio) object:
 
@@ -11,7 +11,7 @@ var audioConfig = Engine.GetConfiguration<AudioConfiguration>();
 ```
 
 ::: info NOTE
-The engine initialization procedure is asynchronous, so even when automatic initialization is enabled, engine APIs (e.g., `GetConfiguration`) may not be available right after Unity loads a scene (e.g., in `Awake`, `Start`, and `OnEnable` [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html) methods); see [accessing engine API](/guide/integration-options#accessing-engine-api) for more info.
+The engine initialization procedure is asynchronous, so even when automatic initialization is enabled, engine APIs (eg, `GetConfiguration`) may not be available right after Unity loads a scene (eg, in `Awake`, `Start`, and `OnEnable` [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html) methods); see [accessing engine API](/guide/integration-options#accessing-engine-api) for more info.
 :::
 
 While `Engine.GetConfiguration` requires the engine to be initialized (it relies on a configuration provider), you can access a configuration asset directly via the default provider even when the engine is not initialized, for example:
@@ -20,7 +20,7 @@ While `Engine.GetConfiguration` requires the engine to be initialized (it relies
 var config = ProjectConfigurationProvider.LoadOrDefault<AudioConfiguration>();
 ```
 
-Configuration objects are meant to be changed via editor menus, but it's still possible to modify them at runtime. Note that objects returned by the default project provider are the actual assets stored in the project; modifying them in play mode will persist changes to the asset. This differs from the instances returned by `Engine.GetConfiguration`, which are runtime instances and won't mutate the original assets.
+Configuration objects are meant to be changed via editor menus, but it's still possible to modify them at runtime. Note that objects returned by the default project provider are the actual assets stored in the project; modifying them in Play mode will persist changes to the asset. This differs from the instances returned by `Engine.GetConfiguration`, which are runtime instances and won't mutate the original assets.
 
 Below is an example of changing the `ReferenceResolution` property of the camera configuration right after the engine is initialized:
 
@@ -84,7 +84,7 @@ var myConfig = Engine.GetConfiguration<MyCustomConfiguration>();
 Another example of adding a custom configuration menu to set up an inventory system can be found in the [inventory sample](/guide/samples#inventory). Specifically, the custom configuration is implemented in `Scripts/Runtime/Inventory/InventoryConfiguration.cs`.
 :::
 
-To customize editor behavior of your custom configuration (when it's drawn in Naninovel's project settings), create a class under an Editor script and inherit from `ConfigurationSettings<T>`, where `T` is your custom configuration type. You can use built-in settings editor scripts stored at `Naninovel/Editor/Settings` for reference when building your own editors.
+To customize the editor behaviour of your custom configuration (when it's drawn in Naninovel's project settings), create a class under an Editor script and inherit from `ConfigurationSettings<T>`, where `T` is your custom configuration type. You can use the built-in settings editor scripts stored at `Naninovel/Editor/Editors/Settings` for reference when building your own editors.
 
 ## Overriding Built-in Editors
 
@@ -110,11 +110,11 @@ public class CustomCharacterSettings : CharactersSettings
 }
 ```
 
-Given the above editor, characters configuration will now draw as follows:
+Given the above editor, the characters configuration will now draw as follows:
 
 ![](https://i.gyazo.com/5555e8c3eb33c3783bef8ef852a7e765.png)
 
-You can also override built-in actor metadata editors. Below will insert a label under the `Message Color` field of the inspected actor with the name of that color.
+You can also override built-in actor metadata editors. The code below will insert a label under the `Message Color` field of the inspected actor with the name of that color.
 
 ```csharp
 [OverrideSettings]
@@ -148,7 +148,7 @@ public class CustomCharacterSettings : CharactersSettings
 
 You can change how configuration objects are served at runtime. For example, instead of static project assets, you can read configuration from JSON files stored on a remote host.
 
-To specify a custom configuration serving scenario, create a C# class that implements `IConfigurationProvider`. The interface has one method that expects a `Type` argument and returns a `Configuration` object. It's up to you how to construct and populate requested configuration objects; just ensure the returned object's type matches the requested one.
+To specify a custom configuration serving scenario, create a C# class that implements `IConfigurationProvider`. The interface has one method that expects a `Type` argument and returns a `Configuration` object. It's up to you how to construct and populate the requested configuration objects; just ensure the returned object's type matches the requested one.
 
 Below is an example of a custom provider implementation that returns default configuration objects:
 
@@ -193,7 +193,7 @@ public class CustomConfigurationProvider : ProjectConfigurationProvider
 
 Once the custom configuration provider is ready, make the engine use it instead of the built-in one by creating a custom engine initialization script. By default, the engine is initialized via `Naninovel/Runtime/Engine/RuntimeInitializer.cs`; feel free to use it as a reference.
 
-Alternatively, if your goal is just to use a custom configuration provider but keep the default engine initialization routine, consider `RuntimeInitializer.Initialize(IConfigurationProvider)` which accepts an optional configuration provider argument:
+Alternatively, if your goal is just to use a custom configuration provider but keep the default engine initialization routine, consider `RuntimeInitializer.Initialize(IConfigurationProvider)`, which accepts an optional configuration provider argument:
 
 ```csharp
 public class CustomInitializer

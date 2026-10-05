@@ -1,6 +1,6 @@
 # 选项
 
-此功能允许向玩家呈现多个选项，并根据选择的选项重新路由脚本执行。
+此功能允许向玩家呈现多个选项，并根据选择的选项改变脚本执行流程。
 
 ![Choices](https://i.gyazo.com/023502e43b35caa706c88fd9ab32003d.png)
 
@@ -8,26 +8,26 @@
 
 ```nani
 ; 打印文本，然后立即显示选项。
-继续执行此脚本或加载另一个脚本？[>]
+继续执行此脚本还是加载另一个脚本？[>]
 @choice "从下一行继续"
-@choice "从指定标签继续" goto:#Labelname
+@choice "从指定标签继续" goto:#LabelName
 @choice "从头开始加载另一个" goto:AnotherScript
 @choice "从标签加载另一个" goto:AnotherScript#LabelName
 ```
 
 未指定 `goto` 参数时，当前脚本将从下一行继续执行。
 
-选项处理程序 actor 用于处理 [@choice] 命令。您可以使用可通过 `Naninovel -> Resources -> Choice Handlers` 上下文菜单访问的选项管理器添加、编辑和删除选项处理程序。
+选项处理程序 Actor 用于处理 [@choice] 命令。您可以使用可通过 `Naninovel -> Resources -> Choice Handlers` 编辑器菜单访问的选项管理器添加、编辑和删除选项处理程序。
 
-可以使用 `Naninovel -> Configuration -> Choice Handlers` 上下文菜单配置选项处理程序的行为；有关可用选项，请参阅 [配置指南](/zh/guide/configuration#选项处理程序)。
+可以使用 `Naninovel -> Configuration -> Choice Handlers` 编辑器菜单配置选项处理程序的行为；有关可用选项，请参阅 [配置指南](/zh/guide/configuration#选项处理程序)。
 
-查看以下视频教程以了解选项处理程序的概述。
+查看以下视频教程，了解选项处理程序的概况。
 
 ![](https://www.youtube.com/watch?v=cOREgtJak3A)
 
 ## 嵌套回调
 
-当选择某个选项的后果很小时（例如，您可能只想打印几句话），指定标签并使用 `goto` or `gosub` 参数是不切实际的。相反，[嵌套](/zh/guide/scenario-scripting#嵌套) 命令以在选择该选项时执行：
+当选择某个选项后要执行的内容很少时（例如，您可能只想打印几句话），专门指定标签并使用 `goto` 或 `gosub` 参数并不实用。可以改为 [嵌套](/zh/guide/scenario-scripting#嵌套) 选择该选项时要执行的命令：
 
 ```nani
 @choice "询问颜色"
@@ -53,27 +53,27 @@
         Kohaku: 只是问问。那是秘密吗？
         Yuko.Angry: 是的！
     @choice "放弃"
-        Kohaku: 没关系，忘了它吧。
+        Kohaku: 算了，忘了这事吧。
         @char Yuko.Relieved
 @choice "保持沉默"
     ...
 ```
 
 ::: info NOTE
-嵌套选项回调与 `goto`、`gosub`、`set` 和 `play` 参数不兼容。不要将它们指定为参数，而是在嵌套块内使用适当的命令：使用 [@goto] 代替 `goto` 参数，使用 [@set] 代替 `set` 参数，依此类推。
+嵌套选项回调与 `goto`、`gosub` 和 `set` 参数不兼容。不要将它们指定为参数，而是在嵌套块内使用相应的命令：使用 [@goto] 代替 `goto` 参数，使用 [@set] 代替 `set` 参数，依此类推。
 :::
 
 ## 选项按钮
 
-[@choice] 命令接受一个可选的 `button` 参数，该参数指定表示选项对象的自定义预制件的路径（相对于 "Resources" 文件夹）。
+[@choice] 命令接受一个可选的 `button` 参数，该参数指定表示选项对象的自定义预制件的路径（相对于“Resources”文件夹）。
 
 ```nani
 @choice handler:ButtonArea button:Home pos:-300,-300 goto:#HomeScene
 ```
 
-— 在这里，我们使用支持定位的选项处理程序来表示临时地图上的兴趣点，其中 `button` 参数指向由包裹在图像上的按钮组成的预制件。预制件存储在 `Assets/Resources/Naninovel/ChoiceButtons/Home.prefab` 中。
+— 在这里，我们使用支持定位的选项处理程序来表示简易地图上的兴趣点，其中 `button` 参数指向由包裹着图像的按钮组成的预制件。预制件存储在 `Assets/Resources/Naninovel/ChoiceButtons/Home.prefab` 中。
 
-要从模板创建选项按钮预制件，请使用 `Create -> Naninovel -> Choice Button` 资产上下文菜单。
+要从模板创建选项按钮预制件，请使用 `Create -> Naninovel -> Choice Handler -> Choice Button -> Choice Button` 资产上下文菜单。
 
 ![](https://i.gyazo.com/c2bd4abaa0275f7cdd37c56fd2ff0dec.png)
 
@@ -93,26 +93,26 @@
 
 ## 锁定选项
 
-选项的一个常见用例是根据条件使一个选项锁定/禁用或以其他方式对玩家不可用。例如，如果在选择之前未满足条件，您可能希望限制玩家访问特定的故事分支。
+选项的一个常见用例是根据条件使一个选项锁定/禁用或以其他方式对玩家不可用。例如，如果在该选项出现之前未满足条件，您可能希望限制玩家访问特定的故事分支。
 
 虽然可以使用选项按钮参数（如上所述）来实现这一点，但这种用例很常见，因此 Naninovel 有一种专门的方法通过 [@choice] 命令的 `lock` 参数来实现这一点：
 
 ```nani
-; 当 'score' 变量低于 10 时，使选项禁用/锁定。
+; 当 'score' 变量低于 10 时，禁用/锁定该选项。
 @choice "秘密选项" lock:score<10
 ```
 
-内置选项按钮具有一个 `On Lock` 事件，每次添加选项时都会调用该事件，这将设置底层按钮的 `Interactable` 属性，使其在选项未锁定时可交互，反之亦然。您可以通过将自定义处理程序附加到 `On Lock` 事件或覆盖选项按钮类的 `HandleLockChanged` 方法来覆盖或扩展该行为。
+内置选项按钮具有一个 `On Lock` 事件，每次添加选项时都会调用该事件，这将设置底层按钮的 `Interactable` 属性，使其在选项未锁定时可交互，反之亦然。您可以通过将自定义处理程序附加到 `On Lock` 事件或重写选项按钮类的 `HandleLockChanged` 方法来覆盖或扩展该行为。
 
 ![](https://i.gyazo.com/ec5ef74ec9af1aa46a18d89bd34d866f.png)
 
 ## ButtonList 选项处理程序
 
-默认使用按钮列表处理程序。它将选项按钮存储在水平布局面板内，并忽略 [@choice] 命令的 `pos` 参数。
+默认使用 ButtonList 处理程序。它将选项按钮存储在垂直布局面板内，并忽略 [@choice] 命令的 `pos` 参数。
 
 ## ButtonArea 选项处理程序
 
-与按钮列表相反，按钮区域不强制执行任何特定布局，并允许通过 `pos` 参数手动设置添加的选项按钮的位置。例如，这是一种使用选项命令和按钮区域处理程序制作交互式地图的方法：
+与 ButtonList 不同，ButtonArea 不强制使用任何特定布局，并允许通过 `pos` 参数手动设置添加的选项按钮的位置。例如，这是一种使用选项命令和 ButtonArea 处理程序制作交互式地图的方法：
 
 ```nani
 # Map
@@ -133,14 +133,14 @@
 ```
 
 ::: tip EXAMPLE
-在 [地图示例](/zh/guide/samples#地图) 中查找使用 Naninovel 实现交互式地图的更高级实现。
+可以在 [地图示例](/zh/guide/samples#地图) 中找到使用 Naninovel 制作交互式地图的更高级实现。
 
 ![](https://i.gyazo.com/4987b1c53cd275f3fa56b533f53f3d8c.mp4)
 :::
 
 ## ChatReply 选项处理程序
 
-由 [聊天文本打印机](/zh/guide/text-printers#chat-打印机) 使用来表示回复选项。示例：
+由 [Chat 文本打印机](/zh/guide/text-printers#chat-打印机) 用于表示回复选项。示例：
 
 ```nani
 @printer Chat
@@ -155,11 +155,11 @@ Kohaku: 你现在在哪里？
 
 您可以基于内置模板添加自定义选项处理程序，也可以从头开始创建新处理程序。例如，让我们自定义内置的 `ButtonArea` 模板。
 
-使用 `Create -> Naninovel -> Choice Handler -> ButtonArea` 资产上下文菜单在 Naninovel 包之外的某处创建按钮区域处理程序预制件，例如在 `Assets/ChoiceHandlers` 文件夹中。
+使用 `Create -> Naninovel -> Choice Handler -> Button Area` 资产上下文菜单在 Naninovel 包之外的某处创建 ButtonArea 处理程序预制件，例如在 `Assets/ChoiceHandlers` 文件夹中。
 
 编辑处理程序：更改字体、纹理、添加动画等。有关可用 UI 构建工具的更多信息，请查看 [Unity 文档](https://docs.unity3d.com/Packages/com.unity.ugui@latest)。
 
-使用选项处理程序管理器 GUI 将处理程序公开给引擎资源，可以使用 `Naninovel -> Resources -> Choice Handlers` 编辑器上下文菜单访问该 GUI。使用 `+`（加号）按钮添加新记录，输入 actor ID（可以与预制件名称不同），然后双击记录以打开 actor 设置。将处理程序预制件拖放到 `Resource` 字段。
+使用选项处理程序管理器 GUI 将处理程序公开给引擎资源，可以使用 `Naninovel -> Resources -> Choice Handlers` 编辑器菜单访问该 GUI。使用 `+`（加号）按钮添加新记录，输入 Actor ID（可以与预制件名称不同），然后双击记录以打开 Actor 设置。将处理程序预制件拖放到 `Resource` 字段。
 
 您现在可以通过在 [@choice] 命令的 `handler` 参数中指定其 ID 来使用新的选项处理程序。
 
@@ -171,4 +171,4 @@ Kohaku: 你现在在哪里？
 在 [UI 示例](/zh/guide/samples#ui) 中查找有关使用粒子系统创建自定义选项处理程序的示例。
 :::
 
-也可以通过手动实现 `IChoiceHandlerActor` 接口从头开始创建选项处理程序。有关更多信息，请参阅 [自定义 actor 实现](/zh/guide/custom-actor-implementations) 指南。
+也可以通过手动实现 `IChoiceHandlerActor` 接口从头开始创建选项处理程序。有关更多信息，请参阅 [自定义 Actor 实现](/zh/guide/custom-actor-implementations) 指南。

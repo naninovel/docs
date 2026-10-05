@@ -2,29 +2,29 @@
 
 Naninovelが実行時に生成および使用するすべての永続データは、次の3つのカテゴリに分類されます。
 
-- ゲームの状態
+- ゲーム状態
 - グローバル状態
 - ユーザー設定
 
 データはJSON形式にシリアル化され、プラットフォーム固有の [永続データディレクトリ](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html) の下にバイナリ `.nson`（デフォルト）またはテキスト `.json` セーブスロットファイルとして保存されます。WebGLでは、最新のブラウザーのセキュリティポリシーにより、シリアル化されたデータは代わりに [IndexedDB](https://en.wikipedia.org/wiki/Indexed_Database_API) に保存されます。
 
-シリアル化の動作は、ゲームのセーブ、グローバル状態、およびユーザー設定に対して独立してシリアル化ハンドラーによって制御されます。デフォルトでは、ユニバーサルシリアル化ハンドラーが使用されます。ほとんどの場合、非同期の [System.IO](https://docs.microsoft.com/en-us/dotnet/api/system.io) を使用して、ローカルファイルシステムにスロットファイルを読み書きします。ただし、一部のプラットフォーム（コンソールなど）では、.NET IO APIが使用できないため、ユニバーサルハンドラーはUnityのクロスプラットフォーム [PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html) にフォールバックします。
+シリアル化の動作は、ゲームのセーブ、グローバル状態、およびユーザー設定に対して独立してシリアル化ハンドラーによって制御されます。デフォルトでは、ユニバーサルシリアル化ハンドラーが使用されます。ほとんどの場合、非同期の [System.IO](https://docs.microsoft.com/en-us/dotnet/api/system.io) を使用して、ローカルファイルシステムにスロットファイルを読み書きします。ただし、一部のプラットフォーム（ゲームコンソールなど）では、.NET IO APIが使用できないため、ユニバーサルハンドラーはUnityのクロスプラットフォーム [PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html) にフォールバックします。
 
 シリアル化ハンドラー、セーブフォルダーへのパス、許可されるセーブスロットの最大数、およびその他の関連パラメーターは、状態構成メニューから変更できます。
 
 ![](https://i.gyazo.com/d1e5cfd136544f2c1b74966e3fd1bb45.png)
 
-## ゲームの状態
+## ゲーム状態
 
-ゲームの状態は、ゲームのセーブスロットごとに異なるデータであり、プレイヤーの進行状況に関連するエンジンサービスやその他のオブジェクトの状態を記述します。例としては、現在再生中のシナリオスクリプトとスクリプト内の再生されたスクリプトコマンドのインデックス、現在表示されているキャラクターとそのシーン上の位置、現在再生中の背景音楽トラック名とその音量などがあります。
+ゲーム状態は、ゲームのセーブスロットごとに異なるデータであり、プレイヤーの進行状況に関連するエンジンサービスやその他のオブジェクトの状態を記述します。例としては、現在再生中のシナリオスクリプトとそのスクリプト内で再生されたスクリプトコマンドのインデックス、現在表示されているキャラクターとそのシーン上の位置、現在再生中の背景音楽トラック名とその音量などがあります。
 
-現在のゲーム状態を特定のセーブスロットに保存またはロードするには、次のように `IStateManager` エンジンサービスを使用します。
+現在のゲーム状態を特定のセーブスロットにセーブまたはロードするには、次のように `IStateManager` エンジンサービスを使用します。
 
 ```csharp
 // 状態マネージャーのインスタンスを取得します。
 var stateManager = Engine.GetService<IStateManager>();
 
-// 現在のゲームセッションを `mySaveSlot` スロットに保存します。
+// 現在のゲームセッションを `mySaveSlot` スロットにセーブします。
 await stateManager.SaveGame("mySaveSlot");
 // `mySaveSlot` スロットからゲームセッションをロードします。
 await stateManager.LoadGame("mySaveSlot");
@@ -38,12 +38,12 @@ await stateManager.QuickLoad();
 
 ## グローバル状態
 
-一部のデータは、ゲームセッション全体で永続的である必要があります。たとえば、「既読テキストのスキップ」機能では、どのシナリオスクリプトコマンドが少なくとも1回実行されたか（つまり、プレイヤーがすでに「見た」か）をエンジンが保存する必要があります。このようなデータは単一の「グローバル」セーブスロットに保存され、ゲームのセーブ・ロード操作には依存しません。
+一部のデータは、ゲームセッションをまたいで保持される必要があります。たとえば、「既読テキストのスキップ」機能では、どのシナリオスクリプトコマンドが少なくとも1回実行されたか（つまり、プレイヤーがすでに「見た」か）をエンジンが保存する必要があります。このようなデータは単一の「グローバル」セーブスロットに保存され、ゲームのセーブ・ロード操作には依存しません。
 
 グローバル状態は、エンジンの初期化時に自動的にロードされます。`IStateManager` を使用して、いつでもグローバル状態を保存できます。
 
 ```csharp
-await stateManager.SaveGlobalState();
+await stateManager.SaveGlobal();
 ```
 
 ## ユーザー設定
@@ -101,12 +101,12 @@ C:/Users/User/AppData/LocalLow/Foo/Bar/Saves
 Unityエディターでは、ファイルは代わりにNaninovelデータフォルダー（デフォルトでは `Assets/NaninovelData`）の `.nani/Transient/Saves` 下に保存されます。
 
 ::: tip
-[Steam Auto-Cloud](https://partner.steamgames.com/doc/features/cloud#steam_auto-cloud) などのクラウドセーブサービスでは、`Saves` フォルダーのみを同期してください。永続データディレクトリ内のその他のファイルは、そのデバイスでのみ使用されるものです。`Settings.json` にはグラフィック品質や入力バインドなどのデバイス固有のオプションが含まれるため、同期対象を `.nson` ファイルに限定することを検討してください。Steamworksのドキュメントには、Unityゲーム向けにパスを構成する [例](https://partner.steamgames.com/doc/features/cloud#example) があります。
+[Steam Auto-Cloud](https://partner.steamgames.com/doc/features/cloud#steam_auto-cloud) などのクラウドセーブサービスでは、`Saves` フォルダーのみを同期してください。永続データディレクトリ内のその他のファイルは、そのデバイスでのみ使用されるものです。`Settings.json` にはグラフィック品質や入力バインディングなどのデバイス固有のオプションが含まれるため、同期対象を `.nson` ファイルに限定することを検討してください。Steamworksのドキュメントには、Unityゲーム向けにパスを構成する [例](https://partner.steamgames.com/doc/features/cloud#example) があります。
 :::
 
-## カスタムステート
+## カスタム状態
 
-カスタムオブジェクトの状態処理を `IStateManager` に委任できるため、プレイヤーが保存するときにすべてのエンジンのデータとともにセーブスロットにシリアル化され、ゲームがロードされたときに逆シリアル化されます。組み込みの状態関連機能（ロールバックなど）も、カスタム状態でそのまま機能します。
+カスタムオブジェクトの状態処理を `IStateManager` に委任すると、プレイヤーがセーブしたときにエンジンのすべてのデータとともにセーブスロットにシリアル化され、ゲームがロードされたときに逆シリアル化されるようになります。組み込みの状態関連機能（ロールバックなど）も、カスタム状態でそのまま機能します。
 
 次の例は、`MyCustomBehaviour` コンポーネントの状態処理の委任を示しています。
 
@@ -165,21 +165,21 @@ public class MyCustomBehaviour : MonoBehaviour
 }
 ```
 
-ゲームの状態がロードされた後にカスタムオブジェクトが作成される場合は、`LastGameState` を使用して最後にロードされた状態にアクセスし、手動で逆シリアル化メソッドを呼び出します。
+ゲーム状態がロードされた後にカスタムオブジェクトが作成される場合は、`IStateManager.Game` を使用して最後にロードされた状態にアクセスし、手動で逆シリアル化メソッドを呼び出します。
 
 ```csharp
 private async void Start ()
 {
-    if (stateManager.LastGameState is { } state)
+    if (stateManager.Game is { } state)
         await DeserializeState(state);
 }
 ```
 
 ::: tip EXAMPLE
-カスタム構造体のリストを使用してインベントリUIのゲーム状態を保存・ロードするカスタム状態の使用に関するより高度な例は、[インベントリサンプル](/ja/guide/samples#インベントリ) にあります。具体的には、カスタム状態の逆シリアル化/シリアル化は `Scripts/Runtime/Inventory/UI/InventoryUI.cs` に実装されています。
+カスタム構造体のリストを使用してインベントリUIのゲーム状態をセーブ・ロードする、カスタム状態のより高度な使用例は、[インベントリサンプル](/ja/guide/samples#インベントリ) にあります。具体的には、カスタム状態のシリアル化/逆シリアル化は `Scripts/Runtime/Inventory/UI/InventoryUI.cs` に実装されています。
 :::
 
-エンジンのグローバルおよび設定状態にアクセスして、カスタムデータを保存することもできます。ゲームセッションに固有であり、セーブ/ロードイベントのサブスクライブが必要なゲーム状態とは異なり、グローバルおよび設定状態オブジェクトはシングルトンであり、状態マネージャーのプロパティを介して直接アクセスできます。
+エンジンのグローバル状態および設定状態にアクセスして、カスタムデータをそれらと一緒に保存することもできます。ゲームセッションに固有であり、セーブ/ロードイベントのサブスクライブが必要なゲーム状態とは異なり、グローバル状態および設定状態のオブジェクトはシングルトンであり、状態マネージャーのプロパティを介して直接アクセスできます。
 
 ```csharp
 [System.Serializable]
@@ -196,18 +196,18 @@ class MyGlobal
 
 MySettings MySettings
 {
-    get => stateManager.SettingsState.GetState<MySettings>();
-    set => stateManager.SettingsState.SetState<MySettings>(value);
+    get => stateManager.Settings.GetState<MySettings>();
+    set => stateManager.Settings.SetState<MySettings>(value);
 }
 
 MyGlobal MyGlobal
 {
-    get => stateManager.GlobalState.GetState<MyGlobal>();
-    set => stateManager.GlobalState.SetState<MyGlobal>(value);
+    get => stateManager.Global.GetState<MyGlobal>();
+    set => stateManager.Global.SetState<MyGlobal>(value);
 }
 ```
 
-状態オブジェクトはタイプごとにインデックス付けされます。場合によっては、それぞれが独自の状態を持つ同じタイプの複数のオブジェクトインスタンスがあるかもしれません。`GetState` と `SetState` の両方のメソッドでは、そのようなオブジェクトを区別するためにオプションの `instanceId` 引数を指定できます。
+状態オブジェクトは型によってインデックス付けされます。場合によっては、同じ型のオブジェクトインスタンスが複数あり、それぞれが独自の状態を持つことがあります。`GetState` と `SetState` の両方のメソッドでは、そのようなオブジェクトを区別するためにオプションの `instanceId` 引数を指定できます。例：
 
 ```csharp
 [System.Serializable]
@@ -222,7 +222,7 @@ var monster2 = stateMap.GetState<MonsterState>("2");
 
 ## カスタムシリアル化ハンドラー
 
-デフォルトでは、ユニバーサルシリアル化ハンドラーが選択されている場合、エンジンの状態（ゲームのセーブ、グローバル状態、設定）は、非同期 [System.IO](https://docs.microsoft.com/en-us/dotnet/api/system.io) を介して、または一部のプラットフォームのフォールバックとしてUnityのクロスプラットフォーム [PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html) を使用してシリアル化されます。シリアル化シナリオをカスタマイズするには、カスタムハンドラーを使用します。
+デフォルトでは、ユニバーサルシリアル化ハンドラーが選択されている場合、エンジンの状態（ゲームのセーブ、グローバル状態、設定）は、非同期 [System.IO](https://docs.microsoft.com/en-us/dotnet/api/system.io) を介して、または一部のプラットフォームのフォールバックとしてUnityのクロスプラットフォーム [PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html) を使用してシリアル化されます。シリアル化の方法をカスタマイズするには、カスタムハンドラーを使用します。
 
 カスタムハンドラーを追加するには、ゲームのセーブスロット、グローバル状態、および設定に対してそれぞれ `ISaveSlotManager<GameStateMap>`、`ISaveSlotManager<GlobalStateMap>`、および `ISaveSlotManager<SettingsStateMap>` インターフェースを実装します（それぞれに独自の実装クラスが必要です）。
 

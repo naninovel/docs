@@ -1,8 +1,8 @@
 # カスタムビルド環境
 
-エディターの [ビルドメニュー](https://docs.unity3d.com/Manual/BuildSettings.html) を使用してプロジェクトをビルドする場合、Naninovelは追加の事前処理および事後処理手順を自動的に実行します。これらの手順により、Naninovelの構成メニュー（スクリプトドキュメント、キャラクターの外観、BGMおよびSFXクリップなど）を介して割り当てられたすべてのリソースがビルドに含まれるようになります。
+エディターの [ビルドメニュー](https://docs.unity3d.com/Manual/BuildSettings.html) を使用してプロジェクトをビルドする場合、Naninovelは追加の事前処理および事後処理手順を自動的に実行します。これらの手順は、とりわけ、Naninovelの構成メニューを介して割り当てられたすべてのリソース（シナリオスクリプト、キャラクターの外観、BGMおよびSFXクリップなど）がビルドに含まれるようにします。
 
-カスタムビルド環境（[Cloud Build](https://unity3d.com/unity/features/cloud-build) など）を使用している場合、またはカスタムスクリプトやコマンドラインからビルドを開始する場合は、ビルドの前後に `Naninovel.BuildProcessor.PreprocessBuild(BuildPlayerOptions)` および `Naninovel.BuildProcessor.PostprocessBuild()` 静的メソッドを手動で呼び出す必要があります。
+カスタムビルド環境（[Cloud Build](https://unity3d.com/unity/features/cloud-build) など）を使用している場合、またはカスタムスクリプトやコマンドラインからビルドを開始する場合は、ビルドの前と後にそれぞれ `Naninovel.BuildProcessor.PreprocessBuild(BuildPlayerOptions)` および `Naninovel.BuildProcessor.PostprocessBuild()` 静的メソッドを手動で呼び出す必要があります。
 
 以下は、必要なNaninovel処理メソッドを呼び出すCloud Buildカスタムビルド処理スクリプトの例です。処理スクリプトの設定方法については、[公式サービスドキュメント](https://docs.unity3d.com/Manual/UnityCloudBuildPreAndPostExportMethods.html) を参照してください。
 
@@ -39,7 +39,7 @@ public static class CustomBuildProcessor
 カスタムコマンドにアセンブリ定義を使用する場合、Unityエディターはすべてのアセンブリをコンパイルする前にアセットのインポートを開始し、Cloud Buildの使用時にビルドエラーが発生する可能性があります。これは、ビルドを開始する前にスクリプトアセットを再インポートすることで解決できます。例：
 
 ```csharp
-var scriptGuids = AssetDatabase.FindAssets("t:Naninovel.script");
+var scriptGuids = AssetDatabase.FindAssets("t:Naninovel.Script");
 foreach (var scriptGuid in scriptGuids)
 {
     var scriptPath = AssetDatabase.GUIDToAssetPath(scriptGuid);
@@ -47,7 +47,7 @@ foreach (var scriptGuid in scriptGuids)
 }
 ```
 
-GitHub Actionsを使用する場合（[GameCI](https://game.ci/)など）、プロジェクトをビルドする前に[LFSがチェックアウトされている](https://github.com/actions/checkout/issues/270)ことを確認してください。
+[GameCI](https://game.ci/) などのGitHub Actionsを使用する場合は、プロジェクトをビルドする前に [LFSがチェックアウトされている](https://github.com/actions/checkout/issues/270) ことを確認してください。
 
 ```yaml
   - name: checkout
@@ -59,4 +59,4 @@ GitHub Actionsを使用する場合（[GameCI](https://game.ci/)など）、プ�
   - run: git lfs pull
 ```
 
-エディターのビルドメニューでトリガーされるはずの独自のカスタムビルドハンドラーを使用している場合は、Resource Provider構成メニューの `Enable Build Processing` プロパティをオフにして、Naninovelのハンドラーを無効にできます。プロパティを有効または無効にした後、変更を有効にするためにUnityエディターを再起動してください。
+エディターのビルドメニューからトリガーされる想定の独自のカスタムビルドハンドラーを使用している場合は、リソースプロバイダー構成メニューの `Enable Build Processing` プロパティをオフにして、Naninovelのハンドラーを無効にできます。プロパティを有効または無効にした後、変更を有効にするためにUnityエディターを再起動してください。

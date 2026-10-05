@@ -2,13 +2,13 @@
 
 The managed text feature allows managing (replacing) various text elements used throughout Naninovel, such as in-game UI strings and characters' display names, via localizable documents.
 
-To generate the managed text documents, use the managed text tool accessible via `Naninovel -> Tools -> Managed Text` editor context menu.
+To generate the managed text documents, use the managed text tool accessible via the `Naninovel -> Tools -> Managed Text` editor menu.
 
 ![Managed Text Tool](https://i.gyazo.com/200680de85848f04a2eb51b063295c51.png)
 
-Using the "Select" button, choose the path to store the managed text documents (should be `Resources/Naninovel/Text` by default) and press "Generate" to create the documents.
+Using the "Select" button, choose the path to store the managed text documents (should be `Resources/Naninovel/Text` by default) and press "Generate Managed Text Documents" to create the documents.
 
-You can also create a custom managed text document using `Create -> Naninovel -> Managed Text` asset context menu.
+You can also create a custom managed text document using the `Create -> Naninovel -> Managed Text` asset context menu.
 
 Each line in a managed text document is an entry in the following format: *Path*: *Value*, where *Path* is the path to the text variable and *Value* is the value of that variable. For example, here are the default contents of the "DefaultUI" document, which contains records for the built-in UI:
 
@@ -16,7 +16,7 @@ Each line in a managed text document is an entry in the following format: *Path*
 
 You can edit the values and the changes will be applied on the next run.
 
-Enabling the `Delete Unused` option will remove records in the managed text documents that are not directly referenced either via `ManagedTextProvider` components or via `ManagedText` attributes in the source code (more on that below).
+When the documents already exist, the tool keeps their current values, but removes the records it no longer generates, such as those no longer referenced via `ManagedTextProvider` components or `ManagedText` attributes in the source code (more on that below).
 
 ::: tip
 To insert a line break in a managed text value, use the `<br>` tag, which is supported by TMPro text out of the box.
@@ -24,13 +24,13 @@ To insert a line break in a managed text value, use the `<br>` tag, which is sup
 
 ## Managed Text Provider
 
-It's possible to bind an arbitrary Unity game object to a managed text record without any scripting via the `ManagedTextProvider` component; add the component to a game object, specify `Category` (the document name), `Key` (the record name inside the document) and use the `OnValueChanged` event to bind the value to a game object property.
+It's possible to bind an arbitrary Unity game object to a managed text record without any scripting via the `ManagedTextProvider` component; add the component to a game object, specify `Document` (the document name), `Key` (the record name inside the document) and use the `OnValueChanged` event to bind the value to a game object property.
 
 Below is an example of binding a managed text record stored in the "MyCustomDocument" document with key "MyCustomText" to a Unity `Text` component.
 
 ![](https://i.gyazo.com/f47a997052674341aa3133deeea1f1cf.png)
 
-When a `ManagedTextProvider` component is used in a custom UI, text printer, or choice handler, corresponding records will be automatically generated when using the managed text tool (given the resources are assigned in the configuration menu); for other cases you'll have to add the records manually.
+When a `ManagedTextProvider` component is used in a custom UI, text printer, or choice handler, corresponding records will be automatically generated when using the managed text tool (given the resources are assigned in the configuration menu); for other cases you'll have to add the records manually to a separate document, because the tool removes manually added records from the documents it generates.
 
 ![](https://i.gyazo.com/cc2ad398d1ad716cca437913553eb09c.png)
 
@@ -77,7 +77,7 @@ Greeting2: Hello!
 Greeting3: Hi!
 ```
 
-—you can reference the values with:
+— you can reference the values with:
 
 ```nani
 @print { random(Greeting1, Greeting2, Greeting3) }
@@ -93,7 +93,7 @@ Managed text localization follows a similar workflow to scenario scripts:
 2. Run the localization utility in a locale folder (`Resources/Naninovel/Localization/{Locale}`, where `{Locale}` is the target locale tag).
 3. Localization documents for the source managed text documents will appear in the corresponding locale folder. Use them to add or edit translations.
 
-To update the managed text documents and their corresponding localization counterparts, first run the generate managed text utility in the `Resources/Naninovel/Text` folder, and then the localization utility in `Resources/Naninovel/Localization/{Locale}`. Both utilities will attempt to preserve any existing modifications (managed text records and their translations) by default, so you won't have to re-write everything on each update.
+To update the managed text documents and their corresponding localization counterparts, first run the generate managed text utility in the `Resources/Naninovel/Text` folder, and then the localization utility in `Resources/Naninovel/Localization/{Locale}`. Both utilities will attempt to preserve any existing modifications (managed text records and their translations) by default, so you won't have to rewrite everything on each update.
 
 See [Localization](/guide/localization) for more info on how to use the localization utility.
 

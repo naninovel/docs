@@ -2,7 +2,7 @@
 
 大規模なプロジェクトに取り組んでいる場合や、複数のチームメンバーがシナリオスクリプトやゲームプレイロジックを変更している場合、公開前にゲームが正常に機能することを確認することが不可欠です。インタラクティブな性質のため、ゲームは多くの場合、多大な手動テストを必要としますが、単純なビジュアルノベルでは、プロセスの大部分を自動化できます。
 
-Naninovelは、ゲームの実行中にシミュレートされたユーザーインタラクションのシーケンスを作成することで、エンドツーエンドのテストを構築するのに役立つツールを `Naninovel.E2E` 名前空間で提供します。[UnityのTest Framework](https://docs.unity3d.com/Packages/com.unity.test-framework@latest) と組み合わせると、エディター、ターゲットデバイス、またはCIで実行される自動テストスイートを構築できます。
+Naninovelは、ゲームの実行中にシミュレートされたユーザーインタラクションのシーケンスを組み合わせることで、エンドツーエンドのテストを構築するのに役立つツールを `Naninovel.E2E` 名前空間で提供します。[UnityのTest Framework](https://docs.unity3d.com/Packages/com.unity.test-framework@latest) と組み合わせると、エディター、ターゲットデバイス、またはCIで実行される自動テストスイートを構築できます。
 
 ![](https://i.gyazo.com/92e7eaf5725f098d6d12c83a2b7eb219.png)
 
@@ -12,7 +12,7 @@ Unityエディターの `Window -> General -> Test Runner` から「Test Runner�
 
 ![](https://i.gyazo.com/8b8cb5c916987d941cce8abf6daf131b.png)
 
-NaninovelがUPMパッケージとしてインストールされている場合は、プロジェクトの `Packages/manifest.json` を介して [テスト可能にする](https://docs.unity3d.com/Manual/cus-tests.html#tests) 必要がある場合があります。例：
+NaninovelがUPMパッケージとしてインストールされている場合は、プロジェクトの `Packages/manifest.json` を介して [テスト可能にする](https://docs.unity3d.com/Manual/cus-tests.html#tests) 必要がある場合もあります。例：
 
 ```json
 {
@@ -36,10 +36,10 @@ public IEnumerator CanStartGame () => new E2E()
     .Ensure(() => Engine.GetService<IScriptPlayer>().Playing);
 ```
 
-コンパイル後、Test Runnerタブに移動し、新しく追加されたテストを見つけます。実行すると、`ITitleUI` が表示されるまで待機し、`NewGameButton` オブジェクトにアタッチされたボタンを見つけてクリックしようとし、スクリプトの再生が開始されたことを確認します。いずれかのステップが失敗すると、テストは停止し、関連するレコードはTest Runnerで赤い十字でマークされます。
+コンパイル後、Test Runnerタブに移動し、新しく追加されたテストを見つけます。実行すると、`ITitleUI` が表示されるまで待機し、`NewGameButton` オブジェクトにアタッチされたボタンを見つけてクリックしようとし、スクリプトの再生が開始されたことを確認します。いずれかのステップが失敗すると、テストは停止し、関連するレコードはTest Runnerで赤いバツ印でマークされます。
 
 ::: warning
-テストを実行する前に、エンジン構成で「Initialize On Application Load」を無効にしてください。通常の使用中に自動初期化を維持するには、メインシーンのGameObjectに適用された `Runtime Initializer` コンポーネントを使用します。エンジンの初期化の詳細については [ガイド](/ja/guide/integration-options#手動初期化) を参照してください。
+テストを実行する前に、エンジン構成で「Initialize On Application Load」を無効にしてください。通常の使用時に自動初期化を維持するには、メインシーンのゲームオブジェクトに適用した `Runtime Initializer` コンポーネントを使用します。エンジンの初期化の詳細については [ガイド](/ja/guide/integration-options#手動初期化) を参照してください。
 :::
 
 ## ショートカット
@@ -53,28 +53,28 @@ public IEnumerator CanStartGame () => new E2E().StartNew().Ensure(Playing);
 
 ## スイート構成
 
-エンドツーエンドテストは可能な限り実際の使用シナリオに近い必要がありますが、テストを実用的にするためにさまざまなパラメーターを調整する必要があります。たとえば、プレイヤーが読み続けるためにクリックすることが期待されるたびにクリックシーケンスを指定したくないでしょう。同様に、UIのフェードやカメラアニメーションなどのさまざまな効果は再生中に時間がかかりますが、テストでそれらを待つ必要はありません。
+エンドツーエンドテストは可能な限り実際の使用ケースに近い必要がありますが、テストを実用的にするためにさまざまなパラメーターを調整する必要があります。たとえば、プレイヤーが読み続けるためにクリックすることが期待されるたびにクリックシーケンスを指定したくないでしょう。同様に、UIのフェードやカメラアニメーションなどのさまざまな効果は再生中に時間がかかりますが、テストでそれらを待つ必要はありません。
 
-テストの実行時に特化してエンジンを構成するには、`E2E` インスタンスで使用可能なさまざまな `With` メソッドを使用します。たとえば、以下のスニペットは、タイムスケールと表示遅延をオーバーライドしてエフェクトを非常に高速に実行し、要求されるたびに続行入力をアクティブにします。
+テストの実行時専用にエンジンを構成するには、`E2E` インスタンスで使用可能なさまざまな `With` メソッドを使用します。たとえば、以下のスニペットは、タイムスケールと表示遅延をオーバーライドして効果を非常に高速に実行し、要求されるたびに続行入力をアクティブにします。
 
 ```csharp
 [UnityTest]
 public IEnumerator Test () => new E2E()
     .WithConfig<ScriptPlayerConfiguration>(c => c.SkipTimeScale = 999)
     .WithConfig<TextPrintersConfiguration>(c => c.MaxRevealDelay = 0)
-    .With(() => Service<IScriptPlayer>().OnWaitingForInput += _ => Input("Continue").Activate(1))
+    .With(() => Service<IScriptPlayer>().OnAwaitInput += _ => Input("Continue").Pulse())
 ```
 
-— これは一般的な構成であるため、`WithFastForward` 拡張機能を介して適用できます。
+— これはよく使う構成であるため、`WithFastForward` 拡張メソッドを介して適用できます。
 
 ```csharp
 [UnityTest]
 public IEnumerator Test () => new E2E().WithFastForward()
 ```
 
-もう1つの一般的なシナリオは、各テストが、以前の実行やプレイセッションの影響を受けないグローバル、設定、およびゲーム状態で開始されるように、クリーンなエンジン状態を設定することです。
+もう1つの一般的なケースは、各テストが、以前の実行やプレイセッションの影響を受けないグローバル、設定、およびゲーム状態で開始されるように、クリーンなエンジン状態を設定することです。
 
-また、テスト固有のデータをメモリに保存して、ディスクにシリアル化されないようにすることもできます。これらはすべて `WithTransientState` 拡張機能で実行できます。さらに、このメソッドでは初期のグローバルおよび設定状態を指定できます。
+また、テスト固有のデータはメモリに保持して、ディスクにシリアル化されないようにしたいでしょう。これらはすべて `WithTransientState` 拡張メソッドで実現できます。さらに、このメソッドでは初期のグローバル状態および設定状態を指定できます。
 
 ```csharp
 [UnityTest]
@@ -88,11 +88,11 @@ public IEnumerator WhenTrueCompleteTitleBackChanges () => new E2E()
         }))
 ```
 
-— 上記は、最初のゲーム起動をシミュレートしてクリーンな状態でエンジンを初期化しますが、さらに `completedX` および `completedY` メタ変数をtrueに設定します。
+— 上記は、ゲームの初回起動をシミュレートしてクリーンな状態でエンジンを初期化しますが、さらに `completedX` および `completedY` メタ変数をtrueに設定します。
 
-## シーケンスの作成
+## シーケンスの組み合わせ
 
-分岐シナリオをテストする場合、プレイヤーがそれらを完了するための多くの可能な方法を記述するために、一般的な相互作用シーケンスを繰り返すことがあります。ボイラープレートを最小限に抑えるために、シーケンスオブジェクトは `ISequence` インターフェースを実装しており、すべてのテストAPIで受け入れられます。これを使用すると、一般的なシーケンスを変数に格納し、他のより一般的なシーケンス内で構成できます。
+分岐シナリオをテストする場合、プレイヤーがそれらを完了できる多数の道筋を記述するために、共通のインタラクションシーケンスを何度も繰り返すことになりがちです。ボイラープレートを最小限に抑えるために、シーケンスオブジェクトは `ISequence` インターフェースを実装しており、これはすべてのテストAPIで受け入れられます。これを利用すると、共通のシーケンスを変数に格納し、より汎用的な別のシーケンスの中で組み合わせることができます。
 
 以下は、プレイヤーが共通、X、およびYルートを完了した後にタイトルメニューに「TrueRoute」UIが表示されることを確認するサンプルテストです。
 
@@ -104,8 +104,8 @@ public IEnumerator WhenXYRoutesCompleteTrueUnlocks () => new E2E()
     .StartNew().Play(CommonY, RouteY)
     .Once(InTitle).Ensure(() => UI("TrueRoute").Visible);
 
-ISequence CommonX => Play(D1QuickX, D2TowardX, D3LooseHP);
-ISequence CommonY => Play(D1QuickY, D2TowardY, D3LooseHP);
+ISequence CommonX => Play(D1QuickX, D2TowardX, D3LoseHP);
+ISequence CommonY => Play(D1QuickY, D2TowardY, D3LoseX);
 
 ISequence D1QuickX => Once(Choice("d1-qte-x")).Choose("d1-qte-x");
 ISequence D1QuickY => Once(Choice("d1-qte-y")).Choose("d1-qte-y");
@@ -114,8 +114,8 @@ ISequence D1QuickNone => Once(Choice()).Wait(0.5f);
 ISequence D2TowardX => Once(Choosing).Choose("d2-toward-x");
 ISequence D2TowardY => Once(Choosing).Choose("d2-toward-y");
 
-ISequence D3LooseHP => Once(Choosing).Choose("d3-loose-hp");
-ISequence D3LooseX => Once(Choosing).Choose("d3-loose-x");
+ISequence D3LoseHP => Once(Choosing).Choose("d3-lose-hp");
+ISequence D3LoseX => Once(Choosing).Choose("d3-lose-x");
 ISequence D3LastY => Once(Choosing).Choose("d3-last-y");
 ISequence D3LastNah => Once(Choosing).Choose("d3-last-nah");
 
@@ -123,11 +123,11 @@ ISequence RouteX => On(Choosing, Choose(), Var("completedX", false));
 ISequence RouteY => On(Choosing, Choose(), Var("completedY", false));
 ```
 
-— 「X」または「Y」ルートにつながる共通ルートの1〜3日目の選択肢シーケンスが `CommonX` および `CommonY` 変数にどのように構成され、それらが実際のテストメソッド内でどのように構成されているかに注目してください。
+— 「X」または「Y」ルートにつながる共通ルートの1〜3日目の選択肢シーケンスが `CommonX` および `CommonY` 変数にまとめられ、それらがさらに実際のテストメソッド内で組み合わされている点に注目してください。
 
 ## 選択肢の参照
 
-上記のように、テスト内の選択肢は `d1-qte-x` などの文字列を介して参照できます。これらは、シナリオスクリプトで割り当てられたカスタム [テキスト識別子](/ja/guide/scenario-scripting#テキスト識別) です。安定したテキスト識別が有効になっている場合でも、スクリプトでカスタムテキストIDを定義でき、システムによって保持されます。たとえば、次のシナリオスクリプトを考えてみましょう。
+上記のように、テスト内の選択肢は `d1-qte-x` などの文字列を介して参照できます。これらは、シナリオスクリプトで割り当てられたカスタム [テキスト識別子](/ja/guide/scenario-scripting#テキスト識別) です。テキスト識別ユーティリティを使用している場合でも、スクリプトでカスタムテキストIDを定義でき、ユーティリティによって保持されます。たとえば、次のシナリオスクリプトを考えてみましょう。
 
 ```nani
 @choice "Choice 1|#my-id-for-choice-1|"
@@ -141,12 +141,12 @@ Once(Choosing).Choose("my-id-for-choice-2")
 ```
 
 ::: tip EXAMPLE
-[E2Eサンプル](/ja/guide/samples#e2e) は、利用可能なショートカット、拡張機能、およびテストシナリオのほとんどを示しています。
+[E2Eサンプル](/ja/guide/samples#e2e) は、利用可能なショートカット、拡張メソッド、およびテストケースのほとんどを示しています。
 :::
 
 ## カバレッジ
 
-テスト中にスクリプト行またはコマンドが実行されたかどうかを確認すると役立つ場合があります。テストを作成するときは、プレイヤーが実際にすべての利用可能なコンテンツを見ることができることを確認したいでしょう。すべてのテストに合格した後にコマンドが実行されない場合は、シナリオロジックの問題または不完全なテストスイートを示している可能性があります。
+テスト中にスクリプト行またはコマンドが実行されたかどうかを確認すると役立つ場合があります。テストを作成するときは、プレイヤーが実際にすべての利用可能なコンテンツを見ることができることを確認したいでしょう。すべてのテストが合格しても実行されなかったコマンドがある場合は、シナリオロジックの問題またはテストスイートの不備を示している可能性があります。
 
 デフォルトでは、すべてのE2Eテストが終了した後、カバレッジレポートがコンソールにログ出力されます。
 

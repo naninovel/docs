@@ -25,9 +25,9 @@
 
 ### 命令标识符
 
-紧跟在命令符号之后，需要一个命令标识符。这可以是实现该命令的 C# 类的名称，也可以是命令的别名（当通过 `Alias` 属性应用于类时）。
+紧跟在命令符号之后，需要一个命令标识符。这可以是实现该命令的 C# 类的名称，也可以是命令的别名（当通过 `Alias` 特性应用于类时）。
 
-例如，[@save] 命令（用于自动保存游戏）由 `AutoSave` C# 类实现。实现类还应用了 `[Alias("save")]` 属性，因此您可以在脚本中使用 `@save` 和 `@AutoSave` 语句来调用此命令。
+例如，[@save] 命令（用于自动保存游戏）由 `AutoSave` C# 类实现。实现类还应用了 `[Alias("save")]` 特性，因此您可以在脚本中使用 `@save` 和 `@AutoSave` 语句来调用此命令。
 
 命令标识符不区分大小写；以下所有语句均有效并将调用相同的 `AutoSave` 命令：
 
@@ -40,25 +40,25 @@
 
 ### 命令参数
 
-大多数命令都有许多定义命令效果的参数。参数是在命令标识符之后定义的键值表达式，并用冒号 (`:`) 分隔。参数标识符（键）可以是命令实现类的相应参数字段的名称，也可以是参数的别名（当通过 `CommandParameter` 属性的 `alias` 属性应用时）。
+大多数命令都有若干定义命令效果的参数。参数是在命令标识符之后定义的键值表达式，并用冒号（`:`）分隔。参数标识符（键）可以是命令实现类的相应参数字段的名称，也可以是参数的别名（当通过 `Alias` 特性应用于字段时）。
 
 ```nani
 @commandId paramId:paramValue
 ```
 
-考虑 [@hideAll] 命令，该命令用于隐藏场景中所有可见的 actor。它可以如下使用：
+以 [@hideAll] 命令为例，该命令用于隐藏场景中所有可见 Actor。它可以如下使用：
 
 ```nani
 @hideAll
 ```
 
-您可以使用 `time` *number* 参数来控制 actor 在完全隐藏之前淡出多长时间：
+您可以使用 `time` *number* 参数来控制 Actor 在完全隐藏之前淡出多长时间：
 
 ```nani
 @hideAll time:5.5
 ```
 
-这将使 actor 淡出 5.5 秒，然后完全不可见。
+这将使 Actor 在 5.5 秒内逐渐淡出，直至完全不可见。
 
 ### 参数值类型
 
@@ -69,8 +69,8 @@
 | string | 一个简单的字符串值，例如：`LoremIpsum`。当字符串包含空格时，不要忘记将其用双引号引起来，例如：`"Lorem ipsum dolor sit amet."`。 |
 | number | 数值，可以是整数或小数，例如：`1`、`-25`、`1.0`、`-0.005`。 |
 | boolean | 可以有两个可能的值之一：`true` 或 `false`。您可以使用 [布尔标志](/zh/guide/scenario-scripting#布尔标志) 而不是键入 `true` 和 `false`，例如：`@hideAll wait!` 而不是 `@hideAll wait:true`。 |
-| named | 由点分隔的键值对，带有字符串键和上述类型之一的值。例如命名 number：`foo.8`、`bar.-20`。 |
-| list | 上述类型之一的值的逗号分隔列表。例如字符串列表：`foo,bar,"Lorem ipsum."`，对于 number 列表：`12,-8,0.105,2`。 |
+| named | 由点分隔的键值对，带有字符串键和上述类型之一的值。例如，命名数值：`foo.8`、`bar.-20`。 |
+| list | 以逗号分隔的上述类型之一的值列表。例如，字符串列表：`foo,bar,"Lorem ipsum."`；数值列表：`12,-8,0.105,2`。 |
 
 ### 主参数
 
@@ -82,15 +82,15 @@
 @bgm PianoTheme
 ```
 
-这里的 "PianoTheme" 是 `BgmPath` *string* 参数的值。
+这里的“PianoTheme”是 `Path` *string* 参数的值。
 
 每个命令只能有一个主参数，并且应始终在任何其他参数之前指定它。
 
-### 可选和必选参数
+### 可选和必需参数
 
-许多命令参数是 *可选的*。这意味着它们要么具有预定义的值，要么不需要任何值即可执行命令。例如，当使用 [@resetText] 命令而不指定任何参数时，它将重置默认打印机的文本，但您也可以像这样设置特定的打印机 ID：`@resetText printer:Dialogue`。
+许多命令参数是*可选的*。这意味着它们要么具有预定义的值，要么不需要任何值即可执行命令。例如，当使用 [@resetText] 命令而不指定任何参数时，它将重置默认打印机的文本，但您也可以像这样指定特定的打印机 ID：`@resetText Dialogue`。
 
-然而，某些参数对于命令的执行是 *必选的*，应始终指定。如果您忘记分配此类参数，我们的 [VS Code](/zh/guide/ide-extension) 扩展将会警告您。
+然而，某些参数对于命令的执行是*必需的*，应始终指定。如果您忘记指定此类参数，我们的 [VS Code](/zh/guide/ide-extension) 扩展将会警告您。
 
 ### 标准命令
 
@@ -98,30 +98,30 @@
 
 ## 注释行
 
-当一行以分号符号 (`;`) 开头时，它被视为 *注释* 语句。注释在运行时完全被引擎忽略。使用注释为自己或处理剧本脚本的其他团队成员添加注释或说明。
+当一行以分号符号（`;`）开头时，它被视为*注释*语句。注释在运行时完全被引擎忽略。使用注释为自己或其他处理剧本脚本的团队成员添加备注或说明。
 
 ```nani
 ; 以下命令将自动保存游戏。
 @save
 
-@save ; 你也可以在命令行内添加注释。
+@save ; 您也可以在命令行内添加注释。
 
 # Label ; 也可以在标签行内添加注释。
 
-Lorem [shake ; 也可以在内联命令中添加注释] ipsum. [; ……包括空的注释。]
+Lorem [shake ; 也可以在内联命令中添加注释] ipsum. [; ……包括空的内联命令。]
 ```
 
-我们将在指南的其余部分使用注释来注释示例 NaniScript 片段。
+我们将在指南的其余部分使用注释来说明示例 NaniScript 片段。
 
 ## 通用文本行
 
-为了更轻松地编写包含大量文本的脚本，使用了通用文本行。当一行不以任何语句符号开头时，它被视为 *通用文本*：
+为了更轻松地编写包含大量文本的脚本，可以使用通用文本行。当一行不以任何语句符号开头时，它被视为*通用文本*：
 
 ```nani
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 ```
 
-可以在通用文本行的开头指定作者 ID，用冒号后跟空格 (`: `) 分隔，以将打印的文本与 [角色 actor](/zh/guide/characters) 相关联：
+可以在通用文本行的开头指定作者 ID，用冒号后跟空格（`: `）分隔，以将打印的文本与 [角色 Actor](/zh/guide/characters) 相关联：
 
 ```nani
 Felix: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -142,15 +142,15 @@ Felix: Lorem ipsum dolor sit amet.
 
 ### 命令内联
 
-有时，您可能希望在显示（打印）文本消息时执行命令，无论是在特定字符之后还是之前。例如，actor 可能会在打印特定单词时改变其外观（表情），或者特定的声音效果可能会在打印消息中间描述的某个事件发生时播放。命令内联功能允许处理类似这样的情况。
+有时，您可能希望在显示（打印）文本消息的过程中执行命令，即紧跟在特定字符之后或之前。例如，Actor 可能会在打印特定单词时改变其外观（表情），或者配合打印消息中间描述的某个事件播放特定的音效。命令内联功能可以处理这类情况。
 
-所有命令（[标准](/zh/api/) 和 [自定义](/zh/guide/custom-commands)）都可以使用方括号 (`[ ]`) 内联（注入）到通用文本行中：
+所有命令（[标准](/zh/api/) 和 [自定义](/zh/guide/custom-commands)）都可以使用方括号（`[ ]`）内联（注入）到通用文本行中：
 
 ```nani
 Felix: Lorem[char Felix.Happy pos:0.5] ipsum![sfx Explosion] Dolor sit amet.
 ```
 
-请注意，内联命令语法与常规命令完全相同，只是省略了 `@` 符号并且命令主体包裹在方括号中。本质上，您可以获取任何命令行，将其内联到通用文本中，它将具有相同的效果，但根据其在文本消息中的位置在不同的时刻生效。
+请注意，内联命令语法与常规命令完全相同，只是省略了 `@` 符号并且命令主体包裹在方括号中。本质上，您可以将任何命令行内联到通用文本中，它将具有相同的效果，只是会根据其在文本消息中的位置在不同的时刻生效。
 
 在底层，通用文本行被解析为由内联索引标识的各个命令；文本使用 [@print] 命令打印。
 
@@ -186,10 +186,10 @@ Lorem ipsum dolor sit amet.[>]
 
 ### 通用参数
 
-在某些情况下，您可能希望为特定部分或整个通用文本行修改或分配 [@print] 参数。使用特殊的 `<` 命令，仅在通用行中可用，允许您这样做：
+在某些情况下，您可能希望为通用文本行的特定部分或整行修改或指定 [@print] 参数。为此，请使用仅在通用文本行中可用的特殊 `<` 命令：
 
 ```nani
-; 该行将由 Kohaku 和 Yuko actors 创作，
+; 该行的作者将是 Kohaku 和 Yuko 两个 Actor，
 ; 但打印机上的显示名称将显示 'All Together'。
 Kohaku,Yuko: Hello![< as:"All Together"]
 
@@ -223,7 +223,7 @@ Hello[-][< speed:0.5] world!
 
 ## 标签行
 
-标签用作使用 [@goto] 命令导航剧本脚本的“锚点”。要定义标签，请以 `#` 符号开头，后跟标签名称：
+标签用作使用 [@goto] 命令导航剧本脚本的“锚点”。要定义标签，请在行首使用 `#` 符号，后跟标签名称：
 
 ```nani
 # Epilogue
@@ -253,7 +253,7 @@ Hello[-][< speed:0.5] world!
 
 ### 剧本根目录
 
-您使用导航命令指定的“锚点”称为 *endpoints（端点）*。端点由两部分组成：*script path（脚本路径）* 和 *label（标签）*。标签是可选的；省略时，假定端点指向脚本的开头。脚本路径是指相对于 *scenario root（剧本根目录）* 的剧本文件路径（不带 `.nani` 扩展名）。
+您使用导航命令指定的“锚点”称为*端点*（endpoint）。端点由两部分组成：*脚本路径*（script path）和*标签*（label）。标签是可选的；省略时，假定端点指向脚本的开头。脚本路径是指相对于*剧本根目录*（scenario root）的剧本文件路径（不带 `.nani` 扩展名）。
 
 剧本根目录是项目中存储所有剧本文件的顶级目录。例如，考虑 Unity 项目中的以下目录结构：
 
@@ -314,7 +314,7 @@ Naninovel 支持四种类型的端点语法，允许您在某些情况下编写�
 ; 假设我们在 'Assets/Scenario/CommonRoute/Day1/Scene1.nani' 中，
 ; 导航到同一目录中的 'Scene2.nani' 文件。
 @goto ./Scene2
-; 导航到父目录中的 'Scene1.nani' 文件。
+; 导航到当前目录之上一级的 'Day2' 目录中的 'Scene1.nani' 文件。
 @goto ../Day2/Scene1
 ; 导航到当前目录之上两级的 'RouteX' 目录中的
 ; 'SceneX.nani' 文件。
@@ -336,7 +336,7 @@ Naninovel 支持四种类型的端点语法，允许您在某些情况下编写�
 
 ## 布尔标志
 
-使用 *boolean flags（布尔标志）* 作为布尔参数值的快捷方式，例如：
+使用*布尔标志*（boolean flag）作为布尔参数值的快捷方式，例如：
 
 ```nani
 ; 使 Kohaku 角色可见。
@@ -355,7 +355,7 @@ Lorem ipsum[shake Camera ver! !wait] dolor sit amet.
 Lorem ipsum[shake Camera ver:true wait:false] dolor sit amet.
 ```
 
-使用完整布尔形式的唯一原因是当您想通过 [剧本表达式](/zh/guide/expressions) 动态评估值时，例如：
+只有在以下情况下才需要使用完整的布尔形式：您想通过 [剧本表达式](/zh/guide/expressions) 动态计算该值时，例如：
 
 ```nani
 ; 如果 "score" 变量高于 10，则使 Kohaku 可见。
@@ -402,7 +402,7 @@ Lorem ipsum[shake Camera ver:true wait:false] dolor sit amet.
 @goto LuckyEnd if: (score >= 7 & score <= 13) | lucky
 
 ; 内联命令中的条件。
-Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
+Lorem sit amet. [sfx Applause if:score>=10]Consectetur elit.
 
 ; 转义表达式中的双引号。
 @print {remark} if: remark = "Saying \"Stop the car\" was a mistake."
@@ -414,7 +414,7 @@ Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
 
 ```nani
 ; 根据 "score" 变量打印文本行：
-; "You've failed. Try again!" - 当 score 低于 6 时。
+; "You've failed. Try again!" - 当 score 为 6 或更低时。
 ; "You've passed the test." 和 "Brilliant!" - 当 score 高于 8 时。
 ; "You've passed the test." 和 "Impressive!" - 当 score 高于 7 时。
 ; "You've passed the test." 和 "Good job!" - 其他情况。
@@ -434,7 +434,7 @@ Lorem sit amet. [style bold if:score>=10]Consectetur elit.[style default]
 
 ```nani
 ; 根据 "score" 变量打印文本行：
-; "Test result: Failed." - 当 score 低于 6 时。
+; "Test result: Failed." - 当 score 为 6 或更低时。
 ; "Test result: Perfect!" - 当 score 高于 8 时。
 ; "Test result: Passed." - 其他情况。
 Test result:[if score>8] Perfect![or score>6] Passed.[else] Failed.[endif]
@@ -455,7 +455,7 @@ Test result:[if score>8] Perfect![or score>6] Passed.[else] Failed.[endif]
 Test result:[unless score<10] Passed.[else] Failed.[endif]
 ```
 
-::: info
+::: info NOTE
 在 [剧本表达式](/zh/guide/expressions) 指南中查找有关条件表达式和可用运算符的更多信息。
 :::
 
@@ -471,7 +471,7 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 
 在这里，[@bgm] 命令和后面的通用文本行与 [@if] 命令相关联。
 
-支持此功能的命令称为 *nested hosts（嵌套宿主）*。在 C# 中，这些命令实现了 `Command.INestedHost` 接口。宿主命令控制执行哪些嵌套命令、是否执行以及以什么顺序执行。
+支持此功能的命令称为*嵌套宿主*（nested host）。在 C# 中，这些命令实现了 `Command.INestedHost` 接口。宿主命令控制执行哪些嵌套命令、是否执行以及以什么顺序执行。
 
 每个宿主命令在执行嵌套命令时都有自己的行为。例如，如果未满足条件，[@if] 会跳过嵌套命令，而 [@choice] 仅在玩家选择关联选项时才执行嵌套命令：
 
@@ -492,13 +492,13 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
     @goto #BeginTest
 ```
 
-注意嵌套块的缩进方式：每一级使用恰好 **4 个空格**。或者，您也可以使用**单个制表符**；其他空格数量或空白字符将被忽略。任意深度的嵌套块都是可以的 — 只需每级增加 4 个空格或一个制表符即可。
+注意嵌套块的缩进方式：每一级使用恰好 **4 个空格**。或者，您也可以使用**单个制表符**；其他空格数量或空白字符将被忽略。任意深度的嵌套块都是可以的——只需每级增加 4 个空格或一个制表符即可。
 
 要将多个命令分组到单个宿主下，请使用 [@group] 命令：
 
 ```nani
 ; random 命令选择其嵌套行之一，但忽略嵌套行的
-; 任何子项。这里使用 group 命令将多行组合在一起
+; 任何子级。这里使用 group 命令将多行组合在一起
 ; 以便 random 命令一起执行它们。
 @random
     @group
@@ -511,14 +511,14 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 
 ## 异步执行
 
-某些命令可能会随着时间的推移执行。例如，[@hide] 命令将在设定的时间内淡出指定的 actor，该时间可以通过 `time` 参数更改。考虑以下场景：
+某些命令的执行可能会持续一段时间。例如，[@hide] 命令将在设定的时间内淡出指定的 Actor，该时间可以通过 `time` 参数更改。考虑以下剧本：
 
 ```nani
 @hide Kohaku
 @show Yuko
 ```
 
-— 播放时，您会注意到 Yuko actor 会在 Kohaku 淡出的同时开始淡入。这是因为，默认情况下，所有异步命令都不会被等待：[@show] 将在 [@hide] 开始淡出 Kohaku 后立即开始淡入 Yuko。
+— 播放时，您会注意到 Yuko Actor 会在 Kohaku 淡出的同时开始淡入。这是因为，默认情况下，所有异步命令都不会被等待：[@show] 将在 [@hide] 开始淡出 Kohaku 后立即开始淡入 Yuko。
 
 如果您想等待异步命令完成后再继续播放，请使用 `wait` 参数：
 
@@ -529,7 +529,7 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
 
 — 现在 Yuko 只有在 Kohaku 完全淡出后才会开始淡入。
 
-通常使用多个异步命令来设置场景，然后等待它们全部完成。为了简化该过程，请使用 [@await] 命令：
+常见的做法是使用多个异步命令来设置场景，然后等待它们全部完成。为了简化该过程，请使用 [@await] 命令：
 
 ```nani
 ; 并发运行嵌套行并等待它们全部完成。
@@ -537,7 +537,7 @@ Test result:[unless score<10] Passed.[else] Failed.[endif]
     @back RainyScene
     @bgm RainAmbient
     @camera zoom:0.5 time:3
-; 以下行将在上述所有操作完成后执行。
+; 下面的行将在上述所有操作完成后执行。
 It starts raining...
 ```
 
@@ -545,10 +545,10 @@ It starts raining...
 
 虽然单个命令默认是异步执行的，但在某些情况下，您可能希望编排一系列命令与主剧本并行运行，并具有独立的控制流和播放状态。
 
-使用 [@async] 命令使嵌套行在专用脚本轨道上执行，与主播放例程并发。常见用例包括在场景照常进行时在后台运行复合动画：
+使用 [@async] 命令可使嵌套行在专用脚本轨道上执行，与主播放流程并发运行。常见用例包括在剧本照常推进的同时在后台运行复合动画：
 
 ```nani
-; 在淡出音乐的同时将摄像机缓慢平移到三个点。
+; 在淡出音乐的同时，让摄像机缓慢平移经过三个点。
 @async
     @bgm volume:0.7 fade:10
     @camera offset:4,1 zoom:0.5 time:3 wait!
@@ -557,7 +557,7 @@ It starts raining...
     @stopBgm fade:10
     @camera offset:0,0 zoom:0 time:3 wait!
 
-; 下面的文本在上面的动画独立运行时打印。
+; 当上面的动画独立运行时，下面的文本会打印出来。
 ...
 ```
 
@@ -573,11 +573,11 @@ It starts raining...
 Watch out!
 ```
 
-即使在动画进行过程中保存并加载游戏，它也会恢复当前的播放状态并从保存时的点继续动画。回滚也将起作用。
+即使在动画进行过程中保存并加载游戏，它也会恢复当前的播放状态，并从保存时的位置继续播放动画。回滚同样可以正常工作。
 
 ### 异步任务
 
-在上面的循环示例中，您可能会想：我们应该如何停止循环？或者如果我们想等待一个非循环的异步剧本块完成后再继续怎么办？异步任务来救援！使用 [@async] 命令的可选主参数为命令执行的异步任务指定一个名称，稍后您可以将其与 [@stop] 或 [@await] 命令一起使用来停止（取消）或等待任务：
+在上面的循环示例中，您可能会想：我们应该如何停止循环？或者如果我们想等待一个非循环的异步剧本块完成后再继续怎么办？这时异步任务就派上用场了！使用 [@async] 命令的可选主参数为该命令执行的异步任务指定一个名称，稍后您可以在 [@stop] 或 [@await] 命令中使用该名称来停止（取消）或等待该任务：
 
 ```nani
 ; 启动 'Quake' 异步任务。
@@ -596,7 +596,7 @@ Watch out!
 
 ```nani
 @async CameraPan
-    @camera offset:4,1 zoom: 0.5 time:3 wait!
+    @camera offset:4,1 zoom:0.5 time:3 wait!
     @camera offset:,-2 zoom:0.4 time:2 wait!
 
 ...
@@ -653,7 +653,7 @@ Watch out!
 
 ### 同步轨道
 
-在某些高级情况下，您可能希望将并发运行的轨道相互结合（同步）或与主轨道结合。[@sync] 命令可以做到这一点：
+在某些高级情况下，您可能希望将并发运行的轨道彼此连接（同步），或与主轨道连接。[@sync] 命令可以做到这一点：
 
 ```nani
 You'll have 60 seconds to defuse the bomb!
@@ -661,7 +661,7 @@ You'll have 60 seconds to defuse the bomb!
 @async Boom
     @wait 60
     ; 60 秒后，如果 'Boom' 任务未停止，
-    ; 下面的 @sync 命令将强制将主轨道移动到这里，
+    ; 下面的 @sync 命令将强制主轨道移动到此处，
     ; 然后导航到 'BadEnd' 脚本。
     @sync
     @goto BadEnd
@@ -672,20 +672,20 @@ The defuse puzzle 2.
 The defuse puzzle 3.
 
 ; 'Boom' 异步任务已停止，因此主轨道
-; 将继续执行而不受干扰。
+; 将继续执行而不中断。
 @stop Boom
 The bomb is defused!
 ```
 
-— 如果我们没有在 `Boom` 异步线程中使用 [@sync] 命令，则 [@goto] 命令将在异步轨道上执行，而主轨道将继续进一步执行，因此我们最终会让 `BadEnd` 和主剧本并发运行。[@sync] 所做的是强制将目标轨道（默认为主轨道）移动到使用它的行并处理宿主轨道，本质上是将宿主轨道与目标轨道交换。
+— 如果我们没有在 `Boom` 异步任务中使用 [@sync] 命令，则 [@goto] 命令将在异步轨道上执行，而主轨道将继续向下执行，因此最终 `BadEnd` 和主剧本会并发运行。[@sync] 所做的是强制将目标轨道（默认为主轨道）移动到使用它的行并处置宿主轨道，本质上是用目标轨道替换宿主轨道。
 
-## 文本识别
+## 文本标识
 
-诸如 [脚本本地化](/zh/guide/localization#脚本本地化) 和 [自动配音](/zh/guide/voicing#自动配音) 之类的功能需要将剧本脚本中编写的文本与其他资源相关联 — 例如，显示翻译后的文本而不是原始文本，或在打印文本时播放语音剪辑。为了使其工作，必须为每个此类文本分配一个唯一标识符。
+诸如 [脚本本地化](/zh/guide/localization#脚本本地化) 和 [自动配音](/zh/guide/voicing#自动配音) 之类的功能需要将剧本脚本中编写的文本与其他资源相关联——例如，用于代替原文显示的译文，或在打印文本时播放的语音剪辑。为此，必须为每个此类文本分配一个唯一标识符。
 
-默认情况下，Naninovel 在导入脚本资产时通过其内容哈希自动识别所有可本地化的文本。只要您不修改文本，这就可以正常工作。如果您确实修改了它，关联将会中断：您需要重新映射自动语音剪辑或重新翻译更改后的文本语句。
+默认情况下，Naninovel 在导入脚本资产时通过内容哈希自动标识所有可本地化的文本。只要您不修改文本，这就可以正常工作。如果您确实修改了它，关联将会断开：您需要重新映射自动配音剪辑或重新翻译更改后的文本语句。
 
-为了防止在编辑文本时关联中断，请使用可通过 `Naninovel -> Tools -> Text Identifier` 编辑器菜单访问的文本识别实用程序；它将自动生成并向剧本脚本中的每个可本地化文本写入唯一 ID。剧本文本将向每个可本地化参数附加标识符，例如：
+为了防止在编辑文本时关联断开，请使用可通过 `Naninovel -> Tools -> Text Identifier` 编辑器菜单访问的文本标识实用程序；它将自动生成唯一 ID 并写入剧本脚本中的每个可本地化文本。剧本文本中的每个可本地化参数都会附加标识符，例如：
 
 ```nani
 Kohaku: Hey!|#1|[-] What's up?|#2|
@@ -693,22 +693,22 @@ Kohaku: Hey!|#1|[-] What's up?|#2|
 @choice "Option 2|#4|"
 ```
 
-只要您不删除或更改 ID，关联就不会中断。为了减少文本 ID 的干扰，IDE 扩展和故事编辑器以暗色渲染它们。
+只要您不删除或更改 ID，关联就不会断开。为了减少文本 ID 的干扰，IDE 扩展和故事编辑器以暗色渲染它们。
 
-该实用程序确保所有生成的文本 ID 都是唯一的，并且以前未在脚本中使用过。为了跟踪这一点，它将修订号存储在 `NaninovelData/ScriptRevisions` 编辑器资产中。每当您删除带有分配文本 ID 的行时，您可以确信此 ID 不会突然出现在其他地方（除非您手动添加它）。
+该实用程序确保所有生成的文本 ID 都是唯一的，并且以前未在脚本中使用过。为了跟踪这一点，它将修订号存储在 `NaninovelData/ScriptRevisions` 编辑器资产中。每当您删除带有已分配文本 ID 的行时，您可以确信此 ID 不会突然出现在其他地方（除非您手动添加它）。
 
-### 识别的文本参考
+### 已标识文本的引用
 
-在极少数情况下，您可能希望故意复制可本地化的文本标识符 — 例如，当在 C# 中创建命令实例时，该实例应重用脚本中指定的本地化参数。
+在极少数情况下，您可能希望有意重复使用某个可本地化文本的标识符——例如，在 C# 中创建命令实例，而该实例需要重用脚本中指定的本地化参数时。
 
-如果您只分配 `LocalizableTextParameter` 值，Naninovel 将警告重复的文本 ID。相反，请使用参数的 `Ref()` 实例方法：
+如果您只是简单地为 `LocalizableTextParameter` 赋值，Naninovel 将发出文本 ID 重复的警告。请改用静态方法 `CommandParameter.Ref()`：
 
 ```cs
 var print = new PrintText();
-print.AuthorLabel = otherPrint.AuthorLabel.Ref();
+print.AuthorLabel = CommandParameter.Ref(otherPrint.AuthorLabel);
 ```
 
-要引用剧本脚本中现有的本地化文本，请将 `&` 附加到标识符：
+要在剧本脚本中引用现有的本地化文本，请在标识符前加上 `&`：
 
 ```nani
 ; 显示带有 "Some Text" 的选项，然后打印相同的文本。
@@ -718,9 +718,9 @@ print.AuthorLabel = otherPrint.AuthorLabel.Ref();
 
 ## 标题脚本
 
-标题脚本是在脚本配置菜单中分配的特殊剧本脚本。分配后，它会在引擎初始化后或使用 [@title] 命令或游戏内各种菜单中的 "Title" 按钮退出到标题菜单时自动播放。标题脚本可用于设置标题屏幕场景：背景、音乐、效果、显示标题 UI 等。
+标题脚本是在脚本配置菜单中分配的特殊剧本脚本。分配后，它会在引擎初始化后或使用 [@title] 命令或游戏内各种菜单中的“Title”按钮退出到标题菜单时自动播放。标题脚本可用于设置标题屏幕场景：背景、音乐、效果、显示标题 UI 等。
 
-该脚本还可用于在玩家单击 "NEW GAME"、"EXIT" 或任何保存槽以在标题 UI 内加载游戏时调用命令。以下是标题脚本的示例。
+该脚本还可用于在玩家单击标题 UI 内的“NEW GAME”、“EXIT”或任一存档槽（以加载游戏）时调用命令。以下是标题脚本的示例。
 
 ```nani
 ; 设置标题菜单外观。
@@ -732,14 +732,14 @@ print.AuthorLabel = otherPrint.AuthorLabel.Ref();
 
 # OnNewGame
 ; 以下命令将在玩家单击 "NEW GAME" 时执行。
-; 请注意，等待 "stopBgm" 命令，以便音乐
+; 请注意，这里会等待 "stopBgm" 命令完成，以便音乐
 ; 在新游戏开始加载之前完全停止。
 @sfx NewGameSoundEffect
 @stopBgm wait!
 @stop
 
 # OnLoad
-; 以下命令将在玩家加载保存的游戏时执行。
+; 以下命令将在玩家加载存档时执行。
 @sfx LoadGameEffect
 @wait 0.5
 @stop
@@ -757,7 +757,7 @@ print.AuthorLabel = otherPrint.AuthorLabel.Ref();
 
 Naninovel 提供了一个将 `.fountain` 文档转换为 `.nani` 脚本的工具，因此您可以在兼容 Fountain 的软件中起草项目的初始剧本，然后将其移至 Naninovel。
 
-从编辑器菜单打开工具：`Naninovel -> Tools -> Fountain Screenplay`。选择源 `.fountain` 文档和生成的 `.nani` 文件的输出文件夹，然后单击 "Convert Screenplay"。
+从编辑器菜单打开工具：`Naninovel -> Tools -> Fountain Screenplay`。选择源 `.fountain` 文档和生成的 `.nani` 文件的输出文件夹，然后单击“Convert Screenplay”。
 
 Fountain 的 [Action](https://fountain.io/syntax#section-action) 和 [Dialogue](https://fountain.io/syntax#section-dialogue) 段落转换为 [通用文本行](/zh/guide/scenario-scripting#通用文本行)；其他语法结构表示为 [注释行](/zh/guide/scenario-scripting#注释行)。如果您想将剧本拆分为多个 `.nani` 脚本，请使用 Fountain 的 [Section](https://fountain.io/syntax#section-sections) 标记。例如，考虑以下剧本：
 
@@ -772,7 +772,7 @@ Fountain 的 [Action](https://fountain.io/syntax#section-action) 和 [Dialogue](
 ...
 ```
 
-它将被转换为组织到文件夹中的以下剧本脚本：
+它将被转换为以下按文件夹组织的剧本脚本：
 
 - `Episode 1/Scene 1.nani`
 - `Episode 1/Scene 2.nani`
