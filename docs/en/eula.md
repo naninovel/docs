@@ -4,56 +4,70 @@ editLink: false
 
 # End User License Agreement
 
-This End User License Agreement ("EULA") is a non-exclusive, legally binding license agreement between any individual or a single entity ("User") that acquires a license to Naninovel — Visual Novel Engine ("Application") by ReWaffle LLC ("Licensor").
+This End User License Agreement ("Agreement") is a legal agreement between you (an individual or a single organization) and Elringus, the developer of Naninovel ("we", "us").
 
-By downloading or using the Application, User agrees to be bound by the terms and conditions of this Agreement.  If User does not agree to the terms of this Agreement, they shall not download or use the Application.
+By downloading or using Naninovel, you agree to this Agreement. If you don't agree, don't download or use Naninovel.
 
-The subject matter of this EULA is the licensing of Application to User. <u>The Application is licensed, not sold</u>.
+## Your License
 
-## License
+<u>Naninovel is licensed, not sold</u>. We keep ownership of Naninovel, including its name and logo. You only get the rights described in this Agreement.
 
-Licensor grants User a revocable, non-exclusive, non-transferable, limited license to download, install and use the Application for personal and commercial purposes in accordance with the terms of this Agreement.
+As long as you follow this Agreement, you have a permanent, worldwide, non-exclusive license to use Naninovel for personal and commercial purposes.
 
-## User's Rights and Obligations
+You can:
 
-User may use the licensed Application only for its intended purpose.
+- Use Naninovel to create games, visual novels and other content made for players and viewers ("Products").
+- Distribute and sell your Products with Naninovel built into them.
+- Modify Naninovel to fit your Products.
 
-Licensor grants to the User a non-exclusive, worldwide, and perpetual license to the Application to integrate it <u>only as incorporated and embedded components of electronic games and digital media</u> and distribute such electronic game and digital media; reproduction and display in distributed physical advertising materials is permitted solely for marketing purposes in respect of such electronic games or digital media. Except for game services software development kits ("Services SDKs"), User may modify the Application. User may otherwise not reproduce, publicly display, publicly perform, transmit, distribute, sublicense, rent, lease or lend the Application. It is emphasized that the User shall not be entitled to distribute or transfer in any way (including, without, limitation by way of sublicense) the Application in any other way than as integrated components of electronic games and digital media or in supporting physical marketing materials. Without limitation of the foregoing it is emphasized that User shall not be entitled to share the costs related to purchasing an Application and then let any third party that has contributed to such purchase use such Application (forum pooling).
+You can't:
 
-User is granted a <u>single seat license</u> to install and use the Application only on a maximum of 2 computers. For the avoidance of doubt, the Application is licensed on a per-seat basis and may not be shared or used concurrently on more than 2 different computers. As an exception, build farm servers and virtual machine instances used only for running, testing, or building projects with the Application do not require separate seat license(s) or constitute use on more than 2 different computers.
+- Share, resell, sublicense, rent, lend or otherwise distribute Naninovel, whether original or modified, <u>in any way other than as a built-in part of your Products</u>.
+- Use Naninovel to make engines, frameworks, tools or services for creating games or stories, or any other product that competes with Naninovel. Letting players mod your own Products is fine.
+- Use or modify Naninovel in a way that breaks the law, violates someone's rights (such as copyright, trademark or privacy), or is fraudulent or misleading.
 
-User may use the Application and may have a third party, including any "work-for-hire" contractor or "freelancer" ("Contractor"), work on that Application on its behalf. However, any <u>Contractor working on a project for User must have license(s) of its own</u> to the Application. Conversely, to use the Application, a person must have its own license to the Application, regardless of whether a Contractor working on a project for that person had its own license to that Application. For example, a person who is a Contractor must have a seat license for the Application, and the person who is hirer of the Contractor must have a seat license for the Application.
+Some parts of Naninovel are covered by open source licenses. If such a license conflicts with this Agreement, the open source license takes priority for that part.
 
-Some components of the Application (whether developed by Licensor or third parties) may also be governed by applicable open source software licenses. In the event of a conflict between the applicable EULA and any such open source licenses, the open source software licenses shall prevail with respect to those components.
+## Seats
 
-User agrees that no modification or use of the Application shall (a) infringe, misappropriate, or violate a third party’s patent, copyright, trademark, trade secret, or other intellectual property rights, or rights of publicity or privacy; (b) violate, or encourage any conduct that would violate, any applicable law or regulation or would give rise to liability of any kind; (c) be fraudulent, false, misleading, or deceptive.
+- <u>Each license covers one person</u> (a "seat"), who can install and use Naninovel on up to 2 computers.
+- Everyone who uses Naninovel needs a license of their own. A license can't be shared between people.
+- <u>Contractors and freelancers working on your project need their own licenses</u>. Their licenses don't cover you, and yours doesn't cover them.
+- Build servers and virtual machines used only to run, test or build projects don't need a license and don't count toward the 2 computers.
+- If you're an organization, you can move a license from one employee to another, as long as the previous person stops using Naninovel. Otherwise, licenses can't be transferred or resold.
 
-All <u>sales are final and there shall be no refunds</u> except as required by law.
+## Payments and Refunds
 
-On acceptance of User orders for licenses to the Application, content will be immediately available for download. User expressly consent to the making available of that content immediately upon acceptance of orders. If User is a resident of the European Union and purchases a license to the Application, the right to withdraw from such purchase within 14 days of the date of purchase ("Cooling Off Period") may be available; however, this right of withdrawal will not apply where performance begins before the end of the Cooling Off Period. Therefore, User expressly agree and understand that if User orders a license to the Application, User’s right of withdrawal is forfeited upon acceptance as performance begins immediately on acceptance.
+<u>All sales are final and there are no refunds</u>, except where the law requires them.
 
-## Modifications to Application
+Naninovel becomes available for download right after your purchase. If you're a consumer in the European Union, the European Economic Area or the United Kingdom, you may have a legal right to cancel an online purchase within 14 days. If you agreed at checkout (with us or with the reseller handling your purchase) to get immediate access, that right ends once Naninovel is available for you to download.
 
-Licensor reserves the right to modify, suspend or discontinue, temporarily or permanently, the Application or any service to which it connects, with or without notice and without liability to User.
+## Warranty and Liability
 
-## Term and Termination
+<u>Naninovel is provided "as is", without warranties of any kind</u>, express or implied, including warranties of merchantability, fitness for a particular purpose and non-infringement. We don't promise that it will meet your needs, work without interruption or be free of bugs. You use it at your own risk.
 
-This Agreement shall remain in effect until terminated by User or Licensor.
+We're not liable for indirect or consequential losses, such as lost profits, revenue or data, that result from using or being unable to use Naninovel. In any case, <u>our total liability is limited to the amount you paid for your license</u>.
 
-Licensor may, in its sole discretion, at any time and for any or no reason, suspend or terminate this Agreement with or without prior notice.
+These limits apply as far as the law allows. Nothing in this Agreement takes away rights that can't legally be excluded.
 
-This Agreement will terminate immediately, without prior notice from Licensor, in the event that User fails to comply with any provision of this Agreement. User may also terminate this Agreement by deleting the Application and all copies thereof from User’s devices.
+## Changes to Naninovel
 
-Upon termination of this Agreement, User shall cease all use of the Application and delete all copies of the Application.
+We may change, suspend or discontinue Naninovel or any service it connects to at any time, without notice and without liability to you. This doesn't take away your license to the versions of Naninovel you already have.
 
-## Severability
+## Ending This Agreement
 
-If any provision of this Agreement is held to be unenforceable or invalid, such provision will be changed and interpreted to accomplish the objectives of such provision to the greatest extent possible under applicable law and the remaining provisions will continue in full force and effect.
+- This Agreement stays in effect until it ends in one of the ways below.
+- It ends automatically, without notice, if you break any of its terms. We can't end it for any other reason.
+- You can end it at any time by deleting all your copies of Naninovel.
+- When it ends, you must stop using Naninovel and delete all copies of it. Products you publicly released before that can stay in distribution.
+- The parts of this Agreement about ownership, warranty and liability continue to apply after it ends.
 
-## Amendments
+## Other Terms
 
-Licensor reserves the right, at its sole discretion, to modify or replace this Agreement at any time. If a revision is material we will provide at least 30 days' notice prior to any new terms taking effect. What constitutes a material change will be determined at our sole discretion.
+- If any part of this Agreement turns out to be invalid or unenforceable, it will be applied as closely to its intent as the law allows, and the rest stays in effect.
+- This Agreement is the entire agreement between you and us about the license to Naninovel and replaces any earlier statements or promises on the subject.
+- We may update this Agreement at any time. If a change is material, we'll give at least 30 days' notice before the new terms take effect. We decide what counts as a material change.
 
-## Contact Information
+## Contact
 
-If you have any questions about this Agreement, please [contact the support](https://naninovel.com/support/#naninovel-support).
+If you have any questions about this Agreement, please [contact support](/support/).
