@@ -48,13 +48,61 @@ await stateManager.SaveGlobalState();
 
 ## 用户设置
 
-与全局状态一样，用户设置数据（显示分辨率、语言、音量等）存储在单个保存槽中，但默认处理方式不同：生成的保存文件放置在 "Saves" 文件夹之外，并以可读方式格式化，以便用户可以根据需要修改值。
+用户设置（例如语言、音量和文本速度）与全局状态类似，存储在单个保存槽中。即使启用了 `Binary Save Files`，设置文件也始终保存为文本 `.json`，以便用户可以根据需要修改值。
 
 用户设置在引擎初始化时自动加载。您可以随时使用 `IStateManager` 保存设置：
 
 ```csharp
 await stateManager.SaveSettings();
 ```
+
+## 保存文件
+
+在可访问文件系统的平台上使用通用序列化处理程序时，所有状态都会写入 Unity [持久数据目录](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html) 下的 `Saves` 文件夹。例如，如果公司名称是 `Foo` 且游戏标题是 `Bar`，路径将是：
+
+::: code-group
+
+```text [Windows]
+C:/Users/User/AppData/LocalLow/Foo/Bar/Saves
+```
+
+```text [macOS]
+~/Library/Application Support/unity.Foo.Bar/Saves
+```
+
+```text [Linux]
+~/.config/unity3d/Foo/Bar/Saves
+```
+
+```text [iOS]
+/var/mobile/Containers/Data/Application/<guid>/Documents/Saves
+```
+
+```text [Android]
+/storage/emulated/0/Android/data/<package>/files/Saves
+```
+
+:::
+
+该文件夹包含以下文件，其中 `###` 是槽编号：
+
+| 文件                    | 默认上限 | 内容                   |
+|-------------------------|----------|------------------------|
+| `GameSave###.nson`      | 99       | 保存槽的游戏状态。     |
+| `GameQuickSave###.nson` | 18       | 快速保存槽的游戏状态。 |
+| `GameAutoSave###.nson`  | 18       | 自动保存槽的游戏状态。 |
+| `GlobalSave.nson`       | 1        | 全局状态。             |
+| `Settings.json`         | 1        | 用户设置。             |
+
+使用默认的槽上限时，该文件夹最多包含 137 个文件。游戏状态文件的大小主要取决于摄像机配置中的 `Thumbnail Resolution` 和状态配置中的 `Saved Rollback Steps`。
+
+禁用 `Binary Save Files` 时，游戏状态和全局状态文件的扩展名为 `.json` 而不是 `.nson`。文件夹名称、文件名称和槽上限可以在状态配置中更改。
+
+在 Unity 编辑器中，文件改为存储在 Naninovel 数据文件夹（默认为 `Assets/NaninovelData`）的 `.nani/Transient/Saves` 下。
+
+::: tip
+云存档服务（例如 [Steam Auto-Cloud](https://partner.steamgames.com/doc/features/cloud#steam_auto-cloud)）应仅同步 `Saves` 文件夹；持久数据目录中的其他文件仅供本设备使用。可以考虑将同步范围限制为 `.nson` 文件，因为 `Settings.json` 包含特定于设备的选项，例如图形质量和输入绑定。Steamworks 文档中有为 Unity 游戏配置路径的 [示例](https://partner.steamgames.com/doc/features/cloud#example)。
+:::
 
 ## 自定义状态
 

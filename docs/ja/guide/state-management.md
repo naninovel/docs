@@ -48,13 +48,61 @@ await stateManager.SaveGlobalState();
 
 ## ユーザー設定
 
-グローバル状態と同様に、ユーザー設定データ（ディスプレイ解像度、言語、音量など）は単一のセーブスロットに保存されますが、デフォルトでは扱いが異なります。生成されたセーブファイルは「Saves」フォルダーの外に配置され、ユーザーが希望する場合に値を変更できるように読み取り可能な形式でフォーマットされます。
+言語、音量、テキスト速度などのユーザー設定は、グローバル状態と同様に単一のセーブスロットに保存されます。設定ファイルは、ユーザーが希望する場合に値を変更できるように、`Binary Save Files` が有効な場合でも常にテキスト `.json` として保存されます。
 
 ユーザー設定は、エンジンの初期化時に自動的にロードされます。`IStateManager` を使用して、いつでも設定を保存できます。
 
 ```csharp
 await stateManager.SaveSettings();
 ```
+
+## セーブファイル
+
+ファイルシステムにアクセスできるプラットフォームでユニバーサルシリアル化ハンドラーが使用される場合、すべての状態はUnityの [永続データディレクトリ](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html) 下の `Saves` フォルダーに書き込まれます。たとえば、会社名が `Foo` でゲームタイトルが `Bar` の場合、パスは次のようになります。
+
+::: code-group
+
+```text [Windows]
+C:/Users/User/AppData/LocalLow/Foo/Bar/Saves
+```
+
+```text [macOS]
+~/Library/Application Support/unity.Foo.Bar/Saves
+```
+
+```text [Linux]
+~/.config/unity3d/Foo/Bar/Saves
+```
+
+```text [iOS]
+/var/mobile/Containers/Data/Application/<guid>/Documents/Saves
+```
+
+```text [Android]
+/storage/emulated/0/Android/data/<package>/files/Saves
+```
+
+:::
+
+フォルダーには次のファイルが含まれます。`###` はスロット番号です。
+
+| ファイル                | デフォルトの上限 | 内容                                 |
+|-------------------------|------------------|--------------------------------------|
+| `GameSave###.nson`      | 99               | セーブスロットのゲーム状態。         |
+| `GameQuickSave###.nson` | 18               | クイックセーブスロットのゲーム状態。 |
+| `GameAutoSave###.nson`  | 18               | オートセーブスロットのゲーム状態。   |
+| `GlobalSave.nson`       | 1                | グローバル状態。                     |
+| `Settings.json`         | 1                | ユーザー設定。                       |
+
+デフォルトのスロット上限では、フォルダーには最大137個のファイルが含まれます。ゲーム状態ファイルのサイズは、主にカメラ構成の `Thumbnail Resolution` と状態構成の `Saved Rollback Steps` によって決まります。
+
+`Binary Save Files` が無効な場合、ゲーム状態とグローバル状態のファイルの拡張子は `.nson` ではなく `.json` になります。フォルダー名、ファイル名、およびスロット上限は、状態構成で変更できます。
+
+Unityエディターでは、ファイルは代わりにNaninovelデータフォルダー（デフォルトでは `Assets/NaninovelData`）の `.nani/Transient/Saves` 下に保存されます。
+
+::: tip
+[Steam Auto-Cloud](https://partner.steamgames.com/doc/features/cloud#steam_auto-cloud) などのクラウドセーブサービスでは、`Saves` フォルダーのみを同期してください。永続データディレクトリ内のその他のファイルは、そのデバイスでのみ使用されるものです。`Settings.json` にはグラフィック品質や入力バインドなどのデバイス固有のオプションが含まれるため、同期対象を `.nson` ファイルに限定することを検討してください。Steamworksのドキュメントには、Unityゲーム向けにパスを構成する [例](https://partner.steamgames.com/doc/features/cloud#example) があります。
+:::
 
 ## カスタムステート
 

@@ -48,13 +48,61 @@ await stateManager.SaveGlobalState();
 
 ## User Settings
 
-Like global state, user settings data (display resolution, language, sound volume, etc.) is stored in a single save slot, but is treated differently by default: the generated save file is placed outside the "Saves" folder and formatted in a readable way so that users can modify the values if they wish.
+User settings, such as language, sound volume, and text speed, are stored in a single save slot, similar to global state. The settings file is always saved as text `.json`, even when `Binary Save Files` is enabled, so that users can modify the values if they wish.
 
 User settings are loaded automatically on engine initialization. You can save settings at any time using `IStateManager`:
 
 ```csharp
 await stateManager.SaveSettings();
 ```
+
+## Save Files
+
+When the universal serialization handlers are used on a platform with file system access, all the state is written to the `Saves` folder under Unity's [persistent data directory](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html). For example, if the company's name is `Foo` and the game title is `Bar`, the path will be:
+
+::: code-group
+
+```text [Windows]
+C:/Users/User/AppData/LocalLow/Foo/Bar/Saves
+```
+
+```text [macOS]
+~/Library/Application Support/unity.Foo.Bar/Saves
+```
+
+```text [Linux]
+~/.config/unity3d/Foo/Bar/Saves
+```
+
+```text [iOS]
+/var/mobile/Containers/Data/Application/<guid>/Documents/Saves
+```
+
+```text [Android]
+/storage/emulated/0/Android/data/<package>/files/Saves
+```
+
+:::
+
+The folder contains the following files, where `###` is the slot number:
+
+| File                    | Default Limit | Content                             |
+|-------------------------|---------------|-------------------------------------|
+| `GameSave###.nson`      | 99            | Game state of the save slots.       |
+| `GameQuickSave###.nson` | 18            | Game state of the quick save slots. |
+| `GameAutoSave###.nson`  | 18            | Game state of the auto save slots.  |
+| `GlobalSave.nson`       | 1             | Global state.                       |
+| `Settings.json`         | 1             | User settings.                      |
+
+With the default slot limits, the folder holds at most 137 files. The size of a game state file mostly depends on `Thumbnail Resolution` in the camera configuration and `Saved Rollback Steps` in the state configuration.
+
+When `Binary Save Files` is disabled, the game and global state files have the `.json` extension instead of `.nson`. The folder name, file names, and slot limits can be changed in the state configuration.
+
+In the Unity editor, the files are stored under `.nani/Transient/Saves` of the Naninovel data folder (`Assets/NaninovelData` by default) instead.
+
+::: tip
+Cloud save services, such as [Steam Auto-Cloud](https://partner.steamgames.com/doc/features/cloud#steam_auto-cloud), should only sync the `Saves` folder; other files in the persistent data directory are local to the device. Consider limiting the sync to the `.nson` files, as `Settings.json` includes device-specific options, such as graphics quality and input bindings. Steamworks documentation has an [example](https://partner.steamgames.com/doc/features/cloud#example) of configuring the paths for a Unity game.
+:::
 
 ## Custom State
 
