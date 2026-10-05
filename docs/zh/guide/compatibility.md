@@ -4,7 +4,7 @@
 
 支持的 Unity 版本：`6.7` LTS 版本（带有最新补丁）。
 
-不支持非 LTS（Tech、Beta 和 Alpha）版本。未来 Unity 版本的任何问题将在后续的 Naninovel 版本中解决。过去 Naninovel 版本的兼容 Unity 版本列在 [发行说明](https://pre.naninovel.com/releases) 中。
+不支持非 LTS（Tech、Beta 和 Alpha）版本。未来 Unity 版本的任何问题将在后续的 Naninovel 版本中解决。与过往 Naninovel 版本兼容的 Unity 版本列在 [发行说明](https://pre.naninovel.com/releases) 中。
 
 ## 平台
 

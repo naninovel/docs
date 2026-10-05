@@ -4,7 +4,7 @@
 
 默认情况下，最初用于创作项目的资源与*源语言环境*相关联。例如，如果游戏最初是用英语创作的，则所有原始（源）剧本脚本、UI、背景上的标牌等都是英语；这意味着*源语言环境*是 `en`（如果您希望为特定地区使用单独的语言环境，则为 `en-GB` / `en-US` 等）。
 
-可以通过 `Naninovel -> Configuration -> Localization` 菜单中的 `Source Locale` 属性更改*源语言环境*。`Source Locale` 设置仅确定与源项目资产关联的语言环境的名称（ID），并在设置的“Language”下拉菜单和相关引擎 API 中用于区分该语言环境。
+可以通过 `Naninovel -> Configuration -> Localization` 菜单中的 `Source Locale` 属性更改*源语言环境*。`Source Locale` 设置仅确定与项目源资产关联的语言环境的名称（ID），并在设置的“Language”下拉菜单和相关引擎 API 中用于区分该语言环境。
 
 ![](https://i.gyazo.com/84eea85d3c3deddd187af1ed843f1bd5.png)
 
@@ -12,14 +12,14 @@
 如果您想与第三方共享源语言的可本地化文本（例如，用于校对）但不想共享源剧本脚本，请将 `Source Locale` 更改为某个您不会使用的无关语言，然后禁用 `Expose Source Locale` 并为源内容添加一个专用语言环境。之后即可将该语言环境导出到本地化 [文档](/zh/guide/localization#脚本本地化) 或 [电子表格](/zh/guide/localization#电子表格)。
 :::
 
-要添加语言环境，请在 `Resources/Naninovel/Localization`（*本地化资源根目录*）内创建一个子文件夹，其名称等于您希望支持的 [RFC5646](https://gist.github.com/Elringus/db90d9c74f13c00fa35131e61d1b73cb) 语言标记之一。例如，要添加德语，请创建 `Resources/Naninovel/Localization/de`。内置游戏设置 UI 中的“Language”下拉菜单将自动包含所有添加的语言环境。
+要添加语言环境，请在 `Resources/Naninovel/Localization`（*本地化资源根目录*）内创建一个子文件夹，其名称等于您希望支持的 [RFC5646](https://gist.github.com/Elringus/db90d9c74f13c00fa35131e61d1b73cb) 语言标签之一。例如，要添加德语，请创建 `Resources/Naninovel/Localization/de`。内置游戏设置 UI 中的“Language”下拉菜单将自动包含所有添加的语言环境。
 
 请注意，您不必为*源语言环境*在*本地化资源根目录*中创建子文件夹。存储在*本地化资源根目录*之外的所有项目资源默认属于*源语言环境*。
 
 可以通过 `Loader > Path Prefix` 属性在本地化配置菜单中更改*本地化资源根目录*路径。请注意，配置的路径是相对于“Resources”文件夹（而不是“Assets”）的。Unity 以特殊方式处理 Resources 文件夹；您可以在项目内的任何位置拥有多个此类文件夹来组织特定于语言环境的资产。
 
 ::: tip
-除了使用 `Resources` 文件夹，您也可以选择其他资源提供者；例如，使用 [Addressables](/zh/guide/resource-providers#addressable)，您可以独立于主游戏包打包特定于语言环境的资源，并按需下载它们。安装该包后，Naninovel 会自动将生成的本地化文档注册到 Addressables。
+您也可以不使用 `Resources` 文件夹，而是选择其他资源提供者；例如，使用 [Addressables](/zh/guide/resource-providers#addressable)，您可以独立于主游戏包打包特定于语言环境的资源，并按需下载它们。安装该包后，Naninovel 会自动将生成的本地化文档注册到 Addressables。
 :::
 
 ## 默认语言环境
@@ -44,7 +44,7 @@ Resources/Naninovel/Localization/ja-JP/Backgrounds/MainBackground/City
 
 ## 脚本本地化
 
-资源本地化方案适用于大多数资源类型，除了剧本脚本和管理文本文档。对于这些类型，请使用通过 `Naninovel -> Tools -> Localization` 访问的本地化工具：
+资源本地化方案适用于大多数资源类型，但剧本脚本和管理文本文档除外。对于这些类型，请使用通过 `Naninovel -> Tools -> Localization` 访问的本地化工具：
 
 ![](https://i.gyazo.com/1b47d70dcbbb45a3ab955b44c9b50942.png)
 
@@ -52,7 +52,7 @@ Resources/Naninovel/Localization/ja-JP/Backgrounds/MainBackground/City
 
 或者，如果您希望不从源脚本而是从先前为另一个语言环境生成的文档生成本地化文档，请选择包含该语言环境现有本地化文档的文本文件夹，例如 `Assets/Resources/Naninovel/Localization/ja-JP/Text`。
 
-然后选择生成的本地化资源应存储到的语言环境文件夹路径。确保您选择了实际的语言环境文件夹（例如 `Resources/Naninovel/Localization/ja-JP`）。字段下方的标签将指示何时选择了有效的输出语言环境文件夹并显示目标语言环境名称。
+然后选择生成的本地化资源应存储到的语言环境文件夹路径。确保您选择了实际的语言环境文件夹（例如 `Resources/Naninovel/Localization/ja-JP`）。选择了有效的输出语言环境文件夹后，字段下方的标签会给出提示并显示目标语言环境名称。
 
 ::: tip
 您可以通过选择*本地化资源根目录*而不是特定的语言环境文件夹来一次为项目中的所有语言环境生成资源；该工具将遍历子文件夹并为每个子文件夹生成资源。
@@ -85,7 +85,7 @@ Translation text
 
 ### 连接行
 
-当翻译的通用文本行包含内联命令或表达式时，它可能会被拆分为多个文本片段，每个片段映射到一个唯一的文本 ID。在生成的本地化文档中，此类片段使用管道符号 `|` 连接成一行。
+当待翻译的通用文本行包含内联命令或表达式时，它可能会被拆分为多个文本片段，每个片段映射到一个唯一的文本 ID。在生成的本地化文档中，此类片段使用管道符号 `|` 连接成一行。
 
 例如，给定以下源脚本文本：
 
@@ -150,10 +150,10 @@ Narrator: You've decided to go {route}. Wise choice!
 ; You've decided to go |. Wise choice!
 ```
 
-批注为翻译人员提供了本地化文本的上下文。请确保**不要**在翻译中包含批注行（以 `; >` 开头的行）。只有以单个 `;` 开头的行才需要翻译。
+批注为翻译人员提供了本地化文本的上下文。请确保**不要**在翻译中包含批注行（以 `; >` 开头的行）。只有以单个 `;` 开头（不带 `>`）的行才需要翻译。
 
 ::: tip EXAMPLE
-在 [本地化示例](/zh/guide/samples#本地化) 中查找本地化设置示例。如果您在项目中设置本地化时遇到问题，请将其用作参考。
+本地化设置示例请参阅 [本地化示例](/zh/guide/samples#本地化)。如果您在项目中设置本地化时遇到问题，请将其用作参考。
 :::
 
 ## 电子表格
@@ -176,7 +176,7 @@ Spreadsheet 工具将可本地化文本提取到 `.csv` 表格中，并可将编
 - Input Scripts Folder — 存储源 `.nani` 脚本的文件夹（例如 `Assets/Scenario`）。
 - Input Text Folder — 生成 [管理文本文档](/zh/guide/managed-text) 的文件夹（例如 `Assets/Resources/Naninovel/Text`）。如果该文件夹缺失，请确保先通过工具生成管理文本文档。
 - Input Localization Folder — 存储语言环境资源的本地化根目录（例如 `Assets/Resources/Naninovel/Localization`）。
-- Output Folder — 生成或编辑表格的目标位置。
+- Output Folder — 生成或编辑后的表格的存放位置。
 
 单击“Export”将表格导出到选定的目标位置。
 
@@ -225,7 +225,7 @@ public class CustomProcessor : Processor
 ```
 
 ::: tip EXAMPLE
-在 [本地化示例](/zh/guide/samples#本地化) 中查找有关如何设置和使用该工具的示例。
+有关如何设置和使用该工具的示例，请参阅 [本地化示例](/zh/guide/samples#本地化)。
 :::
 
 ## UI 本地化
@@ -251,7 +251,7 @@ TMPro 打印机支持从右到左（RTL）语言（阿拉伯语、希伯来语�
 确保在文本打印机上正确设置了 `Font Change Configuration`。有关配置字体的说明，请参阅 [UI 指南](/zh/guide/gui#更改字体)。
 
 ::: tip EXAMPLE
-在 [本地化示例](/zh/guide/samples#本地化) 中查找有关设置特定于本地化的字体的示例。
+有关设置本地化专用字体的示例，请参阅 [本地化示例](/zh/guide/samples#本地化)。
 :::
 
 ## 社区本地化
@@ -272,15 +272,15 @@ TMPro 打印机支持从右到左（RTL）语言（阿拉伯语、希伯来语�
 C:/Users/User/AppData/LocalLow/Foo/Bar/Localization
 ```
 
-如果您想基于内置本地化生成本地化资源，请将语言环境标记附加到 eject 参数。例如，假设游戏具有 `ja-JP` 本地化，请使用：
+如果您想基于内置本地化生成本地化资源，请将语言环境标签附加到 eject 参数。例如，假设游戏具有 `ja-JP` 本地化，请使用：
 
 ```
 -nani-eject-ja-JP
 ```
 
-当未指定语言环境标记时，将弹出源语言环境的文档。
+当未指定语言环境标签时，将弹出源语言环境的文档。
 
-现在提供与本地化一起使用的字体。将字体文件放在 Localization 目录下，例如 `Localization/Noto.ttf`。
+接下来，提供本地化要使用的字体。将字体文件放在 Localization 目录下，例如 `Localization/Noto.ttf`。
 
 注意 `Localization/Info.txt` 文件。通过替换默认内容指定本地化的作者（第一行）和提供的字体名称（第二行）。例如：
 

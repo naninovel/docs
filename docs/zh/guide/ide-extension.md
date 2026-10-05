@@ -1,6 +1,6 @@
 # IDE 扩展
 
-代码编辑器的功能，如语法高亮、错误检查、自动补全和交互式文档，可以显著提高生产力。Naninovel 拥有官方的 [VS Code](https://code.visualstudio.com) 扩展，为使用 [剧本脚本](/zh/guide/scenario-scripting) 提供了丰富的创作工具。
+代码编辑器的功能，如语法高亮、错误检查、自动补全和交互式文档，可以显著提高生产力。Naninovel 拥有官方的 [VS Code](https://code.visualstudio.com) 扩展，为编写 [剧本脚本](/zh/guide/scenario-scripting) 提供了丰富的创作工具。
 
 ![?class=when-dark](https://i.gyazo.com/9ffce86c54b5bfc5497dd50fa59a637e.png)
 ![?class=when-light](https://i.gyazo.com/6f5a92d83eb2071ac06cbb72c2d0579e.png)
@@ -15,7 +15,7 @@
 ![](https://i.gyazo.com/85999dd50f414c13de12b46e640bf531.png)
 
 ::: info NOTE
-VS Code 注册表中的扩展与当前的 Naninovel 稳定版本兼容。使用 Naninovel 的预览版本时，请切换到预发布扩展流。使用最终 Naninovel 版本时，请禁用 VS Code 中的自动更新并安装对应的旧版本。
+VS Code 注册表中的扩展与当前的 Naninovel 稳定版本兼容。使用 Naninovel 的预览版本时，请切换到扩展的预发布流。使用 Naninovel 的最终版本时，请禁用 VS Code 中的自动更新并安装对应的旧版本。
 :::
 
 ### 激活扩展
@@ -29,7 +29,7 @@ VS Code 注册表中的扩展与当前的 Naninovel 稳定版本兼容。使用 
 
 ### 工作区根目录
 
-Naninovel 在生成的数据目录（默认为 `Assets/NaninovelData`）下生成与 VS Code 扩展通信所需的项目元数据和桥接文件。这意味着在 VS Code 中打开 Naninovel 项目（选择 [工作区根目录](https://code.visualstudio.com/docs/editor/workspaces)）时，您需要选择一个在某个层级包含生成数据目录的文件夹。
+Naninovel 在生成的数据目录（默认为 `Assets/NaninovelData`）下生成与 VS Code 扩展通信所需的项目元数据和桥接文件。这意味着在 VS Code 中打开 Naninovel 项目（选择 [工作区根目录](https://code.visualstudio.com/docs/editor/workspaces)）时，您需要选择一个在某个层级包含生成的数据目录的文件夹。
 
 但是，有些用户更喜欢只打开包含剧本脚本的文件夹，其中不包括生成的数据目录。在这种情况下，请将 `NaninovelData` 文件夹移动到剧本脚本文件夹中，使其对 VS Code 可见。
 
@@ -54,7 +54,7 @@ Naninovel 在生成的数据目录（默认为 `Assets/NaninovelData`）下生�
 
 要访问设置 JSON 文件，请打开 `File -> Preferences -> Settings` 并单击窗口右上角的“Open Settings (JSON)”按钮。选择“User”选项卡以编辑所有项目的设置，或选择“Workspace”以仅影响包含剧本脚本的当前项目。
 
-上述某些设置会在安装该包时默认应用，但您可以根据需要覆盖它们。如果您还想自定义语法高亮，请添加以下内容并调整颜色：
+上述某些设置会在安装扩展时默认应用，但您可以根据需要覆盖它们。如果您还想自定义语法高亮，请添加以下内容并调整颜色：
 
 ::: code-group
 
@@ -185,7 +185,7 @@ Naninovel 在生成的数据目录（默认为 `Assets/NaninovelData`）下生�
 `semanticTokenColorCustomizations` 颜色应用于 LSP 上下文（激活扩展后的脚本内容），而 `tokenColorCustomizations` 应用于 TextMate 上下文（工具提示中的片段和激活扩展前的脚本）。
 
 ::: tip
-在 [包源代码](https://github.com/naninovel/engine/blob/main/vscode/package.json) 的 `configurationDefaults` 下查找默认应用的完整设置。
+默认应用的完整设置可在 [包源代码](https://github.com/naninovel/engine/blob/main/vscode/package.json) 的 `configurationDefaults` 下找到。
 :::
 
 ## 装饰
@@ -218,7 +218,7 @@ Naninovel 在生成的数据目录（默认为 `Assets/NaninovelData`）下生�
 
 ## 折叠
 
-以下结构默认获得折叠支持：
+以下结构默认支持折叠：
 
 - 标签（直到另一个标签）
 - 连续的注释行
@@ -372,7 +372,7 @@ public class ModifyBackground : ModifyActor { }
 - 需要求值的部分应包裹在花括号（`{}`）中
 - 要引用脚本配置中分配的 `Start Game Script` 或 `Title Script` 的路径，请分别使用 `$EntryScript` 或 `$TitleScript`
 - 要引用参数值，请使用 `:` 后跟参数 ID（C# 中指定的字段名称，而不是别名）
-- 在参数引用后使用 `[0]` 或 `[1]` 指定命名值（0 表示名称，1 表示值）
+- 在参数引用后使用 `[0]` 或 `[1]` 指定命名值的组成部分（0 表示名称，1 表示值）
 - 在参数引用后使用空合并（`??`）作为未指定值时的回退
 - 使用单引号指定字面文本，例如作为回退值：`{:Id??'MainBackground'}`
 - 使用连接运算符（`+`）合并多个枚举的值
@@ -386,7 +386,7 @@ public NamedStringParameter QuestId;
 
 当参数的名称部分被赋值为 `foo` 时，其求值结果为 `Quests/foo`；否则，假设 `Start Game Script` 的路径为 `bar`，其求值结果为 `Quests/bar`。
 
-应用于 [@char] 命令的角色姿势的另一个示例：
+另一个示例是应用于 [@char] 命令的角色姿势表达式：
 
 ```csharp
 [EnumContext("Poses/Characters/{:Id??:IdAndAppearance[0]}+Poses/Characters/*", paramId: nameof(Pose))]
@@ -405,4 +405,4 @@ public class ModifyCharacter { ... }
 
 我们的 VS Code 扩展建立在同一个语言服务器之上。扩展的源代码也可以在 monorepo 中找到——在将服务器集成到您选择的 IDE 中时，请随意将其用作参考。要访问存储库，请 [注册您的许可证](https://naninovel.com/register)。
 
-或者，如果您使用的编辑器支持 TextMate 语法（例如 [Sublime](https://www.sublimetext.com) 或 [Visual Studio](https://visualstudio.microsoft.com)），我们在此处提供一个：[textmate.json](https://github.com/naninovel/docs/blob/main/docs/.vitepress/ext/lang/textmate.json)。请注意，语法仅可用于语法高亮；其他 IDE 功能仍需要语言服务器。
+或者，如果您使用的编辑器支持 TextMate 语法（例如 [Sublime](https://www.sublimetext.com) 或 [Visual Studio](https://visualstudio.microsoft.com)），我们在此处提供了相应的语法文件：[textmate.json](https://github.com/naninovel/docs/blob/main/docs/.vitepress/ext/lang/textmate.json)。请注意，该语法仅可用于语法高亮；其他 IDE 功能仍需要语言服务器。

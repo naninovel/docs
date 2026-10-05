@@ -77,7 +77,7 @@ Felix: Lorem ipsum dolor sit amet.
 
 ## Dialogue 打印机
 
-Dialogue 打印机在具有灵活高度的窗口内呈现文本。它们最初占据屏幕大小的三分之一左右，并在内容需要更多空间时增加高度。Dialogue 打印机还在文本窗口上方的标签中显示关联的角色名称。
+Dialogue 打印机在高度可变的窗口内呈现文本。它们最初占据屏幕大小的三分之一左右，并在内容需要更多空间时增加高度。Dialogue 打印机还在文本窗口上方的标签中显示关联的角色名称。
 
 ![Dialogue Printer](https://i.gyazo.com/73abe9eabc7b285109b08e77dbf75430.png)
 
@@ -223,7 +223,7 @@ Nanikun: Integer nec maximus elit, eget posuere risus.
 
 ![](https://i.gyazo.com/cb76ab871fe4691646e968b2c49d0a13.png)
 
-要更改显示效果强度（淡入淡出延伸多远），请更改 `Length` 属性。
+要更改显示效果强度（渐变延伸多远），请更改 `Length` 属性。
 
 当 `Slack Opacity` 小于 1 时，最后一次追加之前打印的文本的不透明度将在 `Slack Duration` 秒内渐变到指定值（这在内置 `Fullscreen` 打印机中默认启用）。
 
@@ -311,7 +311,7 @@ Unity 原生不支持阿拉伯语文本。对于需要支持阿拉伯语的文�
 
 ## CJK 语言
 
-中文、日语和韩语有许多独特的符号，而游戏中通常只需要一小部分。为了优化生成的字体图集大小，TMPro 有一个选项可以指定为其构建 SDF 纹理的字符集。
+中文、日语和韩语包含大量不同的字符，而游戏中通常只需要其中一小部分。为了优化生成的字体图集大小，TMPro 有一个选项可以指定为其构建 SDF 纹理的字符集。
 
 ![](https://i.gyazo.com/cdd1dc10d872d6bcb4d44c14c61df588.png)
 
@@ -410,7 +410,7 @@ Select your pronouns.
 
 注意 `</x/y>` 标签——这些是选择标签。`/` 字符之间的文本部分称为选项。默认情况下，将返回随机选项。但是，如果您将 `selector` 变量设置为索引，标签将改为返回具有该索引（从零开始）的选项。
 
-如果您需要更灵活的选择逻辑，请创建一个带有 `select` 别名的自定义 [表达式查询](/zh/guide/expressions#添加自定义查询)，并使其接受 `params string[]` 并返回 `string`。每当编译选择器标签时，它都会使用您的查询来计算结果。下面是自定义选择查询的示例，其中第一个选项指定选择类型，如果第一个选项为空，则回退到随机选择：
+如果您需要更灵活的选择逻辑，请创建一个带有 `select` 别名的自定义 [表达式查询](/zh/guide/expressions#添加自定义查询)，并使其接受 `params string[]` 并返回 `string`。此后每当编译选择标签时，都会使用您的查询来计算结果。下面是自定义选择查询的示例，其中第一个选项指定选择类型，如果第一个选项为空，则回退到随机选择：
 
 ```cs
 [ExpressionQuery("select")]

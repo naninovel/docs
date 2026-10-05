@@ -48,7 +48,7 @@ Follow these steps:
 
 1. Create a new Unity project. Make sure it's using a [supported Unity version](/guide/compatibility#unity-version).
 2. Install the latest available Naninovel version. Don't modify or add anything inside the package folder — we can't support altered versions of the package.
-3. Add the assets and scripts required to reproduce the issue. Make sure to not copy the entire existing project — start fresh and reproduce the issue in isolation. Avoid third-party plugins or unnecessary content.
+3. Add the assets and scripts required to reproduce the issue. Make sure not to copy the entire existing project — start fresh and reproduce the issue in isolation. Avoid third-party plugins or unnecessary content.
 4. Create a `repro.txt` file in the project root with step-by-step instructions and a short description of what you expected versus what actually happens. For example:
     ```
     1. Open scene "Assets/Scenes/SampleScene".

@@ -10,9 +10,9 @@ Naninovel 的设计对非程序员十分友好，不需要编程知识即可创�
 
 ## 为什么不使用节点图来编写剧本？
 
-乍一看，您可能认为节点图对于创建对话很方便。实际上，一旦添加了足够的内容，它们很快就会变成无法管理的混乱。复杂的对话最好以文本格式处理，因为它可以更清晰地扩展并保持工作流程的高效。
+乍一看，您可能认为节点图对于创建对话很方便。实际上，一旦添加了足够的内容，它们很快就会变成无法管理的混乱。复杂的对话用文本格式处理要好得多，因为文本在规模增长时更易于维护，并能保持工作流程的高效。
 
-例如，比较 [这些截图](https://i.gyazo.com/94fc39b918d2acdf9437a96c4f3cce10.png)：左边是用于通过节点图编写对话的流行 Unity 资产之一，右边是用 Naninovel 编写的完全相同的脚本。如您所见，脚本在文本格式下更加直观且易于管理——没有笨重的 UI，无需翻阅 Unity 资产来进行编辑。如果您仍然更喜欢可视化编辑器，我们有一个 [专门的编辑器](/zh/guide/editor#剧本编辑器)，它对这一过程的处理比节点图要好得多。
+例如，比较 [这些截图](https://i.gyazo.com/94fc39b918d2acdf9437a96c4f3cce10.png)：左边是用于通过节点图编写对话的流行 Unity 资产之一，右边是用 Naninovel 编写的完全相同的脚本。如您所见，脚本在文本格式下更加直观且易于管理——没有笨重的 UI，也无需仅仅为了修改内容就在 Unity 资产中到处翻找。如果您仍然更喜欢可视化编辑器，我们有一个 [专门的编辑器](/zh/guide/editor#剧本编辑器)，它对这一过程的处理比节点图要好得多。
 
 话虽如此，节点图对于跟踪和组织故事的分支流程仍然很有用。这就是为什么 Naninovel 包含一个 [故事图](/zh/guide/editor#故事图)，它可以为您的叙事提供清晰的高层次视图。
 
@@ -22,7 +22,7 @@ Naninovel 的设计对非程序员十分友好，不需要编程知识即可创�
 
 ## 支持特定的语言吗？
 
-Naninovel 可以与任何语言一起使用，但要显示某些语言的文本，您需要兼容的字体。有关更多信息，请参阅 [本地化指南](/zh/guide/localization#字体) 的“字体”部分。
+Naninovel 可以支持任何语言，但要显示某些语言的文本，您需要兼容的字体。有关更多信息，请参阅 [本地化指南](/zh/guide/localization#字体) 的“字体”部分。
 
 ## 购买后可以获得源代码吗？
 
@@ -30,7 +30,7 @@ Naninovel 可以与任何语言一起使用，但要显示某些语言的文本�
 
 ## 法律条款和使用条件是什么？
 
-Naninovel 受以下最终用户许可协议（EULA）管辖：[naninovel.com/eula](https://naninovel.com/eula)。在下载或使用应用程序之前，请仔细阅读该文档。
+Naninovel 的使用受以下最终用户许可协议（EULA）约束：[naninovel.com/eula](https://naninovel.com/eula)。在下载或使用应用程序之前，请仔细阅读该文档。
 
 ## 为什么在注册 Asset Store 许可证时会出现“asset wasn't downloaded”错误？
 
@@ -48,7 +48,7 @@ Naninovel 受以下最终用户许可协议（EULA）管辖：[naninovel.com/eul
 
 确保背景纹理分辨率的纵横比与摄像机配置中设置的参考分辨率相匹配。此外，确保使用 [正确的设置](https://docs.unity3d.com/Manual/class-TextureImporter) 导入纹理（例如，`Max Size` 足够大）。
 
-当屏幕纵横比与参考分辨率比例不同时，背景 Actor 将默认尝试匹配，这可能会导致裁剪；有关更多信息，请参阅 [匹配模式指南](/zh/guide/backgrounds#匹配模式)。
+当屏幕纵横比与参考分辨率比例不同时，背景 Actor 默认会尝试匹配屏幕，这可能会导致裁剪；有关更多信息，请参阅 [匹配模式指南](/zh/guide/backgrounds#匹配模式)。
 
 ## 如何在打印文本中间插入命令？
 
@@ -65,7 +65,7 @@ Naninovel 受以下最终用户许可协议（EULA）管辖：[naninovel.com/eul
 ```
 
 ::: info NOTE
-在 [专门的文章](/zh/guide/scenario-scripting#异步执行) 中了解有关异步（并行）命令执行的更多信息。
+有关异步（并行）命令执行的更多信息，请参阅 [专门的文章](/zh/guide/scenario-scripting#异步执行)。
 :::
 
 ## 如何让 Actor 显示在彼此前面（Z 轴排序）？
@@ -78,7 +78,7 @@ Naninovel 受以下最终用户许可协议（EULA）管辖：[naninovel.com/eul
 @char Felix pos:,,0
 ```
 
-如果在透视摄像机模式下遇到排序问题，请尝试将 `Edit -> Project Settings -> Graphics` 编辑器菜单中的 `Transparency Sort Mode` 更改为 `Orthographic`。在 [2D 排序手册](https://docs.unity3d.com/Manual/2DSorting.html) 中查找有关 Unity 中对象排序的更多信息。
+如果在透视摄像机模式下遇到排序问题，请尝试将 `Edit -> Project Settings -> Graphics` 编辑器菜单中的 `Transparency Sort Mode` 更改为 `Orthographic`。有关 Unity 中对象排序方式的更多信息，请参阅 [2D 排序手册](https://docs.unity3d.com/Manual/2DSorting.html)。
 
 ## 是否可以只在文本打印机中显示角色的头像，而隐藏角色本身？
 
@@ -94,4 +94,4 @@ Naninovel 受以下最终用户许可协议（EULA）管辖：[naninovel.com/eul
 
 ## 如何从剧本脚本运行自定义 C# 代码？
 
-要调用 C# 行为（例如，访问场景中的游戏对象），请使用 [自定义命令](/zh/guide/custom-commands)；要从 C# 方法获取值并在剧本脚本中使用它，请使用 [表达式查询](/zh/guide/expressions#添加自定义查询)。
+要调用 C# 逻辑（例如，访问场景中的游戏对象），请使用 [自定义命令](/zh/guide/custom-commands)；要从 C# 方法获取值并在剧本脚本中使用它，请使用 [表达式查询](/zh/guide/expressions#添加自定义查询)。

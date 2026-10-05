@@ -7,21 +7,21 @@ NaninovelはUnityの [Input System](https://docs.unity3d.com/Packages/com.unity.
 | Submit | Enter | Button South | プロンプトの承認や入力フォームの送信など、汎用的な確認操作。 |
 | Cancel | Escape | Button East | プロンプトの拒否やメニューを閉じる操作など、汎用的な拒否操作。 |
 | Delete | Delete | Button North | 選択したセーブスロットの削除など、汎用的な削除操作。 |
-| Navigate | 矢印キー | D-Pad, Left Stick | 一列に並んだセーブスロットの選択など、汎用的なナビゲーション操作。 |
+| Navigate | Arrow Keys | D-Pad, Left Stick | 一列に並んだセーブスロットの選択など、汎用的なナビゲーション操作。 |
 | Scroll | Page Up/Down | Right Stick | バックログのスクロールなど、汎用的なスクロール操作。 |
 | Page | Shift+Left <-> Shift+Right | Left Trigger <-> Right Trigger | セーブ・ロードメニューでのページ切り替えなど、汎用的なページネーション操作。 |
 | Tab | Ctrl+Left <-> Ctrl+Right | Left Bumper <-> Right Bumper | 設定メニューでのタブ切り替えなど、汎用的なタブ切り替え操作。 |
-| Continue | Enter, スクロールホイール（Y-） | Button South | スクリプトの再生を継続するために、入力待ちモード（メッセージが表示されたときにアクティブ化）を無効にします。 |
+| Continue | Enter, Scroll Wheel (Y-) | Button South | スクリプトの再生を継続するために、入力待ちモード（メッセージが表示されたときにアクティブ化）を無効にします。 |
 | Pause | Backspace | Start | ポーズUIを表示します。 |
 | Skip | Ctrl | Button West | アクションがアクティブ（ボタンが押されている）な間、[スキップモード](/ja/guide/text-printers#テキストのスキップ)（早送り）を有効にします。 |
-| ToggleSkip | Tab | Right Stick Press | スキップモードを切り替えます（無効な場合は永続的に有効にし、逆も同様）。 |
+| ToggleSkip | Tab | Right Stick Press | スキップモードを切り替えます（無効の場合は常時有効にし、有効の場合は無効にします）。 |
 | SkipMovie | Escape | Button East | 現在再生中の [ムービー](/ja/api/#movie) をスキップ（キャンセル）します。 |
 | AutoPlay | A | Button East | 設定された遅延後に自動的に入力待ちモードが無効になる [オートプレイモード](/ja/guide/text-printers#オートプレイ) を切り替えます。 |
 | ToggleUI | Space | Button North | UIレイヤー全体の [可視性](/ja/guide/gui#uiの切り替え)（表示/非表示）を切り替えます。 |
 | ShowBacklog | L | Right Bumper | [バックログUI](/ja/guide/text-printers#プリンターバックログ) の可視性を切り替えます。 |
-| Rollback | B, スクロールホイール（Y+） | Left Bumper | スクリプトを逆方向に巻き戻します。 |
-| CameraLook | マウスデルタ | Right Stick | [@look] モード中にカメラを移動します。 |
-| ToggleConsole | ` | | 開発コンソールを切り替えます。 |
+| Rollback | B, Scroll Wheel (Y+) | Left Bumper | スクリプトを逆方向に巻き戻します。 |
+| CameraLook | Mouse Delta | Right Stick | [@look] モード中にカメラを移動します。 |
+| ToggleConsole | ` | | 開発コンソールの表示を切り替えます。 |
 | EnterDialogue | Enter, E | Button South, Button West | ダイアログトリガーをアクティブにして [ダイアログモード](/ja/guide/getting-started#ダイアログモード) に入ります。 |
 
 ## 入力のカスタマイズ
@@ -44,7 +44,7 @@ NaninovelはUnityの [Input System](https://docs.unity3d.com/Packages/com.unity.
 
 ## 入力モードへの適応
 
-デフォルトでは、すべての組み込みUIは、最後にアクティブだった入力デバイスに基づいて、現在の入力モード（マウスとキーボード、ゲームパッド、またはタッチ）に適応します。たとえば、プレイヤーがマウスを使用してゲームを操作しているが、ある時点でゲームパッドのボタンを押すと、UIはゲームパッド入力モードに切り替わります。
+デフォルトでは、すべての組み込みUIは、最後にアクティブだった入力デバイスに基づいて、現在の入力モード（マウスとキーボード、ゲームパッド、またはタッチ）に適応します。たとえば、プレイヤーがマウスでゲームを操作していて、ある時点でゲームパッドのボタンを押すと、UIはゲームパッド入力モードに切り替わります。
 
 ![](https://i.gyazo.com/a2f38246d7eee8d75d7f3f6660a092ed.mp4)
 
@@ -60,25 +60,25 @@ NaninovelはUnityの [Input System](https://docs.unity3d.com/Packages/com.unity.
 
 このモードでは、UIは配下にあるすべての [Selectable](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-Selectable.html) オブジェクトのナビゲーションを無効にします。これは、マウスでクリックしたときにボタンが「選択済み」状態に移行するのを防ぐためです。
 
-さらに、`Custom UI`（または派生）コンポーネントで `Button Controls` オブジェクトが割り当てられている場合、それは有効になりますが、`Keyboard Controls` と `Gamepad Controls` は無効になります。これにより、マウス入力モードに固有のボタン（「閉じる」ボタンなど）とコントロールの凡例（ゲームパッドのボタンラベルなど）を、関連する入力モードがアクティブな場合にのみ表示できます。
+さらに、`Custom UI`（または派生）コンポーネントで `Button Controls` オブジェクトが割り当てられている場合、それは有効になりますが、`Keyboard Controls` と `Gamepad Controls` は無効になります。これにより、マウス入力モードに固有のボタン（「閉じる」ボタンなど）と操作ガイド（ゲームパッドのボタンラベルなど）を、関連する入力モードがアクティブな場合にのみ表示できます。
 
 ### ゲームパッド
 
-ゲームパッドモードでは、ナビゲーションが再度有効になり（マウスモードで無効になっていた場合）、プレイヤーはDパッドまたは左スティックで選択可能アイテムをナビゲートできるようになります。
+ゲームパッドモードでは、ナビゲーションが再度有効になり（マウスモードで無効になっていた場合）、プレイヤーはDパッドまたは左スティックでSelectableオブジェクト間を移動できるようになります。
 
-割り当てられている場合、`Gamepad Controls` の凡例が有効になり、その他（ボタンとキーボード）は無効になります。
+割り当てられている場合、`Gamepad Controls` の操作ガイドが有効になり、その他（ボタンとキーボード）は無効になります。
 
 ::: tip
-ゲームパッドの凡例アイコンをカスタマイズしたい場合は、[Xeluの無料コントローラープロンプト](https://thoseawesomeguys.com/prompts/) をチェックしてください。
+ゲームパッドの操作ガイド用アイコンをカスタマイズしたい場合は、[Xeluの無料コントローラープロンプト](https://thoseawesomeguys.com/prompts/) をチェックしてください。
 :::
 
-さらに、ゲームパッドモードでモーダルUIが表示されている間、フォーカスが以前に選択されたオブジェクトに残ったままになるのを防ぐために、内部の最初のアクティブな選択可能アイテムがフォーカスされます。この動作は、カスタムUIまたは派生コンポーネントの `Focus Object` を明示的に割り当てることで変更できます。この場合、UIはフォーカスオブジェクトを自動的に見つけようとしません。
+さらに、ゲームパッドモードでモーダルUIが表示されている間、フォーカスが以前に選択されたオブジェクトに残ったままになるのを防ぐために、その中にある最初のアクティブなSelectableオブジェクトがフォーカスされます。この動作は、カスタムUIまたは派生コンポーネントの `Focus Object` を明示的に割り当てることで変更できます。この場合、UIはフォーカスオブジェクトを自動的に見つけようとしません。
 
 ### キーボード
 
-キーボードナビゲーション（矢印）キーが押されるとアクティブになります。他のキーはこのモードをアクティブにしません。なぜなら、それらはマウスモードでホットキーとして使用されるからです。
+キーボードナビゲーション（矢印）キーが押されるとアクティブになります。他のキーはマウスモードでホットキーとして使用されるため、このモードをアクティブにしません。
 
-それ以外の点はゲームパッドモードと同じように機能し、表示されるコントロールの凡例だけが異なります。
+それ以外の点はゲームパッドモードと同じように機能し、表示される操作ガイドだけが異なります。
 
 ### タッチ
 

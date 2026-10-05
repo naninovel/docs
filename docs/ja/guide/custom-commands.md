@@ -41,7 +41,7 @@ public class HelloWorld : Command
 `Execute` メソッドに提供される `ExecutionContext ctx` 引数に注目してください。[非同期操作](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/) を実行する場合は、各非同期操作の後にキャンセルおよび完了要求がないか `ctx.Token` 非同期トークンを確認し、それに応じて対応してください。
 
 - `AsyncToken.Canceled` は、エンジンが破棄またはリセットされたことを意味します。どちらの場合も、エンジンAPIを使用することは安全ではなくなり、状態の変更は未定義の動作につながります。キャンセルされた場合、コマンド実装は、実行中の処理をすべて破棄して、直ちに `AsyncOperationCanceledException` をスローすることが期待されます。
-- `AsyncToken.Completed` は、コマンドがすべての処理をできるだけ早く完了することが期待されていることを意味します。たとえば、アニメーションを実行している場合は、想定されている期間に関係なく、即座に終了させます。これは通常、プレイヤーが続行入力をアクティブにしたとき、またはゲームのセーブ操作が開始されたときに発生します。
+- `AsyncToken.Completed` は、コマンドがすべての処理をできるだけ早く完了することが期待されていることを意味します。たとえば、アニメーションを実行している場合は、想定されている時間に関係なく、即座に終了させます。これは通常、プレイヤーが続行入力をアクティブにしたとき、またはゲームのセーブ操作が開始されたときに発生します。
 
 ```csharp
 public override async Awaitable Execute (ExecutionContext ctx)

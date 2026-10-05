@@ -52,10 +52,10 @@ Kohaku: 揺れてる！
 | ID | String | null | シェイクするアクターのID。メインカメラをシェイクするには `Camera` を指定します。 |
 | Shake count | Number | 3 | シェイクの反復回数。 |
 | Loop | Boolean | false | 有効にすると、[@despawn] で停止するまで効果をループします。 |
-| Shake duration | Number | 0.15 | 各シェイク反復の基本期間（秒単位）。 |
-| Duration variation | Number | 0.25 | 効果の基本期間に適用されるランダム化されたデルタ修飾子。 |
+| Shake duration | Number | 0.15 | 各シェイク反復の基本時間（秒単位）。 |
+| Duration variation | Number | 0.25 | 効果の基本時間に適用されるランダムな変動幅。 |
 | Shake amplitude | Number | 0.5 | 各シェイク反復の基本変位振幅（ユニット単位）。 |
-| Amplitude variation | Number | 0.5 | 効果の基本変位振幅に適用されるランダム化されたデルタ修飾子。 |
+| Amplitude variation | Number | 0.5 | 効果の基本変位振幅に適用されるランダムな変動幅。 |
 | Shake horizontally | Boolean | false | アクターを水平方向（X軸）に変位させるかどうか。 |
 | Shake vertically | Boolean | true | アクターを垂直方向（Y軸）に変位させるかどうか。 |
 
@@ -82,7 +82,7 @@ Kohaku: 揺れてる！
 **開始パラメーター**
 | 名前 | 型 | デフォルト | 説明 |
 | --- | --- | --- | --- |
-| Duration | Number | 1 | 効果の期間（秒単位）。 |
+| Duration | Number | 1 | 効果の時間（秒単位）。 |
 | Intensity | Number | 1 | 効果の強度（0.0〜10.0の範囲）。 |
 
 **例**
@@ -187,7 +187,7 @@ Kohaku: 揺れてる！
 被写界深度（別名DOF、ボケ）効果をシミュレートします。焦点の合っているオブジェクトのみが鮮明に保たれ、画像の残りの部分はぼやけます。専用コマンド：[@bokeh]
 
 ::: tip
-1つのオブジェクト（アクター）だけをぼかしたい場合は、代わりに [ぼかし効果](/ja/guide/special-effects#blur) の使用を検討してください。
+1つのオブジェクト（アクター）だけをぼかしたい場合は、代わりに [Blur効果](/ja/guide/special-effects#blur) の使用を検討してください。
 :::
 
 ![](https://i.gyazo.com/610d2cafe5fbe42aba7adb9ac71720d1.mp4)
@@ -203,7 +203,7 @@ Kohaku: 揺れてる！
 **停止パラメーター**
 | 名前 | 型 | デフォルト | 説明 |
 | --- | --- | --- | --- |
-| Stop Duration | Number | 1 | 効果が表示されないデフォルト値に効果パラメーターが到達するまでのフェードアウト（無効化）期間。 |
+| Stop Duration | Number | 1 | 効果が表示されないデフォルト値に効果パラメーターが到達するまでのフェードアウト（無効化）時間。 |
 
 **例**
 
@@ -236,7 +236,7 @@ Kohaku: 揺れてる！
 **停止パラメーター**
 | 名前 | 型 | デフォルト | 説明 |
 | --- | --- | --- | --- |
-| Stop Duration | Number | 1 | 効果のフェードアウト（無効化）期間（秒単位）。 |
+| Stop Duration | Number | 1 | 効果のフェードアウト（無効化）時間（秒単位）。 |
 
 **例**
 
@@ -261,7 +261,7 @@ Kohaku: 揺れてる！
 
 トランジションエフェクトが指定されていない場合、デフォルトでクロスフェードが使用されます。
 
-`time` パラメーターを使用して、トランジションの期間（秒単位）を指定することもできます。
+`time` パラメーターを使用して、トランジションの時間（秒単位）を指定することもできます。
 
 ```nani
 @back River.DropFade time:1.5
@@ -320,7 +320,7 @@ Kohaku: 揺れてる！
 ; デフォルトのパラメーターでトランジションを適用します
 @back Appearance.BandedSwirl
 
-; デフォルトのねじれ量だが低周波数でトランジションを適用します
+; ねじれ量はデフォルトのまま、低い周波数でトランジションを適用します
 @back Appearance.BandedSwirl params:,2.5
 ```
 
@@ -361,7 +361,7 @@ Kohaku: 揺れてる！
 ; デフォルトのパラメーターでトランジションを適用します
 @back Appearance.CircleReveal
 
-; 高いファジー量でトランジションを適用します
+; 高いぼかし量でトランジションを適用します
 @back Appearance.CircleReveal params:3.33
 ```
 
@@ -803,7 +803,7 @@ EaseInOutElastic
 
 カメラ効果を [Volumeプロファイル](https://docs.unity3d.com/Manual/urp/Volumes) で作成し、プロファイルアセットをカメラ構成メニュー（`Naninovel -> Configuration -> Camera`）の `Volumes` に追加します。
 
-[@camera] の `fx` パラメーターを使用して効果のウェイトを設定します。各エントリはプロファイル名の後にウェイトを指定します。`0` では影響せず、`1` で完全に適用されます。
+[@camera] の `fx` パラメーターを使用して効果のウェイトを設定します。各エントリは、プロファイル名とそれに続くウェイトで構成されます。`0` では影響せず、`1` で完全に適用されます。
 
 ```nani
 @camera fx:Dream.1

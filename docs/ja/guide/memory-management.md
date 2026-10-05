@@ -14,7 +14,7 @@
 
 ```nani [Script1.nani]
 Script1、Script2、ScriptGosubのリソースがここでロードされます。
-Script2は、"@goto hold!" で移動するためロードされます。
+Script2は、"@goto hold!" での移動先であるためロードされます。
 ScriptGosubは、"@gosub" スクリプトが常にプリロードされるためロードされます。
 
 ...
@@ -87,7 +87,7 @@ gosubは、gosubに移動するスクリプトとともに常にロードされ�
 
 ```nani [Script1.nani]
 Script1、Script2、Script3、ScriptGosubのリソースはすべてここでロードされます。
-Script4は、"@goto release!" で移動するためロードされません。
+Script4は、"@goto release!" での移動先であるためロードされません。
 
 ...
 
@@ -195,7 +195,7 @@ Lazyモードには重要な注意点があります。アセット（特に大�
 |--------------|:--------------------------------------:|---------------------------------------|----------------------------------------------------|----------------------------------------------------|
 | Conservative | <span class="txt-warn">バランス</span> | <span class="txt-ok">安定</span> | <span class="txt-err">goto時（保持時を除く）</span> | <span class="txt-warn">保持されたスクリプト内では高速</span> |
 | Optimistic | <span class="txt-err">高い</span> | <span class="txt-ok">安定</span> | <span class="txt-warn">解放するまでなし</span> | <span class="txt-ok">解放するまで高速</span> |
-| Lazy | <span class="txt-ok">低い</span> | <span class="txt-err">不安定</span> | <span class="txt-ok">なし</span> | <span class="txt-err">常に遅い</span> |
+| Lazy | <span class="txt-ok">低い</span> | <span class="txt-err">不安定</span> | <span class="txt-ok">一切なし</span> | <span class="txt-err">常に遅い</span> |
 
 ## アクターリソース
 
@@ -261,11 +261,11 @@ public class PlayMusic : Command, Command.IPreloadable
 }
 ```
 
-コマンドが `Command.IPreloadable` インターフェースを実装していることに注意してください。スクリプトプレイヤーはそのようなコマンドを検出し、プリロードおよびアンロードメソッドを呼び出して、コマンドが実行される前にアセットが準備され、実行後に解放されるようにします。
+コマンドが `Command.IPreloadable` インターフェースを実装していることに注意してください。スクリプトプレイヤーはそのようなコマンドを検出し、プリロードおよび解放メソッドを呼び出して、コマンドが実行される前にアセットが準備され、実行後に解放されるようにします。
 
 ## リソースの共有
 
-場合によっては、Naninovelとカスタムゲームプレイモードの間でリソースを共有したいことがあります。カスタムゲームプレイがNaninovelとは独立して実装されている場合（カスタムモードがアクティブなときにエンジンが無効になっている場合）、問題はありません。ただし、カスタムモードとNaninovelの両方が同時に使用される場合は、リソースの使用方法に注意する必要があります。
+場合によっては、Naninovelとカスタムゲームプレイモードの間でリソースを共有したいことがあります。カスタムゲームプレイがNaninovelとは独立して実装されている場合（カスタムモードがアクティブなときにエンジンが無効になっている場合）、問題はないはずです。ただし、カスタムモードとNaninovelの両方が同時に使用される場合は、リソースの使用方法に注意する必要があります。
 
 たとえば、Naninovelスプライト背景があり、その外観テクスチャがあるUI要素のソースとしても使用されているとします。ある時点でNaninovelはテクスチャを解放しようとし、UI要素からも消えてしまいます。これは、そのテクスチャが他でも使用されていてアンロードすべきでないことを、エンジンが認識していないために起こります。
 

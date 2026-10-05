@@ -3,7 +3,7 @@
 要添加、编辑或删除背景音乐（BGM）和音效（SFX）资源，请打开 `Naninovel -> Configuration -> Audio` 编辑器菜单，然后单击“Manage BGM Resources”或“Manage SFX Resources”按钮以访问相应的资源管理器。您可以使用 [Unity 支持](https://docs.unity3d.com/Manual/AudioFiles.html) 的任何音频格式。
 
 ::: tip
-选择最适合您的开发工作流程的文件格式。构建项目时，Unity 会自动将所有源资源（纹理、音频、视频等）转换为最适合目标平台的格式，因此您最初在项目中存储资源的格式不会产生影响。在 [官方文档](https://docs.unity3d.com/Manual/AssetWorkflow) 中查找有关 Unity 如何管理项目资产的更多信息。
+选择最适合您的开发工作流程的文件格式。构建项目时，Unity 会自动将所有源资源（纹理、音频、视频等）转换为最适合目标平台的格式，因此您最初在项目中存储资源的格式不会产生影响。有关 Unity 如何管理项目资产的更多信息，请参阅 [官方文档](https://docs.unity3d.com/Manual/AssetWorkflow)。
 :::
 
 如果您有很多音频文件，并且通过编辑器菜单分配它们不方便，只需将它们放入 `Resources/Naninovel/BGM`（音乐）和 `Resources/Naninovel/SFX`（音效）文件夹，它们就会自动在脚本中可用。如果您愿意，还可以使用子文件夹组织它们；在这种情况下，在剧本脚本中引用它们时请使用正斜杠（`/`）。例如，存储为 `Resources/Naninovel/BGM/Ambient/Noise002.wav` 的音频剪辑可以在脚本中引用为 `Ambient/Noise002`。
@@ -21,18 +21,18 @@
 使用 [@bgm] 命令后跟剪辑名称来控制剧本脚本中的音乐播放：
 
 ```nani
-; 开始循环播放名为 "Sanctuary" 的音乐曲目。
+; 开始循环播放名为 "Sanctuary" 的音乐音轨。
 @bgm Sanctuary
 
 ; 与上面相同，但在 10 秒内淡入音量并且只播放一次。
 @bgm Sanctuary fade:10 !loop
 
-; 在 2.5 秒内将所有正在播放的音乐曲目的音量更改为 50%
+; 在 2.5 秒内将所有正在播放的音乐音轨的音量更改为 50%
 ; 并让它们循环播放。
 @bgm volume:0.5 loop! fade:2.5
 ```
 
-音乐曲目默认循环播放。当 [@bgm] 命令中未指定音乐曲目名称时，将影响所有当前正在播放的曲目。当为已在播放的曲目调用时，曲目不会重新开始，但会应用指定的参数（音量和曲目是否循环）。
+音乐音轨默认循环播放。当 [@bgm] 命令中未指定音乐音轨名称时，将影响所有当前正在播放的音轨。当为已在播放的音轨调用时，音轨不会重新开始，但会应用指定的参数（音量和音轨是否循环）。
 
 可以使用 `intro` 参数先播放前奏，再播放循环部分，例如：
 
@@ -41,13 +41,13 @@
 @bgm BattleThemeMain intro:BattleThemeIntro
 ```
 
-要停止正在播放的音乐曲目，请使用 [@stopBgm] 命令，后跟剪辑名称。当未指定剪辑名称时，该命令将停止所有当前正在播放的曲目。
+要停止正在播放的音乐音轨，请使用 [@stopBgm] 命令，后跟剪辑名称。当未指定剪辑名称时，该命令将停止所有当前正在播放的音轨。
 
 ```nani
-; 在 10 秒内淡出 "Promenade" 音乐曲目并停止播放。
+; 在 10 秒内淡出 "Promenade" 音乐音轨并停止播放。
 @stopBgm Promenade fade:10
 
-; 停止所有当前正在播放的音乐曲目。
+; 停止所有当前正在播放的音乐音轨。
 @stopBgm
 ```
 
@@ -62,20 +62,20 @@
 ; 循环播放名为 "Rain" 的 SFX。
 @sfx Rain loop!
 
-; 在 2.5 秒内将所有正在播放的 SFX 曲目的音量更改为 75%
+; 在 2.5 秒内将所有正在播放的 SFX 音轨的音量更改为 75%
 ; 并禁用它们的循环。
 @sfx volume:0.75 !loop fade:2.5
 ```
 
-音效曲目默认不循环播放。当 [@sfx] 命令中未指定 SFX 曲目名称时，将影响所有当前正在播放的曲目。当为已在播放的曲目调用时，曲目不会重新开始，但会应用指定的参数（音量和曲目是否循环）。
+音效音轨默认不循环播放。当 [@sfx] 命令中未指定 SFX 音轨名称时，将影响所有当前正在播放的音轨。当为已在播放的音轨调用时，音轨不会重新开始，但会应用指定的参数（音量和音轨是否循环）。
 
-要停止正在播放的音效（无论是否循环），请使用 [@stopSfx] 命令，后跟剪辑名称。当未指定剪辑名称时，该命令将停止所有当前正在播放的 SFX 曲目。
+要停止正在播放的音效（无论是否循环），请使用 [@stopSfx] 命令，后跟剪辑名称。当未指定剪辑名称时，该命令将停止所有当前正在播放的 SFX 音轨。
 
 ```nani
 ; 停止播放名为 "Rain" 的 SFX，淡出 15 秒。
 @stopSfx Rain fade:15
 
-; 停止所有当前正在播放的音效曲目。
+; 停止所有当前正在播放的音效音轨。
 @stopSfx
 ```
 
@@ -131,7 +131,7 @@ Naninovel 在播放音频时使用 [音频混音器](https://docs.unity3d.com/Ma
 
 Unity 允许使用自定义解决方案（例如 [FMOD](https://www.fmod.com) 和 [Wwise](https://www.audiokinetic.com/en/wwise/)）替换其内置音频后端。为了支持这一点，我们确保 Naninovel 的 `IAudioManager` 接口不依赖于默认音频后端（例如，它不引用 `AudioClip`、`AudioSource` 等）。这允许您 [覆盖服务](/zh/guide/engine-services#覆盖内置服务) 并使用自定义音频后端，而无需修改引擎的源代码。
 
-下面是 FMOD 的此类覆盖的最小示例。
+下面是针对 FMOD 进行此类覆盖的最小示例。
 
 ```cs
 [InitializeAtRuntime(@override: typeof(AudioManager))]

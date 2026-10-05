@@ -127,7 +127,7 @@ public StringParameter MyRequiredParameter;
 
 ### 可选参数
 
-当参数不是必需时，它在剧本脚本中可能已赋值，也可能没有；使用 `HasValue` 属性来测试是否是这种情况。或者，您可以使用 `Assigned()` 静态方法，该方法接受参数实例，并在提供的参数不为空且已赋值时返回 true。
+当参数不是必需时，它在剧本脚本中可能已赋值，也可能没有；使用 `HasValue` 属性来测试是否是这种情况。或者，您可以使用 `Assigned()` 静态方法，该方法接受参数实例，并在提供的参数不为 null 且已赋值时返回 true。
 
 ```csharp
 public StringParameter MyOptionalParameter;
@@ -201,5 +201,5 @@ public class MyCustomPrintCommand : PrintText
 ```
 
 ::: tip
-命令和参数可以应用各种上下文特性，以便在 IDE 和故事编辑器中提供文档、自动补全和高级诊断。在 [IDE 扩展](/zh/guide/ide-extension#ide-特性) 指南中查找可用特性。
+命令和参数可以应用各种上下文特性，以便在 IDE 和故事编辑器中提供文档、自动补全和高级诊断。可用特性请参阅 [IDE 扩展](/zh/guide/ide-extension#ide-特性) 指南。
 :::

@@ -23,7 +23,7 @@ player.MainTrack.Stop();
 | ITextPrinterManager | 管理 [文本打印机](/zh/guide/text-printers) Actor。 |
 | IAudioManager | 管理音频：[SFX](/zh/guide/audio#音效)、[BGM](/zh/guide/audio#背景音乐) 和 [配音](/zh/guide/voicing)。 |
 | IInputManager | 管理用户 [输入处理](/zh/guide/input-processing)。 |
-| ILocalizationManager | 管理 [本地化](/zh/guide/localization) 活动。 |
+| ILocalizationManager | 管理 [本地化](/zh/guide/localization) 相关操作。 |
 | ICommunityLocalization | 提供对 [社区本地化](/zh/guide/localization#社区本地化) 资源的访问。 |
 | ITextLocalizer | 解析与 `LocalizableText` 值关联的本地化字符串。 |
 | ITextManager | 处理 [管理文本](/zh/guide/managed-text) 功能。 |
@@ -39,23 +39,23 @@ player.MainTrack.Stop();
 | ISpawnManager | 管理使用 [@spawn] 命令生成的对象。 |
 | IUnlockableManager | 管理 [可解锁项](/zh/guide/unlockables)（CG 和影片画廊项、提示等）。 |
 
-您可以在 `Naninovel/Runtime` 处存储的运行时源代码中找到服务的内置实现。
+您可以在位于 `Naninovel/Runtime` 的运行时源代码中找到这些服务的内置实现。
 
 ## 添加自定义服务
 
-要添加新的自定义引擎服务，请实现 `IEngineService` 接口并将 `InitializeAtRuntime` 特性添加到实现类。在引擎初始化期间将自动创建实现的实例，并可通过 `Engine.GetService<TService>()` API 使用。
+要添加新的自定义引擎服务，请实现 `IEngineService` 接口并将 `InitializeAtRuntime` 特性添加到实现类。该实现的实例将在引擎初始化期间自动创建，并可通过 `Engine.GetService<TService>()` API 获取。
 
-您可以使用 `InitializeAtRuntime` 特性的 `InitializationPriority` 参数强制您的自定义服务在其他服务之前或之后初始化；较低的值会将其推送到初始化队列中的其他服务之前，反之亦然。
+您可以使用 `InitializeAtRuntime` 特性的 `InitializationPriority` 参数强制您的自定义服务在其他服务之前或之后初始化；较低的值会使其在初始化队列中排在其他服务之前，反之亦然。
 
-要自动实例化，服务实现应具有兼容的构造函数（或默认构造函数）。允许以下构造函数参数（任意顺序）：
+要能被自动实例化，服务实现应具有兼容的构造函数（或默认构造函数）。允许以下构造函数参数（任意顺序）：
 
 - 任意数量的其他服务（`IEngineService` 派生）
 - 任意数量的配置对象（`Configuration` 派生）
 - Unity `MonoBehaviour` 代理对象（`IEngineBehaviour` 派生）
 
-请注意，在构造函数中使用其他服务是不安全的。相反，在 `InitializeService` 方法中执行任何需要其他服务的初始化活动；为确保在访问所需服务时已初始化它们，请在服务构造函数中列出它们（初始化队列根据构造函数参数按拓扑排序）。
+请注意，在构造函数中使用其他服务是不安全的。请改为在 `InitializeService` 方法中执行所有需要其他服务的初始化操作；为确保访问所需服务时它们已完成初始化，请在服务构造函数中列出它们（初始化队列会根据构造函数参数进行拓扑排序）。
 
-如果您的自定义服务具有希望与其他引擎服务一起反序列化/序列化的持久状态，请实现 `IStatefulService<TState>` 接口，其中 `TState` 是 `GameStateMap`、`GlobalStateMap` 或 `SettingsStateMap`，具体取决于您是要将状态与特定于游戏会话、全局还是设置数据一起存储。如果需要，允许为单个服务实现所有三个接口。有关不同类型的引擎状态的更多信息，请参阅 [状态管理指南](/zh/guide/state-management)。
+如果您的自定义服务具有希望与其他引擎服务一起反序列化/序列化的持久状态，请实现 `IStatefulService<TState>` 接口，其中 `TState` 是 `GameStateMap`、`GlobalStateMap` 或 `SettingsStateMap`，具体取决于您是要将状态与特定于游戏会话的数据、全局数据还是设置数据一起存储。如果需要，允许为单个服务实现所有三个接口。有关不同类型的引擎状态的更多信息，请参阅 [状态管理指南](/zh/guide/state-management)。
 
 下面是带有使用说明的自定义引擎服务实现示例。
 
@@ -93,7 +93,7 @@ public class CustomService : IEngineService
 
     public void DestroyService ()
     {
-        // 在此处停止服务并释放任何使用的资源。
+        // 在此处停止服务并释放所有已使用的资源。
     }
 }
 ```
@@ -112,7 +112,7 @@ var customService = Engine.GetService<CustomService>();
 
 所有内置服务都在引擎源代码中通过接口引用，这使得可以将其中任何一个替换为自定义实现。
 
-以与上述相同的方式添加自定义服务，但不要实现 `IEngineService`，而是实现具体的引擎接口并通过 `InitializeAtRuntime` 特性指定被覆盖的类型（实现类型，而不是接口）。然后将初始化您的自定义实现而不是内置实现。
+以与上述相同的方式添加自定义服务，但不要实现 `IEngineService`，而是实现具体的引擎接口并通过 `InitializeAtRuntime` 特性指定被覆盖的类型（实现类型，而不是接口）。这样，引擎将初始化您的自定义实现，而不是内置实现。
 
 下面是一个 `IInputManager` 空实现的示例，除了在其任何方法被调用时记录日志外，它什么也不做。
 

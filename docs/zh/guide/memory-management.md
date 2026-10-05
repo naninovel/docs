@@ -65,7 +65,7 @@ ScriptGosub 被加载是因为 "@gosub" 脚本总是被预加载。
 ```
 
 ```nani [ScriptGosub.nani]
-此处可能会加载各种资源，具体取决于哪个脚本
+此处可能已加载各种资源，具体取决于是哪个脚本
 导航到此脚本。
 
 ...
@@ -133,7 +133,7 @@ Script4 未加载，因为它是通过 "@goto release!" 导航到的。
 ```
 
 ```nani [ScriptGosub.nani]
-此处可能会加载各种资源，具体取决于哪个脚本
+此处可能已加载各种资源，具体取决于是哪个脚本
 导航到这里。
 
 ...
@@ -155,7 +155,7 @@ Script4 未加载，因为它是通过 "@goto release!" 导航到的。
 
 ```nani [Script1.nani]
 假设 "Lazy Buffer" 设置为 3（默认值更高）。
-现在只预加载 "Snow" 背景，因为它在缓冲区范围内。
+现在只有 "Snow" 背景已预加载，因为它在缓冲区范围内。
 @back Snow
 "Ambient" 音频现在已预加载。
 "Town" 背景现在已预加载。
@@ -194,7 +194,7 @@ Lazy 模式有一个重要的注意事项：加载资产——尤其是大型背
 | 策略 | 内存使用 | CPU 使用 | 加载屏幕 | 跳过和回滚 |
 |--------------|:--------------------------------------:|---------------------------------------|----------------------------------------------------|----------------------------------------------------|
 | Conservative | <span class="txt-warn">平衡</span> | <span class="txt-ok">稳定</span> | <span class="txt-err">goto 时显示，除非已持有</span> | <span class="txt-warn">在已持有的脚本中快</span> |
-| Optimistic | <span class="txt-err">高</span> | <span class="txt-ok">稳定</span> | <span class="txt-warn">无，直到释放</span> | <span class="txt-ok">释放前快</span> |
+| Optimistic | <span class="txt-err">高</span> | <span class="txt-ok">稳定</span> | <span class="txt-warn">释放前无</span> | <span class="txt-ok">释放前快</span> |
 | Lazy | <span class="txt-ok">低</span> | <span class="txt-err">不稳定</span> | <span class="txt-ok">从不</span> | <span class="txt-err">总是慢</span> |
 
 ## Actor 资源
@@ -233,7 +233,7 @@ Actor（角色、背景、文本打印机和选项处理程序）是 Naninovel �
 
 ## 生命周期管理
 
-资源提供者管理器会跟踪对已加载资源的引用，并在它们未被任何使用者（“持有者”）使用（“持有”）时释放（卸载）它们。
+资源提供者管理器会跟踪对已加载资源的引用，并在它们不再被任何使用者（“持有者”）使用（“持有”）时销毁（卸载）它们。
 
 该机制在脚本命令中体现得最为明显。例如，假设您想使用自定义命令播放背景音乐。音频播放器将需要一个音频剪辑资产（资源）来播放，因此我们需要在执行命令之前预加载并“持有”该资产，并在之后释放它：
 
@@ -261,7 +261,7 @@ public class PlayMusic : Command, Command.IPreloadable
 }
 ```
 
-注意该命令实现了 `Command.IPreloadable` 接口。脚本播放器将检测此类命令并调用预加载和卸载方法，以确保资产在命令执行之前准备好并在之后释放。
+注意该命令实现了 `Command.IPreloadable` 接口。脚本播放器将检测此类命令并调用预加载和释放方法，以确保资产在命令执行之前准备好并在之后释放。
 
 ## 共享资源
 
@@ -284,7 +284,7 @@ var holdersCount = resourceManager.Release(asset, holder);
 if (holdersCount == 0) Resources.UnloadAsset(asset);
 ```
 
-“Holder”（持有者）可以是对任何对象的引用；通常就是使用该资产的那个类。它用于区分持有者，并防止同一个持有者意外多次持有同一资源。
+“持有者”可以是对任何对象的引用；通常就是使用该资产的那个类。它用于区分持有者，并防止同一个持有者意外多次持有同一资源。
 
 下面是一个 Unity 组件的示例，它可以防止 Naninovel 在任何时候卸载某个资产：
 

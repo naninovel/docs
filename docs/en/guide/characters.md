@@ -111,7 +111,7 @@ Then use the following scenario script:
 ```nani
 @char Char1
 
-Char1: My name is now pre-defined by `T_PredefinedName` managed text record.
+Char1: My name is now predefined by the `T_PredefinedName` managed text record.
 Char1: It's localizable; try changing the locale and it will update accordingly.
 Char1: Now, we'll make the player input a custom name.
 
@@ -123,7 +123,7 @@ Char1: Now, we'll make the player input a custom name.
 ; for display name to decide where to get the value from.
 @set nameSet=true
 
-Char1: My display name is now bound to `name` scenario variable.
+Char1: My display name is now bound to the `name` scenario variable.
 ```
 
 When `Has Name` is disabled, neither the display name nor the character ID will be displayed in the printer UI. This is useful for [narrator characters](/guide/characters#narrator-characters), which could have a [linked printer](/guide/characters#linked-printer) but whose ID shouldn't be displayed.
@@ -138,7 +138,7 @@ While the display names discussed above are recommended in most cases, sometimes
 Kohaku: Lorem ipsum.[< as:"Someone"]
 
 ; Print the line with "All Together" displayed as author name
-; and make all visible characters author of the printed text.
+; and make all visible characters authors of the printed text.
 *: Lorem ipsum![< as:"All Together"]
 
 ; Similar, but make only "Kohaku" and "Yuko" the authors.

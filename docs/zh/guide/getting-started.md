@@ -24,7 +24,7 @@ Naninovel 是 [Unity 游戏引擎](https://unity.com) 的扩展，因此强烈�
 
 ![?width=271](https://i.gyazo.com/5bd6471a53ffbf106099373395484ef6.png)
 
-Naninovel 是场景无关的；因此，我们建议从场景中删除这些对象，以防止不必要的性能开销或与 Naninovel 系统的冲突。您也可以删除示例场景本身，但建议在项目中至少保留一个场景，以便某些编辑器功能正常工作。
+Naninovel 不依赖于场景；因此，我们建议从场景中删除这些对象，以防止不必要的性能开销或与 Naninovel 系统的冲突。您也可以删除示例场景本身，但建议在项目中至少保留一个场景，以便某些编辑器功能正常工作。
 
 ### 优化编辑器
 
@@ -71,15 +71,15 @@ com.unity.ugui
 
 Naninovel 通过 3 个发布流分发：**preview**（预览版）、**stable**（稳定版）和 **final**（最终版）。
 
-Preview 是最前沿的：它更新最频繁，并拥有所有最新功能。但是，它可能会偶尔出现重大更改和错误。当您处于开发初期或需要其他版本中不可用的特定功能时，请选择此流。
+Preview 是最前沿的：它更新最频繁，并拥有所有最新功能。但是，它偶尔可能会出现破坏性更改和错误。当您处于开发初期或需要其他版本中不可用的特定功能时，请选择此流。
 
-Stable 是折衷方案：它只接收错误修复，没有最新功能，但也没有任何重大更改。在大多数情况下建议使用。
+Stable 是折衷方案：它只接收错误修复，没有最新功能，但也没有任何破坏性更改。在大多数情况下建议使用。
 
 Final 虽然是经过最充分测试且最稳定的，但也是最过时的，并且不在 [技术支持](/zh/support/) 范围内。仅当项目已经发布并且无法升级时，才停留在最终版本上。
 
 ![](https://i.gyazo.com/2462242c14c96a0eae9ca99212c340c4.png)
 
-Stable 流发布在 GitHub 和 Unity 的 Asset Store 上（虽然不如在 GitHub 上频繁），而 preview 和 final 流仅在 GitHub 上可用。
+stable 流同时发布在 GitHub 和 Unity 的 Asset Store 上（不过 Asset Store 上的发布不如 GitHub 频繁），而 preview 和 final 流仅在 GitHub 上提供。
 
 ### 从 Asset Store 安装
 
@@ -87,13 +87,13 @@ Stable 流发布在 GitHub 和 Unity 的 Asset Store 上（虽然不如在 GitHu
 
 ![?width=674](https://i.gyazo.com/3e056854efc95a4adfb485557497e134.png)
 
-在 [Unity 文档](https://docs.unity3d.com/Manual/upm-ui-import) 中查找有关使用 UPM 的更多信息。
+有关使用 UPM 的更多信息，请参阅 [Unity 文档](https://docs.unity3d.com/Manual/upm-ui-import)。
 
 ### 从 GitHub 安装
 
 preview 和 stable 流中的最新 Naninovel 版本通过 Naninovel GitHub 存储库分发。要访问存储库，请 [注册您的 Naninovel 许可证](https://naninovel.com/register) 并按照仪表板上的说明指定您的 GitHub 用户。
 
-一旦您可以访问存储库，通过 Unity 的 Package Manager 将 `https://github.com/naninovel/upm.git#X.X` 添加为 Git 包，其中 `X.X` 是您想要安装的发布版本，例如：
+获得存储库的访问权限后，请通过 Unity 的 Package Manager 将 `https://github.com/naninovel/upm.git#X.X` 添加为 Git 包，其中 `X.X` 是您想要安装的发布版本，例如：
 
 ```
 https://github.com/naninovel/upm.git#1.22
@@ -103,7 +103,7 @@ https://github.com/naninovel/upm.git#1.22
 
 ![?width=300](https://i.gyazo.com/c7c453b8b34c94809303a9dc42e5330d.png)
 
-当您希望使用 preview 流保持最前沿，或希望在 stable 流的补丁推送到 GitHub 存储库后立即获取它们时，这种安装方法特别方便。只需单击 Package Manager 窗口中的“Update”即可将您的安装升级到最新提交。
+当您希望通过 preview 流始终使用最前沿的版本，或希望在 stable 流的补丁推送到 GitHub 存储库后立即获取它们时，这种安装方法特别方便。只需单击 Package Manager 窗口中的“Update”即可将您的安装升级到最新提交。
 
 ![?width=368](https://i.gyazo.com/c1b86f88105a76e33cba961a9b71c8fb.png)
 
@@ -115,7 +115,7 @@ https://github.com/naninovel/upm.git#1.22
 
 另一种安装 Naninovel 的方法是从我们的 [下载归档](https://account.naninovel.com/download) 下载包。当您需要不再在 Asset Store 上分发的特定最终版本时，此方法很有用。归档包含从版本 1.14 到当前稳定版本的所有旧版本的最终版本。
 
-只需将下载的 `.unitypackage` 文件拖放到 Unity 编辑器窗口中，然后单击“Import”即可安装该包。在 [Unity 文档](https://docs.unity3d.com/Manual/AssetPackagesImport.html) 中查找有关安装本地包的更多信息。
+只需将下载的 `.unitypackage` 文件拖放到 Unity 编辑器窗口中，然后单击“Import”即可安装该包。有关安装本地包的更多信息，请参阅 [Unity 文档](https://docs.unity3d.com/Manual/AssetPackagesImport.html)。
 
 ## 核心概念
 
@@ -162,7 +162,7 @@ Unity 编辑器将进入播放模式并显示默认标题 UI。同时，`Title` 
 
 ## 添加剧本脚本
 
-现在您熟悉了大致流程，让我们深入了解如何向游戏添加实际内容。在 Naninovel 中驱动故事的基本资产称为*剧本脚本*（scenario script）。
+现在您熟悉了大致流程，让我们深入了解如何向游戏添加实际内容。在 Naninovel 中驱动故事的核心资产称为*剧本脚本*（scenario script）。
 
 我们已经有两个自动生成的脚本，但让我们学习如何添加新脚本。虽然您可以使用 [故事编辑器](/zh/guide/editor) 来管理脚本，但让我们在开始时专注于标准的 Unity 工作流程；您可以在其专用指南中了解故事编辑器特定的工作流程。
 
@@ -322,7 +322,7 @@ K.Happy: Hello World!
 @bgm CloudNine
 ```
 
-切换音乐曲目时会自动应用交叉淡入淡出效果。默认情况下，音乐将循环播放，不过您可以使用命令参数更改此设置，以及音量和淡入淡出持续时间。
+切换音乐音轨时会自动应用交叉淡入淡出效果。默认情况下，音乐将循环播放，不过您可以使用命令参数更改此设置，以及音量和淡入淡出持续时间。
 
 相比之下，音效默认不会循环播放。使用 [@sfx] 命令播放它们：
 

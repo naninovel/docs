@@ -30,7 +30,7 @@ When nesting commands under the choice, `goto`, `gosub` and `set` parameters are
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">choiceSummary</span> | string | Text to show for the choice. When the text contains spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
 | id | string | Unique identifier of the choice. Can be used to remove the choice later with [@clearChoice]. |
-| lock | string | Whether the choice should be disabled or otherwise not accessible for the player to select; see [choice docs](/guide/choices#locked-choice) for more info. Disabled by default. |
+| lock | string | Whether the choice should be disabled or otherwise not accessible for the player to select; see [choice docs](/guide/choices#locked-choice) for more info. Not locked by default. |
 | button | string | Local resource path of the [button prefab](/guide/choices#choice-button) representing the choice. The prefab should have a `ChoiceHandlerButton` component attached to the root object. Will use a default button when not specified. |
 | pos | number list | Local position of the choice button inside the choice handler (if supported by the handler implementation). |
 | handler | string | ID of the choice handler to add the choice for. Will use a default handler if not specified. |
@@ -440,7 +440,7 @@ When nesting commands under the choice, `goto`, `gosub` and `set` parameters are
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">choiceSummary</span> | string | Text to show for the choice. When the text contains spaces, wrap it in double quotes (`"`). In case you wish to include the double quotes in the text itself, escape them. |
 | id | string | Unique identifier of the choice. Can be used to remove the choice later with [@clearChoice]. |
-| lock | string | Whether the choice should be disabled or otherwise not accessible for the player to select; see [choice docs](/guide/choices#locked-choice) for more info. Disabled by default. |
+| lock | string | Whether the choice should be disabled or otherwise not accessible for the player to select; see [choice docs](/guide/choices#locked-choice) for more info. Not locked by default. |
 | button | string | Local resource path of the [button prefab](/guide/choices#choice-button) representing the choice. The prefab should have a `ChoiceHandlerButton` component attached to the root object. Will use a default button when not specified. |
 | pos | number list | Local position of the choice button inside the choice handler (if supported by the handler implementation). |
 | handler | string | ID of the choice handler to add the choice for. Will use a default handler if not specified. |
@@ -985,7 +985,7 @@ Allows force-stopping the lip sync mouth animation for a character with the spec
 
 | Parameter | Type | Description |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">charIdAndAllow</span> | named boolean | Character ID followed by a boolean (true or false) on whether to halt or allow the lip sync animation. |
+| <span class="command-param-primary command-param-required" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID Required parameter: parameter should always be specified">charIdAndAllow</span> | named boolean | Character ID followed by a boolean on whether to allow (true) or halt (false) the lip sync animation. |
 
 </div>
 

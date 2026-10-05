@@ -28,7 +28,7 @@ The expression is evaluated at the moment the command is executed, which allows 
 To distinguish a plain text value from a variable name, wrap the value in double quotes `"`:
 
 ```nani
-This is just a plain text: { "score" }.
+This is just plain text: { "score" }.
 And this is the value of "score" variable: { score }.
 ```
 

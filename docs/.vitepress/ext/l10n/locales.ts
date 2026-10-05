@@ -15,7 +15,7 @@ export const config: LocaleConfig<DefaultTheme.Config> = {
             outline: { label: "On this page", level: "deep" },
             sidebar: { "/guide/": guide.en },
             docFooter: { prev: "Previous page", next: "Next page" },
-            nav: buildNav(["FAQ", "Guide", "API", "Support"]),
+            nav: buildNav(["FAQ", "Guide", "API", "Support", "Changelog", "Contributing"]),
             editLink: buildEditLink("Edit this page on GitHub")
         }
     },
@@ -28,11 +28,14 @@ export const config: LocaleConfig<DefaultTheme.Config> = {
             lastUpdated: { text: "最終更新日", formatOptions: { dateStyle: "medium" } },
             sidebarMenuLabel: "メニュー",
             darkModeSwitchLabel: "外観",
+            lightModeSwitchTitle: "ライトテーマに切り替える",
+            darkModeSwitchTitle: "ダークテーマに切り替える",
+            skipToContentLabel: "コンテンツにスキップ",
             returnToTopLabel: "トップに戻る",
             outline: { label: "このページの内容", level: "deep" },
             sidebar: { "/ja/guide/": guide.ja },
             docFooter: { prev: "前のページ", next: "次のページ" },
-            nav: buildNav(["FAQ", "ガイド", "API", "サポート"], "ja"),
+            nav: buildNav(["FAQ", "ガイド", "API", "サポート", "変更履歴", "コントリビューション"], "ja"),
             editLink: buildEditLink("GitHubでこのページを編集する")
         }
     },
@@ -45,11 +48,14 @@ export const config: LocaleConfig<DefaultTheme.Config> = {
             lastUpdated: { text: "最近更新时间", formatOptions: { dateStyle: "medium" } },
             sidebarMenuLabel: "菜单",
             darkModeSwitchLabel: "外观",
+            lightModeSwitchTitle: "切换到浅色主题",
+            darkModeSwitchTitle: "切换到深色主题",
+            skipToContentLabel: "跳转到内容",
             returnToTopLabel: "返回顶部",
             outline: { label: "本页内容", level: "deep" },
             sidebar: { "/zh/guide/": guide.zh },
             docFooter: { prev: "上一页", next: "下一页" },
-            nav: buildNav(["常见问题", "指南", "API", "技术支持"], "zh"),
+            nav: buildNav(["常见问题", "指南", "API", "技术支持", "更新日志", "参与贡献"], "zh"),
             editLink: buildEditLink("在 GitHub 上编辑此页面")
         }
     }
@@ -59,8 +65,8 @@ export const search: Record<string, Partial<DefaultTheme.LocalSearchOptions>> = 
     ja: {
         translations: {
             button: {
-                buttonText: "ドキュメントを検索",
-                buttonAriaLabel: "ドキュメントを検索"
+                buttonText: "検索",
+                buttonAriaLabel: "検索"
             },
             modal: {
                 displayDetails: "詳細リストを表示",
@@ -112,8 +118,8 @@ function buildNav(text: string[], lang?: string): DefaultTheme.NavItem[] {
         { text: text[3], link: buildLink("support") },
         {
             text: "v1.22", items: [
-                { text: "Changelog", link: "/releases" },
-                { text: "Contributing", link: "https://github.com/naninovel/docs/blob/main/CONTRIBUTING.md" },
+                { text: text[4], link: "/releases" },
+                { text: text[5], link: "https://github.com/naninovel/docs/blob/main/CONTRIBUTING.md" },
                 { text: "v1.21-stable", link: "https://naninovel.com/guide" }
             ]
         }

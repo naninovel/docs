@@ -18,7 +18,7 @@ Resource-specific provider behaviour is configured via `Loader` properties avail
 
 ![](https://i.gyazo.com/a51d5e5e6348ccc942cd3c96e5782b48.png)
 
-The `Path Prefix` property allows specifying an additional path over the provider's root path for a specific type of resources. For example, if we're going to retrieve an "Explosion" audio file from a project's "Resources" folder and set the path prefix to `SFX`, the resulting resource request will be `Resources.LoadAsync("Naninovel/SFX/Explosion")`.
+The `Path Prefix` property allows specifying an additional path over the provider's root path for a specific type of resource. For example, if we're going to retrieve an "Explosion" audio file from a project's "Resources" folder and set the path prefix to `SFX`, the resulting resource request will be `Resources.LoadAsync("Naninovel/SFX/Explosion")`.
 
 `Providers List` allows specifying which provider types to use and in which order. For example, in the configuration above, when requesting an audio resource, the addressable provider will be tried first; if it can't find the requested resource, the project provider will be used as a fallback.
 
@@ -26,7 +26,7 @@ Be aware that while in the editor, a special "Editor" resource provider is alway
 
 ## Addressable
 
-The [Addressable Asset System](https://docs.unity3d.com/Packages/com.unity.addressables@latest) is a Unity package that allows loading assets by "address." It uses asynchronous loading to support loading from any location (local storage, remote web hosting, etc) with arbitrary collections of dependencies. Consult Unity's documentation on how to set up, configure, and use the system.
+The [Addressable Asset System](https://docs.unity3d.com/Packages/com.unity.addressables@latest) is a Unity package that allows loading assets by "address". It uses asynchronous loading to support loading from any location (local storage, remote web hosting, etc) with arbitrary collections of dependencies. Consult Unity's documentation on how to set up, configure, and use the system.
 
 Naninovel will automatically use Addressables when the package is installed in the project. No additional setup is required: all assets assigned in Naninovel's configuration menus (eg, scenario scripts, character sprites, audio clips) will be registered with the system (assigned an address) when building the player.
 

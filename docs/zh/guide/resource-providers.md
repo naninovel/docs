@@ -18,7 +18,7 @@
 
 ![](https://i.gyazo.com/a51d5e5e6348ccc942cd3c96e5782b48.png)
 
-`Path Prefix` 属性允许为特定类型的资源在提供者的根路径之上指定附加路径。例如，如果我们要从项目的“Resources”文件夹中检索“Explosion”音频文件并将路径前缀设置为 `SFX`，则最终的资源请求将是 `Resources.LoadAsync("Naninovel/SFX/Explosion")`。
+`Path Prefix` 属性允许为特定类型的资源在提供者根路径的基础上指定附加路径。例如，如果我们要从项目的“Resources”文件夹中检索“Explosion”音频文件并将路径前缀设置为 `SFX`，则最终的资源请求将是 `Resources.LoadAsync("Naninovel/SFX/Explosion")`。
 
 `Providers List` 允许指定使用哪些提供者类型以及使用顺序。例如，在上面的配置中，请求音频资源时，将首先尝试 Addressable 提供者；如果它找不到请求的资源，将回退到项目提供者。
 
@@ -67,7 +67,7 @@
 
 ![](https://i.gyazo.com/651a292ca6f1f4e26593074e25c66cea.png)
 
-这使每个资产各自成为一个独立的包，从而可以在释放后立即卸载。虽然这对 RAM 使用而言是最优的，但这种方法会增加 CPU 开销和加载时间，因为加载一个大的连续二进制块比反复寻址并加载许多小块要快得多，尤其是在较慢的驱动器上。
+这使每个资产各自成为一个独立的包，从而可以在释放后立即卸载。虽然这对 RAM 使用而言是最优的，但这种方法会增加 CPU 开销和加载时间，因为加载一个大的连续二进制块比反复寻道并加载许多小块要快得多，尤其是在较慢的驱动器上。
 
 当在资源提供者配置中启用 `Label By Scripts`（默认）时，Naninovel 将使用折衷方案：在构建过程中，它会扫描所有剧本脚本，尝试确定每个脚本需要哪些资产，并按引用它们的脚本为 Addressable 资产分配标签：
 
@@ -76,10 +76,10 @@
 如果您将 `Bundle Mode` 设置为 `Pack Together By Label`（默认），资产将根据它们与剧本脚本的关联关系拆分到不同的包中，这会针对 Naninovel 的 [内存管理策略](/zh/guide/memory-management) 优化包结构。
 
 ::: info NOTE
-所有 Naninovel 资产都会被分配标签，包括通过 Addressables [手动分配](/zh/guide/resource-providers#手动分配) 的资产。只要资产的地址以 `Naninovel/` 开头，它就会被标记上关联的脚本。
+所有 Naninovel 资产都会被分配标签，包括通过 Addressables [手动分配](/zh/guide/resource-providers#手动分配) 的资产。只要资产的地址以 `Naninovel/` 开头，它就会被打上关联脚本的标签。
 :::
 
-分配标签的过程需要一定程度的推测，并不总是完美的。为了帮助确保资产被正确标记，请遵循以下准则：
+分配标签的过程需要一定程度的推测，并不总是完美的。为了帮助确保资产被分配正确的标签，请遵循以下准则：
 
 - 不要在资源上下文的参数（例如 Actor ID、外观、音频路径等）中使用 [表达式](/zh/guide/expressions)。表达式在命令即将执行之前才会求值，这使得无法在构建时解析最终路径。Naninovel 会在构建期间检测到此类情况时警告您。
 - 始终在 [@char] 和 [@back] 等命令中指定 Actor ID 和外观；虽然此类命令可能会回退到默认值，但在构建时并不总是可以解析这些默认值。
@@ -113,7 +113,7 @@
 ![](https://i.gyazo.com/d4e63726c2d1d75e2677cab7f2503546.png)
 :::
 
-资源提供者配置中的 `Local Root Path` 属性应指向存储本地资源的文件夹。您可以使用绝对路径（例如 `C:\Resources`），也可以使用以下列原点之一开头的相对路径：
+资源提供者配置中的 `Local Root Path` 属性应指向存储本地资源的文件夹。您可以使用绝对路径（例如 `C:\Resources`），也可以使用以下列起点之一开头的相对路径：
 
 - `%DATA%` — 目标设备上的游戏数据文件夹（[Application.dataPath](https://docs.unity3d.com/ScriptReference/Application-dataPath)）；
 - `%PDATA%` — 目标设备上的持久数据目录（[Application.persistentDataPath](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath)）；
@@ -122,7 +122,7 @@
 
 默认的 `%DATA%/Resources` 值指向游戏数据目录内的“Resources”文件夹（确切位置因目标平台而异）。
 
-作为一个使用示例，假设您想从 `C:/Users/Admin/Dropbox/MyGame/Scripts` 加载剧本脚本，并与协作者共享该文件夹以共同编写剧本。指定绝对根文件夹（`C:/Users/Admin/Dropbox/MyGame`）将要求所有协作者将该文件夹存储在完全相同的路径下。更好的做法是使用以“UserProfile”特殊文件夹为原点的相对路径：`%SPECIAL{UserProfile}%/Dropbox/MyGame`。
+作为一个使用示例，假设您想从 `C:/Users/Admin/Dropbox/MyGame/Scripts` 加载剧本脚本，并与协作者共享该文件夹以共同编写剧本。指定绝对根文件夹（`C:/Users/Admin/Dropbox/MyGame`）将要求所有协作者将该文件夹存储在完全相同的路径下。更好的做法是使用以“UserProfile”特殊文件夹为起点的相对路径：`%SPECIAL{UserProfile}%/Dropbox/MyGame`。
 
 ![](https://i.gyazo.com/eb435b782cfb9df6c403702e8f6124df.png)
 

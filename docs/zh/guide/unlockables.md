@@ -13,7 +13,7 @@
 ```
 — 将再次锁定它。
 
-可解锁项的解锁状态存储在 [全局范围](/zh/guide/state-management#全局状态) 下，不依赖于本地游戏会话；例如，如果您解锁了某一项，当玩家开始新游戏或加载存档时，它不会再次被锁定。
+可解锁项的解锁状态存储在 [全局作用域](/zh/guide/state-management#全局状态) 下，不依赖于本地游戏会话；例如，如果您解锁了某一项，当玩家开始新游戏或加载存档时，它不会再次被锁定。
 
 要将实际的 [GameObject](https://docs.unity3d.com/Manual/class-GameObject.html) 与可解锁项绑定，请使用 `Unlockable Events` 组件：
 

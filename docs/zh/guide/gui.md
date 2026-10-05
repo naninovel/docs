@@ -6,7 +6,7 @@ Naninovel 附带多个内置 UI：标题（主）菜单、游戏设置、存档/
 
 ## 自适应 UI 布局
 
-所有内置 UI 均采用自适应布局实现。这允许 UI 在所有平台上保持可用，无论屏幕分辨率如何。
+所有内置 UI 均采用自适应布局实现。这样，无论屏幕分辨率如何，UI 在所有平台上都能保持可用。
 
 ![](https://i.gyazo.com/b6bddf8a0c6f2ba68dcdc1bc65db0c09.mp4)
 
@@ -20,7 +20,7 @@ Naninovel 附带多个内置 UI：标题（主）菜单、游戏设置、存档/
 
 指定一个或多个纵横比时，Naninovel 会将游戏设置 UI 中可用的分辨率筛选为匹配的分辨率，并在由 Naninovel 管理的摄像机上强制使用最接近的已配置纵横比。该纵横比通过更改摄像机视口矩形来强制应用，并在需要时添加上下黑边或左右黑边。
 
-纵横比以宽度和高度对的形式指定。例如，宽屏显示器使用 `16:9`，经典全屏布局使用 `4:3`。当当前屏幕纵横比未与任何已配置的比例完全匹配时，Naninovel 会选择最接近的已配置比例。
+纵横比以宽度和高度对的形式指定。例如，宽屏显示器使用 `16:9`，经典全屏布局使用 `4:3`。如果当前屏幕纵横比与任何已配置的比例都不完全匹配，Naninovel 会选择最接近的已配置比例。
 
 ## UI 切换
 
@@ -30,7 +30,7 @@ UI 切换功能允许用户隐藏或显示整个游戏内 UI。
 
 激活 `ToggleUI` 输入（默认为 `Space` 键）或使用控制面板上的 `HIDE` 按钮来隐藏/显示 UI。
 
-当 UI 隐藏时，`Continue` 输入或单击/触摸屏幕也将取消隐藏 UI。
+当 UI 隐藏时，`Continue` 输入或单击/触摸屏幕也会重新显示 UI。
 
 ## UI 自定义
 
@@ -72,7 +72,7 @@ UI 自定义允许添加自定义 UI 并修改或完全替换任何内置 UI 元
 另一个更高级的示例是添加具有网格布局、分页和拖放窗口的自定义库存 UI，可以在 [库存示例](/zh/guide/samples#库存) 中找到。具体来说，UI 相关脚本存储在 `Scripts/Runtime/Inventory/UI` 中，预制件存储在 `Content/UI/Inventory` 目录中。
 :::
 
-当您通过上下文菜单创建新的自定义 UI 预制件时，该预制件将具有附加到根对象的 `Custom UI` 组件。此组件（或者更确切地说是它实现了 `IManagedUI` 接口这一事实）对于使预制件被引擎识别为 UI 至关重要。
+当您通过上下文菜单创建新的自定义 UI 预制件时，该预制件的根对象上将附加一个 `Custom UI` 组件。此组件（或者更确切地说是它实现了 `IManagedUI` 接口这一事实）对于使预制件被引擎识别为 UI 至关重要。
 
 ![](https://i.gyazo.com/b3149c82bf3a42436903f54f826ad349.png)
 
@@ -82,17 +82,17 @@ UI 自定义允许添加自定义 UI 并修改或完全替换任何内置 UI 元
 
 当启用 `Control Opacity` 并且 `Canvas Group` 组件附加到同一游戏对象时，`Canvas Group` 的 `Alpha` 属性将与 UI 元素的当前可见性状态同步更改。此时，`Fade Time` 控制不透明度淡入淡出动画的持续时间（以秒为单位）。如果您希望实现自定义效果（例如，滑动动画而不是淡入淡出），请禁用 `Control Opacity` 并使用 `On Show` 和 `On Hide` Unity 事件来响应可见性更改。
 
-如果您希望支持 UI 的游戏手柄或键盘导航，请将可交互游戏对象（例如 `Button`）分配给 `Focus Object` 属性。当 UI 变为可见时，该对象将自动聚焦，允许使用游戏手柄和/或键盘在其他可交互对象上进行导航。有关如何设置导航行为的更多信息，请参阅 Unity 的 [UI 导航指南](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-SelectableNavigation.html)。
+如果您希望支持 UI 的游戏手柄或键盘导航，请将可交互游戏对象（例如 `Button`）分配给 `Focus Object` 属性。当 UI 变为可见时，该对象将自动获得焦点，从而可以使用游戏手柄和/或键盘在其他可交互对象之间导航。有关如何设置导航行为的更多信息，请参阅 Unity 的 [UI 导航指南](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-SelectableNavigation.html)。
 
-当分配了 `Focus Object` 时，`Focus Mode` 属性允许选择何时聚焦对象：`Visibility` 模式将在 UI 变为可见后立即聚焦它，而 `Navigation` 将推迟聚焦，直到玩家激活游戏手柄（左摇杆或方向键）或键盘（箭头键）上的导航键。
+当分配了 `Focus Object` 时，`Focus Mode` 属性允许选择何时聚焦对象：`Visibility` 模式将在 UI 变为可见后立即聚焦它，而 `Navigation` 将推迟聚焦，直到玩家激活游戏手柄（左摇杆或 D-Pad）或键盘（方向键）上的导航键。
 
 `On Show` 和 `On Hide` Unity 事件允许挂钩自定义处理程序以响应 UI 可见性更改。例如，您可以挂钩 `Animator` 触发器，以便在 UI 变为可见时播放自定义动画，反之亦然。
 
-当启用 `Hide On Load` 时，当引擎开始加载操作时，UI 将自动隐藏。这通常发生在加载另一个剧本脚本或退出到标题菜单时。
+启用 `Hide On Load` 后，UI 将在引擎开始加载操作时自动隐藏。这通常发生在加载另一个剧本脚本或退出到标题菜单时。
 
 启用 `Save Visibility State` 将使 UI 的可见性状态持久化，因此当玩家加载存档时，UI 将处于与保存游戏时相同的状态（可见或隐藏）。
 
-`Block Input When Visible` 允许在 UI 可见时禁用 [输入处理](/zh/guide/input-processing)。这对于防止玩家在与 UI 交互时使用各种热键（隐藏 UI、继续文本等）很有用。`Allowed Inputs` 允许向被阻止的输入添加例外；例如，您可以将 `ToggleUI` 输入名称添加到列表中，允许玩家切换 UI，同时仍防止激活其他输入。
+`Block Input When Visible` 允许在 UI 可见时禁用 [输入处理](/zh/guide/input-processing)。这对于防止玩家在与 UI 交互时使用各种热键（隐藏 UI、推进文本等）很有用。`Allowed Inputs` 允许向被阻止的输入添加例外；例如，您可以将 `ToggleUI` 输入名称添加到列表中，允许玩家切换 UI，同时仍防止激活其他输入。
 
 启用 `Modal UI` 会使所有其他 UI 在该 UI 可见时忽略交互。这类似于 `Block Input When Visible`，但影响基于事件的交互（鼠标单击、触摸、UI 导航）而不是直接输入处理。
 
@@ -121,7 +121,7 @@ UI 自定义允许添加自定义 UI 并修改或完全替换任何内置 UI 元
 
 可以通过 `Create -> Naninovel -> Font Sizes` 资产上下文菜单创建 `Font Sizes` 资产；使用该资产在多个 UI 之间共享通用字体大小。
 
-游戏设置菜单中可用的特定文本字体选项在 UI 配置菜单中设置：
+游戏设置菜单中可用的具体文本字体选项在 UI 配置菜单中设置：
 
 ![](https://i.gyazo.com/31a9b81dae56fb114a75e25211d26126.png)
 
@@ -149,7 +149,7 @@ UI 自定义允许添加自定义 UI 并修改或完全替换任何内置 UI 元
 
 从头开始创建新预制件时，请确保附加实现您要覆盖的 UI 接口的组件。此组件应附加到预制件的根对象。
 
-所有 UI 接口都存储在 `Naninovel.UI` 命名空间下：
+所有 UI 接口都位于 `Naninovel.UI` 命名空间下：
 
 | 接口 | 对应的 UI |
 | --- | --- |
@@ -166,7 +166,7 @@ UI 自定义允许添加自定义 UI 并修改或完全替换任何内置 UI 元
 | ICGGalleryUI | [CG 画廊](/zh/guide/unlockables#cg-画廊) 可解锁项浏览器。 |
 | ITipsUI | 可解锁的 [提示](/zh/guide/unlockables#提示) 浏览器。 |
 | IRollbackUI | 状态回滚功能的指示器。 |
-| IContinueInputUI | 位于 UI 堆栈底部的全屏不可见 UI 层，用于在单击或触摸时激活 `continue input` 触发器。 |
+| IContinueInputUI | 位于 UI 堆栈底部的全屏不可见 UI 层，用于在单击或触摸时激活 `Continue` 输入。 |
 | IToastUI | 用于自动隐藏弹出通知（又名“toast”）的通用 UI；可在剧本脚本中通过 [@toast] 命令使用。 |
 | IPauseUI | 通过 `Pause` 输入切换的面板。 |
 | IScriptNavigatorUI | 脚本导航器面板，列出可用的剧本脚本并允许播放它们。 |

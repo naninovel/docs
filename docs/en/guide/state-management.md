@@ -18,7 +18,7 @@ Serialization handlers, path to the save folder, maximum allowed number of save 
 
 Game state is data that varies per game save slot, describing the state of engine services and other objects in relation to player progress. Examples include: the currently played scenario script and the index of the played script command within the script, currently visible characters and their positions in the scene, currently played background music track name and its volume, and so on.
 
-To save or load current game state to a specific save slot, use the `IStateManager` engine service as follows:
+To save the current game state to a specific save slot or load it from one, use the `IStateManager` engine service as follows:
 
 ```csharp
 // Get instance of a state manager.

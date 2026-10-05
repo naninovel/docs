@@ -9,7 +9,7 @@ The *source locale* can be changed via the `Naninovel -> Configuration -> Locali
 ![](https://i.gyazo.com/84eea85d3c3deddd187af1ed843f1bd5.png)
 
 ::: tip
-If you'd like to share the source-localizable text with a third party (eg, for proofreading) but don't want to share the source scenario scripts, change `Source Locale` to some unrelated language you won't use, then disable `Expose Source Locale` and add a dedicated locale for the source material. That locale can then be exported to the localization [documents](/guide/localization#scripts-localization) or [spreadsheets](/guide/localization#spreadsheet).
+If you'd like to share the source localizable text with a third party (eg, for proofreading) but don't want to share the source scenario scripts, change `Source Locale` to some unrelated language you won't use, then disable `Expose Source Locale` and add a dedicated locale for the source material. That locale can then be exported to the localization [documents](/guide/localization#scripts-localization) or [spreadsheets](/guide/localization#spreadsheet).
 :::
 
 To add a locale, create a subfolder inside `Resources/Naninovel/Localization` (the *localization resources root*) with a name equal to one of the [RFC5646](https://gist.github.com/Elringus/db90d9c74f13c00fa35131e61d1b73cb) language tags you wish to support. For example, to add German, create `Resources/Naninovel/Localization/de`. The "Language" dropdown in the built-in game settings UI will automatically include all added locales.
@@ -150,7 +150,7 @@ Narrator: You've decided to go {route}. Wise choice!
 ; You've decided to go |. Wise choice!
 ```
 
-Annotations provide translators with context for the localized text. Make sure to **NOT** include annotation lines (those beginning with `; >`) in the translation. Only the single-`;` lines are expected to be translated.
+Annotations provide translators with context for the localized text. Make sure to **NOT** include annotation lines (those beginning with `; >`) in the translation. Only the lines starting with a plain `;` (without `>`) are expected to be translated.
 
 ::: tip EXAMPLE
 Find an example localization setup in the [localization sample](/guide/samples#localization). Use it as a reference if you have issues setting up localization in your project.

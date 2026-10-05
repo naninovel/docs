@@ -261,7 +261,7 @@ public class PlayMusic : Command, Command.IPreloadable
 }
 ```
 
-Notice the command implements the `Command.IPreloadable` interface. The script player will detect such commands and invoke the preload and unload methods to ensure the assets are ready before the command is executed and released after.
+Notice the command implements the `Command.IPreloadable` interface. The script player will detect such commands and invoke the preload and release methods to ensure the assets are ready before the command is executed and released after.
 
 ## Sharing Resources
 

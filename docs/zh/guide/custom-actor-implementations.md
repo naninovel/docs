@@ -11,7 +11,7 @@ Actor 由 `IActor` 接口及其派生接口表示：
 
 每个 Actor 接口可以有多个实现；例如，角色 Actor 目前有十一个内置实现：占位符、精灵、切片精灵、Universal、分层、通用、视频、Live2D、Spine、旁白和临时。
 
-可以在可通过 `Naninovel -> Configuration` 编辑器菜单访问的配置管理器中选择 Actor 实现。您可以更改用于所有 Actor 的默认实现或为每个 Actor 设置特定实现。要更改默认实现，请使用 `Default Metadata` 属性；要设置特定的实现，请使用 Actor 配置中的 `Implementation` 下拉菜单。
+Actor 实现可以在配置管理器中选择，配置管理器可通过 `Naninovel -> Configuration` 编辑器菜单访问。您可以更改用于所有 Actor 的默认实现或为每个 Actor 设置特定实现。要更改默认实现，请使用 `Default Metadata` 属性；要设置特定的实现，请使用 Actor 配置中的 `Implementation` 下拉菜单。
 
 ![](https://i.gyazo.com/74625fa24b58362de15bb8e07753824d.png)
 ![](https://i.gyazo.com/eeb42043eb9a841de003f8db848f1427.png)
@@ -83,7 +83,7 @@ Debug.Log(myCharData.MyCustomInt);
 
 ### 自定义元数据编辑器
 
-可以通过 [属性绘制器](https://docs.unity3d.com/Manual/editor-PropertyDrawers.html) 自定义自定义元数据编辑器。下面是添加一个属性绘制器的示例，该绘制器会在被编辑的字段上方插入一个额外标签。
+可以通过 [属性绘制器](https://docs.unity3d.com/Manual/editor-PropertyDrawers.html) 定制自定义元数据编辑器。下面是添加一个属性绘制器的示例，该绘制器会在被编辑的字段上方插入一个额外标签。
 
 ```csharp
 // 创建一个特性以应用于序列化字段；

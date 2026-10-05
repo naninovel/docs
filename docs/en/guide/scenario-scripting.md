@@ -198,7 +198,7 @@ Kohaku,Yuko: Hello![< as:"All Together"]
 Lorem[< speed:0.5] world![< speed:2.5 nowait!]
 ```
 
-The command applies the specified parameters to the last text line placed before it, even if other commands are inlined between the `<` and the text:
+The command applies the specified parameters to the last text part placed before it, even if other commands are inlined between the `<` and the text:
 
 ```nani
 ; Speed still applies to "Hello" part,
@@ -511,14 +511,14 @@ To group several commands under a single host, use the [@group] command:
 
 ## Async Execution
 
-Some commands may execute over time. For example, the [@hide] command will fade out the specified actor over the course of a set time, which can be changed with the `time` parameter. Consider the following scenario:
+Some commands may execute over time. For example, the [@hide] command will fade out the specified actor over the course of a set time, which can be changed with the `time` parameter. Consider the following example:
 
 ```nani
 @hide Kohaku
 @show Yuko
 ```
 
-— when played, you'll notice that the Yuko actor starts fading in at the same time Kohaku is fading out. This is because, by default, all async commands are not awaited: [@show] will start fading in Yuko right after [@hide] starts fading out Kohaku.
+— when played, you'll notice that the Yuko actor starts fading in at the same time Kohaku is fading out. This is because, by default, async commands are not awaited: [@show] will start fading in Yuko right after [@hide] starts fading out Kohaku.
 
 If you'd like to wait for an async command to complete before proceeding with the playback, use the `wait` parameter:
 

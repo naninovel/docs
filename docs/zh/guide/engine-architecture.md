@@ -4,7 +4,7 @@
 
 ## 场景独立性
 
-虽然 Unity 的设计提倡使用场景和预制件组合，但在开发视觉小说时并不实用。Naninovel 系统要么不直接绑定到 [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html)，要么附加到 [持久](https://docs.unity3d.com/ScriptReference/Object.DontDestroyOnLoad.html) 根 [GameObject](https://docs.unity3d.com/ScriptReference/GameObject.html)。
+虽然 Unity 的设计提倡使用场景和预制件组合，但这在开发视觉小说时并不太实用。Naninovel 系统要么不直接绑定到 [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html)，要么附加到 [持久](https://docs.unity3d.com/ScriptReference/Object.DontDestroyOnLoad.html) 根 [GameObject](https://docs.unity3d.com/ScriptReference/GameObject.html)。
 
 ![](https://i.gyazo.com/6802b8c4bce20ca158bb757d12ef6c1a.png)
 
@@ -12,7 +12,7 @@
 - `Naninovel<Runtime>` 用于运行时（构建和编辑器播放模式）；
 - `Naninovel<Editor>` 用于编辑器（播放模式之外）。
 
-所有需要的游戏对象都在引擎初始化时创建，该初始化通过 [RuntimeInitializeOnLoadMethod](https://docs.unity3d.com/ScriptReference/RuntimeInitializeOnLoadMethodAttribute.html) 方法在应用程序启动时（进入播放模式或运行构建后立即）自动异步运行。要自定义初始化方案，请参阅 [手动初始化指南](/zh/guide/integration-options#手动初始化)。
+所有需要的游戏对象都在引擎初始化时创建，该初始化通过 [RuntimeInitializeOnLoadMethod](https://docs.unity3d.com/ScriptReference/RuntimeInitializeOnLoadMethodAttribute.html) 方法在应用程序启动时（刚进入播放模式或刚运行构建之后）自动异步运行。要自定义初始化流程，请参阅 [手动初始化指南](/zh/guide/integration-options#手动初始化)。
 
 ::: info NOTE
 如果场景独立设计不适合您的项目，请在引擎配置菜单中禁用 `Scene Independent` 选项。所有 Naninovel 相关对象随后将成为活动 Unity 场景的一部分，并将在场景卸载时销毁。
@@ -33,7 +33,7 @@ player.MainTrack.Stop();
 
 ## 高层概念
 
-以下 UML 图展示了引擎架构的高层概念。请注意，图中的所有类和接口名称都位于 `Naninovel` 命名空间下。例如，要引用 `Engine` 类，请使用 `Naninovel.Engine` 或 [包含命名空间](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/namespaces/using-namespaces)。
+以下 UML 图展示了引擎架构的高层概念。请注意，图中的所有类和接口名称都位于 `Naninovel` 命名空间下。例如，要引用 `Engine` 类，请使用 `Naninovel.Engine` 或 [引入命名空间](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/namespaces/using-namespaces)。
 
 <object class="engine-design-dark" data="/assets/img/engine-design-dark.svg" type="image/svg+xml"></object>
 <object class="engine-design-light" data="/assets/img/engine-design-light.svg" type="image/svg+xml"></object>

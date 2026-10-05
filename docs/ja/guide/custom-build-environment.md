@@ -29,14 +29,14 @@ public static class CustomBuildProcessor
     }
     #endif
 
-    public static void PostExport(string exportPath)
+    public static void PostExport (string exportPath)
     {
         Naninovel.BuildProcessor.PostprocessBuild();
     }
 }
 ```
 
-カスタムコマンドにアセンブリ定義を使用する場合、Unityエディターはすべてのアセンブリをコンパイルする前にアセットのインポートを開始し、Cloud Buildの使用時にビルドエラーが発生する可能性があります。これは、ビルドを開始する前にスクリプトアセットを再インポートすることで解決できます。例：
+カスタムコマンドにアセンブリ定義を使用する場合、Unityエディターがすべてのアセンブリをコンパイルする前にアセットのインポートを開始することがあり、Cloud Buildの使用時にビルドエラーの原因となります。これは、ビルドを開始する前にスクリプトアセットを再インポートすることで解決できます。例：
 
 ```csharp
 var scriptGuids = AssetDatabase.FindAssets("t:Naninovel.Script");

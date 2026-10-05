@@ -4,7 +4,7 @@
 
 ## シーン独立性
 
-Unityの設計ではシーンとプレハブを組み合わせた構成が推奨されていますが、ビジュアルノベルを開発する場合にはあまり実用的ではありません。Naninovelのシステムは、[MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html) に直接バインドされていないか、[永続的な](https://docs.unity3d.com/ScriptReference/Object.DontDestroyOnLoad.html) ルート [GameObject](https://docs.unity3d.com/ScriptReference/GameObject.html) にアタッチされています。
+Unityの設計ではシーンの使用とプレハブの組み合わせが推奨されていますが、ビジュアルノベルを開発する場合にはあまり実用的ではありません。Naninovelのシステムは、[MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html) に直接バインドされていないか、[永続的な](https://docs.unity3d.com/ScriptReference/Object.DontDestroyOnLoad.html) ルート [GameObject](https://docs.unity3d.com/ScriptReference/GameObject.html) にアタッチされています。
 
 ![](https://i.gyazo.com/6802b8c4bce20ca158bb757d12ef6c1a.png)
 

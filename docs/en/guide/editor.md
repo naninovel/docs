@@ -57,7 +57,7 @@ If it prints nothing or the version is below 150, install the latest [WebView2 R
 
 ## Workspace
 
-The editor workspace has a flexible and customizable layout. You can resize or reposition any tab by drag-dropping dividers between tabs, tab sets, or the tabs themselves. You can also maximize any tab by clicking the button at the end of the associated tab set.
+The editor workspace has a flexible and customizable layout. You can resize tabs by dragging the dividers between them and reposition them by drag-dropping tab sets or the tabs themselves. You can also maximize any tab by clicking the button at the end of the associated tab set.
 
 ![?width=469](https://i.gyazo.com/4317e0bd0d87b270feb756c55ebace62.mp4)
 

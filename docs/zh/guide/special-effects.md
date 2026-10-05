@@ -53,9 +53,9 @@ Kohaku: 隆隆作响！
 | Shake count | Number | 3 | 震动迭代次数。 |
 | Loop | Boolean | false | 启用后，将循环效果，直到使用 [@despawn] 停止。 |
 | Shake duration | Number | 0.15 | 每次震动迭代的基本持续时间（以秒为单位）。 |
-| Duration variation | Number | 0.25 | 应用于效果基本持续时间的随机增量修饰符。 |
+| Duration variation | Number | 0.25 | 应用于效果基本持续时间的随机变化量。 |
 | Shake amplitude | Number | 0.5 | 每次震动迭代的基本位移幅度（以单位计）。 |
-| Amplitude variation | Number | 0.5 | 应用于效果基本位移幅度的随机增量修饰符。 |
+| Amplitude variation | Number | 0.5 | 应用于效果基本位移幅度的随机变化量。 |
 | Shake horizontally | Boolean | false | 是否水平位移 Actor（沿 X 轴）。 |
 | Shake vertically | Boolean | true | 是否垂直位移 Actor（沿 Y 轴）。 |
 
@@ -278,7 +278,7 @@ Kohaku: 隆隆作响！
 
 — “PianoTheme”背景音乐只有在过渡完成后才会开始播放。
 
-一些过渡效果还支持其他参数，您可以使用 `params` 参数进行控制：
+一些过渡效果还支持额外的参数，您可以使用 `params` 参数进行控制：
 
 ```nani
 @back River.Ripple params:10,5,0.02
@@ -286,7 +286,7 @@ Kohaku: 隆隆作响！
 
 — 将波纹效果的频率设置为 10，速度设置为 5，幅度设置为 0.02。未指定 `params` 时，将使用默认参数。
 
-如果您希望修改选定的参数，您可以跳过其他参数，它们将具有默认值：
+如果您只想修改其中部分参数，可以跳过其他参数，它们将使用默认值：
 
 ```nani
 @back River.Ripple params:,,0.02
@@ -778,7 +778,7 @@ EaseInOutElastic
 ```
 
 ::: tip
-在构建具有多个参数的自定义效果时，请考虑创建一个 [自定义命令](/zh/guide/custom-commands) 并从 `SpawnEffect` 继承它。这样您就不必记住 `params` 数组中的参数位置，并且在使用 [IDE 扩展](/zh/guide/ide-extension) 时可以获得自动补全和类型检查：
+在构建具有多个参数的自定义效果时，请考虑创建一个 [自定义命令](/zh/guide/custom-commands) 并使其继承自 `SpawnEffect`。这样您就不必记住 `params` 数组中的参数位置，并且在使用 [IDE 扩展](/zh/guide/ide-extension) 时可以获得自动补全和类型检查：
 
 ```nani
 @explode Kohaku power:3 smoke!

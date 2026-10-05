@@ -114,7 +114,7 @@ public class CustomCharacterSettings : CharactersSettings
 
 ![](https://i.gyazo.com/5555e8c3eb33c3783bef8ef852a7e765.png)
 
-組み込みのアクターメタデータエディターをオーバーライドすることもできます。以下のコードは、インスペクターで開いているアクターの `Message Color` フィールドの下に、その色の名前を示すラベルを挿入します。
+組み込みのアクターメタデータエディターをオーバーライドすることもできます。以下のコードは、表示中のアクターの `Message Color` フィールドの下に、その色の名前を示すラベルを挿入します。
 
 ```csharp
 [OverrideSettings]
@@ -185,7 +185,7 @@ public class CustomConfigurationProvider : ProjectConfigurationProvider
             // など...
         };
 
-        // 変更されたキャラクター構成を返します。
+        // 変更を加えたキャラクター構成を返します。
         return charsConfig;
     }
 }

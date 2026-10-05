@@ -79,7 +79,7 @@
 
 あるいは、名前は「CharacterNames」[管理テキスト](/ja/guide/managed-text) ドキュメントで指定できます。これは、管理テキストリソースの生成タスクを実行すると自動的に作成されます。これを使用して、表示名をローカライズしたり、Unityエディターの外部で編集したりします。管理テキストドキュメントのレコードは、アクター構成で設定された表示名よりも優先され、それらをオーバーライドします。
 
-シナリオスクリプトを介してゲーム全体で動的に変更するために、表示名をシナリオ変数にバインドすることが可能です。表示名をバインドするには、キャラクター構成メニューで中括弧で囲まれたシナリオ変数の名前を指定します。
+表示名をシナリオ変数にバインドして、シナリオスクリプトからゲームの進行中に動的に変更することも可能です。表示名をバインドするには、キャラクター構成メニューでシナリオ変数の名前を中括弧で囲んで指定します。
 
 ![](https://i.gyazo.com/931d0f6b09c77e13e7800d102c089d44.png)
 
@@ -93,7 +93,7 @@ Player: ...
 Player: シュタイン博士と呼んでください。
 ```
 
-名前バインディング機能を使用して、[@input] コマンドを使用してプレイヤーが表示名を選択できるようにすることも可能です。
+名前バインディング機能を利用して、[@input] コマンドでプレイヤーが自分の表示名を選べるようにすることも可能です。
 
 ```nani
 @input PlayerName summary:"あなたの名前を選んでください。"
@@ -290,13 +290,13 @@ Kohaku: 私の 'Wide' はどこへ？！ 'Fullscreen' で表示中...
 
 ![Sprite Dicing](https://i.gyazo.com/af08d141e7a08b6a8e2ef60c07332bbf.png)
 
-[Unity Package Manager](https://docs.unity3d.com/Manual/upm-ui.html) 経由でパッケージをインストールします。Package Managerウィンドウを開き（`Window -> Package Manager`）、「+」ボタンをクリックして、「Add package from git URL」を選択し、次のURLを入力します。
+[Unity Package Manager](https://docs.unity3d.com/Manual/upm-ui.html) 経由でパッケージをインストールします。Package Managerウィンドウを開き（`Window -> Package Manager`）、「+」ボタンをクリックし、「Add package from git URL」を選択して、次のURL：
 
 ```
 https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteDicing
 ```
 
-— 入力フィールドに入力して「Add」をクリックします。
+— を入力フィールドに入力し、「Add」をクリックします。
 
 ::: info NOTE
 Gitリポジトリからパッケージをインストールする前に、[Gitクライアント](https://git-scm.com/downloads) がマシンにインストールされており、Git実行ファイルのパスが [PATHシステム環境変数](https://en.wikipedia.org/wiki/PATH_(variable)) に設定されていることを確認してください（通常はインストール時に自動的に行われます）。
@@ -365,7 +365,7 @@ Photoshopでレイヤーキャラクターアートを作成する場合は、Un
 @char CharId.Head/Accessories+BlackGlasses,Head-Hat,Head/Emotions>Cool
 ```
 
-グループ外のレイヤー（ルートプレハブオブジェクトの子）を選択するには、グループ部分をスキップします。例：
+グループ外のレイヤー（ルートプレハブオブジェクトの子）を選択するには、グループ部分を省略するだけです。例：
 
 ```nani
 ; "Halo" レイヤーオブジェクトがプレハブルートの下に配置されている場合、それを無効にします。
@@ -405,7 +405,7 @@ Photoshopでレイヤーキャラクターアートを作成する場合は、Un
 @char Miho.Uniform,Hair/Front>Short
 ```
 
-レイヤーキャラクタープレハブを編集しているときに、マップレコードを右クリックして「Preview Composition」を選択することで、マップされた合成式をプレビューできます。別のメニュー項目 — 「Paste Current Composition」 — は、キャラクターの現在の合成式文字列（階層内の有効/無効なスプライトレンダラーに基づく）を生成し、対象のレコードに貼り付けます。これを使用すると、現在のプレハブ状態を合成項目にすばやくマップできます。
+レイヤーキャラクタープレハブを編集しているときに、マップレコードを右クリックして「Preview Composition」を選択することで、マップされた合成式をプレビューできます。別のメニュー項目「Paste Current Composition」は、キャラクターの現在の合成式文字列（階層内の有効/無効なスプライトレンダラーに基づく）を生成し、対象のレコードに貼り付けます。これを使用すると、現在のプレハブ状態を合成項目にすばやくマップできます。
 
 ![](https://i.gyazo.com/84a2f8e51997cdccbfb8321d58586d2a.mp4)
 
@@ -510,7 +510,7 @@ Spine runtime for Unityをインストールした後、`Naninovel -> Extensions
 これは、`Idle` をデフォルトトラックで、`Shoot` をトラック1で再生します。その後 `@char Hero.Idle` を適用すると、`Idle` の再生は継続され、トラック1はミックスアウトされます。外観を `On Appearance Changed` コールバックのみで処理するには、`Control Animation` を無効にします。
 
 ::: tip
-`Spine Controller` から継承されたカスタムコンポーネントを使用することが可能です。これにより、仮想メソッドと関連する動作をオーバーライドできます（たとえば、特定の期間またはトランジションパラメーターで外観の変更を処理する）。
+`Spine Controller` から継承されたカスタムコンポーネントを使用することが可能です。これにより、仮想メソッドと関連する動作をオーバーライドできます（たとえば、特定の時間またはトランジションパラメーターで外観の変更を処理する）。
 :::
 
 内部的に、Spineモデルはテクスチャにレンダリングされ、その後画面に投影されます。これは、キャラクターをフェードするときの半透明のオーバードローアーティファクトを防ぐために必要です。テクスチャサイズを指定するには、`Render Canvas` コンポーネント（`Spine Controller` を追加すると自動的にアタッチされます）を使用します。[ギズモ](https://docs.unity3d.com/Manual/GizmosMenu.html) を有効にして、プレハブモードで現在のサイズをプレビューします。サイズが大きいほどテクスチャが消費するメモリが多くなるため、できるだけ小さく保ってください。
@@ -553,7 +553,7 @@ SpineキャラクターがNaninovelで使用されている [Spineサンプル](
 
 ## 複数の外観
 
-汎用、Live2D、Spineアクターは、一度に適用される複数の外観をサポートしています。例：
+汎用、Live2D、Spineアクターは、複数の外観を一度に適用することをサポートしています。例：
 
 ```nani
 @char Kohaku.Body/Pose1,Face/Smile

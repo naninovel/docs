@@ -14,7 +14,7 @@ var audioConfig = Engine.GetConfiguration<AudioConfiguration>();
 引擎初始化过程是异步的，因此即使启用了自动初始化，在 Unity 刚加载完场景时（例如，在 `Awake`、`Start` 和 `OnEnable` [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html) 方法中），引擎 API（例如 `GetConfiguration`）也可能尚不可用；有关更多信息，请参阅 [访问引擎 API](/zh/guide/integration-options#访问引擎-api)。
 :::
 
-虽然 `Engine.GetConfiguration` 需要初始化引擎（它依赖于配置提供者），但即使引擎未初始化，您也可以通过默认提供者直接访问配置资产，例如：
+虽然 `Engine.GetConfiguration` 要求引擎已完成初始化（它依赖于配置提供者），但即使引擎未初始化，您也可以通过默认提供者直接访问配置资产，例如：
 
 ```csharp
 var config = ProjectConfigurationProvider.LoadOrDefault<AudioConfiguration>();
@@ -84,7 +84,7 @@ var myConfig = Engine.GetConfiguration<MyCustomConfiguration>();
 在 [库存示例](/zh/guide/samples#库存) 中可以找到添加自定义配置菜单以设置库存系统的另一个示例。具体来说，自定义配置在 `Scripts/Runtime/Inventory/InventoryConfiguration.cs` 中实现。
 :::
 
-要自定义自定义配置的编辑器行为（当它在 Naninovel 的项目设置中绘制时），请在编辑器脚本下创建一个类并继承自 `ConfigurationSettings<T>`，其中 `T` 是您的自定义配置类型。您可以使用存储在 `Naninovel/Editor/Editors/Settings` 中的内置设置编辑器脚本作为参考来构建您自己的编辑器。
+要定制自定义配置在编辑器中的行为（即它在 Naninovel 的项目设置中绘制时的行为），请在编辑器脚本中创建一个类并继承自 `ConfigurationSettings<T>`，其中 `T` 是您的自定义配置类型。您可以使用存储在 `Naninovel/Editor/Editors/Settings` 中的内置设置编辑器脚本作为参考来构建您自己的编辑器。
 
 ## 覆盖内置编辑器
 
@@ -146,9 +146,9 @@ public class CustomCharacterSettings : CharactersSettings
 
 ## 配置提供者
 
-您可以更改运行时提供配置对象的方式。例如，您可以从存储在远程主机上的 JSON 文件中读取配置，而不是静态项目资产。
+您可以更改运行时提供配置对象的方式。例如，您可以从存储在远程主机上的 JSON 文件中读取配置，而不是使用静态项目资产。
 
-要指定自定义配置提供方案，请创建一个实现 `IConfigurationProvider` 的 C# 类。该接口有一个方法，该方法需要一个 `Type` 参数并返回一个 `Configuration` 对象。如何构建和填充请求的配置对象取决于您；只需确保返回对象的类型与请求的类型匹配即可。
+要自定义配置的提供方式，请创建一个实现 `IConfigurationProvider` 的 C# 类。该接口有一个方法，它接受一个 `Type` 参数并返回一个 `Configuration` 对象。如何构建和填充请求的配置对象取决于您；只需确保返回对象的类型与请求的类型匹配即可。
 
 下面是返回默认配置对象的自定义提供者实现示例：
 
@@ -191,7 +191,7 @@ public class CustomConfigurationProvider : ProjectConfigurationProvider
 }
 ```
 
-准备好自定义配置提供者后，通过创建自定义引擎初始化脚本，使引擎使用它而不是内置的。默认情况下，引擎通过 `Naninovel/Runtime/Engine/RuntimeInitializer.cs` 初始化；请随意将其用作参考。
+准备好自定义配置提供者后，通过创建自定义引擎初始化脚本，让引擎使用它来代替内置的提供者。默认情况下，引擎通过 `Naninovel/Runtime/Engine/RuntimeInitializer.cs` 初始化；请随意将其用作参考。
 
 或者，如果您的目标只是使用自定义配置提供者但保留默认的引擎初始化流程，请考虑使用 `RuntimeInitializer.Initialize(IConfigurationProvider)`，它接受可选的配置提供者参数：
 

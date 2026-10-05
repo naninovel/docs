@@ -221,9 +221,9 @@
 | Enable Build Processing | True | 是否注册自定义的播放器构建处理程序，以处理被分配为 Naninovel 资源的资产。<br><br>警告：要使此设置生效，需要重新启动 Unity 编辑器。 |
 | Auto Build Bundles | True | 构建播放器时是否自动构建 Addressable 资产包。 |
 | Label By Scripts | True | 是否按使用它们的剧本脚本的路径为所有 Naninovel Addressable 资产添加标签。当 Addressable 组设置中的 `Bundle Mode` 设置为 `Pack Together By Label` 时，这将使资产包的打包更加高效。<br><br>请注意，脚本标签将分配给地址以“Naninovel/”开头的所有资产，其中包括手动公开给 Addressable 资源提供者的资产（未使用资源编辑器菜单）。 |
-| Local Root Path | %DATA%/Resources | 本地资源提供者使用的根路径。可以是资源所在文件夹的绝对路径，也可以是以下列可用原点之一开头的相对路径：<br> • %DATA% — 目标设备上的游戏数据文件夹（UnityEngine.Application.dataPath）。<br> • %PDATA% — 目标设备上的持久数据目录（UnityEngine.Application.persistentDataPath）。<br> • %STREAM% — `StreamingAssets` 文件夹（UnityEngine.Application.streamingAssetsPath）。<br> • %SPECIAL{F}% — 操作系统特殊文件夹（其中 F 是 System.Environment.SpecialFolder 中的值）。 |
+| Local Root Path | %DATA%/Resources | 本地资源提供者使用的根路径。可以是资源所在文件夹的绝对路径，也可以是以下列可用起点之一开头的相对路径：<br> • %DATA% — 目标设备上的游戏数据文件夹（UnityEngine.Application.dataPath）。<br> • %PDATA% — 目标设备上的持久数据目录（UnityEngine.Application.persistentDataPath）。<br> • %STREAM% — `StreamingAssets` 文件夹（UnityEngine.Application.streamingAssetsPath）。<br> • %SPECIAL{F}% — 操作系统特殊文件夹（其中 F 是 System.Environment.SpecialFolder 中的值）。 |
 | Video Stream Extension | .mp4 | 在 WebGL 下流式传输视频（影片、视频背景）时，指定视频文件的扩展名。 |
-| Reload Scripts | True | 是否监视和热重载存储在本地提供者目录下的修改后的剧本脚本。 |
+| Reload Scripts | True | 是否监视存储在本地提供者目录下的剧本脚本，并热重载被修改的脚本。 |
 
 </div>
 
@@ -238,7 +238,7 @@
 | Min Auto Play Delay | 1 | 在自动播放模式下执行下一个命令之前等待的最少秒数。 |
 | Complete On Continue | True | 当激活 `Continue` 输入时，是否立即完成随时间执行的阻塞（`wait!`）命令（例如，动画、隐藏/显示、色调更改等）。 |
 | Show Debug On Init | False | 是否在引擎初始化时显示播放器调试窗口。 |
-| Wait By Default | False | 当未显式指定 `wait` 参数时，是否等待所播放的命令。仅适用于可等待（异步）命令。<br><br>警告：不要在新项目中启用，因为此选项是为了向后兼容而保留的，并将在下一个版本中移除。 |
+| Wait By Default | False | 当未显式指定 `wait` 参数时，是否等待所播放的命令执行完毕。仅适用于可等待（异步）命令。<br><br>警告：不要在新项目中启用，因为此选项是为了向后兼容而保留的，并将在下一个版本中移除。 |
 | Show Loading UI | False | 是否在脚本预加载/加载和引擎重置操作期间自动显示 `ILoadingUI`。允许使用加载屏幕遮盖资源加载过程。 |
 
 </div>
@@ -315,8 +315,8 @@
 | Default Printer ID | Dialogue | 默认使用的文本打印机的 ID。 |
 | Default Base Reveal Speed | 0.5 | 首次启动游戏时设置的基础显示速度（游戏设置）。 |
 | Default Base Auto Delay | 0.5 | 首次启动游戏时设置的基础自动延迟（游戏设置）。 |
-| Max Reveal Delay | 0.06 | 显示（打印）文本消息时的延迟限制（以秒为单位）。具体的显示速度通过游戏设置中的 `message speed` 设置；此值定义可用范围（值越高，显示速度越慢）。 |
-| Max Auto Wait Delay | 0.02 | 在自动播放模式下等待继续时，每个已打印字符对应的延迟限制（以秒为单位）。具体的延迟通过游戏设置中的 `auto delay` 设置；此值定义可用范围。 |
+| Max Reveal Delay | 0.06 | 显示（打印）文本消息时的延迟上限（以秒为单位）。具体的显示速度通过游戏设置中的 `message speed` 设置；此值定义可用范围（值越高，显示速度越慢）。 |
+| Max Auto Wait Delay | 0.02 | 在自动播放模式下等待继续时，每个已打印字符对应的延迟上限（以秒为单位）。具体的延迟通过游戏设置中的 `auto delay` 设置；此值定义可用范围。 |
 | Scale Auto Wait | True | 是否按打印命令中设置的显示速度缩放自动播放模式下的等待时间。 |
 | Skip Print Delay | 0 | 大于零时，在启用跳过模式（快进）期间，每个打印命令将等待指定的时间（以秒为单位，不受时间缩放影响）。用于在跳过时减慢播放速度。 |
 | Default Metadata | Object Ref | 创建文本打印机 Actor 且所创建的 Actor ID 不存在自定义元数据时默认使用的元数据。 |

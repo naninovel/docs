@@ -73,7 +73,7 @@ z 位置越大，离摄像机越远；因此，离摄像机更近的 Actor 会�
 
 ## 匹配模式
 
-当 [摄像机](https://docs.unity3d.com/Manual/class-Camera.html) 在正交模式下渲染且背景 Actor 配置中的 `Match Mode` 未禁用时，Actor 将尝试将其大小与当前屏幕大小匹配。这样做是为了处理显示 [纵横比](https://en.wikipedia.org/wiki/Aspect_ratio_(image)) 与背景不同的情况。当匹配被禁用且纵横比不同时，会出现“黑边”。
+当 [摄像机](https://docs.unity3d.com/Manual/class-Camera.html) 在正交模式下渲染且背景 Actor 配置中的 `Match Mode` 未禁用时，Actor 将尝试将其大小与当前屏幕大小匹配。这样做是为了处理显示器 [纵横比](https://en.wikipedia.org/wiki/Aspect_ratio_(image)) 与背景不同的情况。当匹配被禁用且纵横比不同时，会出现“黑边”。
 
 ![](https://i.gyazo.com/46619a08e3b91441cf30800185932963.png)
 
@@ -83,7 +83,7 @@ z 位置越大，离摄像机越远；因此，离摄像机更近的 Actor 会�
 
 | 模式 | 描述 |
 |------|-------------|
-| Crop | 背景将始终占据整个摄像机视锥体，确保无论显示纵横比如何，玩家都看不到黑边；但是，某些背景区域可能会被裁剪。新背景 Actor 默认使用此模式。 |
+| Crop | 背景将始终占据整个摄像机视锥体，确保无论显示器纵横比如何，玩家都看不到黑边；但是，某些背景区域可能会被裁剪。新背景 Actor 默认使用此模式。 |
 | Fit | 整个背景区域将始终保持可见，但当纵横比不同时会出现黑边。 |
 | Custom | 允许使用自定义比率匹配宽度或高度。比率由 `Custom Match Ratio` 属性控制：最小值（0）将匹配宽度并忽略高度，最大值（1）则相反。 |
 | Disable | 不执行任何匹配。 |
@@ -132,7 +132,7 @@ z 位置越大，离摄像机越远；因此，离摄像机更近的 Actor 会�
 背景 Actor 的精灵实现是最常见和最简单的；它使用一组包裹在四边形网格（精灵）上的 [纹理](https://docs.unity3d.com/Manual/Textures.html) 资产来表示背景的外观。纹理可以基于 `.jpg`、`.png`、`.tiff`、`.psd` 或任何其他 [Unity 支持](https://docs.unity3d.com/Manual/ImportingTextures) 的图像文件格式。
 
 ::: tip
-选择最适合您的开发工作流程的文件格式。构建项目时，Unity 会自动将所有源资源（纹理、音频、视频等）转换为最适合目标平台的格式，因此您最初在项目中存储资源的格式不会产生影响。在 [官方文档](https://docs.unity3d.com/Manual/AssetWorkflow) 中查找有关 Unity 如何管理项目资产的更多信息。
+选择最适合您的开发工作流程的文件格式。构建项目时，Unity 会自动将所有源资源（纹理、音频、视频等）转换为最适合目标平台的格式，因此您最初在项目中存储资源的格式不会产生影响。有关 Unity 如何管理项目资产的更多信息，请参阅 [官方文档](https://docs.unity3d.com/Manual/AssetWorkflow)。
 :::
 
 场景中精灵背景网格的初始（未缩放）大小取决于参考分辨率（摄像机配置）、背景的 `Pixels Per Unit` 属性（在配置菜单中为每个背景 Actor 设置）和源纹理分辨率。
@@ -218,7 +218,7 @@ Encoding settings : cabac=1 / ref=3 / deblock=1:0:0 / analyse=0x3:0x113 / me=hex
 
 要创建分层背景预制件，请使用 `Create -> Naninovel -> Background -> Layered` 资产上下文菜单。进入 [预制件编辑模式](https://docs.unity3d.com/Manual/EditingInPrefabMode.html) 以组合层。默认情况下将创建几个层和组。您可以使用它们，也可以删除并添加自己的层和组。
 
-分层背景与 [分层角色](/zh/guide/characters#分层角色) 非常相似；有关如何通过剧本脚本设置和控制它们的更多信息，请参阅文档。
+分层背景与 [分层角色](/zh/guide/characters#分层角色) 非常相似；有关如何设置它们以及如何通过剧本脚本控制它们的更多信息，请参阅该文档。
 
 不要忘记 [@back] 命令的主参数接受的是外观和过渡类型（而不是像 [@char] 命令那样的 ID 和外观），因此请按以下方式指定层组合表达式：
 
@@ -263,7 +263,7 @@ Encoding settings : cabac=1 / ref=3 / deblock=1:0:0 / analyse=0x3:0x113 / me=hex
 场景背景的资源（外观）名称应等于场景资产相对于根目录的路径；例如，如果场景根目录是 `Assets/Scenes`，并且您有 `Assets/Scenes/Sphere.unity` 和 `Assets/Scenes/Sub/Cylinder.unity` 场景资产，则关联的外观将分别是 `Sphere` 和 `Sub/Cylinder`。
 :::
 
-在指定的根文件夹下创建一个新场景（或移动现有场景），并确保它至少有一个 [摄像机](https://docs.unity3d.com/ScriptReference/Camera.html) 组件附加到场景内的根游戏对象。加载场景背景时，Naninovel 会将渲染纹理分配给场景中找到的第一个摄像机。然后，渲染纹理将被分配给背景精灵，代表 Naninovel 场景空间内的场景背景。这样，场景背景将能够与其他背景和角色 Actor 共存，支持所有背景过渡效果，并通过缩放适配各种显示纵横比。
+在指定的根文件夹下创建一个新场景（或移动现有场景），并确保它至少有一个 [摄像机](https://docs.unity3d.com/ScriptReference/Camera.html) 组件附加到场景内的根游戏对象。加载场景背景时，Naninovel 会将渲染纹理分配给场景中找到的第一个摄像机。然后，渲染纹理将被分配给背景精灵，代表 Naninovel 场景空间内的场景背景。这样，场景背景将能够与其他背景和角色 Actor 共存，支持所有背景过渡效果，并通过缩放适配各种显示器纵横比。
 
 确保在世界空间中定位场景对象，使它们不会与可能同时加载的其他场景中的对象重叠（例如，在单个剧本脚本中引用时）。此外，请注意，如果场景背景对象位于全局空间原点（`x0 y0 z0`）附近，它可能会被 Naninovel 的主摄像机渲染；为了防止这种情况，请将所有场景对象从全局原点偏移，或者使用 `Configuration -> Engine -> Override Objects Layer` 通过 [层](https://docs.unity3d.com/Manual/Layers.html) 隔离 Naninovel 相关对象。
 
@@ -281,11 +281,11 @@ Encoding settings : cabac=1 / ref=3 / deblock=1:0:0 / analyse=0x3:0x113 / me=hex
 ```
 
 ::: tip
-在使用 Unity 场景组合背景时，请考虑添加 [自定义命令](/zh/guide/custom-commands) 来控制场景状态（例如，修改灯光颜色以更改一天中的时间或移动摄像机以更改视图），而不是为每个外观创建多个场景。这样，您就不必在加载多个场景时跟踪对象位置以防止重叠。
+在使用 Unity 场景组合背景时，请考虑添加 [自定义命令](/zh/guide/custom-commands) 来控制场景状态（例如，修改灯光颜色以改变昼夜时段或移动摄像机以更改视图），而不是为每个外观创建多个场景。这样，您就不必在加载多个场景时跟踪对象位置以防止重叠。
 :::
 
 ::: tip EXAMPLE
-在 [场景背景示例](/zh/guide/samples#场景背景) 中查找有关设置场景背景的示例。
+有关设置场景背景的示例，请参阅 [场景背景示例](/zh/guide/samples#场景背景)。
 :::
 
 ## 渲染到纹理

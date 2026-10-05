@@ -4,8 +4,8 @@ Naninovel 使用 Unity 的 [Input System](https://docs.unity3d.com/Packages/com.
 
 | 名称 | 键盘+鼠标 | 游戏手柄 | 描述 |
 |:---|:---|:---|:---|
-| Submit | Enter | Button South | 通用确认意图，例如接受提示或提交输入表单。 |
-| Cancel | Escape | Button East | 通用拒绝意图，例如拒绝提示或退出菜单。 |
+| Submit | Enter | Button South | 通用确认意图，例如接受提示框或提交输入表单。 |
+| Cancel | Escape | Button East | 通用拒绝意图，例如拒绝提示框或退出菜单。 |
 | Delete | Delete | Button North | 通用删除意图，例如删除选定的存档槽。 |
 | Navigate | Arrow Keys | D-Pad, Left Stick | 通用导航意图，例如在一排存档槽之间选择。 |
 | Scroll | Page Up/Down | Right Stick | 通用滚动意图，例如滚动历史记录。 |
@@ -13,8 +13,8 @@ Naninovel 使用 Unity 的 [Input System](https://docs.unity3d.com/Packages/com.
 | Tab | Ctrl+Left <-> Ctrl+Right | Left Bumper <-> Right Bumper | 通用切换选项卡意图，例如在设置菜单中切换选项卡。 |
 | Continue | Enter, Scroll Wheel (Y-) | Button South | 禁用等待输入模式（打印消息时激活）以继续脚本播放。 |
 | Pause | Backspace | Start | 显示暂停 UI。 |
-| Skip | Ctrl | Button West | 在激活操作（按住按钮）时启用 [跳过模式](/zh/guide/text-printers#文本跳过)（快进）。 |
-| ToggleSkip | Tab | Right Stick Press | 切换（如果禁用则永久启用，反之亦然）跳过模式。 |
+| Skip | Ctrl | Button West | 在操作处于激活状态（按住按钮）期间启用 [跳过模式](/zh/guide/text-printers#文本跳过)（快进）。 |
+| ToggleSkip | Tab | Right Stick Press | 切换跳过模式（如果已禁用则持续启用，反之亦然）。 |
 | SkipMovie | Escape | Button East | 跳过（取消）当前正在播放的 [影片](/zh/api/#movie)。 |
 | AutoPlay | A | Button East | 切换 [自动播放模式](/zh/guide/text-printers#自动播放)，在该模式下，等待输入模式会在设定的延迟后自动禁用。 |
 | ToggleUI | Space | Button North | 切换整个 UI 层的 [可见性](/zh/guide/gui#ui-切换)（隐藏/显示）。 |
@@ -26,7 +26,7 @@ Naninovel 使用 Unity 的 [Input System](https://docs.unity3d.com/Packages/com.
 
 ## 自定义输入
 
-您可以通过在 `Naninovel -> Configuration -> Input` 编辑器菜单中分配自定义 `Input Actions` 资产来配置默认操作并添加新操作。将相关操作保留在 `Naninovel` 映射下，以便引擎检测到它们。默认输入操作资产可以通过 `Create -> Naninovel -> Input -> Controls` 资产菜单创建——在创建自己的资产时请随意将其作为参考。
+您可以通过在 `Naninovel -> Configuration -> Input` 编辑器菜单中分配自定义 `Input Actions` 资产来配置默认操作并添加新操作。将相关操作保留在 `Naninovel` 映射下，以便引擎检测到它们。默认输入操作资产可以通过 `Create -> Naninovel -> Input -> Controls` 资产菜单创建——创建自己的资产时可以将其用作参考。
 
 ![](https://i.gyazo.com/8ef1cc7eccac5cbc9e88016e2b1271f6.png)
 
@@ -58,9 +58,9 @@ Naninovel 使用 Unity 的 [Input System](https://docs.unity3d.com/Packages/com.
 
 ### 鼠标
 
-在此模式下，UI 将禁用所有底层 [Selectable](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-Selectable.html) 对象的导航。这是为了防止按钮在被鼠标单击时转换为“选中”状态。
+在此模式下，UI 将禁用其下所有 [Selectable](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-Selectable.html) 对象的导航。这是为了防止按钮在被鼠标单击时转换为“选中”状态。
 
-此外，如果在 `Custom UI`（或派生）组件中分配了 `Button Controls` 对象，它将被启用，而 `Keyboard Controls` 和 `Gamepad Controls` 将被禁用。这允许仅在关联的输入模式处于活动状态时保持特定于鼠标输入模式的按钮（例如，“关闭”按钮）和按键图例（例如，游戏手柄按钮标签）可见。
+此外，如果在 `Custom UI`（或派生）组件中分配了 `Button Controls` 对象，它将被启用，而 `Keyboard Controls` 和 `Gamepad Controls` 将被禁用。这样，特定于鼠标输入模式的按钮（例如“关闭”按钮）和按键图例（例如游戏手柄按钮标签）就只会在关联的输入模式处于活动状态时可见。
 
 ### 游戏手柄
 

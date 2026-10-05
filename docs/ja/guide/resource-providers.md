@@ -6,7 +6,7 @@
 
 ![](https://i.gyazo.com/623b6df78984851c79715378aae9b559.png)
 
-`Resource Policy` プロパティは、スクリプト実行中にリソースをいつロードおよびアンロードするかを指定します。詳細については、[メモリ管理](/ja/guide/memory-management) ガイドを参照してください。
+`Resource Policy` プロパティは、スクリプト実行中にリソースをいつロードおよびアンロードするかを決定します。詳細については、[メモリ管理](/ja/guide/memory-management) ガイドを参照してください。
 
 `Enable Build Processing` は、エディターメニューで割り当てられたアセットをビルドで確実に使用できるようにするために必要な、ビルド前処理ステップをオンにします。[カスタムビルド環境](/ja/guide/custom-build-environment) を使用している場合や、独自のビルドフックをアタッチしている場合は、この処理を無効にする必要があるかもしれません。プロパティを有効または無効にした後、変更を有効にするにはUnityエディターを再起動してください。
 
@@ -30,7 +30,7 @@
 
 パッケージがプロジェクトにインストールされている場合、Naninovelは自動的にAddressablesを使用します。追加のセットアップは必要ありません。Naninovelの構成メニューで割り当てられたすべてのアセット（シナリオスクリプト、キャラクタースプライト、オーディオクリップなど）は、プレイヤーのビルド時にシステムに登録されます（アドレスが割り当てられます）。
 
-Naninovelメニューで割り当てたアセットは、`Naninovel` グループに追加されます。アセットの配信方法を設定する場合（たとえば、リモートWebホストを指定する場合）は、`Window -> Asset Management -> Addressables -> Groups` からこのグループを編集します。このグループは必要になった時点で自動的に作成されますが、ゲームをビルドする前に設定する場合は手動で作成することもできます。
+Naninovelメニューで割り当てたアセットは、`Naninovel` グループに追加されます。アセットの配信方法を設定する場合（たとえば、リモートWebホストを指定する場合）は、`Window -> Asset Management -> Addressables -> Groups` からこのグループを編集します。このグループは最初に必要になった時点で自動的に作成されますが、ゲームをビルドする前に設定する場合は手動で作成することもできます。
 
 ![](https://i.gyazo.com/c93fbd9e232ec94468c685c4d6003916.png)
 
@@ -56,7 +56,7 @@ Naninovelメニューで割り当てたアセットのアドレスは、ビル�
 | スクリプトローカライズドキュメント    | `Naninovel/Localization/{L10N_TAG}/Text/Scripts/{SCRIPT_PATH}` |
 
 ::: tip EXAMPLE
-Addressableプロバイダーを介して（リソースエディターメニューを使用せずに）Naninovelリソースを手動で登録し、リモートホストからアセットを提供する方法の例については、[Addressableサンプル](/ja/guide/samples#addressable) を確認してください。Unityの [学習教材](https://learn.unity.com/course/get-started-with-addressables) も役立つ場合があります。
+Addressableプロバイダーを介して（リソースエディターメニューを使用せずに）Naninovelリソースを手動で登録し、リモートホストからアセットを配信する方法の例については、[Addressableサンプル](/ja/guide/samples#addressable) を確認してください。Unityの [学習教材](https://learn.unity.com/course/get-started-with-addressables) も役立つ場合があります。
 :::
 
 ### スクリプトラベル
@@ -113,16 +113,16 @@ Addressablesを介して [手動で割り当てられた](/ja/guide/resource-pro
 ![](https://i.gyazo.com/d4e63726c2d1d75e2677cab7f2503546.png)
 :::
 
-リソースプロバイダー構成の `Local Root Path` プロパティは、ローカルリソースが保存されているフォルダーを指す必要があります。絶対パス（例：`C:\Resources`）または次のオリジンのいずれかで始まる相対パスを使用できます。
+リソースプロバイダー構成の `Local Root Path` プロパティは、ローカルリソースが保存されているフォルダーを指す必要があります。絶対パス（例：`C:\Resources`）または次の起点のいずれかで始まる相対パスを使用できます。
 
 - `%DATA%` — ターゲットデバイス上のゲームデータフォルダー（[Application.dataPath](https://docs.unity3d.com/ScriptReference/Application-dataPath)）
 - `%PDATA%` — ターゲットデバイス上の永続データディレクトリ（[Application.persistentDataPath](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath)）
 - `%STREAM%` — 「StreamingAssets」フォルダー（[Application.streamingAssetsPath](https://docs.unity3d.com/ScriptReference/Application-streamingAssetsPath)）
-- `%SPECIAL{F}%` — OSの特別なフォルダー。`F` は [特別なフォルダーの列挙型](https://docs.microsoft.com/en-us/dotnet/api/system.environment.specialfolder) の値の名前です。
+- `%SPECIAL{F}%` — OSの特殊フォルダー。`F` は [特殊フォルダーの列挙型](https://docs.microsoft.com/en-us/dotnet/api/system.environment.specialfolder) の値の名前です。
 
 デフォルトの `%DATA%/Resources` 値は、ゲームのデータディレクトリ内の「Resources」フォルダーを指します（正確な場所はターゲットプラットフォームによって異なります）。
 
-使用例の1つとして、シナリオを作成するために共同作業者と共有している `C:/Users/Admin/Dropbox/MyGame/Scripts` からシナリオスクリプトをロードしたいとします。ルートフォルダーを絶対パス（`C:/Users/Admin/Dropbox/MyGame`）で指定すると、すべての共同作業者がまったく同じパスにフォルダーを保存する必要があります。代わりに、「UserProfile」という特別なフォルダーをオリジンとする相対パスを使用します：`%SPECIAL{UserProfile}%/Dropbox/MyGame`。
+使用例の1つとして、シナリオを作成するために共同作業者と共有している `C:/Users/Admin/Dropbox/MyGame/Scripts` からシナリオスクリプトをロードしたいとします。ルートフォルダーを絶対パス（`C:/Users/Admin/Dropbox/MyGame`）で指定すると、すべての共同作業者がまったく同じパスにフォルダーを保存する必要があります。代わりに、「UserProfile」という特殊フォルダーを起点とする相対パスを使用します：`%SPECIAL{UserProfile}%/Dropbox/MyGame`。
 
 ![](https://i.gyazo.com/eb435b782cfb9df6c403702e8f6124df.png)
 

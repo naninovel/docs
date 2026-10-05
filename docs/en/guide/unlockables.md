@@ -13,7 +13,7 @@ Each unlockable item is represented by a string identifier and a boolean value i
 ```
 — will lock it again.
 
-The unlockable state of items is stored under the [global scope](/guide/state-management#global-state) and does not depend on local game sessions; eg if you unlock an item, it will not become locked again when the player starts a new game or loads a saved game.
+The unlocked state of items is stored under the [global scope](/guide/state-management#global-state) and does not depend on local game sessions; eg if you unlock an item, it will not become locked again when the player starts a new game or loads a saved game.
 
 To bind an actual [GameObject](https://docs.unity3d.com/Manual/class-GameObject.html) with the unlockable item, use the `Unlockable Events` component:
 

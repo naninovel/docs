@@ -58,14 +58,14 @@
 要显示该窗口，请确保在引擎配置中打开了 `Enable Development Console`，然后在播放模式下按 `~` 键，输入 `debug` 并按 `Enter`。
 
 ::: tip EXAMPLE
-在 [自动配音示例](/zh/guide/samples#自动配音) 中查找有关为多个语言环境设置自动配音的示例。
+有关为多个语言环境设置自动配音的示例，请参阅 [自动配音示例](/zh/guide/samples#自动配音)。
 :::
 
 ## 作者音量
 
 使用自动配音时，您可能希望让玩家控制特定 [角色](/zh/guide/characters)（更准确地说，是打印文本消息的作者）的语音音量。例如，玩家可能想将主角的语音静音，或调低特定角色的语音音量。
 
-要设置按作者的语音控制，请 [创建自定义设置 UI](/zh/guide/gui#修改内置-ui)，添加一个新的滑块（您可以复制预制件中已存在的“VoiceVolumeSlider”）并在 `Author ID` 字段中指定作者（角色）ID。
+要为各个作者单独设置语音控制，请 [创建自定义设置 UI](/zh/guide/gui#修改内置-ui)，添加一个新的滑块（您可以复制预制件中已存在的“VoiceVolumeSlider”）并在 `Author ID` 字段中指定作者（角色）ID。
 
 ![](https://i.gyazo.com/5a8db32ca5d971f2876f71d35f1a020c.png)
 

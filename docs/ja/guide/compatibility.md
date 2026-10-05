@@ -4,14 +4,14 @@
 
 サポートされているUnityバージョン：`6.7` LTSリリース（最新のパッチを適用）。
 
-非LTS（テック、ベータ、およびアルファ）リリースはサポートされていません。将来のUnityリリースに関する問題は、次のNaninovelバージョンで対処されます。過去のNaninovelバージョンと互換性のあるUnityリリースは [リリースノート](https://pre.naninovel.com/releases) に記載されています。
+非LTS（テック、ベータ、およびアルファ）リリースはサポートされていません。将来のUnityリリースに関する問題は、今後のNaninovelバージョンで対処されます。過去のNaninovelバージョンと互換性のあるUnityリリースは [リリースノート](https://pre.naninovel.com/releases) に記載されています。
 
 ## プラットフォーム
 
 ランタイムは、プラットフォーム固有のAPI、プリコンパイルされたネイティブライブラリ、またはサードパーティの依存関係を使用しません。その結果、NaninovelはUnityがターゲットにできるすべてのプラットフォームと互換性があることが期待されます。ただし、これはネイティブプラットフォーム機能を利用しないことも意味するため、VR/XRなどの特殊なプラットフォームで最適なユーザーエクスペリエンスを得るには、一部の機能を適応させる必要がある場合があります。
 
 ::: info NOTE
-Unityは [ゲームコンソール](https://unity.com/how-to/develop-console-video-games-unity)（PlayStation、Xbox、Switch）をサポートしていますが、小規模な開発者にとってはプロセスが困難な場合があります。パブリッシングパートナーをお探しの場合は、Naninovelプロジェクトを幅広いプラットフォームに移植した実績のある [Sometimes You](https://porting.games) をお勧めします。
+Unityは [ゲームコンソール](https://unity.com/how-to/develop-console-video-games-unity)（PlayStation、Xbox、Switch）をサポートしていますが、小規模な開発者にとってはプロセスが困難な場合があります。パブリッシングパートナーをお探しの場合は、Naninovelプロジェクトを幅広いプラットフォームに移植してきた豊富な実績を持つ [Sometimes You](https://porting.games) をお勧めします。
 :::
 
 ## レンダーパイプライン
@@ -20,7 +20,7 @@ Universal Render Pipeline（URP）と従来の組み込みレンダーパイプ�
 
 ## GUI
 
-UI Toolkitは [アダプター](/ja/guide/gui#ui-toolkit) と共に使用できますが、推奨されておらず、組み込みUIシステムではサポートされていません。すべての組み込みUIと基盤となるスクリプトは、Unityのデフォルトの [uGUIシステム](https://docs.unity3d.com/Packages/com.unity.ugui@latest) を使用して作成されています。すべてのテキストは、組み込みの [TextMesh Pro](https://docs.unity3d.com/Manual/com.unity.textmeshpro.html) コンポーネントに基づいています。
+UI Toolkitは [アダプター](/ja/guide/gui#ui-toolkit) を介して使用できますが、推奨されておらず、組み込みUIシステムではサポートされていません。すべての組み込みUIと基盤となるスクリプトは、Unityのデフォルトの [uGUIシステム](https://docs.unity3d.com/Packages/com.unity.ugui@latest) を使用して作成されています。すべてのテキストは、組み込みの [TextMesh Pro](https://docs.unity3d.com/Manual/com.unity.textmeshpro.html) コンポーネントに基づいています。
 
 ## Input System
 

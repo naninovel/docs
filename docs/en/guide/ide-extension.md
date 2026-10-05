@@ -54,7 +54,7 @@ Below are the recommended settings for VS Code to ignore Unity's auto-generated 
 
 You can access the settings JSON file by opening `File -> Preferences -> Settings` and clicking the "Open Settings (JSON)" button in the upper-right corner of the window. Select the "User" tab to edit settings for all projects or "Workspace" to affect only the current project containing the scenario scripts.
 
-Some of the above settings are applied by default when the package is installed, but you can override them if you wish. If you'd like to also customize syntax highlighting, add the following and tweak the colors:
+Some of the above settings are applied by default when the extension is installed, but you can override them if you wish. If you'd like to also customize syntax highlighting, add the following and tweak the colors:
 
 ::: code-group
 
@@ -372,7 +372,7 @@ Expression syntax:
 - Evaluated parts should be wrapped in curly braces (`{}`)
 - To reference the path of the `Start Game Script` or `Title Script` assigned in the scripts configuration, use `$EntryScript` or `$TitleScript`, respectively
 - To reference a parameter value, use `:` followed by the parameter ID (field name as specified in C#, not alias)
-- Use `[0]` or `[1]` after a parameter reference to specify the named value (0 for name and 1 for value)
+- Use `[0]` or `[1]` after a parameter reference to specify the component of a named value (0 for name and 1 for value)
 - Use null coalescing (`??`) after a parameter reference for a fallback if the value is not specified
 - Use single quotes to specify literal text, eg as a fallback value: `{:Id??'MainBackground'}`
 - Use the concatenation operator (`+`) to merge values from multiple enums
@@ -386,7 +386,7 @@ public NamedStringParameter QuestId;
 
 When the name component of the parameter is assigned `foo`, it will evaluate to `Quests/foo`; otherwise, given the `Start Game Script` path is `bar`, it will evaluate to `Quests/bar`.
 
-Another example for character poses applied to the [@char] command:
+Another example, applied to the [@char] command for character poses:
 
 ```csharp
 [EnumContext("Poses/Characters/{:Id??:IdAndAppearance[0]}+Poses/Characters/*", paramId: nameof(Pose))]

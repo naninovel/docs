@@ -277,7 +277,7 @@ Kohaku: 谁拿走了我的 'Wide'？！正在用 'Fullscreen' 打印...
 角色 Actor 的精灵实现是最常见和最简单的；它使用一组包裹在四边形网格（精灵）上的 [纹理](https://docs.unity3d.com/Manual/Textures.html) 资产来表示角色的外观。纹理可以基于 `.jpg`、`.png`、`.tiff`、`.psd` 或任何其他 [Unity 支持](https://docs.unity3d.com/Manual/ImportingTextures) 的图像文件格式。
 
 ::: tip
-选择最适合您的开发工作流程的文件格式。构建项目时，Unity 会自动将所有源资源（纹理、音频、视频等）转换为最适合目标平台的格式，因此您最初在项目中存储资源的格式不会产生影响。在 [官方文档](https://docs.unity3d.com/Manual/AssetWorkflow) 中查找有关 Unity 如何管理项目资产的更多信息。
+选择最适合您的开发工作流程的文件格式。构建项目时，Unity 会自动将所有源资源（纹理、音频、视频等）转换为最适合目标平台的格式，因此您最初在项目中存储资源的格式不会产生影响。有关 Unity 如何管理项目资产的更多信息，请参阅 [官方文档](https://docs.unity3d.com/Manual/AssetWorkflow)。
 :::
 
 场景中精灵角色网格的初始（未缩放）大小取决于参考分辨率（摄像机配置）、角色的 `Pixels Per Unit` 属性（在配置菜单中为每个角色 Actor 设置）和源纹理分辨率。
@@ -319,7 +319,7 @@ https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteD
 有关可用切片选项和使用示例的更多信息，请参阅 [扩展文档](https://dicing.elringus.com/guide/unity)。
 
 ::: tip EXAMPLE
-在 [切片 Actor 示例](/zh/guide/samples#切片-actor) 中查找有关设置切片 Actor 的示例。
+有关设置切片 Actor 的示例，请参阅 [切片 Actor 示例](/zh/guide/samples#切片-actor)。
 :::
 
 ## Universal 角色
@@ -365,7 +365,7 @@ https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteD
 @char CharId.Head/Accessories+BlackGlasses,Head-Hat,Head/Emotions>Cool
 ```
 
-要选择任何组之外的层（预制件根对象的子对象），只需跳过组部分，例如：
+要选择任何组之外的层（预制件根对象的子对象），只需省略组部分，例如：
 
 ```nani
 ; 假设 "Halo" 层对象放置在预制件根对象下，禁用它。
@@ -410,7 +410,7 @@ https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteD
 ![](https://i.gyazo.com/84a2f8e51997cdccbfb8321d58586d2a.mp4)
 
 ::: tip EXAMPLE
-在 [分层 Actor 示例](/zh/guide/samples#分层-actor) 中查找有关设置分层 Actor 的示例。
+有关设置分层 Actor 的示例，请参阅 [分层 Actor 示例](/zh/guide/samples#分层-actor)。
 :::
 
 ## 通用角色
@@ -471,7 +471,7 @@ Actor 的 Live2D 资源应在根对象上附加 `Live2D Character Behaviour` 组
 
 请注意，上述命令只会尝试在附加到预制件的动画器控制器上调用带有“Surprise”参数的 [SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html)；您必须自己搭建底层的 [动画器](https://docs.unity3d.com/Manual/Animator) 状态机。
 
-当 Live2D 模型预制件上存在并设置了 `Cubism Look Controller` 和 `Cubism Mouth Controller` 组件时，`Live2D Character Behaviour` 可以选择使用它们来控制角色的朝向和嘴部动画（即口型同步功能）。有关设置详情，请参阅关于 [眼球追踪](https://docs.live2d.com/cubism-sdk-tutorials/lookat) 和 [口型同步](https://docs.live2d.com/cubism-sdk-tutorials/lipsync) 的 Live2D 文档。
+当 Live2D 模型预制件上存在并设置了 Live2D 的 `Cubism Look Controller` 和 `Cubism Mouth Controller` 组件时，`Live2D Character Behaviour` 可以选择使用它们来控制角色的朝向和嘴部动画（即口型同步功能）。有关设置详情，请参阅关于 [眼球追踪](https://docs.live2d.com/cubism-sdk-tutorials/lookat) 和 [口型同步](https://docs.live2d.com/cubism-sdk-tutorials/lipsync) 的 Live2D 文档。
 
 以下视频指南涵盖了从 Cubism Editor 导出 Live2D 角色、配置预制件、创建简单的动画器状态机以及通过剧本脚本控制角色。
 

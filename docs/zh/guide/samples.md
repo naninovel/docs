@@ -30,13 +30,13 @@
 
 ## 透视场景
 
-此示例展示了一个充满多个动画环境精灵的通用背景、透视模式下的摄像机渲染以及散景（景深）效果。背景存储在 `Content/Backgrounds/Perspective` 目录下。
+此示例展示了一个由多个带动画的环境精灵组成的通用背景、透视模式下的摄像机渲染以及散景（景深）效果。背景存储在 `Content/Backgrounds/Perspective` 目录下。
 
 ![](https://i.gyazo.com/610d2cafe5fbe42aba7adb9ac71720d1.mp4)
 
 ## 编译器本地化
 
-要在示例项目中激活编译器本地化，请将 `Settings/Naninovel/CompilerRu` 资产分配给 Scripts 配置中的 `Compiler Localization` 字段。然后重新启动 Unity 编辑器和 VS Code 扩展。现在您可以使用 VS Code 打开项目并运行 `Compiler Localization` 示例剧本。
+要在示例项目中激活编译器本地化，请将 `Settings/Naninovel/CompilerRu` 资产分配给脚本配置中的 `Compiler Localization` 字段。然后重新启动 Unity 编辑器和 VS Code 扩展。现在您可以使用 VS Code 打开项目并运行 `Compiler Localization` 示例剧本。
 
 ![](https://i.gyazo.com/fde9998597ffedb8a025401bb2f71ce9.png)
 
@@ -129,7 +129,7 @@ Inventory UI 组件具有 `Capacity` 属性，您可以通过它更改库存中�
 
 - 生成的本地化文档存储在 `Content/Localization` 目录中。
 - 生成的表格存储在示例项目根目录下的 `Sheets` 目录中。
-- 特定于本地化的字体存储在 `Content/Fonts` 中。
+- 本地化专用的字体存储在 `Content/Fonts` 中。
 
 为本地化工具选择的文件夹：
 
@@ -174,22 +174,22 @@ RTL 打印机存储在 `Content/Printers/RTL`。
 
 ## Actor 着色器
 
-该示例展示了如何创建和使用用于添加自定义过渡效果的纹理着色器以及支持光照和自发光的精灵着色器；后者用于为背景 Actor 模拟一天中的时间。
+该示例展示了如何创建和使用用于添加自定义过渡效果的纹理着色器以及支持光照和自发光的精灵着色器；后者用于为背景 Actor 模拟昼夜变化。
 
 ![](https://i.gyazo.com/a9d7fb29d5e076245ac515d673cc155e.mp4)
 
 自定义着色器存储在 `Scripts/Shaders` 目录中。
 
-背景纹理在 alpha 层中存储了一个自发光遮罩，自定义着色器使用该遮罩来确定哪些区域应该发光，同时忽略全局光。
+背景纹理在 alpha 层中存储了一个自发光遮罩，自定义着色器使用该遮罩来确定哪些区域应忽略全局光并自行发光。
 
-一天中的时间由 `Scripts/Runtime/Shader/TimeOfDay.cs` 控制，它允许为一天 24 小时中的任意时间点配置光照颜色和发光强度。
+昼夜时段由 `Scripts/Runtime/Shader/TimeOfDay.cs` 控制，它允许为一天 24 小时中的任意时间点配置光照颜色和发光强度。
 
 ![](https://i.gyazo.com/b58cb70a522b9085cedb796249557df5.png)
 
 组件 API 通过 `Scripts/Runtime/Shader/SetHour.cs` 自定义命令公开给剧本脚本，从而可以使用 `@hour` 命令设置小时，例如：
 
 ```nani
-; 在 3 秒内将当前时间设置为 18:00（6:00 PM）。
+; 在 3 秒内将当前时间设置为 18:00（下午 6:00）。
 @hour 18 time:3
 ```
 
@@ -201,7 +201,7 @@ RTL 打印机存储在 `Content/Printers/RTL`。
 
 ## UI
 
-该示例包含以下新的自定义和修改后的内置 UI 示例：
+该示例包含以下全新自定义 UI 和修改后的内置 UI 的示例：
 
 - 标题屏幕
 
@@ -265,7 +265,7 @@ EN 和 JA 语言环境的语音剪辑存储在 `Content/Audio/Voice` 下。
 
 ## 音乐前奏
 
-演示如何使用 [@bgm] 命令的 `intro` 参数，以便在循环播放曲目的主体部分之前先播放一次前奏部分。
+演示如何使用 [@bgm] 命令的 `intro` 参数，以便在循环播放音轨的主体部分之前先播放一次前奏部分。
 
 ## 背景匹配
 

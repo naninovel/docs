@@ -30,7 +30,7 @@
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">choiceSummary</span> | string | 选项显示的文本。当文本包含空格时，请用双引号（`"`）将其括起来。如果希望在文本本身中包含双引号，请对其进行转义。 |
 | id | string | 选项的唯一标识符。之后可用于通过 [@clearChoice] 移除该选项。 |
-| lock | string | 选项是否应被禁用或以其他方式让玩家无法选择；有关更多信息，请参阅 [选项文档](/zh/guide/choices#锁定选项)。默认禁用。 |
+| lock | string | 选项是否应被禁用或以其他方式让玩家无法选择；有关更多信息，请参阅 [选项文档](/zh/guide/choices#锁定选项)。默认不锁定。 |
 | button | string | 代表该选项的 [按钮预制件](/zh/guide/choices#选项按钮) 的本地资源路径。预制件的根对象上应附加 `ChoiceHandlerButton` 组件。未指定时将使用默认按钮。 |
 | pos | number list | 选项按钮在选项处理程序内的本地位置（如果处理程序实现支持）。 |
 | handler | string | 要为其添加选项的选项处理程序的 ID。未指定时将使用默认处理程序。 |
@@ -95,7 +95,7 @@ Lorem ipsum
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">characterPositions</span> | named number list | 角色 ID 到场景 X 轴位置（相对于左侧场景边界，以百分比表示）命名值的集合。位置 0 对应场景的左边界，100 对应右边界；50 为中心。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">characterPositions</span> | named number list | 角色 ID 到场景 X 轴位置（相对于场景左边界，以百分比表示）的命名值集合。位置 0 对应场景的左边界，100 对应右边界；50 为中心。 |
 | look | boolean | 执行自动排列时，控制是否也让角色看向场景原点（默认启用）。 |
 | time | number | 命令启动的动画持续时间，以秒为单位。 |
 | wait | boolean | 是否在开始执行剧本脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
@@ -159,7 +159,7 @@ Lorem ipsum
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">trackId</span> | string | 要等待的异步脚本轨道的标识符。可用于等待使用 [@async] 命令生成的轨道执行完毕。 |
-| complete | boolean | 是否尽快强制完成等待的轨道。等待嵌套行时无效。 |
+| complete | boolean | 是否尽快强制完成所等待的轨道。等待嵌套行时无效。 |
 
 </div>
 
@@ -233,22 +233,22 @@ Lorem ipsum
 
 ## bgm
 
-播放具有指定名称的 [BGM（背景音乐）](/zh/guide/audio#背景音乐) 曲目，或修改当前正在播放的该曲目。
+播放具有指定名称的 [BGM（背景音乐）](/zh/guide/audio#背景音乐) 音轨，或修改当前正在播放的该音轨。
 
 ::: info NOTE
-音乐曲目默认循环播放。未指定音乐曲目名称（`path`）时，将影响所有当前播放的曲目。对已在播放的曲目调用时，播放不会受到影响（曲目不会从头开始播放），但将应用指定的参数（音量以及曲目是否循环）。
+音乐音轨默认循环播放。未指定音乐音轨名称（`path`）时，将影响所有当前播放的音轨。对已在播放的音轨调用时，播放不会受到影响（音轨不会从头开始播放），但将应用指定的参数（音量以及音轨是否循环）。
 :::
 
 <div class="config-table">
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| intro | string | 在主曲目之前播放一次的前奏音乐曲目的路径（不受循环参数影响）。 |
+| intro | string | 在主音轨之前播放一次的前奏音乐音轨的路径（不受循环参数影响）。 |
 | group | string | 播放音频时应使用的混音器 [组路径](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | loop | boolean | 是否在播放结束时从头重复播放，直到停止。 |
 | volume | number | 音频播放的响度，范围为 0.0 到 1.0。请注意，1.0 是默认值——在不产生削波的情况下，无法让数字音频以高于 0 dBFS 基线的电平播放。 |
 | pitch | number | 播放的感知频率（速度），范围为 [-3.0 到 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)，其中 1.0 为正常速度。负值将反向播放音频。 |
-| pos | number list | 音频源的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。使用 Z 分量（第三个成员，例如 `,,10`）更改深度。 |
+| pos | number list | 音频源的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。使用 Z 分量（第三个成员，例如 `,,10`）按深度移动。 |
 | wpos | number list | 音频源的位置（在世界空间中）。`pos` 和 `wpos` 均未指定时，将禁用空间模式。 |
 | wait | boolean | 是否等待音频播放结束后再执行下一个命令。循环播放时无效。 |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">path</span> | string | 音频资源的本地路径（名称）。 |
@@ -260,13 +260,13 @@ Lorem ipsum
 </div>
 
 ```nani
-; 开始循环播放名为 'Sanctuary' 的音乐曲目。
+; 开始循环播放名为 'Sanctuary' 的音乐音轨。
 @bgm Sanctuary
 
-; 与上面相同，但在 10 秒内淡入音量并播放一次。
+; 与上面相同，但在 10 秒内淡入音量且只播放一次。
 @bgm Sanctuary fade:10 !loop
 
-; 在 2.5 秒内将所有正在播放的音乐曲目的音量更改为 50%
+; 在 2.5 秒内将所有正在播放的音乐音轨的音量更改为 50%
 ; 并让它们循环播放。
 @bgm volume:0.5 loop! fade:2.5
 
@@ -279,7 +279,7 @@ Lorem ipsum
 将 [模糊效果](/zh/guide/special-effects#blur) 应用于受支持的 Actor：精灵、分层、切片、Universal、Live2D、Spine、视频、占位符和场景实现的背景和角色。
 
 ::: info NOTE
-Actor 应实现 `IBlurable` 接口以支持该效果。
+Actor 需要实现 `IBlurable` 接口才能支持该效果。
 :::
 
 <div class="config-table">
@@ -440,7 +440,7 @@ Actor 应实现 `IBlurable` 接口以支持该效果。
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">choiceSummary</span> | string | 选项显示的文本。当文本包含空格时，请用双引号（`"`）将其括起来。如果希望在文本本身中包含双引号，请对其进行转义。 |
 | id | string | 选项的唯一标识符。之后可用于通过 [@clearChoice] 移除该选项。 |
-| lock | string | 选项是否应被禁用或以其他方式让玩家无法选择；有关更多信息，请参阅 [选项文档](/zh/guide/choices#锁定选项)。默认禁用。 |
+| lock | string | 选项是否应被禁用或以其他方式让玩家无法选择；有关更多信息，请参阅 [选项文档](/zh/guide/choices#锁定选项)。默认不锁定。 |
 | button | string | 代表该选项的 [按钮预制件](/zh/guide/choices#选项按钮) 的本地资源路径。预制件的根对象上应附加 `ChoiceHandlerButton` 组件。未指定时将使用默认按钮。 |
 | pos | number list | 选项按钮在选项处理程序内的本地位置（如果处理程序实现支持）。 |
 | handler | string | 要为其添加选项的选项处理程序的 ID。未指定时将使用默认处理程序。 |
@@ -570,7 +570,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID 必需参数：应始终指定该参数">path</span> | string | 要销毁的预制件资源的名称（路径）。预期之前已执行具有相同参数的 [@spawn] 命令。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID 必需参数：应始终指定该参数">path</span> | string | 要销毁的预制件资源的名称（路径）。在此之前应已执行过具有相同参数的 [@spawn] 命令。 |
 | params | string list | 销毁预制件之前要设置的参数。需要预制件的根对象上附加 `IParameterized` 组件。 |
 | wait | boolean | 如果生成的对象实现了 `IAwaitable` 接口，是否等待其逐渐销毁完成。 |
 
@@ -610,11 +610,11 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 ## enterDialogue
 
-通过启用 Naninovel 活动（例如渲染和输入处理）进入对话模式。旨在当 Naninovel 用作嵌入式对话/过场动画系统时切换到对话或视觉小说模式。
+通过启用 Naninovel 活动（例如渲染和输入处理）进入对话模式。用于在 Naninovel 作为嵌入式对话/过场动画系统使用时切入对话或视觉小说模式。
 
 ## exitDialogue
 
-通过重置引擎状态并禁用大多数 Naninovel 活动（例如渲染和输入处理）退出对话模式。旨在当 Naninovel 用作嵌入式对话/过场动画系统时切换出对话或视觉小说模式。
+通过重置引擎状态并禁用大多数 Naninovel 活动（例如渲染和输入处理）退出对话模式。用于在 Naninovel 作为嵌入式对话/过场动画系统使用时切出对话或视觉小说模式。
 
 <div class="config-table">
 
@@ -937,7 +937,7 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID 必需参数：应始终指定该参数">variableName</span> | string | 输入的文本将赋给的剧本变量的名称。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID 必需参数：应始终指定该参数">variableName</span> | string | 接收输入文本的剧本变量的名称。 |
 | type | string | 输入内容的类型；默认为指定变量的类型。可用于更改所赋值变量的类型，或在赋值给新变量时使用。支持的类型：`String`、`Numeric`、`Boolean`。 |
 | summary | string | 与输入字段一起显示的可选摘要文本。当文本包含空格时，请用双引号（`"`）将其括起来。如果希望在文本本身中包含双引号，请对其进行转义。 |
 | value | string | 为输入字段设置的预定义值。未指定时将取用所赋值变量的现有值（如果有）。 |
@@ -985,7 +985,7 @@ Archibald: 你好，{name}！
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID 必需参数：应始终指定该参数">charIdAndAllow</span> | named boolean | 角色 ID 后跟一个布尔值（true 或 false），表示停止还是允许口型同步动画。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID 必需参数：应始终指定该参数">charIdAndAllow</span> | named boolean | 角色 ID 后跟一个布尔值，表示允许（true）还是停止（false）口型同步动画。 |
 
 </div>
 
@@ -1021,7 +1021,7 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 将具有指定 ID 的 [可解锁项](/zh/guide/unlockables) 设置为 `locked` 状态。
 
 ::: info NOTE
-可解锁项的解锁状态存储在 [全局范围](/zh/guide/state-management#全局状态) 中。<br/> 如果具有指定 ID 的项未在全局状态映射中注册，则将自动添加相应的记录。
+可解锁项的解锁状态存储在 [全局作用域](/zh/guide/state-management#全局状态) 中。<br/> 如果具有指定 ID 的项未在全局状态映射中注册，则将自动添加相应的记录。
 :::
 
 <div class="config-table">
@@ -1128,7 +1128,7 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 
 ## print
 
-使用文本打印机 Actor 打印（随时间显示）指定的文本消息。
+使用文本打印机 Actor 打印（逐渐显示）指定的文本消息。
 
 ::: info NOTE
 处理通用文本行时会在底层使用此命令，例如通用文本行 `Kohaku: Hello World!` 在解析剧本脚本时将自动转换为 `@print "Hello World!" author:Kohaku`。<br/> 默认情况下，会在打印新消息之前重置（清除）打印机；将 `reset` 参数设置为 *false* 或在打印机 Actor 配置中禁用 `Auto Reset` 可防止这种情况并改为追加文本。<br/> 默认情况下，会使打印机成为默认打印机并隐藏其他打印机；将 `default` 参数设置为 *false* 或在打印机 Actor 配置中禁用 `Auto Default` 可防止这种情况。<br/> 默认情况下，会在完成任务之前等待用户输入；将 `waitInput` 参数设置为 *false* 或在打印机 Actor 配置中禁用 `Auto Wait` 可在文本完全显示后立即返回。
@@ -1335,7 +1335,7 @@ Kohaku: 再次使用我链接的打印机。
         这可是你要求的！
         @shake Camera
     @group
-        要给琥珀着色了！
+        要给琥珀设置色调了！
         @char Kohaku tint:red
     @sfx SoundX if:score>10
 ```
@@ -1388,7 +1388,7 @@ Kohaku: 再次使用我链接的打印机。
 @resetState
 
 ; 重置除脚本播放器、剧本变量管理器和音频管理器之外的所有服务，
-; 让当前脚本和音频曲目继续播放，
+; 让当前脚本和音轨继续播放，
 ; 并保留剧本变量的值。
 @resetState IScriptPlayer,IVariableManager,IAudioManager
 
@@ -1571,10 +1571,10 @@ Kohaku: 再次使用我链接的打印机。
 
 ## sfx
 
-播放具有指定名称的 [SFX（音效）](/zh/guide/audio#音效) 曲目，或修改当前正在播放的该曲目。
+播放具有指定名称的 [SFX（音效）](/zh/guide/audio#音效) 音轨，或修改当前正在播放的该音轨。
 
 ::: info NOTE
-音效曲目默认不循环播放。未指定 SFX 曲目名称（`path`）时，将影响所有当前播放的曲目。对已在播放的曲目调用时，播放不会受到影响（曲目不会从头开始播放），但将应用指定的参数（音量以及曲目是否循环）。
+音效音轨默认不循环播放。未指定 SFX 音轨名称（`path`）时，将影响所有当前播放的音轨。对已在播放的音轨调用时，播放不会受到影响（音轨不会从头开始播放），但将应用指定的参数（音量以及音轨是否循环）。
 :::
 
 <div class="config-table">
@@ -1585,7 +1585,7 @@ Kohaku: 再次使用我链接的打印机。
 | loop | boolean | 是否在播放结束时从头重复播放，直到停止。 |
 | volume | number | 音频播放的响度，范围为 0.0 到 1.0。请注意，1.0 是默认值——在不产生削波的情况下，无法让数字音频以高于 0 dBFS 基线的电平播放。 |
 | pitch | number | 播放的感知频率（速度），范围为 [-3.0 到 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)，其中 1.0 为正常速度。负值将反向播放音频。 |
-| pos | number list | 音频源的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。使用 Z 分量（第三个成员，例如 `,,10`）更改深度。 |
+| pos | number list | 音频源的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。使用 Z 分量（第三个成员，例如 `,,10`）按深度移动。 |
 | wpos | number list | 音频源的位置（在世界空间中）。`pos` 和 `wpos` 均未指定时，将禁用空间模式。 |
 | wait | boolean | 是否等待音频播放结束后再执行下一个命令。循环播放时无效。 |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">path</span> | string | 音频资源的本地路径（名称）。 |
@@ -1603,7 +1603,7 @@ Kohaku: 再次使用我链接的打印机。
 ; 循环播放名为 'Rain' 的 SFX 并在 30 秒内淡入。
 @sfx Rain loop! fade:30
 
-; 在 2.5 秒内将所有正在播放的 SFX 曲目的音量更改为 75%，
+; 在 2.5 秒内将所有正在播放的 SFX 音轨的音量更改为 75%，
 ; 并禁用它们的循环。
 @sfx volume:0.75 !loop fade:2.5
 
@@ -1617,7 +1617,7 @@ Kohaku: 再次使用我链接的打印机。
 
 ## sfxFast
 
-播放具有指定名称的 [SFX（音效）](/zh/guide/audio#音效) 曲目。与 [@sfx] 命令不同，该剪辑以最小延迟播放，并且不随游戏状态序列化（即使保存时正在播放，加载游戏后也不会播放）。该命令可用于播放各种临时音频剪辑，例如与 UI 相关的声音（例如，通过 [`Play Script` 组件](/zh/guide/gui#通过-unity-事件播放脚本) 在单击按钮时播放）。
+播放具有指定名称的 [SFX（音效）](/zh/guide/audio#音效) 音轨。与 [@sfx] 命令不同，该剪辑以最小延迟播放，并且不随游戏状态序列化（即使保存时正在播放，加载游戏后也不会播放）。该命令可用于播放各种临时音频剪辑，比如与 UI 相关的声音（例如，通过 [`Play Script` 组件](/zh/guide/gui#通过-unity-事件播放脚本) 在单击按钮时播放）。
 
 <div class="config-table">
 
@@ -1629,7 +1629,7 @@ Kohaku: 再次使用我链接的打印机。
 | loop | boolean | 是否在播放结束时从头重复播放，直到停止。 |
 | volume | number | 音频播放的响度，范围为 0.0 到 1.0。请注意，1.0 是默认值——在不产生削波的情况下，无法让数字音频以高于 0 dBFS 基线的电平播放。 |
 | pitch | number | 播放的感知频率（速度），范围为 [-3.0 到 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)，其中 1.0 为正常速度。负值将反向播放音频。 |
-| pos | number list | 音频源的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。使用 Z 分量（第三个成员，例如 `,,10`）更改深度。 |
+| pos | number list | 音频源的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。使用 Z 分量（第三个成员，例如 `,,10`）按深度移动。 |
 | wpos | number list | 音频源的位置（在世界空间中）。`pos` 和 `wpos` 均未指定时，将禁用空间模式。 |
 | wait | boolean | 是否等待音频播放结束后再执行下一个命令。循环播放时无效。 |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">path</span> | string | 音频资源的本地路径（名称）。 |
@@ -1656,9 +1656,9 @@ Kohaku: 再次使用我链接的打印机。
 | count | number | 震动迭代次数。启用 `loop` 时忽略。 |
 | loop | boolean | 是否持续震动直到禁用。 |
 | time | number | 每次震动迭代的基本持续时间，以秒为单位。 |
-| deltaTime | number | 应用于效果基本持续时间的随机化修饰符。 |
+| deltaTime | number | 应用于效果基本持续时间的随机变化量。 |
 | power | number | 每次震动迭代的基本位移幅度，以单位计。 |
-| deltaPower | number | 应用于基本位移幅度的随机化修饰符。 |
+| deltaPower | number | 应用于基本位移幅度的随机变化量。 |
 | hor | boolean | 是否水平位移 Actor（沿 X 轴）。 |
 | ver | boolean | 是否垂直位移 Actor（沿 Y 轴）。 |
 | wait | boolean | 在播放下一个命令之前是否等待效果预热动画。 |
@@ -1758,7 +1758,7 @@ Kohaku: 再次使用我链接的打印机。
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">enable</span> | boolean | 是否启用（默认）或禁用跳过模式。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">enable</span> | boolean | 启用（默认）还是禁用跳过模式。 |
 
 </div>
 
@@ -1827,7 +1827,7 @@ Kohaku: 再次使用我链接的打印机。
 </div>
 
 ```nani
-; 在 10 秒内开始大雪。
+; 在 10 秒内开始下大雪。
 @snow power:1 time:10
 ; 在 30 秒内停止下雪。
 @snow power:0 time:30
@@ -1900,10 +1900,10 @@ Kohaku: 再次使用我链接的打印机。
 
 ## stopBgm
 
-停止播放具有指定名称的 BGM（背景音乐）曲目。
+停止播放具有指定名称的 BGM（背景音乐）音轨。
 
 ::: info NOTE
-未指定音乐曲目名称（`path`）时，将停止所有当前播放的曲目。
+未指定音乐音轨名称（`path`）时，将停止所有当前播放的音轨。
 :::
 
 <div class="config-table">
@@ -1919,19 +1919,19 @@ Kohaku: 再次使用我链接的打印机。
 </div>
 
 ```nani
-; 在 10 秒内淡出 'Sanctuary' BGM 曲目并停止播放。
+; 在 10 秒内淡出 'Sanctuary' BGM 音轨并停止播放。
 @stopBgm Sanctuary fade:10
 
-; 停止所有当前正在播放的音乐曲目。
+; 停止所有当前正在播放的音乐音轨。
 @stopBgm
 ```
 
 ## stopSfx
 
-停止播放具有指定名称的 SFX（音效）曲目。
+停止播放具有指定名称的 SFX（音效）音轨。
 
 ::: info NOTE
-未指定音效曲目名称（`path`）时，将停止所有当前播放的曲目。
+未指定音效音轨名称（`path`）时，将停止所有当前播放的音轨。
 :::
 
 <div class="config-table">
@@ -1950,7 +1950,7 @@ Kohaku: 再次使用我链接的打印机。
 ; 停止播放名为 'Rain' 的 SFX，淡出 15 秒。
 @stopSfx Rain fade:15
 
-; 停止所有当前正在播放的音效曲目。
+; 停止所有当前正在播放的音效音轨。
 @stopSfx
 ```
 
@@ -1983,7 +1983,7 @@ Kohaku: 再次使用我链接的打印机。
 </div>
 
 ```nani
-; 在 10 秒内开始强烈的阳光。
+; 在 10 秒内让强烈的阳光出现。
 @sun power:1 time:10
 ; 在 30 秒内让阳光消失。
 @sun power:0 time:30
@@ -2031,7 +2031,7 @@ Kohaku: 再次使用我链接的打印机。
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID 必需参数：应始终指定该参数">name</span> | string | 附加了 'Playable Director' 组件的活动场景游戏对象的名称。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID 必需参数：应始终指定该参数">name</span> | string | 场景中附加了 'Playable Director' 组件且处于活动状态的游戏对象的名称。 |
 | stop | boolean | 是否停止 Director。 |
 | pause | boolean | 是否暂停 Director。 |
 | resume | boolean | 是否恢复 Director。 |
@@ -2194,7 +2194,7 @@ Jenna: 这该死的雨什么时候才会停？
 </div>
 
 ```nani
-; 以附加模式加载场景 'TestScene2'，然后卸载它。
+; 在附加模式下加载场景 'TestScene2'，然后卸载它。
 @loadScene TestScene2 additive!
 @unloadScene TestScene2
 ```
@@ -2204,7 +2204,7 @@ Jenna: 这该死的雨什么时候才会停？
 将具有指定 ID 的 [可解锁项](/zh/guide/unlockables) 设置为 `unlocked` 状态。
 
 ::: info NOTE
-可解锁项的解锁状态存储在 [全局范围](/zh/guide/state-management#全局状态) 中。<br/> 如果具有指定 ID 的项未在全局状态映射中注册，则将自动添加相应的记录。
+可解锁项的解锁状态存储在 [全局作用域](/zh/guide/state-management#全局状态) 中。<br/> 如果具有指定 ID 的项未在全局状态映射中注册，则将自动添加相应的记录。
 :::
 
 <div class="config-table">
@@ -2233,7 +2233,7 @@ Jenna: 这该死的雨什么时候才会停？
 | loop | boolean | 是否在播放结束时从头重复播放，直到停止。 |
 | volume | number | 音频播放的响度，范围为 0.0 到 1.0。请注意，1.0 是默认值——在不产生削波的情况下，无法让数字音频以高于 0 dBFS 基线的电平播放。 |
 | pitch | number | 播放的感知频率（速度），范围为 [-3.0 到 3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html)，其中 1.0 为正常速度。负值将反向播放音频。 |
-| pos | number list | 音频源的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。使用 Z 分量（第三个成员，例如 `,,10`）更改深度。 |
+| pos | number list | 音频源的位置（相对于场景边界，以百分比表示）。位置描述如下：`0,0` 是左下角，`50,50` 是中心，`100,100` 是场景的右上角。使用 Z 分量（第三个成员，例如 `,,10`）按深度移动。 |
 | wpos | number list | 音频源的位置（在世界空间中）。`pos` 和 `wpos` 均未指定时，将禁用空间模式。 |
 | wait | boolean | 是否等待音频播放结束后再执行下一个命令。循环播放时无效。 |
 | <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID 必需参数：应始终指定该参数">path</span> | string | 音频资源的本地路径（名称）。 |

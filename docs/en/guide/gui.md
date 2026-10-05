@@ -135,7 +135,7 @@ To disable a built-in UI, remove the corresponding record from the UI resources 
 
 ### Modifying Built-In UI
 
-If you wish to modify an existing built-in (default) UI prefab, you can find them at the `Naninovel/Prefabs/DefaultUI` package folder.
+If you wish to modify the built-in (default) UI prefabs, you can find them at the `Naninovel/Prefabs/DefaultUI` package folder.
 
 While it's possible, **please refrain from editing the built-in prefabs directly** to prevent issues when updating the package. Rather, create a new prefab from the template via the `Create -> Naninovel -> Default UI -> ...` asset context menu or manually duplicate the prefab you want to modify (Ctrl/Cmd+D) and move it out of the package folder. Then assign the created/modified prefab to an existing record (`Object` field) in the UI resources manager.
 
@@ -166,7 +166,7 @@ IConfirmationUI | UI panel used to confirm important commands (eg, when exiting 
 ICGGalleryUI | Unlockable [CG gallery](/guide/unlockables#cg-gallery) items browser.
 ITipsUI | Unlockable [tips](/guide/unlockables#tips) browser.
 IRollbackUI | Indicator for the state rollback feature.
-IContinueInputUI | A fullscreen invisible UI layer positioned at the bottom of the UI stack and used to activate a `continue input` trigger when clicked or touched.
+IContinueInputUI | A fullscreen invisible UI layer positioned at the bottom of the UI stack and used to activate the `Continue` input when clicked or touched.
 IToastUI | A general-purpose UI for self-hiding popup notifications aka "toasts"; can be used from scenario scripts with the [@toast] command.
 IPauseUI | Panel toggled with the `Pause` input.
 IScriptNavigatorUI | Script navigator panel that lists the available scenario scripts and allows playing them.
