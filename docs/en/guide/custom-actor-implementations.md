@@ -99,7 +99,7 @@ public class ExtraLabelAttribute : PropertyAttribute
 }
 
 // Create the custom editor that will be used when drawing the affected fields.
-// The script should be inside an "Editor" folder, as it uses the `UnityEditor` API.
+// Keep the script in an "Editor" folder, as it uses the `UnityEditor` API.
 [CustomPropertyDrawer(typeof(ExtraLabelAttribute))]
 public class ExtraLabelPropertyDrawer : PropertyDrawer
 {
@@ -122,7 +122,7 @@ public class ExtraLabelPropertyDrawer : PropertyDrawer
     }
 }
 
-// Now you can use the attribute to apply an extra label to the serialized fields.
+// Now the attribute can apply an extra label to the serialized fields.
 public class MyCharacterData : CustomMetadata<CustomCharacterImplementation>
 {
     [ExtraLabel("Text from my custom property drawer")]
@@ -198,8 +198,8 @@ public class MyCustomChoiceHandler : UIChoiceHandler
     }
 }
 
-// Overriding built-in choice handler manager to make it use our extended state.
-// The important step is to specify `MyChoiceHandlerState` in the generic types;
+// Override the built-in choice handler manager to use our extended state.
+// The key step is to specify `MyChoiceHandlerState` in the generic types;
 // other modifications are just to fulfill the interface requirements.
 [InitializeAtRuntime(@override: typeof(ChoiceHandlerManager))]
 public class MyChoiceHandlerManager : ActorManager<IChoiceHandlerActor,

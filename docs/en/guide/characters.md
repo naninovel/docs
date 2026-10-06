@@ -112,7 +112,7 @@ Then use the following scenario script:
 @char Char1
 
 Char1: My name is now predefined by the `T_PredefinedName` managed text record.
-Char1: It's localizable; try changing the locale and it will update accordingly.
+Char1: It's localizable; change the locale and it will update accordingly.
 Char1: Now, we'll make the player input a custom name.
 
 ; Notice the default input value assigned via `value` parameter:

@@ -330,7 +330,7 @@ Naninovelは4種類のエンドポイント構文をサポートしており、�
 @goto */Prologue
 ; 「Scene1.nani」ファイルが複数あるため、エラーになります。
 @goto */Scene1
-; 「Day1」の下に「Scene1.nani」が1つしかないため機能します。
+; 「Day1」の下には「Scene1.nani」ファイルが1つしかないため機能します。
 @goto */Day1/Scene1
 ```
 

@@ -99,7 +99,7 @@ public class ExtraLabelAttribute : PropertyAttribute
 }
 
 // 创建在绘制受影响字段时将使用的自定义编辑器。
-// 脚本应位于“Editor”文件夹内，因为它使用 `UnityEditor` API。
+// 请将脚本放在“Editor”文件夹内，因为它使用 `UnityEditor` API。
 [CustomPropertyDrawer(typeof(ExtraLabelAttribute))]
 public class ExtraLabelPropertyDrawer : PropertyDrawer
 {
@@ -122,7 +122,7 @@ public class ExtraLabelPropertyDrawer : PropertyDrawer
     }
 }
 
-// 现在您可以使用该特性将额外标签应用于序列化字段。
+// 现在该特性可以将额外标签应用于序列化字段。
 public class MyCharacterData : CustomMetadata<CustomCharacterImplementation>
 {
     [ExtraLabel("Text from my custom property drawer")]
@@ -199,7 +199,7 @@ public class MyCustomChoiceHandler : UIChoiceHandler
 }
 
 // 覆盖内置选项处理程序管理器以使其使用我们的扩展状态。
-// 重要步骤是在泛型类型中指定 `MyChoiceHandlerState`；
+// 关键步骤是在泛型类型中指定 `MyChoiceHandlerState`；
 // 其他修改只是为了满足接口要求。
 [InitializeAtRuntime(@override: typeof(ChoiceHandlerManager))]
 public class MyChoiceHandlerManager : ActorManager<IChoiceHandlerActor,

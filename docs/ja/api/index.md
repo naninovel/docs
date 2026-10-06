@@ -992,7 +992,7 @@ Archibald: ようこそ、{name}！
 ```nani
 ; オートボイスが無効で、リップシンクがテキストメッセージによって駆動されると仮定して、
 ; 口のアニメーションから句読点を除外します。
-Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true]Consectetur adipiscing elit.
+Kohaku: Lorem ipsum[lipSync Kohaku.false]... [lipSync Kohaku.true]dolor sit.
 ```
 
 ## loadScene
@@ -2040,7 +2040,7 @@ Kohaku: 再びリンクされたプリンターを使用します。
 </div>
 
 ```nani
-; シーン上の「Cutscene001」ゲームオブジェクトにアタッチされたディレクターコンポーネントに
+; シーン上の「Cutscene001」ゲームオブジェクトにアタッチされたディレクターに
 ; 関連するタイムラインの再生を開始させ、完了を待機します。
 @timeline Cutscene001 wait!
 

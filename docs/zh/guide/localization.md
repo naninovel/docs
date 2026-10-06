@@ -78,7 +78,7 @@ Translation text
 
 ```nani
 # aj0e5dea
-; Aliquam ut <b>ultricies</b> enim, id venenatis.<br>Nullam rhoncus eros tempus.
+; Aliquam ut <b>ultricies</b> enim, id venenatis.<br>Nullam rhoncus eros.
 Оценивая блеск <b>металлического</b> шарика, пространство равноденственно.<br>
 Противостояние есть метеорный дождь.
 ```

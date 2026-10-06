@@ -43,7 +43,7 @@ When nesting commands under the choice, `goto`, `gosub` and `set` parameters are
 </div>
 
 ```nani
-; A quick-time event: game over unless the player selects a choice in 3 seconds.
+; A quick-time event: game over unless the player chooses within 3 seconds.
 Decide now![>]
 @addChoice "Turn left" goto:Left
 @addChoice "Turn right" goto:Right
@@ -353,7 +353,7 @@ Modifies the main camera, changing offset, zoom level, rotation and camera effec
 </div>
 
 ```nani
-; Offset the camera by -3 units along the X-axis and by 1.5 units along the Y-axis.
+; Offset the camera by -3 units along the X-axis and 1.5 along the Y-axis.
 @camera offset:-3,1.5
 
 ; Set camera in perspective mode, zoom in by 50% and move back by 5 units.
@@ -992,7 +992,7 @@ Allows force-stopping the lip sync mouth animation for a character with the spec
 ```nani
 ; Given auto voicing is disabled and lip sync is driven by text messages,
 ; exclude punctuation from the mouth animation.
-Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true]Consectetur adipiscing elit.
+Kohaku: Lorem ipsum[lipSync Kohaku.false]... [lipSync Kohaku.true]dolor sit.
 ```
 
 ## loadScene
@@ -2040,7 +2040,7 @@ Controls a [Timeline](https://docs.unity3d.com/Manual/com.unity.timeline.html) v
 </div>
 
 ```nani
-; Make a director component attached to a "Cutscene001" game object in the scene
+; Make the director attached to the "Cutscene001" game object in the scene
 ; start playing the associated timeline and wait for completion.
 @timeline Cutscene001 wait!
 

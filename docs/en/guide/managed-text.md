@@ -47,8 +47,8 @@ using UnityEngine.UI;
 // Inheriting from Unity's Text component so we can use it as one.
 public class CustomLabel : Text
 {
-    // Value of the "CustomLabel.LabelText" managed text record will be assigned
-    // to the below variable on engine init and updated on locale changes.
+    // Value of the "CustomLabel.LabelText" managed text record is assigned
+    // to the variable below on engine init and updated on locale changes.
     [ManagedText("foo")] // "foo" is the document name for the record.
     public static string LabelText = "bar"; // "bar" is the default value.
 

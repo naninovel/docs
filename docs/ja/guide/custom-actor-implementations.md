@@ -99,7 +99,7 @@ public class ExtraLabelAttribute : PropertyAttribute
 }
 
 // 対象のフィールドを描画するときに使用されるカスタムエディターを作成します。
-// `UnityEditor` APIを使用するため、スクリプトは「Editor」フォルダー内にある必要があります。
+// `UnityEditor` APIを使用するため、スクリプトは「Editor」フォルダーに置いてください。
 [CustomPropertyDrawer(typeof(ExtraLabelAttribute))]
 public class ExtraLabelPropertyDrawer : PropertyDrawer
 {
@@ -122,7 +122,7 @@ public class ExtraLabelPropertyDrawer : PropertyDrawer
     }
 }
 
-// これで、属性を使用してシリアル化されたフィールドに追加のラベルを適用できます。
+// これで、属性がシリアル化されたフィールドに追加のラベルを適用できます。
 public class MyCharacterData : CustomMetadata<CustomCharacterImplementation>
 {
     [ExtraLabel("Text from my custom property drawer")]

@@ -992,7 +992,7 @@ Archibald: 你好，{name}！
 ```nani
 ; 假设自动配音已禁用且口型同步由文本消息驱动，
 ; 从嘴部动画中排除标点符号。
-Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true]Consectetur adipiscing elit.
+Kohaku: Lorem ipsum[lipSync Kohaku.false]... [lipSync Kohaku.true]dolor sit.
 ```
 
 ## loadScene
@@ -2040,7 +2040,7 @@ Kohaku: 再次使用我链接的打印机。
 </div>
 
 ```nani
-; 使附加到场景中“Cutscene001”游戏对象的 Director 组件
+; 使附加到场景中“Cutscene001”游戏对象的 Director
 ; 开始播放关联的 Timeline 并等待完成。
 @timeline Cutscene001 wait!
 

@@ -330,7 +330,7 @@ Naninovel 支持四种类型的端点语法，允许您在某些情况下编写�
 @goto */Prologue
 ; 这将导致错误，因为有多个“Scene1.nani”文件。
 @goto */Scene1
-; 可行，因为“Day1”下只有一个“Scene1.nani”。
+; 这样可行，因为“Day1”下只有一个“Scene1.nani”文件。
 @goto */Day1/Scene1
 ```
 
