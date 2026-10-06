@@ -40,7 +40,7 @@ It's also possible to bind managed text records to variables in the source code.
 
 Below is an example of using a managed text variable to localize a text label in a C# script.
 
-```csharp
+```cs
 using Naninovel;
 using UnityEngine.UI;
 
@@ -59,7 +59,7 @@ public class CustomLabel : Text
         text = LabelText; // Assign current record value to the label.
 
         var l10n = Engine.GetService<ILocalizationManager>();
-        // Update the label when the user changes the locale at runtime.
+        // Update the label when the player changes the locale at runtime.
         l10n.OnLocaleChanged += _ => text = LabelText;
     }
 }
@@ -83,7 +83,7 @@ Greeting3: Hi!
 @print { random(Greeting1, Greeting2, Greeting3) }
 ```
 
-The `Script` managed text document can be localized in the same way as other documents; when the user selects another locale, the text will automatically be referenced from the corresponding localized document.
+The `Script` managed text document can be localized in the same way as other documents; when the player selects another locale, the text will automatically be referenced from the corresponding localized document.
 
 ## Localization
 

@@ -9,10 +9,10 @@
 在剧本脚本中，角色通过 [@char] 命令控制：
 
 ```nani
-; 以默认外观显示名为 "Sora" 的角色。
+; 以默认外观显示 ID 为“Sora”的角色。
 @char Sora
 
-; 与上面相同，但将外观设置为 "Happy"。
+; 与上面相同，但将外观设置为“Happy”。
 @char Sora.Happy
 
 ; 与上面相同，但另外将角色放置在距离场景左边界 45%
@@ -22,7 +22,7 @@
 ```
 
 ::: tip
-与其手动调整数值参数，不如使用 [场景录制](/zh/guide/scene-recording)，通过 Unity 场景视图中的变换工具布置 Actor 和摄像机，并自动生成对应的 NaniScript 命令。
+与其手动调整数值参数，不如使用 [场景录制](/zh/guide/scene-recording)，通过 Unity 场景视图中的 Gizmos 布置 Actor 和摄像机，并自动生成对应的 NaniScript 命令。
 :::
 
 ## Actor 记录
@@ -40,18 +40,18 @@
 姿势名称可以用作 [@char] 命令中的外观，以一次性应用姿势中指定的所有选定参数，而不必通过命令参数逐个指定它们。
 
 ```nani
-; 假设为 "Kohaku" 定义了 "SuperAngry" 姿势，
+; 假设为“Kohaku”定义了“SuperAngry”姿势，
 ; 应用姿势中指定的所有选定参数。
 @char Kohaku.SuperAngry
 
-; 与上面相同，但在 3 秒内使用 "DropFade" 过渡。
+; 与上面相同，但在 3 秒内使用“DropFade”过渡。
 @char Kohaku.SuperAngry via:DropFade time:3
 ```
 
 请注意，当姿势用作外观时，您仍然可以覆盖单个参数，例如：
 
 ```nani
-; 假设为 "Kohaku" 定义了 "SuperAngry" 姿势，
+; 假设为“Kohaku”定义了“SuperAngry”姿势，
 ; 应用姿势状态中指定的所有参数，
 ; 但色调除外，它在命令中被覆盖。
 @char Kohaku.SuperAngry tint:#ff45cb
@@ -133,16 +133,16 @@ Char1: 我的显示名称现在已绑定到 `name` 剧本变量。
 虽然在大多数情况下推荐使用上面讨论的显示名称，但有时您可能希望仅在几行中更改 Actor 的名称，或使多个 Actor 成为同一行的作者。为每个此类情况设置专用的 Actor 或基于变量的显示名称是不切实际的。此时请考虑使用 `as` [通用参数](/zh/guide/scenario-scripting#通用参数)：
 
 ```nani
-; 即使 "Kohaku" 角色可能在配置中设置了自定义显示名称，
-; 也使用 "某人" 作为名称打印此行。
+; 即使“Kohaku”角色可能在配置中设置了自定义显示名称，
+; 也使用“某人”作为名称打印此行。
 Kohaku: Lorem ipsum.[< as:"某人"]
 
-; 打印该行，将 "大家" 显示为作者名称
+; 打印该行，将“大家”显示为作者名称
 ; 并使所有可见角色成为打印文本的作者。
 *: Lorem ipsum![< as:"大家"]
 
-; 类似，但只让 "Kohaku" 和 "Yuko" 成为作者。
-Kohaku,Yuko: Lorem ipsum?[< as:"琥珀和优子"]
+; 类似，但只让“Kohaku”和“Yuko”成为作者。
+Kohaku,Yuko: Lorem ipsum?[< as:"Kohaku 和 Yuko"]
 ```
 
 — `as` 参数是可本地化的，会出现在脚本本地化文档中以供翻译。此外，[说话者高亮](/zh/guide/characters#说话者高亮) 功能将识别作者 ID 中指定的 `*` 和 `,`，并将所有/选定的角色高亮显示为说话者。
@@ -234,26 +234,26 @@ Kohaku,Yuko: Lorem ipsum?[< as:"琥珀和优子"]
 要在运行时链接和取消链接打印机，请使用 [@linkPrinter] 和 [@unlinkPrinter] 命令。此外，也可以通过在 [@printer] 下嵌套命令，将所有作者临时链接到特定打印机。
 
 ```nani
-; 无作者行默认使用 'Fullscreen'。
+; 无作者行默认使用“Fullscreen”。
 @linkPrinter Fullscreen to:DefaultAuthor
-; 'Kohaku' 默认使用 'Wide' 打印机。
+; “Kohaku”默认使用“Wide”打印机。
 @linkPrinter Wide to:Kohaku
 
-这会用 'Fullscreen' 打印。
-Kohaku: 我则用 'Wide' 打印！
+这会用“Fullscreen”打印。
+Kohaku: 我则用“Wide”打印！
 
-; 对嵌套命令强制使用 'Dialogue'。
+; 对嵌套命令强制使用“Dialogue”。
 @printer Dialogue
-    这会用 'Dialogue' 打印。
-    Kohaku: 现在我必须使用 'Dialogue'。
+    这会用“Dialogue”打印。
+    Kohaku: 现在我必须使用“Dialogue”。
 
-回到 'Fullscreen'。
-Kohaku: 我又可以使用自己的 'Wide' 了！
+回到“Fullscreen”。
+Kohaku: 我又可以使用自己的“Wide”了！
 
-; 无论 'Kohaku' 链接的是哪个打印机，都取消其链接。
+; 无论“Kohaku”链接的是哪个打印机，都取消其链接。
 @unlinkPrinter from:Kohaku
-这不受影响，仍使用 'Fullscreen'。
-Kohaku: 谁拿走了我的 'Wide'？！正在用 'Fullscreen' 打印...
+这不受影响，仍使用“Fullscreen”。
+Kohaku: 谁拿走了我的“Wide”？！正在用“Fullscreen”打印...
 ```
 
 ## 默认作者
@@ -290,13 +290,13 @@ Kohaku: 谁拿走了我的 'Wide'？！正在用 'Fullscreen' 打印...
 
 ![Sprite Dicing](https://i.gyazo.com/af08d141e7a08b6a8e2ef60c07332bbf.png)
 
-通过 [Unity Package Manager](https://docs.unity3d.com/Manual/upm-ui.html) 安装该包：打开 Package Manager 窗口（`Window -> Package Manager`），单击“+”按钮，选择“Add package from git URL”，将以下 URL：
+请通过 [Unity Package Manager](https://docs.unity3d.com/Manual/upm-ui.html) 安装该包：打开 Package Manager 窗口（`Window -> Package Manager`），单击“+”按钮，选择“Add package from git URL”，将以下 URL：
 
 ```
 https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteDicing
 ```
 
-— 输入到输入框中，然后单击“Add”。
+— 输入到输入字段中，然后单击“Add”。
 
 ::: info NOTE
 在从 Git 存储库安装包之前，请确保您的机器上安装了 [Git 客户端](https://git-scm.com/downloads) 并且 Git 可执行文件路径已添加到 [PATH 系统环境变量](https://en.wikipedia.org/wiki/PATH_(variable))（通常会在安装过程中自动完成）。
@@ -338,7 +338,7 @@ https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteD
 
 要创建分层角色预制件，请使用 `Create -> Naninovel -> Character -> Layered` 资产上下文菜单。进入 [预制件编辑模式](https://docs.unity3d.com/Manual/EditingInPrefabMode.html) 以组合层。默认情况下将创建几个层和组。您可以使用它们，也可以删除并添加自己的层和组。
 
-预制件根对象的子游戏对象中，带有 `Layered Actor Layer` 组件的对象被视为 *层*，其他对象则被视为 *组*。除了组织和变换用途外，将层放置在组内还允许您使用剧本脚本中的单个表达式选择单个层，或禁用或启用组内的所有层（稍后会详细介绍）。
+预制件根对象的子游戏对象中，带有 `Layered Actor Layer` 组件的对象被视为*层*，其他对象则被视为*组*。除了组织和变换用途外，将层放置在组内还允许您使用剧本脚本中的单个表达式选择单个层，或禁用或启用组内的所有层（稍后会详细介绍）。
 
 当层游戏对象还具有 [渲染器](https://docs.unity3d.com/ScriptReference/Renderer.html) 时，该渲染器会自动用于驱动层状态：层被禁用时，渲染器也会被禁用，反之亦然。要默认隐藏特定层，请禁用其渲染器组件（而不是游戏对象）。或者，可以使用 `On Layer Enabled` 和 `On Layer Disabled` 事件驱动层的启用状态。
 
@@ -346,7 +346,7 @@ https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteD
 在 Photoshop 中制作分层角色美术素材时，请考虑使用 Unity 的 [PSD Importer 包](https://docs.unity3d.com/Packages/com.unity.2d.psdimporter@3.0/manual/index.html) 自动生成保留所有层及其位置的角色预制件。为了保留层的层次结构，请确保在导入设置中启用 `Use Layer Grouping` 选项。
 :::
 
-要在剧本脚本中控制分层角色，请以与其他角色实现相同的方式使用 [@char] 命令。唯一的区别在于设置外观的方式：使用 *层组合表达式* 代替单个 ID。有三种表达式类型：
+要在剧本脚本中控制分层角色，请以与其他角色实现相同的方式使用 [@char] 命令。唯一的区别在于设置外观的方式：使用*层组合表达式*代替单个 ID。有三种表达式类型：
 
 - 启用组中的单个层：`group>layer`
 - 启用层：`group+layer`
@@ -361,28 +361,28 @@ https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteD
 要启用或禁用层而不影响组中的任何其他层，请分别使用“+”和“-”代替“>”。您还可以指定多个组合表达式，用逗号分隔它们：
 
 ```nani
-; 启用眼镜，禁用帽子，选择 "Cool" 情绪。
+; 启用眼镜，禁用帽子，选择“Cool”情绪。
 @char CharId.Head/Accessories+BlackGlasses,Head-Hat,Head/Emotions>Cool
 ```
 
 要选择任何组之外的层（预制件根对象的子对象），只需省略组部分，例如：
 
 ```nani
-; 假设 "Halo" 层对象放置在预制件根对象下，禁用它。
+; 假设“Halo”层对象放置在预制件根对象下，禁用它。
 @char CharId.-Halo
 ```
 
 也可以通过省略组合表达式中的层名称来影响组内的所有层（使用选择表达式时还会影响其相邻的组）：
 
 ```nani
-; 禁用 "Body/Decoration" 组中的所有层。
+; 禁用“Body/Decoration”组中的所有层。
 @char CharId.Body/Decoration-
 
 ; 启用所有现有层。
 @char CharId.+
 
-; 假设有 "Poses/Light" 和 "Poses/Dark" 组，启用 "Light" 组内的
-; 所有层并禁用 "Dark" 组内的层。
+; 假设有“Poses/Light”和“Poses/Dark”组，启用“Light”组内的
+; 所有层并禁用“Dark”组内的层。
 @char CharId.Poses/Light>
 ```
 
@@ -397,9 +397,9 @@ https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteD
 — 然后可以使用这些键指定分层 Actor 的外观：
 
 ```nani
-; 等于 "Body>Uniform,Hair/Back>Straight,Hair/Front>Straight,Shoes>Grey"。
+; 等于“Body>Uniform,Hair/Back>Straight,Hair/Front>Straight,Shoes>Grey”。
 @char Miho.Uniform
-; 等于 "Hair/Back>Straight,Hair/Front>Straight"。
+; 等于“Hair/Back>Straight,Hair/Front>Straight”。
 @char Miho.StraightHair
 ; 也可以组合键和表达式。
 @char Miho.Uniform,Hair/Front>Short
@@ -425,7 +425,7 @@ https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteD
 
 要从模板创建通用角色预制件，请使用 `Create -> Naninovel -> Character -> Generic` 资产上下文菜单。
 
-查看以下视频教程，了解如何将带骨骼绑定的 3D 模型设置为通用角色，并通过 [Animator](https://docs.unity3d.com/Manual/class-AnimatorController.html) 组件将外观更改转发到骨骼动画。请注意，该视频是使用旧版 Naninovel 录制的，一些属性和组件名称现在已不同；有关最新信息，请参阅上述文档。
+请查看以下视频教程，了解如何将带骨骼绑定的 3D 模型设置为通用角色，并通过 [Animator](https://docs.unity3d.com/Manual/class-AnimatorController.html) 组件将外观更改转发到骨骼动画。请注意，该视频是使用旧版 Naninovel 录制的，一些属性和组件名称现在已不同；有关最新信息，请参阅上述文档。
 
 ![](https://www.youtube.com/watch?v=HPxhR0I1u2Q)
 
@@ -434,7 +434,7 @@ https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteD
 :::
 
 ::: tip EXAMPLE
-查看 [通用 Actor 示例](/zh/guide/samples#通用-actor)，其中使用通用角色实现来承载 3D 动画模型。
+请查看 [通用 Actor 示例](/zh/guide/samples#通用-actor)，其中使用通用角色实现来承载 3D 动画模型。
 :::
 
 ## 视频角色
@@ -471,14 +471,14 @@ Actor 的 Live2D 资源应在根对象上附加 `Live2D Character Behaviour` 组
 
 请注意，上述命令只会尝试在附加到预制件的动画器控制器上调用带有“Surprise”参数的 [SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html)；您必须自己搭建底层的 [动画器](https://docs.unity3d.com/Manual/Animator) 状态机。
 
-当 Live2D 模型预制件上存在并设置了 Live2D 的 `Cubism Look Controller` 和 `Cubism Mouth Controller` 组件时，`Live2D Character Behaviour` 可以选择使用它们来控制角色的朝向和嘴部动画（即口型同步功能）。有关设置详情，请参阅关于 [眼球追踪](https://docs.live2d.com/cubism-sdk-tutorials/lookat) 和 [口型同步](https://docs.live2d.com/cubism-sdk-tutorials/lipsync) 的 Live2D 文档。
+当 Live2D 模型预制件上存在并设置了 Live2D 的 `Cubism Look Controller` 和 `Cubism Mouth Controller` 组件时，`Live2D Character Behaviour` 可以选择使用它们来控制角色的朝向和嘴部动画（又名口型同步功能）。有关设置详情，请参阅关于 [眼球追踪](https://docs.live2d.com/cubism-sdk-tutorials/lookat) 和 [口型同步](https://docs.live2d.com/cubism-sdk-tutorials/lipsync) 的 Live2D 文档。
 
 以下视频指南涵盖了从 Cubism Editor 导出 Live2D 角色、配置预制件、创建简单的动画器状态机以及通过剧本脚本控制角色。
 
 ![](https://www.youtube.com/watch?v=rw_Z69z0pAg)
 
 ::: tip EXAMPLE
-查看 [Live2D 示例](/zh/guide/samples#live2d)，其中 Live2D 角色与 Naninovel 一起使用。
+请查看 [Live2D 示例](/zh/guide/samples#live2d)，其中 Live2D 角色与 Naninovel 一起使用。
 :::
 
 ## Spine 角色
@@ -497,7 +497,7 @@ Spine 角色实现使用通过 [Spine](http://esotericsoftware.com) 2D 建模和
 与第三方商业产品的这种集成主要作为如何使 Naninovel 与另一个工具一起工作的示例。虽然我们致力于保持示例集成与 Spine 更新和更改兼容，但请注意，功能将保持在最低限度，我们无法在示例范围之外提供任何有关在 Naninovel 中使用其他产品的支持或帮助。
 :::
 
-用作实现资源的 Spine 角色预制件应具有附加到根对象的 `Spine Controller` 组件。来自剧本脚本命令（例如 `@char`）的外观更改将转发到控制器的 `On Appearance Changed` 事件，类似于 [通用实现](/zh/guide/characters#通用角色)。您可以随心所欲地处理事件；例如，使用 Spine 的 `SetAnimation` 方法或在 Unity 的动画器控制器中调用触发器。
+用作实现资源的 Spine 角色预制件应具有附加到根对象的 `Spine Controller` 组件。来自剧本脚本命令（例如 [@char]）的外观更改将转发到控制器的 `On Appearance Changed` 事件，类似于 [通用实现](/zh/guide/characters#通用角色)。您可以随心所欲地处理事件；例如，使用 Spine 的 `SetAnimation` 方法或在 Unity 的动画器控制器中调用触发器。
 
 ![](https://i.gyazo.com/6a2772a3e4137413a7c1587788c54c41.png)
 
@@ -520,7 +520,7 @@ Spine 角色实现使用通过 [Spine](http://esotericsoftware.com) 2D 建模和
 :::
 
 ::: tip EXAMPLE
-查看 [Spine 示例](/zh/guide/samples#spine)，其中 Spine 角色与 Naninovel 一起使用。
+请查看 [Spine 示例](/zh/guide/samples#spine)，其中 Spine 角色与 Naninovel 一起使用。
 :::
 
 ## 旁白角色

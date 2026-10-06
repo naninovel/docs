@@ -25,7 +25,7 @@ Sandbox mode allows creating placeholder assets, where you describe the asset tr
 
 ![](https://i.gyazo.com/fd6765bfc35024769871e4d9b1372b62.png)
 
-To create a placeholder asset, right-click under either the `Backgrounds`, `Characters` or `Audio` directories in the [file browser](/guide/editor#file-browser) and select the option to add the associated asset.
+To create a placeholder asset, right-click under the "Backgrounds", "Characters" or "Audio" directories in the [file browser](/guide/editor#file-browser) and select the option to add the associated asset.
 
 You can then select the created asset to inspect and edit available traits.
 

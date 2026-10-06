@@ -4,7 +4,7 @@
 
 如果您希望与引擎系统交互，您很可能会使用引擎服务。您可以使用静态方法 `Engine.GetService<TService>()` 获取对引擎服务的引用，其中 `TService` 是您希望获取的服务的接口；例如，要获取 `IScriptPlayer` 服务：
 
-```csharp
+```cs
 var player = Engine.GetService<IScriptPlayer>();
 player.MainTrack.Stop();
 ```
@@ -22,7 +22,7 @@ player.MainTrack.Stop();
 | IChoiceHandlerManager | 管理 [选项处理程序](/zh/guide/choices) Actor。 |
 | ITextPrinterManager | 管理 [文本打印机](/zh/guide/text-printers) Actor。 |
 | IAudioManager | 管理音频：[SFX](/zh/guide/audio#音效)、[BGM](/zh/guide/audio#背景音乐) 和 [配音](/zh/guide/voicing)。 |
-| IInputManager | 管理用户 [输入处理](/zh/guide/input-processing)。 |
+| IInputManager | 管理 [输入处理](/zh/guide/input-processing)。 |
 | ILocalizationManager | 管理 [本地化](/zh/guide/localization) 相关操作。 |
 | ICommunityLocalization | 提供对 [社区本地化](/zh/guide/localization#社区本地化) 资源的访问。 |
 | ITextLocalizer | 解析与 `LocalizableText` 值关联的本地化字符串。 |
@@ -59,7 +59,7 @@ player.MainTrack.Stop();
 
 下面是带有使用说明的自定义引擎服务实现示例。
 
-```csharp
+```cs
 using Naninovel;
 using UnityEngine;
 
@@ -100,7 +100,7 @@ public class CustomService : IEngineService
 
 您现在可以通过以下方式访问上述自定义服务：
 
-```csharp
+```cs
 var customService = Engine.GetService<CustomService>();
 ```
 
@@ -116,7 +116,7 @@ var customService = Engine.GetService<CustomService>();
 
 下面是一个 `IInputManager` 空实现的示例，除了在其任何方法被调用时记录日志外，它什么也不做。
 
-```csharp
+```cs
 using Naninovel;
 using UnityEngine;
 

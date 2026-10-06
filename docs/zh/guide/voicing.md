@@ -115,7 +115,7 @@
 
 下面是一个自定义配音生成器的示例，它会先附加一个包含脚本路径和语言环境的标题，然后为脚本中找到的每个打印命令附加一行 `auto-voice id > author > text`。
 
-```csharp
+```cs
 public class VoiceoverGenerator : IVoiceoverDocumentGenerator
 {
     public void GenerateVoiceoverDocument (ScriptPlaylist list, string locale, string outDir)

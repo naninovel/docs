@@ -20,7 +20,7 @@ Game state is data that varies per game save slot, describing the state of engin
 
 To save the current game state to a specific save slot or load it from one, use the `IStateManager` engine service as follows:
 
-```csharp
+```cs
 // Get instance of a state manager.
 var stateManager = Engine.GetService<IStateManager>();
 
@@ -42,23 +42,23 @@ Some data should be persistent across game sessions. For example, the "Skip Read
 
 The global state is loaded automatically on engine initialization. You can save the global state at any time using `IStateManager`:
 
-```csharp
+```cs
 await stateManager.SaveGlobal();
 ```
 
 ## User Settings
 
-User settings, such as language, sound volume and text speed, are stored in a single save slot, similar to global state. The settings file is always saved as text `.json`, even when `Binary Save Files` is enabled, so that users can modify the values if they wish.
+User settings, such as language, sound volume and text speed, are stored in a single save slot, similar to global state. The settings file is always saved as text `.json`, even when `Binary Save Files` is enabled, so that players can modify the values if they wish.
 
 User settings are loaded automatically on engine initialization. You can save settings at any time using `IStateManager`:
 
-```csharp
+```cs
 await stateManager.SaveSettings();
 ```
 
 ## Save Files
 
-When the universal serialization handlers are used on a platform with file system access, all the state is written to the `Saves` folder under Unity's [persistent data directory](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html). For example, if the company's name is `Foo` and the game title is `Bar`, the path will be:
+When the universal serialization handlers are used on a platform with file system access, all the state is written to the "Saves" folder under Unity's [persistent data directory](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html). For example, if the company's name is `Foo` and the game title is `Bar`, the path will be:
 
 ::: code-group
 
@@ -101,7 +101,7 @@ When `Binary Save Files` is disabled, the game and global state files have the `
 In the Unity Editor, the files are stored under `.nani/Transient/Saves` of the Naninovel data folder (`Assets/NaninovelData` by default) instead.
 
 ::: tip
-Cloud save services, such as [Steam Auto-Cloud](https://partner.steamgames.com/doc/features/cloud#steam_auto-cloud), should only sync the `Saves` folder; other files in the persistent data directory are local to the device. Consider limiting the sync to the `.nson` files, as `Settings.json` includes device-specific options, such as graphics quality and input bindings. Steamworks documentation has an [example](https://partner.steamgames.com/doc/features/cloud#example) of configuring the paths for a Unity game.
+Cloud save services, such as [Steam Auto-Cloud](https://partner.steamgames.com/doc/features/cloud#steam_auto-cloud), should only sync the "Saves" folder; other files in the persistent data directory are local to the device. Consider limiting the sync to the `.nson` files, as `Settings.json` includes device-specific options, such as graphics quality and input bindings. Steamworks documentation has an [example](https://partner.steamgames.com/doc/features/cloud#example) of configuring the paths for a Unity game.
 :::
 
 ## Custom State
@@ -110,7 +110,7 @@ You can delegate state handling of your custom objects to `IStateManager`, so th
 
 The following example demonstrates delegating state handling of a `MyCustomBehaviour` component.
 
-```csharp
+```cs
 using UnityEngine;
 using Naninovel;
 
@@ -167,7 +167,7 @@ public class MyCustomBehaviour : MonoBehaviour
 
 If your custom object is created after the game state is loaded, use `IStateManager.Game` to access the last loaded state and manually invoke the deserialize method:
 
-```csharp
+```cs
 private async void Start ()
 {
     if (stateManager.Game is { } state)
@@ -181,7 +181,7 @@ A more advanced example of using custom state with a list of custom structs to s
 
 You can also access global and settings state of the engine to store custom data with them. Unlike game state, which is specific to game sessions and requires subscribing to save-load events, global and settings state objects are singletons and can be directly accessed via properties of the state manager.
 
-```csharp
+```cs
 [System.Serializable]
 class MySettings
 {
@@ -209,7 +209,7 @@ MyGlobal MyGlobal
 
 State objects are indexed by type. In some cases you may have multiple object instances of the same type, each with their own state. Both `GetState` and `SetState` methods allow providing an optional `instanceId` argument to discriminate such objects, eg:
 
-```csharp
+```cs
 [System.Serializable]
 class MonsterState
 {
@@ -230,7 +230,7 @@ Implementations are expected to have a public constructor with `StateConfigurati
 
 Below is an example of a custom settings serialization handler that only logs when any of its methods are invoked.
 
-```csharp
+```cs
 using Naninovel;
 using System;
 using UnityEngine;

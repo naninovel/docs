@@ -7,7 +7,7 @@
 有多种方法可以将 Naninovel 与自定义项目集成；具体的实现取决于项目类型和您想要实现的目标。在以下文档中，我们将列出各种配置选项和 API，它们可用于将 Naninovel 与独立的游戏“配对”。在继续之前，请查看 [引擎架构](/zh/guide/engine-architecture) 以便更好地从概念上理解其行为。
 
 ::: tip EXAMPLE
-查看 [集成示例](/zh/guide/samples#对话模式)，其中 Naninovel 既用作 3D 冒险游戏的嵌入式对话系统，又用作独立的小说模式。
+请查看 [集成示例](/zh/guide/samples#对话模式)，其中 Naninovel 既用作 3D 冒险游戏的嵌入式对话系统，又用作独立的小说模式。
 :::
 
 ## 手动初始化
@@ -20,7 +20,7 @@
 
 下面是一个从 MonoBehaviour 脚本手动初始化的示例：
 
-```csharp
+```cs
 using Naninovel;
 using UnityEngine;
 
@@ -45,7 +45,7 @@ public class MyScript : MonoBehaviour
 
 要检查引擎当前是否可用，请使用 `Engine.Initialized` 属性；`Engine.OnInitializationFinished` 事件允许在初始化过程完成后执行操作，例如：
 
-```csharp
+```cs
 public class MyScript : MonoBehaviour
 {
     private void Awake ()
@@ -68,14 +68,14 @@ public class MyScript : MonoBehaviour
 
 要预加载并播放指定路径的剧本脚本，请使用 `IScriptPlayer` 服务的 `MainTrack` 上的 `LoadAndPlay(scriptPath)` 方法。要获取引擎服务，请使用 `Engine.GetService<TService>()` 静态方法，其中 `TService` 是要获取的服务的类型（接口）。例如，以下代码获取脚本播放器服务，预加载并播放名为 `Script001` 的脚本：
 
-```csharp
+```cs
 var player = Engine.GetService<IScriptPlayer>();
 await player.MainTrack.LoadAndPlay("Script001");
 ```
 
 退出小说模式并返回主游戏模式时，您可能希望卸载 Naninovel 当前使用的所有资源并停止引擎服务。为此，请使用 `IStateManager` 服务的 `ResetState()` 方法：
 
-```csharp
+```cs
 var stateManager = Engine.GetService<IStateManager>();
 await stateManager.ResetState();
 ```
@@ -130,7 +130,7 @@ private void OnTriggerEnter (Collider other)
 
 要在您的游戏与 Naninovel 之间切换（例如，在“冒险”和“小说”模式之间切换），请使用静态 `Dialogue` 类。`Dialogue.Enter()` 会在引擎尚未初始化时将其初始化，并启用 Naninovel 的渲染和输入处理，而 `Dialogue.Exit()` 会重置引擎状态并禁用它们。`Dialogue.EnterAndPlay()` 会进入对话模式并播放指定路径的剧本脚本；`Dialogue.EnterAndPlayAsset()` 则通过 [脚本资产引用](/zh/guide/integration-options#脚本资产引用) 执行相同的操作：
 
-```csharp
+```cs
 await Dialogue.EnterAndPlay("Script001");
 ...
 await Dialogue.Exit();
@@ -156,5 +156,5 @@ await Dialogue.Exit();
 如果您觉得某些引擎 API 或系统缺乏可扩展性并且需要修改源代码才能集成，请 [联系技术支持](/zh/support/)——我们会考虑改进它。
 
 ::: tip EXAMPLE
-查看 [集成示例](/zh/guide/samples#对话模式)，其中 Naninovel 既用作 3D 冒险游戏的嵌入式对话系统，又用作可切换的独立小说模式。
+请查看 [集成示例](/zh/guide/samples#对话模式)，其中 Naninovel 既用作 3D 冒险游戏的嵌入式对话系统，又用作可切换的独立小说模式。
 :::

@@ -1,6 +1,6 @@
 # 背景
 
-与 [角色](/zh/guide/characters) 不同，背景是用于表示场景 *后* 层的 Actor：地点、风景、景观或任何应始终出现在角色 *后面* 的东西。
+与 [角色](/zh/guide/characters) 不同，背景是用于表示场景*后*层的 Actor：地点、风景、景观或任何应始终出现在角色*后面*的东西。
 
 背景 Actor 由名称、外观、可见性和变换（位置、旋转、缩放）定义。它可以随时间改变外观、可见性和变换。
 
@@ -9,17 +9,17 @@
 在剧本脚本中，背景主要通过 [@back] 命令控制：
 
 ```nani
-; 将 "River" 设置为主背景的外观
+; 将“River”设置为主背景的外观
 @back River
 
-; 与上面相同，但也使用 "RadialBlur" 过渡效果
+; 与上面相同，但也使用“RadialBlur”过渡效果
 @back River.RadialBlur
 ```
 
 为了更好地适应传统的视觉小说游戏流程，背景的处理方式与角色略有不同。大多数时候，场景中可能只有一个背景 Actor，它会不断过渡到不同的外观。为了省去在脚本中重复相同 Actor ID 的麻烦，可以仅提供背景外观和过渡类型（可选）作为主参数，此时默认影响 `MainBackground` Actor。如果要影响其他背景，可以通过 `id` 参数显式指定背景 Actor 的 ID：
 
 ```nani
-; 假设有一个带有 "Night" 和 "Day" 视频剪辑的 "CityVideo" Actor。
+; 假设有一个带有“Night”和“Day”视频剪辑的“CityVideo”Actor。
 
 ; 显示播放白天剪辑的视频背景。
 @back Day id:CityVideo
@@ -33,7 +33,7 @@
 
 主背景 Actor 记录默认在背景资源管理器中创建，无法重命名或删除；但是，主背景的参数（实现、轴心、PPU 等）可以自由更改。
 
-查看以下视频教程，了解背景 Actor 的概况。
+请查看以下视频教程，了解背景 Actor 的概况。
 
 ![](https://www.youtube.com/watch?v=X2iyGSCpnJs)
 
@@ -52,7 +52,7 @@
 @back id:2
 ```
 
-— 如果背景 `1` 和 `2` 都是全屏不透明纹理，则后添加的那个将完全覆盖另一个。要显示位于后面的第一个背景，请隐藏另一个背景，或更改 z 位置（深度）以改变绘制顺序：
+— 如果背景 `1` 和 `2` 都是全屏不透明纹理，则后添加的那个将完全覆盖另一个。要显示位于后面的第一个背景，请隐藏另一个背景，或更改 Z 位置（深度）以改变绘制顺序：
 
 ```nani
 ; 隐藏背景 2 以显示后面的第一个背景
@@ -60,14 +60,14 @@
 ; 还有一个专门用于隐藏 Actor 的命令
 @hide 2
 
-; 或者，更改 z 位置
+; 或者，更改 Z 位置
 @back id:1 pos:,,98
 @back id:2 pos:,,99
 ```
 
-z 位置越大，离摄像机越远；因此，离摄像机更近的 Actor 会渲染在另一个 Actor 之上。
+Z 位置越大，离摄像机越远；因此，离摄像机更近的 Actor 会渲染在另一个 Actor 之上。
 
-背景默认带有特定的 z 偏移，使其显示在其他类型的 Actor 后面。可以通过背景设置中的 `Z Offset` 属性更改偏移值。
+背景默认带有特定的 Z 偏移，使其显示在其他类型的 Actor 后面。可以通过背景配置中的 `Z Offset` 属性更改偏移值。
 
 为了防止 z-fighting 问题，背景在首次添加（显示）时会沿 Z 轴进一步相互错开。偏移量由 `Z Step` 设置控制。
 
@@ -99,19 +99,19 @@ z 位置越大，离摄像机越远；因此，离摄像机更近的 Actor 会�
 姿势名称可以用作 [@back] 命令中的外观，以一次性应用姿势中指定的所有选定参数，而不必通过命令参数逐个指定它们。
 
 ```nani
-; 假设为主背景定义了 "Day" 姿势，
+; 假设为主背景定义了“Day”姿势，
 ; 应用姿势中指定的所有选定参数。
 @back Day
 
-; 与上面相同，但针对具有 "City" ID 的背景 Actor
-; 并在 3 秒内使用 "DropFade" 过渡。
+; 与上面相同，但针对具有“City”ID 的背景 Actor
+; 并在 3 秒内使用“DropFade”过渡。
 @back Day.DropFade id:City time:3
 ```
 
 请注意，当姿势用作外观时，您仍然可以覆盖单个参数，例如：
 
 ```nani
-; 假设为主背景定义了 "Day" 姿势，
+; 假设为主背景定义了“Day”姿势，
 ; 应用姿势状态中指定的所有参数，
 ; 但色调除外，它在命令中被覆盖。
 @back Day tint:#ff45cb
@@ -169,7 +169,7 @@ Naninovel 默认会尝试使背景覆盖整个摄像机视锥体，因此请确�
 
 ### WebGL 限制
 
-在 WebGL 上，Unity 的视频播放器只能在流式传输模式下工作，因此构建 WebGL 播放器时，所有视频资源都将被复制到 `Assets/StreamingAssets/Backgrounds` 文件夹。**StreamingAssets** 文件夹也会出现在构建输出目录中；发布构建时请务必保留它，并检查您的 Web 服务器是否允许读取此文件夹中的数据。
+在 WebGL 上，Unity 的视频播放器只能在流式传输模式下工作，因此构建 WebGL 播放器时，所有视频资源都将被复制到 `Assets/StreamingAssets/Backgrounds` 文件夹。“StreamingAssets”文件夹也会出现在构建输出目录中；发布构建时请务必保留它，并检查您的 Web 服务器是否允许读取此文件夹中的数据。
 
 复制的视频文件不会被 Unity 转码（即使启用了该选项），因此源文件最初应采用 Web 浏览器支持的格式；或者，您可以在构建后替换游戏目录中的剪辑文件。以下是我们 WebGL 演示中使用的背景视频剪辑的详细元数据：
 
@@ -223,7 +223,7 @@ Encoding settings : cabac=1 / ref=3 / deblock=1:0:0 / analyse=0x3:0x113 / me=hex
 不要忘记 [@back] 命令的主参数接受的是外观和过渡类型（而不是像 [@char] 命令那样的 ID 和外观），因此请按以下方式指定层组合表达式：
 
 ```nani
-; 假设有 "LayeredForest" 背景 Actor
+; 假设有“LayeredForest”背景 Actor
 @back Group>Layer,Other/Group+Layer,-RootLayer.TransitionType id:LayeredForest
 ```
 
@@ -248,7 +248,7 @@ Encoding settings : cabac=1 / ref=3 / deblock=1:0:0 / analyse=0x3:0x113 / me=hex
 :::
 
 ::: tip EXAMPLE
-查看 [通用 Actor 示例](/zh/guide/samples#通用-actor)，其中使用通用背景实现来承载动画精灵。
+请查看 [通用 Actor 示例](/zh/guide/samples#通用-actor)，其中使用通用背景实现来承载动画精灵。
 :::
 
 ## 场景背景
@@ -265,7 +265,7 @@ Encoding settings : cabac=1 / ref=3 / deblock=1:0:0 / analyse=0x3:0x113 / me=hex
 
 在指定的根文件夹下创建一个新场景（或移动现有场景），并确保它至少有一个 [摄像机](https://docs.unity3d.com/ScriptReference/Camera.html) 组件附加到场景内的根游戏对象。加载场景背景时，Naninovel 会将渲染纹理分配给场景中找到的第一个摄像机。然后，渲染纹理将被分配给背景精灵，代表 Naninovel 场景空间内的场景背景。这样，场景背景将能够与其他背景和角色 Actor 共存，支持所有背景过渡效果，并通过缩放适配各种显示器纵横比。
 
-确保在世界空间中定位场景对象，使它们不会与可能同时加载的其他场景中的对象重叠（例如，在单个剧本脚本中引用时）。此外，请注意，如果场景背景对象位于全局空间原点（`x0 y0 z0`）附近，它可能会被 Naninovel 的主摄像机渲染；为了防止这种情况，请将所有场景对象从全局原点偏移，或者使用 `Configuration -> Engine -> Override Objects Layer` 通过 [层](https://docs.unity3d.com/Manual/Layers.html) 隔离 Naninovel 相关对象。
+请确保在世界空间中定位场景对象，使它们不会与可能同时加载的其他场景中的对象重叠（例如，在单个剧本脚本中引用时）。此外，请注意，如果场景背景对象位于全局空间原点（`x0 y0 z0`）附近，它可能会被 Naninovel 的主摄像机渲染；为了防止这种情况，请将所有场景对象从全局原点偏移，或者使用 `Configuration -> Engine -> Override Objects Layer` 通过 [层](https://docs.unity3d.com/Manual/Layers.html) 隔离 Naninovel 相关对象。
 
 场景设置完成后，通过 `Naninovel -> Configuration -> Backgrounds` 菜单创建一个新的背景 Actor，选择 `SceneBackground` 实现并将场景资产添加到 Actor 资源中。
 
@@ -274,9 +274,9 @@ Encoding settings : cabac=1 / ref=3 / deblock=1:0:0 / analyse=0x3:0x113 / me=hex
 您现在可以使用 [@back] 命令来控制创建的场景背景 Actor，例如：
 
 ```nani
-; 显示带有 "Sphere" Unity 场景内容的 "Scene" 背景 Actor。
+; 显示带有“Sphere”Unity 场景内容的“Scene”背景 Actor。
 @back Sphere id:Scene
-; 使用 "RandomCircleReveal" 效果将 Actor 过渡到 "Sub/Cylinder"。
+; 使用“RandomCircleReveal”效果将 Actor 过渡到“Sub/Cylinder”。
 @back Sub/Cylinder.RandomCircleReveal id:Scene
 ```
 

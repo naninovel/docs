@@ -115,7 +115,7 @@
 
 以下は、スクリプトパスとロケールを含むヘッダーを追加し、その後にスクリプト内で見つかった各printコマンドに対して `auto-voice id > author > text` 行を追加するカスタムボイスオーバージェネレーターの例です。
 
-```csharp
+```cs
 public class VoiceoverGenerator : IVoiceoverDocumentGenerator
 {
     public void GenerateVoiceoverDocument (ScriptPlaylist list, string locale, string outDir)

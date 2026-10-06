@@ -3,21 +3,21 @@
 A number of built-in script commands are dedicated to various special effects. For example, the [@shake] command shakes an actor:
 
 ```nani
-; Shake 'Kohaku' actor
+; Shake "Kohaku" actor
 @shake Kohaku
 ```
 
 Most effects can be parameterized:
 
 ```nani
-; Shake 'Kohaku' once (instead of the default 3)
+; Shake "Kohaku" once (instead of the default 3)
 @shake Kohaku count:1
 ```
 
 You can update effect parameters without restarting the effect:
 
 ```nani
-; Start slowly shaking 'Kohaku' actor in a loop
+; Start slowly shaking "Kohaku" actor in a loop
 @shake Kohaku loop! power:0.1
 Kohaku: It's rumbling!
 ; Shake 3 more times with an increased amplitude
@@ -51,7 +51,7 @@ Name | Type | Default | Description
 --- | --- | --- | ---
 ID | String | null | ID of the actor to shake. Specify `Camera` to shake the main camera.
 Shake count | Number | 3 | The number of shake iterations.
-Loop | Boolean | false | When enabled, will loop the effect until stopped with [@despawn].
+Loop | Boolean | false | When enabled, will loop the effect until stopped with `!loop` or [@despawn].
 Shake duration | Number | 0.15 | The base duration of each shake iteration, in seconds.
 Duration variation | Number | 0.25 | The randomized delta modifier applied to the base duration of the effect.
 Shake amplitude | Number | 0.5 | The base displacement amplitude of each shake iteration, in units.
@@ -341,7 +341,7 @@ Count | 6
 ; Apply the transition with default parameters
 @back Appearance.Blinds
 
-; Apply the transition using 30 blinds instead of default 6
+; Apply the transition using 30 blinds instead of the default 6
 @back Appearance.Blinds params:30
 ```
 
@@ -764,7 +764,7 @@ You can add a custom standalone effect (implemented via a prefab, like the "Rain
 
 ![](https://i.gyazo.com/45b9d8fb51ffb368ff9f792221f10ca6.png)
 
-For example, given there is an `Explosion.prefab` prefab assigned via the spawn manager, the following commands will spawn and de-spawn (destroy) the prefab on the scene:
+For example, given there is an `Explosion.prefab` prefab assigned via the spawn manager, the following commands will spawn and despawn (destroy) the prefab in the scene:
 
 ```nani
 @spawn Explosion
@@ -832,7 +832,7 @@ You can make custom transitions based on a dissolve mask texture. A dissolve mas
 — the black square in the top-right corner indicates that the transition target should be displayed there at the start of the transition and the pure-white square in the center will transition at the very end.
 
 ::: tip
-For optimal memory usage, set "Single Channel" and "Red" in the dissolve texture import settings. Also, make sure the `Non-Power of 2` and `Generate Mipmap` options are disabled to prevent visual artifacts.
+For optimal memory usage, set `Single Channel` and `Red` in the dissolve texture import settings. Also, make sure the `Non-Power of 2` and `Generate Mipmap` options are disabled to prevent visual artifacts.
 
 ![](https://i.gyazo.com/7c38c89948b6d040c0b21ca573cf2968.png)
 :::
@@ -867,7 +867,7 @@ Create a new shader and assign a material using it to the `Custom Texture Materi
 
 When a transition name is specified in a script command, a [shader keyword](https://docs.unity3d.com/ScriptReference/Shader.EnableKeyword.html) with the same name (prefixed with `NANINOVEL_TRANSITION_`) is enabled in the material used by the actor.
 
-To add your own transitions to a custom actor shader, use the `multi_compile` directive, eg:
+To add your own transitions to a custom actor shader, use the `multi_compile_local` directive, eg:
 
 ```c
 #pragma multi_compile_local _ NANINOVEL_TRANSITION_CUSTOM1 NANINOVEL_TRANSITION_CUSTOM2

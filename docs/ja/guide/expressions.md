@@ -29,7 +29,7 @@
 
 ```nani
 これは単なるプレーンテキストです：{ "score" }。
-そして、これは "score" 変数の値です：{ score }。
+そして、これは「score」変数の値です：{ score }。
 ```
 
 式の中に二重引用符を含めたい場合は、エスケープします。
@@ -55,19 +55,19 @@
 
 ## 演算子エイリアス
 
-プログラミング用の演算子の代わりに、式内でエイリアスを使用できます。たとえば：
+プログラミング用の演算子の代わりに、式内でエイリアスを使用できます。例：
 
 ```nani
 @if a = "foo" | b != "bar" ? x : y
 ```
 
-— は、次のように書くこともできます：
+— は、次のように書くこともできます。
 
 ```nani
 @if a is "foo" or b is not "bar" then x else y
 ```
 
-以下は、利用可能なエイリアスの対応表です：
+以下は、利用可能なエイリアスの対応表です。
 
 | 演算子 | エイリアス     |
 |--------|----------------|
@@ -119,11 +119,11 @@
 
 引数および戻り値の型としてサポートされているのは、[単純](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types#simple-types) 型と文字列型のみです。単一の可変長（`params` キーワード）引数を使用することもできます。可変長引数を他の引数と混在させることはサポートされていません。
 
-```csharp
+```cs
 public static class CustomQueries
 {
     [ExpressionQuery("toLower")]
-    [Doc("Returns the provided string with all characters converted to lower-case.")]
+    [Doc("Returns the provided string with all characters converted to lowercase.")]
     public static string ToLower (string content) => content.ToLower();
 
     [ExpressionQuery("add")]
@@ -173,7 +173,7 @@ public static class CustomQueries
     public static bool IsComplete ([EnumContext(typeof(Quest))] string name)
     {
         Enum.TryParse<Quest>(name, out var quest);
-        // 'quest' が完了しているかどうかを確認するカスタムロジックを実行します
+        // 「quest」が完了しているかどうかを確認するカスタムロジックを実行します
         return false;
     }
 }

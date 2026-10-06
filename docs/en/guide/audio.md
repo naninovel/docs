@@ -21,14 +21,14 @@ Audio playback behaviour can be configured using the `Naninovel -> Configuration
 Use the [@bgm] command followed by the clip name to control the music playback in scenario scripts:
 
 ```nani
-; Starts playing a music track with the name "Sanctuary" in a loop.
+; Start playing a music track with the name "Sanctuary" in a loop.
 @bgm Sanctuary
 
-; Same as above, but fades in the volume over 10 seconds and plays only once.
+; Same as above, but fade in the volume over 10 seconds and play only once.
 @bgm Sanctuary fade:10 !loop
 
-; Changes volume of all the played music tracks to 50% over 2.5 seconds
-; and makes them play in a loop.
+; Change the volume of all the played music tracks to 50% over 2.5 seconds
+; and make them play in a loop.
 @bgm volume:0.5 loop! fade:2.5
 ```
 
@@ -37,17 +37,17 @@ Music tracks are looped by default. When a music track name is not specified in 
 It's possible to play an intro followed by a loop with the `intro` parameter, eg:
 
 ```nani
-; Plays "BattleThemeIntro" once and then "BattleThemeMain" in a loop.
+; Play "BattleThemeIntro" once and then "BattleThemeMain" in a loop.
 @bgm BattleThemeMain intro:BattleThemeIntro
 ```
 
 To stop a playing music track, use the [@stopBgm] command followed by the clip name. When a clip name is not specified, the command will stop all currently played tracks.
 
 ```nani
-; Fades out the "Promenade" music track over 10 seconds and stops the playback.
+; Fade out the "Promenade" music track over 10 seconds and stop the playback.
 @stopBgm Promenade fade:10
 
-; Stops all the currently played music tracks.
+; Stop all the currently played music tracks.
 @stopBgm
 ```
 
@@ -56,14 +56,14 @@ To stop a playing music track, use the [@stopBgm] command followed by the clip n
 Use the [@sfx] and [@stopSfx] commands followed by the clip name to control playback of sound effects in scenario scripts:
 
 ```nani
-; Plays an SFX with the name "Explosion" once.
+; Play an SFX with the name "Explosion" once.
 @sfx Explosion
 
-; Plays an SFX with the name "Rain" in a loop.
+; Play an SFX with the name "Rain" in a loop.
 @sfx Rain loop!
 
-; Changes volume of all the played SFX tracks to 75% over 2.5
-; seconds and disables looping for all of them.
+; Change the volume of all the played SFX tracks to 75% over 2.5
+; seconds and disable looping for all of them.
 @sfx volume:0.75 !loop fade:2.5
 ```
 
@@ -75,23 +75,23 @@ To stop a playing sound effect (looped or not), use the [@stopSfx] command follo
 ; Stop playing an SFX with the name "Rain", fading out for 15 seconds.
 @stopSfx Rain fade:15
 
-; Stops all the currently played sound effect tracks.
+; Stop all the currently played sound effect tracks.
 @stopSfx
 ```
 
 ## Spatial Audio
 
-All audio commands support `pos` and `wpos` parameters, which, when specified, enable spatial mode — aka "3D audio" — where the associated audio source will be configured to respond to its position relative to the audio listener. Use `pos` to place the source relative to the scene borders in percents (`0,0` is the bottom left and `100,100` is the top right) or `wpos` to place it in world space.
+All audio commands support `pos` and `wpos` parameters, which, when specified, enable spatial mode — aka "3D audio" — where the associated audio source will be configured to respond to its position relative to the audio listener. Use `pos` to place the source relative to the scene borders in percent (`0,0` is the bottom left and `100,100` is the top right) or `wpos` to place it in world space.
 
 ```nani
-; Plays 'Explosion' slightly above and behind the listener in world space.
+; Play "Explosion" slightly above and behind the listener in world space.
 @sfx Explosion wpos:0,1,-3
 ```
 
 It's possible to animate the position like any other parameter:
 
 ```nani
-; Pans 'Rain' position right-left-right in scene space until stopped.
+; Pan "Rain" position right-left-right in scene space until stopped.
 @async Rainpan loop!
     @sfx Rain pos:100,50 fade:10
     @wait 10
@@ -118,7 +118,7 @@ It's possible to assign a custom mixer asset, change groups used for each audio 
 To play audio via a custom mixer group, specify a group path with the `group` parameter available in [@bgm], [@sfx] and [@voice] commands.
 
 ```nani
-; Play "Noise" audio resource in loop via "Master/Ambient" mixer group.
+; Play "Noise" audio resource in a loop via "Master/Ambient" mixer group.
 @sfx Noise loop! group:Master/Ambient
 
 ; Play "ScaryVoice" voice resource via "Master/Reverb" mixer group.
@@ -146,7 +146,7 @@ public class FMODAudioManager : IAudioManager
 
     public Awaitable PlaySfx (string path, ...)
     {
-        // Resolve the FMOD's event reference from the path and play it.
+        // Resolve the FMOD event reference from the path and play it.
     }
 
     public AudioMixerGroup GetGroup (string groupPath)

@@ -28,7 +28,7 @@ Unityの [Input System](https://docs.unity3d.com/Packages/com.unity.inputsystem@
 
 ## マネージドコードストリッピング
 
-「Medium」および「High」の [マネージドバイトコードストリッピング](https://docs.unity3d.com/Manual/ManagedCodeStripping.html) プロファイルはサポートされていません。ストリッピングを無効にするか、デフォルトで選択されている「Low」プロファイルを使用する必要があります。
+「Medium」および「High」の [マネージドコードストリッピング](https://docs.unity3d.com/Manual/ManagedCodeStripping.html) プロファイルはサポートされていません。ストリッピングを無効にするか、デフォルトで選択されている「Low」プロファイルを使用する必要があります。
 
 ## 例外
 

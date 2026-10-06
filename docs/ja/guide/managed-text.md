@@ -10,7 +10,7 @@
 
 `Create -> Naninovel -> Managed Text` アセットコンテキストメニューを使用して、カスタム管理テキストドキュメントを作成することもできます。
 
-管理テキストドキュメントの各行は、次の形式のエントリです：*パス*: *値*。ここで、*パス* はテキスト変数へのパスであり、*値* はその変数の値です。たとえば、以下は組み込みUIのレコードを含む「DefaultUI」ドキュメントのデフォルトの内容です。
+管理テキストドキュメントの各行は、次の形式のエントリです：*パス*: *値*。ここで、*パス*はテキスト変数へのパスであり、*値*はその変数の値です。たとえば、以下は組み込みUIのレコードを含む「DefaultUI」ドキュメントのデフォルトの内容です。
 
 ![Managed Text Document](https://i.gyazo.com/ce57c700b77818f87aabb722f2f42b78.png)
 
@@ -40,14 +40,14 @@
 
 以下は、管理テキスト変数を使用してC#スクリプト内のテキストラベルをローカライズする例です。
 
-```csharp
+```cs
 using Naninovel;
 using UnityEngine.UI;
 
 // UnityのTextコンポーネントを継承して、Textコンポーネントとして使用できるようにします。
 public class CustomLabel : Text
 {
-    // "CustomLabel.LabelText" 管理テキストレコードの値は、エンジンの初期化時に
+    // 「CustomLabel.LabelText」管理テキストレコードの値は、エンジンの初期化時に
     // 以下の変数に代入され、ロケールの変更時に更新されます。
     [ManagedText("foo")] // "foo" はレコードのドキュメント名です。
     public static string LabelText = "bar"; // "bar" はデフォルト値です。
@@ -59,7 +59,7 @@ public class CustomLabel : Text
         text = LabelText; // 現在のレコード値をラベルに割り当てます。
 
         var l10n = Engine.GetService<ILocalizationManager>();
-        // ユーザーが実行時にロケールを変更したときにラベルを更新します。
+        // プレイヤーが実行時にロケールを変更したときにラベルを更新します。
         l10n.OnLocaleChanged += _ => text = LabelText;
     }
 }
@@ -83,7 +83,7 @@ Greeting3: どうも！
 @print { random(Greeting1, Greeting2, Greeting3) }
 ```
 
-`Script` 管理テキストドキュメントは、他のドキュメントと同じ方法でローカライズできます。ユーザーが別のロケールを選択すると、テキストは対応するローカライズされたドキュメントから自動的に参照されます。
+`Script` 管理テキストドキュメントは、他のドキュメントと同じ方法でローカライズできます。プレイヤーが別のロケールを選択すると、テキストは対応するローカライズされたドキュメントから自動的に参照されます。
 
 ## ローカライズ
 

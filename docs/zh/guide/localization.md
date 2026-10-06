@@ -16,10 +16,10 @@
 
 请注意，您不必为*源语言环境*在*本地化资源根目录*中创建子文件夹。存储在*本地化资源根目录*之外的所有项目资源默认属于*源语言环境*。
 
-可以通过 `Loader > Path Prefix` 属性在本地化配置菜单中更改*本地化资源根目录*路径。请注意，配置的路径是相对于“Resources”文件夹（而不是“Assets”）的。Unity 以特殊方式处理 Resources 文件夹；您可以在项目内的任何位置拥有多个此类文件夹来组织特定于语言环境的资产。
+可以通过 `Loader > Path Prefix` 属性在本地化配置菜单中更改*本地化资源根目录*路径。请注意，配置的路径是相对于“Resources”文件夹（而不是“Assets”）的。Unity 以特殊方式处理“Resources”文件夹；您可以在项目内的任何位置拥有多个此类文件夹来组织特定于语言环境的资产。
 
 ::: tip
-您也可以不使用 `Resources` 文件夹，而是选择其他资源提供者；例如，使用 [Addressables](/zh/guide/resource-providers#addressable)，您可以独立于主游戏包打包特定于语言环境的资源，并按需下载它们。安装该包后，Naninovel 会自动将生成的本地化文档注册到 Addressables。
+您也可以不使用“Resources”文件夹，而是选择其他资源提供者；例如，使用 [Addressables](/zh/guide/resource-providers#addressable)，您可以独立于主游戏包打包特定于语言环境的资源，并按需下载它们。安装该包后，Naninovel 会自动将生成的本地化文档注册到 Addressables。
 :::
 
 ## 默认语言环境
@@ -52,7 +52,7 @@ Resources/Naninovel/Localization/ja-JP/Backgrounds/MainBackground/City
 
 或者，如果您希望不从源脚本而是从先前为另一个语言环境生成的文档生成本地化文档，请选择包含该语言环境现有本地化文档的文本文件夹，例如 `Assets/Resources/Naninovel/Localization/ja-JP/Text`。
 
-然后选择生成的本地化资源应存储到的语言环境文件夹路径。确保您选择了实际的语言环境文件夹（例如 `Resources/Naninovel/Localization/ja-JP`）。选择了有效的输出语言环境文件夹后，字段下方的标签会给出提示并显示目标语言环境名称。
+然后选择生成的本地化资源应存储到的语言环境文件夹路径。请确保您选择了实际的语言环境文件夹（例如 `Resources/Naninovel/Localization/ja-JP`）。选择了有效的输出语言环境文件夹后，字段下方的标签会给出提示并显示目标语言环境名称。
 
 ::: tip
 您可以通过选择*本地化资源根目录*而不是特定的语言环境文件夹来一次为项目中的所有语言环境生成资源；该工具将遍历子文件夹并为每个子文件夹生成资源。
@@ -62,7 +62,7 @@ Resources/Naninovel/Localization/ja-JP/Backgrounds/MainBackground/City
 
 按“Generate Localization Documents”创建或更新本地化资源。在后续运行中，该工具会沿用先前生成的本地化文档，并在源内容未更改时保留已本地化的条目。
 
-脚本本地化文档归入 `Scripts` 文件夹，由以下格式的语句组成：
+脚本本地化文档归入“Scripts”文件夹，由以下格式的语句组成：
 
 ```nani
 # ID
@@ -124,7 +124,7 @@ Looks like rain is starting[rain]. Hey, {MC}, hurry up!
 
 ### 批注
 
-启用 **Include Annotations** 时，生成的本地化文档会包含正在本地化的源脚本内容（命令或通用文本行），以及放置在它之前的任何注释。例如，给定此源脚本：
+启用 `Include Annotations` 时，生成的本地化文档会包含正在本地化的源脚本内容（命令或通用文本行），以及放置在它之前的任何注释。例如，给定此源脚本：
 
 ```nani
 ; Player has to pick route.
@@ -182,9 +182,9 @@ Spreadsheet 工具将可本地化文本提取到 `.csv` 表格中，并可将编
 
 每个脚本和管理文本文档将导出到一个单独的表格。每个表格都有一个存储可本地化文本 ID 的“key”列，以及每个语言环境各自的附加列。您可以修改除“key”之外的任何列；但是，修改源语言环境列对导入没有任何影响。
 
-启用 **Include Annotations** 时，生成的表格还将包含带有源脚本内容（作者名称、内联命令和注释）的列。该列在导入期间会被忽略。
+启用 `Include Annotations` 时，生成的表格还将包含带有源脚本内容（作者名称、内联命令和注释）的列。该列在导入期间会被忽略。
 
-启用 **Import Source** 时，电子表格中的源语言环境列将直接写入剧本脚本。这便于将源剧本内容与译文一并校对。请注意，仅会重写已分配 ID 的文本，以保持其与现有翻译的关联。
+启用 `Import Source` 时，电子表格中的源语言环境列将直接写入剧本脚本。这便于将源剧本内容与译文一并校对。请注意，仅会重写已分配 ID 的文本，以保持其与现有翻译的关联。
 
 编辑表格后，单击“Import”将数据导回项目。
 
@@ -200,7 +200,7 @@ Spreadsheet 工具将可本地化文本提取到 `.csv` 表格中，并可将编
 
 下面是一个带有关键重写点的示例处理器：
 
-```csharp
+```cs
 using Naninovel.Spreadsheet;
 
 public class CustomProcessor : Processor
@@ -256,7 +256,7 @@ TMPro 打印机支持从右到左（RTL）语言（阿拉伯语、希伯来语�
 
 ## 社区本地化
 
-当已发布的游戏获得足够的人气时，社区可能希望贡献额外的本地化；这通常导致用户破解构建资产以替换显示的文本。Naninovel 提供了一个运行时本地化选项，允许您在不篡改构建文件的情况下添加社区本地化。
+当已发布的游戏获得足够的人气时，社区可能希望贡献额外的本地化；这通常导致玩家破解构建资产以替换显示的文本。Naninovel 提供了一个运行时本地化选项，允许您在不篡改构建文件的情况下添加社区本地化。
 
 ### 弹出本地化资源
 
@@ -266,7 +266,7 @@ TMPro 打印机支持从右到左（RTL）语言（阿拉伯语、希伯来语�
 ./game.exe -nani-eject
 ```
 
-这将像往常一样启动游戏，但在 Naninovel 初始化后，它会将本地化资源弹出到 Unity [持久数据文件夹](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html) 下的 `Localization` 目录。例如，如果公司名称是 `Foo` 且游戏标题是 `Bar`，Windows 上的弹出路径将是：
+这将像往常一样启动游戏，但在 Naninovel 初始化后，它会将本地化资源弹出到 Unity [持久数据目录](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html) 下的 `Localization` 目录。例如，如果公司名称是 `Foo` 且游戏标题是 `Bar`，Windows 上的弹出路径将是：
 
 ```
 C:/Users/User/AppData/LocalLow/Foo/Bar/Localization
@@ -297,11 +297,11 @@ Noto.ttf
 
 文档弹出后，您可以开始翻译。过程类似于上面的“脚本本地化”和“UI 本地化”。脚本本地化文档存储在 `Localization/Text/Scripts` 中，而管理文本文档存储在 `Localization/Text` 中。
 
-像往常一样重启游戏（不带 eject 参数），它将自动使用持久数据文件夹中的本地化资源。要使脚本本地化更改生效，必须重新加载关联的脚本（通常保存后再加载即可），但在某些情况下可能需要重启。
+像往常一样重启游戏（不带 eject 参数），它将自动使用持久数据目录中的本地化资源。要使脚本本地化更改生效，必须重新加载关联的脚本（通常保存后再加载即可），但在某些情况下可能需要重启。
 
 如果开发人员更新了游戏，您可以再次弹出以更新现有的本地化；将插入新行和记录，同时保留源内容未更改部分的现有翻译。
 
-翻译完成后，共享 `Localization` 文件夹并指示最终用户将其放置在上述持久数据目录下以激活本地化。要禁用本地化，请删除该文件夹。
+翻译完成后，共享“Localization”文件夹并指示玩家将其放置在上述持久数据目录下以激活本地化。要禁用本地化，请删除该文件夹。
 
 ## 编译器本地化
 

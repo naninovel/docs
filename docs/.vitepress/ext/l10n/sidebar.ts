@@ -130,7 +130,7 @@ export const zh: DefaultTheme.SidebarItem[] = [
         ]
     },
     {
-        text: "开发",
+        text: "开发者",
         collapsed: true,
         items: [
             { text: "配置", link: "/zh/guide/configuration" },

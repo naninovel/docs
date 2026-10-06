@@ -205,7 +205,7 @@ Actors (characters, backgrounds, text printers and choice handlers) are the key 
 
 Some actor implementations have their appearance mapped 1:1 to a resource: a sprite actor appearance is associated with a single texture asset, a video actor appearance is a single video clip, and so on. This allows Naninovel to manage resources based on specific appearances referenced in scenario scripts. For example, in case only the `Happy` and `Sad` appearances of a sprite character are used in a given script, only the `Happy.png` and `Sad.png` textures will be preloaded before the script is played, no matter how many other appearances the character has.
 
-However, layered, diced sprite, generic, Live2D and Spine actors all require a monolith prefab in order to represent any of the associated appearances, making it impossible to independently load resources. In such cases, Naninovel will preload the whole prefab with all its dependencies and only unload it when the actor is not referenced in any of the commands, no matter which appearances are used.
+However, layered, diced sprite, generic, Live2D and Spine actors all require a monolithic prefab in order to represent any of the associated appearances, making it impossible to independently load resources. In such cases, Naninovel will preload the whole prefab with all its dependencies and only unload it when the actor is not referenced in any of the commands, no matter which appearances are used.
 
 ### Removing Actors
 
@@ -215,7 +215,7 @@ Naninovel will, by default, automatically remove unused actors and destroy assoc
 @back id:LayeredBackground
 @char GenericCharacter
 @char DicedCharacter
-; Given 'Remove Actors' is disabled, "LayeredBackground" won't be
+; Given "Remove Actors" is disabled, "LayeredBackground" won't be
 ; destroyed when "NextScript" is loaded, but both characters will.
 @hide GenericCharacter,DicedCharacter wait!
 @remove GenericCharacter,DicedCharacter
@@ -237,7 +237,7 @@ The resource provider manager keeps track of references to loaded resources and 
 
 The mechanism is most prominent in script commands. For example, let's assume you want to play background music with a custom command. The audio player will require an audio clip asset (resource) to play, so we need to preload and "hold" the asset before the command is executed and release it afterward:
 
-```csharp
+```cs
 public class PlayMusic : Command, Command.IPreloadable
 {
     public StringParameter MusicName;
@@ -271,14 +271,14 @@ For example, let's assume you have a Naninovel sprite background with an appeara
 
 To notify Naninovel that you're using an asset, use the `Hold` method of the resource provider service:
 
-```csharp
+```cs
 var resourceManager = Engine.GetService<IResourceProviderManager>();
 resourceManager.Hold(asset, holder);
 ```
 
 Be aware that while you're holding an asset, it won't be unloaded by Naninovel, so it's up to you to release it to prevent memory leaks:
 
-```csharp
+```cs
 var holdersCount = resourceManager.Release(asset, holder);
 // In case no one else is holding the asset, we should unload it.
 if (holdersCount == 0) Resources.UnloadAsset(asset);
@@ -288,7 +288,7 @@ if (holdersCount == 0) Resources.UnloadAsset(asset);
 
 Below is an example of a Unity component which will prevent Naninovel from ever unloading an asset:
 
-```csharp
+```cs
 using Naninovel;
 using UnityEngine;
 
@@ -296,7 +296,7 @@ public class HoldObject : MonoBehaviour
 {
     public Object ObjectToHold;
 
-    private async void Start()
+    private async void Start ()
     {
         while (!Engine.Initialized) await Async.NextFrame();
         Engine.GetService<IResourceProviderManager>().Hold(ObjectToHold, this);

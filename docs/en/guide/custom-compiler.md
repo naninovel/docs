@@ -4,7 +4,7 @@ Script compilation is the process of transforming source scenario text (containe
 
 You can tweak or completely change how the compiler behaves by providing a custom implementation. Like other custom implementations, this is done by creating a new C# class that implements the `IScriptCompiler` interface.
 
-A script compiler can be selected in the Scripts configuration menu via the `Script Compiler` property:
+A script compiler can be selected in the scripts configuration menu via the `Script Compiler` property:
 
 ![](https://i.gyazo.com/12a03e71e66d1fb0901317e380c9694e.png)
 

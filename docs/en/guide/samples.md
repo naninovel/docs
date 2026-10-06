@@ -1,6 +1,6 @@
 # Samples
 
-While the Naninovel package already includes a couple of [essential samples](/guide/getting-started#demo-samples) to help you get started with Visual Novel and Dialogue Mode scenarios, an additional collection of specialized samples is provided to demonstrate common development use cases. Read on for instructions on how to access these samples and brief descriptions of each.
+While the Naninovel package already includes a couple of [demo samples](/guide/getting-started#demo-samples) to help you get started with Visual Novel and Dialogue Mode scenarios, an additional collection of specialized samples is provided to demonstrate common development use cases. Read on for instructions on how to access these samples and brief descriptions of each.
 
 ## Accessing Samples
 
@@ -14,7 +14,7 @@ Unzip the downloaded directory and open it in the Unity Editor. Once the project
 
 This sample shows how to manually register Naninovel resources with the [addressable provider](/guide/resource-providers#addressable) (without using resource editor menus) and serve the assets from a remote host.
 
-Notice that while most of the resources in the sample project are not assigned in the resource manager menus:
+Notice that while most of the resources in the sample project are not assigned in the resources manager menus:
 
 ![](https://i.gyazo.com/8c1b37362bf58d26f18e4e61ffe2957c.png)
 
@@ -36,7 +36,7 @@ This sample shows a generic background filled with multiple animated environment
 
 ## Compiler Localization
 
-To activate compiler localization in the sample project, assign the `Settings/Naninovel/CompilerRu` asset to the `Compiler Localization` field in the Scripts configuration. Then restart the Unity Editor and the VS Code extension. Now you can open the project with VS Code and run the `Compiler Localization` sample scenario.
+To activate compiler localization in the sample project, assign the `Settings/Naninovel/CompilerRu` asset to the `Compiler Localization` field in the scripts configuration menu. Then restart the Unity Editor and the VS Code extension. Now you can open the project with VS Code and run the `Compiler Localization` sample scenario.
 
 ![](https://i.gyazo.com/fde9998597ffedb8a025401bb2f71ce9.png)
 
@@ -44,7 +44,7 @@ To activate compiler localization in the sample project, assign the `Settings/Na
 
 The `E2E Tests` sample shows how to set up an [automated end-to-end test](/guide/automated-testing) suite and use most of the available APIs.
 
-The test scripts are stored under the `Scripts/E2E` folder. Note the `.asmdef` file placed in the folder: it's required to compile the test sources under the Unity test environment. Also note the `testables` entry in the `Packages/manifest.json` file, which exposes the tests assembly to Unity's test runner.
+The test scripts are stored under the `Scripts/E2E` folder. Note the `.asmdef` file placed in the folder: it's required to compile the test sources under the Unity test environment. Also note the `testables` entry in the `Packages/manifest.json` file, which exposes the test assembly to Unity's test runner.
 
 ![](https://i.gyazo.com/92e7eaf5725f098d6d12c83a2b7eb219.png)
 
@@ -86,7 +86,7 @@ If you have many items and it's inconvenient to assign them via the editor menus
 
 It's also possible to use the [Addressable Asset System](/guide/resource-providers#addressable) to manually expose the resources. To expose an asset, assign an address equal to the path you'd use via the method described above, but omit the `Resources/` part. For example, to expose a `FullPlate.prefab` item, assign the prefab the address `Naninovel/Inventory/FullPlate`. Be aware that while in the editor, a special "Editor" resource provider is always used first; the addressable provider is only tried for the resources that are not assigned via the editor menus.
 
-Each item has a `Stack Count Limit` property to limit how many items of this type can be stacked in a single inventory slot, and an `On Item Used` Unity event, which is invoked when the item is used (either via the `@useItem` command or when the user clicks on the item in the inventory). Below is an example of how to set up the event with a `Play Script` component to remove the item once it is used, spawn a glitch special effect and print a text message.
+Each item has a `Stack Count Limit` property to limit how many items of this type can be stacked in a single inventory slot, and an `On Item Used` Unity event, which is invoked when the item is used (either via the `@useItem` command or when the player clicks on the item in the inventory). Below is an example of how to set up the event with a `Play Script` component to remove the item once it is used, spawn a glitch special effect and print a text message.
 
 ![](https://i.gyazo.com/010a9ba35db607ba46d78eda3513f678.png)
 
@@ -112,7 +112,7 @@ Select an action.[>]
 @if itemExist("Sword")
     @set monstersSlayed={ itemExist("Armor") ? random(3,5) : 2 }
     @addItem Food amount:{monstersSlayed}
-    You've encountered and slayed {monstersSlayed} monsters with your sword.
+    You've encountered and slain {monstersSlayed} monsters with your sword.
     @goto #Start
 @else
     But you don't have a weapon! You've been beaten by the monsters.
@@ -128,7 +128,7 @@ The sample demonstrates using Live2D characters with Naninovel. Find them in the
 ## Localization
 
 - The generated localization documents are stored in the `Content/Localization` directory.
-- The generated sheets are stored in the `Sheets` directory under the samples project root.
+- The generated sheets are stored in the "Sheets" directory under the samples project root.
 - The localization-specific font is stored in `Content/Fonts`.
 
 Folders selected for the localization tool:
@@ -299,7 +299,7 @@ When the Naninovel library and types are added in the Visual Scripting settings,
 
 If you wish to send an event from a scenario script to a visual scripting graph or state machine, below is an example of a [custom command](/guide/custom-commands) that will attempt to find a game object with the provided name and send an event with the specified name and arguments:
 
-```csharp
+```cs
 [Serializable, Alias("bolt")]
 public class BroadcastBoltEvent : Command
 {

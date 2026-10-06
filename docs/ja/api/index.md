@@ -2,7 +2,7 @@
 
 標準スクリプトコマンドのAPIリファレンスです。サイドバーを使用して、利用可能なコマンド間をすばやく移動できます。
 
-~~取り消し線~~ はプライマリパラメーターを示し、**太字** は必須パラメーターを表します。その他のパラメーターはオプションと見なしてください。これについてよくわからない場合は、[シナリオスクリプトガイド](/ja/guide/scenario-scripting) を参照してください。
+~~取り消し線~~はプライマリパラメーターを示し、**太字**は必須パラメーターを表します。その他のパラメーターはオプションと見なしてください。これについてよくわからない場合は、[シナリオスクリプトガイド](/ja/guide/scenario-scripting) を参照してください。
 
 次のパラメーターは、ほとんどのスクリプトコマンドでサポートされています。
 
@@ -11,7 +11,7 @@
 | パラメーター | 型 | 説明 |
 | --- | --- | --- |
 | if | string | コマンドを実行するかどうかを制御するブール値の [シナリオ式](/ja/guide/expressions)。 |
-| unless | string | コマンドを実行しないかどうかを制御するブール値の [シナリオ式](/ja/guide/expressions)（「if」の逆）。 |
+| unless | string | コマンドを実行しないかどうかを制御するブール値の [シナリオ式](/ja/guide/expressions)（`if` の逆）。 |
 | wait | boolean | 次のコマンドを実行する前に、スクリプトプレイヤーが非同期コマンドの実行完了を待機するかどうか。 |
 
 </div>
@@ -34,9 +34,9 @@
 | button | string | 選択肢を表す [ボタンプレハブ](/ja/guide/choices#選択肢ボタン) のローカルリソースパス。プレハブには、ルートオブジェクトに `ChoiceHandlerButton` コンポーネントがアタッチされている必要があります。指定しない場合はデフォルトのボタンを使用します。 |
 | pos | number list | 選択肢ハンドラー内の選択肢ボタンのローカル位置（ハンドラーの実装でサポートされている場合）。 |
 | handler | string | 選択肢を追加する選択肢ハンドラーのID。指定しない場合はデフォルトのハンドラーを使用します。 |
-| goto | string | ユーザーが選択肢を選択したときに移動するパス。パス形式については [@goto] コマンドを参照してください。選択肢の下にコマンドをネストする場合、無視されます。 |
-| gosub | string | ユーザーが選択肢を選択したときに移動するサブルーチンのパス。パス形式については [@gosub] コマンドを参照してください。`goto` が割り当てられている場合、このパラメーターは無視されます。選択肢の下にコマンドをネストする場合、無視されます。 |
-| set | string | ユーザーが選択肢を選択したときに実行するセット式。構文については [@set] コマンドを参照してください。選択肢の下にコマンドをネストする場合、無視されます。 |
+| goto | string | プレイヤーが選択肢を選択したときに移動するパス。パス形式については [@goto] コマンドを参照してください。選択肢の下にコマンドをネストする場合、無視されます。 |
+| gosub | string | プレイヤーが選択肢を選択したときに移動するサブルーチンのパス。パス形式については [@gosub] コマンドを参照してください。`goto` が割り当てられている場合、このパラメーターは無視されます。選択肢の下にコマンドをネストする場合、無視されます。 |
+| set | string | プレイヤーが選択肢を選択したときに実行するセット式。構文については [@set] コマンドを参照してください。選択肢の下にコマンドをネストする場合、無視されます。 |
 | show | boolean | 選択肢が追加された選択肢ハンドラーも表示するかどうか。デフォルトで有効です。 |
 | time | number | フェードイン（表示）アニメーションの時間（秒単位）。 |
 
@@ -106,7 +106,7 @@ Lorem ipsum
 ; 表示されているすべてのキャラクターを均等に配置します。
 @arrange
 
-; キャラクターID 'Jenna' を15%、'Felix' を50%、'Mia' を85%の位置に配置します
+; キャラクターID「Jenna」を15%、「Felix」を50%、「Mia」を85%の位置に配置します
 ; （シーンの左端からの距離）。
 @arrange Jenna.15,Felix.50,Mia.85
 ```
@@ -136,7 +136,7 @@ Lorem ipsum
 @await CameraPan
 @camera zoom:0.7
 
-; 'Quake' 非同期タスクをループで実行します。
+; 「Quake」非同期タスクをループで実行します。
 @async Quake loop!
     @spawn Pebbles
     @shake Camera
@@ -148,7 +148,7 @@ Lorem ipsum
 
 ## await
 
-指定された非同期タスクまたはすべてのネストされた行の実行が完了するまで、シナリオの再生を保留します。
+指定された非同期タスクまたはすべてのネストされた行の実行が完了するまで、シナリオの再生を一時停止します。
 
 ::: info NOTE
 ネストされたブロックは常に終了することが期待されています。ブロックの外に移動する可能性のあるコマンドをネストしないでください。未定義の動作が発生する可能性があります。
@@ -202,7 +202,7 @@ Lorem ipsum
 | pose | string | 変更対象のアクターに設定するポーズ。 |
 | via | string | 使用する [トランジションエフェクト](/ja/guide/special-effects#トランジションエフェクト) のタイプ（デフォルトではクロスフェードが使用されます）。 |
 | params | number list | トランジションエフェクトのパラメーター。 |
-| dissolve | string | [カスタムディゾルブ](/ja/guide/special-effects#ディゾルブマスク) テクスチャへのパス（パスは `Resources` フォルダーに対する相対パスである必要があります）。トランジションが `Custom` モードに設定されている場合にのみ効果があります。 |
+| dissolve | string | [カスタムディゾルブ](/ja/guide/special-effects#ディゾルブマスク) テクスチャへのパス（パスは「Resources」フォルダーに対する相対パスである必要があります）。トランジションが `Custom` モードに設定されている場合にのみ効果があります。 |
 | visible | boolean | 変更対象のアクターに設定する可視性ステータス。 |
 | wpos | number list | 変更対象のアクターに設定する位置（ワールド空間）。正投影モードで深度によって移動（ソート）するには、Z成分（3番目のメンバー）を使用します。 |
 | roll | number | 変更対象のアクターに設定するZ軸回転。`rotation` パラメーターの3番目の成分と同じです。`rotation` が指定されている場合は無視されます。 |
@@ -217,13 +217,13 @@ Lorem ipsum
 </div>
 
 ```nani
-; 'River' をメイン背景の外観として設定します。
+; 「River」をメイン背景の外観として設定します。
 @back River
 
-; 上記と同じですが、'RadialBlur' トランジションエフェクトも使用します。
+; 上記と同じですが、「RadialBlur」トランジションエフェクトも使用します。
 @back River.RadialBlur
 
-; 'Smoke' 背景を画面の中央に配置し、
+; 「Smoke」背景を画面の中央に配置し、
 ; 元のサイズの50%にスケーリングします。
 @back id:Smoke pos:50,50 scale:0.5
 
@@ -243,11 +243,11 @@ Lorem ipsum
 
 | パラメーター | 型 | 説明 |
 | --- | --- | --- |
-| intro | string | メイントラックの前に一度だけ再生するイントロ音楽トラックへのパス（ループパラメーターの影響を受けません）。 |
+| intro | string | メイントラックの前に一度だけ再生するイントロ音楽トラックへのパス（`loop` パラメーターの影響を受けません）。 |
 | group | string | オーディオを再生するときに使用するオーディオミキサー [グループパス](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | loop | boolean | 再生が終了したときに、停止されるまで最初から繰り返すかどうか。 |
-| volume | number | オーディオ再生の音量。範囲は0.0から1.0。1.0がデフォルトで、クリッピングなしにデジタルオーディオを0 dBFS基準より大きく再生することはできません。 |
-| pitch | number | 再生の知覚上の周波数（速度）。範囲は [-3.0から3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) で、1.0が通常の速度です。負の値はオーディオを逆再生します。 |
+| volume | number | オーディオ再生の音量（0.0〜1.0の範囲）。1.0がデフォルトであることに注意してください。クリッピングなしにデジタルオーディオを0 dBFS基準より大きく再生することはできません。 |
+| pitch | number | 再生の知覚上の周波数（速度）。[-3.0〜3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) の範囲で、1.0が通常の速度です。負の値はオーディオを逆再生します。 |
 | pos | number list | オーディオソースの位置（シーン境界に対する相対的なパーセンテージ）。位置は次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。Z成分（3番目のメンバー、例：`,,10`）を使用して深度を変更します。 |
 | wpos | number list | オーディオソースの位置（ワールド空間）。`pos` と `wpos` のどちらも指定しない場合、空間モードは無効になります。 |
 | wait | boolean | オーディオの再生が終わるまで待ってから次のコマンドを実行するかどうか。ループ再生時は効果がありません。 |
@@ -260,7 +260,7 @@ Lorem ipsum
 </div>
 
 ```nani
-; 'Sanctuary' という名前の音楽トラックのループ再生を開始します。
+; 「Sanctuary」という名前の音楽トラックのループ再生を開始します。
 @bgm Sanctuary
 
 ; 上記と同じですが、10秒かけて音量をフェードインし、一度だけ再生します。
@@ -270,7 +270,7 @@ Lorem ipsum
 ; ループ再生にします。
 @bgm volume:0.5 loop! fade:2.5
 
-; 'BattleThemeIntro' を一度再生し、その後 'BattleThemeMain' をループします。
+; 「BattleThemeIntro」を一度再生し、その後「BattleThemeMain」をループします。
 @bgm BattleThemeMain intro:BattleThemeIntro
 ```
 
@@ -299,9 +299,9 @@ Lorem ipsum
 ; メイン背景からぼかしを削除します。
 @blur power:0
 
-; 'Kohaku' アクターを最大強度で5秒かけてぼかします。
+; 「Kohaku」アクターを最大強度で5秒かけてぼかします。
 @blur Kohaku power:1 time:5
-; 'Kohaku' から3.1秒かけてぼかしを削除します。
+; 「Kohaku」から3.1秒かけてぼかしを削除します。
 @blur Kohaku power:0 time:3.1
 ```
 
@@ -322,7 +322,7 @@ Lorem ipsum
 </div>
 
 ```nani
-; デフォルト値で効果を有効にし、'Kohaku' ゲームオブジェクトに焦点をロックします。
+; デフォルト値で効果を有効にし、「Kohaku」ゲームオブジェクトに焦点をロックします。
 @bokeh focus:Kohaku
 ; 10秒かけて効果をフェードアウト（無効化）します。
 @bokeh power:0 time:10
@@ -368,10 +368,10 @@ Lorem ipsum
 ; カメラを即座にデフォルト状態にリセットします。
 @camera offset:0,0 zoom:0 rotation:0,0,0 time:0
 
-; 'Dream' カメラ効果のVolumeをウェイト1.0までフェードインします。
+; 「Dream」カメラ効果のVolumeをウェイト1.0までフェードインします。
 @camera fx:Dream.1
 
-; 'Dream' から 'Night' のカメラ効果Volumeへ3秒かけてクロスフェードします。
+; 「Dream」から「Night」のカメラ効果Volumeへ3秒かけてクロスフェードします。
 @camera fx:Dream.0,Night.1 time:3
 ```
 
@@ -392,7 +392,7 @@ Lorem ipsum
 | pose | string | 変更対象のアクターに設定するポーズ。 |
 | via | string | 使用する [トランジションエフェクト](/ja/guide/special-effects#トランジションエフェクト) のタイプ（デフォルトではクロスフェードが使用されます）。 |
 | params | number list | トランジションエフェクトのパラメーター。 |
-| dissolve | string | [カスタムディゾルブ](/ja/guide/special-effects#ディゾルブマスク) テクスチャへのパス（パスは `Resources` フォルダーに対する相対パスである必要があります）。トランジションが `Custom` モードに設定されている場合にのみ効果があります。 |
+| dissolve | string | [カスタムディゾルブ](/ja/guide/special-effects#ディゾルブマスク) テクスチャへのパス（パスは「Resources」フォルダーに対する相対パスである必要があります）。トランジションが `Custom` モードに設定されている場合にのみ効果があります。 |
 | visible | boolean | 変更対象のアクターに設定する可視性ステータス。 |
 | wpos | number list | 変更対象のアクターに設定する位置（ワールド空間）。正投影モードで深度によって移動（ソート）するには、Z成分（3番目のメンバー）を使用します。 |
 | roll | number | 変更対象のアクターに設定するZ軸回転。`rotation` パラメーターの3番目の成分と同じです。`rotation` が指定されている場合は無視されます。 |
@@ -407,10 +407,10 @@ Lorem ipsum
 </div>
 
 ```nani
-; ID 'Sora' のキャラクターをデフォルトの外観で表示します。
+; ID「Sora」のキャラクターをデフォルトの外観で表示します。
 @char Sora
 
-; 上記と同じですが、外観を 'Happy' に設定します。
+; 上記と同じですが、外観を「Happy」に設定します。
 @char Sora.Happy
 
 ; 上記と同じですが、さらにキャラクターをシーンの左端から45%、
@@ -479,10 +479,10 @@ Lorem ipsum
 @choice "黙っている"
     ...
 
-; 'score' 変数が10未満の場合、選択肢を無効/ロックします。
+; 「score」変数が10未満の場合、選択肢を無効/ロックします。
 @choice "追加のオプション" lock:score<10
 
-; 'score' 変数が10以上の場合にのみ、選択肢を表示します。
+; 「score」変数が10以上の場合にのみ、選択肢を表示します。
 @choice "秘密のオプション" if:score>=10
 ```
 
@@ -501,7 +501,7 @@ Lorem ipsum
 | pose | string | 変更対象のアクターに設定するポーズ。 |
 | via | string | 使用する [トランジションエフェクト](/ja/guide/special-effects#トランジションエフェクト) のタイプ（デフォルトではクロスフェードが使用されます）。 |
 | params | number list | トランジションエフェクトのパラメーター。 |
-| dissolve | string | [カスタムディゾルブ](/ja/guide/special-effects#ディゾルブマスク) テクスチャへのパス（パスは `Resources` フォルダーに対する相対パスである必要があります）。トランジションが `Custom` モードに設定されている場合にのみ効果があります。 |
+| dissolve | string | [カスタムディゾルブ](/ja/guide/special-effects#ディゾルブマスク) テクスチャへのパス（パスは「Resources」フォルダーに対する相対パスである必要があります）。トランジションが `Custom` モードに設定されている場合にのみ効果があります。 |
 | visible | boolean | 変更対象のアクターに設定する可視性ステータス。 |
 | wpos | number list | 変更対象のアクターに設定する位置（ワールド空間）。正投影モードで深度によって移動（ソート）するには、Z成分（3番目のメンバー）を使用します。 |
 | roll | number | 変更対象のアクターに設定するZ軸回転。`rotation` パラメーターの3番目の成分と同じです。`rotation` が指定されている場合は無視されます。 |
@@ -516,7 +516,7 @@ Lorem ipsum
 </div>
 
 ```nani
-; 'ButtonArea' 選択肢ハンドラーをデフォルトにします。
+; 「ButtonArea」選択肢ハンドラーをデフォルトにします。
 @choiceHandler ButtonArea default!
 ```
 
@@ -577,7 +577,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 </div>
 
 ```nani
-; 以前に '@spawn Rainbow' コマンドが実行されたと仮定して、それをデスポーン（破棄）します。
+; 以前に「@spawn Rainbow」コマンドが実行されたと仮定して、それをデスポーン（破棄）します。
 @despawn Rainbow
 ```
 
@@ -693,8 +693,8 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 </div>
 
 ```nani
-; 現在再生中のスクリプトの 'VictoryScene' ラベルに移動し、
-; コマンドを実行して、'gosub' の後のコマンドに戻ります。
+; 現在再生中のスクリプトの「VictoryScene」ラベルに移動し、
+; コマンドを実行して、「gosub」の後のコマンドに戻ります。
 @gosub #VictoryScene
 ...
 @stop
@@ -736,13 +736,13 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 </div>
 
 ```nani
-; 'Script001' スクリプトをロードし、最初から再生を開始します。
+; 「Script001」スクリプトをロードし、最初から再生を開始します。
 @goto Script001
 
-; 上記と同じですが、ラベル 'AfterStorm' から再生を開始します。
+; 上記と同じですが、ラベル「AfterStorm」から再生を開始します。
 @goto Script001#AfterStorm
 
-; 現在再生中のスクリプトの 'Epilogue' ラベルに移動します。
+; 現在再生中のスクリプトの「Epilogue」ラベルに移動します。
 @goto #Epilogue
 ...
 # Epilogue
@@ -782,10 +782,10 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 </div>
 
 ```nani
-; ID 'Smoke' のアクターが表示されていると仮定して、3秒かけて非表示にします。
+; ID「Smoke」のアクターが表示されていると仮定して、3秒かけて非表示にします。
 @hide Smoke time:3
 
-; 'Kohaku' と 'Yuko' アクターを非表示にします。
+; 「Kohaku」と「Yuko」アクターを非表示にします。
 @hide Kohaku,Yuko
 ```
 
@@ -845,7 +845,7 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 ; デフォルトのプリンターを非表示にします。
 @hidePrinter
 
-; ID 'Wide' のプリンターを非表示にします。
+; ID「Wide」のプリンターを非表示にします。
 @hidePrinter Wide
 ```
 
@@ -854,7 +854,7 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 指定された名前の [UI要素](/ja/guide/gui#uiのカスタマイズ) を非表示にします。名前が指定されていない場合、UI全体（すべての組み込みUIを含む）のレンダリングを停止（非表示）します。
 
 ::: info NOTE
-このコマンドでUI全体を非表示にし、`allowToggle` パラメーターがfalse（デフォルト）の場合、ユーザーはホットキーを使用したり画面上の任意の場所をクリックしたりしてUIを再表示することはできません。UIを再び表示するには [@showUI] コマンドを使用してください。
+このコマンドでUI全体を非表示にし、`allowToggle` パラメーターがfalse（デフォルト）の場合、プレイヤーはホットキーを使用したり画面上の任意の場所をクリックしたりしてUIを再表示することはできません。UIを再び表示するには [@showUI] コマンドを使用してください。
 :::
 
 <div class="config-table">
@@ -862,26 +862,26 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 | パラメーター | 型 | 説明 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="プライマリパラメーター：パラメーターIDを指定せずに、コマンド識別子の後に値を指定します。">uiNames</span> | string list | 非表示にするUI要素の名前。 |
-| allowToggle | boolean | UI全体を非表示にする場合、ユーザーがホットキーを使用したり画面上の任意の場所をクリックしたりしてUIを再表示できるようにするかどうか（デフォルトではfalse）。特定のUIを非表示にする場合は効果がありません。 |
+| allowToggle | boolean | UI全体を非表示にする場合、プレイヤーがホットキーを使用したり画面上の任意の場所をクリックしたりしてUIを再表示できるようにするかどうか（デフォルトではfalse）。特定のUIを非表示にする場合は効果がありません。 |
 | time | number | 非表示アニメーションの時間（秒単位）。指定しない場合、UI固有の時間を使用します。 |
 | wait | boolean | 次のコマンドを実行する前に、UIフェードアウトアニメーションを待機するかどうか。 |
 
 </div>
 
 ```nani
-; カスタム 'Calendar' UIがあると仮定して、次のコマンドで非表示にします。
+; カスタム「Calendar」UIがあると仮定して、次のコマンドで非表示にします。
 @hideUI Calendar
 
-; UI全体を非表示にし、ユーザーが再表示できないようにします。
+; UI全体を非表示にし、プレイヤーが再表示できないようにします。
 @hideUI
 ...
 ; UIを再び表示します。
 @showUI
 
-; UI全体を非表示にしますが、ユーザーが再表示できるようにします。
+; UI全体を非表示にしますが、プレイヤーが再表示できるようにします。
 @hideUI allowToggle!
 
-; 組み込みの 'TipsUI' とカスタム 'Calendar' UIを同時に非表示にします。
+; 組み込みの「TipsUI」とカスタム「Calendar」UIを同時に非表示にします。
 @hideUI TipsUI,Calendar
 ```
 
@@ -902,11 +902,11 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 </div>
 
 ```nani
-; "score" 変数に応じてテキスト行を表示します：
-;   "不合格です。もう一度挑戦してください！" - scoreが6以下の場合。
-;   "テストに合格しました。" と "素晴らしい！" - scoreが8より大きい場合。
-;   "テストに合格しました。" と "お見事！" - scoreが7より大きい場合。
-;   "テストに合格しました。" と "よくできました！" - それ以外の場合。
+; 「score」変数に応じてテキスト行を表示します：
+;   「不合格です。もう一度挑戦してください！」 - scoreが6以下の場合。
+;   「テストに合格しました。」と「素晴らしい！」 - scoreが8より大きい場合。
+;   「テストに合格しました。」と「お見事！」 - scoreが7より大きい場合。
+;   「テストに合格しました。」と「よくできました！」 - それ以外の場合。
 @if score > 6
     テストに合格しました。
     @if score > 8
@@ -918,16 +918,16 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 @else
     不合格です。もう一度挑戦してください！
 
-; "score" 変数に応じてテキスト行を表示します：
-;   "テスト結果：不合格。" - scoreが6以下の場合。
-;   "テスト結果：満点！" - scoreが8より大きい場合。
-;   "テスト結果：合格。" - それ以外の場合。
+; 「score」変数に応じてテキスト行を表示します：
+;   「テスト結果：不合格。」 - scoreが6以下の場合。
+;   「テスト結果：満点！」 - scoreが8より大きい場合。
+;   「テスト結果：合格。」 - それ以外の場合。
 テスト結果：[if score>8]満点！[or score>6]合格。[else]不合格。[endif]
 ```
 
 ## input
 
-ユーザーが任意のテキストを入力できる入力フィールドUIを表示します。送信時に、入力されたテキストは指定されたシナリオ変数に代入されます。
+プレイヤーが任意のテキストを入力できる入力フィールドUIを表示します。送信時に、入力されたテキストは指定されたシナリオ変数に代入されます。
 
 ::: info NOTE
 このコマンドを使用してキャラクターの表示名を割り当てる場合は、[名前をシナリオ変数にバインドする](/ja/guide/characters#表示名) ことを検討してください。
@@ -946,14 +946,14 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 </div>
 
 ```nani
-; 任意のテキストを入力するように求め、それを 'name' シナリオ変数に代入します。
+; 任意のテキストを入力するように求め、それを「name」シナリオ変数に代入します。
 @input name summary:"あなたの名前を選んでください。"
 
-; その後、代入された 'name' 変数をシナリオスクリプトに注入できます。
+; その後、代入された「name」変数をシナリオスクリプトに注入できます。
 Archibald: ようこそ、{name}！
 
 ; ...または、セット式や条件式内で使用します。
-@set score++ if:name="フェリックス"
+@set score++ if:name="Felix"
 ```
 
 ## linkPrinter
@@ -970,10 +970,10 @@ Archibald: ようこそ、{name}！
 </div>
 
 ```nani
-; 'Dialogue' プリンターを話者 'Kohaku' と 'Yuko' にリンクします。
+; 「Dialogue」プリンターを話者「Kohaku」と「Yuko」にリンクします。
 @linkPrinter Dialogue to:Kohaku,Yuko
 
-; 'Wide' をすべての話者にリンクします。
+; 「Wide」をすべての話者にリンクします。
 @linkPrinter Wide
 ```
 
@@ -1009,10 +1009,10 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 </div>
 
 ```nani
-; 'TestScene1' シーンをシングルモードでロードします。
+; 「TestScene1」シーンをシングルモードでロードします。
 @loadScene TestScene1
 
-; 'TestScene2' シーンを加算モードでロードします。
+; 「TestScene2」シーンを加算モードでロードします。
 @loadScene TestScene2 additive!
 ```
 
@@ -1033,7 +1033,7 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 </div>
 
 ```nani
-; ID 'FightScene1' のアンロック可能CGレコードをロックします。
+; ID「FightScene1」のアンロック可能CGレコードをロックします。
 @lock CG/FightScene1
 ```
 
@@ -1085,7 +1085,7 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 </div>
 
 ```nani
-; 'Opening' ビデオクリップがムービーリソースに追加されていると仮定して、それを再生します。
+; 「Opening」ビデオクリップがムービーリソースに追加されていると仮定して、それを再生します。
 @movie Opening
 ```
 
@@ -1102,7 +1102,7 @@ WebGL以外のプラットフォームまたはエディターでは、Unityの 
 | パラメーター | 型 | 説明 |
 | --- | --- | --- |
 | <span class="command-param-primary command-param-required" title="プライマリパラメーター：パラメーターIDを指定せずに、コマンド識別子の後に値を指定します。必須パラメーター：このパラメーターは常に指定する必要があります。">url</span> | string | 開くURL。 |
-| target | string | ブラウジングコンテキスト：_self（現在のタブ）、_blank（新しいタブ）、_parent、_top。 |
+| target | string | ブラウジングコンテキスト：`_self`（現在のタブ）、`_blank`（新しいタブ）、`_parent`、`_top`。 |
 
 </div>
 
@@ -1131,7 +1131,7 @@ WebGL以外のプラットフォームまたはエディターでは、Unityの 
 テキストプリンターアクターを使用して、指定されたテキストメッセージを表示します（時間をかけて徐々に表示されます）。
 
 ::: info NOTE
-このコマンドは、汎用テキスト行を処理するときに内部で使用されます。たとえば、汎用テキスト行 `Kohaku: Hello World!` は、シナリオスクリプトの解析時に自動的に `@print "Hello World!" author:Kohaku` に変換されます。<br/> デフォルトでは、新しいメッセージを表示する前にプリンターをリセット（クリア）します。これを防いで代わりにテキストを追加するには、`reset` パラメーターを *false* に設定するか、プリンターアクター構成の `Auto Reset` を無効にします。<br/> デフォルトでは、プリンターをデフォルトにして他のプリンターを非表示にします。これを防ぐには、`default` パラメーターを *false* に設定するか、プリンターアクター構成の `Auto Default` を無効にします。<br/> デフォルトでは、タスクを終了する前にユーザー入力を待機します。テキストが完全に表示されたらすぐに戻るようにするには、`waitInput` パラメーターを *false* に設定するか、プリンターアクター構成の `Auto Wait` を無効にします。
+このコマンドは、汎用テキスト行を処理するときに内部で使用されます。たとえば、汎用テキスト行 `Kohaku: Hello World!` は、シナリオスクリプトの解析時に自動的に `@print "Hello World!" author:Kohaku` に変換されます。<br/> デフォルトでは、新しいメッセージを表示する前にプリンターをリセット（クリア）します。これを防いで代わりにテキストを追加するには、`reset` パラメーターを *false* に設定するか、プリンターアクター構成の `Auto Reset` を無効にします。<br/> デフォルトでは、プリンターをデフォルトにして他のプリンターを非表示にします。これを防ぐには、`default` パラメーターを *false* に設定するか、プリンターアクター構成の `Auto Default` を無効にします。<br/> デフォルトでは、タスクを終了する前に入力を待機します。テキストが完全に表示されたらすぐに戻るようにするには、`waitInput` パラメーターを *false* に設定するか、プリンターアクター構成の `Auto Wait` を無効にします。
 :::
 
 <div class="config-table">
@@ -1145,7 +1145,7 @@ WebGL以外のプラットフォームまたはエディターでは、Unityの 
 | speed | number | テキスト表示速度の乗数。正またはゼロである必要があります。1に設定すると、デフォルトの速度になります。 |
 | reset | boolean | 表示タスクを実行する前にプリンターのテキストをリセットするかどうか。デフォルト値は、プリンターアクター構成メニューの `Auto Reset` プロパティで制御されます。 |
 | default | boolean | 表示タスクを実行する前に、プリンターをデフォルトにして他のプリンターを非表示にするかどうか。デフォルト値は、プリンターアクター構成メニューの `Auto Default` プロパティで制御されます。 |
-| waitInput | boolean | 表示タスクの完了後にユーザー入力を待機するかどうか。デフォルト値は、プリンターアクター構成メニューの `Auto Wait` プロパティで制御されます。 |
+| waitInput | boolean | 表示タスクの完了後に入力を待機するかどうか。デフォルト値は、プリンターアクター構成メニューの `Auto Wait` プロパティで制御されます。 |
 | append | boolean | 表示するテキストを最後のプリンターメッセージに追加するかどうか。 |
 | fadeTime | number | このコマンドに関連付けられたプリンターの表示および非表示アニメーションの時間（秒単位）を制御します。各プリンターのデフォルト値は、アクター構成で設定されています。 |
 | wait | boolean | 次のコマンドを実行する前に、テキストの表示と完了の確認（入力待ち）を待機するかどうか。 |
@@ -1160,15 +1160,15 @@ WebGL以外のプラットフォームまたはエディターでは、Unityの 
 @print "\"車を止めろ！\" と叫んだのは間違いでした。"
 
 ; 通常の半分の速度でメッセージを表示し、
-; 続行するためにユーザー入力を待機しません。
+; 続行するために入力を待機しません。
 @print "Lorem ipsum dolor sit amet." speed:0.5 !waitInput
 
-; "全員" を話者名として行を表示し、
+; 「全員」を話者名として行を表示し、
 ; 表示されているすべてのキャラクターをそのテキストの話者にします。
 @print "Hello World!" author:* as:"全員"
 
-; 同様ですが、"Kohaku" と "Yuko" のみを話者にします。
-@print "Hello World!" author:Kohaku,Yuko as:"コハクとユウコ"
+; 同様ですが、「Kohaku」と「Yuko」のみを話者にします。
+@print "Hello World!" author:Kohaku,Yuko as:"KohakuとYuko"
 ```
 
 ## printer
@@ -1189,7 +1189,7 @@ WebGL以外のプラットフォームまたはエディターでは、Unityの 
 | pose | string | 変更対象のアクターに設定するポーズ。 |
 | via | string | 使用する [トランジションエフェクト](/ja/guide/special-effects#トランジションエフェクト) のタイプ（デフォルトではクロスフェードが使用されます）。 |
 | params | number list | トランジションエフェクトのパラメーター。 |
-| dissolve | string | [カスタムディゾルブ](/ja/guide/special-effects#ディゾルブマスク) テクスチャへのパス（パスは `Resources` フォルダーに対する相対パスである必要があります）。トランジションが `Custom` モードに設定されている場合にのみ効果があります。 |
+| dissolve | string | [カスタムディゾルブ](/ja/guide/special-effects#ディゾルブマスク) テクスチャへのパス（パスは「Resources」フォルダーに対する相対パスである必要があります）。トランジションが `Custom` モードに設定されている場合にのみ効果があります。 |
 | visible | boolean | 変更対象のアクターに設定する可視性ステータス。 |
 | wpos | number list | 変更対象のアクターに設定する位置（ワールド空間）。正投影モードで深度によって移動（ソート）するには、Z成分（3番目のメンバー）を使用します。 |
 | roll | number | 変更対象のアクターに設定するZ軸回転。`rotation` パラメーターの3番目の成分と同じです。`rotation` が指定されている場合は無視されます。 |
@@ -1204,24 +1204,24 @@ WebGL以外のプラットフォームまたはエディターでは、Unityの 
 </div>
 
 ```nani
-; 'Wide' プリンターをデフォルトにし、他の表示されているプリンターを非表示にします。
+; 「Wide」プリンターをデフォルトにし、他の表示されているプリンターを非表示にします。
 @printer Wide
 
-; 'Bubble' プリンターに 'Right' 外観を割り当て、デフォルトにし、
+; 「Bubble」プリンターに「Right」外観を割り当て、デフォルトにし、
 ; シーンの中央に配置し、他のプリンターを非表示にしません。
 @printer Bubble.Right pos:50,50 !hideOther
 
-; ネストされたコマンドの実行中は 'Wide' プリンターを強制的に使用します。
+; ネストされたコマンドの実行中は「Wide」プリンターを強制的に使用します。
 @printer Wide
-    現在のデフォルトプリンターに関係なく 'Wide' に表示されます。
-    Kohaku: リンクされたプリンターがあるかもしれませんが、ここでは 'Wide' を使用します。
+    現在のデフォルトプリンターに関係なく「Wide」に表示されます。
+    Kohaku: リンクされたプリンターがあるかもしれませんが、ここでは「Wide」を使用します。
 再びデフォルトプリンターに表示されます。
 Kohaku: 再びリンクされたプリンターを使用します。
 ```
 
 ## processInput
 
-ユーザー入力処理（例：キーボードのキー押下への反応）を停止および再開できるようにします。この操作の効果は永続的で、ゲームとともにセーブされます。
+入力処理（例：キーボードのキー押下への反応）を停止および再開できるようにします。この操作の効果は永続的で、ゲームとともにセーブされます。
 
 <div class="config-table">
 
@@ -1239,7 +1239,7 @@ Kohaku: 再びリンクされたプリンターを使用します。
 ; すべての入力の処理を再開します。
 @processInput true
 
-; 'Rollback' と 'Pause' 入力をミュートし、'Continue' 入力をミュート解除します。
+; 「Rollback」と「Pause」入力をミュートし、「Continue」入力をミュート解除します。
 @processInput set:Rollback.false,Pause.false,Continue.true
 ```
 
@@ -1327,7 +1327,7 @@ Kohaku: 再びリンクされたプリンターを使用します。
     @sfx Sound2
     @sfx Sound3
 
-; カメラをシェイクする選択肢の追加、Kohakuアクターへの色合いの適用、'SoundX' SFXの再生の
+; カメラをシェイクする選択肢の追加、Kohakuアクターへの色合いの適用、「SoundX」SFXの再生の
 ; いずれかを、それぞれ33%の確率で実行します。ただし、SFXの再生は、
 ; scoreが10を超えている場合にのみ考慮されます。
 @random
@@ -1335,7 +1335,7 @@ Kohaku: 再びリンクされたプリンターを使用します。
         お望みどおりに！
         @shake Camera
     @group
-        コハクに色を付けます！
+        Kohakuに色を付けます！
         @char Kohaku tint:red
     @sfx SoundX if:score>10
 ```
@@ -1379,7 +1379,7 @@ Kohaku: 再びリンクされたプリンターを使用します。
 | パラメーター | 型 | 説明 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="プライマリパラメーター：パラメーターIDを指定せずに、コマンド識別子の後に値を指定します。">exclude</span> | string list | リセットから除外する [エンジンサービス](/ja/guide/engine-services)（インターフェース）の名前。ローカル変数を保持するには、`IVariableManager` を追加することを検討してください。 |
-| only | string list | リセットする [エンジンサービス](/ja/guide/engine-services)（インターフェース）の名前。他のサービスは影響を受けません。プライマリ（exclude）パラメーターが割り当てられている場合は効果がありません。 |
+| only | string list | リセットする [エンジンサービス](/ja/guide/engine-services)（インターフェース）の名前。他のサービスは影響を受けません。プライマリ（`exclude`）パラメーターが割り当てられている場合は効果がありません。 |
 
 </div>
 
@@ -1392,7 +1392,7 @@ Kohaku: 再びリンクされたプリンターを使用します。
 ; シナリオ変数の値を保持します。
 @resetState IScriptPlayer,IVariableManager,IAudioManager
 
-; 'ICharacterManager' と 'IBackgroundManager' サービスのみをリセットし、
+; 「ICharacterManager」と「IBackgroundManager」サービスのみをリセットし、
 ; シーンからすべてのキャラクターと背景アクターを削除し、
 ; 関連リソースをメモリからアンロードします。
 @resetState only:ICharacterManager,IBackgroundManager
@@ -1415,7 +1415,7 @@ Kohaku: 再びリンクされたプリンターを使用します。
 この行は消えます。
 @resetText
 
-; 上記と同じですが、'Wide' プリンターを使用します。
+; 上記と同じですが、「Wide」プリンターを使用します。
 @print "この行は消えます。" printer:Wide
 @resetText Wide
 ```
@@ -1440,7 +1440,7 @@ Kohaku: 再びリンクされたプリンターを使用します。
 
 | パラメーター | 型 | 説明 |
 | --- | --- | --- |
-| at | string | セーブの再生位置。次の形式で指定します：`ScriptPath#Label`。省略した場合、スクリプトプレイヤーの現在の位置を使用します。ゲームのロード後にプレイヤーを特定のラベルまたはスクリプトにリダイレクトするために使用できます。 |
+| at | string | セーブの再生位置。次の形式で指定します：`ScriptPath#Label`。省略した場合、現在の再生位置を使用します。ゲームのロード後にプレイヤーを特定のラベルまたはスクリプトにリダイレクトするために使用できます。 |
 
 </div>
 
@@ -1448,14 +1448,14 @@ Kohaku: 再びリンクされたプリンターを使用します。
 ; 現在の位置でオートセーブします。
 @save
 
-; プレイヤーは、ゲームをオートセーブしてタイトルメニューに戻る 'rest' か、
-; 'NextDay' に進むかを選択できます。休憩後にプレイヤーがセーブしたゲームをロードすると、
-; '# Camp' ラベルの後の行に移動しますが、
-; 'rested' が 'true' に設定されているため、'NextDay' に進むことが強制されます。
+; プレイヤーは、ゲームをオートセーブしてタイトルメニューに戻る「rest」か、
+; 「NextDay」に進むかを選択できます。休憩後にプレイヤーがセーブしたゲームをロードすると、
+; 「# Camp」ラベルの後の行に移動しますが、
+; 「rested」が「true」に設定されているため、「NextDay」に進むことが強制されます。
 
 # Camp
 
-; 変数は '?=' で設定されていることに注目してください。これは、
+; 変数は「?=」で設定されていることに注目してください。これは、
 ; まだ代入されていない場合にのみ値を代入します。休憩後にプレイヤーが
 ; オートセーブされたゲームをロードした場合は、すでに代入済みです。
 @set rested?=false
@@ -1467,7 +1467,7 @@ Kohaku: 再びリンクされたプリンターを使用します。
 @choice "休んでいる時間はない！" goto:NextDay
 @choice "少し休もう"
     @set rested=true
-    ; 'at' パラメーターに注目してください。ゲームがロードされると、
+    ; 「at」パラメーターに注目してください。ゲームがロードされると、
     ; 指定されたラベルにプレイヤーをリダイレクトします。
     @save at:#Camp
     @title
@@ -1486,42 +1486,42 @@ Kohaku: 再びリンクされたプリンターを使用します。
 | パラメーター | 型 | 説明 |
 | --- | --- | --- |
 | <span class="command-param-primary command-param-required" title="プライマリパラメーター：パラメーターIDを指定せずに、コマンド識別子の後に値を指定します。必須パラメーター：このパラメーターは常に指定する必要があります。">expression</span> | string | 代入式。<br/><br/>式は `var=expression` の形式である必要があります。ここで、`var` は代入先のシナリオ変数のIDであり、`expression` は [シナリオ式](/ja/guide/expressions) で、その結果が変数に代入されます。<br/><br/>インクリメントおよびデクリメントの単項演算子（`@set foo++`、`@set foo--`）および複合代入（`@set foo+=10`、`@set foo-=3`、`@set foo*=0.1`、`@set foo/=2`）を使用できます。 |
-| to | string | 代入式（`= ...` の部分）のない、指定されたすべての変数に結果が代入される式。複数の変数に同じ値を代入する場合に便利です。たとえば：`@set foo, bar, baz to:10`。 |
+| to | string | 代入式（`= ...` の部分）のない、指定されたすべての変数に結果が代入される式。複数の変数に同じ値を代入する場合に便利です。例：`@set foo, bar, baz to:10`。 |
 | scope | string | 指定すると、明示的なスコープを持たない変数を指定したスコープの下に割り当てます。 |
-| init | boolean | その変数がまだ代入されていない場合にのみ代入するかどうか（初期化の意図）。「meta」または「const」フラグとは併用しないでください。これらのフラグも同じ初期化の意図を持つためです。 |
+| init | boolean | その変数がまだ代入されていない場合にのみ代入するかどうか（初期化の意図）。`meta` または `const` フラグとは併用しないでください。これらのフラグも同じ初期化の意図を持つためです。 |
 | meta | boolean | その変数をメタ変数として初期化するかどうか。メタ変数はゲームセッションの「上位」にあり、つまり新しいゲームを開始しても値が保持されます。ルートのクリア状況や実績の追跡など、メタゲームの仕組みに最適です。 |
 | const | boolean | その変数を定数として初期化するかどうか。定数は一度だけ初期化でき、その後に変更することはできません。 |
 
 </div>
 
 ```nani
-; 'foo' 変数に 'bar' 文字列値を代入します。
+; 「foo」変数に「bar」文字列値を代入します。
 @set foo="bar"
 
-; 'foo' 変数に数値1を代入します。
+; 「foo」変数に数値1を代入します。
 @set foo=1
 
-; 'foo' 変数に 'true' ブール値を代入します。
+; 「foo」変数に「true」ブール値を代入します。
 @set foo=true
 
-; 'foo' が数値の場合、その値に0.5を加算します。
+; 「foo」が数値の場合、その値に0.5を加算します。
 @set foo+=0.5
 
-; 'angle' が数値の場合、そのコサインを 'foo' 変数に代入します。
+; 「angle」が数値の場合、そのコサインを「foo」変数に代入します。
 @set foo=cos(angle)
 
 ; -100から100までの乱数を取得し、4乗して
-; 'foo' 変数に代入します。
+; 「foo」変数に代入します。
 @set foo = pow(random(-100, 100), 4)
 
-; 'foo' が数値の場合、その値に1を加算します（インクリメント）。
+; 「foo」が数値の場合、その値に1を加算します（インクリメント）。
 @set foo++
 
-; 'foo' が数値の場合、その値から1を減算します（デクリメント）。
+; 「foo」が数値の場合、その値から1を減算します（デクリメント）。
 @set foo--
 
-; 'foo' 変数に 'bar' 変数の値
-; （'Hello World!' 文字列）を代入します。
+; 「foo」変数に「bar」変数の値
+; （「Hello World!」文字列）を代入します。
 @set bar="Hello World!"
 @set foo=bar
 
@@ -1548,15 +1548,15 @@ Kohaku: 再びリンクされたプリンターを使用します。
 ; メタ変数を使用して、ゲームセッションをまたいで値を保持します。
 ; ゲームを再起動しても、変数はその値を維持します。
 @set completeRouteX, completeRouteY to:false meta!
-... ; スクリプト内の後のどこかで、'RouteX' を完了したとき
-@set completeRouteX=true ; 新しくゲームを開始しても、これは 'true' のままです
+... ; スクリプト内の後のどこかで、「RouteX」を完了したとき
+@set completeRouteX=true ; 新しくゲームを開始しても、これは「true」のままです
 
 ; 再プレイされても、メタ変数を一度だけインクリメントします。
 @set metaCounter=0 meta!
 ...
 @set metaCounter++ unless:hasPlayed()
 
-; 複数の変数を 'stats' スコープの下で定義します。
+; 複数の変数を「stats」スコープの下で定義します。
 @set strength, intellect, agility to:1 scope:stats
 ...
 @set stats.agility++
@@ -1583,8 +1583,8 @@ Kohaku: 再びリンクされたプリンターを使用します。
 | --- | --- | --- |
 | group | string | オーディオを再生するときに使用するオーディオミキサー [グループパス](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | loop | boolean | 再生が終了したときに、停止されるまで最初から繰り返すかどうか。 |
-| volume | number | オーディオ再生の音量。範囲は0.0から1.0。1.0がデフォルトで、クリッピングなしにデジタルオーディオを0 dBFS基準より大きく再生することはできません。 |
-| pitch | number | 再生の知覚上の周波数（速度）。範囲は [-3.0から3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) で、1.0が通常の速度です。負の値はオーディオを逆再生します。 |
+| volume | number | オーディオ再生の音量（0.0〜1.0の範囲）。1.0がデフォルトであることに注意してください。クリッピングなしにデジタルオーディオを0 dBFS基準より大きく再生することはできません。 |
+| pitch | number | 再生の知覚上の周波数（速度）。[-3.0〜3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) の範囲で、1.0が通常の速度です。負の値はオーディオを逆再生します。 |
 | pos | number list | オーディオソースの位置（シーン境界に対する相対的なパーセンテージ）。位置は次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。Z成分（3番目のメンバー、例：`,,10`）を使用して深度を変更します。 |
 | wpos | number list | オーディオソースの位置（ワールド空間）。`pos` と `wpos` のどちらも指定しない場合、空間モードは無効になります。 |
 | wait | boolean | オーディオの再生が終わるまで待ってから次のコマンドを実行するかどうか。ループ再生時は効果がありません。 |
@@ -1597,20 +1597,20 @@ Kohaku: 再びリンクされたプリンターを使用します。
 </div>
 
 ```nani
-; 'Explosion' という名前のSFXを一度再生します。
+; 「Explosion」という名前のSFXを一度再生します。
 @sfx Explosion
 
-; 'Rain' という名前のSFXをループで再生し、30秒かけてフェードインします。
+; 「Rain」という名前のSFXをループで再生し、30秒かけてフェードインします。
 @sfx Rain loop! fade:30
 
 ; 再生中のすべてのSFXトラックの音量を2.5秒かけて75%に変更し、
 ; それらすべてのループを無効にします。
 @sfx volume:0.75 !loop fade:2.5
 
-; ワールド空間で 'Explosion' をリスナーの少し上、背後で再生します。
+; ワールド空間で「Explosion」をリスナーの少し上、背後で再生します。
 @sfx Explosion wpos:0,1,-3
 
-; シーン空間で 'Rain' の位置を10秒かけて左から右へアニメーションします。
+; シーン空間で「Rain」の位置を10秒かけて左から右へアニメーションします。
 @sfx Rain pos:0,50 loop!
 @sfx Rain pos:100,50 fade:10
 ```
@@ -1627,8 +1627,8 @@ Kohaku: 再びリンクされたプリンターを使用します。
 | additive | boolean | 同じクリップの複数のインスタンスを再生できるようにするかどうか。`restart` が有効な場合は効果がありません。 |
 | group | string | オーディオを再生するときに使用するオーディオミキサー [グループパス](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | loop | boolean | 再生が終了したときに、停止されるまで最初から繰り返すかどうか。 |
-| volume | number | オーディオ再生の音量。範囲は0.0から1.0。1.0がデフォルトで、クリッピングなしにデジタルオーディオを0 dBFS基準より大きく再生することはできません。 |
-| pitch | number | 再生の知覚上の周波数（速度）。範囲は [-3.0から3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) で、1.0が通常の速度です。負の値はオーディオを逆再生します。 |
+| volume | number | オーディオ再生の音量（0.0〜1.0の範囲）。1.0がデフォルトであることに注意してください。クリッピングなしにデジタルオーディオを0 dBFS基準より大きく再生することはできません。 |
+| pitch | number | 再生の知覚上の周波数（速度）。[-3.0〜3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) の範囲で、1.0が通常の速度です。負の値はオーディオを逆再生します。 |
 | pos | number list | オーディオソースの位置（シーン境界に対する相対的なパーセンテージ）。位置は次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。Z成分（3番目のメンバー、例：`,,10`）を使用して深度を変更します。 |
 | wpos | number list | オーディオソースの位置（ワールド空間）。`pos` と `wpos` のどちらも指定しない場合、空間モードは無効になります。 |
 | wait | boolean | オーディオの再生が終わるまで待ってから次のコマンドを実行するかどうか。ループ再生時は効果がありません。 |
@@ -1637,7 +1637,7 @@ Kohaku: 再びリンクされたプリンターを使用します。
 </div>
 
 ```nani
-; 'Click' という名前のSFXを一度再生します。
+; 「Click」という名前のSFXを一度再生します。
 @sfxFast Click
 
 ; 上記と同じですが、同じクリップの同時再生を許可します。
@@ -1666,10 +1666,10 @@ Kohaku: 再びリンクされたプリンターを使用します。
 </div>
 
 ```nani
-; デフォルトのパラメーターで 'Dialogue' テキストプリンターをシェイクします。
+; デフォルトのパラメーターで「Dialogue」テキストプリンターをシェイクします。
 @shake Dialogue
 
-; 'Kohaku' キャラクターのシェイクを開始し、停止する選択肢を表示して、それに応じて動作します。
+; 「Kohaku」キャラクターのシェイクを開始し、停止する選択肢を表示して、それに応じて動作します。
 @shake Kohaku loop!
 @choice "シェイクを止める"
     @shake Kohaku !loop
@@ -1695,10 +1695,10 @@ Kohaku: 再びリンクされたプリンターを使用します。
 </div>
 
 ```nani
-; ID 'Smoke' のアクターが非表示であると仮定して、3秒かけて表示します。
+; ID「Smoke」のアクターが非表示であると仮定して、3秒かけて表示します。
 @show Smoke time:3
 
-; 'Kohaku' と 'Yuko' アクターを表示します。
+; 「Kohaku」と「Yuko」アクターを表示します。
 @show Kohaku,Yuko
 ```
 
@@ -1720,7 +1720,7 @@ Kohaku: 再びリンクされたプリンターを使用します。
 ; デフォルトのプリンターを表示します。
 @showPrinter
 
-; ID 'Wide' のプリンターを表示します。
+; ID「Wide」のプリンターを表示します。
 @showPrinter Wide
 ```
 
@@ -1739,14 +1739,14 @@ Kohaku: 再びリンクされたプリンターを使用します。
 </div>
 
 ```nani
-; 'Calendar' という名前のカスタムUIを追加したと仮定して、
+; 「Calendar」という名前のカスタムUIを追加したと仮定して、
 ; 以下を実行するとシーンに表示されます。
 @showUI Calendar
 
 ; @hideUI でUI全体を非表示にしたと仮定して、再び表示します。
 @showUI
 
-; 組み込みの 'TipsUI' とカスタム 'Calendar' UIを同時に表示します。
+; 組み込みの「TipsUI」とカスタム「Calendar」UIを同時に表示します。
 @showUI TipsUI,Calendar
 ```
 
@@ -1794,16 +1794,16 @@ Kohaku: 再びリンクされたプリンターを使用します。
 </div>
 
 ```nani
-; 'Jenna' アクターが表示されていないと仮定して、'Angry' の外観で表示し、
+; 「Jenna」アクターが表示されていないと仮定して、「Angry」の外観で表示し、
 ; シーンの左または右の境界から中央にスライドさせます。
 @slide Jenna.Angry to:50
 
-; 'Sheba' アクターが現在表示されていると仮定して、
+; 「Sheba」アクターが現在表示されていると仮定して、
 ; 非表示にして、シーンの左端の外にスライドさせます。
 @slide Sheba to:-10 !visible
 
-; 'EaseOutBounce' アニメーションイージングを使用して、
-; 5秒かけて 'Sheba' アクターをシーンの左中央側から右下にスライドさせます。
+; 「Sheba」アクターをシーンの左中央側から右下に、
+; 「EaseOutBounce」アニメーションイージングを使用して5秒かけてスライドさせます。
 @slide Sheba from:15,50 to:85,0 time:5 easing:EaseOutBounce
 ```
 
@@ -1858,10 +1858,10 @@ Kohaku: 再びリンクされたプリンターを使用します。
 </div>
 
 ```nani
-; 'Rainbow' プレハブがスポーンリソースに割り当てられていると仮定して、それをインスタンス化します。
+; 「Rainbow」プレハブがスポーンリソースに割り当てられていると仮定して、それをインスタンス化します。
 @spawn Rainbow
 
-; スポーンされた 'Explosion' は1回限りのため、後で '@despawn' を呼び出す必要はありません。
+; スポーンされた「Explosion」は1回限りのため、後で「@despawn」を呼び出す必要はありません。
 @spawn Explosion transient!
 ```
 
@@ -1888,13 +1888,13 @@ Kohaku: 再びリンクされたプリンターを使用します。
 この行は、@gosubで直接移動した場合にのみ実行されます。
 @return
 
-; 'Quake' 非同期タスクを停止するまでループします。
+; 「Quake」非同期タスクを停止するまでループします。
 @async Quake loop!
     @spawn Pebbles
     @shake Camera
     @wait { random(3,10) }
 ...
-; 'Quake' 非同期タスクを停止します。
+; 「Quake」非同期タスクを停止します。
 @stop Quake
 ```
 
@@ -1919,7 +1919,7 @@ Kohaku: 再びリンクされたプリンターを使用します。
 </div>
 
 ```nani
-; 10秒かけて 'Sanctuary' BGMトラックをフェードアウトし、再生を停止します。
+; 10秒かけて「Sanctuary」BGMトラックをフェードアウトし、再生を停止します。
 @stopBgm Sanctuary fade:10
 
 ; 現在再生中のすべての音楽トラックを停止します。
@@ -1947,7 +1947,7 @@ Kohaku: 再びリンクされたプリンターを使用します。
 </div>
 
 ```nani
-; 15秒かけてフェードアウトし、'Rain' という名前のSFXの再生を停止します。
+; 15秒かけてフェードアウトし、「Rain」という名前のSFXの再生を停止します。
 @stopSfx Rain fade:15
 
 ; 現在再生中のすべての効果音トラックを停止します。
@@ -2006,9 +2006,9 @@ Kohaku: 再びリンクされたプリンターを使用します。
 
 @async Boom
     @wait 60
-    ; 60秒後、'Boom' タスクが停止されていない場合、
+    ; 60秒後、「Boom」タスクが停止されていない場合、
     ; 下の @sync コマンドはメイントラックを強制的にここに移動させ、
-    ; その後 'BadEnd' スクリプトに移動します。
+    ; その後「BadEnd」スクリプトに移動します。
     @sync
     @goto BadEnd
 
@@ -2017,7 +2017,7 @@ Kohaku: 再びリンクされたプリンターを使用します。
 解除パズル2。
 解除パズル3。
 
-; 'Boom' 非同期タスクが停止されたため、メイントラックは
+; 「Boom」非同期タスクが停止されたため、メイントラックは
 ; 中断することなく実行を継続します。
 @stop Boom
 爆弾は解除されました！
@@ -2025,13 +2025,13 @@ Kohaku: 再びリンクされたプリンターを使用します。
 
 ## timeline
 
-指定された名前を持つシーン上のゲームオブジェクトの [Director](https://docs.unity3d.com/ScriptReference/Playables.PlayableDirector.html) コンポーネントを介して [Timeline](https://docs.unity3d.com/Manual/com.unity.timeline.html) を制御します。デフォルトでは、「stop」、「pause」、または「resume」フラグが指定されていない限り、コマンドはディレクターの再生を開始します。
+指定された名前を持つシーン上のゲームオブジェクトの [Director](https://docs.unity3d.com/ScriptReference/Playables.PlayableDirector.html) コンポーネントを介して [Timeline](https://docs.unity3d.com/Manual/com.unity.timeline.html) を制御します。デフォルトでは、`stop`、`pause`、または `resume` フラグが指定されていない限り、コマンドはディレクターの再生を開始します。
 
 <div class="config-table">
 
 | パラメーター | 型 | 説明 |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="プライマリパラメーター：パラメーターIDを指定せずに、コマンド識別子の後に値を指定します。必須パラメーター：このパラメーターは常に指定する必要があります。">name</span> | string | 「Playable Director」コンポーネントがアタッチされている、シーン上のアクティブなゲームオブジェクトの名前。 |
+| <span class="command-param-primary command-param-required" title="プライマリパラメーター：パラメーターIDを指定せずに、コマンド識別子の後に値を指定します。必須パラメーター：このパラメーターは常に指定する必要があります。">name</span> | string | `Playable Director` コンポーネントがアタッチされている、シーン上のアクティブなゲームオブジェクトの名前。 |
 | stop | boolean | ディレクターを停止するかどうか。 |
 | pause | boolean | ディレクターを一時停止するかどうか。 |
 | resume | boolean | ディレクターを再開するかどうか。 |
@@ -2040,17 +2040,17 @@ Kohaku: 再びリンクされたプリンターを使用します。
 </div>
 
 ```nani
-; シーン上の 'Cutscene001' ゲームオブジェクトにアタッチされたディレクターコンポーネントに
+; シーン上の「Cutscene001」ゲームオブジェクトにアタッチされたディレクターコンポーネントに
 ; 関連するタイムラインの再生を開始させ、完了を待機します。
 @timeline Cutscene001 wait!
 
-; 'The Other Cutscene' ゲームオブジェクトにアタッチされたディレクターを停止します。
+; 「The Other Cutscene」ゲームオブジェクトにアタッチされたディレクターを停止します。
 @timeline "The Other Cutscene" stop!
 ```
 
 ## title
 
-エンジンの状態をリセットし、「Title」スクリプト（スクリプト構成で割り当てられている場合）の再生を開始します。
+エンジンの状態をリセットし、`Title` スクリプト（スクリプト構成で割り当てられている場合）の再生を開始します。
 
 ```nani
 ; タイトルメニューに戻ります。
@@ -2076,10 +2076,10 @@ Kohaku: 再びリンクされたプリンターを使用します。
 </div>
 
 ```nani
-; 内容が 'Hello World!' のデフォルトのトーストを表示します。
+; 内容が「Hello World!」のデフォルトのトーストを表示します。
 @toast "Hello World!"
 
-; 'warning' 外観のトーストを表示します。
+; 「warning」外観のトーストを表示します。
 @toast "危険です！" appearance:warning
 
 ; トーストは1秒で消えます。
@@ -2091,7 +2091,7 @@ Kohaku: 再びリンクされたプリンターを使用します。
 コマンドの実行開始時に表示されているもの（UIを除く）で実際のシーンコンテンツをマスクし、ネストされたコマンドを実行してシーンを変更し、指定された [トランジションエフェクト](/ja/guide/special-effects#トランジションエフェクト) で終了するシーントランジションを実行します。<br/><br/> このコマンドはアクターの外観のトランジションと同様に機能しますが、シーン全体を対象とします。複数のアクターやその他の可視エンティティを、トランジションエフェクト付きで一括して新しい状態に変更するために使用します。
 
 ::: info NOTE
-トランジションの進行中（ネストされたコマンドの実行中）、UIは非表示になり、ユーザー入力はブロックされます。トランジション処理を担当する `ISceneTransitionUI` をオーバーライドすることで、これを変更できます。<br/><br/> 非同期のネストされたコマンドは、それぞれに `time:0` を指定しなくてもすぐに実行されます。<br/><br/> ネストされたブロックは常に終了することが期待されています。ネストされたブロックの外に移動する可能性のあるコマンドをネストしないでください。未定義の動作が発生する可能性があります。
+トランジションの進行中（ネストされたコマンドの実行中）、UIは非表示になり、入力はブロックされます。トランジション処理を担当する `ISceneTransitionUI` をオーバーライドすることで、これを変更できます。<br/><br/> 非同期のネストされたコマンドは、それぞれに `time:0` を指定しなくてもすぐに実行されます。<br/><br/> ネストされたブロックは常に終了することが期待されています。ネストされたブロックの外に移動する可能性のあるコマンドをネストしないでください。未定義の動作が発生する可能性があります。
 :::
 
 <div class="config-table">
@@ -2100,21 +2100,21 @@ Kohaku: 再びリンクされたプリンターを使用します。
 | --- | --- | --- |
 | <span class="command-param-primary" title="プライマリパラメーター：パラメーターIDを指定せずに、コマンド識別子の後に値を指定します。">transition</span> | string | 使用する [トランジションエフェクト](/ja/guide/special-effects#トランジションエフェクト) のタイプ（デフォルトではクロスフェードが使用されます）。 |
 | params | number list | トランジションエフェクトのパラメーター。 |
-| dissolve | string | [カスタムディゾルブ](/ja/guide/special-effects#ディゾルブマスク) テクスチャへのパス（パスは `Resources` フォルダーに対する相対パスである必要があります）。トランジションが `Custom` モードに設定されている場合にのみ効果があります。 |
+| dissolve | string | [カスタムディゾルブ](/ja/guide/special-effects#ディゾルブマスク) テクスチャへのパス（パスは「Resources」フォルダーに対する相対パスである必要があります）。トランジションが `Custom` モードに設定されている場合にのみ効果があります。 |
 | easing | string | トランジションに使用する [イージング関数](/ja/guide/special-effects#アニメーションイージング) の名前。 |
 | time | number | トランジションの時間（秒単位）。 |
 
 </div>
 
 ```nani
-; 'Felix' キャラクターと晴れた雰囲気で初期シーンを設定します。
+; 「Felix」キャラクターと晴れた雰囲気で初期シーンを設定します。
 @char Felix
 @back SunnyDay
 @sun power:1
 Felix: なんていい天気だ！
 
-; 'DropFade' トランジションエフェクトを使用して3秒かけて
-; 'Jenna' キャラクターと雨の雰囲気の新しいシーンにトランジションします。
+; 「Jenna」キャラクターと雨の雰囲気の新しいシーンに、
+; 「DropFade」トランジションエフェクトを使用して3秒かけてトランジションします。
 @trans DropFade time:3
     @hide Felix
     @char Jenna
@@ -2141,16 +2141,16 @@ Jenna: このいまいましい雨はいつ止むの？
 </div>
 
 ```nani
-; "dead" 変数がfalseの場合に "まだ生きています！" を表示し、
-; それ以外の場合は "もうおしまいです。" を表示します。
+; 「dead」変数がfalseの場合に「まだ生きています！」を表示し、
+; それ以外の場合は「もうおしまいです。」を表示します。
 @unless dead
     まだ生きています！
 @else
     もうおしまいです。
 
-; "score" 変数に応じてテキスト行を表示します：
-;   "テスト結果：合格。" - scoreが10以上の場合。
-;   "テスト結果：不合格。" - scoreが10未満の場合。
+; 「score」変数に応じてテキスト行を表示します：
+;   「テスト結果：合格。」 - scoreが10以上の場合。
+;   「テスト結果：不合格。」 - scoreが10未満の場合。
 テスト結果：[unless score<10]合格。[else]不合格。[endif]
 ```
 
@@ -2168,13 +2168,13 @@ Jenna: このいまいましい雨はいつ止むの？
 </div>
 
 ```nani
-; 'Dialogue' プリンターを話者 'Kohaku' と 'Yuko' からリンク解除します。
+; 「Dialogue」プリンターを話者「Kohaku」と「Yuko」からリンク解除します。
 @unlinkPrinter Dialogue from:Kohaku,Yuko
 
-; 話者 'Kohaku' からすべてのプリンターをリンク解除します。
+; 話者「Kohaku」からすべてのプリンターをリンク解除します。
 @unlinkPrinter from:Kohaku
 
-; 'Dialogue' プリンターをすべての話者からリンク解除します。
+; 「Dialogue」プリンターをすべての話者からリンク解除します。
 @unlinkPrinter Dialogue
 
 ; すべてのプリンターをすべての話者からリンク解除します。
@@ -2194,7 +2194,7 @@ Jenna: このいまいましい雨はいつ止むの？
 </div>
 
 ```nani
-; 'TestScene2' シーンを加算モードでロードしてからアンロードします。
+; 「TestScene2」シーンを加算モードでロードしてからアンロードします。
 @loadScene TestScene2 additive!
 @unloadScene TestScene2
 ```
@@ -2216,7 +2216,7 @@ Jenna: このいまいましい雨はいつ止むの？
 </div>
 
 ```nani
-; ID 'FightScene1' のアンロック可能CGレコードをアンロックします。
+; ID「FightScene1」のアンロック可能CGレコードをアンロックします。
 @unlock CG/FightScene1
 ```
 
@@ -2231,8 +2231,8 @@ Jenna: このいまいましい雨はいつ止むの？
 | authorId | string | このボイスが属するキャラクターアクターのID。指定され、[話者ごとの音量](/ja/guide/voicing#話者の音量) が使用されている場合、音量はそれに応じて調整されます。 |
 | group | string | オーディオを再生するときに使用するオーディオミキサー [グループパス](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | loop | boolean | 再生が終了したときに、停止されるまで最初から繰り返すかどうか。 |
-| volume | number | オーディオ再生の音量。範囲は0.0から1.0。1.0がデフォルトで、クリッピングなしにデジタルオーディオを0 dBFS基準より大きく再生することはできません。 |
-| pitch | number | 再生の知覚上の周波数（速度）。範囲は [-3.0から3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) で、1.0が通常の速度です。負の値はオーディオを逆再生します。 |
+| volume | number | オーディオ再生の音量（0.0〜1.0の範囲）。1.0がデフォルトであることに注意してください。クリッピングなしにデジタルオーディオを0 dBFS基準より大きく再生することはできません。 |
+| pitch | number | 再生の知覚上の周波数（速度）。[-3.0〜3.0](https://docs.unity3d.com/ScriptReference/AudioSource-pitch.html) の範囲で、1.0が通常の速度です。負の値はオーディオを逆再生します。 |
 | pos | number list | オーディオソースの位置（シーン境界に対する相対的なパーセンテージ）。位置は次のように記述されます：`0,0` は左下、`50,50` は中央、`100,100` はシーンの右上隅です。Z成分（3番目のメンバー、例：`,,10`）を使用して深度を変更します。 |
 | wpos | number list | オーディオソースの位置（ワールド空間）。`pos` と `wpos` のどちらも指定しない場合、空間モードは無効になります。 |
 | wait | boolean | オーディオの再生が終わるまで待ってから次のコマンドを実行するかどうか。ループ再生時は効果がありません。 |
@@ -2245,19 +2245,19 @@ Jenna: このいまいましい雨はいつ止むの？
 </div>
 
 ```nani
-; 'Rawr' ボイスリソースを低いピッチで再生します。
+; 「Rawr」ボイスリソースを低いピッチで再生します。
 @voice Rawr pitch:0.5
 ```
 
 ## wait
 
-指定された待機条件が満たされるまで、スクリプトの実行を保留します。
+指定された待機条件が満たされるまで、スクリプトの実行を一時停止します。
 
 <div class="config-table">
 
 | パラメーター | 型 | 説明 |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="プライマリパラメーター：パラメーターIDを指定せずに、コマンド識別子の後に値を指定します。必須パラメーター：このパラメーターは常に指定する必要があります。">waitMode</span> | string | 待機条件：<br/> - `i` ユーザーが続行またはスキップ入力キーを押す。<br/> - `0.0` タイマー（秒）。<br/> - `i0.0` 続行またはスキップ入力キーでスキップ可能なタイマー。 |
+| <span class="command-param-primary command-param-required" title="プライマリパラメーター：パラメーターIDを指定せずに、コマンド識別子の後に値を指定します。必須パラメーター：このパラメーターは常に指定する必要があります。">waitMode</span> | string | 待機条件：<br/> - `i` プレイヤーが続行またはスキップ入力キーを押す。<br/> - `0.0` タイマー（秒）。<br/> - `i0.0` 続行またはスキップ入力キーでスキップ可能なタイマー。 |
 
 </div>
 
@@ -2303,3 +2303,4 @@ Lorem ipsum[-] dolor sit amet.
     @else
         正解！
 ```
+

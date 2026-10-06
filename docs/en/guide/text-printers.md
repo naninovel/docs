@@ -7,13 +7,13 @@ Printers' behaviour can be configured using the `Naninovel -> Configuration -> T
 In scenario scripts, text printers are mostly controlled with the [@print] and [@printer] commands:
 
 ```nani
-; Will make the "Dialogue" printer default
+; Make the "Dialogue" printer default
 @printer Dialogue
 
-; Will make the "Fullscreen" printer default
+; Make the "Fullscreen" printer default
 @printer Fullscreen
 
-; Will print the phrase using a default printer
+; Print the phrase using a default printer
 @print text:"Lorem ipsum dolor sit amet."
 
 ; The same as above, but using a generic text line
@@ -31,7 +31,7 @@ The autoplay feature allows the script to automatically continue execution on aw
 
 ![](https://i.gyazo.com/e6f58f861fa18bd62591db9794e7641b.mp4)
 
-Wait-for-user-input or `[-]` commands halt script execution until the user activates a `Continue` input; they are typically used after printing a text message. When in autoplay mode, `[-]` commands will instead halt script execution for a period of time and then finish, allowing execution of the following command. The halt period depends on the length of the last printed text message and is further modified by the "Auto delay" game setting.
+Wait-for-input or `[-]` commands halt script execution until the player activates a `Continue` input; they are typically used after printing a text message. When in autoplay mode, `[-]` commands will instead halt script execution for a period of time and then finish, allowing execution of the following command. The halt period depends on the length of the last printed text message and is further modified by the "Auto delay" game setting.
 
 Autoplay mode can be toggled using the `AutoPlay` input (`A` key by default) or the "AUTO" button in the control panel.
 
@@ -41,13 +41,13 @@ The text skipping feature allows fast-forwarding execution of [@print] commands,
 
 ![](https://i.gyazo.com/9605a5c8cd1911217350d77712f47e7d.mp4)
 
-Skip mode can be toggled using the `Skip` input (`Ctrl` key by default) or the "SKIP" button in the control panel.
+Skip mode can be engaged by holding the `Skip` input (`Ctrl` key by default) or toggled using the `ToggleSkip` input (`Tab` key by default) or the "SKIP" button in the control panel.
 
-By default, skip mode is only available while executing commands that have already been executed in the past; eg if the user hasn't already read the text that is going to be printed, skip mode won't be available. This can be changed in the game settings using the "Skip mode" setting.
+By default, skip mode is only available while executing commands that have already been executed in the past; eg if the player hasn't already read the text that is going to be printed, skip mode won't be available. This can be changed in the game settings using the "Skip mode" setting.
 
 ## Printer Backlog
 
-Printer backlog is a feature allowing the user to re-read previously printed text, review selected choices, replay voiced lines and (optionally) roll back to logged messages.
+Printer backlog is a feature allowing the player to re-read previously printed text, review selected choices, replay voiced lines and (optionally) roll back to logged messages.
 
 ![](https://i.gyazo.com/cf9c11c242907e0eae7f5f1b4e2b9f38.mp4)
 
@@ -276,7 +276,7 @@ Below is a video demonstration of the ruby tags in action.
 
 ![](https://www.youtube.com/watch?v=aWdq7YxIxkE)
 
-## Right to Left (Arabic) Text
+## Right-to-Left (Arabic) Text
 
 Support for RTL text reveal effects can be enabled in all built-in printers.
 
@@ -302,7 +302,7 @@ Font Render Mode: Distance Field 16
 ```
 
 ::: tip EXAMPLE
-For a complete example of setting up a custom TextMesh Pro printer with right-to-left (Arabic) text support, see the [RTL sample](/guide/samples#rtl).
+For a complete example of setting up a custom TMPro printer with right-to-left (Arabic) text support, see the [RTL sample](/guide/samples#rtl).
 :::
 
 ::: info NOTE
@@ -353,7 +353,7 @@ Use the `Reveal Broadcaster` component attached to the revealable text object of
 
 ![](https://i.gyazo.com/b0fad2439f2b2136a3b3c13f84f365d2.png)
 
-Built-in printers also have the **Play Command** option enabled. This will make the component attempt to parse and execute the event body (the part after `@`) as a command. For example, the following will tint the background when "dolor" is revealed:
+Built-in printers also have the `Play Command` option enabled. This will make the component attempt to parse and execute the event body (the part after `@`) as a command. For example, the following will tint the background when "dolor" is revealed:
 
 ```nani
 Lorem ipsum dolor<@back tint:blue> sit amet.
@@ -396,10 +396,10 @@ A common use case for [reveal expressions](/guide/text-printers#reveal-expressio
 If this is widespread in your scenario, it may become tedious to repeat the full expression syntax each time. In such cases, consider using the select tag:
 
 ```nani
-; Selects a random color.
+; Select a random color.
 My favorite color is </red/blue/green>.
 
-; Selects based on user choice.
+; Select based on player choice.
 Select your pronouns.
 @choice "He/Him" set:selector=0
 @choice "She/Her" set:selector=1
@@ -439,4 +439,4 @@ You can then use it in a scenario as follows:
 <//green/red>
 ```
 
-The select tags are also exposed to the localization docs, allowing translators to adapt the constructs to the target culture as needed.
+The select tags are also exposed to the localization documents, allowing translators to adapt the constructs to the target culture as needed.

@@ -21,7 +21,7 @@ VS Codeレジストリの拡張機能は、現在のNaninovel安定リリース�
 ### 拡張機能のアクティブ化
 
 1. Unityプロジェクトに [Naninovelがインストールされている](/ja/guide/getting-started#naninovelのインストール) ことを確認してください。
-2. VS CodeでUnityプロジェクトの `Assets` フォルダーを開きます。
+2. VS CodeでUnityプロジェクトの「Assets」フォルダーを開きます。
 
 拡張機能が現在のワークスペースで `.nani` ファイルを検出すると、LSPサービスがアクティブになります。サービスは、スクリプト診断、自動補完、現在再生中のスクリプト行の表示などのタスクを処理します。
 
@@ -31,7 +31,7 @@ VS Codeレジストリの拡張機能は、現在のNaninovel安定リリース�
 
 Naninovelは、VS Code拡張機能との通信に必要なプロジェクトメタデータとブリッジングファイルを、生成されたデータディレクトリ（デフォルトでは `Assets/NaninovelData`）の下に生成します。つまり、VS CodeでNaninovelプロジェクトを開く（[ワークスペースルート](https://code.visualstudio.com/docs/editor/workspaces) を選択する）場合、生成されたデータディレクトリをいずれかの階層に含むフォルダーを選択する必要があります。
 
-ただし、一部のユーザーは、生成されたデータディレクトリを含まない、シナリオスクリプトを含むフォルダーのみを開くことを好みます。そのような場合は、`NaninovelData` フォルダーをシナリオスクリプトフォルダーに移動して、VS Codeから見えるようにします。
+ただし、一部のユーザーは、生成されたデータディレクトリを含まない、シナリオスクリプトを含むフォルダーのみを開くことを好みます。そのような場合は、「NaninovelData」フォルダーをシナリオスクリプトフォルダーに移動して、VS Codeから見えるようにします。
 
 変更を有効にするには、フォルダーを移動した後にVS Codeを再起動してください。
 
@@ -245,10 +245,10 @@ Naninovelメタデータは、制作中のプロジェクトに関連付けら�
 
 以下はデフォルトのメタデータプロバイダーです。独自の実装を行う際の参考にしてください。
 
-```csharp
+```cs
 public class DefaultMetadataProvider : IMetadataProvider
 {
-    public Project GetMetadata ()
+    public virtual Project GetMetadata ()
     {
         var meta = new Project();
         var cfg = ProjectConfigurationProvider.LoadOrDefault<ScriptsConfiguration>();
@@ -283,7 +283,7 @@ public class DefaultMetadataProvider : IMetadataProvider
 
 Naninovelは、カスタムコマンドや式クエリのIDE関連機能を有効にするためのいくつかの [C#属性](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes) を提供しています。たとえば、カスタムコマンドやパラメーターにホバー時のドキュメントを追加するには、コマンドの型とパラメーターフィールドにそれぞれ `Doc` 属性を適用します。
 
-```csharp
+```cs
 [Doc("Summary of the custom command.")]
 public class CustomCommand : Command
 {
@@ -294,49 +294,49 @@ public class CustomCommand : Command
 
 パラメーターで、組み込みとカスタム両方の式クエリおよび事前定義された変数の自動補完をサポートするには、`ExpressionContext` 属性を使用します。
 
-```csharp
+```cs
 [ExpressionContext]
 public StringParameter Expression;
 ```
 
 任意の [列挙型](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/enum) の値で自動補完するには、`EnumContext` 属性を使用します。
 
-```csharp
+```cs
 [EnumContext(typeof(PlatformID))]
 public StringParameter Platform;
 ```
 
 ナビゲーションエンドポイント（スクリプトパスとラベル）を自動補完し、その使用状況と正しさを分析するには、`EndpointContext` 属性を使用します。
 
-```csharp
+```cs
 [EndpointContext]
 public StringParameter Path;
 ```
 
 リソースで自動補完するには、`ResourceContext` を使用し、リソースのパスプレフィックスを指定します。以下の例は効果音リソースで補完します。
 
-```csharp
+```cs
 [ResourceContext(AudioConfiguration.DefaultSfxPathPrefix)]
 public StringParameter Audio;
 ```
 
 アクターID（任意のタイプ）で自動補完するには、`ActorContext` 属性を使用します。
 
-```csharp
+```cs
 [ActorContext]
 public StringParameter ActorId;
 ```
 
 特定のタイプのアクターIDで自動補完するには、最初の引数でアクターリソースのパスプレフィックスを指定して `ActorContext` を使用します。以下の例はプリンターIDで補完します。
 
-```csharp
+```cs
 [ActorContext(TextPrintersConfiguration.DefaultPathPrefix)]
 public StringParameter PrinterId;
 ```
 
 現在のコマンドの同じまたは別のパラメーターで指定されたIDを持つアクターの外観を自動補完するには、`AppearanceContext` を使用します。なお、これには同じコマンドで `ActorContext` が指定されている必要があります。
 
-```csharp
+```cs
 [ActorContext(CharactersConfiguration.DefaultPathPrefix)]
 public StringParameter CharacterId;
 [AppearanceContext]
@@ -345,14 +345,14 @@ public StringParameter CharacterAppearance;
 
 `EndpointContext` を除き、上記の各コンテキスト属性では、オプションの `index` 引数を指定できます。名前付きパラメーターと共に使用して、属性がパラメーター値のどの部分に適用されるかを指定します。以下の例では、名前付きパラメーターの名前部分をキャラクターIDで、値部分を現在入力されているキャラクターの外観で自動補完できるようにします（[@char] コマンドのプライマリパラメーターと同様）。
 
-```csharp
+```cs
 [ActorContext(CharactersConfiguration.DefaultPathPrefix, 0), AppearanceContext(1)]
 public NamedStringParameter IdAndAppearance;
 ```
 
 パラメーターコンテキスト属性は、フィールドではなくクラスに適用して、親クラスで宣言されたフィールドのコンテキストを指定（またはオーバーライド）できます。たとえば、`Id` パラメーターは抽象 `ModifyActor` コマンドで宣言されていますが、コンテキストは `ModifyBackground` 派生クラスに適用されます。
 
-```csharp
+```cs
 [ActorContext(BackgroundsConfiguration.DefaultPathPrefix, paramId: "Id")]
 public class ModifyBackground : ModifyActor { }
 ```
@@ -379,7 +379,7 @@ public class ModifyBackground : ModifyActor { }
 
 たとえば、カスタムコマンドの名前付きパラメーターに割り当てられた次の式を見てみましょう（`Quests/...` 列挙型はカスタムメタデータプロバイダーで追加されているものとします）。
 
-```csharp
+```cs
 [EnumContext("Quests/{:QuestId[0]??$EntryScript}", 1)]
 public NamedStringParameter QuestId;
 ```
@@ -388,12 +388,12 @@ public NamedStringParameter QuestId;
 
 [@char] コマンドに適用されている、キャラクターポーズ用の別の例：
 
-```csharp
+```cs
 [EnumContext("Poses/Characters/{:Id??:IdAndAppearance[0]}+Poses/Characters/*", paramId: nameof(Pose))]
 public class ModifyCharacter { ... }
 ```
 
-これにより、共有キャラクターポーズと、「Id」パラメーター（未指定の場合は「IdAndAppearance」パラメーターの名前部分）にIDが指定されているキャラクターのポーズがマージされます。
+これにより、共有キャラクターポーズと、`Id` パラメーター（未指定の場合は `IdAndAppearance` パラメーターの名前部分）にIDが指定されているキャラクターのポーズがマージされます。
 
 列挙式と [カスタムメタデータプロバイダー](/ja/guide/ide-extension#メタデータプロバイダー) を組み合わせることで、IDE拡張機能向けの柔軟な自動補完の仕組みを構築できます。
 

@@ -2,7 +2,7 @@
 
 When working on large projects or with multiple team members modifying scenario scripts or gameplay logic, it's essential to make sure the game functions properly before publishing. Because of their interactive nature, games often require heavy manual testing; but with simpler visual novels it's possible to automate much of the process.
 
-Naninovel provides tools under the `Naninovel.E2E` namespace to help build end-to-end tests by composing sequences of simulated user interactions while the game is running. Combined with [Unity's Test Framework](https://docs.unity3d.com/Packages/com.unity.test-framework@latest), you can build automated test suites that run in the editor, on target devices or in CI.
+Naninovel provides tools under the `Naninovel.E2E` namespace to help build end-to-end tests by composing sequences of simulated player interactions while the game is running. Combined with [Unity's Test Framework](https://docs.unity3d.com/Packages/com.unity.test-framework@latest), you can build automated test suites that run in the editor, on target devices or in CI.
 
 ![](https://i.gyazo.com/92e7eaf5725f098d6d12c83a2b7eb219.png)
 
@@ -28,7 +28,7 @@ If Naninovel is installed as a UPM package, you may also have to [make it testab
 
 The tests run asynchronously, so you'll need to use the `[UnityTest]` attribute and return `IEnumerator` from test methods. For example, here is a simple method that ensures the player can start a new game:
 
-```csharp
+```cs
 [UnityTest]
 public IEnumerator CanStartGame () => new E2E()
     .Once(() => Engine.GetService<IUIManager>().GetUI<ITitleUI>().Visible)
@@ -46,7 +46,7 @@ Disable `Initialize On Application Load` in the engine configuration before runn
 
 To help compose concise test suites, [static-import](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-directive#static-modifier) the `Naninovel.E2E.Shortcuts` class; it contains various helpful shortcuts to make tests more compact and easier to read. For example, here is the above test rewritten with the help of shortcuts:
 
-```csharp
+```cs
 [UnityTest]
 public IEnumerator CanStartGame () => new E2E().StartNew().Ensure(Playing);
 ```
@@ -55,9 +55,9 @@ public IEnumerator CanStartGame () => new E2E().StartNew().Ensure(Playing);
 
 While end-to-end tests should be as close to real usage scenarios as possible, you'll still have to tweak various parameters to make testing practical. For example, you probably wouldn't want to specify click sequences each time the player is expected to click to continue reading; similarly, various effects such as UI fading or camera animations take time during playback, and waiting for them in tests is unnecessary.
 
-To configure the engine specifically when running tests, use various `With` methods available on the `E2E` instance. For example, the snippet below overrides the time scale and reveal delay to make effects run very fast and activates continue input each time it's requested:
+To configure the engine specifically when running tests, use various `With` methods available on the `E2E` instance. For example, the snippet below overrides the time scale and reveal delay to make effects run very fast and activates the `Continue` input each time it's requested:
 
-```csharp
+```cs
 [UnityTest]
 public IEnumerator Test () => new E2E()
     .WithConfig<ScriptPlayerConfiguration>(c => c.SkipTimeScale = 999)
@@ -67,7 +67,7 @@ public IEnumerator Test () => new E2E()
 
 — as this is a common configuration, it can be applied via the `WithFastForward` extension:
 
-```csharp
+```cs
 [UnityTest]
 public IEnumerator Test () => new E2E().WithFastForward()
 ```
@@ -76,7 +76,7 @@ Another common scenario is setting up a clean engine state so that each test sta
 
 You'll probably also want to store test-specific data in memory so it's not serialized to disk. All this can be accomplished with the `WithTransientState` extension; additionally, the method allows specifying initial global and settings state:
 
-```csharp
+```cs
 [UnityTest]
 public IEnumerator WhenTrueCompleteTitleBackChanges () => new E2E()
     .WithTransientState(GlobalStateMap.With(
@@ -96,7 +96,7 @@ When testing branching scenarios, you may find yourself repeating common interac
 
 Below is a sample test that ensures the "TrueRoute" UI shows in the title menu after the player completes the common, X and Y routes:
 
-```csharp
+```cs
 [UnityTest]
 public IEnumerator WhenXYRoutesCompleteTrueUnlocks () => new E2E()
     .WithTransientState().WithFastForward()
@@ -136,7 +136,7 @@ As shown above, choices can be referenced in tests via strings like `d1-qte-x`. 
 
 — here we've assigned `my-id-for-choice-1` to the first choice and `my-id-for-choice-2` to the second one; actual IDs can be anything — just make sure they're unique inside the script. You can now reference the choices in the tests via the assigned IDs:
 
-```csharp
+```cs
 Once(Choosing).Choose("my-id-for-choice-2")
 ```
 
@@ -156,7 +156,7 @@ By default, after all E2E tests are finished, a coverage report is logged to the
 
 If you'd like to disable coverage, disable the `Cover` option in the `E2E` constructor, eg:
 
-```csharp
+```cs
 [UnityTest]
 public IEnumerator Test () => new E2E(new Options { Cover = false })
 ```

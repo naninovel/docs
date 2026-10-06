@@ -22,7 +22,7 @@ The `Path Prefix` property allows specifying an additional path over the provide
 
 `Providers List` allows specifying which provider types to use and in which order. For example, in the configuration above, when requesting an audio resource, the addressable provider will be tried first; if it can't find the requested resource, the project provider will be used as a fallback.
 
-Be aware that while in the editor, a special "Editor" resource provider is always used first (no matter the loader configuration). This provider has access to all the resources assigned via Naninovel's configuration and resource manager menus (`Naninovel -> Resources -> ...`). When the game is built, such resources are automatically copied to a temporary "Resources" folder or (when the [Addressables system](https://docs.unity3d.com/Packages/com.unity.addressables@latest) is installed) registered in the Addressables configuration and compiled to asset bundles. Remember to always perform any provider-related tests in builds, not in the Unity Editor.
+Be aware that while in the editor, a special "Editor" resource provider is always used first (no matter the loader configuration). This provider has access to all the resources assigned via Naninovel's configuration and resources manager menus (`Naninovel -> Resources -> ...`). When the game is built, such resources are automatically copied to a temporary "Resources" folder or (when the [Addressables system](https://docs.unity3d.com/Packages/com.unity.addressables@latest) is installed) registered in the Addressables configuration and compiled to asset bundles. Remember to always perform any provider-related tests in builds, not in the Unity Editor.
 
 ## Addressable
 
@@ -90,7 +90,7 @@ The labeling process requires a degree of guessing and isn't always perfect. To 
 The project provider serves assets located in "Resources" folders inside your Unity project. Consult Unity's guide for more information regarding the project [resources loading API](https://docs.unity3d.com/Manual/LoadingResourcesatRuntime).
 
 ::: warning
-In most cases, [using "Resources" folders is discouraged](https://docs.unity3d.com/Manual/UnderstandingPerformanceResourcesFolder.html). Consider assigning resources via a Naninovel resource manager menu when possible or using the Addressables system instead; remember to move the asset out of a "Resources" folder after that.
+In most cases, [using "Resources" folders is discouraged](https://docs.unity3d.com/Manual/UnderstandingPerformanceResourcesFolder.html). Consider assigning resources via a Naninovel resources manager when possible or using the Addressables system instead; remember to move the asset out of a "Resources" folder after that.
 :::
 
 ## Local
@@ -144,7 +144,7 @@ You can find built-in resource provider implementations at the `Naninovel/Runtim
 
 Community modding allows players to modify the build by adding their own scenarios and resources while still having access to the game's built-in resources.
 
-To activate the feature, enable the `Enable Community Modding` property in the Scripts configuration UI (`Naninovel -> Configuration -> Scripts`) and set up a [local](/guide/resource-providers#local) provider for any resources you want to expose for modding. Make sure the local provider's root path is set to the default value (`%DATA%/Resources`) so it will look for resources under the build directory.
+To activate the feature, enable the `Enable Community Modding` property in the scripts configuration menu (`Naninovel -> Configuration -> Scripts`) and set up a [local](/guide/resource-providers#local) provider for any resources you want to expose for modding. Make sure the local provider's root path is set to the default value (`%DATA%/Resources`) so it will look for resources under the build directory.
 
 ![](https://i.gyazo.com/e32f40aa3faa648774908a0a937c5fcb.png)
 
@@ -152,6 +152,6 @@ When the feature is enabled, an "EXTERNAL SCRIPTS" button appears in the title m
 
 Note that the `External Loader` configuration controls which scripts are shown in the external scripts browser, while the `Loader` configuration controls loading of the actual script resources. The External Loader uses a local provider by default, so it only looks for scripts in the game build directory. For other resource types (backgrounds, characters, etc) you must manually set up local providers in the corresponding configuration menus to allow players to add them.
 
-To add external resources to the build, drop them into subfolders under the game's `Resources` directory that correspond to the resource's `Path Prefix` property configured in the `Loader` foldout. For example, to add an external scenario script, drop it into `GameFolder/GameName_Data/Resources/Scripts`; backgrounds go to `GameFolder/GameName_Data/Resources/Backgrounds`, and so on. *GameFolder* and *GameName* depend on the name of your Unity project.
+To add external resources to the build, drop them into subfolders under the game's "Resources" directory that correspond to the resource's `Path Prefix` property configured in the `Loader` foldout. For example, to add an external scenario script, drop it into `GameFolder/GameName_Data/Resources/Scripts`; backgrounds go to `GameFolder/GameName_Data/Resources/Backgrounds`, and so on. *GameFolder* and *GameName* depend on the name of your Unity project.
 
 The external scripts browser UI can be customized or completely replaced using the [UI customization](/guide/gui#ui-customization) feature.

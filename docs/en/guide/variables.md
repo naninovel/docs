@@ -9,7 +9,7 @@ Variable names may contain only letters, numbers, underscores and dots and can't
 You can create and modify variables with the [@set] command (and some parameters of other commands) and use them in any parameter with an expression context, such as the primary parameters of [@if] and [@while]. For example, the following script reroutes execution based on the value of `score`:
 
 ```nani
-; Create a 'score' variable.
+; Create a "score" variable.
 @set score=0
 
 ; At some point, modify the variable based on player choice.
@@ -37,17 +37,17 @@ Even if a command parameter is not of an expression context, you can still injec
 ; Assign 3 variables.
 @set posX=0, posY=0.5, time=1.5
 
-; Inject them into the parameters of the 'char' command.
+; Inject them into the parameters of the "char" command.
 @char Kohaku pos:{posX},{posY} time:{time}
 ```
 
 This is possible inside generic text lines as well:
 
 ```nani
-; Prompt the player to enter text and assign it to the `name` variable.
+; Prompt the player to enter text and assign it to the "name" variable.
 @input name summary:"Choose your name."
 
-; Inject the assigned `name` variable.
+; Inject the assigned "name" variable.
 Archibald: Greetings, {name}!
 ```
 
@@ -60,7 +60,7 @@ You can inject variables into any parameter value as long as the parameter type 
 ```nani
 @set yPos=0.1, tint="lightblue"
 
-; The following will produce an error, as `tint` is not a number.
+; The following will produce an error, as "tint" is not a number.
 @char Kohaku pos:50,{tint}
 
 ; ...and this will execute just fine.
@@ -78,14 +78,14 @@ By default, scenario variables are local to the current game session: when you a
 Meta variables are useful for tracking information that is "meta" to individual game sessions, such as route completion, cumulative game stats or achievements:
 
 ```nani
-; Define the variables to track 'X' and 'Y' routes completion.
+; Define the variables to track "X" and "Y" routes completion.
 @set completeRouteX, completeRouteY to:false meta!
 ...
 
-; Somewhere later in the scripts, when the 'X' route is complete.
+; Somewhere later in the scripts, when the "X" route is complete.
 @set completeRouteX=true
 
-; Now you can show something special in the Title script.
+; Now you can show something special in the title script.
 @if completeRouteX and completeRouteY
     @showUI TrueRouteTitle
 @else
@@ -93,7 +93,7 @@ Meta variables are useful for tracking information that is "meta" to individual 
 ```
 
 ::: tip
-If you want a meta counter that increments only once (even when re-played, eg with rollback or after restarting the game), use the `hasPlayed()` [expression query](/guide/expressions#expression-queries):
+If you want a meta counter that increments only once (even when replayed, eg with rollback or after restarting the game), use the `hasPlayed()` [expression query](/guide/expressions#expression-queries):
 ```nani
 @set metaCounter=0 meta!
 ...
@@ -142,7 +142,7 @@ Default assignment assigns a value to a scenario variable only if the variable d
 To perform a default assignment, either use the `?=` operator or add the `init!` flag when using the [@set] command:
 
 ```nani
-; Initialize 'foo' with the default value of 0.
+; Initialize "foo" with the default value of 0.
 @set foo?=0
 ; Initialize the three variables with default values.
 @set foo=0, bar=false, baz="" init!
@@ -151,7 +151,7 @@ To perform a default assignment, either use the `?=` operator or add the `init!`
 Using the `meta!` or `const!` flags automatically implies default assignment, so you don't have to specify the `?=` operator with them:
 
 ```nani
-; Declare and assign 'false' to both variables tracking route completion.
+; Declare and assign "false" to both variables tracking route completion.
 ; When the same script is played again (eg, on a subsequent game start),
 ; the variables won't be re-assigned.
 @set clearedRouteX, clearedRouteY to:false meta!
@@ -187,22 +187,22 @@ Scenario variables can be accessed in C# via the `IVariableManager` [engine serv
 
 To create a new variable, use the `AddVariable` method:
 
-```csharp
+```cs
 var vars = Engine.GetService<IVariableManager>();
-// Create a 'myVar' string variable with 'Hello World!' value.
+// Create a "myVar" string variable with "Hello World!" value.
 vars.AddVariable(new("myVar", new("Hello World!")));
 ```
 
 To create a meta or constant variable, specify the kind:
 
-```csharp
+```cs
 // Create a boolean meta variable to track route completion.
 vars.AddVariable(new("clearedRouteX", new(false), VariableKind.Meta));
 ```
 
 To get and set variable values, use the `GetValue` and `SetValue` methods, respectively. For example, given that a scenario string variable named `myVar` exists, the code below retrieves its value, appends "Hello!" to it and sets the modified value back:
 
-```csharp
+```cs
 if (vars.GetValue("myVar") is { String: var text })
     vars.SetValue("myVar", new(text + "Hello!"));
 ```
@@ -210,17 +210,17 @@ if (vars.GetValue("myVar") is { String: var text })
 Note the use of the `.String` property when retrieving the actual value of the variable. A variable can be one of three types: `String`, `Numeric` or `Boolean`. The type is determined when the variable is initially assigned in scenario scripts:
 
 ```nani
-; Assign 'foo' variable with a 'Hello World!' string value
+; Assign "foo" variable with a "Hello World!" string value
 @set foo="Hello World!"
 ; Use the string value in expression
 @if foo is "Hello World!"
 
-; Assign 'bar' variable with a numeric value of 42
+; Assign "bar" variable with a numeric value of 42
 @set bar=42
 ; Use the numeric value in expression
 @if bar is above 12
 
-; Assign 'baz' variable with a boolean value of true
+; Assign "baz" variable with a boolean value of true
 @set baz=true
 ; Use the boolean value in expression
 @if baz
@@ -228,20 +228,20 @@ Note the use of the `.String` property when retrieving the actual value of the v
 
 — or in C#:
 
-```csharp
+```cs
 var vars = Engine.GetService<IVariableManager>();
 
-// Assign 'foo' variable with a 'Hello World!' string value
+// Assign "foo" variable with a "Hello World!" string value
 vars.SetValue("foo", new("Hello World!"));
 // Access the assigned string value
 if (vars.GetValue("foo") is { String: "Hello World!" })
 
-// Assign 'bar' variable with a numeric value of 42
+// Assign "bar" variable with a numeric value of 42
 vars.SetValue("bar", new(42));
 // Access the assigned numeric value
 if (vars.GetValue("bar") is { Number: > 12 })
 
-// Assign 'baz' variable with a boolean value of true
+// Assign "baz" variable with a boolean value of true
 vars.SetValue("baz", new(true));
 // Access the assigned boolean value
 if (vars.GetValue("baz") is { Boolean: true })
@@ -249,14 +249,14 @@ if (vars.GetValue("baz") is { Boolean: true })
 
 To check the type of a scenario variable in C#, use the `.Type` property on the value:
 
-```csharp
+```cs
 if (vars.GetValue("bar") is { Type: VariableValueType.Numeric } value)
     if (value.Number > 12) // it's now safe to access the '.Number' value
 ```
 
 Alternatively, use one of the `Try...` overloads:
 
-```csharp
+```cs
 vars.TryGetValue<float>("MyFloatVarName", out var floatValue);
 Debug.Log($"My float variable value: {floatValue}");
 
@@ -278,8 +278,8 @@ vars.TrySetValue("MyBoolVarName", boolValue);
 
 Note that an exception will be thrown if you attempt to call `AddVariable` for a variable that already exists or call `SetValue` for a variable that doesn't exist. If you don't want to check `VariableExists` each time, use the `UpsertValue` helper method — it'll automatically create a new variable if it doesn't exist or just update the value if it does:
 
-```csharp
-// If 'foo' exists — set it to 42;
-// otherwise create 'foo' with the default value of 42.
+```cs
+// If "foo" exists — set it to 42;
+// otherwise create "foo" with the default value of 42.
 vars.UpsertValue("foo", new(42));
 ```

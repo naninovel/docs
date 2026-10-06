@@ -20,7 +20,7 @@ Naninovel 在运行时生成和使用的所有持久数据分为三类：
 
 要将当前游戏状态保存到特定存档槽或从中加载，请按如下方式使用 `IStateManager` 引擎服务：
 
-```csharp
+```cs
 // 获取状态管理器的实例。
 var stateManager = Engine.GetService<IStateManager>();
 
@@ -38,27 +38,27 @@ await stateManager.QuickLoad();
 
 ## 全局状态
 
-某些数据需要跨游戏会话持久保存。例如，“跳过已读文本”功能要求引擎存储哪些剧本脚本命令至少执行过一次（即玩家已经“看过”它们）。此类数据存储在单个“全局”存档槽中，不依赖于游戏的保存和加载操作。
+某些数据需要跨游戏会话持久保存。例如，“Skip Read Text”功能要求引擎存储哪些剧本脚本命令至少执行过一次（即玩家已经“看过”它们）。此类数据存储在单个“全局”存档槽中，不依赖于游戏的保存和加载操作。
 
 全局状态在引擎初始化时自动加载。您可以随时使用 `IStateManager` 保存全局状态：
 
-```csharp
+```cs
 await stateManager.SaveGlobal();
 ```
 
 ## 用户设置
 
-用户设置（例如语言、音量和文本速度）与全局状态类似，存储在单个存档槽中。即使启用了 `Binary Save Files`，设置文件也始终保存为文本 `.json`，以便用户可以根据需要修改值。
+用户设置（例如语言、音量和文本速度）与全局状态类似，存储在单个存档槽中。即使启用了 `Binary Save Files`，设置文件也始终保存为文本 `.json`，以便玩家可以根据需要修改值。
 
 用户设置在引擎初始化时自动加载。您可以随时使用 `IStateManager` 保存设置：
 
-```csharp
+```cs
 await stateManager.SaveSettings();
 ```
 
 ## 存档文件
 
-在可访问文件系统的平台上使用通用序列化处理程序时，所有状态都会写入 Unity [持久数据目录](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html) 下的 `Saves` 文件夹。例如，如果公司名称是 `Foo` 且游戏标题是 `Bar`，路径将是：
+在可访问文件系统的平台上使用通用序列化处理程序时，所有状态都会写入 Unity [持久数据目录](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html) 下的“Saves”文件夹。例如，如果公司名称是 `Foo` 且游戏标题是 `Bar`，路径将是：
 
 ::: code-group
 
@@ -101,7 +101,7 @@ C:/Users/User/AppData/LocalLow/Foo/Bar/Saves
 在 Unity 编辑器中，文件改为存储在 Naninovel 数据文件夹（默认为 `Assets/NaninovelData`）的 `.nani/Transient/Saves` 下。
 
 ::: tip
-云存档服务（例如 [Steam Auto-Cloud](https://partner.steamgames.com/doc/features/cloud#steam_auto-cloud)）应仅同步 `Saves` 文件夹；持久数据目录中的其他文件仅供本设备使用。可以考虑将同步范围限制为 `.nson` 文件，因为 `Settings.json` 包含特定于设备的选项，例如图形质量和输入绑定。Steamworks 文档中有为 Unity 游戏配置路径的 [示例](https://partner.steamgames.com/doc/features/cloud#example)。
+云存档服务（例如 [Steam Auto-Cloud](https://partner.steamgames.com/doc/features/cloud#steam_auto-cloud)）应仅同步“Saves”文件夹；持久数据目录中的其他文件仅供本设备使用。可以考虑将同步范围限制为 `.nson` 文件，因为 `Settings.json` 包含特定于设备的选项，例如图形质量和输入绑定。Steamworks 文档中有为 Unity 游戏配置路径的 [示例](https://partner.steamgames.com/doc/features/cloud#example)。
 :::
 
 ## 自定义状态
@@ -110,7 +110,7 @@ C:/Users/User/AppData/LocalLow/Foo/Bar/Saves
 
 以下示例演示了委托 `MyCustomBehaviour` 组件的状态处理。
 
-```csharp
+```cs
 using UnityEngine;
 using Naninovel;
 
@@ -167,7 +167,7 @@ public class MyCustomBehaviour : MonoBehaviour
 
 如果您的自定义对象是在加载游戏状态后创建的，请使用 `IStateManager.Game` 访问最后加载的状态并手动调用反序列化方法：
 
-```csharp
+```cs
 private async void Start ()
 {
     if (stateManager.Game is { } state)
@@ -179,9 +179,9 @@ private async void Start ()
 在 [库存示例](/zh/guide/samples#库存) 中可以找到一个更高级的示例：使用包含自定义结构体列表的自定义状态来保存和加载库存 UI 的游戏状态。具体来说，自定义状态的序列化/反序列化在 `Scripts/Runtime/Inventory/UI/InventoryUI.cs` 中实现。
 :::
 
-您还可以访问引擎的全局状态和设置状态，随其一起存储自定义数据。与特定于游戏会话并需要订阅保存/加载事件的游戏状态不同，全局状态和设置状态对象是单例，可以直接通过状态管理器的属性访问。
+您还可以访问引擎的全局状态和设置状态，随其一起存储自定义数据。与特定于游戏会话并需要订阅保存和加载事件的游戏状态不同，全局状态和设置状态对象是单例，可以直接通过状态管理器的属性访问。
 
-```csharp
+```cs
 [System.Serializable]
 class MySettings
 {
@@ -209,7 +209,7 @@ MyGlobal MyGlobal
 
 状态对象按类型索引。在某些情况下，您可能有同一类型的多个对象实例，每个实例都有自己的状态。`GetState` 和 `SetState` 方法都允许提供可选的 `instanceId` 参数来区分此类对象，例如：
 
-```csharp
+```cs
 [System.Serializable]
 class MonsterState
 {
@@ -230,7 +230,7 @@ var monster2 = stateMap.GetState<MonsterState>("2");
 
 下面是一个自定义设置序列化处理程序的示例，它仅在其任何方法被调用时记录日志。
 
-```csharp
+```cs
 using Naninovel;
 using System;
 using UnityEngine;

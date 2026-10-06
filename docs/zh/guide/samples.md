@@ -1,6 +1,6 @@
 # 示例
 
-虽然 Naninovel 包已经包含了几个 [基础示例](/zh/guide/getting-started#演示示例) 来帮助您上手视觉小说和对话模式这两种使用场景，但我们还提供了一组额外的专用示例来演示常见的开发用例。请继续阅读，了解如何访问这些示例以及每个示例的简要说明。
+虽然 Naninovel 包已经包含了几个 [演示示例](/zh/guide/getting-started#演示示例) 来帮助您上手视觉小说和对话模式这两种使用场景，但我们还提供了一组额外的专用示例来演示常见的开发用例。请继续阅读，了解如何访问这些示例以及每个示例的简要说明。
 
 ## 访问示例
 
@@ -36,7 +36,7 @@
 
 ## 编译器本地化
 
-要在示例项目中激活编译器本地化，请将 `Settings/Naninovel/CompilerRu` 资产分配给脚本配置中的 `Compiler Localization` 字段。然后重新启动 Unity 编辑器和 VS Code 扩展。现在您可以使用 VS Code 打开项目并运行 `Compiler Localization` 示例剧本。
+要在示例项目中激活编译器本地化，请将 `Settings/Naninovel/CompilerRu` 资产分配给脚本配置菜单中的 `Compiler Localization` 字段。然后重新启动 Unity 编辑器和 VS Code 扩展。现在您可以使用 VS Code 打开项目并运行 `Compiler Localization` 示例剧本。
 
 ![](https://i.gyazo.com/fde9998597ffedb8a025401bb2f71ce9.png)
 
@@ -86,13 +86,13 @@ Inventory UI 组件具有 `Capacity` 属性，您可以通过它更改库存中�
 
 也可以使用 [Addressable 资产系统](/zh/guide/resource-providers#addressable) 手动公开资源。要公开资产，请为其分配一个地址，该地址等于使用上述方法时的路径，但省略 `Resources/` 部分。例如，要公开 `FullPlate.prefab` 物品，请为预制件分配地址 `Naninovel/Inventory/FullPlate`。请注意，在编辑器中时，始终首先使用特殊的“Editor”资源提供者；只有未通过编辑器菜单分配的资源才会尝试使用 Addressable 提供者。
 
-每个物品都有一个 `Stack Count Limit` 属性来限制这种类型的物品可以在单个库存栏位中堆叠多少个，以及一个 `On Item Used` Unity 事件，该事件在物品被使用时调用（通过 `@useItem` 命令或当用户单击库存中的物品时）。下面是一个示例，说明如何使用 `Play Script` 组件设置该事件，以便在使用物品后将其移除、生成故障特殊效果并打印文本消息。
+每个物品都有一个 `Stack Count Limit` 属性来限制这种类型的物品可以在单个库存栏位中堆叠多少个，以及一个 `On Item Used` Unity 事件，该事件在物品被使用时调用（通过 `@useItem` 命令或当玩家单击库存中的物品时）。下面是一个示例，说明如何使用 `Play Script` 组件设置该事件，以便在使用物品后将其移除、生成故障特殊效果并打印文本消息。
 
 ![](https://i.gyazo.com/010a9ba35db607ba46d78eda3513f678.png)
 
 您可以使用 `@addItem` 命令向库存添加物品，并使用 `@removeItem`（或 `@removeItemAt`、`@removeAllItems`）将其移除。物品 ID 等于物品预制件名称。库存栏位 ID 等于网格栏位索引（例如，第一个栏位是 0，第二个是 1，依此类推）。
 
-为了方便起见，还提供了 `itemExist()` 和 `itemCount()` 自定义 [表达式查询](/zh/guide/expressions#表达式查询) 来检查物品是否存在于库存中以及获取现有物品的数量。
+为了方便起见，还提供了 `itemExist()` 和 `itemCount()` 自定义 [表达式查询](/zh/guide/expressions#表达式查询)：前者检查物品是否存在于库存中，后者返回现有物品的数量。
 
 以下是示例项目中的脚本：
 
@@ -128,7 +128,7 @@ Inventory UI 组件具有 `Capacity` 属性，您可以通过它更改库存中�
 ## 本地化
 
 - 生成的本地化文档存储在 `Content/Localization` 目录中。
-- 生成的表格存储在示例项目根目录下的 `Sheets` 目录中。
+- 生成的表格存储在示例项目根目录下的“Sheets”目录中。
 - 本地化专用的字体存储在 `Content/Fonts` 中。
 
 为本地化工具选择的文件夹：
@@ -299,7 +299,7 @@ Visual Scripting 不会自动公开库中的所有可用类型，因此请将所
 
 如果您希望从剧本脚本向可视化脚本图或状态机发送事件，下面是一个 [自定义命令](/zh/guide/custom-commands) 的示例，它将尝试查找具有所提供名称的游戏对象，并发送具有指定名称和参数的事件：
 
-```csharp
+```cs
 [Serializable, Alias("bolt")]
 public class BroadcastBoltEvent : Command
 {
@@ -329,7 +329,7 @@ public class BroadcastBoltEvent : Command
 只需将内容复制粘贴到存储在项目 Assets 目录内任何位置的新 C# 脚本中，命令就会自动可用，并可按如下方式使用：
 
 ```nani
-; 使用提供的参数将 "MyEvent" 发送到 "ExampleEvent" 游戏对象
+; 使用提供的参数将“MyEvent”发送到“ExampleEvent”游戏对象
 @bolt object:ExampleEvent name:MyEvent args:ExampleMessage,Script002
 ```
 

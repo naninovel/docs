@@ -2,7 +2,7 @@
 
 大規模なプロジェクトに取り組んでいる場合や、複数のチームメンバーがシナリオスクリプトやゲームプレイロジックを変更している場合、公開前にゲームが正常に機能することを確認することが不可欠です。インタラクティブな性質のため、ゲームは多くの場合、大量の手動テストを必要としますが、比較的単純なビジュアルノベルでは、プロセスの大部分を自動化できます。
 
-Naninovelは、ゲームの実行中にシミュレートされたユーザーインタラクションのシーケンスを組み合わせることで、エンドツーエンドのテストを構築するのに役立つツールを `Naninovel.E2E` 名前空間で提供します。[UnityのTest Framework](https://docs.unity3d.com/Packages/com.unity.test-framework@latest) と組み合わせると、エディター、ターゲットデバイス、またはCIで実行される自動テストスイートを構築できます。
+Naninovelは、ゲームの実行中にシミュレートされたプレイヤーインタラクションのシーケンスを組み合わせることで、エンドツーエンドテストを構築するのに役立つツールを `Naninovel.E2E` 名前空間で提供します。[UnityのTest Framework](https://docs.unity3d.com/Packages/com.unity.test-framework@latest) と組み合わせると、エディター、ターゲットデバイス、またはCIで実行される自動テストスイートを構築できます。
 
 ![](https://i.gyazo.com/92e7eaf5725f098d6d12c83a2b7eb219.png)
 
@@ -28,7 +28,7 @@ NaninovelがUPMパッケージとしてインストールされている場合�
 
 テストは非同期で実行されるため、`[UnityTest]` 属性を使用し、テストメソッドから `IEnumerator` を返す必要があります。たとえば、プレイヤーが新しいゲームを開始できることを確認する簡単なメソッドは次のとおりです。
 
-```csharp
+```cs
 [UnityTest]
 public IEnumerator CanStartGame () => new E2E()
     .Once(() => Engine.GetService<IUIManager>().GetUI<ITitleUI>().Visible)
@@ -46,7 +46,7 @@ public IEnumerator CanStartGame () => new E2E()
 
 簡潔なテストスイートを作成しやすくするために、`Naninovel.E2E.Shortcuts` クラスを [静的インポート](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-directive#static-modifier) します。これには、テストをよりコンパクトで読みやすくするためのさまざまな便利なショートカットが含まれています。たとえば、上記のテストをショートカットを使用して書き直したものは次のとおりです。
 
-```csharp
+```cs
 [UnityTest]
 public IEnumerator CanStartGame () => new E2E().StartNew().Ensure(Playing);
 ```
@@ -55,9 +55,9 @@ public IEnumerator CanStartGame () => new E2E().StartNew().Ensure(Playing);
 
 エンドツーエンドテストは可能な限り実際のユースケースに近いものであるべきですが、それでもテストを実用的にするにはさまざまなパラメーターを調整する必要があります。たとえば、プレイヤーが読み続けるためにクリックすることが期待されるたびにクリックシーケンスを指定したくないでしょう。同様に、UIのフェードやカメラアニメーションなどのさまざまな効果は再生中に時間がかかりますが、テストでそれらを待つ必要はありません。
 
-テストの実行時専用にエンジンを構成するには、`E2E` インスタンスで使用可能なさまざまな `With` メソッドを使用します。たとえば、以下のスニペットは、タイムスケールと表示遅延をオーバーライドして効果を非常に高速に実行し、要求されるたびに続行入力をアクティブにします。
+テストの実行時専用にエンジンを構成するには、`E2E` インスタンスで使用可能なさまざまな `With` メソッドを使用します。たとえば、以下のスニペットは、タイムスケールと表示遅延をオーバーライドして効果を非常に高速に実行し、要求されるたびに `Continue` 入力をアクティブにします。
 
-```csharp
+```cs
 [UnityTest]
 public IEnumerator Test () => new E2E()
     .WithConfig<ScriptPlayerConfiguration>(c => c.SkipTimeScale = 999)
@@ -67,7 +67,7 @@ public IEnumerator Test () => new E2E()
 
 — これはよく使う構成であるため、`WithFastForward` 拡張メソッドを介して適用できます。
 
-```csharp
+```cs
 [UnityTest]
 public IEnumerator Test () => new E2E().WithFastForward()
 ```
@@ -76,7 +76,7 @@ public IEnumerator Test () => new E2E().WithFastForward()
 
 また、テスト固有のデータはメモリに保持して、ディスクにシリアル化されないようにしたいでしょう。これらはすべて `WithTransientState` 拡張メソッドで実現できます。さらに、このメソッドでは初期のグローバル状態および設定状態を指定できます。
 
-```csharp
+```cs
 [UnityTest]
 public IEnumerator WhenTrueCompleteTitleBackChanges () => new E2E()
     .WithTransientState(GlobalStateMap.With(
@@ -96,7 +96,7 @@ public IEnumerator WhenTrueCompleteTitleBackChanges () => new E2E()
 
 以下は、プレイヤーが共通、X、およびYルートを完了した後にタイトルメニューに「TrueRoute」UIが表示されることを確認するサンプルテストです。
 
-```csharp
+```cs
 [UnityTest]
 public IEnumerator WhenXYRoutesCompleteTrueUnlocks () => new E2E()
     .WithTransientState().WithFastForward()
@@ -136,7 +136,7 @@ ISequence RouteY => On(Choosing, Choose(), Var("completedY", false));
 
 — ここでは、最初の選択肢に `my-id-for-choice-1` を、2番目の選択肢に `my-id-for-choice-2` を割り当てました。実際のIDは何でもかまいませんが、スクリプト内で一意であることを確認してください。これで、割り当てられたIDを介してテストで選択肢を参照できます。
 
-```csharp
+```cs
 Once(Choosing).Choose("my-id-for-choice-2")
 ```
 
@@ -156,7 +156,7 @@ Once(Choosing).Choose("my-id-for-choice-2")
 
 カバレッジを無効にする場合は、`E2E` コンストラクターで `Cover` オプションを無効にします。例：
 
-```csharp
+```cs
 [UnityTest]
 public IEnumerator Test () => new E2E(new Options { Cover = false })
 ```

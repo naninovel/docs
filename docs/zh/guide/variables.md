@@ -9,7 +9,7 @@
 您可以使用 [@set] 命令（以及其他命令的某些参数）创建和修改变量，并在任何具有表达式上下文的参数中使用它们，如 [@if] 和 [@while] 的主参数。例如，以下脚本会根据 `score` 的值改变执行流程：
 
 ```nani
-; 创建 'score' 变量。
+; 创建“score”变量。
 @set score=0
 
 ; 在某个时刻，根据玩家选择修改变量。
@@ -37,17 +37,17 @@
 ; 为 3 个变量赋值。
 @set posX=0, posY=0.5, time=1.5
 
-; 将它们注入到 'char' 命令的参数中。
+; 将它们注入到“char”命令的参数中。
 @char Kohaku pos:{posX},{posY} time:{time}
 ```
 
 通用文本行中也可以这样做：
 
 ```nani
-; 提示玩家输入文本并将其赋给 `name` 变量。
+; 提示玩家输入文本并将其赋给“name”变量。
 @input name summary:"请选择你的名字。"
 
-; 注入已赋值的 `name` 变量。
+; 注入已赋值的“name”变量。
 Archibald: 你好，{name}！
 ```
 
@@ -60,7 +60,7 @@ Archibald: 你好，{name}！
 ```nani
 @set yPos=0.1, tint="lightblue"
 
-; 以下会产生错误，因为 `tint` 不是数值。
+; 以下会产生错误，因为“tint”不是数值。
 @char Kohaku pos:50,{tint}
 
 ; ...而这会正常执行。
@@ -78,11 +78,11 @@ Archibald: 你好，{name}！
 元变量适合追踪独立于单个游戏会话的“元”信息，例如路线完成情况、累计游戏统计数据或成就：
 
 ```nani
-; 定义用于追踪 'X' 和 'Y' 路线完成情况的变量。
+; 定义用于追踪“X”和“Y”路线完成情况的变量。
 @set completeRouteX, completeRouteY to:false meta!
 ...
 
-; 稍后在脚本中，当 'X' 路线完成时。
+; 稍后在脚本中，当“X”路线完成时。
 @set completeRouteX=true
 
 ; 现在您可以在标题脚本中显示特别内容。
@@ -142,7 +142,7 @@ Archibald: 你好，{name}！
 要执行默认赋值，可以使用 `?=` 运算符，或在使用 [@set] 命令时添加 `init!` 标志：
 
 ```nani
-; 使用默认值 0 初始化 'foo'。
+; 使用默认值 0 初始化“foo”。
 @set foo?=0
 ; 使用默认值初始化这三个变量。
 @set foo=0, bar=false, baz="" init!
@@ -151,7 +151,7 @@ Archibald: 你好，{name}！
 使用 `meta!` 或 `const!` 标志会自动隐含默认赋值，因此不需要再与它们一起指定 `?=` 运算符：
 
 ```nani
-; 声明并将 'false' 赋给这两个用于追踪路线完成情况的变量。
+; 声明并将“false”赋给这两个用于追踪路线完成情况的变量。
 ; 当同一个脚本再次播放时（例如在下一次开始游戏时），
 ; 这些变量不会被重新赋值。
 @set clearedRouteX, clearedRouteY to:false meta!
@@ -187,22 +187,22 @@ Archibald: 你好，{name}！
 
 要创建新变量，请使用 `AddVariable` 方法：
 
-```csharp
+```cs
 var vars = Engine.GetService<IVariableManager>();
-// 创建值为 'Hello World!' 的 'myVar' 字符串变量。
+// 创建值为“Hello World!”的“myVar”字符串变量。
 vars.AddVariable(new("myVar", new("Hello World!")));
 ```
 
 要创建元变量或常量变量，请指定种类：
 
-```csharp
+```cs
 // 创建用于追踪路线完成情况的布尔元变量。
 vars.AddVariable(new("clearedRouteX", new(false), VariableKind.Meta));
 ```
 
 要获取和设置变量值，请分别使用 `GetValue` 和 `SetValue` 方法。例如，假设存在名为 `myVar` 的剧本字符串变量，下面的代码会获取其值，向其追加“Hello!”，然后将修改后的值设置回去：
 
-```csharp
+```cs
 if (vars.GetValue("myVar") is { String: var text })
     vars.SetValue("myVar", new(text + "Hello!"));
 ```
@@ -210,17 +210,17 @@ if (vars.GetValue("myVar") is { String: var text })
 请注意，在获取变量的实际值时使用了 `.String` 属性。变量可以是三种类型之一：`String`、`Numeric` 或 `Boolean`。类型由变量在剧本脚本中首次赋值时决定：
 
 ```nani
-; 将字符串值 'Hello World!' 赋给 'foo' 变量
+; 将字符串值“Hello World!”赋给“foo”变量
 @set foo="Hello World!"
 ; 在表达式中使用字符串值
 @if foo is "Hello World!"
 
-; 将数值 42 赋给 'bar' 变量
+; 将数值 42 赋给“bar”变量
 @set bar=42
 ; 在表达式中使用数值
 @if bar is above 12
 
-; 将布尔值 true 赋给 'baz' 变量
+; 将布尔值 true 赋给“baz”变量
 @set baz=true
 ; 在表达式中使用布尔值
 @if baz
@@ -228,20 +228,20 @@ if (vars.GetValue("myVar") is { String: var text })
 
 — 或在 C# 中：
 
-```csharp
+```cs
 var vars = Engine.GetService<IVariableManager>();
 
-// 将字符串值 'Hello World!' 赋给 'foo' 变量
+// 将字符串值“Hello World!”赋给“foo”变量
 vars.SetValue("foo", new("Hello World!"));
 // 访问已赋的字符串值
 if (vars.GetValue("foo") is { String: "Hello World!" })
 
-// 将数值 42 赋给 'bar' 变量
+// 将数值 42 赋给“bar”变量
 vars.SetValue("bar", new(42));
 // 访问已赋的数值
 if (vars.GetValue("bar") is { Number: > 12 })
 
-// 将布尔值 true 赋给 'baz' 变量
+// 将布尔值 true 赋给“baz”变量
 vars.SetValue("baz", new(true));
 // 访问已赋的布尔值
 if (vars.GetValue("baz") is { Boolean: true })
@@ -249,14 +249,14 @@ if (vars.GetValue("baz") is { Boolean: true })
 
 要在 C# 中检查剧本变量的类型，请使用值上的 `.Type` 属性：
 
-```csharp
+```cs
 if (vars.GetValue("bar") is { Type: VariableValueType.Numeric } value)
-    if (value.Number > 12) // 现在可以安全地访问 '.Number' 值
+    if (value.Number > 12) // 现在可以安全地访问“.Number”值
 ```
 
 或者，使用其中一个 `Try...` 重载：
 
-```csharp
+```cs
 vars.TryGetValue<float>("MyFloatVarName", out var floatValue);
 Debug.Log($"My float variable value: {floatValue}");
 
@@ -276,10 +276,10 @@ boolValue = !boolValue;
 vars.TrySetValue("MyBoolVarName", boolValue);
 ```
 
-请注意，如果对已存在的变量调用 `AddVariable`，或对不存在的变量调用 `SetValue`，都会抛出异常。如果您不想每次都检查 `VariableExists`，可以使用 `UpsertValue` 辅助方法；如果变量不存在，它会自动创建新变量，如果变量已存在，则只更新其值：
+请注意，如果对已存在的变量调用 `AddVariable`，或对不存在的变量调用 `SetValue`，都会抛出异常。如果您不想每次都检查 `VariableExists`，可以使用 `UpsertValue` 辅助方法——如果变量不存在，它会自动创建新变量，如果变量已存在，则只更新其值：
 
-```csharp
-// 如果 'foo' 存在，则将其设为 42；
-// 否则使用默认值 42 创建 'foo'。
+```cs
+// 如果“foo”存在，则将其设为 42；
+// 否则使用默认值 42 创建“foo”。
 vars.UpsertValue("foo", new(42));
 ```

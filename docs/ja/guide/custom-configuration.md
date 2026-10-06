@@ -6,7 +6,7 @@
 
 C#を介して構成オブジェクトにアクセスするには、`Engine.GetConfiguration<T>()` を使用します。ここで `T` は、アクセスする構成オブジェクトの型です。たとえば、次の例は [オーディオ構成](/ja/guide/configuration#オーディオ) オブジェクトにアクセスする方法を示しています。
 
-```csharp
+```cs
 var audioConfig = Engine.GetConfiguration<AudioConfiguration>();
 ```
 
@@ -16,7 +16,7 @@ var audioConfig = Engine.GetConfiguration<AudioConfiguration>();
 
 `Engine.GetConfiguration` を使用するにはエンジンが初期化されている必要がありますが（構成プロバイダーに依存するため）、エンジンが初期化されていない場合でも、デフォルトのプロバイダーを介して直接構成アセットにアクセスできます。例：
 
-```csharp
+```cs
 var config = ProjectConfigurationProvider.LoadOrDefault<AudioConfiguration>();
 ```
 
@@ -24,7 +24,7 @@ var config = ProjectConfigurationProvider.LoadOrDefault<AudioConfiguration>();
 
 以下は、エンジンの初期化直後にカメラ構成の `ReferenceResolution` プロパティを変更する例です。
 
-```csharp
+```cs
 using Naninovel;
 using UnityEngine;
 
@@ -55,7 +55,7 @@ Naninovelは、エンジンが初期化済みの状態で構成が変更され�
 
 新しいカスタム構成を追加するには、`Configuration` を継承するC#クラスを作成します。
 
-```csharp
+```cs
 [EditInProjectSettings]
 public class MyCustomConfiguration : Configuration
 {
@@ -76,7 +76,7 @@ public class MyCustomConfiguration : Configuration
 
 C#を介してカスタム構成にアクセスするには、組み込みアセットと同じAPIを使用します。
 
-```csharp
+```cs
 var myConfig = Engine.GetConfiguration<MyCustomConfiguration>();
 ```
 
@@ -88,11 +88,11 @@ var myConfig = Engine.GetConfiguration<MyCustomConfiguration>();
 
 ## 組み込みエディターのオーバーライド
 
-`OverrideSettings` 属性を `ConfigurationSettings<T>`（またはその派生クラス）から継承したエディタークラスに適用することで、組み込み構成エディター（Naninovelのプロジェクト設定メニュー）をオーバーライドできます。ここで `T` は構成の型です。カスタムエディタースクリプトは、エディターアセンブリに含まれるように `Editor` フォルダーの下に保存します。
+`OverrideSettings` 属性を `ConfigurationSettings<T>`（またはその派生クラス）から継承したエディタークラスに適用することで、組み込み構成エディター（Naninovelのプロジェクト設定メニュー）をオーバーライドできます。ここで `T` は構成の型です。カスタムエディタースクリプトは、エディターアセンブリに含まれるように「Editor」フォルダーの下に保存します。
 
 以下は、組み込みのキャラクターマネージャー構成エディターをオーバーライドする例です。新しいエディターは、`Shared Poses` フィールドの下に共有ポーズの総数を示すラベルを追加します。
 
-```csharp
+```cs
 [OverrideSettings]
 public class CustomCharacterSettings : CharactersSettings
 {
@@ -116,7 +116,7 @@ public class CustomCharacterSettings : CharactersSettings
 
 組み込みのアクターメタデータエディターをオーバーライドすることもできます。以下のコードは、編集中のアクターの `Message Color` フィールドの下に、アクターの表示名と色の値を示すラベルを挿入します。
 
-```csharp
+```cs
 [OverrideSettings]
 public class CustomCharacterSettings : CharactersSettings
 {
@@ -152,7 +152,7 @@ public class CustomCharacterSettings : CharactersSettings
 
 以下は、デフォルトの構成オブジェクトを返すカスタムプロバイダー実装の例です。
 
-```csharp
+```cs
 public class CustomConfigurationProvider : IConfigurationProvider
 {
     public Configuration GetConfiguration (System.Type type)
@@ -165,7 +165,7 @@ public class CustomConfigurationProvider : IConfigurationProvider
 
 実行時にメタデータを注入するためにプロジェクトのキャラクター構成をオーバーライドする別の例：
 
-```csharp
+```cs
 public class CustomConfigurationProvider : ProjectConfigurationProvider
 {
     public override Configuration GetConfiguration (System.Type type)
@@ -191,11 +191,11 @@ public class CustomConfigurationProvider : ProjectConfigurationProvider
 }
 ```
 
-カスタム構成プロバイダーの準備ができたら、カスタムエンジン初期化スクリプトを作成して、組み込みのものの代わりにそれを使用するようにエンジンに指示します。デフォルトでは、エンジンは `Naninovel/Runtime/Engine/RuntimeInitializer.cs` を介して初期化されます。参考として自由に使用してください。
+カスタム構成プロバイダーの準備ができたら、エンジンの初期化を行うカスタムスクリプトを作成して、組み込みのものの代わりにそれを使用するようにエンジンに指示します。デフォルトでは、エンジンは `Naninovel/Runtime/Engine/RuntimeInitializer.cs` を介して初期化されます。参考として自由に使用してください。
 
-あるいは、カスタム構成プロバイダーを使用したいだけで、デフォルトのエンジン初期化ルーチンはそのまま維持したい場合は、オプションの構成プロバイダー引数を受け取る `RuntimeInitializer.Initialize(IConfigurationProvider)` の使用を検討してください。
+あるいは、カスタム構成プロバイダーを使用したいだけで、エンジンの初期化ルーチンはデフォルトのまま維持したい場合は、オプションの構成プロバイダー引数を受け取る `RuntimeInitializer.Initialize(IConfigurationProvider)` の使用を検討してください。
 
-```csharp
+```cs
 public class CustomInitializer
 {
     [RuntimeInitializeOnLoadMethod]

@@ -82,7 +82,7 @@
 @bgm PianoTheme
 ```
 
-这里的“PianoTheme”是 `Path` *string* 参数的值。
+这里的“PianoTheme”是 `path` *string* 参数的值。
 
 每个命令只能有一个主参数，并且应始终在任何其他参数之前指定它。
 
@@ -147,7 +147,7 @@ Felix: Lorem ipsum dolor sit amet.
 所有命令（[标准](/zh/api/) 和 [自定义](/zh/guide/custom-commands)）都可以使用方括号（`[ ]`）内联（注入）到通用文本行中：
 
 ```nani
-Felix: Lorem[char Felix.Happy pos:0.5] ipsum![sfx Explosion] Dolor sit amet.
+Felix: Lorem[char Felix.Happy pos:50] ipsum![sfx Explosion] Dolor sit amet.
 ```
 
 请注意，内联命令语法与常规命令完全相同，只是省略了 `@` 符号并且命令主体包裹在方括号中。本质上，您可以将任何命令行内联到通用文本中，它将具有相同的效果，只是会根据其在文本消息中的位置在不同的时刻生效。
@@ -190,7 +190,7 @@ Lorem ipsum dolor sit amet.[>]
 
 ```nani
 ; 该行的作者将是 Kohaku 和 Yuko 两个 Actor，
-; 但打印机上的显示名称将显示 '大家'。
+; 但打印机上的显示名称将显示“大家”。
 Kohaku,Yuko: 你好！[< as:"大家"]
 
 ; 第一部分以 50% 的速度打印，
@@ -201,7 +201,7 @@ Lorem[< speed:0.5] world![< speed:2.5 nowait!]
 该命令将指定的参数应用于放置在它之前的最后一段文本，即使其他命令内联在 `<` 和文本之间：
 
 ```nani
-; 速度仍然适用于 "你好" 部分，
+; 速度仍然适用于“你好”部分，
 ; 即使参数位于内联命令之后。
 你好[-][< speed:0.5]，世界！
 ```
@@ -213,7 +213,7 @@ Lorem[< speed:0.5] world![< speed:2.5 nowait!]
 使用 `[]`（空的内联命令）作为通用文本行边界的分隔符：
 
 ```nani
-; 打印 "Some text  continuation."（中间有 2 个空格）
+; 打印“Some text  continuation.”（中间有 2 个空格）
 @group
     ; 保留第一部分末尾的空白。
     Some text []
@@ -290,10 +290,10 @@ Naninovel 支持四种类型的端点语法，允许您在某些情况下编写�
 这是默认语法，包含从 [剧本根目录](/zh/guide/scenario-scripting#剧本根目录) 开始的脚本完整路径。它始终受支持且不依赖于当前脚本的位置，但需要包含直到目标脚本的所有目录：
 
 ```nani
-; 导航到 'Assets/Scenario/Prologue.nani' 脚本的开头。
+; 导航到“Assets/Scenario/Prologue.nani”脚本的开头。
 @goto Prologue
-; 导航到 'Assets/Scenario/CommonRoute/Day1/Scene1.nani' 脚本中的
-; 'Action' 标签。
+; 导航到“Assets/Scenario/CommonRoute/Day1/Scene1.nani”脚本中的
+; “Action”标签。
 @goto CommonRoute/Day1/Scene1#Action
 ```
 
@@ -302,7 +302,7 @@ Naninovel 支持四种类型的端点语法，允许您在某些情况下编写�
 仅当导航到当前脚本内的标签时才支持此语法。它仅包含标签：
 
 ```nani
-; 导航到当前脚本中的 'Action'。
+; 导航到当前脚本中的“Action”。
 @goto #Action
 ```
 
@@ -311,13 +311,13 @@ Naninovel 支持四种类型的端点语法，允许您在某些情况下编写�
 相对路径通过映射相对于当前脚本的路径来简化端点语法：
 
 ```nani
-; 假设我们在 'Assets/Scenario/CommonRoute/Day1/Scene1.nani' 中，
-; 导航到同一目录中的 'Scene2.nani' 文件。
+; 假设我们在“Assets/Scenario/CommonRoute/Day1/Scene1.nani”中，
+; 导航到同一目录中的“Scene2.nani”文件。
 @goto ./Scene2
-; 导航到当前目录之上一级的 'Day2' 目录中的 'Scene1.nani' 文件。
+; 导航到当前目录之上一级的“Day2”目录中的“Scene1.nani”文件。
 @goto ../Day2/Scene1
-; 导航到当前目录之上两级的 'RouteX' 目录中的
-; 'SceneX.nani' 文件。
+; 导航到当前目录之上两级的“RouteX”目录中的
+; “SceneX.nani”文件。
 @goto ../../RouteX/SceneX
 ```
 
@@ -326,11 +326,11 @@ Naninovel 支持四种类型的端点语法，允许您在某些情况下编写�
 如果您想避免在路径中包含目录，可以使用通配符路径，仅指定脚本名称。这仅在脚本名称在整个项目中唯一时才有效：
 
 ```nani
-; 导航到 'Prologue.nani' 脚本，无论它位于何处。
+; 导航到“Prologue.nani”脚本，无论它位于何处。
 @goto */Prologue
-; 这将导致错误，因为有多个 'Scene1.nani' 文件。
+; 这将导致错误，因为有多个“Scene1.nani”文件。
 @goto */Scene1
-; 这样可行，因为 'Day1' 文件夹下只有一个 'Scene1.nani' 文件。
+; 可行，因为“Day1”下只有一个“Scene1.nani”。
 @goto */Day1/Scene1
 ```
 
@@ -358,7 +358,7 @@ Lorem ipsum[shake Camera ver:true wait:false] dolor sit amet.
 只有在以下情况下才需要使用完整的布尔形式：您想通过 [剧本表达式](/zh/guide/expressions) 动态计算该值时，例如：
 
 ```nani
-; 如果 "score" 变量高于 10，则使 Kohaku 可见。
+; 如果“score”变量高于 10，则使 Kohaku 可见。
 @char Kohaku visible:{score>10}
 ```
 
@@ -381,21 +381,21 @@ Lorem ipsum[shake Camera ver:true wait:false] dolor sit amet.
 默认情况下，脚本线性执行，但您可以使用所有命令都支持的 `if` 或 `unless` 参数引入分支。
 
 ```nani
-; 如果 "level" 大于 9000，则添加该选项。
+; 如果“level”大于 9000，则添加该选项。
 @choice "超过 9000 了！" if: level above 9000
 
-; 如果 "dead" 为 false，则执行打印命令。
+; 如果“dead”为 false，则执行打印命令。
 @print "我还活着。" if: not dead
 
 ; 相同但更简洁。
 @print "我还活着。" unless:dead
 
-; 如果 "insane" 为 true 或者 1 到 10 范围内的 random 函数
-; 返回 5 或更多，则执行 "@glitch" 命令。
+; 如果“insane”为 true 或者 1 到 10 范围内的 random 函数
+; 返回 5 或更多，则执行“@glitch”命令。
 @glitch if: insane or random(1, 10) is at least 5
 
-; 如果 "score" 在 7 到 13 之间或者 "lucky" 为 true，
-; 则导航到 "LuckyEnd" 脚本。
+; 如果“score”在 7 到 13 之间或者“lucky”为 true，
+; 则导航到“LuckyEnd”脚本。
 @goto LuckyEnd if: (score is at least 7 and score is at most 13) or lucky
 
 ; 也可以改用布尔运算符（结果与上面相同）。
@@ -405,7 +405,7 @@ Lorem ipsum[shake Camera ver:true wait:false] dolor sit amet.
 Lorem sit amet. [sfx Applause if:score>=10]Consectetur elit.
 
 ; 转义表达式中的双引号。
-@print {remark} if: remark = "说 \"停车\" 是个错误。"
+@print {remark} if: remark = "Saying \"Stop the car\" was a mistake."
 ```
 
 ### 条件块
@@ -413,11 +413,11 @@ Lorem sit amet. [sfx Applause if:score>=10]Consectetur elit.
 您可以使用 [@if] 和 [@else] [嵌套](/zh/guide/scenario-scripting#嵌套) 多行条件块：
 
 ```nani
-; 根据 "score" 变量打印文本行：
-; "你失败了。再试一次！" - 当 score 为 6 或更低时。
-; "你通过了测试。" 和 "太棒了！" - 当 score 高于 8 时。
-; "你通过了测试。" 和 "令人印象深刻！" - 当 score 高于 7 时。
-; "你通过了测试。" 和 "干得好！" - 其他情况。
+; 根据“score”变量打印文本行：
+; “你失败了。再试一次！” - 当 score 为 6 或更低时。
+; “你通过了测试。”和“太棒了！” - 当 score 高于 8 时。
+; “你通过了测试。”和“令人印象深刻！” - 当 score 高于 7 时。
+; “你通过了测试。”和“干得好！” - 其他情况。
 @if score is above 6
     你通过了测试。
     @if score is above 8
@@ -433,25 +433,25 @@ Lorem sit amet. [sfx Applause if:score>=10]Consectetur elit.
 条件块也可以在文本行内内联使用，并用 [@endif] 标记结束：
 
 ```nani
-; 根据 "score" 变量打印文本行：
-; "测试结果：失败。" - 当 score 为 6 或更低时。
-; "测试结果：完美！" - 当 score 高于 8 时。
-; "测试结果：通过。" - 其他情况。
+; 根据“score”变量打印文本行：
+; “测试结果：失败。” - 当 score 为 6 或更低时。
+; “测试结果：完美！” - 当 score 高于 8 时。
+; “测试结果：通过。” - 其他情况。
 测试结果：[if score>8]完美！[or score>6]通过。[else]失败。[endif]
 ```
 
 要指定反向条件，请使用 [@unless]：
 
 ```nani
-; 如果 dead 为 false，则打印 "你还活着！"，否则打印 "你完了。"
+; 如果 dead 为 false，则打印“你还活着！”，否则打印“你完了。”
 @unless dead
     你还活着！
 @else
     你完了。
 
-; 根据 "score" 变量打印文本行：
-; "测试结果：通过。" - 当 score 为 10 或更高时。
-; "测试结果：失败。" - 当 score 低于 10 时。
+; 根据“score”变量打印文本行：
+; “测试结果：通过。” - 当 score 为 10 或更高时。
+; “测试结果：失败。” - 当 score 低于 10 时。
 测试结果：[unless score<10]通过。[else]失败。[endif]
 ```
 
@@ -511,7 +511,7 @@ Lorem sit amet. [sfx Applause if:score>=10]Consectetur elit.
 
 ## 异步执行
 
-某些命令的执行可能会持续一段时间。例如，[@hide] 命令将在设定的时间内淡出指定的 Actor，该时间可以通过 `time` 参数更改。考虑以下情形：
+某些命令的执行可能会持续一段时间。例如，[@hide] 命令将在设定的时间内淡出指定的 Actor，该时间可以通过 `time` 参数更改。考虑以下示例：
 
 ```nani
 @hide Kohaku
@@ -580,7 +580,7 @@ Lorem sit amet. [sfx Applause if:score>=10]Consectetur elit.
 在上面的循环示例中，您可能会想：我们应该如何停止循环？或者如果我们想等待一个非循环的异步剧本块完成后再继续怎么办？这时异步任务就派上用场了！使用 [@async] 命令的可选主参数为该命令执行的异步任务指定一个名称，稍后您可以在 [@stop] 或 [@await] 命令中使用该名称来停止（取消）或等待该任务：
 
 ```nani
-; 启动 'Quake' 异步任务。
+; 启动“Quake”异步任务。
 @async Quake loop!
     @spawn Pebbles
     @shake Camera
@@ -660,9 +660,9 @@ Lorem sit amet. [sfx Applause if:score>=10]Consectetur elit.
 
 @async Boom
     @wait 60
-    ; 60 秒后，如果 'Boom' 任务未停止，
+    ; 60 秒后，如果“Boom”任务未停止，
     ; 下面的 @sync 命令将强制主轨道移动到此处，
-    ; 然后导航到 'BadEnd' 脚本。
+    ; 然后导航到“BadEnd”脚本。
     @sync
     @goto BadEnd
 
@@ -671,7 +671,7 @@ Lorem sit amet. [sfx Applause if:score>=10]Consectetur elit.
 拆弹谜题 2。
 拆弹谜题 3。
 
-; 'Boom' 异步任务已停止，因此主轨道
+; “Boom”异步任务已停止，因此主轨道
 ; 将继续执行而不中断。
 @stop Boom
 炸弹已拆除！
@@ -711,7 +711,7 @@ print.AuthorLabel = CommandParameter.Ref(otherPrint.AuthorLabel);
 要在剧本脚本中引用现有的本地化文本，请在标识符前加上 `&`：
 
 ```nani
-; 显示带有 "一些文本" 的选项，然后打印相同的文本。
+; 显示带有“一些文本”的选项，然后打印相同的文本。
 @choice "一些文本|#SOMEID|"
 @print |#&SOMEID|
 ```
@@ -731,8 +731,8 @@ print.AuthorLabel = CommandParameter.Ref(otherPrint.AuthorLabel);
 @stop
 
 # OnNewGame
-; 以下命令将在玩家单击 "NEW GAME" 时执行。
-; 请注意，这里会等待 "stopBgm" 命令完成，以便音乐
+; 以下命令将在玩家单击“NEW GAME”时执行。
+; 请注意，这里会等待“stopBgm”命令完成，以便音乐
 ; 在新游戏开始加载之前完全停止。
 @sfx NewGameSoundEffect
 @stopBgm wait!
@@ -745,7 +745,7 @@ print.AuthorLabel = CommandParameter.Ref(otherPrint.AuthorLabel);
 @stop
 
 # OnExit
-; 以下命令将在玩家单击 "EXIT" 时执行。
+; 以下命令将在玩家单击“EXIT”时执行。
 @sfx ExitGameEffect
 @wait 1.5
 @stop

@@ -24,7 +24,7 @@ Naninovel 的设计对非程序员十分友好，不需要编程知识即可创�
 
 Naninovel 可以支持任何语言，但要显示某些语言的文本，您需要兼容的字体。有关更多信息，请参阅 [本地化指南](/zh/guide/localization#字体) 的“字体”部分。
 
-## 购买后可以获得源代码吗？
+## 购买 Naninovel 后可以获得源代码吗？
 
 所有与 Unity 相关的源代码都在分发包中提供。通用的 Naninovel 模块预编译为动态程序集，源代码托管在 [私有 GitHub 存储库](https://github.com/naninovel/engine) 上，您可以在 [注册许可证](https://naninovel.com/register) 后访问。
 
@@ -50,7 +50,7 @@ Naninovel 的使用受以下最终用户许可协议（EULA）约束：[naninove
 
 当屏幕纵横比与参考分辨率比例不同时，背景 Actor 默认会尝试匹配屏幕，这可能会导致裁剪；有关更多信息，请参阅 [匹配模式指南](/zh/guide/backgrounds#匹配模式)。
 
-## 如何在打印文本中间插入命令？
+## 如何在打印的文本消息中间插入命令？
 
 使用 [命令内联](/zh/guide/scenario-scripting#命令内联)。
 

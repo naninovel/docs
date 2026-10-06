@@ -1,6 +1,6 @@
 # エンジンアーキテクチャ
 
-エンジンは、**シーン独立性** と **サービス指向** という原則を念頭に置いて設計されています。
+エンジンは、**シーン独立性**と**サービス指向**という原則を念頭に置いて設計されています。
 
 ## シーン独立性
 
@@ -12,7 +12,7 @@ Unityの設計ではシーンの使用とプレハブの組み合わせが推奨
 - ランタイム（ビルドおよびエディターのプレイモード）用の `Naninovel<Runtime>`
 - エディター（プレイモード外）用の `Naninovel<Editor>`
 
-必要なすべてのゲームオブジェクトは、[RuntimeInitializeOnLoadMethod](https://docs.unity3d.com/ScriptReference/RuntimeInitializeOnLoadMethodAttribute.html) メソッドを介して、アプリケーションの起動時（プレイモードに入った直後、またはビルドの実行直後）に自動的かつ非同期に実行されるエンジン初期化時に作成されます。初期化の流れをカスタマイズするには、[手動初期化ガイド](/ja/guide/integration-options#手動初期化) を参照してください。
+必要なすべてのゲームオブジェクトは、[RuntimeInitializeOnLoadMethod](https://docs.unity3d.com/ScriptReference/RuntimeInitializeOnLoadMethodAttribute.html) メソッドを介して、アプリケーションの起動時（プレイモードに入った直後、またはビルドの実行直後）に自動的かつ非同期に実行されるエンジンの初期化時に作成されます。初期化の流れをカスタマイズするには、[手動初期化ガイド](/ja/guide/integration-options#手動初期化) を参照してください。
 
 ::: info NOTE
 シーンに依存しない設計がプロジェクトに合わない場合は、エンジン構成メニューの `Scene Independent` オプションを無効にしてください。その場合、すべてのNaninovel関連オブジェクトはアクティブなUnityシーンの一部になり、シーンがアンロードされると破棄されます。
@@ -24,7 +24,7 @@ Unityの設計ではシーンの使用とプレハブの組み合わせが推奨
 
 エンジンシステムとやり取りする必要がある場合は、通常、エンジンサービスを使用します。静的メソッド `Engine.GetService<TService>()` を使用してサービスへの参照を取得できます。ここで、`TService` は必要なサービスのインターフェース型です。たとえば、`IScriptPlayer` サービスを取得するには次のようにします。
 
-```csharp
+```cs
 var player = Engine.GetService<IScriptPlayer>();
 player.MainTrack.Stop();
 ```

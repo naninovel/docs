@@ -21,7 +21,7 @@ The extension in the VS Code registry is compatible with the current stable Nani
 ### Activate the Extension
 
 1. Make sure [Naninovel is installed](/guide/getting-started#install-naninovel) in the Unity project.
-2. Open the `Assets` folder of the Unity project in VS Code.
+2. Open the "Assets" folder of the Unity project in VS Code.
 
 When the extension detects a `.nani` file in the current workspace, it will activate the LSP service. The service handles tasks such as script diagnostics, auto-completion and indicating which script line is currently playing.
 
@@ -31,7 +31,7 @@ When the extension detects a `.nani` file in the current workspace, it will acti
 
 Naninovel generates project metadata and bridging files required for communication with the VS Code extension under the generated data directory (`Assets/NaninovelData` by default). This means that when opening Naninovel projects in VS Code (selecting the [workspace root](https://code.visualstudio.com/docs/editor/workspaces)), you need to select a folder that includes the generated data directory at some level.
 
-Some users, however, prefer to open only the folder containing the scenario scripts, which doesn't include the generated data directory. In such cases, move the `NaninovelData` folder into the scenario scripts folder to make it visible to VS Code.
+Some users, however, prefer to open only the folder containing the scenario scripts, which doesn't include the generated data directory. In such cases, move the "NaninovelData" folder into the scenario scripts folder to make it visible to VS Code.
 
 Restart VS Code after moving the folder for the changes to take effect.
 
@@ -245,10 +245,10 @@ To fill generated metadata with additional custom values or override defaults, c
 
 Below is the default metadata provider, which you can use as a reference when implementing your own:
 
-```csharp
+```cs
 public class DefaultMetadataProvider : IMetadataProvider
 {
-    public Project GetMetadata ()
+    public virtual Project GetMetadata ()
     {
         var meta = new Project();
         var cfg = ProjectConfigurationProvider.LoadOrDefault<ScriptsConfiguration>();
@@ -283,7 +283,7 @@ public class DefaultMetadataProvider : IMetadataProvider
 
 Naninovel provides several [C# attributes](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes) to enable IDE-related functionality for custom commands and expression queries. For example, to add on-hover documentation to custom commands and/or parameters, apply the `Doc` attribute to the command type and to parameter fields, respectively:
 
-```csharp
+```cs
 [Doc("Summary of the custom command.")]
 public class CustomCommand : Command
 {
@@ -294,49 +294,49 @@ public class CustomCommand : Command
 
 To make a parameter support auto-completion with both built-in and custom expression queries and predefined variables, use the `ExpressionContext` attribute:
 
-```csharp
+```cs
 [ExpressionContext]
 public StringParameter Expression;
 ```
 
 To auto-complete with values from an arbitrary [enumeration type](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/enum), use the `EnumContext` attribute:
 
-```csharp
+```cs
 [EnumContext(typeof(PlatformID))]
 public StringParameter Platform;
 ```
 
 To auto-complete and analyze usage and correctness of navigation endpoints (script path and label), use the `EndpointContext` attribute:
 
-```csharp
+```cs
 [EndpointContext]
 public StringParameter Path;
 ```
 
 To auto-complete with a resource, use `ResourceContext` and provide a path prefix for the resources. The example below will complete with sound effect resources:
 
-```csharp
+```cs
 [ResourceContext(AudioConfiguration.DefaultSfxPathPrefix)]
 public StringParameter Audio;
 ```
 
 To auto-complete with an actor ID (of any type), use the `ActorContext` attribute:
 
-```csharp
+```cs
 [ActorContext]
 public StringParameter ActorId;
 ```
 
 To auto-complete with an actor ID of a specific type, use `ActorContext` with the first argument specifying the path prefix of the actor resources. The example below will complete with printer IDs:
 
-```csharp
+```cs
 [ActorContext(TextPrintersConfiguration.DefaultPathPrefix)]
 public StringParameter PrinterId;
 ```
 
 To auto-complete appearances of an actor with an ID specified in the same or another parameter in the current command, use `AppearanceContext`. Note that this requires `ActorContext` to be specified in the same command:
 
-```csharp
+```cs
 [ActorContext(CharactersConfiguration.DefaultPathPrefix)]
 public StringParameter CharacterId;
 [AppearanceContext]
@@ -345,14 +345,14 @@ public StringParameter CharacterAppearance;
 
 Except for `EndpointContext`, each of the above context attributes allows providing an optional `index` argument. Use it with named parameters to specify which part of the parameter value the attribute applies to. The example below will allow auto-completing the name part of the named parameter with character IDs and the value part with appearances for the currently typed character (similar to the primary parameter of the [@char] command):
 
-```csharp
+```cs
 [ActorContext(CharactersConfiguration.DefaultPathPrefix, 0), AppearanceContext(1)]
 public NamedStringParameter IdAndAppearance;
 ```
 
 The parameter context attributes can be applied to a class instead of fields to specify (or override) the contexts for fields declared in parent classes. For example, while the `Id` parameter is declared in the abstract `ModifyActor` command, the context is applied to the `ModifyBackground` derived class:
 
-```csharp
+```cs
 [ActorContext(BackgroundsConfiguration.DefaultPathPrefix, paramId: "Id")]
 public class ModifyBackground : ModifyActor { }
 ```
@@ -379,7 +379,7 @@ Expression syntax:
 
 For example, consider the expression assigned to a named parameter of a custom command, assuming the `Quests/...` enums are added via a custom metadata provider:
 
-```csharp
+```cs
 [EnumContext("Quests/{:QuestId[0]??$EntryScript}", 1)]
 public NamedStringParameter QuestId;
 ```
@@ -388,12 +388,12 @@ When the name component of the parameter is assigned `foo`, it will evaluate to 
 
 Another example, applied to the [@char] command for character poses:
 
-```csharp
+```cs
 [EnumContext("Poses/Characters/{:Id??:IdAndAppearance[0]}+Poses/Characters/*", paramId: nameof(Pose))]
 public class ModifyCharacter { ... }
 ```
 
-This will merge shared character poses with poses for characters whose ID is assigned to the "Id" parameter or (when not assigned) the name component of the "IdAndAppearance" parameter.
+This will merge shared character poses with poses for characters whose ID is assigned to the `Id` parameter or (when not assigned) the name component of the `IdAndAppearance` parameter.
 
 Enum expressions combined with [custom metadata providers](/guide/ide-extension#metadata-provider) allow creating flexible auto-completion scenarios for the IDE extension.
 

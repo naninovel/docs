@@ -9,10 +9,10 @@ Characters' behaviour can be configured using the `Naninovel -> Configuration ->
 In scenario scripts, characters are controlled with the [@char] command:
 
 ```nani
-; Shows character with name "Sora" with a default appearance.
+; Show character with ID "Sora" with a default appearance.
 @char Sora
 
-; Same as above, but sets appearance to "Happy".
+; Same as above, but set appearance to "Happy".
 @char Sora.Happy
 
 ; Same as above, but also positions the character 45% away from the left
@@ -22,7 +22,7 @@ In scenario scripts, characters are controlled with the [@char] command:
 ```
 
 ::: tip
-Rather than tuning numeric parameters by hand, use [Scene Recording](/guide/scene-recording) to arrange actors and the camera with Unity's scene gizmos and automatically generate the matching NaniScript commands.
+Rather than tuning numeric parameters by hand, use [scene recording](/guide/scene-recording) to arrange actors and the camera with Unity's Scene view gizmos and automatically generate the matching NaniScript commands.
 :::
 
 ## Actor Records
@@ -190,7 +190,7 @@ To show only the avatar of a character inside a text printer, but hide the chara
 In case you're constantly changing avatars while the character itself should remain hidden, consider disabling `Auto Show On Modify` in the characters configuration menu; when disabled, you won't have to specify `!visible` to change any parameters of the character while it's hidden.
 
 ::: info NOTE
-The **avatars are not directly connected with character appearances** and shouldn't be considered as a way to represent a character on the scene. Avatars are a standalone feature that "injects" an arbitrary image into a compatible text printer. In case you want an actual character to appear inside a text printer (or a custom UI), check the [render actor to texture](/guide/characters#render-to-texture) feature.
+The **avatars are not directly connected with character appearances** and shouldn't be considered as a way to represent a character in the scene. Avatars are a standalone feature that "injects" an arbitrary image into a compatible text printer. In case you want an actual character to appear inside a text printer (or a custom UI), check the [render actor to texture](/guide/characters#render-to-texture) feature.
 :::
 
 ## Speaker Highlight
@@ -234,15 +234,15 @@ Link a printer with a [narrator character](/guide/characters#narrator-characters
 To link and unlink printers at runtime, use the [@linkPrinter] and [@unlinkPrinter] commands. Additionally, it's possible to temporarily link all authors to a specific printer by nesting commands under [@printer].
 
 ```nani
-; Use 'Fullscreen' by default for unauthored lines.
+; Use "Fullscreen" by default for unauthored lines.
 @linkPrinter Fullscreen to:DefaultAuthor
-; 'Kohaku' will use the 'Wide' printer by default.
+; "Kohaku" will use the "Wide" printer by default.
 @linkPrinter Wide to:Kohaku
 
 This is printed with 'Fullscreen'.
 Kohaku: And I'm printing with 'Wide'!
 
-; Enforce 'Dialogue' for nested commands.
+; Enforce "Dialogue" for nested commands.
 @printer Dialogue
     This is printed with 'Dialogue'.
     Kohaku: I have to use 'Dialogue' now.
@@ -250,7 +250,7 @@ Kohaku: And I'm printing with 'Wide'!
 Back to 'Fullscreen'.
 Kohaku: And I can use my 'Wide' again!
 
-; Unlink whatever printer is linked to 'Kohaku'.
+; Unlink whatever printer is linked to "Kohaku".
 @unlinkPrinter from:Kohaku
 This is not affected and is still using 'Fullscreen'.
 Kohaku: Who took my 'Wide'?! Printing with 'Fullscreen'...
@@ -280,7 +280,7 @@ The sprite implementation of the character actors is the most common and simple 
 Choose file formats that are most comfortable for your development workflow. When building the project, Unity will automatically convert all the source resources (textures, audio, video, etc) to the formats most suitable for the target platform, so it won't make a difference in which format you originally store the resources in the project. Find more information on how Unity manages project assets in the [official documentation](https://docs.unity3d.com/Manual/AssetWorkflow).
 :::
 
-The initial (unscaled) size of the sprite character mesh on the scene depends on the reference resolution (camera configuration), the character's `Pixels Per Unit` property (set for each character actor in the configuration menu) and the source texture resolution.
+The initial (unscaled) size of the sprite character mesh in the scene depends on the reference resolution (camera configuration), the character's `Pixels Per Unit` property (set for each character actor in the configuration menu) and the source texture resolution.
 
 To achieve the best render quality and optimal performance, it's generally advised to keep the default `Pixels Per Unit` value (100) for all the characters and control the desired initial character size via texture resolution. For example, given the reference resolution in your game is the default `1920x1080` pixels, to make a character occupy the whole screen height, set the height of the character's texture (eg, by resizing it via Photoshop or another image editor) to `1080` pixels; to make another character occupy 2/3 of the screen height, set the height to `1080 * 2/3` and so on.
 
@@ -309,7 +309,7 @@ When the "SpriteDicing" extension is installed via UPM, a `Naninovel.DicedSprite
 `DicedSpriteAtlas` assets containing character appearances are used as the resources for the diced sprite characters. Each appearance is mapped by name to the diced sprites contained in the atlas.
 
 ::: tip
-Character metadata properties (eg, pixels per unit, pivot) are applied to the render texture used to represent the character on the scene, while similar diced atlas properties are applied to the generated diced sprites. When changing atlas properties, don't forget to rebuild it for the changes to take effect.
+Character metadata properties (eg, pixels per unit, pivot) are applied to the render texture used to represent the character in the scene, while similar diced atlas properties are applied to the generated diced sprites. When changing atlas properties, don't forget to rebuild it for the changes to take effect.
 :::
 
 The following video guide covers creating and configuring a diced sprite atlas, adding a new diced character based on the created atlas and controlling the character from a scenario script.
@@ -497,7 +497,7 @@ After the Spine runtime for Unity is installed, click the `Naninovel -> Extensio
 This integration with a third-party commercial product serves mostly as an example of how you can make Naninovel work with another tool. While we're committed to keeping the sample integration compatible with Spine updates and changes, please be aware that the functionality will remain the bare minimum and we won't be able to provide any support or help on using another product with Naninovel beyond the scope of the sample.
 :::
 
-The Spine character prefab used as the resource for the implementation should have a `Spine Controller` component attached to the root object. Appearance changes from scenario script commands (such as `@char`) are routed to the controller's `On Appearance Changed` events similar to the [generic implementation](/guide/characters#generic-characters). You can handle the events as you wish; for example, use Spine's `SetAnimation` method or invoke a trigger in Unity's animator controller.
+The Spine character prefab used as the resource for the implementation should have a `Spine Controller` component attached to the root object. Appearance changes from scenario script commands (such as [@char]) are routed to the controller's `On Appearance Changed` events similar to the [generic implementation](/guide/characters#generic-characters). You can handle the events as you wish; for example, use Spine's `SetAnimation` method or invoke a trigger in Unity's animator controller.
 
 ![](https://i.gyazo.com/6a2772a3e4137413a7c1587788c54c41.png)
 
@@ -525,7 +525,7 @@ Check the [Spine sample](/guide/samples#spine), where a Spine character is used 
 
 ## Narrator Characters
 
-Narrator characters don't have any presence on the scene (appearances, position, look direction, tint, etc), but are still able to author printed messages and have the related configuration options (display name, message color, linked printer, etc).
+Narrator characters don't have any presence in the scene (appearances, position, look direction, tint, etc), but are still able to author printed messages and have the related configuration options (display name, message color, linked printer, etc).
 
 ![](https://i.gyazo.com/f1ee43da312b29f3236cf772d9ea9fa7.png)
 
@@ -533,7 +533,7 @@ Narrator characters don't have any presence on the scene (appearances, position,
 
 It's possible to render character and background actors of all the implementations (except generic) to a texture asset, which can then be assigned to a custom UI, printer, material or any other compatible source.
 
-Assign the render texture asset via the actor configuration with the `Render Texture` property. When a texture is assigned, the actor won't appear as a game object on the scene, but will rather be rendered to the texture. The `Render Rectangle` property allows specifying a region of the actor to render into the texture.
+Assign the render texture asset via the actor configuration with the `Render Texture` property. When a texture is assigned, the actor won't appear as a game object in the scene, but will rather be rendered to the texture. The `Render Rectangle` property allows specifying a region of the actor to render into the texture.
 
 ![](https://i.gyazo.com/7224fa44695507b0ce0274940d630299.png)
 

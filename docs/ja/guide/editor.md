@@ -25,7 +25,7 @@ Naninovelには独自のスタンドアロンアプリがあり、Unityエディ
 
 ![](https://i.gyazo.com/fd6765bfc35024769871e4d9b1372b62.png)
 
-プレースホルダーアセットを作成するには、[ファイルブラウザー](/ja/guide/editor#ファイルブラウザー) の `Backgrounds`、`Characters`、または `Audio` ディレクトリの下で右クリックし、対応するアセットを追加するオプションを選択します。
+プレースホルダーアセットを作成するには、[ファイルブラウザー](/ja/guide/editor#ファイルブラウザー) の「Backgrounds」、「Characters」、または「Audio」ディレクトリの下で右クリックし、対応するアセットを追加するオプションを選択します。
 
 その後、作成したアセットを選択すると、利用可能な特性を確認および編集できます。
 
@@ -46,7 +46,7 @@ Naninovelには独自のスタンドアロンアプリがあり、Unityエディ
 埋め込みモードでは、OSのネイティブWebViewを使用しており、初回起動時にエディターバイナリをダウンロードするためインターネット接続が必要です。バイナリはキャッシュされるため、同じプロジェクトでの以降の実行にはネットワーク接続は必要ありません。
 
 ::: tip
-WebViewコンポーネントはOSによって管理されますが、まれに無効化されていたり更新に失敗したりして、ストーリーエディターが動作しなくなることがあります。WindowsでWebViewのバージョンを確認するには、PowerShellで次を実行してください：
+WebViewコンポーネントはOSによって管理されますが、まれに無効化されていたり更新に失敗したりして、ストーリーエディターが動作しなくなることがあります。WindowsでWebViewのバージョンを確認するには、PowerShellで次を実行してください。
 
 ```powershell
 (Get-ItemProperty 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}','HKCU:\SOFTWARE\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}' -ErrorAction Ignore).pv

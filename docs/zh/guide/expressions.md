@@ -6,7 +6,7 @@
 一加二等于 {1 + 2}。
 ```
 
-— 运行脚本时将打印“一加二等于 3”。
+— 运行脚本时将打印“一加二等于 3。”。
 
 您可以使用任何数学和逻辑运算符，以及 [UnityEngine.Mathf](https://docs.unity3d.com/ScriptReference/Mathf.html) 结构体中的一些数学函数：
 
@@ -20,7 +20,7 @@
 
 ```nani
 @input color summary:"你最喜欢的颜色是什么？"
-{color}，是吗？ { color == "orange" ? "我也是！" : (color == "black" ? "那太令人沮丧了。" : "我明白了...") }
+{color}，是吗？{ color == "orange" ? "我也是！" : (color == "black" ? "那太令人沮丧了。" : "我明白了...") }
 ```
 
 — 将显示一个输入 UI，允许玩家输入他们最喜欢的颜色，将其赋给 `color` 剧本变量，然后打印输入的颜色，并在其后接上：如果是“orange”，则为“我也是！”；如果是“black”，则为“那太令人沮丧了。”；否则为“我明白了...”。
@@ -29,7 +29,7 @@
 
 ```nani
 这只是纯文本：{ "score" }。
-这是 "score" 变量的值：{ score }。
+这是“score”变量的值：{ score }。
 ```
 
 如果您希望在表达式中包含双引号，请转义它们：
@@ -119,11 +119,11 @@
 
 仅支持 [简单](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types#simple-types) 类型和字符串类型作为参数和返回类型。也可以使用单个可变参数（`params` 关键字）；不支持将可变参数与其他参数混合使用。
 
-```csharp
+```cs
 public static class CustomQueries
 {
     [ExpressionQuery("toLower")]
-    [Doc("Returns the provided string with all characters converted to lower-case.")]
+    [Doc("Returns the provided string with all characters converted to lowercase.")]
     public static string ToLower (string content) => content.ToLower();
 
     [ExpressionQuery("add")]
@@ -173,7 +173,7 @@ public static class CustomQueries
     public static bool IsComplete ([EnumContext(typeof(Quest))] string name)
     {
         Enum.TryParse<Quest>(name, out var quest);
-        // 运行自定义逻辑以检查 'quest' 是否完成
+        // 运行自定义逻辑以检查“quest”是否完成
         return false;
     }
 }

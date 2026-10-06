@@ -20,7 +20,7 @@ Actor 实现可以在配置管理器中选择，配置管理器可通过 `Nanino
 
 创建自定义 Actor 实现时，请确保它们具有兼容的公共构造函数：
 
-```csharp
+```cs
 public ActorImplementationType (string id, ActorMetadata metadata) { }
 ```
 
@@ -34,7 +34,7 @@ public ActorImplementationType (string id, ActorMetadata metadata) { }
 
 将 `ActorResources` 特性应用于实现类型，以指定哪些资产可以用作自定义 Actor 的资源，以及是否允许在编辑器菜单中分配多个资源。当不允许分配多个资源（默认情况）时，您可以通过仅指定 Actor ID 来加载唯一可用的资源，例如：
 
-```csharp
+```cs
 var resource = await resourceLoader.Load(actorId);
 ```
 
@@ -44,7 +44,7 @@ var resource = await resourceLoader.Load(actorId);
 
 — 要加载资源，请使用：
 
-```csharp
+```cs
 var resource = await resourceLoader.Load($"{actorId}/CubeBackground");
 ```
 
@@ -54,7 +54,7 @@ var resource = await resourceLoader.Load($"{actorId}/CubeBackground");
 
 要注入自定义数据，请创建一个新的 C# 类并继承自 `CustomMetadata<TActor>`，其中 `TActor` 是数据应与之关联的 Actor 实现的类型。下面是向 `CustomCharacterImplementation` 的角色添加自定义数据的示例：
 
-```csharp
+```cs
 using Naninovel;
 using UnityEngine;
 
@@ -74,7 +74,7 @@ public class MyCharacterData : CustomMetadata<CustomCharacterImplementation>
 
 要在运行时访问自定义数据，请使用 `ActorMetadata` 实例的 `GetCustomData<TData>()` 方法，其中 `TData` 是自定义数据类的类型，例如：
 
-```csharp
+```cs
 var charsConfig = Engine.GetConfiguration<CharactersConfiguration>();
 var myCharMeta = charsConfig.GetMetadataOrDefault("CharId");
 var myCharData = myCharMeta.GetCustomData<MyCharacterData>();
@@ -85,7 +85,7 @@ Debug.Log(myCharData.MyCustomInt);
 
 可以通过 [属性绘制器](https://docs.unity3d.com/Manual/editor-PropertyDrawers.html) 定制自定义元数据编辑器。下面是添加一个属性绘制器的示例，该绘制器会在被编辑的字段上方插入一个额外标签。
 
-```csharp
+```cs
 // 创建一个特性以应用于序列化字段；
 // 别忘了从 `PropertyAttribute` 继承它。
 public class ExtraLabelAttribute : PropertyAttribute
@@ -99,7 +99,7 @@ public class ExtraLabelAttribute : PropertyAttribute
 }
 
 // 创建在绘制受影响字段时将使用的自定义编辑器。
-// 脚本应位于 `Editor` 文件夹内，因为它使用 `UnityEditor` API。
+// 脚本应位于“Editor”文件夹内，因为它使用 `UnityEditor` API。
 [CustomPropertyDrawer(typeof(ExtraLabelAttribute))]
 public class ExtraLabelPropertyDrawer : PropertyDrawer
 {
@@ -150,7 +150,7 @@ public class MyCharacterData : CustomMetadata<CustomCharacterImplementation>
 
 下面是扩展选项处理程序状态的示例，通过添加一个 `LastChoiceTime` 字段来存储最后添加选项的时间。当显示自定义选项处理程序时，时间将打印到控制台。
 
-```csharp
+```cs
 // 我们的扩展状态，用于序列化最后一个选项的时间。
 public class MyChoiceHandlerState : ChoiceHandlerState
 {

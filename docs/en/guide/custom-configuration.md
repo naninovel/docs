@@ -6,7 +6,7 @@ By default, configuration objects are serialized as ScriptableObject assets and 
 
 To access configuration objects via C#, use `Engine.GetConfiguration<T>()`, where `T` is the type of the configuration object you wish to access. For example, the following demonstrates how to access the [audio configuration](/guide/configuration#audio) object:
 
-```csharp
+```cs
 var audioConfig = Engine.GetConfiguration<AudioConfiguration>();
 ```
 
@@ -16,7 +16,7 @@ The engine initialization procedure is asynchronous, so even when automatic init
 
 While `Engine.GetConfiguration` requires the engine to be initialized (it relies on a configuration provider), you can access a configuration asset directly via the default provider even when the engine is not initialized, for example:
 
-```csharp
+```cs
 var config = ProjectConfigurationProvider.LoadOrDefault<AudioConfiguration>();
 ```
 
@@ -24,7 +24,7 @@ Configuration objects are meant to be changed via editor menus, but it's still p
 
 Below is an example of changing the `ReferenceResolution` property of the camera configuration right after the engine is initialized:
 
-```csharp
+```cs
 using Naninovel;
 using UnityEngine;
 
@@ -55,7 +55,7 @@ Naninovel doesn't expect configurations to change while the engine is initialize
 
 To add a new custom configuration, create a C# class that inherits from `Configuration`.
 
-```csharp
+```cs
 [EditInProjectSettings]
 public class MyCustomConfiguration : Configuration
 {
@@ -76,7 +76,7 @@ Notice the `EditInProjectSettings` attribute: an associated editor menu is autom
 
 To access your custom configuration via C#, use the same API as for the built-in assets:
 
-```csharp
+```cs
 var myConfig = Engine.GetConfiguration<MyCustomConfiguration>();
 ```
 
@@ -88,11 +88,11 @@ To customize the editor behaviour of your custom configuration (when it's drawn 
 
 ## Overriding Built-In Editors
 
-You can override built-in configuration editors (Naninovel's project settings menus) by applying the `OverrideSettings` attribute to an editor class inherited from `ConfigurationSettings<T>` (or any of its derivatives), where `T` is the configuration type. Store the custom editor scripts under an `Editor` folder so they are included in the editor assembly.
+You can override built-in configuration editors (Naninovel's project settings menus) by applying the `OverrideSettings` attribute to an editor class inherited from `ConfigurationSettings<T>` (or any of its derivatives), where `T` is the configuration type. Store the custom editor scripts under an "Editor" folder so they are included in the editor assembly.
 
 Below is an example that overrides the built-in character manager configuration editor. The new editor adds a label under the `Shared Poses` field with the total number of shared poses.
 
-```csharp
+```cs
 [OverrideSettings]
 public class CustomCharacterSettings : CharactersSettings
 {
@@ -116,7 +116,7 @@ Given the above editor, the characters configuration will now draw as follows:
 
 You can also override built-in actor metadata editors. The code below will insert a label under the `Message Color` field of the inspected actor, showing the actor's display name and the color value.
 
-```csharp
+```cs
 [OverrideSettings]
 public class CustomCharacterSettings : CharactersSettings
 {
@@ -152,7 +152,7 @@ To specify a custom configuration serving scenario, create a C# class that imple
 
 Below is an example of a custom provider implementation that returns default configuration objects:
 
-```csharp
+```cs
 public class CustomConfigurationProvider : IConfigurationProvider
 {
     public Configuration GetConfiguration (System.Type type)
@@ -165,7 +165,7 @@ public class CustomConfigurationProvider : IConfigurationProvider
 
 Another example that overrides the project characters configuration to inject metadata at runtime:
 
-```csharp
+```cs
 public class CustomConfigurationProvider : ProjectConfigurationProvider
 {
     public override Configuration GetConfiguration (System.Type type)
@@ -195,7 +195,7 @@ Once the custom configuration provider is ready, make the engine use it instead 
 
 Alternatively, if your goal is just to use a custom configuration provider but keep the default engine initialization routine, consider `RuntimeInitializer.Initialize(IConfigurationProvider)`, which accepts an optional configuration provider argument:
 
-```csharp
+```cs
 public class CustomInitializer
 {
     [RuntimeInitializeOnLoadMethod]

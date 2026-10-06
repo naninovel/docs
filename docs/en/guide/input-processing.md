@@ -19,7 +19,7 @@ Naninovel uses Unity's [Input System](https://docs.unity3d.com/Packages/com.unit
 | AutoPlay      | A                          | Button East                    | Toggle [autoplay mode](/guide/text-printers#autoplay), where wait-for-input mode is disabled automatically after a set delay.          |
 | ToggleUI      | Space                      | Button North                   | Toggle [visibility](/guide/gui#ui-toggling) (hide/show) of the entire UI layer.                                                        |
 | ShowBacklog   | L                          | Right Bumper                   | Toggle [Backlog UI](/guide/text-printers#printer-backlog) visibility.                                                                  |
-| Rollback      | B, Scroll Wheel (Y+)       | Left Bumper                    | Rewind the script backwards.                                                                                                           |
+| Rollback      | B, Scroll Wheel (Y+)       | Left Bumper                    | Rewind the script.                                                                                                                     |
 | CameraLook    | Mouse Delta                | Right Stick                    | Move the camera while in [@look] mode.                                                                                                 |
 | ToggleConsole | `                          |                                | Toggle the development console.                                                                                                        |
 | EnterDialogue | Enter, E                   | Button South, Button West      | Activate a dialogue trigger to enter [dialogue mode](/guide/getting-started#dialogue-mode).                                            |
@@ -34,7 +34,7 @@ You can configure the default actions and add new ones by assigning a custom `In
 An example of adding a custom input binding to toggle the inventory UI can be found in the [inventory sample](/guide/samples#inventory). Specifically, the custom "ToggleInventory" action is used in the `Scripts/Runtime/Inventory/UI/InventoryUI.cs` runtime script.
 :::
 
-When using custom input actions, it's recommended to also use a custom `Event System` assigned in the same configuration menu, and then assign the custom input actions asset to the `Actions Asset` property of the Input System UI Input Module component attached to the event system prefab. This is required for various UI-related functionality to work correctly. You can create a default event system prefab that works with Naninovel via `Create -> Naninovel -> Input -> Event System`.
+When using custom input actions, it's recommended to also use a custom `Event System` assigned in the same configuration menu, and then assign the custom input actions asset to the `Actions Asset` property of the `Input System UI Input Module` component attached to the event system prefab. This is required for various UI-related functionality to work correctly. You can create a default event system prefab that works with Naninovel via `Create -> Naninovel -> Input -> Event System`.
 
 ![](https://i.gyazo.com/b1f99bb8e2cea14ec9f97c78b91d313a.png)
 

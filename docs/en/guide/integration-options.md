@@ -20,7 +20,7 @@ Unless you want to begin your game in novel mode, you should manually initialize
 
 Below is an example of manual initialization from a MonoBehaviour script:
 
-```csharp
+```cs
 using Naninovel;
 using UnityEngine;
 
@@ -45,7 +45,7 @@ The engine initialization procedure is asynchronous, so even when automatic init
 
 To check whether the engine is currently available, use the `Engine.Initialized` property; the `Engine.OnInitializationFinished` event allows executing actions after the initialization procedure is finished, eg:
 
-```csharp
+```cs
 public class MyScript : MonoBehaviour
 {
     private void Awake ()
@@ -68,14 +68,14 @@ public class MyScript : MonoBehaviour
 
 To preload and play a scenario script with a given path, use the `LoadAndPlay(scriptPath)` method on the `MainTrack` of the `IScriptPlayer` service. To get an engine service, use the `Engine.GetService<TService>()` static method, where `TService` is the type (interface) of the service to retrieve. For example, the following gets a script player service, preloads and plays a script named `Script001`:
 
-```csharp
+```cs
 var player = Engine.GetService<IScriptPlayer>();
 await player.MainTrack.LoadAndPlay("Script001");
 ```
 
 When exiting the novel mode and returning to the main game mode, you probably want to unload all resources currently used by Naninovel and stop engine services. For this, use the `ResetState()` method of the `IStateManager` service:
 
-```csharp
+```cs
 var stateManager = Engine.GetService<IStateManager>();
 await stateManager.ResetState();
 ```
@@ -130,7 +130,7 @@ You can make the engine's camera render to a custom [RenderTexture](https://docs
 
 To switch between your game and Naninovel (eg, between "adventure" and "novel" modes), use the static `Dialogue` class. `Dialogue.Enter()` initializes the engine when it's not initialized yet and enables Naninovel rendering and input processing, while `Dialogue.Exit()` resets the engine state and disables them. `Dialogue.EnterAndPlay()` enters the dialogue mode and plays a scenario script with the specified path; `Dialogue.EnterAndPlayAsset()` does the same with a [script asset reference](/guide/integration-options#script-asset-reference):
 
-```csharp
+```cs
 await Dialogue.EnterAndPlay("Script001");
 ...
 await Dialogue.Exit();

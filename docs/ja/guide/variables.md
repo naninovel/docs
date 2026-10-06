@@ -9,7 +9,7 @@
 変数は [@set] コマンド（および他のコマンドの一部のパラメーター）で作成・変更でき、[@if] や [@while] のプライマリパラメーターなど、式コンテキストを持つ任意のパラメーターで使用できます。たとえば、次のスクリプトは `score` の値に基づいて実行先を切り替えます。
 
 ```nani
-; 'score' 変数を作成します。
+; 「score」変数を作成します。
 @set score=0
 
 ; ある時点で、プレイヤーの選択に基づいて変数を変更します。
@@ -37,17 +37,17 @@
 ; 3つの変数に値を代入します。
 @set posX=0, posY=0.5, time=1.5
 
-; それらを 'char' コマンドのパラメーターへ注入します。
+; それらを「char」コマンドのパラメーターへ注入します。
 @char Kohaku pos:{posX},{posY} time:{time}
 ```
 
 汎用テキスト行内でも同じことができます。
 
 ```nani
-; プレイヤーにテキスト入力を促し、`name` 変数に代入します。
+; プレイヤーにテキスト入力を促し、「name」変数に代入します。
 @input name summary:"あなたの名前を選んでください。"
 
-; 代入された `name` 変数を注入します。
+; 代入された「name」変数を注入します。
 Archibald: ようこそ、{name}！
 ```
 
@@ -60,7 +60,7 @@ Archibald: ようこそ、{name}！
 ```nani
 @set yPos=0.1, tint="lightblue"
 
-; `tint` は数値ではないため、以下はエラーになります。
+; 「tint」は数値ではないため、以下はエラーになります。
 @char Kohaku pos:50,{tint}
 
 ; ...こちらは正常に実行されます。
@@ -78,11 +78,11 @@ Archibald: ようこそ、{name}！
 メタ変数は、ルートクリア状況、累計ゲーム統計、実績など、個別のゲームセッションより上位の「メタ」情報を追跡するのに便利です。
 
 ```nani
-; 'X' と 'Y' ルートのクリア状況を追跡する変数を定義します。
+; 「X」と「Y」ルートのクリア状況を追跡する変数を定義します。
 @set completeRouteX, completeRouteY to:false meta!
 ...
 
-; 後のスクリプトのどこかで、'X' ルートをクリアしたとき。
+; 後のスクリプトのどこかで、「X」ルートをクリアしたとき。
 @set completeRouteX=true
 
 ; これでタイトルスクリプトで特別なものを表示できます。
@@ -142,7 +142,7 @@ Archibald: ようこそ、{name}！
 デフォルト代入を行うには、`?=` 演算子を使用するか、[@set] コマンドで `init!` フラグを追加します。
 
 ```nani
-; 'foo' をデフォルト値0で初期化します。
+; 「foo」をデフォルト値0で初期化します。
 @set foo?=0
 ; 3つの変数をデフォルト値で初期化します。
 @set foo=0, bar=false, baz="" init!
@@ -151,7 +151,7 @@ Archibald: ようこそ、{name}！
 `meta!` または `const!` フラグを使用すると、自動的にデフォルト代入として扱われるため、それらと一緒に `?=` 演算子を指定する必要はありません。
 
 ```nani
-; ルートクリア状況を追跡する両方の変数を宣言し、'false' を代入します。
+; ルートクリア状況を追跡する両方の変数を宣言し、「false」を代入します。
 ; 同じスクリプトが再度再生された場合（たとえば次回のゲーム開始時）でも、
 ; 変数は再代入されません。
 @set clearedRouteX, clearedRouteY to:false meta!
@@ -187,22 +187,22 @@ Archibald: ようこそ、{name}！
 
 新しい変数を作成するには、`AddVariable` メソッドを使用します。
 
-```csharp
+```cs
 var vars = Engine.GetService<IVariableManager>();
-// 'Hello World!' の値を持つ 'myVar' 文字列変数を作成します。
+// 「Hello World!」の値を持つ「myVar」文字列変数を作成します。
 vars.AddVariable(new("myVar", new("Hello World!")));
 ```
 
-メタ変数または定数変数を作成するには、種類を指定します。
+メタ変数または定数を作成するには、種類を指定します。
 
-```csharp
+```cs
 // ルートクリア状況を追跡するブール値のメタ変数を作成します。
 vars.AddVariable(new("clearedRouteX", new(false), VariableKind.Meta));
 ```
 
 変数値を取得・設定するには、それぞれ `GetValue` と `SetValue` メソッドを使用します。たとえば、`myVar` という名前のシナリオ文字列変数が存在する場合、以下のコードはその値を取得し、それに「Hello!」を追加して、変更した値を設定し直します。
 
-```csharp
+```cs
 if (vars.GetValue("myVar") is { String: var text })
     vars.SetValue("myVar", new(text + "Hello!"));
 ```
@@ -210,17 +210,17 @@ if (vars.GetValue("myVar") is { String: var text })
 変数の実際の値を取得するときに `.String` プロパティを使用していることに注目してください。変数は `String`、`Numeric`、`Boolean` の3つの型のいずれかになります。型は、シナリオスクリプトで変数が最初に代入されたときに決定されます。
 
 ```nani
-; 'foo' 変数に 'Hello World!' 文字列値を代入します
+; 「foo」変数に「Hello World!」文字列値を代入します
 @set foo="Hello World!"
 ; 式で文字列値を使用します
 @if foo is "Hello World!"
 
-; 'bar' 変数に数値42を代入します
+; 「bar」変数に数値42を代入します
 @set bar=42
 ; 式で数値を使用します
 @if bar is above 12
 
-; 'baz' 変数にブール値trueを代入します
+; 「baz」変数にブール値trueを代入します
 @set baz=true
 ; 式でブール値を使用します
 @if baz
@@ -228,20 +228,20 @@ if (vars.GetValue("myVar") is { String: var text })
 
 — または、C#では次のようになります。
 
-```csharp
+```cs
 var vars = Engine.GetService<IVariableManager>();
 
-// 'foo' 変数に 'Hello World!' 文字列値を代入します
+// 「foo」変数に「Hello World!」文字列値を代入します
 vars.SetValue("foo", new("Hello World!"));
 // 代入された文字列値にアクセスします
 if (vars.GetValue("foo") is { String: "Hello World!" })
 
-// 'bar' 変数に数値42を代入します
+// 「bar」変数に数値42を代入します
 vars.SetValue("bar", new(42));
 // 代入された数値にアクセスします
 if (vars.GetValue("bar") is { Number: > 12 })
 
-// 'baz' 変数にブール値trueを代入します
+// 「baz」変数にブール値trueを代入します
 vars.SetValue("baz", new(true));
 // 代入されたブール値にアクセスします
 if (vars.GetValue("baz") is { Boolean: true })
@@ -249,14 +249,14 @@ if (vars.GetValue("baz") is { Boolean: true })
 
 C#でシナリオ変数の型を確認するには、値の `.Type` プロパティを使用します。
 
-```csharp
+```cs
 if (vars.GetValue("bar") is { Type: VariableValueType.Numeric } value)
-    if (value.Number > 12) // これで '.Number' 値に安全にアクセスできます
+    if (value.Number > 12) // これで「.Number」値に安全にアクセスできます
 ```
 
 あるいは、`Try...` オーバーロードの1つを使用します。
 
-```csharp
+```cs
 vars.TryGetValue<float>("MyFloatVarName", out var floatValue);
 Debug.Log($"My float variable value: {floatValue}");
 
@@ -278,8 +278,8 @@ vars.TrySetValue("MyBoolVarName", boolValue);
 
 すでに存在する変数に対して `AddVariable` を呼び出したり、存在しない変数に対して `SetValue` を呼び出したりすると例外がスローされることに注意してください。毎回 `VariableExists` を確認したくない場合は、`UpsertValue` ヘルパーメソッドを使用してください。変数が存在しない場合は自動的に作成し、存在する場合は値だけを更新します。
 
-```csharp
-// 'foo' が存在する場合は42を設定します。
-// 存在しない場合は、デフォルト値42の 'foo' を作成します。
+```cs
+// 「foo」が存在する場合は42を設定します。
+// 存在しない場合は、デフォルト値42の「foo」を作成します。
 vars.UpsertValue("foo", new(42));
 ```

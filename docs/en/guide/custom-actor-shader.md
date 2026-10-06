@@ -1,6 +1,6 @@
 # Custom Actor Shader
 
-When rendering most characters and background actors (generic excluded), a special shader is used to handle semi-transparency overdraw and support various transition effects.
+When rendering most character and background actors (generic excluded), a special shader is used to handle semi-transparency overdraw and support various transition effects.
 
 You can override the default shader by assigning a material to the `Custom Texture Material` property available in the actor configuration menu.
 

@@ -10,7 +10,7 @@
 
 您还可以使用 `Create -> Naninovel -> Managed Text` 资产上下文菜单创建自定义管理文本文档。
 
-管理文本文档中的每一行都是以下格式的条目：*路径*: *值*，其中 *路径* 是文本变量的路径，*值* 是该变量的值。例如，以下是“DefaultUI”文档的默认内容，其中包含内置 UI 的记录：
+管理文本文档中的每一行都是以下格式的条目：*路径*: *值*，其中*路径*是文本变量的路径，*值*是该变量的值。例如，以下是“DefaultUI”文档的默认内容，其中包含内置 UI 的记录：
 
 ![Managed Text Document](https://i.gyazo.com/ce57c700b77818f87aabb722f2f42b78.png)
 
@@ -40,14 +40,14 @@
 
 下面是在 C# 脚本中使用管理文本变量来本地化文本标签的示例。
 
-```csharp
+```cs
 using Naninovel;
 using UnityEngine.UI;
 
 // 继承自 Unity 的 Text 组件，以便我们可以将其作为 Text 组件使用。
 public class CustomLabel : Text
 {
-    // "CustomLabel.LabelText" 管理文本记录的值将在引擎初始化时赋给
+    // “CustomLabel.LabelText”管理文本记录的值将在引擎初始化时赋给
     // 下面的变量，并在语言环境更改时更新。
     [ManagedText("foo")] // "foo" 是记录的文档名称。
     public static string LabelText = "bar"; // "bar" 是默认值。
@@ -59,7 +59,7 @@ public class CustomLabel : Text
         text = LabelText; // 将当前记录值赋给标签。
 
         var l10n = Engine.GetService<ILocalizationManager>();
-        // 当用户在运行时更改语言环境时更新标签。
+        // 当玩家在运行时更改语言环境时更新标签。
         l10n.OnLocaleChanged += _ => text = LabelText;
     }
 }
@@ -83,7 +83,7 @@ Greeting3: 嗨！
 @print { random(Greeting1, Greeting2, Greeting3) }
 ```
 
-`Script` 管理文本文档可以像其他文档一样进行本地化；当用户选择另一个语言环境时，文本将自动从相应的本地化文档中引用。
+`Script` 管理文本文档可以像其他文档一样进行本地化；当玩家选择另一个语言环境时，文本将自动从相应的本地化文档中引用。
 
 ## 本地化
 

@@ -24,7 +24,7 @@ Most of the engine features are implemented via engine services. An engine servi
 
 If you need to interact with an engine system, you will usually use an engine service. You can get a reference to a service using the static method `Engine.GetService<TService>()`, where `TService` is the interface type of the service you want; for example, to get an `IScriptPlayer` service:
 
-```csharp
+```cs
 var player = Engine.GetService<IScriptPlayer>();
 player.MainTrack.Stop();
 ```

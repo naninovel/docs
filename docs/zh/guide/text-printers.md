@@ -7,10 +7,10 @@
 在剧本脚本中，文本打印机主要通过 [@print] 和 [@printer] 命令控制：
 
 ```nani
-; 将使 "Dialogue" 打印机成为默认打印机
+; 将使“Dialogue”打印机成为默认打印机
 @printer Dialogue
 
-; 将使 "Fullscreen" 打印机成为默认打印机
+; 将使“Fullscreen”打印机成为默认打印机
 @printer Fullscreen
 
 ; 将使用默认打印机打印该短语
@@ -19,7 +19,7 @@
 ; 与上面相同，但使用通用文本行
 Lorem ipsum dolor sit amet.
 
-; 与上面相同，但与角色 "Felix" 关联
+; 与上面相同，但与角色“Felix”关联
 Felix: Lorem ipsum dolor sit amet.
 ```
 
@@ -31,7 +31,7 @@ Felix: Lorem ipsum dolor sit amet.
 
 ![](https://i.gyazo.com/e6f58f861fa18bd62591db9794e7641b.mp4)
 
-等待用户输入命令（即 `[-]` 命令）会暂停脚本执行，直到用户激活 `Continue` 输入；它们通常用于打印文本消息之后。在自动播放模式下，`[-]` 命令将改为暂停脚本执行一段时间，然后完成，从而允许执行下一个命令。暂停时长取决于最后打印的文本消息的长度，并受“Auto delay”游戏设置进一步调整。
+等待输入命令（即 `[-]` 命令）会暂停脚本执行，直到玩家激活 `Continue` 输入；它们通常用于打印文本消息之后。在自动播放模式下，`[-]` 命令将改为暂停脚本执行一段时间，然后完成，从而允许执行下一个命令。暂停时长取决于最后打印的文本消息的长度，并受“Auto delay”游戏设置进一步调整。
 
 可以使用 `AutoPlay` 输入（默认为 `A` 键）或控制面板中的“AUTO”按钮切换自动播放模式。
 
@@ -41,13 +41,13 @@ Felix: Lorem ipsum dolor sit amet.
 
 ![](https://i.gyazo.com/9605a5c8cd1911217350d77712f47e7d.mp4)
 
-可以使用 `Skip` 输入（默认为 `Ctrl` 键）或控制面板中的“SKIP”按钮切换跳过模式。
+可以通过按住 `Skip` 输入（默认为 `Ctrl` 键）来启用跳过模式，也可以使用 `ToggleSkip` 输入（默认为 `Tab` 键）或控制面板中的“SKIP”按钮切换跳过模式。
 
-默认情况下，跳过模式仅在执行过去已经执行过的命令时可用；例如，如果用户尚未阅读将要打印的文本，则跳过模式将不可用。这可以在游戏设置中使用“Skip mode”设置进行更改。
+默认情况下，跳过模式仅在执行过去已经执行过的命令时可用；例如，如果玩家尚未阅读将要打印的文本，则跳过模式将不可用。这可以在游戏设置中使用“Skip mode”设置进行更改。
 
 ## 打印机历史记录
 
-打印机历史记录是一项功能，允许用户重新阅读以前打印的文本、查看已选择的选项、重播配音行以及（可选）回滚到已记录的消息。
+打印机历史记录是一项功能，允许玩家重新阅读以前打印的文本、查看已选择的选项、重播配音行以及（可选）回滚到已记录的消息。
 
 ![](https://i.gyazo.com/cf9c11c242907e0eae7f5f1b4e2b9f38.mp4)
 
@@ -197,7 +197,7 @@ Nanikun: Integer nec maximus elit, eget posuere risus.
 
 您可以基于内置模板添加自定义文本打印机，也可以从头开始创建新打印机。例如，让我们自定义内置的 `Dialogue` 模板。
 
-使用 `Create -> Naninovel -> Text Printer -> Dialogue` 资产上下文菜单在 Naninovel 包之外的某处创建 Dialogue 预制件，例如在 `Assets/TextPrinters` 文件夹中。
+使用 `Create -> Naninovel -> Text Printer -> Dialogue` 资产上下文菜单在 Naninovel 包之外的某处创建 Dialogue 预制件，例如，在 `Assets/TextPrinters` 文件夹中。
 
 编辑预制件：更改字体、纹理、添加动画等。有关可用 UI 构建工具的更多信息，请参阅 [uGUI 的 Unity 文档](https://docs.unity3d.com/Packages/com.unity.ugui@latest)。在 [UI 自定义指南](/zh/guide/gui#ui-自定义) 中还有一些关于使用 uGUI 的教程视频和示例项目。
 
@@ -236,7 +236,7 @@ Nanikun: Integer nec maximus elit, eget posuere risus.
 可以通过放置在文本内的富文本标签或使用 [@format] 命令应用各种文本样式：
 
 ```nani
-; 以粗体打印 "Lorem"，以蓝色和斜体打印 "sit"。
+; 以粗体打印“Lorem”，以蓝色和斜体打印“sit”。
 Kohaku: <b>Lorem</b> ipsum <color=#0000FF><i>sit</i></color> amet.
 ```
 
@@ -302,7 +302,7 @@ Font Render Mode: Distance Field 16
 ```
 
 ::: tip EXAMPLE
-有关设置支持从右到左（阿拉伯语）文本的自定义 TextMesh Pro 打印机的完整示例，请参阅 [RTL 示例](/zh/guide/samples#rtl)。
+有关设置支持从右到左（阿拉伯语）文本的自定义 TMPro 打印机的完整示例，请参阅 [RTL 示例](/zh/guide/samples#rtl)。
 :::
 
 ::: info NOTE
@@ -319,7 +319,7 @@ Unity 原生不支持阿拉伯语文本。对于需要支持阿拉伯语的文�
 
 ![](https://i.gyazo.com/706613a08aa2519964ccd98bd12a288f.png)
 
-该工具将检查指定文件夹（包括所有子文件夹）中的剧本脚本和管理文本文档，因此您将获得 Naninovel 向玩家显示的所有文本的字符，包括所有打印文本、UI 标签、可解锁提示等。
+该工具将检查指定文件夹（包括所有子文件夹）中的剧本脚本和管理文本文档，因此您将获得 Naninovel 向玩家显示的所有文本的字符，包括所有打印的文本、UI 标签、可解锁提示等。
 
 ::: tip EXAMPLE
 查看 [本地化示例](/zh/guide/samples#本地化)，了解如何为日语语言环境使用自定义 TMPro 字体图集。选择日语时字体会自动切换，选择其他语言时会切换回默认图集。
@@ -343,7 +343,7 @@ Unity 原生不支持阿拉伯语文本。对于需要支持阿拉伯语的文�
 
 ## 显示事件
 
-可以挂钩特定字符显示时的事件以执行任意操作。使用 `<@...>` 标签在打印文本中指定应调用事件的位置。例如，要在显示“dolor”后触发带有“foo”有效负载的显示事件：
+可以挂钩特定字符显示时的事件以执行任意操作。使用 `<@...>` 标签在打印的文本中指定应调用事件的位置。例如，要在显示“dolor”后触发带有“foo”有效负载的显示事件：
 
 ```nani
 Lorem ipsum dolor<@foo> sit amet.
@@ -353,7 +353,7 @@ Lorem ipsum dolor<@foo> sit amet.
 
 ![](https://i.gyazo.com/b0fad2439f2b2136a3b3c13f84f365d2.png)
 
-内置打印机还启用了 **Play Command** 选项。这将使组件尝试将事件主体（`@` 之后的部分）作为命令解析并执行。例如，以下内容将在显示“dolor”时为背景设置色调：
+内置打印机还启用了 `Play Command` 选项。这将使组件尝试将事件主体（`@` 之后的部分）作为命令解析并执行。例如，以下内容将在显示“dolor”时为背景设置色调：
 
 ```nani
 Lorem ipsum dolor<@back tint:blue> sit amet.
@@ -380,7 +380,7 @@ Lorem ipsum <:random(text1, text2)> sit amet.
 显示表达式对于允许翻译人员更改注入值的顺序也很有用，因为不同语言对各种词性的顺序/优先级通常有不同的规则：
 
 ```nani
-你好，<:MC>！<:AC> 最近怎么样？
+Hello, <:MC>! How's <:AC> doing?
 ```
 
 — 在这里，`MC` 和 `AC` 变量（可能包含玩家指定的角色名称）都将公开在生成的本地化文档中，以便翻译人员在必要时能够更改它们的顺序。
@@ -399,7 +399,7 @@ Lorem ipsum <:random(text1, text2)> sit amet.
 ; 选择一种随机颜色。
 My favorite color is </red/blue/green>.
 
-; 基于用户选择进行选择。
+; 基于玩家选择进行选择。
 Select your pronouns.
 @choice "He/Him" set:selector=0
 @choice "She/Her" set:selector=1

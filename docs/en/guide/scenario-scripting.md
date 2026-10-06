@@ -82,7 +82,7 @@ For example, the [@bgm] command expects a primary parameter specifying the path 
 @bgm PianoTheme
 ```
 
-"PianoTheme" here is the value of the `Path` *string* parameter.
+"PianoTheme" here is the value of the `path` *string* parameter.
 
 There can be only one primary parameter per command, and it should always be specified before any other parameters.
 
@@ -147,7 +147,7 @@ Sometimes, you may want to execute a command while revealing (printing) a text m
 All commands (both [standard](/api/) and [custom](/guide/custom-commands)) can be inlined (injected) into generic text lines using square brackets (`[ ]`):
 
 ```nani
-Felix: Lorem[char Felix.Happy pos:0.5] ipsum![sfx Explosion] Dolor sit amet.
+Felix: Lorem[char Felix.Happy pos:50] ipsum![sfx Explosion] Dolor sit amet.
 ```
 
 Notice that the inlined command syntax is exactly the same as a regular command, except the `@` symbol is omitted and the command body is wrapped in square brackets. Essentially, you can take any command line, inline it into generic text, and it will have the same effect, but at a different moment depending on its position inside the text message.
@@ -190,7 +190,7 @@ In some cases, you may want to modify or assign [@print] parameters for specific
 
 ```nani
 ; The line will be authored by Kohaku and Yuko actors,
-; but the display name on the printer will show 'All Together'.
+; but the display name on the printer will show "All Together".
 Kohaku,Yuko: Hello![< as:"All Together"]
 
 ; First part printed at 50% speed,
@@ -277,7 +277,7 @@ In this case, the scenario root is the `Assets/Scenario` directory. To navigate 
 If you prefer not to include directories when specifying endpoints, you don't have to! Check the [relative](/guide/scenario-scripting#relative-endpoints) and [wildcard](/guide/scenario-scripting#wildcard-endpoints) endpoint syntaxes explained below.
 :::
 
-The scenario root is detected automatically when you create or move scenario files. You can check the current root in the script configuration menu.
+The scenario root is detected automatically when you create or move scenario files. You can check the current root in the scripts configuration menu.
 
 ![?width=715](https://i.gyazo.com/ff701bf560bd56948957b5ad887e3420.png)
 
@@ -290,10 +290,10 @@ Naninovel supports four types of endpoint syntax, allowing you to write more con
 This is the default syntax, containing the full path to the script starting from the [scenario root](/guide/scenario-scripting#scenario-root). It is always supported and does not depend on the location of the current script, but requires including all directories up to the target script:
 
 ```nani
-; Navigate to the start of the 'Assets/Scenario/Prologue.nani' script.
+; Navigate to the start of the "Assets/Scenario/Prologue.nani" script.
 @goto Prologue
-; Navigate to the 'Action' label in
-; 'Assets/Scenario/CommonRoute/Day1/Scene1.nani' script.
+; Navigate to the "Action" label in
+; "Assets/Scenario/CommonRoute/Day1/Scene1.nani" script.
 @goto CommonRoute/Day1/Scene1#Action
 ```
 
@@ -302,7 +302,7 @@ This is the default syntax, containing the full path to the script starting from
 This syntax is supported only when navigating to a label inside the current script. It includes only the label:
 
 ```nani
-; Navigate to 'Action' in the current script.
+; Navigate to "Action" in the current script.
 @goto #Action
 ```
 
@@ -311,12 +311,12 @@ This syntax is supported only when navigating to a label inside the current scri
 Relative paths simplify endpoint syntax by mapping paths relative to the current script:
 
 ```nani
-; Given we're inside 'Assets/Scenario/CommonRoute/Day1/Scene1.nani',
-; navigate to the 'Scene2.nani' file in the same directory.
+; Given we're inside "Assets/Scenario/CommonRoute/Day1/Scene1.nani",
+; navigate to the "Scene2.nani" file in the same directory.
 @goto ./Scene2
-; Navigate to the 'Scene1.nani' file in the 'Day2' directory one level above.
+; Navigate to the "Scene1.nani" file in the "Day2" directory one level above.
 @goto ../Day2/Scene1
-; Navigate to the 'SceneX.nani' file inside the 'RouteX' directory
+; Navigate to the "SceneX.nani" file inside the "RouteX" directory
 ; two levels above the current one.
 @goto ../../RouteX/SceneX
 ```
@@ -326,11 +326,11 @@ Relative paths simplify endpoint syntax by mapping paths relative to the current
 If you want to avoid including directories in the paths, you can use wildcard paths, specifying only the script name. This works only if the script name is unique across the project:
 
 ```nani
-; Navigate to the 'Prologue.nani' script, wherever it is located.
+; Navigate to the "Prologue.nani" script, wherever it is located.
 @goto */Prologue
-; This will result in an error because there are multiple 'Scene1.nani' files.
+; Results in an error, as there are multiple "Scene1.nani" files.
 @goto */Scene1
-; This works because there is only one 'Scene1.nani' file under 'Day1' folder.
+; Works, as there is only one "Scene1.nani" file under "Day1".
 @goto */Day1/Scene1
 ```
 
@@ -390,7 +390,7 @@ By default, scripts execute linearly, but you can introduce branching using `if`
 ; Same but more concise.
 @print "I'm still alive." unless:dead
 
-; If "insane" is true or the random function in 1 to 10 range
+; If "insane" is true or the random function in the 1 to 10 range
 ; returns 5 or more, execute the "@glitch" command.
 @glitch if: insane or random(1, 10) is at least 5
 
@@ -413,7 +413,7 @@ Lorem sit amet. [sfx Applause if:score>=10]Consectetur elit.
 You can [nest](/guide/scenario-scripting#nesting) multiline conditional blocks using [@if] and [@else]:
 
 ```nani
-; Print text line(s) depending on "score" variable:
+; Print text line(s) depending on the "score" variable:
 ; "You've failed. Try again!" - when score is 6 or below.
 ; "You've passed the test." and "Brilliant!" - when score is above 8.
 ; "You've passed the test." and "Impressive!" - when score is above 7.
@@ -433,7 +433,7 @@ You can [nest](/guide/scenario-scripting#nesting) multiline conditional blocks u
 Conditional blocks can also be used inline within text lines, marking the end with [@endif]:
 
 ```nani
-; Print text line depending on "score" variable:
+; Print text line depending on the "score" variable:
 ; "Test result: Failed." - when score is 6 or below.
 ; "Test result: Perfect!" - when score is above 8.
 ; "Test result: Passed." - otherwise.
@@ -443,13 +443,13 @@ Test result:[if score>8] Perfect![or score>6] Passed.[else] Failed.[endif]
 To specify an inverse condition, use [@unless]:
 
 ```nani
-; Prints "You're still alive!" if dead is false, otherwise "You're done."
+; Print "You're still alive!" if dead is false, otherwise "You're done."
 @unless dead
     You're still alive!
 @else
     You're done.
 
-; Print text line depending on "score" variable:
+; Print text line depending on the "score" variable:
 ; "Test result: Passed." - when score is 10 or above.
 ; "Test result: Failed." - when score is below 10.
 Test result:[unless score<10] Passed.[else] Failed.[endif]
@@ -580,7 +580,7 @@ Even if the game is saved and loaded while the animation is in progress, it will
 In the loop example above, you may wonder: how are we supposed to stop the loop? Or what if we'd like to wait for a non-looped async scenario block to finish before proceeding? Async tasks to the rescue! Use the optional primary parameter of the [@async] command to specify a name for the async task executed by the command, which you can use later with the [@stop] or [@await] commands to either stop (cancel) or await the task:
 
 ```nani
-; Start the 'Quake' async task.
+; Start the "Quake" async task.
 @async Quake loop!
     @spawn Pebbles
     @shake Camera
@@ -660,9 +660,9 @@ You'll have 60 seconds to defuse the bomb!
 
 @async Boom
     @wait 60
-    ; After 60 seconds, if the 'Boom' task is not stopped,
+    ; After 60 seconds, if the "Boom" task is not stopped,
     ; the @sync command below will forcefully move the main
-    ; track here, which will then navigate to the 'BadEnd' script.
+    ; track here, which will then navigate to the "BadEnd" script.
     @sync
     @goto BadEnd
 
@@ -671,7 +671,7 @@ The defuse puzzle 1.
 The defuse puzzle 2.
 The defuse puzzle 3.
 
-; The 'Boom' async task is stopped, so the main track
+; The "Boom" async task is stopped, so the main track
 ; will continue executing without interruption.
 @stop Boom
 The bomb is defused!
@@ -718,7 +718,7 @@ To reference an existing localized text inside a scenario script, prepend `&` to
 
 ## Title Script
 
-The title script is a special scenario script assigned in the script configuration menu. When assigned, it's automatically played after the engine is initialized or when exiting to the title menu with the [@title] command or with "Title" buttons inside various in-game menus. The title script can be used to set up the title screen scene: background, music, effects, show the Title UI, etc.
+The title script is a special scenario script assigned in the scripts configuration menu. When assigned, it's automatically played after the engine is initialized or when exiting to the title menu with the [@title] command or with "Title" buttons inside various in-game menus. The title script can be used to set up the title screen scene: background, music, effects, show the Title UI, etc.
 
 The script can also be used to invoke commands when the player clicks "NEW GAME", "EXIT" or any of the save slots to load a game inside the Title UI. Below is an example of a title script.
 

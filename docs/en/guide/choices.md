@@ -17,7 +17,7 @@ Continue executing this script or load another?[>]
 
 When the `goto` parameter is not specified, the current script will continue executing from the next line.
 
-Choice handler actors are used to process the [@choice] commands. You can add, edit and remove choice handlers using the choice manager accessible via the `Naninovel -> Resources -> Choice Handlers` editor menu.
+Choice handler actors are used to process the [@choice] commands. You can add, edit and remove choice handlers using the choice handler manager accessible via the `Naninovel -> Resources -> Choice Handlers` editor menu.
 
 Choice handler behaviour can be configured using the `Naninovel -> Configuration -> Choice Handlers` editor menu; for available options see the [configuration guide](/guide/configuration#choice-handlers).
 
@@ -77,7 +77,7 @@ To create a choice button prefab from the template, use the `Create -> Naninovel
 
 ![](https://i.gyazo.com/c2bd4abaa0275f7cdd37c56fd2ff0dec.png)
 
-If you don't want to store the choice button prefabs in a `Resources` folder or need to localize them, set a custom loader in the choice handler configuration menu and use any of the available [resource providers](/guide/resource-providers).
+If you don't want to store the choice button prefabs in a "Resources" folder or need to localize them, set a custom loader in the choice handler configuration menu and use any of the available [resource providers](/guide/resource-providers).
 
 ![](https://i.gyazo.com/9b50d543b5a6843b13b415c3c2ae9641.png)
 
@@ -98,7 +98,7 @@ A common use case with choices is to make one option locked/disabled or otherwis
 While it's possible to implement this with a choice button parameter (outlined above), the use case is common, so Naninovel has a dedicated way to make this work with the `lock` parameter of the [@choice] command:
 
 ```nani
-; Make choice disabled/locked when 'score' variable is below 10.
+; Make the choice disabled/locked when the "score" variable is below 10.
 @choice "Secret option" lock:score<10
 ```
 
@@ -140,7 +140,7 @@ Find a more advanced implementation of an interactive map with Naninovel in the 
 
 ## ChatReply Choice Handler
 
-Used by the [chat text printer](/guide/text-printers#chat-printer) to represent reply choices. Example:
+Used by the [chat printer](/guide/text-printers#chat-printer) to represent reply choices. Example:
 
 ```nani
 @printer Chat

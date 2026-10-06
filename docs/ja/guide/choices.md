@@ -17,7 +17,7 @@
 
 `goto` パラメーターが指定されていない場合、現在のスクリプトは次の行から実行を続けます。
 
-選択肢ハンドラーアクターは、[@choice] コマンドを処理するために使用されます。`Naninovel -> Resources -> Choice Handlers` エディターメニューからアクセスできる選択肢マネージャーを使用して、選択肢ハンドラーを追加、編集、削除できます。
+選択肢ハンドラーアクターは、[@choice] コマンドを処理するために使用されます。`Naninovel -> Resources -> Choice Handlers` エディターメニューからアクセスできる選択肢ハンドラーマネージャーを使用して、選択肢ハンドラーを追加、編集、削除できます。
 
 選択肢ハンドラーの動作は、`Naninovel -> Configuration -> Choice Handlers` エディターメニューを使用して構成できます。利用可能なオプションについては、[構成ガイド](/ja/guide/configuration#選択肢ハンドラー) を参照してください。
 
@@ -77,7 +77,7 @@
 
 ![](https://i.gyazo.com/c2bd4abaa0275f7cdd37c56fd2ff0dec.png)
 
-選択肢ボタンプレハブを `Resources` フォルダーに保存したくない場合や、ローカライズする必要がある場合は、選択肢ハンドラー構成メニューでカスタムローダーを設定し、利用可能な [リソースプロバイダー](/ja/guide/resource-providers) のいずれかを使用してください。
+選択肢ボタンプレハブを「Resources」フォルダーに保存したくない場合や、ローカライズする必要がある場合は、選択肢ハンドラー構成メニューでカスタムローダーを設定し、利用可能な [リソースプロバイダー](/ja/guide/resource-providers) のいずれかを使用してください。
 
 ![](https://i.gyazo.com/9b50d543b5a6843b13b415c3c2ae9641.png)
 
@@ -98,7 +98,7 @@
 これは（前述の）選択肢ボタンパラメーターでも実装できますが、よくある使用例であるため、Naninovelには [@choice] コマンドの `lock` パラメーターという専用の方法が用意されています。
 
 ```nani
-; 'score' 変数が10未満の場合、選択肢を無効/ロックします。
+; 「score」変数が10未満の場合、選択肢を無効/ロックします。
 @choice "秘密の選択肢" lock:score<10
 ```
 
@@ -140,7 +140,7 @@ ButtonListとは対照的に、ButtonAreaは特定のレイアウトを強制せ
 
 ## ChatReply選択肢ハンドラー
 
-[Chatテキストプリンター](/ja/guide/text-printers#chatプリンター) で返信の選択肢を表すために使用されます。例：
+[Chatプリンター](/ja/guide/text-printers#chatプリンター) で返信の選択肢を表すために使用されます。例：
 
 ```nani
 @printer Chat

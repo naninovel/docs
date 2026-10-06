@@ -2,7 +2,7 @@
 
 リソースプロバイダーは、[メモリ管理](/ja/guide/memory-management) のニーズに従って、実行時にNaninovel関連のアセット（外観テクスチャ、BGMクリップなど）を取得するために使用されます。各プロバイダーは、特定のソース（プロジェクトの「Resources」フォルダー、UnityのAddressable Asset System、ローカルファイルストレージなど）からのアセットの取得に特化しています。
 
-プロバイダーの全般的な動作は、`Naninovel -> Configuration -> Resource Provider` メニューで設定できます。
+プロバイダーの全般的な動作は、`Naninovel -> Configuration -> Resource Provider` メニューで構成できます。
 
 ![](https://i.gyazo.com/623b6df78984851c79715378aae9b559.png)
 
@@ -10,7 +10,7 @@
 
 `Enable Build Processing` は、エディターメニューで割り当てられたアセットをビルドで確実に使用できるようにするために必要な、ビルド前処理ステップをオンにします。[カスタムビルド環境](/ja/guide/custom-build-environment) を使用している場合や、独自のビルドフックをアタッチしている場合は、この処理を無効にする必要があるかもしれません。プロパティを有効または無効にした後、変更を有効にするにはUnityエディターを再起動してください。
 
-[Addressablesシステム](https://docs.unity3d.com/Packages/com.unity.addressables@latest) がインストールされている場合、アセット処理ステップの最適化に使用され、ビルド時間が短縮されます。`Auto Build Bundles` を有効にすると、プレイヤーのビルド時にアセットバンドルが自動的にコンパイルされます。
+[Addressablesシステム](https://docs.unity3d.com/Packages/com.unity.addressables@latest) がインストールされている場合、アセット処理ステップの最適化に使用され、ビルド時間が短縮されます。`Auto Build Bundles` を有効にすると、ゲームのビルド時にアセットバンドルが自動的にコンパイルされます。
 
 構成メニューのその他のプロパティはプロバイダー固有であり、以下で説明します。
 
@@ -28,9 +28,9 @@
 
 [Addressable Asset System](https://docs.unity3d.com/Packages/com.unity.addressables@latest) は、「アドレス」によってアセットをロードできるUnityパッケージです。非同期ロードを使用することで、任意の依存関係のコレクションを伴う、任意の場所（ローカルストレージ、リモートWebホスティングなど）からのロードをサポートします。システムのセットアップ、構成、使用方法については、Unityのドキュメントを参照してください。
 
-パッケージがプロジェクトにインストールされている場合、Naninovelは自動的にAddressablesを使用します。追加のセットアップは必要ありません。Naninovelの構成メニューで割り当てられたすべてのアセット（シナリオスクリプト、キャラクタースプライト、オーディオクリップなど）は、プレイヤーのビルド時にシステムに登録されます（アドレスが割り当てられます）。
+パッケージがプロジェクトにインストールされている場合、Naninovelは自動的にAddressablesを使用します。追加のセットアップは必要ありません。Naninovelの構成メニューで割り当てられたすべてのアセット（シナリオスクリプト、キャラクタースプライト、オーディオクリップなど）は、ゲームのビルド時にシステムに登録されます（アドレスが割り当てられます）。
 
-Naninovelメニューで割り当てたアセットは、`Naninovel` グループに追加されます。アセットの配信方法を設定する場合（たとえば、リモートWebホストを指定する場合）は、`Window -> Asset Management -> Addressables -> Groups` からこのグループを編集します。このグループは最初に必要になった時点で自動的に作成されますが、ゲームをビルドする前に設定する場合は手動で作成することもできます。
+Naninovelメニューで割り当てたアセットは、`Naninovel` グループに追加されます。アセットの配信方法を構成する場合（たとえば、リモートWebホストを指定する場合）は、`Window -> Asset Management -> Addressables -> Groups` からこのグループを編集します。このグループは最初に必要になった時点で自動的に作成されますが、ゲームをビルドする前に構成する場合は手動で作成することもできます。
 
 ![](https://i.gyazo.com/c93fbd9e232ec94468c685c4d6003916.png)
 
@@ -90,7 +90,7 @@ Addressablesを介して [手動で割り当てられた](/ja/guide/resource-pro
 プロジェクトプロバイダーは、Unityプロジェクト内の「Resources」フォルダーにあるアセットを提供します。プロジェクトの [リソースロードAPI](https://docs.unity3d.com/Manual/LoadingResourcesatRuntime) に関する詳細については、Unityのガイドを参照してください。
 
 ::: warning
-ほとんどの場合、[「Resources」フォルダーの使用は推奨されません](https://docs.unity3d.com/Manual/UnderstandingPerformanceResourcesFolder.html)。可能な場合はNaninovelリソースマネージャーメニューを介してリソースを割り当てるか、代わりにAddressablesシステムを使用することを検討してください。その後、アセットを「Resources」フォルダーの外に移動することを忘れないでください。
+ほとんどの場合、[「Resources」フォルダーの使用は推奨されません](https://docs.unity3d.com/Manual/UnderstandingPerformanceResourcesFolder.html)。可能な場合はNaninovelリソースマネージャーを介してリソースを割り当てるか、代わりにAddressablesシステムを使用することを検討してください。その後、アセットを「Resources」フォルダーの外に移動することを忘れないでください。
 :::
 
 ## Local
@@ -144,7 +144,7 @@ Addressablesを介して [手動で割り当てられた](/ja/guide/resource-pro
 
 コミュニティModを使用すると、プレイヤーはゲームの組み込みリソースを引き続き利用しながら、独自のシナリオやリソースを追加してビルドを改変できます。
 
-機能を有効にするには、スクリプト構成UI（`Naninovel -> Configuration -> Scripts`）で `Enable Community Modding` プロパティを有効にし、Mod用に公開したいリソースに対して [ローカル](/ja/guide/resource-providers#local) プロバイダーを設定します。ビルドディレクトリ下のリソースが検索されるように、ローカルプロバイダーのルートパスがデフォルト値（`%DATA%/Resources`）に設定されていることを確認してください。
+機能を有効にするには、スクリプト構成メニュー（`Naninovel -> Configuration -> Scripts`）で `Enable Community Modding` プロパティを有効にし、Mod用に公開したいリソースに対して [ローカル](/ja/guide/resource-providers#local) プロバイダーを設定します。ビルドディレクトリ下のリソースが検索されるように、ローカルプロバイダーのルートパスがデフォルト値（`%DATA%/Resources`）に設定されていることを確認してください。
 
 ![](https://i.gyazo.com/e32f40aa3faa648774908a0a937c5fcb.png)
 
@@ -152,6 +152,6 @@ Addressablesを介して [手動で割り当てられた](/ja/guide/resource-pro
 
 `External Loader` 構成は外部スクリプトブラウザーに表示されるスクリプトを制御するのに対し、`Loader` 構成は実際のスクリプトリソースのロードを制御することに注意してください。External Loaderはデフォルトでローカルプロバイダーを使用するため、ゲームビルドディレクトリ内のスクリプトのみを検索します。その他のリソースタイプ（背景、キャラクターなど）については、プレイヤーが追加できるように、対応する構成メニューで手動でローカルプロバイダーを設定する必要があります。
 
-外部リソースをビルドに追加するには、ゲームの `Resources` ディレクトリ下にある、`Loader` フォールドアウトで構成されたリソースの `Path Prefix` プロパティに対応するサブフォルダーに配置します。たとえば、外部シナリオスクリプトを追加するには `GameFolder/GameName_Data/Resources/Scripts` に配置し、背景は `GameFolder/GameName_Data/Resources/Backgrounds` に配置する、といった具合です。*GameFolder* と *GameName* は、Unityプロジェクトの名前によって異なります。
+外部リソースをビルドに追加するには、ゲームの「Resources」ディレクトリ下にある、`Loader` フォールドアウトで構成されたリソースの `Path Prefix` プロパティに対応するサブフォルダーに配置します。たとえば、外部シナリオスクリプトを追加するには `GameFolder/GameName_Data/Resources/Scripts` に配置し、背景は `GameFolder/GameName_Data/Resources/Backgrounds` に配置する、といった具合です。*GameFolder* と *GameName* は、Unityプロジェクトの名前によって異なります。
 
 外部スクリプトブラウザーUIは、[UIのカスタマイズ](/ja/guide/gui#uiのカスタマイズ) 機能を使用してカスタマイズまたは完全に置き換えることができます。

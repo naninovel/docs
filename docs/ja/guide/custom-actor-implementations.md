@@ -9,7 +9,7 @@
 * `ITextPrinterActor`
 * `IChoiceHandlerActor`
 
-各アクターインターフェースは複数の実装を持つことができます。たとえば、キャラクターアクターには現在、11個の組み込み実装があります：プレースホルダー、スプライト、ダイススプライト、ユニバーサル、レイヤー、汎用、ビデオ、Live2D、Spine、ナレーター、一時的（Transient）。
+各アクターインターフェースは複数の実装を持つことができます。たとえば、キャラクターアクターには現在、11個の組み込み実装があります：プレースホルダー、スプライト、ダイススプライト、ユニバーサル、レイヤー、汎用、ビデオ、Live2D、Spine、ナレーター、一時的。
 
 アクターの実装は、`Naninovel -> Configuration` エディターメニューからアクセスできる構成マネージャーで選択できます。すべてのアクターに使用されるデフォルトの実装を変更したり、アクターごとに特定の実装を設定したりできます。デフォルトの実装を変更するには `Default Metadata` プロパティを使用し、個別の実装を設定するにはアクターの構成の `Implementation` ドロップダウンを使用します。
 
@@ -20,7 +20,7 @@
 
 カスタムアクター実装を作成するときは、互換性のあるパブリックコンストラクターがあることを確認してください。
 
-```csharp
+```cs
 public ActorImplementationType (string id, ActorMetadata metadata) { }
 ```
 
@@ -34,17 +34,17 @@ public ActorImplementationType (string id, ActorMetadata metadata) { }
 
 実装の型に `ActorResources` 属性を適用して、カスタムアクターのリソースとして使用できるアセットと、エディターメニューで複数のリソースを割り当てることができるかどうかを指定します。複数のリソースが許可されていない場合（デフォルト）、アクターIDのみを指定して、利用可能な唯一のリソースをロードできます。例：
 
-```csharp
+```cs
 var resource = await resourceLoader.Load(actorId);
 ```
 
-複数のリソースが許可されている場合は、フルパスを指定します。たとえば、`CubeBackground` という名前のリソースを割り当てた場合：
+複数のリソースが許可されている場合は、フルパスを指定します。たとえば、`CubeBackground` という名前のリソースを割り当てたとします。
 
 ![](https://i.gyazo.com/64ff6d6dede1cc8c2c3be83cfe6a6d74.png)
 
-— リソースをロードするには、次を使用します：
+— リソースをロードするには、次を使用します。
 
-```csharp
+```cs
 var resource = await resourceLoader.Load($"{actorId}/CubeBackground");
 ```
 
@@ -54,7 +54,7 @@ var resource = await resourceLoader.Load($"{actorId}/CubeBackground");
 
 カスタムデータを注入するには、新しいC#クラスを作成し、`CustomMetadata<TActor>` を継承します。ここで `TActor` は、データを関連付けるアクター実装の型です。以下は、`CustomCharacterImplementation` のキャラクターにカスタムデータを追加する例です。
 
-```csharp
+```cs
 using Naninovel;
 using UnityEngine;
 
@@ -74,7 +74,7 @@ public class MyCharacterData : CustomMetadata<CustomCharacterImplementation>
 
 実行時にカスタムデータにアクセスするには、`ActorMetadata` インスタンスの `GetCustomData<TData>()` メソッドを使用します。ここで `TData` はカスタムデータクラスの型です。例：
 
-```csharp
+```cs
 var charsConfig = Engine.GetConfiguration<CharactersConfiguration>();
 var myCharMeta = charsConfig.GetMetadataOrDefault("CharId");
 var myCharData = myCharMeta.GetCustomData<MyCharacterData>();
@@ -85,7 +85,7 @@ Debug.Log(myCharData.MyCustomInt);
 
 [プロパティドロワー](https://docs.unity3d.com/Manual/editor-PropertyDrawers.html) を介してカスタムメタデータエディターをカスタマイズすることが可能です。以下は、編集対象のフィールドの上に追加のラベルを挿入するプロパティドロワーを追加する例です。
 
-```csharp
+```cs
 // シリアル化されたフィールドに適用する属性を作成します。
 // `PropertyAttribute` から継承することを忘れないでください。
 public class ExtraLabelAttribute : PropertyAttribute
@@ -99,7 +99,7 @@ public class ExtraLabelAttribute : PropertyAttribute
 }
 
 // 対象のフィールドを描画するときに使用されるカスタムエディターを作成します。
-// `UnityEditor` APIを使用するため、スクリプトは `Editor` フォルダー内にある必要があります。
+// `UnityEditor` APIを使用するため、スクリプトは「Editor」フォルダー内にある必要があります。
 [CustomPropertyDrawer(typeof(ExtraLabelAttribute))]
 public class ExtraLabelPropertyDrawer : PropertyDrawer
 {
@@ -150,7 +150,7 @@ public class MyCharacterData : CustomMetadata<CustomCharacterImplementation>
 
 以下は、最後に選択肢が追加された時刻を格納する `LastChoiceTime` フィールドを追加して選択肢ハンドラーの状態を拡張する例です。この時刻は、カスタム選択肢ハンドラーが表示されたときにコンソールに出力されます。
 
-```csharp
+```cs
 // 最後の選択肢の時刻をシリアル化する拡張状態。
 public class MyChoiceHandlerState : ChoiceHandlerState
 {

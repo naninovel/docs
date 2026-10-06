@@ -17,11 +17,11 @@
 
 未指定 `goto` 参数时，当前脚本将从下一行继续执行。
 
-选项处理程序 Actor 用于处理 [@choice] 命令。您可以使用可通过 `Naninovel -> Resources -> Choice Handlers` 编辑器菜单访问的选项管理器添加、编辑和删除选项处理程序。
+选项处理程序 Actor 用于处理 [@choice] 命令。您可以使用可通过 `Naninovel -> Resources -> Choice Handlers` 编辑器菜单访问的选项处理程序管理器添加、编辑和删除选项处理程序。
 
 可以使用 `Naninovel -> Configuration -> Choice Handlers` 编辑器菜单配置选项处理程序的行为；有关可用选项，请参阅 [配置指南](/zh/guide/configuration#选项处理程序)。
 
-查看以下视频教程，了解选项处理程序的概况。
+请查看以下视频教程，了解选项处理程序的概况。
 
 ![](https://www.youtube.com/watch?v=cOREgtJak3A)
 
@@ -77,7 +77,7 @@
 
 ![](https://i.gyazo.com/c2bd4abaa0275f7cdd37c56fd2ff0dec.png)
 
-如果您不想将选项按钮预制件存储在 `Resources` 文件夹中或需要本地化它们，请在选项处理程序配置菜单中设置自定义加载器，并使用任何可用的 [资源提供者](/zh/guide/resource-providers)。
+如果您不想将选项按钮预制件存储在“Resources”文件夹中或需要本地化它们，请在选项处理程序配置菜单中设置自定义加载器，并使用任何可用的 [资源提供者](/zh/guide/resource-providers)。
 
 ![](https://i.gyazo.com/9b50d543b5a6843b13b415c3c2ae9641.png)
 
@@ -98,7 +98,7 @@
 虽然可以使用选项按钮参数（如上所述）来实现这一点，但这种用例很常见，因此 Naninovel 提供了专门的实现方式，也就是 [@choice] 命令的 `lock` 参数：
 
 ```nani
-; 当 'score' 变量低于 10 时，禁用/锁定该选项。
+; 当“score”变量低于 10 时，禁用/锁定该选项。
 @choice "秘密选项" lock:score<10
 ```
 
@@ -140,7 +140,7 @@
 
 ## ChatReply 选项处理程序
 
-由 [Chat 文本打印机](/zh/guide/text-printers#chat-打印机) 用于表示回复选项。示例：
+供 [Chat 打印机](/zh/guide/text-printers#chat-打印机) 用于表示回复选项。示例：
 
 ```nani
 @printer Chat
@@ -155,7 +155,7 @@ Kohaku: 你现在在哪里？
 
 您可以基于内置模板添加自定义选项处理程序，也可以从头开始创建新处理程序。例如，让我们自定义内置的 `ButtonArea` 模板。
 
-使用 `Create -> Naninovel -> Choice Handler -> Button Area` 资产上下文菜单在 Naninovel 包之外的某处创建 ButtonArea 处理程序预制件，例如在 `Assets/ChoiceHandlers` 文件夹中。
+使用 `Create -> Naninovel -> Choice Handler -> Button Area` 资产上下文菜单在 Naninovel 包之外的某处创建 ButtonArea 处理程序预制件，例如，在 `Assets/ChoiceHandlers` 文件夹中。
 
 编辑处理程序：更改字体、纹理、添加动画等。有关可用 UI 构建工具的更多信息，请查看 [Unity 文档](https://docs.unity3d.com/Packages/com.unity.ugui@latest)。
 

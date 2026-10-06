@@ -6,7 +6,7 @@ When writing scenario scripts, you can inject expression constructs into command
 One plus two equals {1 + 2}.
 ```
 
-— will print "One plus two equals 3" when running the script.
+— will print "One plus two equals 3." when running the script.
 
 You can use any math and logical operators, as well as some math functions from the [UnityEngine.Mathf](https://docs.unity3d.com/ScriptReference/Mathf.html) struct:
 
@@ -29,7 +29,7 @@ To distinguish a plain text value from a variable name, wrap the value in double
 
 ```nani
 This is just plain text: { "score" }.
-And this is the value of "score" variable: { score }.
+And this is the value of the "score" variable: { score }.
 ```
 
 If you wish to include double quotes inside the expression, escape them:
@@ -94,7 +94,7 @@ Signature | Description | Example
 random(min, max) | Returns a random integer number between min [inclusive] and max [inclusive]. | `random(0, 100)`
 random(min, max) | Returns a random decimal number between min [inclusive] and max [inclusive]. | `random(0.5, 1.5)`
 random(args) | Returns a string randomly chosen from the specified strings. | `random("foo", "bar", "baz")`
-calculateProgress() | Returns the scenario completion ratio, in 0.0 to 1.0 range, where 1.0 means all the script commands were executed at least once. | `calculateProgress()`
+calculateProgress() | Returns the scenario completion ratio, in the 0.0 to 1.0 range, where 1.0 means all the script commands were executed at least once. | `calculateProgress()`
 isUnlocked(id) | Checks whether an unlockable item with the specified ID is currently unlocked. | `isUnlocked("Tips/MyTip")`
 hasPlayed() | Checks whether the currently played command has ever been played before. | `hasPlayed()`
 hasPlayed(scriptPath) | Checks whether a script with the specified path has ever been played before. | `hasPlayed("MyScript")`
@@ -108,7 +108,7 @@ abs(num) | Returns the absolute value of num. | `abs(0.5)`
 max(nums) | Returns the largest of two or more values. | `max(1, 10, -9)`
 min(nums) | Returns the smallest of two or more values. | `min(1, 10, -9)`
 round(num) | Returns num rounded to the nearest integer. | `round(0.9)`
-approx(a, b) | Compares two floating point values and returns true if they are similar. | `approx(0.15, 0.15)`
+approx(a, b) | Compares two floating-point values and returns true if they are similar. | `approx(0.15, 0.15)`
 approx(a, b) | Compares two strings ignoring case. | `approx("abc", "ABC")`
 
 </div>
@@ -119,11 +119,11 @@ It's possible to add custom expression queries by annotating a public static C# 
 
 Only [simple](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types#simple-types) and string types are supported as argument and return types. It's also possible to use a single variadic (`params` keyword) argument; mixing a variadic with other arguments is not supported.
 
-```csharp
+```cs
 public static class CustomQueries
 {
     [ExpressionQuery("toLower")]
-    [Doc("Returns the provided string with all characters converted to lower-case.")]
+    [Doc("Returns the provided string with all characters converted to lowercase.")]
     public static string ToLower (string content) => content.ToLower();
 
     [ExpressionQuery("add")]
@@ -173,7 +173,7 @@ public static class CustomQueries
     public static bool IsComplete ([EnumContext(typeof(Quest))] string name)
     {
         Enum.TryParse<Quest>(name, out var quest);
-        // run custom logic to check if 'quest' is complete
+        // run custom logic to check if "quest" is complete
         return false;
     }
 }

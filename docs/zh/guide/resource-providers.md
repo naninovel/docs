@@ -90,7 +90,7 @@
 项目提供者提供位于 Unity 项目内“Resources”文件夹中的资产。有关项目 [资源加载 API](https://docs.unity3d.com/Manual/LoadingResourcesatRuntime) 的更多信息，请参阅 Unity 指南。
 
 ::: warning
-在大多数情况下，[不建议使用“Resources”文件夹](https://docs.unity3d.com/Manual/UnderstandingPerformanceResourcesFolder.html)。请尽可能通过 Naninovel 资源管理器菜单分配资源或改用 Addressables 系统；之后记得将资产移出“Resources”文件夹。
+在大多数情况下，[不建议使用“Resources”文件夹](https://docs.unity3d.com/Manual/UnderstandingPerformanceResourcesFolder.html)。请尽可能通过 Naninovel 资源管理器分配资源或改用 Addressables 系统；之后记得将资产移出“Resources”文件夹。
 :::
 
 ## Local
@@ -122,7 +122,7 @@
 
 默认的 `%DATA%/Resources` 值指向游戏数据目录内的“Resources”文件夹（确切位置因目标平台而异）。
 
-作为一个使用示例，假设您想从 `C:/Users/Admin/Dropbox/MyGame/Scripts` 加载剧本脚本，并与协作者共享该文件夹以共同编写剧本。指定绝对根文件夹（`C:/Users/Admin/Dropbox/MyGame`）将要求所有协作者将该文件夹存储在完全相同的路径下。更好的做法是使用以“UserProfile”特殊文件夹为起点的相对路径：`%SPECIAL{UserProfile}%/Dropbox/MyGame`。
+作为一个使用示例，假设您想从 `C:/Users/Admin/Dropbox/MyGame/Scripts` 加载剧本脚本，并与协作者共享该文件夹以共同编写剧本。指定绝对根文件夹（`C:/Users/Admin/Dropbox/MyGame`）将要求所有协作者将该文件夹存储在完全相同的路径下。请改用以“UserProfile”特殊文件夹为起点的相对路径：`%SPECIAL{UserProfile}%/Dropbox/MyGame`。
 
 ![](https://i.gyazo.com/eb435b782cfb9df6c403702e8f6124df.png)
 
@@ -144,7 +144,7 @@
 
 社区模组允许玩家通过添加自己的剧本和资源来修改构建，同时仍然可以访问游戏的内置资源。
 
-要激活该功能，请在脚本配置 UI（`Naninovel -> Configuration -> Scripts`）中启用 `Enable Community Modding` 属性，并为您希望公开给模组使用的任何资源设置 [本地](/zh/guide/resource-providers#local) 提供者。请确保本地提供者的根路径设置为默认值（`%DATA%/Resources`），以便它在构建目录下查找资源。
+要激活该功能，请在脚本配置菜单（`Naninovel -> Configuration -> Scripts`）中启用 `Enable Community Modding` 属性，并为您希望公开给模组使用的任何资源设置 [本地](/zh/guide/resource-providers#local) 提供者。请确保本地提供者的根路径设置为默认值（`%DATA%/Resources`），以便它在构建目录下查找资源。
 
 ![](https://i.gyazo.com/e32f40aa3faa648774908a0a937c5fcb.png)
 
@@ -152,6 +152,6 @@
 
 请注意，`External Loader` 配置控制哪些脚本显示在外部脚本浏览器中，而 `Loader` 配置控制实际脚本资源的加载。External Loader 默认使用本地提供者，因此它仅在游戏构建目录中查找脚本。对于其他资源类型（背景、角色等），您必须在相应的配置菜单中手动设置本地提供者，以允许玩家添加它们。
 
-要将外部资源添加到构建中，请将它们放入游戏 `Resources` 目录下的子文件夹中，子文件夹应与 `Loader` 折叠项中为该资源配置的 `Path Prefix` 属性相对应。例如，要添加外部剧本脚本，请将其放入 `GameFolder/GameName_Data/Resources/Scripts`；背景放入 `GameFolder/GameName_Data/Resources/Backgrounds`，依此类推。*GameFolder* 和 *GameName* 取决于您的 Unity 项目的名称。
+要将外部资源添加到构建中，请将它们放入游戏“Resources”目录下的子文件夹中，子文件夹应与 `Loader` 折叠项中为该资源配置的 `Path Prefix` 属性相对应。例如，要添加外部剧本脚本，请将其放入 `GameFolder/GameName_Data/Resources/Scripts`；背景放入 `GameFolder/GameName_Data/Resources/Backgrounds`，依此类推。*GameFolder* 和 *GameName* 取决于您的 Unity 项目的名称。
 
 可以使用 [UI 自定义](/zh/guide/gui#ui-自定义) 功能自定义或完全替换外部脚本浏览器 UI。

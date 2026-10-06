@@ -2,7 +2,7 @@
 
 Scene composition is often easier visually: place characters, adjust their scale and rotation, then move or zoom the camera until the shot looks right. Reproducing the result in a scenario script would normally require repeatedly guessing numeric parameters, replaying the scene and making small corrections.
 
-Scene Recording removes this trial-and-error loop. Start recording on a scenario line, arrange supported actors and the camera with Unity's regular Scene view and Inspector tools, and the corresponding scenario commands appear live in the [Story Editor](/guide/editor) or [VS Code extension](/guide/ide-extension). Use it when staging a new scene, fine-tuning an existing composition or capturing transforms that would be inconvenient to calculate manually.
+Scene recording removes this trial-and-error loop. Start recording on a scenario line, arrange supported actors and the camera with Unity's regular Scene view and Inspector tools, and the corresponding scenario commands appear live in the [Story Editor](/guide/editor) or [VS Code extension](/guide/ide-extension). Use it when staging a new scene, fine-tuning an existing composition or capturing transforms that would be inconvenient to calculate manually.
 
 ![](/assets/img/guide/scene-recording.mp4)
 
@@ -24,7 +24,7 @@ The entire recording is registered as a single `Record Scene` undo step. Editing
 
 VS Code saves the document automatically when recording stops. Undoing or redoing, editing outside the recorded block or stopping playback also stops recording.
 
-## Supported Sources
+## Supported Objects
 
 The default recorder supports the following scene objects and serialized properties:
 

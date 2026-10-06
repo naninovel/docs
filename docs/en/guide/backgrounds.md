@@ -16,7 +16,7 @@ In scenario scripts, backgrounds are mostly controlled with the [@back] command:
 @back River.RadialBlur
 ```
 
-Backgrounds are handled a bit differently from characters to better accommodate traditional VN game flow. Most of the time you'll probably have a single background actor on the scene, which will constantly transition to different appearances. To remove the hassle of repeating the same actor ID in scripts, it's possible to provide only the background appearance and transition type (optional) as a primary parameter, assuming the `MainBackground` actor is the one to be affected. When this is not the case, the ID of the background actor can be explicitly provided via the `id` parameter:
+Backgrounds are handled a bit differently from characters to better accommodate traditional VN game flow. Most of the time you'll probably have a single background actor in the scene, which will constantly transition to different appearances. To remove the hassle of repeating the same actor ID in scripts, it's possible to provide only the background appearance and transition type (optional) as a primary parameter, assuming the `MainBackground` actor is the one to be affected. When this is not the case, the ID of the background actor can be explicitly provided via the `id` parameter:
 
 ```nani
 ; Given a "CityVideo" actor with "Night" and "Day" video clips.
@@ -67,7 +67,7 @@ When showing multiple backgrounds simultaneously, they tend to cover each other:
 
 Higher z-positions result in further distance from the camera; hence an actor placed closer to the camera will render on top of another.
 
-Backgrounds are placed with a specific z-offset by default to make them appear behind other actor types. The offset value can be changed via the `Z Offset` property in the background settings.
+Backgrounds are placed with a specific z-offset by default to make them appear behind other actor types. The offset value can be changed via the `Z Offset` property in the background configuration.
 
 To prevent z-fighting issues, backgrounds are further offset apart from each other along the Z-axis when first added (shown). The offset is controlled with the `Z Step` setting.
 
@@ -135,7 +135,7 @@ The sprite implementation of the background actors is the most common and simple
 Choose file formats that are most comfortable for your development workflow. When building the project, Unity will automatically convert all the source resources (textures, audio, video, etc) to the formats most suitable for the target platform, so it won't make a difference in which format you originally store the resources in the project. Find more information on how Unity manages project assets in the [official documentation](https://docs.unity3d.com/Manual/AssetWorkflow).
 :::
 
-The initial (unscaled) size of the sprite background mesh on the scene depends on the reference resolution (camera configuration), the background's `Pixels Per Unit` property (set for each background actor in the configuration menu) and the source texture resolution.
+The initial (unscaled) size of the sprite background mesh in the scene depends on the reference resolution (camera configuration), the background's `Pixels Per Unit` property (set for each background actor in the configuration menu) and the source texture resolution.
 
 Naninovel will attempt to make the backgrounds cover the whole camera frustum by default, so make sure to size the source textures so that their aspect ratio matches that of the reference resolution; see the [match mode guide](/guide/backgrounds#match-mode) for more information on how to change or disable this behaviour.
 
@@ -169,7 +169,7 @@ To prevent a specific appearance from looping, append `NoLoop` (case-insensitive
 
 ### WebGL Limitations
 
-On WebGL, Unity's video player can only work in streaming mode, so all the video resources will be copied to the `Assets/StreamingAssets/Backgrounds` folder upon building the WebGL player. The **StreamingAssets** folder will also appear in the build output directory; make sure to preserve it when publishing the build and check that your web server allows reading the data from this folder.
+On WebGL, Unity's video player can only work in streaming mode, so all the video resources will be copied to the `Assets/StreamingAssets/Backgrounds` folder upon building the WebGL player. The "StreamingAssets" folder will also appear in the build output directory; make sure to preserve it when publishing the build and check that your web server allows reading the data from this folder.
 
 The copied video files won't be transcoded by Unity (even if the option is enabled), so the source files should initially be in a format supported by the web browsers; alternatively, you can replace the clip files in the game directory after the build. Below is the detailed metadata of a background video clip that is used in our WebGL demo:
 
@@ -263,7 +263,7 @@ The scene background configuration has a `Scene Path Root` option set to `Assets
 Resource (appearance) names of the scene backgrounds are expected to be equal to the paths of the scene assets relative to the root; for example, if the scene root is `Assets/Scenes` and you have `Assets/Scenes/Sphere.unity` and `Assets/Scenes/Sub/Cylinder.unity` scene assets, the associated appearances would be `Sphere` and `Sub/Cylinder` respectively.
 :::
 
-Create a new (or move an existing) scene under the specified root folder and make sure it has at least one [camera](https://docs.unity3d.com/ScriptReference/Camera.html) component attached to a root game object inside the scene. Upon loading a scene background, Naninovel will assign a render texture to the first found camera in the scene. The render texture will then be assigned to a background sprite, representing the scene background inside Naninovel scene space. This way, the scene background will be able to co-exist with other background and character actors, support all the background transition effects and scale to handle various display aspect ratios.
+Create a new (or move an existing) scene under the specified root folder and make sure it has at least one [camera](https://docs.unity3d.com/ScriptReference/Camera.html) component attached to a root game object inside the scene. Upon loading a scene background, Naninovel will assign a render texture to the first found camera in the scene. The render texture will then be assigned to a background sprite, representing the scene background inside Naninovel scene space. This way, the scene background will be able to coexist with other background and character actors, support all the background transition effects and scale to handle various display aspect ratios.
 
 Make sure to position the scene objects in world space so that they don't overlap with objects from other scenes that could potentially be loaded at the same time (eg, when referenced in a single scenario script). Additionally, be aware that, in case a scene background object is positioned near the global space origin (`x0 y0 z0`), it could be rendered by Naninovel's main camera; to prevent this, either offset all the scene objects from the global origin, or use `Configuration -> Engine -> Override Objects Layer` to isolate Naninovel-related objects using [layers](https://docs.unity3d.com/Manual/Layers.html).
 

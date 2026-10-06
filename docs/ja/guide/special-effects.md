@@ -3,21 +3,21 @@
 さまざまな特殊効果専用の組み込みスクリプトコマンドが多数用意されています。たとえば、[@shake] コマンドはアクターをシェイクします。
 
 ```nani
-; 'Kohaku' アクターをシェイクします
+; 「Kohaku」アクターをシェイクします
 @shake Kohaku
 ```
 
 ほとんどの効果はパラメーター化できます。
 
 ```nani
-; 'Kohaku' を1回シェイクします（デフォルトの3回の代わりに）
+; 「Kohaku」を1回シェイクします（デフォルトの3回の代わりに）
 @shake Kohaku count:1
 ```
 
 効果を再起動せずに効果パラメーターを更新できます。
 
 ```nani
-; 'Kohaku' アクターをループでゆっくりとシェイクし始めます
+; 「Kohaku」アクターをループでゆっくりとシェイクし始めます
 @shake Kohaku loop! power:0.1
 Kohaku: 揺れてる！
 ; 振幅を増やしてあと3回シェイクします
@@ -51,7 +51,7 @@ Kohaku: 揺れてる！
 | --- | --- | --- | --- |
 | ID | String | null | シェイクするアクターのID。メインカメラをシェイクするには `Camera` を指定します。 |
 | Shake count | Number | 3 | シェイクの反復回数。 |
-| Loop | Boolean | false | 有効にすると、[@despawn] で停止するまで効果をループします。 |
+| Loop | Boolean | false | 有効にすると、`!loop` または [@despawn] で停止するまで効果をループします。 |
 | Shake duration | Number | 0.15 | 各シェイク反復の基本時間（秒単位）。 |
 | Duration variation | Number | 0.25 | 効果の基本時間に適用されるランダムな変動幅。 |
 | Shake amplitude | Number | 0.5 | 各シェイク反復の基本変位振幅（ユニット単位）。 |
@@ -65,7 +65,7 @@ Kohaku: 揺れてる！
 ; 現在のデフォルトのテキストプリンターをシェイクします
 @shake
 
-; デフォルトのパラメーターで "Kohaku" アクターをシェイクします
+; デフォルトのパラメーターで「Kohaku」アクターをシェイクします
 @shake Kohaku
 
 ; メインカメラを水平方向に5回シェイクします
@@ -208,7 +208,7 @@ Kohaku: 揺れてる！
 **例**
 
 ```nani
-; デフォルトのパラメーターでボケを有効にし、"Kohaku" ゲームオブジェクトに焦点をロックします
+; デフォルトのパラメーターでボケを有効にし、「Kohaku」ゲームオブジェクトに焦点をロックします
 @bokeh Kohaku
 
 ; 10秒かけて効果をフェードアウト（無効化）します
@@ -244,7 +244,7 @@ Kohaku: 揺れてる！
 ; 現在のメイン背景にぼかしを適用します
 @blur
 
-; "Sky" 背景に最大強度で2.5秒かけてぼかしを適用します
+; 「Sky」背景に最大強度で2.5秒かけてぼかしを適用します
 @blur Sky power:1 time:2.5
 
 ; ぼかしをフェードアウトして無効にします
@@ -832,7 +832,7 @@ EaseInOutElastic
 — 右上の黒い四角は、トランジションの開始時にトランジションターゲットがそこに表示されることを示し、中央の真っ白な四角は最後に遷移します。
 
 ::: tip
-メモリ使用量を最適化するには、ディゾルブテクスチャのインポート設定で「Single Channel」と「Red」を設定します。また、視覚的なアーティファクトを防ぐために、`Non-Power of 2` と `Generate Mipmap` オプションが無効になっていることを確認してください。
+メモリ使用量を最適化するには、ディゾルブテクスチャのインポート設定で `Single Channel` と `Red` を設定します。また、視覚的なアーティファクトを防ぐために、`Non-Power of 2` と `Generate Mipmap` オプションが無効になっていることを確認してください。
 
 ![](https://i.gyazo.com/7c38c89948b6d040c0b21ca573cf2968.png)
 :::
@@ -867,7 +867,7 @@ EaseInOutElastic
 
 スクリプトコマンドでトランジション名が指定されると、アクターが使用するマテリアルで同じ名前（`NANINOVEL_TRANSITION_` プレフィックス付き）の [シェーダーキーワード](https://docs.unity3d.com/ScriptReference/Shader.EnableKeyword.html) が有効になります。
 
-独自のトランジションをカスタムアクターシェーダーに追加するには、`multi_compile` ディレクティブを使用します。例：
+独自のトランジションをカスタムアクターシェーダーに追加するには、`multi_compile_local` ディレクティブを使用します。例：
 
 ```c
 #pragma multi_compile_local _ NANINOVEL_TRANSITION_CUSTOM1 NANINOVEL_TRANSITION_CUSTOM2

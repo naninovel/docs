@@ -16,10 +16,10 @@ To add a locale, create a subfolder inside `Resources/Naninovel/Localization` (t
 
 Be aware that you do not have to create a subfolder in the *localization resources root* for the *source locale*. All project resources stored outside the *localization resources root* belong to the *source locale* by default.
 
-The *localization resources root* path can be changed in the localization configuration menu via the `Loader > Path Prefix` property. Note that the configured path is relative to a "Resources" folder (not "Assets"). Unity handles Resources folders in a special way; you can have multiple such folders anywhere inside the project to organize locale-specific assets.
+The *localization resources root* path can be changed in the localization configuration menu via the `Loader > Path Prefix` property. Note that the configured path is relative to a "Resources" folder (not "Assets"). Unity handles "Resources" folders in a special way; you can have multiple such folders anywhere inside the project to organize locale-specific assets.
 
 ::: tip
-Instead of using the `Resources` folder, you can opt for a different resource provider; for example, with [Addressables](/guide/resource-providers#addressable) you can bundle locale-specific resources independently of the main game package and download them on demand. Naninovel will automatically register generated localization documents with Addressables when the package is installed.
+Instead of using the "Resources" folder, you can opt for a different resource provider; for example, with [Addressables](/guide/resource-providers#addressable) you can bundle locale-specific resources independently of the main game package and download them on demand. Naninovel will automatically register generated localization documents with Addressables when the package is installed.
 :::
 
 ## Default Locale
@@ -62,7 +62,7 @@ You can generate resources for all locales in the project at once by selecting t
 
 Press "Generate Localization Documents" to create or update localization resources. On subsequent runs the tool will respect previously generated localization documents and preserve localized entries when the source material hasn't changed.
 
-Script localization documents are grouped under a `Scripts` folder and consist of statements in the following format:
+Script localization documents are grouped under a "Scripts" folder and consist of statements in the following format:
 
 ```nani
 # ID
@@ -124,7 +124,7 @@ To give translators more control over inlined content (for example, to allow rew
 
 ### Annotations
 
-When **Include Annotations** is enabled, generated localization documents include the source script content being localized (command or generic line), as well as any comments placed before it. For example, given this source script:
+When `Include Annotations` is enabled, generated localization documents include the source script content being localized (command or generic line), as well as any comments placed before it. For example, given this source script:
 
 ```nani
 ; Player has to pick route.
@@ -180,11 +180,11 @@ Specify the required folders:
 
 Click "Export" to export sheets to the selected destination.
 
-Each script and managed text document will be exported to an individual sheet. Each sheet has a "key" column storing localizable text IDs and an additional column for each locale. You can modify any column except "key"; however, modifying the source-locale column won't have any effect on import.
+Each script and managed text document will be exported to an individual sheet. Each sheet has a "key" column storing localizable text IDs and an additional column for each locale. You can modify any column except "key"; however, modifying the source locale column won't have any effect on import.
 
-When **Include Annotations** is enabled, generated sheets will also contain a column with the source script content (author names, inlined commands and comments). That column is ignored during import.
+When `Include Annotations` is enabled, generated sheets will also contain a column with the source script content (author names, inlined commands and comments). That column is ignored during import.
 
-When **Import Source** is enabled, the source locale column in spreadsheets will be written directly to the scenario scripts. This is useful for proofreading the source scenario content alongside the translations. Note that only identified text will be rewritten to preserve its association with the existing translations.
+When `Import Source` is enabled, the source locale column in spreadsheets will be written directly to the scenario scripts. This is useful for proofreading the source scenario content alongside the translations. Note that only identified text will be rewritten to preserve its association with the existing translations.
 
 After editing the sheets, click "Import" to bring the data back into the project.
 
@@ -200,7 +200,7 @@ Create a custom processor class by inheriting the built-in `Naninovel.Spreadshee
 
 Below is an example processor with key override points:
 
-```csharp
+```cs
 using Naninovel.Spreadsheet;
 
 public class CustomProcessor : Processor
@@ -256,17 +256,17 @@ Find an example of setting up localization-specific fonts in the [localization s
 
 ## Community Localization
 
-When a released title gains enough popularity, the community may want to contribute additional localizations; this often leads to users hacking build assets to replace displayed text. Naninovel provides a runtime localization option that lets you add community localizations without tampering with build files.
+When a released title gains enough popularity, the community may want to contribute additional localizations; this often leads to players hacking build assets to replace displayed text. Naninovel provides a runtime localization option that lets you add community localizations without tampering with build files.
 
 ### Ejecting Localization Resources
 
-To generate localization resources (script and managed text docs), run the game executable with the `-nani-eject` argument, eg:
+To generate localization resources (script and managed text documents), run the game executable with the `-nani-eject` argument, eg:
 
 ```
 ./game.exe -nani-eject
 ```
 
-This launches the game as usual, but after Naninovel initializes it will eject localization resources to Unity's [persistent data folder](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html) under `Localization`. For example, if the company's name is `Foo` and the game title is `Bar`, the ejected path on Windows will be:
+This launches the game as usual, but after Naninovel initializes it will eject localization resources to Unity's [persistent data directory](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html) under `Localization`. For example, if the company's name is `Foo` and the game title is `Bar`, the ejected path on Windows will be:
 
 ```
 C:/Users/User/AppData/LocalLow/Foo/Bar/Localization
@@ -295,13 +295,13 @@ Don't delete or move the `Info.txt` file, as it's required to detect the presenc
 
 ### Translating
 
-After documents are ejected you can start translating. The process is similar to "Scripts Localization" and "UI Localization" above. Script localization documents are stored in `Localization/Text/Scripts`, while managed text docs are in `Localization/Text`.
+After documents are ejected you can start translating. The process is similar to "Scripts Localization" and "UI Localization" above. Script localization documents are stored in `Localization/Text/Scripts`, while managed text documents are in `Localization/Text`.
 
-Restart the game as usual (without the eject arg) and it will automatically use the localization resources in the persistent data folder. For script localization changes to take effect, the associated script has to be reloaded (save-loading is usually enough), though a restart may be required in some cases.
+Restart the game as usual (without the eject arg) and it will automatically use the localization resources in the persistent data directory. For script localization changes to take effect, the associated script has to be reloaded (save-loading is usually enough), though a restart may be required in some cases.
 
 If the developer updates the game, you can eject again to update the existing localization; new lines and records will be inserted while existing translations for unchanged source material will be preserved.
 
-After translation is finished, share the `Localization` folder and instruct end users to place it under the aforementioned persistent data directory to activate the localization. To disable the localization, delete the folder.
+After translation is finished, share the "Localization" folder and instruct players to place it under the aforementioned persistent data directory to activate the localization. To disable the localization, delete the folder.
 
 ## Compiler Localization
 

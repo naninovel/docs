@@ -4,7 +4,7 @@
 
 `Naninovel -> Configuration` または `Edit -> Project Settings -> Naninovel` を使用して、構成メニューにアクセスします。
 
-すべての構成メニューは [Unityのプリセット機能](https://docs.unity3d.com/Manual/Presets) をサポートしていることに注目してください。異なるターゲットプラットフォーム（モバイル、スタンドアロン、ゲームコンソールなど）にデプロイするときに、いくつかの構成プリセットを作成すると便利です。
+すべての構成メニューは [Unityのプリセット機能](https://docs.unity3d.com/Manual/Presets) をサポートしていることに注意してください。異なるターゲットプラットフォーム（モバイル、スタンドアロン、ゲームコンソールなど）にデプロイするときに、いくつかの構成プリセットを作成すると便利です。
 
 ![](https://i.gyazo.com/55f5c74bfc16e1af2455034647525df3.mp4)
 
@@ -19,7 +19,7 @@
 | Bgm Loader | BGM- (Addressable, Project) | BGMオーディオリソースで使用されるリソースローダーの構成。 |
 | Sfx Loader | SFX- (Addressable, Project) | SFXオーディオリソースで使用されるリソースローダーの構成。 |
 | Voice Loader | Voice- (Addressable, Project) | ボイスオーディオリソースで使用されるリソースローダーの構成。 |
-| Audio Player | Naninovel Audio Player | オーディオクリップの再生を担当するIAudioPlayerの実装。 |
+| Audio Player | Naninovel Audio Player | オーディオクリップの再生を担当する `IAudioPlayer` の実装。 |
 | Default Master Volume | 1 | ゲームの初回起動時に設定するマスター音量。 |
 | Default Bgm Volume | 1 | ゲームの初回起動時に設定するBGM音量。 |
 | Default Sfx Volume | 1 | ゲームの初回起動時に設定するSFX音量。 |
@@ -27,7 +27,7 @@
 | Enable Auto Voicing | False | 有効にすると、各 [@print] コマンドは関連するボイスクリップの再生を試みます。 |
 | Voice Overlap Policy | Prevent Overlap | ボイスの同時再生の処理方法を指定します：<br> • Allow Overlap — 複数のボイスが制限なく同時に再生されます。<br> • Prevent Overlap — 新しいボイスクリップを再生する前に再生中のボイスクリップを停止することで、ボイスの同時再生を防ぎます。<br> • Prevent Character Overlap — キャラクターごとにボイスの同時再生を防ぎます。異なるキャラクターのボイス（オートボイス）と任意の数の [@voice] コマンドは同時に再生できます。 |
 | Voice Locales | Null | 言語タグを割り当てて、メインのローカライズとは独立してゲーム設定でボイス言語を選択できるようにします。 |
-| Default Fade Duration | 0.35 | オーディオの再生を開始または停止するときの音量フェードイン/アウトのデフォルト時間。 |
+| Default Fade Duration | 0.35 | オーディオの再生を開始または停止するときの音量フェードイン/アウトのデフォルト時間（秒単位）。 |
 | Default Fade Easing | Linear | オーディオのフェードと変更でデフォルトで使用するイージング関数。 |
 | Play Sfx While Skipping | True | スキップモード中に非ループ効果音（SFX）を再生するかどうか。無効にすると、スキップ中に `loop!` なしの [@sfx] コマンドは無視されます。 |
 | Custom Audio Mixer | Null | オーディオグループを制御するオーディオミキサー。指定しない場合、デフォルトのものが使用されます。 |
@@ -116,7 +116,7 @@
 | プロパティ | デフォルト値 | 説明 |
 | --- | --- | --- |
 | Default Handler ID | ButtonList | デフォルトで使用する選択肢ハンドラーのID。 |
-| Choice Button Loader | Choice Buttons- (Addressable, Project) | カスタム選択肢ボタンのロードに使用されるリソースローダーの構成。 |
+| Choice Button Loader | Choice Buttons- (Addressable, Project) | カスタム選択肢ボタンリソースで使用されるリソースローダーの構成。 |
 | Default Metadata | Object Ref | 選択肢ハンドラーアクターを作成するときにデフォルトで使用するメタデータ。作成されたアクターIDのカスタムメタデータが存在しない場合に使用されます。 |
 | Metadata | Object Ref | 特定のIDで選択肢ハンドラーアクターを作成するときに使用するメタデータ。 |
 | Default Duration | 0.35 | すべてのアクターの変更（外観、位置、色合いの変更など）のデフォルトの時間（秒単位）。 |
@@ -153,14 +153,14 @@
 | プロパティ | デフォルト値 | 説明 |
 | --- | --- | --- |
 | Spawn Event System | True | Naninovel固有のイベントシステムをスポーンするかどうか。uGUIの操作に必要です。自分でイベントシステムを初期化したい場合は無効にしてください。 |
-| Event System | Null | エンジン初期化時にスポーンし、入力処理に使用する `EventSystem` コンポーネントを持つプレハブ。割り当てられていない場合は、デフォルトのイベントシステムを使用します。 |
+| Event System | Null | エンジンの初期化時にスポーンし、入力処理に使用する `EventSystem` コンポーネントを持つプレハブ。割り当てられていない場合は、デフォルトのイベントシステムを使用します。 |
 | Input Actions | Null | UnityのInput Systemがインストールされている場合は、ここで入力アクションアセットを割り当てます。<br><br>入力アクションをNaninovelの入力にマップするには、`Action Maps` に指定されたアクションマップ（デフォルトは `Naninovel`）の下に、入力名と同じ名前のアクションを追加します。<br><br>割り当てられていない場合は、デフォルトの入力アクションを使用します。 |
 | Action Maps | Object Ref | Naninovel入力に登録する、指定された `Input Actions` アセット内の入力アクションマップ名。 |
 | Rebind Timeout | 5 | 入力をリバインドする際に、コントロールがアクティブになるのを待機する時間（秒）。経過するとキャンセルされます。0以下の場合、タイムアウトは無効になります。 |
 | Rebind Cancel Key | &lt;Keyboard&gt;/escape | アクティブになったときに入力のリバインドをキャンセルするコントロールのパス。無効にするには空のままにします。 |
 | Enable Gyroscope | True | UnityのInput Systemではデフォルトで無効になっているジャイロスコープデバイスを有効にするかどうか。モバイルデバイスを回転させてカメラルックを行うために必要です。 |
-| Detect Input Mode | True | 関連するデバイスがアクティブになったときに入力モードを変更するかどうか。例：ゲームパッドのいずれかのボタンが押されたときにゲームパッドに切り替え、マウスボタンがクリックされたときにマウスに戻します。 |
-| Disable Input | False | エンジンが初期化されるときに、デフォルトで入力処理を無効にするかどうか。Naninovelがドロップインのダイアログシステムとして統合されており、初期化後にユーザー入力に反応すべきではない場合に役立ちます。 |
+| Detect Input Mode | True | 関連するデバイスがアクティブになったときに入力モードを変更するかどうか。たとえば、ゲームパッドのいずれかのボタンが押されたときにゲームパッドに切り替え、マウスボタンがクリックされたときにマウスに戻します。 |
+| Disable Input | False | エンジンが初期化されるときに、デフォルトで入力処理を無効にするかどうか。Naninovelがドロップインのダイアログシステムとして統合されており、初期化後に入力に反応すべきではない場合に役立ちます。 |
 
 </div>
 
@@ -173,7 +173,7 @@
 | Loader | Localization- (Addressable, Project) | ローカライズリソースで使用されるリソースローダーの構成。 |
 | Languages | Object Ref | デフォルトの言語表示名にマップされたRFC5646言語タグ。変更を有効にするには、Unityエディターを再起動してください。 |
 | Source Locale | en | プロジェクトのソースリソースのロケール（プロジェクトアセットの作成に使用している言語）。 |
-| Expose Source Locale | True | ソースロケールをエンドユーザー（プレイヤー）が利用できるようにするかどうか。つまり、言語選択に含めるかどうか。<br><br>このオプションの無効化は、ソースのローカライズ可能なテキストをサードパーティと共有したい（校正のためなど）が、シナリオスクリプトは共有したくない場合に役立ちます。その場合、このオプションを無効にし、ソースマテリアル専用のロケールを追加します。追加したロケールは、ローカライズドキュメントまたはスプレッドシートにエクスポートできます。 |
+| Expose Source Locale | True | ソースロケールをプレイヤーが利用できるようにするかどうか。つまり、言語選択に含めるかどうか。<br><br>このオプションの無効化は、ソースのローカライズ可能なテキストをサードパーティと共有したい（校正のためなど）が、シナリオスクリプトは共有したくない場合に役立ちます。その場合、このオプションを無効にし、ソースマテリアル専用のロケールを追加します。追加したロケールは、ローカライズドキュメントまたはスプレッドシートにエクスポートできます。 |
 | Default Locale | Null | ゲームを初めて実行するときにデフォルトで選択されるロケール。指定しない場合、`Source Locale` が選択されます。 |
 | Auto Detect Locale | True | 有効な場合、ゲームの初回実行時にシステム言語に基づいてロケールの自動検出を試みます。検出に成功し、そのロケールがゲームでサポートされている場合は、それを選択します。それ以外の場合は、`Default Locale` にフォールバックします。 |
 | Record Separator | \| | 汎用テキスト行の各部分や、コマンドの複数のローカライズ可能なパラメーター値など、単一のローカライズレコードのテキスト断片を結合するために使用される文字。 |
@@ -199,7 +199,7 @@
 | プロパティ | デフォルト値 | 説明 |
 | --- | --- | --- |
 | Loader | Movies- (Addressable, Project) | ムービーリソースで使用されるリソースローダーの構成。 |
-| Skip On Input | True | ユーザーが `SkipMovie` 入力をアクティブにしたときにムービーの再生をスキップするかどうか。 |
+| Skip On Input | True | プレイヤーが `SkipMovie` 入力をアクティブにしたときにムービーの再生をスキップするかどうか。 |
 | Skip Frames | True | 現在の時間に追いつくためにフレームをスキップするかどうか。 |
 | Fade Duration | 1 | ムービーの再生を開始/終了する前にフェードイン/アウトする時間（秒単位）。 |
 | Custom Fade Texture | Null | フェード中に表示するテクスチャ。指定しない場合、単純な黒のテクスチャが使用されます。 |
@@ -219,9 +219,9 @@
 | Lazy Priority | Below Normal | Lazyリソースポリシーが有効な場合、リソースがロードされるバックグラウンドスレッドの優先度を制御します。優先度を下げるとスタッターを最小限に抑えられますが、その分ロード時間が長くなります。 |
 | Remove Actors | True | スクリプトリソースをアンロードするときに、未使用のアクター（キャラクター、背景、テキストプリンター、選択肢ハンドラー）を自動的に削除するかどうか。有効になっていても、[@remove] コマンドを使用して手動でいつでもアクターを削除できることに注意してください。 |
 | Enable Build Processing | True | Naninovelリソースとして割り当てられたアセットを処理するために、カスタムビルドプレイヤーハンドラーを登録するかどうか。<br><br>警告：この設定の変更を有効にするには、Unityエディターを再起動する必要があります。 |
-| Auto Build Bundles | True | プレイヤーをビルドするときにAddressableアセットバンドルを自動的にビルドするかどうか。 |
-| Label By Scripts | True | すべてのNaninovel Addressableアセットに、それらが使用されているシナリオスクリプトパスでラベルを付けるかどうか。Addressableグループ設定で `Bundle Mode` が `Pack Together By Label` に設定されている場合、より効率的なバンドルパッキングになります。<br><br>スクリプトラベルは、アドレスが「Naninovel/」で始まるすべてのアセットに割り当てられることに注意してください。これには、リソースエディターメニューを使用せずにAddressableリソースプロバイダーに手動で公開されたアセットが含まれます。 |
-| Local Root Path | %DATA%/Resources | ローカルリソースプロバイダーに使用するルートパス。リソースが配置されているフォルダーへの絶対パス、または使用可能な起点のいずれかで始まる相対パスにすることができます：<br> • %DATA% — ターゲットデバイス上のゲームデータフォルダー（UnityEngine.Application.dataPath）。<br> • %PDATA% — ターゲットデバイス上の永続データディレクトリ（UnityEngine.Application.persistentDataPath）。<br> • %STREAM% — `StreamingAssets` フォルダー（UnityEngine.Application.streamingAssetsPath）。<br> • %SPECIAL{F}% — OSの特殊フォルダー（FはSystem.Environment.SpecialFolderの値）。 |
+| Auto Build Bundles | True | プレイヤービルド時にAddressableアセットバンドルを自動的にビルドするかどうか。 |
+| Label By Scripts | True | すべてのNaninovel Addressableアセットに、それらが使用されているシナリオスクリプトパスでラベルを付けるかどうか。Addressableグループ設定で `Bundle Mode` が `Pack Together By Label` に設定されている場合、より効率的なバンドルパッキングになります。<br><br>スクリプトラベルは、アドレスが `Naninovel/` で始まるすべてのアセットに割り当てられることに注意してください。これには、リソースエディターメニューを使用せずにAddressableリソースプロバイダーに手動で公開されたアセットが含まれます。 |
+| Local Root Path | %DATA%/Resources | ローカルリソースプロバイダーに使用するルートパス。リソースが配置されているフォルダーへの絶対パス、または使用可能な起点のいずれかで始まる相対パスにすることができます：<br> • %DATA% — ターゲットデバイス上のゲームデータフォルダー（UnityEngine.Application.dataPath）。<br> • %PDATA% — ターゲットデバイス上の永続データディレクトリ（UnityEngine.Application.persistentDataPath）。<br> • %STREAM% —「StreamingAssets」フォルダー（UnityEngine.Application.streamingAssetsPath）。<br> • %SPECIAL{F}% — OSの特殊フォルダー（FはSystem.Environment.SpecialFolderの値）。 |
 | Video Stream Extension | .mp4 | WebGLでビデオをストリーミングする場合（ムービー、ビデオ背景）、ビデオファイルの拡張子を指定します。 |
 | Reload Scripts | True | ローカルプロバイダーディレクトリの下に保存されているシナリオスクリプトを監視し、変更されたスクリプトをホットリロードするかどうか。 |
 
@@ -237,7 +237,7 @@
 | Skip Time Scale | 10 | スキップ（早送り）モードで使用するタイムスケール。スキップ時にタイムスケールを変更しないようにするには、1に設定します。 |
 | Min Auto Play Delay | 1 | オートプレイモード中に次のコマンドを実行する前に待機する最小秒数。 |
 | Complete On Continue | True | `Continue` 入力がアクティブになったときに、時間の経過とともに実行されるブロッキング（`wait!`）コマンド（例：アニメーション、表示/非表示、色合いの変更など）を即座に完了するかどうか。 |
-| Show Debug On Init | False | エンジン初期化時にスクリプトプレイヤーのデバッグウィンドウを表示するかどうか。 |
+| Show Debug On Init | False | エンジンの初期化時にスクリプトプレイヤーのデバッグウィンドウを表示するかどうか。 |
 | Wait By Default | False | `wait` パラメーターが明示的に指定されていない場合に、再生されるコマンドの完了を待機するかどうか。待機可能な（非同期）コマンドにのみ適用されます。<br><br>警告：このオプションは後方互換性のために保持されており、次のリリースで削除されるため、新しいプロジェクトでは有効にしないでください。 |
 | Show Loading UI | False | スクリプトのプリロード/ロードおよびエンジンリセット操作中に `ILoadingUI` を自動的に表示するかどうか。リソースのロードプロセスをロード画面でマスクできます。 |
 
@@ -250,20 +250,20 @@
 | プロパティ | デフォルト値 | 説明 |
 | --- | --- | --- |
 | Loader | Scripts- (Addressable, Project) | シナリオスクリプトリソースで使用されるリソースローダーの構成。 |
-| Script Compiler | Naninovel Script Compiler | ソースシナリオテキストをスクリプトアセットに変換するために使用するIScriptCompiler実装。変更を有効にするには、この設定を変更した後にスクリプトアセットを再インポートします。 |
+| Script Compiler | Naninovel Script Compiler | ソースシナリオテキストをスクリプトアセットに変換するために使用する `IScriptCompiler` 実装。変更を有効にするには、この設定を変更した後にスクリプトアセットを再インポートします。 |
 | Compiler Localization | Object Ref | ロケール固有のNaniScriptコンパイラーオプション。メタデータ同期時にIDE拡張機能に伝播します。変更を有効にするには、Unityエディターを再起動し、スクリプトアセットを再インポートします。 |
-| Initialization Script | Null | エンジン初期化直後に再生するスクリプトのローカルリソースパス。 |
+| Initialization Script | Null | エンジンの初期化直後に再生するスクリプトのローカルリソースパス。 |
 | Title Script | Title | タイトルUIを表示するときに再生するスクリプトのローカルリソースパス。タイトル画面シーン（背景、音楽など）の設定に使用できます。 |
 | Start Game Script | Entry | 新しいゲームを開始するときに再生するスクリプトのローカルリソースパス。指定しない場合、最初に使用可能なものが使用されます。 |
 | Auto Add Scripts | True | 作成されたシナリオスクリプトをリソースに自動的に追加するかどうか。 |
 | Auto Resolve Path | True | スクリプトが作成、名前変更、または移動されたときに、リソースパスを自動的に解決して更新するかどうか。 |
 | Hot Reload Scripts | True | ストーリーエディターまたは外部エディターで変更されたスクリプトをリロードし、再生を最初からやり直すことなくプレイモード中に変更を適用するかどうか。 |
-| Watch Scripts | True | 「.nani」ファイルに対してファイルシステムウォッチャーを実行するかどうか。外部アプリケーションで編集されたときにスクリプトの変更を検出するために必要です。 |
+| Watch Scripts | True | `.nani` ファイルに対してファイルシステムウォッチャーを実行するかどうか。外部アプリケーションで編集されたときにスクリプトの変更を検出するために必要です。 |
 | Show Script Navigator | False | エンジンが初期化された後にスクリプトナビゲーターUIを自動表示するかどうか（UIリソースで `IScriptNavigatorUI` が利用可能である必要があります）。 |
 | Enable Story Editor | True | ストーリーエディターアプリを有効にするかどうか。 |
 | Show Selected Script | True | 選択したシナリオスクリプトアセットをストーリーエディター内で開くかどうか。 |
 | Enable Community Modding | False | 外部のシナリオスクリプトをビルドに追加することを許可するかどうか。 |
-| External Loader | Scripts- (Local) | 外部のシナリオスクリプトリソースを検索するために使用されるリソースローダーの構成。<br><br>`External` ローダーはスクリプトの検索にのみ使用されることに注意してください。実際にロードするには `Loader` も構成する必要があります。詳細はコミュニティModガイドを参照してください。 |
+| External Loader | Scripts- (Local) | 外部のシナリオスクリプトリソースを検索するために使用されるリソースローダーの構成。<br><br>`External Loader` はスクリプトの検索にのみ使用されることに注意してください。実際にロードするには `Loader` も構成する必要があります。詳細はコミュニティModガイドを参照してください。 |
 
 </div>
 
@@ -318,7 +318,7 @@
 | Max Reveal Delay | 0.06 | テキストメッセージを表示するときの遅延の上限（秒単位）。具体的な表示速度はゲーム設定の `message speed` で設定されます。この値は使用可能な範囲を定義します（値が大きいほど、表示速度は遅くなります）。 |
 | Max Auto Wait Delay | 0.02 | オートプレイモードで続行を待機するときの、表示された1文字あたりの遅延の上限（秒単位）。具体的な遅延はゲーム設定の `auto delay` で設定されます。この値は使用可能な範囲を定義します。 |
 | Scale Auto Wait | True | オートプレイモードでの待機時間を、printコマンドで設定された表示速度でスケーリングするかどうか。 |
-| Skip Print Delay | 0 | ゼロより大きい場合、スキップ再生モード（早送り）が有効になっている間、各printコマンドは指定された時間（秒単位、タイムスケールの影響を受けない）待機します。スキップ中に再生を遅くするために使用します。 |
+| Skip Print Delay | 0 | ゼロより大きい場合、スキップモード（早送り）が有効になっている間、各printコマンドは指定された時間（秒単位、タイムスケールの影響を受けない）待機します。スキップ中に再生を遅くするために使用します。 |
 | Default Metadata | Object Ref | テキストプリンターアクターを作成するときにデフォルトで使用するメタデータ。作成されたアクターIDのカスタムメタデータが存在しない場合に使用されます。 |
 | Metadata | Object Ref | 特定のIDでテキストプリンターアクターを作成するときに使用するメタデータ。 |
 | Scene Origin | (0.50, 0.00) | 管理対象アクターの原点と見なされるシーン上の参照点。 |
@@ -365,3 +365,4 @@
 | Predefined Variables | Object Ref | デフォルトで初期化する変数のリスト。メタ変数はアプリケーションの初回起動時に初期化され、それ以外は各状態リセット時に初期化されます（定数を除く）。 |
 
 </div>
+

@@ -20,7 +20,7 @@ The `Implementation` dropdown contains all the types that implement the specific
 
 When creating custom actor implementations, make sure they have a compatible public constructor:
 
-```csharp
+```cs
 public ActorImplementationType (string id, ActorMetadata metadata) { }
 ```
 
@@ -34,7 +34,7 @@ All the built-in actor implementations are authored on top of the same actor API
 
 Apply the `ActorResources` attribute to the implementation type to specify which assets can be used as resources for your custom actor and whether it's allowed to assign multiple resources in the editor menus. When multiple resources are not allowed (the default), you can load the single available resource by specifying just the actor ID, eg:
 
-```csharp
+```cs
 var resource = await resourceLoader.Load(actorId);
 ```
 
@@ -44,7 +44,7 @@ When multiple resources are allowed, specify the full path; eg given you've assi
 
 — to load the resource, use:
 
-```csharp
+```cs
 var resource = await resourceLoader.Load($"{actorId}/CubeBackground");
 ```
 
@@ -54,7 +54,7 @@ It's possible to add custom additional data to actor metadata (for both built-in
 
 To inject custom data, create a new C# class and inherit from `CustomMetadata<TActor>`, where `TActor` is the type of the actor implementation the data should be associated with. Below is an example of adding custom data to the characters of `CustomCharacterImplementation`:
 
-```csharp
+```cs
 using Naninovel;
 using UnityEngine;
 
@@ -74,7 +74,7 @@ Serializable fields of the created custom data class will be automatically expos
 
 To access the custom data at runtime, use the `GetCustomData<TData>()` method of an `ActorMetadata` instance, where `TData` is the type of the custom data class, eg:
 
-```csharp
+```cs
 var charsConfig = Engine.GetConfiguration<CharactersConfiguration>();
 var myCharMeta = charsConfig.GetMetadataOrDefault("CharId");
 var myCharData = myCharMeta.GetCustomData<MyCharacterData>();
@@ -85,7 +85,7 @@ Debug.Log(myCharData.MyCustomInt);
 
 It's possible to customize the custom metadata editor via [property drawers](https://docs.unity3d.com/Manual/editor-PropertyDrawers.html). Below is an example of adding a property drawer that inserts an extra label above the edited field.
 
-```csharp
+```cs
 // Create an attribute to apply to the serialized fields;
 // don't forget to inherit it from `PropertyAttribute`.
 public class ExtraLabelAttribute : PropertyAttribute
@@ -99,7 +99,7 @@ public class ExtraLabelAttribute : PropertyAttribute
 }
 
 // Create the custom editor that will be used when drawing the affected fields.
-// The script should be inside an `Editor` folder, as it uses the `UnityEditor` API.
+// The script should be inside an "Editor" folder, as it uses the `UnityEditor` API.
 [CustomPropertyDrawer(typeof(ExtraLabelAttribute))]
 public class ExtraLabelPropertyDrawer : PropertyDrawer
 {
@@ -150,7 +150,7 @@ If you're looking to add a custom state for other systems (eg, UIs, game objects
 
 Below is an example of extending choice handler state by adding a `LastChoiceTime` field, which stores the time of the last added choice. The time is printed to the console when the custom choice handler is shown.
 
-```csharp
+```cs
 // Our extended state that serializes the last choice time.
 public class MyChoiceHandlerState : ChoiceHandlerState
 {

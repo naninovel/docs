@@ -20,7 +20,7 @@ Naninovelが3Dアドベンチャーゲームのドロップインのダイアロ
 
 以下は、MonoBehaviourスクリプトからの手動初期化の例です。
 
-```csharp
+```cs
 using Naninovel;
 using UnityEngine;
 
@@ -45,7 +45,7 @@ public class MyScript : MonoBehaviour
 
 エンジンが現在利用可能かどうかを確認するには、`Engine.Initialized` プロパティを使用します。`Engine.OnInitializationFinished` イベントを使用すると、初期化手順が完了した後にアクションを実行できます。例：
 
-```csharp
+```cs
 public class MyScript : MonoBehaviour
 {
     private void Awake ()
@@ -68,14 +68,14 @@ public class MyScript : MonoBehaviour
 
 指定されたパスのシナリオスクリプトをプリロードして再生するには、`IScriptPlayer` サービスの `MainTrack` に対して `LoadAndPlay(scriptPath)` メソッドを使用します。エンジンサービスを取得するには、`Engine.GetService<TService>()` 静的メソッドを使用します。ここで、`TService` は取得するサービスの型（インターフェース）です。たとえば、次のコードはスクリプトプレイヤーサービスを取得し、`Script001` という名前のスクリプトをプリロードして再生します。
 
-```csharp
+```cs
 var player = Engine.GetService<IScriptPlayer>();
 await player.MainTrack.LoadAndPlay("Script001");
 ```
 
 ノベルモードを終了してメインゲームモードに戻るときは、現在Naninovelによって使用されているすべてのリソースをアンロードし、エンジンサービスを停止したい場合が多いでしょう。これには、`IStateManager` サービスの `ResetState()` メソッドを使用します。
 
-```csharp
+```cs
 var stateManager = Engine.GetService<IStateManager>();
 await stateManager.ResetState();
 ```
@@ -130,7 +130,7 @@ private void OnTriggerEnter (Collider other)
 
 ゲームとNaninovelを切り替える（たとえば、「アドベンチャー」モードと「ノベル」モードを切り替える）には、静的な `Dialogue` クラスを使用します。`Dialogue.Enter()` は、エンジンがまだ初期化されていない場合は初期化し、Naninovelのレンダリングと入力処理を有効にします。一方、`Dialogue.Exit()` はエンジンの状態をリセットし、それらを無効にします。`Dialogue.EnterAndPlay()` はダイアログモードに入り、指定されたパスのシナリオスクリプトを再生します。`Dialogue.EnterAndPlayAsset()` は、[スクリプトアセットの参照](/ja/guide/integration-options#スクリプトアセットの参照) を使用して同じことを行います。
 
-```csharp
+```cs
 await Dialogue.EnterAndPlay("Script001");
 ...
 await Dialogue.Exit();
@@ -147,7 +147,7 @@ await Dialogue.Exit();
 
 同じAPIは、`Dialogue Events` コンポーネントを介してC#なしでも利用できます。Unityイベントからその `EnterDialogue` および `ExitDialogue` メソッドを呼び出し、`Script` と `Label` を割り当ててモードに入るときにシナリオスクリプトを再生し、`Dialogue Entered` および `Dialogue Exited` イベントで切り替えに反応できます。設定済みのダイアログトリガーを追加するには、シーン内のゲームオブジェクトを右クリックし、`Naninovel -> Dialogue` を選択します。作成されたオブジェクトは `Dialogue Events` と `Trigger Events` コンポーネントを組み合わせたもので、後者は設定された制約（衝突、レイキャスト、ポインターホバー、入力）が満たされるとダイアログに入ります。例については、[スタートガイド](/ja/guide/getting-started#ダイアログモード) を参照してください。
 
-[統合サンプル](/ja/guide/samples#ダイアログモード) では、各NPCにこのような `Dialogue` オブジェクトがあり、スクリプトとラベルが割り当てられています。トリガーは、プレイヤーキャラクターがそのコライダーに入り、割り当てられた入力を行うとアクティブになります。プレイヤーオブジェクトの下にある `Dialogue Events` コンポーネントは、ダイアログモードがアクティブな間、キャラクター操作をブロックし、`Camera Events` コンポーネントは `SetupBaseCamera` メソッドでNaninovelのカメラをシーンのカメラの上にスタックするため、カメラを切り替える必要はありません。会話のスクリプトは [@exitDialogue] で終了します。ノベルモードは [@goto] で移動する通常のシナリオスクリプトであり、同じコマンドで終了します。
+[統合サンプル](/ja/guide/samples#ダイアログモード) では、各NPCにこのような `Dialogue` オブジェクトがあり、スクリプトとラベルが割り当てられています。トリガーは、プレイヤーキャラクターがそのコライダーに入り、割り当てられた入力を行うとアクティブになります。プレイヤーオブジェクトの下にある `Dialogue Events` コンポーネントは、ダイアログモードがアクティブな間、キャラクター操作をブロックし、`Camera Events` コンポーネントは `SetupBaseCamera` メソッドでNaninovelのカメラをシーンのカメラの上にスタックするため、カメラを切り替える必要はありません。ダイアログのスクリプトは [@exitDialogue] で終了します。ノベルモードは [@goto] で移動する通常のシナリオスクリプトであり、同じコマンドで終了します。
 
 ## その他のオプション
 

@@ -4,7 +4,7 @@ Most of the engine features are implemented via engine services. An engine servi
 
 If you wish to interact with an engine system, you'll most likely use an engine service. You can get a reference to an engine service using the static method `Engine.GetService<TService>()`, where `TService` is the interface of the service you wish to get; eg to get an `IScriptPlayer` service:
 
-```csharp
+```cs
 var player = Engine.GetService<IScriptPlayer>();
 player.MainTrack.Stop();
 ```
@@ -22,7 +22,7 @@ The following services are currently available:
 | IChoiceHandlerManager    | Manages [choice handler](/guide/choices) actors.                                                                               |
 | ITextPrinterManager      | Manages [text printer](/guide/text-printers) actors.                                                                           |
 | IAudioManager            | Manages the audio: [SFX](/guide/audio#sound-effects), [BGM](/guide/audio#background-music) and [voicing](/guide/voicing).     |
-| IInputManager            | Manages the user [input processing](/guide/input-processing).                                                                  |
+| IInputManager            | Manages [input processing](/guide/input-processing).                                                                  |
 | ILocalizationManager     | Manages the [localization](/guide/localization) activities.                                                                    |
 | ICommunityLocalization   | Provides access to the [community localization](/guide/localization#community-localization) resources.                         |
 | ITextLocalizer           | Resolves localized strings associated with `LocalizableText` values.                                                           |
@@ -59,7 +59,7 @@ If your custom service has a persistent state that you wish to de-/serialize wit
 
 Below is an example of a custom engine service implementation with some usage notes.
 
-```csharp
+```cs
 using Naninovel;
 using UnityEngine;
 
@@ -100,7 +100,7 @@ public class CustomService : IEngineService
 
 You can now access the aforementioned custom service in the following way:
 
-```csharp
+```cs
 var customService = Engine.GetService<CustomService>();
 ```
 
@@ -116,7 +116,7 @@ Add a custom service in the same way as described above, but instead of `IEngine
 
 Below is an example of a dummy `IInputManager` implementation that does nothing but log when any of its methods are invoked.
 
-```csharp
+```cs
 using Naninovel;
 using UnityEngine;
 

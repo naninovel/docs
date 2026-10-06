@@ -8,7 +8,7 @@
 
 以下は、シナリオスクリプトから `@HelloWorld` または `@hello` として呼び出してコンソールに「Hello World!」を出力できるカスタムコマンドの例です。オプションの `name` パラメーター（例：`@hello name:Felix`）を使用して、「World」の代わりに指定された名前に挨拶することもできます。
 
-```csharp
+```cs
 using System;
 using Naninovel;
 using Naninovel.Commands;
@@ -41,9 +41,9 @@ public class HelloWorld : Command
 `Execute` メソッドに提供される `ExecutionContext ctx` 引数に注目してください。[非同期操作](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/) を実行する場合は、各非同期操作の後にキャンセルおよび完了要求がないか `ctx.Token` 非同期トークンを確認し、それに応じて対応してください。
 
 - `AsyncToken.Canceled` は、エンジンが破棄またはリセットされたことを意味します。どちらの場合も、エンジンAPIを使用することは安全ではなくなり、状態の変更は未定義の動作につながります。キャンセルされた場合、コマンド実装は、実行中の処理をすべて破棄して、直ちに `AsyncOperationCanceledException` をスローすることが期待されます。
-- `AsyncToken.Completed` は、コマンドがすべての処理をできるだけ早く完了することが期待されていることを意味します。たとえば、アニメーションを実行している場合は、想定されている時間に関係なく、即座に終了させます。これは通常、プレイヤーが続行入力をアクティブにしたとき、またはゲームのセーブ操作が開始されたときに発生します。
+- `AsyncToken.Completed` は、コマンドがすべての処理をできるだけ早く完了することが期待されていることを意味します。たとえば、アニメーションを実行している場合は、想定されている時間に関係なく、即座に終了させます。これは通常、プレイヤーが `Continue` 入力をアクティブにしたとき、またはゲームのセーブ操作が開始されたときに発生します。
 
-```csharp
+```cs
 public override async Awaitable Execute (ExecutionContext ctx)
 {
     await PerformSomething();
@@ -62,7 +62,7 @@ public override async Awaitable Execute (ExecutionContext ctx)
 
 実行コンテキストのもう1つのメンバーは、コマンドを実行しているスクリプトトラックインスタンスであり、`ctx.Track` を介してアクセスできます。再生を制御する必要がある場合、またはトラックを必要とする他のエンジンAPIを呼び出す場合は常に、トラックインスタンスを使用してください。たとえば、次のように再生を停止します。
 
-```csharp
+```cs
 public override Awaitable Execute (ExecutionContext ctx)
 {
     ctx.Track.Stop();
@@ -94,7 +94,7 @@ public override Awaitable Execute (ExecutionContext ctx)
 
 必要に応じて、`[Alias]` 属性をフィールドに適用してパラメーターにエイリアス名を割り当てることができます。これにより、シナリオスクリプトでパラメーターを参照するときに、フィールド名の代わりにそのエイリアスを使用できます。
 
-```csharp
+```cs
 [Alias("myParam")]
 public StringParameter MyParameter;
 ```
@@ -107,7 +107,7 @@ public StringParameter MyParameter;
 
 パラメーターを識別子なしで指定できるようにするには、`[PrimaryParameter]` 属性を適用します。各コマンドに設定できるプライマリパラメーターは1つだけです。
 
-```csharp
+```cs
 [PrimaryParameter]
 public StringParameter MyPrimaryParameter;
 ```
@@ -120,7 +120,7 @@ public StringParameter MyPrimaryParameter;
 
 パラメーターを必須にする（シナリオスクリプトで指定されていない場合にエラーがログに記録されるようにする）には、`[RequiredParameter]` 属性をフィールドに適用します。属性が適用されていない場合、パラメーターはオプションと見なされます。
 
-```csharp
+```cs
 [RequiredParameter]
 public StringParameter MyRequiredParameter;
 ```
@@ -129,7 +129,7 @@ public StringParameter MyRequiredParameter;
 
 パラメーターが必須でない場合、シナリオスクリプトで値が割り当てられている場合と割り当てられていない場合があります。`HasValue` プロパティを使用して、値が割り当てられているかどうかを確認します。あるいは、パラメーターインスタンスを受け取り、指定されたパラメーターがnullではなく値が割り当てられている場合にtrueを返す `Assigned()` 静的メソッドを使用することもできます。
 
-```csharp
+```cs
 public StringParameter MyOptionalParameter;
 ...
 if (MyOptionalParameter.HasValue) { }
@@ -138,9 +138,9 @@ if (Assigned(MyOptionalParameter)) { }
 
 ### ローカライズ可能なコマンド
 
-コマンドにローカライズ可能なパラメーター（ユーザーに直接提示されるテキスト）がある場合は、`Command.ILocalizable` インターフェースを実装して、生成される [スクリプトのローカライズ](/ja/guide/localization#スクリプトのローカライズ) ドキュメントにコマンドが追加されるようにし、パラメーターの型には `LocalizableTextParameter` を使用します。
+コマンドにローカライズ可能なパラメーター（プレイヤーに直接提示されるテキスト）がある場合は、`Command.ILocalizable` インターフェースを実装して、生成される [スクリプトのローカライズ](/ja/guide/localization#スクリプトのローカライズ) ドキュメントにコマンドが追加されるようにし、パラメーターの型には `LocalizableTextParameter` を使用します。
 
-```csharp
+```cs
 public class PrintText : Command, Command.ILocalizable
 {
     public LocalizableTextParameter Text;
@@ -151,7 +151,7 @@ public class PrintText : Command, Command.ILocalizable
 
 コマンドの実行にリソースのロードが必要な場合は、`Command.IPreloadable` インターフェースを実装して、ゲームのロード時に必要なリソースをプリロードします。詳細については、[メモリ管理](/ja/guide/memory-management) ガイドを参照してください。
 
-```csharp
+```cs
 public class PlayAudioClip : Command, Command.IPreloadable
 {
     public StringParameter ClipPath;
@@ -182,13 +182,13 @@ public class PlayAudioClip : Command, Command.IPreloadable
 
 ## 組み込みコマンドのオーバーライド
 
-場合によっては、組み込みのNaninovelコマンドをオーバーライドすると便利なことがあります。たとえば、カスタムコマンドを追加せずに [@print] コマンドの動作を変更して、その変更が [汎用テキスト行](/ja/guide/scenario-scripting#汎用テキスト行) にも反映されるようにしたい場合があります（汎用テキスト行のテキストは内部的にprintコマンドへ変換されます）。
+場合によっては、組み込みNaninovelコマンドをオーバーライドすると便利なことがあります。たとえば、カスタムコマンドを追加せずに [@print] コマンドの動作を変更して、その変更が [汎用テキスト行](/ja/guide/scenario-scripting#汎用テキスト行) にも反映されるようにしたい場合があります（汎用テキスト行のテキストは内部的にprintコマンドへ変換されます）。
 
-組み込みコマンドをオーバーライドするには、カスタムコマンドを追加し、組み込みコマンドと同じエイリアスを適用します。変更を有効にするには、コマンドをオーバーライドした後にシナリオスクリプトを再インポートします（スクリプトが保存されているフォルダーを右クリックし、「Reimport」をクリックします）。その後、シナリオスクリプトを再生するときに、組み込みのコマンドの代わりにカスタムコマンドが自動的に使用されます。
+組み込みコマンドをオーバーライドするには、カスタムコマンドを追加し、組み込みコマンドと同じエイリアスを適用します。変更を有効にするには、コマンドをオーバーライドした後にシナリオスクリプトを再インポートします（スクリプトが保存されているフォルダーを右クリックし、「Reimport」をクリックします）。その後、シナリオスクリプトを再生するときに、組み込みコマンドの代わりにカスタムコマンドが自動的に使用されます。
 
 以下は、組み込みの [@print] コマンドをオーバーライドして、表示するテキストがプレイヤーに表示される前にコンソールへログ出力されるようにする例です。
 
-```csharp
+```cs
 [Serializable, Alias("print")]
 public class MyCustomPrintCommand : PrintText
 {

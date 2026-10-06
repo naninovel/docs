@@ -2,7 +2,7 @@
 
 标准脚本命令 API 参考。使用侧边栏快速在可用命令之间导航。
 
-~~删除线~~ 表示主参数，**粗体** 代表必需参数；其他参数应视为可选参数。如果不确定这是怎么回事，请查阅 [剧本脚本指南](/zh/guide/scenario-scripting)。
+~~删除线~~表示主参数，**粗体**代表必需参数；其他参数应视为可选参数。如果不确定这是怎么回事，请查阅 [剧本脚本指南](/zh/guide/scenario-scripting)。
 
 大多数脚本命令都支持以下参数：
 
@@ -11,14 +11,14 @@
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | if | string | 一个布尔 [剧本表达式](/zh/guide/expressions)，控制命令是否应该执行。 |
-| unless | string | 一个布尔 [剧本表达式](/zh/guide/expressions)，控制命令是否不应该执行（与“if”相反）。 |
+| unless | string | 一个布尔 [剧本表达式](/zh/guide/expressions)，控制命令是否不应该执行（与 `if` 相反）。 |
 | wait | boolean | 脚本播放器是否应等待异步命令完成执行后再执行下一个命令。 |
 
 </div>
 
 ## addChoice
 
-向具有指定 ID 的选项处理程序（或默认处理程序）添加一个 [选项](/zh/guide/choices)。使用此命令代替 [@choice] 可以动态添加选项，并更好地控制何时（或是否）停止播放。
+向具有指定 ID 的选项处理程序（或默认处理程序）添加一个 [选项](/zh/guide/choices)。使用此命令代替 [@choice] 可以动态添加选项，并更好地控制何时（或是否）暂停播放。
 
 ::: info NOTE
 在选项下嵌套命令时，`goto`、`gosub` 和 `set` 参数将被忽略。
@@ -34,9 +34,9 @@
 | button | string | 代表该选项的 [按钮预制件](/zh/guide/choices#选项按钮) 的本地资源路径。预制件的根对象上应附加 `ChoiceHandlerButton` 组件。未指定时将使用默认按钮。 |
 | pos | number list | 选项按钮在选项处理程序内的本地位置（如果处理程序实现支持）。 |
 | handler | string | 要为其添加选项的选项处理程序的 ID。未指定时将使用默认处理程序。 |
-| goto | string | 用户选择该选项时要跳转的路径；路径格式请参见 [@goto] 命令。在选项下嵌套命令时忽略。 |
-| gosub | string | 用户选择该选项时要跳转的子程序路径；路径格式请参见 [@gosub] 命令。指定了 `goto` 时，此参数将被忽略。在选项下嵌套命令时忽略。 |
-| set | string | 用户选择该选项时要执行的赋值表达式；语法参考请参见 [@set] 命令。在选项下嵌套命令时忽略。 |
+| goto | string | 玩家选择该选项时要跳转的路径；路径格式请参见 [@goto] 命令。在选项下嵌套命令时忽略。 |
+| gosub | string | 玩家选择该选项时要跳转的子程序路径；路径格式请参见 [@gosub] 命令。指定了 `goto` 时，此参数将被忽略。在选项下嵌套命令时忽略。 |
+| set | string | 玩家选择该选项时要执行的赋值表达式；语法参考请参见 [@set] 命令。在选项下嵌套命令时忽略。 |
 | show | boolean | 是否同时显示该选项所添加到的选项处理程序；默认启用。 |
 | time | number | 淡入（显示）动画的持续时间（以秒为单位）。 |
 
@@ -51,7 +51,7 @@
 @clearChoice
 你撞车了！
 
-; 添加一个随机选项，然后停止播放，直到玩家选择它。
+; 添加一个随机选项，然后暂停播放，直到玩家选择它。
 @random
     @addChoice "最佳选项"
         你选择了最佳选项！
@@ -106,7 +106,7 @@ Lorem ipsum
 ; 均匀分布所有可见角色。
 @arrange
 
-; 将 ID 为 'Jenna'、'Felix' 和 'Mia' 的角色分别放置在
+; 将 ID 为“Jenna”、“Felix”和“Mia”的角色分别放置在
 ; 距场景左边界 15%、50% 和 85% 处。
 @arrange Jenna.15,Felix.50,Mia.85
 ```
@@ -136,7 +136,7 @@ Lorem ipsum
 @await CameraPan
 @camera zoom:0.7
 
-; 循环运行 'Quake' 异步任务。
+; 循环运行“Quake”异步任务。
 @async Quake loop!
     @spawn Pebbles
     @shake Camera
@@ -202,7 +202,7 @@ Lorem ipsum
 | pose | string | 为要修改的 Actor 设置的姿势。 |
 | via | string | 要使用的 [过渡效果](/zh/guide/special-effects#过渡效果) 类型（默认使用交叉淡入淡出）。 |
 | params | number list | 过渡效果的参数。 |
-| dissolve | string | [自定义溶解](/zh/guide/special-effects#溶解遮罩) 纹理的路径（路径应相对于 `Resources` 文件夹）。仅当过渡设置为 `Custom` 模式时有效。 |
+| dissolve | string | [自定义溶解](/zh/guide/special-effects#溶解遮罩) 纹理的路径（路径应相对于“Resources”文件夹）。仅当过渡设置为 `Custom` 模式时有效。 |
 | visible | boolean | 为要修改的 Actor 设置的可见性状态。 |
 | wpos | number list | 为要修改的 Actor 设置的位置（在世界空间中）。在正交模式下，使用 Z 分量（第三个成员）按深度移动（排序）。 |
 | roll | number | 为要修改的 Actor 设置的 Z 轴旋转。与 `rotation` 参数的第三个分量相同；指定 `rotation` 时将忽略此参数。 |
@@ -217,13 +217,13 @@ Lorem ipsum
 </div>
 
 ```nani
-; 将 'River' 设置为主背景的外观。
+; 将“River”设置为主背景的外观。
 @back River
 
-; 与上面相同，但也使用 'RadialBlur' 过渡效果。
+; 与上面相同，但也使用“RadialBlur”过渡效果。
 @back River.RadialBlur
 
-; 将 'Smoke' 背景放置在屏幕中心
+; 将“Smoke”背景放置在屏幕中心
 ; 并将其缩放为原始大小的 50%。
 @back id:Smoke pos:50,50 scale:0.5
 
@@ -243,7 +243,7 @@ Lorem ipsum
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| intro | string | 在主音轨之前播放一次的前奏音乐音轨的路径（不受循环参数影响）。 |
+| intro | string | 在主音轨之前播放一次的前奏音乐音轨的路径（不受 `loop` 参数影响）。 |
 | group | string | 播放音频时应使用的混音器 [组路径](https://docs.unity3d.com/ScriptReference/Audio.AudioMixer.FindMatchingGroups)。 |
 | loop | boolean | 是否在播放结束时从头重复播放，直到停止。 |
 | volume | number | 音频播放的响度，范围为 0.0 到 1.0。请注意，1.0 是默认值——在不产生削波的情况下，无法让数字音频以高于 0 dBFS 基线的电平播放。 |
@@ -260,7 +260,7 @@ Lorem ipsum
 </div>
 
 ```nani
-; 开始循环播放名为 'Sanctuary' 的音乐音轨。
+; 开始循环播放名为“Sanctuary”的音乐音轨。
 @bgm Sanctuary
 
 ; 与上面相同，但在 10 秒内淡入音量且只播放一次。
@@ -270,7 +270,7 @@ Lorem ipsum
 ; 并让它们循环播放。
 @bgm volume:0.5 loop! fade:2.5
 
-; 播放 'BattleThemeIntro' 一次，然后循环播放 'BattleThemeMain'。
+; 播放“BattleThemeIntro”一次，然后循环播放“BattleThemeMain”。
 @bgm BattleThemeMain intro:BattleThemeIntro
 ```
 
@@ -299,9 +299,9 @@ Actor 需要实现 `IBlurable` 接口才能支持该效果。
 ; 从主背景中移除模糊。
 @blur power:0
 
-; 在 5 秒内以最大强度模糊 'Kohaku' Actor。
+; 在 5 秒内以最大强度模糊“Kohaku”Actor。
 @blur Kohaku power:1 time:5
-; 在 3.1 秒内从 'Kohaku' 移除模糊。
+; 在 3.1 秒内从“Kohaku”移除模糊。
 @blur Kohaku power:0 time:3.1
 ```
 
@@ -322,7 +322,7 @@ Actor 需要实现 `IBlurable` 接口才能支持该效果。
 </div>
 
 ```nani
-; 使用默认参数启用效果并将焦点锁定在 'Kohaku' 游戏对象上。
+; 使用默认参数启用效果并将焦点锁定在“Kohaku”游戏对象上。
 @bokeh focus:Kohaku
 ; 在 10 秒内淡出（禁用）效果。
 @bokeh power:0 time:10
@@ -368,10 +368,10 @@ Actor 需要实现 `IBlurable` 接口才能支持该效果。
 ; 立即将摄像机重置为默认状态。
 @camera offset:0,0 zoom:0 rotation:0,0,0 time:0
 
-; 将 'Dream' 摄像机效果 Volume 淡入至 1.0 权重。
+; 将“Dream”摄像机效果 Volume 淡入至 1.0 权重。
 @camera fx:Dream.1
 
-; 在 3 秒内将摄像机效果 Volume 从 'Dream' 交叉淡入淡出到 'Night'。
+; 在 3 秒内将摄像机效果 Volume 从“Dream”交叉淡入淡出到“Night”。
 @camera fx:Dream.0,Night.1 time:3
 ```
 
@@ -392,7 +392,7 @@ Actor 需要实现 `IBlurable` 接口才能支持该效果。
 | pose | string | 为要修改的 Actor 设置的姿势。 |
 | via | string | 要使用的 [过渡效果](/zh/guide/special-effects#过渡效果) 类型（默认使用交叉淡入淡出）。 |
 | params | number list | 过渡效果的参数。 |
-| dissolve | string | [自定义溶解](/zh/guide/special-effects#溶解遮罩) 纹理的路径（路径应相对于 `Resources` 文件夹）。仅当过渡设置为 `Custom` 模式时有效。 |
+| dissolve | string | [自定义溶解](/zh/guide/special-effects#溶解遮罩) 纹理的路径（路径应相对于“Resources”文件夹）。仅当过渡设置为 `Custom` 模式时有效。 |
 | visible | boolean | 为要修改的 Actor 设置的可见性状态。 |
 | wpos | number list | 为要修改的 Actor 设置的位置（在世界空间中）。在正交模式下，使用 Z 分量（第三个成员）按深度移动（排序）。 |
 | roll | number | 为要修改的 Actor 设置的 Z 轴旋转。与 `rotation` 参数的第三个分量相同；指定 `rotation` 时将忽略此参数。 |
@@ -407,10 +407,10 @@ Actor 需要实现 `IBlurable` 接口才能支持该效果。
 </div>
 
 ```nani
-; 以默认外观显示 ID 为 'Sora' 的角色。
+; 以默认外观显示 ID 为“Sora”的角色。
 @char Sora
 
-; 与上面相同，但将外观设置为 'Happy'。
+; 与上面相同，但将外观设置为“Happy”。
 @char Sora.Happy
 
 ; 与上面相同，但另外将角色放置在距离场景左边界 45%
@@ -453,7 +453,7 @@ Actor 需要实现 `IBlurable` 接口才能支持该效果。
 </div>
 
 ```nani
-; 打印文本，然后立即显示选项并停止播放，
+; 打印文本，然后立即显示选项并暂停播放，
 ; 直到其中一个选项被选中。
 继续执行此脚本还是...？[>]
 @choice "继续"
@@ -479,10 +479,10 @@ Actor 需要实现 `IBlurable` 接口才能支持该效果。
 @choice "保持沉默"
     ...
 
-; 当 'score' 变量低于 10 时，禁用/锁定该选项。
+; 当“score”变量低于 10 时，禁用/锁定该选项。
 @choice "额外选项" lock:score<10
 
-; 仅当 'score' 变量大于或等于 10 时显示该选项。
+; 仅当“score”变量大于或等于 10 时显示该选项。
 @choice "秘密选项" if:score>=10
 ```
 
@@ -501,7 +501,7 @@ Actor 需要实现 `IBlurable` 接口才能支持该效果。
 | pose | string | 为要修改的 Actor 设置的姿势。 |
 | via | string | 要使用的 [过渡效果](/zh/guide/special-effects#过渡效果) 类型（默认使用交叉淡入淡出）。 |
 | params | number list | 过渡效果的参数。 |
-| dissolve | string | [自定义溶解](/zh/guide/special-effects#溶解遮罩) 纹理的路径（路径应相对于 `Resources` 文件夹）。仅当过渡设置为 `Custom` 模式时有效。 |
+| dissolve | string | [自定义溶解](/zh/guide/special-effects#溶解遮罩) 纹理的路径（路径应相对于“Resources”文件夹）。仅当过渡设置为 `Custom` 模式时有效。 |
 | visible | boolean | 为要修改的 Actor 设置的可见性状态。 |
 | wpos | number list | 为要修改的 Actor 设置的位置（在世界空间中）。在正交模式下，使用 Z 分量（第三个成员）按深度移动（排序）。 |
 | roll | number | 为要修改的 Actor 设置的 Z 轴旋转。与 `rotation` 参数的第三个分量相同；指定 `rotation` 时将忽略此参数。 |
@@ -516,7 +516,7 @@ Actor 需要实现 `IBlurable` 接口才能支持该效果。
 </div>
 
 ```nani
-; 将 'ButtonArea' 选项处理程序设为默认。
+; 将“ButtonArea”选项处理程序设为默认。
 @choiceHandler ButtonArea default!
 ```
 
@@ -577,7 +577,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 </div>
 
 ```nani
-; 假设之前执行了 '@spawn Rainbow' 命令，取消生成（销毁）它。
+; 假设之前执行了“@spawn Rainbow”命令，取消生成（销毁）它。
 @despawn Rainbow
 ```
 
@@ -693,8 +693,8 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 </div>
 
 ```nani
-; 导航到当前播放脚本中的 'VictoryScene' 标签，然后
-; 执行命令并导航回 'gosub' 之后的命令。
+; 导航到当前播放脚本中的“VictoryScene”标签，然后
+; 执行命令并导航回“gosub”之后的命令。
 @gosub #VictoryScene
 ...
 @stop
@@ -736,13 +736,13 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 </div>
 
 ```nani
-; 加载并从头开始播放 'Script001' 脚本。
+; 加载并从头开始播放“Script001”脚本。
 @goto Script001
 
-; 与上面相同，但从标签 'AfterStorm' 开始播放。
+; 与上面相同，但从标签“AfterStorm”开始播放。
 @goto Script001#AfterStorm
 
-; 导航到当前播放脚本中的 'Epilogue' 标签。
+; 导航到当前播放脚本中的“Epilogue”标签。
 @goto #Epilogue
 ...
 # Epilogue
@@ -782,10 +782,10 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 </div>
 
 ```nani
-; 假设 ID 为 'Smoke' 的 Actor 可见，在 3 秒内隐藏它。
+; 假设 ID 为“Smoke”的 Actor 可见，在 3 秒内隐藏它。
 @hide Smoke time:3
 
-; 隐藏 'Kohaku' 和 'Yuko' Actor。
+; 隐藏“Kohaku”和“Yuko”Actor。
 @hide Kohaku,Yuko
 ```
 
@@ -845,7 +845,7 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 ; 隐藏默认打印机。
 @hidePrinter
 
-; 隐藏 ID 为 'Wide' 的打印机。
+; 隐藏 ID 为“Wide”的打印机。
 @hidePrinter Wide
 ```
 
@@ -854,7 +854,7 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 使具有指定名称的 [UI 元素](/zh/guide/gui#ui-自定义) 不可见。未指定名称时，将停止渲染（隐藏）整个 UI（包括所有内置 UI）。
 
 ::: info NOTE
-使用此命令隐藏整个 UI 且 `allowToggle` 参数为 false（默认）时，用户将无法使用热键或通过单击屏幕上的任意位置重新显示 UI；请使用 [@showUI] 命令使 UI 再次可见。
+使用此命令隐藏整个 UI 且 `allowToggle` 参数为 false（默认）时，玩家将无法使用热键或通过单击屏幕上的任意位置重新显示 UI；请使用 [@showUI] 命令使 UI 再次可见。
 :::
 
 <div class="config-table">
@@ -862,26 +862,26 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">uiNames</span> | string list | 要隐藏的 UI 元素的名称。 |
-| allowToggle | boolean | 隐藏整个 UI 时，控制是否允许用户使用热键或通过单击屏幕上的任意位置重新显示 UI（默认为 false）。隐藏特定 UI 时无效。 |
+| allowToggle | boolean | 隐藏整个 UI 时，控制是否允许玩家使用热键或通过单击屏幕上的任意位置重新显示 UI（默认为 false）。隐藏特定 UI 时无效。 |
 | time | number | 隐藏动画的持续时间（以秒为单位）。未指定时，将使用特定于 UI 的持续时间。 |
 | wait | boolean | 在播放下一个命令之前是否等待 UI 淡出动画。 |
 
 </div>
 
 ```nani
-; 假设有一个自定义 'Calendar' UI，以下命令将隐藏它。
+; 假设有一个自定义“Calendar”UI，以下命令将隐藏它。
 @hideUI Calendar
 
-; 隐藏整个 UI，不允许用户重新显示它。
+; 隐藏整个 UI，不允许玩家重新显示它。
 @hideUI
 ...
 ; 使 UI 再次可见。
 @showUI
 
-; 隐藏整个 UI，但允许用户将其切换回来。
+; 隐藏整个 UI，但允许玩家将其切换回来。
 @hideUI allowToggle!
 
-; 同时隐藏内置 'TipsUI' 和自定义 'Calendar' UI。
+; 同时隐藏内置“TipsUI”和自定义“Calendar”UI。
 @hideUI TipsUI,Calendar
 ```
 
@@ -902,11 +902,11 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 </div>
 
 ```nani
-; 根据 "score" 变量打印文本行：
-;   "你失败了。再试一次！" - 当 score 为 6 或更低时。
-;   "你通过了测试。" 和 "太棒了！" - 当 score 高于 8 时。
-;   "你通过了测试。" 和 "令人印象深刻！" - 当 score 高于 7 时。
-;   "你通过了测试。" 和 "干得好！" - 其他情况。
+; 根据“score”变量打印文本行：
+;   “你失败了。再试一次！” - 当 score 为 6 或更低时。
+;   “你通过了测试。”和“太棒了！” - 当 score 高于 8 时。
+;   “你通过了测试。”和“令人印象深刻！” - 当 score 高于 7 时。
+;   “你通过了测试。”和“干得好！” - 其他情况。
 @if score > 6
     你通过了测试。
     @if score > 8
@@ -918,16 +918,16 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 @else
     你失败了。再试一次！
 
-; 根据 "score" 变量打印文本行：
-;   "测试结果：失败。" - 当 score 为 6 或更低时。
-;   "测试结果：完美！" - 当 score 高于 8 时。
-;   "测试结果：通过。" - 其他情况。
+; 根据“score”变量打印文本行：
+;   “测试结果：失败。” - 当 score 为 6 或更低时。
+;   “测试结果：完美！” - 当 score 高于 8 时。
+;   “测试结果：通过。” - 其他情况。
 测试结果：[if score>8]完美！[or score>6]通过。[else]失败。[endif]
 ```
 
 ## input
 
-显示一个输入字段 UI，用户可以在其中输入任意文本。提交后，输入的文本将赋给指定的剧本变量。
+显示一个输入字段 UI，玩家可以在其中输入任意文本。提交后，输入的文本将赋给指定的剧本变量。
 
 ::: info NOTE
 要使用此命令为角色指定显示名称，请考虑 [将名称绑定到剧本变量](/zh/guide/characters#显示名称)。
@@ -941,19 +941,19 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 | type | string | 输入内容的类型；默认为指定变量的类型。可用于更改所赋值变量的类型，或在赋值给新变量时使用。支持的类型：`String`、`Numeric`、`Boolean`。 |
 | summary | string | 与输入字段一起显示的可选摘要文本。当文本包含空格时，请用双引号（`"`）将其括起来。如果希望在文本本身中包含双引号，请对其进行转义。 |
 | value | string | 为输入字段设置的预定义值。未指定时将取用所赋值变量的现有值（如果有）。 |
-| nostop | boolean | 在玩家提交输入之前是否不停止脚本播放。 |
+| nostop | boolean | 在玩家提交输入之前是否不暂停脚本播放。 |
 
 </div>
 
 ```nani
-; 提示输入任意文本并将其赋给 'name' 剧本变量。
+; 提示输入任意文本并将其赋给“name”剧本变量。
 @input name summary:"请选择你的名字。"
 
-; 然后可以在剧本脚本中注入已赋值的 'name' 变量。
+; 然后可以在剧本脚本中注入已赋值的“name”变量。
 Archibald: 你好，{name}！
 
 ; ...或者在赋值表达式和条件表达式中使用它。
-@set score++ if:name="菲利克斯"
+@set score++ if:name="Felix"
 ```
 
 ## linkPrinter
@@ -970,10 +970,10 @@ Archibald: 你好，{name}！
 </div>
 
 ```nani
-; 将 'Dialogue' 打印机链接到 'Kohaku' 和 'Yuko' 作者。
+; 将“Dialogue”打印机链接到“Kohaku”和“Yuko”作者。
 @linkPrinter Dialogue to:Kohaku,Yuko
 
-; 将 'Wide' 链接到所有作者。
+; 将“Wide”链接到所有作者。
 @linkPrinter Wide
 ```
 
@@ -1009,10 +1009,10 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 </div>
 
 ```nani
-; 在单一模式下加载场景 'TestScene1'。
+; 在单一模式下加载场景“TestScene1”。
 @loadScene TestScene1
 
-; 在附加模式下加载场景 'TestScene2'。
+; 在附加模式下加载场景“TestScene2”。
 @loadScene TestScene2 additive!
 ```
 
@@ -1033,7 +1033,7 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 </div>
 
 ```nani
-; 锁定 ID 为 'FightScene1' 的可解锁 CG 记录。
+; 锁定 ID 为“FightScene1”的可解锁 CG 记录。
 @lock CG/FightScene1
 ```
 
@@ -1085,7 +1085,7 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 </div>
 
 ```nani
-; 假设已将 'Opening' 视频剪辑添加到影片资源中，播放它。
+; 假设已将“Opening”视频剪辑添加到影片资源中，播放它。
 @movie Opening
 ```
 
@@ -1102,7 +1102,7 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID 必需参数：应始终指定该参数">url</span> | string | 要打开的 URL。 |
-| target | string | 浏览上下文：_self（当前标签页）、_blank（新标签页）、_parent、_top。 |
+| target | string | 浏览上下文：`_self`（当前标签页）、`_blank`（新标签页）、`_parent`、`_top`。 |
 
 </div>
 
@@ -1131,7 +1131,7 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 使用文本打印机 Actor 打印（逐渐显示）指定的文本消息。
 
 ::: info NOTE
-处理通用文本行时会在底层使用此命令，例如通用文本行 `Kohaku: Hello World!` 在解析剧本脚本时将自动转换为 `@print "Hello World!" author:Kohaku`。<br/> 默认情况下，会在打印新消息之前重置（清除）打印机；将 `reset` 参数设置为 *false* 或在打印机 Actor 配置中禁用 `Auto Reset` 可防止这种情况并改为追加文本。<br/> 默认情况下，会使打印机成为默认打印机并隐藏其他打印机；将 `default` 参数设置为 *false* 或在打印机 Actor 配置中禁用 `Auto Default` 可防止这种情况。<br/> 默认情况下，会在完成任务之前等待用户输入；将 `waitInput` 参数设置为 *false* 或在打印机 Actor 配置中禁用 `Auto Wait` 可在文本完全显示后立即返回。
+处理通用文本行时会在底层使用此命令，例如通用文本行 `Kohaku: Hello World!` 在解析剧本脚本时将自动转换为 `@print "Hello World!" author:Kohaku`。<br/> 默认情况下，会在打印新消息之前重置（清除）打印机；将 `reset` 参数设置为 *false* 或在打印机 Actor 配置中禁用 `Auto Reset` 可防止这种情况并改为追加文本。<br/> 默认情况下，会使打印机成为默认打印机并隐藏其他打印机；将 `default` 参数设置为 *false* 或在打印机 Actor 配置中禁用 `Auto Default` 可防止这种情况。<br/> 默认情况下，会在完成任务之前等待输入；将 `waitInput` 参数设置为 *false* 或在打印机 Actor 配置中禁用 `Auto Wait` 可在文本完全显示后立即返回。
 :::
 
 <div class="config-table">
@@ -1145,7 +1145,7 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 | speed | number | 文本显示速度的乘数；应为正数或零。设置为 1 即为默认速度。 |
 | reset | boolean | 是否在执行打印任务之前重置打印机的文本。默认值由打印机 Actor 配置菜单中的 `Auto Reset` 属性控制。 |
 | default | boolean | 是否在执行打印任务之前使打印机成为默认打印机并隐藏其他打印机。默认值由打印机 Actor 配置菜单中的 `Auto Default` 属性控制。 |
-| waitInput | boolean | 完成打印任务后是否等待用户输入。默认值由打印机 Actor 配置菜单中的 `Auto Wait` 属性控制。 |
+| waitInput | boolean | 完成打印任务后是否等待输入。默认值由打印机 Actor 配置菜单中的 `Auto Wait` 属性控制。 |
 | append | boolean | 是否将打印的文本追加到最后一条打印机消息。 |
 | fadeTime | number | 控制与此命令关联的打印机显示和隐藏动画的持续时间（以秒为单位）。每个打印机的默认值在 Actor 配置中设置。 |
 | wait | boolean | 是否等待文本显示完成并提示继续（等待输入）后再播放下一个命令。 |
@@ -1160,15 +1160,15 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 @print "大喊 \"停车！\" 是个错误。"
 
 ; 以正常速度的一半显示消息，
-; 并且不等待用户输入就继续。
+; 并且不等待输入就继续。
 @print "Lorem ipsum dolor sit amet." speed:0.5 !waitInput
 
-; 打印该行，将 "大家" 显示为作者名称，
+; 打印该行，将“大家”显示为作者名称，
 ; 并使所有可见角色成为打印文本的作者。
 @print "Hello World!" author:* as:"大家"
 
-; 类似，但只让 "Kohaku" 和 "Yuko" 成为作者。
-@print "Hello World!" author:Kohaku,Yuko as:"琥珀和优子"
+; 类似，但只让“Kohaku”和“Yuko”成为作者。
+@print "Hello World!" author:Kohaku,Yuko as:"Kohaku 和 Yuko"
 ```
 
 ## printer
@@ -1189,7 +1189,7 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 | pose | string | 为要修改的 Actor 设置的姿势。 |
 | via | string | 要使用的 [过渡效果](/zh/guide/special-effects#过渡效果) 类型（默认使用交叉淡入淡出）。 |
 | params | number list | 过渡效果的参数。 |
-| dissolve | string | [自定义溶解](/zh/guide/special-effects#溶解遮罩) 纹理的路径（路径应相对于 `Resources` 文件夹）。仅当过渡设置为 `Custom` 模式时有效。 |
+| dissolve | string | [自定义溶解](/zh/guide/special-effects#溶解遮罩) 纹理的路径（路径应相对于“Resources”文件夹）。仅当过渡设置为 `Custom` 模式时有效。 |
 | visible | boolean | 为要修改的 Actor 设置的可见性状态。 |
 | wpos | number list | 为要修改的 Actor 设置的位置（在世界空间中）。在正交模式下，使用 Z 分量（第三个成员）按深度移动（排序）。 |
 | roll | number | 为要修改的 Actor 设置的 Z 轴旋转。与 `rotation` 参数的第三个分量相同；指定 `rotation` 时将忽略此参数。 |
@@ -1204,24 +1204,24 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 </div>
 
 ```nani
-; 将 'Wide' 打印机设为默认并隐藏任何其他可见打印机。
+; 将“Wide”打印机设为默认并隐藏任何其他可见打印机。
 @printer Wide
 
-; 为 'Bubble' 打印机设置 'Right' 外观，使其成为默认打印机，
+; 为“Bubble”打印机设置“Right”外观，使其成为默认打印机，
 ; 放置在场景中心且不隐藏其他打印机。
 @printer Bubble.Right pos:50,50 !hideOther
 
-; 执行嵌套命令时强制使用 'Wide' 打印机。
+; 执行嵌套命令时强制使用“Wide”打印机。
 @printer Wide
-    无论当前默认打印机是什么，都打印到 'Wide'。
-    Kohaku: 我可能有链接的打印机，但这里使用 'Wide'。
+    无论当前默认打印机是什么，都打印到“Wide”。
+    Kohaku: 我可能有链接的打印机，但这里使用“Wide”。
 再次打印到默认打印机。
 Kohaku: 再次使用我链接的打印机。
 ```
 
 ## processInput
 
-允许暂停和恢复用户输入处理（例如，对按下键盘按键的反应）。该操作的效果是持久的，会随游戏一起保存。
+允许暂停和恢复输入处理（例如，对按下键盘按键的反应）。该操作的效果是持久的，会随游戏一起保存。
 
 <div class="config-table">
 
@@ -1239,7 +1239,7 @@ Kohaku: 再次使用我链接的打印机。
 ; 恢复所有输入的处理。
 @processInput true
 
-; 屏蔽 'Rollback' 和 'Pause' 输入并取消屏蔽 'Continue' 输入。
+; 屏蔽“Rollback”和“Pause”输入并取消屏蔽“Continue”输入。
 @processInput set:Rollback.false,Pause.false,Continue.true
 ```
 
@@ -1327,7 +1327,7 @@ Kohaku: 再次使用我链接的打印机。
     @sfx Sound2
     @sfx Sound3
 
-; 添加一个震动摄像机的选项、为 Kohaku Actor 设置色调或播放 'SoundX' SFX，
+; 添加一个震动摄像机的选项、为 Kohaku Actor 设置色调或播放“SoundX”SFX，
 ; 三者概率均为 33%。但是，仅当 score 高于 10 时
 ; 才会考虑播放 SFX。
 @random
@@ -1335,7 +1335,7 @@ Kohaku: 再次使用我链接的打印机。
         这可是你要求的！
         @shake Camera
     @group
-        要给琥珀设置色调了！
+        要给 Kohaku 设置色调了！
         @char Kohaku tint:red
     @sfx SoundX if:score>10
 ```
@@ -1379,7 +1379,7 @@ Kohaku: 再次使用我链接的打印机。
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">exclude</span> | string list | 要从重置中排除的 [引擎服务](/zh/guide/engine-services)（接口）的名称。可考虑添加 `IVariableManager` 以保留局部变量。 |
-| only | string list | 要重置的 [引擎服务](/zh/guide/engine-services)（接口）的名称；其他服务不会受到影响。指定了主参数（exclude）时无效。 |
+| only | string list | 要重置的 [引擎服务](/zh/guide/engine-services)（接口）的名称；其他服务不会受到影响。指定了主参数（`exclude`）时无效。 |
 
 </div>
 
@@ -1392,7 +1392,7 @@ Kohaku: 再次使用我链接的打印机。
 ; 并保留剧本变量的值。
 @resetState IScriptPlayer,IVariableManager,IAudioManager
 
-; 仅重置 'ICharacterManager' 和 'IBackgroundManager' 服务，
+; 仅重置“ICharacterManager”和“IBackgroundManager”服务，
 ; 从场景中移除所有角色和背景 Actor
 ; 并从内存中卸载相关资源。
 @resetState only:ICharacterManager,IBackgroundManager
@@ -1415,7 +1415,7 @@ Kohaku: 再次使用我链接的打印机。
 这一行将会消失。
 @resetText
 
-; 与上面相同，但使用 'Wide' 打印机。
+; 与上面相同，但使用“Wide”打印机。
 @print "这一行将会消失。" printer:Wide
 @resetText Wide
 ```
@@ -1440,7 +1440,7 @@ Kohaku: 再次使用我链接的打印机。
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| at | string | 存档的播放位置，格式如下：`ScriptPath#Label`。省略时，使用播放器的当前位置。可用于在加载游戏后将玩家重定向到特定标签或脚本。 |
+| at | string | 存档的播放位置，格式如下：`ScriptPath#Label`。省略时，使用当前播放位置。可用于在加载游戏后将玩家重定向到特定标签或脚本。 |
 
 </div>
 
@@ -1448,14 +1448,14 @@ Kohaku: 再次使用我链接的打印机。
 ; 在当前位置自动存档。
 @save
 
-; 玩家可以选择 'rest'（这将自动存档并
-; 退出到标题），或者继续前往 'NextDay'。当玩家在休息后
-; 加载该存档时，会被移到 '# Camp' 标签之后的行，
-; 此时 'rested' 为 'true'，这将迫使他们继续前往 'NextDay'。
+; 玩家可以选择“rest”（这将自动存档并
+; 退出到标题），或者继续前往“NextDay”。当玩家在休息后
+; 加载该存档时，会被移到“# Camp”标签之后的行，
+; 此时“rested”为“true”，这将迫使他们继续前往“NextDay”。
 
 # Camp
 
-; 注意变量是用 '?=' 设置的——仅当变量
+; 注意变量是用“?=”设置的——仅当变量
 ; 尚未赋值时才会赋值，而玩家在休息后加载
 ; 自动存档时，变量已被赋值。
 @set rested?=false
@@ -1467,7 +1467,7 @@ Kohaku: 再次使用我链接的打印机。
 @choice "没时间休息了！" goto:NextDay
 @choice "休息一会儿吧"
     @set rested=true
-    ; 注意 'at' 参数——当游戏加载时，
+    ; 注意“at”参数——当游戏加载时，
     ; 它将把玩家重定向到指定的标签。
     @save at:#Camp
     @title
@@ -1486,42 +1486,42 @@ Kohaku: 再次使用我链接的打印机。
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID 必需参数：应始终指定该参数">expression</span> | string | 赋值表达式。<br/><br/>表达式应采用以下格式：`var=expression`，其中 `var` 是要赋值的剧本变量的 ID，`expression` 是一个 [剧本表达式](/zh/guide/expressions)，其结果将赋给该变量。<br/><br/>可以使用递增和递减一元运算符（`@set foo++`、`@set foo--`）和复合赋值（`@set foo+=10`、`@set foo-=3`、`@set foo*=0.1`、`@set foo/=2`）。 |
-| to | string | 一个表达式，其结果将赋给所有未带赋值表达式（即没有 `= ...` 部分）的指定变量。适用于将同一个值赋给多个变量，例如：`@set foo, bar, baz to:10`。 |
+| to | string | 一个表达式，其结果将赋给所有未带赋值表达式（即没有 `= ...` 部分）的指定变量。适用于将同一个值赋给多个变量，例如 `@set foo, bar, baz to:10`。 |
 | scope | string | 指定后，会将没有显式作用域的变量归入指定的作用域。 |
-| init | boolean | 该变量是否只应在尚未赋值时才进行赋值（即初始化意图）。不应与“meta”或“const”标志一起使用，因为它们都具有初始化意图。 |
+| init | boolean | 该变量是否只应在尚未赋值时才进行赋值（即初始化意图）。不应与 `meta` 或 `const` 标志一起使用，因为它们都具有初始化意图。 |
 | meta | boolean | 该变量是否应初始化为元变量。元变量位于游戏会话之“上”，即在开始新游戏时它们的值仍会保留。非常适合用于元游戏机制，例如追踪路线完成情况或成就。 |
 | const | boolean | 该变量是否应初始化为常量。常量只能初始化一次，之后不允许再更改。 |
 
 </div>
 
 ```nani
-; 将字符串值 'bar' 赋给 'foo' 变量。
+; 将字符串值“bar”赋给“foo”变量。
 @set foo="bar"
 
-; 将数值 1 赋给 'foo' 变量。
+; 将数值 1 赋给“foo”变量。
 @set foo=1
 
-; 将布尔值 'true' 赋给 'foo' 变量。
+; 将布尔值“true”赋给“foo”变量。
 @set foo=true
 
-; 假设 'foo' 是数值，将其值加 0.5。
+; 假设“foo”是数值，将其值加 0.5。
 @set foo+=0.5
 
-; 假设 'angle' 是数值，将其余弦值赋给 'foo' 变量。
+; 假设“angle”是数值，将其余弦值赋给“foo”变量。
 @set foo=cos(angle)
 
 ; 获取 -100 到 100 之间的随机数，然后取 4 次方
-; 并赋给 'foo' 变量。
+; 并赋给“foo”变量。
 @set foo = pow(random(-100, 100), 4)
 
-; 假设 'foo' 是数值，将其值加 1（递增）。
+; 假设“foo”是数值，将其值加 1（递增）。
 @set foo++
 
-; 假设 'foo' 是数值，将其值减 1（递减）。
+; 假设“foo”是数值，将其值减 1（递减）。
 @set foo--
 
-; 将 'bar' 变量的值赋给 'foo' 变量，
-; 即 'Hello World!' 字符串。
+; 将“bar”变量的值赋给“foo”变量，
+; 即“Hello World!”字符串。
 @set bar="Hello World!"
 @set foo=bar
 
@@ -1548,15 +1548,15 @@ Kohaku: 再次使用我链接的打印机。
 ; 使用元变量在游戏会话之间保留该值。
 ; 即使重新启动游戏，该变量也会保持其值。
 @set completeRouteX, completeRouteY to:false meta!
-... ; 在脚本后面的某处，当 'RouteX' 完成时
-@set completeRouteX=true ; 即使开始新游戏，它也会保持为 'true'
+... ; 在脚本后面的某处，当“RouteX”完成时
+@set completeRouteX=true ; 即使开始新游戏，它也会保持为“true”
 
 ; 即使重复游玩，也只递增一次元变量。
 @set metaCounter=0 meta!
 ...
 @set metaCounter++ unless:hasPlayed()
 
-; 在 'stats' 作用域下定义多个变量。
+; 在“stats”作用域下定义多个变量。
 @set strength, intellect, agility to:1 scope:stats
 ...
 @set stats.agility++
@@ -1597,27 +1597,27 @@ Kohaku: 再次使用我链接的打印机。
 </div>
 
 ```nani
-; 播放一次名为 'Explosion' 的 SFX。
+; 播放一次名为“Explosion”的 SFX。
 @sfx Explosion
 
-; 循环播放名为 'Rain' 的 SFX 并在 30 秒内淡入。
+; 循环播放名为“Rain”的 SFX 并在 30 秒内淡入。
 @sfx Rain loop! fade:30
 
 ; 在 2.5 秒内将所有正在播放的 SFX 音轨的音量更改为 75%，
 ; 并禁用它们的循环。
 @sfx volume:0.75 !loop fade:2.5
 
-; 在世界空间中，于监听器稍上方偏后的位置播放 'Explosion'。
+; 在世界空间中，于监听器稍上方偏后的位置播放“Explosion”。
 @sfx Explosion wpos:0,1,-3
 
-; 在场景空间中，于 10 秒内以动画方式将 'Rain' 的位置从左移到右。
+; 在场景空间中，于 10 秒内以动画方式将“Rain”的位置从左移到右。
 @sfx Rain pos:0,50 loop!
 @sfx Rain pos:100,50 fade:10
 ```
 
 ## sfxFast
 
-播放具有指定名称的 [SFX（音效）](/zh/guide/audio#音效) 音轨。与 [@sfx] 命令不同，该剪辑以最小延迟播放，并且不随游戏状态序列化（即使保存时正在播放，加载游戏后也不会播放）。该命令可用于播放各种临时音频剪辑，比如与 UI 相关的声音（例如，通过 [`Play Script` 组件](/zh/guide/gui#通过-unity-事件播放脚本) 在单击按钮时播放）。
+播放具有指定名称的 [SFX（音效）](/zh/guide/audio#音效) 音轨。与 [@sfx] 命令不同，该剪辑以最小延迟播放，并且不随游戏状态序列化（即使保存时正在播放，加载游戏后也不会播放）。该命令可用于播放各种临时音频剪辑，例如与 UI 相关的声音（例如，通过 [`Play Script` 组件](/zh/guide/gui#通过-unity-事件播放脚本) 在单击按钮时播放）。
 
 <div class="config-table">
 
@@ -1637,7 +1637,7 @@ Kohaku: 再次使用我链接的打印机。
 </div>
 
 ```nani
-; 播放一次名为 'Click' 的 SFX。
+; 播放一次名为“Click”的 SFX。
 @sfxFast Click
 
 ; 与上面相同，但允许同时播放同一剪辑。
@@ -1666,10 +1666,10 @@ Kohaku: 再次使用我链接的打印机。
 </div>
 
 ```nani
-; 使用默认参数震动 'Dialogue' 文本打印机。
+; 使用默认参数震动“Dialogue”文本打印机。
 @shake Dialogue
 
-; 开始震动 'Kohaku' 角色，显示用于停止的选项并做出相应处理。
+; 开始震动“Kohaku”角色，显示用于停止的选项并做出相应处理。
 @shake Kohaku loop!
 @choice "停止震动"
     @shake Kohaku !loop
@@ -1695,10 +1695,10 @@ Kohaku: 再次使用我链接的打印机。
 </div>
 
 ```nani
-; 假设 ID 为 'Smoke' 的 Actor 处于隐藏状态，在 3 秒内显示它。
+; 假设 ID 为“Smoke”的 Actor 处于隐藏状态，在 3 秒内显示它。
 @show Smoke time:3
 
-; 显示 'Kohaku' 和 'Yuko' Actor。
+; 显示“Kohaku”和“Yuko”Actor。
 @show Kohaku,Yuko
 ```
 
@@ -1720,7 +1720,7 @@ Kohaku: 再次使用我链接的打印机。
 ; 显示默认打印机。
 @showPrinter
 
-; 显示 ID 为 'Wide' 的打印机。
+; 显示 ID 为“Wide”的打印机。
 @showPrinter Wide
 ```
 
@@ -1739,14 +1739,14 @@ Kohaku: 再次使用我链接的打印机。
 </div>
 
 ```nani
-; 假设您添加了一个名为 'Calendar' 的自定义 UI，
+; 假设您添加了一个名为“Calendar”的自定义 UI，
 ; 以下命令将使其在场景中可见。
 @showUI Calendar
 
 ; 假设您使用 @hideUI 隐藏了整个 UI，将其重新显示。
 @showUI
 
-; 同时显示内置 'TipsUI' 和自定义 'Calendar' UI。
+; 同时显示内置“TipsUI”和自定义“Calendar”UI。
 @showUI TipsUI,Calendar
 ```
 
@@ -1794,16 +1794,16 @@ Kohaku: 再次使用我链接的打印机。
 </div>
 
 ```nani
-; 假设 'Jenna' Actor 不可见，以 'Angry' 外观显示它
+; 假设“Jenna”Actor 不可见，以“Angry”外观显示它
 ; 并从场景的左边界或右边界滑动到中心。
 @slide Jenna.Angry to:50
 
-; 假设 'Sheba' Actor 当前可见，
+; 假设“Sheba”Actor 当前可见，
 ; 隐藏它并将其滑出场景左边界。
 @slide Sheba to:-10 !visible
 
-; 将 'Sheba' Actor 从场景的左侧中部滑动到右下角，
-; 用时 5 秒，并使用 'EaseOutBounce' 动画缓动。
+; 将“Sheba”Actor 从场景的左侧中部滑动到右下角，
+; 用时 5 秒，并使用“EaseOutBounce”动画缓动。
 @slide Sheba from:15,50 to:85,0 time:5 easing:EaseOutBounce
 ```
 
@@ -1858,10 +1858,10 @@ Kohaku: 再次使用我链接的打印机。
 </div>
 
 ```nani
-; 假设已在生成资源中分配了 'Rainbow' 预制件，将其实例化。
+; 假设已在生成资源中分配了“Rainbow”预制件，将其实例化。
 @spawn Rainbow
 
-; 生成的 'Explosion' 是一次性效果，之后无需调用 '@despawn'。
+; 生成的“Explosion”是一次性效果，之后无需调用“@despawn”。
 @spawn Explosion transient!
 ```
 
@@ -1888,13 +1888,13 @@ Kohaku: 再次使用我链接的打印机。
 只有通过 @gosub 直接导航时才会执行这一行。
 @return
 
-; 循环执行 'Quake' 异步任务，直到被停止。
+; 循环执行“Quake”异步任务，直到被停止。
 @async Quake loop!
     @spawn Pebbles
     @shake Camera
     @wait { random(3,10) }
 ...
-; 停止 'Quake' 异步任务。
+; 停止“Quake”异步任务。
 @stop Quake
 ```
 
@@ -1919,7 +1919,7 @@ Kohaku: 再次使用我链接的打印机。
 </div>
 
 ```nani
-; 在 10 秒内淡出 'Sanctuary' BGM 音轨并停止播放。
+; 在 10 秒内淡出“Sanctuary”BGM 音轨并停止播放。
 @stopBgm Sanctuary fade:10
 
 ; 停止所有当前正在播放的音乐音轨。
@@ -1947,7 +1947,7 @@ Kohaku: 再次使用我链接的打印机。
 </div>
 
 ```nani
-; 停止播放名为 'Rain' 的 SFX，淡出 15 秒。
+; 停止播放名为“Rain”的 SFX，淡出 15 秒。
 @stopSfx Rain fade:15
 
 ; 停止所有当前正在播放的音效音轨。
@@ -2006,9 +2006,9 @@ Kohaku: 再次使用我链接的打印机。
 
 @async Boom
     @wait 60
-    ; 60 秒后，如果 'Boom' 任务未停止，
+    ; 60 秒后，如果“Boom”任务未停止，
     ; 下面的 @sync 命令将强制主轨道移动到此处，
-    ; 然后导航到 'BadEnd' 脚本。
+    ; 然后导航到“BadEnd”脚本。
     @sync
     @goto BadEnd
 
@@ -2017,7 +2017,7 @@ Kohaku: 再次使用我链接的打印机。
 拆弹谜题 2。
 拆弹谜题 3。
 
-; 'Boom' 异步任务已停止，因此主轨道
+; “Boom”异步任务已停止，因此主轨道
 ; 将继续执行而不中断。
 @stop Boom
 炸弹已拆除！
@@ -2025,13 +2025,13 @@ Kohaku: 再次使用我链接的打印机。
 
 ## timeline
 
-通过指定名称的场景游戏对象上的 [Director](https://docs.unity3d.com/ScriptReference/Playables.PlayableDirector.html) 组件控制 [Timeline](https://docs.unity3d.com/Manual/com.unity.timeline.html)。默认情况下，除非指定了“stop”、“pause”或“resume”标志，否则该命令将使 Director 开始播放。
+通过指定名称的场景游戏对象上的 [Director](https://docs.unity3d.com/ScriptReference/Playables.PlayableDirector.html) 组件控制 [Timeline](https://docs.unity3d.com/Manual/com.unity.timeline.html)。默认情况下，除非指定了 `stop`、`pause` 或 `resume` 标志，否则该命令将使 Director 开始播放。
 
 <div class="config-table">
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID 必需参数：应始终指定该参数">name</span> | string | 场景中附加了“Playable Director”组件且处于活动状态的游戏对象的名称。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID 必需参数：应始终指定该参数">name</span> | string | 场景中附加了 `Playable Director` 组件且处于活动状态的游戏对象的名称。 |
 | stop | boolean | 是否停止 Director。 |
 | pause | boolean | 是否暂停 Director。 |
 | resume | boolean | 是否恢复 Director。 |
@@ -2040,17 +2040,17 @@ Kohaku: 再次使用我链接的打印机。
 </div>
 
 ```nani
-; 使附加到场景中 'Cutscene001' 游戏对象的 Director 组件
+; 使附加到场景中“Cutscene001”游戏对象的 Director 组件
 ; 开始播放关联的 Timeline 并等待完成。
 @timeline Cutscene001 wait!
 
-; 停止附加到 'The Other Cutscene' 游戏对象的 Director。
+; 停止附加到“The Other Cutscene”游戏对象的 Director。
 @timeline "The Other Cutscene" stop!
 ```
 
 ## title
 
-重置引擎状态并开始播放“Title”脚本（如果已在脚本配置中分配）。
+重置引擎状态并开始播放 `Title` 脚本（如果已在脚本配置中分配）。
 
 ```nani
 ; 退出到标题。
@@ -2076,10 +2076,10 @@ Kohaku: 再次使用我链接的打印机。
 </div>
 
 ```nani
-; 显示带有 'Hello World!' 内容的默认 toast。
+; 显示带有“Hello World!”内容的默认 toast。
 @toast "Hello World!"
 
-; 显示带有 'warning' 外观的 toast。
+; 显示带有“warning”外观的 toast。
 @toast "你有危险！" appearance:warning
 
 ; toast 将在 1 秒后消失。
@@ -2091,7 +2091,7 @@ Kohaku: 再次使用我链接的打印机。
 执行场景过渡，用命令开始执行时可见的任何内容（UI 除外）掩盖真实的场景内容，执行嵌套命令以更改场景并以指定的 [过渡效果](/zh/guide/special-effects#过渡效果) 结束。<br/><br/> 该命令的工作原理类似于 Actor 外观过渡，但覆盖整个场景。使用它可以借助过渡效果一次性将多个 Actor 和其他可见实体更改为新状态。
 
 ::: info NOTE
-在过渡进行期间（嵌套命令正在运行），UI 将被隐藏且用户输入被阻止。您可以通过覆盖处理过渡过程的 `ISceneTransitionUI` 来更改此行为。<br/><br/> 异步嵌套命令将立即执行，无需为每个命令指定 `time:0`。<br/><br/> 嵌套块应始终能够执行完毕；不要嵌套任何可能导航到嵌套块外部的命令，因为这可能会导致未定义的行为。
+在过渡进行期间（嵌套命令正在运行），UI 将被隐藏且输入被阻止。您可以通过覆盖处理过渡过程的 `ISceneTransitionUI` 来更改此行为。<br/><br/> 异步嵌套命令将立即执行，无需为每个命令指定 `time:0`。<br/><br/> 嵌套块应始终能够执行完毕；不要嵌套任何可能导航到嵌套块外部的命令，因为这可能会导致未定义的行为。
 :::
 
 <div class="config-table">
@@ -2100,21 +2100,21 @@ Kohaku: 再次使用我链接的打印机。
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">transition</span> | string | 要使用的 [过渡效果](/zh/guide/special-effects#过渡效果) 类型（默认使用交叉淡入淡出）。 |
 | params | number list | 过渡效果的参数。 |
-| dissolve | string | [自定义溶解](/zh/guide/special-effects#溶解遮罩) 纹理的路径（路径应相对于 `Resources` 文件夹）。仅当过渡设置为 `Custom` 模式时有效。 |
+| dissolve | string | [自定义溶解](/zh/guide/special-effects#溶解遮罩) 纹理的路径（路径应相对于“Resources”文件夹）。仅当过渡设置为 `Custom` 模式时有效。 |
 | easing | string | 用于过渡的 [缓动函数](/zh/guide/special-effects#动画缓动) 名称。 |
 | time | number | 过渡的持续时间（以秒为单位）。 |
 
 </div>
 
 ```nani
-; 使用 'Felix' 角色和阳光明媚的氛围设置初始场景。
+; 使用“Felix”角色和阳光明媚的氛围设置初始场景。
 @char Felix
 @back SunnyDay
 @sun power:1
 Felix: 多好的天气啊！
 
-; 过渡到带有 'Jenna' 角色和下雨氛围的新场景，
-; 使用 'DropFade' 过渡效果，持续 3 秒。
+; 过渡到带有“Jenna”角色和下雨氛围的新场景，
+; 使用“DropFade”过渡效果，持续 3 秒。
 @trans DropFade time:3
     @hide Felix
     @char Jenna
@@ -2141,16 +2141,16 @@ Jenna: 这该死的雨什么时候才会停？
 </div>
 
 ```nani
-; 如果 "dead" 变量为 false，则打印 "你还活着！"，
-; 否则打印 "你完了。"。
+; 如果“dead”变量为 false，则打印“你还活着！”，
+; 否则打印“你完了。”
 @unless dead
     你还活着！
 @else
     你完了。
 
-; 根据 "score" 变量打印文本行：
-;   "测试结果：通过。" - 当 score 为 10 或更高时。
-;   "测试结果：失败。" - 当 score 低于 10 时。
+; 根据“score”变量打印文本行：
+;   “测试结果：通过。” - 当 score 为 10 或更高时。
+;   “测试结果：失败。” - 当 score 低于 10 时。
 测试结果：[unless score<10]通过。[else]失败。[endif]
 ```
 
@@ -2168,13 +2168,13 @@ Jenna: 这该死的雨什么时候才会停？
 </div>
 
 ```nani
-; 取消 'Dialogue' 打印机与 'Kohaku' 和 'Yuko' 作者的链接。
+; 取消“Dialogue”打印机与“Kohaku”和“Yuko”作者的链接。
 @unlinkPrinter Dialogue from:Kohaku,Yuko
 
-; 取消 'Kohaku' 作者与任何打印机的链接。
+; 取消“Kohaku”作者与任何打印机的链接。
 @unlinkPrinter from:Kohaku
 
-; 取消 'Dialogue' 打印机与所有作者的链接。
+; 取消“Dialogue”打印机与所有作者的链接。
 @unlinkPrinter Dialogue
 
 ; 取消所有打印机与所有作者的链接。
@@ -2194,7 +2194,7 @@ Jenna: 这该死的雨什么时候才会停？
 </div>
 
 ```nani
-; 在附加模式下加载场景 'TestScene2'，然后卸载它。
+; 在附加模式下加载场景“TestScene2”，然后卸载它。
 @loadScene TestScene2 additive!
 @unloadScene TestScene2
 ```
@@ -2216,7 +2216,7 @@ Jenna: 这该死的雨什么时候才会停？
 </div>
 
 ```nani
-; 解锁 ID 为 'FightScene1' 的可解锁 CG 记录。
+; 解锁 ID 为“FightScene1”的可解锁 CG 记录。
 @unlock CG/FightScene1
 ```
 
@@ -2245,7 +2245,7 @@ Jenna: 这该死的雨什么时候才会停？
 </div>
 
 ```nani
-; 以低音调播放 'Rawr' 语音资源。
+; 以低音调播放“Rawr”语音资源。
 @voice Rawr pitch:0.5
 ```
 
@@ -2257,7 +2257,7 @@ Jenna: 这该死的雨什么时候才会停？
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID 必需参数：应始终指定该参数">waitMode</span> | string | 等待条件：<br/> - `i` 用户按下继续或跳过输入键；<br/> - `0.0` 计时器（秒）；<br/> - `i0.0` 可通过继续或跳过输入键跳过的计时器。 |
+| <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID 必需参数：应始终指定该参数">waitMode</span> | string | 等待条件：<br/> - `i` 玩家按下继续或跳过输入键；<br/> - `0.0` 计时器（秒）；<br/> - `i0.0` 可通过继续或跳过输入键跳过的计时器。 |
 
 </div>
 
@@ -2303,3 +2303,4 @@ Lorem ipsum[-] dolor sit amet.
     @else
         正确！
 ```
+

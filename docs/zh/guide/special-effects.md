@@ -3,21 +3,21 @@
 一些内置脚本命令专用于各种特殊效果。例如，[@shake] 命令会震动 Actor：
 
 ```nani
-; 震动 'Kohaku' Actor
+; 震动“Kohaku”Actor
 @shake Kohaku
 ```
 
 大多数效果都可以参数化：
 
 ```nani
-; 震动 'Kohaku' 一次（而不是默认的 3 次）
+; 震动“Kohaku”一次（而不是默认的 3 次）
 @shake Kohaku count:1
 ```
 
 您可以更新效果参数而无需重新启动效果：
 
 ```nani
-; 开始循环缓慢震动 'Kohaku' Actor
+; 开始循环缓慢震动“Kohaku”Actor
 @shake Kohaku loop! power:0.1
 Kohaku: 隆隆作响！
 ; 以更大的幅度再震动 3 次
@@ -51,7 +51,7 @@ Kohaku: 隆隆作响！
 | --- | --- | --- | --- |
 | ID | String | null | 要震动的 Actor 的 ID。指定 `Camera` 以震动主摄像机。 |
 | Shake count | Number | 3 | 震动迭代次数。 |
-| Loop | Boolean | false | 启用后，将循环效果，直到使用 [@despawn] 停止。 |
+| Loop | Boolean | false | 启用后，将循环效果，直到使用 `!loop` 或 [@despawn] 停止。 |
 | Shake duration | Number | 0.15 | 每次震动迭代的基本持续时间（以秒为单位）。 |
 | Duration variation | Number | 0.25 | 应用于效果基本持续时间的随机变化量。 |
 | Shake amplitude | Number | 0.5 | 每次震动迭代的基本位移幅度（以单位计）。 |
@@ -65,7 +65,7 @@ Kohaku: 隆隆作响！
 ; 震动当前默认文本打印机
 @shake
 
-; 使用默认参数震动 "Kohaku" Actor
+; 使用默认参数震动“Kohaku”Actor
 @shake Kohaku
 
 ; 水平震动主摄像机 5 次
@@ -208,7 +208,7 @@ Kohaku: 隆隆作响！
 **示例**
 
 ```nani
-; 使用默认参数启用散景并将焦点锁定在 "Kohaku" 游戏对象上
+; 使用默认参数启用散景并将焦点锁定在“Kohaku”游戏对象上
 @bokeh Kohaku
 
 ; 在 10 秒内淡出（禁用）效果
@@ -244,7 +244,7 @@ Kohaku: 隆隆作响！
 ; 对当前主背景应用模糊
 @blur
 
-; 在 2.5 秒内以全强度对 "Sky" 背景应用模糊
+; 在 2.5 秒内以全强度对“Sky”背景应用模糊
 @blur Sky power:1 time:2.5
 
 ; 淡出并禁用模糊
@@ -750,7 +750,7 @@ EaseOutElastic
 EaseInOutElastic
 ```
 
-例如，以下命令使用 `EaseOutBounce` 缓动，在 1.5 秒内通过 `DropFade` 过渡效果切换到 `River` 背景：
+例如，以下命令使用 `EaseOutBounce` 缓动，在 1.5 秒内通过 `DropFade` 过渡效果过渡到 `River` 背景：
 
 ```nani
 @back River.DropFade time:1.5 easing:EaseOutBounce
@@ -797,7 +797,7 @@ EaseInOutElastic
 
 也可以使用 [Addressable 资产系统](/zh/guide/resource-providers#addressable) 手动公开资源。要公开资产，请为其分配一个地址，该地址等于使用上述方法时的路径，但省略“Resources/”部分。例如，要公开“Boom01”预制件资产，请为该资产分配以下地址：`Naninovel/Spawn/Boom01`。请注意，在编辑器中时，始终首先使用特殊的“Editor”资源提供者；只有未通过编辑器菜单分配的资源才会尝试使用 Addressable 提供者。
 
-可查看存储在 `Naninovel/Prefabs/FX` 中的内置效果预制件，作为参考实现。
+请查看存储在 `Naninovel/Prefabs/FX` 中的内置效果预制件，作为参考实现。
 
 ### 自定义摄像机效果
 
@@ -832,7 +832,7 @@ EaseInOutElastic
 — 右上角的黑色方块表示过渡目标应在过渡开始时显示在那里，中心的纯白色方块将在最后过渡。
 
 ::: tip
-为了优化内存使用，请在溶解纹理导入设置中设置“Single Channel”和“Red”。此外，确保禁用 `Non-Power of 2` 和 `Generate Mipmap` 选项以防止视觉伪影。
+为了优化内存使用，请在溶解纹理导入设置中设置 `Single Channel` 和 `Red`。此外，请确保禁用 `Non-Power of 2` 和 `Generate Mipmap` 选项以防止视觉伪影。
 
 ![](https://i.gyazo.com/7c38c89948b6d040c0b21ca573cf2968.png)
 :::
@@ -855,7 +855,7 @@ EaseInOutElastic
 @back Appearance.Custom dissolve:Textures/Spiral params:,1
 ```
 
-查看以下视频以获取使用示例。
+请查看以下视频以获取使用示例。
 
 ![](https://www.youtube.com/watch?v=HZjey6M2-PE)
 
@@ -867,7 +867,7 @@ EaseInOutElastic
 
 当在脚本命令中指定过渡名称时，将在 Actor 使用的材质中启用具有相同名称（前缀为 `NANINOVEL_TRANSITION_`）的 [着色器关键字](https://docs.unity3d.com/ScriptReference/Shader.EnableKeyword.html)。
 
-要将您自己的过渡添加到自定义 Actor 着色器，请使用 `multi_compile` 指令，例如：
+要将您自己的过渡添加到自定义 Actor 着色器，请使用 `multi_compile_local` 指令，例如：
 
 ```c
 #pragma multi_compile_local _ NANINOVEL_TRANSITION_CUSTOM1 NANINOVEL_TRANSITION_CUSTOM2

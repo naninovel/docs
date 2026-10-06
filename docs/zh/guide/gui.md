@@ -24,7 +24,7 @@ Naninovel 附带多个内置 UI：标题（主）菜单、游戏设置、存档/
 
 ## UI 切换
 
-UI 切换功能允许用户隐藏或显示整个游戏内 UI。
+UI 切换功能允许玩家隐藏或显示整个游戏内 UI。
 
 ![](https://i.gyazo.com/e267c4ab3654efbfaf611011502de79f.mp4)
 
@@ -49,7 +49,7 @@ UI 自定义允许添加自定义 UI 并修改或完全替换任何内置 UI 元
 当引擎初始化时，它将实例化资源管理器中分配的所有 UI 预制件。
 
 ::: info NOTE
-某些功能（例如 [UI 切换](/zh/guide/gui#ui-切换)）要求 UI 在 `Screen Space - Camera` 模式下渲染。为了获得最佳兼容性，请确保您的自定义 UI 选择了正确的渲染模式，并且 Render Camera 字段为空（UI 管理器将自动分配摄像机）。
+某些功能（例如 [UI 切换](/zh/guide/gui#ui-切换)）要求 UI 在 `Screen Space - Camera` 模式下渲染。为了获得最佳兼容性，请确保您的自定义 UI 选择了正确的渲染模式，并且 `Render Camera` 字段为空（UI 管理器将自动分配摄像机）。
 
 ![](https://i.gyazo.com/d62bed3ba0c85972b12e759cc7b44c91.png)
 :::
@@ -84,7 +84,7 @@ UI 自定义允许添加自定义 UI 并修改或完全替换任何内置 UI 元
 
 如果您希望支持 UI 的游戏手柄或键盘导航，请将可交互游戏对象（例如 `Button`）分配给 `Focus Object` 属性。当 UI 变为可见时，该对象将自动获得焦点，从而可以使用游戏手柄和/或键盘在其他可交互对象之间导航。有关如何设置导航行为的更多信息，请参阅 Unity 的 [UI 导航指南](https://docs.unity3d.com/Packages/com.unity.ugui@1.0/manual/script-SelectableNavigation.html)。
 
-当分配了 `Focus Object` 时，`Focus Mode` 属性允许选择何时聚焦对象：`Visibility` 模式将在 UI 变为可见后立即聚焦它，而 `Navigation` 将推迟聚焦，直到玩家激活游戏手柄（左摇杆或 D-Pad）或键盘（方向键）上的导航键。
+当分配了 `Focus Object` 时，`Focus Mode` 属性允许选择何时聚焦对象：`Visibility` 模式将在 UI 变为可见后立即聚焦它，而 `Navigation` 将推迟聚焦，直到玩家激活游戏手柄（左摇杆或 D-pad）或键盘（方向键）上的导航键。
 
 `On Show` 和 `On Hide` Unity 事件允许挂钩自定义处理程序以响应 UI 可见性更改。例如，您可以挂钩 `Animator` 触发器，以便在 UI 变为可见时播放自定义动画，反之亦然。
 
@@ -97,7 +97,7 @@ UI 自定义允许添加自定义 UI 并修改或完全替换任何内置 UI 元
 启用 `Modal UI` 会使所有其他 UI 在该 UI 可见时忽略交互。这类似于 `Block Input When Visible`，但影响基于事件的交互（鼠标单击、触摸、UI 导航）而不是直接输入处理。
 
 创建自定义 UI 时，默认情况下还会添加其他几个组件：
-- `Canvas Group` 允许通过更改不透明度（由 `Fade Time` 控制）来隐藏 UI，并允许 UI 在必要时忽略用户交互。
+- `Canvas Group` 允许通过更改不透明度（由 `Fade Time` 控制）来隐藏 UI，并允许 UI 在必要时忽略玩家交互。
 - `Canvas Scaler` 自动缩放布局以适应当前显示分辨率。
 - `Graphic Raycaster` 允许玩家与 UI 画布内的按钮和其他可交互元素进行交互。
 
@@ -117,7 +117,7 @@ UI 自定义允许添加自定义 UI 并修改或完全替换任何内置 UI 元
 | Include Children | 是否影响容器子游戏对象；禁用时，只有指定容器对象上的文本组件会受到影响。 |
 | Allow Font Change | 是否允许更改文本组件的字体。 |
 | Allow Font Size Change | 是否允许更改文本组件的字体大小。 |
-| Font Sizes | 应用于文本组件的实际字体大小。列表中的每个元素对应字体大小下拉列表索引：Small -> 0, Default -> 1, Large -> 2, Extra Large -> 3（可以通过 SettingsUI 更改）。Default 项的值将被忽略，转而使用预制件中最初设置的字体大小。 |
+| Font Sizes | 应用于文本组件的实际字体大小。列表中的每个元素对应字体大小下拉列表索引：Small -> 0, Default -> 1, Large -> 2, Extra Large -> 3（可以通过 `SettingsUI` 更改）。Default 项的值将被忽略，转而使用预制件中最初设置的字体大小。 |
 
 可以通过 `Create -> Naninovel -> Font Sizes` 资产上下文菜单创建 `Font Sizes` 资产；使用该资产在多个 UI 之间共享通用字体大小。
 
@@ -137,7 +137,7 @@ UI 自定义允许添加自定义 UI 并修改或完全替换任何内置 UI 元
 
 如果您希望修改内置（默认）UI 预制件，可以在 `Naninovel/Prefabs/DefaultUI` 包文件夹中找到它们。
 
-虽然可以，但 **请避免直接编辑内置预制件**，以防止在更新包时出现问题。请改为通过 `Create -> Naninovel -> Default UI -> ...` 资产上下文菜单从模板创建一个新预制件，或者手动复制您想要修改的预制件（Ctrl/Cmd+D）并将其移出包文件夹。然后将创建/修改的预制件分配给 UI 资源管理器中的现有记录（`Object` 字段）。
+虽然可以，但**请避免直接编辑内置预制件**，以防止在更新包时出现问题。请改为通过 `Create -> Naninovel -> Default UI -> ...` 资产上下文菜单从模板创建一个新预制件，或者手动复制您想要修改的预制件（Ctrl/Cmd+D）并将其移出包文件夹。然后将创建/修改的预制件分配给 UI 资源管理器中的现有记录（`Object` 字段）。
 
 在下面的视频教程中，您可以学习如何覆盖内置标题（主）菜单。它还将展示如何使用标题脚本在进入标题菜单时添加背景和特殊效果；无需使用 C# 脚本即可实现。
 
@@ -176,7 +176,7 @@ UI 自定义允许添加自定义 UI 并修改或完全替换任何内置 UI 元
 
 如果您熟悉 C# 脚本并想要覆盖 UI 的默认逻辑，请 [创建一个新组件](https://docs.unity3d.com/Manual/CreatingAndUsingScripts)，实现 `IManagedUI` 接口（可以从 `CustomUI` 继承组件以满足所有接口要求）并改为附加所创建的自定义组件。请查看 `Naninovel/Runtime/UI` 文件夹以了解内置 UI 的参考实现。以下是自定义 UI 组件的最小实现示例：
 
-```csharp
+```cs
 using Naninovel.UI;
 
 public class MyCustomUI : CustomUI

@@ -11,24 +11,24 @@
 运行时不使用任何特定于平台的 API、预编译的原生库或第三方依赖项。因此，预计 Naninovel 与 Unity 支持的所有目标平台兼容。然而，这也意味着它不利用任何平台原生功能，因此您可能需要调整某些功能，以便在 VR/XR 等特殊平台上获得最佳用户体验。
 
 ::: info NOTE
-虽然 Unity [支持游戏主机](https://unity.com/how-to/develop-console-video-games-unity)（PlayStation、Xbox、Switch），但对于中小型开发者而言，这一过程可能会较为困难。如果您正在寻找发行合作伙伴，[呐呐呐制作组](https://nanana.cn/) 亦向国内 Naninovel 用户提供安卓、iOS、Xbox 主机等平台的 [游戏移植服务](https://nanana.cn/article/contact)。
+虽然 Unity [支持游戏主机](https://unity.com/how-to/develop-console-video-games-unity)（PlayStation、Xbox、Switch），但对于中小型开发人员而言，这一过程可能会较为困难。如果您正在寻找发行合作伙伴，[呐呐呐制作组](https://nanana.cn/) 亦向国内 Naninovel 用户提供安卓、iOS、Xbox 主机等平台的 [游戏移植服务](https://nanana.cn/article/contact)。
 :::
 
 ## 渲染管线
 
-完全支持 Universal Render Pipeline（URP）和旧版内置渲染管线（BiRP）。High Definition Render Pipeline（HDRP）未经积极测试，不建议使用。虽然大多数 Naninovel 功能可以在 HDRP 下工作，但某些特定于渲染的功能——例如 [@trans]、[@glitch] 和 [@bokeh] 命令——可能无法在 HDRP 下开箱即用。
+完全支持通用渲染管线（URP）和旧版内置渲染管线（BiRP）。高清渲染管线（HDRP）未经积极测试，不建议使用。虽然大多数 Naninovel 功能可以在 HDRP 下工作，但某些特定于渲染的功能——例如 [@trans]、[@glitch] 和 [@bokeh] 命令——可能无法在 HDRP 下开箱即用。
 
 ## GUI
 
 UI Toolkit 可以通过 [适配器](/zh/guide/gui#ui-toolkit) 使用，但不建议这样做，并且内置 UI 系统不支持它。所有内置 UI 和底层脚本均使用 Unity 的默认 [uGUI 系统](https://docs.unity3d.com/Packages/com.unity.ugui@latest) 编写。所有文本均基于内置的 [TextMesh Pro](https://docs.unity3d.com/Manual/com.unity.textmeshpro.html) 组件。
 
-## 输入系统
+## Input System
 
 默认支持 Unity 的 [Input System](https://docs.unity3d.com/Packages/com.unity.inputsystem@latest)。不支持旧版 Input Manager。可以通过 [覆盖](/zh/guide/engine-services#覆盖内置服务) `IInputManager` 引擎服务来实现自定义输入系统（例如 Rewired）。
 
 ## 托管代码剥离
 
-不支持“Medium”和“High”[托管字节码剥离](https://docs.unity3d.com/Manual/ManagedCodeStripping.html) 级别。您应该禁用剥离或使用默认选择的“Low”级别。
+不支持“Medium”和“High”[托管代码剥离](https://docs.unity3d.com/Manual/ManagedCodeStripping.html) 级别。您应该禁用剥离或使用默认选择的“Low”级别。
 
 ## 异常
 

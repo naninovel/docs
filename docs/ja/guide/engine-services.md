@@ -4,7 +4,7 @@
 
 エンジンシステムとやり取りしたい場合は、ほとんどの場合エンジンサービスを使用することになります。静的メソッド `Engine.GetService<TService>()` を使用してエンジンサービスへの参照を取得できます。ここで `TService` は取得したいサービスのインターフェースです。たとえば、`IScriptPlayer` サービスを取得するには次のようにします。
 
-```csharp
+```cs
 var player = Engine.GetService<IScriptPlayer>();
 player.MainTrack.Stop();
 ```
@@ -22,7 +22,7 @@ player.MainTrack.Stop();
 | IChoiceHandlerManager | [選択肢ハンドラー](/ja/guide/choices) アクターを管理します。 |
 | ITextPrinterManager | [テキストプリンター](/ja/guide/text-printers) アクターを管理します。 |
 | IAudioManager | オーディオ（[SFX](/ja/guide/audio#sfx-効果音)、[BGM](/ja/guide/audio#bgm-背景音楽)、[ボイス](/ja/guide/voicing)）を管理します。 |
-| IInputManager | ユーザーの [入力処理](/ja/guide/input-processing) を管理します。 |
+| IInputManager | [入力処理](/ja/guide/input-processing) を管理します。 |
 | ILocalizationManager | [ローカライズ](/ja/guide/localization) 関連の処理を管理します。 |
 | ICommunityLocalization | [コミュニティローカライズ](/ja/guide/localization#コミュニティローカライズ) のリソースへのアクセスを提供します。 |
 | ITextLocalizer | `LocalizableText` の値に対応するローカライズされた文字列を解決します。 |
@@ -43,7 +43,7 @@ player.MainTrack.Stop();
 
 ## カスタムサービスの追加
 
-新しいカスタムエンジンサービスを追加するには、`IEngineService` インターフェースを実装し、実装クラスに `InitializeAtRuntime` 属性を追加します。エンジン初期化中に実装のインスタンスが自動的に作成され、`Engine.GetService<TService>()` APIを介して利用可能になります。
+新しいカスタムエンジンサービスを追加するには、`IEngineService` インターフェースを実装し、実装クラスに `InitializeAtRuntime` 属性を追加します。エンジンの初期化中に実装のインスタンスが自動的に作成され、`Engine.GetService<TService>()` APIを介して利用可能になります。
 
 `InitializeAtRuntime` 属性の `InitializationPriority` 引数を使用して、カスタムサービスが他のサービスより前または後に初期化されるよう強制できます。値が小さいほど初期化キュー内で他のサービスより前に配置され、大きいほど後ろに配置されます。
 
@@ -59,7 +59,7 @@ player.MainTrack.Stop();
 
 以下は、いくつかの使用上の注意を含むカスタムエンジンサービス実装の例です。
 
-```csharp
+```cs
 using Naninovel;
 using UnityEngine;
 
@@ -100,7 +100,7 @@ public class CustomService : IEngineService
 
 これで、次の方法で前述のカスタムサービスにアクセスできます。
 
-```csharp
+```cs
 var customService = Engine.GetService<CustomService>();
 ```
 
@@ -116,7 +116,7 @@ var customService = Engine.GetService<CustomService>();
 
 以下は、いずれかのメソッドが呼び出されたときにログを出力するだけで他には何もしない、ダミーの `IInputManager` 実装の例です。
 
-```csharp
+```cs
 using Naninovel;
 using UnityEngine;
 

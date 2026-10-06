@@ -6,7 +6,7 @@ If you're using a custom build environment (eg, [Cloud Build](https://unity3d.co
 
 Below is an example of a Cloud Build custom build processing script that invokes the required Naninovel processing methods. Consult the [official service docs](https://docs.unity3d.com/Manual/UnityCloudBuildPreAndPostExportMethods.html) on how to set up the processing scripts.
 
-```csharp
+```cs
 public static class CustomBuildProcessor
 {
     #if UNITY_CLOUD_BUILD
@@ -38,7 +38,7 @@ public static class CustomBuildProcessor
 
 When using assembly definitions for custom commands, the Unity Editor may start importing assets before compiling all the assemblies, leading to build errors when using Cloud Build. This can be solved by reimporting the script assets before starting the build, eg:
 
-```csharp
+```cs
 var scriptGuids = AssetDatabase.FindAssets("t:Naninovel.Script");
 foreach (var scriptGuid in scriptGuids)
 {

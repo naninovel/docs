@@ -19,7 +19,7 @@
 | Bgm Loader | BGM- (Addressable, Project) | BGM 音频资源所用的资源加载器配置。 |
 | Sfx Loader | SFX- (Addressable, Project) | SFX 音频资源所用的资源加载器配置。 |
 | Voice Loader | Voice- (Addressable, Project) | 语音音频资源所用的资源加载器配置。 |
-| Audio Player | Naninovel Audio Player | 负责播放音频剪辑的 IAudioPlayer 实现。 |
+| Audio Player | Naninovel Audio Player | 负责播放音频剪辑的 `IAudioPlayer` 实现。 |
 | Default Master Volume | 1 | 首次启动游戏时设置的主音量。 |
 | Default Bgm Volume | 1 | 首次启动游戏时设置的 BGM 音量。 |
 | Default Sfx Volume | 1 | 首次启动游戏时设置的 SFX 音量。 |
@@ -27,7 +27,7 @@
 | Enable Auto Voicing | False | 启用后，每个 [@print] 命令都将尝试播放关联的语音剪辑。 |
 | Voice Overlap Policy | Prevent Overlap | 指定如何处理语音的同时播放：<br> • Allow Overlap — 不加限制地同时播放多条语音。<br> • Prevent Overlap — 在播放新的语音剪辑之前停止所有正在播放的语音剪辑，以防止语音同时播放。<br> • Prevent Character Overlap — 防止同一角色的语音同时播放；不同角色的语音（自动配音）以及任意数量的 [@voice] 命令可以同时播放。 |
 | Voice Locales | Null | 分配语言标签，以允许在游戏设置中独立于主本地化选择语音语言。 |
-| Default Fade Duration | 0.35 | 开始或停止播放音频时音量淡入/淡出的默认持续时间。 |
+| Default Fade Duration | 0.35 | 开始或停止播放音频时音量淡入/淡出的默认持续时间（以秒为单位）。 |
 | Default Fade Easing | Linear | 默认用于音频淡入淡出和修改的缓动函数。 |
 | Play Sfx While Skipping | True | 是否在跳过模式下播放非循环音效（SFX）。禁用时，将在跳过时忽略不带 `loop!` 的 [@sfx] 命令。 |
 | Custom Audio Mixer | Null | 用于控制音频组的音频混音器。未指定时，将使用默认混音器。 |
@@ -116,7 +116,7 @@
 | 属性 | 默认值 | 描述 |
 | --- | --- | --- |
 | Default Handler ID | ButtonList | 默认使用的选项处理程序的 ID。 |
-| Choice Button Loader | Choice Buttons- (Addressable, Project) | 用于加载自定义选项按钮的资源加载器配置。 |
+| Choice Button Loader | Choice Buttons- (Addressable, Project) | 自定义选项按钮资源所用的资源加载器配置。 |
 | Default Metadata | Object Ref | 创建选项处理程序 Actor 且所创建的 Actor ID 不存在自定义元数据时默认使用的元数据。 |
 | Metadata | Object Ref | 创建具有特定 ID 的选项处理程序 Actor 时使用的元数据。 |
 | Default Duration | 0.35 | 所有 Actor 修改（更改外观、位置、色调等）的默认持续时间（以秒为单位）。 |
@@ -154,13 +154,13 @@
 | --- | --- | --- |
 | Spawn Event System | True | 是否生成 Naninovel 专用的事件系统；uGUI 交互需要它。如果您想自行初始化事件系统，请禁用此选项。 |
 | Event System | Null | 带有 `EventSystem` 组件的预制件，将在引擎初始化时生成并用于输入处理。未分配时将使用默认事件系统。 |
-| Input Actions | Null | 安装 Unity 的输入系统后，在此处分配输入操作资产。<br><br>要将输入操作映射到 Naninovel 的输入，请在 `Action Maps` 中列出的操作映射（默认为 `Naninovel`）下添加名称与输入名称相同的操作。<br><br>未分配时将使用默认输入操作。 |
+| Input Actions | Null | 安装 Unity 的 Input System 后，在此处分配输入操作资产。<br><br>要将输入操作映射到 Naninovel 的输入，请在 `Action Maps` 中列出的操作映射（默认为 `Naninovel`）下添加名称与输入名称相同的操作。<br><br>未分配时将使用默认输入操作。 |
 | Action Maps | Object Ref | 指定的 `Input Actions` 资产中要注册到 Naninovel 输入的输入操作映射名称。 |
 | Rebind Timeout | 5 | 重新绑定输入时，在取消之前等待控件被激活的时间（以秒为单位）。零或更小的值将禁用超时。 |
 | Rebind Cancel Key | &lt;Keyboard&gt;/escape | 激活时取消重新绑定输入的控件路径。留空以禁用。 |
-| Enable Gyroscope | True | 是否启用陀螺仪设备（在 Unity 的输入系统中默认禁用）。通过旋转移动设备来使用摄像机观看功能时需要启用。 |
+| Enable Gyroscope | True | 是否启用陀螺仪设备（在 Unity 的 Input System 中默认禁用）。通过旋转移动设备来使用摄像机观看功能时需要启用。 |
 | Detect Input Mode | True | 激活关联设备时是否更改输入模式。例如，按下任何游戏手柄按钮时切换到游戏手柄，单击鼠标按钮时切换回鼠标。 |
-| Disable Input | False | 初始化引擎时是否默认禁用输入处理。当 Naninovel 作为嵌入式对话系统集成并且初始化后不应响应用户输入时很有用。 |
+| Disable Input | False | 初始化引擎时是否默认禁用输入处理。当 Naninovel 作为嵌入式对话系统集成并且初始化后不应响应输入时很有用。 |
 
 </div>
 
@@ -173,7 +173,7 @@
 | Loader | Localization- (Addressable, Project) | 本地化资源所用的资源加载器配置。 |
 | Languages | Object Ref | 映射到默认语言显示名称的 RFC5646 语言标签。重新启动 Unity 编辑器以使更改生效。 |
 | Source Locale | en | 项目源资源的语言环境（创作项目资产所用的语言）。 |
-| Expose Source Locale | True | 是否向最终用户（玩家）提供源语言环境，即将其包含在语言选择中。<br><br>如果您想与第三方共享源语言的可本地化文本（例如，用于校对），但不想共享剧本脚本，禁用此选项会很有用。在这种情况下，请禁用此选项并为源内容添加一个专用语言环境，之后即可将其导出到本地化文档或电子表格。 |
+| Expose Source Locale | True | 是否向玩家提供源语言环境，即将其包含在语言选择中。<br><br>如果您想与第三方共享源语言的可本地化文本（例如，用于校对），但不想共享剧本脚本，禁用此选项会很有用。在这种情况下，请禁用此选项并为源内容添加一个专用语言环境，之后即可将其导出到本地化文档或电子表格。 |
 | Default Locale | Null | 首次运行游戏时默认选择的语言环境。未指定时将选择 `Source Locale`。 |
 | Auto Detect Locale | True | 启用后，在首次运行游戏时会尝试根据系统语言自动检测语言环境。如果检测成功且游戏支持该语言环境，则选择它；否则回退到 `Default Locale`。 |
 | Record Separator | \| | 用于连接单个本地化记录中各文本片段的字符，例如通用文本行的各个部分或命令的多个可本地化参数值。 |
@@ -199,7 +199,7 @@
 | 属性 | 默认值 | 描述 |
 | --- | --- | --- |
 | Loader | Movies- (Addressable, Project) | 影片资源所用的资源加载器配置。 |
-| Skip On Input | True | 用户激活 `SkipMovie` 输入时是否跳过影片播放。 |
+| Skip On Input | True | 玩家激活 `SkipMovie` 输入时是否跳过影片播放。 |
 | Skip Frames | True | 是否跳过帧以赶上当前时间。 |
 | Fade Duration | 1 | 开始/结束播放影片前淡入/淡出的时间（以秒为单位）。 |
 | Custom Fade Texture | Null | 淡入淡出时显示的纹理。未指定时将使用简单的黑色纹理。 |
@@ -220,8 +220,8 @@
 | Remove Actors | True | 卸载脚本资源时是否自动移除未使用的 Actor（角色、背景、文本打印机和选项处理程序）。请注意，即使启用此选项，仍然可以随时使用 [@remove] 命令手动移除 Actor。 |
 | Enable Build Processing | True | 是否注册自定义的播放器构建处理程序，以处理被分配为 Naninovel 资源的资产。<br><br>警告：要使此设置生效，需要重新启动 Unity 编辑器。 |
 | Auto Build Bundles | True | 构建播放器时是否自动构建 Addressable 资产包。 |
-| Label By Scripts | True | 是否按使用它们的剧本脚本的路径为所有 Naninovel Addressable 资产添加标签。当 Addressable 组设置中的 `Bundle Mode` 设置为 `Pack Together By Label` 时，这将使资产包的打包更加高效。<br><br>请注意，脚本标签将分配给地址以“Naninovel/”开头的所有资产，其中包括手动公开给 Addressable 资源提供者的资产（未使用资源编辑器菜单）。 |
-| Local Root Path | %DATA%/Resources | 本地资源提供者使用的根路径。可以是资源所在文件夹的绝对路径，也可以是以下列可用起点之一开头的相对路径：<br> • %DATA% — 目标设备上的游戏数据文件夹（UnityEngine.Application.dataPath）。<br> • %PDATA% — 目标设备上的持久数据目录（UnityEngine.Application.persistentDataPath）。<br> • %STREAM% — `StreamingAssets` 文件夹（UnityEngine.Application.streamingAssetsPath）。<br> • %SPECIAL{F}% — 操作系统特殊文件夹（其中 F 是 System.Environment.SpecialFolder 中的值）。 |
+| Label By Scripts | True | 是否按使用它们的剧本脚本的路径为所有 Naninovel Addressable 资产添加标签。当 Addressable 组设置中的 `Bundle Mode` 设置为 `Pack Together By Label` 时，这将使资产包的打包更加高效。<br><br>请注意，脚本标签将分配给地址以 `Naninovel/` 开头的所有资产，其中包括手动公开给 Addressable 资源提供者的资产（未使用资源编辑器菜单）。 |
+| Local Root Path | %DATA%/Resources | 本地资源提供者使用的根路径。可以是资源所在文件夹的绝对路径，也可以是以下列可用起点之一开头的相对路径：<br> • %DATA% — 目标设备上的游戏数据文件夹（UnityEngine.Application.dataPath）。<br> • %PDATA% — 目标设备上的持久数据目录（UnityEngine.Application.persistentDataPath）。<br> • %STREAM% —“StreamingAssets”文件夹（UnityEngine.Application.streamingAssetsPath）。<br> • %SPECIAL{F}% — 操作系统特殊文件夹（其中 F 是 System.Environment.SpecialFolder 中的值）。 |
 | Video Stream Extension | .mp4 | 在 WebGL 下流式传输视频（影片、视频背景）时，指定视频文件的扩展名。 |
 | Reload Scripts | True | 是否监视存储在本地提供者目录下的剧本脚本，并热重载被修改的脚本。 |
 
@@ -237,7 +237,7 @@
 | Skip Time Scale | 10 | 在跳过（快进）模式下使用的时间缩放。设置为 1 可禁止在跳过时更改时间缩放。 |
 | Min Auto Play Delay | 1 | 在自动播放模式下执行下一个命令之前等待的最少秒数。 |
 | Complete On Continue | True | 当激活 `Continue` 输入时，是否立即完成随时间执行的阻塞（`wait!`）命令（例如，动画、隐藏/显示、色调更改等）。 |
-| Show Debug On Init | False | 是否在引擎初始化时显示播放器调试窗口。 |
+| Show Debug On Init | False | 是否在引擎初始化时显示脚本播放器调试窗口。 |
 | Wait By Default | False | 当未显式指定 `wait` 参数时，是否等待所播放的命令执行完毕。仅适用于可等待（异步）命令。<br><br>警告：不要在新项目中启用，因为此选项是为了向后兼容而保留的，并将在下一个版本中移除。 |
 | Show Loading UI | False | 是否在脚本预加载/加载和引擎重置操作期间自动显示 `ILoadingUI`。允许使用加载屏幕遮盖资源加载过程。 |
 
@@ -250,7 +250,7 @@
 | 属性 | 默认值 | 描述 |
 | --- | --- | --- |
 | Loader | Scripts- (Addressable, Project) | 剧本脚本资源所用的资源加载器配置。 |
-| Script Compiler | Naninovel Script Compiler | 用于将源剧本文本转换为脚本资产的 IScriptCompiler 实现。修改此设置后重新导入脚本资产以使更改生效。 |
+| Script Compiler | Naninovel Script Compiler | 用于将源剧本文本转换为脚本资产的 `IScriptCompiler` 实现。修改此设置后重新导入脚本资产以使更改生效。 |
 | Compiler Localization | Object Ref | 特定于语言环境的 NaniScript 编译器选项。将在元数据同步时传播到 IDE 扩展。重新启动 Unity 编辑器并重新导入脚本资产以使更改生效。 |
 | Initialization Script | Null | 引擎初始化后立即播放的脚本的本地资源路径。 |
 | Title Script | Title | 显示标题 UI 时播放的脚本的本地资源路径。可用于设置标题屏幕场景（背景、音乐等）。 |
@@ -258,12 +258,12 @@
 | Auto Add Scripts | True | 是否将创建的剧本脚本自动添加到资源中。 |
 | Auto Resolve Path | True | 创建、重命名或移动脚本时，是否自动解析和更新资源路径。 |
 | Hot Reload Scripts | True | 是否在播放模式期间重新加载修改后的脚本（无论是通过故事编辑器还是外部编辑器修改）并应用更改，而无需重新开始播放。 |
-| Watch Scripts | True | 是否对“.nani”文件运行文件系统监视程序。使用外部应用程序编辑脚本时，需要它来检测脚本更改。 |
+| Watch Scripts | True | 是否对 `.nani` 文件运行文件系统监视程序。使用外部应用程序编辑脚本时，需要它来检测脚本更改。 |
 | Show Script Navigator | False | 引擎初始化后是否自动显示脚本导航器 UI（要求 UI 资源中存在 `IScriptNavigatorUI`）。 |
 | Enable Story Editor | True | 是否启用故事编辑器应用。 |
 | Show Selected Script | True | 是否在故事编辑器中打开选定的剧本脚本资产。 |
 | Enable Community Modding | False | 是否允许向构建添加外部剧本脚本。 |
-| External Loader | Scripts- (Local) | 用于定位外部剧本脚本资源的资源加载器配置。<br><br>请注意，`External` 加载器仅用于定位脚本；您仍需配置 `Loader` 才能实际加载它们；有关更多信息，请参阅社区模组指南。 |
+| External Loader | Scripts- (Local) | 用于定位外部剧本脚本资源的资源加载器配置。<br><br>请注意，`External Loader` 仅用于定位脚本；您仍需配置 `Loader` 才能实际加载它们；有关更多信息，请参阅社区模组指南。 |
 
 </div>
 
@@ -365,3 +365,4 @@
 | Predefined Variables | Object Ref | 默认初始化的变量列表。元变量在应用程序首次启动时初始化，其他变量在每次状态重置时初始化（常量除外）。 |
 
 </div>
+

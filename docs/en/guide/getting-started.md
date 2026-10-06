@@ -14,7 +14,7 @@ If you prefer video tutorials, here is one covering this Getting Started guide.
 
 ## Create Unity Project
 
-When creating a project, we recommend selecting either the Universal 2D or Universal 3D templates, which are based on the **Universal Render Pipeline** (URP). The legacy built-in render pipeline (BiRP) will also work, but it is no longer actively maintained by Unity and is expected to be deprecated. The High Definition Render Pipeline (HDRP) is not recommended — it will generally work, but some rendering features may not be compatible out of the box.
+When creating a project, we recommend selecting either the Universal 2D or Universal 3D template, which are based on the **Universal Render Pipeline** (URP). The legacy built-in render pipeline (BiRP) will also work, but it is no longer actively maintained by Unity and is expected to be deprecated. The High Definition Render Pipeline (HDRP) is not recommended — it will generally work, but some rendering features may not be compatible out of the box.
 
 Choosing 2D or 3D depends on the style of game you're building. For most standard visual novels, we recommend selecting 2D, so images will be imported as sprite assets by default and you won't have to manually adjust the import settings. You can change the editor behaviour mode later in the [project settings](https://docs.unity3d.com/Manual/2DAnd3DModeSettings.html).
 
@@ -62,14 +62,14 @@ If you're using a version control system, such as Git, consider ignoring the fol
 Note that `Assets/NaninovelData` is an auto-generated folder. After it is initially created, you can rename or move it to any folder under "Assets" (Naninovel will still be able to locate it). If you do so, the ignore paths above must be updated accordingly.
 
 ::: tip EXAMPLE
-See the [.gitignore](https://github.com/naninovel/engine/blob/main/unity/samples/.gitignore) in our [samples project](/guide/samples) for an example Git ignore profile. In that example, the `NaninovelData` folder is renamed to `Naninovel` and moved under `Assets/Settings` for better organization — you can move the folder similarly in your own project.
+See the [.gitignore](https://github.com/naninovel/engine/blob/main/unity/samples/.gitignore) in our [samples project](/guide/samples) for an example Git ignore profile. In that example, the "NaninovelData" folder is renamed to "Naninovel" and moved under `Assets/Settings` for better organization — you can move the folder similarly in your own project.
 :::
 
 ## Install Naninovel
 
 ### Release Streams
 
-Naninovel is distributed across 3 release streams: **preview**, **stable** and **final**.
+Naninovel is distributed across three release streams: **preview**, **stable** and **final**.
 
 Preview is the bleeding edge: it's updated most often and has all the latest features. However, it's subject to occasional breaking changes and bugs. Pick this stream when you're early in development or need a specific feature not available in the other releases.
 
@@ -176,7 +176,7 @@ Find the `Assets/Scenario` folder that was automatically scaffolded together wit
 You can store scenario scripts (and other assets) in any project folder and organize them however you like; naming is also entirely up to you. However, note that all scenario scripts must be stored within a single root directory. You can create as many nested folders as needed for organizational purposes, as long as all subfolders ultimately resolve to a common root within the Unity project.
 
 ::: warning
-Unity treats folders named `Resources` in a special manner: assets stored under such folders are force-included in the build, which may cause [performance issues](https://docs.unity3d.com/Manual/LoadingResourcesatRuntime). Most importantly, never store anything under the `Resources/Naninovel` folder unless specifically required by the guide, as this may cause all sorts of conflicts and undefined behaviour.
+Unity treats folders named "Resources" in a special manner: assets stored under such folders are force-included in the build, which may cause [performance issues](https://docs.unity3d.com/Manual/LoadingResourcesatRuntime). Most importantly, never store anything under the `Resources/Naninovel` folder unless specifically required by the guide, as this may cause all sorts of conflicts and undefined behaviour.
 :::
 
 Scenario scripts are text documents with a `.nani` extension where you control what happens in scenes using [NaniScript](/guide/scenario-scripting) — Naninovel's screenwriting language. You can open and edit the script files with any text or code editor of your choice, such as Microsoft Word or [VS Code](/guide/ide-extension).

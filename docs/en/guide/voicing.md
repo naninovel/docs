@@ -89,7 +89,7 @@ For more information on how to localize game resources, see the [localization gu
 
 The voiceover documents are intended to be used by the voice recording engineers and actors when producing the voiceover audio.
 
-Use the voiceover documents generator utility accessible via `Naninovel -> Tools -> Voiceover Documents` to generate the documents, containing printed text from the [@print] commands and generic text lines. Each printed text message will be associated with the auto-voice ID.
+Use the voiceover documents generator utility accessible via `Naninovel -> Tools -> Voiceover Documents` to generate the documents containing printed text from the [@print] commands and generic text lines. Each printed text message will be associated with the auto-voice ID.
 
 ![](https://i.gyazo.com/d1e40ff118daebd83b55e0433431b2a8.png)
 
@@ -115,7 +115,7 @@ The `GenerateVoiceoverDocument` method will be invoked by the utility for each s
 
 Below is an example of a custom voiceover generator, which appends a header with the script path and locale followed by an `auto-voice id > author > text` line for each print command found in the script.
 
-```csharp
+```cs
 public class VoiceoverGenerator : IVoiceoverDocumentGenerator
 {
     public void GenerateVoiceoverDocument (ScriptPlaylist list, string locale, string outDir)

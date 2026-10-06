@@ -14,7 +14,7 @@ Naninovel 是 [Unity 游戏引擎](https://unity.com) 的扩展，因此强烈�
 
 ## 创建 Unity 项目
 
-创建项目时，我们建议选择基于 **Universal Render Pipeline**（URP）的 Universal 2D 或 Universal 3D 模板。旧版内置渲染管线（BiRP）也可以工作，但 Unity 不再积极维护它，并且预计将被弃用。不建议使用 High Definition Render Pipeline（HDRP）——它通常可以工作，但某些渲染功能可能无法开箱即用。
+创建项目时，我们建议选择基于**通用渲染管线**（URP）的 Universal 2D 或 Universal 3D 模板。旧版内置渲染管线（BiRP）也可以工作，但 Unity 不再积极维护它，并且预计将被弃用。不建议使用高清渲染管线（HDRP）——它通常可以工作，但某些渲染功能可能无法开箱即用。
 
 选择 2D 还是 3D 取决于您正在构建的游戏风格。对于大多数标准视觉小说，我们建议选择 2D，这样图像将默认作为精灵资产导入，您无需手动调整导入设置。您可以稍后在 [项目设置](https://docs.unity3d.com/Manual/2DAnd3DModeSettings.html) 中更改编辑器行为模式。
 
@@ -32,7 +32,7 @@ Naninovel 不依赖于场景；因此，我们建议从场景中删除这些对�
 此步骤为可选项，**并非使用 Naninovel 的必要条件**。其目的仅在于提高 Unity 编辑器的性能。如果您不确定项目需要哪些包或模块，请跳过此步骤。
 :::
 
-打开并检查 Unity 项目根目录下“Packages”文件夹中的 `manifest.json` 文件，它列出了已安装的包和模块。您可能并不需要所有这些包和模块，但每一个都可能拖慢编辑器。以下是 Naninovel 所需的依赖项；请考虑删除不需要的其他项：
+请打开并检查 Unity 项目根目录下“Packages”文件夹中的 `manifest.json` 文件，它列出了已安装的包和模块。您可能并不需要所有这些包和模块，但每一个都可能拖慢编辑器。以下是 Naninovel 所需的依赖项；请考虑删除不需要的其他项：
 
 ```
 com.unity.modules.audio
@@ -62,7 +62,7 @@ com.unity.ugui
 请注意，`Assets/NaninovelData` 是一个自动生成的文件夹。最初创建后，您可以将其重命名或移动到“Assets”下的任何文件夹（Naninovel 仍然能够找到它）。如果您这样做，上述忽略路径必须相应更新。
 
 ::: tip EXAMPLE
-请参阅我们的 [示例项目](/zh/guide/samples) 中的 [.gitignore](https://github.com/naninovel/engine/blob/main/unity/samples/.gitignore) 以获取 Git 忽略配置文件的示例。在该示例中，`NaninovelData` 文件夹重命名为 `Naninovel` 并移动到 `Assets/Settings` 下以便更好地组织——您可以在自己的项目中类似地移动文件夹。
+请参阅我们的 [示例项目](/zh/guide/samples) 中的 [.gitignore](https://github.com/naninovel/engine/blob/main/unity/samples/.gitignore) 以获取 Git 忽略配置文件的示例。在该示例中，“NaninovelData”文件夹重命名为“Naninovel”并移动到 `Assets/Settings` 下以便更好地组织——您可以在自己的项目中类似地移动文件夹。
 :::
 
 ## 安装 Naninovel
@@ -71,11 +71,11 @@ com.unity.ugui
 
 Naninovel 通过 3 个发布流分发：**preview**（预览版）、**stable**（稳定版）和 **final**（最终版）。
 
-Preview 是最前沿的：它更新最频繁，并拥有所有最新功能。但是，它偶尔可能会出现破坏性更改和错误。当您处于开发初期或需要其他版本中不可用的特定功能时，请选择此流。
+preview 流是最前沿的：它更新最频繁，并拥有所有最新功能。但是，它偶尔可能会出现破坏性更改和错误。当您处于开发初期或需要其他版本中不可用的特定功能时，请选择此流。
 
-Stable 是折衷方案：它只接收错误修复，没有最新功能，但也没有任何破坏性更改。在大多数情况下建议使用。
+stable 流是折衷方案：它只接收错误修复，没有最新功能，但也没有任何破坏性更改。在大多数情况下建议使用。
 
-Final 虽然是经过最充分测试且最稳定的，但也是最过时的，并且不在 [技术支持](/zh/support/) 范围内。仅当项目已经发布并且无法升级时，才停留在最终版本上。
+final 流虽然是经过最充分测试且最稳定的，但也是最过时的，并且不在 [技术支持](/zh/support/) 范围内。仅当项目已经发布并且无法升级时，才停留在最终版本上。
 
 ![](https://i.gyazo.com/2462242c14c96a0eae9ca99212c340c4.png)
 
@@ -176,7 +176,7 @@ Unity 编辑器将进入播放模式并显示默认标题 UI。同时，`Title` 
 您可以将剧本脚本（和其他资产）存储在任何项目文件夹中，并随心所欲地组织它们；命名也完全取决于您。但是，请注意，所有剧本脚本必须存储在单个根目录中。为了便于组织，您可以创建任意数量的嵌套文件夹，只要所有子文件夹最终都位于 Unity 项目中的同一个根目录下即可。
 
 ::: warning
-Unity 以特殊方式处理名为 `Resources` 的文件夹：存储在此类文件夹下的资产被强制包含在构建中，这可能会导致 [性能问题](https://docs.unity3d.com/Manual/LoadingResourcesatRuntime)。最重要的是，除非指南特别要求，否则切勿将任何内容存储在 `Resources/Naninovel` 文件夹下，因为这可能会导致各种冲突和未定义的行为。
+Unity 以特殊方式处理名为“Resources”的文件夹：存储在此类文件夹下的资产被强制包含在构建中，这可能会导致 [性能问题](https://docs.unity3d.com/Manual/LoadingResourcesatRuntime)。最重要的是，除非指南特别要求，否则切勿将任何内容存储在 `Resources/Naninovel` 文件夹下，因为这可能会导致各种冲突和未定义的行为。
 :::
 
 剧本脚本是带有 `.nani` 扩展名的文本文档，您可以在其中使用 [NaniScript](/zh/guide/scenario-scripting)——Naninovel 的编剧语言——控制场景中发生的事情。您可以使用您选择的任何文本或代码编辑器（例如 Microsoft Word 或 [VS Code](/zh/guide/ide-extension)）打开和编辑脚本文件。
@@ -188,7 +188,7 @@ Unity 以特殊方式处理名为 `Resources` 的文件夹：存储在此类文�
 
 ![?width=399](https://i.gyazo.com/0f5ee5d28de74570bdf25197e1f5444e.png)
 
-打开创建的 `Test.nani` 脚本并添加以下行：
+请打开创建的 `Test.nani` 脚本并添加以下行：
 
 ```nani
 Hello World!

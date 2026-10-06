@@ -14,8 +14,8 @@
 
 ```nani [Script1.nani]
 来自 Script1、Script2 和 ScriptGosub 的资源都在此处加载。
-Script2 被加载是因为它是通过 "@goto hold!" 导航到的。
-ScriptGosub 被加载是因为 "@gosub" 脚本总是被预加载。
+Script2 被加载是因为它是通过“@goto hold!”导航到的。
+ScriptGosub 被加载是因为“@gosub”脚本总是被预加载。
 
 ...
 
@@ -24,18 +24,18 @@ ScriptGosub 被加载是因为 "@gosub" 脚本总是被预加载。
 
 ...
 
-不会显示加载屏幕，因为我们使用了 "hold!"。
+不会显示加载屏幕，因为我们使用了“hold!”。
 @goto Script2 hold!
 ```
 
 ```nani [Script2.nani]
 来自 Script1、Script2 和 ScriptGosub 的资源仍全部保持加载，
-因为此脚本是通过 "@goto hold!" 导航到的，
+因为此脚本是通过“@goto hold!”导航到的，
 因此它被认为是 Script1 的依赖项。
 
 ...
 
-将显示加载屏幕，因为我们没有使用 "hold!"。
+将显示加载屏幕，因为我们没有使用“hold!”。
 @goto Script3
 ```
 
@@ -51,7 +51,7 @@ ScriptGosub 被加载是因为 "@gosub" 脚本总是被预加载。
 
 ...
 
-将显示加载屏幕，因为我们没有使用 "hold!"。
+将显示加载屏幕，因为我们没有使用“hold!”。
 @goto Script4
 ```
 
@@ -87,7 +87,7 @@ ScriptGosub 被加载是因为 "@gosub" 脚本总是被预加载。
 
 ```nani [Script1.nani]
 来自 Script1、Script2、Script3 和 ScriptGosub 的资源都在此处加载。
-Script4 未加载，因为它是通过 "@goto release!" 导航到的。
+Script4 未加载，因为它是通过“@goto release!”导航到的。
 
 ...
 
@@ -96,7 +96,7 @@ Script4 未加载，因为它是通过 "@goto release!" 导航到的。
 
 ...
 
-除非指定 "release!"，否则默认情况下不会显示加载屏幕。
+除非指定“release!”，否则默认情况下不会显示加载屏幕。
 @goto Script2
 ```
 
@@ -105,7 +105,7 @@ Script4 未加载，因为它是通过 "@goto release!" 导航到的。
 
 ...
 
-除非指定 "release!"，否则默认情况下不会显示加载屏幕。
+除非指定“release!”，否则默认情况下不会显示加载屏幕。
 @goto Script3
 ```
 
@@ -119,13 +119,13 @@ Script4 未加载，因为它是通过 "@goto release!" 导航到的。
 
 ...
 
-由于 "release!"，现在将显示加载屏幕。
+由于“release!”，现在将显示加载屏幕。
 @goto Script4 release!
 ```
 
 ```nani [Script4.nani]
 除 Script4 外的所有资源现在都已卸载，因为我们通过
-"@goto release!" 导航到这里。
+“@goto release!”导航到这里。
 
 ...
 
@@ -154,25 +154,25 @@ Script4 未加载，因为它是通过 "@goto release!" 导航到的。
 ::: code-group
 
 ```nani [Script1.nani]
-假设 "Lazy Buffer" 设置为 3（默认值更高）。
-现在只有 "Snow" 背景已预加载，因为它在缓冲区范围内。
+假设“Lazy Buffer”设置为 3（默认值更高）。
+现在只有“Snow”背景已预加载，因为它在缓冲区范围内。
 @back Snow
-"Ambient" 音频现在已预加载。
-"Town" 背景现在已预加载。
+“Ambient”音频现在已预加载。
+“Town”背景现在已预加载。
 @bgm Ambient
 @back Town
-"Snow" 背景现在已卸载，因为它不再可见。
+“Snow”背景现在已卸载，因为它不再可见。
 ...
 
 不显示加载屏幕。所有资源都已释放。
-来自 Script2 的 "Snow" 背景已预加载，因为它在缓冲区范围内。
+来自 Script2 的“Snow”背景已预加载，因为它在缓冲区范围内。
 @goto Script2
 ```
 
 ```nani [Script2.nani]
 ...
 @back Snow
-"Town" 背景现在已卸载，因为它不再可见。
+“Town”背景现在已卸载，因为它不再可见。
 ```
 
 :::
@@ -215,7 +215,7 @@ Actor（角色、背景、文本打印机和选项处理程序）是 Naninovel �
 @back id:LayeredBackground
 @char GenericCharacter
 @char DicedCharacter
-; 假设 'Remove Actors' 已禁用，当加载 "NextScript" 时，"LayeredBackground" 不会
+; 假设“Remove Actors”已禁用，当加载“NextScript”时，“LayeredBackground”不会
 ; 被销毁，但两个角色都会被销毁。
 @hide GenericCharacter,DicedCharacter wait!
 @remove GenericCharacter,DicedCharacter
@@ -237,7 +237,7 @@ Actor（角色、背景、文本打印机和选项处理程序）是 Naninovel �
 
 该机制在脚本命令中体现得最为明显。例如，假设您想使用自定义命令播放背景音乐。音频播放器将需要一个音频剪辑资产（资源）来播放，因此我们需要在执行命令之前预加载并“持有”该资产，并在之后释放它：
 
-```csharp
+```cs
 public class PlayMusic : Command, Command.IPreloadable
 {
     public StringParameter MusicName;
@@ -271,14 +271,14 @@ public class PlayMusic : Command, Command.IPreloadable
 
 要通知 Naninovel 您正在使用资产，请使用资源提供者服务的 `Hold` 方法：
 
-```csharp
+```cs
 var resourceManager = Engine.GetService<IResourceProviderManager>();
 resourceManager.Hold(asset, holder);
 ```
 
 请注意，在您持有资产期间，Naninovel 不会卸载它，因此需要由您负责释放它，以防止内存泄漏：
 
-```csharp
+```cs
 var holdersCount = resourceManager.Release(asset, holder);
 // 如果没有其他人在持有资产，我们应该卸载它。
 if (holdersCount == 0) Resources.UnloadAsset(asset);
@@ -288,7 +288,7 @@ if (holdersCount == 0) Resources.UnloadAsset(asset);
 
 下面是一个 Unity 组件的示例，它可以防止 Naninovel 在任何时候卸载某个资产：
 
-```csharp
+```cs
 using Naninovel;
 using UnityEngine;
 
@@ -296,7 +296,7 @@ public class HoldObject : MonoBehaviour
 {
     public Object ObjectToHold;
 
-    private async void Start()
+    private async void Start ()
     {
         while (!Engine.Initialized) await Async.NextFrame();
         Engine.GetService<IResourceProviderManager>().Hold(ObjectToHold, this);

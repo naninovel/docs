@@ -24,7 +24,7 @@ Aspect ratios are specified as width and height pairs. For example, use `16:9` f
 
 ## UI Toggling
 
-The UI toggling feature allows the user to hide or show the in-game UI as a whole.
+The UI toggling feature allows the player to hide or show the in-game UI as a whole.
 
 ![](https://i.gyazo.com/e267c4ab3654efbfaf611011502de79f.mp4)
 
@@ -36,7 +36,7 @@ When the UI is hidden, the `Continue` input or clicking/touching the screen will
 
 UI customization allows adding a custom UI and modifying or completely replacing any of the built-in UI elements, like the title menu, settings menu, printer backlog, etc.
 
-Be aware that text printers and choice handlers are implemented via the actors interface and are customized in a different way; see the corresponding documentation ([text printers](/guide/text-printers), [choice handlers](/guide/choices)) for more info.
+Be aware that text printers and choice handlers are implemented via the actor interface and are customized in a different way; see the corresponding documentation ([text printers](/guide/text-printers), [choice handlers](/guide/choices)) for more info.
 
 ::: warning
 Before attempting to create custom UIs or modify existing ones, make sure you're familiar with [Unity's UI system](https://docs.unity3d.com/Packages/com.unity.ugui@latest) (uGUI).
@@ -49,7 +49,7 @@ To add a custom UI or modify (disable) a built-in one, use the UI resources mana
 When the engine initializes, it will instantiate all the UI prefabs assigned in the resources manager.
 
 ::: info NOTE
-Some features (eg, [UI toggling](/guide/gui#ui-toggling)) require the UIs to be rendered in `Screen Space - Camera` mode. For best compatibility, make sure your custom UIs have the correct render mode selected and that the Render Camera field is empty (the UI manager will assign the camera automatically).
+Some features (eg, [UI toggling](/guide/gui#ui-toggling)) require the UIs to be rendered in `Screen Space - Camera` mode. For best compatibility, make sure your custom UIs have the correct render mode selected and that the `Render Camera` field is empty (the UI manager will assign the camera automatically).
 
 ![](https://i.gyazo.com/d62bed3ba0c85972b12e759cc7b44c91.png)
 :::
@@ -97,7 +97,7 @@ Enabling `Save Visibility State` will make the visibility state of the UI persis
 Enabling `Modal UI` makes all other UIs ignore interaction while the UI is visible. This is similar to `Block Input When Visible`, but affects event-based interaction (mouse clicks, touches, UI navigation) instead of direct input processing.
 
 Several other components are also added by default when creating a custom UI:
-- `Canvas Group` allows hiding the UI by changing the opacity (controlled with `Fade Time`) and allows the UI to ignore user interaction when necessary.
+- `Canvas Group` allows hiding the UI by changing the opacity (controlled with `Fade Time`) and allows the UI to ignore player interaction when necessary.
 - `Canvas Scaler` automatically scales the layout to fit the current display resolution.
 - `Graphic Raycaster` allows the player to interact with buttons and other interactable elements inside the UI canvas.
 
@@ -117,7 +117,7 @@ Object | The game object with a text component that should be affected by font c
 Include Children | Whether to affect container children game objects; when disabled, only the text component on the specified container object will be affected.
 Allow Font Change | Whether to allow changing the font of the text component.
 Allow Font Size Change | Whether to allow changing the font size of the text component.
-Font Sizes | Actual font sizes to apply for the text component. Each element in the list corresponds to a font size dropdown list index: Small -> 0, Default -> 1, Large -> 2, Extra Large -> 3 (can be changed via SettingsUI). The value at the Default index is ignored; the font size initially set in the prefab is used instead.
+Font Sizes | Actual font sizes to apply for the text component. Each element in the list corresponds to a font size dropdown list index: Small -> 0, Default -> 1, Large -> 2, Extra Large -> 3 (can be changed via `SettingsUI`). The value at the Default index is ignored; the font size initially set in the prefab is used instead.
 
 A `Font Sizes` asset can be created via the `Create -> Naninovel -> Font Sizes` asset context menu; use the asset to share common font sizes across multiple UIs.
 
@@ -176,7 +176,7 @@ In order for the UI to support visibility (visible on awake, fade time) and inte
 
 If you're OK with C# scripting and want to override the default logic of the UI, [create a new component](https://docs.unity3d.com/Manual/CreatingAndUsingScripts), implement the `IManagedUI` interface (feel free to inherit the component from `CustomUI` to fulfill all the interface requirements) and attach the created custom component instead. Check the `Naninovel/Runtime/UI` folder for reference implementations of the built-in UIs. Here is a minimal implementation example of a custom UI component:
 
-```csharp
+```cs
 using Naninovel.UI;
 
 public class MyCustomUI : CustomUI

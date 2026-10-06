@@ -21,7 +21,7 @@
 使用 [@bgm] 命令后跟剪辑名称来控制剧本脚本中的音乐播放：
 
 ```nani
-; 开始循环播放名为 "Sanctuary" 的音乐音轨。
+; 开始循环播放名为“Sanctuary”的音乐音轨。
 @bgm Sanctuary
 
 ; 与上面相同，但在 10 秒内淡入音量并且只播放一次。
@@ -37,14 +37,14 @@
 可以使用 `intro` 参数先播放前奏，再播放循环部分，例如：
 
 ```nani
-; 播放 "BattleThemeIntro" 一次，然后循环播放 "BattleThemeMain"。
+; 播放“BattleThemeIntro”一次，然后循环播放“BattleThemeMain”。
 @bgm BattleThemeMain intro:BattleThemeIntro
 ```
 
 要停止正在播放的音乐音轨，请使用 [@stopBgm] 命令，后跟剪辑名称。当未指定剪辑名称时，该命令将停止所有当前正在播放的音轨。
 
 ```nani
-; 在 10 秒内淡出 "Promenade" 音乐音轨并停止播放。
+; 在 10 秒内淡出“Promenade”音乐音轨并停止播放。
 @stopBgm Promenade fade:10
 
 ; 停止所有当前正在播放的音乐音轨。
@@ -56,10 +56,10 @@
 使用 [@sfx] 和 [@stopSfx] 命令后跟剪辑名称来控制剧本脚本中音效的播放：
 
 ```nani
-; 播放一次名为 "Explosion" 的 SFX。
+; 播放一次名为“Explosion”的 SFX。
 @sfx Explosion
 
-; 循环播放名为 "Rain" 的 SFX。
+; 循环播放名为“Rain”的 SFX。
 @sfx Rain loop!
 
 ; 在 2.5 秒内将所有正在播放的 SFX 音轨的音量更改为 75%
@@ -72,7 +72,7 @@
 要停止正在播放的音效（无论是否循环），请使用 [@stopSfx] 命令，后跟剪辑名称。当未指定剪辑名称时，该命令将停止所有当前正在播放的 SFX 音轨。
 
 ```nani
-; 停止播放名为 "Rain" 的 SFX，淡出 15 秒。
+; 停止播放名为“Rain”的 SFX，淡出 15 秒。
 @stopSfx Rain fade:15
 
 ; 停止所有当前正在播放的音效音轨。
@@ -81,17 +81,17 @@
 
 ## 空间音频
 
-所有音频命令都支持 `pos` 和 `wpos` 参数；指定其中任一参数时会启用空间模式，即“3D 音频”。关联的音频源将被配置为根据其相对于音频监听器的位置作出响应。使用 `pos` 可按相对于场景边界的百分比放置音频源（`0,0` 为左下角，`100,100` 为右上角），使用 `wpos` 则可在世界空间中放置音频源。
+所有音频命令都支持 `pos` 和 `wpos` 参数；指定其中任一参数时会启用空间模式，又名“3D 音频”。关联的音频源将被配置为根据其相对于音频监听器的位置作出响应。使用 `pos` 可按相对于场景边界的百分比放置音频源（`0,0` 为左下角，`100,100` 为右上角），使用 `wpos` 则可在世界空间中放置音频源。
 
 ```nani
-; 在世界空间中，于监听器稍上方偏后的位置播放 'Explosion'。
+; 在世界空间中，于监听器稍上方偏后的位置播放“Explosion”。
 @sfx Explosion wpos:0,1,-3
 ```
 
 可以像其他参数一样为位置设置动画：
 
 ```nani
-; 在场景空间中循环将 'Rain' 的位置右-左-右平移，直到停止。
+; 在场景空间中将“Rain”的位置右-左-右平移，直到停止。
 @async Rainpan loop!
     @sfx Rain pos:100,50 fade:10
     @wait 10
@@ -118,10 +118,10 @@ Naninovel 在播放音频时使用 [音频混音器](https://docs.unity3d.com/Ma
 要通过自定义混音器组播放音频，请使用 [@bgm]、[@sfx] 和 [@voice] 命令中可用的 `group` 参数指定组路径。
 
 ```nani
-; 通过 "Master/Ambient" 混音器组循环播放 "Noise" 音频资源。
+; 通过“Master/Ambient”混音器组循环播放“Noise”音频资源。
 @sfx Noise loop! group:Master/Ambient
 
-; 通过 "Master/Reverb" 混音器组播放 "ScaryVoice" 语音资源。
+; 通过“Master/Reverb”混音器组播放“ScaryVoice”语音资源。
 @voice ScaryVoice group:Master/Reverb
 ```
 

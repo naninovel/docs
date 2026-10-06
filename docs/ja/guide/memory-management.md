@@ -14,8 +14,8 @@
 
 ```nani [Script1.nani]
 Script1、Script2、ScriptGosubのリソースがここでロードされます。
-Script2は、"@goto hold!" での移動先であるためロードされます。
-ScriptGosubは、"@gosub" スクリプトが常にプリロードされるためロードされます。
+Script2は、「@goto hold!」での移動先であるためロードされます。
+ScriptGosubは、「@gosub」スクリプトが常にプリロードされるためロードされます。
 
 ...
 
@@ -24,18 +24,18 @@ gosubは常にプリロードされるため、ロード画面は表示されま
 
 ...
 
-"hold!" を使用しているため、ロード画面は表示されません。
+「hold!」を使用しているため、ロード画面は表示されません。
 @goto Script2 hold!
 ```
 
 ```nani [Script2.nani]
 Script1、Script2、ScriptGosubのリソースはすべてまだロードされています。
-このスクリプトには "@goto hold!" で移動してきたため、
+このスクリプトには「@goto hold!」で移動してきたため、
 Script1の依存関係と見なされるからです。
 
 ...
 
-"hold!" を使用していないため、ロード画面が表示されます。
+「hold!」を使用していないため、ロード画面が表示されます。
 @goto Script3
 ```
 
@@ -51,7 +51,7 @@ gosubは常にプリロードされるため、ロード画面は表示されま
 
 ...
 
-"hold!" を使用していないため、ロード画面が表示されます。
+「hold!」を使用していないため、ロード画面が表示されます。
 @goto Script4
 ```
 
@@ -87,7 +87,7 @@ gosubは、gosubに移動するスクリプトとともに常にロードされ�
 
 ```nani [Script1.nani]
 Script1、Script2、Script3、ScriptGosubのリソースはすべてここでロードされます。
-Script4は、"@goto release!" での移動先であるためロードされません。
+Script4は、「@goto release!」での移動先であるためロードされません。
 
 ...
 
@@ -96,7 +96,7 @@ gosubは常にプリロードされるため、ロード画面は表示されま
 
 ...
 
-"release!" が指定されていない限り、デフォルトではロード画面は表示されません。
+「release!」が指定されていない限り、デフォルトではロード画面は表示されません。
 @goto Script2
 ```
 
@@ -105,7 +105,7 @@ Script4を除くすべてがまだロードされています。
 
 ...
 
-"release!" が指定されていない限り、デフォルトではロード画面は表示されません。
+「release!」が指定されていない限り、デフォルトではロード画面は表示されません。
 @goto Script3
 ```
 
@@ -119,13 +119,13 @@ gosubは常にプリロードされるため、ロード画面は表示されま
 
 ...
 
-"release!" を指定しているため、ここではロード画面が表示されます。
+「release!」を指定しているため、ここではロード画面が表示されます。
 @goto Script4 release!
 ```
 
 ```nani [Script4.nani]
 Script4を除くすべてのリソースがここでアンロードされます。
-これは、"@goto release!" でここに移動してきたためです。
+これは、「@goto release!」でここに移動してきたためです。
 
 ...
 
@@ -154,25 +154,25 @@ gosubは、gosubに移動するスクリプトとともに常にロードされ�
 ::: code-group
 
 ```nani [Script1.nani]
-"Lazy Buffer" が3に設定されていると仮定します（デフォルトはこれより大きい値です）。
-バッファーの範囲内にあるため、現時点では "Snow" 背景のみがプリロードされています。
+「Lazy Buffer」が3に設定されていると仮定します（デフォルトはこれより大きい値です）。
+バッファーの範囲内にあるため、現時点では「Snow」背景のみがプリロードされています。
 @back Snow
-"Ambient" オーディオがプリロードされます。
-"Town" 背景がプリロードされます。
+「Ambient」オーディオがプリロードされます。
+「Town」背景がプリロードされます。
 @bgm Ambient
 @back Town
-"Snow" 背景は、表示されなくなったためアンロードされます。
+「Snow」背景は、表示されなくなったためアンロードされます。
 ...
 
 ロード画面は表示されません。すべてのリソースが解放されます。
-Script2の "Snow" 背景は、バッファーの範囲内にあるためプリロードされます。
+Script2の「Snow」背景は、バッファーの範囲内にあるためプリロードされます。
 @goto Script2
 ```
 
 ```nani [Script2.nani]
 ...
 @back Snow
-"Town" 背景は、表示されなくなったためアンロードされます。
+「Town」背景は、表示されなくなったためアンロードされます。
 ```
 
 :::
@@ -215,8 +215,8 @@ Naninovelは、デフォルトで、スクリプトリソースをアンロー�
 @back id:LayeredBackground
 @char GenericCharacter
 @char DicedCharacter
-; 'Remove Actors' が無効になっている場合、"NextScript" がロードされても
-; "LayeredBackground" は破棄されませんが、両方のキャラクターは破棄されます。
+; 「Remove Actors」が無効になっている場合、「NextScript」がロードされても
+; 「LayeredBackground」は破棄されませんが、両方のキャラクターは破棄されます。
 @hide GenericCharacter,DicedCharacter wait!
 @remove GenericCharacter,DicedCharacter
 @goto NextScript
@@ -237,7 +237,7 @@ Naninovelは、デフォルトで、スクリプトリソースをアンロー�
 
 このメカニズムはスクリプトコマンドで最も顕著です。たとえば、カスタムコマンドで背景音楽を再生したいとします。オーディオプレイヤーは再生するためにオーディオクリップアセット（リソース）を必要とするため、コマンドが実行される前にアセットをプリロードして「保持」し、実行後に解放する必要があります。
 
-```csharp
+```cs
 public class PlayMusic : Command, Command.IPreloadable
 {
     public StringParameter MusicName;
@@ -271,14 +271,14 @@ public class PlayMusic : Command, Command.IPreloadable
 
 アセットを使用していることをNaninovelに通知するには、リソースプロバイダーサービスの `Hold` メソッドを使用します。
 
-```csharp
+```cs
 var resourceManager = Engine.GetService<IResourceProviderManager>();
 resourceManager.Hold(asset, holder);
 ```
 
 アセットを保持している間はNaninovelによってアンロードされないため、メモリリークを防ぐには自分で解放する必要があることに注意してください。
 
-```csharp
+```cs
 var holdersCount = resourceManager.Release(asset, holder);
 // 他に誰もアセットを保持していない場合は、アンロードする必要があります。
 if (holdersCount == 0) Resources.UnloadAsset(asset);
@@ -288,7 +288,7 @@ if (holdersCount == 0) Resources.UnloadAsset(asset);
 
 以下は、Naninovelがアセットを一切アンロードしないようにするUnityコンポーネントの例です。
 
-```csharp
+```cs
 using Naninovel;
 using UnityEngine;
 
@@ -296,7 +296,7 @@ public class HoldObject : MonoBehaviour
 {
     public Object ObjectToHold;
 
-    private async void Start()
+    private async void Start ()
     {
         while (!Engine.Initialized) await Async.NextFrame();
         Engine.GetService<IResourceProviderManager>().Hold(ObjectToHold, this);

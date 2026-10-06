@@ -28,7 +28,7 @@ Unity's [Input System](https://docs.unity3d.com/Packages/com.unity.inputsystem@l
 
 ## Managed Stripping
 
-The "Medium" and "High" [managed bytecode stripping](https://docs.unity3d.com/Manual/ManagedCodeStripping.html) profiles are not supported. You should either disable stripping or use the "Low" profile, which is selected by default.
+The "Medium" and "High" [managed code stripping](https://docs.unity3d.com/Manual/ManagedCodeStripping.html) profiles are not supported. You should either disable stripping or use the "Low" profile, which is selected by default.
 
 ## Exceptions
 

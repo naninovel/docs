@@ -8,7 +8,7 @@
 
 下面是一个自定义命令的示例，可以在剧本脚本中通过 `@HelloWorld` 或 `@hello` 调用，将“Hello World!”打印到控制台，并且还可以接受可选的 `name` 参数（例如 `@hello name:Felix`），以问候提供的名字而不是世界。
 
-```csharp
+```cs
 using System;
 using Naninovel;
 using Naninovel.Commands;
@@ -41,9 +41,9 @@ public class HelloWorld : Command
 请注意提供给 `Execute` 方法的 `ExecutionContext ctx` 参数。在执行 [异步操作](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/) 时，请务必在每个异步操作后检查 `ctx.Token` 异步令牌是否有取消和完成请求，并做出相应反应：
 
 - `AsyncToken.Canceled` 表示引擎已被销毁或重置。在这两种情况下，使用引擎 API 都不再安全，任何状态修改都会导致未定义的行为。取消时，命令实现应立即抛出 `AsyncOperationCanceledException`，并放弃当前正在执行的所有活动。
-- `AsyncToken.Completed` 表示命令应尽可能快地完成所有活动。例如，如果您正在运行动画，请立即完成它们，无论其预期持续时间如何。这通常发生在玩家激活继续输入或存档操作开始时。
+- `AsyncToken.Completed` 表示命令应尽可能快地完成所有活动。例如，如果您正在运行动画，请立即完成它们，无论其预期持续时间如何。这通常发生在玩家激活 `Continue` 输入或存档操作开始时。
 
-```csharp
+```cs
 public override async Awaitable Execute (ExecutionContext ctx)
 {
     await PerformSomething();
@@ -62,7 +62,7 @@ public override async Awaitable Execute (ExecutionContext ctx)
 
 执行上下文的另一个成员是执行命令的脚本轨道实例，可通过 `ctx.Track` 访问。每当需要控制播放或调用其他需要轨道的引擎 API 时，请使用轨道实例。例如，像这样停止播放：
 
-```csharp
+```cs
 public override Awaitable Execute (ExecutionContext ctx)
 {
     ctx.Track.Stop();
@@ -94,7 +94,7 @@ public override Awaitable Execute (ExecutionContext ctx)
 
 您还可以将 `[Alias]` 特性应用于字段，为参数分配别名，以便在剧本脚本中引用该参数时用别名代替字段名称。
 
-```csharp
+```cs
 [Alias("myParam")]
 public StringParameter MyParameter;
 ```
@@ -107,7 +107,7 @@ public StringParameter MyParameter;
 
 应用 `[PrimaryParameter]` 特性后，可在不提供参数标识符的情况下指定该参数。每个命令只允许一个主参数。
 
-```csharp
+```cs
 [PrimaryParameter]
 public StringParameter MyPrimaryParameter;
 ```
@@ -120,7 +120,7 @@ public StringParameter MyPrimaryParameter;
 
 要使参数成为必需参数（当剧本脚本中未指定时会导致记录错误），请将 `[RequiredParameter]` 特性应用于字段。未应用该特性时，参数被视为可选参数。
 
-```csharp
+```cs
 [RequiredParameter]
 public StringParameter MyRequiredParameter;
 ```
@@ -129,7 +129,7 @@ public StringParameter MyRequiredParameter;
 
 当参数不是必需时，它在剧本脚本中可能已赋值，也可能没有；使用 `HasValue` 属性来测试是否是这种情况。或者，您可以使用 `Assigned()` 静态方法，该方法接受参数实例，并在提供的参数不为 null 且已赋值时返回 true。
 
-```csharp
+```cs
 public StringParameter MyOptionalParameter;
 ...
 if (MyOptionalParameter.HasValue) { }
@@ -138,9 +138,9 @@ if (Assigned(MyOptionalParameter)) { }
 
 ### 可本地化命令
 
-如果命令具有可以本地化的参数（直接呈现给用户的文本），请实现 `Command.ILocalizable` 接口以将命令添加到生成的 [脚本本地化](/zh/guide/localization#脚本本地化) 文档中，并使用 `LocalizableTextParameter` 参数类型。
+如果命令具有可以本地化的参数（直接呈现给玩家的文本），请实现 `Command.ILocalizable` 接口以将命令添加到生成的 [脚本本地化](/zh/guide/localization#脚本本地化) 文档中，并使用 `LocalizableTextParameter` 参数类型。
 
-```csharp
+```cs
 public class PrintText : Command, Command.ILocalizable
 {
     public LocalizableTextParameter Text;
@@ -151,7 +151,7 @@ public class PrintText : Command, Command.ILocalizable
 
 如果命令执行需要加载一些资源，请实现 `Command.IPreloadable` 接口以在游戏加载时预加载所需的资源。有关更多信息，请参阅 [内存管理](/zh/guide/memory-management) 指南。
 
-```csharp
+```cs
 public class PlayAudioClip : Command, Command.IPreloadable
 {
     public StringParameter ClipPath;
@@ -188,7 +188,7 @@ public class PlayAudioClip : Command, Command.IPreloadable
 
 下面是覆盖内置 [@print] 命令的示例，以便在向玩家显示之前将打印的文本记录到控制台。
 
-```csharp
+```cs
 [Serializable, Alias("print")]
 public class MyCustomPrintCommand : PrintText
 {

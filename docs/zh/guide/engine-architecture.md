@@ -1,6 +1,6 @@
 # 引擎架构
 
-引擎在设计时考虑了以下原则：**场景独立性** 和 **面向服务**。
+引擎在设计时考虑了以下原则：**场景独立性**和**面向服务**。
 
 ## 场景独立性
 
@@ -24,7 +24,7 @@
 
 如果您需要与引擎系统交互，通常会使用引擎服务。您可以使用静态方法 `Engine.GetService<TService>()` 获取对服务的引用，其中 `TService` 是所需服务的接口类型；例如，要获取 `IScriptPlayer` 服务：
 
-```csharp
+```cs
 var player = Engine.GetService<IScriptPlayer>();
 player.MainTrack.Stop();
 ```

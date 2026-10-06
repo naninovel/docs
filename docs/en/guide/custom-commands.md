@@ -8,7 +8,7 @@ To add your own custom script command, create a new C# class derived from `Comma
 
 Below is an example of a custom command that can be invoked from scenario scripts as `@HelloWorld` or `@hello` to print "Hello World!" to the console and that can also take an optional `name` parameter (eg, `@hello name:Felix`) to greet the provided name instead of the world.
 
-```csharp
+```cs
 using System;
 using Naninovel;
 using Naninovel.Commands;
@@ -41,9 +41,9 @@ Whenever you change C# command implementations — such as renaming the class, a
 Notice the `ExecutionContext ctx` argument provided to the `Execute` method. When performing [async operations](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/async/), make sure to check the `ctx.Token` async token for cancellation and completion requests after each async operation, and react accordingly:
 
 - `AsyncToken.Canceled` means the engine has been destroyed or reset. In both cases, it's no longer safe to use engine APIs, and any state mutations will lead to undefined behaviour. When canceled, the command implementation is expected to throw `AsyncOperationCanceledException` immediately, discarding any currently performed activities.
-- `AsyncToken.Completed` means the command is expected to complete all activities as fast as possible. For example, if you're running animations, finish them instantly, regardless of their expected duration. This usually happens when the player activates continue input or when a save game operation starts.
+- `AsyncToken.Completed` means the command is expected to complete all activities as fast as possible. For example, if you're running animations, finish them instantly, regardless of their expected duration. This usually happens when the player activates the `Continue` input or when a save game operation starts.
 
-```csharp
+```cs
 public override async Awaitable Execute (ExecutionContext ctx)
 {
     await PerformSomething();
@@ -62,7 +62,7 @@ public override async Awaitable Execute (ExecutionContext ctx)
 
 Another member of the execution context is the script track instance executing the command, accessible via `ctx.Track`. Use the track instance whenever you need to control playback or when calling other engine APIs that require a track. For example, stop playback like this:
 
-```csharp
+```cs
 public override Awaitable Execute (ExecutionContext ctx)
 {
     ctx.Track.Stop();
@@ -94,7 +94,7 @@ To expose a command parameter to scenario scripts, add a public field to the com
 
 Optionally, you can apply the `[Alias]` attribute to the field to assign an alias name to the parameter, allowing it to be used instead of the field name when referencing the parameter in scenario scripts.
 
-```csharp
+```cs
 [Alias("myParam")]
 public StringParameter MyParameter;
 ```
@@ -107,7 +107,7 @@ public StringParameter MyParameter;
 
 Apply the `[PrimaryParameter]` attribute to allow specifying the parameter without its identifier. Only one primary parameter is allowed per command.
 
-```csharp
+```cs
 [PrimaryParameter]
 public StringParameter MyPrimaryParameter;
 ```
@@ -120,7 +120,7 @@ public StringParameter MyPrimaryParameter;
 
 To make a parameter required (causing an error to be logged when it's not specified in the scenario script), apply the `[RequiredParameter]` attribute to the field. When the attribute is not applied, the parameter is considered optional.
 
-```csharp
+```cs
 [RequiredParameter]
 public StringParameter MyRequiredParameter;
 ```
@@ -129,7 +129,7 @@ public StringParameter MyRequiredParameter;
 
 When a parameter is not required, it may or may not have a value assigned in the scenario script; use the `HasValue` property to test whether that's the case. Optionally, you can use the `Assigned()` static method, which takes a parameter instance and returns true when the provided parameter is not null and has a value assigned.
 
-```csharp
+```cs
 public StringParameter MyOptionalParameter;
 ...
 if (MyOptionalParameter.HasValue) { }
@@ -138,9 +138,9 @@ if (Assigned(MyOptionalParameter)) { }
 
 ### Localizable Command
 
-If the command has parameters that can be localized (text directly presented to the user), implement the `Command.ILocalizable` interface to add the command to the generated [script localization](/guide/localization#scripts-localization) documents and use the `LocalizableTextParameter` parameter type.
+If the command has parameters that can be localized (text directly presented to the player), implement the `Command.ILocalizable` interface to add the command to the generated [script localization](/guide/localization#scripts-localization) documents and use the `LocalizableTextParameter` parameter type.
 
-```csharp
+```cs
 public class PrintText : Command, Command.ILocalizable
 {
     public LocalizableTextParameter Text;
@@ -151,7 +151,7 @@ public class PrintText : Command, Command.ILocalizable
 
 If command execution requires loading some resources, implement the `Command.IPreloadable` interface to preload the required resources when the game is loading. Refer to the [memory management](/guide/memory-management) guide for more info.
 
-```csharp
+```cs
 public class PlayAudioClip : Command, Command.IPreloadable
 {
     public StringParameter ClipPath;
@@ -186,9 +186,9 @@ In some cases it can be useful to override built-in Naninovel commands. For exam
 
 To override a built-in command, add a custom one and apply the same alias the built-in command has. Reimport the scenario scripts (right-click the folder they're stored at, then click "Reimport") after overriding a command in order for the changes to take effect. The custom command will then automatically be used instead of the built-in one when playing a scenario script.
 
-Below is an example of overriding the built-in [@print] command so that the printed text will be logged into the console before being revealed to the player.
+Below is an example of overriding the built-in [@print] command so that the printed text will be logged to the console before being revealed to the player.
 
-```csharp
+```cs
 [Serializable, Alias("print")]
 public class MyCustomPrintCommand : PrintText
 {

@@ -6,7 +6,7 @@
 
 以下は、必要なNaninovel処理メソッドを呼び出すCloud Buildカスタムビルド処理スクリプトの例です。処理スクリプトの設定方法については、[公式サービスドキュメント](https://docs.unity3d.com/Manual/UnityCloudBuildPreAndPostExportMethods.html) を参照してください。
 
-```csharp
+```cs
 public static class CustomBuildProcessor
 {
     #if UNITY_CLOUD_BUILD
@@ -38,7 +38,7 @@ public static class CustomBuildProcessor
 
 カスタムコマンドにアセンブリ定義を使用する場合、Unityエディターがすべてのアセンブリをコンパイルする前にアセットのインポートを開始することがあり、Cloud Buildの使用時にビルドエラーの原因となります。これは、ビルドを開始する前にスクリプトアセットを再インポートすることで解決できます。例：
 
-```csharp
+```cs
 var scriptGuids = AssetDatabase.FindAssets("t:Naninovel.Script");
 foreach (var scriptGuid in scriptGuids)
 {

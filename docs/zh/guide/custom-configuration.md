@@ -6,7 +6,7 @@
 
 要通过 C# 访问配置对象，请使用 `Engine.GetConfiguration<T>()`，其中 `T` 是您希望访问的配置对象的类型。例如，以下演示了如何访问 [音频配置](/zh/guide/configuration#音频) 对象：
 
-```csharp
+```cs
 var audioConfig = Engine.GetConfiguration<AudioConfiguration>();
 ```
 
@@ -16,7 +16,7 @@ var audioConfig = Engine.GetConfiguration<AudioConfiguration>();
 
 虽然 `Engine.GetConfiguration` 要求引擎已完成初始化（它依赖于配置提供者），但即使引擎未初始化，您也可以通过默认提供者直接访问配置资产，例如：
 
-```csharp
+```cs
 var config = ProjectConfigurationProvider.LoadOrDefault<AudioConfiguration>();
 ```
 
@@ -24,7 +24,7 @@ var config = ProjectConfigurationProvider.LoadOrDefault<AudioConfiguration>();
 
 下面是在引擎初始化后立即更改摄像机配置的 `ReferenceResolution` 属性的示例：
 
-```csharp
+```cs
 using Naninovel;
 using UnityEngine;
 
@@ -55,7 +55,7 @@ Naninovel 不期望配置在引擎处于已初始化状态时发生更改，因�
 
 要添加新的自定义配置，请创建一个继承自 `Configuration` 的 C# 类。
 
-```csharp
+```cs
 [EditInProjectSettings]
 public class MyCustomConfiguration : Configuration
 {
@@ -76,7 +76,7 @@ public class MyCustomConfiguration : Configuration
 
 要通过 C# 访问您的自定义配置，请使用与内置资产相同的 API：
 
-```csharp
+```cs
 var myConfig = Engine.GetConfiguration<MyCustomConfiguration>();
 ```
 
@@ -88,11 +88,11 @@ var myConfig = Engine.GetConfiguration<MyCustomConfiguration>();
 
 ## 覆盖内置编辑器
 
-您可以通过将 `OverrideSettings` 特性应用于继承自 `ConfigurationSettings<T>`（或其任何派生类）的编辑器类来覆盖内置配置编辑器（Naninovel 的项目设置菜单），其中 `T` 是配置类型。将自定义编辑器脚本存储在 `Editor` 文件夹下，以便它们包含在编辑器程序集中。
+您可以通过将 `OverrideSettings` 特性应用于继承自 `ConfigurationSettings<T>`（或其任何派生类）的编辑器类来覆盖内置配置编辑器（Naninovel 的项目设置菜单），其中 `T` 是配置类型。将自定义编辑器脚本存储在“Editor”文件夹下，以便它们包含在编辑器程序集中。
 
 下面是覆盖内置角色管理器配置编辑器的示例。新编辑器在 `Shared Poses` 字段下方添加一个标签，显示共享姿势的总数。
 
-```csharp
+```cs
 [OverrideSettings]
 public class CustomCharacterSettings : CharactersSettings
 {
@@ -116,7 +116,7 @@ public class CustomCharacterSettings : CharactersSettings
 
 您还可以覆盖内置 Actor 元数据编辑器。下面的代码将在正在查看的 Actor 的 `Message Color` 字段下方插入一个标签，显示该 Actor 的显示名称和颜色值。
 
-```csharp
+```cs
 [OverrideSettings]
 public class CustomCharacterSettings : CharactersSettings
 {
@@ -152,7 +152,7 @@ public class CustomCharacterSettings : CharactersSettings
 
 下面是返回默认配置对象的自定义提供者实现示例：
 
-```csharp
+```cs
 public class CustomConfigurationProvider : IConfigurationProvider
 {
     public Configuration GetConfiguration (System.Type type)
@@ -165,7 +165,7 @@ public class CustomConfigurationProvider : IConfigurationProvider
 
 另一个覆盖项目角色配置以在运行时注入元数据的示例：
 
-```csharp
+```cs
 public class CustomConfigurationProvider : ProjectConfigurationProvider
 {
     public override Configuration GetConfiguration (System.Type type)
@@ -195,7 +195,7 @@ public class CustomConfigurationProvider : ProjectConfigurationProvider
 
 或者，如果您的目标只是使用自定义配置提供者但保留默认的引擎初始化流程，请考虑使用 `RuntimeInitializer.Initialize(IConfigurationProvider)`，它接受可选的配置提供者参数：
 
-```csharp
+```cs
 public class CustomInitializer
 {
     [RuntimeInitializeOnLoadMethod]

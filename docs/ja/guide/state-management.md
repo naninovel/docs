@@ -20,7 +20,7 @@ Naninovelが実行時に生成および使用するすべての永続データ�
 
 現在のゲーム状態を特定のセーブスロットにセーブする、またはセーブスロットからロードするには、次のように `IStateManager` エンジンサービスを使用します。
 
-```csharp
+```cs
 // 状態マネージャーのインスタンスを取得します。
 var stateManager = Engine.GetService<IStateManager>();
 
@@ -38,27 +38,27 @@ await stateManager.QuickLoad();
 
 ## グローバル状態
 
-一部のデータは、ゲームセッションをまたいで保持される必要があります。たとえば、「既読テキストのスキップ」機能では、どのシナリオスクリプトコマンドが少なくとも1回実行されたか（つまり、プレイヤーがすでに「見た」か）をエンジンが保存する必要があります。このようなデータは単一の「グローバル」セーブスロットに保存され、ゲームのセーブ・ロード操作には依存しません。
+一部のデータは、ゲームセッションをまたいで保持される必要があります。たとえば、「Skip Read Text」機能では、どのシナリオスクリプトコマンドが少なくとも1回実行されたか（つまり、プレイヤーがすでに「見た」か）をエンジンが保存する必要があります。このようなデータは単一の「グローバル」セーブスロットに保存され、ゲームのセーブ・ロード操作には依存しません。
 
 グローバル状態は、エンジンの初期化時に自動的にロードされます。`IStateManager` を使用して、いつでもグローバル状態を保存できます。
 
-```csharp
+```cs
 await stateManager.SaveGlobal();
 ```
 
 ## ユーザー設定
 
-言語、音量、テキスト速度などのユーザー設定は、グローバル状態と同様に単一のセーブスロットに保存されます。設定ファイルは、ユーザーが希望する場合に値を変更できるように、`Binary Save Files` が有効な場合でも常にテキスト `.json` として保存されます。
+言語、音量、テキスト速度などのユーザー設定は、グローバル状態と同様に単一のセーブスロットに保存されます。設定ファイルは、プレイヤーが希望する場合に値を変更できるように、`Binary Save Files` が有効な場合でも常にテキスト `.json` として保存されます。
 
 ユーザー設定は、エンジンの初期化時に自動的にロードされます。`IStateManager` を使用して、いつでも設定を保存できます。
 
-```csharp
+```cs
 await stateManager.SaveSettings();
 ```
 
 ## セーブファイル
 
-ファイルシステムにアクセスできるプラットフォームでユニバーサルシリアル化ハンドラーが使用される場合、すべての状態はUnityの [永続データディレクトリ](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html) 下の `Saves` フォルダーに書き込まれます。たとえば、会社名が `Foo` でゲームタイトルが `Bar` の場合、パスは次のようになります。
+ファイルシステムにアクセスできるプラットフォームでユニバーサルシリアル化ハンドラーが使用される場合、すべての状態はUnityの [永続データディレクトリ](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html) 下の「Saves」フォルダーに書き込まれます。たとえば、会社名が `Foo` でゲームタイトルが `Bar` の場合、パスは次のようになります。
 
 ::: code-group
 
@@ -101,7 +101,7 @@ C:/Users/User/AppData/LocalLow/Foo/Bar/Saves
 Unityエディターでは、ファイルは代わりにNaninovelデータフォルダー（デフォルトでは `Assets/NaninovelData`）の `.nani/Transient/Saves` 下に保存されます。
 
 ::: tip
-[Steam Auto-Cloud](https://partner.steamgames.com/doc/features/cloud#steam_auto-cloud) などのクラウドセーブサービスでは、`Saves` フォルダーのみを同期してください。永続データディレクトリ内のその他のファイルは、そのデバイスでのみ使用されるものです。`Settings.json` にはグラフィック品質や入力バインディングなどのデバイス固有のオプションが含まれるため、同期対象を `.nson` ファイルに限定することを検討してください。Steamworksのドキュメントには、Unityゲーム向けにパスを構成する [例](https://partner.steamgames.com/doc/features/cloud#example) があります。
+[Steam Auto-Cloud](https://partner.steamgames.com/doc/features/cloud#steam_auto-cloud) などのクラウドセーブサービスでは、「Saves」フォルダーのみを同期してください。永続データディレクトリ内のその他のファイルは、そのデバイスでのみ使用されるものです。`Settings.json` にはグラフィック品質や入力バインディングなどのデバイス固有のオプションが含まれるため、同期対象を `.nson` ファイルに限定することを検討してください。Steamworksのドキュメントには、Unityゲーム向けにパスを構成する [例](https://partner.steamgames.com/doc/features/cloud#example) があります。
 :::
 
 ## カスタム状態
@@ -110,7 +110,7 @@ Unityエディターでは、ファイルは代わりにNaninovelデータフォ
 
 次の例は、`MyCustomBehaviour` コンポーネントの状態処理の委任を示しています。
 
-```csharp
+```cs
 using UnityEngine;
 using Naninovel;
 
@@ -167,7 +167,7 @@ public class MyCustomBehaviour : MonoBehaviour
 
 ゲーム状態がロードされた後にカスタムオブジェクトが作成される場合は、`IStateManager.Game` を使用して最後にロードされた状態にアクセスし、手動で逆シリアル化メソッドを呼び出します。
 
-```csharp
+```cs
 private async void Start ()
 {
     if (stateManager.Game is { } state)
@@ -181,7 +181,7 @@ private async void Start ()
 
 エンジンのグローバル状態および設定状態にアクセスして、カスタムデータをそれらと一緒に保存することもできます。ゲームセッションに固有であり、セーブ・ロードイベントのサブスクライブが必要なゲーム状態とは異なり、グローバル状態および設定状態のオブジェクトはシングルトンであり、状態マネージャーのプロパティを介して直接アクセスできます。
 
-```csharp
+```cs
 [System.Serializable]
 class MySettings
 {
@@ -209,7 +209,7 @@ MyGlobal MyGlobal
 
 状態オブジェクトは型によってインデックス付けされます。場合によっては、同じ型のオブジェクトインスタンスが複数あり、それぞれが独自の状態を持つことがあります。`GetState` と `SetState` の両方のメソッドでは、そのようなオブジェクトを区別するためにオプションの `instanceId` 引数を指定できます。例：
 
-```csharp
+```cs
 [System.Serializable]
 class MonsterState
 {
@@ -230,7 +230,7 @@ var monster2 = stateMap.GetState<MonsterState>("2");
 
 以下は、そのメソッドのいずれかが呼び出されたときにログを記録するだけのカスタム設定シリアル化ハンドラーの例です。
 
-```csharp
+```cs
 using Naninovel;
 using System;
 using UnityEngine;

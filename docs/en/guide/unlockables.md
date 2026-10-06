@@ -15,7 +15,7 @@ Each unlockable item is represented by a string identifier and a boolean value i
 
 The unlocked state of items is stored under the [global scope](/guide/state-management#global-state) and does not depend on local game sessions; eg if you unlock an item, it will not become locked again when the player starts a new game or loads a saved game.
 
-To bind an actual [GameObject](https://docs.unity3d.com/Manual/class-GameObject.html) with the unlockable item, use the `Unlockable Events` component:
+To bind an actual [GameObject](https://docs.unity3d.com/Manual/class-GameObject.html) to the unlockable item, use the `Unlockable Events` component:
 
 ![](https://i.gyazo.com/9e92d5296e5f07d68ce6122ccb1da34a.png)
 
@@ -60,7 +60,7 @@ To group multiple CGs into one gallery slot (eg, variations of a single scene), 
 — they will be grouped under a single CG slot and shown in sequence with a crossfade effect when the player clicks the screen.
 
 ::: info NOTE
-CG slots in the UI grid are arranged left to right, top to bottom and ordered by the unlockable path name. Position in the resources editor menu is ignored. If you want to arrange the slots in a specific order, name the resources accordingly, eg:
+CG slots in the UI grid are arranged left to right, top to bottom and ordered by the unlockable path name. Position in the resources manager is ignored. If you want to arrange the slots in a specific order, name the resources accordingly, eg:
 - `CG/01`
 - `CG/02_1`
 - `CG/02_2`
@@ -75,7 +75,7 @@ To unlock and lock CG items, use the [@unlock] and [@lock] commands, respectivel
 @unlock CG/Map
 ```
 
-If you use both unlockable and background resources to supply CG items, the resources specified in the unlockables manager will be displayed in the CG gallery first. You can change this behaviour as well as the actual sources from which available CG resources are retrieved using the `Cg Sources` property of the `CG Gallery Panel` script attached to the root of the UI prefab representing the CG gallery (built-in implementation stored at `Naninovel/Prefabs/DefaultUI/CGGalleryUI`).
+If you use both unlockable and background resources to supply CG items, the resources specified in the unlockable resources manager will be displayed in the CG gallery first. You can change this behaviour as well as the actual sources from which available CG resources are retrieved using the `Cg Sources` property of the `CG Gallery Panel` script attached to the root of the UI prefab representing the CG gallery (built-in implementation stored at `Naninovel/Prefabs/DefaultUI/CGGalleryUI`).
 
 ![](https://i.gyazo.com/c62c69eea8d6b1147aacb178dcaa9347.png)
 

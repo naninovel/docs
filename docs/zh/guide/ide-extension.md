@@ -1,11 +1,11 @@
 # IDE 扩展
 
-代码编辑器的功能，如语法高亮、错误检查、自动补全和交互式文档，可以显著提高生产力。Naninovel 拥有官方的 [VS Code](https://code.visualstudio.com) 扩展，为编写 [剧本脚本](/zh/guide/scenario-scripting) 提供了丰富的创作工具。
+代码编辑器的功能，例如语法高亮、错误检查、自动补全和交互式文档，可以显著提高生产力。Naninovel 拥有官方的 [VS Code](https://code.visualstudio.com) 扩展，为编写 [剧本脚本](/zh/guide/scenario-scripting) 提供了丰富的创作工具。
 
 ![?class=when-dark](https://i.gyazo.com/9ffce86c54b5bfc5497dd50fa59a637e.png)
 ![?class=when-light](https://i.gyazo.com/6f5a92d83eb2071ac06cbb72c2d0579e.png)
 
-## 设置
+## 安装与设置
 
 ### 安装 VS Code 扩展
 
@@ -20,8 +20,8 @@ VS Code 注册表中的扩展与当前的 Naninovel 稳定版本兼容。使用 
 
 ### 激活扩展
 
-1. 确保 Unity 项目中 [已安装 Naninovel](/zh/guide/getting-started#安装-naninovel)。
-2. 在 VS Code 中打开 Unity 项目的 `Assets` 文件夹。
+1. 请确保 Unity 项目中 [已安装 Naninovel](/zh/guide/getting-started#安装-naninovel)。
+2. 在 VS Code 中打开 Unity 项目的“Assets”文件夹。
 
 当扩展在当前工作区检测到 `.nani` 文件时，它将激活 LSP 服务。该服务处理脚本诊断、自动补全以及指示当前正在播放哪一行脚本等任务。
 
@@ -31,9 +31,9 @@ VS Code 注册表中的扩展与当前的 Naninovel 稳定版本兼容。使用 
 
 Naninovel 在生成的数据目录（默认为 `Assets/NaninovelData`）下生成与 VS Code 扩展通信所需的项目元数据和桥接文件。这意味着在 VS Code 中打开 Naninovel 项目（选择 [工作区根目录](https://code.visualstudio.com/docs/editor/workspaces)）时，您需要选择一个在某个层级包含生成的数据目录的文件夹。
 
-但是，有些用户更喜欢只打开包含剧本脚本的文件夹，其中不包括生成的数据目录。在这种情况下，请将 `NaninovelData` 文件夹移动到剧本脚本文件夹中，使其对 VS Code 可见。
+但是，有些用户更喜欢只打开包含剧本脚本的文件夹，其中不包括生成的数据目录。在这种情况下，请将“NaninovelData”文件夹移动到剧本脚本文件夹中，使其对 VS Code 可见。
 
-移动文件夹后重新启动 VS Code 以使更改生效。
+移动文件夹后，请重新启动 VS Code 以使更改生效。
 
 ## VS Code 设置
 
@@ -245,10 +245,10 @@ Naninovel 元数据是一个 JSON 文件，其中包含与创作项目相关的�
 
 以下是默认的元数据提供者，您可以在实现自己的提供者时将其用作参考：
 
-```csharp
+```cs
 public class DefaultMetadataProvider : IMetadataProvider
 {
-    public Project GetMetadata ()
+    public virtual Project GetMetadata ()
     {
         var meta = new Project();
         var cfg = ProjectConfigurationProvider.LoadOrDefault<ScriptsConfiguration>();
@@ -283,7 +283,7 @@ public class DefaultMetadataProvider : IMetadataProvider
 
 Naninovel 提供了一些 [C# 特性](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/concepts/attributes) 来为自定义命令和表达式查询启用 IDE 相关功能。例如，要向自定义命令和/或参数添加悬停文档，请分别将 `Doc` 特性应用于命令类型和参数字段：
 
-```csharp
+```cs
 [Doc("Summary of the custom command.")]
 public class CustomCommand : Command
 {
@@ -294,49 +294,49 @@ public class CustomCommand : Command
 
 要使参数支持内置和自定义表达式查询以及预定义变量的自动补全，请使用 `ExpressionContext` 特性：
 
-```csharp
+```cs
 [ExpressionContext]
 public StringParameter Expression;
 ```
 
 要使用任意 [枚举类型](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/enum) 的值进行自动补全，请使用 `EnumContext` 特性：
 
-```csharp
+```cs
 [EnumContext(typeof(PlatformID))]
 public StringParameter Platform;
 ```
 
 要自动补全和分析导航端点（脚本路径和标签）的使用情况和正确性，请使用 `EndpointContext` 特性：
 
-```csharp
+```cs
 [EndpointContext]
 public StringParameter Path;
 ```
 
 要使用资源自动补全，请使用 `ResourceContext` 并提供资源的路径前缀。下面的示例将使用音效资源进行补全：
 
-```csharp
+```cs
 [ResourceContext(AudioConfiguration.DefaultSfxPathPrefix)]
 public StringParameter Audio;
 ```
 
 要使用 Actor ID（任何类型）自动补全，请使用 `ActorContext` 特性：
 
-```csharp
+```cs
 [ActorContext]
 public StringParameter ActorId;
 ```
 
 要使用特定类型的 Actor ID 进行自动补全，请使用 `ActorContext`，其中第一个参数指定 Actor 资源的路径前缀。下面的示例将使用打印机 ID 进行补全：
 
-```csharp
+```cs
 [ActorContext(TextPrintersConfiguration.DefaultPathPrefix)]
 public StringParameter PrinterId;
 ```
 
 要自动补全在当前命令的相同或另一个参数中指定了 ID 的 Actor 的外观，请使用 `AppearanceContext`。请注意，这需要在同一命令中指定 `ActorContext`：
 
-```csharp
+```cs
 [ActorContext(CharactersConfiguration.DefaultPathPrefix)]
 public StringParameter CharacterId;
 [AppearanceContext]
@@ -345,14 +345,14 @@ public StringParameter CharacterAppearance;
 
 除 `EndpointContext` 外，上述每个上下文特性都允许提供可选的 `index` 参数。将其与命名参数一起使用以指定特性应用于参数值的哪个部分。下面的示例将允许使用角色 ID 自动补全命名参数的名称部分，并使用当前键入角色的外观自动补全值部分（类似于 [@char] 命令的主参数）：
 
-```csharp
+```cs
 [ActorContext(CharactersConfiguration.DefaultPathPrefix, 0), AppearanceContext(1)]
 public NamedStringParameter IdAndAppearance;
 ```
 
 参数上下文特性可以应用于类而不是字段，以指定（或覆盖）父类中声明的字段的上下文。例如，虽然 `Id` 参数在抽象 `ModifyActor` 命令中声明，但上下文应用于 `ModifyBackground` 派生类：
 
-```csharp
+```cs
 [ActorContext(BackgroundsConfiguration.DefaultPathPrefix, paramId: "Id")]
 public class ModifyBackground : ModifyActor { }
 ```
@@ -379,7 +379,7 @@ public class ModifyBackground : ModifyActor { }
 
 例如，请看赋给自定义命令的命名参数的以下表达式（假设 `Quests/...` 枚举是通过自定义元数据提供者添加的）：
 
-```csharp
+```cs
 [EnumContext("Quests/{:QuestId[0]??$EntryScript}", 1)]
 public NamedStringParameter QuestId;
 ```
@@ -388,12 +388,12 @@ public NamedStringParameter QuestId;
 
 另一个示例是应用于 [@char] 命令的角色姿势表达式：
 
-```csharp
+```cs
 [EnumContext("Poses/Characters/{:Id??:IdAndAppearance[0]}+Poses/Characters/*", paramId: nameof(Pose))]
 public class ModifyCharacter { ... }
 ```
 
-这会将共享的角色姿势与特定角色的姿势合并，该角色的 ID 取自“Id”参数，或（未指定时）取自“IdAndAppearance”参数的名称部分。
+这会将共享的角色姿势与特定角色的姿势合并，该角色的 ID 取自 `Id` 参数，或（未指定时）取自 `IdAndAppearance` 参数的名称部分。
 
 枚举表达式与 [自定义元数据提供者](/zh/guide/ide-extension#元数据提供者) 相结合，允许为 IDE 扩展创建灵活的自动补全场景。
 

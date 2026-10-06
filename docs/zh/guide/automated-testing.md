@@ -2,7 +2,7 @@
 
 在处理大型项目或有多个团队成员修改剧本脚本或游戏逻辑时，在发布前确保游戏正常运行至关重要。由于其交互性质，游戏通常需要大量手动测试；但对于较简单的视觉小说，可以自动化大部分过程。
 
-Naninovel 在 `Naninovel.E2E` 命名空间下提供了工具，通过在游戏运行时组合模拟的用户交互序列来帮助构建端到端测试。结合 [Unity 的测试框架](https://docs.unity3d.com/Packages/com.unity.test-framework@latest)，您可以构建在编辑器、目标设备或 CI 中运行的自动化测试套件。
+Naninovel 在 `Naninovel.E2E` 命名空间下提供了工具，通过在游戏运行时组合模拟的玩家交互序列来帮助构建端到端测试。结合 [Unity 的测试框架](https://docs.unity3d.com/Packages/com.unity.test-framework@latest)，您可以构建在编辑器、目标设备或 CI 中运行的自动化测试套件。
 
 ![](https://i.gyazo.com/92e7eaf5725f098d6d12c83a2b7eb219.png)
 
@@ -28,7 +28,7 @@ Naninovel 在 `Naninovel.E2E` 命名空间下提供了工具，通过在游戏�
 
 测试是异步运行的，因此您需要使用 `[UnityTest]` 特性并从测试方法返回 `IEnumerator`。例如，下面是一个确保玩家可以开始新游戏的简单方法：
 
-```csharp
+```cs
 [UnityTest]
 public IEnumerator CanStartGame () => new E2E()
     .Once(() => Engine.GetService<IUIManager>().GetUI<ITitleUI>().Visible)
@@ -46,7 +46,7 @@ public IEnumerator CanStartGame () => new E2E()
 
 为了帮助编写简洁的测试套件，请 [静态导入](https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/using-directive#static-modifier) `Naninovel.E2E.Shortcuts` 类；它包含各种有用的快捷方式，使测试更紧凑、更易于阅读。例如，下面是借助快捷方式重写的上述测试：
 
-```csharp
+```cs
 [UnityTest]
 public IEnumerator CanStartGame () => new E2E().StartNew().Ensure(Playing);
 ```
@@ -55,9 +55,9 @@ public IEnumerator CanStartGame () => new E2E().StartNew().Ensure(Playing);
 
 虽然端到端测试应尽可能接近实际使用场景，但您仍然需要调整各种参数以使测试切实可行。例如，您可能不想在每次需要玩家单击以继续阅读时都指定单击序列；同样，UI 淡入淡出或摄像机动画等各种效果在播放期间需要时间，而在测试中没有必要等待它们。
 
-要在运行测试时专门配置引擎，请使用 `E2E` 实例上可用的各种 `With` 方法。例如，下面的代码片段覆盖了时间缩放和显示延迟以使效果运行得非常快，并在每次请求继续输入时将其激活：
+要在运行测试时专门配置引擎，请使用 `E2E` 实例上可用的各种 `With` 方法。例如，下面的代码片段覆盖了时间缩放和显示延迟以使效果运行得非常快，并在每次请求 `Continue` 输入时将其激活：
 
-```csharp
+```cs
 [UnityTest]
 public IEnumerator Test () => new E2E()
     .WithConfig<ScriptPlayerConfiguration>(c => c.SkipTimeScale = 999)
@@ -67,7 +67,7 @@ public IEnumerator Test () => new E2E()
 
 — 由于这是一种常见配置，可以通过 `WithFastForward` 扩展方法来应用：
 
-```csharp
+```cs
 [UnityTest]
 public IEnumerator Test () => new E2E().WithFastForward()
 ```
@@ -76,7 +76,7 @@ public IEnumerator Test () => new E2E().WithFastForward()
 
 您可能还希望将特定于测试的数据存储在内存中，以免将其序列化到磁盘。所有这些都可以通过 `WithTransientState` 扩展方法来完成；此外，该方法还允许指定初始的全局状态和设置状态：
 
-```csharp
+```cs
 [UnityTest]
 public IEnumerator WhenTrueCompleteTitleBackChanges () => new E2E()
     .WithTransientState(GlobalStateMap.With(
@@ -96,7 +96,7 @@ public IEnumerator WhenTrueCompleteTitleBackChanges () => new E2E()
 
 下面是一个示例测试，确保在玩家完成共通路线、X 路线和 Y 路线后，标题菜单中显示“TrueRoute”UI：
 
-```csharp
+```cs
 [UnityTest]
 public IEnumerator WhenXYRoutesCompleteTrueUnlocks () => new E2E()
     .WithTransientState().WithFastForward()
@@ -136,7 +136,7 @@ ISequence RouteY => On(Choosing, Choose(), Var("completedY", false));
 
 — 在这里，我们为第一个选项分配了 `my-id-for-choice-1`，为第二个选项分配了 `my-id-for-choice-2`；实际 ID 可以是任意值——只需确保它们在脚本中是唯一的即可。您现在可以通过分配的 ID 在测试中引用选项：
 
-```csharp
+```cs
 Once(Choosing).Choose("my-id-for-choice-2")
 ```
 
@@ -156,7 +156,7 @@ Once(Choosing).Choose("my-id-for-choice-2")
 
 如果您想禁用覆盖率统计，请在 `E2E` 构造函数中禁用 `Cover` 选项，例如：
 
-```csharp
+```cs
 [UnityTest]
 public IEnumerator Test () => new E2E(new Options { Cover = false })
 ```
