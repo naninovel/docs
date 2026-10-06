@@ -1,6 +1,6 @@
 # Engine Services
 
-Most of the engine features are implemented via engine services. An engine service is an implementation of the `IEngineService` interface that handles a specific job, like executing scenario scripts, managing actors, or saving and loading the game state.
+Most of the engine features are implemented via engine services. An engine service is an implementation of the `IEngineService` interface that handles a specific job, like executing scenario scripts, managing actors or saving and loading the game state.
 
 If you wish to interact with an engine system, you'll most likely use an engine service. You can get a reference to an engine service using the static method `Engine.GetService<TService>()`, where `TService` is the interface of the service you wish to get; eg to get an `IScriptPlayer` service:
 
@@ -10,7 +10,7 @@ player.MainTrack.Stop();
 ```
 
 ::: info NOTE
-The engine initialization procedure is asynchronous, so even when automatic initialization is enabled, engine APIs (eg, the `GetService` method) may not be available right after Unity loads a scene (eg, in `Awake`, `Start`, and `OnEnable` [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html) methods); see the [accessing engine API](/guide/integration-options#accessing-engine-api) guide for more info.
+The engine initialization procedure is asynchronous, so even when automatic initialization is enabled, engine APIs (eg, the `GetService` method) may not be available right after Unity loads a scene (eg, in `Awake`, `Start` and `OnEnable` [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html) methods); see the [accessing engine API](/guide/integration-options#accessing-engine-api) guide for more info.
 :::
 
 The following services are currently available:
@@ -21,7 +21,7 @@ The following services are currently available:
 | ICharacterManager        | Manages [character](/guide/characters) actors.                                                                                 |
 | IChoiceHandlerManager    | Manages [choice handler](/guide/choices) actors.                                                                               |
 | ITextPrinterManager      | Manages [text printer](/guide/text-printers) actors.                                                                           |
-| IAudioManager            | Manages the audio: [SFX](/guide/audio#sound-effects), [BGM](/guide/audio#background-music), and [voicing](/guide/voicing).     |
+| IAudioManager            | Manages the audio: [SFX](/guide/audio#sound-effects), [BGM](/guide/audio#background-music) and [voicing](/guide/voicing).     |
 | IInputManager            | Manages the user [input processing](/guide/input-processing).                                                                  |
 | ILocalizationManager     | Manages the [localization](/guide/localization) activities.                                                                    |
 | ICommunityLocalization   | Provides access to the [community localization](/guide/localization#community-localization) resources.                         |
@@ -55,7 +55,7 @@ To be automatically instantiated, a service implementation should have a compati
 
 Be aware that it's not safe to use other services in the constructor. Instead, perform any initialization activities that require other services in the `InitializeService` method; to make sure required services are initialized when you're accessing them, list them in the service constructor (the initialization queue is topologically sorted based on constructor arguments).
 
-If your custom service has a persistent state that you wish to de-/serialize with other engine services, implement the `IStatefulService<TState>` interface, where `TState` is either `GameStateMap`, `GlobalStateMap`, or `SettingsStateMap` depending on whether you want to store the state with game-session-specific, global, or settings data. It's allowed to implement all three interfaces for a single service if required. For more information on different types of engine state, see the [state management guide](/guide/state-management).
+If your custom service has a persistent state that you wish to de-/serialize with other engine services, implement the `IStatefulService<TState>` interface, where `TState` is either `GameStateMap`, `GlobalStateMap` or `SettingsStateMap` depending on whether you want to store the state with game-session-specific, global or settings data. It's allowed to implement all three interfaces for a single service if required. For more information on different types of engine state, see the [state management guide](/guide/state-management).
 
 Below is an example of a custom engine service implementation with some usage notes.
 

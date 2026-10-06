@@ -1,6 +1,6 @@
 # Custom Actor Implementations
 
-An actor is a scene entity defined by a name, appearance, visibility, and transform (position, rotation, and scale). It can asynchronously change appearance, visibility, and transform over time. Examples of actors include characters, backgrounds, text printers, and choice handlers.
+An actor is a scene entity defined by a name, appearance, visibility and transform (position, rotation and scale). It can asynchronously change appearance, visibility and transform over time. Examples of actors include characters, backgrounds, text printers and choice handlers.
 
 Actors are represented by the `IActor` interface and its derivatives:
 
@@ -9,7 +9,7 @@ Actors are represented by the `IActor` interface and its derivatives:
 * `ITextPrinterActor`
 * `IChoiceHandlerActor`
 
-Each actor interface can have multiple implementations; eg character actors currently have eleven built-in implementations: placeholder, sprite, diced sprite, universal, layered, generic, video, Live2D, Spine, narrator, and transient.
+Each actor interface can have multiple implementations; eg character actors currently have eleven built-in implementations: placeholder, sprite, diced sprite, universal, layered, generic, video, Live2D, Spine, narrator and transient.
 
 An actor implementation can be selected in the configuration managers accessible via the `Naninovel -> Configuration` editor menu. You can change the default implementation used for all actors or set a specific implementation per actor. To change the default implementation, use the `Default Metadata` property; to set specific ones, use the `Implementation` dropdown in the actor's configuration.
 
@@ -143,9 +143,9 @@ It's also possible to override built-in configuration editors as a whole; see th
 To override or extend the state type for your custom actor, you'll have to also [override the actor's manager](/guide/engine-services#overriding-built-in-services), as the state is serialized and applied to the managed actors there.
 
 ::: info NOTE
-This applies to custom actor implementations of one of the built-in `IActor` interface derivatives (characters, backgrounds, text printers, and choice handlers); if you've inherited your custom actor directly from `IActor`, there's no need to override the built-in managers to use a custom state — just create your own manager with the custom state type.
+This applies to custom actor implementations of one of the built-in `IActor` interface derivatives (characters, backgrounds, text printers and choice handlers); if you've inherited your custom actor directly from `IActor`, there's no need to override the built-in managers to use a custom state — just create your own manager with the custom state type.
 
-If you're looking to add a custom state for other systems (eg, UIs, game objects, or components for various game mechanics outside of Naninovel), see the [state management guide](/guide/state-management#custom-state).
+If you're looking to add a custom state for other systems (eg, UIs, game objects or components for various game mechanics outside of Naninovel), see the [state management guide](/guide/state-management#custom-state).
 :::
 
 Below is an example of extending choice handler state by adding a `LastChoiceTime` field, which stores the time of the last added choice. The time is printed to the console when the custom choice handler is shown.

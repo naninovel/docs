@@ -83,7 +83,7 @@ The stable stream is published on both GitHub and Unity's Asset Store (though no
 
 ### Install from Asset Store
 
-The simplest way to install Naninovel is through the "My Assets" tab of the Unity Package Manager (UPM). Open the Package Manager window, find Naninovel, and click "Install".
+The simplest way to install Naninovel is through the "My Assets" tab of the Unity Package Manager (UPM). Open the Package Manager window, find Naninovel and click "Install".
 
 ![?width=674](https://i.gyazo.com/3e056854efc95a4adfb485557497e134.png)
 
@@ -121,7 +121,7 @@ Simply drop the downloaded `.unitypackage` file into the Unity Editor window and
 
 Before diving into Naninovel, let's take a quick look at some of its core concepts.
 
-An essential one, which you will constantly encounter throughout the rest of the guide, is the *actor*. An actor is an entity described by an identifier (ID), appearance, position in space (scene), and some other parameters.
+An essential one, which you will constantly encounter throughout the rest of the guide, is the *actor*. An actor is an entity described by an identifier (ID), appearance, position in space (scene) and some other parameters.
 
 An actor is an abstract entity and can't exist directly; instead, specialized versions with various additional parameters are used:
 
@@ -204,7 +204,7 @@ Next, open the `Entry.nani` script and replace the last `@title` command with:
 
 — this command will navigate the playback to our new `Test.nani` script instead of exiting to the title menu.
 
-Enter Play mode, start a new game, and play through until "Hello World!" is printed. Try editing the script while the game is playing — changes will be applied immediately.
+Enter Play mode, start a new game and play through until "Hello World!" is printed. Try editing the script while the game is playing — changes will be applied immediately.
 
 ::: tip
 The standard NaniScript commands and their usage examples are listed in the [API reference](/api/). It is also possible to add custom commands; see [the guide](/guide/custom-commands) for more information.
@@ -222,11 +222,11 @@ Of course, you can use any identifier and display name for your characters; just
 You'll find many options in our configuration menus. As with other Unity menus, most controls have associated tooltips that explain what they do. To view a tooltip, hover over the control with the mouse and wait a moment — the explanation will appear under the cursor.
 :::
 
-Now, let's select the implementation for our actor. Characters in Naninovel can be based on regular or diced sprites, animated Live2D or Spine models, 3D meshes, and many other types of assets; you can also add your own implementations. For the purpose of this tutorial, we'll use a sprite implementation, which is based on 2D texture assets (images).
+Now, let's select the implementation for our actor. Characters in Naninovel can be based on regular or diced sprites, animated Live2D or Spine models, 3D meshes and many other types of assets; you can also add your own implementations. For the purpose of this tutorial, we'll use a sprite implementation, which is based on 2D texture assets (images).
 
 ![?width=575](https://i.gyazo.com/8ffc45f0266741dcb31782c9f236985c.png)
 
-Finally, assign appearances: drop the textures into the folder with our character, select them, click the Naninovel icon under the Inspector header, and select `Characters -> K`.
+Finally, assign appearances: drop the textures into the folder with our character, select them, click the Naninovel icon under the Inspector header and select `Characters -> K`.
 
 ![?width=623](https://i.gyazo.com/25cf89584f50f72b5e0f34d71742ed23.png)
 
@@ -269,7 +269,7 @@ To hide a character, use the [@hide] command followed by the actor ID:
 
 ## Add Background
 
-Similar to characters, a background can be represented in multiple ways in Naninovel: sprite, video, scene, and others; custom implementations are also possible.
+Similar to characters, a background can be represented in multiple ways in Naninovel: sprite, video, scene and others; custom implementations are also possible.
 
 While you can create multiple independent background actors, in a typical visual novel you'll usually use just one and transition it between different appearances. To simplify the routine, a background actor with the `MainBackground` ID is assumed by default when you use the [@back] command to control background actors:
 
@@ -361,7 +361,7 @@ Consider installing Unity's [Addressables package](https://docs.unity3d.com/Pack
 
 Even though Naninovel is primarily designed as a foundation for building visual novels, it can also be used as a drop-in dialogue or cutscene system for games of any genre.
 
-While it is possible to manually configure the engine for the "drop-in" use case, there is a dedicated "Minimal Mode" switch that automatically modifies the configuration, removes most built-in UI, and disables features to reduce the engine to its bare minimum.
+While it is possible to manually configure the engine for the "drop-in" use case, there is a dedicated "Minimal Mode" switch that automatically modifies the configuration, removes most built-in UI and disables features to reduce the engine to its bare minimum.
 
 Enable Minimal Mode via the `Naninovel -> Set Up Minimal Mode` Unity Editor menu.
 
@@ -391,17 +391,17 @@ Next, set up the trigger conditions on the `Dialogue/Trigger` object:
 
 Enter Play mode and hover over the cube — the prompt will react when the mouse cursor is over it. Left-click to start the dialogue. To exit the dialogue, use the [@exitDialogue] command.
 
-Note the many options on the `Trigger Events` component — you can set up most common interaction scenarios by simply tweaking them, such as first-person look at a certain distance, side-scroller view collision, third-person pointer hover followed by a key press, and more. Read the tooltips on each option to understand how they work.
+Note the many options on the `Trigger Events` component — you can set up most common interaction scenarios by simply tweaking them, such as first-person look at a certain distance, side-scroller view collision, third-person pointer hover followed by a key press and more. Read the tooltips on each option to understand how they work.
 
 ## Demo Samples
 
 The Naninovel package contains two basic samples:
 
-- **Visual Novel** — a basic visual novel template with multiple routes, demonstrating the use of placeholder actors, various commands, normal and meta variables, customizable character names, and other traditional VN mechanics.
-- **Dialogue System** — a 3D side-scroller scene where Naninovel is used as a drop-in dialogue system, showing the use of transient printers, bubble choice handlers, integration with Cinemachine, and other common usage scenarios.
+- **Visual Novel** — a basic visual novel template with multiple routes, demonstrating the use of placeholder actors, various commands, normal and meta variables, customizable character names and other traditional VN mechanics.
+- **Dialogue System** — a 3D side-scroller scene where Naninovel is used as a drop-in dialogue system, showing the use of transient printers, bubble choice handlers, integration with Cinemachine and other common usage scenarios.
 
-You can import both samples via the Unity Package Manager by selecting the Naninovel package, navigating to the "Samples" tab, and clicking the "Import" button for a sample.
+You can import both samples via the Unity Package Manager by selecting the Naninovel package, navigating to the "Samples" tab and clicking the "Import" button for a sample.
 
 ![?width=711](https://i.gyazo.com/a33a679037089bab1bce41684818b158.png)
 
-For a collection of more advanced examples, check the [samples project](/guide/samples) — it contains many specialized samples, such as Live2D and Spine characters, custom actor shaders, an interactive map, video actors, calendar and inventory custom UIs, and more.
+For a collection of more advanced examples, check the [samples project](/guide/samples) — it contains many specialized samples, such as Live2D and Spine characters, custom actor shaders, an interactive map, video actors, calendar and inventory custom UIs and more.

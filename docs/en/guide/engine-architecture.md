@@ -20,7 +20,7 @@ If the scene-independent design doesn't work for your project, disable the `Scen
 
 ## Service-Oriented
 
-Most of the engine features are implemented via engine services. An engine service is an implementation of the `IEngineService` interface that handles a specific job, such as executing scenario scripts, managing actors, or saving and loading the game state.
+Most of the engine features are implemented via engine services. An engine service is an implementation of the `IEngineService` interface that handles a specific job, such as executing scenario scripts, managing actors or saving and loading the game state.
 
 If you need to interact with an engine system, you will usually use an engine service. You can get a reference to a service using the static method `Engine.GetService<TService>()`, where `TService` is the interface type of the service you want; for example, to get an `IScriptPlayer` service:
 

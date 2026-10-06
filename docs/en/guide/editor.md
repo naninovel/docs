@@ -6,11 +6,11 @@ Naninovel has its own standalone app that you can use to author scenario scripts
 
 ## Sandbox Mode
 
-Sandbox mode is completely independent of the Unity Editor. It provides tools to author the scenario and preview (play) the game right in the browser, using the latest engine specs, available commands, and runtime features. Under the hood, it produces standard `.nani` text files, which you can seamlessly reuse in Unity or edit directly with [VS Code](/guide/ide-extension).
+Sandbox mode is completely independent of the Unity Editor. It provides tools to author the scenario and preview (play) the game right in the browser, using the latest engine specs, available commands and runtime features. Under the hood, it produces standard `.nani` text files, which you can seamlessly reuse in Unity or edit directly with [VS Code](/guide/ide-extension).
 
 Main use cases for sandbox mode:
 
-- Try Naninovel's scripting system and runtime features before purchasing;
+- Try Naninovel's scripting system and runtime features before purchasing.
 - Draft the scenario using generated assets before starting development in Unity.
 
 Navigate to [naninovel.com/editor](https://naninovel.com/editor) and start using the app right inside your web browser. Optionally, accept the browser prompt to install the app as a [PWA](https://en.wikipedia.org/wiki/Progressive_web_app), so that it has its own dedicated icon on the taskbar and runs in a native OS window, like a regular desktop app.
@@ -19,13 +19,13 @@ Navigate to [naninovel.com/editor](https://naninovel.com/editor) and start using
 
 ### Placeholder Assets
 
-When drafting the story, it may be useful to use temporary versions of the media assets, such as audio clips, backgrounds, and character textures. At the same time, it's helpful to keep track of which asset is currently active while previewing the scenario.
+When drafting the story, it may be useful to use temporary versions of the media assets, such as audio clips, backgrounds and character textures. At the same time, it's helpful to keep track of which asset is currently active while previewing the scenario.
 
 Sandbox mode allows creating placeholder assets, where you describe the asset traits, and the editor generates distinguishable previews to be displayed when the asset is used.
 
 ![](https://i.gyazo.com/fd6765bfc35024769871e4d9b1372b62.png)
 
-To create a placeholder asset, right-click under either the `Backgrounds`, `Characters`, or `Audio` directories in the [file browser](/guide/editor#file-browser) and select the option to add the associated asset.
+To create a placeholder asset, right-click under either the `Backgrounds`, `Characters` or `Audio` directories in the [file browser](/guide/editor#file-browser) and select the option to add the associated asset.
 
 You can then select the created asset to inspect and edit available traits.
 
@@ -87,7 +87,7 @@ The scenario editor is the app's main authoring tool. It's an alternative to wri
 
 ![](https://i.gyazo.com/1e38f673835584033e4a5142f9989981.png)
 
-Each scenario editor tab represents a `.nani` script, with text lines visualized as rows. You can add lines using the `+` button at the bottom of the tab, via the context menu (right-click existing content), or with the `Enter` hotkey (configurable in [settings](/guide/editor#keymap)).
+Each scenario editor tab represents a `.nani` script, with text lines visualized as rows. You can add lines using the `+` button at the bottom of the tab, via the context menu (right-click existing content) or with the `Enter` hotkey (configurable in [settings](/guide/editor#keymap)).
 
 You can reorder lines by drag-dropping, and delete or duplicate lines via the context menu or with the `Backspace` and `Ctrl+D` keys.
 
@@ -99,7 +99,7 @@ While the game is running, the currently played line is highlighted with a green
 
 ## Story Graph
 
-The story graph helps visualize, track, and organize the scenario structure, and also allows editing the scripts themselves.
+The story graph helps visualize, track and organize the scenario structure, and also allows editing the scripts themselves.
 
 By default, each node represents either a scenario script or a directory. Edges represent navigation between scripts. Conditional navigations (eg, [@goto] under [@choice] or [@if]) appear as dashed edges, with conditions listed on the associated ports.
 
@@ -143,11 +143,11 @@ You can customize both the editor and project via the settings tab, which has tw
 
 ### User Settings
 
-User settings are stored in the directory you picked during the first-time setup in sandbox mode or under Unity's persistent directory in embedded mode. They're not shared with the project and apply to all projects on the device. This includes preferences like the editor color scheme, keymap, and UI element visibility.
+User settings are stored in the directory you picked during the first-time setup in sandbox mode or under Unity's persistent directory in embedded mode. They're not shared with the project and apply to all projects on the device. This includes preferences like the editor color scheme, keymap and UI element visibility.
 
 ### Project Settings
 
-Project settings are user-agnostic, stored under the project directory, and shared with all users working on the project. These include project-specific properties like the project title.
+Project settings are user-agnostic, stored under the project directory and shared with all users working on the project. These include project-specific properties like the project title.
 
 ### Keymap
 

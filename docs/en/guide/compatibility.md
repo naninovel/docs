@@ -4,11 +4,11 @@
 
 Supported Unity versions: `6.7` LTS release (with the latest patches).
 
-Non-LTS (tech, beta, and alpha) releases are not supported. Any issues with future Unity releases will be addressed in the next Naninovel versions. Compatible Unity releases for past Naninovel versions are listed in the [release notes](https://pre.naninovel.com/releases).
+Non-LTS (tech, beta and alpha) releases are not supported. Any issues with future Unity releases will be addressed in the next Naninovel versions. Compatible Unity releases for past Naninovel versions are listed in the [release notes](https://pre.naninovel.com/releases).
 
 ## Platforms
 
-The runtime doesn't use any platform-specific APIs, precompiled native libraries, or third-party dependencies. As a result, Naninovel is expected to be compatible with all platforms Unity can target. However, this also means it doesn't utilize any native platform capabilities, so you may need to adapt some features for an optimal user experience on exotic platforms, such as VR/XR.
+The runtime doesn't use any platform-specific APIs, precompiled native libraries or third-party dependencies. As a result, Naninovel is expected to be compatible with all platforms Unity can target. However, this also means it doesn't utilize any native platform capabilities, so you may need to adapt some features for an optimal user experience on exotic platforms, such as VR/XR.
 
 ::: info NOTE
 While Unity [supports game consoles](https://unity.com/how-to/develop-console-video-games-unity) (PlayStation, Xbox, Switch), the process can be challenging for smaller developers. If you're looking for a publishing partner, we recommend [Sometimes You](https://porting.games), which has a strong track record of bringing Naninovel projects to a wide range of platforms.
@@ -16,7 +16,7 @@ While Unity [supports game consoles](https://unity.com/how-to/develop-console-vi
 
 ## Render Pipelines
 
-Both the Universal Render Pipeline (URP) and the legacy built-in render pipeline (BiRP) are fully supported. The High Definition Render Pipeline (HDRP) is not actively tested and is not recommended. While most Naninovel features will work with HDRP, some rendering-specific features — such as the [@trans], [@glitch], and [@bokeh] commands — may not work under HDRP out of the box.
+Both the Universal Render Pipeline (URP) and the legacy built-in render pipeline (BiRP) are fully supported. The High Definition Render Pipeline (HDRP) is not actively tested and is not recommended. While most Naninovel features will work with HDRP, some rendering-specific features — such as the [@trans], [@glitch] and [@bokeh] commands — may not work under HDRP out of the box.
 
 ## GUI
 
@@ -36,4 +36,4 @@ At least the "Explicitly Thrown Exceptions Only" level (selected by default) is 
 
 ## Story Editor
 
-The embedded [Story Editor](/guide/editor#embedded-mode) requires at least Windows 10 with an x86-64 CPU, macOS 14 with an Apple Silicon CPU, or x86-64 Linux with a modern WebKitGTK runtime. You can still use the [web version](https://naninovel.com/editor) of the Story Editor on unsupported platforms.
+The embedded [Story Editor](/guide/editor#embedded-mode) requires at least Windows 10 with an x86-64 CPU, macOS 14 with an Apple Silicon CPU or x86-64 Linux with a modern WebKitGTK runtime. You can still use the [web version](https://naninovel.com/editor) of the Story Editor on unsupported platforms.

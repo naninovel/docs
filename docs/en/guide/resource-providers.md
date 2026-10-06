@@ -26,7 +26,7 @@ Be aware that while in the editor, a special "Editor" resource provider is alway
 
 ## Addressable
 
-The [Addressable Asset System](https://docs.unity3d.com/Packages/com.unity.addressables@latest) is a Unity package that allows loading assets by "address". It uses asynchronous loading to support loading from any location (local storage, remote web hosting, etc) with arbitrary collections of dependencies. Consult Unity's documentation on how to set up, configure, and use the system.
+The [Addressable Asset System](https://docs.unity3d.com/Packages/com.unity.addressables@latest) is a Unity package that allows loading assets by "address". It uses asynchronous loading to support loading from any location (local storage, remote web hosting, etc) with arbitrary collections of dependencies. Consult Unity's documentation on how to set up, configure and use the system.
 
 Naninovel will automatically use Addressables when the package is installed in the project. No additional setup is required: all assets assigned in Naninovel's configuration menus (eg, scenario scripts, character sprites, audio clips) will be registered with the system (assigned an address) when building the player.
 
@@ -69,7 +69,7 @@ The simplest solution is to set `Bundle Mode` to `Pack Separately` in the [group
 
 This makes each asset its own bundle, allowing it to be unloaded as soon as it's released. While optimal for RAM usage, this approach increases CPU overhead and load times because it's much faster to load one large continuous binary blob than to repeatedly seek and load many small ones, especially on slower drives.
 
-When `Label By Scripts` is enabled in the resource provider configuration (the default), Naninovel will use a compromise: during the build process it scans all scenario scripts, tries to determine which assets are required by each script, and assigns labels to addressable assets by the scripts that reference them:
+When `Label By Scripts` is enabled in the resource provider configuration (the default), Naninovel will use a compromise: during the build process it scans all scenario scripts, tries to determine which assets are required by each script and assigns labels to addressable assets by the scripts that reference them:
 
 ![](https://i.gyazo.com/9013a1264a55aa95d22ecfc6b3283ac3.png)
 

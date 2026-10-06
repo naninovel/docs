@@ -30,7 +30,7 @@ Below is an example of binding a managed text record stored in the "MyCustomDocu
 
 ![](https://i.gyazo.com/f47a997052674341aa3133deeea1f1cf.png)
 
-When a `ManagedTextProvider` component is used in a custom UI, text printer, or choice handler, corresponding records will be automatically generated when using the managed text tool (given the resources are assigned in the configuration menu); for other cases you'll have to add the records manually to a separate document, because the tool removes manually added records from the documents it generates.
+When a `ManagedTextProvider` component is used in a custom UI, text printer or choice handler, corresponding records will be automatically generated when using the managed text tool (given the resources are assigned in the configuration menu); for other cases you'll have to add the records manually to a separate document, because the tool removes manually added records from the documents it generates.
 
 ![](https://i.gyazo.com/cc2ad398d1ad716cca437913553eb09c.png)
 
@@ -103,7 +103,7 @@ Find an example localization setup (including managed text) in the [localization
 
 ## Custom Documents
 
-You can create any number of managed text documents for your custom needs and use them in C# while the engine is initialized. These custom documents function the same way as the built-in types discussed above: you can access them in both C# and scenario scripts, retrieve records via the `ManagedTextProvider` component, auto-generate localization documents, and more.
+You can create any number of managed text documents for your custom needs and use them in C# while the engine is initialized. These custom documents function the same way as the built-in types discussed above: you can access them in both C# and scenario scripts, retrieve records via the `ManagedTextProvider` component, auto-generate localization documents and more.
 
 Create a new custom managed text document via the `Create -> Naninovel -> Managed Text` asset context menu under a `Resources/Naninovel/Text` folder (or expose it via the resource provider of your choice). The document will then be accessible via the `ITextManager` engine service in C#. Below is an example of accessing a record from a custom document named `Custom` with the content `Foo: Bar`.
 

@@ -10,7 +10,7 @@ Naninovel 拥有自己的独立应用程序，在 Unity 编辑器中开发游戏
 
 沙盒模式的主要用例：
 
-- 在购买前试用 Naninovel 的脚本系统和运行时功能；
+- 在购买前试用 Naninovel 的脚本系统和运行时功能。
 - 在开始 Unity 开发之前，使用生成的资产起草剧本。
 
 访问 [naninovel.com/editor](https://naninovel.com/editor) 即可直接在 Web 浏览器中开始使用该应用程序。您还可以选择接受浏览器提示，将该应用程序安装为 [PWA](https://en.wikipedia.org/wiki/Progressive_web_app)，这样它在任务栏上会有自己的专用图标，并在原生操作系统窗口中运行，就像常规桌面应用程序一样。

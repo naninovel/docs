@@ -1,6 +1,6 @@
 # Custom Commands
 
-A command represents a single operation that controls what happens in a scene; eg it can change a background, move a character, or load another scenario script. Parameterized command sequences defined in [scenario scripts](/guide/scenario-scripting) effectively control the game flow. You can find available built-in commands in the [API reference](/api/). In code, all the built-in script command implementations are defined under the `Naninovel.Commands` namespace.
+A command represents a single operation that controls what happens in a scene; eg it can change a background, move a character or load another scenario script. Parameterized command sequences defined in [scenario scripts](/guide/scenario-scripting) effectively control the game flow. You can find available built-in commands in the [API reference](/api/). In code, all the built-in script command implementations are defined under the `Naninovel.Commands` namespace.
 
 ## Adding Custom Command
 

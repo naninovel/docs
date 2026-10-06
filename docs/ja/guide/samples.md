@@ -110,13 +110,13 @@ Inventory UIコンポーネントには `Capacity` プロパティがあり、�
 # Adventure
 
 @if itemExist("Sword")
-	@set monstersSlayed={ itemExist("Armor") ? random(3,5) : 2 }
-	@addItem Food amount:{monstersSlayed}
-	{monstersSlayed}体のモンスターに遭遇し、剣で倒しました。
-	@goto #Start
+    @set monstersSlayed={ itemExist("Armor") ? random(3,5) : 2 }
+    @addItem Food amount:{monstersSlayed}
+    {monstersSlayed}体のモンスターに遭遇し、剣で倒しました。
+    @goto #Start
 @else
-	しかし武器がありません！モンスターにやられてしまいました。
-	@goto #Start
+    しかし武器がありません！モンスターにやられてしまいました。
+    @goto #Start
 ```
 
 ## Live2D

@@ -1046,8 +1046,8 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">enable</span> | boolean | 启用还是禁用摄像机观看模式。默认值：true。 |
-| zone | number list | 以摄像机初始位置为中心的边界框的尺寸（X、Y，以单位计），限制摄像机可以移动多远。默认值：5.0,3.0 |
-| speed | number list | 摄像机沿 X、Y 轴的移动速度（灵敏度）。默认值：1.5,1.0 |
+| zone | number list | 以摄像机初始位置为中心的边界框的尺寸（X、Y，以单位计），限制摄像机可以移动多远。默认值：5.0,3.0。 |
+| speed | number list | 摄像机沿 X、Y 轴的移动速度（灵敏度）。默认值：1.5,1.0。 |
 | gravity | boolean | 当观看输入不活动时（例如，鼠标未移动或模拟摇杆处于默认位置），是否自动将摄像机移动到初始位置。默认值：false。 |
 
 </div>

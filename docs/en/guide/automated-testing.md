@@ -2,13 +2,13 @@
 
 When working on large projects or with multiple team members modifying scenario scripts or gameplay logic, it's essential to make sure the game functions properly before publishing. Because of their interactive nature, games often require heavy manual testing; but with simpler visual novels it's possible to automate much of the process.
 
-Naninovel provides tools under the `Naninovel.E2E` namespace to help build end-to-end tests by composing sequences of simulated user interactions while the game is running. Combined with [Unity's Test Framework](https://docs.unity3d.com/Packages/com.unity.test-framework@latest), you can build automated test suites that run in the editor, on target devices, or in CI.
+Naninovel provides tools under the `Naninovel.E2E` namespace to help build end-to-end tests by composing sequences of simulated user interactions while the game is running. Combined with [Unity's Test Framework](https://docs.unity3d.com/Packages/com.unity.test-framework@latest), you can build automated test suites that run in the editor, on target devices or in CI.
 
 ![](https://i.gyazo.com/92e7eaf5725f098d6d12c83a2b7eb219.png)
 
 ## Getting Started
 
-Open the "Test Runner" tab via `Window -> General -> Test Runner` in the Unity Editor and follow the instructions to set up Play mode tests; find more info in the [UTF guide](https://docs.unity3d.com/Packages/com.unity.test-framework@1.3/manual/workflow-create-playmode-test.html). Make sure to reference Naninovel's common, runtime, and E2E assemblies to make the required APIs available. Below is an example of the test assembly setup:
+Open the "Test Runner" tab via `Window -> General -> Test Runner` in the Unity Editor and follow the instructions to set up Play mode tests; find more info in the [UTF guide](https://docs.unity3d.com/Packages/com.unity.test-framework@1.3/manual/workflow-create-playmode-test.html). Make sure to reference Naninovel's common, runtime and E2E assemblies to make the required APIs available. Below is an example of the test assembly setup:
 
 ![](https://i.gyazo.com/8b8cb5c916987d941cce8abf6daf131b.png)
 
@@ -72,7 +72,7 @@ public IEnumerator Test () => new E2E()
 public IEnumerator Test () => new E2E().WithFastForward()
 ```
 
-Another common scenario is setting up a clean engine state so that each test starts with global, settings, and game state not affected by previous runs or play sessions.
+Another common scenario is setting up a clean engine state so that each test starts with global, settings and game state not affected by previous runs or play sessions.
 
 You'll probably also want to store test-specific data in memory so it's not serialized to disk. All this can be accomplished with the `WithTransientState` extension; additionally, the method allows specifying initial global and settings state:
 
@@ -94,7 +94,7 @@ public IEnumerator WhenTrueCompleteTitleBackChanges () => new E2E()
 
 When testing branching scenarios, you may find yourself repeating common interaction sequences to describe the many possible ways a player can complete them. To minimize boilerplate, the sequence object implements the `ISequence` interface, which is accepted by all the test APIs. Using this, you can store common sequences in variables and compose them inside other, more general sequences.
 
-Below is a sample test that ensures the "TrueRoute" UI shows in the title menu after the player completes the common, X, and Y routes:
+Below is a sample test that ensures the "TrueRoute" UI shows in the title menu after the player completes the common, X and Y routes:
 
 ```csharp
 [UnityTest]
@@ -141,7 +141,7 @@ Once(Choosing).Choose("my-id-for-choice-2")
 ```
 
 ::: tip EXAMPLE
-The [E2E sample](/guide/samples#e2e) shows most of the available shortcuts, extensions, and testing scenarios.
+The [E2E sample](/guide/samples#e2e) shows most of the available shortcuts, extensions and testing scenarios.
 :::
 
 ## Coverage

@@ -110,13 +110,13 @@ Inventory UI 组件具有 `Capacity` 属性，您可以通过它更改库存中�
 # Adventure
 
 @if itemExist("Sword")
-	@set monstersSlayed={ itemExist("Armor") ? random(3,5) : 2 }
-	@addItem Food amount:{monstersSlayed}
-	你遇到了 {monstersSlayed} 只怪物，并用剑将它们全部斩杀。
-	@goto #Start
+    @set monstersSlayed={ itemExist("Armor") ? random(3,5) : 2 }
+    @addItem Food amount:{monstersSlayed}
+    你遇到了 {monstersSlayed} 只怪物，并用剑将它们全部斩杀。
+    @goto #Start
 @else
-	但是你没有武器！你被怪物打败了。
-	@goto #Start
+    但是你没有武器！你被怪物打败了。
+    @goto #Start
 ```
 
 ## Live2D

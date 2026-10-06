@@ -1046,8 +1046,8 @@ Kohaku: Lorem ipsum dolor sit amet[lipSync Kohaku.false]... [lipSync Kohaku.true
 | パラメーター | 型 | 説明 |
 | --- | --- | --- |
 | <span class="command-param-primary" title="プライマリパラメーター：パラメーターIDを指定せずに、コマンド識別子の後に値を指定します。">enable</span> | boolean | カメラルックモードを有効にするか無効にするか。デフォルト：true。 |
-| zone | number list | カメラをどこまで移動できるかを制限する、初期カメラ位置を中心としたバウンディングボックスのサイズ（X、Y、ユニット単位）。デフォルト：5.0,3.0 |
-| speed | number list | X、Y軸方向のカメラ移動速度（感度）。デフォルト：1.5,1.0 |
+| zone | number list | カメラをどこまで移動できるかを制限する、初期カメラ位置を中心としたバウンディングボックスのサイズ（X、Y、ユニット単位）。デフォルト：5.0,3.0。 |
+| speed | number list | X、Y軸方向のカメラ移動速度（感度）。デフォルト：1.5,1.0。 |
 | gravity | boolean | ルック入力がアクティブでない場合（例：マウスが動いていない、またはアナログスティックがデフォルト位置にある場合）、カメラを自動的に初期位置に移動するかどうか。デフォルト：false。 |
 
 </div>

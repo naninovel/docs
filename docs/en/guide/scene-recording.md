@@ -2,7 +2,7 @@
 
 Scene composition is often easier visually: place characters, adjust their scale and rotation, then move or zoom the camera until the shot looks right. Reproducing the result in a scenario script would normally require repeatedly guessing numeric parameters, replaying the scene and making small corrections.
 
-Scene Recording removes this trial-and-error loop. Start recording on a scenario line, arrange supported actors and the camera with Unity's regular Scene view and Inspector tools, and the corresponding scenario commands appear live in the [Story Editor](/guide/editor) or [VS Code extension](/guide/ide-extension). Use it when staging a new scene, fine-tuning an existing composition, or capturing transforms that would be inconvenient to calculate manually.
+Scene Recording removes this trial-and-error loop. Start recording on a scenario line, arrange supported actors and the camera with Unity's regular Scene view and Inspector tools, and the corresponding scenario commands appear live in the [Story Editor](/guide/editor) or [VS Code extension](/guide/ide-extension). Use it when staging a new scene, fine-tuning an existing composition or capturing transforms that would be inconvenient to calculate manually.
 
 ![](/assets/img/guide/scene-recording.mp4)
 
@@ -36,7 +36,7 @@ The default recorder supports the following scene objects and serialized propert
 | Choices     | Position, rotation and scale        | `@choiceHandler wpos: rotation: scale:` |
 | Camera      | Position, rotation, ortho size, FOV | `@camera offset: rotation: zoom:`       |
 
-The default recorder does not capture actor appearance or visibility, project and prefab assets, or changes made by runtime scripts, animations, and Timeline. It observes serialized changes to scene objects made through Unity's editor modification system, such as moving an object with a Scene view gizmo or changing a value in the Inspector.
+The default recorder does not capture actor appearance or visibility, project and prefab assets or changes made by runtime scripts, animations and Timeline. It observes serialized changes to scene objects made through Unity's editor modification system, such as moving an object with a Scene view gizmo or changing a value in the Inspector.
 
 ## Custom Recorders
 

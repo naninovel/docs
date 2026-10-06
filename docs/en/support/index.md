@@ -2,7 +2,7 @@
 
 The best place to start when you need help is our official Discord server: [discord.gg/BfkNqem](https://discord.gg/BfkNqem).
 
-You're welcome to ask for help or advice in the `#forum` channel, explore tutorials and guides in `#wiki`, or just hang out and chat with fellow Naninovel users in `#chat`.
+You're welcome to ask for help or advice in the `#forum` channel, explore tutorials and guides in `#wiki` or just hang out and chat with fellow Naninovel users in `#chat`.
 
 If you have an active [Support Plan](/support/#support-plan), you'll also gain access to the `#support` channel, where the Naninovel team provides direct assistance. The first year of the Support Plan is free when you [register your license](https://account.naninovel.com).
 
@@ -27,7 +27,7 @@ If you believe something is not working as intended, let us know on [Discord](ht
 
 Before submitting a report, please:
 
-- Check the [guide](/guide/), [command reference](/api/), and [FAQ](/faq/) for the feature or use case you're experiencing an issue with — chances are you're missing something.
+- Check the [guide](/guide/), [command reference](/api/) and [FAQ](/faq/) for the feature or use case you're experiencing an issue with — chances are you're missing something.
 - Ensure you're running the latest available Naninovel version. The most recent patches are available via the [UPM repository](/guide/getting-started#install-from-github); packages distributed on the Asset Store and download archive are often outdated.
 - If you recently upgraded from a previous Naninovel release, make sure to follow the upgrade instructions in the [release notes](/releases/).
 - Try clearing Unity's cache by deleting the `Library` folder in your project root and restarting the editor.
@@ -36,7 +36,7 @@ Before submitting a report, please:
 When reporting a bug:
 
 - Provide a clear, concise description of the issue and how to reproduce it step by step.
-- Include your Naninovel version, Unity version, target platform (Android, iOS, WebGL, etc), and operating system (Windows, macOS, or Linux).
+- Include your Naninovel version, Unity version, target platform (Android, iOS, WebGL, etc) and operating system (Windows, macOS or Linux).
 - Attach a [log file](https://docs.unity3d.com/Manual/LogFiles.html) with any relevant errors or warnings.
 
 ## Reproduction Project

@@ -47,7 +47,7 @@ By default, skip mode is only available while executing commands that have alrea
 
 ## Printer Backlog
 
-Printer backlog is a feature allowing the user to re-read previously printed text, review selected choices, replay voiced lines, and (optionally) roll back to logged messages.
+Printer backlog is a feature allowing the user to re-read previously printed text, review selected choices, replay voiced lines and (optionally) roll back to logged messages.
 
 ![](https://i.gyazo.com/cf9c11c242907e0eae7f5f1b4e2b9f38.mp4)
 
@@ -73,7 +73,7 @@ You can specify any text formatting tags or characters and use `%TEXT%` to be re
 
 ![](https://i.gyazo.com/53b5ba0f426afc847e51d843ffd6e808.png)
 
-The assigned templates are applied in order, and the `Author` property allows filtering which templates apply based on the author of the printed messages. Specify an author (character actor) ID to make the template applicable only for that specific author, `+` to make it applicable for any authored messages, `-` for unauthored messages, or `*` to apply it for any messages.
+The assigned templates are applied in order, and the `Author` property allows filtering which templates apply based on the author of the printed messages. Specify an author (character actor) ID to make the template applicable only for that specific author, `+` to make it applicable for any authored messages, `-` for unauthored messages or `*` to apply it for any messages.
 
 ## Dialogue Printer
 
@@ -169,7 +169,7 @@ When configured correctly, Naninovel will not only position the printers over th
 | `Bubble/Bottom`      | Used when the bubble is aligned at the bottom edge.         |
 | `Bubble/BottomRight` | Used when the bubble is aligned at the bottom-right corner. |
 
-You don't have to specify all of them: Naninovel will pick the one that fits best even when a precise match is missing. For example, if aligned top-left but `Bubble/TopLeft` is missing, it'll check for `Bubble/Left`, then `Bubble/Top`, and finally fall back to `Bubble`.
+You don't have to specify all of them: Naninovel will pick the one that fits best even when a precise match is missing. For example, if aligned top-left but `Bubble/TopLeft` is missing, it'll check for `Bubble/Left`, then `Bubble/Top` and finally fall back to `Bubble`.
 
 Below is an example that specifies four anchors — one per corner:
 
@@ -201,7 +201,7 @@ Use the `Create -> Naninovel -> Text Printer -> Dialogue` asset context menu to 
 
 Edit the prefab: change the font, textures, add animations, etc. For more information on the available UI building tools, consult the [Unity documentation for uGUI](https://docs.unity3d.com/Packages/com.unity.ugui@latest). There are also a couple of tutorial videos and an example project on working with uGUI in the [UI customization guide](/guide/gui#ui-customization).
 
-Expose the prefab to engine resources using the printer's manager GUI, which can be accessed with the `Naninovel -> Resources -> Text Printers` editor menu. Add a new record using the `+` (plus) button, enter an actor ID (which can differ from the prefab name), and double-click the record to open actor settings. Drag and drop the printer prefab to the `Resource` field.
+Expose the prefab to engine resources using the printer's manager GUI, which can be accessed with the `Naninovel -> Resources -> Text Printers` editor menu. Add a new record using the `+` (plus) button, enter an actor ID (which can differ from the prefab name) and double-click the record to open actor settings. Drag and drop the printer prefab to the `Resource` field.
 
 ![](https://i.gyazo.com/3f51881fa554720b7a4092dca42fd15e.mp4)
 
@@ -311,7 +311,7 @@ Unity doesn't natively support Arabic text. Consider using the `Naninovel TMPro 
 
 ## CJK Languages
 
-Chinese, Japanese, and Korean languages have many unique symbols, while only a small subset is usually required in the game. To optimize the generated font atlas size, TMPro has an option to specify the character set for which to build the SDF textures.
+Chinese, Japanese and Korean languages have many unique symbols, while only a small subset is usually required in the game. To optimize the generated font atlas size, TMPro has an option to specify the character set for which to build the SDF textures.
 
 ![](https://i.gyazo.com/cdd1dc10d872d6bcb4d44c14c61df588.png)
 
@@ -331,7 +331,7 @@ For built-in printers that support a reveal effect (all except `Chat`), you can 
 
 Follow the "Adding Custom Printers" guide above to create a custom printer based on any of the built-in ones, then find the `Revealable Text Printer Panel` component (`Floating Text Printer Panel` in bubble printers) attached to the root object of the prefab and use the `Chars Sfx` property to set the SFX to be played when a character is revealed. The actual list of the available options is based on the SFX resources you've added via the "Manage SFX Resources" button in the `Naninovel -> Configuration -> Audio` editor menu.
 
-The following illustration represents a setup where "Keystroke1" SFX will be played for all characters (its `Characters` field is left empty), "Keystroke2" for characters `.`, `,`, `!`, and `?`, and "Explosion" for the `*` character. When a character matches several elements, all their SFX are played.
+The following illustration represents a setup where "Keystroke1" SFX will be played for all characters (its `Characters` field is left empty), "Keystroke2" for the `.`, `,`, `!` and `?` characters, while "Explosion" will be played for the `*` character. When a character matches several elements, all their SFX are played.
 
 ![](https://i.gyazo.com/284a50b82ddd312bc23897889e43c2bd.png)
 

@@ -11,7 +11,7 @@ var audioConfig = Engine.GetConfiguration<AudioConfiguration>();
 ```
 
 ::: info NOTE
-The engine initialization procedure is asynchronous, so even when automatic initialization is enabled, engine APIs (eg, `GetConfiguration`) may not be available right after Unity loads a scene (eg, in `Awake`, `Start`, and `OnEnable` [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html) methods); see [accessing engine API](/guide/integration-options#accessing-engine-api) for more info.
+The engine initialization procedure is asynchronous, so even when automatic initialization is enabled, engine APIs (eg, `GetConfiguration`) may not be available right after Unity loads a scene (eg, in `Awake`, `Start` and `OnEnable` [MonoBehaviour](https://docs.unity3d.com/ScriptReference/MonoBehaviour.html) methods); see [accessing engine API](/guide/integration-options#accessing-engine-api) for more info.
 :::
 
 While `Engine.GetConfiguration` requires the engine to be initialized (it relies on a configuration provider), you can access a configuration asset directly via the default provider even when the engine is not initialized, for example:

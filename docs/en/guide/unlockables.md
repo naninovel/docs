@@ -1,6 +1,6 @@
 # Unlockables
 
-The unlockables feature allows managing items that have a persistent state of being either locked or unlocked. You can use it in a variety of ways, for example to represent slots in a CG or movie gallery, achievements, tips, and other systems where some entity should be able to become unlocked or activated when the player satisfies a condition.
+The unlockables feature allows managing items that have a persistent state of being either locked or unlocked. You can use it in a variety of ways, for example to represent slots in a CG or movie gallery, achievements, tips and other systems where some entity should be able to become unlocked or activated when the player satisfies a condition.
 
 Each unlockable item is represented by a string identifier and a boolean value indicating whether the item is unlocked. In scenario scripts, use the [@unlock] and [@lock] commands to unlock and lock an item with a specific ID, eg:
 
@@ -95,7 +95,7 @@ The system can be used to build an in-game vocabulary/encyclopedia or achievemen
 The video above demonstrates the inline managed text document format, which is not the default for tips in modern Naninovel versions; see below for the current default (multiline) format and how to switch to inline.
 :::
 
-To define available tips, create a `Tips.txt` text document inside the [managed text](/guide/managed-text) resources directory (`Resources/Naninovel/Text` by default). The format is similar to script localization documents (multiline): lines starting with `#` store a tip ID (key); the following line contains the tip record value, which can include title (required), category, and description (optional) separated by `|`, eg:
+To define available tips, create a `Tips.txt` text document inside the [managed text](/guide/managed-text) resources directory (`Resources/Naninovel/Text` by default). The format is similar to script localization documents (multiline): lines starting with `#` store a tip ID (key); the following line contains the tip record value, which can include title (required), category and description (optional) separated by `|`, eg:
 
 ```
 # Tip1ID
@@ -150,7 +150,7 @@ To associate printed text with a tip, use `<tip>` tags, eg:
 ```nani
 Lorem ipsum <tip="VN">visual novel</tip> pharetra nec.
 ```
-— given a tip record with the "VN" ID exists, the associated "visual novel" text (when printed by a TMPro printer) will be underlined, the tip record unlocked, and when the player clicks the text, the tips UI will open and show the related record.
+— given a tip record with the "VN" ID exists, the associated "visual novel" text (when printed by a TMPro printer) will be underlined and the tip record unlocked; when the player clicks the text, the tips UI will open and show the related record.
 
 To change printer-related tips handling behaviour (eg, modifying formatting of the associated text or adding custom behaviour when the tips are clicked), use the properties under the "Tips" section found in the `Revealable Text` component attached to the text game object of all the built-in TMPro text printer prefabs; see the [guide](/guide/text-printers#adding-custom-printers) on how to create custom printers to tweak them.
 

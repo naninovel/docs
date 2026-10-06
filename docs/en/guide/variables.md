@@ -1,6 +1,6 @@
 # Variables
 
-Scenario variables allow you to create user-specified values, modify them, and use them to drive conditional execution in scenario scripts and other systems. For example, variables can be used to select one of multiple scenario scripts to play (scenario routes) based on decisions the player has made. Another common use is tracking player stats (eg, scores, money, resources) based on choices made throughout the game.
+Scenario variables allow you to create user-specified values, modify them and use them to drive conditional execution in scenario scripts and other systems. For example, variables can be used to select one of multiple scenario scripts to play (scenario routes) based on decisions the player has made. Another common use is tracking player stats (eg, scores, money, resources) based on choices made throughout the game.
 
 ::: info NOTE
 Variable names may contain only letters, numbers, underscores and dots and can't start with a number, for example: `score`, `Char1Score`, `my_score`. Dots are reserved for [scopes](#variable-scopes) and [local variables](#local-variables). Names are case-insensitive, meaning you can create a variable named `myscore` and later refer to it as `MyScore` and vice versa.
@@ -75,7 +75,7 @@ By default, scenario variables are local to the current game session: when you a
 @set myMetaVariable=0 meta!
 ```
 
-Meta variables are useful for tracking information that is "meta" to individual game sessions, such as route completion, cumulative game stats, or achievements:
+Meta variables are useful for tracking information that is "meta" to individual game sessions, such as route completion, cumulative game stats or achievements:
 
 ```nani
 ; Define the variables to track 'X' and 'Y' routes completion.
@@ -113,7 +113,7 @@ Scenario variables can be grouped under a scope by prefixing the variable name w
     ...
 ```
 
-Scoped variables are useful when several systems need variables with the same short name, such as `route.complete`, `stats.complete`, or `quest.complete`.
+Scoped variables are useful when several systems need variables with the same short name, such as `route.complete`, `stats.complete` or `quest.complete`.
 
 When assigning several variables with the [@set] command, use the `scope` parameter to apply the same scope to each variable:
 
@@ -133,7 +133,7 @@ A variable name that starts with a dot is local to the scenario script file wher
     Current count: {.count}
 ```
 
-Each scenario script has its own local scope, so `.count` in one script won't conflict with `.count` in another. Use local variables for script-internal counters, temporary route state, and helper values that don't need a project-wide name.
+Each scenario script has its own local scope, so `.count` in one script won't conflict with `.count` in another. Use local variables for script-internal counters, temporary route state and helper values that don't need a project-wide name.
 
 ## Default Assignment
 
@@ -200,14 +200,14 @@ To create a meta or constant variable, specify the kind:
 vars.AddVariable(new("clearedRouteX", new(false), VariableKind.Meta));
 ```
 
-To get and set variable values, use the `GetValue` and `SetValue` methods, respectively. For example, given that a scenario string variable named `myVar` exists, the code below retrieves its value, appends "Hello!" to it, and sets the modified value back:
+To get and set variable values, use the `GetValue` and `SetValue` methods, respectively. For example, given that a scenario string variable named `myVar` exists, the code below retrieves its value, appends "Hello!" to it and sets the modified value back:
 
 ```csharp
 if (vars.GetValue("myVar") is { String: var text })
     vars.SetValue("myVar", new(text + "Hello!"));
 ```
 
-Note the use of the `.String` property when retrieving the actual value of the variable. A variable can be one of three types: `String`, `Numeric`, or `Boolean`. The type is determined when the variable is initially assigned in scenario scripts:
+Note the use of the `.String` property when retrieving the actual value of the variable. A variable can be one of three types: `String`, `Numeric` or `Boolean`. The type is determined when the variable is initially assigned in scenario scripts:
 
 ```nani
 ; Assign 'foo' variable with a 'Hello World!' string value

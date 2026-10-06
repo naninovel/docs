@@ -18,7 +18,7 @@ The following parameters are supported by most script commands:
 
 ## addChoice
 
-Adds a [choice](/guide/choices) option to a choice handler with the specified ID (or the default one).   Use instead of [@choice] to dynamically add choices and have more control over when (or whether) to halt the playback.
+Adds a [choice](/guide/choices) option to a choice handler with the specified ID (or the default one). Use instead of [@choice] to dynamically add choices and have more control over when (or whether) to halt the playback.
 
 ::: info NOTE
 When nesting commands under the choice, `goto`, `gosub` and `set` parameters are ignored.
@@ -428,7 +428,7 @@ Modifies a [character actor](/guide/characters).
 
 ## choice
 
-Adds a required [choice](/guide/choices) option, which halts further scenario playback until the player makes a selection.   Subsequent choice commands are merged, allowing multiple options to be presented at once. Use [@addChoice] instead of this command to simply add a choice, without requiring a selection before proceeding with the playback.
+Adds a required [choice](/guide/choices) option, which halts further scenario playback until the player makes a selection. Subsequent choice commands are merged, allowing multiple options to be presented at once. Use [@addChoice] instead of this command to simply add a choice, without requiring a selection before proceeding with the playback.
 
 ::: info NOTE
 When nesting commands under the choice, `goto`, `gosub` and `set` parameters are ignored.
@@ -1046,8 +1046,8 @@ Activates/disables camera look mode, where the player can offset the main camera
 | Parameter | Type | Description |
 | --- | --- | --- |
 | <span class="command-param-primary" title="Primary parameter: value should be specified after the command identifier without specifying parameter ID">enable</span> | boolean | Whether to enable or disable the camera look mode. Default: true. |
-| zone | number list | Size (X,Y in units) of a bounding box centered on the initial camera position, limiting how far the camera can be moved. Default: 5.0,3.0 |
-| speed | number list | Camera movement speed (sensitivity) by X,Y axes. Default: 1.5,1.0 |
+| zone | number list | Size (X,Y in units) of a bounding box centered on the initial camera position, limiting how far the camera can be moved. Default: 5.0,3.0. |
+| speed | number list | Camera movement speed (sensitivity) by X,Y axes. Default: 1.5,1.0. |
 | gravity | boolean | Whether to automatically move the camera to the initial position when the look input is not active (eg, mouse is not moving or analog stick is in default position). Default: false. |
 
 </div>

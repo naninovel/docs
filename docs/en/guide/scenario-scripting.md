@@ -1,11 +1,11 @@
 # Scenario Scripting
 
-Scenario scripts are text documents with a `.nani` extension that let you control what happens in scenes. Script assets are created via the `Create -> Naninovel -> Scenario Script` asset context menu. You can open and edit them using the built-in [Story Editor](/guide/editor) or an external text or code editor of your choice, such as Microsoft Word, Google Docs, or [VS Code](/guide/ide-extension).
+Scenario scripts are text documents with a `.nani` extension that let you control what happens in scenes. Script assets are created via the `Create -> Naninovel -> Scenario Script` asset context menu. You can open and edit them using the built-in [Story Editor](/guide/editor) or an external text or code editor of your choice, such as Microsoft Word, Google Docs or [VS Code](/guide/ide-extension).
 
 ![?class=when-dark](https://i.gyazo.com/9ffce86c54b5bfc5497dd50fa59a637e.png)
 ![?class=when-light](https://i.gyazo.com/6f5a92d83eb2071ac06cbb72c2d0579e.png)
 
-Each line in a scenario script represents a statement, which can be a command, generic text, navigation label, or comment. The type of statement is determined by the symbol placed at the start of the line:
+Each line in a scenario script represents a statement, which can be a command, generic text, navigation label or comment. The type of statement is determined by the symbol placed at the start of the line:
 
 | Symbol | Statement                 |
 |:------:|---------------------------|
@@ -16,12 +16,12 @@ Each line in a scenario script represents a statement, which can be a command, g
 When none of the above symbols is present at the start of the line, it is considered a [generic text](#generic-text-lines) statement.
 
 ::: tip
-It is possible to change all predefined compiler artifacts, such as symbols, command identifiers, constants, and essentially anything you have to type while authoring scripts, via the [compiler localization](/guide/localization#compiler-localization) feature.
+It is possible to change all predefined compiler artifacts, such as symbols, command identifiers, constants and essentially anything you have to type while authoring scripts, via the [compiler localization](/guide/localization#compiler-localization) feature.
 :::
 
 ## Command Lines
 
-A line is considered a command statement if it starts with the `@` symbol. A command represents a single operation that controls what happens in the scene; for example, it can be used to change a background, move a character, or load another scenario script.
+A line is considered a command statement if it starts with the `@` symbol. A command represents a single operation that controls what happens in the scene; for example, it can be used to change a background, move a character or load another scenario script.
 
 ### Command Identifier
 
@@ -94,7 +94,7 @@ Some parameters, however, are *required* for the command to execute and should a
 
 ### Standard Commands
 
-For a list of all standard commands available out of the box, including their summaries, parameters, and usage examples, see the [API reference](/api/).
+For a list of all standard commands available out of the box, including their summaries, parameters and usage examples, see the [API reference](/api/).
 
 ## Comment Lines
 
@@ -461,7 +461,7 @@ Find more about conditional expressions and available operators in the [scenario
 
 ## Nesting
 
-Commands such as [@if], [@choice], [@while], and several others support associating other commands and generic text lines with them via indentation:
+Commands such as [@if], [@choice], [@while] and several others support associating other commands and generic text lines with them via indentation:
 
 ```nani
 @if score > 10
@@ -471,7 +471,7 @@ Commands such as [@if], [@choice], [@while], and several others support associat
 
 Here, the [@bgm] command and the following generic text line are associated with the [@if] command.
 
-Commands that support this feature are known as *nested hosts*. In C#, these commands implement the `Command.INestedHost` interface. Host commands control which nested commands are executed, whether they are executed, and in what order.
+Commands that support this feature are known as *nested hosts*. In C#, these commands implement the `Command.INestedHost` interface. Host commands control which nested commands are executed, whether they are executed and in what order.
 
 Each host command has its own behaviour when executing nested commands. For example, [@if] skips nested commands if the condition is not met, while [@choice] executes nested commands only when the player selects the associated choice:
 
@@ -720,7 +720,7 @@ To reference an existing localized text inside a scenario script, prepend `&` to
 
 The title script is a special scenario script assigned in the script configuration menu. When assigned, it's automatically played after the engine is initialized or when exiting to the title menu with the [@title] command or with "Title" buttons inside various in-game menus. The title script can be used to set up the title screen scene: background, music, effects, show the Title UI, etc.
 
-The script can also be used to invoke commands when the player clicks "NEW GAME", "EXIT", or any of the save slots to load a game inside the Title UI. Below is an example of a title script.
+The script can also be used to invoke commands when the player clicks "NEW GAME", "EXIT" or any of the save slots to load a game inside the Title UI. Below is an example of a title script.
 
 ```nani
 ; Set up the title menu look.
@@ -753,7 +753,7 @@ The script can also be used to invoke commands when the player clicks "NEW GAME"
 
 ## Fountain
 
-[Fountain](https://fountain.io) is a markup syntax for writing and sharing screenplays in human-readable text. It's supported by screenwriting software such as [Highland](https://highland2.app), [Final Draft](https://www.finaldraft.com), and [Scrivener](https://www.literatureandlatte.com/scrivener).
+[Fountain](https://fountain.io) is a markup syntax for writing and sharing screenplays in human-readable text. It's supported by screenwriting software such as [Highland](https://highland2.app), [Final Draft](https://www.finaldraft.com) and [Scrivener](https://www.literatureandlatte.com/scrivener).
 
 Naninovel provides a tool to convert `.fountain` documents to `.nani` scripts so you can draft the initial scenario for your project in Fountain-compatible software and then move it into Naninovel.
 

@@ -28,7 +28,7 @@ public class CustomCompiler : ScriptCompiler
 
 When this compiler is selected and a `...` appears in the game, a one-second delay will automatically be added, even though it isn't explicitly written in the script. Note that this naive implementation is only for demonstration purposes. In a real project, you'd likely want to modify the generic line sub-compiler to ensure this only affects printed text, and/or use a regex for more precise matching.
 
-Instead of implementing `IScriptCompiler` from scratch, the example above inherits from the built-in compiler and overrides one of its methods. You can further tweak the built-in compiler by overriding sub-compilers used for comments, labels, commands, and generic text lines. For example, you can create a custom generic line sub-compiler and override it like this:
+Instead of implementing `IScriptCompiler` from scratch, the example above inherits from the built-in compiler and overrides one of its methods. You can further tweak the built-in compiler by overriding sub-compilers used for comments, labels, commands and generic text lines. For example, you can create a custom generic line sub-compiler and override it like this:
 
 ```cs
 using Naninovel;

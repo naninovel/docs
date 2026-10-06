@@ -30,7 +30,7 @@ That works because the assets are assigned a Naninovel resource address:
 
 ## Perspective Scene
 
-This sample shows a generic background filled with multiple animated environment sprites, camera rendering in perspective mode, and a bokeh (depth-of-field) effect. The background is stored in the `Content/Backgrounds/Perspective` directory.
+This sample shows a generic background filled with multiple animated environment sprites, camera rendering in perspective mode and a bokeh (depth-of-field) effect. The background is stored in the `Content/Backgrounds/Perspective` directory.
 
 ![](https://i.gyazo.com/610d2cafe5fbe42aba7adb9ac71720d1.mp4)
 
@@ -70,7 +70,7 @@ While an inventory system is out of scope for visual novels, we received many re
 The inventory is not a standalone product or part of Naninovel. Use it to learn how to extend and customize the engine, but don't expect it to be a production-ready solution for inventory systems. If you're looking for one, [check the Asset Store](https://assetstore.unity.com/?q=inventory) or create a custom one from scratch.
 :::
 
-This example project shows how to make a custom inventory UI with a grid layout, pagination, and a drag-and-drop window; add a custom engine service and related configuration menu; add input bindings; use state outsourcing; and author custom scenario commands and expression queries.
+This example project shows how to make a custom inventory UI with a grid layout, pagination and a drag-and-drop window; add a custom engine service and related configuration menu; add input bindings; use state outsourcing; and author custom scenario commands and expression queries.
 
 ![](https://i.gyazo.com/86c577f007daf4ec5d79c0e91db7bc10.mp4)
 
@@ -86,7 +86,7 @@ If you have many items and it's inconvenient to assign them via the editor menus
 
 It's also possible to use the [Addressable Asset System](/guide/resource-providers#addressable) to manually expose the resources. To expose an asset, assign an address equal to the path you'd use via the method described above, but omit the `Resources/` part. For example, to expose a `FullPlate.prefab` item, assign the prefab the address `Naninovel/Inventory/FullPlate`. Be aware that while in the editor, a special "Editor" resource provider is always used first; the addressable provider is only tried for the resources that are not assigned via the editor menus.
 
-Each item has a `Stack Count Limit` property to limit how many items of this type can be stacked in a single inventory slot, and an `On Item Used` Unity event, which is invoked when the item is used (either via the `@useItem` command or when the user clicks on the item in the inventory). Below is an example of how to set up the event with a `Play Script` component to remove the item once it is used, spawn a glitch special effect, and print a text message.
+Each item has a `Stack Count Limit` property to limit how many items of this type can be stacked in a single inventory slot, and an `On Item Used` Unity event, which is invoked when the item is used (either via the `@useItem` command or when the user clicks on the item in the inventory). Below is an example of how to set up the event with a `Play Script` component to remove the item once it is used, spawn a glitch special effect and print a text message.
 
 ![](https://i.gyazo.com/010a9ba35db607ba46d78eda3513f678.png)
 
@@ -110,13 +110,13 @@ Select an action.[>]
 # Adventure
 
 @if itemExist("Sword")
-	@set monstersSlayed={ itemExist("Armor") ? random(3,5) : 2 }
-	@addItem Food amount:{monstersSlayed}
-	You've encountered and slayed {monstersSlayed} monsters with your sword.
-	@goto #Start
+    @set monstersSlayed={ itemExist("Armor") ? random(3,5) : 2 }
+    @addItem Food amount:{monstersSlayed}
+    You've encountered and slayed {monstersSlayed} monsters with your sword.
+    @goto #Start
 @else
-	But you don't have a weapon! You've been beaten by the monsters.
-	@goto #Start
+    But you don't have a weapon! You've been beaten by the monsters.
+    @goto #Start
 ```
 
 ## Live2D
@@ -285,7 +285,7 @@ Add the `Elringus.Naninovel.Runtime` library to the `Node Library` list found in
 
 ![](https://i.gyazo.com/38afd2ea477fcf0921114e3847de6c85.png)
 
-Visual Scripting doesn't automatically expose all available types from libraries, so add the required Naninovel types to the `Type Options` list in the same settings menu. In the example below we added `Engine`, `Script Player Interface`, and `Script Player Extensions`, but you'll probably need more types, such as the other [engine service interfaces](/guide/engine-services), configurations, etc.
+Visual Scripting doesn't automatically expose all available types from libraries, so add the required Naninovel types to the `Type Options` list in the same settings menu. In the example below we added `Engine`, `Script Player Interface` and `Script Player Extensions`, but you'll probably need more types, such as the other [engine service interfaces](/guide/engine-services), configurations, etc.
 
 ![](https://i.gyazo.com/9afdeb12c0ff63ce942d04b21f737217.png)
 

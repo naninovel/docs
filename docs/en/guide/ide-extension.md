@@ -1,6 +1,6 @@
 # IDE Extension
 
-Code editor features such as syntax highlighting, error checking, auto-completion, and interactive documentation can significantly improve productivity. Naninovel has an official extension for [VS Code](https://code.visualstudio.com), offering rich authoring tools for working with [scenario scripts](/guide/scenario-scripting).
+Code editor features such as syntax highlighting, error checking, auto-completion and interactive documentation can significantly improve productivity. Naninovel has an official extension for [VS Code](https://code.visualstudio.com), offering rich authoring tools for working with [scenario scripts](/guide/scenario-scripting).
 
 ![?class=when-dark](https://i.gyazo.com/9ffce86c54b5bfc5497dd50fa59a637e.png)
 ![?class=when-light](https://i.gyazo.com/6f5a92d83eb2071ac06cbb72c2d0579e.png)
@@ -23,7 +23,7 @@ The extension in the VS Code registry is compatible with the current stable Nani
 1. Make sure [Naninovel is installed](/guide/getting-started#install-naninovel) in the Unity project.
 2. Open the `Assets` folder of the Unity project in VS Code.
 
-When the extension detects a `.nani` file in the current workspace, it will activate the LSP service. The service handles tasks such as script diagnostics, auto-completion, and indicating which script line is currently playing.
+When the extension detects a `.nani` file in the current workspace, it will activate the LSP service. The service handles tasks such as script diagnostics, auto-completion and indicating which script line is currently playing.
 
 ![?width=260](https://i.gyazo.com/5eae1dda34e4b36474333227de62d1ee.png)
 
@@ -37,7 +37,7 @@ Restart VS Code after moving the folder for the changes to take effect.
 
 ## VS Code Settings
 
-Below are the recommended settings for VS Code to ignore Unity's auto-generated meta files, enable word wrap, and disable word-based suggestions, occurrence highlighting, and bracket pair colorization:
+Below are the recommended settings for VS Code to ignore Unity's auto-generated meta files, enable word wrap and disable word-based suggestions, occurrence highlighting and bracket pair colorization:
 
 ```json
 {

@@ -1,6 +1,6 @@
 # Integration Options
 
-While Naninovel is focused on traditional visual novel games and works best as a template for one, it's possible to integrate the engine with existing projects. If you're making a 3D adventure game, RPG, or a game of any other genre, you can still use Naninovel as a drop-in dialogue system.
+While Naninovel is focused on traditional visual novel games and works best as a template for one, it's possible to integrate the engine with existing projects. If you're making a 3D adventure game, RPG or a game of any other genre, you can still use Naninovel as a drop-in dialogue system.
 
 ![](https://i.gyazo.com/b1b6042db4a91b3a8cee74236b33c17c.mp4)
 
@@ -41,7 +41,7 @@ To destroy all the engine services and completely remove Naninovel from memory, 
 
 ## Accessing Engine API
 
-The engine initialization procedure is asynchronous, so even when automatic initialization is enabled, engine APIs may not be available right after Unity loads a scene (eg, in `Awake`, `Start`, and `OnEnable` MonoBehaviour methods).
+The engine initialization procedure is asynchronous, so even when automatic initialization is enabled, engine APIs may not be available right after Unity loads a scene (eg, in `Awake`, `Start` and `OnEnable` MonoBehaviour methods).
 
 To check whether the engine is currently available, use the `Engine.Initialized` property; the `Engine.OnInitializationFinished` event allows executing actions after the initialization procedure is finished, eg:
 
@@ -66,7 +66,7 @@ public class MyScript : MonoBehaviour
 
 ## Playing Scenario Scripts
 
-To preload and play a scenario script with a given path, use the `LoadAndPlay(scriptPath)` method on the `MainTrack` of the `IScriptPlayer` service. To get an engine service, use the `Engine.GetService<TService>()` static method, where `TService` is the type (interface) of the service to retrieve. For example, the following gets a script player service, preloads, and plays a script named `Script001`:
+To preload and play a scenario script with a given path, use the `LoadAndPlay(scriptPath)` method on the `MainTrack` of the `IScriptPlayer` service. To get an engine service, use the `Engine.GetService<TService>()` static method, where `TService` is the type (interface) of the service to retrieve. For example, the following gets a script player service, preloads and plays a script named `Script001`:
 
 ```csharp
 var player = Engine.GetService<IScriptPlayer>();
@@ -106,7 +106,7 @@ Built-in components, such as `Dialogue Events`, use the same attribute: drag and
 
 ## Disable Title Menu
 
-After initialization, the engine plays the script assigned to `Title Script` in the scripts configuration menu (`Title` by default), and the default [title script](/guide/scenario-scripting#title-script) shows the built-in title menu with the `@showUI TitleUI` command. If you have your own title menu, unassign the title script or remove the command from it. You can also modify, replace, or completely remove the built-in title menu using the [UI customization feature](/guide/gui#ui-customization). The menu is listed under `TitleUI` in the UI resources.
+After initialization, the engine plays the script assigned to `Title Script` in the scripts configuration menu (`Title` by default), and the default [title script](/guide/scenario-scripting#title-script) shows the built-in title menu with the `@showUI TitleUI` command. If you have your own title menu, unassign the title script or remove the command from it. You can also modify, replace or completely remove the built-in title menu using the [UI customization feature](/guide/gui#ui-customization). The menu is listed under `TitleUI` in the UI resources.
 
 ## Engine Objects Layer
 
@@ -145,7 +145,7 @@ In scenario scripts, use the [@enterDialogue] and [@exitDialogue] commands:
 @exitDialogue
 ```
 
-The same API is available without C# via the `Dialogue Events` component: invoke its `EnterDialogue` and `ExitDialogue` methods from Unity events, assign `Script` and `Label` to play a scenario script on enter, and use the `Dialogue Entered` and `Dialogue Exited` events to react to the switch. To add a preconfigured dialogue trigger, right-click a game object in the scene and select `Naninovel -> Dialogue`; the created object pairs `Dialogue Events` with a `Trigger Events` component, which enters the dialogue when the configured constraints (collision, raycast, pointer hover, input) are met. See the [getting started guide](/guide/getting-started#dialogue-mode) for an example.
+The same API is available without C# via the `Dialogue Events` component: invoke its `EnterDialogue` and `ExitDialogue` methods from Unity events, assign `Script` and `Label` to play a scenario script on enter and use the `Dialogue Entered` and `Dialogue Exited` events to react to the switch. To add a preconfigured dialogue trigger, right-click a game object in the scene and select `Naninovel -> Dialogue`; the created object pairs `Dialogue Events` with a `Trigger Events` component, which enters the dialogue when the configured constraints (collision, raycast, pointer hover, input) are met. See the [getting started guide](/guide/getting-started#dialogue-mode) for an example.
 
 In the [integration sample](/guide/samples#dialogue-mode), each NPC has such a `Dialogue` object with a script and a label assigned; the trigger activates when the player character enters its collider and performs the assigned input. A `Dialogue Events` component under the player object blocks the character controls while the dialogue mode is active, and a `Camera Events` component stacks the Naninovel camera over the scene camera with the `SetupBaseCamera` method, so the cameras don't have to be switched. The dialogue scripts end with [@exitDialogue]; the novel mode is a regular scenario script navigated to with [@goto], which ends with the same command.
 

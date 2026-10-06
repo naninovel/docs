@@ -13,7 +13,7 @@ Below is a demo showing how resources are managed under the Conservative policy:
 ::: code-group
 
 ```nani [Script1.nani]
-Resources from Script1, Script2, and ScriptGosub are loaded here.
+Resources from Script1, Script2 and ScriptGosub are loaded here.
 Script2 is loaded because it's navigated to with "@goto hold!".
 ScriptGosub is loaded because "@gosub" scripts are always preloaded.
 
@@ -29,7 +29,7 @@ Loading screen won't show because we're using "hold!".
 ```
 
 ```nani [Script2.nani]
-Resources from Script1, Script2, and ScriptGosub are all still loaded,
+Resources from Script1, Script2 and ScriptGosub are all still loaded,
 because this script was navigated to with "@goto hold!",
 hence it's considered a dependency of Script1.
 
@@ -86,7 +86,7 @@ Below is a demo of a similar set of scripts, now using the Optimistic policy:
 ::: code-group
 
 ```nani [Script1.nani]
-Resources from Script1, Script2, Script3, and ScriptGosub are all loaded here.
+Resources from Script1, Script2, Script3 and ScriptGosub are all loaded here.
 Script4 is not loaded because it's navigated to with "@goto release!".
 
 ...
@@ -147,7 +147,7 @@ that navigates to the gosub and are not unloaded until that script unloads.
 
 ## Lazy Policy
 
-Other policies assume the game is designed with some kind of loading screens in mind — masked as scene, act, or day changes — where Naninovel has a chance to perform CPU-intensive resource loading operations in bulk, ensuring actual gameplay remains smooth.
+Other policies assume the game is designed with some kind of loading screens in mind — masked as scene, act or day changes — where Naninovel has a chance to perform CPU-intensive resource loading operations in bulk, ensuring actual gameplay remains smooth.
 
 However, some games may not have a compatible structure or may not require that kind of optimization. When "Lazy" mode is selected, Naninovel will never show loading screens or attempt to preload resources before playing a script. Instead, it loads the required resources "on the fly" as the script plays. It also preloads a set number of commands ahead of the currently played one to minimize delays during gameplay. The number of preloaded commands can be adjusted with the `Lazy Buffer` setting found in the resource provider configuration.
 
@@ -177,7 +177,7 @@ The "Town" background is now unloaded, as it's no longer visible.
 
 :::
 
-Lazy mode has an important caveat: loading assets — especially "heavy" ones like large background textures, HD character models, or video files — may cause noticeable stutters during gameplay. While Naninovel attempts to perform these operations off the main thread whenever possible, some low-power devices or platforms (notably, web) may still experience noticeable stutter, especially during skip (fast-forward) and rollback. Be sure to test the game on your minimum supported hardware specifications before deciding whether the Lazy policy is acceptable.
+Lazy mode has an important caveat: loading assets — especially "heavy" ones like large background textures, HD character models or video files — may cause noticeable stutters during gameplay. While Naninovel attempts to perform these operations off the main thread whenever possible, some low-power devices or platforms (notably, web) may still experience noticeable stutter, especially during skip (fast-forward) and rollback. Be sure to test the game on your minimum supported hardware specifications before deciding whether the Lazy policy is acceptable.
 
 ## Choosing a Policy
 

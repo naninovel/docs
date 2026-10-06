@@ -234,7 +234,7 @@ To localize both custom and built-in UIs, use the [managed text provider](/guide
 
 ## Fonts
 
-To display text in some languages, you'll need a compatible font. `Inter` is used by default and supports Latin, Cyrillic, and Greek characters in Unicode 7.0.
+To display text in some languages, you'll need a compatible font. `Inter` is used by default and supports Latin, Cyrillic and Greek characters in Unicode 7.0.
 
 ::: tip
 If you plan to support many languages with a single font, consider [Noto fonts](https://www.google.com/get/noto/).
@@ -242,7 +242,7 @@ If you plan to support many languages with a single font, consider [Noto fonts](
 
 Right-to-left (RTL) languages (Arabic, Hebrew, Persian, etc) are supported by the TMPro printers but require additional setup; see the [guide](/guide/text-printers#right-to-left-arabic-text) for details.
 
-When publishing for CJK languages (Chinese, Japanese, and Korean), consider using the Character Extractor utility to optimize TMPro font atlas size. See the [guide](/guide/text-printers#cjk-languages).
+When publishing for CJK languages (Chinese, Japanese and Korean), consider using the Character Extractor utility to optimize TMPro font atlas size. See the [guide](/guide/text-printers#cjk-languages).
 
 To associate a font with a specific locale, use the `Apply On Locale` property of font options found in the UI configuration. When assigned, the font will be applied automatically whenever that locale is selected in the game settings.
 

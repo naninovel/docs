@@ -193,7 +193,7 @@ Add the `Play Script` component to a game object and either select an existing s
 
 ![](https://i.gyazo.com/5f56fbddc090919cc71f68e82bb1713f.png)
 
-You can also reference Unity event arguments in the script text using the `{arg}` expression. Supported argument types are: `string`, `int`, `float`, and `bool`. The example below demonstrates executing a camera shake and playing a sound effect when a boolean Unity event is `true`, and playing background music when it's `false`.
+You can also reference Unity event arguments in the script text using the `{arg}` expression. Supported argument types are: `string`, `int`, `float` and `bool`. The example below demonstrates executing a camera shake and playing a sound effect when a boolean Unity event is `true`, and playing background music when it's `false`.
 
 ![](https://i.gyazo.com/78e9fa27d6561f8f8aced76bbeb4b542.png)
 

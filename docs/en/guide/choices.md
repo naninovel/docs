@@ -60,7 +60,7 @@ Any level of nesting is supported:
 ```
 
 ::: info NOTE
-A nested choice callback is not compatible with the `goto`, `gosub`, and `set` parameters. Instead of specifying them as parameters, use the appropriate commands inside the nested block: [@goto] instead of the `goto` parameter, [@set] instead of the `set` parameter, and so on.
+A nested choice callback is not compatible with the `goto`, `gosub` and `set` parameters. Instead of specifying them as parameters, use the appropriate commands inside the nested block: [@goto] instead of the `goto` parameter, [@set] instead of the `set` parameter, and so on.
 :::
 
 ## Choice Button

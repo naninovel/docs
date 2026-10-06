@@ -111,7 +111,7 @@ Naninovel uses an [audio mixer](https://docs.unity3d.com/Manual/AudioMixer.html)
 
 ![](https://i.gyazo.com/6271d59ee9ac63a0a218316bd3bc78a8.png)
 
-It's possible to assign a custom mixer asset, change groups used for each audio channel, and change volume control handles (exposed parameter names) in the audio configuration menu. When no custom mixer asset is assigned, a default one will be used.
+It's possible to assign a custom mixer asset, change groups used for each audio channel and change volume control handles (exposed parameter names) in the audio configuration menu. When no custom mixer asset is assigned, a default one will be used.
 
 ![](https://i.gyazo.com/ef2db68edb871608d1718117a37e9486.png)
 
