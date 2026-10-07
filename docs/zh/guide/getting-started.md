@@ -4,23 +4,23 @@
 
 Naninovel 是 [Unity 游戏引擎](https://unity.com) 的扩展，因此强烈建议在开始使用 Naninovel 之前至少 [学习使用 Unity 的基础知识](https://learn.unity.com)。
 
-如果您不打算在 Naninovel 之外实现任何自定义游戏玩法，则可以忽略场景相关的信息，因为 Naninovel 会自动处理它。
+如果您不打算在 Naninovel 之外实现自定义游戏玩法，可以跳过与场景相关的说明；场景会由 Naninovel 自动处理。
 
 ## 视频指南
 
-如果您更喜欢视频教程，这里有一个涵盖本快速上手指南内容的视频。
+如果您更喜欢通过视频学习，可以观看下面的教程，内容与本快速上手指南相对应。
 
 ![](https://www.youtube.com/watch?v=N1_CwR5xblU)
 
 ## 创建 Unity 项目
 
-创建项目时，我们建议选择基于**通用渲染管线**（URP）的 Universal 2D 或 Universal 3D 模板。旧版内置渲染管线（BiRP）也可以工作，但 Unity 不再积极维护它，并且预计将被弃用。不建议使用高清渲染管线（HDRP）——它通常可以工作，但某些渲染功能可能无法开箱即用。
+创建项目时，建议选择基于**通用渲染管线**（URP）的 Universal 2D 或 Universal 3D 模板。旧版内置渲染管线（BiRP）也能使用，但 Unity 已不再积极维护，预计今后会弃用。不建议使用高清渲染管线（HDRP）：虽然通常能运行，但部分渲染功能可能无法直接兼容。
 
 选择 2D 还是 3D 取决于您正在构建的游戏风格。对于大多数标准视觉小说，我们建议选择 2D，这样图像将默认作为精灵资产导入，您无需手动调整导入设置。您可以稍后在 [项目设置](https://docs.unity3d.com/Manual/2DAnd3DModeSettings.html) 中更改编辑器行为模式。
 
 ![](https://i.gyazo.com/b1b89ad23fbeffff3d03cf7dcf25cab1.png)
 
-创建新项目后，Unity 会自动包含一个带有“Main Camera”的示例场景，根据模板的不同，还会包含各种其他游戏对象。
+创建新项目后，Unity 会自动添加一个示例场景，其中包含“Main Camera”，以及模板自带的其他游戏对象；具体包含哪些对象取决于所选模板。
 
 ![?width=271](https://i.gyazo.com/5bd6471a53ffbf106099373395484ef6.png)
 
@@ -62,7 +62,7 @@ com.unity.ugui
 请注意，`Assets/NaninovelData` 是一个自动生成的文件夹。最初创建后，您可以将其重命名或移动到“Assets”下的任何文件夹（Naninovel 仍然能够找到它）。如果您这样做，上述忽略路径必须相应更新。
 
 ::: tip EXAMPLE
-请参阅我们的 [示例项目](/zh/guide/samples) 中的 [.gitignore](https://github.com/naninovel/engine/blob/main/unity/samples/.gitignore) 以获取 Git 忽略配置文件的示例。在该示例中，“NaninovelData”文件夹重命名为“Naninovel”并移动到 `Assets/Settings` 下以便更好地组织——您可以在自己的项目中类似地移动文件夹。
+Git 忽略配置可以参考 [示例项目](/zh/guide/samples) 中的 [.gitignore](https://github.com/naninovel/engine/blob/main/unity/samples/.gitignore)。该项目为了便于整理，将“NaninovelData”文件夹重命名为“Naninovel”，并移到 `Assets/Settings` 下。您也可以在自己的项目中按同样的方式移动这个文件夹。
 :::
 
 ## 安装 Naninovel
@@ -71,11 +71,11 @@ com.unity.ugui
 
 Naninovel 通过 3 个发布流分发：**preview**（预览版）、**stable**（稳定版）和 **final**（最终版）。
 
-preview 流是最前沿的：它更新最频繁，并拥有所有最新功能。但是，它偶尔可能会出现破坏性更改和错误。当您处于开发初期或需要其他版本中不可用的特定功能时，请选择此流。
+preview 流紧跟最新开发进展，更新最频繁，包含所有最新功能。不过，它偶尔也会引入破坏性更改或错误。如果项目还处于开发初期，或需要其他版本尚未提供的特定功能，请选择此流。
 
 stable 流是折衷方案：它只接收错误修复，没有最新功能，但也没有任何破坏性更改。在大多数情况下建议使用。
 
-final 流虽然是经过最充分测试且最稳定的，但也是最过时的，并且不在 [技术支持](/zh/support/) 范围内。仅当项目已经发布并且无法升级时，才停留在最终版本上。
+final 流经过的测试最充分，稳定性最高，但版本也最旧，且不在 [技术支持](/zh/support/) 范围内。仅在项目已发布且无法升级时，才应继续使用最终版本。
 
 ![](https://i.gyazo.com/2462242c14c96a0eae9ca99212c340c4.png)
 
@@ -103,7 +103,7 @@ https://github.com/naninovel/upm.git#1.22
 
 ![?width=300](https://i.gyazo.com/c7c453b8b34c94809303a9dc42e5330d.png)
 
-当您希望通过 preview 流始终使用最前沿的版本，或希望在 stable 流的补丁推送到 GitHub 存储库后立即获取它们时，这种安装方法特别方便。只需单击 Package Manager 窗口中的“Update”即可将您的安装升级到最新提交。
+如果您希望持续使用 preview 流的最新版本，或在 stable 流的补丁推送到 GitHub 存储库后立即获取，这种安装方式会很方便。在 Package Manager 窗口中单击“Update”，即可将已安装的包更新到最新提交。
 
 ![?width=368](https://i.gyazo.com/c1b86f88105a76e33cba961a9b71c8fb.png)
 
@@ -113,7 +113,7 @@ https://github.com/naninovel/upm.git#1.22
 
 ### 从归档安装
 
-另一种安装 Naninovel 的方法是从我们的 [下载归档](https://account.naninovel.com/download) 下载包。当您需要不再在 Asset Store 上分发的特定最终版本时，此方法很有用。归档包含从版本 1.14 到当前稳定版本的所有旧版本的最终版本。
+您也可以从 [下载归档](https://account.naninovel.com/download) 获取安装包。如果需要某个已不再通过 Asset Store 分发的最终版本，可以使用这种方式。归档收录了各个旧版本的最终发布包，覆盖从 1.14 到当前稳定版本的范围。
 
 只需将下载的 `.unitypackage` 文件拖放到 Unity 编辑器窗口中，然后单击“Import”即可安装该包。有关安装本地包的更多信息，请参阅 [Unity 文档](https://docs.unity3d.com/Manual/AssetPackagesImport.html)。
 
@@ -121,9 +121,9 @@ https://github.com/naninovel/upm.git#1.22
 
 在深入了解 Naninovel 之前，让我们快速了解一下它的一些核心概念。
 
-其中最基本的一个概念是 *Actor*（演出元素），在指南的其余部分中，您将不断遇到它。Actor 是一个由标识符（ID）、外观、在空间（场景）中的位置和其他一些参数描述的实体。
+其中一个基本概念是 *Actor*（演出元素），后面的指南会反复提到它。Actor 是一种实体，由标识符（ID）、外观、空间（场景）中的位置等参数来描述。
 
-Actor 是一个抽象实体，不能直接存在；实际使用的是带有各种附加参数的专用版本：
+Actor 是一个抽象概念，实际存在的是以下几种具体类型，它们各自带有不同的附加参数：
 
 | Actor 类型 | 附加参数 | 描述 |
 |--------------------------------------|----------------------------------|------------------------------------------------------------------------------|
@@ -132,21 +132,21 @@ Actor 是一个抽象实体，不能直接存在；实际使用的是带有各�
 | [文本打印机](/zh/guide/text-printers) | 文本、作者 ID、显示进度 | 随着时间的推移逐渐显示（打印）文本消息。 |
 | [选项处理程序](/zh/guide/choices) | 选项 | 允许玩家选择可用的选项之一。 |
 
-设想一个典型的视觉小说画面：一个角色显示在背景之上。用 Naninovel 的术语来说，它表示如下：
+设想一个典型的视觉小说画面：背景前方显示着一个角色。用 Naninovel 的术语来描述，就是下面这样：
 
 ![](https://i.gyazo.com/ede8072c68393e915286d18811a8dd4f.png)
 
-现在，假设您希望角色“Kohaku”表现出不同的情绪或姿势。您有该角色的几个纹理（图像），每个纹理描绘不同的状态。在 Naninovel 中，此类纹理称为 Actor 的*外观*（appearance）。为了实现这一点，我们需要更改该角色 Actor 的外观。同样，要让“MainBackground”显示其他内容，我们需要更改该背景 Actor 的外观。
+假设您想改变角色“Kohaku”的情绪或姿势，并且已经准备了多张角色纹理（图像），分别描绘不同的状态。在 Naninovel 中，这些纹理称为 Actor 的*外观*（appearance）。要切换角色的显示状态，就需要更改该角色 Actor 的外观。同样，要让“MainBackground”显示其他内容，也需要更改该背景 Actor 的外观。
 
 Actor 及其参数通过 [剧本脚本](/zh/guide/scenario-scripting) 中指定的命令来控制。
 
 另一个广泛使用的概念是 [用户界面](/zh/guide/gui)（UI）。玩家使用 UI 与 Actor 和游戏的其余部分进行交互。这包括各种菜单（标题、存档/读档、设置等）和控制面板（切换自动播放模式、跳过文本等）。默认情况下，UI 元素显示在 Actor 之上。
 
-文本打印机和选项处理程序既被视为 Actor 也被视为 UI 元素，这意味着它们具备 Actor 的特性，可以通过剧本脚本进行控制，同时也供玩家用来与游戏进行交互。
+文本打印机和选项处理程序既是 Actor，也是 UI 元素。它们具备 Actor 的特性，可以通过剧本脚本控制，同时也是玩家与游戏交互的界面。
 
 ![](https://i.gyazo.com/0c8bd29820c6f2165af6adc5736713bd.png)
 
-如果您熟悉编程，请查看 [引擎架构](/zh/guide/engine-architecture) 以了解它是如何从软件工程的角度设计的。
+如果您熟悉编程，可以阅读 [引擎架构](/zh/guide/engine-architecture)，从软件工程的角度了解 Naninovel 的设计。
 
 ## 第一步
 
@@ -158,33 +158,33 @@ Unity 编辑器将进入播放模式并显示默认标题 UI。同时，`Title` 
 
 ![](https://i.gyazo.com/84c64bf7fb4217dd149260fd0008b7f4.png)
 
-随意探索故事编辑器并编辑脚本——更改会实时应用。阅读示例脚本中的注释，了解附近命令的简要说明。单击标题 UI 上的“NEW GAME”进入 `Entry` 脚本，其中包含一些其他示例。
+不妨试用故事编辑器的各项功能，并尝试编辑脚本，更改会实时应用。示例脚本中的注释简要说明了旁边的命令，可以一并阅读。在标题 UI 中单击“NEW GAME”，即可进入包含更多示例的 `Entry` 脚本。
 
 ## 添加剧本脚本
 
-现在您熟悉了大致流程，让我们深入了解如何向游戏添加实际内容。在 Naninovel 中驱动故事的核心资产称为*剧本脚本*（scenario script）。
+熟悉基本流程后，接下来就开始为游戏添加实际内容。在 Naninovel 中，驱动故事的核心资产称为*剧本脚本*（scenario script）。
 
-我们已经有两个自动生成的脚本，但让我们学习如何添加新脚本。虽然您可以使用 [故事编辑器](/zh/guide/editor) 来管理脚本，但让我们在开始时专注于标准的 Unity 工作流程；您可以在其专用指南中了解故事编辑器特定的工作流程。
+目前已有两个自动生成的脚本，下面来学习如何添加新脚本。[故事编辑器](/zh/guide/editor) 也能管理脚本，不过入门阶段我们先按 Unity 的标准流程操作；故事编辑器的具体操作方式可以参阅它的专用指南。
 
-首先，单击“Stop”按钮退出播放模式。根据经验，任何项目级修改——例如添加或删除资产以及调整项目设置——都应在 Unity 的播放模式之外执行。
+首先，单击“Stop”按钮退出播放模式。一般来说，添加或删除资产、调整项目设置等所有项目级修改，都应在退出 Unity 播放模式后进行。
 
-找到与示例脚本一起自动生成的 `Assets/Scenario` 文件夹——这就是*剧本根目录*（scenario root）——存储所有 Naninovel 剧本脚本的文件夹。在剧本文件夹下，右键单击并选择 `Create -> Naninovel -> Scenario Script` 以创建一个新的 `Test.nani` 剧本脚本。
+打开与示例脚本一起自动生成的 `Assets/Scenario` 文件夹。这就是*剧本根目录*（scenario root），所有 Naninovel 剧本脚本都存放在这里。在该文件夹内右键单击，选择 `Create -> Naninovel -> Scenario Script`，创建新的剧本脚本 `Test.nani`。
 
 ![](https://i.gyazo.com/52ac23ba6b66c176bcbe67ef852310fb.png)
 
 ::: info NOTE
-您可以将剧本脚本（和其他资产）存储在任何项目文件夹中，并随心所欲地组织它们；命名也完全取决于您。但是，请注意，所有剧本脚本必须存储在单个根目录中。为了便于组织，您可以创建任意数量的嵌套文件夹，只要所有子文件夹最终都位于 Unity 项目中的同一个根目录下即可。
+剧本脚本（以及其他资产）可以放在项目中的任意文件夹，整理方式和命名也由您决定。不过，所有剧本脚本必须归于 Unity 项目内同一个根目录。只要满足这一点，就可以在该目录下按需创建任意数量、任意层级的子文件夹来整理脚本。
 
 ::: warning
 Unity 以特殊方式处理名为“Resources”的文件夹：存储在此类文件夹下的资产被强制包含在构建中，这可能会导致 [性能问题](https://docs.unity3d.com/Manual/LoadingResourcesatRuntime)。最重要的是，除非指南特别要求，否则切勿将任何内容存储在 `Resources/Naninovel` 文件夹下，因为这可能会导致各种冲突和未定义的行为。
 :::
 
-剧本脚本是带有 `.nani` 扩展名的文本文档，您可以在其中使用 [NaniScript](/zh/guide/scenario-scripting)——Naninovel 的编剧语言——控制场景中发生的事情。您可以使用您选择的任何文本或代码编辑器（例如 Microsoft Word 或 [VS Code](/zh/guide/ide-extension)）打开和编辑脚本文件。
+剧本脚本是扩展名为 `.nani` 的文本文件。您可以在其中使用 Naninovel 的编剧语言 [NaniScript](/zh/guide/scenario-scripting) 来控制场景中发生的事情。脚本文件可以用任意文本或代码编辑器打开和编辑，例如 Microsoft Word 或 [VS Code](/zh/guide/ide-extension)。
 
 ![?class=when-dark](https://i.gyazo.com/9ffce86c54b5bfc5497dd50fa59a637e.png)
 ![?class=when-light](https://i.gyazo.com/6f5a92d83eb2071ac06cbb72c2d0579e.png)
 
-当您使用 [故事编辑器](/zh/guide/editor) 时，它会将相同的 NaniScript 输出到剧本文件，因此您可以将其与代码编辑器互换使用。在本指南的其余部分，我们展示脚本片段时将假设您使用的是代码编辑器，但您可以在故事编辑器中执行相同的步骤：在行类型下拉列表中开始输入 `@`，它将显示匹配的命令。
+[故事编辑器](/zh/guide/editor) 写入剧本文件的同样是 NaniScript，因此可以与代码编辑器交替使用。下文会以代码编辑器为例展示脚本片段，但在故事编辑器中也能完成相同的步骤：在行类型下拉列表中从 `@` 开始输入，即可看到匹配的命令。
 
 ![?width=399](https://i.gyazo.com/0f5ee5d28de74570bdf25197e1f5444e.png)
 
@@ -202,7 +202,7 @@ Hello World!
 @goto Test
 ```
 
-— 此命令会将播放导航到我们新的 `Test.nani` 脚本，而不是退出到标题菜单。
+— 此命令会转到新建的 `Test.nani` 脚本继续播放，而不是返回标题菜单。
 
 进入播放模式，开始新游戏，并一直玩到打印出“Hello World!”。尝试在游戏进行时编辑脚本——更改将立即应用。
 
@@ -212,11 +212,11 @@ Hello World!
 
 ## 添加角色
 
-使用添加剧本脚本时所用的同一菜单，但这次选择 `Create -> Naninovel -> Actor Record -> Character`。这将创建一个*角色记录*（character record）资产，其中包含新角色的 Actor 配置。让我们给记录资产起个名字——`K`。为什么是 `K`？因为该标识符将在剧本脚本中反复使用，而您不会想每次都输入全名。实际名称——“Kohaku”——可以在记录资产的 `Display Name` 下设置；这是将在游戏中向玩家显示的名称。
+打开刚才添加剧本脚本时使用的菜单，这次选择 `Create -> Naninovel -> Actor Record -> Character`，创建一个保存新角色 Actor 配置的*角色记录*（character record）资产。将这个记录资产命名为 `K`。使用 `K` 这样的简短标识符，是因为剧本脚本中会反复用到它，可以省去每次输入全名的麻烦。实际向玩家显示的名称“Kohaku”，则可以在记录资产的 `Display Name` 中设置。
 
 ![?width=574](https://i.gyazo.com/f9da79b98e2cd3acf9151945330f961e.png)
 
-当然，您可以为您的角色使用任何标识符和显示名称；只需确保 ID 不包含空格或特殊字符。另一方面，显示名称可以包含空格和任何特殊字符。
+角色的标识符和显示名称都可以自行选择。需要注意的是，ID 不能包含空白字符或特殊字符，而显示名称可以包含空白字符和任意特殊字符。
 
 ::: tip
 您会在我们的配置菜单中找到许多选项。与其他 Unity 菜单一样，大多数控件都有相关的工具提示来解释它们的作用。要查看工具提示，请将鼠标悬停在控件上并稍等片刻——说明将出现在光标下方。
@@ -226,7 +226,7 @@ Hello World!
 
 ![?width=575](https://i.gyazo.com/8ffc45f0266741dcb31782c9f236985c.png)
 
-最后，分配外观：将纹理拖放到我们角色所在的文件夹中，选中它们，单击检查器标题栏下方的 Naninovel 图标，然后选择 `Characters -> K`。
+最后，为角色分配外观。将纹理拖放到角色记录所在的文件夹中，选中这些纹理，再单击检查器标题栏下方的 Naninovel 图标，选择 `Characters -> K`。
 
 ![?width=623](https://i.gyazo.com/25cf89584f50f72b5e0f34d71742ed23.png)
 
@@ -237,7 +237,7 @@ Hello World!
 Hello World!
 ```
 
-您将在屏幕中央看到角色。当您未指定外观时，会自动选择名为“Default”的外观。要选择特定外观，请在角色 ID 后添加其名称，以点分隔，如下所示：
+角色会显示在屏幕中央。未指定外观时，会自动选择名为“Default”的外观。要指定其他外观，请在角色 ID 后加上一个点，再接上外观名称，如下所示：
 
 ```nani
 @char K.Happy
@@ -255,7 +255,7 @@ K: Hello World!
 
 ![?width=588](https://i.gyazo.com/48ad8d4c512b67df02d7ace15d5eaca5.png)
 
-可以将角色的外观与显示的文本结合起来以节省一些输入：
+还可以把角色的外观设置与要显示的文本合写在一行，减少输入：
 
 ```nani
 K.Happy: Hello World!
@@ -271,7 +271,7 @@ K.Happy: Hello World!
 
 与角色类似，背景在 Naninovel 中可以用多种方式表示：精灵、视频、场景等；也可以自定义实现。
 
-虽然您可以创建多个独立的背景 Actor，但在典型的视觉小说中，您通常只使用一个，并让它在不同的外观之间过渡。为了简化这一常见操作，当您使用 [@back] 命令控制背景 Actor 时，默认假定使用 ID 为 `MainBackground` 的背景 Actor：
+背景 Actor 可以有多个，彼此独立。不过，典型的视觉小说通常只使用一个背景 Actor，通过切换外观来更换背景。为了简化这种常见操作，[@back] 命令默认控制 ID 为 `MainBackground` 的背景 Actor：
 
 ```nani
 @back Road
@@ -312,7 +312,7 @@ K.Happy: Hello World!
 
 ## 添加音频
 
-要向 Naninovel 注册 BGM（背景音乐）或 SFX（音效）音频资源，请选择音频剪辑资产，并使用注册角色和背景资源时所用的同一检查器菜单，但改为选择“BGM”或“SFX”。
+要向 Naninovel 注册 BGM（背景音乐）或 SFX（音效）音频资源，先选中音频剪辑资产，再打开之前注册角色和背景资源时使用的检查器菜单，这次选择“BGM”或“SFX”。
 
 ![?width=655](https://i.gyazo.com/e56b1d3f3a800751116ae4dcbb8896c0.png)
 
@@ -322,7 +322,7 @@ K.Happy: Hello World!
 @bgm CloudNine
 ```
 
-切换音乐音轨时会自动应用交叉淡入淡出效果。默认情况下，音乐将循环播放，不过您可以使用命令参数更改此设置，以及音量和淡入淡出持续时间。
+切换音乐音轨时会自动应用交叉淡入淡出效果。音乐默认循环播放，是否循环、音量大小以及淡入淡出的持续时间，都可以通过命令参数调整。
 
 相比之下，音效默认不会循环播放。使用 [@sfx] 命令播放它们：
 
@@ -349,7 +349,7 @@ K.Happy: Hello World!
 @sfx Battle/Explosion
 ```
 
-当您添加或修改资源时，故事编辑器和 VS Code 扩展都会自动与更改同步并更新相关列表。
+添加或修改资源后，故事编辑器和 VS Code 扩展都会自动同步这些更改，并更新相关列表。
 
 ![](https://i.gyazo.com/c353c7cfa398315d926f365634786467.png)
 
@@ -361,7 +361,7 @@ K.Happy: Hello World!
 
 尽管 Naninovel 主要设计为构建视觉小说的基础，但它也可以用作任何类型游戏的嵌入式对话或过场动画系统。
 
-虽然可以手动为“嵌入式”用例配置引擎，但有一个专用的“Minimal Mode”（最小模式）开关，它可以自动修改配置，移除大多数内置 UI，并禁用部分功能，将引擎精简到最低限度。
+您可以手动配置引擎，使其适合这种嵌入式用途，也可以使用专门的“Minimal Mode”（最小模式）开关。该开关会自动修改配置，移除大多数内置 UI，并禁用部分功能，将引擎精简到最低限度。
 
 通过 `Naninovel -> Set Up Minimal Mode` Unity 编辑器菜单启用最小模式。
 
@@ -371,7 +371,7 @@ K.Happy: Hello World!
 最小模式设置过程将修改引擎的默认配置和资源，并且**更改无法自动撤消**。仅当您开始一个新项目，并打算将 Naninovel 用作嵌入式对话系统而不是视觉小说引擎时，才启用该模式。
 :::
 
-您可以在指南的“高级”部分下阅读有关将引擎集成到现有代码库中的 C# 部分的更多信息。在这里，我们将展示一个简单的无代码对话交互场景：玩家将鼠标悬停在可交互对象上并单击它以开始对话。在一个空场景中，添加：
+指南的“高级”部分详细介绍了如何通过 C# 将引擎集成到现有代码库中。这里先演示一种无需编写代码的简单对话交互：玩家将鼠标移到可交互对象上，单击后开始对话。请在空场景中添加以下对象：
 
 - 一个带有 `Event / Event System` 组件的对象
     - 将 `Naninovel/Resources/Naninovel/Input/DefaultControls` 分配为 `Actions Asset`
@@ -379,7 +379,7 @@ K.Happy: Hello World!
 - 一个将充当对话触发器的立方体
     - 删除附加到立方体的默认碰撞体组件
 
-现在，右键单击立方体并选择 `Naninovel -> Dialogue`——这会自动在所选对象上设置对话触发器。在检查器中查看立方体下创建的 `Dialogue` 对象，并分配要播放的剧本脚本资产。
+右键单击立方体，选择 `Naninovel -> Dialogue`，即可为它自动设置对话触发器。随后在检查器中查看新建的子对象 `Dialogue`，并为其分配要播放的剧本脚本资产。
 
 接下来，在 `Dialogue/Trigger` 对象上设置触发条件：
 
@@ -391,7 +391,7 @@ K.Happy: Hello World!
 
 进入播放模式并将鼠标悬停在立方体上——当鼠标光标位于其上方时，提示将做出反应。左键单击以开始对话。要退出对话，请使用 [@exitDialogue] 命令。
 
-请注意 `Trigger Events` 组件上的许多选项——您可以通过简单地调整它们来设置大多数常见的交互场景，例如一定距离的第一人称注视、横向卷轴视图碰撞、第三人称指针悬停后按键等。阅读每个选项上的工具提示以了解它们的工作原理。
+`Trigger Events` 组件提供了许多选项，只需调整这些选项，就能设置大多数常见的交互方式。例如，在第一人称视角下从一定距离注视对象、在横向卷轴视角下发生碰撞，或在第三人称视角下将指针悬停在对象上后按键。各选项的具体作用可以查看对应的工具提示。
 
 ## 演示示例
 
@@ -404,4 +404,4 @@ Naninovel 包包含两个基本示例：
 
 ![?width=711](https://i.gyazo.com/a33a679037089bab1bce41684818b158.png)
 
-有关更高级示例的集合，请查看 [示例项目](/zh/guide/samples)——它包含许多专用示例，例如 Live2D 和 Spine 角色、自定义 Actor 着色器、交互式地图、视频 Actor、日历和库存自定义 UI 等。
+更多高级用法可以参考 [示例项目](/zh/guide/samples)。其中包含许多针对特定用途的示例，例如 Live2D 和 Spine 角色、自定义 Actor 着色器、交互式地图、视频 Actor、日历和库存自定义 UI 等。
