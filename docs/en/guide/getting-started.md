@@ -14,7 +14,7 @@ If you prefer video tutorials, here is one covering this Getting Started guide.
 
 ## Create Unity Project
 
-When creating a project, we recommend selecting either the Universal 2D or Universal 3D template, which are based on the **Universal Render Pipeline** (URP). The legacy built-in render pipeline (BiRP) will also work, but it is no longer actively maintained by Unity and is expected to be deprecated. The High Definition Render Pipeline (HDRP) is not recommended — it will generally work, but some rendering features may not be compatible out of the box.
+When creating a project, we recommend selecting either the Universal 2D or Universal 3D template, which is based on the **Universal Render Pipeline** (URP). The legacy built-in render pipeline (BiRP) will also work, but it is no longer actively maintained by Unity and is expected to be deprecated. The High Definition Render Pipeline (HDRP) is not recommended — it will generally work, but some rendering features may not be compatible out of the box.
 
 Choosing 2D or 3D depends on the style of game you're building. For most standard visual novels, we recommend selecting 2D, so images will be imported as sprite assets by default and you won't have to manually adjust the import settings. You can change the editor behaviour mode later in the [project settings](https://docs.unity3d.com/Manual/2DAnd3DModeSettings.html).
 
