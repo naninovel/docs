@@ -89,7 +89,7 @@
 
 配音文档供录音工程师和配音演员在制作配音音频时使用。
 
-使用通过 `Naninovel -> Tools -> Voiceover Documents` 访问的配音文档生成器实用程序来生成文档，其中包含来自 [@print] 命令和通用文本行的打印文本。每条打印的文本消息都将与自动配音 ID 关联。
+从 `Naninovel -> Tools -> Voiceover Documents` 打开配音文档生成器实用程序，即可生成包含 [@print] 命令和通用文本行所打印文本的文档。每条打印的文本消息都将与自动配音 ID 关联。
 
 ![](https://i.gyazo.com/d1e40ff118daebd83b55e0433431b2a8.png)
 
@@ -111,7 +111,7 @@
 
 要添加自定义生成器，请创建一个具有无参数构造函数并实现 `IVoiceoverDocumentGenerator` 接口的新 C# 类。该实用程序将自动选取此类并使用它代替内置生成器。
 
-实用程序会针对项目中找到的所选语言环境的每个脚本调用 `GenerateVoiceoverDocument` 方法。`list` 参数是脚本中包含的命令列表。`locale` 表示实用程序中选择的语言环境（语言）。`outDir` 是实用程序中选择的输出路径。
+实用程序会对项目中找到的每个脚本调用 `GenerateVoiceoverDocument` 方法，为所选语言环境生成文档。`list` 参数是脚本中包含的命令列表。`locale` 表示实用程序中选择的语言环境（语言）。`outDir` 是实用程序中选择的输出路径。
 
 下面是一个自定义配音生成器的示例，它会先附加一个包含脚本路径和语言环境的标题，然后为脚本中找到的每个打印命令附加一行 `auto-voice id > author > text`。
 

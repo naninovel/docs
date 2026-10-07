@@ -229,7 +229,7 @@ Encoding settings : cabac=1 / ref=3 / deblock=1:0:0 / analyse=0x3:0x113 / me=hex
 
 ## 通用背景
 
-通用背景是最灵活的背景 Actor 实现。它基于一个在根对象上附加了 `Generic Background Behaviour` 组件的预制件。外观更改和所有其他背景参数都会作为 [Unity 事件](https://docs.unity3d.com/Manual/UnityEvents.html) 转发，允许您以任何希望的方式实现底层对象的行为。
+通用背景是最灵活的背景 Actor 实现。它使用根对象上附加了 `Generic Background Behaviour` 组件的预制件。外观更改和所有其他背景参数都会作为 [Unity 事件](https://docs.unity3d.com/Manual/UnityEvents.html) 转发，因此您可以按需自由实现底层对象的行为。
 
 ![](https://i.gyazo.com/6483ef3e84549c1bbfbdffc6556308ea.png)
 

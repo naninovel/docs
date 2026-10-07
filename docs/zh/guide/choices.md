@@ -17,7 +17,7 @@
 
 未指定 `goto` 参数时，当前脚本将从下一行继续执行。
 
-选项处理程序 Actor 用于处理 [@choice] 命令。您可以使用可通过 `Naninovel -> Resources -> Choice Handlers` 编辑器菜单访问的选项处理程序管理器添加、编辑和删除选项处理程序。
+选项处理程序 Actor 用于处理 [@choice] 命令。通过 `Naninovel -> Resources -> Choice Handlers` 编辑器菜单打开选项处理程序管理器，即可添加、编辑和删除选项处理程序。
 
 可以使用 `Naninovel -> Configuration -> Choice Handlers` 编辑器菜单配置选项处理程序的行为；有关可用选项，请参阅 [配置指南](/zh/guide/configuration#选项处理程序)。
 

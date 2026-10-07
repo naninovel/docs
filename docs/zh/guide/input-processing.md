@@ -4,13 +4,13 @@ Naninovel 使用 Unity 的 [Input System](https://docs.unity3d.com/Packages/com.
 
 | 名称 | 键盘+鼠标 | 游戏手柄 | 描述 |
 |:---|:---|:---|:---|
-| Submit | Enter | Button South | 通用确认意图，例如，接受提示框或提交输入表单。 |
-| Cancel | Escape | Button East | 通用拒绝意图，例如，拒绝提示框或退出菜单。 |
-| Delete | Delete | Button North | 通用删除意图，例如，删除选定的存档槽。 |
-| Navigate | Arrow Keys | D-Pad, Left Stick | 通用导航意图，例如，在一排存档槽之间选择。 |
-| Scroll | Page Up/Down | Right Stick | 通用滚动意图，例如，滚动历史记录。 |
-| Page | Shift+Left <-> Shift+Right | Left Trigger <-> Right Trigger | 通用分页意图，例如，在存档/读档菜单中翻页。 |
-| Tab | Ctrl+Left <-> Ctrl+Right | Left Bumper <-> Right Bumper | 通用切换选项卡意图，例如，在设置菜单中切换选项卡。 |
+| Submit | Enter | Button South | 通用确认操作，例如，接受提示框或提交输入表单。 |
+| Cancel | Escape | Button East | 通用拒绝操作，例如，拒绝提示框或退出菜单。 |
+| Delete | Delete | Button North | 通用删除操作，例如，删除选定的存档槽。 |
+| Navigate | Arrow Keys | D-Pad, Left Stick | 通用导航操作，例如，在一排存档槽之间选择。 |
+| Scroll | Page Up/Down | Right Stick | 通用滚动操作，例如，滚动历史记录。 |
+| Page | Shift+Left <-> Shift+Right | Left Trigger <-> Right Trigger | 通用翻页操作，例如，在存档/读档菜单中翻页。 |
+| Tab | Ctrl+Left <-> Ctrl+Right | Left Bumper <-> Right Bumper | 通用选项卡切换操作，例如，在设置菜单中切换选项卡。 |
 | Continue | Enter, Scroll Wheel (Y-) | Button South | 禁用等待输入模式（打印消息时激活）以继续脚本播放。 |
 | Pause | Backspace | Start | 显示暂停 UI。 |
 | Skip | Ctrl | Button West | 在操作处于激活状态（按住按钮）期间启用 [跳过模式](/zh/guide/text-printers#文本跳过)（快进）。 |
@@ -34,7 +34,7 @@ Naninovel 使用 Unity 的 [Input System](https://docs.unity3d.com/Packages/com.
 在 [库存示例](/zh/guide/samples#库存) 中可以找到添加自定义输入绑定以切换库存 UI 的示例。具体来说，`Scripts/Runtime/Inventory/UI/InventoryUI.cs` 运行时脚本中使用了自定义“ToggleInventory”操作。
 :::
 
-使用自定义输入操作时，建议同时使用在同一配置菜单中分配的自定义 `Event System`，然后将自定义输入操作资产分配给附加到事件系统预制件的 `Input System UI Input Module` 组件的 `Actions Asset` 属性。这是各种 UI 相关功能正常工作所必需的。您可以通过 `Create -> Naninovel -> Input -> Event System` 创建适用于 Naninovel 的默认事件系统预制件。
+使用自定义输入操作时，建议在同一配置菜单中同时分配自定义 `Event System`。然后，在事件系统预制件的 `Input System UI Input Module` 组件中，将自定义输入操作资产分配给 `Actions Asset` 属性。这是各种 UI 相关功能正常工作所必需的。您可以通过 `Create -> Naninovel -> Input -> Event System` 创建适用于 Naninovel 的默认事件系统预制件。
 
 ![](https://i.gyazo.com/b1f99bb8e2cea14ec9f97c78b91d313a.png)
 

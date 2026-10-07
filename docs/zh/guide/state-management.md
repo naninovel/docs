@@ -108,7 +108,7 @@ C:/Users/User/AppData/LocalLow/Foo/Bar/Saves
 
 您可以将自定义对象的状态处理委托给 `IStateManager`，以便它们在玩家保存游戏时与引擎的所有数据一起序列化到存档槽，并在加载游戏时反序列化回来。内置的状态相关功能（例如回滚）也同样适用于自定义状态，开箱即用。
 
-以下示例演示了委托 `MyCustomBehaviour` 组件的状态处理。
+以下示例展示了如何将 `MyCustomBehaviour` 组件的状态交给引擎管理。
 
 ```cs
 using UnityEngine;

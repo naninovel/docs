@@ -1,6 +1,6 @@
 # 表达式
 
-编写剧本脚本时，您可以使用大括号 `{}` 将表达式结构注入到命令参数值和通用文本行中：
+编写剧本脚本时，您可以使用大括号 `{}` 在命令参数值和通用文本行中嵌入表达式：
 
 ```nani
 一加二等于 {1 + 2}。
@@ -23,7 +23,7 @@
 {color}，是吗？{ color == "orange" ? "我也是！" : (color == "black" ? "那太令人沮丧了。" : "我明白了...") }
 ```
 
-— 将显示一个输入 UI，允许玩家输入他们最喜欢的颜色，将其赋给 `color` 剧本变量，然后打印输入的颜色，并在其后接上：如果是“orange”，则为“我也是！”；如果是“black”，则为“那太令人沮丧了。”；否则为“我明白了...”。
+— 将显示输入 UI，让玩家输入最喜欢的颜色，并将输入值赋给 `color` 剧本变量。随后打印该颜色，并根据输入值追加相应文本：如果是“orange”，则为“我也是！”；如果是“black”，则为“那太令人沮丧了。”；否则为“我明白了...”。
 
 要将纯文本值与变量名区分开，请将该值用双引号 `"` 括起来：
 
@@ -115,7 +115,7 @@
 
 ## 添加自定义查询
 
-可以通过将 `ExpressionQuery` 特性应用于公共静态 C# 方法来添加自定义表达式查询；该方法必须具有兼容的签名，之后将自动在剧本表达式中可用。
+要添加自定义表达式查询，请为具有兼容签名的公共静态 C# 方法添加 `ExpressionQuery` 特性。之后即可在剧本表达式中使用该查询。
 
 仅支持 [简单](https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/language-specification/types#simple-types) 类型和字符串类型作为参数和返回类型。也可以使用单个可变参数（`params` 关键字）；不支持将可变参数与其他参数混合使用。
 
@@ -155,12 +155,12 @@ public static class CustomQueries
 - **Examples** IDE 扩展和故事编辑器中显示的使用示例（可选）。
 
 ::: tip EXAMPLE
-在 [库存示例](/zh/guide/samples#库存) 中可以找到添加自定义表达式查询以检查库存中是否存在物品的另一个示例。具体来说，自定义查询通过 `Scripts/Runtime/Inventory/InventoryQueries.cs` 运行时脚本实现。
+[库存示例](/zh/guide/samples#库存) 也演示了如何添加自定义表达式查询来检查库存中是否存在物品。自定义查询的实现位于运行时脚本 `Scripts/Runtime/Inventory/InventoryQueries.cs` 中。
 :::
 
 ## 参数上下文
 
-与命令参数类似，查询参数可以应用上下文特性，以使其自动补全并由 [IDE 扩展](/zh/guide/ide-extension) 进行诊断。
+与命令参数类似，也可以为查询参数添加上下文特性，使 [IDE 扩展](/zh/guide/ide-extension) 能够为其提供自动补全和诊断。
 
 例如，您可以将查询参数与枚举关联：
 
@@ -183,7 +183,7 @@ public static class CustomQueries
 
 ![](https://i.gyazo.com/0f1519347ac9b619444371922e0fd1f5.mp4)
 
-您还可以使用其他上下文，例如 Actor、资源、端点等。例如，下面是内置的 `getName()` 查询，它接受 Actor ID 并返回其显示名称。应用 `ActorContext` 后，它将补全项目中可用的 Actor ID：
+您还可以使用其他上下文，例如 Actor、资源、端点等。例如，下面是内置的 `getName()` 查询，它接受 Actor ID 并返回其显示名称。应用 `ActorContext` 后，补全候选项将包含项目中可用的 Actor ID：
 
 ```cs
 [ExpressionQuery("getName")]
@@ -194,7 +194,7 @@ public static string GetName (
 }
 ```
 
-另一个示例，它将补全可解锁项 ID：
+以下是另一个示例，用于补全可解锁项 ID：
 
 ```cs
 [ExpressionQuery("isUnlocked")]

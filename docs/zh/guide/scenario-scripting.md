@@ -16,7 +16,7 @@
 当行首不存在上述任何符号时，它被视为 [通用文本](#通用文本行) 语句。
 
 ::: tip
-可以通过 [编译器本地化](/zh/guide/localization#编译器本地化) 功能更改所有预定义的编译器工件，例如符号、命令标识符、常量以及基本上您在编写脚本时必须输入的任何内容。
+通过 [编译器本地化](/zh/guide/localization#编译器本地化) 功能，可以更改编译器中所有预定义的内容，包括符号、命令标识符、常量，以及编写脚本时需要输入的几乎所有内容。
 :::
 
 ## 命令行
@@ -127,7 +127,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 Felix: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 ```
 
-为了在不断更改与打印文本关联的角色外观时节省一些输入，您还可以在作者 ID 后指定外观：
+如果需要频繁更改与打印文本关联的角色外观，您也可以直接在作者 ID 后指定外观，以减少输入：
 
 ```nani
 Felix.Happy: Lorem ipsum dolor sit amet.
@@ -461,7 +461,7 @@ Lorem sit amet. [sfx Applause if:score>=10]Consectetur elit.
 
 ## 嵌套
 
-诸如 [@if]、[@choice]、[@while] 等命令以及其他几个命令支持通过缩进将其他命令和通用文本行与它们相关联：
+[@if]、[@choice]、[@while] 等命令支持通过缩进，将其他命令和通用文本行关联到自身：
 
 ```nani
 @if score > 10
@@ -518,7 +518,7 @@ Lorem sit amet. [sfx Applause if:score>=10]Consectetur elit.
 @show Yuko
 ```
 
-— 播放时，您会注意到 Yuko Actor 会在 Kohaku 淡出的同时开始淡入。这是因为，默认情况下，异步命令不会被等待：[@show] 将在 [@hide] 开始淡出 Kohaku 后立即开始淡入 Yuko。
+— 播放时，Yuko Actor 会在 Kohaku 淡出的同时开始淡入。这是因为默认情况下，脚本不会等待异步命令完成后再继续：[@show] 将在 [@hide] 开始淡出 Kohaku 后立即开始淡入 Yuko。
 
 如果您想等待异步命令完成后再继续播放，请使用 `wait` 参数：
 

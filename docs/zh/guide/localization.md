@@ -50,7 +50,7 @@ Resources/Naninovel/Localization/ja-JP/Backgrounds/MainBackground/City
 
 首先，选择 `Script Folder (input)`——存储 Naninovel 剧本脚本（`.nani`）的项目目录（例如 `Assets/Scenario`）。此外，若要同时为 [管理文本](/zh/guide/managed-text) 生成本地化文档，还可以选择 `Text Folder (input)`——存储管理文本文档的目录（默认为 `Assets/Resources/Naninovel/Text`）。
 
-或者，如果您希望不从源脚本而是从先前为另一个语言环境生成的文档生成本地化文档，请选择包含该语言环境现有本地化文档的文本文件夹，例如 `Assets/Resources/Naninovel/Localization/ja-JP/Text`。
+您也可以基于另一语言环境已有的本地化文档来生成文档，而不使用源脚本。此时，请选择存放该语言环境现有本地化文档的文本文件夹，例如 `Assets/Resources/Naninovel/Localization/ja-JP/Text`。
 
 然后选择生成的本地化资源应存储到的语言环境文件夹路径。请确保您选择了实际的语言环境文件夹（例如 `Resources/Naninovel/Localization/ja-JP`）。选择了有效的输出语言环境文件夹后，字段下方的标签会给出提示并显示目标语言环境名称。
 
@@ -311,7 +311,7 @@ NaniScript 在领域特定语言中很特别，因为它与自然语言紧密交
 
 为了帮助用英语以外的语言创作剧本，Naninovel 提供了编译器本地化功能。它允许重新映射控制字符、命令和参数名称、常量，以及创作剧本时需要输入的几乎任何内容。
 
-首先，通过 `Create -> Naninovel -> Compiler Localization` 创建编译器本地化资产。选择资产并指定编译器工件所需的本地化：
+首先，通过 `Create -> Naninovel -> Compiler Localization` 创建编译器本地化资产。选择该资产，并指定编译器各项内容的本地化设置：
 
 ![](https://i.gyazo.com/5ffcd8e06231616598cc8317f7854f9a.png)
 
@@ -325,7 +325,7 @@ NaniScript 在领域特定语言中很特别，因为它与自然语言紧密交
 
 进行所需的更改后，重新启动 Unity 编辑器并重新导入剧本脚本资产以使更改生效。
 
-本地化后的工件将传播到故事编辑器和 [IDE 扩展](/zh/guide/ide-extension)，在元数据同步后提供自动补全和悬停文档。
+本地化后的内容会同步到故事编辑器和 [IDE 扩展](/zh/guide/ide-extension)，并在元数据同步后用于自动补全和悬停文档。
 
 ![](https://i.gyazo.com/fde9998597ffedb8a025401bb2f71ce9.png)
 

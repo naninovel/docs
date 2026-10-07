@@ -50,7 +50,7 @@ var resource = await resourceLoader.Load($"{actorId}/CubeBackground");
 
 ## カスタムメタデータ
 
-（組み込みおよびカスタム実装の両方について）アクターメタデータにカスタムの追加データを追加することが可能です。
+組み込み実装とカスタム実装のどちらでも、アクターメタデータに独自のデータを追加できます。
 
 カスタムデータを注入するには、新しいC#クラスを作成し、`CustomMetadata<TActor>` を継承します。ここで `TActor` は、データを関連付けるアクター実装の型です。以下は、`CustomCharacterImplementation` のキャラクターにカスタムデータを追加する例です。
 
@@ -68,7 +68,7 @@ public class MyCharacterData : CustomMetadata<CustomCharacterImplementation>
 }
 ```
 
-作成されたカスタムデータクラスのシリアル化可能なフィールドは、関連する実装を持つアクターが選択されたときに、Naninovelエディターメニューで自動的に公開されます。
+対応する実装のアクターを選択すると、作成したカスタムデータクラスのシリアル化可能なフィールドが、Naninovelエディターメニューに自動的に表示されます。
 
 ![](https://i.gyazo.com/72f46feb74b6de568b299329500bd7d5.png)
 

@@ -8,7 +8,7 @@
 
 `Resource Policy` 属性决定在脚本执行期间何时加载和卸载资源。有关更多信息，请参阅 [内存管理](/zh/guide/memory-management) 指南。
 
-`Enable Build Processing` 会开启一个构建预处理步骤，该步骤是确保通过编辑器菜单分配的资产在构建中可用所必需的。如果您使用的是 [自定义构建环境](/zh/guide/custom-build-environment) 或附加了自己的构建挂钩，则可能需要禁用此处理。启用或禁用该属性后，请重新启动 Unity 编辑器以使更改生效。
+`Enable Build Processing` 会启用构建预处理步骤，确保通过编辑器菜单分配的资产在构建中可用。如果您使用的是 [自定义构建环境](/zh/guide/custom-build-environment) 或添加了自己的构建挂钩，则可能需要禁用此处理。启用或禁用该属性后，请重新启动 Unity 编辑器以使更改生效。
 
 安装 [Addressables 系统](https://docs.unity3d.com/Packages/com.unity.addressables@latest) 后，将使用它来优化资产处理步骤并缩短构建时间；启用 `Auto Build Bundles` 将在构建播放器时自动编译资产包。
 
@@ -108,7 +108,7 @@
 - 用于音频的 `.wav`（仅限 PCM16 44100Hz 立体声）
 
 ::: tip
-通过覆盖 `IResourceProviderManager` [引擎服务](/zh/guide/engine-services#覆盖内置服务) 并为本地提供者添加自定义转换器来添加更多支持的文件格式。
+要支持更多文件格式，请覆盖 `IResourceProviderManager` [引擎服务](/zh/guide/engine-services#覆盖内置服务)，并为本地提供者添加自定义转换器。
 
 ![](https://i.gyazo.com/d4e63726c2d1d75e2677cab7f2503546.png)
 :::
@@ -138,7 +138,7 @@
 
 ![](https://i.gyazo.com/7176a9d4a4ea2d9414c5495e2e465baf.png)
 
-您可以在 `Naninovel/Runtime/Resource/Provider` 包目录中找到内置资源提供者的实现；在实现您自己的提供者时，可以随意将它们用作参考。
+内置资源提供者的实现位于 `Naninovel/Runtime/Resource/Provider` 包目录中，可供您实现自己的提供者时参考。
 
 ## 社区模组
 

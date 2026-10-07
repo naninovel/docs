@@ -7,7 +7,7 @@
 @shake Kohaku
 ```
 
-大多数效果都可以参数化：
+大多数效果都可以通过参数调整：
 
 ```nani
 ; 震动“Kohaku”一次（而不是默认的 3 次）
@@ -24,7 +24,7 @@ Kohaku: 隆隆作响！
 @shake Kohaku count:3 power:0.8
 ```
 
-默认情况下，某些效果是持久的，必须显式停止：
+某些效果默认会持续运行，必须显式停止：
 
 ```nani
 ; 开始下雨
@@ -712,7 +712,7 @@ Kohaku: 隆隆作响！
 
 ## 动画缓动
 
-许多随时间应用更改的命令都有可选的 `easing` 参数，用于控制被修改的值如何随时间变化。支持的选项如下：
+对于逐渐应用更改的命令，很多都提供了可选的 `easing` 参数，用于控制值随时间变化的方式。支持的选项如下：
 
 ```text
 Linear
@@ -760,7 +760,7 @@ EaseInOutElastic
 
 ### 自定义生成效果
 
-您可以通过生成资源管理器（`Naninovel -> Resources -> Spawn`）添加效果预制件并使用 [@spawn] 和 [@despawn] 命令来添加自定义独立效果（通过预制件实现，如“Rain”和“Snow”内置效果）：
+与内置的“Rain”和“Snow”效果一样，您也可以通过预制件实现独立的自定义效果。将效果预制件添加到生成资源管理器（`Naninovel -> Resources -> Spawn`），然后使用 [@spawn] 和 [@despawn] 命令即可：
 
 ![](https://i.gyazo.com/45b9d8fb51ffb368ff9f792221f10ca6.png)
 
@@ -785,7 +785,7 @@ EaseInOutElastic
 ```
 :::
 
-[@spawn] 命令还具有变换参数，允许在特定的场景或世界位置并以特定的旋转或缩放生成对象，例如：
+[@spawn] 命令还提供变换参数，可指定对象生成时的场景或世界位置，以及旋转或缩放，例如：
 
 ```nani
 ; 在距屏幕左边界 15% 处生成 Explosion，
@@ -793,9 +793,9 @@ EaseInOutElastic
 @spawn Explosion pos:15 scale:10 roll:15
 ```
 
-如果您有很多预制件要生成，并且通过编辑器菜单分配它们不方便，只需将它们放入 `Resources/Naninovel/Spawn` 文件夹，它们就会自动在脚本中可用。如果您愿意，还可以使用子文件夹组织它们；在这种情况下，在剧本脚本中引用它们时请使用正斜杠（`/`）。例如，存储为 `Resources/Naninovel/Spawn/Explosions/Boom01` 的预制件资产可以在脚本中引用为 `Explosions/Boom01`。
+如果要生成的预制件很多，不便通过编辑器菜单逐一分配，可以将它们直接放入 `Resources/Naninovel/Spawn` 文件夹，之后即可在脚本中使用。也可以按需使用子文件夹整理预制件，此时在剧本脚本中引用它们需使用正斜杠（`/`）。例如，存储在 `Resources/Naninovel/Spawn/Explosions/Boom01` 的预制件资产，在脚本中可通过 `Explosions/Boom01` 引用。
 
-也可以使用 [Addressable 资产系统](/zh/guide/resource-providers#addressable) 手动公开资源。要公开资产，请为其分配一个地址，该地址等于使用上述方法时的路径，但省略“Resources/”部分。例如，要公开“Boom01”预制件资产，请为该资产分配以下地址：`Naninovel/Spawn/Boom01`。请注意，在编辑器中时，始终首先使用特殊的“Editor”资源提供者；只有未通过编辑器菜单分配的资源才会尝试使用 Addressable 提供者。
+也可以使用 [Addressable 资产系统](/zh/guide/resource-providers#addressable) 手动公开资源。要公开资产，请将上述方法所用的路径去掉“Resources/”部分，作为资产的地址。例如，要公开“Boom01”预制件资产，请为该资产分配以下地址：`Naninovel/Spawn/Boom01`。请注意，在编辑器中始终优先使用特殊的“Editor”资源提供者；只有未通过编辑器菜单分配的资源才会尝试通过 Addressable 提供者加载。
 
 请查看存储在 `Naninovel/Prefabs/FX` 中的内置效果预制件，作为参考实现。
 
@@ -829,7 +829,7 @@ EaseInOutElastic
 
 ![](https://i.gyazo.com/3c32e920efdf6cfb35214b6c9b617a6a.png)
 
-— 右上角的黑色方块表示过渡目标应在过渡开始时显示在那里，中心的纯白色方块将在最后过渡。
+— 右上角的黑色方块表示，该区域会在过渡开始时显示目标纹理；中央纯白色方块对应的区域则会到最后才过渡。
 
 ::: tip
 为了优化内存使用，请在溶解纹理导入设置中设置 `Single Channel` 和 `Red`。此外，请确保禁用 `Non-Power of 2` 和 `Generate Mipmap` 选项以防止视觉伪影。
@@ -843,7 +843,7 @@ EaseInOutElastic
 @back Appearance.Custom dissolve:Textures/Spiral
 ```
 
-要平滑（模糊）过渡边界，请使用范围为 0（无平滑）到 100（最大平滑）的第一个参数，例如：
+要平滑（模糊）过渡边界，请将第一个参数设为 0（无平滑）到 100（最大平滑）之间的值，例如：
 
 ```nani
 @back Appearance.Custom dissolve:Textures/Spiral params:90

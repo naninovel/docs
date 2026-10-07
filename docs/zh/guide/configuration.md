@@ -26,7 +26,7 @@
 | Default Voice Volume | 1 | 首次启动游戏时设置的语音音量。 |
 | Enable Auto Voicing | False | 启用后，每个 [@print] 命令都将尝试播放关联的语音剪辑。 |
 | Voice Overlap Policy | Prevent Overlap | 指定如何处理语音的同时播放：<br> • Allow Overlap — 不加限制地同时播放多条语音。<br> • Prevent Overlap — 在播放新的语音剪辑之前停止所有正在播放的语音剪辑，以防止语音同时播放。<br> • Prevent Character Overlap — 防止同一角色的语音同时播放；不同角色的语音（自动配音）以及任意数量的 [@voice] 命令可以同时播放。 |
-| Voice Locales | Null | 分配语言标签，以允许在游戏设置中独立于主本地化选择语音语言。 |
+| Voice Locales | Null | 指定语言标签后，即可在游戏设置中单独选择语音语言，不受主本地化语言影响。 |
 | Default Fade Duration | 0.35 | 开始或停止播放音频时音量淡入/淡出的默认持续时间（以秒为单位）。 |
 | Default Fade Easing | Linear | 默认用于音频淡入淡出和修改的缓动函数。 |
 | Play Sfx While Skipping | True | 是否在跳过模式下播放非循环音效（SFX）。禁用时，将在跳过时忽略不带 `loop!` 的 [@sfx] 命令。 |
@@ -214,7 +214,7 @@
 
 | 属性 | 默认值 | 描述 |
 | --- | --- | --- |
-| Resource Policy | Conservative | 指定脚本执行期间何时加载和卸载资源：<br><br> • Conservative — 具有平衡内存利用率的默认模式。开始播放时预加载脚本执行所需的所有资源，并在脚本播放完毕时卸载。[@gosub] 命令中引用的脚本也会预加载。可以使用 [@goto] 命令的 `hold` 参数预加载其他脚本。<br><br> • Optimistic — 预加载所播放脚本所需的所有资源，以及 [@goto] 和 [@gosub] 命令中指定的脚本的所有资源，除非在 [@goto] 命令中指定 `release` 参数，否则不卸载。这最大限度地减少了加载屏幕并允许平滑回滚，但需要手动指定何时应卸载资源，从而增加了内存不足异常的风险。<br><br> • Lazy — 开始播放时不为执行的脚本预加载资源，并且不自动显示加载屏幕。相反，仅在脚本播放时“即时”加载接下来几个命令所需的资源，并立即释放已执行命令使用的资源。此策略不需要剧本规划或手动控制，消耗的内存最少，但可能会由于后台加载资源而导致游戏过程中出现卡顿——尤其是在快进（跳过模式）或执行回滚时。 |
+| Resource Policy | Conservative | 指定脚本执行期间何时加载和卸载资源：<br><br> • Conservative — 内存使用较为均衡的默认模式。开始播放时预加载脚本执行所需的所有资源，并在脚本播放完毕时卸载。[@gosub] 命令中引用的脚本也会预加载。可以使用 [@goto] 命令的 `hold` 参数预加载其他脚本。<br><br> • Optimistic — 预加载所播放脚本所需的所有资源，以及 [@goto] 和 [@gosub] 命令中指定的脚本的所有资源，除非在 [@goto] 命令中指定 `release` 参数，否则不卸载。这能最大限度地减少加载屏幕，并使回滚更流畅，但需要手动指定何时应卸载资源，从而增加了内存不足异常的风险。<br><br> • Lazy — 开始播放时不为执行的脚本预加载资源，并且不自动显示加载屏幕。相反，仅在脚本播放时“即时”加载接下来几个命令所需的资源，并立即释放已执行命令使用的资源。此策略不需要剧本规划或手动控制，消耗的内存最少，但可能会由于后台加载资源而导致游戏过程中出现卡顿——尤其是在快进（跳过模式）或执行回滚时。 |
 | Lazy Buffer | 25 | 启用 Lazy 资源策略时，控制预加载缓冲区的大小，即预加载的最大脚本命令数。 |
 | Lazy Priority | Below Normal | 启用 Lazy 资源策略时，控制加载资源的后台线程的优先级。降低优先级可最大限度地减少卡顿，但代价是加载时间更长。 |
 | Remove Actors | True | 卸载脚本资源时是否自动移除未使用的 Actor（角色、背景、文本打印机和选项处理程序）。请注意，即使启用此选项，仍然可以随时使用 [@remove] 命令手动移除 Actor。 |
@@ -236,10 +236,10 @@
 | Default Skip Mode | Read Only | 首次启动游戏时设置的默认跳过模式。 |
 | Skip Time Scale | 10 | 在跳过（快进）模式下使用的时间缩放。设置为 1 可禁止在跳过时更改时间缩放。 |
 | Min Auto Play Delay | 1 | 在自动播放模式下执行下一个命令之前等待的最少秒数。 |
-| Complete On Continue | True | 当激活 `Continue` 输入时，是否立即完成随时间执行的阻塞（`wait!`）命令（例如，动画、隐藏/显示、色调更改等）。 |
+| Complete On Continue | True | 当激活 `Continue` 输入时，是否立即完成需要一定时间执行的阻塞（`wait!`）命令（例如，动画、隐藏/显示、色调更改等）。 |
 | Show Debug On Init | False | 是否在引擎初始化时显示脚本播放器调试窗口。 |
 | Wait By Default | False | 当未显式指定 `wait` 参数时，是否等待所播放的命令执行完毕。仅适用于可等待（异步）命令。<br><br>警告：不要在新项目中启用，因为此选项是为了向后兼容而保留的，并将在下一个版本中移除。 |
-| Show Loading UI | False | 是否在脚本预加载/加载和引擎重置操作期间自动显示 `ILoadingUI`。允许使用加载屏幕遮盖资源加载过程。 |
+| Show Loading UI | False | 是否在脚本预加载/加载和引擎重置操作期间自动显示 `ILoadingUI`。可用加载屏幕遮盖资源加载过程。 |
 
 </div>
 
@@ -251,7 +251,7 @@
 | --- | --- | --- |
 | Loader | Scripts- (Addressable, Project) | 剧本脚本资源所用的资源加载器配置。 |
 | Script Compiler | Naninovel Script Compiler | 用于将源剧本文本转换为脚本资产的 `IScriptCompiler` 实现。修改此设置后重新导入脚本资产以使更改生效。 |
-| Compiler Localization | Object Ref | 特定于语言环境的 NaniScript 编译器选项。将在元数据同步时传播到 IDE 扩展。重新启动 Unity 编辑器并重新导入脚本资产以使更改生效。 |
+| Compiler Localization | Object Ref | 特定于语言环境的 NaniScript 编译器选项。会随元数据一并同步到 IDE 扩展。重新启动 Unity 编辑器并重新导入脚本资产以使更改生效。 |
 | Initialization Script | Null | 引擎初始化后立即播放的脚本的本地资源路径。 |
 | Title Script | Title | 显示标题 UI 时播放的脚本的本地资源路径。可用于设置标题屏幕场景（背景、音乐等）。 |
 | Start Game Script | Entry | 开始新游戏时播放的脚本的本地资源路径。未指定时将使用第一个可用的脚本。 |

@@ -11,7 +11,7 @@ NaninovelはUnityの [Input System](https://docs.unity3d.com/Packages/com.unity.
 | Scroll | Page Up/Down | Right Stick | バックログのスクロールなど、汎用的なスクロール操作。 |
 | Page | Shift+Left <-> Shift+Right | Left Trigger <-> Right Trigger | セーブ・ロードメニューでのページ切り替えなど、汎用的なページネーション操作。 |
 | Tab | Ctrl+Left <-> Ctrl+Right | Left Bumper <-> Right Bumper | 設定メニューでのタブ切り替えなど、汎用的なタブ切り替え操作。 |
-| Continue | Enter, Scroll Wheel (Y-) | Button South | スクリプトの再生を継続するために、入力待ちモード（メッセージが表示されたときにアクティブ化）を無効にします。 |
+| Continue | Enter, Scroll Wheel (Y-) | Button South | 入力待ちモード（メッセージの表示時に有効になる）を解除し、スクリプトの再生を続行します。 |
 | Pause | Backspace | Start | ポーズUIを表示します。 |
 | Skip | Ctrl | Button West | アクションがアクティブ（ボタンが押されている）な間、[スキップモード](/ja/guide/text-printers#テキストのスキップ)（早送り）を有効にします。 |
 | ToggleSkip | Tab | Right Stick Press | スキップモードを切り替えます（無効の場合は常時有効にし、有効の場合は無効にします）。 |
@@ -34,7 +34,7 @@ NaninovelはUnityの [Input System](https://docs.unity3d.com/Packages/com.unity.
 インベントリUIを切り替えるためのカスタム入力バインディングを追加する例は、[インベントリサンプル](/ja/guide/samples#インベントリ) にあります。具体的には、カスタムの「ToggleInventory」アクションが `Scripts/Runtime/Inventory/UI/InventoryUI.cs` ランタイムスクリプトで使用されています。
 :::
 
-カスタム入力アクションを使用する場合、同じ構成メニューで割り当てられたカスタム `Event System` も使用し、イベントシステムプレハブにアタッチされた `Input System UI Input Module` コンポーネントの `Actions Asset` プロパティにカスタム入力アクションアセットを割り当てることをお勧めします。これは、さまざまなUI関連機能が正しく動作するために必要です。`Create -> Naninovel -> Input -> Event System` を介して、Naninovelで動作するデフォルトのイベントシステムプレハブを作成できます。
+カスタム入力アクションを使用する場合は、同じ構成メニューにカスタム `Event System` も割り当てることをお勧めします。そのうえで、イベントシステムプレハブの `Input System UI Input Module` コンポーネントにある `Actions Asset` プロパティに、カスタム入力アクションアセットを割り当ててください。これは、さまざまなUI関連機能を正しく動作させるために必要です。`Create -> Naninovel -> Input -> Event System` から、Naninovelで動作するデフォルトのイベントシステムプレハブを作成できます。
 
 ![](https://i.gyazo.com/b1f99bb8e2cea14ec9f97c78b91d313a.png)
 

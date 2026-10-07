@@ -8,7 +8,7 @@
 
 如果您有很多音频文件，并且通过编辑器菜单分配它们不方便，只需将它们放入 `Resources/Naninovel/BGM`（音乐）和 `Resources/Naninovel/SFX`（音效）文件夹，它们就会自动在脚本中可用。如果您愿意，还可以使用子文件夹组织它们；在这种情况下，在剧本脚本中引用它们时请使用正斜杠（`/`）。例如，存储为 `Resources/Naninovel/BGM/Ambient/Noise002.wav` 的音频剪辑可以在脚本中引用为 `Ambient/Noise002`。
 
-也可以使用 [Addressable 资产系统](/zh/guide/resource-providers#addressable) 手动公开资源。要公开资产，请为其分配一个地址，该地址等于使用上述方法时的路径，但省略“Resources/”部分。例如，要公开“MainTheme.wav”BGM，请为剪辑资产分配以下地址：`Naninovel/BGM/MainTheme`。请注意，在编辑器中时，始终首先使用特殊的“Editor”资源提供者；只有未通过编辑器菜单分配的资源才会尝试使用 Addressable 提供者。
+也可以使用 [Addressable 资产系统](/zh/guide/resource-providers#addressable) 手动公开资源。要公开资产，请将上述方法所用的路径去掉“Resources/”部分，作为资产的地址。例如，要公开“MainTheme.wav”BGM，请为剪辑资产分配以下地址：`Naninovel/BGM/MainTheme`。请注意，在编辑器中始终优先使用特殊的“Editor”资源提供者；只有未通过编辑器菜单分配的资源才会尝试通过 Addressable 提供者加载。
 
 ::: warning
 未通过资源管理器分配的音频资产不会出现在各种编辑器下拉菜单中，例如用于为角色 Actor 选择 `Message Sound` 的下拉菜单。
@@ -32,7 +32,7 @@
 @bgm volume:0.5 loop! fade:2.5
 ```
 
-音乐音轨默认循环播放。当 [@bgm] 命令中未指定音乐音轨名称时，将影响所有当前正在播放的音轨。当为已在播放的音轨调用时，音轨不会重新开始，但会应用指定的参数（音量和音轨是否循环）。
+音乐音轨默认循环播放。当 [@bgm] 命令中未指定音乐音轨名称时，将影响所有当前正在播放的音轨。对已在播放的音轨调用该命令时，音轨不会从头重播，但会应用指定的参数（音量和音轨是否循环）。
 
 可以使用 `intro` 参数先播放前奏，再播放循环部分，例如：
 
@@ -67,7 +67,7 @@
 @sfx volume:0.75 !loop fade:2.5
 ```
 
-音效音轨默认不循环播放。当 [@sfx] 命令中未指定 SFX 音轨名称时，将影响所有当前正在播放的音轨。当为已在播放的音轨调用时，音轨不会重新开始，但会应用指定的参数（音量和音轨是否循环）。
+音效音轨默认不循环播放。当 [@sfx] 命令中未指定 SFX 音轨名称时，将影响所有当前正在播放的音轨。对已在播放的音轨调用该命令时，音轨不会从头重播，但会应用指定的参数（音量和音轨是否循环）。
 
 要停止正在播放的音效（无论是否循环），请使用 [@stopSfx] 命令，后跟剪辑名称。当未指定剪辑名称时，该命令将停止所有当前正在播放的 SFX 音轨。
 
@@ -103,7 +103,7 @@
 @stop Rainpan
 ```
 
-默认的音频监听器位置位于 `x0 y0 z-1`，也就是场景原点稍后方，因此不必总是沿 Z 轴偏移音频位置也能获得更自然的声音位置。
+音频监听器的默认位置是 `x0 y0 z-1`，位于场景原点稍后方。这样无需总是沿 Z 轴偏移音频位置，也能让声音的位置更自然。
 
 ## 音频混音器
 
@@ -129,7 +129,7 @@ Naninovel 在播放音频时使用 [音频混音器](https://docs.unity3d.com/Ma
 
 ## 自定义音频后端
 
-Unity 允许使用自定义解决方案（例如 [FMOD](https://www.fmod.com) 和 [Wwise](https://www.audiokinetic.com/en/wwise/)）替换其内置音频后端。为了支持这一点，我们确保 Naninovel 的 `IAudioManager` 接口不依赖于默认音频后端（例如，它不引用 `AudioClip`、`AudioSource` 等）。这允许您 [覆盖服务](/zh/guide/engine-services#覆盖内置服务) 并使用自定义音频后端，而无需修改引擎的源代码。
+Unity 允许使用自定义解决方案（例如 [FMOD](https://www.fmod.com) 和 [Wwise](https://www.audiokinetic.com/en/wwise/)）替换其内置音频后端。为此，Naninovel 的 `IAudioManager` 接口不依赖于默认音频后端（例如，它不引用 `AudioClip`、`AudioSource` 等）。这样，您就可以 [覆盖服务](/zh/guide/engine-services#覆盖内置服务) 并使用自定义音频后端，而无需修改引擎的源代码。
 
 下面是针对 FMOD 进行此类覆盖的最小示例。
 

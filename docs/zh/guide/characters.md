@@ -75,7 +75,7 @@ Actor 自身的姿势优先于共享姿势，这意味着如果 Actor 姿势的�
 
 ## 显示名称
 
-在角色配置中，当启用 `Has Name` 时，您可以为特定角色设置 `Display Name`。设置后，显示名称将显示在打印机名称标签 UI 中，而不是角色的 ID。这允许使用包含空格和特殊字符（ID 不允许）的复合角色名称。
+在角色配置中启用 `Has Name` 后，即可为特定角色设置 `Display Name`。设置后，打印机名称标签 UI 会显示该名称，而不是角色 ID。这样就能使用由多个词组成、含有空格或特殊字符的角色名称，而这些字符不能用于 ID。
 
 或者，可以使用“CharacterNames”[管理文本](/zh/guide/managed-text) 文档指定名称，该文档在运行生成管理文本资源的任务时自动创建。使用它来本地化显示名称和/或在 Unity 编辑器之外编辑它们。管理文本文档中的记录优先于 Actor 配置中设置的显示名称，并将覆盖它们。
 
@@ -126,7 +126,7 @@ Char1: 现在，我们让玩家输入一个自定义名称。
 Char1: 我的显示名称现在已绑定到 `name` 剧本变量。
 ```
 
-当 `Has Name` 被禁用时，打印机 UI 中既不会显示显示名称也不会显示角色 ID。这对于 [旁白角色](/zh/guide/characters#旁白角色) 很有用，它们可能有一个 [链接的打印机](/zh/guide/characters#链接的打印机)，但不应显示其 ID。
+禁用 `Has Name` 后，显示名称和角色 ID 都不会出现在打印机 UI 中。这对于 [旁白角色](/zh/guide/characters#旁白角色) 很有用：它们可能有 [链接的打印机](/zh/guide/characters#链接的打印机)，但不应显示其 ID。
 
 ## 名称标签
 
@@ -228,7 +228,7 @@ Kohaku,Yuko: Lorem ipsum?[< as:"Kohaku 和 Yuko"]
 请注意，[@print] 命令（在打印通用文本行时也在底层使用）默认会使关联的打印机成为默认打印机并隐藏其他可见打印机。当打印机链接到角色时，打印命令将在打印与相应角色关联的文本时自动更改当前可见和默认的文本打印机。可以通过在打印机 Actor 配置菜单中禁用 `Auto Default` 属性来防止此行为；禁用后，您必须使用 [@printer] 命令手动显示/隐藏和切换默认打印机。
 
 ::: tip
-将打印机与 [旁白角色](/zh/guide/characters#旁白角色) 链接并禁用 `Has Name` 以使旁白文本与打印机链接，这样您就不必一直使用 [@printer] 切换回非角色（默认）打印机。
+将打印机链接到 [旁白角色](/zh/guide/characters#旁白角色)，并禁用 `Has Name`，即可让旁白文本使用该打印机。这样就无需反复使用 [@printer] 切换回非角色（默认）打印机。
 :::
 
 要在运行时链接和取消链接打印机，请使用 [@linkPrinter] 和 [@unlinkPrinter] 命令。此外，也可以通过在 [@printer] 下嵌套命令，将所有作者临时链接到特定打印机。
@@ -309,7 +309,7 @@ https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteD
 包含角色外观的 `DicedSpriteAtlas` 资产用作切片精灵角色的资源。每个外观都按名称映射到图集中包含的切片精灵。
 
 ::: tip
-角色元数据属性（例如，每单位像素数、轴心）应用于用于在场景中表示角色的渲染纹理，而类似的切片图集属性应用于生成的切片精灵。更改图集属性时，不要忘记重建它以使更改生效。
+角色元数据属性（例如，每单位像素数、轴心）会应用到在场景中表示角色的渲染纹理上，而切片图集中的同类属性会应用到生成的切片精灵上。更改图集属性后，请记得重新构建图集，使更改生效。
 :::
 
 以下视频指南涵盖了创建和配置切片精灵图集、基于创建的图集添加新的切片角色以及从剧本脚本控制角色。
@@ -415,7 +415,7 @@ https://github.com/elringus/sprite-dicing.git?path=/plugins/unity/Assets/SpriteD
 
 ## 通用角色
 
-通用角色是最灵活的角色 Actor 实现。它基于一个在根对象上附加了 `Generic Character Behaviour` 组件的预制件。外观更改和所有其他角色参数都会作为 [Unity 事件](https://docs.unity3d.com/Manual/UnityEvents.html) 转发，允许您以任何希望的方式实现底层对象的行为。
+通用角色是最灵活的角色 Actor 实现。它使用根对象上附加了 `Generic Character Behaviour` 组件的预制件。外观更改和所有其他角色参数都会作为 [Unity 事件](https://docs.unity3d.com/Manual/UnityEvents.html) 转发，因此您可以按需自由实现底层对象的行为。
 
 ![](https://i.gyazo.com/d0ea1bf7a5ed3b4bb7eb70c4ddbfeba2.png)
 
@@ -460,7 +460,7 @@ Live2D 角色实现使用通过 [Live2D Cubism](https://www.live2d.com) 2D 建�
 ![](https://i.gyazo.com/e27ee50e8107147e20503a955ddcc548.png)
 
 ::: info NOTE
-与第三方商业产品的这种集成主要作为如何使 Naninovel 与另一个工具一起工作的示例。虽然我们致力于保持示例集成与 Live2D 更新和更改兼容，但请注意，功能将保持在最低限度，我们无法在示例范围之外提供任何有关在 Naninovel 中使用其他产品的支持或帮助。
+与这一第三方商业产品的集成，主要用于演示如何让 Naninovel 与其他工具配合使用。我们会努力维护示例集成与 Live2D 更新及更改的兼容性，但提供的功能将保持在最小范围。对于超出示例范围的其他产品与 Naninovel 的配合使用，我们无法提供支持或帮助。
 :::
 
 Actor 的 Live2D 资源应在根对象上附加 `Live2D Character Behaviour` 组件。外观更改作为 [SetTrigger](https://docs.unity3d.com/ScriptReference/Animator.SetTrigger.html) 命令转发到动画器组件，外观即触发器名称。例如，如果您有一个“Kaori”Live2D 角色预制件并想调用名为“Surprise”的触发器，请使用以下命令：
@@ -494,7 +494,7 @@ Spine 角色实现使用通过 [Spine](http://esotericsoftware.com) 2D 建模和
 ![](https://i.gyazo.com/2fb6c27f6e2149b501c0025dd6bd67f0.png)
 
 ::: info NOTE
-与第三方商业产品的这种集成主要作为如何使 Naninovel 与另一个工具一起工作的示例。虽然我们致力于保持示例集成与 Spine 更新和更改兼容，但请注意，功能将保持在最低限度，我们无法在示例范围之外提供任何有关在 Naninovel 中使用其他产品的支持或帮助。
+与这一第三方商业产品的集成，主要用于演示如何让 Naninovel 与其他工具配合使用。我们会努力维护示例集成与 Spine 更新及更改的兼容性，但提供的功能将保持在最小范围。对于超出示例范围的其他产品与 Naninovel 的配合使用，我们无法提供支持或帮助。
 :::
 
 用作实现资源的 Spine 角色预制件应具有附加到根对象的 `Spine Controller` 组件。来自剧本脚本命令（例如 [@char]）的外观更改将转发到控制器的 `On Appearance Changed` 事件，类似于 [通用实现](/zh/guide/characters#通用角色)。您可以随心所欲地处理事件；例如，使用 Spine 的 `SetAnimation` 方法或在 Unity 的动画器控制器中调用触发器。
@@ -545,7 +545,7 @@ Spine 角色实现使用通过 [Spine](http://esotericsoftware.com) 2D 建模和
 
 当 Actor 渲染到纹理时，变换（位置、旋转、缩放）和其他一些修改将没有任何效果。此时应改为变换渲染纹理的宿主对象（例如，如果纹理分配给了 UI 原始图像组件，则变换该图像）。
 
-下面的视频演示了如何将 Live2D 角色渲染到纹理，该纹理分配给自定义文本打印机。打印机链接到角色，因此当处理关联的文本消息时，角色将自动与打印机一起显示和隐藏。
+下面的视频演示了如何将 Live2D 角色渲染到纹理，再将该纹理分配给自定义文本打印机。打印机与角色链接后，在处理关联的文本消息时，角色会随打印机自动显示和隐藏。
 
 ![](https://www.youtube.com/watch?v=81OTbSAnWbw)
 

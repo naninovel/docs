@@ -2,7 +2,7 @@
 
 大多数引擎功能都是通过引擎服务实现的。引擎服务是 `IEngineService` 接口的实现，用于处理特定工作，例如执行剧本脚本、管理 Actor 或保存和加载游戏状态。
 
-如果您希望与引擎系统交互，您很可能会使用引擎服务。您可以使用静态方法 `Engine.GetService<TService>()` 获取对引擎服务的引用，其中 `TService` 是您希望获取的服务的接口；例如，要获取 `IScriptPlayer` 服务：
+与引擎系统交互时，通常会用到引擎服务。使用静态方法 `Engine.GetService<TService>()` 即可获取引擎服务的引用，其中 `TService` 是目标服务的接口。例如，要获取 `IScriptPlayer` 服务：
 
 ```cs
 var player = Engine.GetService<IScriptPlayer>();
@@ -110,7 +110,7 @@ var customService = Engine.GetService<CustomService>();
 
 ## 覆盖内置服务
 
-所有内置服务都在引擎源代码中通过接口引用，这使得可以将其中任何一个替换为自定义实现。
+引擎源代码通过接口引用所有内置服务，因此任意内置服务都可以替换为自定义实现。
 
 以与上述相同的方式添加自定义服务，但不要实现 `IEngineService`，而是实现具体的引擎接口并通过 `InitializeAtRuntime` 特性指定被覆盖的类型（实现类型，而不是接口）。这样，引擎将初始化您的自定义实现，而不是内置实现。
 

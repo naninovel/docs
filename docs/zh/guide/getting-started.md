@@ -246,7 +246,7 @@ Hello World!
 
 只要已为角色“K”添加了名为“Happy”的外观，现在就会显示相应的精灵，而不是默认精灵。
 
-现在，您可以通过在文本前添加其 ID 后跟冒号来将显示的文本与角色相关联：
+现在，在文本前加上角色 ID 和冒号，即可将显示的文本与该角色关联：
 
 ```nani
 @char K.Happy
@@ -400,7 +400,7 @@ Naninovel 包包含两个基本示例：
 - **Visual Novel** — 一个具有多条路线的基本视觉小说模板，演示了占位符 Actor、各种命令、普通变量和元变量、可自定义角色名称以及其他传统 VN 机制的使用。
 - **Dialogue System** — 一个 3D 横向卷轴场景，其中 Naninovel 用作嵌入式对话系统，展示了临时打印机、气泡选项处理程序、与 Cinemachine 的集成以及其他常见用法。
 
-您可以通过选择 Naninovel 包，导航到“Samples”选项卡，然后单击示例的“Import”按钮，通过 Unity Package Manager 导入这两个示例。
+这两个示例都可以通过 Unity Package Manager 导入：选择 Naninovel 包，打开“Samples”选项卡，再单击相应示例的“Import”按钮。
 
 ![?width=711](https://i.gyazo.com/a33a679037089bab1bce41684818b158.png)
 

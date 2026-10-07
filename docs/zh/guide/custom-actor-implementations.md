@@ -68,7 +68,7 @@ public class MyCharacterData : CustomMetadata<CustomCharacterImplementation>
 }
 ```
 
-当选择具有关联实现的 Actor 时，创建的自定义数据类的可序列化字段将自动在 Naninovel 编辑器菜单中公开。
+选择采用对应实现的 Actor 后，所创建的自定义数据类中的可序列化字段会自动显示在 Naninovel 编辑器菜单中。
 
 ![](https://i.gyazo.com/72f46feb74b6de568b299329500bd7d5.png)
 
@@ -148,7 +148,7 @@ public class MyCharacterData : CustomMetadata<CustomCharacterImplementation>
 如果您希望为其他系统（例如 UI、游戏对象或 Naninovel 之外的各种游戏机制的组件）添加自定义状态，请参阅 [状态管理指南](/zh/guide/state-management#自定义状态)。
 :::
 
-下面是扩展选项处理程序状态的示例，通过添加一个 `LastChoiceTime` 字段来存储最后添加选项的时间。当显示自定义选项处理程序时，时间将打印到控制台。
+下面的示例通过添加 `LastChoiceTime` 字段来扩展选项处理程序的状态，记录最近一次添加选项的时间。显示自定义选项处理程序时，该时间会输出到控制台。
 
 ```cs
 // 我们的扩展状态，用于序列化最后一个选项的时间。

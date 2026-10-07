@@ -72,7 +72,7 @@ UI 自定义允许添加自定义 UI 并修改或完全替换任何内置 UI 元
 另一个更高级的示例是添加具有网格布局、分页和拖放窗口的自定义库存 UI，可以在 [库存示例](/zh/guide/samples#库存) 中找到。具体来说，UI 相关脚本存储在 `Scripts/Runtime/Inventory/UI` 中，预制件存储在 `Content/UI/Inventory` 目录中。
 :::
 
-当您通过上下文菜单创建新的自定义 UI 预制件时，该预制件的根对象上将附加一个 `Custom UI` 组件。此组件（或者更确切地说是它实现了 `IManagedUI` 接口这一事实）对于使预制件被引擎识别为 UI 至关重要。
+通过上下文菜单创建新的自定义 UI 预制件时，其根对象上会附加一个 `Custom UI` 组件。引擎依靠此组件（更准确地说，是其实现的 `IManagedUI` 接口）将该预制件识别为 UI。
 
 ![](https://i.gyazo.com/b3149c82bf3a42436903f54f826ad349.png)
 
@@ -86,7 +86,7 @@ UI 自定义允许添加自定义 UI 并修改或完全替换任何内置 UI 元
 
 当分配了 `Focus Object` 时，`Focus Mode` 属性允许选择何时聚焦对象：`Visibility` 模式将在 UI 变为可见后立即聚焦它，而 `Navigation` 将推迟聚焦，直到玩家激活游戏手柄（左摇杆或 D-pad）或键盘（方向键）上的导航键。
 
-`On Show` 和 `On Hide` Unity 事件允许挂钩自定义处理程序以响应 UI 可见性更改。例如，您可以挂钩 `Animator` 触发器，以便在 UI 变为可见时播放自定义动画，反之亦然。
+通过 `On Show` 和 `On Hide` Unity 事件绑定自定义处理程序，即可响应 UI 可见性的变化。例如，您可以绑定 `Animator` 触发器，在 UI 显示或隐藏时播放自定义动画。
 
 启用 `Hide On Load` 后，UI 将在引擎开始加载操作时自动隐藏。这通常发生在加载另一个剧本脚本或退出到标题菜单时。
 
@@ -105,7 +105,7 @@ UI 自定义允许添加自定义 UI 并修改或完全替换任何内置 UI 元
 
 ### 更改字体
 
-要指定哪些文本元素应受游戏设置中设置的字体和文本大小更改的影响，请使用 `Custom UI` 和派生组件的 `Font Change Configuration` 属性。
+要指定游戏设置中的字体和文本大小更改应应用于哪些文本元素，请使用 `Custom UI` 和派生组件的 `Font Change Configuration` 属性。
 
 ![](https://i.gyazo.com/f8e8b03580940cce72de9e9970512902.png)
 
@@ -203,7 +203,7 @@ public class MyCustomUI : CustomUI
 
 ## UI Toolkit
 
-Unity 的新 UI 创作解决方案——[UI Toolkit](https://docs.unity3d.com/Packages/com.unity.ui@latest)——并非开箱即用，但可以借助实现 `IManagedUI` 接口的适配器与 Naninovel 一起使用。可在 [UI 示例](/zh/guide/samples#ui) 中找到此类适配器的示例。
+Naninovel 尚未直接支持 Unity 的新 UI 创作解决方案——[UI Toolkit](https://docs.unity3d.com/Packages/com.unity.ui@latest)——但可以借助实现 `IManagedUI` 接口的适配器来使用它。可在 [UI 示例](/zh/guide/samples#ui) 中找到此类适配器的示例。
 
 ::: warning
 UI Toolkit 仍处于早期开发阶段，与默认 UI 解决方案（uGUI）相比缺少一些功能。除非您是高级开发人员并准备好解决所有相关问题，否则我们不建议使用它。请注意，我们将无法提供任何关于在 Naninovel 中使用 UI Toolkit 的支持或指导。

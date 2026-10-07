@@ -65,7 +65,7 @@ Felix: Lorem ipsum dolor sit amet.
 
 ## 消息模板
 
-您可以使用消息模板自动化文本消息的附加处理。处理是在运行时使用 [@format] 命令或在编辑器中通过打印机面板 UI 的 `Default Templates` 属性为每个文本打印机单独配置的。例如，下面是内置 `Fullscreen` 打印机的默认格式模板：
+消息模板可以自动对文本消息进行附加处理。每个文本打印机的处理方式都可以单独配置：在运行时使用 [@format] 命令，或在编辑器中设置打印机面板 UI 的 `Default Templates` 属性。例如，下面是内置 `Fullscreen` 打印机的默认格式模板：
 
 ![](https://i.gyazo.com/24774230ec66a5eb783fbe148b5c96d4.png)
 
@@ -201,7 +201,7 @@ Nanikun: Integer nec maximus elit, eget posuere risus.
 
 编辑预制件：更改字体、纹理、添加动画等。有关可用 UI 构建工具的更多信息，请参阅 [uGUI 的 Unity 文档](https://docs.unity3d.com/Packages/com.unity.ugui@latest)。在 [UI 自定义指南](/zh/guide/gui#ui-自定义) 中还有一些关于使用 uGUI 的教程视频和示例项目。
 
-使用打印机的管理器 GUI 将预制件公开给引擎资源，可以使用 `Naninovel -> Resources -> Text Printers` 编辑器菜单访问该 GUI。使用 `+`（加号）按钮添加新记录，输入 Actor ID（可以与预制件名称不同），然后双击记录以打开 Actor 设置。将打印机预制件拖放到 `Resource` 字段。
+通过 `Naninovel -> Resources -> Text Printers` 编辑器菜单打开打印机管理器 GUI，将预制件添加到引擎资源中。使用 `+`（加号）按钮添加新记录，输入 Actor ID（可以与预制件名称不同），然后双击记录以打开 Actor 设置。将打印机预制件拖放到 `Resource` 字段。
 
 ![](https://i.gyazo.com/3f51881fa554720b7a4092dca42fd15e.mp4)
 
@@ -248,7 +248,7 @@ Kohaku: <b>Lorem</b> ipsum <color=#0000FF><i>sit</i></color> amet.
 
 ## 注音（Furigana）
 
-Naninovel 的 `Naninovel TMPro Text` 组件（`Revealable Text` 基于它）通过自定义 `<ruby>` 标签提供对 [注音](https://en.wikipedia.org/wiki/Ruby_character) 字符的支持。将应在其上方放置注音字符的文本用注音标签括起来，并在标签内指定注音文本，例如：
+Naninovel 的 `Naninovel TMPro Text` 组件（`Revealable Text` 基于它）通过自定义 `<ruby>` 标签提供对 [注音](https://en.wikipedia.org/wiki/Ruby_character) 字符的支持。用注音标签包裹需要在上方添加注音的文本，并在标签内指定注音内容，例如：
 
 ```nani
 Lorem <ruby="VERY">ipsum</ruby> dolor sit amet.
@@ -343,7 +343,7 @@ Unity 原生不支持阿拉伯语文本。对于需要支持阿拉伯语的文�
 
 ## 显示事件
 
-可以挂钩特定字符显示时的事件以执行任意操作。使用 `<@...>` 标签在打印的文本中指定应调用事件的位置。例如，要在显示“dolor”后触发带有“foo”有效负载的显示事件：
+您可以监听特定字符显示时触发的事件，以执行任意操作。使用 `<@...>` 标签在打印的文本中指定应触发事件的位置。例如，要在显示“dolor”后触发带有“foo”有效负载的显示事件：
 
 ```nani
 Lorem ipsum dolor<@foo> sit amet.

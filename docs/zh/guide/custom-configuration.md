@@ -163,7 +163,7 @@ public class CustomConfigurationProvider : IConfigurationProvider
 }
 ```
 
-另一个覆盖项目角色配置以在运行时注入元数据的示例：
+下面的另一个示例会覆盖项目的角色配置，在运行时注入元数据：
 
 ```cs
 public class CustomConfigurationProvider : ProjectConfigurationProvider

@@ -8,7 +8,7 @@ Naninovelが実行時に生成および使用するすべての永続データ�
 
 データはJSON形式にシリアル化され、プラットフォーム固有の [永続データディレクトリ](https://docs.unity3d.com/ScriptReference/Application-persistentDataPath.html) の下にバイナリ `.nson`（デフォルト）またはテキスト `.json` セーブスロットファイルとして保存されます。WebGLでは、最新のブラウザーのセキュリティポリシーにより、シリアル化されたデータは代わりに [IndexedDB](https://en.wikipedia.org/wiki/Indexed_Database_API) に保存されます。
 
-シリアル化の動作は、ゲームのセーブ、グローバル状態、およびユーザー設定に対して独立してシリアル化ハンドラーによって制御されます。デフォルトでは、ユニバーサルシリアル化ハンドラーが使用されます。ほとんどの場合、非同期の [System.IO](https://docs.microsoft.com/en-us/dotnet/api/system.io) を使用して、ローカルファイルシステムにスロットファイルを読み書きします。ただし、一部のプラットフォーム（ゲームコンソールなど）では、.NET IO APIが使用できないため、ユニバーサルハンドラーはUnityのクロスプラットフォーム [PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html) にフォールバックします。
+ゲームのセーブ、グローバル状態、ユーザー設定のシリアル化は、それぞれ独立したシリアル化ハンドラーが制御します。デフォルトでは、ユニバーサルシリアル化ハンドラーが使用されます。ほとんどの場合、非同期の [System.IO](https://docs.microsoft.com/en-us/dotnet/api/system.io) を使用して、ローカルファイルシステム内のスロットファイルを読み書きします。ただし、一部のプラットフォーム（ゲームコンソールなど）では、.NET IO APIが使用できないため、ユニバーサルハンドラーはUnityのクロスプラットフォーム [PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html) にフォールバックします。
 
 シリアル化ハンドラー、セーブフォルダーへのパス、許可されるセーブスロットの最大数、およびその他の関連パラメーターは、状態構成メニューから変更できます。
 
@@ -176,7 +176,7 @@ private async void Start ()
 ```
 
 ::: tip EXAMPLE
-カスタム構造体のリストを使用してインベントリUIのゲーム状態をセーブ・ロードする、カスタム状態のより高度な使用例は、[インベントリサンプル](/ja/guide/samples#インベントリ) にあります。具体的には、カスタム状態のシリアル化/逆シリアル化は `Scripts/Runtime/Inventory/UI/InventoryUI.cs` に実装されています。
+カスタム状態のより高度な使用例は、[インベントリサンプル](/ja/guide/samples#インベントリ) にあります。この例では、カスタム構造体のリストを使ってインベントリUIのゲーム状態をセーブ・ロードします。カスタム状態のシリアル化/逆シリアル化は `Scripts/Runtime/Inventory/UI/InventoryUI.cs` に実装されています。
 :::
 
 エンジンのグローバル状態および設定状態にアクセスして、カスタムデータをそれらと一緒に保存することもできます。ゲームセッションに固有であり、セーブ・ロードイベントのサブスクライブが必要なゲーム状態とは異なり、グローバル状態および設定状態のオブジェクトはシングルトンであり、状態マネージャーのプロパティを介して直接アクセスできます。
@@ -222,7 +222,7 @@ var monster2 = stateMap.GetState<MonsterState>("2");
 
 ## カスタムシリアル化ハンドラー
 
-デフォルトでは、ユニバーサルシリアル化ハンドラーが選択されている場合、エンジンの状態（ゲームのセーブ、グローバル状態、設定）は、非同期 [System.IO](https://docs.microsoft.com/en-us/dotnet/api/system.io) を介して、または一部のプラットフォームのフォールバックとしてUnityのクロスプラットフォーム [PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html) を使用してシリアル化されます。シリアル化の方法をカスタマイズするには、カスタムハンドラーを使用します。
+デフォルトのユニバーサルシリアル化ハンドラーを使用する場合、エンジンの状態（ゲームのセーブ、グローバル状態、設定）は非同期 [System.IO](https://docs.microsoft.com/en-us/dotnet/api/system.io) でシリアル化されます。一部のプラットフォームでは、フォールバックとしてUnityのクロスプラットフォーム [PlayerPrefs](https://docs.unity3d.com/ScriptReference/PlayerPrefs.html) を使用します。シリアル化の方法をカスタマイズするには、カスタムハンドラーを使用します。
 
 カスタムハンドラーを追加するには、ゲームのセーブスロット、グローバル状態、および設定に対してそれぞれ `ISaveSlotManager<GameStateMap>`、`ISaveSlotManager<GlobalStateMap>`、および `ISaveSlotManager<SettingsStateMap>` インターフェースを実装します（それぞれに独自の実装クラスが必要です）。
 

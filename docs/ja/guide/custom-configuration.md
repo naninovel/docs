@@ -163,7 +163,7 @@ public class CustomConfigurationProvider : IConfigurationProvider
 }
 ```
 
-実行時にメタデータを注入するためにプロジェクトのキャラクター構成をオーバーライドする別の例：
+次の例では、プロジェクトのキャラクター構成をオーバーライドし、実行時にメタデータを注入します。
 
 ```cs
 public class CustomConfigurationProvider : ProjectConfigurationProvider

@@ -241,7 +241,7 @@ Naninovel 元数据是一个 JSON 文件，其中包含与创作项目相关的�
 
 ### 元数据提供者
 
-要使用额外的自定义值填充生成的元数据或覆盖默认值，请创建一个实现 `IMetadataProvider` 接口的 C# 类；实现应该有一个无参数构造函数。如果找到，每次生成项目元数据时都会使用自定义提供者而不是默认提供者。
+要在生成的元数据中添加自定义值或覆盖默认值，请创建一个实现 `IMetadataProvider` 接口的 C# 类，并为其提供无参数构造函数。检测到自定义提供者后，每次生成项目元数据时都会使用它来替代默认提供者。
 
 以下是默认的元数据提供者，您可以在实现自己的提供者时将其用作参考：
 
@@ -403,6 +403,6 @@ public class ModifyCharacter { ... }
 
 虽然我们不维护其他编辑器的扩展，但我们在 [引擎 monorepo](https://github.com/naninovel/engine/tree/main/core/packages/language) 中提供了一个 [符合 LSP](https://microsoft.github.io/language-server-protocol) 的语言服务器。该服务器是用 C# 实现的，可以编译为 WASM，并具有内置的 JavaScript 绑定，使其可以在大多数现代 IDE 中使用。
 
-我们的 VS Code 扩展建立在同一个语言服务器之上。扩展的源代码也可以在 monorepo 中找到——在将服务器集成到您选择的 IDE 中时，请随意将其用作参考。要访问存储库，请 [注册您的许可证](https://naninovel.com/register)。
+我们的 VS Code 扩展基于同一个语言服务器构建。扩展的源代码也可以在 monorepo 中找到，您可以在将服务器集成到所选 IDE 时用作参考。要访问存储库，请 [注册您的许可证](https://naninovel.com/register)。
 
 或者，如果您使用的编辑器支持 TextMate 语法（例如 [Sublime](https://www.sublimetext.com) 或 [Visual Studio](https://visualstudio.microsoft.com)），我们在此处提供了相应的语法文件：[textmate.json](https://github.com/naninovel/docs/blob/main/docs/.vitepress/ext/lang/textmate.json)。请注意，该语法仅可用于语法高亮；其他 IDE 功能仍需要语言服务器。

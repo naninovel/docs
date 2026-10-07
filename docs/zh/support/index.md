@@ -1,10 +1,10 @@
 # 技术支持
 
-如果您需要帮助，最好的起点是我们的官方 Discord 服务器：[discord.gg/BfkNqem](https://discord.gg/BfkNqem)。
+需要帮助时，建议先访问我们的官方 Discord 服务器：[discord.gg/BfkNqem](https://discord.gg/BfkNqem)。
 
-欢迎您在 `#forum` 频道寻求帮助或建议，在 `#wiki` 中探索教程和指南，或者在 `#chat` 中与其他 Naninovel 用户闲聊。
+欢迎在 `#forum` 频道提问或寻求建议，在 `#wiki` 中查阅教程和指南，也可以在 `#chat` 中与其他 Naninovel 用户聊天交流。
 
-如果您拥有有效的 [支持计划](/zh/support/#支持计划)，您还将获得 `#support` 频道的访问权限，Naninovel 团队将在那里提供直接帮助。当您 [注册许可证](https://account.naninovel.com) 时，第一年的支持计划是免费的。
+如果您有有效的 [支持计划](/zh/support/#支持计划)，还可以访问 `#support` 频道，直接获得 Naninovel 团队的帮助。[注册许可证](https://account.naninovel.com) 后，首年的支持计划免费。
 
 ## 支持计划
 
@@ -15,10 +15,10 @@
 - 访问 GitHub 上的引擎源代码存储库，您可以在其中跟踪开发过程
 - 访问包含最新 preview 和 stable 发布分支的 UPM 存储库，让您可以直接从 GitHub 安装和更新 Naninovel
 
-当您 [注册许可证](https://account.naninovel.com) 时，将获赠为期一年的免费支持计划。之后，您可以随时通过您的 [账户仪表板](https://account.naninovel.com/support) 续订订阅。
+[注册许可证](https://account.naninovel.com) 后，您将获得一年的免费支持计划。此后，您可以随时通过 [账户仪表板](https://account.naninovel.com/support) 续订。
 
 ::: info NOTE
-支持计划完全是可选的——即使没有它，您也将继续通过 [下载归档](https://account.naninovel.com/download) 终身访问所有未来的 Naninovel 稳定版本，并且社区支持仍然可以在 `#forum` 频道中获得，您可以在那里随时提问并获得帮助。
+是否订阅支持计划完全由您决定。即使不订阅，您仍可通过 [下载归档](https://account.naninovel.com/download) 终身获取今后发布的所有 Naninovel 稳定版本，也可以继续在 `#forum` 频道提问并获得社区帮助。
 :::
 
 ## 报告错误
@@ -27,10 +27,10 @@
 
 在提交报告之前，请：
 
-- 检查您遇到问题的功能或用例的 [指南](/zh/guide/)、[命令参考](/zh/api/) 和 [常见问题](/zh/faq/)——您很可能遗漏了一些东西。
-- 确保您运行的是最新的可用 Naninovel 版本。最新的补丁可以通过 [UPM 存储库](/zh/guide/getting-started#从-github-安装) 获得；在 Asset Store 和下载归档上分发的包通常已过时。
+- 查阅与问题所涉及功能或使用场景相关的 [指南](/zh/guide/)、[命令参考](/zh/api/) 和 [常见问题](/zh/faq/)——很可能只是遗漏了某个步骤或细节。
+- 确保您使用的是目前可用的最新 Naninovel 版本。最新补丁可通过 [UPM 存储库](/zh/guide/getting-started#从-github-安装) 获取；Asset Store 和下载归档中的包通常会滞后。
 - 如果您最近从以前的 Naninovel 版本升级，请务必遵循 [发行说明](/releases/) 中的升级说明。
-- 尝试通过删除项目根目录中的“Library”文件夹并重新启动编辑器来清除 Unity 的缓存。
+- 尝试删除项目根目录中的“Library”文件夹，再重新启动编辑器，以清除 Unity 缓存。
 - 确保问题确实源于 Naninovel，而不是其他第三方插件或 Unity 本身；如果是后一种情况，请 [联系 Unity 支持](https://unity.com/support-services)。
 
 报告错误时：
@@ -49,7 +49,7 @@
 1. 创建一个新的 Unity 项目。确保它使用的是 [支持的 Unity 版本](/zh/guide/compatibility#unity-版本)。
 2. 安装最新的可用 Naninovel 版本。不要修改或添加包文件夹内的任何内容——我们无法支持修改后的包版本。
 3. 添加复现问题所需的资产和脚本。确保不要复制整个现有项目——从头开始，单独复现该问题。避免使用第三方插件或不必要的内容。
-4. 在项目根目录中创建一个 `repro.txt` 文件，其中包含逐步说明以及您期望的结果与实际发生的情况的简短描述。例如：
+4. 在项目根目录中创建 `repro.txt` 文件，写明逐步复现的方法，并简要说明预期结果与实际结果。例如：
     ```
     1. 打开场景“Assets/Scenes/SampleScene”。
     2. 在编辑器中进入播放模式。

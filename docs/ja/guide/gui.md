@@ -105,7 +105,7 @@ UIのゲームパッドまたはキーボードナビゲーションをサポー
 
 ### フォントの変更
 
-ゲーム設定で設定されたフォントとテキストサイズの変更の影響を受けるテキスト要素を指定するには、`Custom UI` および派生コンポーネントの `Font Change Configuration` プロパティを使用します。
+ゲーム設定でフォントやテキストサイズを変更した際に、どのテキスト要素へ適用するかは、`Custom UI` および派生コンポーネントの `Font Change Configuration` プロパティで指定します。
 
 ![](https://i.gyazo.com/f8e8b03580940cce72de9e9970512902.png)
 
@@ -121,7 +121,7 @@ UIのゲームパッドまたはキーボードナビゲーションをサポー
 
 `Font Sizes` アセットは、`Create -> Naninovel -> Font Sizes` アセットコンテキストメニューから作成できます。このアセットを使用して、複数のUI間で共通のフォントサイズを共有します。
 
-ゲーム設定メニューで使用可能な特定のテキストフォントオプションは、UI構成メニューで設定されます。
+ゲーム設定メニューで選択できるテキストフォントは、UI構成メニューで設定します。
 
 ![](https://i.gyazo.com/31a9b81dae56fb114a75e25211d26126.png)
 
@@ -189,7 +189,7 @@ public class MyCustomUI : CustomUI
 
 カスタムUIを作成する場合、特定のイベント（[ボタンクリック](https://docs.unity3d.com/Manual/script-Button.html) など）に応じてコマンドを実行したり、特定のシナリオスクリプトの再生を開始したりしたい場合があります。
 
-`Play Script` コンポーネントをゲームオブジェクトに追加し、既存のシナリオスクリプトを選択するか、テキストエリアフィールドにコマンドを直接書き込みます。次に、別のコンポーネントから [Unityイベント](https://docs.unity3d.com/Manual/UnityEvents.html) をルーティングして、`Play Script` コンポーネントの `Play()` メソッドを呼び出します。イベントがプレイモードでトリガーされると、スクリプトが実行されます。以下の例では、ボタンがクリックされたときにカスタムUIを非表示にします。
+`Play Script` コンポーネントをゲームオブジェクトに追加し、既存のシナリオスクリプトを選択するか、テキストエリアフィールドにコマンドを直接記述します。次に、別のコンポーネントの [Unityイベント](https://docs.unity3d.com/Manual/UnityEvents.html) から、`Play Script` コンポーネントの `Play()` メソッドを呼び出すように設定します。プレイモードでイベントが発生すると、スクリプトが実行されます。以下の例では、ボタンのクリック時にカスタムUIを非表示にします。
 
 ![](https://i.gyazo.com/5f56fbddc090919cc71f68e82bb1713f.png)
 
@@ -203,7 +203,7 @@ public class MyCustomUI : CustomUI
 
 ## UI Toolkit
 
-Unityの新しいUIオーサリングソリューションである [UI Toolkit](https://docs.unity3d.com/Packages/com.unity.ui@latest) は、そのままではサポートされていませんが、`IManagedUI` インターフェースを実装するアダプターを使用してNaninovelで使用できます。そのようなアダプターの例は、[UIサンプル](/ja/guide/samples#ui) にあります。
+Unityの新しいUIオーサリングソリューションである [UI Toolkit](https://docs.unity3d.com/Packages/com.unity.ui@latest) は標準ではサポートされていませんが、`IManagedUI` インターフェースを実装するアダプターを用意すればNaninovelでも利用できます。そのようなアダプターの例は、[UIサンプル](/ja/guide/samples#ui) にあります。
 
 ::: warning
 UI Toolkitはまだ開発の初期段階にあり、デフォルトのUIソリューション（uGUI）と比較していくつかの機能が不足しています。上級開発者であり、かつ関連するすべての問題を解決する準備ができている場合を除き、使用することはお勧めしません。NaninovelでのUI Toolkitの使用に関するサポートやガイダンスを提供することはできませんのでご注意ください。

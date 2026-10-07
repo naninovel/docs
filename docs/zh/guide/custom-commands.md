@@ -177,7 +177,7 @@ public class PlayAudioClip : Command, Command.IPreloadable
 您可以在 `Naninovel/Runtime/Commands` 包文件夹中找到包含所有内置命令实现的 C# 脚本；在实现您自己的自定义命令时，可以随意将它们用作参考。
 
 ::: tip EXAMPLE
-在 [库存示例](/zh/guide/samples#库存) 中可以找到添加自定义命令以添加/移除库存系统物品的另一个示例。具体来说，命令实现存储在 `Scripts/Runtime/Inventory/Commands` 目录下。
+[库存示例](/zh/guide/samples#库存) 还演示了如何添加自定义命令，用于添加/移除库存系统中的物品。命令实现位于 `Scripts/Runtime/Inventory/Commands` 目录下。
 :::
 
 ## 覆盖内置命令
@@ -186,7 +186,7 @@ public class PlayAudioClip : Command, Command.IPreloadable
 
 要覆盖内置命令，请添加一个自定义命令并应用与该内置命令相同的别名。覆盖命令后重新导入剧本脚本（右键单击存储它们的文件夹，然后单击“Reimport”）以使更改生效。然后，在播放剧本脚本时将自动使用自定义命令而不是内置命令。
 
-下面是覆盖内置 [@print] 命令的示例，以便在向玩家显示之前将打印的文本记录到控制台。
+下面的示例覆盖了内置 [@print] 命令，在向玩家显示文本之前，先将文本记录到控制台。
 
 ```cs
 [Serializable, Alias("print")]

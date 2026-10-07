@@ -2,7 +2,7 @@
 
 标准脚本命令 API 参考。使用侧边栏快速在可用命令之间导航。
 
-~~删除线~~表示主参数，**粗体**代表必需参数；其他参数应视为可选参数。如果不确定这是怎么回事，请查阅 [剧本脚本指南](/zh/guide/scenario-scripting)。
+~~删除线~~表示主参数，**粗体**代表必需参数；其他参数均可省略。如果不熟悉这些概念，请查阅 [剧本脚本指南](/zh/guide/scenario-scripting)。
 
 大多数脚本命令都支持以下参数：
 
@@ -33,7 +33,7 @@
 | lock | string | 选项是否应被禁用或以其他方式让玩家无法选择；有关更多信息，请参阅 [选项文档](/zh/guide/choices#锁定选项)。默认不锁定。 |
 | button | string | 代表该选项的 [按钮预制件](/zh/guide/choices#选项按钮) 的本地资源路径。预制件的根对象上应附加 `ChoiceHandlerButton` 组件。未指定时将使用默认按钮。 |
 | pos | number list | 选项按钮在选项处理程序内的本地位置（如果处理程序实现支持）。 |
-| handler | string | 要为其添加选项的选项处理程序的 ID。未指定时将使用默认处理程序。 |
+| handler | string | 要添加选项的目标选项处理程序的 ID。未指定时将使用默认处理程序。 |
 | goto | string | 玩家选择该选项时要跳转的路径；路径格式请参见 [@goto] 命令。在选项下嵌套命令时忽略。 |
 | gosub | string | 玩家选择该选项时要跳转的子程序路径；路径格式请参见 [@gosub] 命令。指定了 `goto` 时，此参数将被忽略。在选项下嵌套命令时忽略。 |
 | set | string | 玩家选择该选项时要执行的赋值表达式；语法参考请参见 [@set] 命令。在选项下嵌套命令时忽略。 |
@@ -95,7 +95,7 @@ Lorem ipsum
 
 | 参数 | 类型 | 描述 |
 | --- | --- | --- |
-| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">characterPositions</span> | named number list | 角色 ID 到场景 X 轴位置（相对于场景左边界，以百分比表示）的命名值集合。位置 0 对应场景的左边界，100 对应右边界；50 为中心。 |
+| <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">characterPositions</span> | named number list | 将角色 ID 与场景 X 轴位置（相对于场景左边界，以百分比表示）对应起来的命名值集合。位置 0 对应场景的左边界，100 对应右边界；50 为中心。 |
 | look | boolean | 执行自动排列时，控制是否也让角色看向场景原点（默认启用）。 |
 | time | number | 命令启动的动画持续时间，以秒为单位。 |
 | wait | boolean | 是否在开始执行剧本脚本中的下一个命令之前等待命令完成。默认行为由脚本播放器配置中的 `Wait By Default` 选项控制。 |
@@ -255,7 +255,7 @@ Lorem ipsum
 | easing | string | 要应用的 [缓动函数](/zh/guide/special-effects#动画缓动) 名称。未指定时，将使用配置中设置的默认函数。 |
 | fade | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续播放到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画会先立即完成，然后再开始向新目标播放动画。 |
-| waitFade | boolean | 在播放下一个命令之前是否等待淡入淡出完成。 |
+| waitFade | boolean | 是否等待淡入淡出完成后再播放下一个命令。 |
 
 </div>
 
@@ -289,7 +289,7 @@ Actor 需要实现 `IBlurable` 接口才能支持该效果。
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">actorId</span> | string | 要应用效果的 Actor 的 ID；如果找到多个具有相同 ID 的 Actor（例如，一个角色和一个打印机），将仅影响找到的第一个 Actor。未指定时，应用于主背景。 |
 | power | number | 效果的强度，范围为 0.0 到 1.0。默认为 0.5。设置为 0 以禁用（取消生成）效果。 |
 | time | number | 参数达到目标值所需的时间，以秒为单位。默认为 1.0。 |
-| wait | boolean | 在播放下一个命令之前是否等待效果预热动画。 |
+| wait | boolean | 是否等待效果预热动画结束后再播放下一个命令。 |
 
 </div>
 
@@ -307,7 +307,7 @@ Actor 需要实现 `IBlurable` 接口才能支持该效果。
 
 ## bokeh
 
-模拟 [景深](/zh/guide/special-effects#bokeh)（又名散景）效果，即只有焦点中的对象保持清晰，而其他对象则变得模糊。
+模拟 [景深](/zh/guide/special-effects#bokeh)（又名散景）效果，即只有对焦的对象保持清晰，而其他对象则变得模糊。
 
 <div class="config-table">
 
@@ -317,7 +317,7 @@ Actor 需要实现 `IBlurable` 接口才能支持该效果。
 | dist | number | 从 Naninovel 摄像机到焦点的距离（以单位计）。指定 `focus` 参数时忽略。默认为 10。 |
 | power | number | 应用于散焦区域的模糊量；也决定了焦点灵敏度。默认为 3.75。设置为 0 以禁用（取消生成）效果。 |
 | time | number | 参数达到目标值所需的时间，以秒为单位。默认为 1.0。 |
-| wait | boolean | 在播放下一个命令之前是否等待效果预热动画。 |
+| wait | boolean | 是否等待效果预热动画结束后再播放下一个命令。 |
 
 </div>
 
@@ -443,10 +443,10 @@ Actor 需要实现 `IBlurable` 接口才能支持该效果。
 | lock | string | 选项是否应被禁用或以其他方式让玩家无法选择；有关更多信息，请参阅 [选项文档](/zh/guide/choices#锁定选项)。默认不锁定。 |
 | button | string | 代表该选项的 [按钮预制件](/zh/guide/choices#选项按钮) 的本地资源路径。预制件的根对象上应附加 `ChoiceHandlerButton` 组件。未指定时将使用默认按钮。 |
 | pos | number list | 选项按钮在选项处理程序内的本地位置（如果处理程序实现支持）。 |
-| handler | string | 要为其添加选项的选项处理程序的 ID。未指定时将使用默认处理程序。 |
-| goto | string | 用户选择该选项时要跳转的路径；路径格式请参见 [@goto] 命令。在选项下嵌套命令时忽略。 |
-| gosub | string | 用户选择该选项时要跳转的子程序路径；路径格式请参见 [@gosub] 命令。指定了 `goto` 时，此参数将被忽略。在选项下嵌套命令时忽略。 |
-| set | string | 用户选择该选项时要执行的赋值表达式；语法参考请参见 [@set] 命令。在选项下嵌套命令时忽略。 |
+| handler | string | 要添加选项的目标选项处理程序的 ID。未指定时将使用默认处理程序。 |
+| goto | string | 玩家选择该选项时要跳转的路径；路径格式请参见 [@goto] 命令。在选项下嵌套命令时忽略。 |
+| gosub | string | 玩家选择该选项时要跳转的子程序路径；路径格式请参见 [@gosub] 命令。指定了 `goto` 时，此参数将被忽略。在选项下嵌套命令时忽略。 |
+| set | string | 玩家选择该选项时要执行的赋值表达式；语法参考请参见 [@set] 命令。在选项下嵌套命令时忽略。 |
 | show | boolean | 是否同时显示该选项所添加到的选项处理程序；默认启用。 |
 | time | number | 淡入（显示）动画的持续时间（以秒为单位）。 |
 
@@ -532,7 +532,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 ## clearChoice
 
-移除具有指定 ID 的选项处理程序中的当前选项（未指定 ID 时为默认处理程序；指定 `*` 作为 ID 时为所有现有处理程序），并（可选）隐藏它（它们）。
+移除指定 ID 的选项处理程序中的当前选项，并可选择隐藏该处理程序。未指定 ID 时，操作针对默认处理程序；指定 `*` 作为 ID 时，操作针对所有现有处理程序。
 
 <div class="config-table">
 
@@ -606,7 +606,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
 ## endIf
 
-在条件块中使用缩进的替代方法：标记上一个 [@if] 命令打开的块的结束，无论缩进如何。有关用法示例，请参阅 [条件执行](/zh/guide/scenario-scripting#条件执行) 指南。
+用于替代条件块的缩进：无论缩进如何，都会标记上一个 [@if] 命令所打开的块的结束位置。有关用法示例，请参阅 [条件执行](/zh/guide/scenario-scripting#条件执行) 指南。
 
 ## enterDialogue
 
@@ -665,7 +665,7 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 | --- | --- | --- |
 | time | number | 效果的持续时间，以秒为单位；默认为 1。 |
 | power | number | 效果的强度，范围为 0.0 到 10.0；默认为 1。 |
-| wait | boolean | 在播放下一个命令之前是否等待效果预热动画。 |
+| wait | boolean | 是否等待效果预热动画结束后再播放下一个命令。 |
 
 </div>
 
@@ -864,7 +864,7 @@ Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">uiNames</span> | string list | 要隐藏的 UI 元素的名称。 |
 | allowToggle | boolean | 隐藏整个 UI 时，控制是否允许玩家使用热键或通过单击屏幕上的任意位置重新显示 UI（默认为 false）。隐藏特定 UI 时无效。 |
 | time | number | 隐藏动画的持续时间（以秒为单位）。未指定时，将使用特定于 UI 的持续时间。 |
-| wait | boolean | 在播放下一个命令之前是否等待 UI 淡出动画。 |
+| wait | boolean | 是否等待 UI 淡出动画结束后再播放下一个命令。 |
 
 </div>
 
@@ -979,7 +979,7 @@ Archibald: 你好，{name}！
 
 ## lipSync
 
-允许强制停止具有指定 ID 的角色的口型同步嘴部动画；停止后，在再次使用此命令允许之前，动画不会重新开始。角色应能够接收口型同步事件（目前仅限通用、分层、Universal、Live2D 和 Spine 实现）。有关口型同步功能的更多信息，请参阅 [角色指南](/zh/guide/characters#口型同步)。
+可强制停止指定 ID 角色的口型同步动画。停止后，必须再次使用此命令允许播放，动画才能重新开始。角色应能够接收口型同步事件（目前仅限通用、分层、Universal、Live2D 和 Spine 实现）。有关口型同步功能的更多信息，请参阅 [角色指南](/zh/guide/characters#口型同步)。
 
 <div class="config-table">
 
@@ -1141,7 +1141,7 @@ Kohaku: Lorem ipsum[lipSync Kohaku.false]... [lipSync Kohaku.true]dolor sit.
 | <span class="command-param-primary command-param-required" title="主参数：值应在命令标识符之后指定，无需指定参数 ID 必需参数：应始终指定该参数">text</span> | string | 要打印的消息文本。当文本包含空格时，请用双引号（`"`）将其括起来。如果希望在文本本身中包含双引号，请对其进行转义。 |
 | printer | string | 要使用的打印机 Actor 的 ID。未指定时将使用默认打印机。 |
 | author | string | 应与打印消息关联的 Actor 的 ID。追加时忽略。指定 `*` 或使用 `,` 分隔多个 Actor ID 以使所有/选定的角色成为文本的作者；当与 `as` 参数结合使用以表示多个角色同时说话时很有用。 |
-| as | string | 指定时，打印消息时将在文本打印机中使用该标签代替作者 ID（或关联的显示名称）来表示作者名称。可用于覆盖少数几条消息的默认名称，或表示多个作者同时说话，而不触发文本打印机的作者特定行为（例如消息颜色或头像）。 |
+| as | string | 指定后，文本打印机在打印消息时会用该标签代替作者 ID（或关联的显示名称）来显示作者名称。可用于覆盖少数几条消息的默认名称，或表示多个作者同时说话，而不触发文本打印机的作者特定行为（例如消息颜色或头像）。 |
 | speed | number | 文本显示速度的乘数；应为正数或零。设置为 1 即为默认速度。 |
 | reset | boolean | 是否在执行打印任务之前重置打印机的文本。默认值由打印机 Actor 配置菜单中的 `Auto Reset` 属性控制。 |
 | default | boolean | 是否在执行打印任务之前使打印机成为默认打印机并隐藏其他打印机。默认值由打印机 Actor 配置菜单中的 `Auto Default` 属性控制。 |
@@ -1221,7 +1221,7 @@ Kohaku: 再次使用我链接的打印机。
 
 ## processInput
 
-允许暂停和恢复输入处理（例如，对按下键盘按键的反应）。该操作的效果是持久的，会随游戏一起保存。
+可暂停或恢复输入处理（例如响应键盘按键）。该操作的效果会持续生效，并随游戏一同保存。
 
 <div class="config-table">
 
@@ -1291,7 +1291,7 @@ Kohaku: 再次使用我链接的打印机。
 | roll | number | 为生成的效果游戏对象设置的 Z 轴旋转。与 `rotation` 参数的第三个分量相同；指定 `rotation` 时将忽略此参数。 |
 | rotation | number list | 为生成的效果游戏对象设置的旋转。 |
 | scale | number list | 为生成的效果游戏对象设置的缩放。 |
-| wait | boolean | 在播放下一个命令之前是否等待效果预热动画。 |
+| wait | boolean | 是否等待效果预热动画结束后再播放下一个命令。 |
 
 </div>
 
@@ -1489,7 +1489,7 @@ Kohaku: 再次使用我链接的打印机。
 | to | string | 一个表达式，其结果将赋给所有未带赋值表达式（即没有 `= ...` 部分）的指定变量。适用于将同一个值赋给多个变量，例如 `@set foo, bar, baz to:10`。 |
 | scope | string | 指定后，会将没有显式作用域的变量归入指定的作用域。 |
 | init | boolean | 该变量是否只应在尚未赋值时才进行赋值（即初始化意图）。不应与 `meta` 或 `const` 标志一起使用，因为它们都具有初始化意图。 |
-| meta | boolean | 该变量是否应初始化为元变量。元变量位于游戏会话之“上”，即在开始新游戏时它们的值仍会保留。非常适合用于元游戏机制，例如追踪路线完成情况或成就。 |
+| meta | boolean | 该变量是否应初始化为元变量。元变量的值不受游戏会话限制，开始新游戏时也会保留。非常适合用于元游戏机制，例如追踪路线完成情况或成就。 |
 | const | boolean | 该变量是否应初始化为常量。常量只能初始化一次，之后不允许再更改。 |
 
 </div>
@@ -1592,7 +1592,7 @@ Kohaku: 再次使用我链接的打印机。
 | easing | string | 要应用的 [缓动函数](/zh/guide/special-effects#动画缓动) 名称。未指定时，将使用配置中设置的默认函数。 |
 | fade | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续播放到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画会先立即完成，然后再开始向新目标播放动画。 |
-| waitFade | boolean | 在播放下一个命令之前是否等待淡入淡出完成。 |
+| waitFade | boolean | 是否等待淡入淡出完成后再播放下一个命令。 |
 
 </div>
 
@@ -1661,7 +1661,7 @@ Kohaku: 再次使用我链接的打印机。
 | deltaPower | number | 应用于基本位移幅度的随机变化量。 |
 | hor | boolean | 是否水平位移 Actor（沿 X 轴）。 |
 | ver | boolean | 是否垂直位移 Actor（沿 Y 轴）。 |
-| wait | boolean | 在播放下一个命令之前是否等待效果预热动画。 |
+| wait | boolean | 是否等待效果预热动画结束后再播放下一个命令。 |
 
 </div>
 
@@ -1734,7 +1734,7 @@ Kohaku: 再次使用我链接的打印机。
 | --- | --- | --- |
 | <span class="command-param-primary" title="主参数：值应在命令标识符之后指定，无需指定参数 ID">uiNames</span> | string list | 要显示的 UI 资源的名称。 |
 | time | number | 显示动画的持续时间（以秒为单位）。未指定时，将使用特定于 UI 的持续时间。 |
-| wait | boolean | 在播放下一个命令之前是否等待 UI 淡入动画。 |
+| wait | boolean | 是否等待 UI 淡入动画结束后再播放下一个命令。 |
 
 </div>
 
@@ -1822,7 +1822,7 @@ Kohaku: 再次使用我链接的打印机。
 | roll | number | 为生成的效果游戏对象设置的 Z 轴旋转。与 `rotation` 参数的第三个分量相同；指定 `rotation` 时将忽略此参数。 |
 | rotation | number list | 为生成的效果游戏对象设置的旋转。 |
 | scale | number list | 为生成的效果游戏对象设置的缩放。 |
-| wait | boolean | 在播放下一个命令之前是否等待效果预热动画。 |
+| wait | boolean | 是否等待效果预热动画结束后再播放下一个命令。 |
 
 </div>
 
@@ -1914,7 +1914,7 @@ Kohaku: 再次使用我链接的打印机。
 | easing | string | 要应用的 [缓动函数](/zh/guide/special-effects#动画缓动) 名称。未指定时，将使用配置中设置的默认函数。 |
 | fade | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续播放到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画会先立即完成，然后再开始向新目标播放动画。 |
-| waitFade | boolean | 在播放下一个命令之前是否等待淡入淡出完成。 |
+| waitFade | boolean | 是否等待淡入淡出完成后再播放下一个命令。 |
 
 </div>
 
@@ -1942,7 +1942,7 @@ Kohaku: 再次使用我链接的打印机。
 | easing | string | 要应用的 [缓动函数](/zh/guide/special-effects#动画缓动) 名称。未指定时，将使用配置中设置的默认函数。 |
 | fade | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续播放到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画会先立即完成，然后再开始向新目标播放动画。 |
-| waitFade | boolean | 在播放下一个命令之前是否等待淡入淡出完成。 |
+| waitFade | boolean | 是否等待淡入淡出完成后再播放下一个命令。 |
 
 </div>
 
@@ -1978,7 +1978,7 @@ Kohaku: 再次使用我链接的打印机。
 | roll | number | 为生成的效果游戏对象设置的 Z 轴旋转。与 `rotation` 参数的第三个分量相同；指定 `rotation` 时将忽略此参数。 |
 | rotation | number list | 为生成的效果游戏对象设置的旋转。 |
 | scale | number list | 为生成的效果游戏对象设置的缩放。 |
-| wait | boolean | 在播放下一个命令之前是否等待效果预热动画。 |
+| wait | boolean | 是否等待效果预热动画结束后再播放下一个命令。 |
 
 </div>
 
@@ -2088,7 +2088,7 @@ Kohaku: 再次使用我链接的打印机。
 
 ## trans
 
-执行场景过渡，用命令开始执行时可见的任何内容（UI 除外）掩盖真实的场景内容，执行嵌套命令以更改场景并以指定的 [过渡效果](/zh/guide/special-effects#过渡效果) 结束。<br/><br/> 该命令的工作原理类似于 Actor 外观过渡，但覆盖整个场景。使用它可以借助过渡效果一次性将多个 Actor 和其他可见实体更改为新状态。
+执行场景过渡：先用命令开始执行时可见的内容（UI 除外）遮盖实际场景，再执行嵌套命令更改场景，最后应用指定的 [过渡效果](/zh/guide/special-effects#过渡效果)。<br/><br/> 该命令的工作原理类似于 Actor 外观过渡，但覆盖整个场景。使用它可以借助过渡效果一次性将多个 Actor 和其他可见实体更改为新状态。
 
 ::: info NOTE
 在过渡进行期间（嵌套命令正在运行），UI 将被隐藏且输入被阻止。您可以通过覆盖处理过渡过程的 `ISceneTransitionUI` 来更改此行为。<br/><br/> 异步嵌套命令将立即执行，无需为每个命令指定 `time:0`。<br/><br/> 嵌套块应始终能够执行完毕；不要嵌套任何可能导航到嵌套块外部的命令，因为这可能会导致未定义的行为。
@@ -2240,7 +2240,7 @@ Jenna: 这该死的雨什么时候才会停？
 | easing | string | 要应用的 [缓动函数](/zh/guide/special-effects#动画缓动) 名称。未指定时，将使用配置中设置的默认函数。 |
 | fade | number | 命令启动的动画持续时间，以秒为单位。 |
 | lazy | boolean | 当命令启动的动画已在运行时，启用 `lazy` 将使动画从当前状态继续播放到新目标。未启用 `lazy`（默认行为）时，当前正在运行的动画会先立即完成，然后再开始向新目标播放动画。 |
-| waitFade | boolean | 在播放下一个命令之前是否等待淡入淡出完成。 |
+| waitFade | boolean | 是否等待淡入淡出完成后再播放下一个命令。 |
 
 </div>
 
