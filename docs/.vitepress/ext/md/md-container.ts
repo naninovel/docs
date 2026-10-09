@@ -1,8 +1,10 @@
 import container from "markdown-it-container";
-import type { MarkdownRenderer } from "vitepress";
+import type { MarkdownEnv, MarkdownRenderer } from "vitepress";
+import { containers } from "../l10n/locales";
 
-// Registers :::: group / ::: item containers that render as tabbed content panels.
-// Syntax:
+// Registers :::: group / ::: item containers that render as tabbed content panels
+// and localizes titles of the built-in ones (::: tip, ::: info NOTE, etc.).
+// Group syntax:
 //   :::: group
 //   ::: item Title 1
 //   Arbitrary Markdown content.
@@ -12,9 +14,16 @@ import type { MarkdownRenderer } from "vitepress";
 //   :::
 //   ::::
 
+const titleRegex = /(<p class="custom-block-title">)(.*?)(<\/p>)/;
+
 let nextId = 0;
 
-export function GroupContainerPlugin(md: MarkdownRenderer) {
+export function ContainerPlugin(md: MarkdownRenderer) {
+    registerGroups(md);
+    localizeTitles(md);
+}
+
+function registerGroups(md: MarkdownRenderer) {
     md.use(container, "group", {
         render(tokens: any[], idx: number) {
             if (tokens[idx].nesting === 1) {
@@ -45,6 +54,21 @@ export function GroupContainerPlugin(md: MarkdownRenderer) {
             return `<div class="block${tokens[idx].meta?.active ? " active" : ""}">\n`;
         }
     });
+}
+
+function localizeTitles(md: MarkdownRenderer) {
+    for (const type of ["tip", "info", "warning", "danger"]) {
+        const rule = `container_${type}_open`;
+        const render = md.renderer.rules[rule];
+        if (render == null) continue;
+        md.renderer.rules[rule] = (tokens, idx, options, env: MarkdownEnv, self) => {
+            const html = render(tokens, idx, options, env, self);
+            const map = containers[env.relativePath?.split("/")[0] ?? ""];
+            if (map == null) return html;
+            return html.replace(titleRegex, (match, open, title, close) =>
+                map[title] != null ? `${open}${map[title]}${close}` : match);
+        };
+    }
 }
 
 function uid() {
