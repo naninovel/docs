@@ -83,8 +83,8 @@
 ```nani
 ; 文の最初の部分を通常どおり（徐々に）表示し、
 ; 次に文の終わりを一度に追加します。
-Lorem ipsum
-@append " dolor sit amet."
+吾輩は猫である。
+@append "名前はまだ無い。"
 ```
 
 ## arrange
@@ -526,7 +526,7 @@ Lorem ipsum
 
 ```nani
 ; 表示されたテキストはバックログから削除されます。
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。
 @clearBacklog
 ```
 
@@ -645,14 +645,14 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 ; 最初の2文を太字の赤色テキスト（サイズ45px）で表示し、
 ; 次にスタイルをリセットして、最後の文をデフォルトスタイルで表示します。
 @format <color=#ff0000><b><size=45>%TEXT%</size></b></color>
-Lorem ipsum dolor sit amet.
-Cras ut nisi eget ex viverra egestas in nec magna.
+吾輩は猫である。
+名前はまだ無い。
 @format default
-Consectetur adipiscing elit.
+どこで生れたかとんと見当がつかぬ。
 
 ; @format コマンドを使用する代わりに、
 ; 表示されるテキストに直接スタイルを適用することも可能です。
-Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
+吾輩は猫である。<b>名前はまだ無い。</b>
 ```
 
 ## glitch
@@ -992,7 +992,7 @@ Archibald: ようこそ、{name}！
 ```nani
 ; オートボイスが無効で、リップシンクがテキストメッセージによって駆動されると仮定して、
 ; 口のアニメーションから句読点を除外します。
-Kohaku: Lorem ipsum[lipSync Kohaku.false]... [lipSync Kohaku.true]dolor sit.
+Kohaku: 吾輩は猫である[lipSync Kohaku.false]……[lipSync Kohaku.true]名前はまだ無い。
 ```
 
 ## loadScene
@@ -1131,7 +1131,7 @@ WebGL以外のプラットフォームまたはエディターでは、Unityの 
 テキストプリンターアクターを使用して、指定されたテキストメッセージを表示します（時間をかけて徐々に表示されます）。
 
 ::: info NOTE
-このコマンドは、汎用テキスト行を処理するときに内部で使用されます。たとえば、汎用テキスト行 `Kohaku: Hello World!` は、シナリオスクリプトの解析時に自動的に `@print "Hello World!" author:Kohaku` に変換されます。<br/> デフォルトでは、新しいメッセージを表示する前にプリンターをリセット（クリア）します。これを防いで代わりにテキストを追加するには、`reset` パラメーターを *false* に設定するか、プリンターアクター構成の `Auto Reset` を無効にします。<br/> デフォルトでは、プリンターをデフォルトにして他のプリンターを非表示にします。これを防ぐには、`default` パラメーターを *false* に設定するか、プリンターアクター構成の `Auto Default` を無効にします。<br/> デフォルトでは、タスクを終了する前に入力を待機します。テキストが完全に表示されたらすぐに戻るようにするには、`waitInput` パラメーターを *false* に設定するか、プリンターアクター構成の `Auto Wait` を無効にします。
+このコマンドは、汎用テキスト行を処理するときに内部で使用されます。たとえば、汎用テキスト行 `Kohaku: こんにちは、世界！` は、シナリオスクリプトの解析時に自動的に `@print "こんにちは、世界！" author:Kohaku` に変換されます。<br/> デフォルトでは、新しいメッセージを表示する前にプリンターをリセット（クリア）します。これを防いで代わりにテキストを追加するには、`reset` パラメーターを *false* に設定するか、プリンターアクター構成の `Auto Reset` を無効にします。<br/> デフォルトでは、プリンターをデフォルトにして他のプリンターを非表示にします。これを防ぐには、`default` パラメーターを *false* に設定するか、プリンターアクター構成の `Auto Default` を無効にします。<br/> デフォルトでは、タスクを終了する前に入力を待機します。テキストが完全に表示されたらすぐに戻るようにするには、`waitInput` パラメーターを *false* に設定するか、プリンターアクター構成の `Auto Wait` を無効にします。
 :::
 
 <div class="config-table">
@@ -1154,21 +1154,21 @@ WebGL以外のプラットフォームまたはエディターでは、Unityの 
 
 ```nani
 ; デフォルトのプリンターでフレーズを表示します。
-@print "Lorem ipsum dolor sit amet."
+@print "吾輩は猫である。名前はまだ無い。"
 
 ; テキスト自体に引用符を含めるには、エスケープします。
 @print "\"車を止めろ！\" と叫んだのは間違いでした。"
 
 ; 通常の半分の速度でメッセージを表示し、
 ; 続行するために入力を待機しません。
-@print "Lorem ipsum dolor sit amet." speed:0.5 !waitInput
+@print "吾輩は猫である。名前はまだ無い。" speed:0.5 !waitInput
 
 ; 「全員」を話者名として行を表示し、
 ; 表示されているすべてのキャラクターをそのテキストの話者にします。
-@print "Hello World!" author:* as:"全員"
+@print "こんにちは、世界！" author:* as:"全員"
 
 ; 同様ですが、「Kohaku」と「Yuko」のみを話者にします。
-@print "Hello World!" author:Kohaku,Yuko as:"KohakuとYuko"
+@print "こんにちは、世界！" author:Kohaku,Yuko as:"KohakuとYuko"
 ```
 
 ## printer
@@ -1521,13 +1521,13 @@ Kohaku: 再びリンクされたプリンターを使用します。
 @set foo--
 
 ; 「foo」変数に「bar」変数の値
-; （「Hello World!」文字列）を代入します。
-@set bar="Hello World!"
+; （「こんにちは、世界！」文字列）を代入します。
+@set bar="こんにちは、世界！"
 @set foo=bar
 
 ; 1行で複数のセット式を定義します。
 ; 結果は上記と同じになります。
-@set bar="Hello World!", foo=bar
+@set bar="こんにちは、世界！", foo=bar
 
 ; 複数の変数に同じ値を代入します。
 @set foo, bar, baz to:10
@@ -2076,8 +2076,8 @@ Kohaku: 再びリンクされたプリンターを使用します。
 </div>
 
 ```nani
-; 内容が「Hello World!」のデフォルトのトーストを表示します。
-@toast "Hello World!"
+; 内容が「こんにちは、世界！」のデフォルトのトーストを表示します。
+@toast "こんにちは、世界！"
 
 ; 「warning」外観のトーストを表示します。
 @toast "危険です！" appearance:warning
@@ -2267,10 +2267,10 @@ Jenna: このいまいましい雨はいつ止むの？
 @wait 0.5
 @sfx Thunder
 
-; 最初の2語を表示し、残りを表示する前に入力を待機します。
-Lorem ipsum[wait i] dolor sit amet.
+; 最初の文を表示し、残りを表示する前に入力を待機します。
+吾輩は猫である。[wait i]名前はまだ無い。
 ; この待機モードには、次のショートカットも使用できます。
-Lorem ipsum[-] dolor sit amet.
+吾輩は猫である。[-]名前はまだ無い。
 
 ; ループSFXを開始し、メッセージを表示し、スキップ可能な5秒の遅延を待機してから、
 ; SFXを停止します。

@@ -6,7 +6,7 @@
 
 要添加您自己的自定义脚本命令，请创建一个派生自 `Command` 的新 C# 类并重写 `Execute` 方法。创建的类将自动被引擎识别，您可以通过类名或别名（如果已分配）从剧本脚本调用该命令。要为 Naninovel 命令分配别名，请将 `Alias` 特性应用于类。
 
-下面是一个自定义命令的示例，可以在剧本脚本中通过 `@HelloWorld` 或 `@hello` 调用，将“Hello World!”打印到控制台，并且还可以接受可选的 `name` 参数（例如 `@hello name:Felix`），以问候提供的名字而不是世界。
+下面是一个自定义命令的示例，可以在剧本脚本中通过 `@HelloWorld` 或 `@hello` 调用，将“你好，世界！”打印到控制台，并且还可以接受可选的 `name` 参数（例如 `@hello name:Felix`），以问候提供的名字而不是世界。
 
 ```cs
 using System;
@@ -22,7 +22,7 @@ public class HelloWorld : Command
     public override Awaitable Execute (ExecutionContext ctx)
     {
         if (Assigned(Name)) Debug.Log($"Hello, {Name}!");
-        else Debug.Log("Hello World!");
+        else Debug.Log("你好，世界！");
         return Async.Completed;
     }
 }

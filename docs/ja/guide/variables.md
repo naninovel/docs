@@ -189,8 +189,8 @@ Archibald: ようこそ、{name}！
 
 ```cs
 var vars = Engine.GetService<IVariableManager>();
-// 「Hello World!」の値を持つ「myVar」文字列変数を作成します。
-vars.AddVariable(new("myVar", new("Hello World!")));
+// 「こんにちは、世界！」の値を持つ「myVar」文字列変数を作成します。
+vars.AddVariable(new("myVar", new("こんにちは、世界！")));
 ```
 
 メタ変数または定数を作成するには、種類を指定します。
@@ -210,10 +210,10 @@ if (vars.GetValue("myVar") is { String: var text })
 変数の実際の値を取得するときに `.String` プロパティを使用していることに注目してください。変数は `String`、`Numeric`、`Boolean` の3つの型のいずれかになります。型は、シナリオスクリプトで変数が最初に代入されたときに決定されます。
 
 ```nani
-; 「foo」変数に「Hello World!」文字列値を代入します
-@set foo="Hello World!"
+; 「foo」変数に「こんにちは、世界！」文字列値を代入します
+@set foo="こんにちは、世界！"
 ; 式で文字列値を使用します
-@if foo is "Hello World!"
+@if foo is "こんにちは、世界！"
 
 ; 「bar」変数に数値42を代入します
 @set bar=42
@@ -231,10 +231,10 @@ if (vars.GetValue("myVar") is { String: var text })
 ```cs
 var vars = Engine.GetService<IVariableManager>();
 
-// 「foo」変数に「Hello World!」文字列値を代入します
-vars.SetValue("foo", new("Hello World!"));
+// 「foo」変数に「こんにちは、世界！」文字列値を代入します
+vars.SetValue("foo", new("こんにちは、世界！"));
 // 代入された文字列値にアクセスします
-if (vars.GetValue("foo") is { String: "Hello World!" })
+if (vars.GetValue("foo") is { String: "こんにちは、世界！" })
 
 // 「bar」変数に数値42を代入します
 vars.SetValue("bar", new(42));

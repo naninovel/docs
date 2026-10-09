@@ -83,8 +83,8 @@
 ```nani
 ; 像往常一样打印句子的第一部分（逐渐显示），
 ; 然后立即追加句子的结尾。
-Lorem ipsum
-@append " dolor sit amet."
+天地玄黄，
+@append "宇宙洪荒。"
 ```
 
 ## arrange
@@ -526,7 +526,7 @@ Actor 需要实现 `IBlurable` 接口才能支持该效果。
 
 ```nani
 ; 打印的文本将从历史记录中移除。
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+天地玄黄，宇宙洪荒。日月盈昃，辰宿列张。
 @clearBacklog
 ```
 
@@ -645,14 +645,14 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 ; 以粗体红色文本和 45px 大小打印前两句，
 ; 然后重置样式并使用默认样式打印最后一句。
 @format <color=#ff0000><b><size=45>%TEXT%</size></b></color>
-Lorem ipsum dolor sit amet.
-Cras ut nisi eget ex viverra egestas in nec magna.
+天地玄黄，宇宙洪荒。
+日月盈昃，辰宿列张。
 @format default
-Consectetur adipiscing elit.
+寒来暑往，秋收冬藏。
 
 ; 除了使用 @format 命令，
 ; 还可以直接将样式应用于打印的文本。
-Lorem ipsum sit amet. <b>Consectetur adipiscing elit.</b>
+天地玄黄，宇宙洪荒。<b>日月盈昃，辰宿列张。</b>
 ```
 
 ## glitch
@@ -992,7 +992,7 @@ Archibald: 你好，{name}！
 ```nani
 ; 假设自动配音已禁用且口型同步由文本消息驱动，
 ; 从嘴部动画中排除标点符号。
-Kohaku: Lorem ipsum[lipSync Kohaku.false]... [lipSync Kohaku.true]dolor sit.
+Kohaku: 天地玄黄[lipSync Kohaku.false]……[lipSync Kohaku.true]宇宙洪荒。
 ```
 
 ## loadScene
@@ -1131,7 +1131,7 @@ Kohaku: Lorem ipsum[lipSync Kohaku.false]... [lipSync Kohaku.true]dolor sit.
 使用文本打印机 Actor 打印（逐渐显示）指定的文本消息。
 
 ::: info NOTE
-处理通用文本行时会在底层使用此命令，例如通用文本行 `Kohaku: Hello World!` 在解析剧本脚本时将自动转换为 `@print "Hello World!" author:Kohaku`。<br/> 默认情况下，会在打印新消息之前重置（清除）打印机；将 `reset` 参数设置为 *false* 或在打印机 Actor 配置中禁用 `Auto Reset` 可防止这种情况并改为追加文本。<br/> 默认情况下，会使打印机成为默认打印机并隐藏其他打印机；将 `default` 参数设置为 *false* 或在打印机 Actor 配置中禁用 `Auto Default` 可防止这种情况。<br/> 默认情况下，会在完成任务之前等待输入；将 `waitInput` 参数设置为 *false* 或在打印机 Actor 配置中禁用 `Auto Wait` 可在文本完全显示后立即返回。
+处理通用文本行时会在底层使用此命令，例如通用文本行 `Kohaku: 你好，世界！` 在解析剧本脚本时将自动转换为 `@print "你好，世界！" author:Kohaku`。<br/> 默认情况下，会在打印新消息之前重置（清除）打印机；将 `reset` 参数设置为 *false* 或在打印机 Actor 配置中禁用 `Auto Reset` 可防止这种情况并改为追加文本。<br/> 默认情况下，会使打印机成为默认打印机并隐藏其他打印机；将 `default` 参数设置为 *false* 或在打印机 Actor 配置中禁用 `Auto Default` 可防止这种情况。<br/> 默认情况下，会在完成任务之前等待输入；将 `waitInput` 参数设置为 *false* 或在打印机 Actor 配置中禁用 `Auto Wait` 可在文本完全显示后立即返回。
 :::
 
 <div class="config-table">
@@ -1154,21 +1154,21 @@ Kohaku: Lorem ipsum[lipSync Kohaku.false]... [lipSync Kohaku.true]dolor sit.
 
 ```nani
 ; 使用默认打印机打印短语。
-@print "Lorem ipsum dolor sit amet."
+@print "天地玄黄，宇宙洪荒。"
 
 ; 要在文本本身中包含引号，请对其进行转义。
 @print "大喊 \"停车！\" 是个错误。"
 
 ; 以正常速度的一半显示消息，
 ; 并且不等待输入就继续。
-@print "Lorem ipsum dolor sit amet." speed:0.5 !waitInput
+@print "天地玄黄，宇宙洪荒。" speed:0.5 !waitInput
 
 ; 打印该行，将“大家”显示为作者名称，
 ; 并使所有可见角色成为打印文本的作者。
-@print "Hello World!" author:* as:"大家"
+@print "你好，世界！" author:* as:"大家"
 
 ; 类似，但只让“Kohaku”和“Yuko”成为作者。
-@print "Hello World!" author:Kohaku,Yuko as:"Kohaku 和 Yuko"
+@print "你好，世界！" author:Kohaku,Yuko as:"Kohaku 和 Yuko"
 ```
 
 ## printer
@@ -1521,13 +1521,13 @@ Kohaku: 再次使用我链接的打印机。
 @set foo--
 
 ; 将“bar”变量的值赋给“foo”变量，
-; 即“Hello World!”字符串。
-@set bar="Hello World!"
+; 即“你好，世界！”字符串。
+@set bar="你好，世界！"
 @set foo=bar
 
 ; 在一行中定义多个赋值表达式；
 ; 结果将与上面相同。
-@set bar="Hello World!", foo=bar
+@set bar="你好，世界！", foo=bar
 
 ; 将同一个值赋给多个变量。
 @set foo, bar, baz to:10
@@ -2076,8 +2076,8 @@ Kohaku: 再次使用我链接的打印机。
 </div>
 
 ```nani
-; 显示带有“Hello World!”内容的默认 toast。
-@toast "Hello World!"
+; 显示带有“你好，世界！”内容的默认 toast。
+@toast "你好，世界！"
 
 ; 显示带有“warning”外观的 toast。
 @toast "你有危险！" appearance:warning
@@ -2267,10 +2267,10 @@ Jenna: 这该死的雨什么时候才会停？
 @wait 0.5
 @sfx Thunder
 
-; 打印前 2 个单词，然后等待输入再打印其余部分。
-Lorem ipsum[wait i] dolor sit amet.
+; 打印第一句，然后等待输入再打印其余部分。
+天地玄黄，[wait i]宇宙洪荒。
 ; 您也可以对此等待模式使用以下简写。
-Lorem ipsum[-] dolor sit amet.
+天地玄黄，[-]宇宙洪荒。
 
 ; 启动循环 SFX，打印消息并等待可跳过的 5 秒延迟，
 ; 然后停止 SFX。

@@ -189,8 +189,8 @@ Archibald: 你好，{name}！
 
 ```cs
 var vars = Engine.GetService<IVariableManager>();
-// 创建值为“Hello World!”的“myVar”字符串变量。
-vars.AddVariable(new("myVar", new("Hello World!")));
+// 创建值为“你好，世界！”的“myVar”字符串变量。
+vars.AddVariable(new("myVar", new("你好，世界！")));
 ```
 
 要创建元变量或常量变量，请指定种类：
@@ -210,10 +210,10 @@ if (vars.GetValue("myVar") is { String: var text })
 请注意，在获取变量的实际值时使用了 `.String` 属性。变量可以是三种类型之一：`String`、`Numeric` 或 `Boolean`。类型由变量在剧本脚本中首次赋值时决定：
 
 ```nani
-; 将字符串值“Hello World!”赋给“foo”变量
-@set foo="Hello World!"
+; 将字符串值“你好，世界！”赋给“foo”变量
+@set foo="你好，世界！"
 ; 在表达式中使用字符串值
-@if foo is "Hello World!"
+@if foo is "你好，世界！"
 
 ; 将数值 42 赋给“bar”变量
 @set bar=42
@@ -231,10 +231,10 @@ if (vars.GetValue("myVar") is { String: var text })
 ```cs
 var vars = Engine.GetService<IVariableManager>();
 
-// 将字符串值“Hello World!”赋给“foo”变量
-vars.SetValue("foo", new("Hello World!"));
+// 将字符串值“你好，世界！”赋给“foo”变量
+vars.SetValue("foo", new("你好，世界！"));
 // 访问已赋的字符串值
-if (vars.GetValue("foo") is { String: "Hello World!" })
+if (vars.GetValue("foo") is { String: "你好，世界！" })
 
 // 将数值 42 赋给“bar”变量
 vars.SetValue("bar", new(42));

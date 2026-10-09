@@ -14,13 +14,13 @@
 @printer Fullscreen
 
 ; デフォルトのプリンターを使用してフレーズを表示します
-@print text:"Lorem ipsum dolor sit amet."
+@print text:"吾輩は猫である。名前はまだ無い。"
 
 ; 上記と同じですが、汎用テキスト行を使用します
-Lorem ipsum dolor sit amet.
+吾輩は猫である。名前はまだ無い。
 
 ; 上記と同じですが、キャラクター「Felix」に関連付けられています
-Felix: Lorem ipsum dolor sit amet.
+Felix: 吾輩は猫である。名前はまだ無い。
 ```
 
 組み込みプリンターはUIとして実装されていますが、依然としてアクターであり、すべてのアクター関連の可視性の変更（表示/非表示アニメーション）は、対応するコマンドまたはアクター構成で設定された時間を使用することに注意してください。たとえば、[@showPrinter] コマンドの `time` パラメーターは表示アニメーションの時間を制御し、指定されていない場合は、プリンターアクター構成プロパティの `Change Visibility Duration` がデフォルトの時間として使用されます。この場合、プリンターUIプレハブのルートにある `Fade Time` プロパティは無視されます。
@@ -69,7 +69,7 @@ UIのカスタマイズと構成方法の詳細については、[組み込みUI
 
 ![](https://i.gyazo.com/24774230ec66a5eb783fbe148b5c96d4.png)
 
-任意のテキストフォーマットタグまたは文字を指定でき、`%TEXT%` はメッセージテキストに、`%AUTHOR%` は話者の表示名に置き換えられます。たとえば、次のテンプレートを考えてみましょう：`“%TEXT%” — <i>%AUTHOR%</i>`。このテンプレートは、表示されるメッセージを引用符で囲み、その後にダッシュとイタリック体の話者名を続けます。たとえば、そのようなテンプレートで処理された `Kohaku: Lorem ipsum.` は次のようになります。
+任意のテキストフォーマットタグまたは文字を指定でき、`%TEXT%` はメッセージテキストに、`%AUTHOR%` は話者の表示名に置き換えられます。たとえば、次のテンプレートを考えてみましょう：`“%TEXT%” — <i>%AUTHOR%</i>`。このテンプレートは、表示されるメッセージを引用符で囲み、その後にダッシュとイタリック体の話者名を続けます。たとえば、そのようなテンプレートで処理された `Kohaku: 吾輩は猫である。` は次のようになります。
 
 ![](https://i.gyazo.com/53b5ba0f426afc847e51d843ffd6e808.png)
 
@@ -106,15 +106,15 @@ Fullscreenプリンターによって処理される各printコマンドは、�
 @printer Fullscreen
 
 ; 次の行は同じウィンドウに表示され、2つの改行で区切られます。
-Lorem ipsum dolor sit amet. Proin ultricies in leo id scelerisque.
-Praesent vel orci luctus, tincidunt nisi et, fringilla arcu. In a metus orci.
-Maecenas congue nunc quis lectus porttitor, eget commodo massa congue.
+吾輩は猫である。名前はまだ無い。
+どこで生れたかとんと見当がつかぬ。何でも薄暗いじめじめした所でニャーニャー泣いていた事だけは記憶している。
+吾輩はここで始めて人間というものを見た。
 
 ; プリンターの内容をクリアします。
 @resetText
 
 ; さらに行を表示します。
-Morbi ultrices dictum diam, in gravida neque vulputate in.
+しかもあとで聞くとそれは書生という人間中で一番獰悪な種族であったそうだ。
 ...
 ```
 
@@ -137,7 +137,7 @@ Bubbleプリンターは、マンガ/コミックスタイルのテキスト表�
 ```nani
 @printer Bubble.Left pos:42,80 !visible time:0
 @show Bubble
-Misaki: Aliquam lobortis!
+Misaki: 吾輩は猫である！
 @char Nanikun.Happy
 @printer Bubble.Right pos:53,55 !visible time:0
 @show Bubble
@@ -236,8 +236,8 @@ Bubbleプリンターを多用する場合、毎回手動で位置を指定す�
 テキスト内に配置されたリッチテキストタグを使用するか、[@format] コマンドを使用して、さまざまなテキストスタイルを適用できます。
 
 ```nani
-; 「Lorem」を太字で、「sit」を青とイタリック体で表示します。
-Kohaku: <b>Lorem</b> ipsum <color=#0000FF><i>sit</i></color> amet.
+; 「吾輩」を太字で、「猫」を青とイタリック体で表示します。
+Kohaku: <b>吾輩</b>は<color=#0000FF><i>猫</i></color>である。
 ```
 
 利用可能なタグについては、[TMProリッチテキストドキュメント](https://docs.unity3d.com/Packages/com.unity.textmeshpro@4.0/manual/RichText) を参照してください。
@@ -251,10 +251,10 @@ Kohaku: <b>Lorem</b> ipsum <color=#0000FF><i>sit</i></color> amet.
 [ルビ](https://en.wikipedia.org/wiki/Ruby_character) 文字のサポートは、カスタム `<ruby>` タグを介してNaninovelの `Naninovel TMPro Text` コンポーネント（`Revealable Text` はこれに基づいています）によって提供されます。上にルビ文字を配置するテキストをルビタグで囲み、タグ内にルビテキストを指定します。例：
 
 ```nani
-Lorem <ruby="VERY">ipsum</ruby> dolor sit amet.
+吾輩は<ruby="ねこ">猫</ruby>である。名前はまだ無い。
 ```
 
-— 実行時にメッセージが表示されると、「VERY」ルビテキストが「ipsum」という単語のすぐ上に表示されます。
+— 実行時にメッセージが表示されると、「ねこ」ルビテキストが「猫」という文字のすぐ上に表示されます。
 
 ![](https://i.gyazo.com/ec5eb47c3cf0951ccb589fe49c144418.png)
 
@@ -262,7 +262,7 @@ Lorem <ruby="VERY">ipsum</ruby> dolor sit amet.
 他のタグと `<ruby>` を組み合わせる場合は、書式崩れを防ぐために、先にルビタグを指定してください。例：
 
 ```nani
-Lorem <ruby="VERY"><tip="TipID">ipsum</tip></ruby> dolor sit amet.
+吾輩は<ruby="ねこ"><tip="TipID">猫</tip></ruby>である。名前はまだ無い。
 ```
 :::
 
@@ -343,20 +343,20 @@ Naninovelによって表示される文字を調べるには、`Naninovel -> Too
 
 ## 表示イベント
 
-特定の文字が表示されたときのイベントにフックして、任意のアクションを実行することが可能です。表示されるテキスト内でイベントを呼び出す位置を `<@...>` タグで指定します。たとえば、「dolor」が表示された後に「foo」ペイロードを持つ表示イベントをトリガーするには：
+特定の文字が表示されたときのイベントにフックして、任意のアクションを実行することが可能です。表示されるテキスト内でイベントを呼び出す位置を `<@...>` タグで指定します。たとえば、「名前」が表示された後に「foo」ペイロードを持つ表示イベントをトリガーするには：
 
 ```nani
-Lorem ipsum dolor<@foo> sit amet.
+吾輩は猫である。名前<@foo>はまだ無い。
 ```
 
 プリンタープレハブの表示可能テキストオブジェクトにアタッチされた `Reveal Broadcaster` コンポーネントを使用して、イベントをリッスンします。すべての組み込みプリンターにはこのコンポーネントがすでにアタッチされているため、リスナーを接続するだけで済みます。
 
 ![](https://i.gyazo.com/b0fad2439f2b2136a3b3c13f84f365d2.png)
 
-組み込みプリンターでは、`Play Command` オプションも有効になっています。これにより、コンポーネントはイベント本体（`@` の後の部分）をコマンドとして解析して実行しようとします。たとえば、次は「dolor」が表示されたときに背景の色合いを変更します。
+組み込みプリンターでは、`Play Command` オプションも有効になっています。これにより、コンポーネントはイベント本体（`@` の後の部分）をコマンドとして解析して実行しようとします。たとえば、次は「名前」が表示されたときに背景の色合いを変更します。
 
 ```nani
-Lorem ipsum dolor<@back tint:blue> sit amet.
+吾輩は猫である。名前<@back tint:blue>はまだ無い。
 ```
 
 [インラインコマンド](/ja/guide/scenario-scripting#コマンドのインライン化) の代わりにイベントタグを使用すると、コマンドを [ローカライズドキュメント](/ja/guide/localization#スクリプトのローカライズ) に公開でき、選択されたロケールに応じて実行されるコマンドを翻訳者がオーバーライドできるようになります。
@@ -372,7 +372,7 @@ Lorem ipsum dolor<@back tint:blue> sit amet.
 プロセスは [表示イベント](/ja/guide/text-printers#表示イベント) に似ていますが、`@` の代わりに `:` タグを使用します。
 
 ```nani
-Lorem ipsum <:random(text1, text2)> sit amet.
+吾輩は猫である。<:random(text1, text2)>名前はまだ無い。
 ```
 
 — `random(text1, text2)` 式は、言語が変更された場合を含め、テキストがプリンターに割り当てられるたびに再評価され、`text1` と `text2` という [スクリプトテキスト変数](/ja/guide/managed-text#スクリプトテキスト) が現在アクティブなロケールと同期した状態に保たれます。この式はローカライズドキュメントにも含まれ、特定の言語ごとに変更できます。

@@ -14,13 +14,13 @@
 @printer Fullscreen
 
 ; 将使用默认打印机打印该短语
-@print text:"Lorem ipsum dolor sit amet."
+@print text:"天地玄黄，宇宙洪荒。"
 
 ; 与上面相同，但使用通用文本行
-Lorem ipsum dolor sit amet.
+天地玄黄，宇宙洪荒。
 
 ; 与上面相同，但与角色“Felix”关联
-Felix: Lorem ipsum dolor sit amet.
+Felix: 天地玄黄，宇宙洪荒。
 ```
 
 请注意，即使内置打印机是作为 UI 实现的，它们仍然是 Actor，并且所有与 Actor 相关的可见性更改（显示/隐藏动画）都使用相应命令或 Actor 配置中设置的持续时间；例如，[@showPrinter] 命令的 `time` 参数控制显示动画的持续时间，如果未指定，则使用打印机 Actor 配置属性 `Change Visibility Duration` 作为默认持续时间；在这种情况下，打印机 UI 预制件根对象上的 `Fade Time` 属性会被忽略。
@@ -69,7 +69,7 @@ Felix: Lorem ipsum dolor sit amet.
 
 ![](https://i.gyazo.com/24774230ec66a5eb783fbe148b5c96d4.png)
 
-您可以指定任何文本格式标签或字符，其中 `%TEXT%` 会被替换为消息文本，`%AUTHOR%` 会被替换为作者显示名称。例如，考虑以下模板：`“%TEXT%” — <i>%AUTHOR%</i>`——它将打印的消息用引号括起来，后面跟着一个破折号和斜体的作者名称；例如，使用此模板处理 `Kohaku: Lorem ipsum.` 的结果如下：
+您可以指定任何文本格式标签或字符，其中 `%TEXT%` 会被替换为消息文本，`%AUTHOR%` 会被替换为作者显示名称。例如，考虑以下模板：`“%TEXT%” — <i>%AUTHOR%</i>`——它将打印的消息用引号括起来，后面跟着一个破折号和斜体的作者名称；例如，使用此模板处理 `Kohaku: 天地玄黄，宇宙洪荒。` 的结果如下：
 
 ![](https://i.gyazo.com/53b5ba0f426afc847e51d843ffd6e808.png)
 
@@ -106,15 +106,15 @@ Fullscreen 打印机在具有固定大小的窗口内呈现文本。它们占据
 @printer Fullscreen
 
 ; 以下行将打印在同一窗口中，由 2 个换行符分隔。
-Lorem ipsum dolor sit amet. Proin ultricies in leo id scelerisque.
-Praesent vel orci luctus, tincidunt nisi et, fringilla arcu. In a metus orci.
-Maecenas congue nunc quis lectus porttitor, eget commodo massa congue.
+天地玄黄，宇宙洪荒。日月盈昃，辰宿列张。
+寒来暑往，秋收冬藏。闰余成岁，律吕调阳。
+云腾致雨，露结为霜。金生丽水，玉出昆冈。
 
 ; 清除打印机的内容。
 @resetText
 
 ; 打印更多行。
-Morbi ultrices dictum diam, in gravida neque vulputate in.
+剑号巨阙，珠称夜光。果珍李柰，菜重芥姜。
 ...
 ```
 
@@ -137,7 +137,7 @@ Bubble 打印机可用于漫画/连环画风格的文本呈现，也称为“对
 ```nani
 @printer Bubble.Left pos:42,80 !visible time:0
 @show Bubble
-Misaki: Aliquam lobortis!
+Misaki: 天地玄黄，宇宙洪荒！
 @char Nanikun.Happy
 @printer Bubble.Right pos:53,55 !visible time:0
 @show Bubble
@@ -236,8 +236,8 @@ Nanikun: Integer nec maximus elit, eget posuere risus.
 可以通过放置在文本内的富文本标签或使用 [@format] 命令应用各种文本样式：
 
 ```nani
-; 以粗体打印“Lorem”，以蓝色和斜体打印“sit”。
-Kohaku: <b>Lorem</b> ipsum <color=#0000FF><i>sit</i></color> amet.
+; 以粗体打印“天地”，以蓝色和斜体打印“宇宙”。
+Kohaku: <b>天地</b>玄黄，<color=#0000FF><i>宇宙</i></color>洪荒。
 ```
 
 有关可用标签，请参阅 [TMPro 富文本文档](https://docs.unity3d.com/Packages/com.unity.textmeshpro@4.0/manual/RichText)。
@@ -251,10 +251,10 @@ Kohaku: <b>Lorem</b> ipsum <color=#0000FF><i>sit</i></color> amet.
 Naninovel 的 `Naninovel TMPro Text` 组件（`Revealable Text` 基于它）通过自定义 `<ruby>` 标签提供对 [注音](https://en.wikipedia.org/wiki/Ruby_character) 字符的支持。用注音标签包裹需要在上方添加注音的文本，并在标签内指定注音内容，例如：
 
 ```nani
-Lorem <ruby="VERY">ipsum</ruby> dolor sit amet.
+天地<ruby="xuán">玄</ruby>黄，宇宙洪荒。
 ```
 
-— 在运行时打印消息时，“VERY”注音文本将出现在“ipsum”单词的正上方。
+— 在运行时打印消息时，“xuán”注音文本将出现在“玄”字的正上方。
 
 ![](https://i.gyazo.com/ec5eb47c3cf0951ccb589fe49c144418.png)
 
@@ -262,7 +262,7 @@ Lorem <ruby="VERY">ipsum</ruby> dolor sit amet.
 将 `<ruby>` 与其他标签组合使用时，请先指定注音标签，以避免格式问题，例如：
 
 ```nani
-Lorem <ruby="VERY"><tip="TipID">ipsum</tip></ruby> dolor sit amet.
+天地<ruby="xuán"><tip="TipID">玄</tip></ruby>黄，宇宙洪荒。
 ```
 :::
 
@@ -343,20 +343,20 @@ Unity 原生不支持阿拉伯语文本。对于需要支持阿拉伯语的文�
 
 ## 显示事件
 
-您可以监听特定字符显示时触发的事件，以执行任意操作。使用 `<@...>` 标签在打印的文本中指定应触发事件的位置。例如，要在显示“dolor”后触发带有“foo”有效负载的显示事件：
+您可以监听特定字符显示时触发的事件，以执行任意操作。使用 `<@...>` 标签在打印的文本中指定应触发事件的位置。例如，要在显示“宇宙”后触发带有“foo”有效负载的显示事件：
 
 ```nani
-Lorem ipsum dolor<@foo> sit amet.
+天地玄黄，宇宙<@foo>洪荒。
 ```
 
 使用附加到打印机预制件的可显示文本对象的 `Reveal Broadcaster` 组件来监听事件。所有内置打印机均已附加该组件，因此您只需连接监听器即可。
 
 ![](https://i.gyazo.com/b0fad2439f2b2136a3b3c13f84f365d2.png)
 
-内置打印机还启用了 `Play Command` 选项。这将使组件尝试将事件主体（`@` 之后的部分）作为命令解析并执行。例如，以下内容将在显示“dolor”时为背景设置色调：
+内置打印机还启用了 `Play Command` 选项。这将使组件尝试将事件主体（`@` 之后的部分）作为命令解析并执行。例如，以下内容将在显示“宇宙”时为背景设置色调：
 
 ```nani
-Lorem ipsum dolor<@back tint:blue> sit amet.
+天地玄黄，宇宙<@back tint:blue>洪荒。
 ```
 
 您可以使用事件标签代替 [内联命令](/zh/guide/scenario-scripting#命令内联) 将它们公开给 [本地化文档](/zh/guide/localization#脚本本地化)，允许翻译人员根据所选语言环境覆盖执行的命令。
@@ -372,7 +372,7 @@ Lorem ipsum dolor<@back tint:blue> sit amet.
 该过程类似于 [显示事件](/zh/guide/text-printers#显示事件)，但使用 `:` 标签代替 `@`：
 
 ```nani
-Lorem ipsum <:random(text1, text2)> sit amet.
+天地玄黄，<:random(text1, text2)>宇宙洪荒。
 ```
 
 — 每次将文本分配给打印机时（包括语言更改时），都会对 `random(text1, text2)` 表达式重新求值，从而使 `text1` 和 `text2` [脚本文本变量](/zh/guide/managed-text#脚本文本) 与当前活动语言环境同步。表达式也将包含在本地化文档中，允许为每种特定语言更改它。

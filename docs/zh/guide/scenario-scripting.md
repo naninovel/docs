@@ -108,7 +108,7 @@
 
 # Label ; 也可以在标签行内添加注释。
 
-Lorem [shake ; 也可以在内联命令中添加注释] ipsum. [; ...包括空的内联命令。]
+天地[shake ; 也可以在内联命令中添加注释]玄黄，宇宙洪荒。[; ...包括空的内联命令。]
 ```
 
 我们将在指南的其余部分使用注释来说明示例 NaniScript 片段。
@@ -118,26 +118,26 @@ Lorem [shake ; 也可以在内联命令中添加注释] ipsum. [; ...包括空�
 为了更轻松地编写包含大量文本的脚本，可以使用通用文本行。当一行不以任何语句符号开头时，它被视为*通用文本*：
 
 ```nani
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+天地玄黄，宇宙洪荒。日月盈昃，辰宿列张。
 ```
 
 在通用文本行开头写入作者 ID，再用冒号和一个空格（`: `）将其与正文分隔，即可将打印的文本关联到 [角色 Actor](/zh/guide/characters)：
 
 ```nani
-Felix: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Felix: 天地玄黄，宇宙洪荒。日月盈昃，辰宿列张。
 ```
 
 如果需要频繁更改与打印文本关联的角色外观，您也可以直接在作者 ID 后指定外观，以减少输入：
 
 ```nani
-Felix.Happy: Lorem ipsum dolor sit amet.
+Felix.Happy: 天地玄黄，宇宙洪荒。
 ```
 
 上面的行等同于以下两行：
 
 ```nani
 @char Felix.Happy
-Felix: Lorem ipsum dolor sit amet.
+Felix: 天地玄黄，宇宙洪荒。
 ```
 
 ### 命令内联
@@ -147,7 +147,7 @@ Felix: Lorem ipsum dolor sit amet.
 所有命令（[标准](/zh/api/) 和 [自定义](/zh/guide/custom-commands)）都可以使用方括号（`[ ]`）内联（插入）到通用文本行中：
 
 ```nani
-Felix: Lorem[char Felix.Happy pos:50] ipsum![sfx Explosion] Dolor sit amet.
+Felix: 天地[char Felix.Happy pos:50]玄黄！[sfx Explosion]宇宙洪荒。
 ```
 
 内联命令的语法与常规命令完全相同，只需省略 `@` 符号，并用方括号包裹命令主体。任何命令行都可以内联到通用文本中，效果保持不变，执行时机则取决于它在文本消息中的插入位置。
@@ -157,15 +157,15 @@ Felix: Lorem[char Felix.Happy pos:50] ipsum![sfx Explosion] Dolor sit amet.
 例如，以下通用文本行：
 
 ```nani
-Lorem ipsum[char Felix.Happy pos:75 wait!] dolor sit amet.
+天地玄黄，[char Felix.Happy pos:75 wait!]宇宙洪荒。
 ```
 
 — 实际上由引擎处理为一系列单独的命令：
 
 ```nani
-@print "Lorem ipsum" !waitInput
+@print "天地玄黄，" !waitInput
 @char Felix.Happy pos:75 wait!
-@print " dolor sit amet." !reset
+@print "宇宙洪荒。" !reset
 ```
 
 要在通用文本行中实际打印方括号，请使用反斜杠转义它们，例如：
@@ -181,7 +181,7 @@ Lorem ipsum[char Felix.Happy pos:75 wait!] dolor sit amet.
 ```nani
 ; 打印以下行后，等待输入将不会激活
 ; （玩家无需确认提示即可继续阅读）。
-Lorem ipsum dolor sit amet.[>]
+天地玄黄，宇宙洪荒。[>]
 ```
 
 ### 通用参数
@@ -195,7 +195,7 @@ Kohaku,Yuko: 你好！[< as:"大家"]
 
 ; 第一部分以 50% 的速度打印，
 ; 第二部分以 250% 的速度打印且不等待。
-Lorem[< speed:0.5] world![< speed:2.5 nowait!]
+你好[< speed:0.5]，世界！[< speed:2.5 nowait!]
 ```
 
 该命令会将指定的参数应用于它前面的最后一段文本。即使 `<` 与这段文本之间还插入了其他内联命令，也不影响参数的作用范围：
@@ -350,9 +350,9 @@ Naninovel 支持四种类型的端点语法，允许您在某些情况下编写�
 @char Kohaku visible:false
 
 ; 内联命令也支持标志。
-Lorem ipsum[shake Camera ver! !wait] dolor sit amet.
+天地玄黄，[shake Camera ver! !wait]宇宙洪荒。
 ; 等同于：
-Lorem ipsum[shake Camera ver:true wait:false] dolor sit amet.
+天地玄黄，[shake Camera ver:true wait:false]宇宙洪荒。
 ```
 
 只有在以下情况下才需要使用完整的布尔形式：您想通过 [剧本表达式](/zh/guide/expressions) 动态计算该值时，例如：
@@ -402,7 +402,7 @@ Lorem ipsum[shake Camera ver:true wait:false] dolor sit amet.
 @goto LuckyEnd if: (score >= 7 & score <= 13) | lucky
 
 ; 内联命令中的条件。
-Lorem sit amet. [sfx Applause if:score>=10]Consectetur elit.
+天地玄黄，宇宙洪荒。[sfx Applause if:score>=10]日月盈昃，辰宿列张。
 
 ; 转义表达式中的双引号。
 @print {remark} if: remark = "Saying \"Stop the car\" was a mistake."

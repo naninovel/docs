@@ -108,7 +108,7 @@
 
 # Label ; ラベル行の中にも入れられます。
 
-Lorem [shake ; インラインコマンドの中にも入れられます] ipsum. [; ...空のものも含めて。]
+吾輩は[shake ; インラインコマンドの中にも入れられます]猫である。[; ...空のものも含めて。]
 ```
 
 このガイドの残りの部分では、サンプルのNaniScriptスニペットに注釈を付けるためにコメントを使用します。
@@ -118,26 +118,26 @@ Lorem [shake ; インラインコマンドの中にも入れられます] ipsum.
 汎用テキスト行を使うと、大量のテキストを含むスクリプトも簡単に記述できます。どのステートメント記号でも始まらない行は、*汎用テキスト*として扱われます。
 
 ```nani
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。
 ```
 
 汎用テキスト行の先頭に話者IDを記述し、その後にコロンとスペース（`: `）を置くと、表示するテキストを [キャラクターアクター](/ja/guide/characters) に関連付けられます。
 
 ```nani
-Felix: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Felix: 吾輩は猫である。名前はまだ無い。どこで生れたかとんと見当がつかぬ。
 ```
 
 テキストに関連付けられたキャラクターの外観を頻繁に変更する場合は、話者IDの後に外観を指定することで、入力の手間を省けます。
 
 ```nani
-Felix.Happy: Lorem ipsum dolor sit amet.
+Felix.Happy: 吾輩は猫である。名前はまだ無い。
 ```
 
 上記の行は、次の2行と同じです。
 
 ```nani
 @char Felix.Happy
-Felix: Lorem ipsum dolor sit amet.
+Felix: 吾輩は猫である。名前はまだ無い。
 ```
 
 ### コマンドのインライン化
@@ -147,7 +147,7 @@ Felix: Lorem ipsum dolor sit amet.
 すべてのコマンド（[標準](/ja/api/) と [カスタム](/ja/guide/custom-commands) の両方）は、角括弧（`[ ]`）を使用して汎用テキスト行にインライン化（埋め込み）できます。
 
 ```nani
-Felix: Lorem[char Felix.Happy pos:50] ipsum![sfx Explosion] Dolor sit amet.
+Felix: 吾輩は[char Felix.Happy pos:50]猫である！[sfx Explosion]名前はまだ無い。
 ```
 
 インラインコマンドの構文は、`@` 記号を省略してコマンド本体を角括弧で囲む点を除き、通常のコマンドとまったく同じです。どのコマンド行も汎用テキストにインライン化できます。コマンドの効果は変わりませんが、実行のタイミングはテキストメッセージ内の挿入位置によって決まります。
@@ -157,15 +157,15 @@ Felix: Lorem[char Felix.Happy pos:50] ipsum![sfx Explosion] Dolor sit amet.
 たとえば、次の汎用テキスト行：
 
 ```nani
-Lorem ipsum[char Felix.Happy pos:75 wait!] dolor sit amet.
+吾輩は猫である。[char Felix.Happy pos:75 wait!]名前はまだ無い。
 ```
 
 — は、実際にはエンジンによって個々のコマンドのシーケンスとして処理されます。
 
 ```nani
-@print "Lorem ipsum" !waitInput
+@print "吾輩は猫である。" !waitInput
 @char Felix.Happy pos:75 wait!
-@print " dolor sit amet." !reset
+@print "名前はまだ無い。" !reset
 ```
 
 汎用テキスト行内に実際に角括弧を表示するには、バックスラッシュでエスケープします。例：
@@ -181,7 +181,7 @@ Lorem ipsum[char Felix.Happy pos:75 wait!] dolor sit amet.
 ```nani
 ; 次の行を表示した後、入力待ちはアクティブになりません
 ; （プレイヤーは読み進めるために確認の入力を行う必要がありません）。
-Lorem ipsum dolor sit amet.[>]
+吾輩は猫である。名前はまだ無い。[>]
 ```
 
 ### 汎用パラメーター
@@ -195,7 +195,7 @@ Kohaku,Yuko: こんにちは！[< as:"全員"]
 
 ; 最初の部分は50%の速度で表示され、
 ; 2番目の部分は250%の速度で待機なしで表示されます。
-Lorem[< speed:0.5] world![< speed:2.5 nowait!]
+こんにちは[< speed:0.5]、世界！[< speed:2.5 nowait!]
 ```
 
 このコマンドは、指定されたパラメーターを、自身より前にある最後のテキスト部分に適用します。`<` とテキストの間に他のコマンドがインライン化されている場合でも同様です。
@@ -350,9 +350,9 @@ Naninovelは4種類のエンドポイント構文をサポートしており、�
 @char Kohaku visible:false
 
 ; インラインコマンドもフラグをサポートしています。
-Lorem ipsum[shake Camera ver! !wait] dolor sit amet.
+吾輩は猫である。[shake Camera ver! !wait]名前はまだ無い。
 ; 次と同等です：
-Lorem ipsum[shake Camera ver:true wait:false] dolor sit amet.
+吾輩は猫である。[shake Camera ver:true wait:false]名前はまだ無い。
 ```
 
 完全なブール形式が必要になるのは、[シナリオ式](/ja/guide/expressions) で値を動的に評価する場合です。例：
@@ -402,7 +402,7 @@ Lorem ipsum[shake Camera ver:true wait:false] dolor sit amet.
 @goto LuckyEnd if: (score >= 7 & score <= 13) | lucky
 
 ; インラインコマンド内の条件。
-Lorem sit amet. [sfx Applause if:score>=10]Consectetur elit.
+吾輩は猫である。[sfx Applause if:score>=10]名前はまだ無い。
 
 ; 式内の二重引用符をエスケープします。
 @print {remark} if: remark = "Saying \"Stop the car\" was a mistake."

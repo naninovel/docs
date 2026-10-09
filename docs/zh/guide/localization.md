@@ -78,7 +78,7 @@ Translation text
 
 ```nani
 # aj0e5dea
-; Aliquam ut <b>ultricies</b> enim, id venenatis.<br>Nullam rhoncus eros.
+; 天地<b>玄黄</b>，宇宙洪荒。<br>日月盈昃，辰宿列张。
 Оценивая блеск <b>металлического</b> шарика, пространство равноденственно.<br>
 Противостояние есть метеорный дождь.
 ```

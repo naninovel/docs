@@ -191,10 +191,10 @@ Unity 以特殊方式处理名为“Resources”的文件夹：存储在此类�
 请打开创建的 `Test.nani` 脚本并添加以下行：
 
 ```nani
-Hello World!
+你好，世界！
 ```
 
-— 执行时，此行将打印“Hello World!”。
+— 执行时，此行将打印“你好，世界！”。
 
 接下来，打开 `Entry.nani` 脚本并将最后的 `@title` 命令替换为：
 
@@ -204,7 +204,7 @@ Hello World!
 
 — 此命令会转到新建的 `Test.nani` 脚本继续播放，而不是返回标题菜单。
 
-进入播放模式，开始新游戏，并一直玩到打印出“Hello World!”。尝试在游戏进行时编辑脚本——更改将立即应用。
+进入播放模式，开始新游戏，并一直玩到打印出“你好，世界！”。尝试在游戏进行时编辑脚本——更改将立即应用。
 
 ::: tip
 [API 参考](/zh/api/) 中列出了标准的 NaniScript 命令及其使用示例。也可以添加自定义命令；有关更多信息，请参阅 [指南](/zh/guide/custom-commands)。
@@ -234,14 +234,14 @@ Hello World!
 
 ```nani
 @char K
-Hello World!
+你好，世界！
 ```
 
 角色会显示在屏幕中央。未指定外观时，会自动选择名为“Default”的外观。要指定其他外观，请在角色 ID 后加上一个点，再接上外观名称，如下所示：
 
 ```nani
 @char K.Happy
-Hello World!
+你好，世界！
 ```
 
 只要已为角色“K”添加了名为“Happy”的外观，现在就会显示相应的精灵，而不是默认精灵。
@@ -250,7 +250,7 @@ Hello World!
 
 ```nani
 @char K.Happy
-K: Hello World!
+K: 你好，世界！
 ```
 
 ![?width=588](https://i.gyazo.com/48ad8d4c512b67df02d7ace15d5eaca5.png)
@@ -258,7 +258,7 @@ K: Hello World!
 还可以把角色的外观设置与要显示的文本合写在一行，减少输入：
 
 ```nani
-K.Happy: Hello World!
+K.Happy: 你好，世界！
 ```
 
 要隐藏角色，请使用 [@hide] 命令，后跟 Actor ID：

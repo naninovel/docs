@@ -6,7 +6,7 @@
 
 独自のカスタムスクリプトコマンドを追加するには、`Command` から派生した新しいC#クラスを作成し、`Execute` メソッドをオーバーライドします。作成されたクラスはエンジンによって自動的に検出され、クラス名またはエイリアス（割り当てられている場合）を使用してシナリオスクリプトからコマンドを呼び出すことができます。Naninovelコマンドにエイリアスを割り当てるには、クラスに `Alias` 属性を適用します。
 
-以下は、シナリオスクリプトから `@HelloWorld` または `@hello` として呼び出してコンソールに「Hello World!」を出力できるカスタムコマンドの例です。オプションの `name` パラメーター（例：`@hello name:Felix`）を使用して、「World」の代わりに指定された名前に挨拶することもできます。
+以下は、シナリオスクリプトから `@HelloWorld` または `@hello` として呼び出してコンソールに「こんにちは、世界！」を出力できるカスタムコマンドの例です。オプションの `name` パラメーター（例：`@hello name:Felix`）を使用して、「World」の代わりに指定された名前に挨拶することもできます。
 
 ```cs
 using System;
@@ -22,7 +22,7 @@ public class HelloWorld : Command
     public override Awaitable Execute (ExecutionContext ctx)
     {
         if (Assigned(Name)) Debug.Log($"Hello, {Name}!");
-        else Debug.Log("Hello World!");
+        else Debug.Log("こんにちは、世界！");
         return Async.Completed;
     }
 }

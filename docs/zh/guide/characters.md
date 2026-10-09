@@ -135,14 +135,14 @@ Char1: 我的显示名称现在已绑定到 `name` 剧本变量。
 ```nani
 ; 即使“Kohaku”角色可能在配置中设置了自定义显示名称，
 ; 也使用“某人”作为名称打印此行。
-Kohaku: Lorem ipsum.[< as:"某人"]
+Kohaku: 天地玄黄，宇宙洪荒。[< as:"某人"]
 
 ; 打印该行，将“大家”显示为作者名称
 ; 并使所有可见角色成为打印文本的作者。
-*: Lorem ipsum![< as:"大家"]
+*: 天地玄黄，宇宙洪荒！[< as:"大家"]
 
 ; 类似，但只让“Kohaku”和“Yuko”成为作者。
-Kohaku,Yuko: Lorem ipsum?[< as:"Kohaku 和 Yuko"]
+Kohaku,Yuko: 天地玄黄，宇宙洪荒？[< as:"Kohaku 和 Yuko"]
 ```
 
 — `as` 参数是可本地化的，会出现在脚本本地化文档中以供翻译。此外，[说话者高亮](/zh/guide/characters#说话者高亮) 功能将识别作者 ID 中指定的 `*` 和 `,`，并将所有/选定的角色高亮显示为说话者。

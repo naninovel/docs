@@ -78,7 +78,7 @@ Translation text
 
 ```nani
 # aj0e5dea
-; Aliquam ut <b>ultricies</b> enim, id venenatis.<br>Nullam rhoncus eros.
+; 吾輩は<b>猫</b>である。名前はまだ無い。<br>どこで生れたかとんと見当がつかぬ。
 Оценивая блеск <b>металлического</b> шарика, пространство равноденственно.<br>
 Противостояние есть метеорный дождь.
 ```
