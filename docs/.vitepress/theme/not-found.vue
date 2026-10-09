@@ -1,14 +1,24 @@
 <!-- https://github.com/vuejs/vitepress/blob/main/src/client/theme-default/NotFound.vue -->
 
+<script setup lang="ts">
+import { computed } from "vue";
+import { useData } from "vitepress";
+
+const { theme, localeIndex } = useData();
+const home = computed(() => localeIndex.value === "root" ? "/guide/" : `/${localeIndex.value}/guide/`);
+</script>
+
 <template>
 
   <div class="NotFound">
     <p class="code">404</p>
-    <h1 class="title">PAGE NOT FOUND</h1>
+    <h1 class="title">{{ theme.notFound?.title ?? "PAGE NOT FOUND" }}</h1>
     <div class="divider"/>
     <blockquote class="quote">ʕノ•ᴥ•ʔノ ︵ ┻━┻</blockquote>
     <div class="action">
-      <a class="link" href="/guide/" aria-label="go to home">Take me home</a>
+      <a class="link" :href="home" :aria-label="theme.notFound?.linkLabel ?? 'go to home'">
+        {{ theme.notFound?.linkText ?? "Take me home" }}
+      </a>
     </div>
   </div>
 </template>

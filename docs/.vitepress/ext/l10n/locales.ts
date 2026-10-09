@@ -16,7 +16,8 @@ export const config: LocaleConfig<DefaultTheme.Config> = {
             sidebar: { "/guide/": guide.en },
             docFooter: { prev: "Previous page", next: "Next page" },
             nav: buildNav(["FAQ", "Guide", "API", "Support"]),
-            editLink: buildEditLink("Edit this page on GitHub")
+            editLink: buildEditLink("Edit this page on GitHub"),
+            notFound: { title: "PAGE NOT FOUND", linkText: "Take me home", linkLabel: "go to home" }
         }
     },
     ja: {
@@ -33,7 +34,8 @@ export const config: LocaleConfig<DefaultTheme.Config> = {
             sidebar: { "/ja/guide/": guide.ja },
             docFooter: { prev: "前のページ", next: "次のページ" },
             nav: buildNav(["FAQ", "ガイド", "API", "サポート"], "ja"),
-            editLink: buildEditLink("GitHub でこのページを編集する")
+            editLink: buildEditLink("GitHub でこのページを編集する"),
+            notFound: { title: "ページが見つかりません", linkText: "ホームに戻る", linkLabel: "ホームへ移動" }
         }
     },
     zh: {
@@ -50,9 +52,16 @@ export const config: LocaleConfig<DefaultTheme.Config> = {
             sidebar: { "/zh/guide/": guide.zh },
             docFooter: { prev: "上一页", next: "下一页" },
             nav: buildNav(["常见问题", "使用手册", "API", "技术支持"], "zh"),
-            editLink: buildEditLink("在 GitHub 上编辑此页面")
+            editLink: buildEditLink("在 GitHub 上编辑此页面"),
+            notFound: { title: "页面未找到", linkText: "返回首页", linkLabel: "前往首页" }
         }
     }
+};
+
+// Titles of Markdown custom containers (::: tip, ::: info NOTE, etc.), keyed by the English title.
+export const containers: Record<string, Record<string, string>> = {
+    ja: { TIP: "ヒント", INFO: "情報", WARNING: "警告", DANGER: "危険", NOTE: "注意", EXAMPLE: "例" },
+    zh: { TIP: "提示", INFO: "信息", WARNING: "警告", DANGER: "危险", NOTE: "注意", EXAMPLE: "示例" }
 };
 
 export const search: Record<string, Partial<DefaultTheme.LocalSearchOptions>> = {

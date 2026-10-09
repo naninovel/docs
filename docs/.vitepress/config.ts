@@ -1,5 +1,5 @@
 import { defineConfig } from "vitepress";
-import { l10n, md, vite } from "./ext";
+import { l10n, md, search, vite } from "./ext";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -19,7 +19,7 @@ export default defineConfig({
     themeConfig: {
         logo: { src: "/favicon.svg" },
         logoLink: { link: "/", target: "_self" },
-        search: { provider: "local", options: { detailedView: true, locales: l10n.search } },
+        search: search,
         socialLinks: [
             { icon: "github", link: "https://github.com/naninovel" },
             { icon: "discord", link: "https://discord.gg/BfkNqem" },
