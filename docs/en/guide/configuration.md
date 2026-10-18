@@ -82,6 +82,7 @@ UI Renderer | -1 | URP renderer to use for the managed UI camera. By default use
 Default Duration | 0.35 | Default duration (in seconds) for all the camera modifications (changing zoom, position, rotation, etc).
 Default Easing | Linear | Easing function to use by default for all the camera modifications (changing zoom, position, rotation, etc).
 Disable Rendering | False | Whether to disable Naninovel cameras by default when the engine is initialized. Useful when Naninovel is integrated as a drop-in dialogue system and shouldn't render after initialization.
+Downsample Quality Level | 2 | Minimum quality level (index in Unity's quality settings) at which actors drawn smaller than their textures are downsampled with a bicubic kernel instead of bilinear filtering, which keeps the art clean at any scale but costs more GPU time.<br><br>Set to 0 to always use it or to a value above the available quality levels to never use it.
 Capture Thumbnails | True | Whether to capture small screen previews when saving the game; these previews are then used in the save slots.
 Thumbnail Resolution | (240, 140) | The resolution in which thumbnails to preview game save slots will be captured.
 Hide UI In Thumbnails | False | Whether to ignore the UI layer when capturing thumbnails.

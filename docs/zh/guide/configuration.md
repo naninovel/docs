@@ -82,6 +82,7 @@
 | Default Duration | 0.35 | 所有摄像机修改（更改缩放、位置、旋转等）的默认持续时间（以秒为单位）。 |
 | Default Easing | Linear | 默认用于所有摄像机修改（更改缩放、位置、旋转等）的缓动函数。 |
 | Disable Rendering | False | 初始化引擎时是否默认禁用 Naninovel 摄像机。当 Naninovel 作为嵌入式对话系统集成并且初始化后不应渲染时很有用。 |
+| Downsample Quality Level | 2 | 对绘制尺寸小于其纹理的 Actor，使用双三次核代替双线性过滤进行降采样的最低质量级别（Unity 质量设置中的索引）。这能让美术资源在任何缩放比例下都保持清晰，但会消耗更多 GPU 时间。<br><br>设为 0 则始终使用；设为高于可用质量级别的值则从不使用。 |
 | Capture Thumbnails | True | 保存游戏时是否捕获屏幕的小型预览图；这些预览图随后会用于存档槽。 |
 | Thumbnail Resolution | (240, 140) | 捕获用于预览游戏存档槽的缩略图时所用的分辨率。 |
 | Hide UI In Thumbnails | False | 捕获缩略图时是否忽略 UI 层。 |
