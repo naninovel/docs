@@ -4,59 +4,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Visual Novel Engine • Naninovel</title>
-    <meta name="description" content="Create visual novels, branching dialogues, and interactive cutscenes with an all-in-one suite of writer-friendly storytelling tools.">
+    <meta name="description" content="Naninovel is a writer-friendly storytelling engine for Unity. Visual novels, branching dialogue and cutscenes, written in plain text. On the Asset Store since 2018, with hundreds of shipped titles.">
     <meta name="keywords" content="visual novel engine, VN engine, visual novel maker, interactive fiction engine, branching dialogue designer, conversation editor, screenwriting tool, dating sim engine, text adventure engine, story game engine, choice game engine, cutscene designer">
-    <meta property="og:title" content="Naninovel – Writer-Friendly Visual Novel Engine">
-    <meta property="og:description" content="Create visual novels, branching dialogues, and interactive cutscenes with an all-in-one suite of writer-friendly storytelling tools.">
+    <meta property="og:title" content="Naninovel – Writer-friendly visual novel engine for Unity">
+    <meta property="og:description" content="Naninovel is a writer-friendly storytelling engine for Unity. Visual novels, branching dialogue and cutscenes, written in plain text. On the Asset Store since 2018, with hundreds of shipped titles.">
     <meta property="og:image" content="/assets/img/og.jpg">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://naninovel.com/">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#0a0c12">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="preload" href="assets/img/nani-logo-full.svg" as="image" type="image/svg+xml">
+    <link rel="preload" href="assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/fraunces-italic.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/mona.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/fonts/jb.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="assets/img/hero/nani-default.webp" as="image" type="image/webp">
+    <link rel="preload" href="assets/img/hero/kohaku-default.webp" as="image" type="image/webp">
 
     <style>
-        /* ───────────────────── Reset & Variables ───────────────────── */
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
+        /* ───────────────────── Fonts ───────────────────── */
+        @font-face {
+            font-family: "Fraunces";
+            font-style: normal;
+            font-weight: 500 800;
+            font-display: swap;
+            src: url(assets/fonts/fraunces.woff2) format("woff2");
+        }
+        @font-face {
+            font-family: "Fraunces";
+            font-style: italic;
+            font-weight: 400 600;
+            font-display: swap;
+            src: url(assets/fonts/fraunces-italic.woff2) format("woff2");
+        }
+        @font-face {
+            font-family: "Mona Sans";
+            font-style: normal;
+            font-weight: 200 900;
+            font-display: swap;
+            src: url(assets/fonts/mona.woff2) format("woff2");
+        }
+        @font-face {
+            font-family: "JetBrains";
+            font-style: normal;
+            font-weight: 100 900;
+            font-display: swap;
+            src: url(assets/fonts/jb.woff2) format("woff2");
         }
 
+        /* ───────────────────── Tokens ───────────────────── */
         :root {
-            --brand: #1baeea;
-            --brand-dark: #1089c0;
-            --brand-light: #7dd3fc;
-            --brand-glow: rgba(27, 174, 234, .10);
-            --brand-glow-strong: rgba(27, 174, 234, .25);
-            --text: #eef2f7;
-            --text-secondary: #a0aec0;
-            --text-light: #8192ac;
-            --bg: #0b0f1a;
-            --bg-soft: #101624;
-            --bg-card: rgba(255, 255, 255, .04);
-            --bg-card-hover: rgba(255, 255, 255, .07);
-            --border: rgba(255, 255, 255, .08);
-            --border-hover: rgba(27, 174, 234, .3);
-            --radius: 16px;
-            --radius-sm: 10px;
-            --radius-lg: 24px;
-            --max-w: 1200px;
-            --section-py: clamp(80px, 10vw, 140px);
-            --warm-a: #1a1028;
-            --warm-b: #0d1a2a;
-            --warm-c: #15101e;
+            --bg: #0a0c12;
+            --fill: rgba(255, 255, 255, .025);
+            --fill-hover: rgba(255, 255, 255, .04);
+            --line: rgba(255, 255, 255, .08);
+            --text-bright: #f6f0e4;
+            --text: #c6c3bb;
+            --text-muted: #8b8e99;
+            --text-dim: #7d8292;
+            --cool-white: #dce8ff;
+            --rule: color-mix(in srgb, var(--cool-white) 34%, transparent);
+            --rule-faint: color-mix(in srgb, var(--cool-white) 16%, transparent);
+            --script-border: var(--rule);
+            --script-fill: rgba(200, 225, 255, .07);
+            --cyan: #1baeea;
+            --cyan-light: #7dd3fc;
+            --blue-light: #79b0fb;
+            --navy-deep: #040a28;
+            --amber-light: #ffdcb6;
+            --amber: #ffb872;
+            --amber-deep: #be6424;
+            --amber-glow: #ff8c3c;
+            --amber-halo: color-mix(in srgb, var(--amber) 70%, var(--amber-glow));
+            --on-amber: #2a1506;
+            --highlight-glow: 0 0 14px color-mix(in srgb, var(--amber) 55%, transparent);
+            --badge: linear-gradient(rgba(255, 255, 255, .14) 0 1px, transparent 1px), linear-gradient(180deg, rgba(34, 54, 130, .98), rgba(14, 24, 72, .98));
+            --code-keyword: var(--cyan-light);
+            --code-param: var(--blue-light);
+            --code-name: var(--amber);
+            --code-text: var(--text-bright);
+            --serif: "Fraunces", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+            --sans: "Mona Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+            --mono: "JetBrains", ui-monospace, "Cascadia Mono", Consolas, monospace;
+            --content-width: 1280px;
+            --gutter: clamp(20px, 4vw, 48px);
+            --section-padding: clamp(52px, 6.25vw, 90px);
+            --radius-sm: 8px;
+            --radius: 10px;
+            --radius-md: 16px;
+            --radius-lg: 22px;
+            --header-height: 72px;
+            --ease-out: cubic-bezier(.2, .7, .2, 1);
+            --ease-print: cubic-bezier(.3, .6, .3, 1);
+            --diamond: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 9'%3E%3Crect x='1.9' y='1.9' width='5.2' height='5.2' rx='1' transform='rotate(45 4.5 4.5)' fill='%23ffb872'/%3E%3C/svg%3E");
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
+        /* ───────────────────── Reset & base ───────────────────── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { color-scheme: dark; scroll-behavior: smooth; scroll-padding-block-start: var(--header-height); -webkit-text-size-adjust: 100%; }
 
         body {
-            font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+            font-family: var(--sans);
+            line-height: 1.6;
             color: var(--text);
             background: var(--bg);
-            line-height: 1.7;
             -webkit-font-smoothing: antialiased;
             overflow-x: hidden;
         }
@@ -64,1103 +116,2041 @@
             content: "";
             position: fixed;
             inset: 0;
-            background: radial-gradient(ellipse 80% 60% at 20% 10%, rgba(100, 40, 120, .12), transparent),
-            radial-gradient(ellipse 70% 50% at 80% 20%, rgba(27, 174, 234, .08), transparent),
-            radial-gradient(ellipse 60% 60% at 50% 80%, rgba(140, 60, 80, .07), transparent),
-            linear-gradient(170deg, var(--warm-a), var(--warm-b) 40%, var(--bg) 70%);
+            z-index: -1;
+            background:
+                radial-gradient(60% 360px at 50% 280px, color-mix(in srgb, var(--bg) 70%, transparent), transparent),
+                radial-gradient(55% 50% at 20% 10%, rgba(100, 40, 120, .12), transparent),
+                radial-gradient(60% 60% at 100% 30%, rgba(49, 112, 246, .08), 60%, transparent),
+                linear-gradient(170deg, #0c152c, var(--bg) 25%);
+        }
+        /* Film grain. */
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 200;
             pointer-events: none;
-        }
-        body > * {
-            position: relative;
-        }
-
-        img {
-            display: block;
-            max-width: 100%;
-            height: auto;
+            opacity: .045;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
         }
 
-        img, svg {
-            -webkit-user-drag: none;
-            user-select: none;
-        }
+        img { display: block; max-width: 100%; height: auto; }
+        img, svg { -webkit-user-drag: none; user-select: none; }
 
-        a {
-            color: var(--brand);
-            text-decoration: none;
-            transition: color .2s;
-        }
-        a:hover {
-            color: var(--brand-light);
-        }
+        a { color: inherit; text-decoration: none; transition: color .2s, background-color .2s, text-decoration-color .2s, text-shadow .2s; }
         p a {
+            color: color-mix(in srgb, currentColor 50%, var(--text-bright));
             text-decoration: underline;
-            text-decoration-color: color-mix(in srgb, currentColor 50%, transparent);
-            text-underline-position: under;
+            text-decoration-color: color-mix(in srgb, currentColor 25%, var(--amber));
+            text-decoration-thickness: 1px;
+            text-decoration-skip-ink: none;
+            text-underline-offset: .3em;
         }
+        p a:hover { color: var(--text-bright); text-decoration-color: var(--amber); text-shadow: var(--highlight-glow); }
+
+        button { font: inherit; color: inherit; }
+        :is(a, button):focus-visible { outline: 2px solid var(--cyan-light); outline-offset: 3px; }
+        p { text-wrap: pretty; }
+        h1, h2, h3 { font-family: var(--serif); font-weight: 600; color: var(--text-bright); }
 
         .wrap {
             width: 100%;
-            max-width: var(--max-w);
-            margin: 0 auto;
-            padding: 0 clamp(20px, 4vw, 48px);
+            max-width: var(--content-width);
+            margin-inline: auto;
+            padding-inline: var(--gutter);
         }
 
-        /* ───────────────────── Typography ───────────────────── */
-        .section-label {
-            font-size: .8rem;
-            font-weight: 700;
-            letter-spacing: .15em;
-            text-transform: uppercase;
-            color: var(--brand);
-            margin-bottom: 12px;
-        }
-        .section-title {
-            font-size: clamp(1.8rem, 4vw, 2.75rem);
-            font-weight: 800;
-            line-height: 1.2;
-            letter-spacing: -.02em;
-            color: var(--text);
-        }
-        .section-subtitle {
-            font-size: clamp(1rem, 1.8vw, 1.2rem);
-            color: var(--text-secondary);
-            max-width: 640px;
-            margin: 16px auto 0;
-            line-height: 1.7;
-        }
-        .section-header {
+        /* ───────────────────── Sections ───────────────────── */
+        main > section:not(.hero) { padding-block: var(--section-padding); }
+
+        .section-head {
+            width: fit-content;
+            margin: 0 auto clamp(32px, 5vw, 56px);
             text-align: center;
-            margin-bottom: clamp(40px, 6vw, 64px);
         }
+        .section-head h2 {
+            font-size: clamp(1.9rem, 3.3vw, 3rem);
+            line-height: 1.06;
+            letter-spacing: -.015em;
+            font-variation-settings: "opsz" 96, "SOFT" 50, "WONK" 0;
+            text-wrap: balance;
+        }
+        .section-head h2::after {
+            content: "";
+            display: block;
+            height: 9px;
+            margin-block: clamp(18px, 1.8vw, 24px) 4px;
+            background:
+                var(--diamond) 50% 50% / 9px 9px no-repeat,
+                linear-gradient(90deg, transparent, var(--rule-faint) 40%, var(--rule)) 0 50% / calc(50% - 12px) 1px no-repeat,
+                linear-gradient(90deg, var(--rule), var(--rule-faint) 60%, transparent) 100% 50% / calc(50% - 12px) 1px no-repeat;
+        }
+        .section-head > p {
+            --lead-color: var(--text);
+            max-width: 46ch;
+            margin-inline: auto;
+            font-size: 1.15rem;
+            color: var(--lead-color);
+            text-wrap: balance;
+        }
+        .section-head em { white-space: nowrap; }
+        .section-head.revealed em { animation: lead-lit 2.6s ease-out .45s both; }
+        .section-head.revealed em:nth-of-type(2) { animation-delay: .7s; }
+        .more-row { display: flex; justify-content: center; margin-block-start: clamp(32px, 3.4vw, 48px); }
 
         /* ───────────────────── Buttons ───────────────────── */
-        .btn {
+        .button {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 14px 36px;
-            border-radius: 60px;
-            font-weight: 700;
+            gap: 10px;
+            padding: 13px 22px;
+            border-radius: var(--radius);
+            font-weight: 600;
             font-size: .95rem;
-            letter-spacing: .03em;
-            transition: box-shadow .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
+            line-height: 1.2;
+            border: 1px solid transparent;
             cursor: pointer;
-            border: none;
-            text-decoration: none;
-            -webkit-user-drag: none;
             user-select: none;
+            transition: translate .15s, border-color .2s, color .2s, box-shadow .2s, --fill-top .2s, --fill-middle .2s, --fill-bottom .2s;
         }
-        .btn-primary {
-            background: linear-gradient(135deg, var(--brand), var(--brand-dark));
-            color: #fff;
-            box-shadow: 0 0 16px rgba(27, 174, 234, .25);
+        .button:active { translate: 0 1px; }
+        /* Registered so gradient stops can transition. */
+        @property --fill-top { syntax: "<color>"; inherits: false; initial-value: transparent; }
+        @property --fill-middle { syntax: "<color>"; inherits: false; initial-value: transparent; }
+        @property --fill-bottom { syntax: "<color>"; inherits: false; initial-value: transparent; }
+        @property --choice-from { syntax: "<color>"; inherits: false; initial-value: transparent; }
+        @property --choice-to { syntax: "<color>"; inherits: false; initial-value: transparent; }
+        .button-primary, .choice.primary .icon {
+            --fill-top: var(--amber-light);
+            --fill-middle: #ffbf86;
+            --fill-bottom: #f2a062;
+            background: linear-gradient(180deg, var(--fill-top), var(--fill-middle) 46%, var(--fill-bottom));
         }
-        .btn-primary:hover {
-            box-shadow: 0 0 28px rgba(27, 174, 234, .5), 0 0 60px rgba(27, 174, 234, .2);
-            color: #fff;
+        .button-primary:hover, .choice.primary:is(:hover, :focus-visible) .icon { --fill-top: #ffe4c4; --fill-middle: #ffc792; --fill-bottom: #f6aa6e; }
+        .button-primary {
+            color: var(--on-amber);
+            font-weight: 650;
+            text-shadow: 0 1px 0 rgba(255, 255, 255, .35);
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, .8),
+                inset 0 -1px 0 color-mix(in srgb, var(--amber-deep) 40%, transparent),
+                0 0 0 1px color-mix(in srgb, var(--amber-deep) 55%, transparent),
+                0 6px 16px -6px color-mix(in srgb, var(--amber-glow) 55%, transparent),
+                0 0 24px -6px color-mix(in srgb, var(--amber-halo) 40%, transparent);
         }
-        .btn-outline {
-            background: transparent;
-            color: var(--brand);
-            border: 2px solid rgba(27, 174, 234, .4);
-            box-shadow: 0 0 0 rgba(27, 174, 234, 0);
+        .button-primary:hover {
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, .85),
+                inset 0 -1px 0 color-mix(in srgb, var(--amber-deep) 35%, transparent),
+                0 0 0 1px color-mix(in srgb, var(--amber-deep) 60%, transparent),
+                0 8px 20px -6px color-mix(in srgb, var(--amber-glow) 65%, transparent),
+                0 0 32px -4px color-mix(in srgb, var(--amber-halo) 55%, transparent);
         }
-        .btn-outline:hover {
-            background: rgba(27, 174, 234, .12);
-            border-color: var(--brand);
-            box-shadow: 0 0 28px rgba(27, 174, 234, .5), 0 0 60px rgba(27, 174, 234, .2);
-        }
+        .button svg { width: 15px; height: 15px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
+        .button-small svg { width: 14px; height: 14px; }
+        .button-small { padding: 9px 16px; font-size: .86rem; }
 
-        /* ───────────────────── Header / Navigation ───────────────────── */
+        /* ───────────────────── Header ───────────────────── */
         header {
             position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
+            inset: 0 0 auto;
             z-index: 100;
-            background: rgba(11, 15, 26, .7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-            transition: box-shadow .3s;
+            transition: background .3s ease, backdrop-filter .3s ease;
+        }
+        header::after {
+            content: "";
+            position: absolute;
+            inset: auto 0 0;
+            height: 1px;
+            background: var(--rule-faint);
+            opacity: 0;
+            transition: opacity .3s ease;
         }
         header.scrolled {
-            box-shadow: 0 4px 32px rgba(0, 0, 0, .3);
+            background: color-mix(in srgb, var(--bg) 40%, transparent);
+            backdrop-filter: blur(16px);
         }
+        header.scrolled::after { opacity: 1; }
         .header-inner {
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            height: 68px;
+            gap: 28px;
+            height: var(--header-height);
         }
-
         .logo {
             display: flex;
             align-items: center;
-            gap: 12px;
-            font-weight: 800;
-            font-size: 1.15rem;
-            color: var(--text);
+            gap: 11px;
+            font-family: var(--serif);
+            font-weight: 700;
+            font-size: 1.25rem;
+            letter-spacing: -.01em;
+            color: var(--text-bright);
+            font-variation-settings: "opsz" 24, "SOFT" 50;
         }
-        .logo img {
-            height: 36px;
-            width: 36px;
-        }
-        .logo:hover {
-            color: unset;
-        }
+        .logo img { width: 34px; height: 34px; }
 
-        nav {
+        header nav {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 2px;
+            margin-inline-start: auto;
         }
-        nav a {
-            padding: 8px 16px;
-            border-radius: 60px;
-            font-size: .88rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-            transition: all .2s;
+        header nav a {
+            padding: 8px 12px;
+            border-radius: var(--radius-sm);
+            font-size: .9rem;
+            font-weight: 500;
+            color: rgba(235, 242, 255, .85);
         }
-        nav a:hover {
-            color: var(--brand);
-            background: var(--brand-glow);
-        }
+        header nav a:hover { color: #fff; background: rgba(255, 255, 255, .1); }
 
         .menu-toggle {
             display: none;
             flex-direction: column;
+            justify-content: center;
             gap: 5px;
+            width: 40px;
+            height: 40px;
+            margin-inline-start: auto;
             background: none;
-            border: none;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-sm);
             cursor: pointer;
-            padding: 4px;
+            padding: 0 9px;
         }
         .menu-toggle span {
             display: block;
-            width: 24px;
-            height: 3px;
-            background: var(--text);
-            border-radius: 4px;
-            transition: all .3s;
+            height: 2px;
+            background: var(--text-bright);
+            border-radius: 2px;
+            transition: translate .25s, rotate .25s, opacity .25s;
         }
+        .menu-toggle[aria-expanded="true"] span:nth-child(1) { translate: 0 7px; rotate: 45deg; }
+        .menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+        .menu-toggle[aria-expanded="true"] span:nth-child(3) { translate: 0 -7px; rotate: -45deg; }
+        .menu-panel, .menu-backdrop { display: none; }
 
-        /* ───────────────────── Hero Section ───────────────────── */
+        /* ───────────────────── Hero ───────────────────── */
         .hero {
+            --sky-1: #3170f6;
+            --sky-2: #1d50da;
+            --sky-3: #1538a8;
+            --sky-4: #0e2370;
+            --content-edge: max(var(--gutter), calc((100% - var(--content-width)) / 2 + var(--gutter)));
+            --script-width: clamp(340px, 36vw, 480px);
+            --h1-size: 5.3rem;
+            --lead-size: 1.375rem;
+            --lead-gap: 30px;
+            /* The width of the title's longer line, "storytelling engine". */
+            --h1-width: calc(var(--h1-size) * 6.75);
+            --hero-height: clamp(660px, 100svh, 1080px);
+            /* The cast runs up to 220px past the page edge, but keeps 16px from the screen's. */
+            --cast-right: max(16px, calc(var(--content-edge) - 220px));
+            /* Kohaku stands at 28% of the cast column; her head is about 9% of the hero's height wide on each side. */
+            --cast-left: calc((var(--content-edge) + var(--h1-width) + var(--hero-height) * .09 + var(--script-printer-gap) * 1.8 + var(--spare-height) * .1 - .28 * (100% - var(--cast-right))) / .72);
+            --hero-top: calc(var(--header-height) + clamp(20px, 3.4vh, 40px));
+            --hero-bottom: 28px;
+            --printer-height: 136px;
+            --script-printer-gap: clamp(28px, 4.2vh, 44px);
+            /* Measured by the script; a guess until it runs. */
+            --title-height: calc(var(--h1-size) * .92 * 2 + 90px);
+            --title-script-gap: 46px;
+            /* The script is as tall as the file or the room under the title, whichever is less. */
+            --spare-height: max(0px, calc(var(--hero-height) - var(--hero-bottom) - var(--script-height) - var(--title-script-gap) - var(--title-height) - var(--hero-top)));
+            --script-height: min(var(--file-height, 100vh), max(200px, calc(var(--hero-height) - var(--hero-top) - var(--title-height) - var(--title-script-gap) - var(--hero-bottom))));
             position: relative;
-            padding: clamp(140px, 18vw, 220px) 0 var(--section-py);
-            text-align: center;
-            overflow: hidden;
+            height: var(--hero-height);
+            margin-block-end: calc(var(--section-padding) - var(--hero-bottom));
+            overflow: clip;
+            isolation: isolate;
+            /* Workaround for Firefox scrolling the page on cast animation. */
+            overflow-anchor: none; 
+        }
+        /* Glass as fill stops, so it can transition to amber. */
+        header:not(.scrolled) .header-button {
+            --glass-fill: rgba(255, 255, 255, .08);
+            --fill-top: var(--glass-fill);
+            --fill-middle: var(--glass-fill);
+            --fill-bottom: var(--glass-fill);
+            border-color: rgba(255, 255, 255, .3);
+            color: #fff;
+            box-shadow: none;
+            backdrop-filter: blur(10px);
+        }
+        header:not(.scrolled) .header-button:hover { --glass-fill: rgba(255, 255, 255, .16); border-color: rgba(255, 255, 255, .5); }
+
+        .rise { animation: rise .8s var(--ease-out) both; }
+        .rise-delayed { animation-delay: .1s; }
+        @keyframes rise {
+            from { opacity: 0; translate: 0 14px; }
+            to { opacity: 1; translate: none; }
+        }
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            overflow: clip;
+            clip-path: inset(50%);
+            white-space: nowrap;
         }
 
-        /* Animated floating particles canvas */
-        #hero-canvas {
+        /* ── Glass ── */
+        .glass {
+            background: linear-gradient(160deg, rgba(255, 255, 255, .15), rgba(255, 255, 255, .05) 42%, rgba(255, 255, 255, .08));
+            border: 1px solid rgba(255, 255, 255, .12);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .3), 0 24px 60px -24px color-mix(in srgb, var(--navy-deep) 55%, transparent);
+            backdrop-filter: blur(18px) saturate(1.7);
+        }
+        /* The rim. */
+        .glass::before {
+            --rim-cyan: #8ccdff;
+            --rim-violet: #bea0ff;
+            --rim-blue: #78beff;
+            content: "";
+            position: absolute;
+            inset: 0;
+            padding: 1px;
+            border-radius: inherit;
+            background: linear-gradient(140deg, rgba(255, 255, 255, .75), color-mix(in srgb, var(--rim-cyan) 45%, transparent) 18%, color-mix(in srgb, var(--rim-violet) 20%, transparent) 42%, transparent 62%, color-mix(in srgb, var(--rim-blue) 28%, transparent));
+            mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+            pointer-events: none;
+        }
+        .glass::before { inset: -1px; animation: iridesce 8s ease-in-out infinite alternate; }
+        @keyframes iridesce {
+            from { filter: hue-rotate(-20deg); }
+            to { filter: hue-rotate(28deg); }
+        }
+
+        /* ── Stage ── */
+        .stage {
+            --speaker-color: var(--cyan-light);
+            --speaker-rim: color-mix(in srgb, var(--cyan-light) 50%, transparent);
+            position: absolute;
+            inset: 0;
+            user-select: none;
+        }
+        .stage[data-speaker="Kohaku"] { --speaker-color: var(--amber); --speaker-rim: color-mix(in srgb, var(--amber) 60%, transparent); }
+        /* The background and the cast fade and shake on their own, so the headline can stand between them in depth. */
+        .scene {
+            position: absolute;
+            inset: 0;
+        }
+        .bg, .cast {
+            opacity: 0;
+            transition: opacity 1.1s ease;
+        }
+        .stage.lit :is(.bg, .cast) { opacity: 1; }
+        .stage.shake :is(.bg, .cast) { animation: shake .6s cubic-bezier(.36, .07, .19, .97) both; }
+        @keyframes shake {
+            10%, 90% { translate: -2px 1px; }
+            20%, 80% { translate: 5px -2px; }
+            30%, 50%, 70% { translate: -9px 3px; }
+            40%, 60% { translate: 9px -3px; }
+        }
+
+        .bg {
+            position: absolute;
+            z-index: 1;
+            /* Bleed past the edges so the shake never exposes one. */
+            inset: -16px;
+            overflow: clip;
+            background: radial-gradient(75% 85% at 66% 30%, var(--sky-1) 0%, var(--sky-2) 26%, var(--sky-3) 50%, var(--sky-4) 74%, #0a1440 100%);
+            mask-image: linear-gradient(#000 58%, rgba(0, 0, 0, .1) 94%, transparent);
+        }
+        /* Dim the band under the header and behind the headline. */
+        .bg::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(color-mix(in srgb, var(--navy-deep) 50%, transparent), transparent 20%),
+                linear-gradient(90deg, color-mix(in srgb, var(--navy-deep) 46%, transparent), color-mix(in srgb, var(--navy-deep) 14%, transparent) 32%, transparent 50%);
+        }
+        .bg-column, .cast-column {
+            position: absolute;
+            inset: 0 var(--cast-right) 0 var(--cast-left);
+        }
+        /* The mask is on the whole stage, not the cast column: a mask clips to its box, and the sprites overhang the
+           column. */
+        .cast {
+            position: absolute;
+            z-index: 3;
+            inset: 0;
+            mask-image: linear-gradient(#000 76%, transparent 98%);
+        }
+        .bg-rays {
+            position: absolute;
+            left: 50%;
+            top: 34%;
+            width: 260vmax;
+            aspect-ratio: 1;
+            translate: -50% -50%;
+            scale: 1.15;
+            background: repeating-conic-gradient(from 0deg, rgba(255, 255, 255, .1) 0deg 5deg, transparent 5deg 12deg);
+            mask-image: radial-gradient(circle, #000 0%, rgba(0, 0, 0, .7) 16%, transparent 40%);
+            transition: scale 2.4s var(--ease-out);
+            animation: spin 160s linear infinite;
+        }
+        .stage.lit .bg-rays { scale: 1; }
+        .bg-glow {
+            position: absolute;
+            left: 50%;
+            top: 34%;
+            width: 70vmin;
+            aspect-ratio: 1;
+            translate: -50% -50%;
+            border-radius: 50%;
+            background: radial-gradient(closest-side, rgba(225, 238, 255, .55), rgba(150, 195, 255, .18) 45%, transparent);
+            mix-blend-mode: screen;
+            animation: bloom 7s ease-in-out infinite alternate;
+        }
+        @keyframes bloom {
+            from { opacity: .75; scale: .94; }
+            to { opacity: 1; scale: 1.04; }
+        }
+        .light {
+            position: absolute;
+            width: 60%;
+            aspect-ratio: 1;
+            translate: -50% -50%;
+            border-radius: 50%;
+            mix-blend-mode: screen;
+            opacity: .2;
+            transition: opacity .9s ease, scale .9s ease;
+        }
+        .light.warm { left: 28%; top: 48%; background: radial-gradient(closest-side, rgba(255, 175, 110, .6), rgba(230, 120, 80, .14) 55%, transparent); }
+        .light.cool { left: 75%; top: 52%; background: radial-gradient(closest-side, rgba(90, 210, 255, .6), rgba(64, 105, 237, .16) 55%, transparent); }
+        .stage[data-speaker="Kohaku"] .light.warm,
+        .stage[data-speaker="Nani"] .light.cool { opacity: .7; scale: 1.1; }
+
+        .char {
+            position: absolute;
+            left: var(--center-x);
+            height: var(--height);
+            aspect-ratio: var(--aspect-ratio);
+            translate: calc(-50% + var(--enter-offset)) 0;
+            opacity: 0;
+            transform-origin: 50% 100%;
+            transition: opacity .5s ease, translate .6s var(--ease-out), scale .5s ease;
+        }
+        .char.on { opacity: 1; translate: -50% 0; }
+        .char.speaking { scale: 1.015; }
+        .char img {
             position: absolute;
             inset: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none;
-        }
-
-        /* Large radial glow behind logo */
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: -10%;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 800px;
-            height: 800px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(27, 174, 234, .15) 0%, rgba(100, 40, 140, .06) 40%, transparent 70%);
-            pointer-events: none;
-            animation: hero-glow 8s ease-in-out infinite alternate;
-        }
-        @keyframes hero-glow {
-            0% { transform: translateX(-50%) scale(1); opacity: .8; }
-            100% { transform: translateX(-50%) scale(1.15); opacity: 1; }
-        }
-
-        /* Subtle ring accent */
-        .hero::after {
-            content: "";
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 600px;
-            height: 600px;
-            transform: translate(-50%, -60%);
-            border-radius: 50%;
-            border: 1px solid rgba(27, 174, 234, .08);
-            pointer-events: none;
-            animation: hero-ring 12s ease-in-out infinite alternate;
-        }
-        @keyframes hero-ring {
-            0% { width: 500px; height: 500px; opacity: .5; }
-            100% { width: 700px; height: 700px; opacity: .15; }
-        }
-
-        .hero .wrap {
-            position: relative;
-        }
-
-        .hero-logo {
-            width: clamp(320px, 50vw, 560px);
-            aspect-ratio: 1746.3 / 1157.1;
-            margin: 0 auto 24px;
-            animation: hero-breathe 8s ease-in-out infinite;
-            mix-blend-mode: lighten;
             opacity: 0;
-            transition: opacity .6s ease;
+            transition: opacity .25s ease;
         }
-        .hero-logo.loaded {
-            opacity: 1;
+        .char img.on { opacity: 1; }
+        .char img.front { z-index: 1; }
+        .char.flip img, .char.flip .shade { scale: -1 1; }
+        /* Dims the character while they aren't speaking. */
+        .shade {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            background: rgb(172, 182, 210);
+            mix-blend-mode: multiply;
+            mask: var(--sprite) center / 100% 100% no-repeat;
+            transition: opacity .5s ease;
         }
-        @keyframes hero-breathe {
-            0%, 100% { transform: scale(1) translateY(0); filter: drop-shadow(0 0 60px rgba(27, 174, 234, .3)); }
-            50% { transform: scale(1.03) translateY(-6px); filter: drop-shadow(0 0 80px rgba(27, 174, 234, .45)); }
+        .char.speaking .shade { opacity: 0; }
+        .kohaku { --center-x: 28%; --height: 90%; --aspect-ratio: 664 / 1068; --enter-offset: -28px; bottom: -4%; }
+        .nani { --center-x: 76%; --height: 70%; --aspect-ratio: 544 / 1068; --enter-offset: 28px; bottom: -1%; }
+        /* ── The cast on desktop ── */
+        /* Kohaku stands over the printer's left end and Nani over its right, at most about half their height apart.
+           The pair is drawn from --cast-height, which drops below the hero's height when they don't fit. Kohaku's lock, 16% down
+           her sprite, points between the title's lines; the printer covers her hem, 72% down. */
+        @media (width > 900px) {
+            .hero {
+                /* The content edge in the hero's own width: --content-edge is in percent, which inside the cast column would resolve
+                   against the column. */
+                container-type: inline-size;
+                --hero-content-edge: max(var(--gutter), calc((100cqw - var(--content-width)) / 2 + var(--gutter)));
+                --hero-cast-right: max(16px, calc(var(--hero-content-edge) - 220px));
+                /* The pair's widest span at their closest is .57 of their height across the printer, or .68 of it
+                   up to 16px from the screen's edge. */
+                --cast-height: min(var(--hero-height),
+                    calc((100cqw - var(--hero-content-edge) * 2 - var(--script-width) - var(--script-printer-gap)) / .5734),
+                    calc((100cqw - 16px - var(--hero-content-edge) - var(--script-width) - var(--script-printer-gap)) / .6839));
+                /* The gap between the title's lines, were the title to take its share of the spare height. Kohaku's lock
+                   points there, her ribbon kept below the header; she then stands 40px lower, while Nani and the printer
+                   keep their place. */
+                --title-gap-y: calc(var(--hero-top) + var(--spare-height) * .3 + var(--h1-size) * 1.063);
+                --cast-top: max(calc(var(--title-gap-y) - var(--cast-height) * .144), var(--header-height));
+                --printer-bottom: calc(var(--hero-height) - var(--cast-top) - var(--cast-height) * .648 - var(--printer-height) - 10px);
+                --kohaku-top: calc(var(--cast-top) + 40px);
+                /* The hero ends --hero-bottom under the printer, so it is cut by the room the printer rose by. */
+                --hero-cut: max(0px, calc(var(--printer-bottom) - var(--hero-bottom)));
+                height: calc(var(--hero-height) - var(--hero-cut));
+                /* Positions are from the cast column's right side, as its left side moves with the title. Nani's
+                   sprite, 35% of the pair's height wide, keeps 16px from the screen's edge. */
+                --kohaku-x-apart: calc(100% - 100cqw + var(--hero-cast-right) + var(--hero-content-edge) + var(--script-width) + var(--script-printer-gap) + var(--cast-height) * .168);
+                --nani-x-apart: min(calc(100% - var(--hero-content-edge) + var(--hero-cast-right) - var(--cast-height) * .0754), calc(100% + var(--hero-cast-right) - 16px - var(--cast-height) * .1732));
+                --pull: max(0px, calc((var(--nani-x-apart) - var(--kohaku-x-apart) - var(--cast-height) * .48) / 2));
+                --kohaku-x: calc(var(--kohaku-x-apart) + var(--pull));
+                --nani-x: calc(var(--nani-x-apart) - var(--pull));
+                /* The lights' column (the background's) can end up to 16px right of the cast's, as the background bleeds past the stage
+                   and its percent edge resolves against that wider box. */
+                --light-offset: calc(16px - max(16px, max(var(--gutter), calc((100cqw + 32px - var(--content-width)) / 2 + var(--gutter))) - 220px) + var(--hero-cast-right));
+            }
+            .kohaku { --height: calc(var(--cast-height) * .9); --center-x: var(--kohaku-x); bottom: calc(var(--hero-height) - var(--hero-cut) - var(--kohaku-top) - var(--cast-height) * .9); }
+            /* The printer's top edge crosses Nani's belt buckle, 74% down his sprite. */
+            .nani { --height: calc(var(--cast-height) * .68); --center-x: var(--nani-x); bottom: calc(var(--hero-height) - var(--hero-cut) - var(--cast-top) - var(--cast-height) * .836); }
+            /* Each speaker's light sits behind their chest; the background starts 16px above the stage. */
+            .light.warm { left: calc(var(--kohaku-x) - var(--light-offset)); top: calc(var(--kohaku-top) + var(--cast-height) * .342 + 16px); }
+            .light.cool { left: calc(var(--nani-x) - var(--light-offset)); top: calc(var(--cast-top) + var(--cast-height) * .36 + 17px); }
+            /* A little right of the middle of the pair, 34% down the uncut hero. */
+            .bg-rays, .bg-glow {
+                left: calc((var(--kohaku-x) + var(--nani-x)) / 2 - var(--light-offset) + var(--cast-height) * .054);
+                top: calc(34% + var(--hero-cut) * .34);
+            }
+            /* The cast fades out behind the printer. */
+            .cast {
+                mask-image: linear-gradient(#000 calc(100% - var(--hero-bottom) - 110px), transparent calc(100% - var(--hero-bottom) - 10px));
+            }
         }
 
-        .hero h1 {
-            font-size: clamp(1.05rem, 2.2vw, 1.35rem);
-            font-weight: 500;
-            color: var(--text-secondary);
-            max-width: 640px;
-            margin: 0 auto 44px;
-            line-height: 1.8;
-        }
-        .hero-cta {
+        /* ── Headline ── */
+        .hero-title {
+            position: absolute;
+            z-index: 2;
+            /* A share of the spare height goes above the title. */
+            inset: calc(var(--hero-top) + var(--spare-height) * .3) var(--content-edge) auto;
             display: flex;
-            gap: 16px;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: hero-fade-up 1s ease .1s both;
-        }
-        @keyframes hero-fade-up {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ───────────────────── Hero Background Screenshots ───────────────────── */
-        .hero-shots {
-            position: absolute;
-            inset: 0;
+            flex-direction: column;
             pointer-events: none;
-            overflow: hidden;
+            user-select: text;
         }
-        .hero-shot {
-            position: absolute;
-            border-radius: var(--radius-sm);
-            overflow: hidden;
-            opacity: 0;
-            filter: blur(1px) saturate(.6);
-            box-shadow: 0 4px 32px rgba(0, 0, 0, .4);
-            transition: opacity 1.8s ease;
+        /* On desktop the spare height goes under the left column instead. */
+        @media (width > 900px) { .hero-title { top: var(--hero-top); } }
+        .hero-title-block { width: fit-content; pointer-events: auto; }
+        .hero h1 {
+            font-weight: 560;
+            font-size: var(--h1-size);
+            line-height: .92;
+            letter-spacing: -.028em;
+            font-variation-settings: "opsz" 144, "SOFT" 20, "WONK" 0;
+            text-shadow: 0 2px 40px color-mix(in srgb, var(--navy-deep) 50%, transparent);
+            /* The line breaks are set by hand. */
+            white-space: nowrap;
         }
-        .hero-shot.visible {
-            opacity: .09;
+        .hero-lead {
+            --lead-color: color-mix(in srgb, var(--cool-white) 74%, transparent);
+            margin-block-start: var(--lead-gap);
+            max-width: 36ch;
+            font-size: var(--lead-size);
+            line-height: 1.5;
+            color: var(--lead-color);
+            text-shadow: 0 1px 16px color-mix(in srgb, var(--navy-deep) 40%, transparent);
         }
-        .hero-shot img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
+        .hero-lead em, .section-head em {
+            font-family: var(--serif);
+            font-style: italic;
+            font-weight: 400;
+            font-size: 1.08em;
+            line-height: 1;
+            /* A larger optical size draws finer strokes, so the italic doesn't read as bold. */
+            font-variation-settings: "opsz" 40;
+            /* Opaque, or the glow would show through the letters and smudge them. */
+            color: var(--text-bright);
+            text-shadow: var(--highlight-glow), 0 1px 16px color-mix(in srgb, var(--navy-deep) 40%, transparent);
         }
-        /* 9 positioned slots scattered around hero edges — sizes scale with viewport */
-        .hero-shot:nth-child(1) { width: clamp(260px, 22vw, 380px); top: 8%; left: -2%; transform: rotate(-4deg); animation: shot-drift-1 20s ease-in-out infinite; }
-        .hero-shot:nth-child(2) { width: clamp(220px, 20vw, 340px); top: 5%; right: 1%; transform: rotate(3deg); animation: shot-drift-2 24s ease-in-out infinite; }
-        .hero-shot:nth-child(3) { width: clamp(200px, 18vw, 320px); top: 38%; left: -4%; transform: rotate(-2deg); animation: shot-drift-3 22s ease-in-out infinite; }
-        .hero-shot:nth-child(4) { width: clamp(240px, 21vw, 360px); top: 35%; right: -3%; transform: rotate(5deg); animation: shot-drift-1 26s ease-in-out infinite; }
-        .hero-shot:nth-child(5) { width: clamp(180px, 16vw, 280px); top: 65%; left: 2%; transform: rotate(2deg); animation: shot-drift-2 18s ease-in-out infinite; }
-        .hero-shot:nth-child(6) { width: clamp(200px, 18vw, 320px); top: 62%; right: 2%; transform: rotate(-3deg); animation: shot-drift-3 20s ease-in-out infinite; }
-        .hero-shot:nth-child(7) { width: clamp(160px, 15vw, 260px); top: 20%; left: 18%; transform: rotate(1deg); animation: shot-drift-2 28s ease-in-out infinite; }
-        .hero-shot:nth-child(8) { width: clamp(170px, 15vw, 270px); top: 18%; right: 16%; transform: rotate(-2deg); animation: shot-drift-1 23s ease-in-out infinite; }
-        .hero-shot:nth-child(9) { width: clamp(190px, 16vw, 300px); top: 75%; left: 20%; transform: rotate(3deg); animation: shot-drift-3 25s ease-in-out infinite; }
-        @keyframes shot-drift-1 {
-            0%, 100% { translate: 0 0; }
-            50% { translate: 8px -12px; }
+        .hero-lead em { animation: lead-lit 2.6s ease-out .7s both; }
+        .hero-lead em:nth-of-type(2) { animation-delay: .95s; }
+        .hero-lead em:nth-of-type(3) { animation-delay: 1.2s; }
+        @keyframes lead-lit {
+            from { color: var(--lead-color); text-shadow: 0 0 14px transparent, 0 1px 16px color-mix(in srgb, var(--navy-deep) 40%, transparent); }
+            18% { color: #fffaf2; text-shadow: 0 0 30px color-mix(in srgb, var(--amber) 95%, transparent), 0 1px 16px color-mix(in srgb, var(--navy-deep) 40%, transparent); }
         }
-        @keyframes shot-drift-2 {
-            0%, 100% { translate: 0 0; }
-            50% { translate: -10px 10px; }
+        /* On desktop the lead hangs from a rule as long as the title's longer line, with the continue mark in the margin. */
+        @media (width > 900px) {
+            .hero-lead { margin-block-start: calc(var(--lead-gap) * 1.2); }
+            .hero-lead::before {
+                content: "";
+                display: block;
+                width: calc(var(--h1-width) + 17px);
+                height: 9px;
+                margin: 0 0 calc(var(--lead-gap) * .15) -17px;
+                background:
+                    var(--diamond) 0 50% / 9px 9px no-repeat,
+                    linear-gradient(90deg, var(--rule), var(--rule-faint) 60%, transparent) 17px 50% / calc(100% - 17px) 1px no-repeat;
+            }
         }
-        @keyframes shot-drift-3 {
-            0%, 100% { translate: 0 0; }
-            50% { translate: 6px 14px; }
+        /* Laptops and short screens, then small laptops and very short screens. */
+        @media (900px < width < 1400px), (width > 900px) and (height < 800px) {
+            .hero { --h1-size: 4.5rem; --lead-size: 1.25rem; --lead-gap: 24px; --title-script-gap: 40px; }
+        }
+        @media (900px < width <= 1100px), (width > 900px) and (height < 680px) {
+            .hero { --h1-size: 3.75rem; --lead-size: 1.125rem; --lead-gap: 20px; --title-script-gap: 34px; }
         }
 
-        /* ───────────────────── Why Naninovel? ───────────────────── */
-        .why {
-            padding: var(--section-py) 0;
-            position: relative;
+        /* ── Text printer ── */
+        .printer {
+            position: absolute;
+            z-index: 4;
+            inset: auto var(--content-edge) var(--hero-bottom) calc(var(--content-edge) + var(--script-width) + var(--script-printer-gap));
+            min-height: var(--printer-height);
+            padding: 26px 30px 22px;
+            box-shadow:
+                inset 0 1px 0 color-mix(in srgb, var(--speaker-color) 50%, rgba(255, 255, 255, .25)),
+                0 24px 60px -24px color-mix(in srgb, var(--navy-deep) 55%, transparent);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity .45s ease, box-shadow .6s ease;
         }
-        /* Warm gradient accent behind this section */
-        .why::before {
+        .printer.on { opacity: 1; pointer-events: auto; }
+        .printer, .menu-panel {
+            border-radius: var(--radius-md);
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, .09), transparent 40%),
+                linear-gradient(160deg, rgba(24, 44, 120, .6), rgba(10, 20, 64, .76));
+        }
+        .printer::after, .menu-panel::after {
             content: "";
             position: absolute;
-            top: -200px;
-            right: -200px;
-            width: 600px;
-            height: 600px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(140, 60, 80, .08), transparent 70%);
+            inset: 5px;
+            border-radius: calc(var(--radius-md) - 5px);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1);
             pointer-events: none;
         }
-        .why-intro {
-            text-align: center;
-            max-width: 740px;
-            font-size: clamp(.95rem, 1.6vw, 1.1rem);
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin: 0 auto clamp(48px, 6vw, 72px);
+        .printer-name {
+            position: absolute;
+            /* Over the printer's inner hairline. */
+            z-index: 1;
+            top: 0;
+            left: 26px;
+            translate: 0 -50%;
+            padding: 7px 14px 6px;
+            border-radius: var(--radius-sm);
+            background: var(--badge);
+            box-shadow:
+                inset 0 0 0 1px var(--speaker-rim),
+                0 0 16px -2px color-mix(in srgb, var(--speaker-color) 45%, transparent),
+                0 8px 20px -10px color-mix(in srgb, var(--navy-deep) 90%, transparent);
+            text-shadow: 0 0 8px color-mix(in srgb, var(--speaker-color) 45%, transparent);
+            font-family: var(--mono);
+            font-size: .74rem;
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: var(--speaker-color);
+            display: grid;
+            white-space: nowrap;
+            overflow: clip;
+            transition: color .3s, box-shadow .3s, text-shadow .3s, width .25s ease;
+        }
+        /* The names cross-fade, stacked in one cell. */
+        .printer-name span { grid-area: 1 / 1; transition: opacity .25s ease; }
+        .printer-name span.out { opacity: 0; }
+        .printer-name:empty { display: none; }
+        .printer-text {
+            min-height: 2.9em;
+            font-family: var(--serif);
+            font-weight: 500;
+            font-size: clamp(1.14rem, 1.6vw, 1.56rem);
+            line-height: 1.42;
+            color: var(--text-bright);
+            font-variation-settings: "opsz" 20, "SOFT" 40;
+            text-shadow: 0 1px 0 color-mix(in srgb, var(--navy-deep) 35%, transparent);
+            transition: opacity .17s ease;
+        }
+        .printer-text.out { opacity: 0; }
+        .printer-text .word { white-space: nowrap; }
+        .printer-text .glyph { opacity: 0; transition: opacity .32s var(--ease-print); }
+        .printer-text .glyph.on { opacity: 1; }
+        .continue-mark {
+            position: absolute;
+            right: 24px;
+            bottom: 20px;
+            width: 8px;
+            height: 8px;
+            rotate: 45deg;
+            border-radius: 1.5px;
+            background: var(--speaker-color);
+            box-shadow: 0 0 12px var(--speaker-color);
+            opacity: 0;
+        }
+        .printer.waiting .continue-mark { animation: blink 2s ease-in-out infinite; }
+        @keyframes blink {
+            0%, 100% { opacity: .2; }
+            50% { opacity: .95; }
         }
 
-        .features-grid {
+        /* The printer's growth as the choices open is animated in the script. */
+        .choices-wrap { display: none; }
+        .stage.choosing .choices-wrap { display: block; }
+        .choices {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding-block-start: 16px;
+        }
+        .stage.choosing .printer-text { min-height: 0; }
+        .choice {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-height: 46px;
+            padding: 9px 20px 9px 10px;
+            border-radius: var(--radius);
+            --choice-from: rgba(255, 255, 255, .09);
+            --choice-to: rgba(255, 255, 255, .04);
+            background: linear-gradient(180deg, var(--choice-from), var(--choice-to));
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .14);
+            color: var(--text-bright);
+            text-align: start;
+            cursor: pointer;
+            font-family: var(--serif);
+            font-weight: 500;
+            font-size: clamp(1rem, 1.05vw, 1.08rem);
+            line-height: 1.3;
+            font-variation-settings: "opsz" 18, "SOFT" 40;
+            transition: --choice-from .25s, --choice-to .25s, color .25s, box-shadow .25s;
+        }
+        /* In the printer the choices print in; elsewhere they are plain links. */
+        .printer .choice {
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity .4s ease, visibility 0s .4s, --choice-from .25s, --choice-to .25s, color .25s, box-shadow .25s;
+        }
+        .printer .choice:nth-child(1) { --choice-delay: 240ms; }
+        .printer .choice:nth-child(2) { --choice-delay: 380ms; }
+        .printer .choice.on {
+            pointer-events: auto;
+            visibility: visible;
+            opacity: 1;
+            transition: opacity .4s ease var(--choice-delay), visibility 0s var(--choice-delay), --choice-from .25s, --choice-to .25s, color .25s, box-shadow .25s;
+        }
+        .choice .word { white-space: nowrap; }
+        .printer .choice .glyph { opacity: 0; transition: opacity .3s var(--ease-print); }
+        .printer .choice.on .glyph { opacity: 1; transition-delay: calc(var(--choice-delay) + 80ms + var(--glyph-index) * 16ms); }
+        .choice .icon {
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+            width: 30px;
+            height: 30px;
+            border-radius: var(--radius-sm);
+            background: rgba(255, 255, 255, .05);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .2);
+            color: color-mix(in srgb, var(--text-bright) 78%, transparent);
+            transition: color .25s, background .25s, box-shadow .25s, --fill-top .25s, --fill-middle .25s, --fill-bottom .25s;
+        }
+        .choice .icon svg { width: 17px; height: 17px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+        .choice .icon svg.filled { fill: currentColor; stroke: none; }
+        .choice:not(.primary):is(:hover, :focus-visible) .icon { color: #fff; background: rgba(255, 255, 255, .12); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .45); }
+        .choice.primary .icon { box-shadow: none; color: var(--on-amber); }
+        .choice:hover, .choice:focus-visible {
+            --choice-from: rgba(255, 255, 255, .16);
+            --choice-to: rgba(255, 255, 255, .07);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .34), 0 0 0 4px color-mix(in srgb, var(--cyan-light) 10%, transparent), 0 0 28px -6px color-mix(in srgb, var(--cyan-light) 45%, transparent);
+            color: #fff;
+        }
+        .choice.primary {
+            --choice-from: color-mix(in srgb, var(--amber) 22%, transparent);
+            --choice-to: color-mix(in srgb, var(--amber-glow) 8%, transparent);
+            background: linear-gradient(160deg, var(--choice-from), var(--choice-to));
+            color: #ffcf9e;
+            box-shadow: inset 0 0 0 1px rgba(255, 200, 150, .9), 0 0 0 4px color-mix(in srgb, var(--amber) 14%, transparent), 0 0 26px -6px color-mix(in srgb, var(--amber-halo) 45%, transparent), 0 18px 40px -20px color-mix(in srgb, var(--amber-glow) 55%, transparent);
+        }
+        .choice.primary:hover, .choice.primary:focus-visible {
+            color: #ffe9d2;
+            --choice-from: color-mix(in srgb, var(--amber) 32%, transparent);
+            --choice-to: color-mix(in srgb, var(--amber-glow) 12%, transparent);
+            box-shadow: inset 0 0 0 1px var(--amber-light), 0 0 0 4px color-mix(in srgb, var(--amber) 18%, transparent), 0 0 32px -6px color-mix(in srgb, var(--amber-halo) 60%, transparent), 0 18px 40px -20px color-mix(in srgb, var(--amber-glow) 60%, transparent);
+        }
+
+        /* ── Script ── */
+        .hero-ui {
+            position: absolute;
+            inset: 0;
+            z-index: 5;
+            display: grid;
+            grid-template-columns: var(--script-width) minmax(0, 1fr);
+            grid-template-rows: minmax(0, 1fr) var(--script-height);
+            padding-block: var(--hero-top) calc(var(--hero-bottom) + var(--spare-height) * .45);
+            pointer-events: none;
+        }
+        /* The script is narrower than its column, so Kohaku's hair, which reaches 11% of her height left of the
+           printer, keeps clear of its lines. */
+        @media (width > 900px) {
+            /* On the slot, not the script: the slot is a size container, and inside it the hero's widths would resolve
+               against the slot instead. */
+            .script-slot { max-width: clamp(260px, calc(var(--script-width) + var(--script-printer-gap) - var(--cast-height) * .112 + clamp(-16px, (100cqw - 1100px) * .2, 28px)), 430px); }
+            /* As tall as the file, down to the printer's baseline at most; past that the file scrolls. */
+            .hero-ui {
+                padding-block-end: var(--hero-bottom);
+                grid-template-rows: calc(var(--title-height) + var(--title-script-gap)) minmax(0, var(--file-height, 100vh)) 1fr;
+            }
+        }
+        .script-slot {
+            grid-column: 1;
+            grid-row: 2;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            container-type: size;
+        }
+        .script {
+            --line-number-width: .8rem;
+            --line-number-gap: 14px;
+            --tab-height: 36px;
+            --lines-inset: calc(var(--line-number-gap) + 1px);
+            position: relative;
+            isolation: isolate;
+            display: flex;
+            flex-direction: column;
+            min-height: 0;
+            height: 100%;
+            pointer-events: auto;
+        }
+        /* The bar is a tab strip; ::before runs the tab's side on down the page, and ::after tints the page as the tab. */
+        .script-bar {
+            display: flex;
+            align-items: stretch;
+            flex-shrink: 0;
+            font-family: var(--mono);
+            font-size: .74rem;
+            color: color-mix(in srgb, var(--cool-white) 60%, transparent);
+        }
+        .script-tab {
+            display: flex;
+            align-items: center;
+            height: var(--tab-height);
+            padding: 0 var(--line-number-gap);
+            border: 1px solid var(--script-border);
+            border-block-start-color: var(--cyan);
+            border-block-end: 0;
+            border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+            background: var(--script-fill);
+            color: #fff;
+        }
+        .script-controls {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            background: linear-gradient(90deg, var(--script-border), var(--rule-faint) 60%, transparent) bottom / 100% 1px no-repeat;
+        }
+        .script::before {
+            content: "";
+            position: absolute;
+            inset: var(--tab-height) auto 0 0;
+            width: 1px;
+            background: linear-gradient(var(--script-border), var(--rule-faint) 60%, transparent);
+            pointer-events: none;
+        }
+        .script::after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            inset: var(--tab-height) 0 0;
+            background: linear-gradient(var(--script-fill), transparent);
+            mask-image: linear-gradient(90deg, #000 50%, transparent);
+            pointer-events: none;
+        }
+        .script-state {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 0;
+            background: none;
+            cursor: default;
+            transition: color .2s;
+        }
+        .script-state::before {
+            content: "";
+            flex-shrink: 0;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            box-shadow: inset 0 0 0 1.2px currentColor;
+        }
+        .script-state.playing { color: var(--cyan-light); }
+        .script-state.playing::before {
+            height: 8px;
+            border-radius: 0;
+            box-shadow: none;
+            background: currentColor;
+            clip-path: polygon(0 0, 100% 50%, 0 100%);
+        }
+        .script-state.ended { color: var(--cyan-light); cursor: pointer; }
+        .script-state.ended:hover { color: #fff; }
+        .script-state.ended::before {
+            width: 11px;
+            height: 11px;
+            border-radius: 0;
+            box-shadow: none;
+            background: currentColor;
+            mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4.5 12a7.5 7.5 0 1 0 2.2-5.3'/%3E%3Cpath d='M4.5 4.5V9H9'/%3E%3C/svg%3E") center / contain no-repeat;
+        }
+        /* On desktop the script's side hangs in the margin, centred on the rule's mark (9px wide, 17px out), so the
+           tab's name and the line numbers start on the title's edge. */
+        @media (width > 900px) {
+            .script { --overhang: 13px; --lines-inset: 0px; }
+            .script-bar, .script::before, .script::after { margin-inline-start: calc(-1 * var(--overhang)); }
+            .script-tab { padding-inline-start: calc(var(--overhang) - 1px); }
+        }
+        .script-lines {
+            position: relative;
+            flex: 1;
+            min-height: 0;
+            overflow: auto;
+            list-style: none;
+            counter-reset: line-number;
+            padding: 14px 0 4px var(--lines-inset);
+            scroll-padding-block-start: 14px;
+            scroll-snap-type: y mandatory;
+            scrollbar-width: none;
+            mask-image: linear-gradient(transparent, #000 14px, #000 calc(100% - 18px), transparent);
+        }
+        .script-lines li {
+            scroll-snap-align: start;
+            counter-increment: line-number;
+            display: flex;
+            align-items: baseline;
+            gap: var(--line-number-gap);
+            padding: 3px 0;
+            font-family: var(--mono);
+            font-variant-ligatures: none;
+            font-size: .82rem;
+            line-height: 1.75;
+            color: var(--code-text);
+            opacity: .52;
+            transition: opacity .3s;
+        }
+        .script-lines li::before {
+            content: counter(line-number);
+            flex-shrink: 0;
+            width: var(--line-number-width);
+            text-align: end;
+            font-size: .66rem;
+            color: rgba(200, 215, 245, .5);
+        }
+        .script-lines li.done { opacity: .78; }
+        .script-lines li.current { opacity: 1; }
+        .script-lines li.current::before { content: "▶"; color: var(--amber); font-size: .56rem; translate: 0 -.22em; }
+        .script-lines .keyword { color: var(--code-keyword); }
+        .script-lines .param { color: var(--code-param); }
+        .script-lines .name { color: var(--code-name); }
+        .script-lines .string { color: var(--code-text); }
+
+        .stage.paused *, .stage.paused *::after { animation-play-state: paused !important; }
+
+        @media (width > 900px) and (height <= 760px) {
+            .hero { --hero-top: calc(var(--header-height) + 8px); }
+        }
+
+        @media (900px < width <= 1100px) {
+            .hero {
+                --script-width: clamp(320px, 33vw, 480px);
+                --hero-top: calc(var(--header-height) + 12px);
+            }
+            .script-lines li { line-height: 1.62; }
+        }
+
+        /* Phones and tablets: the stage stacks over the script. */
+        @media (width <= 900px) {
+            .hero {
+                --content-edge: var(--gutter);
+                --cast-left: 0px;
+                --cast-right: 0px;
+                --printer-height: 116px;
+                --art-height: 460px;
+                --h1-size: 3.5rem;
+                --lead-size: 1.05rem;
+                --lead-gap: 18px;
+                --hero-bottom: 36px;
+                height: auto;
+                display: grid;
+                grid-template-areas: "stage" "script";
+                row-gap: 22px;
+                padding-block: var(--header-height) var(--hero-bottom);
+                background: linear-gradient(var(--sky-2), var(--sky-3) 30%, var(--sky-4) 74%, transparent);
+            }
+            .hero-ui { display: contents; }
+            .stage {
+                grid-area: stage;
+                position: relative;
+                inset: auto;
+                display: grid;
+                grid-template-rows: auto var(--art-height);
+                overflow: clip;
+            }
+            .bg {
+                background: radial-gradient(80% 40% at 50% calc(100% - var(--art-height) * .55), var(--sky-1) 0%, rgba(36, 92, 230, .75) 40%, transparent 100%);
+                mask-image: linear-gradient(transparent 16px, #000 80px, #000 calc(100% - 80px), transparent calc(100% - 16px));
+            }
+            .bg::after { background: none; }
+            .bg-column { top: auto; bottom: 16px; height: var(--art-height); }
+            .cast { inset: auto 0 0; height: var(--art-height); }
+            .hero-title {
+                position: relative;
+                inset: auto;
+                grid-row: 1;
+                display: block;
+                padding: 18px var(--gutter) 0;
+            }
+            .hero-title-block { width: auto; }
+            .hero h1 { white-space: normal; }
+            .script-slot { grid-area: script; margin-inline: var(--gutter); container-type: normal; }
+            .script { max-height: 300px; height: auto; }
+            .script-lines li { padding: 2px 0; font-size: .76rem; }
+            .printer { left: 12px; right: 12px; bottom: 10px; padding: 22px 20px 16px; }
+            .printer-name { left: 18px; }
+        }
+        @media (width <= 600px) {
+            .hero { --printer-height: 96px; --art-height: 480px; --h1-size: 2.75rem; --lead-size: 1rem; }
+            /* Lifted, so both faces stay above the choices. */
+            .kohaku { --height: 72%; bottom: 20%; }
+            .nani { --height: 55%; bottom: 21%; }
+            .cast {
+                mask-image: linear-gradient(#000 58%, transparent 80%);
+            }
+            .printer-name { font-size: .64rem; padding: 5px 11px; }
+            .printer-text { font-size: 1rem; min-height: 2.6em; }
+            .choices { flex-direction: column; }
+            .script-lines { max-height: 240px; }
+        }
+        @media (width <= 380px) {
+            .hero { --h1-size: 2.5rem; }
+        }
+
+        /* ───────────────────── More ───────────────────── */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 24px;
+        }
+        .feature {
+            --inset: 30px;
+            display: flex;
+            flex-direction: column;
+            padding: 34px var(--inset) 32px;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-md);
+            background: var(--fill);
+            backdrop-filter: brightness(1.18) saturate(1.3);
+        }
+        /* Fewer columns where the code samples would no longer fit. */
+        @media (800px < width <= 1220px) {
+            .features { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (width <= 800px) {
+            .features { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+            .feature { --inset: 24px; padding-block: 28px 26px; }
+        }
+        .feature h3 {
+            font-size: 1.4rem;
+            line-height: 1.2;
+            letter-spacing: -.005em;
+            margin-block-end: 16px;
+            font-variation-settings: "opsz" 48, "SOFT" 40;
+        }
+
+        .feature p {
+            flex-grow: 1;
+            font-size: .92rem;
+            line-height: 1.7;
+        }
+        .feature:has(figure) { padding-block-end: 12px; }
+        .feature figure {
+            display: grid;
+            grid-template-columns: auto 1fr;
+            margin-block-start: 20px;
+            margin-inline: -6px calc(-1 * var(--inset));
+        }
+        .feature figure::after {
+            content: "";
+            grid-area: 1 / 2;
+            background: linear-gradient(90deg, var(--script-border), var(--rule-faint) 60%, transparent) bottom / 100% 1px no-repeat;
+        }
+        .feature figcaption {
+            padding: 5px 12px 4px;
+            border: 1px solid var(--script-border);
+            border-block-end: 0;
+            border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+            background: var(--script-fill);
+            font-family: var(--mono);
+            font-size: .7rem;
+            color: color-mix(in srgb, var(--cool-white) 75%, transparent);
+        }
+        .feature pre {
+            grid-column: 1 / -1;
+            padding: 11px 12px 11px 14px;
+            background:
+                linear-gradient(var(--script-border), var(--rule-faint) 60%, transparent) 0 0 / 1px 100% no-repeat,
+                radial-gradient(farthest-side at 0 0, var(--script-fill), transparent);
+            font-family: var(--mono);
+            font-variant-ligatures: none;
+            font-size: .8rem;
+            line-height: 1.6;
+            overflow-x: auto;
+            scrollbar-width: none;
+            white-space: pre;
+        }
+        .feature .shot {
+            position: relative;
+            display: block;
+            height: 91px;
+        }
+        .feature .shot::after {
+            position: absolute;
+            inset: 0;
+            border: solid var(--script-border);
+            border-width: 1px 0 0 1px;
+            border-start-start-radius: var(--radius-sm);
+            background: none;
+            mask: linear-gradient(90deg, #000, rgb(0 0 0 / 47%) 60%, transparent), linear-gradient(#000, rgb(0 0 0 / 47%) 60%, transparent);
+            mask-composite: intersect;
+        }
+        .feature .shot img {
+            width: 100%;
+            height: 100%;
+            border-start-start-radius: var(--radius-sm);
+            object-fit: cover;
+            object-position: 0 0;
+            mask: linear-gradient(#000 45%, transparent), linear-gradient(90deg, #000 55%, transparent);
+            mask-composite: intersect;
+        }
+        /* Drawn pixel for pixel at any card width. */
+        .feature .shot img[srcset] { width: min(360px, 100%); object-fit: none; }
+        .feature pre .keyword { color: var(--code-keyword); }
+        .feature pre .param { color: var(--code-param); }
+        .feature pre .name { color: var(--code-name); }
+        .feature pre .comment { color: var(--text-muted); }
+        .feature pre .text { color: var(--code-text); }
+
+        /* ───────────────────── Trailer ───────────────────── */
+        .trailer-frame, .theater, .try-card, .game {
+            --light-x: .3;
+            --light-y: .25;
+            --aqua: oklch(88% .13 210);
+            --periwinkle: oklch(76% .15 280);
+            --rose: oklch(76% .15 350);
+            --gold: oklch(85% .13 78);
+        }
+        .trailer-frame {
+            position: relative;
+            isolation: isolate;
+            border-radius: var(--radius-lg);
+        }
+        .trailer-frame::before, .theater-stage::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            inset: 8% -2% -10%;
+            border-radius: inherit;
+            background: url(assets/img/trailer.webp) center / cover;
+            filter: blur(clamp(40px, 6vw, 96px)) saturate(1.25);
+            will-change: filter;
+            opacity: .3;
+            transition: opacity .6s;
+        }
+        .trailer-frame.revealed::before { animation: reveal-fade 2s .5s backwards; }
+        .trailer-frame.away::before { opacity: 0; }
+        .trailer-frame::after, .theater-screen::after, .try-card::after, .game::after {
+            content: "";
+            position: absolute;
+            inset: -2px;
+            padding: 2px;
+            border-radius: inherit;
+            background: conic-gradient(from 290deg,
+                var(--aqua),
+                var(--periwinkle) 8%,
+                color-mix(in oklch, var(--rose) 85%, transparent) 18%,
+                color-mix(in oklch, var(--gold) 60%, transparent) 30%,
+                color-mix(in oklch, var(--periwinkle) 18%, transparent) 44%,
+                color-mix(in oklch, var(--aqua) 15%, transparent) 70%,
+                color-mix(in oklch, var(--periwinkle) 50%, transparent) 86%,
+                color-mix(in oklch, var(--aqua) 85%, transparent) 94%,
+                var(--aqua));
+            mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+            opacity: .7;
+            pointer-events: none;
+            transition: opacity .6s var(--ease-out);
+        }
+        .try-card::after, .game::after { inset: 0; opacity: 0; }
+        .trailer-frame:is(:hover, :has(:focus-visible))::after { opacity: 1; }
+        :is(.try-card, .game):is(:hover, :focus-visible) { border-color: transparent; }
+        :is(.try-card, .game):is(:hover, :focus-visible)::after { opacity: .7; }
+        .youtube, .theater-screen { box-shadow: 0 40px 100px -40px rgba(0, 0, 0, .9); }
+        .youtube {
+            position: relative;
+            aspect-ratio: 16 / 9;
+            border-radius: inherit;
+            overflow: clip;
+            background: #000;
+            user-select: none;
+        }
+        .youtube::before, .youtube::after, .theater-screen::before {
+            --overscan: 15%;
+            content: "";
+            position: absolute;
+            inset: calc(-1 * var(--overscan));
+            translate: calc((.5 - var(--light-x)) * 16%) calc((.5 - var(--light-y)) * 20%);
+            pointer-events: none;
+            transition: .7s var(--ease-out);
+            transition-property: translate, opacity;
+        }
+        .youtube::before {
+            z-index: 1;
+            background: linear-gradient(118deg, rgba(255, 255, 255, .12), rgba(255, 255, 255, .04) 30%, transparent 40%);
+            opacity: 0;
+        }
+        .youtube:is(:hover, :has(:focus-visible))::before { opacity: 1; }
+        .youtube::after, .theater-screen::before {
+            background: linear-gradient(118deg,
+                transparent 4%,
+                color-mix(in oklch, var(--periwinkle) 33%, transparent) 16%,
+                color-mix(in oklch, var(--aqua) 62%, transparent) 26%,
+                color-mix(in oklch, var(--aqua) 80%, transparent) 33%,
+                color-mix(in oklch, var(--rose) 53%, transparent) 44%,
+                color-mix(in oklch, var(--gold) 33%, transparent) 56%,
+                transparent 74%);
+            mix-blend-mode: soft-light;
+        }
+        .youtube-poster { position: absolute; inset: 0; border: 0; background: none; cursor: pointer; }
+        .youtube-poster img { width: 100%; height: 100%; object-fit: cover; filter: brightness(.9); transition: scale .6s var(--ease-out); will-change: scale; }
+        .youtube-poster:is(:hover, :focus-visible) img { scale: 1.0215; }
+        .youtube-play {
+            --centroid-x: 44%;
+            --triangle-left: 20px;
+            --triangle-top: 8px;
+            --triangle-width: 72px;
+            --triangle-height: 84px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: clamp(72px, 12%, 220px);
+            translate: calc(-1 * var(--centroid-x)) -50%;
+            filter:
+                drop-shadow(0 1px 4px color-mix(in srgb, var(--navy-deep) 80%, transparent))
+                drop-shadow(0 10px 20px color-mix(in srgb, var(--navy-deep) 60%, transparent));
+            transition: filter .7s var(--ease-out);
+        }
+        .youtube-poster:is(:hover, :focus-visible) .youtube-play {
+            filter:
+                drop-shadow(0 1px 5px color-mix(in srgb, var(--navy-deep) 95%, transparent))
+                drop-shadow(0 14px 28px color-mix(in srgb, var(--navy-deep) 75%, transparent));
+        }
+        .youtube-play .body {
+            fill: url(#play-glass);
+            fill-opacity: .8;
+            stroke: url(#play-rim);
+            stroke-width: 1.6;
+            stroke-linejoin: round;
+            transition: fill-opacity .7s var(--ease-out);
+        }
+        .youtube-poster:is(:hover, :focus-visible) .body { fill-opacity: 1; }
+        .youtube-play .glint {
+            --glint-rest-x: .3;
+            --glint-rest-y: .25;
+            --glint-drift: .6;
+            cx: calc(var(--triangle-left) + var(--triangle-width) * (var(--glint-rest-x) + (.5 - var(--light-x)) * var(--glint-drift)));
+            cy: calc(var(--triangle-top) + var(--triangle-height) * (var(--glint-rest-y) + (.5 - var(--light-y)) * var(--glint-drift)));
+            r: 46px;
+            opacity: .7;
+            transition: .7s var(--ease-out);
+            transition-property: cx, cy, opacity;
+        }
+        .youtube-poster:is(:hover, :focus-visible) .glint { opacity: 1; }
+        .trailer-frame.away { visibility: hidden; }
+
+        /* ── Player ── */
+        .theater {
+            --bar-height: 56px;
+            --theater-space: clamp(16px, 5vh, 56px);
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            max-width: none;
+            max-height: none;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            background: none;
+            color: var(--text);
+            overflow: hidden;
+        }
+        .theater[open] { display: grid; place-items: center; }
+        .theater::backdrop { background: none; }
+        html { scrollbar-gutter: stable; }
+        body:has(.theater[open]) { overflow: hidden; }
+        .theater-shade {
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(90% 80% at 50% 45%, color-mix(in srgb, var(--navy-deep) 96%, transparent), rgba(1, 2, 8, .99));
+        }
+        .theater-stage {
+            position: relative;
+            isolation: isolate;
+            width: min(100% - 2 * var(--gutter), (100dvh - 2 * var(--theater-space) - var(--bar-height)) * 16 / 9, 1720px);
+        }
+        .theater-stage::before { inset: 6% -2% 0; opacity: .24; }
+        .theater-screen {
+            position: relative;
+            isolation: isolate;
+            aspect-ratio: 16 / 9;
+            border-radius: var(--radius-lg);
+            overflow: clip;
+            background: #000;
+            transform-origin: 0 0;
+        }
+        .theater-screen::before { z-index: 1; transition: opacity .6s; }
+        .theater-screen::after { inset: 0; z-index: 3; }
+        .theater-screen :is(img, iframe) {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            object-fit: cover;
+        }
+        .theater-screen img { filter: brightness(.9); transition: opacity .3s; }
+        .theater-screen iframe { z-index: 2; opacity: 0; transition: opacity .5s; }
+        .theater.playing .theater-screen iframe { opacity: 1; }
+        .theater.playing .theater-screen img, .theater.playing .theater-screen::before { opacity: 0; transition: opacity .6s .2s; }
+        .theater[open] .youtube-play { animation: play-out .6s var(--ease-out) forwards; }
+        .theater.closing .youtube-play { animation: play-in .56s var(--ease-out) both; }
+        @keyframes play-out { to { scale: 3; opacity: 0; } }
+        @keyframes play-in { from { scale: 3; opacity: 0; } }
+        .theater-bar {
+            display: flex;
+            align-items: center;
+            justify-content: end;
+            height: var(--bar-height);
+            font-family: var(--mono);
+            font-size: .78rem;
+            color: color-mix(in srgb, var(--cool-white) 60%, transparent);
+        }
+        .theater-close {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            margin-inline-end: -10px;
+            padding: 8px 10px;
+            border: 0;
+            border-radius: var(--radius-sm);
+            background: none;
+            cursor: pointer;
+            transition: color .2s, background-color .2s;
+        }
+        .theater-close:hover { color: var(--text-bright); background: var(--fill-hover); }
+        .theater-close kbd {
+            padding: 3px 7px 2px;
+            border-radius: 5px;
+            box-shadow: inset 0 0 0 1px var(--rule), inset 0 -2px 0 var(--rule-faint);
+            font: inherit;
+            font-size: .68rem;
+            line-height: 1.2;
+            color: var(--text-bright);
+        }
+        @media (hover: none) { .theater-close kbd { display: none; } }
+        .theater-shade, .theater-stage::before { animation: reveal-fade .6s ease-out both; }
+        .theater-bar { animation: reveal-fade .5s ease-out .45s both; }
+        .theater.closing .theater-shade, .theater.closing .theater-stage::before { animation: fade-out .56s ease-in both; }
+        .theater.closing .theater-bar { animation: fade-out .16s ease-in both; }
+        @keyframes fade-out { to { opacity: 0; } }
+
+        /* ───────────────────── Made with ───────────────────── */
+        .game-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 24px;
         }
-        .feature-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 36px 32px;
-            transition: background .25s ease, border-color .25s ease, box-shadow .25s ease;
+        .game {
             position: relative;
-            overflow: hidden;
+            border-radius: var(--radius-md);
+            overflow: clip;
+            border: 1px solid var(--line);
+            transition: border-color .6s var(--ease-out);
         }
-        .feature-card:hover {
-            background: var(--bg-card-hover);
-            box-shadow: 0 0 32px rgba(27, 174, 234, .08);
-            border-color: var(--border-hover);
-        }
-        .feature-icon {
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-            background: linear-gradient(135deg, rgba(27, 174, 234, .12), rgba(27, 174, 234, .04));
-            color: var(--brand);
-        }
-        .feature-card-header {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            margin-bottom: 12px;
-        }
-        .feature-card h3 {
-            font-size: 1.05rem;
-            font-weight: 700;
-            color: var(--text);
-        }
-        .feature-card p {
-            font-size: .92rem;
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        /* ───────────────────── Trailer ───────────────────── */
-        .trailer {
-            padding: var(--section-py) 0;
-        }
-        .trailer-video {
-            position: relative;
-            padding-bottom: 56.25%;
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, .4);
-            margin: 0 auto;
-            border: 1px solid var(--border);
-        }
-
-        .youtube {
-            position: absolute;
-            user-select: none;
-            overflow: hidden;
-        }
-        .youtube iframe,
-        .youtube object,
-        .youtube embed {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .game img {
             width: 100%;
-            height: 100%;
-            border: none;
-        }
-        .youtube-poster {
-            cursor: pointer;
-        }
-        .youtube-poster::before {
-            content: "";
-            position: absolute;
-            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAADGCAYAAAAT+OqFAAAAdklEQVQoz42QQQ7AIAgEF/T/D+kbq/RWAlnQyyazA4aoAB4FsBSA/bFjuF1EOL7VbrIrBuusmrt4ZZORfb6ehbWdnRHEIiITaEUKa5EJqUakRSaEYBJSCY2dEstQY7AuxahwXFrvZmWl2rh4JZ07z9dLtesfNj5q0FU3A5ObbwAAAABJRU5ErkJggg==);
-            height: 100px;
-            width: 100%;
-        }
-        .youtube-play {
-            width: 85px;
-            height: 60px;
-            position: absolute;
-            top: calc(50% - 30px);
-            left: calc(50% - 43px);
-            z-index: 1;
-            opacity: 0.75;
-            background: url("data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 68 48\"><path d=\"M66.52 7.74c-.78-2.93-2.49-5.41-5.42-6.19C55.79.13 34 0 34 0S12.21.13 6.9 1.55c-2.93.78-4.63 3.26-5.42 6.19C.06 13.05 0 24 0 24s.06 10.95 1.48 16.26c.78 2.93 2.49 5.41 5.42 6.19C12.21 47.87 34 48 34 48s21.79-.13 27.1-1.55c2.93-.78 4.64-3.26 5.42-6.19C67.94 34.95 68 24 68 24s-.06-10.95-1.48-16.26z\" fill=\"red\"/><path d=\"M45 24 27 14v20\" fill=\"white\"/></svg>") no-repeat center;
-            filter: grayscale(50%);
-            transition: filter .15s ease-out, opacity .15s ease-out;
-        }
-        .youtube-poster:hover .youtube-play {
-            filter: grayscale(0%);
-            opacity: 1;
-        }
-        .youtube-title {
-            position: absolute;
-            top: 10px;
-            left: 14px;
-            z-index: 1;
-            color: white;
-            font-size: 18px;
-            pointer-events: none;
-        }
-        .youtube-loading .youtube-poster {
-            cursor: default;
-            pointer-events: none;
-        }
-        .youtube-loading .youtube-play {
-            opacity: 0.2 !important;
-            transform: scale(10);
-            transition: opacity .5s ease-out, transform .4s;
-        }
-        .youtube-playing .youtube-poster,
-        .youtube-playing .youtube-title {
-            opacity: 0;
-            transition: opacity .25s ease-out;
-        }
-
-        /* ───────────────────── Made With ───────────────────── */
-        .made-with {
-            padding: var(--section-py) 0;
-            position: relative;
-        }
-        .made-with::before {
-            content: "";
-            position: absolute;
-            bottom: -100px;
-            left: -200px;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(100, 40, 120, .07), transparent 70%);
-            pointer-events: none;
-        }
-
-        .showcase-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-bottom: 48px;
-        }
-        .showcase-item {
-            display: block;
-            border-radius: var(--radius-sm);
-            overflow: hidden;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, .3);
-            border: 1px solid var(--border);
-            /* Staggered fade-in — each item gets a custom delay via JS */
-            opacity: 0;
-            transform: translateY(32px) scale(.97);
-            -webkit-user-drag: none;
-            user-select: none;
-        }
-        .showcase-item.visible {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-            transition: opacity .6s ease, transform .6s cubic-bezier(.25, .8, .25, 1), border-color .15s ease;
-        }
-        .showcase-item img {
-            opacity: 0.9;
-            filter: grayscale(15%) brightness(90%);
-            transition: transform .375s, filter .375s ease, opacity .375s ease;
-            width: 100%;
-            /* 350x164 source ratio */
-            aspect-ratio: 350/164;
+            aspect-ratio: 350 / 164;
             object-fit: cover;
-            display: block;
+            filter: grayscale(.15) brightness(.8);
+            transition: .6s var(--ease-out);
+            transition-property: scale, filter;
+            will-change: scale;
         }
-        .showcase-item:hover img {
-            opacity: 1;
-            filter: grayscale(0%) brightness(100%);
-            transform: scale(1.0215);
-        }
+        .game:is(:hover, :focus-visible) img { filter: none; scale: 1.0215; }
 
-        .made-with .cta-row {
-            text-align: center;
-        }
-
-        /* ───────────────────── Try Before Buy ───────────────────── */
-        .try {
-            padding: var(--section-py) 0;
-        }
-        .try-grid {
+        /* ───────────────────── Try ───────────────────── */
+        .try-cards {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 28px;
+            gap: 24px;
         }
         .try-card {
             position: relative;
-            overflow: hidden;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 44px 40px;
-            text-align: center;
-            transition: border-color .25s ease, box-shadow .25s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            gap: 8px;
+            aspect-ratio: 723 / 433;
+            padding: clamp(22px, 3vw, 34px);
+            border-radius: var(--radius-lg);
+            overflow: clip;
+            border: 1px solid var(--line);
+            background: var(--fill);
+            backdrop-filter: brightness(1.18) saturate(1.3);
+            transition: border-color .6s var(--ease-out);
         }
-        /* Subtle background image */
-        .try-card::before {
-            content: "";
+        .try-card > img {
             position: absolute;
             inset: 0;
-            opacity: .06;
-            pointer-events: none;
-            transition: opacity .25s ease;
-        }
-        #try-demo.try-card::before { background: url("assets/img/try-demo.jpg") center/cover no-repeat; }
-        #try-sandbox.try-card::before { background: url("assets/img/try-sandbox.jpg") center/cover no-repeat; }
-        .try-card > * {
-            position: relative;
-        }
-        .try-card:hover {
-            border-color: var(--border-hover);
-            box-shadow: 0 0 32px rgba(27, 174, 234, .1);
-        }
-        .try-card:hover::before {
-            opacity: .12;
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            mask-image: linear-gradient(#000 20%, rgb(0 0 0 / .08) 68%);
+            filter: grayscale(.15) brightness(.8);
+            transition: .6s var(--ease-out);
+            transition-property: scale, filter;
+            will-change: scale;
         }
         .try-card h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.7rem;
+            line-height: 1.1;
+            font-variation-settings: "opsz" 48, "SOFT" 40;
+        }
+        .try-card h3 svg {
+            width: .62em;
+            height: .62em;
+            fill: none;
+            stroke: var(--amber);
+            stroke-width: 2.4;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            transition: translate .6s var(--ease-out);
         }
         .try-card p {
-            font-size: .92rem;
-            color: var(--text-secondary);
-            margin-bottom: 24px;
-            line-height: 1.7;
+            font-size: .95rem;
+            max-width: 42ch;
         }
+        .try-card:is(:hover, :focus-visible) > img { scale: 1.0215; filter: none; }
+        .try-card:is(:hover, :focus-visible) h3 svg { translate: 3px -3px; }
 
-        /* ───────────────────── Testimonials ───────────────────── */
-        .testimonials {
-            padding: var(--section-py) 0;
-            position: relative;
-        }
-        .testimonials::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            right: -150px;
-            width: 500px;
-            height: 500px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(27, 174, 234, .05), transparent 70%);
-            pointer-events: none;
-        }
-        .testimonials-columns {
-            columns: 3;
-            column-gap: 24px;
-        }
-        .testimonial-card {
-            break-inside: avoid;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 32px;
-            margin-bottom: 24px;
-            transition: background .25s ease, border-color .25s ease, box-shadow .25s ease;
-        }
-        .testimonial-card:hover {
-            background: var(--bg-card-hover);
-            box-shadow: 0 0 32px rgba(27, 174, 234, .08);
-            border-color: var(--border-hover);
-        }
-        .testimonial-stars {
-            color: #facc15;
-            font-size: .9rem;
-            margin-bottom: 12px;
-            letter-spacing: 2px;
-        }
-        .testimonial-card h3 {
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            color: var(--text);
-        }
-        .testimonial-card blockquote {
-            font-size: .88rem;
-            color: var(--text-secondary);
-            line-height: 1.75;
-            margin-bottom: 16px;
-        }
-        .testimonial-author {
-            font-size: .82rem;
-            font-weight: 700;
-            color: var(--brand);
-        }
-        .testimonials .cta-row {
-            text-align: center;
-            margin-top: 48px;
-        }
-
-        /* ───────────────────── Final Section (CTA + Contact) ───────────────────── */
-        .final {
-            padding: var(--section-py) 0;
-        }
-        .final-grid {
+        /* ───────────────────── Reviews ───────────────────── */
+        .review-list {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 28px;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            border-block: 1px solid var(--line);
+            list-style: none;
         }
-        .final-card {
+        .review {
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            gap: 12px;
+            padding: clamp(24px, 3vw, 36px) clamp(20px, 2.6vw, 32px);
+            border-block-start: 1px solid var(--line);
+            border-inline-start: 1px solid var(--line);
+            transition: background .3s;
+        }
+        .review:hover { background: var(--fill-hover); }
+        @media (width > 900px) {
+            .review:nth-child(-n + 3) { border-block-start: 0; }
+            .review:nth-child(3n + 1) { padding-inline-start: 0; border-inline-start: 0; }
+            .review:nth-child(3n) { padding-inline-end: 0; }
+        }
+        @media (600px < width <= 900px) { .review:last-child { grid-column: 1 / -1; padding-inline: 0; } .review:last-child p { max-width: 62ch; } }
+        .review-byline { display: flex; align-items: center; gap: 12px; }
+        .reviewer {
+            display: inline-block;
+            padding: 6px 11px 5px;
+            border-radius: var(--radius-sm);
+            background: var(--badge);
+            box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--blue-light) 42%, transparent);
+            font-family: var(--mono);
+            font-size: .7rem;
+            font-weight: 700;
+            line-height: 1;
+            letter-spacing: .06em;
+            color: var(--blue-light);
+        }
+        .stars { font-size: .72rem; letter-spacing: 2px; line-height: 1; color: var(--amber); }
+        .review h3 {
+            font-style: italic;
+            font-weight: 500;
+            font-size: 1.32rem;
+            line-height: 1.28;
+            font-variation-settings: "opsz" 48, "SOFT" 60;
+            text-wrap: pretty;
+        }
+        .review p {
+            font-size: .94rem;
+            line-height: 1.65;
+        }
+        [data-print] .word { white-space: nowrap; }
+        [data-print] .glyph { opacity: 0; transition: opacity .3s var(--ease-print); }
+        [data-print].revealed .glyph { opacity: 1; transition-delay: calc(var(--print-delay, 0ms) + var(--glyph-index) * 22ms); }
+
+        /* ───────────────────── Get started ───────────────────── */
+        .get-started-panel {
+            --padding-top: clamp(48px, 7vw, 96px);
+            --logo-width: clamp(230px, 34vw, 420px);
+            --logo-center-y: calc(var(--padding-top) + var(--logo-width) * .33);
             position: relative;
-            overflow: hidden;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            padding: 44px 40px;
+            overflow: clip;
+            isolation: isolate;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+            padding: var(--padding-top) var(--gutter) clamp(40px, 6vw, 72px);
             text-align: center;
-            transition: border-color .25s ease, box-shadow .25s ease;
+            border: 1px solid var(--line);
+            border-radius: var(--radius-lg);
+            background: radial-gradient(90% 90% at 50% 22%, #142a66 0%, #0c1633 48%, var(--bg) 100%);
         }
-        .final-card::before {
+        .get-started-rays {
+            position: absolute;
+            left: 50%;
+            top: var(--logo-center-y);
+            z-index: -1;
+            width: max(1600px, 140%);
+            aspect-ratio: 1;
+            translate: -50% -50%;
+            background: repeating-conic-gradient(from 0deg, color-mix(in srgb, var(--blue-light) 12%, transparent) 0deg 5deg, transparent 5deg 12deg);
+            mask-image: radial-gradient(circle, #000 0%, rgba(0, 0, 0, .6) 18%, transparent 46%);
+            animation: spin 160s linear infinite;
+        }
+        .get-started-panel::before {
             content: "";
             position: absolute;
-            inset: 0;
-            opacity: .06;
-            pointer-events: none;
-            transition: opacity .25s ease;
+            left: 50%;
+            top: var(--logo-center-y);
+            z-index: -1;
+            width: calc(var(--logo-width) * 1.6);
+            aspect-ratio: 1;
+            translate: -50% -50%;
+            border-radius: 50%;
+            background: radial-gradient(closest-side, rgba(120, 170, 255, .26), rgba(64, 105, 237, .1) 50%, transparent);
         }
-        .final-card > * {
-            position: relative;
+        @keyframes spin { to { rotate: 360deg; } }
+        .get-started-logo {
+            width: var(--logo-width);
+            filter: drop-shadow(0 24px 40px rgba(0, 0, 0, .55));
         }
-        #final-dive.final-card::before { background: url("assets/img/final-dive.jpg") center/cover no-repeat; }
-        #final-touch.final-card::before { background: url("assets/img/final-touch.jpg") center/cover no-repeat; }
-        .final-card:hover {
-            border-color: var(--border-hover);
-            box-shadow: 0 0 32px rgba(27, 174, 234, .1);
+        .get-started-panel h2 {
+            font-size: clamp(1.5rem, 2.8vw, 2.1rem);
+            line-height: 1.15;
+            letter-spacing: -.012em;
+            font-variation-settings: "opsz" 72, "SOFT" 50;
         }
-        .final-card:hover::before {
-            opacity: .12;
+        .get-started-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            list-style: none;
+            text-align: start;
         }
-        .final-card h3 {
-            font-size: 1.2rem;
+        .get-started-menu a {
+            display: grid;
+            grid-template-columns: 14px 5.6rem minmax(0, 1fr);
+            gap: 14px;
+            align-items: baseline;
+            padding: 10px 18px;
+            border-radius: var(--radius-sm);
+            color: var(--text-bright);
+        }
+        .get-started-menu a::before {
+            content: "▶";
+            font-size: .6rem;
+            color: var(--amber);
+            opacity: 0;
+            translate: -4px 0;
+            transition: opacity .2s, translate .2s;
+        }
+        .get-started-menu a .label {
+            font-family: var(--mono);
             font-weight: 700;
-            margin-bottom: 12px;
+            font-size: .86rem;
+            letter-spacing: .14em;
+            white-space: nowrap;
         }
-        .final-card p {
-            font-size: .92rem;
-            color: var(--text-secondary);
-            margin-bottom: 24px;
-            line-height: 1.7;
-        }
-        .final-link {
-            display: inline-block;
-            margin-top: 7px;
-            font-size: .77rem;
-            color: var(--text-secondary);
-            transition: color .2s;
-        }
-        .final-link:hover {
-            color: var(--brand);
-        }
-
-        @media (max-width: 768px) {
-            .final-grid { grid-template-columns: 1fr; }
+        .get-started-menu a .description { font-size: .92rem; color: var(--text-muted); text-wrap: pretty; transition: color .2s; }
+        .get-started-menu a:hover { background: var(--fill-hover); }
+        .get-started-menu a:hover .description { color: var(--text); }
+        .get-started-menu a:hover::before, .get-started-menu li:first-child a::before { opacity: 1; translate: none; }
+        .get-started-menu:hover li:first-child a:not(:hover)::before { opacity: 0; translate: -4px 0; }
+        .get-started-menu .primary .label { color: var(--amber); }
+        .get-started-note {
+            font-size: .86rem;
+            color: var(--text-muted);
         }
 
         /* ───────────────────── Footer ───────────────────── */
-        footer {
-            padding: 48px 0;
-            margin-top: var(--section-py);
-            border-top: 1px solid var(--border);
-        }
+        footer { padding-block-end: 44px; }
         .footer-inner {
+            border-block-start: 1px solid var(--line);
+            padding-block-start: 34px;
             display: flex;
             align-items: center;
             justify-content: space-between;
             flex-wrap: wrap;
-            gap: 24px;
+            gap: 20px 32px;
         }
-        .footer-copy {
-            font-size: .85rem;
-            color: var(--text-light);
-        }
-        .footer-socials {
+        .footer-left {
             display: flex;
-            gap: 16px;
-        }
-        .footer-socials a {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
+            flex-wrap: wrap;
             align-items: center;
-            justify-content: center;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            color: var(--text-secondary);
-            transition: box-shadow .25s ease, background .25s ease, color .25s ease, border-color .25s ease;
+            gap: 8px 22px;
+            font-family: var(--mono);
+            font-size: .78rem;
+            letter-spacing: .02em;
+            color: var(--text-dim);
         }
-        .footer-socials a:hover {
-            background: var(--brand);
-            border-color: var(--brand);
-            color: #fff;
-            box-shadow: 0 0 20px rgba(27, 174, 234, .45), 0 0 50px rgba(27, 174, 234, .15);
+        .footer-left a { color: var(--text-muted); }
+        .footer-left a:hover { color: var(--text-bright); }
+        .footer-socials { display: flex; gap: 4px; margin-inline-end: -10px; }
+        .footer-socials a {
+            display: grid;
+            place-items: center;
+            width: 38px;
+            height: 38px;
+            border-radius: var(--radius-sm);
+            color: var(--text-muted);
         }
-        .footer-socials svg {
-            width: 18px;
-            height: 18px;
-            fill: currentColor;
+        .footer-socials a:hover { color: var(--text-bright); background: var(--fill-hover); }
+        .footer-socials svg { width: 17px; height: 17px; fill: currentColor; }
+
+        /* ───────────────────── Reveal on scroll ───────────────────── */
+        /* An animation, so it doesn't override the elements' own transitions. */
+        .reveal { opacity: 0; translate: 0 18px; }
+        .reveal.revealed {
+            opacity: 1;
+            translate: none;
+            animation: reveal-fade .7s var(--reveal-delay, 0ms) backwards, reveal-rise .7s var(--ease-out) var(--reveal-delay, 0ms) backwards;
         }
+        @keyframes reveal-fade { from { opacity: 0; } }
+        @keyframes reveal-rise { from { translate: 0 18px; } }
 
         /* ───────────────────── Responsive ───────────────────── */
-        @media (max-width: 960px) {
-            .features-grid { grid-template-columns: repeat(2, 1fr); }
-            .testimonials-columns { columns: 2; }
-            .showcase-grid { grid-template-columns: repeat(2, 1fr); }
+        @media (width <= 900px) {
+            .try-cards { grid-template-columns: 1fr; }
+            .review-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .review:nth-child(-n + 2) { border-block-start: 0; }
+            .review:nth-child(odd) { padding-inline-start: 0; border-inline-start: 0; }
+            .review:nth-child(even) { padding-inline-end: 0; }
+            .game-grid { grid-template-columns: 1fr 1fr; }
+            .game:last-child { display: none; }
         }
-
-        @media (max-width: 768px) {
-            nav { display: none; }
-            nav.open {
+        @media (width <= 768px) {
+            .header-button { display: none; }
+            .menu-toggle { display: flex; }
+            header nav { display: none; }
+            .menu-panel.open {
+                position: fixed;
+                z-index: 100;
+                top: var(--header-height);
+                right: var(--gutter);
+                width: min(calc(100% - 2 * var(--gutter)), 360px);
                 display: flex;
                 flex-direction: column;
-                position: absolute;
-                top: 68px;
-                left: 0; right: 0;
-                background: rgba(11, 15, 26, .95);
-                backdrop-filter: blur(20px);
-                padding: 16px 24px;
-                border-bottom: 1px solid var(--border);
-                gap: 4px;
+                gap: 8px;
+                padding: 14px;
+                transition: opacity .2s ease, translate .2s ease;
             }
-            nav.open a {
-                padding: 12px 16px;
-                font-size: .95rem;
+            .menu-panel .primary { margin-block-start: 6px; }
+            .menu-backdrop.open {
+                display: block;
+                position: fixed;
+                inset: 0;
+                z-index: 99;
+                background: color-mix(in srgb, var(--navy-deep) 40%, transparent);
+                transition: opacity .2s ease;
             }
-            .menu-toggle { display: flex; }
-            .try-grid { grid-template-columns: 1fr; }
-            .hero-shots { display: none; }
-        }
-
-        @media (max-width: 600px) {
-            .features-grid { grid-template-columns: 1fr; }
-            .testimonials-columns { columns: 1; }
-            .showcase-grid { grid-template-columns: 1fr; }
-        }
-
-        /* ───────────────────── Animations ───────────────────── */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(24px);
-        }
-        .fade-in.visible {
-            animation: fade-in-anim .6s ease forwards;
-        }
-        @keyframes fade-in-anim {
-            to {
-                opacity: 1;
-                transform: translateY(0);
+            @starting-style {
+                .menu-panel.open { opacity: 0; translate: 0 -6px; }
+                .menu-backdrop.open { opacity: 0; }
             }
+        }
+        @media (width <= 600px) {
+            .review-list { grid-template-columns: 1fr; }
+            .review { padding-inline: 0; border-inline-start: 0; }
+            .review:nth-child(n + 2) { border-block-start: 1px solid var(--line); }
+            .get-started-menu a { grid-template-columns: 14px 1fr; row-gap: 2px; }
+            .get-started-menu a .description { grid-column: 2; }
+            .game-grid { grid-template-columns: 1fr; }
         }
 
     </style>
+    <noscript>
+        <style>
+            .reveal, .bg, .cast, .char, .printer { opacity: 1 !important; }
+            .reveal { translate: none !important; }
+            .char { translate: -50% 0 !important; }
+            .choice, .choice .glyph { opacity: 1 !important; visibility: visible !important; pointer-events: auto !important; }
+            [data-print] .glyph { opacity: 1 !important; }
+            .choices-wrap { display: block !important; }
+            .script-state { display: none !important; }
+            .script-lines li { opacity: .85; }
+        </style>
+    </noscript>
 </head>
 <body>
 
 <!-- ─────────── Header ─────────── -->
 <header id="header">
     <div class="wrap header-inner">
-        <a href="/" class="logo" aria-label="Naninovel Home">
-            <img src="assets/img/nani-logo.svg" alt="Naninovel Icon" width="36" height="36">
+        <a href="/" class="logo" aria-label="Naninovel home">
+            <img src="assets/img/nani-logo.svg" alt="" width="34" height="34">
             <span>Naninovel</span>
         </a>
-        <button class="menu-toggle" aria-label="Toggle menu" aria-expanded="false">
-            <span></span><span></span><span></span>
-        </button>
-        <nav id="main-nav" role="navigation" aria-label="Main navigation">
+        <nav id="main-nav" aria-label="Main navigation">
             <a href="/faq">FAQ</a>
             <a href="/guide">Guide</a>
             <a href="/editor">Editor</a>
             <a href="https://account.naninovel.com">Account</a>
             <a href="/support">Support</a>
         </nav>
+        <a href="https://assetstore.unity.com/packages/slug/135453" target="_blank" class="button button-primary button-small header-button">Get Naninovel</a>
+        <button class="menu-toggle" aria-label="Menu" aria-expanded="false" aria-controls="menu-panel">
+            <span></span><span></span><span></span>
+        </button>
     </div>
 </header>
+<nav class="menu-panel glass" id="menu-panel" aria-label="Main navigation">
+    <a class="choice" href="/faq"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span>FAQ</a>
+    <a class="choice" href="/guide"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></span>Guide</a>
+    <a class="choice" href="/editor"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"/></svg></span>Editor</a>
+    <a class="choice" href="https://account.naninovel.com"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg></span>Account</a>
+    <a class="choice" href="/support"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>Support</a>
+    <a class="choice primary" href="https://assetstore.unity.com/packages/slug/135453" target="_blank"><span class="icon" aria-hidden="true"><svg class="filled" viewBox="-38 0 640 640"><path d="M0 72C0 58.7 10.7 48 24 48L69.3 48C96.4 48 119.6 67.4 124.4 94L124.8 96L524.7 96C549.8 96 568.7 118.9 564 143.6L537.6 280.6C529.6 322 493.4 352 451.2 352L171.4 352L176.5 380.3C178.6 391.7 188.5 400 200.1 400L456 400C469.3 400 480 410.7 480 424C480 437.3 469.3 448 456 448L200.1 448C165.3 448 135.5 423.1 129.3 388.9L77.2 102.6C76.5 98.8 73.2 96 69.3 96L24 96C10.7 96 0 85.3 0 72zM162.6 304L451.2 304C470.4 304 486.9 290.4 490.5 271.6L514.9 144L133.5 144L162.6 304zM208 480C234.5 480 256 501.5 256 528C256 554.5 234.5 576 208 576C181.5 576 160 554.5 160 528C160 501.5 181.5 480 208 480zM432 480C458.5 480 480 501.5 480 528C480 554.5 458.5 576 432 576C405.5 576 384 554.5 384 528C384 501.5 405.5 480 432 480z"/></svg></span>Get Naninovel</a>
+</nav>
+<div class="menu-backdrop"></div>
 
 <main>
 
     <!-- ─────────── Hero ─────────── -->
-    <section class="hero">
-        <canvas id="hero-canvas" aria-hidden="true"></canvas>
-        <!-- Background screenshots that subtly appear -->
-        <div class="hero-shots" aria-hidden="true">
-            <div class="hero-shot"><img src="assets/img/preview/story-editor.jpg" alt=""></div>
-            <div class="hero-shot"><img src="assets/img/preview/script-graph.jpg" alt=""></div>
-            <div class="hero-shot"><img src="assets/img/preview/cg-gallery.jpg" alt=""></div>
-            <div class="hero-shot"><img src="assets/img/preview/bolt.jpg" alt=""></div>
-            <div class="hero-shot"><img src="assets/img/preview/integration.jpg" alt=""></div>
-            <div class="hero-shot"><img src="assets/img/preview/hot-reload.jpg" alt=""></div>
-            <div class="hero-shot"><img src="assets/img/preview/bubble.jpg" alt=""></div>
-            <div class="hero-shot"><img src="assets/img/preview/dof.jpg" alt=""></div>
-            <div class="hero-shot"><img src="assets/img/preview/script-ide.jpg" alt=""></div>
+    <section class="hero" id="demo">
+        <div class="stage">
+            <div class="scene" aria-hidden="true">
+                <div class="bg">
+                    <div class="bg-column">
+                        <div class="bg-rays"></div>
+                        <div class="bg-glow"></div>
+                        <div class="light warm"></div>
+                        <div class="light cool"></div>
+                    </div>
+                </div>
+                <div class="cast"><div class="cast-column">
+                    <div class="char kohaku" data-char="Kohaku">
+                        <img src="assets/img/hero/kohaku-default.webp" data-look="Default" class="on front" alt="" width="664" height="1068" decoding="async">
+                        <img src="assets/img/hero/kohaku-surprise.webp" data-look="Surprise" alt="" width="664" height="1068" decoding="async">
+                        <span class="shade" style="--sprite: url(assets/img/hero/kohaku-default.webp)"></span>
+                    </div>
+                    <div class="char nani" data-char="Nani">
+                        <img src="assets/img/hero/nani-default.webp" data-look="Default" class="on front" alt="" width="544" height="1068" decoding="async">
+                        <img src="assets/img/hero/nani-confidence.webp" data-look="Confidence" alt="" width="544" height="1068" decoding="async">
+                        <span class="shade" style="--sprite: url(assets/img/hero/nani-default.webp)"></span>
+                    </div>
+                </div></div>
+            </div>
+            <div class="hero-title">
+                <div class="hero-title-block rise">
+                    <h1>Writer-friendly<br>storytelling engine</h1>
+                    <p class="hero-lead">Shaped <em>over a decade</em> by <em>thousands of authors</em> crafting <em>interactive fiction</em> of every kind.</p>
+                </div>
+            </div>
+            <div class="printer glass">
+                <div class="printer-name" aria-hidden="true"><span>Nani</span></div>
+                <p class="printer-text" aria-hidden="true">You just write. So, what's the plan?</p>
+                <div class="choices-wrap"><div class="choices" role="group" aria-label="Choices">
+                    <a class="choice primary" href="https://assetstore.unity.com/packages/slug/135453" target="_blank"><span class="icon" aria-hidden="true"><svg class="filled" viewBox="-38 0 640 640"><path d="M0 72C0 58.7 10.7 48 24 48L69.3 48C96.4 48 119.6 67.4 124.4 94L124.8 96L524.7 96C549.8 96 568.7 118.9 564 143.6L537.6 280.6C529.6 322 493.4 352 451.2 352L171.4 352L176.5 380.3C178.6 391.7 188.5 400 200.1 400L456 400C469.3 400 480 410.7 480 424C480 437.3 469.3 448 456 448L200.1 448C165.3 448 135.5 423.1 129.3 388.9L77.2 102.6C76.5 98.8 73.2 96 69.3 96L24 96C10.7 96 0 85.3 0 72zM162.6 304L451.2 304C470.4 304 486.9 290.4 490.5 271.6L514.9 144L133.5 144L162.6 304zM208 480C234.5 480 256 501.5 256 528C256 554.5 234.5 576 208 576C181.5 576 160 554.5 160 528C160 501.5 181.5 480 208 480zM432 480C458.5 480 480 501.5 480 528C480 554.5 458.5 576 432 576C405.5 576 384 554.5 384 528C384 501.5 405.5 480 432 480z"/></svg></span>Get Naninovel</a>
+                    <a class="choice" href="#more"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v13"/><path d="m6.5 12.5 5.5 5.5 5.5-5.5"/></svg></span>Show me more</a>
+                </div></div>
+                <span class="continue-mark" aria-hidden="true"></span>
+            </div>
+            <p class="sr-only live-region" aria-live="polite"></p>
         </div>
-        <div class="wrap">
-            <img src="assets/img/nani-logo-full.svg" alt="Naninovel" class="hero-logo" width="440" height="292" onload="this.classList.add('loaded')">
-            <h1><b>Naninovel</b> is an all-in-one suite of <b>writer-friendly</b> storytelling tools for creating <b>interactive fiction</b> and <b>visual novels</b></h1>
-            <div class="hero-cta">
-                <a href="https://assetstore.unity.com/packages/slug/135453" target="_blank" class="btn btn-primary">BUY NOW</a>
-                <a href="#why" class="btn btn-outline">EXPLORE</a>
+
+        <div class="hero-ui wrap">
+            <div class="script-slot">
+            <aside class="script rise rise-delayed" aria-label="Start.nani, the script of this scene">
+                <div class="script-bar">
+                    <span class="script-tab">Start.nani</span>
+                    <span class="script-controls"><button type="button" class="script-state idle" disabled>idle</button></span>
+                </div>
+                <ol class="script-lines">
+                    <li data-kind="back"><span><span class="keyword">@back</span> <span class="param">Prism</span></span></li>
+                    <li data-kind="char" data-who="Nani" data-look="Default"><span><span class="keyword">@char</span> <span class="param">Nani pos:75</span></span></li>
+                    <li data-kind="char" data-who="Kohaku" data-look="Default" data-direction="right"><span><span class="keyword">@char</span> <span class="param">Kohaku pos:50 look:Right</span></span></li>
+                    <li data-kind="say" data-who="Nani" data-text="Hi! This whole scene is a plain text file, and you're watching it run."><span><span class="name">Nani:</span> Hi! This whole scene is a plain text file, and you're watching it run.</span></li>
+                    <li data-kind="say" data-who="Kohaku" data-text="I just write what happens, and it plays?"><span><span class="name">Kohaku:</span> I just write what happens, and it plays?</span></li>
+                    <li data-kind="say" data-who="Nani" data-text="Like a screenplay.[-] Want an earthquake?"><span><span class="name">Nani:</span> Like a screenplay.<span class="keyword">[-]</span> Want an earthquake?</span></li>
+                    <li data-kind="shake" data-wait><span><span class="keyword">@shake</span> <span class="param">Camera wait!</span></span></li>
+                    <li data-kind="say" data-who="Kohaku" data-look="Surprise" data-text="Okay, I felt that one!"><span><span class="name">Kohaku.Surprise:</span> Okay, I felt that one!</span></li>
+                    <li data-kind="say" data-who="Nani" data-look="Confidence" data-text="And the staples are built in: menus, saves, rollback, voicing, localization..."><span><span class="name">Nani.Confidence:</span> And the staples are built in: menus, saves, rollback, voicing, localization...</span></li>
+                    <li data-kind="say" data-who="Nani" data-text="You just write.[-] So, what's the plan?[>]"><span><span class="name">Nani:</span> You just write.<span class="keyword">[-]</span> So, what's the plan?<span class="keyword">[&gt;]</span></span></li>
+                    <li data-kind="choice" data-choice="0"><span><span class="keyword">@choice</span> <span class="string">"Get Naninovel"</span> <span class="param">goto:AssetStore</span></span></li>
+                    <li data-kind="choice" data-choice="1"><span><span class="keyword">@choice</span> <span class="string">"Show me more"</span> <span class="param">goto:#More</span></span></li>
+                </ol>
+            </aside>
             </div>
         </div>
     </section>
 
-    <!-- ─────────── Why Naninovel? ─────────── -->
-    <section class="why" id="why">
+    <!-- ─────────── More ─────────── -->
+    <section id="more">
         <div class="wrap">
-            <div class="section-header fade-in">
-                <p class="section-label">Why Naninovel?</p>
-                <h2 class="section-title">The storytelling engine developers trust</h2>
+            <div class="section-head reveal">
+                <h2><a href="#more">The engine developers trust</a></h2>
+                <p>Naninovel is an <em>all-in-one suite</em> for interactive storytelling, continually evolving through annual releases <em>since 2018</em>.</p>
             </div>
-            <p class="why-intro fade-in">The #1 storytelling tool for the Unity game engine, Naninovel is a comprehensive framework for crafting interactive fiction. Refined over a decade and supported by a thriving community, it's trusted by thousands of developers to ship commercial titles across every platform.</p>
-            <div class="features-grid">
-                <article class="feature-card fade-in">
-                    <div class="feature-card-header">
-                        <div class="feature-icon">✒️</div>
-                        <h3>Writer-Friendly Scripting</h3></div>
-                    <p>Author stories in text documents using <a href="/guide/scenario-scripting" target="_blank">NaniScript</a> or with the visual <a href="/guide/editor" target="_blank">Story Editor</a> — no programming required. Branching, variables, and conditions are all built in.</p>
+
+            <div class="features">
+                <article class="feature reveal" style="--reveal-delay: 0ms">
+                    <h3>Scripting for writers</h3>
+                    <p>Author stories in text documents using <a href="/guide/scenario-scripting" target="_blank">NaniScript</a> or in the visual <a href="/guide/editor" target="_blank">Story Editor</a> — no programming required. Branching, variables and conditions are all built in.</p>
+                    <figure class="shot"><img src="assets/img/story-graph@1x.webp" srcset="assets/img/story-graph@2x.webp 2x" alt="" width="360" height="92" loading="lazy"></figure>
                 </article>
-                <article class="feature-card fade-in">
-                    <div class="feature-card-header">
-                        <div class="feature-icon">📦</div>
-                        <h3>Ready Out of the Box</h3></div>
-                    <p>Ships with a complete set of UI, save/load, state rollback, localization, auto-voicing, dialogue triggers, and dozens of other systems — <a href="/guide/samples" target="_blank">fully functional</a> from day one.</p>
+                <article class="feature reveal" style="--reveal-delay: 60ms">
+                    <h3>Ready out of the box</h3>
+                    <p>Complete UI, save and load, state rollback, backlog, localization, auto-voicing, CG gallery, dialogue triggers and dozens of other systems are included and <a href="/guide/samples" target="_blank">ready to use</a>.</p>
+                    <figure>
+                        <figcaption>Rooftop.nani</figcaption>
+                        <pre><span class="keyword">@unlock</span> <span class="param">CG/Rooftop</span> <span class="comment">; into the gallery</span>
+<span class="keyword">@save</span> <span class="comment">; autosaved</span></pre>
+                    </figure>
                 </article>
-                <article class="feature-card fade-in">
-                    <div class="feature-card-header">
-                        <div class="feature-icon">🛠️</div>
-                        <h3>Endlessly Customizable</h3></div>
-                    <p>Every built-in feature can be extended, overridden, or replaced via a simple prefab tweak or a clean C# API, thanks to a carefully designed <a href="/guide/engine-architecture" target="_blank">modular architecture</a>.</p>
+                <article class="feature reveal" style="--reveal-delay: 120ms">
+                    <h3>Battle tested</h3>
+                    <p>Proven in production on <a href="#made-with">hundreds of titles</a> shipped to PC, consoles and mobile, Naninovel is an industry standard for studios of any size, from solo creators to publishers.</p>
+                    <figure class="shot"><img src="assets/img/shelf@1x.webp" srcset="assets/img/shelf@2x.webp 2x" alt="" width="360" height="92" loading="lazy"></figure>
                 </article>
-                <article class="feature-card fade-in">
-                    <div class="feature-card-header">
-                        <div class="feature-icon">🕹️</div>
-                        <h3>Works With Any Game</h3></div>
+                <article class="feature reveal" style="--reveal-delay: 0ms">
+                    <h3>Works with any game</h3>
                     <p>Use Naninovel as a visual novel template or enable <a href="/guide/getting-started#dialogue-mode" target="_blank">Dialogue Mode</a> and drop it into an existing project to add branching dialogues and cutscenes to a game of any genre.</p>
+                    <figure>
+                        <figcaption>Game.cs · Talk.nani</figcaption>
+                        <pre><span class="name">Dialogue</span><span class="text">.EnterAndPlay(</span><span class="param">"Talk"</span><span class="text">);</span> <span class="comment">// from C#</span>
+<span class="keyword">@exitDialogue</span> <span class="comment">; back to the game</span></pre>
+                    </figure>
                 </article>
-                <article class="feature-card fade-in">
-                    <div class="feature-card-header">
-                        <div class="feature-icon">✨</div>
-                        <h3>Professional Services</h3></div>
-                    <p>Dedicated support, GitHub-based installation, release streams, and advanced samples — your license includes 1 year of the <a href="/support/#support-plan" target="_blank">Support Plan</a> and permanent access to all future releases.</p>
+                <article class="feature reveal" style="--reveal-delay: 60ms">
+                    <h3>Professional services</h3>
+                    <p>Priority support, source code access, GitHub-based installation and an LTS stream — your license includes 1 year of the <a href="/support/#support-plan" target="_blank">Support Plan</a> and permanent access to all future releases.</p>
+                    <figure class="shot"><img src="assets/img/support@1x.webp" srcset="assets/img/support@2x.webp 2x" alt="" width="360" height="92" loading="lazy"></figure>
                 </article>
-                <article class="feature-card fade-in">
-                    <div class="feature-card-header">
-                        <div class="feature-icon">🏆</div>
-                        <h3>Battle Tested</h3></div>
-                    <p>Developed for over a decade, Naninovel has powered <a href="#made-with">numerous hits</a> across every platform — including mobile and console — and has become the industry standard for commercial visual novels.</p>
+                <article class="feature reveal" style="--reveal-delay: 120ms">
+                    <h3>Fully customizable</h3>
+                    <p>Every built-in feature can be extended, overridden or replaced via a simple prefab tweak or a clean C#&nbsp;API — the engine's architecture is <a href="/guide/engine-architecture" target="_blank">modular by design</a>.</p>
+                    <figure>
+                        <figcaption>Wave.cs · Start.nani</figcaption>
+                        <pre><span class="keyword">class</span> <span class="name">Wave</span> <span class="text">:</span> <span class="name">Command</span> <span class="text">{ }</span> <span class="comment">// define in C#</span>
+<span class="keyword">@wave</span> <span class="comment">; now a script command</span></pre>
+                    </figure>
                 </article>
             </div>
         </div>
     </section>
 
     <!-- ─────────── Trailer ─────────── -->
-    <section class="trailer" id="trailer">
+    <section id="trailer">
         <div class="wrap">
-            <div class="section-header fade-in">
-                <p class="section-label">Trailer</p>
-                <h2 class="section-title">See it in action</h2>
-                <p class="section-subtitle">Explore noticeable features in a 3-minute video trailer.</p>
+            <div class="section-head reveal">
+                <h2><a href="#trailer">See it in action</a></h2>
+                <p>Explore <em>notable features</em> in a <em>3-minute</em> video trailer.</p>
             </div>
-            <div class="trailer-video fade-in">
+            <div class="trailer-frame reveal">
                 <div class="youtube">
-                    <div class="youtube-poster" title="Play YouTube video">
-                        <div class="youtube-play" title="Play YouTube video"></div>
-                        <img src="/imgit/fetched/i.ytimg.com-vi_webp-lRxIKDU9z4k-maxresdefault.webp" loading="lazy" decoding="async" width="1280" height="720" alt="">
-                    </div>
-                    <div class="youtube-player" hidden="">
-                        <iframe title="" data-src="https://www.youtube-nocookie.com/embed/lRxIKDU9z4k?autoplay=1&amp;playsinline=1" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
-                    </div>
+                    <button class="youtube-poster" type="button" aria-label="Play the trailer">
+                        <img src="assets/img/trailer.webp" loading="lazy" decoding="async" width="1920" height="1080" alt="">
+                        <svg class="youtube-play" viewBox="0 0 100 100" aria-hidden="true">
+                            <defs>
+                                <path id="play-shape" d="M27.77 12.53L84.23 45.47Q92 50 84.23 54.53L27.77 87.47Q20 92 20 83L20 17Q20 8 27.77 12.53Z"/>
+                                <linearGradient id="play-glass" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0" stop-color="#fff" stop-opacity=".95"/>
+                                    <stop offset=".45" stop-color="#fff" stop-opacity=".72"/>
+                                    <stop offset=".75" style="stop-color: var(--periwinkle)" stop-opacity=".62"/>
+                                    <stop offset="1" style="stop-color: var(--aqua)" stop-opacity=".72"/>
+                                </linearGradient>
+                                <linearGradient id="play-rim" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0" stop-color="#fff"/>
+                                    <stop offset=".25" style="stop-color: var(--aqua)"/>
+                                    <stop offset=".5" style="stop-color: var(--periwinkle)" stop-opacity=".7"/>
+                                    <stop offset=".75" stop-color="#fff" stop-opacity=".35"/>
+                                    <stop offset="1" style="stop-color: var(--rose)"/>
+                                </linearGradient>
+                                <radialGradient id="play-glint">
+                                    <stop offset="0" stop-color="#fff" stop-opacity=".55"/>
+                                    <stop offset=".45" stop-color="#fff" stop-opacity=".2"/>
+                                    <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+                                </radialGradient>
+                                <clipPath id="play-clip"><use href="#play-shape"/></clipPath>
+                            </defs>
+                            <use class="body" href="#play-shape"/>
+                            <circle class="glint" fill="url(#play-glint)" clip-path="url(#play-clip)"/>
+                        </svg>
+                    </button>
                 </div>
             </div>
+            <dialog class="theater" aria-label="Naninovel trailer">
+                <div class="theater-shade"></div>
+                <div class="theater-stage">
+                    <div class="theater-screen" data-src="https://www.youtube-nocookie.com/embed/lRxIKDU9z4k?autoplay=1&amp;playsinline=1&amp;rel=0&amp;enablejsapi=1">
+                        <img src="assets/img/trailer.webp" loading="lazy" decoding="async" width="1920" height="1080" alt="">
+                        <svg class="youtube-play" viewBox="0 0 100 100" aria-hidden="true">
+                            <use class="body" href="#play-shape"/>
+                            <circle class="glint" fill="url(#play-glint)" clip-path="url(#play-clip)"/>
+                        </svg>
+                    </div>
+                    <div class="theater-bar">
+                        <button class="theater-close" type="button" autofocus><kbd>Esc</kbd>Close</button>
+                    </div>
+                </div>
+            </dialog>
         </div>
     </section>
 
     <!-- ─────────── Made with Naninovel ─────────── -->
-    <section class="made-with" id="made-with">
+    <section id="made-with">
         <div class="wrap">
-            <div class="section-header fade-in">
-                <p class="section-label">Made with Naninovel</p>
-                <h2 class="section-title">Games built by the community</h2>
-                <p class="section-subtitle">Check some of the awesome games created with Naninovel.</p>
+            <div class="section-head reveal">
+                <h2><a href="#made-with">Made with Naninovel</a></h2>
+                <p><em>Amazing games</em> built with Naninovel are released on <em>every major platform</em>.</p>
             </div>
-            <div class="showcase-grid">
-                <a href="https://www.nintendo.com/store/products/fault-stp-lightkravte-switch" target="_blank" class="showcase-item"><img src="assets/img/made-with/light.jpg" alt="Game showcase" loading="lazy"></a>
-                <a href="https://store.steampowered.com/app/844670" target="_blank" class="showcase-item"><img src="assets/img/made-with/happy.jpg" alt="Game showcase" loading="lazy"></a>
-                <a href="https://store.steampowered.com/app/2092510" target="_blank" class="showcase-item"><img src="assets/img/made-with/king.jpg" alt="Game showcase" loading="lazy"></a>
-                <a href="https://apps.apple.com/us/app/rotaeno/id1614771445" target="_blank" class="showcase-item"><img src="assets/img/made-with/rota.jpg" alt="Game showcase" loading="lazy"></a>
-                <a href="https://store.steampowered.com/app/3101040" target="_blank" class="showcase-item"><img src="assets/img/made-with/witch.jpg" alt="Game showcase" loading="lazy"></a>
-                <a href="https://store.steampowered.com/app/2739630" target="_blank" class="showcase-item"><img src="assets/img/made-with/devil.jpg" alt="Game showcase" loading="lazy"></a>
-                <a href="https://store.steampowered.com/app/2481020" target="_blank" class="showcase-item"><img src="assets/img/made-with/vamp.jpg" alt="Game showcase" loading="lazy"></a>
-                <a href="https://store.steampowered.com/app/1672670" target="_blank" class="showcase-item"><img src="assets/img/made-with/drift.jpg" alt="Game showcase" loading="lazy"></a>
-                <a href="https://store.steampowered.com/app/1529810" target="_blank" class="showcase-item"><img src="assets/img/made-with/psy.jpg" alt="Game showcase" loading="lazy"></a>
-                <a href="https://store.steampowered.com/app/2017120" target="_blank" class="showcase-item"><img src="assets/img/made-with/manor.jpg" alt="Game showcase" loading="lazy"></a>
-                <a href="https://store.steampowered.com/app/1414250" target="_blank" class="showcase-item"><img src="assets/img/made-with/corpse.jpg" alt="Game showcase" loading="lazy"></a>
-                <a href="https://store.steampowered.com/app/1474120" target="_blank" class="showcase-item"><img src="assets/img/made-with/shade.jpg" alt="Game showcase" loading="lazy"></a>
-                <a href="https://store.steampowered.com/app/2393870" target="_blank" class="showcase-item"><img src="assets/img/made-with/whisper.jpg" alt="Game showcase" loading="lazy"></a>
-                <a href="https://store.steampowered.com/app/2507560" target="_blank" class="showcase-item"><img src="assets/img/made-with/shojo.jpg" alt="Game showcase" loading="lazy"></a>
-                <a href="https://store.steampowered.com/app/1294060" target="_blank" class="showcase-item"><img src="assets/img/made-with/rail.jpg" alt="Game showcase" loading="lazy"></a>
-                <a href="https://store-jp.nintendo.com/item/software/D70010000048131" target="_blank" class="showcase-item"><img src="assets/img/made-with/supper.jpg" alt="Game showcase" loading="lazy"></a>
-                <a href="https://store.steampowered.com/app/3014680" target="_blank" class="showcase-item"><img src="assets/img/made-with/herb.jpg" alt="Game showcase" loading="lazy"></a>
-                <a href="https://store.steampowered.com/app/4240150" target="_blank" class="showcase-item"><img src="assets/img/made-with/sister.jpg" alt="Game showcase" loading="lazy"></a>
-                <a href="https://store-jp.nintendo.com/item/software/D70010000070481" target="_blank" class="showcase-item"><img src="assets/img/made-with/peach.jpg" alt="Game showcase" loading="lazy"></a>
-                <a href="https://store.steampowered.com/app/1329110" target="_blank" class="showcase-item"><img src="assets/img/made-with/star.jpg" alt="Game showcase" loading="lazy"></a>
-                <a href="https://store.steampowered.com/app/3995110" target="_blank" class="showcase-item"><img src="assets/img/made-with/land.jpg" alt="Game showcase" loading="lazy"></a>
+            <!-- Don't forget to strip JPEG metadata from game covers: it's ~25% of the size. -->
+            <div class="game-grid">
+                <a href="https://www.nintendo.com/store/products/fault-stp-lightkravte-switch" target="_blank" class="game reveal" style="--reveal-delay: 0ms"><img src="assets/img/made-with/light.jpg" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/844670" target="_blank" class="game reveal" style="--reveal-delay: 50ms"><img src="assets/img/made-with/happy.jpg" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/2092510" target="_blank" class="game reveal" style="--reveal-delay: 100ms"><img src="assets/img/made-with/king.jpg" loading="lazy"></a>
+                <a href="https://apps.apple.com/us/app/rotaeno/id1614771445" target="_blank" class="game reveal" style="--reveal-delay: 0ms"><img src="assets/img/made-with/rota.jpg" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/3101040" target="_blank" class="game reveal" style="--reveal-delay: 50ms"><img src="assets/img/made-with/witch.jpg" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/2739630" target="_blank" class="game reveal" style="--reveal-delay: 100ms"><img src="assets/img/made-with/devil.jpg" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/2481020" target="_blank" class="game reveal" style="--reveal-delay: 0ms"><img src="assets/img/made-with/vamp.jpg" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/1672670" target="_blank" class="game reveal" style="--reveal-delay: 50ms"><img src="assets/img/made-with/drift.jpg" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/1529810" target="_blank" class="game reveal" style="--reveal-delay: 100ms"><img src="assets/img/made-with/psy.jpg" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/2017120" target="_blank" class="game reveal" style="--reveal-delay: 0ms"><img src="assets/img/made-with/manor.jpg" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/1414250" target="_blank" class="game reveal" style="--reveal-delay: 50ms"><img src="assets/img/made-with/corpse.jpg" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/1474120" target="_blank" class="game reveal" style="--reveal-delay: 100ms"><img src="assets/img/made-with/shade.jpg" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/2393870" target="_blank" class="game reveal" style="--reveal-delay: 0ms"><img src="assets/img/made-with/whisper.jpg" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/2507560" target="_blank" class="game reveal" style="--reveal-delay: 50ms"><img src="assets/img/made-with/shojo.jpg" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/1294060" target="_blank" class="game reveal" style="--reveal-delay: 100ms"><img src="assets/img/made-with/rail.jpg" loading="lazy"></a>
+                <a href="https://store-jp.nintendo.com/item/software/D70010000048131" target="_blank" class="game reveal" style="--reveal-delay: 0ms"><img src="assets/img/made-with/supper.jpg" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/3014680" target="_blank" class="game reveal" style="--reveal-delay: 50ms"><img src="assets/img/made-with/herb.jpg" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/4240150" target="_blank" class="game reveal" style="--reveal-delay: 100ms"><img src="assets/img/made-with/sister.jpg" loading="lazy"></a>
+                <a href="https://store-jp.nintendo.com/item/software/D70010000070481" target="_blank" class="game reveal" style="--reveal-delay: 0ms"><img src="assets/img/made-with/peach.jpg" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/1329110" target="_blank" class="game reveal" style="--reveal-delay: 50ms"><img src="assets/img/made-with/star.jpg" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/3995110" target="_blank" class="game reveal" style="--reveal-delay: 100ms"><img src="assets/img/made-with/land.jpg" loading="lazy"></a>
             </div>
-            <div class="cta-row fade-in">
-                <a href="/made-with" target="_blank" class="btn btn-outline">VIEW MORE</a>
+            <div class="more-row reveal">
+                <a class="choice" href="/made-with" target="_blank"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>Browse more games</a>
             </div>
         </div>
     </section>
 
-    <!-- ─────────── Try Before Buy ─────────── -->
-    <section class="try" id="try">
+    <!-- ─────────── Try before buy ─────────── -->
+    <section id="try">
         <div class="wrap">
-            <div class="section-header fade-in">
-                <p class="section-label">Try Before Buy</p>
-                <h2 class="section-title">Test drive for free</h2>
-                <p class="section-subtitle">Not sure whether Naninovel will work for you?<br>Check out the free demos!</p>
+            <div class="section-head reveal">
+                <h2><a href="#try">Try it in your browser</a></h2>
+                <p>Check out the <em>free demos</em> — <em>no Unity install</em> or download required.</p>
             </div>
-            <div class="try-grid">
-                <article class="try-card fade-in" id="try-demo">
-                    <h3>Game Demo</h3>
-                    <p>An introduction WebGL game demo and samples of various Naninovel features, runs inside your web browser.</p>
-                    <a href="/demo" target="_blank" class="btn btn-primary">LAUNCH DEMO</a>
-                </article>
-                <article class="try-card fade-in" id="try-sandbox">
-                    <h3>Editor Sandbox</h3>
-                    <p>Standalone web app, where you can try writing scenario scripts and test the engine features without even launching Unity editor.</p>
-                    <a href="/editor" target="_blank" class="btn btn-primary">OPEN SANDBOX</a>
-                </article>
+            <div class="try-cards">
+                <a class="try-card reveal" href="/demo" target="_blank">
+                    <img src="assets/img/try-demo@1x.webp" srcset="assets/img/try-demo@2x.webp 2x" alt="" width="723" height="433" loading="lazy">
+                    <h3>Game demo<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></h3>
+                    <p>An introductory game built with Naninovel without any C# scripting, plus samples of individual engine features.</p>
+                </a>
+                <a class="try-card reveal" href="/editor" target="_blank" style="--reveal-delay: 80ms">
+                    <img src="assets/img/try-sandbox@1x.webp" srcset="assets/img/try-sandbox@2x.webp 2x" alt="" width="723" height="433" loading="lazy">
+                    <h3>Editor sandbox<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></h3>
+                    <p>The Story Editor in sandbox mode. Write scenario scripts and test engine features without opening Unity.</p>
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- ─────────── Testimonials ─────────── -->
-    <section class="testimonials" id="testimonials">
+    <!-- ─────────── Reviews ─────────── -->
+    <section id="testimonials">
         <div class="wrap">
-            <div class="section-header fade-in">
-                <p class="section-label">Customers Feedback</p>
-                <h2 class="section-title">Hear what Naninovel users are saying</h2>
+            <div class="section-head reveal">
+                <h2><a href="#testimonials">Reviews from the Asset Store</a></h2>
+                <p>What developers wrote about Naninovel, <em>in their own words</em>.</p>
             </div>
-            <div class="testimonials-columns">
-
-                <article class="testimonial-card fade-in">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <h3>Wonderful tool to use!</h3>
-                    <blockquote>I find Naninovel very useful for different kinds of multimedia projects. It has the right combination of tools I need: cohesive framework; comprehensive API; good scripting support; integration with Unity.</blockquote>
-                    <div class="testimonial-author">— dmcvocation</div>
-                </article>
-
-                <article class="testimonial-card fade-in">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <h3>Simple for newcomers, deep for experts</h3>
-                    <blockquote>This asset is very user-friendly and won't require much programming if any at all for the most simple and usually most common visual novels. However it can be customized and expanded upon for more specific cases, making it overall a very versatile tool.</blockquote>
-                    <div class="testimonial-author">— CMartinezB</div>
-                </article>
-
-                <article class="testimonial-card fade-in">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <h3>Excellent tool — just keeps getting better</h3>
-                    <blockquote>Developer is very active and responsive; they're the easiest to contact developer I've had opportunity to work with on the Unity Asset Store. The mini-scripting language used to write Naninovel Novels is straightforward and, once you pick up and understand a few of its quirks, painless.</blockquote>
-                    <div class="testimonial-author">— Firgof</div>
-                </article>
-
-                <article class="testimonial-card fade-in">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <h3>Excellent VN Engine for Unity</h3>
-                    <blockquote>Naninovel does away with the node-based workflow of many other tools, replacing it with a very clear, readable script style approach to writing dialogue and directing the scene. It goes above and beyond many other VN/narrative tools for Unity with built in visual novel features.</blockquote>
-                    <div class="testimonial-author">— sunlabyrinth</div>
-                </article>
-
-                <article class="testimonial-card fade-in">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <h3>Best VN tool in the store!</h3>
-                    <blockquote>I have tried many different visual novel solutions for Unity during the past years and no question about it: Naninovel is the best of all of them. It uses a simple script language that won't be too much a trouble to understand once you start working with it.</blockquote>
-                    <div class="testimonial-author">— Beru</div>
-                </article>
-
-                <article class="testimonial-card fade-in">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <h3>Excellent, genuinely</h3>
-                    <blockquote>I've tried every VN asset I could get my hands on, and this one is by far the smartest and most friendly to a novice like myself. The documentation is thorough and the support is EXCELLENT.</blockquote>
-                    <div class="testimonial-author">— rockcandygames</div>
-                </article>
-
-                <article class="testimonial-card fade-in">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <h3>Best VN-engine out there! User friendly &amp; powerful</h3>
-                    <blockquote>Being a professional 3D Artist I really appreciate the wide range of ready-made effects that can be applied to the backgrounds and characters, and the ease of animating &amp; manipulating the character sprites. Auto voicing is also super feature if you have voice overs!</blockquote>
-                    <div class="testimonial-author">— MikBo</div>
-                </article>
-
-                <article class="testimonial-card fade-in">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <h3>Rare combination of easy to use and also easy to extend</h3>
-                    <blockquote>I'm a writer/designer with 4 years of experience writing commercial visual novels in the mobile games industry. In my opinion, Unity+Naninovel blows them all out of the water. By a lot. It's not even close.</blockquote>
-                    <div class="testimonial-author">— bmcarbaugh</div>
-                </article>
-
-                <article class="testimonial-card fade-in">
-                    <div class="testimonial-stars">★★★★★</div>
-                    <h3>Amazing Visual Novel asset and an awesome dev!</h3>
-                    <blockquote>While it's obvious from the outset that the asset is both usable and powerful, what isn't as obvious until after you have access to it is its service architecture makes the library extremely flexible and extensible. It's the very model of what a good library should be.</blockquote>
-                    <div class="testimonial-author">— RecursiveFrog</div>
-                </article>
-
-            </div>
-            <div class="cta-row fade-in">
-                <a href="https://assetstore.unity.com/packages/slug/135453/reviews?sort_by=helpful" class="btn btn-outline" target="_blank" rel="noopener">MORE REVIEWS</a>
+            <ul class="review-list">
+                <li class="review reveal" style="--reveal-delay: 0ms">
+                    <div class="review-byline"><span class="reviewer">dmcvocation</span><span class="stars" role="img" aria-label="Five stars">★★★★★</span></div>
+                    <h3 data-print>Wonderful tool to use!</h3>
+                    <p>I find Naninovel very useful for different kinds of multimedia projects. It has the right combination of tools I need: cohesive framework; comprehensive API; good scripting support; integration with Unity.</p>
+                </li>
+                <li class="review reveal" style="--reveal-delay: 60ms">
+                    <div class="review-byline"><span class="reviewer">CMartinezB</span><span class="stars" role="img" aria-label="Five stars">★★★★★</span></div>
+                    <h3 data-print>Simple for newcomers, deep for experts</h3>
+                    <p>This asset is very user-friendly and won't require much programming if any at all for the most simple and usually most common visual novels. However it can be customized and expanded upon for more specific cases, making it overall a very versatile tool.</p>
+                </li>
+                <li class="review reveal" style="--reveal-delay: 120ms">
+                    <div class="review-byline"><span class="reviewer">Firgof</span><span class="stars" role="img" aria-label="Five stars">★★★★★</span></div>
+                    <h3 data-print>Excellent tool — just keeps getting better</h3>
+                    <p>Developer is very active and responsive; they're the easiest to contact developer I've had opportunity to work with on the Unity Asset Store. The mini-scripting language used to write Naninovel Novels is straightforward and, once you pick up and understand a few of its quirks, painless.</p>
+                </li>
+                <li class="review reveal" style="--reveal-delay: 0ms">
+                    <div class="review-byline"><span class="reviewer">sunlabyrinth</span><span class="stars" role="img" aria-label="Five stars">★★★★★</span></div>
+                    <h3 data-print>Excellent VN Engine for Unity</h3>
+                    <p>Naninovel does away with the node-based workflow of many other tools, replacing it with a very clear, readable script style approach to writing dialogue and directing the scene. It goes above and beyond many other VN/narrative tools for Unity with built in visual novel features.</p>
+                </li>
+                <li class="review reveal" style="--reveal-delay: 60ms">
+                    <div class="review-byline"><span class="reviewer">Beru</span><span class="stars" role="img" aria-label="Five stars">★★★★★</span></div>
+                    <h3 data-print>Best VN tool in the store!</h3>
+                    <p>I have tried many different visual novel solutions for Unity during the past years and no question about it: Naninovel is the best of all of them. It uses a simple script language that won't be too much a trouble to understand once you start working with it.</p>
+                </li>
+                <li class="review reveal" style="--reveal-delay: 120ms">
+                    <div class="review-byline"><span class="reviewer">rockcandygames</span><span class="stars" role="img" aria-label="Five stars">★★★★★</span></div>
+                    <h3 data-print>Excellent, genuinely</h3>
+                    <p>I've tried every VN asset I could get my hands on, and this one is by far the smartest and most friendly to a novice like myself. The documentation is thorough and the support is EXCELLENT.</p>
+                </li>
+                <li class="review reveal" style="--reveal-delay: 0ms">
+                    <div class="review-byline"><span class="reviewer">MikBo</span><span class="stars" role="img" aria-label="Five stars">★★★★★</span></div>
+                    <h3 data-print>Best VN-engine out there! User friendly &amp; powerful</h3>
+                    <p>Being a professional 3D Artist I really appreciate the wide range of ready-made effects that can be applied to the backgrounds and chars, and the ease of animating &amp; manipulating the character sprites. Auto voicing is also super feature if you have voice overs!</p>
+                </li>
+                <li class="review reveal" style="--reveal-delay: 60ms">
+                    <div class="review-byline"><span class="reviewer">bmcarbaugh</span><span class="stars" role="img" aria-label="Five stars">★★★★★</span></div>
+                    <h3 data-print>Rare combination of easy to use and also easy to extend</h3>
+                    <p>I'm a writer/designer with 4 years of experience writing commercial visual novels in the mobile games industry. In my opinion, Unity+Naninovel blows them all out of the water. By a lot. It's not even close.</p>
+                </li>
+                <li class="review reveal" style="--reveal-delay: 120ms">
+                    <div class="review-byline"><span class="reviewer">RecursiveFrog</span><span class="stars" role="img" aria-label="Five stars">★★★★★</span></div>
+                    <h3 data-print>Amazing Visual Novel asset and an awesome dev!</h3>
+                    <p>While it's obvious from the outset that the asset is both usable and powerful, what isn't as obvious until after you have access to it is its service architecture makes the library extremely flexible and extensible. It's the very model of what a good library should be.</p>
+                </li>
+            </ul>
+            <div class="more-row reveal">
+                <a class="choice" href="https://assetstore.unity.com/packages/slug/135453/reviews" target="_blank"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4.5 6.5a2 2 0 0 1 2-2h11a2 2 0 0 1 2 2v7.5a2 2 0 0 1-2 2h-6.5L7 19.5v-3.5h-.5a2 2 0 0 1-2-2z"/></svg></span>Read more reviews</a>
             </div>
         </div>
     </section>
 
-    <!-- ─────────── Get Started ─────────── -->
-    <section class="final" id="get-started">
+    <!-- ─────────── Get started ─────────── -->
+    <section id="get-started">
         <div class="wrap">
-            <div class="section-header fade-in">
-                <p class="section-label">Get Started</p>
-                <h2 class="section-title">Ready to begin your story?</h2>
-                <p class="section-subtitle">Join thousands of developers shipping with Naninovel.</p>
-            </div>
-            <div class="final-grid">
-                <article class="final-card fade-in" id="final-dive">
-                    <h3>Dive In Now</h3>
-                    <p>Get Naninovel and start building today.</p>
-                    <a href="https://assetstore.unity.com/packages/slug/135453" target="_blank" class="btn btn-primary">PURCHASE NANINOVEL</a>
-                    <br>
-                    <a href="/guide" target="_blank" class="final-link">or see the guide for more info →</a>
-                </article>
-                <article class="final-card fade-in" id="final-touch">
-                    <h3>Get in Touch</h3>
-                    <p>Have a question? Feel free to reach out!</p>
-                    <a href="/support" target="_blank" class="btn btn-outline">CONTACT SUPPORT</a>
-                </article>
+            <div class="get-started-panel reveal">
+                <div class="get-started-rays" aria-hidden="true"></div>
+                <img src="assets/img/nani-logo-full.svg" alt="Naninovel" class="get-started-logo" width="420" height="278" loading="lazy">
+                <h2>Ready when you are</h2>
+                <ul class="get-started-menu">
+                    <li class="primary"><a href="https://assetstore.unity.com/packages/slug/135453" target="_blank"><span class="label">NEW GAME</span><span class="description">Get Naninovel on the Unity Asset Store</span></a></li>
+                    <li><a href="/guide" target="_blank"><span class="label">CONTINUE</span><span class="description">Read the guide</span></a></li>
+                    <li><a href="/made-with" target="_blank"><span class="label">GALLERY</span><span class="description">Browse games made with Naninovel</span></a></li>
+                    <li><a href="/support" target="_blank"><span class="label">EXTRAS</span><span class="description">Contact support</span></a></li>
+                </ul>
+                <p class="get-started-note">A license includes one year of the Support Plan and every future release.</p>
             </div>
         </div>
     </section>
@@ -1169,164 +2159,478 @@
 
 <!-- ─────────── Footer ─────────── -->
 <footer>
-    <div class="wrap footer-inner">
-        <p class="footer-copy">&copy;
-            2018–<script>document.currentScript.parentNode.insertBefore(document.createTextNode(new Date().getFullYear().toString()), document.currentScript);</script>
-            Elringus
-        </p>
+    <div class="wrap"><div class="footer-inner">
+        <div class="footer-left">
+            <span>&copy; 2018–<span id="year">2026</span> Elringus</span>
+            <a href="/eula">EULA</a>
+            <a href="/privacy-policy">Privacy</a>
+        </div>
         <div class="footer-socials">
-            <a href="https://github.com/naninovel" target="_blank" rel="noopener" aria-label="GitHub">
+            <a href="https://github.com/naninovel" target="_blank" aria-label="GitHub">
                 <svg viewBox="0 0 24 24">
                     <path d="M12 .3a12 12 0 00-3.8 23.38c.6.11.82-.26.82-.58v-2.16c-3.34.73-4.04-1.61-4.04-1.61a3.18 3.18 0 00-1.33-1.76c-1.09-.74.08-.73.08-.73a2.52 2.52 0 011.84 1.24 2.56 2.56 0 003.5 1 2.56 2.56 0 01.76-1.6c-2.67-.3-5.47-1.33-5.47-5.93a4.64 4.64 0 011.24-3.22 4.3 4.3 0 01.12-3.18s1-.32 3.3 1.23a11.38 11.38 0 016 0c2.28-1.55 3.29-1.23 3.29-1.23a4.3 4.3 0 01.12 3.18 4.64 4.64 0 011.23 3.22c0 4.61-2.8 5.63-5.48 5.92a2.86 2.86 0 01.82 2.22v3.29c0 .32.21.7.82.58A12 12 0 0012 .3z"/>
                 </svg>
             </a>
-            <a href="https://discord.gg/BfkNqem" target="_blank" rel="noopener" aria-label="Discord">
+            <a href="https://discord.gg/BfkNqem" target="_blank" aria-label="Discord">
                 <svg viewBox="0 0 24 24">
                     <path d="M20.32 4.37A19.8 19.8 0 0015.39 3a13.15 13.15 0 00-.64 1.28 18.39 18.39 0 00-5.5 0A12.92 12.92 0 008.6 3a19.72 19.72 0 00-4.93 1.37A20.07 20.07 0 00.1 18.64a19.91 19.91 0 006.07 3.06 14.58 14.58 0 001.26-2.06 12.85 12.85 0 01-2-.96c.17-.12.33-.25.49-.38a14.2 14.2 0 0012.16 0c.16.13.32.26.49.38a12.92 12.92 0 01-2 .96 14.44 14.44 0 001.26 2.06 19.87 19.87 0 006.07-3.06A20.04 20.04 0 0020.32 4.37zM8.02 15.67c-1.18 0-2.15-1.08-2.15-2.42s.95-2.42 2.15-2.42 2.17 1.09 2.15 2.42c0 1.34-.95 2.42-2.15 2.42zm7.96 0c-1.18 0-2.15-1.08-2.15-2.42s.95-2.42 2.15-2.42 2.17 1.09 2.15 2.42c0 1.34-.94 2.42-2.15 2.42z"/>
                 </svg>
             </a>
-            <a href="https://x.com/naniengine" target="_blank" rel="noopener" aria-label="X (Twitter)">
+            <a href="https://x.com/naniengine" target="_blank" aria-label="X (Twitter)">
                 <svg viewBox="0 0 24 24">
                     <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
                 </svg>
             </a>
-            <a href="https://bsky.app/profile/naninovel.com" target="_blank" rel="noopener" aria-label="Bluesky">
+            <a href="https://bsky.app/profile/naninovel.com" target="_blank" aria-label="Bluesky">
                 <svg viewBox="0 0 24 24">
                     <path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565C.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479c.815 2.736 3.713 3.66 6.383 3.364q.204-.03.415-.056q-.207.033-.415.056c-3.912.58-7.387 2.005-2.83 7.078c5.013 5.19 6.87-1.113 7.823-4.308c.953 3.195 2.05 9.271 7.733 4.308c4.267-4.308 1.172-6.498-2.74-7.078a9 9 0 0 1-.415-.056q.21.026.415.056c2.67.297 5.568-.628 6.383-3.364c.246-.828.624-5.79.624-6.478c0-.69-.139-1.861-.902-2.206c-.659-.298-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8"/>
                 </svg>
             </a>
         </div>
-    </div>
+    </div></div>
 </footer>
 
 <script>
-    /* ─── Header scroll shadow ─── */
+    /* ─── Header ─── */
     const header = document.getElementById("header");
-    window.addEventListener("scroll", () => {
-        header.classList.toggle("scrolled", window.scrollY > 10);
-    }, { passive: true });
+    const onScroll = () => header.classList.toggle("scrolled", window.scrollY > 8);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
 
-    /* ─── Mobile menu toggle ─── */
-    const toggle = document.querySelector(".menu-toggle");
-    const nav = document.getElementById("main-nav");
-    toggle.addEventListener("click", () => {
-        const open = nav.classList.toggle("open");
-        toggle.setAttribute("aria-expanded", open ? "true" : "false");
-    });
+    /* ─── Mobile menu ─── */
+    const menuToggle = document.querySelector(".menu-toggle");
+    const menuPanel = document.getElementById("menu-panel");
+    const menuBackdrop = document.querySelector(".menu-backdrop");
+    const setMenuOpen = open => {
+        menuPanel.classList.toggle("open", open);
+        menuBackdrop.classList.toggle("open", open);
+        menuToggle.setAttribute("aria-expanded", open ? "true" : "false");
+    };
+    menuToggle.addEventListener("click", () => setMenuOpen(!menuPanel.classList.contains("open")));
+    menuPanel.addEventListener("click", e => { if (e.target.closest("a")) setMenuOpen(false); });
+    menuBackdrop.addEventListener("click", () => setMenuOpen(false));
+    document.addEventListener("keydown", e => { if (e.key === "Escape") setMenuOpen(false); });
+    matchMedia("(width > 768px)").addEventListener("change", () => setMenuOpen(false));
 
-    /* ─── Scroll-triggered fade-in (general) ─── */
-    const fadeObserver = new IntersectionObserver((entries) => {
+    /* ─── Hero: measure the title block and the file ─── */
+    {
+        const hero = document.querySelector(".hero"), titleBlock = document.querySelector(".hero-title-block");
+        const script = document.querySelector(".hero .script"), list = script?.querySelector(".script-lines");
+        const measure = () => {
+            hero.style.setProperty("--title-height", titleBlock.offsetHeight + "px");
+            const last = list.lastElementChild, bar = script.querySelector(".script-bar");
+            const padding = parseFloat(getComputedStyle(list).paddingBottom) || 0;
+            hero.style.setProperty("--file-height", Math.ceil(bar.offsetHeight + last.offsetTop + last.offsetHeight + padding) + "px");
+        };
+        if (hero && titleBlock && list) {
+            const resizeObserver = new ResizeObserver(measure);
+            resizeObserver.observe(titleBlock);
+            resizeObserver.observe(script);
+        }
+    }
+
+    /* ─── Footer year ─── */
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    /* ─── Reveal on scroll ─── */
+    const revealObserver = new IntersectionObserver(entries => {
         entries.forEach(e => {
-            if (e.isIntersecting) {
-                e.target.classList.add("visible");
-                fadeObserver.unobserve(e.target);
-            }
+            if (!e.isIntersecting) return;
+            e.target.classList.add("revealed");
+            revealObserver.unobserve(e.target);
         });
-    }, { threshold: 0.12 });
-    document.querySelectorAll(".fade-in").forEach(el => fadeObserver.observe(el));
+    }, { threshold: .1, rootMargin: "0px 0px -48px 0px" });
+    document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
 
-    /* ─── Made-with staggered reveal ─── */
-    const showcaseObserver = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-            if (e.isIntersecting) {
-                /* Compute stagger delay based on visible-order position */
-                const grid = e.target.closest(".showcase-grid");
-                const items = Array.from(grid.querySelectorAll(".showcase-item"));
-                const idx = items.indexOf(e.target);
-                const col = idx % 3;
-                const row = Math.floor(idx / 3);
-                const delay = row * 100 + col * 60;
-                e.target.style.transitionDelay = delay + "ms";
-                e.target.classList.add("visible");
-                showcaseObserver.unobserve(e.target);
+    /* ─── Split lines marked to print into glyphs ─── */
+    document.querySelectorAll("[data-print]").forEach(heading => {
+        const text = heading.textContent;
+        heading.textContent = "";
+        let index = 0;
+        text.split(/(\s+)/).forEach(part => {
+            if (!part) return;
+            if (/^\s+$/.test(part)) { heading.append(part); return; }
+            const word = document.createElement("span");
+            word.className = "word";
+            for (const letter of part) {
+                const glyph = document.createElement("span");
+                glyph.className = "glyph";
+                glyph.style.setProperty("--glyph-index", index++);
+                glyph.textContent = letter;
+                word.append(glyph);
             }
-        });
-    }, { threshold: 0.08, rootMargin: "0px 0px -40px 0px" });
-    document.querySelectorAll(".showcase-item").forEach(el => showcaseObserver.observe(el));
-
-    /* ─── Hero background screenshots staggered reveal ─── */
-    document.querySelectorAll(".hero-shot").forEach((el, i) => {
-        setTimeout(() => el.classList.add("visible"), 600 + i * 300);
-    });
-
-    /* ─── YouTube player ─── */
-    document.querySelector("div.youtube-poster").addEventListener("click", () => {
-        const container = document.querySelector("div.youtube");
-        const player = container.children[1];
-        const iframe = player.children[0];
-        container.classList.add("youtube-loading");
-        iframe.src = iframe.dataset.src;
-        iframe.addEventListener("load", () => {
-            container.classList.add("youtube-playing");
-            player.hidden = false;
+            heading.append(word);
         });
     });
 
-    /* ─── Hero particle canvas ─── */
+    /* ─── Print the lines in reading order, each a little after the one before ─── */
+    {
+        const headings = [...document.querySelectorAll("[data-print]")];
+        const STAGGER_MS = 100;
+        let queued = 0, lastStart = -Infinity;
+        const printObserver = new IntersectionObserver(entries => {
+            const shown = entries.filter(e => e.isIntersecting).map(e => headings.indexOf(e.target));
+            if (!shown.length) return;
+            /* Any above the one in view print first, even if a fast scroll skipped them. */
+            const last = Math.max(...shown), now = performance.now();
+            for (; queued <= last; queued++) {
+                const heading = headings[queued];
+                lastStart = Math.max(now, lastStart + STAGGER_MS);
+                heading.style.setProperty("--print-delay", Math.round(lastStart - now) + "ms");
+                heading.classList.add("revealed");
+                printObserver.unobserve(heading);
+            }
+        }, { threshold: .1, rootMargin: "0px 0px -48px 0px" });
+        headings.forEach(heading => printObserver.observe(heading));
+    }
+
+    /* ─── Trailer ─── */
+    {
+        const frame = document.querySelector(".trailer-frame");
+        const glass = frame.querySelector(".youtube");
+        const theater = document.querySelector(".theater");
+        const screen = theater.querySelector(".theater-screen");
+        const PLAYER_ORIGIN = "https://www.youtube-nocookie.com";
+        const PLAYER_ENDED = 0;
+        const FLIGHT_BACK_MS = 560;
+        const LIGHT = ["--light-x", "--light-y"];
+        let player = null, closing = 0;
+
+        const poseOver = rect => {
+            const own = screen.getBoundingClientRect();
+            return `translate(${rect.left - own.left}px, ${rect.top - own.top}px) scale(${rect.width / own.width})`;
+        };
+        const restLight = () => LIGHT.forEach(name => glass.style.removeProperty(name));
+
+        function requestStateReports(target) {
+            let tries = 0;
+            const ask = () => {
+                if (player !== target || target.heard || tries++ > 20) return;
+                target.contentWindow.postMessage(JSON.stringify({ event: "listening", id: 1, channel: "widget" }), PLAYER_ORIGIN);
+                setTimeout(ask, 500);
+            };
+            ask();
+        }
+
+        function open() {
+            const from = frame.getBoundingClientRect();
+            for (const name of LIGHT) theater.style.setProperty(name, glass.style.getPropertyValue(name));
+            theater.showModal();
+            frame.classList.add("away");
+            const loading = player = document.createElement("iframe");
+            player.title = "Naninovel trailer";
+            player.allow = "autoplay; encrypted-media; fullscreen; picture-in-picture";
+            player.src = `${screen.dataset.src}&origin=${encodeURIComponent(location.origin)}`;
+            player.addEventListener("load", () => {
+                if (player !== loading) return;
+                theater.classList.add("playing");
+                requestStateReports(loading);
+            }, { once: true });
+            screen.append(player);
+            screen.animate([{ transform: poseOver(from) }, { transform: "none" }], { duration: 720, easing: "cubic-bezier(.2, .7, .2, 1)" });
+        }
+
+        function close() {
+            if (!theater.open || closing) return;
+            player?.remove();
+            player = null;
+            theater.classList.remove("playing");
+            theater.classList.add("closing");
+            screen.getAnimations().forEach(animation => animation.cancel());
+            screen.animate([{ transform: "none" }, { transform: poseOver(frame.getBoundingClientRect()) }], { duration: FLIGHT_BACK_MS, easing: "cubic-bezier(.4, 0, .2, 1)", fill: "forwards" });
+            closing = setTimeout(() => { restorePage(); theater.close(); }, FLIGHT_BACK_MS);
+        }
+
+        function restorePage() {
+            player?.remove();
+            player = null;
+            clearTimeout(closing);
+            closing = 0;
+            theater.classList.remove("playing", "closing");
+            screen.getAnimations().forEach(animation => animation.cancel());
+            frame.classList.remove("away");
+            if (!frame.matches(":hover")) restLight();
+        }
+
+        frame.addEventListener("pointermove", ({ pointerType, clientX, clientY }) => {
+            if (pointerType === "touch") return;
+            const box = frame.getBoundingClientRect();
+            glass.style.setProperty("--light-x", (clientX - box.left) / box.width);
+            glass.style.setProperty("--light-y", (clientY - box.top) / box.height);
+        });
+        frame.addEventListener("pointerleave", () => { if (!frame.classList.contains("away")) restLight(); });
+        frame.querySelector(".youtube-poster").addEventListener("click", open);
+        theater.addEventListener("cancel", event => { event.preventDefault(); close(); });
+        theater.addEventListener("click", event => { if (!screen.contains(event.target)) close(); });
+        theater.addEventListener("close", restorePage);
+        window.addEventListener("message", event => {
+            if (!player || event.source !== player.contentWindow) return;
+            let message;
+            try { message = JSON.parse(event.data); } catch { return; }
+            player.heard = true;
+            const state = message.event === "onStateChange" ? message.info : message.info?.playerState;
+            if (state === PLAYER_ENDED) close();
+        });
+    }
+
+    /* ─── Hero scene ─── */
     (function () {
-        const canvas = document.getElementById("hero-canvas");
-        if (!canvas) return;
-        const ctx = canvas.getContext("2d");
-        let w, h, particles;
-        const PARTICLE_COUNT = 50;
+        const hero = document.getElementById("demo");
+        if (!hero) return;
+        const stage = hero.querySelector(".stage");
+        const list = hero.querySelector(".script-lines");
+        const lines = Array.from(list.children);
+        const stateButton = hero.querySelector(".script-state");
+        const printer = stage.querySelector(".printer");
+        const nameEl = printer.querySelector(".printer-name");
+        const textEl = printer.querySelector(".printer-text");
+        const liveRegion = stage.querySelector(".live-region");
+        const choices = Array.from(stage.querySelectorAll(".choice"));
+        const chars = {};
+        stage.querySelectorAll(".char").forEach(el => chars[el.dataset.char] = el);
+        const STEP_MS = 26, SWAP_MS = 170, PAUSE_MS = 700;
+        const holdFor = text => Math.min(2600, 1000 + text.length * 18);
+        const stripCommands = line => line.replace(/\[[->]\]/g, "");
+        /* Only where they differ from the IDs. */
+        const DISPLAY_NAMES = { Nani: "Nani-kun" };
+        const STATE_LABELS = { idle: "idle", playing: "playing", ended: "replay script" };
 
-        function resize() {
-            const hero = canvas.parentElement;
-            w = canvas.width = hero.offsetWidth;
-            h = canvas.height = hero.offsetHeight;
+        let lineIndex = -1, timer = 0, frame = 0, printing = null;
+
+        const clearTimers = () => { clearTimeout(timer); timer = 0; cancelAnimationFrame(frame); frame = 0; };
+        const after = (fn, ms) => { clearTimers(); timer = setTimeout(fn, ms); };
+        const setState = state => {
+            stateButton.className = "script-state " + state;
+            stateButton.textContent = STATE_LABELS[state];
+            stateButton.disabled = state !== "ended";
+        };
+
+        /* Scrolls the list only, never the page. */
+        function keepVisible(line) {
+            const top = line.offsetTop, height = list.clientHeight;
+            if (top < list.scrollTop + 12 || top + line.offsetHeight > list.scrollTop + height - 12)
+                list.scrollTo({ top: Math.max(0, top - height / 3), behavior: "smooth" });
         }
 
-        function createParticles() {
-            particles = [];
-            for (let i = 0; i < PARTICLE_COUNT; i++) {
-                particles.push({
-                    x: Math.random() * w,
-                    y: Math.random() * h,
-                    r: Math.random() * 2 + 0.5,
-                    dx: (Math.random() - 0.5) * 0.3,
-                    dy: (Math.random() - 0.5) * 0.3,
-                    alpha: Math.random() * 0.35 + 0.1
-                });
+        function setLook(who, look, instant) {
+            const el = chars[who];
+            if (!el || !look) return;
+            const images = [...el.querySelectorAll("img")];
+            const incoming = images.find(img => img.dataset.look === look);
+            if (!incoming) return;
+            el.querySelector(".shade").style.setProperty("--sprite", `url("${incoming.src}")`);
+            clearTimeout(el.swapTimer);
+            if (instant) {
+                images.forEach(img => { img.classList.toggle("on", img === incoming); img.classList.toggle("front", img === incoming); });
+                return;
             }
+            if (incoming.classList.contains("front")) return;
+            /* The new look fades in over the old one, which stays opaque, so the sprite is never see-through. */
+            const outgoing = images.filter(img => img !== incoming && img.classList.contains("on"));
+            outgoing.forEach(img => img.classList.remove("front"));
+            incoming.classList.add("on", "front");
+            el.swapTimer = setTimeout(() => outgoing.forEach(img => img.classList.remove("on")), 300);
         }
 
-        function draw() {
-            ctx.clearRect(0, 0, w, h);
-            particles.forEach(p => {
-                ctx.beginPath();
-                ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-                ctx.fillStyle = "rgba(27,174,234," + p.alpha + ")";
-                ctx.fill();
-                p.x += p.dx;
-                p.y += p.dy;
-                if (p.x < 0 || p.x > w) p.dx *= -1;
-                if (p.y < 0 || p.y > h) p.dy *= -1;
+        function setSpeaker(who) {
+            stage.dataset.speaker = who;
+            Object.entries(chars).forEach(([id, el]) => el.classList.toggle("speaking", id === who));
+        }
+
+        function reset() {
+            clearTimers();
+            lineIndex = -1;
+            lines.forEach(line => line.classList.remove("current", "done"));
+            stage.classList.remove("lit", "ended", "shake", "choosing");
+            stage.removeAttribute("data-speaker");
+            Object.entries(chars).forEach(([id, el]) => {
+                el.classList.remove("on", "speaking");
+                setLook(id, el.querySelector("img").dataset.look, true);
             });
-            /* Draw faint connecting lines between close particles */
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 140) {
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = "rgba(27,174,234," + (0.06 * (1 - dist / 140)) + ")";
-                        ctx.lineWidth = 0.5;
-                        ctx.stroke();
-                    }
-                }
-            }
-            requestAnimationFrame(draw);
+            printer.classList.remove("on", "waiting");
+            nameEl.textContent = textEl.textContent = liveRegion.textContent = "";
+            nameEl.style.width = "";
+            choices.forEach(choice => choice.classList.remove("on"));
+            list.scrollTop = 0;
+            setState("idle");
         }
 
-        resize();
-        createParticles();
-        draw();
-        window.addEventListener("resize", () => {
-            resize();
-            createParticles();
+        function start() {
+            reset();
+            setState("playing");
+            after(next, 200);
+        }
+
+        function next() {
+            clearTimers();
+            printer.classList.remove("waiting");
+            if (lineIndex >= 0) { lines[lineIndex].classList.remove("current"); lines[lineIndex].classList.add("done"); }
+            if (++lineIndex >= lines.length) return finish();
+            const line = lines[lineIndex], data = line.dataset;
+            line.classList.add("current");
+            keepVisible(line);
+            /* A command doesn't block unless marked wait!. */
+            const proceed = ms => data.wait !== undefined ? after(next, ms) : next();
+            switch (data.kind) {
+                case "back":
+                    stage.classList.add("lit");
+                    return proceed(900);
+                case "char":
+                    setLook(data.who, data.look, true);
+                    /* The sprites face left; look:Right mirrors them. */
+                    chars[data.who].classList.toggle("flip", data.direction === "right");
+                    chars[data.who].classList.add("on");
+                    return next();
+                case "shake":
+                    stage.classList.add("shake");
+                    setTimeout(() => stage.classList.remove("shake"), 650);
+                    return proceed(800);
+                case "say": return say(data.who, data.look, data.text);
+                case "choice":
+                    if (!stage.classList.contains("choosing")) openChoices();
+                    choices[+data.choice].classList.add("on");
+                    return after(next, 0);
+                default: return after(next, 0);
+            }
+        }
+
+        function setName(name) {
+            const current = nameEl.lastElementChild;
+            if (current?.textContent === name) return;
+            const incoming = document.createElement("span");
+            incoming.textContent = name;
+            if (!current) { nameEl.append(incoming); return; }
+            /* Drop a name still fading out, then measure the new width by swapping the name in before paint. */
+            [...nameEl.children].forEach(span => span !== current && span.remove());
+            const fromWidth = nameEl.offsetWidth, currentName = current.textContent;
+            nameEl.style.width = "";
+            current.textContent = name;
+            const toWidth = nameEl.offsetWidth;
+            current.textContent = currentName;
+            incoming.className = "out";
+            nameEl.append(incoming);
+            nameEl.style.width = fromWidth + "px";
+            nameEl.offsetWidth;
+            nameEl.style.width = toWidth + "px";
+            current.classList.add("out");
+            incoming.classList.remove("out");
+            current.addEventListener("transitionend", () => current.remove(), { once: true });
+        }
+        nameEl.addEventListener("transitionend", e => { if (e.propertyName === "width") nameEl.style.width = ""; });
+
+        /* The whole line is laid out up front, in unbreakable words, so nothing reflows while it's revealed. */
+        function splitIntoGlyphs(text) {
+            textEl.textContent = "";
+            const glyphs = [];
+            text.split(/(\s+)/).forEach(part => {
+                if (!part) return;
+                if (/^\s+$/.test(part)) { textEl.append(part); return; }
+                const word = document.createElement("span");
+                word.className = "word";
+                for (const letter of part) {
+                    const glyph = document.createElement("span");
+                    glyph.className = "glyph";
+                    glyph.textContent = letter;
+                    word.append(glyph);
+                    glyphs.push(glyph);
+                }
+                textEl.append(word);
+            });
+            return glyphs;
+        }
+
+        function say(who, look, text) {
+            setLook(who, look);
+            setSpeaker(who);
+            printer.classList.add("on");
+            setName(DISPLAY_NAMES[who] ?? who);
+            liveRegion.textContent = (DISPLAY_NAMES[who] ?? who) + ": " + stripCommands(text);
+            if (textEl.textContent) {
+                textEl.classList.add("out");
+                timer = setTimeout(() => reveal(text), SWAP_MS);
+            } else reveal(text);
+        }
+
+        /* The inline wait, [-], plays as a pause. */
+        function reveal(line) {
+            textEl.classList.remove("out");
+            const text = stripCommands(line);
+            const glyphs = splitIntoGlyphs(text);
+            const revealTimes = [];
+            line.split("[-]").forEach((part, pauses) => {
+                for (const letter of stripCommands(part))
+                    if (!/\s/.test(letter)) revealTimes.push(revealTimes.length * STEP_MS + pauses * PAUSE_MS);
+            });
+            printing = { text, glyphs };
+            const startTime = performance.now();
+            let shownCount = 0;
+            (function tick(now) {
+                while (shownCount < glyphs.length && now - startTime >= revealTimes[shownCount]) glyphs[shownCount++].classList.add("on");
+                if (shownCount < glyphs.length) frame = requestAnimationFrame(tick);
+                else { frame = 0; onLineDone(text); }
+            })(startTime);
+        }
+
+        function openChoices() {
+            const from = printer.offsetHeight;
+            stage.classList.add("choosing");
+            const to = printer.offsetHeight;
+            if (from !== to) printer.animate([{ height: from + "px" }, { height: to + "px" }], { duration: 560, easing: "cubic-bezier(.22, .8, .24, 1)" });
+        }
+
+        function onLineDone(text) {
+            if (lines[lineIndex + 1]?.dataset.kind === "choice") return next();
+            printer.classList.add("waiting");
+            after(next, holdFor(text));
+        }
+
+        function finish() {
+            printer.classList.remove("waiting");
+            stage.classList.add("ended");
+            setState("ended");
+        }
+
+        printer.addEventListener("click", e => {
+            if (e.target.closest(".choice") || stage.classList.contains("choosing")) return;
+            if (frame) {
+                cancelAnimationFrame(frame);
+                frame = 0;
+                printing.glyphs.forEach(glyph => glyph.classList.add("on"));
+                onLineDone(printing.text);
+            } else if (printer.classList.contains("waiting")) next();
+        });
+
+        /* Split the choice labels into glyphs. */
+        choices.forEach(choice => {
+            const node = [...choice.childNodes].find(child => child.nodeType === 3 && child.textContent.trim());
+            const label = document.createElement("span");
+            let index = 0;
+            node.textContent.trim().split(/(\s+)/).forEach(part => {
+                if (/^\s+$/.test(part)) { label.append(part); return; }
+                const word = document.createElement("span");
+                word.className = "word";
+                for (const letter of part) {
+                    const glyph = document.createElement("span");
+                    glyph.className = "glyph";
+                    glyph.style.setProperty("--glyph-index", index++);
+                    glyph.textContent = letter;
+                    word.append(glyph);
+                }
+                label.append(word);
+            });
+            node.replaceWith(label);
+        });
+
+        stateButton.addEventListener("click", start);
+
+        new IntersectionObserver(([e]) => stage.classList.toggle("paused", !e.isIntersecting)).observe(stage);
+
+        reset();
+        if (!document.hidden) start();
+        else document.addEventListener("visibilitychange", function onShow() {
+            if (document.hidden) return;
+            document.removeEventListener("visibilitychange", onShow);
+            start();
         });
     })();
 </script>

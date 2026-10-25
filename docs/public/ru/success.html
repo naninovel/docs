@@ -2,29 +2,231 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Спасибо за покупку</title>
-    <link href="../assets/css/page.min.css" rel="stylesheet">
     <link rel="icon" href="../assets/img/nani-logo.svg" sizes="any" type="image/svg+xml">
+    <style>
+        @font-face {
+            font-family: "Inter";
+            font-style: normal;
+            font-weight: 100 900;
+            font-display: swap;
+            src: url(../assets/fonts/inter.woff2) format("woff2");
+        }
+        @font-face {
+            font-family: "JetBrains";
+            font-style: normal;
+            font-weight: 100 900;
+            font-display: swap;
+            src: url(../assets/fonts/jb.woff2) format("woff2");
+        }
+
+        /* The landing's hero, with one text box: the sky and its sunburst stand behind Nani, and the card is the hero's
+           glass text box. The landing sets its text in Fraunces and Mona Sans, which have no Cyrillic, so Inter stands in. */
+        :root {
+            --paper: #f6f0e4;
+            --text: rgba(232, 238, 255, .84);
+            --muted: rgba(214, 224, 255, .62);
+            --line: rgba(255, 255, 255, .12);
+            --link: #7dd3fc;
+            --amber: #ffb872;
+            --amber-ink: #2a1506;
+            --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+            --mono: "JetBrains", ui-monospace, "Cascadia Mono", Consolas, monospace;
+            /* Nani's width; the rest of him is measured from it. */
+            --nani: 168px;
+            color-scheme: dark;
+        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; }
+        [hidden] { display: none !important; }
+
+        /* The page scrolls on the root, so the body can cut what reaches past it. */
+        html { overflow: auto; }
+        body {
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            padding: 48px max(16px, env(safe-area-inset-right, 0px)) 56px max(16px, env(safe-area-inset-left, 0px));
+            font: 400 1rem/1.7 var(--sans);
+            font-optical-sizing: auto;
+            color: var(--text);
+            /* The light behind Nani reaches past the page; it is cut at the page's edges instead of scrolling it. */
+            overflow: clip;
+            /* @back Prism: the brand's key-art blue. */
+            background: #0a1440 radial-gradient(80% 70% at 50% 34%, #3170f6 0%, #1d50da 26%, #1538a8 50%, #0e2370 74%, #0a1440 100%) fixed;
+            -webkit-font-smoothing: antialiased;
+        }
+        /* Film grain, as on the landing: fixed, static, barely there. */
+        body::after {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: 10;
+            pointer-events: none;
+            opacity: .045;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        /* Nani hangs on the middle of the box's top edge: his head and near paws go behind it, his far paws over it. */
+        .frame {
+            position: relative;
+            width: 100%;
+            max-width: 32.5rem;
+            margin-top: calc(var(--nani) * .852);
+        }
+        /* The hero's rays and bloom, standing behind Nani. */
+        .frame::before, .frame::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: calc(var(--nani) * -.46);
+            aspect-ratio: 1;
+            translate: -50% -50%;
+            pointer-events: none;
+        }
+        .frame::before {
+            width: 2200px;
+            background: repeating-conic-gradient(from 0deg, rgba(255, 255, 255, .1) 0deg 5deg, rgba(255, 255, 255, 0) 5deg 12deg);
+            -webkit-mask-image: radial-gradient(circle, #000 0%, rgba(0, 0, 0, .7) 16%, transparent 40%);
+            mask-image: radial-gradient(circle, #000 0%, rgba(0, 0, 0, .7) 16%, transparent 40%);
+        }
+        .frame::after {
+            width: calc(var(--nani) * 3.6);
+            border-radius: 50%;
+            background: radial-gradient(closest-side, rgba(225, 238, 255, .55), rgba(150, 195, 255, .18) 45%, transparent);
+            mix-blend-mode: screen;
+        }
+        .nani-head, .nani-paws {
+            position: absolute;
+            left: 50%;
+            width: var(--nani);
+            translate: -50% 0;
+            user-select: none;
+            -webkit-user-drag: none;
+        }
+        .nani-head { top: calc(var(--nani) * -.852); z-index: 1; }
+        .nani-head img { display: block; width: 100%; height: auto; }
+        .nani-paws { top: calc(var(--nani) * -.114); height: auto; pointer-events: none; }
+        .nani-paws.inner { z-index: 1; }
+        .nani-paws.outer { z-index: 3; }
+
+        /* The hero's text box: tinted glass lit along its top rim in Nani's cool light, with a hairline frame inside.
+           It is a little denser than the hero's, as it carries running text over the rays. */
+        .card {
+            position: relative;
+            z-index: 2;
+            padding: 40px 40px 36px;
+            border-radius: 16px;
+            background:
+                linear-gradient(180deg, rgba(255, 255, 255, .09), rgba(255, 255, 255, 0) 40%),
+                linear-gradient(160deg, rgba(24, 44, 120, .72), rgba(10, 18, 60, .86));
+            -webkit-backdrop-filter: blur(14px);
+            backdrop-filter: blur(14px);
+            box-shadow:
+                inset 0 1px 0 color-mix(in srgb, var(--link) 50%, rgba(255, 255, 255, .25)),
+                0 24px 60px -24px rgba(2, 8, 40, .55);
+        }
+        .card::after {
+            content: "";
+            position: absolute;
+            inset: 5px;
+            border-radius: 11px;
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1);
+            pointer-events: none;
+        }
+        h1 {
+            margin-bottom: 16px;
+            font-size: 1.75rem;
+            font-weight: 700;
+            line-height: 1.18;
+            letter-spacing: -.02em;
+            color: var(--paper);
+            text-shadow: 0 1px 0 rgba(2, 8, 40, .35);
+        }
+        /* 1.6 at 16px keeps the line spacing the paragraphs had at 15px. */
+        p { line-height: 1.6; }
+        p + p { margin-top: 14px; }
+        /* Asides are set a size smaller and a weight lighter, in a light tint rather than a darker grey. */
+        .note { margin-top: 18px; font-size: .8125rem; font-weight: 250; line-height: 1.6; color: rgba(226, 234, 255, .74); }
+        a {
+            color: var(--link);
+            text-decoration: underline;
+            text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+            text-decoration-thickness: 1px;
+            text-underline-offset: .24em;
+            transition: color .2s;
+        }
+        a:hover { color: #fff; }
+        a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid var(--link); outline-offset: 3px; }
+
+        /* The key is the one thing to keep, so it gets a slot of its own, cut like a ticket. */
+        .slot {
+            margin: 4px 0 24px;
+            padding: 16px 18px;
+            border: 1.5px dashed rgba(125, 211, 252, .4);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, .04);
+        }
+        .slot-label { font-size: .8125rem; font-weight: 550; color: var(--muted); }
+        .slot-row { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; margin-top: 4px; }
+        .key {
+            font: 600 1.375rem/1.3 var(--mono);
+            letter-spacing: .01em;
+            color: var(--paper);
+            white-space: nowrap;
+            user-select: all;
+        }
+        /* The copy button is one of the hero's plain choices. */
+        .copy {
+            flex-shrink: 0;
+            padding: 8px 14px;
+            font: 600 .8125rem/1 var(--sans);
+            color: var(--paper);
+            border: 0;
+            border-radius: 9px;
+            cursor: pointer;
+            background: linear-gradient(180deg, rgba(255, 255, 255, .09), rgba(255, 255, 255, .04));
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .14);
+            transition: background .25s, box-shadow .25s;
+        }
+        .copy:hover {
+            color: #fff;
+            background: linear-gradient(180deg, rgba(255, 255, 255, .16), rgba(255, 255, 255, .07));
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .34), 0 0 0 4px rgba(125, 211, 252, .1), 0 0 28px -6px rgba(125, 211, 252, .45);
+        }
+
+        @media (max-width: 600px) {
+            :root { --nani: 136px; }
+            body { padding-top: 32px; }
+            .card { padding: 30px 22px 26px; }
+            h1 { font-size: 1.5rem; }
+            .key { font-size: 1.1875rem; }
+        }
+    </style>
 </head>
-<body class="layout-centered" style="background-image: linear-gradient(-45deg, #1baeea 0%, #2b3a97 100%);">
-<canvas class="constellation" data-radius="0" style="z-index: -1"></canvas>
 
-<main class="main-content">
+<body>
 
-    <div class="bg-white rounded w-600 p-6">
-        <h5 class="mb-4" style="font-family: sans-serif">Спасибо за покупку!</h5>
-        <div class="font-weight-normal">
-            <p>Ваш ключ лицензии: <strong id="licenseNumber"></strong>. Сохраните его.</p>
-            <p>Скачать Naninovel и получить техническую поддержку можно на нашем Discord сервере: <a href="https://discord.gg/BfkNqem" target="_blank">discord.gg/BfkNqem</a>. Для получения доступа к каналам загрузки и поддержки, <a href="https://naninovel.com/register" target="_blank">создайте учётную запись</a> и активируйте лицензию используя указанный выше ключ.</p>
-            <p>Если у вас есть вопросы по приобретению, регистрации или условиям использования, можете обращаться на русском языке по электронной почте: <a href="mailto:info@naninovel.com">info@naninovel.com</a>.</p>
+<main class="frame">
+
+    <div class="nani-head"><img src="../assets/img/nani-logo.svg" alt="" width="176" height="172"></div>
+    <img class="nani-paws inner" src="../assets/img/nani-paws-inner.svg" alt="" width="176" height="35">
+    <img class="nani-paws outer" src="../assets/img/nani-paws-outer.svg" alt="" width="176" height="35">
+
+    <section class="card">
+        <h1>Спасибо за покупку!</h1>
+        <div class="slot">
+            <div class="slot-label">Ваш ключ лицензии</div>
+            <div class="slot-row">
+                <strong class="key" id="licenseNumber"></strong>
+                <button class="copy" id="copy" type="button">Копировать</button>
+            </div>
         </div>
-    </div>
+        <p>Войдите в <a href="https://account.naninovel.com" target="_blank">учётную запись</a> и зарегистрируйте лицензию, используя ваш ключ. После регистрации Naninovel можно будет скачать в разделе <a href="https://account.naninovel.com/download" target="_blank">Download</a>.</p>
+        <p class="note">Если возникнут проблемы с регистрацией или скачиванием, обращайтесь на почту: <a href="mailto:info@naninovel.com">info@naninovel.com</a>.</p>
+    </section>
 
 </main>
-
-<script src="../assets/js/page.min.js"></script>
-<script src="../assets/js/script.js"></script>
 
 <script>
 
@@ -35,6 +237,16 @@
     function getLicenseNumber() {
         return "TK" + new URL(document.URL).searchParams.get("PaymentId");
     }
+
+    document.getElementById("copy").addEventListener("click", async function () {
+        try {
+            await navigator.clipboard.writeText(getLicenseNumber());
+            this.textContent = "Скопировано";
+            setTimeout(() => this.textContent = "Копировать", 2000);
+        } catch {
+            getSelection().selectAllChildren(document.getElementById("licenseNumber"));
+        }
+    });
 
 </script>
 
