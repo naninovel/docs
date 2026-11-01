@@ -33,8 +33,8 @@
     <link rel="preload" href="assets/fonts/fraunces-italic.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/fonts/mona.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/fonts/jb.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="assets/img/hero/nani-default.webp" as="image" type="image/webp" crossorigin>
-    <link rel="preload" href="assets/img/hero/kohaku-default.webp" as="image" type="image/webp" crossorigin>
+    <link rel="preload" href="assets/img/hero/nani-default.webp" as="image" type="image/webp" fetchpriority="high" crossorigin>
+    <link rel="preload" href="assets/img/hero/kohaku-default.webp" as="image" type="image/webp" fetchpriority="high" crossorigin>
 
     <style>
         /* ───────────────────── Fonts ───────────────────── */
@@ -1738,12 +1738,12 @@
                 <div class="cast"><div class="cast-column">
                     <div class="char kohaku" data-char="Kohaku">
                         <img src="assets/img/hero/kohaku-default.webp" data-look="Default" class="on front" alt="" width="664" height="1068" decoding="async" crossorigin>
-                        <img src="assets/img/hero/kohaku-surprise.webp" data-look="Surprise" alt="" width="664" height="1068" decoding="async" crossorigin>
+                        <img src="assets/img/hero/kohaku-surprise.webp" data-look="Surprise" alt="" width="664" height="1068" decoding="async" fetchpriority="low" crossorigin>
                         <span class="shade" style="--sprite: url(assets/img/hero/kohaku-default.webp)"></span>
                     </div>
                     <div class="char nani" data-char="Nani">
                         <img src="assets/img/hero/nani-default.webp" data-look="Default" class="on front" alt="" width="544" height="1068" decoding="async" crossorigin>
-                        <img src="assets/img/hero/nani-confidence.webp" data-look="Confidence" alt="" width="544" height="1068" decoding="async" crossorigin>
+                        <img src="assets/img/hero/nani-confidence.webp" data-look="Confidence" alt="" width="544" height="1068" decoding="async" fetchpriority="low" crossorigin>
                         <span class="shade" style="--sprite: url(assets/img/hero/nani-default.webp)"></span>
                     </div>
                 </div></div>
@@ -2118,7 +2118,10 @@
     document.getElementById("year").textContent = "–" + new Date().getFullYear();
 
     /* ─── Deferred images ─── */
-    window.addEventListener("load", () => document.querySelectorAll("img[loading=lazy]").forEach(img => img.loading = "eager"));
+    function loadDeferredImages() {
+        if (document.readyState !== "complete") return addEventListener("load", loadDeferredImages, { once: true });
+        document.querySelectorAll("img[loading=lazy]").forEach(img => img.loading = "eager");
+    }
 
     /* ─── Glyphs ─── */
     /* The whole text is laid out up front, in unbreakable words, so nothing reflows while it's revealed. */
@@ -2402,6 +2405,7 @@
         }
 
         function onLineDone(text) {
+            loadDeferredImages();
             if (lines[lineIndex + 1]?.textContent.startsWith("@choice")) return next();
             printer.classList.add("waiting");
             after(next, holdFor(text));
