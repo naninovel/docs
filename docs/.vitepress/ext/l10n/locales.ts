@@ -25,6 +25,7 @@ export const config: LocaleConfig<DefaultTheme.Config> = {
         label: "日本語",
         description: "ライターフレンドリーなストーリーテリングツールを揃えたオールインワンスイートで、ビジュアルノベル、分岐ダイアログ、インタラクティブなカットシーンを制作。",
         themeConfig: {
+            logoLink: { link: "/ja/", target: "_self" },
             langMenuLabel: "言語",
             lastUpdated: { text: "最終更新日", formatOptions: { dateStyle: "medium" } },
             sidebarMenuLabel: "メニュー",
@@ -43,6 +44,7 @@ export const config: LocaleConfig<DefaultTheme.Config> = {
         label: "中文",
         description: "使用集写作友好型叙事工具于一体的全能套件，创作视觉小说、分支对话和互动过场动画。",
         themeConfig: {
+            logoLink: { link: "/zh/", target: "_self" },
             langMenuLabel: "语言",
             lastUpdated: { text: "最近更新时间", formatOptions: { dateStyle: "medium" } },
             sidebarMenuLabel: "菜单",

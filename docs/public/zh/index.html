@@ -1,825 +1,431 @@
-<!DOCTYPE html>
-<html lang="en">
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="对编剧更友好的视觉小说引擎。">
-    <meta name="keywords" content="视觉小说, 视觉小说制作工具, GalGame, Naninovel">
-
-    <title>Naninovel • 视觉小说制作工具</title>
-
-    <!-- STYLES -->
-    <link href="/assets/css/page.css" rel="stylesheet">
-    <link href="/assets/css/style.css" rel="stylesheet">
-
-    <!-- FAVICONS -->
-    <link rel="icon" href="/favicon.svg">
-
-    <!-- OPEN GRAPH TAGS -->
-    <meta property="og:title" content="Naninovel">
-    <meta property="og:description"
-          content="一个功能完整、对编剧友好、并且可以完全自定义的 Unity 引擎视觉小说扩展插件。">
-    <meta property="og:image" content="/assets/img/og.jpg">
-    <meta property="og:url" content="https://naninovel.com">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>视觉小说引擎 • Naninovel</title>
+    <meta name="description" content="Naninovel 是一款为作者打造的 Unity 叙事引擎。视觉小说、分支对话和过场动画，都用纯文本编写。自 2018 年起在 Asset Store 上架，已有数百款作品使用它发布。">
+    <link rel="canonical" href="https://naninovel.com/zh/">
+    <link rel="alternate" hreflang="en" href="https://naninovel.com/">
+    <link rel="alternate" hreflang="ja" href="https://naninovel.com/ja/">
+    <link rel="alternate" hreflang="zh-CN" href="https://naninovel.com/zh/">
+    <link rel="alternate" hreflang="x-default" href="https://naninovel.com/">
+    <meta property="og:title" content="Naninovel – 为作者打造的 Unity 视觉小说引擎">
+    <meta property="og:description" content="Naninovel 是一款为作者打造的 Unity 叙事引擎。视觉小说、分支对话和过场动画，都用纯文本编写。自 2018 年起在 Asset Store 上架，已有数百款作品使用它发布。">
+    <meta property="og:image" content="https://naninovel.com/assets/img/og.jpg">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://naninovel.com/zh/">
+    <meta property="og:locale" content="zh_CN">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#0a0c12">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="/assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/mona.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/jb.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/img/hero/nani-default.webp" as="image" type="image/webp" fetchpriority="high" crossorigin>
+    <link rel="preload" href="/assets/img/hero/kohaku-default.webp" as="image" type="image/webp" fetchpriority="high" crossorigin>
+    <link rel="stylesheet" href="/assets/landing.css">
 </head>
-
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-light navbar-stick-dark" data-navbar="sticky">
-    <div class="container">
-
-        <div class="navbar-left">
-            <button class="navbar-toggler" type="button"><span class="navbar-toggler-icon"></span></button>
-            <a class="navbar-brand" href="/">
-                <img class="logo-dark" src="/assets/img/nani-logo.svg" alt="logo">
-                <img class="logo-light" src="/assets/img/nani-logo.svg" alt="logo">
-            </a>
+<!-- ─────────── Header ─────────── -->
+<header>
+    <div class="wrap header-inner">
+        <a href="/zh/" class="logo" aria-label="Naninovel 首页">
+            <img src="/assets/img/nani-logo.svg" alt="" width="34" height="34">
+            <span>Naninovel</span>
+        </a>
+        <nav aria-label="主导航">
+            <a href="/zh/faq">常见问题</a>
+            <a href="/zh/guide">指南</a>
+            <a href="https://account.naninovel.com">账户</a>
+            <a href="/zh/support">技术支持</a>
+            <button class="lang-toggle" popovertarget="lang-menu" popovertargetaction="show" aria-label="语言"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 8 6 6M4 14l6-6 2-3M2 5h12M7 2h1M22 22l-5-10-5 10M14 18h6"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        </nav>
+        <div class="lang-menu glass" id="lang-menu" popover>
+            <a class="choice" href="/" hreflang="en" lang="en"><span class="icon" aria-hidden="true">EN</span>English</a>
+            <a class="choice" href="/ja/" hreflang="ja" lang="ja"><span class="icon" aria-hidden="true">JA</span>日本語</a>
+            <a class="choice" href="/zh/" aria-current="page"><span class="icon" aria-hidden="true">ZH</span>中文</a>
         </div>
-
-        <section class="navbar-mobile">
-            <span class="navbar-divider d-mobile-none"></span>
-            <ul class="nav nav-navbar">
-                <a class="nav-link" href="/zh/faq">常见问题</a>
-                <a class="nav-link" href="/zh/guide">使用手册</a>
-                <a class="nav-link" href="https://naninovel.com/editor">编辑器</a>
-                <a class="nav-link" href="https://account.naninovel.com">账号</a>
-                <a class="nav-link" href="/zh/support">售后支持</a>
-            </ul>
-        </section>
-
-        <div class="col-auto col-lg-4 text-right">
-            <a class="btn btn-xs btn-round btn-outline-success d-lg-inline-block mr-2" href="#section-try">在线演示</a>
-            <a class="btn btn-xs btn-round btn-success" href="https://assetstore.unity.com/packages/tools/game-toolkits/naninovel-visual-novel-engine-135453"
-               target="_blank">立即购买</a>
-        </div>
-
-    </div>
-</nav>
-
-<!-- HEADER -->
-<header class="header text-white h-fullscreen overflow-hidden" style="background-image: linear-gradient(-45deg, #1baeea 0%, #2b3a97 100%);">
-    <canvas class="constellation" data-radius="0"></canvas>
-    <div class="container position-static">
-
-        <div class="row align-items-center h-100">
-
-            <div class="col-lg-7">
-                <h1 class="display-4 fw-500" style="width: max-content">面向 <span class="fw-400 pl-2"
-                                                                                        data-typing="编剧写手, 开发者, 职业创作者, 爱好者"
-                                                                                        data-type-speed="80"></span>
-                </h1>
-                <p class="lead mt-5 mb-7 mb-md-9 w-80"><strong>Naninovel</strong> 是一个功能完整、对编剧友好、并且可以完全自定义的 Unity 引擎视觉小说扩展插件。</p>
-                <a class="btn btn-xl btn-round btn-success w-200 mr-3 px-6 d-none d-md-inline-block"
-                   href="https://assetstore.unity.com/packages/tools/game-toolkits/naninovel-visual-novel-engine-135453" target="_blank">立即购买</a>
-                <a class="btn btn-xl btn-round btn-outline-light w-200 px-6" href="#section-demo">探索</a>
-            </div>
-
-            <div class="col-lg-5 d-none d-lg-block">
-            </div>
-
-        </div>
-
-        <div class="d-none d-lg-block sample-blocks">
-            <a href="/zh/guide/integration-options" target="_blank">
-                <img class="shadow-6" src="/assets/img/preview/integration.jpg" alt="..." data-aos="fade-up"
-                     data-aos-delay="0" data-aos-offset="0">
-            </a>
-
-            <a href="/zh/guide/unlockable-items#tips" target="_blank">
-                <img class="shadow-6" src="/assets/img/preview/tips.jpg" alt="..." data-aos="fade-up"
-                     data-aos-delay="200" data-aos-offset="0">
-            </a>
-
-            <a href="/zh/guide/text-printers#bubble-printer" target="_blank">
-                <img class="shadow-6" src="/assets/img/preview/bubble.jpg" alt="..." data-aos="fade-up"
-                     data-aos-delay="400" data-aos-offset="0">
-            </a>
-
-            <a href="/zh/guide/special-effects#bokeh" target="_blank">
-                <img class="shadow-6" src="/assets/img/preview/dof.jpg" alt="..." data-aos="fade-up" data-aos-delay="600"
-                     data-aos-offset="0">
-            </a>
-
-            <a href="/zh/guide/characters#generic-characters" target="_blank">
-                <img class="shadow-6" src="/assets/img/preview/generic-actor.jpg" alt="..." data-aos="fade-up"
-                     data-aos-delay="800" data-aos-offset="0">
-            </a>
-
-            <a href="/zh/guide/scenario-scripting#hot-reload" target="_blank">
-                <img class="shadow-6" src="/assets/img/preview/hot-reload.jpg" alt="..." data-aos="fade-up"
-                     data-aos-delay="1000" data-aos-offset="0">
-            </a>
-
-            <a href="/zh/guide/unlockable-items#cg-gallery" target="_blank">
-                <img class="shadow-6" src="/assets/img/preview/cg-gallery.jpg" alt="..." data-aos="fade-up"
-                     data-aos-delay="1200" data-aos-offset="0">
-            </a>
-
-            <a href="/zh/guide/scenario-scripting#script-graph" target="_blank">
-                <img class="shadow-6" src="/assets/img/preview/script-graph.jpg" alt="..." data-aos="fade-up"
-                     data-aos-delay="1400" data-aos-offset="0">
-            </a>
-
-            <a href="/zh/guide/scenario-scripting#ide-support" target="_blank">
-                <img class="shadow-6" src="/assets/img/preview/script-ide.jpg" alt="..." data-aos="fade-up"
-                     data-aos-delay="1700" data-aos-offset="0">
-            </a>
-        </div>
-
+        <a href="https://assetstore.unity.com/packages/slug/135453?locale=zh-CN" target="_blank" class="button">获取 Naninovel</a>
+        <button class="menu-toggle" aria-label="菜单" aria-expanded="false" aria-controls="menu-panel">
+            <span></span><span></span><span></span>
+        </button>
     </div>
 </header>
+<nav class="menu-panel glass" id="menu-panel" aria-label="主导航">
+    <a class="choice" href="/zh/faq"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span>常见问题</a>
+    <a class="choice" href="/zh/guide"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></span>指南</a>
+    <a class="choice" href="https://account.naninovel.com"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg></span>账户</a>
+    <a class="choice" href="/zh/support"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>技术支持</a>
+    <a class="choice primary" href="https://assetstore.unity.com/packages/slug/135453?locale=zh-CN" target="_blank"><span class="icon" aria-hidden="true"><svg class="filled" viewBox="-38 0 640 640"><path id="cart" d="M0 72C0 58.7 10.7 48 24 48L69.3 48C96.4 48 119.6 67.4 124.4 94L124.8 96L524.7 96C549.8 96 568.7 118.9 564 143.6L537.6 280.6C529.6 322 493.4 352 451.2 352L171.4 352L176.5 380.3C178.6 391.7 188.5 400 200.1 400L456 400C469.3 400 480 410.7 480 424C480 437.3 469.3 448 456 448L200.1 448C165.3 448 135.5 423.1 129.3 388.9L77.2 102.6C76.5 98.8 73.2 96 69.3 96L24 96C10.7 96 0 85.3 0 72zM162.6 304L451.2 304C470.4 304 486.9 290.4 490.5 271.6L514.9 144L133.5 144L162.6 304zM208 480C234.5 480 256 501.5 256 528C256 554.5 234.5 576 208 576C181.5 576 160 554.5 160 528C160 501.5 181.5 480 208 480zM432 480C458.5 480 480 501.5 480 528C480 554.5 458.5 576 432 576C405.5 576 384 554.5 384 528C384 501.5 405.5 480 432 480z"/></svg></span>获取 Naninovel</a>
+</nav>
+<div class="menu-backdrop"></div>
 
-<!-- MAIN CONTENT -->
-<main class="main-content">
+<main>
 
-    <!-- WHY NANINOVEL -->
-    <section id="section-demo" class="section overflow-hidden bg-gray">
-        <div class="container">
-
-            <header class="section-header">
-                <h2>为何选择 Naninovel?</h2>
-                <hr>
-                <p class="lead">我们致力于提供一个强大且可扩展的解决方案，让你能够构建出任何你能想象的作品——从经典的视觉小说，
-                    到融入各种类型独立游戏中的复杂非线性对话系统。</p>
-            </header>
-
-            <div class="row gap-y">
-
-                <div class="col-md-6 col-xl-4" data-aos="fade-up" data-aos-delay="0">
-                    <div class="media">
-                        <div class="lead-6 line-height-1 text-dark mr-5"><i class="icon-tools"></i></div>
-                        <div class="media-body">
-                            <h5>全面的工具集</h5>
-                            <p>获取制作完整视觉小说所需的一切：文本输出窗、条件分支剧情流程、存档与读取系统、特效效果，
-                                以及<a href="/zh/guide/#features" target="_blank">更多功能</a>。</p>
-                        </div>
+    <!-- ─────────── Hero ─────────── -->
+    <section class="hero" id="demo">
+        <div class="stage">
+            <div class="scene" aria-hidden="true">
+                <div class="bg">
+                    <div class="bg-column">
+                        <div class="bg-rays"></div>
+                        <div class="bg-glow"></div>
+                        <div class="light warm"></div>
+                        <div class="light cool"></div>
                     </div>
                 </div>
-
-                <div class="col-md-6 col-xl-4" data-aos="fade-up" data-aos-delay="150">
-                    <div class="media">
-                        <div class="lead-6 line-height-1 text-primary mr-5"><i class="icon-documents"></i></div>
-                        <div class="media-body">
-                            <h5>基于文档的演出脚本系统</h5>
-                            <p>专为编剧设计，<a href="/zh/guide/scenario-scripting" target="_blank">Naninovel 脚本</a>
-                                允许你使用熟悉的文本编辑器来开发复杂的文字冒险游戏。
-                                <mark>写故事，而不是写代码！</mark>
-                            </p>
-                        </div>
+                <div class="cast"><div class="cast-column">
+                    <div class="char kohaku" data-char="Kohaku">
+                        <img src="/assets/img/hero/kohaku-default.webp" data-look="Default" class="on front" alt="" width="664" height="1068" decoding="async" crossorigin>
+                        <img src="/assets/img/hero/kohaku-surprise.webp" data-look="Surprise" alt="" width="664" height="1068" decoding="async" fetchpriority="low" crossorigin>
+                        <span class="shade"></span>
                     </div>
-                </div>
-
-                <div class="col-md-6 col-xl-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="media">
-                        <div class="lead-6 line-height-1 text-warning mr-5"><i class="icon-picture"></i></div>
-                        <div class="media-body">
-                            <h5>高级视觉效果</h5>
-                            <p>由 <a href="https://unity.com" target="_blank">Unity 游戏引擎</a> 驱动，
-                                充分发挥现代 <abbr title="Graphics Processing Unit">GPU</abbr> 的强大性能；你可以创造独一无二的视觉效果，
-                                或使用<a href="https://naninovel.com/zh/guide/special-effects.html#snow" target="_blank">多种内置特效</a>。</p>
-                        </div>
+                    <div class="char nani" data-char="Nani">
+                        <img src="/assets/img/hero/nani-default.webp" data-look="Default" class="on front" alt="" width="544" height="1068" decoding="async" crossorigin>
+                        <img src="/assets/img/hero/nani-confidence.webp" data-look="Confidence" alt="" width="544" height="1068" decoding="async" fetchpriority="low" crossorigin>
+                        <span class="shade"></span>
                     </div>
-                </div>
-
-                <div class="col-md-6 col-xl-4" data-aos="fade-up" data-aos-delay="0">
-                    <div class="media">
-                        <div class="lead-6 line-height-1 text-info mr-5"><i class="icon-mobile"></i></div>
-                        <div class="media-body">
-                            <h5>跨平台支持</h5>
-                            <p>针对<a href="/zh/guide/compatibility#platforms" target="_blank">所有现代平台</a>进行了优化：
-                                包括桌面与移动设备、家用游戏主机以及网页浏览器。
-                                <mark>一次创作，随处发布！</mark>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-xl-4" data-aos="fade-up" data-aos-delay="150">
-                    <div class="media">
-                        <div class="lead-6 line-height-1 text-success mr-5"><i class="icon-puzzle"></i></div>
-                        <div class="media-body">
-                            <h5>可扩展性</h5>
-                            <p>提供开放的 API，允许你注入自定义的引擎系统实现、添加新的功能特性，
-                                并<a href="/zh/guide/integration-options" target="_blank">与现有项目集成</a>。
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-xl-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="media">
-                        <div class="lead-6 line-height-1 text-danger mr-5"><i class="icon-edit"></i></div>
-                        <div class="media-body">
-                            <h5>社区创作支持</h5>
-                            <p>使用 Naninovel 构建的游戏可以<a href="/zh/guide/community-modding" target="_blank">轻松进行修改</a>，
-                                以添加新的剧情、资源或本地化内容。  向玩家开放创作空间，让他们编织属于自己的故事，壮大你的粉丝群体！
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
+                </div></div>
             </div>
-
+            <hgroup class="hero-title rise">
+                <h1>为作者打造的<br>叙事引擎</h1>
+                <p class="hero-lead"><em>十余年</em>来，由创作各类<em>互动小说</em>的<em>数千位作者</em>共同打磨而成。</p>
+            </hgroup>
+            <div class="printer glass">
+                <div class="printer-name" aria-hidden="true"><span>Nani-kun</span></div>
+                <p class="printer-text" aria-hidden="true">你只管写。那么，你打算怎么做？</p>
+                <div class="choices" role="group" aria-label="选项">
+                    <a class="choice primary" href="https://assetstore.unity.com/packages/slug/135453?locale=zh-CN" target="_blank"><span class="icon" aria-hidden="true"><svg class="filled" viewBox="-38 0 640 640"><use href="#cart"/></svg></span>获取 Naninovel</a>
+                    <a class="choice" href="#more"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v13"/><path d="m6.5 12.5 5.5 5.5 5.5-5.5"/></svg></span>了解更多</a>
+                </div>
+                <span class="continue-mark"></span>
+            </div>
+            <p class="sr-only live-region" aria-live="polite"></p>
         </div>
-    </section>
 
-    <!-- VIDEO -->
-    <section class="section text-white" style="background-image: url(/assets/img/bg.jpg)" data-overlay="5">
-        <div class="container">
-            <header class="section-header">
-                <h2>通过视频了解Naninovel</h2>
-                <hr>
-                <p class="lead">通过三分钟的视频了解这些引人注目的特色功能。</p>
-            </header>
-            <div class="text-center mb-7">
-                <a class="btn btn-xl btn-glass btn-circle btn-light" href="https://player.bilibili.com/player.html?bvid=BV1HusPzFEkP"
-                   data-provide="lightbox"><i class="fa fa-play"></i></a>
+        <div class="hero-ui wrap">
+            <div class="script-slot">
+                <aside class="script rise rise-delayed" aria-label="本场景的脚本 Start.nani">
+                    <div class="script-bar">
+                        <span class="script-tab">Start.nani</span>
+                        <span class="script-controls"><button class="script-state" data-playing="播放中" data-ended="重新播放" disabled>待机</button></span>
+                    </div>
+                    <ol class="script-lines">
+                        <li><span><span class="keyword">@back</span> <span class="param">Prism</span></span></li>
+                        <li><span><span class="keyword">@char</span> <span class="param">Nani pos:75</span></span></li>
+                        <li><span><span class="keyword">@char</span> <span class="param">Kohaku pos:50 look:Right</span></span></li>
+                        <li><span><span class="name">Nani:</span> 嗨！整个场景就是一个纯文本文件，你正看着它运行。</span></li>
+                        <li><span><span class="name">Kohaku:</span> 只要写下发生了什么，它就会演出来？</span></li>
+                        <li><span><span class="name">Nani:</span> 就像写剧本一样。<span class="keyword">[-]</span>来场地震怎么样？</span></li>
+                        <li><span><span class="keyword">@shake</span> <span class="param">Camera wait!</span></span></li>
+                        <li><span><span class="name">Kohaku.Surprise:</span> 哇，这下我感觉到了！</span></li>
+                        <li><span><span class="name">Nani.Confidence:</span> 常用功能也都内置好了：菜单、存档、回滚、配音、本地化……</span></li>
+                        <li><span><span class="name">Nani:</span> 你只管写。<span class="keyword">[-]</span>那么，你打算怎么做？<span class="keyword">[&gt;]</span></span></li>
+                        <li><span><span class="keyword">@choice</span> "获取 Naninovel" <span class="param">goto:AssetStore</span></span></li>
+                        <li><span><span class="keyword">@choice</span> "了解更多" <span class="param">goto:#More</span></span></li>
+                    </ol>
+                </aside>
             </div>
         </div>
     </section>
 
-    <!-- MADE WITH -->
-    <section id="section-made-with" class="section overflow-hidden bg-gray">
-        <div class="container">
-            <header class="section-header">
-                <h2>使用了 Naninovel 的作品</h2>
-                <hr>
-                <p class="lead">来了解下那些使用 Naninovel 制作的超棒作品！</p>
-            </header>
+    <!-- ─────────── More ─────────── -->
+    <section id="more">
+        <div class="wrap">
+            <hgroup class="section-head reveal">
+                <h2><a href="#more">开发者信赖的引擎</a></h2>
+                <p>Naninovel 是一套用于互动叙事的<em>一体化工具套件</em>，<em>自 2018 年起</em>每年发布新版本，持续进化。</p>
+            </hgroup>
 
-            <div class="row gap-y">
-
-                <div class="col-6 col-lg-4" data-aos="fade-up" data-aos-delay="0">
-                    <a class="card made-with hover-shadow-10" href="https://www.nintendo.com/store/products/fault-stp-lightkravte-switch" target="_blank">
-                        <img class="card-img" src="/assets/img/made-with/light.jpg">
-                    </a>
-                </div>
-
-                <div class="col-6 col-lg-4" data-aos="fade-up" data-aos-delay="150">
-                    <a class="card made-with hover-shadow-10" href="https://store.steampowered.com/app/844670" target="_blank">
-                        <img class="card-img" src="/assets/img/made-with/happy.jpg">
-                    </a>
-                </div>
-
-                <div class="col-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                    <a class="card made-with hover-shadow-10" href="https://store.steampowered.com/app/2092510" target="_blank">
-                        <img class="card-img" src="/assets/img/made-with/king.jpg">
-                    </a>
-                </div>
-
-                <div class="col-6 col-lg-4" data-aos="fade-up" data-aos-delay="0">
-                    <a class="card made-with hover-shadow-10" href="https://apps.apple.com/us/app/rotaeno/id1614771445" target="_blank">
-                        <img class="card-img" src="/assets/img/made-with/rota.jpg">
-                    </a>
-                </div>
-
-                <div class="col-6 col-lg-4" data-aos="fade-up" data-aos-delay="150">
-                    <a class="card made-with hover-shadow-10" href="https://store.steampowered.com/app/3101040" target="_blank">
-                        <img class="card-img" src="/assets/img/made-with/witch.jpg">
-                    </a>
-                </div>
-
-                <div class="col-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                    <a class="card made-with hover-shadow-10" href="https://store.steampowered.com/app/2739630" target="_blank">
-                        <img class="card-img" src="/assets/img/made-with/devil.jpg">
-                    </a>
-                </div>
-
-                <div class="col-6 col-lg-4" data-aos="fade-up" data-aos-delay="0">
-                    <a class="card made-with hover-shadow-10" href="https://store.steampowered.com/app/2481020" target="_blank">
-                        <img class="card-img" src="/assets/img/made-with/vamp.jpg">
-                    </a>
-                </div>
-
-                <div class="col-6 col-lg-4" data-aos="fade-up" data-aos-delay="150">
-                    <a class="card made-with hover-shadow-10" href="https://store.steampowered.com/app/1672670" target="_blank">
-                        <img class="card-img" src="/assets/img/made-with/drift.jpg">
-                    </a>
-                </div>
-
-                <div class="col-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                    <a class="card made-with hover-shadow-10" href="https://store.steampowered.com/app/1529810" target="_blank">
-                        <img class="card-img" src="/assets/img/made-with/psy.jpg">
-                    </a>
-                </div>
-
-                <div class="col-6 col-lg-4" data-aos="fade-up" data-aos-delay="0">
-                    <a class="card made-with hover-shadow-10" href="https://store.steampowered.com/app/2017120" target="_blank">
-                        <img class="card-img" src="/assets/img/made-with/manor.jpg">
-                    </a>
-                </div>
-
-                <div class="col-6 col-lg-4" data-aos="fade-up" data-aos-delay="150">
-                    <a class="card made-with hover-shadow-10" href="https://store.steampowered.com/app/1414250" target="_blank">
-                        <img class="card-img" src="/assets/img/made-with/corpse.jpg">
-                    </a>
-                </div>
-
-                <div class="col-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                    <a class="card made-with hover-shadow-10" href="https://store.steampowered.com/app/1474120" target="_blank">
-                        <img class="card-img" src="/assets/img/made-with/shade.jpg">
-                    </a>
-                </div>
-
-                <div class="col-6 col-lg-4" data-aos="fade-up" data-aos-delay="0">
-                    <a class="card made-with hover-shadow-10" href="https://store.steampowered.com/app/2393870" target="_blank">
-                        <img class="card-img" src="/assets/img/made-with/whisper.jpg">
-                    </a>
-                </div>
-
-                <div class="col-6 col-lg-4" data-aos="fade-up" data-aos-delay="150">
-                    <a class="card made-with hover-shadow-10" href="https://store.steampowered.com/app/2507560" target="_blank">
-                        <img class="card-img" src="/assets/img/made-with/shojo.jpg">
-                    </a>
-                </div>
-
-                <div class="col-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                    <a class="card made-with hover-shadow-10" href="https://store.steampowered.com/app/1294060" target="_blank">
-                        <img class="card-img" src="/assets/img/made-with/rail.jpg">
-                    </a>
-                </div>
-
-                <div class="col-6 col-lg-4" data-aos="fade-up" data-aos-delay="0">
-                    <a class="card made-with hover-shadow-10" href="https://store-jp.nintendo.com/item/software/D70010000048131" target="_blank">
-                        <img class="card-img" src="/assets/img/made-with/supper.jpg">
-                    </a>
-                </div>
-
-                <div class="col-6 col-lg-4" data-aos="fade-up" data-aos-delay="150">
-                    <a class="card made-with hover-shadow-10" href="https://store.steampowered.com/app/3014680" target="_blank">
-                        <img class="card-img" src="/assets/img/made-with/herb.jpg">
-                    </a>
-                </div>
-
-                <div class="col-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                    <a class="card made-with hover-shadow-10" href="https://store.steampowered.com/app/1355790" target="_blank">
-                        <img class="card-img" src="/assets/img/made-with/threads.jpg">
-                    </a>
-                </div>
-
-                <div class="col-6 col-lg-4" data-aos="fade-up" data-aos-delay="0">
-                    <a class="card made-with hover-shadow-10" href="https://store-jp.nintendo.com/item/software/D70010000070481" target="_blank">
-                        <img class="card-img" src="/assets/img/made-with/peach.jpg">
-                    </a>
-                </div>
-
-                <div class="col-6 col-lg-4" data-aos="fade-up" data-aos-delay="150">
-                    <a class="card made-with hover-shadow-10" href="https://store.steampowered.com/app/1329110" target="_blank">
-                        <img class="card-img" src="/assets/img/made-with/star.jpg">
-                    </a>
-                </div>
-
-                <div class="col-6 col-lg-4" data-aos="fade-up" data-aos-delay="300">
-                    <a class="card made-with hover-shadow-10" href="https://store.steampowered.com/app/3995110" target="_blank">
-                        <img class="card-img" src="/assets/img/made-with/land.jpg">
-                    </a>
-                </div>
-
-            </div>
-
-            <div class="text-center mt-7">
-                <a class="btn btn-outline-primary px-7" target="_blank" href="/zh/made-with">查看更多</a>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- TRY BEFORE BUY -->
-    <section class="section" id="section-try">
-        <div class="container">
-            <header class="section-header">
-                <h2>通过演示了解Naninovel</h2>
-                <hr>
-                <p class="lead">还在犹豫 Naninovel 是否适合你？快去试试免费的演示版吧！</p>
-            </header>
-
-            <div class="row gap-y">
-
-                <div class="col-md-6 mx-auto">
-                    <a class="card card-body shadow-3 hover-shadow-6 text-default" href="https://naninovel.com/demo/" target="_blank">
-                        <div class="media align-items-center">
-                            <div class="mr-5">
-                    <span class="iconbox iconbox-xxl bg-pale-primary">
-                      <i class="icon-browser text-primary"></i>
-                    </span>
-                            </div>
-                            <div class="media-body">
-                                <h5>WebGL 在线演示</h5>
-                                <p class="mb-0">一个展示 Naninovel 各种功能的介绍性试玩，可直接在网页浏览器中运行。</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <div class="col-md-6 mx-auto">
-                    <a class="card card-body shadow-3 hover-shadow-6 text-default" href="https://naninovel.com/editor/" target="_blank">
-                        <div class="media align-items-center">
-                            <div class="mr-5">
-                    <span class="iconbox iconbox-xxl bg-pale-info">
-                      <i class="icon-upload text-info"></i>
-                    </span>
-                            </div>
-                            <div class="media-body">
-                                <h5>沙盒编辑器</h5>
-                                <p class="mb-0">独立的网页版编辑器，你可以在其中尝试编写剧情脚本并测试引擎功能。</p>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-    <!-- QUESTION -->
-    <section class="section py-7" style="background-color: #8ea6e6">
-        <div class="container">
-            <div class="row gap-y align-items-center">
-                <div class="col-md-9">
-                    <h4 class="mb-0 text-white text-center text-md-left">制作中遇到问题？在这里寻求帮助！</h4>
-                </div>
-
-                <div class="col-md-3 text-center text-md-right">
-                    <a class="btn btn-lg btn-round btn-light" href="/zh/support" target="_blank">售后支持</a>
-                </div>
+            <div class="features">
+                <article class="feature reveal">
+                    <h3>为作者设计的脚本</h3>
+                    <p>使用 <a href="/zh/guide/scenario-scripting" target="_blank">NaniScript</a> 在文本文档中编写故事，或在可视化的<a href="/zh/guide/editor" target="_blank">故事编辑器</a>中创作，无需编程。分支、变量和条件全部内置。</p>
+                    <figure class="shot"><img src="/assets/img/story-graph@1x.webp" srcset="/assets/img/story-graph@2x.webp 2x" alt="" width="360" height="92" loading="lazy"></figure>
+                </article>
+                <article class="feature reveal">
+                    <h3>开箱即用</h3>
+                    <p>完整的 UI、存档与读档、状态回滚、历史记录、本地化、自动配音、CG 画廊、对话触发器等数十个系统均已内置，<a href="/zh/guide/samples" target="_blank">即刻可用</a>。</p>
+                    <figure>
+                        <figcaption>Rooftop.nani</figcaption>
+                        <pre><span class="keyword">@unlock</span> <span class="param">CG/Rooftop</span> <span class="comment">; 加入画廊</span>
+<span class="keyword">@save</span> <span class="comment">; 自动存档</span></pre>
+                    </figure>
+                </article>
+                <article class="feature reveal">
+                    <h3>久经考验</h3>
+                    <p>已在 PC、主机和移动平台发布的<a href="#made-with">数百款作品</a>中经受实战考验。从独立创作者到发行商，Naninovel 是各种规模工作室的行业标准。</p>
+                    <figure class="shot"><img src="/assets/img/shelf@1x.webp" srcset="/assets/img/shelf@2x.webp 2x" alt="" width="360" height="92" loading="lazy"></figure>
+                </article>
+                <article class="feature reveal">
+                    <h3>适用于任何游戏</h3>
+                    <p>Naninovel 既可以用作视觉小说模板，也可以启用<a href="/zh/guide/getting-started#对话模式" target="_blank">对话模式</a>并集成到现有项目中，为任何类型的游戏添加分支对话和过场动画。</p>
+                    <figure>
+                        <figcaption>Game.cs · Talk.nani</figcaption>
+                        <pre><span class="name">Dialogue</span>.EnterAndPlay(<span class="param">"Talk"</span>); <span class="comment">// 从 C# 调用</span>
+<span class="keyword">@exitDialogue</span> <span class="comment">; 返回游戏</span></pre>
+                    </figure>
+                </article>
+                <article class="feature reveal">
+                    <h3>专业服务</h3>
+                    <p>优先支持、源代码访问、基于 GitHub 的安装以及 LTS 发布流。许可证包含 1 年的<a href="/zh/support/#支持计划" target="_blank">支持计划</a>，并可永久获取所有后续版本。</p>
+                    <figure class="shot"><img src="/assets/img/support@1x.webp" srcset="/assets/img/support@2x.webp 2x" alt="" width="360" height="92" loading="lazy"></figure>
+                </article>
+                <article class="feature reveal">
+                    <h3>完全可定制</h3>
+                    <p>每项内置功能都可以通过简单调整预制件或简洁的 C#&nbsp;API 来扩展、覆盖或替换，引擎架构<a href="/zh/guide/engine-architecture" target="_blank">从设计之初就是模块化的</a>。</p>
+                    <figure>
+                        <figcaption>Wave.cs · Start.nani</figcaption>
+                        <pre><span class="keyword">class</span> <span class="name">Wave</span> : <span class="name">Command</span> { } <span class="comment">// 在 C# 中定义</span>
+<span class="keyword">@wave</span> <span class="comment">; 即可作为脚本命令使用</span></pre>
+                    </figure>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- REVIEWS -->
-    <section class="section bg-gray">
-        <div class="container">
-            <header class="section-header">
-                <h2>客户评价</h2>
-                <hr>
-                <p class="lead">来听听我们的客户如何评价</p>
-            </header>
-
-            <div data-provide="slider" data-dots="true" data-autoplay="true" data-slides-to-show="2">
-                <div class="p-5">
-                    <div class="card border hover-shadow-6">
-                        <div class="card-body px-5">
-                            <div class="row">
-                                <div class="col-auto mr-auto">
-                                    <h6><strong>绝佳的制作工具!</strong></h6>
-                                </div>
-
-                                <div class="col-auto">
-                                    <div class="rating mb-3">
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <p>我发现 Naninovel 对各种类型的多媒体项目都非常有用。它正好具备我所需要的工具组合：
-                                结构完善的框架、功能全面的 API、良好的脚本支持，以及与 Unity 的无缝集成。</p>
-                            <p class="small-2 text-lighter mb-0">By <a class="text-inherit"
-                                                                       href="https://assetstore.unity.com/packages/tools/game-toolkits/naninovel-visual-novel-engine-135453/reviews/?page=1&sort_by=helpful"
-                                                                       target="_blank"><em>dmcvocation</em></a></p>
-
-                        </div>
-                    </div>
+    <!-- ─────────── Trailer ─────────── -->
+    <section id="trailer">
+        <div class="wrap">
+            <hgroup class="section-head reveal">
+                <h2><a href="#trailer">观看实际效果</a></h2>
+                <p>通过<em>3 分钟</em>的预告片了解<em>主要功能</em>。</p>
+            </hgroup>
+            <div class="trailer-frame reveal">
+                <div class="youtube">
+                    <button class="youtube-poster" aria-label="播放预告片">
+                        <img src="/assets/img/trailer.webp" loading="lazy" decoding="async" width="1920" height="1080" alt="">
+                        <svg class="youtube-play" viewBox="0 0 100 100" aria-hidden="true">
+                            <defs>
+                                <path id="play-shape" d="M27.77 12.53L84.23 45.47Q92 50 84.23 54.53L27.77 87.47Q20 92 20 83L20 17Q20 8 27.77 12.53Z"/>
+                                <linearGradient id="play-glass" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0" stop-color="#fff" stop-opacity=".95"/>
+                                    <stop offset=".45" stop-color="#fff" stop-opacity=".72"/>
+                                    <stop offset=".75" style="stop-color: var(--periwinkle)" stop-opacity=".62"/>
+                                    <stop offset="1" style="stop-color: var(--aqua)" stop-opacity=".72"/>
+                                </linearGradient>
+                                <linearGradient id="play-rim" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0" stop-color="#fff"/>
+                                    <stop offset=".25" style="stop-color: var(--aqua)"/>
+                                    <stop offset=".5" style="stop-color: var(--periwinkle)" stop-opacity=".7"/>
+                                    <stop offset=".75" stop-color="#fff" stop-opacity=".35"/>
+                                    <stop offset="1" style="stop-color: var(--rose)"/>
+                                </linearGradient>
+                                <radialGradient id="play-glint">
+                                    <stop offset="0" stop-color="#fff" stop-opacity=".55"/>
+                                    <stop offset=".45" stop-color="#fff" stop-opacity=".2"/>
+                                    <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+                                </radialGradient>
+                                <clipPath id="play-clip"><use href="#play-shape"/></clipPath>
+                            </defs>
+                            <use class="body" href="#play-shape" fill="url(#play-glass)" stroke="url(#play-rim)"/>
+                            <circle class="glint" fill="url(#play-glint)" clip-path="url(#play-clip)"/>
+                        </svg>
+                    </button>
                 </div>
-
-                <div class="p-5">
-                    <div class="card border hover-shadow-6">
-                        <div class="card-body px-5">
-                            <div class="row">
-                                <div class="col-auto mr-auto">
-                                    <h6><strong>对新人友好，对专业创作者足够深入</strong></h6>
-                                </div>
-
-                                <div class="col-auto">
-                                    <div class="rating mb-3">
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <p>这个插件非常易于使用，对于最常见、最基础的视觉小说来说，几乎不需要编程就能完成制作。
-                                同时，它也支持自定义与扩展，可应对更复杂的需求，是一个功能十分灵活的工具。</p>
-                            <p class="small-2 text-lighter mb-0">By <a class="text-inherit"
-                                                                       href="https://assetstore.unity.com/packages/tools/game-toolkits/naninovel-visual-novel-engine-135453/reviews/?page=1&sort_by=helpful"
-                                                                       target="_blank"><em>CMartinezB</em></a></p>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-5">
-                    <div class="card border hover-shadow-6">
-                        <div class="card-body px-5">
-                            <div class="row">
-                                <div class="col-auto mr-auto">
-                                    <h6><strong>毫无疑问是目前最好的视觉小说制作工具</strong></h6>
-                                </div>
-
-                                <div class="col-auto">
-                                    <div class="rating mb-3">
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <p>我已经使用 Naninovel 几个星期了，可以毫不夸张地说，它已经成为在 Unity 中制作视觉小说的事实标准。
-                                商店里确实还有其他 VN 工具，但无论是易用性、功能性，还是开发者的支持力度，都远远不及 Naninovel。</p>
-                            <p class="small-2 text-lighter mb-0">By <a class="text-inherit"
-                                                                       href="https://assetstore.unity.com/packages/tools/game-toolkits/naninovel-visual-novel-engine-135453/reviews/?page=1&sort_by=helpful"
-                                                                       target="_blank"><em>unitylover</em></a></p>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-5">
-                    <div class="card border hover-shadow-6">
-                        <div class="card-body px-5">
-                            <div class="row">
-                                <div class="col-auto mr-auto">
-                                    <h6><strong>出色的工具——而且持续在进步</strong></h6>
-                                </div>
-
-                                <div class="col-auto">
-                                    <div class="rating mb-3">
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <p>开发者非常活跃且响应迅速；这是我在 Unity Asset Store 上接触过最容易联系到的开发者之一。
-                                Naninovel 中用于编写演出脚本的语法简单易懂，一旦掌握它的一些小特性，就能非常顺畅地使用。</p>
-                            <p class="small-2 text-lighter mb-0">By <a class="text-inherit"
-                                                                       href="https://assetstore.unity.com/packages/tools/game-toolkits/naninovel-visual-novel-engine-135453/reviews/?page=1&sort_by=helpful"
-                                                                       target="_blank"><em>Firgof</em></a></p>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-5">
-                    <div class="card border hover-shadow-6">
-                        <div class="card-body px-5">
-                            <div class="row">
-                                <div class="col-auto mr-auto">
-                                    <h6><strong>优秀的 Unity 视觉小说引擎</strong></h6>
-                                </div>
-
-                                <div class="col-auto">
-                                    <div class="rating mb-3">
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <p>Naninovel 摒弃了许多其他工具常见的节点式工作流程，转而采用清晰、可读性强的脚本化编写方式来处理对话与场景演出。
-                                这在某种程度上类似于 Ren’Py，但没有 Python 的格式负担。
-                                它在许多 Unity 视觉小说/叙事类工具之上更进一步，内置了丰富的功能，如剧情回顾、倒带(!)、自动推进文本、跳读等……
-                                我非常喜欢这款工具，强烈推荐！</p>
-                            <p class="small-2 text-lighter mb-0">By <a class="text-inherit"
-                                                                       href="https://assetstore.unity.com/packages/tools/game-toolkits/naninovel-visual-novel-engine-135453/reviews/?page=1&sort_by=helpful"
-                                                                       target="_blank"><em>sunlabyrinth</em></a></p>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-5">
-                    <div class="card border hover-shadow-6">
-                        <div class="card-body px-5">
-                            <div class="row">
-                                <div class="col-auto mr-auto">
-                                    <h6><strong>商店中最好的 VN 工具！</strong></h6>
-                                </div>
-
-                                <div class="col-auto">
-                                    <div class="rating mb-3">
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <p>过去几年我尝试过许多不同的 Unity 视觉小说解决方案，可以肯定地说：Naninovel 是其中最好的。
-                                它使用的脚本语言非常简单，一旦开始上手，就能轻松理解和掌握。</p>
-                            <p class="small-2 text-lighter mb-0">By <a class="text-inherit"
-                                                                       href="https://assetstore.unity.com/packages/tools/game-toolkits/naninovel-visual-novel-engine-135453/reviews/?page=1&sort_by=helpful"
-                                                                       target="_blank"><em>Beru</em></a></p>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-5">
-                    <div class="card border hover-shadow-6">
-                        <div class="card-body px-5">
-                            <div class="row">
-                                <div class="col-auto mr-auto">
-                                    <h6><strong>真心出色</strong></h6>
-                                </div>
-
-                                <div class="col-auto">
-                                    <div class="rating mb-3">
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <p>我几乎试过市面上所有的视觉小说插件，而 Naninovel 是迄今为止最智能、最适合新手使用的一个。
-                                文档内容详尽，支持也极为出色——我当时缺少一个功能（让玩家能输入自定义变量如名字），
-                                开发者在与我简短沟通后就添加了该功能。</p>
-                            <p class="small-2 text-lighter mb-0">By <a class="text-inherit"
-                                                                       href="https://assetstore.unity.com/packages/tools/game-toolkits/naninovel-visual-novel-engine-135453/reviews/?page=1&sort_by=helpful"
-                                                                       target="_blank"><em>rockcandygames</em></a></p>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-5">
-                    <div class="card border hover-shadow-6">
-                        <div class="card-body px-5">
-                            <div class="row">
-                                <div class="col-auto mr-auto">
-                                    <h6><strong>最棒的视觉小说引擎！友好且强大</strong></h6>
-                                </div>
-
-                                <div class="col-auto">
-                                    <div class="rating mb-3">
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <p>作为一名专业的 3D 美术师，我非常欣赏它所提供的大量现成特效，这些特效可以轻松应用到背景或角色上，
-                                并且角色精灵的动画与操作也非常方便。
-                                自动语音（Auto Voicing）对于有配音的游戏来说更是极佳功能！
-                                现成且可配置的存档系统同样是必不可少的。</p>
-                            <p class="small-2 text-lighter mb-0">By <a class="text-inherit"
-                                                                       href="https://assetstore.unity.com/packages/tools/game-toolkits/naninovel-visual-novel-engine-135453/reviews/?page=1&sort_by=helpful"
-                                                                       target="_blank"><em>MikBo</em></a></p>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-5">
-                    <div class="card border hover-shadow-6">
-                        <div class="card-body px-5">
-                            <div class="row">
-                                <div class="col-auto mr-auto">
-                                    <h6><strong>迄今为止最好的视觉小说解决方案！</strong></h6>
-                                </div>
-
-                                <div class="col-auto">
-                                    <div class="rating mb-3">
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <p>Naninovel 使用一种名为 Novel Script 的自定义语言，你可以通过简单直观的指令在 .txt 文件中编写故事与游戏逻辑。
-                                结合易于使用的图形界面，你只需几分钟就能创建出视觉小说的完整场景。</p>
-                            <p class="small-2 text-lighter mb-0">By <a class="text-inherit"
-                                                                       href="https://assetstore.unity.com/packages/tools/game-toolkits/naninovel-visual-novel-engine-135453/reviews/?page=1&sort_by=helpful"
-                                                                       target="_blank"><em>unity0137</em></a></p>
-
-                        </div>
-                    </div>
-                </div>
-
-                <div class="p-5">
-                    <div class="card border hover-shadow-6">
-                        <div class="card-body px-5">
-                            <div class="row">
-                                <div class="col-auto mr-auto">
-                                    <h6><strong>令人惊叹的视觉小说插件与出色的开发者！</strong></h6>
-                                </div>
-
-                                <div class="col-auto">
-                                    <div class="rating mb-3">
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                        <label class="fa fa-star active"></label>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <p>Naninovel 是一个视觉小说引擎，提供了完善且易于使用的 VN 核心功能：音频过渡、跳读/自动/日志/存档/读档控制，
-                                2D、Live2D 和 3D 角色头像，背景图像与视频，图像特效、角色震动、位置控制等众多功能。
-                                整体体验非常优秀！</p>
-                            <p class="small-2 text-lighter mb-0">By <a class="text-inherit"
-                                                                       href="https://assetstore.unity.com/packages/tools/game-toolkits/naninovel-visual-novel-engine-135453/reviews/?page=1&sort_by=helpful"
-                                                                       target="_blank"><em>Skyguy1337</em></a></p>
-
-                        </div>
-                    </div>
-                </div>
-
             </div>
-
+            <dialog class="theater" aria-label="Naninovel 预告片">
+                <div class="theater-shade"></div>
+                <div class="theater-stage">
+                    <div class="theater-screen" data-src="https://player.bilibili.com/player.html?bvid=BV1HusPzFEkP&amp;autoplay=1">
+                        <img src="/assets/img/trailer.webp" loading="lazy" decoding="async" width="1920" height="1080" alt="">
+                        <svg class="youtube-play" viewBox="0 0 100 100" aria-hidden="true">
+                            <use class="body" href="#play-shape" fill="url(#play-glass)" stroke="url(#play-rim)"/>
+                            <circle class="glint" fill="url(#play-glint)" clip-path="url(#play-clip)"/>
+                        </svg>
+                    </div>
+                    <div class="theater-bar">
+                        <button class="theater-close" autofocus><kbd>Esc</kbd>关闭</button>
+                    </div>
+                </div>
+            </dialog>
         </div>
     </section>
 
-    <!-- CTA -->
-    <section class="section text-white py-8">
-        <canvas class="overlay opacity-95" data-granim="#667eea,#764ba2,#00cdac,#3cba92" width="2127"
-                height="592"></canvas>
-
-        <div class="container">
-            <header class="section-header">
-                <h2 class="display-3 fw-400"><span class="mark-underline">立即</span> 使用</h2>
-                <hr>
-                <p class="lead-2">准备好创作你自己的故事吗?<br/>点击下方按钮立即购入 Naninovel</p>
-            </header>
-
-            <p class="text-center">
-                <a class="btn btn-xl btn-round btn-light w-250"
-                   href="https://assetstore.unity.com/packages/tools/game-toolkits/naninovel-visual-novel-engine-135453">前往购买</a><br>
-                <small><a class="text-white opacity-80" href="/zh/guide/">或通过文档学习如何了解更多具体内容</a></small>
-            </p>
+    <!-- ─────────── Made with Naninovel ─────────── -->
+    <section id="made-with">
+        <div class="wrap">
+            <hgroup class="section-head reveal">
+                <h2><a href="#made-with">使用 Naninovel 制作的游戏</a></h2>
+                <p>使用 Naninovel 打造的<em>精彩游戏</em>已在各大<em>主流平台</em>发布。</p>
+            </hgroup>
+            <!-- Don't forget to strip JPEG metadata from game covers: it's ~25% of the size. -->
+            <div class="game-grid">
+                <a href="https://www.nintendo.com/store/products/fault-stp-lightkravte-switch" target="_blank" class="game reveal"><img src="/assets/img/made-with/light.jpg" alt="游戏封面" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/844670?l=schinese" target="_blank" class="game reveal"><img src="/assets/img/made-with/happy.jpg" alt="游戏封面" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/2092510?l=schinese" target="_blank" class="game reveal"><img src="/assets/img/made-with/king.jpg" alt="游戏封面" loading="lazy"></a>
+                <a href="https://apps.apple.com/cn/app/rotaeno/id1614771445" target="_blank" class="game reveal"><img src="/assets/img/made-with/rota.jpg" alt="游戏封面" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/3101040?l=schinese" target="_blank" class="game reveal"><img src="/assets/img/made-with/witch.jpg" alt="游戏封面" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/2739630?l=schinese" target="_blank" class="game reveal"><img src="/assets/img/made-with/devil.jpg" alt="游戏封面" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/2481020?l=schinese" target="_blank" class="game reveal"><img src="/assets/img/made-with/vamp.jpg" alt="游戏封面" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/1672670?l=schinese" target="_blank" class="game reveal"><img src="/assets/img/made-with/drift.jpg" alt="游戏封面" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/1529810?l=schinese" target="_blank" class="game reveal"><img src="/assets/img/made-with/psy.jpg" alt="游戏封面" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/2017120?l=schinese" target="_blank" class="game reveal"><img src="/assets/img/made-with/manor.jpg" alt="游戏封面" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/1414250?l=schinese" target="_blank" class="game reveal"><img src="/assets/img/made-with/corpse.jpg" alt="游戏封面" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/1474120?l=schinese" target="_blank" class="game reveal"><img src="/assets/img/made-with/shade.jpg" alt="游戏封面" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/2393870?l=schinese" target="_blank" class="game reveal"><img src="/assets/img/made-with/whisper.jpg" alt="游戏封面" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/2507560?l=schinese" target="_blank" class="game reveal"><img src="/assets/img/made-with/shojo.jpg" alt="游戏封面" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/1294060?l=schinese" target="_blank" class="game reveal"><img src="/assets/img/made-with/rail.jpg" alt="游戏封面" loading="lazy"></a>
+                <a href="https://store-jp.nintendo.com/item/software/D70010000048131" target="_blank" class="game reveal"><img src="/assets/img/made-with/supper.jpg" alt="游戏封面" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/3014680?l=schinese" target="_blank" class="game reveal"><img src="/assets/img/made-with/herb.jpg" alt="游戏封面" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/4240150?l=schinese" target="_blank" class="game reveal"><img src="/assets/img/made-with/sister.jpg" alt="游戏封面" loading="lazy"></a>
+                <a href="https://store-jp.nintendo.com/item/software/D70010000070481" target="_blank" class="game reveal"><img src="/assets/img/made-with/peach.jpg" alt="游戏封面" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/1329110?l=schinese" target="_blank" class="game reveal"><img src="/assets/img/made-with/star.jpg" alt="游戏封面" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/3995110?l=schinese" target="_blank" class="game reveal"><img src="/assets/img/made-with/land.jpg" alt="游戏封面" loading="lazy"></a>
+            </div>
+            <div class="more-row reveal">
+                <a class="choice" href="/made-with" target="_blank"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>浏览更多游戏</a>
+            </div>
         </div>
     </section>
+
+    <!-- ─────────── Try before buy ─────────── -->
+    <section id="try">
+        <div class="wrap">
+            <hgroup class="section-head reveal">
+                <h2><a href="#try">在浏览器中试用</a></h2>
+                <p>体验<em>免费演示</em>，无需<em>安装 Unity</em>，也无需下载。</p>
+            </hgroup>
+            <div class="try-cards">
+                <a class="try-card reveal" href="/demo" target="_blank">
+                    <img src="/assets/img/try-demo@1x.webp" srcset="/assets/img/try-demo@2x.webp 2x" alt="" width="723" height="433" loading="lazy">
+                    <h3>游戏演示<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></h3>
+                    <p>一款完全不使用 C# 脚本、用 Naninovel 制作的入门游戏，以及各项引擎功能的示例。</p>
+                </a>
+                <a class="try-card reveal" href="/editor" target="_blank">
+                    <img src="/assets/img/try-sandbox@1x.webp" srcset="/assets/img/try-sandbox@2x.webp 2x" alt="" width="723" height="433" loading="lazy">
+                    <h3>编辑器沙盒<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></h3>
+                    <p>沙盒模式下的故事编辑器。无需打开 Unity，即可编写剧本脚本并测试引擎功能。</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────── Reviews ─────────── -->
+    <section id="reviews">
+        <div class="wrap">
+            <hgroup class="section-head reveal">
+                <h2><a href="#reviews">用户评价</a></h2>
+                <p>来自 Asset Store 的<em>真实用户反馈</em>。</p>
+            </hgroup>
+            <ul class="review-list">
+                <li class="review reveal">
+                    <h3 data-reveal>非常好用的工具！</h3>
+                    <p>我发现 Naninovel 对各种多媒体项目都非常有用。它<mark>恰好具备我需要的工具组合</mark>：统一的框架、全面的 API、出色的脚本支持，以及与 Unity 的集成。</p>
+                    <span class="reviewer">dmcvocation</span>
+                </li>
+                <li class="review reveal">
+                    <h3 data-reveal>新手易上手，高手有深度</h3>
+                    <p>这款资源非常易用，对于最简单、也最常见的视觉小说，几乎不需要编程，甚至完全不用。同时，它也能针对更特殊的需求进行定制和扩展，总体而言是一款<mark>用途非常广泛的工具</mark>。</p>
+                    <span class="reviewer">CMartinezB</span>
+                </li>
+                <li class="review reveal">
+                    <h3 data-reveal>出色的工具，而且越来越好</h3>
+                    <p>开发者非常活跃，回复也很及时，是我在 Unity Asset Store 上合作过的<mark>最容易联系的开发者</mark>。用来编写 Naninovel 小说的迷你脚本语言简单直接，只要摸清它的几个小特点，用起来毫不费力。</p>
+                    <span class="reviewer">Firgof</span>
+                </li>
+                <li class="review reveal">
+                    <h3 data-reveal>出色的 Unity 视觉小说引擎</h3>
+                    <p>Naninovel 摒弃了许多其他工具采用的节点式工作流，改用<mark>非常清晰、易读的脚本方式</mark>来编写对话、编排场景。凭借内置的视觉小说功能，它远远超越了 Unity 上的许多其他视觉小说和叙事工具。</p>
+                    <span class="reviewer">sunlabyrinth</span>
+                </li>
+                <li class="review reveal">
+                    <h3 data-reveal>商店里最好的视觉小说工具！</h3>
+                    <p>过去几年我试过许多 Unity 视觉小说方案，毫无疑问，<mark>Naninovel 是其中最好的</mark>。它使用一种简单的脚本语言，一旦上手，理解起来并不费劲。</p>
+                    <span class="reviewer">Beru</span>
+                </li>
+                <li class="review reveal">
+                    <h3 data-reveal>真的非常出色</h3>
+                    <p>我试过所有能找到的视觉小说资源，这一款无疑设计得最巧妙，对我这样的新手也最友好。文档详尽，<mark>支持更是一流</mark>。</p>
+                    <span class="reviewer">rockcandygames</span>
+                </li>
+                <li class="review reveal">
+                    <h3 data-reveal>最好的视觉小说引擎！易用又强大</h3>
+                    <p>作为一名专业 3D 美术，我非常欣赏它<mark>丰富的现成特效</mark>，可以直接用在背景和角色上，角色立绘的动画和操作也非常方便。如果有配音，自动配音也是超级实用的功能！</p>
+                    <span class="reviewer">MikBo</span>
+                </li>
+                <li class="review reveal">
+                    <h3 data-reveal>易用又易扩展，难能可贵</h3>
+                    <p>我是一名编剧兼设计师，在手游行业从事商业视觉小说创作已有 4 年。在我看来，Unity+Naninovel <mark>完胜其他所有方案</mark>。而且是大幅领先，根本不在一个档次。</p>
+                    <span class="reviewer">bmcarbaugh</span>
+                </li>
+                <li class="review reveal">
+                    <h3 data-reveal>出色的视觉小说资源，超棒的开发者！</h3>
+                    <p>这款资源好用又强大，这一点一开始就显而易见；而真正上手之后才会发现，它的服务架构让整个库<mark>极其灵活、易于扩展</mark>。这正是一个优秀的库应有的样子。</p>
+                    <span class="reviewer">RecursiveFrog</span>
+                </li>
+            </ul>
+            <div class="more-row reveal">
+                <a class="choice" href="https://assetstore.unity.com/packages/slug/135453/reviews?locale=zh-CN" target="_blank"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>查看更多评价</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────── Get started ─────────── -->
+    <section id="get-started">
+        <div class="wrap">
+            <div class="get-started-frame reveal">
+                <img class="nani-head" src="/assets/img/nani-logo.svg" alt="" width="176" height="172" loading="lazy">
+                <img class="nani-paws" src="/assets/img/nani-paws-inner.svg" alt="" width="176" height="35" loading="lazy">
+                <div class="get-started-panel">
+                    <div class="get-started-rays"></div>
+                    <h2>准备好了就开始吧</h2>
+                    <ul class="get-started-menu">
+                        <li class="primary"><a href="https://assetstore.unity.com/packages/slug/135453?locale=zh-CN" target="_blank"><span class="label">开始游戏</span><span class="description">在 Unity Asset Store 获取 Naninovel</span></a></li>
+                        <li><a href="/zh/guide" target="_blank"><span class="label">继续游戏</span><span class="description">阅读指南</span></a></li>
+                        <li><a href="/made-with" target="_blank"><span class="label">鉴赏</span><span class="description">浏览使用 Naninovel 制作的游戏</span></a></li>
+                        <li><a href="/zh/support" target="_blank"><span class="label">特典</span><span class="description">联系技术支持</span></a></li>
+                    </ul>
+                </div>
+                <img class="nani-paws" src="/assets/img/nani-paws-outer.svg" alt="" width="176" height="35" loading="lazy">
+            </div>
+        </div>
+    </section>
+
 </main>
 
-<!-- FOOTER -->
-<footer class="footer">
-    <div class="container">
-        <div class="row gap-y align-items-center">
-
-            <div class="col-md-6 text-center text-md-left">
-                <small>©
-                    <script>document.write(new Date().getFullYear().toString());</script>
-                    Elringus 版权所有，
-                    中文翻译由<a href="https://nanana.cn" target="_blank">呐呐呐制作组</a>提供</small>
-            </div>
-
-            <div class="col-md-6 text-center text-md-right">
-                <div class="social">
-                    <a href="https://github.com/naninovel" title="GitHub" target="_blank">
-                        <i class="fa-custom fa-custom-github"></i>
-                    </a>
-                    <a href="https://discord.gg/BfkNqem" title="Discord" target="_blank">
-                        <i class="fa-custom fa-custom-discord"></i>
-                    </a>
-                    <a href="https://x.com/naniengine" title="𝕏" target="_blank">
-                        <i class="fa-custom fa-custom-x"></i>
-                    </a>
-                    <a href="https://bsky.app/profile/naninovel.com" title="Bluesky" target="_blank">
-                        <i class="fa-custom fa-custom-bsky"></i>
-                    </a>
-                    <a href="https://space.bilibili.com/3546701520439328" title="BiliBili" target="_blank">
-                        <i class="fa-custom fa-custom-bilibili"></i>
-                    </a>
-                </div>
-            </div>
-
+<!-- ─────────── Footer ─────────── -->
+<footer>
+    <div class="wrap"><div class="footer-inner">
+        <div class="footer-left">
+            <span>&copy; 2018<span id="year"></span> Elringus</span>
+            <span>中文翻译由<a href="https://nanana.cn" target="_blank">呐呐呐制作组</a>提供</span>
+            <a href="/eula">EULA</a>
+            <a href="/privacy-policy">隐私政策</a>
         </div>
-    </div>
+        <div class="footer-socials">
+            <a href="https://github.com/naninovel" target="_blank" aria-label="GitHub">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 .3a12 12 0 00-3.8 23.38c.6.11.82-.26.82-.58v-2.16c-3.34.73-4.04-1.61-4.04-1.61a3.18 3.18 0 00-1.33-1.76c-1.09-.74.08-.73.08-.73a2.52 2.52 0 011.84 1.24 2.56 2.56 0 003.5 1 2.56 2.56 0 01.76-1.6c-2.67-.3-5.47-1.33-5.47-5.93a4.64 4.64 0 011.24-3.22 4.3 4.3 0 01.12-3.18s1-.32 3.3 1.23a11.38 11.38 0 016 0c2.28-1.55 3.29-1.23 3.29-1.23a4.3 4.3 0 01.12 3.18 4.64 4.64 0 011.23 3.22c0 4.61-2.8 5.63-5.48 5.92a2.86 2.86 0 01.82 2.22v3.29c0 .32.21.7.82.58A12 12 0 0012 .3z"/>
+                </svg>
+            </a>
+            <a href="https://discord.gg/BfkNqem" target="_blank" aria-label="Discord">
+                <svg viewBox="0 0 24 24">
+                    <path d="M20.32 4.37A19.8 19.8 0 0015.39 3a13.15 13.15 0 00-.64 1.28 18.39 18.39 0 00-5.5 0A12.92 12.92 0 008.6 3a19.72 19.72 0 00-4.93 1.37A20.07 20.07 0 00.1 18.64a19.91 19.91 0 006.07 3.06 14.58 14.58 0 001.26-2.06 12.85 12.85 0 01-2-.96c.17-.12.33-.25.49-.38a14.2 14.2 0 0012.16 0c.16.13.32.26.49.38a12.92 12.92 0 01-2 .96 14.44 14.44 0 001.26 2.06 19.87 19.87 0 006.07-3.06A20.04 20.04 0 0020.32 4.37zM8.02 15.67c-1.18 0-2.15-1.08-2.15-2.42s.95-2.42 2.15-2.42 2.17 1.09 2.15 2.42c0 1.34-.95 2.42-2.15 2.42zm7.96 0c-1.18 0-2.15-1.08-2.15-2.42s.95-2.42 2.15-2.42 2.17 1.09 2.15 2.42c0 1.34-.94 2.42-2.15 2.42z"/>
+                </svg>
+            </a>
+            <a href="https://x.com/naniengine" target="_blank" aria-label="X (Twitter)">
+                <svg viewBox="0 0 24 24">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+            </a>
+            <a href="https://bsky.app/profile/naninovel.com" target="_blank" aria-label="Bluesky">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565C.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479c.815 2.736 3.713 3.66 6.383 3.364q.204-.03.415-.056q-.207.033-.415.056c-3.912.58-7.387 2.005-2.83 7.078c5.013 5.19 6.87-1.113 7.823-4.308c.953 3.195 2.05 9.271 7.733 4.308c4.267-4.308 1.172-6.498-2.74-7.078a9 9 0 0 1-.415-.056q.21.026.415.056c2.67.297 5.568-.628 6.383-3.364c.246-.828.624-5.79.624-6.478c0-.69-.139-1.861-.902-2.206c-.659-.298-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8"/>
+                </svg>
+            </a>
+            <a href="https://space.bilibili.com/3546701520439328" target="_blank" aria-label="Bilibili">
+                <svg viewBox="0 0 24 24">
+                    <path d="M17.813 4.653h.854q2.266.08 3.773 1.574Q23.946 7.72 24 9.987v7.36q-.054 2.266-1.56 3.773c-1.506 1.507-2.262 1.524-3.773 1.56H5.333q-2.266-.054-3.773-1.56C.053 19.614.036 18.858 0 17.347v-7.36q.054-2.267 1.56-3.76t3.773-1.574h.774l-1.174-1.12a1.23 1.23 0 0 1-.373-.906q0-.534.373-.907l.027-.027q.4-.373.92-.373t.92.373L9.653 4.44q.107.106.187.213h4.267a.8.8 0 0 1 .16-.213l2.853-2.747q.4-.373.92-.373c.347 0 .662.151.929.4s.391.551.391.907q0 .532-.373.906zM5.333 7.24q-1.12.027-1.88.773q-.76.748-.786 1.894v7.52q.026 1.146.786 1.893t1.88.773h13.334q1.12-.026 1.88-.773t.786-1.893v-7.52q-.026-1.147-.786-1.894t-1.88-.773zM8 11.107q.56 0 .933.373q.375.374.4.96v1.173q-.025.586-.4.96q-.373.375-.933.374c-.56-.001-.684-.125-.933-.374q-.375-.373-.4-.96V12.44q0-.56.386-.947q.387-.386.947-.386m8 0q.56 0 .933.373q.375.374.4.96v1.173q-.025.586-.4.96q-.373.375-.933.374c-.56-.001-.684-.125-.933-.374q-.375-.373-.4-.96V12.44q.025-.586.4-.96q.373-.373.933-.373"/>
+                </svg>
+            </a>
+        </div>
+    </div></div>
 </footer>
 
-<!-- SCRIPTS -->
-<script src="/assets/js/page.min.js"></script>
-<script src="/assets/js/script.js"></script>
+<script type="module" src="/assets/landing.js"></script>
 
 </body>
 </html>
