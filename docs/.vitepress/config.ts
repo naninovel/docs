@@ -1,5 +1,5 @@
 import { defineConfig } from "vitepress";
-import { l10n, md, search, vite } from "./ext";
+import { inlineLanding, l10n, md, search, vite } from "./ext";
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -31,5 +31,6 @@ export default defineConfig({
     sitemap: { hostname: "https://naninovel.com" },
     locales: l10n.config,
     markdown: md,
-    vite: vite
+    vite: vite,
+    buildEnd: inlineLanding
 });

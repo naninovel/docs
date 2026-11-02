@@ -1,0 +1,425 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ノベルゲーム制作エンジン • Naninovel</title>
+    <meta name="description" content="Naninovelは、ライターにやさしいUnity向けの物語エンジンです。ビジュアルノベルも、分岐するダイアログも、カットシーンも、プレーンテキストで書けます。2018年からアセットストアで提供されており、これまでに数百のタイトルがこのエンジンでリリースされています。">
+    <link rel="canonical" href="https://naninovel.com/ja/">
+    <link rel="alternate" hreflang="en" href="https://naninovel.com/">
+    <link rel="alternate" hreflang="ja" href="https://naninovel.com/ja/">
+    <link rel="alternate" hreflang="zh-CN" href="https://naninovel.com/zh/">
+    <link rel="alternate" hreflang="x-default" href="https://naninovel.com/">
+    <meta property="og:title" content="Naninovel – ライターにやさしいUnity向けノベルゲーム制作エンジン">
+    <meta property="og:description" content="Naninovelは、ライターにやさしいUnity向けの物語エンジンです。ビジュアルノベルも、分岐するダイアログも、カットシーンも、プレーンテキストで書けます。2018年からアセットストアで提供されており、これまでに数百のタイトルがこのエンジンでリリースされています。">
+    <meta property="og:image" content="https://naninovel.com/assets/img/og.jpg">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://naninovel.com/ja/">
+    <meta property="og:locale" content="ja_JP">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="theme-color" content="#0a0c12">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="preload" href="/assets/fonts/fraunces.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/mona.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/fonts/jb.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="/assets/img/hero/nani-default.webp" as="image" type="image/webp" fetchpriority="high" crossorigin>
+    <link rel="preload" href="/assets/img/hero/kohaku-default.webp" as="image" type="image/webp" fetchpriority="high" crossorigin>
+    <link rel="stylesheet" href="/assets/landing.css">
+</head>
+<body>
+
+<!-- ─────────── Header ─────────── -->
+<header>
+    <div class="wrap header-inner">
+        <a href="/ja/" class="logo" aria-label="Naninovelホーム">
+            <img src="/assets/img/nani-logo.svg" alt="" width="34" height="34">
+            <span>Naninovel</span>
+        </a>
+        <nav aria-label="メイン">
+            <a href="/ja/faq">FAQ</a>
+            <a href="/ja/guide">ガイド</a>
+            <a href="https://account.naninovel.com">アカウント</a>
+            <a href="/ja/support">サポート</a>
+            <button class="lang-toggle" popovertarget="lang-menu" popovertargetaction="show" aria-label="言語"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 8 6 6M4 14l6-6 2-3M2 5h12M7 2h1M22 22l-5-10-5 10M14 18h6"/></svg><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        </nav>
+        <div class="lang-menu glass" id="lang-menu" popover>
+            <a class="choice" href="/" hreflang="en" lang="en"><span class="icon" aria-hidden="true">EN</span>English</a>
+            <a class="choice" href="/ja/" aria-current="page"><span class="icon" aria-hidden="true">JA</span>日本語</a>
+            <a class="choice" href="/zh/" hreflang="zh-CN" lang="zh-CN"><span class="icon" aria-hidden="true">ZH</span>中文</a>
+        </div>
+        <a href="https://assetstore.unity.com/packages/slug/135453?locale=ja-JP" target="_blank" class="button">Naninovelを入手</a>
+        <button class="menu-toggle" aria-label="メニュー" aria-expanded="false" aria-controls="menu-panel">
+            <span></span><span></span><span></span>
+        </button>
+    </div>
+</header>
+<nav class="menu-panel glass" id="menu-panel" aria-label="メイン">
+    <a class="choice" href="/ja/faq"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg></span>FAQ</a>
+    <a class="choice" href="/ja/guide"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg></span>ガイド</a>
+    <a class="choice" href="https://account.naninovel.com"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></svg></span>アカウント</a>
+    <a class="choice" href="/ja/support"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>サポート</a>
+    <a class="choice primary" href="https://assetstore.unity.com/packages/slug/135453?locale=ja-JP" target="_blank"><span class="icon" aria-hidden="true"><svg class="filled" viewBox="-38 0 640 640"><path id="cart" d="M0 72C0 58.7 10.7 48 24 48L69.3 48C96.4 48 119.6 67.4 124.4 94L124.8 96L524.7 96C549.8 96 568.7 118.9 564 143.6L537.6 280.6C529.6 322 493.4 352 451.2 352L171.4 352L176.5 380.3C178.6 391.7 188.5 400 200.1 400L456 400C469.3 400 480 410.7 480 424C480 437.3 469.3 448 456 448L200.1 448C165.3 448 135.5 423.1 129.3 388.9L77.2 102.6C76.5 98.8 73.2 96 69.3 96L24 96C10.7 96 0 85.3 0 72zM162.6 304L451.2 304C470.4 304 486.9 290.4 490.5 271.6L514.9 144L133.5 144L162.6 304zM208 480C234.5 480 256 501.5 256 528C256 554.5 234.5 576 208 576C181.5 576 160 554.5 160 528C160 501.5 181.5 480 208 480zM432 480C458.5 480 480 501.5 480 528C480 554.5 458.5 576 432 576C405.5 576 384 554.5 384 528C384 501.5 405.5 480 432 480z"/></svg></span>Naninovelを入手</a>
+</nav>
+<div class="menu-backdrop"></div>
+
+<main>
+
+    <!-- ─────────── Hero ─────────── -->
+    <section class="hero" id="demo">
+        <div class="stage">
+            <div class="scene" aria-hidden="true">
+                <div class="bg">
+                    <div class="bg-column">
+                        <div class="bg-rays"></div>
+                        <div class="bg-glow"></div>
+                        <div class="light warm"></div>
+                        <div class="light cool"></div>
+                    </div>
+                </div>
+                <div class="cast"><div class="cast-column">
+                    <div class="char kohaku" data-char="Kohaku">
+                        <img src="/assets/img/hero/kohaku-default.webp" data-look="Default" class="on front" alt="" width="664" height="1068" decoding="async" crossorigin>
+                        <img src="/assets/img/hero/kohaku-surprise.webp" data-look="Surprise" alt="" width="664" height="1068" decoding="async" fetchpriority="low" crossorigin>
+                        <span class="shade"></span>
+                    </div>
+                    <div class="char nani" data-char="Nani">
+                        <img src="/assets/img/hero/nani-default.webp" data-look="Default" class="on front" alt="" width="544" height="1068" decoding="async" crossorigin>
+                        <img src="/assets/img/hero/nani-confidence.webp" data-look="Confidence" alt="" width="544" height="1068" decoding="async" fetchpriority="low" crossorigin>
+                        <span class="shade"></span>
+                    </div>
+                </div></div>
+            </div>
+            <hgroup class="hero-title rise">
+                <h1>ライターにやさしい<br>物語エンジン</h1>
+                <p class="hero-lead"><em>インタラクティブフィクション</em>を手がける<em>数千人の作家</em>とともに<em>10年以上</em>。</p>
+            </hgroup>
+            <div class="printer glass">
+                <div class="printer-name" aria-hidden="true"><span>Nani-kun</span></div>
+                <p class="printer-text" aria-hidden="true">君は書くだけでいい。さて、どうする？</p>
+                <div class="choices" role="group" aria-label="選択肢">
+                    <a class="choice primary" href="https://assetstore.unity.com/packages/slug/135453?locale=ja-JP" target="_blank"><span class="icon" aria-hidden="true"><svg class="filled" viewBox="-38 0 640 640"><use href="#cart"/></svg></span>Naninovelを入手</a>
+                    <a class="choice" href="#more"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v13"/><path d="m6.5 12.5 5.5 5.5 5.5-5.5"/></svg></span>もっと見る</a>
+                </div>
+                <span class="continue-mark"></span>
+            </div>
+            <p class="sr-only live-region" aria-live="polite"></p>
+        </div>
+
+        <div class="hero-ui wrap">
+            <div class="script-slot">
+                <aside class="script rise rise-delayed" aria-label="このシーンのスクリプト、Start.nani">
+                    <div class="script-bar">
+                        <span class="script-tab">Start.nani</span>
+                        <span class="script-controls"><button class="script-state" data-playing="再生中" data-ended="もう一度再生" disabled>待機中</button></span>
+                    </div>
+                    <ol class="script-lines">
+                        <li><span><span class="keyword">@back</span> <span class="param">Prism</span></span></li>
+                        <li><span><span class="keyword">@char</span> <span class="param">Nani pos:75</span></span></li>
+                        <li><span><span class="keyword">@char</span> <span class="param">Kohaku pos:50 look:Right</span></span></li>
+                        <li><span><span class="name">Nani:</span> やあ！このシーンは丸ごとただのテキストファイル。今まさにそれが動いてるんだ。</span></li>
+                        <li><span><span class="name">Kohaku:</span> 起きることを書くだけで、そのまま動くの？</span></li>
+                        <li><span><span class="name">Nani:</span> 脚本みたいなものさ。<span class="keyword">[-]</span>地震でも起こしてみる？</span></li>
+                        <li><span><span class="keyword">@shake</span> <span class="param">Camera wait!</span></span></li>
+                        <li><span><span class="name">Kohaku.Surprise:</span> うわっ、今のは揺れたね！</span></li>
+                        <li><span><span class="name">Nani.Confidence:</span> おなじみの機能も全部入ってるよ。メニュー、セーブ、ロールバック、ボイス、ローカライズ……</span></li>
+                        <li><span><span class="name">Nani:</span> 君は書くだけでいい。<span class="keyword">[-]</span>さて、どうする？<span class="keyword">[&gt;]</span></span></li>
+                        <li><span><span class="keyword">@choice</span> "Naninovelを入手" <span class="param">goto:AssetStore</span></span></li>
+                        <li><span><span class="keyword">@choice</span> "もっと見る" <span class="param">goto:#More</span></span></li>
+                    </ol>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────── More ─────────── -->
+    <section id="more">
+        <div class="wrap">
+            <hgroup class="section-head reveal">
+                <h2><a href="#more">開発者に信頼されるエンジン</a></h2>
+                <p>Naninovelはインタラクティブな物語づくりのための<em>オールインワンスイート</em>。<em>2018年から</em>、毎年のリリースで進化を続けています。</p>
+            </hgroup>
+
+            <div class="features">
+                <article class="feature reveal">
+                    <h3>ライターのためのスクリプト</h3>
+                    <p>物語は<a href="/ja/guide/scenario-scripting" target="_blank">NaniScript</a>でテキストドキュメントに書くことも、ビジュアルな<a href="/ja/guide/editor" target="_blank">ストーリーエディター</a>で書くこともできます。プログラミングは不要。分岐、変数、条件もすべて組み込まれています。</p>
+                    <figure class="shot"><img src="/assets/img/story-graph@1x.webp" srcset="/assets/img/story-graph@2x.webp 2x" alt="" width="360" height="92" loading="lazy"></figure>
+                </article>
+                <article class="feature reveal">
+                    <h3>最初から全部入り</h3>
+                    <p>UI一式、セーブとロード、状態のロールバック、バックログ、ローカライズ、オートボイス、CGギャラリー、ダイアログトリガーなど、数十のシステムが含まれており、<a href="/ja/guide/samples" target="_blank">すぐに使えます</a>。</p>
+                    <figure>
+                        <figcaption>Rooftop.nani</figcaption>
+                        <pre><span class="keyword">@unlock</span> <span class="param">CG/Rooftop</span> <span class="comment">; ギャラリーに追加</span>
+<span class="keyword">@save</span> <span class="comment">; オートセーブ</span></pre>
+                    </figure>
+                </article>
+                <article class="feature reveal">
+                    <h3>豊富な実績</h3>
+                    <p>PC、コンソール、モバイル向けにリリースされた<a href="#made-with">数百のタイトル</a>で実証済み。Naninovelは、個人クリエイターからパブリッシャーまで、あらゆる規模のスタジオにとっての業界標準です。</p>
+                    <figure class="shot"><img src="/assets/img/shelf@1x.webp" srcset="/assets/img/shelf@2x.webp 2x" alt="" width="360" height="92" loading="lazy"></figure>
+                </article>
+                <article class="feature reveal">
+                    <h3>どんなゲームにも</h3>
+                    <p>Naninovelはビジュアルノベルのテンプレートとして使えるほか、<a href="/ja/guide/getting-started#ダイアログモード" target="_blank">ダイアログモード</a>を有効にして既存のプロジェクトに組み込めば、あらゆるジャンルのゲームに分岐するダイアログやカットシーンを追加できます。</p>
+                    <figure>
+                        <figcaption>Game.cs · Talk.nani</figcaption>
+                        <pre><span class="name">Dialogue</span>.EnterAndPlay(<span class="param">"Talk"</span>); <span class="comment">// C#から</span>
+<span class="keyword">@exitDialogue</span> <span class="comment">; ゲームに戻る</span></pre>
+                    </figure>
+                </article>
+                <article class="feature reveal">
+                    <h3>プロフェッショナルサービス</h3>
+                    <p>優先サポート、ソースコードへのアクセス、GitHub経由のインストール、LTSストリーム。ライセンスには1年間の<a href="/ja/support/#サポートプラン" target="_blank">サポートプラン</a>と、今後のすべてのリリースへの永続的なアクセスが含まれます。</p>
+                    <figure class="shot"><img src="/assets/img/support@1x.webp" srcset="/assets/img/support@2x.webp 2x" alt="" width="360" height="92" loading="lazy"></figure>
+                </article>
+                <article class="feature reveal">
+                    <h3>自在にカスタマイズ</h3>
+                    <p>すべての組み込み機能は、プレハブの簡単な調整やクリーンなC#&nbsp;APIで拡張・上書き・置き換えができます。エンジンは<a href="/ja/guide/engine-architecture" target="_blank">設計段階からモジュール式</a>のアーキテクチャを採用しています。</p>
+                    <figure>
+                        <figcaption>Wave.cs · Start.nani</figcaption>
+                        <pre><span class="keyword">class</span> <span class="name">Wave</span> : <span class="name">Command</span> { } <span class="comment">// C#で定義</span>
+<span class="keyword">@wave</span> <span class="comment">; スクリプトコマンドとして使える</span></pre>
+                    </figure>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────── Trailer ─────────── -->
+    <section id="trailer">
+        <div class="wrap">
+            <hgroup class="section-head reveal">
+                <h2><a href="#trailer">実際の動きを見る</a></h2>
+                <p><em>主な機能</em>を<em>3分</em>のトレーラー動画で紹介します。</p>
+            </hgroup>
+            <div class="trailer-frame reveal">
+                <div class="youtube">
+                    <button class="youtube-poster" aria-label="トレーラーを再生">
+                        <img src="/assets/img/trailer.webp" loading="lazy" decoding="async" width="1920" height="1080" alt="">
+                        <svg class="youtube-play" viewBox="0 0 100 100" aria-hidden="true">
+                            <defs>
+                                <path id="play-shape" d="M27.77 12.53L84.23 45.47Q92 50 84.23 54.53L27.77 87.47Q20 92 20 83L20 17Q20 8 27.77 12.53Z"/>
+                                <linearGradient id="play-glass" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0" stop-color="#fff" stop-opacity=".95"/>
+                                    <stop offset=".45" stop-color="#fff" stop-opacity=".72"/>
+                                    <stop offset=".75" style="stop-color: var(--periwinkle)" stop-opacity=".62"/>
+                                    <stop offset="1" style="stop-color: var(--aqua)" stop-opacity=".72"/>
+                                </linearGradient>
+                                <linearGradient id="play-rim" x1="0" y1="0" x2="1" y2="1">
+                                    <stop offset="0" stop-color="#fff"/>
+                                    <stop offset=".25" style="stop-color: var(--aqua)"/>
+                                    <stop offset=".5" style="stop-color: var(--periwinkle)" stop-opacity=".7"/>
+                                    <stop offset=".75" stop-color="#fff" stop-opacity=".35"/>
+                                    <stop offset="1" style="stop-color: var(--rose)"/>
+                                </linearGradient>
+                                <radialGradient id="play-glint">
+                                    <stop offset="0" stop-color="#fff" stop-opacity=".55"/>
+                                    <stop offset=".45" stop-color="#fff" stop-opacity=".2"/>
+                                    <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+                                </radialGradient>
+                                <clipPath id="play-clip"><use href="#play-shape"/></clipPath>
+                            </defs>
+                            <use class="body" href="#play-shape" fill="url(#play-glass)" stroke="url(#play-rim)"/>
+                            <circle class="glint" fill="url(#play-glint)" clip-path="url(#play-clip)"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <dialog class="theater" aria-label="Naninovelのトレーラー">
+                <div class="theater-shade"></div>
+                <div class="theater-stage">
+                    <div class="theater-screen" data-src="https://www.youtube-nocookie.com/embed/lRxIKDU9z4k?autoplay=1&amp;playsinline=1&amp;rel=0">
+                        <img src="/assets/img/trailer.webp" loading="lazy" decoding="async" width="1920" height="1080" alt="">
+                        <svg class="youtube-play" viewBox="0 0 100 100" aria-hidden="true">
+                            <use class="body" href="#play-shape" fill="url(#play-glass)" stroke="url(#play-rim)"/>
+                            <circle class="glint" fill="url(#play-glint)" clip-path="url(#play-clip)"/>
+                        </svg>
+                    </div>
+                    <div class="theater-bar">
+                        <button class="theater-close" autofocus><kbd>Esc</kbd>閉じる</button>
+                    </div>
+                </div>
+            </dialog>
+        </div>
+    </section>
+
+    <!-- ─────────── Made with Naninovel ─────────── -->
+    <section id="made-with">
+        <div class="wrap">
+            <hgroup class="section-head reveal">
+                <h2><a href="#made-with">Naninovelで作られたゲーム</a></h2>
+                <p>Naninovelで作られた<em>素晴らしいゲーム</em>が、あらゆる<em>主要プラットフォーム</em>でリリースされています。</p>
+            </hgroup>
+            <!-- Don't forget to strip JPEG metadata from game covers: it's ~25% of the size. -->
+            <div class="game-grid">
+                <a href="https://www.nintendo.com/store/products/fault-stp-lightkravte-switch" target="_blank" class="game reveal"><img src="/assets/img/made-with/light.jpg" alt="ゲームのカバー画像" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/844670?l=japanese" target="_blank" class="game reveal"><img src="/assets/img/made-with/happy.jpg" alt="ゲームのカバー画像" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/2092510?l=japanese" target="_blank" class="game reveal"><img src="/assets/img/made-with/king.jpg" alt="ゲームのカバー画像" loading="lazy"></a>
+                <a href="https://apps.apple.com/jp/app/rotaeno/id1614771445" target="_blank" class="game reveal"><img src="/assets/img/made-with/rota.jpg" alt="ゲームのカバー画像" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/3101040?l=japanese" target="_blank" class="game reveal"><img src="/assets/img/made-with/witch.jpg" alt="ゲームのカバー画像" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/2739630?l=japanese" target="_blank" class="game reveal"><img src="/assets/img/made-with/devil.jpg" alt="ゲームのカバー画像" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/2481020?l=japanese" target="_blank" class="game reveal"><img src="/assets/img/made-with/vamp.jpg" alt="ゲームのカバー画像" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/1672670?l=japanese" target="_blank" class="game reveal"><img src="/assets/img/made-with/drift.jpg" alt="ゲームのカバー画像" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/1529810?l=japanese" target="_blank" class="game reveal"><img src="/assets/img/made-with/psy.jpg" alt="ゲームのカバー画像" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/2017120?l=japanese" target="_blank" class="game reveal"><img src="/assets/img/made-with/manor.jpg" alt="ゲームのカバー画像" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/1414250?l=japanese" target="_blank" class="game reveal"><img src="/assets/img/made-with/corpse.jpg" alt="ゲームのカバー画像" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/1474120?l=japanese" target="_blank" class="game reveal"><img src="/assets/img/made-with/shade.jpg" alt="ゲームのカバー画像" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/2393870?l=japanese" target="_blank" class="game reveal"><img src="/assets/img/made-with/whisper.jpg" alt="ゲームのカバー画像" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/2507560?l=japanese" target="_blank" class="game reveal"><img src="/assets/img/made-with/shojo.jpg" alt="ゲームのカバー画像" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/1294060?l=japanese" target="_blank" class="game reveal"><img src="/assets/img/made-with/rail.jpg" alt="ゲームのカバー画像" loading="lazy"></a>
+                <a href="https://store-jp.nintendo.com/item/software/D70010000048131" target="_blank" class="game reveal"><img src="/assets/img/made-with/supper.jpg" alt="ゲームのカバー画像" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/3014680?l=japanese" target="_blank" class="game reveal"><img src="/assets/img/made-with/herb.jpg" alt="ゲームのカバー画像" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/4240150?l=japanese" target="_blank" class="game reveal"><img src="/assets/img/made-with/sister.jpg" alt="ゲームのカバー画像" loading="lazy"></a>
+                <a href="https://store-jp.nintendo.com/item/software/D70010000070481" target="_blank" class="game reveal"><img src="/assets/img/made-with/peach.jpg" alt="ゲームのカバー画像" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/1329110?l=japanese" target="_blank" class="game reveal"><img src="/assets/img/made-with/star.jpg" alt="ゲームのカバー画像" loading="lazy"></a>
+                <a href="https://store.steampowered.com/app/3995110?l=japanese" target="_blank" class="game reveal"><img src="/assets/img/made-with/land.jpg" alt="ゲームのカバー画像" loading="lazy"></a>
+            </div>
+            <div class="more-row reveal">
+                <a class="choice" href="/made-with" target="_blank"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>ほかのゲームも見る</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────── Try before buy ─────────── -->
+    <section id="try">
+        <div class="wrap">
+            <hgroup class="section-head reveal">
+                <h2><a href="#try">ブラウザで試す</a></h2>
+                <p><em>無料のデモ</em>をお試しください。<em>Unityのインストール</em>もダウンロードも不要です。</p>
+            </hgroup>
+            <div class="try-cards">
+                <a class="try-card reveal" href="/demo" target="_blank">
+                    <img src="/assets/img/try-demo@1x.webp" srcset="/assets/img/try-demo@2x.webp 2x" alt="" width="723" height="433" loading="lazy">
+                    <h3>ゲームデモ<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></h3>
+                    <p>C#スクリプトを一切使わずにNaninovelで作られた入門用のゲームと、エンジンの各機能のサンプルです。</p>
+                </a>
+                <a class="try-card reveal" href="/editor" target="_blank">
+                    <img src="/assets/img/try-sandbox@1x.webp" srcset="/assets/img/try-sandbox@2x.webp 2x" alt="" width="723" height="433" loading="lazy">
+                    <h3>エディターのサンドボックス<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg></h3>
+                    <p>サンドボックスモードのストーリーエディター。Unityを開かずに、シナリオスクリプトを書いてエンジンの機能を試せます。</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────── Reviews ─────────── -->
+    <section id="reviews">
+        <div class="wrap">
+            <hgroup class="section-head reveal">
+                <h2><a href="#reviews">レビューを読む</a></h2>
+                <p>アセットストアに寄せられた<em>ユーザーの声</em>をご紹介します。</p>
+            </hgroup>
+            <ul class="review-list">
+                <li class="review reveal">
+                    <h3 data-reveal>とても使いやすい素晴らしいツール！</h3>
+                    <p>Naninovelは、さまざまなマルチメディアプロジェクトでとても役に立っています。まとまりのあるフレームワーク、包括的なAPI、優れたスクリプトサポート、Unityとの統合と、<mark>必要なツールがちょうどよく揃っています</mark>。</p>
+                    <span class="reviewer">dmcvocation</span>
+                </li>
+                <li class="review reveal">
+                    <h3 data-reveal>初心者にはシンプル、上級者には奥深い</h3>
+                    <p>このアセットはとても使いやすく、シンプルでよくあるタイプのビジュアルノベルなら、プログラミングはほとんど、あるいはまったく必要ありません。一方で、より特殊なケースに合わせたカスタマイズや拡張もできるので、全体として<mark>非常に用途の広いツール</mark>になっています。</p>
+                    <span class="reviewer">CMartinezB</span>
+                </li>
+                <li class="review reveal">
+                    <h3 data-reveal>優れたツール、しかもどんどん良くなる</h3>
+                    <p>開発者はとても活発で、対応も迅速です。Unityアセットストアでこれまでやり取りした中で、<mark>最も連絡の取りやすい開発者</mark>です。Naninovelでノベルを書くためのミニスクリプト言語はわかりやすく、いくつかのクセさえ覚えてしまえば苦労はありません。</p>
+                    <span class="reviewer">Firgof</span>
+                </li>
+                <li class="review reveal">
+                    <h3 data-reveal>Unity向けの優れたノベルエンジン</h3>
+                    <p>Naninovelは、多くのツールが採用するノードベースのワークフローではなく、<mark>明快で読みやすいスクリプト形式</mark>でセリフを書き、シーンを演出するアプローチを採っています。ビジュアルノベル向けの機能が組み込まれており、Unity向けの他の多くのノベル・ナラティブツールをはるかに上回っています。</p>
+                    <span class="reviewer">sunlabyrinth</span>
+                </li>
+                <li class="review reveal">
+                    <h3 data-reveal>ストアで最高のノベルツール！</h3>
+                    <p>ここ数年、Unity向けのさまざまなビジュアルノベル用ソリューションを試してきましたが、間違いなく<mark>Naninovelがその中で一番</mark>です。シンプルなスクリプト言語を使っているので、実際に使い始めれば理解するのにそれほど苦労しません。</p>
+                    <span class="reviewer">Beru</span>
+                </li>
+                <li class="review reveal">
+                    <h3 data-reveal>本当に素晴らしい</h3>
+                    <p>手に入るノベル系アセットはすべて試しましたが、これは群を抜いてよくできていて、私のような初心者にもいちばんやさしいアセットでした。ドキュメントは丁寧で、<mark>サポートは最高</mark>です。</p>
+                    <span class="reviewer">rockcandygames</span>
+                </li>
+                <li class="review reveal">
+                    <h3 data-reveal>最高のノベルエンジン！使いやすくてパワフル</h3>
+                    <p>プロの3Dアーティストとして、背景やキャラクターに使える<mark>豊富な既製エフェクト</mark>と、キャラクタースプライトのアニメーションや操作の手軽さを高く評価しています。ボイスを収録しているなら、オートボイスもすごく便利な機能です！</p>
+                    <span class="reviewer">MikBo</span>
+                </li>
+                <li class="review reveal">
+                    <h3 data-reveal>使いやすさと拡張しやすさを兼ね備えた貴重なツール</h3>
+                    <p>私はモバイルゲーム業界で4年間、商業ビジュアルノベルを手がけてきたライター兼デザイナーです。個人的には、Unity+Naninovelは<mark>他のどれをも圧倒しています</mark>。それも大差で。比べものになりません。</p>
+                    <span class="reviewer">bmcarbaugh</span>
+                </li>
+                <li class="review reveal">
+                    <h3 data-reveal>素晴らしいビジュアルノベルアセットと最高の開発者！</h3>
+                    <p>このアセットが使いやすく強力なことは最初から明らかですが、実際に触れてみるまでわからないのは、サービスアーキテクチャのおかげでライブラリが<mark>非常に柔軟で拡張しやすい</mark>ということです。良いライブラリのお手本そのものです。</p>
+                    <span class="reviewer">RecursiveFrog</span>
+                </li>
+            </ul>
+            <div class="more-row reveal">
+                <a class="choice" href="https://assetstore.unity.com/packages/slug/135453/reviews?locale=ja-JP" target="_blank"><span class="icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>ほかのレビューも見る</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ─────────── Get started ─────────── -->
+    <section id="get-started">
+        <div class="wrap">
+            <div class="get-started-frame reveal">
+                <img class="nani-head" src="/assets/img/nani-logo.svg" alt="" width="176" height="172" loading="lazy">
+                <img class="nani-paws" src="/assets/img/nani-paws-inner.svg" alt="" width="176" height="35" loading="lazy">
+                <div class="get-started-panel">
+                    <div class="get-started-rays"></div>
+                    <h2>準備ができたら、いつでもどうぞ</h2>
+                    <ul class="get-started-menu">
+                        <li class="primary"><a href="https://assetstore.unity.com/packages/slug/135453?locale=ja-JP" target="_blank"><span class="label">はじめから</span><span class="description">UnityアセットストアでNaninovelを入手</span></a></li>
+                        <li><a href="/ja/guide" target="_blank"><span class="label">つづきから</span><span class="description">ガイドを読む</span></a></li>
+                        <li><a href="/made-with" target="_blank"><span class="label">ギャラリー</span><span class="description">Naninovelで作られたゲームを見る</span></a></li>
+                        <li><a href="/ja/support" target="_blank"><span class="label">おまけ</span><span class="description">サポートに問い合わせる</span></a></li>
+                    </ul>
+                </div>
+                <img class="nani-paws" src="/assets/img/nani-paws-outer.svg" alt="" width="176" height="35" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<!-- ─────────── Footer ─────────── -->
+<footer>
+    <div class="wrap"><div class="footer-inner">
+        <div class="footer-left">
+            <span>&copy; 2018<span id="year"></span> Elringus</span>
+            <a href="/eula">EULA</a>
+            <a href="/privacy-policy">プライバシーポリシー</a>
+        </div>
+        <div class="footer-socials">
+            <a href="https://github.com/naninovel" target="_blank" aria-label="GitHub">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 .3a12 12 0 00-3.8 23.38c.6.11.82-.26.82-.58v-2.16c-3.34.73-4.04-1.61-4.04-1.61a3.18 3.18 0 00-1.33-1.76c-1.09-.74.08-.73.08-.73a2.52 2.52 0 011.84 1.24 2.56 2.56 0 003.5 1 2.56 2.56 0 01.76-1.6c-2.67-.3-5.47-1.33-5.47-5.93a4.64 4.64 0 011.24-3.22 4.3 4.3 0 01.12-3.18s1-.32 3.3 1.23a11.38 11.38 0 016 0c2.28-1.55 3.29-1.23 3.29-1.23a4.3 4.3 0 01.12 3.18 4.64 4.64 0 011.23 3.22c0 4.61-2.8 5.63-5.48 5.92a2.86 2.86 0 01.82 2.22v3.29c0 .32.21.7.82.58A12 12 0 0012 .3z"/>
+                </svg>
+            </a>
+            <a href="https://discord.gg/BfkNqem" target="_blank" aria-label="Discord">
+                <svg viewBox="0 0 24 24">
+                    <path d="M20.32 4.37A19.8 19.8 0 0015.39 3a13.15 13.15 0 00-.64 1.28 18.39 18.39 0 00-5.5 0A12.92 12.92 0 008.6 3a19.72 19.72 0 00-4.93 1.37A20.07 20.07 0 00.1 18.64a19.91 19.91 0 006.07 3.06 14.58 14.58 0 001.26-2.06 12.85 12.85 0 01-2-.96c.17-.12.33-.25.49-.38a14.2 14.2 0 0012.16 0c.16.13.32.26.49.38a12.92 12.92 0 01-2 .96 14.44 14.44 0 001.26 2.06 19.87 19.87 0 006.07-3.06A20.04 20.04 0 0020.32 4.37zM8.02 15.67c-1.18 0-2.15-1.08-2.15-2.42s.95-2.42 2.15-2.42 2.17 1.09 2.15 2.42c0 1.34-.95 2.42-2.15 2.42zm7.96 0c-1.18 0-2.15-1.08-2.15-2.42s.95-2.42 2.15-2.42 2.17 1.09 2.15 2.42c0 1.34-.94 2.42-2.15 2.42z"/>
+                </svg>
+            </a>
+            <a href="https://x.com/naniengine" target="_blank" aria-label="X (Twitter)">
+                <svg viewBox="0 0 24 24">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+            </a>
+            <a href="https://bsky.app/profile/naninovel.com" target="_blank" aria-label="Bluesky">
+                <svg viewBox="0 0 24 24">
+                    <path d="M12 10.8c-1.087-2.114-4.046-6.053-6.798-7.995C2.566.944 1.561 1.266.902 1.565C.139 1.908 0 3.08 0 3.768c0 .69.378 5.65.624 6.479c.815 2.736 3.713 3.66 6.383 3.364q.204-.03.415-.056q-.207.033-.415.056c-3.912.58-7.387 2.005-2.83 7.078c5.013 5.19 6.87-1.113 7.823-4.308c.953 3.195 2.05 9.271 7.733 4.308c4.267-4.308 1.172-6.498-2.74-7.078a9 9 0 0 1-.415-.056q.21.026.415.056c2.67.297 5.568-.628 6.383-3.364c.246-.828.624-5.79.624-6.478c0-.69-.139-1.861-.902-2.206c-.659-.298-1.664-.62-4.3 1.24C16.046 4.748 13.087 8.687 12 10.8"/>
+                </svg>
+            </a>
+        </div>
+    </div></div>
+</footer>
+
+<script type="module" src="/assets/landing.js"></script>
+
+</body>
+</html>
