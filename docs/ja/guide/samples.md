@@ -4,7 +4,7 @@ Naninovelパッケージには、ビジュアルノベルとダイアログモ�
 
 ## サンプルへのアクセス
 
-高度なサンプルプロジェクトを [ダウンロードアーカイブ](https://account.naninovel.com/download) からダウンロードしてください。
+高度なサンプルプロジェクトを [ダウンロードアーカイブ](https://account.naninovel.com/download?culture=ja) からダウンロードしてください。
 
 ダウンロードしたディレクトリを解凍し、Unityエディターで開きます。プロジェクトが読み込まれたら、`Assets/Scenes/Main.unity` シーンを開き、プレイモードに入ります。[デモプロジェクト](https://naninovel.com/demo) のタイトル画面が表示されます。デモを開始するか、「SAMPLES」ボタンをクリックして、以下に概説する利用可能なサンプルに移動できます。
 

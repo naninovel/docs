@@ -4,7 +4,7 @@
 
 ## 访问示例
 
-从 [下载存档](https://account.naninovel.com/download) 下载高级示例项目。
+从 [下载存档](https://account.naninovel.com/download?culture=zh-CN) 下载高级示例项目。
 
 解压下载的目录并在 Unity 编辑器中将其打开。项目加载后，打开 `Assets/Scenes/Main.unity` 场景并进入播放模式。您将看到我们 [演示项目](https://naninovel.com/demo) 的标题屏幕。您可以开始演示或单击 "SAMPLES" 按钮导航到可用的示例，概述如下。
 
