@@ -113,7 +113,7 @@ https://github.com/naninovel/upm.git#1.22
 
 ### 从归档安装
 
-您也可以从 [下载归档](https://account.naninovel.com/download) 获取安装包。如果需要某个已不再通过 Asset Store 分发的最终版本，可以使用这种方式。归档收录了各个旧版本的最终发布包，覆盖从 1.14 到当前稳定版本的范围。
+您也可以从 [下载归档](https://account.naninovel.com/download?culture=zh-CN) 获取安装包。如果需要某个已不再通过 Asset Store 分发的最终版本，可以使用这种方式。归档收录了各个旧版本的最终发布包，覆盖从 1.14 到当前稳定版本的范围。
 
 只需将下载的 `.unitypackage` 文件拖放到 Unity 编辑器窗口中，然后单击“Import”即可安装该包。有关安装本地包的更多信息，请参阅 [Unity 文档](https://docs.unity3d.com/Manual/AssetPackagesImport.html)。
 

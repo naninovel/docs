@@ -4,7 +4,7 @@
 
 欢迎在 `#forum` 频道提问或寻求建议，在 `#wiki` 中查阅教程和指南，也可以在 `#chat` 中与其他 Naninovel 用户聊天交流。
 
-如果您有有效的 [支持计划](/zh/support/#支持计划)，还可以访问 `#support` 频道，直接获得 Naninovel 团队的帮助。[注册许可证](https://account.naninovel.com) 后，首年的支持计划免费。
+如果您有有效的 [支持计划](/zh/support/#支持计划)，还可以访问 `#support` 频道，直接获得 Naninovel 团队的帮助。[注册许可证](https://account.naninovel.com/?culture=zh-CN) 后，首年的支持计划免费。
 
 ## 支持计划
 
@@ -15,10 +15,10 @@
 - 访问 GitHub 上的引擎源代码存储库，您可以在其中跟踪开发过程
 - 访问包含最新 preview 和 stable 发布分支的 UPM 存储库，让您可以直接从 GitHub 安装和更新 Naninovel
 
-[注册许可证](https://account.naninovel.com) 后，您将获得一年的免费支持计划。此后，您可以随时通过 [账户仪表板](https://account.naninovel.com/support) 续订。
+[注册许可证](https://account.naninovel.com/?culture=zh-CN) 后，您将获得一年的免费支持计划。此后，您可以随时通过 [账户仪表板](https://account.naninovel.com/support?culture=zh-CN) 续订。
 
 ::: info NOTE
-是否订阅支持计划完全由您决定。即使不订阅，您仍可通过 [下载归档](https://account.naninovel.com/download) 终身获取今后发布的所有 Naninovel 稳定版本，也可以继续在 `#forum` 频道提问并获得社区帮助。
+是否订阅支持计划完全由您决定。即使不订阅，您仍可通过 [下载归档](https://account.naninovel.com/download?culture=zh-CN) 终身获取今后发布的所有 Naninovel 稳定版本，也可以继续在 `#forum` 频道提问并获得社区帮助。
 :::
 
 ## 报告错误

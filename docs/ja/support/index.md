@@ -4,7 +4,7 @@
 
 `#forum` チャンネルでは質問や相談ができ、`#wiki` ではチュートリアルやガイドを探せます。`#chat` で他のNaninovelユーザーとの雑談もお楽しみください。
 
-有効な [サポートプラン](/ja/support/#サポートプラン) をお持ちの場合は、Naninovelチームが直接対応する `#support` チャンネルも利用できます。[ライセンスを登録](https://account.naninovel.com) すると、最初の1年間はサポートプランを無料で利用できます。
+有効な [サポートプラン](/ja/support/#サポートプラン) をお持ちの場合は、Naninovelチームが直接対応する `#support` チャンネルも利用できます。[ライセンスを登録](https://account.naninovel.com/?culture=ja) すると、最初の1年間はサポートプランを無料で利用できます。
 
 ## サポートプラン
 
@@ -15,10 +15,10 @@
 - 開発プロセスを追跡できるGitHub上のエンジンのソースコードリポジトリへのアクセス
 - 最新のプレビューおよび安定リリースブランチを含むUPMリポジトリへのアクセス（GitHubから直接Naninovelをインストールおよび更新可能）
 
-[ライセンスを登録](https://account.naninovel.com) すると、1年間の無料サポートプランが付属します。その後は、[アカウントダッシュボード](https://account.naninovel.com/support) からいつでもサブスクリプションを更新できます。
+[ライセンスを登録](https://account.naninovel.com/?culture=ja) すると、1年間の無料サポートプランが付属します。その後は、[アカウントダッシュボード](https://account.naninovel.com/support?culture=ja) からいつでもサブスクリプションを更新できます。
 
 ::: info NOTE
-サポートプランへの加入は任意です。加入していなくても、[ダウンロードアーカイブ](https://account.naninovel.com/download) から、今後のすべてのNaninovel安定リリースを引き続き無期限で入手できます。`#forum` チャンネルでのコミュニティサポートも継続して利用でき、いつでも質問や相談ができます。
+サポートプランへの加入は任意です。加入していなくても、[ダウンロードアーカイブ](https://account.naninovel.com/download?culture=ja) から、今後のすべてのNaninovel安定リリースを引き続き無期限で入手できます。`#forum` チャンネルでのコミュニティサポートも継続して利用でき、いつでも質問や相談ができます。
 :::
 
 ## バグの報告
