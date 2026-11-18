@@ -36,7 +36,7 @@ First, select the script file for which you want to map the voice clips. If the 
 When assigning the clips via the voice map window, make sure to store the voice clips outside any "Resources" folders to prevent conflicts.
 :::
 
-To associate voice clips for a non-source locale, select a [script localization document](/guide/localization#scripts-localization) using the `Localization Document` field. When a valid document is picked, assigned voice clips will be automatically prefixed with the locale under which the document is stored and used when the corresponding [voice language](/guide/voicing#voice-language) is selected.
+Select the [voice language](/guide/voicing#voice-language) in the `Locale` field before assigning clips. Voice Map defaults to the source locale. For another locale, it previews the text from the [script localization document](/guide/localization#scripts-localization). If a translation is missing or empty, the preview shows the source text; clips are still assigned to the selected locale.
 
 If the same author has identical text messages (in the same script), both messages will be associated with the same voice clip. If that is not desired, add a unique text identifier to one of the messages, eg:
 
@@ -93,7 +93,7 @@ Use the voiceover documents generator utility accessible via `Naninovel -> Tools
 
 ![](https://i.gyazo.com/d1e40ff118daebd83b55e0433431b2a8.png)
 
-The `Locale` property allows you to select a specific locale for which to generate the documents (the localized scenario scripts for the selected locale should exist in your project).
+`Locale` selects the language of the exported text and defaults to the source locale. Missing or empty translations use the source text. Generating documents doesn't require Play Mode or change the running game's locale.
 
 The `Format` property controls the type of file and formatting of the voiceover documents to produce:
 
@@ -111,7 +111,7 @@ It's possible to inject a custom voiceover document generator in case you wish t
 
 To add a custom generator, create a new C# class with a parameterless constructor and implement the `IVoiceoverDocumentGenerator` interface. The utility will automatically pick such a class and use it instead of the built-in generators.
 
-The `GenerateVoiceoverDocument` method will be invoked by the utility for each script found in the project for the selected locale. The `list` argument is the list of commands contained in the script. `locale` represents the locale (language) selected in the utility. `outDir` is the output path selected in the utility.
+The utility invokes `GenerateVoiceoverDocument` for each registered scenario script. `list` contains the script's commands, `locale` is the language selected for export, and `outDir` is the selected output directory. Use `LocalizableTextResolver.Resolve(cmd.Text, locale)` to read a print command's text in that language.
 
 Below is an example of a custom voiceover generator, which appends a header with the script path and locale followed by an `auto-voice id > author > text` line for each print command found in the script.
 
@@ -125,9 +125,12 @@ public class VoiceoverGenerator : IVoiceoverDocumentGenerator
         foreach (var cmd in list.OfType<PrintText>())
         {
             var voiceId = AutoVoiceResolver.Resolve(cmd.Text);
-            builder.AppendLine($"{voiceId} > {cmd.AuthorId} > {cmd.Text}");
+            var text = LocalizableTextResolver.Resolve(cmd.Text, locale);
+            builder.AppendLine($"{voiceId} > {cmd.AuthorId} > {text}");
         }
-        File.WriteAllText($"{outDir}/{list.ScriptPath}.txt", builder.ToString());
+        var path = Path.Combine(outDir, $"{list.ScriptPath}.txt");
+        Directory.CreateDirectory(Path.GetDirectoryName(path));
+        File.WriteAllText(path, builder.ToString());
     }
 }
 ```

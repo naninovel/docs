@@ -36,7 +36,7 @@
 ボイスマップウィンドウを介してクリップを割り当てる場合は、競合を防ぐために、ボイスクリップはどの「Resources」フォルダーにも含まれない場所に保存してください。
 :::
 
-ソースロケール以外のロケールのボイスクリップを関連付けるには、`Localization Document` フィールドを使用して [スクリプトローカライズドキュメント](/ja/guide/localization#スクリプトのローカライズ) を選択します。有効なドキュメントが選択されると、割り当てられたボイスクリップには、ドキュメントが保存されているロケールが自動的にプレフィックスとして付けられ、対応する [ボイス言語](/ja/guide/voicing#ボイス言語) が選択されたときに使用されます。
+クリップを割り当てる前に、`Locale` フィールドで[ボイス言語](/ja/guide/voicing#ボイス言語)を選択します。初期値はソースロケールです。別のロケールを選ぶと、[スクリプトローカライズドキュメント](/ja/guide/localization#スクリプトのローカライズ)のテキストが表示されます。翻訳がない場合や空の場合は元のテキストが表示されますが、クリップは選択したロケールに割り当てられます。
 
 同じ話者に同一のテキストメッセージが（同じスクリプト内に）ある場合、両方のメッセージが同じボイスクリップに関連付けられます。これが望ましくない場合は、どちらかのメッセージに一意のテキスト識別子を追加します。例：
 
@@ -93,7 +93,7 @@
 
 ![](https://i.gyazo.com/d1e40ff118daebd83b55e0433431b2a8.png)
 
-`Locale` プロパティを使用すると、ドキュメントを生成する特定のロケールを選択できます（選択したロケールのローカライズされたシナリオスクリプトがプロジェクトに存在する必要があります）。
+`Locale` で出力するテキストの言語を選択します。初期値はソースロケールです。翻訳がない場合や空の場合は元のテキストが使われます。ドキュメントの生成に Play モードは不要で、実行中のゲームのロケールも変更されません。
 
 `Format` プロパティは、生成するボイスオーバードキュメントのファイルタイプとフォーマットを制御します。
 
@@ -111,7 +111,7 @@
 
 カスタムジェネレーターを追加するには、パラメーターなしのコンストラクターを持つ新しいC#クラスを作成し、`IVoiceoverDocumentGenerator` インターフェースを実装します。ユーティリティはそのようなクラスを自動的に検出し、組み込みジェネレーターの代わりに使用します。
 
-ユーティリティは、選択されたロケールのドキュメントを生成するために、プロジェクト内で見つかったスクリプトごとに `GenerateVoiceoverDocument` メソッドを呼び出します。`list` 引数は、スクリプトに含まれるコマンドのリストです。`locale` は、ユーティリティで選択されたロケール（言語）を表します。`outDir` は、ユーティリティで選択された出力パスです。
+ユーティリティは、登録されたシナリオスクリプトごとに `GenerateVoiceoverDocument` を呼び出します。`list` はスクリプトのコマンド一覧、`locale` は出力言語、`outDir` は選択した出力ディレクトリです。選択した言語のテキストを取得するには、`LocalizableTextResolver.Resolve(cmd.Text, locale)` を使用します。
 
 以下は、スクリプトパスとロケールを含むヘッダーを追加し、その後にスクリプト内で見つかった各printコマンドに対して `auto-voice id > author > text` 行を追加するカスタムボイスオーバージェネレーターの例です。
 
@@ -125,9 +125,12 @@ public class VoiceoverGenerator : IVoiceoverDocumentGenerator
         foreach (var cmd in list.OfType<PrintText>())
         {
             var voiceId = AutoVoiceResolver.Resolve(cmd.Text);
-            builder.AppendLine($"{voiceId} > {cmd.AuthorId} > {cmd.Text}");
+            var text = LocalizableTextResolver.Resolve(cmd.Text, locale);
+            builder.AppendLine($"{voiceId} > {cmd.AuthorId} > {text}");
         }
-        File.WriteAllText($"{outDir}/{list.ScriptPath}.txt", builder.ToString());
+        var path = Path.Combine(outDir, $"{list.ScriptPath}.txt");
+        Directory.CreateDirectory(Path.GetDirectoryName(path));
+        File.WriteAllText(path, builder.ToString());
     }
 }
 ```

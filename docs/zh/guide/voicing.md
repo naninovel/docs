@@ -36,7 +36,7 @@
 通过语音映射窗口分配剪辑时，请确保将语音剪辑存储在任何“Resources”文件夹之外，以防止冲突。
 :::
 
-要为非源语言环境关联语音剪辑，请使用 `Localization Document` 字段选择 [脚本本地化文档](/zh/guide/localization#脚本本地化)。选取有效文档后，分配的语音剪辑将自动加上该文档所在语言环境的前缀，并在选择相应的 [语音语言](/zh/guide/voicing#语音语言) 时使用。
+分配剪辑之前，请在 `Locale` 字段中选择[语音语言](/zh/guide/voicing#语音语言)。默认使用源语言。选择其他语言时，语音映射工具会显示[脚本本地化文档](/zh/guide/localization#脚本本地化)中的译文。如果译文缺失或为空，则显示原文，但剪辑仍会分配给所选语言。
 
 如果同一作者有相同的文本消息（在同一脚本中），这两条消息将关联到同一个语音剪辑。如果不需要这样，请向其中一条消息添加唯一的文本标识符，例如：
 
@@ -93,7 +93,7 @@
 
 ![](https://i.gyazo.com/d1e40ff118daebd83b55e0433431b2a8.png)
 
-`Locale` 属性允许选择要为其生成文档的特定语言环境（项目中应存在所选语言环境的本地化剧本脚本）。
+`Locale` 用于选择导出文本的语言，默认为源语言。译文缺失或为空时使用原文。生成文档不需要进入播放模式，也不会更改正在运行的游戏的语言。
 
 `Format` 属性控制要生成的配音文档的文件类型和格式：
 
@@ -111,7 +111,7 @@
 
 要添加自定义生成器，请创建一个具有无参数构造函数并实现 `IVoiceoverDocumentGenerator` 接口的新 C# 类。该实用程序将自动选取此类并使用它代替内置生成器。
 
-实用程序会对项目中找到的每个脚本调用 `GenerateVoiceoverDocument` 方法，为所选语言环境生成文档。`list` 参数是脚本中包含的命令列表。`locale` 表示实用程序中选择的语言环境（语言）。`outDir` 是实用程序中选择的输出路径。
+工具会对每个已注册的剧本脚本调用 `GenerateVoiceoverDocument`。`list` 是脚本中的命令列表，`locale` 是所选的导出语言，`outDir` 是所选的输出目录。使用 `LocalizableTextResolver.Resolve(cmd.Text, locale)` 可获取打印命令在该语言下的文本。
 
 下面是一个自定义配音生成器的示例，它会先附加一个包含脚本路径和语言环境的标题，然后为脚本中找到的每个打印命令附加一行 `auto-voice id > author > text`。
 
@@ -125,9 +125,12 @@ public class VoiceoverGenerator : IVoiceoverDocumentGenerator
         foreach (var cmd in list.OfType<PrintText>())
         {
             var voiceId = AutoVoiceResolver.Resolve(cmd.Text);
-            builder.AppendLine($"{voiceId} > {cmd.AuthorId} > {cmd.Text}");
+            var text = LocalizableTextResolver.Resolve(cmd.Text, locale);
+            builder.AppendLine($"{voiceId} > {cmd.AuthorId} > {text}");
         }
-        File.WriteAllText($"{outDir}/{list.ScriptPath}.txt", builder.ToString());
+        var path = Path.Combine(outDir, $"{list.ScriptPath}.txt");
+        Directory.CreateDirectory(Path.GetDirectoryName(path));
+        File.WriteAllText(path, builder.ToString());
     }
 }
 ```
