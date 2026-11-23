@@ -36,4 +36,4 @@ UI Toolkit 可以通过 [适配器](/zh/guide/gui#ui-toolkit) 使用，但不建
 
 ## 故事编辑器
 
-嵌入式 [故事编辑器](/zh/guide/editor#嵌入模式) 至少需要带有 x86-64 CPU 的 Windows 10、带有 Apple Silicon CPU 的 macOS 14，或具有较新 WebKitGTK 运行时的 x86-64 Linux。在不受支持的平台上，您仍然可以使用 [Web 版本](https://naninovel.com/editor) 的故事编辑器。
+嵌入式 [故事编辑器](/zh/guide/editor#嵌入模式) 至少需要带有 x86-64 CPU 的 Windows 10、带有 Apple Silicon CPU 的 macOS 14，或具有较新 WebKitGTK 运行时的 x86-64 Linux。

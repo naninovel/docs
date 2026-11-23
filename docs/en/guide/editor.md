@@ -43,17 +43,13 @@ The Story Editor is fully integrated with the Unity Editor and can be started ei
 
 ![?width=588](https://i.gyazo.com/48ad8d4c512b67df02d7ace15d5eaca5.png)
 
-Embedded mode uses the operating system's native WebView and requires an internet connection to download the editor binaries when you launch it for the first time. The binaries are cached, so a network connection won't be required for subsequent runs in the same project.
-
-::: tip
-The WebView component is maintained by the OS, but in rare cases it may be disabled or fail to update, breaking the Story Editor. To verify the WebView version on Windows, run the following in PowerShell:
+Embedded mode uses the operating system's native WebView. The OS maintains this component, but in rare cases it may be disabled or fail to update, preventing the Story Editor from working. To check the WebView version on Windows, run the following in PowerShell:
 
 ```powershell
 (Get-ItemProperty 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}','HKCU:\SOFTWARE\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}' -ErrorAction Ignore).pv
 ```
 
 If it prints nothing or the version is below 150, install the latest [WebView2 Runtime](https://developer.microsoft.com/microsoft-edge/webview2/) and restart Unity.
-:::
 
 ## Workspace
 

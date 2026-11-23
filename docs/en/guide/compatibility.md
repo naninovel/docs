@@ -36,4 +36,4 @@ At least the "Explicitly Thrown Exceptions Only" level (selected by default) is 
 
 ## Story Editor
 
-The embedded [Story Editor](/guide/editor#embedded-mode) requires at least Windows 10 with an x86-64 CPU, macOS 14 with an Apple Silicon CPU or x86-64 Linux with a modern WebKitGTK runtime. You can still use the [web version](https://naninovel.com/editor) of the Story Editor on unsupported platforms.
+The embedded [Story Editor](/guide/editor#embedded-mode) requires at least Windows 10 with an x86-64 CPU, macOS 14 with an Apple Silicon CPU or x86-64 Linux with a modern WebKitGTK runtime.

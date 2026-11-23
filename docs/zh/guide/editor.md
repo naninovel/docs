@@ -43,17 +43,13 @@ Naninovel 拥有自己的独立应用程序，在 Unity 编辑器中开发游戏
 
 ![?width=588](https://i.gyazo.com/48ad8d4c512b67df02d7ace15d5eaca5.png)
 
-嵌入模式使用操作系统的原生 WebView，首次启动时需要互联网连接来下载编辑器二进制文件。二进制文件会被缓存，因此同一项目中的后续运行不再需要网络连接。
-
-::: tip
-WebView 组件由操作系统维护，但在少数情况下，它可能被禁用或更新失败，导致故事编辑器无法正常工作。要在 Windows 上验证 WebView 版本，请在 PowerShell 中运行以下命令：
+嵌入模式使用操作系统的原生 WebView。该组件由操作系统维护，但在少数情况下，它可能被禁用或更新失败，导致故事编辑器无法正常工作。要在 Windows 上检查 WebView 版本，请在 PowerShell 中运行以下命令：
 
 ```powershell
 (Get-ItemProperty 'HKLM:\SOFTWARE\WOW6432Node\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}','HKCU:\SOFTWARE\Microsoft\EdgeUpdate\Clients\{F3017226-FE2A-4295-8BDF-00C3A9A7E4C5}' -ErrorAction Ignore).pv
 ```
 
 如果没有任何输出，或版本低于 150，请安装最新的 [WebView2 Runtime](https://developer.microsoft.com/microsoft-edge/webview2/) 并重启 Unity。
-:::
 
 ## 工作区
 
