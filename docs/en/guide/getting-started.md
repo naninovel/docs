@@ -113,7 +113,7 @@ If you encounter an error installing the package, make sure you are authenticate
 
 ### Install from Archive
 
-Another way to install Naninovel is by downloading the package from our [download archive](https://account.naninovel.com/download). This method is useful when you need a specific final release that is no longer distributed on the Asset Store. The archive contains final releases of all legacy versions, starting from version 1.14 up to the current stable release.
+Another way to install Naninovel is by downloading the package from our [download archive](https://account.naninovel.com/download). This method is useful when you need a specific final release that is no longer distributed on the Asset Store. The archive contains final (legacy) package versions starting from 1.18 and up to the current stable release.
 
 Simply drop the downloaded `.unitypackage` file into the Unity Editor window and click "Import" to install the package. Find more info on installing local packages in the [Unity documentation](https://docs.unity3d.com/Manual/AssetPackagesImport.html).
 
